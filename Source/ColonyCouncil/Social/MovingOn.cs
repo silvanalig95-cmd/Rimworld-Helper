@@ -234,6 +234,12 @@ namespace ColonyCouncil
     /// <summary>The council promises A a room of their own: the wish for one, where wishes can be raised for them now.</summary>
     public class DilemmaEffect_PromiseRoom : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (wish == null || ctx?.a == null || ctx.a.Dead || !ColonyCouncilMod.Settings.enableWishes) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_PromiseRoom".Translate(ctx.a.LabelShort).Resolve(), "CC_Impact_PromiseRoomBrief".Translate().Resolve());
+        }
+
         public WishDef wish;
 
         public override void Apply(DilemmaContext ctx)

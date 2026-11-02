@@ -325,6 +325,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_SharedName : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var (t, o) = ctx == null ? (null, null) : Who(taker, ctx);
+            if (t == null || o == null) return;
+            sheet.Add(ImpactKind.Other, 0, keep ? "CC_Impact_NameKeep".Translate(t.LabelShort, o.LabelShort).Resolve() : "CC_Impact_NameTake".Translate(t.LabelShort, o.LabelShort).Resolve());
+        }
+
         public PlayWho taker = PlayWho.A;
         public bool keep;
 

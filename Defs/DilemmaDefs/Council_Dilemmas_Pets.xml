@@ -22,10 +22,11 @@
         <label>{A_nameDef} cooks {B_nameDef} a new meal</label>
         <outcome>{A_nameDef} cooked {B_nameDef} a replacement dinner, with {PET_nameDef} shut outside. It wasn't as good as the first one, but {B_nameDef} ate it.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s dinner for {B_nameDef}</label><target>B</target><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
         </effects>
       </li>
       <li>
@@ -36,6 +37,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Unfair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -49,6 +52,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-15</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
         </effects>
       </li>
     </options>
@@ -86,8 +91,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_HairInStew</thought><onlyTrait><li>Gourmand</li><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>

@@ -474,6 +474,43 @@ namespace ColonyCouncil
 
         public abstract void Apply(DilemmaContext ctx);
 
+        /// <summary>
+        /// What this effect will do in the live moment, in plain words, added to <paramref name="sheet"/>: who it touches,
+        /// the mood with its real size and length, trust, goods, what plays out on the map. Never changes anything;
+        /// says nothing when it would do nothing now (nobody it's for, the setting it needs off). Its
+        /// <see cref="chance"/> is added by <see cref="DilemmaImpact.Of"/>.
+        /// </summary>
+        public virtual void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+        }
+
+        /// <summary>What this effect alone will do, one thing a line (empty when nothing).</summary>
+        public string Impact(DilemmaContext ctx) => string.Join("\n", DilemmaImpact.Of(ctx, new[] { this }).Select(DilemmaImpact.LineText));
+
+        /// <summary>Its chance is rolled for each person it touches (as <see cref="Targets"/> does), not once for all.</summary>
+        public virtual bool ChanceEach => true;
+
+        /// <summary>Everyone it is for now, whatever its chance (for telling what it does).</summary>
+        protected List<Pawn> Reached(DilemmaContext ctx)
+        {
+            float was = chance;
+            chance = 1f;
+            try
+            {
+                return ctx == null ? new List<Pawn>() : Targets(ctx).Distinct().ToList();
+            }
+            finally
+            {
+                chance = was;
+            }
+        }
+
+        /// <summary>Those it is for, in words: names when a few, else the group and how many (null when nobody).</summary>
+        protected string WhoOf(DilemmaContext ctx, List<Pawn> reached) => DilemmaImpact.Who(ctx, target, reached, this);
+
+        /// <summary>A key for those it is for, so the same people's lines add up.</summary>
+        protected static string KeyOf(List<Pawn> reached) => string.Join(",", reached.Select(p => p.thingIDNumber).OrderBy(n => n));
+
         protected IEnumerable<Pawn> Targets(DilemmaContext ctx)
         {
             IEnumerable<Pawn> list;
@@ -528,6 +565,29 @@ namespace ColonyCouncil
         public ThoughtDef thought;
         public DilemmaAbout about = DilemmaAbout.Auto;
 
+        private Pawn AboutOf(DilemmaContext ctx, Pawn p) =>
+            about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : about == DilemmaAbout.X ? ctx.stranger : p == ctx.a ? ctx.b ?? ctx.stranger : ctx.a;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx);
+            if (thought == null || who.Count == 0) return;
+            sheet.Thought(who, WhoOf(ctx, who), thought, p => AboutOf(ctx, p));
+            // The memories that make or break a bond between two of the colony (as Apply does, once a pair).
+            string tie = thought.defName == "Council_Dlm_MadeUp" ? "CC_Impact_TieMadeUp" : thought.defName == "Council_Dlm_Bonded" ? "CC_Impact_TieBonded"
+                : thought.defName == "Council_Dlm_Grudge" || thought.defName == "Council_Dlm_Distrust" ? "CC_Impact_TieGrudge" : null;
+            if (tie == null || !ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.MoodEffects) return;
+            var pairs = new HashSet<(Pawn, Pawn)>();
+            foreach (var p in who)
+            {
+                var o = AboutOf(ctx, p);
+                if (o == null || o == p || !p.IsColonist || !o.IsColonist) continue;
+                if (!pairs.Add(p.thingIDNumber < o.thingIDNumber ? (p, o) : (o, p))) continue;
+                sheet.Add(ImpactKind.Opinion, tie == "CC_Impact_TieGrudge" ? -1 : 1, tie.Translate(p.LabelShort, o.LabelShort).Resolve(), null,
+                    tie + "|" + Math.Min(p.thingIDNumber, o.thingIDNumber) + "|" + Math.Max(p.thingIDNumber, o.thingIDNumber));
+            }
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             // apart: an answer to the council; what it says people do together plays out on the map through its play-out effects.
@@ -566,6 +626,12 @@ namespace ColonyCouncil
     {
         public float amount;
 
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => p.IsColonist).ToList();
+            if (who.Count > 0) sheet.Trust(WhoOf(ctx, who), KeyOf(who), amount, who.Count > 1);
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
@@ -578,6 +644,16 @@ namespace ColonyCouncil
     public class DilemmaEffect_Standards : DilemmaEffect
     {
         public float amount;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx);
+            if (who.Count == 0 || Mathf.Abs(amount) < 0.001f || !ColonyCouncilMod.Settings.risingStandards) return;
+            string w = WhoOf(ctx, who);
+            // Higher standards make good moods smaller and bad ones bigger: a cost.
+            sheet.Amount(ImpactKind.Needs, -1, amount * 100f, "CC_Impact_Standards".Translate(w, ImpactSheet.Mark).Resolve(),
+                "CC_Impact_StandardsBrief".Translate(w, ImpactSheet.Mark).Resolve(), "standards|" + KeyOf(who));
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -595,6 +671,22 @@ namespace ColonyCouncil
     {
         public HediffDef hediff;
         public float severity = 0.5f;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => p.health != null).ToList();
+            if (hediff == null || who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            string effects = DilemmaImpact.HediffEffects(hediff, severity);
+            string days = DilemmaImpact.HediffDays(hediff);
+            string label = hediff.label.CapitalizeFirst();
+            string text = days != null
+                ? (effects != null ? "CC_Impact_Hediff" : "CC_Impact_HediffPlain").Translate(w, label, days, effects ?? "").Resolve()
+                : (effects != null ? "CC_Impact_HediffNoEnd" : "CC_Impact_HediffNoEndPlain").Translate(w, label, effects ?? "").Resolve();
+            var l = sheet.Add(ImpactKind.Health, DilemmaImpact.HediffSign(hediff, severity), text, "CC_Impact_HediffBrief".Translate(w, hediff.label).Resolve(),
+                "hediff|" + hediff.defName + "|" + KeyOf(who));
+            if (l != null) l.each = who.Count > 1;
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -620,6 +712,16 @@ namespace ColonyCouncil
     {
         public InspirationDef inspiration;
 
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => p.mindState?.inspirationHandler != null && !p.mindState.inspirationHandler.Inspired).ToList();
+            if (who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            var l = sheet.Add(ImpactKind.Needs, 1, inspiration != null ? "CC_Impact_InspireThis".Translate(w, inspiration.label).Resolve() : "CC_Impact_Inspire".Translate(w).Resolve(),
+                "CC_Impact_InspireBrief".Translate(w).Resolve(), "inspire|" + KeyOf(who));
+            if (l != null) l.each = who.Count > 1;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             foreach (var p in Targets(ctx))
@@ -637,6 +739,14 @@ namespace ColonyCouncil
     {
         public SkillDef skill;
         public float xp = 300f;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var sk = skill ?? ctx?.skill;
+            if (sk == null) return;
+            var who = Reached(ctx).Where(p => p.skills?.GetSkill(sk) is SkillRecord r && !r.TotallyDisabled).ToList();
+            if (who.Count > 0) DilemmaImpact.Xp(sheet, WhoOf(ctx, who), KeyOf(who), sk, xp, who.Count > 1);
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -657,6 +767,16 @@ namespace ColonyCouncil
     {
         public MentalStateDef mentalState;
 
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => !p.Dead && !p.Downed).ToList();
+            if (mentalState == null || who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            var l = sheet.Add(ImpactKind.Health, -1, "CC_Impact_Break".Translate(w, mentalState.label).Resolve(), "CC_Impact_BreakBrief".Translate(w, mentalState.label).Resolve(),
+                "break|" + mentalState.defName + "|" + KeyOf(who));
+            if (l != null) l.each = who.Count > 1;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (mentalState == null) return;
@@ -675,6 +795,17 @@ namespace ColonyCouncil
     {
         /// <summary>A fights the stranger (a person) instead of B.</summary>
         public bool withStranger;
+
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var b = withStranger ? ctx?.stranger : ctx?.b;
+            if (ctx?.a == null || b == null || !b.RaceProps.Humanlike) return;
+            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
+            sheet.Add(ImpactKind.Health, -1, "CC_Impact_Fight".Translate(ctx.a.LabelShort, b.LabelShort).Resolve(),
+                "CC_Impact_FightBrief".Translate(ctx.a.LabelShort, b.LabelShort).Resolve(), "fight|" + b.thingIDNumber);
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -700,6 +831,18 @@ namespace ColonyCouncil
         public int count;
         public bool forbidden;
         public GoodsBy by;
+
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var def = thing ?? ctx?.thing;
+            int n = count > 0 ? count : ctx?.count ?? 0;
+            if (def == null || n <= 0) return;
+            if (def == ThingDefOf.Silver) sheet.Silver(n);
+            else sheet.Goods(1, def, n);
+            if (forbidden) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_Forbidden".Translate(def.label).Resolve(), "", "forbidden|" + def.defName);
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -774,6 +917,16 @@ namespace ColonyCouncil
         public override string Unavailable(DilemmaContext ctx) =>
             Have(ctx) < Need(ctx) ? "CC_Dilemma_NotEnough".Translate(Need(ctx), Label(ctx)).ToString() : null;
 
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx == null) return;
+            int n = Need(ctx);
+            if (what == "silver") sheet.Silver(-n);
+            else sheet.Goods(-1, Label(ctx), n, what.NullOrEmpty() ? ctx.thing?.defName : what);
+        }
+
         private string Label(DilemmaContext ctx)
         {
             if (what == "silver") return ThingDefOf.Silver.label;
@@ -818,6 +971,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_ReleasePet : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var pet = ctx?.pet;
+            if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
+            sheet.Add(ImpactKind.People, -1, "CC_Impact_ReleasePet".Translate(pet.LabelShort).Resolve(), "CC_Impact_ReleasePetBrief".Translate(pet.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var pet = ctx.pet;
@@ -836,6 +996,13 @@ namespace ColonyCouncil
     public class DilemmaEffect_Goodwill : DilemmaEffect
     {
         public int amount;
+
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.faction != null && !ctx.faction.defeated) sheet.Goodwill(ctx.faction, amount);
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -868,17 +1035,14 @@ namespace ColonyCouncil
                 {
                     int index = i;
                     var o = ctx.def.options[i];
-                    var opt = new DiaOption(ctx.Format(o.label));
                     // The default answer is always possible, so the letter can never trap the player.
                     string why = i == ctx.def.defaultOption ? null : o.effects.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
-                    if (why != null) opt.Disable(why);
-                    opt.action = () =>
+                    // What the answer does, under it and on hover (Dilemmas/DilemmaImpact.cs).
+                    yield return DilemmaImpact.Option(ctx, o, ctx.Format(o.label), why, () =>
                     {
                         CouncilGameComponent.Instance?.dilemmas.Resolve(this, index, false);
                         Find.LetterStack.RemoveLetter(this);
-                    };
-                    opt.resolveTree = true;
-                    yield return opt;
+                    });
                 }
                 yield return Option_Postpone;
             }
@@ -911,6 +1075,9 @@ namespace ColonyCouncil
         public List<string> traditions = new List<string>();
 
         public bool IsTradition(DilemmaDef def) => def != null && traditions.Contains(def.defName);
+
+        /// <summary>How often the tradition's answer was chosen since it was last broken (for what an answer does).</summary>
+        public int TraditionCount(DilemmaDef def) => def != null && traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
 
         public IEnumerable<DilemmaDef> Traditions => traditions.Select(n => DefDatabase<DilemmaDef>.GetNamedSilentFail(n)).Where(d => d != null);
 
@@ -1015,9 +1182,11 @@ namespace ColonyCouncil
             if (ctx.a == null || ctx.a.Dead) return;
             ctx.cause = "CC_Cause_Decision".Translate(ctx.def.label, ctx.Format(option.label)).Resolve();
             using var _cause = Causes.Push(ctx.cause);
-            if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
             DilemmaChoices.PickHelpers(option, ctx);
+            // What it does, as it stands before it's done (the tradition too), for Council -> Dilemmas.
+            string impact = DilemmaImpact.Record(ctx, option);
+            if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
             List<PlayOut> plays;
@@ -1036,7 +1205,7 @@ namespace ColonyCouncil
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
             // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs).
-            DilemmaLog.Record(ctx, option, told, risk, byDefault);
+            DilemmaLog.Record(ctx, option, told, risk, byDefault, impact);
             // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
             {

@@ -450,6 +450,17 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_EaseAilment : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!AilmentTracker.On) return;
+            var who = Reached(ctx).Where(p => p.health?.hediffSet?.hediffs.Any(h => AilmentTracker.InfoOf(h?.def) is var i && i != null && !i.serious && !i.lingering) ?? false).ToList();
+            if (who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            string text = cure ? "CC_Impact_AilmentCure".Translate(w).Resolve() : "CC_Impact_AilmentEase".Translate(w, ((1f - Mathf.Clamp01(factor)) * 100f).ToString("0") + "%").Resolve();
+            var l = sheet.Add(ImpactKind.Health, 1, text, "CC_Impact_AilmentBrief".Translate(w).Resolve(), "ailment|" + KeyOf(who));
+            if (l != null) l.each = who.Count > 1;
+        }
+
         public float factor = 0.4f;
         public bool cure;
         /// <summary>Only the first ailment each target has (the one the event is about).</summary>
@@ -489,6 +500,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_StrainRelief : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!Heart.On || amount == 0f) return;
+            var who = Reached(ctx).Where(p => Heart.Eligible(p) && (!onlyStrained || Heart.BandOf(p) >= StrainBand.Strained)).ToList();
+            if (who.Count > 0) DilemmaImpact.Strain(sheet, WhoOf(ctx, who), KeyOf(who), -amount, who.Count > 1);
+        }
+
         public float amount = 10f;
         public bool onlyStrained;
 
@@ -510,6 +528,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampMood : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampTracker.Instance?.camp;
+            if (c == null || ctx?.map == null || c.map != ctx.map || !c.CanTalk) return;
+            if (tension != 0f) DilemmaImpact.Tension(sheet, tension);
+            if (warm > 0 && ctx.a != null) sheet.Add(ImpactKind.Goodwill, 1, "CC_Impact_CampWarm".Translate(ctx.a.LabelShort).Resolve());
+        }
+
         public float tension;
         public int warm;
 

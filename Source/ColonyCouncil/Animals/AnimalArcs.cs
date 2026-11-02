@@ -155,6 +155,13 @@ namespace ColonyCouncil
     /// <summary>The story's animal, if it's still wild and on the map, is marked for taming (the game's handlers do the rest).</summary>
     public class ArcEffect_TameStray : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.pet;
+            if (a == null || a.Dead || a.Faction != null || !a.Spawned || !TameUtility.CanTame(a)) return;
+            sheet.Play("CC_Impact_Tame".Translate(a.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var a = ctx.pet;

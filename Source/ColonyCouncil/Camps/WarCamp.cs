@@ -444,6 +444,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampTendWounded : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            if (c == null || ctx?.a == null) return;
+            int n = Math.Min(3, c.Here.Count(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()));
+            if (n == 0) return;
+            sheet.Play("CC_Impact_TendWounded".Translate(ctx.a.LabelShort, n, c.Label).Resolve(), "CC_Impact_TendWoundedBrief".Translate(n).Resolve());
+            sheet.Goods(-1, "CC_Dilemma_Medicine".Translate().Resolve(), Math.Min(n, DilemmaEffect_Consume.Medicine(c.map).Sum(t => t.stackCount)), "medicine");
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
@@ -483,6 +493,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampGuards : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c != null && !c.guards && !c.kind.fights) sheet.Add(ImpactKind.People, 1, "CC_Impact_CampGuards".Translate(c.Label).Resolve(), "CC_Impact_CampGuardsBrief".Translate().Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);

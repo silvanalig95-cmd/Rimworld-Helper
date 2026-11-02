@@ -295,6 +295,24 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Needs : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // A condition: who will do it (the best fit, when it picks a helper), and what must be in the stores (not used).
+            if (ctx == null) return;
+            if (skill != null)
+            {
+                var c = Candidates(ctx).Where(p => !asB || p != ctx.a).OrderByDescending(p => p.skills.GetSkill(skill).Level).FirstOrDefault();
+                var who = asB && ctx.b != null && target != DilemmaTarget.A ? ctx.b : c;
+                if (who?.skills?.GetSkill(skill) is SkillRecord r)
+                    sheet.Add(ImpactKind.Other, 0, "CC_Impact_Helper".Translate(who.LabelShort, skill.label, r.Level).Resolve(), "", "helper|" + skill.defName);
+            }
+            if (!what.NullOrEmpty() && count > 0) sheet.Add(ImpactKind.Other, 0, "CC_Impact_NeedsStores".Translate(Mathf.Max(1, count), what == "silver" ? ThingDefOf.Silver.label
+                : what == "rawfood" ? "CC_Dilemma_RawFood".Translate().Resolve() : what == "medicine" ? "CC_Dilemma_Medicine".Translate().Resolve()
+                : DefDatabase<ThingDef>.GetNamedSilentFail(what)?.label ?? what).Resolve(), "", "needs|" + what);
+        }
+
         public SkillDef skill;
         public int minLevel;
         public string tags;

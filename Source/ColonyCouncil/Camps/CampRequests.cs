@@ -657,6 +657,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampComes : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null) return;
+            string where = ("CC_Impact_CampTo_" + to).CanTranslate() ? ("CC_Impact_CampTo_" + to).Translate().Resolve() : "CC_Impact_CampTo_gate".Translate().Resolve();
+            sheet.Play("CC_Impact_CampComesOver".Translate(c.Label, Math.Max(1, count), where, DilemmaImpact.When(when), DilemmaImpact.Hours(hours)).Resolve(), "CC_Impact_CampComesOverBrief".Translate(c.Label).Resolve());
+        }
+
         public string to = "gate";
         public string who;
         public int count = 1;
@@ -704,6 +714,22 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampGives : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null) return;
+            int n = Mathf.RoundToInt(count * (what == "silver" || what == "found" ? LivingEvents.WealthFactor(ctx.map) : 1f));
+            if (what == "silver") sheet.Silver(n);
+            else if (what == "found") sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Loot".Translate(n).Resolve(), "CC_Impact_LootBrief".Translate().Resolve(), "loot");
+            else
+            {
+                var def = DefDatabase<ThingDef>.GetNamedSilentFail(what ?? "");
+                sheet.Goods(1, def?.label ?? ("CC_Impact_CampGoods_" + what).Translate().Resolve(), n, what);
+            }
+        }
+
         public string what = "meat";
         public int count = 20;
         public string fallback;
@@ -730,6 +756,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampBrings : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (CampOnMap.For(ctx) == null || thing == null || count <= 0) return;
+            sheet.Goods(1, thing, count);
+        }
+
         public ThingDef thing;
         public int count;
 
@@ -759,6 +793,16 @@ namespace ColonyCouncil
     /// <summary>One of the kind's good turns, done now because the colony asked: "repair" (the smith mends a building), "survey", "milk"...</summary>
     public class DilemmaEffect_CampHelp : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null || help.NullOrEmpty() || !c.CanHelpNow(help)) return;
+            string key = "CC_Impact_CampHelp_" + help;
+            sheet.Play((key.CanTranslate() ? key : "CC_Impact_CampHelp").Translate(c.Label).Resolve());
+        }
+
         public string help;
 
         public override string Unavailable(DilemmaContext ctx)
@@ -781,6 +825,16 @@ namespace ColonyCouncil
     /// <summary>The stranger (X), one of the camp's people, joins the colony with the answer (their camp's books keep it).</summary>
     public class DilemmaEffect_CampJoin : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            var x = ctx?.stranger;
+            if (c == null || x == null || x.Dead) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Join".Translate(x.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);
@@ -803,6 +857,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampHerd : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null || !c.Strayed) return;
+            if (eaten > 0) sheet.Add(ImpactKind.Goods, -1, "CC_Impact_CropsEaten".Translate(eaten).Resolve(), "CC_Impact_CropsEatenBrief".Translate(eaten).Resolve(), "cropseaten");
+            if (home) sheet.Play("CC_Impact_HerdHome".Translate(c.Label).Resolve());
+        }
+
         public int eaten;
         public bool home = true;
 
@@ -820,6 +884,14 @@ namespace ColonyCouncil
     /// <summary>The camp moves on early, of its own accord and in peace (no gifts left behind: their stay was cut short).</summary>
     public class DilemmaEffect_CampMovesOn : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c != null) sheet.Add(ImpactKind.People, 0, "CC_Impact_CampLeaves".Translate(c.Label).Resolve(), "CC_Impact_CampLeavesBrief".Translate(c.Label).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);
@@ -831,6 +903,12 @@ namespace ColonyCouncil
     /// <summary>The camp's fee is settled another way (a beast, a day's work, forgiven): the next falls due five days on.</summary>
     public class DilemmaEffect_CampFee : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c != null && c.termFee) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_CampFee".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);

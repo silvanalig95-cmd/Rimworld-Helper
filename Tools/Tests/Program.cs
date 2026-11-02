@@ -464,6 +464,7 @@ Console.WriteLine($"Checked {MakingTests.Run(Check)} things about what the colon
 Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the council's automations.");
 Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {NewsQuietTests.Run(Check)} things about a quiet day's evening news.");
+Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {LineRouteTests.Run(Check)} things about lines laid again under the walls.");
 Console.WriteLine($"Checked {GuestWillTests.Run(Check)} things about guests who'd stay (ties at home, what they want, the cost, family asking them back).");

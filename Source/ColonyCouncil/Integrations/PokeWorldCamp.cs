@@ -51,6 +51,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_PokemonShow : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null || PokeWorldCamp.OurBest(c.map) == null || PokeWorldCamp.TheirBest(c) == null) return;
+            sheet.Play("CC_Impact_PokemonShow".Translate(c.Label).Resolve(), "CC_Impact_PokemonShowBrief".Translate().Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);
@@ -139,6 +146,11 @@ namespace ColonyCouncil
     /// <summary>The colony keeps an eye out: the rumour holds for twenty days (Animals/ResidentBeast.cs makes it true, or not).</summary>
     public class DilemmaEffect_ShinyRumour : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_Rumour".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var rb = CouncilGameComponent.Instance?.beast;
@@ -153,6 +165,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CatchPokemon : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.stranger == null) return;
+            sheet.Play("CC_Impact_Catch".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort).Resolve(), "CC_Impact_CatchBrief".Translate().Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx) =>
             ctx?.map != null && !PokeWorldLink.CanCatch(ctx.map) ? "CC_Beast_NoBelt".Translate().ToString() : null;
 

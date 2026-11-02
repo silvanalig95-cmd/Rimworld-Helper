@@ -11,6 +11,15 @@ namespace ColonyCouncil
     /// <summary>The stranger joins the colony: a visitor who stays, a prisoner won over, a wild animal that follows A home.</summary>
     public class DilemmaEffect_Recruit : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || Strangers.IsHospitalityGuest(x) || (x.Downed && x.RaceProps.Humanlike)) return;
+            sheet.Add(ImpactKind.People, 1, (x.RaceProps.Humanlike ? "CC_Impact_Join" : "CC_Impact_JoinAnimal").Translate(x.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned) return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
@@ -36,6 +45,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Paid : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            int n = Mathf.RoundToInt((ctx?.count ?? 0) * factor);
+            if (ctx?.map != null && n > 0) sheet.Silver(n);
+        }
+
         public float factor = 1f;
 
         public override void Apply(DilemmaContext ctx)
@@ -51,6 +66,13 @@ namespace ColonyCouncil
     /// <summary>The stranger's group leaves the map now (thrown out, or sent on their way with thanks).</summary>
     public class DilemmaEffect_SendAway : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx == null ? null : Whom(ctx, ofGroup);
+            if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
+            sheet.Add(ImpactKind.People, 0, "CC_Impact_SendAway".Translate(x.LabelShort).Resolve(), "CC_Impact_SendAwayBrief".Translate(x.LabelShort).Resolve());
+        }
+
         /// <summary>Walked back to the road: they set off when the answer's visit to them starts, the visitor beside them.</summary>
         public bool walked;
         /// <summary>The ones who came with the event (a story's pilgrims), not X.</summary>
@@ -95,6 +117,15 @@ namespace ColonyCouncil
     /// <summary>Sets what the wardens do with the prisoner: Release, Execution, ReduceResistance, AttemptRecruit...</summary>
     public class DilemmaEffect_PrisonerOrder : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (mode == null || x == null || x.Dead || !x.IsPrisonerOfColony) return;
+            sheet.Add(ImpactKind.People, 0, "CC_Impact_PrisonerOrder".Translate(x.LabelShort, mode.label).Resolve(), "CC_Impact_PrisonerOrderBrief".Translate(mode.label).Resolve());
+        }
+
         public PrisonerInteractionModeDef mode;
 
         public override void Apply(DilemmaContext ctx)
@@ -109,6 +140,17 @@ namespace ColonyCouncil
     /// <summary>Changes the prisoner's resistance to recruitment (and will, for enslaving). Negative softens them.</summary>
     public class DilemmaEffect_Resistance : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x?.guest == null || x.Dead || !x.IsPrisonerOfColony) return;
+            if (resistance != 0f) sheet.Add(ImpactKind.People, resistance < 0f ? 1 : -1, "CC_Impact_Resistance".Translate(x.LabelShort, ImpactMath.Signed(resistance)).Resolve(),
+                "CC_Impact_ResistanceBrief".Translate(ImpactMath.Signed(resistance)).Resolve());
+            if (will != 0f) sheet.Add(ImpactKind.People, will < 0f ? 1 : -1, "CC_Impact_Will".Translate(x.LabelShort, ImpactMath.Signed(will)).Resolve());
+        }
+
         public float resistance;
         public float will;
 
@@ -125,6 +167,15 @@ namespace ColonyCouncil
     /// <summary>A ends the stranger's life: a mercy for a dying enemy, or not.</summary>
     public class DilemmaEffect_EndIt : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned) return;
+            sheet.Add(ImpactKind.People, 0, "CC_Impact_EndIt".Translate(x.LabelShort).Resolve(), "CC_Impact_EndItBrief".Translate(x.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
@@ -138,6 +189,14 @@ namespace ColonyCouncil
     /// <summary>A carries the downed stranger to a prisoner bed (if there's one free).</summary>
     public class DilemmaEffect_Capture : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            var a = ctx?.a;
+            if (x == null || a == null || x.Dead || !x.Spawned || !x.Downed || !a.Spawned) return;
+            sheet.Play("CC_Impact_Capture".Translate(a.LabelShort, x.LabelShort).Resolve(), "CC_Impact_CaptureBrief".Translate(x.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
@@ -158,6 +217,15 @@ namespace ColonyCouncil
     /// <summary>Marks the animal for hunting or taming.</summary>
     public class DilemmaEffect_Designate : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (designation == null || x == null || x.Dead || !x.Spawned || x.Map.designationManager.DesignationOn(x) != null) return;
+            sheet.Play("CC_Impact_Designate".Translate(x.LabelShort, designation.label).Resolve(), "CC_Impact_DesignateBrief".Translate(x.LabelShort, designation.label).Resolve());
+        }
+
         public DesignationDef designation;
 
         public override void Apply(DilemmaContext ctx)
@@ -174,6 +242,15 @@ namespace ColonyCouncil
     /// <summary>A's secret comes out (told by the stranger: a visitor who knew them before).</summary>
     public class DilemmaEffect_RevealSecret : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var s = CouncilGameComponent.Instance?.secrets.Of(ctx?.a);
+            if (s == null || s.revealed) return;
+            sheet.Add(ImpactKind.Other, -1, "CC_Impact_Reveal".Translate(ctx.a.LabelShort).Resolve(), "CC_Impact_RevealBrief".Translate(ctx.a.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
@@ -188,6 +265,14 @@ namespace ColonyCouncil
     /// <summary>A sells the heirloom they carry to the stranger (a trader) for its worth in silver, times a factor.</summary>
     public class DilemmaEffect_SellHeirloom : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var h = CouncilGameComponent.Instance?.legacy.HeirloomCarriedBy(ctx?.a);
+            if (h?.thing == null || h.thing.Destroyed) return;
+            sheet.Goods(-1, h.thing.LabelNoCount, 1, "heirloom");
+            sheet.Silver(Mathf.Max(1, Mathf.RoundToInt(h.thing.MarketValue * priceFactor)));
+        }
+
         public float priceFactor = 1.5f;
 
         public override string Unavailable(DilemmaContext ctx)
@@ -232,6 +317,16 @@ namespace ColonyCouncil
     /// <summary>A's animal goes with the stranger: given or sold to a visitor, it leaves with their group.</summary>
     public class DilemmaEffect_GivePet : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var pet = ctx?.pet;
+            if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
+            var x = ctx.stranger;
+            bool goes = x != null && !x.Dead && x.Spawned && x.Faction != null && !x.Faction.IsPlayer;
+            sheet.Add(ImpactKind.People, -1, goes ? "CC_Impact_GivePet".Translate(pet.LabelShort, x.LabelShort).Resolve() : "CC_Impact_ReleasePet".Translate(pet.LabelShort).Resolve(),
+                "CC_Impact_ReleasePetBrief".Translate(pet.LabelShort).Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned || ctx.stranger.Map != ctx.map)
@@ -264,6 +359,11 @@ namespace ColonyCouncil
     /// <summary>Something a life goal can grow from (a spark: battle, loss, news...) or count (a counter).</summary>
     public class DilemmaEffect_LifeEvent : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // A spark for a life goal, or a step counted toward one: shown when a goal grows from it.
+        }
+
         public string spark;
         public string counter;
 

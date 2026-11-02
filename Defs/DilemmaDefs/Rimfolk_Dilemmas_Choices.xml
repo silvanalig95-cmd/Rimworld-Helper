@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Choices built as trade-offs from the start: every answer has its own upside and its own cost (work done or not,
+    sleep, medicine, food, someone's mood), and the safe answer gives the least. Each comes only when it fits the colony
+    as it is: just after a fight, with someone ill and medicine in the stores, at a busy time with a willing student,
+    a neighbour short of food in spring. What each answer does is shown under it in the letter.
+  -->
+
+  <!-- ===================== The morning after the fight ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmC_AfterTheRaid</defName>
+    <label>the mess after the fight</label>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <withinDaysOfThreat>1.5</withinDaysOfThreat>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>The fighting is over, and the colony looks it: blood on the floors, doors off their hinges, things dropped all over the yard. {A_nameDef} wants everyone on it now, before dark. Half the colony can barely stand.</li>
+      <li>[night] Nobody has slept. The raiders are gone, but their mess isn't, and {A_nameDef} is already going from door to door with a broom, asking who's coming. Most of the doors stay shut.</li>
+      <li>[winter] The cold gets in wherever the raiders broke through, and the yard is strewn with what they left behind. {A_nameDef} says it all has to be cleared today. The others say they need one night first.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Everyone clears up, now</label>
+        <outcome>Everyone turned out with brooms and hammers, and the worst of it was cleared by dark. {A_nameDef} thanked each of them by name. Nobody had much to say at supper.</outcome>
+        <ways><toil>4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the clearing up after the fight</label><target>Colony</target><count>6</count><tasks><li>Corpses</li><li>Clean</li><li>Repair</li><li>Haul</li></tasks><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_PutToWork</thought><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>Colony</target><amount>6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Rest first; it can wait until tomorrow</label>
+        <outcome>The council sent everyone to rest. The mess waits for tomorrow, and {A_nameDef} has spent the afternoon looking at it.</outcome>
+        <ways><toil>-4</toil><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_IdleDay</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>8</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Three clear what can't wait; the rest rest</label>
+        <outcome>Three of them cleared what couldn't wait: the dead, the doors, the worst of the blood. Everyone else was left alone. Not everyone agrees on who the three should have been.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the clearing up after the fight</label><target>Colony</target><count>3</count><tasks><li>Corpses</li><li>Repair</li><li>Clean</li></tasks><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Others</target><amount>3</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Who sits up with the sick ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmC_NightNurse</defName>
+    <label>who sits up with the sick</label>
+    <weight>1</weight>
+    <cooldownDays>30</cooldownDays>
+    <minMedicine>1</minMedicine>
+    <roleA>
+      <sick>true</sick>
+      <adult>false</adult>
+    </roleA>
+    <roleB>
+      <bestAt>Medicine</bestAt>
+      <minOpinionOfA>-20</minOpinionOfA>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} is no better tonight. {B_nameDef} could sit up with {A_objective}, and be no use to anyone tomorrow. There is medicine on the shelf, but not much of it.</li>
+      <li>[winter] {A_nameDef} is shivering under two blankets, and {ILLNESS} isn't letting go. Somebody should be with {A_objective} tonight. {B_nameDef} has offered, and so has the medicine shelf.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} sits up with {A_objective} tonight</label>
+        <outcome>{B_nameDef} sat up with {A_nameDef} through the night, kept the cloth cool and the water coming. {A_nameDef} is a little better. {B_nameDef} is yawning into breakfast.</outcome>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sitting up with {A_nameDef}</label><who>B</who><whom>A</whom><hours>20~1</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_Nursed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.1</severity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>
+        </effects>
+      </li>
+      <li>
+        <label>A dose from the stores, and everyone sleeps</label>
+        <outcome>{B_nameDef} brought {A_nameDef} a dose from the shelf and went to bed. {A_nameDef} slept through, and the shelf has one less on it.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} bringing {A_nameDef} a dose</label><who>B</who><whom>A</whom><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.12</severity><immunity>0.05</immunity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_TimeToMend</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_StoresBare</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+        </effects>
+      </li>
+      <li>
+        <label>Take turns through the night</label>
+        <outcome>Three of them kept watch beside {A_nameDef} into the night, and {B_nameDef} got a whole night's sleep for once.</outcome>
+        <ways><mercy>2</mercy><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch beside {A_nameDef}</label><target>Others</target><count>3</count><to>Person</to><whom>A</whom><hours>20~2</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_Nursed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.04</severity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_SharedTheLoad</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Lessons or walls ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmC_TeachOrBuild</defName>
+    <label>lessons or walls</label>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <busyTime>true</busyTime>
+    <roleA>
+      <passion>Construction</passion>
+    </roleA>
+    <roleB>
+      <bestAt>Construction</bestAt>
+      <minOpinionOfA>-10</minOpinionOfA>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} has been asking {B_nameDef} for lessons in building for weeks. Now the work is piling up, and {B_nameDef} says it's lessons or walls, not both.</li>
+      <li>[afterraid] Half the walls need mending, and {A_nameDef} picks this week to ask {B_nameDef} to teach {A_objective} properly. {B_nameDef} doesn't say no. {B_nameDef} asks the council which it should be.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Lessons now</label>
+        <outcome>{B_nameDef} took {A_nameDef} through the work slowly, explaining every joint. Not much got built today. {A_nameDef} came away covered in sawdust and very pleased.</outcome>
+        <ways><openness>2</openness><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef}'s building lesson</label><skill>Construction</skill><xpPerHour>200</xpPerHour><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_LearningATrade</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.4</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Learn on the job, building beside {B_nameDef}</label>
+        <outcome>{A_nameDef} carried and held while {B_nameDef} built, and picked up what {A_pronoun} could between the two. The work got done. The lessons, mostly, didn't.</outcome>
+        <ways><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} building beside {B_nameDef}</label><target>AAndB</target><count>2</count><tasks><li>Build</li><li>Repair</li></tasks><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>250</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>After the rush</label>
+        <outcome>The lessons wait until the work slows. {B_nameDef} went back to the walls, and {A_nameDef} went back to asking.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{B_nameDef} back on the walls</label><target>B</target><count>1</count><tasks><li>Build</li><li>Repair</li></tasks><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Seed for the neighbours ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmC_NeighboursSeed</defName>
+    <label>seed for the neighbours</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Faction</workerClass>
+    <weight>0.9</weight>
+    <cooldownDays>60</cooldownDays>
+    <seasons><li>Spring</li></seasons>
+    <thingCount>40</thingCount>
+    <texts>
+      <li>Word came from {FACTION}: their stores spoiled over the winter, and they'll have nothing to sow. They ask whether the colony can spare {COUNT} raw food to see them through to the first harvest. {A_nameDef} brought the message, and wants an answer for them.</li>
+      <li>[colony:Generous] {FACTION} sent to ask, a little shamefaced, for {COUNT} raw food. They know the colony has helped before. Their winter stores rotted, and the planting is close.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Send it, and ask nothing</label>
+        <outcome>{A_nameDef} carried the sacks down to the gate for {FACTION}'s courier, who thanked the colony for it. They'll remember who fed them this spring.</outcome>
+        <ways><generosity>5</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for {FACTION}</label><what>rawfood</what><to>Gate</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_KeptOurName</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>Sell it to them at a fair price</label>
+        <outcome>{FACTION}'s courier counted out the silver at the gate and took the sacks. A fair price, they said, and didn't smile saying it.</outcome>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food sold to {FACTION}</label><what>rawfood</what><to>Gate</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>40</count><by>Outsiders</by></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_KeptOurName</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_StoresSafe</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>The colony can't spare it</label>
+        <outcome>The answer went back to {FACTION}: nothing to spare this year. The stores stay full, and {A_nameDef} didn't enjoy carrying that message.</outcome>
+        <ways><generosity>-4</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_TurnedAwayHungry</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_StoresSafe</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_TurnedAwayHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

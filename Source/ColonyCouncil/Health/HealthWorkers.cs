@@ -243,6 +243,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Convalescence : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            foreach (var p in Reached(ctx))
+            {
+                if (HealthTracker.ConvalescenceOf(p) == null || days == 0f) continue;
+                sheet.Add(ImpactKind.Health, days > 0f ? -1 : 1, (days > 0f ? "CC_Impact_ConvLonger" : "CC_Impact_ConvShorter").Translate(p.LabelShort, ImpactMath.Number(Mathf.Abs(days))).Resolve(),
+                    "CC_Impact_ConvBrief".Translate(p.LabelShort, ImpactMath.Signed(days)).Resolve(), "conv|" + p.thingIDNumber);
+            }
+        }
+
         public float days;
 
         public override void Apply(DilemmaContext ctx)
@@ -260,6 +270,13 @@ namespace ColonyCouncil
     /// <summary>A's planned major operations are put off (their bills suspended) until the player resumes them.</summary>
     public class DilemmaEffect_PutOffSurgery : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            foreach (var p in Reached(ctx))
+                if (DilemmaWorker_FamilySurgery.PlannedMajor(p).Any())
+                    sheet.Add(ImpactKind.Health, 0, "CC_Impact_PutOff".Translate(p.LabelShort).Resolve(), "CC_Impact_PutOffBrief".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             foreach (var p in Targets(ctx).ToList())

@@ -46,7 +46,6 @@ Council_Dilemma_TreeSinging [option 2] a refusal
 Council_Dilemma_AncestorsSupper [option 2] a refusal
 
 # Defs/DilemmaDefs/Council_Dilemmas_Goals.xml
-Council_Dilemma_Goal_Excused [option 0] a season off chores: a habit
 Council_Dilemma_Goal_Excused [option 2] a refusal
 Council_Dilemma_Goal_Foolish [option 2] a wager about the future
 Council_Dilemma_Goal_GivingUp [option 3] words at the council; nothing done
@@ -111,7 +110,6 @@ Council_Dilemma_Secret_Bounty [option 2] a message over the comms; nothing done 
 Council_Dilemma_Secret_DoctorsHands [option 0] back to doctoring: a habit
 Council_Dilemma_Secret_LooseTongue [option 0] an order; nothing done
 Council_Dilemma_Secret_LooseTongue [option 3] nothing done
-Council_Dilemma_Secret_KindnessFound [option 2] a roster: a habit
 Council_Dilemma_Secret_Sickness [option 0] a quarantine: the colony's beds and care are the player's
 Council_Dilemma_Secret_Sickness [option 2] nothing done
 Council_Dilemma_Secret_OneMoreBout [option 0] already real: the bout is a fight on the map

@@ -28,6 +28,28 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Made : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label) => Tell(ctx, sheet);
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // Made and handed over whether or not it plays out (without the setting it's simply there).
+            if (ctx?.map != null) Tell(ctx, sheet);
+        }
+
+        private void Tell(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (things.NullOrEmpty()) return;
+            var def = Pick(things);
+            if (def == null) return;
+            var to = PlayOuts.Who(forWhom, ctx);
+            if (inRoom && def.category == ThingCategory.Building && !Avail.CanBuild(def, ctx.map)) return;
+            var mk = PlayOuts.Who(maker, ctx);
+            if (mk != null && (mk.Dead || !(mk.RaceProps?.Humanlike ?? false))) mk = null;
+            string whom = to?.LabelShort ?? "CC_Impact_TheColony".Translate().Resolve();
+            string text = mk != null ? "CC_Impact_MadeBy".Translate(mk.LabelShort, def.label, whom).Resolve() : "CC_Impact_Made".Translate(def.label, whom).Resolve();
+            sheet.Add(ImpactKind.Goods, 1, text, "CC_Impact_MadeBrief".Translate(def.label).Resolve(), "made|" + def.defName);
+        }
+
         public string things;
         public PlayWho maker = PlayWho.None;
         public PlayWho forWhom = PlayWho.A;
@@ -288,6 +310,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Felled : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null || count <= 0) return;
+            sheet.Goods(1, ThingDefOf.WoodLog, count);
+            if (fell && !ctx.Colonists.Any(p => Beliefs.Forbids(p, Belief.NoTreeCutting)))
+                sheet.Play("CC_Impact_Felled".Translate(DilemmaImpact.Spot(near, ctx)).Resolve(), "CC_Impact_FelledBrief".Translate().Resolve());
+        }
+
         public int count = 20;
         public PlaySpot near = PlaySpot.Stranger;
         public bool fell = true;
@@ -429,6 +461,21 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Plant : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = ctx?.map;
+            var tree = map == null ? null : TreeFor(map);
+            if (tree == null) return;
+            int kids = children ? ctx.Colonists.Count(p => p.DevelopmentalStage.Child()) : 1;
+            int n = OnMapMath.Saplings(kids);
+            if (n <= 0) return;
+            string text = "CC_Impact_Plant".Translate(n, tree.label, DilemmaImpact.Spot(near == PlaySpot.Fields ? PlaySpot.Fields : PlaySpot.Outdoors, ctx)).Resolve();
+            if (markers) text += "CC_Impact_PlantMarkers".Translate().Resolve();
+            sheet.Play(text, "CC_Impact_PlantBrief".Translate(tree.label).Resolve());
+        }
+
         public bool children;
         public PlaySpot near = PlaySpot.Fields;
         public bool markers;
@@ -576,6 +623,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_SowPatch : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = ctx?.map;
+            var crop = map == null ? null : CropFor(map);
+            if (crop == null) return;
+            string text = "CC_Impact_Sow".Translate(ctx.a?.LabelShort ?? "?", crop.label).Resolve();
+            if (fence) text += "CC_Impact_SowFence".Translate().Resolve();
+            sheet.Play(text, "CC_Impact_SowBrief".Translate(crop.label).Resolve());
+        }
+
         public bool fence = true;
         public bool outOfWay;
 
@@ -666,6 +723,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_PlanRoom : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null || templates.NullOrEmpty()) return;
+            var t = templates.FirstOrDefault(x => x != null);
+            if (t == null) return;
+            sheet.Play("CC_Impact_PlanRoom".Translate(t.label).Resolve(), "CC_Impact_PlanRoomBrief".Translate(t.label).Resolve());
+        }
+
         public List<RoomTemplateDef> templates;
         public PlayWho forWhom = PlayWho.A;
 
@@ -755,6 +822,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_BurnFound : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.a;
+            if (a == null || ctx.map == null || a.Dead) return;
+            sheet.Add(ImpactKind.Goods, -1, "CC_Impact_BurnFound".Translate(a.LabelShort).Resolve(), "CC_Impact_BurnFoundBrief".Translate(a.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var a = ctx?.a;

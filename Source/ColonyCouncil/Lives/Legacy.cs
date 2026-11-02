@@ -258,6 +258,12 @@ namespace ColonyCouncil
     /// <summary>B takes A on as a student in a skill (a real mentorship in the social web).</summary>
     public class DilemmaEffect_Mentorship : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (CouncilGameComponent.Instance?.social == null || ctx?.a == null || ctx.b == null || skill == null) return;
+            sheet.Add(ImpactKind.Skill, 1, "CC_Impact_Mentor".Translate(ctx.b.LabelShort, ctx.a.LabelShort, skill.label).Resolve(), "CC_Impact_MentorBrief".Translate(ctx.a.LabelShort).Resolve());
+        }
+
         public SkillDef skill;
 
         public override void Apply(DilemmaContext ctx)

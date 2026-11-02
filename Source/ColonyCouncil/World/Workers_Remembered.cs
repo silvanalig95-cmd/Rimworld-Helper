@@ -322,6 +322,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Remember : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var f = enemy ? (ctx as HappeningContext)?.enemy : ctx?.faction;
+            if (!kind.NullOrEmpty() && f != null) sheet.Add(ImpactKind.Goodwill, 0, "CC_Impact_Remember".Translate(f.Name).Resolve(), "", "remember|" + f.loadID);
+            if (settle) sheet.Add(ImpactKind.Goodwill, 0, "CC_Impact_Settled".Translate().Resolve(), "", "settled");
+        }
+
         public string kind;
         public int weight;
         public bool enemy;
@@ -361,6 +370,14 @@ namespace ColonyCouncil
     /// <summary>Things worth {COUNT} silver (times <see cref="factor"/>) of the colony's era, left beside the visitor (or where traders leave goods).</summary>
     public class DilemmaEffect_Gift : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null || ctx.count <= 0) return;
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Loot".Translate(Mathf.RoundToInt(ctx.count * factor)).Resolve(), "CC_Impact_LootBrief".Translate().Resolve(), "loot");
+        }
+
         public float factor = 1f;
         public bool fancy;
 
@@ -378,6 +395,15 @@ namespace ColonyCouncil
     /// <summary>The event's goods ({THING}, {COUNT} of them, times <see cref="factor"/>) left beside the visitor (or where traders leave goods).</summary>
     public class DilemmaEffect_Goods : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            int n = Mathf.RoundToInt((ctx?.count ?? 0) * factor);
+            if (ctx?.map == null || ctx.thing == null || n <= 0) return;
+            sheet.Goods(1, ctx.thing, n);
+        }
+
         public float factor = 1f;
 
         public override void Apply(DilemmaContext ctx)
@@ -396,6 +422,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_MakePeace : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var f = ctx?.faction;
+            if (f == null || !HappeningWorker_Remembered.CanMakePeace(f)) return;
+            sheet.Add(ImpactKind.Goodwill, 1, "CC_Impact_Peace".Translate(f.Name, Mathf.Max(1, goodwill)).Resolve(), "CC_Impact_PeaceBrief".Translate(f.Name).Resolve());
+        }
+
         public int goodwill = 5;
 
         public override string Unavailable(DilemmaContext ctx)

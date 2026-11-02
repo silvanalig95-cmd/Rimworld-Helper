@@ -285,6 +285,17 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_HoldBack : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var p = ctx?.a;
+            if (p == null || p.Dead) return;
+            var m = ctx as MovingOnContext;
+            float strength = (m?.strength ?? 0.5f) * share;
+            sheet.Add(ImpactKind.Mood, -1, "CC_Impact_HeldBack".Translate(p.LabelShort, MovingOnMath.RampDays.ToString("0"), MovingOnMath.PeaceDays).Resolve(), "CC_Impact_HeldBackBrief".Translate(p.LabelShort).Resolve(), "heldback");
+            if (trust > 0f) sheet.Trust(p.LabelShort, p.thingIDNumber.ToString(), -MovingOnMath.TrustLoss(trust, strength), false);
+            if (promised) sheet.Add(ImpactKind.Other, 0, "CC_Impact_RoomPromised".Translate(MovingOnMath.PromiseDays, MovingOnMath.KeptPromiseTrust.ToString("0"), MovingOnMath.BrokenPromiseTrust.ToString("0")).Resolve());
+        }
+
         public string kind = "family";
         public float trust;
         public float share = 1f;
@@ -324,6 +335,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_BringRelative : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var m = ctx as MovingOnContext;
+            if (ctx?.a == null || m == null || !MovingOnHeld.CanCome(m.relative, ctx.faction)) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Relative".Translate(m.relativeName ?? "?", DilemmaImpact.Range(days.min, days.max)).Resolve(), "CC_Impact_RelativeBrief".Translate(m.relativeName ?? "?").Resolve());
+        }
+
         public IntRange days = new IntRange(2, 4);
 
         public override string Unavailable(DilemmaContext ctx)
@@ -352,6 +370,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_GiveRoom : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.b == null || !MovingOnHeld.HasOwnRoom(ctx.b)) return;
+            sheet.Play("CC_Impact_GiveRoom".Translate(ctx.b.LabelShort, ctx.a.LabelShort).Resolve(), "CC_Impact_SwapRoomsBrief".Translate().Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx) =>
             ctx?.b == null || ctx.b.Dead || !MovingOnHeld.HasOwnRoom(ctx.b) ? "CC_Leave_NoRoomToGive".Translate().Resolve() : null;
 

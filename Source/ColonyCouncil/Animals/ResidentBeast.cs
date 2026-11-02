@@ -376,6 +376,11 @@ namespace ColonyCouncil
     /// <summary>The colony's answer about the beast, kept for its lines and its end: fed, feared, hunted, tame, watched, driven.</summary>
     public class DilemmaEffect_BeastStance : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // How the colony stands with the beast: what the beast's story does with it is told as it comes.
+        }
+
         public string stance = "watched";
 
         public override void Apply(DilemmaContext ctx)
@@ -395,6 +400,16 @@ namespace ColonyCouncil
     /// <summary>Food for the beast, carried out to it and left (PlayOut/): meat for a meat-eater, hay or raw food for a grazer.</summary>
     public class DilemmaEffect_FeedBeast : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            var map = ctx?.map ?? x?.Map;
+            if (x == null || map == null || !x.Spawned) return;
+            string what = Food(x, map);
+            if (what == null) return;
+            new DilemmaEffect_CarryOut { what = what, count = count, who = PlayWho.A, to = PlaySpot.Stranger, steward = false }.Describe(ctx, sheet);
+        }
+
         public int count = 10;
 
         public override void Apply(DilemmaContext ctx)
@@ -427,6 +442,13 @@ namespace ColonyCouncil
     /// <summary>The beast is driven off the land: it makes for the nearest edge and goes (a group of its own with LordJob_ExitMapNear).</summary>
     public class DilemmaEffect_DriveOff : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned || x.Faction != null) return;
+            sheet.Play("CC_Impact_DriveOff".Translate(x.LabelShort).Resolve(), "CC_Impact_DriveOffBrief".Translate(x.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx?.stranger;

@@ -42,6 +42,14 @@ namespace ColonyCouncil
     /// <summary>The camp's mood toward the colony: negative eases tension (a kindness), positive raises it (a refusal).</summary>
     public class DilemmaEffect_CampTension : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (CampOnMap.For(ctx) == null) return;
+            DilemmaImpact.Tension(sheet, amount);
+        }
+
         public float amount;
         /// <summary>Counts as a gift in the camp's books (what they remember when they leave).</summary>
         public bool gift;
@@ -62,6 +70,19 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_EaseIllness : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            foreach (var p in Reached(ctx))
+            {
+                var h = LifeChecks.Illness(p);
+                if (h == null) continue;
+                string text = immunity > 0f && h is HediffWithComps hc && hc.TryGetComp<HediffComp_Immunizable>() != null
+                    ? "CC_Impact_IllnessImmune".Translate(p.LabelShort, h.LabelBase, (severity * 100f).ToString("0") + "%", (immunity * 100f).ToString("0") + "%").Resolve()
+                    : "CC_Impact_IllnessEase".Translate(p.LabelShort, h.LabelBase, (severity * 100f).ToString("0") + "%").Resolve();
+                sheet.Add(ImpactKind.Health, 1, text, "CC_Impact_IllnessBrief".Translate(p.LabelShort).Resolve(), "illness|" + p.thingIDNumber);
+            }
+        }
+
         public float severity = 0.1f;
         public float immunity;
 
@@ -88,6 +109,21 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Teach : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var teacher = reverse ? ctx?.b : ctx?.a;
+            var student = reverse ? ctx?.a : ctx?.b;
+            if (CouncilGameComponent.Instance?.social == null || teacher == null || student == null || teacher == student) return;
+            var sk = skill ?? teacher.skills?.skills
+                .Where(s => !s.TotallyDisabled && student.skills?.GetSkill(s.def) is SkillRecord r && !r.TotallyDisabled && r.Level + 4 <= s.Level)
+                .OrderByDescending(s => s.Level).FirstOrDefault()?.def;
+            if (sk == null) return;
+            sheet.Add(ImpactKind.Skill, 1, "CC_Impact_Mentor".Translate(teacher.LabelShort, student.LabelShort, sk.label).Resolve(), "CC_Impact_MentorBrief".Translate(student.LabelShort).Resolve());
+            if (xp > 0f && student.skills?.GetSkill(sk) is SkillRecord rec && !rec.TotallyDisabled) DilemmaImpact.Xp(sheet, student.LabelShort, student.thingIDNumber.ToString(), sk, xp, false);
+        }
+
         public SkillDef skill;
         public bool reverse;
         public float xp;

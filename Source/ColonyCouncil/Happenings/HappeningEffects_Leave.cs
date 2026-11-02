@@ -18,6 +18,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_LeaveForGood : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => !p.Dead && p.Faction == Faction.OfPlayer && p.RaceProps.Humanlike && !p.Downed).ToList();
+            if (who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            sheet.Add(ImpactKind.People, -1, (joinFaction && ctx.faction != null ? "CC_Impact_LeaveTo" : "CC_Impact_LeaveBlessed").Translate(w, ctx.faction?.Name ?? "").Resolve(),
+                "CC_Impact_LeaveBrief".Translate(w).Resolve());
+        }
+
         public bool joinFaction;
 
         /// <summary>Those leaving to a people of their own, by thing id, until they go (kept for the session).</summary>

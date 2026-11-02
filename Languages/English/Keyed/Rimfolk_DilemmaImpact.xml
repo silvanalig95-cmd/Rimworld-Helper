@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What each answer does (Dilemmas/DilemmaImpact.cs): a short line under each answer in a letter, the full list on
+       hover, and the same list on the Dilemmas page for answers given. %n% (where it appears in a code argument) is the
+       amount, filled in after merging. -->
+
+  <CC_Settings_ShowImpact>Show what each answer does</CC_Settings_ShowImpact>
+  <CC_Settings_ShowImpact_Tip>Under each answer of a dilemma, an event or a world event, a short line says what it does: who feels what and for how long, trust, what it costs or gives, what happens on the map, and the chance of a gamble going wrong. Hover the answer for the full list. On the Dilemmas page, hover an answer given to see what it was to do.</CC_Settings_ShowImpact_Tip>
+  <CC_SetNote_ShowImpact>Moods, trust, goods and risks under each answer, from the colony as it is now.</CC_SetNote_ShowImpact>
+
+  <CC_Impact_Header>What this answer does</CC_Impact_Header>
+  <CC_Impact_Nothing>Nothing you can see changes: it is the council's word, and the story goes on from it.</CC_Impact_Nothing>
+  <CC_Impact_More>more on hover</CC_Impact_More>
+
+  <CC_Impact_Kind_Map>On the map</CC_Impact_Kind_Map>
+  <CC_Impact_Kind_Mood>Mood</CC_Impact_Kind_Mood>
+  <CC_Impact_Kind_Opinion>How people see each other</CC_Impact_Kind_Opinion>
+  <CC_Impact_Kind_Trust>Trust in the council</CC_Impact_Kind_Trust>
+  <CC_Impact_Kind_Needs>Recreation, rest and strain</CC_Impact_Kind_Needs>
+  <CC_Impact_Kind_Health>Health and work</CC_Impact_Kind_Health>
+  <CC_Impact_Kind_Skill>Skills</CC_Impact_Kind_Skill>
+  <CC_Impact_Kind_Goods>Goods and silver</CC_Impact_Kind_Goods>
+  <CC_Impact_Kind_People>Who comes and goes</CC_Impact_Kind_People>
+  <CC_Impact_Kind_Goodwill>Other peoples</CC_Impact_Kind_Goodwill>
+  <CC_Impact_Kind_Other>Besides</CC_Impact_Kind_Other>
+  <CC_Impact_Kind_Ways>The colony's ways</CC_Impact_Kind_Ways>
+
+  <!-- Chances -->
+  <CC_Impact_Odds>{0} in {1}</CC_Impact_Odds>
+  <CC_Impact_OddsAbout>about {0} in {1}</CC_Impact_OddsAbout>
+  <CC_Impact_Chance>{0}: {1}</CC_Impact_Chance>
+  <CC_Impact_ChanceEach>{0} each: {1}</CC_Impact_ChanceEach>
+  <CC_Impact_Risk>{0} it goes wrong{1}, and then also:</CC_Impact_Risk>
+  <CC_Impact_RiskInstead>{0} it goes wrong{1}, and then only this happens:</CC_Impact_RiskInstead>
+  <CC_Impact_RiskNothingMore>nothing more than the above</CC_Impact_RiskNothingMore>
+  <CC_Impact_RiskNothingAtAll>none of the above</CC_Impact_RiskNothingAtAll>
+  <CC_Impact_RiskBrief>{0} it goes wrong: {1}</CC_Impact_RiskBrief>
+  <CC_Impact_RiskBriefNothing>{0} it goes wrong</CC_Impact_RiskBriefNothing>
+  <CC_Impact_RiskLowered>({0}'s {1} of {2} brings it down from {3})</CC_Impact_RiskLowered>
+  <CC_Impact_RiskSkill>(less likely with a better hand at {0})</CC_Impact_RiskSkill>
+
+  <!-- Words used inside lines -->
+  <CC_Impact_To> to </CC_Impact_To>
+  <CC_Impact_Or>or</CC_Impact_Or>
+  <CC_Impact_RangeInt>{0} to {1}</CC_Impact_RangeInt>
+  <CC_Impact_Days>{0} days</CC_Impact_Days>
+  <CC_Impact_DaysRange>{0} to {1} days</CC_Impact_DaysRange>
+  <CC_Impact_Hours>{0} hours</CC_Impact_Hours>
+  <CC_Impact_HoursRange>{0} to {1} hours</CC_Impact_HoursRange>
+  <CC_Impact_AboutAnHour>about an hour</CC_Impact_AboutAnHour>
+  <CC_Impact_UntilDawn>until first light</CC_Impact_UntilDawn>
+  <CC_Impact_When_Day>in the day</CC_Impact_When_Day>
+  <CC_Impact_When_Evening>in the evening</CC_Impact_When_Evening>
+  <CC_Impact_When_Night>at night</CC_Impact_When_Night>
+  <CC_Impact_When_Hours>between {0}h and {1}h</CC_Impact_When_Hours>
+  <CC_Impact_Someone>someone free</CC_Impact_Someone>
+  <CC_Impact_TheColony>the colony</CC_Impact_TheColony>
+  <CC_Impact_EachOther>each other</CC_Impact_EachOther>
+  <CC_Impact_Game>{0} wild animal(s) of the best eating</CC_Impact_Game>
+  <CC_Impact_GameOf>{0} {1}</CC_Impact_GameOf>
+
+  <!-- Who -->
+  <CC_Impact_Who_Everyone>everyone ({0})</CC_Impact_Who_Everyone>
+  <CC_Impact_Who_Others>everyone else ({0})</CC_Impact_Who_Others>
+  <CC_Impact_Who_FriendsOf>{0}'s friends ({1})</CC_Impact_Who_FriendsOf>
+  <CC_Impact_Who_RivalsOf>those who dislike {0} ({1})</CC_Impact_Who_RivalsOf>
+  <CC_Impact_Who_FamilyOf>{0}'s family ({1})</CC_Impact_Who_FamilyOf>
+  <CC_Impact_Who_CloseTo>{0} and those close to them ({1})</CC_Impact_Who_CloseTo>
+  <CC_Impact_Who_The>the {0} ({1})</CC_Impact_Who_The>
+  <CC_Impact_Who_But>{0}, but not the {1}</CC_Impact_Who_But>
+
+  <!-- Mood and opinion -->
+  <CC_Impact_Mood>{0}: {1} mood for {2} ({3})</CC_Impact_Mood>
+  <CC_Impact_MoodNow>{0}: {1} mood while it lasts ({2})</CC_Impact_MoodNow>
+  <CC_Impact_MoodBrief>{0} {1} mood</CC_Impact_MoodBrief>
+  <CC_Impact_Opinion>{0}: {1} opinion of {2} for {3} ({4})</CC_Impact_Opinion>
+  <CC_Impact_OpinionNow>{0}: {1} opinion of {2} ({3})</CC_Impact_OpinionNow>
+  <CC_Impact_OpinionBrief>{0} {1} opinion of {2}</CC_Impact_OpinionBrief>
+  <CC_Impact_TieMadeUp>{0} and {1}: their rivalry eases and a friendship grows</CC_Impact_TieMadeUp>
+  <CC_Impact_TieBonded>{0} and {1}: they grow closer as friends</CC_Impact_TieBonded>
+  <CC_Impact_TieGrudge>{0} and {1}: a rivalry grows between them</CC_Impact_TieGrudge>
+  <CC_Impact_Tie>{0} and {1}: their bond as {2} {3}</CC_Impact_Tie>
+  <CC_Impact_TieBrief>{0} and {1} closer as {2}</CC_Impact_TieBrief>
+  <CC_Impact_SharedMemory>{0} and {1} share a memory of it, something to talk about</CC_Impact_SharedMemory>
+  <CC_Impact_HeldBack>{0} stays and longs for what they asked: a low mood that grows over {1} days, until it comes to them or, after {2} days, they make their peace with it</CC_Impact_HeldBack>
+  <CC_Impact_HeldBackBrief>{0} kept, and longing</CC_Impact_HeldBackBrief>
+
+  <!-- What a memory gives instead of mood (Moods/RewardInstead.cs) -->
+  <CC_Impact_InsteadJoy>{0}: recreation {1}</CC_Impact_InsteadJoy>
+  <CC_Impact_InsteadJoyBrief>{0} recreation {1}</CC_Impact_InsteadJoyBrief>
+  <CC_Impact_InsteadRest>{0}: rest {1}</CC_Impact_InsteadRest>
+  <CC_Impact_InsteadRestBrief>{0} rest {1}</CC_Impact_InsteadRestBrief>
+  <CC_Impact_InsteadComfort>{0}: comfort {1}</CC_Impact_InsteadComfort>
+  <CC_Impact_InsteadComfortBrief>{0} comfort {1}</CC_Impact_InsteadComfortBrief>
+  <CC_Impact_InsteadXp>{0}: {1} XP in {2}</CC_Impact_InsteadXp>
+  <CC_Impact_InsteadXpBrief>{0} {1} XP</CC_Impact_InsteadXpBrief>
+  <CC_Impact_InsteadResearch>{0} research toward the project under way</CC_Impact_InsteadResearch>
+  <CC_Impact_InsteadResearchBrief>{0} research</CC_Impact_InsteadResearchBrief>
+  <CC_Impact_InsteadJournal>{0}: a line in their journal</CC_Impact_InsteadJournal>
+  <CC_Impact_InsteadJournalBrief>{0} writes it down</CC_Impact_InsteadJournalBrief>
+  <CC_Impact_SkillFrom_shared>a skill they share</CC_Impact_SkillFrom_shared>
+  <CC_Impact_SkillFrom_theirs>what the other is better at</CC_Impact_SkillFrom_theirs>
+  <CC_Impact_SkillFrom_mine>one of their passions</CC_Impact_SkillFrom_mine>
+  <CC_Impact_Inspire>{0}: an inspiration</CC_Impact_Inspire>
+  <CC_Impact_InspireThis>{0}: an inspiration ({1})</CC_Impact_InspireThis>
+  <CC_Impact_InspireBrief>{0} inspired</CC_Impact_InspireBrief>
+
+  <!-- Trust, needs, health, skills -->
+  <CC_Impact_Trust>{0}: {1} trust</CC_Impact_Trust>
+  <CC_Impact_TrustBrief>{0} {1} trust</CC_Impact_TrustBrief>
+  <CC_Impact_Standards>{0}: standards {1} (higher standards make good moods smaller)</CC_Impact_Standards>
+  <CC_Impact_StandardsBrief>{0} standards {1}</CC_Impact_StandardsBrief>
+  <CC_Impact_Strain>{0}: strain {1}</CC_Impact_Strain>
+  <CC_Impact_StrainBrief>{0} strain {1}</CC_Impact_StrainBrief>
+  <CC_Impact_Joy>{0}: recreation {1}</CC_Impact_Joy>
+  <CC_Impact_JoyBrief>{0} recreation {1}</CC_Impact_JoyBrief>
+  <CC_Impact_Hediff>{0}: {1} for {2} ({3})</CC_Impact_Hediff>
+  <CC_Impact_HediffPlain>{0}: {1} for {2}</CC_Impact_HediffPlain>
+  <CC_Impact_HediffNoEnd>{0}: {1} ({2})</CC_Impact_HediffNoEnd>
+  <CC_Impact_HediffNoEndPlain>{0}: {1}</CC_Impact_HediffNoEndPlain>
+  <CC_Impact_HediffBrief>{0} {1}</CC_Impact_HediffBrief>
+  <CC_Impact_RestFall>rest falls {0} times as fast</CC_Impact_RestFall>
+  <CC_Impact_Hunger>hunger {0} times as fast</CC_Impact_Hunger>
+  <CC_Impact_Pain>pain {0}</CC_Impact_Pain>
+  <CC_Impact_Break>{0} breaks down: {1}</CC_Impact_Break>
+  <CC_Impact_BreakBrief>{0} breaks down</CC_Impact_BreakBrief>
+  <CC_Impact_Fight>{0} and {1} come to blows</CC_Impact_Fight>
+  <CC_Impact_FightBrief>{0} and {1} fight</CC_Impact_FightBrief>
+  <CC_Impact_Xp>{0}: {1} XP in {2}</CC_Impact_Xp>
+  <CC_Impact_XpBrief>{0} {1} XP in {2}</CC_Impact_XpBrief>
+  <CC_Impact_XpRange>{0}: {1} to {2} XP in {3}</CC_Impact_XpRange>
+  <CC_Impact_Mentor>{0} takes {1} on as a student of {2}</CC_Impact_Mentor>
+  <CC_Impact_MentorBrief>{0} taught</CC_Impact_MentorBrief>
+  <CC_Impact_Passion>{0}: a passion found or deepened for {1}</CC_Impact_Passion>
+  <CC_Impact_AilmentEase>{0}: an everyday ailment {1} milder</CC_Impact_AilmentEase>
+  <CC_Impact_AilmentCure>{0}: an everyday ailment gone</CC_Impact_AilmentCure>
+  <CC_Impact_AilmentBrief>{0} feels better</CC_Impact_AilmentBrief>
+  <CC_Impact_IllnessEase>{0}: {1} eased by {2}, never cured outright</CC_Impact_IllnessEase>
+  <CC_Impact_IllnessImmune>{0}: {1} eased by {2}, immunity {3} closer</CC_Impact_IllnessImmune>
+  <CC_Impact_IllnessBrief>{0} eased</CC_Impact_IllnessBrief>
+  <CC_Impact_ConvLonger>{0}: back to work sooner, the recovery {1} days longer</CC_Impact_ConvLonger>
+  <CC_Impact_ConvShorter>{0}: kept in bed, the recovery {1} days shorter</CC_Impact_ConvShorter>
+  <CC_Impact_ConvBrief>{0} recovery {1} days</CC_Impact_ConvBrief>
+  <CC_Impact_PutOff>{0}: planned operations put off until you resume them</CC_Impact_PutOff>
+  <CC_Impact_PutOffBrief>operations put off</CC_Impact_PutOffBrief>
+  <CC_Impact_AnimalCare>{0}: medical care set to {1}</CC_Impact_AnimalCare>
+  <CC_Impact_Certainty>{0}: certainty in their faith {1}</CC_Impact_Certainty>
+  <CC_Impact_CertaintyBrief>{0} certainty {1}</CC_Impact_CertaintyBrief>
+  <CC_Impact_Swayed>{0}: swayed a little toward {1}</CC_Impact_Swayed>
+
+  <!-- Goods and silver -->
+  <CC_Impact_Gain>{0} {1} for the stores</CC_Impact_Gain>
+  <CC_Impact_GainBrief>+{0} {1}</CC_Impact_GainBrief>
+  <CC_Impact_Cost>{0} {1} from the stores</CC_Impact_Cost>
+  <CC_Impact_CostBrief>-{0} {1}</CC_Impact_CostBrief>
+  <CC_Impact_Silver>{0} silver</CC_Impact_Silver>
+  <CC_Impact_SilverBrief>{0} silver</CC_Impact_SilverBrief>
+  <CC_Impact_Forbidden>The {0} is kept forbidden until you allow it</CC_Impact_Forbidden>
+  <CC_Impact_FeastMeals>Up to {0} cooked meals eaten from the stores, one each (the stores hold {1})</CC_Impact_FeastMeals>
+  <CC_Impact_FeastMealsBrief>{0} meals eaten</CC_Impact_FeastMealsBrief>
+  <CC_Impact_RoundsMeals>Up to {0} cooked meals from the stores, one each</CC_Impact_RoundsMeals>
+  <CC_Impact_Loot>Things of the colony's age worth about {0} silver</CC_Impact_Loot>
+  <CC_Impact_LootBrief>goods worth silver</CC_Impact_LootBrief>
+  <CC_Impact_Find>{0} {1} found and brought back</CC_Impact_Find>
+  <CC_Impact_FindBrief>{0} found</CC_Impact_FindBrief>
+  <CC_Impact_FindValue>Things worth about {0} silver found and brought back</CC_Impact_FindValue>
+  <CC_Impact_FindValueBrief>a find</CC_Impact_FindValueBrief>
+  <CC_Impact_Made>{0} for {1}</CC_Impact_Made>
+  <CC_Impact_MadeBy>{0} makes {1} for {2}</CC_Impact_MadeBy>
+  <CC_Impact_MadeBrief>a {0}</CC_Impact_MadeBrief>
+  <CC_Impact_Carving>A {0} of {1} quality, signed by its maker</CC_Impact_Carving>
+  <CC_Impact_BurnFound>The drugs in {0}'s pockets and room found and burned</CC_Impact_BurnFound>
+  <CC_Impact_BurnFoundBrief>{0}'s drugs burned</CC_Impact_BurnFoundBrief>
+  <CC_Impact_Smash>{0} broken up</CC_Impact_Smash>
+  <CC_Impact_SmashBrief>{0} broken</CC_Impact_SmashBrief>
+  <CC_Impact_CropsEaten>{0} ripe crops eaten where they stand</CC_Impact_CropsEaten>
+  <CC_Impact_CropsEatenBy>{0} crops eaten by {1}</CC_Impact_CropsEatenBy>
+  <CC_Impact_CropsEatenBrief>{0} crops lost</CC_Impact_CropsEatenBrief>
+  <CC_Impact_Stake>{0} silver staked on it, won or lost</CC_Impact_Stake>
+  <CC_Impact_StakeBrief>{0} silver at stake</CC_Impact_StakeBrief>
+  <CC_Impact_Owed>About {0} silver owed to the colony when it ends</CC_Impact_Owed>
+  <CC_Impact_OwedBrief>silver owed later</CC_Impact_OwedBrief>
+  <CC_Impact_Lent>Lent: it comes back with the event's end, if the borrowers can pay</CC_Impact_Lent>
+  <CC_Impact_RoadPaid>Paid for when the carters come back through</CC_Impact_RoadPaid>
+  <CC_Impact_NeedsStores>Needs {0} {1} in the stores (not used up)</CC_Impact_NeedsStores>
+  <CC_Impact_Helper>{0} does it ({1} {2})</CC_Impact_Helper>
+  <CC_Impact_CampFee>The camp's fee is settled this way: the next falls due five days on</CC_Impact_CampFee>
+  <CC_Impact_CampGoods_meat>meat</CC_Impact_CampGoods_meat>
+  <CC_Impact_CampGoods_wood>wood</CC_Impact_CampGoods_wood>
+  <CC_Impact_CampGoods_leather>leather</CC_Impact_CampGoods_leather>
+  <CC_Impact_CampGoods_food>food</CC_Impact_CampGoods_food>
+
+  <!-- On the map -->
+  <CC_Impact_Play>{0}, {1}, for {2}</CC_Impact_Play>
+  <CC_Impact_Gathering>{0}, {1}, for {2}, with {3}</CC_Impact_Gathering>
+  <CC_Impact_WithMusic>, with music</CC_Impact_WithMusic>
+  <CC_Impact_WithGuests>, with guests from outside</CC_Impact_WithGuests>
+  <CC_Impact_BonfireLaid>; with no campfire, one is laid from the colony's wood and burns to ash after</CC_Impact_BonfireLaid>
+  <CC_Impact_ToastDrinks>; a drink each from the stores when there are some</CC_Impact_ToastDrinks>
+  <CC_Impact_WordsBy>, to hear {0} speak</CC_Impact_WordsBy>
+  <CC_Impact_Visit>{0}: {1} goes to {2}, {3}, for {4}</CC_Impact_Visit>
+  <CC_Impact_Lesson>{0}: {1} learns {2} at {3}'s side, {4}, for {5}</CC_Impact_Lesson>
+  <CC_Impact_Rest>{0}: the rest of today's work hours off</CC_Impact_Rest>
+  <CC_Impact_RestBrief>{0} day off</CC_Impact_RestBrief>
+  <CC_Impact_Sleep>{0}: sent to bed for the rest of the day</CC_Impact_Sleep>
+  <CC_Impact_SleepBrief>{0} to bed</CC_Impact_SleepBrief>
+  <CC_Impact_Hunt>{0} marked for the colony's hunters</CC_Impact_Hunt>
+  <CC_Impact_HuntBrief>a hunt for {0}</CC_Impact_HuntBrief>
+  <CC_Impact_HuntParty>{0}: up to {1} hunters go after {2}, {3}, for {4}</CC_Impact_HuntParty>
+  <CC_Impact_WorkParty>{0}: {1} of the colony {2} together, {3}, for {4}</CC_Impact_WorkParty>
+  <CC_Impact_Task_Clean>clean</CC_Impact_Task_Clean>
+  <CC_Impact_Task_Haul>haul</CC_Impact_Task_Haul>
+  <CC_Impact_Task_Repair>mend</CC_Impact_Task_Repair>
+  <CC_Impact_Task_Build>build</CC_Impact_Task_Build>
+  <CC_Impact_Task_Corpses>carry the dead</CC_Impact_Task_Corpses>
+  <CC_Impact_Task_Snow>clear snow</CC_Impact_Task_Snow>
+  <CC_Impact_Task_Sow>sow</CC_Impact_Task_Sow>
+  <CC_Impact_Task_Harvest>bring in the harvest</CC_Impact_Task_Harvest>
+  <CC_Impact_Task_Cut>cut plants</CC_Impact_Task_Cut>
+  <CC_Impact_Task_Herd>bring the herd home</CC_Impact_Task_Herd>
+  <CC_Impact_Task_Tend>shear and milk</CC_Impact_Task_Tend>
+  <CC_Impact_Task_Wood>stack the woodpile</CC_Impact_Task_Wood>
+  <CC_Impact_Task_Stone>clear stone</CC_Impact_Task_Stone>
+  <CC_Impact_Task_Roof>patch the roofs</CC_Impact_Task_Roof>
+  <CC_Impact_Procession>{0}: {1} walk out together to {2}, {3}, for {4}</CC_Impact_Procession>
+  <CC_Impact_Vigil>{0}: {1} keep watch at {2}, {3}, {4}</CC_Impact_Vigil>
+  <CC_Impact_Patrol>{0}: {1} walk the colony's edge on watch, {3}, {4}</CC_Impact_Patrol>
+  <CC_Impact_Search>{0}: {1} search {2}, {3}, for {4}</CC_Impact_Search>
+  <CC_Impact_Carry>{0} carries it out to {1}, {2}</CC_Impact_Carry>
+  <CC_Impact_CarryEat>, where they eat it</CC_Impact_CarryEat>
+  <CC_Impact_CarryNight>, and they stay the night by the wall</CC_Impact_CarryNight>
+  <CC_Impact_CarryBrief>carried to {0}</CC_Impact_CarryBrief>
+  <CC_Impact_CarryCamp>{0} carries the makings over to the {1}</CC_Impact_CarryCamp>
+  <CC_Impact_BurnIt>{0} burns the {1} {2} in the yard</CC_Impact_BurnIt>
+  <CC_Impact_BurnItBrief>the {0} burned</CC_Impact_BurnItBrief>
+  <CC_Impact_Rounds>{0}: {1} goes round to {2} of the colony, {3}</CC_Impact_Rounds>
+  <CC_Impact_RoundsOut>{0}: {1} goes round to {2} of those working outside, {3}</CC_Impact_RoundsOut>
+  <CC_Impact_Haul_pyre>{0}: {1} carry {2} enemy dead to a pyre beyond the gate, {3}; it burns until morning</CC_Impact_Haul_pyre>
+  <CC_Impact_Haul_treeline>{0}: {1} carry {2} enemy dead out to the tree line, {3}</CC_Impact_Haul_treeline>
+  <CC_Impact_Haul_graves>{0}: {1} carry {2} enemy dead to graves dug outside the wall, {3}</CC_Impact_Haul_graves>
+  <CC_Impact_Haul_trench>{0}: {1} carry {2} enemy dead to a trench outside the wall, {3}</CC_Impact_Haul_trench>
+  <CC_Impact_Haul_crematorium>{0}: {1} carry {2} enemy dead to the crematorium, {3}</CC_Impact_Haul_crematorium>
+  <CC_Impact_Race>The children ({0}) run a race round the fields</CC_Impact_Race>
+  <CC_Impact_RaceBrief>a children's race</CC_Impact_RaceBrief>
+  <CC_Impact_Smudge>{0} smudge fires along the biggest field, kept smoking for {1} days</CC_Impact_Smudge>
+  <CC_Impact_SmudgeBrief>smudge fires</CC_Impact_SmudgeBrief>
+  <CC_Impact_Lanterns_paths>{0} {1} along the walls for the night</CC_Impact_Lanterns_paths>
+  <CC_Impact_Lanterns_gate>A {1} by the gate for the night</CC_Impact_Lanterns_gate>
+  <CC_Impact_Lanterns_doors>A {1} by each outside door for the night</CC_Impact_Lanterns_doors>
+  <CC_Impact_LanternsBrief>lights for the night</CC_Impact_LanternsBrief>
+  <CC_Impact_KeepFire>A fire in {0}'s cold room with {1} wood, for up to {2} days</CC_Impact_KeepFire>
+  <CC_Impact_KeepFireBrief>a fire in {0}'s room</CC_Impact_KeepFireBrief>
+  <CC_Impact_Bolt>{0}'s door bolted at night for {1} nights</CC_Impact_Bolt>
+  <CC_Impact_BoltBrief>{0}'s door bolted</CC_Impact_BoltBrief>
+  <CC_Impact_Follow>{0} keeps at {1}'s heels for {2} hours</CC_Impact_Follow>
+  <CC_Impact_FollowBrief>{0} at heel</CC_Impact_FollowBrief>
+  <CC_Impact_Felled>Trees felled near {0} for it</CC_Impact_Felled>
+  <CC_Impact_FelledBrief>trees felled</CC_Impact_FelledBrief>
+  <CC_Impact_Plant>{0} {1} sapling(s) planted near {2}</CC_Impact_Plant>
+  <CC_Impact_PlantMarkers>, a stone beside each</CC_Impact_PlantMarkers>
+  <CC_Impact_PlantBrief>{0} planted</CC_Impact_PlantBrief>
+  <CC_Impact_Sow>{0} sows a small patch of {1} by hand</CC_Impact_Sow>
+  <CC_Impact_SowFence>, with a little fence marked out round it</CC_Impact_SowFence>
+  <CC_Impact_SowBrief>{0} sown</CC_Impact_SowBrief>
+  <CC_Impact_PlanRoom>A new {0} marked out as building plans</CC_Impact_PlanRoom>
+  <CC_Impact_PlanRoomBrief>{0} planned</CC_Impact_PlanRoomBrief>
+  <CC_Impact_SwapRooms>{0} gives {1} the warmer room: they trade beds</CC_Impact_SwapRooms>
+  <CC_Impact_SwapRoomsBrief>beds traded</CC_Impact_SwapRoomsBrief>
+  <CC_Impact_GiveRoom>{0} gives {1} their room</CC_Impact_GiveRoom>
+  <CC_Impact_Mark_rebury>Turned earth and a stone set at its head</CC_Impact_Mark_rebury>
+  <CC_Impact_Mark_stone>A flat stone laid over what is buried</CC_Impact_Mark_stone>
+  <CC_Impact_MarkGraves>{0} cuts and sets a stone at the head of each of the colony's graves</CC_Impact_MarkGraves>
+  <CC_Impact_MarkGravesBrief>gravestones set</CC_Impact_MarkGravesBrief>
+  <CC_Impact_Snowman>{0} builds a snowman</CC_Impact_Snowman>
+  <CC_Impact_SnowmanBrief>a snowman</CC_Impact_SnowmanBrief>
+  <CC_Impact_Capture>{0} carries {1} to a prisoner's bed</CC_Impact_Capture>
+  <CC_Impact_CaptureBrief>{0} taken prisoner</CC_Impact_CaptureBrief>
+  <CC_Impact_Designate>{0} marked: {1}</CC_Impact_Designate>
+  <CC_Impact_DesignateBrief>{0}: {1}</CC_Impact_DesignateBrief>
+  <CC_Impact_Tame>{0} marked for taming</CC_Impact_Tame>
+  <CC_Impact_DriveOff>{0} is driven off the land</CC_Impact_DriveOff>
+  <CC_Impact_DriveOffBrief>{0} driven off</CC_Impact_DriveOffBrief>
+  <CC_Impact_Harvest>{0} ripe crops marked for harvest</CC_Impact_Harvest>
+  <CC_Impact_HarvestBrief>harvest marked</CC_Impact_HarvestBrief>
+  <CC_Impact_TendStranger>{0} walks over with a medicine and tends {1}</CC_Impact_TendStranger>
+  <CC_Impact_TendAtCamp>{0} walks over to the camp with a medicine and tends {1}</CC_Impact_TendAtCamp>
+  <CC_Impact_TendBrief>{0} tended</CC_Impact_TendBrief>
+  <CC_Impact_TendWounded>{0} tends {1} of the wounded at the {2}, a medicine each</CC_Impact_TendWounded>
+  <CC_Impact_TendWoundedBrief>{0} wounded tended</CC_Impact_TendWoundedBrief>
+  <CC_Impact_Contest>A contest between {0} and {1} ({2}), in a couple of hours</CC_Impact_Contest>
+  <CC_Impact_ContestBrief>a contest</CC_Impact_ContestBrief>
+  <CC_Impact_FaithEvening>An evening of faith for {0}</CC_Impact_FaithEvening>
+  <CC_Impact_FaithEveningBrief>an evening of faith</CC_Impact_FaithEveningBrief>
+  <CC_Impact_Wedding_feast>{0} and {1} are married with a feast</CC_Impact_Wedding_feast>
+  <CC_Impact_Wedding_quiet>{0} and {1} are married quietly</CC_Impact_Wedding_quiet>
+  <CC_Impact_Wedding_wait>{0} and {1} wait to marry</CC_Impact_Wedding_wait>
+  <CC_Impact_Wedding>{0} and {1} are married as the council says</CC_Impact_Wedding>
+  <CC_Impact_WeddingBrief>the wedding planned</CC_Impact_WeddingBrief>
+  <CC_Impact_PokemonShow>A friendly show at the {0}'s fire, our best Pokémon against theirs</CC_Impact_PokemonShow>
+  <CC_Impact_PokemonShowBrief>a Pokémon show</CC_Impact_PokemonShowBrief>
+  <CC_Impact_Catch>{0} goes out to {1} with a ball at the belt; the throw is yours</CC_Impact_Catch>
+  <CC_Impact_CatchBrief>a catch tried</CC_Impact_CatchBrief>
+  <CC_Impact_MilkSale>The {0}'s drovers milk their herd and bring it over</CC_Impact_MilkSale>
+  <CC_Impact_MilkSaleBrief>milk bought</CC_Impact_MilkSaleBrief>
+  <CC_Impact_HerdHome>The {0}'s beasts are walked back to their pasture</CC_Impact_HerdHome>
+
+  <!-- People who come and go -->
+  <CC_Impact_Join>{0} joins the colony</CC_Impact_Join>
+  <CC_Impact_JoinAnimal>{0} becomes the colony's</CC_Impact_JoinAnimal>
+  <CC_Impact_JoinGroup>{0} joins the colony, and {1} with them</CC_Impact_JoinGroup>
+  <CC_Impact_JoinBrief>{0} joins</CC_Impact_JoinBrief>
+  <CC_Impact_WorldJoin>{0} people join the colony</CC_Impact_WorldJoin>
+  <CC_Impact_WorldJoinFamily>A family of {0} joins the colony</CC_Impact_WorldJoinFamily>
+  <CC_Impact_WorldJoinBrief>{0} join</CC_Impact_WorldJoinBrief>
+  <CC_Impact_WorldJoinAnimal>Their animal comes with them, tame</CC_Impact_WorldJoinAnimal>
+  <CC_Impact_Leave>{0} leaves the colony for good</CC_Impact_Leave>
+  <CC_Impact_LeaveBlessed>{0} leaves the colony for good, with its blessing</CC_Impact_LeaveBlessed>
+  <CC_Impact_LeaveTo>{0} leaves the colony for good, to {1}</CC_Impact_LeaveTo>
+  <CC_Impact_LeaveBrief>{0} leaves</CC_Impact_LeaveBrief>
+  <CC_Impact_GoesWith>{0} sets off with {1}</CC_Impact_GoesWith>
+  <CC_Impact_Relative>{0} comes to join the colony in {1} days</CC_Impact_Relative>
+  <CC_Impact_RelativeBrief>{0} sent for</CC_Impact_RelativeBrief>
+  <CC_Impact_ReleasePet>{0} is turned loose and leaves the land</CC_Impact_ReleasePet>
+  <CC_Impact_ReleasePetBrief>{0} gone</CC_Impact_ReleasePetBrief>
+  <CC_Impact_GivePet>{0} goes with {1}</CC_Impact_GivePet>
+  <CC_Impact_PassAnimal>{0} answers to {1} from now on</CC_Impact_PassAnimal>
+  <CC_Impact_PassAnimalBrief>{0} to {1}</CC_Impact_PassAnimalBrief>
+  <CC_Impact_Cull>{0} of the herd marked for slaughter (nobody's own, none bonded or named)</CC_Impact_Cull>
+  <CC_Impact_CullBrief>{0} culled</CC_Impact_CullBrief>
+  <CC_Impact_TurnOut>{0} of the herd turned out to fend for themselves</CC_Impact_TurnOut>
+  <CC_Impact_TurnOutBrief>{0} turned out</CC_Impact_TurnOutBrief>
+  <CC_Impact_LoseAnimal>One of the herd is gone in the night (never a bonded or named one)</CC_Impact_LoseAnimal>
+  <CC_Impact_LoseAnimalBrief>an animal lost</CC_Impact_LoseAnimalBrief>
+  <CC_Impact_Animal>{0} {1} for the colony</CC_Impact_Animal>
+  <CC_Impact_AnimalBrief>a {0}</CC_Impact_AnimalBrief>
+  <CC_Impact_CampBeast>a beast of the camp's own herd</CC_Impact_CampBeast>
+  <CC_Impact_AnimalBond>{0} and {1} bond</CC_Impact_AnimalBond>
+  <CC_Impact_Adopt>{0} raises {1} from now on</CC_Impact_Adopt>
+  <CC_Impact_AdoptBrief>{0} as guardian</CC_Impact_AdoptBrief>
+  <CC_Impact_SendAway>{0} and those with them leave the map now</CC_Impact_SendAway>
+  <CC_Impact_SendAwayBrief>{0} sent off</CC_Impact_SendAwayBrief>
+  <CC_Impact_PrisonerOrder>The wardens' orders for {0}: {1}</CC_Impact_PrisonerOrder>
+  <CC_Impact_PrisonerOrderBrief>prisoner: {0}</CC_Impact_PrisonerOrderBrief>
+  <CC_Impact_Resistance>{0}: resistance {1}</CC_Impact_Resistance>
+  <CC_Impact_ResistanceBrief>resistance {0}</CC_Impact_ResistanceBrief>
+  <CC_Impact_Will>{0}: will {1}</CC_Impact_Will>
+  <CC_Impact_EndIt>{0}'s life ends</CC_Impact_EndIt>
+  <CC_Impact_EndItBrief>{0} dies</CC_Impact_EndItBrief>
+  <CC_Impact_Raid>{0} attack later, with about {1} of what the storyteller would send</CC_Impact_Raid>
+  <CC_Impact_RaidBrief>{0} attack later</CC_Impact_RaidBrief>
+  <CC_Impact_AtGate>{0} people wait at the gate for {1}</CC_Impact_AtGate>
+  <CC_Impact_AtGateBrief>visitors at the gate</CC_Impact_AtGateBrief>
+  <CC_Impact_Stay>They stay {0} night(s) at {1} and go on at first light</CC_Impact_Stay>
+  <CC_Impact_StayInside>They stay {0} night(s) in a corner indoors and go on at first light</CC_Impact_StayInside>
+  <CC_Impact_StayBrief>they stay {0} night(s)</CC_Impact_StayBrief>
+  <CC_Impact_Come>{0} people come by and stop at {1}</CC_Impact_Come>
+  <CC_Impact_ComeNights>{0} people come by and stay {2} night(s) at {1}</CC_Impact_ComeNights>
+  <CC_Impact_ComeBrief>visitors come by</CC_Impact_ComeBrief>
+  <CC_Impact_VisitGo>They go on their way now</CC_Impact_VisitGo>
+  <CC_Impact_VisitSpot_Gate>the gate</CC_Impact_VisitSpot_Gate>
+  <CC_Impact_VisitSpot_Far>the far ground</CC_Impact_VisitSpot_Far>
+  <CC_Impact_VisitSpot_Water>the water</CC_Impact_VisitSpot_Water>
+  <CC_Impact_VisitSpot_Road>the road past the colony</CC_Impact_VisitSpot_Road>
+  <CC_Impact_Incident>{0}, if it can come now</CC_Impact_Incident>
+  <CC_Impact_IncidentBrief>{0}</CC_Impact_IncidentBrief>
+  <CC_Impact_CampComes>A {0} comes to the colony's land</CC_Impact_CampComes>
+  <CC_Impact_CampComesBrief>a {0} comes</CC_Impact_CampComesBrief>
+  <CC_Impact_CampSettles>The {0} settles for good as the colony's neighbour</CC_Impact_CampSettles>
+  <CC_Impact_CampSettlesBrief>neighbours for good</CC_Impact_CampSettlesBrief>
+  <CC_Impact_CampLeaves>The {0} packs up and moves on early, in peace</CC_Impact_CampLeaves>
+  <CC_Impact_CampLeavesBrief>the {0} moves on</CC_Impact_CampLeavesBrief>
+  <CC_Impact_CampGuards>The {0}'s people take up arms with the colony against any threat while they stay</CC_Impact_CampGuards>
+  <CC_Impact_CampGuardsBrief>the camp stands guard</CC_Impact_CampGuardsBrief>
+  <CC_Impact_CampComesOver>The {0}'s people ({1}) walk over to {2}, {3}, for {4}</CC_Impact_CampComesOver>
+  <CC_Impact_CampComesOverBrief>the {0} comes over</CC_Impact_CampComesOverBrief>
+  <CC_Impact_CampTo_gate>the gate</CC_Impact_CampTo_gate>
+  <CC_Impact_CampTo_water>the water</CC_Impact_CampTo_water>
+  <CC_Impact_CampTo_fields>the fields</CC_Impact_CampTo_fields>
+  <CC_Impact_CampTo_graves>the graves</CC_Impact_CampTo_graves>
+  <CC_Impact_CampTo_colony>the middle of the colony</CC_Impact_CampTo_colony>
+  <CC_Impact_CampTo_A>the colonist who answered</CC_Impact_CampTo_A>
+  <CC_Impact_CampHelp>The {0} lends a hand</CC_Impact_CampHelp>
+  <CC_Impact_CampHelp_repair>The {0}'s smith mends a damaged building</CC_Impact_CampHelp_repair>
+  <CC_Impact_CampHelp_survey>The {0}'s people survey the land</CC_Impact_CampHelp_survey>
+  <CC_Impact_CampHelp_milk>The {0}'s drovers milk the colony's animals</CC_Impact_CampHelp_milk>
+  <CC_Impact_Lost_search>The lost child is found where the search ends</CC_Impact_Lost_search>
+  <CC_Impact_Lost_soon>The camp's own people find the lost child in a few hours</CC_Impact_Lost_soon>
+  <CC_Impact_Lost_midnight>The lost child is found before midnight</CC_Impact_Lost_midnight>
+  <CC_Impact_Lost_dawn>The lost child is found at first light</CC_Impact_Lost_dawn>
+  <CC_Impact_Lost_bell>The lost child walks in toward the gate just before first light</CC_Impact_Lost_bell>
+
+  <!-- Other peoples -->
+  <CC_Impact_Goodwill>{0}: {1} goodwill</CC_Impact_Goodwill>
+  <CC_Impact_GoodwillBrief>{0} {1}</CC_Impact_GoodwillBrief>
+  <CC_Impact_GoodwillNeighbors>The nearby peoples: {0} goodwill each</CC_Impact_GoodwillNeighbors>
+  <CC_Impact_GoodwillHunters>Those at odds with them: {0} goodwill each</CC_Impact_GoodwillHunters>
+  <CC_Impact_Tension>The camp's tension: {0}</CC_Impact_Tension>
+  <CC_Impact_TensionBrief>camp tension {0}</CC_Impact_TensionBrief>
+  <CC_Impact_CampWarm>{0} counts as a friend of the camp</CC_Impact_CampWarm>
+  <CC_Impact_Remember>{0} will remember this</CC_Impact_Remember>
+  <CC_Impact_Settled>The old matter between you is settled</CC_Impact_Settled>
+  <CC_Impact_Peace>Peace with {0}: their goodwill rises to {1}</CC_Impact_Peace>
+  <CC_Impact_PeaceBrief>peace with {0}</CC_Impact_PeaceBrief>
+  <CC_Impact_VendettaEnd>{0}'s vendetta against {1} ends</CC_Impact_VendettaEnd>
+  <CC_Impact_VendettaAsk>{0} decides whether the vendetta against {1} ends, by their nature</CC_Impact_VendettaAsk>
+  <CC_Impact_VendettaBrief>the vendetta settled</CC_Impact_VendettaBrief>
+  <CC_Impact_SettleVendetta>{0} lays down the vendetta against {1}</CC_Impact_SettleVendetta>
+  <CC_Impact_Patient>{0} sees {1}: tended, and remembered by their people</CC_Impact_Patient>
+
+  <!-- Besides -->
+  <CC_Impact_Research>{0} research toward {1}</CC_Impact_Research>
+  <CC_Impact_ResearchBrief>research</CC_Impact_ResearchBrief>
+  <CC_Impact_Secret>{0} arrives with something to hide</CC_Impact_Secret>
+  <CC_Impact_Reveal>{0}'s secret comes out</CC_Impact_Reveal>
+  <CC_Impact_RevealBrief>{0}'s secret out</CC_Impact_RevealBrief>
+  <CC_Impact_Confide>{0} tells {1} their secret</CC_Impact_Confide>
+  <CC_Impact_Confess>{0} tells everyone their secret</CC_Impact_Confess>
+  <CC_Impact_ConfessBrief>{0} confesses</CC_Impact_ConfessBrief>
+  <CC_Impact_Quirk>{0}: a new quirk, {1}</CC_Impact_Quirk>
+  <CC_Impact_QuirkGone>{0}: no longer {1}</CC_Impact_QuirkGone>
+  <CC_Impact_Epithet>{0} becomes known as {1}</CC_Impact_Epithet>
+  <CC_Impact_NameKeep>{0} and {1} each keep their own name</CC_Impact_NameKeep>
+  <CC_Impact_NameTake>{0} takes {1}'s name</CC_Impact_NameTake>
+  <CC_Impact_PromiseRoom>{0} is promised a room of their own (a wish the council can grant)</CC_Impact_PromiseRoom>
+  <CC_Impact_PromiseRoomBrief>a room promised</CC_Impact_PromiseRoomBrief>
+  <CC_Impact_RoomPromised>A room of their own promised within {0} days: kept, +{1} trust; broken, -{2} trust</CC_Impact_RoomPromised>
+  <CC_Impact_FaithCorners>A letter suggests a corner for each faith (a suggestion, nothing more)</CC_Impact_FaithCorners>
+  <CC_Impact_PlantingWatch>The fields are watched: if they're sown and ripen in the season, the growers remember a good start</CC_Impact_PlantingWatch>
+  <CC_Impact_Rumour>The colony keeps an eye out: the rumour may turn out true</CC_Impact_Rumour>
+  <CC_Impact_TraditionKept>The custom of {0} is kept: everyone's mood lifts</CC_Impact_TraditionKept>
+  <CC_Impact_TraditionKeptBrief>{0} kept</CC_Impact_TraditionKeptBrief>
+  <CC_Impact_TraditionToward>Toward a tradition of {0}: chosen {1} of the {2} times it takes</CC_Impact_TraditionToward>
+  <CC_Impact_TraditionBroken>The tradition of {0} is broken: a low mood and -2 trust for everyone but the ascetic</CC_Impact_TraditionBroken>
+  <CC_Impact_TraditionBrokenBrief>{0} broken</CC_Impact_TraditionBrokenBrief>
+  <CC_Impact_Ways>The colony grows {0}</CC_Impact_Ways>
+  <CC_Impact_WaysBrief>{0}</CC_Impact_WaysBrief>
+
+  <!-- Places -->
+  <CC_Impact_Spot_PersonOf>{0}'s side</CC_Impact_Spot_PersonOf>
+  <CC_Impact_Spot_Dining>the dining table</CC_Impact_Spot_Dining>
+  <CC_Impact_Spot_Rec>the rec room</CC_Impact_Spot_Rec>
+  <CC_Impact_Spot_Fire>the fire</CC_Impact_Spot_Fire>
+  <CC_Impact_Spot_Outdoors>the open air by the colony</CC_Impact_Spot_Outdoors>
+  <CC_Impact_Spot_Gather>a gather spot</CC_Impact_Spot_Gather>
+  <CC_Impact_Spot_Grave>a grave</CC_Impact_Spot_Grave>
+  <CC_Impact_Spot_Camp>the camp's fire</CC_Impact_Spot_Camp>
+  <CC_Impact_Spot_Stranger>the visitor</CC_Impact_Spot_Stranger>
+  <CC_Impact_Spot_Person>someone's side</CC_Impact_Spot_Person>
+  <CC_Impact_Spot_Walk>a long walk out</CC_Impact_Spot_Walk>
+  <CC_Impact_Spot_Water>the water</CC_Impact_Spot_Water>
+  <CC_Impact_Spot_Fields>the fields</CC_Impact_Spot_Fields>
+  <CC_Impact_Spot_Gate>the gate</CC_Impact_Spot_Gate>
+  <CC_Impact_Spot_Place>the place itself</CC_Impact_Spot_Place>
+
+</LanguageData>

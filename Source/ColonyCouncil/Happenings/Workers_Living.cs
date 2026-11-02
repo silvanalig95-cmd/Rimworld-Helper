@@ -411,6 +411,16 @@ namespace ColonyCouncil
     /// <summary>Goodwill with the event's people that never takes them below <see cref="floor"/>, so it can't turn them hostile.</summary>
     public class DilemmaEffect_FairGoodwill : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var f = enemy ? (ctx as HappeningContext)?.enemy : ctx?.faction ?? ctx?.stranger?.Faction;
+            if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill || f.HostileTo(Faction.OfPlayer)) return;
+            int change = amount >= 0 ? amount : Mathf.Min(0, Mathf.Max(amount, floor - f.PlayerGoodwill));
+            if (change != 0) sheet.Goodwill(f, change);
+        }
+
         public int amount;
         public bool enemy;
         public int floor = -60;
