@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.47.0</version>
+        <date>2 November 2026</date>
+        <title>Every answer says what it does</title>
+        <points>
+          <li>Every answer in a dilemma, event or world event letter says what it does: who feels what and for how long, trust, what it takes from the stores or gives, what happens on the map, and the odds of a gamble.</li>
+          <li>Hover an answer for the full list, grouped by kind, with gains in green and costs in red. The Dilemmas page shows what each answer given was to do.</li>
+          <li>A new setting, "Show what each answer does" on the Council page, is on by default.</li>
+          <li>Dozens of dilemmas were rebalanced so every answer has its own upside and its own cost, and the safe answer gives the least. Making a thief work it off now costs them a disciplined mood, for one, and the omen ceremony has become a gamble.</li>
+          <li>Four new dilemmas come up only when they fit: the mess after a fight, a sick night, lessons in a busy time, and seed for a neighbour in spring.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.46.0</version>
         <date>1 November 2026</date>
         <title>Planning ahead: stocks, bills and fields</title>

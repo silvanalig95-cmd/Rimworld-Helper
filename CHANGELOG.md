@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every answer says what it does
+
+*2 November 2026, version 0.47.0*
+
+- Every answer in a dilemma, event or world event letter says what it does: who feels what and for how long, trust, what it takes from the stores or gives, what happens on the map, and the odds of a gamble.
+- Hover an answer for the full list, grouped by kind, with gains in green and costs in red. The Dilemmas page shows what each answer given was to do.
+- A new setting, "Show what each answer does" on the Council page, is on by default.
+- Dozens of dilemmas were rebalanced so every answer has its own upside and its own cost, and the safe answer gives the least. Making a thief work it off now costs them a disciplined mood, for one, and the omen ceremony has become a gamble.
+- Four new dilemmas come up only when they fit: the mess after a fight, a sick night, lessons in a busy time, and seed for a neighbour in spring.
+
 ## Planning ahead: stocks, bills and fields
 
 *1 November 2026, version 0.46.0*
