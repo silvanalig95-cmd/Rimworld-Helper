@@ -466,6 +466,7 @@ Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the counci
 Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_AHEAD_PRINT") == "1")} things about planning ahead (stocks, bills, fields) and the shared suggestions.");
 Console.WriteLine($"Checked {NewsQuietTests.Run(Check)} things about a quiet day's evening news.");
+Console.WriteLine($"Checked {LifeNewTests.Run(Check)} things about the newer wishes and life moments (a crop from home, the morning cup, books read, the way to the table).");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {LineRouteTests.Run(Check)} things about lines laid again under the walls.");

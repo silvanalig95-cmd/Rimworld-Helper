@@ -38,7 +38,9 @@ public static class ImmersionTests
         // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
         "Rimfolk_VisitorActLines",
         // What visitors say on arriving, waiting, staying and leaving (Visitors/VisitorWords.cs).
-        "Rimfolk_VisitorLines"
+        "Rimfolk_VisitorLines",
+        // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
+        "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave"
     };
 
     private static readonly string[] JournalPools =

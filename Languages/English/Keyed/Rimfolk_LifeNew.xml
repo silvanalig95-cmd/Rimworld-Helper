@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The newer wishes (Wishes/WishWorkers_LifeNew.cs), a pet's grave (PlayOut/PlayPetGrave.cs) and the morning cup (Lives/LifeNew.cs). -->
+
+  <!-- A grave for a pet -->
+  <CC_Reason_PetGrave>{PET_nameDef} has died, and {PAWN_nameDef} doesn't want {PET_objective} butchered.</CC_Reason_PetGrave>
+  <CC_Reason_PetGraveBonded>{PET_nameDef}, bonded to {PAWN_nameDef}, has died, and the body still lies at home.</CC_Reason_PetGraveBonded>
+  <CC_Promise_PetGrave>{FOR_nameDef} will dig {OTHER_nameDef} a grave near the colony and carry the body into it, in the daytime when it's safe.</CC_Promise_PetGrave>
+  <CC_SelfHelp_PetGrave>Tired of waiting, {PAWN_nameDef} is going to dig {OTHER_nameDef} a grave near the colony and lay the body in it.</CC_SelfHelp_PetGrave>
+  <CC_Play_Label_PetGrave>the burying of {PET_nameDef}</CC_Play_Label_PetGrave>
+  <CC_Play_Where_PetGrave>to a grave near the colony</CC_Play_Where_PetGrave>
+  <CC_Play_Begin_PetGrave>{0} has begun ({1}, {2}).</CC_Play_Begin_PetGrave>
+  <CC_Play_End_Haul_PetGrave>{0}: {1} dug a grave near the colony and laid the body in it.</CC_Play_End_Haul_PetGrave>
+  <CC_Play_Why_NoPetBody>the body was already gone</CC_Play_Why_NoPetBody>
+
+  <!-- A crop from home -->
+  <CC_Reason_HomeCrop>{PAWN_nameDef} misses the {CROP} that grew back home, and it's planting time.</CC_Reason_HomeCrop>
+  <CC_Reason_HomeFlower>{PAWN_nameDef} misses the {CROP} from home, and this is the time of year to sow them.</CC_Reason_HomeFlower>
+  <CC_Wish_HomeCrop_Progress>{0} of {1} plants sown</CC_Wish_HomeCrop_Progress>
+  <CC_Promise_HomeCrop>The council lays out a small field of {SUBJECT} beside the others for {FOR_nameDef}. The growers will sow it.</CC_Promise_HomeCrop>
+
+  <!-- Something green in winter -->
+  <CC_Reason_WinterGreenFresh>{PAWN_nameDef} has gone without fresh food, and the cold season is here or close.</CC_Reason_WinterGreenFresh>
+  <CC_Reason_WinterGreenGrower>{PAWN_nameDef} grows the colony's food and doesn't want the fields idle all winter.</CC_Reason_WinterGreenGrower>
+  <CC_Promise_WinterGreen>The council plans {THING} in the middle of an indoor field. Once it's built and powered, things will grow there all winter.</CC_Promise_WinterGreen>
+
+  <!-- A lamp at the bench -->
+  <CC_Reason_BenchLamp>{PAWN_nameDef} has been working at the {BENCH} in the dark.</CC_Reason_BenchLamp>
+  <CC_Reason_BenchLampResearch>{PAWN_nameDef} has been researching at the {BENCH} in the dark.</CC_Reason_BenchLampResearch>
+  <CC_Promise_BenchLamp>The council plans {THING} beside the {SUBJECT}, where its light reaches the work.</CC_Promise_BenchLamp>
+  <CC_SelfHelp_BenchLamp>Tired of squinting, {PAWN_nameDef} planned {THING} beside the {SUBJECT}. The builders will find the blueprint; cancel it if you object.</CC_SelfHelp_BenchLamp>
+
+  <!-- A roof over the way -->
+  <CC_Reason_RoofedWay>{PAWN_nameDef} came in soaked: {COUNT} steps of the way from {PAWN_possessive} bed to the table are open to the sky.</CC_Reason_RoofedWay>
+  <CC_Wish_RoofedWay_Subject>the way from the bedrooms to the table</CC_Wish_RoofedWay_Subject>
+  <CC_Wish_RoofedWay_Progress>{0} of {1} steps roofed</CC_Wish_RoofedWay_Progress>
+  <CC_Promise_RoofedWay>The council marks the {TARGET} open steps between {FOR_nameDef}'s bed and the table for a roof. The builders will put it up.</CC_Promise_RoofedWay>
+  <CC_SelfHelp_RoofedWay>Tired of getting soaked, {PAWN_nameDef} marked the open steps between {PAWN_possessive} bed and the table for a roof. Clear the build roof area there if you object.</CC_SelfHelp_RoofedWay>
+
+  <!-- The morning cup -->
+  <CC_TieNote_Cup>shared a cup</CC_TieNote_Cup>
+
+</LanguageData>

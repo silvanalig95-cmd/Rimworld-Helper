@@ -37,29 +37,30 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <!-- More farewells for a named or bonded animal (Council_Journal_Strangers.xml). New tags: [big], [midsize],
-       [small], [longtime] (two years or more here), [newpet] (under a season), [bonded] or [master]. -->
+       [small], [longtime] (two years or more here), [newpet] (under a season), [bonded] or [master]. Said when it dies,
+       so nothing here says it was buried: that is told when it is (Rimfolk_Pool_PetBuried, the wish for its grave). -->
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Council_Lines_PetFarewell</defName>
     <pool>Council_Pool_PetFarewell</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} buried {PET_nameDef} where it used to lie in the sun, and marked the spot with a stone.</li>
+        <li>{PAWN_nameDef} wants {PET_nameDef} buried near home, somewhere it used to lie in the sun.</li>
         <li>{PAWN_nameDef} keeps glancing at the door, as if {PET_nameDef} might still come through it.</li>
         <li>[longtime] {PET_nameDef} had been with {PAWN_nameDef} since the early days, longer than most of the people here.</li>
         <li>[newpet] {PAWN_nameDef} had only just got to know {PET_nameDef}, and says that makes it worse.</li>
-        <li>[small] {PAWN_nameDef} dug a small grave for {PET_nameDef}, and was surprised how long it took.</li>
-        <li>[big] It took three of them to carry {PET_nameDef}, and {PAWN_nameDef} took the heaviest end.</li>
+        <li>[small] {PAWN_nameDef} says the place feels bigger without {PET_nameDef} underfoot.</li>
+        <li>[big] {PET_nameDef} was the biggest animal here, and {PAWN_nameDef} says the barn feels empty without it.</li>
         <li>[bonded] {PAWN_nameDef} keeps reaching down to scratch an ear that isn't there.</li>
         <li>[master] {PAWN_nameDef} trained {PET_nameDef} from the start, and says {PAWN_pronoun} never once had to raise {PAWN_possessive} voice to it.</li>
-        <li>[hero] {PET_nameDef} died fighting for the colony, and {PAWN_nameDef} cleaned the blood from its coat before the burial.</li>
-        <li>[winter] {PAWN_nameDef} kept a fire going by {PET_nameDef}'s grave all night, as if it could still feel cold.</li>
+        <li>[hero] {PET_nameDef} died fighting for the colony, and {PAWN_nameDef} wants everyone to remember it.</li>
+        <li>[winter] {PAWN_nameDef} says {PET_nameDef} should have a grave, however hard the ground is.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} told {PET_nameDef} it had been a good animal, the best, and stayed until the body was cold.</li>
         <li>[longtime] {PAWN_nameDef} wrote down every trick {PET_nameDef} ever knew, so somebody would remember them.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} dug the grave alone and said nothing to anyone all day.</li>
+        <li>{PAWN_nameDef} said nothing to anyone all day.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} spent the evening remembering every ridiculous thing {PET_nameDef} ever ate, and had the table laughing by the end.</li>
@@ -80,7 +81,7 @@
       <plain>
         <li>I keep hearing {PET_nameDef}'s claws on the floor. It's the wind. It's always the wind now.</li>
         <li>Put {PET_nameDef}'s collar on a nail by my bed. I don't know what else to do with it.</li>
-        <li>[winter] The ground was hard as iron. I dug {PET_nameDef}'s grave anyway. My hands still hurt.</li>
+        <li>[winter] The ground is hard as iron. {PET_nameDef} gets a grave anyway, if I have to dig it with my hands.</li>
       </plain>
       <warm><li>{PET_nameDef} was the first thing that ever came running when I called. I'll miss that most.</li></warm>
       <cheerful><li>{PET_nameDef} stole my dinner exactly four hundred times. I counted. I'd give it every dinner I have left.</li></cheerful>
