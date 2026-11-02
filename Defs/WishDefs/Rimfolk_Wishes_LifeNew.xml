@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Five wishes from what the colony's days really hold (Source/ColonyCouncil/Wishes/WishWorkers_LifeNew.cs):
+    - a grave for a named or bonded animal whose body lies whole at home: its person digs it near the colony and carries
+      the animal in (PlayOut/PlayPetGrave.cs, the enemy-dead burial's digging and hauling for one animal);
+    - in spring, a crop from home (a fruit, a vegetable, a flower, modded crops too) the colony could sow now and grows
+      nowhere: a small field of it laid out beside the others;
+    - before and through a real winter, with power and sun lamps researched: a sun lamp over an indoor field, for a
+      grower or someone who has gone without fresh food;
+    - a lamp at a bench someone was seen working in the dark;
+    - in a wet land, a roof over the way between someone's bed and the table, after they came in soaked.
+  -->
+
+  <!-- ===================== A grave for a pet ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_PetGrave</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a grave for {OTHER_nameDef}</label>
+    <description>A named or bonded animal has died, and its body still lies at home. The one who loved it wants it buried, not butchered.</description>
+    <workerClass>ColonyCouncil.WishWorker_PetGrave</workerClass>
+    <category>Social</category>
+    <weight>1.5</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>10</cooldownDays>
+    <fixedPatience>true</fixedPatience>
+    <grantedThought>Rimfolk_Granted_PetGrave</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Grief</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef}'s body rests in a grave. Promised, {FOR_nameDef} digs one near the colony and carries the body into it.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>death</key>
+        <thoughts><li>BondedAnimalDied</li><li>Council_Pet_Lost</li></thoughts>
+        <boost>6</boost>
+        <freshHours>24</freshHours>
+      </li>
+    </triggers>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_PetBuried" />
+      <li Class="ColonyCouncil.WishEffect_ShortenGrief">
+        <fraction>0.25</fraction>
+      </li>
+    </grantEffects>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} is still lying out there. I'd like to bury {OTHER_objective} before anyone gets ideas about the meat.</li>
+        <li>Let me dig {OTHER_nameDef} a grave. It won't take long, and I'd rather do it myself.</li>
+        <li>[trigger:death] {OTHER_nameDef} died this morning. I want {OTHER_objective} in the ground, near home, not in the butcher's pile.</li>
+        <li>[rain] It's raining on {OTHER_nameDef}. Please, let me put {OTHER_objective} somewhere dry and deep.</li>
+        <li>[winter] The ground is hard, but {OTHER_nameDef} deserves a grave all the same.</li>
+        <li>[child] Can we bury {OTHER_nameDef}? Properly, with a grave, like people get?</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} waited at the door for me every day. The least I can do is give {OTHER_objective} a place to rest.</li>
+      </warm>
+      <blunt>
+        <li>Nobody butchers {OTHER_nameDef}. I'm burying {OTHER_objective}.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} had a good life with us. Let's give {OTHER_objective} a good spot in the sun to finish it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything out here ends in the dirt. At least let {OTHER_nameDef}'s be a grave.</li>
+      </gloomy>
+      <cold>
+        <li>A body left lying draws scavengers. {OTHER_nameDef} gets buried, and I'll do it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>{OTHER_nameDef} is in the ground now, near home. Thank you.</li>
+        <li>I dug it deep. Nothing will bother {OTHER_objective} there.</li>
+      </plain>
+      <warm><li>I told {OTHER_nameDef} goodbye properly. Thank you for the time to do it.</li></warm>
+      <blunt><li>Buried. Good.</li></blunt>
+      <cheerful><li>It's a nice spot. {OTHER_nameDef} would have liked it.</li></cheerful>
+      <gloomy><li>At least {OTHER_nameDef} has a grave. Most things out here don't get one.</li></gloomy>
+      <cold><li>It's done properly.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>So nobody had time to bury {OTHER_nameDef}.</li></plain>
+      <gloomy><li>{OTHER_nameDef} deserved better than to lie out there.</li></gloomy>
+      <blunt><li>I'll remember who couldn't spare an hour.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A crop from home ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_HomeCrop</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a field of {SUBJECT}</label>
+    <description>Spring, and someone misses a crop from home: a fruit, a vegetable or a flower the colony could sow now and doesn't grow anywhere.</description>
+    <workerClass>ColonyCouncil.WishWorker_HomeCrop</workerClass>
+    <category>Comfort</category>
+    <weight>0.6</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>60</cooldownDays>
+    <grantedThought>Rimfolk_Granted_HomeCrop</grantedThought>
+    <envy>0.05</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>Six plants of {SUBJECT} are sown in the colony's fields or growers. Promised, a small field of it is laid out beside the others.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>We grew {SUBJECT} back home. I'd give a lot to see a row of it out there.</li>
+        <li>It's planting time, and nobody's sowing {SUBJECT}. Could we spare a corner of the field?</li>
+        <li>[spring] Every spring at home we put in {SUBJECT}. It doesn't feel like spring without it.</li>
+        <li>[child] Can we grow {SUBJECT}? I've never seen it growing, only heard about it.</li>
+        <li>[old] My mother grew {SUBJECT}. I'd like to see it come up once more.</li>
+      </plain>
+      <warm><li>Just a small patch of {SUBJECT}. I'd tend it myself, every morning.</li></warm>
+      <blunt><li>Sow some {SUBJECT}. The ground's ready and so am I.</li></blunt>
+      <cheerful><li>Picture a whole row of {SUBJECT}, right out there by the others.</li></cheerful>
+      <gloomy><li>Nothing here tastes like home. A field of {SUBJECT} might help, a little.</li></gloomy>
+      <cold><li>We have the seed and the season for {SUBJECT}. Not sowing it is a waste.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's coming up. Real {SUBJECT}, here, in our ground.</li>
+        <li>I walked the rows this morning before anyone else was up.</li>
+      </plain>
+      <warm><li>It smells like home out there now. Thank you.</li></warm>
+      <blunt><li>Good field.</li></blunt>
+      <cheerful><li>Come and look at the {SUBJECT}! Little green shoots, every one of them.</li></cheerful>
+      <gloomy><li>I didn't think I'd see it again.</li></gloomy>
+      <cold><li>A sensible use of the season.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Maybe next spring.</li></plain>
+      <gloomy><li>Home is a long way off, and getting further.</li></gloomy>
+      <blunt><li>Fine. No {SUBJECT}.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Something green in winter ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_WinterGreen</defName>
+    <label>something green in winter</label>
+    <description>Fall or winter in a land with a real winter, and the colony has power and could build a sun lamp. A grower, or someone who has gone without fresh food, wants a sun lamp over an indoor field.</description>
+    <workerClass>ColonyCouncil.WishWorker_WinterGreen</workerClass>
+    <category>Health</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Rimfolk_Granted_WinterGreen</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_Greenhouse</template>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>A sun lamp is lit over six or more roofed cells of a growing zone or hydroponics. Promised, one is planned in the middle of an indoor field that has none.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>scurvy</key>
+        <hediffs><li>Council_Ail_Scurvy</li></hediffs>
+        <boost>4</boost>
+      </li>
+    </triggers>
+    <request>
+      <plain>
+        <li>The fields will be under snow soon. With a sun lamp indoors we could keep something green growing.</li>
+        <li>I haven't had anything fresh in days. A lamp over an indoor field would see us through the cold.</li>
+        <li>[trigger:scurvy] My gums are bleeding. We need greens growing indoors before the winter gets worse.</li>
+        <li>[winter] Everything outside is dead or frozen. Let's grow something under a lamp.</li>
+      </plain>
+      <warm><li>A little green in the dark months would do everyone good, not just me.</li></warm>
+      <blunt><li>Build a sun lamp over a field indoors. We'll want the food.</li></blunt>
+      <cheerful><li>Strawberries in winter, or at least potatoes. A sun lamp would do it.</li></cheerful>
+      <gloomy><li>It's going to be a long, grey winter. Something growing would help.</li></gloomy>
+      <cold><li>We have the power and the knowledge. Indoor crops through the winter are simply sense.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>There's green under the lamp, and snow outside. That's how it should be.</li>
+        <li>I went and stood under it for a minute. It's warm, like summer.</li>
+      </plain>
+      <warm><li>Everyone will eat better this winter. Thank you.</li></warm>
+      <blunt><li>Good. Now we eat.</li></blunt>
+      <cheerful><li>It's like a little summer in there!</li></cheerful>
+      <gloomy><li>At least something will grow this winter.</li></gloomy>
+      <cold><li>The lamp is lit and the field is sown. Well done.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>So it'll be meat and more meat until spring.</li></plain>
+      <gloomy><li>A long winter, and nothing green in it.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A lamp at the bench ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_BenchLamp</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a lamp at the {SUBJECT}</label>
+    <description>Someone has been working at a bench, or researching, in the dark. They want a lamp where they work.</description>
+    <workerClass>ColonyCouncil.WishWorker_BenchLamp</workerClass>
+    <category>Work</category>
+    <weight>1</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_BenchLamp</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>A lamp's light reaches the {SUBJECT}'s work spot, day or night. Promised, {THING} is planned beside it.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I was at the {SUBJECT} in the dark again last night. I can barely see my own hands.</li>
+        <li>A lamp by the {SUBJECT}, that's all. I keep squinting until my head aches.</li>
+        <li>[night] It's too dark to work at the {SUBJECT}, and the work doesn't wait for morning.</li>
+        <li>[old] My eyes aren't what they were. I need light at the {SUBJECT}.</li>
+      </plain>
+      <warm><li>Whoever works the {SUBJECT} after me will thank you for a lamp there too.</li></warm>
+      <blunt><li>Put a lamp by the {SUBJECT}. I'm working blind.</li></blunt>
+      <cheerful><li>Give me a lamp at the {SUBJECT} and I'll work twice as well, I promise.</li></cheerful>
+      <gloomy><li>One of these days I'll ruin something at the {SUBJECT} because I can't see it.</li></gloomy>
+      <cold><li>Work done in the dark is work done badly. A lamp at the {SUBJECT} pays for itself.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I can see the grain of the work now. Thank you.</li>
+        <li>Light at the bench. Small thing, big difference.</li>
+      </plain>
+      <warm><li>My eyes thank you, and so do I.</li></warm>
+      <blunt><li>Much better.</li></blunt>
+      <cheerful><li>It's bright as noon in here now.</li></cheerful>
+      <gloomy><li>At least I won't go blind at it.</li></gloomy>
+      <cold><li>Adequate light. Good.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to squinting, then.</li></plain>
+      <blunt><li>Don't complain about my work if you won't light it.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A roof over the way ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_RoofedWay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a roof over the way to the table</label>
+    <description>In a wet land, someone came in soaked to the table or to bed. They want the open steps between their bed and the table roofed.</description>
+    <workerClass>ColonyCouncil.WishWorker_RoofedWay</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Rimfolk_Granted_RoofedWay</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>All {TARGET} open steps of the way from {FOR_nameDef}'s bed to the table are under a roof. Promised, they're marked for roofing, and the colony's builders put the roof up.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>soaked</key>
+        <thoughts><li>SoakingWet</li></thoughts>
+        <boost>3</boost>
+        <freshHours>12</freshHours>
+      </li>
+    </triggers>
+    <request>
+      <plain>
+        <li>I came to supper soaked through again. It's only a few steps, but they're open to the sky.</li>
+        <li>Could we roof the way from the bedrooms to the table? I'm tired of eating wet.</li>
+        <li>[trigger:soaked] Look at me, dripping on the floor. A roof over that bit of path would end it.</li>
+        <li>[rain] It's raining again, and there's no getting to the table dry.</li>
+      </plain>
+      <warm><li>Everyone gets wet on that path, not just me. A roof would spare us all.</li></warm>
+      <blunt><li>Roof the path to the table. I'm sick of being wet.</li></blunt>
+      <cheerful><li>I'd love to get to breakfast without a bath on the way!</li></cheerful>
+      <gloomy><li>Wet to bed, wet to breakfast. That's the whole season.</li></gloomy>
+      <cold><li>A few cells of roof would save hours of drying clothes. The sums are easy.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Dry all the way to the table. I didn't know I'd missed it so much.</li>
+        <li>I listened to the rain on the new roof on the way to supper.</li>
+      </plain>
+      <warm><li>Thank you, from all of us who walk that way.</li></warm>
+      <blunt><li>Dry. Good.</li></blunt>
+      <cheerful><li>Rain all day and not a drop on me.</li></cheerful>
+      <gloomy><li>One less thing to be miserable about.</li></gloomy>
+      <cold><li>The roof works as intended.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Wet it is, then.</li></plain>
+      <gloomy><li>I'll be soaked again by supper.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

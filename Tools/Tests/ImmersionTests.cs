@@ -40,7 +40,9 @@ public static class ImmersionTests
         // What visitors say on arriving, waiting, staying and leaving (Visitors/VisitorWords.cs).
         "Rimfolk_VisitorLines",
         // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
-        "Rimfolk_VisitorLines2"
+        "Rimfolk_VisitorLines2",
+        // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
+        "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave"
     };
 
     private static readonly string[] JournalPools =

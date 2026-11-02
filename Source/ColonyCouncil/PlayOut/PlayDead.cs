@@ -51,13 +51,16 @@ namespace ColonyCouncil
             return new List<IntVec3>();
         }
 
-        /// <summary>A grave can be dug here: ground the game lets one go on, off the home area, in the open, and nothing in the way but grass.</summary>
-        private static bool Fits(IntVec3 c, Rot4 rot, Map map, Pawn pawn)
+        /// <summary>
+        /// A grave can be dug here: ground the game lets one go on, off the home area (a pet's may be in it, by the
+        /// colony's other graves), in the open, and nothing in the way but grass.
+        /// </summary>
+        internal static bool Fits(IntVec3 c, Rot4 rot, Map map, Pawn pawn, bool homeOk = false)
         {
             if (!GenConstruct.CanPlaceBlueprintAt(GraveDef, c, rot, map).Accepted) return false;
             foreach (var x in GenAdj.OccupiedRect(c, rot, GraveDef.size))
             {
-                if (!x.InBounds(map) || map.areaManager.Home[x] || x.Roofed(map) || x.Fogged(map) || x.GetZone(map) != null) return false;
+                if (!x.InBounds(map) || (!homeOk && map.areaManager.Home[x]) || x.Roofed(map) || x.Fogged(map) || x.GetZone(map) != null) return false;
                 if ((x.GetTerrain(map)?.IsWater ?? false) || x.GetFirstItem(map) != null || x.GetEdifice(map) != null) return false;
                 var plant = x.GetPlant(map);
                 if (plant != null && (plant.def.plant == null || plant.def.plant.IsTree || plant.def.plant.harvestedThingDef != null)) return false;
@@ -73,7 +76,7 @@ namespace ColonyCouncil
             foreach (var c in p.plots)
             {
                 if (FrameAt(map, c) != null || GraveAt(map, c) != null) continue;
-                if (!Fits(c, rot, map, null)) continue;
+                if (!Fits(c, rot, map, null, PetGrave.Is(p))) continue;
                 var frame = (Frame)ThingMaker.MakeThing(GraveDef.frameDef);
                 frame.SetFactionDirect(Faction.OfPlayer);
                 // Grass where the grave is dug goes with the digging.
@@ -135,10 +138,16 @@ namespace ColonyCouncil
             {
                 var grave = GraveAt(map, p.plots[i]);
                 if (grave == null || grave.HasCorpse || takenGraves.Contains(grave) || !x.CanReserveAndReach(grave, PathEndMode.Touch, Danger.Some)) continue;
-                var corpse = p.things.Where(c => PlayHaul.EnemyCorpse(c) && !taken.Contains(c) && x.CanReserveAndReach(c, PathEndMode.ClosestTouch, Danger.Some))
+                var corpse = p.things.Where(c => PlayHaul.ToBury(p, c) && !taken.Contains(c) && x.CanReserveAndReach(c, PathEndMode.ClosestTouch, Danger.Some))
                     .OrderBy(c => c.Position.DistanceToSquared(x.Position)).FirstOrDefault();
                 if (corpse == null) break;
-                TakeStrangers(grave);
+                if (PetGrave.Is(p))
+                {
+                    // A pet's grave takes the pet alone; its body is carried in even if it was forbidden.
+                    if (!PetGrave.TakeOnly(grave, corpse)) continue;
+                    if (corpse.IsForbidden(Faction.OfPlayer)) corpse.SetForbidden(false, false);
+                }
+                else TakeStrangers(grave);
                 var job = HaulAIUtility.HaulToContainerJob(x, corpse, grave);
                 if (job == null) continue;
                 job.count = 1;
@@ -179,7 +188,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Done(PlayOut p)
         {
-            if (p.things.Any(PlayHaul.EnemyCorpse)) return;
+            if (p.things.Any(c => PlayHaul.ToBury(p, c))) return;
             foreach (var c in p.plots)
             {
                 var frame = FrameAt(p.map, c);

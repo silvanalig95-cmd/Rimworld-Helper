@@ -87,7 +87,9 @@ namespace ColonyCouncil
             if (AddictionUtility.AddictedToAnything(p)) return null;
             // Teetotalers and the young get the soft drinks or nothing.
             bool teetotaler = (p.story?.traits != null && TraitDefOf.DrugDesire != null && p.story.traits.DegreeOfTrait(TraitDefOf.DrugDesire) < 0)
-                              || p.DevelopmentalStage.Juvenile() || Flavor.HumanAge(p) < 16f;
+                              || p.DevelopmentalStage.Juvenile() || Flavor.HumanAge(p) < 16f
+                              // Just clean of a drug (Arcs/ArcWorkers_LifeNew.cs): their toast is raised with tea or nothing.
+                              || LifeNewTracker.JustClean(p);
             Thing best = null;
             float bestValue = -1f;
             float bestDist = float.MaxValue;
