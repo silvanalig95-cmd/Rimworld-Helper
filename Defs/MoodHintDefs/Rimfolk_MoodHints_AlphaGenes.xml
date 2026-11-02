@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about Alpha Genes' looks (they load only with the mod). The covering is Rimfolk's
+       (Source/ColonyCouncil/Integrations/CoveredLooks.cs); the Kind trait, the Teratophilia gene and Inhumanized are
+       the mod's own. -->
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Disgust</defName>
+    <thoughts><li>AG_Disgust</li></thoughts>
+    <fix>It comes from being within six cells of someone with the repulsive gene, and it comes back each time they're near. It stops while that person wears something over the whole head, like a burka or a full helmet, and clothes over the body and legs. Kind colonists and carriers of the Teratophilia gene aren't bothered at all, and it helps to give the carrier their own room and work away from the others.</fix>
+    <act>Cover them, or keep some distance</act>
+    <keep>Once they're covered, or have their own corner of the colony, it fades within a day and doesn't come back.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

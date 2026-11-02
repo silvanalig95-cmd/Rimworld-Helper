@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Alpha Genes' looks hidden under a covering (Source/ColonyCouncil/Integrations/CoveredLooks.cs). -->
+  <CC_Settings_CoveredLooks>A covered face hides looks (Alpha Genes)</CC_Settings_CoveredLooks>
+  <CC_Settings_CoveredLooks_Tip>With Alpha Genes: someone with the repulsive gene gives everyone within six cells the "disgusting colonist" mood, and someone with angelic beauty gives them awe. With this on, neither reaches anyone while the carrier wears something over the whole head (a burka, a full helmet) and clothes over the body and legs: what nobody can see stirs nothing. Take the covering off and it works again. Needs the deeper game hooks.</CC_Settings_CoveredLooks_Tip>
+  <CC_SetNote_CoveredLooks>With Alpha Genes, a covered face and body hide the repulsive gene's disgust and angelic beauty's awe.</CC_SetNote_CoveredLooks>
+
+</LanguageData>

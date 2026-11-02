@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A covered face hides looks
+
+*2 November 2026, version 0.52.1*
+
+- With Alpha Genes, someone with the repulsive gene no longer disgusts the people around them while they wear something over the whole head, like a burka or a full helmet, and clothes over the body and legs. Angelic beauty's awe is hidden the same way.
+- The "disgusting colonist" mood's What to do names the real remedies: a covering, Kind colonists and carriers of the Teratophilia gene, and some distance. The setting "A covered face hides looks (Alpha Genes)" turns the covering off.
+
 ## New questions for the council, new customs for the year
 
 *2 November 2026, version 0.52.0*

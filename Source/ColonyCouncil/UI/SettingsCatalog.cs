@@ -415,6 +415,7 @@ namespace ColonyCouncil
             Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
             Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks");
             Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks");
+            Toggle("coveredLooks", "CC_Settings_CoveredLooks", "CC_SetNote_CoveredLooks", "deepHooks");
             Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");
             Toggle("marketCampersBuy", "CC_Settings_MarketCampersBuy", "CC_SetNote_MarketCampersBuy");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");

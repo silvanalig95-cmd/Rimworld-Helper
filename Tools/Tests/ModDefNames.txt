@@ -87,6 +87,7 @@ DankPyon_Wine_Griffon
 DankPyon_Wine_Ice
 DankPyon_Wine_Mulberry
 # Alpha Genes 1.6 (sarg.alphagenes)
+AG_Disgust
 AG_Drakonori
 AG_Efreet
 AG_Helixien

@@ -245,6 +245,8 @@ namespace ColonyCouncil
         public bool marketStallWindow = true;
         /// <summary>With RimMarket and a powered orbital trade beacon: a colony stall's goods are offered to trade ships too.</summary>
         public bool marketStallShips = true;
+        /// <summary>With Alpha Genes: a carrier of the repulsive gene or angelic beauty whose face and body are covered stirs nothing in others (Integrations/CoveredLooks.cs).</summary>
+        public bool coveredLooks = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
         public bool marketGuestsShop = true;
         /// <summary>With RimMarket: visitors camped on the colony's land and people from a camp near it buy off the colony's stalls (Visitors/VisitorTrade.cs).</summary>
@@ -494,6 +496,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref coverDrag, "coverDrag", true);
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
+            Scribe_Values.Look(ref coveredLooks, "coveredLooks", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref marketCampersBuy, "marketCampersBuy", true);
             Scribe_Values.Look(ref guestWill, "guestWill", true);
