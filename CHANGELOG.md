@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The same rules for all the council's advice
+
+*2 November 2026, version 0.51.0*
+
+- Every piece of advice, base finding, plan step, defense note and automation now has "Not this", and what you set aside stays gone until you bring it back from "Set aside".
+- What a button does on the map is kept under "Done lately" with Undo, and a day or two later the council says whether it worked and, if not, what is in the way.
+- The advisor's seats, freezer, beds and hospital advice uses the Plan page's numbers, counting guests and new joiners, warns before you run short, and each room is proposed only once.
+- The base review measures rooms far apart and the walk to meals by how people really walk, and offers new fixes for a freezer airlock, catch-all stockpiles and goods spread over many rooms.
+- Meal, medicine and feed bills on the Making page go by the stock targets above them instead of fixed caps.
+- Each automation's next action can also be done by hand from the Making page, and undoing one it did stops it coming back.
+
 ## Callers with a purpose
 
 *2 November 2026, version 0.50.2*

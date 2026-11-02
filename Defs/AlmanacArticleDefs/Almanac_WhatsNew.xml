@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.51.0</version>
+        <date>2 November 2026</date>
+        <title>The same rules for all the council's advice</title>
+        <points>
+          <li>Every piece of advice, base finding, plan step, defense note and automation now has "Not this", and what you set aside stays gone until you bring it back from "Set aside".</li>
+          <li>What a button does on the map is kept under "Done lately" with Undo, and a day or two later the council says whether it worked and, if not, what is in the way.</li>
+          <li>The advisor's seats, freezer, beds and hospital advice uses the Plan page's numbers, counting guests and new joiners, warns before you run short, and each room is proposed only once.</li>
+          <li>The base review measures rooms far apart and the walk to meals by how people really walk, and offers new fixes for a freezer airlock, catch-all stockpiles and goods spread over many rooms.</li>
+          <li>Meal, medicine and feed bills on the Making page go by the stock targets above them instead of fixed caps.</li>
+          <li>Each automation's next action can also be done by hand from the Making page, and undoing one it did stops it coming back.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.50.2</version>
         <date>2 November 2026</date>
         <title>Callers with a purpose</title>

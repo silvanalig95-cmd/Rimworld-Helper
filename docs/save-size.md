@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 411; modelled: 411; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** after two, **2,350 KB** after five.
+Saved collections found: 420; modelled: 420; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,877 KB** after a year, **2,259 KB** after two, **2,375 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -42,6 +42,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
 | `Building/ColonyUse.cs:keys` | with the above: what was counted, where and what | window | 280 | 280 | 280 | 12.3 |
 | `Annals.cs:written` | Caps.AnnalsYears written years | cap | 1 | 2 | 5 | 12.2 |
+| `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
@@ -50,6 +51,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
+| `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
@@ -185,6 +187,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Camps/CampMemory.cs:people` | the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp | fixed | 24 | 24 | 24 | 0.9 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
+| `Building/Suggest/SameRules.cs:markedCellDefs` | with the above: which order | fixed | 30 | 30 | 30 | 0.9 |
 | `Calendar/CalendarWatch.cs:awaySince` | the colony's people away now; the dead and those no longer ours dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Camps/CampCarry.cs:carries` | what they are bringing over by hand (herbs, milk, a gift, goods bought), one per bearer, gone once set down | while | 3 | 3 | 3 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
@@ -206,11 +209,13 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 19 | 19 | 19 | 0.8 |
 | `Building/BuildAhead.cs:cells` | with the above: where they stood | fixed | 30 | 30 | 30 | 0.7 |
 | `Building/BuildAhead.cs:rots` | with the above: which way they faced | fixed | 30 | 30 | 30 | 0.7 |
+| `Building/Suggest/SameRules.cs:markedCells` | per step: the orders it gave on cells rather than things (rare) | fixed | 30 | 30 | 30 | 0.7 |
 | `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
+| `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
@@ -228,6 +233,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
 | `Building/Automations.cs:droppedTicks` | with the above | fixed | 40 | 40 | 40 | 0.5 |
+| `Building/Suggest/SameRules.cs:defs` | with the above: the kind each was set not to take | fixed | 12 | 12 | 12 | 0.5 |
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
@@ -240,6 +246,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
+| `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
 | `Calendar/CalendarTracker.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
 | `Camps/Camp.cs:trees` | while the camp stays | while | 10 | 10 | 10 | 0.4 |
 | `Happenings/VisitorServices.cs:things` | per task: what the tinker still has to mend (30 at most, fewer as the work goes on), mending only | fixed | 10 | 10 | 10 | 0.4 |
@@ -249,6 +256,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Standing.cs:recentGrants` | per colonist, 30 days | window | 15 | 15 | 15 | 0.4 |
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
+| `Building/Suggest/SameRules.cs:owners` | per store step: the stores whose priority or filter it changed | fixed | 12 | 12 | 12 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
@@ -258,6 +266,7 @@ Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** aft
 | `Couriers/CourierTrip.cs:things` | particular things a trip came for (a neighbour's cargo), while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `PlayOut/PlayOutLord.cs:guests` | while the gathering lasts: guests from outside the colony | while | 8 | 8 | 8 | 0.3 |
 | `Visitors/VisitorTrip.cs:animals` | a visit's animals (a pack beast, a family's dog, a herd), while it lasts | while | 8 | 8 | 8 | 0.3 |
+| `Building/Suggest/SameRules.cs:priorities` | with the above: the priority each had | fixed | 12 | 12 | 12 | 0.3 |
 | `Faith/FaithCouncilTracker.cs:plans` | the evening of faith waiting to be held: one at a time, let go when its gathering is over | while | 1 | 1 | 1 | 0.3 |
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
