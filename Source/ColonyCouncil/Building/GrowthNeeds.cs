@@ -28,6 +28,10 @@ namespace ColonyCouncil
         public ThingDef meal;
         public List<Pawn> builders = new List<Pawn>();
         public List<(Building_WorkTable bench, float hours)> busyBenches = new List<(Building_WorkTable, float)>();
+        /// <summary>The hours a day each bench was worked by the record (only while the record covers a day).</summary>
+        public Dictionary<Building_WorkTable, float> workedADay = new Dictionary<Building_WorkTable, float>();
+        /// <summary>The busy benches were judged by the record of the last days rather than the work queued alone.</summary>
+        public bool busyMeasured;
         public List<ProjectState> projects = new List<ProjectState>();
         public int barracks;
 
@@ -111,6 +115,55 @@ namespace ColonyCouncil
                 }
                 if (recruiting) x.joining++;
             }
+            x.questJoining = QuestJoiners(map);
+        }
+
+        /// <summary>
+        /// People an accepted quest will bring to join the colony on this map (its parts that make pawns join, not as
+        /// prisoners): those not yet the colony's, not babies. A quest offered but not accepted isn't counted; a quest
+        /// that names no map counts for the first home map.
+        /// </summary>
+        public static int QuestJoiners(Map map)
+        {
+            var seen = new HashSet<Pawn>();
+            var player = Faction.OfPlayerSilentFail;
+            var quests = Find.QuestManager?.QuestsListForReading;
+            if (quests == null || map == null) return 0;
+            foreach (var q in quests)
+            {
+                if (q == null || q.State != QuestState.Ongoing) continue;
+                foreach (var part in q.PartsListForReading)
+                {
+                    List<Pawn> pawns = null;
+                    RimWorld.Planet.MapParent parent = null;
+                    if (part is QuestPart_JoinPlayer j && j.joinPlayer && !j.makePrisoners)
+                    {
+                        pawns = j.pawns;
+                        parent = j.mapParent;
+                    }
+                    else if (part is QuestPart_PawnsArrive a && a.joinPlayer)
+                    {
+                        pawns = a.pawns;
+                        parent = a.mapParent;
+                    }
+                    if (pawns == null) continue;
+                    var at = parent?.Map;
+                    if (at != null ? at != map : map != Find.AnyPlayerHomeMap) continue;
+                    foreach (var p in pawns)
+                    {
+                        try
+                        {
+                            if (p == null || p.Dead || p.Discarded || p.Faction != null && p.Faction == player || p.RaceProps == null || !p.RaceProps.Humanlike || Baby(p)) continue;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                        seen.Add(p);
+                    }
+                }
+            }
+            return seen.Count;
         }
 
         // ---------------- Beds and seats ----------------
@@ -310,6 +363,35 @@ namespace ColonyCouncil
             return hours;
         }
 
+        /// <summary>
+        /// The hours a day a bench was worked lately, by the record: what it made a day, in batches of the recipe that
+        /// makes each product there, at the hours a batch takes the hand who did the most batches there (else the
+        /// quickest who can).
+        /// </summary>
+        private float WorkedHours(Building_WorkTable bench, List<Pawn> hands)
+        {
+            var record = food.record;
+            if (record == null || !record.made.TryGetValue(bench.thingIDNumber, out var made) || made.Count == 0) return 0f;
+            Pawn seen = null;
+            if (record.doers.TryGetValue(bench.thingIDNumber, out var by))
+                seen = hands.Where(p => by.ContainsKey(p.thingIDNumber)).OrderByDescending(p => by[p.thingIDNumber]).ThenBy(p => p.thingIDNumber).FirstOrDefault();
+            var bills = bench.BillStack.Bills.OfType<Bill_Production>().Select(b => b.recipe).Where(r => r != null).ToList();
+            var counted = new HashSet<RecipeDef>();
+            float total = 0f;
+            foreach (var kv in made)
+            {
+                bool Makes(RecipeDef r) => r?.products != null && r.products.Any(p => p?.thingDef == kv.Key);
+                var recipe = bills.FirstOrDefault(Makes) ?? bench.def.AllRecipes?.FirstOrDefault(Makes);
+                if (recipe == null || !counted.Add(recipe)) continue;
+                var hand = seen ?? hands.OrderByDescending(p => Speed(p, recipe)).ThenBy(p => p.thingIDNumber).FirstOrDefault();
+                float speed = hand != null ? Speed(hand, recipe) : 1f;
+                float factor = Mathf.Max(0.1f, Chains.BenchFactor(bench, recipe));
+                float perBatch = Mathf.Max(1f, Chains.PerBatch(recipe, kv.Key));
+                total += GrowthMath.WorkedHours(kv.Value / perBatch, WorkOf(recipe) / (GrowthMath.TicksPerHour * speed * factor));
+            }
+            return total;
+        }
+
         private void Workshop(GrowthInput x)
         {
             var benches = map.listerBuildings.allBuildingsColonist.OfType<Building_WorkTable>().Where(b => b.Spawned && b.BillStack != null && WorkshopBench(b.def)).ToList();
@@ -319,12 +401,15 @@ namespace ColonyCouncil
             var stock = food.stock;
             int Have(ThingDef d) => d != null && stock.TryGetValue(d, out int n) ? n : 0;
             var busy = new List<Building_WorkTable>();
+            busyMeasured = food.measured && food.record != null;
             foreach (var b in benches)
             {
                 var room = b.GetRoom();
                 if (room != null && room.Role == RoomUtil.Workshop && !room.PsychologicallyOutdoors) x.benchesInWorkshop++;
                 float hours = QueuedHours(b, hands, Have, out bool anyHand);
-                if (anyHand && GrowthMath.Busy(hours, GrowthMath.BenchHoursADay))
+                float worked = busyMeasured ? WorkedHours(b, hands) : 0f;
+                if (busyMeasured) workedADay[b] = worked;
+                if (anyHand && GrowthMath.BusyBench(busyMeasured, worked, hours, GrowthMath.BenchHoursADay))
                 {
                     busy.Add(b);
                     busyBenches.Add((b, hours));
@@ -407,6 +492,39 @@ namespace ColonyCouncil
             float work = 0f;
             foreach (var t in Planned()) work += BuildProjects.WorkOf(t);
             x.queuedHours = GrowthMath.BuildHours(work);
+
+            // The miners, and the rock marked to mine inside the rooms being built: their days counted in the builders' hours.
+            float mineSpeed = 0f;
+            foreach (var p in ColonyNeeds.Hands(map))
+            {
+                if (p.Dead || p.workSettings == null || p.WorkTypeIsDisabled(WorkTypeDefOf.Mining) || !p.workSettings.WorkIsActive(WorkTypeDefOf.Mining)) continue;
+                x.miners++;
+                try
+                {
+                    mineSpeed += Mathf.Max(0.1f, p.GetStatValue(StatDefOf.MiningSpeed));
+                }
+                catch
+                {
+                    mineSpeed += 1f;
+                }
+            }
+            x.minerHoursADay = GrowthMath.MinerHoursADay(mineSpeed);
+            float mine = 0f;
+            foreach (var st in projects)
+                if (!st.project.Done)
+                    foreach (var c in st.project.Rect.ClipInsideMap(map))
+                        if (map.designationManager.DesignationAt(c, DesignationDefOf.Mine) != null)
+                            mine += MineHoursAt(map, c);
+            x.queuedMineHours = GrowthMath.MineAsBuildHours(mine, x.minerHoursADay, x.builderHoursADay);
+            x.queuedHours += x.queuedMineHours;
+        }
+
+        /// <summary>Hours a miner of speed 1 takes for the rock on a cell (0 for none).</summary>
+        public static float MineHoursAt(Map map, IntVec3 c)
+        {
+            var rock = c.InBounds(map) ? c.GetEdifice(map) : null;
+            if (rock?.def == null || !rock.def.mineable) return 0f;
+            return GrowthMath.MineHours(rock.HitPoints, rock.def.building?.isNaturalRock ?? false);
         }
     }
 }

@@ -34,6 +34,9 @@ namespace ColonyCouncil
             public int capacity, growSide = -1;
             public (int x, int z, int w, int h) strip;
             public float hours;
+            /// <summary>Rock the room planner marks to mine for it, and the hours a miner of speed 1 takes for it (counted in <see cref="hours"/> at the miners' pace).</summary>
+            public int mineCells;
+            public float mineHours;
             /// <summary>Why no plan of the kind can be made yet (research, materials), or that no spot was found.</summary>
             public string unavailable;
             public bool nowhere;
@@ -251,6 +254,13 @@ namespace ColonyCouncil
             return taken;
         }
 
+        /// <summary>
+        /// The ground the rooms followed keep for themselves: each footprint not yet finished with a cell round it, and
+        /// the side each keeps free to grow into. The ground plan's spot search starts from it, so it doesn't plan a room
+        /// where another is to grow.
+        /// </summary>
+        public static HashSet<IntVec3> KeptGround(Map map) => map == null ? new HashSet<IntVec3>() : Taken(map);
+
         private static void Keep(HashSet<IntVec3> taken, RoomPick pick)
         {
             foreach (var (x, z) in GroundPlanMath.Kept(pick.rect.minX, pick.rect.minZ, pick.rect.Width, pick.rect.Height)) taken.Add(new IntVec3(x, 0, z));
@@ -400,6 +410,19 @@ namespace ColonyCouncil
             int adds = PlanAdds(pick.plan, idea.kind);
             if (adds > 0) pick.capacity = adds;
             pick.hours = GrowthMath.BuildHours(PlanWork(pick.plan));
+            // The rock the planner marks to mine for it, at the colony's mining pace, in the builders' hours.
+            foreach (var c in pick.plan.mine)
+            {
+                float h = GrowthNeeds.MineHoursAt(map, c);
+                if (h <= 0f) continue;
+                pick.mineCells++;
+                pick.mineHours += h;
+            }
+            if (pick.mineHours > 0f)
+            {
+                var x = GrowthNeeds.For(map).input;
+                pick.hours += GrowthMath.MineAsBuildHours(pick.mineHours, x.minerHoursADay, x.builderHoursADay);
+            }
             return pick;
         }
 
@@ -425,6 +448,7 @@ namespace ColonyCouncil
                 case GrowthMath.Beds:
                     parts.Add("CC_Build_Why_Beds".Translate(r.built.Named("BUILT"), r.need.Named("NEED")).Resolve());
                     if (x.joining > 0) parts.Add("CC_Build_Why_BedsJoining".Translate(x.joining).Resolve());
+                    if (x.questJoining > 0) parts.Add("CC_AheadMore_Why_QuestJoining".Translate(x.questJoining).Resolve());
                     if (x.shared > 0) parts.Add("CC_Build_Why_BedsShared".Translate(x.shared).Resolve());
                     break;
                 case GrowthMath.Cold:
@@ -438,6 +462,7 @@ namespace ColonyCouncil
                 case GrowthMath.Dining:
                     parts.Add("CC_Build_Why_Dining".Translate(r.built.Named("BUILT"), (x.colonists + x.slaves + x.guests).Named("EATERS"), Ahead.Who(n.food).Named("WHO"), r.need.Named("NEED")).Resolve());
                     if (x.joining > 0) parts.Add("CC_Build_Why_DiningJoining".Translate(x.joining).Resolve());
+                    if (x.questJoining > 0) parts.Add("CC_AheadMore_Why_QuestJoining".Translate(x.questJoining).Resolve());
                     break;
                 case GrowthMath.Hospital:
                     parts.Add("CC_Build_Why_Hospital".Translate(r.built.Named("BUILT"), (x.colonists + x.slaves).Named("PEOPLE"), GrowthMath.HospitalBedsFor(x.colonists + x.slaves).Named("SIZE")).Resolve());
@@ -447,7 +472,9 @@ namespace ColonyCouncil
                     parts.Add("CC_Build_Why_Workshop".Translate(x.benches.Named("BENCHES"), x.benchesInWorkshop.Named("IN"), x.workshopSpare.Named("SPARE")).Resolve());
                     if (n.busyBenches.Count > 0)
                         parts.Add("CC_Build_Why_WorkshopBusy".Translate(TextUtil.JoinAnd(n.busyBenches.Take(3)
-                            .Select(b => "CC_Build_BusyOne".Translate(b.bench.LabelShort.Named("BENCH"), Mathf.RoundToInt(b.hours).Named("HOURS")).Resolve()).ToList())).Resolve());
+                            .Select(b => n.busyMeasured && n.workedADay.TryGetValue(b.bench, out float worked)
+                                ? "CC_AheadMore_BusyRecorded".Translate(b.bench.LabelShort.Named("BENCH"), worked.ToString("0.#").Named("WORKED"), Mathf.RoundToInt(b.hours).Named("HOURS")).Resolve()
+                                : "CC_Build_BusyOne".Translate(b.bench.LabelShort.Named("BENCH"), Mathf.RoundToInt(b.hours).Named("HOURS")).Resolve()).ToList())).Resolve());
                     break;
                 case GrowthMath.Storage:
                     parts.Add("CC_Build_Why_Storage".Translate(x.lying.Named("LYING"), x.lyingOut.Named("OUT"), r.built.Named("FREE")).Resolve());
@@ -543,6 +570,10 @@ namespace ColonyCouncil
                 ? "CC_Build_Room_Grow".Translate(SideName(pick.growSide).Named("SIDE"), pick.strip.w.Named("W"), pick.strip.h.Named("H")).Resolve()
                 : "CC_Build_Room_NoGrow".Translate().Resolve();
             string work = "CC_Build_Room_Work".Translate(N(pick.hours).Named("HOURS"), x.builders.Named("BUILDERS"), Mathf.RoundToInt(x.builderHoursADay).Named("ADAY")).Resolve();
+            if (pick.mineCells > 0)
+                work += " " + (x.miners > 0
+                    ? "CC_AheadMore_Room_Mine".Translate(pick.mineCells.Named("CELLS"), N(pick.mineHours).Named("HOURS"), x.miners.Named("MINERS"), Mathf.RoundToInt(x.minerHoursADay).Named("ADAY")).Resolve()
+                    : "CC_AheadMore_Room_MineNobody".Translate(pick.mineCells.Named("CELLS"), N(pick.mineHours).Named("HOURS")).Resolve());
             s.title = "CC_Build_Room_Title".Translate(room.Named("ROOM"), AddsText(idea.kind, pick.capacity).Named("ADDS")).Resolve();
             s.reason = reason + " " + "CC_Build_Room_Where".Translate(where).Resolve() + " " + grow + " " + work;
             s.doLabel = "CC_Build_Do_Place".Translate().Resolve();

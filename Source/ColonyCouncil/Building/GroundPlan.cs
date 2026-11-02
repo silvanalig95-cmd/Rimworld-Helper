@@ -24,9 +24,10 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The ground plan: the rooms the colony should build next (the plan's steps with a room, then the proposals),
-    /// each given a spot by the planner's own spot finder with the rooms before it kept clear, drawn together on the
-    /// map with their names. Shows how the base grows if the plan is followed in order; each room opens in the
-    /// planner at its spot with one click. Rules in <see cref="GroundPlanMath"/>.
+    /// each given a spot by the planner's own spot finder with the rooms before it, the rooms being built and the sides
+    /// they keep free to grow into kept clear, drawn together on the map with their names. Shows how the base grows if
+    /// the plan is followed in order; each room opens in the planner at its spot with one click. Rules in
+    /// <see cref="GroundPlanMath"/>.
     /// </summary>
     public static class GroundPlan
     {
@@ -86,7 +87,8 @@ namespace ColonyCouncil
             }
             if (steps.Count == 0) return result;
             var order = GroundPlanMath.Order(steps.Select(s => s.Planned).ToList(), steps.Select(s => s.score).ToList());
-            var taken = new HashSet<IntVec3>();
+            // The rooms being built and the sides they keep free to grow into are kept clear (Building/BuildAhead.cs).
+            var taken = BuildAhead.KeptGround(map);
             int n = 0;
             foreach (int i in order)
             {

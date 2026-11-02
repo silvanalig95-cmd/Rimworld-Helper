@@ -92,8 +92,8 @@ Do it / Show / Not this, and a short log of what was done with Undo and whether 
   again; the page asks `Ahead.For(map)` (cached until the needs are read again, a setting changes or the tracker's
   `Version` moves). The free ground beside fields is looked for only beside the six best food fields.
 - **Paste**: with a working nutrient paste dispenser the meal row goes by the record alone (no hunger floor).
-- Not yet: the spare clothes row has no bills behind it (tailoring bills are per garment); medicine and feed bills
-  are handled like meals; the field plan treats every food crop as one pool (hay counts for people too).
+- Not yet: medicine and feed bills are handled like meals. (Done in phase 3: spare clothes bills per garment; hay
+  and other animal-only crops kept out of the people's pool.)
 
 ## The shared suggestion core
 
@@ -204,10 +204,9 @@ and the eight automations next) goes through `Building/Suggest/`:
   workshop and the stores enough. The rooms in order: the cold store, the dining room, then the hospital. Nothing is
   queued, so the freezer is suggested whatever its size; the dining room beside it only while the two together take the
   four builders' 2 days (48 hours at 24 a day), else it waits for the freezer and the page says so.
-- Not yet: (done in the "same rules" pass: the advisor's room signals read these rows and the plan proposes the room
-  once); the busy-bench count reads queued bills, not the record of bench hours; quest offers of
-  joiners are not read; mining work is not counted in a room's hours; a room's kept side is not offered to the ground
-  plan's own spot search.
+- Not yet: nothing left from this list. (Done in the "same rules" pass: the advisor's room signals read these rows and
+  the plan proposes the room once. Done in phase 3: busy benches by the record of bench hours; mining counted in a
+  room's hours; joiners from accepted quests counted; the ground plan keeps clear of kept sides.)
 
 ## Phase 3
 
@@ -216,6 +215,77 @@ and the eight automations next) goes through `Building/Suggest/`:
    `JobStack.FullStack<T>()`, `Trigger_Threshold.TargetCount`).
 10. **Shopping list**: what the colony needs and can't make (neutroamine, components before Fabrication, steel when
     deposits run low), for the next trader; where to mine.
+
+### Phase 3 as built
+
+- **The arithmetic**: `Building/AheadMoreMath.cs` (pure, `Tools/Tests/AheadMoreTests.cs`, which also runs the
+  reference colony with a 600-cell hay field). `ManagerJobInfo` (a job's kind, label, goods in words, target, current,
+  slider top, suspended/managed/completed, `raises`, `wanted` and `wantedWhy`), `ManagerState` (jobs, active, the
+  Managing work type, managers on and able, desks and working desks), `ShopNeed` (want, have, pending, price, reasons,
+  deposit, `managerMines`, `traderHas`), `ClothesKind` (worn, frayed, soon, spare, billCover, forever, wornOutADay,
+  canMake, partsInStock, managed). Rules: `RoundTarget` (tens to 200, fifties above), `RaiseTo` (never past the slider's
+  `MaxUpperThreshold`), `ShouldRaise`/`ShouldResume`, `Stall` (no desk, desk off, nobody managing, nobody able; only
+  while a job is active), `RaiseWorked`; `Gross`/`AddReason` (each reason's use is its "more than stock" plus the stock,
+  the uses added, the stock taken off once), `ShopShort`, `Order` (short x price, at most `MaxShopRows` 12),
+  `CellsToMark` (at most `MaxMineCells` 40), `MineWorked`; `DaysToFray` (below `FrayedShare` 0.5 at the def's
+  `wearPerDay`), `ClothesWanted` (frayed + soon + worn through x days), `ClothesShort`, `ClothesTarget`,
+  `ClothesSteps` (not managed, most short first, `MaxClothesSteps` 3).
+- **Colony Manager** (`Integrations/ColonyManagerBridge.cs`, reflection only): the map's `FluffyManager.Manager` found
+  among `map.components` (never made where there is none), `JobStack.FullStack()`, each job's `Suspended`, `Managed`,
+  `Completed`, `Label`; its own `Trigger` read from the job's type down (the jobs hide the base field with `new`);
+  `Trigger_Threshold.TargetCount`, `MaxUpperThreshold`, `ThresholdFilter`, `CurrentCount`; `Trigger_PawnKind.CountTargets`,
+  `Counts`, `pawnKind`; forestry's `Type` (only Logging keeps a stock); mining's `AllowedMinerals`. Desks are
+  `Building_ManagerStation` (a working `Building_AIManager` manages by itself); the work type `Managing`. Anything
+  missing logs one message and the bridge stays quiet. A two-second cache serves `Possible` (asked every frame).
+  What a job's goods are wanted for (`AheadMore.Manager`): hunting, the raw row's target x the meat share of what was
+  eaten (only while the raw row is short or low and the record covers a day); logging, the blueprints' shortfall, the
+  chains' parts and the wood the record saw used a day x the reserve days; mining, the shopping list's minerals. Steps:
+  `ahead:manager:raise:<kind>:<i>` (`UndoManagerTarget`, only while the target is still the one set;
+  `ManagerCountCheck` two days on), `ahead:manager:resume:<kind>:<i>` (`UndoManagerSuspend`), and
+  `ahead:manager:<stall>` (no desk: says which desk can be built; desk forbidden: allow, `UndoForbid`; nobody managing:
+  `BillStuck.LetDo` the best by intellectual + social; `ManagerStallCheck`).
+- **The shopping list** (`AheadMore.Shopping`): the parts down `Making.For(map).chains` with no maker and no plant;
+  the blueprints' shortfalls whose material roots no chain (nothing makes it); starved bills whose one missing kind
+  nothing makes (batches left, 10 at most, 3 for a bill for ever); the medicine row short or low (its chain by
+  `Making.ChainFor` for the shortfall, or the medicine itself when no bench makes it); garments no bench makes. Left
+  out: crops, meat, hides, wool, animal products, plant matter, chunks, and whatever a plant on the map or one the
+  colony can sow yields (wood). Pending: cells marked to mine, at `YieldPerCell` (the rock's yield, the storyteller's
+  mining factor, the best miner's yield where it wastes). Traders: pawns with a `trader` not hostile, and
+  `passingShipManager.passingShips` trade ships, each one's `Goods` counted against the list (a line each).
+- **Where to mine** (`AheadMore.Mining`, `ahead:mine:<mineral>`, two at most): for a shopping row with a known
+  deposit and no active manager mining job for it, `MineSpot` takes the lump (cardinally joined rock of the mineral,
+  seen, none of it marked) nearest the colony's middle with a cell beside open ground the colony reaches, and walks
+  it from there so each cell can be reached once the one before is mined, skipping a roofed cell with no roof holder
+  left within `RoofCollapseUtility.RoofMaxSupportDistance`. Do it adds `Mine` designations (`UndoOrders` cells);
+  `AheadMineCheck` two days on (half mined, else nobody mining or how many are left).
+- **Spare clothes** (`AheadMore.Clothes`, `ahead:clothes:<def>`): the colony's people's worn apparel that cares
+  about damage; spares are ColonyNeeds' clothes goods (whole, in store); the record's worn-through rate. A game-mode
+  "do until" bill is raised (`UndoBillTarget`, BWM links together), else a bill added with `hpRange` 50-100%
+  (`UndoBillsAdded`); `BillStockCheck` two days on; parts not in stock: a step that only says why.
+- **Leftovers**: `AheadField.feedOnly` (the product is `Feed`): `AheadMath.Fields` splits the need into the people's
+  (raw x plant share) and the animals'; hay feeds only the animals, the people's fields feed the animals with what is
+  left; steps add to the people first; hay over-supply is judged against the animals' need (or as unused).
+  `GrowthInput.questJoining` (`GrowthNeeds.QuestJoiners`: ongoing quests' `QuestPart_JoinPlayer` with `joinPlayer`
+  and not prisoners, and `QuestPart_PawnsArrive` with `joinPlayer`, humanlike, not babies, not the colony's yet; a
+  quest naming no map counts for the first home map) adds to the beds' and seats' "soon". `BuildAhead.KeptGround`
+  seeds the ground plan's `taken`.
+- **Building ahead, asked later**: busy benches by the record (`GrowthNeeds.WorkedHours`: what each bench made a day
+  by `ColonyUse`, in batches of the recipe that makes it there, at the hours a batch takes the hand who did the most
+  batches there; `GrowthMath.WorkedHours`, `BusyByRecord` (worked `BusyShare` 0.75 of the 8-hour bench day with as
+  much again waiting), `BusyBench` (the record when it covers a day, else the queued-hours rule); `workedADay` and
+  `busyMeasured` for the words). Mining in a room's hours (`GrowthMath.MineHours`: `JobDriver_Mine`'s 100 ticks a
+  swing, 80 damage to natural rock and 40 to the rest, by the rock's hit points; `MinerHoursADay`; `MineAsBuildHours`
+  turns the miners' days into the builders' hours): a pick's `plan.mine` cells (`RoomPick.mineCells`/`mineHours`, in
+  its reason) and the `Mine` marks inside the rooms being built (`GrowthInput.queuedMineHours`, in `queuedHours`). The
+  Plan page with the next steps switched off draws Building ahead alone (`NextStepsPanel.DrawBuildAheadOnly`) with the
+  line that the steps are off; the Ahead section on the Making page never depended on that setting.
+- **The page**: `UI/AheadMorePanel.cs`, drawn by `AheadPanel.Draw`: the manager's jobs under the stock rows (with the
+  stall in a line), the shopping list under the fields with the traders' lines; the steps are cards among the
+  others (source "ahead"). Texts in `Languages/English/Keyed/Rimfolk_AheadMore.xml`; the Almanac's Ahead page has
+  sections on spare clothes, Colony Manager and the shopping list.
+- Not yet (needs a look in the game): the names read from Colony Manager were checked against its 1.6 source, not a
+  running game; a suspended job is only flagged when its goods are wanted; livestock and foraging are shown, never
+  raised; breakdowns' components aren't counted in the list.
 
 ## Rules of thumb (starting values only, replaced by the colony's own numbers as they're recorded)
 

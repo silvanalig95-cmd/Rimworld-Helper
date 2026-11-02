@@ -471,6 +471,7 @@ Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the counci
 Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_AHEAD_PRINT") == "1")} things about planning ahead (stocks, bills, fields) and the shared suggestions.");
 Console.WriteLine($"Checked {GrowthTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_GROWTH_PRINT") == "1")} things about building ahead (rooms the colony will be short of, the builders' days, stages, room to grow).");
+Console.WriteLine($"Checked {AheadMoreTests.Run(Check)} things about planning ahead further (Colony Manager's targets, the shopping list, rock to mine, spare clothes, hay, quest joiners).");
 Console.WriteLine($"Checked {LifeNewTests.Run(Check)} things about the newer wishes and life moments (a crop from home, the morning cup, books read, the way to the table).");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
 Console.WriteLine($"Checked {AnswerShiftTests.Run(Check)} things about what answers change for a while (hours, work, a new limb).");

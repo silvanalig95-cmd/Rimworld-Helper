@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// The top of the Making page: planning ahead (Building/Ahead.cs). The stock rows (what there is, what goes a day,
     /// how long it lasts, what to keep, how it stands), the fields against the year, the suggestions (the soonest
     /// short first, each with its numbers and Do it / Show / Not this), the steps done lately with Undo and whether
-    /// each worked, and what was set aside, to bring back. Every button shows its whole label and says what it does.
+    /// each worked, and what was set aside, to bring back. Colony Manager's targets and the shopping list are drawn by
+    /// <see cref="AheadMorePanel"/>. Every button shows its whole label and says what it does.
     /// </summary>
     public static class AheadPanel
     {
@@ -35,7 +36,11 @@ namespace ColonyCouncil
             y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Ahead_Intro".Translate(Ahead.Who(needs)).Resolve() + " " + from, UiKit.Faint, GameFont.Tiny) + 6f;
 
             y += Rows(x, y, width, plan, needs) + 6f;
+            float managerH = AheadMorePanel.Manager(x, y, width, view);
+            if (managerH > 0f) y += managerH + 6f;
             y += Fields(x, y, width, plan, needs) + 6f;
+            float shopH = AheadMorePanel.Shopping(x, y, width, view);
+            if (shopH > 0f) y += shopH + 6f;
 
             // The suggestions.
             var open = Ahead.Open(map);
@@ -139,6 +144,7 @@ namespace ColonyCouncil
             string line = plan.cropNeed <= 0f ? "CC_Ahead_FieldsNone".Translate().Resolve()
                 : "CC_Ahead_FieldsLine".Translate(Num(plan.cropNeed).Named("NEED"), Num(plan.cropGive).Named("GIVE"), Num(plan.growingLeftThisYear).Named("LEFT"),
                     plan.withoutDays.Named("WITHOUT"), plan.cycleDays.Named("CYCLE")).Resolve();
+            if (plan.feedOnlyGive > 0f) line += " " + "CC_AheadMore_FieldsHay".Translate(Num(plan.feedOnlyGive).Named("HAY"), Num(plan.peopleNeed).Named("PEOPLE")).Resolve();
             if (plan.cellsShort > 0) line += " " + "CC_Ahead_FieldsShort".Translate(plan.cellsShort).Resolve();
             else if (plan.cropNeed > 0f) line += " " + "CC_Ahead_FieldsEnough".Translate().Resolve();
             float h = UiKit.Paragraph(x + Pad, y, width - 2 * Pad, line, plan.cellsShort > 0 ? UiKit.Warn : UiKit.Faint, GameFont.Tiny);

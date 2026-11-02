@@ -11,6 +11,8 @@ namespace ColonyCouncil
         public int colonists, slaves, guests, prisoners, lodgers;
         /// <summary>Prisoners the wardens are recruiting: each wants a bed and a seat once they join.</summary>
         public int joining;
+        /// <summary>People an accepted quest will bring to join the colony: each wants a bed and a seat once they come.</summary>
+        public int questJoining;
 
         /// <summary>Sleeping places in the colony's own beds (not medical, not for prisoners or guests), and in bed blueprints and frames.</summary>
         public int beds, bedsPlanned;
@@ -47,6 +49,9 @@ namespace ColonyCouncil
         /// <summary>Hours of building waiting in blueprints and frames at a plain builder's speed; the builders' hours a day at theirs; how many build.</summary>
         public float queuedHours, builderHoursADay;
         public int builders;
+        /// <summary>The miners' hours a day at their mining speeds, and how many mine; of the queued hours, the mining marked inside the rooms being built (as builders' hours).</summary>
+        public float minerHoursADay, queuedMineHours;
+        public int miners;
 
         /// <summary>Room steps the player set aside ("Not this"): not suggested.</summary>
         public HashSet<string> declined = new HashSet<string>();
@@ -98,7 +103,7 @@ namespace ColonyCouncil
     /// <summary>
     /// Building ahead (Building/GrowthNeeds.cs, Building/BuildAhead.cs) as plain rules: per kind of room, what the colony
     /// needs against what is built and planned, and how soon it falls short. Beds for everyone who sleeps here and the
-    /// prisoners being recruited; cold storage for the meals and the raw food the stock targets keep, then for the
+    /// prisoners being recruited and the people an accepted quest brings; cold storage for the meals and the raw food the stock targets keep, then for the
     /// winter's days without growing (in places for a stack, by the nutrition a place of the colony's own food holds);
     /// seats for everyone who eats here, guests too; hospital beds by the colony's size and the most laid up at once
     /// lately; bench places in the workshops for the benches and a second one where a bench is busy; store places for
@@ -162,7 +167,7 @@ namespace ColonyCouncil
         {
             var r = new GrowthRow { kind = Beds, built = x.beds, planned = x.bedsPlanned };
             r.need = x.colonists + x.slaves;
-            r.soon = r.need + x.joining;
+            r.soon = r.need + x.joining + x.questJoining;
             if (r.Short > 0) Mark(r, 0f, 4, WhyNow);
             else if (r.SoonShort > 0) Mark(r, NoRush, 2, WhyJoining);
             return r;
@@ -194,7 +199,7 @@ namespace ColonyCouncil
             int eaters = x.colonists + x.slaves + x.guests;
             if (eaters < 2) return r;
             r.need = Math.Max(1, eaters - DiningSlack);
-            r.soon = Math.Max(1, eaters + x.joining - DiningSlack);
+            r.soon = Math.Max(1, eaters + x.joining + x.questJoining - DiningSlack);
             if (r.Short > 0) Mark(r, 0f, 3, WhyNow);
             else if (r.SoonShort > 0) Mark(r, NoRush, 2, WhyJoining);
             return r;
@@ -306,6 +311,42 @@ namespace ColonyCouncil
 
         /// <summary>A bench is busy when the work waiting at it is more than its hands do in two days.</summary>
         public static bool Busy(float queuedHours, float handHoursADay) => handHoursADay > 0f && queuedHours > BusyDays * handHoursADay;
+
+        /// <summary>A bench worked this share of a hand's day at one bench, by the record, is in use most of the day.</summary>
+        public const float BusyShare = 0.75f;
+
+        /// <summary>Hours a day a bench was worked, by the record: the batches it made a day at the hours a batch takes its hand there.</summary>
+        public static float WorkedHours(float batchesADay, float hoursABatch) => Math.Max(0f, batchesADay) * Math.Max(0f, hoursABatch);
+
+        /// <summary>
+        /// Busy by the record of the last days: the bench was worked most of a hand's day (BusyShare of BenchHoursADay) and
+        /// at least as much work again still waits, so a second bench would take work it can't get to.
+        /// </summary>
+        public static bool BusyByRecord(float workedHoursADay, float queuedHours) =>
+            workedHoursADay >= BusyShare * BenchHoursADay && queuedHours >= Math.Max(0.5f, workedHoursADay);
+
+        /// <summary>Busy as the record has it when the record covers a day, else by the work queued alone.</summary>
+        public static bool BusyBench(bool measured, float workedHoursADay, float queuedHours, float handHoursADay) =>
+            measured ? BusyByRecord(workedHoursADay, queuedHours) : Busy(queuedHours, handHoursADay);
+
+        // ---------------- Mining for a room ----------------
+
+        /// <summary>A pick's swing every so many ticks at mining speed 1, and the damage a swing does to natural rock and to anything else (JobDriver_Mine).</summary>
+        public const float TicksAPickHit = 100f, PickHitNatural = 80f, PickHitOther = 40f;
+
+        /// <summary>Hours a miner of speed 1 takes to mine one cell of rock with so many hit points.</summary>
+        public static float MineHours(float hitPoints, bool natural) =>
+            hitPoints <= 0f ? 0f : (float)Math.Ceiling(hitPoints / (natural ? PickHitNatural : PickHitOther)) * TicksAPickHit / TicksPerHour;
+
+        /// <summary>The miners' hours a day, by their mining speeds added up (a miner's day like a builder's).</summary>
+        public static float MinerHoursADay(float speedSum) => Math.Max(0f, speedSum) * BuildHoursADay;
+
+        /// <summary>
+        /// Mining counted in the builders' hours: the days the miners take for it, as so many of the builders' hours (the
+        /// room's hours are weighed against the builders' days). Nobody mining: the plain hours.
+        /// </summary>
+        public static float MineAsBuildHours(float mineHours, float minerHoursADay, float builderHoursADay) =>
+            mineHours <= 0f ? 0f : minerHoursADay <= 0f || builderHoursADay <= 0f ? mineHours : mineHours / minerHoursADay * builderHoursADay;
 
         /// <summary>Free floor a bench takes in a workshop: the bench, its work spot and a way past.</summary>
         public const int BenchPlaceCells = 10;
