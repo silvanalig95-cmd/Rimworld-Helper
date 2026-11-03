@@ -7,7 +7,8 @@ using static ColonyCouncil.JourneyMath;
 /// <summary>
 /// A journey made ready (Source/ColonyCouncil/Journeys/JourneyMath.cs): the default departure at the next dawn, each
 /// traveller's last night shifted so they wake rested in time, the last hours' steps, what to pack for the days on the
-/// road, travel food first, clothes for the weather on the way, and the edge and gate to leave by.
+/// road, travel food first, how long the food and feed last against the road, the list's groups, subtotals and counts as
+/// the player changes them, clothes for the weather on the way, and the edge and gate to leave by.
 /// </summary>
 public static class JourneyTests
 {
@@ -25,6 +26,8 @@ public static class JourneyTests
         Steps(Check);
         Packing(Check);
         Food(Check);
+        Lasting(Check);
+        Changing(Check);
         Clothes(Check);
         Leaving(Check);
         return n;
@@ -205,6 +208,86 @@ public static class JourneyTests
         Check(only.Count == 1 && only[0].units == 4, "with nothing else, what won't keep is packed after all");
         var starved = PackFood(new List<FoodOption> { foods[2] }, 5f, 100f);
         Check(starved.Count == 1 && starved[0].units == 5, "short stores: everything there is");
+    }
+
+    // ---------------- How long it lasts ----------------
+
+    private static void Lasting(Action<bool, string> Check)
+    {
+        // The player's screenshot: six travellers at 1.6 nutrition a day each (the game's fed rate), a day and a half there
+        // and back; packaged survival meals 11, a fine meal, insect jelly 226, simple meals 7, a simple bake, at 0.9 each
+        // and 0.05 for the jelly.
+        float eat = 6 * 1.6f, road = 1.5f;
+        float food = 11 * 0.9f + 0.9f + 226 * 0.05f + 7 * 0.9f + 0.9f;
+        float lasts = Lasts(food, eat);
+        Check(Math.Abs(lasts - food / eat) < 1e-4, $"food lasts its nutrition over what they eat a day ({lasts:0.00} days)");
+        Check(Math.Abs(226 * 0.05f / eat - 1.18f) < 0.01f, "226 insect jelly is worth about 1.2 days for six");
+        Check(Math.Abs(MarginDays(road) - (road * 1.25f + 1f)) < 1e-4 && MarginDays(0f) == 0f, $"the margin: the road, a quarter more and a spare day ({MarginDays(road):0.00})");
+        Check(Covers(lasts, road) == Cover.Margin, $"their list covers the road with the margin ({lasts:0.0} of {MarginDays(road):0.0})");
+        // Exactly what the planner packs covers the margin, and what it packs is never told short.
+        for (float d = 0.5f; d <= 30f; d += 0.5f)
+        {
+            float packed = FoodNutrition(eat, d);
+            Check(Covers(Lasts(packed, eat), d) == Cover.Margin, $"the planner's own food for {d} days reads as enough with the margin");
+        }
+        Check(Covers(MarginDays(road) - 0.5f, road) == Cover.Road, "past the road but under the margin: enough for the road only");
+        Check(Covers(road - 0.2f, road) == Cover.Short && Covers(0f, road) == Cover.Short, "under the road: short");
+        Check(Math.Abs(ShortDays(1f, road) - 0.5f) < 1e-4 && ShortDays(4f, road) == 0f && ShortDays(float.PositiveInfinity, road) == 0f, "days short of the road, none when covered");
+        Check(ShortMeals(0.5f, eat) == 6 && ShortMeals(0f, eat) == 0, $"half a day short for six: six simple meals ({ShortMeals(0.5f, eat)})");
+        Check(ShortMeals(0.01f, eat) == 1, "any shortfall is at least a meal");
+        Check(Lasts(0f, eat) == 0f && float.IsPositiveInfinity(Lasts(5f, 0f)) && Lasts(0f, 0f) == 0f, "no food lasts no days; food with nobody to eat it lasts");
+
+        // Feed: a grazer needs it only on bare land, a non-grazer every day.
+        var animals = new List<(float perDay, float feedDays)> { (2f, 0.5f), (1f, 3f), (4f, 0f) };
+        var (feedLasts, need) = FeedCover(animals, 6f);
+        Check(Math.Abs(feedLasts - 2f) < 1e-4, $"feed lasts over what the animals that need it eat ({feedLasts:0.00} days)");
+        Check(Math.Abs(need - (2f * 0.5f + 1f * 3f) / 3f) < 1e-4, $"the days they need it, by what each eats ({need:0.00})");
+        Check(FeedCover(new List<(float, float)> { (2f, 0f) }, 0f) == (0f, 0f), "grazers on good land: no feed needed");
+        Check(float.IsPositiveInfinity(FeedCover(new List<(float, float)> { (2f, 0f) }, 3f).lasts), "feed for animals that graze all the way lasts");
+        // The planner's own feed, per animal with the margin, reads as enough with the margin.
+        float packedFeed = animals.Sum(a => FoodNutrition(a.perDay, a.feedDays));
+        var packedCover = FeedCover(animals, packedFeed);
+        Check(Covers(packedCover.lasts, packedCover.need) == Cover.Margin, "the planner's own feed reads as enough with the margin");
+    }
+
+    // ---------------- Changing the list ----------------
+
+    private static void Changing(Action<bool, string> Check)
+    {
+        Check(ClampCount(50, 30) == 30 && ClampCount(-4, 30) == 0 && ClampCount(12, 30) == 12 && ClampCount(5, -1) == 0, "a typed count is kept to what is to hand");
+        Check(StepCount(5, 1, 30) == 6 && StepCount(5, 10, 30) == 15 && StepCount(25, 10, 30) == 30 && StepCount(5, 100, 30) == 30, "+ by one, ten or a hundred, never past what is to hand");
+        Check(StepCount(5, -10, 30) == 0 && StepCount(5, -1, 30) == 4, "- never below none");
+        Check(StepCount(40, 1, 30) == 40 && StepCount(40, -1, 30) == 39, "a count already over what is to hand doesn't jump down with +, and - takes one off");
+        Check(Math.Abs(PerPerson(5, 6) - 5f / 6f) < 1e-4 && PerPerson(5, 0) == 0f, "medicine a person");
+
+        Check(GroupOf("food") == "food" && GroupOf("medicine") == "medicine" && GroupOf("feed") == "feed", "food, medicine and feed are their own groups");
+        Check(GroupOf("bed") == "bedding" && GroupOf("tent") == "bedding", "beds and tents together as bedding");
+        Check(GroupOf("other") == "other" && GroupOf(null) == "other" && GroupOf("drug") == "other", "anything else is other");
+        Check(Groups.Distinct().Count() == Groups.Length && Groups[0] == "food" && Groups.Last() == "other", "the groups once each, food first, other last");
+        foreach (var kind in new[] { "food", "medicine", "bed", "tent", "feed", "other" }) Check(Groups.Contains(GroupOf(kind)), $"a {kind} line shows in a group");
+
+        var rows = new List<PackRow>
+        {
+            new PackRow { kind = "food", count = 11, nutrition = 0.9f, mass = 0.3f },
+            new PackRow { kind = "food", count = 226, carried = 26, nutrition = 0.05f, mass = 0.02f },
+            new PackRow { kind = "medicine", count = 5, mass = 0.5f },
+            new PackRow { kind = "bed", count = 2, mass = 4f, sleeps = 2 },
+            new PackRow { kind = "bed", count = 3, mass = 3f, sleeps = 1 },
+            new PackRow { kind = "tent", count = 1, mass = 6f },
+            new PackRow { kind = "other", count = 200, carried = 250, mass = 0.008f },
+            new PackRow { kind = "other", count = 0, mass = 99f }
+        };
+        var food = Sum(rows, "food");
+        Check(food.lines == 2 && food.count == 237 && Math.Abs(food.nutrition - (9.9f + 11.3f)) < 1e-3 && Math.Abs(food.mass - (3.3f + 4.52f)) < 1e-3, "the food's subtotal");
+        var bedding = Sum(rows, "bedding");
+        Check(bedding.sleeps == 2 * 2 + 3 && Math.Abs(bedding.mass - (8f + 9f + 6f)) < 1e-3, $"bedding sleeps a double bed's two (sleeps {bedding.sleeps}), tents weigh in");
+        var other = Sum(rows, "other");
+        Check(other.lines == 1 && Math.Abs(other.mass - 1.6f) < 1e-3, "a line at none isn't counted");
+        var all = Sum(rows);
+        Check(Math.Abs(all.mass - (food.mass + 2.5f + bedding.mass + other.mass)) < 1e-3, "every group's weight adds up to the whole");
+        float load = LoadToTake(rows);
+        Check(Math.Abs(load - (all.mass - 26 * 0.02f - 200 * 0.008f)) < 1e-3, $"what they carry already isn't taken up again ({load:0.00} kg)");
+        Check(LoadToTake(new[] { new PackRow { count = 3, carried = 10, mass = 2f } }) == 0f, "carrying more than the line: nothing to take");
     }
 
     // ---------------- Dressed for the road ----------------

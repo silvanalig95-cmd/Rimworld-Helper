@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 453; modelled: 453; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,128 KB** after a year, **2,525 KB** after two, **2,641 KB** after five.
+Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** after two, **2,642 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -128,6 +128,7 @@ Rimfolk's part of the save, roughly: **2,128 KB** after a year, **2,525 KB** aft
 | `Pressures/Pressures.cs:lastProgress` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
+| `Journeys/Journeys.cs:packing` | the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off | fixed | 20 | 20 | 20 | 2.5 |
 | `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
 | `Calendar/CalendarTracker.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
@@ -188,7 +189,6 @@ Rimfolk's part of the save, roughly: **2,128 KB** after a year, **2,525 KB** aft
 | `Building/BuildAhead.cs:stuffs` | with the above: their materials | fixed | 30 | 30 | 30 | 1.2 |
 | `Camps/CampTracker.cs:diary` | the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax) | fixed | 30 | 30 | 30 | 1.2 |
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
-| `Journeys/Journeys.cs:packing` | the packing list: food, medicine, beds, tents, feed | fixed | 10 | 10 | 10 | 1.2 |
 | `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |

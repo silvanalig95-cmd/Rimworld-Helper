@@ -21,15 +21,25 @@ namespace ColonyCouncil
         Asking
     }
 
-    /// <summary>One line of a journey's packing list: what, how many, what for, and whether the player set the number.</summary>
+    /// <summary>
+    /// One line of a journey's packing list: what, how many, what for, and whose it is (the planner's suggestion, a number
+    /// the player set, a line the player added from the stores, or a suggestion the player took off).
+    /// </summary>
     public class JourneyLine : IExposable
     {
         public ThingDef def;
         public int count;
-        /// <summary>food, medicine, bed, tent or feed (for the animals).</summary>
+        /// <summary>
+        /// food, medicine, bed, tent, feed (for the animals) or other (anything else: it goes with the caravan's goods,
+        /// loaded at the gate, rather than in the travellers' own packs).
+        /// </summary>
         public string kind;
         /// <summary>The player set this number: kept when the list is worked out again.</summary>
         public bool edited;
+        /// <summary>The player added this line from the stores: theirs, kept as they set it.</summary>
+        public bool added;
+        /// <summary>The player took this suggestion off: the planner leaves it off until the list is worked out again.</summary>
+        public bool removed;
 
         public JourneyLine()
         {
@@ -42,7 +52,13 @@ namespace ColonyCouncil
             this.kind = kind;
         }
 
-        public JourneyLine Copy() => new JourneyLine(def, count, kind) { edited = edited };
+        /// <summary>The player's line: a number they set, a line they added, or a suggestion they took off.</summary>
+        public bool Player => edited || added || removed;
+
+        /// <summary>On the list to take (not taken off, more than none).</summary>
+        public bool Taken => !removed && count > 0 && def != null;
+
+        public JourneyLine Copy() => new JourneyLine(def, count, kind) { edited = edited, added = added, removed = removed };
 
         public void ExposeData()
         {
@@ -50,6 +66,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref count, "count");
             Scribe_Values.Look(ref kind, "kind");
             Scribe_Values.Look(ref edited, "edited");
+            Scribe_Values.Look(ref added, "added");
+            Scribe_Values.Look(ref removed, "removed");
         }
     }
 

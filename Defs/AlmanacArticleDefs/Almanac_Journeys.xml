@@ -12,7 +12,7 @@
     <tip>A dawn departure leaves time for an early night. Plan it the afternoon before.</tip>
     <description>A journey is an order of its own rather than a decree: it is for the few who go, at an hour you choose, and nobody else's mood or a decree's place is spent on it. Plan it from the Journeys section on the Decrees page or the World page, or from a town or place on the region map with "Plan a journey here".
 
-The planner asks who goes (colonists, and the animals to bring), where to (a town or a place on the region map, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn at least ten hours off by default). It shows the days on the road by the game's own caravan estimate, the weather along the way and at the destination, what each traveller will change into, how their night before is shifted, and the packing list, which you can change line by line.</description>
+The planner asks who goes (colonists, and the animals to bring), where to (a town or a place on the region map, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn at least ten hours off by default). It shows the days on the road by the game's own caravan estimate, the weather along the way and at the destination, what each traveller will change into, how their night before is shifted, and the packing list, which you can change line by line or add to from the stores. How long the food lasts against the road, and the load against the room, stay in sight at the foot of the planner.</description>
     <sections>
       <li>
         <heading>The day before and the last hours</heading>
@@ -36,7 +36,26 @@ The planner asks who goes (colonists, and the animals to bring), where to (a tow
           <li>Feed for the animals (kibble, else hay) for the days the land gives no grazing, every day for those that don't graze.</li>
           <li>Weapons as they carry them.</li>
         </points>
-        <after>Each traveller picks up their share as they can carry it; what they don't carry is loaded at the gate by the game's own caravan forming, onto the pack animals first. Lines you change keep your numbers when the list is worked out again.</after>
+        <after>Each traveller picks up their share of the food, medicine and bedding as they can carry it; the rest, the feed and anything else on the list is loaded at the gate by the game's own caravan forming, onto the pack animals first. What a traveller carries already counts toward the list and isn't loaded again.</after>
+      </li>
+      <li>
+        <heading>How long it lasts</heading>
+        <text>At the foot of the planner, always in sight however far the window is scrolled:</text>
+        <points>
+          <li>Food for about so many days for the travellers, from their nourishment a day by the game's own hunger rates, against the days on the road (one way or there and back, as planned). Green when it covers the road with the margin (the road, a quarter more and a spare day), orange when it covers the road only, red when it falls short, with the shortfall in days and in meals of 0.9 nutrition, a simple meal's worth.</li>
+          <li>With animals, their feed against the days they can't graze, with the same margin; animals that graze all the way need none.</li>
+          <li>The weight still to take up against the room the travellers and pack animals have. A caravan carrying more than it can doesn't move.</li>
+        </points>
+        <after>The list is in groups (food, medicine, bedding, feed for the animals, other), each with its subtotal: days for food and feed, medicine a person, sleeping places for bedding, and the weight. Each line says whose number it is, the days it adds, its weight and how many are to hand, and warns of food that would spoil before the road ends; on hover, what the thing is, its nourishment and how long it keeps.</after>
+      </li>
+      <li>
+        <heading>Changing the list</heading>
+        <points>
+          <li>Type a number (kept to what is to hand), or step it with - and +: one at a time, 10 with Shift, 100 with Ctrl, as in the game's trade and caravan windows. All takes everything to hand, None sets it to none. A number you set is yours, shown in gold, and stays as you set it; the arrow beside it gives back the planner's.</li>
+          <li>The x takes one of the planner's lines off: the planner makes up its share from other things and leaves it off until you put it back or work the list out again.</li>
+          <li>Add from the stores lists everything the stores hold and the travellers carry, by kind (food, medicine, drugs, apparel, weapons, ammunition when a mod adds any, tools and gear, silver and trade goods, materials, everything) or by name, with how many there are and what one weighs. A click adds one, with Shift 10, with Ctrl 100; All adds everything there is. Food the travellers eat, medicine, bedrolls, tents and feed go in their groups; anything else goes under Other, with the caravan's goods.</li>
+          <li>Work the list out again gives back the planner's numbers and the lines you took off; the lines you added stay.</li>
+        </points>
       </li>
       <li>
         <heading>Dressed for the road</heading>

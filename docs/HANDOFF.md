@@ -15,6 +15,12 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.62.0, the player's request (how long the food lasts, choose any item, review the list): the journey planner's
+  packing list. Food and feed days pinned at the foot (`JourneyMath`, `JourneyPack.PeoplePerDay`/`FeedNeeds`), the
+  picker `UI/JourneyPick.cs` over `JourneyPack.Holdings`, grouped lines with subtotals, typed counts, lines taken off
+  (`JourneyLine.removed`) or added (`added`), kept in order; feed and "other" lines load with the caravan's goods
+  (`JourneyPack.OwnPack`). Not tried in the game yet: the picker's place, the text boxes, the reload icon, mod ammo and
+  tents in its tabs, a departure with an "other" line.
 - 0.61.1, the player's report (every colonist "Trapped"): RimWorld of Magic's ShouldHaveNeed prefix (priority 100)
   switches off its unfinished travel need (TM_Travel) for everyone, takes mana and stamina from the undead and keeps
   golems' needs. Harmony skips it when an earlier prefix on that check has answered, so colonists had the need at 0

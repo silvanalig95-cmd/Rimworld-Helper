@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -13,7 +15,11 @@ namespace ColonyCouncil
     /// the region map, or nowhere in particular for a chosen length), when (an hour on a day, the next dawn by default),
     /// how long on the road (the game's caravan estimate there, or there and back, or a chosen length), the weather on
     /// the way, the packing list to see and change, what each traveller changes into, and how each one's last night is
-    /// shifted. The working copy is kept for the session while a place is picked on the region map.
+    /// shifted. The packing list is in groups (food, medicine, bedding, feed, other) with a subtotal each; every line can
+    /// be typed into, stepped (Shift 10, Ctrl 100), set to all or none, put back to the planner's number or taken off,
+    /// and anything in the stores can be added (UI/JourneyPick.cs). What the food and feed last against the road and the
+    /// load against the room stay in sight at the foot of the window. The working copy is kept for the session while a
+    /// place is picked on the region map.
     /// </summary>
     public class Dialog_JourneyPlan : Window
     {
@@ -33,12 +39,24 @@ namespace ColonyCouncil
         private bool keepDraft;
         private float computedAt = -10f;
         private Vector2 leftScroll, rightScroll;
-        private float leftH = 400f, rightH = 700f;
+        private float leftH = 400f, rightH = 700f, leftW = 320f, totalsHeight;
+
+        /// <summary>The travellers' nourishment a day, and each animal's with the days it needs feed for (worked out with the list).</summary>
+        private float eatPerDay;
+        private List<(float perDay, float feedDays)> feedNeeds = new List<(float, float)>();
+        /// <summary>What the stores hold and the travellers carry, by thing: counted with the list and every two seconds.</summary>
+        private Dictionary<ThingDef, (int stores, int carried)> held = new Dictionary<ThingDef, (int, int)>();
+        private float heldAt = -10f;
+        /// <summary>A line's count as it is being typed: set when the box is left or Enter pressed.</summary>
+        private readonly Dictionary<string, string> countText = new Dictionary<string, string>();
+        private string countEditing;
 
         private static readonly Color Accent = new Color(0.8f, 0.86f, 0.7f);
         private const int HourTicks = GenDate.TicksPerHour;
+        private const string CountControl = "CC_JourneyCount_";
+        private static readonly Regex Digits = new Regex("^[0-9]*$");
 
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(1000f, UI.screenWidth - 40f), Mathf.Min(740f, UI.screenHeight - 60f));
+        public override Vector2 InitialSize => new Vector2(Mathf.Min(1000f, UI.screenWidth - 40f), Mathf.Min(760f, UI.screenHeight - 40f));
 
         private Dialog_JourneyPlan(JourneyPlan plan, bool editing)
         {
@@ -48,6 +66,8 @@ namespace ColonyCouncil
             doCloseX = true;
             closeOnClickedOutside = false;
             absorbInputAroundWindow = true;
+            // Enter sets a typed count rather than closing the planner.
+            closeOnAccept = false;
         }
 
         // ---------------- Opening ----------------
@@ -156,6 +176,19 @@ namespace ColonyCouncil
             p.daysChosen = false;
         }
 
+        public override void PreClose()
+        {
+            base.PreClose();
+            CommitCount();
+        }
+
+        public override void OnAcceptKeyPressed()
+        {
+            if (countEditing == null) return;
+            CommitCount();
+            UI.UnfocusCurrentControl();
+        }
+
         public override void PostClose()
         {
             base.PostClose();
@@ -187,6 +220,9 @@ namespace ColonyCouncil
                     plan.packing = JourneyPack.Packing(map, plan.travellers, plan.animals, plan.days, route, plan.packing);
                 }
                 plan.Changed();
+                eatPerDay = JourneyPack.PeoplePerDay(plan.travellers);
+                feedNeeds = JourneyPack.FeedNeeds(plan.animals, plan.days, route);
+                Count();
                 clothes = JourneyPack.Clothes(plan);
                 nights.Clear();
                 nightHourNow.Clear();
@@ -212,19 +248,25 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
+            if (countEditing != null && GUI.GetNameOfFocusedControl() != CountControl + countEditing) CommitCount();
             if (dirty && Time.realtimeSinceStartup - computedAt > 0.3f) Compute();
+            else if (Time.realtimeSinceStartup - heldAt > 2f) Count();
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), (editing ? "CC_Journey_TitleEdit" : "CC_Journey_Title").Translate());
             Text.Font = GameFont.Small;
             float top = inRect.y + 40f;
             const float bottomH = 44f;
-            float leftW = Mathf.Min(320f, inRect.width * 0.34f);
-            var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH);
-            var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
+            leftW = Mathf.Clamp(inRect.width * 0.32f, 180f, 320f);
             try
             {
+                // What the food lasts and the load, always in sight above the buttons; the rest scrolls.
+                var totals = Totals();
+                float totalsH = totalsHeight = TotalsHeight(totals, inRect.width);
+                var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH - totalsH);
+                var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
                 DrawWho(left);
                 DrawDetails(right);
+                DrawTotals(new Rect(inRect.x, left.yMax, inRect.width, totalsH), totals);
                 DrawBottom(new Rect(inRect.x, inRect.yMax - bottomH + 8f, inRect.width, bottomH - 8f));
             }
             catch (Exception e)
@@ -418,57 +460,410 @@ namespace ColonyCouncil
             return y + 4f;
         }
 
+        // ---------------- What they take ----------------
+
+        /// <summary>What the stores hold and the travellers carry, counted again.</summary>
+        private void Count()
+        {
+            heldAt = Time.realtimeSinceStartup;
+            held = JourneyPack.Holdings(plan.map, plan.travellers);
+        }
+
+        private (int stores, int carried) Held(ThingDef def) => def != null && held.TryGetValue(def, out var h) ? h : default;
+
+        private int ToHand(ThingDef def)
+        {
+            var h = Held(def);
+            return h.stores + h.carried;
+        }
+
+        private static string Key(JourneyLine l) => l.kind + "/" + l.def.defName;
+
+        private static string D(float days) => days.ToString(days < 10f ? "0.#" : "0");
+
+        private static string Kg(float kg) => "CC_Journey_Kg".Translate(kg.ToString(kg < 10f ? "0.#" : "0")).Resolve();
+
+        /// <summary>Green with the margin, orange for the road only, red when short.</summary>
+        private static Color CoverColor(JourneyMath.Cover c) => c == JourneyMath.Cover.Margin ? UiKit.Good : c == JourneyMath.Cover.Road ? UiKit.Warn : UiKit.Bad;
+
+        private JourneyMath.PackRow RowOf(JourneyLine l) => new JourneyMath.PackRow
+        {
+            kind = l.kind, count = l.Taken ? l.count : 0, carried = Held(l.def).carried, nutrition = JourneyPack.Nutrition(l.def), mass = JourneyPack.UnitMass(l.def),
+            sleeps = JourneyPack.Sleeps(l.def)
+        };
+
+        /// <summary>What the animals that need feed eat a day between them.</summary>
+        private float FeedEat => feedNeeds.Where(a => a.feedDays > 0f).Sum(a => a.perDay);
+
+        private int People => plan.travellers.Count(p => p != null && !p.Dead);
+
         private float Packing(float y, float w)
         {
             y += 6f;
             y += UiKit.SectionTitle(0f, y, w, "CC_Journey_PackTitle".Translate(), null, Accent) + 2f;
-            var map = plan.map;
-            if (plan.packing.Count == 0)
-                y += UiKit.Paragraph(4f, y, w - 8f, plan.travellers.Count == 0 ? "CC_Journey_PackNobody".Translate() : "CC_Journey_PackNothing".Translate(), UiKit.Faint) + 4f;
-            int i = 0;
-            foreach (var line in plan.packing.ToList())
+            // Anything from the stores; the planner's own list again.
+            float bx = 4f;
+            if (SmallButton(bx, y, 200f, "CC_Journey_AddFromStores".Translate(), "CC_Journey_AddFromStores_Tip".Translate())) OpenPicker();
+            bx += 208f;
+            if (plan.packing.Any(l => (l.edited || l.removed) && !l.added) && SmallButton(bx, y, 220f, "CC_Journey_PackReset".Translate(), "CC_Journey_PackReset_Tip".Translate()))
             {
-                var row = new Rect(0f, y, w, 28f);
-                UiKit.Zebra(row, i++);
-                Widgets.ThingIcon(new Rect(4f, y + 2f, 24f, 24f), line.def);
-                int stock = JourneyPack.InStores(map, line.def) + plan.travellers.Sum(p => JourneyPack.Carried(p, line.def));
-                UiKit.LabelFit(new Rect(34f, y, w - 330f, 28f), line.def.LabelCap + "  " + ("CC_Journey_Kind_" + line.kind).Translate(), Color.white);
-                UiKit.LabelFit(new Rect(w - 296f, y, 110f, 28f), "CC_Journey_InStores".Translate(stock).Resolve(), stock < line.count ? UiKit.Warn : UiKit.Dim, GameFont.Tiny);
-                float bx = w - 180f;
-                if (SmallButton(bx, y + 1f, 36f, "-"))
+                CommitCount();
+                foreach (var l in plan.packing.Where(l => !l.added))
                 {
-                    line.count = Mathf.Max(0, line.count - (line.count > 20 ? 5 : 1));
-                    line.edited = true;
-                    dirty = true;
+                    l.edited = false;
+                    l.removed = false;
                 }
-                UiKit.LabelFit(new Rect(bx + 40f, y, 50f, 28f), line.count.ToString(), line.edited ? UiKit.Gold : Color.white, GameFont.Small, TextAnchor.MiddleCenter);
-                if (SmallButton(bx + 94f, y + 1f, 36f, "+"))
-                {
-                    line.count += line.count >= 20 ? 5 : 1;
-                    line.edited = true;
-                    dirty = true;
-                }
-                y += 30f;
-            }
-            plan.packing.RemoveAll(l => l.count <= 0 && !l.edited);
-            if (plan.packing.Any(l => l.edited) && SmallButton(4f, y + 2f, 200f, "CC_Journey_PackReset".Translate()))
-            {
-                foreach (var l in plan.packing) l.edited = false;
                 dirty = true;
             }
-            if (plan.packing.Any(l => l.edited)) y += 32f;
-            // Weapons as they carry them, and what the load comes to.
+            y += 32f;
+            if (!plan.packing.Any(l => !l.removed))
+                y += UiKit.Paragraph(4f, y, w - 8f, plan.travellers.Count == 0 ? "CC_Journey_PackNobody".Translate() : "CC_Journey_PackNothing".Translate(), UiKit.Faint) + 4f;
+            int i = 0;
+            foreach (string group in JourneyMath.Groups)
+            {
+                var lines = plan.packing.Where(l => l.def != null && JourneyMath.GroupOf(l.kind) == group).ToList();
+                if (lines.Count == 0) continue;
+                y = GroupHeader(group, y, w, lines);
+                foreach (var line in lines.Where(l => !l.removed)) y = LineRow(line, y, w, i++);
+                foreach (var line in lines.Where(l => l.removed)) y = RemovedRow(line, y, w, i++);
+                y += 6f;
+            }
+            plan.packing.RemoveAll(l => l.def == null || (l.count <= 0 && !l.Player));
+            // Weapons as they carry them.
             var people = plan.travellers.Where(p => p != null).ToList();
             if (people.Count > 0)
             {
                 var arms = people.Select(p => p.equipment?.Primary != null ? "CC_Journey_Armed".Translate(p.LabelShort, p.equipment.Primary.LabelNoCount).Resolve()
                     : "CC_Journey_Unarmed".Translate(p.LabelShort).Resolve()).ToList();
                 y += UiKit.Paragraph(4f, y + 2f, w - 8f, "CC_Journey_Weapons".Translate(TextUtil.JoinAnd(arms)).Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
-                float load = plan.packing.Sum(l => l.count * JourneyPack.UnitMass(l.def));
-                float carry = people.Concat(plan.animals.Where(a => a.RaceProps.packAnimal)).Sum(p => Mathf.Max(0f, MassUtility.FreeSpace(p)));
-                y += UiKit.Paragraph(4f, y, w - 8f, "CC_Journey_Load".Translate(load.ToString("0"), carry.ToString("0")).Resolve(), load > carry ? UiKit.Warn : UiKit.Faint, GameFont.Tiny) + 4f;
             }
             return y + 4f;
+        }
+
+        /// <summary>A group's name and its subtotal: days for food and feed, a person's share of medicine, sleeping places for bedding, and the weight.</summary>
+        private float GroupHeader(string group, float y, float w, List<JourneyLine> lines)
+        {
+            var sum = JourneyMath.Sum(lines.Select(RowOf), group);
+            string kg = Kg(sum.mass);
+            int people = People;
+            string sub;
+            var color = UiKit.Faint;
+            switch (group)
+            {
+                case "food":
+                    if (eatPerDay > 0f)
+                    {
+                        float lasts = JourneyMath.Lasts(sum.nutrition, eatPerDay);
+                        sub = "CC_Journey_SubDays".Translate(D(lasts), kg).Resolve();
+                        color = CoverColor(JourneyMath.Covers(lasts, plan.days));
+                    }
+                    else sub = "CC_Journey_SubNutrition".Translate(sum.nutrition.ToString("0.#"), kg).Resolve();
+                    break;
+                case "medicine":
+                    sub = people > 0 ? "CC_Journey_SubMedicine".Translate(JourneyMath.PerPerson(sum.count, people).ToString("0.#"), kg).Resolve() : kg;
+                    break;
+                case "bedding":
+                    sub = people > 0 ? "CC_Journey_SubBedding".Translate(sum.sleeps, people, kg).Resolve() : kg;
+                    break;
+                case "feed":
+                    if (FeedEat > 0f)
+                    {
+                        var (lasts, need) = JourneyMath.FeedCover(feedNeeds, sum.nutrition);
+                        sub = "CC_Journey_SubDays".Translate(D(lasts), kg).Resolve();
+                        color = CoverColor(JourneyMath.Covers(lasts, need));
+                    }
+                    else sub = kg;
+                    break;
+                default:
+                    sub = kg;
+                    break;
+            }
+            var r = new Rect(0f, y, w, 24f);
+            Text.Font = GameFont.Small;
+            string name = ("CC_Journey_Group_" + group).Translate();
+            float nameW = Mathf.Min(w * 0.5f, Text.CalcSize(name).x + 12f);
+            UiKit.LabelFit(new Rect(4f, y, nameW, 24f), name, UiKit.HeaderColor);
+            UiKit.LabelFit(new Rect(nameW + 4f, y, w - nameW - 8f, 24f), sub, color, GameFont.Tiny, TextAnchor.MiddleRight);
+            UiKit.Divider(4f, y + 23f, w - 8f);
+            TooltipHandler.TipRegion(r, ("CC_Journey_Group_" + group + "_Tip").Translate());
+            return y + 26f;
+        }
+
+        /// <summary>
+        /// One line: its icon, name and what it comes to (whose number, the days it feeds them, its weight, how many are to
+        /// hand), and how many: -, the number to type, +, all, none, back to the planner's number, take it off.
+        /// </summary>
+        private float LineRow(JourneyLine line, float y, float w, int index)
+        {
+            bool narrow = w < 540f;
+            float h = narrow ? 66f : 40f;
+            var row = new Rect(0f, y, w, h);
+            UiKit.Zebra(row, index);
+            int toHand = ToHand(line.def);
+            bool mine = line.edited || line.added;
+
+            // How many, from the right.
+            float cy = narrow ? y + 38f : y + 8f;
+            float right = w - 2f;
+            var remove = new Rect(right - 20f, cy + 2f, 20f, 20f);
+            right -= 26f;
+            var reset = new Rect(right - 20f, cy + 2f, 20f, 20f);
+            right -= 26f;
+            var none = new Rect(right - 46f, cy, 46f, 24f);
+            right -= 49f;
+            var all = new Rect(right - 38f, cy, 38f, 24f);
+            right -= 44f;
+            var plus = new Rect(right - 24f, cy, 24f, 24f);
+            right -= 26f;
+            var box = new Rect(right - 50f, cy, 50f, 24f);
+            right -= 52f;
+            var minus = new Rect(right - 24f, cy, 24f, 24f);
+            right -= 30f;
+
+            // What it is.
+            float textRight = narrow ? w - 4f : right;
+            Widgets.ThingIcon(new Rect(4f, y + 6f, 28f, 28f), line.def);
+            UiKit.LabelFit(new Rect(38f, y + 1f, Mathf.Max(0f, textRight - 38f), 22f), line.def.LabelCap, mine ? UiKit.Gold : Color.white);
+            UiKit.LabelFit(new Rect(38f, y + 21f, Mathf.Max(0f, textRight - 38f), 17f), Details(line, toHand, out bool warn), warn ? UiKit.Warn : UiKit.Dim, GameFont.Tiny);
+            var about = new Rect(0f, y, textRight, narrow ? 38f : h);
+            if (Mouse.IsOver(about)) TooltipHandler.TipRegion(about, LineTip(line));
+
+            int step = GenUI.CurrentAdjustmentMultiplier();
+            string stepTip = "CC_Journey_StepTip".Translate();
+            if (Widgets.ButtonText(minus, "-")) SetCount(line, JourneyMath.StepCount(line.count, -step, toHand));
+            TooltipHandler.TipRegion(minus, stepTip);
+            CountBox(box, line, mine);
+            TooltipHandler.TipRegion(box, "CC_Journey_CountTip".Translate(toHand));
+            if (Widgets.ButtonText(plus, "+")) SetCount(line, JourneyMath.StepCount(line.count, step, toHand));
+            TooltipHandler.TipRegion(plus, stepTip);
+            Text.Font = GameFont.Tiny;
+            if (Widgets.ButtonText(all, "CC_Journey_SetAll".Translate())) SetCount(line, toHand);
+            TooltipHandler.TipRegion(all, "CC_Journey_SetAllTip".Translate(toHand));
+            if (Widgets.ButtonText(none, "CC_Journey_SetNone".Translate())) SetCount(line, 0);
+            TooltipHandler.TipRegion(none, "CC_Journey_SetNoneTip".Translate());
+            Text.Font = GameFont.Small;
+            if (line.edited && !line.added)
+            {
+                if (Widgets.ButtonImage(reset, TexButton.Reload))
+                {
+                    LetGo(line);
+                    line.edited = false;
+                    dirty = true;
+                }
+                TooltipHandler.TipRegion(reset, "CC_Journey_LineResetTip".Translate());
+            }
+            if (Widgets.ButtonImage(remove, TexButton.CloseXSmall))
+            {
+                LetGo(line);
+                if (line.added) plan.packing.Remove(line);
+                else
+                {
+                    line.removed = true;
+                    line.edited = false;
+                    line.count = 0;
+                }
+                dirty = true;
+            }
+            TooltipHandler.TipRegion(remove, (line.added ? "CC_Journey_RemoveAddedTip" : "CC_Journey_RemoveTip").Translate());
+            return y + h + 2f;
+        }
+
+        /// <summary>A suggestion taken off: faint, with the way to put it back.</summary>
+        private float RemovedRow(JourneyLine line, float y, float w, int index)
+        {
+            const float h = 30f;
+            UiKit.Zebra(new Rect(0f, y, w, h), index);
+            GUI.color = new Color(1f, 1f, 1f, 0.45f);
+            Widgets.ThingIcon(new Rect(8f, y + 5f, 20f, 20f), line.def);
+            GUI.color = Color.white;
+            var back = new Rect(w - 112f, y + 3f, 110f, 24f);
+            UiKit.LabelFit(new Rect(38f, y, Mathf.Max(0f, back.x - 44f), h), "CC_Journey_TakenOff".Translate(line.def.LabelCap).Resolve(), UiKit.Dim);
+            Text.Font = GameFont.Tiny;
+            if (Widgets.ButtonText(back, "CC_Journey_PutBack".Translate()))
+            {
+                line.removed = false;
+                dirty = true;
+            }
+            Text.Font = GameFont.Small;
+            TooltipHandler.TipRegion(back, "CC_Journey_PutBackTip".Translate());
+            return y + h + 2f;
+        }
+
+        /// <summary>The line's short facts: whose number it is, the days it feeds them, its weight, how many are to hand, and a warning if it spoils on the way.</summary>
+        private string Details(JourneyLine line, int toHand, out bool warn)
+        {
+            var parts = new List<string> { (line.added ? "CC_Journey_Added" : line.edited ? "CC_Journey_YourNumber" : "CC_Journey_Suggested").Translate().ToString() };
+            float nutrition = JourneyPack.Nutrition(line.def) * line.count;
+            if (line.kind == "food" && nutrition > 0f)
+                parts.Add(eatPerDay > 0f ? "CC_Journey_LineDays".Translate(D(nutrition / eatPerDay)).Resolve() : "CC_Journey_LineNutrition".Translate(nutrition.ToString("0.#")).Resolve());
+            else if (line.kind == "feed" && nutrition > 0f && FeedEat > 0f) parts.Add("CC_Journey_LineDays".Translate(D(nutrition / FeedEat)).Resolve());
+            parts.Add(Kg(line.count * JourneyPack.UnitMass(line.def)));
+            parts.Add("CC_Journey_InStores".Translate(toHand).Resolve());
+            warn = line.count > toHand;
+            float rot = JourneyPack.RotDays(line.def);
+            if ((line.kind == "food" || line.kind == "feed") && rot < plan.days)
+            {
+                parts.Add("CC_Journey_Spoils".Translate(D(rot)).Resolve());
+                warn = true;
+            }
+            return string.Join(" · ", parts);
+        }
+
+        /// <summary>The line on hover: what the thing is, its weight, nourishment and keeping, how many are to hand, and who packs it.</summary>
+        private string LineTip(JourneyLine line)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(line.def.LabelCap);
+            string desc = line.def.description ?? "";
+            if (desc.Length > 400) desc = desc.Substring(0, 400).TrimEnd() + "...";
+            if (desc.Length > 0) sb.AppendLine().AppendLine(desc);
+            sb.AppendLine();
+            float each = JourneyPack.UnitMass(line.def);
+            sb.AppendLine("CC_Journey_TipMass".Translate(each.ToString("0.##"), Kg(each * line.count)).Resolve());
+            float nutrition = JourneyPack.Nutrition(line.def);
+            if (nutrition > 0f) sb.AppendLine("CC_Journey_TipNutrition".Translate(nutrition.ToString("0.##"), (nutrition * line.count).ToString("0.#")).Resolve());
+            if (line.def.IsIngestible)
+            {
+                float rot = JourneyPack.RotDays(line.def);
+                sb.AppendLine(float.IsPositiveInfinity(rot) ? "CC_Journey_TipKeeps".Translate().Resolve() : "CC_Journey_TipRots".Translate(D(rot)).Resolve());
+            }
+            var h = Held(line.def);
+            sb.AppendLine("CC_Journey_TipToHand".Translate(h.stores, h.carried).Resolve());
+            sb.Append((JourneyPack.OwnPack(line.kind) ? "CC_Journey_TipOwnPack" : "CC_Journey_TipGate").Translate().Resolve());
+            return sb.ToString();
+        }
+
+        /// <summary>The number box: typed digits wait until the box is left or Enter pressed, then are kept to what is to hand.</summary>
+        private void CountBox(Rect r, JourneyLine line, bool mine)
+        {
+            string key = Key(line);
+            string name = CountControl + key;
+            if (countEditing != key || !countText.ContainsKey(key)) countText[key] = line.count.ToString();
+            GUI.SetNextControlName(name);
+            if (mine) GUI.color = UiKit.Gold;
+            string typed = Widgets.TextField(r, countText[key], 6, Digits);
+            GUI.color = Color.white;
+            if (GUI.GetNameOfFocusedControl() != name) return;
+            if (countEditing != null && countEditing != key) CommitCount();
+            countEditing = key;
+            countText[key] = typed;
+        }
+
+        /// <summary>The count being typed, set (an empty box changes nothing).</summary>
+        private void CommitCount()
+        {
+            string key = countEditing;
+            countEditing = null;
+            if (key == null || !countText.TryGetValue(key, out string text) || !int.TryParse(text, out int n)) return;
+            var line = plan.packing.FirstOrDefault(l => l.def != null && Key(l) == key);
+            if (line != null) SetCount(line, JourneyMath.ClampCount(n, ToHand(line.def)));
+        }
+
+        /// <summary>A line's box stops being typed into (its number changes some other way).</summary>
+        private void LetGo(JourneyLine line)
+        {
+            if (countEditing != Key(line)) return;
+            countEditing = null;
+            UI.UnfocusCurrentControl();
+        }
+
+        private void SetCount(JourneyLine line, int count)
+        {
+            LetGo(line);
+            if (count == line.count) return;
+            line.count = count;
+            if (!line.added) line.edited = true;
+            dirty = true;
+        }
+
+        private void OpenPicker()
+        {
+            CommitCount();
+            // Over the list of who goes and ending above the totals, so the packing list and its totals stay in sight.
+            float w = Mathf.Min(580f, UI.screenWidth - 20f);
+            float y = windowRect.y + Margin + 40f;
+            float h = Mathf.Clamp(windowRect.yMax - Margin - 44f - totalsHeight - y, 320f, Mathf.Min(720f, UI.screenHeight - 20f));
+            float x = Mathf.Clamp(windowRect.x + Margin + leftW + 6f - w, 0f, UI.screenWidth - w);
+            y = Mathf.Clamp(y, 0f, UI.screenHeight - h);
+            Find.WindowStack.Add(new Dialog_JourneyPick(plan, () => dirty = true, new Rect(x, y, w, h)));
+        }
+
+        // ---------------- The totals at the foot ----------------
+
+        /// <summary>The food's days against the road's, the feed's against the days without grazing, and the load against the room, each in its colour with the reckoning on hover.</summary>
+        private List<(string text, Color color, string tip)> Totals()
+        {
+            var list = new List<(string, Color, string)>();
+            var rows = plan.packing.Where(l => l.Taken).Select(RowOf).ToList();
+            var people = plan.travellers.Where(p => p != null && !p.Dead).ToList();
+            if (people.Count > 0)
+            {
+                string who = people.Count == 1 ? people[0].LabelShort : "CC_Journey_TheTravellers".Translate(people.Count).Resolve();
+                string road = (plan.HasDestination && !plan.daysChosen ? plan.andBack ? "CC_Journey_RoadBack" : "CC_Journey_RoadOneWay" : "CC_Journey_RoadDays")
+                    .Translate(D(plan.days)).Resolve();
+                float food = JourneyMath.Sum(rows, "food").nutrition;
+                float lasts = JourneyMath.Lasts(food, eatPerDay);
+                float margin = JourneyMath.MarginDays(plan.days);
+                string tip = "CC_Journey_FoodTip".Translate(who.CapitalizeFirst(), eatPerDay.ToString("0.##"), food.ToString("0.#"), D(margin)).Resolve();
+                if (food <= 0f) list.Add(("CC_Journey_FoodNone".Translate(who, road).Resolve(), UiKit.Bad, tip));
+                else if (eatPerDay > 0f)
+                {
+                    var cover = JourneyMath.Covers(lasts, plan.days);
+                    float shortOfMargin = JourneyMath.ShortDays(lasts, margin), shortOfRoad = JourneyMath.ShortDays(lasts, plan.days);
+                    string verdict = cover == JourneyMath.Cover.Margin ? "CC_Journey_FoodEnough".Translate(D(margin)).Resolve()
+                        : cover == JourneyMath.Cover.Road ? "CC_Journey_FoodNoMargin".Translate(D(margin), JourneyMath.ShortMeals(shortOfMargin, eatPerDay)).Resolve()
+                        : "CC_Journey_FoodShort".Translate(D(Mathf.Max(0.1f, shortOfRoad)), JourneyMath.ShortMeals(shortOfRoad, eatPerDay)).Resolve();
+                    list.Add(("CC_Journey_FoodLasts".Translate(D(lasts), who, road).Resolve() + " " + verdict, CoverColor(cover), tip));
+                }
+            }
+            // The animals' feed against the days they can't graze.
+            if (plan.animals.Count > 0)
+            {
+                float feed = JourneyMath.Sum(rows, "feed").nutrition;
+                var (lasts, need) = JourneyMath.FeedCover(feedNeeds, feed);
+                string tip = "CC_Journey_FeedTip".Translate(feedNeeds.Sum(a => a.perDay).ToString("0.##"), route.noGrazing.ToStringPercent()).Resolve();
+                if (need <= 0f) list.Add(("CC_Journey_FeedGraze".Translate().Resolve(), UiKit.Faint, tip));
+                else
+                {
+                    var cover = JourneyMath.Covers(lasts, need);
+                    string verdict = cover == JourneyMath.Cover.Margin ? "CC_Journey_FeedEnough".Translate().Resolve()
+                        : cover == JourneyMath.Cover.Road ? "CC_Journey_FeedNoMargin".Translate().Resolve()
+                        : "CC_Journey_FeedShort".Translate(D(Mathf.Max(0.1f, JourneyMath.ShortDays(lasts, need)))).Resolve();
+                    list.Add(("CC_Journey_FeedLasts".Translate(D(lasts), D(need)).Resolve() + " " + verdict, CoverColor(cover), tip));
+                }
+            }
+            // The load against the room.
+            if (people.Count > 0 || rows.Count > 0)
+            {
+                float load = JourneyMath.LoadToTake(rows);
+                float room = people.Concat(plan.animals.Where(a => a != null && a.RaceProps.packAnimal)).Sum(p => Mathf.Max(0f, MassUtility.FreeSpace(p)));
+                string text = "CC_Journey_Load".Translate(load.ToString("0"), room.ToString("0")).Resolve();
+                if (load > room) text += " " + "CC_Journey_LoadOver".Translate((load - room).ToString("0")).Resolve();
+                list.Add((text, load > room ? UiKit.Bad : UiKit.Faint, "CC_Journey_LoadTip".Translate().Resolve()));
+            }
+            return list;
+        }
+
+        private static float TotalsHeight(List<(string text, Color color, string tip)> totals, float width)
+        {
+            if (totals.Count == 0) return 0f;
+            Text.Font = GameFont.Small;
+            float h = 8f;
+            foreach (var t in totals) h += Text.CalcHeight(t.text, width - 8f) + 2f;
+            return h;
+        }
+
+        private static void DrawTotals(Rect r, List<(string text, Color color, string tip)> totals)
+        {
+            if (totals.Count == 0) return;
+            UiKit.Divider(r.x, r.y + 3f, r.width);
+            float y = r.y + 6f;
+            foreach (var t in totals)
+            {
+                float h = UiKit.Paragraph(r.x + 4f, y, r.width - 8f, t.text, t.color);
+                if (!t.tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(r.x, y, r.width, h), t.tip);
+                y += h + 2f;
+            }
         }
 
         private float Clothes(float y, float w)
@@ -540,6 +935,8 @@ namespace ColonyCouncil
             if (why != null) TooltipHandler.TipRegion(confirm, why);
             if (Widgets.ButtonText(confirm, (editing ? "CC_Journey_Save" : "CC_Journey_Confirm").Translate(), true, true, why == null) && why == null)
             {
+                // A number still being typed counts.
+                CommitCount();
                 if (dirty) Compute();
                 var made = Clone(plan);
                 if (editing && live != null) made.id = live.id;

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.62.0</version>
+        <date>3 November 2026</date>
+        <title>Packing for the road</title>
+        <points>
+          <li>The journey planner says how long the food lasts: about so many days for the travellers against the days on the road. Green covers a margin, orange only the road, and red is short and says how many more meals it needs.</li>
+          <li>Each food line shows the days it adds, and with animals the feed is set against the days they can't graze. The weight still to load is set against the room the travellers and pack animals have.</li>
+          <li>Add from the stores: pick anything the stores hold or the travellers carry, by kind or by name, with counts and weights.</li>
+          <li>The packing list comes in groups (food, medicine, bedding, feed, other), each with a subtotal, and the totals stay in sight at the foot of the planner.</li>
+          <li>Every line takes a typed number, steps by 10 with Shift and by 100 with Ctrl, and has All, None, back to the planner's number, and a cross to take it off.</li>
+          <li>A suggestion taken off stays off until you put it back, and the planner makes up the food from other things. Numbers you set stay as you set them.</li>
+          <li>Things added beyond food, medicine and bedding go with the caravan's goods, loaded at the gate with the feed.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.61.1</version>
         <date>3 November 2026</date>
         <title>Not trapped any more</title>

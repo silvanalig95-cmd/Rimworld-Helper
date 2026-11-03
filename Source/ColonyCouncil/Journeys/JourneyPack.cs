@@ -114,17 +114,78 @@ namespace ColonyCouncil
             return CaravanTicksPerMoveUtility.GetTicksPerMove(list, massUsage, Mathf.Max(capacity, 1f));
         }
 
-        /// <summary>What the travellers already carry plus the packing list, in kilograms.</summary>
+        /// <summary>What the travellers already carry plus what the packing list adds to it, in kilograms.</summary>
         public static float Mass(IEnumerable<Pawn> travellers, IEnumerable<JourneyLine> packing)
         {
-            float m = 0f;
-            foreach (var p in travellers) if (p?.inventory != null) m += MassUtility.InventoryMass(p);
-            foreach (var l in packing) if (l?.def != null) m += l.count * UnitMass(l.def);
+            var people = travellers.Where(p => p?.inventory != null).ToList();
+            float m = people.Sum(p => MassUtility.InventoryMass(p));
+            foreach (var l in packing)
+                if (l != null && l.Taken)
+                    m += Mathf.Max(0, l.count - people.Sum(p => Carried(p, l.def))) * UnitMass(l.def);
             return m;
         }
 
-        /// <summary>The weight of one of a line's things (a packed-up building as made of its usual stuff).</summary>
-        public static float UnitMass(ThingDef def) => def.MadeFromStuff ? def.GetStatValueAbstract(StatDefOf.Mass, GenStuff.DefaultStuffFor(def)) : def.GetStatValueAbstract(StatDefOf.Mass);
+        private static readonly Dictionary<ThingDef, float> massOf = new Dictionary<ThingDef, float>(), nutritionOf = new Dictionary<ThingDef, float>();
+
+        /// <summary>The weight of one of a line's things (a packed-up building as made of its usual stuff), remembered.</summary>
+        public static float UnitMass(ThingDef def)
+        {
+            if (!massOf.TryGetValue(def, out float m))
+                massOf[def] = m = def.MadeFromStuff ? def.GetStatValueAbstract(StatDefOf.Mass, GenStuff.DefaultStuffFor(def)) : def.GetStatValueAbstract(StatDefOf.Mass);
+            return m;
+        }
+
+        /// <summary>One of a thing's nourishment (none for what isn't food), remembered.</summary>
+        public static float Nutrition(ThingDef def)
+        {
+            if (def == null) return 0f;
+            if (!nutritionOf.TryGetValue(def, out float n))
+                nutritionOf[def] = n = def.IsNutritionGivingIngestible ? def.GetStatValueAbstract(StatDefOf.Nutrition) : 0f;
+            return n;
+        }
+
+        /// <summary>Days before it starts to rot outside a freezer; <see cref="float.PositiveInfinity"/> when it never does.</summary>
+        public static float RotDays(ThingDef def)
+        {
+            var rot = def?.GetCompProperties<CompProperties_Rottable>();
+            return rot == null ? float.PositiveInfinity : rot.daysToRotStart;
+        }
+
+        /// <summary>How many sleep on one of a line's beds (a double bed two).</summary>
+        public static int Sleeps(ThingDef def) => Mathf.Max(1, def?.size.x ?? 1);
+
+        /// <summary>
+        /// The kind of line a thing makes when the player adds it: a bed caravans can use, a mod's tent, medicine, food the
+        /// travellers can eat, feed only animals eat, or anything else.
+        /// </summary>
+        public static string KindFor(ThingDef def)
+        {
+            if (def == null) return "other";
+            if (def.building != null && def.building.bed_caravansCanUse) return "bed";
+            if (IsTent(def)) return "tent";
+            if (def.IsMedicine) return "medicine";
+            if (def.IsNutritionGivingIngestible && !def.IsDrug && !def.IsCorpse && def.ingestible != null)
+                return def.ingestible.HumanEdible ? "food" : "feed";
+            return "other";
+        }
+
+        /// <summary>The travellers' nourishment a day between them, by the game's own hunger rates.</summary>
+        public static float PeoplePerDay(IEnumerable<Pawn> travellers) => travellers.Where(p => p != null && !p.Dead).Sum(NutritionPerDay);
+
+        /// <summary>
+        /// Each animal's nourishment a day and the days it needs feed for: the days the land gives no grazing for one
+        /// that grazes, every day for one that doesn't.
+        /// </summary>
+        public static List<(float perDay, float feedDays)> FeedNeeds(IEnumerable<Pawn> animals, float days, JourneyRoute route)
+        {
+            var list = new List<(float, float)>();
+            foreach (var a in animals.Where(a => a != null && !a.Dead && a.needs?.food != null))
+            {
+                bool grazes = a.RaceProps.Eats(FoodTypeFlags.Plant);
+                list.Add((NutritionPerDay(a), days * (grazes ? route?.noGrazing ?? 0f : 1f)));
+            }
+            return list;
+        }
 
         // ---------------- The stores ----------------
 
@@ -161,7 +222,8 @@ namespace ColonyCouncil
             return n;
         }
 
-        private static float NutritionPerDay(Pawn p)
+        /// <summary>A traveller's or animal's nourishment a day, fed, by the game's own hunger rate.</summary>
+        public static float NutritionPerDay(Pawn p)
         {
             var food = p?.needs?.food;
             if (food == null) return 0f;
@@ -176,9 +238,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The packing list for a trip: food for everyone's days with a margin (travel food first), medicine by length
-        /// and people, a bedroll each and tents for nights on the road, feed for animals where they can't graze. Lines the
-        /// player set keep their numbers. Only what the stores have, and what the travellers carry already (their own
-        /// pemmican, or their share picked up when a plan is changed in its last hours).
+        /// and people, a bedroll each and tents for nights on the road, feed for animals where they can't graze. The
+        /// player's lines stay as they are, in the order they had: a number they set stands as set, a line they added
+        /// stays, and a suggestion they took off stays off while the planner makes up its share from other things. Only
+        /// what the stores have, and what the travellers carry already (their own pemmican, or their share picked up when
+        /// a plan is changed in its last hours).
         /// </summary>
         public static List<JourneyLine> Packing(Map map, List<Pawn> travellers, List<Pawn> animals, float days, JourneyRoute route, List<JourneyLine> old)
         {
@@ -187,21 +251,22 @@ namespace ColonyCouncil
             var people = travellers.Where(p => p != null && !p.Dead).ToList();
             int stayHome = map.mapPawns.FreeColonistsSpawned.Count(p => !people.Contains(p));
             var carried = people.Where(p => p.inventory != null).SelectMany(p => p.inventory.innerContainer).ToList();
+            // The player's lines, and the things they took off (the planner doesn't suggest those again).
+            var kept = old?.Where(o => o?.def != null && o.Player).Select(o => o.Copy()).ToList() ?? new List<JourneyLine>();
+            var off = new HashSet<ThingDef>(kept.Where(o => o.removed).Select(o => o.def));
             try
             {
                 // Food: everyone's nutrition a day, with the margin, from the best travel food in the stores.
-                float need = JourneyMath.FoodNutrition(people.Sum(NutritionPerDay), days);
+                float need = JourneyMath.FoodNutrition(PeoplePerDay(people), days);
                 var foods = new List<JourneyMath.FoodOption>();
                 var defs = new List<ThingDef>();
-                foreach (var g in Stored(map, ThingRequestGroup.FoodSourceNotPlantOrTree).Concat(carried).Where(HumanTravelFood).GroupBy(t => t.def))
+                foreach (var g in Stored(map, ThingRequestGroup.FoodSourceNotPlantOrTree).Concat(carried).Where(HumanTravelFood).Where(t => !off.Contains(t.def)).GroupBy(t => t.def))
                 {
                     var d = g.Key;
-                    var rot = d.GetCompProperties<CompProperties_Rottable>();
                     defs.Add(d);
                     foods.Add(new JourneyMath.FoodOption
                     {
-                        nutrition = d.GetStatValueAbstract(StatDefOf.Nutrition), mass = d.GetStatValueAbstract(StatDefOf.Mass),
-                        rotDays = rot == null ? float.PositiveInfinity : rot.daysToRotStart, preferability = (int)d.ingestible.preferability,
+                        nutrition = Nutrition(d), mass = d.GetStatValueAbstract(StatDefOf.Mass), rotDays = RotDays(d), preferability = (int)d.ingestible.preferability,
                         travel = d == ThingDefOf.MealSurvivalPack ? 2 : d == ThingDefOf.Pemmican ? 1 : 0, stock = g.Sum(t => t.stackCount)
                     });
                 }
@@ -212,7 +277,7 @@ namespace ColonyCouncil
                     .Select(g => (def: g.Key, stock: g.Sum(t => t.stackCount), potency: g.Key.GetStatValueAbstract(StatDefOf.MedicalPotency)))
                     .OrderBy(m => m.potency >= 1.5f ? 1 : 0).ThenByDescending(m => m.potency).ToList();
                 int medWant = JourneyMath.MedicineTaken(JourneyMath.Medicine(people.Count, days), meds.Sum(m => m.stock), stayHome);
-                foreach (var m in meds)
+                foreach (var m in meds.Where(m => !off.Contains(m.def)))
                 {
                     if (medWant <= 0) break;
                     int take = Mathf.Min(medWant, m.stock);
@@ -223,12 +288,12 @@ namespace ColonyCouncil
                 // A sleeping place each for nights on the road: packed-up beds caravans can use, a double counting two.
                 int beds = JourneyMath.Bedrolls(people.Count, days);
                 var packed = Stored(map, ThingRequestGroup.MinifiedThing).Concat(carried).OfType<MinifiedThing>()
-                    .Where(m => m.InnerThing?.def?.building != null && m.InnerThing.def.building.bed_caravansCanUse).GroupBy(m => m.InnerThing.def)
+                    .Where(m => m.InnerThing?.def?.building != null && m.InnerThing.def.building.bed_caravansCanUse && !off.Contains(m.InnerThing.def)).GroupBy(m => m.InnerThing.def)
                     .OrderBy(g => g.Key.size.x).ToList();
                 foreach (var g in packed)
                 {
                     if (beds <= 0) break;
-                    int slots = Mathf.Max(1, g.Key.size.x);
+                    int slots = Sleeps(g.Key);
                     int take = Mathf.Min(g.Sum(m => m.stackCount), Mathf.CeilToInt(beds / (float)slots));
                     if (take <= 0) continue;
                     lines.Add(new JourneyLine(g.Key, take, "bed"));
@@ -242,7 +307,7 @@ namespace ColonyCouncil
                     var tentDefs = Stored(map, ThingRequestGroup.MinifiedThing).OfType<MinifiedThing>().Where(m => IsTent(m.InnerThing?.def)).Select(m => m.InnerThing.def)
                         .Concat(map.listerThings.AllThings.Where(t => t.def.category == ThingCategory.Item && !(t is MinifiedThing) && IsTent(t.def) && t.Spawned
                                                                          && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage()).Select(t => t.def))
-                        .Distinct().ToList();
+                        .Where(d => !off.Contains(d)).Distinct().ToList();
                     foreach (var d in tentDefs)
                     {
                         if (tents <= 0) break;
@@ -253,7 +318,9 @@ namespace ColonyCouncil
                     }
                 }
 
-                // Feed for the animals: kibble, else hay, for the days they can't graze (every day for those that don't graze at all).
+                // Feed for the animals: kibble, else hay, for the days they can't graze (every day for those that don't graze
+                // at all). Kibble taken off the list: hay for those that eat it.
+                bool kibbleOff = off.Contains(ThingDefOf.Kibble), hayOff = off.Contains(ThingDefOf.Hay);
                 float kibble = 0f, hay = 0f;
                 foreach (var a in animals.Where(a => a != null && !a.Dead && a.needs?.food != null))
                 {
@@ -261,13 +328,13 @@ namespace ColonyCouncil
                     float feedDays = days * (grazes ? route?.noGrazing ?? 0f : 1f);
                     if (feedDays <= 0f) continue;
                     float n = JourneyMath.FoodNutrition(NutritionPerDay(a), feedDays);
-                    if (a.RaceProps.CanEverEat(ThingDefOf.Kibble)) kibble += n;
-                    else if (a.RaceProps.CanEverEat(ThingDefOf.Hay)) hay += n;
+                    if (!kibbleOff && a.RaceProps.CanEverEat(ThingDefOf.Kibble)) kibble += n;
+                    else if (!hayOff && a.RaceProps.CanEverEat(ThingDefOf.Hay)) hay += n;
                 }
                 foreach (var (d, n) in new[] { (ThingDefOf.Kibble, kibble), (ThingDefOf.Hay, hay) })
                 {
                     if (n <= 0f) continue;
-                    int take = Mathf.Min(InStores(map, d), JourneyMath.Units(n, d.GetStatValueAbstract(StatDefOf.Nutrition)));
+                    int take = Mathf.Min(InStores(map, d), JourneyMath.Units(n, Nutrition(d)));
                     if (take > 0) lines.Add(new JourneyLine(d, take, "feed"));
                 }
             }
@@ -275,19 +342,52 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("journeys: the packing list", e);
             }
-            // What the player set stays set.
-            if (old != null)
-                foreach (var o in old.Where(o => o.edited && o.def != null))
+            // What the player set stays set: their number on the planner's line, or their own line.
+            foreach (var o in kept)
+            {
+                var same = lines.FirstOrDefault(l => l.def == o.def && l.kind == o.kind && !l.Player);
+                if (same == null) lines.Add(o);
+                else
                 {
-                    var same = lines.FirstOrDefault(l => l.def == o.def && l.kind == o.kind);
-                    if (same != null)
-                    {
-                        same.count = o.count;
-                        same.edited = true;
-                    }
-                    else lines.Add(o.Copy());
+                    same.count = o.count;
+                    same.edited = o.edited;
+                    same.added = o.added;
                 }
-            return lines;
+            }
+            // In the order the list had, so a line doesn't move under the player's hand; new ones after.
+            var order = new Dictionary<(ThingDef, string), int>();
+            for (int i = 0; i < (old?.Count ?? 0); i++)
+                if (old[i]?.def != null && !order.ContainsKey((old[i].def, old[i].kind))) order[(old[i].def, old[i].kind)] = i;
+            return lines.OrderBy(l => order.TryGetValue((l.def, l.kind), out int i) ? i : int.MaxValue).ToList();
+        }
+
+        /// <summary>
+        /// What the stores hold and the travellers carry, thing by thing, for the planner's "Add from the stores": in
+        /// storage on the map, not forbidden or in the dark; a packed-up building counts as what it is.
+        /// </summary>
+        public static Dictionary<ThingDef, (int stores, int carried)> Holdings(Map map, IEnumerable<Pawn> travellers)
+        {
+            var held = new Dictionary<ThingDef, (int stores, int carried)>();
+            if (map == null) return held;
+            void Add(Thing t, bool inStores)
+            {
+                var def = t is MinifiedThing m ? m.InnerThing?.def : t?.def;
+                if (def == null || def.IsCorpse || t is Pawn) return;
+                held.TryGetValue(def, out var h);
+                if (inStores) h.stores += t.stackCount;
+                else h.carried += t.stackCount;
+                held[def] = h;
+            }
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
+                if (t.Spawned && !t.Position.Fogged(map) && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage())
+                    Add(t, true);
+            foreach (var p in travellers)
+            {
+                var inv = p?.inventory?.innerContainer;
+                if (inv == null) continue;
+                for (int i = 0; i < inv.Count; i++) Add(inv[i], false);
+            }
+            return held;
         }
 
         /// <summary>Food a person can take on the road: their kind of food, no drug, nothing raw and nasty, no corpse.</summary>
@@ -301,10 +401,13 @@ namespace ColonyCouncil
 
         // ---------------- Each traveller's share ----------------
 
+        /// <summary>The kinds of line the travellers pack themselves; feed and anything else go with the caravan's goods.</summary>
+        public static bool OwnPack(string kind) => kind == "food" || kind == "medicine" || kind == "bed" || kind == "tent";
+
         /// <summary>
         /// What each traveller carries themselves: food in proportion to what they eat, medicine shared out, a sleeping
-        /// place and a tent in turn, as much as they can carry; the rest (and the animals' feed) goes with the caravan's
-        /// own loading at the hour, onto the pack animals first.
+        /// place and a tent in turn, as much as they can carry; the rest (the animals' feed and anything else on the
+        /// list) goes with the caravan's own loading at the hour, onto the pack animals first.
         /// </summary>
         public static Dictionary<Pawn, Dictionary<ThingDef, int>> Shares(JourneyPlan plan)
         {
@@ -319,7 +422,7 @@ namespace ColonyCouncil
             }
             float eats = people.Sum(NutritionPerDay);
             int turn = 0;
-            foreach (var line in plan.packing.Where(l => l.def != null && l.count > 0 && l.kind != "feed"))
+            foreach (var line in plan.packing.Where(l => l.Taken && OwnPack(l.kind)))
             {
                 float unit = Mathf.Max(0.001f, UnitMass(line.def));
                 int left = line.count;
@@ -533,14 +636,15 @@ namespace ColonyCouncil
         // ---------------- The caravan's own loading ----------------
 
         /// <summary>
-        /// What the travellers don't carry yet of the packing list, from the stores, for the game's own caravan forming to
-        /// load (onto the pack animals first). Short lines are named in <paramref name="shortOf"/>.
+        /// What the travellers don't carry yet of the packing list (every kind: the rest of their food, the feed, and
+        /// whatever else was added from the stores), for the game's own caravan forming to load (onto the pack animals
+        /// first). Short lines are named in <paramref name="shortOf"/>.
         /// </summary>
         public static List<TransferableOneWay> Missing(JourneyPlan plan, List<Pawn> going, List<string> shortOf)
         {
             var list = new List<TransferableOneWay>();
             var map = plan.map;
-            foreach (var line in plan.packing.Where(l => l.def != null && l.count > 0))
+            foreach (var line in plan.packing.Where(l => l.Taken))
             {
                 int left = line.count - going.Sum(p => Carried(p, line.def));
                 if (left <= 0) continue;

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Packing for the road
+
+*3 November 2026, version 0.62.0*
+
+- The journey planner says how long the food lasts: about so many days for the travellers against the days on the road. Green covers a margin, orange only the road, and red is short and says how many more meals it needs.
+- Each food line shows the days it adds, and with animals the feed is set against the days they can't graze. The weight still to load is set against the room the travellers and pack animals have.
+- Add from the stores: pick anything the stores hold or the travellers carry, by kind or by name, with counts and weights.
+- The packing list comes in groups (food, medicine, bedding, feed, other), each with a subtotal, and the totals stay in sight at the foot of the planner.
+- Every line takes a typed number, steps by 10 with Shift and by 100 with Ctrl, and has All, None, back to the planner's number, and a cross to take it off.
+- A suggestion taken off stays off until you put it back, and the planner makes up the food from other things. Numbers you set stay as you set them.
+- Things added beyond food, medicine and bedding go with the caravan's goods, loaded at the gate with the feed.
+
 ## Not trapped any more
 
 *3 November 2026, version 0.61.1*
