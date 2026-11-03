@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Empire and its titles: the court, honor and service, how a titled visitor is addressed, two titled people
+       and who stands higher (them:outranks, us:outranks), the colony's own titled ({NOBLE}, colony:noble), and how
+       other peoples see a title. Formal, a little dry, proud. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Court</defName>
+    <topic>court</topic>
+    <uses>chat,home,know</uses>
+    <when>their:empire,their:noble</when>
+    <lines>
+      <li>[us] What's it like at court?</li>
+      <li>[them] Every word weighed, every bow measured, and every dinner a battle.</li>
+      <li>[us] It sounds exhausting.</li>
+      <li>[them] It is, and I wouldn't trade it for anything.</li>
+      <li>[us] Not even for a quiet life out here?</li>
+      <li>[them] Ask me again after a week of your quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Honor</defName>
+    <topic>court</topic>
+    <uses>chat,know</uses>
+    <when>their:empire</when>
+    <lines>
+      <li>[them] Among my people, honor is earned in service and lost in a careless word.</li>
+      <li>[us,trait:Abrasive] Then I'd have lost mine by breakfast.</li>
+      <li>[us] Then I'll choose my words carefully.</li>
+      <li>[them] Wise, though I forgive a few careless ones from a friend.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Address</defName>
+    <topic>court</topic>
+    <uses>chat,know</uses>
+    <when>their:noble,!us:noble</when>
+    <lines>
+      <li>[us] How should I address you, {OUTSIDER}?</li>
+      <li>[them] As {THEIRTITLE}, when others are listening.</li>
+      <li>[us] And when they aren't?</li>
+      <li>[them,likesyou] {OUTSIDER} will do, between friends.</li>
+      <li>[them] Still as {THEIRTITLE}, but with a little less bowing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_TwoTitled</defName>
+    <topic>court</topic>
+    <uses>chat,know</uses>
+    <when>their:noble,us:noble</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] I didn't expect to meet one of the Empire's titled this far from court.</li>
+      <li>[us] The Empire's reach is long.</li>
+      <li>[them,them:outranks] Long enough, {OURTITLE}, though you'll remember I stand above you.</li>
+      <li>[them,us:outranks] Long, and I see you stand above me, so I'll mind my manners.</li>
+      <li>[them,!them:outranks,!us:outranks] Long enough to find two of us equals in a field of mud.</li>
+      <li>[us] Out here, I'd rather we didn't stand on ceremony.</li>
+      <li>[them] Out here, I suppose we needn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_ColonyNoble</defName>
+    <topic>court</topic>
+    <when>their:empire,colony:noble</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I'm told {NOBLE} holds the title of {NOBLETITLE} here.</li>
+      <li>[us] {NOBLE} does, though out here a title doesn't fetch the water.</li>
+      <li>[them] Then I should pay my respects before I leave.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Favors</defName>
+    <topic>court</topic>
+    <when>their:empire,us:noble</when>
+    <lines>
+      <li>[them] Your title carries favors, {OURTITLE}, the Empire answers those who serve it.</li>
+      <li>[us] So I've been told.</li>
+      <li>[them] Call on them wisely, the court remembers every one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Leader</defName>
+    <topic>court</topic>
+    <uses>chat,home</uses>
+    <when>their:empire,their:leader,!them:leader</when>
+    <mark>leader</mark>
+    <about>LEADER</about>
+    <lines>
+      <li>[us] Have you ever seen {LEADER}?</li>
+      <li>[them] Only from very far away, which is as close as anyone like me gets.</li>
+      <li>[us] And what is {LEADER} like, from far away?</li>
+      <li>[them] Very still, and very hard to forget.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Order</defName>
+    <topic>court</topic>
+    <when>their:empire,!us:noble,!colony:noble</when>
+    <lines>
+      <li>[them] The Empire would have a place like this in order within a season.</li>
+      <li>[us] And would we still be free?</li>
+      <li>[them] Free to do things properly, yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Duel</defName>
+    <topic>deeds</topic>
+    <when>their:empire,did:duel</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Our duel was fought properly, and I respect you for it.</li>
+      <li>[us] You fought well.</li>
+      <li>[them] As did you, and that is all that honor asks.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Rise</defName>
+    <topic>court</topic>
+    <uses>know</uses>
+    <when>their:empire,their:noble,known</when>
+    <lines>
+      <li>[us] Do you hope to rise higher, {OUTSIDER}?</li>
+      <li>[them] Everyone at court hopes, and the wise ones never say so aloud.</li>
+      <li>[us] And yet you just did.</li>
+      <li>[them] Then you see how far I trust you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Service</defName>
+    <topic>court</topic>
+    <uses>chat,know</uses>
+    <when>their:empire,!their:noble</when>
+    <lines>
+      <li>[us] Do you serve one of the titled?</li>
+      <li>[them] I serve the Empire, and the titled are how it tells me what to do.</li>
+      <li>[us] Is it a good life?</li>
+      <li>[them] It's an ordered one, which is most of what I wanted.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Quiet</defName>
+    <topic>court</topic>
+    <when>their:empire,lowtech</when>
+    <lines>
+      <li>[them] At home the shuttles come and go like birds, and here it's all so quiet.</li>
+      <li>[us] Quiet suits us.</li>
+      <li>[them] I'm beginning to see why.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Music</defName>
+    <topic>court</topic>
+    <uses>chat,know</uses>
+    <when>their:empire</when>
+    <lines>
+      <li>[them] Do you have any music here, or poetry?</li>
+      <li>[us,us:best:Artistic] Some, and I've been known to make a little of it myself.</li>
+      <li>[us] A little, mostly sung badly after supper.</li>
+      <li>[them] At court we would call that a beginning.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_War</defName>
+    <topic>war</topic>
+    <uses>chat,home</uses>
+    <when>their:empire,their:war,!war:losing</when>
+    <lines>
+      <li>[them] The Empire doesn't lose wars, it only takes its time winning them.</li>
+      <li>[us] Do {WAR} know that?</li>
+      <li>[them,war:winning] They're learning.</li>
+      <li>[them] They will.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Losing</defName>
+    <topic>war</topic>
+    <uses>chat,home</uses>
+    <when>their:empire,their:war,war:losing</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] The war with {WAR} isn't going your way, I hear.</li>
+      <li>[them] A town lost is a town the Empire means to take back.</li>
+      <li>[us] And the people in it?</li>
+      <li>[them] They are remembered, which is the most the Empire can promise anyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Gift</defName>
+    <topic>court</topic>
+    <when>their:empire,their:noble,did:gift</when>
+    <lines>
+      <li>[them] Your gift was well chosen, and at court that is noticed.</li>
+      <li>[us] I'm glad it pleased you.</li>
+      <li>[them] It did, and I will say so to those who matter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Emp_Bow</defName>
+    <topic>court</topic>
+    <when>their:noble,first,!us:noble</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You may bow, if your people do that sort of thing here.</li>
+      <li>[us] We don't, much, but you're welcome all the same.</li>
+      <li>[them,them:kind] Then welcome is enough.</li>
+      <li>[them] Then I'll take the welcome and forgive the rest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A title, as other peoples see it ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Noble_Seen</defName>
+    <topic>court</topic>
+    <when>us:noble,!their:empire</when>
+    <lines>
+      <li>[them] They say you hold one of the Empire's titles.</li>
+      <li>[us] I do, {OURTITLE}, for whatever it's worth out here.</li>
+      <li>[them,their:tribal] Our elders don't bow to sky people, but they'll be polite to you.</li>
+      <li>[them] It's worth a little, though not as much as a good harvest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Noble_Colony</defName>
+    <topic>court</topic>
+    <when>colony:noble,!their:empire</when>
+    <lines>
+      <li>[them] Is it true {NOBLE} holds a title from the Empire?</li>
+      <li>[us] It is, {NOBLETITLE}, though we mostly just call them {NOBLE}.</li>
+      <li>[them,their:tribal] Then the sky people have one foot in your house.</li>
+      <li>[them] Good, as long as the Empire doesn't come calling for its taxes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

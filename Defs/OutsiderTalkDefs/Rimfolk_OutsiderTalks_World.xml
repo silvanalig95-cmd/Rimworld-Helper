@@ -193,7 +193,7 @@
     <defName>Rimfolk_OT_Sit_NewTheirs</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:theirs,situation:new</when>
+    <when>situation:theirs,situation:new,!ws:Council_WS_Mourning,!ws:Council_WS_BanditLordFalls</when>
     <weight>1.4</weight>
     <mark>situation</mark>
     <about>SITUATION</about>
@@ -224,7 +224,7 @@
       <li>[us] How are people holding up?</li>
       <li>[them,their:tribal] We share what we have and wait for better moons.</li>
       <li>[them,their:medieval] Praying, grumbling, and getting on with it.</li>
-      <li>[them] Tired, short-tempered, and stubborn.</li>
+      <li>[them] Tired, cross, and stubborn.</li>
       <li>[us] Stubborn is good.</li>
       <li>[them] It's what we've got.</li>
     </lines>
@@ -234,7 +234,7 @@
     <defName>Rimfolk_OT_Sit_Sickness</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:sickness</when>
+    <when>situation:sickness,situation:bad,!ws:Council_WS_Murrain</when>
     <weight>1.2</weight>
     <mark>sickness</mark>
     <about>SITUATION</about>
@@ -271,7 +271,7 @@
     <defName>Rimfolk_OT_Sit_Cold</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:cold,!situation:theirs</when>
+    <when>situation:cold,situation:bad,!situation:theirs</when>
     <mark>cold</mark>
     <about>SITUATION</about>
     <lines>
@@ -286,7 +286,7 @@
     <defName>Rimfolk_OT_Sit_War</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:war</when>
+    <when>situation:war,situation:bad</when>
     <mark>situation</mark>
     <about>SITUATION</about>
     <heard>{SITUATION} has travelers keeping together on the roads.</heard>
@@ -302,7 +302,7 @@
     <defName>Rimfolk_OT_Sit_TradeGood</defName>
     <topic>trade</topic>
     <uses>home,chat</uses>
-    <when>situation:trade,situation:good</when>
+    <when>situation:trade,situation:good,!ws:Council_WS_Toll,!ws:Council_WS_Embargo</when>
     <heard>{SITUATION} has trade moving in the region.</heard>
     <lines>
       <li>[them] Have you heard about {SITUATION}?</li>
@@ -316,7 +316,7 @@
     <defName>Rimfolk_OT_Sit_TradeBad</defName>
     <topic>trade</topic>
     <uses>home,chat</uses>
-    <when>situation:trade,situation:bad</when>
+    <when>situation:trade,ws:Council_WS_Toll|ws:Council_WS_Embargo</when>
     <heard>{SITUATION} has made trade harder in the region.</heard>
     <lines>
       <li>[them] {SITUATION} has made everything dearer.</li>
@@ -385,7 +385,7 @@
     <defName>Rimfolk_OT_Sit_Disaster</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:disaster</when>
+    <when>situation:disaster,situation:bad</when>
     <mark>situation</mark>
     <about>SITUATION</about>
     <heard>{SITUATION} has left the region shaken.</heard>
@@ -416,7 +416,7 @@
     <defName>Rimfolk_OT_Sit_Ended</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:ended</when>
+    <when>situation:ended,ended:bad,!ended:ws:Council_WS_Abandoned</when>
     <weight>1.2</weight>
     <heard>{ENDED} is over.</heard>
     <lines>
@@ -433,7 +433,7 @@
     <defName>Rimfolk_OT_Sit_EndedSickness</defName>
     <topic>situation</topic>
     <uses>home,chat</uses>
-    <when>situation:ended,ended:sickness,ended:theirs</when>
+    <when>situation:ended,ended:sickness,ended:bad,ended:theirs</when>
     <weight>1.5</weight>
     <heard>{ENDED} has passed at {TOWN}.</heard>
     <lines>

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.64.0</version>
+        <date>3 November 2026</date>
+        <title>Much more to talk about</title>
+        <points>
+          <li>Visitors have about 400 new things to talk about, from the fair and the comet to the murrain in their herds, the old thrumbo in their hills and the singer on the road.</li>
+          <li>Each people talks in its own way: tribes of the hunt and the elders, medieval folk of the tithe and the guild, outlanders of wages and caravans, spacers dryly, and rough outlanders and fierce tribes once they are friendly enough.</li>
+          <li>The Empire's visitors talk of the court, honor and titles, and notice who stands higher when two titled people meet, or when one of yours holds a title.</li>
+          <li>Talks follow what happened since: a quest you took on for their people, whether a peace held, a new leader, a notable who died, a drought or a warband that ended.</li>
+          <li>Outsiders remember more of what the colony did, good and bad: a child brought home, a warning in time, a fair duel, traders robbed, prisoners sold.</li>
+          <li>Children have talks of their own, with visiting children and with grown visitors.</li>
+          <li>Fixed: a gold fever is no longer talked of as a sickness, a comet or a ship is no longer a disaster, a death is no longer good news, and "over, at last" is only said of hard times.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.63.0</version>
         <date>3 November 2026</date>
         <title>Talk that builds a history</title>

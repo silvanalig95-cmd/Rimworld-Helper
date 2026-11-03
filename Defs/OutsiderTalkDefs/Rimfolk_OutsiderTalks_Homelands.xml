@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The seasons and the weather by the land they come from (home:frozen in winter, the desert at night, the coast in
+       a storm), what their country is like, and the road: trouble on it, animals, old ruins, finding the way, the
+       distance. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Seasons by homeland ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_FrozenWinter</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>winter,home:frozen</when>
+    <lines>
+      <li>[us] Is winter hard where you live?</li>
+      <li>[them] Winter is most of the year where I live, so we're good at it.</li>
+      <li>[us] How do you pass the long nights?</li>
+      <li>[them,their:tribal] Stories and sewing, and then more stories.</li>
+      <li>[them] Mending, quarreling and sleeping, in about equal measure.</li>
+      <li>[us] That sounds almost cozy.</li>
+      <li>[them] It is, until the woodpile runs low.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_WarmFolkCold</defName>
+    <topic>weather</topic>
+    <when>cold,home:desert|home:hot</when>
+    <lines>
+      <li>[them] Where I live, cold means a blanket at night, not this.</li>
+      <li>[us] You'll get used to it.</li>
+      <li>[them] I'd rather not have to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_FrozenSummer</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>summer,home:frozen</when>
+    <lines>
+      <li>[them] Summer at home is two weeks of mud and biting flies.</li>
+      <li>[us] And the rest of the year?</li>
+      <li>[them] Snow, and we like it better.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_WetSeason</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>spring|summer,home:jungle|home:swamp</when>
+    <lines>
+      <li>[them] At home it rains every afternoon this time of year, you could set a clock by it.</li>
+      <li>[us] Every afternoon?</li>
+      <li>[them] Every one, and the frogs sing about it all night.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_ForestSpring</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>spring,home:forest</when>
+    <lines>
+      <li>[them] The woods at home will be full of birdsong by now.</li>
+      <li>[us] Do you miss it?</li>
+      <li>[them,their:tribal] I hear it in my sleep, so I am never quite away.</li>
+      <li>[them] A little, it's the best time to walk under the trees.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_ForestFall</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>fall,home:forest</when>
+    <lines>
+      <li>[them] The leaves will be turning at home, red and gold as far as you can see.</li>
+      <li>[us] It sounds beautiful.</li>
+      <li>[them] It is, for a week, and then it's raking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_PlainsGrass</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>spring|summer,home:plains</when>
+    <lines>
+      <li>[them] The grass at home will be up to a rider's knees by now.</li>
+      <li>[us] Plenty of grazing, then.</li>
+      <li>[them] Plenty, and plenty of wind to go with it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_PlainsWind</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>fall|winter,home:plains</when>
+    <lines>
+      <li>[them] This time of year the wind across our plains could knock a cart over.</li>
+      <li>[us] Do you ever get used to it?</li>
+      <li>[them] You stop hearing it, and then one day it stops and you can't sleep.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_PassesOpen</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>spring,home:mountains</when>
+    <lines>
+      <li>[them] The passes at home will just be opening.</li>
+      <li>[us] Is it a hard climb?</li>
+      <li>[them] Hard enough that we only make it when we must, and we sing the whole way.</li>
+      <li>[us] For courage?</li>
+      <li>[them] For breath, if you sing you can't complain.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_PassesShut</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>winter,home:mountains</when>
+    <lines>
+      <li>[them] The passes at home are usually snowed shut by now.</li>
+      <li>[us] Will you get back?</li>
+      <li>[them] The long way round, which is long indeed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_CoastStorms</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>fall|winter,home:coast</when>
+    <lines>
+      <li>[them] The sea at home will be throwing itself at the rocks this time of year.</li>
+      <li>[us] Do the boats still go out?</li>
+      <li>[them] Only the brave and the hungry, and they're mostly the same people.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_CoastSummer</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>summer,home:coast</when>
+    <lines>
+      <li>[them] At home the boats are out from dawn to dusk in summer.</li>
+      <li>[us] Do you fish yourself?</li>
+      <li>[them] Everyone does a little, it's that or go hungry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_DesertNoon</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>summer,home:desert</when>
+    <lines>
+      <li>[them] At home we sleep through the afternoons in summer, it's too hot for anything else.</li>
+      <li>[us] And work at night?</li>
+      <li>[them] Work, market, weddings, all of it, by lamplight.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_DesertNight</defName>
+    <topic>weather</topic>
+    <when>night,home:desert,!cold</when>
+    <lines>
+      <li>[them] Your nights are softer than ours, in the desert they bite.</li>
+      <li>[us] Bite?</li>
+      <li>[them] Cold enough to stiffen the water skins by morning.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_WinterTown</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>winter,town</when>
+    <lines>
+      <li>[us] What's winter like in {TOWN}?</li>
+      <li>[them,home:frozen] Long, white and quiet, the way we like it.</li>
+      <li>[them,home:hot|home:desert] Hardly a winter at all, the nights are cool and that's the end of it.</li>
+      <li>[them] Dark early, and everyone indoors telling the same old stories.</li>
+      <li>[us] The same ones every year?</li>
+      <li>[them] Every year, and we laugh in the same places.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_SummerTown</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>summer,town</when>
+    <lines>
+      <li>[us] What's summer like in {TOWN}?</li>
+      <li>[them,home:desert|home:hot] Hot enough that nobody moves between noon and dusk.</li>
+      <li>[them,home:frozen] Short, and everybody tries to cram a whole year into it.</li>
+      <li>[them] Long days, short tempers, and everyone out late.</li>
+      <li>[us] That sounds about right.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_SpringTown</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>spring,town,!home:frozen</when>
+    <lines>
+      <li>[them,their:lowtech] Spring at home means mud, and lambs, and everyone in a better mood.</li>
+      <li>[them] Spring at home means mud on every boot and everyone in a better mood.</li>
+      <li>[us] Mud I can live with.</li>
+      <li>[them] So can we, for the mood.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Home_FallSmoke</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>fall,home:forest|home:plains|home:hills</when>
+    <lines>
+      <li>[them] Fall at home means wood smoke in the air and apples on every table.</li>
+      <li>[us] We could use a few of those apples.</li>
+      <li>[them,role:trader] I might have a sack, for the right price.</li>
+      <li>[them] Next time, if I remember, and if I don't eat them first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their land ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_Marsh</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:swamp</when>
+    <lines>
+      <li>[us] What's it like, living in the marshes?</li>
+      <li>[them] Everything is wet, everything floats or sinks, and the eels are as long as my leg.</li>
+      <li>[us] I'm not sure I'd sleep.</li>
+      <li>[them] You'd sleep fine, the frogs sing you down.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_Hills</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:hills,town</when>
+    <lines>
+      <li>[us] Is it hilly around {TOWN}?</li>
+      <li>[them] Hills and more hills, my legs were made for them.</li>
+      <li>[us] Do you miss them?</li>
+      <li>[them] Only when I've walked on flat ground for a week.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_Plains</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:plains</when>
+    <lines>
+      <li>[us] What's the land like at home?</li>
+      <li>[them] Grass to the edge of the sky, and wind in it all day.</li>
+      <li>[us] No trees at all?</li>
+      <li>[them] A few, and we've named every one of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_Gentle</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:mild,home:forest|home:plains,town</when>
+    <lines>
+      <li>[them] It's gentle country around {TOWN}, not too hot and not too cold.</li>
+      <li>[us] That sounds easy.</li>
+      <li>[them] Easy to live in and hard to leave, that's the trouble with it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_Uphill</defName>
+    <topic>land</topic>
+    <uses>chat,know</uses>
+    <when>home:mountains</when>
+    <lines>
+      <li>[them] At home you're always walking uphill, both ways.</li>
+      <li>[us] That can't be true.</li>
+      <li>[them] Come and try it, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_DesertWater</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:desert,town</when>
+    <lines>
+      <li>[us] Where does {TOWN} get its water?</li>
+      <li>[them,their:lowtech] Deep wells, and the keeper of each well is the most important person in town.</li>
+      <li>[them] Deep wells and good pumps, and someone who guards them with their life.</li>
+      <li>[us] I'd want that job.</li>
+      <li>[them] Nobody wants it, the whole town shouts at you when it runs low.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Land_FrozenFood</defName>
+    <topic>land</topic>
+    <uses>chat,home,know</uses>
+    <when>home:frozen</when>
+    <lines>
+      <li>[us] What do your people eat, up where nothing grows?</li>
+      <li>[them,their:tribal] What we hunt, what we dry, and what we trade the furs for.</li>
+      <li>[them] What we can store, what we can trade for, and a lot of soup.</li>
+      <li>[us] A lot of soup?</li>
+      <li>[them] You'd be amazed what goes into soup when it's cold enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The road ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Trouble</defName>
+    <topic>road</topic>
+    <when>town</when>
+    <lines>
+      <li>[us] Any trouble on the road?</li>
+      <li>[them,town:site] Nothing that came near us, though we gave {SITE} a wide berth.</li>
+      <li>[them] None, and I'm not complaining.</li>
+      <li>[us] Long may it last.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Animals</defName>
+    <topic>road</topic>
+    <lines>
+      <li>[us] Do the animals trouble you out on the road?</li>
+      <li>[them,winter] In winter they're all hungry, so we keep the fire high.</li>
+      <li>[them,their:tribal] We know their ways, and they know ours.</li>
+      <li>[them] Only the hungry ones, and we keep a fire going at night.</li>
+      <li>[us] Sensible.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Ruins</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <lines>
+      <li>[us] Do you pass any old ruins on the road?</li>
+      <li>[them,their:tribal] We walk around them, the old places are not for the living.</li>
+      <li>[them,their:hightech] Plenty, and anything worth taking was taken long ago.</li>
+      <li>[them] Some, and I don't stop, old places have a way of keeping people.</li>
+      <li>[us] I've heard the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Neighbors</defName>
+    <topic>road</topic>
+    <when>town:near</when>
+    <lines>
+      <li>[us] You must be our nearest neighbors, I think.</li>
+      <li>[them] Near enough to borrow salt, and far enough not to hear you argue.</li>
+      <li>[us] That's the best kind of near.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_LastTime</defName>
+    <topic>road</topic>
+    <when>town:far,returning</when>
+    <lines>
+      <li>[them] Every time I make this trip, I swear it's the last.</li>
+      <li>[us] And yet here you are.</li>
+      <li>[them] Here I am, and already dreading the way back.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_AfterDark</defName>
+    <topic>road</topic>
+    <when>evening|night</when>
+    <lines>
+      <li>[them] Nobody sensible walks these roads after dark.</li>
+      <li>[us] Then don't set off too late.</li>
+      <li>[them,role:guest] I'm in no hurry, your beds are better than the road's.</li>
+      <li>[them] I won't, I value my neck.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Boots</defName>
+    <topic>road</topic>
+    <when>town:far,!first</when>
+    <lines>
+      <li>[us] Your boots have seen some miles.</li>
+      <li>[them] More than I have, they've been mended twice.</li>
+      <li>[us] And you?</li>
+      <li>[them] I've been mended more than twice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Waymarks</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>their:tribal</when>
+    <lines>
+      <li>[us] How do you find your way out there?</li>
+      <li>[them] The stones point, the rivers remember, and the stars never lie.</li>
+      <li>[us] And when it's cloudy?</li>
+      <li>[them] Then you ask the nearest old woman.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Maps</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>their:hightech,town:far</when>
+    <lines>
+      <li>[us] How do you find your way all that distance?</li>
+      <li>[them] Maps, mostly, and they're wrong about half the time.</li>
+      <li>[us] And the other half?</li>
+      <li>[them] The other half they're wrong in ways I've learned to expect.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Tired</defName>
+    <topic>road</topic>
+    <when>role:trader,town:far</when>
+    <lines>
+      <li>[them] My pack animals are tired, and so am I.</li>
+      <li>[us] Rest a while, then.</li>
+      <li>[them] A while is all I've got.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Road_Company</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>!first</when>
+    <weight>0.7</weight>
+    <lines>
+      <li>[us] Do you like traveling in company?</li>
+      <li>[them,trait:Abrasive] I like it better when the company keeps quiet.</li>
+      <li>[them,trait:Kind] Always, a road is shorter with someone to talk to.</li>
+      <li>[them] Most of the time, until someone starts to sing.</li>
+      <li>[us] I'll keep my singing to myself, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Weather on the way ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Weather_RainStop</defName>
+    <topic>weather</topic>
+    <when>rain,!first</when>
+    <lines>
+      <li>[them] Is this rain going to stop, do you think?</li>
+      <li>[us] It always does, sooner or later.</li>
+      <li>[them] Later, by the look of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Weather_Thunder</defName>
+    <topic>weather</topic>
+    <when>storm,role:trader</when>
+    <lines>
+      <li>[them] My pack animals hate thunder more than I do.</li>
+      <li>[us] They're not the only ones.</li>
+      <li>[them] Then we'll all sulk together until it's over.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Weather_SnowTribe</defName>
+    <topic>weather</topic>
+    <when>snow,their:tribal</when>
+    <lines>
+      <li>[them] Snow like this makes the tracking easy, the animals can't hide.</li>
+      <li>[us] Neither can we.</li>
+      <li>[them] That's why we walk in each other's footprints.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Weather_HotMedieval</defName>
+    <topic>weather</topic>
+    <when>hot,their:medieval</when>
+    <lines>
+      <li>[them] Hot as a smithy, and me in wool.</li>
+      <li>[us] Come in out of the sun for a while.</li>
+      <li>[them] Gladly, before I cook in it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

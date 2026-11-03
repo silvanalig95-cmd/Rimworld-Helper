@@ -221,28 +221,28 @@ public static class OutsiderTalkTests
         "spring", "summer", "fall", "winter", "morning", "day", "evening", "night", "rain", "snow", "fog", "storm", "clear", "hot", "cold", "tribal", "medieval",
         "industrial", "spacer", "lowtech", "poor", "rich", "small", "large", "first", "met", "returning", "known", "close", "friends", "sweethearts", "lovers",
         "likesyou", "coolyou", "likesus", "wary", "kin", "kin:you", "town", "samefaith", "otherfaith", "situation", "condition", "byyou", "old", "teen", "hurt",
-        "grieving", "lowmood", "highmood", "talks:3", "talks:8", "world:war", "battle:here", "battle:theirs"
+        "grieving", "lowmood", "highmood", "talks:3", "talks:8", "world:war", "world:peace", "battle:here", "battle:theirs", "quest:ongoing"
     }.Concat(Expand("tone:", "warm good plain cool sour"))
         .Concat(Expand("did:", "gift meal teach spar duel provoke faith court letter bring"))
         .Concat(Expand("role:", "trader guest lodger visitor notable head heir envoy"))
-        .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere"))
-        .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere"))
-        .Concat(Expand("their:", "tribal medieval industrial spacer lowtech hightech empire noble leader war peace friend"))
+        .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere outranks"))
+        .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere outranks"))
+        .Concat(Expand("their:", "tribal medieval industrial spacer lowtech hightech empire noble leader war peace friend rough ally"))
         .Concat(Expand("home:", "desert frozen jungle swamp forest plains mountains hills coast cold hot mild"))
         .Concat(Expand("town:", "near far head notable newhead headdied loss ill letter wrote site quest caravan visitors short:food short:medicine short:hands short:fuel"))
         .Concat(Expand("war:", "new long losing winning fought ourfoe ourfriend"))
         .Concat(Expand("situation:", "theirs bad good new long helped ended sickness hunger cold war trade faith politics empire disaster beasts"))
-        .Concat(Expand("ended:", "theirs helped sickness hunger cold war trade faith politics empire disaster beasts"))
+        .Concat(Expand("ended:", "theirs helped bad sickness hunger cold war trade faith politics empire disaster beasts"))
         .Concat(Expand("colony:", "raid raidby raid:them raid:theirfoe raid:fallen raid:mechs raid:insects raid:animals raid:tribal raid:people death death:battle birth "
                                   + "wedding newcomer decree election camp harvest hungry plenty disaster research project day daytoday daysoon daypast traders young old "
-                                  + "children animals prisoners expecting"))
+                                  + "children animals prisoners expecting noble quiet"))
         .Concat(Expand("byyou:", "freed tended helped"))
-        .Concat(Expand("then:", "still over dead changed recent long"))
+        .Concat(Expand("then:", "still over dead changed recent long success failed"))
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
 
-    private static readonly string[] Families = { "ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:" };
+    private static readonly string[] Families = { "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:" };
 
     /// <summary>The placeholders the game fills (Outsiders/OutsiderFacts.cs and OutsiderTalk.cs).</summary>
     private static readonly HashSet<string> Placeholders = new()
@@ -252,7 +252,7 @@ public static class OutsiderTalkTests
         "NOTABLE", "NOTABLETITLE", "ILL", "ILLTITLE", "LOST", "LOSTTITLE", "OLDHEAD", "WROTE", "WRITER", "SITE", "QUEST", "WAR", "PEACEWITH", "WARA", "WARB",
         "BATTLEA", "BATTLEB", "SITUATION", "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "CAMP", "TRADERS",
         "NEWCOMER", "DAY", "RAIDERS", "DEAD", "BORN", "WEDDING", "DECREE", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND",
-        "THEN", "NOW"
+        "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB"
     };
 
     private static int Library(string root, Action<bool, string> C0)

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Much more to talk about
+
+*3 November 2026, version 0.64.0*
+
+- Visitors have about 400 new things to talk about, from the fair and the comet to the murrain in their herds, the old thrumbo in their hills and the singer on the road.
+- Each people talks in its own way: tribes of the hunt and the elders, medieval folk of the tithe and the guild, outlanders of wages and caravans, spacers dryly, and rough outlanders and fierce tribes once they are friendly enough.
+- The Empire's visitors talk of the court, honor and titles, and notice who stands higher when two titled people meet, or when one of yours holds a title.
+- Talks follow what happened since: a quest you took on for their people, whether a peace held, a new leader, a notable who died, a drought or a warband that ended.
+- Outsiders remember more of what the colony did, good and bad: a child brought home, a warning in time, a fair duel, traders robbed, prisoners sold.
+- Children have talks of their own, with visiting children and with grown visitors.
+- Fixed: a gold fever is no longer talked of as a sickness, a comet or a ship is no longer a disaster, a death is no longer good news, and "over, at last" is only said of hard times.
+
 ## Talk that builds a history
 
 *3 November 2026, version 0.63.0*

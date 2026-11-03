@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Talks by how they go. A cool talk runs three lines at most and a sour one two, and they use only pieces written
+       for them (tone:cool, tone:sour): short, a little guarded or prickly, but still a talk between two people who
+       have to share a yard. A warm or good talk (tone:warm, tone:good) can run long and wander. The format is
+       described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Cool ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Staying</defName>
+    <topic>small</topic>
+    <when>tone:cool|tone:sour</when>
+    <lines>
+      <li>[us] How long are you staying?</li>
+      <li>[them] As long as I need to, and not a day more.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Buying</defName>
+    <topic>trade</topic>
+    <when>tone:cool,role:trader</when>
+    <lines>
+      <li>[us] Anything worth buying?</li>
+      <li>[them] That depends what you're paying with.</li>
+      <li>[us] Silver, same as everyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Trust</defName>
+    <topic>small</topic>
+    <when>tone:cool,wary</when>
+    <lines>
+      <li>[us] You don't trust us much, do you?</li>
+      <li>[them] I don't trust anyone much, it's kept me alive.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Upset</defName>
+    <topic>small</topic>
+    <when>tone:cool|tone:sour,coolyou</when>
+    <lines>
+      <li>[us] Have I done something to upset you?</li>
+      <li>[them] You'd know if you had.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Adequate</defName>
+    <topic>court</topic>
+    <when>tone:cool,their:empire</when>
+    <lines>
+      <li>[us] Is everything to your liking?</li>
+      <li>[them] It is adequate, which is not a compliment.</li>
+      <li>[us] We'll try harder.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Aye</defName>
+    <topic>greeting</topic>
+    <when>tone:cool|tone:sour,their:medieval</when>
+    <lines>
+      <li>[us] Good day to you.</li>
+      <li>[them] Aye, if you say so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Tribe</defName>
+    <topic>greeting</topic>
+    <when>tone:cool|tone:sour,their:tribal</when>
+    <lines>
+      <li>[us] Is everything all right?</li>
+      <li>[them] Your words are many and your meaning is little.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Rain</defName>
+    <topic>weather</topic>
+    <when>tone:cool,rain</when>
+    <lines>
+      <li>[us] You'll want to get out of the rain.</li>
+      <li>[them] I'm fine where I am.</li>
+      <li>[us] Suit yourself.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_NotMuch</defName>
+    <topic>colony</topic>
+    <when>tone:cool|tone:sour,poor</when>
+    <lines>
+      <li>[them] Not much here, is there?</li>
+      <li>[us] Enough for us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_War</defName>
+    <topic>war</topic>
+    <when>tone:cool|tone:sour,their:war</when>
+    <lines>
+      <li>[us] How's the war with {WAR} going?</li>
+      <li>[them] It's a war, how do you think it's going?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Town</defName>
+    <topic>town</topic>
+    <when>tone:cool|tone:sour,town</when>
+    <lines>
+      <li>[us] How are things in {TOWN}?</li>
+      <li>[them] Fine, and none of your concern.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Newcomer</defName>
+    <topic>colony</topic>
+    <when>tone:cool,us:newcomer</when>
+    <lines>
+      <li>[them] You're new here, aren't you?</li>
+      <li>[us] Is it that obvious?</li>
+      <li>[them] You still smile at strangers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Raided</defName>
+    <topic>deeds</topic>
+    <when>tone:cool,colony:raid:them|deed:raided</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] Your people have come at us, you know.</li>
+      <li>[them] I wasn't there.</li>
+      <li>[us] That's not much of an answer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Sour_Faith</defName>
+    <topic>faith</topic>
+    <when>tone:cool|tone:sour,otherfaith</when>
+    <lines>
+      <li>[them] Keep your {OURFAITH} to yourself, and we'll get on fine.</li>
+      <li>[us] Gladly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Night</defName>
+    <topic>small</topic>
+    <when>tone:cool,night</when>
+    <lines>
+      <li>[us] Can't sleep?</li>
+      <li>[them] Not with strangers about.</li>
+      <li>[us] We're the ones who live here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Sour_Discount</defName>
+    <topic>trade</topic>
+    <when>tone:sour,role:trader</when>
+    <lines>
+      <li>[us] Any discount for neighbors?</li>
+      <li>[them] Not for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Hungry</defName>
+    <topic>colony</topic>
+    <when>tone:cool,colony:hungry</when>
+    <lines>
+      <li>[them] You're short on food here, I hear.</li>
+      <li>[us] We'll manage.</li>
+      <li>[them] See that you do, I'm not sharing mine.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Rough</defName>
+    <topic>colony</topic>
+    <when>tone:cool|tone:sour,their:rough</when>
+    <lines>
+      <li>[them] Don't mind me, I'm only looking.</li>
+      <li>[us] Look all you like, from right there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Nod</defName>
+    <topic>court</topic>
+    <when>tone:cool,us:noble,!their:empire</when>
+    <lines>
+      <li>[them] Should I bow, or will a nod do?</li>
+      <li>[us] A nod will do.</li>
+      <li>[them] Good, my back's stiff.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Sour_Welcome</defName>
+    <topic>court</topic>
+    <when>tone:sour,their:noble</when>
+    <lines>
+      <li>[us] You're welcome here, {THEIRTITLE}.</li>
+      <li>[them] I'll decide for myself whether I'm welcome.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_NoFriends</defName>
+    <topic>greeting</topic>
+    <when>tone:cool,first</when>
+    <lines>
+      <li>[us] I don't think we've met.</li>
+      <li>[them] No, and I'm not here to make friends.</li>
+      <li>[us] Then I'll leave you to it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Sour_Again</defName>
+    <topic>greeting</topic>
+    <when>tone:sour,met</when>
+    <lines>
+      <li>[us] Good to see you again.</li>
+      <li>[them] Is it?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Loss</defName>
+    <topic>colony</topic>
+    <when>tone:cool|tone:sour,colony:death</when>
+    <lines>
+      <li>[them] I heard you lost one of yours.</li>
+      <li>[us] We did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Killed</defName>
+    <topic>deeds</topic>
+    <when>tone:cool|tone:sour,wrongbest:killed</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {WRONGNAME} died by your people's hands, in case you'd forgotten.</li>
+      <li>[us] I haven't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Busy</defName>
+    <topic>small</topic>
+    <when>tone:cool</when>
+    <lines>
+      <li>[them] Did you want something?</li>
+      <li>[us] Just being neighborly.</li>
+      <li>[them] Be neighborly from a little farther off, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cool_Weather</defName>
+    <topic>weather</topic>
+    <when>tone:cool|tone:sour,cold|hot</when>
+    <lines>
+      <li>[us,cold] Cold enough for you?</li>
+      <li>[us,hot,!cold] Hot enough for you?</li>
+      <li>[them] I've had worse company than the weather.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Warm and good ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Warm_Miss</defName>
+    <topic>friends</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good,known</when>
+    <lines>
+      <li>[them] I'll miss this place when I go, you know.</li>
+      <li>[us] Then don't go yet.</li>
+      <li>[them] I have to, but I'll come back.</li>
+      <li>[us] We'll hold you to that.</li>
+      <li>[them] I'd be disappointed if you didn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Warm_Laugh</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good,!first</when>
+    <lines>
+      <li>[them] You've a way of making me laugh, {COLONIST}.</li>
+      <li>[us,trait:Abrasive] Nobody's ever said that to me before.</li>
+      <li>[us] It's easy with good company.</li>
+      <li>[them] Then we're both lucky today.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Warm_Sunset</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good,evening,clear</when>
+    <lines>
+      <li>[them] Look at that sky.</li>
+      <li>[us] We get evenings like this now and then, it's the reward for the rest.</li>
+      <li>[them,their:tribal] My grandmother would say the sun is going home happy.</li>
+      <li>[them] I'd put up with a lot for an evening like this.</li>
+      <li>[us] So would I, and I do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Warm_Stories</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good,known,evening|night</when>
+    <lines>
+      <li>[them] Tell me something about this place nobody tells visitors.</li>
+      <li>[us] The best seat at supper is the one nearest the cook, and we fight for it.</li>
+      <li>[them] That's the truest thing I've heard all week.</li>
+      <li>[us] Your turn, then.</li>
+      <li>[them,their:tribal] Our elders snore louder than the drums, and we pretend not to hear.</li>
+      <li>[them] Half the gossip at home is made up, and the other half is worse.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Warm_Friends</defName>
+    <topic>friends</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm,friends</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Do you know, I tell people at home about you.</li>
+      <li>[us] Good things?</li>
+      <li>[them] Mostly, and the rest I make sound good.</li>
+      <li>[us] That's what friends are for.</li>
+      <li>[them,their:tribal] Then you are a friend of the fire, and that is no small thing.</li>
+      <li>[them] Then you're a friend, and I don't say that often.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Good_Work</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good</when>
+    <lines>
+      <li>[them] What's the best part of your day here, {COLONIST}?</li>
+      <li>[us,skill:Cooking] When the first pot boils and everyone wanders in.</li>
+      <li>[us,skill:Plants] Early morning in the fields, before anyone needs me.</li>
+      <li>[us,skill:Animals] Feeding the animals, they're always glad to see me.</li>
+      <li>[us] Supper, when the work's done and nobody's hurt.</li>
+      <li>[them] That's a good answer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Good_Recipe</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>tone:warm|tone:good,did:meal</when>
+    <lines>
+      <li>[them] That meal we shared, I'd trade a lot for the recipe.</li>
+      <li>[us] It's a secret.</li>
+      <li>[them] Everything good is, out here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Children: a visiting child and a grown colonist (them:young), a colony child and a grown visitor (us:young),
+       and two children together (both). A child gets only these, so they cover a chat, asking about home and getting
+       to know them. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= A visiting child ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Name</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>them:young,!us:young</when>
+    <lines>
+      <li>[us] And what's your name, then?</li>
+      <li>[them] {OUTSIDER}, and I can count to a hundred.</li>
+      <li>[us] That's a lot of counting.</li>
+      <li>[them] I skip the boring numbers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_OtherKids</defName>
+    <topic>colony</topic>
+    <when>them:young,!us:young,colony:children</when>
+    <lines>
+      <li>[them] Are there other kids here?</li>
+      <li>[us] A few, and they're probably hiding from their chores.</li>
+      <li>[them] Can I hide with them?</li>
+      <li>[us] Only if you don't tell anyone I said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Home</defName>
+    <topic>town</topic>
+    <uses>home,chat,know</uses>
+    <when>them:young,!us:young</when>
+    <lines>
+      <li>[us] What's it like where you live?</li>
+      <li>[them,home:coast] There's the sea, and it's bigger than everything.</li>
+      <li>[them,home:frozen] Snow, and more snow, and sometimes a fox.</li>
+      <li>[them,their:tribal] We have a big fire, and a grandmother who knows everything.</li>
+      <li>[them] It's home, it's got my bed in it.</li>
+      <li>[us] That's the most important part.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Rain</defName>
+    <topic>weather</topic>
+    <when>them:young,!us:young,rain</when>
+    <lines>
+      <li>[them] Can I go and stand in the rain?</li>
+      <li>[us] Ask your grownups first.</li>
+      <li>[them] They'll say no.</li>
+      <li>[us] Then you have your answer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_NotTired</defName>
+    <topic>small</topic>
+    <when>them:young,!us:young,night</when>
+    <lines>
+      <li>[them] I'm not tired.</li>
+      <li>[us] Of course you're not.</li>
+      <li>[them] I'm only yawning because it's dark.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Fight</defName>
+    <topic>colony</topic>
+    <when>them:young,!us:young,colony:raid</when>
+    <lines>
+      <li>[them] Was there a fight here?</li>
+      <li>[us] There was, but the grownups are keeping watch now.</li>
+      <li>[them] I'd have helped.</li>
+      <li>[us] I believe you, and I'm glad you didn't have to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Settler</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>them:young,!us:young,first</when>
+    <lines>
+      <li>[them] Are you a settler?</li>
+      <li>[us] I am, and this is {COLONY}.</li>
+      <li>[them] You don't look like the stories.</li>
+      <li>[us] What do the stories say?</li>
+      <li>[them] That settlers have three eyes and eat rocks.</li>
+      <li>[us] Only on feast days.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Present</defName>
+    <topic>small</topic>
+    <when>them:young,!us:young,did:gift</when>
+    <lines>
+      <li>[them] Thank you for the present.</li>
+      <li>[us] You're welcome.</li>
+      <li>[them] I'm going to keep it forever, or until it breaks.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Hurt</defName>
+    <topic>health</topic>
+    <when>them:young,!us:young,them:hurt</when>
+    <lines>
+      <li>[us] Does it hurt much?</li>
+      <li>[them] Only when I remember it.</li>
+      <li>[us] Then let's talk about something else.</li>
+      <li>[them] Like what?</li>
+      <li>[us] Like the biggest animal you've ever seen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Snow</defName>
+    <topic>weather</topic>
+    <when>them:young,!us:young,snow</when>
+    <lines>
+      <li>[them] Can we make something out of the snow?</li>
+      <li>[us] When your people say you can, and not before.</li>
+      <li>[them] They never say I can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Parent</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>them:young,!us:young,kin</when>
+    <lines>
+      <li>[them,kin:you] They say you're my {KINWORD}, is that true?</li>
+      <li>[them,!kin:you] Do you know {KIN}, my {KINWORD}?</li>
+      <li>[us,kin:you] It's true, and look at you.</li>
+      <li>[us,!kin:you] I do, {KIN} is one of ours.</li>
+      <li>[them] Good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A colony child and a grown visitor ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_City</defName>
+    <topic>road</topic>
+    <when>us:young,!them:young</when>
+    <lines>
+      <li>[us] Have you ever seen a real city?</li>
+      <li>[them,their:hightech] Plenty, and they're loud and full of people in a hurry.</li>
+      <li>[them] I've seen enough towns to like the quiet places better.</li>
+      <li>[us] I'd like to see one.</li>
+      <li>[them] You will, when you're grown, and then you'll miss this.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_YourKids</defName>
+    <topic>family</topic>
+    <when>us:young,!them:young</when>
+    <lines>
+      <li>[us] Have you got any kids?</li>
+      <li>[them,them:parent] I have, {THEIRCHILD}, and you'd get along fine.</li>
+      <li>[them,!them:parent] Not of my own, but I know how kids work.</li>
+      <li>[us] How do kids work?</li>
+      <li>[them] Mostly on bread and questions.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Why</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>us:young,!them:young</when>
+    <lines>
+      <li>[us] Why are you here?</li>
+      <li>[them,role:trader] To sell things to your grownups.</li>
+      <li>[them,role:guest] To rest a while, your people are kind.</li>
+      <li>[them] To visit, and to see how you all live.</li>
+      <li>[us] We live fine.</li>
+      <li>[them] I can see that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Danger</defName>
+    <topic>road</topic>
+    <when>us:young,!them:young</when>
+    <lines>
+      <li>[us] Is it dangerous out there?</li>
+      <li>[them] Sometimes, which is why you stay close to home for now.</li>
+      <li>[us] I'm not scared.</li>
+      <li>[them] Good, but stay close anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Spear</defName>
+    <topic>people</topic>
+    <when>us:young,!them:young,their:tribal</when>
+    <lines>
+      <li>[us] Do you hunt with a spear?</li>
+      <li>[them] With a spear, a bow, and a lot of patience.</li>
+      <li>[us] Can you show me how?</li>
+      <li>[them] When you're bigger, and if your people say so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Noble</defName>
+    <topic>court</topic>
+    <when>us:young,!them:young,their:noble</when>
+    <lines>
+      <li>[us] Are you a real noble?</li>
+      <li>[them] I am, {THEIRTITLE}, and you may bow if you like.</li>
+      <li>[us] Do I have to?</li>
+      <li>[them] Not today.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Old</defName>
+    <topic>small</topic>
+    <when>us:young,!them:young,them:old</when>
+    <lines>
+      <li>[us] Are you really old?</li>
+      <li>[them] Old enough to remember when the stars were younger.</li>
+      <li>[us] Stars don't get old.</li>
+      <li>[them] Everything does, little one, even you, one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Animals</defName>
+    <topic>colony</topic>
+    <when>us:young,!them:young,colony:animals</when>
+    <lines>
+      <li>[us] Do you want to see our animals?</li>
+      <li>[them] Which one is your favorite?</li>
+      <li>[us] All of them, but don't tell the others.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Home2</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>us:young,!them:young,town</when>
+    <lines>
+      <li>[us] Where do you live?</li>
+      <li>[them,town:far] In {TOWN}, a long, long way from here.</li>
+      <li>[them] In {TOWN}, over that way.</li>
+      <li>[us] Are there kids there?</li>
+      <li>[them] Lots, and every one of them noisier than you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Two children ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Secret</defName>
+    <topic>small</topic>
+    <when>us:young,them:young</when>
+    <lines>
+      <li>[us] Do you want to know a secret?</li>
+      <li>[them] Yes.</li>
+      <li>[us] I'm not telling, that's the secret.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Older</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>us:young,them:young</when>
+    <lines>
+      <li>[them] How old are you?</li>
+      <li>[us] Older than you.</li>
+      <li>[them] Are not.</li>
+      <li>[us] Am too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Where</defName>
+    <topic>town</topic>
+    <uses>home,chat,know</uses>
+    <when>us:young,them:young</when>
+    <lines>
+      <li>[us] Where are you from?</li>
+      <li>[them,town] {TOWN}, and it's better than here.</li>
+      <li>[them] Far away, and it's better than here.</li>
+      <li>[us] Is not.</li>
+      <li>[them] Is so, we have a dog that can open doors.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Kid_Play</defName>
+    <topic>small</topic>
+    <when>us:young,them:young,!night</when>
+    <lines>
+      <li>[them] Do you want to play something?</li>
+      <li>[us] I've got chores, but after.</li>
+      <li>[them] After always takes so long.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

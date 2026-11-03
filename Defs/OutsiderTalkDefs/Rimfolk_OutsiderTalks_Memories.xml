@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More callbacks: two who talked before pick it up again, with what became of it since. These pick up the marks
+       left by the second library (drought, herds, beast, comet, warband, leader, moot, fair, peace, quest, notable,
+       loss, wish, work, trade, home) and give the first library's marks more outcomes (war, cold, head, site, family,
+       faith, road, ill). {THEN} is what the earlier talk was about, so it is used only with a mark that has an <about>.
+       For a quest, then:success and then:failed say how it ended; for a peace, then:still is a peace that holds and
+       then:over one that broke. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Hard times, and how they ended ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_DroughtOver</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:drought,then:over</when>
+    <lines>
+      <li>[us] Is {THEN} over at home?</li>
+      <li>[them] It's over, though the fields will take a while to forgive it.</li>
+      <li>[us] I'm glad it's behind you.</li>
+      <li>[them] So are we, and we still watch the sky every morning.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_DroughtStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:drought,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Any rain at home yet?</li>
+      <li>[them] Not enough to speak of, and the wells are lower every week.</li>
+      <li>[us] I'm sorry, I hope it turns soon.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_HerdsOver</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:herds,then:over</when>
+    <lines>
+      <li>[us] Are your herds well again?</li>
+      <li>[them] What's left of them, and the smoke fires are out at last.</li>
+      <li>[us] That's something.</li>
+      <li>[them] It's a start, and we'll build them back.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_HerdsStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:herds,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Is {THEN} still in your herds?</li>
+      <li>[them] Still, and we've stopped counting what it's taken.</li>
+      <li>[us] I'm sorry, truly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_ColdStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:cold,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Is it still bitter at home, with {THEN}?</li>
+      <li>[them,their:tribal] Still, and we sleep in one long house to save the wood.</li>
+      <li>[them] Still, and the woodpiles are getting short.</li>
+      <li>[us] I hope it breaks soon.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_IllLong</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:ill,then:still,then:long</when>
+    <lines>
+      <li>[us] Is {THEN} still unwell, after all this time?</li>
+      <li>[them] Still, and we've stopped expecting it to change.</li>
+      <li>[us] Tell them they're in our thoughts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_LossAfter</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:loss,!then:recent</when>
+    <lines>
+      <li>[us] How are things at home since {THEN} died?</li>
+      <li>[them] Quieter, and some nights someone still sets a place for them.</li>
+      <li>[us] That's a kind thing to do.</li>
+      <li>[them] It's what we do, until we don't need to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The world's events, since ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_BeastGone</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:beast,then:over</when>
+    <lines>
+      <li>[us] Is {THEN} still in your hills?</li>
+      <li>[them] Gone, one way or another, and the hills feel emptier for it.</li>
+      <li>[us] I hope it was the gentle way.</li>
+      <li>[them] So do I, and I'd rather not ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_BeastStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:beast,then:still,!then:recent</when>
+    <lines>
+      <li>[them] {THEN} is still wandering our hills, slow as ever.</li>
+      <li>[us] Nobody's gone after it?</li>
+      <li>[them] Nobody yet, and the elders mean to keep it that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_CometGone</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:comet,then:over</when>
+    <lines>
+      <li>[us] Remember {THEN}, that we talked about?</li>
+      <li>[them] Gone from the sky, and the arguing about what it meant has only got louder.</li>
+      <li>[us] Did anything come of it?</li>
+      <li>[them] Nothing anyone agrees on, which is how you know it was a proper omen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WarbandGone</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:warband,then:over</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {THEN} is finished, you'll be glad to hear.</li>
+      <li>[us] Glad isn't quite the word.</li>
+      <li>[them] No, but it'll do for now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WarbandStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:warband,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Is {THEN} still riding?</li>
+      <li>[them] Still, and every raid brings it more riders.</li>
+      <li>[us] Then keep to the daylight on your way home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_MootOver</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:moot,then:over</when>
+    <lines>
+      <li>[us] How did {THEN} go, in the end?</li>
+      <li>[them] Everyone went home grumbling, which means it was probably fair.</li>
+      <li>[us] That's one way to tell.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FairOver</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:fair,then:over</when>
+    <lines>
+      <li>[us] Is {THEN} over, then?</li>
+      <li>[them] Over, swept up, and already argued about for a year to come.</li>
+      <li>[us] Who won the cooking?</li>
+      <li>[them] Depends who you ask, and everyone will tell you it was them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_SituationStillRecent</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:situation,then:still,!then:recent,!then:long</when>
+    <lines>
+      <li>[us] Any change with {THEN} since we talked?</li>
+      <li>[them] Not much, it goes on, and we go on with it.</li>
+      <li>[us] That's all anyone can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Wars and peace ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WarHow</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:war,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Last time you spoke of the war with {THEN}, how goes it now?</li>
+      <li>[them,war:losing] Badly, we've fewer towns than when it started.</li>
+      <li>[them,war:winning] Better, they've lost ground since it began.</li>
+      <li>[them,!war:losing,!war:winning] The same, which is its own kind of bad.</li>
+      <li>[us] I'll keep hoping for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_PeaceHolds</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:peace,then:still,!then:recent</when>
+    <lines>
+      <li>[us] Is the peace with {THEN} holding?</li>
+      <li>[them] Holding, and every month it holds, people breathe a little easier.</li>
+      <li>[us] Long may it last.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_PeaceBroke</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:peace,then:over</when>
+    <weight>1.4</weight>
+    <heard>{PEOPLE} are at war with {THEN} again.</heard>
+    <lines>
+      <li>[them] The peace with {THEN} didn't hold, we're at war again.</li>
+      <li>[us] I'm sorry, after all that.</li>
+      <li>[them,their:tribal] The spears came off the wall faster than they went up.</li>
+      <li>[them] So am I, it was good while it lasted.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Who leads now ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_LeaderChanged</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:leader,then:changed</when>
+    <weight>1.3</weight>
+    <heard>{NOW} leads {PEOPLE} now.</heard>
+    <lines>
+      <li>[them] You asked about {THEN} once, well, {NOW} leads us now.</li>
+      <li>[us] I hadn't heard.</li>
+      <li>[them] Few have, and we're all still getting used to it.</li>
+      <li>[us] I hope {NOW} does well by you.</li>
+      <li>[them,their:tribal] The elders are watching, and so are the spirits.</li>
+      <li>[them] So do we, and we'll know soon enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_LeaderStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:leader,then:still,then:long</when>
+    <lines>
+      <li>[us] Is {THEN} still leading your people?</li>
+      <li>[them] Still, and nobody expects that to change soon.</li>
+      <li>[us] Steady hands, then.</li>
+      <li>[them] Steady, or stubborn, depending on who you ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_HeadStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:head,then:still,then:long</when>
+    <lines>
+      <li>[us] Is {THEN} still at the head of things in {TOWN}?</li>
+      <li>[them] Still, and still listening to everyone and agreeing with no one.</li>
+      <li>[us] That sounds like leading, all right.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_NotableDied</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:notable,then:dead</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] How is {THEN}?</li>
+      <li>[them] {THEN} is gone, I'm sorry to say.</li>
+      <li>[us] I'm sorry, I liked hearing about them.</li>
+      <li>[them] They'd have liked that, being talked about by strangers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_NotableStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:notable,then:still,then:long</when>
+    <lines>
+      <li>[us] Is {THEN} still keeping busy?</li>
+      <li>[them] Busier than ever, and still telling everyone so.</li>
+      <li>[us] Give them our regards again.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_SiteStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:site,then:still,then:long</when>
+    <lines>
+      <li>[us] Is {THEN} still out there near {TOWN}?</li>
+      <li>[them] Still there, and still giving people bad dreams.</li>
+      <li>[us] Somebody will deal with it one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Quests taken on ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_QuestDone</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:quest,then:success</when>
+    <weight>1.4</weight>
+    <heard>{COLONY} saw {THEN} through.</heard>
+    <lines>
+      <li>[them] You saw {THEN} through, and people at home were glad to hear it.</li>
+      <li>[us] It was worth doing.</li>
+      <li>[them,their:tribal] The elders say your name a little warmer now.</li>
+      <li>[them] It'll be remembered, believe me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_QuestFailed</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:quest,then:failed</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] {THEN} didn't go the way we wanted.</li>
+      <li>[them] I heard, and so did everyone at home.</li>
+      <li>[us] We'll do better next time.</li>
+      <li>[them] I hope so, for both our sakes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_QuestEnded</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:quest,then:over,!then:success,!then:failed</when>
+    <lines>
+      <li>[them] Whatever became of {THEN}?</li>
+      <li>[us] It's finished, one way and another.</li>
+      <li>[them] Fair enough, they don't all end neatly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_QuestStill</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:quest,then:still,!then:recent</when>
+    <lines>
+      <li>[them] Still at {THEN}, are you?</li>
+      <li>[us] Still, it's taking longer than we hoped.</li>
+      <li>[them] Most things worth doing do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Between the two of them ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_Wish</defName>
+    <topic>callback</topic>
+    <uses>chat,know</uses>
+    <when>talked:wish,!then:recent</when>
+    <lines>
+      <li>[us] Are you any closer to what you hoped for when we last talked?</li>
+      <li>[them] A step or two, and I haven't given up on it.</li>
+      <li>[us] Good, don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_Work</defName>
+    <topic>callback</topic>
+    <uses>chat,know</uses>
+    <when>talked:work,!then:recent</when>
+    <lines>
+      <li>[us] Still busy with your {THEIRSKILL}?</li>
+      <li>[them] Busier than ever, and better at it, I like to think.</li>
+      <li>[us] I'll take your word for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_Trade</defName>
+    <topic>callback</topic>
+    <when>talked:trade,role:trader,!then:recent</when>
+    <lines>
+      <li>[us] Did trade pick up, after last time?</li>
+      <li>[them,rich] Here, it always does.</li>
+      <li>[them] Up and down, the way it always is.</li>
+      <li>[us] Then let's make today an up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_ToldHome</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:home,returning,town</when>
+    <lines>
+      <li>[them] I told them about you in {TOWN}, the way I said I would.</li>
+      <li>[us] And what did they say?</li>
+      <li>[them] That I talk too much, which is fair.</li>
+      <li>[us] Fair, but we don't mind.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FamilyLittle</defName>
+    <topic>callback</topic>
+    <uses>chat,know</uses>
+    <when>talked:family,them:smallchild,!them:childhere,!then:recent</when>
+    <lines>
+      <li>[us] How's that little one of yours, {THEIRCHILD}?</li>
+      <li>[them] Bigger and louder every time I come home.</li>
+      <li>[us] That's how it should be.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FamilySpouse</defName>
+    <topic>callback</topic>
+    <uses>chat,know</uses>
+    <when>talked:family,them:married,!them:spousehere,then:long</when>
+    <lines>
+      <li>[us] Is {THEIRSPOUSE} keeping well?</li>
+      <li>[them] Well, and asking when I'll stay home for good.</li>
+      <li>[us] And will you?</li>
+      <li>[them] One day, maybe, but not yet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FaithAgain</defName>
+    <topic>callback</topic>
+    <uses>chat,know</uses>
+    <when>talked:faith,otherfaith,then:long</when>
+    <lines>
+      <li>[us] Still sure about {THEIRFAITH}?</li>
+      <li>[them] Surer than ever, and you're still welcome to try me.</li>
+      <li>[us] I'll leave that to the preachers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_RoadKnown</defName>
+    <topic>callback</topic>
+    <when>talked:road,town:far,then:long</when>
+    <lines>
+      <li>[them] I know the way here by heart now.</li>
+      <li>[us] Then you've no excuse not to come more often.</li>
+      <li>[them] I'll think of one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

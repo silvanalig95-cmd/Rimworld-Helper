@@ -15,6 +15,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.64.0: the second library pass, 406 pieces (591 in all) in eleven new files in `Defs/OutsiderTalkDefs/` (events,
+  peoples, Empire, homelands, trade, town life, the colony seen, acquaintance, children, memories, tones). New facts
+  in `OutsiderFacts.cs`: `their:rough`, `their:ally`, `them:outranks`/`us:outranks`, `colony:noble`, `colony:quiet`,
+  `quest:ongoing` (callbacks `then:success`/`then:failed`), `world:peace`, `ended:bad`, `ended:ws:`. Old pieces made
+  true (gold fever, comet, ship, toll, a death, mourning). Still thin: mods' peoples and xenotypes (no `people:` tag),
+  Empire permits and ceremonies, quest kinds, letters, the colony's buildings and decrees, traits by kind, Flood and
+  Unnatural Heat conditions.
 - 0.63.0, the player's requests (no spamming, talks on their own, bubbles not pop-ups, a history; 5 to 6 lines;
   reacting to the live world): `Outsiders/OutsiderTalk.cs` (patience, auto-talks at `Sched.RareOutsiderTalk` 83,
   scenes), `OutsiderFacts.cs` (live facts and placeholders), `OutsiderTalkMath.cs`, `OutsiderTalkDef.cs`,
