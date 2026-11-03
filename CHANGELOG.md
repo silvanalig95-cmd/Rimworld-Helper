@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fields by the weather
+
+*3 November 2026, version 0.56.0*
+
+- A "By the weather" switch on each growing zone: the field sows only while a crop sown now should bring at least 60% of a full harvest, by a forecast built from the game's own temperatures for each hour ahead.
+- The forecast counts growth slowed by cold and night, each plant's own cold limit (most crops die between -10 and -18 °C), and ripe plants harvested early before a killing frost.
+- A paused field says why in its pane and when sowing should pay again. It only ever holds sowing back, and a sowing you order by hand still goes ahead.
+- Harvest before a frost: when the next 30 hours would kill plants ripe enough to harvest, one click marks exactly those plants, with the numbers, for any outdoor field.
+- The frost suggestion shows in the alerts, on the field and on the Making page. Undo takes the marks off, and after the frost the council says whether it came and how many were saved.
+- With Smart Farming, leave fields that sow by the weather on its "On" mode. The Almanac's planning ahead page explains both.
+
 ## Carcinomas on the health panel, for real
 
 *3 November 2026, version 0.55.4*

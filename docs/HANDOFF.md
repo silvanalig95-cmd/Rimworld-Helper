@@ -6,6 +6,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.56.0, the player's request (Smart Farming sowed, cut early and sowed again): fields by the weather
+  (`Fields/FieldWeather*.cs`, tested in `FieldWeatherTests`; settings `fieldsByWeather`, `frostHarvestSuggest`; hourly
+  slot `Sched.Fields`). Per-zone switch pauses sowing (Prefix on `WorkGiver_GrowerSow.JobOnCell`, restricts only) when a
+  crop sown now brings under 60% of a full harvest by an hourly forecast (`OutdoorTemperatureAt` + active conditions +
+  Rimfolk's weather push); frost harvest is a suggestion (source `fields`) naming the plants each plant's own cold
+  limit would lose (`Plant.LeaflessTemperatureThresh` by reflection; 1.6: min growth temperature −18 to −10). The
+  player keeps ReGrowth 2's built-in Smart Farming copy and drops the standalone. To check in game: forecast vs map
+  temperature (dev log line), the desert save's winter outlook, the frost card, undo and the check after the frost.
 - 0.55.3/0.55.4, the player's request: the health panel shows chronic conditions that can kill or cost a part
   (carcinoma: no lethalSeverity, it has a growth comp and destroys its part) as stable, shrinking or getting worse
   (`HudHealthMath.Shows`, `Grave`, `Lasting`); other chronic conditions stay off.
