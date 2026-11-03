@@ -151,7 +151,12 @@ when a mod is active, only what the colony has unlocked, never harder without a 
 - Then: people, magic and beliefs (RimWorld of Magic classes, traits and skills mods, memes); hygiene and cooking
   (bathroom plans, better bath wishes, processors and aging); medieval life (Medieval Overhaul production, wine and
   cheese) when those mods are active.
-- Not planned: diplomacy and faction-war features (Diplomatic Marriage, Factional War); weapon duels.
+- Planned since 3 November 2026 (the player's request, Crusader Kings 3 in mind): a diplomacy layer. First the
+  fundamentals (the region map window; named notables of nearby settlements; letters by courier and calls by comms
+  console), then right-click interactions with outsiders, favors owed, pacts and truces, feasts with guests,
+  marriage alliances, wards and hostages, ransom, fealty and vassals (beside the Faction Territories and Vassalage
+  and Factional War mods, whose files the player will upload), council tasks, house renown, stress against one's
+  nature. Still not planned: integrating the Diplomatic Marriage mod's own system. Weapon duels: propose first.
 - An audit of existing content against these rules (unlocked-only, mod removal, era fit) comes first.
 
 ## The longer road (plan, October 2026)

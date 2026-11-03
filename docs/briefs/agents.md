@@ -21,11 +21,11 @@ Claude-Session: https://claude.ai/code/session_01BPumbqQfw465PjV9qCCwHZ
   - check `ModsConfig.IsActive`, or look defs up with `GetNamedSilentFail`;
   - use `MayRequire` / `MayRequireAnyOf` on def references to DLC or mod content.
 - **Only content the colony has unlocked.** Era, research and tech level must fit. Look at how existing workers check this.
-- **Nobody is hurt for flavour.** The exception is the deliberately rare serious-illness tier.
+- **Harm at the game's own rate** (the player's rule since 3 November 2026, replacing "nobody is hurt for flavour"): features may hurt pawns (injuries, illness, attacks, fights) when it's flavourful or makes the game more interesting, at a rate comparable to the game's own chance of something bad happening; never gratuitous, always from something that happens on the map, and shown.
 - Not wanted:
-  - weapon duels
-  - Diplomatic Marriage
-  - Factional War
+  - integrating the Diplomatic Marriage mod's system (Rimfolk's own diplomacy layer, with marriage alliances, is wanted: see ROADMAP.md)
+  - Factional War features of Rimfolk's own (the player runs the [SR] Factional War mod; Rimfolk's diplomacy works beside it)
+- Weapon duels were declined before the harm rule changed: propose them to the player first, like any new feature.
 - **What the player values most right now:** more content and deeper improvement of what is there: variety, options, flavour, immersion, and systems that visibly play out and touch each other. Quality matters: each new thing should feel like a small story, fit RimWorld's tone, and have proper text, consequences and Almanac coverage where its system has Almanac pages.
 - **No filler (the player's rule, refined).** "I'd rather not have further wishes etc be added just for the sake of variety, if they don't fit naturally into the game's goals." Every wish, goal, project, dilemma, ailment, day or trait you add must point at something a player would genuinely want to pursue or deal with in a run. The player later added: a wish they can ignore at a mood cost is welcome when it makes the game more dynamic. New wishes are proposed to the player as a list first; only add the ones your task names (they were picked by the player). Deepening how existing things play out beats adding new things to want.
 - **Leave "What's new" to the lead.** Don't edit `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` or `CHANGELOG.md`; list in your final report the 1-3 points you'd put there.

@@ -271,8 +271,11 @@ that come from inside it. They can stand on their own, but most reach into the r
   `[industrial]` / `[spacer]` where it matters). Loot is drawn from things at or below the colony's tech level.
 - **Choices cost something both ways.** Turning family away hurts; taking in a deserter may bring pursuers; paying
   tribute shames, refusing it brings a war party. Unanswered letters fall to a sensible default.
-- **Nobody gets hurt for flavour.** Contests are matches at targets, wrestling without weapons, crafts and
-  debates. Hail damages crops, never people.
+- **Harm at the game's own rate.** Until November 2026 nobody was hurt for flavour (contests are matches at targets,
+  wrestling without weapons, crafts and debates; hail damages crops, never people). Since then the player's rule is
+  that harm is part of the game: injuries, illness, attacks and fights are welcome where they're flavourful or make
+  the game more interesting, at a rate comparable to the game's own chance of something bad happening, never
+  gratuitous, always from something that happens on the map.
 
 ### Scenarios with stakes
 Rimfolk's scenarios use the same machinery to start a game with stakes in play: a nemesis from day one, a debt
@@ -1569,8 +1572,9 @@ rules:
    mod's late-game system (diplomatic marriages, faction wars) they haven't chosen to engage with.
 4. **No per-run adjustment.** Era (medieval or industrial) and mods are detected automatically; medieval content stays
    out of an industrial run and the other way round.
-5. **Nobody gets hurt for flavor.** Moments between colonists never injure anyone: contests are friendly (arm
-   wrestling, races, riddles), never fights with weapons.
+5. **Harm at the game's own rate.** Until November 2026 moments between colonists never injured anyone (contests were
+   friendly: arm wrestling, races, riddles). Since then harm may come where it's flavourful or interesting, at a rate
+   comparable to the game's own chance of something bad happening, never gratuitous.
 6. **Most mods get no integration, and that's fine.** A big modlist is mostly nice-to-haves the player may never use
    in a given run. Rimfolk only has to read them correctly (no false warnings, no impossible wishes, no colonist
    counted as gone). Deeper integration is kept for the few mods the player always runs, and even those stay soft.

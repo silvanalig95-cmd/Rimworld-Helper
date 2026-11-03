@@ -10,7 +10,8 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 
 ## Player rules (binding)
 - Soft integrations only, and only content the colony has unlocked.
-- Nobody is hurt for flavour. Bug fixes come before features. No filler.
+- Harm is part of the game (the player's rule since 3 November 2026): features may hurt pawns (injuries, illness, attacks, fights) when it's flavourful or makes the game more interesting, at a rate comparable to the game's own chance of something bad happening; never gratuitous, always from something that happens on the map, and shown.
+- Bug fixes come before features. No filler.
 - New wishes and features are proposed as a list first; the player's own explicit requests can go straight ahead.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.
 - Events and answers show on the map as accurately as possible: what the words say happens is what the player sees.

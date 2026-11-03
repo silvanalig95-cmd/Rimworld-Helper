@@ -6,6 +6,11 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 3 November 2026, the player's rule change (binding): harm is part of the game. Features may hurt pawns (injuries,
+  illness, attacks, fights) when flavourful or interesting, at a rate comparable to vanilla's chance of something bad
+  happening; never gratuitous, always from something on the map. It replaces "nobody is hurt for flavour" in
+  CLAUDE.md, DESIGN.md, docs/briefs/agents.md. Existing features that say "nobody is hurt" describe how they work
+  today; they change only when a feature is reworked or the player asks.
 - 0.57.1, the player's frozen silk golem (RimWorld of Magic 1.6 DLL decompiled from the player's upload): the pawn had
   no TM_GolemEnergy need, CompGolem.CompTick reads `Energy.CurLevel` unguarded, throws every tick (its comp age stuck at
   1), so the pawn never moved. `Integrations/MagicGolems.cs`: ShouldHaveNeed postfix (Priority.Last) keeps the needs
