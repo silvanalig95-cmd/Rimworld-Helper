@@ -269,6 +269,8 @@ namespace ColonyCouncil
         public bool marketStallShips = true;
         /// <summary>With Alpha Genes: a carrier of the repulsive gene or angelic beauty whose face and body are covered stirs nothing in others (Integrations/CoveredLooks.cs).</summary>
         public bool coveredLooks = true;
+        /// <summary>With RimWorld of Magic: a golem keeps its own needs and gets back an energy need it lost (Integrations/MagicGolems.cs).</summary>
+        public bool magicGolemRepair = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/DrinkBeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
@@ -539,6 +541,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref coveredLooks, "coveredLooks", true);
+            Scribe_Values.Look(ref magicGolemRepair, "magicGolemRepair", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref marketCampersBuy, "marketCampersBuy", true);

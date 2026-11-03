@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- RimWorld of Magic's golems keep their energy (Source/ColonyCouncil/Integrations/MagicGolems.cs). -->
+  <CC_Settings_MagicGolemRepair>Golems keep their energy (RimWorld of Magic)</CC_Settings_MagicGolemRepair>
+  <CC_Settings_MagicGolemRepair_Tip>With RimWorld of Magic: a golem lives on its energy, a need of its own. If it loses that need (another mod's rules about needs, or a game version change), it stands frozen, only turning to face where it is ordered, and set dormant it fades over and over. With this on, a golem always keeps the needs its golem lists, and one found without its energy gets it back and refills it from its workstation. Needs the deeper game hooks.</CC_Settings_MagicGolemRepair_Tip>
+  <CC_SetNote_MagicGolemRepair>With RimWorld of Magic, a golem that lost its energy gets it back instead of standing frozen.</CC_SetNote_MagicGolemRepair>
+  <CC_MagicGolem_Repaired>{PAWN_labelShort} had lost its energy and stood frozen. It has its energy back and refills from its workstation.</CC_MagicGolem_Repaired>
+
+</LanguageData>

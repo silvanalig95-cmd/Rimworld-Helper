@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.57.1</version>
+        <date>3 November 2026</date>
+        <title>A frozen golem thaws</title>
+        <points>
+          <li>With RimWorld of Magic, a golem that had lost its energy need stood frozen: every moment its own workings looked for the missing energy and stopped, so it only turned to face where it was ordered, and set dormant it faded over and over.</li>
+          <li>Now a golem always keeps the needs its golem lists, and one found without its energy gets it back and refills it from its workstation, with a message once. If it can't be given back, the golem can at least walk. The setting "Golems keep their energy" turns it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.57.0</version>
         <date>3 November 2026</date>
         <title>Bonds that take time</title>

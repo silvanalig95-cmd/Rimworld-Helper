@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A frozen golem thaws
+
+*3 November 2026, version 0.57.1*
+
+- With RimWorld of Magic, a golem that had lost its energy need stood frozen: every moment its own workings looked for the missing energy and stopped, so it only turned to face where it was ordered, and set dormant it faded over and over.
+- Now a golem always keeps the needs its golem lists, and one found without its energy gets it back and refills it from its workstation, with a message once. If it can't be given back, the golem can at least walk. The setting "Golems keep their energy" turns it off.
+
 ## Bonds that take time
 
 *3 November 2026, version 0.57.0*
