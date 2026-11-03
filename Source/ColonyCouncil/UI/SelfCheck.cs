@@ -270,6 +270,10 @@ namespace ColonyCouncil
 
             var tracker = CampTracker.Instance;
             string not = tracker == null ? "Rimfolk's camps aren't running in this game" : tracker.WhyNot(map);
+            // The camps' diary: what each day brought (kept in the save for reviews).
+            if (tracker != null && tracker.diary.Count > 0)
+                part.Add("Camps' diary since day " + (tracker.diarySince + 1) + ": " + string.Join(", ", tracker.diaryCounts.OrderByDescending(kv => kv.Value).Select(kv => kv.Key + " " + kv.Value))
+                         + ". Last days: " + string.Join("; ", tracker.diary.Skip(Math.Max(0, tracker.diary.Count - 8)).Select(d => d.TrimEnd('|'))) + ".", UiKit.Faint);
             if (not != null) part.Add("Camps: none can come now: " + not + ".", tracker?.camp != null ? UiKit.Good : Color.white);
             else
             {
@@ -277,8 +281,8 @@ namespace ColonyCouncil
                 var setup = tracker.Prepare(map, why);
                 if (setup != null)
                 {
-                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Each morning at ten there's a "
-                             + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
+                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Once a day, in the first open hour from "
+                             + CampTimer.FirstHour + " to " + CampTimer.LastHour + ", there's a " + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
                     CampTracker.Discard(setup);
                 }
                 else

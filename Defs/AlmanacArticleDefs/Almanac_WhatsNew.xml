@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.56.2</version>
+        <date>3 November 2026</date>
+        <title>Camps that can come</title>
+        <points>
+          <li>Camps only ever had one try a day, at ten in the morning, and any other question of Rimfolk's in the hours before shut that morning. In a busy colony that kept about four mornings in five shut, so a camp could take a year or more.</li>
+          <li>Now the day's try comes in the first open hour from 8 in the morning to 5 in the afternoon. A question that just came, one still waiting for an answer, danger on the map or extreme weather only put it off to a later hour.</li>
+          <li>The camps keep a diary in the save: each day's outcome and what kept a camp away. The World page sums it up under "No camp on the land", and "Rimfolk: check myself" lists the last days.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.56.1</version>
         <date>3 November 2026</date>
         <title>Moved, not voted out</title>

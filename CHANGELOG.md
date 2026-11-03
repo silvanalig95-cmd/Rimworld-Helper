@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps that can come
+
+*3 November 2026, version 0.56.2*
+
+- Camps only ever had one try a day, at ten in the morning, and any other question of Rimfolk's in the hours before shut that morning. In a busy colony that kept about four mornings in five shut, so a camp could take a year or more.
+- Now the day's try comes in the first open hour from 8 in the morning to 5 in the afternoon. A question that just came, one still waiting for an answer, danger on the map or extreme weather only put it off to a later hour.
+- The camps keep a diary in the save: each day's outcome and what kept a camp away. The World page sums it up under "No camp on the land", and "Rimfolk: check myself" lists the last days.
+
 ## Moved, not voted out
 
 *3 November 2026, version 0.56.1*

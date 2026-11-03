@@ -41,8 +41,48 @@ namespace ColonyCouncil
         public Camp holding;
         public int nextId = 1;
         public int lastEndedTick = -9999999;
-        /// <summary>Mornings since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
+        /// <summary>Days since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
         public int openMornings;
+        /// <summary>
+        /// The camps' diary, for the World page and for reviewing a save: each day's outcome as "day|hour|code|detail",
+        /// newest last, at most <see cref="DiaryMax"/>; codes are the blockers (<see cref="Blocker"/>) and waiting
+        /// (a world event's question unanswered), lettergap (a question came in the last hours), open (the way was open,
+        /// the dice said not today), checks (the event's own checks said no), failed (it could not be set up, with why),
+        /// came.
+        /// </summary>
+        public List<string> diary = new List<string>();
+        /// <summary>How often each outcome came, since <see cref="diarySince"/> (a day).</summary>
+        public Dictionary<string, int> diaryCounts = new Dictionary<string, int>();
+        public int diarySince = -1;
+        /// <summary>The day the camps last made their one choice (rolled the dice, or found the way shut for the day).</summary>
+        public int rolledDay = -1;
+        /// <summary>Why the last Prepare without a list of its own found nothing (for the diary).</summary>
+        [Unsaved] public readonly List<string> lastWhy = new List<string>();
+        public const int DiaryMax = 30;
+
+        /// <summary>One day's outcome into the diary.</summary>
+        public void Record(int day, int hour, string code, string detail)
+        {
+            if (code.NullOrEmpty()) return;
+            if (diarySince < 0) diarySince = day;
+            diary.Add(day + "|" + hour + "|" + code + "|" + (detail ?? "").Replace("|", "/"));
+            while (diary.Count > DiaryMax) diary.RemoveAt(0);
+            diaryCounts.TryGetValue(code, out int n);
+            diaryCounts[code] = n + 1;
+        }
+
+        /// <summary>The diary in the player's words, one line: days open, camps come, and what kept them away most.</summary>
+        public string DiaryLine()
+        {
+            if (diaryCounts.Count == 0 || diarySince < 0) return null;
+            diaryCounts.TryGetValue("open", out int open);
+            diaryCounts.TryGetValue("came", out int came);
+            var away = diaryCounts.Where(kv => kv.Key != "open" && kv.Key != "came" && kv.Value > 0).OrderByDescending(kv => kv.Value)
+                .Select(kv => ("CC_Camp_Diary_" + kv.Key).Translate().ToString() + " (" + kv.Value + ")").ToList();
+            string line = "CC_Camp_Diary_Line".Translate((diarySince + 1).Named("DAY"), (open + came).Named("OPEN"), came.Named("CAME")).Resolve();
+            if (away.Count > 0) line += " " + "CC_Camp_Diary_Away".Translate(string.Join(", ", away)).Resolve();
+            return line;
+        }
         /// <summary>Camps the colony remembers, which may come back (CampMemory.cs).</summary>
         public List<PastCamp> past = new List<PastCamp>();
         /// <summary>A war party on the map, come to fight the colony's attacker (WarCamp.cs), and the threat it was rolled for.</summary>
@@ -231,6 +271,11 @@ namespace ColonyCouncil
         /// </summary>
         public CampSetup Prepare(Map map, List<string> why = null)
         {
+            if (why == null)
+            {
+                lastWhy.Clear();
+                why = lastWhy;
+            }
             var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map)).ToList();
             if (kinds.Count == 0)
             {
@@ -676,6 +721,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
             Scribe_Values.Look(ref openMornings, "openMornings", 0);
+            Scribe_Collections.Look(ref diary, "diary", LookMode.Value);
+            Scribe_Collections.Look(ref diaryCounts, "diaryCounts", LookMode.Value, LookMode.Value);
+            Scribe_Values.Look(ref diarySince, "diarySince", -1);
+            Scribe_Values.Look(ref rolledDay, "rolledDay", -1);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (diary == null) diary = new List<string>();
+                if (diaryCounts == null) diaryCounts = new Dictionary<string, int>();
+            }
             Scribe_Collections.Look(ref past, "past", LookMode.Deep);
             Scribe_Deep.Look(ref warBand, "warBand");
             Scribe_Values.Look(ref threatSince, "threatSince", -1);
