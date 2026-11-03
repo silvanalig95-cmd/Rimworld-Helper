@@ -221,8 +221,74 @@ namespace ColonyCouncil
 
         private static Pawn sizedFor;
         private static float wanted, baseHeight = -1f;
+        private static Vector2 scroll;
+        private static Pawn scrolledFor;
 
-        /// <summary>Below Hospitality's own lines, in its listing.</summary>
+        /// <summary>
+        /// The tallest the guest tab may grow: what's left of the screen above the inspect pane and the bottom bar, so its
+        /// top never goes off screen (the player's report: a long checklist did).
+        /// </summary>
+        internal static float MaxTabHeight => Mathf.Max(300f, UI.screenHeight - 35f - 165f - 12f);
+
+        /// <summary>The checklist's own height at this width (the verdict and the lines), as <see cref="DrawBody"/> draws it.</summary>
+        private static float BodyHeight(Check c, Pawn g, float w)
+        {
+            var font = Text.Font;
+            Text.Font = GameFont.Small;
+            float h = Text.CalcHeight(c.verdictText, w);
+            if (c.lines.Count > 0)
+            {
+                h += 4f;
+                Text.Font = GameFont.Tiny;
+                if (c.lines.Any(l => l.mark != 0)) h += Text.LineHeight;
+                foreach (var line in c.lines)
+                {
+                    float x = line.indent * 16f + (line.mark != 0 ? 18f : 0f);
+                    h += Mathf.Max(16f, Text.CalcHeight(line.text, w - x));
+                }
+            }
+            Text.Font = font;
+            return h;
+        }
+
+        /// <summary>The verdict and the lines, from the top of <paramref name="r"/>.</summary>
+        private static void DrawBody(Rect r, Check c, Pawn g)
+        {
+            float w = r.width;
+            float y = r.y;
+            Text.Font = GameFont.Small;
+            float h = Text.CalcHeight(c.verdictText, w);
+            GUI.color = c.verdictColor;
+            Widgets.Label(new Rect(r.x, y, w, h), c.verdictText);
+            GUI.color = Color.white;
+            y += h;
+            if (c.lines.Count == 0) return;
+            y += 4f;
+            Text.Font = GameFont.Tiny;
+            if (c.lines.Any(l => l.mark != 0))
+            {
+                GUI.color = UiKit.Faint;
+                Widgets.Label(new Rect(r.x, y, w, Text.LineHeight), "CC_GuestCheck_Takes".Translate(g.Named("PAWN")));
+                GUI.color = Color.white;
+                y += Text.LineHeight;
+            }
+            foreach (var line in c.lines)
+            {
+                float x = line.indent * 16f + (line.mark != 0 ? 18f : 0f);
+                float lh = Mathf.Max(16f, Text.CalcHeight(line.text, w - x));
+                if (line.mark != 0)
+                    GUI.DrawTexture(new Rect(r.x + line.indent * 16f, y + 1f, 14f, 14f), line.mark > 0 ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex);
+                GUI.color = line.color;
+                Widgets.Label(new Rect(r.x + x, y, w - x, lh), line.text);
+                GUI.color = Color.white;
+                y += lh;
+            }
+        }
+
+        /// <summary>
+        /// Below Hospitality's own lines, in its listing. The tab grows to fit, up to <see cref="MaxTabHeight"/>; a
+        /// checklist longer than that scrolls in its own area (mouse wheel or the bar at its side).
+        /// </summary>
         internal static void Draw(Listing_Standard listing, Pawn g)
         {
             if (listing == null || g == null || !On) return;
@@ -238,51 +304,42 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             var head = listing.GetRect(Text.LineHeight);
             UiKit.LabelFit(head, "CC_GuestCheck_Title".Translate(g.Named("PAWN")), UiKit.HeaderColor);
-            Text.Font = GameFont.Small;
             float w = listing.ColumnWidth;
-            float h = Text.CalcHeight(c.verdictText, w);
-            var vr = listing.GetRect(h);
-            GUI.color = c.verdictColor;
-            Widgets.Label(vr, c.verdictText);
-            GUI.color = Color.white;
-            if (c.lines.Count > 0)
+            float body = BodyHeight(c, g, w);
+            // The listing starts 30 in and ends 10 short of the bottom: room left in the tallest tab for the checklist.
+            float room = MaxTabHeight - 44f - listing.CurHeight;
+            if (body <= room || room < 80f)
             {
-                listing.Gap(4f);
-                Text.Font = GameFont.Tiny;
-                if (c.lines.Any(l => l.mark != 0))
+                DrawBody(listing.GetRect(body), c, g);
+            }
+            else
+            {
+                if (scrolledFor != g)
                 {
-                    var tr = listing.GetRect(Text.LineHeight);
-                    GUI.color = UiKit.Faint;
-                    Widgets.Label(tr, "CC_GuestCheck_Takes".Translate(g.Named("PAWN")));
-                    GUI.color = Color.white;
+                    scrolledFor = g;
+                    scroll = Vector2.zero;
                 }
-                foreach (var line in c.lines)
-                {
-                    float x = line.indent * 16f + (line.mark != 0 ? 18f : 0f);
-                    float lh = Mathf.Max(16f, Text.CalcHeight(line.text, w - x));
-                    var r = listing.GetRect(lh);
-                    if (line.mark != 0)
-                        GUI.DrawTexture(new Rect(r.x + line.indent * 16f, r.y + 1f, 14f, 14f), line.mark > 0 ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex);
-                    GUI.color = line.color;
-                    Widgets.Label(new Rect(r.x + x, r.y, r.width - x, lh), line.text);
-                    GUI.color = Color.white;
-                }
+                var outer = listing.GetRect(room);
+                float inner = BodyHeight(c, g, w - 16f);
+                var view = new Rect(0f, 0f, w - 16f, inner);
+                Widgets.BeginScrollView(outer, ref scroll, view);
+                DrawBody(view, c, g);
+                Widgets.EndScrollView();
             }
             Text.Font = font;
             Text.Anchor = anchor;
-            // The tab is as tall as this needs: its listing starts 30 in and ends 10 short of the bottom.
             sizedFor = g;
             wanted = listing.CurHeight + 44f;
             listing.maxOneColumn = oneColumn;
         }
 
-        /// <summary>Before the tab draws: tall enough for the checklist drawn last time for this guest.</summary>
+        /// <summary>Before the tab draws: tall enough for the checklist drawn last time for this guest, never off screen.</summary>
         internal static void Size(ITab tab, Pawn g)
         {
             if (tab == null) return;
             ref Vector2 size = ref TabSize(tab);
             if (baseHeight < 0f) baseHeight = size.y;
-            size.y = On && g != null && g == sizedFor ? Mathf.Max(baseHeight, wanted) : baseHeight;
+            size.y = On && g != null && g == sizedFor ? Mathf.Min(MaxTabHeight, Mathf.Max(baseHeight, wanted)) : baseHeight;
         }
 
         private static readonly AccessTools.FieldRef<ITab, Vector2> TabSize = AccessTools.FieldRefAccess<ITab, Vector2>("size");

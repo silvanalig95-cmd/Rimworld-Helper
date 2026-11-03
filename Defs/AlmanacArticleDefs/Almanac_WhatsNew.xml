@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.59.1</version>
+        <date>3 November 2026</date>
+        <title>A guest's checklist that fits</title>
+        <points>
+          <li>With Hospitality, the guest tab grew to fit Rimfolk's recruiting checklist without a limit, so for a guest with a long list its top went off the screen.</li>
+          <li>Now the tab never grows taller than the screen allows, and a checklist longer than that scrolls in its own area, with the mouse wheel or the bar at its side.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.59.0</version>
         <date>3 November 2026</date>
         <title>Neighbours by name, and letters</title>

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A guest's checklist that fits
+
+*3 November 2026, version 0.59.1*
+
+- With Hospitality, the guest tab grew to fit Rimfolk's recruiting checklist without a limit, so for a guest with a long list its top went off the screen.
+- Now the tab never grows taller than the screen allows, and a checklist longer than that scrolls in its own area, with the mouse wheel or the bar at its side.
+
 ## Neighbours by name, and letters
 
 *3 November 2026, version 0.59.0*
