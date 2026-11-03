@@ -1,5 +1,7 @@
 // The colony-year balance simulator (see Balance.csproj for how to run it, and docs/balance-report.md for what it says).
 //   dotnet run -c Release --project Tools/Balance -- [repo root] [--runs N] [--out report.md] [--json summary.json] [--before summary.json]
+// How bonds come about over two years (SocialSim.cs, printed, nothing written):
+//   dotnet run -c Release --project Tools/Balance -- --social [--runs N] [--seed S]
 
 using System.Globalization;
 using System.Text.Json;
@@ -7,6 +9,12 @@ using Balance;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
+if (args.Contains("--social"))
+{
+    SocialSim.Run(args);
+    return;
+}
 
 string root = ".";
 int runs = 120;

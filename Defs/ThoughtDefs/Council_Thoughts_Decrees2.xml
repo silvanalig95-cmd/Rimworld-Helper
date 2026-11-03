@@ -87,7 +87,11 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>lost my seat</label><description>I had a seat on the council, and now they have it.</description><baseMoodEffect>-5</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+    <!-- Stage 1 for one who wanted it badly (Offices.SeatWant: held it, a life goal of a seat, a vain nature, a campaign). -->
+    <stages>
+      <li><label>lost my seat</label><description>I had a seat on the council, and now they have it.</description><baseMoodEffect>-5</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li>
+      <li><label>they took my seat</label><description>That seat meant everything to me, and they took it.</description><baseMoodEffect>-6</baseMoodEffect><baseOpinionOffset>-18</baseOpinionOffset></li>
+    </stages>
   </ThoughtDef>
 
   <!-- Voted out of one seat but onto another in the same election (Offices.MovedSeat): only if they stood to keep the old one. -->
@@ -126,7 +130,12 @@
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>lost the vote to them</label><description>That seat should have been mine. I counted the votes twice.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <!-- Everyone who stood and lost (Offices.LostElection), by how much they wanted it: 0 felt, 1 mild, 2 bitter. -->
+    <stages>
+      <li><label>lost the vote to them</label><description>That seat should have been mine. I counted the votes twice.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li>
+      <li><label>they won the seat I stood for</label><description>I stood for the seat and they won it. Fair enough, but it stings a little.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li>
+      <li><label>they beat me to the seat</label><description>I wanted that seat badly, and they took it from under me.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li>
+    </stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

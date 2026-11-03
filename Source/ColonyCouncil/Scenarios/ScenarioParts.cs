@@ -277,6 +277,7 @@ namespace ColonyCouncil
             {
                 c.needs?.mood?.thoughts?.memories?.TryGainMemory(CouncilDefOf.Council_Scen_OldFriend, k);
                 k.needs?.mood?.thoughts?.memories?.TryGainMemory(CouncilDefOf.Council_Scen_OldFriend, c);
+                Bonds.Know(c, k, 50f);
                 if (ColonyCouncilMod.Settings.socialWeb) ctx.comp.social.Bump(c, k, TieKind.Friends, 30f, "CC_TieNote_Scenario".Translate(), true);
             }
             ctx.lines.Add("CC_Scen_Wards".Translate(ScenarioSetup.Names(carers).Named("CARERS"), ScenarioSetup.Names(kids).Named("NAMES"),

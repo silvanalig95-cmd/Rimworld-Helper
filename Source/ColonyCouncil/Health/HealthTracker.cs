@@ -687,6 +687,8 @@ namespace ColonyCouncil
         {
             if (doctor == null || patient == null || doctor == patient) return;
             PersonaMarks.Notify_PulledThrough(doctor, patient, illness);
+            // The patient is grateful to the doctor who saw them through (Social/Bonds.cs).
+            Bonds.Notify_Healed(doctor, patient, false);
             if (!rimfolk && ConvalescenceOn) Convalesce(patient, HealthMath.AfterIllness(peak), "Illness", doctor);
             if (!ReputationOn || !doctor.RaceProps.Humanlike) return;
             var rec = RecordOf(doctor, true);
@@ -721,6 +723,7 @@ namespace ColonyCouncil
             {
                 if (patient.Dead || patient.Destroyed) return;
                 if (ConvalescenceOn) Convalesce(patient, severity, "Surgery", surgeon);
+                Bonds.Notify_Healed(surgeon, patient, true);
                 if (!ReputationOn) return;
                 var rec = RecordOf(surgeon, true);
                 rec.surgeries++;

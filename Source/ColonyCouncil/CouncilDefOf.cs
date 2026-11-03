@@ -42,6 +42,10 @@ namespace ColonyCouncil
         public static ThoughtDef Council_MovedDown;
         public static ThoughtDef Council_OtherSeat;
         public static ThoughtDef Council_LostElection;
+        /// <summary>Bonds (Social/Bonds.cs, SocialWeb): carried out of a fight or tended under fire; grateful to a doctor; jealous of a partner's close friend.</summary>
+        public static ThoughtDef Council_SavedMe;
+        public static ThoughtDef Council_GratefulTo;
+        public static ThoughtDef Council_JealousOf;
         public static ThoughtDef Council_ProudMentor;
         public static ThoughtDef Council_GratefulStudent;
         public static ThoughtDef Council_Soc_LeftOut;

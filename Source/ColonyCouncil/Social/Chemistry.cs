@@ -7,13 +7,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// How two colonists get on (the arithmetic is in ChemistryMath). Time together doesn't make everyone friends: it
-    /// follows the game's own compatibility between the two, a fixed number for each pair that the game already uses
-    /// for how often they have deep talks or trade insults. What passes between them in conversation (the game's
+    /// How two colonists get on (the arithmetic is in ChemistryMath and BondsMath). Time together doesn't make everyone
+    /// friends: it follows the game's own compatibility between the two, a fixed number for each pair that the game
+    /// already uses for how often they have deep talks or trade insults, and with "How two get on sets limits" also their
+    /// faith, views, shared passions and temper (Bonds.Affinity). What passes between them in conversation (the game's
     /// chitchat, deep talks, slights and insults, other mods' talks, Rimfolk's moments and talks) counts for more or
-    /// less as it's given; Rimfolk's warm moments come up less often between two who don't click, and its frictions
-    /// more; and after a few days side by side the way they get on is a lasting feeling of its own in the Social tab.
-    /// Partners and anyone outside the colony are left alone. With the social web on.
+    /// less as it's given; between two who don't click warm words stop carrying them past a point (friendly colleagues,
+    /// never close friends); between two who barely know each other yet they count for less; Rimfolk's warm moments
+    /// come up less often between two who don't click, and its frictions more; and after a few days side by side the way
+    /// they get on is a lasting feeling of its own in the Social tab. Partners and anyone outside the colony are left
+    /// alone. With the social web on.
     /// </summary>
     public static class Chemistry
     {
@@ -40,18 +43,18 @@ namespace ColonyCouncil
             return Math.Min(ta, tb) / GenDate.TicksPerDay;
         }
 
-        /// <summary>The lasting feeling between them now (ChemistryMath stages), or None: never between partners.</summary>
+        /// <summary>The lasting feeling between them now (ChemistryMath stages, by how they get on), or None: never between partners.</summary>
         public static int Stage(Pawn a, Pawn b)
         {
             if (!Applies(a, b) || LovePartnerRelationUtility.LovePartnerRelationExists(a, b)) return ChemistryMath.None;
-            return ChemistryMath.Stage(Of(a, b), DaysTogether(a, b));
+            return ChemistryMath.Stage(Bonds.Affinity(a, b), DaysTogether(a, b));
         }
 
         /// <summary>For the Social tab's note: -1 when two don't click, 1 when they get on easily, 0 for an ordinary pair or partners.</summary>
         public static int Leaning(Pawn a, Pawn b)
         {
             if (!Applies(a, b) || LovePartnerRelationUtility.LovePartnerRelationExists(a, b)) return 0;
-            float c = Of(a, b);
+            float c = Bonds.Affinity(a, b);
             return c <= ChemistryMath.PoorAt ? -1 : c >= ChemistryMath.GoodAt ? 1 : 0;
         }
 
@@ -59,7 +62,7 @@ namespace ColonyCouncil
         public static float MomentFactor(Pawn initiator, Pawn recipient, MomentExtension ext)
         {
             if (ext == null || (ext.tone != "warm" && !ext.Friction) || !Applies(initiator, recipient)) return 1f;
-            return ChemistryMath.MomentFactor(Of(initiator, recipient), ext.Friction);
+            return ChemistryMath.MomentFactor(Bonds.Affinity(initiator, recipient), ext.Friction);
         }
 
         // ---------------- What passes between them ----------------
@@ -71,7 +74,7 @@ namespace ColonyCouncil
         /// The memories that come of a conversation: every interaction's thoughts (the game's, other mods', Rimfolk's
         /// moments) and Rimfolk's talks. Worked out once (again after the defs are reloaded).
         /// </summary>
-        private static bool Spoken(ThoughtDef def)
+        internal static bool Spoken(ThoughtDef def)
         {
             if (spoken == null || spokenGeneration != DefRefs.Generation)
             {
@@ -88,13 +91,25 @@ namespace ColonyCouncil
             return def != null && spoken.Contains(def);
         }
 
-        /// <summary>A memory of what passed between <paramref name="holder"/> and <paramref name="other"/> counts as much as the two get on.</summary>
+        /// <summary>
+        /// A memory of what passed between <paramref name="holder"/> and <paramref name="other"/> counts as much as the two
+        /// get on; a warm one less between two who barely know each other yet, and little once the holder already thinks as
+        /// well of the other as the two ever will from words (BondsMath.WordsCap).
+        /// </summary>
         public static void Notify_Given(Pawn holder, Thought_Memory m, Pawn other)
         {
             if (!(m is Thought_MemorySocial social) || social.opinionOffset == 0f || !Spoken(m.def)) return;
             other ??= m.otherPawn;
             if (!Applies(holder, other)) return;
-            social.opinionOffset = ChemistryMath.Scaled(social.opinionOffset, Of(holder, other));
+            float aff = Bonds.Affinity(holder, other);
+            float offset = ChemistryMath.Scaled(social.opinionOffset, aff);
+            if (offset > 0f)
+            {
+                if (Bonds.TakeTime) offset *= BondsMath.KnowFactor(Bonds.Familiarity(holder, other));
+                float cap = Bonds.Limits ? BondsMath.WordsCap(aff) : float.MaxValue;
+                if (cap < float.MaxValue / 2f) offset *= BondsMath.CapFactor(holder.relations.OpinionOf(other), cap);
+            }
+            social.opinionOffset = offset;
         }
     }
 

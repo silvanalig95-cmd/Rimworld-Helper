@@ -67,6 +67,44 @@
     </stages>
   </ThoughtDef>
 
+  <!-- What one did for another, and love's troubles (Social/Bonds.cs, SocialWeb). Stages as the code gives them. -->
+
+  <ThoughtDef>
+    <defName>Council_SavedMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>tended me under fire</label><description>They patched me up while the fight was still going on around us.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li>
+      <li><label>carried me out of the fight</label><description>I was down, and they came for me and carried me out of there.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_GratefulTo</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>25</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>nursed me through it</label><description>I was very ill, and they kept tending me until I pulled through.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li>
+      <li><label>a good operation</label><description>They operated on me, and it went well.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_JealousOf</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>close to my partner</label><description>They and my partner have become friends. I don't like how much time they spend together.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li>
+      <li><label>too close to my partner</label><description>They and my partner are close friends now. Too close, if you ask me.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
   <!-- Graduation -->
 
   <ThoughtDef>

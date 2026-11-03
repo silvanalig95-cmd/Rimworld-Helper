@@ -87,6 +87,18 @@ namespace ColonyCouncil
         /// <summary>An election is an event on the map: announced for a date, a campaign, the hustings, polling day and the count aloud (off: the instant letter).</summary>
         public bool electionEvent = true;
         public bool socialWeb = true;
+        /// <summary>Friendships take time: two need to know each other (time side by side, talks, what they went through) as well as like each other (Social/Bonds.cs).</summary>
+        public bool bondsTakeTime = true;
+        /// <summary>How two get on (the game's compatibility with faith, views, shared passions and temper) sets how far words and a friendship can go.</summary>
+        public bool chemistryLimits = true;
+        /// <summary>Comrades only from fighting near each other, more when one saved the other; fading in quiet spells to what their fights together leave.</summary>
+        public bool comradesByDanger = true;
+        /// <summary>What people did to each other is remembered: harm, cross words, a botched operation, an affair and envy start grudges with their cause; rescues and doctors earn gratitude.</summary>
+        public bool deedsRemembered = true;
+        /// <summary>A council seat lost is felt toward the winner, by how much it was wanted; losing to the same person again, or a gloating winner, can start a rivalry.</summary>
+        public bool seatFeelings = true;
+        /// <summary>Love's own troubles: jealousy of a partner's close friend, an awkward spell after a rejection or a breakup, losing out to someone else.</summary>
+        public bool loveFeelings = true;
         /// <summary>Rimfolk's column in the game's own Social tab (bonds, groups, name, shared memories, talks, secrets), and a line about the pair on its rows.</summary>
         public bool socialTabColumn = true;
         /// <summary>Personalities shaped by what happens to people, what they went through together, the views they hold, their groups and talk.</summary>
@@ -411,6 +423,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref electionEvent, "electionEvent", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
+            Scribe_Values.Look(ref bondsTakeTime, "bondsTakeTime", true);
+            Scribe_Values.Look(ref chemistryLimits, "chemistryLimits", true);
+            Scribe_Values.Look(ref comradesByDanger, "comradesByDanger", true);
+            Scribe_Values.Look(ref deedsRemembered, "deedsRemembered", true);
+            Scribe_Values.Look(ref seatFeelings, "seatFeelings", true);
+            Scribe_Values.Look(ref loveFeelings, "loveFeelings", true);
             Scribe_Values.Look(ref socialTabColumn, "socialTabColumn", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);
             Scribe_Values.Look(ref traitChanges, "traitChanges", true);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What one did for another, and love's troubles (Source/ColonyCouncil/Social/Bonds.cs, SocialWeb.cs). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_JealousOf</defName>
+    <thoughts><li>Council_JealousOf</li></thoughts>
+    <fix>Their partner has become friends with someone, and they mind it. It fades in about ten days. Time with their partner helps, and coming to like the friend ends it sooner.</fix>
+    <act>Let it fade</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Social</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_Grateful</defName>
+    <thoughts><li>Council_SavedMe</li><li>Council_GratefulTo</li></thoughts>
+    <fix>Gratitude for what someone did for them: a rescue in a fight, care under fire, a doctor who pulled them through. It changes how they see that person, not their mood, and lasts about a month.</fix>
+    <act>Nothing to do</act>
+    <actionable>false</actionable>
+    <keep>Someone came through for them. They won't forget it soon.</keep>
+    <article>Council_Alm_C_Social</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

@@ -230,6 +230,8 @@ namespace ColonyCouncil
             var color = UiKit.TieColor(t.kind);
             string text = other.LabelShort;
             string right = t.Label;
+            // A rivalry shows what it's about.
+            if (t.kind == TieKind.Rivals && !t.cause.NullOrEmpty()) text = "CC_Bonds_RivalRow".Translate(other.LabelShort, t.cause).Resolve();
             if (t.kind == TieKind.Mentor && t.skill != null)
             {
                 text = (t.a == p ? "CC_Social_Describe_Teaching" : "CC_Social_Describe_Learning").Translate(other.LabelShort, t.skill.label).Resolve().TrimEnd('.');
@@ -386,10 +388,16 @@ namespace ColonyCouncil
                 }
             var group = Groups.Shared(a, b);
             if (group != null) parts.Add("CC_Social_TieGroup".Translate(group.Name).Resolve());
-            // How they get on (Social/Chemistry.cs), once it's clear either way.
-            int leaning = Chemistry.Leaning(a, b);
-            if (leaning < 0) parts.Add("CC_SocialCol_PairNoClick".Translate().Resolve());
-            else if (leaning > 0) parts.Add("CC_SocialCol_PairGetOn".Translate().Resolve());
+            // How well they know each other and how they get on, with why and what it allows (Social/Bonds.cs); with
+            // those settings off, how they get on as the game's compatibility has it (Social/Chemistry.cs).
+            string bonds = Bonds.PairLines(a, b);
+            if (!bonds.NullOrEmpty()) parts.Add(bonds);
+            if (!Bonds.Limits)
+            {
+                int leaning = Chemistry.Leaning(a, b);
+                if (leaning < 0) parts.Add("CC_SocialCol_PairNoClick".Translate().Resolve());
+                else if (leaning > 0) parts.Add("CC_SocialCol_PairGetOn".Translate().Resolve());
+            }
             if (Persona.On)
             {
                 int memories = SharedMemories.Of(a, b).Count;

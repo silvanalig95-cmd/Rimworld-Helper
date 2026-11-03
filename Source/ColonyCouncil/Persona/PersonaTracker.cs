@@ -419,6 +419,8 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             var list = tr.PairList(a.thingIDNumber, b.thingIDNumber, true);
             var same = list.FirstOrDefault(m => m.def == def && m.label == label && now - m.tick < GenDate.TicksPerDay);
+            // What they went through together makes them know each other a little better (Social/Bonds.cs).
+            Bonds.Know(a, b, BondsMath.SharedGain(same != null ? weight * 0.5f : weight, Bonds.Familiarity(a, b)));
             if (same != null)
             {
                 same.weight = Mathf.Min(same.weight + weight * 0.5f, 3f);

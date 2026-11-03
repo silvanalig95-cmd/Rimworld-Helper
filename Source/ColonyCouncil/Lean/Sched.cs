@@ -90,7 +90,7 @@ namespace ColonyCouncil
         /// <summary>Defense lines watch how a raid meets them (only while raiders are on a home map that has lines).</summary>
         public const int RareDefenseLines = 233;
 
-        /// <summary>Conversations: who stands beside whom in a fight at home (only while one is on), for who remembers it together.</summary>
+        /// <summary>Who stands beside whom in a fight at home (only while one is on, Social/FightSides.cs), for who remembers it together and who become comrades.</summary>
         public const int RareFightSides = 187;
 
         /// <summary>Light sleepers wake at the smell of smoke (only while one of them is asleep at home).</summary>

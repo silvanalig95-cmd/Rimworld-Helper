@@ -910,6 +910,8 @@ namespace ColonyCouncil
                 a = pair.x;
                 b = pair.y;
                 if (a == null || b == null) return;
+                // Old friends know each other well already (Social/Bonds.cs).
+                Bonds.Know(a, b, 70f);
                 ctx.comp.social.Bump(a, b, TieKind.Friends, 50f, "CC_TieNote_Scenario".Translate(), true);
             }
             a.needs?.mood?.thoughts?.memories?.TryGainMemory(CouncilDefOf.Council_Scen_OldFriend, b);

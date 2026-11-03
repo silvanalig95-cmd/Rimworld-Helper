@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- How bonds come about (Source/ColonyCouncil/Social/Bonds.cs, SocialWeb.cs, Offices/Offices.cs). -->
+
+  <!-- Settings -->
+  <CC_Settings_BondsTakeTime>Friendships take time</CC_Settings_BondsTakeTime>
+  <CC_Settings_BondsTakeTime_Tip>A friendship needs two people to know each other as well as like each other. They come to know each other from time actually spent side by side (working near each other, meals, recreation), talks and what they go through together. New colonists start as strangers, so friendships take weeks; close friends who stop seeing each other slowly drift apart.</CC_Settings_BondsTakeTime_Tip>
+  <CC_SetNote_BondsTakeTime>New colonists start as strangers; friends drift apart when they stop seeing each other.</CC_SetNote_BondsTakeTime>
+  <CC_Settings_ChemistryLimits>How two get on sets limits</CC_Settings_ChemistryLimits>
+  <CC_Settings_ChemistryLimits_Tip>How two colonists get on comes from the game's own compatibility between them, their faiths, the views they hold, passions they share and their temper (a kind soul gets on with most people, an abrasive one with few). Two who don't click stay friendly colleagues however many talks they have; two who get on easily warm to each other quickly. Hovering a colonist in the Social tab says how a pair gets on and why.</CC_Settings_ChemistryLimits_Tip>
+  <CC_SetNote_ChemistryLimits>Two who don't click stay friendly colleagues; two who click warm quickly.</CC_SetNote_ChemistryLimits>
+  <CC_Settings_ComradesByDanger>Comrades from shared danger</CC_Settings_ComradesByDanger>
+  <CC_Settings_ComradesByDanger_Tip>Only colonists who fought near each other in a fight become comrades, and more so when one carried the other out, tended them under fire or stood over them while they were down. Every fight together counts in full. Comradeship fades in long quiet spells, down to what a long history of fighting together leaves. Rivals who fight side by side ease off.</CC_Settings_ComradesByDanger_Tip>
+  <CC_SetNote_ComradesByDanger>Comrades from fighting near each other, fading in quiet spells.</CC_SetNote_ComradesByDanger>
+  <CC_Settings_DeedsRemembered>What people do to each other is remembered</CC_Settings_DeedsRemembered>
+  <CC_Settings_DeedsRemembered_Tip>Harm done (a social fight, a blow in a rage, a shot in a fight), cross words, a botched operation, an affair and envy of a much better room or title start grudges, each with its cause. A grudge holds a few days and then fades slowly unless it is renewed. Someone carried out of a fight, tended under fire or nursed through an illness is grateful to whoever did it.</CC_Settings_DeedsRemembered_Tip>
+  <CC_SetNote_DeedsRemembered>Grudges with their causes, and gratitude for a rescue or a doctor's care.</CC_SetNote_DeedsRemembered>
+  <CC_Settings_SeatFeelings>A council seat lost is felt</CC_Settings_SeatFeelings>
+  <CC_Settings_SeatFeelings_Tip>Whoever stood for a seat and saw someone else win it thinks less of the winner, the more the more they wanted it: holding the seat before, a life goal of a seat on the council, a vain or jealous nature, a campaign of their own. Losing to the same person again, or a winner who gloats, can start a rivalry. Moving to another seat on the council is only a mood.</CC_Settings_SeatFeelings_Tip>
+  <CC_SetNote_SeatFeelings>Losers of a seat think less of the winner, as much as they wanted it.</CC_SetNote_SeatFeelings>
+  <CC_Settings_LoveFeelings>Love and jealousy</CC_Settings_LoveFeelings>
+  <CC_Settings_LoveFeelings_Tip>A partner who minds it is jealous when their partner grows close to someone else. Things are awkward for a while between two after one turned the other down or they broke up. Someone turned down or left who then sees their beloved take up with another holds it against the new partner. The game's own romance is left as it is.</CC_Settings_LoveFeelings_Tip>
+  <CC_SetNote_LoveFeelings>Jealousy, awkward spells, and losing out to someone else.</CC_SetNote_LoveFeelings>
+
+  <!-- Ties -->
+  <CC_Tie_Formed_RivalsCause>{A_nameDef} and {B_nameDef} are rivals now ({CAUSE}).</CC_Tie_Formed_RivalsCause>
+  <CC_TieNote_CrossWords>cross words</CC_TieNote_CrossWords>
+  <CC_TieNote_Botched>an operation that went wrong</CC_TieNote_Botched>
+  <CC_TieNote_Rage>one attacked the other in a rage</CC_TieNote_Rage>
+  <CC_TieNote_FriendlyFire>one hit the other in a fight</CC_TieNote_FriendlyFire>
+  <CC_TieNote_Cheated>one cheated on the other</CC_TieNote_Cheated>
+  <CC_TieNote_Affair>an affair with {0}</CC_TieNote_Affair>
+  <CC_TieNote_WonHeart>won {0}'s heart</CC_TieNote_WonHeart>
+  <CC_TieNote_Jealous>grew close to {0}</CC_TieNote_Jealous>
+  <CC_TieNote_EnvyRoom>envy of {0}'s room</CC_TieNote_EnvyRoom>
+  <CC_TieNote_EnvyTitle>envy of {0}'s title, {1}</CC_TieNote_EnvyTitle>
+  <CC_TieNote_SeatLost>one took the other's seat as {0}</CC_TieNote_SeatLost>
+  <CC_TieNote_SeatAgain>one lost to the other again, for {0}</CC_TieNote_SeatAgain>
+  <CC_TieNote_Gloated>one gloated after winning {0}</CC_TieNote_Gloated>
+  <CC_TieNote_Rescued>one carried the other out of a fight</CC_TieNote_Rescued>
+  <CC_TieNote_TendedUnderFire>one tended the other under fire</CC_TieNote_TendedUnderFire>
+  <CC_TieNote_FoughtTogether>fought side by side</CC_TieNote_FoughtTogether>
+
+  <!-- The Social tab -->
+  <CC_Bonds_RivalRow>{0} ({1})</CC_Bonds_RivalRow>
+  <CC_Bonds_TipCause>What it's about: {0}.</CC_Bonds_TipCause>
+  <CC_Bonds_TipFights>Fought near each other in {0} fights.</CC_Bonds_TipFights>
+  <CC_Bonds_Know_0>They hardly know each other yet.</CC_Bonds_Know_0>
+  <CC_Bonds_Know_1>They're getting to know each other.</CC_Bonds_Know_1>
+  <CC_Bonds_Know_2>They know each other.</CC_Bonds_Know_2>
+  <CC_Bonds_Know_3>They know each other well.</CC_Bonds_Know_3>
+  <CC_Bonds_Awkward_1>Things are awkward between them since one turned the other down.</CC_Bonds_Awkward_1>
+  <CC_Bonds_Awkward_2>Things are awkward between them since a proposal was turned down.</CC_Bonds_Awkward_2>
+  <CC_Bonds_Awkward_3>Things are awkward between them since they broke up.</CC_Bonds_Awkward_3>
+  <CC_Bonds_Grate>They rub each other the wrong way{WHY}: friendly colleagues at best.</CC_Bonds_Grate>
+  <CC_Bonds_NoClick>They don't click{WHY}: new friends at most.</CC_Bonds_NoClick>
+  <CC_Bonds_Mismatch>They're a little mismatched{WHY}: good friends at most, never close.</CC_Bonds_Mismatch>
+  <CC_Bonds_Click>They get on easily{WHY}: they warm to each other quickly.</CC_Bonds_Click>
+  <CC_Bonds_Why_Years>years apart</CC_Bonds_Why_Years>
+  <CC_Bonds_Why_Little>little in common</CC_Bonds_Why_Little>
+  <CC_Bonds_Why_Natural>a natural ease</CC_Bonds_Why_Natural>
+  <CC_Bonds_Why_Faiths>different faiths</CC_Bonds_Why_Faiths>
+  <CC_Bonds_Why_Faith>the same faith</CC_Bonds_Why_Faith>
+  <CC_Bonds_Why_Odds>at odds over things</CC_Bonds_Why_Odds>
+  <CC_Bonds_Why_Agree>they agree on things</CC_Bonds_Why_Agree>
+  <CC_Bonds_Why_Passion>a shared passion</CC_Bonds_Why_Passion>
+  <CC_Bonds_Why_Tongue>{PAWN_nameDef}'s sharp tongue</CC_Bonds_Why_Tongue>
+  <CC_Bonds_Why_Kind>{PAWN_nameDef}'s kindness</CC_Bonds_Why_Kind>
+
+</LanguageData>

@@ -19,5 +19,8 @@
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="Linked/PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="Linked/SetbackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="Linked/SettingsCatalog.cs" />
+    <!-- How bonds come about (SocialSim.cs, with &#45;&#45;social). -->
+    <Compile Include="../../Source/ColonyCouncil/Social/BondsMath.cs" Link="Linked/BondsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="Linked/ChemistryMath.cs" />
   </ItemGroup>
 </Project>

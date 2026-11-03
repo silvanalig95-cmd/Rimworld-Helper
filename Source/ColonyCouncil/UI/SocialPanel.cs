@@ -649,6 +649,15 @@ namespace ColonyCouncil
             };
             if (t.kind == TieKind.Mentor && t.skill != null)
                 lines.Add("CC_Social_Lessons".Translate(t.skill.label, t.b.LabelShort, t.b.skills?.GetSkill(t.skill)?.Level ?? 0));
+            // What a rivalry is about, and the fights two comrades fought near each other (Social/Bonds.cs).
+            if (t.kind == TieKind.Rivals && !t.cause.NullOrEmpty()) lines.Add("CC_Bonds_TipCause".Translate(t.cause).Resolve());
+            if (t.kind == TieKind.Comrades && Bonds.Danger)
+            {
+                int fights = Bonds.BattlesTogether(t.a, t.b);
+                if (fights > 0) lines.Add("CC_Bonds_TipFights".Translate(fights).Resolve());
+            }
+            string pair = Bonds.PairLines(t.a, t.b);
+            if (!pair.NullOrEmpty()) lines.Add(pair);
             if (t.history.Count > 0) lines.Add("\n" + string.Join("\n", t.history));
             // What the two went through together (Persona/SharedMemories), while social life is on.
             var memories = Persona.On ? SharedMemories.Of(t.a, t.b) : new List<SharedMemory>();
