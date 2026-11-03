@@ -66,6 +66,16 @@ namespace ColonyCouncil
         public static void Postfix(ThoughtHandler __instance, Thought group, ref float __result)
         {
             if (__result <= 0f || GoodTimes.Raw) return;
+            // The good life's reading first: standards' cut eases for something new by it.
+            float share = 1f;
+            try
+            {
+                share = GoodLife.ShareOf(__instance?.pawn, group?.def);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("used to the good life", e);
+            }
             try
             {
                 __result = GoodTimes.Felt(__instance, group, __result);
@@ -74,15 +84,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("standards and comforts", e);
             }
-            try
-            {
-                float share = GoodLife.ShareOf(__instance?.pawn, group?.def);
-                if (share < 1f) __result *= share;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("used to the good life", e);
-            }
+            if (share < 1f) __result *= share;
         }
     }
 }

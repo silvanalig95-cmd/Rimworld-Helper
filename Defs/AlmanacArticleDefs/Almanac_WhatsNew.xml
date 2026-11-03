@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.55.3</version>
+        <date>3 November 2026</date>
+        <title>A wedding still lands</title>
+        <points>
+          <li>Something new now counts by its own age: a wedding just attended lifts a spoiled colonist nearly in full, then counts for a little less each day until, after about six days, it is just another good memory. This holds after loading a save too.</li>
+          <li>Standards' cut on the game's good moods eases in the same way, so it falls on everyday comforts and hardly at all on something that just happened.</li>
+          <li>A good mood whose moment has passed says so in its tooltip.</li>
+          <li>The health panel now shows carcinomas and other lasting illnesses that can kill, as "stable", "shrinking" or "getting worse", with how far they are towards deadly. A bad back, cataracts and other lasting conditions that can't kill stay off it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.55.2</version>
         <date>3 November 2026</date>
         <title>Used to everyday comforts, not to new joys</title>

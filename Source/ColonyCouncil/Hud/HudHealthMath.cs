@@ -82,7 +82,11 @@ namespace ColonyCouncil
         Worsening,
         Losing,
         Danger,
-        Bleeding
+        Bleeding,
+        /// <summary>A chronic condition that can kill and isn't growing (a stable carcinoma).</summary>
+        Stable,
+        /// <summary>A chronic condition that can kill and is shrinking (a carcinoma in remission).</summary>
+        Shrinking
     }
 
     /// <summary>What a condition's little bar shows.</summary>
@@ -136,15 +140,18 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whether a condition belongs on the health panel. What lasts (lost parts, added parts and implants, scars,
-        /// chronic conditions) and what isn't an illness (pregnancy; anything the game doesn't call bad, which covers
+        /// chronic conditions that can't kill: a bad back, cataracts, frailty, dementia) and what isn't an illness (pregnancy; anything the game doesn't call bad, which covers
         /// psylinks, auras, buffs and highs) never shows. Then: bleeding, wounds, anything wanting tending, Rimfolk's
         /// ailments, illnesses (an immunity race, or the game calling it being sick), and anything that can kill. What's
         /// left doesn't show: a bad effect that is none of these (another mod's curse or magic, a hangover) is neither
         /// an injury nor an illness, and one that never changes and needs nothing is how they are now, not something that passes.
+        /// A chronic condition that can kill (a carcinoma) always shows, the player asked to see them: it won't pass, but an
+        /// operation can take it away.
         /// </summary>
         public static bool Shows(HediffFacts f)
         {
-            if (f.missingPart || f.addedPart || f.permanent || f.chronic || f.pregnancy) return false;
+            if (f.missingPart || f.addedPart || f.permanent || f.pregnancy) return false;
+            if (f.chronic) return f.bad && f.Lethal;
             if (f.ailment) return true;
             if (!f.bad) return false;
             if (f.bleedRate > 0f) return true;
@@ -331,6 +338,13 @@ namespace ColonyCouncil
             return HealthStatus.Healing;
         }
 
+        /// <summary>
+        /// A row that would read "healing" whose first condition is chronic (a carcinoma): "stable" while it isn't growing,
+        /// "shrinking" while it is (growing already reads "getting worse"). A chronic condition doesn't heal.
+        /// </summary>
+        public static HealthStatus Lasting(HealthStatus status, bool topChronic, float topSeverityPerDay) =>
+            status != HealthStatus.Healing || !topChronic ? status : topSeverityPerDay < -Still ? HealthStatus.Shrinking : HealthStatus.Stable;
+
         /// <summary>The status word's colour: healing green, something to tend yellow, getting worse or losing orange, bleeding or in danger red.</summary>
         public static HealthTone ToneOf(HealthStatus status)
         {
@@ -343,6 +357,7 @@ namespace ColonyCouncil
                 case HealthStatus.Worsening:
                     return HealthTone.Warn;
                 case HealthStatus.Untended:
+                case HealthStatus.Stable:
                     return HealthTone.Fair;
                 default:
                     return HealthTone.Good;

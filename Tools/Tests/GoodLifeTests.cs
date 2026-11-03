@@ -50,18 +50,43 @@ public static class GoodLifeTests
             }
 
         // ---------- Everyday comforts lose most, something new least ----------
-        C(GoodLifeMath.Weight(true, 0f, 1) == 1f && GoodLifeMath.Weight(false, 1f, 3) == 1f, "a lasting mood, or several of a kind at once: everyday");
-        C(GoodLifeMath.Weight(false, 1f, 1) == GoodLifeMath.FreshWeight, "once lately: new");
-        C(GoodLifeMath.Weight(false, 3f, 1) == 1f && GoodLifeMath.Weight(false, 9f, 1) == 1f, "three times or more lately: everyday");
-        C(GoodLifeMath.Weight(false, -1f, 1) == GoodLifeMath.UnknownWeight, "not known since loading: in between");
-        C(GoodLifeMath.Weight(false, 2f, 1) > GoodLifeMath.FreshWeight && GoodLifeMath.Weight(false, 2f, 1) < 1f, "twice lately: in between");
+        C(GoodLifeMath.Weight(true, 0f, 1, 0f, 5f) == 1f && GoodLifeMath.Weight(false, 1f, 3, 0f, 5f) == 1f, "a lasting mood, or several of a kind at once: everyday");
+        C(GoodLifeMath.Weight(false, 1f, 1, 0f, 5f) == GoodLifeMath.FreshWeight, "once lately and brand new: new");
+        C(GoodLifeMath.Weight(false, 3f, 1, 0f, 1f) == 1f && GoodLifeMath.Weight(false, 9f, 1, 0f, 1f) == 1f, "three times or more lately: everyday, however new");
+        C(GoodLifeMath.Weight(false, -1f, 1, 0f, 1f) == GoodLifeMath.UnknownWeight, "a small pleasure not known since loading: in between");
+        C(GoodLifeMath.Weight(false, 2f, 1, 0f, 5f) > GoodLifeMath.FreshWeight && GoodLifeMath.Weight(false, 2f, 1, 0f, 5f) < 1f, "twice lately: in between");
+        // A wedding: new when it happens, whether or not its count is known (it was given before loading), then ordinary.
+        C(GoodLifeMath.Weight(false, -1f, 1, 0f, 10f) == GoodLifeMath.FreshWeight, "a wedding just attended is new, loaded or not");
+        C(GoodLifeMath.Weight(false, -1f, 1, 1.1f, 10f) < 0.35f, "a day later it is still nearly new");
+        C(GoodLifeMath.Weight(false, -1f, 1, 6f, 10f) == 1f, "after six days it is ordinary");
+        for (float d = 0f; d < 8f; d += 0.25f)
+            C(GoodLifeMath.AgeWeight(d + 0.25f, 10f) >= GoodLifeMath.AgeWeight(d, 10f), $"it only grows more ordinary with age ({d})");
+        C(Math.Abs(GoodLifeMath.AgeWeight(0.5f, 1f) - (GoodLifeMath.FreshWeight + (1f - GoodLifeMath.FreshWeight) * 0.5f)) < 0.001f,
+            "a one-day memory settles over a day");
+        C(GoodLifeMath.AgeWeight(3f, 0f) < 1f && GoodLifeMath.AgeWeight(6f, 0f) == 1f, "one without an end settles over six days");
+        // Standards' cut: in full on everyday comforts, hardly on something new.
+        C(GoodLifeMath.ComfortFor(0.7f, 1f) == 0.7f && GoodLifeMath.ComfortFor(1f, 0.2f) == 1f, "everyday comforts: the whole cut");
+        C(Math.Abs(GoodLifeMath.ComfortFor(0.7f, GoodLifeMath.FreshWeight) - (1f - 0.3f * GoodLifeMath.FreshWeight)) < 0.001f, "something new: hardly any cut");
         C(Math.Abs(GoodLifeMath.Decayed(4f, GoodLifeMath.RecentHalfLifeTicks) - 2f) < 0.001f && GoodLifeMath.Decayed(4f, 0) == 4f
           && GoodLifeMath.Decayed(-1f, 10) == 0f, "the count halves every two days");
         {
             // A meal a day settles at about three and a half: everyday.
             float c = 0f;
             for (int d = 0; d < 30; d++) c = GoodLifeMath.Decayed(c, 60000) + 1f;
-            C(c > 3f && c < 4f && GoodLifeMath.Weight(false, c, 1) == 1f, $"a meal a day becomes everyday ({c:0.00})");
+            C(c > 3f && c < 4f && GoodLifeMath.Weight(false, c, 1, 0f, 1f) == 1f, $"a meal a day becomes everyday ({c:0.00})");
+        }
+        {
+            // A spoiled colonist with +80 of good moods: +60 everyday, a wedding (+20 as felt) brand new, then six days on.
+            var v = new List<float> { 60f, 20f };
+            var sh = new List<float> { 0f, 0f };
+            float take = GoodLifeMath.TakeBack(80f, GoodLifeMath.LineFor(3));
+            GoodLifeMath.Spread(v, new List<float> { 1f, GoodLifeMath.AgeWeight(0f, 10f) }, take, sh);
+            C(sh[1] >= 0.85f, $"a wedding just attended keeps most of its lift ({sh[1]:0.00})");
+            float fresh = sh[1];
+            GoodLifeMath.Spread(v, new List<float> { 1f, GoodLifeMath.AgeWeight(2f, 10f) }, take, sh);
+            float later = sh[1];
+            GoodLifeMath.Spread(v, new List<float> { 1f, GoodLifeMath.AgeWeight(6f, 10f) }, take, sh);
+            C(later < fresh && sh[1] < later && Math.Abs(sh[1] - sh[0]) < 0.001f, $"and drifts down to the everyday share ({fresh:0.00}, {later:0.00}, {sh[1]:0.00})");
         }
         var vals = new List<float> { 20f, 30f, 10f, 15f, -5f, 0f };
         var wts = new List<float> { 1f, 1f, GoodLifeMath.FreshWeight, 0.65f, 1f, 1f };

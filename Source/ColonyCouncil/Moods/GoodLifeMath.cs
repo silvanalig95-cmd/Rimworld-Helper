@@ -83,10 +83,16 @@ namespace ColonyCouncil
         // ---------------- Everyday comforts and fresh joys ----------------
 
         /// <summary>How ordinary something brand new is: it loses the least.</summary>
-        public const float FreshWeight = 0.3f;
+        public const float FreshWeight = 0.15f;
 
-        /// <summary>How ordinary a good memory is whose recent count is unknown (given before the game was loaded).</summary>
+        /// <summary>How ordinary a small good memory is (a day and a half or less) whose recent count is unknown (given before loading).</summary>
         public const float UnknownWeight = 0.65f;
+
+        /// <summary>A good memory lasting this many days or less is a small everyday pleasure: a meal, a chat, a smoke.</summary>
+        public const float SmallDays = 1.5f;
+
+        /// <summary>A good memory turns ordinary over this share of its time, between a day and six days.</summary>
+        public const float SettleShare = 0.6f, MinSettleDays = 1f, MaxSettleDays = 6f;
 
         /// <summary>How long the count of a kind of good memory takes to halve: two days.</summary>
         public const int RecentHalfLifeTicks = 120000;
@@ -100,18 +106,48 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How ordinary a good mood is to them, from <see cref="FreshWeight"/> (new) to 1 (everyday): a lasting mood (a room,
-        /// their beliefs, the council) is part of everyday life; a memory by how often that kind has come lately
-        /// (<paramref name="recent"/>, halving every two days: once is new, three times or more is everyday, as a meal a
-        /// day settles at about three and a half); one they hold several of at once is everyday too. Below zero means the
-        /// count is unknown.
+        /// How ordinary a good memory has become with its age: brand new it is <see cref="FreshWeight"/>, everyday once
+        /// <see cref="SettleShare"/> of its time has passed (at least a day, at most six; six for one without an end).
         /// </summary>
-        public static float Weight(bool lasting, float recent, int held)
+        public static float AgeWeight(float ageDays, float durationDays)
         {
-            if (lasting || held >= 2) return 1f;
-            if (float.IsNaN(recent) || recent < 0f) return UnknownWeight;
+            float settle = durationDays > 0f ? Math.Max(MinSettleDays, Math.Min(MaxSettleDays, durationDays * SettleShare)) : MaxSettleDays;
+            float t = float.IsNaN(ageDays) || ageDays <= 0f ? 0f : Math.Min(1f, ageDays / settle);
+            return FreshWeight + (1f - FreshWeight) * t;
+        }
+
+        /// <summary>
+        /// How ordinary a kind of good memory is from how often it has come lately (<paramref name="recent"/>, halving every
+        /// two days): once is new, three times or more is everyday, as a meal a day settles at about three and a half.
+        /// Unknown (below zero): a small everyday pleasure counts as in between, anything bigger leaves it to its age (0).
+        /// </summary>
+        public static float OftenWeight(float recent, float durationDays)
+        {
+            if (float.IsNaN(recent) || recent < 0f) return durationDays > 0f && durationDays <= SmallDays ? UnknownWeight : 0f;
             float w = FreshWeight + (1f - FreshWeight) * (recent - 1f) / 2f;
             return w < FreshWeight ? FreshWeight : w > 1f ? 1f : w;
+        }
+
+        /// <summary>
+        /// How ordinary a good mood is to them, from <see cref="FreshWeight"/> (new) to 1 (everyday): a lasting mood (a room,
+        /// their beliefs, the council) and several of a kind at once are everyday; a memory is as ordinary as the more of
+        /// its age (a wedding starts new and settles over days) and how often its kind has come lately.
+        /// </summary>
+        public static float Weight(bool lasting, float recent, int held, float ageDays, float durationDays)
+        {
+            if (lasting || held >= 2) return 1f;
+            return Math.Max(AgeWeight(ageDays, durationDays), OftenWeight(recent, durationDays));
+        }
+
+        /// <summary>
+        /// Standards' cut on a comfort (GoodTimesMath.ComfortFactor), as felt for something this ordinary: in full on an
+        /// everyday comfort, hardly at all on something new.
+        /// </summary>
+        public static float ComfortFor(float factor, float weight)
+        {
+            if (float.IsNaN(factor) || factor >= 1f) return 1f;
+            float w = float.IsNaN(weight) ? 1f : Math.Max(0f, Math.Min(1f, weight));
+            return 1f - (1f - factor) * w;
         }
 
         /// <summary>

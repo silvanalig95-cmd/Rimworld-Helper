@@ -134,6 +134,8 @@
   <CC_Pnl_H_Losing>losing</CC_Pnl_H_Losing>
   <CC_Pnl_H_Worsening>getting worse</CC_Pnl_H_Worsening>
   <CC_Pnl_H_Healing>healing</CC_Pnl_H_Healing>
+  <CC_Pnl_H_Stable>stable</CC_Pnl_H_Stable>
+  <CC_Pnl_H_Shrinking>shrinking</CC_Pnl_H_Shrinking>
   <CC_Pnl_H_Race>{0} {1}, immunity {2}</CC_Pnl_H_Race>
   <CC_Pnl_H_BleedTip>Bleeding {0} a day.</CC_Pnl_H_BleedTip>
   <CC_Pnl_H_BleedDeath>Without tending, dead in {0}.</CC_Pnl_H_BleedDeath>

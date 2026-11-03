@@ -13,7 +13,8 @@ namespace ColonyCouncil
     /// The colony's health at a glance: a row for each of the colony's people with something that will pass or needs a
     /// reaction, and nothing else. Wounds, bleeding (with the time to death as the game reckons it), what wants tending,
     /// illnesses and their immunity race ("recovering" or "losing"), anything that can kill while it's moving
-    /// (hypothermia, toxic buildup), and Rimfolk's everyday ailments. Never lost parts, implants, scars, chronic
+    /// (hypothermia, toxic buildup), chronic conditions that can kill (a carcinoma: "stable", "shrinking" or "getting
+    /// worse", always shown) and Rimfolk's everyday ailments. Never lost parts, implants, scars, other chronic
     /// conditions, pregnancy, or buffs, auras and other mods' magic (<see cref="HudHealthMath.Shows"/>). Bleeding or soon
     /// lethal first, then untended, then losing a race, then healing. A calm colony gets one quiet line.
     ///
@@ -245,7 +246,8 @@ namespace ColonyCouncil
             float worstScore = items.Count == 0 ? 0f : items.Max(i => i.score);
             float score = HudHealthMath.PawnScore(hours, worstScore, untended);
             // Only healing: on the panel unless "those only healing" is switched off.
-            if (score < HudRank.SoonFloor && !st.Shows(PartHealing)) return null;
+            // A chronic condition that can kill (a carcinoma) shows whatever that setting says.
+            if (score < HudRank.SoonFloor && !st.Shows(PartHealing) && !items.Any(i => i.facts.chronic)) return null;
             items.Sort((a, b) => b.score.CompareTo(a.score));
             HowFar(p, set);
             var row = new Row { pawn = p, score = score, name = p.LabelShortCap };
@@ -412,6 +414,7 @@ namespace ColonyCouncil
         {
             var top = items.Count > 0 ? items[0] : null;
             var status = HudHealthMath.StatusOf(bleedHours >= 0f, top?.score ?? 0f, untended, top != null && top.race == HealthRace.Losing);
+            status = HudHealthMath.Lasting(status, top?.facts.chronic == true, top?.facts.severityPerDay ?? 0f);
             switch (status)
             {
                 case HealthStatus.Bleeding:
@@ -430,6 +433,12 @@ namespace ColonyCouncil
                     break;
                 case HealthStatus.Worsening:
                     row.status = HudKit.T("CC_Pnl_H_Worsening");
+                    break;
+                case HealthStatus.Stable:
+                    row.status = HudKit.T("CC_Pnl_H_Stable");
+                    break;
+                case HealthStatus.Shrinking:
+                    row.status = HudKit.T("CC_Pnl_H_Shrinking");
                     break;
                 default:
                     row.status = HudKit.T("CC_Pnl_H_Healing");
@@ -502,7 +511,7 @@ namespace ColonyCouncil
                 if (it.tendQuality >= 0f) return "CC_Pnl_H_TendedQ".Translate(it.tendQuality.ToStringPercent()).Resolve();
                 return "CC_Pnl_H_HpLeft".Translate(Mathf.CeilToInt(hd.Severity)).Resolve();
             }
-            if (it.facts.Lethal && it.facts.severityPerDay > HudHealthMath.Still)
+            if (it.facts.Lethal && (it.facts.chronic || it.facts.severityPerDay > HudHealthMath.Still))
             {
                 color = HudKit.ColorOf(it.score, UiKit.Faint);
                 return "CC_Pnl_H_ToLethal".Translate(it.facts.Progress.ToStringPercent()).Resolve();
@@ -558,7 +567,7 @@ namespace ColonyCouncil
                 if (it.notHealing) parts.Add(HudKit.T("CC_Pnl_H_NotHealingShort"));
                 else if (it.daysLeft > 0f) parts.Add(Soon(it.daysLeft));
             }
-            else if (it.facts.Lethal && it.facts.severityPerDay > HudHealthMath.Still)
+            else if (it.facts.Lethal && (it.facts.chronic || it.facts.severityPerDay > HudHealthMath.Still))
             {
                 parts.Add("CC_Pnl_H_ToLethal".Translate(it.facts.Progress.ToStringPercent()).Resolve());
                 color = HudKit.ColorOf(it.score, UiKit.Faint);

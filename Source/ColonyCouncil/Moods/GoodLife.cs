@@ -46,6 +46,7 @@ namespace ColonyCouncil
             /// <summary>Each kind of good mood's own share, and how ordinary it is to them (GoodLifeMath.Weight).</summary>
             public readonly Dictionary<ThoughtDef, float> shares = new Dictionary<ThoughtDef, float>();
             public readonly Dictionary<ThoughtDef, float> weights = new Dictionary<ThoughtDef, float>();
+            public readonly Dictionary<ThoughtDef, Kind> kinds = new Dictionary<ThoughtDef, Kind>();
         }
 
         /// <summary>A kind of memory had lately: how many times, halving every two days, as of a tick.</summary>
@@ -68,6 +69,9 @@ namespace ColonyCouncil
         private static readonly List<float> tmpValues = new List<float>(), tmpWeights = new List<float>(), tmpShares = new List<float>();
         private static readonly List<int> tmpHeld = new List<int>();
         private static readonly List<bool> tmpLasting = new List<bool>();
+        private static readonly List<float> tmpAge = new List<float>(), tmpLasts = new List<float>(), tmpGroupValues = new List<float>();
+        private static readonly List<Kind> tmpKinds = new List<Kind>();
+        private static readonly List<Thought> tmpGroups = new List<Thought>();
         private static bool working;
 
         private static AccessTools.FieldRef<SituationalThoughtHandler, List<Thought_Situational>> situationalRef;
@@ -166,6 +170,7 @@ namespace ColonyCouncil
                 r.tick = now;
                 r.shares.Clear();
                 r.weights.Clear();
+                r.kinds.Clear();
                 if (!Pressures.Eligible(p))
                 {
                     r.positives = r.line = r.takeBack = r.hard = r.felt = 0f;
@@ -186,6 +191,7 @@ namespace ColonyCouncil
                 for (int i = 0; i < tmpDefs.Count; i++)
                 {
                     r.weights[tmpDefs[i]] = tmpWeights[i];
+                    r.kinds[tmpDefs[i]] = tmpKinds[i];
                     if (tmpShares[i] < 1f) r.shares[tmpDefs[i]] = tmpShares[i];
                 }
                 return r;
@@ -212,6 +218,11 @@ namespace ColonyCouncil
                 tmpShares.Clear();
                 tmpHeld.Clear();
                 tmpLasting.Clear();
+                tmpAge.Clear();
+                tmpLasts.Clear();
+                tmpKinds.Clear();
+                tmpGroups.Clear();
+                tmpGroupValues.Clear();
             }
         }
 
@@ -256,6 +267,9 @@ namespace ColonyCouncil
             tmpWeights.Clear();
             tmpHeld.Clear();
             tmpLasting.Clear();
+            tmpAge.Clear();
+            tmpLasts.Clear();
+            tmpKinds.Clear();
             var handler = p.needs?.mood?.thoughts;
             if (handler == null) return 0f;
             tmpThoughts.Clear();
@@ -282,13 +296,16 @@ namespace ColonyCouncil
                     tmpThoughts.Add(s);
                     tmpOffsets.Add(o);
                 }
-            float sum = 0f;
+            // First the groups as the game adds them up, and by kind how ordinary each is (social memories about
+            // different people are one kind, and so are several of the same).
+            tmpGroups.Clear();
+            tmpGroupValues.Clear();
             for (int i = 0; i < tmpThoughts.Count; i++)
             {
                 var first = tmpThoughts[i];
                 if (first == null) continue;
                 // The game adds a group up as the average of its thoughts times 1 + m + m^2..., m being the def's stacking.
-                float total = 0f, stacked = 0f, mult = 1f;
+                float total = 0f, stacked = 0f, mult = 1f, youngest = float.MaxValue, lasts = 0f;
                 int n = 0;
                 for (int j = i; j < tmpThoughts.Count; j++)
                 {
@@ -298,13 +315,17 @@ namespace ColonyCouncil
                     stacked += mult;
                     mult *= t.def.stackedEffectMultiplier;
                     n++;
+                    if (t is Thought_Memory tm && tm.age / (float)GenDate.TicksPerDay < youngest)
+                    {
+                        youngest = tm.age / (float)GenDate.TicksPerDay;
+                        lasts = tm.permanent ? 0f : tm.DurationTicks / (float)GenDate.TicksPerDay;
+                    }
                     if (j != i) tmpThoughts[j] = null;
                 }
                 float group = total / n * stacked;
                 if (group <= 0f) continue;
-                float felt = GoodTimes.Felt(handler, first, group);
-                sum += felt;
-                // By kind: social memories about different people are one kind, and so are several of the same.
+                tmpGroups.Add(first);
+                tmpGroupValues.Add(group);
                 int k = tmpDefs.IndexOf(first.def);
                 if (k < 0)
                 {
@@ -312,27 +333,68 @@ namespace ColonyCouncil
                     tmpValues.Add(0f);
                     tmpHeld.Add(0);
                     tmpLasting.Add(first is Thought_Situational);
+                    tmpAge.Add(float.MaxValue);
+                    tmpLasts.Add(0f);
                     k = tmpDefs.Count - 1;
                 }
-                tmpValues[k] += felt;
                 tmpHeld[k] += n;
+                if (youngest < tmpAge[k])
+                {
+                    tmpAge[k] = youngest;
+                    tmpLasts[k] = lasts;
+                }
             }
             for (int i = 0; i < tmpDefs.Count; i++)
-                tmpWeights.Add(GoodLifeMath.Weight(tmpLasting[i], tmpLasting[i] ? 0f : RecentCount(p, tmpDefs[i], now), tmpHeld[i]));
+            {
+                bool lastingMood = tmpLasting[i];
+                float age = tmpAge[i] == float.MaxValue ? 0f : tmpAge[i];
+                float often = lastingMood ? 0f : GoodLifeMath.OftenWeight(RecentCount(p, tmpDefs[i], now), tmpLasts[i]);
+                float aged = GoodLifeMath.AgeWeight(age, tmpLasts[i]);
+                float w = GoodLifeMath.Weight(lastingMood, lastingMood ? 0f : RecentCount(p, tmpDefs[i], now), tmpHeld[i], age, tmpLasts[i]);
+                tmpWeights.Add(w);
+                Kind kind;
+                if (lastingMood) kind = Kind.Lasting;
+                else if (tmpHeld[i] >= 2) kind = Kind.Often;
+                else if (w <= 0.45f) kind = Kind.New;
+                else if (w >= 0.8f) kind = often >= aged ? Kind.Often : Kind.Settled;
+                else kind = Kind.Between;
+                tmpKinds.Add(kind);
+            }
+            // Then each group as felt, standards' cut on a comfort easing for something new.
+            float sum = 0f;
+            for (int g = 0; g < tmpGroups.Count; g++)
+            {
+                int k = tmpDefs.IndexOf(tmpGroups[g].def);
+                float felt = GoodTimes.Felt(handler, tmpGroups[g], tmpGroupValues[g], tmpWeights[k]);
+                sum += felt;
+                tmpValues[k] += felt;
+            }
+            tmpGroups.Clear();
             return sum;
         }
 
         /// <summary>
         /// How ordinary a kind of good mood is to them, for its tooltip: part of everyday life (a lasting mood), had
-        /// often lately, still new, or in between.
+        /// often lately, still new, settled with time (the moment has passed), or in between.
         /// </summary>
-        public enum Kind { Lasting, Often, New, Between }
+        public enum Kind { Lasting, Often, New, Settled, Between }
 
         public static Kind KindOf(Pawn p, Thought group)
         {
             if (group is Thought_Situational) return Kind.Lasting;
-            float w = WeightOf(p, group?.def);
-            return w >= 0.8f ? Kind.Often : w >= 0f && w <= 0.45f ? Kind.New : Kind.Between;
+            var r = ReadingOf(p);
+            return r != null && group?.def != null && r.kinds.TryGetValue(group.def, out var k) ? k : Kind.Between;
+        }
+
+        /// <summary>
+        /// How ordinary this kind of good mood is to them for standards' cut on a comfort (GoodTimes.Felt): 1 (the
+        /// whole cut) when the rule is off or the kind isn't known yet.
+        /// </summary>
+        public static float ComfortWeight(Pawn p, ThoughtDef def)
+        {
+            if (!On || GoodTimes.Raw) return 1f;
+            float w = WeightOf(p, def);
+            return w < 0f ? 1f : w;
         }
 
         // ---------------- Text ----------------

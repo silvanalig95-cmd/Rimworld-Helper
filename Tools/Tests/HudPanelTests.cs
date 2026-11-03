@@ -34,8 +34,18 @@ public static class HudPanelTests
         Check(!HudHealthMath.Shows(implantBad), "an implant never shows, even one the game calls bad");
         var badBack = new HediffFacts { bad = true, chronic = true, severity = 0.5f };
         Check(!HudHealthMath.Shows(badBack), "a chronic condition (bad back, cataract, frailty, dementia) never shows");
-        var chronicTendable = new HediffFacts { bad = true, chronic = true, tendable = true, needsTend = true, lethalSeverity = 1f, severityPerDay = 0.01f };
-        Check(!HudHealthMath.Shows(chronicTendable), "a chronic condition stays off even when it can be tended");
+        var chronicTendable = new HediffFacts { bad = true, chronic = true, tendable = true, needsTend = true, severityPerDay = 0.01f };
+        Check(!HudHealthMath.Shows(chronicTendable), "a chronic condition that can't kill stays off even when it can be tended");
+        // The player asked to see carcinomas: a chronic condition that can kill always shows, growing or not.
+        var carcinoma = new HediffFacts { bad = true, chronic = true, tendable = true, tended = true, lethalSeverity = 1f, severity = 0.3f };
+        Check(HudHealthMath.Shows(carcinoma), "a stable carcinoma shows");
+        Check(HudHealthMath.Shows(new HediffFacts { bad = true, chronic = true, lethalSeverity = 1f, severity = 0.05f, severityPerDay = 0.01f }),
+            "a small growing carcinoma shows");
+        Check(HudHealthMath.Lasting(HealthStatus.Healing, true, 0f) == HealthStatus.Stable, "a chronic condition that isn't growing reads stable, not healing");
+        Check(HudHealthMath.Lasting(HealthStatus.Healing, true, -0.01f) == HealthStatus.Shrinking, "one in remission reads shrinking");
+        Check(HudHealthMath.Lasting(HealthStatus.Untended, true, 0f) == HealthStatus.Untended
+              && HudHealthMath.Lasting(HealthStatus.Healing, false, 0f) == HealthStatus.Healing, "anything else keeps its word");
+        Check(HudHealthMath.ToneOf(HealthStatus.Stable) == HealthTone.Fair, "stable in yellow: it doesn't go away by itself");
         var psylink = new HediffFacts { bad = false, severity = 3f };
         Check(!HudHealthMath.Shows(psylink), "what the game doesn't call bad (psylinks, auras, buffs) never shows");
         var buffPassing = new HediffFacts { bad = false, severity = 0.5f, severityPerDay = -1f };

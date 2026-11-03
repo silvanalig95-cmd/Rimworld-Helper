@@ -168,10 +168,19 @@ namespace ColonyCouncil
         }
 
         /// <summary>A mood group as the colonist feels it (Patch_ComfortStandards): only good moods from outside Rimfolk change.</summary>
-        public static float Felt(ThoughtHandler handler, Thought group, float offset)
+        public static float Felt(ThoughtHandler handler, Thought group, float offset) =>
+            offset <= 0f || handler == null ? offset : Felt(handler, group, offset, GoodLife.ComfortWeight(handler.pawn, group?.def));
+
+        /// <summary>
+        /// The same for a mood this ordinary to them (GoodLifeMath.Weight, 1 for everyday): standards' cut falls in full
+        /// on an everyday comfort and hardly at all on something new, like a wedding just attended.
+        /// </summary>
+        public static float Felt(ThoughtHandler handler, Thought group, float offset, float weight)
         {
             if (offset <= 0f || handler == null) return offset;
             float f = ComfortFactor(handler.pawn, group?.def);
+            if (f >= 1f) return offset;
+            f = GoodLifeMath.ComfortFor(f, weight);
             return f < 1f ? GoodTimesMath.Comfort(offset, f) : offset;
         }
 
@@ -207,14 +216,14 @@ namespace ColonyCouncil
             if (full - felt < 0.05f) return null;
             string key;
             if (!used) key = "CC_GoodTimes_ComfortNote";
-            else if (comfort) key = "CC_GoodLife_NoteBoth";
             else
                 switch (GoodLife.KindOf(p, group))
                 {
-                    case GoodLife.Kind.Lasting: key = "CC_GoodLife_NoteLasting"; break;
-                    case GoodLife.Kind.Often: key = "CC_GoodLife_NoteOften"; break;
                     case GoodLife.Kind.New: key = "CC_GoodLife_NoteNew"; break;
-                    default: key = "CC_GoodLife_Note"; break;
+                    case GoodLife.Kind.Settled: key = "CC_GoodLife_NoteSettled"; break;
+                    case GoodLife.Kind.Lasting: key = comfort ? "CC_GoodLife_NoteBoth" : "CC_GoodLife_NoteLasting"; break;
+                    case GoodLife.Kind.Often: key = comfort ? "CC_GoodLife_NoteBoth" : "CC_GoodLife_NoteOften"; break;
+                    default: key = comfort ? "CC_GoodLife_NoteBoth" : "CC_GoodLife_Note"; break;
                 }
             return key.Translate(p.Named("PAWN"), LevelLabel(p).Named("LEVEL"), MoodView.Number(felt).Named("FELT"),
                 MoodView.Number(full).Named("FULL")).Resolve();

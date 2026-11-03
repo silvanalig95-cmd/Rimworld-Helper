@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A wedding still lands
+
+*3 November 2026, version 0.55.3*
+
+- Something new now counts by its own age: a wedding just attended lifts a spoiled colonist nearly in full, then counts for a little less each day until, after about six days, it is just another good memory. This holds after loading a save too.
+- Standards' cut on the game's good moods eases in the same way, so it falls on everyday comforts and hardly at all on something that just happened.
+- A good mood whose moment has passed says so in its tooltip.
+- The health panel now shows carcinomas and other lasting illnesses that can kill, as "stable", "shrinking" or "getting worse", with how far they are towards deadly. A bad back, cataracts and other lasting conditions that can't kill stay off it.
+
 ## Used to everyday comforts, not to new joys
 
 *3 November 2026, version 0.55.2*
