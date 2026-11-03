@@ -658,6 +658,16 @@ namespace ColonyCouncil
             GUI.color = Color.white;
         }
 
+        /// <summary>A colored ring (a mark picked on the region map).</summary>
+        public static void RingDraw(Rect r, Color color)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            GUI.color = color;
+            if (Ring != null) GUI.DrawTexture(r, Ring);
+            else Widgets.DrawBox(r, 2);
+            GUI.color = Color.white;
+        }
+
         /// <summary>An icon in a small dark disc with a colored ring: the nodes of a timeline.</summary>
         public static void Badge(Rect r, Texture2D icon, Color color)
         {

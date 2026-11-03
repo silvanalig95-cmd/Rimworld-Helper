@@ -100,6 +100,12 @@ A colonist named in deeds worth 6 or more (adding up everything they did for tha
         <heading>Reading the World page</heading>
         <text>The council window's World page has a "What they remember" section: a card for each people that remembers the colony for something, with how it stands (well disposed, in the colony's debt, the colony owes them, wary, holding a grudge, or grateful and aggrieved at once) and its biggest memories with how long ago they were. Green is what the colony did for them, red what it did to them, gold what they did for the colony, orange what they did to it; a faded line has been settled. Hover over a card for everything the people remembers.</text>
       </li>
+      <li>
+        <heading>The region map</heading>
+        <text>The "Region map" button at the top of the World page opens a map of the land around the colony in a window of its own, over the colony rather than in the game's world view. It shows every tile up to 35 tiles each way (20 to 60, set at the top of the window or in the settings), coloured by its land: water, forests, grassland, desert, tundra and ice, darker for hills, with a peak drawn on mountains, and the rivers and roads that run between tiles. On it are the settlements of every people in their own colours, sites, the colony's caravans, and the colony itself in a gold ring.
+
+Turn the mouse wheel to zoom and drag the map to look around; hover over a tile for its land, its climate and how far it is. Click a settlement to see it beside the map: its people and how they stand with the colony, how far it is by caravan (the game's own estimate), any world event about them, and what they remember of the colony. "Show on the world map" switches to the game's world view with it picked. The window can be moved and resized, keeps its place and view until the game is closed, and has a key of its own under Rimfolk in the game's keyboard options (none is set until you pick one).</text>
+      </li>
     </sections>
     <keywords><li>memory</li><li>remember</li><li>faction</li><li>people</li><li>goodwill</li><li>debt</li><li>favor</li><li>grudge</li><li>envoy</li><li>relief</li><li>peace</li><li>quarrel</li><li>invitation</li><li>apprentice</li><li>dignitary</li><li>refugees</li><li>raid letter</li><li>colonist</li><li>by name</li><li>friend</li><li>pilgrim</li><li>escort</li><li>word</li><li>lost child</li><li>harvest</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Camps</li></seeAlso>

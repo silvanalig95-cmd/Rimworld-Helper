@@ -63,6 +63,12 @@
     <label>council: almanac</label>
   </KeyBindingDef>
 
+  <!-- Not a page: the region map's own window (Source/ColonyCouncil/UI/Window_RegionMap.cs), opened or closed. -->
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_RegionMap</defName>
+    <label>region map: open or close</label>
+  </KeyBindingDef>
+
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_NextPage</defName>
     <label>council: next page</label>

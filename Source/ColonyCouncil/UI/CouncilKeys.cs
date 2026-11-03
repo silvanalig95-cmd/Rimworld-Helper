@@ -8,7 +8,8 @@ namespace ColonyCouncil
     /// Optional keyboard shortcuts for the council's pages: the game's own key bindings (Defs/Misc/Council_KeyBindings.xml,
     /// under "Rimfolk" in Options → Keyboard), none of them bound until the player picks a key. A page's key opens the
     /// council window on that page (or closes it when that page is already showing); the next and previous page keys
-    /// work while the window is open. Nothing happens while a text field has the keyboard.
+    /// work while the window is open; the region map's key opens or closes its own window. Nothing happens while a
+    /// text field has the keyboard.
     /// </summary>
     public static class CouncilKeys
     {
@@ -16,7 +17,7 @@ namespace ColonyCouncil
         public static readonly string[] Pages = { "Week", "Everyone", "Wishes", "Moods", "World", "Defenses", "Calendar", "Dilemmas", "Almanac" };
 
         private static KeyBindingDef[] keys;
-        private static KeyBindingDef next, previous;
+        private static KeyBindingDef next, previous, regionMap;
 
         private static void Look()
         {
@@ -25,6 +26,21 @@ namespace ColonyCouncil
             for (int i = 0; i < Pages.Length; i++) keys[i] = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_" + Pages[i]);
             next = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_NextPage");
             previous = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_PreviousPage");
+            regionMap = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_RegionMap");
+        }
+
+        /// <summary>The key bound to the region map ("F9"), or null when none is.</summary>
+        public static string RegionMapKey()
+        {
+            Look();
+            try
+            {
+                return regionMap == null || regionMap.MainKey == KeyCode.None ? null : regionMap.MainKeyLabel;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>A key went down that no text field took.</summary>
@@ -45,6 +61,12 @@ namespace ColonyCouncil
                 MainTabWindow_Council.OpenOrClose(Pages[i]);
                 Event.current.Use();
                 return;
+            }
+            // The region map's window (UI/Window_RegionMap.cs).
+            if (regionMap != null && regionMap.KeyDownEvent)
+            {
+                Window_RegionMap.Toggle();
+                Event.current.Use();
             }
         }
 

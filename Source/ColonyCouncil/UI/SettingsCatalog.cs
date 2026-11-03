@@ -448,6 +448,7 @@ namespace ColonyCouncil
                 new[] { "ThisWeek", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
+            Slider("regionMapRadius", "CC_Settings_RegionMapRadius", "CC_SetNote_RegionMapRadius", 20f, 60f, 1f, "0");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");

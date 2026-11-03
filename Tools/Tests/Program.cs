@@ -459,6 +459,7 @@ Console.WriteLine($"Checked {CampWeatherTests.Run(Check)} things about the weath
 Console.WriteLine($"Checked {CampStoryTests.Run(Check)} things about camps that come back, the shape of a stay and war parties.");
 Console.WriteLine($"Checked {RegularTests.Run(Check)} things about visitors who come back.");
 Console.WriteLine($"Checked {RivalTests.Run(Check)} things about the other settlers' year.");
+Console.WriteLine($"Checked {RegionMapTests.Run(Check)} things about the region map (the land laid flat at its true distance and bearing, tiles without gaps, zoom and pan, colours, standings).");
 Console.WriteLine($"Checked {RoadPostTests.Run(Check)} things about the wardens' post as a trading stop.");
 Console.WriteLine($"Checked {HerdStoryTests.Run(Check)} things about the herd's year and the beast that stays.");
 Console.WriteLine($"Checked {MovingOnTests.Run(Check)} things about the price of keeping someone who asked to move on.");
