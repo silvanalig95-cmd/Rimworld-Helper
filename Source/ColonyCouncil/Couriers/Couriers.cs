@@ -39,6 +39,9 @@ namespace ColonyCouncil
     {
         public static bool On => ColonyCouncilMod.Settings?.goodsComeAndGo ?? false;
 
+        /// <summary>This trip goes ahead: goods come and go, or it carries a neighbour's letter (letters always come by hand).</summary>
+        public static bool OnFor(CourierTrip t) => On || t != null && t.Mail;
+
         private static int Now => Find.TickManager?.TicksGame ?? 0;
 
         // ---------------- Who comes ----------------
@@ -493,6 +496,81 @@ namespace ColonyCouncil
             bool at = a.amount > 0 || a.things.Count > 0, bt = b.amount > 0 || b.things.Count > 0;
             if (!at || !bt) return true;
             return a.things.Count == 0 && b.things.Count == 0 && a.what == b.what && a.def == b.def;
+        }
+
+        // ---------------- A neighbour's letter (World/NeighbourLetters.cs) ----------------
+
+        /// <summary>
+        /// Someone can come for a letter to <paramref name="to"/>, or bring its answer: a home map and a people at peace with
+        /// the colony to send them (their own, or, for a people at war with it, a go-between under a white flag). Letters
+        /// come and go whether or not goods do.
+        /// </summary>
+        public static bool CanCarryMail(Map map, Faction to)
+        {
+            if (map == null || !map.IsPlayerHome || CourierTracker.Instance == null) return false;
+            try
+            {
+                return Choose(to, map) != null;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier mail", e);
+                return false;
+            }
+        }
+
+        /// <summary>A messenger comes some hours later and waits at the gate to be handed the letter (<paramref name="label"/>: "Ana's letter to Mayor Bell"). Null: nobody can come.</summary>
+        public static CourierTrip MailPickup(Map map, Faction to, int mailId, string label)
+        {
+            if (!CanCarryMail(map, to)) return null;
+            try
+            {
+                var t = New(CourierKind.Await, map, to, Later);
+                t.mailId = mailId;
+                t.takeLabel = label;
+                t.takeTag = "letter";
+                CourierTracker.Instance.Add(t);
+                return t;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier mail pickup", e);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// A messenger brings an answer, no earlier than <paramref name="arrive"/>, with <paramref name="things"/> (gifts,
+        /// the help asked for) in their pack: the letter comes when they hand it over at the gate (or, if they can't come,
+        /// the old way, with what they bring set down where traders leave goods). Null: nobody can come.
+        /// </summary>
+        public static CourierTrip MailAnswer(Map map, Faction from, List<Thing> things, int mailId, int arrive, string label, string title, string text,
+            LetterDef letter, string chronicle, Pawn writer)
+        {
+            things = things?.Where(x => x != null && !x.Destroyed && !x.Spawned && x.holdingOwner == null).ToList() ?? new List<Thing>();
+            if (!CanCarryMail(map, from)) return null;
+            try
+            {
+                var t = New(CourierKind.Deliver, map, from, Soon);
+                t.due = Math.Max(t.due, arrive);
+                t.giveUp = t.due + CourierMath.GiveUpTicks;
+                t.mailId = mailId;
+                t.bringLabel = label.NullOrEmpty() ? Describe(things) : things.Count > 0 ? "CC_Courier_And".Translate(label, Describe(things)).Resolve() : label;
+                t.bringTag = label.NullOrEmpty() && things.Count > 0 ? TagOf(things[0].def) : "letter";
+                foreach (var thing in things) t.goods.TryAdd(thing, true);
+                t.letterLabel = title;
+                t.letterText = text;
+                t.letterDef = letter ?? LetterDefOf.NeutralEvent;
+                t.chronicle = chronicle;
+                t.chroniclePawn = writer;
+                CourierTracker.Instance.Add(t);
+                return t;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier mail answer", e);
+                return null;
+            }
         }
 
         // ---------------- For an event's effects ----------------

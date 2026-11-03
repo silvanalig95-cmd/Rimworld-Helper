@@ -94,6 +94,8 @@ namespace ColonyCouncil
                 // Faces that come back, and what travellers have come to know the colony for.
                 y = Known(y, w, comp);
                 y += 14f;
+                // The neighbours by name, and letters to them (World/NeighboursPanel.cs).
+                y = NeighboursPanel.Draw(y, w);
                 // What the world's peoples remember of the colony (World/FactionMemoryPanel.cs).
                 y = FactionMemoryPanel.Draw(y, w);
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_Lately".Translate(), Icons.WorldEvent, Color.white);

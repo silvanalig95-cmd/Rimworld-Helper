@@ -692,6 +692,8 @@ namespace ColonyCouncil
                 return;
             }
             var look = x.Spawned ? new LookTargets(x) : LookTargets.Invalid;
+            // A guest who was honored, or fairly kept, becomes a face the colony knows once they're home (World/Notables.cs).
+            if (m.misses * 4 <= Mathf.Max(1, m.tally)) NotableBook.Notify_Seen(x, "guest", m.a);
             if (m.misses == 0)
             {
                 Couriers.PaySilver(map, x.Spawned && x.Map == map ? x.Position : IntVec3.Invalid, m.reward, m.faction, x);

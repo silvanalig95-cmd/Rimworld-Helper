@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Neighbours by name, and letters
+
+*3 November 2026, version 0.59.0*
+
+- Each town near the colony now has people with names: a head, an heir, an envoy and a trader, and the faces you met who went home live among them.
+- Every neighbour regards the colony and some of its people in their own way, remembers what passed between you, grows old and is followed by someone new.
+- Write to them from the World page or the region map: greetings, condolences, a warning, asking for news, an invitation or a little help. The writer sits down at a table, and a messenger comes to the gate for the letter.
+- Answers come back by messenger after the walk there and back, warm or cool by who they are and who wrote, sometimes with a gift in the pack. The road can be dangerous, and a messenger may arrive hurt.
+- With a powered comms console you can call peoples who have the means to answer. If they are asleep or busy, an aide takes a message and they call back, and the console rings.
+- Peoples at war can still be written to under a white flag, but they answer less often, and sometimes with a threat they keep.
+
 ## The region map
 
 *3 November 2026, version 0.58.0*

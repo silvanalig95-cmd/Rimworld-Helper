@@ -138,6 +138,9 @@ namespace ColonyCouncil
             past.contests = c.contests;
             past.contestsWon = c.contestsWon;
             past.friendOf = c.warmth.Where(kv => kv.Key != null && !kv.Key.Dead && kv.Key.IsColonist).OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
+            // Whoever spoke for them is a face the colony knows, remembering the colonist warmest with them (World/Notables.cs).
+            var face = kept.Contains(c.leader) ? c.leader : kept.FirstOrDefault();
+            if (face != null) NotableBook.Notify_Met(face, "camp", past.friendOf);
             // Six at most: the oldest makes way.
             while (tracker.past.Count > CampStoryMath.RememberMax) Forget(tracker.past.OrderBy(p => p.leftTick).First());
         }

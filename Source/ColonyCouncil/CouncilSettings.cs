@@ -149,6 +149,10 @@ namespace ColonyCouncil
         public float daysBetweenWorldSituations = 45f;
         /// <summary>The world's peoples remember what the colony did for them and against them, and act on it (World/FactionMemory.cs).</summary>
         public bool factionMemory = true;
+        /// <summary>The nearby towns' people by name (head, heir, envoy, trader) and the faces the colony met, kept in the world while they matter (World/Notables.cs).</summary>
+        public bool notables = true;
+        /// <summary>Letters to them by hand, and calls on a comms console, answered in their own way (World/NeighbourLetters.cs).</summary>
+        public bool neighbourLetters = true;
         /// <summary>The game's next weather weighed as the land and the last days make likely: spells, what follows what, events, the year (Weather/WeatherDynamics.cs).</summary>
         public bool dynamicWeather = true;
         /// <summary>The weather moves the outdoor temperature a few degrees: cooler under rain on a warm day, colder on a clear night, milder under cloud.</summary>
@@ -466,6 +470,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldSituations, "worldSituations", true);
             Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);
+            Scribe_Values.Look(ref notables, "notables", true);
+            Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
             Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
             Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
             Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);

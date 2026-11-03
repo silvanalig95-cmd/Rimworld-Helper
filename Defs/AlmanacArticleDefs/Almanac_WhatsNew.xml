@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.59.0</version>
+        <date>3 November 2026</date>
+        <title>Neighbours by name, and letters</title>
+        <points>
+          <li>Each town near the colony now has people with names: a head, an heir, an envoy and a trader, and the faces you met who went home live among them.</li>
+          <li>Every neighbour regards the colony and some of its people in their own way, remembers what passed between you, grows old and is followed by someone new.</li>
+          <li>Write to them from the World page or the region map: greetings, condolences, a warning, asking for news, an invitation or a little help. The writer sits down at a table, and a messenger comes to the gate for the letter.</li>
+          <li>Answers come back by messenger after the walk there and back, warm or cool by who they are and who wrote, sometimes with a gift in the pack. The road can be dangerous, and a messenger may arrive hurt.</li>
+          <li>With a powered comms console you can call peoples who have the means to answer. If they are asleep or busy, an aide takes a message and they call back, and the console rings.</li>
+          <li>Peoples at war can still be written to under a white flag, but they answer less often, and sometimes with a threat they keep.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.58.0</version>
         <date>3 November 2026</date>
         <title>The region map</title>

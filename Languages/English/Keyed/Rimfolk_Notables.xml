@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The neighbours by name and letters to them (Source/ColonyCouncil/World/Notables.cs, NeighbourLetters.cs, NeighboursPanel.cs). -->
+
+  <!-- Settings -->
+  <CC_SetSec_Neighbours>Neighbours and letters</CC_SetSec_Neighbours>
+  <CC_Settings_Notables>Neighbours by name</CC_Settings_Notables>
+  <CC_Settings_Notables_Tip>The towns within reach of the colony (the nearest few, and any it has dealt with) each have a few people the colony knows by name: the town's head (their people's own leader at their seat, else a headman, reeve, mayor or administrator by their era), a likely heir, an envoy and a known trader, made with their people's own kinds. Faces the colony met who went home join them: a prisoner set free, a wounded guest tended, a camp's leader, a guest of rank, an envoy, a visiting trader. Each regards the colony and some of its people from their people's goodwill and memory, their own nature, and what passed between them, and remembers it. They age, can die, and are followed in their role. The World page shows them under Neighbours. Off: nobody is kept, and those kept are let go.</CC_Settings_Notables_Tip>
+  <CC_SetNote_Notables>The nearby towns' head, heir, envoy and trader by name, and the faces the colony met.</CC_SetNote_Notables>
+  <CC_Settings_NeighbourLetters>Letters and calls to neighbours</CC_Settings_NeighbourLetters>
+  <CC_Settings_NeighbourLetters_Tip>From the World page (or a town's panel on the region map) a colonist can write to one of the neighbours: greetings, condolences for a loss the colony knows of, a warning of a threat to them, asking for news, an invitation to visit, or asking for a little help. They sit down at a table to write it, a messenger of their people comes to the gate for it, and the answer comes back the same way after the walk there and back, with gifts when it brings some. With a powered comms console and a people with the means to answer, a call does the same at once, or an aide takes a message and they call back later; what a call sends still comes by courier. How it is taken follows their nature, how they regard the colony and the writer, and the writer's way with words. One letter at a time to each, three under way at most.</CC_Settings_NeighbourLetters_Tip>
+  <CC_SetNote_NeighbourLetters>Write to the neighbours by hand, or call them on a comms console.</CC_SetNote_NeighbourLetters>
+
+  <!-- Titles: what they are to their town -->
+  <CC_Notable_Title_Head_Tribal>headman</CC_Notable_Title_Head_Tribal>
+  <CC_Notable_Title_Head_Tribal_F>headwoman</CC_Notable_Title_Head_Tribal_F>
+  <CC_Notable_Title_Head_Medieval>reeve</CC_Notable_Title_Head_Medieval>
+  <CC_Notable_Title_Head_Industrial>mayor</CC_Notable_Title_Head_Industrial>
+  <CC_Notable_Title_Head_Spacer>administrator</CC_Notable_Title_Head_Spacer>
+  <CC_Notable_Title_Heir>heir</CC_Notable_Title_Heir>
+  <CC_Notable_Title_Envoy_Tribal>speaker</CC_Notable_Title_Envoy_Tribal>
+  <CC_Notable_Title_Envoy_Medieval>herald</CC_Notable_Title_Envoy_Medieval>
+  <CC_Notable_Title_Envoy_Industrial>envoy</CC_Notable_Title_Envoy_Industrial>
+  <CC_Notable_Title_Envoy_Spacer>liaison</CC_Notable_Title_Envoy_Spacer>
+  <CC_Notable_Title_Trader_Tribal>trader</CC_Notable_Title_Trader_Tribal>
+  <CC_Notable_Title_Trader_Medieval>merchant</CC_Notable_Title_Trader_Medieval>
+  <CC_Notable_Title_Trader_Industrial>trader</CC_Notable_Title_Trader_Industrial>
+  <CC_Notable_Title_Trader_Spacer>factor</CC_Notable_Title_Trader_Spacer>
+  <CC_Notable_Title_Met_freed>set free by the colony</CC_Notable_Title_Met_freed>
+  <CC_Notable_Title_Met_tended>tended by the colony</CC_Notable_Title_Met_tended>
+  <CC_Notable_Title_Met_camp>who camped by the colony</CC_Notable_Title_Met_camp>
+  <CC_Notable_Title_Met_guest>once the colony's guest</CC_Notable_Title_Met_guest>
+  <CC_Notable_Title_Met_trader>a trader who called</CC_Notable_Title_Met_trader>
+  <CC_Notable_Title_Met_visitor>who visited the colony</CC_Notable_Title_Met_visitor>
+  <CC_Notable_Title_Met_envoy>who came as their envoy</CC_Notable_Title_Met_envoy>
+  <CC_Notable_Called>{NAME}, {TITLE} of {TOWN}</CC_Notable_Called>
+  <CC_Notable_Called_Met>{NAME} of {TOWN}, {TITLE}</CC_Notable_Called_Met>
+  <CC_Notable_TheColony>the colony</CC_Notable_TheColony>
+
+  <!-- How they regard the colony, and one colonist -->
+  <CC_Notable_Regard_0>holds the colony dear</CC_Notable_Regard_0>
+  <CC_Notable_Regard_1>is warm toward the colony</CC_Notable_Regard_1>
+  <CC_Notable_Regard_2>is friendly to the colony</CC_Notable_Regard_2>
+  <CC_Notable_Regard_3>is civil to the colony</CC_Notable_Regard_3>
+  <CC_Notable_Regard_4>is cool toward the colony</CC_Notable_Regard_4>
+  <CC_Notable_Regard_5>is wary of the colony</CC_Notable_Regard_5>
+  <CC_Notable_Regard_6>is hostile to the colony</CC_Notable_Regard_6>
+  <CC_Notable_RegardOf_0>thinks the world of them</CC_Notable_RegardOf_0>
+  <CC_Notable_RegardOf_1>likes them</CC_Notable_RegardOf_1>
+  <CC_Notable_RegardOf_2>thinks well of them</CC_Notable_RegardOf_2>
+  <CC_Notable_RegardOf_3>has no view of them yet</CC_Notable_RegardOf_3>
+  <CC_Notable_RegardOf_4>is cool toward them</CC_Notable_RegardOf_4>
+  <CC_Notable_RegardOf_5>distrusts them</CC_Notable_RegardOf_5>
+  <CC_Notable_RegardOf_6>can't stand them</CC_Notable_RegardOf_6>
+
+  <!-- Whom they know, and for what -->
+  <CC_Notable_KnowsFor_freed>who set them free</CC_Notable_KnowsFor_freed>
+  <CC_Notable_KnowsFor_tended>who tended them</CC_Notable_KnowsFor_tended>
+  <CC_Notable_KnowsFor_camp>who made friends at their camp</CC_Notable_KnowsFor_camp>
+  <CC_Notable_KnowsFor_guest>who was their host</CC_Notable_KnowsFor_guest>
+  <CC_Notable_KnowsFor_envoy>who met them at the gate</CC_Notable_KnowsFor_envoy>
+  <CC_Notable_KnowsFor_Letters>from letters</CC_Notable_KnowsFor_Letters>
+
+  <!-- What they remember -->
+  <CC_Notable_Note_Met_freed>Set free by {BY} and sent home.</CC_Notable_Note_Met_freed>
+  <CC_Notable_Note_Met_tended>Tended by {BY} and sent home on their own feet.</CC_Notable_Note_Met_tended>
+  <CC_Notable_Note_Met_camp>Camped by the colony, and made a friend of {BY}.</CC_Notable_Note_Met_camp>
+  <CC_Notable_Note_Met_guest>Stayed as the colony's guest, kept by {BY}.</CC_Notable_Note_Met_guest>
+  <CC_Notable_Note_Met_trader>Traded at the colony's gate.</CC_Notable_Note_Met_trader>
+  <CC_Notable_Note_Met_visitor>Visited the colony.</CC_Notable_Note_Met_visitor>
+  <CC_Notable_Note_Met_envoy>Came to the colony as their people's envoy, and met {BY}.</CC_Notable_Note_Met_envoy>
+  <CC_Notable_Note_Letter>A letter of {PURPOSE} from {PAWN}, answered {TONE}.</CC_Notable_Note_Letter>
+  <CC_Notable_Note_Call>A call from {PAWN} about {PURPOSE}, answered {TONE}.</CC_Notable_Note_Call>
+  <CC_Notable_Note_Visited>Came to visit the colony at {PAWN}'s invitation.</CC_Notable_Note_Visited>
+  <CC_Notable_Note_Succeeded>Became {TITLE} of {TOWN} after {NAME}.</CC_Notable_Note_Succeeded>
+  <CC_Notable_Note_NewLeader>{NAME} now leads the {FACTION}.</CC_Notable_Note_NewLeader>
+  <CC_Notable_Msg_Succeeded>{NAME} is now {TITLE} of {TOWN}, after {OLD}.</CC_Notable_Msg_Succeeded>
+
+  <!-- What a letter is for -->
+  <CC_Letter_Purpose_Greetings>greetings</CC_Letter_Purpose_Greetings>
+  <CC_Letter_Purpose_Condolences>condolence</CC_Letter_Purpose_Condolences>
+  <CC_Letter_Purpose_Warning>warning</CC_Letter_Purpose_Warning>
+  <CC_Letter_Purpose_News>inquiry</CC_Letter_Purpose_News>
+  <CC_Letter_Purpose_Invitation>invitation</CC_Letter_Purpose_Invitation>
+  <CC_Letter_Purpose_Help>request</CC_Letter_Purpose_Help>
+  <CC_Letter_PurposeCap_Greetings>Greetings</CC_Letter_PurposeCap_Greetings>
+  <CC_Letter_PurposeCap_Condolences>Condolences</CC_Letter_PurposeCap_Condolences>
+  <CC_Letter_PurposeCap_Warning>A warning</CC_Letter_PurposeCap_Warning>
+  <CC_Letter_PurposeCap_News>Asking for news</CC_Letter_PurposeCap_News>
+  <CC_Letter_PurposeCap_Invitation>An invitation to visit</CC_Letter_PurposeCap_Invitation>
+  <CC_Letter_PurposeCap_Help>Asking for a little help</CC_Letter_PurposeCap_Help>
+  <CC_Letter_Help_Medicine>medicine</CC_Letter_Help_Medicine>
+  <CC_Letter_Help_Food>food</CC_Letter_Help_Food>
+
+  <!-- How it was answered -->
+  <CC_Letter_Tone_Warm>warmly</CC_Letter_Tone_Warm>
+  <CC_Letter_Tone_Cordial>kindly</CC_Letter_Tone_Cordial>
+  <CC_Letter_Tone_Cool>coolly</CC_Letter_Tone_Cool>
+  <CC_Letter_Tone_Curt>curtly</CC_Letter_Tone_Curt>
+  <CC_Letter_Tone_Refusal>with a refusal</CC_Letter_Tone_Refusal>
+  <CC_Letter_Tone_Silence>with silence</CC_Letter_Tone_Silence>
+
+  <!-- Why it can't be written now -->
+  <CC_Letter_Why_Off>Letters to neighbours are switched off in the settings.</CC_Letter_Why_Off>
+  <CC_Letter_Why_NoHome>The colony has no home to write from.</CC_Letter_Why_NoHome>
+  <CC_Letter_Why_NoMessenger>No messenger can come: no people at peace with the colony to carry it.</CC_Letter_Why_NoMessenger>
+  <CC_Letter_Why_NoMeans>The {0} have no means to answer a call; a letter by hand reaches them.</CC_Letter_Why_NoMeans>
+  <CC_Letter_Why_NoConsole>The colony has no comms console.</CC_Letter_Why_NoConsole>
+  <CC_Letter_Why_DeadAir>The air is dead: no comms console has power and a clear sky to call through.</CC_Letter_Why_DeadAir>
+  <CC_Letter_Why_Gone>They are gone.</CC_Letter_Why_Gone>
+  <CC_Letter_Why_OneAtATime>One letter at a time: the last one to them isn't answered yet.</CC_Letter_Why_OneAtATime>
+  <CC_Letter_Why_TooMany>{0} letters and calls are already under way; wait for an answer first.</CC_Letter_Why_TooMany>
+  <CC_Letter_Why_Here>{NAME} is here on the map; go and talk to them.</CC_Letter_Why_Here>
+  <CC_Letter_Why_Lately>The colony wrote to them for this only lately.</CC_Letter_Why_Lately>
+  <CC_Letter_Why_NoLoss>The colony knows of no loss of theirs.</CC_Letter_Why_NoLoss>
+  <CC_Letter_Why_NoThreat>The colony knows of no threat to them it hasn't warned of.</CC_Letter_Why_NoThreat>
+  <CC_Letter_Why_AtWar>Not while their people are at war with the colony.</CC_Letter_Why_AtWar>
+  <CC_Letter_Why_NotEnough>{NAME} doesn't think well enough of the colony to be asked for help.</CC_Letter_Why_NotEnough>
+
+  <!-- What a letter can be about -->
+  <CC_Letter_Topic_Loss>the death of {NAME}, their {ROLE}</CC_Letter_Topic_Loss>
+  <CC_Letter_Topic_Raids>the raiders of the {FACTION}</CC_Letter_Topic_Raids>
+  <CC_Letter_Topic_Site>{SITE}, {DIR} of {TOWN}</CC_Letter_Topic_Site>
+  <CC_Letter_Dir_N>north</CC_Letter_Dir_N>
+  <CC_Letter_Dir_NE>northeast</CC_Letter_Dir_NE>
+  <CC_Letter_Dir_E>east</CC_Letter_Dir_E>
+  <CC_Letter_Dir_SE>southeast</CC_Letter_Dir_SE>
+  <CC_Letter_Dir_S>south</CC_Letter_Dir_S>
+  <CC_Letter_Dir_SW>southwest</CC_Letter_Dir_SW>
+  <CC_Letter_Dir_W>west</CC_Letter_Dir_W>
+  <CC_Letter_Dir_NW>northwest</CC_Letter_Dir_NW>
+
+  <!-- How it may be taken -->
+  <CC_Letter_Outlook_Warm>{NAME} is likely to answer warmly, and to {WRITER} most of all.</CC_Letter_Outlook_Warm>
+  <CC_Letter_Outlook_Good>{NAME} is likely to take it kindly.</CC_Letter_Outlook_Good>
+  <CC_Letter_Outlook_Fair>{NAME} may answer, but not warmly.</CC_Letter_Outlook_Fair>
+  <CC_Letter_Outlook_Poor>{NAME} is unlikely to welcome it.</CC_Letter_Outlook_Poor>
+  <CC_Letter_Outlook_War>Their people are at war with the colony: an answer is uncertain, and won't be warm.</CC_Letter_Outlook_War>
+  <CC_Letter_Outlook_ByHand>A letter in a hand means more to their people than a call would.</CC_Letter_Outlook_ByHand>
+  <CC_Letter_Outlook_Call>A call is quick, but for something this personal a letter would count for more.</CC_Letter_Outlook_Call>
+
+  <!-- Messages as it goes -->
+  <CC_Letter_Msg_WillWrite>{PAWN} will write to {TO} when {PAWN_pronoun} has a moment at a table.</CC_Letter_Msg_WillWrite>
+  <CC_Letter_Msg_WillCall>{PAWN} will call {TO} on the comms console when {PAWN_pronoun} has a moment.</CC_Letter_Msg_WillCall>
+  <CC_Letter_Msg_Written>{PAWN} has written to {TO}. A messenger will come to the gate for the letter.</CC_Letter_Msg_Written>
+  <CC_Letter_Msg_PickupMissed>Nobody brought {PAWN}'s letter to {TO} out to the messenger, who left without it. Another will come.</CC_Letter_Msg_PickupMissed>
+  <CC_Letter_Msg_PickupNever>No messenger could come for {PAWN}'s letter to {TO} (no way in, or never safe on the road). Another will try.</CC_Letter_Msg_PickupNever>
+  <CC_Letter_Msg_NoAnswer>No answer came to {PAWN}'s letter to {TO}.</CC_Letter_Msg_NoAnswer>
+  <CC_Letter_Msg_VisitOff>{NAME} could not come to visit after all.</CC_Letter_Msg_VisitOff>
+  <CC_Letter_Msg_Guest>{NAME} of {TOWN} has come to visit, as the colony asked.</CC_Letter_Msg_Guest>
+  <CC_Letter_Cancel_Gone>{PAWN}'s letter to {TO} won't go: they are gone.</CC_Letter_Cancel_Gone>
+  <CC_Letter_Cancel_Writer>The letter to {TO} won't go: {PAWN} is no longer here to write it.</CC_Letter_Cancel_Writer>
+  <CC_Letter_Cancel_NoTime>{PAWN} never found the time to write to {TO}, and the letter was let go.</CC_Letter_Cancel_NoTime>
+  <CC_Letter_Cancel_NoPickup>{PAWN}'s letter to {TO} was never handed to a messenger, and was let go.</CC_Letter_Cancel_NoPickup>
+  <CC_Letter_Cancel_NoMessenger>No messenger can come for {PAWN}'s letter to {TO}: no people at peace with the colony to carry it.</CC_Letter_Cancel_NoMessenger>
+  <CC_Letter_Label_Out>{PAWN}'s letter to {TO}</CC_Letter_Label_Out>
+  <CC_Letter_Label_Back>a letter from {NAME}</CC_Letter_Label_Back>
+
+  <!-- Where a letter is (no countdowns) -->
+  <CC_Letter_Status_ToWrite>{PAWN} will write to them at the next free moment.</CC_Letter_Status_ToWrite>
+  <CC_Letter_Status_Writing>{PAWN} is writing to them now.</CC_Letter_Status_Writing>
+  <CC_Letter_Status_AwaitMessenger>{PAWN}'s letter waits for a messenger to come for it.</CC_Letter_Status_AwaitMessenger>
+  <CC_Letter_Status_Travelling>{PAWN}'s letter is on its way to them.</CC_Letter_Status_Travelling>
+  <CC_Letter_Status_Answering>Their answer to {PAWN} is on its way.</CC_Letter_Status_Answering>
+  <CC_Letter_Status_Visiting>{NAME} has said they will come to visit.</CC_Letter_Status_Visiting>
+  <CC_Letter_Status_Guesting>A guest of theirs is at the colony now.</CC_Letter_Status_Guesting>
+  <CC_Letter_Status_ToCall>{PAWN} will call them at the next free moment.</CC_Letter_Status_ToCall>
+  <CC_Letter_Status_Calling>{PAWN} is on the comms console to them now.</CC_Letter_Status_Calling>
+  <CC_Letter_Status_CallbackWait>An aide took {PAWN}'s message; {NAME} will call back.</CC_Letter_Status_CallbackWait>
+  <CC_Letter_Status_Ringing>{NAME} is calling back: the comms console is ringing.</CC_Letter_Status_Ringing>
+
+  <!-- The answer -->
+  <CC_Letter_Title>A letter from {NAME}</CC_Letter_Title>
+  <CC_Call_Title>A call with {NAME}</CC_Call_Title>
+  <CC_Call_Title_Back>{NAME} called back</CC_Call_Title_Back>
+  <CC_Call_Title_Word>Word from {NAME}</CC_Call_Title_Word>
+  <CC_Letter_Intro>A messenger has brought the answer of {NAME}, {TITLE} of {TOWN}, to {PAWN}'s letter of {PURPOSE}.</CC_Letter_Intro>
+  <CC_Letter_Intro_War>A messenger of a people at peace with the colony carried {PAWN}'s letter of {PURPOSE} under a white flag to {NAME}, {TITLE} of {TOWN} among the {FACTION}, and has brought back the answer.</CC_Letter_Intro_War>
+  <CC_Call_Intro>{PAWN} called {NAME}, {TITLE} of {TOWN}, on the comms console with words of {PURPOSE}, and got {NAME} on the line.</CC_Call_Intro>
+  <CC_Call_Intro_Back>{NAME}, {TITLE} of {TOWN}, called back about the colony's words of {PURPOSE}, and {PAWN} took the call.</CC_Call_Intro_Back>
+  <CC_Call_Intro_Word>{NAME}, {TITLE} of {TOWN}, called back about the colony's words of {PURPOSE} while nobody was at the comms console, and left word.</CC_Call_Intro_Word>
+  <CC_Letter_Outcome_Warm>{NAME} thinks better of the colony for it, and of {PAWN} most of all.</CC_Letter_Outcome_Warm>
+  <CC_Letter_Outcome_Cordial>{NAME} thinks a little better of the colony for it.</CC_Letter_Outcome_Cordial>
+  <CC_Letter_Outcome_Cool>It changed little between the colony and {NAME}.</CC_Letter_Outcome_Cool>
+  <CC_Letter_Outcome_Curt>{NAME} was in no mood to hear from the colony.</CC_Letter_Outcome_Curt>
+  <CC_Letter_Outcome_Refusal>{NAME} thinks a little less of the colony for asking.</CC_Letter_Outcome_Refusal>
+  <CC_Letter_Outcome_Silence>{NAME} said nothing back.</CC_Letter_Outcome_Silence>
+  <CC_Letter_Gift>The messenger has set down {GOODS} with the letter, a gift.</CC_Letter_Gift>
+  <CC_Letter_Gift_Call>They are sending {GOODS} as a gift, by courier: words go down the line, things don't.</CC_Letter_Gift_Call>
+  <CC_Letter_HelpSent>The messenger has set down {GOODS} with the letter.</CC_Letter_HelpSent>
+  <CC_Letter_HelpSent_Call>They are sending {GOODS} by courier.</CC_Letter_HelpSent_Call>
+  <CC_Letter_HelpNot>{NAME} sends nothing.</CC_Letter_HelpNot>
+  <CC_Letter_InviteYes>{NAME} will come to visit before long.</CC_Letter_InviteYes>
+  <CC_Letter_InviteSends>{NAME} can't leave the seat, and sends {OTHER}, {TITLE}, to visit in their place before long.</CC_Letter_InviteSends>
+  <CC_Letter_InviteNot>{NAME} won't be coming.</CC_Letter_InviteNot>
+  <CC_Letter_Threat>The letter ends with a threat: the {FACTION} mean to answer the colony in person.</CC_Letter_Threat>
+  <CC_Letter_ThreatRaid_Label>The answer of {NAME}</CC_Letter_ThreatRaid_Label>
+  <CC_Letter_ThreatRaid_Text>The {FACTION} have come, as {NAME} warned in answer to {PAWN}'s letter.</CC_Letter_ThreatRaid_Text>
+  <CC_Letter_Waylaid>{PAWN}, the messenger, came in hurt: set upon on the road, by the look of the cut.</CC_Letter_Waylaid>
+  <CC_Letter_Chronicle>{PAWN} wrote to {NAME}, who answered {TONE}.</CC_Letter_Chronicle>
+
+  <!-- News -->
+  <CC_News_Head>What {NAME} tells of:</CC_News_Head>
+  <CC_News_Situation>{WHAT}, in the region.</CC_News_Situation>
+  <CC_News_SituationAt>{WHAT}, at {PLACE}.</CC_News_SituationAt>
+  <CC_News_Site>{SITE}, {DIR} of {TOWN}.</CC_News_Site>
+  <CC_News_Quest>They are still looking for someone for "{QUEST}".</CC_News_Quest>
+  <CC_News_War>They are at war with the {FACTION}.</CC_News_War>
+  <CC_News_Nothing>The roads near them are quiet; they have nothing new to tell.</CC_News_Nothing>
+
+  <!-- A call -->
+  <CC_Call_Msg_Aide_Away>{PAWN} reached an aide: {NAME} is away from {NAME_possessive} people for the day, and will call back.</CC_Call_Msg_Aide_Away>
+  <CC_Call_Msg_Aide_Asleep>{PAWN} reached an aide: it is the middle of the night where {NAME} is, and {NAME} will call back in the morning.</CC_Call_Msg_Aide_Asleep>
+  <CC_Call_Msg_Aide_Busy>{PAWN} reached an aide: {NAME} is busy with {NAME_possessive} people's troubles, and will call back when {NAME_pronoun} can.</CC_Call_Msg_Aide_Busy>
+  <CC_Call_Msg_Ringing>The comms console is ringing: {NAME} is calling back.</CC_Call_Msg_Ringing>
+  <CC_Call_Msg_NoAnswer>{PAWN} said the colony's piece to {NAME}, who listened and cut the line without a word.</CC_Call_Msg_NoAnswer>
+  <CC_Letter_Label_Gifts>what {NAME} sent</CC_Letter_Label_Gifts>
+  <CC_Call_Report>calling {0}.</CC_Call_Report>
+  <CC_Call_Report_Answer>taking {0}'s call.</CC_Call_Report_Answer>
+  <CC_Letter_Report_Write>writing to {0}.</CC_Letter_Report_Write>
+  <CC_Letter_Report_Hand>handing a letter to {0}.</CC_Letter_Report_Hand>
+
+  <!-- The World page and the region map -->
+  <CC_Neighbours_Header>Neighbours</CC_Neighbours_Header>
+  <CC_Neighbours_TownHeader>Who the colony knows there</CC_Neighbours_TownHeader>
+  <CC_Neighbours_None>No town is within reach of the colony.</CC_Neighbours_None>
+  <CC_Neighbours_NobodyYet>Nobody of {0} is known to the colony by name yet.</CC_Neighbours_NobodyYet>
+  <CC_Neighbours_OutOfReach>{0} is beyond the colony's neighbours: nobody there knows it by name.</CC_Neighbours_OutOfReach>
+  <CC_Neighbours_OnTheirWay>{0} under way</CC_Neighbours_OnTheirWay>
+  <CC_Neighbours_AtWar>at war</CC_Neighbours_AtWar>
+  <CC_Neighbours_Allies>allies</CC_Neighbours_Allies>
+  <CC_Neighbours_AtPeace>at peace</CC_Neighbours_AtPeace>
+  <CC_Neighbours_Day>about a day away</CC_Neighbours_Day>
+  <CC_Neighbours_Days>about {0} days away</CC_Neighbours_Days>
+  <CC_Neighbours_Knows>Knows {0}</CC_Neighbours_Knows>
+  <CC_Neighbours_KnowsFor>{0} ({1})</CC_Neighbours_KnowsFor>
+  <CC_Neighbours_Last>{0} ({1})</CC_Neighbours_Last>
+  <CC_Neighbours_Write>Write</CC_Neighbours_Write>
+  <CC_Neighbours_Remembers>What passed between them and the colony:</CC_Neighbours_Remembers>
+
+  <!-- The letter's window -->
+  <CC_LetterDlg_Title>A letter to a neighbour</CC_LetterDlg_Title>
+  <CC_LetterDlg_WhatFor>What for:</CC_LetterDlg_WhatFor>
+  <CC_LetterDlg_About>About:</CC_LetterDlg_About>
+  <CC_LetterDlg_Ask>Ask for:</CC_LetterDlg_Ask>
+  <CC_LetterDlg_Who>Who writes:</CC_LetterDlg_Who>
+  <CC_LetterDlg_How>How:</CC_LetterDlg_How>
+  <CC_LetterDlg_ByHand>A letter by hand</CC_LetterDlg_ByHand>
+  <CC_LetterDlg_ByCall>A call on the console</CC_LetterDlg_ByCall>
+  <CC_LetterDlg_HandNote>The writer sits down at a table to write it, and a messenger of the {0} comes to the gate for it. The answer comes back the same way, after the walk there and back.</CC_LetterDlg_HandNote>
+  <CC_LetterDlg_WhiteFlag>The {0} are at war with the colony: a messenger of a people at peace with both carries it under a white flag. They answer less often, and never warmly.</CC_LetterDlg_WhiteFlag>
+  <CC_LetterDlg_CallNote>The caller goes to the comms console. They may answer at once, or an aide takes a message and they call back. Anything they send still comes by courier.</CC_LetterDlg_CallNote>
+  <CC_LetterDlg_Writer>{PAWN} (Social {SOCIAL}): {REGARD}</CC_LetterDlg_Writer>
+  <CC_LetterDlg_Send>Write it</CC_LetterDlg_Send>
+  <CC_LetterDlg_Call>Make the call</CC_LetterDlg_Call>
+  <CC_LetterDlg_Cancel>Cancel</CC_LetterDlg_Cancel>
+
+  <!-- What their people remember of it (World/FactionMemory.cs) -->
+  <CC_Memory_Deed_warned>warned them of a danger</CC_Memory_Deed_warned>
+  <CC_Memory_Deed_warned_Name>warned them of {NAME}</CC_Memory_Deed_warned_Name>
+  <CC_Memory_Deed_warned_Many>warned them of dangers, {COUNT} times</CC_Memory_Deed_warned_Many>
+  <CC_Memory_Deed_letterAid>sent help when the colony asked by letter</CC_Memory_Deed_letterAid>
+  <CC_Memory_Deed_letterAid_Name>sent {NAME} when the colony asked by letter</CC_Memory_Deed_letterAid_Name>
+  <CC_Memory_Deed_letterAid_Many>sent help when the colony asked by letter, {COUNT} times</CC_Memory_Deed_letterAid_Many>
+
+</LanguageData>

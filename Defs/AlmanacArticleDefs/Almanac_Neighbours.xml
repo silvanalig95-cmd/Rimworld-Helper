@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on the neighbours by name and the letters to them (Source/ColonyCouncil/World/Notables.cs,
+       NotableMath.cs, NeighbourLetters.cs, NeighboursPanel.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Neighbours</defName>
+    <label>neighbours and letters</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>The towns near the colony have people with names: a head, an heir, an envoy and a trader. Write to them, or call them, and they remember.</summary>
+    <tip>A letter of condolence in a careful hand means more to a tribe than any call could.</tip>
+    <description>Each town within reach of the colony has a few people the colony knows by name, real people of their own kind kept in the world while they matter: the town's head, a likely heir, an envoy and a known trader. The faces the colony met who went home live among them too: a prisoner it set free, a wounded guest it tended, a camp's leader, a guest of rank, an envoy, a trader who called. Each of them regards the colony, and some of its people, in their own way, remembers what passed between them, grows old, and is followed by someone new when they're gone.
+
+A colonist can write to any of them, or call them on a comms console. The writer sits down at a table to write, a messenger of their people comes to the gate for the letter, and the answer comes back the same way. What the answer says follows who they are and how they see the colony and the one who wrote, and it changes both a little.</description>
+    <sections>
+      <li>
+        <heading>Who the neighbours are</heading>
+        <text>The towns within reach are the nearest 4 within 40 world tiles (with none that near, the nearest 2 within 80), and up to 2 more the colony has dealt with however far: one whose people have exchanged letters with the colony, or a people's nearest town when that people remembers the colony for something. Each has four people known by name.</text>
+        <table>
+          <li>Role | Who | When they're gone</li>
+          <li>Head | At a people's seat (their oldest town), their own leader; elsewhere a headman or headwoman, reeve, mayor or administrator by their era | The heir takes the place; at the seat, whoever the game makes leader</li>
+          <li>Heir | Younger, with the head's family name | Someone new, later</li>
+          <li>Envoy | A speaker, herald, envoy or liaison by their era | Someone new, later</li>
+          <li>Trader | Of the kind their caravans bring | Someone new, later</li>
+        </table>
+        <after>Up to 10 faces the colony met are kept besides; when there are more, the one with nothing to remember for longest makes way. A town out of reach, a people fallen, or a person gone is let go, unless something passed between them in the last 60 days. Those Rimfolk made for a role grow old: from sixty, about 4% a year die of it, and 1.2 points more for every year after (16% at seventy). The World page tells of who now leads.</after>
+      </li>
+      <li>
+        <heading>How they regard the colony</heading>
+        <text>A neighbour's regard starts from their people: a little over half their goodwill, their people's memory of the colony's good turns (up to 30) and wrongs (up to 40, counting for more), a little for a debt the colony owes them (up to 8), and their nature: 6 more for each step of kindness (Kind counts two), 6 less for each of coldness (Abrasive two; Psychopath, Greedy, Jealous and Bloodlust one each). A people at war with the colony is never better than cool. On top comes what passed between them in person, which halves every 90 days without news.</text>
+        <table>
+          <li>Regard | In words</li>
+          <li>60 or more | holds the colony dear</li>
+          <li>30 to 59 | is warm toward the colony</li>
+          <li>10 to 29 | is friendly to the colony</li>
+          <li>-9 to 9 | is civil to the colony</li>
+          <li>-29 to -10 | is cool toward the colony</li>
+          <li>-59 to -30 | is wary of the colony</li>
+          <li>-60 or less | is hostile to the colony</li>
+        </table>
+        <after>A colonist is regarded at half of how they see the colony, plus what that colonist did for their people (one and a half times the deed's strength, up to 40), plus their letters and calls. The faces met start warmer: set free 25, tended 18, a guest 12, a camp 10, an envoy 4, a trader or a visitor 3, and more toward the colonist who did it.</after>
+      </li>
+      <li>
+        <heading>Writing a letter</heading>
+        <text>On the World page under Neighbours, or in a town's panel on the region map, press Write by someone's name. Pick what for, who writes (the speaker unless you choose someone else) and how. One letter at a time to each person, three letters and calls under way at most, and a wait before writing to the same person for the same thing again.</text>
+        <table>
+          <li>What for | When | Wait</li>
+          <li>Greetings | Always | 6 days</li>
+          <li>Condolences | A death among their notables in the last 30 days, or their people in hard times (a world event that falls on them) | 10 days, each loss once</li>
+          <li>A warning | A hard time in the region, raiders at war with them who came at the colony in the last 30 days, or an enemy camp within 12 tiles of their town | 3 days, each threat once</li>
+          <li>Asking for news | Always | 5 days</li>
+          <li>An invitation to visit | Not at war | 15 days</li>
+          <li>Asking for a little help (medicine or food) | Not at war, and they regard the colony at 25 or more | 20 days</li>
+        </table>
+        <after>The writer sits at one of the colony's tables, on a chair, for about an hour (else on any chair, else where they stand), between seven in the morning and ten at night, when nothing more pressing calls them; it is practice at Social. A writer who never finds the time in 3 days lets it go. Then a messenger of their people comes to the gate some hours later, by day, and waits; the writer carries the letter out, or after two hours anyone free does. Twice nobody comes out, and the letter is let go. A people at war with the colony is written to through a messenger of a people at peace with both, under a white flag.</after>
+      </li>
+      <li>
+        <heading>The answer</heading>
+        <text>A letter takes 0.4 days plus, for each tile, 0.4 days by a tribe's runner, 0.33 by medieval riders, 0.22 by industrial couriers or 0.12 by spacers (three quarters of a day at least, twelve at most), and they take a quarter of a day to a day and a quarter to answer. How it lands: 0.55 of their regard for the colony, 0.35 of their regard for the writer, 1.5 for each level of the writer's Social above 6 (less below), 6 for each step of their nature, and what it is for (greetings 5, condolences 15, a warning 12, news 5, an invitation 0, help -10, or -25 when their people are in hard times). A call takes 6 off, condolences, greetings or an invitation by hand to a traditional people add 8, the same again within 12 days takes 10 off, and a people at war takes 20 off. Luck moves it up to 22 either way.</text>
+        <table>
+          <li>How it lands | The answer | Their regard | Goodwill</li>
+          <li>40 or more | Warm | 6 (condolences 8) | 2</li>
+          <li>12 to 39 | Kind | 3 | 1</li>
+          <li>-15 to 11 | Cool | 1 | 0</li>
+          <li>-40 to -16 | Curt | 0 | 0</li>
+          <li>Below -40 | A refusal | -2 | 0</li>
+        </table>
+        <after>A good answer counts for more by hand on personal matters (greetings, condolences, an invitation: 1.1 times, 1.3 to tribes, medieval folk and a feudal empire) and for less by a call (0.9 on business, 0.7 on personal matters); the writer is regarded half again as much. A warning well taken adds 2 goodwill and is remembered by their people as a good turn; condolences warmly or kindly taken are remembered as mourning with them. Asking for help costs 2 regard either way, and is given on a warm or kind answer only: 4 to 8 medicine (herbal from a tribe, a medieval people or to a colony without industry) or 40 to 65 pemmican, set down with the letter, and their people remember the colony owes them for it. A warm answer from someone who regards the colony at 35 or more now and then brings a gift worth 80 to 160 silver (scaled by the colony's wealth): one time in three, half the time with a warning.</after>
+        <after>A people at war answers less often (it keeps silent 15% to 60% of the time, the more it hates the colony the more), never warmly, and goodwill moves one step more with a good answer. Its refusal ends with a threat one time in five (a curt answer one in ten), and their raiders come some days after it, as the letter warned. The messenger bringing an answer is set upon on the road now and then (4%, or 15% with enemies of the colony camped or settled near their town) and comes in with a cut, which a colony doctor can tend. Asked for news, they tell of real things: world events in the region or on them, places near their town, a quest of theirs still open, a people they're at war with. Asked to visit, they come some days later and stay 8 to 14 hours by day; a people's leader can't leave the seat and sends the heir or the envoy.</after>
+      </li>
+      <li>
+        <heading>A call on the comms console</heading>
+        <text>With a powered comms console under a clear sky (no solar flare), a colony can call peoples with the means to answer: industrial and later. Tribes and medieval folk are reached by letter only. The caller stands at the console and talks for a while. At their end, it may be the small hours (from ten at night to six in the morning, by their own clock: asleep, 85% of the time), their people may be in trouble (busy, half the time), or they may be away (15%, a people's leader 30%): an aide takes a message and they call back, in the morning, some hours later, or when the trouble allows. The console rings and the caller, or whoever is free nearest it, answers; nobody in three hours (a raid on, everyone busy) and they leave word instead.</text>
+        <after>The answer works the same way as a letter's, with what was said shown over the caller's head and in a letter. Words go down the line, things don't: anything an answer sends still comes by courier. A call is quick, but for condolences or a kind word a letter in a hand counts for more, most of all to a traditional people.</after>
+      </li>
+    </sections>
+    <keywords><li>neighbours</li><li>neighbors</li><li>notable</li><li>letter</li><li>write</li><li>comms console</li><li>call</li><li>headman</li><li>mayor</li><li>heir</li><li>condolences</li><li>warning</li><li>news</li><li>invitation</li><li>messenger</li><li>white flag</li></keywords>
+    <seeAlso><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Couriers</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

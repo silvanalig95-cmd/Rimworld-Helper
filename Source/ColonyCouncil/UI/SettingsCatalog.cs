@@ -350,6 +350,9 @@ namespace ColonyCouncil
             Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
                 "worldSituations");
             Toggle("factionMemory", "CC_Settings_FactionMemory", "CC_SetNote_FactionMemory");
+            Section("CC_SetSec_Neighbours");
+            Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
+            Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
@@ -558,7 +561,7 @@ namespace ColonyCouncil
         {
             "socialWeb", "socialEvents", "socialLife", "secrets", "vendettas", "aspirations", "quirks", "heirlooms", "comingOfAge", "dreams", "dreamOmens", "eulogies",
             "heart", "strangers", "nemeses", "nemesisReturns", "petMoments", "colonistMoments", "frictions", "autonomy", "worldReactions", "worldEvents",
-            "worldSituations", "factionMemory", "ailments", "convalescence", "healerReputations"
+            "worldSituations", "factionMemory", "notables", "neighbourLetters", "ailments", "convalescence", "healerReputations"
         };
 
         /// <summary>The council's own parts beyond wishes and meetings.</summary>

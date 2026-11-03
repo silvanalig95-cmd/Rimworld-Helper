@@ -121,6 +121,19 @@ namespace ColonyCouncil
         /// <summary>They stay the night, until this tick (PlayOut/PlayStrangers.cs): the trip doesn't send them off before.</summary>
         public int stayUntil = -1;
 
+        // ---- A letter to or from a neighbour (World/NeighbourLetters.cs) ----
+
+        /// <summary>
+        /// The neighbour's letter this trip is for: a messenger who waits at the gate to be handed it (Await), or one who
+        /// brings the answer (Deliver, with any gifts in their pack). -1: none. Letters come and go whether or not goods do.
+        /// </summary>
+        public int mailId = -1;
+
+        public bool Mail => mailId >= 0;
+
+        /// <summary>The messenger bringing an answer was set upon on the road: they come in hurt (NeighbourLetters.Waylaid).</summary>
+        public bool hurt;
+
         // ---- The people ----
 
         public List<Pawn> people = new List<Pawn>();
@@ -229,6 +242,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref playId, "playId", -1);
             Scribe_Values.Look(ref received, "received");
             Scribe_Values.Look(ref stayUntil, "stayUntil", -1);
+            Scribe_Values.Look(ref mailId, "mailId", -1);
+            Scribe_Values.Look(ref hurt, "hurt");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);
             Scribe_References.Look(ref animal, "animal");
             Scribe_References.Look(ref lord, "lord");
