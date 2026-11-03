@@ -16,6 +16,15 @@ namespace ColonyCouncil
     /// </summary>
     public class CampKindDef : Def
     {
+        /// <summary>
+        /// The hours this kind of camp most likely arrives (local, from~to, across midnight when from is the later): the
+        /// drovers by day, the minstrels toward evening, deserters by night. Unset (-1~-1): any hour alike.
+        /// </summary>
+        public IntRange arrives = new IntRange(-1, -1);
+
+        /// <summary>How fitting the hour is for this kind's arrival (CampStoryMath.ArrivalFit).</summary>
+        public float HourFit(int hour) => CampStoryMath.ArrivalFit(hour, arrives.min, arrives.max);
+
         /// <summary>The colony's era must be one of these (tribal, medieval, industrial, spacer); empty = any.</summary>
         public List<string> eras = new List<string>();
         /// <summary>

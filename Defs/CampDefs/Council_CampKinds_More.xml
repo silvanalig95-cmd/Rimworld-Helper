@@ -12,6 +12,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Healers</defName>
     <label>traveling healers</label>
+    <arrives>8~18</arrives>
     <minTech>Neolithic</minTech>
     <weight>0.8</weight>
     <people>2~4</people>
@@ -177,6 +178,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Procession</defName>
     <label>procession of the faithful</label>
+    <arrives>5~11</arrives>
     <weight>0.7</weight>
     <drawnBy><li>Devout</li></drawnBy>
     <people>4~7</people>
@@ -329,6 +331,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Players</defName>
     <label>traveling players</label>
+    <arrives>16~21</arrives>
     <weight>0.7</weight>
     <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~6</people>
@@ -496,6 +499,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Surveyors</defName>
     <label>surveyors</label>
+    <arrives>7~16</arrives>
     <eras>
       <li>medieval</li>
       <li>industrial</li>

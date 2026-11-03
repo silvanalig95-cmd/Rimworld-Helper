@@ -10,6 +10,26 @@ namespace ColonyCouncil
     /// </summary>
     public static class CampStoryMath
     {
+        /// <summary>How much likelier a kind of camp is at an hour that fits it (its own arrival hours).</summary>
+        public const float FitsHour = 3f;
+
+        /// <summary>And how much less likely outside them: still possible, as travellers keep no clock.</summary>
+        public const float OffHour = 0.25f;
+
+        /// <summary>
+        /// Whether <paramref name="hour"/> (0 to 23) falls in a kind's arrival hours <paramref name="from"/> to
+        /// <paramref name="to"/>, both included, across midnight when from is the later (20 to 3); from below zero: any hour.
+        /// </summary>
+        public static bool InHours(int hour, int from, int to)
+        {
+            if (from < 0 || to < 0) return true;
+            return from <= to ? hour >= from && hour <= to : hour >= from || hour <= to;
+        }
+
+        /// <summary>A kind's weight at this hour: as it is with no arrival hours of its own, more inside them, less outside.</summary>
+        public static float ArrivalFit(int hour, int from, int to) =>
+            from < 0 || to < 0 ? 1f : InHours(hour, from, to) ? FitsHour : OffHour;
+
         // ---------------- Coming back ----------------
 
         /// <summary>How many camps the colony remembers at most, and how many of each camp's people are kept to come back.</summary>

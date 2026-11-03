@@ -8,6 +8,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Trainers</defName>
     <label>traveling trainers</label>
+    <arrives>8~17</arrives>
     <pokemon>true</pokemon>
     <weight>1</weight>
     <people>2~3</people>

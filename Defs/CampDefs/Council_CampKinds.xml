@@ -17,6 +17,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Hunters</defName>
     <label>hunting party</label>
+    <arrives>4~9</arrives>
     <minTech>Neolithic</minTech>
     <weight>1.2</weight>
     <people>3~5</people>
@@ -359,6 +360,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Prospectors</defName>
     <label>prospectors</label>
+    <arrives>8~17</arrives>
     <eras>
       <li>medieval</li>
       <li>industrial</li>
@@ -518,6 +520,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Pilgrims</defName>
     <label>pilgrims</label>
+    <arrives>14~20</arrives>
     <weight>0.9</weight>
     <drawnBy><li>Devout</li></drawnBy>
     <people>3~6</people>
@@ -671,6 +674,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Market</defName>
     <label>traders</label>
+    <arrives>8~16</arrives>
     <weight>1</weight>
     <people>3~5</people>
     <days>3~7</days>
@@ -807,6 +811,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Smith</defName>
     <label>traveling smith</label>
+    <arrives>8~17</arrives>
     <eras>
       <li>medieval</li>
       <li>industrial</li>

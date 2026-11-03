@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.56.4</version>
+        <date>3 November 2026</date>
+        <title>Each camp at its own hour</title>
+        <points>
+          <li>The day's try for a camp now comes at any hour alike, with no lean toward evening or night.</li>
+          <li>Which kind of camp comes follows the hour: hunters, fishers, penitents and harvest hands mostly at dawn, traders, smiths, healers and drovers by day, pilgrims, caravans, players and minstrels toward evening, watchers of the monolith and deserters by night. Refugees, hermits, salvagers and stranded spacers come at any hour.</li>
+          <li>Outside its hours a kind is less likely, never impossible, and people the colony knows mostly come back at the hours that suit them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.56.3</version>
         <date>3 November 2026</date>
         <title>Camps at any hour</title>

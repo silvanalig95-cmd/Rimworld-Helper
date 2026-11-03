@@ -70,6 +70,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_Fishers</defName>
     <label>fishers</label>
+    <arrives>4~8</arrives>
     <minTech>Neolithic</minTech>
     <weight>0.8</weight>
     <people>3~5</people>
@@ -359,6 +360,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_HarvestHands</defName>
     <label>harvest hands</label>
+    <arrives>5~10</arrives>
     <minTech>Neolithic</minTech>
     <weight>1.2</weight>
     <people>4~6</people>
@@ -645,6 +647,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_Watchers</defName>
     <label>watchers of the monolith</label>
+    <arrives>20~3</arrives>
     <minTech>Medieval</minTech>
     <weight>1</weight>
     <people>2~4</people>
@@ -766,6 +769,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_BeastShow</defName>
     <label>beast show</label>
+    <arrives>11~18</arrives>
     <minTech>Neolithic</minTech>
     <weight>0.7</weight>
     <people>3~5</people>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Each camp at its own hour
+
+*3 November 2026, version 0.56.4*
+
+- The day's try for a camp now comes at any hour alike, with no lean toward evening or night.
+- Which kind of camp comes follows the hour: hunters, fishers, penitents and harvest hands mostly at dawn, traders, smiths, healers and drovers by day, pilgrims, caravans, players and minstrels toward evening, watchers of the monolith and deserters by night. Refugees, hermits, salvagers and stranded spacers come at any hour.
+- Outside its hours a kind is less likely, never impossible, and people the colony knows mostly come back at the hours that suit them.
+
 ## Camps at any hour
 
 *3 November 2026, version 0.56.3*

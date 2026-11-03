@@ -157,6 +157,7 @@
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Deserters</defName>
     <label>deserters</label>
+    <arrives>21~4</arrives>
     <weight>0.25</weight>
     <people>2~4</people>
     <days>4~9</days>

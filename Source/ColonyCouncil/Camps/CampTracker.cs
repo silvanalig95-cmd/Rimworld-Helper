@@ -293,6 +293,9 @@ namespace ColonyCouncil
             var colony = CampSite.ColonyCenter(map);
             // People the colony knows, coming back (CampMemory.cs); else a new party.
             var past = CampReturns.Pick(map);
+            // People come at the hours that fit them (CampKindDef.arrives): a returning camp out of its hours mostly comes another day.
+            int hourNow = GenLocalDate.HourOfDay(map);
+            if (past?.kind != null && !CampStoryMath.InHours(hourNow, past.kind.arrives.min, past.kind.arrives.max) && Rand.Chance(0.75f)) past = null;
             if (past != null)
             {
                 // Some kinds pitch by what they came for (the water, the ruins, the monolith: CampKindsLand.cs).
@@ -302,7 +305,7 @@ namespace ColonyCouncil
             }
             for (int tries = 0; tries < 6; tries++)
             {
-                var kind = kinds.RandomElementByWeight(k => k.WeightNow());
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
                 if (f == null)

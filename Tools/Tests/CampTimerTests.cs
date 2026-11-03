@@ -25,6 +25,18 @@ public static class CampTimerTests
         C(!timer.Contains("!= Hour)") && timer.Contains("now < tracker.nextTryTick"), "a try at an hour of its own, not ten each morning");
         C(timer.Contains("Passing.Contains(code) && tracker.tryHours < Retries"), "a passing reason only puts the try off by the hour, for up to a day");
         C(tracker.Contains("Scribe_Values.Look(ref nextTryTick"), "the next try is saved");
+        // Which kind comes follows the hour (CampKindDef.arrives, CampStoryMath.ArrivalFit); the try hour itself is any hour alike.
+        C(timer.Contains("Rand.RangeInclusive(0, 23)") && !timer.Contains("HourWeight"), "the try comes at any hour alike");
+        C(ColonyCouncil.CampStoryMath.InHours(6, 4, 9) && !ColonyCouncil.CampStoryMath.InHours(12, 4, 9), "dawn hours");
+        C(ColonyCouncil.CampStoryMath.InHours(23, 20, 3) && ColonyCouncil.CampStoryMath.InHours(2, 20, 3) && !ColonyCouncil.CampStoryMath.InHours(12, 20, 3), "night hours across midnight");
+        C(ColonyCouncil.CampStoryMath.ArrivalFit(12, -1, -1) == 1f, "no hours of its own: any hour alike");
+        C(ColonyCouncil.CampStoryMath.ArrivalFit(6, 4, 9) > 1f && ColonyCouncil.CampStoryMath.ArrivalFit(14, 4, 9) > 0f && ColonyCouncil.CampStoryMath.ArrivalFit(14, 4, 9) < 1f,
+            "likelier in its hours, still possible outside");
+        C(tracker.Contains("k.WeightNow() * k.HourFit(hourNow)"), "the kind is picked by the hour");
+        // Every kind that keeps hours keeps sensible ones.
+        foreach (var f in Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml"))
+            foreach (Match m in Regex.Matches(File.ReadAllText(f), @"<arrives>(\d+)~(\d+)</arrives>"))
+                C(int.Parse(m.Groups[1].Value) <= 23 && int.Parse(m.Groups[2].Value) <= 23, $"arrival hours within the day ({m.Value})");
         C(Regex.Matches(timer, @"tracker\.Record\(").Count >= 5, "every way the day ends goes into the diary");
         C(tracker.Contains("Scribe_Collections.Look(ref diary, \"diary\"") && tracker.Contains("DiaryMax"), "the diary is saved and kept short");
         // Every code the diary can hold has a word for the player.

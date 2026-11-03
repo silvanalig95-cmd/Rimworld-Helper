@@ -12,9 +12,10 @@ namespace ColonyCouncil
     /// the first twenty days, no really extreme weather, room on the map, a friendly people) and no other question is
     /// waiting, there's a <see cref="DailyChance"/> one makes camp. So about one in three weeks, by day, unannounced.
     /// <para>
-    /// The day's one try comes at an hour of its own (<see cref="HourWeight"/>): most often toward evening, when travellers
-    /// look for a place to stop, often at night, now and then by day, less in the early morning. A question that came in
-    /// the last hours, a world event's question still unanswered, danger on the map, a spell of extreme weather or a
+    /// The day's one try comes at any hour alike, and which kind of camp comes follows the hour (CampKindDef.arrives:
+    /// hunters and fishers at dawn, traders by day, minstrels toward evening, deserters by night, many at any hour). A
+    /// question that came in the last hours, a world event's question still unanswered, danger on the map, a spell of
+    /// extreme weather or a
     /// hazard only put it off by the hour, for up to a day (until 0.56.2 it was ten in the morning or not at all, and
     /// Rimfolk's other questions shut most mornings). What happened each day goes into the camps' diary
     /// (CampTracker.diary), shown on the World page and kept in the save.
@@ -29,30 +30,12 @@ namespace ColonyCouncil
         public const int Retries = 23;
 
         /// <summary>
-        /// How likely each hour of the day is to be the day's try: toward evening (16 to 21) most, at night (22 to 3) often,
-        /// in the early morning (4 to 8) least, by day in between.
-        /// </summary>
-        public static float HourWeight(int hour) => hour >= 16 && hour <= 21 ? 2.5f : hour >= 22 || hour <= 3 ? 1.2f : hour <= 8 ? 0.6f : 1f;
-
-        /// <summary>
-        /// The tick of the next try: at an hour picked by <see cref="HourWeight"/>, later today (<paramref name="first"/>) or
-        /// some twelve to thirty-five hours on, so about one try a day.
+        /// The tick of the next try: at any hour alike, later today (<paramref name="first"/>) or some twelve to thirty-five
+        /// hours on, so about one try a day. Which kind of camp comes then follows the hour (CampKindDef.arrives).
         /// </summary>
         public static int NextTry(int now, int hourNow, bool first)
         {
-            int pick = 0;
-            float total = 0f;
-            for (int h = 0; h < 24; h++) total += HourWeight(h);
-            float r = Rand.Value * total;
-            for (int h = 0; h < 24; h++)
-            {
-                r -= HourWeight(h);
-                if (r <= 0f)
-                {
-                    pick = h;
-                    break;
-                }
-            }
+            int pick = Rand.RangeInclusive(0, 23);
             int delta = (pick - hourNow + 24) % 24;
             if (!first && delta < 12) delta += 24;
             return now + delta * GenDate.TicksPerHour;
