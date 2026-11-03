@@ -119,6 +119,8 @@ namespace ColonyCouncil
         public const int RareRearrange = 29;
         /// <summary>A letter being written, a call under way or a comms console ringing (World/NeighbourLetters.cs), only while there is one.</summary>
         public const int RareNeighbours = 211;
+        /// <summary>A journey planned (Journeys/): its last day and hours, each traveller's next step, the hour itself; only while there is one.</summary>
+        public const int RareJourneys = 173;
 
         // ---------------- Other rhythms ----------------
 

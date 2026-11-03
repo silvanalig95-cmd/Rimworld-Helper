@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Journeys planned ahead (Source/ColonyCouncil/Journeys/, UI/JourneyDialog.cs). -->
+
+  <!-- Settings -->
+  <CC_SetSec_Journeys>Journeys</CC_SetSec_Journeys>
+  <CC_Settings_Journeys>Journeys planned ahead</CC_Settings_Journeys>
+  <CC_Settings_Journeys_Tip>From the Decrees page, the World page or a place on the region map, plan a journey: who goes (colonists, and the animals to bring), where (a town, a place, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn by default). The planner works out what to take from the stores for the days on the road (food with a margin, travel food first; medicine; bedrolls and any mod's tents for nights out; feed for animals where they can't graze) and you can change the list. A day before, each traveller's night is shifted so they wake rested in time and their recreation is topped up; in the last hours they put work aside, change into clothes for the weather on the way, pick up their share, have a meal, wash (with Dubs Bad Hygiene) and gather at the gate. At the hour, if everyone is ready, the game's own caravan forming takes exactly them and the rest of the goods and they leave together; if someone isn't, a letter asks what to do.</CC_Settings_Journeys_Tip>
+  <CC_SetNote_Journeys>Plan who goes where and when: they get ready together and set off at the hour.</CC_SetNote_Journeys>
+  <CC_Settings_JourneySleep>Shift the night before</CC_Settings_JourneySleep>
+  <CC_Settings_JourneySleep_Tip>A day before a journey, each traveller's timetable for the night before is moved (to bed earlier or later) so they wake rested a few hours before setting off, without staying up so long they run themselves down. Their own hours come back when they set off. Off: they keep their own nights; recreation is still topped up before the night and the last hours are still free.</CC_Settings_JourneySleep_Tip>
+  <CC_SetNote_JourneySleep>Travellers go to bed early or late so they wake rested in time.</CC_SetNote_JourneySleep>
+  <CC_Settings_JourneyClothes>Dressed for the road</CC_Settings_JourneyClothes>
+  <CC_Settings_JourneyClothes_Tip>The planner reads the weather along the way and at the destination over the days of the trip, and a traveller who wouldn't be comfortable through it changes into clothes from the stores that bring them closer (a parka and a tuque for a winter road, a duster for a hot one), nobody's piece given twice. They keep those on until they set off. Armour, locked pieces and pieces you made them wear stay on.</CC_Settings_JourneyClothes_Tip>
+  <CC_SetNote_JourneyClothes>Travellers change into clothes from the stores for the weather on the way.</CC_SetNote_JourneyClothes>
+  <CC_Settings_JourneyFreeHours>Hours to get ready</CC_Settings_JourneyFreeHours>
+  <CC_Settings_JourneyFreeHours_Tip>How many hours before setting off the travellers put work aside to get ready: change, pack, eat, wash and gather at the gate.</CC_Settings_JourneyFreeHours_Tip>
+  <CC_SetNote_JourneyFreeHours>How long before setting off the travellers put work aside.</CC_SetNote_JourneyFreeHours>
+
+  <!-- In words -->
+  <CC_Journey_When>{0}h on {1}</CC_Journey_When>
+  <CC_Journey_OneAnimal>an animal</CC_Journey_OneAnimal>
+  <CC_Journey_Animals>{0} animals</CC_Journey_Animals>
+  <CC_Journey_NoDestName>the open road</CC_Journey_NoDestName>
+  <CC_Journey_Place>the {0}, {1} tiles away</CC_Journey_Place>
+
+  <!-- Messages and the letter -->
+  <CC_Journey_Planned>{0} will set off for {1} at {2}, getting ready together in the last hours before it.</CC_Journey_Planned>
+  <CC_Journey_GettingReady>{0} put work aside to get ready for the journey to {1}: they set off at {2}.</CC_Journey_GettingReady>
+  <CC_Journey_SetOff>{0} set off for {1}: they load up at the gate and leave together.</CC_Journey_SetOff>
+  <CC_Journey_Without>They go without {0}.</CC_Journey_Without>
+  <CC_Journey_ShortOf>The stores were short of {0}.</CC_Journey_ShortOf>
+  <CC_Journey_ReadyNow>Everyone is ready now: the travellers set off for {0}.</CC_Journey_ReadyNow>
+  <CC_Journey_Waiting>The travellers for {0} wait at the gate: they set off at {1} if everyone is ready by then.</CC_Journey_Waiting>
+  <CC_Journey_CalledOff>The journey to {0} is called off: the travellers put their packs back and go back to their days.</CC_Journey_CalledOff>
+  <CC_Journey_CalledOffSetting>The journey to {0} is called off: journeys planned ahead are switched off in Rimfolk's settings.</CC_Journey_CalledOffSetting>
+  <CC_Journey_NoWayOut>The journey to {0} is called off: there is no way off the map the travellers can reach.</CC_Journey_NoWayOut>
+  <CC_Journey_CouldNotForm>The travellers couldn't set off for {0}: the caravan wouldn't form. They put their packs back.</CC_Journey_CouldNotForm>
+  <CC_Journey_AskTitle>Not everyone is ready</CC_Journey_AskTitle>
+  <CC_Journey_AskText>It is {0}, the hour the travellers were to set off for {1}, but not everyone is ready:\n\n{2}\n\nThe others wait at the gate. Wait an hour for them, leave without them, or call the journey off?</CC_Journey_AskText>
+  <CC_Journey_AskTextDanger>It is {0}, the hour the travellers were to set off for {1}, but there is danger on the map:\n\n{2}\n\nThey wait at the gate. Wait an hour, set off anyway, or call the journey off?</CC_Journey_AskTextDanger>
+  <CC_Journey_Choice_Wait>Wait an hour</CC_Journey_Choice_Wait>
+  <CC_Journey_Choice_Without>Leave without them</CC_Journey_Choice_Without>
+  <CC_Journey_Choice_Anyway>Set off anyway</CC_Journey_Choice_Anyway>
+  <CC_Journey_Choice_CallOff>Call the journey off</CC_Journey_Choice_CallOff>
+  <CC_Journey_NobodyReady>Nobody who would go is ready.</CC_Journey_NobodyReady>
+
+  <!-- Why someone isn't ready (the short form shows in the planner's list) -->
+  <CC_Journey_NR_Gone>{0} is no longer with the colony</CC_Journey_NR_Gone>
+  <CC_Journey_NR_Gone_Short>no longer with the colony</CC_Journey_NR_Gone_Short>
+  <CC_Journey_NR_Dead>{0} has died</CC_Journey_NR_Dead>
+  <CC_Journey_NR_Dead_Short>dead</CC_Journey_NR_Dead_Short>
+  <CC_Journey_NR_Away>{0} is away from home</CC_Journey_NR_Away>
+  <CC_Journey_NR_Away_Short>away from home</CC_Journey_NR_Away_Short>
+  <CC_Journey_NR_Downed>{0} is down and can't walk</CC_Journey_NR_Downed>
+  <CC_Journey_NR_Downed_Short>down and can't walk</CC_Journey_NR_Downed_Short>
+  <CC_Journey_NR_Mental>{0} is not in their right mind</CC_Journey_NR_Mental>
+  <CC_Journey_NR_Mental_Short>not in their right mind</CC_Journey_NR_Mental_Short>
+  <CC_Journey_NR_Untended>{0} has wounds still to be tended</CC_Journey_NR_Untended>
+  <CC_Journey_NR_Untended_Short>wounds still to be tended</CC_Journey_NR_Untended_Short>
+  <CC_Journey_NR_Drafted>{0} is under arms</CC_Journey_NR_Drafted>
+  <CC_Journey_NR_Drafted_Short>under arms</CC_Journey_NR_Drafted_Short>
+  <CC_Journey_NR_Busy>{0} is caught up in a gathering or ritual</CC_Journey_NR_Busy>
+  <CC_Journey_NR_Busy_Short>at a gathering or ritual</CC_Journey_NR_Busy_Short>
+  <CC_Journey_NR_Danger>There is danger on the map</CC_Journey_NR_Danger>
+
+  <!-- The planner -->
+  <CC_Journey_Title>Plan a journey</CC_Journey_Title>
+  <CC_Journey_TitleEdit>The journey planned</CC_Journey_TitleEdit>
+  <CC_Journey_Who>Who goes</CC_Journey_Who>
+  <CC_Journey_Beasts>Animals to bring</CC_Journey_Beasts>
+  <CC_Journey_NoBeasts>No animals at home.</CC_Journey_NoBeasts>
+  <CC_Journey_PackAnimal>carries goods</CC_Journey_PackAnimal>
+  <CC_Journey_Where>Where to</CC_Journey_Where>
+  <CC_Journey_NoDestText>Nowhere in particular: the length is yours to choose. Pick a place on the region map to set a destination.</CC_Journey_NoDestText>
+  <CC_Journey_NoWay>There is no way to {0} over land.</CC_Journey_NoWay>
+  <CC_Journey_DestDays>{0}: {1} on the road each way, by the caravan's own reckoning.</CC_Journey_DestDays>
+  <CC_Journey_PickOnMap>Pick on the region map</CC_Journey_PickOnMap>
+  <CC_Journey_PickOnMap_Tip>Closes the planner and opens the region map. Pick a town or a place and press "Plan a journey here" to come back with it as the destination.</CC_Journey_PickOnMap_Tip>
+  <CC_Journey_PickHint>Pick a place on the region map, then press Plan a journey here.</CC_Journey_PickHint>
+  <CC_Journey_NoDest>No destination</CC_Journey_NoDest>
+  <CC_Journey_WhenTitle>When</CC_Journey_WhenTitle>
+  <CC_Journey_SetsOff>Setting off at {0}</CC_Journey_SetsOff>
+  <CC_Journey_DayLess>-1 day</CC_Journey_DayLess>
+  <CC_Journey_HourLess>-1 h</CC_Journey_HourLess>
+  <CC_Journey_HourMore>+1 h</CC_Journey_HourMore>
+  <CC_Journey_DayMore>+1 day</CC_Journey_DayMore>
+  <CC_Journey_NextDawn>Next dawn</CC_Journey_NextDawn>
+  <CC_Journey_Soon>That leaves less than the {0} hours set aside to get ready: the last steps fit into what time there is.</CC_Journey_Soon>
+  <CC_Journey_RoadTitle>On the road</CC_Journey_RoadTitle>
+  <CC_Journey_AndBack>There and back</CC_Journey_AndBack>
+  <CC_Journey_Length>{0} days on the road</CC_Journey_Length>
+  <CC_Journey_ByEstimate>(the caravan's estimate)</CC_Journey_ByEstimate>
+  <CC_Journey_UseEstimate>Use the estimate</CC_Journey_UseEstimate>
+  <CC_Journey_Weather>The weather on the way: {0} to {1}.</CC_Journey_Weather>
+  <CC_Journey_WeatherThere>At {0}: {1} to {2}.</CC_Journey_WeatherThere>
+  <CC_Journey_NoGrazing>The land gives no grazing for about {0} of the trip.</CC_Journey_NoGrazing>
+  <CC_Journey_PackTitle>What they take</CC_Journey_PackTitle>
+  <CC_Journey_PackNobody>Choose who goes, and the list fills in for their days on the road.</CC_Journey_PackNobody>
+  <CC_Journey_PackNothing>Nothing in the stores to take for this trip.</CC_Journey_PackNothing>
+  <CC_Journey_Kind_food>(food)</CC_Journey_Kind_food>
+  <CC_Journey_Kind_medicine>(medicine)</CC_Journey_Kind_medicine>
+  <CC_Journey_Kind_bed>(to sleep on)</CC_Journey_Kind_bed>
+  <CC_Journey_Kind_tent>(shelter)</CC_Journey_Kind_tent>
+  <CC_Journey_Kind_feed>(for the animals)</CC_Journey_Kind_feed>
+  <CC_Journey_InStores>{0} to hand</CC_Journey_InStores>
+  <CC_Journey_PackReset>Work the list out again</CC_Journey_PackReset>
+  <CC_Journey_Weapons>Weapons as they carry them: {0}.</CC_Journey_Weapons>
+  <CC_Journey_Armed>{0} with {1}</CC_Journey_Armed>
+  <CC_Journey_Unarmed>{0} unarmed</CC_Journey_Unarmed>
+  <CC_Journey_Load>About {0} kg to take; the travellers and pack animals have room for {1} kg. What the travellers don't carry themselves is loaded at the gate.</CC_Journey_Load>
+  <CC_Journey_ClothesTitle>Dressed for the road</CC_Journey_ClothesTitle>
+  <CC_Journey_ComfyRange>comfortable from {0} to {1}</CC_Journey_ComfyRange>
+  <CC_Journey_ChangesInto>{0} changes into {1} ({2}).</CC_Journey_ChangesInto>
+  <CC_Journey_NothingFits>{0}: nothing in the stores makes the road comfortable ({1}).</CC_Journey_NothingFits>
+  <CC_Journey_DressedAlready>{0} is dressed for it already ({1}).</CC_Journey_DressedAlready>
+  <CC_Journey_LastDayTitle>The last day</CC_Journey_LastDayTitle>
+  <CC_Journey_NightLater>A day before they set off, each traveller's night is shifted from how rested they are then, so they wake in time.</CC_Journey_NightLater>
+  <CC_Journey_NightShifted>{0}: to bed at {1}h, up at {2}h.</CC_Journey_NightShifted>
+  <CC_Journey_NightOwn>{0} sleeps at their usual hours.</CC_Journey_NightOwn>
+  <CC_Journey_NightJoy>Recreation from {0}h until bed.</CC_Journey_NightJoy>
+  <CC_Journey_LastHours>In the last {0} hours they put work aside: they change for the road, pick up their share, have a meal if they need one, and wait at the gate together.</CC_Journey_LastHours>
+  <CC_Journey_LastHoursHygiene>In the last {0} hours they put work aside: they change for the road, pick up their share, have a meal if they need one, use the bathroom and wash, and wait at the gate together.</CC_Journey_LastHoursHygiene>
+  <CC_Journey_CallOffButton>Call it off</CC_Journey_CallOffButton>
+  <CC_Journey_Replaces>This replaces the journey to {0}.</CC_Journey_Replaces>
+  <CC_Journey_NeedsSomeone>Choose who goes first.</CC_Journey_NeedsSomeone>
+  <CC_Journey_Confirm>Plan the journey</CC_Journey_Confirm>
+  <CC_Journey_Save>Save the changes</CC_Journey_Save>
+
+  <!-- The pages and the region map -->
+  <CC_Journey_Section>Journeys</CC_Journey_Section>
+  <CC_Journey_None>No journey planned. Plan one and the travellers get ready together (a night's sleep, a meal, a wash, their packs and clothes for the road) and set off at the hour you choose.</CC_Journey_None>
+  <CC_Journey_PlanButton>Plan a journey</CC_Journey_PlanButton>
+  <CC_Journey_OpenButton>Open the plan</CC_Journey_OpenButton>
+  <CC_Journey_Status>{0} will set off for {1} at {2}.</CC_Journey_Status>
+  <CC_Journey_Stage_Planned>They start getting ready a day before.</CC_Journey_Stage_Planned>
+  <CC_Journey_Stage_Preparing>Their timetables are shifted for the night before.</CC_Journey_Stage_Preparing>
+  <CC_Journey_Stage_Final>They have put work aside to get ready.</CC_Journey_Stage_Final>
+  <CC_Journey_Stage_Asking>They wait at the gate: a letter asks what to do about who isn't ready.</CC_Journey_Stage_Asking>
+  <CC_Journey_Here>Plan a journey here</CC_Journey_Here>
+  <CC_Journey_HereDraft>Make this the journey's destination</CC_Journey_HereDraft>
+  <CC_Journey_HereOpen>Open the journey planned here</CC_Journey_HereOpen>
+  <CC_Journey_Here_Tip>Opens the journey planner with this place as the destination.</CC_Journey_Here_Tip>
+
+</LanguageData>

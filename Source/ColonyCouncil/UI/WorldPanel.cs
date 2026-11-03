@@ -85,6 +85,9 @@ namespace ColonyCouncil
                 }
                 // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
                 y = MissionPanel.Draw(y, w);
+                // A journey planned ahead, or the button to plan one (UI/JourneyDialog.cs).
+                float journey = JourneyPanel.Section(0f, y + 8f, w);
+                if (journey > 0f) y += journey + 8f;
                 y += 14f;
                 // A camp on the map, if there is one: who, how long, terms, tension, and a way to talk to them.
                 y = CampPanel.Section(y, w);

@@ -48,6 +48,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_DrinkBeforeWork",
         // Writing to a neighbour, handing the letter over, and calls on the comms console (World/NeighbourLetters.cs).
         "Rimfolk_Pool_NeighbourSays",
+        // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
+        "Rimfolk_Pool_JourneySays",
         // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
         "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave",
         // Wishes promised, refused, objected to, reminded of, given up on, backed and remembered (CouncilDynamics.cs,

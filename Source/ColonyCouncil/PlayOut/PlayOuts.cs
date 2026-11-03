@@ -763,6 +763,8 @@ namespace ColonyCouncil
         {
             if (p == null || p.Dead || !p.Spawned || p.Downed || p.Drafted || p.InMentalState) return false;
             if (p.IsPrisoner || p.IsQuestLodger()) return false;
+            // A traveller in the last hours before setting off is getting ready (Journeys/).
+            if (JourneyBook.Excused(p)) return false;
             if (MedicalRest(p)) return false;
             var health = p.health?.hediffSet;
             if (health != null && health.BleedRateTotal > 0f) return false;

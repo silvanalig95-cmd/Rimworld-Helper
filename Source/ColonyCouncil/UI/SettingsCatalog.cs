@@ -353,6 +353,11 @@ namespace ColonyCouncil
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
+            Section("CC_SetSec_Journeys");
+            Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
+            Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");
+            Toggle("journeyClothes", "CC_Settings_JourneyClothes", "CC_SetNote_JourneyClothes", "journeys");
+            Slider("journeyFreeHours", "CC_Settings_JourneyFreeHours", "CC_SetNote_JourneyFreeHours", 2f, 8f, 1f, "0", "journeys");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");

@@ -372,6 +372,12 @@ MODEL = {
     "Persona/TraitChanges.cs:values": ("fixed", 3, D, "per snapshot: the records a pace reads (counted under watches)"),
     "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),
     # The world
+    # A journey planned ahead (Journeys/Journeys.cs): one plan at a time, gone when they set off or it's called off.
+    "Journeys/Journeys.cs:travellers": ("fixed", COLONISTS, P, "the one plan's travellers, until they set off"),
+    "Journeys/Journeys.cs:animals": ("fixed", 10, P, "the animals they bring"),
+    "Journeys/Journeys.cs:packing": ("fixed", 10, 120, "the packing list: food, medicine, beds, tents, feed"),
+    "Journeys/Journeys.cs:done": ("fixed", COLONISTS * 6, V, "the last hours' steps each traveller has done (six steps)"),
+    "Journeys/Journeys.cs:slots": ("fixed", COLONISTS * 12, 140, "timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off"),
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     "World/FactionMemory.cs:notes": ("window", (C["KinNoteDays"], 1), 200, "who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies"),
     # The neighbours by name and letters to them (World/Notables.cs, NeighbourLetters.cs). Each notable is also a pawn

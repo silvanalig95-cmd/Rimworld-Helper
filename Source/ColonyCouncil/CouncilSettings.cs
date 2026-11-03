@@ -153,6 +153,14 @@ namespace ColonyCouncil
         public bool notables = true;
         /// <summary>Letters to them by hand, and calls on a comms console, answered in their own way (World/NeighbourLetters.cs).</summary>
         public bool neighbourLetters = true;
+        /// <summary>Journeys planned ahead: the travellers get ready together and set off at the hour chosen (Journeys/).</summary>
+        public bool journeys = true;
+        /// <summary>A journey shifts each traveller's night before, so they wake rested in time to set off.</summary>
+        public bool journeyShiftSleep = true;
+        /// <summary>Travellers change into clothes from the stores for the weather on the road.</summary>
+        public bool journeyClothes = true;
+        /// <summary>How many hours before setting off the travellers put work aside to get ready.</summary>
+        public int journeyFreeHours = 4;
         /// <summary>The game's next weather weighed as the land and the last days make likely: spells, what follows what, events, the year (Weather/WeatherDynamics.cs).</summary>
         public bool dynamicWeather = true;
         /// <summary>The weather moves the outdoor temperature a few degrees: cooler under rain on a warm day, colder on a clear night, milder under cloud.</summary>
@@ -472,6 +480,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);
             Scribe_Values.Look(ref notables, "notables", true);
             Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
+            Scribe_Values.Look(ref journeys, "journeys", true);
+            Scribe_Values.Look(ref journeyShiftSleep, "journeyShiftSleep", true);
+            Scribe_Values.Look(ref journeyClothes, "journeyClothes", true);
+            Scribe_Values.Look(ref journeyFreeHours, "journeyFreeHours", 4);
             Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
             Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
             Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);
