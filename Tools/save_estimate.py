@@ -80,6 +80,9 @@ C = {
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
     "NotableOpen": const("World/NotableMath.cs", "MaxOpen", 3),
+    "OutsiderPairs": const("Outsiders/OutsiderBook.cs", "MaxPairs", 60),
+    "OutsiderFavours": const("Outsiders/OutsiderBook.cs", "MaxFavours", 6),
+    "OutsiderWords": const("Outsiders/OutsiderBook.cs", "MaxWords", 8),
 }
 
 # How many defs of a kind there are, counted from the mod's own XML (more with other mods' content).
@@ -387,6 +390,13 @@ MODEL = {
     "World/Notables.cs:letters": ("cap", (C["NotableOpen"] + 3, 0.5), 500, "letters and calls under way, NotableMath.MaxOpen at once; ended ones kept two days"),
     "World/Notables.cs:losses": ("fixed", 12, 120, "deaths among the neighbours the colony knows of, 30 days, 12 at most"),
     "World/Notables.cs:seen": ("fixed", 6, 120, "visitors and traders seen at the colony until they're home, 6 at most, three days"),
+    # Talking with outsiders (Outsiders/OutsiderBook.cs): one line a colonist and outsider who did something together,
+    # the favours asked for a people's next visit, the good words promised. Meals and bouts under way aren't saved.
+    "Outsiders/OutsiderBook.cs:pairs": ("fixed", C["OutsiderPairs"], 330,
+                                        "OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days"),
+    "Outsiders/OutsiderBook.cs:last": ("fixed", 16, V, "per pair: when they last did each of the 16 things (counted under pairs)"),
+    "Outsiders/OutsiderBook.cs:favours": ("fixed", C["OutsiderFavours"], 220, "OutsiderBook.MaxFavours, one per people, let go after 30 days"),
+    "Outsiders/OutsiderBook.cs:words": ("fixed", C["OutsiderWords"], 180, "OutsiderBook.MaxWords good words promised, carried home or let go after 20 days"),
     # Reputation and gossip
     "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(220, 10 * COLONISTS), COLONISTS * 0.3), 300, "10 per colonist, 220 in all, faded ones dropped"),
     "Social/Gossip/Deed.cs:heard": ("cap", (min(220, 10 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (30 at most a deed), with its deed"),

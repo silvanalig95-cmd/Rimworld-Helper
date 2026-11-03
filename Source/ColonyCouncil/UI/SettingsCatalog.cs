@@ -353,6 +353,10 @@ namespace ColonyCouncil
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
+            Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
+            Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
+            Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
+            Toggle("outsiderDuels", "CC_Settings_OutsiderDuels", "CC_SetNote_OutsiderDuels", "outsiderTalk,deepHooks");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
@@ -561,7 +565,7 @@ namespace ColonyCouncil
         {
             "socialWeb", "socialEvents", "socialLife", "secrets", "vendettas", "aspirations", "quirks", "heirlooms", "comingOfAge", "dreams", "dreamOmens", "eulogies",
             "heart", "strangers", "nemeses", "nemesisReturns", "petMoments", "colonistMoments", "frictions", "autonomy", "worldReactions", "worldEvents",
-            "worldSituations", "factionMemory", "notables", "neighbourLetters", "ailments", "convalescence", "healerReputations"
+            "worldSituations", "factionMemory", "notables", "neighbourLetters", "outsiderTalk", "ailments", "convalescence", "healerReputations"
         };
 
         /// <summary>The council's own parts beyond wishes and meetings.</summary>

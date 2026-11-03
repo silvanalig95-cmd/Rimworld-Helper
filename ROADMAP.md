@@ -156,9 +156,9 @@ when a mod is active, only what the colony has unlocked, never harder without a 
   console), then right-click interactions with outsiders, favors owed, pacts and truces, feasts with guests,
   marriage alliances, wards and hostages, ransom, fealty and vassals (beside the Faction Territories and Vassalage
   and Factional War mods, whose files the player will upload), council tasks, house renown, stress against one's
-  nature. Still not planned: integrating the Diplomatic Marriage mod's own system. The right-click interactions include
-  a sparring bout, insult or provoke, and a duel of honour where a people's ways fit (the player: "everything should be
-  possible").
+  nature. Still not planned: integrating the Diplomatic Marriage mod's own system. Done so far: the region map
+  (0.58.0), notables and letters with comms-console calls (0.59.0), right-click interactions with outsiders including a
+  sparring bout, insults and duels of honour (0.60.0).
 - After the to-dos above (the player's request, 3 November 2026): review every existing mechanic under the new harm
   rule (CLAUDE.md) and give each its negative side where it fits: outcomes that can go badly, some preventable by the
   player's care, some not, at a rate comparable to the game's own chance of something bad happening. "Everything

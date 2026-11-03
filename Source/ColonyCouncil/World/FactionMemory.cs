@@ -209,6 +209,9 @@ namespace ColonyCouncil
             ["campHealed"] = K(DeedSide.Favor, 6),
             // Letters to their notables (World/NeighbourLetters.cs): a warning of a real threat, heeded.
             ["warned"] = K(DeedSide.Favor, 6, 10f, 12),
+            // One of theirs at the colony (Outsiders/): a gift into their hands, a duel of honour won fairly.
+            ["gaveGift"] = K(DeedSide.Favor, 5, 10f, 20),
+            ["duel"] = K(DeedSide.Favor, 6, 10f, 18),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),
@@ -234,6 +237,8 @@ namespace ColonyCouncil
             ["unfed"] = K(DeedSide.Wrong, 8),
             ["tookSides"] = K(DeedSide.Wrong, 10),
             ["refused"] = K(DeedSide.Wrong, 6),
+            // A fistfight with one of theirs at the colony after hard words (Outsiders/).
+            ["brawled"] = K(DeedSide.Wrong, 6, 5f, 18),
             // Their good turns: the colony owes them.
             ["aid"] = K(DeedSide.TheirFavor, 12, 2f),
             ["relief"] = K(DeedSide.TheirFavor, 10),
@@ -242,6 +247,8 @@ namespace ColonyCouncil
             ["apologised"] = K(DeedSide.TheirFavor, 6),
             // Medicine or food they sent when the colony asked by letter: a favor the colony owes them.
             ["letterAid"] = K(DeedSide.TheirFavor, 6, 15f, 12),
+            // Something a colonist asked one of theirs to bring, brought on their next visit (Outsiders/).
+            ["broughtAsked"] = K(DeedSide.TheirFavor, 4, 15f, 12),
             // A grant of land the colony holds of them (a scenario's start): a debt that fades slowly, and is called in.
             ["granted"] = K(DeedSide.TheirFavor, 25),
             // Their wrongs.

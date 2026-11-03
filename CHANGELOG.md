@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Talking with outsiders
+
+*3 November 2026, version 0.60.0*
+
+- With a colonist selected, right-click someone from outside the colony who isn't hostile and pick Talk with to chat, ask about their home, share a meal or a drink, or give a gift.
+- Ask visitors for a good word with their town's head, a letter carried home, an hour's lesson, or something brought on their next visit.
+- Invite a visitor to stay, get to know them over several visits until you're friends, court them, or talk faith.
+- Offer a practice bout with fists. Bruises are likely, and now and then a blow lands harder than meant.
+- Insult someone if you must. They remember it, and a hot temper may answer with a fistfight.
+- Challenge someone of a tribe, a medieval people or an empire's nobility to a duel of honour, to first blood or until one yields, with both sides watching.
+- Everything is remembered: their opinion of the colonist and the colony, their people's memory, and a stranger becomes a face the colony knows.
+
 ## A guest's checklist that fits
 
 *3 November 2026, version 0.59.1*

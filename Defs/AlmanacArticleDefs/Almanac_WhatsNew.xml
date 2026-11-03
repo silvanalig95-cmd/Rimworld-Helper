@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.60.0</version>
+        <date>3 November 2026</date>
+        <title>Talking with outsiders</title>
+        <points>
+          <li>With a colonist selected, right-click someone from outside the colony who isn't hostile and pick Talk with to chat, ask about their home, share a meal or a drink, or give a gift.</li>
+          <li>Ask visitors for a good word with their town's head, a letter carried home, an hour's lesson, or something brought on their next visit.</li>
+          <li>Invite a visitor to stay, get to know them over several visits until you're friends, court them, or talk faith.</li>
+          <li>Offer a practice bout with fists. Bruises are likely, and now and then a blow lands harder than meant.</li>
+          <li>Insult someone if you must. They remember it, and a hot temper may answer with a fistfight.</li>
+          <li>Challenge someone of a tribe, a medieval people or an empire's nobility to a duel of honour, to first blood or until one yields, with both sides watching.</li>
+          <li>Everything is remembered: their opinion of the colonist and the colony, their people's memory, and a stranger becomes a face the colony knows.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.59.1</version>
         <date>3 November 2026</date>
         <title>A guest's checklist that fits</title>

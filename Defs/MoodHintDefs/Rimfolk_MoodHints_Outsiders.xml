@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the moods from talking with outsiders (Defs/ThoughtDefs/Rimfolk_Thoughts_Outsiders.xml). -->
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_SawDuel</defName>
+    <thoughts><li>Rimfolk_SawDuel</li></thoughts>
+    <fix>They watched one of the colony's people lose a duel of honour. It passes in a few days. A better fighter, or a duel to first blood rather than until one yields, gives the next one a better chance.</fix>
+    <act>Passes with time</act>
+    <actionable>false</actionable>
+    <keep>They watched one of their own win a duel of honour, and are proud of it.</keep>
+    <article>Council_Alm_C_Neighbours</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
