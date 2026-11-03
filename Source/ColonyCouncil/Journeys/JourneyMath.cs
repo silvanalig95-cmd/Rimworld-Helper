@@ -7,7 +7,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The numbers of a journey made ready (Journeys/): when to set off by default, how each traveller's last night is
     /// shifted so they wake rested in time, when each of the last hours' steps opens, what to pack for the days on the
-    /// road, which travel food comes first, what to change into for the weather on the way, and which edge of the map and
+    /// road, which travel food comes first, how long the food and feed last against the road, the list's groups and
+    /// counts as the player changes them, what to change into for the weather on the way, and which edge of the map and
     /// which spot at the gate to leave by. Pure (no game types), so Tools/Tests can check it.
     /// </summary>
     public static class JourneyMath
@@ -327,6 +328,147 @@ namespace ColonyCouncil
 
         /// <summary>Keeps through the trip and its spare days.</summary>
         public static bool Keeps(FoodOption f, float days) => float.IsPositiveInfinity(f.rotDays) || f.rotDays >= days * (1f + FoodMargin) + SpareDays;
+
+        // ---------------- How long it lasts ----------------
+
+        /// <summary>The days the packing is for: the days on the road, a quarter more and a spare day (none without a road).</summary>
+        public static float MarginDays(float roadDays) => roadDays <= 0f ? 0f : roadDays * (1f + FoodMargin) + SpareDays;
+
+        /// <summary>A simple meal's nourishment: the shortfall is told in meals of this much.</summary>
+        public const float MealNutrition = 0.9f;
+
+        /// <summary>
+        /// How many days food lasts eaters who need <paramref name="perDay"/> a day between them; without eaters, forever
+        /// when there is food, none when there isn't.
+        /// </summary>
+        public static float Lasts(float nutrition, float perDay)
+        {
+            if (nutrition <= 0f) return 0f;
+            return perDay <= 0f ? float.PositiveInfinity : nutrition / perDay;
+        }
+
+        /// <summary>How far food reaches: through the road with the margin, through the road only, or short of it.</summary>
+        public enum Cover
+        {
+            Margin,
+            Road,
+            Short
+        }
+
+        /// <summary>Food that lasts <paramref name="lasts"/> days against <paramref name="roadDays"/> on the road (and the margin on top).</summary>
+        public static Cover Covers(float lasts, float roadDays)
+        {
+            if (lasts >= MarginDays(roadDays) - 0.01f) return Cover.Margin;
+            return lasts >= roadDays - 0.01f ? Cover.Road : Cover.Short;
+        }
+
+        /// <summary>Days short of a target (none when it is reached).</summary>
+        public static float ShortDays(float lasts, float targetDays) => float.IsPositiveInfinity(lasts) ? 0f : Math.Max(0f, targetDays - lasts);
+
+        /// <summary>The meals of <see cref="MealNutrition"/> that would make up <paramref name="days"/> for eaters of <paramref name="perDay"/>.</summary>
+        public static int ShortMeals(float days, float perDay) => Units(days * perDay, MealNutrition);
+
+        /// <summary>
+        /// The animals' feed against the days they can't graze: each animal with what it eats a day and the days it needs
+        /// feed for (none for a grazer on good land). <c>lasts</c> is how many days the feed keeps those that need it fed,
+        /// <c>need</c> the days they need it, on average by what each eats; <see cref="Covers"/> of the two then reads
+        /// against the same margin the planner packs feed with.
+        /// </summary>
+        public static (float lasts, float need) FeedCover(IList<(float perDay, float feedDays)> animals, float feed)
+        {
+            float eat = 0f, need = 0f;
+            if (animals != null)
+                foreach (var a in animals)
+                {
+                    if (a.perDay <= 0f || a.feedDays <= 0f) continue;
+                    eat += a.perDay;
+                    need += a.perDay * a.feedDays;
+                }
+            if (eat <= 0f) return (feed > 0f ? float.PositiveInfinity : 0f, 0f);
+            return (Math.Max(0f, feed) / eat, need / eat);
+        }
+
+        // ---------------- Changing the list ----------------
+
+        /// <summary>A number typed for a line, kept to what is to hand and never below none.</summary>
+        public static int ClampCount(int typed, int toHand) => Math.Max(0, Math.Min(typed, Math.Max(0, toHand)));
+
+        /// <summary>
+        /// A line's count moved by a step (the game's modifier keys make it 10 or 100): never up past what is to hand (a
+        /// count already over it stays where it is), never below none.
+        /// </summary>
+        public static int StepCount(int count, int step, int toHand)
+        {
+            int next = count + step;
+            if (step > 0) next = Math.Min(next, Math.Max(Math.Max(0, toHand), count));
+            return Math.Max(0, next);
+        }
+
+        /// <summary>How much of something each traveller has (medicine a person).</summary>
+        public static float PerPerson(int count, int people) => people <= 0 ? 0f : Math.Max(0, count) / (float)people;
+
+        /// <summary>The list's groups in the order they are shown.</summary>
+        public static readonly string[] Groups = { "food", "medicine", "bedding", "feed", "other" };
+
+        /// <summary>A line's group: food, medicine and feed by their kind, beds and tents together as bedding, anything else other.</summary>
+        public static string GroupOf(string kind)
+        {
+            switch (kind)
+            {
+                case "food":
+                case "medicine":
+                case "feed":
+                    return kind;
+                case "bed":
+                case "tent":
+                    return "bedding";
+                default:
+                    return "other";
+            }
+        }
+
+        /// <summary>One line of the list, as its group's subtotal and the load count it.</summary>
+        public struct PackRow
+        {
+            public string kind;
+            public int count;
+            /// <summary>What the travellers carry of it already (theirs, not loaded again).</summary>
+            public int carried;
+            /// <summary>Each one's nourishment and weight; how many sleep on one (a bed's width).</summary>
+            public float nutrition, mass;
+            public int sleeps;
+        }
+
+        /// <summary>A group's subtotal: how many things, their nourishment, weight and sleeping places.</summary>
+        public struct PackSum
+        {
+            public int lines, count, sleeps;
+            public float nutrition, mass;
+        }
+
+        /// <summary>The subtotal of the rows in a group (<see cref="GroupOf"/>); every row when <paramref name="group"/> is null.</summary>
+        public static PackSum Sum(IEnumerable<PackRow> rows, string group = null)
+        {
+            var s = new PackSum();
+            foreach (var r in rows)
+            {
+                if (r.count <= 0 || (group != null && GroupOf(r.kind) != group)) continue;
+                s.lines++;
+                s.count += r.count;
+                s.nutrition += r.count * Math.Max(0f, r.nutrition);
+                s.mass += r.count * Math.Max(0f, r.mass);
+                if (r.kind == "bed") s.sleeps += r.count * Math.Max(1, r.sleeps);
+            }
+            return s;
+        }
+
+        /// <summary>The weight still to be taken up: what the list holds less what the travellers carry already.</summary>
+        public static float LoadToTake(IEnumerable<PackRow> rows)
+        {
+            float m = 0f;
+            foreach (var r in rows) m += Math.Max(0, r.count - Math.Max(0, r.carried)) * Math.Max(0f, r.mass);
+            return m;
+        }
 
         /// <summary>
         /// The order to pack food in: what keeps through the trip first, travel food first among it (packaged meals,

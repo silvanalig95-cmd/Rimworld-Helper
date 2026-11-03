@@ -6,7 +6,7 @@
   <!-- Settings -->
   <CC_SetSec_Journeys>Journeys</CC_SetSec_Journeys>
   <CC_Settings_Journeys>Journeys planned ahead</CC_Settings_Journeys>
-  <CC_Settings_Journeys_Tip>From the Decrees page, the World page or a place on the region map, plan a journey: who goes (colonists, and the animals to bring), where (a town, a place, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn by default). The planner works out what to take from the stores for the days on the road (food with a margin, travel food first; medicine; bedrolls and any mod's tents for nights out; feed for animals where they can't graze) and you can change the list. A day before, each traveller's night is shifted so they wake rested in time and their recreation is topped up; in the last hours they put work aside, change into clothes for the weather on the way, pick up their share, have a meal, wash (with Dubs Bad Hygiene) and gather at the gate. At the hour, if everyone is ready, the game's own caravan forming takes exactly them and the rest of the goods and they leave together; if someone isn't, a letter asks what to do.</CC_Settings_Journeys_Tip>
+  <CC_Settings_Journeys_Tip>From the Decrees page, the World page or a place on the region map, plan a journey: who goes (colonists, and the animals to bring), where (a town, a place, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn by default). The planner works out what to take from the stores for the days on the road (food with a margin, travel food first; medicine; bedrolls and any mod's tents for nights out; feed for animals where they can't graze) and shows how long the food lasts against the road; you can change any line, take one off or add anything else from the stores. A day before, each traveller's night is shifted so they wake rested in time and their recreation is topped up; in the last hours they put work aside, change into clothes for the weather on the way, pick up their share, have a meal, wash (with Dubs Bad Hygiene) and gather at the gate. At the hour, if everyone is ready, the game's own caravan forming takes exactly them and the rest of the goods and they leave together; if someone isn't, a letter asks what to do.</CC_Settings_Journeys_Tip>
   <CC_SetNote_Journeys>Plan who goes where and when: they get ready together and set off at the hour.</CC_SetNote_Journeys>
   <CC_Settings_JourneySleep>Shift the night before</CC_Settings_JourneySleep>
   <CC_Settings_JourneySleep_Tip>A day before a journey, each traveller's timetable for the night before is moved (to bed earlier or later) so they wake rested a few hours before setting off, without staying up so long they run themselves down. Their own hours come back when they set off. Off: they keep their own nights; recreation is still topped up before the night and the last hours are still free.</CC_Settings_JourneySleep_Tip>
@@ -99,17 +99,95 @@
   <CC_Journey_PackTitle>What they take</CC_Journey_PackTitle>
   <CC_Journey_PackNobody>Choose who goes, and the list fills in for their days on the road.</CC_Journey_PackNobody>
   <CC_Journey_PackNothing>Nothing in the stores to take for this trip.</CC_Journey_PackNothing>
-  <CC_Journey_Kind_food>(food)</CC_Journey_Kind_food>
-  <CC_Journey_Kind_medicine>(medicine)</CC_Journey_Kind_medicine>
-  <CC_Journey_Kind_bed>(to sleep on)</CC_Journey_Kind_bed>
-  <CC_Journey_Kind_tent>(shelter)</CC_Journey_Kind_tent>
-  <CC_Journey_Kind_feed>(for the animals)</CC_Journey_Kind_feed>
-  <CC_Journey_InStores>{0} to hand</CC_Journey_InStores>
+  <CC_Journey_AddFromStores>Add from the stores</CC_Journey_AddFromStores>
+  <CC_Journey_AddFromStores_Tip>Pick anything the stores hold or the travellers carry, by kind or by name, and how many.</CC_Journey_AddFromStores_Tip>
   <CC_Journey_PackReset>Work the list out again</CC_Journey_PackReset>
+  <CC_Journey_PackReset_Tip>The planner's own lines go back to its numbers, and the ones you took off come back. Lines you added stay.</CC_Journey_PackReset_Tip>
+  <CC_Journey_Group_food>Food</CC_Journey_Group_food>
+  <CC_Journey_Group_food_Tip>Food the travellers eat on the road. They pack it themselves, each a share in proportion to what they eat, as much as they can carry; the rest is loaded at the gate.</CC_Journey_Group_food_Tip>
+  <CC_Journey_Group_medicine>Medicine</CC_Journey_Group_medicine>
+  <CC_Journey_Group_medicine_Tip>Medicine for the road, shared out among the travellers to carry.</CC_Journey_Group_medicine_Tip>
+  <CC_Journey_Group_bedding>Bedding</CC_Journey_Group_bedding>
+  <CC_Journey_Group_bedding_Tip>Bedrolls (a double counts for two) and any mod's tents for nights on the road, carried by the travellers in turn.</CC_Journey_Group_bedding_Tip>
+  <CC_Journey_Group_feed>Feed for the animals</CC_Journey_Group_feed>
+  <CC_Journey_Group_feed_Tip>Feed for the days the animals can't graze, loaded at the gate with the caravan's goods.</CC_Journey_Group_feed_Tip>
+  <CC_Journey_Group_other>Other</CC_Journey_Group_other>
+  <CC_Journey_Group_other_Tip>Anything else you added from the stores. It goes with the caravan's goods, loaded at the gate onto the pack animals first.</CC_Journey_Group_other_Tip>
+  <CC_Journey_Kg>{0} kg</CC_Journey_Kg>
+  <CC_Journey_SubDays>about {0} days, {1}</CC_Journey_SubDays>
+  <CC_Journey_SubNutrition>{0} nutrition, {1}</CC_Journey_SubNutrition>
+  <CC_Journey_SubMedicine>{0} a person, {1}</CC_Journey_SubMedicine>
+  <CC_Journey_SubBedding>sleeps {0} of {1}, {2}</CC_Journey_SubBedding>
+  <CC_Journey_Suggested>the planner's</CC_Journey_Suggested>
+  <CC_Journey_YourNumber>your number</CC_Journey_YourNumber>
+  <CC_Journey_Added>added by you</CC_Journey_Added>
+  <CC_Journey_LineDays>{0} days</CC_Journey_LineDays>
+  <CC_Journey_LineNutrition>{0} nutrition</CC_Journey_LineNutrition>
+  <CC_Journey_InStores>{0} to hand</CC_Journey_InStores>
+  <CC_Journey_Spoils>spoils in about {0} days</CC_Journey_Spoils>
+  <CC_Journey_TipMass>{0} kg each, {1} for the line.</CC_Journey_TipMass>
+  <CC_Journey_TipNutrition>{0} nutrition each, {1} for the line.</CC_Journey_TipNutrition>
+  <CC_Journey_TipRots>Starts to rot after about {0} days out of a freezer.</CC_Journey_TipRots>
+  <CC_Journey_TipKeeps>Doesn't rot.</CC_Journey_TipKeeps>
+  <CC_Journey_TipToHand>To hand: {0} in the stores, {1} carried by the travellers.</CC_Journey_TipToHand>
+  <CC_Journey_TipOwnPack>The travellers pack it themselves in the last hours, as much as they can carry; the rest is loaded at the gate.</CC_Journey_TipOwnPack>
+  <CC_Journey_TipGate>Loaded at the gate with the caravan's goods, onto the pack animals first.</CC_Journey_TipGate>
+  <CC_Journey_StepTip>One at a time; with Shift 10, with Ctrl 100.</CC_Journey_StepTip>
+  <CC_Journey_CountTip>Type how many, up to the {0} to hand. It is set when you leave the box or press Enter.</CC_Journey_CountTip>
+  <CC_Journey_SetAll>All</CC_Journey_SetAll>
+  <CC_Journey_SetAllTip>All there is to hand: {0}.</CC_Journey_SetAllTip>
+  <CC_Journey_SetNone>None</CC_Journey_SetNone>
+  <CC_Journey_SetNoneTip>None of it: the line stays on the list at none, and the planner doesn't make it up from anything else.</CC_Journey_SetNoneTip>
+  <CC_Journey_LineResetTip>Back to the planner's own number for it.</CC_Journey_LineResetTip>
+  <CC_Journey_RemoveTip>Take it off the list: the planner makes up its share from other things and leaves this off until the list is worked out again.</CC_Journey_RemoveTip>
+  <CC_Journey_RemoveAddedTip>Take it off the list.</CC_Journey_RemoveAddedTip>
+  <CC_Journey_TakenOff>{0}: taken off the list</CC_Journey_TakenOff>
+  <CC_Journey_PutBack>Put back</CC_Journey_PutBack>
+  <CC_Journey_PutBackTip>Back on the list, as the planner works it out.</CC_Journey_PutBackTip>
   <CC_Journey_Weapons>Weapons as they carry them: {0}.</CC_Journey_Weapons>
   <CC_Journey_Armed>{0} with {1}</CC_Journey_Armed>
   <CC_Journey_Unarmed>{0} unarmed</CC_Journey_Unarmed>
-  <CC_Journey_Load>About {0} kg to take; the travellers and pack animals have room for {1} kg. What the travellers don't carry themselves is loaded at the gate.</CC_Journey_Load>
+  <CC_Journey_TheTravellers>the {0} travellers</CC_Journey_TheTravellers>
+  <CC_Journey_RoadDays>{0} days on the road</CC_Journey_RoadDays>
+  <CC_Journey_RoadBack>{0} days on the road there and back</CC_Journey_RoadBack>
+  <CC_Journey_RoadOneWay>{0} days on the road one way</CC_Journey_RoadOneWay>
+  <CC_Journey_FoodLasts>Food for about {0} days for {1}, against {2}.</CC_Journey_FoodLasts>
+  <CC_Journey_FoodNone>No food on the list for {0}, against {1}.</CC_Journey_FoodNone>
+  <CC_Journey_FoodEnough>Enough, with the margin ({0} days).</CC_Journey_FoodEnough>
+  <CC_Journey_FoodNoMargin>Enough for the road but not the margin ({0} days): about {1} more meals would cover it.</CC_Journey_FoodNoMargin>
+  <CC_Journey_FoodShort>{0} days short of the road: about {1} more meals.</CC_Journey_FoodShort>
+  <CC_Journey_FoodTip>{0} eat about {1} nutrition a day between them, by the game's own hunger rates, and the food on the list comes to {2}. The planner packs for the days on the road, a quarter more and a spare day: {3} days here. A meal is counted as a simple meal's worth, 0.9 nutrition.</CC_Journey_FoodTip>
+  <CC_Journey_FeedLasts>Feed for about {0} days, against about {1} days the animals can't graze.</CC_Journey_FeedLasts>
+  <CC_Journey_FeedEnough>Enough, with the margin.</CC_Journey_FeedEnough>
+  <CC_Journey_FeedNoMargin>Enough for those days but not the margin.</CC_Journey_FeedNoMargin>
+  <CC_Journey_FeedShort>{0} days short.</CC_Journey_FeedShort>
+  <CC_Journey_FeedGraze>The animals can graze all the way: they need no feed.</CC_Journey_FeedGraze>
+  <CC_Journey_FeedTip>The animals eat about {0} nutrition a day between them. Those that graze need feed only where the land gives none (about {1} of the trip); those that don't graze need it every day. The margin is the same as for food: a quarter more and a spare day.</CC_Journey_FeedTip>
+  <CC_Journey_Load>About {0} kg to take; room for {1} kg on the travellers and pack animals.</CC_Journey_Load>
+  <CC_Journey_LoadOver>That is {0} kg too much: a caravan carrying more than it can doesn't move.</CC_Journey_LoadOver>
+  <CC_Journey_LoadTip>What the travellers carry already isn't counted again. They pack their own food, medicine and bedding in the last hours as they can carry it; the rest, the feed and anything else on the list is loaded at the gate by the game's own caravan forming, onto the pack animals first.</CC_Journey_LoadTip>
+
+  <!-- Add from the stores (UI/JourneyPick.cs) -->
+  <CC_JourneyPick_Title>Add from the stores</CC_JourneyPick_Title>
+  <CC_JourneyPick_Sub>What the stores hold and the travellers carry. Click to add one; with Shift 10, with Ctrl 100.</CC_JourneyPick_Sub>
+  <CC_JourneyPick_Tab_Food>Food</CC_JourneyPick_Tab_Food>
+  <CC_JourneyPick_Tab_Medicine>Medicine</CC_JourneyPick_Tab_Medicine>
+  <CC_JourneyPick_Tab_Drugs>Drugs</CC_JourneyPick_Tab_Drugs>
+  <CC_JourneyPick_Tab_Apparel>Apparel</CC_JourneyPick_Tab_Apparel>
+  <CC_JourneyPick_Tab_Weapons>Weapons</CC_JourneyPick_Tab_Weapons>
+  <CC_JourneyPick_Tab_Ammo>Ammunition</CC_JourneyPick_Tab_Ammo>
+  <CC_JourneyPick_Tab_Tools>Tools and gear</CC_JourneyPick_Tab_Tools>
+  <CC_JourneyPick_Tab_Trade>Silver and trade goods</CC_JourneyPick_Tab_Trade>
+  <CC_JourneyPick_Tab_Materials>Materials</CC_JourneyPick_Tab_Materials>
+  <CC_JourneyPick_Tab_All>Everything</CC_JourneyPick_Tab_All>
+  <CC_JourneyPick_Each>{0} kg each</CC_JourneyPick_Each>
+  <CC_JourneyPick_Carried>(+{0} carried)</CC_JourneyPick_Carried>
+  <CC_JourneyPick_OnList>on the list: {0}</CC_JourneyPick_OnList>
+  <CC_JourneyPick_Nothing>Nothing of this kind in the stores.</CC_JourneyPick_Nothing>
+  <CC_JourneyPick_TipMass>{0} kg each.</CC_JourneyPick_TipMass>
+  <CC_JourneyPick_TipNutrition>{0} nutrition each.</CC_JourneyPick_TipNutrition>
+  <CC_JourneyPick_TipGroup>On the list under {0}.</CC_JourneyPick_TipGroup>
+  <CC_JourneyPick_TipClick>Click to add one; with Shift 10, with Ctrl 100. All adds everything there is.</CC_JourneyPick_TipClick>
   <CC_Journey_ClothesTitle>Dressed for the road</CC_Journey_ClothesTitle>
   <CC_Journey_ComfyRange>comfortable from {0} to {1}</CC_Journey_ComfyRange>
   <CC_Journey_ChangesInto>{0} changes into {1} ({2}).</CC_Journey_ChangesInto>
