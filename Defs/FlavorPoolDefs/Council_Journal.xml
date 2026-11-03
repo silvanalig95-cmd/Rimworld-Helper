@@ -497,6 +497,28 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_MovedDown</defName>
+    <lines>
+      <plain>
+        <li>I was {OFFICE}, and now I'm {NEW}. Still on the council, but everyone saw me step down.</li>
+        <li>They made me {NEW}. After being {OFFICE}, it's hard not to take it as a judgement.</li>
+        <li>From {OFFICE} to {NEW}. I'll do the work, but I'll remember who voted for it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_MovedSeat</defName>
+    <lines>
+      <plain>
+        <li>They moved me from {OFFICE} to {NEW}. Not what I asked for, but it's still a seat, and I mean to fill it well.</li>
+        <li>No longer {OFFICE}. I'm {NEW} now. The council keeps me, just somewhere else.</li>
+        <li>I stood to stay {OFFICE}, and the colony wanted me as {NEW} instead. Fair enough, I suppose.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_LostOffice</defName>
     <lines>
       <plain>

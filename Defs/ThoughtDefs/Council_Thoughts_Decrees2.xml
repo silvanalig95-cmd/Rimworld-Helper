@@ -90,6 +90,36 @@
     <stages><li><label>lost my seat</label><description>I had a seat on the council, and now they have it.</description><baseMoodEffect>-5</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
+  <!-- Voted out of one seat but onto another in the same election (Offices.MovedSeat): only if they stood to keep the old one. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MovedSeat</defName>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>moved to another seat</label><description>I hoped to keep my old seat on the council. I have another one now, and I'll do it well, but it wasn't my choice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- Stood for one seat, lost it, and won a different one in the same election (Offices.OtherSeat): the greedy, jealous and abrasive. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_OtherSeat</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li><label>not the seat I wanted</label><description>I'm on the council, just not where I wanted to be.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>not the seat I wanted</label><description>I'm on the council, but I stood for a higher seat than the one I got.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Voted out of one seat onto a lower one in the same election (Offices.MovedSeat, Offices.SeatRank): a demotion. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MovedDown</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li><label>a step down on the council</label><description>I sat in a higher seat on the council before. The one I have now feels like a step down.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a long way down on the council</label><description>I was the council's speaker. Now I sit in one of its smallest seats, and everyone knows it.</description><baseMoodEffect>-4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
   <ThoughtDef>
     <defName>Council_LostElection</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>

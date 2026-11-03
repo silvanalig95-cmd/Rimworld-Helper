@@ -38,6 +38,9 @@ namespace ColonyCouncil
         public static ThoughtDef Council_TraditionBroken;
         public static ThoughtDef Council_ElectedToOffice;
         public static ThoughtDef Council_LostOffice;
+        public static ThoughtDef Council_MovedSeat;
+        public static ThoughtDef Council_MovedDown;
+        public static ThoughtDef Council_OtherSeat;
         public static ThoughtDef Council_LostElection;
         public static ThoughtDef Council_ProudMentor;
         public static ThoughtDef Council_GratefulStudent;

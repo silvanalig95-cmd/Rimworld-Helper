@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.56.1</version>
+        <date>3 November 2026</date>
+        <title>Moved, not voted out</title>
+        <points>
+          <li>A colonist voted out of one seat but onto another in the same election no longer feels they lost their seat. Who lost a seat is now worked out only once every seat is filled.</li>
+          <li>A move to an equal seat stings a little only if they stood to keep the old one. A lower seat feels like a step down, more so for a speaker who ends up in one of the smaller seats, and a higher seat is simply good news.</li>
+          <li>A proud candidate who lost the seat they stood for but won another minds it only a little, a bit more if the seat they wanted stood higher.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.56.0</version>
         <date>3 November 2026</date>
         <title>Fields by the weather</title>

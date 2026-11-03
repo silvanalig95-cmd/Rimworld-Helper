@@ -726,7 +726,7 @@
 
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Offices</defName>
-    <thoughts><li>Council_ElectedToOffice</li><li>Council_LostElection</li><li>Council_LostOffice</li></thoughts>
+    <thoughts><li>Council_ElectedToOffice</li><li>Council_LostElection</li><li>Council_LostOffice</li><li>Council_MovedSeat</li><li>Council_OtherSeat</li><li>Council_MovedDown</li></thoughts>
     <fix>Losing a seat stings, and it fades. A wish granted in the meantime softens it, and they can stand again at the next election.</fix>
     <act>Grant a wish to soften it</act>
     <actionable>false</actionable>

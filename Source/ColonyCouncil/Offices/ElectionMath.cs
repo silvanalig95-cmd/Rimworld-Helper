@@ -327,6 +327,22 @@ namespace ColonyCouncil
         /// </summary>
         public static int GatheringTicks(int lines) => Math.Max(2500, Math.Min(15000, 2500 + lines * LineTicks * 5 / 4 + 1000));
 
+        /// <summary>What a move between seats in one count stings like (Offices.MovedSeat).</summary>
+        public enum SeatMove { Nothing, Moved, Down, FarDown }
+
+        /// <summary>
+        /// Voted out of a seat of rank <paramref name="fromRank"/> and onto one of rank <paramref name="toRank"/> in the same
+        /// count (Offices.SeatRank: 2 the speaker, 1 the founding seats, 0 the rest): a step down stings, two steps more; an
+        /// equal seat only if they stood to keep the old one; a step up never.
+        /// </summary>
+        public static SeatMove Move(int fromRank, int toRank, bool stood)
+        {
+            int drop = fromRank - toRank;
+            if (drop >= 2) return SeatMove.FarDown;
+            if (drop == 1) return SeatMove.Down;
+            return drop == 0 && stood ? SeatMove.Moved : SeatMove.Nothing;
+        }
+
         private static float Clamp(float v, float lo, float hi) => v < lo ? lo : v > hi ? hi : v;
 
         private static int Clamp(int v, int lo, int hi) => v < lo ? lo : v > hi ? hi : v;

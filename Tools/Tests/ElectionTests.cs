@@ -11,6 +11,17 @@ using ColonyCouncil;
 /// </summary>
 public static class ElectionTests
 {
+    private static bool offices0Moved(string root)
+    {
+        string src = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Offices", "Offices.cs"));
+        int settle = src.IndexOf("private void Settle(", StringComparison.Ordinal);
+        int finish = src.IndexOf("private void Finish(", StringComparison.Ordinal);
+        if (settle < 0 || finish < 0) return false;
+        string settleBody = src.Substring(settle, finish - settle);
+        return !settleBody.Contains("LostOffice(comp") && !settleBody.Contains("LostElection(comp")
+               && src.Substring(finish).Contains("OfficeOf(who)");
+    }
+
     public static int Run(string root, Action<bool, string> check)
     {
         int cases = 0;
@@ -166,6 +177,14 @@ public static class ElectionTests
         Check(misc.Any(x => x.Name.LocalName == "GatheringDef" && (string?)x.Element("defName") == "Rimfolk_ElectionGathering"), "the election's gathering exists");
         Check(misc.Any(x => x.Name.LocalName == "JobDef" && (string?)x.Element("defName") == "Rimfolk_CastVote"), "the vote's job exists");
         Check(misc.Any(x => x.Name.LocalName == "LetterDef" && (string?)x.Element("defName") == "Rimfolk_ElectionLetter"), "the announcement's letter exists");
+
+        // ---------- Moved to another seat in the same count: not a lost seat (the player's report) ----------
+        Check(ElectionMath.Move(1, 1, false) == ElectionMath.SeatMove.Nothing, "moved to an equal seat without standing for the old: nothing");
+        Check(ElectionMath.Move(1, 1, true) == ElectionMath.SeatMove.Moved, "stood to keep it and moved to an equal seat: a small sting");
+        Check(ElectionMath.Move(0, 1, true) == ElectionMath.SeatMove.Nothing && ElectionMath.Move(1, 2, true) == ElectionMath.SeatMove.Nothing, "moved up: nothing");
+        Check(ElectionMath.Move(1, 0, false) == ElectionMath.SeatMove.Down && ElectionMath.Move(2, 1, true) == ElectionMath.SeatMove.Down, "one step down: a demotion, stood or not");
+        Check(ElectionMath.Move(2, 0, false) == ElectionMath.SeatMove.FarDown, "speaker to a small seat: further down");
+        Check(offices0Moved(root), "a seat lost is only told once every seat is filled, and someone with another seat isn't told they lost one");
 
         // ---------- The code: one sentence a bubble, the vote's term, no clock of its own ----------
         string src = Path.Combine(root, "Source", "ColonyCouncil");

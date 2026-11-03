@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Moved, not voted out
+
+*3 November 2026, version 0.56.1*
+
+- A colonist voted out of one seat but onto another in the same election no longer feels they lost their seat. Who lost a seat is now worked out only once every seat is filled.
+- A move to an equal seat stings a little only if they stood to keep the old one. A lower seat feels like a step down, more so for a speaker who ends up in one of the smaller seats, and a higher seat is simply good news.
+- A proud candidate who lost the seat they stood for but won another minds it only a little, a bit more if the seat they wanted stood higher.
+
 ## Fields by the weather
 
 *3 November 2026, version 0.56.0*

@@ -1200,6 +1200,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Office_Vacant>{1} no longer holds the seat of {0}. It will be filled soon.</CC_Office_Vacant>
   <CC_Office_Appointed>The council appointed {PAWN_nameDef} as {OFFICE}.</CC_Office_Appointed>
   <CC_Office_Overruled>The council overruled the vote and made {PAWN_nameDef} {OFFICE} instead of {OTHER_nameDef}. Those who voted for {OTHER_objective} trust the council less for it.</CC_Office_Overruled>
+  <CC_Office_MovedCause>voted out as {OFFICE} and onto the council as {NEW}</CC_Office_MovedCause>
+  <CC_Office_OtherSeatCause>stood for {OFFICE} and won {NEW} instead</CC_Office_OtherSeatCause>
   <CC_Log_RemovedFromOffice>removed as {0}</CC_Log_RemovedFromOffice>
   <CC_Log_VoteOverruled>the council overruled the vote for {0}</CC_Log_VoteOverruled>
   <CC_Chronicle_Elected>{0} was elected {1}.</CC_Chronicle_Elected>

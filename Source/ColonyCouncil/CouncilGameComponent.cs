@@ -995,7 +995,11 @@ namespace ColonyCouncil
 
         // ================= Effects =================
 
-        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f, string cause = null)
+        /// <summary>
+        /// Gives one of Rimfolk's memories through the settings, standards and the game's nullifiers. <paramref name="stage"/>
+        /// picks one of the def's stages (a milder or stronger form of the same mood); -1 for the first.
+        /// </summary>
+        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f, string cause = null, int stage = -1)
         {
             // apart: the helper every memory goes through; its callers are what the audit looks at.
             if (def == null || p?.needs?.mood?.thoughts?.memories == null) return;
@@ -1006,6 +1010,7 @@ namespace ColonyCouncil
             if (BodyFit.Nullified(p, def) || !Heard.CanHave(p, def)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
+            if (stage > 0 && def.stages != null && stage < def.stages.Count) thought.SetForcedStage(stage);
             bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect >= 0f;
             float factor = scale >= 0f ? scale : positive ? ColonyCouncilMod.Settings.rewardFactor : ColonyCouncilMod.Settings.PenaltyScale;
             if (factor <= 0f) return;

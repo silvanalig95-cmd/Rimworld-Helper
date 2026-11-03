@@ -315,10 +315,11 @@ namespace ColonyCouncil
             public readonly HashSet<Pawn> taken = new HashSet<Pawn>();
             public readonly HashSet<Pawn> winners = new HashSet<Pawn>();
             public readonly HashSet<string> filled = new HashSet<string>();
-            // On a bench (the elders' three seats) someone voted out of one seat may win the next: who lost their place,
-            // and who lost the vote, is only known once every seat is filled.
-            public readonly List<(OfficeDef office, Pawn who, Pawn to)> benchLost = new List<(OfficeDef, Pawn, Pawn)>();
-            public readonly List<(OfficeDef office, Pawn who, Pawn to)> benchBeaten = new List<(OfficeDef, Pawn, Pawn)>();
+            // Someone voted out of one seat may win another seat later in the same count (the next seat on the elders'
+            // bench, or a different office): who lost their place, and who lost the vote, is only known once every seat
+            // is filled. <stood>: they stood for that seat again, so they wanted to keep it.
+            public readonly List<(OfficeDef office, Pawn who, Pawn to, bool stood)> lost = new List<(OfficeDef, Pawn, Pawn, bool)>();
+            public readonly List<(OfficeDef office, Pawn who, Pawn to)> beaten = new List<(OfficeDef, Pawn, Pawn)>();
         }
 
         /// <summary>The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.</summary>
@@ -411,19 +412,14 @@ namespace ColonyCouncil
             comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
             PersonaMarks.Notify_Elected(winner, office.label, previous == winner);
             Deeds.Elected(winner, office, voters);
+            // Told once every seat is filled (Finish): voted out of this seat may still mean a seat elsewhere.
             if (previous != null && previous != winner && Valid(previous))
-            {
-                if (office.Seats > 1) round.benchLost.Add((office, previous, winner));
-                else LostOffice(comp, office, previous, winner);
-            }
+                round.lost.Add((office, previous, winner, ranked.Any(kv => kv.Key == previous && kv.Value > 0)));
             foreach (var kv in ranked.Skip(1))
             {
                 var t = kv.Key.story?.traits;
                 if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
-                {
-                    if (office.Seats > 1) round.benchBeaten.Add((office, kv.Key, winner));
-                    else LostElection(comp, office, kv.Key, winner);
-                }
+                    round.beaten.Add((office, kv.Key, winner));
             }
             Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
             // Terms won and votes lost, for the names that count them (Epithets/NameRecords.cs); a bench's seats are shared, so single seats only.
@@ -450,13 +446,26 @@ namespace ColonyCouncil
                     holders.Remove(key);
                     elected.Remove(key);
                 }
-            // The bench's losers: only those left without a seat on it (each once).
+            // Who lost a seat and who lost a vote, now that every seat is filled (each once). Someone voted onto
+            // another seat hasn't lost their place on the council: nothing, or a small "moved" if they stood to keep
+            // the old one; someone who minds losing a vote but won a different seat only wanted that one a little more.
             var told = new HashSet<(OfficeDef, Pawn)>();
-            foreach (var (office, who, to) in round.benchLost)
-                if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostOffice(comp, office, who, to);
+            var moved = new HashSet<Pawn>();
+            foreach (var (office, who, to, stood) in round.lost)
+            {
+                if (HoldersOf(office).Contains(who) || !told.Add((office, who))) continue;
+                var now = OfficeOf(who);
+                if (now == null) LostOffice(comp, office, who, to);
+                else if (moved.Add(who)) MovedSeat(comp, office, now, who, stood);
+            }
             told.Clear();
-            foreach (var (office, who, to) in round.benchBeaten)
-                if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostElection(comp, office, who, to);
+            foreach (var (office, who, to) in round.beaten)
+            {
+                if (HoldersOf(office).Contains(who) || !told.Add((office, who))) continue;
+                var now = OfficeOf(who);
+                if (now == null) LostElection(comp, office, who, to);
+                else if (moved.Add(who)) OtherSeat(comp, office, now, who);
+            }
             SyncHediffs();
             Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NeutralEvent, look);
         }
@@ -467,6 +476,42 @@ namespace ColonyCouncil
             // apart: an election's outcome, told in its letter (Hold).
             CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to);
             comp.journals.Write(who, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+        }
+
+        /// <summary>
+        /// How high a seat stands, for a move between seats: the speaker's chair above the founding seats (those every
+        /// colony has: marshal, quartermaster, physician, steward), and those above the seats a larger colony adds.
+        /// </summary>
+        public static int SeatRank(OfficeDef o) =>
+            o == null ? 0 : o.defName == "Council_Office_Speaker" ? 2 : o.minColonists <= 0 ? 1 : 0;
+
+        /// <summary>
+        /// Voted out of <paramref name="from"/> but onto <paramref name="now"/> in the same count: still on the council.
+        /// A step down (a lower seat, <see cref="SeatRank"/>) stings like a demotion, the more the further down; a move to
+        /// an equal seat only stings if they stood to keep the old one; a move up is just the new seat's joy. The journal
+        /// notes the move either way.
+        /// </summary>
+        private static void MovedSeat(CouncilGameComponent comp, OfficeDef from, OfficeDef now, Pawn who, bool stood)
+        {
+            // apart: an election's outcome, told in its letter (Hold).
+            var move = ElectionMath.Move(SeatRank(from), SeatRank(now), stood);
+            bool down = move == ElectionMath.SeatMove.Down || move == ElectionMath.SeatMove.FarDown;
+            string cause = "CC_Office_MovedCause".Translate(from.label.Named("OFFICE"), now.label.Named("NEW")).Resolve();
+            if (down) CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_MovedDown, null, -1f, cause, move == ElectionMath.SeatMove.FarDown ? 1 : 0);
+            else if (move == ElectionMath.SeatMove.Moved) CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_MovedSeat, null, -1f, cause);
+            comp.journals.Write(who, down ? "Council_Journal_MovedDown" : "Council_Journal_MovedSeat", null, from.label.Named("OFFICE"), now.label.Named("NEW"));
+        }
+
+        /// <summary>
+        /// Stood for <paramref name="wanted"/>, lost it, and won <paramref name="now"/> instead (the greedy, the jealous, the
+        /// abrasive): minds it a little, a bit more if the seat they wanted stands higher.
+        /// </summary>
+        private static void OtherSeat(CouncilGameComponent comp, OfficeDef wanted, OfficeDef now, Pawn who)
+        {
+            // apart: an election's outcome, told in its letter (Hold).
+            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_OtherSeat, null, -1f,
+                "CC_Office_OtherSeatCause".Translate(wanted.label.Named("OFFICE"), now.label.Named("NEW")).Resolve(),
+                SeatRank(wanted) > SeatRank(now) ? 1 : 0);
         }
 
         /// <summary>Stood and lost to <paramref name="to"/>, and minds it (the greedy, the jealous, the abrasive).</summary>
