@@ -396,6 +396,8 @@ namespace ColonyCouncil
             NoteUnder("CC_SetSec_Ahead_Note");
             Slider("aheadMealDays", "CC_Settings_AheadMealDays", "CC_SetNote_AheadMealDays", 0.5f, 6f, 0.5f, "0.#");
             Slider("aheadReserveDays", "CC_Settings_AheadReserveDays", "CC_SetNote_AheadReserveDays", 1f, 30f, 1f, "0");
+            Toggle("fieldsByWeather", "CC_Settings_FieldsByWeather", "CC_SetNote_FieldsByWeather", "deepHooks");
+            Toggle("frostHarvestSuggest", "CC_Settings_FrostHarvest", "CC_SetNote_FrostHarvest");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);

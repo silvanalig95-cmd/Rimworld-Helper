@@ -29,6 +29,8 @@ namespace ColonyCouncil
         public int level;
         /// <summary>What the urgency pill says when it isn't a matter of days ("when the prisoners join"); null: by the days.</summary>
         public string when;
+        /// <summary>What the urgency pill says in place of the days, when its hours say more ("Frost in 9 hours"); null: by the days or <see cref="when"/>.</summary>
+        public string pill;
         public Map map;
         /// <summary>The button's words and what it does on the map (null: "Do it" and the reason).</summary>
         public string doLabel, doTip;
@@ -96,6 +98,8 @@ namespace ColonyCouncil
         public int tries;
         /// <summary>What is in the way, when the check found it didn't work.</summary>
         public string why;
+        /// <summary>What the check found when it worked, in words, if it says more than that it worked (a frost harvest: whether the frost came and how many were saved).</summary>
+        public string found;
 
         public bool CanUndo => undo != null && state != SuggestMath.Undone && map != null && SafePossible();
 
@@ -124,6 +128,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref state, "state");
             Scribe_Values.Look(ref tries, "tries");
             Scribe_Values.Look(ref why, "why");
+            Scribe_Values.Look(ref found, "found");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 key ??= "";

@@ -69,12 +69,13 @@ namespace ColonyCouncil
             return v;
         }
 
-        /// <summary>The suggestions still open, the soonest first: those set aside and those waiting for their check taken out.</summary>
+        /// <summary>The suggestions still open, the soonest first: those set aside and those waiting for their check taken out. The fields' frost harvest (Fields/FieldWeather.cs) comes among them.</summary>
         public static List<Suggestion> Open(Map map)
         {
             var v = For(map);
+            var all = v.all.Concat(FieldWeather.Steps(map)).ToList();
             var tracker = SuggestTracker.Instance;
-            return tracker != null ? tracker.Open(v.all) : v.all;
+            return tracker != null ? tracker.Open(all) : all;
         }
 
         /// <summary>The hour (CouncilGameComponent.HourlyPeople): the steps done are checked, and each home map's plan worked out again from the live game.</summary>

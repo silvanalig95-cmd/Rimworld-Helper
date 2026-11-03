@@ -303,6 +303,10 @@ namespace ColonyCouncil
         /// <summary>Planning ahead (the Making page's Ahead section): days of meals to keep cooked, and days of food to keep in store beyond the days nothing grows.</summary>
         public float aheadMealDays = 2f;
         public float aheadReserveDays = 5f;
+        /// <summary>A "By the weather" switch on each growing zone (off on each until switched on there): sowing there pauses while a crop sown now wouldn't pay by the forecast (Fields/FieldWeather.cs).</summary>
+        public bool fieldsByWeather = true;
+        /// <summary>A one-click suggestion to harvest the plants of an outdoor field that a frost in the next day or so would kill (Fields/FieldWeather.cs).</summary>
+        public bool frostHarvestSuggest = true;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -548,6 +552,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autoChopsADay, "autoChopsADay", 10);
             Scribe_Values.Look(ref aheadMealDays, "aheadMealDays", 2f);
             Scribe_Values.Look(ref aheadReserveDays, "aheadReserveDays", 5f);
+            Scribe_Values.Look(ref fieldsByWeather, "fieldsByWeather", true);
+            Scribe_Values.Look(ref frostHarvestSuggest, "frostHarvestSuggest", true);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);

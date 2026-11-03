@@ -42,6 +42,8 @@ namespace ColonyCouncil
         public const int Arcs = 1777;
         /// <summary>Groups: what everyone's work is, and habits kept together (Social/Groups/GroupTracker.cs).</summary>
         public const int Groups = 1903;
+        /// <summary>Fields by the weather (Fields/FieldWeather.cs): the real day's cold noted, the forecast worked out again every other hour, the frost harvest's checks fed.</summary>
+        public const int Fields = 1996;
         /// <summary>Story chains and missions, inside the missions' own 250-tick pass.</summary>
         public const int Stories = 2089;
         /// <summary>The council: encounters and nuisances, Rimfolk's own events.</summary>
@@ -57,7 +59,7 @@ namespace ColonyCouncil
         public static readonly int[] HourlyOffsets =
         {
             CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
-            Reputation, Arcs, Groups, Stories, Weather, CouncilEvents, Talk, Ailments
+            Reputation, Arcs, Groups, Fields, Stories, Weather, CouncilEvents, Talk, Ailments
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>

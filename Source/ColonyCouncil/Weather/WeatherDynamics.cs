@@ -307,6 +307,46 @@ namespace ColonyCouncil
             return WeatherBook.Of(map)?.dyn.offset ?? 0f;
         }
 
+        /// <summary>
+        /// The weather's push on this map's outdoor temperature for each hour ahead (°C), for the fields' forecast
+        /// (Fields/FieldWeather.cs): the push now, eased as <see cref="Rare"/> eases it toward what the weather now makes
+        /// it for as long as the weather is expected to hold, then toward this year's lean alone (the next weather isn't
+        /// known; the fields' margin takes a colder night). <paramref name="raw"/> is each hour's temperature without the
+        /// push, <paramref name="glow"/> the sun's light then.
+        /// </summary>
+        public static float[] PushAhead(Map map, float[] raw, float[] glow)
+        {
+            int n = raw?.Length ?? 0;
+            var push = new float[n];
+            var st = WeatherBook.Of(map)?.dyn;
+            if (st == null || n == 0) return push;
+            float cur = st.offset;
+            bool on = TemperatureOn && Applies(map);
+            var b = default(BiomeWeather);
+            var kind = WeatherKind.Clear;
+            float rain = 0f, snow = 0f, year = 0f;
+            int hold = 0;
+            if (on)
+            {
+                b = Land(map, st);
+                var wm = map.weatherManager;
+                kind = KindOf(wm.curWeather);
+                rain = wm.RainRate;
+                snow = map.snowGrid.TotalDepth / Mathf.Max(1, map.Area);
+                year = WeatherDynamicsMath.YearOf(Seed(map), GenLocalDate.Year(map), b).temp;
+                hold = Mathf.Max(0, DurationOf(map.weatherDecider) - wm.curWeatherAge) / GenDate.TicksPerHour;
+            }
+            push[0] = cur;
+            for (int h = 1; h < n; h++)
+            {
+                float sun = glow != null && h < glow.Length ? glow[h] : 0.5f;
+                float target = !on ? 0f : h <= hold ? WeatherDynamicsMath.TempTarget(kind, rain, sun < 0.3f, sun, b, snow, raw[h], year) : year;
+                cur = FieldWeatherMath.EaseHour(cur, target);
+                push[h] = cur;
+            }
+            return push;
+        }
+
         /// <summary>Every 250 ticks: the temperature eased toward what the weather makes it.</summary>
         public static void Rare(Map map, WeatherBook book)
         {
