@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.56.3</version>
+        <date>3 November 2026</date>
+        <title>Camps at any hour</title>
+        <points>
+          <li>A camp can now arrive at any hour of the day or night: most often toward evening, when travellers look for a place to stop, often at night, less in the early morning.</li>
+          <li>Each day's try comes at an hour of its own. A question that just came, one still waiting for an answer, danger on the map or extreme weather put it off by the hour, for up to a day, and the camps' diary notes the hour of each day's outcome.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.56.2</version>
         <date>3 November 2026</date>
         <title>Camps that can come</title>

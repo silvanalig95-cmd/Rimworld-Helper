@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps at any hour
+
+*3 November 2026, version 0.56.3*
+
+- A camp can now arrive at any hour of the day or night: most often toward evening, when travellers look for a place to stop, often at night, less in the early morning.
+- Each day's try comes at an hour of its own. A question that just came, one still waiting for an answer, danger on the map or extreme weather put it off by the hour, for up to a day, and the camps' diary notes the hour of each day's outcome.
+
 ## Camps that can come
 
 *3 November 2026, version 0.56.2*

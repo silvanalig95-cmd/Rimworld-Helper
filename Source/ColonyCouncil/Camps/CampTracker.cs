@@ -54,8 +54,8 @@ namespace ColonyCouncil
         /// <summary>How often each outcome came, since <see cref="diarySince"/> (a day).</summary>
         public Dictionary<string, int> diaryCounts = new Dictionary<string, int>();
         public int diarySince = -1;
-        /// <summary>The day the camps last made their one choice (rolled the dice, or found the way shut for the day).</summary>
-        public int rolledDay = -1;
+        /// <summary>When the day's try comes (CampTimer.NextTry), and how many hours a passing reason has put it off.</summary>
+        public int nextTryTick = -1, tryHours;
         /// <summary>Why the last Prepare without a list of its own found nothing (for the diary).</summary>
         [Unsaved] public readonly List<string> lastWhy = new List<string>();
         public const int DiaryMax = 30;
@@ -724,7 +724,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref diary, "diary", LookMode.Value);
             Scribe_Collections.Look(ref diaryCounts, "diaryCounts", LookMode.Value, LookMode.Value);
             Scribe_Values.Look(ref diarySince, "diarySince", -1);
-            Scribe_Values.Look(ref rolledDay, "rolledDay", -1);
+            Scribe_Values.Look(ref nextTryTick, "nextTryTick", -1);
+            Scribe_Values.Look(ref tryHours, "tryHours");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (diary == null) diary = new List<string>();

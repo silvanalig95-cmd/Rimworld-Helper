@@ -22,9 +22,9 @@ public static class CampTimerTests
         string src = Path.Combine(root, "Source", "ColonyCouncil", "Camps");
         string timer = File.ReadAllText(Path.Combine(src, "CampTimer.cs"));
         string tracker = File.ReadAllText(Path.Combine(src, "CampTracker.cs"));
-        C(timer.Contains("hour < FirstHour || hour > LastHour") && !timer.Contains("!= Hour)"), "a daytime window, not one hour");
-        C(timer.Contains("tracker.rolledDay == day"), "one choice a day");
-        C(timer.Contains("Passing.Contains(code) && hour < LastHour"), "a passing reason only puts the choice off to a later hour");
+        C(!timer.Contains("!= Hour)") && timer.Contains("now < tracker.nextTryTick"), "a try at an hour of its own, not ten each morning");
+        C(timer.Contains("Passing.Contains(code) && tracker.tryHours < Retries"), "a passing reason only puts the try off by the hour, for up to a day");
+        C(tracker.Contains("Scribe_Values.Look(ref nextTryTick"), "the next try is saved");
         C(Regex.Matches(timer, @"tracker\.Record\(").Count >= 5, "every way the day ends goes into the diary");
         C(tracker.Contains("Scribe_Collections.Look(ref diary, \"diary\"") && tracker.Contains("DiaryMax"), "the diary is saved and kept short");
         // Every code the diary can hold has a word for the player.

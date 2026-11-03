@@ -281,8 +281,7 @@ namespace ColonyCouncil
                 var setup = tracker.Prepare(map, why);
                 if (setup != null)
                 {
-                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Once a day, in the first open hour from "
-                             + CampTimer.FirstHour + " to " + CampTimer.LastHour + ", there's a " + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
+                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Once a day, at an hour of its own (most often toward evening or at night), there's a " + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
                     CampTracker.Discard(setup);
                 }
                 else
