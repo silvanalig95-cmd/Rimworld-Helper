@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.58.0</version>
+        <date>3 November 2026</date>
+        <title>The region map</title>
+        <points>
+          <li>A region map: the land around the colony in a window of its own, over the colony, opened from the button on the World page or a key of its own. It never switches to the world view unless asked.</li>
+          <li>The window can be moved and resized, stays open while the game runs, and keeps its place and view until the game is closed.</li>
+          <li>Every tile is coloured by its land, darker for hills, with a peak on mountains, and the rivers and roads run between tiles. Biomes from other mods get a colour from their name or their climate.</li>
+          <li>Settlements show in their people's colours, with sites, the colony's caravans and the colony itself in a gold ring. Turn the mouse wheel to zoom, drag to look around, and hover over a tile for its land and climate.</li>
+          <li>Click a settlement for its people, how they stand with the colony, how many days it is by caravan, any world event about them and what they remember, and a button to see it in the game's world view.</li>
+          <li>A setting chooses how far the map reaches, 20 to 60 tiles each way (35 at first), and the window has the same control at its top.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.57.1</version>
         <date>3 November 2026</date>
         <title>A frozen golem thaws</title>

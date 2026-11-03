@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The region map
+
+*3 November 2026, version 0.58.0*
+
+- A region map: the land around the colony in a window of its own, over the colony, opened from the button on the World page or a key of its own. It never switches to the world view unless asked.
+- The window can be moved and resized, stays open while the game runs, and keeps its place and view until the game is closed.
+- Every tile is coloured by its land, darker for hills, with a peak on mountains, and the rivers and roads run between tiles. Biomes from other mods get a colour from their name or their climate.
+- Settlements show in their people's colours, with sites, the colony's caravans and the colony itself in a gold ring. Turn the mouse wheel to zoom, drag to look around, and hover over a tile for its land and climate.
+- Click a settlement for its people, how they stand with the colony, how many days it is by caravan, any world event about them and what they remember, and a button to see it in the game's world view.
+- A setting chooses how far the map reaches, 20 to 60 tiles each way (35 at first), and the window has the same control at its top.
+
 ## A frozen golem thaws
 
 *3 November 2026, version 0.57.1*
