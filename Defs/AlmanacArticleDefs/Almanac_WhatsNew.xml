@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.55.4</version>
+        <date>3 November 2026</date>
+        <title>Carcinomas on the health panel, for real</title>
+        <points>
+          <li>The health panel now really shows carcinomas: the game's carcinoma has no deadly severity of its own, it grows until it destroys the body part it sits in, so the last round's rule missed it.</li>
+          <li>It reads "stable", "shrinking" or "getting worse", with how far it is towards losing that part, and shows whatever the option for those only healing says.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.55.3</version>
         <date>3 November 2026</date>
         <title>A wedding still lands</title>

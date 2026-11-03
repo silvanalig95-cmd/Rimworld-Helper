@@ -284,6 +284,13 @@ namespace ColonyCouncil
                 bleedRate = hd.BleedRate
             };
             f.permanent = hd.IsPermanent();
+            if (def.stages != null)
+                foreach (var stage in def.stages)
+                    if (stage != null && (stage.destroyPart || stage.lifeThreatening))
+                    {
+                        f.graveSeverity = Math.Max(0.001f, stage.minSeverity);
+                        break;
+                    }
             f.tendable = def.tendable || f.injury;
             f.tended = hd.IsTended();
             f.needsTend = hd.TendableNow();
@@ -298,6 +305,7 @@ namespace ColonyCouncil
                         immuneRate = imm.Props?.severityPerDayImmune ?? 0f;
                     }
                     if (c is HediffComp_Ailment) f.ailment = true;
+                    if (c is HediffComp_GrowthMode) f.growthMode = true;
                     if (c is HediffComp_SeverityModifierBase m)
                         try
                         {
@@ -490,6 +498,18 @@ namespace ColonyCouncil
 
         private static string Soon(float days) => HudHealthMath.RoughTime(days, HudKit.T("CC_Pnl_H_Hours"), HudKit.T("CC_Pnl_H_Days"));
 
+        /// <summary>
+        /// A chronic condition that costs a body part (a carcinoma): how far towards losing the part, or how severe it is
+        /// when the def has no such stage.
+        /// </summary>
+        private static string GraveFact(Item it)
+        {
+            var part = it.hediff?.Part;
+            if (it.facts.graveSeverity > 0f && part != null)
+                return "CC_Pnl_H_ToPartLost".Translate(it.facts.GraveProgress.ToStringPercent(), part.Label).Resolve();
+            return "CC_Pnl_H_SeverityShort".Translate(Mathf.Clamp01(it.hediff?.Severity ?? 0f).ToStringPercent()).Resolve();
+        }
+
         /// <summary>What matters most about one condition, in a few words: untended, the immunity race, how far a wound has healed, the days left.</summary>
         private static string ShortFact(Item it, out Color color)
         {
@@ -516,6 +536,7 @@ namespace ColonyCouncil
                 color = HudKit.ColorOf(it.score, UiKit.Faint);
                 return "CC_Pnl_H_ToLethal".Translate(it.facts.Progress.ToStringPercent()).Resolve();
             }
+            if (it.facts.chronic && it.facts.Grave) return GraveFact(it);
             if (it.daysLeft >= 0f) return "CC_Pnl_H_LeftShort".Translate(Soon(it.daysLeft)).Resolve();
             if (it.tendQuality >= 0f) return "CC_Pnl_H_TendedQ".Translate(it.tendQuality.ToStringPercent()).Resolve();
             return null;
@@ -567,6 +588,7 @@ namespace ColonyCouncil
                 if (it.notHealing) parts.Add(HudKit.T("CC_Pnl_H_NotHealingShort"));
                 else if (it.daysLeft > 0f) parts.Add(Soon(it.daysLeft));
             }
+            else if (it.facts.chronic && it.facts.Grave && !it.facts.Lethal) parts.Add(GraveFact(it));
             else if (it.facts.Lethal && (it.facts.chronic || it.facts.severityPerDay > HudHealthMath.Still))
             {
                 parts.Add("CC_Pnl_H_ToLethal".Translate(it.facts.Progress.ToStringPercent()).Resolve());
@@ -844,6 +866,7 @@ namespace ColonyCouncil
                 else if (it.daysLeft > 0f) notes.Add("CC_Pnl_H_HealsIn".Translate(Days(it.daysLeft)).Resolve());
             }
             else if (it.facts.Lethal && !it.facts.injury) notes.Add("CC_Pnl_H_TowardsDeath".Translate(it.facts.Progress.ToStringPercent()).Resolve());
+            else if (it.facts.chronic && it.facts.Grave) notes.Add(GraveFact(it));
             else if (it.daysLeft >= 0f) notes.Add("CC_Pnl_H_PassesIn".Translate(Days(it.daysLeft)).Resolve());
             if (notes.Count > 0) line += ": " + string.Join(", ", notes);
             return line.Colorize(HudKit.ColorOf(it.score, new Color(0.85f, 0.85f, 0.85f)));

@@ -44,6 +44,20 @@ namespace ColonyCouncil
 
         /// <summary>How far towards killing (0..1), or 0 when it can't.</summary>
         public float Progress => lethalSeverity > 0f ? Math.Max(0f, Math.Min(1f, severity / lethalSeverity)) : 0f;
+
+        /// <summary>
+        /// The severity at which it destroys its body part or turns life-threatening (the first such stage of the def;
+        /// 0 when none). A carcinoma kills this way, not by a lethal severity: it eats the part it sits in.
+        /// </summary>
+        public float graveSeverity;
+        /// <summary>It grows, holds or shrinks by itself (HediffComp_GrowthMode, as a carcinoma does).</summary>
+        public bool growthMode;
+
+        /// <summary>It can kill or cost a body part: what makes a chronic condition worth showing.</summary>
+        public bool Grave => Lethal || graveSeverity > 0f || growthMode;
+
+        /// <summary>How far towards losing the part or turning life-threatening (0..1), or 0 when it can't.</summary>
+        public float GraveProgress => graveSeverity > 0f ? Math.Max(0f, Math.Min(1f, severity / graveSeverity)) : 0f;
     }
 
     /// <summary>Where an immunity race stands.</summary>
@@ -145,13 +159,13 @@ namespace ColonyCouncil
         /// ailments, illnesses (an immunity race, or the game calling it being sick), and anything that can kill. What's
         /// left doesn't show: a bad effect that is none of these (another mod's curse or magic, a hangover) is neither
         /// an injury nor an illness, and one that never changes and needs nothing is how they are now, not something that passes.
-        /// A chronic condition that can kill (a carcinoma) always shows, the player asked to see them: it won't pass, but an
-        /// operation can take it away.
+        /// A chronic condition that can kill or cost a body part (a carcinoma, which grows until it destroys the part it
+        /// sits in) always shows, the player asked to see them: it won't pass, but an operation can take it away.
         /// </summary>
         public static bool Shows(HediffFacts f)
         {
             if (f.missingPart || f.addedPart || f.permanent || f.pregnancy) return false;
-            if (f.chronic) return f.bad && f.Lethal;
+            if (f.chronic) return f.bad && f.Grave;
             if (f.ailment) return true;
             if (!f.bad) return false;
             if (f.bleedRate > 0f) return true;
@@ -339,11 +353,13 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A row that would read "healing" whose first condition is chronic (a carcinoma): "stable" while it isn't growing,
-        /// "shrinking" while it is (growing already reads "getting worse"). A chronic condition doesn't heal.
+        /// A row that would read "healing" whose first condition is chronic (a carcinoma): "getting worse" while it grows,
+        /// "shrinking" while it shrinks, "stable" otherwise. A chronic condition doesn't heal.
         /// </summary>
         public static HealthStatus Lasting(HealthStatus status, bool topChronic, float topSeverityPerDay) =>
-            status != HealthStatus.Healing || !topChronic ? status : topSeverityPerDay < -Still ? HealthStatus.Shrinking : HealthStatus.Stable;
+            status != HealthStatus.Healing || !topChronic ? status
+            : topSeverityPerDay > Still ? HealthStatus.Worsening
+            : topSeverityPerDay < -Still ? HealthStatus.Shrinking : HealthStatus.Stable;
 
         /// <summary>The status word's colour: healing green, something to tend yellow, getting worse or losing orange, bleeding or in danger red.</summary>
         public static HealthTone ToneOf(HealthStatus status)

@@ -46,6 +46,13 @@ public static class HudPanelTests
         Check(HudHealthMath.Lasting(HealthStatus.Untended, true, 0f) == HealthStatus.Untended
               && HudHealthMath.Lasting(HealthStatus.Healing, false, 0f) == HealthStatus.Healing, "anything else keeps its word");
         Check(HudHealthMath.ToneOf(HealthStatus.Stable) == HealthTone.Fair, "stable in yellow: it doesn't go away by itself");
+        // The game's carcinoma has no lethal severity: it grows (its growth comp) until a stage destroys the part.
+        Check(HudHealthMath.Shows(new HediffFacts { bad = true, chronic = true, tendable = true, tended = true, growthMode = true, severity = 0.3f }),
+            "a carcinoma shows by its growth, without a lethal severity");
+        Check(HudHealthMath.Shows(new HediffFacts { bad = true, chronic = true, graveSeverity = 1f, severity = 0.3f }),
+            "a chronic condition that destroys its part shows");
+        Check(Math.Abs(new HediffFacts { graveSeverity = 1f, severity = 0.3f }.GraveProgress - 0.3f) < 0.001f, "and says how far towards losing the part");
+        Check(HudHealthMath.Lasting(HealthStatus.Healing, true, 0.01f) == HealthStatus.Worsening, "a growing one reads getting worse");
         var psylink = new HediffFacts { bad = false, severity = 3f };
         Check(!HudHealthMath.Shows(psylink), "what the game doesn't call bad (psylinks, auras, buffs) never shows");
         var buffPassing = new HediffFacts { bad = false, severity = 0.5f, severityPerDay = -1f };

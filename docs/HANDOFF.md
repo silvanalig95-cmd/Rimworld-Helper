@@ -6,8 +6,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
-- 0.55.3, the player's request: the health panel shows chronic conditions that can kill (carcinoma) as stable,
-  shrinking or getting worse (`HudHealthMath.Shows`, `Lasting`); other chronic conditions stay off.
+- 0.55.3/0.55.4, the player's request: the health panel shows chronic conditions that can kill or cost a part
+  (carcinoma: no lethalSeverity, it has a growth comp and destroys its part) as stable, shrinking or getting worse
+  (`HudHealthMath.Shows`, `Grave`, `Lasting`); other chronic conditions stay off.
 - 0.55.0, the player's request (colonists stuck at full mood): used to the good life (`Moods/GoodLife.cs`,
   `GoodLifeMath.cs`; since 0.55.1 each good mood group is felt at a share in `Patch_ComfortStandards`, with a note in
   its tooltip and the Mood tab readout, no bad mood of its own: the player found a big flat "-56" line unconvincing;

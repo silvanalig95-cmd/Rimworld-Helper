@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Carcinomas on the health panel, for real
+
+*3 November 2026, version 0.55.4*
+
+- The health panel now really shows carcinomas: the game's carcinoma has no deadly severity of its own, it grows until it destroys the body part it sits in, so the last round's rule missed it.
+- It reads "stable", "shrinking" or "getting worse", with how far it is towards losing that part, and shows whatever the option for those only healing says.
+
 ## A wedding still lands
 
 *3 November 2026, version 0.55.3*
