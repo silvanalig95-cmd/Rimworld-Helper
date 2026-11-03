@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The region map: the land around the colony in a window of its own (Source/ColonyCouncil/UI/Window_RegionMap.cs,
+       Source/ColonyCouncil/World/RegionMap.cs). -->
+
+  <CC_Region_Button>Region map</CC_Region_Button>
+  <CC_Region_Button_Tip>Opens a map of the land around the colony in a window of its own, over the colony rather than in the game's world view: the settlements nearby, their people, and how far each is by caravan. The window can be moved and resized and stays open while the game runs.</CC_Region_Button_Tip>
+  <CC_Region_Button_Key>Key: {0}</CC_Region_Button_Key>
+  <CC_Region_Title>Region map</CC_Region_Title>
+  <CC_Region_Reach>{0} tiles each way</CC_Region_Reach>
+  <CC_Region_Reach_Tip>How far the map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. Kept in Rimfolk's settings.</CC_Region_Reach_Tip>
+  <CC_Region_Home>Back to the colony</CC_Region_Home>
+  <CC_Region_Home_Tip>Moves the map back so the colony is in the middle.</CC_Region_Home_Tip>
+  <CC_Region_ZoomIn>Zoom in (or turn the mouse wheel over the map)</CC_Region_ZoomIn>
+  <CC_Region_ZoomOut>Zoom out</CC_Region_ZoomOut>
+  <CC_Region_NoHome>There is no colony on the planet's surface to centre the map on.</CC_Region_NoHome>
+  <CC_Region_Failed>The map couldn't be drawn. The log says why.</CC_Region_Failed>
+  <CC_Region_PickHint>Click a settlement to see it here, or any tile to see the land. Turn the mouse wheel to zoom, and drag the map to look around. Hover over a tile for its land and climate.</CC_Region_PickHint>
+  <CC_Region_ClickTip>Click to see it beside the map.</CC_Region_ClickTip>
+  <CC_Region_Legend>The map's colours</CC_Region_Legend>
+  <CC_Region_Leg_Water>Sea and lakes</CC_Region_Leg_Water>
+  <CC_Region_Leg_Forest>Temperate forest</CC_Region_Leg_Forest>
+  <CC_Region_Leg_Jungle>Rainforest</CC_Region_Leg_Jungle>
+  <CC_Region_Leg_Boreal>Boreal forest</CC_Region_Leg_Boreal>
+  <CC_Region_Leg_Grass>Grassland</CC_Region_Leg_Grass>
+  <CC_Region_Leg_Shrub>Arid shrubland</CC_Region_Leg_Shrub>
+  <CC_Region_Leg_Desert>Desert</CC_Region_Leg_Desert>
+  <CC_Region_Leg_Swamp>Swamp and bog</CC_Region_Leg_Swamp>
+  <CC_Region_Leg_Tundra>Tundra</CC_Region_Leg_Tundra>
+  <CC_Region_Leg_Ice>Ice</CC_Region_Leg_Ice>
+  <CC_Region_Leg_Hills>Hills (darker the hillier)</CC_Region_Leg_Hills>
+  <CC_Region_Leg_Mountains>Mountains (with a peak)</CC_Region_Leg_Mountains>
+  <CC_Region_Leg_River>Rivers</CC_Region_Leg_River>
+  <CC_Region_Leg_Road>Roads</CC_Region_Leg_Road>
+  <CC_Region_ShowOnWorld>Show on the world map</CC_Region_ShowOnWorld>
+  <CC_Region_ShowOnWorld_Tip>Switches to the game's world view with this picked there. The region map stays open.</CC_Region_ShowOnWorld_Tip>
+  <CC_Region_YourColony>{0} (your colony)</CC_Region_YourColony>
+  <CC_Region_TileTitle>The land here</CC_Region_TileTitle>
+  <CC_Region_Days>About {0} away by caravan, {1} tiles.</CC_Region_Days>
+  <CC_Region_NoWay>No way there over land, {0} tiles away.</CC_Region_NoWay>
+  <CC_Region_TilesAway>{0} tiles from the colony.</CC_Region_TilesAway>
+  <CC_Region_HomeTile>The colony is here.</CC_Region_HomeTile>
+  <CC_Region_Land>{0}, {1}</CC_Region_Land>
+  <CC_Region_Climate>Mean temperature {0}, {1} mm of rain a year</CC_Region_Climate>
+  <CC_Region_River>River: {0}</CC_Region_River>
+  <CC_Region_Road>Road: {0}</CC_Region_Road>
+  <CC_Region_InTheWorld>In the world: {0}</CC_Region_InTheWorld>
+  <CC_Region_Remember>What they remember of the colony: {0}</CC_Region_Remember>
+
+  <!-- How a people stands with the colony (RegionMapMath.StandingOf). -->
+  <CC_Region_Std_Own>Your own settlement</CC_Region_Std_Own>
+  <CC_Region_Std_Allies>Allies of the colony (goodwill {0})</CC_Region_Std_Allies>
+  <CC_Region_Std_Friendly>Friendly to the colony (goodwill {0})</CC_Region_Std_Friendly>
+  <CC_Region_Std_Fair>On fair terms with the colony (goodwill {0})</CC_Region_Std_Fair>
+  <CC_Region_Std_Cool>Cool towards the colony (goodwill {0})</CC_Region_Std_Cool>
+  <CC_Region_Std_Unfriendly>Unfriendly, near to turning hostile (goodwill {0})</CC_Region_Std_Unfriendly>
+  <CC_Region_Std_Hostile>Hostile to the colony (goodwill {0})</CC_Region_Std_Hostile>
+  <CC_Region_Std_Enemies>Enemies of everyone, never at peace</CC_Region_Std_Enemies>
+  <CC_Region_Std_NoDealings>No dealings with the colony</CC_Region_Std_NoDealings>
+
+  <!-- The setting (Interface page). -->
+  <CC_Settings_RegionMapRadius>Region map: tiles each way</CC_Settings_RegionMapRadius>
+  <CC_Settings_RegionMapRadius_Tip>How far the region map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. The map's window has the same control at its top.</CC_Settings_RegionMapRadius_Tip>
+  <CC_SetNote_RegionMapRadius>The region map (the button on the council's World page) shows the land this many tiles each way from the colony.</CC_SetNote_RegionMapRadius>
+
+</LanguageData>

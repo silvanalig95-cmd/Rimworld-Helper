@@ -349,6 +349,8 @@ namespace ColonyCouncil
         public bool moodDetails = false;
         /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
         public CouncilOpensOn councilOpensOn = CouncilOpensOn.LastPage;
+        /// <summary>How many tiles each way from the colony the region map shows (UI/Window_RegionMap.cs), also set in its window.</summary>
+        public int regionMapRadius = 35;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
@@ -598,6 +600,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
             Scribe_Values.Look(ref moodDetails, "moodDetails", false);
             Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.LastPage);
+            Scribe_Values.Look(ref regionMapRadius, "regionMapRadius", 35);
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 councilPageState ??= new System.Collections.Generic.List<string>();

@@ -10,7 +10,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Colony → World: what's coming (promised fights, questions waiting for an answer) as a timeline with countdowns,
     /// who's out there with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), what the
-    /// world's peoples remember of the colony, and what the world brought lately.
+    /// world's peoples remember of the colony, and what the world brought lately. The button at the top opens the region
+    /// map (UI/Window_RegionMap.cs).
     /// </summary>
     public static class WorldPanel
     {
@@ -54,8 +55,17 @@ namespace ColonyCouncil
             }
             var m = model;
             string stat = m.coming.Count > 0 ? "CC_UI_Stat_Coming".Translate(m.coming.Count).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.World, "CC_World_Header".Translate(), "CC_UI_Sub_World".Translate(), stat, Threat, 0f,
+            const float mapW = 140f;
+            float top = UiKit.PageHeader(rect, Icons.World, "CC_World_Header".Translate(), "CC_UI_Sub_World".Translate(), stat, Threat, mapW + 10f,
                 "CC_World_Intro".Translate());
+            // The region map: the land around the colony in a window of its own (UI/Window_RegionMap.cs).
+            var mapButton = new Rect(rect.xMax - mapW, rect.y + 6f, mapW, 30f);
+            if (Widgets.ButtonText(mapButton, "CC_Region_Button".Translate())) Window_RegionMap.Open();
+            TooltipHandler.TipRegion(mapButton, () =>
+            {
+                string key = CouncilKeys.RegionMapKey();
+                return "CC_Region_Button_Tip".Translate() + (key == null ? "" : "\n\n" + "CC_Region_Button_Key".Translate(key).Resolve());
+            }, 0x5E61A4);
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
