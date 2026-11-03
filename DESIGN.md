@@ -2053,6 +2053,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | Tick | Pass | Work |
 |---|---|---|
 | 0-30 | Visual touches, the hour's look (the first pulse of the hour; only with visual touches on) | the map in view: maybe one comet gazer, one ambient line or a hum |
+| 64 | The neighbours by name (World/Notables.cs; with "Neighbours by name" on): traders and visitors seen at the colony, those kept held in the world; every six hours the towns within reach looked over (the gone followed, the missing made, two at most an hour); old age in the first hour of the day; then the letters' and calls' hour (World/NeighbourLetters.cs) | per notable (34 at most), per town in reach (six), per letter or call under way (three) |
 | 157 | Council: fights and losses, decrees, wish upkeep, promises kept (every other hour), event wishes, new wishes | per home map (a fight going on?), per open wish, per granted wish still watched (its own check, and a look at plans being built only when something is missing); a new wish rolls once, and only when it comes does it ask every wish of every colonist |
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
@@ -2092,6 +2093,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
+| 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 
 **Other rhythms**

@@ -133,15 +133,15 @@ namespace ColonyCouncil
                     bool mapThere = t.MapThere;
                     int hour = mapThere ? GenLocalDate.HourOfDay(t.map) : 12;
                     // An errand's courier comes when the errand may start, whatever the hour.
-                    if (t.kind == CourierKind.Await) hour = CourierMath.DayFrom;
-                    var verdict = CourierMath.Verdict(now, t.due, t.giveUp, hour, mapThere && Safe(t.map), Couriers.On, mapThere);
+                    if (t.kind == CourierKind.Await && !t.Mail) hour = CourierMath.DayFrom;
+                    var verdict = CourierMath.Verdict(now, t.due, t.giveUp, hour, mapThere && Safe(t.map), Couriers.OnFor(t), mapThere);
                     switch (verdict)
                     {
                         case CourierWait.Drop:
                             End(t, CourierEnd.MapGone);
                             return;
                         case CourierWait.Settle:
-                            SettleNow(t, Couriers.On ? CourierEnd.NoWay : CourierEnd.SettingOff, !Couriers.On);
+                            SettleNow(t, Couriers.OnFor(t) ? CourierEnd.NoWay : CourierEnd.SettingOff, !Couriers.OnFor(t));
                             return;
                         case CourierWait.Go:
                             if (!SetOut(t)) SettleNow(t, CourierEnd.NoWay, false);
@@ -200,7 +200,7 @@ namespace ColonyCouncil
                 End(t, CourierEnd.Hostile);
                 return;
             }
-            if (!Couriers.On)
+            if (!Couriers.OnFor(t))
             {
                 End(t, CourierEnd.SettingOff);
                 return;
@@ -248,12 +248,16 @@ namespace ColonyCouncil
                 Leave(t, CourierEnd.Done);
                 return;
             }
+            // A neighbour's messenger waiting for a letter: someone carries it out to them (World/NeighbourLetters.cs).
+            if (t.Mail && t.kind == CourierKind.Await && !t.received) NeighbourLetters.AtGate(t, now);
             // At the gate: is the business done?
             if (BusinessDone(t))
             {
                 if (t.doneTick < 0)
                 {
                     t.doneTick = now;
+                    // A neighbour's answer: a word as they hand it over.
+                    if (t.Mail && t.kind == CourierKind.Deliver) NeighbourLetters.Delivered(t);
                     // A letter that waited for them comes now; else a word on what they did.
                     if (!CourierWords.SendLetter(t, null)) CourierWords.Done(t);
                 }
@@ -378,6 +382,8 @@ namespace ColonyCouncil
             var party = new List<Pawn>(people);
             if (beast != null) party.Add(beast);
             foreach (var p in party) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
+            // A neighbour's messenger set upon on the road comes in hurt (World/NeighbourLetters.cs).
+            if (t.Mail && t.hurt) NeighbourLetters.Waylaid(t, people[0]);
             t.faction = f;
             t.spot = spot;
             t.atGate = gate;

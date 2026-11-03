@@ -60,6 +60,18 @@
         <li>[inperson] This is yours now.</li>
         <li>[inperson,goods] Yours. Look it over.</li>
         <li>[inperson,food] It isn't much, but it's good.</li>
+        <li>[arrive,letter] I've a letter to put in your hands.</li>
+        <li>[arrive,letter,theirLowtech] I ran the whole way with this letter.</li>
+        <li>[arrive,letter,theirHightech] Message for your council, by hand as asked.</li>
+        <li>[await,letter] I'm here for your letter, whenever it's ready.</li>
+        <li>[await,letter,theirLowtech] I'll carry your words back before the next moon.</li>
+        <li>[await,letter,theirHightech] I was told there's a letter to collect here.</li>
+        <li>[receive,letter] I'll put it in the right hands and no others.</li>
+        <li>[receive,letter,theirLowtech] Your words will be read out at our fire.</li>
+        <li>[receive,letter,theirHightech] Sealed and in my bag, it goes straight there.</li>
+        <li>[deliver,letter] This is for your people, from mine.</li>
+        <li>[deliver,letter,theirLowtech] Words from my people, carried the whole way.</li>
+        <li>[deliver,letter,theirHightech] Your answer, delivered by hand as promised.</li>
       </plain>
       <warm>
         <li>[arrive] Your fields look well from the road.</li>

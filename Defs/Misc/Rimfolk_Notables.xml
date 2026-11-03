@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Letters and calls to the colony's neighbours (Source/ColonyCouncil/World/NeighbourLetters.cs, NeighbourJobs.cs). -->
+
+  <JobDef>
+    <defName>Council_WriteLetter</defName>
+    <driverClass>ColonyCouncil.JobDriver_WriteLetter</driverClass>
+    <reportString>writing a letter.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_HandLetter</defName>
+    <driverClass>ColonyCouncil.JobDriver_HandLetter</driverClass>
+    <reportString>handing over a letter.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_NeighbourCall</defName>
+    <driverClass>ColonyCouncil.JobDriver_NeighbourCall</driverClass>
+    <reportString>calling a neighbour.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_AnswerCall</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnswerCall</driverClass>
+    <reportString>answering the comms console.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

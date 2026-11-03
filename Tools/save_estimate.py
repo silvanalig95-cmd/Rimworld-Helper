@@ -75,6 +75,11 @@ C = {
     "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
     "VisitorAnimals": const("Visitors/VisitorMath.cs", "MaxAnimals", 8),
     "KinNoteDays": const("World/MemoryMath.cs", "NoteDays", 30),
+    "NotableTowns": const("World/NotableMath.cs", "MaxNear", 4) + const("World/NotableMath.cs", "MaxDealt", 2),
+    "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
+    "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
+    "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
+    "NotableOpen": const("World/NotableMath.cs", "MaxOpen", 3),
 }
 
 # How many defs of a kind there are, counted from the mod's own XML (more with other mods' content).
@@ -369,6 +374,19 @@ MODEL = {
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     "World/FactionMemory.cs:notes": ("window", (C["KinNoteDays"], 1), 200, "who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies"),
+    # The neighbours by name and letters to them (World/Notables.cs, NeighbourLetters.cs). Each notable is also a pawn
+    # the world keeps (about 15 KB in the world's own part of the save), only while they matter: the towns within reach
+    # (six at most, four roles each) and ten faces met, let go when out of reach or forgotten.
+    "World/Notables.cs:notables": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"], 2600,
+                                   "the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards"),
+    "World/Notables.cs:notes": ("fixed", C["NotableMemory"], 160, "per notable: NotableMath.MaxMemory lines, the oldest go (counted under notables)"),
+    "World/Notables.cs:regards": ("fixed", C["NotableRegards"], 100, "per notable: NotableMath.MaxRegards colonists, the faded dropped daily (counted under notables)"),
+    "World/Notables.cs:lastKeys": ("fixed", 6, V, "per notable: one per purpose of a letter (counted under notables)"),
+    "World/Notables.cs:lastTicks": ("fixed", 6, V, "per notable: one per purpose of a letter (counted under notables)"),
+    "World/Notables.cs:done": ("fixed", 12, 40, "per notable: threats warned of and losses mourned, the newest 12 (counted under notables)"),
+    "World/Notables.cs:letters": ("cap", (C["NotableOpen"] + 3, 0.5), 500, "letters and calls under way, NotableMath.MaxOpen at once; ended ones kept two days"),
+    "World/Notables.cs:losses": ("fixed", 12, 120, "deaths among the neighbours the colony knows of, 30 days, 12 at most"),
+    "World/Notables.cs:seen": ("fixed", 6, 120, "visitors and traders seen at the colony until they're home, 6 at most, three days"),
     # Reputation and gossip
     "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(220, 10 * COLONISTS), COLONISTS * 0.3), 300, "10 per colonist, 220 in all, faded ones dropped"),
     "Social/Gossip/Deed.cs:heard": ("cap", (min(220, 10 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (30 at most a deed), with its deed"),

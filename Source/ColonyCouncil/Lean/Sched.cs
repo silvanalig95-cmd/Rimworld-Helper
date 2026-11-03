@@ -54,11 +54,13 @@ namespace ColonyCouncil
         public const int Ailments = 2471;
         /// <summary>The weather record (Weather/WeatherBook.cs): an hour of each home map's weather noted, days and seasons closed.</summary>
         public const int Weather = 2185;
+        /// <summary>The neighbours by name and the letters to them (World/Notables.cs, NeighbourLetters.cs): towns looked over every six hours, old age once a day.</summary>
+        public const int Neighbours = 64;
 
         /// <summary>Every hourly pass above, for the tests and the self-check.</summary>
         public static readonly int[] HourlyOffsets =
         {
-            CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
+            Neighbours, CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
             Reputation, Arcs, Groups, Fields, Stories, Weather, CouncilEvents, Talk, Ailments
         };
 
@@ -115,6 +117,8 @@ namespace ColonyCouncil
         public const int RareTimed = 149;
         /// <summary>A room's furniture moves still to be ordered (Building/RoomRearranger.cs), only while there are any.</summary>
         public const int RareRearrange = 29;
+        /// <summary>A letter being written, a call under way or a comms console ringing (World/NeighbourLetters.cs), only while there is one.</summary>
+        public const int RareNeighbours = 211;
 
         // ---------------- Other rhythms ----------------
 

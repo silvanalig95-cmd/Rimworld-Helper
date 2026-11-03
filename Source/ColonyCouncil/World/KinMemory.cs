@@ -73,8 +73,10 @@ namespace ColonyCouncil
             try
             {
                 var mine = mem.notes.Where(x => x != null && x.stranger == stranger && x.colonist != null).ToList();
+                var pick = mine.Count == 0 ? null : Best(mine, kind) ?? (fallback != null ? Best(mine, fallback) : null);
+                // Going home, they become a face the colony knows, remembering who freed or tended them (World/Notables.cs).
+                NotableBook.Notify_Met(stranger, pick?.kind == "free" || pick == null && kind == "free" ? "freed" : "tended", pick?.colonist);
                 if (mine.Count == 0) return;
-                var pick = Best(mine, kind) ?? (fallback != null ? Best(mine, fallback) : null);
                 mem.notes.RemoveAll(x => x != null && x.stranger == stranger);
                 if (pick == null || d.by != null && !d.by.Dead) return;
                 Name(d, pick.colonist);

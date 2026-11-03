@@ -266,6 +266,8 @@ namespace ColonyCouncil
             var theirs = everyone.Where(p => p.Faction != ctx.faction).ToList();
             if (Arrivals.Visit(mine, map, ctx.faction, spot, hours) == null) return false;
             if (theirs.Count > 0 && ctx.enemy != null) Arrivals.Visit(theirs, map, ctx.enemy, spot, hours);
+            // Their envoy becomes a face the colony knows once they're home (World/Notables.cs).
+            NotableBook.Notify_Seen(ctx.stranger, "envoy", ctx.a);
             return true;
         }
 

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists say over their heads while writing to a neighbour, handing the letter to a messenger, or talking on
+    the comms console (Source/ColonyCouncil/World/NeighbourLetters.cs, NeighbourLetters.Say). Every line has its moment:
+    write (sitting down to it), written (done), hand (handing it to the messenger), guest (an invited guest arriving, said
+    by them), call (starting a call), answer (picking up a callback), talk (during a call), and the call's end: endwarm,
+    endcordial, endcool, endcurt, endrefusal (how they answered), endaide (an aide took a message), enddead (the air went
+    dead), endsilence (nobody answered at their end). theirLowtech / theirHightech: the people written to. {NAME} is the
+    neighbour, {TOWN} their town. One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_NeighbourSays</defName>
+    <lines>
+      <plain>
+        <li>[write] Now, how to begin a letter to {NAME}.</li>
+        <li>[write] Let me get this down while it's clear in my head.</li>
+        <li>[write] A letter to {TOWN}, and in my best hand.</li>
+        <li>[write] I'll keep it short and say it plainly.</li>
+        <li>[write,theirLowtech] They'll read this out at their fire, so it had better be good.</li>
+        <li>[write,theirHightech] Short and to the point, they're busy people over there.</li>
+        <li>[written] There, that says what it needs to.</li>
+        <li>[written] Signed and folded, now someone just has to carry it.</li>
+        <li>[written] Done, and I didn't blot it once.</li>
+        <li>[hand] This is for {NAME}, and nobody else.</li>
+        <li>[hand] Carry it carefully, it matters to us.</li>
+        <li>[hand] Safe roads to you, and give them our best.</li>
+        <li>[hand,theirLowtech] Tell {NAME} it comes with the whole colony's regards.</li>
+        <li>[guest] So this is the colony I've heard about.</li>
+        <li>[guest] Thank you for asking me, it was a long road.</li>
+        <li>[guest,theirLowtech] I've walked three days to sit at your fire.</li>
+        <li>[call] Hello, this is the colony calling for {NAME}.</li>
+        <li>[call] Is this the line to {TOWN}?</li>
+        <li>[call] Static again, give it a moment.</li>
+        <li>[answer] Yes, we're here, go ahead.</li>
+        <li>[answer] Colony speaking, who's this?</li>
+        <li>[answer] Ah, {NAME}, thank you for calling back.</li>
+        <li>[talk] Yes, I understand.</li>
+        <li>[talk] That's good to hear.</li>
+        <li>[talk] Could you say that again, the line's poor.</li>
+        <li>[talk] We'd be glad to, of course.</li>
+        <li>[talk] I'll tell the others, they'll want to know.</li>
+        <li>[endwarm] Well, that went better than I'd hoped.</li>
+        <li>[endwarm] They were glad we called, I could hear it.</li>
+        <li>[endcordial] A good talk, short but good.</li>
+        <li>[endcordial] Friendly enough, I'd say.</li>
+        <li>[endcool] Polite, but they kept it brief.</li>
+        <li>[endcool] Hard to read them over the static.</li>
+        <li>[endcurt] Short with me, that one.</li>
+        <li>[endcurt] I don't think we were welcome on that line.</li>
+        <li>[endrefusal] Well, that was a no.</li>
+        <li>[endrefusal] They turned us down flat.</li>
+        <li>[endaide] An aide took a message, they'll call back.</li>
+        <li>[endaide] Not there right now, we'll hear back later.</li>
+        <li>[enddead] And the line's dead, wonderful.</li>
+        <li>[enddead] Lost them, nothing but hiss.</li>
+        <li>[endsilence] They listened, and then just cut the line.</li>
+        <li>[endsilence] Nothing back, not a word.</li>
+      </plain>
+      <warm>
+        <li>[write] I hope this finds them well, truly.</li>
+        <li>[hand] Look after yourself on the way back.</li>
+        <li>[endwarm] I like them, I really do.</li>
+      </warm>
+      <blunt>
+        <li>[write] No flowery words, just what needs saying.</li>
+        <li>[hand] Here, don't lose it.</li>
+        <li>[endcurt] Fine, suit yourselves.</li>
+      </blunt>
+      <cheerful>
+        <li>[write] Oh, they'll love this letter.</li>
+        <li>[endwarm] What lovely people they are over there!</li>
+      </cheerful>
+      <gloomy>
+        <li>[write] Not that they'll read it properly.</li>
+        <li>[endcool] About what I expected.</li>
+      </gloomy>
+      <cold>
+        <li>[write] A letter, as requested.</li>
+        <li>[endcordial] Useful, at least.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    What neighbours write (or say on the comms console) in answer (NeighbourLetters.Quote), quoted in the letter that
+    brings it: several sentences are fine here. Tags: the purpose (greetings, condolences, warning, news, invitation,
+    help) and how they took it (warm, cordial, cool, curt, refusal); theirLowtech / theirHightech for their people;
+    letter or call for how it went; war for a people at war with the colony; food or medicine for help asked. {WRITER} is
+    the colonist who wrote or spoke, {NAME} the neighbour, {TOWN} their town, {FACTION} their people, {TOPIC} the loss or
+    threat it was about, {HELP} the help asked for.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_NeighbourWrites</defName>
+    <lines>
+      <plain>
+        <!-- Greetings -->
+        <li>[greetings,warm] It lifted the whole house to hear from you, {WRITER}. Write again soon, and tell me how the harvest goes.</li>
+        <li>[greetings,warm,theirLowtech] Your words were read out at our fire, and the children asked for them twice. Come and sit with us when the roads are good.</li>
+        <li>[greetings,warm,theirHightech] Good to hear from you. We think well of your people here, and that is not said lightly in {TOWN}.</li>
+        <li>[greetings,warm,call] Always good to hear a friendly voice on this line. Call whenever you like, {WRITER}.</li>
+        <li>[greetings,cordial] Thank you for your letter. All is well in {TOWN}, and we wish the same for you.</li>
+        <li>[greetings,cordial,theirLowtech] The elders were glad of your words. May your fields be full and your nights quiet.</li>
+        <li>[greetings,cordial,call] Kind of you to call. Things are steady here, and we hope they are there too.</li>
+        <li>[greetings,cool] Your letter came. We are well enough, thank you.</li>
+        <li>[greetings,cool,call] Yes, we're well. Was there something else?</li>
+        <li>[greetings,curt] We have read your letter. There is nothing more to say for now.</li>
+        <li>[greetings,curt,war] We read your words. They change nothing between us.</li>
+        <li>[greetings,refusal] We do not care to keep up a correspondence. Do not trouble us again.</li>
+        <li>[greetings,refusal,war] Your people's hands are still red with ours. Keep your greetings.</li>
+        <li>[greetings,cordial,war] Strange, to get a kind word from your side. It will be remembered, for what it is worth.</li>
+        <li>[greetings,cool,war] We read it. Some here say it was kindly meant. Others are not so sure.</li>
+        <!-- Condolences -->
+        <li>[condolences,warm] Your words about {TOPIC} reached us when we needed them most. You are a true friend to {TOWN}, {WRITER}.</li>
+        <li>[condolences,warm,theirLowtech] We held your letter at the burning and said your colony's name with the others who mourned. We will not forget it.</li>
+        <li>[condolences,warm,letter,theirLowtech] A letter written by hand, carried all that way, for our grief. The elders wept to hear it.</li>
+        <li>[condolences,cordial] Thank you for thinking of us. These have been hard days, and kind words help.</li>
+        <li>[condolences,cordial,call] It means something that you called. Thank you.</li>
+        <li>[condolences,cool] We thank you for your words. We grieve in our own way.</li>
+        <li>[condolences,cool,call] Thank you for calling. It is still raw here.</li>
+        <li>[condolences,curt] Your sympathy is noted.</li>
+        <li>[condolences,curt,war] Do not pretend to mourn with us.</li>
+        <li>[condolences,refusal] We have no wish to share our grief with your colony.</li>
+        <li>[condolences,cordial,war] Even enemies can mourn the same dead, it seems. We did not expect this from you.</li>
+        <!-- Warning -->
+        <li>[warning,warm] Your warning about {TOPIC} may have saved lives here. We have doubled the watch, and we owe you for it.</li>
+        <li>[warning,warm,theirLowtech] The scouts went out the night your words came. You did right by us, {WRITER}.</li>
+        <li>[warning,warm,call] Thank you for the word, we're moving people now. We won't forget this.</li>
+        <li>[warning,cordial] We had heard something of {TOPIC}, but not so much. Thank you for the warning.</li>
+        <li>[warning,cordial,call] Understood, and thank you. We'll keep our eyes open.</li>
+        <li>[warning,cool] We know of {TOPIC}. We can look after ourselves, but thank you.</li>
+        <li>[warning,curt] We are aware of the danger. We did not need you to tell us.</li>
+        <li>[warning,curt,war] Look to your own walls before you worry about ours.</li>
+        <li>[warning,refusal] We do not take warnings from strangers. Mind your own business.</li>
+        <li>[warning,cordial,war] Why your people would warn us, I do not know. But we listened.</li>
+        <li>[warning,cool,war] A warning from your side. We will see whether it is true.</li>
+        <!-- News -->
+        <li>[news,warm] You asked what we hear out here, so here is all of it. Come and trade when you can, we would be glad of you.</li>
+        <li>[news,warm,theirLowtech] The runners bring us everything the roads say, and we share it gladly with friends.</li>
+        <li>[news,cordial] Here is what we know, for what it is worth. Travel carefully.</li>
+        <li>[news,cordial,call] Let me see what we have heard lately. Here it is.</li>
+        <li>[news,cool] We can tell you a little.</li>
+        <li>[news,cool,war] We will tell you this much, and no more.</li>
+        <li>[news,curt] What we know is our own business. This much, then.</li>
+        <li>[news,refusal] We have nothing to tell your colony.</li>
+        <li>[news,refusal,war] Ask your own scouts.</li>
+        <!-- Invitation -->
+        <li>[invitation,warm] Nothing would please me more. Set a place at your table, I will come as soon as the road allows.</li>
+        <li>[invitation,warm,theirLowtech] We will walk to you and sit at your fire. Tell your people to expect us.</li>
+        <li>[invitation,cordial] Thank you, I would be glad to see your colony for myself.</li>
+        <li>[invitation,cordial,call] I'd like that. I'll come out when I can.</li>
+        <li>[invitation,cool] A kind thought, but the season is a busy one. Perhaps another time.</li>
+        <li>[invitation,curt] I am needed here and cannot come.</li>
+        <li>[invitation,refusal] We do not visit your colony. You know why.</li>
+        <!-- Help -->
+        <li>[help,warm] Of course. What we have is yours, and we send {HELP} gladly.</li>
+        <li>[help,warm,medicine] Our healers made up what we could spare. Use it well, and get well.</li>
+        <li>[help,warm,food] Nobody goes hungry while we have food to share. It is on its way.</li>
+        <li>[help,warm,theirLowtech] The elders said yes before I had finished reading. A friend asks, a friend gives.</li>
+        <li>[help,cordial] It is not much, but we can spare some {HELP}. Remember us when we are the ones who ask.</li>
+        <li>[help,cordial,call] We can manage a little. It goes out by courier, it won't come down the line.</li>
+        <li>[help,refusal] We are sorry, but we have nothing to spare this season.</li>
+        <li>[help,refusal] We cannot help you. Times are hard here too.</li>
+        <li>[help,refusal,theirLowtech] The elders talked it over and said no. We must keep what we have.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

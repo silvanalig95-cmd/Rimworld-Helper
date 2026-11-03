@@ -207,6 +207,8 @@ namespace ColonyCouncil
             ["rebuilt"] = K(DeedSide.Favor, 12),
             ["sheltered"] = K(DeedSide.Favor, 8),
             ["campHealed"] = K(DeedSide.Favor, 6),
+            // Letters to their notables (World/NeighbourLetters.cs): a warning of a real threat, heeded.
+            ["warned"] = K(DeedSide.Favor, 6, 10f, 12),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),
@@ -238,6 +240,8 @@ namespace ColonyCouncil
             ["taught"] = K(DeedSide.TheirFavor, 8),
             ["amends"] = K(DeedSide.TheirFavor, 8),
             ["apologised"] = K(DeedSide.TheirFavor, 6),
+            // Medicine or food they sent when the colony asked by letter: a favor the colony owes them.
+            ["letterAid"] = K(DeedSide.TheirFavor, 6, 15f, 12),
             // A grant of land the colony holds of them (a scenario's start): a debt that fades slowly, and is called in.
             ["granted"] = K(DeedSide.TheirFavor, 25),
             // Their wrongs.

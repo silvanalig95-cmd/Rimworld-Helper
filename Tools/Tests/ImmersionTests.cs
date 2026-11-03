@@ -46,6 +46,8 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines2",
         // A drink raised before work for Alpha Skills' drunken passion (Integrations/DrinkBeforeWork.cs).
         "Rimfolk_Pool_DrinkBeforeWork",
+        // Writing to a neighbour, handing the letter over, and calls on the comms console (World/NeighbourLetters.cs).
+        "Rimfolk_Pool_NeighbourSays",
         // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
         "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave",
         // Wishes promised, refused, objected to, reminded of, given up on, backed and remembered (CouncilDynamics.cs,
