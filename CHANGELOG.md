@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Used to everyday comforts, not to new joys
+
+*3 November 2026, version 0.55.2*
+
+- Being used to the good life now comes mostly off everyday comforts: lasting moods such as a fine room, beliefs or trust in the council, and memories of a kind a colonist has had often lately, like the third fine meal this week.
+- Something new loses the least, so a wedding, a gift or a first success still lands nearly in full, and a life goal reached always counts in full.
+- Each good mood's tooltip says which it is: part of everyday life, had often lately, or still new. The overall effect on mood stays the same.
+
 ## Spoiled, not punished
 
 *3 November 2026, version 0.55.1*

@@ -8,7 +8,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 - 0.55.0, the player's request (colonists stuck at full mood): used to the good life (`Moods/GoodLife.cs`,
   `GoodLifeMath.cs`; since 0.55.1 each good mood group is felt at a share in `Patch_ComfortStandards`, with a note in
-  its tooltip and the Mood tab readout, no bad mood of its own: the player found a big flat "-56" line unconvincing; line 45/40/35/30 by standards level, half of the first 20 points
+  its tooltip and the Mood tab readout, no bad mood of its own: the player found a big flat "-56" line unconvincing;
+  since 0.55.2 spread by how ordinary each kind is (`GoodLifeMath.Weight`/`Spread`: lasting moods and memories had
+  often lately lose most, new ones least, life goals none; recent counts kept per colonist in memory, not saved); line 45/40/35/30 by standards level, half of the first 20 points
   over it and three quarters of the rest taken back, fading to nothing at the minor-break line; reads the game's
   `SituationalThoughtHandler.cachedThoughts`, present in 1.6 and 1.7) and quiet troubles (`Setbacks/Troubles.cs`,
   Life's ups and downs, from the third content day). Settings `usedToGoodLife` and `quietTroubles`; tested in

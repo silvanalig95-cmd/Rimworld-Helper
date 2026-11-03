@@ -198,14 +198,24 @@ namespace ColonyCouncil
             var handler = p?.needs?.mood?.thoughts;
             if (handler == null || felt <= 0f || group?.def == null) return null;
             bool comfort = ComfortFactor(p, group.def) < 1f;
-            float share = GoodLife.Share(p);
+            float share = GoodLife.ShareOf(p, group.def);
             bool used = share < 0.995f;
             if (!comfort && !used) return null;
             // A comfort from outside Rimfolk: against the mood without any of these rules. Rimfolk's own say in their
             // description how they add up, so only a good life's share is counted back for them.
             float full = comfort ? RawOffsetOfGroup(handler, group) : felt / share;
             if (full - felt < 0.05f) return null;
-            string key = !used ? "CC_GoodTimes_ComfortNote" : comfort ? "CC_GoodLife_NoteBoth" : "CC_GoodLife_Note";
+            string key;
+            if (!used) key = "CC_GoodTimes_ComfortNote";
+            else if (comfort) key = "CC_GoodLife_NoteBoth";
+            else
+                switch (GoodLife.KindOf(p, group))
+                {
+                    case GoodLife.Kind.Lasting: key = "CC_GoodLife_NoteLasting"; break;
+                    case GoodLife.Kind.Often: key = "CC_GoodLife_NoteOften"; break;
+                    case GoodLife.Kind.New: key = "CC_GoodLife_NoteNew"; break;
+                    default: key = "CC_GoodLife_Note"; break;
+                }
             return key.Translate(p.Named("PAWN"), LevelLabel(p).Named("LEVEL"), MoodView.Number(felt).Named("FELT"),
                 MoodView.Number(full).Named("FULL")).Resolve();
         }
@@ -236,7 +246,6 @@ namespace ColonyCouncil
             float rimFelt = 0f, rimFull = 0f, gameFelt = 0f, gameFull = 0f;
             int sooner = 0;
             // A good life's share has its own part below; the others are counted as they'd be without it.
-            float share = GoodLife.Share(p);
             try
             {
                 tmpGroups.Clear();
@@ -248,6 +257,7 @@ namespace ColonyCouncil
                     float full = RawOffsetOfGroup(handler, g);
                     if (full <= 0f) continue;
                     float felt = Mathf.Max(0f, handler.MoodOffsetOfGroup(g));
+                    float share = GoodLife.ShareOf(p, g.def);
                     if (share > 0f && share < 1f) felt = Mathf.Min(full, felt / share);
                     if (IsRimfolk(g.def))
                     {

@@ -10,7 +10,8 @@ namespace ColonyCouncil
     /// (the council, a moment, an encounter, a dilemma, a world event): one of Rimfolk's good memories lasts less long
     /// when the colonist's mood is already high. A memory that renews one already there, instead of joining the list,
     /// passes its time on to that one. The same hook lets a memory leave a mark on a colonist's character (PersonaMarks),
-    /// and lets a deep talk or a good time with someone close make a quiet trouble pass sooner (Troubles).
+    /// lets a deep talk or a good time with someone close make a quiet trouble pass sooner (Troubles), and counts how
+    /// often each kind has come lately (GoodLife).
     /// </summary>
     [HarmonyPatch(typeof(MemoryThoughtHandler), nameof(MemoryThoughtHandler.TryGainMemory), new[] { typeof(Thought_Memory), typeof(Pawn) })]
     public static class Patch_GoodTimesFade
@@ -38,6 +39,8 @@ namespace ColonyCouncil
             QuirkMoments.Notify_Memory(__instance?.pawn, newThought);
             // A deep talk or a good time with a friend makes a quiet trouble pass sooner (Setbacks/Troubles.cs).
             Troubles.Notify_Memory(__instance?.pawn, newThought);
+            // How often this kind has come lately: the everyday ones lose most to a good life (Moods/GoodLife.cs).
+            GoodLife.Notify_Memory(__instance?.pawn, newThought);
             if (__state == GoodTimes.Untouched) return;
             try
             {
@@ -54,8 +57,8 @@ namespace ColonyCouncil
     /// Standards cover the game's comforts (GoodTimes.cs), and used to the good life (Moods/GoodLife.cs). The game adds
     /// up a colonist's mood group by group through this method, and the Needs tab shows the same number, so a good mood
     /// from the game or another mod is felt (and shown) a little less by a colonist with high standards, and every good
-    /// mood, Rimfolk's too, a share less by one whose good moods pile up past their standards' line. Bad moods pass
-    /// through unchanged.
+    /// mood, Rimfolk's too, a share less by one whose good moods pile up past their standards' line, the everyday ones
+    /// most. Bad moods pass through unchanged.
     /// </summary>
     [HarmonyPatch(typeof(ThoughtHandler), nameof(ThoughtHandler.MoodOffsetOfGroup))]
     public static class Patch_ComfortStandards
@@ -73,7 +76,7 @@ namespace ColonyCouncil
             }
             try
             {
-                float share = GoodLife.Share(__instance?.pawn);
+                float share = GoodLife.ShareOf(__instance?.pawn, group?.def);
                 if (share < 1f) __result *= share;
             }
             catch (Exception e)

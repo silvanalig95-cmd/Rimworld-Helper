@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.55.2</version>
+        <date>3 November 2026</date>
+        <title>Used to everyday comforts, not to new joys</title>
+        <points>
+          <li>Being used to the good life now comes mostly off everyday comforts: lasting moods such as a fine room, beliefs or trust in the council, and memories of a kind a colonist has had often lately, like the third fine meal this week.</li>
+          <li>Something new loses the least, so a wedding, a gift or a first success still lands nearly in full, and a life goal reached always counts in full.</li>
+          <li>Each good mood's tooltip says which it is: part of everyday life, had often lately, or still new. The overall effect on mood stays the same.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.55.1</version>
         <date>3 November 2026</date>
         <title>Spoiled, not punished</title>

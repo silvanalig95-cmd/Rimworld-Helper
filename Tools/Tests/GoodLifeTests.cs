@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using ColonyCouncil;
 
@@ -46,6 +48,44 @@ public static class GoodLifeTests
                 float share = GoodLifeMath.Share(p, GoodLifeMath.TakeBack(p, line));
                 C(Math.Abs(p * share - GoodLifeMath.Kept(p, line)) < 0.01f, $"the shrunk good moods add up to what is kept (level {lvl}, +{p})");
             }
+
+        // ---------- Everyday comforts lose most, something new least ----------
+        C(GoodLifeMath.Weight(true, 0f, 1) == 1f && GoodLifeMath.Weight(false, 1f, 3) == 1f, "a lasting mood, or several of a kind at once: everyday");
+        C(GoodLifeMath.Weight(false, 1f, 1) == GoodLifeMath.FreshWeight, "once lately: new");
+        C(GoodLifeMath.Weight(false, 3f, 1) == 1f && GoodLifeMath.Weight(false, 9f, 1) == 1f, "three times or more lately: everyday");
+        C(GoodLifeMath.Weight(false, -1f, 1) == GoodLifeMath.UnknownWeight, "not known since loading: in between");
+        C(GoodLifeMath.Weight(false, 2f, 1) > GoodLifeMath.FreshWeight && GoodLifeMath.Weight(false, 2f, 1) < 1f, "twice lately: in between");
+        C(Math.Abs(GoodLifeMath.Decayed(4f, GoodLifeMath.RecentHalfLifeTicks) - 2f) < 0.001f && GoodLifeMath.Decayed(4f, 0) == 4f
+          && GoodLifeMath.Decayed(-1f, 10) == 0f, "the count halves every two days");
+        {
+            // A meal a day settles at about three and a half: everyday.
+            float c = 0f;
+            for (int d = 0; d < 30; d++) c = GoodLifeMath.Decayed(c, 60000) + 1f;
+            C(c > 3f && c < 4f && GoodLifeMath.Weight(false, c, 1) == 1f, $"a meal a day becomes everyday ({c:0.00})");
+        }
+        var vals = new List<float> { 20f, 30f, 10f, 15f, -5f, 0f };
+        var wts = new List<float> { 1f, 1f, GoodLifeMath.FreshWeight, 0.65f, 1f, 1f };
+        var shs = new List<float> { 0f, 0f, 0f, 0f, 0f, 0f };
+        foreach (float take in new[] { 0f, 5f, 20f, 40f, 60f, 70f, 200f })
+        {
+            GoodLifeMath.Spread(vals, wts, take, shs);
+            float taken = 0f;
+            for (int i = 0; i < 4; i++) taken += vals[i] * (1f - shs[i]);
+            float most = (20f + 30f + 10f + 15f) * (1f - GoodLifeMath.MinShare);
+            C(Math.Abs(taken - Math.Min(take, most)) < 0.05f, $"the spread takes back just what is due ({take}: {taken:0.00})");
+            C(shs.All(x => x >= GoodLifeMath.MinShare - 0.0001f && x <= 1f), $"every share between the least and all ({take})");
+            C(shs[4] == 1f && shs[5] == 1f, $"bad and empty moods untouched ({take})");
+            C(shs[0] <= shs[3] + 0.0001f && shs[3] <= shs[2] + 0.0001f, $"everyday loses most, new least ({take})");
+            C(Math.Abs(shs[0] - shs[1]) < 0.0001f, $"as ordinary, the same share ({take})");
+            if (take == 0f) C(shs.All(x => x == 1f), "nothing to take: all in full");
+        }
+        {
+            var even = new List<float> { 1f, 1f, 1f };
+            var v3 = new List<float> { 20f, 30f, 50f };
+            var s3 = new List<float> { 0f, 0f, 0f };
+            GoodLifeMath.Spread(v3, even, 25f, s3);
+            C(s3.All(x => Math.Abs(x - GoodLifeMath.Share(100f, 25f)) < 0.001f), "equally ordinary: each at the common share");
+        }
 
         // ---------- The take-back ----------
         float spoiled = GoodLifeMath.LineFor(3);
@@ -170,8 +210,8 @@ public static class GoodLifeTests
         C(Def("Rimfolk_UsedToGoodLife") == null, "used to the good life has no bad mood of its own");
         C(!File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Moods", "GoodLife.cs")).Contains(": Thought_Situational"),
             "used to the good life is no lasting mood");
-        C(File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Patches", "Patch_GoodTimes.cs")).Contains("GoodLife.Share("),
-            "each good mood group is felt at the good life's share");
+        C(File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Patches", "Patch_GoodTimes.cs")).Contains("GoodLife.ShareOf("),
+            "each good mood group is felt at its kind's share");
         foreach (var t in Troubles)
         {
             string name = "Rimfolk_Trouble_" + t;

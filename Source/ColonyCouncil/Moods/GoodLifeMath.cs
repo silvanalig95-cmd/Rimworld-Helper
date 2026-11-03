@@ -80,6 +80,86 @@ namespace ColonyCouncil
             return s < MinShare ? MinShare : s > 1f ? 1f : s;
         }
 
+        // ---------------- Everyday comforts and fresh joys ----------------
+
+        /// <summary>How ordinary something brand new is: it loses the least.</summary>
+        public const float FreshWeight = 0.3f;
+
+        /// <summary>How ordinary a good memory is whose recent count is unknown (given before the game was loaded).</summary>
+        public const float UnknownWeight = 0.65f;
+
+        /// <summary>How long the count of a kind of good memory takes to halve: two days.</summary>
+        public const int RecentHalfLifeTicks = 120000;
+
+        /// <summary>The count of a kind of memory had lately, <paramref name="ticks"/> after it stood at <paramref name="count"/>.</summary>
+        public static float Decayed(float count, int ticks)
+        {
+            if (float.IsNaN(count) || count <= 0f) return 0f;
+            if (ticks <= 0) return count;
+            return count * (float)Math.Pow(0.5, ticks / (double)RecentHalfLifeTicks);
+        }
+
+        /// <summary>
+        /// How ordinary a good mood is to them, from <see cref="FreshWeight"/> (new) to 1 (everyday): a lasting mood (a room,
+        /// their beliefs, the council) is part of everyday life; a memory by how often that kind has come lately
+        /// (<paramref name="recent"/>, halving every two days: once is new, three times or more is everyday, as a meal a
+        /// day settles at about three and a half); one they hold several of at once is everyday too. Below zero means the
+        /// count is unknown.
+        /// </summary>
+        public static float Weight(bool lasting, float recent, int held)
+        {
+            if (lasting || held >= 2) return 1f;
+            if (float.IsNaN(recent) || recent < 0f) return UnknownWeight;
+            float w = FreshWeight + (1f - FreshWeight) * (recent - 1f) / 2f;
+            return w < FreshWeight ? FreshWeight : w > 1f ? 1f : w;
+        }
+
+        /// <summary>
+        /// Spreads what a good life takes back over their good moods by how ordinary each is: each one's share is
+        /// 1 - k * weight, with k set so that what comes off all of them adds up to <paramref name="takeBack"/>, and no
+        /// share under <see cref="MinShare"/> (what one can't give, the others give). An everyday comfort loses the most,
+        /// something new the least; with equal weights every share is the same as <see cref="Share"/>. Writes each
+        /// mood's share into <paramref name="shares"/> (1 for a zero or bad one).
+        /// </summary>
+        public static void Spread(IList<float> values, IList<float> weights, float takeBack, IList<float> shares)
+        {
+            int n = values.Count;
+            float total = 0f, weighted = 0f, least = float.MaxValue;
+            for (int i = 0; i < n; i++)
+            {
+                shares[i] = 1f;
+                float v = values[i], w = weights[i];
+                if (!(v > 0f) || !(w > 0f)) continue;
+                total += v;
+                weighted += v * w;
+                if (w < least) least = w;
+            }
+            if (!(takeBack > 0f) || total <= 0f || weighted <= 0f) return;
+            const float cap = 1f - MinShare;
+            // What comes off them all with a given k: rises with k, until every share sits at the least.
+            float Taken(float k)
+            {
+                float t = 0f;
+                for (int i = 0; i < n; i++)
+                    if (values[i] > 0f && weights[i] > 0f)
+                        t += values[i] * Math.Min(cap, k * weights[i]);
+                return t;
+            }
+            float lo = 0f, hi = cap / least;
+            if (Taken(hi) <= takeBack) lo = hi;
+            else
+                for (int it = 0; it < 40; it++)
+                {
+                    float mid = (lo + hi) * 0.5f;
+                    if (Taken(mid) < takeBack) lo = mid;
+                    else hi = mid;
+                }
+            float kk = lo == hi ? lo : (lo + hi) * 0.5f;
+            for (int i = 0; i < n; i++)
+                if (values[i] > 0f && weights[i] > 0f)
+                    shares[i] = 1f - Math.Min(cap, kk * weights[i]);
+        }
+
         /// <summary>The mood (0 to 1) from good and bad moods with the take-back: 50% plus the sum, clamped as the game clamps it.</summary>
         public static float Mood(float positives, float negatives, float line)
         {
