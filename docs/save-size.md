@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 430; modelled: 430; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,959 KB** after a year, **2,356 KB** after two, **2,472 KB** after five.
+Saved collections found: 432; modelled: 432; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,960 KB** after a year, **2,356 KB** after two, **2,472 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -263,6 +263,8 @@ Rimfolk's part of the save, roughly: **1,959 KB** after a year, **2,356 KB** aft
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
+| `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |
+| `Fields/FieldWeather.cs:strays` | FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map | fixed | 15 | 15 | 15 | 0.4 |
 | `Standing.cs:recentGrants` | per colonist, 30 days | window | 15 | 15 | 15 | 0.4 |
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |

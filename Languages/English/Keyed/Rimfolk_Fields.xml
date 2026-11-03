@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Fields by the weather and the frost harvest (Source/ColonyCouncil/Fields/FieldWeather.cs, FieldWeatherMath.cs, FieldWeatherPatches.cs). -->
+
+  <!-- The field's switch. -->
+  <CC_Fields_Toggle>By the weather</CC_Fields_Toggle>
+  <CC_Fields_ToggleDesc>Sow this field only when it pays. Rimfolk reads the forecast for each hour ahead from the game's own numbers (the land's temperature hour by hour, the conditions on the map, the weather now) and works out how much of a full harvest a crop sown now would bring: growth slowed by cold and by the dark, plants lost to frost by each one's own cold limit, and plants ripe enough when a killing frost comes counted as harvested early at their yield then. In 1.6 a crop dies between {1} and {2} below the least temperature it grows at, so most crops between {3} and {4}.
+
+While a crop sown now would bring at least {0} of a full harvest, the field sows as usual; below that, sowing here pauses and the field says when it should pay again. It only holds sowing back: the game's own season still applies, and a sowing you order by hand goes ahead. Off until you switch it on for a field.</CC_Fields_ToggleDesc>
+  <CC_Fields_ToggleSmartFarming>Smart Farming is running: leave this field on its "On" mode, so its own sowing check and early harvest don't work against this one.</CC_Fields_ToggleSmartFarming>
+
+  <!-- The field's inspect pane. -->
+  <CC_Fields_Inspect_Working>By the weather: the forecast is still being worked out.</CC_Fields_Inspect_Working>
+  <CC_Fields_Inspect_Sow>By the weather: sow now, about {SHARE} of a full harvest expected (ripe {IN}).</CC_Fields_Inspect_Sow>
+  <CC_Fields_Inspect_SowLate>By the weather: sow now, about {SHARE} of a full harvest expected.</CC_Fields_Inspect_SowLate>
+  <CC_Fields_Inspect_GameSeason>The game itself waits for growing weather before it sows {0}.</CC_Fields_Inspect_GameSeason>
+  <CC_Fields_Inspect_Paused>By the weather: sowing paused, {WHY}; {AGAIN}.</CC_Fields_Inspect_Paused>
+  <CC_Fields_Inspect_Again>worth sowing again {IN} (about {SHARE} of a full harvest)</CC_Fields_Inspect_Again>
+  <CC_Fields_Inspect_NotAgain>not worth sowing within the next {0} days</CC_Fields_Inspect_NotAgain>
+  <CC_Fields_Why_Frost>a frost {IN} (about {TEMP}) would kill {MOST} of the young plants (about {SHARE} of a full harvest)</CC_Fields_Why_Frost>
+  <CC_Fields_Why_Early>a frost {IN} (about {TEMP}) would cut the harvest short (harvested early at about {YIELD} of their yield, about {SHARE} of a full harvest)</CC_Fields_Why_Early>
+  <CC_Fields_Why_Slow>it would grow too slowly to ripen in time (about {SHARE} of a full harvest)</CC_Fields_Why_Slow>
+  <CC_Fields_Most_All>all</CC_Fields_Most_All>
+  <CC_Fields_Most_Most>most</CC_Fields_Most_Most>
+  <CC_Fields_Most_Some>some</CC_Fields_Most_Some>
+  <CC_Fields_Inspect_Frost>Frost {WHEN}: {N} {CROPS} here would die unless harvested; the button below marks them.</CC_Fields_Inspect_Frost>
+  <CC_Fields_Inspect_YoungOnly>Frost {WHEN}, about {TEMP}: {N} young {CROPS} here would die, too young to harvest yet.</CC_Fields_Inspect_YoungOnly>
+
+  <!-- When and at what hour. -->
+  <CC_Fields_InADay>within a day</CC_Fields_InADay>
+  <CC_Fields_InOneDay>in about a day</CC_Fields_InOneDay>
+  <CC_Fields_InDays>in about {0} days</CC_Fields_InDays>
+  <CC_Fields_When_0>tonight</CC_Fields_When_0>
+  <CC_Fields_When_1>tomorrow night</CC_Fields_When_1>
+  <CC_Fields_When_2>later today</CC_Fields_When_2>
+  <CC_Fields_When_3>tomorrow</CC_Fields_When_3>
+  <CC_Fields_Hour_Midnight>midnight</CC_Fields_Hour_Midnight>
+  <CC_Fields_Hour_Noon>noon</CC_Fields_Hour_Noon>
+  <CC_Fields_Hour_Night>{0} at night</CC_Fields_Hour_Night>
+  <CC_Fields_Hour_Morning>{0} in the morning</CC_Fields_Hour_Morning>
+  <CC_Fields_Hour_Afternoon>{0} in the afternoon</CC_Fields_Hour_Afternoon>
+  <CC_Fields_Hour_Evening>{0} in the evening</CC_Fields_Hour_Evening>
+
+  <!-- The frost harvest. -->
+  <CC_Fields_Frost_Title>Frost {WHEN}, about {TEMP} around {HOUR}: {N} of {ALL} {CROPS} in {ZONE} would die. Harvest the {N} now (about {YIELD} of their full yield)?</CC_Fields_Frost_Title>
+  <CC_Fields_Frost_Why>Each plant dies at a cold limit of its own: for {CROPS}, between {WARM} and {COLD} (they stop growing below {MIN}). The forecast reads the land's own temperature for each hour, the conditions on the map and the weather now, and counts a plant at risk {MARGIN} above its limit.</CC_Fields_Frost_Why>
+  <CC_Fields_Frost_Young>{0} more are too young to harvest and would die.</CC_Fields_Frost_Young>
+  <CC_Fields_Frost_Safe>The other {0} should come through.</CC_Fields_Frost_Safe>
+  <CC_Fields_Pill_Now>Frost within the hour</CC_Fields_Pill_Now>
+  <CC_Fields_Pill_Hours>Frost in {0} hours</CC_Fields_Pill_Hours>
+  <CC_Fields_Frost_Do>Harvest the {0}</CC_Fields_Frost_Do>
+  <CC_Fields_Frost_DoTip>Marks exactly these {0} plants for harvest; the growers take them as they would any marked plant. Undo takes the marks off those not yet harvested. A few hours after the coldest hour, the council looks whether the frost came and how many were saved.</CC_Fields_Frost_DoTip>
+  <CC_Fields_Frost_Done>Marked {N} {CROPS} in {ZONE} to harvest before the frost</CC_Fields_Frost_Done>
+  <CC_Fields_Frost_Message>Frost {WHEN}, about {TEMP}: {N} {CROPS} in {ZONE} would die. The council suggests harvesting them: select the field, or see Planning, then Making.</CC_Fields_Frost_Message>
+  <CC_Fields_Alert>Frost: {N} {CROPS} to harvest</CC_Fields_Alert>
+  <CC_Fields_AlertClick>Click to select the field: its button marks them for harvest. The suggestion is on the Making page too (Planning), with Not this.</CC_Fields_AlertClick>
+
+  <!-- The check after the frost. -->
+  <CC_Fields_Check_Saved>the frost came ({LOW} at its coldest): {SAVED} of {N} were harvested in time.</CC_Fields_Check_Saved>
+  <CC_Fields_Check_NoFrost>the frost didn't come: the coldest was {LOW}, not the {EXPECTED} forecast; {SAVED} of {N} were harvested early.</CC_Fields_Check_NoFrost>
+  <CC_Fields_Check_Late>the frost came ({LOW} at its coldest) before most were harvested: {SAVED} of {N} in time.</CC_Fields_Check_Late>
+  <CC_Fields_Check_NoGrowers>Nobody here has Growing switched on.</CC_Fields_Check_NoGrowers>
+
+  <!-- Settings (Building, Planning ahead). -->
+  <CC_Settings_FieldsByWeather>Fields by the weather</CC_Settings_FieldsByWeather>
+  <CC_Settings_FieldsByWeather_Tip>Each growing zone gets a "By the weather" switch, off until you switch it on for a field. A field set to it sows only while a crop sown now would bring at least 60% of a full harvest by the forecast (worked out from the game's own temperatures for each hour, the conditions on the map and the weather now, plant by plant against each one's own cold limit); otherwise its sowing pauses and the field says when it should pay again. It only ever holds sowing back. Needs the deeper game hooks.</CC_Settings_FieldsByWeather_Tip>
+  <CC_SetNote_FieldsByWeather>A By the weather switch on each field: sowing there pauses while a crop sown now wouldn't pay.</CC_SetNote_FieldsByWeather>
+  <CC_Settings_FrostHarvest>Harvest before a frost</CC_Settings_FrostHarvest>
+  <CC_Settings_FrostHarvest_Tip>When the forecast for the next 30 hours falls below the cold limit of plants in an outdoor field that are ripe enough to harvest, the council suggests harvesting exactly those, with the numbers: in the alerts, on the field and on the Making page. One click marks them; Undo takes the marks off; after the frost it says whether the frost came and how many were saved. Any field, set to sow by the weather or not; never a roofed one.</CC_Settings_FrostHarvest_Tip>
+  <CC_SetNote_FrostHarvest>One click marks the plants a coming frost would kill for harvest, with the numbers.</CC_SetNote_FrostHarvest>
+</LanguageData>

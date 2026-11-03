@@ -380,3 +380,47 @@ waiting), `BillStockCheck`. `SuggestTracker.Decline(key, title)`, `Offered(key)`
   wood, traps, turrets, the archers' post, the fallback, sieges, mechanoids and medicine. Notes on a line: "Not this"
   per note (key "line:<id>:<note>"), and a line under the notes brings them back. Not yet: the notes that are plain
   facts (the gate shut, no way on) carry no number.
+
+## Fields by the weather and the frost harvest (as built)
+
+The player's request (Smart Farming's "Smart" sowing and "harvest early if threatened" sowed, cut early and sowed again).
+The split they approved: a field the player sets to "By the weather" pauses and resumes its own sowing (only a mode the
+player chose acts by itself); a frost harvest is a one-click suggestion with the numbers.
+
+- **The arithmetic**: `Fields/FieldWeatherMath.cs` (pure, `Tools/Tests/FieldWeatherTests.cs`). `CropRun` (grow days,
+  least growth to harvest, `dieIfLeafless`, life hours, the plants' cold limits, each hour's growth rate and cautious
+  temperature) to `Simulate` (`CropOutcome`: share of a full harvest, killed / early / ripe / late shares, ready hour,
+  first costly frost, the main loss). Plants rest as the game's do (`Resting`, before 0.25 and after 0.8 of the day);
+  a plant dies at the first hour under its own limit unless it can be harvested, then it counts as harvested early at
+  `YieldShare` (half at the least growth to harvest, all ripe); a plant that only goes leafless stops growing a day.
+  `Limits` spreads plants yet to be sown over 1.6's range (least growing temperature plus -18 to -10, or the range the
+  crop's plants on the map really have, `Offsets`). `Decide` sows at `WorthShare` 0.6, else searches a day at a time
+  for `SearchDays` 60. `PickFrost` (30 hours, 1 degree over each plant's own limit, roofed never), `FrostWhen`,
+  `NightIndex` (a night from 18 to 9 keeps its key), `Forecast` (base + conditions while they last + push), `Lows`,
+  `Stray` (the colder of 80% of the last 15 days' "real coldest under the reckoning", 1.5 until 3 days, at most 6),
+  `Gap` (the forecast's hour off the map's own by more than 1 degree widens the margins).
+- **The forecast and the fields**: `Fields/FieldWeather.cs`, a MapComponent (saved: `byWeather` zone IDs, `strays`).
+  Hourly at `Sched.Fields` 1996: the day's stray noted, the frost checks fed, and every other hour (hourly while a
+  frost harvest stands, at once on a toggle or a crop change, once after a load) `Refresh`: the forecast for 120 days
+  (31 hours with no field set) from `TileTemperaturesComp.OutdoorTemperatureAt`, `GenCelestial.CelestialSunGlow` and
+  `GenDate.DayPercent` (kept between looks: only new hours are worked out), each active condition's
+  `TemperatureOffset()` while `TicksLeft` lasts (the map's and the world's), and `WeatherDynamics.PushAhead` (the push
+  now eased toward the current weather's target while it is expected to hold, then toward the year's lean). Growth
+  factors from `PlantUtility.GrowthRateFactorFor_Temperature/_Light/_Fertility`; each plant's limit from the
+  non-public `Plant.LeaflessTemperatureThresh` by reflection (else the crop's warmest). Paused zones are a static set;
+  `Patch_FieldWeatherSow` (Prefix on `WorkGiver_GrowerSow.JobOnCell`) only returns no job for them, never when forced.
+  `Patch_FieldWeatherGizmos` (the "By the weather" toggle with the outlook and a Smart Farming note when its
+  `MapComponent_SmartFarming` is on the map; the frost button), `Patch_FieldWeatherInspect` (the outlook line, the frost
+  line, the young-only line), `Patch_FieldWeatherCollected` (Prefix on `Plant.PlantCollected`, counts the marked
+  plants harvested). Settings `fieldsByWeather` (needs the deep hooks) and `frostHarvestSuggest`, Building page,
+  Planning ahead. Texts in `Languages/English/Keyed/Rimfolk_Fields.xml`; the Almanac's Ahead page has two sections.
+- **The frost harvest as a step**: source `fields`, key `fields:frost:<zone>:<crop>:<night>`, area `fields`, `days`
+  by the first hour a picked plant is at risk (`Suggestion.pill` says "Frost in 9 hours"), `UndoOrders` with the
+  HarvestPlant marks it added, `FrostHarvestCheck` a few hours after the coldest hour: the frost came (the coldest hour
+  seen reached the warmest limit among the marked) and half or more were harvested: worked, with `SuggestDone.found`
+  in words; the frost didn't come: worked, found says so; came and most were lost: failed at once (nothing more to wait
+  for), with whether anyone grows. Shown among Ahead's steps (`Ahead.Open`, `AheadPanel` Done and Aside take both
+  sources), as `Alert_FrostHarvest` (a click selects the field), as a button on the field, and a message once.
+- Not yet (needs a look in the game): that `OutdoorTemperatureAt` for a future tick matches what the map then shows
+  (the dev-mode log names any gap over a degree); that Smart Farming's transpiler and this Prefix stand together on
+  the player's list; a VE tree crop (Drago tree) as a field set to sow by the weather.

@@ -18,6 +18,8 @@ namespace ColonyCouncil
     {
         private static readonly Folds folds = new Folds("aside");
         private const float Pad = 8f;
+        /// <summary>The sources whose steps this section shows: planning ahead, and the fields' frost harvest (Fields/FieldWeather.cs).</summary>
+        private static readonly string[] Sources = { Ahead.Source, FieldWeather.Source };
 
         private static readonly string[] Columns = { "CC_Ahead_Col_Good", "CC_Ahead_Col_Have", "CC_Ahead_Col_ADay", "CC_Ahead_Col_Days", "CC_Ahead_Col_Keep", "CC_Ahead_Col_Status" };
 
@@ -47,8 +49,8 @@ namespace ColonyCouncil
             if (open.Count == 0) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Ahead_None".Translate(), UiKit.Faint) + 6f;
             foreach (var s in open) y += DrawStep(s, x, y, width) + 4f;
 
-            y += Done(x, y + 4f, width, map) + 4f;
-            y += Aside(x, y, width) + 8f;
+            y += Done(x, y + 4f, width, map, Sources) + 4f;
+            y += Aside(x, y, width, Sources) + 8f;
             return y - top;
         }
 
@@ -197,7 +199,8 @@ namespace ColonyCouncil
         public static string DoTip(Suggestion s) => (s?.doTip ?? s?.title ?? "") + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve();
 
         private static string UrgencyText(Suggestion s) =>
-            s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? (s.when.NullOrEmpty() ? "CC_Ahead_NoRush".Translate().Resolve() : s.when)
+            !s.pill.NullOrEmpty() ? s.pill
+            : s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? (s.when.NullOrEmpty() ? "CC_Ahead_NoRush".Translate().Resolve() : s.when)
             : s.days < 0.05f ? "CC_Ahead_ShortNow".Translate().Resolve() : "CC_Ahead_ShortIn".Translate(Num(s.days)).Resolve();
 
         /// <summary>After a step was done or undone: the needs read again, so the pages show the map as it is now.</summary>
@@ -317,7 +320,7 @@ namespace ColonyCouncil
                 switch (d.state)
                 {
                     case SuggestMath.Worked:
-                        state = "CC_Ahead_State_Worked".Translate().Resolve();
+                        state = d.found.NullOrEmpty() ? "CC_Ahead_State_Worked".Translate().Resolve() : d.found.CapitalizeFirst();
                         color = UiKit.Good;
                         break;
                     case SuggestMath.Failed:
