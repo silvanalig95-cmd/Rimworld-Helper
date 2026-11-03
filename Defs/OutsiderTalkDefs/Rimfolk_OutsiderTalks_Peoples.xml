@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Each people in its own voice: tribes (the elders, the hunt, moons, the fire), medieval folk (the tithe, the
+       market, apprentices, aye), industrial outlanders (wages, caravans, the radio, the rifle by the bed), spacers (dry
+       and exact, the stars; an Empire visitor is a spacer too, so a spacer's own line says !their:empire), rough
+       outlanders and fierce tribes friendly enough now to talk (their:rough), and allies. The Empire's own voice is in
+       Rimfolk_OutsiderTalks_Empire.xml. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Tribes ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Elders</defName>
+    <topic>people</topic>
+    <uses>chat,home,know</uses>
+    <when>their:tribal</when>
+    <lines>
+      <li>[us] Who decides things among your people?</li>
+      <li>[them,town:head] The elders talk until the fire burns down, and then {HEAD} says what they decided.</li>
+      <li>[them] The elders talk until the fire burns down, and then someone says it aloud.</li>
+      <li>[us] That sounds slow.</li>
+      <li>[them] Slow fires burn longest, we say.</li>
+      <li>[us] I'll remember that one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Hunt</defName>
+    <topic>people</topic>
+    <uses>chat,know</uses>
+    <when>their:tribal</when>
+    <lines>
+      <li>[us] Do you hunt, back home?</li>
+      <li>[them,them:best:Shooting|them:best:Melee] I bring meat home more often than most, and I don't boast of it.</li>
+      <li>[them] Everyone hunts, even those who are bad at it, and I am not the worst.</li>
+      <li>[us] What do you hunt?</li>
+      <li>[them,home:desert] Whatever the sand lets live, which isn't much.</li>
+      <li>[them,home:frozen] Whatever stands still long enough in the snow.</li>
+      <li>[them,home:jungle|home:swamp] Whatever doesn't bite us first.</li>
+      <li>[them] Whatever the season brings close to camp.</li>
+      <li>[us] And you thank it, I suppose.</li>
+      <li>[them] Always, or the next one will not come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Moons</defName>
+    <topic>people</topic>
+    <when>their:tribal,!first</when>
+    <lines>
+      <li>[them] How many moons have your people lived on this land?</li>
+      <li>[us,colony:young] Not many, we're still new here.</li>
+      <li>[us,colony:old] Enough that we've stopped counting.</li>
+      <li>[us,!colony:young,!colony:old] A few, enough to know where the water is.</li>
+      <li>[them] Then the land has started to learn your names.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Spirits</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:tribal,evening|night</when>
+    <lines>
+      <li>[them] Have the spirits of this place spoken to you yet?</li>
+      <li>[us,tribal] Now and then, in the wind before a storm.</li>
+      <li>[us] Not that I've heard, but I'm not sure I'd know how to listen.</li>
+      <li>[them] Sit still at dusk, say nothing, and you will hear them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_GiftBond</defName>
+    <topic>people</topic>
+    <when>their:tribal,did:gift</when>
+    <lines>
+      <li>[them] Among my people a gift is a bond, so be careful who you give to.</li>
+      <li>[us] Then I'm glad I gave it to you.</li>
+      <li>[them] So am I, friend.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Building</defName>
+    <topic>colony</topic>
+    <when>their:tribal,!tribal</when>
+    <lines>
+      <li>[them] You build as if you mean to stay forever.</li>
+      <li>[us] We'd like to.</li>
+      <li>[them] My people build with hide and wood, so the land can take it back when we go.</li>
+      <li>[us] Ours would take the land a good while.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Strange</defName>
+    <topic>colony</topic>
+    <when>their:tribal,!lowtech</when>
+    <lines>
+      <li>[them] So many strange things in one place, I don't know where to look first.</li>
+      <li>[us] Ask about anything you like.</li>
+      <li>[them] Then start with whatever it is that hums.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Children</defName>
+    <topic>family</topic>
+    <uses>chat,home,know</uses>
+    <when>their:tribal,them:parent</when>
+    <lines>
+      <li>[us] How are children raised among your people?</li>
+      <li>[them] By everyone, so no child has only one mother to scold them.</li>
+      <li>[us] That sounds like a lot of scolding.</li>
+      <li>[them] It is, and a lot of carrying, and a lot of songs.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Story</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>their:tribal,evening|night</when>
+    <lines>
+      <li>[them] At home the old ones would be telling stories by now.</li>
+      <li>[us] Tell me one, then.</li>
+      <li>[them] Do you know the one about the man who caught the moon in a bucket?</li>
+      <li>[us] I don't think I do.</li>
+      <li>[them] He caught it every night, and every morning it had leaked away.</li>
+      <li>[us] I think I like your stories.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Names</defName>
+    <topic>people</topic>
+    <uses>know</uses>
+    <when>their:tribal,!first</when>
+    <lines>
+      <li>[us] Do names mean something among your people?</li>
+      <li>[them] Every name is a story, and the elders give it when they know you.</li>
+      <li>[us] What's the story of yours, then?</li>
+      <li>[them] I'll tell you when I know you better, that's how it works.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tribe_Feast</defName>
+    <topic>people</topic>
+    <when>their:tribal,did:meal</when>
+    <lines>
+      <li>[them] You shared your table with me, so now I owe you a place at my fire.</li>
+      <li>[us] There's no need.</li>
+      <li>[them] There is every need, or what kind of guest would I be?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Medieval folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Tithe</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:medieval</when>
+    <lines>
+      <li>[us] Is the tithe heavy where you come from?</li>
+      <li>[them] Heavy enough, and the reeve counts every egg twice.</li>
+      <li>[us] Do you get anything back for it?</li>
+      <li>[them] A road that's mostly mended and a lord who mostly leaves us be.</li>
+      <li>[us] Mostly is something.</li>
+      <li>[them] Aye, mostly is what we live on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Apprentice</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:medieval,them:best:Crafting|them:best:Construction|them:best:Artistic</when>
+    <lines>
+      <li>[us] Did you learn your trade from a master?</li>
+      <li>[them] Seven years an apprentice, and my master still says I do it wrong.</li>
+      <li>[us] Do you?</li>
+      <li>[them] Not anymore, but don't tell my master.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Lord</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:medieval,their:leader,!them:leader</when>
+    <lines>
+      <li>[us] Do you ever see {LEADER}, your {LEADERTITLE}?</li>
+      <li>[them] Only on feast days, riding past with banners, and I bow low enough to see my boots.</li>
+      <li>[us] Does {LEADER} notice?</li>
+      <li>[them] The horse does, I think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Hearth</defName>
+    <topic>small</topic>
+    <when>their:medieval,evening|night</when>
+    <lines>
+      <li>[them] A good ale and a warm hearth, that's all a body needs.</li>
+      <li>[us] And a roof that doesn't leak.</li>
+      <li>[them] Aye, I'll give you the roof.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Guild</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:medieval,town</when>
+    <lines>
+      <li>[us] Can anyone set up a stall in {TOWN}?</li>
+      <li>[them] Anyone who pays the guild, swears the oath and keeps honest weights.</li>
+      <li>[us] And if they don't?</li>
+      <li>[them] Then they sell from a cart outside the walls, with the tinkers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Saints</defName>
+    <topic>faith</topic>
+    <when>their:medieval,storm|snow</when>
+    <lines>
+      <li>[them] My mother would have said a prayer for the road in weather like this.</li>
+      <li>[us] Would it have helped?</li>
+      <li>[them] It never hurt, and she always got home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Med_Plowing</defName>
+    <topic>season</topic>
+    <uses>chat,home</uses>
+    <when>their:medieval,spring</when>
+    <lines>
+      <li>[us] Is the plowing done where you live?</li>
+      <li>[them] The oxen are at it from dawn to dusk, and so is everyone behind them.</li>
+      <li>[us] And they let you go?</li>
+      <li>[them,role:trader] Somebody has to sell what we grew last year.</li>
+      <li>[them] I said I'd bring back salt, which bought me a week.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Outlanders ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_Wages</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:industrial,town</when>
+    <lines>
+      <li>[us] What's a day's work worth in {TOWN} these days?</li>
+      <li>[them] Less than it was, and more than they want to pay.</li>
+      <li>[us] Same everywhere, I'd guess.</li>
+      <li>[them] Same everywhere, and nobody's guessing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_Caravans</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>their:industrial</when>
+    <lines>
+      <li>[us] Do you travel with the caravans often?</li>
+      <li>[them,role:trader] Half the year, and the other half I spend wishing I was.</li>
+      <li>[them] When they'll have me, it's safer than walking alone.</li>
+      <li>[us] Safer, but slower.</li>
+      <li>[them] Slow and alive beats quick and robbed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_Radio</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:industrial,town</when>
+    <lines>
+      <li>[them] We get the news over the radio in {TOWN}, when the weather lets us.</li>
+      <li>[us,lowtech] We get ours from whoever walks through the gate.</li>
+      <li>[us] Ours mostly comes from whoever walks up the road.</li>
+      <li>[them] Then I'd better make mine worth the walk.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_Rifle</defName>
+    <topic>people</topic>
+    <when>their:industrial</when>
+    <lines>
+      <li>[them] Where I'm from, everybody sleeps with a rifle in reach, even the preacher.</li>
+      <li>[us,lowtech] We keep a blade by the door ourselves, so we're not so different.</li>
+      <li>[us] We're not so different here, I suppose.</li>
+      <li>[them] Nobody out here is, once the sun goes down.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_AnyWork</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:industrial,!first</when>
+    <lines>
+      <li>[us] Have you always done the work you do?</li>
+      <li>[them] I've done most work going at one time or another, out here you take what comes.</li>
+      <li>[us] What was the worst?</li>
+      <li>[them] Anything with a shovel in midsummer, and I'll say no more about it.</li>
+      <li>[us] And the best?</li>
+      <li>[them] Anything that paid on the day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Out_Settlers</defName>
+    <topic>people</topic>
+    <when>their:industrial,first</when>
+    <lines>
+      <li>[them] Settlers, huh, I've seen a lot of you come and go.</li>
+      <li>[us] We mean to be the ones who stay.</li>
+      <li>[them] They all say that, but I hope you're right.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Spacers and high tech ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Spacer_Stars</defName>
+    <topic>people</topic>
+    <uses>chat,know</uses>
+    <when>their:spacer,!their:empire</when>
+    <lines>
+      <li>[us] Were your people born here, or did they come down from the stars?</li>
+      <li>[them] Some of each, and nobody agrees which kind is better.</li>
+      <li>[us] Which are you?</li>
+      <li>[them] I'd rather not say, it starts arguments.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Spacer_Schedule</defName>
+    <topic>people</topic>
+    <when>their:spacer,!their:empire</when>
+    <lines>
+      <li>[us] How long will you stay?</li>
+      <li>[them] Until our business is done, and I've scheduled it to the hour.</li>
+      <li>[us] Do you schedule everything?</li>
+      <li>[them] Everything except the weather, and I've filed a complaint about that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Spacer_Archo</defName>
+    <topic>small</topic>
+    <uses>chat,know</uses>
+    <when>their:spacer,night,clear</when>
+    <lines>
+      <li>[them] Somewhere up there, minds bigger than worlds are thinking about things we'll never know.</li>
+      <li>[us] Does that frighten you?</li>
+      <li>[them,their:empire] The Empire keeps its eyes on them, so I try not to worry.</li>
+      <li>[them] Only when I think about it, so I try not to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Spacer_Exact</defName>
+    <topic>small</topic>
+    <when>their:spacer,!their:empire,!first</when>
+    <lines>
+      <li>[us] You don't say much, do you?</li>
+      <li>[them] I say exactly as much as I mean, which people take for not much.</li>
+      <li>[us] I'll take it as exactly enough, then.</li>
+      <li>[them] Good, we understand each other.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HT_ByHand</defName>
+    <topic>colony</topic>
+    <when>their:hightech,lowtech</when>
+    <lines>
+      <li>[them] You do all this without power, by hand?</li>
+      <li>[us] By hand, and with a lot of help from each other.</li>
+      <li>[them,their:spacer] I've seen whole cities that couldn't manage half of it.</li>
+      <li>[them] I'm impressed, and I don't say that often.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HT_Data</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:hightech,!their:empire,town</when>
+    <lines>
+      <li>[us] What do people in {TOWN} argue about?</li>
+      <li>[them,their:spacer] Data, mostly, and whose numbers are wrong.</li>
+      <li>[them] Fuel prices, fences and whose turn it is to fix the pump.</li>
+      <li>[us] It sounds like home.</li>
+      <li>[them] Every town is the same town with different weather.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Rough peoples, friendly enough now ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Terms</defName>
+    <topic>people</topic>
+    <when>their:rough</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] Your people and mine haven't always been on speaking terms.</li>
+      <li>[them] No, and some of mine would rather we still weren't.</li>
+      <li>[us] And you?</li>
+      <li>[them,them:kind] I'd rather talk than bleed, and I'm not ashamed of it.</li>
+      <li>[them] I go where the profit is, and today it's here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Plain</defName>
+    <topic>people</topic>
+    <when>their:rough</when>
+    <lines>
+      <li>[them] Don't mind my manners, where I'm from you speak plain or not at all.</li>
+      <li>[us,trait:Abrasive] Plain suits me better than you'd think.</li>
+      <li>[us] Plain suits me.</li>
+      <li>[them] Then we'll get on fine.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Looking</defName>
+    <topic>colony</topic>
+    <when>their:rough,rich</when>
+    <lines>
+      <li>[them] Nice place, lot of things worth having, if a person were that sort.</li>
+      <li>[us] And are you that sort?</li>
+      <li>[them] Not today.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Respect</defName>
+    <topic>colony</topic>
+    <when>their:rough,colony:raid</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] I hear you stood your ground when they came at you.</li>
+      <li>[us] We did.</li>
+      <li>[them] Where I'm from, that buys more respect than silver.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Soft</defName>
+    <topic>people</topic>
+    <when>their:rough,their:tribal</when>
+    <lines>
+      <li>[them] My people say yours are soft, and I came to see for myself.</li>
+      <li>[us] And what do you see?</li>
+      <li>[them,colony:raid] Soft people don't stand after a raid, so they're wrong.</li>
+      <li>[them] I haven't decided yet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rough_Rules</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:rough,their:hightech</when>
+    <lines>
+      <li>[us] Are there rules where you come from?</li>
+      <li>[them] One rule, don't take what you can't hold.</li>
+      <li>[us] That's a hard rule.</li>
+      <li>[them] It's an honest one, which is more than most places can say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Allies, and any people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_People_Allies</defName>
+    <topic>people</topic>
+    <when>their:ally</when>
+    <lines>
+      <li>[them] Our peoples stand together now, and I'm glad of it.</li>
+      <li>[us] So are we.</li>
+      <li>[them,their:tribal] Then our fires are one fire.</li>
+      <li>[them,their:empire] Then the Empire has a friend at the edge of things.</li>
+      <li>[them] Then let's keep it that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_People_Name</defName>
+    <topic>people</topic>
+    <uses>know</uses>
+    <when>!first</when>
+    <lines>
+      <li>[us] What do your neighbors call your people?</li>
+      <li>[them] {PEOPLE}, to our faces, and something ruder when we've gone.</li>
+      <li>[us] Do your people have a ruder name for us yet?</li>
+      <li>[them] Give us time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_People_Greet</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>first,their:hightech,!their:empire</when>
+    <lines>
+      <li>[them,their:spacer] {OUTSIDER}, of {PEOPLE}, and I'm told you're the people to talk to.</li>
+      <li>[them] Name's {OUTSIDER}, I'm with {PEOPLE}.</li>
+      <li>[us] {COLONIST}, and welcome to {COLONY}.</li>
+      <li>[them] Thanks, it's a long way to anywhere out here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_People_Teen</defName>
+    <topic>small</topic>
+    <when>!first</when>
+    <weight>0.7</weight>
+    <lines>
+      <li>[us] Do you travel much?</li>
+      <li>[them,teen] More every year, and I'm not a child, whatever they tell you.</li>
+      <li>[them,old] I was walking these roads before your colony was a thought.</li>
+      <li>[them] When I can, there's always more to see.</li>
+      <li>[us] There is, I'm finding.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

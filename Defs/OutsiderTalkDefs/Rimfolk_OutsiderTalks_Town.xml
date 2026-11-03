@@ -177,7 +177,7 @@
     <defName>Rimfolk_OT_Town_ShortMedicine</defName>
     <topic>hardship</topic>
     <uses>home,chat</uses>
-    <when>town:short:medicine,situation:theirs,situation:sickness</when>
+    <when>town:short:medicine,situation:theirs,situation:sickness,!ws:Council_WS_Murrain</when>
     <weight>1.3</weight>
     <mark>sickness</mark>
     <about>SITUATION</about>

@@ -50,39 +50,46 @@
         did:faith did:court did:letter did:bring; last:TOPIC (their last talk's topic)
       who they are: role:trader role:guest role:lodger role:visitor role:notable role:head role:heir role:envoy;
         them:young (a child: only pieces asking for it) them:old them:hurt them:kind them:abrasive them:leader
-        them:married them:widowed them:spousehere them:parent them:smallchild them:childhere them:best:SKILLDEF;
-        kin (family of theirs in the colony) kin:you (the colonist is that family)
+        them:married them:widowed them:spousehere them:parent them:smallchild them:childhere them:best:SKILLDEF
+        them:outranks (both hold a title, theirs the higher); kin (family of theirs in the colony) kin:you (the
+        colonist is that family)
       the colonist: us:young (only pieces asking for it) us:old us:hurt us:newcomer us:leader us:speaker us:noble
-        us:married us:widowed us:spousehere us:parent us:smallchild us:best:SKILLDEF; in a colonist's own line also
-        their traits and passions (trait:Kind, skill:Cooking) and old teen hurt grieving lowmood highmood; in an
-        outsider's own line their traits, old teen hurt
+        us:outranks us:married us:widowed us:spousehere us:parent us:smallchild us:best:SKILLDEF; in a colonist's
+        own line also their traits and passions (trait:Kind, trait:Lazy, skill:Cooking) and old teen hurt grieving
+        lowmood highmood; in an outsider's own line their traits by name (trait:Greedy, never a degree), old teen
+        hurt
       their people: their:tribal their:medieval their:industrial their:spacer their:lowtech their:hightech
-        their:empire their:noble their:leader samefaith otherfaith
+        their:empire their:noble their:leader their:rough (a rough outlander union or a fierce tribe, friendly enough
+        now) their:ally (allied with the colony) samefaith otherfaith
       their town: town town:near town:far; home:desert home:frozen home:jungle home:swamp home:forest home:plains
         home:mountains home:hills home:coast home:cold home:hot home:mild; town:head town:notable town:newhead
         town:headdied town:loss town:ill town:letter (a letter under way) town:wrote (one in 20 days) town:site
-        town:quest town:caravan town:visitors (theirs on the way) town:short:food town:short:medicine
-        town:short:hands town:short:fuel
+        town:quest (offered) quest:ongoing (taken on, under way: {QUESTNOW}) town:caravan town:visitors (theirs on
+        the way) town:short:food town:short:medicine town:short:hands town:short:fuel
       wars: their:war war:new war:long war:losing (they have fewer towns than when it began) war:winning (the
         enemy has) war:fought (their fighters and the enemy's met on the colony's land) war:ourfoe (their enemy is
         the colony's too) war:ourfriend; their:peace (a war of theirs over in 30 days); world:war (two other
-        peoples, new); battle:here battle:theirs (two peoples fought on the colony's land in 10 days)
+        peoples, new); world:peace (two other peoples made peace in 30 days: {PEACEA} {PEACEB}); battle:here
+        battle:theirs (two peoples fought on the colony's land in 10 days)
       the world's events (Rimfolk's world situations): situation situation:theirs situation:bad situation:good
         situation:new situation:long situation:helped situation:sickness :hunger :cold :war :trade :faith
-        :politics :empire :disaster :beasts ws:DEFNAME; situation:ended ended:theirs ended:helped
+        :politics :empire :disaster :beasts ws:DEFNAME (a name can be a person's, a ship's or a band's: write
+        for the one event); situation:ended ended:theirs ended:helped ended:bad (a hard time) ended:ws:DEFNAME
         ended:sickness... ; condition condition:DEFNAME (toxic fallout, a cold snap, a volcanic winter...)
       the colony: colony:raid colony:raidby colony:raid:them (their own people) colony:raid:theirfoe
         colony:raid:fallen colony:raid:mechs :insects :animals :tribal :people; colony:death colony:death:battle
         colony:birth colony:wedding colony:newcomer colony:decree colony:election colony:camp colony:harvest
         colony:hungry colony:plenty colony:disaster colony:research colony:project colony:day colony:daytoday
         colony:daysoon colony:daypast colony:traders colony:young colony:old colony:children colony:animals
-        colony:prisoners colony:expecting
+        colony:prisoners colony:expecting colony:noble (another colonist holds a title: {NOBLE} {NOBLETITLE})
+        colony:quiet (no big threat in 30 days)
       what their people remember: deed:KIND (released tended gift gaveGift hardship refugees harvestHelp
         killed captured robbed slighted aid taught... see World/FactionMemory.cs) deed:good deed:bad deed:owed
         deedbest:KIND (the good deed {DEEDNAME} and {DEEDBY} come from) wrongbest:KIND ({WRONGNAME}) their:friend
         byyou byyou:freed byyou:tended byyou:helped
       callbacks: talked:KEY (an earlier talk between the two left the mark KEY, half a day ago or more) with what
-        became of its fact: then:still then:over then:dead then:changed; then:recent then:long. A piece with a
+        became of its fact: then:still then:over then:dead then:changed, and for a quest then:success
+        then:failed (a peace: still holds, over broke); then:recent then:long. A piece with a
         talked: or then: condition is a callback: it is weighed with one earlier mark at a time, and {THEN} is what
         that talk was about. A callback about a change settles the mark.
 
@@ -93,7 +100,8 @@
       {SITE} {QUEST} {WAR} {PEACEWITH} {WARA} {WARB} {BATTLEA} {BATTLEB} {SITUATION} {SITUATIONPLACE} {ENDED}
       {CONDITION} {COOK} {ARTIST} {OURLEADER} {SPEAKER} {DISASTER} {CAMP} {TRADERS} {NEWCOMER} {DAY} {RAIDERS}
       {DEAD} {BORN} {WEDDING} {DECREE} {RESEARCH} {PROJECT} {DEEDNAME} {DEEDBY} {WRONGNAME} {YOURDEEDNAME}
-      {FRIEND} {THEN} {NOW} (who leads now, in a then:changed callback). Values that are names keep their case;
+      {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {THEN} {NOW} (who leads now, in a then:changed
+      callback). Values that are names keep their case;
       {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
       one is capitalized for you.
   -->
@@ -273,7 +281,7 @@
     <topic>greeting</topic>
     <when>them:young</when>
     <lines>
-      <li>[us] Hello there, are you with the grown-ups?</li>
+      <li>[us] Hello there, are you with the grownups?</li>
       <li>[them,town] I'm not little, I came all the way from {TOWN}.</li>
       <li>[them] I'm not little, I walked the whole way.</li>
       <li>[us] All that way, on your own two feet?</li>

@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The world's events one by one (ws:DEFNAME): what each is in the words of someone it touches, written for that one
+       event, since a name can be a person's (a singer, a prophet, the one mourned), a ship's, a band's or a beast's;
+       the same events once over (ended:ws:DEFNAME); the conditions over the land not written for yet; peace between two
+       other peoples; and quests of their people the colony took on. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Hard times ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Locusts</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Locusts,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>hunger</mark>
+    <about>SITUATION</about>
+    <heard>Locusts have stripped the fields of {PEOPLE}.</heard>
+    <lines>
+      <li>[them] The locusts took our fields in a single afternoon.</li>
+      <li>[us] All of them?</li>
+      <li>[them,their:lowtech] Every one, and the old women say they've never seen a cloud so wide.</li>
+      <li>[them] Every one around {SITUATIONPLACE}, and the swarm hasn't settled yet.</li>
+      <li>[us] Which way is it heading?</li>
+      <li>[them] Wherever the wind says, so keep an eye on the sky.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Flood</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Flood,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>situation</mark>
+    <about>SITUATION</about>
+    <heard>The river has flooded {SITUATIONPLACE}.</heard>
+    <lines>
+      <li>[them] The river came up in the night at {SITUATIONPLACE}, and it took a lot with it.</li>
+      <li>[us] I'm sorry, is anyone you know hurt?</li>
+      <li>[them] We're still counting what it took, and I'd rather not guess.</li>
+      <li>[us] If you need timber for rebuilding, ask us.</li>
+      <li>[them,their:tribal] I will carry your words back to the elders.</li>
+      <li>[them] I'll carry that home, thank you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Drought</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Drought,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>drought</mark>
+    <about>SITUATION</about>
+    <heard>{PEOPLE} pray for rain in {SITUATION}.</heard>
+    <lines>
+      <li>[them] No rain at home for months, they're calling it {SITUATION}.</li>
+      <li>[us] How are the fields holding up?</li>
+      <li>[them,their:lowtech] The wheat stands white, and the herders walk farther every day for water.</li>
+      <li>[them] Dry as old bread, and the wells are low.</li>
+      <li>[us] I hope the rains come soon.</li>
+      <li>[them,their:tribal] We dance for it every night, and the sky only watches.</li>
+      <li>[them] So does everyone, it's all anyone talks about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Murrain</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Murrain,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>herds</mark>
+    <about>SITUATION</about>
+    <heard>{SITUATION} is in the herds of {PEOPLE}.</heard>
+    <lines>
+      <li>[them] {SITUATION} is in our herds, they're burning carcasses outside the walls.</li>
+      <li>[us] Can people catch it?</li>
+      <li>[them] No, thank the stars, but it takes the milk, the meat and the plow oxen.</li>
+      <li>[us,colony:animals] Then we'll keep our animals well away from yours, just in case.</li>
+      <li>[us] Then I hope it burns itself out soon.</li>
+      <li>[them] Nobody even knows where it started, so that's all anyone can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_GreatFire</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_GreatFire,situation:theirs</when>
+    <weight>1.3</weight>
+    <heard>Fire has burned through {SITUATIONPLACE}.</heard>
+    <lines>
+      <li>[them] The fire at {SITUATIONPLACE} took more than we can count yet.</li>
+      <li>[us] I'm sorry, what will you need most?</li>
+      <li>[them] Timber, and someone who knows roofs.</li>
+      <li>[us] We'll see what we can spare.</li>
+      <li>[them] People will know whose timber is in the new walls.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Abandoned</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Abandoned</when>
+    <weight>1.3</weight>
+    <heard>{SITUATIONPLACE} is being abandoned.</heard>
+    <lines>
+      <li>[them] They're leaving {SITUATIONPLACE}, the whole town, carts and all.</li>
+      <li>[us] Where will they go?</li>
+      <li>[them] Wherever will have them, and not everyone has somewhere.</li>
+      <li>[us] Some may come this way, then.</li>
+      <li>[them] Some will, and what they leave behind is anyone's to take.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Mourning</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Mourning,situation:theirs</when>
+    <weight>1.4</weight>
+    <heard>{PEOPLE} are in mourning for {SITUATION}.</heard>
+    <lines>
+      <li>[them] We're in mourning at home, {SITUATION} has died.</li>
+      <li>[us] I'm sorry, who was {SITUATION}?</li>
+      <li>[them] Someone half the region knew, and the other half knew someone they'd helped.</li>
+      <li>[us] Then it's a loss for everyone.</li>
+      <li>[them,their:tribal] It is, and we will sing the name for a whole moon.</li>
+      <li>[them] It is, and the mourners will be on the roads for a while.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Exiles</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Exiles,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] A whole household was cast out of {SITUATIONPLACE}, given a day to leave.</li>
+      <li>[us] For what?</li>
+      <li>[them] Siding with the wrong cousin, or speaking too loud, it depends who tells it.</li>
+      <li>[us] Will they come this way?</li>
+      <li>[them] Some will, and our people won't thank anyone who takes them in.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Rebuilding</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Rebuilding,situation:theirs</when>
+    <lines>
+      <li>[them] We're rebuilding at home, and everyone is short of timber and patience.</li>
+      <li>[us] How far along are you?</li>
+      <li>[them] Far enough to see the shape of it, and a long way from done.</li>
+      <li>[us] Ask if you need hands.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The roads and the trade ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_BanditRoad</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_BanditRoad,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>situation</mark>
+    <about>SITUATION</about>
+    <lines>
+      <li>[them] Nobody with sense takes the road from {SITUATIONPLACE} now.</li>
+      <li>[us] Bandits?</li>
+      <li>[them] Bandits, and twice now they've taken the drivers along with the carts.</li>
+      <li>[us] Then I'm glad you got here in one piece.</li>
+      <li>[them,role:trader] So is my purse.</li>
+      <li>[them] So am I, believe me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Toll</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Toll,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,their:lowtech] There's a chain across the road at {SITUATIONPLACE} and a man with a box beside it.</li>
+      <li>[them] There's a toll on the road at {SITUATIONPLACE} now, and nobody's happy about it.</li>
+      <li>[us] What does it cost to pass?</li>
+      <li>[them] More every month, and the traders are going the long way round.</li>
+      <li>[us] Then I'm glad we're on this side of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_IronScarce</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_IronScarce,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,their:lowtech] The mines have flooded, and the smiths at home are melting down old plowshares.</li>
+      <li>[them] Iron's gone scarce at home, and the smiths are paying whatever they must.</li>
+      <li>[us] What's it fetching?</li>
+      <li>[them] More than you'd believe, so if you've any to spare, I know buyers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_HouseFails</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_HouseFails,situation:theirs</when>
+    <weight>1.3</weight>
+    <heard>{SITUATION} has failed.</heard>
+    <lines>
+      <li>[them] {SITUATION} has failed, after forty years, and its drivers haven't been paid.</li>
+      <li>[us] What will that do to prices?</li>
+      <li>[them] Some things will go cheap as the stock is sold, and some you won't find at all.</li>
+      <li>[us] Then we'll keep our eyes open.</li>
+      <li>[them,role:trader] Keep them on me, I'll have the bargains first.</li>
+      <li>[them] Everyone will, it's that kind of season.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_TradeBoom</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_TradeBoom</when>
+    <lines>
+      <li>[them] Every inn on the road is full of merchants this season.</li>
+      <li>[us] Good for business.</li>
+      <li>[them,role:trader] Good for mine, and bad for my sleep.</li>
+      <li>[them] Good for some, and crowded for everyone else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_MarketDays</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_MarketDays,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Word at home is that your stalls are worth the walk.</li>
+      <li>[us] We're glad to hear it.</li>
+      <li>[them,role:trader] Then don't sell it all before I've had a look.</li>
+      <li>[them] Put your best out in the mornings, that's when the buyers come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_OrbitalLanes</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_OrbitalLanes</when>
+    <lines>
+      <li>[them] The orbital lanes are crowded this season, every ship has something to sell.</li>
+      <li>[us] What are they selling?</li>
+      <li>[them,their:hightech] Everything, at prices that come down if you let them hail twice.</li>
+      <li>[them] Everything, at prices that come down if you wait.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_NewRoad</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_NewRoad</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] They're building {SITUATION} right past your land, did you know?</li>
+      <li>[us] We've heard it will pass close.</li>
+      <li>[them] When it opens, you'll have more traders than you know what to do with.</li>
+      <li>[us] We'll learn.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_RouteReopens</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_RouteReopens</when>
+    <lines>
+      <li>[them] The old road's open again, and every caravan on it is in a hurry.</li>
+      <li>[us] Good news for us, then.</li>
+      <li>[them] For a few weeks you'll be on the busiest road in the region.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_IceRoad</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_IceRoad</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The lakes have frozen hard enough for sledges, and there's an ice road now.</li>
+      <li>[us] Is it safe?</li>
+      <li>[them] Safe until the thaw, and when the thaw comes, it comes quickly.</li>
+      <li>[us] Then I hope nobody's out on it that day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_RoadTraffic</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_RoadTraffic,situation:theirs</when>
+    <lines>
+      <li>[them] Carts of ours go past your gate most days now.</li>
+      <li>[us] And some of them turn in.</li>
+      <li>[them] Some of them, and some of them you'll wish hadn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Waystation</defName>
+    <topic>road</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Waystation,situation:theirs</when>
+    <lines>
+      <li>[them] Our road wardens would like a post by your land, a fire and a few beds.</li>
+      <li>[us] And what would they want of us?</li>
+      <li>[them] Only the ground, and they'd ride out against anything that came up the road.</li>
+      <li>[us] It's worth thinking about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Crossroads</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Crossroads</when>
+    <lines>
+      <li>[them] {SITUATIONPLACE} is growing fast, a smithy, two inns and a market.</li>
+      <li>[us] We're not the only ones on this road anymore.</li>
+      <li>[them] No, but you're the older one, and people remember that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_RivalColony</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_RivalColony,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Some of ours have settled not far from you, at {SITUATIONPLACE}.</li>
+      <li>[us] So we've heard.</li>
+      <li>[them] I hope you'll be friends, the land is wide enough for both.</li>
+      <li>[us] That depends on them as much as on us.</li>
+      <li>[them] Fair, and I'll tell them you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_NewTown</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_NewTown,situation:theirs</when>
+    <weight>1.3</weight>
+    <heard>{PEOPLE} have founded {SITUATIONPLACE}.</heard>
+    <lines>
+      <li>[them] We've founded a new town, {SITUATIONPLACE}, and it's short of nearly everything.</li>
+      <li>[us] Congratulations, what does it need most?</li>
+      <li>[them] Timber, mostly, and neighbors to trade with.</li>
+      <li>[us] We might manage both.</li>
+      <li>[them,their:tribal] Then the new fires will know your name.</li>
+      <li>[them] Then you'll be welcome there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Riches and rushes ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_GoldFever</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_GoldFever,situation:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Half our town has gone off panning for gold, the blacksmith included.</li>
+      <li>[us] Has anyone found any?</li>
+      <li>[them] I hear plenty of talk and see very little gold.</li>
+      <li>[us] Not tempted yourself?</li>
+      <li>[them,role:trader] I sell them beans and rope, which is the surest gold there is.</li>
+      <li>[them] Tempted, but I like my feet dry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_SilverRush</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_SilverRush</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Everyone with a pick is out looking for silver since the strike.</li>
+      <li>[us] Any of them looking at our hills?</li>
+      <li>[them] Some of them, so keep an eye on who's digging where.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Bumper</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Bumper,situation:theirs</when>
+    <weight>1.2</weight>
+    <mark>harvest</mark>
+    <lines>
+      <li>[them] The fields at home are heavier than anyone can remember.</li>
+      <li>[us] A good year, then.</li>
+      <li>[them] A good year, grain cheap, and not enough hands to bring it in.</li>
+      <li>[us,colony:hungry] We could use some of that grain, if you're selling.</li>
+      <li>[us] Then may it all get in before the weather turns.</li>
+      <li>[them] It will, if we have to cut it by lantern light.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_ShipDown</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_ShipDown</when>
+    <weight>1.3</weight>
+    <heard>A ship, {SITUATION}, has come down near {SITUATIONPLACE}.</heard>
+    <lines>
+      <li>[them] {SITUATION} came down in the hills past {SITUATIONPLACE}, a whole ship.</li>
+      <li>[us] Were there survivors?</li>
+      <li>[them] Nobody knows yet, but every salvager for a hundred miles is on the way.</li>
+      <li>[us] I hope they find someone alive in it.</li>
+      <li>[them,their:hightech] So do I, though most of them are hoping for parts.</li>
+      <li>[them] So do I, but most of them came for what they can carry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Vault</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Vault,situation:theirs</when>
+    <weight>1.3</weight>
+    <heard>{PEOPLE} have opened {SITUATION}.</heard>
+    <lines>
+      <li>[them] Our diggers broke into {SITUATION}, and the lights came on by themselves.</li>
+      <li>[us] Who built it?</li>
+      <li>[them] Nobody living knows, and half the region wants it filled in again.</li>
+      <li>[us] And the other half?</li>
+      <li>[them] The other half wants to know what's behind the deeper door.</li>
+      <li>[us] I think I'm with the first half.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Beasts and the sky ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Migration</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Migration</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,their:tribal,situation:theirs] The great herds are moving, and every hunter at home has gone out.</li>
+      <li>[them] The great herds are moving this year, the ground shakes at dusk.</li>
+      <li>[us] We've heard the talk, and we're keeping watch.</li>
+      <li>[them] There's meat for anyone who wants it, and trouble for anyone in the way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_StrangeHerds</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_StrangeHerds,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] There are beasts about that even our old hunters can't name.</li>
+      <li>[us] Dangerous?</li>
+      <li>[them] Some are, some aren't, and nobody wants to find out which the hard way.</li>
+      <li>[us,us:best:Animals] I'd like a closer look at one, carefully.</li>
+      <li>[us] Then we'll give them room.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Drovers</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Drovers,situation:theirs</when>
+    <lines>
+      <li>[them] Our drovers are walking the herds to market, you'll hear the bells first.</li>
+      <li>[us] Will they come by here?</li>
+      <li>[them] Some roads pass close, and they'll want grass and water.</li>
+      <li>[us] Water they can have, the grass we'll talk about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_OldBeast</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_OldBeast,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>beast</mark>
+    <about>SITUATION</about>
+    <heard>{SITUATION}, an old thrumbo, walks the hills of {PEOPLE}.</heard>
+    <lines>
+      <li>[them] {SITUATION} has come down into our hills, the oldest thrumbo anyone has seen.</li>
+      <li>[us] Is it dangerous?</li>
+      <li>[them] Only to fools who go after its horn.</li>
+      <li>[us] It must be worth a fortune.</li>
+      <li>[them,their:lowtech] The elders say even thinking that brings bad luck.</li>
+      <li>[them] It is, and our people would never forgive whoever took it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Comet</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Comet</when>
+    <weight>1.2</weight>
+    <mark>comet</mark>
+    <about>SITUATION</about>
+    <lines>
+      <li>[them] What do you make of {SITUATION}, up there every night?</li>
+      <li>[us] Some say it means luck, and some say the opposite.</li>
+      <li>[them,their:tribal] The elders say war, or sickness, or a fat harvest, depending on the elder.</li>
+      <li>[them] At home they argue every night whether it means war, plague or a good harvest.</li>
+      <li>[us] I hope it's the harvest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_WildMagic</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_WildMagic,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The ley lines are restless, and our mages have shut their towers.</li>
+      <li>[us] Is it dangerous?</li>
+      <li>[them] Spells go wrong, and some go far too right.</li>
+      <li>[us] I'll stay clear of anything that glows, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Run</defName>
+    <topic>situation</topic>
+    <when>ws:Rimfolk_WS_Run</when>
+    <lines>
+      <li>[them] I hear the fish are running in your water.</li>
+      <li>[us] Every line comes up heavy this week.</li>
+      <li>[them] Then I know what I'd be doing, if I lived here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= People of note ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Healer</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Healer,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Have you heard about the healer going from town to town?</li>
+      <li>[us] A little, is it true what they say?</li>
+      <li>[them] I've heard a dozen stories, and even half of them would be a wonder.</li>
+      <li>[us,us:best:Medicine] I'd give a lot to watch someone like that at work.</li>
+      <li>[us] I'd like to see that for myself.</li>
+      <li>[them] Then get in line before dawn, everybody else does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Songs</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Songs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {SITUATION} is on the road this season, and every hall is full.</li>
+      <li>[us] Who?</li>
+      <li>[them] The best known voice in the region, how have you not heard?</li>
+      <li>[us] We're a long way from the halls.</li>
+      <li>[them] There's a song going round about places like yours, you know.</li>
+      <li>[us] Good things, I hope.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Prophet</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Prophet,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Have you heard of {SITUATION}, and the people following her?</li>
+      <li>[us] A little, what do they want?</li>
+      <li>[them] To give away one thing you don't need, and feed whoever comes to the door.</li>
+      <li>[us] That sounds almost kind.</li>
+      <li>[them] Not to me, but the ones in charge at home are nervous.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Mercenaries</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Mercenaries</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {SITUATION} is camped a day's march from here, and they're all sellswords.</li>
+      <li>[us] We've heard.</li>
+      <li>[them] Good fighters, I'm told, and not particular about who pays.</li>
+      <li>[us] That's what worries me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_BanditLordFalls</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_BanditLordFalls,situation:theirs</when>
+    <weight>1.4</weight>
+    <heard>Riders of {PEOPLE} have killed the bandit lord {SITUATION}.</heard>
+    <lines>
+      <li>[them] Have you heard, {SITUATION} is dead, and our riders did it.</li>
+      <li>[us] The bandit lord?</li>
+      <li>[them] The very one, run down at a ford, and the band is coming apart.</li>
+      <li>[us] Will the roads be safer now?</li>
+      <li>[them] Safer, once the stragglers find somewhere to go.</li>
+      <li>[us] Or someone new to follow.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Warlord</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Warlord</when>
+    <weight>1.3</weight>
+    <mark>warband</mark>
+    <about>SITUATION</about>
+    <lines>
+      <li>[them] You'll have heard of {SITUATION}, I suppose.</li>
+      <li>[us] The warband?</li>
+      <li>[them] Every raid brings it more riders, so I travel by daylight.</li>
+      <li>[us] Keep your eyes open on the way home.</li>
+      <li>[them] I always do, and twice as wide this season.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_ClansGather</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_ClansGather</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The clans are gathering, and the warbands are all on the road.</li>
+      <li>[us] Should we be worried?</li>
+      <li>[them,situation:theirs] Not of me, but keep your people close at night all the same.</li>
+      <li>[them] Keep your people close at night, and you'll likely be fine.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Who leads, and quarrels ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Succession</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Succession,situation:theirs,their:leader</when>
+    <weight>1.3</weight>
+    <mark>leader</mark>
+    <about>LEADER</about>
+    <heard>{LEADER} is the new {LEADERTITLE} of {PEOPLE}.</heard>
+    <lines>
+      <li>[them] We've a new {LEADERTITLE} now, {LEADER}, and people are still getting used to it.</li>
+      <li>[us] What do your traders make of {LEADER}?</li>
+      <li>[them] Every trader has an opinion, and every opinion is different.</li>
+      <li>[us] And yours?</li>
+      <li>[them,their:empire] Mine is that it isn't my place to have one.</li>
+      <li>[them] Mine is that I'll keep it to myself for now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Claimants</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Claimants,situation:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Two claim the seat at home, and everyone is choosing a side.</li>
+      <li>[us] Which side are you on?</li>
+      <li>[them,them:kind] The side that ends it without blood.</li>
+      <li>[them] The side that wins, if I'm lucky.</li>
+      <li>[us] I hope it's settled quickly.</li>
+      <li>[them] It will be, one way or the other, and soon.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Feud</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Feud,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {SITUATION} has two families at home at each other's throats.</li>
+      <li>[us] Over what?</li>
+      <li>[them] It started small, as these things do, and then someone drew a knife.</li>
+      <li>[us] I'll keep out of it, then.</li>
+      <li>[them] Wise, though both families will try to drag you in.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Embargo</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Embargo,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] It began as {SITUATION}, and now whole markets are closed over it.</li>
+      <li>[us] Nobody's come to blows, I hope?</li>
+      <li>[them] Not yet, they're counting the cost in silver instead.</li>
+      <li>[us] That's the better way to count it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_HolyWar</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_HolyWar,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Our preachers and theirs are shouting at each other from every market box.</li>
+      <li>[us] Only words, I hope.</li>
+      <li>[them] Only words, so far, and plenty of them.</li>
+      <li>[us] Words I can live with.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_PeaceTalks</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_PeaceTalks,situation:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Our people are tired enough of the war to talk, for once.</li>
+      <li>[us] Do you think it will come to peace?</li>
+      <li>[them] Maybe, if they find someone both sides half trust to host the talks.</li>
+      <li>[us] That's a rare thing to find.</li>
+      <li>[them] Rarer than peace, some days.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Moot</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Moot,situation:theirs</when>
+    <weight>1.2</weight>
+    <mark>moot</mark>
+    <about>SITUATION</about>
+    <lines>
+      <li>[them] {SITUATION} meets at {SITUATIONPLACE}, and this time you've been asked to send someone.</li>
+      <li>[us] What's to be settled?</li>
+      <li>[them] Grazing, roads, old debts, and the high pastures most of all.</li>
+      <li>[us] We'll think about who to send.</li>
+      <li>[them] Send someone who can sit through a long day of arguing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Assize</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Assize,situation:theirs</when>
+    <lines>
+      <li>[them] A circuit judge has come to {SITUATIONPLACE}, and every old quarrel is on its way there.</li>
+      <li>[us] Any of them ours?</li>
+      <li>[them] Only if you've a grievance to bring, and most people do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_LordsProgress</defName>
+    <topic>court</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_LordsProgress,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] A great lord of ours is making a progress through the region, banners and all.</li>
+      <li>[us] Will it pass near here?</li>
+      <li>[them] Within a morning's walk, so polish whatever you have that shines.</li>
+      <li>[us] We'll find something.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_ImperialLevy</defName>
+    <topic>court</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_ImperialLevy</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The levy has every steward in the region counting silver twice.</li>
+      <li>[us] Are we expected to give?</li>
+      <li>[them,their:empire] Expected is a strong word, remembered is the word the court uses.</li>
+      <li>[them] Expected is a strong word, remembered is the word they use.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Deserters</defName>
+    <topic>court</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_ImperialDeserters</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] There's a price on every deserter brought back, if you see any.</li>
+      <li>[us] What did they do?</li>
+      <li>[them] Walked away from their posts, and the Empire doesn't forgive that.</li>
+      <li>[us] Some of them must only be tired.</li>
+      <li>[them,their:empire] Tired or not, they swore an oath.</li>
+      <li>[them] Some of them, and some took their gear along.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_RepublicVotes</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_RepublicVotes,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {SITUATION} has every road full of canvassers.</li>
+      <li>[us] Who do you favor?</li>
+      <li>[them] The old families want things as they are, and the reformers want bread and land.</li>
+      <li>[us] And you?</li>
+      <li>[them] I want the shouting to stop, which no candidate offers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Faith and feasts ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Fair</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Fair,situation:theirs</when>
+    <weight>1.3</weight>
+    <mark>fair</mark>
+    <about>SITUATION</about>
+    <heard>{PEOPLE} are holding {SITUATION}.</heard>
+    <lines>
+      <li>[them] Have you heard about {SITUATION}, the biggest in years?</li>
+      <li>[us] Tell me about it.</li>
+      <li>[them] Contests on the green, the best shot, the best cook and the finest work.</li>
+      <li>[us,us:best:Cooking] I might fancy my chances with the cooking.</li>
+      <li>[us,us:best:Shooting] I might fancy my chances with a target.</li>
+      <li>[us] It sounds like quite a day.</li>
+      <li>[them] Then come, it's a week of days and every one of them loud.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_Pilgrimage</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_Pilgrimage,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Our faithful are walking to the old shrine, and the roads are full of songs.</li>
+      <li>[us] Do many pass this way?</li>
+      <li>[them] Enough that a bowl of soup by the road would be remembered.</li>
+      <li>[us] We'll see what we can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WS_HolyYear</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>ws:Council_WS_HolyYear,situation:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] It's {SITUATION} at home, debts forgiven and every traveler fed.</li>
+      <li>[us] That's a generous custom.</li>
+      <li>[them] It is, and we'll see which neighbors keep it with us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Over now ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Fair</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Fair</when>
+    <lines>
+      <li>[them] {ENDED} is over, and everyone's still arguing about the prizes.</li>
+      <li>[us] Who's arguing?</li>
+      <li>[them] Everyone who didn't win, which is nearly everyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Comet</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Comet</when>
+    <lines>
+      <li>[us] {ENDED} is gone from the sky, then.</li>
+      <li>[them] Gone, and the arguing about what it meant has only started.</li>
+      <li>[us] Nothing terrible has happened yet.</li>
+      <li>[them] Give the arguing time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Songs</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Songs,ended:theirs</when>
+    <lines>
+      <li>[them] {ENDED} has moved on from our halls, but everyone still hums the songs.</li>
+      <li>[us] Even the one about places like ours?</li>
+      <li>[them] That one most of all, the children shout it in the streets.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Mourning</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Mourning,ended:theirs</when>
+    <lines>
+      <li>[them] We've laid {ENDED} to rest, and the mourners have gone home.</li>
+      <li>[us] How is everyone?</li>
+      <li>[them] Lighter, a little, and still telling stories about {ENDED}.</li>
+      <li>[us] That's the best way to keep someone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Prophet</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Prophet</when>
+    <lines>
+      <li>[us] What became of {ENDED}?</li>
+      <li>[them] The talk has died down, and the roads around home are quieter.</li>
+      <li>[us] Do you miss it?</li>
+      <li>[them] Some do, and some are glad of the quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_OldBeast</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_OldBeast,ended:theirs</when>
+    <lines>
+      <li>[them] {ENDED} has gone from our hills, one way or another.</li>
+      <li>[us] Do you know which way?</li>
+      <li>[them] I'd rather not, if it's all the same to you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_ShipDown</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_ShipDown</when>
+    <lines>
+      <li>[them] The salvagers have picked {ENDED} nearly clean, I hear.</li>
+      <li>[us] All of it?</li>
+      <li>[them] All that could be carried, and the rest will rust where it fell.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Mercenaries</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Mercenaries</when>
+    <lines>
+      <li>[them] {ENDED} is gone from the region, one way or another.</li>
+      <li>[us] Nobody's sorry, I take it.</li>
+      <li>[them] Nobody's saying so out loud.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Claimants</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Claimants,ended:theirs</when>
+    <lines>
+      <li>[them] The contest for the seat is settled at last.</li>
+      <li>[us] Peacefully?</li>
+      <li>[them] Settled, at any rate, and everyone's pretending they backed the winner.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_PeaceTalks</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_PeaceTalks,ended:theirs</when>
+    <lines>
+      <li>[us] What came of the peace talks?</li>
+      <li>[them,their:peace] Peace with {PEACEWITH}, for now, and everyone's holding their breath.</li>
+      <li>[them,!their:peace] Nothing yet that anyone at home would call peace.</li>
+      <li>[us,their:peace] Then I hope it lasts.</li>
+      <li>[us,!their:peace] Then maybe next time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Rush</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_GoldFever|ended:ws:Council_WS_SilverRush</when>
+    <lines>
+      <li>[them] The rush is over, and the hills are full of holes and empty pockets.</li>
+      <li>[us] Did anyone get rich?</li>
+      <li>[them] Hardly anyone, and the rest are telling everyone how close they came.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Bumper</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Bumper,ended:theirs</when>
+    <lines>
+      <li>[them] The last of the great harvest is in, and the barns are fit to burst.</li>
+      <li>[us] A good winter ahead, then.</li>
+      <li>[them] The best in years, if the mice don't get there first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Pilgrims</defName>
+    <topic>faith</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_Pilgrimage|ended:ws:Council_WS_HolyYear</when>
+    <lines>
+      <li>[them] {ENDED} is over, and the roads are quiet again.</li>
+      <li>[us] Do you miss the crowds?</li>
+      <li>[them] I miss the singing, and not one bit of the crowds.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_End_Trade</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>situation:ended,ended:ws:Council_WS_TradeBoom|ended:ws:Council_WS_MarketDays|ended:ws:Council_WS_Toll|ended:ws:Council_WS_Embargo</when>
+    <lines>
+      <li>[them] That's the end of {ENDED}, and trade is back to its usual crawl.</li>
+      <li>[us,role:trader] For you or for us?</li>
+      <li>[us] Is that good or bad?</li>
+      <li>[them] Depends whether you were buying or selling.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Conditions over the land ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Eclipse</defName>
+    <topic>weather</topic>
+    <when>condition:Eclipse</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Is it always this dark at midday out here?</li>
+      <li>[us] It's an eclipse, it'll pass.</li>
+      <li>[them,their:tribal] My people would be beating drums to bring the sun back.</li>
+      <li>[them] I'll hold you to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Flashstorm</defName>
+    <topic>weather</topic>
+    <when>condition:Flashstorm</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Lightning and not a drop of rain, it's an ugly sky.</li>
+      <li>[us] Watch for fires, they start fast in this.</li>
+      <li>[them] I'll keep away from anything dry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_SolarFlare</defName>
+    <topic>weather</topic>
+    <when>condition:SolarFlare,!lowtech</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Nothing with a wire in it works today, the sun's seen to that.</li>
+      <li>[them,their:hightech] My gear's gone dead too, it's just heavy now.</li>
+      <li>[them] Then it's a good day for doing things by hand.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Haze</defName>
+    <topic>weather</topic>
+    <when>condition:NoxiousHaze</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] This haze stings the eyes, how do you stand it?</li>
+      <li>[us] We don't, much, we stay in when we can.</li>
+      <li>[them] Then I'll keep a cloth over my face until I'm out of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Drought</defName>
+    <topic>weather</topic>
+    <when>condition:Drought</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The ground's dry as bone all the way here.</li>
+      <li>[us] It's hard on everything that grows.</li>
+      <li>[them,their:tribal] The rain spirits have gone visiting somewhere else.</li>
+      <li>[them] It'll break, it always does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Drone</defName>
+    <topic>weather</topic>
+    <when>condition:PsychicDrone</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] There's a weight in the air today, like a headache that isn't mine.</li>
+      <li>[us] A psychic drone, it's got some of us on edge too.</li>
+      <li>[them] Then let's be gentle with each other until it passes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_BloodRain</defName>
+    <topic>weather</topic>
+    <when>condition:BloodRain</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I've walked through a lot of weather, but never rain like this.</li>
+      <li>[us] Stay out of it, it does things to people's tempers.</li>
+      <li>[them] I'll keep out of it as best I can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_GrayPall</defName>
+    <topic>weather</topic>
+    <when>condition:GrayPall</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Everything's gone the color of ash today.</li>
+      <li>[us] It'll lift, sooner or later.</li>
+      <li>[them] I hope sooner, it gets into a person's mood.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_DeathPall</defName>
+    <topic>weather</topic>
+    <when>condition:DeathPall</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] They say the dead don't rest under a sky like this.</li>
+      <li>[us] They don't, so stay close to the living tonight.</li>
+      <li>[them] I'll sleep with one eye open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_Darkness</defName>
+    <topic>weather</topic>
+    <when>condition:UnnaturalDarkness</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I've never seen a dark like this, it swallows the lamplight.</li>
+      <li>[us] Stay in the light, whatever you do.</li>
+      <li>[them] You don't need to tell me twice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Cond_FalloutRoad</defName>
+    <topic>weather</topic>
+    <uses>home,chat</uses>
+    <when>condition:ToxicFallout,town</when>
+    <lines>
+      <li>[us] Has the fallout reached {TOWN} too?</li>
+      <li>[them,their:tribal] The sky sickness is everywhere, the elders keep the children inside.</li>
+      <li>[them] As far as I know, it's over the whole region.</li>
+      <li>[us] Then we're all waiting it out together.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Other peoples ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_World_Peace</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>world:peace</when>
+    <weight>1.2</weight>
+    <heard>{PEACEA} and {PEACEB} have made peace.</heard>
+    <lines>
+      <li>[them] {PEACEA} and {PEACEB} have made peace, did you hear?</li>
+      <li>[us] I hadn't, will it hold?</li>
+      <li>[them,their:tribal] As long as the young ones remember who started it.</li>
+      <li>[them] It'll hold until it doesn't, like every peace.</li>
+      <li>[us] Still, it's one war fewer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_World_WarSides</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>world:war</when>
+    <lines>
+      <li>[us] Whose side are your people on, {WARA} or {WARB}?</li>
+      <li>[them,their:empire] The Empire's, which is the only side it ever takes.</li>
+      <li>[them] Our own, which is the only side that's ever done us any good.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_World_PeaceTheirs</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>their:peace</when>
+    <mark>peace</mark>
+    <about>PEACEWITH</about>
+    <lines>
+      <li>[us] Do you think the peace with {PEACEWITH} will last?</li>
+      <li>[them,their:medieval] As long as the lords keep their oaths, which is to say, ask me in a year.</li>
+      <li>[them] As long as nobody gives anyone a reason, which is asking a lot.</li>
+      <li>[us] I'll ask again next time, then.</li>
+      <li>[them] Do, and hope I've good news.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Quests ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Quest_Taken</defName>
+    <topic>quest</topic>
+    <uses>home,chat</uses>
+    <when>quest:ongoing</when>
+    <weight>1.2</weight>
+    <mark>quest</mark>
+    <about>QUESTNOW</about>
+    <lines>
+      <li>[them] I hear you've taken on {QUESTNOW}.</li>
+      <li>[us] We have, and we mean to see it through.</li>
+      <li>[them,their:tribal] Then the elders will be watching how it goes.</li>
+      <li>[them] People at home will be watching how it goes.</li>
+      <li>[us] Then we'd better not disappoint them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Quest_Offered</defName>
+    <topic>quest</topic>
+    <uses>home,chat</uses>
+    <when>town:quest</when>
+    <lines>
+      <li>[us] Is there anything your people need doing?</li>
+      <li>[them] There's {QUEST}, if anyone here is willing.</li>
+      <li>[us] We'll think on it.</li>
+      <li>[them,role:trader] Think fast, these things don't wait for long.</li>
+      <li>[them] Don't think too long, it won't wait forever.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Quest_Remembered</defName>
+    <topic>quest</topic>
+    <uses>home,chat</uses>
+    <when>deedbest:quest</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Folk at home still talk about how you saw {DEEDNAME} through.</li>
+      <li>[us] It was worth doing.</li>
+      <li>[them,their:tribal] It is told at the fire, and the children ask for it again.</li>
+      <li>[them] It was worth a lot to us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Quest_Failed</defName>
+    <topic>quest</topic>
+    <uses>home,chat</uses>
+    <when>wrongbest:questFailed</when>
+    <lines>
+      <li>[them] Some at home still grumble about {WRONGNAME}.</li>
+      <li>[us] It didn't go the way we hoped.</li>
+      <li>[them] It didn't go the way anyone hoped, but we're still talking, aren't we?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

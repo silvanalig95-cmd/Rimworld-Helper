@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Trade talk: what's dear and what's cheap, what sells, haggling in each people's way, a colony that has food to
+       spare or none, and what people at home want from out here. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Dear</defName>
+    <topic>trade</topic>
+    <uses>chat,home</uses>
+    <when>role:trader</when>
+    <mark>trade</mark>
+    <lines>
+      <li>[us] What's dear this season?</li>
+      <li>[them,town:short:food] Food, and it'll be dearer before it's cheaper.</li>
+      <li>[them,town:short:medicine] Medicine, if you can find any at all.</li>
+      <li>[them,town:short:fuel] Firewood, and anything else that burns.</li>
+      <li>[them] Whatever you happen to need most, it's always the way.</li>
+      <li>[us] And what's cheap?</li>
+      <li>[them] Whatever you're trying to sell me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Haggle</defName>
+    <topic>trade</topic>
+    <when>role:trader,!first</when>
+    <lines>
+      <li>[them] I'd bet you haggle like someone who's been cheated before.</li>
+      <li>[us,trait:Greedy] I haggle like someone who means to win.</li>
+      <li>[us] Once, and I learned.</li>
+      <li>[them] Good, it keeps us both honest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Silver</defName>
+    <topic>trade</topic>
+    <when>role:trader</when>
+    <lines>
+      <li>[us] Do you take anything besides silver?</li>
+      <li>[them,their:tribal] Furs, iron, salt, and a good story if I'm feeling kind.</li>
+      <li>[them,their:spacer] Silver, and anything with a working circuit in it.</li>
+      <li>[them] Silver talks loudest, but I'll listen to anything shiny.</li>
+      <li>[us] I'll see what we've got.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Hauling</defName>
+    <topic>trade</topic>
+    <when>role:trader,town</when>
+    <lines>
+      <li>[us] Is it hard, hauling goods all this way?</li>
+      <li>[them,town:far] The road from {TOWN} eats a good piece of my life each way.</li>
+      <li>[them] The goods don't mind, it's my back that complains.</li>
+      <li>[us] Then I hope we make it worth the trip.</li>
+      <li>[them] So do I, that's the whole idea.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Sells</defName>
+    <topic>trade</topic>
+    <when>role:trader</when>
+    <lines>
+      <li>[us] What sells best, out here?</li>
+      <li>[them,colony:hungry] Food, to people like you, begging your pardon.</li>
+      <li>[them,winter] Warm clothes and firewood, every winter.</li>
+      <li>[them] Medicine and good tools, every place, every year.</li>
+      <li>[us] I'll remember that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_DoneWell</defName>
+    <topic>trade</topic>
+    <when>role:trader,rich</when>
+    <lines>
+      <li>[them] You've done well for yourselves, I can tell by the look of the place.</li>
+      <li>[us] We've worked for it.</li>
+      <li>[them] And I've come to help you spend it, so we're both happy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Scales</defName>
+    <topic>trade</topic>
+    <when>role:trader,their:medieval</when>
+    <lines>
+      <li>[them] Mind you, my scales are honest, which is more than the miller can say.</li>
+      <li>[us] What did the miller do?</li>
+      <li>[them] Ask anyone at market, they'll tell you, loudly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_OldWay</defName>
+    <topic>trade</topic>
+    <when>role:trader,their:tribal</when>
+    <lines>
+      <li>[them] We trade the old way, you show me yours, I show you mine.</li>
+      <li>[us] And then?</li>
+      <li>[them] And then we both pretend not to care, until someone laughs first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Fixed</defName>
+    <topic>trade</topic>
+    <when>role:trader,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] My prices are what they are, I don't haggle, it wastes both our time.</li>
+      <li>[us] Everyone haggles.</li>
+      <li>[them] Not with me, and you'll thank me for it later.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Buying</defName>
+    <topic>trade</topic>
+    <uses>chat,home</uses>
+    <when>role:trader,town:short:food</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I'm buying food this trip, not selling it, things are that bad at home.</li>
+      <li>[us,colony:plenty] We've some to spare, if the price is fair.</li>
+      <li>[us,colony:hungry] We've barely enough ourselves, I'm sorry.</li>
+      <li>[us,!colony:plenty,!colony:hungry] We'll see what we can part with.</li>
+      <li>[them,colony:hungry] I understand, it's a hard year for everyone.</li>
+      <li>[them,!colony:hungry] Anything helps, believe me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Plenty</defName>
+    <topic>trade</topic>
+    <when>role:trader,colony:plenty</when>
+    <lines>
+      <li>[them] I hear you've food put by, more than you need.</li>
+      <li>[us] Word gets around.</li>
+      <li>[them] Food always gets around, and I've buyers for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Animals</defName>
+    <topic>trade</topic>
+    <when>role:trader,colony:animals</when>
+    <lines>
+      <li>[them] You keep a lot of animals, would you sell any?</li>
+      <li>[us] Not the ones with names.</li>
+      <li>[them] They've all got names, that's the trouble with you settlers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_HardSeason</defName>
+    <topic>trade</topic>
+    <when>role:trader,winter</when>
+    <lines>
+      <li>[us] You picked a hard season for trading.</li>
+      <li>[them] The hard seasons pay best.</li>
+      <li>[us] For you, maybe.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Tip</defName>
+    <topic>trade</topic>
+    <when>role:trader,likesyou</when>
+    <lines>
+      <li>[them] Between you and me, wait until I'm packing up, my prices drop.</li>
+      <li>[us] Why tell me?</li>
+      <li>[them] Because I like you, and because you'd have worked it out anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_WetCloth</defName>
+    <topic>trade</topic>
+    <when>role:trader,rain</when>
+    <lines>
+      <li>[them] Rain gets into everything, I'll be drying cloth for a week.</li>
+      <li>[us] Sell it wet and call it a discount.</li>
+      <li>[them] You'd make a good trader, and a terrible friend.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Rivals</defName>
+    <topic>trade</topic>
+    <when>role:trader,colony:traders</when>
+    <lines>
+      <li>[them] Don't believe a word {TRADERS} tell you about their prices.</li>
+      <li>[us] And should I believe yours?</li>
+      <li>[them] Mine, every word, I'm the honest one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Life</defName>
+    <topic>trade</topic>
+    <uses>chat,know</uses>
+    <when>role:trader,known</when>
+    <lines>
+      <li>[us] Do you ever get tired of it, the buying and selling?</li>
+      <li>[them] Of the selling, never, of the road, some days.</li>
+      <li>[us] What would you do instead?</li>
+      <li>[them] Sit in one place and let the traders come to me, like you do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_HomeWants</defName>
+    <topic>trade</topic>
+    <uses>chat,home</uses>
+    <when>town,!role:trader</when>
+    <lines>
+      <li>[us] What do people at home want from out here?</li>
+      <li>[them,town:short:medicine] Medicine, above anything else, while the sickness lasts.</li>
+      <li>[them,town:short:food] Food, anything that keeps through a winter.</li>
+      <li>[them,their:lowtech] Iron, salt and good cloth, as always.</li>
+      <li>[them] Medicine and tools, the same as everybody.</li>
+      <li>[us] We'll keep it in mind when your traders come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_LeanTimes</defName>
+    <topic>trade</topic>
+    <when>role:trader,poor,colony:old</when>
+    <lines>
+      <li>[them] Lean times for you, by the look of things.</li>
+      <li>[us] They come and go.</li>
+      <li>[them] I'll give you credit for that much, and nothing else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Trade_Pitch</defName>
+    <topic>trade</topic>
+    <when>role:trader,their:hightech</when>
+    <lines>
+      <li>[them] I've a few things in my packs you won't see again this year.</li>
+      <li>[us] Is that a promise or a sales pitch?</li>
+      <li>[them] Both, and the pitch is free.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

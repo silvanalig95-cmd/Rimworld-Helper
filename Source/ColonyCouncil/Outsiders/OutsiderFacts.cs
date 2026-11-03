@@ -120,6 +120,9 @@ namespace ColonyCouncil
                     if (!p.LeaderTitle.NullOrEmpty()) f.Value("LEADERTITLE", p.LeaderTitle);
                 }
                 if (leader == x) f.Tag("them:leader", 1f);
+                // Outlaws by the game's own word (a rough outlander union, a fierce tribe), friendly enough now to talk.
+                if (p.def.naturalEnemy && !p.def.permanentEnemy) f.Tag("their:rough");
+                if (p.PlayerRelationKind == FactionRelationKind.Ally) f.Tag("their:ally");
             }
             var title = x.royalty?.MostSeniorTitle;
             if (title != null)
@@ -132,6 +135,12 @@ namespace ColonyCouncil
             {
                 f.Tag("us:noble");
                 f.Value("OURTITLE", ours.Label);
+            }
+            // Two who both hold a title: who stands higher, by the titles' own seniority.
+            if (title?.def != null && ours?.def != null)
+            {
+                if (title.def.seniority > ours.def.seniority) f.Tag("them:outranks");
+                else if (ours.def.seniority > title.def.seniority) f.Tag("us:outranks");
             }
             if (ModsConfig.IdeologyActive && c.Ideo != null && x.Ideo != null)
             {
@@ -290,7 +299,9 @@ namespace ColonyCouncil
             {
                 if (s?.def == null || !s.def.bad || s.ctx?.faction != p) continue;
                 string kind = Kind(s.def.defName);
-                if (kind == "hunger") f.Tag("town:short:food", 1.5f);
+                // A sickness in the herds (the murrain) leaves them short of milk and meat, not of medicine.
+                bool herds = s.def.defName == "Council_WS_Murrain";
+                if (kind == "hunger" || herds) f.Tag("town:short:food", 1.5f);
                 else if (kind == "sickness") f.Tag("town:short:medicine", 1.5f);
                 else if (kind == "war") f.Tag("town:short:hands", 1.5f);
                 else if (kind == "cold") f.Tag("town:short:fuel", 1.5f);
@@ -428,6 +439,14 @@ namespace ColonyCouncil
                 f.Value("QUEST", q.name);
                 break;
             }
+            // Work for or with their people the colony took on and is still about.
+            foreach (var q in Find.QuestManager.QuestsListForReading)
+            {
+                if (q == null || q.hidden || q.State != QuestState.Ongoing || q.name.NullOrEmpty() || !q.InvolvedFactions.Contains(p)) continue;
+                f.Tag("quest:ongoing", 1.2f);
+                f.Value("QUESTNOW", q.name, "quest:" + q.id);
+                break;
+            }
         }
 
         // ---------------- Wars and peace ----------------
@@ -478,7 +497,16 @@ namespace ColonyCouncil
             if (peace != null)
             {
                 f.Tag("their:peace", Fresh(Days(peace.end), 30f, 2.5f));
-                f.Value("PEACEWITH", peace.Other(p).Name);
+                f.Value("PEACEWITH", peace.Other(p).Name, "peace:" + peace.Other(p).loadID);
+            }
+            // Two other peoples who made peace lately (not one beaten: both still stand).
+            var calm = book.wars.Where(w => w.end >= 0 && !w.Of(p) && Days(w.end) <= 30f && Counts(w.a) && Counts(w.b) && !w.a.HostileTo(w.b))
+                .OrderByDescending(w => w.end).FirstOrDefault();
+            if (calm != null)
+            {
+                f.Tag("world:peace", Fresh(Days(calm.end), 30f, 1.5f));
+                f.Value("PEACEA", calm.a.Name);
+                f.Value("PEACEB", calm.b.Name);
             }
             // A war between two other peoples, new this season.
             var other = book.wars.Where(w => w.end < 0 && !w.Of(p) && w.start >= 0 && Days(w.start) <= 30f && Counts(w.a) && Counts(w.b)).OrderByDescending(w => w.start).FirstOrDefault();
@@ -590,6 +618,12 @@ namespace ColonyCouncil
                 f.Value("ENDED", SituationName(ended.name, DefDatabase<WorldSituationDef>.GetNamedSilentFail(ended.defName ?? "")?.label ?? ended.label));
                 string kind = Kind(ended.defName);
                 if (kind != null) f.Tag("ended:" + kind, h);
+                // Which one it was, and whether it was a hard time: a fair, a singer or a comet isn't "over, at last".
+                if (!ended.defName.NullOrEmpty())
+                {
+                    f.Tag("ended:ws:" + ended.defName, h);
+                    if (DefDatabase<WorldSituationDef>.GetNamedSilentFail(ended.defName)?.bad == true) f.Tag("ended:bad", h);
+                }
                 if (ended.faction == p && p != null) f.Tag("ended:theirs", h);
                 if (ended.helped) f.Tag("ended:helped", 2f);
             }
@@ -661,6 +695,26 @@ namespace ColonyCouncil
                     f.Tag(scene.calendarWhen == 0 ? "colony:daytoday" : scene.calendarWhen > 0 ? "colony:daysoon" : "colony:daypast", 1.5f);
                     f.Value("DAY", scene.calendarDay.label);
                 }
+                // Another of the colony who holds a title of the Empire's (the colonist's own is us:noble).
+                Pawn noble = null;
+                RoyalTitle nobleTitle = null;
+                foreach (var o in scene.colonists)
+                {
+                    var t = o == c ? null : o.royalty?.MostSeniorTitle;
+                    if (t?.def != null && (nobleTitle == null || t.def.seniority > nobleTitle.def.seniority))
+                    {
+                        noble = o;
+                        nobleTitle = t;
+                    }
+                }
+                if (noble != null)
+                {
+                    f.Tag("colony:noble");
+                    f.Value("NOBLE", noble.LabelShort);
+                    f.Value("NOBLETITLE", nobleTitle.Label);
+                }
+                // No big threat for a month.
+                if (scene.daysSinceThreat >= 30f) f.Tag("colony:quiet");
             }
             if (tr != null)
             {
@@ -852,6 +906,40 @@ namespace ColonyCouncil
                     int id = parts.Length > 1 && int.TryParse(parts[1], out int i) ? i : -1;
                     bool there = Find.WorldObjects.Sites.Any(s => s.ID == id);
                     Then(there ? "then:still" : "then:over", there ? 1f : 2.5f);
+                    break;
+                }
+                case "quest":
+                {
+                    // quest:id: still under way, or over (seen through, failed, or otherwise ended).
+                    int id = parts.Length > 1 && int.TryParse(parts[1], out int i) ? i : -1;
+                    var q = Find.QuestManager.QuestsListForReading.FirstOrDefault(x => x != null && x.id == id);
+                    if (q == null || q.State == QuestState.NotYetAccepted) return;
+                    if (q.State == QuestState.Ongoing)
+                    {
+                        Then("then:still", 1.5f);
+                        break;
+                    }
+                    Then("then:over", 3f);
+                    if (q.State == QuestState.EndedSuccess) Then("then:success", 3f);
+                    else if (q.State == QuestState.EndedFailed) Then("then:failed", 3f);
+                    break;
+                }
+                case "peace":
+                {
+                    // peace:factionId: the peace holds (still), or they are at war again (over).
+                    var g = Find.FactionManager.AllFactionsListForReading.FirstOrDefault(x => parts.Length > 1 && x.loadID.ToString() == parts[1]);
+                    if (g == null || p == null || g.defeated) return;
+                    if (p.HostileTo(g)) Then("then:over", 3f);
+                    else Then("then:still", 1f);
+                    break;
+                }
+                case "notable":
+                {
+                    // notable:id: alive still, or dead since.
+                    int id = parts.Length > 1 && int.TryParse(parts[1], out int i) ? i : -1;
+                    var n = NotableBook.Instance?.Get(id);
+                    if (n == null) return;
+                    Then(n.Alive ? "then:still" : "then:dead", n.Alive ? 0.5f : 3f);
                     break;
                 }
             }
