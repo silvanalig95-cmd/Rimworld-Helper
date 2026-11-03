@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A journey planned ahead (Source/ColonyCouncil/Journeys/): the travellers wait at the gate to set off together
+    (JobDriver_JourneyWait), and when the hour comes and someone isn't ready, a letter asks what to do
+    (ChoiceLetter_Journey).
+  -->
+  <JobDef>
+    <defName>Rimfolk_JourneyWait</defName>
+    <driverClass>ColonyCouncil.JobDriver_JourneyWait</driverClass>
+    <reportString>waiting at the gate to set off.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <LetterDef>
+    <defName>Rimfolk_JourneyLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Journey</letterClass>
+    <color>(190, 205, 150)</color>
+    <flashColor>(215, 230, 175)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on journeys planned ahead (Source/ColonyCouncil/Journeys/, UI/JourneyDialog.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Journeys</defName>
+    <label>journeys planned ahead</label>
+    <category>Council</category>
+    <order>17</order>
+    <summary>Choose who goes, where and when: the travellers get ready together, rested, fed, washed, packed and dressed for the road, and set off at the hour.</summary>
+    <tip>A dawn departure leaves time for an early night. Plan it the afternoon before.</tip>
+    <description>A journey is an order of its own rather than a decree: it is for the few who go, at an hour you choose, and nobody else's mood or a decree's place is spent on it. Plan it from the Journeys section on the Decrees page or the World page, or from a town or place on the region map with "Plan a journey here".
+
+The planner asks who goes (colonists, and the animals to bring), where to (a town or a place on the region map, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn at least ten hours off by default). It shows the days on the road by the game's own caravan estimate, the weather along the way and at the destination, what each traveller will change into, how their night before is shifted, and the packing list, which you can change line by line.</description>
+    <sections>
+      <li>
+        <heading>The day before and the last hours</heading>
+        <text>A day before setting off, each traveller's timetable is shifted for the night before: to bed earlier or later so they wake rested 3 hours before the hour, without staying up so long they run themselves down, and an hour or more of recreation before that night when theirs would be low by then. In the last hours (4 by default, 2 to 8 in the settings) they put work aside and are left out of Rimfolk's gatherings; an emergency still calls them. One step at a time, when nothing more pressing calls them:</text>
+        <table>
+          <li>Step | When</li>
+          <li>Change into clothes for the road | From the start of the last hours</li>
+          <li>Pick up their share of the packing list | From the start of the last hours</li>
+          <li>A meal, if under 80% fed | From 2.5 hours before</li>
+          <li>The bathroom and a wash, each when under 90% (with Dubs Bad Hygiene) | From 1.25 hours before</li>
+          <li>Wait at the gate | From 45 minutes before</li>
+        </table>
+        <after>Wounds are seen to first: someone with wounds to tend goes to bed and a doctor tends them, as the game does. The gate is the colony's caravan packing spot nearest the way out if it has one, else a few steps past the colony's last cell on the way from home to the edge of the map they leave by.</after>
+      </li>
+      <li>
+        <heading>What they take</heading>
+        <points>
+          <li>Food for everyone's days on the road, a quarter more, and a spare day's worth: travel food first (packaged survival meals, then pemmican), then what keeps through the trip, the better and lighter first; food that would spoil on the way only when nothing else is left.</li>
+          <li>Medicine: half a dose each and one more for every 8 days on the road, the plainer kinds first, never more than half of the stores while anyone stays home.</li>
+          <li>A bedroll each for a trip of half a day or more, a double one counting for two, and any mod's tents found by name, one for every two travellers.</li>
+          <li>Feed for the animals (kibble, else hay) for the days the land gives no grazing, every day for those that don't graze.</li>
+          <li>Weapons as they carry them.</li>
+        </points>
+        <after>Each traveller picks up their share as they can carry it; what they don't carry is loaded at the gate by the game's own caravan forming, onto the pack animals first. Lines you change keep your numbers when the list is worked out again.</after>
+      </li>
+      <li>
+        <heading>Dressed for the road</heading>
+        <text>The planner reads the land's own reckoning of every other hour of the trip, where they will be on the way (and back, for a trip there and back), and takes the coldest and the hottest with 3 degrees either way. A traveller who wouldn't be comfortable through that changes into clothes from the stores, a piece at a time while a piece brings them closer, the one worst off first and nobody's piece given twice. Armour, locked pieces and what you made them wear stay on. They keep those clothes on until they set off.</text>
+      </li>
+      <li>
+        <heading>Setting off</heading>
+        <text>At the hour, if everyone is ready, the game's own caravan forming takes exactly the travellers, their animals and the rest of the goods, gathers at the gate and leaves by the edge of the map toward the destination; one of them says a word and those at home nearest the gate see them off. Their own timetables come back as they go.</text>
+        <after>If someone isn't ready (down, not in their right mind, wounds still to tend, under arms, away, at a ritual) or there is danger on the map, the others wait at the gate and a letter asks: wait an hour (the departure moves on an hour, and it asks again if need be), leave without them, or call the journey off. If whoever wasn't ready is ready before you answer, they set off as ordered. Called off, everyone's hours come back and the travellers put their packs back in the stores. One journey is planned at a time.</after>
+      </li>
+    </sections>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

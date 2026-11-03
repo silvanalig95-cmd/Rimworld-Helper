@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.61.0</version>
+        <date>3 November 2026</date>
+        <title>Journeys planned ahead</title>
+        <points>
+          <li>Plan a journey from the Decrees page, the World page or any place on the region map: who goes, which animals come, where to and when, the next dawn by default.</li>
+          <li>The planner works out what to take for the days on the road: travel food first, medicine, bedrolls and any mod's tents, and feed where animals can't graze. Change any line before you confirm.</li>
+          <li>A day before, each traveller's night is moved so they wake rested a few hours before setting off, with some recreation first if they need it.</li>
+          <li>In the last hours they put work aside, change into clothes from the stores for the weather on the way, pick up their share, eat, wash (with Dubs Bad Hygiene too), and wait at the gate.</li>
+          <li>At the hour the caravan forms with exactly them and leaves by the edge toward the destination, and those at home see them off.</li>
+          <li>If someone is not ready, a letter asks whether to wait an hour, leave without them, or call it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.60.1</version>
         <date>3 November 2026</date>
         <title>A trade that ends</title>

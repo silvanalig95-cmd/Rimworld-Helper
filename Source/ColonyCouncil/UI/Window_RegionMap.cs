@@ -636,6 +636,32 @@ namespace ColonyCouncil
                     }
                     if (used > 0f) y += used + 6f;
                 }
+            else if (wo.Tile != map.home) y = Places(wo.Tile, wo, w, y);
+            return y;
+        }
+
+        /// <summary>What other parts of Rimfolk add about a place that isn't another people's town (NeighbourPanel.PlaceSections).</summary>
+        private static float Places(PlanetTile tile, WorldObject wo, float w, float y)
+        {
+            for (int i = 0; i < NeighbourPanel.PlaceSections.Count; i++)
+            {
+                float used = 0f;
+                try
+                {
+                    used = NeighbourPanel.PlaceSections[i](new Rect(0f, y, w, 80f), tile, wo);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("region map place section " + i, e);
+                }
+                finally
+                {
+                    Text.Font = GameFont.Small;
+                    Text.Anchor = TextAnchor.UpperLeft;
+                    GUI.color = Color.white;
+                }
+                if (used > 0f) y += used + 6f;
+            }
             return y;
         }
 
@@ -646,6 +672,8 @@ namespace ColonyCouncil
             y += 32f;
             y += UiKit.Paragraph(0f, y, w, Distance(map.TileOf(index), index), Color.white) + 6f;
             y += UiKit.Paragraph(0f, y, w, map.TileText(index, false), UiKit.Faint) + 6f;
+            var tile = map.TileOf(index);
+            if (tile.Valid && tile != map.home) y = Places(tile, null, w, y);
             return y;
         }
 

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Journeys planned ahead
+
+*3 November 2026, version 0.61.0*
+
+- Plan a journey from the Decrees page, the World page or any place on the region map: who goes, which animals come, where to and when, the next dawn by default.
+- The planner works out what to take for the days on the road: travel food first, medicine, bedrolls and any mod's tents, and feed where animals can't graze. Change any line before you confirm.
+- A day before, each traveller's night is moved so they wake rested a few hours before setting off, with some recreation first if they need it.
+- In the last hours they put work aside, change into clothes from the stores for the weather on the way, pick up their share, eat, wash (with Dubs Bad Hygiene too), and wait at the gate.
+- At the hour the caravan forms with exactly them and leaves by the edge toward the destination, and those at home see them off.
+- If someone is not ready, a letter asks whether to wait an hour, leave without them, or call it off.
+
 ## A trade that ends
 
 *3 November 2026, version 0.60.1*

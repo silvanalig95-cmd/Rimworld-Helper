@@ -13,5 +13,11 @@ namespace ColonyCouncil
     public static class NeighbourPanel
     {
         public static readonly List<Func<Rect, Settlement, float>> Sections = new List<Func<Rect, Settlement, float>>();
+
+        /// <summary>
+        /// The same for any other place on the region map: a tile, a site or another world object (the world object is
+        /// null for a bare tile). Not called for the towns of other peoples (those get <see cref="Sections"/>) nor for home.
+        /// </summary>
+        public static readonly List<Func<Rect, PlanetTile, WorldObject, float>> PlaceSections = new List<Func<Rect, PlanetTile, WorldObject, float>>();
     }
 }

@@ -2094,6 +2094,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 149 | Things an answer keeps on the map for a while: lanterns for a night, a fire in a cold room, the pyre, a bolted door, an animal at someone's heels (only while there are any) | per thing kept: its hour, danger, its fuel, its people |
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
+| 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
@@ -2212,6 +2213,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks; who is away and each colonist's hunt: the colony's own only; crops grown: one per crop |
 | Personal stories | stories under way; 200 past; eulogies until given |
 | Camps | one camp; its lists (and the asks made of it) go with it, pruned of the gone at saving |
+| Journeys | one plan at a time: its travellers, animals, packing list, the last hours' steps done and the timetable hours it changed, all gone when they set off or it's called off |
 | World situations | 2 running; 40 past, each with what followed from it (once per def) |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
 | Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page |

@@ -50,6 +50,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_NeighbourSays",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
         "Rimfolk_Pool_OutsiderSays",
+        // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
+        "Rimfolk_Pool_JourneySays",
         // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
         "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave",
         // Wishes promised, refused, objected to, reminded of, given up on, backed and remembered (CouncilDynamics.cs,

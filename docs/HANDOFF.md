@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.61.0, the player's request (prepare for travel, set off at a time, everyone ready together): journeys, an order of
+  their own, not a decree (`Journeys/`: `JourneyMath` pure with `JourneyTests`, `Journeys`, `JourneyRun`,
+  `JourneyPack`, `JourneyPatches`; planner `UI/JourneyDialog.cs`; from the Decrees page, World page and region map via
+  `NeighbourPanel.Sections` and the new `NeighbourPanel.PlaceSections`). Sleep shifted the night before, last hours
+  (setting `journeyFreeHours`) free of work: clothes for the forecast, pack, eat, Dubs Bad Hygiene toilet and wash by
+  name, gather at the gate; the game's caravan forming at the hour; a not-ready letter (wait, leave without, call off).
+  `Sched.RareJourneys` 173. One journey at a time. Not built, to propose: moods for those who love or dislike travel,
+  Dubs Bad Hygiene water bottles, several journeys at once, road clothes back to the outfit when home.
+- 0.60.1: Talk with's "trading" needs an open trade window (`Outsiders.TradingNow`).
 - 0.60.0, right-click interactions with outsiders (`Source/ColonyCouncil/Outsiders/`: provider
   `FloatMenuOptionProvider_RimfolkOutsiders` "Talk with X...", `JobDriver_OutsiderTalk`/`OutsiderMeal`, pure
   `OutsiderMath` with `OutsiderTests`, component `OutsiderBook`; chat, ask about home, meal/drink, gift, good word,

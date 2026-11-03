@@ -357,6 +357,11 @@ namespace ColonyCouncil
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
             Toggle("outsiderDuels", "CC_Settings_OutsiderDuels", "CC_SetNote_OutsiderDuels", "outsiderTalk,deepHooks");
+            Section("CC_SetSec_Journeys");
+            Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
+            Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");
+            Toggle("journeyClothes", "CC_Settings_JourneyClothes", "CC_SetNote_JourneyClothes", "journeys");
+            Slider("journeyFreeHours", "CC_Settings_JourneyFreeHours", "CC_SetNote_JourneyFreeHours", 2f, 8f, 1f, "0", "journeys");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");

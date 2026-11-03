@@ -75,6 +75,8 @@ namespace ColonyCouncil
                 float cy = 0f;
                 cy += UiKit.Paragraph(0f, cy, w, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive), UiKit.Faint) + 10f;
                 if (ColonyCouncilMod.Settings.offices) cy += DrawOffices(comp, w, cy) + 14f;
+                // A journey planned ahead: its own order rather than a decree (UI/JourneyDialog.cs).
+                cy += JourneyPanel.Section(0f, cy, w);
 
                 // The decrees that are listed at all, each laid out (once a second) so the filters and the chips can read them.
                 var listed = new List<(DecreeDef def, Layout l)>();

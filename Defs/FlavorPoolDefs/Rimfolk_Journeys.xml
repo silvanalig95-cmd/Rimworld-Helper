@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What travellers and those at home say about a journey planned ahead (Source/ColonyCouncil/Journeys/JourneyRun.cs).
+    Every line has its moment: gate (a traveller arriving at the gate to wait), wait (a traveller when they wait an hour
+    for someone), leave (a traveller as the caravan forms to set off), seeoff (someone staying home, near the gate, as
+    the travellers set off). One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_JourneySays</defName>
+    <lines>
+      <plain>
+        <li>[gate] Ready to go when everyone else is.</li>
+        <li>[gate] Is everyone here yet?</li>
+        <li>[gate] The others will be along any moment.</li>
+        <li>[gate] I'm as ready as I'll ever be.</li>
+        <li>[gate] Not long now.</li>
+        <li>[wait] We'll give them another hour.</li>
+        <li>[wait] No point leaving anyone behind if we can help it.</li>
+        <li>[wait] Another hour, then we see where things stand.</li>
+        <li>[leave] Right, let's be off.</li>
+        <li>[leave] Keep the fires lit for us.</li>
+        <li>[leave] We'll be back before you miss us.</li>
+        <li>[leave] The road's waiting.</li>
+        <li>[seeoff] Safe roads, all of you.</li>
+        <li>[seeoff] Come back in one piece.</li>
+        <li>[seeoff] Bring us back some good news.</li>
+        <li>[seeoff] Watch the weather out there.</li>
+        <li>[seeoff] We'll keep things running while you're gone.</li>
+      </plain>
+      <warm>
+        <li>[seeoff] Look after each other out there.</li>
+        <li>[leave] Take care of the place while we're away.</li>
+      </warm>
+      <blunt>
+        <li>[gate] Here, so let's go.</li>
+        <li>[seeoff] Don't get lost.</li>
+      </blunt>
+      <cheerful>
+        <li>[leave] Off on an adventure!</li>
+        <li>[seeoff] Have a grand trip!</li>
+      </cheerful>
+      <gloomy>
+        <li>[leave] I hope the road is kinder than the last one.</li>
+        <li>[seeoff] I'll worry until you're back.</li>
+      </gloomy>
+      <cold>
+        <li>[gate] The schedule holds.</li>
+        <li>[seeoff] Return when the work is done.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
