@@ -537,6 +537,7 @@ MODEL = {
     "Social/Autonomy.cs:lastActed": ("window", (2, COLONISTS * 0.5), V, "with the above"),
     "Social/Autonomy.cs:plans": ("cap", (10, 0.2), P, "plans until built"),
     "Social/Moments.cs:pairs": ("pairs", 0.5, 120, "pair tones forgotten after 4 quiet days or when one is gone"),
+    "Social/Bonds.cs:pairs": ("pairs", 1.1, 70, "one short line per pair of colonists who met, pairs not both among the colony's people for 60 days dropped daily"),
     "Social/SocialWeb.cs:history": ("fixed", 10, 60, "per tie (counted under ties)"),
     "Social/SocialWeb.cs:ties": ("pairs", 0.3, 400, "ties of the dead dropped daily, of the gone faded out"),
     "Social/SocialWeb.cs:lost": ("cap", (40, 0.05), 200, "40 lost bonds"),

@@ -18,8 +18,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A lasting bond between two colonists, with a strength (0-100) and a short history of what shaped it.
-    /// Friends and rivals grow out of how they feel about each other; comrades out of fighting side by side;
-    /// a mentor (a) teaches a student (b) a skill. Everything that happens between them moves the strength.
+    /// Friends grow out of how they feel about each other once they know each other (Social/Bonds.cs); rivals out of
+    /// steady loathing or a grudge with a cause; comrades out of fighting near each other; a mentor (a) teaches a
+    /// student (b) a skill. Everything that happens between them moves the strength.
     /// </summary>
     public class SocialTie : IExposable
     {
@@ -32,6 +33,10 @@ namespace ColonyCouncil
         /// <summary>Strong enough to have been announced: a real bond rather than a budding one.</summary>
         public bool announced;
         public List<string> history = new List<string>();
+        /// <summary>A rivalry's cause, in a few words (a tie note): what started it, or the biggest thing that renewed it since.</summary>
+        public string cause;
+        /// <summary>When a rivalry was last renewed by something that happened (it holds a few days after, then fades slowly); -1: never.</summary>
+        public int renewedTick = -1;
 
         public bool Involves(Pawn p) => p == a || p == b;
 
@@ -42,7 +47,10 @@ namespace ColonyCouncil
         public void Note(string text)
         {
             if (text.NullOrEmpty()) return;
-            history.Add("CC_DayN".Translate(Find.TickManager.TicksGame / GenDate.TicksPerDay + 1) + ": " + text);
+            string line = "CC_DayN".Translate(Find.TickManager.TicksGame / GenDate.TicksPerDay + 1) + ": " + text;
+            // The same thing twice in a day (a string of cross words) is one line.
+            if (history.Count > 0 && history[history.Count - 1] == line) return;
+            history.Add(line);
             if (history.Count > 6) history.RemoveAt(0);
         }
 
@@ -58,6 +66,8 @@ namespace ColonyCouncil
             Scribe_Defs.Look(ref skill, "skill");
             Scribe_Values.Look(ref announced, "announced");
             Scribe_Collections.Look(ref history, "history", LookMode.Value);
+            Scribe_Values.Look(ref cause, "cause");
+            Scribe_Values.Look(ref renewedTick, "renewedTick", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && history == null) history = new List<string>();
         }
     }
@@ -91,6 +101,8 @@ namespace ColonyCouncil
         public List<LostBond> lost = new List<LostBond>();
         /// <summary>How things stand between pairs lately, so moments between them make sense over time (Social/Moments.cs).</summary>
         public MomentTones tones = new MomentTones();
+        /// <summary>What is kept about each pair: how well they know each other, fights side by side, seats lost (Social/Bonds.cs).</summary>
+        public PairBook bonds = new PairBook();
         [Unsaved] public List<Clique> cliques = new List<Clique>();
         [Unsaved] private bool cliquesBuilt;
         /// <summary>The circles were built from the groups (Social/Groups/): with groups since turned off, they're built the old way again.</summary>
@@ -274,22 +286,41 @@ namespace ColonyCouncil
 
         // ---------------- Changes ----------------
 
-        /// <summary>Something happened between them: strengthens (or creates) a tie of this kind.</summary>
-        /// <summary>Something happened between them: strengthens (or creates) a tie of this kind. Quiet: no announcement.</summary>
+        /// <summary>
+        /// Something happened between them: strengthens (or creates) a tie of this kind. Quiet: no announcement. A good
+        /// turn between two counts as much as they get on, and a friendship goes no further than it can now (how they get
+        /// on, how well they know each other: Bonds.FriendCap); a grudge grows as their tempers and their chemistry take
+        /// it, and keeps its cause (<paramref name="note"/>).
+        /// </summary>
         public SocialTie Bump(Pawn x, Pawn y, TieKind kind, float amount, string note = null, bool quiet = false)
         {
             if (!S.socialWeb || !Eligible(x) || !Eligible(y) || x == y) return null;
+            float cap = 100f;
+            if (kind == TieKind.Friends && amount > 0f)
+            {
+                if (Bonds.Limits) amount *= ChemistryMath.WarmFactor(Bonds.Affinity(x, y));
+                cap = Bonds.FriendCap(x, y);
+            }
+            if (kind == TieKind.Rivals && amount > 0f && Bonds.DeedsOn) amount *= Bonds.GrudgeFactor(x, y);
             var t = Get(x, y, kind);
             if (t == null)
             {
-                // Mentorships only start in TryStartMentorship, where the skill is known.
-                if (amount <= 0f || kind == TieKind.Mentor) return null;
+                // Mentorships only start in TryStartMentorship, where the skill is known; no friendship with no room for one.
+                if (amount <= 0f || kind == TieKind.Mentor || cap < 1f) return null;
                 t = new SocialTie { a = x, b = y, kind = kind, strength = 0f, formedTick = Find.TickManager.TicksGame };
                 ties.Add(t);
                 TiesChanged();
             }
-            t.strength = Mathf.Clamp(t.strength + amount, 0f, 100f);
+            float before = t.strength;
+            // Up to the cap, never pulled down by it here (the day's drift does that, slowly).
+            t.strength = amount > 0f ? Mathf.Clamp(Mathf.Max(before, Mathf.Min(before + amount, cap)), 0f, 100f) : Mathf.Clamp(before + amount, 0f, 100f);
             t.Note(note);
+            if (kind == TieKind.Rivals && amount > 0f)
+            {
+                t.renewedTick = Find.TickManager.TicksGame;
+                if (!note.NullOrEmpty() && (t.cause.NullOrEmpty() || amount >= 5f)) t.cause = note;
+            }
+            if (kind == TieKind.Friends && t.announced && before < 70f && t.strength >= 70f) Bonds.Notify_FriendTie(t, true);
             if (!t.announced && t.strength >= 20f)
             {
                 if (quiet) t.announced = true;
@@ -343,10 +374,12 @@ namespace ColonyCouncil
         {
             t.announced = true;
             var comp = CouncilGameComponent.Instance;
-            string key = "CC_Tie_Formed_" + t.kind;
-            var args = new[] { t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL") };
+            // A rivalry is told with its cause when it has one (what happened between them).
+            string key = t.kind == TieKind.Rivals && !t.cause.NullOrEmpty() ? "CC_Tie_Formed_RivalsCause" : "CC_Tie_Formed_" + t.kind;
+            var args = new[] { t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL"), (t.cause ?? "").Named("CAUSE") };
             News.Post(key.Translate(args).Resolve(), new LookTargets(t.a, t.b), NewsKind.People, t.kind == TieKind.Rivals ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, key.Translate(args).Resolve(), t.a));
+            if (t.kind == TieKind.Friends) Bonds.Notify_FriendTie(t, t.strength >= 70f);
             comp?.annals.Notify_Tie(t);
             comp?.journals.Write(t.a, JournalPool("Council_Journal_TieFormed_", t, t.a), null, t.b.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));
             comp?.journals.Write(t.b, JournalPool("Council_Journal_TieFormed_", t, t.b), null, t.a.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));
@@ -394,7 +427,17 @@ namespace ColonyCouncil
                 if (t.kind == TieKind.Mentor || (t.strength -= 3f) <= 1f) End(t, false, true);
             }
 
-            // Feelings become bonds: steady mutual liking makes friends, steady loathing makes rivals.
+            // How well each pair knows each other settles for the day, and envy of a better room or title (Social/Bonds.cs).
+            try
+            {
+                Bonds.Daily(this, pawns);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("bonds: the day", e);
+            }
+
+            // Feelings become bonds: liking makes friends once they know each other, steady loathing makes rivals.
             bool first = !seeded;
             seeded = true;
             for (int i = 0; i < pawns.Count; i++)
@@ -408,14 +451,27 @@ namespace ColonyCouncil
                     int yx = y.relations.OpinionOf(x);
                     int low = Mathf.Min(xy, yx);
                     int high = Mathf.Max(xy, yx);
-                    Evolve(x, y, TieKind.Friends, low >= 45, low - 20f, low - 25f, "CC_TieNote_Grew", first);
+                    // A friendship needs both good feeling and knowing each other, and goes as far as the two can (Social/Bonds.cs).
+                    Evolve(x, y, TieKind.Friends, first ? low >= 45 : Bonds.FriendsForm(x, y, low), Mathf.Min(low - 20f, Bonds.FriendCap(x, y)),
+                        Bonds.FriendTarget(x, y, low), "CC_TieNote_Grew", first);
                     Evolve(x, y, TieKind.Rivals, high <= -30, -high - 10f, -high - 15f, "CC_TieNote_Soured", first);
                 }
             }
-            // Comrades slowly fade without new battles; mentorships teach and graduate.
+            // Comrades fade in long quiet spells, down to what their fights together leave; mentorships teach and graduate.
+            int today = Find.TickManager.TicksGame;
             foreach (var t in ties.ToList())
             {
-                if (t.kind == TieKind.Comrades && (t.strength -= 0.5f) <= 1f) End(t, false);
+                if (t.kind == TieKind.Comrades)
+                {
+                    if (Bonds.Danger)
+                    {
+                        var r = bonds.Get(t.a, t.b, false);
+                        int quiet = r == null || r.lastBattle < 0 ? 999 : (today - r.lastBattle) / GenDate.TicksPerDay;
+                        t.strength = BondsMath.ComradeDay(t.strength, quiet, r?.battles ?? 0);
+                    }
+                    else t.strength -= 0.5f;
+                    if (t.strength <= 1f) End(t, false);
+                }
                 if (t.kind == TieKind.Mentor && ties.Contains(t)) Mentor(t, comp);
             }
             TryStartMentorship(pawns);
@@ -463,6 +519,11 @@ namespace ColonyCouncil
                 {
                     t.strength = Mathf.Max(t.strength, formAt);
                     t.Note(noteKey.Translate());
+                    if (kind == TieKind.Rivals)
+                    {
+                        if (t.cause.NullOrEmpty()) t.cause = noteKey.Translate();
+                        t.renewedTick = Find.TickManager.TicksGame;
+                    }
                     if (quiet) t.announced = true;
                     else Announce(t);
                 }
@@ -483,7 +544,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Hourly: while there's a fight on a home map, note everyone who is drafted, manning a turret or has just
-        /// attacked a hostile. When it's been quiet for a few hours, they all become comrades, with one message.
+        /// attacked a hostile. When it's been quiet for a few hours, those who fought near each other become comrades (or
+        /// closer comrades), more when one pulled the other out (Social/FightSides.cs), with one message.
         /// </summary>
         public void Hourly(CouncilGameComponent comp)
         {
@@ -549,45 +611,139 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("victory", e);
             }
+            // When the fight began, read before the count is reset (the quirks look for wounds since then).
+            int began = battleCountStart;
             ResetCount();
             foreach (var p in list)
             {
-                comp.quirks.Notify_Fought(p, battleCountStart);
+                comp.quirks.Notify_Fought(p, began);
                 comp.aspirations.Notify_Event(p, "battle");
             }
             TalkHooks.Battle(list, foe);
-            if (list.Count < 2 || !S.socialWeb) return;
-            var formed = new List<Pawn>();
-            for (int i = 0; i < list.Count; i++)
+            try
             {
-                for (int j = i + 1; j < list.Count; j++)
+                if (!S.socialWeb) return;
+                if (Bonds.Danger) SharedDanger(comp, list);
+                else if (list.Count >= 2) Comrades(comp, list, list.SelectMany(x => list.Where(y => y.thingIDNumber > x.thingIDNumber).Select(y => (x, y, 25f, 0))).ToList());
+            }
+            finally
+            {
+                FightSides.Clear();
+            }
+        }
+
+        /// <summary>
+        /// The fight is over: comradeship between those who fought near each other (seen side by side in it), more when
+        /// one carried the other out, tended them under fire or stood over them while they were down. Every fight together
+        /// counts in full. Someone helped under fire counts even if they went down before they were noted as fighting.
+        /// The rescued and the tended are grateful, and the rescued go and say so once they're up.
+        /// </summary>
+        private void SharedDanger(CouncilGameComponent comp, List<Pawn> fighters)
+        {
+            // apart: the fight's outcome, told after it; who stood beside whom was seen on the map (FightSides).
+            var people = new List<Pawn>(fighters);
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+                if (Eligible(p) && !people.Contains(p) && fighters.Any(h => FightSides.Deeds(h, p) != 0)) people.Add(p);
+            var pairs = new List<(Pawn x, Pawn y, float bond, int deeds)>();
+            for (int i = 0; i < people.Count; i++)
+                for (int j = i + 1; j < people.Count; j++)
                 {
-                    bool was = Get(list[i], list[j], TieKind.Comrades)?.announced ?? false;
-                    var t = Bump(list[i], list[j], TieKind.Comrades, 25f, "CC_TieNote_Battle".Translate(), true);
-                    if (t != null && !was && t.announced)
-                    {
-                        if (!formed.Contains(list[i])) formed.Add(list[i]);
-                        if (!formed.Contains(list[j])) formed.Add(list[j]);
-                    }
+                    var x = people[i];
+                    var y = people[j];
+                    int deeds = FightSides.Deeds(x, y) | FightSides.Deeds(y, x);
+                    float bond = fighters.Contains(x) && fighters.Contains(y)
+                        ? BondsMath.BattleBond(FightSides.Near(x, y), FightSides.Samples, deeds)
+                        : deeds != 0 ? 8f + BondsMath.DeedBond(deeds) : 0f;
+                    if (bond > 0f) pairs.Add((x, y, bond, deeds));
+                }
+            Comrades(comp, people, pairs);
+            int now = Find.TickManager.TicksGame;
+            foreach (var (x, y, _, deeds) in pairs)
+            {
+                var r = bonds.Get(x, y, true);
+                r.battles++;
+                r.lastBattle = now;
+                Bonds.Know(x, y, BondsMath.BattleKnow);
+                // A rivalry eases between two who fought side by side, more when one saved the other.
+                if (Get(x, y, TieKind.Rivals) != null) Weaken(x, y, TieKind.Rivals, BondsMath.BattleMend(deeds), "CC_TieNote_FoughtTogether".Translate());
+            }
+            if (!Bonds.DeedsOn) return;
+            foreach (var helped in people)
+                foreach (var helper in people)
+                {
+                    if (helper == helped) continue;
+                    int d = FightSides.Deeds(helper, helped);
+                    if ((d & BondsMath.DeedRescued) != 0) Saved(helper, helped, true);
+                    else if ((d & BondsMath.DeedTended) != 0) Saved(helper, helped, false);
+                }
+        }
+
+        /// <summary>The fight's comradeship for each pair (with how much it adds), one message for everyone who gained some.</summary>
+        private void Comrades(CouncilGameComponent comp, List<Pawn> people, List<(Pawn x, Pawn y, float bond, int deeds)> pairs)
+        {
+            // apart: the fight's outcome, told after it.
+            if (pairs.Count == 0) return;
+            var formed = new List<Pawn>();
+            var bonded = new List<Pawn>();
+            foreach (var (x, y, bond, deeds) in pairs)
+            {
+                bool was = Get(x, y, TieKind.Comrades)?.announced ?? false;
+                string note = (deeds & BondsMath.DeedRescued) != 0 ? "CC_TieNote_Rescued".Translate().Resolve()
+                    : (deeds & BondsMath.DeedTended) != 0 ? "CC_TieNote_TendedUnderFire".Translate().Resolve()
+                    : "CC_TieNote_Battle".Translate().Resolve();
+                var t = Bump(x, y, TieKind.Comrades, bond, note, true);
+                if (t == null) continue;
+                if (!bonded.Contains(x)) bonded.Add(x);
+                if (!bonded.Contains(y)) bonded.Add(y);
+                if (!was && t.announced)
+                {
+                    if (!formed.Contains(x)) formed.Add(x);
+                    if (!formed.Contains(y)) formed.Add(y);
                 }
             }
-            string text = "CC_Tie_Battle".Translate(TextUtil.JoinAnd(list.Select(p => p.LabelShort).ToList())).Resolve();
-            Notify.Message(text, new LookTargets(list), MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, list[0]));
+            if (bonded.Count < 2) return;
+            bonded = people.Where(bonded.Contains).ToList();
+            string text = "CC_Tie_Battle".Translate(TextUtil.JoinAnd(bonded.Select(p => p.LabelShort).ToList())).Resolve();
+            Notify.Message(text, new LookTargets(bonded), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, bonded[0]));
             // Those who stood next to someone new for the first time write about one of them.
             foreach (var p in formed)
             {
-                var other = list.Where(o => o != p && (Get(p, o, TieKind.Comrades)?.announced ?? false)).RandomElementWithFallback();
+                var other = bonded.Where(o => o != p && (Get(p, o, TieKind.Comrades)?.announced ?? false)).RandomElementWithFallback();
                 if (other != null) comp.journals.Write(p, "Council_Journal_TieFormed_Comrades", null, other.Named("OTHER"), "".Named("SKILL"));
             }
         }
 
-        /// <summary>Moves a tie a tenth of the way towards where their feelings now are; ends it at zero.</summary>
+        /// <summary>
+        /// <paramref name="helper"/> carried <paramref name="helped"/> out of the fight (or tended them under fire): the
+        /// helped one is grateful, and someone carried out goes to say thanks once both are up (within a few days).
+        /// </summary>
+        private static void Saved(Pawn helper, Pawn helped, bool carried)
+        {
+            // apart: gratitude for what was done under fire (seen on the map); the thanks itself is said face to face (Together).
+            CouncilGameComponent.GiveThought(helped, CouncilDefOf.Council_SavedMe, helper, -1f, null, carried ? 1 : 0);
+            if (!carried) return;
+            Together.When("saved|" + helper.thingIDNumber + "|" + helped.thingIDNumber, helped, helper, () =>
+            {
+                string line = Interplay.Line("Rimfolk_Pool_ThanksSaved", helped, null, helper.Named("OTHER"));
+                if (!line.NullOrEmpty()) Speech.Say(helped, line, helper);
+            }, 96f);
+        }
+
+        /// <summary>
+        /// Moves a tie a tenth of the way towards where their feelings now are; ends it at zero. A grudge (with "What
+        /// people did is remembered") only follows their feelings when those are worse; otherwise it holds a few days after
+        /// it was last renewed and then fades slowly (BondsMath.GrudgeDay).
+        /// </summary>
         private void Drift(SocialTie t, float target)
         {
-            t.strength += (Mathf.Clamp(target, 0f, 100f) - t.strength) * 0.1f;
+            float before = t.strength;
+            target = Mathf.Clamp(target, 0f, 100f);
+            if (t.kind == TieKind.Rivals && Bonds.DeedsOn && target <= t.strength) t.strength = Bonds.GrudgeDay(t);
+            else t.strength += (target - t.strength) * 0.1f;
             if (t.strength <= 1f) End(t, false);
             else if (!t.announced && t.strength >= 20f) Announce(t);
+            else if (t.kind == TieKind.Friends && t.announced && before < 70f && t.strength >= 70f) Bonds.Notify_FriendTie(t, true);
         }
 
         private void Mentor(SocialTie t, CouncilGameComponent comp)
@@ -732,9 +888,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastVictoryTick, "lastVictoryTick", -999999);
             Scribe_Values.Look(ref seeded, "seeded");
             Scribe_Deep.Look(ref tones, "tones");
+            Scribe_Deep.Look(ref bonds, "bonds");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (tones == null) tones = new MomentTones();
+                if (bonds == null) bonds = new PairBook();
                 if (ties == null) ties = new List<SocialTie>();
                 ties.RemoveAll(t => t == null || t.a == null || t.b == null);
                 TiesChanged();

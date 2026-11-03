@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Said over heads between two (Source/ColonyCouncil/Social/SocialWeb.cs, Offices/Offices.cs), face to face, one
+    sentence each. {PAWN} is the speaker, {OTHER} the one spoken to, {OFFICE} a council seat.
+  -->
+
+  <!-- An abrasive winner rubs it in, the next time they meet the one who lost the seat to them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatGloat</defName>
+    <lines>
+      <plain>
+        <li>Better luck next year, {OTHER_nameDef}.</li>
+        <li>I'll keep the seat warm for you, {OTHER_nameDef}.</li>
+        <li>The colony made its choice, and it wasn't you.</li>
+        <li>Don't take it hard, {OTHER_nameDef}, some of us are just better at it.</li>
+        <li>You can always try again for {OFFICE}, if you like losing.</li>
+        <li>Count the votes again if it makes you feel better.</li>
+      </plain>
+      <cold><li>The vote was clear, {OTHER_nameDef}, so accept it.</li></cold>
+      <blunt><li>You lost, {OTHER_nameDef}, so stop sulking about it.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Carried out of a fight: they go and say thanks, once both are up and about. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ThanksSaved</defName>
+    <lines>
+      <plain>
+        <li>You pulled me out of there, {OTHER_nameDef}, and I won't forget it.</li>
+        <li>I owe you my life, {OTHER_nameDef}.</li>
+        <li>I'd be lying out there still if you hadn't come for me.</li>
+        <li>Thank you for coming back for me, {OTHER_nameDef}.</li>
+        <li>Whatever you need, {OTHER_nameDef}, you only have to ask.</li>
+        <li>I don't remember much, but I know it was you who carried me.</li>
+      </plain>
+      <cold><li>You took a risk for me, {OTHER_nameDef}, and I noted it.</li></cold>
+      <cheerful><li>My hero, {OTHER_nameDef}, and I mean it.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -107,11 +107,12 @@ namespace ColonyCouncil
                 if (!Persona.On) exchanges.Clear();
                 else Talk.Step(this, t);
             }
-            if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides) && Persona.On)
+            // Who stands beside whom in a fight, for the talk's memories and for comradeship (Social/FightSides.cs).
+            if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides) && (Persona.On || ColonyCouncilMod.Settings.socialWeb))
             {
                 try
                 {
-                    TalkHooks.SampleFight();
+                    FightSides.Sample();
                 }
                 catch (Exception e)
                 {

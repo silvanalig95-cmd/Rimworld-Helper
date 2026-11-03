@@ -1125,6 +1125,12 @@ namespace ColonyCouncil
             var count = CountOf(e);
             var voters = Electorate(e.map);
             var round = new SeatingRound { voters = voters, open = Offices.Where(o => o.OpenFor(e.voterCount)).ToList() };
+            // Who ran for which seat, and who campaigned for it: they wanted it (Offices.LostElection).
+            foreach (var race in e.races)
+                foreach (var en in race.entries)
+                    if (en.pawn != null) round.stood.Add((race.office, race.seat, en.pawn));
+            foreach (var c in e.campaigners)
+                if (c?.pawn != null && (c.spoke || c.canvassed.Count > 0)) round.campaigned.Add(c.pawn);
             election = null;
             lastElectionYear = Mathf.Max(lastElectionYear, e.year);
             lastElectionTick = Now;

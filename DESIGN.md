@@ -2090,7 +2090,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
-| 187 | Conversations: who stands beside whom in a fight at home (only while one is on), so only they remember it together | per fighting colonist pair on that map (close, then the same room or in sight) |
+| 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 
@@ -2182,7 +2182,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Day samples (history) | 120 days |
 | Wishes | open ones only; recent wishes 20 days or 60; cooldowns dropped once over |
 | Trust | one record per colonist, the gone dropped daily; 8 log lines; grants of the last 30 days |
-| Social web | ties of the dead dropped daily, of those gone faded out; 40 lost bonds; pair tones (moment memory) forgotten after 4 quiet days or when one of the two is gone |
+| Social web | ties of the dead dropped daily, of those gone faded out; 40 lost bonds; pair tones (moment memory) forgotten after 4 quiet days or when one of the two is gone; one short line per pair of colonists who met (Social/Bonds.cs: how well they know each other, fights side by side, seats lost), dropped once the two have not both been among the colony's people for 60 days |
 | Groups | groups of 3 to 9, the dead and departed dropped daily (and anyone the game has let go of, at saving, so no reference is saved to nobody), a group ended when fewer than two are left; 14 history lines, 10 former names and the rivalries with groups still there each; newcomers 40 days at most; 12 past groups (those the game still knows); work samples of colonists only, 6 kinds each |
 | Dreams | 80 recent dreams (a discarded dreamer kept by name only); omens until they come; dream counts of known pawns. The session-only maps (last dream, untold dream) drop the dead and whatever is too old to matter |
 | Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days |

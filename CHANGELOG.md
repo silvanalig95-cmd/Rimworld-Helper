@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Bonds that take time
+
+*3 November 2026, version 0.57.0*
+
+- Friendships take time: colonists come to know each other from time actually spent side by side, at work, over meals and in their recreation, and a friendship needs both good feeling and knowing each other. Newcomers start as strangers, and friends who stop seeing each other drift apart.
+- How two get on now sets limits, from the game's compatibility, their faiths, views, shared passions and temper. Two who don't click stay friendly colleagues however much they talk, two who click warm quickly, and hovering someone in the Social tab says why.
+- Comrades come from fighting near each other, more when one carried the other out, tended them under fire or stood over them while they were down. Every fight together counts in full, and in long quiet spells the bond fades to what their fights together leave.
+- Rivalries come of things that happened and say what they're about: cross words that add up, a social fight, a blow in a rage or in a fight, an operation gone wrong, an affair, envy of a much better room or title. A grudge holds a few days, then fades slowly unless renewed.
+- A council seat lost is felt toward the winner, as much as it was wanted. Losing to the same person again, or an abrasive winner who rubs it in, can start a rivalry, while a move to another seat stays a mood.
+- Love and gratitude: a partner may be jealous of a new close friend, things are awkward for a while after a rejection or a breakup, and someone carried out of a fight or nursed through an illness is grateful and says so.
+- Existing saves settle gently: pairs know each other from their days together, and old comradeships fade unless they are earned again in a fight.
+
 ## Each camp at its own hour
 
 *3 November 2026, version 0.56.4*

@@ -362,7 +362,7 @@
         <li>Well done, {OTHER_nameDef}, and I'll be watching.</li>
         <li>I'll help however I can, {OTHER_nameDef}.</li>
         <li>Next year, maybe, but well done tonight.</li>
-        <li>No hard feelings, {OTHER_nameDef}.</li>
+        <li>It stings, but well done, {OTHER_nameDef}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

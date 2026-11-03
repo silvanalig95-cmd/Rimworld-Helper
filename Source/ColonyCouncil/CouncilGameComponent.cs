@@ -174,6 +174,8 @@ namespace ColonyCouncil
             MoodsPanel.Reset();
             StoryView.Reset();
             SocialColumn.Reset();
+            Bonds.ResetCaches();
+            FightSides.Clear();
             CultureView.Reset();
             UiCache.Clear();
             InteractionWorker_Moment.Reset();
@@ -450,6 +452,7 @@ namespace ColonyCouncil
         {
             // Fights and deaths first, while the dead still have their bonds and goals on record.
             Safe("battles", () => social.Hourly(this));
+            Safe("bonds", Bonds.Hourly);
             Safe("losses", () => vendettas.Hourly(this));
             Safe("decrees", () => decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
@@ -1010,7 +1013,12 @@ namespace ColonyCouncil
             if (BodyFit.Nullified(p, def) || !Heard.CanHave(p, def)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
-            if (stage > 0 && def.stages != null && stage < def.stages.Count) thought.SetForcedStage(stage);
+            if (stage > 0 && def.stages != null && stage < def.stages.Count)
+            {
+                thought.SetForcedStage(stage);
+                // A social memory takes its opinion from the first stage when it's made: the stage given counts instead.
+                if (thought is Thought_MemorySocial social && def.stages[stage] != null) social.opinionOffset = def.stages[stage].baseOpinionOffset;
+            }
             bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect >= 0f;
             float factor = scale >= 0f ? scale : positive ? ColonyCouncilMod.Settings.rewardFactor : ColonyCouncilMod.Settings.PenaltyScale;
             if (factor <= 0f) return;

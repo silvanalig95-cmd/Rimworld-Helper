@@ -265,6 +265,12 @@ namespace ColonyCouncil
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");
+            Toggle("bondsTakeTime", "CC_Settings_BondsTakeTime", "CC_SetNote_BondsTakeTime", "socialWeb");
+            Toggle("chemistryLimits", "CC_Settings_ChemistryLimits", "CC_SetNote_ChemistryLimits", "socialWeb");
+            Toggle("comradesByDanger", "CC_Settings_ComradesByDanger", "CC_SetNote_ComradesByDanger", "socialWeb");
+            Toggle("deedsRemembered", "CC_Settings_DeedsRemembered", "CC_SetNote_DeedsRemembered", "socialWeb");
+            Toggle("seatFeelings", "CC_Settings_SeatFeelings", "CC_SetNote_SeatFeelings", "socialWeb,offices");
+            Toggle("loveFeelings", "CC_Settings_LoveFeelings", "CC_SetNote_LoveFeelings", "socialWeb");
             Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
             Toggle("traitChanges", "CC_Settings_TraitChanges", "CC_SetNote_TraitChanges", "socialLife");

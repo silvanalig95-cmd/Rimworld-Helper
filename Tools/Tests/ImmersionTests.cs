@@ -62,6 +62,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_HustingsPoor", "Rimfolk_Pool_HustingsCheer", "Rimfolk_Pool_HustingsHeckle", "Rimfolk_Pool_ElectionVote", "Rimfolk_Pool_CountOpen",
         "Rimfolk_Pool_CountOne", "Rimfolk_Pool_CountSome", "Rimfolk_Pool_CountWinner", "Rimfolk_Pool_CountUnopposed", "Rimfolk_Pool_CeremonyOpen",
         "Rimfolk_Pool_ElectionCheer", "Rimfolk_Pool_ElectionToast", "Rimfolk_Pool_ElectionConcede",
+        // A winner gloating over a seat, and thanks for being carried out of a fight (Offices/Offices.cs, Social/SocialWeb.cs).
+        "Rimfolk_Pool_SeatGloat", "Rimfolk_Pool_ThanksSaved",
         // Animals spoken to (Animals/AnimalLife.cs, AnimalHerdmaster.cs).
         "Council_Pool_Herd_SayNewborn", "Council_Pool_SayToAnimal", "Council_Pool_AnimalFollows",
         // A personal touch planned and built (Building/PersonalTouches.cs).

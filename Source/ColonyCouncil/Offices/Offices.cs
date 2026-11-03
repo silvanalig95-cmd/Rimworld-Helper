@@ -320,6 +320,12 @@ namespace ColonyCouncil
             // is filled. <stood>: they stood for that seat again, so they wanted to keep it.
             public readonly List<(OfficeDef office, Pawn who, Pawn to, bool stood)> lost = new List<(OfficeDef, Pawn, Pawn, bool)>();
             public readonly List<(OfficeDef office, Pawn who, Pawn to)> beaten = new List<(OfficeDef, Pawn, Pawn)>();
+            /// <summary>Who stood for which seat: voted for themselves in the instant vote, or ran in an election on the map.</summary>
+            public readonly HashSet<(OfficeDef, int, Pawn)> stood = new HashSet<(OfficeDef, int, Pawn)>();
+            /// <summary>How many seats each has stood for in the instant vote (two at most, as on the map).</summary>
+            public readonly Dictionary<Pawn, int> stands = new Dictionary<Pawn, int>();
+            /// <summary>Candidates who campaigned (visited voters or spoke at the hustings): they wanted it more.</summary>
+            public readonly HashSet<Pawn> campaigned = new HashSet<Pawn>();
         }
 
         /// <summary>The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.</summary>
@@ -371,6 +377,12 @@ namespace ColonyCouncil
                 {
                     var pick = candidates.OrderByDescending(c => Score(office, voter, c)).First();
                     tally[pick] = (tally.TryGetValue(pick, out int n) ? n : 0) + 1;
+                    // A vote for oneself is standing for the seat: the first two seats they do it for, as on the map.
+                    if (pick == voter && !round.stood.Contains((office, seat, voter)) && (round.stands.TryGetValue(voter, out int had) ? had : 0) < 2)
+                    {
+                        round.stood.Add((office, seat, voter));
+                        round.stands[voter] = had + 1;
+                    }
                 }
                 var ranked = tally.OrderByDescending(kv => kv.Value).ThenByDescending(kv => office.Competence(kv.Key)).ToList();
                 string line = ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, ranked[0].Key.Named("PAWN")).Resolve()
@@ -415,11 +427,13 @@ namespace ColonyCouncil
             // Told once every seat is filled (Finish): voted out of this seat may still mean a seat elsewhere.
             if (previous != null && previous != winner && Valid(previous))
                 round.lost.Add((office, previous, winner, ranked.Any(kv => kv.Key == previous && kv.Value > 0)));
+            // Who wanted it and saw someone else take it: everyone who stood (with "A seat lost is felt"), and the greedy,
+            // the jealous and the abrasive who got any votes at all.
             foreach (var kv in ranked.Skip(1))
             {
-                var t = kv.Key.story?.traits;
-                if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
-                    round.beaten.Add((office, kv.Key, winner));
+                if (kv.Key == previous) continue;
+                bool stood = S.seatFeelings && round.stood.Contains((office, seat, kv.Key));
+                if (stood || (kv.Value > 0 && Vain(kv.Key))) round.beaten.Add((office, kv.Key, winner));
             }
             Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
             // Terms won and votes lost, for the names that count them (Epithets/NameRecords.cs); a bench's seats are shared, so single seats only.
@@ -455,27 +469,74 @@ namespace ColonyCouncil
             {
                 if (HoldersOf(office).Contains(who) || !told.Add((office, who))) continue;
                 var now = OfficeOf(who);
-                if (now == null) LostOffice(comp, office, who, to);
+                if (now == null) LostOffice(comp, office, who, to, round.campaigned.Contains(who));
                 else if (moved.Add(who)) MovedSeat(comp, office, now, who, stood);
             }
             told.Clear();
             foreach (var (office, who, to) in round.beaten)
             {
-                if (HoldersOf(office).Contains(who) || !told.Add((office, who))) continue;
+                if (HoldersOf(office).Contains(who) || !told.Add((office, who)) || moved.Contains(who)) continue;
                 var now = OfficeOf(who);
-                if (now == null) LostElection(comp, office, who, to);
+                if (now == null) LostElection(comp, office, who, to, round.campaigned.Contains(who));
                 else if (moved.Add(who)) OtherSeat(comp, office, now, who);
             }
             SyncHediffs();
             Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NeutralEvent, look);
         }
 
-        /// <summary>Voted out of their seat (to <paramref name="to"/>).</summary>
-        private static void LostOffice(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
+        /// <summary>
+        /// Voted out of their seat (to <paramref name="to"/>): they think less of the winner, the more the more they wanted
+        /// it, and (with "A seat lost is felt") a grudge toward them that grows each time they lose to the same person.
+        /// </summary>
+        private static void LostOffice(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to, bool campaigned)
         {
             // apart: an election's outcome, told in its letter (Hold).
-            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to);
+            float want = SeatWant(office, who, true, campaigned);
+            bool bitter = S.seatFeelings && BondsMath.SeatStage(want) == BondsMath.SeatBitter;
+            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to, -1f, null, bitter ? 1 : 0);
             comp.journals.Write(who, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+            if (S.seatFeelings) SeatGrudge(comp, office, who, to, want, true);
+        }
+
+        /// <summary>
+        /// How much <paramref name="who"/> wanted the seat they lost (BondsMath.SeatWant): holding it before, a life goal of
+        /// a seat on the council (this one or any), a vain nature, a campaign of their own.
+        /// </summary>
+        private static float SeatWant(OfficeDef office, Pawn who, bool incumbent, bool campaigned)
+        {
+            var goal = CouncilGameComponent.Instance?.aspirations?.Active(who)?.def;
+            bool aspires = goal != null && goal.workerClass == typeof(AspirationWorker_Office) && (goal.office == null || goal.office == office);
+            return BondsMath.SeatWant(incumbent, aspires, Vain(who), campaigned);
+        }
+
+        /// <summary>Greedy, jealous or abrasive: minds losing a vote.</summary>
+        private static bool Vain(Pawn p)
+        {
+            var t = p?.story?.traits;
+            return t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive));
+        }
+
+        /// <summary>
+        /// A seat lost to <paramref name="to"/>: a grudge toward the winner by how much it was wanted, more each time it is
+        /// the same winner (counted per pair, Social/Bonds.cs); and an abrasive winner rubs it in when the two next meet.
+        /// </summary>
+        private static void SeatGrudge(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to, float want, bool incumbent)
+        {
+            // apart: an election's outcome, told in its letter; the winner's gloating, if any, is said face to face (Together).
+            var social = comp.social;
+            if (social == null || !ColonyCouncilMod.Settings.socialWeb) return;
+            var r = social.bonds.Get(who, to, true);
+            int losses = r?.AddLoss(who) ?? 1;
+            string note = (losses >= 2 ? "CC_TieNote_SeatAgain" : incumbent ? "CC_TieNote_SeatLost" : "CC_TieNote_Election").Translate(office.label).Resolve();
+            social.Bump(who, to, TieKind.Rivals, BondsMath.SeatGrudge(want, losses, incumbent), note);
+            if (!(to.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false)) return;
+            Together.When("gloat|" + to.thingIDNumber + "|" + who.thingIDNumber, to, who, () =>
+            {
+                string line = Interplay.Line("Rimfolk_Pool_SeatGloat", to, null, who.Named("OTHER"), office.label.Named("OFFICE"));
+                if (line.NullOrEmpty()) return;
+                Speech.Say(to, line, who);
+                comp.social?.Bump(who, to, TieKind.Rivals, BondsMath.Gloated, "CC_TieNote_Gloated".Translate(office.label).Resolve());
+            }, 72f);
         }
 
         /// <summary>
@@ -514,12 +575,25 @@ namespace ColonyCouncil
                 SeatRank(wanted) > SeatRank(now) ? 1 : 0);
         }
 
-        /// <summary>Stood and lost to <paramref name="to"/>, and minds it (the greedy, the jealous, the abrasive).</summary>
-        private static void LostElection(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
+        /// <summary>
+        /// Stood and lost to <paramref name="to"/>: with "A seat lost is felt", everyone who stood thinks less of the winner,
+        /// as much as they wanted the seat, and holds a small grudge that grows with each loss to the same person; without
+        /// it, only the greedy, the jealous and the abrasive mind it.
+        /// </summary>
+        private static void LostElection(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to, bool campaigned)
         {
             // apart: an election's outcome, told in its letter (Hold).
-            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to);
-            comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
+            if (!S.seatFeelings)
+            {
+                CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to);
+                comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
+                return;
+            }
+            float want = SeatWant(office, who, false, campaigned);
+            int stage = BondsMath.SeatStage(want);
+            // The def's stages: 0 the felt one (as it always was), 1 the mild, 2 the bitter.
+            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to, -1f, null, stage == BondsMath.SeatMild ? 1 : stage == BondsMath.SeatBitter ? 2 : 0);
+            SeatGrudge(comp, office, who, to, want, false);
         }
 
         /// <summary>How much this voter wants this candidate in this office, on the day: their lean and the luck of the day.</summary>
