@@ -69,7 +69,8 @@ public static class LeanTests
         C(crowded == 0, $"no tick carries two hourly passes ({crowded} did)");
         C(hourly.All(o => fired.TryGetValue(o, out int k) && k == 48), "each hourly pass runs 24 times a day");
         C(dayFirst == 2 && daySecond == 2, $"the council's day halves run once a day each ({dayFirst}, {daySecond})");
-        C(Sched.DailyWealth < Sched.HourTicks && Sched.DailyBestFriends < Sched.HourTicks, "the daily samples run in the first hour of the day");
+        C(Sched.DailyWealth < Sched.HourTicks && Sched.DailyBestFriends < Sched.HourTicks && Sched.DailyMagicNeeds < Sched.HourTicks, "the daily samples run in the first hour of the day");
+        C(Sched.DailyMagicNeeds != Sched.DailyWealth && Sched.DailyMagicNeeds != Sched.DailyBestFriends, "the daily passes are on different ticks");
 
         // ---------------- Arithmetic ----------------
 

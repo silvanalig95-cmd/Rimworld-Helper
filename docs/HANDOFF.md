@@ -15,6 +15,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.61.1, the player's report (every colonist "Trapped"): RimWorld of Magic's ShouldHaveNeed prefix (priority 100)
+  switches off its unfinished travel need (TM_Travel) for everyone, takes mana and stamina from the undead and keeps
+  golems' needs. Harmony skips it when an earlier prefix on that check has answered, so colonists had the need at 0
+  (their save) and the golem lost its energy. `Integrations/MagicNeeds.cs`: a Priority.Last postfix applies the
+  mod's rules again; `GameComponent_MagicNeeds` takes the need away on the first tick after a load and daily
+  (`Sched.DailyMagicNeeds` 1117); setting `magicNeedRules`. Which mod's prefix answers first isn't known (not in
+  the uploads).
 - 0.61.0, the player's request (prepare for travel, set off at a time, everyone ready together): journeys, an order of
   their own, not a decree (`Journeys/`: `JourneyMath` pure with `JourneyTests`, `Journeys`, `JourneyRun`,
   `JourneyPack`, `JourneyPatches`; planner `UI/JourneyDialog.cs`; from the Decrees page, World page and region map via

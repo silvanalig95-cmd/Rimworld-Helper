@@ -7,4 +7,10 @@
   <CC_SetNote_MagicGolemRepair>With RimWorld of Magic, a golem that lost its energy gets it back instead of standing frozen.</CC_SetNote_MagicGolemRepair>
   <CC_MagicGolem_Repaired>{PAWN_labelShort} had lost its energy and stood frozen. It has its energy back and refills from its workstation.</CC_MagicGolem_Repaired>
 
+  <!-- RimWorld of Magic's own rules about needs hold (Source/ColonyCouncil/Integrations/MagicNeeds.cs). -->
+  <CC_Settings_MagicNeedRules>The mod's rules about needs hold (RimWorld of Magic)</CC_Settings_MagicNeedRules>
+  <CC_Settings_MagicNeedRules_Tip>With RimWorld of Magic: the mod decides a few needs itself. Nobody has its travel need (the mod switches it off, it isn't finished), and the undead have no mana or stamina. When another mod answers the game's needs check first, those rules are skipped: colonists get the travel need, it drains while they stay home, and then they feel trapped for good. With this on, the mod's rules hold, and anyone who has the travel need loses it. Needs the deeper game hooks.</CC_Settings_MagicNeedRules_Tip>
+  <CC_SetNote_MagicNeedRules>With RimWorld of Magic, nobody gets its unfinished travel need, so nobody feels trapped at home for good.</CC_SetNote_MagicNeedRules>
+  <CC_MagicNeeds_TravelGone>RimWorld of Magic's travel need, which the mod switches off, had reached {COUNT} colonists. It is gone again, and with it the trapped feeling.</CC_MagicNeeds_TravelGone>
+
 </LanguageData>

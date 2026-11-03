@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Not trapped any more
+
+*3 November 2026, version 0.61.1*
+
+- With RimWorld of Magic, colonists felt "Trapped" for good. That mood comes from the mod's travel need, which the mod itself switches off because it isn't finished.
+- The switch sits in the game's needs check, and another mod answering that check first made the game skip it. The travel need then drained over about three weeks at home and stayed empty.
+- The mod's own rules about needs now have the last word: nobody gets the travel need, and the undead have no mana or stamina. Anyone who already has the travel need loses it after a load, and the trapped mood with it.
+- The same skipped rule is what froze the silk golem; that repair stays as it was. The settings can turn this off, under Interface: "The mod's rules about needs hold".
+
 ## Journeys planned ahead
 
 *3 November 2026, version 0.61.0*

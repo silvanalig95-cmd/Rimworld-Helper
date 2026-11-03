@@ -16,7 +16,8 @@ namespace ColonyCouncil
     /// golem showed exactly that (its comp's age stuck at 1). So: a golem always keeps the needs its own golem lists
     /// (TM_Golem.needs), and one found without its energy gets it back; the mod then fills it from the workstation's
     /// stored energy as it does on waking (CompGolem.Initialize, ApplyNeeds). If it can't be given back, the comp's tick
-    /// is skipped so the golem can at least walk. Found by name; without the mod nothing is patched.
+    /// is skipped so the golem can at least walk. Found by name; without the mod nothing is patched. Why it happens (the
+    /// mod's own needs rule skipped when another mod answers the needs check first) is in Integrations/MagicNeeds.cs.
     /// </summary>
     public static class MagicGolems
     {

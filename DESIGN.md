@@ -2122,6 +2122,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | every 600 ticks | Fireflies (a game condition, while it lasts) | colonists outside at night |
 | once a day, tick 433 | Advisor: the wealth sample (per home map) | one number |
 | once a day, tick 1789 | Other mods' people: best friends | per pair of colonists |
+| once a day, tick 1117 (and the first tick after a load) | RimWorld of Magic's travel need, which the mod switches off, taken from anyone who has it (Integrations/MagicNeeds.cs; only with the mod) | every living pawn: one need looked up |
 | every frame | Slow time: the speed keys and the tick budget; its two buttons (when shown) | a few checks |
 | a building finished or gone (Harmony on `Frame.CompleteConstruction`, `Building.DeSpawn`) | The defense survey is marked to be read again (at most once a game hour, when next asked) | one check: the kind of building, then its distance to each line and the survey's gaps |
 

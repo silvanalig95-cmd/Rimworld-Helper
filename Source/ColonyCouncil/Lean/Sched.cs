@@ -132,6 +132,8 @@ namespace ColonyCouncil
         /// <summary>Once a day, at this tick of the day: the advisor's wealth sample, and best friends.</summary>
         public const int DailyWealth = 433;
         public const int DailyBestFriends = 1789;
+        /// <summary>Once a day: RimWorld of Magic's travel need, which the mod switches off, taken from anyone who has it (Integrations/MagicNeeds.cs).</summary>
+        public const int DailyMagicNeeds = 1117;
 
         // ---------------- Arithmetic ----------------
 

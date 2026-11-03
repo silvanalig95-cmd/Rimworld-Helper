@@ -442,6 +442,7 @@ namespace ColonyCouncil
             Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks");
             Toggle("coveredLooks", "CC_Settings_CoveredLooks", "CC_SetNote_CoveredLooks", "deepHooks");
             Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks");
+            Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks");
             Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks");
             Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");
             Toggle("marketCampersBuy", "CC_Settings_MarketCampersBuy", "CC_SetNote_MarketCampersBuy");

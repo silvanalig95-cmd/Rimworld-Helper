@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.61.1</version>
+        <date>3 November 2026</date>
+        <title>Not trapped any more</title>
+        <points>
+          <li>With RimWorld of Magic, colonists felt "Trapped" for good. That mood comes from the mod's travel need, which the mod itself switches off because it isn't finished.</li>
+          <li>The switch sits in the game's needs check, and another mod answering that check first made the game skip it. The travel need then drained over about three weeks at home and stayed empty.</li>
+          <li>The mod's own rules about needs now have the last word: nobody gets the travel need, and the undead have no mana or stamina. Anyone who already has the travel need loses it after a load, and the trapped mood with it.</li>
+          <li>The same skipped rule is what froze the silk golem; that repair stays as it was. The settings can turn this off, under Interface: "The mod's rules about needs hold".</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.61.0</version>
         <date>3 November 2026</date>
         <title>Journeys planned ahead</title>
