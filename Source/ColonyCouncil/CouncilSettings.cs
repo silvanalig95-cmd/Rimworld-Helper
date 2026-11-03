@@ -153,6 +153,14 @@ namespace ColonyCouncil
         public bool notables = true;
         /// <summary>Letters to them by hand, and calls on a comms console, answered in their own way (World/NeighbourLetters.cs).</summary>
         public bool neighbourLetters = true;
+        /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
+        public bool outsiderTalk = true;
+        /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
+        public bool outsiderSpar = true;
+        /// <summary>Insulting an outsider: it sours them, and a hot temper may answer with a fistfight their people remember.</summary>
+        public bool outsiderProvoke = true;
+        /// <summary>A duel of honour with someone of a people whose ways know it: a real fight, to first blood or until one yields.</summary>
+        public bool outsiderDuels = true;
         /// <summary>The game's next weather weighed as the land and the last days make likely: spells, what follows what, events, the year (Weather/WeatherDynamics.cs).</summary>
         public bool dynamicWeather = true;
         /// <summary>The weather moves the outdoor temperature a few degrees: cooler under rain on a warm day, colder on a clear night, milder under cloud.</summary>
@@ -472,6 +480,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);
             Scribe_Values.Look(ref notables, "notables", true);
             Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
+            Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
+            Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
+            Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);
+            Scribe_Values.Look(ref outsiderDuels, "outsiderDuels", true);
             Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
             Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
             Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);

@@ -119,6 +119,8 @@ namespace ColonyCouncil
         public const int RareRearrange = 29;
         /// <summary>A letter being written, a call under way or a comms console ringing (World/NeighbourLetters.cs), only while there is one.</summary>
         public const int RareNeighbours = 211;
+        /// <summary>A meal shared with an outsider, a bout or a brawl with one under way (Outsiders/), only while there is one.</summary>
+        public const int RareOutsiders = 241;
 
         // ---------------- Other rhythms ----------------
 

@@ -292,6 +292,8 @@ namespace ColonyCouncil
         private LetterPurpose purpose = LetterPurpose.Greetings;
         private LetterChannel channel = LetterChannel.Courier;
         private Pawn writer;
+        /// <summary>Someone of their people at the colony who'll carry it home (Outsiders/), or null for a messenger or a call.</summary>
+        private readonly Pawn bearer;
         private int topicIndex;
         private string help = "medicine";
         private readonly Map map;
@@ -337,6 +339,14 @@ namespace ColonyCouncil
                 }
             if (NeighbourLetters.ChannelWhyNot(n, LetterChannel.Courier, map) != null && NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, map) == null)
                 channel = LetterChannel.Console;
+        }
+
+        /// <summary>A letter for <paramref name="bearer"/>, someone of their people at the colony, to carry home; <paramref name="by"/> writes it unless the player picks someone else.</summary>
+        public Dialog_NeighbourLetter(Notable n, Pawn bearer, Pawn by) : this(n)
+        {
+            this.bearer = bearer;
+            channel = LetterChannel.Courier;
+            if (by != null && NeighbourLetters.Writers(map).Contains(by)) writer = by;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -422,15 +432,24 @@ namespace ColonyCouncil
             y += 30f;
             // How.
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_How".Translate());
-            if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 124f, y, 200f, 24f), "CC_LetterDlg_ByHand".Translate(), channel == LetterChannel.Courier, byHand != null) && byHand == null)
-                channel = LetterChannel.Courier;
-            if (byHand != null) TooltipHandler.TipRegion(new Rect(inRect.x + 124f, y, 200f, 24f), byHand);
-            if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 340f, y, 200f, 24f), "CC_LetterDlg_ByCall".Translate(), channel == LetterChannel.Console, byCall != null) && byCall == null)
-                channel = LetterChannel.Console;
-            if (byCall != null) TooltipHandler.TipRegion(new Rect(inRect.x + 340f, y, 200f, 24f), byCall);
+            if (bearer != null)
+            {
+                Widgets.Label(new Rect(inRect.x + 124f, y + 2f, inRect.width - 124f, 24f), "CC_LetterDlg_ByBearer".Translate(bearer.Named("BEARER")).Resolve());
+            }
+            else
+            {
+                if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 124f, y, 200f, 24f), "CC_LetterDlg_ByHand".Translate(), channel == LetterChannel.Courier, byHand != null) && byHand == null)
+                    channel = LetterChannel.Courier;
+                if (byHand != null) TooltipHandler.TipRegion(new Rect(inRect.x + 124f, y, 200f, 24f), byHand);
+                if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 340f, y, 200f, 24f), "CC_LetterDlg_ByCall".Translate(), channel == LetterChannel.Console, byCall != null) && byCall == null)
+                    channel = LetterChannel.Console;
+                if (byCall != null) TooltipHandler.TipRegion(new Rect(inRect.x + 340f, y, 200f, 24f), byCall);
+            }
             y += 26f;
-            string channelWhy = channel == LetterChannel.Courier ? byHand : byCall;
-            string how = channelWhy ?? (channel == LetterChannel.Courier
+            string channelWhy = bearer != null ? (bearer.Spawned && Outsiders.IsOutsider(bearer) ? null : "CC_LetterDlg_BearerGone".Translate(bearer.Named("BEARER")).Resolve())
+                : channel == LetterChannel.Courier ? byHand : byCall;
+            string how = channelWhy ?? (bearer != null ? "CC_LetterDlg_BearerNote".Translate(bearer.Named("BEARER"), (to.faction?.Name ?? "").Named("FACTION")).Resolve()
+                : channel == LetterChannel.Courier
                 ? (NotableBook.Hostile(to) ? "CC_LetterDlg_WhiteFlag" : "CC_LetterDlg_HandNote").Translate(to.faction?.Name ?? "").Resolve()
                 : "CC_LetterDlg_CallNote".Translate().Resolve());
             float hh = Text.CalcHeight(how, inRect.width - 124f);
@@ -456,7 +475,7 @@ namespace ColonyCouncil
             if (Widgets.ButtonText(send, (channel == LetterChannel.Console ? "CC_LetterDlg_Call" : "CC_LetterDlg_Send").Translate(), true, true, ok) && ok)
             {
                 LetterTopic? topic = topics.Count > 0 && (purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning) ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
-                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, purpose == LetterPurpose.Help ? help : null) != null) Close();
+                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, purpose == LetterPurpose.Help ? help : null, bearer) != null) Close();
             }
             if (Widgets.ButtonText(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }

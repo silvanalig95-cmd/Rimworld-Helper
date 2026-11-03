@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a colonist and someone from outside the colony say over their heads when they do something together
+    (Source/ColonyCouncil/Outsiders/, Outsiders.Say). Every line has its moment; "us" lines are said by the colonist,
+    "them" lines by the outsider, lines with neither by either. theirLowtech / theirHightech: the outsider's people.
+    {NAME} is the one spoken to, {TOWN} the outsider's town. One sentence each.
+
+    Moments: greet, chat, endwarm, endgood, endplain, endcool, endsour (a talk's end); notnow (won't stop);
+    homeask, home, hometold, homenothing; mealask, mealyes, mealno, mealtalk, mealend; drinkask, drinkyes, drinkno,
+    drinktalk, drinkend; gift, giftsuits, giftthanks, giftno; wordask, wordyes, wordno; letter, letteryes; teachask,
+    teachyes, teachno, lesson, lessonask, lessondone; bringask, bringyes, bringno, brought; inviteask, inviteyes,
+    inviteno; befriend, friends; court, courttalk, courtyes, courtno, lovers; faith, faithtalk, faithcloser,
+    faithsoftened, faithagreed, faithhardened; sparask, sparyes, sparno, sparbegin, sparwin, sparlose; provoke,
+    provoked, provokefight, provokecalm; duelask, duelyes, duelno, duelsalute, duelwin, duelyield; watch.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_OutsiderSays</defName>
+    <lines>
+      <plain>
+        <li>[greet,us] Hello there, have you got a moment to talk?</li>
+        <li>[greet,us] Welcome to the colony, I'm glad to finally meet you.</li>
+        <li>[greet,us] I don't think we've talked yet, have we?</li>
+        <li>[greet,us,morning] Good morning, did you sleep well out here?</li>
+        <li>[greet,us,evening] Evening, mind if I keep you company a while?</li>
+        <li>[greet,us,theirLowtech] Be welcome at our fire, traveller.</li>
+        <li>[chat,them] It's a long road to here, but a pretty one.</li>
+        <li>[chat,them] Your people keep a tidy place, I'll give you that.</li>
+        <li>[chat,them] We don't see many settlements this far out.</li>
+        <li>[chat,them,rain] At least the rain keeps the dust down on the road.</li>
+        <li>[chat,them,cold] I'd forgotten how cold it gets out here.</li>
+        <li>[chat,them,theirLowtech] Your walls are strange to us, but they look strong.</li>
+        <li>[chat,them,theirHightech] You've done a lot with very little here.</li>
+        <li>[chat,us] So what brings you all the way out to us?</li>
+        <li>[chat,us] We don't get many visitors, so this is a treat.</li>
+        <li>[chat,us] Tell me something about yourself, I'm curious.</li>
+        <li>[chat,us,summer] It's been a hot one, hasn't it?</li>
+        <li>[endwarm,them] I'm glad we talked, truly.</li>
+        <li>[endwarm,them] You're good company, you know that?</li>
+        <li>[endwarm,them] I'll remember this when I'm home.</li>
+        <li>[endgood,them] That was a pleasant talk.</li>
+        <li>[endgood,them] Thank you for the company.</li>
+        <li>[endplain,them] Well, I should get back to my people.</li>
+        <li>[endplain,them] Good talking to you.</li>
+        <li>[endcool,them] I think we've said all there is to say.</li>
+        <li>[endcool,them] Right, well, I'll leave you to it.</li>
+        <li>[endsour,them] I don't think we'll be friends, you and I.</li>
+        <li>[endsour,them] That's enough talk for one day.</li>
+        <li>[notnow,them] Not now, please.</li>
+        <li>[notnow,them] Another time, I'm in no state for it.</li>
+        <li>[notnow,them] Can't you see I'm busy?</li>
+
+        <li>[homeask,us] What's it like back in {TOWN}?</li>
+        <li>[homeask,us] Any news from your part of the world?</li>
+        <li>[homeask,us] How are things at home for your people?</li>
+        <li>[home,them] Times have been hard and easy, the way they always are.</li>
+        <li>[home,them] The roads around {TOWN} are busier than they used to be.</li>
+        <li>[home,them] My people talk about little else these days.</li>
+        <li>[home,us] And how are your people taking it?</li>
+        <li>[home,us] That's worth knowing, thank you.</li>
+        <li>[hometold,them] There, that's all the news I carry.</li>
+        <li>[hometold,them] You'll want to remember all that, I think.</li>
+        <li>[homenothing,them] I'd rather keep home's business to myself.</li>
+        <li>[homenothing,them] Nothing worth the telling, I'm afraid.</li>
+
+        <li>[mealask,us] Will you eat with me, there's food enough for two?</li>
+        <li>[mealask,us] Come and have a meal with me, you must be hungry after the road.</li>
+        <li>[mealyes,them] I'd like that very much, thank you.</li>
+        <li>[mealyes,them] A meal at someone else's table, that's a kindness.</li>
+        <li>[mealno,them] Thank you, but I'll eat with my own people.</li>
+        <li>[mealno,them] I'm not hungry, but thank you.</li>
+        <li>[mealtalk] This is good, who made it?</li>
+        <li>[mealtalk] Pass the salt, would you?</li>
+        <li>[mealtalk,them,theirLowtech] We'd sing over a meal like this at home.</li>
+        <li>[mealend,them] That was a fine meal, thank you.</li>
+        <li>[mealend,them] I'll sleep well after that.</li>
+        <li>[drinkask,us] Have a drink with me, it's on the colony.</li>
+        <li>[drinkask,us] I've got a bottle put by, will you share it?</li>
+        <li>[drinkyes,them] I won't say no to that.</li>
+        <li>[drinkyes,them] Just the one, then.</li>
+        <li>[drinkno,them] I don't drink, but thank you all the same.</li>
+        <li>[drinkno,them] Not today, thank you.</li>
+        <li>[drinktalk] To your health, then.</li>
+        <li>[drinktalk] That's stronger than it looks.</li>
+        <li>[drinkend,them] Good stuff, your people brew it well.</li>
+        <li>[drinkend,them] Thanks for the drink, friend.</li>
+
+        <li>[gift,us] This is for you, with the colony's thanks.</li>
+        <li>[gift,us] I thought you might like this.</li>
+        <li>[gift,us] Something for the road, take it.</li>
+        <li>[giftsuits,them] How did you know, this is just what I'd have wanted.</li>
+        <li>[giftsuits,them] Oh, this is perfect, thank you.</li>
+        <li>[giftthanks,them] That's very kind of you.</li>
+        <li>[giftthanks,them] I'll take good care of it.</li>
+        <li>[giftno,them] I'm sorry, I can't accept that.</li>
+        <li>[giftno,them] That's not something I can take, forgive me.</li>
+
+        <li>[wordask,us] Would you speak well of us when you're home?</li>
+        <li>[wordask,us] Put in a good word for us with your people, would you?</li>
+        <li>[wordyes,them] I'll tell them what I've seen here, and it was good.</li>
+        <li>[wordyes,them] You have my word, they'll hear well of you.</li>
+        <li>[wordno,them] I'll tell them what I saw, nothing more.</li>
+        <li>[wordno,them] I don't make promises for my people.</li>
+        <li>[letter,us] Would you take this letter home with you?</li>
+        <li>[letter,us] This needs to reach {TOWN}, could you carry it?</li>
+        <li>[letteryes,them] It'll be in the right hands before long.</li>
+        <li>[letteryes,them] Leave it with me, I'll see it gets there.</li>
+
+        <li>[teachask,us] Could you show me how you do it, just for an hour?</li>
+        <li>[teachask,us] I'd love to learn from you, if you'd teach me.</li>
+        <li>[teachyes,them] Come on then, I'll show you what I know.</li>
+        <li>[teachyes,them] Watch closely, I'll only show you once.</li>
+        <li>[teachno,them] I'm not a teacher, and I haven't the time.</li>
+        <li>[teachno,them] That's not something I give away.</li>
+        <li>[lesson,them] No, slower, and keep your hands steady.</li>
+        <li>[lesson,them] That's it, you're getting the feel of it.</li>
+        <li>[lesson,them] Try it again, but this time watch me first.</li>
+        <li>[lessonask,us] Like this, or am I doing it wrong?</li>
+        <li>[lessonask,us] Why do you do it that way round?</li>
+        <li>[lessondone,them] You learn quickly, keep practising.</li>
+        <li>[lessondone,them] That's enough for today, you did well.</li>
+        <li>[bringask,us] Next time your people come, could they bring us something?</li>
+        <li>[bringask,us] We're short of a few things, could your people help?</li>
+        <li>[bringyes,them] I'll ask for it, and you'll have it next time.</li>
+        <li>[bringyes,them] Consider it done, we'll bring it.</li>
+        <li>[bringno,them] We've little enough to spare ourselves.</li>
+        <li>[bringno,them] I can't promise what isn't mine to give.</li>
+        <li>[brought,them] Here's what you asked for, as promised.</li>
+        <li>[brought,them] We didn't forget, this is for you.</li>
+
+        <li>[inviteask,us] Why not stay with us, there's a place for you here?</li>
+        <li>[inviteask,us] You'd be welcome here for good, you know.</li>
+        <li>[inviteyes,them] You know, I think I will.</li>
+        <li>[inviteyes,them] I've been hoping someone would ask.</li>
+        <li>[inviteno,them] My place is with my people, but thank you.</li>
+        <li>[inviteno,them] I couldn't leave them, not now.</li>
+
+        <li>[befriend,us] Walk with me a while, I'd like to know you better.</li>
+        <li>[befriend,us] Tell me about yourself, I mean it.</li>
+        <li>[befriend,us] I'm glad you came back, I hoped you would.</li>
+        <li>[friends,us] Whenever you're this way, you've a friend here.</li>
+        <li>[friends,us] Come back soon, friend.</li>
+
+        <li>[court,us] I've been thinking about you since you got here.</li>
+        <li>[court,us] Would you walk with me, just the two of us?</li>
+        <li>[courttalk,them] You're very forward, aren't you?</li>
+        <li>[courttalk,us] I mean every word of it.</li>
+        <li>[courttalk] I like the way you laugh.</li>
+        <li>[courtyes,them] I'd hoped you'd say something like that.</li>
+        <li>[courtyes,them] I think about you too, you know.</li>
+        <li>[courtno,them] I'm flattered, but no.</li>
+        <li>[courtno,them] I don't feel that way about you, I'm sorry.</li>
+        <li>[lovers,us] I don't care how far apart we live.</li>
+        <li>[lovers,us] Come back to me soon.</li>
+
+        <li>[faith,us] Tell me about your faith, I've wondered about it.</li>
+        <li>[faith,us] What do your people believe, if you don't mind me asking?</li>
+        <li>[faithtalk] That's not how we see it at all.</li>
+        <li>[faithtalk] There's more truth in that than you'd think.</li>
+        <li>[faithtalk,them] We were taught that from the cradle.</li>
+        <li>[faithcloser,them] It's good to meet someone who keeps the same faith.</li>
+        <li>[faithcloser,them] We're of one mind, you and I.</li>
+        <li>[faithsoftened,them] You've given me something to think about.</li>
+        <li>[faithsoftened,them] I'm not sure I believe it the way I did this morning.</li>
+        <li>[faithagreed,them] We'll have to agree to differ, then.</li>
+        <li>[faithagreed,them] Each to their own, I suppose.</li>
+        <li>[faithhardened,them] I won't hear my faith spoken of like that.</li>
+        <li>[faithhardened,them] You're wrong, and I'll pray you see it one day.</li>
+
+        <li>[sparask,us] Fancy a friendly bout, nothing serious?</li>
+        <li>[sparask,us] Show me how they fight where you come from.</li>
+        <li>[sparyes,them] Alright, but don't cry when you lose.</li>
+        <li>[sparyes,them] A little practice never hurt anyone, mostly.</li>
+        <li>[sparno,them] I'd rather not, thank you.</li>
+        <li>[sparno,them] I didn't come here to fight.</li>
+        <li>[sparbegin,us] Fists only, and we stop when one of us says so.</li>
+        <li>[sparbegin,us] Ready when you are.</li>
+        <li>[sparwin] Good bout, you nearly had me.</li>
+        <li>[sparwin] Keep your guard up next time.</li>
+        <li>[sparlose] Alright, alright, you win this one.</li>
+        <li>[sparlose] I'll get you next time.</li>
+
+        <li>[provoke,us] Your people are thieves and everyone knows it.</li>
+        <li>[provoke,us] You've got a nerve, showing your face here.</li>
+        <li>[provoke,us] Go home, nobody wants you here.</li>
+        <li>[provoked,them] What did you just say to me?</li>
+        <li>[provoked,them] Say that again, I dare you.</li>
+        <li>[provoked,us] You heard me.</li>
+        <li>[provokefight,them] Right, that's it!</li>
+        <li>[provokefight,them] You'll regret that.</li>
+        <li>[provokecalm,them] I'll pretend I didn't hear that.</li>
+        <li>[provokecalm,them] My people will hear of this.</li>
+
+        <li>[duelask,us] I challenge you, by your own people's ways.</li>
+        <li>[duelask,us] Let's settle this with honour, you and I.</li>
+        <li>[duelask,us,theirLowtech] By the old ways, I call you out.</li>
+        <li>[duelyes,them] I accept, and may the better one win.</li>
+        <li>[duelyes,them] So be it, let them all watch.</li>
+        <li>[duelno,them] There's no honour in this, I refuse.</li>
+        <li>[duelno,them] I won't fight you, not today.</li>
+        <li>[duelsalute,us] On my word, we fight by the terms.</li>
+        <li>[duelsalute,us] Ready yourself.</li>
+        <li>[duelwin] You fought well, there's no shame in it.</li>
+        <li>[duelwin] It's settled, then.</li>
+        <li>[duelyield] Enough, I yield.</li>
+        <li>[duelyield] You have it, I yield.</li>
+        <li>[watch] Go on, get in there!</li>
+        <li>[watch] Look at them go.</li>
+        <li>[watch] Mind the blade, mind the blade.</li>
+        <li>[watch] I can hardly bear to watch.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -499,6 +499,8 @@ namespace ColonyCouncil
             Safe("lines under the walls", () => relays.Hourly(this));
             // Books being read, benches worked in the dark, coming in soaked (Lives/LifeNew.cs).
             Safe("life moments", () => LifeNewTracker.Hourly(this));
+            // What was done with outsiders: good words carried home, favours brought, bonds fading (Outsiders/).
+            Safe("outsiders", () => OutsiderBook.Instance?.Hourly());
         }
 
         private void HourlyEvents()

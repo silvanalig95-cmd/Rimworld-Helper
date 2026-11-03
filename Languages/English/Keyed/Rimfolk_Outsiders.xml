@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Talking with people from outside the colony (Source/ColonyCouncil/Outsiders/). -->
+
+  <!-- Settings -->
+  <CC_Settings_OutsiderTalk>Talking with outsiders</CC_Settings_OutsiderTalk>
+  <CC_Settings_OutsiderTalk_Tip>With a colonist selected, right-click someone from outside the colony who isn't hostile (a visitor, a trader, a guest, someone of a camp, a messenger, an envoy, a lodger) for "Talk with...": chat, ask about their home, share a meal or a drink, give a gift, ask them to put in a good word at home or carry a letter, ask a small favour (a lesson, something brought next time), invite them to stay, get to know them over their visits or court them, talk faith. Each plays out on the map: the colonist walks over, both stop and talk, and what comes of it follows both their natures, how the two get on, and what their people think of the colony. Their notables remember it, and a stranger becomes a face the colony knows. Right-clicking a hostile stays the game's attack.</CC_Settings_OutsiderTalk_Tip>
+  <CC_SetNote_OutsiderTalk>Right-click someone from outside the colony to talk, share a meal, give a gift, ask a favour.</CC_SetNote_OutsiderTalk>
+  <CC_Settings_OutsiderSpar>Practice bouts with outsiders</CC_Settings_OutsiderSpar>
+  <CC_Settings_OutsiderSpar_Tip>Offer someone a friendly bout with fists. Both learn a little melee; bruises are likely, and now and then (4% to 8% a bout, more between fighting tempers) one blow goes in harder than meant and leaves a real injury. A bout is practice, so their people don't count its blows against the colony.</CC_Settings_OutsiderSpar_Tip>
+  <CC_SetNote_OutsiderSpar>A friendly bout with fists: bruises likely, a real injury now and then.</CC_SetNote_OutsiderSpar>
+  <CC_Settings_OutsiderProvoke>Insulting outsiders</CC_Settings_OutsiderProvoke>
+  <CC_Settings_OutsiderProvoke_Tip>Hard words to someone from outside the colony: it sours them toward the colonist and the colony, their people remember the slight, and someone with a hot temper may answer with the game's own fistfight, which their people remember too. Needs the deeper game hooks, so the fight's blows aren't counted as the colony attacking a guest.</CC_Settings_OutsiderProvoke_Tip>
+  <CC_SetNote_OutsiderProvoke>Hard words: a slight remembered, and with a hot temper a fistfight.</CC_SetNote_OutsiderProvoke>
+  <CC_Settings_OutsiderDuels>Duels of honour</CC_Settings_OutsiderDuels>
+  <CC_Settings_OutsiderDuels_Tip>Challenge someone of a people whose ways know the duel (tribes, medieval folk, an empire's nobility) to first blood or until one yields. Those nearby gather to watch, and it is a real fight with their own weapons that stops at the terms; deaths are rare, but the game's own fight decides. Winning gains honour with their people, losing costs a little. Needs the deeper game hooks.</CC_Settings_OutsiderDuels_Tip>
+  <CC_SetNote_OutsiderDuels>A real fight by the terms, watched by both sides; honour won or lost.</CC_SetNote_OutsiderDuels>
+
+  <!-- The menu -->
+  <CC_Out_Menu>Talk with {OTHER}...</CC_Out_Menu>
+  <CC_Out_MenuTitle>{PAWN} and {OTHER}</CC_Out_MenuTitle>
+  <CC_Out_Disabled>{LABEL} ({WHY})</CC_Out_Disabled>
+  <CC_Out_Nothing>Nothing to do with them now</CC_Out_Nothing>
+  <CC_Out_Act_Chat>Chat</CC_Out_Act_Chat>
+  <CC_Out_Act_AskHome>Ask about their home</CC_Out_Act_AskHome>
+  <CC_Out_Act_Meal>Share a meal</CC_Out_Act_Meal>
+  <CC_Out_Act_Drink>Share a drink</CC_Out_Act_Drink>
+  <CC_Out_Act_Gift>Give a gift...</CC_Out_Act_Gift>
+  <CC_Out_Act_GoodWord>Ask them to put in a good word with {NAME}</CC_Out_Act_GoodWord>
+  <CC_Out_Act_Letter>Give them a letter to carry home...</CC_Out_Act_Letter>
+  <CC_Out_Act_Teach>Ask them to teach something</CC_Out_Act_Teach>
+  <CC_Out_Act_TeachSkill>Ask them to teach {SKILL} for an hour</CC_Out_Act_TeachSkill>
+  <CC_Out_Act_Bring>Ask them to bring something next time...</CC_Out_Act_Bring>
+  <CC_Out_Act_Invite>Invite them to stay</CC_Out_Act_Invite>
+  <CC_Out_Act_Befriend>Spend time getting to know them</CC_Out_Act_Befriend>
+  <CC_Out_Act_Court>Court them</CC_Out_Act_Court>
+  <CC_Out_Act_Faith>Talk faith</CC_Out_Act_Faith>
+  <CC_Out_Act_Spar>Offer a practice bout</CC_Out_Act_Spar>
+  <CC_Out_Act_Provoke>Insult them</CC_Out_Act_Provoke>
+  <CC_Out_Act_Duel>Challenge them to a duel of honour...</CC_Out_Act_Duel>
+  <CC_Out_TheirPeople>their people</CC_Out_TheirPeople>
+  <CC_Out_BringTitle>What should {OTHER}'s people bring?</CC_Out_BringTitle>
+  <CC_Out_BringItem>{THING} (about {COUNT})</CC_Out_BringItem>
+  <CC_Out_TermsTitle>The terms</CC_Out_TermsTitle>
+  <CC_Out_Terms_FirstBlood>To first blood</CC_Out_Terms_FirstBlood>
+  <CC_Out_Terms_Yield>Until one yields</CC_Out_Terms_Yield>
+  <CC_Out_TermsWord_FirstBlood>to first blood</CC_Out_TermsWord_FirstBlood>
+  <CC_Out_TermsWord_Yield>until one yields</CC_Out_TermsWord_Yield>
+
+  <!-- Why not -->
+  <CC_Out_Why_Gone>gone</CC_Out_Why_Gone>
+  <CC_Out_Why_Downed>down</CC_Out_Why_Downed>
+  <CC_Out_Why_Asleep>asleep</CC_Out_Why_Asleep>
+  <CC_Out_Why_Upset>not in their right mind</CC_Out_Why_Upset>
+  <CC_Out_Why_Danger>not with danger about</CC_Out_Why_Danger>
+  <CC_Out_Why_Leaving>on their way out</CC_Out_Why_Leaving>
+  <CC_Out_Why_Trading>trading</CC_Out_Why_Trading>
+  <CC_Out_Why_HandsFull>their hands are full</CC_Out_Why_HandsFull>
+  <CC_Out_Why_Eating>eating</CC_Out_Why_Eating>
+  <CC_Out_Why_Busy>busy with something else</CC_Out_Why_Busy>
+  <CC_Out_Why_Shuns>won't stop for {PAWN}</CC_Out_Why_Shuns>
+  <CC_Out_Why_NotNow>{PAWN} isn't up to it</CC_Out_Why_NotNow>
+  <CC_Out_Why_CantTalk>{PAWN} can't speak</CC_Out_Why_CantTalk>
+  <CC_Out_Why_NoReach>can't reach them</CC_Out_Why_NoReach>
+  <CC_Out_Why_Lately>did that together lately</CC_Out_Why_Lately>
+  <CC_Out_Why_LatelyAnyone>already did that for the colony lately</CC_Out_Why_LatelyAnyone>
+  <CC_Out_Why_NoHome>no home the colony knows of</CC_Out_Why_NoHome>
+  <CC_Out_Why_NoFood>nothing in store they'd both eat</CC_Out_Why_NoFood>
+  <CC_Out_Why_NoDrink>no drink in store they'd both have</CC_Out_Why_NoDrink>
+  <CC_Out_Why_NoGoods>nothing in store to give</CC_Out_Why_NoGoods>
+  <CC_Out_Why_NoNotable>the colony knows nobody of their people by name</CC_Out_Why_NoNotable>
+  <CC_Out_Why_Promised>already promised a good word</CC_Out_Why_Promised>
+  <CC_Out_Why_NotWell>doesn't think well enough of the colony yet</CC_Out_Why_NotWell>
+  <CC_Out_Why_OneLetter>a letter to {NAME} is under way already</CC_Out_Why_OneLetter>
+  <CC_Out_Why_TooManyLetters>too many letters under way</CC_Out_Why_TooManyLetters>
+  <CC_Out_Why_NoSkill>has nothing to teach {PAWN}</CC_Out_Why_NoSkill>
+  <CC_Out_Why_Asked>their people already have something to bring</CC_Out_Why_Asked>
+  <CC_Out_Why_TooManyAsked>too many favours asked already</CC_Out_Why_TooManyAsked>
+  <CC_Out_Why_NoBring>nothing their people could bring</CC_Out_Why_NoBring>
+  <CC_Out_Why_Leader>leads their people</CC_Out_Why_Leader>
+  <CC_Out_Why_NoRoom>{WHY}</CC_Out_Why_NoRoom>
+  <CC_Out_Why_NoReason>has no reason to leave their people</CC_Out_Why_NoReason>
+  <CC_Out_Why_Friends>already friends</CC_Out_Why_Friends>
+  <CC_Out_Why_Lovers>already lovers</CC_Out_Why_Lovers>
+  <CC_Out_Why_NotDrawn>not drawn to them</CC_Out_Why_NotDrawn>
+  <CC_Out_Why_NotDrawnThem>they aren't drawn that way</CC_Out_Why_NotDrawnThem>
+  <CC_Out_Why_Belief>their beliefs don't allow it</CC_Out_Why_Belief>
+  <CC_Out_Why_Strangers>they barely know each other yet</CC_Out_Why_Strangers>
+  <CC_Out_Why_Peaceful>{PAWN} won't fight</CC_Out_Why_Peaceful>
+  <CC_Out_Why_PeacefulThem>they won't fight</CC_Out_Why_PeacefulThem>
+  <CC_Out_Why_Hurt>too hurt for it</CC_Out_Why_Hurt>
+
+  <!-- Who they are -->
+  <CC_Out_Called>{NAME}, {ROLE} of {TOWN} ({FACTION})</CC_Out_Called>
+  <CC_Out_Called_NoTown>{NAME}, {ROLE} ({FACTION})</CC_Out_Called_NoTown>
+  <CC_Out_Called_Plain>{NAME}, {ROLE}</CC_Out_Called_Plain>
+  <CC_Out_Role_Guest>guest</CC_Out_Role_Guest>
+  <CC_Out_Role_Lodger>lodger</CC_Out_Role_Lodger>
+  <CC_Out_Role_Trader>trader</CC_Out_Role_Trader>
+  <CC_Out_Role_Visitor>visitor</CC_Out_Role_Visitor>
+
+  <!-- How a talk went -->
+  <CC_Out_Tone_Warm>They got on very well.</CC_Out_Tone_Warm>
+  <CC_Out_Tone_Good>They got on well.</CC_Out_Tone_Good>
+  <CC_Out_Tone_Plain>It was a pleasant enough word, nothing more.</CC_Out_Tone_Plain>
+  <CC_Out_Tone_Cool>It was a little awkward.</CC_Out_Tone_Cool>
+  <CC_Out_Tone_Sour>It went badly.</CC_Out_Tone_Sour>
+  <CC_Out_ToneWord_Warm>warmly</CC_Out_ToneWord_Warm>
+  <CC_Out_ToneWord_Good>pleasantly</CC_Out_ToneWord_Good>
+  <CC_Out_ToneWord_Plain>briefly</CC_Out_ToneWord_Plain>
+  <CC_Out_ToneWord_Cool>awkwardly</CC_Out_ToneWord_Cool>
+  <CC_Out_ToneWord_Sour>badly</CC_Out_ToneWord_Sour>
+
+  <!-- What a notable remembers of it -->
+  <CC_Out_Note_Chat>Talked with {PAWN} at the colony, {HOW}.</CC_Out_Note_Chat>
+  <CC_Out_Note_AskHome>Told {PAWN} the news of home, {HOW}.</CC_Out_Note_AskHome>
+  <CC_Out_Note_Meal>Shared a meal with {PAWN} at the colony.</CC_Out_Note_Meal>
+  <CC_Out_Note_Drink>Shared a drink with {PAWN} at the colony.</CC_Out_Note_Drink>
+  <CC_Out_Note_Gift>Was given {HOW} by {PAWN} at the colony.</CC_Out_Note_Gift>
+  <CC_Out_Note_GoodWord>Promised {PAWN} to speak for the colony to {HOW}.</CC_Out_Note_GoodWord>
+  <CC_Out_Note_Letter>Carried a letter home for {PAWN}.</CC_Out_Note_Letter>
+  <CC_Out_Note_Teach>Taught {PAWN} something of {HOW}.</CC_Out_Note_Teach>
+  <CC_Out_Note_Bring>Promised {PAWN} to bring {HOW} next time.</CC_Out_Note_Bring>
+  <CC_Out_Note_Befriend>Spent time getting to know {PAWN}, {HOW}.</CC_Out_Note_Befriend>
+  <CC_Out_Note_Court>Was courted by {PAWN}, and {HOW}.</CC_Out_Note_Court>
+  <CC_Out_Note_Faith>Talked faith with {PAWN}: {HOW}.</CC_Out_Note_Faith>
+  <CC_Out_Note_Provoke>Was insulted by {PAWN} at the colony.</CC_Out_Note_Provoke>
+  <CC_Out_Note_Spar>Sparred with {PAWN}.</CC_Out_Note_Spar>
+  <CC_Out_Note_Duel>Fought {PAWN} in a duel of honour {HOW}.</CC_Out_Note_Duel>
+  <CC_Out_Note_Brawl>Came to blows with {PAWN} at the colony.</CC_Out_Note_Brawl>
+  <CC_Out_Note_Friends>Became friends with {PAWN}.</CC_Out_Note_Friends>
+  <CC_Out_Note_WordLanded>Heard {OTHER} speak well of the colony, and of {PAWN}.</CC_Out_Note_WordLanded>
+  <CC_Out_Note_SawDuel>Watched {OTHER} fight {PAWN} of the colony in a duel of honour; {HOW}.</CC_Out_Note_SawDuel>
+  <CC_Out_SawWon>{WINNER} won</CC_Out_SawWon>
+  <CC_Out_SawDraw>neither won</CC_Out_SawDraw>
+  <CC_Out_CourtWord_Yes>welcomed it</CC_Out_CourtWord_Yes>
+  <CC_Out_CourtWord_No>turned them down</CC_Out_CourtWord_No>
+  <CC_Out_FaithWord_Closer>of one mind</CC_Out_FaithWord_Closer>
+  <CC_Out_FaithWord_Softened>came away less sure</CC_Out_FaithWord_Softened>
+  <CC_Out_FaithWord_Agreed>agreed to differ</CC_Out_FaithWord_Agreed>
+  <CC_Out_FaithWord_Hardened>a hard argument</CC_Out_FaithWord_Hardened>
+  <CC_Out_DuelWord_Won>and was beaten</CC_Out_DuelWord_Won>
+  <CC_Out_DuelWord_Lost>and won</CC_Out_DuelWord_Lost>
+  <CC_Out_DuelWord_Draw>and neither won</CC_Out_DuelWord_Draw>
+
+  <!-- News of home -->
+  <CC_Out_HomeTitle>News from {TOWN}</CC_Out_HomeTitle>
+  <CC_Out_HomeHead>{OTHER} told {PAWN} what's going on around {TOWN}:</CC_Out_HomeHead>
+  <CC_Out_News_Short_Food>They're short of food ({WHAT}).</CC_Out_News_Short_Food>
+  <CC_Out_News_Short_Medicine>They're short of medicine ({WHAT}).</CC_Out_News_Short_Medicine>
+  <CC_Out_News_Short_Hands>They're short of hands ({WHAT}).</CC_Out_News_Short_Hands>
+  <CC_Out_News_Short_Fuel>They're short of firewood and warm clothes ({WHAT}).</CC_Out_News_Short_Fuel>
+  <CC_Out_News_Caravan>A caravan of theirs is on its way to you.</CC_Out_News_Caravan>
+  <CC_Out_News_Visitors>Some of their people mean to visit you soon.</CC_Out_News_Visitors>
+
+  <!-- Messages -->
+  <CC_Out_Msg_NotNow>{OTHER} won't stop to talk now: {WHY}.</CC_Out_Msg_NotNow>
+  <CC_Out_Msg_Chat>{PAWN} talked with {WHO}. {HOW}</CC_Out_Msg_Chat>
+  <CC_Out_Msg_HomeNothing>{OTHER} wouldn't say much about home when {PAWN} asked.</CC_Out_Msg_HomeNothing>
+  <CC_Out_Msg_MealNo>{OTHER} turned down {PAWN}'s invitation to eat together.</CC_Out_Msg_MealNo>
+  <CC_Out_Msg_DrinkNo>{OTHER} turned down {PAWN}'s offer of a drink.</CC_Out_Msg_DrinkNo>
+  <CC_Out_Msg_NoFood>There was nothing in store both {PAWN} and {OTHER} would eat.</CC_Out_Msg_NoFood>
+  <CC_Out_Msg_NoDrink>There was no drink in store both {PAWN} and {OTHER} would have.</CC_Out_Msg_NoDrink>
+  <CC_Out_Msg_MealDone>{PAWN} and {OTHER} shared a meal.</CC_Out_Msg_MealDone>
+  <CC_Out_Msg_DrinkDone>{PAWN} and {OTHER} shared a drink.</CC_Out_Msg_DrinkDone>
+  <CC_Out_Msg_MealApart>{PAWN} and {OTHER} didn't end up eating together after all.</CC_Out_Msg_MealApart>
+  <CC_Out_Msg_Gift>{PAWN} gave {OTHER} {GIFT}, and was thanked kindly.</CC_Out_Msg_Gift>
+  <CC_Out_Msg_GiftSuits>{PAWN} gave {OTHER} {GIFT}. It suited them well, and they were touched.</CC_Out_Msg_GiftSuits>
+  <CC_Out_Msg_GiftNo>{OTHER} couldn't accept the {GIFT} from {PAWN}.</CC_Out_Msg_GiftNo>
+  <CC_Out_Msg_WordYes>{OTHER} promised {PAWN} to put in a good word for the colony with {NAME} once home.</CC_Out_Msg_WordYes>
+  <CC_Out_Msg_WordNo>{OTHER} wouldn't promise {PAWN} to speak for the colony at home.</CC_Out_Msg_WordNo>
+  <CC_Out_Msg_WordLanded>{OTHER} is home, and has spoken well of the colony to {NAME}, as {PAWN} asked.</CC_Out_Msg_WordLanded>
+  <CC_Out_Msg_TeachNo>{OTHER} wouldn't spare {PAWN} a lesson.</CC_Out_Msg_TeachNo>
+  <CC_Out_Msg_Taught>{OTHER} spent an hour teaching {PAWN} {SKILL}. Their people will remember the colony owes them for it.</CC_Out_Msg_Taught>
+  <CC_Out_Msg_TaughtPart>{OTHER}'s lesson in {SKILL} was cut short, but {PAWN} learned something.</CC_Out_Msg_TaughtPart>
+  <CC_Out_Msg_TaughtShort>{OTHER}'s lesson in {SKILL} for {PAWN} ended almost before it began.</CC_Out_Msg_TaughtShort>
+  <CC_Out_Msg_BringNo>{OTHER} wouldn't promise {PAWN} anything for next time.</CC_Out_Msg_BringNo>
+  <CC_Out_Msg_BringYes>{OTHER} will have their people bring {THING} on their next visit, as {PAWN} asked.</CC_Out_Msg_BringYes>
+  <CC_Out_Msg_Brought>{BEARER} brought {THING}, as {OTHER} promised {PAWN}.</CC_Out_Msg_Brought>
+  <CC_Out_Msg_BringLapsed>Nobody of {FACTION} came by with the {THING} {OTHER} promised, and the favour has lapsed.</CC_Out_Msg_BringLapsed>
+  <CC_Out_Msg_InviteNo>{OTHER} thanked {PAWN}, but won't leave their people.</CC_Out_Msg_InviteNo>
+  <CC_Out_Msg_InviteYes>{OTHER} accepted {PAWN}'s invitation to stay. {FACTION} lose one of their own, and think a little less of the colony for it.</CC_Out_Msg_InviteYes>
+  <CC_Out_Msg_Befriend>{PAWN} spent time with {OTHER}. {HOW} {BOND}</CC_Out_Msg_Befriend>
+  <CC_Out_Bond_Friends>They're friends, though they live apart.</CC_Out_Bond_Friends>
+  <CC_Out_Bond_Visits>A friendship takes more than one visit.</CC_Out_Bond_Visits>
+  <CC_Out_Bond_Warmer>They aren't close enough to be friends yet.</CC_Out_Bond_Warmer>
+  <CC_Out_Bond_Know>They need to know each other better to be friends.</CC_Out_Bond_Know>
+  <CC_Out_Msg_Friends>{PAWN} and {OTHER} are friends now, though they live apart.</CC_Out_Msg_Friends>
+  <CC_Out_Msg_CourtNo>{OTHER} turned {PAWN} down.</CC_Out_Msg_CourtNo>
+  <CC_Out_Msg_Sweet>{PAWN} and {OTHER} are sweet on each other.</CC_Out_Msg_Sweet>
+  <CC_Out_Msg_CourtYes>{OTHER} welcomed {PAWN}'s attentions again.</CC_Out_Msg_CourtYes>
+  <CC_Out_Msg_Lovers>{PAWN} and {OTHER} are lovers now, though they live apart.</CC_Out_Msg_Lovers>
+  <CC_Out_Msg_Faith_Closer>{PAWN} and {OTHER} talked of {OURS}, the faith they share, and came away closer.</CC_Out_Msg_Faith_Closer>
+  <CC_Out_Msg_Faith_Softened>{PAWN} and {OTHER} talked faith, and {OTHER} came away a little less sure of {IDEO}.</CC_Out_Msg_Faith_Softened>
+  <CC_Out_Msg_Faith_Agreed>{PAWN} and {OTHER} talked faith and agreed to differ.</CC_Out_Msg_Faith_Agreed>
+  <CC_Out_Msg_Faith_Hardened>{PAWN} and {OTHER}'s talk of faith turned into a hard argument, and both came away surer of their own.</CC_Out_Msg_Faith_Hardened>
+  <CC_Out_Msg_Provoke>{PAWN} insulted {OTHER}, who kept their temper. {FACTION} will hear of it.</CC_Out_Msg_Provoke>
+  <CC_Out_Msg_BrawlOver>The fight between {PAWN} and {OTHER} is over. {FACTION} will remember it.</CC_Out_Msg_BrawlOver>
+  <CC_Out_Msg_SparNo>{OTHER} wasn't up for a bout with {PAWN}.</CC_Out_Msg_SparNo>
+  <CC_Out_Msg_Spar>{PAWN} and {OTHER} sparred. {RESULT}</CC_Out_Msg_Spar>
+  <CC_Out_Spar_Even>Neither got the better of it.</CC_Out_Spar_Even>
+  <CC_Out_Spar_Won>{WINNER} got the better of it.</CC_Out_Spar_Won>
+  <CC_Out_Msg_SparHard>A blow in the bout went in harder than meant: {HURT} is hurt.</CC_Out_Msg_SparHard>
+  <CC_Out_Msg_BoutOff>The bout between {PAWN} and {OTHER} never came to anything.</CC_Out_Msg_BoutOff>
+  <CC_Out_Msg_DuelNo>{OTHER} declined {PAWN}'s challenge.</CC_Out_Msg_DuelNo>
+  <CC_Out_Msg_DuelYes>{OTHER} took up {PAWN}'s challenge, {TERMS}. People are gathering to watch.</CC_Out_Msg_DuelYes>
+  <CC_Out_Msg_DuelOff>The duel between {PAWN} and {OTHER} was called off.</CC_Out_Msg_DuelOff>
+  <CC_Out_Msg_DuelDraw>Neither {PAWN} nor {OTHER} could best the other: the duel ends in a draw.</CC_Out_Msg_DuelDraw>
+  <CC_Out_Msg_DuelWon>{PAWN} won the duel of honour against {OTHER}. {FACTION} think better of the colony for it.</CC_Out_Msg_DuelWon>
+  <CC_Out_Msg_DuelLost>{OTHER} won the duel of honour against {PAWN}. {FACTION} think a little less of the colony, though {PAWN} stood up well.</CC_Out_Msg_DuelLost>
+
+  <!-- The gift picker -->
+  <CC_Out_GiftTitle>A gift for {OTHER}</CC_Out_GiftTitle>
+  <CC_Out_GiftNote>{PAWN} fetches it from the stores and hands it to {OTHER}, who keeps it. Something that suits them counts for more, and their people count it as the game counts a gift.</CC_Out_GiftNote>
+  <CC_Out_GiftFit_Against>against their beliefs</CC_Out_GiftFit_Against>
+  <CC_Out_GiftFit_Suits>would suit them</CC_Out_GiftFit_Suits>
+  <CC_Out_GiftFit_SuitsFine>would suit them well</CC_Out_GiftFit_SuitsFine>
+  <CC_Out_GiftFit_Fine>fine work</CC_Out_GiftFit_Fine>
+  <CC_Out_GiftWorth>worth {VALUE}</CC_Out_GiftWorth>
+
+  <!-- What they're doing -->
+  <CC_Out_Report_Going>going to talk with {OTHER}.</CC_Out_Report_Going>
+  <CC_Out_Report_Talking>talking with {OTHER}.</CC_Out_Report_Talking>
+  <CC_Out_Report_Listen>talking with {OTHER}.</CC_Out_Report_Listen>
+  <CC_Out_Report_Gift>bringing {OTHER} a gift.</CC_Out_Report_Gift>
+  <CC_Out_Report_Meal>having {FOOD} in company.</CC_Out_Report_Meal>
+  <CC_Out_Report_Lesson>learning {SKILL} from {OTHER}.</CC_Out_Report_Lesson>
+  <CC_Out_Report_Teach>teaching {OTHER}.</CC_Out_Report_Teach>
+  <CC_Out_Report_Spar>sparring with {OTHER}.</CC_Out_Report_Spar>
+  <CC_Out_Report_Duel>fighting a duel with {OTHER}.</CC_Out_Report_Duel>
+  <CC_Out_Report_Watch>watching a duel.</CC_Out_Report_Watch>
+  <CC_Out_Report_Bring>bringing something over.</CC_Out_Report_Bring>
+
+  <!-- A letter carried home by someone of theirs (World/NeighbourLetters.cs) -->
+  <CC_Letter_Msg_WillWriteFor>{PAWN} will write to {TO}, for {BEARER} to carry home.</CC_Letter_Msg_WillWriteFor>
+  <CC_Letter_Msg_WrittenFor>{PAWN} has written to {TO}, and will hand the letter to {BEARER} to carry home.</CC_Letter_Msg_WrittenFor>
+  <CC_Letter_Msg_HandedBearer>{PAWN} handed {BEARER} the letter to {TO} to carry home.</CC_Letter_Msg_HandedBearer>
+  <CC_Letter_Msg_BearerGone>{BEARER} left before {PAWN}'s letter to {TO} could be handed over. A messenger will come to the gate for it.</CC_Letter_Msg_BearerGone>
+  <CC_LetterDlg_ByBearer>Carried home by {BEARER}</CC_LetterDlg_ByBearer>
+  <CC_LetterDlg_BearerGone>{BEARER} is no longer here to carry it.</CC_LetterDlg_BearerGone>
+  <CC_LetterDlg_BearerNote>The writer sits down at a table to write it, then hands it to {BEARER}, who carries it home to {FACTION} instead of a messenger. The answer comes back by messenger, as for any letter.</CC_LetterDlg_BearerNote>
+
+  <!-- What the peoples remember (World/FactionMemory.cs) -->
+  <CC_Memory_Deed_gaveGift>gave one of theirs a gift at the colony</CC_Memory_Deed_gaveGift>
+  <CC_Memory_Deed_gaveGift_Name>gave {NAME} a gift at the colony</CC_Memory_Deed_gaveGift_Name>
+  <CC_Memory_Deed_gaveGift_Many>gave their people gifts at the colony, {COUNT} times</CC_Memory_Deed_gaveGift_Many>
+  <CC_Memory_Deed_duel>won a duel of honour against one of theirs, fairly</CC_Memory_Deed_duel>
+  <CC_Memory_Deed_duel_Name>won a duel of honour against {NAME}, fairly</CC_Memory_Deed_duel_Name>
+  <CC_Memory_Deed_duel_Many>won duels of honour against their people, {COUNT} times</CC_Memory_Deed_duel_Many>
+  <CC_Memory_Deed_brawled>came to blows with one of theirs at the colony</CC_Memory_Deed_brawled>
+  <CC_Memory_Deed_brawled_Name>came to blows with {NAME} at the colony</CC_Memory_Deed_brawled_Name>
+  <CC_Memory_Deed_brawled_Many>came to blows with their people at the colony, {COUNT} times</CC_Memory_Deed_brawled_Many>
+  <CC_Memory_Deed_broughtAsked>brought what the colony asked for</CC_Memory_Deed_broughtAsked>
+  <CC_Memory_Deed_broughtAsked_Name>brought the {NAME} the colony asked for</CC_Memory_Deed_broughtAsked_Name>
+  <CC_Memory_Deed_broughtAsked_Many>brought what the colony asked for, {COUNT} times</CC_Memory_Deed_broughtAsked_Many>
+
+</LanguageData>

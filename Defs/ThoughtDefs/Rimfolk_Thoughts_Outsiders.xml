@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What a colonist and someone from outside the colony keep of what they did together (Source/ColonyCouncil/Outsiders/):
+       opinions of each other, and the mood of those who watched one of the colony's people fight a duel of honour. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderTalk</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>6</stackLimit>
+    <stackLimitForSameOtherPawn>3</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>a warm talk</label><description>We talked, and it was easy, like we'd known each other for years.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li>
+      <li><label>a good talk</label><description>We talked a while, and I liked what I heard.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li>
+      <li><label>an awkward talk</label><description>We talked, and it didn't go well; neither of us knew what to say.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li>
+      <li><label>a sour talk</label><description>We talked, and it soured; I'd rather not again.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderGift</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>4</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>a gift that suited me</label><description>They gave me something that was just right for me. They took the trouble to know.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li>
+      <li><label>a kind gift</label><description>They gave me a gift, and asked nothing for it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderMeal</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>4</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>shared a meal</label><description>We sat down and ate together. It's how strangers stop being strangers.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li>
+      <li><label>shared a drink</label><description>We had a drink together and talked about nothing much.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderTaught</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>taught me</label><description>They gave me an hour of what they know, and asked nothing for it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li>
+      <li><label>a keen learner</label><description>I showed them what I know, and they listened well.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderBout</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>a good bout</label><description>We sparred, and they gave as good as they got.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li>
+      <li><label>a fair duel</label><description>We fought by the old ways, fairly, and it's settled between us.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderFriend</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>a friend from away</label><description>We don't live in the same place, but we're friends all the same.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderSweet</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>sweet on them</label><description>I keep thinking about them, and I think they think of me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_OutsiderInsulted</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>insulted me</label><description>They walked up to me and said that to my face. I came here in peace.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SawDuel</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li><label>saw one of ours win a duel</label><description>One of ours stood up to them by their own ways, and won. I was there.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>saw one of ours lose a duel</label><description>One of ours fought a duel of honour and lost. It was hard to watch.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

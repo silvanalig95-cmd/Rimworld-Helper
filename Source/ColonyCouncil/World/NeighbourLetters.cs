@@ -72,6 +72,9 @@ namespace ColonyCouncil
         public bool hostile;
         /// <summary>The messenger come for it reached the gate (else they never could come).</summary>
         public bool metAtGate;
+        /// <summary>Someone of their people at the colony who carries it home instead of a messenger (Outsiders/), while they're here.</summary>
+        public Pawn bearer;
+        public string bearerName;
 
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
@@ -83,6 +86,7 @@ namespace ColonyCouncil
             {
                 if (writer != null && writer.Discarded) writer = null;
                 if (other != null && other.Discarded) other = null;
+                if (bearer != null && bearer.Discarded) bearer = null;
                 if (map != null && !Find.Maps.Contains(map)) map = null;
             }
             Scribe_Values.Look(ref id, "id");
@@ -108,6 +112,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref other, "other");
             Scribe_Values.Look(ref hostile, "hostile");
             Scribe_Values.Look(ref metAtGate, "metAtGate");
+            Scribe_References.Look(ref bearer, "bearer");
+            Scribe_Values.Look(ref bearerName, "bearerName");
         }
     }
 
@@ -353,23 +359,33 @@ namespace ColonyCouncil
 
         // ---------------- Sending ----------------
 
-        /// <summary>The player sends it: the writer will sit down to it (or go to the console) when they have a moment.</summary>
-        public static NeighbourLetter Send(Notable n, LetterPurpose p, LetterChannel c, Pawn writer, LetterTopic? topic, string help)
+        /// <summary>
+        /// The player sends it: the writer will sit down to it (or go to the console) when they have a moment. With a
+        /// <paramref name="bearer"/> (someone of their people at the colony, Outsiders/), it goes by their hand instead
+        /// of a messenger's, and the writer sits down to it at once if they're free.
+        /// </summary>
+        public static NeighbourLetter Send(Notable n, LetterPurpose p, LetterChannel c, Pawn writer, LetterTopic? topic, string help, Pawn bearer = null)
         {
             var book = Book;
             var map = writer?.MapHeld ?? HappeningTracker.HomeMap();
-            if (book == null || n == null || writer == null || map == null || WhyNot(n, p) != null || ChannelWhyNot(n, c, map) != null) return null;
+            if (bearer != null) c = LetterChannel.Courier;
+            if (book == null || n == null || writer == null || map == null || WhyNot(n, p) != null || bearer == null && ChannelWhyNot(n, c, map) != null) return null;
             var l = new NeighbourLetter
             {
                 id = book.nextLetterId++, notable = n.id, purpose = p, channel = c, writer = writer, writerName = writer.LabelShort, toName = NotableBook.Called(n),
                 map = map, created = Now, stageTick = Now, stage = c == LetterChannel.Console ? LetterStage.ToCall : LetterStage.ToWrite,
-                topic = topic?.text, topicKey = topic?.key, help = help, hostile = NotableBook.Hostile(n)
+                topic = topic?.text, topicKey = topic?.key, help = help, hostile = NotableBook.Hostile(n), bearer = bearer, bearerName = bearer?.LabelShort
             };
             book.letters.Add(l);
             NotableBook.Changed();
             // apart: the player's choice, said in a message; the writer sits down to it on their own later.
-            Notify.Message((c == LetterChannel.Console ? "CC_Letter_Msg_WillCall" : "CC_Letter_Msg_WillWrite")
-                .Translate(writer.Named("PAWN"), l.toName.Named("TO")).Resolve(), new LookTargets(writer), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            if (bearer != null)
+                Notify.Message("CC_Letter_Msg_WillWriteFor".Translate(writer.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), new LookTargets(writer),
+                    MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            else
+                Notify.Message((c == LetterChannel.Console ? "CC_Letter_Msg_WillCall" : "CC_Letter_Msg_WillWrite")
+                    .Translate(writer.Named("PAWN"), l.toName.Named("TO")).Resolve(), new LookTargets(writer), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            if (bearer != null) TryWrite(l, Now);
             return l;
         }
 
@@ -452,6 +468,17 @@ namespace ColonyCouncil
                     return;
                 case LetterStage.AwaitMessenger:
                 {
+                    // Carried home by someone of theirs at the colony: handed over while they're here, else a messenger after all.
+                    if (l.bearer != null && l.tripId < 0)
+                    {
+                        if (Outsiders.HandLetter(l, l.writer)) return;
+                        // apart: what became of a letter, told in a message.
+                        Notify.Message("CC_Letter_Msg_BearerGone".Translate((l.bearerName ?? "?").Named("BEARER"), l.WriterName.Named("PAWN"), l.toName.Named("TO")).Resolve(),
+                            LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                        l.bearer = null;
+                        Pickup(l, n);
+                        return;
+                    }
                     var trip = CourierTracker.Instance?.Get(l.tripId);
                     if (trip != null && !trip.settled) return;
                     if (trip != null && trip.received) return;
@@ -611,8 +638,39 @@ namespace ColonyCouncil
             l.stage = LetterStage.AwaitMessenger;
             l.stageTick = Now;
             Say(p, "written", n);
+            // Someone of theirs at the colony carries it: the writer takes it over to them (Outsiders/).
+            if (l.bearer != null && Outsiders.HandLetter(l, p))
+            {
+                Notify.Message("CC_Letter_Msg_WrittenFor".Translate(p.Named("PAWN"), l.toName.Named("TO"), l.bearer.Named("BEARER")).Resolve(), new LookTargets(p),
+                    MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                NotableBook.Changed();
+                return;
+            }
+            l.bearer = null;
             Notify.Message("CC_Letter_Msg_Written".Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             Pickup(l, n);
+            NotableBook.Changed();
+        }
+
+        /// <summary>
+        /// Handed to someone of their people at the colony (Outsiders/, the two face to face): it goes home with them,
+        /// and is read once they're back, as long as the walk home takes their people.
+        /// </summary>
+        public static void HandedToBearer(NeighbourLetter l, Pawn by, Pawn bearer)
+        {
+            var n = Book?.Get(l?.notable ?? -1);
+            if (l == null || n == null || l.stage != LetterStage.AwaitMessenger) return;
+            float tiles = Tiles(n, l.map);
+            float there = NotableMath.TravelDays(tiles, TechOf(bearer?.Faction ?? n.faction));
+            l.backDays = NotableMath.TravelDays(tiles, TechOf(n.faction));
+            l.stage = LetterStage.Travelling;
+            l.stageTick = Now;
+            // They set off for home when their stay ends: about half a day on.
+            l.due = Now + Mathf.RoundToInt((there + 0.5f + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
+            Say(by, "hand", n);
+            // together: handed over face to face (the talk job brought the two together).
+            Notify.Message("CC_Letter_Msg_HandedBearer".Translate(by.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), new LookTargets(bearer),
+                MessageTypeDefOf.NeutralEvent, Importance.Important);
             NotableBook.Changed();
         }
 
@@ -935,9 +993,19 @@ namespace ColonyCouncil
         private static string News(Notable n, AnswerTone tone)
         {
             int max = tone <= AnswerTone.Cordial ? 3 : tone == AnswerTone.Cool ? 2 : 1;
+            var items = NewsItems(n.faction, NotableBook.TownOf(n.town));
+            if (items.Count == 0) return "CC_News_Nothing".Translate().Resolve();
+            return "CC_News_Head".Translate(n.Name.Named("NAME")).Resolve() + "\n" + string.Join("\n", items.Take(max).Select(i => "  - " + i));
+        }
+
+        /// <summary>
+        /// Real things near a people's town, as they'd tell of them (a letter's news, and someone of theirs asked about
+        /// home, Outsiders/): world events in the region or on them, places near the town, a quest of theirs, their wars.
+        /// </summary>
+        public static List<string> NewsItems(Faction f, Settlement town)
+        {
             var items = new List<string>();
-            var f = n.faction;
-            var town = NotableBook.TownOf(n.town);
+            if (f == null) return items;
             try
             {
                 foreach (var s in WorldSituations.Instance?.Running ?? Enumerable.Empty<WorldSituation>())
@@ -966,8 +1034,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("letter news", e);
             }
-            if (items.Count == 0) return "CC_News_Nothing".Translate().Resolve();
-            return "CC_News_Head".Translate(n.Name.Named("NAME")).Resolve() + "\n" + string.Join("\n", items.Take(max).Select(i => "  - " + i));
+            return items;
         }
 
         // ---------------- An invitation ----------------
