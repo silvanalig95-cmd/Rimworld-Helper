@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A trade that ends
+
+*3 November 2026, version 0.60.1*
+
+- A trader could stay "trading" for Talk with after the trade window closed, because the game can keep the trade session set. Now someone counts as trading only while a trade window with them is actually open.
+- While a trade window with someone is open, Talk with still waits for the trade to end, as before. Loading a save also clears a stuck one.
+
 ## Talking with outsiders
 
 *3 November 2026, version 0.60.0*

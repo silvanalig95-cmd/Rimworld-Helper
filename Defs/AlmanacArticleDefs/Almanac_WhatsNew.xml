@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.60.1</version>
+        <date>3 November 2026</date>
+        <title>A trade that ends</title>
+        <points>
+          <li>A trader could stay "trading" for Talk with after the trade window closed, because the game can keep the trade session set. Now someone counts as trading only while a trade window with them is actually open.</li>
+          <li>While a trade window with someone is open, Talk with still waits for the trade to end, as before. Loading a save also clears a stuck one.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.60.0</version>
         <date>3 November 2026</date>
         <title>Talking with outsiders</title>

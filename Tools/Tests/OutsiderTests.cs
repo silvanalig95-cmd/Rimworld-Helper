@@ -216,6 +216,12 @@ public static class OutsiderTests
             C(defs.Any(d => d.kind == m.Groups[1].Value && d.name == m.Groups[2].Value), $"{m.Groups[1].Value} {m.Groups[2].Value} is defined");
         foreach (var d in defs.Where(d => d.kind == "JobDef" && (d.name ?? "").StartsWith("Council_Outsider")))
             C(d.driver != null && code.Contains("class " + d.driver.Replace("ColonyCouncil.", "") + " "), $"{d.name}'s driver {d.driver} exists");
+        // The player's report: a trader stayed "trading" after the trade window closed, because the game's trade
+        // session can stay set. Trading needs the session and an open trade window.
+        string outsiders = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Outsiders", "Outsiders.cs"));
+        C(outsiders.Contains("if (TradingNow(x)) return Why(\"Trading\");") && !outsiders.Contains("TradeSession.trader is Pawn t && t == x) return Why"),
+            "trading is the session and an open window, not the session alone");
+        C(outsiders.Contains("w is Dialog_Trade"), "a trade window open counts as trading");
         return n;
     }
 }

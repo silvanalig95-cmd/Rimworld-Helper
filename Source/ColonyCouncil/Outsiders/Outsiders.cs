@@ -260,7 +260,7 @@ namespace ColonyCouncil
             if (x.InMentalState) return Why("Upset");
             if (x.Map.dangerWatcher.DangerRating != StoryDanger.None) return Why("Danger");
             if (Leaving(x)) return Why("Leaving");
-            if (TradeSession.Active && TradeSession.trader is Pawn t && t == x) return Why("Trading");
+            if (TradingNow(x)) return Why("Trading");
             if (x.carryTracker?.CarriedThing != null) return Why("HandsFull");
             var job = x.CurJob;
             if (job != null)
@@ -274,6 +274,24 @@ namespace ColonyCouncil
                 if (d == JobDefOf.LayDown || d == JobDefOf.LayDownResting || d == JobDefOf.Lovin || d == JobDefOf.Rescue || d == JobDefOf.TendPatient) return Why("Busy");
             }
             return null;
+        }
+
+        /// <summary>
+        /// In a trade with the colony right now: the game's trade session names them and a trade window is open. The
+        /// session alone isn't enough: it can stay set after the window closes (the player's report: a trader stayed
+        /// "trading" after the trade ended), so the open window is what counts.
+        /// </summary>
+        public static bool TradingNow(Pawn x)
+        {
+            if (!TradeSession.Active || !(TradeSession.trader is Pawn t) || t != x) return false;
+            var windows = Find.WindowStack?.Windows;
+            if (windows == null) return false;
+            for (int i = 0; i < windows.Count; i++)
+            {
+                var w = windows[i];
+                if (w is Dialog_Trade || (w != null && w.GetType().Name.IndexOf("Trade", StringComparison.OrdinalIgnoreCase) >= 0)) return true;
+            }
+            return false;
         }
 
         /// <summary>On their way out: their group leaving, fleeing or carrying off their wounded, or walking off the map.</summary>
