@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Talk that builds a history
+
+*3 November 2026, version 0.63.0*
+
+- Outsiders have patience for a few things each visit, more if they like the colony. The right-click menu says when they've had enough, and asking the same thing twice only gets "You asked me that already".
+- Colonists now and then start a talk with visitors, traders and guests by themselves when both are free and near each other. The sociable do it more, the shy less, and never with danger about.
+- Every talk with an outsider is a short scene of two to six bubbles. Chats, news of home, refusals, meals and gifts no longer pop up; messages stay for promises, invitations accepted, courtship, duels and injuries.
+- Conversations follow what is going on now: their town and its people, wars and peace, the world's events, the weather on the road, the colony's own news and what their people remember of it. Over 180 conversations to start with.
+- News you hear goes into each town's "Heard lately" on the World page and the region map, and two who talked before pick up where they left off, with what became of it since.
+- Gifts on the same visit count for less and less, and a colonist who asks three things in a row is liked a little less.
+
 ## Packing for the road
 
 *3 November 2026, version 0.62.0*

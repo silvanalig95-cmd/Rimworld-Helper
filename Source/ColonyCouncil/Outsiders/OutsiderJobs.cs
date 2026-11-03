@@ -13,14 +13,19 @@ namespace ColonyCouncil
     // and a favour brought on the next visit. Every one ends at danger.
 
     /// <summary>
-    /// The colonist walks over to the outsider (A), who stops and faces them; they talk a while, a line now and then
-    /// over each head; then what comes of it (Outsiders.Talked), and a moment for the last words to be read. The count
-    /// is the thing talked about (<see cref="OutsiderAct"/>) and, a hundred times over, its terms.
+    /// The colonist walks over to the outsider (A), who stops and faces them; they talk, a scene of two to six lines said
+    /// in turn over their heads (OutsiderTalk.Begin), for as long as it takes to read; then what comes of it
+    /// (Outsiders.Talked), and a moment for the last words to be read. The count is the thing talked about
+    /// (<see cref="OutsiderAct"/>) and, a hundred times over, its terms.
     /// </summary>
     public class JobDriver_OutsiderTalk : JobDriver
     {
+        /// <summary>The longest a scene holds the two, in ticks (six long lines).</summary>
+        private const int SceneMax = 2400;
+
         private bool met, ending;
-        private int said;
+        /// <summary>When the scene has been said and read (the talk's end).</summary>
+        private int talkUntil = -1;
 
         private Pawn Other => job.targetA.Thing as Pawn;
 
@@ -38,7 +43,7 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Values.Look(ref met, "met");
             Scribe_Values.Look(ref ending, "ending");
-            Scribe_Values.Look(ref said, "said");
+            Scribe_Values.Look(ref talkUntil, "talkUntil", -1);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -52,44 +57,38 @@ namespace ColonyCouncil
             meet.initAction = () =>
             {
                 var x = Other;
-                string why = Outsiders.Unwilling(x, pawn, Act);
+                string tired = OutsiderTalk.Tired(x, Act);
+                string why = Outsiders.Unwilling(x, pawn, Act) ?? tired;
                 if (why != null)
                 {
-                    Outsiders.Say(x, "notnow", pawn);
+                    Outsiders.Say(x, tired != null ? "enough" : "notnow", pawn);
                     // together: the colonist walked over and was turned away face to face.
                     Messages.Message("CC_Out_Msg_NotNow".Translate(x.Named("OTHER"), why.Named("WHY")).Resolve(), x, MessageTypeDefOf.RejectInput, false);
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
-                if (!Outsiders.Hold(x, pawn, OutsiderMath.TalkTicks(Act) + 400))
+                if (!Outsiders.Hold(x, pawn, SceneMax + 600))
                 {
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
                 met = true;
                 pawn.rotationTracker.FaceTarget(x);
-                Outsiders.Say(pawn, Outsiders.Opening(Act), x);
+                // The scene: its lines said in turn, each when the one before has been read.
+                int ticks = OutsiderTalk.Begin(pawn, x, Act);
+                talkUntil = Find.TickManager.TicksGame + Mathf.Clamp(ticks > 0 ? ticks : OutsiderMath.TalkTicks(Act), 240, SceneMax);
             };
             meet.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return meet;
             var talk = ToilMaker.MakeToil("OutsiderTalk");
-            talk.defaultCompleteMode = ToilCompleteMode.Delay;
-            talk.defaultDuration = OutsiderMath.TalkTicks(Act);
+            talk.defaultCompleteMode = ToilCompleteMode.Never;
             talk.handlingFacing = true;
             talk.socialMode = RandomSocialMode.Off;
             talk.tickIntervalAction = delta =>
             {
                 var x = Other;
-                if (x == null) return;
-                pawn.rotationTracker.FaceTarget(x);
-                int total = OutsiderMath.TalkTicks(Act);
-                int done = total - ticksLeftThisToil;
-                if (said < 2 && done > (said + 1) * total / 3)
-                {
-                    said++;
-                    if (said % 2 == 1) Outsiders.Say(x, Outsiders.During(Act), pawn);
-                    else Outsiders.Say(pawn, Outsiders.During(Act), x);
-                }
+                if (x != null) pawn.rotationTracker.FaceTarget(x);
+                if (talkUntil < 0 || Find.TickManager.TicksGame >= talkUntil) ReadyForNextToil();
             };
             yield return talk;
             var end = ToilMaker.MakeToil("OutsiderTalkEnd");
@@ -199,7 +198,7 @@ namespace ColonyCouncil
             meet.initAction = () =>
             {
                 var x = Other;
-                string why = Outsiders.Unwilling(x, pawn, OutsiderAct.Gift);
+                string why = Outsiders.Unwilling(x, pawn, OutsiderAct.Gift) ?? OutsiderTalk.Tired(x, OutsiderAct.Gift);
                 if (why != null || !Outsiders.Hold(x, pawn, OutsiderMath.TalkTicks(OutsiderAct.Gift) + 300))
                 {
                     Outsiders.Say(x, "notnow", pawn);

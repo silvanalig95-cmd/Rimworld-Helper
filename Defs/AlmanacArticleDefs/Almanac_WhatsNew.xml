@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.63.0</version>
+        <date>3 November 2026</date>
+        <title>Talk that builds a history</title>
+        <points>
+          <li>Outsiders have patience for a few things each visit, more if they like the colony. The right-click menu says when they've had enough, and asking the same thing twice only gets "You asked me that already".</li>
+          <li>Colonists now and then start a talk with visitors, traders and guests by themselves when both are free and near each other. The sociable do it more, the shy less, and never with danger about.</li>
+          <li>Every talk with an outsider is a short scene of two to six bubbles. Chats, news of home, refusals, meals and gifts no longer pop up; messages stay for promises, invitations accepted, courtship, duels and injuries.</li>
+          <li>Conversations follow what is going on now: their town and its people, wars and peace, the world's events, the weather on the road, the colony's own news and what their people remember of it. Over 180 conversations to start with.</li>
+          <li>News you hear goes into each town's "Heard lately" on the World page and the region map, and two who talked before pick up where they left off, with what became of it since.</li>
+          <li>Gifts on the same visit count for less and less, and a colonist who asks three things in a row is liked a little less.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.62.0</version>
         <date>3 November 2026</date>
         <title>Packing for the road</title>

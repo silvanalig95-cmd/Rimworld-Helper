@@ -269,21 +269,6 @@ namespace ColonyCouncil
 
         public static bool Shuns(int ofColony, int ofColonist) => ofColonist <= ShunColonist || ofColony <= ShunColony;
 
-        // ---------------- News of home ----------------
-
-        /// <summary>How much they tell of home, by how the talk went.</summary>
-        public static int NewsCount(TalkTone t)
-        {
-            switch (t)
-            {
-                case TalkTone.Warm: return 4;
-                case TalkTone.Good: return 3;
-                case TalkTone.Plain: return 2;
-                case TalkTone.Cool: return 1;
-                default: return 0;
-            }
-        }
-
         // ---------------- A gift ----------------
 
         /// <summary>

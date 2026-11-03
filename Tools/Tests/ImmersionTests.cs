@@ -204,6 +204,15 @@ public static class ImmersionTests
                 }
         }
         Check(given >= 300, $"the defs give lines to be said ({given})");
+        // Conversations with outsiders (Defs/OutsiderTalkDefs, said in turn by Outsiders/OutsiderTalk.cs): every line said.
+        int talked = 0;
+        foreach (var e in defs.SelectMany(d => d.Elements("ColonyCouncil.OutsiderTalkDef")))
+            foreach (var li in e.Element("lines")?.Elements("li") ?? Enumerable.Empty<XElement>())
+            {
+                talked++;
+                Spoken(e.Element("defName")?.Value ?? "OutsiderTalkDef", li.Value);
+            }
+        Check(talked >= 500, $"conversations with outsiders give lines to be said ({talked})");
         // The game's own words, said when a pool has nothing that fits.
         var keyed = new HashSet<string>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))

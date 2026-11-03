@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 453; modelled: 453; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** after two, **2,642 KB** after five.
+Saved collections found: 460; modelled: 460; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,149 KB** after a year, **2,545 KB** after two, **2,661 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -61,6 +61,7 @@ Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** aft
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
+| `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
@@ -77,6 +78,7 @@ Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** aft
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
+| `Outsiders/OutsiderBook.cs:visits` | OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave | fixed | 30 | 30 | 30 | 5.9 |
 | `Secrets/Vendettas.cs:vendettas` | 40 settled, avengers dead or discarded dropped | cap | 3 | 6 | 15 | 5.9 |
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
@@ -91,6 +93,7 @@ Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** aft
 | `Offices/Election.cs:pollDays` | the poll a day for six days a seat, while it lasts | while | 84 | 84 | 84 | 4.9 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
+| `Outsiders/OutsiderBook.cs:wars` | OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days | fixed | 30 | 30 | 30 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
@@ -426,7 +429,11 @@ Rimfolk's part of the save, roughly: **2,130 KB** after a year, **2,526 KB** aft
 | `Hud/HudPanelState.cs:pins` | the inventory's pinned items (settings file) | settings | 8 | 8 | 8 | (settings file) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
+| `Outsiders/OutsiderBook.cs:asks` | per visit: the last 8 asks made of them (counted under visits) | fixed | 8 | 8 | 8 | (in its record) |
 | `Outsiders/OutsiderBook.cs:last` | per pair: when they last did each of the 16 things (counted under pairs) | fixed | 16 | 16 | 16 | (in its record) |
+| `Outsiders/OutsiderBook.cs:marks` | per pair: OutsiderTalkMath.MaxMarks, one per key, the oldest go (counted under pairs) | fixed | 10 | 10 | 10 | (in its record) |
+| `Outsiders/OutsiderBook.cs:said` | per pair: OutsiderTalkMath.MaxSaid pieces said, newest last (counted under pairs) | fixed | 16 | 16 | 16 | (in its record) |
+| `Outsiders/OutsiderBook.cs:topics` | per pair: the subjects of the last 3 talks (counted under pairs) | fixed | 3 | 3 | 3 | (in its record) |
 | `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:l` | per person: one per side (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:marks` | per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people) | fixed | 12 | 12 | 12 | (in its record) |

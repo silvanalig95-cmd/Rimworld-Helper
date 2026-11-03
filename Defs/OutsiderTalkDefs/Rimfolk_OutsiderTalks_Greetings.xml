@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    CONVERSATION PIECES between a colonist and someone from outside the colony (Source/ColonyCouncil/Outsiders/
+    OutsiderTalk.cs runs them, OutsiderFacts.cs reads the facts, OutsiderTalkMath.cs chooses). A piece is a short scene
+    said in turn over the two's heads as bubbles: a chat the player orders, news of home when asked, getting to know
+    them, and the talks colonists start by themselves. This header describes the format for every file in this folder.
+
+    <ColonyCouncil.OutsiderTalkDef>
+      <defName>Rimfolk_OT_Road_Long</defName>   unique, Rimfolk_OT_ and the file's subject
+      <topic>road</topic>                         what it's about; the same two drift off a subject they just had
+      <uses>chat,home</uses>                      chat (the default), home (asked about their home), know (getting to know
+                                                  them); several with commas
+      <when>town:far,!tone:sour</when>            conditions, all must hold, in the lines' tag syntax: ! not, | or
+      <weight>1</weight>                          optional, 1 by default
+      <lines>
+        <li>[us] How long were you on the road?</li>          the colonist speaks
+        <li>[them,their:tribal] Many sleeps, and cold ones.</li>   the outsider, for a tribe
+        <li>[them] Long enough to want a proper bed.</li>      the outsider, anyone else
+        <li>[us] Well, you made it.</li>
+      </lines>
+      <heard>{PEOPLE} are at war with {WAR}.</heard>        optional: added to the town's "Heard lately" once said
+      <mark>war</mark><about>WAR</about>                    optional: a mark later talks pick up (talked:war), with the
+                                                            fact behind {WAR}, so a callback knows what became of it
+    </ColonyCouncil.OutsiderTalkDef>
+
+    THE LINES. [us] is the colonist, [them] the outsider. Lines one after another for the same speaker are choices for
+    one turn: the one that fits best is said (more matching tags win), so put the specific ones first and a plain one
+    last that is true whenever the piece is. Alternatives of one turn must not contradict each other: when one is for
+    kin:you, the plain one says !kin:you. A piece has 2 to 6 turns, the speakers taking turns. Each line is one
+    sentence of 90 characters at most (placeholders counted as written), no quotes around it, one "!" at most. Longer
+    pieces (5 or 6 turns) for news, their troubles, faith, family and callbacks; 2 or 3 for small talk and passing by.
+    A talk in passing runs 3 lines at most, a cool one 3, a sour one 2, a warm one 6.
+
+    HONESTY. A piece is said only when every condition holds and every placeholder in the chosen lines has a value, so
+    write each line to be true whenever its conditions are. Never invent a fact the game doesn't hold (a death, a
+    battle, a trade): flavour of their ways is fine, a made-up event is not. American spelling, plain and warm, each
+    people in its own voice: tribes (the elders, the hunt, moons, spirits, the fire), medieval folk (the reeve, the
+    market, the tithe, aye), industrial outlanders (practical, prices, the road, the caravan), spacers (dry, exact),
+    the Empire's nobles (formal, the court, honor, titles).
+
+    CONDITIONS (tags; heat in brackets: how current the fact is, so pieces about fresh news are chosen first)
+      the moment: spring summer fall winter, morning day evening night, rain snow fog storm clear hot cold; the
+        colony's era tribal medieval industrial spacer lowtech, poor rich, small large
+      the talk: tone:warm tone:good tone:plain tone:cool tone:sour (a cool or sour chat uses only pieces with a tone:
+        condition; any piece with one is said only in that tone); first (never talked) met returning (on a new visit)
+        known (familiarity 30) close (60) friends sweethearts lovers; talks:3 talks:8; likesyou coolyou (their regard
+        of the colonist) likesus wary (of the colony); did:gift did:meal did:teach did:spar did:duel did:provoke
+        did:faith did:court did:letter did:bring; last:TOPIC (their last talk's topic)
+      who they are: role:trader role:guest role:lodger role:visitor role:notable role:head role:heir role:envoy;
+        them:young (a child: only pieces asking for it) them:old them:hurt them:kind them:abrasive them:leader
+        them:married them:widowed them:spousehere them:parent them:smallchild them:childhere them:best:SKILLDEF;
+        kin (family of theirs in the colony) kin:you (the colonist is that family)
+      the colonist: us:young (only pieces asking for it) us:old us:hurt us:newcomer us:leader us:speaker us:noble
+        us:married us:widowed us:spousehere us:parent us:smallchild us:best:SKILLDEF; in a colonist's own line also
+        their traits and passions (trait:Kind, skill:Cooking) and old teen hurt grieving lowmood highmood; in an
+        outsider's own line their traits, old teen hurt
+      their people: their:tribal their:medieval their:industrial their:spacer their:lowtech their:hightech
+        their:empire their:noble their:leader samefaith otherfaith
+      their town: town town:near town:far; home:desert home:frozen home:jungle home:swamp home:forest home:plains
+        home:mountains home:hills home:coast home:cold home:hot home:mild; town:head town:notable town:newhead
+        town:headdied town:loss town:ill town:letter (a letter under way) town:wrote (one in 20 days) town:site
+        town:quest town:caravan town:visitors (theirs on the way) town:short:food town:short:medicine
+        town:short:hands town:short:fuel
+      wars: their:war war:new war:long war:losing (they have fewer towns than when it began) war:winning (the
+        enemy has) war:fought (their fighters and the enemy's met on the colony's land) war:ourfoe (their enemy is
+        the colony's too) war:ourfriend; their:peace (a war of theirs over in 30 days); world:war (two other
+        peoples, new); battle:here battle:theirs (two peoples fought on the colony's land in 10 days)
+      the world's events (Rimfolk's world situations): situation situation:theirs situation:bad situation:good
+        situation:new situation:long situation:helped situation:sickness :hunger :cold :war :trade :faith
+        :politics :empire :disaster :beasts ws:DEFNAME; situation:ended ended:theirs ended:helped
+        ended:sickness... ; condition condition:DEFNAME (toxic fallout, a cold snap, a volcanic winter...)
+      the colony: colony:raid colony:raidby colony:raid:them (their own people) colony:raid:theirfoe
+        colony:raid:fallen colony:raid:mechs :insects :animals :tribal :people; colony:death colony:death:battle
+        colony:birth colony:wedding colony:newcomer colony:decree colony:election colony:camp colony:harvest
+        colony:hungry colony:plenty colony:disaster colony:research colony:project colony:day colony:daytoday
+        colony:daysoon colony:daypast colony:traders colony:young colony:old colony:children colony:animals
+        colony:prisoners colony:expecting
+      what their people remember: deed:KIND (released tended gift gaveGift hardship refugees harvestHelp
+        killed captured robbed slighted aid taught... see World/FactionMemory.cs) deed:good deed:bad deed:owed
+        deedbest:KIND (the good deed {DEEDNAME} and {DEEDBY} come from) wrongbest:KIND ({WRONGNAME}) their:friend
+        byyou byyou:freed byyou:tended byyou:helped
+      callbacks: talked:KEY (an earlier talk between the two left the mark KEY, half a day ago or more) with what
+        became of its fact: then:still then:over then:dead then:changed; then:recent then:long. A piece with a
+        talked: or then: condition is a callback: it is weighed with one earlier mark at a time, and {THEN} is what
+        that talk was about. A callback about a change settles the mark.
+
+    PLACEHOLDERS: {COLONIST} {OUTSIDER} {COLONY} {PEOPLE} {TOWN} {HOMELAND} (the land, "temperate forest") {SEASON}
+      {WEATHER} {LEADER} {LEADERTITLE} {THEIRTITLE} {OURTITLE} {THEIRROLE} {THEIRFAITH} {OURFAITH} {THEIRSKILL}
+      {OURSKILL} {THEIRSPOUSE} {THEIRCHILD} {OURSPOUSE} {OURCHILD} {KIN} {KINWORD} (what {KIN} is to them, "sister")
+      {HEAD} {HEADTITLE} {NOTABLE} {NOTABLETITLE} {ILL} {ILLTITLE} {LOST} {LOSTTITLE} {OLDHEAD} {WROTE} {WRITER}
+      {SITE} {QUEST} {WAR} {PEACEWITH} {WARA} {WARB} {BATTLEA} {BATTLEB} {SITUATION} {SITUATIONPLACE} {ENDED}
+      {CONDITION} {COOK} {ARTIST} {OURLEADER} {SPEAKER} {DISASTER} {CAMP} {TRADERS} {NEWCOMER} {DAY} {RAIDERS}
+      {DEAD} {BORN} {WEDDING} {DECREE} {RESEARCH} {PROJECT} {DEEDNAME} {DEEDBY} {WRONGNAME} {YOURDEEDNAME}
+      {FRIEND} {THEN} {NOW} (who leads now, in a then:changed callback). Values that are names keep their case;
+      {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
+      one is capitalized for you.
+  -->
+
+  <!-- ================= Greetings, by how well they know each other ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_First</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>first</when>
+    <lines>
+      <li>[us] I don't think we've met, I'm {COLONIST}.</li>
+      <li>[them,their:tribal] I am {OUTSIDER} of {PEOPLE}, and I greet you.</li>
+      <li>[them,their:medieval] {OUTSIDER}, of {PEOPLE}, and well met.</li>
+      <li>[them,their:empire] {OUTSIDER}, and I travel under the Empire's protection.</li>
+      <li>[them] {OUTSIDER}, with {PEOPLE}, good to meet you.</li>
+      <li>[us] Welcome to {COLONY}, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_FirstSettlers</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>first,town</when>
+    <lines>
+      <li>[them] So you're the ones who settled out here.</li>
+      <li>[us] We are, this is {COLONY}.</li>
+      <li>[them,town:far] I've come a long way from {TOWN} to see it.</li>
+      <li>[them,town:near] I'm from {TOWN}, just a short way off.</li>
+      <li>[them] I'm from {TOWN}, if you know it.</li>
+      <li>[us] Then I hope we'll see more of you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_FirstYoungColony</defName>
+    <topic>greeting</topic>
+    <when>first,colony:young</when>
+    <lines>
+      <li>[them] You haven't been here long, have you?</li>
+      <li>[us] Not long, we're still finding our feet.</li>
+      <li>[them,their:tribal] The land takes a while to know a new face.</li>
+      <li>[them] It shows, but in a good way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Returning</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>returning,!friends</when>
+    <lines>
+      <li>[us] {OUTSIDER}, you came back.</li>
+      <li>[them,their:tribal] The path led me here again, as I hoped it would.</li>
+      <li>[them,their:noble] I said I would return, and I keep my word.</li>
+      <li>[them] I said I would, didn't I?</li>
+      <li>[us] It's good to see a face we know.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_ReturningFriend</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>returning,friends</when>
+    <lines>
+      <li>[them] There you are, {COLONIST}, I was hoping you'd still be here.</li>
+      <li>[us] Where else would I be, {OUTSIDER}?</li>
+      <li>[them,town] I told them at {TOWN} I'd look in on you.</li>
+      <li>[them] I was hoping to find you here.</li>
+      <li>[us] Sit down, then, and tell me everything.</li>
+      <li>[them] Everything would take a week, but I'll start.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Again</defName>
+    <topic>greeting</topic>
+    <when>met,!returning</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Back again, {COLONIST}?</li>
+      <li>[us,trait:Abrasive] Don't look so pleased about it.</li>
+      <li>[us] Couldn't keep away.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Morning</defName>
+    <topic>greeting</topic>
+    <when>morning</when>
+    <weight>0.7</weight>
+    <lines>
+      <li>[us] Morning, did you sleep at all?</li>
+      <li>[them,role:guest] Better than I have in weeks, thank you.</li>
+      <li>[them,their:tribal] The ground was kind to my back.</li>
+      <li>[them] Well enough, thank you.</li>
+      <li>[us] Good, it's a long day otherwise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Evening</defName>
+    <topic>greeting</topic>
+    <when>evening|night</when>
+    <weight>0.7</weight>
+    <lines>
+      <li>[them] Long day for you?</li>
+      <li>[us,us:hurt] Long, and I've the bruises to show for it.</li>
+      <li>[us] Long enough, how was yours?</li>
+      <li>[them] Quiet, which is how I like them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Sweethearts</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>sweethearts|lovers</when>
+    <lines>
+      <li>[them] I've been counting the days, you know.</li>
+      <li>[us] So have I, {OUTSIDER}.</li>
+      <li>[them,town:far] {TOWN} is too far from here, that's the trouble.</li>
+      <li>[them] Walk with me a while before anyone needs you.</li>
+      <li>[us] Gladly.</li>
+      <li>[them] Then let's not waste the time we have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Kin</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>kin</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them,kin:you] {COLONIST}, my own {KINWORD}, look at you.</li>
+      <li>[them,!kin:you] How is my {KINWORD} {KIN} getting on with you?</li>
+      <li>[us,kin:you] It's good to see family, {OUTSIDER}.</li>
+      <li>[us,!kin:you] {KIN} is well, and pulls their weight.</li>
+      <li>[them,kin:you] Your people at home ask after you.</li>
+      <li>[them,!kin:you] Tell {KIN} I asked after them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Noble</defName>
+    <topic>greeting</topic>
+    <when>their:noble</when>
+    <lines>
+      <li>[us] We don't see many of your rank out here, {OUTSIDER}.</li>
+      <li>[them,their:empire] The Empire sends its own wherever it pleases.</li>
+      <li>[them] Out here my title of {THEIRTITLE} counts for little, and I find I like that.</li>
+      <li>[us,us:noble] We're both a long way from court.</li>
+      <li>[us] Then you're welcome as yourself.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Greet_Guest</defName>
+    <topic>greeting</topic>
+    <when>role:guest,met</when>
+    <lines>
+      <li>[us] Is there anything you need while you're with us?</li>
+      <li>[them,them:abrasive] A quieter bed, but I'll manage.</li>
+      <li>[them] Nothing at all, you've been kind.</li>
+      <li>[us] Say the word if that changes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Children ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Young_Visitor</defName>
+    <topic>greeting</topic>
+    <when>them:young</when>
+    <lines>
+      <li>[us] Hello there, are you with the grown-ups?</li>
+      <li>[them,town] I'm not little, I came all the way from {TOWN}.</li>
+      <li>[them] I'm not little, I walked the whole way.</li>
+      <li>[us] All that way, on your own two feet?</li>
+      <li>[them] Most of it, anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Young_Animals</defName>
+    <topic>colony</topic>
+    <when>them:young,colony:animals</when>
+    <lines>
+      <li>[them] Are all those animals yours?</li>
+      <li>[us] The colony's, and they all have names.</li>
+      <li>[them] Can I see them before we go?</li>
+      <li>[us] If your people say so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Young_Colonist</defName>
+    <topic>road</topic>
+    <when>us:young</when>
+    <lines>
+      <li>[us] Are you from far away?</li>
+      <li>[them,town:far] From {TOWN}, farther than you've ever been, I'd guess.</li>
+      <li>[them,town] From {TOWN}, over that way.</li>
+      <li>[them] Far enough to have sore feet.</li>
+      <li>[us] What's it like there?</li>
+      <li>[them] Different, and you'd want to come home after a week.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Young_Both</defName>
+    <topic>greeting</topic>
+    <when>us:young,them:young</when>
+    <lines>
+      <li>[us] Do you want to see where we hide when it's our turn to do chores?</li>
+      <li>[them] Will we get in trouble?</li>
+      <li>[us] Only if somebody tells.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= When it goes cool or sour ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_FineDay</defName>
+    <topic>weather</topic>
+    <when>tone:cool|tone:sour</when>
+    <lines>
+      <li>[us,rain] Wet one today.</li>
+      <li>[us,snow] Cold one today.</li>
+      <li>[us,!rain,!snow] Fine day, isn't it?</li>
+      <li>[them] If you say so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_OwnCounsel</defName>
+    <topic>greeting</topic>
+    <when>tone:cool|tone:sour</when>
+    <lines>
+      <li>[us] Anything you'd like to know about the place?</li>
+      <li>[them,their:tribal] I will learn what I need with my own eyes.</li>
+      <li>[them] I'll keep my own counsel, if it's all the same to you.</li>
+      <li>[us] Suit yourself.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Want</defName>
+    <topic>greeting</topic>
+    <when>tone:sour</when>
+    <lines>
+      <li>[them] Is there something you want?</li>
+      <li>[us] Only a word.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Road</defName>
+    <topic>road</topic>
+    <when>tone:cool</when>
+    <lines>
+      <li>[us] Was the road kind to you?</li>
+      <li>[them] Kind enough, I won't keep you.</li>
+      <li>[us] Right, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Smoke</defName>
+    <topic>colony</topic>
+    <when>tone:cool|tone:sour,colony:raid</when>
+    <lines>
+      <li>[them] I heard you had a fight here.</li>
+      <li>[us] We did, and we're still standing.</li>
+      <li>[them] For now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Grudge</defName>
+    <topic>deeds</topic>
+    <when>tone:cool|tone:sour,deed:bad</when>
+    <lines>
+      <li>[them] My people haven't forgotten what yours did.</li>
+      <li>[us] I'd hoped that was behind us.</li>
+      <li>[them] It isn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Abrasive</defName>
+    <topic>greeting</topic>
+    <when>tone:cool|tone:sour,them:abrasive</when>
+    <lines>
+      <li>[us] You look like you could use some company.</li>
+      <li>[them] I look like I'd like to be left alone, and I would.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Curt_Trade</defName>
+    <topic>trade</topic>
+    <when>tone:cool|tone:sour,role:trader</when>
+    <lines>
+      <li>[us] Good trading so far?</li>
+      <li>[them] I'll tell you when I've counted it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

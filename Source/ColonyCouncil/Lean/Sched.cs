@@ -121,6 +121,8 @@ namespace ColonyCouncil
         public const int RareNeighbours = 211;
         /// <summary>A meal shared with an outsider, a bout or a brawl with one under way (Outsiders/), only while there is one.</summary>
         public const int RareOutsiders = 241;
+        /// <summary>Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs), only while outsiders are on a home map.</summary>
+        public const int RareOutsiderTalk = 83;
         /// <summary>A journey planned (Journeys/): its last day and hours, each traveller's next step, the hour itself; only while there is one.</summary>
         public const int RareJourneys = 173;
 

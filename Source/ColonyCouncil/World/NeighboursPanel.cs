@@ -158,7 +158,9 @@ namespace ColonyCouncil
 
         private static float DrawTownCard(float y, float w, Town t, bool isOpen, int index)
         {
-            float h = 30f + (isOpen ? Mathf.Max(1, t.rows.Count) * RowH + 6f : 0f);
+            // What its people told the colony lately (Outsiders/OutsiderHeard.cs), under its people.
+            float heardH = isOpen ? OutsiderHeard.Height(t.s.ID) : 0f;
+            float h = 30f + (isOpen ? Mathf.Max(1, t.rows.Count) * RowH + 6f + heardH : 0f);
             var card = new Rect(0f, y, w, h);
             UiKit.Card(card, UiKit.WithAlpha(t.standingColor, 0.6f), false, false);
             var head = new Rect(card.x, card.y, card.width, 28f);
@@ -189,6 +191,7 @@ namespace ColonyCouncil
             if (t.rows.Count == 0)
             {
                 UiKit.LabelFit(new Rect(card.x + 12f, ry, card.width - 24f, RowH - 8f), "CC_Neighbours_NobodyYet".Translate(t.name).Resolve(), UiKit.Faint, GameFont.Small);
+                if (heardH > 0f) OutsiderHeard.Draw(new Rect(card.x + 12f, ry + RowH, card.width - 24f, heardH), t.s.ID);
                 return y + h + 6f;
             }
             foreach (var r in t.rows)
@@ -196,6 +199,7 @@ namespace ColonyCouncil
                 DrawRow(new Rect(card.x + 8f, ry, card.width - 16f, RowH), r, false);
                 ry += RowH;
             }
+            if (heardH > 0f) OutsiderHeard.Draw(new Rect(card.x + 12f, ry + 2f, card.width - 24f, heardH), t.s.ID);
             return y + h + 6f;
         }
 

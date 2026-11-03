@@ -357,6 +357,9 @@ namespace ColonyCouncil
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
             Toggle("outsiderDuels", "CC_Settings_OutsiderDuels", "CC_SetNote_OutsiderDuels", "outsiderTalk,deepHooks");
+            Toggle("outsiderChatter", "CC_Settings_OutsiderChatter", "CC_SetNote_OutsiderChatter", "outsiderTalk");
+            Slider("outsiderChatterFrequency", "CC_Settings_OutsiderChatterFrequency", "CC_SetNote_OutsiderChatterFrequency", 0.25f, 3f, 0.25f, "%",
+                "outsiderTalk,outsiderChatter");
             Section("CC_SetSec_Journeys");
             Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
             Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");

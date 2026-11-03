@@ -73,6 +73,7 @@ namespace ColonyCouncil
         {
             meals.Clear();
             bouts.Clear();
+            OutsiderTalk.Reset();
         }
 
         // ---------------- Who is an outsider ----------------
@@ -361,8 +362,12 @@ namespace ColonyCouncil
             if (why != null) return why;
             var book = Book;
             int now = Now;
+            // They've had enough of the colony for now (OutsiderTalk.cs): patience comes back with time, or on their next visit.
+            why = OutsiderTalk.Tired(x, act);
+            if (why != null) return why;
+            // An ask made again within its wait gets "you asked me that already" (the menu says so); the rest wait.
             int last = OutsiderMath.PerOutsider(act) ? book?.LastWith(x, act) ?? -1 : book?.Pair(c, x, false)?.Last(act) ?? -1;
-            if (!OutsiderMath.Waited(last, now, act)) return Why(OutsiderMath.PerOutsider(act) ? "LatelyAnyone" : "Lately");
+            if (!OutsiderMath.Waited(last, now, act) && !OutsiderTalkMath.Asks(act)) return Why(OutsiderMath.PerOutsider(act) ? "LatelyAnyone" : "Lately");
             int ofColony = OfColony(x), ofColonist = OfColonist(x, c);
             switch (act)
             {
@@ -495,15 +500,25 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A line over someone's head at a moment of a talk with an outsider (one sentence, from Rimfolk_Pool_OutsiderSays),
-        /// said to <paramref name="other"/>. {NAME} is the other's name, {TOWN} the outsider's town.
+        /// said to <paramref name="other"/>. {NAME} is the other's name, {TOWN} the outsider's town, {ASKER} who asked before.
         /// </summary>
-        public static bool Say(Pawn p, string moment, Pawn other)
+        public static bool Say(Pawn p, string moment, Pawn other, Pawn asker = null)
         {
-            if (p == null || !p.Spawned || moment.NullOrEmpty()) return false;
+            if (p == null || !p.Spawned) return false;
+            string line = Line(p, moment, other, asker);
+            if (line.NullOrEmpty()) return false;
+            // together: said only to someone standing with them (Speech.Say checks it).
+            return Speech.Say(p, line, other);
+        }
+
+        /// <summary>The line <paramref name="p"/> would say at that moment (for a scene said in turn), or null.</summary>
+        public static string Line(Pawn p, string moment, Pawn other, Pawn asker = null)
+        {
+            if (p == null || moment.NullOrEmpty()) return null;
             try
             {
                 var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(Pool);
-                if (pool == null) return false;
+                if (pool == null) return null;
                 var tags = Flavor.TagsFor(p);
                 tags.Add(moment);
                 // Who speaks: one of the colony's ("us") or the outsider ("them"); a line for either has neither tag.
@@ -515,15 +530,14 @@ namespace ColonyCouncil
                 var lines = pool.lines.For(ToneUtility.ToneFor(p));
                 string line = Flavor.PickTagged(lines.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags)
                               ?? Flavor.PickTagged(pool.lines.plain.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags);
-                if (line.NullOrEmpty()) return false;
-                line = line.Replace("{NAME}", other?.LabelShort ?? "").Replace("{TOWN}", (x != null ? TownOf(x)?.Name : null) ?? "");
-                // together: said only to someone standing with them (Speech.Say checks it).
-                return Speech.Say(p, line, other);
+                if (line.NullOrEmpty()) return null;
+                return line.Replace("{NAME}", other?.LabelShort ?? "").Replace("{TOWN}", (x != null ? TownOf(x)?.Name : null) ?? "")
+                    .Replace("{ASKER}", asker?.LabelShort ?? "");
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("outsider words", e);
-                return false;
+                return null;
             }
         }
 
@@ -572,7 +586,7 @@ namespace ColonyCouncil
         /// of memory), or as a face to be known once they're home. <paramref name="regard"/> is the colonist's share; the
         /// colony gets half.
         /// </summary>
-        public static OutsiderPair Remember(Pawn c, Pawn x, OutsiderAct act, string note, float regard, float warmth)
+        public static OutsiderPair Remember(Pawn c, Pawn x, OutsiderAct act, string note, float regard, float warmth, bool setLast = true, float knowing = 1f)
         {
             var book = Book;
             int now = Now;
@@ -581,9 +595,10 @@ namespace ColonyCouncil
             {
                 if (OutsiderMath.NewVisit(pair.lastTick, now)) pair.visits++;
                 pair.lastTick = now;
-                pair.SetLast(act, now);
+                // A talk of their own doesn't count as the thing done (the menu's wait is for what the player orders).
+                if (setLast) pair.SetLast(act, now);
                 pair.warmth = Mathf.Clamp(pair.warmth + warmth, -OutsiderMath.WarmthMax, OutsiderMath.WarmthMax);
-                pair.fam = Mathf.Min(OutsiderMath.KnowMax, pair.fam + OutsiderMath.FamiliarityGain(act, Affinity(c, x)));
+                pair.fam = Mathf.Min(OutsiderMath.KnowMax, pair.fam + OutsiderMath.FamiliarityGain(act, Affinity(c, x)) * knowing);
                 pair.outsiderName = x.LabelShort;
             }
             var n = NotableOf(x);

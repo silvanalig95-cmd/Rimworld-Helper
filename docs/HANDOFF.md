@@ -15,6 +15,16 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.63.0, the player's requests (no spamming, talks on their own, bubbles not pop-ups, a history; 5 to 6 lines;
+  reacting to the live world): `Outsiders/OutsiderTalk.cs` (patience, auto-talks at `Sched.RareOutsiderTalk` 83,
+  scenes), `OutsiderFacts.cs` (live facts and placeholders), `OutsiderTalkMath.cs`, `OutsiderTalkDef.cs`,
+  `OutsiderHeard.cs` (each town's Heard lately), 185 pieces in `Defs/OutsiderTalkDefs/` (format in the header of
+  `Rimfolk_OutsiderTalks_Greetings.xml`; `OutsiderTalkTests` checks tags, placeholders, sayability, marks). Settings
+  `outsiderChatter` and its frequency. Wars from the game's faction relations, daily; [SR] Factional War only as two
+  hostile peoples fighting on our land. Needs a look in the game: six-line bubbles at speed, how often talks start,
+  the menu's patience words, Heard lately's height, `town:ill`, a new head caught, quest names spoken raw. Next: the
+  second library pass (thin: spacer/hightech voices, quests, Empire titles, world:war, more condition kinds, seasons
+  by homeland, children, letters, nobles, decrees).
 - 0.62.0, the player's request (how long the food lasts, choose any item, review the list): the journey planner's
   packing list. Food and feed days pinned at the foot (`JourneyMath`, `JourneyPack.PeoplePerDay`/`FeedNeeds`), the
   picker `UI/JourneyPick.cs` over `JourneyPack.Holdings`, grouped lines with subtotals, typed counts, lines taken off
