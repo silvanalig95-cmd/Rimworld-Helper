@@ -34,6 +34,16 @@ namespace ColonyCouncil
         public bool carried;
         /// <summary>When the two last did each thing (by <see cref="OutsiderAct"/>), -1 never.</summary>
         public List<int> last = new List<int>();
+        /// <summary>How many conversations they've had (a conversation piece said between them, ordered or on their own).</summary>
+        public int talks;
+        /// <summary>When they last talked on their own (not ordered), -1 never.</summary>
+        public int chatterLast = -1;
+        /// <summary>What their talks left to pick up later ("plague|tick|the gray cough|ws:12"; OutsiderTalkMath.EncodeMark).</summary>
+        public List<string> marks = new List<string>();
+        /// <summary>The pieces said between them, newest last, so the same isn't said to the same person again.</summary>
+        public List<string> said = new List<string>();
+        /// <summary>The subjects of their last talks, newest last.</summary>
+        public List<string> topics = new List<string>();
 
         public int Last(OutsiderAct a)
         {
@@ -70,7 +80,103 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref courtVisits, "courtVisits");
             Scribe_Values.Look(ref carried, "carried");
             Scribe_Collections.Look(ref last, "last", LookMode.Value);
-            if (Scribe.mode == LoadSaveMode.PostLoadInit) last ??= new List<int>();
+            Scribe_Values.Look(ref talks, "talks");
+            Scribe_Values.Look(ref chatterLast, "chatterLast", -1);
+            Scribe_Collections.Look(ref marks, "marks", LookMode.Value);
+            Scribe_Collections.Look(ref said, "said", LookMode.Value);
+            Scribe_Collections.Look(ref topics, "topics", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                last ??= new List<int>();
+                marks ??= new List<string>();
+                said ??= new List<string>();
+                topics ??= new List<string>();
+            }
+        }
+    }
+
+    /// <summary>
+    /// One outsider's visit as the colony's people use their patience (Outsiders/OutsiderTalk.cs): how much of it is
+    /// used, the gifts given them this visit, their talks on their own, and the last asks made of them, by whom.
+    /// </summary>
+    public class OutsiderVisit : IExposable
+    {
+        public Pawn outsider;
+        /// <summary>When the first thing of this visit was done with them, and when they last gave their patience.</summary>
+        public int start;
+        public int last = -1;
+        /// <summary>Patience used, resting back by OutsiderTalkMath.RefillHours.</summary>
+        public float used;
+        public int gifts;
+        /// <summary>Their last talk on their own with anyone of the colony, and how many this visit.</summary>
+        public int chatterLast = -1;
+        public int chatters;
+        /// <summary>The asks made of them lately: "colonistId|act|tick", newest last.</summary>
+        public List<string> asks = new List<string>();
+
+        public void ExposeData()
+        {
+            if (Scribe.mode == LoadSaveMode.Saving && outsider != null && outsider.Discarded) outsider = null;
+            Scribe_References.Look(ref outsider, "outsider");
+            Scribe_Values.Look(ref start, "start");
+            Scribe_Values.Look(ref last, "last", -1);
+            Scribe_Values.Look(ref used, "used");
+            Scribe_Values.Look(ref gifts, "gifts");
+            Scribe_Values.Look(ref chatterLast, "chatterLast", -1);
+            Scribe_Values.Look(ref chatters, "chatters");
+            Scribe_Collections.Look(ref asks, "asks", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit) asks ??= new List<string>();
+        }
+    }
+
+    /// <summary>News of a town told by one of its people at the colony: what, who told whom, when ("Heard lately").</summary>
+    public class HeardNews : IExposable
+    {
+        public int town = -1;
+        public string townName;
+        public Faction faction;
+        public string text;
+        public string teller;
+        public string told;
+        public int tick;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref town, "town", -1);
+            Scribe_Values.Look(ref townName, "townName");
+            Scribe_References.Look(ref faction, "faction");
+            Scribe_Values.Look(ref text, "text");
+            Scribe_Values.Look(ref teller, "teller");
+            Scribe_Values.Look(ref told, "told");
+            Scribe_Values.Look(ref tick, "tick");
+        }
+    }
+
+    /// <summary>
+    /// A war between two other peoples as the colony has seen it (the game's own relations, whichever mod set them):
+    /// when it was first seen (-1: before the colony watched), when it ended (-1: still on), how many towns each had then,
+    /// and when their fighters last met on the colony's land.
+    /// </summary>
+    public class WarSeen : IExposable
+    {
+        public Faction a, b;
+        public int start = -1, end = -1;
+        public int townsA, townsB;
+        public int fought = -1;
+
+        public bool Of(Faction f) => f != null && (a == f || b == f);
+
+        public Faction Other(Faction f) => a == f ? b : b == f ? a : null;
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref a, "a");
+            Scribe_References.Look(ref b, "b");
+            Scribe_Values.Look(ref start, "start", -1);
+            Scribe_Values.Look(ref end, "end", -1);
+            Scribe_Values.Look(ref townsA, "townsA");
+            Scribe_Values.Look(ref townsB, "townsB");
+            Scribe_Values.Look(ref fought, "fought", -1);
         }
     }
 
@@ -147,9 +253,18 @@ namespace ColonyCouncil
         public const int MaxFavours = 6;
         public const int MaxWords = 8;
 
+        /// <summary>Visits kept at most (one an outsider met lately), news heard, wars seen.</summary>
+        public const int MaxVisits = 30;
+        public const int MaxWars = 30;
+
         public List<OutsiderPair> pairs = new List<OutsiderPair>();
         public List<OutsiderFavour> favours = new List<OutsiderFavour>();
         public List<OutsiderWord> words = new List<OutsiderWord>();
+        public List<OutsiderVisit> visits = new List<OutsiderVisit>();
+        public List<HeardNews> heard = new List<HeardNews>();
+        public List<WarSeen> wars = new List<WarSeen>();
+        /// <summary>When the world was last looked over for wars (once a day).</summary>
+        public int warsLooked = -1;
 
         private static OutsiderBook cached;
         private static Game cachedGame;
@@ -185,8 +300,21 @@ namespace ColonyCouncil
 
         public override void GameComponentTick()
         {
-            if (!Outsiders.AnyLive) return;
             int now = Now;
+            // The lines of conversations under way, and colonists starting talks with outsiders near them (OutsiderTalk.cs).
+            if (OutsiderTalk.Live && Sched.Every(now, OutsiderTalk.LinePeriod, OutsiderTalk.LineOffset)) OutsiderTalk.Step(now);
+            if (Sched.Every(now, Sched.RareTicks, Sched.RareOutsiderTalk))
+            {
+                try
+                {
+                    OutsiderTalk.Rare(now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("outsiders talking", e);
+                }
+            }
+            if (!Outsiders.AnyLive) return;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareOutsiders)) return;
             try
             {
@@ -232,6 +360,7 @@ namespace ColonyCouncil
             Safe("words", () => Outsiders.WordsHourly(this, now));
             Safe("favours", () => Outsiders.FavoursHourly(this, now));
             Safe("pairs", () => Upkeep(now));
+            Safe("visits", () => OutsiderTalk.Hourly(this, now));
         }
 
         private static void Safe(string what, Action a)
@@ -284,12 +413,25 @@ namespace ColonyCouncil
                 pairs.RemoveAll(r => r == null || r.colonist == null && r.outsider == null);
                 favours.RemoveAll(f => f == null || f.def == null || f.faction == null);
                 words.RemoveAll(w => w == null);
+                visits.RemoveAll(v => v == null || v.outsider == null || v.outsider.Discarded);
+                heard.RemoveAll(h => h == null || h.text.NullOrEmpty());
+                wars.RemoveAll(w => w == null || w.a == null || w.b == null);
             }
             Scribe_Collections.Look(ref pairs, "pairs", LookMode.Deep);
             Scribe_Collections.Look(ref favours, "favours", LookMode.Deep);
             Scribe_Collections.Look(ref words, "words", LookMode.Deep);
+            Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
+            Scribe_Collections.Look(ref heard, "heard", LookMode.Deep);
+            Scribe_Collections.Look(ref wars, "wars", LookMode.Deep);
+            Scribe_Values.Look(ref warsLooked, "warsLooked", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                visits ??= new List<OutsiderVisit>();
+                visits.RemoveAll(v => v == null || v.outsider == null);
+                heard ??= new List<HeardNews>();
+                heard.RemoveAll(h => h == null || h.text.NullOrEmpty());
+                wars ??= new List<WarSeen>();
+                wars.RemoveAll(w => w == null || w.a == null || w.b == null);
                 pairs ??= new List<OutsiderPair>();
                 pairs.RemoveAll(r => r == null || r.colonist == null || r.outsider == null);
                 favours ??= new List<OutsiderFavour>();

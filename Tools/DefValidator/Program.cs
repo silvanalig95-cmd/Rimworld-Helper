@@ -427,6 +427,17 @@ wishPh.Add("RELATIVE");
 wishPh.UnionWith(new[] { "PART", "WHAT", "HONOR" });
 // Letters to the neighbours (World/NeighbourLetters.cs): the colonist who wrote, the neighbour's town, the help asked for.
 wishPh.UnionWith(new[] { "WRITER", "TOWN", "HELP" });
+// Conversations with outsiders (Defs/OutsiderTalkDefs/, filled by Outsiders/OutsiderFacts.cs from what is true now).
+wishPh.UnionWith(new[]
+{
+    "COLONIST", "OUTSIDER", "COLONY", "PEOPLE", "HOMELAND", "WEATHER", "LEADER", "LEADERTITLE", "THEIRTITLE", "OURTITLE", "THEIRROLE", "THEIRFAITH",
+    "OURFAITH", "THEIRSKILL", "OURSKILL", "THEIRSPOUSE", "THEIRCHILD", "OURSPOUSE", "OURCHILD", "KIN", "KINWORD", "HEAD", "HEADTITLE", "NOTABLE",
+    "NOTABLETITLE", "ILL", "ILLTITLE", "LOSTTITLE", "OLDHEAD", "WROTE", "SITE", "QUEST", "WAR", "PEACEWITH", "WARA", "WARB", "BATTLEA", "BATTLEB",
+    "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "TRADERS", "NEWCOMER", "DAY", "RAIDERS", "BORN",
+    "WEDDING", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND", "THEN", "NOW"
+});
+// The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
+wishPh.Add("ASKER");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

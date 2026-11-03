@@ -161,6 +161,10 @@ namespace ColonyCouncil
         public bool outsiderProvoke = true;
         /// <summary>A duel of honour with someone of a people whose ways know it: a real fight, to first blood or until one yields.</summary>
         public bool outsiderDuels = true;
+        /// <summary>Colonists sometimes start a talk with an outsider near them by themselves, in bubbles (Outsiders/OutsiderTalk.cs).</summary>
+        public bool outsiderChatter = true;
+        /// <summary>How often they do, 1 normal.</summary>
+        public float outsiderChatterFrequency = 1f;
         /// <summary>Journeys planned ahead: the travellers get ready together and set off at the hour chosen (Journeys/).</summary>
         public bool journeys = true;
         /// <summary>A journey shifts each traveller's night before, so they wake rested in time to set off.</summary>
@@ -492,6 +496,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);
             Scribe_Values.Look(ref outsiderDuels, "outsiderDuels", true);
+            Scribe_Values.Look(ref outsiderChatter, "outsiderChatter", true);
+            Scribe_Values.Look(ref outsiderChatterFrequency, "outsiderChatterFrequency", 1f);
             Scribe_Values.Look(ref journeys, "journeys", true);
             Scribe_Values.Look(ref journeyShiftSleep, "journeyShiftSleep", true);
             Scribe_Values.Look(ref journeyClothes, "journeyClothes", true);

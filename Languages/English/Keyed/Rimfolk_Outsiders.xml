@@ -16,10 +16,22 @@
   <CC_Settings_OutsiderDuels>Duels of honour</CC_Settings_OutsiderDuels>
   <CC_Settings_OutsiderDuels_Tip>Challenge someone of a people whose ways know the duel (tribes, medieval folk, an empire's nobility) to first blood or until one yields. Those nearby gather to watch, and it is a real fight with their own weapons that stops at the terms; deaths are rare, but the game's own fight decides. Winning gains honour with their people, losing costs a little. Needs the deeper game hooks.</CC_Settings_OutsiderDuels_Tip>
   <CC_SetNote_OutsiderDuels>A real fight by the terms, watched by both sides; honour won or lost.</CC_SetNote_OutsiderDuels>
+  <CC_Settings_OutsiderChatter>Colonists talk with outsiders by themselves</CC_Settings_OutsiderChatter>
+  <CC_Settings_OutsiderChatter_Tip>A colonist and someone from outside the colony near each other, both free (idle, at leisure, eating at the same table, passing by), sometimes start a conversation by themselves: two to six lines in turn over their heads, about what is going on right now (their town and its people, wars and the world's events, the weather on the road, the colony's own news, what their people remember of the colony) and picking up what they talked about before. The sociable do it more, the shy less; never with danger about, never with someone leaving or busy, and paced with the colony's other talk so bubbles don't pile up. What is said is kept: news goes into the town's "Heard lately" on the World page and the region map, and how the two get on moves a little. No message or letter.</CC_Settings_OutsiderChatter_Tip>
+  <CC_SetNote_OutsiderChatter>Talks in bubbles about what's going on, now and then, without being told to.</CC_SetNote_OutsiderChatter>
+  <CC_Settings_OutsiderChatterFrequency>How often they talk by themselves</CC_Settings_OutsiderChatterFrequency>
+  <CC_Settings_OutsiderChatterFrequency_Tip>How likely a colonist near an outsider is to start a talk by themselves. An outsider still talks this way at most once every 4 hours and 4 times a visit, and the same two once every 12 hours.</CC_Settings_OutsiderChatterFrequency_Tip>
+  <CC_SetNote_OutsiderChatterFrequency>More or fewer talks started by the colonists themselves.</CC_SetNote_OutsiderChatterFrequency>
 
   <!-- The menu -->
   <CC_Out_Menu>Talk with {OTHER}...</CC_Out_Menu>
   <CC_Out_MenuTitle>{PAWN} and {OTHER}</CC_Out_MenuTitle>
+  <CC_Out_MenuTitlePatience>{PAWN} and {OTHER} ({OTHER} {PATIENCE})</CC_Out_MenuTitlePatience>
+  <CC_Out_Patience_Plenty>is glad of the company</CC_Out_Patience_Plenty>
+  <CC_Out_Patience_Some>has time for a little more</CC_Out_Patience_Some>
+  <CC_Out_Patience_Last>has time for one more thing</CC_Out_Patience_Last>
+  <CC_Out_Patience_None>has had enough talk for now</CC_Out_Patience_None>
+  <CC_Out_Again>{LABEL} (asked already)</CC_Out_Again>
   <CC_Out_Disabled>{LABEL} ({WHY})</CC_Out_Disabled>
   <CC_Out_Nothing>Nothing to do with them now</CC_Out_Nothing>
   <CC_Out_Act_Chat>Chat</CC_Out_Act_Chat>
@@ -90,6 +102,7 @@
   <CC_Out_Why_Peaceful>{PAWN} won't fight</CC_Out_Why_Peaceful>
   <CC_Out_Why_PeacefulThem>they won't fight</CC_Out_Why_PeacefulThem>
   <CC_Out_Why_Hurt>too hurt for it</CC_Out_Why_Hurt>
+  <CC_Out_Why_Enough>has had enough talk for now</CC_Out_Why_Enough>
 
   <!-- Who they are -->
   <CC_Out_Called>{NAME}, {ROLE} of {TOWN} ({FACTION})</CC_Out_Called>
@@ -101,11 +114,6 @@
   <CC_Out_Role_Visitor>visitor</CC_Out_Role_Visitor>
 
   <!-- How a talk went -->
-  <CC_Out_Tone_Warm>They got on very well.</CC_Out_Tone_Warm>
-  <CC_Out_Tone_Good>They got on well.</CC_Out_Tone_Good>
-  <CC_Out_Tone_Plain>It was a pleasant enough word, nothing more.</CC_Out_Tone_Plain>
-  <CC_Out_Tone_Cool>It was a little awkward.</CC_Out_Tone_Cool>
-  <CC_Out_Tone_Sour>It went badly.</CC_Out_Tone_Sour>
   <CC_Out_ToneWord_Warm>warmly</CC_Out_ToneWord_Warm>
   <CC_Out_ToneWord_Good>pleasantly</CC_Out_ToneWord_Good>
   <CC_Out_ToneWord_Plain>briefly</CC_Out_ToneWord_Plain>
@@ -144,48 +152,17 @@
   <CC_Out_DuelWord_Lost>and won</CC_Out_DuelWord_Lost>
   <CC_Out_DuelWord_Draw>and neither won</CC_Out_DuelWord_Draw>
 
-  <!-- News of home -->
-  <CC_Out_HomeTitle>News from {TOWN}</CC_Out_HomeTitle>
-  <CC_Out_HomeHead>{OTHER} told {PAWN} what's going on around {TOWN}:</CC_Out_HomeHead>
-  <CC_Out_News_Short_Food>They're short of food ({WHAT}).</CC_Out_News_Short_Food>
-  <CC_Out_News_Short_Medicine>They're short of medicine ({WHAT}).</CC_Out_News_Short_Medicine>
-  <CC_Out_News_Short_Hands>They're short of hands ({WHAT}).</CC_Out_News_Short_Hands>
-  <CC_Out_News_Short_Fuel>They're short of firewood and warm clothes ({WHAT}).</CC_Out_News_Short_Fuel>
-  <CC_Out_News_Caravan>A caravan of theirs is on its way to you.</CC_Out_News_Caravan>
-  <CC_Out_News_Visitors>Some of their people mean to visit you soon.</CC_Out_News_Visitors>
 
   <!-- Messages -->
   <CC_Out_Msg_NotNow>{OTHER} won't stop to talk now: {WHY}.</CC_Out_Msg_NotNow>
-  <CC_Out_Msg_Chat>{PAWN} talked with {WHO}. {HOW}</CC_Out_Msg_Chat>
-  <CC_Out_Msg_HomeNothing>{OTHER} wouldn't say much about home when {PAWN} asked.</CC_Out_Msg_HomeNothing>
-  <CC_Out_Msg_MealNo>{OTHER} turned down {PAWN}'s invitation to eat together.</CC_Out_Msg_MealNo>
-  <CC_Out_Msg_DrinkNo>{OTHER} turned down {PAWN}'s offer of a drink.</CC_Out_Msg_DrinkNo>
   <CC_Out_Msg_NoFood>There was nothing in store both {PAWN} and {OTHER} would eat.</CC_Out_Msg_NoFood>
   <CC_Out_Msg_NoDrink>There was no drink in store both {PAWN} and {OTHER} would have.</CC_Out_Msg_NoDrink>
-  <CC_Out_Msg_MealDone>{PAWN} and {OTHER} shared a meal.</CC_Out_Msg_MealDone>
-  <CC_Out_Msg_DrinkDone>{PAWN} and {OTHER} shared a drink.</CC_Out_Msg_DrinkDone>
-  <CC_Out_Msg_MealApart>{PAWN} and {OTHER} didn't end up eating together after all.</CC_Out_Msg_MealApart>
-  <CC_Out_Msg_Gift>{PAWN} gave {OTHER} {GIFT}, and was thanked kindly.</CC_Out_Msg_Gift>
-  <CC_Out_Msg_GiftSuits>{PAWN} gave {OTHER} {GIFT}. It suited them well, and they were touched.</CC_Out_Msg_GiftSuits>
-  <CC_Out_Msg_GiftNo>{OTHER} couldn't accept the {GIFT} from {PAWN}.</CC_Out_Msg_GiftNo>
   <CC_Out_Msg_WordYes>{OTHER} promised {PAWN} to put in a good word for the colony with {NAME} once home.</CC_Out_Msg_WordYes>
-  <CC_Out_Msg_WordNo>{OTHER} wouldn't promise {PAWN} to speak for the colony at home.</CC_Out_Msg_WordNo>
   <CC_Out_Msg_WordLanded>{OTHER} is home, and has spoken well of the colony to {NAME}, as {PAWN} asked.</CC_Out_Msg_WordLanded>
-  <CC_Out_Msg_TeachNo>{OTHER} wouldn't spare {PAWN} a lesson.</CC_Out_Msg_TeachNo>
-  <CC_Out_Msg_Taught>{OTHER} spent an hour teaching {PAWN} {SKILL}. Their people will remember the colony owes them for it.</CC_Out_Msg_Taught>
-  <CC_Out_Msg_TaughtPart>{OTHER}'s lesson in {SKILL} was cut short, but {PAWN} learned something.</CC_Out_Msg_TaughtPart>
-  <CC_Out_Msg_TaughtShort>{OTHER}'s lesson in {SKILL} for {PAWN} ended almost before it began.</CC_Out_Msg_TaughtShort>
-  <CC_Out_Msg_BringNo>{OTHER} wouldn't promise {PAWN} anything for next time.</CC_Out_Msg_BringNo>
   <CC_Out_Msg_BringYes>{OTHER} will have their people bring {THING} on their next visit, as {PAWN} asked.</CC_Out_Msg_BringYes>
   <CC_Out_Msg_Brought>{BEARER} brought {THING}, as {OTHER} promised {PAWN}.</CC_Out_Msg_Brought>
   <CC_Out_Msg_BringLapsed>Nobody of {FACTION} came by with the {THING} {OTHER} promised, and the favour has lapsed.</CC_Out_Msg_BringLapsed>
-  <CC_Out_Msg_InviteNo>{OTHER} thanked {PAWN}, but won't leave their people.</CC_Out_Msg_InviteNo>
   <CC_Out_Msg_InviteYes>{OTHER} accepted {PAWN}'s invitation to stay. {FACTION} lose one of their own, and think a little less of the colony for it.</CC_Out_Msg_InviteYes>
-  <CC_Out_Msg_Befriend>{PAWN} spent time with {OTHER}. {HOW} {BOND}</CC_Out_Msg_Befriend>
-  <CC_Out_Bond_Friends>They're friends, though they live apart.</CC_Out_Bond_Friends>
-  <CC_Out_Bond_Visits>A friendship takes more than one visit.</CC_Out_Bond_Visits>
-  <CC_Out_Bond_Warmer>They aren't close enough to be friends yet.</CC_Out_Bond_Warmer>
-  <CC_Out_Bond_Know>They need to know each other better to be friends.</CC_Out_Bond_Know>
   <CC_Out_Msg_Friends>{PAWN} and {OTHER} are friends now, though they live apart.</CC_Out_Msg_Friends>
   <CC_Out_Msg_CourtNo>{OTHER} turned {PAWN} down.</CC_Out_Msg_CourtNo>
   <CC_Out_Msg_Sweet>{PAWN} and {OTHER} are sweet on each other.</CC_Out_Msg_Sweet>
@@ -197,10 +174,6 @@
   <CC_Out_Msg_Faith_Hardened>{PAWN} and {OTHER}'s talk of faith turned into a hard argument, and both came away surer of their own.</CC_Out_Msg_Faith_Hardened>
   <CC_Out_Msg_Provoke>{PAWN} insulted {OTHER}, who kept their temper. {FACTION} will hear of it.</CC_Out_Msg_Provoke>
   <CC_Out_Msg_BrawlOver>The fight between {PAWN} and {OTHER} is over. {FACTION} will remember it.</CC_Out_Msg_BrawlOver>
-  <CC_Out_Msg_SparNo>{OTHER} wasn't up for a bout with {PAWN}.</CC_Out_Msg_SparNo>
-  <CC_Out_Msg_Spar>{PAWN} and {OTHER} sparred. {RESULT}</CC_Out_Msg_Spar>
-  <CC_Out_Spar_Even>Neither got the better of it.</CC_Out_Spar_Even>
-  <CC_Out_Spar_Won>{WINNER} got the better of it.</CC_Out_Spar_Won>
   <CC_Out_Msg_SparHard>A blow in the bout went in harder than meant: {HURT} is hurt.</CC_Out_Msg_SparHard>
   <CC_Out_Msg_BoutOff>The bout between {PAWN} and {OTHER} never came to anything.</CC_Out_Msg_BoutOff>
   <CC_Out_Msg_DuelNo>{OTHER} declined {PAWN}'s challenge.</CC_Out_Msg_DuelNo>
@@ -209,6 +182,13 @@
   <CC_Out_Msg_DuelDraw>Neither {PAWN} nor {OTHER} could best the other: the duel ends in a draw.</CC_Out_Msg_DuelDraw>
   <CC_Out_Msg_DuelWon>{PAWN} won the duel of honour against {OTHER}. {FACTION} think better of the colony for it.</CC_Out_Msg_DuelWon>
   <CC_Out_Msg_DuelLost>{OTHER} won the duel of honour against {PAWN}. {FACTION} think a little less of the colony, though {PAWN} stood up well.</CC_Out_Msg_DuelLost>
+
+  <!-- Heard lately: a town's news told at the colony (Outsiders/OutsiderHeard.cs) -->
+  <CC_Out_Heard_Header>Heard lately</CC_Out_Heard_Header>
+  <CC_Out_Heard_Line>{TEXT} ({TELLER} to {PAWN}, {AGO})</CC_Out_Heard_Line>
+  <CC_Out_Heard_Today>today</CC_Out_Heard_Today>
+  <CC_Out_Heard_Yesterday>yesterday</CC_Out_Heard_Yesterday>
+  <CC_Out_Heard_DaysAgo>{0} days ago</CC_Out_Heard_DaysAgo>
 
   <!-- The gift picker -->
   <CC_Out_GiftTitle>A gift for {OTHER}</CC_Out_GiftTitle>

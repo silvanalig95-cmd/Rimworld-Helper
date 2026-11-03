@@ -118,6 +118,35 @@ namespace ColonyCouncil
             return e.id;
         }
 
+        /// <summary>
+        /// Like <see cref="AddTurns"/>, each line at its own tick (<paramref name="dues"/>, one per turn, in order): a
+        /// scene paced by how long each line takes to read. Returns its id, or 0 if there was nothing to say or someone
+        /// in it is already talking.
+        /// </summary>
+        public int AddAt(IList<(T speaker, T listener, string text)> turns, IList<int> dues)
+        {
+            if (turns == null || dues == null || turns.Count == 0 || dues.Count < turns.Count) return 0;
+            foreach (var t in turns)
+                if (t.speaker != null && (Busy(t.speaker) || Busy(t.listener)))
+                    return 0;
+            var e = new Exchange { id = nextId++ };
+            for (int i = 0; i < turns.Count; i++)
+            {
+                var t = turns[i];
+                if (t.speaker == null || t.listener == null || t.speaker == t.listener || string.IsNullOrEmpty(t.text)) continue;
+                if (e.a == null)
+                {
+                    e.a = t.speaker;
+                    e.b = t.listener;
+                }
+                e.lines.Add(new Line { speaker = t.speaker, listener = t.listener, text = t.text, due = dues[i] });
+            }
+            if (e.lines.Count == 0) return 0;
+            exchanges.Add(e);
+            while (exchanges.Count > Max) exchanges.RemoveAt(0);
+            return e.id;
+        }
+
         /// <summary>The lines due by <paramref name="now"/>, in order, taken off the queue (an exchange with nothing left is done).</summary>
         public List<(int id, Line line)> Due(int now)
         {

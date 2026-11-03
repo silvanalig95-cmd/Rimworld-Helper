@@ -37,7 +37,10 @@ namespace ColonyCouncil
                 string why = Outsiders.ColonistWhyNot(c, clickedPawn) ?? Outsiders.Unwilling(clickedPawn, c, OutsiderAct.Meal);
                 if (why != null) return new FloatMenuOption("CC_Out_Disabled".Translate(label.Named("LABEL"), why.Named("WHY")).Resolve(), null);
                 var x = clickedPawn;
-                return new FloatMenuOption(label, () => Find.WindowStack.Add(new FloatMenu(Outsiders.Options(c, x), "CC_Out_MenuTitle".Translate(c.Named("PAWN"), x.Named("OTHER")).Resolve())));
+                // Had enough of the colony for now: said plainly here (hard words and a challenge are still in the menu).
+                if (OutsiderTalk.Left(x) <= 0) label = "CC_Out_Disabled".Translate(label.Named("LABEL"), "CC_Out_Why_Enough".Translate().Named("WHY")).Resolve();
+                return new FloatMenuOption(label, () => Find.WindowStack.Add(new FloatMenu(Outsiders.Options(c, x),
+                    "CC_Out_MenuTitlePatience".Translate(c.Named("PAWN"), x.Named("OTHER"), OutsiderTalk.PatienceWords(x).Named("PATIENCE")).Resolve())));
             }
             catch (Exception e)
             {
@@ -73,6 +76,8 @@ namespace ColonyCouncil
                         continue;
                     }
                     var a = act;
+                    // Asked before within its wait: they'll only say so (OutsiderTalk.Begin), and the menu says it first.
+                    if (OutsiderTalk.Repeat(c, x, act, out _)) label = "CC_Out_Again".Translate(label.Named("LABEL")).Resolve();
                     list.Add(new FloatMenuOption(label, () => Choose(c, x, a)));
                 }
                 catch (Exception e)

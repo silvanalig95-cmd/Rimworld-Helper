@@ -5,7 +5,9 @@
     What a colonist and someone from outside the colony say over their heads when they do something together
     (Source/ColonyCouncil/Outsiders/, Outsiders.Say). Every line has its moment; "us" lines are said by the colonist,
     "them" lines by the outsider, lines with neither by either. theirLowtech / theirHightech: the outsider's people.
-    {NAME} is the one spoken to, {TOWN} the outsider's town. One sentence each.
+    {NAME} is the one spoken to, {TOWN} the outsider's town, {ASKER} the colonist who asked the same thing before.
+    One sentence each. The conversations themselves (a chat, news of home, getting to know them, and the talks
+    colonists start by themselves) are written as pieces in Defs/OutsiderTalkDefs/.
 
     Moments: greet, chat, endwarm, endgood, endplain, endcool, endsour (a talk's end); notnow (won't stop);
     homeask, home, hometold, homenothing; mealask, mealyes, mealno, mealtalk, mealend; drinkask, drinkyes, drinkno,
@@ -13,7 +15,9 @@
     teachyes, teachno, lesson, lessonask, lessondone; bringask, bringyes, bringno, brought; inviteask, inviteyes,
     inviteno; befriend, friends; court, courttalk, courtyes, courtno, lovers; faith, faithtalk, faithcloser,
     faithsoftened, faithagreed, faithhardened; sparask, sparyes, sparno, sparbegin, sparwin, sparlose; provoke,
-    provoked, provokefight, provokecalm; duelask, duelyes, duelno, duelsalute, duelwin, duelyield; watch.
+    provoked, provokefight, provokecalm; duelask, duelyes, duelno, duelsalute, duelwin, duelyield; watch;
+    already (asked the same again), alreadyother (asked by someone else before), pushy (the third ask in a row),
+    enough (no patience left for the colony today).
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_OutsiderSays</defName>
@@ -50,6 +54,28 @@
         <li>[notnow,them] Not now, please.</li>
         <li>[notnow,them] Another time, I'm in no state for it.</li>
         <li>[notnow,them] Can't you see I'm busy?</li>
+        <li>[already,them] You asked me that already, {NAME}.</li>
+        <li>[already,them] I gave you my answer, and it hasn't changed.</li>
+        <li>[already,them] We've been over this, haven't we?</li>
+        <li>[already,them] Same question, same answer, I'm afraid.</li>
+        <li>[already,them,theirLowtech] I have answered you once already, and once is enough.</li>
+        <li>[already,them,abrasive] Are you deaf, or just hoping I'll change my mind?</li>
+        <li>[alreadyother,them] I told {ASKER} all about that already.</li>
+        <li>[alreadyother,them] {ASKER} asked me the very same thing.</li>
+        <li>[alreadyother,them] Ask {ASKER}, I've given my answer once.</li>
+        <li>[alreadyother,them,theirLowtech] {ASKER} of your people asked me this, and I answered.</li>
+        <li>[pushy,them] Another question, {NAME}?</li>
+        <li>[pushy,them] You don't give up, do you?</li>
+        <li>[pushy,them] Is there anything you won't ask of me today?</li>
+        <li>[pushy,them] Let me catch my breath first.</li>
+        <li>[pushy,them,abrasive] You're starting to wear on me.</li>
+        <li>[pushy,them,theirLowtech] You ask a great deal of a guest.</li>
+        <li>[enough,them] I've talked enough for one day, I think.</li>
+        <li>[enough,them] Another time, I'm all talked out.</li>
+        <li>[enough,them] Your people have kept me busy enough today.</li>
+        <li>[enough,them] I need some quiet now, if you don't mind.</li>
+        <li>[enough,them,theirLowtech] My tongue is tired, ask me tomorrow.</li>
+        <li>[enough,them,abrasive] Enough, leave me be for a while.</li>
 
         <li>[homeask,us] What's it like back in {TOWN}?</li>
         <li>[homeask,us] Any news from your part of the world?</li>

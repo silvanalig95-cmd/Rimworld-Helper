@@ -66,10 +66,14 @@ namespace ColonyCouncil
             if (c == null || x == null) return null;
             try
             {
+                // Asked again within its wait: "you asked me that already" was the answer, and nothing more comes of it.
+                var plan = OutsiderTalk.TakePlan(c);
+                if (plan != null && (plan.x != x || plan.act != act)) plan = null;
+                if (plan != null && plan.repeat) return null;
                 switch (act)
                 {
-                    case OutsiderAct.Chat: Chat(c, x); return null;
-                    case OutsiderAct.AskHome: AskHome(c, x); return null;
+                    case OutsiderAct.Chat: Chat(c, x, plan); return null;
+                    case OutsiderAct.AskHome: AskHome(c, x, plan); return null;
                     case OutsiderAct.Meal: return Meal(c, x, false);
                     case OutsiderAct.Drink: return Meal(c, x, true);
                     case OutsiderAct.GoodWord: GoodWord(c, x); return null;
@@ -77,7 +81,7 @@ namespace ColonyCouncil
                     case OutsiderAct.Teach: return Teach(c, x);
                     case OutsiderAct.Bring: Bring(c, x, thing); return null;
                     case OutsiderAct.Invite: Invite(c, x); return null;
-                    case OutsiderAct.Befriend: Befriend(c, x); return null;
+                    case OutsiderAct.Befriend: Befriend(c, x, plan); return null;
                     case OutsiderAct.Court: Court(c, x); return null;
                     case OutsiderAct.Faith: FaithTalk(c, x); return null;
                     case OutsiderAct.Spar: return Spar(c, x);
@@ -106,14 +110,9 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(p, def, other, -1f, null, stage);
         }
 
-        /// <summary>"They got on well with each other": how it went, in words.</summary>
-        private static string ToneLine(TalkTone t) => ("CC_Out_Tone_" + t).Translate().Resolve();
-
-        /// <summary>How the talk ended over their heads, and what each keeps of it.</summary>
+        /// <summary>What each keeps of how the talk went (its last word was said in the scene, OutsiderTalk.Begin).</summary>
         private static void Close(Pawn c, Pawn x, TalkTone tone)
         {
-            string m = "end" + tone.ToString().ToLowerInvariant();
-            Say(x, m, c);
             int stage = OutsiderMath.ToneStage(tone);
             if (stage < 0) return;
             // together: said and felt face to face at the talk's end.
@@ -123,80 +122,29 @@ namespace ColonyCouncil
 
         // ---------------- A chat ----------------
 
-        private static void Chat(Pawn c, Pawn x)
+        private static void Chat(Pawn c, Pawn x, OutsiderTalk.Plan plan)
         {
-            var tone = OutsiderMath.Tone(Input(c, x, OutsiderAct.Chat), Rand.Value);
+            // How it went was settled when they met (the scene was said by it); after a load, worked out now.
+            var tone = plan?.tone ?? OutsiderMath.Tone(Input(c, x, OutsiderAct.Chat), Rand.Value);
+            // together: the two have just talked face to face, in bubbles only (no message: the player asked for fewer).
             Close(c, x, tone);
             Remember(c, x, OutsiderAct.Chat, Note(OutsiderAct.Chat, c, ToneWord(tone)), OutsiderMath.RegardShift(tone), OutsiderMath.WarmthShift(tone));
-            // together: the two have just talked face to face; who they are, as the colonist learned it.
-            Msg("CC_Out_Msg_Chat", c, c.Named("PAWN"), x.Named("OTHER"), Called(x).Named("WHO"), ToneLine(tone).Named("HOW"));
+            OutsiderTalk.Told(c, x, plan?.choice);
         }
 
         // ---------------- News of home ----------------
 
-        private static void AskHome(Pawn c, Pawn x)
+        /// <summary>
+        /// News of home, told in the scene's bubbles (a piece about what is going on around their town, chosen by what is
+        /// true now): what it tells goes into the town's "Heard lately" on the World page and the region map, with who told
+        /// whom, instead of a letter. A sour talk tells nothing.
+        /// </summary>
+        private static void AskHome(Pawn c, Pawn x, OutsiderTalk.Plan plan)
         {
-            var tone = OutsiderMath.Tone(Input(c, x, OutsiderAct.AskHome), Rand.Value);
-            var town = TownOf(x);
-            var f = PeopleOf(x);
-            string townName = town?.Name ?? f?.Name ?? "?";
-            var items = OutsiderMath.NewsCount(tone) > 0 ? HomeNews(x, f, town).Take(OutsiderMath.NewsCount(tone)).ToList() : new List<string>();
+            var tone = plan?.tone ?? OutsiderMath.Tone(Input(c, x, OutsiderAct.AskHome), Rand.Value);
+            // together: the news was told face to face, in the scene's bubbles.
             Remember(c, x, OutsiderAct.AskHome, Note(OutsiderAct.AskHome, c, ToneWord(tone)), OutsiderMath.RegardShift(tone) * 0.5f, OutsiderMath.WarmthShift(tone) * 0.5f);
-            if (items.Count == 0)
-            {
-                Say(x, "homenothing", c);
-                // together: they talked face to face, and the outsider kept quiet about home.
-                Msg("CC_Out_Msg_HomeNothing", c, c.Named("PAWN"), x.Named("OTHER"));
-                return;
-            }
-            Say(x, "hometold", c);
-            string text = "CC_Out_HomeHead".Translate(x.Named("OTHER"), c.Named("PAWN"), townName.Named("TOWN")).Resolve() + "\n" + string.Join("\n", items.Select(i => "  - " + i));
-            // together: the news was told face to face; the letter keeps it.
-            Find.LetterStack.ReceiveLetter("CC_Out_HomeTitle".Translate(townName.Named("TOWN")).Resolve(), text, LetterDefOf.NeutralEvent, new LookTargets(x));
-        }
-
-        /// <summary>What they tell of home, most pressing first: what their people are short of, a caravan of theirs on its way, then the letters' news (world events, places near, a quest, a war).</summary>
-        public static List<string> HomeNews(Pawn x, Faction f, Settlement town)
-        {
-            var items = new List<string>();
-            if (f == null) return items;
-            try
-            {
-                foreach (var s in WorldSituations.Instance?.Running ?? Enumerable.Empty<WorldSituation>())
-                {
-                    if (s.def == null || !s.def.bad || s.ctx?.faction != f) continue;
-                    string need = ShortOf(s.def.defName);
-                    if (need != null) items.Add(("CC_Out_News_Short_" + need).Translate(s.Label.Named("WHAT")).Resolve());
-                }
-                var q = Find.Storyteller?.incidentQueue;
-                if (q != null)
-                    foreach (var o in q)
-                    {
-                        if (!(o is QueuedIncident qi) || qi.FiringIncident?.parms?.faction != f || qi.FiringIncident.def == null) continue;
-                        string n = qi.FiringIncident.def.defName;
-                        if (n.Contains("Trader") || n.Contains("Caravan")) items.Add("CC_Out_News_Caravan".Translate().Resolve());
-                        else if (n.Contains("Visitor") || n.Contains("Traveler")) items.Add("CC_Out_News_Visitors".Translate().Resolve());
-                        else continue;
-                        break;
-                    }
-                items.AddRange(NeighbourLetters.NewsItems(f, town));
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("outsider news of home", e);
-            }
-            return items.Distinct().ToList();
-        }
-
-        /// <summary>What a hard time leaves a people short of, by its kind: food, medicine, hands, firewood; null for none in particular.</summary>
-        private static string ShortOf(string defName)
-        {
-            string n = defName ?? "";
-            if (n.Contains("Famine") || n.Contains("Hunger") || n.Contains("Harvest") || n.Contains("Blight") || n.Contains("Drought") || n.Contains("Locust")) return "Food";
-            if (n.Contains("Plague") || n.Contains("Fever") || n.Contains("Cough") || n.Contains("Sick") || n.Contains("Pox") || n.Contains("Flu")) return "Medicine";
-            if (n.Contains("War") || n.Contains("Raid") || n.Contains("Bandit") || n.Contains("Siege")) return "Hands";
-            if (n.Contains("Winter") || n.Contains("Cold") || n.Contains("Freeze") || n.Contains("Snow")) return "Fuel";
-            return null;
+            if (tone != TalkTone.Sour) OutsiderTalk.Told(c, x, plan?.choice);
         }
 
         // ---------------- A good word at home ----------------
@@ -210,9 +158,8 @@ namespace ColonyCouncil
             Remember(c, x, OutsiderAct.GoodWord, yes ? Note(OutsiderAct.GoodWord, c, to.Name) : null, OutsiderMath.RegardShift(tone) * 0.5f, OutsiderMath.WarmthShift(tone) * 0.5f);
             if (!yes)
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, "wordno", c);
-                // together: asked and answered face to face.
-                Msg("CC_Out_Msg_WordNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return;
             }
             var book = Book;
@@ -265,9 +212,8 @@ namespace ColonyCouncil
             Remember(c, x, OutsiderAct.Teach, null, 0f, 0f);
             if (!yes)
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, "teachno", c);
-                // together: asked and answered face to face.
-                Msg("CC_Out_Msg_TeachNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return null;
             }
             Say(x, "teachyes", c);
@@ -310,13 +256,8 @@ namespace ColonyCouncil
         public static void LessonOver(Pawn c, Pawn x, SkillDef skill, int ticks)
         {
             if (c == null || x == null || skill == null) return;
-            bool whole = ticks >= OutsiderMath.TeachTicks - 60;
-            if (ticks < 500)
-            {
-                // together: the lesson they began side by side ended before it was one.
-                Msg("CC_Out_Msg_TaughtShort", c, c.Named("PAWN"), x.Named("OTHER"), skill.label.Named("SKILL"));
-                return;
-            }
+            // together: the lesson they began side by side ended before it was one; nothing comes of it.
+            if (ticks < 500) return;
             Say(x, "lessondone", c);
             Remember(c, x, OutsiderAct.Teach, Note(OutsiderAct.Teach, c, skill.label), 2f, 5f);
             // together: the two spent the lesson side by side.
@@ -324,7 +265,6 @@ namespace ColonyCouncil
             Memory(x, OutsiderDefOf.Rimfolk_OutsiderTaught, c, 1);
             var f = PeopleOf(x);
             if (f != null) KinMemory.Note(f, "taught", c, null);
-            Good(whole ? "CC_Out_Msg_Taught" : "CC_Out_Msg_TaughtPart", c, c.Named("PAWN"), x.Named("OTHER"), skill.label.Named("SKILL"));
         }
 
         // ---------------- A favour: something brought next time ----------------
@@ -362,9 +302,8 @@ namespace ColonyCouncil
             Remember(c, x, OutsiderAct.Bring, yes ? Note(OutsiderAct.Bring, c, thing.label) : null, 0.5f, 1f);
             if (!yes)
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, "bringno", c);
-                // together: asked and answered face to face.
-                Msg("CC_Out_Msg_BringNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return;
             }
             int count = OutsiderMath.BringCount(thing.BaseMarketValue, ofColony);
@@ -410,9 +349,8 @@ namespace ColonyCouncil
             Remember(c, x, OutsiderAct.Invite, null, 0.5f, 1f);
             if (x.TraderKind != null || !Rand.Chance(chance))
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, "inviteno", c);
-                // together: asked and answered face to face.
-                Msg("CC_Out_Msg_InviteNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return;
             }
             Say(x, "inviteyes", c);
@@ -424,11 +362,12 @@ namespace ColonyCouncil
 
         // ---------------- Getting to know them ----------------
 
-        private static void Befriend(Pawn c, Pawn x)
+        private static void Befriend(Pawn c, Pawn x, OutsiderTalk.Plan plan)
         {
-            var tone = OutsiderMath.Tone(Input(c, x, OutsiderAct.Befriend), Rand.Value);
+            var tone = plan?.tone ?? OutsiderMath.Tone(Input(c, x, OutsiderAct.Befriend), Rand.Value);
             Close(c, x, tone);
             var pair = Remember(c, x, OutsiderAct.Befriend, Note(OutsiderAct.Befriend, c, ToneWord(tone)), OutsiderMath.RegardShift(tone), OutsiderMath.WarmthShift(tone) * 1.5f);
+            OutsiderTalk.Told(c, x, plan?.choice);
             if (pair == null) return;
             if (!pair.friends && OutsiderMath.FriendsNow(pair.warmth, pair.fam, pair.visits))
             {
@@ -447,10 +386,7 @@ namespace ColonyCouncil
                 Memory(c, OutsiderDefOf.Rimfolk_OutsiderFriend, x, 0);
                 Memory(x, OutsiderDefOf.Rimfolk_OutsiderFriend, c, 0);
             }
-            string how = pair.friends ? "CC_Out_Bond_Friends".Translate().Resolve()
-                : pair.visits < OutsiderMath.FriendVisits ? "CC_Out_Bond_Visits".Translate(x.Named("OTHER")).Resolve()
-                : pair.warmth < OutsiderMath.FriendWarmth ? "CC_Out_Bond_Warmer".Translate().Resolve() : "CC_Out_Bond_Know".Translate().Resolve();
-            Msg("CC_Out_Msg_Befriend", c, c.Named("PAWN"), x.Named("OTHER"), ToneLine(tone).Named("HOW"), how.Named("BOND"));
+            // Not friends yet: the time spent shows in bubbles only; how far they are from it is on the pair's record.
         }
 
         // ---------------- Courting ----------------
@@ -525,7 +461,8 @@ namespace ColonyCouncil
                 Memory(c, OutsiderDefOf.Rimfolk_OutsiderTalk, x, stage);
             }
             Remember(c, x, OutsiderAct.Faith, Note(OutsiderAct.Faith, c, ("CC_Out_FaithWord_" + end).Translate().Resolve()), OutsiderMath.RegardShift(tone), OutsiderMath.FaithWarmth(end));
-            Msg("CC_Out_Msg_Faith_" + end, c, c.Named("PAWN"), x.Named("OTHER"), x.Ideo.name.Named("IDEO"), c.Ideo.name.Named("OURS"));
+            // A faith moved shows in their certainty; the talk itself in bubbles only, but a debate that hardened both is worth a word.
+            if (end == FaithEnd.Hardened) Msg("CC_Out_Msg_Faith_" + end, c, c.Named("PAWN"), x.Named("OTHER"), x.Ideo.name.Named("IDEO"), c.Ideo.name.Named("OURS"));
         }
 
         // ---------------- Hard words ----------------
@@ -699,22 +636,23 @@ namespace ColonyCouncil
             Judge(x, carried, g);
             if (g.against)
             {
+                // together: offered face to face, and handed back (the colonist still holds it).
                 Say(x, "giftno", c);
-                // together: offered face to face, and handed back.
-                Msg("CC_Out_Msg_GiftNo", c, c.Named("PAWN"), x.Named("OTHER"), PlayGive.Label(carried).Named("GIFT"));
                 return false;
             }
             var f = PeopleOf(x);
             string what = carried.stackCount > 1 ? Couriers.Amount(carried.stackCount, null, carried.def) : Find.ActiveLanguageWorker.WithIndefiniteArticle(PlayGive.Label(carried));
-            int gw = GiftGoodwill(carried, carried.stackCount, f, g.fit);
+            // Gifts in a row on one visit count for less and less (OutsiderTalkMath.GiftFactor).
+            float share = OutsiderTalk.GiftShare(x);
+            int gw = Mathf.RoundToInt(GiftGoodwill(carried, carried.stackCount, f, g.fit) * share);
             c.carryTracker.innerContainer.Remove(carried);
             x.inventory.TryAddItemNotForSale(carried);
             if (!x.inventory.innerContainer.Contains(carried) && !carried.Destroyed && !carried.Spawned)
                 GenPlace.TryPlaceThing(carried, x.Position, x.Map, ThingPlaceMode.Near);
-            float warmth = OutsiderMath.GiftWarmth(g.value, g.fit, LivingEvents.WealthFactor(c.Map));
-            Say(x, g.suits ? "giftsuits" : "giftthanks", c);
-            // together: handed over face to face.
-            Memory(x, OutsiderDefOf.Rimfolk_OutsiderGift, c, OutsiderMath.GiftStage(g.fit));
+            float warmth = OutsiderMath.GiftWarmth(g.value, g.fit, LivingEvents.WealthFactor(c.Map)) * share;
+            Say(x, g.suits && share >= 0.5f ? "giftsuits" : "giftthanks", c);
+            // together: handed over face to face; a gift after several on one visit leaves no memory of its own.
+            if (share >= OutsiderTalkMath.GiftMemoryFloor) Memory(x, OutsiderDefOf.Rimfolk_OutsiderGift, c, share >= 0.5f ? OutsiderMath.GiftStage(g.fit) : 1);
             Remember(c, x, OutsiderAct.Gift, Note(OutsiderAct.Gift, c, what), warmth * 0.5f, warmth);
             if (f != null)
             {
@@ -729,7 +667,6 @@ namespace ColonyCouncil
                         CouncilLog.ErrorOnce("outsider gift goodwill change", e);
                     }
             }
-            Good(g.suits ? "CC_Out_Msg_GiftSuits" : "CC_Out_Msg_Gift", c, c.Named("PAWN"), x.Named("OTHER"), what.Named("GIFT"));
             return true;
         }
 
@@ -775,9 +712,8 @@ namespace ColonyCouncil
             string no = drink ? "drinkno" : "mealno";
             if (tone >= TalkTone.Cool || x.jobs == null)
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, no, c);
-                // together: asked and answered face to face.
-                Msg(drink ? "CC_Out_Msg_DrinkNo" : "CC_Out_Msg_MealNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return null;
             }
             if (!Portions(c, x, drink, out var fc, out var fx))
@@ -868,12 +804,8 @@ namespace ColonyCouncil
             bool cAte = m.cDone && (m.drink || (c.needs?.food?.CurLevel ?? 0f) > m.foodC + 0.05f);
             bool xAte = m.xDone && (m.drink || (x.needs?.food?.CurLevel ?? 0f) > m.foodX + 0.05f);
             var act = m.drink ? OutsiderAct.Drink : OutsiderAct.Meal;
-            if (!cAte || !xAte)
-            {
-                // apart: the meal didn't come to sitting down together; said in a message.
-                Msg("CC_Out_Msg_MealApart", c, c.Named("PAWN"), x.Named("OTHER"));
-                return;
-            }
+            // apart: the meal didn't come to sitting down together; nothing comes of it.
+            if (!cAte || !xAte) return;
             var tone = OutsiderMath.Tone(Input(c, x, act), Rand.Value);
             if (tone > TalkTone.Plain) tone = TalkTone.Plain;
             if (Together.Can(c, x)) Say(x, m.drink ? "drinkend" : "mealend", c);
@@ -881,7 +813,6 @@ namespace ColonyCouncil
             Memory(c, OutsiderDefOf.Rimfolk_OutsiderMeal, x, m.drink ? 1 : 0);
             Memory(x, OutsiderDefOf.Rimfolk_OutsiderMeal, c, m.drink ? 1 : 0);
             Remember(c, x, act, Note(act, c, ToneWord(tone)), OutsiderMath.RegardShift(tone) + 1f, OutsiderMath.WarmthShift(tone) + 3f);
-            Good(m.drink ? "CC_Out_Msg_DrinkDone" : "CC_Out_Msg_MealDone", c, c.Named("PAWN"), x.Named("OTHER"));
         }
 
         // ================= Bouts =================
@@ -905,9 +836,8 @@ namespace ColonyCouncil
             Remember(c, x, OutsiderAct.Spar, null, 0f, 0f);
             if (!Rand.Chance(chance))
             {
+                // together: asked and answered face to face, in a bubble only.
                 Say(x, "sparno", c);
-                // together: asked and answered face to face.
-                Msg("CC_Out_Msg_SparNo", c, c.Named("PAWN"), x.Named("OTHER"));
                 return null;
             }
             Say(x, "sparyes", c);
@@ -1191,8 +1121,7 @@ namespace ColonyCouncil
             if (bout.hurt != c) Memory(c, OutsiderDefOf.Rimfolk_OutsiderBout, x, 0);
             if (bout.hurt != x) Memory(x, OutsiderDefOf.Rimfolk_OutsiderBout, c, 0);
             Remember(c, x, OutsiderAct.Spar, Note(OutsiderAct.Spar, c), 1.5f, bout.hurt != null ? 0f : 4f);
-            string result = bout.winner == null ? "CC_Out_Spar_Even".Translate().Resolve() : "CC_Out_Spar_Won".Translate(bout.winner.Named("WINNER")).Resolve();
-            Msg("CC_Out_Msg_Spar", c, c.Named("PAWN"), x.Named("OTHER"), result.Named("RESULT"));
+            // Who got the better of it is in their bubbles; a real injury is worth a message.
             if (bout.hurt != null)
                 Notify.Message("CC_Out_Msg_SparHard".Translate(bout.hurt.Named("HURT")).Resolve(), new LookTargets(bout.hurt), MessageTypeDefOf.NegativeHealthEvent, Importance.Important);
         }

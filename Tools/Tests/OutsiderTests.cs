@@ -64,7 +64,7 @@ public static class OutsiderTests
 
         // ---------------- News of home ----------------
 
-        C(tones.Select(OutsiderMath.NewsCount).SequenceEqual(new[] { 4, 3, 2, 1, 0 }), "the warmer the talk, the more news; a sour one tells nothing");
+        C(tones.Select(OutsiderTalkMath.MaxLines).SequenceEqual(new[] { 6, 6, 5, 3, 2 }), "the warmer the talk, the longer it runs: six lines warm or good, two sour");
 
         // ---------------- A gift ----------------
 
@@ -191,7 +191,6 @@ public static class OutsiderTests
         foreach (var a in acts.Where(a => a != OutsiderAct.GoodWord && a != OutsiderAct.Teach)) keys.Add("CC_Out_Act_" + a);
         foreach (var t in tones)
         {
-            keys.Add("CC_Out_Tone_" + t);
             keys.Add("CC_Out_ToneWord_" + t);
         }
         foreach (FaithEnd e in Enum.GetValues(typeof(FaithEnd)))
@@ -202,7 +201,6 @@ public static class OutsiderTests
         foreach (DuelTerms t in Enum.GetValues(typeof(DuelTerms))) keys.Add("CC_Out_TermsWord_" + t);
         foreach (var w in new[] { "Won", "Lost", "Draw" }) keys.Add("CC_Out_DuelWord_" + w);
         foreach (var w in new[] { "Won", "Lost" }) keys.Add("CC_Out_Msg_Duel" + w);
-        foreach (var w in new[] { "Food", "Medicine", "Hands", "Fuel" }) keys.Add("CC_Out_News_Short_" + w);
         C(keys.Count >= 120, $"found the keys the code names ({keys.Count})");
         foreach (var k in keys) C(keyed.Contains(k), $"{k} exists");
         foreach (var kind in new[] { "gaveGift", "duel", "brawled", "broughtAsked" })

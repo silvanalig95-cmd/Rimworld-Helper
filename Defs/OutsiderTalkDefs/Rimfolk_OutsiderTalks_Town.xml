@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Their town and its people: who leads, a new head, a death, someone ill, letters, what they're short of, their
+       traders on the way, places near it. Most are news, told when asked about home too. The format is described at the
+       top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Quiet</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town,!their:war,!situation:theirs,!town:loss,!town:ill,!town:short:food,!town:short:medicine,!town:newhead</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[us] How are things in {TOWN}?</li>
+      <li>[them,their:tribal] The fires are lit and the children are fed, so well enough.</li>
+      <li>[them,their:medieval] The market's busy and the reeve's grumbling, so the usual.</li>
+      <li>[them,their:empire] Orderly, as the Empire likes things.</li>
+      <li>[them,their:hightech] The lights are on, the market's open, and nobody's shooting.</li>
+      <li>[them] Quiet, mostly, which suits us fine.</li>
+      <li>[us] Quiet sounds good from out here.</li>
+      <li>[them] It is, until you've had a month of it.</li>
+      <li>[us] We'd take a month of quiet, if you're giving it away.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Head</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:head,!town:newhead</when>
+    <mark>head</mark>
+    <about>HEAD</about>
+    <lines>
+      <li>[us] Who leads in {TOWN} these days?</li>
+      <li>[them,their:tribal] {HEAD} speaks for us, and the elders listen.</li>
+      <li>[them] {HEAD} does, our {HEADTITLE}.</li>
+      <li>[us] Is {HEAD} well liked?</li>
+      <li>[them,role:heir] I'd better say yes, I'm next in line.</li>
+      <li>[them] Well enough, most days.</li>
+      <li>[us] Then I hope we get to meet {HEAD} someday.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_NewHead</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:newhead,!town:headdied</when>
+    <mark>head</mark>
+    <about>HEAD</about>
+    <heard>{HEAD} is the new {HEADTITLE} of {TOWN}.</heard>
+    <lines>
+      <li>[them] We have a new {HEADTITLE} in {TOWN}, did you hear?</li>
+      <li>[us] No, who is it?</li>
+      <li>[them,their:tribal] {HEAD}, and the elders are still deciding what they think of it.</li>
+      <li>[them] {HEAD}, and it's early days yet.</li>
+      <li>[us] I hope {HEAD} does right by you.</li>
+      <li>[them] So do we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_HeadDied</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:headdied</when>
+    <weight>1.5</weight>
+    <mark>head</mark>
+    <about>HEAD</about>
+    <heard>{OLDHEAD} of {TOWN} has died, and {HEAD} leads in their place.</heard>
+    <lines>
+      <li>[them] You'll not have heard, {OLDHEAD} is gone.</li>
+      <li>[us] I hadn't, I'm sorry.</li>
+      <li>[them,their:tribal] We sang {OLDHEAD} to the spirits, and now {HEAD} leads us.</li>
+      <li>[them,their:medieval] The bells rang for a day, and now {HEAD} holds the seat.</li>
+      <li>[them] It was hard on everyone, and now {HEAD} leads us.</li>
+      <li>[us] Is {HEAD} up to it?</li>
+      <li>[them] We'll find out, won't we?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Loss</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:loss,!town:headdied</when>
+    <weight>1.3</weight>
+    <heard>{LOST}, {LOSTTITLE} of {TOWN}, has died.</heard>
+    <lines>
+      <li>[them] We lost {LOST} not long ago, our {LOSTTITLE}.</li>
+      <li>[us] I'm sorry, did you know them well?</li>
+      <li>[them,their:tribal] In a camp like ours, everyone knows everyone.</li>
+      <li>[them] Well enough to miss them.</li>
+      <li>[us] Then I'm sorry for your loss.</li>
+      <li>[them] Thank you, I'll tell them at home you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Ill</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:ill</when>
+    <weight>1.2</weight>
+    <mark>ill</mark>
+    <about>ILL</about>
+    <heard>{ILL}, {ILLTITLE} of {TOWN}, is in poor health.</heard>
+    <lines>
+      <li>[them] {ILL}, our {ILLTITLE}, is unwell, and it has people worried.</li>
+      <li>[us] What's wrong?</li>
+      <li>[them,their:tribal] The healer burns herbs and sings, and we wait.</li>
+      <li>[them,their:hightech] The doctor says rest, so we wait and hope.</li>
+      <li>[them] Nobody's quite sure, so we wait and hope.</li>
+      <li>[us] I hope {ILL} pulls through.</li>
+      <li>[them] I'll tell them you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Notable</defName>
+    <topic>town</topic>
+    <when>town:notable</when>
+    <lines>
+      <li>[us] Do you know {NOTABLE}, your {NOTABLETITLE}?</li>
+      <li>[them,role:notable] We work together, more or less.</li>
+      <li>[them] Everyone in {TOWN} knows {NOTABLE}.</li>
+      <li>[us] Tell {NOTABLE} we said hello.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Letter</defName>
+    <topic>letters</topic>
+    <when>town:letter</when>
+    <lines>
+      <li>[them] I hear {WRITER} has written to {WROTE}.</li>
+      <li>[us] We have, has it arrived?</li>
+      <li>[them,their:tribal] I couldn't tell you, I've been walking.</li>
+      <li>[them] I couldn't tell you, I've been on the road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Wrote</defName>
+    <topic>letters</topic>
+    <when>town:wrote</when>
+    <lines>
+      <li>[them] {WROTE} mentioned your letter before I left.</li>
+      <li>[us] Was it well received?</li>
+      <li>[them,likesus] Well enough that I'm standing here talking to you.</li>
+      <li>[them] You'd have to ask {WROTE} that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_ShortFood</defName>
+    <topic>hardship</topic>
+    <uses>home,chat</uses>
+    <when>town:short:food,situation:theirs,situation:hunger</when>
+    <weight>1.3</weight>
+    <mark>hunger</mark>
+    <about>SITUATION</about>
+    <heard>{TOWN} is short of food with {SITUATION}.</heard>
+    <lines>
+      <li>[them] Food's short at home, with {SITUATION}.</li>
+      <li>[us] How bad is it?</li>
+      <li>[them,their:lowtech] We eat once a day and keep the seed back.</li>
+      <li>[them] Bad enough that bread costs twice what it did.</li>
+      <li>[us,colony:plenty] We might be able to spare a little, if it comes to that.</li>
+      <li>[us] I'm sorry to hear it.</li>
+      <li>[them] Kind of you to say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_ShortMedicine</defName>
+    <topic>hardship</topic>
+    <uses>home,chat</uses>
+    <when>town:short:medicine,situation:theirs,situation:sickness</when>
+    <weight>1.3</weight>
+    <mark>sickness</mark>
+    <about>SITUATION</about>
+    <heard>{SITUATION} has {TOWN} short of medicine.</heard>
+    <lines>
+      <li>[us] Is everyone well at {TOWN}?</li>
+      <li>[them] Not with {SITUATION} going round, no.</li>
+      <li>[us] How bad is it?</li>
+      <li>[them,their:tribal] The healer's roots are nearly gone, and the sick keep coming.</li>
+      <li>[them] We're short of medicine, and the sick keep coming.</li>
+      <li>[us] Is it catching?</li>
+      <li>[them] I'm here talking to you, so I hope not.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_ShortHands</defName>
+    <topic>hardship</topic>
+    <uses>home,chat</uses>
+    <when>town:short:hands,situation:theirs</when>
+    <heard>{TOWN} needs every hand it has with {SITUATION}.</heard>
+    <lines>
+      <li>[them] Every pair of hands at home is busy with {SITUATION}.</li>
+      <li>[us] And yet they spared yours.</li>
+      <li>[them,role:trader] Someone has to keep the silver coming in.</li>
+      <li>[them] Someone had to come, so I came.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_ShortFuel</defName>
+    <topic>hardship</topic>
+    <uses>home,chat</uses>
+    <when>town:short:fuel,situation:theirs</when>
+    <mark>cold</mark>
+    <about>SITUATION</about>
+    <heard>{TOWN} is short of firewood with {SITUATION}.</heard>
+    <lines>
+      <li>[them] {SITUATION} has us burning the fence posts at home.</li>
+      <li>[us] That bad?</li>
+      <li>[them,their:tribal] We sleep close and tell long stories, and we last.</li>
+      <li>[them] We'll last, we always do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Caravan</defName>
+    <topic>trade</topic>
+    <uses>home,chat</uses>
+    <when>town:caravan</when>
+    <heard>{PEOPLE} have traders on the way to the colony.</heard>
+    <lines>
+      <li>[them] Our traders should be along before long.</li>
+      <li>[us] Good, we'll be ready for them.</li>
+      <li>[them,role:trader] Keep some silver back, then, they drive a harder bargain than I do.</li>
+      <li>[them] Tell them I sent you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Visitors</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:visitors</when>
+    <heard>{PEOPLE} mean to visit the colony soon.</heard>
+    <lines>
+      <li>[them] Some of ours mean to visit you soon.</li>
+      <li>[us] They'll be welcome.</li>
+      <li>[them] I'll tell them you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Site</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:site</when>
+    <mark>site</mark>
+    <about>SITE</about>
+    <heard>{SITE} lies near {TOWN}.</heard>
+    <lines>
+      <li>[us] Is the land around {TOWN} safe these days?</li>
+      <li>[them] Mostly, but {SITE} out that way has people uneasy.</li>
+      <li>[us] Has anyone been out to look?</li>
+      <li>[them,their:lowtech] Only the brave and the foolish, and we're short of both.</li>
+      <li>[them] Not that I know of, and I wouldn't go myself.</li>
+      <li>[us] Neither would I.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Quest</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>town:quest</when>
+    <lines>
+      <li>[them] People at home keep talking about something they call {QUEST}.</li>
+      <li>[us] What's that, then?</li>
+      <li>[them] Work for someone willing, from what I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Market</defName>
+    <topic>town</topic>
+    <when>their:medieval,town</when>
+    <lines>
+      <li>[them] Market day in {TOWN} would make your head spin.</li>
+      <li>[us] Busy?</li>
+      <li>[them] Busy, loud, and every second stall selling turnips.</li>
+      <li>[us] It sounds like a good day out, turnips and all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Camp</defName>
+    <topic>town</topic>
+    <when>their:tribal,town</when>
+    <lines>
+      <li>[us] How many live at {TOWN}?</li>
+      <li>[them] Enough to fill a long house and spill out of it.</li>
+      <li>[us] Is it crowded?</li>
+      <li>[them] Warm, we say, not crowded.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_Leader</defName>
+    <topic>town</topic>
+    <when>their:leader,!them:leader</when>
+    <lines>
+      <li>[us] What's {LEADER} like, your {LEADERTITLE}?</li>
+      <li>[them,their:empire] It isn't my place to say, and it isn't yours to ask.</li>
+      <li>[them,their:tribal] Wise in some things, stubborn in others, like all of us.</li>
+      <li>[them] Fair, when it counts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Town_TheyLead</defName>
+    <topic>town</topic>
+    <when>them:leader</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[us] It's not every day the head of {PEOPLE} comes to our gate.</li>
+      <li>[them] I like to see things for myself.</li>
+      <li>[us] And what do you see?</li>
+      <li>[them,likesus] Good neighbors, I think.</li>
+      <li>[them,wary] I haven't decided yet.</li>
+      <li>[them,!likesus,!wary] Neighbors, which is a start.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

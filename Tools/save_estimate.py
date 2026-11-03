@@ -83,6 +83,11 @@ C = {
     "OutsiderPairs": const("Outsiders/OutsiderBook.cs", "MaxPairs", 60),
     "OutsiderFavours": const("Outsiders/OutsiderBook.cs", "MaxFavours", 6),
     "OutsiderWords": const("Outsiders/OutsiderBook.cs", "MaxWords", 8),
+    "OutsiderVisits": const("Outsiders/OutsiderBook.cs", "MaxVisits", 30),
+    "OutsiderWars": const("Outsiders/OutsiderBook.cs", "MaxWars", 30),
+    "OutsiderHeard": const("Outsiders/OutsiderTalkMath.cs", "HeardMax", 40),
+    "OutsiderMarks": const("Outsiders/OutsiderTalkMath.cs", "MaxMarks", 10),
+    "OutsiderSaid": const("Outsiders/OutsiderTalkMath.cs", "MaxSaid", 16),
 }
 
 # How many defs of a kind there are, counted from the mod's own XML (more with other mods' content).
@@ -403,6 +408,15 @@ MODEL = {
     "Outsiders/OutsiderBook.cs:last": ("fixed", 16, V, "per pair: when they last did each of the 16 things (counted under pairs)"),
     "Outsiders/OutsiderBook.cs:favours": ("fixed", C["OutsiderFavours"], 220, "OutsiderBook.MaxFavours, one per people, let go after 30 days"),
     "Outsiders/OutsiderBook.cs:words": ("fixed", C["OutsiderWords"], 180, "OutsiderBook.MaxWords good words promised, carried home or let go after 20 days"),
+    # Conversations with outsiders (Outsiders/OutsiderTalk.cs): their earlier talks' marks, the pieces said, the last
+    # subjects; each outsider's visit (patience, gifts, asks); a town's news heard; the world's wars as seen.
+    "Outsiders/OutsiderBook.cs:marks": ("fixed", C["OutsiderMarks"], 70, "per pair: OutsiderTalkMath.MaxMarks, one per key, the oldest go (counted under pairs)"),
+    "Outsiders/OutsiderBook.cs:said": ("fixed", C["OutsiderSaid"], 40, "per pair: OutsiderTalkMath.MaxSaid pieces said, newest last (counted under pairs)"),
+    "Outsiders/OutsiderBook.cs:topics": ("fixed", 3, V, "per pair: the subjects of the last 3 talks (counted under pairs)"),
+    "Outsiders/OutsiderBook.cs:visits": ("fixed", C["OutsiderVisits"], 200, "OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave"),
+    "Outsiders/OutsiderBook.cs:asks": ("fixed", 8, 40, "per visit: the last 8 asks made of them (counted under visits)"),
+    "Outsiders/OutsiderBook.cs:heard": ("fixed", C["OutsiderHeard"], 220, "OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most"),
+    "Outsiders/OutsiderBook.cs:wars": ("fixed", C["OutsiderWars"], 160, "OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days"),
     # Reputation and gossip
     "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(220, 10 * COLONISTS), COLONISTS * 0.3), 300, "10 per colonist, 220 in all, faded ones dropped"),
     "Social/Gossip/Deed.cs:heard": ("cap", (min(220, 10 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (30 at most a deed), with its deed"),

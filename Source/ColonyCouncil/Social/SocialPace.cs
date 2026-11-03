@@ -6,7 +6,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// How often Rimfolk's own exchanges come for one colonist, across all of them: a moment (the groups' and the
-    /// reputation's moments are moments too), a conversation (Social/Talk/) and a story passed on (Social/Gossip/). Each
+    /// reputation's moments are moments too), a conversation (Social/Talk/), a story passed on (Social/Gossip/) and a talk
+    /// with someone from outside the colony started by the colonist (Outsiders/OutsiderTalk.cs). Each
     /// keeps its own wait (a moment six hours a starter; a talk four hours a starter and ten a pair; a story ten hours a
     /// teller and two days a pair). On top of those, someone who has just started one waits an hour before starting
     /// another of any kind, and nobody starts one with someone still in the middle of a conversation, so the game's own
@@ -29,6 +30,8 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             // (A time in the future means an older save was loaded: that wait is over.)
             if (lastStarted.TryGetValue(starter.thingIDNumber, out int t) && t <= now && now - t < StarterGapTicks) return false;
+            // In the middle of a talk with someone from outside the colony (Outsiders/OutsiderTalk.cs).
+            if (OutsiderTalk.Busy(starter) || OutsiderTalk.Busy(other)) return false;
             var talking = TalkTracker.Instance?.exchanges;
             return talking == null || talking.Count == 0 || (!talking.Busy(starter) && !talking.Busy(other));
         }
