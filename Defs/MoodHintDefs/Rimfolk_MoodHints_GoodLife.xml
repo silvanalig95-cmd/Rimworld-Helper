@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- What to do about a good life grown ordinary and the quiet troubles (Defs/ThoughtDefs/Rimfolk_Thoughts_GoodLife.xml). -->
-
-  <ColonyCouncil.MoodHintDef>
-    <defName>Rimfolk_Mood_GoodLife</defName>
-    <thoughts><li>Rimfolk_UsedToGoodLife</li></thoughts>
-    <fix>Nothing is wrong. Their good moods add up to more than their standards' line (45 for the modest, down to 30 for the spoiled), and part of what is above it is taken back: half of the first 20 points, three quarters of the rest. Every good thing still lifts them, a little less the more they already have, and it leaves room on the mood bar for a bad day to show. It fades in hard times, to nothing near a break. Lower standards keep more: hard times or the austerity decree bring them down.</fix>
-    <act>Part of a good life</act>
-    <actionable>false</actionable>
-    <article>Council_Alm_C_Standards</article>
-    <councilTab>Decrees</councilTab>
-  </ColonyCouncil.MoodHintDef>
+  <!-- What to do about the quiet troubles (Defs/ThoughtDefs/Rimfolk_Thoughts_GoodLife.xml). -->
 
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_TroubleWorry</defName>

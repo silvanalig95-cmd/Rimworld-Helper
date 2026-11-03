@@ -2,12 +2,10 @@
 <Defs>
 
   <!--
-    A good life grown ordinary, and the quiet troubles that still come to someone content.
+    The quiet troubles that still come to someone content, however good life is.
 
-    Used to the good life (Source/ColonyCouncil/Moods/GoodLife.cs): a lasting mood as big as the share of a colonist's
-    good moods that a good life takes back right now. The stage's -1 only marks it as a bad mood; the code gives its size
-    (GoodLifeMath: above a line of 45 for the modest down to 30 for the spoiled, half of the first 20 points and three
-    quarters of the rest), easing in hard times to nothing at the minor-break line. Its "why" gives the numbers.
+    Used to the good life (Source/ColonyCouncil/Moods/GoodLife.cs) has no mood of its own: each good mood is felt at a
+    share (Patches/Patch_GoodTimes.cs), and its tooltip says so.
 
     Quiet troubles (Source/ColonyCouncil/Setbacks/Troubles.cs): memories with a real cause read from the colonist's life,
     given as "Life's ups and downs" setbacks (the setting and their standards scale them, never under a whole point).
@@ -15,20 +13,6 @@
     helps is in Defs/MoodHintDefs/Rimfolk_MoodHints_GoodLife.xml, what they say in
     Defs/FlavorPoolDefs/Rimfolk_GoodLife_Lines.xml.
   -->
-
-  <ThoughtDef>
-    <defName>Rimfolk_UsedToGoodLife</defName>
-    <workerClass>ColonyCouncil.ThoughtWorker_GoodLife</workerClass>
-    <thoughtClass>ColonyCouncil.Thought_GoodLife</thoughtClass>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-      <li>
-        <label>used to the good life</label>
-        <description>Life here has been good for a long while, and I've got used to it. Good things still lift me, only not the way they did when they were new.</description>
-        <baseMoodEffect>-1</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
 
   <!-- ===================== Quiet troubles ===================== -->
 

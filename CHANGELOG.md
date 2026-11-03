@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Spoiled, not punished
+
+*3 November 2026, version 0.55.1*
+
+- Used to the good life no longer shows as one big bad mood. Instead each good mood is felt a little less, by the same share, once a colonist's good moods pile up past their standards' line, so the Mood tab shows smaller good moods and no large minus.
+- Each good mood that counts for less says so in its tooltip, with what it would be worth without it, and the good times line on the Mood tab gives the share and the numbers behind it.
+- The overall effect on mood is the same as before: every good thing still helps, bad moods are untouched, and it eases in hard times.
+
 ## Used to the good life
 
 *2 November 2026, version 0.55.0*

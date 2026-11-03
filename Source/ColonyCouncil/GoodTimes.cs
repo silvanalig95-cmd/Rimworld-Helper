@@ -196,11 +196,26 @@ namespace ColonyCouncil
         public static string ComfortNote(Pawn p, Thought group, float felt)
         {
             var handler = p?.needs?.mood?.thoughts;
-            if (handler == null || felt <= 0f || group?.def == null || ComfortFactor(p, group.def) >= 1f) return null;
-            float full = RawOffsetOfGroup(handler, group);
+            if (handler == null || felt <= 0f || group?.def == null) return null;
+            bool comfort = ComfortFactor(p, group.def) < 1f;
+            float share = GoodLife.Share(p);
+            bool used = share < 0.995f;
+            if (!comfort && !used) return null;
+            // A comfort from outside Rimfolk: against the mood without any of these rules. Rimfolk's own say in their
+            // description how they add up, so only a good life's share is counted back for them.
+            float full = comfort ? RawOffsetOfGroup(handler, group) : felt / share;
             if (full - felt < 0.05f) return null;
-            return "CC_GoodTimes_ComfortNote".Translate(p.Named("PAWN"), LevelLabel(p).Named("LEVEL"), MoodView.Number(felt).Named("FELT"),
+            string key = !used ? "CC_GoodTimes_ComfortNote" : comfort ? "CC_GoodLife_NoteBoth" : "CC_GoodLife_Note";
+            return key.Translate(p.Named("PAWN"), LevelLabel(p).Named("LEVEL"), MoodView.Number(felt).Named("FELT"),
                 MoodView.Number(full).Named("FULL")).Resolve();
+        }
+
+        /// <summary>The Mood tab readout's tooltip: how the rules work, and the numbers behind a good life's share for them.</summary>
+        public static string Tip(Pawn p)
+        {
+            string tip = "CC_GoodTimes_Tip".Translate().Resolve();
+            string why = GoodLife.Why(p);
+            return why.NullOrEmpty() ? tip : tip + "\n\n" + why;
         }
 
         // ---------------- The Mood tab's readout ----------------
@@ -220,6 +235,8 @@ namespace ColonyCouncil
             if (handler == null) return null;
             float rimFelt = 0f, rimFull = 0f, gameFelt = 0f, gameFull = 0f;
             int sooner = 0;
+            // A good life's share has its own part below; the others are counted as they'd be without it.
+            float share = GoodLife.Share(p);
             try
             {
                 tmpGroups.Clear();
@@ -231,6 +248,7 @@ namespace ColonyCouncil
                     float full = RawOffsetOfGroup(handler, g);
                     if (full <= 0f) continue;
                     float felt = Mathf.Max(0f, handler.MoodOffsetOfGroup(g));
+                    if (share > 0f && share < 1f) felt = Mathf.Min(full, felt / share);
                     if (IsRimfolk(g.def))
                     {
                         rimFelt += felt;
@@ -258,7 +276,7 @@ namespace ColonyCouncil
                 // Don't keep thoughts (and through them, the whole game) alive between calls.
                 tmpGroups.Clear();
             }
-            var parts = new List<string>(2);
+            var parts = new List<string>(3);
             bool rimLess = rimFull - rimFelt >= 0.5f;
             if (rimLess || sooner > 0)
             {
@@ -270,6 +288,8 @@ namespace ColonyCouncil
             }
             if (gameFull - gameFelt >= 0.5f)
                 parts.Add("CC_GoodTimes_Comforts".Translate(Whole(gameFelt), Whole(gameFull), LevelLabel(p)).Resolve());
+            string life = GoodLife.ReadoutPart(p);
+            if (life != null) parts.Add(life);
             return parts.Count == 0 ? null : "CC_GoodTimes_Line".Translate(string.Join("  ·  ", parts)).Resolve();
         }
     }

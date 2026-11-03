@@ -33,6 +33,20 @@ public static class GoodLifeTests
             C(GoodLifeMath.TakeBack(80f, GoodLifeMath.LineFor(lvl + 1)) > GoodLifeMath.TakeBack(80f, GoodLifeMath.LineFor(lvl)),
                 $"the same good moods: more taken back one level up ({lvl})");
 
+        // ---------- Each good mood's share ----------
+        C(GoodLifeMath.Share(50f, 0f) == 1f && GoodLifeMath.Share(0f, 5f) == 1f && GoodLifeMath.Share(-10f, 5f) == 1f, "nothing taken: each good mood in full");
+        C(GoodLifeMath.Share(float.NaN, 5f) == 1f && GoodLifeMath.Share(50f, float.NaN) == 1f, "an unknown sum: in full");
+        C(Math.Abs(GoodLifeMath.Share(50f, GoodLifeMath.TakeBack(50f, 30f)) - 0.8f) < 0.001f, "+50 for the spoiled: each felt at 80%");
+        C(Math.Abs(GoodLifeMath.Share(80f, GoodLifeMath.TakeBack(80f, 30f)) - 47.5f / 80f) < 0.001f, "+80 for the spoiled: each felt at 59%");
+        C(GoodLifeMath.Share(10f, 50f) == GoodLifeMath.MinShare, "never under the least share");
+        for (int lvl = 0; lvl <= 3; lvl++)
+            for (float p = 1f; p <= 250f; p += 1f)
+            {
+                float line = GoodLifeMath.LineFor(lvl);
+                float share = GoodLifeMath.Share(p, GoodLifeMath.TakeBack(p, line));
+                C(Math.Abs(p * share - GoodLifeMath.Kept(p, line)) < 0.01f, $"the shrunk good moods add up to what is kept (level {lvl}, +{p})");
+            }
+
         // ---------- The take-back ----------
         float spoiled = GoodLifeMath.LineFor(3);
         C(GoodLifeMath.TakeBack(30f, spoiled) == 0f && GoodLifeMath.TakeBack(10f, spoiled) == 0f, "nothing at or below the line");
@@ -152,10 +166,12 @@ public static class GoodLifeTests
         foreach (var el in XDocument.Load(Path.Combine(root, "Defs", "MoodHintDefs", "Rimfolk_MoodHints_GoodLife.xml")).Root!.Elements())
             foreach (var t in el.Element("thoughts")?.Elements("li") ?? Enumerable.Empty<XElement>())
                 hints.Add(t.Value.Trim());
-        var goodLife = Def("Rimfolk_UsedToGoodLife");
-        C(goodLife != null && goodLife.Element("workerClass")?.Value == "ColonyCouncil.ThoughtWorker_GoodLife"
-                           && goodLife.Element("thoughtClass")?.Value == "ColonyCouncil.Thought_GoodLife", "used to the good life is a lasting mood with its worker");
-        C(hints.Contains("Rimfolk_UsedToGoodLife"), "used to the good life has a hint");
+        // Used to the good life shrinks each good mood (the player found one big bad mood for it unconvincing).
+        C(Def("Rimfolk_UsedToGoodLife") == null, "used to the good life has no bad mood of its own");
+        C(!File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Moods", "GoodLife.cs")).Contains(": Thought_Situational"),
+            "used to the good life is no lasting mood");
+        C(File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Patches", "Patch_GoodTimes.cs")).Contains("GoodLife.Share("),
+            "each good mood group is felt at the good life's share");
         foreach (var t in Troubles)
         {
             string name = "Rimfolk_Trouble_" + t;

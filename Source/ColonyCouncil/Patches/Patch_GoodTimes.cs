@@ -51,9 +51,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Standards cover the game's comforts (GoodTimes.cs). The game adds up a colonist's mood group by group through
-    /// this method, and the Needs tab shows the same number, so a good mood from the game or another mod is felt (and
-    /// shown) a little less by a colonist with high standards. Bad moods and Rimfolk's own pass through unchanged.
+    /// Standards cover the game's comforts (GoodTimes.cs), and used to the good life (Moods/GoodLife.cs). The game adds
+    /// up a colonist's mood group by group through this method, and the Needs tab shows the same number, so a good mood
+    /// from the game or another mod is felt (and shown) a little less by a colonist with high standards, and every good
+    /// mood, Rimfolk's too, a share less by one whose good moods pile up past their standards' line. Bad moods pass
+    /// through unchanged.
     /// </summary>
     [HarmonyPatch(typeof(ThoughtHandler), nameof(ThoughtHandler.MoodOffsetOfGroup))]
     public static class Patch_ComfortStandards
@@ -68,6 +70,15 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("standards and comforts", e);
+            }
+            try
+            {
+                float share = GoodLife.Share(__instance?.pawn);
+                if (share < 1f) __result *= share;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("used to the good life", e);
             }
         }
     }

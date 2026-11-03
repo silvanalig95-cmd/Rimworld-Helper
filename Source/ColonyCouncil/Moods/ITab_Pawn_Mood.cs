@@ -138,7 +138,7 @@ namespace ColonyCouncil
                 if (goodTimes != null)
                 {
                     float h = UiKit.Paragraph(0f, cy, w, goodTimes, MoodView.Faint, GameFont.Tiny);
-                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => "CC_GoodTimes_Tip".Translate().Resolve(), 0x600D7135);
+                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodTimes.Tip(p), 0x600D7135);
                     cy += h + 4f;
                 }
                 if (mood.sources != null) cy += UiKit.Paragraph(0f, cy, w, mood.sources, MoodView.Faint, GameFont.Tiny) + 8f;
@@ -185,7 +185,7 @@ namespace ColonyCouncil
                 if (goodTimes != null)
                 {
                     float h = UiKit.Paragraph(0f, cy, w, goodTimes, MoodView.Faint, GameFont.Tiny);
-                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => "CC_GoodTimes_Tip".Translate().Resolve(), 0x600D7135);
+                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodTimes.Tip(p), 0x600D7135);
                     cy += h + 4f;
                 }
                 cy += 4f;

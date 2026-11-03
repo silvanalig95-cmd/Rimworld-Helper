@@ -5,15 +5,18 @@
 
   <!-- Settings -->
   <CC_Settings_GoodLife>Used to the good life</CC_Settings_GoodLife>
-  <CC_Settings_GoodLife_Tip>A colonist with a pile of good moods stops feeling all of it. Their good moods (from the game, other mods and Rimfolk alike) count in full up to a line set by their standards: 45 points for the modest, falling to 30 for the spoiled. Above it, half of the first 20 points and three quarters of the rest are taken back, as one bad mood with its own line in the Mood tab. Every good thing still helps, so a well-run colony stays happy, but it settles below the top of the mood bar, where a bad day still shows. Bad moods are never touched, and it fades in hard times, to nothing for anyone near a break.</CC_Settings_GoodLife_Tip>
-  <CC_SetNote_GoodLife>A big pile of good moods counts for less above a line set by standards.</CC_SetNote_GoodLife>
+  <CC_Settings_GoodLife_Tip>A colonist with a pile of good moods stops feeling all of it, the way anyone gets used to a good life. Their good moods (from the game, other mods and Rimfolk alike) count in full up to a line set by their standards: 45 points for the modest, falling to 30 for the spoiled. Above it, each good mood is felt a little less, so that half of the first 20 points over the line and three quarters of the rest no longer lift them; each good mood's tooltip says how much it counts now. Every good thing still helps, so a well-run colony stays happy, but it settles below the top of the mood bar, where a bad day still shows. Bad moods are never touched, and it eases in hard times, to nothing for anyone near a break. Needs the deeper game hooks.</CC_Settings_GoodLife_Tip>
+  <CC_SetNote_GoodLife>Above a line set by standards, each good mood is felt a little less.</CC_SetNote_GoodLife>
   <CC_Settings_QuietTroubles>Quiet troubles</CC_Settings_QuietTroubles>
   <CC_Settings_QuietTroubles_Tip>Someone content for days on end can still have a low day with a real cause from their life: worry about family out in the world, the day someone they loved died coming round again, missing the life they had before, days of the same work and recreation, an old injury or the years aching, a bad night, a rival's honor. The chance grows the longer they've been content, up to about one day in eight, and never more than once in ten days. Each lasts a day or two and passes sooner after a deep talk or a good time with a friend. They follow "Life's ups and downs".</CC_Settings_QuietTroubles_Tip>
   <CC_SetNote_QuietTroubles>Now and then, a low day with a real cause for someone content a while.</CC_SetNote_QuietTroubles>
 
-  <!-- Used to the good life: the why line -->
-  <CC_GoodLife_Why>their good moods add up to {GOOD}. Above {LINE}, the line for {LEVEL} standards, half of the first {FIRST} points and three quarters of the rest are taken back: {TAKEN} points.</CC_GoodLife_Why>
-  <CC_GoodLife_Hard>Times are hard for {PAWN_objective} just now, so it counts for less: {FELT} points, and nothing at the edge of a break.</CC_GoodLife_Hard>
+  <!-- Used to the good life: each good mood's tooltip, the Mood tab readout and its tooltip -->
+  <CC_GoodLife_Note>Counts for less: life has been good to {PAWN_nameDef} for a long while, and {PAWN_pronoun} feels it as {FELT} instead of {FULL}.</CC_GoodLife_Note>
+  <CC_GoodLife_NoteBoth>Counts for less: {PAWN_nameDef} has grown {LEVEL} and used to the good life, and feels it as {FELT} instead of {FULL}.</CC_GoodLife_NoteBoth>
+  <CC_GoodLife_Readout>used to the good life, each good mood felt at {SHARE}</CC_GoodLife_Readout>
+  <CC_GoodLife_Why>Used to the good life: {PAWN_nameDef}'s good moods add up to {GOOD}. Up to {LINE}, the line for {LEVEL} standards, they count in full; above it, half of the first {FIRST} points and three quarters of the rest no longer lift {PAWN_objective}, so each good mood is felt at {SHARE}.</CC_GoodLife_Why>
+  <CC_GoodLife_Hard>Times are hard for {PAWN_objective} just now, so good things count for more again, and in full near a break.</CC_GoodLife_Hard>
 
   <!-- Quiet troubles: what caused each one, shown as "Why: ..." in its tooltip -->
   <CC_Trouble_Cause_Worry>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {WHERE}.</CC_Trouble_Cause_Worry>

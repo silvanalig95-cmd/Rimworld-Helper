@@ -65,6 +65,21 @@ namespace ColonyCouncil
             return takeBack * (1f - h);
         }
 
+        /// <summary>The least share of a good mood anyone feels, however much they have.</summary>
+        public const float MinShare = 0.05f;
+
+        /// <summary>
+        /// The share of each good mood a colonist still feels when <paramref name="takenBack"/> of their good moods'
+        /// sum <paramref name="positives"/> no longer lifts them: every good mood shrinks by the same share, so the sum
+        /// comes out as before and no mood of its own is needed. 1 when nothing is taken back.
+        /// </summary>
+        public static float Share(float positives, float takenBack)
+        {
+            if (float.IsNaN(positives) || float.IsNaN(takenBack) || positives <= 0f || takenBack <= 0f) return 1f;
+            float s = (positives - takenBack) / positives;
+            return s < MinShare ? MinShare : s > 1f ? 1f : s;
+        }
+
         /// <summary>The mood (0 to 1) from good and bad moods with the take-back: 50% plus the sum, clamped as the game clamps it.</summary>
         public static float Mood(float positives, float negatives, float line)
         {
