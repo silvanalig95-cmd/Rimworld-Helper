@@ -112,7 +112,7 @@ namespace ColonyCouncil
                     var placed = OnMapRooms.PlaceInRoom(thing, to);
                     if (placed != null)
                     {
-                        Messages.Message("CC_Made_InRoom".Translate(to.Named("PAWN"), label.Named("THING")).Resolve(), new LookTargets(placed), MessageTypeDefOf.NeutralEvent, false);
+                        ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Made_InRoom".Translate(to.Named("PAWN"), label.Named("THING")).Resolve(), new LookTargets(placed), MessageTypeDefOf.NeutralEvent);
                         return;
                     }
                     if (def.category == ThingCategory.Building && !def.Minifiable)
@@ -154,7 +154,7 @@ namespace ColonyCouncil
                 string text = mk != null && mk != who
                     ? "CC_Made_By".Translate(mk.Named("MAKER"), who.Named("PAWN"), label.Named("THING")).Resolve()
                     : "CC_Made_Here".Translate(who.Named("PAWN"), label.Named("THING")).Resolve();
-                Messages.Message(text, new LookTargets(thing), MessageTypeDefOf.NeutralEvent, false);
+                ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, null, text, new LookTargets(thing), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -376,7 +376,7 @@ namespace ColonyCouncil
                     }
                 }
                 if (logs.Count > 0)
-                    Messages.Message("CC_Felled_Wood".Translate(count).Resolve(), new LookTargets(logs), MessageTypeDefOf.SilentInput, false);
+                    ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Felled_Wood".Translate(count).Resolve(), new LookTargets(logs), MessageTypeDefOf.SilentInput);
             }
             catch (Exception e)
             {
@@ -515,7 +515,7 @@ namespace ColonyCouncil
                 }
                 if (planted.Count == 0) return;
                 string text = planted.Count == 1 ? "CC_Saplings_One".Translate().Resolve() : "CC_Saplings_Many".Translate(planted.Count).Resolve();
-                Messages.Message(text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent, false);
+                ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, null, text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -712,7 +712,7 @@ namespace ColonyCouncil
                 GenConstruct.PlaceBlueprintForBuild(def, c, map, Rot4.North, Faction.OfPlayer, stuff);
                 n++;
             }
-            if (n > 0) Messages.Message("CC_Seeds_Fenced".Translate().Resolve(), new TargetInfo(cells[0], map), MessageTypeDefOf.SilentInput, false);
+            if (n > 0) ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Seeds_Fenced".Translate().Resolve(), new TargetInfo(cells[0], map), MessageTypeDefOf.SilentInput);
         }
     }
 
@@ -788,7 +788,7 @@ namespace ColonyCouncil
             TemplatePlanner.Execute(plan, map);
             var look = plan.door.IsValid ? new LookTargets(plan.door, map) : new LookTargets(plan.anchor, map);
             if (who != null)
-                Messages.Message("CC_PlanRoom_Marked".Translate(who.Named("PAWN"), t.label.Named("ROOM")).Resolve(), look, MessageTypeDefOf.NeutralEvent, false);
+                ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_PlanRoom_Marked".Translate(who.Named("PAWN"), t.label.Named("ROOM")).Resolve(), look, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>
@@ -854,8 +854,8 @@ namespace ColonyCouncil
                     FilthMaker.TryMakeFilth(yard, map, ThingDefOf.Filth_Ash, 2);
                     for (int i = 0; i < 3; i++) FleckMaker.ThrowSmoke(yard.ToVector3Shifted(), map, 1.2f);
                 }
-                Messages.Message("CC_Burned_Found".Translate(a.Named("PAWN"), what.Named("WHAT")).Resolve(),
-                    yard.IsValid ? new LookTargets(yard, map) : new LookTargets(a), MessageTypeDefOf.NeutralEvent, false);
+                ColonyCouncil.Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Burned_Found".Translate(a.Named("PAWN"), what.Named("WHAT")).Resolve(),
+                    yard.IsValid ? new LookTargets(yard, map) : new LookTargets(a), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

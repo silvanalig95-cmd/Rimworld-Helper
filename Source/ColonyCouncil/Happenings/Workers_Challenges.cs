@@ -164,7 +164,7 @@ namespace ColonyCouncil
             if (Rand.Bool) key += "B";
             string text = key
                 .Translate(a.Named("A"), x.Named("X"), what, v.stake).Resolve();
-            Find.LetterStack.ReceiveLetter((won ? "CC_Evt_ContestWonTitle" : "CC_Evt_ContestLostTitle").Translate(a.Named("A")).Resolve(), text,
+            Tell.Letter(NewsKind.World, Importance.Notable, null, (won ? "CC_Evt_ContestWonTitle" : "CC_Evt_ContestLostTitle").Translate(a.Named("A")).Resolve(), text,
                 won ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(a));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
             comp.journals.Write(a, won ? "Council_Journal_Evt_ContestWon" : "Council_Journal_Evt_ContestLost", null, x.Named("X"), what.Named("SKILL"));
@@ -282,7 +282,7 @@ namespace ColonyCouncil
                 var tamer = beast.playerSettings?.Master ?? beast.relations?.GetFirstDirectRelationPawn(PawnRelationDefOf.Bond);
                 if (tamer != null) CouncilGameComponent.GiveThought(tamer, CouncilDefOf.Council_Evt_TamedBeast);
                 string text = "CC_Evt_BeastTamed".Translate(t.beastName ?? beast.LabelShort, (tamer?.LabelShort ?? "?").Named("PAWN")).Resolve();
-                Find.LetterStack.ReceiveLetter("CC_Evt_BeastTamedTitle".Translate(t.beastName ?? beast.LabelShort).Resolve(), text, LetterDefOf.PositiveEvent, beast);
+                Tell.Letter(NewsKind.Land, Importance.Notable, null, "CC_Evt_BeastTamedTitle".Translate(t.beastName ?? beast.LabelShort).Resolve(), text, LetterDefOf.PositiveEvent, beast);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, tamer));
                 t.beast = null;
                 return;
@@ -318,7 +318,7 @@ namespace ColonyCouncil
             // Its young may come one day, to take its place.
             t.Remember("beast", null, null, beast.kindDef?.defName, name, false, killer, map);
             string text = "CC_Evt_BeastSlain".Translate(name, killer.Named("PAWN")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Evt_BeastSlainTitle".Translate(name).Resolve(), text, LetterDefOf.PositiveEvent, new LookTargets(killer));
+            Tell.Letter(NewsKind.Land, Importance.Notable, null, "CC_Evt_BeastSlainTitle".Translate(name).Resolve(), text, LetterDefOf.PositiveEvent, new LookTargets(killer));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, killer));
             comp.journals.Write(killer, "Council_Journal_Evt_Beast", null, name.Named("BEAST"));
         }
@@ -365,7 +365,7 @@ namespace ColonyCouncil
                 var things = Loot.Make(ctx.count * Rand.Range(2f, 3.5f), Rand.Chance(0.35f));
                 foreach (var th in things) GenPlace.TryPlaceThing(th, cell, ctx.map, ThingPlaceMode.Near);
                 if (ctx.a != null) CouncilGameComponent.GiveThought(ctx.a, CouncilDefOf.Council_Evt_TreasureFound);
-                Find.LetterStack.ReceiveLetter("CC_Evt_TreasureTitle".Translate().Resolve(),
+                Tell.Letter(NewsKind.World, Importance.Notable, ctx.map, "CC_Evt_TreasureTitle".Translate().Resolve(),
                     "CC_Evt_TreasureText".Translate(Loot.Describe(things)).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(cell, ctx.map)));
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);

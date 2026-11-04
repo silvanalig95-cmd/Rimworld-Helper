@@ -741,13 +741,13 @@ namespace ColonyCouncil
                     if (now - o.tick > BlockedTicks)
                     {
                         var why = GenConstruct.CanPlaceBlueprintAt(t.def, o.cell, o.rot, map, false, t, t, t.Stuff);
-                        Messages.Message("CC_Rearr_GaveUp".Translate(t.LabelCap, why.Reason ?? ""), new LookTargets(o.cell, map), MessageTypeDefOf.NeutralEvent, false);
+                        Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Rearr_GaveUp".Translate(t.LabelCap, why.Reason ?? ""), new LookTargets(o.cell, map), MessageTypeDefOf.NeutralEvent);
                         Drop(i, finished);
                     }
                 }
                 foreach (var room in finished)
                     if (!orders.Any(o => o.room == room))
-                        Messages.Message("CC_Rearr_Finished".Translate(room), MessageTypeDefOf.TaskCompletion, false);
+                        Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Rearr_Finished".Translate(room), null, MessageTypeDefOf.TaskCompletion);
             }
             catch (System.Exception e)
             {

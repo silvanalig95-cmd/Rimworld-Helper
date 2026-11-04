@@ -248,6 +248,10 @@ namespace ColonyCouncil
         public MessageLevel messageLevel = MessageLevel.Notable;
         /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
         public NewsMode colonyNews = NewsMode.Digest;
+        /// <summary>The most messages a day Rimfolk shows of one kind of news for one colony; past it they wait for the evening's colony news (UI/Tell.cs).</summary>
+        public int tellMessagesADay = 20;
+        /// <summary>The most letters that only tell, a day, of one kind of news for one colony; past it they become lines in the evening's colony news (UI/Tell.cs).</summary>
+        public int tellLettersADay = 6;
         public EraMode era = EraMode.Auto;
         public float daysBetweenDilemmas = 10f;
         public bool eventWishes = true;
@@ -558,6 +562,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
+            Scribe_Values.Look(ref tellMessagesADay, "tellMessagesADay", TellMath.DefaultMessagesADay);
+            Scribe_Values.Look(ref tellLettersADay, "tellLettersADay", TellMath.DefaultLettersADay);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 10f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);

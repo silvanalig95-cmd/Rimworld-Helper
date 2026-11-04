@@ -178,7 +178,7 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_DeadHonored, null, knew ? 1.5f : 1f);
             }
             string text = (v.stake > 0 ? "CC_Evt_MournersGift" : "CC_Evt_Mourners").Translate(v.text ?? "?", v.stake).Resolve();
-            Messages.Message(text, new LookTargets(place), MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.World, Importance.Notable, null, text, new LookTargets(place), MessageTypeDefOf.PositiveEvent);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, v.a));
             return true;
         }

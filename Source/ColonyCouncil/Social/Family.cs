@@ -246,8 +246,8 @@ namespace ColonyCouncil
                 Speech.Say(here, line.Formatted(newcomer.Named("OTHER"), relation.Named("RELATION")).Resolve(), newcomer);
             foreach (var x in new[] { here, newcomer })
                 if (x.Spawned) FleckMaker.ThrowMetaIcon(x.Position, x.Map, FleckDefOf.Heart);
-            Messages.Message("CC_Fam_Reunion".Translate(here.Named("PAWN"), newcomer.Named("OTHER"), relation.Named("RELATION")).Resolve(),
-                new LookTargets(new[] { here, newcomer }), MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Fam_Reunion".Translate(here.Named("PAWN"), newcomer.Named("OTHER"), relation.Named("RELATION")).Resolve(),
+                new LookTargets(new[] { here, newcomer }), MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>What the newcomer is to the one who meets them, as a line's tag.</summary>
@@ -283,8 +283,8 @@ namespace ColonyCouncil
                         CouncilGameComponent.GiveThought(c, seen, h, -1f, "CC_Fam_KinRaiderCause".Translate(c.Named("PAWN"), h.Named("OTHER"), relation.Named("RELATION")).Resolve());
                         string line = Flavor.FromPool("Council_Pool_SayKinRaider", c);
                         if (!line.NullOrEmpty()) Speech.Say(c, line.Formatted(h.Named("OTHER"), relation.Named("RELATION")).Resolve());
-                        Messages.Message("CC_Fam_KinRaider".Translate(c.Named("PAWN"), h.Named("OTHER"), relation.Named("RELATION"), h.Faction.Name.Named("FACTION")).Resolve(),
-                            new LookTargets(new[] { c, h }), MessageTypeDefOf.NeutralEvent, false);
+                        Tell.Message(NewsKind.People, Importance.Notable, map, "CC_Fam_KinRaider".Translate(c.Named("PAWN"), h.Named("OTHER"), relation.Named("RELATION"), h.Faction.Name.Named("FACTION")).Resolve(),
+                            new LookTargets(new[] { c, h }), MessageTypeDefOf.NeutralEvent);
                     }
             }
             // Family in the cells: the council is asked about them when it can be (a question already waiting holds it back).

@@ -174,7 +174,7 @@ namespace ColonyCouncil
                     m.due = Mathf.Min(now + GenDate.TicksPerDay / 2, m.deadline);
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
                     // At once, not in the evening's news: it says when the carts come, and they may have come by then.
-                    if (!line.NullOrEmpty()) Messages.Message(line, MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, null, MessageTypeDefOf.PositiveEvent);
                 }
             }
             else if (m.stage == 1 && !all) m.stage = 0;

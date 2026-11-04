@@ -84,7 +84,7 @@ namespace ColonyCouncil
                 stone = SetStone(map, head.IsValid ? head : spot, null);
             }
             else stone = SetStone(map, spot, null);
-            if (stone != null) Messages.Message((kind == Rebury ? "CC_Markers_Reburied" : "CC_Markers_Buried").Translate().Resolve(), stone, MessageTypeDefOf.SilentInput, false);
+            if (stone != null) Tell.Message(NewsKind.Colony, Importance.Notable, map, (kind == Rebury ? "CC_Markers_Reburied" : "CC_Markers_Buried").Translate().Resolve(), stone, MessageTypeDefOf.SilentInput);
             return stone;
         }
 
@@ -179,7 +179,7 @@ namespace ColonyCouncil
                     return;
                 }
                 var set = heads.Select(h => PlayMarkers.SetStone(map, h, stone)).Where(t => t != null).ToList();
-                if (set.Count > 0) Messages.Message("CC_Markers_Set".Translate(set.Count).Resolve(), new LookTargets(set), MessageTypeDefOf.NeutralEvent, false);
+                if (set.Count > 0) Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Markers_Set".Translate(set.Count).Resolve(), new LookTargets(set), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

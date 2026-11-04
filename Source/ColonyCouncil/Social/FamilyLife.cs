@@ -270,8 +270,8 @@ namespace ColonyCouncil
             var home = parents.Where(p => p.Spawned && p.Map == map).ToList();
             var given = PlayOuts.On ? CalendarTracker.Instance?.RestFor(map, home, false) : null;
             if (!given.NullOrEmpty())
-                Messages.Message("CC_Fam_QuietDay".Translate(TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList())).Resolve(),
-                    new LookTargets(given), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, map, "CC_Fam_QuietDay".Translate(TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList())).Resolve(),
+                    new LookTargets(given), MessageTypeDefOf.NeutralEvent);
             // Someone of her own family, else her closest friend, goes and sits with her a while.
             var sitter = map.mapPawns.FreeColonistsSpawned.Where(s => s != mother && Ours(s) && !s.Downed && s.relations.OpinionOf(mother) >= 0)
                 .OrderByDescending(s => Family.Of(s, mother)).ThenByDescending(s => s == father).ThenByDescending(s => s.relations.OpinionOf(mother)).FirstOrDefault();

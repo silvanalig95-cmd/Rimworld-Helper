@@ -713,8 +713,8 @@ namespace ColonyCouncil
                 gripe = gripe.NullOrEmpty() ? null : gripe.Formatted(hater.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = a.def, pawn = hater, tick = now, line = gripe, repeal = true });
                 lastRequestTick = now;
-                Messages.Message("CC_Decree_RepealRequested".Translate(hater.Named("PAWN"), a.def.label.Named("DECREE")).Resolve() + (gripe != null ? " \"" + TextUtil.ShortSpeech(gripe, 120) + "\"" : ""),
-                    new LookTargets(hater), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Decree_RepealRequested".Translate(hater.Named("PAWN"), a.def.label.Named("DECREE")).Resolve() + (gripe != null ? " \"" + TextUtil.ShortSpeech(gripe, 120) + "\"" : ""),
+                    new LookTargets(hater), MessageTypeDefOf.NeutralEvent);
                 CouncilGameComponent.Speak(hater, gripe, new Color(0.95f, 0.6f, 0.5f));
                 return;
             }
@@ -729,8 +729,8 @@ namespace ColonyCouncil
                 line = line.NullOrEmpty() ? null : line.Formatted(asker.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = def, pawn = asker, tick = now, line = line });
                 lastRequestTick = now;
-                Messages.Message("CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
-                    new LookTargets(asker), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(asker), MessageTypeDefOf.NeutralEvent);
                 CouncilGameComponent.Speak(asker, line, new Color(0.9f, 0.85f, 0.6f));
                 return;
             }

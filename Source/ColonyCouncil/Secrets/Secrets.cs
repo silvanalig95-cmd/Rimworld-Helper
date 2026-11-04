@@ -404,7 +404,7 @@ namespace ColonyCouncil
                 : "CC_Secret_HowLeaked".Translate(leaker.Named("LEAKER"), owner.Named("PAWN")).Resolve();
             string text = s.Truth + "\n\n" + how;
             var look = confessed ? new LookTargets(owner) : new LookTargets(owner, leaker);
-            if (s.def.major) Find.LetterStack.ReceiveLetter("CC_Secret_Label".Translate(owner.LabelShort), text, s.def.good ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent, look);
+            if (s.def.major) Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_Secret_Label".Translate(owner.LabelShort), text, s.def.good ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent, look);
             else News.Post("CC_Secret_Short".Translate(owner.Named("PAWN")).Resolve() + " " + s.Truth, look, NewsKind.People, s.def.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, s.Truth, owner));
             comp.annals.Notify_Secret(owner, s.def.label);

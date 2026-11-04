@@ -57,7 +57,7 @@ namespace ColonyCouncil
             if (by.CurJob != job) return false;
             p.fireBy = by;
             p.fireCell = cell;
-            Messages.Message("CC_Play_Begin_LayFire".Translate(by.Named("PAWN")).Resolve(), new LookTargets(by), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Play_Begin_LayFire".Translate(by.Named("PAWN")).Resolve(), new LookTargets(by), MessageTypeDefOf.NeutralEvent);
             p.waitReason = "CC_Play_Why_LayingFire".Translate(by.Named("PAWN")).Resolve();
             return true;
         }

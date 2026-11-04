@@ -65,7 +65,7 @@ namespace ColonyCouncil
         /// </summary>
         private bool TryRequest()
         {
-            if (GenDate.DaysPassed - lastRequestDay < 2 || DaysHere < 0.5f || !LetterGap.Open) return false;
+            if (GenDate.DaysPassed - lastRequestDay < 2 || DaysHere < 0.5f || !ColonyCouncil.Tell.CanAsk) return false;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Camp c && c.campId == id && !c.resolved)) return false;
             var open = Requests.Where(a => !a.askTexts.NullOrEmpty() && AskBlocked(a) == null).ToList();
             if (open.Count == 0) return false;
@@ -876,7 +876,7 @@ namespace ColonyCouncil
             var c = CampOnMap.For(ctx);
             if (c == null || !c.Strayed || (chance < 1f && !Rand.Chance(chance))) return;
             int n = c.EatCrops(eaten);
-            if (n > 0) Messages.Message("CC_CampDlm_CropsEaten".Translate(n, c.Label).Resolve(), new LookTargets(new TargetInfo(c.errandCell, c.map)), MessageTypeDefOf.NegativeEvent, false);
+            if (n > 0) Tell.Message(NewsKind.World, Importance.Notable, null, "CC_CampDlm_CropsEaten".Translate(n, c.Label).Resolve(), new LookTargets(new TargetInfo(c.errandCell, c.map)), MessageTypeDefOf.NegativeEvent);
             if (home) c.EndErrand();
             else c.errandUntil = Mathf.Min(c.errandUntil, Find.TickManager.TicksGame + GenDate.TicksPerHour * 4);
         }

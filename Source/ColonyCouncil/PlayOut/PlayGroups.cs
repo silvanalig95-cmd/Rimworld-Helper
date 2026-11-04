@@ -217,7 +217,7 @@ namespace ColonyCouncil
             }
             p.waitReason = null;
             if (p.organizer == null || p.Hand(p.organizer) == null) p.organizer = p.hands[0].pawn;
-            Messages.Message(PlayWords.BeginText(p, where), new LookTargets(p.hands.Select(h => h.pawn).Where(x => x.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, PlayWords.BeginText(p, where), new LookTargets(p.hands.Select(h => h.pawn).Where(x => x.Spawned)), MessageTypeDefOf.NeutralEvent);
             PlayWords.Invite(p);
         }
 

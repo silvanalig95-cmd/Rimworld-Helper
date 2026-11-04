@@ -52,7 +52,7 @@ HITS = [
     ("ease", re.compile(r"\bEase\([^;]*StrainRelief\.(Friends|Gathering)")),
 ]
 # A message or news line (the call and the next two lines of its statement) naming two people.
-LINE_CALL = re.compile(r"\b(News\.Post|Notify\.Message|Messages\.Message|Find\.LetterStack\.ReceiveLetter)\(")
+LINE_CALL = re.compile(r"\b(News\.Post|Notify\.Message|Messages\.Message|Find\.LetterStack\.ReceiveLetter|Tell\.(Message|Minor|Letter))\(")
 NAMED = re.compile(r'Named\("(PAWN|A|B|OTHER|KNOWER|OWNER|LEAKER|TELLER|FRIEND)"\)')
 # A line that speaks (floating text or bubble) and names a second person.
 SPEAK = re.compile(r"\b(Speak|Say|Speech\.Say)\(")

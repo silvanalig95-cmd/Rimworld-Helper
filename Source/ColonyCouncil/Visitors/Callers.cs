@@ -510,7 +510,7 @@ namespace ColonyCouncil
             if (!t.begun)
             {
                 t.begun = true;
-                Messages.Message("CC_Caller_Hand_Begin".Translate(carrier.Named("PAWN"), PlayGive.Label(piece).Named("THING"), x.Named("OTHER")).Resolve(), carrier, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Caller_Hand_Begin".Translate(carrier.Named("PAWN"), PlayGive.Label(piece).Named("THING"), x.Named("OTHER")).Resolve(), carrier, MessageTypeDefOf.SilentInput);
             }
             return false;
         }
@@ -586,7 +586,7 @@ namespace ColonyCouncil
             if (!t.begun)
             {
                 t.begun = true;
-                Messages.Message("CC_Caller_Cut_Begin".Translate(x.Named("PAWN"), t.pawns.Count).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Caller_Cut_Begin".Translate(x.Named("PAWN"), t.pawns.Count).Resolve(), x, MessageTypeDefOf.SilentInput);
             }
             return false;
         }
@@ -697,7 +697,7 @@ namespace ColonyCouncil
         {
             if (t.begun) return;
             t.begun = true;
-            Messages.Message("CC_Caller_Vet_Begin".Translate(x.Named("PAWN"), t.total).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+            ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Caller_Vet_Begin".Translate(x.Named("PAWN"), t.total).Resolve(), x, MessageTypeDefOf.SilentInput);
         }
 
         /// <summary>An animal tended with the game's own tend and the animal doctor's own medicine (what they carry), and off the list.</summary>
@@ -840,7 +840,7 @@ namespace ColonyCouncil
         {
             if (t.begun) return;
             t.begun = true;
-            Messages.Message(key.Translate(x.Named("PAWN"), t.total).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+            ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, key.Translate(x.Named("PAWN"), t.total).Resolve(), x, MessageTypeDefOf.SilentInput);
         }
 
         /// <summary>A grave dug: the game's own grave stands there now, the colony's, with fresh earth about it.</summary>
@@ -1001,7 +1001,7 @@ namespace ColonyCouncil
             if (!t.begun)
             {
                 t.begun = true;
-                Messages.Message("CC_Caller_Talk_Begin".Translate(x.Named("PAWN"), c.Named("OTHER")).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Caller_Talk_Begin".Translate(x.Named("PAWN"), c.Named("OTHER")).Resolve(), x, MessageTypeDefOf.SilentInput);
             }
             return false;
         }

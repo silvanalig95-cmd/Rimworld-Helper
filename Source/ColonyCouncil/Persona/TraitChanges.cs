@@ -759,7 +759,7 @@ namespace ColonyCouncil
         private static void Tell(Pawn p, TraitChangeDef def, TraitChangeRecord record, NamedArgument traitArg, string news, string title)
         {
             var letterDef = def.tone > 0 ? LetterDefOf.PositiveEvent : def.tone < 0 ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent;
-            Find.LetterStack.ReceiveLetter(title, record.story, letterDef, new LookTargets(p));
+            ColonyCouncil.Tell.Letter(NewsKind.People, Importance.Notable, null, title, record.story, letterDef, new LookTargets(p));
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
             if (def.journal != null && def.journal.Any)

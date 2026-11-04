@@ -286,7 +286,7 @@ namespace ColonyCouncil
             {
                 // The quest is in the tab; a plain letter says so.
                 CouncilLog.ErrorOnce("mission quest letter", e);
-                Find.LetterStack.ReceiveLetter(title, description, LetterDefOf.NeutralEvent);
+                Tell.Letter(NewsKind.World, Importance.Notable, null, title, description, LetterDefOf.NeutralEvent);
             }
             return true;
         }
@@ -373,6 +373,7 @@ namespace ColonyCouncil
             m.deadline = Now + Mathf.RoundToInt(m.days * GenDate.TicksPerDay);
             var ctx = Context(m, map);
             string line = VarietyUtil.Line(Text(m)?.accepted, ctx, Tags(m), GoodsText(m), TextUtil.DaysString(m.deadline - Now));
+            // direct: the answer to the player's click accepting the mission.
             if (!line.NullOrEmpty()) Messages.Message(line, w.Targets(m), MessageTypeDefOf.PositiveEvent, false);
         }
 
@@ -416,7 +417,7 @@ namespace ColonyCouncil
                     : StoryChains.Line(success ? text?.done : text?.fail, ctx, outcome, tags, item);
                 string title = StoryChains.Line(success ? text?.doneTitles : text?.failTitles, ctx, outcome, tags, item) ?? m.title;
                 if (!body.NullOrEmpty())
-                    Find.LetterStack.ReceiveLetter(title, body, letter ?? (success ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent), look ?? LookTargets.Invalid);
+                    Tell.Letter(NewsKind.World, Importance.Notable, null, title, body, letter ?? (success ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent), look ?? LookTargets.Invalid);
             }
             // The people who asked remember how it went (World/FactionMemory.cs).
             try
@@ -538,7 +539,7 @@ namespace ColonyCouncil
                 m.reminded = true;
                 var map = m.Map;
                 string line = VarietyUtil.Line(Text(m)?.reminder, Context(m, map), Tags(m), GoodsText(m), TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
-                if (!line.NullOrEmpty()) Messages.Message(line, Worker(m)?.Targets(m) ?? LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
+                if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Notable, map, line, Worker(m)?.Targets(m) ?? LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             }
             // Finished missions stay on the World page for a day, then only in the chronicle.
             comp.missions.RemoveAll(m => !m.Open && now - m.ended > GenDate.TicksPerDay * 2);

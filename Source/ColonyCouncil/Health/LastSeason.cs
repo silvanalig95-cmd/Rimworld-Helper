@@ -66,7 +66,7 @@ namespace ColonyCouncil
             string text = "CC_Life_LastSeason_Text".Translate(p.Named("PAWN"), age.Named("AGE")).Resolve();
             var wish = comp?.aspirations?.Active(p);
             if (wish != null && wish.def.lastWish) text += "\n\n" + "CC_Life_LastSeason_Wish".Translate(p.Named("PAWN"), wish.Goal.Named("GOAL")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Life_LastSeason_Label".Translate(p.Named("PAWN")).Resolve(), text, LetterDefOf.NegativeEvent, new LookTargets(p));
+            Tell.Letter(NewsKind.Health, Importance.Important, null, "CC_Life_LastSeason_Label".Translate(p.Named("PAWN")).Resolve(), text, LetterDefOf.NegativeEvent, new LookTargets(p));
             if (comp != null && !comp.journals.WroteWithin(p)) comp.journals.Write(p, "Council_Journal_LastSeason", null, age.Named("YEARS"));
         }
 
@@ -107,7 +107,7 @@ namespace ColonyCouncil
                 if (h.Severity <= 0.002f)
                 {
                     c.remove = true;
-                    Messages.Message("CC_Life_LastSeason_Turned".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.PositiveEvent, false);
+                    Tell.Message(NewsKind.Health, Importance.Notable, null, "CC_Life_LastSeason_Turned".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.PositiveEvent);
                 }
                 return;
             }
@@ -161,7 +161,7 @@ namespace ColonyCouncil
             string text = going.Count > 0
                 ? "CC_Life_LastSeason_Near".Translate(p.Named("PAWN"), TextUtil.JoinAnd(going.Select(x => x.LabelShort).ToList()).Named("WHO")).Resolve()
                 : "CC_Life_LastSeason_NearAlone".Translate(p.Named("PAWN")).Resolve();
-            Messages.Message(text, new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
+            Tell.Message(NewsKind.Health, Importance.Important, null, text, new LookTargets(p), MessageTypeDefOf.NegativeEvent);
         }
 
         private static void Die(Pawn p, Hediff h)

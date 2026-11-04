@@ -169,7 +169,7 @@ namespace ColonyCouncil
             var dm = a.Map.designationManager;
             if (dm.DesignationOn(a, DesignationDefOf.Tame) != null) return;
             dm.AddDesignation(new Designation(a, DesignationDefOf.Tame));
-            Messages.Message("CC_Arc_StrayMarked".Translate(a.Named("PET"), (ctx.a?.LabelShort ?? "?").Named("PAWN")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Arc_StrayMarked".Translate(a.Named("PET"), (ctx.a?.LabelShort ?? "?").Named("PAWN")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent);
         }
     }
 }

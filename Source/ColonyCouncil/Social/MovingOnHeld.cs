@@ -176,13 +176,13 @@ namespace ColonyCouncil
                 // apart: a broken promise, told to the colony; the room was the colony's to build.
                 h.promised = false;
                 CouncilGameComponent.Instance?.standings.Change(p, -MovingOnMath.BrokenPromiseTrust, "CC_Log_Leave_PromiseBroken".Translate().Resolve());
-                Messages.Message("CC_Leave_PromiseBroken".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Leave_PromiseBroken".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent);
                 return;
             }
             if (MovingOnMath.MadePeace(h.Days))
             {
                 list.Remove(h);
-                Messages.Message(("CC_Leave_Peace_" + h.kind).Translate(p.Named("PAWN"), (h.otherName ?? "").Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, ("CC_Leave_Peace_" + h.kind).Translate(p.Named("PAWN"), (h.otherName ?? "").Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent);
             }
         }
 
@@ -223,14 +223,14 @@ namespace ColonyCouncil
             {
                 // Kept after all, as if asked to stay: they can't come now.
                 Arrivals.Release(r);
-                Messages.Message("CC_Leave_CouldntCome".Translate(p.Named("PAWN"), (h.otherName ?? "?").Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Leave_CouldntCome".Translate(p.Named("PAWN"), (h.otherName ?? "?").Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent);
                 Hold(p, "family", h.strength, r, h.otherName, h.faction, false).askedAgain = true;
                 return;
             }
             RecruitUtility.Recruit(r, Faction.OfPlayer, p);
             string relation = Family.Relation(p, r);
             // They walk in from the edge, and the one who asked goes to meet them (a visit, PlayOut/).
-            Find.LetterStack.ReceiveLetter("CC_Leave_RelativeCame_Label".Translate(r.Named("OTHER")).Resolve(),
+            Tell.Letter(NewsKind.People, Importance.Notable, map, "CC_Leave_RelativeCame_Label".Translate(r.Named("OTHER")).Resolve(),
                 "CC_Leave_RelativeCame".Translate(r.Named("OTHER"), p.Named("PAWN"), relation.Named("RELATION"), (h.faction?.Name ?? "").Named("FACTION")).Resolve(),
                 LetterDefOf.PositiveEvent, new LookTargets(r));
             var play = PlayOuts.On && p.Spawned && p.Map == map
@@ -398,7 +398,7 @@ namespace ColonyCouncil
                 a.ownership.ClaimBedIfNonMedical(bedB);
                 if (bedA != null && bedA != bedB) b.ownership.ClaimBedIfNonMedical(bedA);
                 // apart: the council's ruling on whose bed is whose; it shows on the beds, and they sleep in them from tonight.
-                Messages.Message("CC_Leave_GaveRoom".Translate(a.Named("PAWN"), b.Named("OTHER")).Resolve(), new LookTargets(bedB), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Leave_GaveRoom".Translate(a.Named("PAWN"), b.Named("OTHER")).Resolve(), new LookTargets(bedB), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

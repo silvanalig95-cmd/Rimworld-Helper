@@ -1154,9 +1154,9 @@ namespace ColonyCouncil
             }
             // A question tied to a moment of the land's year comes in that moment, after the usual gap, once an
             // hour at most (its worker's window is short: a few days as the fields open, a cold snap).
-            if (LetterGap.Open && now - lastFiredTick > GenDate.TicksPerDay && TryFire(false, d => d.timely)) return;
+            if (Tell.CanAsk && now - lastFiredTick > GenDate.TicksPerDay && TryFire(false, d => d.timely)) return;
             // A dilemma that's due waits out the gap after Rimfolk's last question, then comes the next hour it can.
-            if (now < nextTick || !LetterGap.Open) return;
+            if (now < nextTick || !Tell.CanAsk) return;
             if (TryFire(false)) nextTick = now + Interval();
             else nextTick = now + GenDate.TicksPerDay;
         }
@@ -1175,7 +1175,7 @@ namespace ColonyCouncil
             var map = MapFacts.BusiestHome;
             if (map == null) return false;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) return false;
-            if (!force && !LetterGap.Open) return false;
+            if (!force && !Tell.CanAsk) return false;
             int now = Find.TickManager.TicksGame;
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
                 .Where(d => only == null || only(d))
@@ -1217,7 +1217,7 @@ namespace ColonyCouncil
             var letter = (ChoiceLetter_Dilemma)LetterMaker.MakeLetter("CC_Dilemma_Title".Translate(ctx.def.LabelCap), ctx.Format(ctx.text) + tradition + "\n\n" + "CC_Dilemma_Deadline".Translate(TextUtil.DaysString(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay)), ctx.Format(ctx.def.options[ctx.def.defaultOption].label)), letterDef, look);
             letter.ctx = ctx;
             letter.StartTimeout(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay));
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, ctx.map);
         }
 
         public void Resolve(ChoiceLetter_Dilemma letter, int index, bool byDefault)
@@ -1265,7 +1265,7 @@ namespace ColonyCouncil
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
             {
                 if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
-                Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
             }
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Council,
                 "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
@@ -1299,7 +1299,7 @@ namespace ColonyCouncil
                     traditions.Add(key);
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     VisualTouches.Tradition(colonists, def.traditionLabel);
-                    Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
+                    Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
                         "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(def.traditionLabel);

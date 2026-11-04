@@ -153,7 +153,7 @@ namespace ColonyCouncil
                     return;
                 }
                 // apart: the council's ruling on whose bed is whose; the walk over to the new room is the answer's own visit.
-                Messages.Message("CC_SwapRooms".Translate(a.Named("PAWN"), b.Named("OTHER")).Resolve(), new LookTargets(bedB), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_SwapRooms".Translate(a.Named("PAWN"), b.Named("OTHER")).Resolve(), new LookTargets(bedB), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

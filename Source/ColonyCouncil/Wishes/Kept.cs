@@ -560,7 +560,7 @@ namespace ColonyCouncil
                 return;
             }
             string text = "CC_Kept_Missing".Translate(LostText(w).Named("LOST"), w.pawn.Named("PAWN"), GraceWords(grace).Named("TIME")).Resolve();
-            Messages.Message(text, Look(w), MessageTypeDefOf.NeutralEvent, true);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, text, Look(w), MessageTypeDefOf.NeutralEvent, historical: true);
         }
 
         /// <summary>Back within the grace: nothing comes of it, beyond a line in the colony news.</summary>

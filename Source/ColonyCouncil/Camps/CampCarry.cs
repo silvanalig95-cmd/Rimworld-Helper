@@ -427,7 +427,7 @@ namespace ColonyCouncil
             }
             if (text.NullOrEmpty()) return;
             var target = look != null && look.Spawned ? new LookTargets(look) : Look;
-            Find.LetterStack.ReceiveLetter(Text("CC_Camp_HelpTitle"), text, LetterDefOf.PositiveEvent, target, faction);
+            ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, null, Text("CC_Camp_HelpTitle"), text, LetterDefOf.PositiveEvent, target, faction);
         }
 
         /// <summary>Every hour: one whose bearer is gone, down, or too long about it is let go (what's in their pack stays theirs).</summary>

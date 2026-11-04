@@ -276,7 +276,7 @@ namespace ColonyCouncil
                     {
                         m.times = 1;
                         string soon = VarietyUtil.Line(more?.reminder, ctx);
-                        if (!soon.NullOrEmpty()) Messages.Message(soon, MessageTypeDefOf.NeutralEvent, false);
+                        if (!soon.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Notable, map, soon, null, MessageTypeDefOf.NeutralEvent);
                     }
                     continue;
                 }
@@ -329,7 +329,7 @@ namespace ColonyCouncil
                 carts.chroniclePawn = ctx.a != null && !ctx.a.Dead ? ctx.a : null;
                 return;
             }
-            Find.LetterStack.ReceiveLetter(title, text, filled ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(new TargetInfo(spot, map)));
+            Tell.Letter(NewsKind.World, Importance.Notable, map, title, text, filled ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(new TargetInfo(spot, map)));
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, title + ": " + text, ctx.a != null && !ctx.a.Dead ? ctx.a : null));
         }
     }

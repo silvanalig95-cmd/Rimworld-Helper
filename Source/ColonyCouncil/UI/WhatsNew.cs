@@ -133,6 +133,7 @@ namespace ColonyCouncil
             var def = DefDatabase<LetterDef>.GetNamedSilentFail("Council_UpdateLetter");
             if (def == null)
             {
+                // direct: the mod's own letter after an update, once per version; nothing to cap.
                 Find.LetterStack.ReceiveLetter(label, text.ToString(), LetterDefOf.NeutralEvent);
                 return;
             }

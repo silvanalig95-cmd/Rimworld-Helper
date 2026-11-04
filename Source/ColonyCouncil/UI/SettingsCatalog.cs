@@ -426,6 +426,8 @@ namespace ColonyCouncil
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
+            Slider("tellMessagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", 5f, 60f, 1f, "0");
+            Slider("tellLettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", 2f, 20f, 1f, "0");
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");

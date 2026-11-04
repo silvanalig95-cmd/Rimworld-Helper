@@ -401,7 +401,7 @@ namespace ColonyCouncil
             var letter = LetterMaker.MakeLetter("CC_Journey_AskTitle".Translate(), key.Translate(When(plan), plan.Dest, list).Resolve(), JourneyDefOf.Rimfolk_JourneyLetter,
                 new LookTargets(plan.travellers.Where(p => p != null && p.Spawned)));
             if (letter is ChoiceLetter_Journey jl) jl.planId = plan.id;
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter);
         }
 
         private static void RemoveLetters(JourneyPlan plan)

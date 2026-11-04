@@ -74,7 +74,7 @@ namespace ColonyCouncil
                 int day = GenDate.DaysPassed;
                 var (code, detail, _) = tracker.Blocker(map);
                 if (code == null && HappeningTracker.Waiting) code = "waiting";
-                if (code == null && !LetterGap.Open) code = "lettergap";
+                if (code == null && !Tell.CanAsk) code = "lettergap";
                 if (code != null)
                 {
                     // A passing reason puts the try off by the hour, for up to a day; anything else settles the day at once.

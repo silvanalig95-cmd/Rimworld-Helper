@@ -13,8 +13,9 @@ namespace ColonyCouncil
     /// completed: ..."). With some thirty peoples that is a message or two a day from all over the world, and the player
     /// switched the feature off for it. So: while that mod starts or completes a settlement, its message is let through
     /// only when the place lies within the region map's reach of one of the colony's homes; one further away goes to
-    /// the colony news (the evening letter, by the "Colony news" setting) as world news. Found by name; without the mod
-    /// nothing is patched.
+    /// the colony news (the evening letter, by the "Colony news" setting) as world news, through Rimfolk's one voice to
+    /// the player (<see cref="Tell.Minor"/>, with its caps when it comes as a message). Found by name;
+    /// without the mod nothing is patched.
     /// </summary>
     public static class TerritoryNews
     {
@@ -54,7 +55,7 @@ namespace ColonyCouncil
             routing = true;
             try
             {
-                News.Post(text, look, NewsKind.World, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                Tell.Minor(NewsKind.World, Importance.Flavor, null, text, look, MessageTypeDefOf.NeutralEvent);
             }
             finally
             {

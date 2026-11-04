@@ -593,8 +593,8 @@ namespace ColonyCouncil
             }
             bench.BillStack.AddBill(bill);
             if (!quiet)
-                Messages.Message("CC_Making_BillSet".Translate((product?.label ?? recipe.label).Named("PRODUCT"), target.Named("N"), bench.LabelCap.ToString().Named("BENCH")).Resolve(),
-                    new LookTargets(bench), MessageTypeDefOf.TaskCompletion, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Making_BillSet".Translate((product?.label ?? recipe.label).Named("PRODUCT"), target.Named("N"), bench.LabelCap.ToString().Named("BENCH")).Resolve(),
+                    new LookTargets(bench), MessageTypeDefOf.TaskCompletion);
             if (bench.Map != null) For(bench.Map, true);
             return bill as Bill_Production;
         }

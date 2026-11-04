@@ -232,7 +232,7 @@ namespace ColonyCouncil
             var look = e.spot.IsValid ? new LookTargets(new TargetInfo(e.spot, e.map)) : LookTargets.Invalid;
             var letter = LetterMaker.MakeLetter(title, text.ToString(), def, look);
             if (letter is ChoiceLetter_Election ce) ce.year = e.year;
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, e.map);
         }
 
         /// <summary>Who chairs, by name; with nobody able, the eldest of those with a say.</summary>
@@ -292,7 +292,7 @@ namespace ColonyCouncil
             {
                 e.ceremony = true;
                 e.phase = ElectionPhase.Count;
-                Messages.Message(Phrase(e, "CC_Elect_NowCeremony"), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_NowCeremony"), null, MessageTypeDefOf.NeutralEvent);
             }
             NotePoll(e);
             int now = Now;
@@ -446,6 +446,7 @@ namespace ColonyCouncil
             string text = against.Count == 0
                 ? "CC_Elect_EndorsedNobody".Translate(candidate.Named("PAWN"), race.office.label.Named("OFFICE")).Resolve()
                 : "CC_Elect_Endorsed".Translate(candidate.Named("PAWN"), race.office.label.Named("OFFICE"), TextUtil.JoinAnd(against.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
+            // direct: the answer to the player's click (the election letter's or panel's "endorse").
             Messages.Message(text, new LookTargets(candidate), MessageTypeDefOf.NeutralEvent, false);
         }
 
@@ -478,6 +479,7 @@ namespace ColonyCouncil
             string text = let.Count == 0
                 ? "CC_Elect_CalledOffNobody".Translate(race.office.label.Named("OFFICE")).Resolve()
                 : "CC_Elect_CalledOff".Translate(race.office.label.Named("OFFICE"), leader.Named("PAWN"), TextUtil.JoinAnd(let.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
+            // direct: the answer to the player's click (the election letter's or panel's "call off").
             Messages.Message(text, new LookTargets(appointee), MessageTypeDefOf.NeutralEvent, false);
             if (election == e && e.races.Count == 0) EndWithout(e);
         }
@@ -660,7 +662,7 @@ namespace ColonyCouncil
                     c.heard.Clear();
                 }
                 StartGathering(e, chair, true, 2 + 2 * e.AllCandidates.Count());
-                Messages.Message(Phrase(e, "CC_Elect_HustingsStart", chair.Named("CHAIR")), new LookTargets(new TargetInfo(e.spot, e.map)), MessageTypeDefOf.PositiveEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_HustingsStart", chair.Named("CHAIR")), new LookTargets(new TargetInfo(e.spot, e.map)), MessageTypeDefOf.PositiveEvent);
                 return;
             }
             if (!EveningOver(e, e.hustingsTick)) return;
@@ -669,12 +671,12 @@ namespace ColonyCouncil
                 e.hustingsPutOffs++;
                 PutOffADay(e, true, true);
                 e.phase = ElectionPhase.Campaign;
-                Messages.Message(Phrase(e, "CC_Elect_HustingsPutOff", wait.Named("REASON")), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_HustingsPutOff", wait.Named("REASON")), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             e.hustingsDone = true;
             e.phase = ElectionPhase.Polling;
-            Messages.Message(Phrase(e, "CC_Elect_HustingsLetGo", wait.Named("REASON")), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_HustingsLetGo", wait.Named("REASON")), null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>
@@ -789,7 +791,7 @@ namespace ColonyCouncil
                 e.hustingsPutOffs++;
                 PutOffADay(e, true, true);
                 e.phase = ElectionPhase.Campaign;
-                Messages.Message(Phrase(e, "CC_Elect_HustingsBrokenOff"), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_HustingsBrokenOff"), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             e.hustingsDone = true;
@@ -826,7 +828,7 @@ namespace ColonyCouncil
             if (!pollsAnnounced)
             {
                 pollsAnnounced = true;
-                Messages.Message(Phrase(e, "CC_Elect_PollsOpen"), new LookTargets(new TargetInfo(e.spot, map)), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_PollsOpen"), new LookTargets(new TargetInfo(e.spot, map)), MessageTypeDefOf.NeutralEvent);
             }
             int hour = GenLocalDate.HourOfDay(map);
             var left = Electorate(map).Where(p => p.Spawned && p.Map == map && !e.voted.Contains(p)).InRandomOrder().ToList();
@@ -885,7 +887,7 @@ namespace ColonyCouncil
                 pollsAnnounced = false;
                 e.pollTick = e.countTick - (ElectionMath.EveningHour - ElectionMath.PollsOpenHour) * GenDate.TicksPerHour;
                 PutOffADay(e, false, true);
-                Messages.Message(Phrase(e, "CC_Elect_PollsKeptOpen"), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, "CC_Elect_PollsKeptOpen"), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             pollsAnnounced = false;
@@ -1005,8 +1007,8 @@ namespace ColonyCouncil
             {
                 var count = CountOf(e);
                 StartGathering(e, chair, false, ElectionMath.CountLines(count.Sum(c => c.calls.Count), count.Count));
-                Messages.Message(Phrase(e, e.ceremony ? "CC_Elect_CeremonyStart" : "CC_Elect_CountStart", chair.Named("CHAIR")),
-                    new LookTargets(new TargetInfo(e.spot, e.map)), MessageTypeDefOf.PositiveEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, e.ceremony ? "CC_Elect_CeremonyStart" : "CC_Elect_CountStart", chair.Named("CHAIR")),
+                    new LookTargets(new TargetInfo(e.spot, e.map)), MessageTypeDefOf.PositiveEvent);
                 return;
             }
             if (EveningOver(e, e.countTick)) MissedCountEvening(comp, e, wait);
@@ -1019,8 +1021,8 @@ namespace ColonyCouncil
             {
                 e.countPutOffs++;
                 PutOffADay(e, false, false);
-                Messages.Message(Phrase(e, e.ceremony ? "CC_Elect_CeremonyPutOff" : "CC_Elect_CountPutOff", why.Named("REASON"),
-                    DateOf(e.countTick, e.map).Named("WHEN")), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, e.ceremony ? "CC_Elect_CeremonyPutOff" : "CC_Elect_CountPutOff", why.Named("REASON"),
+                    DateOf(e.countTick, e.map).Named("WHEN")), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             ApplyResults(comp, e, why);

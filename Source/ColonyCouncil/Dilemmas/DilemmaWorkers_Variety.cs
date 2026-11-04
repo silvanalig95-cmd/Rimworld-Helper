@@ -127,7 +127,7 @@ namespace ColonyCouncil
             {
                 var bill = HealthCardUtility.CreateSurgeryBill(p, recipe, part, null, false);
                 if (bill != null)
-                    Messages.Message("CC_DlmV_OperationAdded".Translate(p.LabelShort, recipe.LabelCap, part.Label).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
+                    Tell.Message(NewsKind.Health, Importance.Notable, null, "CC_DlmV_OperationAdded".Translate(p.LabelShort, recipe.LabelCap, part.Label).Resolve(), p, MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -262,8 +262,8 @@ namespace ColonyCouncil
             var w = Work;
             string what = !label.NullOrEmpty() ? ctx.Format(label) : "CC_DlmV_HandOverLabel".Translate(w.labelShort ?? w.label).Resolve();
             if (AnswerShifts.Instance.HandOver(ctx.map, ctx.a, ctx.b, w, days, what))
-                Messages.Message("CC_DlmV_HandedOver".Translate(ctx.a.LabelShort, w.labelShort ?? w.label, ctx.b.LabelShort).Resolve(), new LookTargets(new[] { ctx.a, ctx.b }),
-                    MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, ctx.map, "CC_DlmV_HandedOver".Translate(ctx.a.LabelShort, w.labelShort ?? w.label, ctx.b.LabelShort).Resolve(), new LookTargets(new[] { ctx.a, ctx.b }),
+                    MessageTypeDefOf.NeutralEvent);
         }
     }
 
@@ -304,7 +304,7 @@ namespace ColonyCouncil
                 var given = AnswerShifts.Instance.Hours(ctx.map, who, plan, condition, what);
                 if (given.Count == 0) return;
                 string names = given.Count > 3 ? "CC_Play_Everyone".Translate().Resolve() : TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList());
-                Messages.Message(("CC_DlmV_Hours_" + plan).Translate(names).Resolve(), new LookTargets(given), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, ("CC_DlmV_Hours_" + plan).Translate(names).Resolve(), new LookTargets(given), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -451,7 +451,7 @@ namespace ColonyCouncil
             {
                 if (p.playerSettings == null || p.playerSettings.selfTend || p.WorkTypeIsDisabled(WorkTypeDefOf.Doctor)) continue;
                 p.playerSettings.selfTend = true;
-                Messages.Message("CC_DlmV_SelfTend".Translate(p.LabelShort).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Health, Importance.Notable, null, "CC_DlmV_SelfTend".Translate(p.LabelShort).Resolve(), p, MessageTypeDefOf.NeutralEvent);
             }
         }
     }
@@ -477,7 +477,7 @@ namespace ColonyCouncil
             {
                 if (p.playerSettings == null || p.playerSettings.medCare == MedicalCareCategory.Best) continue;
                 p.playerSettings.medCare = MedicalCareCategory.Best;
-                Messages.Message("CC_DlmV_MedCare".Translate(p.LabelShort).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Health, Importance.Notable, null, "CC_DlmV_MedCare".Translate(p.LabelShort).Resolve(), p, MessageTypeDefOf.NeutralEvent);
             }
         }
     }
@@ -585,7 +585,7 @@ namespace ColonyCouncil
             if (bills.Count == 0) return;
             foreach (var b in bills) b.suspended = true;
             var benches = bills.Select(b => b.billStack?.billGiver).OfType<Thing>().Distinct().ToList();
-            Messages.Message("CC_DlmV_BillsSuspended".Translate(bills.Count).Resolve(), new LookTargets(benches), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_DlmV_BillsSuspended".Translate(bills.Count).Resolve(), new LookTargets(benches), MessageTypeDefOf.NeutralEvent);
         }
     }
 
@@ -665,7 +665,7 @@ namespace ColonyCouncil
                 var a = ctx.a;
                 if (!warden && a != null && a.Spawned && !a.Downed && a.Map == map && JobDefOf.SlaveEmancipation != null)
                     a.jobs?.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.SlaveEmancipation, x), JobTag.Misc);
-                Messages.Message("CC_DlmV_Emancipating".Translate(x.LabelShort).Resolve(), x, MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_DlmV_Emancipating".Translate(x.LabelShort).Resolve(), x, MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

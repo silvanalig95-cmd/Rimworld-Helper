@@ -633,7 +633,7 @@ namespace ColonyCouncil
             main.outcome = told;
             string planned = PlayWords.Planned(main);
             if (!planned.NullOrEmpty())
-                Messages.Message((prefix.NullOrEmpty() ? "" : prefix + " ") + planned, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, main.map, (prefix.NullOrEmpty() ? "" : prefix + " ") + planned, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             return true;
         }
 

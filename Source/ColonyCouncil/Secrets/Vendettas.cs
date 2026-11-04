@@ -496,7 +496,7 @@ namespace ColonyCouncil
             string speech = raw.Formatted(speaker.Named("PAWN"), dead.Named("OTHER"), (title ?? "").Named("TITLE"), (goal ?? "").Named("GOAL"),
                 Mathf.Max(1, Mathf.RoundToInt(years)).Named("YEARS"), (e.killers?.Name ?? "").Named("FACTION")).Resolve();
             string text = "CC_Eulogy_Text".Translate(speaker.Named("PAWN"), dead.Named("OTHER"), speech.Named("SPEECH")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Eulogy_Label".Translate(dead.LabelShort), text, LetterDefOf.NeutralEvent, speaker);
+            Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_Eulogy_Label".Translate(dead.LabelShort), text, LetterDefOf.NeutralEvent, speaker);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, speaker));
             comp.journals.Write(speaker, "Council_Journal_GaveEulogy", null, dead.Named("OTHER"));
             CouncilRecords.Add(speaker, CouncilRecords.EulogiesGiven);

@@ -56,7 +56,7 @@ namespace ColonyCouncil
             var ext = Ext;
             if (map == null || ext == null || !map.IsPlayerHome) return false;
             // An event that asks something waits out the gap after Rimfolk's last question (the storyteller sends another).
-            if (!ext.options.NullOrEmpty() && !LetterGap.Open) return false;
+            if (!ext.options.NullOrEmpty() && !Tell.CanAsk) return false;
             try
             {
                 return Gates(map, ext) && CanHappen(map, ext);
@@ -318,7 +318,7 @@ namespace ColonyCouncil
             }
             if (ext.options.NullOrEmpty())
             {
-                Find.LetterStack.ReceiveLetter(label, body, LetterFor(ctx, ext), Look(ctx));
+                Tell.Letter(NewsKind.World, Importance.Notable, ctx.map, label, body, LetterFor(ctx, ext), Look(ctx));
                 Happened(ctx, ext, label);
                 return;
             }
@@ -328,7 +328,7 @@ namespace ColonyCouncil
             var letter = (ChoiceLetter_Happening)LetterMaker.MakeLetter(label, body, letterDef, Look(ctx));
             letter.ctx = ctx;
             letter.StartTimeout(ticks);
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, ctx.map);
             Asked(ctx, ext);
         }
 

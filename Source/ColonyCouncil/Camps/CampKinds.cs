@@ -317,7 +317,7 @@ namespace ColonyCouncil
                     if (seam.Count == 0) return false;
                     surveys++;
                     var surveyor = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Mining)?.Level ?? 0).First();
-                    Find.LetterStack.ReceiveLetter(Text("CC_Camp_HelpTitle"), HelpText("survey", surveyor, colonists.RandomElement(), 0, ore.label),
+                    ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, null, Text("CC_Camp_HelpTitle"), HelpText("survey", surveyor, colonists.RandomElement(), 0, ore.label),
                         LetterDefOf.PositiveEvent, new LookTargets(seam[0]), faction);
                     return true;
                 }

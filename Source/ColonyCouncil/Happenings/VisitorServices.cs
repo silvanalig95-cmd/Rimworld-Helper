@@ -409,7 +409,7 @@ namespace ColonyCouncil
             if (!t.begun)
             {
                 t.begun = true;
-                Messages.Message("CC_Service_Mend_Begin".Translate(x.Named("PAWN"), t.things.Count).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Service_Mend_Begin".Translate(x.Named("PAWN"), t.things.Count).Resolve(), x, MessageTypeDefOf.SilentInput);
             }
             return false;
         }
@@ -496,7 +496,7 @@ namespace ColonyCouncil
             if (!t.begun)
             {
                 t.begun = true;
-                Messages.Message("CC_Service_Dose_Begin".Translate(x.Named("PAWN"), t.pawns.Count).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Service_Dose_Begin".Translate(x.Named("PAWN"), t.pawns.Count).Resolve(), x, MessageTypeDefOf.SilentInput);
             }
             return false;
         }
@@ -536,7 +536,7 @@ namespace ColonyCouncil
                 t.begun = true;
                 var room = t.cell.GetRoom(map);
                 string where = room?.Role != null && room.Role != RoomRoleDefOf.None ? room.Role.label : "CC_Service_Lodge_Room".Translate().ToString();
-                Messages.Message("CC_Service_Lodge".Translate(x.Named("PAWN"), where).Resolve(), x, MessageTypeDefOf.SilentInput, false);
+                ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, map, "CC_Service_Lodge".Translate(x.Named("PAWN"), where).Resolve(), x, MessageTypeDefOf.SilentInput);
             }
             return false;
         }
@@ -621,7 +621,7 @@ namespace ColonyCouncil
                     {
                         if (t.x.CurJobDef == JobDefOf.LayDown) t.x.jobs.EndCurrentJob(JobCondition.InterruptForced);
                         DilemmaEffect_SendAway.Send(t.x);
-                        Messages.Message("CC_Service_Lodge_Gone".Translate(t.x.Named("PAWN")).Resolve(), t.x, MessageTypeDefOf.SilentInput, false);
+                        ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, "CC_Service_Lodge_Gone".Translate(t.x.Named("PAWN")).Resolve(), t.x, MessageTypeDefOf.SilentInput);
                     }
                     break;
                 case ServiceKind.Ease:

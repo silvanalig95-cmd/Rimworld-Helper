@@ -202,8 +202,8 @@ namespace ColonyCouncil
                     .Take(n).ToList();
                 if (pick.Count == 0) return;
                 foreach (var a in pick) dm.AddDesignation(new Designation(a, DesignationDefOf.Slaughter));
-                Messages.Message("CC_Dlm_Culled".Translate(pick.Count, TextUtil.JoinAnd(pick.Select(a => a.LabelShort).Distinct().ToList())).Resolve(),
-                    new LookTargets(pick), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Dlm_Culled".Translate(pick.Count, TextUtil.JoinAnd(pick.Select(a => a.LabelShort).Distinct().ToList())).Resolve(),
+                    new LookTargets(pick), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -252,7 +252,7 @@ namespace ColonyCouncil
                     if (a.mindState != null) a.mindState.exitMapAfterTick = now + Rand.Range(GenDate.TicksPerHour * 3, GenDate.TicksPerDay);
                 }
                 if (pick.Count > 0)
-                    Messages.Message("CC_Dlm_TurnedOut".Translate(pick.Count).Resolve(), new LookTargets(pick), MessageTypeDefOf.NegativeEvent, false);
+                    Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Dlm_TurnedOut".Translate(pick.Count).Resolve(), new LookTargets(pick), MessageTypeDefOf.NegativeEvent);
             }
             catch (Exception e)
             {
@@ -290,7 +290,7 @@ namespace ColonyCouncil
                 var at = lost.Position;
                 lost.jobs?.StopAll();
                 lost.Destroy();
-                Messages.Message("CC_Dlm_AnimalLost".Translate(label.Named("ANIMAL")).Resolve().CapitalizeFirst(), new LookTargets(at, ctx.map), MessageTypeDefOf.NegativeEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, ctx.map, "CC_Dlm_AnimalLost".Translate(label.Named("ANIMAL")).Resolve().CapitalizeFirst(), new LookTargets(at, ctx.map), MessageTypeDefOf.NegativeEvent);
             }
             catch (Exception e)
             {
@@ -352,7 +352,7 @@ namespace ColonyCouncil
                 var first = crops[0];
                 Setbacks.Notify_CropLost(first, false);
                 foreach (var p in crops) p.Destroy();
-                Messages.Message("CC_Dlm_CropsEaten".Translate(crops.Count, x.Named("X")).Resolve(), new LookTargets(x), MessageTypeDefOf.NegativeEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Dlm_CropsEaten".Translate(crops.Count, x.Named("X")).Resolve(), new LookTargets(x), MessageTypeDefOf.NegativeEvent);
             }
             catch (Exception e)
             {
@@ -390,7 +390,7 @@ namespace ColonyCouncil
                         .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
                 if (to == null) return;
                 a.playerSettings.Master = to;
-                Messages.Message("CC_Dlm_AnimalPassed".Translate(a.Named("PET"), to.LabelShort.Named("NEW")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Dlm_AnimalPassed".Translate(a.Named("PET"), to.LabelShort.Named("NEW")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

@@ -577,7 +577,7 @@ namespace ColonyCouncil
             s.ctx.count = hit;
             string label = Text("struckTitles", s) ?? s.Label;
             string text = Text("struckTexts", s);
-            if (!text.NullOrEmpty()) Find.LetterStack.ReceiveLetter(label, text, WorldSituationDefOf.Council_WorldNewsBad, LookTargets.Invalid);
+            if (!text.NullOrEmpty()) Tell.Letter(NewsKind.World, Importance.Notable, null, label, text, WorldSituationDefOf.Council_WorldNewsBad, LookTargets.Invalid);
             return null;
         }
     }

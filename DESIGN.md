@@ -1691,6 +1691,38 @@ as a whole has, a loop over `Homes.All` for what each home has, and `Homes.Busie
 save's single timer), a memo keeps its colony so its follow-up (a guest, goods brought back, an order collected) comes
 where it was set going, talks with visitors start on every home, and a raid is written up by those at the home raided.
 
+### Telling the player
+
+Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't
+flooded. New code uses it; a second way of telling the player is a bug.
+
+- `Tell.Message(kind, importance, map, text, look, type)`: something that happened, as a message now. The "How many
+  messages" setting decides by its importance whether it's told at all. The same text (or the same `key`) within four
+  in-game hours is told once. Past the day's cap for its kind of news and its colony (20 a day by default, the setting
+  "Most messages a day from Rimfolk, by kind"), it waits for the evening's Colony news letter instead: never lost.
+  Important messages (harm, a death near, a mission's timing) are never held back.
+- `Tell.Minor(...)`, which `News.Post` calls: the smaller news, to the evening letter, a message or the History tab by
+  the "Colony news" setting, as before; as a message it keeps the same caps.
+- `Tell.Letter(kind, importance, map, label, text, def, look, faction)`: a letter that only tells. Past the day's cap for
+  its kind and colony (6 a day by default) it becomes a line in the evening's letter. Important letters and threats are
+  never held back.
+- `Tell.Ask(letter, map)` and `Tell.CanAsk`: Rimfolk's questions (choice letters). Never capped; those that can wait
+  check `CanAsk` first, which is `LetterGap`'s twelve hours between questions.
+- With more than one colony, what happened at a home names its settlement (`Homes.Name`): "Oakhold: ..." on a message
+  or a line of the news, "At Oakhold." heading a letter. With one colony the text is as it always was.
+- `Notify.Message` goes through `Tell.Message`, counted under the kind of news of its caller's folder
+  (`TellMath.KindOfFolder`). Overflow past the 40 waiting for the evening goes to the History tab's message log.
+
+The counts (`TellBook`, in `UI/TellMath.cs`, pure and tested) are kept by colony, kind and channel for the day and
+aren't saved; a load only lets a little more through. The caps are there to catch floods, not to thin ordinary days.
+
+What stays a direct `Messages.Message`: the answer to the player's own click, for the game's own sounds and timing. A
+rejection (`RejectInput`), a button's or designator's confirmation (`SilentInput`, `TaskCompletion`, `CautionInput`),
+a window's feedback, a developer's button. One that uses another message type carries a `// direct:` comment saying
+why (the player's promise or refusal, an appointment, a pick in a letter); `TellTests` checks every direct message and
+letter against this. The other direct letters are the colony news itself, the welcome and update letters, and the
+storyteller's own ailment incident (`SendStandardLetter`).
+
 ### A colonist's tabs
 
 A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second

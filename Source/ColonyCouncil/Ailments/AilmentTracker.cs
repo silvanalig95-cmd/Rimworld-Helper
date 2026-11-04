@@ -547,7 +547,7 @@ namespace ColonyCouncil
             string frail = LifeRisks.FrailNote(p);
             if (!frail.NullOrEmpty()) text += "\n\n" + frail;
             string label = h.def.LabelCap + ": " + p.LabelShortCap;
-            Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NegativeEvent, new LookTargets(p));
+            Tell.Letter(NewsKind.Health, Importance.Important, null, label, text, LetterDefOf.NegativeEvent, new LookTargets(p));
         }
 
         /// <summary>A doctor's note on an illness, fitting the colony's era, with its heading.</summary>

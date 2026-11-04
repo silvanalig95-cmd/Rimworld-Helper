@@ -737,7 +737,7 @@ namespace ColonyCouncil
             // What it leaves behind: a toast, an inspiration that fits, a mark on the skill, a lesson, a title (GoalRewards).
             var rewards = GoalRewards.Reached(comp, a);
             if (rewards.Count > 0) text += "\n\n" + string.Join(" ", rewards);
-            Find.LetterStack.ReceiveLetter("CC_Asp_FulfilledLabel".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
+            Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_Asp_FulfilledLabel".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             if (!quote.NullOrEmpty()) comp.journals.WriteText(p, quote);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
             comp.annals.Notify_Aspiration(p, a.Goal);

@@ -885,11 +885,11 @@ namespace ColonyCouncil
 
             if (s.wishLetters)
             {
-                Find.LetterStack.ReceiveLetter(title, DescribeForLetter(w), LetterDefOf.NeutralEvent, w.Worker.LookAt(w));
+                Tell.Letter(NewsKind.Colony, Importance.Notable, null, title, DescribeForLetter(w), LetterDefOf.NeutralEvent, w.Worker.LookAt(w));
             }
             else
             {
-                Messages.Message(title + ": \"" + TextUtil.ShortSpeech(w.quote, 120) + "\"", w.Worker.LookAt(w), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, title + ": \"" + TextUtil.ShortSpeech(w.quote, 120) + "\"", w.Worker.LookAt(w), MessageTypeDefOf.NeutralEvent);
             }
 
             Speak(w.pawn, w.quote, new Color(1f, 0.92f, 0.6f));
@@ -1012,8 +1012,8 @@ namespace ColonyCouncil
                 speech = line.CanTranslate() ? line.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve()
                     : "CC_CoSignLine_Plain".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve();
             }
-            Messages.Message("CC_PetitionJoined".Translate(p.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.coSigners.Count + 1).Named("COUNT")).Resolve(),
-                new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_PetitionJoined".Translate(p.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.coSigners.Count + 1).Named("COUNT")).Resolve(),
+                new LookTargets(p), MessageTypeDefOf.NeutralEvent);
             Speak(p, speech, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.Petition,
                 "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), p));

@@ -139,7 +139,7 @@ namespace ColonyCouncil
                         : ofLine
                             ? "CC_Herd_NewLeader_Line".Translate(best.Named("PET"), keeper.Named("PAWN"), lineName.Named("LINE"), Ordinal(generation).Named("COUNT")).Resolve()
                             : "CC_Herd_NewLeader_New".Translate(best.Named("PET"), keeper.Named("PAWN"), kind.Named("KIND")).Resolve();
-                    Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.PositiveEvent, new LookTargets(best));
+                    Tell.Letter(NewsKind.Land, Importance.Notable, map, title, text, LetterDefOf.PositiveEvent, new LookTargets(best));
                     Interplay.Journal(keeper, "Council_Journal_Herd_Leader", tags, best.Named("PET"), kind.Named("KIND"));
                     var k = keeper;
                     var l = best;
@@ -166,7 +166,7 @@ namespace ColonyCouncil
             if (keeper == null) return;
             try
             {
-                Find.LetterStack.ReceiveLetter("CC_Herd_LastSeasonTitle".Translate(leader.Named("PET")).Resolve(),
+                Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_LastSeasonTitle".Translate(leader.Named("PET")).Resolve(),
                     "CC_Herd_LastSeason".Translate(leader.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(leader));
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Herd_LastSeasonChronicle".Translate(leader.Named("PET")).Resolve(), keeper));
                 Interplay.Journal(keeper, "Council_Journal_Herd_LastSeason", new string[0], leader.Named("PET"), AnimalFacts.KindLabel(leader).Named("KIND"));
@@ -191,7 +191,7 @@ namespace ColonyCouncil
             {
                 if (keeper != null)
                 {
-                    Find.LetterStack.ReceiveLetter("CC_Herd_GoneTitle".Translate(gone.Named("PET")).Resolve(),
+                    Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_GoneTitle".Translate(gone.Named("PET")).Resolve(),
                         "CC_Herd_Gone".Translate(gone.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, LookTargets.Invalid);
                     CouncilGameComponent.GiveThought(keeper, HerdStoryDefOf.Council_Herd_LeaderGone);
                     Interplay.Journal(keeper, "Council_Journal_Herd_Gone", new string[0], gone.Named("PET"), AnimalFacts.KindLabel(gone).Named("KIND"));
@@ -243,7 +243,7 @@ namespace ColonyCouncil
             var keeper = Keeper(map, mother);
             if (keeper == null) return;
             string kind = AnimalFacts.KindLabel(mother);
-            Find.LetterStack.ReceiveLetter("CC_Herd_SpringCalfTitle".Translate().Resolve(),
+            Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_SpringCalfTitle".Translate().Resolve(),
                 "CC_Herd_SpringCalf".Translate(baby.Named("PET"), mother.Named("OTHER"), keeper.Named("PAWN")).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(baby));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Herd_SpringCalfChronicle".Translate(baby.Named("PET")).Resolve(), keeper));
             foreach (var p in IncidentWorker_Happening.Colonists(map))

@@ -376,7 +376,7 @@ namespace ColonyCouncil
             if (!parting.NullOrEmpty()) text += "\n\n" + parting;
             bool first = all.Count(o => o.announced && !o.ended && o.victim == n.victim) <= 1;
             if (first && (x.Spawned || n.victim?.MapHeld != null))
-                Find.LetterStack.ReceiveLetter("CC_Nemesis_Label".Translate(x.LabelShort), text, LetterDefOf.NeutralEvent, x.Spawned ? new LookTargets(x) : new LookTargets(n.victim));
+                Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_Nemesis_Label".Translate(x.LabelShort), text, LetterDefOf.NeutralEvent, x.Spawned ? new LookTargets(x) : new LookTargets(n.victim));
             else Notify.Message(text, x.Spawned ? new LookTargets(x) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, n.victim));
             if (VictimCanFeel(n))
@@ -425,7 +425,7 @@ namespace ColonyCouncil
             if (tell)
             {
                 if (n.IsBeast) Notify.Message(text, x, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-                else Find.LetterStack.ReceiveLetter("CC_Nemesis_ReturnedLabel".Translate(x.LabelShort), text, LetterDefOf.ThreatSmall, x);
+                else Tell.Letter(NewsKind.World, Importance.Important, null, "CC_Nemesis_ReturnedLabel".Translate(x.LabelShort), text, LetterDefOf.ThreatSmall, x);
             }
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, n.victim));
             if (!VictimCanFeel(n)) return;
@@ -457,7 +457,7 @@ namespace ColonyCouncil
                 : slayer != null
                     ? "CC_Nemesis_SlainBy".Translate(x.Named("X"), slayer.Named("SLAYER"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve()
                     : Line("Council_Pool_NemesisDied", n, x, "CC_Nemesis_Dead", n.IsBeast ? "beast" : "person", n.captured ? "captive" : "loose");
-            Find.LetterStack.ReceiveLetter("CC_Nemesis_EndLabel".Translate(n.Name), text, LetterDefOf.PositiveEvent, new LookTargets(new[] { slayer, n.victim }.Where(p => p != null && p.Spawned)));
+            Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_Nemesis_EndLabel".Translate(n.Name), text, LetterDefOf.PositiveEvent, new LookTargets(new[] { slayer, n.victim }.Where(p => p != null && p.Spawned)));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, slayer ?? n.victim));
             if (VictimCanFeel(n))
             {

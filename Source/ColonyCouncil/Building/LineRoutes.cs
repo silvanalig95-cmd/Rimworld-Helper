@@ -496,7 +496,10 @@ namespace ColonyCouncil
             int stay = takeUp.Count(c => c.GetThingList(map).Any(t => t.def == line)) - things.Count;
             string text = (atOnce ? "CC_Relay_UpNow" : "CC_Relay_Done").Translate(LineRoutes.KindLabel(kind).Named("KIND"), n.Named("N"), lay.Count.Named("LAID")).Resolve();
             if (stay > 0) text += " " + "CC_Relay_Kept".Translate(stay.Named("N")).Resolve();
-            Messages.Message(text, things.Count > 0 ? new LookTargets(things[0]) : null, MessageTypeDefOf.TaskCompletion, false);
+            var look = things.Count > 0 ? new LookTargets(things[0]) : null;
+            // At once: the answer to the player's click on the review's fix. Later: the new line has stood up on its own.
+            if (atOnce) Messages.Message(text, look, MessageTypeDefOf.TaskCompletion, false);
+            else Tell.Message(NewsKind.Colony, Importance.Notable, map, text, look, MessageTypeDefOf.TaskCompletion);
         }
 
         public void ExposeData()
@@ -536,7 +539,7 @@ namespace ColonyCouncil
                 {
                     // An order cancelled, or a new line lost before it stood: the old lines stay as they are.
                     list.Remove(r);
-                    Messages.Message("CC_Relay_Dropped".Translate(LineRoutes.KindLabel(r.kind).Named("KIND")).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Relay_Dropped".Translate(LineRoutes.KindLabel(r.kind).Named("KIND")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                     continue;
                 }
                 if (waiting > 0) continue;

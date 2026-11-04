@@ -411,7 +411,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("market day traders", e);
                 }
             }
-            Messages.Message("CC_Decree_MarketNobody".Translate(def.label).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Decree_MarketNobody".Translate(def.label).Resolve(), null, MessageTypeDefOf.NeutralEvent);
         }
 
         // ---------------- A curfew ----------------

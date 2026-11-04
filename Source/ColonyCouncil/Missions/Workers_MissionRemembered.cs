@@ -186,7 +186,7 @@ namespace ColonyCouncil
                     m.due = now + FeastHours * GenDate.TicksPerHour;
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
                     // At once, not in the evening's news: it says how long the caravan must stay.
-                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(here), MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(here), MessageTypeDefOf.PositiveEvent);
                 }
                 else if (now >= m.deadline)
                 {
@@ -325,7 +325,7 @@ namespace ColonyCouncil
                     m.lastLook = now;
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.target * GenDate.TicksPerHour));
                     // At once, not in the evening's news: it says how long the caravan must stay.
-                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(caravan), MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(caravan), MessageTypeDefOf.PositiveEvent);
                 }
                 else m.tally += Mathf.Max(0, now - Mathf.Max(m.lastLook, m.started));
             }
@@ -413,7 +413,7 @@ namespace ColonyCouncil
             if (m.reminded || now < m.due - GenDate.TicksPerDay / 2) return;
             m.reminded = true;
             string line = Line(More?.reminder, m, map, Missions.GoodsText(m), TextUtil.DaysString(Mathf.Max(0, m.due - now)));
-            if (!line.NullOrEmpty()) Messages.Message(line, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
+            if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Notable, map, line, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>They walk in with food enough for their stay, and stay until the mission's end. False: they couldn't come.</summary>
@@ -671,7 +671,7 @@ namespace ColonyCouncil
                 m.lastLook = now;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
                 // At once, not in the evening's news: the room is checked from now on.
-                if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x), MessageTypeDefOf.PositiveEvent, false);
+                if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(x), MessageTypeDefOf.PositiveEvent);
                 return;
             }
             // Every look of the stay: the guest eats at the colony's table, and sleeps in the room kept for them.
@@ -876,7 +876,7 @@ namespace ColonyCouncil
                 m.lacks = 0;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
                 // At once, not in the evening's news: their days are counted from now on.
-                if (!line.NullOrEmpty()) Messages.Message(line, Targets(m), MessageTypeDefOf.NeutralEvent, false);
+                if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, Targets(m), MessageTypeDefOf.NeutralEvent);
                 return;
             }
             var here = Here(m, map).ToList();
@@ -942,7 +942,7 @@ namespace ColonyCouncil
             }
             m.misses++;
             string key = !fed && !roofed ? "CC_Mission_Refugees_Neither" : !fed ? "CC_Mission_Refugees_Hungry" : "CC_Mission_Refugees_NoRoof";
-            Messages.Message(key.Translate(m.place ?? m.faction?.Name ?? "?").Resolve(), new LookTargets(here), MessageTypeDefOf.NegativeEvent, false);
+            Tell.Message(NewsKind.World, Importance.Notable, map, key.Translate(m.place ?? m.faction?.Name ?? "?").Resolve(), new LookTargets(here), MessageTypeDefOf.NegativeEvent);
         }
 
         /// <summary>The plainest meal first (they ask to be fed, not feasted), else raw food from the stores.</summary>

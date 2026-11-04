@@ -377,7 +377,7 @@ namespace ColonyCouncil
             string text = VarietyUtil.Line(texts, ctx, tags, item);
             if (text.NullOrEmpty()) return;
             string title = VarietyUtil.Line(titles, ctx, tags, item) ?? ctx.incident?.LabelCap.ToString() ?? "";
-            Find.LetterStack.ReceiveLetter(title, text, letter ?? LetterDefOf.NeutralEvent, look ?? LookTargets.Invalid);
+            ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, ctx.map, title, text, letter ?? LetterDefOf.NeutralEvent, look ?? LookTargets.Invalid);
             int cut = text.IndexOf('\n');
             string first = cut > 0 ? text.Substring(0, cut) : text;
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, title + ": " + first, ctx.a != null && !ctx.a.Dead && ctx.a.IsColonist ? ctx.a : null));
