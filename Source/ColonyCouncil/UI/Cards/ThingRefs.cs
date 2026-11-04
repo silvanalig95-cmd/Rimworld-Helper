@@ -170,6 +170,19 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Exists(ThingRef r)
         {
+            if (r.IsNone) return false;
+            float now = Time.realtimeSinceStartup;
+            if (exists.TryGetValue(r, out var e) && now - e.at < 3f && now >= e.at) return e.yes;
+            bool yes = Look(r);
+            if (exists.Count > 500) exists.Clear();
+            exists[r] = (now, yes);
+            return yes;
+        }
+
+        private static readonly Dictionary<ThingRef, (float at, bool yes)> exists = new Dictionary<ThingRef, (float, bool)>();
+
+        private static bool Look(ThingRef r)
+        {
             try
             {
                 switch (r.kind)
@@ -305,6 +318,7 @@ namespace ColonyCouncil
         {
             names.Clear();
             objects.Clear();
+            exists.Clear();
         }
     }
 }

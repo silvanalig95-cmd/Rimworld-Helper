@@ -156,8 +156,8 @@ namespace ColonyCouncil
             var site = RaidersCamps.SiteOf(r.camp);
             if (site != null && Widgets.ButtonText(new Rect(bx, by, ButtonW, 28f), "CC_RaidCampPg_Show".Translate()))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(site);
+                // On the region map with its card, not the game's world view.
+                Cards.ShowOnMap(site);
             }
             by += 34f;
             if (r.camp.offered && r.camp.stage == CampStage.Found)

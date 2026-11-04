@@ -137,12 +137,14 @@ namespace ColonyCouncil
 
         internal static Action Page(string page) => () => MainTabWindow_Council.OpenTab(page);
 
-        /// <summary>Close the window and go to a thing or a place on the map.</summary>
+        /// <summary>
+        /// Go to a thing or a place: one on a map, the window closed and the camera there, as before; a place out on the
+        /// world (a town, a post, a camp) on the region map with its card (UI/Cards/Cards.cs), not the game's world view.
+        /// </summary>
         internal static Action Go(GlobalTargetInfo target) => () =>
         {
             if (!target.IsValid) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
-            CameraJumper.TryJumpAndSelect(target);
+            Cards.ShowOnMap(target);
         };
 
         /// <summary>Select a colonist and open one of their inspect tabs (the Mood tab, the Health tab).</summary>

@@ -150,7 +150,8 @@ namespace ColonyCouncil
                 return;
             }
             var look = Missions.Worker(m)?.Targets(m);
-            if (look != null && look.IsValid) CameraJumper.TryJumpAndSelect(look.TryGetPrimaryTarget());
+            // A place out on the world shows on the region map with its card; anything on a map is jumped to.
+            if (look != null && look.IsValid) ColonyCouncil.Cards.ShowOnMap(look.TryGetPrimaryTarget());
         }
     }
 }

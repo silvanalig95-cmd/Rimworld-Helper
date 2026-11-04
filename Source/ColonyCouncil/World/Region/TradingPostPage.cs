@@ -132,8 +132,8 @@ namespace ColonyCouncil
             var town = TradingPosts.TownOf(r.post);
             if (town != null && Widgets.ButtonText(new Rect(x + w - ButtonW - 10f, y + 10f, ButtonW, 28f), "CC_PostPg_Show".Translate()))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(town);
+                // On the region map with its card, not the game's world view.
+                Cards.ShowOnMap(town);
             }
             return h;
         }
