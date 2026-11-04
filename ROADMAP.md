@@ -302,6 +302,8 @@ uncovering secrets as before, and darker ones (sabotage, theft, a provoked quarr
 bad things, never gratuitous and always seen on the map; the renown of the colony's houses (13); stress when someone
 acts against their nature (14). Plus the envoy who lives at the colony for a season. Each with its bad side: a broken
 truce, a hostage harmed, a feud carried down, a scheme found out.
+The design and its eleven releases (rounds a to d): `docs/design/stage2-diplomacy.md` (19 decisions waiting for the
+player).
 
 **Every age, not only the medieval one (the player's rule, 4 November 2026).** Nothing is switched off for not being
 medieval; each feature takes the form of the age. Both sides count: the colony's own tech level sets its means (a
