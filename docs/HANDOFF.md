@@ -6,6 +6,36 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- UI 1, names that lead somewhere (docs/design/interface.md, the first of its five releases, on its recommended
+  decisions 2 and 3: the drawer and previews). All in `Source/ColonyCouncil/UI/Cards/`; DESIGN.md, "Rimfolk's windows",
+  "Names that lead somewhere" has the whole of it. Pure and tested (`Tools/Tests/CardsTests.cs`, with `PagesTests`):
+  `ThingRefMath.cs` (`ThingRef` over the ledger's `Ref` plus sites `s`, ties `y`, history entries `e`, letters `l`;
+  `CardKind`, `CardSlot`, `CardRegistry`), `LinkTextMath.cs` (the marker, three private use characters; `Parse`,
+  `Plain`, `Wrap`, `MarkNames`, `Lay`), `NavTrailMath.cs` (`NavStep`, `NavTrail` bounded at 50, `DrawerMath`). Game side:
+  `ThingRefs` (resolve, exists and names, kept a few seconds), `Cards` (the eight builders, models at most once a second
+  while shown; `Cards.Open(ThingRef)` and overloads, `Cards.ShowOnMap`, `Cards.OpenInWindow`), `CardModel`,
+  `CardSections`/`CardActs` (`Register`, `RegisterLines`, and the place card's `Town`, `TownLines`, `PlaceLines`,
+  `HomeLines`), `CardWords` (the history's lines with links, a card's story, letters' steps, distance), `CardView`,
+  `Drawer` (the region window's, the map's panel; Escape closes it first), `Window_Card` (the floating card from
+  elsewhere), `LinkText`, `Previews` (an immediate window on the tooltips' layer, asked for each frame from
+  `WeekMemory.GameComponentOnGUI`), `Nav` (the corner's arrows, keys `Council_Key_Back`/`Forward` in
+  `Defs/Misc/Rimfolk_NavKeys.xml`, side buttons 3 and 4); `UI/UiKitCards.cs` (tokens and components); icons Back and
+  Forward (`Tools/make_icons.py`). The region map panel's fourteen sections are the place card's now (twelve sections
+  in its slots and "Plan a journey here" as an act); `NeighbourPanel`'s lists are a shim for a release (a town's in Ties,
+  the rest in Now). 2a.1 wired: `DiplomacyLinks.Open` opens cards, its town ties are the place card's Ties
+  (`CardSections.Town(CardSlot.Ties, ...)`), `MainTabWindow_World.ShowOnMap` and `RegionMapView.Pick` forward to the
+  drawer; the Diplomacy and Household pages stay dev-only. Links in: the world history (names and days), the place
+  card, the Neighbours page's towns and people, the Peoples rows and their wars, the Letters rows, a people's chip
+  (`UiKit.FactionChip(..., link: true)`), a notable's portrait, a town's name; `Texts.Fill(text, values, things, links)`
+  with `FactSet.things` (TOWN, PEOPLE) for later callers; `Tell` and `Speech.Say` strip markers. "Show" on the posts,
+  hamlets, camps and journeys pages, This week's place rows (`WeekModel.Go`) and missions open the region map.
+  Settings `linkPreviews`, `linkPreviewDelay`. `StoryView.Draw` takes `StoryParts.Card` and an `after` drawer. Left
+  for later releases, by the design's order: the drawer in the council, defense and planning windows (they open the
+  floating card), the second level of previews, links in the inspect tabs, the Social column, This week and the
+  council's pages (UI 4 and 5), the follow pin. To look at in game: a preview beside the game's tooltips (a row's
+  tooltip drawn after a link may still show with it), clicks inside a preview, the drawer over the view below a
+  content area of 900 (1280 by 720 at scale 1.5), the side mouse buttons on Windows and Linux, a marker never showing
+  in a letter or a bubble, Escape on the map with a town picked.
 - 0.81.0, stage 2 release 2a.1, diplomacy's base and favours (docs/design/stage2-diplomacy.md, item 1 and the base): built
   while the player plays, with the design's decisions left alone (no fighters through a favour either way: 2a.2's war
   bands and decision 3; no Empire honour for a favour: decision 9). `Source/ColonyCouncil/Diplomacy/`: `DiplomacyMath.cs`,

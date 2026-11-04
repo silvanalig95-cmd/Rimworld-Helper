@@ -2542,13 +2542,14 @@ window's, and the same place, so going from one to another keeps the frame):
   `Defenses` and the planning pages simply live in their windows now. A window opens through its button's def, which
   works with the button hidden or put away.
 - **The corner** (`UI/WindowTabs.cs`): every window draws its tabs with `WindowTabs.Draw`, the game's tabs with their
-  icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner the four windows'
-  icons, the one showing lit. A click opens that window as its button would. The defense window has one tab, so its
-  corner is where the others' is.
+  icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner back and forward
+  (below, "Names that lead somewhere") and the four windows' icons, the one showing lit. A click opens that window as
+  its button would. The defense window has one tab, so its corner is where the others' is.
 - **The region window** opens on the region map unless something asked for a page. The map is `RegionMapView` (what
-  was `Window_RegionMap`, the same drawing, panel and `NeighbourPanel` sections, now inside the page): its picture is
-  made when the page is first drawn and let go when the window closes; where it looked and what was picked are kept
-  for the session. The drawing went into the page rather than the region map keeping a window of its own because the
+  was `Window_RegionMap`, the same drawing, now inside the page): its picture is made when the page is first drawn and
+  let go when the window closes; where it looked is kept for the session. Its panel is the window's drawer: what is
+  picked is the place whose card is open there (kept for the session too), and with nothing picked the drawer shows
+  how to use the map and what its colours mean. The drawing went into the page rather than the region map keeping a window of its own because the
   window was only a frame around it (its own place, size and close button): inside the region window the map sits
   beside the pages the player asked to have with it, under one button, as the other windows are. Its other pages:
   Neighbours (`WorldPanel`: what's coming, missions, a camp, who's out there, the towns nearby), Peoples (stance, wars
@@ -2556,8 +2557,9 @@ window's, and the same place, so going from one to another keeps the frame):
   (`NeighbourLetters`, under way and lately, and whom the colony can write to), Journeys (`JourneyPanel` and the
   colony's caravans), Events (`WorldSituationsPanel` and the chronicle's world lines) and History (the world's history
   over `History.Of` for a people, `History.At` and `Of` for a town, all of it otherwise, newest first, at most 300,
-  filtered by a kind's family; each line in `History.Text`'s words, else its kind in words and who took part;
-  `UI/WorldHistoryMath.cs`). Built at most once a second or two while open; nothing while closed.
+  filtered by a kind's family; each line in `History.Text`'s words, else its kind in words and who took part, each
+  name in it a link and its day a link to the entry's card; `UI/WorldHistoryMath.cs`, `UI/Cards/CardWords.cs`). Built
+  at most once a second or two while open; nothing while closed.
 - **Adding a region page** is one call from a `[StaticConstructorOnStartup]` class:
   `MainTabWindow_World.Register(name, labelKey, icon, rect => Draw(rect), () => shown, order)`. The name becomes an
   address `Pages.Open` takes; order 60 by default puts it after World events and before History.
@@ -2567,6 +2569,74 @@ window's, and the same place, so going from one to another keeps the frame):
   `planButton` is on if either `roomsButton` or `planButton` was, and `BarMoreMath.MergePlanning` keeps the button on
   the bar if either button was on it, under More if both were put away.
 - **Settings**: `worldButton`, `defenseButton` and `planButton` show or hide the three buttons beside the council's.
+
+#### Names that lead somewhere (UI 1 of docs/design/interface.md)
+
+The first of the interface's five releases: every thing has one card, a name of it in Rimfolk's windows leads there,
+a pause on a name shows who or what it is, and every window has a way back. All of it is in `UI/Cards/`; its pure
+parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `Tools/Tests/CardsTests.cs`.
+
+- **Things.** `ThingRef` is the world ledger's `Ref` (a person, a town, a people, a colony, a house, a tile) and the
+  things only the windows name: any other place on the world by its world object (`s40`), a tie (`y7`), an entry of
+  the history (`e12`), a letter (`l3`). A plain value with a text form, safe when the thing is gone: `ThingRefs` finds
+  what one names while the game has it, whether it is still there (kept three seconds), its name (five seconds, then
+  what the ledger, the notables or the history kept), and its card: a person of the colony's own opens a colonist's.
+- **Cards.** Eight kinds, each built by one builder in `Cards.cs` at most once a second while it shows (nothing while
+  no card does): Colonist (the Roster's page of them, StoryView, under the card's head), Person (a notable, a known
+  face, anyone the ledger keeps: their letter on its way in steps, who of the colony knows them, what they remember),
+  Place (the region map's panel: a town, a post, a hamlet, a ruin, a raiders' camp, a town being built, a bare tile,
+  a colony; with a small world view button on its head where "Show on the world" was), People, House, Tie, Event (an
+  entry of the history: its words with links, who took part), Letter (its steps, never a time left). Every card has
+  the same slots in the same order: head, now, who, ties, words, story, acts. A section folds, with its count in its
+  heading, its fold kept per kind of card for the session, and a section with nothing is not drawn. A card's story is
+  its newest three lines of the history and a link to the whole of it on the History page. Its acts are a bar at its
+  foot, each greyed with why not and the first reason written under them, the rest under More.
+- **Adding to a card**: `CardSections.Register(kind, slot, order, draw, heading, id, count)` (a section drawn by its
+  own code) or `RegisterLines(kind, slot, order, lines, heading, id)` (lines, links allowed, asked once a second with
+  the model), and `CardActs.Register(kind, label, whyNot, act, shows, order)`; for the place card,
+  `CardSections.Town`, `TownLines`, `PlaceLines` and `HomeLines` take what the region map panel's sections took. The
+  fourteen sections of 0.80.0 moved into its slots (who the colony knows there, Who; heard lately and far news, Words;
+  fortune, a hamlet, a post, a ruin, a town being given up, a camp, a town being built, a home's remoteness and its
+  camp, Now; a new town's founding, Story; "Plan a journey here", an act), and stage 2's debts of honor are its Ties.
+  `NeighbourPanel`'s three lists stay for a release as a shim: what is still added there draws on the place card, a
+  town's in Ties, any other place's and a home's in Now.
+- **Opening a card.** `Cards.Open(ThingRef)` (and overloads for a pawn, a people, a world object, a notable, a tie, a
+  ref) opens it where the player is: in the region window's drawer when it shows, else in a small floating card
+  window (`Window_Card`) with its own trail and "Open in its window" (a colonist in the People roster, a place on the
+  region map, anything else in the region window's drawer on the page that lists it). `Cards.ShowOnMap` opens a place
+  on the region map with its card as the panel: the "Show" buttons of the trading posts, hamlets, raiders' camps and
+  journeys pages, This week's rows about places and the missions lead there now rather than to the game's world view;
+  something on a map is still jumped to. `DiplomacyLinks.Open` opens cards.
+- **The drawer** (`Drawer.cs`, `DrawerMath`): 380 wide at the right of the content area, beside the view from a content
+  area of 900 (at 1920 by 1080, scale 1 and 1.5, the map is 558 wide beside it) and over it with a shadow below that,
+  where the view under it doesn't see the mouse. Its head is the trail of cards opened in it ("Tallbrook › Edda
+  Marsh"), each a link back, and a close button; Escape closes it before the window (`RimfolkTabWindow`). In UI 1 it
+  is the region window's; the other windows open the floating card.
+- **Links in text.** A link is a marker only `LinkText` reads: three characters of Unicode's private use area around
+  the thing's text form and the words shown (`LinkTextMath.Wrap`). Text for Rimfolk's windows asks for links: the
+  history's lines (`CardWords.HistoryLine`: each name of who took part or where, marked at its first mention), the
+  facts' fill (`Texts.Fill(text, values, things, links: true)`, with `FactSet.things` naming a placeholder's thing),
+  the panel lines that name a founder, a mother town, a family, a people. Everything that goes to the game is filled
+  plain, and `Tell` and `Speech.Say` take out any stray marker at the door. `LinkText` lays a text out for its width
+  once (one `Text.CalcSize` per word, kept), draws it piece by piece, and keeps each link's rect for the mouse: link
+  ink with a fine dotted line under it, solid and brighter under the mouse; a click opens the card. In UI 1: the
+  world history, the place card, the Neighbours page's towns and people, the Peoples rows and their wars, the Letters
+  rows, a people's chip (`UiKit.FactionChip(..., link: true)`), a notable's portrait, a town's name.
+- **Previews** (`Previews.cs`): a pause on a link (0.35 seconds, the setting `linkPreviewDelay`) shows a small card under
+  it, Rimfolk's own immediate window on the layer the game's tooltips use, asked for each frame while it shows: the
+  picture, the name, what it is, its state, two or three lines that matter now and how to keep it. It stays while the
+  mouse is on the link or in it, and half a second after; a click on it opens the card. None while dragging or
+  scrolling, none with `linkPreviews` off (a chip's plain tooltip comes back then). Buttons and icons keep the game's
+  tooltips. One level deep for now.
+- **Back and forward** (`Nav.cs`, `NavTrail`): each window tells where it is once a frame (its page, the filters that
+  matter (the History page's), the card open in its drawer); a new place is a step, scrolling and folding aren't. At
+  most 50 steps, kept for the session; going back past a step whose thing is gone drops it. The arrows in every
+  corner, two keys (`Council_Key_Back` and `Council_Key_Forward` in `Defs/Misc/Rimfolk_NavKeys.xml`, unbound), and the
+  mouse's side buttons where Unity reports them (buttons 3 and 4).
+- **The look** (`UI/UiKitCards.cs`): the design's tokens (link ink and its line, the cool stance, done, danger, the
+  drawer's and the preview's surfaces) and the components UI 1 draws: a section heading with its count and fold, a
+  thing chip, a state chip, an act button with why not, steps, an icon button.
+- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page.
 
 ### A colonist's tabs
 
