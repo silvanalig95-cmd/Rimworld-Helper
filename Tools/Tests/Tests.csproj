@@ -89,6 +89,7 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/PassClockMath.cs" Link="PassClockMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/LedgerMath.cs" Link="LedgerMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/TieMath.cs" Link="TieMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Ledger/StoreMath.cs" Link="StoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TellMath.cs" Link="TellMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/MemoryMath.cs" Link="MemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="SettingsCatalog.cs" />

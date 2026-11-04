@@ -128,6 +128,65 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>
+        /// A tie from a store that kept it before the ledger did (read from an older save), with its own since, until and
+        /// state: given an id and kept, or null without a game, with a party missing or with no room.
+        /// </summary>
+        public static Tie Adopt(Tie t)
+        {
+            var l = Instance;
+            if (l == null || t == null || t.from.IsNone || t.to.IsNone || t.from == t.to) return null;
+            try
+            {
+                if (!TieRules.MakeRoom(l.ties, t.kind, t.from, t.to))
+                {
+                    CouncilLog.WarnOnce("world ledger: no room for an older save's " + t.kind + " (" + t.from + ">" + t.to + ")");
+                    return null;
+                }
+                t.id = l.nextTie++;
+                t.terms ??= new TieTerms();
+                t.source = null;
+                if (!TieRules.Live(t.state) && t.closed == Tie.Never) t.closed = Now;
+                l.ties.Add(t);
+                Changed();
+                return t;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world ledger: an older save's tie", e);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The ledger's own ties of a kind, live and closed, oldest first (the order they were made): for the store that
+        /// keeps its ties here. The list itself, not a copy: read it, don't change it.
+        /// </summary>
+        public static IEnumerable<Tie> OwnTies(Tie.Kind kind)
+        {
+            var l = Instance;
+            if (l == null) yield break;
+            for (int i = 0; i < l.ties.Count; i++)
+                if (l.ties[i] != null && l.ties[i].kind == kind)
+                    yield return l.ties[i];
+        }
+
+        /// <summary>The ledger's own live ties of a kind, oldest first: a new list.</summary>
+        public static List<Tie> LiveTies(Tie.Kind kind)
+        {
+            var list = new List<Tie>();
+            foreach (var t in OwnTies(kind))
+                if (t.Live)
+                    list.Add(t);
+            return list;
+        }
+
+        /// <summary>One of the ledger's own ties had its terms or its until changed by the store that keeps it there.</summary>
+        public static void Touch(Tie tie)
+        {
+            if (tie != null && !tie.IsView) Changed();
+        }
+
         /// <summary>One of the ledger's own ties by its id, or null.</summary>
         public static Tie Get(int id)
         {
@@ -191,6 +250,7 @@ namespace ColonyCouncil
             try
             {
                 if (TieRules.Tidy(ties, now) > 0) Changed();
+                PruneKnown(now, false);
             }
             catch (Exception e)
             {
@@ -209,6 +269,7 @@ namespace ColonyCouncil
                 {
                     TieRules.Tidy(ties, Now);
                     ties.RemoveAll(t => t == null || t.from.IsNone || t.to.IsNone);
+                    PruneKnown(Now, true);
                 }
                 catch (Exception e)
                 {
@@ -218,6 +279,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
             Scribe_Values.Look(ref nextTie, "nextTie", 1);
             Scribe_Values.Look(ref nextNumber, "nextNumber", 1);
+            ExposeKnown();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<Tie>();
@@ -227,6 +289,7 @@ namespace ColonyCouncil
                 if (ties.Count > 0) nextTie = Math.Max(nextTie, ties.Max(t => t.id) + 1);
                 int used = 0;
                 foreach (var t in ties) used = Math.Max(used, Math.Max(t.from.Number, Math.Max(t.to.Number, t.terms.about.Number)));
+                foreach (var p in persons) used = Math.Max(used, p.person.Number);
                 nextNumber = Math.Max(Math.Max(1, nextNumber), used + 1);
                 tidiedAt = Fresh.Never;
                 Changed();

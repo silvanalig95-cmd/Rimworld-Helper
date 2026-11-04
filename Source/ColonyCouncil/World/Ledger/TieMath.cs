@@ -50,7 +50,12 @@ namespace ColonyCouncil
             /// <summary>From promised to something (about: whom it concerns).</summary>
             Promise,
             /// <summary>How from regards to (number: the score).</summary>
-            Regard
+            Regard,
+            /// <summary>
+            /// From (a family's people) has a claim on someone kept by to (about: the one claimed): their family may come to
+            /// ask for them back. Pressing it is calling it in; letting them go keeps it, refusing breaks it.
+            /// </summary>
+            Claim
         }
 
         public enum State
@@ -108,7 +113,7 @@ namespace ColonyCouncil
     /// <item>Open and called in are live; kept, broken and ended are closed, and stay closed.</item>
     /// <item>From open: kept, called in, broken or ended. From called in: kept, broken, ended, or open again (put off,
     /// given more time). Only what can be asked for can be called in (a favour, a pact, fealty, a debt, a promise, a
-    /// hostage); a regard is never kept or broken, only ended.</item>
+    /// hostage, a family's claim); a regard is never kept or broken, only ended.</item>
     /// <item>At its until: an open debt comes due (called in, with no end until the one asking sets one); any other open
     /// tie ends (it ran its course); a tie called in and not met by then is broken.</item>
     /// <item>Closed ties are dropped <see cref="KeepClosedDays"/> days after they closed (the history folds them in,
@@ -124,16 +129,19 @@ namespace ColonyCouncil
         public const int MaxPerKind = 60;
         /// <summary>Regard is kept between many pairs (each notable and colonist, each outsider pair): more room.</summary>
         public const int MaxRegard = 300;
-        /// <summary>All ties at most: ten kinds at <see cref="MaxPerKind"/> and regard at <see cref="MaxRegard"/>.</summary>
-        public const int MaxTies = 10 * MaxPerKind + MaxRegard;
+        /// <summary>How many kinds of tie there are.</summary>
+        public const int Kinds = 12;
+        /// <summary>All ties at most: every kind but regard at <see cref="MaxPerKind"/>, and regard at <see cref="MaxRegard"/>.</summary>
+        public const int MaxTies = (Kinds - 1) * MaxPerKind + MaxRegard;
 
         public static int MaxOf(Tie.Kind kind) => kind == Tie.Kind.Regard ? MaxRegard : MaxPerKind;
 
         public static bool Live(Tie.State s) => s == Tie.State.Open || s == Tie.State.CalledIn;
 
-        /// <summary>Can be asked for: a favour, a pact, fealty, a debt, a promise, a hostage.</summary>
+        /// <summary>Can be asked for: a favour, a pact, fealty, a debt, a promise, a hostage, a family's claim.</summary>
         public static bool CanCallIn(Tie.Kind k) =>
-            k == Tie.Kind.Favour || k == Tie.Kind.Pact || k == Tie.Kind.Fealty || k == Tie.Kind.Debt || k == Tie.Kind.Promise || k == Tie.Kind.Hostage;
+            k == Tie.Kind.Favour || k == Tie.Kind.Pact || k == Tie.Kind.Fealty || k == Tie.Kind.Debt || k == Tie.Kind.Promise || k == Tie.Kind.Hostage
+            || k == Tie.Kind.Claim;
 
         /// <summary>Can be honoured or failed (everything but a regard, which only ends).</summary>
         public static bool CanKeepOrBreak(Tie.Kind k) => k != Tie.Kind.Regard;

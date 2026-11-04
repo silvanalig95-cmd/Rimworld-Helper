@@ -210,7 +210,7 @@ namespace ColonyCouncil
         private static Game viewsGame;
         private static readonly KeptAnswers<TownView> towns = new KeptAnswers<TownView>(Sched.RareTicks);
         private static readonly KeptAnswers<PeopleView> peoples = new KeptAnswers<PeopleView>(Sched.RareTicks);
-        private static readonly KeptAnswers<PersonView> persons = new KeptAnswers<PersonView>(Sched.RareTicks);
+        private static readonly KeptAnswers<PersonView> personViews = new KeptAnswers<PersonView>(Sched.RareTicks);
 
         /// <summary>What the views are read from changed (the ledger, the faction memory, the notables).</summary>
         private static int SourcesVersion => unchecked(version + FactionMemory.Version + NotableBook.Version);
@@ -221,7 +221,7 @@ namespace ColonyCouncil
             viewsGame = Current.Game;
             towns.Clear();
             peoples.Clear();
-            persons.Clear();
+            personViews.Clear();
         }
 
         private static T Kept<T>(KeptAnswers<T> kept, int key, Func<T> build, string what) where T : class
@@ -294,13 +294,14 @@ namespace ColonyCouncil
             v.name = s != null && s.HasName ? s.Name : null;
             v.people = s?.Faction;
             var mine = book?.notables.Where(n => n != null && n.town == id).ToList() ?? new List<Notable>();
-            // A town gone from the world: what the notables and the news knew of it.
+            // A town gone from the world: what the ledger kept of it, else what the notables and the news knew.
             if (s == null)
             {
+                var rec = TownRecord(id);
                 var n0 = mine.FirstOrDefault(n => !n.townName.NullOrEmpty());
                 var h0 = outs?.heard.FirstOrDefault(h => h != null && h.town == id);
-                v.name = n0?.townName ?? h0?.townName;
-                v.people = mine.FirstOrDefault(n => n.faction != null)?.faction ?? h0?.faction;
+                v.name = rec?.name ?? n0?.townName ?? h0?.townName;
+                v.people = rec?.people ?? mine.FirstOrDefault(n => n.faction != null)?.faction ?? h0?.faction;
                 if (v.name == null && v.people == null && mine.Count == 0) return null;
             }
             v.peopleRef = Refs.Of(v.people);
@@ -308,7 +309,7 @@ namespace ColonyCouncil
             {
                 var nv = new NotableView
                 {
-                    person = Refs.Of(n.pawn), id = n.id, pawn = n.pawn, name = n.Name, role = n.role, title = NotableBook.TitleOf(n), alive = n.Alive,
+                    person = n.person, id = n.id, pawn = n.pawn, name = n.Name, role = n.role, title = NotableBook.TitleOf(n), alive = n.Alive,
                     opinion = NotableBook.Opinion(n)
                 };
                 v.notables.Add(nv);
@@ -400,10 +401,10 @@ namespace ColonyCouncil
         /// Someone out in the world, as the stores know them: a notable, an outsider someone talked with, a regular, a
         /// departed ex-colonist, or anyone else the game still has a pawn for. Null for a person nobody knows.
         /// </summary>
-        public static PersonView Person(Ref r) => r.kind != RefKind.Person ? null : Kept(persons, r.id, () => BuildPerson(r, null), "a person's view");
+        public static PersonView Person(Ref r) => r.kind != RefKind.Person ? null : Kept(personViews, r.id, () => BuildPerson(r, null), "a person's view");
 
         /// <summary>The same, for a pawn in hand (no search for it).</summary>
-        public static PersonView Person(Pawn p) => p == null ? null : Kept(persons, p.thingIDNumber, () => BuildPerson(Refs.Of(p), p), "a person's view");
+        public static PersonView Person(Pawn p) => p == null ? null : Kept(personViews, p.thingIDNumber, () => BuildPerson(Refs.Of(p), p), "a person's view");
 
         private static PersonView BuildPerson(Ref r, Pawn given)
         {
@@ -411,17 +412,19 @@ namespace ColonyCouncil
             var book = NotableBook.Instance;
             var outs = OutsiderBook.Instance;
             var hap = CouncilGameComponent.Instance?.happenings;
+            // The ledger's own record first: every notable is a person there, and so is anyone a tie names.
+            var rec = PersonRecord(r);
             bool Is(Pawn p) => p != null && r.HasPawn && p.thingIDNumber == r.id;
-            var n = book?.notables.FirstOrDefault(x => x != null && Is(x.pawn));
+            var n = book?.notables.FirstOrDefault(x => x != null && x.person == r) ?? book?.notables.FirstOrDefault(x => x != null && Is(x.pawn));
             var pairs = outs?.pairs.Where(x => x != null && Is(x.outsider)).OrderByDescending(x => x.lastTick).ToList() ?? new List<OutsiderPair>();
             var reg = hap?.regulars.FirstOrDefault(x => x != null && Is(x.pawn));
             var dep = hap?.departed.FirstOrDefault(x => x != null && Is(x.pawn));
-            var pawn = given ?? n?.pawn ?? pairs.FirstOrDefault()?.outsider ?? reg?.pawn ?? dep?.pawn;
-            if (pawn == null && n == null && pairs.Count == 0 && reg == null && dep == null) pawn = Refs.Pawn(r);
-            if (pawn == null && n == null && pairs.Count == 0 && reg == null && dep == null) return null;
+            var pawn = given ?? rec?.pawn ?? n?.pawn ?? pairs.FirstOrDefault()?.outsider ?? reg?.pawn ?? dep?.pawn;
+            if (pawn == null && rec == null && n == null && pairs.Count == 0 && reg == null && dep == null) pawn = Refs.Pawn(r);
+            if (pawn == null && rec == null && n == null && pairs.Count == 0 && reg == null && dep == null) return null;
             var v = new PersonView { person = r, pawn = pawn };
-            v.name = n?.Name ?? (pawn != null && !pawn.Discarded ? pawn.LabelShort : null) ?? pairs.FirstOrDefault()?.outsiderName ?? dep?.name ?? "?";
-            v.people = n?.faction ?? (pawn != null ? Outsiders.PeopleOf(pawn) : null) ?? reg?.faction ?? pairs.FirstOrDefault()?.faction;
+            v.name = (pawn != null && !pawn.Discarded ? pawn.LabelShort : null) ?? rec?.name ?? n?.Name ?? pairs.FirstOrDefault()?.outsiderName ?? dep?.name ?? "?";
+            v.people = n?.faction ?? (pawn != null ? Outsiders.PeopleOf(pawn) : null) ?? rec?.people ?? reg?.faction ?? pairs.FirstOrDefault()?.faction;
             v.alive = pawn != null ? !pawn.Dead && !pawn.Discarded : n != null && n.Alive;
             if (n != null)
             {

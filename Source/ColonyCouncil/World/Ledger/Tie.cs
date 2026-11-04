@@ -47,6 +47,16 @@ namespace ColonyCouncil
         /// <summary>The colony the council sits at (Homes.Seat), for what belongs to the colony as a whole.</summary>
         public static Ref Seat => Colony(Homes.Seat);
 
+        /// <summary>The colony as a whole: the seat, or the player's people while there is no home (a gravship between landings).</summary>
+        public static Ref Us
+        {
+            get
+            {
+                var seat = Seat;
+                return !seat.IsNone ? seat : Of(RimWorld.Faction.OfPlayerSilentFail);
+            }
+        }
+
         public static Faction Faction(Ref r)
         {
             if (r.kind != RefKind.People) return null;
@@ -71,6 +81,8 @@ namespace ColonyCouncil
         public static Pawn Pawn(Ref r)
         {
             if (!r.HasPawn) return null;
+            var kept = WorldLedger.PawnOf(r);
+            if (kept != null) return kept;
             return PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead.FirstOrDefault(p => p != null && p.thingIDNumber == r.id);
         }
 

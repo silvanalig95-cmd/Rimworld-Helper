@@ -156,5 +156,21 @@ namespace ColonyCouncil
             if (techLevel == 4) return WorldAge.Industrial;
             return WorldAge.Spacer;
         }
+
+        /// <summary>A town gone from the world is remembered this long (two years) once nobody the colony knows lives there.</summary>
+        public const int GoneTownDays = 120;
+
+        /// <summary>
+        /// A person stays in the ledger while they are a notable, while a tie of the ledger names them (from, to or about,
+        /// live or closed and not yet dropped), or while some reason keeps them in the world.
+        /// </summary>
+        public static bool KeepPerson(bool notable, bool named, bool kept) => notable || named || kept;
+
+        /// <summary>
+        /// A town stays in the ledger while a notable lives there; with nobody there, a gone town is remembered
+        /// <see cref="GoneTownDays"/> days from when it was missed, and a standing one isn't kept (the world has it).
+        /// </summary>
+        public static bool KeepTown(bool notableThere, bool stands, int gone, int now, int dayTicks = TieRules.DayTicks) =>
+            notableThere || !stands && gone >= 0 && now - gone < (long)GoneTownDays * dayTicks;
     }
 }
