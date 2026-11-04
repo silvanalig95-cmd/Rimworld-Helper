@@ -10,7 +10,7 @@
 
   <!-- Settings. -->
   <CC_Settings_MissionsAsQuests>... with missions in the Quests tab</CC_Settings_MissionsAsQuests>
-  <CC_Settings_MissionsAsQuests_Tip>Now and then a neighbor asks the colony for help with a mission: goods for a funeral or a wedding by a set day, timber and stone to rebuild after a fire, a storm or a flood, provisions for a hard season, a runaway animal to tame and hand back, a shrine for their pilgrims. On: the offer shows up in the game's Quests tab, where you accept it or let it expire, and Rimfolk ends the quest when the mission succeeds or fails. Off: the offer comes as a letter instead. Either way, missions under way are shown on the World page with their progress.</CC_Settings_MissionsAsQuests_Tip>
+  <CC_Settings_MissionsAsQuests_Tip>Now and then a neighbor asks the colony for help with a mission: goods for a funeral or a wedding by a set day, timber and stone to rebuild after a fire, a storm or a flood, provisions for a hard season, a runaway animal to tame and hand back, a shrine for their pilgrims. On: the offer shows up in the game's Quests tab, where you accept it or let it expire, and Rimfolk ends the quest when the mission succeeds or fails. Off: the offer comes as a letter instead. Either way, missions under way are shown on the region window's Neighbours page with their progress.</CC_Settings_MissionsAsQuests_Tip>
 
   <!-- What a mission asks for: in its terms ({0}: how many) and on its progress bars. -->
   <CC_Mission_Need_Meals>{0} meals (simple or better)</CC_Mission_Need_Meals>

@@ -2,8 +2,8 @@
 <Defs>
 
   <!--
-    Almanac: Defending the colony. How defenses are planned and built, from the Defenses page's point of view (Colony →
-    Defenses). The reference pages on raids and events stay in the Defense section (Almanac_Defense.xml); these link to
+    Almanac: Defending the colony. How defenses are planned and built, from the Defenses page's point of view (the defense
+    window). The reference pages on raids and events stay in the Defense section (Almanac_Defense.xml); these link to
     them for the full numbers.
   -->
 
@@ -14,7 +14,7 @@
     <order>10</order>
     <summary>Reading your map, holding the way in, and the threats that never use it</summary>
     <tip>Raiders take the easiest way to your people. Decide where that is, and you decide where the fight is.</tip>
-    <description>A colony's defense starts with its map: where raiders can walk in from, and the narrow places they have to pass. Hold one of those, and most raids come to you on your terms. Then come the raids that ignore it: drop pods, sappers, sieges, insects and mechanoids. The Defenses page (Colony → Defenses) reads all of this from your map and suggests what to build first.</description>
+    <description>A colony's defense starts with its map: where raiders can walk in from, and the narrow places they have to pass. Hold one of those, and most raids come to you on your terms. Then come the raids that ignore it: drop pods, sappers, sieges, insects and mechanoids. The Defenses page (the "defense" button in the bottom bar) reads all of this from your map and suggests what to build first.</description>
     <sections>
       <li>
         <heading>The order most colonies build in</heading>

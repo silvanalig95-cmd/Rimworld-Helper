@@ -47,25 +47,39 @@ one-time errors about missing classes. They're harmless.
 
 ## What you get
 
-A **Council** button at the right end of the bottom bar (you can move it in the settings) opens the council
-window, organized in six sections:
+Four buttons at the right end of the bottom bar (you can move them in the settings) open Rimfolk's four windows, one
+each, with no window over them all: **council** (the colony's own life), **region** (the Rimfolk map and everything
+beyond the colony; not "world", which the game's own button is called), **defense** and **planning** (it took the
+rooms button's place). Each window has the four in its top right corner, so you can go from one to the next; one
+switched off in the settings or put away under "more" is still a click away there. All four open the same size in the
+same place.
+
+The **council** window, organized in four sections:
 
 | Section | Sub-tabs | What's there |
 |---|---|---|
-| **Colony** | This week · Overview · Priorities · Moods · World · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; where raiders come from and what to build against them |
-| **Planning** | Plan · Base · Making · Room plans | the colony's next steps and the rooms it will be short of; the base looked over; what the colony could make, its stocks against what it uses and the council's automations; ready-made rooms (see "Planning" below) |
-| **People** | Roster · Everyone · Bonds · Ideoligions · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; open wishes, promises kept and trust |
-| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
-| **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
+| **Council** | Decrees · Ambition · Our ways · Dilemmas · Wishes | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; questions waiting and how the answers went; open wishes, promises kept and trust |
+| **People** | Roster · Everyone · Bonds · Ideoligions · Moods · Dreams · Journals | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; every mood added up; recent dreams; every colonist's journal |
+| **Colony** | This week · Overview · Priorities · Calendar · Chronicle | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses) |
 | **Almanac** | | the knowledge base |
 
-Section names show a count when something there wants your attention (urgent advice, open wishes, petitions).
+The **region** window opens on the region map (the land around the colony and its towns, see "The region" below), with
+its other pages along the top: **Neighbours** (what's coming, missions, a camp on the land, who's out there with the
+colony on their mind, and the towns nearby with the people the colony knows there), **Peoples** (how each stands with
+the colony, whom it is at war with, the world events about it, and what it remembers), **Letters and calls** (what is
+under way and where each letter is, the answers of the last days, and everyone the colony can write to), **Journeys**
+(the journey planned ahead and the caravans out on the land), **World events**, and **History**: the world's one
+history, newest first, filtered by a people, a town or a kind of event. The **defense** window is the Defenses page
+(see "Defenses" below). The **planning** window has Plan · Base · Making · Room plans · Rooms (see "Planning" below).
+
+Section and page names show a count when something there wants your attention (urgent advice, open wishes,
+petitions, fights coming, letters under way).
 Each colonist also has a **Story** and a **Culture** tab in their inspect panel and a Rimfolk column in the game's own
 **Social** tab (see "Story, Culture and Social" below), and clicking a colonist's name in the council window opens
 their page in the roster.
 
-**This week** is the first page: one place for everything that wants you. Wishes and petitions (oldest first),
-dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
+**This week** (the Colony section's first page) is one place for everything that wants you. Wishes and petitions
+(oldest first), dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
 left before it's held against the council); gatherings and play-outs planned, the council meeting, calendar days,
 fights, missions with their deadlines and a camp on the map; colonists under strain or near a break, serious illness
 and convalescence, trust that moved this week, and the balance of Rimfolk's own good and bad moods. Each line opens its
@@ -76,7 +90,8 @@ Rimfolk's share of it, trust and its week, strain and the feeling on top, the se
 with what helps, their open wish, personal story, health and quirks, office and epithet; sort by any column, hover for
 details, click to select. **Dilemmas** keeps every answer the council gives, with a "how it went" column (as answered,
 went wrong, still to happen, took place, never came about). The pages remember their filters and sort orders, and
-Options → Keyboard has optional shortcuts for the council's pages under "Rimfolk" (none set until you pick a key).
+Options → Keyboard has optional shortcuts for the pages of Rimfolk's windows under "Rimfolk" (none set until you pick
+a key).
 
 The window reopens on the page you last looked at, also after a restart (it's kept with the mod settings); the
 "Council window opens on" setting can make it always open on This week instead. A colony's
@@ -422,7 +437,7 @@ colony has something worth remarking on, once per thing seen: a great hall, art 
 more, a shrine, walls with turrets or a long run of wall, many animals, wide fields. When enough of them have remarked
 on the same thing over the months, word spreads and the colony is known for it: a **famed hall** (tourists, the
 celebrity, the players and guests of note come more often), **artful** (tourists, the celebrity, scholars and
-scribes), **hallowed** (pilgrims) or **walled** (tourists). "Travellers speak of..." on the World page says what the
+scribes), **hallowed** (pilgrims) or **walled** (tourists). "Travellers speak of..." on the region window's Neighbours page says what the
 colony is known for. Like the work names, these fade if the colony stops living up to them.
 
 ### Dilemmas: hard choices
@@ -1237,7 +1252,7 @@ everyone out to sow the fields together, with a word at the field's edge after, 
 together to what the day remembers (a camp's gift, a grave, the fields, the gate) and back, an **ideoligion evening** gathers the
 day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
-journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
+journals, talk about it in the social log, and mention it the evening before; the region window's Neighbours page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
 pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
@@ -1257,7 +1272,7 @@ most often have many in each.
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
 the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
 or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
-what's on the table. The World page's coming-up list and the Ambition page count down to it, a reminder comes an
+what's on the table. The region window's Neighbours page, in its coming-up list, and the Ambition page count down to it, a reminder comes an
 hour before, and the Ambition page can hold it now or put it off a day. No meeting starts at night.
 
 At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
@@ -1296,10 +1311,12 @@ archive* and *a hospital of the stars*, and with Hospitality the colony can set 
 Almanac page "council projects" lists them all.
 
 ### Planning: what to build, make and grow next
-The council window's **Planning** section, between Colony and People, is for what needs planning ahead rather than
-reacting to: the base's growth, its stores and its production. It has four pages, **Plan**, **Base**, **Making** and
-**Room plans**. A small planning button in the bottom bar, after the rooms button, opens the section where you left it
-and closes the window when clicked again (the setting "A planning button in the bottom bar" hides it).
+The **planning** window, behind its own button in the bottom bar (it took the rooms button's place and kept its
+name, so a bar you arranged around the rooms button stays as it was), is for what needs planning ahead rather than
+reacting to: the base's growth, its stores and its production. It has five pages, **Plan**, **Base**, **Making**,
+**Room plans** and **Rooms** (every room at a glance, as the rooms button showed them), and opens on the page you
+last looked at. The setting "Show the planning button" hides the button; the window is still in the top right corner
+of Rimfolk's other windows.
 
 Everything here only suggests. Each suggestion is worked out from the colony as it is now and what it really used
 over the last days (eaters with guests, stocks, measured use, benches and the hands who work them, the season and the
@@ -1473,7 +1490,7 @@ did is listed there too, each undone at a click, and undoing one counts as Not t
 again, nor offers it by hand, until you bring it back.
 
 #### Rearrange a room
-**Rearrange a room**, on the Room plans page and in the rooms window, takes a built room and shows where the council
+**Rearrange a room**, on the Room plans page and on the planning window's Rooms page, takes a built room and shows where the council
 would put its furniture, on the map, before you say go. Beds get their head to a wall and room to get in, benches
 stand with their back to a wall and their work spot free (in a big workshop in rows, then back to back in islands),
 the table in the middle with the chairs facing it, a lamp where it lights the work, a tool cabinet where it reaches
@@ -1487,7 +1504,7 @@ stay (and shelves with goods in them, unless you tick the box), and a piece that
 place gets a run of conduit planned to it.
 
 ### Build: room plans
-On the **Room plans** page (Planning section): 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
+On the **Room plans** page (planning window): 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
 several sizes and kinds, picked in the planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a
 dining room for 4, 8 or 12; an infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a
 prisoner you hope to recruit, a shared cell, or a cell block of three cells off a corridor; a kitchen with one stove,
@@ -1506,7 +1523,7 @@ with Hospitality a guest room. A room shows up once your colony can build its ma
 get sizes of their own (a council fire, a forge, a scholar's study), and the research wing waits for the
 multi-analyzer. Benches people can sit at come with a chair on the work spot.
 
-Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
+Pick one from this tab or from the planning window's **Rooms** page. A color-coded preview
 follows the mouse, and a planner panel lets you:
 - pick the **size**, and the **style**: *spartan* (the essentials, no floor), *comfortable* (the standard
   furnishing) or *lavish* (more plant pots, pedestals for sculptures and a rug where your mods have them, carpet
@@ -1580,8 +1597,8 @@ as the game does), never sends anyone off the map, and leaves a right-click on a
 game. It replaces the TakeCover mod, which in 1.7 shows where colonists would go but never gives the order.
 
 ### Defenses: where to meet them
-**Colony → Defenses**, also behind its own **"defense"** button in the bottom bar right after the council's (it can
-be hidden in the settings), reads the colony's defense from its map. It works out which map edges raiders can reach home
+The **Defenses** page, the window behind the **"defense"** button in the bottom bar (it can be hidden in the settings
+and is then still in the top right corner of Rimfolk's other windows), reads the colony's defense from its map. It works out which map edges raiders can reach home
 from and the ways they'd walk (from a sample of edge cells, along the easiest path, doors costing extra as raiders
 would have to break them), the narrow places on those ways (a pass through the mountain, a gap between rock and
 water, a bridge, the colony's own gate) with their width and the share of raids that would pass each, and whether the
@@ -2014,7 +2031,7 @@ the mod's own def names (the tests hold the list):
   set aside, and a new race, xenotype or body size gets a line in their own journal. Their records carry over.
 
 ### Your mods in the planning pages and the colony's days
-The Planning section, the newer visitors and a few small moments read these mods too, each by name and only when it's
+The planning window, the newer visitors and a few small moments read these mods too, each by name and only when it's
 there:
 - **RimFridge** (and any fridge whose part is named like a refrigerator): its powered fridges count as cold storage
   for Ahead's stocks and Building ahead's cold store places.
@@ -2075,7 +2092,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   minstrels on the hill, and a **famous visitor** stopping for the night.
 - **Everyday things.** None of these ends in a fight. Merchants **stranded** on the road (send your best crafter to
   help, or sell them the materials), a neighbor's **order** for goods you keep in your stores (have the whole amount
-  ready when they send for it in five days; the World page shows when), a **tinker** who mends every worn coat and
+  ready when they send for it in five days; the Neighbours page shows when), a **tinker** who mends every worn coat and
   weapon for silver, **neighbors in need** of medicine (give, sell or keep it), two neighbors asking you to settle a
   **quarrel** (take a side, or let your best talker find a middle way), **growing weather** that puts open fields
   days ahead, a **warm spell** in spring or fall, an **old grave** or a **box of old letters** turned up outside,
@@ -2090,7 +2107,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
 - **With the seasons, and over days.** A **harvest fair** at a neighbor's town in the fall (send a cart of your crop;
   the silver comes back days later, and your best grower may take a prize), a **traveler on a winter night** who
   asks to share the fire (and leaves something in the morning), **the thaw** where winters are hard, and a **caravan
-  to a far market** that takes your surplus and brings back what the colony is short of a week later. The World page
+  to a far market** that takes your surplus and brings back what the colony is short of a week later. The Neighbours page
   shows each of these while it's on its way.
 - **With your mods.** Only when the mod is active: **shards from the sky** that leave magicyte (A RimWorld of
   Magic), a **strange creature** your best handler can try to win over (Alpha Animals), travelers asking to use your
@@ -2140,7 +2157,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   remembered when they go, up to five at a time. From twenty days on one of them may come back as a familiar face at
   the gate, asking after the colonist they dealt with and teaching a lesson in their trade for a welcome, greeted in
   the terms of their trade from the third visit on. Warm visits deepen the thread and cold ones fray it; on a third
-  visit or later they may ask to stay for good, or ask their friend to come along on the road. The World page lists
+  visit or later they may ask to stay for good, or ask their friend to come along on the road. The Neighbours page lists
   them under "Out there".
 - **Visitors for what the colony keeps.** Each comes only for what the colony really has, waits at the gate for your
   answer and does on the map what it says. With Ideology, **pilgrims** of a relic's faith come to pray before it: let
@@ -2193,7 +2210,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was, and the day goes
   on your calendar. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
-  take; trade, gifts and friendships ease it. The World page shows the camp and lets you talk to them. One camp at a
+  take; trade, gifts and friendships ease it. The Neighbours page shows the camp and lets you talk to them. One camp at a
   time, never in a colony's first twenty days, with its own switch.
 
   A camp's good turns come from somewhere real: the healer gathers wild healroot at dawn, the drovers milk or shear a
@@ -2270,11 +2287,12 @@ who did it, by name. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
-The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
-soon, questions waiting for an answer, caravans, carts and relatives on their way, the next stage of a story),
-missions under way with a bar for each thing to deliver and the time left, who's out there with the colony on their
-mind (nemeses at large, people who left and might come back, peoples with a grudge, rivals, a great beast and how
-long it'll stay), what each people remembers of the colony, and the latest Rimfolk events.
+The region window's **Neighbours** page (the council window's World page before it) shows what's coming (fights the
+colony knows about and how soon, questions waiting for an answer, caravans, carts and relatives on their way, the next
+stage of a story), missions under way with a bar for each thing to deliver and the time left, who's out there with the
+colony on their mind (nemeses at large, people who left and might come back, peoples with a grudge, rivals, a great
+beast and how long it'll stay), and the towns nearby; its **Peoples** page what each people remembers of the colony,
+and its **World events** page the latest Rimfolk events.
 
 Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
@@ -2298,7 +2316,7 @@ they fade after some seasons or when their people fall out with the colony. A mo
 camp could come again, it may be the same faces coming back: likelier after a warm stay (help given, gifts, trade) or
 when the colony asked them back, less each time, and never more than three times. The letter brings news of what
 became of them since; they start with no unease and settle in quicker, and the colonist who made a friend of them is
-glad to see them. The World page lists the camps that may pass this way again, and when no camp is on the land it says
+glad to see them. The Neighbours page lists the camps that may pass this way again, and when no camp is on the land it says
 why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the
 way is open.
 
@@ -2319,7 +2337,7 @@ their trader takes on a new stock every fifteen days, one of them comes over to 
 council's questions about a camp (a theft, their beasts in the fields, one who wants to join) can be about them. Their
 unease eases a little each day instead of growing. Now and then one of them falls ill and they ask for the colony's
 doctor, and enemies on the land may kill one of them, after which the rest may bury their dead and move on. Their
-card on the World page, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
+card on the Neighbours page, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
 to ask them to move on. Or the colony takes them all in instead, camp and goods and children.
 
 **Road wardens and deserters** come with the world's events rather than on their own. The wardens camp to build a post
@@ -2427,7 +2445,7 @@ the colony half.
   a few days off, a new town on the world map, and their leader walks up to say hello and ask for timber. It is the
   longest world event, nearly a year: their hunters work the colony's woods (let them, divide the hunting grounds, or
   warn them off), a hungry month comes when their first planting fails (or, slighted, their traps turn up on the
-  colony's side of the stream), the steading grows household by household on the World page, and at the turning of the
+  colony's side of the stream), the steading grows household by household on the region window's World events page, and at the turning of the
   year the leader comes back in person. Every warm answer is weighed against every slight, and the year ends in an
   alliance, in the settlers coming over to join the colony (while the steading is still small), in bad blood (a
   scuffle at the stream that hurts nobody badly), in the settlers giving up and going home, or in plain neighbours.
@@ -2485,7 +2503,7 @@ its biggest memories; hover for everything. Settings → **Peoples remember the 
 A people remembers **who**, too: the warden who let one of theirs go, the doctor who tended their wounded, the one
 who found their lost child or walked their pilgrim home. Their visitors stop that colonist to thank them, their
 traders give them a friend's price, their envoys and camps ask for them by name at the gate, and their letters say
-so ("They've asked for Ana by name"). The World page shows it with the deed: "They remember Ana for it." Older saves
+so ("They've asked for Ana by name"). The region window's Peoples page shows it with the deed: "They remember Ana for it." Older saves
 keep their memories; those deeds just name nobody. Visitors, callers, traders and their asks say it in their letters
 too: 32 lines in 22 events ("Among the Lenlia, the colony is known as the place that set Ana free.").
 
@@ -2645,7 +2663,7 @@ why, when it fades, what helps); click it to open the card in place, with button
 the council page that deals with it, or an Almanac page. The heart section (strain, feelings, the heart's needs)
 comes after the moods, folded. **Details** in the tab's header brings back every mood as a card; the choice is kept.
 
-The council window's **Moods** page (Colony section) adds it up for the whole colony, grouped the same way: what
+The council window's **Moods** page (People section) adds it up for the whole colony, grouped the same way: what
 weighs on everyone, who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each
 of your mods. Every "Go to" button leads to a real page, and to the one its hint names (dilemmas and traditions to
 Dilemmas, names to the roster, strangers and world events to World, a missed gathering to This week); the game checks
@@ -2773,7 +2791,7 @@ declare **days of rest**: everyone works 10% slower for three days, and strain d
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they
 love who is downed, ill, carried off or away); joy, pride, love, gratitude, hope, awe, contentment, curiosity,
 restlessness, nostalgia, relief, tenderness, fellowship and resolve. They come from the moods a colonist has right now (the
-game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the World page says is
+game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the Neighbours page says is
 coming, a newcomer, quiet days. Feelings add no mood, since that would count the same thing twice. They nudge
 instead: a wish that fits becomes up to half again as likely (fear asks for defenses, grief for a grave,
 restlessness for a journey, pride for art), moments between colonists go warmer or pricklier, dreams change color,
@@ -3080,7 +3098,7 @@ The pages:
   reminder about a defense line's shut gate); mood insight (and its hints in the Needs tab), taking cover with a drag,
   RimMarket's stalls (Rimfolk's sales table, stall goods for trade ships, guests and campers buying at the stalls),
   **A covered face hides looks (Alpha Genes)**, the slow speed buttons (and putting them
-  back), where the council button sits in the bottom bar, the defense, rooms and planning buttons, a "more" button for
+  back), where the council button sits in the bottom bar, the region, defense and planning buttons, a "more" button for
   the bottom bar's buttons you put away, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the **on-screen panels** (each panel's
   options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting them back) and

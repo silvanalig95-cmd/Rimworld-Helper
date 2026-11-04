@@ -32,7 +32,7 @@
 
   <!-- ===================== Camps: what the colony can ask of them (Source/ColonyCouncil/Camps/CampAsks.cs) ===================== -->
   <CC_CampAsk_Section>Ask of them</CC_CampAsk_Section>
-  <CC_CampAsk_Facts>They can be asked for things of their own from the World page.</CC_CampAsk_Facts>
+  <CC_CampAsk_Facts>They can be asked for things of their own from the region window's Neighbours page.</CC_CampAsk_Facts>
   <CC_CampAsk_NotNow>They aren't here to ask.</CC_CampAsk_NotNow>
   <CC_CampAsk_Done>Already asked of them.</CC_CampAsk_Done>
   <CC_CampAsk_Today>Already asked of them today.</CC_CampAsk_Today>
