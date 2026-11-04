@@ -3,9 +3,11 @@
 
   <!--
     CONVERSATION PIECES between a colonist and someone from outside the colony (Source/ColonyCouncil/Outsiders/
-    OutsiderTalk.cs runs them, OutsiderFacts.cs reads the facts, OutsiderTalkMath.cs chooses). A piece is a short scene
-    said in turn over the two's heads as bubbles: a chat the player orders, news of home when asked, getting to know
-    them, and the talks colonists start by themselves. This header describes the format for every file in this folder.
+    OutsiderTalk.cs runs them, the facts service in Text/Facts/ reads the facts, OutsiderTalkMath.cs chooses and
+    Text/Fill.cs fills them). A piece is a short scene said in turn over the two's heads as bubbles: a chat the player
+    orders, news of home when asked, getting to know them, and the talks colonists start by themselves. This header
+    describes the format for every file in this folder; the same tags and placeholders are there for any text that asks
+    the facts service (DESIGN.md, "Facts").
 
     <ColonyCouncil.OutsiderTalkDef>
       <defName>Rimfolk_OT_Road_Long</defName>   unique, Rimfolk_OT_ and the file's subject
@@ -60,7 +62,8 @@
         hurt
       their people: their:tribal their:medieval their:industrial their:spacer their:lowtech their:hightech
         their:empire their:noble their:leader their:rough (a rough outlander union or a fierce tribe, friendly enough
-        now) their:ally (allied with the colony) samefaith otherfaith
+        now) their:ally (allied with the colony) samefaith otherfaith; their:sameage their:behind their:ahead (their
+        age beside the colony's: the same, an earlier one, a later one)
       their town: town town:near town:far; home:desert home:frozen home:jungle home:swamp home:forest home:plains
         home:mountains home:hills home:coast home:cold home:hot home:mild; town:head town:notable town:newhead
         town:headdied town:loss town:ill town:letter (a letter under way) town:wrote (one in 20 days) town:site
@@ -76,6 +79,13 @@
         :politics :empire :disaster :beasts ws:DEFNAME (a name can be a person's, a ship's or a band's: write
         for the one event); situation:ended ended:theirs ended:helped ended:bad (a hard time) ended:ws:DEFNAME
         ended:sickness... ; condition condition:DEFNAME (toxic fallout, a cold snap, a volcanic winter...)
+      what the world's history holds lately (30 days): town:lately town:lately:KIND (something at their town, by
+        the history's kind and its family: town:lately:world, town:lately:world:taken, town:lately:world:began)
+        them:lately them:lately:KIND (something the outsider took part in: them:lately:tie:favour:made)
+      ties between the two sides (the colony, its people or one of the colony; the outsider, their people or town):
+        tie:favour tie:promise tie:claim tie:debt tie:fealty tie:grudge, each with :ours or :theirs (which side is
+        bound: owes, promised, swore, holds the grudge), :you (the colonist is a party to it), :due (asked for now);
+        the party it is toward by name: {FAVOURFOR} {PROMISEDTO} {CLAIMON} {DEBTTO} {FEALTYTO} {GRUDGEAGAINST}
       the colony: colony:raid colony:raidby colony:raid:them (their own people) colony:raid:theirfoe
         colony:raid:fallen colony:raid:mechs :insects :animals :tribal :people; colony:death colony:death:battle
         colony:birth colony:wedding colony:newcomer colony:decree colony:election colony:camp colony:harvest
@@ -103,7 +113,9 @@
       {CONDITION} {COOK} {ARTIST} {OURLEADER} {SPEAKER} {DISASTER} {CAMP} {TRADERS} {NEWCOMER} {DAY} {RAIDERS}
       {DEAD} {BORN} {WEDDING} {DECREE} {RESEARCH} {PROJECT} {DEEDNAME} {DEEDBY} {WRONGNAME} {YOURDEEDNAME}
       {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {HOSPITAL} {DOCTOR} {THEN} {NOW} (who leads now, in a
-      then:changed callback). Values that are names keep their case;
+      then:changed callback) {FAVOURFOR} (who a favour of theirs is owed to) {PROMISEDTO} (who they promised)
+      {CLAIMON} (the one of the colony their family has a claim on) {DEBTTO} (whom a debt is owed) {FEALTYTO} (whom
+      fealty is sworn) {GRUDGEAGAINST} (whom a grudge is held against). Values that are names keep their case;
       {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
       one is capitalized for you.
   -->

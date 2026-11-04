@@ -88,16 +88,29 @@ namespace ColonyCouncil
                 {
                     if (r.HasPawn && s.speaker != null && r.id == s.speaker.thingIDNumber) return 1;
                     if (r.HasPawn && s.listener != null && r.id == s.listener.thingIDNumber) return -1;
-                    // Someone else: the ledger's record of them, else (a party to a tie kept in another store) their pawn.
+                    // Someone else: the ledger's record of them, else (a party to a tie kept in another store, a vendetta's
+                    // avenger) one of the colonists, else their pawn wherever the game keeps it.
                     var rec = WorldLedger.PersonRecord(r);
-                    var pawn = rec?.pawn ?? (rec == null ? Refs.Pawn(r) : null);
-                    var people = pawn != null && !pawn.Discarded ? pawn.Faction : rec?.people;
-                    if (pawn != null && KinMemory.Ours(pawn) || pawn == null && people != null && people.IsPlayer) return 1;
+                    var pawn = rec?.pawn ?? (rec == null ? Colonist(r) ?? Refs.Pawn(r) : null);
+                    if (pawn != null && KinMemory.Ours(pawn)) return 1;
+                    // Their people as the outsiders read it (a guest's is their home's), else as the ledger last knew it.
+                    var people = pawn != null && !pawn.Discarded ? Outsiders.PeopleOf(pawn) : rec?.people;
+                    if (pawn == null && people != null && people.IsPlayer) return 1;
                     return people != null && s.people != null && people == s.people ? -1 : 0;
                 }
                 default:
                     return 0;
             }
+        }
+
+        /// <summary>One of the colony's free colonists by a person's ref, or null.</summary>
+        private static Pawn Colonist(Ref r)
+        {
+            if (!r.HasPawn) return null;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                if (p != null && p.thingIDNumber == r.id)
+                    return p;
+            return null;
         }
 
         /// <summary>A party's name as the texts use it: a person's, the colony's (as {COLONY}), a people's, a town's.</summary>

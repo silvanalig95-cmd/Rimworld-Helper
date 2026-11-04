@@ -34,7 +34,12 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>What became of the fact a mark remembers: still so (then:still), over (then:over), the one asked about dead (then:dead).</summary>
+        /// <summary>
+        /// What became of the fact a mark remembers: still so (then:still), over (then:over), the one asked about dead
+        /// (then:dead). Read from the game itself, not the history or the ledger: they don't keep these by the ids a mark
+        /// holds (a world event's, a site's, a quest's), the game's relations and a notable's health are the moment's,
+        /// and the ledger's views are kept for a 250-tick stretch (a head who died within it would still lead there).
+        /// </summary>
         private static void Since(MarkFacts mf, TalkMark m, Faction p, Settlement town)
         {
             string fact = m.fact;
