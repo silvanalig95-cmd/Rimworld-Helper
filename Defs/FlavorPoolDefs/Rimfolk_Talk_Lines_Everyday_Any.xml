@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines that fit a talk on any topic, and more for comforting someone low (Source/ColonyCouncil/Social/Talk/):
+    joined by Talk.BuildLines to Rimfolk_TL_Any_* and Rimfolk_TL_Comfort_* in Rimfolk_Talk_Lines_Any.xml and
+    Rimfolk_Talk_Lines_Comfort.xml. Many are tied to what the speaker is doing and where (the speaker's own tags:
+    [working], [eating], [night], [morning], [rain], [cold], [afterraid], [hurt], [old], [child], [teen], [newcomer]), so a
+    word fits the moment the two are in. Comfort lines carry why the other is low ([grief], [despair], [lonely], [fear],
+    [worry], [shame], [homesick], [lowmood]); {SUBJECT}: the one grieved for. {OTHER}: the one spoken to.
+    One sentence each, said over the head.
+  -->
+
+  <!-- ===================== The first speaker's closing word ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Close_More</defName>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,working] Right, I'd better finish this before the light goes.</li>
+        <li>[agree,eating] Pass the bread, and let's leave it on that.</li>
+        <li>[agree,evening] Good, I'll sleep better for hearing that.</li>
+        <li>[agree,outside,rain] Let's get out of this rain while we still agree.</li>
+        <li>[agree,cold] Glad we agree, now let's get somewhere warm.</li>
+        <li>[agree] I'll hold you to that the next time it comes up.</li>
+        <li>[debate,working] Hand me that, and you can tell me I'm wrong while we work.</li>
+        <li>[debate,eating] Finish eating, you'll argue better on a full stomach.</li>
+        <li>[debate,night] It's too late at night for me to win this.</li>
+        <li>[debate,morning] Too early for this, ask me after I've eaten.</li>
+        <li>[debate] Let's leave it there, before one of us says something clever.</li>
+        <li>[debate,old] I've had this argument for forty years and I'm not tired of it yet.</li>
+        <li>[argue,working] I've work to do, and so have you.</li>
+        <li>[argue,eating] I've lost my appetite, thanks.</li>
+        <li>[argue,night] I'm going to bed, and I hope you lie awake.</li>
+        <li>[argue] Next time, keep your opinions in your pocket.</li>
+        <li>[argue,hurt] I'm too sore for this, leave me be.</li>
+      </plain>
+      <warm>
+        <li>[agree] Thank you, that's made my day easier.</li>
+        <li>[debate,eating] Let's eat, we can argue after.</li>
+        <li>[argue] Come and find me when you're ready to talk, I'll be about.</li>
+      </warm>
+      <blunt>
+        <li>[agree,working] Good, now pick that up.</li>
+        <li>[debate] Think on it, I'm busy.</li>
+        <li>[argue] Not another word.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,eating] Let's drink to that, even if it's only water.</li>
+        <li>[debate,working] Whoever's wrong does the rest of this job.</li>
+        <li>[argue] I'm going to go and agree with someone nicer.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,night] At least we'll lie awake agreeing.</li>
+        <li>[debate] Nothing gets decided out here anyway.</li>
+        <li>[argue] Fine, I'll be wrong somewhere on my own.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Noted, and settled.</li>
+        <li>[debate,working] We're wasting light.</li>
+        <li>[argue] Come back with better arguments.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The other's reply ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Reply_More</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,working] Yes, and you'll get no argument from me while my hands are full.</li>
+        <li>[agree,eating] Yes, and that's the truest thing said at this table.</li>
+        <li>[agree,old] I've seen enough years to know you're right.</li>
+        <li>[agree,newcomer] I'm new here, but I've seen the same.</li>
+        <li>[debate,working] Hold that end, and I'll tell you where you're wrong.</li>
+        <li>[debate,eating] Let me finish chewing and then I'll disagree.</li>
+        <li>[debate,night] It's late, but no, I don't think so.</li>
+        <li>[debate,child] That's not what the grown-ups said.</li>
+        <li>[debate,old] I thought the same once, and then I got older.</li>
+        <li>[debate,newcomer] Where I come from, we'd see it differently.</li>
+        <li>[argue,working] I've my hands full, and you want to fight?</li>
+        <li>[argue,eating] You're putting me off my food.</li>
+        <li>[argue,hurt] I'm in no state for this, and you're not helping.</li>
+        <li>[argue,night] It's the middle of the night, {OTHER}.</li>
+        <li>[argue,afterraid] After the days we've had, you start this?</li>
+        <li>[argue,teen] You always talk to me like I'm a child.</li>
+      </plain>
+      <warm>
+        <li>[agree,eating] Yes, and have some more, you've hardly eaten.</li>
+        <li>[debate] I think you're wrong, but I'm glad you said it to me.</li>
+        <li>[argue,hurt] Please, not now, I'm hurting enough.</li>
+      </warm>
+      <blunt>
+        <li>[agree,working] Right, keep working.</li>
+        <li>[debate,eating] Chew, then talk.</li>
+        <li>[argue,afterraid] Not now, not after all that.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,eating] Agreed, and I'm having your bread as a reward.</li>
+        <li>[debate,working] Wrong, but you work beautifully while you're being wrong.</li>
+        <li>[argue,outside,rain] It's raining, I'm wet, and you're wrong.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,cold] Yes, and it's too cold to argue anyway.</li>
+        <li>[debate,night] Maybe, but everything looks worse at night.</li>
+        <li>[argue,afterraid] We nearly died, and this is what you want to talk about.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,working] Correct, now let me work.</li>
+        <li>[debate] Bring evidence, then.</li>
+        <li>[argue,eating] Let me eat in peace.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The other's last word (a debate, an argument, remembering) ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Last_More</defName>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li><li>Tease</li><li>Comfort</li><li>Reminisce</li><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate,working] Pass me that, and we'll call it a draw.</li>
+        <li>[debate,eating] Eat up, you'll need your strength to lose.</li>
+        <li>[debate,night] Goodnight, and you're still wrong.</li>
+        <li>[debate,morning] Ask me again when I'm awake.</li>
+        <li>[debate] I'll be thinking of an answer all through supper now.</li>
+        <li>[argue,working] I'll finish this on my own.</li>
+        <li>[argue,eating] Enjoy your meal, I'm done with mine.</li>
+        <li>[argue,night] Don't wake me when you come in.</li>
+        <li>[argue] Sit somewhere else at supper.</li>
+        <li>[argue,hurt] I've enough aches without you.</li>
+        <li>[reminisce,old] I was younger then, and so were you.</li>
+        <li>[reminisce,winter] Funny what comes back to you on a cold day like this.</li>
+        <li>[reminisce,night] I'll be thinking about that all night now.</li>
+        <li>[reminisce,afterraid] After the last few days, it's good to remember something else.</li>
+        <li>[tease] I'll pay you back, you'll see.</li>
+        <li>[comfort,night] I'll try to sleep, I promise.</li>
+        <li>[joke,eating] Don't make me laugh with my mouth full.</li>
+      </plain>
+      <warm>
+        <li>[debate] Still friends, whatever we think.</li>
+        <li>[argue] I'm sorry it went like that.</li>
+        <li>[reminisce] I'm glad you were there for it.</li>
+      </warm>
+      <blunt>
+        <li>[debate] Fine, but no.</li>
+        <li>[argue,working] Move, I've a job to finish.</li>
+        <li>[reminisce] Enough remembering, there's work.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] Rematch at supper, then.</li>
+        <li>[argue] Fine, I'll go and be right at the other end of the colony.</li>
+        <li>[reminisce,good] We should do something that daft again.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] We'll both have forgotten this by tomorrow, anyway.</li>
+        <li>[argue] Of course it ended like this.</li>
+        <li>[reminisce,bad] I wish you hadn't brought it up.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Unconvinced, still.</li>
+        <li>[argue] So be it.</li>
+        <li>[reminisce] It was a long time ago.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== Comforting someone: the first word ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Comfort_Open_More</defName>
+    <turn>Open</turn>
+    <outcomes><li>Comfort</li></outcomes>
+    <lines>
+      <plain>
+        <li>[night] You're up late, can't you sleep either?</li>
+        <li>[eating] You've barely touched your food.</li>
+        <li>[afterraid] It's been a hard few days, hasn't it.</li>
+        <li>[grief,subject] I keep thinking about {SUBJECT} too.</li>
+        <li>[homesick] You've been looking down the road a lot lately.</li>
+        <li>[worry] You look like you've been carrying something around for days.</li>
+        <li>[shame] People forget faster than you think.</li>
+      </plain>
+      <warm>
+        <li>Sit down here with me, I've saved you a spot.</li>
+        <li>[grief] I'm so sorry, love.</li>
+        <li>[lonely] I've been meaning to come and find you.</li>
+        <li>[fear] Come here, you're safe with me.</li>
+        <li>[despair] Talk to me, please, whatever it is.</li>
+        <li>[homesick] Tell me about home, I'd like to hear it.</li>
+      </warm>
+      <blunt>
+        <li>[lowmood] You look awful, sit down.</li>
+        <li>[grief] I heard, and I'm sorry.</li>
+        <li>[lonely] You've been hiding, and I've noticed.</li>
+        <li>[worry] Whatever's eating you, say it.</li>
+        <li>[shame] Stop hanging your head.</li>
+      </blunt>
+      <cheerful>
+        <li>[lowmood] Shove over, I've come to cheer you up whether you like it or not.</li>
+        <li>[lonely] I'm bored, and you're my favorite person to be bored with.</li>
+        <li>[worry] Tell me your worries and I'll tell you mine, mine are sillier.</li>
+        <li>[despair] Right, it's you, me, and the worst joke I know.</li>
+        <li>[homesick] Teach me a song from back home.</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] Bad one today?</li>
+        <li>[grief] It's no good acting brave, is it.</li>
+        <li>[fear] I can't sleep either, if it helps.</li>
+        <li>[worry] I worry too, all the time.</li>
+        <li>[lonely] It's easy to feel alone here, I know.</li>
+      </gloomy>
+      <cold>
+        <li>[lowmood] Your work's slipped, so something's wrong.</li>
+        <li>[grief] You're not eating, and you need to.</li>
+        <li>[fear] Being afraid made sense, but it's past now.</li>
+        <li>[worry] You're distracted, and I want to know why.</li>
+        <li>[despair] You've stopped looking after yourself.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== Comforting someone: their answer ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Comfort_Reply_More</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Comfort</li></outcomes>
+    <lines>
+      <plain>
+        <li>[night] I keep lying awake.</li>
+        <li>[eating] I'm not hungry, that's all.</li>
+        <li>[grief,subject] Something happens and I think, I must tell {SUBJECT}.</li>
+        <li>[despair] I don't know what I'm for anymore.</li>
+        <li>[lonely] Everyone has someone, and I don't.</li>
+        <li>[fear] I jump at every shadow now.</li>
+        <li>[worry] I can't stop counting what could go wrong.</li>
+        <li>[shame] I keep going over what I should have done.</li>
+        <li>[homesick] It's the little things I miss, the sounds of the place.</li>
+        <li>[afterraid] I can still hear it, the fighting.</li>
+      </plain>
+      <warm>
+        <li>Thank you for coming to find me.</li>
+        <li>[grief] It helps, you being here.</li>
+        <li>[lonely] I didn't know how much I needed someone to ask.</li>
+        <li>[fear] Will you stay a while?</li>
+        <li>[despair] I'll try, for you.</li>
+        <li>[homesick] You're kind to ask about it.</li>
+      </warm>
+      <blunt>
+        <li>I'm fine, stop fussing.</li>
+        <li>[grief] Talking won't fix it.</li>
+        <li>[lonely] I'm used to it.</li>
+        <li>[worry] It's my own trouble.</li>
+        <li>[shame] Don't, I know what I did.</li>
+      </blunt>
+      <cheerful>
+        <li>[lowmood] I'll be all right, I always bounce back eventually.</li>
+        <li>[despair] Well, you've made me smile, which is a start.</li>
+        <li>[lonely] Careful, I might follow you around now.</li>
+        <li>[fear] I'm only slightly terrified, most of the time.</li>
+        <li>[grief] They'd laugh at me moping like this.</li>
+      </cheerful>
+      <gloomy>
+        <li>[despair] It won't get better, I know it won't.</li>
+        <li>[grief] There's a hole where they used to be.</li>
+        <li>[worry] It's going to go wrong, I can feel it.</li>
+        <li>[lonely] I'm always on my own in the end.</li>
+        <li>[fear] It'll come back, whatever it was.</li>
+      </gloomy>
+      <cold>
+        <li>[grief] It is what it is.</li>
+        <li>[fear] I'll manage the fear.</li>
+        <li>[lowmood] I'm tired, nothing more.</li>
+        <li>[shame] I made a mistake, and I'll carry it.</li>
+        <li>[homesick] Home's gone, there's no use thinking about it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== Comforting someone: the last word ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Comfort_Close_More</defName>
+    <turn>Close</turn>
+    <outcomes><li>Comfort</li></outcomes>
+    <lines>
+      <plain>
+        <li>[night] Try and get some sleep, I'll be close by.</li>
+        <li>[eating] Eat something, even a few mouthfuls, for me.</li>
+        <li>[afterraid] It's over now, and you're still here.</li>
+        <li>[grief,subject] {SUBJECT} would be glad you've got people around you.</li>
+        <li>[homesick] Tell me how they cooked it back home, and we'll try it here.</li>
+        <li>[shame] What's done is done, and you're still one of us.</li>
+        <li>[lonely] I'll knock on your door after supper.</li>
+        <li>[worry] Let me carry some of it for a while.</li>
+      </plain>
+      <warm>
+        <li>I'm right here, whenever you need me.</li>
+        <li>[grief] Cry as much as you need, I'm not going anywhere.</li>
+        <li>[lonely] You won't be alone here, not while I'm around.</li>
+        <li>[fear] Hold my hand until it passes.</li>
+        <li>[despair] One day at a time, and I'll be there for each of them.</li>
+        <li>[homesick] We'll be your home, if you'll let us.</li>
+      </warm>
+      <blunt>
+        <li>Go and rest, that's an order.</li>
+        <li>[grief] It's rotten, and it'll stay rotten for a while.</li>
+        <li>[fear] Nothing's getting in, I'll see to that.</li>
+        <li>[worry] Stop thinking and start sleeping.</li>
+        <li>[shame] Done is done, so move on.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll come back later with something to make you laugh.</li>
+        <li>[grief] Some day soon we'll tell stories about them, the funny ones.</li>
+        <li>[lonely] You're helping me in the garden tomorrow, and you'll like it.</li>
+        <li>[worry] Worries shrink in daylight, you'll see.</li>
+        <li>[fear] Anything that comes for you has to get past me, and I'm very annoying.</li>
+      </cheerful>
+      <gloomy>
+        <li>It won't feel like this forever, or so they tell me.</li>
+        <li>[grief] I'll miss them too, every day.</li>
+        <li>[despair] We'll keep going, because what else is there.</li>
+        <li>[lonely] Two lonely people make a pair, at least.</li>
+        <li>[fear] If it comes, it comes for both of us.</li>
+      </gloomy>
+      <cold>
+        <li>Rest now, and we'll see how you are tomorrow.</li>
+        <li>[grief] Mourn, but keep eating.</li>
+        <li>[fear] The walls held last time, and they'll hold again.</li>
+        <li>[worry] Most of what you fear won't happen, and we'll deal with what does.</li>
+        <li>[shame] It's forgotten, if you let it be.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

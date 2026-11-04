@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More to say about the day
+
+*4 November 2026, version 0.78.0*
+
+- Colonists have more to say when a talk winds down: every topic has about fifteen new closing words, and many everyday replies now fit what the speaker is doing, at work, over a meal, late at night or out in the rain.
+- Comforting someone sounds less the same: about a hundred new lines for the one who comes over, the one who is low and the last word, in every voice.
+- Gifts carried over, stashes burned, the soup taken round and the dead carried out after a raid have more to say along the way.
+- Forecasts, record weather, snowfall, sunrise, the birds, the colony's named beast and the herd's new leader get new lines, and some belong to their age: banked fires in a tribal or medieval colony, heaters, conduits and turbines in an industrial or spacer one.
+- Gossip has three more ways to say what it was about for every deed, and the social log has more for a friend back on their feet, a visit to the sick, where someone grew up, a grumble about the menu and the light left burning at bedtime.
+- In all, about 1,150 new lines, so the everyday ones you hear most come round about half as often.
+
 ## The region, checked over
 
 *4 November 2026, version 0.77.1*

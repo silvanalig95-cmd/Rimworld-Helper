@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More social log words for everyday colony life (Social/LogLines.cs), joined at startup to the rule pack or
+    interaction each def names: what a piece of gossip was about (gossip_topic, a phrase slotted into the gossip lines
+    of Rimfolk_Gossip.xml: "told Ana about [gossip_topic]"), and more for the moments and frictions the colony sees
+    most (someone up and about again, a visit to the sick, where someone grew up, the menu, the light at bedtime, a
+    breakdown mocked, teasing, being left out, slacking) and for bitter talk about the council. Era-neutral, and no one
+    named who isn't in the moment.
+  -->
+
+  <!-- ===================== What the gossip was about ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Rescue</defName>
+    <pack>Rimfolk_GossipTopic_Rescue</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the run back for a wounded friend</li>
+        <li>gossip_topic->someone hauled to safety in the last fight</li>
+        <li>gossip_topic->a wounded colonist carried back behind the wall</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Fled</defName>
+    <pack>Rimfolk_GossipTopic_Fled</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a gap at the wall when it counted</li>
+        <li>gossip_topic->a turned back in the middle of a fight</li>
+        <li>gossip_topic->the running when the shouting started</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_HeldLine</defName>
+    <pack>Rimfolk_GossipTopic_HeldLine</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the corner that never gave way</li>
+        <li>gossip_topic->a stand that kept the raiders out</li>
+        <li>gossip_topic->the ground held at the gate</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Kills</defName>
+    <pack>Rimfolk_GossipTopic_Kills</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the toll at the wall in the last fight</li>
+        <li>gossip_topic->a good day's fighting, as some called it</li>
+        <li>gossip_topic->how many fell at the wall, and to whom</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Tended</defName>
+    <pack>Rimfolk_GossipTopic_Tended</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the nursing through the long nights</li>
+        <li>gossip_topic->a sickbed watched for days on end</li>
+        <li>gossip_topic->the care after the raid</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Stranger</defName>
+    <pack>Rimfolk_GossipTopic_Stranger</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a meal shared with a stranger at the gate</li>
+        <li>gossip_topic->a stranger treated like one of our own</li>
+        <li>gossip_topic->the stranger who left with a kind word</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Recruited</defName>
+    <pack>Rimfolk_GossipTopic_Recruited</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a prisoner who chose to stay</li>
+        <li>gossip_topic->the long talk through the cell door that did it</li>
+        <li>gossip_topic->the newest of us and how they came round</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Tantrum</defName>
+    <pack>Rimfolk_GossipTopic_Tantrum</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a broken chair and the temper behind it</li>
+        <li>gossip_topic->the mess left after someone's rage</li>
+        <li>gossip_topic->a door slammed hard enough to crack</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Insults</defName>
+    <pack>Rimfolk_GossipTopic_Insults</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the nasty business at supper the other day</li>
+        <li>gossip_topic->an afternoon of cruel words</li>
+        <li>gossip_topic->a tongue that wouldn't stop</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Berserk</defName>
+    <pack>Rimfolk_GossipTopic_Berserk</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the day someone had to be wrestled down</li>
+        <li>gossip_topic->a rage that couldn't be talked down</li>
+        <li>gossip_topic->the wild look in someone's eyes the other day</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_LashedOut</defName>
+    <pack>Rimfolk_GossipTopic_LashedOut</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a blow struck in a fit</li>
+        <li>gossip_topic->the black eye and how it was got</li>
+        <li>gossip_topic->a split lip from someone's bad hour</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_StartedFight</defName>
+    <pack>Rimfolk_GossipTopic_StartedFight</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a shove that turned into a fight</li>
+        <li>gossip_topic->the words that came before the punches</li>
+        <li>gossip_topic->a fistfight in the yard</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Hoarded</defName>
+    <pack>Rimfolk_GossipTopic_Hoarded</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->an emptied shelf in the hungry weeks</li>
+        <li>gossip_topic->someone eating well while the rest went without</li>
+        <li>gossip_topic->the food that went missing when it was scarce</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_KeptSecret</defName>
+    <pack>Rimfolk_GossipTopic_KeptSecret</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a secret that was never let slip</li>
+        <li>gossip_topic->a promise of silence that was kept</li>
+        <li>gossip_topic->what someone knew and never said</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Betrayed</defName>
+    <pack>Rimfolk_GossipTopic_Betrayed</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a secret told to the wrong ears</li>
+        <li>gossip_topic->a promise of silence broken</li>
+        <li>gossip_topic->something said in confidence and repeated</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Generic</defName>
+    <pack>Rimfolk_GossipTopic_Generic</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->what's been said at supper lately</li>
+        <li>gossip_topic->a bit of news from the workshop</li>
+        <li>gossip_topic->the talk at the wash basin</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Masterwork</defName>
+    <pack>Rimfolk_GossipTopic_Masterwork</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a piece of work worth crossing the room for</li>
+        <li>gossip_topic->the finest thing to come off the bench in a while</li>
+        <li>gossip_topic->the piece everyone keeps picking up and turning over</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_GreatWork</defName>
+    <pack>Rimfolk_GossipTopic_GreatWork</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the council's big plan, finished at last</li>
+        <li>gossip_topic->the work the council pushed through</li>
+        <li>gossip_topic->a promise from the council that was kept</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Botched</defName>
+    <pack>Rimfolk_GossipTopic_Botched</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a doctor's slip at the table</li>
+        <li>gossip_topic->the operation and what it cost</li>
+        <li>gossip_topic->a bad day for the one with the knife</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Idle</defName>
+    <pack>Rimfolk_GossipTopic_Idle</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->someone leaning on a shovel all afternoon</li>
+        <li>gossip_topic->the work left for others to do</li>
+        <li>gossip_topic->a long sit in the sun while the rest hauled</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Skipped</defName>
+    <pack>Rimfolk_GossipTopic_Skipped</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the meeting someone couldn't be bothered with</li>
+        <li>gossip_topic->a chair left empty at the council</li>
+        <li>gossip_topic->who missed the meeting, and the excuse</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Contest</defName>
+    <pack>Rimfolk_GossipTopic_Contest</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the challenge and the loser's face</li>
+        <li>gossip_topic->who won, and by how much</li>
+        <li>gossip_topic->a contest still being argued over</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Elected</defName>
+    <pack>Rimfolk_GossipTopic_Elected</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the new officer and whether they're up to it</li>
+        <li>gossip_topic->the count at the vote and who won it</li>
+        <li>gossip_topic->who stood for the office, and who got it</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_GoalReached</defName>
+    <pack>Rimfolk_GossipTopic_GoalReached</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a long wish finally come true</li>
+        <li>gossip_topic->someone's dream that came off</li>
+        <li>gossip_topic->what it took to get there</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Cruelty</defName>
+    <pack>Rimfolk_GossipTopic_Cruelty</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a kick at an enemy on the ground</li>
+        <li>gossip_topic->the way a wounded raider was treated</li>
+        <li>gossip_topic->the cruelty after the fighting</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Prisoner</defName>
+    <pack>Rimfolk_GossipTopic_Prisoner</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->what happened down in the cells</li>
+        <li>gossip_topic->the prisoner who didn't come out again</li>
+        <li>gossip_topic->a hard decision about a prisoner</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Cheated</defName>
+    <pack>Rimfolk_GossipTopic_Cheated</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a sweetheart deceived</li>
+        <li>gossip_topic->a secret love that wasn't secret anymore</li>
+        <li>gossip_topic->a partner lied to</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Breakup</defName>
+    <pack>Rimfolk_GossipTopic_Breakup</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the end of a pairing</li>
+        <li>gossip_topic->a couple no longer sitting together at supper</li>
+        <li>gossip_topic->a love that didn't last</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_CampFriend</defName>
+    <pack>Rimfolk_GossipTopic_CampFriend</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a friendship made with the campers</li>
+        <li>gossip_topic->a new friend among the travelers</li>
+        <li>gossip_topic->an evening spent at the campers' fires</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_CampQuarrel</defName>
+    <pack>Rimfolk_GossipTopic_CampQuarrel</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the row with the camp</li>
+        <li>gossip_topic->a row with the people camped nearby</li>
+        <li>gossip_topic->a falling out with the travelers</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_FoundChild</defName>
+    <pack>Rimfolk_GossipTopic_FoundChild</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the lost child carried home</li>
+        <li>gossip_topic->a frightened child returned to its people</li>
+        <li>gossip_topic->the long search and how it ended</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Pilgrim</defName>
+    <pack>Rimfolk_GossipTopic_Pilgrim</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the old pilgrim's journey home</li>
+        <li>gossip_topic->the slow walk with the pilgrim</li>
+        <li>gossip_topic->a pilgrim seen safely home</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_HarvestHands</defName>
+    <pack>Rimfolk_GossipTopic_HarvestHands</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the harvest worked for the neighbors</li>
+        <li>gossip_topic->a stint in another town's fields</li>
+        <li>gossip_topic->the grain brought in for others</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_LetDown</defName>
+    <pack>Rimfolk_GossipTopic_LetDown</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the help the neighbors were promised</li>
+        <li>gossip_topic->a promise to another town that wasn't kept</li>
+        <li>gossip_topic->a town left waiting for help</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_AnsweredCall</defName>
+    <pack>Rimfolk_GossipTopic_AnsweredCall</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the help sent when the region called</li>
+        <li>gossip_topic->the colony's answer to a call for help</li>
+        <li>gossip_topic->a neighbor helped in a bad hour</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_KeptDay</defName>
+    <pack>Rimfolk_GossipTopic_KeptDay</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the day seen to properly</li>
+        <li>gossip_topic->the feast and the work behind it</li>
+        <li>gossip_topic->who made the day what it was</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_SpoiledFeast</defName>
+    <pack>Rimfolk_GossipTopic_SpoiledFeast</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the feast dish that didn't make it</li>
+        <li>gossip_topic->the smell of burning on the feast day</li>
+        <li>gossip_topic->the cook's bad day at the feast</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_TableQuarrel</defName>
+    <pack>Rimfolk_GossipTopic_TableQuarrel</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the row over the feast table</li>
+        <li>gossip_topic->a row between courses</li>
+        <li>gossip_topic->the supper that ended in shouting</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_NightWatch</defName>
+    <pack>Rimfolk_GossipTopic_NightWatch</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a long night on the wall</li>
+        <li>gossip_topic->the watch kept through the cold hours</li>
+        <li>gossip_topic->who stayed up to keep watch</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Pyre</defName>
+    <pack>Rimfolk_GossipTopic_Pyre</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the carrying of the dead after the fight</li>
+        <li>gossip_topic->the grim work of clearing the field</li>
+        <li>gossip_topic->the long carry out past the wall</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Gossip_Rounds</defName>
+    <pack>Rimfolk_GossipTopic_Rounds</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the round of the sickbeds</li>
+        <li>gossip_topic->a kind word at every sickbed</li>
+        <li>gossip_topic->the long walk from sickbed to sickbed</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== Moments, frictions and talk about the council ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_UpAndAbout</defName>
+    <interaction>Council_Moment_UpAndAbout</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] still had the look of someone who should be sitting down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [backnews].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to take it slowly for a few days, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would, and didn't mean it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [RECIPIENT_nameDef] had some color back in [RECIPIENT_possessive] face at last.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that lying in bed was the dullest work there was.</li>
+        <li>backnews->that nothing much had happened while [RECIPIENT_pronoun] was laid up, apart from the arguments</li>
+        <li>backnews->that the chores had piled up nicely in [RECIPIENT_possessive] absence</li>
+        <li>backnews->that the others had been taking bets on when [RECIPIENT_pronoun] would be up</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_SickVisit</defName>
+    <interaction>Council_Moment_SickVisit</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] sat a while with [RECIPIENT_nameDef], who was feeling poorly, and talked about nothing much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] wanted anything brought from the kitchen.</li>
+        <li>r_logentry->[INITIATOR_nameDef] felt [RECIPIENT_nameDef]'s forehead and pronounced it warm, though [INITIATOR_pronoun] was no doctor.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [sickcure], which [RECIPIENT_nameDef] doubted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] to keep [RECIPIENT_possessive] place at the table until [RECIPIENT_pronoun] was well.</li>
+        <li>sickcure->that the trick was plenty of broth and plenty of sleep</li>
+        <li>sickcure->that [INITIATOR_possessive] grandmother had sworn by onions for everything</li>
+        <li>sickcure->that a day of rest did more than any medicine</li>
+        <li>getwell->that the work would keep until [RECIPIENT_pronoun] was better</li>
+        <li>getwell->to rest up, and that [INITIATOR_pronoun] would look in again later</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_WhereFrom</defName>
+    <interaction>Council_Moment_WhereFrom</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the places they grew up, and decided [INITIATOR_possessive] home had the worse winters.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [hometown], and how different it was from here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sang [RECIPIENT_nameDef] a few lines of a song from [hometown], where [INITIATOR_pronoun] grew up.</li>
+        <li>hometown->a river town where the bridges were older than anyone's grandmother</li>
+        <li>hometown->a high valley where the snow came early and stayed late</li>
+        <li>hometown->a dry town built around one deep well</li>
+        <li>hometown->a forest village with more pigs than people</li>
+        <li>missedthing->the smell of the bakery in the mornings</li>
+        <li>missedthing->a festival with lanterns on the water</li>
+        <li>missedthing->the voices of [INITIATOR_possessive] cousins at supper</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Menu</defName>
+    <interaction>Council_Friction_Menu</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] held up a spoonful of the last meal and asked [RECIPIENT_nameDef] to name it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of [dreamfood] and woken up to [samefood].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], not kindly, who had been in charge of the pot last time.</li>
+        <li>dreamfood->roast meat with crackling skin</li>
+        <li>dreamfood->fresh bread and butter</li>
+        <li>dreamfood->a pie with a proper crust</li>
+        <li>dreamfood->fruit straight off the tree</li>
+        <li>menugripe->had more water in it than anything else</li>
+        <li>menugripe->had something crunchy in it that shouldn't have been</li>
+        <li>samefood->the same lumpy mash</li>
+        <li>samefood->yesterday's stew warmed up</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Lights</defName>
+    <interaction>Council_Friction_Lights</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] meant to keep the light burning until dawn.</li>
+        <li>r_logentry->[INITIATOR_nameDef] turned over loudly, twice, and [RECIPIENT_nameDef] took the hint eventually.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had a quarrel in low voices about [bedtimetopic] until both were wide awake.</li>
+        <li>latenoise->hummed the same tune over and over</li>
+        <li>latenoise->scratched away at something with a knife</li>
+        <li>bedtimetopic->whether anyone needed a light at all</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_MockedBreakdown</defName>
+    <interaction>Council_Friction_MockedBreakdown</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], loud enough for the others, whether it was safe to be in the same room.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was keeping count of [RECIPIENT_possessive] [breakdown]s.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a show of moving the breakables when [RECIPIENT_nameDef] came in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was feeling steady today, in a voice that wasn't really asking.</li>
+        <li>breakdown->turn</li>
+        <li>breakdown->funny five minutes</li>
+        <li>breakthing->sulk in [RECIPIENT_possessive] room for a day</li>
+        <li>breakthing->walk off in the middle of the work</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Teasing</defName>
+    <interaction>Council_Friction_Teasing</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of [teasesubject] for the third time that day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] called [RECIPIENT_nameDef] by [RECIPIENT_possessive] nickname, and [RECIPIENT_nameDef] didn't answer to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had got over [teasesubject] yet.</li>
+        <li>teasesubject->the time [RECIPIENT_pronoun] sat on a fresh pie</li>
+        <li>teasesubject->[RECIPIENT_possessive] singing voice</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_LeftOut</defName>
+    <interaction>Council_Friction_LeftOut</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [INITIATOR_pronoun] had done something wrong, since [INITIATOR_pronoun] hadn't been asked to [plan].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would have gone to [plan], if anyone had said.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that next time [INITIATOR_pronoun] would plan something and not tell anyone either.</li>
+        <li>plan->a game of cards after supper</li>
+        <li>plan->a picnic out by the trees</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_Slacking</defName>
+    <interaction>Council_Friction_Slacking</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the tools had done something to offend [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the work wouldn't notice if [RECIPIENT_pronoun] stared at it a bit longer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to fetch [RECIPIENT_nameDef] a chair, since [RECIPIENT_pronoun] seemed to be settling in.</li>
+        <li>lazyjab->keeping an eye on the clouds for the rest of us</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesEveryday_GossipBitter</defName>
+    <interaction>Council_Gossip_Bitter</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had asked the council for one thing all season and was still waiting.</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the council smiled most just before it said no.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted off on [INITIATOR_possessive] fingers, for [RECIPIENT_nameDef], the things the council had said it would see to.</li>
+        <li>bitter->the council only remembered your name when there was work to hand out</li>
+        <li>bitter->a wish to the council was a wish to the wind</li>
+        <li>favorites->whoever sits closest at the meetings</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+</Defs>

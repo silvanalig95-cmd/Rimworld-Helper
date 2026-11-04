@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More closing words for the colonists' talk on each topic (Source/ColonyCouncil/Social/Talk/): the first speaker's
+    last line once the other has answered. Talk.BuildLines joins these to the topic's own Close lines, so they are drawn
+    together. Tagged by how the talk went ([agree], [debate], [argue]) and the speaker's side ([for], [against], [mixed],
+    see each topic's viewFor and viewAgainst), with the topic's own tags where it has them. {SUBJECT}: the newcomer.
+    One sentence each, said over the head.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Raid_Close_More</defName>
+    <topic>Rimfolk_Topic_Raid</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I'll walk the wall with you before dark.</li>
+        <li>[agree,against] We'll start hauling stone for the wall in the morning.</li>
+        <li>[debate] Ask me again after the next one, if we're both standing.</li>
+        <li>[argue,for] Stay behind your wall, then, and listen to the rest of us fight.</li>
+        <li>[argue,against] Run at them, then, and we'll carry you back in.</li>
+      </plain>
+      <warm>
+        <li>[agree] Keep your head down next time, for me.</li>
+        <li>[debate,against] If you go out to meet them, I'm coming with you.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Good, check your weapon tonight.</li>
+        <li>[argue] We're not doing this now.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Next time they come, they'll wish they'd stayed home.</li>
+        <li>[debate] Whoever's right buys the other a drink after the next one.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] They'll come again, they always do.</li>
+        <li>[debate,against] Walls or no walls, someone won't walk away from the next one.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Then we meet them before they reach the fields.</li>
+        <li>[debate] The next raid will show us which of us was right, at a price.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Council_Close_More</defName>
+    <topic>Rimfolk_Topic_Council</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] They're doing their best, and that's more than most would.</li>
+        <li>[agree,against] I'll write it down so I don't forget it by the meeting.</li>
+        <li>[debate] Ask them yourself, they do answer, mostly.</li>
+        <li>[argue,for] You'd do worse in their seat, and you know it.</li>
+        <li>[argue,against] Keep bowing to them, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'll sit next to you at the meeting.</li>
+        <li>[debate,for] Give them one more season, for me.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Next meeting, I'm saying it.</li>
+        <li>[argue] Stop whining about the council.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] I'll bring something to eat to the next meeting, that'll soften them.</li>
+        <li>[argue,for] Stand for the council yourself, then, and see how easy it is.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] Whoever sits up there, it ends up the same.</li>
+        <li>[agree,for] They mean well, which is about all you can say for anyone.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,against] Their decisions are on record, so we'll judge them by those.</li>
+        <li>[argue] Raise it at a meeting or stop raising it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Close_More</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,against] I'll see if there's any salt left in the stores.</li>
+        <li>[agree,for] Fill your bowl and say thank you, that's what I do.</li>
+        <li>[debate] Your stomach and mine will never agree.</li>
+        <li>[argue,for] Cook it yourself if you're so clever.</li>
+        <li>[argue,against] Keep your praise, I'll keep my complaints.</li>
+      </plain>
+      <warm>
+        <li>[agree] Save me a seat at supper.</li>
+        <li>[debate,against] I'll ask the cook to try something new, nicely.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Hot and filling, that'll do me.</li>
+        <li>[argue] Stop picking at it and eat.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Whoever finishes first gets the crust.</li>
+        <li>[debate,for] One day I'll do the cooking, and then you'll miss this.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Same pot, same stew, same again tomorrow.</li>
+        <li>[debate] Hungry or picky, we all end up eating it.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] What it does for us matters more than how it tastes.</li>
+        <li>[argue,for] Complain to the cook, not to me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Close_More</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Right, there's a pile of hauling waiting for me.</li>
+        <li>[agree,against] I'll keep a quiet eye on who's slacking.</li>
+        <li>[debate] We'll compare blisters at supper.</li>
+        <li>[argue,for] Count your own hours before you count mine.</li>
+        <li>[argue,for] You see slackers everywhere because you go looking for them.</li>
+      </plain>
+      <warm>
+        <li>[agree] Shout if you need a hand later.</li>
+        <li>[debate,for] Maybe they're just tired, give them a day.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Talk later, lift now.</li>
+        <li>[argue,for] Stop counting and start working.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Race you through the afternoon jobs.</li>
+        <li>[argue] I'll work so hard you'll be embarrassed.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] There's always more, it never stops.</li>
+        <li>[debate,against] They'll slack whatever we say.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] What gets done will settle it.</li>
+        <li>[agree,against] I'll note who's missing from their work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Close_More</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll ask {SUBJECT} to sit with us at supper.</li>
+        <li>[agree,against] I'll keep {SUBJECT} where I can see them.</li>
+        <li>[debate] {SUBJECT} will show us soon enough, one way or the other.</li>
+        <li>[argue,for] You were new here once too, remember.</li>
+        <li>[argue,against] Lend {SUBJECT} your tools, then, and see if you get them back.</li>
+      </plain>
+      <warm>
+        <li>[agree] Let's make {SUBJECT} feel at home.</li>
+        <li>[debate,for] Give {SUBJECT} a chance, that's all I ask.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Eyes on {SUBJECT}, then.</li>
+        <li>[argue] Leave {SUBJECT} alone.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I'm teaching {SUBJECT} the card game tonight.</li>
+        <li>[debate] A week of my cooking will show us what {SUBJECT} is made of.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] They come and they go, the new ones.</li>
+        <li>[debate,against] Don't get too fond, they don't always stay.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] We'll know {SUBJECT} by what gets done, not by what gets said.</li>
+        <li>[agree,for] {SUBJECT} is useful, and that's enough for me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Close_More</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] There'll be a wedding before the year's out, you'll see.</li>
+        <li>[agree,against] Better a quiet bed than a broken heart.</li>
+        <li>[debate] Ask me again when it's your own heart.</li>
+        <li>[argue,for] You'll fall for someone one day, and I'll laugh.</li>
+        <li>[argue,against] Go and moon at someone, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] I hope you find someone who deserves you.</li>
+        <li>[debate,for] Hearts aren't all trouble, you know.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Love's a distraction.</li>
+        <li>[argue] Keep your nose out of other people's hearts.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I'll pick the flowers for the next wedding.</li>
+        <li>[debate] I'll make you blush yet, just you wait.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Somebody always ends up crying.</li>
+        <li>[debate,against] Love's lovely until it isn't.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Pairings keep people settled, that's all I'll grant.</li>
+        <li>[agree,against] Fewer couples, fewer quarrels.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Children_Close_More</defName>
+    <topic>Rimfolk_Topic_Children</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] We'll make it a place they'd want to stay.</li>
+        <li>[agree,against,!nochildren] I'll keep them away from the gate when there's trouble.</li>
+        <li>[debate] We each had our own childhood, I suppose.</li>
+        <li>[argue,for] Children grow up anywhere, and they'll grow up here.</li>
+        <li>[argue,against] Keep telling yourself it's safe.</li>
+      </plain>
+      <warm>
+        <li>[agree,!nochildren] I'll teach them their letters when the work's slack.</li>
+        <li>[debate,for] They'll be all right as long as we're around.</li>
+      </warm>
+      <blunt>
+        <li>[agree,!nochildren] Watch the little ones, that's all.</li>
+        <li>[argue,for] Stop fussing.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,!nochildren] I'll show them how to skip stones.</li>
+        <li>[debate,for] Give a child a puddle and they're happy anywhere.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] I wouldn't bring a child here, not now.</li>
+        <li>[debate,!nochildren] They'll see things here no child should.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] What they learn here will keep them alive.</li>
+        <li>[agree,for,!nochildren] They're learning useful things, at least.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Dead_Close_More</defName>
+    <topic>Rimfolk_Topic_Dead</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll say their names at supper.</li>
+        <li>[agree,against] Let's leave them in peace.</li>
+        <li>[debate] Some days I want to talk about them, and some days I can't.</li>
+        <li>[argue,for] Forget them if you like, I won't.</li>
+        <li>[argue,against] Digging it all up again won't bring them back.</li>
+      </plain>
+      <warm>
+        <li>[agree] Thank you for remembering them with me.</li>
+        <li>[debate,against] I'll keep them in my own heart, then, without the fuss.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] They're not forgotten.</li>
+        <li>[argue] Not another word about them.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I still laugh at their stories, every time.</li>
+        <li>[debate] They'd have had something to say about this argument.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Every one of them took something with them.</li>
+        <li>[debate,against] Remembering hurts, and so does forgetting.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] The living have work to do.</li>
+        <li>[agree,for] Their names are kept, I've made sure of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Prisoners_Close_More</defName>
+    <topic>Rimfolk_Topic_Prisoners</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll bring them a proper blanket.</li>
+        <li>[agree,against] I'll check the cell doors before bed.</li>
+        <li>[debate] They're people, and they're dangerous, and both are true.</li>
+        <li>[argue,for] Lock up your own heart while you're at it.</li>
+        <li>[argue,against] Feed them cake, then, and see what happens.</li>
+      </plain>
+      <warm>
+        <li>[agree] Let's see they're fed and warm, whatever else.</li>
+        <li>[debate,for] Kindness costs us nothing, though.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Doors locked, eyes open.</li>
+        <li>[argue,against] Be soft with them and one of them will walk out the door.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I'll teach them a song, it might cheer them up.</li>
+        <li>[debate] Careful, or they'll talk you into joining them.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Those cells don't make anyone better.</li>
+        <li>[debate,for] Kind or not, they'll hate us for the bars.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] We treat them by what they're worth to us.</li>
+        <li>[agree,against] Plain food and hard work, until they join or go.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Close_More</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] One cup at supper never hurt anyone.</li>
+        <li>[agree,against] Water for me, and I'll sleep better for it.</li>
+        <li>[debate] We'll see who has the sore head in the morning.</li>
+        <li>[argue,for] More beer for the rest of us, then.</li>
+        <li>[argue,against] Drink yourself under the table, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] Let's look out for each other at the next feast.</li>
+        <li>[debate,for] Just the one, and then home to bed.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] I'm off the stuff.</li>
+        <li>[argue] Pour your own, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] To your health, and mine.</li>
+        <li>[debate] Loser drinks water for a week.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] I've seen it take people, and they don't come back from it.</li>
+        <li>[debate] We all lean on something.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Some people can take it and some can't, that's all there is to it.</li>
+        <li>[agree,for] In measured amounts it keeps spirits up.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Close_More</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll ask what they've been studying lately.</li>
+        <li>[agree,against] Old tools don't let you down when you need them.</li>
+        <li>[debate] We'll use whatever works, in the end.</li>
+        <li>[argue,for] Keep your old ways, then, and see who's still at it next winter.</li>
+        <li>[argue,against] Tinker away, and we'll see what breaks.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'll learn it if you teach me.</li>
+        <li>[debate,against] Show me the new way slowly, and I'll try it.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Learn it or get left behind.</li>
+        <li>[argue] Stop lecturing me.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I can't wait to see what they come up with next.</li>
+        <li>[debate] Old way against new way, and we'll race to the finish.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] All this learning, and we still freeze in winter.</li>
+        <li>[debate] New or old, something always breaks.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Whatever gets the work done faster wins.</li>
+        <li>[agree,for] Study comes first, then.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Animals_Close_More</defName>
+    <topic>Rimfolk_Topic_Animals</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll go and give them a brush before dark.</li>
+        <li>[agree,against] I'll keep them out of the kitchen, at least.</li>
+        <li>[debate,for] Come to the pens at feeding time and tell me they're just livestock.</li>
+        <li>[argue,for] Go on, call them livestock to their faces.</li>
+        <li>[argue,against] Sleep in the barn with them, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] They know who's kind to them, you know.</li>
+        <li>[debate,against] Even so, be gentle with them.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Animals are work.</li>
+        <li>[argue] Leave the animals out of it.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I'll give them all a treat and say it's from you.</li>
+        <li>[debate] Ask the animals, they'd take my side.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] One hard winter and we'll be eating them anyway.</li>
+        <li>[debate,against] Don't get attached, it never ends well.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Every animal costs feed, that's the sum of it.</li>
+        <li>[agree,for] They earn their keep, most of them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Weather_Close_More</defName>
+    <topic>Rimfolk_Topic_Weather</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,against] I'll find you another blanket.</li>
+        <li>[agree,for] It's only weather, and it'll pass.</li>
+        <li>[debate] The sky won't listen to either of us.</li>
+        <li>[argue,for] Moan at the clouds, then, see if they care.</li>
+        <li>[argue,against] Easy for you, you never feel the cold.</li>
+      </plain>
+      <warm>
+        <li>[agree] Stay dry, and come and warm up after.</li>
+        <li>[debate,for] I'll sew you something warmer, then.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Wear a coat.</li>
+        <li>[argue,for] Stop complaining about the sky.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] Whatever it does, I'm going to enjoy it.</li>
+        <li>[debate] Loser of this one gets the draughty bed.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It'll be worse before it's better.</li>
+        <li>[debate] It'll rain on us whatever we think.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Plan for the worst weather and you won't be surprised.</li>
+        <li>[agree,for] It doesn't change the work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Close_More</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll find a spot on the wall for the next piece.</li>
+        <li>[agree,against] Useful things first, then pretty ones.</li>
+        <li>[debate] Stand in front of it a while, and then tell me.</li>
+        <li>[argue,for] Live in a bare box, then.</li>
+        <li>[argue,against] Eat your sculpture when the stores run low.</li>
+      </plain>
+      <warm>
+        <li>[agree] Come and look at it with me after supper.</li>
+        <li>[debate,for] Even you smiled at the last one, I saw you.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Stone's for walls.</li>
+        <li>[argue] Fine, hate it.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] I'll make you something, and you'll have to put it up.</li>
+        <li>[debate] I'll carve your face next, and then you'll have an opinion.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,for] It's the only thing here that'll outlast us.</li>
+        <li>[debate] Pretty or not, it'll be gathering dust within the year.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] A fine room lifts people, and people do more work.</li>
+        <li>[agree,against] Stone has better uses.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Future_Close_More</defName>
+    <topic>Rimfolk_Topic_Future</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll plant something that takes years to grow, then.</li>
+        <li>[agree,against] Let's keep our boots by the door, just in case.</li>
+        <li>[debate] We'll know better once this winter's done with us.</li>
+        <li>[argue,for] Pack your bag, then, and see how far you get.</li>
+        <li>[argue,against] Dig your grave here, then, I won't.</li>
+      </plain>
+      <warm>
+        <li>[agree] Wherever we end up, I want you there.</li>
+        <li>[debate,for] Stay a while longer, things might turn.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] We stay and we dig in.</li>
+        <li>[argue] Stop talking about leaving.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] In ten years we'll laugh about this.</li>
+        <li>[debate] I'll still be here, and I'll still be right.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Nothing here lasts, so why should we?</li>
+        <li>[debate] Stay or go, the world gets us in the end.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] The stores will tell us whether we last.</li>
+        <li>[agree,for] Then we build for the long haul.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Project_Close_More</defName>
+    <topic>Rimfolk_Topic_Project</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll put in an hour on it after supper.</li>
+        <li>[agree,against] Let's bring it up before they pour more into it.</li>
+        <li>[debate] Finish it first, and then we'll know.</li>
+        <li>[argue,for] Stand aside, then, and let the rest of us build it.</li>
+        <li>[argue,against] Break your back for it, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] Let's work on it side by side tomorrow.</li>
+        <li>[debate,against] Give it till the season's out, for the ones who care about it.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Get it done.</li>
+        <li>[argue] Stop moaning and lift something.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] We'll scratch our names on it when it's done.</li>
+        <li>[debate] When it's finished, you'll be the first to brag about it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] All that work for nothing, mark my words.</li>
+        <li>[debate,for] It'll get finished just in time for something to ruin it.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] We know what it costs, and we don't know what it's worth.</li>
+        <li>[agree,for] It's worth the materials.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Close_More</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll go through the stores for anything worth selling.</li>
+        <li>[agree,against] Full bellies and dry beds, that's rich enough.</li>
+        <li>[debate] Ask me again when the strongbox is empty.</li>
+        <li>[argue,for] Hug your principles when the traders won't deal with us.</li>
+        <li>[argue,against] Count your silver, then, and tell me how warm it keeps you.</li>
+      </plain>
+      <warm>
+        <li>[agree] Whatever we've got, we've got together.</li>
+        <li>[debate,for] A bit more put by wouldn't hurt, that's all.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Sell the junk.</li>
+        <li>[argue] Money talk bores me.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] When we're rich, I'm having a feather bed.</li>
+        <li>[debate] Rich or poor, I'll still beat you at cards.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,for] We'll never have enough, not out here.</li>
+        <li>[debate] Raiders come for the rich ones first.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Wealth draws raiders, and raiders cost lives.</li>
+        <li>[agree,for] More trade, and fewer gifts.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Close_More</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll help set the tables on the day.</li>
+        <li>[agree,against] We'll keep it short and get back to work.</li>
+        <li>[debate] Come for the start, and if it's dull you can leave.</li>
+        <li>[argue,for] Work through it, then, and miss the best supper of the season.</li>
+        <li>[argue,against] Keep your day, I'll keep the stores full.</li>
+        <li>[agree,sombre] I'll stand with you when it comes.</li>
+      </plain>
+      <warm>
+        <li>[agree,coming] I've been looking forward to it for weeks.</li>
+        <li>[debate,for] Come for the supper at least, for me.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Good, I'll be there.</li>
+        <li>[argue] It's one day, stop fussing.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,!sombre] I'm wearing my best shirt, so make an effort.</li>
+        <li>[debate,for,!sombre] You'll be the first one dancing, I know you.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Another day come and gone, and we're still here.</li>
+        <li>[debate,!sombre] I'll go, but I won't enjoy it.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] A day off costs a day of work, that's the only sum.</li>
+        <li>[agree,for] It keeps people content, so it stays.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Close_More</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Next trader through, I'll ask what they need out there.</li>
+        <li>[agree,against] Let them sort out their own troubles.</li>
+        <li>[debate] The news is old by the time it reaches us anyway.</li>
+        <li>[argue,for] Close your eyes to it, then, it'll still be there.</li>
+        <li>[argue,against] Fix the world, then, after you've fixed your own bed.</li>
+        <li>[agree,badnews] Poor souls, whoever they are.</li>
+      </plain>
+      <warm>
+        <li>[agree,goodnews] It's nice to hear people out there are doing well.</li>
+        <li>[debate,against] Even so, I hope they're all right.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Their troubles, their business.</li>
+        <li>[argue] Leave the world to itself.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] One day they'll tell stories about us out there.</li>
+        <li>[debate] I'll get the real story from the next trader, you'll see.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,badnews] It only ever gets worse out there.</li>
+        <li>[debate,against] Help them, and they'll forget us the moment it's over.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] We act where it profits us, and nowhere else.</li>
+        <li>[agree,for] A say in the region is worth having.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Close_More</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll take them some bread in the morning.</li>
+        <li>[agree,against] I'll walk past their fires once before bed, just to see.</li>
+        <li>[debate] They're only passing through, give it a few days.</li>
+        <li>[argue,for] They've done nothing to you but camp.</li>
+        <li>[argue,against] Make them a bed in your room, then.</li>
+        <li>[agree,leaving] I'll miss the noise of them when they go.</li>
+      </plain>
+      <warm>
+        <li>[agree,campfamily] Their little ones looked cold, I'll find a blanket.</li>
+        <li>[debate,for] They're tired travelers, that's all.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] They leave soon, good.</li>
+        <li>[argue,for] They're not hurting you, so leave off.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,trader] I'm off to haggle before you get the good stuff.</li>
+        <li>[debate,for] Wait till you taste their bread, you'll change your tune.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,tense] If it goes bad, it'll go bad quickly.</li>
+        <li>[debate] Camps come and go, and so does the trouble.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] What they bring is worth more than what they take, so far.</li>
+        <li>[agree,against] I'll mark where they've set their fires.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Close_More</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Next caravan, I'm asking where they've been.</li>
+        <li>[agree,against] We've all we need inside the wall.</li>
+        <li>[debate] Depends who's at the gate, doesn't it.</li>
+        <li>[argue,for] Lock yourself in, then, I'm going to meet them.</li>
+        <li>[argue,against] Let them all in, then, and count the spoons after.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] It'd be nice to have friends beyond the wall.</li>
+        <li>[debate,for] Strangers aren't all bad, you know.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Gate shut.</li>
+        <li>[argue,for] Stop being scared of strangers.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] One day I'll walk to the next town and back, just to see it.</li>
+        <li>[debate] Let's ask the next visitor and settle it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Every stranger's a risk.</li>
+        <li>[debate] Friends or not, they all leave in the end.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] Every visitor is either a trade or a threat.</li>
+        <li>[agree,for] Trading partners are worth keeping.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Close_More</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,child] I'll be back before supper.</li>
+        <li>[debate,child] Just one more game, then I'll help.</li>
+        <li>[argue,child] It's not fair, and you know it isn't.</li>
+        <li>[agree,!child] Off with you, and stay out of the workshop.</li>
+        <li>[debate,!child,against] Learn this first, then go and play.</li>
+        <li>[argue,!child,for] The chores will keep, so go and be a child.</li>
+      </plain>
+      <warm>
+        <li>[agree,child] I love you too.</li>
+        <li>[agree,!child] You're a good one, you know that?</li>
+      </warm>
+      <blunt>
+        <li>[argue,child] I'm big enough to help, you said so.</li>
+        <li>[agree,!child] Back by dark.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,child] I'll bring you back the best stone I find!</li>
+        <li>[debate,!child] Tell you what, I'll race you to the end of the chores.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,child] I'll grow up anyway, whatever anyone says.</li>
+        <li>[debate,!child] I was younger than you when I had to work.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,child] I can do it myself.</li>
+        <li>[argue,!child] Questions after chores, not before.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Faith_Close_More</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll save you a place at the next rite.</li>
+        <li>[agree,against] We'll keep our doubts between ourselves, then.</li>
+        <li>[debate] Ask me again after a bad winter.</li>
+        <li>[argue,against] Pray, then, and I'll get on with the work.</li>
+      </plain>
+      <warm>
+        <li>[debate,against] Whatever you believe, I'm glad you're here.</li>
+      </warm>
+      <blunt>
+        <li>[argue,for] Mock it if you like, it's still true.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] If you're right, you can tell me so in the next life.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate,against] Faith or not, the winters are just as long.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,against] Belief is a private matter.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>
