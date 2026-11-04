@@ -198,6 +198,9 @@ two peoples on the colony's map (assaults, shelling, camps, contested sites). Bu
 double the conflicts and the upkeep. Without them, Rimfolk's world still works, only without new towns on the map.
 
 ### Stage 0: the foundation (first, little to see)
+The design, the order and the tests: `docs/design/foundation.md`; what exists today: `docs/design/world-stores-inventory.md`
+and `docs/design/multicolony-audit.md` (38 places that break with two colonies; the root cause is the busiest home
+taken as "the colony"). Each step below ships as a release of its own with the game playing as before.
 1. The world ledger: one saved store for the people outside the colony (the notables grow into it), their houses and
    families, each town's state (prosperity, its mood toward the colony, its needs, its head, its recent events), each
    people's stance, and one kind of record for every tie between two parties: a favour owed, a pact, a truce, a

@@ -15,6 +15,11 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Stage 0 started (4 November 2026): `docs/design/foundation.md` (Homes, the world ledger, one history, one facts
+  service, one voice, budgets, many homes, adapters, ages, the coupling rule; nine steps, each a release that plays as
+  before), `docs/design/world-stores-inventory.md`, `docs/design/multicolony-audit.md`. Next: step 1, `Lean/Homes.cs`
+  and the busiest-home root cause. The player plans a bigger plan once limits keep being hit; the content-heavy stages
+  come then.
 - The plan from here (player-approved ideas, 4 November 2026): ROADMAP.md, "The world and its people": stage 0 the
   foundation (world ledger, one history, shared facts, one voice, budgets, many homes, adapters, coupling rule; the
   harm review alongside), stage 1 the region comes alive, stage 2 the Crusader Kings diplomacy, stage 3 many colonies
