@@ -197,26 +197,38 @@ defeated settlements, vassal outposts, invasions and encounters in territory. [S
 two peoples on the colony's map (assaults, shelling, camps, contested sites). Building our own copy of either would
 double the conflicts and the upkeep. Without them, Rimfolk's world still works, only without new towns on the map.
 
-### The step-by-step plan (the player's go-ahead, 4 November 2026)
-The player approved the whole list: the four stages, and from the open items Alpha Skills (drink and smoke before work
-for now), events and stories, what peoples remember, health, defense, integrations and every breadth line. The
-foundation goes first and one step at a time (F1 to F9, each a release that plays as before); beside each step run
-packages that don't touch the files that step changes, each in its own worktree, merged with all checks, two or three
-at a time. Bug reports come before all of it.
+### The step-by-step plan (the player's go-ahead, 4 November 2026; priorities set the same day)
+The player approved the whole list, then set the priority: the long-term plan first (the foundation, then the four
+stages); rooms, defense and the other approved open items are not critical and come later. The foundation's steps
+run one after another, two at a time where their files don't meet (each a release that plays as before). Bug
+reports come before all of it.
 
-| Wave | Foundation | Beside it |
+| Wave | The long-term plan | Beside it |
 |---|---|---|
-| 1 | F1 Homes: what a colony is, the busiest home fixed, events and memos per colony | A1 Alpha Skills: a smoke before work for the stoned passion (the drink is built since 0.54.2); H1 health: after-effects for malaria and sleeping sickness, the hospital's name in visitors' and traders' talk |
-| 2 | F2 Rimfolk's clock (time per pass, dev window), with the shared clock for the remaining hourly passes | R1 rooms: upgrade advice (nobles' bedrooms, a kitchen past its stove), odd shapes beyond partitions, more mod furniture sizes and themes; U1 interface: threats on the map panels, the defense overlay in the game's map settings; I1 integrations: a renowned-hosts project with Hospitality, Outland's and Medieval Total Rim's peoples in world events, an Outland furniture theme, more PokéWorld |
-| 3 | F3 the world ledger: a facade over today's stores, then persons, towns, ties and one keep-in-world | E1 events and stories: more everyday events per group; chains for the peace bought, the survivor, the star-iron blade; follow-ups (the warlord's son, the town that grew from the settlers' camp); S1 scenarios: a nomad start that moves with the seasons, a scenario for a mod's people |
-| 4 | F4 one history (the chronicle writes through it, small events fold) | P1 personal stories: for camps, offices and world events, stories that pass between generations; B1 breadth, wishes and goals (wishes for the colony's own goals, council projects from the calendar and the faith, for children and elders, life goals for mods' content and goals two share) |
-| 5 | F5 one facts service (letters first) | M1 what peoples remember: memory in more events' texts, a people's memory of single colonists, Empire titles and Ideology rites in invitations; B2 breadth, answers and decisions (dilemmas for each system, decrees for mods, memes and children's petitions, offices for mods and offices that hear petitions, advisor checks for spacer colonies and older advice) |
-| 6 | F6 one voice (caps per day and kind, settlement named, direct messages sorted) | B3 breadth, what colonists become (marks by nature, traits from the colony's ways, quirks from world events and the calendar, names to an heir, colony character, deeds from mods' work); B4 breadth, inner life (dreams that settle a quirk or move a goal, feelings with the calendar and council, good secrets, vendettas against nemeses and heirs, a nemesis's voice) |
-| 7 | F7 many homes, in the audit's order (seats, decrees, meetings; calendar; camps and the rest); the harm review proposed per system as each is visited | B5 breadth, the world and the land (world events for more peoples with follow-ups and aftermaths, camps for every age and mods, encounters with mods' creatures, lands and camps' people, ailments from a run's mods, calendar days from the colony's works); B6 on the map (messengers with news, joiners waiting off the map, a pilgrims' camp by the water, touches, habits for children and elders) |
-| 8 | F8 adapters (Faction Territories, Factional War, Vanilla Outposts, the Empire, Diplomatic Marriage+), F9 ages | B7 breadth, talk and groups (topics for mods' content, children's talk, gossip voices for tribal and spacer colonies, group dilemmas, goals and petitions, memories from dreams and stories); B8 moods (hints for every new thought, rewards for every small moment, bad moods from mods, dreams and stories); I2 the best ideas from HOOKS.md |
-| 9 to 10 | Stage 1, the region comes alive: the new towns' faces and stories, towns rising and falling, trading posts, raiders' camps, travellers to the remote, settlers under protection | the content pass for stage 1 |
+| 1 | F1 Homes: what a colony is, the busiest home fixed, events and memos per colony (done, 0.65.0) | A1 a smoke before work for Alpha Skills' stoned passion and H1 health (after-effects of malaria and sleeping sickness, the hospital's name in outsiders' talk), already under way when the priority was set |
+| 2 | F2 Rimfolk's clock (time per pass, dev window, the shared clock) | F3 begins: the ledger's ids, its ties and its facade over today's stores |
+| 3 | F3 the world ledger: then the moves (persons and towns from the notables, ties from favours, words, grudges, debts and guest kin) and one keep-in-world | F4 begins once the ledger's ids exist |
+| 4 | F4 one history (the chronicle writes through it, small events fold) | F5 begins |
+| 5 | F5 one facts service (letters first) | F6 begins |
+| 6 | F6 one voice (caps per day and kind, the settlement named, direct messages sorted) | |
+| 7 | F7 many homes in the audit's order; the harm review proposed per system as each is visited | |
+| 8 | F8 adapters (Faction Territories, Factional War, Vanilla Outposts, the Empire, Diplomatic Marriage+), F9 ages | |
+| 9 to 10 | Stage 1, the region comes alive: the new towns' faces and stories, towns rising and falling, trading posts, raiders' camps, travellers to the remote, settlers under protection | its content pass, with what peoples remember (memory in more events' texts, a people's memory of single colonists, Empire titles and Ideology rites in invitations) and the world events' follow-ups (the warlord's son, the town that grew from the settlers' camp) |
 | 11 to 14 | Stage 2 in four rounds: (a) favours owed, pacts and truces, ransom, the envoy; (b) feasts and contests, marriage alliances, wards and hostages; (c) fealty and vassals, council tasks with the keeper of secrets, schemes; (d) house renown, stress against one's nature | a content pass per round, in every age's form |
-| 15 to 16 | Stage 3: many colonies in play, handing a colony over, a fresh start in the same save | the content pass for stage 3; D1 defense, moved here at the player's word (low priority): Vanilla Furniture Expanded - Security's trenches and barbed wire in the plans, a bunker, a moat, steps for mortars and EMP (its 1.6 defs: VFES_Trench, VFES_TrenchTerrain, VFES_BarbedWire, VFES_CavalrySpikes, VFES_Turret_EMPTurret, VFES_EMPCannon, VFES_Turret_AutomatedMortar, VFES_Turret_Artillery, from its GitHub) |
+| 15 to 16 | Stage 3: many colonies in play, handing a colony over, a fresh start in the same save | its content pass |
+
+**Later (approved, not critical; when the long-term plan allows or after it).** Rooms (upgrade advice for nobles'
+bedrooms and a kitchen past its stove, odd shapes, more mod furniture and themes); defense (Vanilla Furniture Expanded
+- Security's trenches and barbed wire, a bunker, a moat, steps for mortars and EMP; its 1.6 defs VFES_Trench,
+VFES_TrenchTerrain, VFES_BarbedWire, VFES_CavalrySpikes, VFES_Turret_EMPTurret, VFES_EMPCannon,
+VFES_Turret_AutomatedMortar, VFES_Turret_Artillery, from its GitHub); the interface (threats on the map panels, the
+defense overlay in the game's map settings); integrations (a renowned-hosts project with Hospitality, more PokéWorld,
+the best ideas from HOOKS.md; Outland and Medieval Total Rim only if they return to the modlist); events and stories
+(more everyday events per group, chains for the peace bought, the survivor and the star-iron blade, a nomad start and
+a scenario for a mod's people, personal stories for camps, offices and world events and between generations); the
+breadth lines (wishes and goals, answers and decisions, what colonists become, inner life, the world and the land, on
+the map, talk and groups, moods).
+
 Still waiting for a word from the player: the other Alpha Skills passions (P2 to P17), journeys' extras, a short
 guide, weapon duels under the harm rule, and the release to the Workshop.
 
