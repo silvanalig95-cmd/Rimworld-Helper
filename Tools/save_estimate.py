@@ -81,6 +81,9 @@ C = {
     "RegionHouses": const("World/Region/RegionMath.cs", "HousesPerTown", 2),
     "RegionMembers": const("World/Region/RegionMath.cs", "MembersPerHouse", 6),
     "RegionFoundings": const("World/Region/RegionMath.cs", "MaxFoundings", 6),
+    # Towns that rise and fall (World/Region/RiseFallMath.cs): ruins kept per home's reach, fights' ruins waiting at once.
+    "RegionRuins": const("World/Region/RiseFallMath.cs", "MaxRuinsPerHome", 12),
+    "RegionRuinsWaiting": const("World/Region/RiseFallMath.cs", "MaxWaiting", 6),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -488,7 +491,7 @@ MODEL = {
                                               + 24 + 6 + 5 + 20 + 10, 180,
                                               "every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson)"),
     "World/Ledger/LedgerPersons.cs:kept": ("fixed", 2, 30, "per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons)"),
-    "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["RegionTowns"] + C["NotableFaces"] + 4, 330,
+    "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["RegionTowns"] + C["NotableFaces"] + 4, 380,
                                                   "the towns in detail within the region map's reach (RegionMath.MaxTownsPerHome a home, one home here), the towns "
                                                   "the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding"),
     # The region's records on the ledger (World/Ledger/LedgerRegion.cs): the founding families of the new towns in detail
@@ -499,7 +502,14 @@ MODEL = {
     "World/Ledger/LedgerRegion.cs:foundings": ("cap", (C["RegionFoundings"], 0.1), 260,
                                                "towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone"),
     # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book.
-    "World/Region/RegionBook.cs:homes": ("fixed", 1, 90, "one per colony (one home in the model): when a founder last wrote to it; a lost home's kept 30 days"),
+    "World/Region/RegionBook.cs:homes": ("fixed", 1, 160, "one per colony (one home in the model): when a founder last wrote to it, when a town in its reach "
+                                         "was last given up, settled again or founded by Rimfolk; a lost home's kept 30 days"),
+    # The ruins Rimfolk made within reach (World/Region/RiseFallLedger.cs): a town given up every 60 days at most, a fight's
+    # ruin now and then; twelve per home's reach (RiseFallMath.MaxRuinsPerHome), each gone after 300 days or settled
+    # again, and the fights' ruins waiting for the game's destroyed settlement to go (RiseFallMath.MaxWaiting).
+    "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
+                                              "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
+                                              "each gone after 300 days; fights' ruins waiting, six at most"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

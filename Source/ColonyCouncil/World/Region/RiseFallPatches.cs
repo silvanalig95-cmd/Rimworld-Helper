@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
@@ -69,13 +68,9 @@ namespace ColonyCouncil
     /// when one of them weighs other than 1; a caravan whose people is already chosen (a quest's, another mod's) is left
     /// as it is, and the game picks as before when this finds none.
     /// </summary>
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(IncidentWorker_TraderCaravanArrival), "TryResolveParmsGeneral")]
     public static class Patch_RiseFallCaravans
     {
-        public static bool Prepare() => TargetMethod() != null;
-
-        public static MethodBase TargetMethod() => AccessTools.Method(typeof(IncidentWorker_TraderCaravanArrival), "TryResolveParmsGeneral");
-
         public static void Prefix(IncidentWorker_TraderCaravanArrival __instance, IncidentParms parms)
         {
             if (parms == null || parms.faction != null || !(parms.target is Map map) || !RimfolkPatches.On || !RiseFallEffects.On) return;

@@ -10,7 +10,7 @@
 
   <!-- Settings -->
   <CC_Settings_RegionChange>Towns rise and fall</CC_Settings_RegionChange>
-  <CC_SetNote_RegionChange>Struggling towns within reach may be given up and leave ruins, ruins may be settled again, and flourishing towns may found new ones, at a slow pace.</CC_SetNote_RegionChange>
+  <CC_SetNote_RegionChange>Struggling towns may be given up and leave ruins, ruins settled again, and flourishing towns found new ones.</CC_SetNote_RegionChange>
   <CC_Settings_RegionChange_Tip>A town within the region map's reach that has struggled for a month (or was struck twice in a season while poor, or met a hard first season) may be given up by its people while they keep two other towns, never their seat or the Empire's, nor a town the colony has business with. A town destroyed in a fight leaves a ruin once its map is gone. A ruin 120 days old may be settled again by a people at peace with the colony doing well nearby, its own people first. A town flourishing for 60 days may send settlers to found a new town 6 to 15 tiles away, beside any other mod's builders, and only while fewer than 10 towns stand in reach. In a home's reach: at most one town given up in 60 days, one ruin settled in 120, one town founded in 90; a ruin Rimfolk made goes after 300 days, twelve at most. Nothing new is placed within 6 tiles of a colony. Needs the towns' fortunes for anything that turns on a town's prosperity. Off: nothing changes on the map, and the records are kept.</CC_Settings_RegionChange_Tip>
 
   <!-- What is left of a town, by its people's age -->
