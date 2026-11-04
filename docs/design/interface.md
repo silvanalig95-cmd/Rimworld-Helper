@@ -536,3 +536,10 @@ Stage 2a.1 then adds the Ties slot, the owed strip on Peoples and its inbox prov
    1010 by 720? Recommended: the setting, standard by default.
 7. **The colonies (stage 3).** In the Ours lens with a card per colony and a colony chip in every view's header, rather
    than a page in the council's Colony section? Recommended: the Ours lens.
+
+## The player's decisions (4 November 2026)
+All seven as recommended ("Go for your recommended ui suggestions"): the region in four views with lenses; cards in
+the drawer; previews that stay when entered, two levels at most, with a setting; the Almanac in its own window; the
+council in four views; the window size setting, standard by default; the colonies of stage 3 in the Ours lens. The
+last two change where stage 3's design and today's Colony section put things: Priorities moves to Planning → Plan, and
+stage 3's Colonies page becomes the Ours lens.

@@ -281,7 +281,8 @@ The design: `docs/design/interface.md`, with a visual mockup (`docs/design/inter
 now, at most five views each (34 pages become 13); a card for every person, place, people, house, tie, event and
 letter, opened in a drawer from wherever its name appears, with previews, back and forward; the region map as the hub
 with six lenses in place of the posts', camps' and hamlets' pages; This week as the one inbox; a rule for where every
-new feature goes; one visual grammar. Five releases (UI 1 to UI 5) before stage 2a.1. Seven decisions with the player.
+new feature goes; one visual grammar. Five releases (UI 1 to UI 5) before stage 2a.2. The player's decisions (4 November 2026): all seven as
+recommended.
 
 ### Stage 1: the region comes alive
 The design and its seven releases: `docs/design/stage1-region.md`. **Done (0.69.0 to 0.77.0, 4 November 2026)**: the
