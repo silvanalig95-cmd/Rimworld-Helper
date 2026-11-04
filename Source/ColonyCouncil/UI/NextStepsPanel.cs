@@ -188,7 +188,8 @@ namespace ColonyCouncil
             // The number in the plan (or the level, for a proposal), and the arrows.
             if (inPlan)
             {
-                UiKit.LabelFit(new Rect(x + 8f, y + 6f, LeftW - 10f, 22f), s.Done ? "" : number.ToString(), color, GameFont.Medium, TextAnchor.MiddleCenter);
+                // Its place in the plan, in small type (Medium is for a view's or a card's one title).
+                UiKit.LabelFit(new Rect(x + 8f, y + 6f, LeftW - 10f, 22f), s.Done ? "" : number.ToString(), color, GameFont.Small, TextAnchor.MiddleCenter);
                 if (!s.Done)
                 {
                     var up = new Rect(x + 10f, y + h - 24f, 14f, 14f);
