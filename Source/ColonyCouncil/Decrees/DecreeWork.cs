@@ -124,30 +124,34 @@ namespace ColonyCouncil
             return false;
         }
 
-        private static readonly Dictionary<DecreeDef, (float at, string why)> blockedCache = new Dictionary<DecreeDef, (float, string)>();
+        private static readonly Dictionary<(DecreeDef, int), (float at, string why)> blockedCache = new Dictionary<(DecreeDef, int), (float, string)>();
 
         /// <summary>
-        /// Why this decree can't be declared right now beyond the usual (cooldown, too many in force), or null. Asked by the
-        /// decrees page every frame, so worked out about once a second.
+        /// Why this decree can't be declared right now beyond the usual (cooldown, too many in force), or null, in the colony
+        /// of <paramref name="t"/> (the seat's without one). Asked by the decrees page every frame, so worked out about once a second.
         /// </summary>
-        public static string Blocked(DecreeDef d)
+        public static string Blocked(DecreeDef d, DecreeTracker t = null)
         {
             float now = Time.realtimeSinceStartup;
-            if (blockedCache.TryGetValue(d, out var c) && now - c.at < 1f && now >= c.at) return c.why;
+            var key = (d, t?.colony?.home ?? HomesMath.None);
+            if (blockedCache.TryGetValue(key, out var c) && now - c.at < 1f && now >= c.at) return c.why;
             string why = null;
             try
             {
-                why = Why(d);
+                why = Why(d, t);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("decree gate " + d.defName, e);
             }
-            blockedCache[d] = (now, why);
+            blockedCache[key] = (now, why);
             return why;
         }
 
-        private static string Why(DecreeDef d)
+        /// <summary>The colony's home on the ground for these decrees (the seat's without a tracker).</summary>
+        private static Map HomeOf(DecreeTracker t) => t != null ? t.Ground : Home;
+
+        private static string Why(DecreeDef d, DecreeTracker t)
         {
             if (Hidden(d)) return "CC_Decree_NotForUs".Translate();
             if (!d.research.NullOrEmpty())
@@ -156,7 +160,8 @@ namespace ColonyCouncil
                 if (!known.Any(r => r.IsFinished))
                     return known.Count == 0 ? "CC_Decree_NotForUs".Translate().Resolve() : "CC_Decree_NeedsResearch".Translate(known[0].LabelCap).Resolve();
             }
-            var map = Home;
+            // The colony's own home: its people, its stores.
+            var map = HomeOf(t);
             if (d.minColonists > 0 && (map == null || RoomUtil.ColonistCount(map) < d.minColonists)) return "CC_Decree_NeedsPeople".Translate(d.minColonists).Resolve();
             if (!d.situationKinds.NullOrEmpty() && SituationRunning(d) == null && !OrWhenNow(d, map)) return "CC_Decree_NeedsSituation".Translate().Resolve();
             if (d.callsTraders && MarketFactions().Count == 0) return "CC_Decree_NoTraders".Translate().Resolve();
@@ -188,13 +193,13 @@ namespace ColonyCouncil
         {
             try
             {
-                var map = Home;
+                var map = HomeOf(t);
                 if (def.nightSleep) ApplyNight(t);
                 if (def.callsTraders && map != null) CallTraders(def, map);
                 if (!def.enactEffects.NullOrEmpty() && map != null)
                 {
                     var a = asker != null && asker.Spawned && asker.Map == map ? asker : map.mapPawns.FreeColonistsSpawned.Where(PlayOuts.OurPerson).RandomElementWithFallback();
-                    PlayOuts.Run(def.enactEffects, new DilemmaContext { map = map, a = a, faction = GoodwillFaction(def), why = def.LabelCap }, "decree " + def.defName);
+                    PlayOuts.Run(def.enactEffects, new DilemmaContext { map = map, a = a, faction = GoodwillFaction(def, map), why = def.LabelCap }, "decree " + def.defName);
                 }
                 if (def.oneFaith) DecreeFaith.Enacted(def);
             }
@@ -224,7 +229,7 @@ namespace ColonyCouncil
                     if (a.def == null || a.def.joyWhileWorking <= 0f) continue;
                     foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                     {
-                        if (p.needs?.joy == null || p.Downed || p.InMentalState || !p.Awake() || p.IsQuestLodger()) continue;
+                        if (p.needs?.joy == null || p.Downed || p.InMentalState || !p.Awake() || p.IsQuestLodger() || !t.Ours(p)) continue;
                         var job = p.CurJob;
                         if (job?.workGiverDef == null) continue;
                         if (a.def.ReactionOf(p) < DecreeReaction.Neutral) continue;
@@ -246,25 +251,26 @@ namespace ColonyCouncil
             if (def == null) return;
             try
             {
-                var map = Home;
+                // The colony's own stores, and its nearest neighbours.
+                var map = HomeOf(t);
                 int given = 0;
                 bool gave = def.take == null;
                 if (def.take != null && map != null)
                 {
-                    given = Take(map, def.take);
+                    given = Take(map, def.take, t?.CostFactor ?? 1f);
                     gave = given > 0;
                 }
                 Faction to = null;
                 if (def.goodwillPerDay != 0 && gave)
                 {
-                    to = GoodwillFaction(def);
+                    to = GoodwillFaction(def, map);
                     to?.TryAffectGoodwillWith(Faction.OfPlayer, def.goodwillPerDay, false, false);
                 }
                 if (def.certaintyPerDay > 0f && ColonyFaith != null)
                 {
                     float amount = def.certaintyPerDay * Interplay.FaithFactor;
                     foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
-                        if (Believer(p) && !p.IsQuestLodger()) p.ideo?.OffsetCertainty(amount);
+                        if (Believer(p) && !p.IsQuestLodger() && (t == null || t.Ours(p))) p.ideo?.OffsetCertainty(amount);
                 }
                 if (def.oneFaith) DecreeFaith.Daily(t, def);
                 if (given > 0)
@@ -272,7 +278,7 @@ namespace ColonyCouncil
                     string text = to != null
                         ? "CC_Decree_GaveTo".Translate(def.LabelCap, given, Label(def.take), to.Name).Resolve()
                         : "CC_Decree_Gave".Translate(def.LabelCap, given, Label(def.take)).Resolve();
-                    News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                    Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, null, MessageTypeDefOf.NeutralEvent);
                 }
             }
             catch (Exception e)
@@ -310,8 +316,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Takes the day's share (a quartermaster stretches it, as for any answer that costs the stores). Returns how much went.</summary>
-        private static int Take(Map map, DecreeTake t)
+        /// <summary>
+        /// Takes the day's share (the colony's quartermaster stretches it by <paramref name="costFactor"/>, as for any answer
+        /// that costs the stores). Returns how much went.
+        /// </summary>
+        private static int Take(Map map, DecreeTake t, float costFactor)
         {
             int have = Have(map, t);
             if (have <= 0) return 0;
@@ -322,7 +331,7 @@ namespace ColonyCouncil
             var ctx = new DilemmaContext { map = map };
             if (consume.Unavailable(ctx) != null) return 0;
             consume.Apply(ctx);
-            return Mathf.Max(1, Mathf.RoundToInt(want * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+            return Mathf.Max(1, Mathf.RoundToInt(want * costFactor));
         }
 
         // ---------------- Goodwill ----------------
@@ -330,8 +339,11 @@ namespace ColonyCouncil
         private static bool Usable(Faction f) =>
             f != null && !f.IsPlayer && !f.defeated && !f.Hidden && !f.temporary && f.HasGoodwill && f.def.humanlikeFaction && !f.HostileTo(Faction.OfPlayer);
 
-        /// <summary>Who a decree's goodwill goes to today (see <see cref="DecreeGoodwillTo"/>), or null when there's nobody.</summary>
-        public static Faction GoodwillFaction(DecreeDef def)
+        /// <summary>
+        /// Who a decree's goodwill goes to today (see <see cref="DecreeGoodwillTo"/>), or null when there's nobody; the
+        /// nearest measured from <paramref name="from"/>, the colony's home (the seat's without one).
+        /// </summary>
+        public static Faction GoodwillFaction(DecreeDef def, Map from = null)
         {
             try
             {
@@ -348,13 +360,13 @@ namespace ColonyCouncil
                         var faith = ColonyFaith;
                         if (faith != null)
                         {
-                            var f = Nearest(x => x.ideos?.PrimaryIdeo == faith);
+                            var f = Nearest(x => x.ideos?.PrimaryIdeo == faith, from);
                             if (f != null) return f;
                         }
                         break;
                     }
                 }
-                return Nearest(null);
+                return Nearest(null, from);
             }
             catch (Exception e)
             {
@@ -363,10 +375,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The people of the nearest friendly settlement (that fits <paramref name="pred"/>).</summary>
-        private static Faction Nearest(Func<Faction, bool> pred)
+        /// <summary>The people of the nearest friendly settlement (that fits <paramref name="pred"/>) to the colony's home <paramref name="from"/>.</summary>
+        private static Faction Nearest(Func<Faction, bool> pred, Map from)
         {
-            var map = Home;
+            var map = from ?? Home;
             if (map == null) return null;
             Faction best = null;
             float bestDist = float.MaxValue;
@@ -442,7 +454,8 @@ namespace ColonyCouncil
             if (sleep == null) return;
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
-                if (t.nightHours.ContainsKey(p.ThingID) || !CurfewApplies(p)) continue;
+                // The colony's own people: another colony keeps its own hours.
+                if (t.nightHours.ContainsKey(p.ThingID) || !CurfewApplies(p) || !t.Ours(p)) continue;
                 var changed = new List<string>();
                 foreach (int h in NightHours)
                 {
@@ -510,18 +523,15 @@ namespace ColonyCouncil
 
         // ---------------- A quarantine ----------------
 
-        /// <summary>The factor on illnesses passing between people sharing a bedroom, from the decrees in force (1: none).</summary>
-        public static float ContagionFactor
+        /// <summary>The factor on illnesses passing between people sharing a bedroom, from the decrees in force in the sick one's colony (1: none).</summary>
+        public static float ContagionFactorFor(Pawn sick)
         {
-            get
-            {
-                var active = CouncilGameComponent.Instance?.decrees?.active;
-                if (active == null || active.Count == 0) return 1f;
-                float f = 1f;
-                for (int i = 0; i < active.Count; i++)
-                    if (active[i]?.def != null) f *= active[i].def.contagionFactor;
-                return Mathf.Clamp(f, 0f, 1f);
-            }
+            var active = (DecreeTracker.Of(sick) ?? CouncilGameComponent.Instance?.decrees)?.active;
+            if (active == null || active.Count == 0) return 1f;
+            float f = 1f;
+            for (int i = 0; i < active.Count; i++)
+                if (active[i]?.def != null) f *= active[i].def.contagionFactor;
+            return Mathf.Clamp(f, 0f, 1f);
         }
 
         /// <summary>The factor on Rimfolk's visitor events, from the decrees in force (1: none).</summary>

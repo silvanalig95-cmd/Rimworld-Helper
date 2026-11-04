@@ -198,7 +198,7 @@ namespace ColonyCouncil
             foreach (var t in PeopleTags.Identity(p))
                 if (groups || t.IndexOf(':') >= 0) tags.Add(prefix + t);
             foreach (var k in Pasts.Of(p)) tags.Add(prefix + "past:" + Pasts.Tag(k));
-            var office = ColonyCouncilMod.Settings.offices ? CouncilGameComponent.Instance?.offices.OfficeOf(p) : null;
+            var office = ColonyCouncilMod.Settings.offices ? OfficeTracker.HeldBy(p) : null;
             if (office != null) tags.Add(prefix + "office:" + office.defName.Replace("Council_Office_", ""));
         }
 

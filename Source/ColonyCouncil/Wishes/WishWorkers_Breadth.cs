@@ -210,7 +210,7 @@ namespace ColonyCouncil
             if (map.mapPawns.FreeColonistsSpawned.Count(CouncilGameComponent.CanVoiceWishes) < 2) yield break;
             bool missed = HasMemory(pawn, "Council_MissedMeeting") || HasMemory(pawn, "Council_DecidedWithoutMe");
             bool social = People.Passionate(pawn.skills?.GetSkill(SkillDefOf.Social));
-            bool officer = ColonyCouncilMod.Settings.offices && comp.offices.OfficeOf(pawn) != null;
+            bool officer = ColonyCouncilMod.Settings.offices && OfficeTracker.HeldBy(pawn) != null;
             if (!missed && !social && !officer) yield break;
             var c = Candidate(missed ? 1.5f : officer ? 1f : 0.7f, (missed ? "CC_Reason_MeetingMissed" : "CC_Reason_Meeting").Translate(pawn.Named("PAWN")));
             c.subjectKey = "colony";

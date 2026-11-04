@@ -89,9 +89,10 @@ namespace ColonyCouncil
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            var comp = CouncilGameComponent.Instance;
-            if (comp == null || comp.decrees.active.Count == 0 || recipient == null || !recipient.IsColonist || !initiator.IsColonist) return 0f;
-            foreach (var a in comp.decrees.active)
+            // The decrees of the initiator's own colony.
+            var decrees = initiator == null ? null : DecreeTracker.Of(initiator);
+            if (decrees == null || decrees.active.Count == 0 || recipient == null || !recipient.IsColonist || !initiator.IsColonist) return 0f;
+            foreach (var a in decrees.active)
             {
                 var mine = a.def.ReactionOf(initiator);
                 var theirs = a.def.ReactionOf(recipient);

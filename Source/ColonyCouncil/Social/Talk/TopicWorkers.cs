@@ -83,9 +83,11 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return 0f;
             float r = def.relevance * 0.6f;
-            if (comp.decrees.active.Count > 0) r += 0.4f;
+            // Their own colony's council.
+            var council = ColonyState.Of(a) ?? comp.SeatColony;
+            if (council.decrees.active.Count > 0) r += 0.4f;
             if (s.leader != null) r += 0.2f;
-            if (Find.TickManager.TicksGame - comp.ambitions.lastMeetingTick < GenDate.TicksPerDay * 10) r += 0.2f;
+            if (Find.TickManager.TicksGame - council.ambitions.lastMeetingTick < GenDate.TicksPerDay * 10) r += 0.2f;
             return r;
         }
 
@@ -109,7 +111,7 @@ namespace ColonyCouncil
                 case TrustLevel.Bitter: x = -0.5f; break;
                 default: x = 0f; break;
             }
-            foreach (var d in comp.decrees.active)
+            foreach (var d in (DecreeTracker.Of(p) ?? comp.decrees).active)
             {
                 if (d?.def == null) continue;
                 switch (d.def.ReactionOf(p))
@@ -131,7 +133,7 @@ namespace ColonyCouncil
             if (subject?.pawn != null && subject.pawn == s.leader) tags.Add("leader");
             if (s.leader == speaker) tags.Add("isleader");
             if (s.leader == other) tags.Add("toleader");
-            if (n?.tag != "decree" && (CouncilGameComponent.Instance?.decrees.active.Count ?? 0) > 0) tags.Add("decrees");
+            if (n?.tag != "decree" && (DecreeTracker.Of(speaker)?.active.Count ?? 0) > 0) tags.Add("decrees");
         }
     }
 

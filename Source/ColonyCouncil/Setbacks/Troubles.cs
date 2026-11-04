@@ -425,8 +425,8 @@ namespace ColonyCouncil
                 if (o == p || !Setbacks.Rival(p, o)) continue;
                 if (memories != null && memories.Any(m => m?.def == SetbackDefOf.Council_Setback_RivalHonoured && m.otherPawn == o)) continue;
                 string key = null, honor = null, tag = null;
-                var office = S.offices ? comp?.offices?.OfficeOf(o) : null;
-                if (office != null && comp.offices.OfficeOf(p) == null)
+                var office = S.offices ? OfficeTracker.HeldBy(o) : null;
+                if (office != null && OfficeTracker.HeldBy(p) == null)
                 {
                     key = "CC_Trouble_Cause_EnvySeat";
                     honor = office.label;

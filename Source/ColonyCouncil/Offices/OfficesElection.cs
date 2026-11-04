@@ -42,8 +42,9 @@ namespace ColonyCouncil
         private static float CampaignLean(OfficeDef office, Pawn voter, Pawn candidate)
         {
             var comp = CouncilGameComponent.Instance;
-            var e = comp?.offices?.election;
-            if (e == null || voter == null || candidate == null || voter == candidate) return 0f;
+            // The election of the voter's own colony.
+            var e = voter == null ? null : ColonyState.Of(voter)?.offices.election;
+            if (e == null || comp == null || voter == null || candidate == null || voter == candidate) return 0f;
             float s = e.CampaignerOf(candidate)?.LeanOf(voter) ?? 0f;
             for (int i = 0; i < e.races.Count; i++)
             {
@@ -103,7 +104,8 @@ namespace ColonyCouncil
         private bool Announce(CouncilGameComponent comp, int year, bool byElection)
         {
             if (election != null) return true;
-            var map = HappeningTracker.HomeMap() ?? Find.AnyPlayerHomeMap;
+            // Held at the colony's own home.
+            var map = HomeMap;
             var voters = Eligible();
             if (map == null || voters.Count < 2 || ElectionGathering == null || VoteJob == null) return false;
             if (CouncilCustoms.Appointer(voters) != null) return false;
@@ -231,7 +233,11 @@ namespace ColonyCouncil
             var def = DefDatabase<LetterDef>.GetNamedSilentFail("Rimfolk_ElectionLetter") ?? LetterDefOf.NeutralEvent;
             var look = e.spot.IsValid ? new LookTargets(new TargetInfo(e.spot, e.map)) : LookTargets.Invalid;
             var letter = LetterMaker.MakeLetter(title, text.ToString(), def, look);
-            if (letter is ChoiceLetter_Election ce) ce.year = e.year;
+            if (letter is ChoiceLetter_Election ce)
+            {
+                ce.year = e.year;
+                ce.map = e.map;
+            }
             Tell.Ask(letter, e.map);
         }
 
@@ -267,9 +273,10 @@ namespace ColonyCouncil
                 election = null;
                 return;
             }
-            if (e.map == null || !Find.Maps.Contains(e.map))
+            // Held at its own colony's home; a home no longer ours ends it (not merely a map gone).
+            if (e.map == null || e.map != HomeMap || !Homes.IsHome(e.map))
             {
-                e.map = HappeningTracker.HomeMap();
+                e.map = HomeMap;
                 if (e.map == null)
                 {
                     election = null;
@@ -338,18 +345,27 @@ namespace ColonyCouncil
                 foreach (var en in r.entries.ToList())
                 {
                     var p = en.pawn;
-                    if (p != null && MeetingAttendance.IsMember(p) && !p.DevelopmentalStage.Juvenile() && r.office.CanHold(p)) continue;
+                    if (p != null && MeetingAttendance.IsMember(p) && Ours(p) && !p.DevelopmentalStage.Juvenile() && r.office.CanHold(p)) continue;
                     r.entries.Remove(en);
                     if (r.endorsed == p) r.endorsed = null;
                     if (p != null)
-                        News.Post("CC_Elect_Dropped".Translate(p.Named("PAWN"), r.office.label.Named("OFFICE")).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
+                        Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_Dropped".Translate(p.Named("PAWN"), r.office.label.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 }
                 if (r.entries.Count > 0) continue;
                 e.races.Remove(r);
-                News.Post("CC_Elect_SeatLetGo".Translate(r.office.label.Named("OFFICE")).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
+                Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_SeatLetGo".Translate(r.office.label.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
             }
             e.campaigners.RemoveAll(c => c.pawn == null || !e.IsCandidate(c.pawn));
             if (e.races.Count == 0) EndWithout(e);
+        }
+
+        /// <summary>Its home is no longer ours: an election held there ends quietly (the seats keep whoever holds them).</summary>
+        internal void HomeLost()
+        {
+            var e = election;
+            if (e == null || Homes.IsHome(e.map)) return;
+            election = null;
+            if (e.gathering) EndGatheringLord(e);
         }
 
         /// <summary>Nothing left to vote on: the election ends quietly (the seats keep whoever holds them).</summary>

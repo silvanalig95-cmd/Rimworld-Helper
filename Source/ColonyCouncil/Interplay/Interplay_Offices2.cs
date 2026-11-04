@@ -163,7 +163,13 @@ namespace ColonyCouncil
         private static void EldersDay(CouncilGameComponent comp)
         {
             if (!S.offices) return;
-            var elders = comp.offices.HoldersOf(Elder);
+            // Each colony's own bench of elders, with its own young.
+            foreach (var council in ColonyState.Ticking())
+                EldersDay(comp, council.offices.HoldersOf(Elder));
+        }
+
+        private static void EldersDay(CouncilGameComponent comp, List<Pawn> elders)
+        {
             if (elders.Count == 0) return;
             foreach (var e in elders)
             {
@@ -182,7 +188,7 @@ namespace ColonyCouncil
         private static void ElderSits(CouncilGameComponent comp, Pawn e, Pawn young)
         {
             // together: called once the elder is beside them (EldersDay, through Together.When).
-            if (!On || !S.offices || comp?.offices == null || !comp.offices.HoldersOf(Elder).Contains(e) || e.skills == null) return;
+            if (!On || !S.offices || comp == null || OfficeTracker.HeldBy(e)?.defName != Elder || e.skills == null) return;
             var skill = e.skills.skills.Where(s => !s.TotallyDisabled && s.Level >= 6).OrderByDescending(s => s.Level).Select(s => s.def)
                 .FirstOrDefault(d => young.skills?.GetSkill(d) is SkillRecord r && !r.TotallyDisabled);
             if (skill != null) young.skills.Learn(skill, ElderLessonXp, true);

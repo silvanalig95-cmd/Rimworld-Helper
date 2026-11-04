@@ -478,7 +478,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool WakeStillWanted(Pawn waker, Pawn sleeper)
         {
-            var m = CouncilGameComponent.Instance?.ambitions?.meeting;
+            var m = AmbitionTracker.MeetingOn(waker?.Map);
             if (m == null || !m.Started || sleeper == null || waker == null) return false;
             if (waker.Drafted || !(waker.GetLord()?.LordJob is LordJob_CouncilMeeting)) return false;
             // No one is woken while there's danger about.
@@ -492,7 +492,7 @@ namespace ColonyCouncil
         public static void WakeByHand(Pawn waker, Pawn sleeper)
         {
             if (!WakeStillWanted(waker, sleeper)) return;
-            var m = CouncilGameComponent.Instance.ambitions.meeting;
+            var m = AmbitionTracker.MeetingOn(waker.Map);
             Wake(m, m.InviteOf(sleeper), waker);
         }
 

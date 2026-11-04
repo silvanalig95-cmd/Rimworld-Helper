@@ -252,7 +252,7 @@ namespace ColonyCouncil
                     why.Add(g, "CC_Heart_Why_Goal".Translate());
                 }
                 else if (ColonyCouncilMod.Settings.aspirations) why.Add(-5f, "CC_Heart_Why_NoGoal".Translate(), "CC_Heart_NeedHelp_Goal", false);
-                if (ColonyCouncilMod.Settings.offices && comp.offices.OfficeOf(p) != null)
+                if (ColonyCouncilMod.Settings.offices && OfficeTracker.HeldBy(p) != null)
                 {
                     v += 15f;
                     why.Add(15f, "CC_Heart_Why_Office".Translate());
@@ -368,9 +368,10 @@ namespace ColonyCouncil
                 v += 20f;
                 why.Add(20f, "CC_Heart_Why_Traveling".Translate());
             }
-            var comp = CouncilGameComponent.Instance;
-            if (comp?.decrees?.active != null && p.IsFreeColonist)
-                foreach (var a in comp.decrees.active)
+            // Their own colony's decrees.
+            var decrees = p.IsFreeColonist ? DecreeTracker.Of(p)?.active : null;
+            if (decrees != null)
+                foreach (var a in decrees)
                 {
                     if (a?.def == null || a.def.ReactionOf(p) > DecreeReaction.Dislike) continue;
                     v -= 10f;

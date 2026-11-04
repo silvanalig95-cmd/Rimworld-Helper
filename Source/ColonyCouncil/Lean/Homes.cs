@@ -214,6 +214,15 @@ namespace ColonyCouncil
             return MapOf(HomesMath.Of(here, bed, last, SeatKey, keys));
         }
 
+        /// <summary>The last home someone lived on for a day without a break, while it's still a home; null if none.</summary>
+        public static Map LastHome(Pawn p)
+        {
+            if (p == null) return null;
+            Refresh();
+            var t = Instance?.TieOf(p, false);
+            return t == null ? null : MapOf(t.last);
+        }
+
         /// <summary>
         /// Everyone who may be one of the colony's free people, wherever they are: on a map, in a caravan or a transporter
         /// in flight, or where other mods keep them (an outpost, a vehicle). Not yet sorted by home.

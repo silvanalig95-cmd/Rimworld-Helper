@@ -620,14 +620,19 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
             int now = Now;
-            foreach (var d in comp.decrees.active)
-                if (d?.def != null && now - d.startTick < GenDate.TicksPerHour * 2 && NoteOnce("decree|" + d.def.defName + "|" + d.startTick, 30f))
-                    tr.Note("Rimfolk_Topic_Council", d.def.label, -1, "decree");
-            if (now - comp.ambitions.lastMeetingTick < GenDate.TicksPerHour * 2 && NoteOnce("meeting|" + comp.ambitions.lastMeetingTick, 30f))
-                tr.Note("Rimfolk_Topic_Council", null, -1, "meeting");
-            var amb = comp.ambitions.active;
-            if (amb?.def != null && now - amb.startTick < GenDate.TicksPerHour * 2 && NoteOnce("project|" + amb.startTick, 30f))
-                tr.Note("Rimfolk_Topic_Project", amb.def.label, -1, "chosen");
+            // Each colony's council.
+            foreach (var council in ColonyState.Ticking())
+            {
+                foreach (var d in council.decrees.active)
+                    if (d?.def != null && now - d.startTick < GenDate.TicksPerHour * 2 && NoteOnce("decree|" + d.def.defName + "|" + d.startTick, 30f))
+                        tr.Note("Rimfolk_Topic_Council", d.def.label, -1, "decree");
+                var ambitions = council.ambitions;
+                if (now - ambitions.lastMeetingTick < GenDate.TicksPerHour * 2 && NoteOnce("meeting|" + ambitions.lastMeetingTick, 30f))
+                    tr.Note("Rimfolk_Topic_Council", null, -1, "meeting");
+                var amb = ambitions.active;
+                if (amb?.def != null && now - amb.startTick < GenDate.TicksPerHour * 2 && NoteOnce("project|" + amb.startTick, 30f))
+                    tr.Note("Rimfolk_Topic_Project", amb.def.label, -1, "chosen");
+            }
         }
 
         // A tame that ended with the animal turning on its tamer, read from the social log.

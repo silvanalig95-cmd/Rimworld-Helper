@@ -913,7 +913,7 @@ namespace ColonyCouncil
         public GoodsBy by;
 
         /// <summary>A quartermaster stretches the stores.</summary>
-        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (OfficeTracker.For(ctx.map)?.CostFactor ?? 1f)));
 
         public static int RawFood(Map map)
         {
@@ -1101,6 +1101,9 @@ namespace ColonyCouncil
 
     public class DilemmaTracker : IExposable
     {
+        /// <summary>The colony whose questions and traditions these are (ColonyState.cs); set by it, not saved.</summary>
+        internal ColonyState colony;
+
         public int nextTick = -1;
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
         /// <summary>Traditions: how often the tradition answer was chosen, which are established, and breaks in a row.</summary>

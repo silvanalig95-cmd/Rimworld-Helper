@@ -173,6 +173,9 @@ namespace ColonyCouncil
     /// <summary>Schedules council meetings and tracks the active ambition.</summary>
     public class AmbitionTracker : IExposable
     {
+        /// <summary>The colony whose ambition and meeting these are (ColonyState.cs); set by it, not saved.</summary>
+        internal ColonyState colony;
+
         public AmbitionState active;
         /// <summary>A meeting that has been called and hasn't ended yet.</summary>
         public CouncilMeeting meeting;
@@ -243,8 +246,9 @@ namespace ColonyCouncil
 
             if (active != null)
             {
-                if (active.map != null && Find.Maps.Contains(active.map)) StageCheck(active);
-                if (active.map == null || !Find.Maps.Contains(active.map))
+                // Only while its map is still one of our homes (not merely still there: a home handed over is no longer ours).
+                if (Homes.IsHome(active.map)) StageCheck(active);
+                if (!Homes.IsHome(active.map))
                 {
                     active = null;
                 }
@@ -267,7 +271,7 @@ namespace ColonyCouncil
             if (meeting != null)
             {
                 // The rest (start time, reminder, waking) runs every few seconds in MeetingTick.
-                if (meeting.map == null || !Find.Maps.Contains(meeting.map)) meeting = null;
+                if (!Homes.IsHome(meeting.map)) meeting = null;
                 return;
             }
             if (now < nextMeetingTick) return;
@@ -292,8 +296,8 @@ namespace ColonyCouncil
             }
             if (reached < 0 || a.def == null || a.stage >= a.def.goals.Count) return;
             string next = a.def.goals[a.stage].Describe(a.map, a.Baseline(a.stage));
-            News.Post("CC_Ambition_StageReached".Translate(a.def.LabelCap.ToString().Named("AMBITION"), (reached + 1).Named("STAGE"),
-                a.def.goals.Count.Named("COUNT"), next.Named("NEXT")).Resolve(), new LookTargets(a.proposer), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
+            Tell.Minor(NewsKind.Colony, null, a.map, "CC_Ambition_StageReached".Translate(a.def.LabelCap.ToString().Named("AMBITION"), (reached + 1).Named("STAGE"),
+                a.def.goals.Count.Named("COUNT"), next.Named("NEXT")).Resolve(), new LookTargets(a.proposer), MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>The proposer cheers at halfway and frets when time is short and the work isn't.</summary>
@@ -318,25 +322,48 @@ namespace ColonyCouncil
             if (line.NullOrEmpty()) return;
             line = line.Formatted(p.Named("PAWN"), a.def.label.Named("AMBITION")).Resolve();
             CouncilGameComponent.Speak(p, line, new Color(0.7f, 0.85f, 1f));
-            News.Post("CC_Ambition_CheckIn".Translate(p.Named("PAWN"), a.def.label.Named("AMBITION"), progress.ToStringPercent().Named("PROGRESS")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(p), NewsKind.Colony, MessageTypeDefOf.SilentInput);
+            Tell.Minor(NewsKind.Colony, null, a.map, "CC_Ambition_CheckIn".Translate(p.Named("PAWN"), a.def.label.Named("AMBITION"), progress.ToStringPercent().Named("PROGRESS")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(p), MessageTypeDefOf.SilentInput);
         }
 
-        public static Map MeetingMap()
+        /// <summary>Where this colony's council meets: its own home, while someone of it there could speak (each colony meets at home).</summary>
+        public Map MeetingMap()
         {
-            Map best = null;
-            int bestCount = 0;
-            foreach (var m in Find.Maps)
+            var m = colony?.Map;
+            if (m == null) return null;
+            var here = m.mapPawns.FreeColonistsSpawned;
+            for (int i = 0; i < here.Count; i++)
+                if (CouncilGameComponent.CanVoiceWishes(here[i])) return m;
+            return null;
+        }
+
+        /// <summary>The colony's council for a map (the seat's for a map that isn't a home).</summary>
+        public static AmbitionTracker For(Map map) => ColonyState.For(map)?.ambitions;
+
+        /// <summary>The council whose meeting is called at this map, or null.</summary>
+        public static AmbitionTracker WithMeetingOn(Map map)
+        {
+            var colonies = CouncilGameComponent.Instance?.colonies;
+            if (colonies == null || map == null) return null;
+            for (int i = 0; i < colonies.Count; i++)
             {
-                if (!m.IsPlayerHome) continue;
-                int n = m.mapPawns.FreeColonistsSpawned.Count(CouncilGameComponent.CanVoiceWishes);
-                if (n > bestCount)
-                {
-                    best = m;
-                    bestCount = n;
-                }
+                var t = colonies[i]?.ambitions;
+                if (t?.meeting != null && t.meeting.map == map) return t;
             }
-            return best;
+            return null;
+        }
+
+        /// <summary>The meeting called at this map, whichever colony's, or null.</summary>
+        public static CouncilMeeting MeetingOn(Map map) => WithMeetingOn(map)?.meeting;
+
+        /// <summary>
+        /// Its home is no longer ours, or its council is let go: a meeting called there and an ambition being worked at
+        /// there end quietly (as they always did once the map was gone).
+        /// </summary>
+        internal void HomeLost()
+        {
+            if (meeting != null && !Homes.IsHome(meeting.map)) meeting = null;
+            if (active != null && !Homes.IsHome(active.map)) active = null;
         }
 
         private struct Pitch
@@ -451,9 +478,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>Who runs the meeting: the best talker, helped by how much the others trust them.</summary>
-        private static Pawn PickChair(List<Pawn> speakers, CouncilGameComponent comp)
+        private Pawn PickChair(List<Pawn> speakers, CouncilGameComponent comp)
         {
-            var speaker = comp.offices.Speaker;
+            // The colony's own speaker.
+            var speaker = (colony?.offices ?? comp.offices).Speaker;
             if (speaker != null && speakers.Contains(speaker)) return speaker;
             return speakers.OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) + comp.standings.TrustOf(p) / 20f + Rand.Value).FirstOrDefault();
         }
@@ -466,7 +494,7 @@ namespace ColonyCouncil
         {
             var m = meeting;
             if (m == null) return;
-            if (m.map == null || !Find.Maps.Contains(m.map))
+            if (!Homes.IsHome(m.map))
             {
                 meeting = null;
                 return;
@@ -991,7 +1019,7 @@ namespace ColonyCouncil
             string line = a.proposer != null ? (a.def.achieved.Pick(ToneUtility.ToneFor(a.proposer)) ?? "").Formatted(a.proposer.Named("PAWN")).Resolve() : "";
             string text = "CC_Ambition_AchievedText".Translate(a.def.label, ((Find.TickManager.TicksGame - a.startTick) / (float)GenDate.TicksPerDay).ToString("0.#")).Resolve();
             if (!line.NullOrEmpty()) text = "\"" + line + "\"\n\n" + text;
-            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
             if (a.proposer != null) CouncilGameComponent.Speak(a.proposer, line, new Color(0.6f, 1f, 0.6f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
@@ -1012,7 +1040,7 @@ namespace ColonyCouncil
                 comp.standings.Change(p, p == a.proposer ? -8f : -3f, "CC_Log_AmbitionFailed".Translate(a.def.label));
                 if (Settings.Negatives) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_AmbitionFailed, null, Settings.PenaltyScale);
             }
-            News.Post("CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
+            Tell.Minor(NewsKind.Colony, null, a.map, "CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), MessageTypeDefOf.NeutralEvent);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionFailed,
                 "CC_Chronicle_AmbitionFailed".Translate(a.def.label, a.Progress.ToStringPercent()).Resolve(), a.proposer));
             nextMeetingTick = Mathf.Min(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 2);
@@ -1070,7 +1098,8 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                var tracker = CouncilGameComponent.Instance?.ambitions;
+                // The council of the colony that met.
+                var tracker = AmbitionTracker.For(map);
                 for (int i = 0; i < options.Count; i++)
                 {
                     var def = options[i];

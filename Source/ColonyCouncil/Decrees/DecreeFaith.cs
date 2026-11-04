@@ -53,9 +53,9 @@ namespace ColonyCouncil
             get
             {
                 if (!Faiths.On) return null;
+                // In force in any of the colonies (the faith it names is one for the whole game).
                 var d = Def;
-                var comp = CouncilGameComponent.Instance;
-                if (d == null || comp?.decrees == null || !comp.decrees.IsActive(d)) return null;
+                if (d == null || !DecreeTracker.AnyInForce(d)) return null;
                 return Tracker?.decreeFaith;
             }
         }
@@ -197,7 +197,8 @@ namespace ColonyCouncil
             int day = a == null ? 1 : Mathf.Max(1, (Find.TickManager.TicksGame - a.startTick) / GenDate.TicksPerDay + 1);
             // The trust log says why on the first morning and every fifth after, rather than every day.
             string why = day % 5 == 1 ? "CC_Log_FaithDecree".Translate(faith.name.Named("FAITH")).Resolve() : null;
-            var people = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger()).ToList();
+            // The people of the colony that declared it.
+            var people = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && t.Ours(p)).ToList();
             // apart: a decree is felt by each colonist wherever they are; nobody here does anything to anyone. Its pull on
             // everyone of another faith is their leaning toward it, fed each day (Faith/FaithLeanings.cs).
             foreach (var p in people)

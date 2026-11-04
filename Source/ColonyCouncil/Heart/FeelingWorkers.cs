@@ -170,7 +170,7 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
-            var office = ColonyCouncilMod.Settings.offices ? comp.offices.OfficeOf(p) : null;
+            var office = ColonyCouncilMod.Settings.offices ? OfficeTracker.HeldBy(p) : null;
             if (office != null) sink.Add(3f, "CC_Heart_Cause_Office".Translate(office.label));
             if (ColonyCouncilMod.Settings.epithets && comp.epithets.Of(p).Any()) sink.Add(2f, "CC_Heart_Cause_Epithet".Translate());
             var title = p.royalty?.MostSeniorTitle;

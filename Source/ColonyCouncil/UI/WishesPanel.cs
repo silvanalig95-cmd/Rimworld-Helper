@@ -375,7 +375,7 @@ namespace ColonyCouncil
             if (st == null) return "";
             float trust = st.trust;
             string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();
-            var office = comp.offices.OfficeOf(p);
+            var office = OfficeTracker.HeldBy(p);
             if (office != null) tip = "CC_Office_Holds".Translate(p.LabelShort, office.label) + "\n" + tip;
             var goal = comp.aspirations.Active(p);
             if (goal != null && Settings.aspirations) tip = "CC_Asp_Tooltip".Translate(goal.Goal, goal.Progress.ToStringPercent()) + "\n" + tip;

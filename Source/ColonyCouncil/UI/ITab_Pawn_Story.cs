@@ -246,7 +246,7 @@ namespace ColonyCouncil
             if (st != null)
                 o.standing.Add(new UiKit.PillSpec(("CC_Trust_" + PawnStanding.LevelFor(st.trust)).Translate().CapitalizeFirst(), UiKit.TrustColor(st.trust), Icons.Trust,
                     "CC_Trust_Header".Translate() + "\n\n" + "CC_Trust_Tip".Translate(p.LabelShort, st.trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve()));
-            var office = comp.offices.OfficeOf(p);
+            var office = OfficeTracker.HeldBy(p);
             if (office != null)
                 o.standing.Add(new UiKit.PillSpec(office.LabelCap, UiKit.Gold, Icons.Council,
                     "CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve() + (office.description.NullOrEmpty() ? "" : "\n\n" + office.description)));

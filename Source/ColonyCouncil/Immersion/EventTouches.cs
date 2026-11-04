@@ -163,7 +163,7 @@ namespace ColonyCouncil
             var at = a.Spawned ? a : b.Spawned ? b : null;
             if (at == null || !VisualTouches.InView(out var map, out var view) || map != at.Map || !view.ExpandedBy(12).Contains(at.Position)) return;
             bool offices = ColonyCouncilMod.Settings?.offices == true && comp.offices != null;
-            bool officer = offices && (comp.offices.OfficeOf(a) != null || comp.offices.OfficeOf(b) != null);
+            bool officer = offices && (OfficeTracker.HeldBy(a) != null || OfficeTracker.HeldBy(b) != null);
             bool promised = comp.wishes != null && comp.wishes.Any(w => w != null && w.state == WishState.Open && w.def?.defName == "Council_Wish_Wedding" && (w.Involves(a) || w.Involves(b)));
             if (!officer && !promised) return;
             Look();
@@ -180,11 +180,11 @@ namespace ColonyCouncil
                     vt.QueueFleck(o, music, 2, Rand.RangeInclusive(1, 4));
                     singers++;
                 }
-                bool councillor = offices && comp.offices.OfficeOf(o) != null;
-                if (speaker == null || (councillor && !(offices && comp.offices.OfficeOf(speaker) != null))) speaker = o;
+                bool councillor = offices && OfficeTracker.HeldBy(o) != null;
+                if (speaker == null || (councillor && !(offices && OfficeTracker.HeldBy(speaker) != null))) speaker = o;
             }
             if (speaker == null || !Speaks) return;
-            bool speakerHolds = offices && comp.offices.OfficeOf(speaker) != null;
+            bool speakerHolds = offices && OfficeTracker.HeldBy(speaker) != null;
             string line = Flavor.FromPool("Council_Pool_TouchCouncilWedding", speaker, null, null, speakerHolds ? "councillor" : "friend", promised ? "promised" : "officer");
             if (line.NullOrEmpty()) return;
             if (Speech.Say(speaker, line.Formatted(speaker.Named("PAWN"), a.Named("A"), b.Named("B")).Resolve(), null, SpeechColor))

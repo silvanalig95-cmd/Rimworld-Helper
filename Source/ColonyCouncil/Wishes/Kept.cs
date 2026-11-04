@@ -388,7 +388,8 @@ namespace ColonyCouncil
             if (p == null || p.Dead || p.Destroyed || !p.IsColonist) return KeptCheck.Over;
             // Enslaved or imprisoned: their claim on the council is gone. Otherwise (a guest's status for a while) wait.
             if (!Minds(p)) return p.IsSlaveOfColony || p.IsPrisoner ? KeptCheck.Over : KeptCheck.Unclear;
-            if (w.decree != null) return comp.decrees.IsActive(w.decree) ? KeptCheck.Holds : KeptCheck.Gone;
+            // The decree as their own colony has it.
+            if (w.decree != null) return (DecreeTracker.Of(p) ?? comp.decrees).IsActive(w.decree) ? KeptCheck.Holds : KeptCheck.Gone;
             if (w.wish?.def == null) return KeptCheck.Over;
             var map = MapOf(w);
             // The place it was given is gone (abandoned, or the colony moved on): nothing left to keep.

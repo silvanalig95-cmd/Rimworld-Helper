@@ -53,7 +53,8 @@ namespace ColonyCouncil
                     looked = true;
                     def = DefDatabase<DecreeDef>.GetNamedSilentFail("Council_Decree_CleanSweep");
                 }
-                on = def != null && (CouncilGameComponent.Instance?.decrees?.IsActive(def) ?? false);
+                // In force in any colony; whose is asked of each colonist (WorkGivers).
+                on = def != null && DecreeTracker.AnyInForce(def);
                 if (!on && lists.Count > 0) lists.Clear();
                 return on;
             }
@@ -91,6 +92,8 @@ namespace ColonyCouncil
                 var cleaning = WorkTypeDefOf.Cleaning;
                 if (pawn == null || cleaning == null || !pawn.RaceProps.Humanlike || !pawn.IsColonist || pawn.IsQuestLodger()
                     || pawn.WorkTypeIsDisabled(cleaning)) return source;
+                // Their own colony's sweep: with one colony that is the one in force.
+                if ((CouncilGameComponent.Instance?.colonies.Count ?? 0) > 1 && !(DecreeTracker.Of(pawn)?.IsActive(def) ?? false)) return source;
                 return Swept(pawn, source, cleaning);
             }
             catch (System.Exception e)

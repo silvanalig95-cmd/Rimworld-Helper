@@ -450,6 +450,10 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # One council per colony (ColonyState.cs): the trackers inside each have rows of their own below, sized for one colony
+    "ColonyState.cs:colonies": ("fixed", 1, 160,
+                                "one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept "
+                                f"{const('Lean/ColonyStateMath.cs', 'KeepLostDays', 30):.0f} days (ColonyStateMath.KeepLostDays), then let go"),
     # The world ledger (World/Ledger/): its own ties. Nothing writes them yet (stage 0 step 3a reads today's stores as
     # views); modelled at a generous pace for when favours, words, grudges, debts and guest kin move in, and stage 2.
     "World/Ledger/WorldLedger.cs:ties": ("cap", (C["LedgerTies"], 1), 260,

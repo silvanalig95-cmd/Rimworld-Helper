@@ -237,9 +237,10 @@ namespace ColonyCouncil
                         break;
                     }
             // Decrees that ask a lot, for those who resent them.
-            var comp = CouncilGameComponent.Instance;
-            if (comp?.decrees?.active != null && p.IsFreeColonist)
-                foreach (var a in comp.decrees.active)
+            // Their own colony's decrees.
+            var decrees = p.IsFreeColonist ? DecreeTracker.Of(p)?.active : null;
+            if (decrees != null)
+                foreach (var a in decrees)
                 {
                     if (a?.def == null || a.def.strainPerDay <= 0f) continue;
                     var reaction = a.def.ReactionOf(p);
@@ -271,7 +272,7 @@ namespace ColonyCouncil
             factor *= Heart.FeelingRelief(h) * HeartMath.ReliefTraitFactor(traits);
             if (h.needs != null && h.needs.Length == 4 && HeartNeedMath.AllWellMet(h.needs[0].value, h.needs[1].value, h.needs[2].value, h.needs[3].value))
                 factor *= HeartNeedMath.AllMetRelief;
-            float decree = Heart.DecreeRelief();
+            float decree = Heart.DecreeRelief(p);
             factor *= decree;
             float council = decree > 1f && calm && p.IsFreeColonist ? 0.25f * hours : 0f;
             quiet *= factor * hours;

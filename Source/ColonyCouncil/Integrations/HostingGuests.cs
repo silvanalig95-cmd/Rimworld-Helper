@@ -34,7 +34,7 @@ namespace ColonyCouncil
                 w += 0.5f;
                 reason ??= "CC_PM_Reason_HostKind".Translate(pawn.Named("PAWN"));
             }
-            var office = ColonyCouncilMod.Settings.offices ? CouncilGameComponent.Instance?.offices?.OfficeOf(pawn) : null;
+            var office = ColonyCouncilMod.Settings.offices ? OfficeTracker.HeldBy(pawn) : null;
             if (office?.defName == "Council_Office_Steward" || office?.defName == "Council_Office_Speaker")
             {
                 w += 0.7f;

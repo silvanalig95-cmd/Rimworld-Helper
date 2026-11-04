@@ -176,8 +176,8 @@ namespace ColonyCouncil
             foreach (var k in new[] { "CC_Heart_Help_Sleep", "CC_Heart_Help_Party", "CC_Heart_Help_Friends" })
                 if (!keys.Contains(k)) keys.Add(k);
             var rest = Heart.RestDecree;
-            var comp = CouncilGameComponent.Instance;
-            if (rest != null && comp != null && h.strain >= 30f && !comp.decrees.IsActive(rest) && comp.decrees.CannotEnact(rest) == null)
+            var decrees = DecreeTracker.Of(p);
+            if (rest != null && decrees != null && h.strain >= 30f && !decrees.IsActive(rest) && decrees.CannotEnact(rest) == null)
                 keys.Insert(Mathf.Min(2, keys.Count), "CC_Heart_Help_RestDecree");
             return TextUtil.JoinAnd(keys.Take(n).Select(k => k == "CC_Heart_Help_Needs" && unmet != null ? unmet : k.Translate().ToString()).ToList());
         }

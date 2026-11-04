@@ -80,11 +80,8 @@ namespace ColonyCouncil
         public List<string> weddingAsked = new List<string>();
         /// <summary>The colony's next steps: the plan and what the council proposes (Building/NextSteps.cs).</summary>
         public List<NextStep> nextSteps = new List<NextStep>();
-        public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
-        public DecreeTracker decrees = new DecreeTracker();
-        public DilemmaTracker dilemmas = new DilemmaTracker();
         public AnnalsTracker annals = new AnnalsTracker();
         /// <summary>The council's automations, each its own switch (Building/Automations.cs).</summary>
         public AutomationTracker automations = new AutomationTracker();
@@ -100,7 +97,6 @@ namespace ColonyCouncil
         public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
-        public OfficeTracker offices = new OfficeTracker();
         public SocialWeb social = new SocialWeb();
         public DreamTracker dreams = new DreamTracker();
         public AspirationTracker aspirations = new AspirationTracker();
@@ -246,11 +242,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref weddingPlans, "weddingPlans", LookMode.Deep);
             Scribe_Collections.Look(ref weddingAsked, "weddingAsked", LookMode.Value);
             Scribe_Collections.Look(ref nextSteps, "nextSteps", LookMode.Deep);
-            Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
-            Scribe_Deep.Look(ref decrees, "decrees");
-            Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref automations, "automations");
             Scribe_Deep.Look(ref relays, "relays");
@@ -260,7 +253,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
-            Scribe_Deep.Look(ref offices, "offices");
+            // Offices, decrees, ambitions and dilemmas: one council per colony (ColonyState.cs).
+            ExposeColonies();
             Scribe_Deep.Look(ref social, "social");
             Scribe_Deep.Look(ref dreams, "dreams");
             Scribe_Deep.Look(ref aspirations, "aspirations");
@@ -302,10 +296,13 @@ namespace ColonyCouncil
                     tamingsVersion = 1;
                     foreach (var w in wishes)
                         if (w?.def?.Worker is WishWorker_Companion) w.baseline = 0f;
-                    var a = ambitions?.active;
-                    if (a?.def?.goals != null && a.baselines != null)
-                        for (int i = 0; i < a.def.goals.Count && i < a.baselines.Count; i++)
-                            if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
+                    foreach (var c in colonies)
+                    {
+                        var a = c.ambitions?.active;
+                        if (a?.def?.goals != null && a.baselines != null)
+                            for (int i = 0; i < a.def.goals.Count && i < a.baselines.Count; i++)
+                                if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
+                    }
                 }
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
                 if (expectingTold == null) expectingTold = new List<int>();
@@ -330,11 +327,8 @@ namespace ColonyCouncil
                     recentWishTicks = new List<int>();
                 }
                 if (everWished == null) everWished = new HashSet<string>();
-                if (ambitions == null) ambitions = new AmbitionTracker();
                 if (touches == null) touches = new PersonalTouchTracker();
                 if (standings == null) standings = new StandingTracker();
-                if (decrees == null) decrees = new DecreeTracker();
-                if (dilemmas == null) dilemmas = new DilemmaTracker();
                 if (annals == null) annals = new AnnalsTracker();
                 if (automations == null) automations = new AutomationTracker();
                 if (relays == null) relays = new LineRelayTracker();
@@ -343,7 +337,6 @@ namespace ColonyCouncil
                 buildAhead ??= new BuildAheadTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
-                if (offices == null) offices = new OfficeTracker();
                 if (social == null) social = new SocialWeb();
                 if (dreams == null) dreams = new DreamTracker();
                 if (aspirations == null) aspirations = new AspirationTracker();
@@ -381,8 +374,13 @@ namespace ColonyCouncil
             }
             // A called council meeting: its start time, reminder, sleepers being fetched and anyone drafted away. One already
             // under way is looked after even if ambitions were just turned off, so nobody is left in it against the player.
-            if (t % 60 == 23 && ambitions.meeting != null && (Settings.enableAmbitions || ambitions.meeting.Started))
-                Safe("council meeting", () => ambitions.MeetingTick(this));
+            // Each colony's own (ColonyState.cs); one that lost its home lets its meeting go here.
+            if (t % 60 == 23)
+                for (int i = 0; i < colonies.Count; i++)
+                {
+                    var amb = colonies[i].ambitions;
+                    if (amb.meeting != null && (Settings.enableAmbitions || amb.meeting.Started)) Safe("council meeting", () => amb.MeetingTick(this));
+                }
             // The hour's work in four parts and the day's in two, each on its own tick of the hour (Sched), in the order
             // they always ran, so no single tick carries all of it.
             // Each part is timed for Rimfolk's clock (Lean/PassClock.cs), which changes nothing it does.
@@ -473,7 +471,8 @@ namespace ColonyCouncil
             Safe("battles", () => social.Hourly(this));
             Safe("bonds", Bonds.Hourly);
             Safe("losses", () => vendettas.Hourly(this));
-            Safe("decrees", () => decrees.Hourly(this));
+            // Each colony's council in turn, in the order the homes were founded (ColonyState.cs).
+            foreach (var c in ColonyState.Ticking()) Safe("decrees", () => c.decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
             if (Settings.enableWishes) Safe("promises kept", () => kept.Hourly(this));
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
@@ -482,9 +481,11 @@ namespace ColonyCouncil
 
         private void HourlyLife()
         {
-            if (Settings.enableAmbitions) Safe("ambitions", () => ambitions.HourlyTick(this));
+            var councils = ColonyState.Ticking();
+            if (Settings.enableAmbitions)
+                foreach (var c in councils) Safe("ambitions", () => c.ambitions.HourlyTick(this));
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
-            Safe("dilemmas", dilemmas.Hourly);
+            foreach (var c in councils) Safe("dilemmas", c.dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
@@ -506,7 +507,8 @@ namespace ColonyCouncil
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
             // An election under way: the campaign, the hustings, polling day and the count (Offices/OfficesElection.cs).
-            if (offices.election != null) Safe("election", () => offices.ElectionHourly(this));
+            foreach (var c in ColonyState.Ticking())
+                if (c.offices.election != null) Safe("election", () => c.offices.ElectionHourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
             Safe("together", () =>
             {

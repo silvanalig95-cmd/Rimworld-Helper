@@ -378,7 +378,7 @@ namespace ColonyCouncil
 
         private int Need(DilemmaContext ctx) =>
             PlayOutMath.CarryAmount(count, variant ? (ctx as HappeningContext)?.variant ?? 0 : ctx?.count ?? 0, factor,
-                steward ? CouncilGameComponent.Instance?.offices.CostFactor ?? 1f : 1f, tens);
+                steward ? OfficeTracker.For(ctx?.map)?.CostFactor ?? 1f : 1f, tens);
 
         public override string Unavailable(DilemmaContext ctx)
         {

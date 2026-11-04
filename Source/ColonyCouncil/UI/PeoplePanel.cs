@@ -236,7 +236,7 @@ namespace ColonyCouncil
         {
             var s = ColonyCouncilMod.Settings;
             var info = new RowInfo();
-            var office = comp.offices.OfficeOf(p);
+            var office = OfficeTracker.HeldBy(p);
             if (office != null) info.office = office.LabelCap;
             var goal = s.aspirations ? comp.aspirations.Active(p) : null;
             if (goal != null)

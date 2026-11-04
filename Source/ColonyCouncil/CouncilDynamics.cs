@@ -672,16 +672,22 @@ namespace ColonyCouncil
         /// <summary>The day's first half (Sched.CouncilDayFirst): trust and standards, decrees, anniversaries, names, journals, offices.</summary>
         private void DailyFirst()
         {
+            // Councils of homes lost long enough ago are let go (ColonyState.cs).
+            Safe("colonies", ColoniesDaily);
             standings.Daily();
             var s = Settings;
+            // Each colony's council in turn (ColonyState.cs): its people's standards by its decrees and steward, its
+            // decrees' trust, its petitions, its offices.
+            var councils = ColonyState.Ticking();
             // Each step on its own, so one failure doesn't take the rest of the day with it.
-            Safe("standards", () => Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay)));
-            Safe("decree trust", DecreeDaily);
-            if (s.enableWishes) Safe("decree petitions", () => decrees.DailyRequests(this));
+            foreach (var c in councils) Safe("standards", () => Standards.Daily(standings, c.decrees.active.Sum(a => a.def.standardsPerDay), c));
+            foreach (var c in councils) Safe("decree trust", () => DecreeDaily(c));
+            if (s.enableWishes)
+                foreach (var c in councils) Safe("decree petitions", () => c.decrees.DailyRequests(this));
             if (s.anniversaries) Safe("anniversaries", Anniversaries);
             Safe("epithets", () => epithets.Daily(this));
             Safe("journals", journals.Daily);
-            Safe("offices", () => offices.Daily(this));
+            foreach (var c in councils) Safe("offices", () => c.offices.Daily(this));
             // A year's letter at each anniversary of the landing (World/YearLetter.cs), with the annals' setting.
             if (s.annals) Safe("year's letter", () => YearLetter.Daily(this));
         }
@@ -709,12 +715,17 @@ namespace ColonyCouncil
             Safe("kept from moving on", () => MovingOnHeld.Daily(this));
             Safe("animal life", () => AnimalLife.Daily(this));
             Safe("history", RecordDay);
-            if (Settings.offices && offices.Speaker != null)
-                Safe("speaker", () =>
+            if (Settings.offices)
+                foreach (var c in ColonyState.Ticking())
                 {
-                    // A good speaker keeps people feeling heard.
-                    foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList()) standings.Change(p, 0.3f, null);
-                });
+                    if (c.offices.Speaker == null) continue;
+                    Safe("speaker", () =>
+                    {
+                        // A good speaker keeps their own colony's people feeling heard.
+                        foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+                            if (c.Has(p)) standings.Change(p, 0.3f, null);
+                    });
+                }
             Safe("trust effects", () =>
             {
                 foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
@@ -775,8 +786,9 @@ namespace ColonyCouncil
 
             if (!bitter || !Settings.Harsh || !Settings.allowQuitting || !CanVoiceWishes(p)) return;
             if (now - st.bitterSince < GenDate.TicksPerDay * 3 || p.DevelopmentalStage.Juvenile() || p.IsQuestLodger()) return;
-            // Never the colony's last few people: that would just end the game.
-            if (PawnsFinder.AllMaps_FreeColonists.Count(c => !c.IsQuestLodger()) < 4) return;
+            // Never the colony's last few people: that would just end the game (or that colony's life, counted per colony).
+            var colony = ColonyState.Of(p);
+            if (PawnsFinder.AllMaps_FreeColonists.Count(c => !c.IsQuestLodger() && (colony == null || colony.Has(c))) < 4) return;
             var partner = LovePartnerRelationUtility.ExistingLovePartner(p);
             if (partner != null && partner.IsColonist && !partner.Dead && standings.LevelOf(partner) != TrustLevel.Bitter) return;
             if (!Rand.Chance(0.3f)) return;
@@ -827,9 +839,10 @@ namespace ColonyCouncil
 
         // ================= Decrees =================
 
-        public void Notify_DecreeEnacted(DecreeDef def)
+        /// <summary>A decree declared in a colony: its letter, with that colony's own for and against.</summary>
+        public void Notify_DecreeEnacted(DecreeDef def, ColonyState colony = null)
         {
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger()).ToList();
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && (colony == null || colony.Has(p))).ToList();
             var lovers = pawns.Where(p => def.ReactionOf(p) >= DecreeReaction.Like).ToList();
             var haters = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).OrderBy(p => def.ReactionOf(p)).ToList();
             var text = new System.Text.StringBuilder();
@@ -861,25 +874,26 @@ namespace ColonyCouncil
             }
             if (lovers.Count + haters.Count > 0)
                 text.Append("\n\n").Append("CC_Decree_Count".Translate(lovers.Count, haters.Count).Resolve());
-            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
+            Tell.Letter(NewsKind.Colony, Importance.Notable, colony?.Map, "CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
             AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
             annals.decrees.Add(def.label);
         }
 
-        public void Notify_DecreeEnded(DecreeDef def, bool early)
+        public void Notify_DecreeEnded(DecreeDef def, bool early, Map home = null)
         {
-            News.Post((early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
+            Tell.Minor(NewsKind.Colony, null, home, (early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), null, MessageTypeDefOf.NeutralEvent);
             AddChronicle(new ChronicleEntry(ChronicleKind.Council, (early ? "CC_Chronicle_DecreeRepealed" : "CC_Chronicle_DecreeExpired").Translate(def.label).Resolve(), null));
         }
 
-        /// <summary>Living under a decree you hate wears down your trust in the council; one you love builds it.</summary>
-        private void DecreeDaily()
+        /// <summary>Living under a decree you hate wears down your trust in the council; one you love builds it. Each colony's own decrees, for its own people.</summary>
+        private void DecreeDaily(ColonyState colony)
         {
+            var decrees = colony.decrees;
             if (decrees.active.Count == 0) return;
             decrees.Daily();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
-                if (p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;
+                if (p.IsQuestLodger() || p.DevelopmentalStage.Baby() || !colony.Has(p)) continue;
                 foreach (var a in decrees.active)
                 {
                     float delta;

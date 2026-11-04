@@ -60,7 +60,7 @@ namespace ColonyCouncil
             if (h == null) return;
             val *= HeartMath.WorkFactor(h.Band);
             if (!p.IsFreeColonist) return;
-            float decree = Heart.DecreeWorkFactor(out _);
+            float decree = Heart.DecreeWorkFactor(p, out _);
             if (decree != 1f) val *= decree;
         }
 
@@ -73,7 +73,7 @@ namespace ColonyCouncil
             float f = HeartMath.WorkFactor(h.Band);
             if (f != 1f) text = "CC_Heart_StatLine".Translate(HeartView.BandLabel(h.Band), f.ToStringPercent()).Resolve();
             DecreeDef which = null;
-            float decree = p.IsFreeColonist ? Heart.DecreeWorkFactor(out which) : 1f;
+            float decree = p.IsFreeColonist ? Heart.DecreeWorkFactor(p, out which) : 1f;
             if (decree != 1f && which != null)
             {
                 string line = "CC_Heart_StatDecree".Translate(which.label, decree.ToStringPercent()).Resolve();
