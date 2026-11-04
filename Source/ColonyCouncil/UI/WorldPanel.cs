@@ -231,6 +231,7 @@ namespace ColonyCouncil
                 var meeting = council.ambitions?.meeting;
                 if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))
                 {
+                    var at = meeting.map;
                     timed.Add(new Entry
                     {
                         title = ColonyState.Several ? "CC_Tell_At".Translate(Homes.Name(meeting.map).Named("PLACE"), "CC_World_Meeting".Translate().Named("TEXT")).Resolve() : "CC_World_Meeting".Translate().ToString(),
@@ -239,7 +240,12 @@ namespace ColonyCouncil
                         color = Calm,
                         dueTick = meeting.Started ? -1 : Mathf.Max(now, meeting.scheduledTick),
                         meterLabel = "CC_UI_StartsIn".Translate(),
-                        click = () => MainTabWindow_Council.OpenTab("Ambition")
+                        click = () =>
+                        {
+                            // With more than one colony, to the colony that meets, so the page shows its council.
+                            if (ColonyState.Several && Find.CurrentMap != at && Homes.IsHome(at)) Current.Game.CurrentMap = at;
+                            MainTabWindow_Council.OpenTab("Ambition");
+                        }
                     });
                 }
             }

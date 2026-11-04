@@ -268,7 +268,7 @@ namespace ColonyCouncil
                     text = AtColony(council, (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(r.pawn.LabelShort, r.def.label).Resolve()),
                     note = MainTabWindow_Council.AgoString(r.tick),
                     tip = Tip(r.line.NullOrEmpty() ? null : "\"" + r.line + "\"", ClickPage("Decrees")),
-                    click = Page("Decrees"),
+                    click = CouncilPage(council, "Decrees"),
                     order = r.tick
                 });
             }
@@ -507,12 +507,28 @@ namespace ColonyCouncil
                             text = AtColony(council, "CC_Week_Meeting".Translate()),
                             note = called && meeting.Started ? "CC_Week_UnderWay".Translate().ToString() : "CC_Week_In".Translate(UiKit.Duration(Mathf.Max(0, until))).Resolve(),
                             tip = Tip(called ? (meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now)) : null, ClickPage("Ambition")),
-                            click = Page("Ambition"),
+                            click = CouncilPage(council, "Ambition"),
                             order = Mathf.Max(0, until)
                         });
                 }
             }
             return c;
+        }
+
+        /// <summary>
+        /// A click to one of the council's pages about one colony: with more than one colony, the map in view goes to that
+        /// colony first, so the page shows its council.
+        /// </summary>
+        private static Action CouncilPage(ColonyState council, string page)
+        {
+            var open = Page(page);
+            var map = council?.Map;
+            if (map == null || !ColonyState.Several) return open;
+            return () =>
+            {
+                if (Find.CurrentMap != map && Homes.IsHome(map)) Current.Game.CurrentMap = map;
+                open();
+            };
         }
 
         /// <summary>With more than one colony, the settlement's name before a line about one colony's council.</summary>
