@@ -58,6 +58,7 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            AfterLoadKeeps();
             Changed();
         }
 
@@ -280,6 +281,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextTie, "nextTie", 1);
             Scribe_Values.Look(ref nextNumber, "nextNumber", 1);
             ExposeKnown();
+            ExposeKeeps();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<Tie>();

@@ -17,6 +17,8 @@ namespace ColonyCouncil
         public Pawn pawn;
         public string name;
         public Faction people;
+        /// <summary>Why they're kept in the world (WorldLedger.Keep): none, and the world's own clean-up decides.</summary>
+        public List<string> kept = new List<string>();
 
         /// <summary>Their name: the pawn's own while there is one, else the one kept.</summary>
         public string Name => pawn != null && !pawn.Discarded ? pawn.LabelShort : name ?? "?";
@@ -28,6 +30,12 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pawn, "pawn", true);
             Scribe_Values.Look(ref name, "name");
             Scribe_References.Look(ref people, "people");
+            Scribe_Collections.Look(ref kept, "kept", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                kept ??= new List<string>();
+                kept.RemoveAll(k => k.NullOrEmpty());
+            }
         }
     }
 
@@ -177,6 +185,7 @@ namespace ColonyCouncil
             // Not while a save is being read: the stores are still handing over their people.
             if (Scribe.mode != LoadSaveMode.Inactive && Scribe.mode != LoadSaveMode.Saving) return;
             prunedDay = day;
+            CheckKeeps();
             var named = new HashSet<Ref>();
             foreach (var t in ties)
             {
@@ -217,8 +226,8 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Some reason keeps them in the world (none are kept through the ledger yet).</summary>
-        private static bool HeldInWorld(LedgerPerson p) => false;
+        /// <summary>Some reason keeps them in the world (WorldLedger.Keep).</summary>
+        private static bool HeldInWorld(LedgerPerson p) => p.kept != null && p.kept.Count > 0;
 
         private void ExposeKnown()
         {

@@ -813,9 +813,9 @@ namespace ColonyCouncil
 
         private void Unpin(Pawn p)
         {
-            // Not while they're a nemesis, or another memo (a hunt they lead), a world event (a warlord), a story or a mission still needs them.
-            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || Holds(p) || WorldSituations.Holds(p)) return;
-            if (StoryChains.Holds(p) || Missions.Holds(p)) return;
+            // Not while anything else of Rimfolk keeps them: a nemesis, another memo (a hunt they lead), a world event (a
+            // warlord), a story, a mission, a notable, a regular, a camp that may come back (WorldLedger.Held).
+            if (p == null || WorldLedger.Held(p)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
 
@@ -906,7 +906,7 @@ namespace ColonyCouncil
             if (p == null || p.Dead || !p.RaceProps.Humanlike) return;
             var old = departed.FirstOrDefault(d => d.pawn == p);
             if (old != null) departed.Remove(old);
-            bool pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(p) || (old?.pinned ?? false);
+            bool pinned = WorldLedger.Keep(p, KeepFor.Departed) || (old?.pinned ?? false);
             departed.Add(new Departed { pawn = p, name = p.LabelShort, tick = Now, quit = p == quitting || (old?.quit ?? false), pinned = pinned });
             foreach (var d in departed.Where(d => !AskedAbout(d.pawn)).Take(Mathf.Max(0, departed.Count - 6)).ToList()) Forget(d);
         }
@@ -918,6 +918,7 @@ namespace ColonyCouncil
         public void Forget(Departed d)
         {
             departed.Remove(d);
+            if (d.pawn != null && !departed.Any(x => x.pawn == d.pawn)) WorldLedger.Release(d.pawn, KeepFor.Departed);
             if (d.pinned && d.pawn != null && !AskedAbout(d.pawn)) Unpin(d.pawn);
         }
 
@@ -964,7 +965,13 @@ namespace ColonyCouncil
         public Memo Remember(string kind, Pawn pawn, Faction faction = null, string def = null, string text = null, bool won = false, Pawn other = null, Map map = null)
         {
             var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won, home = Homes.KeyForMemo(map) };
-            if (pawn != null && !pawn.Dead && pawn.Faction != Faction.OfPlayer) m.pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(pawn);
+            // Kept in the world while a memo waits on them; the game told (pinned) unless they're dead or the colony's own.
+            if (pawn != null)
+            {
+                bool tell = !pawn.Dead && pawn.Faction != Faction.OfPlayer;
+                bool added = WorldLedger.Keep(pawn, KeepFor.Memo, tell);
+                if (tell) m.pinned = added;
+            }
             memos.Add(m);
             while (memos.Count > 24 && memos.Any(x => !Keeps(x)))
                 Drop(memos.Where(x => !Keeps(x)).OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
@@ -984,6 +991,7 @@ namespace ColonyCouncil
             m.used = true;
             // Still being asked about in a letter: the pin stays until the memo is dropped.
             if (m.pinned && m.pawn != null && AskedAbout(m.pawn)) return;
+            if (m.pawn != null && !Holds(m.pawn)) WorldLedger.Release(m.pawn, KeepFor.Memo);
             if (m.pinned && m.pawn != null) Unpin(m.pawn);
             m.pinned = false;
         }

@@ -94,7 +94,7 @@ namespace ColonyCouncil
             var held = c.members.Where(p => p != null && !p.Discarded).ToList();
             void Release(IEnumerable<Pawn> ps)
             {
-                foreach (var p in ps.Where(p => p != null && !p.Spawned && (past == null || !past.people.Contains(p)))) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+                foreach (var p in ps.Where(p => p != null && (past == null || !past.people.Contains(p)))) LetGo(p, past);
             }
             if (c.kind.fights || !FactionMemory.Remembers(c.faction) || !CampStoryMath.Remembered(c.ending, c.arrivedTick >= 0, c.tension))
             {
@@ -121,10 +121,10 @@ namespace ColonyCouncil
             }
             else
             {
-                foreach (var p in past.people.Where(p => p != null && !kept.Contains(p) && !p.Spawned)) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+                foreach (var p in past.people.Where(p => p != null && !kept.Contains(p)).ToList()) LetGo(p, past);
             }
             past.people = kept;
-            foreach (var p in kept) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+            foreach (var p in kept) WorldLedger.Keep(p, KeepFor.Camp);
             Release(held.Where(p => !kept.Contains(p)));
             past.place = c.place;
             past.leftTick = Now;
@@ -153,7 +153,17 @@ namespace ColonyCouncil
         {
             if (c?.kind == null || c.kind.fights || c.faction == null || !CampStoryMath.Remembered(c.ending, c.arrivedTick >= 0, c.tension)) return;
             foreach (var p in c.members.Where(p => p != null && !p.Dead && !p.Discarded && p.Faction == c.faction && !c.joined.Contains(p)))
-                Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+                WorldLedger.Keep(p, KeepFor.Camp);
+        }
+
+        /// <summary>
+        /// No longer kept for a camp (another past camp may still keep them): back to the world's own keeping if nothing
+        /// else of Rimfolk keeps them (WorldLedger.Release), and they're out in the world (one still on a map is left be).
+        /// </summary>
+        private static void LetGo(Pawn p, PastCamp except)
+        {
+            if (p == null || Past.Any(c => c != except && c.people.Contains(p))) return;
+            if (WorldLedger.Release(p, KeepFor.Camp) && !p.Spawned) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
 
         /// <summary>The memory fades: their people go back to the world's own keeping.</summary>
@@ -161,7 +171,7 @@ namespace ColonyCouncil
         {
             var tracker = CampTracker.Instance;
             if (past == null || tracker == null) return;
-            foreach (var p in past.people.Where(p => p != null && !p.Spawned)) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+            foreach (var p in past.people.Where(p => p != null).ToList()) LetGo(p, past);
             tracker.past.Remove(past);
         }
 

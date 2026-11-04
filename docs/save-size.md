@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 467; modelled: 467; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,179 KB** after a year, **2,590 KB** after two, **2,752 KB** after five.
+Saved collections found: 468; modelled: 468; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,192 KB** after a year, **2,603 KB** after two, **2,765 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -30,6 +30,7 @@ Rimfolk's part of the save, roughly: **2,179 KB** after a year, **2,590 KB** aft
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
+| `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 137 | 137 | 137 | 24.1 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Aspirations/Aspirations.cs:counters` | counters of known pawns | known | 165 | 180 | 225 | 19.8 |
@@ -52,7 +53,6 @@ Rimfolk's part of the save, roughly: **2,179 KB** after a year, **2,590 KB** aft
 | `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
-| `World/Ledger/LedgerPersons.cs:persons` | every notable and anyone a tie names; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 72 | 72 | 72 | 11.2 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
 | `Offices/Election.cs:ballots` | one ranked ballot a voter a seat, while it lasts | while | 280 | 280 | 280 | 10.9 |
@@ -472,6 +472,7 @@ Rimfolk's part of the save, roughly: **2,179 KB** after a year, **2,590 KB** aft
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
+| `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |
 | `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
@@ -172,5 +173,32 @@ namespace ColonyCouncil
         /// </summary>
         public static bool KeepTown(bool notableThere, bool stands, int gone, int now, int dayTicks = TieRules.DayTicks) =>
             notableThere || !stands && gone >= 0 && now - gone < (long)GoneTownDays * dayTicks;
+
+        // ---------------- Keeping someone in the world ----------------
+
+        /// <summary>A reason to keep someone, once each. Returns whether it is new.</summary>
+        public static bool AddReason(List<string> kept, string reason)
+        {
+            if (kept == null || string.IsNullOrEmpty(reason) || kept.Contains(reason)) return false;
+            kept.Add(reason);
+            return true;
+        }
+
+        /// <summary>A reason taken back. Returns whether it was there.</summary>
+        public static bool RemoveReason(List<string> kept, string reason) => kept != null && reason != null && kept.Remove(reason);
+
+        /// <summary>Someone stays in the world while any reason holds (or something outside the ledger holds them).</summary>
+        public static bool Held(List<string> kept, bool outside) => outside || kept != null && kept.Count > 0;
+
+        /// <summary>Held for something other than this reason.</summary>
+        public static bool HeldBesides(List<string> kept, string reason, bool outside)
+        {
+            if (outside) return true;
+            if (kept != null)
+                foreach (var k in kept)
+                    if (k != reason)
+                        return true;
+            return false;
+        }
     }
 }

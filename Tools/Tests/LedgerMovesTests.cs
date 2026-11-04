@@ -359,6 +359,48 @@ public static class LedgerMovesTests
             Check(room, "every notable and regular has room for their regard");
         }
 
+        // ---------------- One way to keep someone in the world ----------------
+
+        {
+            var kept = new List<string>();
+            Check(LedgerMath.AddReason(kept, "notable") && !LedgerMath.AddReason(kept, "notable") && kept.Count == 1, "a reason is kept once");
+            Check(!LedgerMath.AddReason(kept, null) && !LedgerMath.AddReason(kept, "") && !LedgerMath.AddReason(null, "memo"), "no reason, nothing kept");
+            Check(LedgerMath.Held(kept, false) && !LedgerMath.Held(new List<string>(), false) && LedgerMath.Held(new List<string>(), true) && !LedgerMath.Held(null, false),
+                "held while a reason holds, or something outside the ledger holds them");
+            Check(!LedgerMath.HeldBesides(kept, "notable", false) && LedgerMath.HeldBesides(kept, "memo", false) && LedgerMath.HeldBesides(kept, "notable", true),
+                "held besides one reason: by another, or from outside");
+            Check(LedgerMath.RemoveReason(kept, "notable") && !LedgerMath.RemoveReason(kept, "notable") && !LedgerMath.Held(kept, false), "taken back once, and then nothing holds them");
+
+            // Seven parts keep a few people for their own reasons and let go in any order: someone is let go exactly when
+            // the last reason goes, never while another still holds them.
+            string[] ways = { "notable", "memo", "departed", "regular", "camp", "chain", "situation:3" };
+            var r = new Random(17);
+            var reasons = new Dictionary<int, List<string>>();
+            var truth = new Dictionary<int, HashSet<string>>();
+            bool rightAlways = true, letGoWhileHeld = false;
+            for (int step = 0; step < 5000; step++)
+            {
+                int who = r.Next(1, 6);
+                string why = ways[r.Next(ways.Length)];
+                if (!reasons.TryGetValue(who, out var list)) reasons[who] = list = new List<string>();
+                if (!truth.TryGetValue(who, out var set)) truth[who] = set = new HashSet<string>();
+                if (r.Next(2) == 0)
+                {
+                    LedgerMath.AddReason(list, why);
+                    set.Add(why);
+                }
+                else
+                {
+                    LedgerMath.RemoveReason(list, why);
+                    set.Remove(why);
+                    bool free = !LedgerMath.Held(list, false);
+                    if (free != (set.Count == 0)) rightAlways = false;
+                    if (free && set.Count > 0) letGoWhileHeld = true;
+                }
+            }
+            Check(rightAlways && !letGoWhileHeld, "five thousand keeps and lets-go by seven parts: let go exactly when the last reason goes");
+        }
+
         return n;
     }
 }

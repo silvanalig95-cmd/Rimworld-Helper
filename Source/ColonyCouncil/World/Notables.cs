@@ -599,7 +599,11 @@ namespace ColonyCouncil
         private static void Replace(Notable n, Pawn p, bool made)
         {
             n.EndRegard();
+            var old = n.pawn;
             n.SetPerson(p);
+            // The one who led is no longer kept as a notable (the game keeps a people's leaders itself); their follower is.
+            if (old != null && Instance != null && !Instance.notables.Any(x => x != n && x.pawn == old)) WorldLedger.Release(old, KeepFor.Notable);
+            WorldLedger.Keep(p, KeepFor.Notable, false);
             n.made = made;
             n.personal = 0f;
             n.regards.Clear();
@@ -661,7 +665,9 @@ namespace ColonyCouncil
             n.SetPerson(p);
             notables.Add(n);
             if (s != null) WorldLedger.NoteTown(s.ID, s.Name, s.Faction);
-            if (!p.Spawned && !made && Find.WorldPawns.Contains(p) && !PawnUtility.IsFactionLeader(p)) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+            // Kept in the world while they're a notable; the game told now unless it keeps them already (made with
+            // KeepForever, a people's leader) or they're on a map.
+            WorldLedger.Keep(p, KeepFor.Notable, !p.Spawned && !made && Find.WorldPawns.Contains(p) && !PawnUtility.IsFactionLeader(p));
             Changed();
             return n;
         }
@@ -712,10 +718,14 @@ namespace ColonyCouncil
             notables.Remove(n);
             n.EndRegard();
             var p = n.pawn;
-            if (p != null && !p.Discarded && !notables.Any(x => x.pawn == p) && !letters.Any(l => l.Open && l.notable == n.id))
+            // No longer kept as a notable; let go (back to the world's own keeping, or gone if Rimfolk made them) when
+            // nothing else of Rimfolk keeps them (WorldLedger.Release).
+            bool last = p != null && !notables.Any(x => x.pawn == p);
+            bool free = last && WorldLedger.Release(p, KeepFor.Notable);
+            if (last && !p.Discarded && !letters.Any(l => l.Open && l.notable == n.id))
             {
-                if (n.made && !p.Dead && WorldSituationWorker.FreeInWorld(p) && !PawnUtility.IsFactionLeader(p) && !HeldElsewhere(p) && !HasTies(p)) Arrivals.Discard(p);
-                else if (!p.Spawned && !PawnUtility.IsFactionLeader(p) && !HeldElsewhere(p)) Arrivals.Release(p);
+                if (n.made && !p.Dead && WorldSituationWorker.FreeInWorld(p) && !PawnUtility.IsFactionLeader(p) && free && !HasTies(p)) Arrivals.Discard(p);
+                else if (!p.Spawned && !PawnUtility.IsFactionLeader(p) && free) Arrivals.Release(p);
             }
             foreach (var l in letters.Where(l => l.Open && l.notable == n.id)) NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
             Changed();
@@ -723,14 +733,6 @@ namespace ColonyCouncil
 
         /// <summary>Someone of the colony's own is family to them (then the world's own clean-up decides, not Rimfolk).</summary>
         private static bool HasTies(Pawn p) => p.relations != null && p.relations.DirectRelations.Any(r => r.otherPawn != null && r.otherPawn.Faction == Faction.OfPlayer);
-
-        /// <summary>Another part of Rimfolk keeps them in the world (a camp that may come back, a world event, an event waiting).</summary>
-        private static bool HeldElsewhere(Pawn p)
-        {
-            if (CampReturns.Past.Any(c => c.people.Contains(p))) return true;
-            if (WorldSituations.Holds(p)) return true;
-            return CouncilGameComponent.Instance?.happenings?.Holds(p) ?? false;
-        }
 
         private void LetAllGo()
         {
@@ -746,7 +748,7 @@ namespace ColonyCouncil
             {
                 var p = n.pawn;
                 if (p == null || p.Dead || p.Discarded || p.Spawned || PawnUtility.IsFactionLeader(p) || !Find.WorldPawns.Contains(p)) continue;
-                Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+                WorldLedger.Keep(p, KeepFor.Notable);
             }
         }
 

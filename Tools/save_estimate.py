@@ -452,9 +452,12 @@ MODEL = {
     # views); modelled at a generous pace for when favours, words, grudges, debts and guest kin move in, and stage 2.
     "World/Ledger/WorldLedger.cs:ties": ("cap", (C["LedgerTies"], 1), 260,
                                          "ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days"),
-    # Persons: every notable, and anyone a tie names (the parties to favours, words, claims; a pawn reference and a name).
-    "World/Ledger/LedgerPersons.cs:persons": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"] + 2 * (C["OutsiderFavours"] + C["OutsiderWords"]) + 10, 160,
-                                              "every notable and anyone a tie names; the rest go at the day's tidy (LedgerMath.KeepPerson)"),
+    # Persons: every notable, anyone a tie names (the parties to favours, words, claims, regard; a pawn reference and a
+    # name), and anyone kept in the world (memos 24, the departed 6, regulars 5, past camps' people, stories, situations).
+    "World/Ledger/LedgerPersons.cs:persons": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"] + 2 * (C["OutsiderFavours"] + C["OutsiderWords"]) + 10
+                                              + 24 + 6 + 5 + 20 + 10, 180,
+                                              "every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson)"),
+    "World/Ledger/LedgerPersons.cs:kept": ("fixed", 2, 30, "per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons)"),
     "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["NotableTowns"] + C["NotableFaces"] + 4, 120,
                                                   "the towns the notables live in, and a gone town for two years (LedgerMath.KeepTown)"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),

@@ -157,7 +157,7 @@ namespace ColonyCouncil
             r.lastTick = Now;
             if (kind != "back") r.bond += RegularMath.Warm;
             if (r.friendOf == null || r.friendOf.Dead) r.friendOf = ctx.a;
-            Find.WorldPawns.ForcefullyKeptPawns.Add(x);
+            WorldLedger.Keep(x, KeepFor.Regular);
             while (t.regulars.Count > RegularMath.KeepMax)
             {
                 int i = RegularMath.Weakest(t.regulars.Select(q => q.bond).ToArray(), t.regulars.Select(q => q.DaysSince).ToArray());
@@ -185,7 +185,8 @@ namespace ColonyCouncil
         {
             var t = CouncilGameComponent.Instance?.happenings;
             if (r == null || t == null) return;
-            if (r.pawn != null && !r.pawn.Spawned && !r.pawn.IsColonist) Find.WorldPawns.ForcefullyKeptPawns.Remove(r.pawn);
+            // Back to the world's own keeping, unless something else of Rimfolk keeps them (WorldLedger.Release).
+            if (r.pawn != null && WorldLedger.Release(r.pawn, KeepFor.Regular) && !r.pawn.Spawned && !r.pawn.IsColonist) Find.WorldPawns.ForcefullyKeptPawns.Remove(r.pawn);
             t.regulars.Remove(r);
             r.EndBond();
         }
