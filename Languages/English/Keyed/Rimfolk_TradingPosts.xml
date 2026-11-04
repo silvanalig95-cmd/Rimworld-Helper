@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Trading posts (World/Region/TradingPost*.cs; docs/design/stage1-region.md, item 3). The post's kind by its people's
+       age and the colony's means of reaching it are the age forms CC_Form_Post_* (Rimfolk_Ages.xml). -->
+
+  <!-- Its name, its keeper's title and what is left of it, by its people's age. -->
+  <CC_Post_Name_Tribal>{TOWN} Trading Camp</CC_Post_Name_Tribal>
+  <CC_Post_Name_Medieval>{TOWN} Market</CC_Post_Name_Medieval>
+  <CC_Post_Name_Industrial>{TOWN} Depot</CC_Post_Name_Industrial>
+  <CC_Post_Name_Spacer>{TOWN} Ground Station</CC_Post_Name_Spacer>
+  <CC_Post_Keeper_Tribal>trader</CC_Post_Keeper_Tribal>
+  <CC_Post_Keeper_Medieval>factor</CC_Post_Keeper_Medieval>
+  <CC_Post_Keeper_Industrial>manager</CC_Post_Keeper_Industrial>
+  <CC_Post_Keeper_Spacer>quartermaster</CC_Post_Keeper_Spacer>
+  <CC_Post_Left_Tribal>a cold fire ring and empty drying racks</CC_Post_Left_Tribal>
+  <CC_Post_Left_Medieval>empty stalls and a shuttered hall</CC_Post_Left_Medieval>
+  <CC_Post_Left_Industrial>an empty warehouse behind a chained gate</CC_Post_Left_Industrial>
+  <CC_Post_Left_Spacer>a dark landing pad and a few empty containers</CC_Post_Left_Spacer>
+
+  <!-- Its fortune's cause, named in its panel. -->
+  <CC_Post_Cause_Opened>newly opened</CC_Post_Cause_Opened>
+  <CC_Post_Cause_Sacked>sacked by raiders of {ENEMY}</CC_Post_Cause_Sacked>
+
+  <!-- The opening letter. -->
+  <CC_Post_Opened_Label>{POST} opened</CC_Post_Opened_Label>
+  <CC_Post_Opened_Text>{PEOPLE} have opened {POST}, a {KIND} of theirs {WHERE}, so that their goods no longer have to come all the way from {FROM} to trade with {COLONY}.</CC_Post_Opened_Text>
+  <CC_Post_Opened_Text_NoFrom>{PEOPLE} have opened {POST}, a {KIND} of theirs {WHERE}, to trade with {COLONY}.</CC_Post_Opened_Text_NoFrom>
+  <CC_Post_Opened_Keeper>{KEEPER}, their {TITLE} there, sends greetings, and hopes to see the colony's people at the post often.</CC_Post_Opened_Keeper>
+  <CC_Post_Opened_Keeper_NoName>Their {TITLE} there sends greetings, and hopes to see the colony's people at the post often.</CC_Post_Opened_Keeper_NoName>
+  <CC_Post_Opened_Means>{MEANS} from {COLONY} can trade at {POST} as at any of their towns: send one from the world map.</CC_Post_Opened_Means>
+  <CC_Post_Opened_Means_Pods>{MEANS} from {COLONY} can trade at {POST} as at any of their towns, and so can transport pods: send them from the world map.</CC_Post_Opened_Means_Pods>
+  <CC_Post_Opened_Caravans>While it stands, more of the trader caravans that come to {COLONY} will be theirs.</CC_Post_Opened_Caravans>
+  <CC_Post_Opened_Road>Goods on the road draw robbers, though, and bandits may take to it.</CC_Post_Opened_Road>
+
+  <!-- The keeper's warning, and things mended. -->
+  <CC_Post_Warned_Label>{POST} may close</CC_Post_Warned_Label>
+  <CC_Post_Warned_Text>{KEEPER}, their {TITLE} at {POST}, writes that {PEOPLE} will close the {KIND} unless things mend between them and {COLONY}.</CC_Post_Warned_Text>
+  <CC_Post_Warned_Text_NoName>The {TITLE} at {POST} writes that {PEOPLE} will close the {KIND} unless things mend between them and {COLONY}.</CC_Post_Warned_Text_NoName>
+  <CC_Post_Warned_How>What their people think of the colony decides it: once their goodwill is back at zero or more, the post stays. Gifts and good turns to them raise it.</CC_Post_Warned_How>
+  <CC_Post_Mended>{KEEPER} at {POST} writes that the {KIND} will stay open, now that things have mended between {PEOPLE} and {COLONY}.</CC_Post_Mended>
+  <CC_Post_Mended_NoName>Word from {POST}: the {KIND} will stay open, now that things have mended between {PEOPLE} and {COLONY}.</CC_Post_Mended_NoName>
+
+  <!-- A sack it survived. -->
+  <CC_Post_Sacked_Label>{POST} sacked</CC_Post_Sacked_Label>
+  <CC_Post_Sacked_Text>Raiders of {ENEMY}, at war with {PEOPLE}, have sacked {POST}, their {KIND} {WHERE}. They took what they could carry and burned much of the rest. The post still stands, but it will be a long while before it trades as it did.</CC_Post_Sacked_Text>
+
+  <!-- How it ended. -->
+  <CC_Post_Closed_Label>{POST} closed</CC_Post_Closed_Label>
+  <CC_Post_Closed_Soured>{PEOPLE} have packed up {POST}, their {KIND} {WHERE}: things between them and {COLONY} never mended. Nothing is left there but {LEFT}.</CC_Post_Closed_Soured>
+  <CC_Post_Closed_War>With {PEOPLE} at war with {COLONY}, they have packed up {POST}, their {KIND} {WHERE}. Nothing is left there but {LEFT}.</CC_Post_Closed_War>
+  <CC_Post_Closed_Sacked>Raiders of {ENEMY} have sacked {POST}, the {KIND} {PEOPLE} kept {WHERE}, and it could not take another blow: {PEOPLE} have given it up, and its families are on the road. Nothing is left there but {LEFT}.</CC_Post_Closed_Sacked>
+  <CC_Post_Razed>{PEOPLE} will not forget that {COLONY} razed {POST}, the {KIND} they opened to trade with it.</CC_Post_Razed>
+
+  <!-- What its keeper remembers of the colony from the start (a notable's note). -->
+  <CC_Post_Note_Opened>Opened {POST} to trade with the colony.</CC_Post_Note_Opened>
+
+  <!-- The history's lines. -->
+  <CC_Post_H_Opened>{PEOPLE} opened {POST}, a {KIND}, to trade with {COLONY}.</CC_Post_H_Opened>
+  <CC_Post_H_Warned>{PEOPLE} warned that {POST} would close unless things mended.</CC_Post_H_Warned>
+  <CC_Post_H_Mended>Things mended, and {PEOPLE} kept {POST} open.</CC_Post_H_Mended>
+  <CC_Post_H_Struck>Raiders of {ENEMY} sacked {POST} of {PEOPLE}.</CC_Post_H_Struck>
+  <CC_Post_H_Soured>{PEOPLE} closed {POST}: things never mended.</CC_Post_H_Soured>
+  <CC_Post_H_War>{PEOPLE} closed {POST} when they went to war with the colony.</CC_Post_H_War>
+  <CC_Post_H_Sacked>{PEOPLE} gave up {POST} after raiders of {ENEMY} sacked it.</CC_Post_H_Sacked>
+  <CC_Post_H_Razed>The colony razed {POST} of {PEOPLE}.</CC_Post_H_Razed>
+
+  <!-- What the peoples remember of it (World/FactionMemory.cs). -->
+  <CC_Memory_Deed_postRazed>razed the trading post they opened for the colony</CC_Memory_Deed_postRazed>
+  <CC_Memory_Deed_postRazed_Name>razed {NAME}, the trading post they opened for the colony</CC_Memory_Deed_postRazed_Name>
+
+  <!-- The region map's panel for a post. -->
+  <CC_Post_Panel_Header>Trading post</CC_Post_Panel_Header>
+  <CC_Post_Panel_What>A {KIND} {PEOPLE} opened {AGO} to trade with the colony.</CC_Post_Panel_What>
+  <CC_Post_Panel_WhatHome>A {KIND} {PEOPLE} opened {AGO} to trade with {HOME}.</CC_Post_Panel_WhatHome>
+  <CC_Post_Panel_Keeper>{KEEPER} keeps it as their {TITLE}.</CC_Post_Panel_Keeper>
+  <CC_Post_Panel_Warned>Its {TITLE} has written that it will close unless things mend.</CC_Post_Panel_Warned>
+  <CC_Post_Panel_Closing>It is being packed up, once the colony's business there is done.</CC_Post_Panel_Closing>
+  <CC_Post_Panel_Caravans>While it stands, more of the trader caravans that come are theirs.</CC_Post_Panel_Caravans>
+  <CC_Post_Panel_Sacked>Raiders sacked it {SACKED}.</CC_Post_Panel_Sacked>
+
+  <!-- The region window's page and This week (World/Region/TradingPostPage.cs). -->
+  <CC_Tab_TradingPosts>trading posts</CC_Tab_TradingPosts>
+  <CC_PostPg_Header>Trading posts</CC_PostPg_Header>
+  <CC_PostPg_Sub>Posts friends have opened near the colony's homes, and how the last ones went.</CC_PostPg_Sub>
+  <CC_PostPg_Stat>{COUNT} standing</CC_PostPg_Stat>
+  <CC_PostPg_Off>Trading posts are switched off in the settings: no new post opens, and those standing are ordinary towns of their people.</CC_PostPg_Off>
+  <CC_PostPg_Standing>Standing near the colony</CC_PostPg_Standing>
+  <CC_PostPg_None>No trading post stands near the colony.</CC_PostPg_None>
+  <CC_PostPg_Rules>A people at peace with the colony and on good terms with it (goodwill 40 or more, or allied), who have traded with it three times or more lately and whose towns are far off (15 tiles or more), may open a trading post a few days from a home: a town of theirs that trades like any other.</CC_PostPg_Rules>
+  <CC_PostPg_Past>How the last ones went</CC_PostPg_Past>
+  <CC_PostPg_NoPast>No trading post has opened near the colony yet.</CC_PostPg_NoPast>
+  <CC_PostPg_PastLine>{AGO}: {TEXT}</CC_PostPg_PastLine>
+  <CC_PostPg_Title>{POST} of {PEOPLE}</CC_PostPg_Title>
+  <CC_PostPg_Show>Show it</CC_PostPg_Show>
+  <CC_PostPg_Week>{POST} of {PEOPLE}</CC_PostPg_Week>
+  <CC_PostPg_WeekWarned>may close unless things mend</CC_PostPg_WeekWarned>
+  <CC_PostPg_WeekClosing>being packed up</CC_PostPg_WeekClosing>
+
+  <!-- The setting. -->
+  <CC_Settings_TradingPosts>Trading posts</CC_Settings_TradingPosts>
+  <CC_SetNote_TradingPosts>Friends who trade with a far colony may open a trading post a few days off, and close it if relations sour.</CC_SetNote_TradingPosts>
+  <CC_Settings_TradingPosts_Tip>A people at peace with the colony, with goodwill 40 or more (or allied), who have traded with it three times or more in the last 120 days, whose nearest town is 15 tiles or more away and who keep town traders (the Empire too), may open a trading post near a home. Each home is looked at every 15 days, with a 20% chance when a people qualifies: two posts a home at most, one per people, none within 60 days of another opening or closing there. The post stands 6 to 12 tiles from the home, toward their nearest town where it can, on a road or river by preference, never within 6 tiles of a colony. It is their town in every way: it trades, can be visited and attacked. While it stands their trader caravans come half again as often and the bandit road is twice as likely (with Systems talk to each other). Goodwill under 0 for ten days brings its keeper's warning, and ten more days close it, leaving a ruin; war closes it within a day. Raiders of a people at war with them may sack it. Off: no new post opens, and those standing are left as ordinary towns.</CC_Settings_TradingPosts_Tip>
+
+</LanguageData>

@@ -176,6 +176,11 @@ namespace ColonyCouncil
         /// (World/Region/RaidersCamp.cs).
         /// </summary>
         public float raidersCamps = 1f;
+        /// <summary>
+        /// The region: friends who trade with a far colony may open a trading post a few days off, a real town of theirs
+        /// (World/Region/TradingPost.cs). Off: none opens, and those standing are left as ordinary towns of theirs.
+        /// </summary>
+        public bool tradingPosts = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -541,6 +546,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref regionChange, "regionChange", true);
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
+            Scribe_Values.Look(ref tradingPosts, "tradingPosts", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

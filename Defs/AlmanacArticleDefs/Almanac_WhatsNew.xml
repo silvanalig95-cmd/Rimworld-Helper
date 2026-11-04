@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.75.0</version>
+        <date>4 November 2026</date>
+        <title>Trading posts</title>
+        <points>
+          <li>Friends who trade with a far colony may open a trading post a few days off: a real town of theirs on the world map, named by their age (a trading camp, a market, a depot, a ground station), with its keeper and trader known by name.</li>
+          <li>Caravans trade at a post as at any of their towns, and while it stands their trader caravans come half again as often. Goods on the road draw robbers, so the bandit road is likelier too.</li>
+          <li>When relations sour, the post's keeper writes that it will close unless things mend. If they don't, it is packed up and leaves a ruin, and war closes it within a day.</li>
+          <li>Raiders of a people at war with them may sack a post, and a post the colony razes is a wrong its people will not forget.</li>
+          <li>The region window has a trading posts page, This week shows a post that may close, and visitors speak of the posts in 14 new conversations.</li>
+          <li>A new setting, Trading posts, under The region. The Almanac's region page explains how posts work.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.74.0</version>
         <date>4 November 2026</date>
         <title>What lies between you</title>

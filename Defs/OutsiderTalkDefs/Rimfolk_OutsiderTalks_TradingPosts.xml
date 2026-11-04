@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Trading posts (Source/ColonyCouncil/World/Region/TradingPost*.cs, the facts in World/Region/TradingPostFacts.cs):
+       the post's own people (town:post: {TOWN} the post, {POSTKIND} its kind by their age, {KEEPER} its keeper;
+       town:post:warned once its keeper has written that it will close unless things mend), their people from another
+       town (their:post, {POST}), and other peoples on another's post near the colony (region:post, {POST},
+       {POSTPEOPLE}). The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The post's own people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_FromThere</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] You're from {TOWN}, the {POSTKIND} your people opened near us?</li>
+      <li>[them,their:tribal] Yes, the elders sent us out so your people would not have so far to walk.</li>
+      <li>[them,their:medieval] Aye, the market at {TOWN}, and a fair one, ask anyone.</li>
+      <li>[them,their:spacer] Correct, the ground station handles our trade in this region.</li>
+      <li>[them] That's right, it saves all of us a long haul.</li>
+      <li>[us] Is it doing well?</li>
+      <li>[them,town:struggling|town:poor] Slowly, we need more buyers than we have.</li>
+      <li>[them,!town:struggling,!town:poor] Well enough, and better when your caravans come.</li>
+    </lines>
+    <heard>{PEOPLE} keep a {POSTKIND} at {TOWN}, opened to trade with the colony.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Why</defName>
+    <topic>post</topic>
+    <uses>home,chat</uses>
+    <when>town:post</when>
+    <lines>
+      <li>[us] Why open a {POSTKIND} out here, so far from your own towns?</li>
+      <li>[them] Because your people kept coming all that way, and that's worth a roof and a counter.</li>
+      <li>[us] We're glad of it.</li>
+      <li>[them,their:tribal] Then bring good hides, and the fire there will stay lit.</li>
+      <li>[them] Then keep trading with us, and it will stay open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Keeper</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post</when>
+    <lines>
+      <li>[them] {KEEPER} keeps the books at {TOWN} and counts every bolt of cloth twice.</li>
+      <li>[us] Is that a complaint?</li>
+      <li>[them] Only on the days I'm the one carrying the cloth.</li>
+    </lines>
+    <heard>{KEEPER} keeps {TOWN} for {PEOPLE}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Road</defName>
+    <topic>post</topic>
+    <uses>chat</uses>
+    <when>town:post</when>
+    <lines>
+      <li>[them] The road between {TOWN} and our own towns is long, and robbers know it.</li>
+      <li>[us] Is it safe?</li>
+      <li>[them,their:lowtech] Safe enough with spears along, and the spears are why we price as we do.</li>
+      <li>[them] Safe enough with guards, and the guards are why we price the way we do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Thin</defName>
+    <topic>post</topic>
+    <uses>home,chat</uses>
+    <when>town:post,town:struggling|town:poor</when>
+    <lines>
+      <li>[them] Trade at {TOWN} has been thin, and the {POSTKIND} barely pays its way.</li>
+      <li>[us] What would help?</li>
+      <li>[them] Buyers, mostly, and your people are the nearest we have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Busy</defName>
+    <topic>post</topic>
+    <uses>home,chat</uses>
+    <when>town:post,town:thriving|town:flourishing</when>
+    <lines>
+      <li>[them] {TOWN} does better than anyone back home thought it would.</li>
+      <li>[us] Will it grow into a proper town?</li>
+      <li>[them] It's a {POSTKIND}, not a town, but nobody there minds the extra coin.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Warned</defName>
+    <topic>post</topic>
+    <uses>home,chat</uses>
+    <when>town:post:warned</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] {KEEPER} says we may have to close {TOWN} unless things mend between us.</li>
+      <li>[them] There's talk at {TOWN} of packing up unless things mend between us.</li>
+      <li>[us] We'd rather it stayed.</li>
+      <li>[them,tone:warm|tone:good] So would I, so let's both see that it does.</li>
+      <li>[them] So would I, but it isn't up to me.</li>
+    </lines>
+    <heard>{PEOPLE} may close {TOWN} unless things mend with the colony.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Tribal</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post,their:tribal</when>
+    <lines>
+      <li>[them] Our camps move with the seasons back home, but the trading camp stays for you.</li>
+      <li>[us] Why stay?</li>
+      <li>[them] Because you keep coming, and the elders say a good path should be kept open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Medieval</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post,their:medieval</when>
+    <lines>
+      <li>[them] The market at {TOWN} pays its dues to our lord like any other.</li>
+      <li>[us] And what do you get for it?</li>
+      <li>[them] Peace on the road, mostly, when the lord remembers us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Industrial</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post,their:industrial</when>
+    <lines>
+      <li>[them] The depot at {TOWN} runs on ledgers and patience.</li>
+      <li>[us] Which runs out first?</li>
+      <li>[them] Patience, every time, ask any clerk.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Empire</defName>
+    <topic>post</topic>
+    <uses>home,chat,know</uses>
+    <when>town:post,their:empire</when>
+    <lines>
+      <li>[us] The Empire keeps a station this close to us now?</li>
+      <li>[them] The Empire keeps what serves it, and trade with your colony serves it for now.</li>
+      <li>[us] For now?</li>
+      <li>[them] Everything is for now, until the court says otherwise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their people from another town, and other peoples ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Theirs</defName>
+    <topic>post</topic>
+    <uses>home,chat</uses>
+    <when>their:post</when>
+    <lines>
+      <li>[them] Our people keep a {POSTKIND} at {POST}, nearer to you than my own town.</li>
+      <li>[us] We know it.</li>
+      <li>[them] Good, then you won't have to walk half so far to find our goods.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_Other</defName>
+    <topic>post</topic>
+    <uses>chat</uses>
+    <when>region:post</when>
+    <lines>
+      <li>[them] I hear {POSTPEOPLE} have opened a trading post at {POST}, close to you.</li>
+      <li>[us] They have.</li>
+      <li>[them,role:trader] Then I'll have to keep my prices honest, it seems.</li>
+      <li>[them] A market close by is a fine thing to have.</li>
+    </lines>
+    <heard>{POSTPEOPLE} keep a trading post at {POST}, near the colony.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Post_OtherAsked</defName>
+    <topic>post</topic>
+    <uses>chat</uses>
+    <when>region:post</when>
+    <lines>
+      <li>[us] Have you been to {POST}, the post {POSTPEOPLE} keep near us?</li>
+      <li>[them,their:empire] The Empire does its own trading, thank you.</li>
+      <li>[them] Not yet, but I hear they pay fair prices.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

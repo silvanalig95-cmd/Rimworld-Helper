@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 486; modelled: 486; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** after two, **3,055 KB** after five.
+Saved collections found: 487; modelled: 487; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,887 KB** after two, **3,055 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -257,6 +257,7 @@ Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** aft
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
 | `Visitors/VisitorsMore2.cs:deals` | a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs) | while | 2 | 2 | 2 | 0.5 |
+| `World/Region/TradingPost.cs:posts` | per home: the trading posts standing near it, TradingPostMath.MaxPerHome at most, each dropped when it closes | cap | 1 | 2 | 2 | 0.5 |
 | `Ailments/AilmentTracker.cs:announced` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ailments/AilmentTracker.cs:woundsRolled` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ambitions/Ambitions.cs:voterChoice` | while the letter waits | while | 20 | 20 | 20 | 0.5 |

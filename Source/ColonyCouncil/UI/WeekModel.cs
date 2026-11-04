@@ -670,6 +670,8 @@ namespace ColonyCouncil
             GuestsWeek.AddRows(c);
             // A raiders' camp standing near a home (World/Region/RaidersCampPage.cs).
             RaidersCampPage.WeekRows(c);
+            // A trading post whose keeper has warned it will close unless things mend (World/Region/TradingPostPage.cs).
+            TradingPostPage.WeekRows(c);
             return c;
         }
 

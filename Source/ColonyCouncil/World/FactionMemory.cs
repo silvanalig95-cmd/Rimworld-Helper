@@ -260,7 +260,9 @@ namespace ColonyCouncil
             ["campFailed"] = K(DeedSide.Wrong, 4),
             ["paidOff"] = K(DeedSide.Favor, 5),
             ["campStruck"] = K(DeedSide.TheirFavor, 5),
-            ["burnedCamp"] = K(DeedSide.TheirFavor, 10)
+            ["burnedCamp"] = K(DeedSide.TheirFavor, 10),
+            // A trading post they opened near the colony, razed by the colony (World/Region/TradingPost.cs): a heavy wrong.
+            ["postRazed"] = K(DeedSide.Wrong, 30)
         };
 
         public static DeedKind KindOf(string kind) => kind != null && Kinds.TryGetValue(kind, out var k) ? k : null;

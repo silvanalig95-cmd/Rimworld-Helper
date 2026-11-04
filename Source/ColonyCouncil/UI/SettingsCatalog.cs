@@ -359,6 +359,7 @@ namespace ColonyCouncil
             Toggle("regionFaces", "CC_Settings_RegionFaces", "CC_SetNote_RegionFaces");
             Toggle("regionChange", "CC_Settings_RegionChange", "CC_SetNote_RegionChange");
             Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
+            Toggle("tradingPosts", "CC_Settings_TradingPosts", "CC_SetNote_TradingPosts");
             Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");

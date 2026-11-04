@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Trading posts
+
+*4 November 2026, version 0.75.0*
+
+- Friends who trade with a far colony may open a trading post a few days off: a real town of theirs on the world map, named by their age (a trading camp, a market, a depot, a ground station), with its keeper and trader known by name.
+- Caravans trade at a post as at any of their towns, and while it stands their trader caravans come half again as often. Goods on the road draw robbers, so the bandit road is likelier too.
+- When relations sour, the post's keeper writes that it will close unless things mend. If they don't, it is packed up and leaves a ruin, and war closes it within a day.
+- Raiders of a people at war with them may sack a post, and a post the colony razes is a wrong its people will not forget.
+- The region window has a trading posts page, This week shows a post that may close, and visitors speak of the posts in 14 new conversations.
+- A new setting, Trading posts, under The region. The Almanac's region page explains how posts work.
+
 ## What lies between you
 
 *4 November 2026, version 0.74.0*

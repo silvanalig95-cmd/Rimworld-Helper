@@ -267,7 +267,8 @@ namespace ColonyCouncil
             }
             while (pool.Count > 0)
             {
-                var def = pool.RandomElementByWeight(Weight);
+                // A trading post near the home draws robbers to the road (World/Region/TradingPost.cs).
+                var def = pool.RandomElementByWeight(d => Weight(d) * TradingPosts.EventFactor(d, map));
                 pool.Remove(def);
                 var s = Start(def, map);
                 if (s != null) return s;
