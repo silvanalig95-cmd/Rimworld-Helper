@@ -387,6 +387,7 @@ def parse_defs(root="."):
     pools = {}
     ext_targets = []
     log_targets = []
+    talk_defs = []
     for f in sorted(glob.glob(f"{root}/Defs/**/*.xml", recursive=True)):
         try:
             tree = ET.parse(f)
@@ -405,7 +406,22 @@ def parse_defs(root="."):
             if dtype == "LogLinesDef":
                 log_targets.append((d, rel))
                 continue
+            if dtype == "TalkLinesDef":
+                talk_defs.append((d, dname, rel))
+                continue
             walk_def(d, dtype, dname, rel, pools)
+    # Talk lines (Social/Talk/Talk.cs, BuildLines): the game draws on every def with the same topic or memory and turn
+    # together, so a def in another file with the same outcomes counts as part of the pool it joins (named after the
+    # shortest defName, the first written).
+    def talk_key(d):
+        return (d.findtext("topic"), d.findtext("memory"), d.findtext("turn"), tuple(li.text for li in d.findall("outcomes/li")))
+    canon = {}
+    for d, dname, rel in talk_defs:
+        k = talk_key(d)
+        if k not in canon or (len(dname), dname) < (len(canon[k]), canon[k]):
+            canon[k] = dname
+    for d, dname, rel in sorted(talk_defs, key=lambda x: x[1] != canon[talk_key(x[0])]):
+        walk_def(d, "TalkLinesDef", canon[talk_key(d)], rel, pools)
     # Extensions: lines merged into their targets at startup.
     for d, rel in ext_targets:
         for target_tag in ("pool", "wish", "ambition", "decree"):
