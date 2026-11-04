@@ -79,7 +79,7 @@
         <li>[debate,eating] Let me finish chewing and then I'll disagree.</li>
         <li>[debate,night] It's late, but no, I don't think so.</li>
         <li>[debate,child] That's not what the grown-ups said.</li>
-        <li>[debate,old] I thought that at your age too.</li>
+        <li>[debate,old] I thought the same once, and then I got older.</li>
         <li>[debate,newcomer] Where I come from, we'd see it differently.</li>
         <li>[argue,working] I've my hands full, and you want to fight?</li>
         <li>[argue,eating] You're putting me off my food.</li>
@@ -101,7 +101,7 @@
       <cheerful>
         <li>[agree,eating] Agreed, and I'm having your bread as a reward.</li>
         <li>[debate,working] Wrong, but you work beautifully while you're being wrong.</li>
-        <li>[argue,rain] It's raining, I'm wet, and you're wrong.</li>
+        <li>[argue,outside,rain] It's raining, I'm wet, and you're wrong.</li>
       </cheerful>
       <gloomy>
         <li>[agree,cold] Yes, and it's too cold to argue anyway.</li>
@@ -134,7 +134,7 @@
         <li>[argue] Sit somewhere else at supper.</li>
         <li>[argue,hurt] I've enough aches without you.</li>
         <li>[reminisce,old] I was younger then, and so were you.</li>
-        <li>[reminisce,winter] It was cold like this, wasn't it.</li>
+        <li>[reminisce,winter] Funny what comes back to you on a cold day like this.</li>
         <li>[reminisce,night] I'll be thinking about that all night now.</li>
         <li>[reminisce,afterraid] After the last few days, it's good to remember something else.</li>
         <li>[tease] I'll pay you back, you'll see.</li>
