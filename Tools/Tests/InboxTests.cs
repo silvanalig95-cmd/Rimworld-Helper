@@ -214,6 +214,12 @@ public static class InboxTests
         C(search.Contains("SearchMath.Find(query, index)") && Regex.IsMatch(search, @"if \(query != searched\)"), "filtered as the player types, only when the words change");
         C(search.Contains("public static void Register(Func<IEnumerable<SearchItem>> items)") && search.Contains("\"Council_Key_Search\""), "Search.Register for later kinds; a key");
         foreach (var kind in Enum.GetValues(typeof(SearchKind)).Cast<SearchKind>()) C(search.Contains("case SearchKind." + kind) || kind == SearchKind.Other, $"the {kind} kind has its heading");
+        // The game hands Enter (its accept key) to the topmost window that takes it before any window draws: the search
+        // takes it, or the window under it (the one whose corner opened it) closes instead.
+        C(search.Contains("forceCatchAcceptAndCancelEventEvenIfUnfocused = true;") && Regex.IsMatch(search, @"public override void OnAcceptKeyPressed\(\)\s*\{\s*Event\.current\.Use\(\);\s*Take\(Lit\);"),
+            "Enter takes the result lit, and never closes the window under the search");
+        C(search.Contains("!portraits.TryGetValue(item.key, out pawn)") && Regex.IsMatch(search,@"public static List<SearchItem> Index\(\)\s*\{\s*portraits\.Clear\(\);"),
+            "the results' portraits found once per index, not every frame");
         var searchKey = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_SearchKeys.xml")).Root!.Elements("KeyBindingDef").Select(e => e.Element("defName")!.Value).ToList();
         C(searchKey.SequenceEqual(new[] { "Council_Key_Search" }), "the search's key");
 
