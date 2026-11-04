@@ -15,6 +15,28 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Stage 1 release 4, trading posts (decision 6, a real town of theirs): `World/Region/TradingPostMath.cs` (pure,
+  `TradingPostTests`), `TradingPost.cs` (`TradingPost`, `TradingPostHome` on `RegionHome.posts`, `TradingPosts`),
+  `TradingPostWords.cs`, `TradingPostPage.cs` (region page `TradingPosts`, This week while warned), `TradingPostFacts.cs`,
+  `TradingPostNotables.cs` (`NotableBook` is now partial: `StaffPost`), `TradingPostPatches.cs`
+  (`Patch_TradingPostRazed`), `TradingPostDebug.cs`; `AgeFeature.Post` (word: the colony's means; rite: the post's kind);
+  `TownKind.Post` on the ledger. Who: at peace, goodwill 40 or allied, three `deed:traded` in 120 days, nearest town 15+
+  tiles, `baseTraderKinds`, a naming rule (the Empire too). A look every 15 days per home in the region's day, 20%, two
+  a home, one per people, 60 days after an opening or closing. Where: flood fill to 12 tiles, 6+ from the home and
+  >6.5 from every colony settlement, 3 from towns, valid and empty, not in others' territory; toward their nearest
+  town within 60 degrees when any (`AngleAt`), x3 road, x2 river. Name `{TOWN} Trading Camp/Market/Depot/Ground
+  Station`, prosperity 40 (cap 70), keeper (trader kind; Empire: a titled kind) and trader notables at once, keeper
+  titled trader/factor/manager/quartermaster (`TradingPosts.KeeperTitle` in `NotableBook.TitleOf`), letter, history
+  `world:post:opened` (family `world:post`: warned, mended, closed, sacked, razed). Caravans x1.5 (in
+  `Patch_RiseFallCaravans`), bandit road x2 (in `WorldSituations.TryStart`), both behind Systems talk to each other.
+  Sour 10 days: warning; 10 more: closed through `RiseFall.MakeRuin` when `SafeToClose` (else waits); war: closed
+  within a day; sacked 5% every 15 days with an enemy town within 20 tiles (fortunes on): -30 or given up under 10
+  with a refugee camp; razed: deed `postRazed` (30). Facts `town:post`, `town:post:warned`, `their:post`,
+  `region:post`, `{POST}` `{POSTKIND}` `{POSTPEOPLE}` `{KEEPER}`; 14 talk pieces; setting `tradingPosts`; Almanac
+  section in the region page. Left: the factor's own letters beyond the opening, warning and mending (the colony's
+  letters to the keeper and trader travel to the post as to any notable); the post's heir and envoy are the notables'
+  usual staffing. To check in game: a post opening (its tile and heading, the letter's look, the keeper's title in the
+  panel), trading there, the warning and closing, a sack, razing one, an Empire post's keeper.
 - 0.73.0, stage 1 release 3, rise and fall: `World/Region/RiseFallMath.cs` (pure), `RiseFall.cs`, `NewTowns.cs`,
   `RiseFallLedger.cs` (`LedgerRuin`), `RiseFallSituation.cs` (`Rimfolk_WS_GivenUp`), `RiseFallWords.cs`,
   `RiseFallEffects.cs`, `RiseFallPatches.cs` (`SettlementDefeatUtility.CheckDefeated` postfix notes a fall); given up

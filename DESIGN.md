@@ -2325,6 +2325,45 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   family's camp twice as likely, six times as likely to be of that people (`CampTracker`); trader caravans' people
   weighed 1.25 thriving or flourishing, 0.6 struggling, by their town nearest the home, when the game sends one without
   a people (`Patch_RiseFallCaravans`, with the deeper hooks).
+- **Trading posts** (the fourth release, item 3 with decision 6; `World/Region/TradingPostMath.cs` pure, `TradingPost.cs`,
+  `TradingPostWords.cs`, `TradingPostPage.cs`, `TradingPostFacts.cs`, `TradingPostNotables.cs`, `TradingPostPatches.cs`,
+  `TradingPostDebug.cs`; setting "Trading posts"; `TradingPostTests`). Each home's posts are a `TradingPostHome` on its
+  `RegionHome` (`posts`: the posts, two at most, each a `TradingPost` with its town, people, name, tile, opened, sour
+  since, warned, a closing waiting and the last sack; when the home was last looked at and last saw a post open or
+  close), run in the region's day only: no pass, slot or tick of its own. The town's record on the ledger is of kind
+  `Post` (`TownKind.Post`), so the fortunes cap it at `RegionMath.PostCap` (70); a record of that kind no home's post
+  holds is a town again. **Who**: a people that can open one (`CanOpen`: humanlike, not hidden or temporary, a naming
+  rule for towns and `baseTraderKinds`; the Empire too) at peace, goodwill 40 or allied, three trades or more in 120
+  days (`History.Count` of `deed:traded`, the memory's trades), its nearest town 15 tiles or more from the home, no post
+  of theirs there yet. **When**: a look every 15 days per home, two posts at most, 60 days since the last opening or
+  closing there, then 20%; the people that trades most, then the best goodwill (the next when no place fits). **Where**:
+  a flood fill to 12 tiles over passable land with straight-line distances only, 6 tiles or more from the home, more
+  than the game's goodwill reach from every one of the colony's settlements (`RiseFallMath.ClearOfHomes`), 3 tiles
+  from other towns, valid for a town and empty (`TileFinder.IsValidTileForNewSettlement`), its land's settlement weight
+  above 0, not beside a building site nor in another people's territory; the tiles toward their nearest town (within
+  60 degrees of its heading, `TradingPostMath.AngleAt` on the tile centres' tangent plane) when any, by the land's
+  weight, ×3 on a road, ×2 on a river. **What**: the game's `Settlement` of theirs named by their naming rule and their
+  age (`CC_Post_Name_<Age>`: Trading Camp, Market, Depot, Ground Station), prosperity 40 with the cause "newly opened";
+  its keeper (a trader kind, an Empire's titled kind) and trader made notables at once (`NotableBook.StaffPost`, a
+  partial of the notables' book), the keeper remembering opening it (so it counts as a town the colony dealt with) and
+  titled by their age (`TradingPosts.KeeperTitle` in `NotableBook.TitleOf`: trader, factor, manager, quartermaster);
+  `Tell.Letter` looking at it, with the colony's means (`Ages.Form(AgeFeature.Post)`: its word by the colony's age, its
+  rite the post's kind by theirs), transport pods named only when researched; history `world:post:opened`, a milestone.
+  Their couriers are chosen by it and letters to its keeper and trader travel to it, as their people's nearest town,
+  with no change of the couriers' or the letters' own. **While it stands** (with "Systems talk to each
+  other"): their trader caravans weighed 1.5 in `Patch_RiseFallCaravans` (with the deeper hooks), the bandit road ×2
+  where world events are weighed (`WorldSituations.TryStart`). **Souring**: since when goodwill has been under 0;
+  ten days: the keeper's warning (`Tell.Letter`, `world:post:warned`, This week's line); back at 0: mended (`Tell.Minor`,
+  `world:post:mended`); ten days after the warning: closed. War with the colony: closed within a day. A closing goes
+  through `RiseFall.MakeRuin` when `SafeToClose` (`SituationWorker_Abandoned.Safe`, or for the Empire the same checks
+  but its royal one), else waits (`closing`). **Sacked**: with the fortunes on, a people at war with theirs (`Facts.Counts`)
+  with a town within 20 tiles, 5% every 15 days on the post's own day: −30, or given up when that leaves it under 10
+  (a refugee family's camp at the gate). **Razed** by the colony (`Patch_TradingPostRazed` on the game's defeat of a
+  town): the memory's `postRazed` (a wrong of 30), `world:post:razed`, a news line. Taken, made a vassal or given up
+  another way: its record ends quietly. History kinds of the family `world:post` (opened, warned, mended, closed,
+  sacked, razed). Facts (the region's provider): `town:post` ({TOWN}, `{POSTKIND}`, `{KEEPER}`), `town:post:warned`,
+  `their:post` and `region:post` (`{POST}`, `{POSTPEOPLE}`); 14 talk pieces. Shown: the region page `TradingPosts`
+  (order 54), the panel's `Sections` for a post, This week while warned. Dev actions open, warn, sack and close one.
 
 ### Rimfolk's windows
 

@@ -2545,6 +2545,16 @@ stay: a world event among a people, a war begun or ended, a new town, a site nea
 lately*, the history and the colony news, and the region map's panel for a home has the latest *word from far towns*
 and what draws travelers there. Setting: *Travelers to the remote* (0 to 200%, 100% by default).
 
+**Trading posts.** Friends who trade with a far colony (at peace, goodwill 40 or more or allied, three trades in 120
+days, their towns 15 tiles or more off) may open a trading post a few days from a home: a real town of theirs on the
+world map, toward their own towns and on a road where it can, named by their age (a trading camp, a market, a depot, a
+ground station), its keeper (their trader, factor, manager or quartermaster) and its trader known by name at once, and a
+letter that looks at it. Caravans trade there as at any of their towns; while it stands their trader caravans come half
+again as often, and the bandit road is twice as likely. When relations sour, its keeper writes that it will close unless
+things mend; ten more days and it is packed up, leaving a ruin. War closes it, raiders of their enemies may sack it, and
+a post the colony razes is a heavy wrong their people remember. 14 conversation pieces speak of the posts. The region
+window has a *trading posts* page; This week shows a post that may close. Setting: *Trading posts*.
+
 **Raiders' camps.** A rich colony on bad terms with a hostile people may find raiders camped a few days off: the
 game's own bandit camp, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base). Someone out
 beyond the walls sees its smoke, and the letter names the danger before any raid comes. While it stands, it raids the
