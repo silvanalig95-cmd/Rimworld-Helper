@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The warlord's son (Source/ColonyCouncil/World/Region/WarlordSon.cs; docs/design/stage1-region.md, item 7; decision
+       12). He comes 60 to 180 days after a warlord's story ended (Council_WS_Warlord), by how it ended: his father slain
+       by the colony, a band (Rimfolk_WS_SonBand); captured, handed over or ransomed, at the gate (Rimfolk_WS_SonGate);
+       hunted down by others, an exile (Rimfolk_WS_SonExile); his band broken up or gone, a few riders looking for work
+       (Rimfolk_WS_SonRiders). These never start by themselves: the follow-ups start them (World/Region/FollowUps.cs).
+       {X} the son, {DEAD} his father (or mother: flag mother), {RELATION} "father" or "mother", {TALE} the warband,
+       {FACTION} the people he comes with, {ENEMY} his father's people when he rides with others (flag among) or, for an
+       exile, those who hunted his father down (flag hunted), {B} the colonist who killed his father (flag slayer), {OTHER}
+       his father while the game has him (flag kin: his parent by the game's relations). Lines can ask for [hisLowtech] or
+       [hisHightech] (his father's people's ways), [theirLowtech] or [theirHightech] (the people he comes with), and
+       [afterEnd:KEY] (how his father's story ended). -->
+
+  <!-- ===================== A band, to avenge his father ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_SonBand</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the warlord's son</label>
+    <workerClass>ColonyCouncil.SituationWorker_SonBand</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>80~90</durationDays>
+    <kind>son</kind>
+    <battle>true</battle>
+    <bad>true</bad>
+    <titles>
+      <li>The son of {DEAD}</li>
+      <li>{X_nameDef} raises a band</li>
+    </titles>
+    <texts>
+      <li>Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and young fighters of {FACTION} have gathered to him. They have made camp somewhere near the colony, and nobody has seen where yet.\n\n{DEAD} died at the colony's hands. The son means to finish what {TALE} began.</li>
+      <li>[hisLowtech] {FACTION} tell it at their fires: {X_nameDef}, the son of {DEAD}, cut his hair short on the day he heard how his {RELATION} died, and has called up every young spear who would follow him. They are camped in the hills within a few days of the colony.\n\nWhere, nobody has said. Whoever is out beyond the walls should watch for smoke.</li>
+      <li>[hisHightech] A trader passing through brought the news: {X_nameDef}, the son of {DEAD}, has put a crew together among {FACTION}, armed it out of what was left of {TALE}, and set up somewhere within a few days of the colony.\n\nNobody knows where yet. He is in no hurry to say.</li>
+      <li>[their:foe,!slayer] Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and fighters of {FACTION} have gathered to him somewhere near the colony.\n\n{FACTION} have a name for the colony's people they hate most, and it is {FOE}. The son has heard it too.</li>
+      <li>[slayer] Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and fighters of {FACTION} have gathered to him. He has made camp somewhere near the colony.\n\nHe knows who brought {DEAD} down. {B_nameDef}'s name has been said at his fire more than once.</li>
+    </texts>
+    <summaries>
+      <li>{X_nameDef}'s band is camped near the colony, hidden until someone out beyond the walls sees its smoke or a neighbour sends word. Once it is found, its raids come from its side of the map, led by {X_nameDef}, until the colony breaks the camp, pays its price, makes peace with {FACTION}, or beats its raids off.</li>
+    </summaries>
+    <endings>
+      <li>
+        <key>slain</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{X_nameDef} is dead</li>
+        </titles>
+        <texts>
+          <li>[killer] {X_nameDef} is dead, brought down by {B_nameDef}. The band he raised to avenge {DEAD} has lost the one who held it together.\n\nTwo of that family have now died fighting the colony. {FACTION} will tell it for a long time.</li>
+          <li>[!killer] {X_nameDef} is dead. The band he raised in {DEAD}'s name has lost the one who held it together, and {FACTION} have lost the last of that family's fighters.</li>
+        </texts>
+        <chronicle>{X_nameDef}, the son of {DEAD}, died fighting the colony.</chronicle>
+      </li>
+      <li>
+        <key>taken</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{X_nameDef} in the colony's hands</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, who came to avenge {DEAD}, is in the colony's hands. His band will not stay a band for long without him.\n\nWhat becomes of him is up to the colony now.</li>
+        </texts>
+        <chronicle>The colony took {X_nameDef}, the son of {DEAD}, alive.</chronicle>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>{X_nameDef} rides on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}'s band has broken up, and he has ridden on with the few who stayed with him. {DEAD} is not avenged, and the colony is not sorry.</li>
+        </texts>
+        <chronicle>{X_nameDef}, the son of {DEAD}, gave up his revenge and rode on.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== At the gate: his father, his grave, his weapon or a peace ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_SonGate</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the warlord's son</label>
+    <workerClass>ColonyCouncil.SituationWorker_SonGate</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>7~9</durationDays>
+    <kind>son</kind>
+    <titles>
+      <li>The son of {DEAD}</li>
+    </titles>
+    <texts>
+      <li>[own] Word has come from {PLACE}: {X_nameDef}, the son of {DEAD}, is on the road to the colony with one companion and no weapon drawn. {FACTION} say he has something to ask the colony about his {RELATION}.</li>
+      <li>[among] {X_nameDef}, the son of {DEAD}, has been living among {FACTION} since {TALE} came to its end, and wants no part in his {RELATION}'s war. Word has come that he is on the road to the colony with one companion, to ask the colony something.</li>
+      <li>[afterEnd:ransomed,own] {DEAD} came home from the colony's cells bought back with silver, and the family has not said much since. Now word has come from {PLACE} that {X_nameDef}, the son, is on the road to the colony with one companion and no weapon drawn.</li>
+      <li>[afterEnd:handedOver] The colony handed {DEAD} over to be judged by others, and the family of {DEAD} has had a long while to think about it. Word has come that {X_nameDef}, the son, is on the road to the colony with one companion, riding with {FACTION} and meaning no harm.</li>
+    </texts>
+    <summaries>
+      <li>He will come to the gate and ask something of the colony. What it answers is his family's to remember.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><withStranger>true</withStranger><count>1</count><stranger>false</stranger><hours>4~6</hours></li>
+        </effects>
+        <day>1~2</day>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>{X_nameDef} at the gate</li>
+        </titles>
+        <texts>
+          <li>[ask:father] {X_nameDef} stands at the colony's gate with his companion, hat in hand. His {RELATION}, {DEAD}, is in the colony's cells, and he has come to ask that {DEAD} be let go with him.\n\n"The band is gone," he says. "There is nobody left for {DEAD} to lead. Let me take my {RELATION} home."</li>
+          <li>[ask:meet] {X_nameDef} stands at the colony's gate with his companion. He has heard that {DEAD}, his {RELATION}, lives at the colony now, one of its own people, and he asks only to see {A_nameDef} with his own eyes and talk a while at the gate.</li>
+          <li>[ask:grave] {X_nameDef} stands at the colony's gate with his companion. His {RELATION}, {DEAD}, lies in one of the colony's graves, and he asks that someone of the colony lay a token of the family's on it and say the words for {DEAD} that he cannot say from outside the wall.</li>
+          <li>[ask:blade,hisLowtech] {X_nameDef} stands at the colony's gate with his companion. His {RELATION}'s {ITEM} lies in the colony's stores, he says, taken when {DEAD} fell, and it is the last thing of the family's anyone could hand down. He asks for it back.</li>
+          <li>[ask:blade,hisHightech] {X_nameDef} stands at the colony's gate with his companion. {DEAD}'s {ITEM} is in the colony's stores, he says, and it is the only thing of his {RELATION}'s he has any hope of getting back. He asks for it.</li>
+          <li>[ask:peace] {X_nameDef} stands at the colony's gate with his companion, no weapon drawn. There is nothing of {DEAD}'s left at the colony for him to ask for, he says; what he wants is a peace between his family and the colony, so that the next of them does not come here to settle {TALE}'s account.</li>
+        </texts>
+        <defaultOption>5</defaultOption>
+        <options>
+          <li>
+            <label>Let {DEAD} go with his son</label>
+            <showIf><li>ask:father</li></showIf>
+            <outcome>The council agrees. A warden walks {DEAD} out of the cells to the gate, and {RELATION} and son go home together. {X_nameDef} says the family will not forget it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KinFree" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>freed</li></flags>
+            <help>2</help>
+            <deed>let {DEAD} go home with {X_nameDef}</deed>
+            <end>freed</end>
+            <endDays>1~2</endDays>
+            <ways><generosity>1</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} go out to him</label>
+            <showIf><li>ask:meet</li></showIf>
+            <outcome>{A_nameDef} walks out to the gate to see the son {A_pronoun} has not seen since {TALE}. What they say to each other is theirs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} with {X_nameDef} at the gate</label><who>A</who><to>Stranger</to><duration>2~3</duration></li>
+            </effects>
+            <flags><li>met</li></flags>
+            <help>1</help>
+            <deed>let {A_nameDef} meet {X_nameDef} at the gate</deed>
+            <end>met</end>
+            <endDays>1~2</endDays>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Have {A_nameDef} lay his token on the grave</label>
+            <showIf><li>ask:grave</li></showIf>
+            <outcome>{X_nameDef} gives {A_nameDef} a small token of the family's at the gate, and {A_nameDef} carries it to {DEAD}'s grave and stays there a while, as he asked.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the token on {DEAD}'s grave</label><who>A</who><to>Grave</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>grave</li></flags>
+            <help>1</help>
+            <deed>laid a token of {X_nameDef}'s on {DEAD}'s grave</deed>
+            <end>grave</end>
+            <endDays>1~2</endDays>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Give him back {ITEM}</label>
+            <showIf><li>ask:blade</li></showIf>
+            <outcome>{A_nameDef} carries {DEAD}'s {ITEM} out of the stores to the gate and puts it in {X_nameDef}'s hands.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>{DEAD}'s {ITEM}</label><count>1</count><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>blade</li></flags>
+            <help>1</help>
+            <deed>gave {X_nameDef} back his {RELATION}'s {ITEM}</deed>
+            <end>blade</end>
+            <endDays>1~2</endDays>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Make peace with him</label>
+            <showIf><li>ask:peace</li></showIf>
+            <outcome>{A_nameDef} goes out to the gate and the two of them agree it: no one of {DEAD}'s family will come to the colony with a weapon on account of {TALE}, and the colony bears the family no ill will.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the peace with {X_nameDef}</label><who>A</who><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>peace</li></flags>
+            <help>2</help>
+            <deed>made peace with {X_nameDef}, the son of {DEAD}</deed>
+            <end>peace</end>
+            <endDays>1~2</endDays>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Send him away</label>
+            <outcome>{X_nameDef} is told the colony has nothing for him. He looks at the wall a long moment, then turns and goes back the way he came.</outcome>
+            <flags><li>refused</li></flags>
+            <end>refused</end>
+            <endDays>0.5~1</endDays>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>freed</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{DEAD} goes home</li>
+        </titles>
+        <texts>
+          <li>{DEAD} has been let go from the colony's cells, and {X_nameDef} took his {RELATION} home. The family of {DEAD} owes the colony a good turn now, and {FACTION} know it.</li>
+        </texts>
+        <chronicle>The colony let {DEAD} go home with {X_nameDef}.</chronicle>
+      </li>
+      <li>
+        <key>met</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{X_nameDef} and {DEAD}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone home, after a long talk at the gate with the {RELATION} who chose the colony over {TALE}. Whatever passed between them, he left without a hard word for anyone.</li>
+        </texts>
+        <chronicle>{X_nameDef} came to the gate to see {DEAD}.</chronicle>
+      </li>
+      <li>
+        <key>grave</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>A token on {DEAD}'s grave</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone home. His family's token lies on {DEAD}'s grave inside the colony's wall, and he will tell his people the colony did that much for his {RELATION}.</li>
+        </texts>
+        <chronicle>The colony laid a token of {X_nameDef}'s on {DEAD}'s grave.</chronicle>
+      </li>
+      <li>
+        <key>blade</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{DEAD}'s {ITEM}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone home with {DEAD}'s {ITEM}. It will hang where his family can see it, and the family will remember who gave it back.</li>
+        </texts>
+        <chronicle>The colony gave {X_nameDef} back {DEAD}'s {ITEM}.</chronicle>
+      </li>
+      <li>
+        <key>peace</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>A peace with the family of {DEAD}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone home with the colony's word, and left his own. The family of {DEAD} will not come to the colony to settle {TALE}'s account, and the colony has one quarrel fewer in the world.</li>
+        </texts>
+        <chronicle>The colony made peace with {X_nameDef}, the son of {DEAD}.</chronicle>
+      </li>
+      <li>
+        <key>refused</key>
+        <titles>
+          <li>{X_nameDef} goes home</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone home with nothing. Whatever he tells his family about the colony, it will not be kind.</li>
+        </texts>
+        <chronicle>The colony sent {X_nameDef}, the son of {DEAD}, away from its gate.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== An exile asking shelter ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_SonExile</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the warlord's son</label>
+    <workerClass>ColonyCouncil.SituationWorker_SonExile</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>7~9</durationDays>
+    <kind>son</kind>
+    <titles>
+      <li>The son of {DEAD}</li>
+      <li>An exile on the road</li>
+    </titles>
+    <texts>
+      <li>[hunted,among] {ENEMY} brought {DEAD} down, and they have not stopped there: {X_nameDef}, the son, has been on the run ever since, turned out by his own people and sheltering with {FACTION}. Word has come that he is making for the colony.</li>
+      <li>[hunted,own] {ENEMY} brought {DEAD} down, and they have not stopped there: {X_nameDef}, the son, has been on the run ever since, and his own people are afraid to keep him. Word has come that he is making for the colony.</li>
+      <li>[!hunted] {DEAD} was brought down out in the world, and {X_nameDef}, the son, has been on the run ever since with one companion, sheltering where he can. Word has come that he is making for the colony.</li>
+      <li>[hunted,hisLowtech] The hunters who ran {DEAD} down are hunting the son now. {X_nameDef} has been sleeping in barns and ditches since, with one companion who would not leave him, and word has come that he is making for the colony.</li>
+    </texts>
+    <summaries>
+      <li>He will come to the gate asking shelter. Taking in the son of a warlord may cost the colony the goodwill of those who hunt him.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>shelter</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><withStranger>true</withStranger><count>1</count><stranger>false</stranger><robbed>true</robbed><hours>4~6</hours></li>
+        </effects>
+        <day>1~2</day>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>{X_nameDef} asks shelter</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the son of {DEAD}, is at the colony's gate with one companion and almost nothing else. He asks shelter: a place inside the wall, work to earn it, and a while out of sight of the road.\n\n"I was a boy holding the horses when {TALE} rode out," he says.</li>
+          <li>[hunted] {X_nameDef}, the son of {DEAD}, is at the colony's gate with one companion, both of them thin and footsore. {ENEMY} are hunting him for what his {RELATION} did, he says, and he asks the colony to take him in.\n\n"I can work," he says. "I would rather work for you than hang for {DEAD}."</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>{X_nameDef} and his companion come in through the gate. They have a roof now, and the colony has two more hands.</outcome>
+            <outcomes>
+              <li>[huntersAtWar] {X_nameDef} and his companion come in through the gate. {ENEMY} will hear of it, and they are already at war with the colony.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-8</amount></li>
+            </effects>
+            <flags><li>takenIn</li></flags>
+            <help>2</help>
+            <deed>took in {X_nameDef}, the son of {DEAD}</deed>
+            <end>sheltered</end>
+            <endDays>1~2</endDays>
+            <ways><openness>2</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>A few nights' rest, then the road</label>
+            <outcome>{X_nameDef} and his companion may sleep by the wall for two nights and go on rested. He thanks the colony, and does not ask again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights></li>
+            </effects>
+            <flags><li>rested</li></flags>
+            <help>1</help>
+            <deed>gave {X_nameDef} two nights' rest</deed>
+            <end>rested</end>
+            <endDays>2~3</endDays>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Turn him away</label>
+            <outcome>{X_nameDef} is told there is no room at the colony for the son of {DEAD}. He nods as if he expected it, and the two of them go back to the road.</outcome>
+            <flags><li>refused</li></flags>
+            <end>refused</end>
+            <endDays>0.5~1</endDays>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>sheltered</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{X_nameDef} stays</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the son of {DEAD}, lives at the colony now. Whatever {TALE} was to the world, he is one of the colony's own here.</li>
+        </texts>
+        <chronicle>The colony took in {X_nameDef}, the son of {DEAD}.</chronicle>
+      </li>
+      <li>
+        <key>rested</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{X_nameDef} goes on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone on down the road, rested and fed. Where he goes from here, the colony will probably never know.</li>
+        </texts>
+        <chronicle>The colony gave {X_nameDef}, the son of {DEAD}, two nights' rest.</chronicle>
+      </li>
+      <li>
+        <key>refused</key>
+        <titles>
+          <li>{X_nameDef} goes on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has gone back to the road. The colony has no part in what becomes of him.</li>
+        </texts>
+        <chronicle>The colony turned {X_nameDef}, the son of {DEAD}, away.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A few riders looking for work ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_SonRiders</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the warlord's son</label>
+    <workerClass>ColonyCouncil.SituationWorker_SonRiders</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>7~9</durationDays>
+    <kind>son</kind>
+    <titles>
+      <li>The son of {DEAD}</li>
+      <li>Riders looking for work</li>
+    </titles>
+    <texts>
+      <li>{TALE} is gone, and so is {DEAD}, nobody is sure where. What is left of the band is {X_nameDef}, the son, and the few who would not go home: word has come that they are riding the region looking for work, and the colony is on their road.</li>
+      <li>[hisLowtech] When {TALE} broke up, a handful of its young fighters stayed together under {X_nameDef}, the son of {DEAD}. They have spears and horses and no war to use them on, and they are coming the colony's way.</li>
+      <li>[hisHightech] {X_nameDef}, the son of {DEAD}, has kept a few of {TALE}'s fighters together since the band broke up. They have rifles, a little ammunition and no employer, and word has come that they are heading for the colony.</li>
+    </texts>
+    <summaries>
+      <li>They will come to the gate looking for work. The colony can take them on, feed them and send them on, or send them on hungry.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>work</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>band</what><withStranger>true</withStranger><count>1~2</count><armed>true</armed><stranger>false</stranger><hours>4~6</hours></li>
+        </effects>
+        <day>1~2</day>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>{X_nameDef} looking for work</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the son of {DEAD}, is at the colony's gate with what is left of {TALE}: a few young fighters, armed and hungry. They are looking for work, he says, any work that pays in food and a roof, and they can fight if the colony has need of that.\n\n"{TALE} is finished," he says. "We are not."</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take them on</label>
+            <outcome>{X_nameDef} and his riders come in through the gate, to work for their keep and fight when the colony fights.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join" />
+            </effects>
+            <flags><li>joined</li></flags>
+            <help>1</help>
+            <deed>took on {X_nameDef}'s riders</deed>
+            <end>joined</end>
+            <endDays>1~2</endDays>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>A meal, and the road</label>
+            <outcome>{A_nameDef} brings them a hot meal at the gate. They eat it standing, thank the colony, and ride on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for {X_nameDef}'s riders</label><what>meals</what><count>3</count><to>Stranger</to><eat>true</eat><ifHave>true</ifHave></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <help>1</help>
+            <deed>fed {X_nameDef}'s riders at the gate</deed>
+            <end>fed</end>
+            <endDays>1~2</endDays>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>{X_nameDef} is told the colony has no work for him. The riders turn their horses and go.</outcome>
+            <outcomes>
+              <li>[hisHightech] {X_nameDef} is told the colony has no work for him. The riders shoulder their rifles and go.</li>
+            </outcomes>
+            <flags><li>refused</li></flags>
+            <end>refused</end>
+            <endDays>0.5~1</endDays>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>joined</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{X_nameDef}'s riders stay</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and his riders live at the colony now. The last of {TALE} works the colony's fields and stands on its wall.</li>
+        </texts>
+        <chronicle>The colony took on {X_nameDef}, the son of {DEAD}, and his riders.</chronicle>
+      </li>
+      <li>
+        <key>fed</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{X_nameDef} rides on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and his riders have gone on, fed. If they find work somewhere, they will remember where they ate on the way.</li>
+        </texts>
+        <chronicle>The colony fed the riders of {X_nameDef}, the son of {DEAD}.</chronicle>
+      </li>
+      <li>
+        <key>refused</key>
+        <titles>
+          <li>{X_nameDef} rides on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and his riders have gone on, looking for work somewhere else.</li>
+        </texts>
+        <chronicle>The colony sent the riders of {X_nameDef}, the son of {DEAD}, on their way.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

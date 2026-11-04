@@ -37,6 +37,8 @@ namespace ColonyCouncil
         public int givenUpAt = -1, resettledAt = -1, foundedAt = -1;
         /// <summary>Its trading posts and when it was last looked at for one (World/Region/TradingPost.cs); null until needed.</summary>
         public TradingPostHome posts;
+        /// <summary>World events that will follow from ones that ended here (the warlord's son, a town that grew: World/Region/FollowUps.cs); null until needed.</summary>
+        public FollowUpsHome followUps;
 
         public void ExposeData()
         {
@@ -49,6 +51,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref resettledAt, "resettledAt", -1);
             Scribe_Values.Look(ref foundedAt, "foundedAt", -1);
             Scribe_Deep.Look(ref posts, "posts");
+            Scribe_Deep.Look(ref followUps, "followUps");
         }
     }
 
@@ -183,6 +186,7 @@ namespace ColonyCouncil
             // Towns given up, ruins, ruins settled again, Rimfolk's own new towns (World/Region/RiseFall.cs).
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             Safe("trading posts", () => TradingPosts.Daily(this, now));
+            Safe("follow-ups", () => FollowUps.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 

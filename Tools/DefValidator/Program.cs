@@ -449,6 +449,8 @@ wishPh.UnionWith(new[]
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });
+// What a people remembers of single colonists (World/ColonistMemory.cs): the colonist they hold most against, by name.
+wishPh.Add("FOE");
 // The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
 wishPh.Add("ASKER");
 // Travelers who seek out the remote (Camps/CampSeekers.cs): what of the land they came for.

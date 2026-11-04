@@ -62,6 +62,9 @@ namespace ColonyCouncil
         public Pawn leader;
         public string leaderWhy;
 
+        /// <summary>The colony's people who fought on its map (RaidersCampMath has no say in it): remembered by name when it is broken (World/ColonistMemory.cs).</summary>
+        public List<Pawn> fought = new List<Pawn>();
+
         public bool Shown => stage != CampStage.Hidden;
 
         public void ExposeData()
@@ -96,7 +99,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref grudge, "grudge");
             Scribe_References.Look(ref leader, "leader");
             Scribe_Values.Look(ref leaderWhy, "leaderWhy");
-            if (Scribe.mode == LoadSaveMode.PostLoadInit) raiders ??= new List<Pawn>();
+            if (Scribe.mode == LoadSaveMode.Saving) fought?.RemoveAll(p => p == null || p.Discarded);
+            Scribe_Collections.Look(ref fought, "fought", LookMode.Reference);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                raiders ??= new List<Pawn>();
+                fought ??= new List<Pawn>();
+                fought.RemoveAll(p => p == null);
+            }
         }
     }
 
@@ -317,6 +327,7 @@ namespace ColonyCouncil
                 End(home, rh, c, CampEnd.Gone, null);
                 return;
             }
+            KeepLeader(c);
             var site = SiteOf(c);
             // The colony is fighting on its map: watched, and nothing else happens until the colony leaves.
             if (site != null && site.HasMap)
@@ -371,6 +382,8 @@ namespace ColonyCouncil
             if (c.stage == CampStage.Hidden)
             {
                 if (RaidersCampMath.GivesUp(0, c.setAt, now)) End(home, rh, c, CampEnd.Gone, null);
+                // Found another way: a visitor who came past it, or a neighbour's letter (RaidersCampWarnings.cs).
+                else TryWarn(home, c, now);
                 return;
             }
             if (RaidersCampMath.GivesUp(c.beaten, c.setAt, now))
@@ -674,7 +687,7 @@ namespace ColonyCouncil
         /// letter names the danger before any raid comes. Their people's wrong goes into the colony's memory of them and
         /// the history has it.
         /// </summary>
-        private static void Found(Map home, RaidersCamp c, Pawn spotter, string doing, int now)
+        private static void Found(Map home, RaidersCamp c, Pawn spotter, string doing, int now, string how = null, string town = null)
         {
             var site = MakeSite(c, TileOf(c), c.points, false);
             if (site == null) return;
@@ -684,11 +697,15 @@ namespace ColonyCouncil
             string dir = Direction(home, c);
             string where = Where(home, c);
             var people = c.people.Name.Named("PEOPLE");
-            Speech.Say(spotter, "CC_RaidCamp_Say".Translate(dir.Named("DIR")).Resolve());
+            // How it was found: a colonist who saw its smoke, a visitor who came past it, a neighbour's letter.
+            string suffix = how.NullOrEmpty() ? "" : "_" + how;
+            string said = ("CC_RaidCamp_Say" + suffix).Translate(dir.Named("DIR"), c.kind.Named("KIND")).Resolve();
+            if (spotter != null && spotter.Spawned) Speech.Say(spotter, said);
+            string who = spotter?.LabelShort ?? "?";
             var parts = new List<string>
             {
-                "CC_RaidCamp_Found_Text".Translate(spotter.LabelShort.Named("SPOTTER"), (doing ?? "").Named("DOING"), where.Named("WHERE"), people, c.kind.Named("KIND"),
-                    Homes.Name(home).Named("COLONY")).Resolve(),
+                ("CC_RaidCamp_Found_Text" + suffix).Translate(who.Named("SPOTTER"), (doing ?? "").Named("DOING"), where.Named("WHERE"), people, c.kind.Named("KIND"),
+                    Homes.Name(home).Named("COLONY"), (town ?? "").Named("TOWN")).Resolve(),
                 "CC_RaidCamp_Found_Danger".Translate(dir.Named("DIR"), people).Resolve()
             };
             if (c.leader != null && !c.leader.Dead)
@@ -708,8 +725,8 @@ namespace ColonyCouncil
             string label = "CC_RaidCamp_Found_Label".Translate(c.kind.Named("KIND")).Resolve().CapitalizeFirst();
             Tell.Letter(NewsKind.World, Importance.Important, home, label, string.Join("\n\n", parts), LetterDefOf.ThreatSmall, new LookTargets(site), c.people);
             FactionMemory.Note(c.people, RaidersCampMath.DeedCamped, c.kind);
-            string line = "CC_RaidCamp_Found_Line".Translate(spotter.LabelShort.Named("SPOTTER"), people, c.kind.Named("KIND"), where.Named("WHERE")).Resolve();
-            History.Add(RaidersCampMath.KindFound, Actors(c, null, spotter), Refs.Colony(home), HistoryMath.Milestone, line);
+            string line = ("CC_RaidCamp_Found_Line" + suffix).Translate(who.Named("SPOTTER"), people, c.kind.Named("KIND"), where.Named("WHERE"), (town ?? "").Named("TOWN")).Resolve();
+            History.Add(RaidersCampMath.KindFound, Actors(c, null, spotter != null && KinMemory.Ours(spotter) ? spotter : null), Refs.Colony(home), HistoryMath.Milestone, line);
         }
 
         /// <summary>The game's own bandit camp site for the camp: their faction, the points given, its name; on the world map. Null when it can't be made.</summary>
@@ -749,6 +766,8 @@ namespace ColonyCouncil
             if (c == null || s.Map == null) return;
             c.entered = true;
             c.fighters = 0;
+            // Whoever leads it is there, behind its walls with the rest (RaidersCampWarnings.cs).
+            LeaderOnMap(c, s.Map);
             Observe(c, s.Map);
         }
 
@@ -775,6 +794,7 @@ namespace ColonyCouncil
             c.fighters = Math.Max(c.fighters, all);
             c.standing = up;
             c.threatLeft = GenHostility.AnyHostileActiveThreatToPlayer(map, true);
+            NoteFought(c, map);
         }
 
         /// <summary>
@@ -978,6 +998,8 @@ namespace ColonyCouncil
             if (end == CampEnd.Peace) Tell.Minor(NewsKind.World, Importance.Notable, home, text, null, MessageTypeDefOf.PositiveEvent);
             else Tell.Letter(NewsKind.World, Importance.Notable, home, label, text, LetterDefOf.PositiveEvent, null, ally ?? c.people);
             History.Add(RaidersCampMath.KindOf(end), Actors(c, ally, null), Refs.Colony(home), HistoryMath.Milestone, text);
+            // Broken: the peoples it troubled remember it, and those of the colony who fought there by name (World/ColonistMemory.cs).
+            if (end == CampEnd.Broken) ColonistMemory.CampBroken(home, c, TileOf(c));
             string deed = RaidersCampMath.DeedOf(end, out bool byAlly);
             if (deed != null) FactionMemory.Note(byAlly ? ally : c.people, deed, c.kind);
             if (end == CampEnd.Paid)

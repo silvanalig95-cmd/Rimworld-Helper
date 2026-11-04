@@ -2526,6 +2526,13 @@ vendetta against them. They speak of what happened at their town lately (a world
 just built or taken) and of how their people's age stands to the colony's: 135 conversation pieces and 51 lines for
 their letters.
 
+They remember the bad as well, and more of the good. Whoever broke a raiders' camp that troubled their roads, fought
+beside their fighters, killed one of theirs (a raider at the walls counts for little, a killing at peace for a lot),
+executed or cut open one of their people held prisoner, or threw hard words at one of theirs is remembered by name, six
+colonists a people at most, fading over the years. Their notables think better or worse of that colonist, their talk
+and letters name them, and their traders won't trade with a colonist they hold a death against: the trade option says
+why, and a caravan at their town sends someone else to do the talking. No raid comes of it.
+
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
@@ -2570,7 +2577,15 @@ it (a camp left with fighters standing is back behind its walls), pays their pri
 their word for a year), makes peace with their people, sees an ally burn it, or beats off their raids until they give
 up. Each ending is told, written into the history and remembered by the peoples. The region window has a *raiders'
 camps* page; the region map and This week show a camp standing. Setting: *Raiders' camps* (0 to 200%, 100% by
-default). The Almanac has a page, *raiders' camps*.
+default). The Almanac has a page, *raiders' camps*. A visitor who passed its fires on the road may warn of it, or a
+neighbouring town may send word, and a camp with a leader has him behind its walls and at the head of its raids.
+
+**What follows.** Some world events come back later. Between 60 and 180 days after a warlord's story ends, his son
+comes, by how it ended: at the head of a raiders' camp if the colony killed his father; at the gate for his father,
+his grave, his weapon or a peace if the colony took him; as an exile asking shelter if others hunted him down; with a
+few riders looking for work if the band broke up. And after other settlers' year ends in friendship, their steading
+grows into a town: its leader heads it, the colony may name it, its families remember the first year, and its carter
+comes for a load for the first market.
 
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then

@@ -152,7 +152,12 @@ namespace ColonyCouncil
             if (!f.HostileTo(Faction.OfPlayer)) return "peace";
             if (x.Faction != f) return "brokeup";
             if (!x.Spawned && Find.WorldPawns.Contains(x)) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
-            if (x.Spawned && x.Map.IsPlayerHome) s.flags.AddDistinct("led");
+            if (x.Spawned && x.Map.IsPlayerHome)
+            {
+                s.flags.AddDistinct("led");
+                // His weapon, for a son who may come asking for it (World/Region/WarlordSon.cs).
+                WarlordSons.Watch(s, x);
+            }
             // Brought down far away (an ally's army, hired swords) while he's here at the colony: that news can wait.
             if (x.Spawned && s.pendingTick > 0 && (s.pendingEnding == "allies" || s.pendingEnding == "mercenaries"))
                 s.pendingTick = Find.TickManager.TicksGame + GenDate.TicksPerHour * 6;
@@ -393,6 +398,8 @@ namespace ColonyCouncil
             var x = Warlord(s);
             var comp = CouncilGameComponent.Instance;
             string key = s.endingKey;
+            // His son comes back one day, by how it ended (World/Region/WarlordSon.cs): noted before his fate is settled.
+            WarlordSons.Remember(s, ending);
             if (x == null || x.Dead) return;
             string how = ending != null ? Flavor.Strip(Line(ending.texts, s) ?? "") : null;
             switch (key)

@@ -22,7 +22,9 @@ This is a real danger by design, at the game's own rate for such camps. Each cam
       </li>
       <li>
         <heading>Found</heading>
-        <text>By day, someone hunting or working beyond the colony's ground has a 30 in 100 chance a day of seeing its smoke; from the third day anyone out of doors sees it. They say so where they stand, and the letter says who leads it (when someone does), what their people hold against the colony, and how it can end. No raid comes before it is found.</text>
+        <text>By day, someone hunting or working beyond the colony's ground has a 30 in 100 chance a day of seeing its smoke; from the third day anyone out of doors sees it. They say so where they stand, and the letter says who leads it (when someone does), what their people hold against the colony, and how it can end. No raid comes before it is found.
+
+It can be found other ways too, once it has stood two days: a visitor or trader of a people at peace with the colony, at the colony that day, may have passed its fires on the road and say so (35 in 100 a day), and a town of a people at peace within 15 tiles of it may send word (12 in 100 a day; with neighbours' letters on). The rate setting makes both likelier.</text>
       </li>
       <li>
         <heading>Its raids</heading>
@@ -38,7 +40,8 @@ This is a real danger by design, at the game's own rate for such camps. Each cam
           <li>Burned | An ally of the colony at war with them, with a town within 30 tiles, has a 10% chance every 5 days of burning it.</li>
           <li>Given up | Two of their raids beaten off (half of those who came fell or were taken, or they fled), or two months since they made camp, and they move on.</li>
         </table>
-        <after>Each ending is told, goes into the world's history (world:camp) and into what the peoples remember: a camp broken or given up is a wrong their people hold against the colony, a price paid a good turn to them, a camp struck for peace and a camp burned by an ally good turns the colony owes. The camp itself, once found, is their wrong against the colony.</after>
+        <after>Each ending is told, goes into the world's history (world:camp) and into what the peoples remember: a camp broken or given up is a wrong their people hold against the colony, a price paid a good turn to them, a camp struck for peace and a camp burned by an ally good turns the colony owes. The camp itself, once found, is their wrong against the colony. A camp broken is a good turn to the peoples at peace whose towns stand within 20 tiles of it, and they remember everyone of the colony who fought on its map by name (see what the world remembers).</after>
+        <after>A camp led by someone of note (the warlord's son, see world events) has its leader behind its walls when the colony attacks it, and at the head of its raids.</after>
       </li>
       <li>
         <heading>Where it shows</heading>

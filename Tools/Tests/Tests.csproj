@@ -81,6 +81,8 @@
     <Compile Include="../../Source/ColonyCouncil/World/Region/RaidersCampMath.cs" Link="RaidersCampMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RiseFallMath.cs" Link="RiseFallMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/TradingPostMath.cs" Link="TradingPostMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Region/FollowUpsMath.cs" Link="FollowUpsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/ColonistMemoryMath.cs" Link="ColonistMemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/InviteMath.cs" Link="InviteMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Journeys/JourneyMath.cs" Link="JourneyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/RoadPostMath.cs" Link="RoadPostMath.cs" />

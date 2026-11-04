@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The warlord's son, and those remembered
+
+*4 November 2026, version 0.76.0*
+
+- The warlord's son comes back 60 to 180 days after his father's story ends, in the way it ended: at the head of a raiders' camp if the colony killed his father, at the gate for his father, his grave, his weapon or a peace if the colony took him, as an exile asking shelter if others hunted him down, or with a few riders looking for work.
+- A raiders' camp's leader is behind its walls when you attack it, and the peoples it troubled remember everyone who fought there.
+- A hidden raiders' camp can be found by a visitor who passed its fires on the road, or by word from a neighbouring town.
+- Peoples remember single colonists for good and ill: who broke a camp, fought beside them, traded at their post, killed one of theirs, or executed or cut open a prisoner of theirs. Their notables think better or worse of them, and their talk and letters name them.
+- A trader won't deal with a colonist their people hold a death against: the trade option says why, and a caravan sends someone else to do the talking.
+- After a friendly year, the other settlers' steading grows into a town: its leader heads it, you may name it, and its carter comes for a load for its first market.
+- Fixed: a raiders' camp's leader could be let go while his camp still stood.
+
 ## Trading posts
 
 *4 November 2026, version 0.75.0*

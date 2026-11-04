@@ -983,7 +983,10 @@ namespace ColonyCouncil
         {
             if (n == null || p == null) return 0;
             var deed = KinMemory.DeedBy(n.faction, p);
-            return NotableMath.OfColonist(Opinion(n), deed?.Strength ?? 0f, n.RegardOf(p, false)?.personal ?? 0f);
+            // What their people remember of the colonist by name (World/ColonistMemory.cs): the good as strong as a deed, the wrongs held against them.
+            ColonistMemory.Regard(n.faction, p, out float good, out float bad);
+            float personal = (n.RegardOf(p, false)?.personal ?? 0f) - ColonistMemoryMath.Regard(bad);
+            return NotableMath.OfColonist(Opinion(n), Mathf.Max(deed?.Strength ?? 0f, good), personal);
         }
 
         /// <summary>The colonists they know, best regarded first, with what they know them for.</summary>
@@ -1000,8 +1003,45 @@ namespace ColonyCouncil
             if (n.metBy != null) Add(n.metBy, ("CC_Notable_KnowsFor_" + (n.met ?? "visitor")).CanTranslate() ? ("CC_Notable_KnowsFor_" + n.met).Translate().Resolve() : null);
             foreach (var r in n.regards.Where(r => r.pawn != null).OrderByDescending(r => r.personal)) Add(r.pawn, "CC_Notable_KnowsFor_Letters".Translate().Resolve());
             var friend = KinMemory.Friend(n.faction, out var deed);
-            if (friend != null) Add(friend, FactionMemory.Text(deed));
+            if (friend != null && deed != null) Add(friend, FactionMemory.Text(deed));
+            // Those their people remember by name, for good or ill (World/ColonistMemory.cs).
+            foreach (var (who, what) in ColonistMemory.Known(n.faction)) Add(who, what);
             return list;
+        }
+
+        /// <summary>
+        /// Someone heads a town from now on (a steading grown into a town: World/Region/GrownTown.cs): the head's record goes
+        /// to them, or the record they had already, or a new one. Never a people's seat, whose head is their own leader.
+        /// </summary>
+        public static void MakeHead(Settlement s, Pawn p)
+        {
+            var book = Instance;
+            if (!On || book == null || s == null || p == null || p.Dead || p.Discarded || p.Faction != s.Faction || SeatOf(s.Faction) == s) return;
+            var head = book.notables.FirstOrDefault(n => n.town == s.ID && n.role == NotableRole.Head);
+            if (head != null && head.pawn == p) return;
+            var known = book.notables.FirstOrDefault(n => n.pawn == p);
+            if (known != null)
+            {
+                if (head != null) book.Drop(head);
+                known.role = NotableRole.Head;
+                known.town = s.ID;
+                known.townName = s.Name;
+                known.faction = s.Faction;
+            }
+            else if (head != null) Replace(head, p, true);
+            else book.Add(p, s, NotableRole.Head, true, null, null);
+            Changed();
+        }
+
+        /// <summary>A town renamed (the colony gave it a name): its notables call it by the new one.</summary>
+        public static void TownRenamed(int town, string name)
+        {
+            var book = Instance;
+            if (book == null || town < 0 || name.NullOrEmpty()) return;
+            foreach (var n in book.notables)
+                if (n != null && n.town == town)
+                    n.townName = name;
+            Changed();
         }
 
         // ---------------- Words ----------------

@@ -209,11 +209,16 @@ namespace ColonyCouncil
             else FactionMemory.Note(f, "campHosted", c.place);
         }
 
-        /// <summary>A trade with their traders: a fair trade, remembered a little (a run of them adds up).</summary>
-        public static void Traded(Faction f, float value)
+        /// <summary>
+        /// A trade with their traders: a fair trade, remembered a little (a run of them adds up). At one of their trading
+        /// posts (World/Region/TradingPost.cs), the colonist who did the talking is remembered by name too.
+        /// </summary>
+        public static void Traded(Faction f, float value, Pawn negotiator = null)
         {
             if (!FactionMemory.Remembers(f) || value < 200f) return;
             FactionMemory.Note(f, "traded", null, value >= 3000f ? 3 : value >= 1000f ? 2 : 1);
+            if (negotiator != null && TradeSession.Active && TradeSession.trader is Settlement s && s.Faction == f && TradingPosts.IsPost(s.ID))
+                ColonistMemory.TradedAtPost(f, negotiator, value);
         }
     }
 
@@ -337,12 +342,12 @@ namespace ColonyCouncil
     [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_PlayerTraded))]
     public static class Patch_MemoryTraded
     {
-        public static void Postfix(Faction __instance, float marketValueSentByPlayer)
+        public static void Postfix(Faction __instance, float marketValueSentByPlayer, Pawn playerNegotiator)
         {
             if (!MemoryHooks.Listening) return;
             try
             {
-                MemoryHooks.Traded(__instance, marketValueSentByPlayer);
+                MemoryHooks.Traded(__instance, marketValueSentByPlayer, playerNegotiator);
             }
             catch (Exception e)
             {

@@ -238,6 +238,10 @@ public static class OutsiderTalkTests
                                   + "wedding newcomer decree election camp harvest hungry plenty disaster research project day daytoday daysoon daypast traders young old "
                                   + "children animals prisoners expecting noble quiet hospital hospital:renowned doctor"))
         .Concat(Expand("byyou:", "freed tended helped"))
+        // What their people remember of single colonists (World/ColonistMemory.cs).
+        .Concat(new[] { "their:foe", "you:foe", "you:remembered" })
+        .Concat(Expand("their:foe:", "killed executed harvested insulted brawled")).Concat(Expand("you:foe:", "killed executed harvested insulted brawled"))
+        .Concat(Expand("you:remembered:", "campbroken foughtbeside tradedpost walkedsettlers"))
         .Concat(Expand("then:", "still over dead changed recent long success failed"))
         .Concat(new[] { "favour", "promise", "claim", "debt", "fealty", "grudge" }.SelectMany(k => Expand("tie:" + k, " :ours :theirs :you :due")))
         // The region (Text/Facts/FactsRegion.cs): their town's fortune and founding, a new town near.
@@ -261,7 +265,9 @@ public static class OutsiderTalkTests
         "BATTLEA", "BATTLEB", "SITUATION", "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "CAMP", "TRADERS",
         "NEWCOMER", "DAY", "RAIDERS", "DEAD", "BORN", "WEDDING", "DECREE", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND",
         "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO",
-        "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER"
+        "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
+        // The colonist their people hold something against (World/ColonistMemory.cs).
+        "FOE"
     };
 
     private static int Library(string root, Action<bool, string> C0)

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- World events' follow-ups (World/Region/FollowUps.cs, WarlordSon.cs, GrownTown.cs, RaidersCampWarnings.cs;
+       docs/design/stage1-region.md, item 7). -->
+
+  <!-- The warlord's son: his parent as the texts name them ({RELATION}, {DEAD}). -->
+  <CC_Son_Father>father</CC_Son_Father>
+  <CC_Son_Mother>mother</CC_Son_Mother>
+  <CC_Son_Unnamed>the warlord</CC_Son_Unnamed>
+  <!-- His hunters come for him after the colony took him in, as a raid's letter. -->
+  <CC_Son_HuntersLabel>{ENEMY} come for the exile</CC_Son_HuntersLabel>
+  <CC_Son_HuntersText>{ENEMY} have heard that the colony took in {SON}, the son of {DEAD}, and they have come for him.</CC_Son_HuntersText>
+
+  <!-- A raiders' camp's leader with a reason of his own (World/Region/RaidersCamp.cs, why "son"). -->
+  <CC_RaidCamp_Why_son>{LEADER} leads them: the warlord's son, come to avenge his father on the colony.</CC_RaidCamp_Why_son>
+  <CC_RaidCamp_Why_sonOfMother>{LEADER} leads them: the warlord's son, come to avenge his mother on the colony.</CC_RaidCamp_Why_sonOfMother>
+
+  <!-- Other ways a hidden raiders' camp is found: a visitor who came past it ({SPOTTER} of the people in {DOING}), a
+       neighbouring town's letter ({TOWN} of the people in {DOING}). -->
+  <CC_RaidCamp_Say_Visitor>We passed the fires of a {KIND} on the road from the {DIR}, you should know.</CC_RaidCamp_Say_Visitor>
+  <CC_RaidCamp_Found_Text_Visitor>{SPOTTER} of {DOING}, here at the colony, came past the fires of a camp on the road: {PEOPLE} have made a {KIND} {WHERE}, near enough to strike at {COLONY}.</CC_RaidCamp_Found_Text_Visitor>
+  <CC_RaidCamp_Found_Line_Visitor>{SPOTTER}, a visitor, warned of a {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_Found_Line_Visitor>
+  <CC_RaidCamp_Found_Text_Letter>Word has come from {TOWN} of {DOING}: their people on the road have seen the fires of a camp {WHERE}. {PEOPLE} have made a {KIND} there, near enough to strike at {COLONY}, and {TOWN} thought the colony should know.</CC_RaidCamp_Found_Text_Letter>
+  <CC_RaidCamp_Found_Line_Letter>Word from {TOWN} told of a {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_Found_Line_Letter>
+
+  <!-- The town that grew: its fortune's cause, its line in the history, and the names the colony can give it, by its
+       people's age: the colony's own name ({COLONY}), or the first name of the colonist they remember ({NAME}). -->
+  <CC_Grown_Cause>grown into a town</CC_Grown_Cause>
+  <CC_Grown_History>{PLACE} of {FACTION} grew from a settlers' steading into a town.</CC_Grown_History>
+  <CC_Grown_Name_Colony_Tribal>Little {COLONY}</CC_Grown_Name_Colony_Tribal>
+  <CC_Grown_Name_Colony_Medieval>New {COLONY}</CC_Grown_Name_Colony_Medieval>
+  <CC_Grown_Name_Colony_Industrial>New {COLONY}</CC_Grown_Name_Colony_Industrial>
+  <CC_Grown_Name_Colony_Spacer>{COLONY} Two</CC_Grown_Name_Colony_Spacer>
+  <CC_Grown_Name_Friend_Tribal>{NAME}'s Fire</CC_Grown_Name_Friend_Tribal>
+  <CC_Grown_Name_Friend_Medieval>{NAME}'s Hall</CC_Grown_Name_Friend_Medieval>
+  <CC_Grown_Name_Friend_Industrial>{NAME}'s Landing</CC_Grown_Name_Friend_Industrial>
+  <CC_Grown_Name_Friend_Spacer>{NAME} Station</CC_Grown_Name_Friend_Spacer>
+
+</LanguageData>

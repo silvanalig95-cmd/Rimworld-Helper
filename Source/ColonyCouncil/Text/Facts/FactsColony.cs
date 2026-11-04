@@ -222,6 +222,8 @@ namespace ColonyCouncil
                 f.Tag("byyou:" + KinMemory.KindTag(byYou), 2f);
                 if (!byYou.name.NullOrEmpty()) f.Value("YOURDEEDNAME", byYou.name);
             }
+            // The colonist they hold something against ({FOE}), and what they remember of the one talking (World/ColonistMemory.cs).
+            ColonistMemory.AddFacts(f, c, p);
         }
     }
 }

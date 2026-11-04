@@ -59,6 +59,12 @@ A colonist named in deeds worth 6 or more (adding up everything they did for tha
         <after>The region window's Peoples page shows the colonist with each deed that names them ("They remember Ana for it"). Saves from before keep their deeds; they just name nobody.</after>
       </li>
       <li>
+        <heading>Remembered by name, for good or ill</heading>
+        <text>Each people also remembers single colonists for what they did, the good and the bad, and keeps up to six of them by name (48 over every people), the one remembered least going first. Good turns: breaking a raiders' camp that troubled their roads (everyone of the colony who fought on its map, remembered by every people at peace with a town within 20 tiles of it), fighting beside their fighters when an enemy falls, trading at their post, walking their settlers out, and every deed above that names a colonist. Wrongs: killing one of theirs in a fight (2 for a raider at the colony's walls, a few days' killing adding up to 10; 6 elsewhere; 15 in time of peace), executing one of their people held prisoner (25), cutting one open for organs (20), hard words thrown at one of theirs or a brawl. Each fades as the peoples' deeds do.
+
+A colonist they remember warmly enough (4 or more, the good less the wrongs) is their friend by name, as above. One they hold 4 or more against is their foe: their talk and letters name that colonist, their notables think less of them (1.5 a point, 40 at most), and at 12 or more their traders won't deal with them. The trade option shows it, greyed out, with what their people remember, and a caravan at their town sends someone else to do the talking. A grudge against one colonist never brings a raid of its own; a vendetta stays the colony's own story.</text>
+      </li>
+      <li>
         <heading>What comes of it</heading>
         <text>With "Peoples remember the colony" on, five Rimfolk events follow from the memory. They come like any other Rimfolk event, as long as a people remembers enough, and their answers settle the deed they're about (it stays in the memory, but asks nothing more) or add new ones.</text>
         <table>

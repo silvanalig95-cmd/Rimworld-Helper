@@ -97,6 +97,8 @@ namespace ColonyCouncil
             d.by = colonist;
             d.byName = colonist.LabelShort;
             FactionMemory.Touch();
+            // Their people remember the colonist for it too (World/ColonistMemory.cs).
+            ColonistMemory.FromDeed(d, colonist);
         }
 
         /// <summary>A deed noted, naming the colonist who did it (a mission's finder or escort). Returns the deed.</summary>
@@ -130,10 +132,20 @@ namespace ColonyCouncil
                 present.Add(Ours(d.by));
             }
             int i = MemoryMath.BestFriend(strengths, present);
-            if (i < 0) return null;
+            if (i < 0) return ColonistMemoryFriend(f);
             deed = list[i];
+            // Someone their people remember more warmly for something no single deed names (a camp broken, fighting at their side).
+            var other = ColonistMemory.Friend(f, out float standing, out _);
+            if (other != null && other != deed.by && standing > strengths[i] * 1.5f)
+            {
+                deed = null;
+                return other;
+            }
             return deed.by;
         }
+
+        /// <summary>The colonist their people remember best by name (World/ColonistMemory.cs) when no deed names one, or null.</summary>
+        private static Pawn ColonistMemoryFriend(Faction f) => ColonistMemory.Friend(f, out _, out _);
 
         /// <summary>The strongest good turn this colonist did for this people that they still name them for (or null).</summary>
         public static FactionDeed DeedBy(Faction f, Pawn p)
@@ -171,8 +183,10 @@ namespace ColonyCouncil
                 {
                     tags.Add("their:friend");
                     tags.Add("their:friend:" + KindTag(deed));
-                    if (MemoryMath.Greeting(deed.Strength) >= 2) tags.Add("their:dearfriend");
+                    if (deed != null && MemoryMath.Greeting(deed.Strength) >= 2) tags.Add("their:dearfriend");
                 }
+                // And the one they hold something against (their:foe, {FOE}).
+                ColonistMemory.AddTags(tags, f, a);
                 if (a == null) return;
                 var mine = DeedBy(f, a);
                 if (mine == null) return;

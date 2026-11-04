@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The town that grew from the settlers' camp (Source/ColonyCouncil/World/Region/GrownTown.cs; docs/design/stage1-region.md,
+       item 7). 60 to 180 days after the other settlers' year (Council_WS_RivalColony) ended in friendship or as neighbours
+       (and, from a later release, after a hamlet's second year), the steading is a town: the ledger keeps it as one, its
+       prosperity rises, its leader heads it, the colony may give it a name, its founding families remember what the
+       colony did in their first year, and the colony is asked to its first market. It never starts by itself: the
+       follow-ups start it (World/Region/FollowUps.cs). {PLACE} the town, {X} its leader (flag leader), {TALE} the
+       steading as its first year called it, {A} the colonist their people remember by name (flag friend) or anyone, {ITEM}
+       a founding family's name (flag family). Their first year as [first:FLAG]: first:gift, first:trade, first:fed,
+       first:sold, first:shared, first:divided, first:peace, first:alliance, first:refused, first:cold, first:warned,
+       first:keepOff, first:sour; how it ended as [afterEnd:alliance], [afterEnd:neighbours] or [afterEnd:hamlet]. -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GrownTown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a town grows</label>
+    <workerClass>ColonyCouncil.SituationWorker_GrownTown</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>18~24</durationDays>
+    <kind>town</kind>
+    <titles>
+      <li>{PLACE} is a town</li>
+      <li>{TALE} grows up</li>
+    </titles>
+    <texts>
+      <li>What began as {TALE} is a town now. {PLACE} has a wall the whole way round, a market square, a well that doesn't run dry in summer, and more families than anyone has bothered to count. {FACTION} have put it on their maps as a town in its own right.</li>
+      <li>[theirLowtech] {PLACE} has outgrown the name its first families gave it. Where {TALE} stood there are longhouses now, a smithy, a cattle pen and a great hall, and the elders of {FACTION} speak of it as one of their towns.</li>
+      <li>[theirHightech] {PLACE} has its charter: what was {TALE} a year ago is a registered town of {FACTION} now, with a council, a clinic of sorts, a trading floor and a road graded all the way to the colony's turning.</li>
+      <li>[leader] What began as {TALE} is a town now, and {X_nameDef}, who led its settlers through their first year, heads it. {PLACE} has a wall, a market square and more families than anyone has bothered to count.</li>
+    </texts>
+    <summaries>
+      <li>{PLACE} is a town of {FACTION} for good, and doing well. Its people will want to settle a name and hold a first market, and they have not forgotten their first year beside the colony.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.3</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>name</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>reeve</what><withStranger>true</withStranger><count>1</count></li>
+        </effects>
+        <day>2~5</day>
+        <titles>
+          <li>A name for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has come up to the colony's gate from {PLACE} with a question. The town's families are settling a name for it, now that it is a town and not a steading, and the colony was there for their first year.\n\nThey would take the colony's name, or the name of someone of the colony, or keep the one they have.</li>
+          <li>[first:fed] {X_nameDef} has come up to the gate from {PLACE}. The families there still talk about the food the colony sent them in their first year, when nobody else did. Now the town is settling a name for itself, and they would like the colony to have a say in it.</li>
+          <li>[first:gift] {X_nameDef} has come up to the gate from {PLACE}. The first roof in the town went up on the colony's timber, and the families have not forgotten. They are settling a name for the town now, and would take one from the colony.</li>
+          <li>[friend] {X_nameDef} has come up to the gate from {PLACE}. The town is settling a name now that it is a town, and some of its families want to name it after {A_nameDef}, whom {FACTION} remember well. They would take the colony's name instead, or keep their own, if the colony would rather.</li>
+          <li>[first:cold] {X_nameDef} has come up to the gate from {PLACE}, a little stiffly. The colony was not warm to the settlers in their first year, and they have not forgotten that either. But the town is settling its name, and {X_nameDef} says the colony was there first, so it should be asked.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Name it after the colony</label>
+            <outcome>{X_nameDef} goes back down the road with the colony's answer. On {FACTION}'s maps from now on, the town carries the colony's name.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>named</li><li>namedColony</li></flags>
+            <help>1</help>
+            <deed>gave the town at {TALE} the colony's name</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Name it after {A_nameDef}</label>
+            <showIf><li>friend</li></showIf>
+            <outcome>{X_nameDef} goes back down the road with {A_nameDef}'s name. {A_nameDef} pretends not to be pleased, and does not manage it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>named</li><li>namedFriend</li></flags>
+            <help>1</help>
+            <deed>let the town at {TALE} take {A_nameDef}'s name</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let it keep its own name</label>
+            <outcome>{X_nameDef} is told the town should keep the name its own families chose. {PLACE} it stays.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>market</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack><stranger>true</stranger></li>
+        </effects>
+        <day>8~13</day>
+        <titles>
+          <li>The first market at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{PLACE} holds its first market day this week, and the colony is invited. Their carter is at the gate with an empty cart and an offer: a stall for the colony, and {COUNT} {THING} would sell well there, at a better price than any trader pays.\n\nThe carter would take the goods and pay for them here and now, at the market's price.</li>
+          <li>[first:trade] {PLACE} holds its first market day, and the families there remember that the colony was the first to trade with them, back when they were {TALE}. Their carter is at the gate: {COUNT} {THING} for a stall of the colony's, paid for here and now at the market's price.</li>
+          <li>[family] The {ITEM} family of {PLACE} are running the town's first market, and they want the colony there. Their carter is at the gate for {COUNT} {THING}, paid for here and now at the market's price.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Load the cart ({COUNT} {THING})</label>
+            <outcome>{A_nameDef} carries the {THING} out to the carter, who counts out the market's price and takes it down the road to the colony's stall at {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><price>1.3</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>market</li></flags>
+            <help>1</help>
+            <deed>kept a stall at the first market at {PLACE}</deed>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>The carter goes back to {PLACE} with an empty cart. There will be other market days.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>crowd</key>
+        <day>14~19</day>
+        <chance>0.6</chance>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>VisitorGroup</incident><withFaction>true</withFaction></li>
+        </effects>
+        <texts>
+          <li>Market day at {PLACE} drew a crowd, and some of it has walked up the road to see the colony.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>town</key>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE}</li>
+        </titles>
+        <texts>
+          <li>[named] {PLACE} is on {FACTION}'s maps for good, under the name the colony gave it. Its families tell newcomers how the town began as {TALE}, and who was there in the first year.</li>
+          <li>[!named,first:fed] {PLACE} is a town of {FACTION} for good, with a market every week. Its families tell newcomers how the town began as {TALE}, and that the colony fed them when nobody else would.</li>
+          <li>[!named,first:sour] {PLACE} is a town of {FACTION} for good. Its families remember their first year beside the colony, and not all of it fondly, but they are neighbours now and mean to stay that way.</li>
+          <li>[!named] {PLACE} is a town of {FACTION} for good, with a market every week and a road to the colony's turning. What began as {TALE} has grown up.</li>
+        </texts>
+        <chronicle>{TALE} grew into the town of {PLACE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

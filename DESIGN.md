@@ -2365,6 +2365,54 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   sacked, razed). Facts (the region's provider): `town:post` ({TOWN}, `{POSTKIND}`, `{KEEPER}`), `town:post:warned`,
   `their:post` and `region:post` (`{POST}`, `{POSTPEOPLE}`); 14 talk pieces. Shown: the region page `TradingPosts`
   (order 54), the panel's `Sections` for a post, This week while warned. Dev actions open, warn, sack and close one.
+- **The follow-ups and the memory of single colonists** (the seventh release, item 7, decisions 12 and 13;
+  `World/Region/FollowUps.cs`, `WarlordSon.cs`, `GrownTown.cs`, `RaidersCampWarnings.cs`, `World/ColonistMemory.cs`;
+  rules in `World/Region/FollowUpsMath.cs` and `World/ColonistMemoryMath.cs`, Tools/Tests `FollowUpTests`).
+  **Follow-ups**: noted when what they follow ends (one-line hooks: `WarlordWorker.Ended` calls
+  `WarlordSons.Remember`, and `Watch` notes his weapon's thing id while he is at a home; the other settlers'
+  `Ended` calls `GrownTowns.Remember`; a hamlet's second year will call `GrownTowns.Note`), kept on the home's
+  `RegionHome.followUps` (a `FollowUpsHome`, six waiting at most) with what they follow: its people and second people,
+  how it ended, its own person (the warlord, the steading's leader: the pawn while the game keeps it, kept in the world
+  by the ledger's reason `followup`, and the name, last name, sex and age for when it doesn't), the colonist it
+  remembers, a thing (the weapon, the town) and its flags. Due 60 to 180 days after (`FollowUpsMath.DueTick`), started
+  in the region's day when a world event's slot is free there (`WorldSituations.SlotFree`), one a day; let go 60 days
+  past the window. They never start by themselves (a static `pending`, as the welcome and the giving up); dev actions
+  in `FollowUpsDebug.cs` force each. **The
+  warlord's son** (`Rimfolk_WS_Son*`, kind `son`, `SituationWorker_Son`): his branch by the ending
+  (`FollowUpsMath.Branch`), a band only while his people are hostile and can hold a camp near the home, else the gate;
+  he rides with his people when they are at peace with the colony, else with the people at peace nearest the home
+  (`WarlordSons.Banner`, never the hunters). Made of his father's people (a fighter for a band or riders), 16 to 30 and
+  17 years younger than his parent, with the family's last name, and his parent's child by `PawnRelationDefOf.Parent`
+  while the game has the parent ({OTHER}), else named by {DEAD}. Band: `RaidersCamps.SetUp(home, people, son, "son")`
+  as Cast's last step; ends `slain` (by whose hand), `taken`, or quietly with the camp. The camp's leader is now kept
+  each hour (`KeepLeader`, and the ledger's daily check knows `raidcamp`, which it had dropped before), put on the
+  camp's map behind its walls when the colony attacks (`LeaderOnMap` in `MapMade`), and leads its raids as before.
+  Gate: one beat `ask` by `FollowUpsMath.Ask` (father in the cells: `DilemmaEffect_KinFree`, the callers' own walk of a
+  captive out to their kin; father one of the colony: a visit at the gate; grave: a visit to `HappeningContext.place`;
+  weapon: `DilemmaEffect_CarryOut` of `ctx.thing`; else a peace, a ledger Promise from the son, `warlordson`, two
+  years), switched to a peace when what he came for is gone. Exile: shelter (`WorldEffect_Join`, the hunters' goodwill
+  -8, and while they are at war with the colony 30% a raid of theirs two to five days on), rest, or the road. Riders:
+  join, a meal, or the road. A story whose question never came ends quietly. **The town that grew**
+  (`Rimfolk_WS_GrownTown`, `SituationWorker_GrownTown`): on the steading's own `Settlement` (the other settlers' event
+  made it by the new towns' rules), the ledger's record kind Town, prosperity 15 up (90 at most), its leader its head
+  (`NotableBook.MakeHead`, never a seat), history `world:grown` (a milestone); beats `name` (the colony's name by their
+  age, the remembered colonist's, or its own; `NotableBook.TownRenamed`), `market` (the carter buys a load at 1.3 at
+  the gate, `WorldEffect_Sell` toVisitor) and a market day's crowd; lines read their first year as `first:FLAG`.
+  **Found another way** (`RaidersCampWarnings.cs`): from day two hidden, a visitor of a people at peace on the map
+  (35% a day) or a town at peace within 15 tiles (12%, with neighbours' letters on), by the rate. **Colonist memory**:
+  one ledger Regard tie per people and colonist (origin `colonist`, the marks packed in its key, up to four), six
+  colonists a people and 48 in all, the faintest ending first; marks fade by `MemoryMath.Strength`; an index by people
+  and person rebuilt when the ledger changes. Marks of its own: `campBroken` (everyone noted on the camp's map, for
+  each people at peace with a town within 20 tiles, which also remember the colony's `brokeCamp`), `foughtBeside` (an
+  enemy killed with their fighters near and fighting), `tradedPost` and `walkedSettlers` (hooks for the posts and
+  hamlets), `killedRaid` 2 (10 a raid at most) / `killedField` 6 / `killedPeace` 15 (the death's instigator, `Patch_ColonistMemoryDied`),
+  `executed` 25, `harvested` 20 (`Patch_ColonistMemoryHarvest` on `ThoughtUtility.GiveThoughtsForPawnOrganHarvested`);
+  every deed `KinMemory.Name` gives a colonist goes in too, so one way names colonists. Read by `KinMemory.Friend` (the
+  warmer of a deed's name and this), `KinMemory.AddTags` (`their:foe`, `their:foe:KIND`, `their:foeA`), the facts
+  (`FOE`, `you:foe`, `you:remembered`; seven talk pieces), a notable's `OpinionOf` (the good as a deed, the wrongs
+  1.5 a point off, 40 at most) and `Known`, and the trade: at -12 or less `FactionUtility.CanTradeWith` says no with the
+  reason (`Patch_ColonistMemoryTrade`), so the option is greyed out and a caravan's negotiator is someone else. No raid
+  of its own.
 
 ### Rimfolk's windows
 

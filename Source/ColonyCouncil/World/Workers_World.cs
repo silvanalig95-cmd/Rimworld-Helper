@@ -100,6 +100,8 @@ namespace ColonyCouncil
 
         public override void Ended(WorldSituation s, SituationEnding ending)
         {
+            // Ended in friendship or as neighbours, the steading grows into a town in time (World/Region/GrownTown.cs).
+            GrownTowns.Remember(s, ending);
             if (ending == null || (ending.key != "absorbed" && ending.key != "failed")) return;
             var town = Town(s);
             if (town == null || !SituationWorker_Abandoned.Safe(town)) return;
