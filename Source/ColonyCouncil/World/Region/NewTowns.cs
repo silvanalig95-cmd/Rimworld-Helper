@@ -48,11 +48,28 @@ namespace ColonyCouncil
                 if (!RiseFallMath.RollDay(day, mother.ID, RiseFallMath.FoundEveryDays) || !CanFound(mother.Faction)) continue;
                 var rec = WorldLedger.TownRecord(mother.ID);
                 if (rec == null || !rec.Seeded || rec.closing >= 0 || !RiseFallMath.MaySendSettlers(rec.prosperity, rec.highSince, now)) continue;
-                if (!Rand.Chance(RiseFallMath.FoundChance)) continue;
+                if (!Rand.Chance(RiseFallMath.FoundChance) || !AnyHomeAllows(book, mother)) continue;
                 if (!TryFoundingTile(book, mother, out var tile)) continue;
                 Found(book, mother, rec, tile, now);
                 return;
             }
+        }
+
+        /// <summary>
+        /// Before searching: some home within reach of where the settlers could go has had no founding in its gap and has
+        /// room for a town (the search itself checks every home a tile lies in).
+        /// </summary>
+        private static bool AnyHomeAllows(RegionBook book, Settlement mother)
+        {
+            float far = RegionTowns.ReachTiles + RiseFallMath.FoundMaxTiles;
+            int now = Now;
+            foreach (var m in Homes.All)
+            {
+                if (m == null || !m.Tile.Valid || m.Tile.Layer != mother.Tile.Layer || Find.WorldGrid.ApproxDistanceInTiles(m.Tile, mother.Tile) > far) continue;
+                var h = book.HomeOf(m);
+                if (h != null && RiseFallMath.GapPassed(h.foundedAt, now, RiseFallMath.FoundGapDays) && RiseFallMath.RoomInReach(RegionTowns.Of(m)?.towns.Count ?? 0)) return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -272,7 +289,7 @@ namespace ColonyCouncil
             Faces(town, from, "ruin");
             var actors = new List<HistoryActor> { new HistoryActor(Refs.Of(people), HistoryRole.Did), new HistoryActor(Ref.Town(r.town), HistoryRole.About) };
             if (!own && r.people != null) actors.Add(new HistoryActor(Refs.Of(r.people), HistoryRole.About));
-            History.Add(RiseFallWords.ResettledKind, actors, Refs.Of(town), WorldMath.Weight(false), RiseFallWords.HistoryResettled(people, r.name, town.Name, own),
+            History.Add(RiseFallWords.ResettledKind, actors, Refs.Of(town), WorldMath.Weight(false), RiseFallWords.HistoryResettled(people, r.name, town.Name),
                 values: new List<string> { r.name ?? "", town.Name });
             var home = RegionTowns.NearestHome(tile, out float tiles);
             if (home != null) RiseFallWords.TellResettled(home, town, r, own, tiles);

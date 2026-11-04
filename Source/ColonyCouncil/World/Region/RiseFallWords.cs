@@ -105,7 +105,8 @@ namespace ColonyCouncil
         public static void TellResettled(Map home, Settlement town, LedgerRuin r, bool own, float tiles)
         {
             var age = Ages.Of(town.Faction);
-            string key = own ? "CC_RiseFall_Back_" + age : town.Name == r.name ? "CC_RiseFall_Newcomers_" + age : "CC_RiseFall_Renamed_" + age;
+            // Under a new name (newcomers' own, or the old one taken by another town meanwhile), the line says so.
+            string key = town.Name != r.name ? "CC_RiseFall_Renamed_" + age : own ? "CC_RiseFall_Back_" + age : "CC_RiseFall_Newcomers_" + age;
             string text = T(key, Means(home, town.Faction).Named("MEANS"), PeopleName(town.Faction).Named("PEOPLE"), (r.name ?? town.Name).Named("TOWN"),
                 town.Name.Named("NEWNAME"), Where(home, town.Tile, tiles).Named("WHERE"));
             Tell.Minor(NewsKind.World, Importance.Notable, home, text, new LookTargets(town), MessageTypeDefOf.PositiveEvent);
@@ -119,8 +120,8 @@ namespace ColonyCouncil
 
         public static string HistoryFaded(string town) => T("CC_RiseFall_H_Faded", (town ?? "").Named("TOWN"));
 
-        public static string HistoryResettled(Faction people, string old, string town, bool own) =>
-            T(own || old == town ? "CC_RiseFall_H_Back" : "CC_RiseFall_H_Renamed", PeopleName(people).Named("PEOPLE"), (old ?? town).Named("TOWN"), town.Named("NEWNAME"));
+        public static string HistoryResettled(Faction people, string old, string town) =>
+            T(old.NullOrEmpty() || old == town ? "CC_RiseFall_H_Back" : "CC_RiseFall_H_Renamed", PeopleName(people).Named("PEOPLE"), (old ?? town).Named("TOWN"), town.Named("NEWNAME"));
 
         // ---------------- The region map's panel and the inspect pane ----------------
 

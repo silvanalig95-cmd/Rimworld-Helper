@@ -120,7 +120,7 @@
           <li>{PLACE} stands empty</li>
         </titles>
         <texts>
-          <li>The last of {FACTION} left {PLACE} yesterday. The gates stand open, the wells are covered, and the road through the town is already going to grass.\n\nIt is a ruin on the map now. In a year or two, families may come back to the old walls, or newcomers may.</li>
+          <li>The last of {FACTION} left {PLACE} yesterday. The gates stand open, the wells are covered, and the road through the town is already going to grass.\n\nIt is a ruin on the map now. In two years or so, families may come back to the old walls, or newcomers may.</li>
           <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now, and the rest is the weather's business.\n\nIt is a ruin on the map now, and swallows have moved into the meeting hall.</li>
         </texts>
       </li>
