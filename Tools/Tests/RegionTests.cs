@@ -164,6 +164,24 @@ public static class RegionTests
         for (int i = 0; i < 100; i++) whys.Add(RegionMath.WhyFounded(new HashSet<string> { "ruin", "river", "coast" }, i / 100f));
         C(whys.SetEquals(new[] { "ruin", "river", "coast" }), "every reason that holds can come up");
 
+        // ---------------- The full welcome (decision 1) ----------------
+
+        C(RegionMath.WelcomeDue(15f, -1, 0) && !RegionMath.WelcomeDue(16f, -1, 0) && !RegionMath.WelcomeDue(-1f, -1, 0), "the full welcome for a new town within 15 tiles");
+        C(!RegionMath.WelcomeDue(5f, 0, 59 * Day) && RegionMath.WelcomeDue(5f, 0, 60 * Day), "at most once a year per home");
+
+        // ---------------- What a town sells (decision 3) ----------------
+
+        C(RegionMath.StockFactor(Fortune.Struggling, RegionMath.StockKind.Food) == 0.75f && RegionMath.StockFactor(Fortune.Struggling, RegionMath.StockKind.Medicine) == 0.75f
+          && RegionMath.StockFactor(Fortune.Struggling, RegionMath.StockKind.Silver) == 0.75f, "a struggling town: a quarter less food, medicine and silver");
+        C(RegionMath.StockFactor(Fortune.Thriving, RegionMath.StockKind.Silver) == 1.1f && RegionMath.StockFactor(Fortune.Flourishing, RegionMath.StockKind.Silver) == 1.2f,
+            "a thriving town a little more silver, a flourishing one more again");
+        C(RegionMath.StockFactor(Fortune.Flourishing, RegionMath.StockKind.Food) == 1f && RegionMath.StockFactor(Fortune.Poor, RegionMath.StockKind.Silver) == 1f
+          && RegionMath.StockFactor(Fortune.Steady, RegionMath.StockKind.Medicine) == 1f, "everything else as the game made it");
+        C(Enum.GetValues(typeof(Fortune)).Cast<Fortune>().All(f => RegionMath.StockFactor(f, RegionMath.StockKind.Other) == 1f), "goods that aren't food, medicine or silver are never touched");
+        C(RegionMath.StockTarget(400, 0.75f) == 300 && RegionMath.StockTarget(500, 1.1f) == 550 && RegionMath.StockTarget(3, 0.75f) == 2, "a share of each good's stacks together");
+        C(RegionMath.StockTarget(1, 0.75f) == 1 && RegionMath.StockTarget(0, 0.75f) == 0 && RegionMath.StockTarget(-4, 1.2f) == 0 && RegionMath.StockTarget(7, 1f) == 7,
+            "a lone item stays, nothing stays nothing");
+
         // ---------------- Bounds ----------------
 
         var list = Enumerable.Range(0, 9).ToList();
@@ -258,6 +276,31 @@ public static class RegionTests
         C(faces.Contains("Tell.Minor(NewsKind.World, Importance.Notable, home, text") && faces.Contains("Tell.Letter(NewsKind.World, Importance.Notable, home, label"),
             "a line when begun and when built, and the founder's letter");
         C(faces.Contains("Ages.Form(AgeFeature.Founding, home, people)") && faces.Contains("Ages.Form(AgeFeature.Founding, home, town.Faction)"), "the news by the colony's means and their rite (Ages)");
+
+        // The full welcome: the new-town event's beats on the town that stands, never by itself, once a year, when a slot is free.
+        string welcome = Code("World/Region/RegionWelcome.cs");
+        C(welcome.Contains("class SituationWorker_NewTownMet : SituationWorker_NewTown") && welcome.Contains("public override bool CanStart(Map map) => pending != null && base.CanStart(map);"),
+            "the welcome runs only when the region starts it with a town");
+        C(welcome.Contains("!ws.SlotFree(home)") && Code("World/WorldSituations.cs").Contains("active.Count(s => !s.ended) < MaxActive && !MapFacts.ThreatOn(map) && !Waiting && Tell.CanAsk"),
+            "only when a world event's slot is free, as the world's own rhythm would");
+        string facesCode = Code("World/Region/RegionFaces.cs");
+        C(facesCode.Contains("RegionMath.WelcomeDue(tiles, mine.welcomeAt, now)") && facesCode.Contains("!FullWelcome(book, town, founder, home, tiles)"),
+            "once a year per home, and its letter is the town's news (no second line)");
+        var met = Directory.GetFiles(Path.Combine(root, "Defs", "WorldSituationDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.WorldSituationDef"))
+            .FirstOrDefault(e => e.Element("defName")?.Value == "Rimfolk_WS_NewTownMet");
+        C(met != null && met.Element("workerClass")?.Value == "ColonyCouncil.SituationWorker_NewTownMet", "the welcome's def");
+        var beats = met?.Element("beats")?.Elements("li").Select(b => b.Element("key")?.Value).ToList() ?? new List<string>();
+        C(beats.SequenceEqual(new[] { "welcome", "traders", "visitors" }), "the new-town event's beats: the runner and the gift, its traders, its visitors");
+        string metText = met?.ToString() ?? "";
+        C(metText.Contains("VisitEffect_AtGate") && metText.Contains("<what>runner</what>") && metText.Contains("<kind>gift</kind>"), "a runner at the gate, and a gift hoped for and remembered");
+
+        // A town's fortune in its stock: a postfix that runs last, guarded by the settings.
+        string stock = Code("World/Region/RegionStock.cs");
+        C(stock.Contains("[HarmonyPatch(typeof(Settlement_TraderTracker), \"RegenerateStock\")]") && stock.Contains("[HarmonyPriority(Priority.Last)]")
+          && stock.Contains("public static void Postfix(") && !stock.Contains("Prefix("), "the stock patch is a postfix that runs after other mods' and never skips the game's restock");
+        C(stock.Contains("RimfolkPatches.On && RegionBook.FortunesOn && (ColonyCouncilMod.Settings?.regionStock ?? true)") && stock.Contains("CouncilLog.ErrorOnce"),
+            "off with the deeper hooks, the fortunes or its own setting off, and never throws into the game");
+        C(stock.Contains("RegionTowns.IsInDetail(town.ID)"), "only towns kept in detail");
 
         // ---------------- World events move fortunes ----------------
 

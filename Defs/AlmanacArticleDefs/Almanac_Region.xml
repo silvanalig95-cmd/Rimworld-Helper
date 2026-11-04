@@ -27,6 +27,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
           <li>80 or more | Flourishing (booming, for spacers)</li>
         </table>
         <after>Once a day, each town drifts back toward 50 (45 on poor land) by 0.3, a town within 20 tiles of a town of a people its own is at war with loses 0.3, and the world's events move it. Its panel names what moved it last, for 60 days, when that fits how it stands now: "Struggling, since the plague", "Thriving: the new road", "Poor: newly founded".</after>
+        <after>It shows in what the town sells, too. When the game restocks a town within reach, a struggling one has a quarter less food, medicine and silver to trade, a thriving one a tenth more silver and a flourishing one a fifth more; nothing else in its stock changes, and other mods' changes to the stock are made first (with the deeper game hooks).</after>
       </li>
       <li>
         <heading>What the world's events do to a town</heading>
@@ -69,7 +70,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
       <li>
         <heading>How the colony hears of it</heading>
         <text>The colony news has one line when a town is begun and one when it stands, by the colony's own means (word from a traveler, a rider's news, news on the radio, a comms relay's report) and in their people's way of founding (a new hearth lit before the elders, a charter read and a market cross raised, streets staked out, a charter filed and the first habitats sealed). Within reach, this line takes the place of Faction Territories' own message about the same town, so it comes once; when Rimfolk doesn't take the town, the mod's message comes as it always did. A town Rimfolk's own world events found is told by the event's letter.</text>
-        <after>A new town within 15 tiles of a home sends a letter from its founder, at most one a season to each home: who they are and where, why they came, what their people remember of the colony (the good turn they remember best, or a wrong they want no part of), the families who came first, in their people's own voice. The region map shows a town's fortune and founding in its panel, a town being built and its settlers, and for a home how remote it is.</after>
+        <after>A new town within 15 tiles of a home welcomes itself in full, at most once a year for each home and when a world event's slot is free: its letter tells of the town, and within a few days a runner comes to the gate to ask whether the settlers may count the colony among their friends, a neighbor's gift hoped for and remembered (silver carried out to the runner), timber wanted at a fair price; its traders and visitors follow. Otherwise the town is told in the news, and its founder writes, at most one letter a season to each home: who they are and where, why they came, what their people remember of the colony (the good turn they remember best, or a wrong they want no part of), the families who came first, in their people's own voice. The region map shows a town's fortune and founding in its panel, a town being built and its settlers, and for a home how remote it is.</after>
       </li>
       <li>
         <heading>How remote a home is</heading>
@@ -81,7 +82,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
       </li>
       <li>
         <heading>With and without other mods</heading>
-        <text>With Faction Territories and Vassalage, its builders give most new towns (each people one about every 30 days somewhere in its territory, ten days to build), and Rimfolk gives those within reach their faces; a town taken in one of its invasions starts its fortune again. Without it, new towns come only from what the game and Rimfolk already do. Two settings in The region switch the fortunes and the new towns' faces off: then nothing is moved, made or told, and what is kept stays.</text>
+        <text>With Faction Territories and Vassalage, its builders give most new towns (each people one about every 30 days somewhere in its territory, ten days to build), and Rimfolk gives those within reach their faces; a town taken in one of its invasions starts its fortune again. Without it, new towns come only from what the game and Rimfolk already do. The settings in The region switch the fortunes, their say in the trade stock and the new towns' faces off: then nothing is moved, made or told, and what is kept stays.</text>
       </li>
     </sections>
     <keywords><li>region</li><li>town</li><li>towns</li><li>fortune</li><li>prosperity</li><li>founder</li><li>founding</li><li>new town</li><li>settlers</li><li>remote</li><li>remoteness</li><li>families</li><li>Faction Territories</li></keywords>

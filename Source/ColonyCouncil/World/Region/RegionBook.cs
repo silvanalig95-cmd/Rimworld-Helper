@@ -29,12 +29,15 @@ namespace ColonyCouncil
 
         /// <summary>When a new town's founder last wrote to this home (one letter a season at most), or -1.</summary>
         public int letterAt = -1;
+        /// <summary>When a new town last gave this home its full welcome (once a year at most), or -1.</summary>
+        public int welcomeAt = -1;
 
         public void ExposeData()
         {
             Scribe_Values.Look(ref home, "home", HomesMath.None);
             Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
             Scribe_Values.Look(ref letterAt, "letterAt", -1);
+            Scribe_Values.Look(ref welcomeAt, "welcomeAt", -1);
         }
     }
 

@@ -14,15 +14,13 @@ namespace ColonyCouncil
     /// titled kinds), two founding families, the town its settlers came from and a reason read from the world. When it
     /// stands, the founder is its head notable and the town is kept beside the nearest four for its first year. Told
     /// once when begun and once when built in the colony news (in place of Faction Territories' own message within
-    /// reach), and by the founder's first letter to a home within about 15 tiles (one a season per home).
+    /// reach). A town within about 15 tiles of a home gets the full welcome (decision 1: the new-town event's runner at
+    /// the gate and a gift hoped for, on this town, RegionWelcome.cs) at most once a year per home when a world event's
+    /// slot is free, else its founder's first letter (one a season per home).
     /// <para>
     /// Sources: Faction Territories' settlements begun and finished (through WorldMechanics' hooks), and Rimfolk's own
-    /// new towns (the new-town, other-settlers and crossroads events, whose own letters tell them). Without another mod
-    /// building towns, the new towns come only from what the game and Rimfolk already do.
-    /// </para>
-    /// <para>
-    /// The full welcome (a runner at the gate, a gift hoped for) waits for the player's word (decision 1): its place is
-    /// <see cref="Welcome"/>, which today always sends the letter.
+    /// new towns (the new-town, other-settlers and crossroads events, whose own letters tell them and are their welcome).
+    /// Without another mod building towns, the new towns come only from what the game and Rimfolk already do.
     /// </para>
     /// </summary>
     public static class RegionFaces
@@ -329,16 +327,32 @@ namespace ColonyCouncil
                 if (!f.founder.IsNone) actors.Insert(1, new HistoryActor(f.founder, HistoryRole.Did));
                 History.Add(WorldMath.Built, actors, Refs.Of(town), WorldMath.Weight(false), values: town.HasName ? new List<string> { town.Name } : null);
             }
-            else TellBuilt(rec, town, founder, home, tiles);
-            if (home != null) Welcome(book, rec, town, founder, home, tiles);
+            // Rimfolk's own new towns came with their event, which is their welcome already. Another mod's: the full welcome
+            // when it comes (its letter tells the town), else the news line and, near enough, the founder's letter.
+            else if (home == null || !FullWelcome(book, town, founder, home, tiles))
+            {
+                TellBuilt(rec, town, founder, home, tiles);
+                if (home != null) FoundersLetter(book, rec, town, founder, home, tiles);
+            }
         }
 
         /// <summary>
-        /// The new town's first word to the home near it: the founder's letter, within RegionMath.LetterTiles and at most
-        /// one a season per home. Decision 1 (the full welcome: a runner at the gate, a gift hoped for, at most once a year)
-        /// would be chosen here when a world-event slot is free; until the player decides, it is always the letter.
+        /// The full welcome of a new town within RegionMath.LetterTiles of a home (decision 1): the new-town event's runner
+        /// at the gate and a gift hoped for, on this town (RegionWelcome.cs), at most once a year per home and only when a
+        /// world event's slot is free. True when it began.
         /// </summary>
-        private static void Welcome(RegionBook book, LedgerTown rec, Settlement town, Pawn founder, Map home, float tiles)
+        private static bool FullWelcome(RegionBook book, Settlement town, Pawn founder, Map home, float tiles)
+        {
+            var mine = book.HomeOf(home);
+            int now = Now;
+            if (mine == null || !RegionMath.WelcomeDue(tiles, mine.welcomeAt, now) || SituationWorker_NewTownMet.Start(home, town, founder) == null) return false;
+            mine.welcomeAt = now;
+            mine.letterAt = now;
+            return true;
+        }
+
+        /// <summary>The founder's first letter to the home near the new town, within RegionMath.LetterTiles and at most one a season per home.</summary>
+        private static void FoundersLetter(RegionBook book, LedgerTown rec, Settlement town, Pawn founder, Map home, float tiles)
         {
             var mine = book.HomeOf(home);
             if (mine == null || founder == null || founder.Dead || !RegionMath.LetterDue(tiles, mine.letterAt, Now)) return;

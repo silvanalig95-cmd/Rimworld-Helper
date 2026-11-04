@@ -221,6 +221,40 @@ namespace ColonyCouncil
         /// </summary>
         public static bool CauseFits(Fortune band, int way) => way == 0 || (way < 0 ? band <= Fortune.Steady : band >= Fortune.Steady);
 
+        // ---------------- What it sells (decision 3) ----------------
+
+        /// <summary>What a town's restocked trade goods are, for its fortune's say in them.</summary>
+        public enum StockKind
+        {
+            Other,
+            Food,
+            Medicine,
+            Silver
+        }
+
+        /// <summary>A struggling town has a quarter less food, medicine and silver to trade.</summary>
+        public const float StrugglingStock = 0.75f;
+        /// <summary>A thriving town a little more silver, a flourishing one more again.</summary>
+        public const float ThrivingSilver = 1.1f, FlourishingSilver = 1.2f;
+
+        /// <summary>How much of a kind of goods a town of this fortune has after the game restocks it (1: as the game made it).</summary>
+        public static float StockFactor(Fortune band, StockKind kind)
+        {
+            if (kind == StockKind.Other) return 1f;
+            if (band == Fortune.Struggling) return StrugglingStock;
+            if (kind != StockKind.Silver) return 1f;
+            if (band == Fortune.Thriving) return ThrivingSilver;
+            if (band == Fortune.Flourishing) return FlourishingSilver;
+            return 1f;
+        }
+
+        /// <summary>How many of a good (all its stacks) the town has of <paramref name="total"/>: rounded, a half up, never below 0 (a lone item stays).</summary>
+        public static int StockTarget(int total, float factor)
+        {
+            if (total <= 0 || factor == 1f) return Math.Max(0, total);
+            return Math.Max(0, (int)Math.Round(total * factor, MidpointRounding.AwayFromZero));
+        }
+
         // ---------------- New towns ----------------
 
         /// <summary>A town is new for its first year (60 days): its notables are kept beside the nearest four, and its people speak of its founding.</summary>
@@ -249,6 +283,16 @@ namespace ColonyCouncil
         /// <summary>A new town's founder writes to this home: near enough, and no founder's letter to it this season.</summary>
         public static bool LetterDue(float tiles, int lastLetter, int now) =>
             tiles >= 0f && tiles <= LetterTiles && (lastLetter < 0 || now - lastLetter >= (long)LetterGapDays * DayTicks);
+
+        /// <summary>The full welcome (a runner at the gate, a gift hoped for) comes to a home at most once a year (60 days).</summary>
+        public const int WelcomeGapDays = 60;
+
+        /// <summary>
+        /// A new town this near gets the full welcome instead of its founder's letter: within <see cref="LetterTiles"/>,
+        /// and no full welcome at this home in the last year. (When no world event's slot is free, the letter comes.)
+        /// </summary>
+        public static bool WelcomeDue(float tiles, int lastWelcome, int now) =>
+            tiles >= 0f && tiles <= LetterTiles && (lastWelcome < 0 || now - lastWelcome >= (long)WelcomeGapDays * DayTicks);
 
         /// <summary>A town of theirs given up this lately sends its people out as settlers (the reason "refugees").</summary>
         public const int GivenUpDays = 120;

@@ -353,6 +353,7 @@ namespace ColonyCouncil
             // The region (World/Region/): the towns within the region map's reach kept in detail.
             Section("CC_SetSec_Region");
             Toggle("regionFortunes", "CC_Settings_RegionFortunes", "CC_SetNote_RegionFortunes");
+            Toggle("regionStock", "CC_Settings_RegionStock", "CC_SetNote_RegionStock", "regionFortunes,deepHooks");
             Toggle("regionFaces", "CC_Settings_RegionFaces", "CC_SetNote_RegionFaces");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");

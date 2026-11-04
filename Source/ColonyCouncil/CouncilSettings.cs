@@ -157,6 +157,8 @@ namespace ColonyCouncil
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
         public bool regionFaces = true;
+        /// <summary>The region: a town's fortune in what it sells when the game restocks it (World/Region/RegionStock.cs; needs the fortunes and the deeper hooks).</summary>
+        public bool regionStock = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -510,6 +512,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
+            Scribe_Values.Look(ref regionStock, "regionStock", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

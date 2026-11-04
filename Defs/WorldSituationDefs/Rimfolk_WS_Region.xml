@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events of the region (Source/ColonyCouncil/World/Region/). The full welcome of a new town: a town that
+       another mod's builders finished within about 15 tiles of a home (decision 1, the player's yes) gets the new-town
+       event's beats (a runner at the gate, a gift hoped for and remembered, timber wanted, its traders and visitors) on
+       the town that stands, instead of a town made for it. It never starts by itself: the region starts it when the town
+       stands, at most once a year per home, when a world event's slot is free (RegionFaces.Welcome), else the town's
+       founder writes. {X} is the founder when there is one ([founder]). -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_NewTownMet</defName>
+    <label>a new town's welcome</label>
+    <workerClass>ColonyCouncil.SituationWorker_NewTownMet</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>town</kind>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>-10</minGoodwill>
+    </faction>
+    <titles>
+      <li>A new town: {PLACE}</li>
+      <li>{PLACE} stands</li>
+    </titles>
+    <texts>
+      <li>[founder,theirLowtech] Settlers of {FACTION} under {X_nameDef} have finished their new town, {PLACE}, {TALE}. The first houses are up and the well is dug, and they held their first market before the roofs were on.\n\nThey are short of nearly everything, timber most of all, and the colony may expect to hear from them.</li>
+      <li>[founder,theirHightech] {FACTION} have finished a new settlement: {PLACE}, {TALE}, with {X_nameDef} at its head. The first prefab walls are up, and someone has already painted the name over the gate, slightly crooked.\n\nA new town needs everything at once, and {PLACE} will be glad of friends.</li>
+      <li>[!founder] Settlers of {FACTION} have finished their new town, {PLACE}, {TALE}. They are short of nearly everything, and glad of friends.\n\nTheir first word to the colony is already on the road.</li>
+    </texts>
+    <summaries>
+      <li>{PLACE} is on the map to stay. Its first traders will come by soon, and caravans and visitors from {FACTION} come more often while the town finds its feet.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.5</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.4</factor></li>
+      <li><rimfolk>Council_Evt_BulkOrder</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_RegularBuyer</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>welcome</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><young>true</young><gender>Female</gender></li>
+        </effects>
+        <day>1~3</day>
+        <count>150~250</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A welcome for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[founder] {X_nameDef} has sent a runner from {PLACE} to ask whether the settlers may count the colony among their friends. A neighbor's gift is the custom at a time like this, and it's remembered.\n\nThey are short of timber too, and would pay a fair price for some.</li>
+          <li>A girl of about twelve ran all the way from {PLACE} with a message learned by heart, and said it at the gate without stopping for breath: the settlers would like to count the colony among their friends, they are short of timber and can pay for it, and could she please have some water.\n\nA neighbor's gift is the custom at a time like this, and it's remembered.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send a gift ({COUNT} silver)</label>
+            <outcome>The runner takes the silver back to {PLACE}, where the settlers mean to spend it on a bell for the meeting hall.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {PLACE}</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>gift</kind><about>place</about></li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>1</help>
+            <deed>sent a gift to the settlers of {PLACE}</deed>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sell them timber (100 wood)</label>
+            <outcome>Carters from {PLACE} come for the logs with an empty wagon, and pay more than the going price, since they need them now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>WoodLog</thing><count>100</count><price>1.4</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>timber</li></flags>
+            <help>1</help>
+            <deed>sold timber to {PLACE}</deed>
+          </li>
+          <li>
+            <label>Wish them well</label>
+            <outcome>The runner goes home with the colony's good wishes and an empty purse.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>traders</key>
+        <day>2~5</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction></li>
+        </effects>
+      </li>
+      <li>
+        <key>visitors</key>
+        <day>5~8</day>
+        <chance>0.6</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>VisitorGroup</incident><withFaction>true</withFaction></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>settled</key>
+        <titles>
+          <li>{PLACE} finds its feet</li>
+        </titles>
+        <texts>
+          <li>[gift,!timber] {PLACE} has found its feet. The fields are marked out, the walls are up, and the bell bought with the colony's silver rings for market every week.</li>
+          <li>[timber] {PLACE} has found its feet. There are colony timbers in half the roofs there, and the settlers say so when they come by to trade.</li>
+          <li>[!gift,!timber] {PLACE} has found its feet: walls up, fields marked out, a market on the first day of every week. The colony has new neighbors, for better or worse.</li>
+        </texts>
+        <chronicle>The colony welcomed {PLACE}, the new town of {FACTION}.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>
