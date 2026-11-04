@@ -176,9 +176,13 @@ namespace ColonyCouncil
     /// <summary>Fights the events bring, sent through the game's own raid incident.</summary>
     public static class Raids
     {
-        public static bool CanRaid(Faction f) =>
+        /// <summary>
+        /// A people that can raid the colony: hostile, with fighters, and not holding a truce with the home raided (the seat
+        /// when none is given; Diplomacy/Truces.cs), unless it is their firebrands breaking it.
+        /// </summary>
+        public static bool CanRaid(Faction f, Map home = null) =>
             f != null && !f.IsPlayer && !f.defeated && !f.Hidden && !f.temporary && f.def.humanlikeFaction && f.HostileTo(Faction.OfPlayer)
-            && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat);
+            && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat) && !Truces.Bars(f, home);
 
         /// <summary>A hostile people that can send fighters, of the colony's own era by preference.</summary>
         public static Faction Enemy(Func<Faction, bool> pred = null)
@@ -200,7 +204,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null, IntVec3? from = null, bool tellStoryteller = true)
         {
-            if (map == null || !CanRaid(f)) return false;
+            if (map == null || !CanRaid(f, map)) return false;
             // Whoever leads it is part of its strength, not on top of it (only one who can walk in with them).
             if (CanLead(leader, f) && leader.kindDef != null) points -= leader.kindDef.combatPower;
             float min = 0f;

@@ -271,7 +271,7 @@ namespace ColonyCouncil
                     var people = ThingRefs.Of(f);
                     string text = DipWords.P("CC_Dip_Week", ThingRefs.Link(DipWords.People(f), people).Named("PEOPLE"), DipWords.Need(need).Named("NEED"));
                     if (Homes.All.Count > 1 && home != null) text = Homes.Name(home) + ": " + text;
-                    var letter = FavourAsks.LetterFor(t);
+                    var letter = FavourAsks.AnyLetterFor(t);
                     Action open = letter != null ? (Action)(() => DiplomacyLinks.Open(letter)) : WeekModel.Page(DiplomacyPage);
                     rows.Add(new WeekRow
                     {

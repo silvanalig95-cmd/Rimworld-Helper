@@ -25,13 +25,19 @@ namespace ColonyCouncil
         /// <summary>The colony's word given on a people's side in their dispute (their debt called in).</summary>
         public const string Side = "dip:side";
 
+        /// <summary>
+        /// Pacts and truces (release 2a.2): their offer of a truce or a pact, a truce sworn at the gate, their band walked in
+        /// on a call, the colony's fighters at their town on theirs.
+        /// </summary>
+        public const string TruceOffer = "dip:truceOffer", PactOffer = "dip:pactOffer", Parley = "dip:parley", Band = "dip:band", Arms = "dip:arms";
+
         /// <summary>Kinds the later releases write (design, "The history and the memory"): named here so the family is whole.</summary>
         public const string Ransomed = "dip:ransomed", Exchanged = "dip:exchanged", Envoy = "dip:envoy", Feast = "dip:feast", Contest = "dip:contest",
             Wedding = "dip:wedding", Task = "dip:task", Tribute = "dip:tribute", Levy = "dip:levy", FoundOut = "dip:foundout", Renown = "dip:renown";
 
         public static readonly string[] Kinds =
         {
-            Word, Peace, Freed, Side, Ransomed, Exchanged, Envoy, Feast, Contest, Wedding, Task, Tribute, Levy, FoundOut, Renown
+            Word, Peace, Freed, Side, TruceOffer, PactOffer, Parley, Band, Arms, Ransomed, Exchanged, Envoy, Feast, Contest, Wedding, Task, Tribute, Levy, FoundOut, Renown
         };
 
         // ---------------- The deeds ----------------
@@ -56,10 +62,10 @@ namespace ColonyCouncil
         /// <summary>The region window's pages: Diplomacy after Letters (30), Household right after it, before Journeys (40).</summary>
         public const float DiplomacyOrder = 35f, HouseholdOrder = 36f;
 
-        /// <summary>The letter purposes stage 2 adds, in its order; this release writes the first.</summary>
+        /// <summary>The letter purposes stage 2 adds, in its order; the first three are written (Favour in 2a.1, Pact and Truce in 2a.2).</summary>
         public static readonly string[] Purposes = { "Favour", "Pact", "Truce", "Match", "Ward", "Ransom", "Envoy", "Fealty" };
 
-        /// <summary>The right-click acts stage 2 adds after Invite, in its order; this release offers the first.</summary>
+        /// <summary>The right-click acts stage 2 adds after Invite, in its order; the first two are offered (AskFavour in 2a.1, SpeakPact in 2a.2).</summary>
         public static readonly string[] Acts = { "AskFavour", "SpeakPact", "SpeakMatch", "OfferExchange", "SoundOut" };
 
         // ---------------- A people's stance ----------------

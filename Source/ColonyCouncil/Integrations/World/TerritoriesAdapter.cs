@@ -246,6 +246,82 @@ namespace ColonyCouncil
         }
 
         public static Faction PeopleOf(int loadId) => FactionOf(loadId);
+
+        // ---------------- Calls to arms (Diplomacy/CallsToArms.cs) ----------------
+
+        private static MethodInfo findForSettlement, enter;
+        private static Type joinFight;
+        private static bool lookedFight;
+
+        private static void LookFight()
+        {
+            if (lookedFight) return;
+            lookedFight = true;
+            if (!Active) return;
+            var util = GenTypes.GetTypeInAnyAssembly(InvasionsUtility);
+            invasion ??= GenTypes.GetTypeInAnyAssembly("FactionTerritories.Invasions.Invasion");
+            findForSettlement = util == null ? null : AccessTools.Method(util, "FindForSettlement", new[] { typeof(Settlement) });
+            if (findForSettlement != null && (invasion == null || !invasion.IsAssignableFrom(findForSettlement.ReturnType))) findForSettlement = null;
+            enter = util == null || invasion == null ? null : AccessTools.Method(util, "Enter", new[] { typeof(Caravan), typeof(Settlement), invasion });
+            joinFight = GenTypes.GetTypeInAnyAssembly("FactionTerritories.Invasions.ArrivalAction_JoinFight");
+        }
+
+        /// <summary>The mod's invasion of this town still being fought, or null.</summary>
+        private static object LiveInvasion(Settlement town)
+        {
+            LookFight();
+            Look();
+            if (town == null || findForSettlement == null) return null;
+            var inv = findForSettlement.Invoke(null, new object[] { town });
+            if (!(inv is WorldObject wo) || wo.Destroyed) return null;
+            if (invResolved != null && (bool)invResolved.GetValue(inv)) return null;
+            return inv;
+        }
+
+        /// <summary>The mod's invasion of a town under way, with its attacker: a call to arms for the town's people.</summary>
+        public static bool InvasionAt(Settlement town, out Faction attacker)
+        {
+            attacker = null;
+            try
+            {
+                var inv = LiveInvasion(town);
+                if (inv == null) return false;
+                attacker = FactionOf(Int(invAttacker, inv));
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world mechanics: an invasion read", e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// The colony's caravan at a town the mod's invasion is fighting over joins that fight through the mod's own arrival
+        /// (its "Join fight"). False without the mod, or with no such fight there now.
+        /// </summary>
+        public static bool JoinFight(Caravan c, Settlement town)
+        {
+            try
+            {
+                var inv = LiveInvasion(town);
+                if (inv == null || c == null || c.Tile != town.Tile && Find.WorldGrid.ApproxDistanceInTiles(c.Tile, town.Tile) > 1.01f) return false;
+                if (joinFight != null && Activator.CreateInstance(joinFight, town) is CaravanArrivalAction arrival)
+                {
+                    if (c.Tile != town.Tile) return false;
+                    arrival.Arrived(c);
+                    return true;
+                }
+                if (enter == null || c.Tile != town.Tile) return false;
+                enter.Invoke(null, new object[] { c, town, inv });
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world mechanics: joining an invasion's fight", e);
+                return false;
+            }
+        }
     }
 
     /// <summary>Faction Territories and Vassalage's world mechanics behind the one interface (see <see cref="Territories"/>).</summary>

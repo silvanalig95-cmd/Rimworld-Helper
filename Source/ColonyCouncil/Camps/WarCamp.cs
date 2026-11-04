@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public int startTick;
         public int came;
         public bool holdBack, dismissed;
+        /// <summary>Called by the colony (Diplomacy/Pacts.cs): "pact" a defence pact, "favour" a debt of honour; null for a band come of its own.</summary>
+        public string called;
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -51,6 +53,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref came, "came");
             Scribe_Values.Look(ref holdBack, "holdBack");
             Scribe_Values.Look(ref dismissed, "dismissed");
+            Scribe_Values.Look(ref called, "called");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 pawns ??= new List<Pawn>();
@@ -293,7 +296,12 @@ namespace ColonyCouncil
             if (b.faction == null || b.map == null) return;
             try
             {
-                if (!b.holdBack) FactionMemory.Note(b.faction, "aid", b.enemy?.Name, b.Fell > 0 ? 16 : 12);
+                // Called in on a pact or a debt: that was the bargain, and only their fallen leave the colony owing them in turn.
+                if (b.called != null)
+                {
+                    if (b.Fell > 0) FactionMemory.Note(b.faction, b.called == "pact" ? "protected" : "aid", b.enemy?.Name, 16);
+                }
+                else if (!b.holdBack) FactionMemory.Note(b.faction, "aid", b.enemy?.Name, b.Fell > 0 ? 16 : 12);
                 foreach (var c in IncidentWorker_Happening.Colonists(b.map)) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_StoodWithUs);
                 var comp = CouncilGameComponent.Instance;
                 comp?.character.Shift(new WayShift { openness = 1f }, "CC_WarCamp_Chronicle".Translate(b.faction.Name).Resolve());

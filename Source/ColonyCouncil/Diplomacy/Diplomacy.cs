@@ -24,12 +24,38 @@ namespace ColonyCouncil
         /// <summary>The "Favours owed and called in" setting: off, no debt is made or called in, and those open run out by their terms.</summary>
         public static bool FavoursOn => ColonyCouncilMod.Settings?.diplomacyFavours ?? true;
 
-        /// <summary>The hour (from the neighbours' hour): lines waiting for a letter, calls of theirs overdue.</summary>
+        /// <summary>
+        /// The hour (from the neighbours' hour): lines waiting for a letter, calls of theirs overdue; truces and pacts (their
+        /// envoys, ends, firebrands, bands on their way, calls to arms, a trade pact's season). Once a day their calls and
+        /// offers.
+        /// </summary>
         public static void Hourly(int now)
         {
             Safe("lines", () => FavoursOwed.Hourly(now));
             Safe("calls", () => FavourAsks.Hourly(now));
-            if (Sched.FirstHourOfDay(now)) Safe("day", () => FavourAsks.Daily(now));
+            Safe("truces", () => Truces.Hourly(now));
+            Safe("pacts", () => Pacts.Hourly(now));
+            Safe("calls to arms", () => CallsToArms.FavourHour(now / (float)PactMath.DayTicks));
+            if (Sched.FirstHourOfDay(now))
+            {
+                Safe("day", () => FavourAsks.Daily(now));
+                Safe("pacts' day", () => Pacts.Daily(now));
+            }
+        }
+
+        /// <summary>Something the pages, the inbox and the lenses show changed (an act the player took, a tie made or closed): built again soon.</summary>
+        public static void Dirty()
+        {
+            try
+            {
+                DiplomacyModel.Dirty();
+                LensModel.Dirty();
+                Inbox.Dirty();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("diplomacy: dirty", e);
+            }
         }
 
         private static void Safe(string what, Action a)

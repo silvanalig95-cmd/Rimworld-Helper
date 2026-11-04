@@ -327,6 +327,8 @@ namespace ColonyCouncil
                 History.Deed(f, kind, k.side, weight > 0 ? weight : k.weight, Mathf.Max(1, count), name);
                 // A good turn big enough is a debt of honour, either way (Diplomacy/FavoursOwed.cs).
                 FavoursOwed.Noted(d);
+                // A wrong between the two is a breach of a truce or a pact (Diplomacy/PactsHooks.cs).
+                PactsHooks.Noted(d);
                 return d;
             }
             catch (Exception e)

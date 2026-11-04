@@ -197,6 +197,10 @@ namespace ColonyCouncil
         /// out by their terms.
         /// </summary>
         public bool diplomacyFavours = true;
+        /// <summary>Pacts (defence and trade) and truces with the peoples around the colony (Diplomacy/Pacts.cs, Truces.cs). Off, nothing new is made, and those live run out by their terms.</summary>
+        public bool diplomacyPacts = true;
+        /// <summary>While a truce holds, the storyteller doesn't choose that people to raid that home (a hook on the game's choice of raiders; with the deeper hooks).</summary>
+        public bool truceRaids = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -574,6 +578,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hamlets, "hamlets", true);
             Scribe_Values.Look(ref smallTownMaps, "smallTownMaps", true);
             Scribe_Values.Look(ref diplomacyFavours, "diplomacyFavours", true);
+            Scribe_Values.Look(ref diplomacyPacts, "diplomacyPacts", true);
+            Scribe_Values.Look(ref truceRaids, "truceRaids", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

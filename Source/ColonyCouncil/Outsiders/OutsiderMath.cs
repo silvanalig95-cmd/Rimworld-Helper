@@ -23,7 +23,9 @@ namespace ColonyCouncil
         Provoke,
         Duel,
         /// <summary>Ask a favour of their people: call in a debt of honour they owe (Diplomacy/DiplomacyActs.cs; later stage 2 acts follow it).</summary>
-        AskFavour
+        AskFavour,
+        /// <summary>Speak of a pact between their people and the colony, face to face (Diplomacy/DiplomacyActs.cs, release 2a.2).</summary>
+        SpeakPact
     }
 
     /// <summary>How a talk went, best first.</summary>

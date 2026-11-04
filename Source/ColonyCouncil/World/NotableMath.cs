@@ -36,10 +36,14 @@ namespace ColonyCouncil
         Help,
         /// <summary>
         /// Calling in a debt of honour their people (or they) owe the colony, or answering one they called in
-        /// (Diplomacy/DiplomacyLetters.cs: stage 2's letter purposes; Pact, Truce, Match, Ward, Ransom, Envoy and Fealty
-        /// come after it in later releases).
+        /// (Diplomacy/DiplomacyLetters.cs: stage 2's letter purposes; Match, Ward, Ransom, Envoy and Fealty come after
+        /// Pact and Truce in later releases).
         /// </summary>
-        Favour
+        Favour,
+        /// <summary>Proposing a pact, of defence or of trade, to a people at peace with the colony (Diplomacy/Pacts.cs).</summary>
+        Pact,
+        /// <summary>Offering a truce to a people at war with the colony, its term and its price (Diplomacy/Truces.cs).</summary>
+        Truce
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

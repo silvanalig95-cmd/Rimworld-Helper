@@ -421,6 +421,15 @@ namespace ColonyCouncil
         /// <summary>Two peoples came to fight each other on one of the colony's homes. Both are "with" until one is known to have won.</summary>
         public static void Battle(Faction a, Faction b, Map home)
         {
+            // A pact or truce partner among the two sides is named, and what fighting there means (Diplomacy/PactsHooks.cs).
+            try
+            {
+                PactsHooks.BattleBegan(a, b, home);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world mechanics: a battle's partners", e);
+            }
             if (a == null || b == null || a == b || !Homes.IsHome(home)) return;
             var actors = new List<HistoryActor> { new HistoryActor(Refs.Of(a), HistoryRole.With), new HistoryActor(Refs.Of(b), HistoryRole.With) };
             Write(WorldMath.Battle, actors, Refs.Colony(home), true);

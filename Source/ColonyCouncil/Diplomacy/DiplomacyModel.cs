@@ -171,7 +171,7 @@ namespace ColonyCouncil
         public static DipAct AnswerAct(Tie t)
         {
             if (t.state != Tie.State.CalledIn) return null;
-            var letter = FavourAsks.LetterFor(t);
+            var letter = FavourAsks.AnyLetterFor(t);
             var a = new DipAct { label = DipWords.P("CC_Dip_Act_Answer"), tip = DipWords.P("CC_Dip_Act_Answer_Tip") };
             if (letter == null) a.why = FavourMath.ParseNeed(t.terms.goods, out var n) && FavourMath.ByMission(n) ? DipWords.P("CC_Dip_Why_ByMission") : DipWords.P("CC_Dip_Why_LetterGone");
             else a.run = () => DiplomacyLinks.Open(letter);

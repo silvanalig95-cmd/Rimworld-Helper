@@ -78,6 +78,7 @@ namespace ColonyCouncil
                 case FavourAsk.Goods: return P("CC_Dip_Ask_Goods", GoodsWord(arg).Named("GOODS"));
                 case FavourAsk.Word: return P("CC_Dip_Ask_Word", People(FactionOf(arg)).Named("PEOPLE"));
                 case FavourAsk.Captive: return P("CC_Dip_Ask_Captive", (PawnOf(arg)?.LabelShort ?? "?").Named("NAME"));
+                case FavourAsk.Fighters: return P("CC_Dip_Ask_Fighters");
                 default: return P("CC_Dip_Ask_Peace", People(FactionOf(arg)).Named("PEOPLE"));
             }
         }

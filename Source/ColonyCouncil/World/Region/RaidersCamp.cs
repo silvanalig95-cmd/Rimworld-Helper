@@ -304,6 +304,25 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A truce sworn with its people at this home (Diplomacy/Truces.cs): their camp near it breaks up, as at peace
+        /// (stage 1's "Peace"), told as a truce's ending.
+        /// </summary>
+        public static void TruceSworn(Map home, Faction people)
+        {
+            var rh = Of(home);
+            var c = rh?.camp;
+            if (c == null || c.people != people) return;
+            try
+            {
+                End(home, rh, c, CampEnd.Peace, null, "CC_RaidCamp_End_Truce");
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("raiders' camp: a truce sworn", e);
+            }
+        }
+
         /// <summary>A home was lost (Homes.Changed, through the colonies' book): its camp has nothing left to raid and is gone.</summary>
         internal static void HomeLost(RegionHome rh)
         {
@@ -339,6 +358,12 @@ namespace ColonyCouncil
             if (!c.people.HostileTo(player))
             {
                 End(home, rh, c, CampEnd.Peace, null);
+                return;
+            }
+            // A truce sworn with its people at this home (Diplomacy/Truces.cs): the camp breaks up as at peace.
+            if (Truces.KeepsAway(c.people, home) && !c.raidOpen)
+            {
+                End(home, rh, c, CampEnd.Peace, null, "CC_RaidCamp_End_Truce");
                 return;
             }
             bool leaderLost = LeaderLost(c);
@@ -517,7 +542,7 @@ namespace ColonyCouncil
         /// <summary>A people that can raid the colony and hold a camp: hostile, with fighters, and the settlement kind of people the game's camp map needs.</summary>
         public static bool CanOwn(Faction f)
         {
-            if (!Raids.CanRaid(f) || f.def.pawnGroupMakers == null || !f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Settlement)) return false;
+            if (!Raids.CanRaid(f, Homes.Seat) || f.def.pawnGroupMakers == null || !f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Settlement)) return false;
             try
             {
                 return SitePartDefOf.BanditCamp != null && SitePartDefOf.BanditCamp.FactionCanOwn(f);
@@ -580,7 +605,7 @@ namespace ColonyCouncil
         public static RaidersCamp SetUp(Map home, Faction people, Pawn leader = null, string why = null)
         {
             var rh = Of(home);
-            if (rh == null || rh.camp != null || !CanOwn(people)) return null;
+            if (rh == null || rh.camp != null || !CanOwn(people) || Truces.Bars(people, home)) return null;
             var tile = FindTile(home);
             if (!tile.Valid) return null;
             int now = Now;
@@ -1008,7 +1033,7 @@ namespace ColonyCouncil
         /// rests, and, for a camp the colony knew of, the ending is told, written into the history and into what the
         /// peoples remember. Paid, their word to keep away for a year goes on the ledger.
         /// </summary>
-        private static void End(Map home, RaidersCampHome rh, RaidersCamp c, CampEnd end, Faction ally)
+        private static void End(Map home, RaidersCampHome rh, RaidersCamp c, CampEnd end, Faction ally, string words = null)
         {
             if (rh == null || c == null) return;
             int now = Now;
@@ -1034,7 +1059,7 @@ namespace ColonyCouncil
                 people, c.kind.Named("KIND"), Where(home, c).Named("WHERE"), Homes.Name(home).Named("COLONY"), (ally?.Name ?? "").Named("ALLY"),
                 (ally != null ? RaidersCampMath.AllyKey(Ages.Of(ally)).Translate().Resolve() : "").Named("ALLIES"), (lost ?? "").Named("LEADER")
             };
-            string key = "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp ? RaidersCampMath.GaveUpWhy(lost != null, c.beaten) : "");
+            string key = words ?? "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp ? RaidersCampMath.GaveUpWhy(lost != null, c.beaten) : "");
             string text = TextVariants.Vary(key).Translate(args).Resolve();
             string label = ("CC_RaidCamp_End_" + end + "_Label").Translate(args).Resolve().CapitalizeFirst();
             // Peace: the game's own letter already said the site is gone (it takes away a hostile people's sites when peace
