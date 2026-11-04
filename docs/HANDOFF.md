@@ -15,6 +15,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.67.1, stage 0 step 5 (F5): `Text/Facts/` (`FactScene` Talk/Letter, `Facts.For` -> `FactSet`, providers in
+  FactsWho/Place/World/Colony/Marks/Ledger/News; read-only, each in its own try/catch), `OutsiderFacts.For` a one-line
+  call, `Text/Fill.cs` (`Texts.Fill`, `FillLine`, `Holes`, `Capitalize`, `WithThe`). New tags `tie:KIND[:ours|:theirs|
+  :you|:due]`, placeholders {FAVOURFOR} {PROMISEDTO} {CLAIMON} {DEBTTO} {FEALTYTO} {GRUDGEAGAINST}, `town:lately`,
+  `them:lately` (with kind and family), `their:sameage/behind/ahead`. `FactsTests` (1500 generated talks identical;
+  fill against every Defs/Keyed placeholder text). Left: CalendarKeeping, PlayWords, Pressures (game grammar), the
+  council fills (OfficesElection, ImpactHints, ImpactMath, DilemmaImpact), the callbacks' `Since` (reasons in DESIGN).
 - 0.67.0, stage 0 step 7a (F7a): `ColonyState.cs` (per colony: offices and election, decrees, ambition and meeting,
   dilemmas and traditions; keyed by `Homes.KeyOf`, saved in the council component as `colonies`; `For(map)`, `Of(pawn)`,
   `Ticking()`), rules in `Lean/ColonyStateMath.cs` (old save to the seat, a lost home's council kept 30 days, carried to

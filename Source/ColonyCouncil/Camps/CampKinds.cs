@@ -92,12 +92,12 @@ namespace ColonyCouncil
         /// <summary>The name the texts use for a world event: "the gray cough", or the event itself.</summary>
         public static string SituationName(WorldSituation s) => s == null ? "" : !s.ctx.name.NullOrEmpty() ? s.ctx.name : s.def.label;
 
-        /// <summary>{IDEO} and {SITUATION} filled in (before the usual placeholders).</summary>
+        /// <summary>{IDEO} and {SITUATION} filled in (before the usual placeholders), each looked up only when the text has it.</summary>
         public static string Fill(string s, CampKindDef kind, Faction f)
         {
             if (s.NullOrEmpty()) return s;
-            if (s.Contains("{IDEO}")) s = s.Replace("{IDEO}", Ideo(f));
-            if (s.Contains("{SITUATION}")) s = s.Replace("{SITUATION}", SituationName(Situation(kind)));
+            if (s.Contains("{IDEO}")) s = Texts.Fill(s, ("IDEO", Ideo(f)));
+            if (s.Contains("{SITUATION}")) s = Texts.Fill(s, ("SITUATION", SituationName(Situation(kind))));
             return s;
         }
 

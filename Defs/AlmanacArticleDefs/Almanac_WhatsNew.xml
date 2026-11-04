@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.67.1</version>
+        <date>4 November 2026</date>
+        <title>Groundwork: the world's facts</title>
+        <points>
+          <li>Groundwork: one place that knows what is true for a conversation or a letter, so lines can speak of favours owed, promises, debts and grudges, of what happened at a town lately, and of a people older or younger in its ways than yours.</li>
+          <li>Groundwork: one way to fill names into lines, shared by talks, letters, events, camps and groups. Every line reads and is chosen as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.67.0</version>
         <date>4 November 2026</date>
         <title>A council for every colony</title>

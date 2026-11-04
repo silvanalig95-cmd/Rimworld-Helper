@@ -509,7 +509,7 @@ namespace ColonyCouncil
                     list.Add(new WorldNote
                     {
                         title = coming ? home.LabelCap.ToString() : null,
-                        text = ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, c.due - now)))),
+                        text = ctx.Format(Texts.Fill(line, ("DAYS", TextUtil.DaysString(Mathf.Max(0, c.due - now))))),
                         icon = Icons.WorldEvent,
                         color = Calm,
                         faction = coming ? c.faction : null,
@@ -972,7 +972,7 @@ namespace ColonyCouncil
                         // What the owners will ask for: about half of what it was worth.
                         c.amount = VarietyUtil.Round(Mathf.RoundToInt(c.value * 0.5f));
                         StoryChains.Next(c, "Council_Story_DoorOwners", 10f, 18f);
-                        return (outcome ?? "").Replace("{ITEM}", item ?? "");
+                        return Texts.Fill(outcome ?? "", ("ITEM", item ?? ""));
                     }
                     if (option == 2 && !c.Has("ownershostile") && LivingEvents.Friendly(c.enemy))
                     {

@@ -1901,6 +1901,75 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
 The history asks nothing heavy of the game: no pawn searches, a few index lookups an entry, and its fold has a pass of
 its own (`Pass.DailyHistory`, timed by Rimfolk's clock).
 
+### Facts
+
+One way to know what is true for a text, and one way to fill it in, so a line is written once and reacts to the same
+world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text/Fill.cs`). Their pure parts
+(`FactSet.cs`, `FactsMath.cs`, `Fill.cs`) are tested (`Tools/Tests/FactsTests.cs`).
+
+- **A scene** (`FactScene`): who speaks or writes (one of the colony), to whom (someone out in the world), at which
+  colony, their town and their people, how it goes (a tone, the tag `tone:X`), and the providers it asks for, in order.
+  `FactScene.Talk(colonist, outsider, tone)` is a conversation with an outsider (every provider);
+  `FactScene.Letter(notable, writer, home, news)` is a letter's answer (the ties and the history, and the world's news
+  when it tells some).
+- **Asking.** `Facts.For(scene)` gives a `FactSet`: tags for the lines' conditions; the speaker's and the listener's own
+  tags for their own lines (traits, age); values for the placeholders, each with the fact behind it where a later
+  mention can follow it (`ws:12`, `war:5`); how current each tag is (heat: `FactsMath.Fresh`, new news first); earlier
+  mentions' marks with what became of them; and the world's news near the place, as finished lines. Providers only
+  read: no dice rolled, nothing changed (the ledger's ties are read as they stand, without its upkeep). Each runs on
+  its own, so one that fails leaves the others' facts. A fact the game can't give is left out, and a line that needs
+  it isn't said. Nothing is saved and there is no pass: facts are read when a text is about to be written.
+- **Providers**, by file: the moment, their people, the two of them, what passed between them (`FactsWho.cs`: moment,
+  people, persons, pair); their town, the land around it, its notables, places and work near it (`FactsPlace.cs`:
+  town, land, notables, places); wars and peace, the world's events, the conditions over the land (`FactsWorld.cs`:
+  wars, situations, conditions); the colony's news, its hospital, what their people remember of it
+  (`FactsColony.cs`: colony, hospital, deeds); earlier mentions (`FactsMarks.cs`: marks); the ages, the ties between
+  the two sides and what the history holds lately (`FactsLedger.cs`: ages, ties, history); the world's news near their
+  town (`FactsNews.cs`: news). The first fifteen are the outsider talks' sections as they were; a talk asks for them
+  in the order they were always read, then the ages, the ties and the history.
+- **Families of tags.** The moment's own (season, hour, weather, the colony's age, wealth, size), `tone:`, the two
+  of them (`first`, `met`, `friends`, `did:`, `talks:`, `last:`), `role:`, the listener (`them:`) and the speaker
+  (`us:`), their people (`their:`: their age, the Empire, their leader, war and peace, a friend of theirs among the
+  colony), their land (`home:`), their town (`town:`), wars (`war:`, `world:`, `battle:`), the world's events
+  (`situation:`, `ended:`, `ws:`, `condition:`), the colony (`colony:`), what they remember (`deed:`, `deedbest:`,
+  `wrongbest:`, `byyou`), earlier mentions (`talked:`, `then:`), and the ties (`tie:`). The full list, with the
+  placeholders, is in the header of `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_Greetings.xml`; the talks' tests know
+  each one.
+- **From the ledger and the history** (new with the service):
+  - *Ties*: a favour owed, a promise, a claim, a debt, fealty or a grudge between the two sides (ours: a colony, the
+    colony's people, one of the colony; theirs: the one spoken to, their people, their town, one of their people), the
+    ledger's own and those kept in other stores (a vendetta, a vassal's fealty), of each kind the one the speaker is
+    party to, else the newest: `tie:KIND` (current, more so made in the last ten days), `tie:KIND:ours` or
+    `tie:KIND:theirs` (which side is bound: owes, promised, swore, holds the grudge), `tie:KIND:you` (the speaker is a
+    party), `tie:KIND:due` (called in), and the party it is toward by name: `{FAVOURFOR}`, `{PROMISEDTO}`,
+    `{CLAIMON}`, `{DEBTTO}`, `{FEALTYTO}`, `{GRUDGEAGAINST}`.
+  - *Lately*: what the history holds of their town and of the one spoken to in the last thirty days: `town:lately`,
+    `them:lately`, and the same with each event's kind and family (`town:lately:world:taken`, `town:lately:world`,
+    `them:lately:tie:favour:made`).
+  - *Ages*: the colony's age as lines are tagged everywhere (`Flavor.AddEraTags`), their people's (`their:medieval`,
+    `their:lowtech`, `their:empire`, from `Ages`), and how it stands to the colony's: `their:sameage`,
+    `their:behind`, `their:ahead`.
+- **Callbacks.** A line that leaves a mark keeps the fact behind its value; when the two meet again, the marks provider
+  reads what became of it (`then:still`, `then:over`, `then:dead`, `then:changed`) from the game itself: a world event
+  still running, a war still on, a notable's health, who leads now, a site or a quest. The history and the ledger
+  don't keep these by the ids a mark holds (a situation's id, a quest's), and their views are kept for a 250-tick
+  stretch where a callback reads the moment, so these stay with the game.
+- **The fill.** `Texts.Fill(text, values)` fills each `{KEY}` that has a value and leaves every other placeholder as
+  written, for the game's grammar or a context's `Format` after (`{PAWN_nameDef}`); `Texts.FillLine(text, values,
+  first)` is a line said aloud, by the talks' rule (every placeholder, an earlier talk's own values first, and a line
+  that starts with a value in lower case capitalized); `Texts.Holes` lists a text's placeholders; `Texts.WithThe`
+  gives a value that comes with "the" ("the gray cough"). A placeholder is the innermost pair of braces, as the def
+  validator reads it. The talks, the neighbour letters, the outsiders' bubble lines, events' and chains' lines, the
+  camps' asks and words, the road post's word and group names fill through it. Three fills hand pawns to the game's
+  own grammar (`{A_nameDef}`, `{OTHER_pronoun}`) and stay with it: the calendar's days, the play-outs' words, the
+  pressures' labels; the council's own (offices' lines, an answer's impact hints) move in a later pass.
+- **A new text system** makes a scene (or a builder beside `Talk` and `Letter`) asking for the providers it needs, calls
+  `Facts.For`, picks its lines with the facts' tags (`LineTags`, `Flavor`) and fills them with `Texts.Fill(text,
+  facts.values)`. A new fact is a provider in `Text/Facts/` (registered in `Facts`, named in `FactsMath`), with tags
+  in an existing family, listed in the talks' header and known to their tests. Facts added to a scene change no choice
+  until a line names them: the tests choose 1500 generated talks with and without the new facts, and match every
+  letter line as before.
+
 ### Telling the player
 
 Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't

@@ -98,11 +98,11 @@ public static class OutsiderTalkTests
         errs.Clear();
         OutsiderTalkMath.Parse("cb2", "callback", null, 1f, "then:over", new[] { "[them] It's over.", "[us] Good." }, null, null, null, errs);
         C(errs.Any(e => e.Contains("talked:")), "a then: condition needs its talked:");
-        C(OutsiderTalkMath.Holes("{TOWN} and {WAR} and {TOWN}").SequenceEqual(new[] { "TOWN", "WAR" }) && OutsiderTalkMath.Holes("none").Length == 0, "placeholders found once each");
+        C(Texts.Holes("{TOWN} and {WAR} and {TOWN}").SequenceEqual(new[] { "TOWN", "WAR" }) && Texts.Holes("none").Length == 0, "placeholders found once each");
 
-        TalkFacts Facts(params string[] tags)
+        FactSet Facts(params string[] tags)
         {
-            var f = new TalkFacts();
+            var f = new FactSet();
             foreach (var t in tags) f.Tag(t);
             f.Tag("tone:plain");
             return f;
@@ -120,7 +120,7 @@ public static class OutsiderTalkTests
         C(OutsiderTalkMath.Fits(town, ft, null, "home", 6, false), "with the fact: said");
         var curt = OutsiderTalkMath.Parse("curt", "x", null, 1f, "tone:cool|tone:sour", new[] { "[us] Fine day.", "[them] If you say so." }, null, null, null, null);
         var plainChat = OutsiderTalkMath.Parse("plain", "x", null, 1f, "", new[] { "[us] Fine day.", "[them] Lovely." }, null, null, null, null);
-        var cool = new TalkFacts();
+        var cool = new FactSet();
         cool.Tag("tone:cool");
         C(OutsiderTalkMath.Fits(curt, cool, null, "chat", 3, true) && !OutsiderTalkMath.Fits(plainChat, cool, null, "chat", 3, true), "a cool talk only with a piece written for it");
         C(!OutsiderTalkMath.Fits(curt, Facts(), null, "chat", 6, false), "a piece written for a cool talk is never said in a plain one");
@@ -181,7 +181,7 @@ public static class OutsiderTalkTests
                 tribal++;
         C(tribal > 140, $"a people's own line is chosen over the plain one ({tribal} of 200)");
         C(OutsiderTalkMath.Choose(new List<TalkPiece> { specific }, Facts(), "chat", 6, false, null, null, null, () => 0.01f)?.lines[1].text == "Hello.", "others get the plain one");
-        C(OutsiderTalkMath.Fill("{SITE} lies near {TOWN}.", ft, null) == "{SITE} lies near Kettleford.".Replace("{SITE}", "") && OutsiderTalkMath.Capitalize("the gray cough") == "The gray cough",
+        C(Texts.FillLine("{SITE} lies near {TOWN}.", ft.values) == " lies near Kettleford." && Texts.FillLine("{TOWN} is quiet.", ft.values) == "Kettleford is quiet." && Texts.Capitalize("the gray cough") == "The gray cough",
             "filling, and a line starting with a fact capitalized");
 
         // ---------------- Marks ----------------
@@ -215,19 +215,20 @@ public static class OutsiderTalkTests
         return n;
     }
 
-    /// <summary>Every tag a condition may name (Outsiders/OutsiderFacts.cs sets them), and the families open to any name after the prefix.</summary>
-    private static readonly HashSet<string> Words = new HashSet<string>
+    /// <summary>Every tag a condition may name (the facts service sets them, Text/Facts/), and the families open to any name after the prefix.</summary>
+    internal static readonly HashSet<string> Words = new HashSet<string>
     {
         "spring", "summer", "fall", "winter", "morning", "day", "evening", "night", "rain", "snow", "fog", "storm", "clear", "hot", "cold", "tribal", "medieval",
         "industrial", "spacer", "lowtech", "poor", "rich", "small", "large", "first", "met", "returning", "known", "close", "friends", "sweethearts", "lovers",
         "likesyou", "coolyou", "likesus", "wary", "kin", "kin:you", "town", "samefaith", "otherfaith", "situation", "condition", "byyou", "old", "teen", "hurt",
-        "grieving", "lowmood", "highmood", "talks:3", "talks:8", "world:war", "world:peace", "battle:here", "battle:theirs", "quest:ongoing"
+        "grieving", "lowmood", "highmood", "talks:3", "talks:8", "world:war", "world:peace", "battle:here", "battle:theirs", "quest:ongoing", "town:lately",
+        "them:lately"
     }.Concat(Expand("tone:", "warm good plain cool sour"))
         .Concat(Expand("did:", "gift meal teach spar duel provoke faith court letter bring"))
         .Concat(Expand("role:", "trader guest lodger visitor notable head heir envoy"))
         .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere outranks"))
         .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere outranks doctor"))
-        .Concat(Expand("their:", "tribal medieval industrial spacer lowtech hightech empire noble leader war peace friend rough ally"))
+        .Concat(Expand("their:", "tribal medieval industrial spacer lowtech hightech empire noble leader war peace friend rough ally sameage behind ahead"))
         .Concat(Expand("home:", "desert frozen jungle swamp forest plains mountains hills coast cold hot mild"))
         .Concat(Expand("town:", "near far head notable newhead headdied loss ill letter wrote site quest caravan visitors short:food short:medicine short:hands short:fuel"))
         .Concat(Expand("war:", "new long losing winning fought ourfoe ourfriend"))
@@ -238,21 +239,26 @@ public static class OutsiderTalkTests
                                   + "children animals prisoners expecting noble quiet hospital hospital:renowned doctor"))
         .Concat(Expand("byyou:", "freed tended helped"))
         .Concat(Expand("then:", "still over dead changed recent long success failed"))
+        .Concat(new[] { "favour", "promise", "claim", "debt", "fealty", "grudge" }.SelectMany(k => Expand("tie:" + k, " :ours :theirs :you :due")))
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
 
-    private static readonly string[] Families = { "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:" };
+    internal static readonly string[] Families =
+    {
+        "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:", "town:lately:", "them:lately:"
+    };
 
-    /// <summary>The placeholders the game fills (Outsiders/OutsiderFacts.cs and OutsiderTalk.cs).</summary>
-    private static readonly HashSet<string> Placeholders = new()
+    /// <summary>The placeholders the game fills (the facts service, Text/Facts/, and OutsiderTalk.cs).</summary>
+    internal static readonly HashSet<string> Placeholders = new()
     {
         "COLONIST", "OUTSIDER", "COLONY", "PEOPLE", "TOWN", "HOMELAND", "SEASON", "WEATHER", "LEADER", "LEADERTITLE", "THEIRTITLE", "OURTITLE", "THEIRROLE",
         "THEIRFAITH", "OURFAITH", "THEIRSKILL", "OURSKILL", "THEIRSPOUSE", "THEIRCHILD", "OURSPOUSE", "OURCHILD", "KIN", "KINWORD", "HEAD", "HEADTITLE",
         "NOTABLE", "NOTABLETITLE", "ILL", "ILLTITLE", "LOST", "LOSTTITLE", "OLDHEAD", "WROTE", "WRITER", "SITE", "QUEST", "WAR", "PEACEWITH", "WARA", "WARB",
         "BATTLEA", "BATTLEB", "SITUATION", "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "CAMP", "TRADERS",
         "NEWCOMER", "DAY", "RAIDERS", "DEAD", "BORN", "WEDDING", "DECREE", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND",
-        "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR"
+        "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO",
+        "GRUDGEAGAINST"
     };
 
     private static int Library(string root, Action<bool, string> C0)
@@ -270,7 +276,7 @@ public static class OutsiderTalkTests
         var names = defs.Select(d => d.Element("defName")?.Value ?? "").ToList();
         C(names.Distinct().Count() == names.Count && names.All(x => x.StartsWith("Rimfolk_OT_")), "each piece has its own name, Rimfolk_OT_");
         var pieces = new List<TalkPiece>();
-        string facts = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Outsiders", "OutsiderFacts.cs"));
+        string facts = string.Join("\n", Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Text", "Facts"), "*.cs").Select(File.ReadAllText));
         foreach (var d in defs)
         {
             string name = d.Element("defName")!.Value;
@@ -330,7 +336,7 @@ public static class OutsiderTalkTests
                 C(marked.Contains(t.Substring(7)), $"{p.name}: something leaves the mark {t.Substring(7)} for it to pick up");
         foreach (var key in marked) C(pieces.Any(p => p.callback && p.when.tags!.Contains("talked:" + key)), $"the mark '{key}' is picked up by a callback");
         foreach (var p in pieces.Where(p => p.about != null))
-            C(facts.Contains("\"" + p.about + "\""), $"{p.name}: the fact behind {{{p.about}}} is read (OutsiderFacts)");
+            C(facts.Contains("\"" + p.about + "\""), $"{p.name}: the fact behind {{{p.about}}} is read (Text/Facts/)");
         int home = pieces.Count(p => p.For("home")), know = pieces.Count(p => p.For("know"));
         C(home >= 40, $"plenty to tell when asked about home ({home})");
         C(know >= 25, $"plenty for getting to know them ({know})");
@@ -354,7 +360,7 @@ public static class OutsiderTalkTests
 
     private static bool Sayable(TalkPiece p)
     {
-        var f = new TalkFacts();
+        var f = new FactSet();
         MarkFacts? m = null;
         void Positive(LineTags.Parsed parsed, Action<string> add)
         {

@@ -447,6 +447,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {MoodSortTests.Run(root, Check)} things about the compact Mood tab (its groups, rows and every hint's short action).");
         Console.WriteLine($"Checked {OutsiderTests.Run(root, Check)} things about talking with outsiders (waits, talks, bonds over visits, gifts, favours, faith, bouts, duels, their lines and keys).");
         Console.WriteLine($"Checked {OutsiderTalkTests.Run(root, Check)} things about conversations with outsiders (patience, asking again, talks of their own, pieces, callbacks, the library).");
+        Console.WriteLine($"Checked {FactsTests.Run(root, Check)} things about the facts service and the one fill (scenes, providers, the same choices over generated talks, the same text as every fill it replaced).");
     }
 }
 

@@ -598,9 +598,9 @@ namespace ColonyCouncil
         {
             bool first = book.warsLooked < 0;
             book.warsLooked = now;
-            var peoples = Find.FactionManager.AllFactionsListForReading.Where(OutsiderFacts.Counts).ToList();
+            var peoples = Find.FactionManager.AllFactionsListForReading.Where(Facts.Counts).ToList();
             foreach (var w in book.wars)
-                if (w.end < 0 && (!OutsiderFacts.Counts(w.a) || !OutsiderFacts.Counts(w.b) || !w.a.HostileTo(w.b)))
+                if (w.end < 0 && (!Facts.Counts(w.a) || !Facts.Counts(w.b) || !w.a.HostileTo(w.b)))
                     w.end = now;
             for (int i = 0; i < peoples.Count; i++)
             for (int j = i + 1; j < peoples.Count; j++)
@@ -608,7 +608,7 @@ namespace ColonyCouncil
                 var a = peoples[i];
                 var b = peoples[j];
                 if (!a.HostileTo(b) || book.wars.Any(w => w.end < 0 && w.Of(a) && w.Of(b))) continue;
-                book.wars.Add(new WarSeen { a = a, b = b, start = first ? -1 : now, townsA = OutsiderFacts.Towns(a), townsB = OutsiderFacts.Towns(b) });
+                book.wars.Add(new WarSeen { a = a, b = b, start = first ? -1 : now, townsA = Facts.Towns(a), townsB = Facts.Towns(b) });
             }
             book.wars.RemoveAll(w => w.a == null || w.b == null || w.end >= 0 && now - w.end > GenDate.TicksPerDay * 60);
             while (book.wars.Count > OutsiderBook.MaxWars)
@@ -625,7 +625,7 @@ namespace ColonyCouncil
             foreach (var p in map.mapPawns.AllPawnsSpawned)
             {
                 var f = p?.Faction;
-                if (f == null || f.IsPlayer || p.Downed || p.RaceProps == null || !p.RaceProps.Humanlike || !OutsiderFacts.Counts(f)) continue;
+                if (f == null || f.IsPlayer || p.Downed || p.RaceProps == null || !p.RaceProps.Humanlike || !Facts.Counts(f)) continue;
                 here ??= new Dictionary<Faction, int>();
                 here.TryGetValue(f, out int n);
                 here[f] = n + 1;
@@ -639,7 +639,7 @@ namespace ColonyCouncil
                 var w = book.wars.FirstOrDefault(x => x.end < 0 && x.Of(fs[i]) && x.Of(fs[j]));
                 if (w == null)
                 {
-                    w = new WarSeen { a = fs[i], b = fs[j], start = book.warsLooked < 0 ? -1 : now, townsA = OutsiderFacts.Towns(fs[i]), townsB = OutsiderFacts.Towns(fs[j]) };
+                    w = new WarSeen { a = fs[i], b = fs[j], start = book.warsLooked < 0 ? -1 : now, townsA = Facts.Towns(fs[i]), townsB = Facts.Towns(fs[j]) };
                     book.wars.Add(w);
                 }
                 w.fought = now;

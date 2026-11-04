@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groundwork: the world's facts
+
+*4 November 2026, version 0.67.1*
+
+- Groundwork: one place that knows what is true for a conversation or a letter, so lines can speak of favours owed, promises, debts and grudges, of what happened at a town lately, and of a people older or younger in its ways than yours.
+- Groundwork: one way to fill names into lines, shared by talks, letters, events, camps and groups. Every line reads and is chosen as before.
+
 ## A council for every colony
 
 *4 November 2026, version 0.67.0*

@@ -63,8 +63,8 @@ namespace ColonyCouncil
                     if (!t.NullOrEmpty()) context.Add(t);
             string s = Flavor.Pick(lines, context) ?? Flavor.PickText(lines);
             if (s.NullOrEmpty()) return null;
-            if (item != null) s = s.Replace("{ITEM}", item);
-            if (days != null) s = s.Replace("{DAYS}", days);
+            if (item != null) s = Texts.Fill(s, ("ITEM", item));
+            if (days != null) s = Texts.Fill(s, ("DAYS", days));
             return ctx.Format(s);
         }
 
@@ -296,7 +296,7 @@ namespace ColonyCouncil
             string line = Flavor.PickTip(VarietyUtil.More(incident)?.coming, m.tick);
             if (line.NullOrEmpty()) return null;
             var ctx = new HappeningContext { incident = incident, faction = m.faction, thing = goods, variant = m.amount, count = Price(goods, m.amount), tale = VarietyUtil.Bundle(goods, m.amount) };
-            return ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, m.due - now))));
+            return ctx.Format(Texts.Fill(line, ("DAYS", TextUtil.DaysString(Mathf.Max(0, m.due - now)))));
         }
 
         private static void Collect(HappeningContext ctx, HappeningMoreText more, CouncilGameComponent comp)

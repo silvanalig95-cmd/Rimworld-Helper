@@ -80,7 +80,7 @@ namespace ColonyCouncil
             var who = AskColonist(ask);
             int cost = AskCost(ask);
             // The one lying ill, by name, in the lines that speak of them.
-            var lines = sick != null ? ask.askTexts.Select(l => l.Replace("{SICK}", sick.LabelShort)).ToList() : ask.askTexts;
+            var lines = sick != null ? ask.askTexts.Select(l => Texts.Fill(l, ("SICK", sick.LabelShort))).ToList() : ask.askTexts;
             string text = PickAsk(lines, who, cost);
             if (text.NullOrEmpty()) return false;
             if (!ask.tip.NullOrEmpty()) text += "\n\n" + Format(ask.tip, Speaker, who, cost);
@@ -98,7 +98,7 @@ namespace ColonyCouncil
             if (t != 0f) AddTension(t);
             if (a.refuseGoodwill > 0 && !byDefault) LoseGoodwill(a.refuseGoodwill);
             var who = AskColonist(a);
-            var lines = sick != null ? a.refused?.Select(l => l.Replace("{SICK}", sick.LabelShort)).ToList() : a.refused;
+            var lines = sick != null ? a.refused?.Select(l => Texts.Fill(l, ("SICK", sick.LabelShort))).ToList() : a.refused;
             // A cart left unmended keeps them a day longer.
             if (a.key == CampStory.CartKey && untilTick != int.MaxValue) untilTick += GenDate.TicksPerDay;
             return PickAsk(lines, who, AskCost(a)) ?? Text("CC_CampAsk_Refused");

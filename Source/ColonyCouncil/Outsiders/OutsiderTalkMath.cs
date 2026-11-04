@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyCouncil
 {
@@ -61,48 +60,6 @@ namespace ColonyCouncil
         public string fact;
     }
 
-    /// <summary>One earlier talk's mark as a callback reads it now: its tags (talked:KEY, then:over...) and values ({THEN}, {NOW}).</summary>
-    public sealed class MarkFacts
-    {
-        public string key;
-        /// <summary>The mark as kept: what it was about then, and the fact behind it.</summary>
-        public string subject, fact;
-        public readonly HashSet<string> tags = new HashSet<string>();
-        public readonly Dictionary<string, string> values = new Dictionary<string, string>();
-        public readonly Dictionary<string, float> heat = new Dictionary<string, float>();
-    }
-
-    /// <summary>
-    /// Everything true right now that a piece can be about, read from the game when two are about to talk: tags (the
-    /// conditions), values (the placeholders), how current each tag is (heat), and the earlier talks' marks.
-    /// </summary>
-    public sealed class TalkFacts
-    {
-        public readonly HashSet<string> tags = new HashSet<string>();
-        /// <summary>What only the colonist or the outsider brings to their own lines (their traits, their age).</summary>
-        public readonly HashSet<string> usTags = new HashSet<string>();
-        public readonly HashSet<string> themTags = new HashSet<string>();
-        public readonly Dictionary<string, string> values = new Dictionary<string, string>();
-        /// <summary>For a placeholder, the fact behind it ("ws:12", "war:Faction_5"), so a mark can follow what became of it.</summary>
-        public readonly Dictionary<string, string> refs = new Dictionary<string, string>();
-        public readonly Dictionary<string, float> heat = new Dictionary<string, float>();
-        public readonly List<MarkFacts> marks = new List<MarkFacts>();
-
-        public void Tag(string tag, float h = 0f)
-        {
-            if (string.IsNullOrEmpty(tag)) return;
-            tags.Add(tag);
-            if (h > 0f && (!heat.TryGetValue(tag, out float was) || h > was)) heat[tag] = h;
-        }
-
-        public void Value(string key, string value, string fact = null)
-        {
-            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value)) return;
-            values[key] = value;
-            if (fact != null) refs[key] = fact;
-        }
-    }
-
     /// <summary>A piece chosen for two people, with the lines picked for each turn, filled with the facts.</summary>
     public sealed class TalkChoice
     {
@@ -118,7 +75,8 @@ namespace ColonyCouncil
     /// someone has for the colony on a visit, asking the same thing twice, a pushy colonist, gifts in a row, how often
     /// colonists start a talk by themselves, and the conversation pieces: taking them apart, whether one fits the
     /// moment, which one is said (what's current and recent first, never the same one twice to the same person while
-    /// another fits), and filling their placeholders with the facts. No game types, so Tools/Tests can check it.
+    /// another fits), and filling their placeholders with the facts (Texts.FillLine). No game types, so Tools/Tests can
+    /// check it.
     /// </summary>
     public static class OutsiderTalkMath
     {
@@ -283,25 +241,6 @@ namespace ColonyCouncil
 
         // ---------------- Pieces taken apart ----------------
 
-        /// <summary>The placeholders in a text ("{TOWN} is quiet" gives TOWN).</summary>
-        public static string[] Holes(string text)
-        {
-            if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return Array.Empty<string>();
-            var list = new List<string>();
-            int i = 0;
-            while (i < text.Length)
-            {
-                int a = text.IndexOf('{', i);
-                if (a < 0) break;
-                int b = text.IndexOf('}', a + 1);
-                if (b < 0) break;
-                string h = text.Substring(a + 1, b - a - 1);
-                if (h.Length > 0 && !list.Contains(h)) list.Add(h);
-                i = b + 1;
-            }
-            return list.ToArray();
-        }
-
         /// <summary>
         /// A piece from its def's fields: the speakers' lines in order ("[us] ...", "[them,their:tribal] ..."; lines
         /// one after another for the same speaker are choices for one turn), its conditions and what it leaves. The
@@ -315,7 +254,7 @@ namespace ColonyCouncil
             p.when = LineTags.Parse("[" + (when ?? "") + "] x");
             p.mark = string.IsNullOrEmpty(mark) ? null : mark.Trim();
             p.about = string.IsNullOrEmpty(about) ? null : about.Trim();
-            p.heardHoles = Holes(p.heard);
+            p.heardHoles = Texts.Holes(p.heard);
             if (p.when.tags != null)
                 foreach (var alts in p.when.alts)
                     foreach (var a in alts)
@@ -345,7 +284,7 @@ namespace ColonyCouncil
                         errors?.Add($"{name}: a line needs [us] or [them]: {raw.Trim()}");
                         continue;
                     }
-                    var line = new TalkLine { us = hasUs, text = parsed.text, holes = Holes(parsed.text) };
+                    var line = new TalkLine { us = hasUs, text = parsed.text, holes = Texts.Holes(parsed.text) };
                     line.tags = rest.Count == 0 ? LineTags.Parse(parsed.text) : LineTags.Parse("[" + string.Join(",", rest) + "] " + parsed.text);
                     if (last != hasUs) p.turns.Add(new List<TalkLine>());
                     p.turns[p.turns.Count - 1].Add(line);
@@ -382,7 +321,7 @@ namespace ColonyCouncil
         private static bool Has(Dictionary<string, string> a, Dictionary<string, string> b, string key) =>
             a != null && a.ContainsKey(key) || b != null && b.ContainsKey(key);
 
-        private static bool Filled(string[] holes, TalkFacts f, MarkFacts m)
+        private static bool Filled(string[] holes, FactSet f, MarkFacts m)
         {
             if (holes == null) return true;
             foreach (var h in holes)
@@ -392,7 +331,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The tags a piece's conditions are read against: everything now, or for a callback this one mark's instead of all marks'.</summary>
-        public static HashSet<string> Context(TalkFacts f, MarkFacts m)
+        public static HashSet<string> Context(FactSet f, MarkFacts m)
         {
             if (m == null) return f.tags;
             var set = new HashSet<string>();
@@ -417,7 +356,7 @@ namespace ColonyCouncil
         /// a child, every turn with a line that fits, and every placeholder with a fact. <paramref name="lineOk"/> can
         /// rule lines out (the colonist's lines about guns in a colony without them).
         /// </summary>
-        public static bool Fits(TalkPiece p, TalkFacts f, MarkFacts m, string use, int maxLines, bool toneOnly, Func<TalkLine, bool> lineOk = null)
+        public static bool Fits(TalkPiece p, FactSet f, MarkFacts m, string use, int maxLines, bool toneOnly, Func<TalkLine, bool> lineOk = null)
         {
             if (p == null || f == null || p.turns.Count < MinTurns || p.turns.Count > Math.Min(MaxTurns, maxLines)) return false;
             if (use != null && !p.For(use)) return false;
@@ -445,7 +384,7 @@ namespace ColonyCouncil
             return true;
         }
 
-        private static bool LineFits(TalkLine l, HashSet<string> ctx, TalkFacts f, MarkFacts m, Func<TalkLine, bool> lineOk) =>
+        private static bool LineFits(TalkLine l, HashSet<string> ctx, FactSet f, MarkFacts m, Func<TalkLine, bool> lineOk) =>
             LineTags.Match(l.tags, ctx) >= 0 && Filled(l.holes, f, m) && (lineOk == null || lineOk(l));
 
         // ---------------- Which piece ----------------
@@ -458,7 +397,7 @@ namespace ColonyCouncil
         /// yesterday, a war just begun, news that changed since they last talked count most; a piece with no conditions
         /// is plain talk at 1).
         /// </summary>
-        public static float Score(TalkPiece p, TalkFacts f, MarkFacts m)
+        public static float Score(TalkPiece p, FactSet f, MarkFacts m)
         {
             float s = 1f;
             if (p.when?.tags != null)
@@ -492,7 +431,7 @@ namespace ColonyCouncil
         /// the colony lately, or one on the subject of their last talks. A callback is weighed with the earlier talk it
         /// picks up. <paramref name="roll"/> gives numbers from 0 to 1.
         /// </summary>
-        public static TalkChoice Choose(IList<TalkPiece> pieces, TalkFacts f, string use, int maxLines, bool toneOnly, ICollection<string> saidToThem,
+        public static TalkChoice Choose(IList<TalkPiece> pieces, FactSet f, string use, int maxLines, bool toneOnly, ICollection<string> saidToThem,
             ICollection<string> saidLately, IList<string> lastTopics, Func<float> roll, Func<TalkLine, bool> lineOk = null)
         {
             if (pieces == null || f == null || roll == null) return null;
@@ -526,7 +465,7 @@ namespace ColonyCouncil
             return Build(pick.p, f, pick.m, roll, lineOk);
         }
 
-        private static float Weigh(TalkPiece p, TalkFacts f, MarkFacts m, ICollection<string> saidToThem, ICollection<string> saidLately, IList<string> lastTopics)
+        private static float Weigh(TalkPiece p, FactSet f, MarkFacts m, ICollection<string> saidToThem, ICollection<string> saidLately, IList<string> lastTopics)
         {
             float w = Score(p, f, m);
             if (saidToThem != null && saidToThem.Contains(p.name)) w *= SaidToThem;
@@ -542,7 +481,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The lines of a piece that fits: for each turn, a line that fits, the more it speaks to the moment the likelier; filled.</summary>
-        public static TalkChoice Build(TalkPiece p, TalkFacts f, MarkFacts m, Func<float> roll, Func<TalkLine, bool> lineOk = null)
+        public static TalkChoice Build(TalkPiece p, FactSet f, MarkFacts m, Func<float> roll, Func<TalkLine, bool> lineOk = null)
         {
             var ch = new TalkChoice { piece = p, mark = m };
             var ctx = Context(f, m);
@@ -572,9 +511,9 @@ namespace ColonyCouncil
                         break;
                     }
                 }
-                ch.lines.Add((pick.us, Capitalize(Fill(pick.text, f, m))));
+                ch.lines.Add((pick.us, Texts.FillLine(pick.text, f.values, m?.values)));
             }
-            if (p.heard != null) ch.heard = Capitalize(Fill(p.heard, f, m));
+            if (p.heard != null) ch.heard = Texts.FillLine(p.heard, f.values, m?.values);
             if (p.about != null)
             {
                 ch.markSubject = Value(f, m, p.about);
@@ -583,41 +522,11 @@ namespace ColonyCouncil
             return ch;
         }
 
-        private static string Value(TalkFacts f, MarkFacts m, string key)
+        private static string Value(FactSet f, MarkFacts m, string key)
         {
             if (m != null && m.values.TryGetValue(key, out var v)) return v;
             return f.values.TryGetValue(key, out v) ? v : null;
         }
-
-        /// <summary>The text with its placeholders filled (an earlier talk's own values first).</summary>
-        public static string Fill(string text, TalkFacts f, MarkFacts m)
-        {
-            if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return text;
-            var sb = new StringBuilder(text.Length + 32);
-            int i = 0;
-            while (i < text.Length)
-            {
-                int a = text.IndexOf('{', i);
-                if (a < 0)
-                {
-                    sb.Append(text, i, text.Length - i);
-                    break;
-                }
-                int b = text.IndexOf('}', a + 1);
-                if (b < 0)
-                {
-                    sb.Append(text, i, text.Length - i);
-                    break;
-                }
-                sb.Append(text, i, a - i);
-                string key = text.Substring(a + 1, b - a - 1);
-                sb.Append(Value(f, m, key) ?? "");
-                i = b + 1;
-            }
-            return sb.ToString();
-        }
-
-        public static string Capitalize(string s) => string.IsNullOrEmpty(s) || !char.IsLower(s[0]) ? s : char.ToUpperInvariant(s[0]) + s.Substring(1);
 
         // ---------------- Marks ----------------
 

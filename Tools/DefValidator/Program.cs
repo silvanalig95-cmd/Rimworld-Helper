@@ -427,7 +427,7 @@ wishPh.Add("RELATIVE");
 wishPh.UnionWith(new[] { "PART", "WHAT", "HONOR" });
 // Letters to the neighbours (World/NeighbourLetters.cs): the colonist who wrote, the neighbour's town, the help asked for.
 wishPh.UnionWith(new[] { "WRITER", "TOWN", "HELP" });
-// Conversations with outsiders (Defs/OutsiderTalkDefs/, filled by Outsiders/OutsiderFacts.cs from what is true now).
+// Conversations with outsiders (Defs/OutsiderTalkDefs/, filled from what is true now by the facts service, Text/Facts/).
 wishPh.UnionWith(new[]
 {
     "COLONIST", "OUTSIDER", "COLONY", "PEOPLE", "HOMELAND", "WEATHER", "LEADER", "LEADERTITLE", "THEIRTITLE", "OURTITLE", "THEIRROLE", "THEIRFAITH",
@@ -436,8 +436,10 @@ wishPh.UnionWith(new[]
     "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "TRADERS", "NEWCOMER", "DAY", "RAIDERS", "BORN",
     "WEDDING", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND", "THEN", "NOW", "NOBLE", "NOBLETITLE",
     "QUESTNOW", "PEACEA", "PEACEB",
-    // The colony's hospital once it has a name, and the doctor it trusts most (OutsiderFacts.Hospital).
-    "HOSPITAL", "DOCTOR"
+    // The colony's hospital once it has a name, and the doctor it trusts most (Facts.Hospital).
+    "HOSPITAL", "DOCTOR",
+    // The ties between the two sides (Facts.Ties): the party each is toward.
+    "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST"
 });
 // The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
 wishPh.Add("ASKER");
