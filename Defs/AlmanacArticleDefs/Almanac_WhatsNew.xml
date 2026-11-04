@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.71.0</version>
+        <date>4 November 2026</date>
+        <title>Travelers to the remote</title>
+        <points>
+          <li>A remote colony draws more travelers: up to 60% more camps and Rimfolk visitors at the most remote home, set by "Travelers to the remote".</li>
+          <li>Travelers say why they came, and it is true on the map: a relic, a landmark, a great tree, ruins, books, the colony's history, ore, grass in season, a road or the distance from any market.</li>
+          <li>Scholars, a new camp of every age, come for ruins, books or the colony's story; they study the ruins, ask to read in the library or to hear the story, and may leave a book.</li>
+          <li>Drovers, the salt caravan and merchants from afar seek out the remote, and prospectors who came for the ore may come to blows over a claim.</li>
+          <li>Travelers bring news of far towns to colonists at their fire, kept in Heard lately, the history and the region map's panel.</li>
+          <li>Invitations name the host by the title the game shows, a titled colonist first among the guests, and how the day is kept: a rite of their faith with Ideology, else their age's way.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.70.0</version>
         <date>4 November 2026</date>
         <title>Four windows</title>

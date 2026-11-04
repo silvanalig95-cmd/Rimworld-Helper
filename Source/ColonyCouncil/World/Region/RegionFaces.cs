@@ -392,7 +392,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>One of a titled people's kinds that comes with a title, from the lower half of their ranks (a founder, not a ruler).</summary>
-        private static PawnKindDef TitledKind(Faction f)
+        internal static PawnKindDef TitledKind(Faction f)
         {
             var kinds = new List<(PawnKindDef kind, int rank)>();
             foreach (var g in f.def.pawnGroupMakers ?? new List<PawnGroupMaker>())

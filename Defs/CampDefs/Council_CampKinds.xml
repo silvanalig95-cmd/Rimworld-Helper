@@ -388,6 +388,14 @@
     <breakTerms>0.2</breakTerms>
     <tensionPerDay>1.5</tensionPerDay>
     <extendChance>0.5</extendChance>
+    <seeks>
+      <li>ore</li>
+      <li>rush</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:ore] They came for {SEEK}, which they say shows plain to anyone who knows how to look.</li>
+      <li>[seek:rush] They came on {SEEK}, like half the prospectors in the region, and want a look at the colony's hills before the others do.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
@@ -545,6 +553,15 @@
     <tensionPerDay>0.5</tensionPerDay>
     <canPay>false</canPay>
     <extendChance>0.2</extendChance>
+    <seeks>
+      <li>relic</li>
+      <li>wonder</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:relic] Word of {SEEK} has gone far along the pilgrim roads, and they have come to pray before it.</li>
+      <li>[seek:relic,sameFaith] They share the colony's faith, and {SEEK} is the reason they walked so far.</li>
+      <li>[seek:wonder] They have come to pray at {SEEK}, which their elders say is a holy place.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
@@ -664,6 +681,42 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>salve for the pilgrims</label><what>medicine</what><count>2</count><to>Camp</to></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>relic</key>
+        <theyAsk>true</theyAsk>
+        <needs>seek:relic</needs>
+        <label>Let them pray before the relic</label>
+        <refuseLabel>The relic is not for strangers</refuseLabel>
+        <tension>-8</tension>
+        <askTexts>
+          <li>{X_nameDef} asks, with great care, whether the pilgrims might come into the colony for an hour and pray before its relic. It is why they came.</li>
+          <li>The pilgrims have walked a long way to see the colony's relic. {X_nameDef} asks for leave to pray before it, in the evening, and promises they will touch nothing.</li>
+        </askTexts>
+        <tip>Three of the pilgrims walk to the colony's relic in the evening and pray before it for an hour or so, then go back to their camp.</tip>
+        <outcomes>
+          <li>The pilgrims will come to pray before the relic this evening. {X_nameDef} has washed {X_possessive} hands in the stream three times already.</li>
+          <li>{X_nameDef} bowed deeply when {A_nameDef} said yes, and went to tell the others.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the pilgrims would pray toward it from their camp, and did, every evening they stayed.</li>
+          <li>The pilgrims took the refusal quietly, and prayed facing the colony instead.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>seek</to>
+            <count>3</count>
+            <doing>relic</doing>
+            <hours>1~2</hours>
+            <when>15~20</when>
+            <lines>
+              <li>We are here at last.</li>
+              <li>Kneel, all of you.</li>
+              <li>Remember this.</li>
+            </lines>
+          </li>
         </effects>
       </li>
     </asks>
@@ -991,6 +1044,14 @@
     <canPay>false</canPay>
     <extendChance>0.5</extendChance>
     <leaveBuildings>true</leaveBuildings>
+    <seeks>
+      <li>far</li>
+      <li>wonder</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:far] {X_nameDef} came this far precisely because almost nobody else does.</li>
+      <li>[seek:wonder] {X_nameDef} came to sit a while within sight of {SEEK}, and think.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>

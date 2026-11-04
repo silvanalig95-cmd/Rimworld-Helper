@@ -71,6 +71,14 @@
       <li>road</li>
       <li>toll</li>
     </situationKinds>
+    <seeks>
+      <li>road</li>
+      <li>far</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:road] They came along {SEEK}, as the salt always has.</li>
+      <li>[seek:far] Out here the colony is {SEEK}, and {X_nameDef} would sooner trade with it than carry the bales another week.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
@@ -255,6 +263,14 @@
       <li>fair</li>
       <li>road</li>
     </situationKinds>
+    <seeks>
+      <li>far</li>
+      <li>road</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:far] {X_nameDef} says the colony is {SEEK}, and the merchants never pass one of those by.</li>
+      <li>[seek:road] They came along {SEEK}, which they say runs, one way or another, to everywhere.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
@@ -370,6 +386,12 @@
       <li>drove</li>
       <li>harvest</li>
     </situationKinds>
+    <seeks>
+      <li>grazing</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:grazing] They came for {SEEK}: the herd has eaten its way down from the high pastures and needs fresh ground.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
@@ -562,6 +584,14 @@
       <li>sickness</li>
       <li>comet</li>
     </situationKinds>
+    <seeks>
+      <li>relic</li>
+      <li>wonder</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:relic] They walk their vow toward {SEEK}, and mean to pray before it before they turn for home.</li>
+      <li>[seek:wonder] Their vow brings them to {SEEK}, and from there, they say, home.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
@@ -653,6 +683,39 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
+      <li>
+        <key>relic</key>
+        <theyAsk>true</theyAsk>
+        <needs>seek:relic</needs>
+        <label>Let them pray before the relic</label>
+        <refuseLabel>The relic is not for strangers</refuseLabel>
+        <tension>-8</tension>
+        <askTexts>
+          <li>{X_nameDef} asks whether the penitents might end their vow on their knees before the colony's relic, for an hour at dusk. They will touch nothing.</li>
+        </askTexts>
+        <tip>Three of the penitents walk to the colony's relic at dusk and pray before it, then go back to their camp.</tip>
+        <outcomes>
+          <li>The penitents will pray before the relic at dusk. {X_nameDef} has not spoken since, out of reverence or nerves.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the vow could end at the colony's gate as well as anywhere, and that is where they knelt.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>seek</to>
+            <count>3</count>
+            <doing>relic</doing>
+            <hours>1~2</hours>
+            <when>16~21</when>
+            <lines>
+              <li>Forgive us.</li>
+              <li>The vow is kept.</li>
+              <li>Lower your eyes.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
     </asks>
   </ColonyCouncil.CampKindDef>
 
@@ -694,6 +757,12 @@
       <li>comet</li>
       <li>drought</li>
     </situationKinds>
+    <seeks>
+      <li>trees</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:trees] They have come to sing to {SEEK}, which they say they could hear from three valleys away.</li>
+    </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
@@ -785,6 +854,40 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the singing in the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>7~18</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>150</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>tree</key>
+        <theyAsk>true</theyAsk>
+        <needs>seek:trees</needs>
+        <label>Let them sing to the great tree</label>
+        <refuseLabel>Leave the tree be</refuseLabel>
+        <tension>-8</tension>
+        <askTexts>
+          <li>{X_nameDef} asks whether the tree-singers might sing to the colony's great tree at dusk. It is the reason they came, {X_pronoun} says, and the tree will be glad of it.</li>
+        </askTexts>
+        <tip>The tree-singers walk to the great tree at dusk and sing to it for an hour or two, then go back to their camp.</tip>
+        <outcomes>
+          <li>The tree-singers will go to the great tree at dusk. {X_nameDef} has been humming the first notes all afternoon.</li>
+          <li>{X_nameDef} touched {A_nameDef}'s hand in thanks and went to gather the others.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the tree would hear them from their camp, and they sang there instead.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>seek</to>
+            <count>3</count>
+            <doing>sing</doing>
+            <hours>1~2</hours>
+            <when>17~21</when>
+            <lines>
+              <li>Softly, it is listening.</li>
+              <li>Again, all together.</li>
+              <li>Feel the roots under you.</li>
+            </lines>
+          </li>
         </effects>
       </li>
     </asks>

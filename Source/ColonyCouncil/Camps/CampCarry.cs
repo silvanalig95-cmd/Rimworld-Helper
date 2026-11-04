@@ -302,7 +302,7 @@ namespace ColonyCouncil
             if (inv == null) return false;
             if (c.taken) return inv.innerContainer.Any(t => t.def == c.def && inv.NotForSale(t));
             if (c.help == "goods") return inv.innerContainer.Any(t => t.def == c.def && !inv.NotForSale(t));
-            return c.help == "bought";
+            return c.help == "bought" || c.help == BookGift;
         }
 
         /// <summary>
@@ -326,7 +326,7 @@ namespace ColonyCouncil
                 thing = stock.SplitOff(Mathf.Min(c.count, stock.stackCount, space));
                 c.count = thing.stackCount;
             }
-            else if (!c.taken && c.help == "bought")
+            else if (!c.taken && (c.help == "bought" || c.help == BookGift))
             {
                 thing = ThingMaker.MakeThing(c.def, c.def.MadeFromStuff ? GenStuff.DefaultStuffFor(c.def) : null);
                 thing.stackCount = Mathf.Min(c.count, space, c.def.stackLimit);

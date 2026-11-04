@@ -449,6 +449,10 @@ wishPh.UnionWith(new[]
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });
 // The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
 wishPh.Add("ASKER");
+// Travelers who seek out the remote (Camps/CampSeekers.cs): what of the land they came for.
+wishPh.Add("SEEK");
+// Invitations (Missions/InviteForms.cs): the host by their title, the rite of the day, the colony's titled guest.
+wishPh.UnionWith(new[] { "HOST", "RITE", "GUEST" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

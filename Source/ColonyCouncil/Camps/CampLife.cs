@@ -168,6 +168,8 @@ namespace ColonyCouncil
             }
             StoryParting();
             Visitors();
+            // Travellers who came for something of the land's: their walk out to it, the news of far towns, a quarrel over a claim (CampSeekers.cs).
+            SeekHourly();
             if (Rand.Chance(0.12f) && !kind.lines.NullOrEmpty())
             {
                 var speaker = Here.Where(p => p.Awake() && !p.Downed).RandomElementWithFallback();

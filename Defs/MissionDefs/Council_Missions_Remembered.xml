@@ -67,6 +67,8 @@
         <ready>
           <li>The colony's guests have reached {PLACE} and been given seats near the head of the table. The feast ends in {DAYS}: keep the caravan there until then.</li>
           <li>[wedding] The colony's guests have reached {PLACE} in time for {DEAD}'s wedding. Keep the caravan there for {DAYS}, until the dancing ends.</li>
+          <li>[rite] The colony's guests have reached {PLACE} in time for {RITE}, and been shown where to stand for it. It ends in {DAYS}: keep the caravan there until then.</li>
+          <li>[titledguest] The colony's guests have reached {PLACE}, and {GUEST} has been shown to a seat at the high table. The feast ends in {DAYS}: keep the caravan there until then.</li>
         </ready>
         <reminder>
           <li>The feast at {PLACE} is in {DAYS}, and the colony's guests haven't arrived.</li>
@@ -81,6 +83,10 @@
           <li>[attended,wedding] The colony's guests saw {DEAD} married, ate at the long tables, and danced until the musicians gave up. {FACTION} sent them home with gifts: {ITEM}.</li>
           <li>[attended,midwinter] The colony's guests sat out the longest night at the fire in {PLACE}, with songs and stories until the windows went gray. {FACTION} sent them home with gifts: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all, though the cooks took it personally.</li>
+          <li>[attended,rite] The colony's guests kept {RITE} at {PLACE} beside {FACTION}, did their best with the parts nobody had explained, and came home with gifts: {ITEM}.</li>
+          <li>[attended,agerite] The colony's guests saw the day kept at {PLACE} as {FACTION} keep it, {RITE} and all, and came home with gifts: {ITEM}.</li>
+          <li>[attended,titledguest] {GUEST} sat at the high table at {PLACE} and was toasted by name, and the colony's guests came home with gifts: {ITEM}.</li>
+          <li>[attended,royalhost] {DEAD} received the colony's guests at {PLACE} with every courtesy of the Empire, and sent them home with gifts: {ITEM}.</li>
         </done>
         <failTitles>
           <li>[absent] No guests at {PLACE}</li>

@@ -50,6 +50,9 @@ namespace ColonyCouncil
             // With more than one colony, a quarantine shuts only its own colony's gates (with one, it is in the base chance).
             if (ColonyState.Several && S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category && Ext?.group == HappeningGroup.Visitors)
                 f *= DecreeWork.VisitorFactor(target as Map);
+            // Drawn by the storyteller, a remote home's visitors weigh more in its pool (World/Region/TravelLand.cs).
+            if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category && Ext?.group == HappeningGroup.Visitors)
+                f *= TravelLand.VisitorFactor(target as Map);
             return f;
         }
 

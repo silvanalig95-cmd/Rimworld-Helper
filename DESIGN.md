@@ -2211,6 +2211,40 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   `region:newtown` (`:theirs`, `:other`) `{NEWTOWN}` `{NEWTOWNPEOPLE}`; 40 talk pieces use them.
 - **Settings off**: a part makes nothing new and tells nothing, and keeps its records (the reach is still worked out,
   which changes no play). Neither is per tick; the daily pass loops once over the world's towns per home.
+- **Travelers who seek out the remote** (the second release, item 5; `TravelMath.cs` pure, `TravelLand.cs`, `FarNews.cs`,
+  `Camps/CampSeekers.cs`; setting "Travelers to the remote", 0 to 200%, 100% by default; the rates also behind
+  "Systems talk to each other"). Through the existing clocks, per home, never per tick: the camps' daily try at
+  `CampTimer.DailyChance` × (1 + 0.6 × remoteness × the setting), so 0.05 near and 0.08 at the most remote; the rest
+  after a camp 15 days × (1 − 0.3 × remoteness), never under 40%; Rimfolk's visitor events weighed 1 + 0.6 ×
+  remoteness, and on Rimfolk's own timer the home's next wait cut by 1 / (1 + 0.6 × remoteness × the visitors' share of
+  what could come), so the visitors come 60% more often and every other event as often as before (drawn by the
+  storyteller, the weight alone: their share of its pool grows). The land's reasons, read once a day a home at most
+  when a camp could come (`TravelLand.Read`, not saved): a relic of the colony's faith on the map (Ideology), the tile's
+  landmark, a Gauranlen or anima tree, ancient ruins on the land (where salvagers would strip), an abandoned town within
+  the reach, six books or more on the shelves, a history (a year and five milestones), ore in sight (six cells of a rich
+  ore, or forty of steel), a rush running, grass in its growing season, a road, far from every market (rather remote or
+  more). A kind's `seeks` lists the reasons it comes for, strongest first: with one on the land it weighs 1 + 2 ×
+  remoteness (else its base weight, or not at all with `seekOnly`), picks one (`TravelMath.Pick`), says it in its letter
+  (`seekTexts` tagged `[seek:REASON]`, else `CC_Travel_Came_REASON`) and looks at it, pitches by the ruins or the ore,
+  walks out to them on its first working day, or asks leave by letter on its first day for what lies in the colony (an
+  ask with `needs` `seek:REASON`: the relic, the books, the tree, the colony's story). Scholars are the one new kind
+  (`Rimfolk_Camp_Scholars`, by their people's age, `[their:AGE]` on every camp's lines now); the nomads are the drovers
+  (grazing), the salt caravan and the far merchants (a road, far from every market). Prospectors who came for the ore
+  come to blows over a claim at most once a stay, 12% a stay (the game's social fight, between two of their own). News of
+  far towns (`FarNews`): the nearest twelve towns beyond every home's reach, within three times it; a world event about
+  their people, a war begun or ended in the last 60 days (`OutsiderBook.wars`), the town new, a site within 10 tiles, a
+  quest of theirs, the weightiest not told in the last ten days; told by one of a seeking camp to a colonist at their fire
+  (`Together.Can`), two pieces a stay at most, into the town's Heard lately (its forty), the history (`world:heard`, at
+  the colony, the town and its people named) and the colony news. The region map's panel for a home says how much more
+  often travelers come and what draws them, and lists the latest word from far towns.
+- **Titles and rites in invitations** (item 7; `Missions/InviteForms.cs`, `InviteMath.cs` pure). The invitation to a
+  feast, midwinter or a wedding comes from the town's head as the ledger knows them (`WorldLedger.Town(id).head`), an
+  Empire head by the royal title of the ledger's person view (`WorldMechanics.Title`), and gives the feast; without a
+  known head, someone of theirs made from one of the Empire's titled kinds carries the title the game gives them. A
+  colonist holding a title of the inviting people is named first among the guests. The rite: a ritual their ideoligion
+  really has (Ideology, read from its rituals' names: a feast, a wedding, a funeral; `{RITE}`, tags `[rite]`), else how
+  their age keeps the day (`Ages.Form`, `[agerite]`). The funeral and wedding asks (the feast mission) name their rite the
+  same way. Saved on the mission as words (`host`, `rite`, `guest`); `{HOST}`, `{RITE}` and `{GUEST}` fill its lines.
 
 ### Rimfolk's windows
 

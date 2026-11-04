@@ -115,6 +115,17 @@ namespace ColonyCouncil
         /// kind of camp: it comes twice as often there. Pilgrims seek out a devout colony; players, one that keeps its days.
         /// </summary>
         public List<string> drawnBy;
+        /// <summary>
+        /// What brings this kind to a home, read from the land near it, strongest first (World/Region/TravelMath.cs:
+        /// relic, wonder, trees, ruins, ruinRegion, library, history, ore, rush, grazing, road, far). When the land has one,
+        /// the kind weighs more the more remote the home (TravelMath.SeekWeight) and says why it came; with none, it comes at
+        /// its base weight and says nothing of it.
+        /// </summary>
+        public List<string> seeks;
+        /// <summary>Why they came, in their own words: lines tagged [seek:REASON], with {SEEK} (what they came for). Without one for the reason, the general line.</summary>
+        [MustTranslate] public List<string> seekTexts;
+        /// <summary>Comes only when the land near the home has one of <see cref="seeks"/> (the scholars: ruins, books, a history to hear).</summary>
+        public bool seekOnly;
 
         // What makes the camp look lived-in (CampLook.cs): what they bring, put out, leave behind, and how they say goodbye.
 
@@ -186,6 +197,10 @@ namespace ColonyCouncil
             if (buys != null)
                 foreach (var b in buys.Where(b => VisitorTradeMath.Parse(b) == TradeGoods.None))
                     yield return "buys names no kind of goods: " + b;
+            if (seekOnly && seeks.NullOrEmpty()) yield return "seekOnly without seeks";
+            if (seeks != null)
+                foreach (var s in seeks.Where(s => !TravelMath.Known(s)))
+                    yield return "seeks names no reason the land can give: " + s;
         }
     }
 

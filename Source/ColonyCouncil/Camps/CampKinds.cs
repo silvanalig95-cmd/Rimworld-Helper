@@ -113,6 +113,8 @@ namespace ColonyCouncil
             KinMemory.AddTags(tags, f, null);
             var s = Situation(kind);
             if (s?.def?.kind != null) tags.Add("ws:" + s.def.kind);
+            // Their own age (their:tribal...), so a kind of every age speaks as its people are (the scholars).
+            if (f != null) tags.Add("their:" + Ages.Tag(Ages.Of(f)));
             if (map != null && !tags.Contains("spring") && !tags.Contains("summer") && !tags.Contains("fall") && !tags.Contains("winter"))
             {
                 switch (GenLocalDate.Season(map))

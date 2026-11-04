@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Travelers who seek out the remote (Source/ColonyCouncil/World/Region/TravelLand.cs, FarNews.cs and
+    Camps/CampSeekers.cs): the setting, what of the land draws them ({SEEK} in a camp's lines), why they came, their walk
+    out to it and what came of it, a quarrel over a claim, and the news of far towns they tell at their fire.
+  -->
+
+  <!-- Settings -->
+  <CC_Settings_RemoteTravellers>Travelers to the remote</CC_Settings_RemoteTravellers>
+  <CC_SetNote_RemoteTravellers>A remote home gets more travelers, each with a reason the map shows, and news of far towns.</CC_SetNote_RemoteTravellers>
+  <CC_Settings_RemoteTravellers_Tip>How much a home's remoteness draws travelers. At 100% (the default), the most remote home gets up to 60% more camps (a daily chance of 8 in 100 instead of 5, and up to 30% less rest after one) and up to 60% more of Rimfolk's visitors, by its remoteness on the region map. A kind of camp that seeks what the land near the home has (a relic, a landmark, a sacred tree, ruins, books, its history, ore, grass in season, a road, the distance from every market) weighs up to three times as much there, and says why it came; travelers tell news of towns beyond the region at their fire, two pieces a stay at most. Needs "Systems talk to each other" for the rates. 0%: as before, and no news of far towns; why a camp came is still told.</CC_Settings_RemoteTravellers_Tip>
+
+  <!-- What of the land draws them, as it sits in a sentence ({SEEK}) -->
+  <CC_Travel_What_relic>{RELIC}, the relic the colony keeps</CC_Travel_What_relic>
+  <CC_Travel_What_wonder>{NAME}</CC_Travel_What_wonder>
+  <CC_Travel_What_trees>the {TREE} {DIR}</CC_Travel_What_trees>
+  <CC_Travel_What_ruins>the old ruins {DIR}</CC_Travel_What_ruins>
+  <CC_Travel_What_ruinRegion>the ruins of a town {WHERE}</CC_Travel_What_ruinRegion>
+  <CC_Travel_What_library>the colony's {COUNT} books</CC_Travel_What_library>
+  <CC_Travel_What_history>the story of {COLONY} and its people</CC_Travel_What_history>
+  <CC_Travel_What_ore>the {ORE} in the rock {DIR}</CC_Travel_What_ore>
+  <CC_Travel_What_rush>the talk of {RUSH}</CC_Travel_What_rush>
+  <CC_Travel_What_grazing>the grass on this land in its season</CC_Travel_What_grazing>
+  <CC_Travel_What_road>the road through the colony's land</CC_Travel_What_road>
+  <CC_Travel_What_far>the only market for days around</CC_Travel_What_far>
+
+  <!-- Why they came, when their kind has no words of its own for it -->
+  <CC_Travel_Came_relic>They have come a long way to pray before {SEEK}.</CC_Travel_Came_relic>
+  <CC_Travel_Came_wonder>They came to see {SEEK} with their own eyes.</CC_Travel_Came_wonder>
+  <CC_Travel_Came_trees>They came for {SEEK}.</CC_Travel_Came_trees>
+  <CC_Travel_Came_ruins>They came for {SEEK}.</CC_Travel_Came_ruins>
+  <CC_Travel_Came_ruinRegion>They are on their way to {SEEK}.</CC_Travel_Came_ruinRegion>
+  <CC_Travel_Came_library>Word of {SEEK} had reached them on the road.</CC_Travel_Came_library>
+  <CC_Travel_Came_history>They came to hear {SEEK}.</CC_Travel_Came_history>
+  <CC_Travel_Came_ore>They came for {SEEK}.</CC_Travel_Came_ore>
+  <CC_Travel_Came_rush>They came on {SEEK}.</CC_Travel_Came_rush>
+  <CC_Travel_Came_grazing>They came for {SEEK}.</CC_Travel_Came_grazing>
+  <CC_Travel_Came_road>They came along {SEEK}.</CC_Travel_Came_road>
+  <CC_Travel_Came_far>They came because the colony is {SEEK}.</CC_Travel_Came_far>
+
+  <!-- Their walk out to what they came for, and what came of it -->
+  <CC_CampErrand_Arrived_study>{X_nameDef} of the {NAME} has walked out to the ruins with a notebook and a measuring cord.</CC_CampErrand_Arrived_study>
+  <CC_CampErrand_Arrived_prospect>{X_nameDef} of the {NAME} is at the rock where the ore shows, tapping at it with a hammer.</CC_CampErrand_Arrived_prospect>
+  <CC_CampErrand_Arrived_relic>{X_nameDef} of the {NAME} is kneeling before the colony's relic.</CC_CampErrand_Arrived_relic>
+  <CC_CampErrand_Arrived_read>{X_nameDef} of the {NAME} has sat down with the colony's books.</CC_CampErrand_Arrived_read>
+  <CC_CampErrand_Arrived_listen>{X_nameDef} of the {NAME} has come to sit with {A_nameDef} and hear the colony's story.</CC_CampErrand_Arrived_listen>
+  <CC_CampErrand_Arrived_sing>{X_nameDef} of the {NAME} is singing to the great tree.</CC_CampErrand_Arrived_sing>
+  <CC_CampErrand_Week_study>The {NAME} study the ruins on the colony's land</CC_CampErrand_Week_study>
+  <CC_CampErrand_Week_prospect>The {NAME} look over the ore in the colony's rock</CC_CampErrand_Week_prospect>
+  <CC_CampErrand_Week_relic>The {NAME} pray before the colony's relic</CC_CampErrand_Week_relic>
+  <CC_CampErrand_Week_read>The {NAME} read in the colony's library</CC_CampErrand_Week_read>
+  <CC_CampErrand_Week_listen>{X_nameDef} of the {NAME} hears the colony's story from {A_nameDef}</CC_CampErrand_Week_listen>
+  <CC_CampErrand_Week_sing>The {NAME} sing to the great tree</CC_CampErrand_Week_sing>
+  <CC_CampErrand_No_seek>What they came for is nowhere they can reach.</CC_CampErrand_No_seek>
+  <CC_Impact_CampTo_seek>what they came for</CC_Impact_CampTo_seek>
+  <CC_Travel_Done_study>{X_nameDef} and the {NAME} came back from {SEEK} with their notebooks full, arguing about what the place used to be.</CC_Travel_Done_study>
+  <CC_Travel_Done_prospect>The {NAME} came back from {SEEK} with a sack of samples and a great deal to say about them.</CC_Travel_Done_prospect>
+  <CC_Travel_Done_relic>The {NAME} have prayed before {SEEK}, and walked back to their camp in silence.</CC_Travel_Done_relic>
+  <CC_Travel_Done_sing>The {NAME} sang to {SEEK} until dark, and went back to their camp quiet and pleased.</CC_Travel_Done_sing>
+  <CC_Travel_Done_read>{X_nameDef} and the {NAME} put the colony's books back where they found them, every one.</CC_Travel_Done_read>
+  <CC_Travel_Done_readNotes>{X_nameDef} and the {NAME} left their notes in the margins of the colony's books: about {AMOUNT} of research toward {PROJECT}.</CC_Travel_Done_readNotes>
+  <CC_Travel_Done_listen>{X_nameDef} of the {NAME} wrote down the colony's story as {A_nameDef} told it, to carry to the towns beyond the region.</CC_Travel_Done_listen>
+  <CC_Travel_Ask_NotFor>That isn't what brought them.</CC_Travel_Ask_NotFor>
+  <CC_Travel_Ask_Gone>What they came for is gone.</CC_Travel_Ask_Gone>
+
+  <!-- A quarrel over a claim (prospectors who came for the ore) -->
+  <CC_Travel_Quarrel_Say>That seam was mine before it was yours.</CC_Travel_Quarrel_Say>
+  <CC_Travel_Quarrel>{X_nameDef} and {OTHER_nameDef} of the {NAME} have come to blows over a claim to {SEEK}.</CC_Travel_Quarrel>
+
+  <!-- News of far towns, told at their fire ({NEWS} is one of the lines below, as it goes into the town's "Heard lately") -->
+  <CC_FarNews_Say>Have you heard what is happening in {TOWN}?</CC_FarNews_Say>
+  <CC_FarNews_Told>{X_nameDef} of the {CAMP} told {A_nameDef} news of {TOWN}, {WHERE}: {NEWS}</CC_FarNews_Told>
+  <CC_FarNews_situation>The talk among {PEOPLE} is all of {WHAT}.</CC_FarNews_situation>
+  <CC_FarNews_war>{PEOPLE} have gone to war with {ENEMY}.</CC_FarNews_war>
+  <CC_FarNews_peace>{PEOPLE} have made peace with {ENEMY}.</CC_FarNews_peace>
+  <CC_FarNews_new>{TOWN} is new, raised by {PEOPLE} this year.</CC_FarNews_new>
+  <CC_FarNews_site>The road talks of {SITE}, {DIR} of {TOWN}.</CC_FarNews_site>
+  <CC_FarNews_quest>{PEOPLE} are still looking for someone for "{QUEST}".</CC_FarNews_quest>
+
+  <!-- The camp's page and the region map's panel -->
+  <CC_Travel_Panel_Came>Came for {SEEK}.</CC_Travel_Panel_Came>
+  <CC_Travel_Panel_Pull>Being this far out, camps and visitors come about {PCT}% more often.</CC_Travel_Panel_Pull>
+  <CC_Travel_Panel_Draws>What draws travelers here: {WHAT}.</CC_Travel_Panel_Draws>
+  <CC_Travel_Panel_FarHeader>Word from far towns</CC_Travel_Panel_FarHeader>
+  <CC_Travel_Panel_FarLine>{TOWN}: {TEXT} ({AGO})</CC_Travel_Panel_FarLine>
+
+</LanguageData>

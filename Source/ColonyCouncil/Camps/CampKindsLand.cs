@@ -1026,6 +1026,8 @@ namespace ColonyCouncil
         private IntVec3 LandErrandCell(string to, Pawn walker)
         {
             if (to == "hull") return hull != null && hull.Spawned ? PlaySpots.FreeCellNear(hull.Position, map, walker) : IntVec3.Invalid;
+            // What travellers came for: the ruins, the ore, the relic, the books, the tree (CampSeekers.cs).
+            if (to == SeekTo) return SeekErrandCell(walker);
             if (to != "richwater") return IntVec3.Invalid;
             var colony = colonyCenter.IsValid ? colonyCenter : map.Center;
             IntVec3 best = IntVec3.Invalid;
@@ -1071,7 +1073,8 @@ namespace ColonyCouncil
                     if (!CampLand.StormNow(map)) return "CC_CampLand_NoStorm".Translate();
                     return Hosting.Beds(map, x => Has(x), Speaker).Count == 0 ? "CC_CampLand_NoBeds".Translate().ToString() : null;
             }
-            return null;
+            // What travellers came for: only when it brought them, and while it's still there (CampSeekers.cs).
+            return SeekAskBlocked(a);
         }
 
         /// <summary>What an ask of theirs is for, for {THING}: their catch and what it comes to, or the colony's beast they'd buy.</summary>
@@ -1245,7 +1248,8 @@ namespace ColonyCouncil
                     break;
                 }
                 default:
-                    return false;
+                    // The travellers' good turns: a book of theirs carried to the gate (CampSeekers.cs).
+                    return SeekHelp(h);
             }
             var what = from.FirstOrDefault()?.def;
             int given = GiveAway(from, give);

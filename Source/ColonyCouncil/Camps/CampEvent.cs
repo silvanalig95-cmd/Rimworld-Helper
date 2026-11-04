@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -69,6 +70,9 @@ namespace ColonyCouncil
                 label = camp.Text(camp.returns >= 2 ? "CC_Camp_ReturnTitle_Again" : "CC_Camp_ReturnTitle");
                 ctx.text = camp.Text(past != null && past.invited ? "CC_Camp_Return_Invited" : "CC_Camp_Return") + " " + CampReturns.News(camp, past);
             }
+            // What brought them, read from the land near the home (CampSeekers.cs): in their words, and looked at.
+            string seek = camp.SeekLine(ctx.stranger, ctx.a);
+            if (!seek.NullOrEmpty()) ctx.text += " " + seek;
             // The colonist who met them first.
             camp.Warm(ctx.a, 1);
             CouncilRecords.Add(ctx.a, CouncilRecords.CampsGreeted);
@@ -77,7 +81,10 @@ namespace ColonyCouncil
             string body = ctx.text + "\n\n" + Facts(camp);
             int ticks = Mathf.RoundToInt(Mathf.Max(0.1f, ext.answerDays) * GenDate.TicksPerDay);
             body += "\n\n" + "CC_Evt_Deadline".Translate(TextUtil.DaysString(ticks), ctx.Format(ext.options[Mathf.Clamp(ext.defaultOption, 0, ext.options.Count - 1)].label)).Resolve();
-            var letter = (ChoiceLetter_Happening)LetterMaker.MakeLetter(label, body, CouncilDefOf.Council_EventLetter, Look(ctx));
+            var look = Look(ctx);
+            var at = camp.SeekTarget;
+            if (at.IsValid) look = new LookTargets((look?.targets ?? new List<GlobalTargetInfo>()).Concat(new[] { at }).ToList());
+            var letter = (ChoiceLetter_Happening)LetterMaker.MakeLetter(label, body, CouncilDefOf.Council_EventLetter, look);
             letter.ctx = ctx;
             letter.StartTimeout(ticks);
             Tell.Ask(letter, ctx.map);

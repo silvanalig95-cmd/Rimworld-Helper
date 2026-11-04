@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.71.0, stage 1 release 2, travelers to the remote: `World/Region/TravelMath.cs`, `TravelLand.cs` (reasons read from
+  the land once a day per home, in memory), `FarNews.cs` (news of far towns: nearest 12 beyond the reach within three
+  reaches, 2 a stay, into Heard lately, history `world:heard`, colony news), `Camps/CampSeekers.cs` (`seeks` on eleven
+  kinds), scholars (`Rimfolk_CampKinds_Scholars.xml`, `seekOnly`, weight 0.6), camp lines may use `[their:AGE]`;
+  rates through `CampTimer` and `CampTracker.Blocker` and the event timer's visitor weight (+60% visitors only;
+  through the storyteller by `ChanceFactorNow`); setting "Travelers to the remote" (0 to 200%); the prospectors'
+  quarrel (12% a stay). Invitations: `Missions/InviteForms.cs`, `InviteMath.cs` ({HOST} {RITE} {GUEST}; Empire
+  title via the ledger, the people's ritual with Ideology, else `Ages.Form`). `TravelTests`. To check in game:
+  ThingMaker books' titles, discarded titled pawns, `Precept_Ritual.Label` in a sentence.
 - 0.70.0, the interface (the player's word): four bar buttons, each its own window with the four in its corner
   (`UI/WindowTabs.cs`): Council (`MainTabWindow_Council`: Council, People, Colony, Almanac), Region
   (`MainTabWindow_World`, button `Rimfolk_WorldButton` labelled "region" since the game has "world": the map drawn

@@ -149,16 +149,19 @@ namespace ColonyCouncil
             var town = MissionPeoples.Town(m.faction, map);
             if (m.faction == null || town == null) return false;
             m.place = town.Name;
-            m.a = VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
+            // The colony's guest the Empire names by their title, else its best talker (Missions/InviteForms.cs).
+            m.a = InviteForms.TitledGuest(map, m.faction, out m.guest) ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;
             var season = GenLocalDate.Season(map);
             m.variant = Rand.Chance(0.45f) ? "wedding" : season == Season.Winter || season == Season.PermanentWinter ? "midwinter" : "feast";
-            // Who it's for: the bride, or the people's head who gives the feast. Named, never met.
-            var kind = Arrivals.PersonKind(m.faction);
+            // Who it's for: the bride, or the head who gives the feast, by the title the game shows them. The town's head as
+            // the ledger knows them gives the feast and sends the invitation; without one, someone of theirs named and never met.
             bool wedding = m.variant == "wedding";
-            var p = kind == null ? null : Arrivals.Make(kind, m.faction, wedding ? new FloatRange(18f, 28f) : new FloatRange(45f, 75f), null, null);
-            m.name = p?.LabelShort ?? "?";
-            if (p != null) Arrivals.Discard(p);
+            m.host = InviteForms.Host(town, out bool royalHost);
+            m.name = !wedding && m.host != null ? m.host : InviteForms.Named(m.faction, wedding ? new FloatRange(18f, 28f) : new FloatRange(45f, 75f), null, out royalHost);
+            m.royalHost = royalHost;
+            // How their people keep the day: their faith's own rite (Ideology), else their age's way.
+            m.rite = InviteForms.Rite(m.faction, map, m.variant, out m.riteOfFaith);
             m.target = 2;
             float travel = MissionPeoples.TravelDays(map, town);
             m.tale = TextUtil.DaysString(Mathf.RoundToInt(Mathf.Max(0.3f, travel) * GenDate.TicksPerDay));
@@ -171,6 +174,14 @@ namespace ColonyCouncil
         }
 
         public override bool Start(Mission m, Map map) => MissionPeoples.TownOf(m) != null;
+
+        /// <summary>Who invites, how their people keep the day, and the colony's titled guest, before the terms.</summary>
+        protected override string Extra(HappeningContext ctx)
+        {
+            string terms = base.Extra(ctx);
+            string words = InviteForms.Lines(Missions.Of(ctx) ?? Making);
+            return words.NullOrEmpty() ? terms : terms.NullOrEmpty() ? words : words + "\n\n" + terms;
+        }
 
         public override void Check(Mission m, Map map, int now)
         {

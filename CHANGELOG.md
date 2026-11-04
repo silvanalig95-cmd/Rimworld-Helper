@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Travelers to the remote
+
+*4 November 2026, version 0.71.0*
+
+- A remote colony draws more travelers: up to 60% more camps and Rimfolk visitors at the most remote home, set by "Travelers to the remote".
+- Travelers say why they came, and it is true on the map: a relic, a landmark, a great tree, ruins, books, the colony's history, ore, grass in season, a road or the distance from any market.
+- Scholars, a new camp of every age, come for ruins, books or the colony's story; they study the ruins, ask to read in the library or to hear the story, and may leave a book.
+- Drovers, the salt caravan and merchants from afar seek out the remote, and prospectors who came for the ore may come to blows over a claim.
+- Travelers bring news of far towns to colonists at their fire, kept in Heard lately, the history and the region map's panel.
+- Invitations name the host by the title the game shows, a titled colonist first among the guests, and how the day is kept: a rite of their faith with Ideology, else their age's way.
+
 ## Four windows
 
 *4 November 2026, version 0.70.0*

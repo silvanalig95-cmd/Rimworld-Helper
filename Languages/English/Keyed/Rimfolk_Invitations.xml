@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Empire titles and Ideology rites in invitations (Source/ColonyCouncil/Missions/InviteForms.cs): a feast, midwinter or
+    a wedding at their town, and their asks for a funeral or a wedding. {HOST}: the town's head by the title the game
+    shows them; {RITE}: their faith's own ritual by its name (Ideology), else how their age keeps the day (Ages.Form);
+    {GUEST}: the colony's titled guest by their title; {DEAD}: the one the day is for.
+  -->
+
+  <CC_Invite_HostTitled>{NAME}, their {TITLE}</CC_Invite_HostTitled>
+  <CC_Invite_From>The invitation comes from {HOST}.</CC_Invite_From>
+  <CC_Invite_Rite_feast>{FACTION} keep the day with their faith's {RITE}, and the colony's guests will have a place in it.</CC_Invite_Rite_feast>
+  <CC_Invite_Rite_wedding>{FACTION} will keep the wedding with their faith's {RITE}.</CC_Invite_Rite_wedding>
+  <CC_Invite_Rite_funeral>{FACTION} will lay {DEAD} to rest with their faith's {RITE}.</CC_Invite_Rite_funeral>
+  <CC_Invite_AgeRite_feast>As {FACTION} keep such a day, there will be {RITE}.</CC_Invite_AgeRite_feast>
+  <CC_Invite_AgeRite_wedding>It will be done as {FACTION} do these things: {RITE}.</CC_Invite_AgeRite_wedding>
+  <CC_Invite_Guest>{FACTION} name {GUEST} first among the colony's guests, as their courtesy requires.</CC_Invite_Guest>
+
+</LanguageData>

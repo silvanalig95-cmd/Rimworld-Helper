@@ -28,6 +28,9 @@ namespace ColonyCouncil
         /// <summary>The weather of their stay (CampWeather), and what they put on and how they pitch for it.</summary>
         public float low, high;
         public CampPitch pitch;
+        /// <summary>What brought them, a reason of the land's (World/Region/TravelMath.cs), or null; and the land as it was read.</summary>
+        public string seek;
+        public LandReasons land;
     }
 
     /// <summary>
@@ -403,7 +406,7 @@ namespace ColonyCouncil
         public string WhyNotForPlayer(Map map)
         {
             var (code, a, b) = Blocker(map);
-            if (code == null) return "CC_Camp_Why_Open".Translate(HomeOf(map).openMornings, Mathf.RoundToInt(1f / CampTimer.DailyChance)).Resolve();
+            if (code == null) return "CC_Camp_Why_Open".Translate(HomeOf(map).openMornings, Mathf.RoundToInt(1f / Mathf.Max(0.001f, TravelLand.CampChance(map)))).Resolve();
             return ("CC_Camp_Why_" + code).Translate(a ?? "", b ?? "").Resolve();
         }
 
@@ -422,6 +425,8 @@ namespace ColonyCouncil
             if (GenDate.DaysPassed < 20) return ("early", (20 - GenDate.DaysPassed).ToString(), null);
             // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
             float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
+            // And a remote home sooner still: the rest after a camp up to 30% shorter (World/Region/TravelLand.cs).
+            gap *= TravelLand.GapFactor(map);
             if (CampStoryMath.InGap(Now, home.lastEndedTick, gap))
                 return ("gap", gap.ToString("0"), TextUtil.DaysString(Mathf.RoundToInt(GenDate.TicksPerDay * gap) - (Now - home.lastEndedTick)));
             if (MapFacts.ThreatOn(map)) return ("threat", null, null);
@@ -446,7 +451,10 @@ namespace ColonyCouncil
                 lastWhy.Clear();
                 why = lastWhy;
             }
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map)).ToList();
+            // What the land near the home has that draws travellers (World/Region/TravelLand.cs): a kind that seeks it
+            // weighs more the more remote the home, and says it came for it; one that comes only for it needs it.
+            var land = TravelLand.Read(map);
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && (!k.seekOnly || TravelMath.AnyHolds(k.seeks, land.holds))).ToList();
             if (kinds.Count == 0)
             {
                 why?.Add("no kind of camp can come now");
@@ -469,13 +477,19 @@ namespace ColonyCouncil
             if (past != null)
             {
                 // Some kinds pitch by what they came for (the water, the ruins, the monolith: CampKindsLand.cs).
-                var at = CampLand.SiteFor(past.kind, map, center, hot);
+                string again = CampSeek.Choose(past.kind, land);
+                var at = CampSeek.SiteFor(again, land, map, CampLand.SiteFor(past.kind, map, center, hot), hot);
                 var back = at.IsValid ? Make(map, at, colony, past.kind, past.faction, hot, why, past) : null;
-                if (back != null) return back;
+                if (back != null)
+                {
+                    back.seek = again;
+                    back.land = land;
+                    return back;
+                }
             }
             for (int tries = 0; tries < 6; tries++)
             {
-                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow));
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
                 if (f == null)
@@ -489,8 +503,16 @@ namespace ColonyCouncil
                     why?.Add(kind.label + ": no spot by what they came for");
                     continue;
                 }
+                // Near the ruins or the ore they came for, where there's room (CampSeekers.cs).
+                string seek = CampSeek.Choose(kind, land);
+                site = CampSeek.SiteFor(seek, land, map, site, hot);
                 var setup = Make(map, site, colony, kind, f, hot, why, null);
-                if (setup != null) return setup;
+                if (setup != null)
+                {
+                    setup.seek = seek;
+                    setup.land = land;
+                    return setup;
+                }
                 if (why != null && why.Count > 0 && why[why.Count - 1].EndsWith("doesn't fit at the spot")) return null;
             }
             return null;
@@ -504,7 +526,7 @@ namespace ColonyCouncil
         public Camp StartKind(Map map, CampKindDef kind, Faction f, List<string> why = null)
         {
             if (map == null || kind == null || VisitingAt(map) != null || !Enabled) return null;
-            if (!kind.FitsEra() || !kind.Possible || !kind.FitsMap(map))
+            if (!kind.FitsEra() || !kind.Possible || !kind.FitsMap(map) || kind.seekOnly && !TravelMath.AnyHolds(kind.seeks, TravelLand.Read(map).holds))
             {
                 why?.Add(kind.label + ": not in this era");
                 return null;
@@ -523,6 +545,11 @@ namespace ColonyCouncil
                 return null;
             }
             var setup = Make(map, center, CampSite.ColonyCenter(map), kind, f, hot, why, null);
+            if (setup != null)
+            {
+                setup.land = TravelLand.Read(map);
+                setup.seek = CampSeek.Choose(kind, setup.land);
+            }
             var c = setup == null ? null : Start(setup);
             if (c != null) Announce(c);
             return c;
@@ -682,6 +709,8 @@ namespace ColonyCouncil
                 startTick = Now, stayTicks = s.stayTicks, phase = CampPhase.Coming, pitch = s.pitch
             };
             if (s.past != null) CampReturns.Started(c, s.past);
+            // What brought them, and where it is (CampSeekers.cs).
+            c.SeekStarted(s);
             try
             {
                 Equip(c);
