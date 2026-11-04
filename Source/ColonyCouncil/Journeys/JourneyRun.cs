@@ -67,7 +67,8 @@ namespace ColonyCouncil
                 return;
             }
             var map = plan.map;
-            if (map == null || !Find.Maps.Contains(map))
+            // Its home no longer ours (abandoned, or handed over): nobody sets off from it.
+            if (map == null || !Find.Maps.Contains(map) || !Homes.IsHome(map))
             {
                 CallOff(plan, "CC_Journey_CalledOff");
                 return;

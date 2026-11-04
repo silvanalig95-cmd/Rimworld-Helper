@@ -1062,9 +1062,9 @@ namespace ColonyCouncil
         public void Finish()
         {
             if (phase == CampPhase.Over) return;
-            if (map == null || !Find.Maps.Contains(map))
+            if (map == null || !Find.Maps.Contains(map) || !Homes.IsHome(map))
             {
-                // The map itself is gone (abandoned): nothing to tell.
+                // The map itself is gone, or no longer the colony's (abandoned, handed over): nothing to tell.
                 phase = CampPhase.Over;
                 CampTracker.Instance?.Ended(this);
                 return;
