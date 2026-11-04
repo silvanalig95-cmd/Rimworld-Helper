@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Back and forward through Rimfolk's windows (Source/ColonyCouncil/UI/Cards/Nav.cs): the corner's arrows as keys, in
+    Options, Keyboard, under "Rimfolk". Neither has a key until the player picks one. They work while one of Rimfolk's
+    windows is open; the mouse's side buttons do the same where the game reports them.
+  -->
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Back</defName>
+    <label>back (Rimfolk's windows)</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Forward</defName>
+    <label>forward (Rimfolk's windows)</label>
+  </KeyBindingDef>
+
+</Defs>

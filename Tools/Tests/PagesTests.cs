@@ -190,7 +190,9 @@ public static class PagesTests
         C(WorldHistoryMath.Lead(people, town) == people && WorldHistoryMath.Lead(Ref.None, town) == town, "a people's history asks first, then a town's");
         C(WorldHistoryMath.MaxShown > 0 && WorldHistoryMath.MaxShown <= HistoryMath.MaxEvents, "the page lists no more than the history keeps");
         string pagesFile = File.ReadAllText(Path.Combine(src, "UI", "WorldPages.cs"));
-        C(pagesFile.Contains("History.Of(") && pagesFile.Contains("History.At(") && pagesFile.Contains("History.Text("), "the History page reads the one history through its own queries and words");
+        string cardWords = File.ReadAllText(Path.Combine(src, "UI", "Cards", "CardWords.cs"));
+        C(pagesFile.Contains("History.Of(") && pagesFile.Contains("History.At(") && pagesFile.Contains("CardWords.HistoryLine(e, true)") && cardWords.Contains("History.Text(e)"),
+            "the History page reads the one history through its own queries and words (with links, UI/Cards/CardWords.cs)");
         string worldWindow = File.ReadAllText(Path.Combine(src, "UI", "MainTabWindow_World.cs"));
         C(Regex.IsMatch(worldWindow, @"public static WorldPage Register\(string name, string labelKey, Texture2D icon, Action<Rect> draw"), "adding a region page is one call");
         return n;

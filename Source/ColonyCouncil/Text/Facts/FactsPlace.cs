@@ -20,6 +20,7 @@ namespace ColonyCouncil
             {
                 f.Tag("town");
                 f.Value("TOWN", town.Name);
+                f.Thing("TOWN", Refs.Of(town).ToString());
                 if (map != null)
                 {
                     float tiles = LivingEvents.Distance(map.Tile, town.Tile);

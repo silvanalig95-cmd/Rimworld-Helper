@@ -546,7 +546,8 @@ namespace ColonyCouncil
             if (h.members.Count > 0) who.Line(T("CC_Card_MembersLine", string.Join(", ", h.members).Named("MEMBERS")), UiKit.Faint);
             who.count = h.members.Count + (h.head.IsNone ? 0 : 1);
             if (who.Empty) m.blocks.Remove(who);
-            if (h.since >= 0) m.Glance(T("CC_Card_HouseSince", FactionMemory.AgoText(h.since).Named("AGO")));
+            m.Glance(LinkTextMath.Plain(m.subtitle).CapitalizeFirst() + ".");
+            if (h.members.Count > 0) m.Glance(T("CC_Card_MembersLine", string.Join(", ", h.members).Named("MEMBERS")));
             CardWords.Story(m, h.house, Ref.None);
         }
 

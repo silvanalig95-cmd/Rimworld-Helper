@@ -89,7 +89,7 @@ public static class SettingsTests
                     Check(IsNumber(e.id), $"{e.id}: a slider for a number");
                     Check(e.min < e.max && e.step > 0f, $"{e.id}: a slider with a range and a step");
                     Check(Math.Abs((e.max - e.min) / e.step - Math.Round((e.max - e.min) / e.step)) < 0.001, $"{e.id}: its range is whole steps");
-                    Check(new[] { "%", "0", "0.0", "0.#" }.Contains(e.format), $"{e.id}: a known format ({e.format})");
+                    Check(new[] { "%", "0", "0.0", "0.#", "0.00" }.Contains(e.format), $"{e.id}: a known format ({e.format})");
                     if (fields.TryGetValue(e.id, out var t) && t.def != null)
                     {
                         var v = float.Parse(t.def.TrimEnd('f'), CultureInfo.InvariantCulture);

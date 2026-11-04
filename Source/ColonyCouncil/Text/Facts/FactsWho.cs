@@ -54,6 +54,7 @@ namespace ColonyCouncil
             if (p != null)
             {
                 f.Value("PEOPLE", p.Name);
+                f.Thing("PEOPLE", Refs.Of(p).ToString());
                 var leader = p.leader;
                 if (leader != null && !leader.Dead && leader != x)
                 {
