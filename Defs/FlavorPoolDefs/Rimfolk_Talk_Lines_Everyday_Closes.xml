@@ -24,7 +24,7 @@
       </plain>
       <warm>
         <li>[agree] Keep your head down next time, for me.</li>
-        <li>[debate,for] If you go out to meet them, I'm coming with you.</li>
+        <li>[debate,against] If you go out to meet them, I'm coming with you.</li>
       </warm>
       <blunt>
         <li>[agree] Good, check your weapon tonight.</li>
@@ -60,7 +60,7 @@
       </plain>
       <warm>
         <li>[agree] I'll sit next to you at the meeting.</li>
-        <li>[debate,against] Give them one more season, for me.</li>
+        <li>[debate,for] Give them one more season, for me.</li>
       </warm>
       <blunt>
         <li>[agree,against] Next meeting, I'm saying it.</li>
@@ -91,8 +91,8 @@
         <li>[agree,against] I'll see if there's any salt left in the stores.</li>
         <li>[agree,for] Fill your bowl and say thank you, that's what I do.</li>
         <li>[debate] Your stomach and mine will never agree.</li>
-        <li>[argue,against] Cook it yourself if you're so clever.</li>
-        <li>[argue,for] Keep your praise, I'll keep my complaints.</li>
+        <li>[argue,for] Cook it yourself if you're so clever.</li>
+        <li>[argue,against] Keep your praise, I'll keep my complaints.</li>
       </plain>
       <warm>
         <li>[agree] Save me a seat at supper.</li>
@@ -104,7 +104,7 @@
       </blunt>
       <cheerful>
         <li>[agree] Whoever finishes first gets the crust.</li>
-        <li>[debate,against] One day I'll do the cooking, and then you'll miss this.</li>
+        <li>[debate,for] One day I'll do the cooking, and then you'll miss this.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] Same pot, same stew, same again tomorrow.</li>
@@ -112,7 +112,7 @@
       </gloomy>
       <cold>
         <li>[debate] What it does for us matters more than how it tastes.</li>
-        <li>[argue,against] Complain to the cook, not to me.</li>
+        <li>[argue,for] Complain to the cook, not to me.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -127,12 +127,12 @@
         <li>[agree] Right, there's a pile of hauling waiting for me.</li>
         <li>[agree,against] I'll keep a quiet eye on who's slacking.</li>
         <li>[debate] We'll compare blisters at supper.</li>
-        <li>[argue,against] Count your own hours before you count mine.</li>
+        <li>[argue,for] Count your own hours before you count mine.</li>
         <li>[argue,for] You see slackers everywhere because you go looking for them.</li>
       </plain>
       <warm>
         <li>[agree] Shout if you need a hand later.</li>
-        <li>[debate,against] Maybe they're just tired, give them a day.</li>
+        <li>[debate,for] Maybe they're just tired, give them a day.</li>
       </warm>
       <blunt>
         <li>[agree] Talk later, lift now.</li>
@@ -168,7 +168,7 @@
       </plain>
       <warm>
         <li>[agree] Let's make {SUBJECT} feel at home.</li>
-        <li>[debate,against] Give {SUBJECT} a chance, that's all I ask.</li>
+        <li>[debate,for] Give {SUBJECT} a chance, that's all I ask.</li>
       </warm>
       <blunt>
         <li>[agree,against] Eyes on {SUBJECT}, then.</li>
@@ -180,7 +180,7 @@
       </cheerful>
       <gloomy>
         <li>[agree] They come and they go, the new ones.</li>
-        <li>[debate,for] Don't get too fond, they don't always stay.</li>
+        <li>[debate,against] Don't get too fond, they don't always stay.</li>
       </gloomy>
       <cold>
         <li>[debate] We'll know {SUBJECT} by what gets done, not by what gets said.</li>
@@ -204,7 +204,7 @@
       </plain>
       <warm>
         <li>[agree] I hope you find someone who deserves you.</li>
-        <li>[debate,against] Hearts aren't all trouble, you know.</li>
+        <li>[debate,for] Hearts aren't all trouble, you know.</li>
       </warm>
       <blunt>
         <li>[agree,against] Love's a distraction.</li>
@@ -216,7 +216,7 @@
       </cheerful>
       <gloomy>
         <li>[agree] Somebody always ends up crying.</li>
-        <li>[debate,for] Love's lovely until it isn't.</li>
+        <li>[debate,against] Love's lovely until it isn't.</li>
       </gloomy>
       <cold>
         <li>[debate] Pairings keep people settled, that's all I'll grant.</li>
@@ -239,8 +239,8 @@
         <li>[argue,against] Keep telling yourself it's safe.</li>
       </plain>
       <warm>
-        <li>[agree,!nochildren] I'll teach them their letters this winter.</li>
-        <li>[debate,against] They'll be all right as long as we're around.</li>
+        <li>[agree,!nochildren] I'll teach them their letters when the work's slack.</li>
+        <li>[debate,for] They'll be all right as long as we're around.</li>
       </warm>
       <blunt>
         <li>[agree,!nochildren] Watch the little ones, that's all.</li>
@@ -312,11 +312,11 @@
       </plain>
       <warm>
         <li>[agree] Let's see they're fed and warm, whatever else.</li>
-        <li>[debate,against] Kindness costs us nothing, though.</li>
+        <li>[debate,for] Kindness costs us nothing, though.</li>
       </warm>
       <blunt>
         <li>[agree,against] Doors locked, eyes open.</li>
-        <li>[argue,for] Be soft with them and one of them will walk out the door.</li>
+        <li>[argue,against] Be soft with them and one of them will walk out the door.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] I'll teach them a song, it might cheer them up.</li>
@@ -414,7 +414,7 @@
       <plain>
         <li>[agree,for] I'll go and give them a brush before dark.</li>
         <li>[agree,against] I'll keep them out of the kitchen, at least.</li>
-        <li>[debate] Come to the pens at feeding time and tell me they're just livestock.</li>
+        <li>[debate,for] Come to the pens at feeding time and tell me they're just livestock.</li>
         <li>[argue,for] Go on, call them livestock to their faces.</li>
         <li>[argue,against] Sleep in the barn with them, then.</li>
       </plain>
@@ -432,7 +432,7 @@
       </cheerful>
       <gloomy>
         <li>[agree] One hard winter and we'll be eating them anyway.</li>
-        <li>[debate,for] Don't get attached, it never ends well.</li>
+        <li>[debate,against] Don't get attached, it never ends well.</li>
       </gloomy>
       <cold>
         <li>[debate] Every animal costs feed, that's the sum of it.</li>
@@ -456,7 +456,7 @@
       </plain>
       <warm>
         <li>[agree] Stay dry, and come and warm up after.</li>
-        <li>[debate,against] I'll sew you something warmer, then.</li>
+        <li>[debate,for] I'll sew you something warmer, then.</li>
       </warm>
       <blunt>
         <li>[agree] Wear a coat.</li>
@@ -492,7 +492,7 @@
       </plain>
       <warm>
         <li>[agree] Come and look at it with me after supper.</li>
-        <li>[debate,against] Even you smiled at the last one, I saw you.</li>
+        <li>[debate,for] Even you smiled at the last one, I saw you.</li>
       </warm>
       <blunt>
         <li>[agree,against] Stone's for walls.</li>
@@ -528,7 +528,7 @@
       </plain>
       <warm>
         <li>[agree] Wherever we end up, I want you there.</li>
-        <li>[debate,against] Stay a while longer, things might turn.</li>
+        <li>[debate,for] Stay a while longer, things might turn.</li>
       </warm>
       <blunt>
         <li>[agree,for] We stay and we dig in.</li>
@@ -637,7 +637,7 @@
       </plain>
       <warm>
         <li>[agree,coming] I've been looking forward to it for weeks.</li>
-        <li>[debate,against] Come for the supper at least, for me.</li>
+        <li>[debate,for] Come for the supper at least, for me.</li>
       </warm>
       <blunt>
         <li>[agree,for] Good, I'll be there.</li>
@@ -645,7 +645,7 @@
       </blunt>
       <cheerful>
         <li>[agree,!sombre] I'm wearing my best shirt, so make an effort.</li>
-        <li>[debate,against,!sombre] You'll be the first one dancing, I know you.</li>
+        <li>[debate,for,!sombre] You'll be the first one dancing, I know you.</li>
       </cheerful>
       <gloomy>
         <li>[agree] Another day come and gone, and we're still here.</li>
@@ -686,7 +686,7 @@
       </cheerful>
       <gloomy>
         <li>[agree,badnews] It only ever gets worse out there.</li>
-        <li>[debate,for] Help them, and they'll forget us the moment it's over.</li>
+        <li>[debate,against] Help them, and they'll forget us the moment it's over.</li>
       </gloomy>
       <cold>
         <li>[debate] We act where it profits us, and nowhere else.</li>
@@ -711,7 +711,7 @@
       </plain>
       <warm>
         <li>[agree,campfamily] Their little ones looked cold, I'll find a blanket.</li>
-        <li>[debate,against] They're tired travelers, that's all.</li>
+        <li>[debate,for] They're tired travelers, that's all.</li>
       </warm>
       <blunt>
         <li>[agree,against] They leave soon, good.</li>
@@ -747,7 +747,7 @@
       </plain>
       <warm>
         <li>[agree,for] It'd be nice to have friends beyond the wall.</li>
-        <li>[debate,against] Strangers aren't all bad, you know.</li>
+        <li>[debate,for] Strangers aren't all bad, you know.</li>
       </warm>
       <blunt>
         <li>[agree,against] Gate shut.</li>
@@ -780,7 +780,7 @@
         <li>[argue,child] It's not fair, and you know it isn't.</li>
         <li>[agree,!child] Off with you, and stay out of the workshop.</li>
         <li>[debate,!child,against] Learn this first, then go and play.</li>
-        <li>[argue,!child,for] Let them play, the fields will wait.</li>
+        <li>[argue,!child,for] The chores will keep, so go and be a child.</li>
       </plain>
       <warm>
         <li>[agree,child] I love you too.</li>
@@ -827,7 +827,7 @@
         <li>[debate] If you're right, you can tell me so in the next life.</li>
       </cheerful>
       <gloomy>
-        <li>[debate,for] Faith or not, the winters are just as long.</li>
+        <li>[debate,against] Faith or not, the winters are just as long.</li>
       </gloomy>
       <cold>
         <li>[agree,against] Belief is a private matter.</li>
