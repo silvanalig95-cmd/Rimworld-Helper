@@ -1,0 +1,1529 @@
+<title>Rimfolk Interface Design</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+/* Layout: one reading column for the argument; each game window sits full width in a frame that scales it to fit (or scrolls at actual size), with numbered marks explained under it. */
+:root {
+  /* The page around the mockups: stone paper, ink, an ochre taken from the game's gold, a steel-blue link. */
+  --bg: #eceeea;
+  --surface: #f8f9f6;
+  --ink: #1b201d;
+  --muted: #58605a;
+  --rule: #cfd4cd;
+  --accent: #8e5f0e;
+  --accent-soft: #f1e2c1;
+  --link: #2b5a83;
+  --frame-shadow: rgba(20, 26, 22, 0.18);
+
+  --f-display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* The game's frame: one dark look, the same in both page themes. */
+  --g-desk: #0f1211;
+  --g-win: #1c1f22;
+  --g-edge: #3c4146;
+  --g-sec: #23272b;
+  --g-tab: #2d3135;
+  --g-tab2: #25292c;
+  --g-drawer: #202428;
+  --g-line: rgba(255, 255, 255, 0.09);
+  --g-card: rgba(255, 255, 255, 0.035);
+  --g-hover: rgba(255, 255, 255, 0.07);
+  --g-sel: rgba(255, 255, 255, 0.11);
+  --g-div: rgba(255, 255, 255, 0.13);
+  --g-shadow: rgba(0, 0, 0, 0.55);
+  --g-ink: #ebe8e0;
+  --g-faint: #b3b3ae;
+  --g-dim: #82827e;
+  --g-head: #f2d999;
+  --g-gold: #ffd478;
+  --g-gold-ink: #1c1f22;
+  --g-link: #f1dcaa;
+  --g-link-line: rgba(241, 220, 170, 0.5);
+  --g-link-hot: #fff2cf;
+  --g-warm: #86d980;
+  --g-cool: #9db6d6;
+  --g-sour: #ee735f;
+  --g-soon: #f2a847;
+  --g-danger: #ff5a48;
+  --g-done: #8fa08f;
+  --g-world: #b8ccf2;
+  --g-btn1: #3b3f43;
+  --g-btn2: #2c2f33;
+  --g-btn-edge: #4c5157;
+
+  /* The region map's land. */
+  --m-grass: #384431;
+  --m-forest: #2b3d2f;
+  --m-hill: #4a4737;
+  --m-hatch: #5d5946;
+  --m-mount: #5b5950;
+  --m-water: #26404f;
+  --m-river: #4a77a3;
+  --m-road: #8c6a48;
+  --m-grid: rgba(255, 255, 255, 0.045);
+  --m-label: rgba(0, 0, 0, 0.62);
+  --m-mark: rgba(10, 12, 14, 0.88);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111413;
+    --surface: #181c1a;
+    --ink: #e2e5df;
+    --muted: #9ba39c;
+    --rule: #2c322e;
+    --accent: #e0b55e;
+    --accent-soft: #3a2f18;
+    --link: #93bde6;
+    --frame-shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111413;
+  --surface: #181c1a;
+  --ink: #e2e5df;
+  --muted: #9ba39c;
+  --rule: #2c322e;
+  --accent: #e0b55e;
+  --accent-soft: #3a2f18;
+  --link: #93bde6;
+  --frame-shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 64px;
+}
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.005em; }
+h1 { font-size: clamp(30px, 5.2vw, 50px); line-height: 1.08; }
+h2 { font-size: clamp(24px, 3.4vw, 32px); line-height: 1.15; }
+h3 { font-size: 20px; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--link); }
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lede { font-size: 18px; color: var(--muted); max-width: 64ch; }
+section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; min-width: 0; }
+.sec-head { display: grid; gap: 10px; }
+code, .mono { font-family: var(--f-mono); font-size: 0.86em; }
+
+/* The opening figures */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.figure { background: var(--surface); padding: 16px 18px; display: grid; gap: 4px; }
+.figure b { font-family: var(--f-display); font-size: 30px; font-weight: 600; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+.figure b .from { color: var(--muted); font-weight: 500; }
+.figure span { color: var(--muted); font-size: 14px; }
+
+/* The frame around a game window */
+.frame-wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; }
+.frame-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.frame-bar .cap { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.size-btn {
+  font: 500 13px var(--f-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.size-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.frame {
+  position: relative;
+  overflow-x: auto;
+  width: 1012px;
+  background: var(--g-desk);
+  border: 1px solid var(--rule);
+  box-shadow: 0 12px 30px -14px var(--frame-shadow);
+  max-width: 100%;
+}
+.frame.js:not(.actual) { overflow: hidden; }
+.frame .gw { transform-origin: 0 0; }
+
+/* The marks' explanations */
+.callouts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px 28px;
+}
+.callouts li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; font-size: 15px; min-width: 0; }
+.callouts li b { font-weight: 600; }
+.num {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--surface);
+  font: 600 12px var(--f-body);
+  margin-top: 1px;
+}
+
+/* ======================= The game's interface ======================= */
+.gw {
+  width: 1010px;
+  height: 720px;
+  position: relative;
+  background: var(--g-win);
+  border: 1px solid var(--g-edge);
+  color: var(--g-ink);
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  line-height: 1.38;
+  padding: 0 18px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.gw svg.i { width: 16px; height: 16px; flex: none; }
+.gw .t { font-size: 10.5px; color: var(--g-faint); }
+.gw .m { font-size: 17px; color: var(--g-head); line-height: 1.2; }
+.g-top { height: 36px; display: flex; align-items: flex-end; justify-content: space-between; }
+.g-tabs { display: flex; align-items: flex-end; padding-left: 4px; }
+.g-tab {
+  height: 30px;
+  min-width: 132px;
+  margin-right: -8px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: var(--g-faint);
+  background: linear-gradient(var(--g-tab), var(--g-tab2));
+  border: 1px solid var(--g-edge);
+  border-bottom: none;
+  clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 100%, 0 100%);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.g-tab.on { color: var(--g-ink); background: var(--g-sec); position: relative; z-index: 2; }
+.g-tab.on svg { color: var(--g-gold); }
+.g-tab .badge { margin-left: 2px; }
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--g-gold);
+  color: var(--g-gold-ink);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.g-corner { display: flex; align-items: center; gap: 4px; height: 34px; padding-bottom: 3px; }
+.g-ib {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  color: var(--g-faint);
+  border-radius: 2px;
+  position: relative;
+}
+.g-ib.lit { color: var(--g-gold); background: var(--g-sel); box-shadow: inset 0 0 0 1px rgba(255, 212, 120, 0.45); }
+.g-ib .badge { position: absolute; top: -5px; right: -7px; transform: scale(0.9); }
+.g-ib.dim { color: var(--g-dim); }
+.g-sep { width: 1px; height: 20px; background: var(--g-div); margin: 0 6px; }
+.g-search {
+  height: 24px;
+  width: 132px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  color: var(--g-dim);
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--g-line);
+  border-radius: 2px;
+  font-size: 11.5px;
+  margin: 0 4px;
+}
+.g-body {
+  flex: 1;
+  min-height: 0;
+  background: var(--g-sec);
+  border: 1px solid var(--g-edge);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.g-row { display: flex; align-items: center; gap: 8px; }
+.g-grow { flex: 1; min-width: 0; }
+
+/* buttons, modes, lenses */
+.g-btn {
+  height: 26px;
+  padding: 0 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--g-ink);
+  background: linear-gradient(var(--g-btn1), var(--g-btn2));
+  border: 1px solid var(--g-btn-edge);
+  border-radius: 2px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.g-btn.dis { color: var(--g-dim); background: var(--g-btn2); border-color: var(--g-line); }
+.g-btn.sm { height: 22px; padding: 0 8px; font-size: 11px; }
+.g-seg { display: inline-flex; border: 1px solid var(--g-btn-edge); border-radius: 2px; overflow: hidden; }
+.g-seg span {
+  height: 24px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--g-faint);
+  font-size: 11.5px;
+  border-left: 1px solid var(--g-line);
+  background: rgba(0, 0, 0, 0.18);
+}
+.g-seg span:first-child { border-left: none; }
+.g-seg span.on { color: var(--g-ink); background: var(--g-sel); box-shadow: inset 0 -2px 0 var(--g-gold); }
+.g-lens { display: flex; gap: 2px; }
+.g-lens span {
+  height: 28px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--g-faint);
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.g-lens span.on { color: var(--g-ink); background: var(--g-sel); border-color: rgba(255, 212, 120, 0.45); }
+.g-lens span.on svg { color: var(--g-gold); }
+
+/* view header */
+.g-vhead { display: flex; align-items: center; gap: 10px; }
+.g-vhead .ttl { display: grid; gap: 1px; min-width: 0; }
+.g-vhead .stat { margin-left: auto; color: var(--g-gold); font-size: 12px; white-space: nowrap; }
+
+/* text bits */
+.lk { color: var(--g-link); text-decoration: underline dotted var(--g-link-line); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.lk.hov { color: var(--g-link-hot); text-decoration-style: solid; text-decoration-color: var(--g-link-hot); }
+.warm { color: var(--g-warm); }
+.cool { color: var(--g-cool); }
+.sour { color: var(--g-sour); }
+.soon { color: var(--g-soon); }
+.danger { color: var(--g-danger); }
+.done { color: var(--g-done); }
+.world { color: var(--g-world); }
+.gold { color: var(--g-gold); }
+.faint { color: var(--g-faint); }
+.dim { color: var(--g-dim); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; display: inline-block; flex: none; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 7px;
+  border: 1px solid var(--g-line);
+  background: var(--g-card);
+  border-radius: 2px;
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+.chip .tx { color: var(--g-ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag2 { font-size: 9.5px; letter-spacing: 0.04em; color: var(--g-dim); border: 1px solid var(--g-line); border-radius: 2px; padding: 0 4px; }
+
+/* sections */
+.g-sh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0 4px;
+  border-bottom: 1px solid var(--g-div);
+  color: var(--g-head);
+  font-size: 12px;
+}
+.g-sh .cnt { font-size: 10px; color: var(--g-faint); background: var(--g-hover); border-radius: 8px; padding: 0 6px; line-height: 15px; }
+.g-sh .car { color: var(--g-dim); width: 10px; height: 10px; }
+.g-sh .right { margin-left: auto; font-size: 10.5px; color: var(--g-faint); }
+.g-sec { display: grid; gap: 5px; }
+.g-line { display: flex; gap: 8px; align-items: flex-start; }
+.g-line > svg { margin-top: 1px; }
+.g-line p { min-width: 0; }
+
+/* avatar */
+.av {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: #33383c;
+  color: var(--g-ink);
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px currentColor;
+}
+.av.sm { width: 22px; height: 22px; font-size: 9px; box-shadow: 0 0 0 1.5px currentColor; }
+.av.lg { width: 46px; height: 46px; font-size: 15px; }
+.av span { color: var(--g-ink); }
+
+/* steps */
+.steps { display: flex; gap: 9px; font-size: 10.5px; color: var(--g-dim); flex-wrap: wrap; }
+.steps span { display: inline-flex; align-items: center; gap: 4px; }
+.steps span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--g-dim); }
+.steps span.on { color: var(--g-faint); }
+.steps span.on::before { background: var(--g-done); border-color: var(--g-done); }
+.steps span.now { color: var(--g-ink); }
+.steps span.now::before { background: var(--g-gold); border-color: var(--g-gold); }
+
+/* drawer */
+.drawer {
+  width: 380px;
+  flex: none;
+  background: var(--g-drawer);
+  border: 1px solid var(--g-line);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.d-trail { height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 8px; border-bottom: 1px solid var(--g-line); font-size: 10.5px; color: var(--g-faint); }
+.d-trail .sepr { color: var(--g-dim); }
+.d-head { padding: 10px 12px 8px; display: grid; gap: 7px; border-bottom: 1px solid var(--g-line); }
+.d-head .top { display: flex; gap: 10px; align-items: center; }
+.d-pic { width: 42px; height: 42px; border-radius: 50%; background: var(--m-mark); display: grid; place-items: center; flex: none; }
+.d-pic svg { width: 24px; height: 24px; }
+.d-scroll { flex: 1; min-height: 0; overflow: hidden; padding: 4px 12px 8px; display: grid; gap: 10px; align-content: start; position: relative; }
+.d-scroll::after { content: ""; position: absolute; right: 3px; top: 6px; width: 4px; height: 120px; border-radius: 2px; background: var(--g-hover); }
+.d-foot { padding: 8px 12px 10px; border-top: 1px solid var(--g-line); display: grid; gap: 5px; }
+.d-foot .acts { display: flex; gap: 6px; }
+.d-foot .why { font-size: 10.5px; color: var(--g-dim); }
+
+/* people rows */
+.prow { display: flex; gap: 9px; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--g-line); }
+.prow:last-child { border-bottom: none; }
+.prow .txt { flex: 1; min-width: 0; display: grid; gap: 1px; }
+
+/* preview */
+.preview {
+  position: absolute;
+  width: 268px;
+  background: #2a2f34;
+  border: 1px solid var(--g-btn-edge);
+  box-shadow: 0 10px 28px var(--g-shadow);
+  padding: 10px 11px;
+  display: grid;
+  gap: 6px;
+  z-index: 20;
+  font-size: 12px;
+}
+.preview .ptop { display: flex; gap: 9px; align-items: center; }
+.preview .hint { font-size: 10px; color: var(--g-dim); border-top: 1px solid var(--g-line); padding-top: 5px; }
+.preview::before { content: ""; position: absolute; top: -6px; width: 10px; height: 10px; background: #2a2f34; border-left: 1px solid var(--g-btn-edge); border-top: 1px solid var(--g-btn-edge); transform: rotate(45deg); }
+.preview.arrow-r::before { right: 26px; }
+.preview.arrow-l::before { left: 22px; }
+.preview.arrow-e::before { top: 52px; right: -6px; border-left: none; border-top: 1px solid var(--g-btn-edge); border-right: 1px solid var(--g-btn-edge); }
+
+/* map */
+.mapbox { position: relative; flex: 1; min-width: 0; border: 1px solid var(--g-line); overflow: hidden; }
+.mapbox svg.map { display: block; width: 100%; height: 100%; }
+.zoom { position: absolute; right: 8px; top: 8px; display: grid; gap: 4px; }
+.zoom span { width: 24px; height: 24px; display: grid; place-items: center; background: var(--m-mark); border: 1px solid var(--g-line); color: var(--g-faint); font-size: 15px; line-height: 1; }
+.legend {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  background: var(--m-mark);
+  border: 1px solid var(--g-line);
+  padding: 6px 9px;
+  display: grid;
+  gap: 4px;
+  font-size: 10.5px;
+  color: var(--g-faint);
+}
+.legend .lrow { display: flex; gap: 12px; align-items: center; }
+.legend .lrow > span { display: inline-flex; gap: 5px; align-items: center; }
+.lline { width: 22px; height: 0; border-top: 2px solid var(--g-warm); display: inline-block; }
+.lline.truce { border-top-style: dashed; border-color: var(--g-cool); }
+.lline.fav { border-top-style: dotted; border-color: var(--g-warm); }
+.lline.prot { border-top: 4px double var(--g-gold); }
+.lline.raid { border-top: 2px dashed var(--g-sour); }
+
+/* callout marks on a window */
+.co {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--g-gold);
+  color: var(--g-gold-ink);
+  font: 600 12px var(--f-body);
+  box-shadow: 0 0 0 3px var(--g-shadow), 0 0 0 4px var(--g-gold);
+  z-index: 40;
+}
+
+/* This week */
+.wk { display: grid; grid-template-columns: 1fr 352px; gap: 12px; flex: 1; min-height: 0; }
+.wk-col { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card {
+  background: var(--g-card);
+  border: 1px solid var(--g-line);
+  padding: 8px 10px 9px;
+  display: grid;
+  gap: 4px;
+}
+.wrow {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 9px;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--g-line);
+}
+.wrow:last-child { border-bottom: none; }
+.wrow .txt { display: grid; gap: 1px; min-width: 0; }
+.wrow .ic { width: 24px; height: 24px; display: grid; place-items: center; }
+.wrow .ic svg { width: 17px; height: 17px; }
+.more { font-size: 10.5px; color: var(--g-faint); padding-top: 2px; }
+.balance { height: 8px; background: rgba(0, 0, 0, 0.4); display: flex; border-radius: 1px; overflow: hidden; }
+.balance i { display: block; height: 100%; }
+
+/* People table */
+.tbl { border: 1px solid var(--g-line); display: grid; align-content: start; min-width: 0; }
+.tr { display: grid; grid-template-columns: 150px 58px 90px 1fr 36px; gap: 8px; align-items: center; padding: 0 10px; height: 40px; border-bottom: 1px solid var(--g-line); }
+.tr.th { height: 26px; font-size: 10.5px; color: var(--g-faint); background: rgba(0, 0, 0, 0.15); }
+.tr:nth-child(even):not(.th) { background: var(--g-card); }
+.tr.sel { background: var(--g-sel); }
+.tr .who { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.mbar { height: 7px; background: rgba(0, 0, 0, 0.4); position: relative; }
+.mbar i { position: absolute; left: 0; top: 0; bottom: 0; }
+.mbar b { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--g-soon); }
+.icons { display: flex; gap: 5px; color: var(--g-faint); }
+.icons svg { width: 14px; height: 14px; }
+
+/* ============ native-size pieces (the card section and the specimens) ============ */
+.native-row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.native-col { display: grid; gap: 10px; min-width: 0; flex: 1 1 300px; max-width: 420px; }
+.native-col .lbl { font-family: var(--f-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+.gpanel {
+  background: var(--g-sec);
+  border: 1px solid var(--g-edge);
+  color: var(--g-ink);
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  line-height: 1.38;
+  position: relative;
+  max-width: 100%;
+}
+.gpanel .t { font-size: 10.5px; color: var(--g-faint); }
+.gpanel .m { font-size: 17px; color: var(--g-head); line-height: 1.2; }
+.gpanel svg.i { width: 16px; height: 16px; flex: none; }
+.hist { padding: 6px 10px; display: grid; }
+.hrow { display: grid; grid-template-columns: 96px 16px 1fr; gap: 6px; padding: 6px 0; border-bottom: 1px solid var(--g-line); align-items: start; }
+.hrow:last-child { border-bottom: none; }
+.preview.static { position: relative; margin: 8px 0 4px 36px; }
+.gpanel .drawer { width: 100%; max-width: 380px; border: none; }
+.doors { margin: 0; padding-left: 20px; display: grid; gap: 4px; color: var(--muted); font-size: 15px; }
+
+/* specimens */
+.spec { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+.spec .gpanel { padding: 14px; display: grid; gap: 12px; align-content: start; }
+.spec h3 { font-size: 17px; color: var(--ink); }
+.swatches { display: grid; gap: 7px; }
+.sw { display: grid; grid-template-columns: 22px 64px 1fr; gap: 9px; align-items: center; font-size: 12px; }
+.sw i { width: 22px; height: 22px; border-radius: 2px; display: block; border: 1px solid var(--g-line); }
+.sw .nm { color: var(--g-ink); font-weight: 500; }
+.sw .mn { color: var(--g-faint); }
+.ramp { display: grid; gap: 10px; }
+.ramp div { display: grid; gap: 1px; }
+.grid4 { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+.grid4 div { display: grid; gap: 4px; justify-items: center; font-size: 10.5px; color: var(--g-faint); }
+.grid4 i { display: block; background: rgba(255, 212, 120, 0.3); border: 1px solid rgba(255, 212, 120, 0.55); }
+.comp { display: grid; gap: 4px; }
+.comp .what { font-size: 10.5px; color: var(--g-dim); letter-spacing: 0.03em; text-transform: uppercase; }
+.empty { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 14px 10px; color: var(--g-faint); border: 1px dashed var(--g-line); }
+.empty svg { width: 26px; height: 26px; color: var(--g-dim); }
+
+/* structure */
+.struct { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.wblock { background: var(--surface); border: 1px solid var(--rule); padding: 16px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.wblock h3 { font-size: 19px; }
+.wblock .k { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.pills span { font-size: 13px; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 3px; color: var(--muted); background: var(--bg); }
+.pills.new span { color: var(--ink); border-color: var(--accent); background: var(--accent-soft); }
+.pills.new span small { color: var(--muted); font-size: 11.5px; }
+.rule-list { margin: 0; padding-left: 22px; display: grid; gap: 8px; max-width: 72ch; }
+.rule-list li::marker { font-family: var(--f-mono); color: var(--accent); }
+
+/* releases and decisions */
+.releases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--rule); }
+.releases li { position: relative; padding: 0 0 22px 24px; display: grid; gap: 4px; max-width: 76ch; }
+.releases li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.releases li:last-child { padding-bottom: 0; }
+.releases .rn { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.05em; }
+.releases h3 { font-size: 19px; }
+.releases p { color: var(--muted); }
+.decisions { margin: 0; padding: 0; list-style: none; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); counter-reset: d; }
+.decisions li { background: var(--surface); padding: 14px 16px; display: grid; grid-template-columns: 32px 1fr; gap: 10px; counter-increment: d; }
+.decisions li::before { content: counter(d); font-family: var(--f-display); font-size: 22px; font-weight: 600; color: var(--accent); line-height: 1.1; }
+.decisions .q { display: grid; gap: 4px; min-width: 0; }
+.decisions .q p { margin: 0; }
+.decisions .rec { font-size: 14px; color: var(--muted); }
+.decisions .rec b { color: var(--ink); font-weight: 600; }
+.foot { color: var(--muted); font-size: 14px; border-top: 1px solid var(--rule); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .page { gap: 48px; padding-block: 28px 56px; }
+  .lede { font-size: 16.5px; }
+  .callouts li { font-size: 14.5px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .size-btn { transition: background 0.15s; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-council" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 6 8 2.5 14 6Z"/><path d="M4 7.5v4.5M8 7.5v4.5M12 7.5v4.5M2 13.5h12"/></g></symbol>
+    <symbol id="i-region" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-2.2 2-2.2 10 0 12M8 2c2.2 2 2.2 10 0 12"/></g></symbol>
+    <symbol id="i-defense" viewBox="0 0 16 16"><path d="M8 2 13 4v4c0 3-2.5 5-5 6-2.5-1-5-3-5-6V4Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-planning" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2.5" y="2.5" width="11" height="11"/><path d="M2.5 7h5v6.5M7.5 7V2.5M10 7h3.5"/></g></symbol>
+    <symbol id="i-back" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fwd" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.3"/><path d="M10.3 10.3 14 14"/></g></symbol>
+    <symbol id="i-inbox" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 9 4 3h8l2 6v4.5H2Z"/><path d="M2 9h3.5l1 1.6h3l1-1.6H14"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M5.5 2h5l-.6 4 2.6 2.6h-9L6.1 6Z"/><path d="M8 8.6V14"/></g></symbol>
+    <symbol id="i-land" viewBox="0 0 16 16"><path d="M1.5 13 6 5l3 5 2-3 3.5 6Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-stance" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="5.8" cy="8" r="3.6"/><circle cx="10.2" cy="8" r="3.6"/></g></symbol>
+    <symbol id="i-fortune" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 13.5v-3M8 13.5v-6M12.5 13.5V3.5"/><path d="M10.5 5.3 12.5 3.3l2 2"/></g></symbol>
+    <symbol id="i-threat" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/><path d="M2.5 9.5l4 4M13.5 9.5l-4 4"/></g></symbol>
+    <symbol id="i-trade" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M8 2.5v11M4 13.5h8M3 4.5h10"/><path d="M3 4.5 1.5 9h3Z M13 4.5 11.5 9h3Z"/></g></symbol>
+    <symbol id="i-ours" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M4 14V2"/><path d="M4 2.8h8l-2 3 2 3H4"/></g></symbol>
+    <symbol id="i-map" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M1.5 4 6 2l4 2 4.5-2v10L10 14l-4-2-4.5 2Z"/><path d="M6 2v10M10 4v10"/></g></symbol>
+    <symbol id="i-list" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 4h8M6 8h8M6 12h8"/><path d="M2.5 4h.1M2.5 8h.1M2.5 12h.1"/></g></symbol>
+    <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-more" viewBox="0 0 16 16"><g fill="currentColor"><circle cx="3.5" cy="8" r="1.3"/><circle cx="8" cy="8" r="1.3"/><circle cx="12.5" cy="8" r="1.3"/></g></symbol>
+    <symbol id="i-help" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M6.2 6.3c0-1.1.8-1.8 1.8-1.8s1.8.7 1.8 1.6c0 1.3-1.8 1.4-1.8 2.8"/><path d="M8 11.3h.05"/></g></symbol>
+    <symbol id="i-town" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.5 8 8 3.5 13.5 8v5.5h-11Z"/><path d="M6.5 13.5v-3.5h3v3.5"/></g></symbol>
+    <symbol id="i-post" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 13.5 8 3l6 10.5Z"/><path d="M8 3v10.5M5.5 13.5 8 9l2.5 4.5"/></g></symbol>
+    <symbol id="i-camp" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M8 2.5c2.5 2.6 3.5 4.3 3.5 6.3a3.5 3.5 0 0 1-7 0c0-1.3.6-2.3 1.4-3.2.3 1.2.9 1.8 1.6 2.1C7.2 6.3 7.3 4.4 8 2.5Z"/><path d="M3 14h10"/></g></symbol>
+    <symbol id="i-hamlet" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M1.5 9 5 6l3.5 3v4.5h-7Z"/><path d="M8.5 9 11 6.8l3.5 3v3.7h-6"/></g></symbol>
+    <symbol id="i-ruin" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.5 13.5V6l3-1v3l2-1.5 1 2 2-3.5 3 2v6.5Z"/></g></symbol>
+    <symbol id="i-letter" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9"/><path d="m2 4 6 5 6-5"/></g></symbol>
+    <symbol id="i-decree" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 2h8v12H4Z"/><path d="M6 5h4M6 8h4M6 11h2.5"/></g></symbol>
+    <symbol id="i-wish" viewBox="0 0 16 16"><path d="M8 2l1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-event" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="2.6"/><path d="M8 1.8v2M8 12.2v2M1.8 8h2M12.2 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4 5 11M11 5l1.4-1.4"/></g></symbol>
+    <symbol id="i-caravan" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M1.5 10.5V5h9v5.5M10.5 7h2.5l1.5 2v1.5"/><circle cx="4.5" cy="12" r="1.5"/><circle cx="11.5" cy="12" r="1.5"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 16 16"><path d="M8 13.5S2 10 2 6a3 3 0 0 1 6-1 3 3 0 0 1 6 1c0 4-6 7.5-6 7.5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path d="m3 8.5 3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-person" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="5.5" r="2.8"/><path d="M2.8 14c.6-2.9 2.6-4.3 5.2-4.3s4.6 1.4 5.2 4.3"/></g></symbol>
+    <symbol id="i-calendar" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="12" height="11"/><path d="M2 6.5h12M5 1.5v3M11 1.5v3"/></g></symbol>
+    <symbol id="i-down" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 16 16"><path d="m6 4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-history" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9"/><path d="M2.3 2.5v2.8h2.8M8 5v3.3l2.2 1.4"/></g></symbol>
+    <symbol id="i-people" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="5.5" cy="6" r="2.3"/><circle cx="11" cy="6.5" r="2"/><path d="M1.5 13.5c.4-2.3 1.9-3.5 4-3.5s3.6 1.2 4 3.5M10 10.1c2 0 3.3 1 3.8 3.4"/></g></symbol>
+    <symbol id="i-away" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h8M8 5l3 3-3 3"/><path d="M13.5 2.5v11"/></g></symbol>
+    <symbol id="i-colony" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 13.5h12M3.5 13.5V7.5L8 4l4.5 3.5v6"/><path d="M8 4V1.5l2.5 1L8 3.5"/></g></symbol>
+    <symbol id="i-world" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="9" r="5"/><path d="M2 9h10M7 4c-1.8 1.6-1.8 8.4 0 10"/><path d="M10.5 1.5H14.5V5.5M14.5 1.5l-4 4"/></g></symbol>
+    <symbol id="i-moods" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M5.5 9.8c1.3 1.3 3.7 1.3 5 0M6 6.3h.05M10 6.3h.05"/></g></symbol>
+  </defs>
+</svg>
+
+<main class="page">
+
+  <header class="sec-head">
+    <p class="eyebrow">Rimfolk &middot; the interface for the long run &middot; 4 November 2026</p>
+    <h1>One map, few tabs, and every name a way in</h1>
+    <p class="lede">You noticed the region window grew to ten tabs. Stage 2 would make it twelve. This is the plan to stop that for good: four windows as now, at most five views in each, a card for every person, town and people you can open from wherever its name appears, and one place for everything that waits on you. Below, the region window, a card reached from a name, This week as the inbox, the council window in the same language, the look, and the order to build it.</p>
+  </header>
+
+  <div class="figures" role="list">
+    <div class="figure" role="listitem"><b><span class="from">34</span> &rarr; 13</b><span>pages become views, never more than five to a window</span></div>
+    <div class="figure" role="listitem"><b><span class="from">10</span> &rarr; 4</b><span>tabs in the region window: Map, Peoples, Here and away, History</span></div>
+    <div class="figure" role="listitem"><b>0</b><span>new tabs for stage 2's diplomacy and stage 3's colonies</span></div>
+    <div class="figure" role="listitem"><b>5</b><span>releases, each playing as before, before stage 2 begins</span></div>
+  </div>
+
+  <!-- ===================== THE REGION WINDOW ===================== -->
+  <section aria-labelledby="h-region">
+    <div class="sec-head prose">
+      <p class="eyebrow">The hub</p>
+      <h2 id="h-region">The region window: a map with lenses, a town's whole story beside it</h2>
+      <p>Trading posts, raiders' camps and hamlets stop being pages. They become what the Trade, Threats and Ours lenses show on the same map, each with a list. Picking a town opens its card in the drawer on the right, which is where everything about that town lives.</p>
+    </div>
+
+    <div class="frame-wrap">
+      <div class="frame-bar">
+        <span class="cap">Region window &middot; Map view &middot; Stance and ties lens &middot; Tallbrook picked</span>
+        <button class="size-btn" type="button" id="size-region" data-frame="f-region">Actual size</button>
+      </div>
+      <div class="frame" id="f-region">
+        <div class="gw" role="img" aria-label="Mockup of the region window with the map, lenses and Tallbrook's card">
+
+          <div class="g-top">
+            <div class="g-tabs">
+              <div class="g-tab on"><svg class="i"><use href="#i-map"/></svg>Map</div>
+              <div class="g-tab"><svg class="i"><use href="#i-people"/></svg>Peoples</div>
+              <div class="g-tab"><svg class="i"><use href="#i-away"/></svg>Here and away</div>
+              <div class="g-tab"><svg class="i"><use href="#i-history"/></svg>History</div>
+            </div>
+            <div class="g-corner">
+              <span class="g-ib"><svg class="i"><use href="#i-back"/></svg></span>
+              <span class="g-ib dim"><svg class="i"><use href="#i-fwd"/></svg></span>
+              <span class="g-search"><svg class="i"><use href="#i-search"/></svg>Search</span>
+              <span class="g-ib"><svg class="i"><use href="#i-inbox"/></svg><span class="badge">4</span></span>
+              <span class="g-ib"><svg class="i"><use href="#i-pin"/></svg></span>
+              <span class="g-sep"></span>
+              <span class="g-ib"><svg class="i"><use href="#i-council"/></svg></span>
+              <span class="g-ib lit"><svg class="i"><use href="#i-region"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-defense"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-planning"/></svg></span>
+            </div>
+          </div>
+
+          <div class="g-body">
+            <div class="g-row">
+              <div class="g-lens">
+                <span><svg class="i"><use href="#i-land"/></svg>Land</span>
+                <span class="on"><svg class="i"><use href="#i-stance"/></svg>Stance and ties</span>
+                <span><svg class="i"><use href="#i-fortune"/></svg>Fortunes</span>
+                <span><svg class="i"><use href="#i-threat"/></svg>Threats</span>
+                <span><svg class="i"><use href="#i-trade"/></svg>Trade</span>
+                <span><svg class="i"><use href="#i-ours"/></svg>Ours</span>
+              </div>
+              <div class="g-grow"></div>
+              <span class="g-seg"><span class="on"><svg class="i"><use href="#i-map"/></svg>Map</span><span><svg class="i"><use href="#i-list"/></svg>List</span></span>
+              <span class="t" style="margin-left:6px">Reach 35</span>
+              <span class="g-ib" style="width:20px">&minus;</span><span class="g-ib" style="width:20px">+</span>
+            </div>
+
+            <div class="g-row" style="flex:1; min-height:0; align-items:stretch; gap:10px">
+              <div class="mapbox">
+                <svg class="map" viewBox="0 0 560 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <defs>
+                    <pattern id="hex" width="17.32" height="30" patternUnits="userSpaceOnUse">
+                      <path d="M0 5 8.66 0 17.32 5M0 5v10M17.32 5v10M0 15l8.66 5 8.66-5M8.66 20v10" fill="none" stroke="var(--m-grid)" stroke-width="1"/>
+                    </pattern>
+                    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+                      <line x1="0" y1="0" x2="0" y2="6" stroke="var(--m-hatch)" stroke-width="2"/>
+                    </pattern>
+                    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+                      <stop offset="65%" stop-color="#000" stop-opacity="0"/>
+                      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="560" height="600" fill="var(--m-grass)"/>
+                  <path d="M0 0H150Q128 22 86 28Q42 34 0 50Z" fill="var(--m-mount)"/>
+                  <path d="M560 190Q528 214 522 258Q526 300 560 330Z" fill="var(--m-mount)"/>
+                  <path d="M22 64Q80 24 150 54Q190 92 150 132Q90 152 42 122Q6 96 22 64Z" fill="var(--m-forest)"/>
+                  <path d="M330 58Q420 30 470 82Q498 130 450 150Q390 160 350 130Q312 100 330 58Z" fill="var(--m-forest)"/>
+                  <path d="M60 332Q120 302 170 342Q190 390 140 410Q80 422 56 386Q40 356 60 332Z" fill="var(--m-forest)"/>
+                  <path d="M300 382Q360 362 392 402Q402 442 352 456Q302 458 290 422Z" fill="var(--m-forest)"/>
+                  <path d="M182 118Q250 88 302 128Q322 170 272 186Q212 192 186 160Z" fill="var(--m-hill)"/>
+                  <path d="M182 118Q250 88 302 128Q322 170 272 186Q212 192 186 160Z" fill="url(#hatch)" opacity="0.7"/>
+                  <path d="M418 470Q480 440 530 470Q560 500 546 540Q500 566 450 546Q410 522 418 470Z" fill="var(--m-water)"/>
+                  <rect width="560" height="600" fill="url(#hex)"/>
+                  <path d="M300 0Q290 60 305 120Q320 180 290 240Q262 300 300 360Q340 420 432 482" fill="none" stroke="var(--m-river)" stroke-width="3" stroke-linecap="round"/>
+                  <g fill="none" stroke="var(--m-road)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85">
+                    <path d="M120 170 200 248 270 320"/>
+                    <path d="M270 320 342 252 400 190"/>
+                    <path d="M270 320 362 382 450 420"/>
+                    <path d="M270 320 182 382 90 432"/>
+                  </g>
+                  <circle cx="270" cy="320" r="252" fill="none" stroke="var(--g-gold)" stroke-opacity="0.16" stroke-width="1.2" stroke-dasharray="3 6"/>
+                  <!-- ties drawn by the Stance and ties lens -->
+                  <g fill="none" stroke-linecap="round">
+                    <path d="M270 320 120 170" stroke="var(--g-warm)" stroke-width="2.2"/>
+                    <path d="M270 320 400 190" stroke="var(--g-warm)" stroke-width="2.4" stroke-dasharray="0.5 6"/>
+                    <path d="M270 320 450 420" stroke="var(--g-cool)" stroke-width="2" stroke-dasharray="8 6"/>
+                    <path d="M268 317 198 247" stroke="var(--g-gold)" stroke-width="1.2"/>
+                    <path d="M272 315 202 245" stroke="var(--g-gold)" stroke-width="1.2"/>
+                    <path d="M199 480 262 336" stroke="var(--g-sour)" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.85"/>
+                  </g>
+                  <rect width="560" height="600" fill="url(#vig)"/>
+                  <!-- marks -->
+                  <g>
+                    <circle cx="270" cy="320" r="13" fill="var(--m-mark)"/>
+                    <circle cx="270" cy="320" r="17" fill="none" stroke="var(--g-gold)" stroke-width="2"/>
+                    <use href="#i-colony" x="261" y="311" width="18" height="18" color="var(--g-gold)"/>
+
+                    <circle cx="400" cy="190" r="12" fill="var(--m-mark)"/>
+                    <circle cx="400" cy="190" r="17" fill="none" stroke="var(--g-ink)" stroke-width="2"/>
+                    <use href="#i-town" x="392" y="182" width="16" height="16" color="var(--g-warm)"/>
+
+                    <circle cx="120" cy="170" r="12" fill="var(--m-mark)"/>
+                    <use href="#i-town" x="112" y="162" width="16" height="16" color="var(--g-warm)"/>
+
+                    <circle cx="345" cy="255" r="9" fill="var(--m-mark)"/>
+                    <use href="#i-post" x="339" y="249" width="12" height="12" color="var(--g-warm)"/>
+
+                    <circle cx="200" cy="247" r="10" fill="var(--m-mark)"/>
+                    <use href="#i-hamlet" x="193" y="240" width="14" height="14" color="var(--g-gold)"/>
+
+                    <circle cx="450" cy="420" r="12" fill="var(--m-mark)"/>
+                    <use href="#i-town" x="442" y="412" width="16" height="16" color="var(--g-cool)"/>
+
+                    <circle cx="90" cy="432" r="12" fill="var(--m-mark)"/>
+                    <use href="#i-town" x="82" y="424" width="16" height="16" color="var(--g-cool)"/>
+
+                    <circle cx="62" cy="292" r="10" fill="var(--m-mark)" opacity="0.8"/>
+                    <use href="#i-ruin" x="55" y="285" width="14" height="14" color="var(--g-dim)"/>
+
+                    <circle cx="196" cy="492" r="12" fill="var(--m-mark)"/>
+                    <use href="#i-camp" x="188" y="484" width="16" height="16" color="var(--g-sour)"/>
+
+                    <circle cx="505" cy="300" r="12" fill="var(--m-mark)"/>
+                    <use href="#i-town" x="497" y="292" width="16" height="16" color="var(--g-sour)"/>
+                  </g>
+                  <!-- names -->
+                  <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="10" text-anchor="middle">
+                    <rect x="236" y="340" width="68" height="15" fill="var(--m-label)"/><text x="270" y="351" fill="var(--g-gold)">Hollowmere</text>
+                    <rect x="372" y="210" width="56" height="15" fill="var(--m-label)"/><text x="400" y="221" fill="var(--g-ink)">Tallbrook</text>
+                    <rect x="94" y="185" width="52" height="15" fill="var(--m-label)"/><text x="120" y="196" fill="var(--g-ink)">Brassgate</text>
+                    <rect x="310" y="267" width="90" height="15" fill="var(--m-label)"/><text x="355" y="278" fill="var(--g-ink)">Tallbrook Market</text>
+                    <rect x="176" y="260" width="48" height="15" fill="var(--m-label)"/><text x="200" y="271" fill="var(--g-gold)">Fenwick</text>
+                    <rect x="420" y="435" width="60" height="15" fill="var(--m-label)"/><text x="450" y="446" fill="var(--g-ink)">Marrowford</text>
+                    <rect x="54" y="447" width="72" height="15" fill="var(--m-label)"/><text x="90" y="458" fill="var(--g-ink)">Kesh Crossing</text>
+                    <rect x="30" y="305" width="64" height="15" fill="var(--m-label)"/><text x="62" y="316" fill="var(--g-faint)">Old Saltby</text>
+                    <rect x="152" y="507" width="88" height="15" fill="var(--m-label)"/><text x="196" y="518" fill="var(--g-ink)">Red Wake camp</text>
+                    <rect x="474" y="315" width="62" height="15" fill="var(--m-label)"/><text x="505" y="326" fill="var(--g-ink)">Cinderhold</text>
+                  </g>
+                </svg>
+                <div class="zoom"><span>+</span><span>&minus;</span></div>
+                <div class="legend">
+                  <div class="lrow"><span class="warm"><i class="dot"></i><span class="faint">friendly</span></span><span class="cool"><i class="dot"></i><span class="faint">wary</span></span><span class="sour"><i class="dot"></i><span class="faint">hostile</span></span><span class="gold"><i class="dot"></i><span class="faint">ours</span></span></div>
+                  <div class="lrow"><span><i class="lline"></i>pact</span><span><i class="lline truce"></i>truce</span><span><i class="lline fav"></i>owes us</span><span><i class="lline prot"></i>protected</span><span><i class="lline raid"></i>raids</span></div>
+                </div>
+              </div>
+
+              <aside class="drawer">
+                <div class="d-trail">
+                  <svg class="i" style="width:13px;height:13px"><use href="#i-back"/></svg>
+                  <span>Map</span><span class="sepr">&rsaquo;</span><span style="color:var(--g-ink)">Tallbrook</span>
+                  <span class="g-grow"></span>
+                  <svg class="i" style="width:13px;height:13px"><use href="#i-close"/></svg>
+                </div>
+                <div class="d-head">
+                  <div class="top">
+                    <div class="d-pic"><svg class="i warm"><use href="#i-town"/></svg></div>
+                    <div class="g-grow" style="display:grid;gap:1px">
+                      <span class="m">Tallbrook</span>
+                      <span class="t">a town of <span class="lk">the Ashfall Clans</span></span>
+                    </div>
+                    <span class="g-ib gold"><svg class="i"><use href="#i-pin"/></svg></span>
+                    <span class="g-ib"><svg class="i"><use href="#i-world"/></svg></span>
+                  </div>
+                  <div class="chips">
+                    <span class="chip warm"><i class="dot"></i><span class="tx">friendly</span></span>
+                    <span class="chip warm"><svg class="i" style="width:11px;height:11px"><use href="#i-up"/></svg><span class="tx">thriving</span></span>
+                    <span class="chip"><svg class="i faint" style="width:11px;height:11px"><use href="#i-caravan"/></svg><span class="tx">three days by caravan</span></span>
+                  </div>
+                </div>
+                <div class="d-scroll">
+                  <div class="g-sec">
+                    <div class="g-sh">Now</div>
+                    <div class="g-line">
+                      <svg class="i warm"><use href="#i-fortune"/></svg>
+                      <p class="g-grow">Thriving since the harvest fair at <span class="lk">Marrowford</span>.</p>
+                      <svg width="64" height="20" viewBox="0 0 64 20" aria-hidden="true"><path d="M1 17 10 15 18 16 27 12 36 12 45 8 54 6 63 3V20H1Z" fill="var(--g-warm)" opacity="0.18"/><path d="M1 17 10 15 18 16 27 12 36 12 45 8 54 6 63 3" fill="none" stroke="var(--g-warm)" stroke-width="1.4"/><circle cx="63" cy="3" r="2" fill="var(--g-warm)"/></svg>
+                    </div>
+                    <div class="g-line">
+                      <svg class="i world"><use href="#i-event"/></svg>
+                      <p class="world"><span class="lk">The Grey Fever</span> is going around their people.</p>
+                    </div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>People <span class="cnt">3</span><span class="right">and two founding families</span></div>
+                    <div class="prow">
+                      <span class="av warm"><span>EM</span></span>
+                      <div class="txt"><span><span class="lk">Edda Marsh</span>, head</span><span class="t warm">thinks well of us <span class="faint">&middot; knows <span class="lk">Mira</span> and <span class="lk">Tobin</span></span></span></div>
+                      <span class="g-btn sm"><svg class="i" style="width:12px;height:12px"><use href="#i-letter"/></svg>Write</span>
+                    </div>
+                    <div class="prow">
+                      <span class="av cool"><span>CV</span></span>
+                      <div class="txt"><span><span class="lk hov">Corin Vale</span>, heir</span><span class="t cool">wary of us</span></div>
+                      <span class="g-btn sm"><svg class="i" style="width:12px;height:12px"><use href="#i-letter"/></svg>Write</span>
+                    </div>
+                    <div class="prow">
+                      <span class="av warm"><span>OP</span></span>
+                      <div class="txt"><span><span class="lk">Oswin Pell</span>, trader</span><span class="steps"><span class="on">written</span><span class="now">on the road</span><span>arrived</span><span>answered</span></span></div>
+                    </div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Ties <span class="cnt">2</span><span class="right"><span class="tag2">STAGE 2</span></span></div>
+                    <div class="g-line"><i class="lline fav" style="margin-top:8px;width:16px"></i><p>Owes us a favour, a debt of honour <span class="t">since 4 Aprimay</span></p></div>
+                    <div class="g-line"><i class="lline truce" style="margin-top:8px;width:16px"></i><p><span class="lk">The Ashfall Clans</span>: a truce, kept <span class="t">since Jugust 5502</span></p></div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-right"/></svg>Heard lately <span class="cnt">2</span></div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Story</div>
+                    <p>Founded three years ago by <span class="lk">Old Hesk</span>, who led settlers from <span class="lk">Marrowford</span> to hold the river crossing. Families: <span class="lk">the Marsh house</span>, <span class="lk">the Vale house</span>.</p>
+                    <p class="t"><span class="lk">Its whole history</span> (14)</p>
+                  </div>
+                </div>
+                <div class="d-foot">
+                  <div class="acts">
+                    <span class="g-btn"><svg class="i" style="width:13px;height:13px"><use href="#i-letter"/></svg>Write a letter</span>
+                    <span class="g-btn"><svg class="i" style="width:13px;height:13px"><use href="#i-caravan"/></svg>Plan a journey</span>
+                    <span class="g-btn dis">Ask a favour</span>
+                  </div>
+                  <p class="why">Ask a favour: they already owe the colony one.</p>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- a preview of a person, beside the link where there is no room under it -->
+          <div class="preview arrow-e" style="left:328px; top:350px; width:262px">
+            <div class="ptop">
+              <span class="av cool"><span>CV</span></span>
+              <div style="display:grid;gap:1px"><b style="font-weight:500;color:var(--g-head)">Corin Vale</b><span class="t">heir of <span class="lk">Tallbrook</span>, <span class="lk">the Ashfall Clans</span></span></div>
+            </div>
+            <div class="chips"><span class="chip cool"><i class="dot"></i><span class="tx">wary of us</span></span><span class="chip"><span class="tx lk">the Vale house</span></span></div>
+            <p><span class="lk">Odo</span>'s hard words at the post still rankle.</p>
+            <p class="faint">Head of Tallbrook after Edda Marsh.</p>
+            <p class="hint">Click to open his card &middot; move here to keep this open</p>
+          </div>
+
+          <span class="co" style="left:0px; top:8px">1</span>
+          <span class="co" style="left:572px; top:8px">2</span>
+          <span class="co" style="left:0px; top:54px">3</span>
+          <span class="co" style="left:704px; top:53px">4</span>
+          <span class="co" style="left:212px; top:240px">5</span>
+          <span class="co" style="left:862px; top:124px">6</span>
+          <span class="co" style="left:306px; top:482px">7</span>
+          <span class="co" style="left:574px; top:640px">8</span>
+        </div>
+      </div>
+      <ol class="callouts">
+        <li><span class="num">1</span><span><b>Four views instead of ten tabs.</b> Each tab has room for its icon and its name, and none come and go.</span></li>
+        <li><span class="num">2</span><span><b>The corner, the same in every window.</b> Back and forward, search, This week with its count, what you follow, then the four windows.</span></li>
+        <li><span class="num">3</span><span><b>Lenses.</b> One map read six ways. Trade shows the posts and Threats the raiders' camps, and Ours shows the hamlets and later your other colonies.</span></li>
+        <li><span class="num">4</span><span><b>Map or List.</b> The List under each lens is what the old pages were, nearest first, with the same cards.</span></li>
+        <li><span class="num">5</span><span><b>Ties on the land.</b> A pact, a truce, a favour owed, protection and a camp's raids are drawn as lines from home.</span></li>
+        <li><span class="num">6</span><span><b>The town's card.</b> Now, its people, its ties, what you heard, its story. Sections fold and show their counts. A pin follows it, and the globe still opens the game's world view.</span></li>
+        <li><span class="num">7</span><span><b>A preview.</b> Rest on a name and it shows who or what it is. Move into it and it stays; click it and its card opens here, with Back to return.</span></li>
+        <li><span class="num">8</span><span><b>Acts at the foot.</b> What the colony can do there. When something can't be done, the button says why.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== A NAME, ITS PREVIEW, ITS CARD ===================== -->
+  <section aria-labelledby="h-card">
+    <div class="sec-head prose">
+      <p class="eyebrow">Things and their cards</p>
+      <h2 id="h-card">A name in a line of history, its preview, and her card</h2>
+      <p>Eight kinds of card: a colonist, a person outside, a place, a people, a house, a tie, an event and a letter. Every card has the same order of sections, so learning one teaches all of them. These are drawn at the size they have in the game.</p>
+    </div>
+    <div class="native-row">
+      <div class="native-col">
+        <span class="lbl">1 &middot; In Region &rsaquo; History, the mouse rests on a name</span>
+        <div class="gpanel">
+          <div class="hist">
+            <div class="hrow"><span class="t">4 Aprimay 5503</span><svg class="i warm"><use href="#i-heart"/></svg><p><span class="lk hov">Edda Marsh</span> of <span class="lk">Tallbrook</span> thanked the colony for the medicine <span class="lk">Sefa</span> carried to her gate.</p></div>
+          </div>
+          <div class="preview static arrow-l" style="margin-top:2px">
+            <div class="ptop">
+              <span class="av warm"><span>EM</span></span>
+              <div style="display:grid;gap:1px"><b style="font-weight:500;color:var(--g-head)">Edda Marsh</b><span class="t">head of <span class="lk">Tallbrook</span>, <span class="lk">the Ashfall Clans</span></span></div>
+            </div>
+            <div class="chips"><span class="chip warm"><i class="dot"></i><span class="tx">thinks well of us</span></span></div>
+            <p>Owes the colony a favour.</p>
+            <p>Your letter to her is on the road.</p>
+            <p class="hint">Click to open her card &middot; move here to keep this open</p>
+          </div>
+          <div class="hist">
+            <div class="hrow"><span class="t">28 Decembary 5502</span><svg class="i world"><use href="#i-event"/></svg><p class="world"><span class="lk">The Grey Fever</span> reached <span class="lk">Marrowford</span>.</p></div>
+            <div class="hrow"><span class="t">11 Septober 5502</span><svg class="i faint"><use href="#i-trade"/></svg><p><span class="lk">Mira</span> traded at <span class="lk">Tallbrook Market</span>.</p></div>
+          </div>
+        </div>
+        <span class="lbl" style="margin-top:6px">The same card also opens from</span>
+        <ul class="doors">
+          <li>her row on Tallbrook's card, and Peoples &rsaquo; Faces</li>
+          <li>a letter from her, This week, and the search box</li>
+          <li>her name in a colonist's Social column</li>
+        </ul>
+      </div>
+
+      <div class="native-col">
+        <span class="lbl">2 &middot; One click: her card opens in the drawer</span>
+        <div class="gpanel">
+          <div class="drawer" style="height:auto">
+            <div class="d-trail">
+              <svg class="i" style="width:13px;height:13px"><use href="#i-back"/></svg>
+              <span>History</span><span class="sepr">&rsaquo;</span><span style="color:var(--g-ink)">Edda Marsh</span>
+              <span class="g-grow"></span>
+              <svg class="i" style="width:13px;height:13px"><use href="#i-close"/></svg>
+            </div>
+            <div class="d-head">
+              <div class="top">
+                <span class="av lg warm"><span>EM</span></span>
+                <div class="g-grow" style="display:grid;gap:1px">
+                  <span class="m">Edda Marsh</span>
+                  <span class="t">head of <span class="lk">Tallbrook</span>, of <span class="lk">the Ashfall Clans</span></span>
+                </div>
+                <span class="g-ib"><svg class="i"><use href="#i-pin"/></svg></span>
+              </div>
+              <div class="chips">
+                <span class="chip warm"><i class="dot"></i><span class="tx">thinks well of us</span></span>
+                <span class="chip"><span class="tx lk">the Marsh house</span></span>
+                <span class="chip"><span class="tx">54 years old</span></span>
+              </div>
+            </div>
+            <div class="d-scroll" style="overflow:visible">
+              <div class="g-sec">
+                <div class="g-sh">Now</div>
+                <div class="g-line"><svg class="i world"><use href="#i-event"/></svg><p class="world"><span class="lk">The Grey Fever</span> is going around her people.</p></div>
+                <div class="g-line"><svg class="i faint"><use href="#i-letter"/></svg><div style="display:grid;gap:3px"><p>Your letter to her, written by <span class="lk">Mira</span></p><span class="steps"><span class="on">written</span><span class="now">on the road</span><span>arrived</span><span>answered</span></span></div></div>
+              </div>
+              <div class="g-sec">
+                <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Knows <span class="cnt">2</span></div>
+                <div class="chips">
+                  <span class="chip"><span class="av sm warm"><span>MI</span></span><span class="tx"><span class="lk">Mira</span>, traded at the post</span></span>
+                  <span class="chip"><span class="av sm warm"><span>TO</span></span><span class="tx"><span class="lk">Tobin</span>, shared a meal</span></span>
+                </div>
+              </div>
+              <div class="g-sec">
+                <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Ties <span class="cnt">1</span><span class="right"><span class="tag2">STAGE 2</span></span></div>
+                <div class="g-line"><i class="lline fav" style="margin-top:8px;width:16px"></i><p>Owes the colony a favour, a debt of honour <span class="t">since 4 Aprimay</span></p></div>
+              </div>
+              <div class="g-sec">
+                <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>What she thinks of us <span class="cnt">3</span><span class="right warm">rising</span></div>
+                <svg width="100%" height="26" viewBox="0 0 330 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 40 21 80 18 120 19 160 14 200 12 240 13 280 7 330 4V26H0Z" fill="var(--g-warm)" opacity="0.15"/><path d="M0 22 40 21 80 18 120 19 160 14 200 12 240 13 280 7 330 4" fill="none" stroke="var(--g-warm)" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg>
+                <div class="g-line"><svg class="i warm"><use href="#i-heart"/></svg><p>Thanked us for the medicine <span class="t">4 Aprimay 5503</span></p></div>
+                <div class="g-line"><svg class="i sour"><use href="#i-close"/></svg><p>Turned away at the gate in the storm <span class="t">Decembary 5502</span></p></div>
+                <div class="g-line"><svg class="i faint"><use href="#i-trade"/></svg><p>Traded with <span class="lk">Mira</span> at the post <span class="t">Septober 5502</span></p></div>
+              </div>
+              <div class="g-sec">
+                <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Story</div>
+                <p>Born in <span class="lk">Marrowford</span>. Head of Tallbrook since her father <span class="lk">Old Hesk</span> died in 5501.</p>
+                <p class="t"><span class="lk">Her whole history</span> (9)</p>
+              </div>
+            </div>
+            <div class="d-foot">
+              <div class="acts">
+                <span class="g-btn"><svg class="i" style="width:13px;height:13px"><use href="#i-letter"/></svg>Write to her</span>
+                <span class="g-btn dis">Talk with her</span>
+                <span class="g-btn" style="padding:0 7px"><svg class="i" style="width:13px;height:13px"><use href="#i-more"/></svg></span>
+              </div>
+              <p class="why">Talk with her: she is not at the colony.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THIS WEEK ===================== -->
+  <section aria-labelledby="h-inbox">
+    <div class="sec-head prose">
+      <p class="eyebrow">One inbox</p>
+      <h2 id="h-inbox">This week: everything that waits on you, in one place</h2>
+      <p>This week already gathers most of it. It becomes the one inbox: what needs you, what is under way, what is coming. Stage 2's offers, asks and calls arrive here as rows with their act, never as new pages. Things under way show their steps, never a countdown.</p>
+    </div>
+    <div class="frame-wrap">
+      <div class="frame-bar">
+        <span class="cap">Council window &middot; This week</span>
+        <button class="size-btn" type="button" id="size-week" data-frame="f-week">Actual size</button>
+      </div>
+      <div class="frame" id="f-week">
+        <div class="gw" role="img" aria-label="Mockup of the council window on This week, the inbox">
+          <div class="g-top">
+            <div class="g-tabs">
+              <div class="g-tab on"><svg class="i"><use href="#i-inbox"/></svg>This week <span class="badge">4</span></div>
+              <div class="g-tab"><svg class="i"><use href="#i-people"/></svg>People</div>
+              <div class="g-tab"><svg class="i"><use href="#i-council"/></svg>Council</div>
+              <div class="g-tab"><svg class="i"><use href="#i-colony"/></svg>Colony</div>
+            </div>
+            <div class="g-corner">
+              <span class="g-ib"><svg class="i"><use href="#i-back"/></svg></span>
+              <span class="g-ib dim"><svg class="i"><use href="#i-fwd"/></svg></span>
+              <span class="g-search"><svg class="i"><use href="#i-search"/></svg>Search</span>
+              <span class="g-ib lit"><svg class="i"><use href="#i-inbox"/></svg><span class="badge">4</span></span>
+              <span class="g-ib"><svg class="i"><use href="#i-pin"/></svg></span>
+              <span class="g-sep"></span>
+              <span class="g-ib lit"><svg class="i"><use href="#i-council"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-region"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-defense"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-planning"/></svg></span>
+            </div>
+          </div>
+          <div class="g-body">
+            <div class="g-vhead">
+              <svg class="i gold" style="width:24px;height:24px"><use href="#i-inbox"/></svg>
+              <div class="ttl"><span class="m">This week</span><span class="t">What waits on you, what is under way, what is coming</span></div>
+              <span class="stat">4 need you</span>
+              <span class="g-ib"><svg class="i"><use href="#i-help"/></svg></span>
+            </div>
+            <div class="wk">
+              <div class="wk-col">
+                <div class="card">
+                  <div class="g-sh">Needs you <span class="cnt">4</span></div>
+                  <div class="wrow">
+                    <span class="av sm warm"><span>MI</span></span>
+                    <div class="txt"><span><span class="lk">Mira</span> wishes for a bedroom of her own.</span><span class="t">a wish, asked on 2 Jugust</span></div>
+                    <span class="g-btn sm">Look</span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic gold"><svg class="i"><use href="#i-letter"/></svg></span>
+                    <div class="txt"><span><span class="lk">Edda Marsh</span> of <span class="lk">Tallbrook</span> asks whether her trader may winter at the colony.</span><span class="t">a letter waiting for your answer</span></div>
+                    <span class="g-btn sm">Answer</span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic gold"><svg class="i"><use href="#i-decree"/></svg></span>
+                    <div class="txt"><span>Petition from <span class="lk">Tobin</span> and <span class="lk">Sefa</span>: a feast for the first harvest.</span><span class="t">to the council</span></div>
+                    <span class="g-btn sm">Decide</span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic gold"><svg class="i"><use href="#i-hamlet"/></svg></span>
+                    <div class="txt"><span>The settlers of <span class="lk">Fenwick</span> ask for seed grain before the frost.</span><span class="t">a hamlet under your protection</span></div>
+                    <span class="g-btn sm">Send</span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="g-sh">Under way <span class="cnt">3</span></div>
+                  <div class="wrow">
+                    <span class="ic faint"><svg class="i"><use href="#i-letter"/></svg></span>
+                    <div class="txt"><span>Your letter to <span class="lk">Oswin Pell</span></span><span class="steps"><span class="on">written</span><span class="now">on the road</span><span>arrived</span><span>answered</span></span></div>
+                    <span></span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic faint"><svg class="i"><use href="#i-caravan"/></svg></span>
+                    <div class="txt"><span><span class="lk">Hale</span>'s caravan to <span class="lk">Marrowford</span></span><span class="steps"><span class="on">packed</span><span class="now">on the road</span><span>there</span><span>home</span></span></div>
+                    <span></span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic faint"><svg class="i"><use href="#i-person"/></svg></span>
+                    <div class="txt"><span>The envoy of <span class="lk">the Ashfall Clans</span> stays at Hollowmere <span class="tag2">STAGE 2</span></span><span class="steps"><span class="on">arrived</span><span class="now">staying the season</span><span>leaves</span></span></div>
+                    <span></span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="g-sh">Coming <span class="cnt">2</span></div>
+                  <div class="wrow">
+                    <span class="ic faint"><svg class="i"><use href="#i-calendar"/></svg></span>
+                    <div class="txt"><span>Harvest feast</span></div>
+                    <span class="t">9 Jugust</span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic danger"><svg class="i"><use href="#i-threat"/></svg></span>
+                    <div class="txt"><span>The <span class="lk">Red Wake camp</span> stands six tiles to the south</span><span class="t danger">two raids from it so far</span></div>
+                    <span class="g-btn sm">On the map</span>
+                  </div>
+                </div>
+              </div>
+              <div class="wk-col">
+                <div class="card">
+                  <div class="g-sh"><svg class="i gold" style="width:13px;height:13px"><use href="#i-pin"/></svg>Following <span class="cnt">3</span></div>
+                  <div class="wrow">
+                    <span class="ic warm"><svg class="i"><use href="#i-town"/></svg></span>
+                    <div class="txt"><span class="lk">Tallbrook</span><span class="t">now thriving</span></div><span></span>
+                  </div>
+                  <div class="wrow">
+                    <span class="av sm warm"><span>MI</span></span>
+                    <div class="txt"><span class="lk">Mira</span><span class="t">strain easing</span></div><span></span>
+                  </div>
+                  <div class="wrow">
+                    <span class="ic cool"><i class="lline truce" style="width:16px"></i></span>
+                    <div class="txt"><span class="lk">The truce with the Ashfall Clans</span><span class="t">kept since Jugust 5502</span></div><span></span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="g-sh">How people are</div>
+                  <div class="wrow">
+                    <span class="av sm soon"><span>SE</span></span>
+                    <div class="txt"><span><span class="lk">Sefa</span> is worn down</span><span class="t soon">strain high, two weeks now</span></div><span></span>
+                  </div>
+                  <div class="wrow">
+                    <span class="av sm cool"><span>BR</span></span>
+                    <div class="txt"><span><span class="lk">Bran</span> is getting over the flu</span><span class="t">resting</span></div><span></span>
+                  </div>
+                  <div style="display:grid;gap:4px;padding-top:4px">
+                    <span class="t">Rimfolk's moods, all colonists</span>
+                    <div class="balance"><i style="width:62%;background:var(--g-warm)"></i><i style="width:38%;background:var(--g-sour)"></i></div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="g-sh">The plan</div>
+                  <div class="wrow">
+                    <span class="ic soon"><svg class="i"><use href="#i-planning"/></svg></span>
+                    <div class="txt"><span>Build a freezer before summer</span><span class="t">the advisor, in Planning</span></div>
+                    <span class="g-btn sm">Plan</span>
+                  </div>
+                  <p class="more">and 2 more</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="co" style="left:2px; top:8px">1</span>
+          <span class="co" style="left:546px; top:118px">2</span>
+          <span class="co" style="left:300px; top:362px">3</span>
+          <span class="co" style="left:938px; top:100px">4</span>
+          <span class="co" style="left:524px; top:284px">5</span>
+          <span class="co" style="left:982px; top:56px">6</span>
+        </div>
+      </div>
+      <ol class="callouts">
+        <li><span class="num">1</span><span><b>One count, everywhere.</b> The same number on This week, on the inbox in every window's corner, and on the council button.</span></li>
+        <li><span class="num">2</span><span><b>A row is one sentence.</b> The people and places in it are links, and the act sits on the right.</span></li>
+        <li><span class="num">3</span><span><b>Under way, in steps.</b> Letters, caravans, envoys and tasks show where they are. No timers.</span></li>
+        <li><span class="num">4</span><span><b>Following.</b> Pin any person, town or tie and its newest change shows here. There is also an optional on-screen panel.</span></li>
+        <li><span class="num">5</span><span><b>Places open on the region map.</b> A camp or a town opens its card there, not the game's world view.</span></li>
+        <li><span class="num">6</span><span><b>The "?" on every view</b> opens its Almanac article in the Almanac's own window, beside what it explains.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== COUNCIL: PEOPLE ===================== -->
+  <section aria-labelledby="h-people">
+    <div class="sec-head prose">
+      <p class="eyebrow">The same language</p>
+      <h2 id="h-people">The council window: one row of tabs, modes instead of sub-tabs</h2>
+      <p>The council window's eighteen pages in two rows of tabs become four views. People's seven pages become one list with five ways to look at it. The colonist's card opens in the same drawer as Tallbrook's. Their dreams and journal move into that card.</p>
+    </div>
+    <div class="frame-wrap">
+      <div class="frame-bar">
+        <span class="cap">Council window &middot; People &middot; Table mode &middot; Mira chosen</span>
+        <button class="size-btn" type="button" id="size-people" data-frame="f-people">Actual size</button>
+      </div>
+      <div class="frame" id="f-people">
+        <div class="gw" role="img" aria-label="Mockup of the council window's People view with a colonist's card">
+          <div class="g-top">
+            <div class="g-tabs">
+              <div class="g-tab"><svg class="i"><use href="#i-inbox"/></svg>This week <span class="badge">4</span></div>
+              <div class="g-tab on"><svg class="i"><use href="#i-people"/></svg>People</div>
+              <div class="g-tab"><svg class="i"><use href="#i-council"/></svg>Council</div>
+              <div class="g-tab"><svg class="i"><use href="#i-colony"/></svg>Colony</div>
+            </div>
+            <div class="g-corner">
+              <span class="g-ib"><svg class="i"><use href="#i-back"/></svg></span>
+              <span class="g-ib dim"><svg class="i"><use href="#i-fwd"/></svg></span>
+              <span class="g-search"><svg class="i"><use href="#i-search"/></svg>Search</span>
+              <span class="g-ib"><svg class="i"><use href="#i-inbox"/></svg><span class="badge">4</span></span>
+              <span class="g-ib"><svg class="i"><use href="#i-pin"/></svg></span>
+              <span class="g-sep"></span>
+              <span class="g-ib lit"><svg class="i"><use href="#i-council"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-region"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-defense"/></svg></span>
+              <span class="g-ib"><svg class="i"><use href="#i-planning"/></svg></span>
+            </div>
+          </div>
+          <div class="g-body">
+            <div class="g-vhead">
+              <svg class="i gold" style="width:24px;height:24px"><use href="#i-people"/></svg>
+              <div class="ttl"><span class="m">People</span><span class="t">Everyone at Hollowmere</span></div>
+              <span class="g-seg" style="margin-left:14px"><span class="on">Table</span><span>Moods</span><span>Bonds</span><span>Faiths</span><span>Houses</span></span>
+              <span class="stat">9 colonists</span>
+              <span class="g-ib"><svg class="i"><use href="#i-help"/></svg></span>
+            </div>
+            <div class="g-row" style="gap:5px">
+              <span class="chip" style="border-color:rgba(255,212,120,.45)"><span class="tx">All 9</span></span>
+              <span class="chip"><span class="tx">Away 1</span></span>
+              <span class="chip"><span class="tx">Children 2</span></span>
+              <span class="chip"><span class="tx">Need you 2</span></span>
+            </div>
+            <div class="g-row" style="flex:1; min-height:0; align-items:stretch; gap:10px">
+              <div class="tbl g-grow">
+                <div class="tr th"><span>Name</span><span>Trust</span><span>Mood</span><span>Office, life goal</span><span>Now</span></div>
+                <div class="tr sel"><span class="who"><span class="av sm warm"><span>MI</span></span><span>Mira Ashdown</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:58%;background:var(--g-warm)"></i><b style="left:30%"></b></span><span class="t">speaker &middot; a hall of her own</span><span class="icons"><svg class="i gold"><use href="#i-wish"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm warm"><span>TO</span></span><span>Tobin Reed</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:71%;background:var(--g-warm)"></i><b style="left:28%"></b></span><span class="t">marshal &middot; master smith</span><span class="icons"><svg class="i gold"><use href="#i-decree"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm soon"><span>SE</span></span><span>Sefa Lorn</span></span><span class="t faint">unsure</span><span class="mbar"><i style="width:34%;background:var(--g-soon)"></i><b style="left:32%"></b></span><span class="t">physician &middot; a child</span><span class="icons"><svg class="i soon"><use href="#i-heart"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm cool"><span>BR</span></span><span>Bran Holt</span></span><span class="t faint">unsure</span><span class="mbar"><i style="width:49%;background:var(--g-warm)"></i><b style="left:30%"></b></span><span class="t">no office &middot; see the sea</span><span class="icons"><svg class="i faint"><use href="#i-moods"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm warm"><span>HA</span></span><span>Hale Ward</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:66%;background:var(--g-warm)"></i><b style="left:26%"></b></span><span class="t">quartermaster &middot; rich</span><span class="icons"><svg class="i faint"><use href="#i-caravan"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm warm"><span>IL</span></span><span>Ilse Varn</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:63%;background:var(--g-warm)"></i><b style="left:30%"></b></span><span class="t">chaplain &middot; a temple</span><span class="icons"></span></div>
+                <div class="tr"><span class="who"><span class="av sm sour"><span>OK</span></span><span>Odo Kett</span></span><span class="t sour">doubts</span><span class="mbar"><i style="width:41%;background:var(--g-soon)"></i><b style="left:34%"></b></span><span class="t">no office &middot; leave a mark</span><span class="icons"><svg class="i sour"><use href="#i-threat"/></svg></span></div>
+                <div class="tr"><span class="who"><span class="av sm warm"><span>PE</span></span><span>Pell, 9</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:80%;background:var(--g-warm)"></i><b style="left:25%"></b></span><span class="t">a child &middot; learning letters</span><span class="icons"></span></div>
+                <div class="tr"><span class="who"><span class="av sm warm"><span>WR</span></span><span>Wren, 6</span></span><span class="t warm">trusts</span><span class="mbar"><i style="width:76%;background:var(--g-warm)"></i><b style="left:25%"></b></span><span class="t">a child &middot; play</span><span class="icons"></span></div>
+              </div>
+              <aside class="drawer">
+                <div class="d-trail">
+                  <svg class="i" style="width:13px;height:13px"><use href="#i-back"/></svg>
+                  <span>People</span><span class="sepr">&rsaquo;</span><span style="color:var(--g-ink)">Mira Ashdown</span>
+                  <span class="g-grow"></span>
+                  <svg class="i" style="width:13px;height:13px"><use href="#i-close"/></svg>
+                </div>
+                <div class="d-head">
+                  <div class="top">
+                    <span class="av lg warm"><span>MI</span></span>
+                    <div class="g-grow" style="display:grid;gap:1px">
+                      <span class="m">Mira Ashdown</span>
+                      <span class="t">cook, speaker of the council, 31</span>
+                    </div>
+                    <span class="g-ib gold"><svg class="i"><use href="#i-pin"/></svg></span>
+                  </div>
+                  <div class="chips">
+                    <span class="chip warm"><i class="dot"></i><span class="tx">trusts the council</span></span>
+                    <span class="chip"><span class="tx lk">the Ashdown house</span></span>
+                    <span class="chip"><span class="tx">born here</span></span>
+                  </div>
+                </div>
+                <div class="d-scroll">
+                  <div class="g-sec">
+                    <div class="g-sh">Now</div>
+                    <div class="g-line"><svg class="i gold"><use href="#i-wish"/></svg><p class="g-grow">Wishes for a bedroom of her own.</p><span class="g-btn sm">Look</span></div>
+                    <div class="g-line"><svg class="i done"><use href="#i-check"/></svg><p>Strain easing since the feast.</p></div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Bonds <span class="cnt">3</span></div>
+                    <div class="chips">
+                      <span class="chip"><span class="tx"><span class="lk">Tobin</span>, close friend</span></span>
+                      <span class="chip"><span class="tx"><span class="lk">Ilse</span>, sister</span></span>
+                      <span class="chip sour"><i class="dot"></i><span class="tx"><span class="lk">Odo</span>, rival</span></span>
+                    </div>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Known outside <span class="cnt">1</span></div>
+                    <p><span class="lk">Edda Marsh</span> of <span class="lk">Tallbrook</span> thinks well of her. They traded at the post.</p>
+                  </div>
+                  <div class="g-sec">
+                    <div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>Dreams and journal <span class="cnt">2</span></div>
+                    <div class="g-line"><svg class="i faint"><use href="#i-moods"/></svg><p>Dreamt of the sea again. <span class="t">2 Jugust</span></p></div>
+                    <div class="g-line"><svg class="i faint"><use href="#i-decree"/></svg><p><i>The fever passed us by. Edda's letter says it did not pass Marrowford.</i> <span class="t">28 Decembary</span></p></div>
+                  </div>
+                </div>
+                <div class="d-foot">
+                  <div class="acts">
+                    <span class="g-btn">Her whole story</span>
+                    <span class="g-btn">Find on the map</span>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <span class="co" style="left:498px; top:57px">1</span>
+          <span class="co" style="left:6px; top:122px">2</span>
+          <span class="co" style="left:570px; top:498px">3</span>
+          <span class="co" style="left:570px; top:418px">4</span>
+        </div>
+      </div>
+      <ol class="callouts">
+        <li><span class="num">1</span><span><b>Modes, not tabs.</b> Table, Moods, Bonds, Faiths, and Houses from stage 2. They show the same people in different ways.</span></li>
+        <li><span class="num">2</span><span><b>Roster and Everyone in one.</b> The list on the left. Choosing someone opens their card beside it.</span></li>
+        <li><span class="num">3</span><span><b>Dreams and journals live with the person</b>, and in the Chronicle as a filter. They stop being pages of their own.</span></li>
+        <li><span class="num">4</span><span><b>Outside and inside meet.</b> Edda Marsh is a link here too, and she opens in this same drawer.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== THE STRUCTURE ===================== -->
+  <section aria-labelledby="h-struct">
+    <div class="sec-head prose">
+      <p class="eyebrow">The structure</p>
+      <h2 id="h-struct">Four windows, thirteen views</h2>
+      <p>The bar keeps its four buttons. Grey shows each window's pages today, gold its views after. Small words after a view are its modes or lenses.</p>
+    </div>
+    <div class="struct">
+      <div class="wblock">
+        <h3>Council</h3>
+        <span class="k">Today, 18 pages in two rows</span>
+        <div class="pills"><span>Decrees</span><span>Ambition</span><span>Ways</span><span>Dilemmas</span><span>Wishes</span><span>Roster</span><span>Everyone</span><span>Bonds</span><span>Faiths</span><span>Moods</span><span>Dreams</span><span>Journals</span><span>Week</span><span>Overview</span><span>Priorities</span><span>Calendar</span><span>Chronicle</span><span>Almanac</span></div>
+        <span class="k">After, 4 views</span>
+        <div class="pills new"><span>This week</span><span>People <small>table, moods, bonds, faiths, houses</small></span><span>Council <small>offices, ambition, ways, wishes, dilemmas</small></span><span>Colony <small>overview, calendar, chronicle</small></span></div>
+      </div>
+      <div class="wblock">
+        <h3>Region</h3>
+        <span class="k">Today, 10 tabs (12 with stage 2)</span>
+        <div class="pills"><span>Map</span><span>Neighbours</span><span>Peoples</span><span>Letters</span><span>Journeys</span><span>Events</span><span>Trading posts</span><span>Raiders' camps</span><span>Hamlets</span><span>History</span></div>
+        <span class="k">After, 4 views</span>
+        <div class="pills new"><span>Map <small>land, stance, fortunes, threats, trade, ours</small></span><span>Peoples <small>peoples, faces</small></span><span>Here and away</span><span>History <small>colony, region, world</small></span></div>
+      </div>
+      <div class="wblock">
+        <h3>Defense and Planning</h3>
+        <span class="k">Today, 1 and 5 pages</span>
+        <div class="pills"><span>Defenses</span><span>Plan</span><span>Base</span><span>Making</span><span>Build</span><span>Rooms</span></div>
+        <span class="k">After, 1 and 4 views</span>
+        <div class="pills new"><span>Defenses</span><span>Plan <small>with the advisor's priorities</small></span><span>Base</span><span>Making</span><span>Rooms <small>list, at a glance</small></span></div>
+      </div>
+      <div class="wblock">
+        <h3>Beside them</h3>
+        <span class="k">Reached from everywhere</span>
+        <div class="pills new"><span>Cards <small>colonist, person, place, people, house, tie, event, letter</small></span><span>The Almanac's own window</span><span>Search</span><span>Back and forward</span><span>Following</span></div>
+        <span class="k">Unchanged</span>
+        <div class="pills"><span>The inspect tabs</span><span>The colonist bar's badges</span><span>The on-screen panels</span><span>The game's letters</span><span>Talk with...</span></div>
+      </div>
+    </div>
+
+    <div class="sec-head prose" style="margin-top:12px">
+      <h3>Where a new thing goes</h3>
+      <p>The rule for every feature still to come. Ask in this order and stop at the first yes.</p>
+    </div>
+    <ol class="rule-list">
+      <li><b>Does it wait on you?</b> An answer, an offer, a call: a row in This week, with its act on the card of what it is about.</li>
+      <li><b>Is it a thing?</b> A person, place, people, house, tie, event or letter: it uses that card.</li>
+      <li><b>Is it about a place?</b> A section in the place's card, and marks in the lens that reads it.</li>
+      <li><b>Is it a new way to look at what is already listed?</b> A filter, or a mode of a view (five at most).</li>
+      <li><b>Is it something the colony does?</b> An act on a card, with why not, and in Talk with... if done face to face.</li>
+      <li><b>Is it a record of what happened?</b> A kind of history line: it shows in the timeline and in every card it names.</li>
+      <li><b>Is it an explanation?</b> An Almanac article, behind the view's "?".</li>
+      <li><b>None of these, and opened every week?</b> A view, if its window has fewer than five. A new window never.</li>
+    </ol>
+  </section>
+
+  <!-- ===================== THE LOOK ===================== -->
+  <section aria-labelledby="h-look">
+    <div class="sec-head prose">
+      <p class="eyebrow">The look</p>
+      <h2 id="h-look">The game's frame, one stricter grammar inside it</h2>
+      <p>Colour carries meaning only, always beside a word or an icon. Three type sizes, the game's own. A 4 pixel grid. Fifteen parts drawn the same way everywhere.</p>
+    </div>
+    <div class="spec">
+      <div class="gpanel">
+        <h3 style="color:var(--g-head);font-family:var(--f-body);font-size:13px;font-weight:500">Colour by meaning</h3>
+        <div class="swatches">
+          <div class="sw"><i style="background:var(--g-gold)"></i><span class="nm">Gold</span><span class="mn">ours, chosen, the colony</span></div>
+          <div class="sw"><i style="background:var(--g-link)"></i><span class="nm">Link</span><span class="mn"><span class="lk">a name</span> that opens its card</span></div>
+          <div class="sw"><i style="background:var(--g-warm)"></i><span class="nm">Warm</span><span class="mn">friendly, allied</span></div>
+          <div class="sw"><i style="background:var(--g-cool)"></i><span class="nm">Cool</span><span class="mn">neutral, wary</span></div>
+          <div class="sw"><i style="background:var(--g-sour)"></i><span class="nm">Sour</span><span class="mn">hostile</span></div>
+          <div class="sw"><i style="background:var(--g-soon)"></i><span class="nm">Soon</span><span class="mn">needs you soon</span></div>
+          <div class="sw"><i style="background:var(--g-danger)"></i><span class="nm">Danger</span><span class="mn">harm now, with the warning icon</span></div>
+          <div class="sw"><i style="background:var(--g-done)"></i><span class="nm">Done</span><span class="mn">kept, answered, finished</span></div>
+          <div class="sw"><i style="background:var(--g-world)"></i><span class="nm">World</span><span class="mn">world events, news from afar</span></div>
+        </div>
+      </div>
+      <div class="gpanel">
+        <h3 style="color:var(--g-head);font-family:var(--f-body);font-size:13px;font-weight:500">Three sizes, the game's own</h3>
+        <div class="ramp">
+          <div><span class="m">Tallbrook</span><span class="t">Medium: one title per view or card</span></div>
+          <div><span>Thriving since the harvest fair at <span class="lk">Marrowford</span>.</span><span class="t">Small: everything that is read</span></div>
+          <div><span class="t" style="color:var(--g-faint)">4 Aprimay 5503 &middot; three days by caravan</span><span class="t">Tiny: dates, distances, counts</span></div>
+        </div>
+        <h3 style="color:var(--g-head);font-family:var(--f-body);font-size:13px;font-weight:500">A 4 pixel grid</h3>
+        <div class="grid4">
+          <div><i style="width:4px;height:4px"></i>4</div>
+          <div><i style="width:8px;height:8px"></i>8</div>
+          <div><i style="width:12px;height:12px"></i>12</div>
+          <div><i style="width:16px;height:16px"></i>16</div>
+          <div><i style="width:24px;height:24px"></i>24</div>
+          <div><i style="width:32px;height:32px"></i>32</div>
+        </div>
+        <p class="t">Padding 12, between sections 16, between cards 8. Rows 22, 28 or 40 tall; a card's head 56.</p>
+      </div>
+      <div class="gpanel">
+        <h3 style="color:var(--g-head);font-family:var(--f-body);font-size:13px;font-weight:500">Parts</h3>
+        <div class="comp"><span class="what">Section heading with count</span><div class="g-sh"><svg class="i car"><use href="#i-down"/></svg>People <span class="cnt">3</span><span class="right">fold</span></div></div>
+        <div class="comp"><span class="what">Thing chips and state chips</span><div class="chips"><span class="chip"><span class="av sm warm"><span>EM</span></span><span class="tx lk">Edda Marsh</span></span><span class="chip warm"><i class="dot"></i><span class="tx">friendly</span></span><span class="chip sour"><svg class="i" style="width:11px;height:11px;transform:rotate(180deg)"><use href="#i-up"/></svg><span class="tx">struggling</span></span></div></div>
+        <div class="comp"><span class="what">Act with why not</span><div class="g-row"><span class="g-btn">Write a letter</span><span class="g-btn dis">Ask a favour</span></div><span class="t dim">Ask a favour: they already owe the colony one.</span></div>
+        <div class="comp"><span class="what">Steps, never a countdown</span><span class="steps"><span class="on">written</span><span class="on">on the road</span><span class="now">arrived</span><span>answered</span></span></div>
+        <div class="comp"><span class="what">Line of days</span><div class="g-row"><svg width="120" height="24" viewBox="0 0 120 24" aria-hidden="true"><path d="M1 20 18 18 34 19 50 14 66 15 82 10 98 8 119 4V24H1Z" fill="var(--g-warm)" opacity="0.16"/><path d="M1 20 18 18 34 19 50 14 66 15 82 10 98 8 119 4" fill="none" stroke="var(--g-warm)" stroke-width="1.4"/><circle cx="119" cy="4" r="2.2" fill="var(--g-warm)"/></svg><span class="t warm">rising</span></div></div>
+        <div class="comp"><span class="what">Modes and lenses</span><div class="g-row" style="flex-wrap:wrap"><span class="g-seg"><span class="on">Peoples</span><span>Faces</span></span><span class="g-lens"><span class="on"><svg class="i"><use href="#i-trade"/></svg>Trade</span></span></div></div>
+        <div class="comp"><span class="what">Empty state</span><div class="empty"><svg class="i"><use href="#i-post"/></svg><span>No trading post yet. A people at peace that trades here three times in a season may open one.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUILD PLAN ===================== -->
+  <section aria-labelledby="h-build">
+    <div class="sec-head prose">
+      <p class="eyebrow">The order</p>
+      <h2 id="h-build">Five releases, before stage 2 begins</h2>
+      <p>Each one plays as before. Every old page name still opens the right place, so keys, hints and buttons keep working.</p>
+    </div>
+    <ol class="releases">
+      <li><span class="rn">UI 1</span><h3>Names that lead somewhere</h3><p>Cards for every kind of thing, the drawer in the region window, links in the region's lists and its history, previews, back and forward. "Show" opens the town on the region map.</p></li>
+      <li><span class="rn">UI 2</span><h3>The region in four views</h3><p>Map with six lenses and a list for each; Peoples with Faces; Here and away; History with the world's events at the top. Posts, camps and hamlets become lenses.</p></li>
+      <li><span class="rn">UI 3</span><h3>One inbox, and search</h3><p>This week gathers everything waiting, shows what is under way in steps, and follows anything you pin. One count in every window's corner and on the council button. A search box finds anyone by name.</p></li>
+      <li><span class="rn">UI 4</span><h3>The council in four views</h3><p>This week, People, Council and Colony, with modes; the person's card in the drawer; the Almanac in its own window with "?" on every view.</p></li>
+      <li><span class="rn">UI 5</span><h3>One look</h3><p>The colours, sizes and parts across every window, Defense and Planning included; names in the inspect tabs as links; a second level of previews.</p></li>
+    </ol>
+  </section>
+
+  <!-- ===================== DECISIONS ===================== -->
+  <section aria-labelledby="h-dec">
+    <div class="sec-head prose">
+      <p class="eyebrow">Your choices</p>
+      <h2 id="h-dec">Seven decisions</h2>
+    </div>
+    <ol class="decisions">
+      <li><div class="q"><p><b>The region in four views,</b> with trading posts, raiders' camps and hamlets as lenses, and stage 2's Diplomacy and Household as Peoples and Here and away.</p><span class="rec"><b>Recommended:</b> yes, rather than grouping the old tabs.</span></div></li>
+      <li><div class="q"><p><b>Where a card opens:</b> in a drawer at the right of the window you are in, the region map's panel being that drawer.</p><span class="rec"><b>Recommended:</b> the drawer, rather than a full page in another window.</span></div></li>
+      <li><div class="q"><p><b>Previews</b> after a short pause, kept when the mouse enters them, two levels at most, with a setting.</p><span class="rec"><b>Recommended:</b> previews, rather than the game's plain tooltips only.</span></div></li>
+      <li><div class="q"><p><b>The Almanac</b> in its own movable window, reached by "?" on every view.</p><span class="rec"><b>Recommended:</b> its own window, rather than the council's fourth section.</span></div></li>
+      <li><div class="q"><p><b>The council window in four views</b> with modes, dreams and journals in the person's card, priorities in Planning.</p><span class="rec"><b>Recommended:</b> yes, rather than two rows of tabs.</span></div></li>
+      <li><div class="q"><p><b>Window size:</b> a setting to let the four windows grow on large screens, up to 1280 by 860.</p><span class="rec"><b>Recommended:</b> the setting, standard size by default.</span></div></li>
+      <li><div class="q"><p><b>Your colonies in stage 3:</b> in the Ours lens with a card each and a colony chip in every view's header.</p><span class="rec"><b>Recommended:</b> the Ours lens, rather than a page in the council's Colony section.</span></div></li>
+    </ol>
+  </section>
+
+  <p class="foot">The whole design, with today's inventory, the other games studied and what it takes in the game's code: <span class="mono">docs/design/interface.md</span>. Names of towns, people and peoples here are examples.</p>
+</main>
+
+<script>
+(function () {
+  var W = 1010, H = 720;
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  function fit(f) {
+    var w = f.querySelector('.gw');
+    if (!w) return;
+    if (f.classList.contains('actual')) {
+      w.style.transform = '';
+      f.style.height = '';
+      return;
+    }
+    var s = Math.min(1, f.clientWidth / W);
+    w.style.transform = 'scale(' + s + ')';
+    f.style.height = Math.ceil(H * s + 2) + 'px';
+  }
+  frames.forEach(function (f) { f.classList.add('js'); fit(f); });
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function (entries) { entries.forEach(function (e) { fit(e.target); }); });
+    frames.forEach(function (f) { ro.observe(f); });
+  } else {
+    window.addEventListener('resize', function () { frames.forEach(fit); });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.size-btn'), function (b) {
+    var f = document.getElementById(b.getAttribute('data-frame'));
+    if (!f) return;
+    b.addEventListener('click', function () {
+      var actual = f.classList.toggle('actual');
+      b.textContent = actual ? 'Fit to width' : 'Actual size';
+      fit(f);
+    });
+  });
+})();
+</script>
