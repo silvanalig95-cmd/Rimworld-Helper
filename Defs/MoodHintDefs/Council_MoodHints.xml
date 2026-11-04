@@ -830,7 +830,7 @@
     <keep>A happy event out in the world. It fades on its own.</keep>
     <article>Council_Alm_C_WorldEvents</article>
     <priority>-50</priority>
-    <councilTab>WorldHistory</councilTab>
+    <councilTab>Events</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

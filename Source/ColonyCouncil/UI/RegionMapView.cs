@@ -145,7 +145,8 @@ namespace ColonyCouncil
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
             TooltipHandler.TipRegion(home, "CC_Region_Home_Tip".Translate());
-            if (lens != null) UiKit.LabelFit(new Rect(r.x + 2f, r.y, Mathf.Max(0f, home.x - r.x - 12f), r.height), lens.line, UiKit.Faint, GameFont.Tiny);
+            if (lens != null && !lens.line.NullOrEmpty())
+                UiKit.LabelFit(new Rect(r.x + 2f, r.y, Mathf.Max(0f, home.x - r.x - 12f), r.height), lens.line, UiKit.Faint, GameFont.Tiny);
         }
 
         public const int ReachMin = 20, ReachMax = 60, ReachStep = 5;
