@@ -123,8 +123,8 @@ namespace ColonyCouncil
         {
             int level = from + 1;
             if (r.IsNone || level < 1 || level > PreviewMath.Levels) return 0;
-            // The second only from inside a first that shows.
-            if (level == 2 && shown[1].IsNone) return 0;
+            // The second only from inside a first that shows, and never the first again (its own name inside it).
+            if (level == 2 && (shown[1].IsNone || r == shown[1])) return 0;
             hoverFrame[level] = frame;
             if (r == quiet[level]) return level;
             if (r == shown[level])

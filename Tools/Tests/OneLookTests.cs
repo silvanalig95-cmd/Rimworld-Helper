@@ -107,6 +107,7 @@ public static class OneLookTests
         // The second needs a first.
         var fresh = new PreviewStack();
         C(fresh.Hover(1, b, linkB, 1f, 1) == 0, "no second without a first");
+        C(s.Shown(1) == a && s.Hover(1, a, linkA, t, f) == 0, "a name inside the first that is its own thing shows no second of it");
 
         // ---------------- Where previews go ----------------
         var parent = new ScreenBox(1500f, 400f, PreviewMath.Width, 160f);
