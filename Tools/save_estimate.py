@@ -84,6 +84,8 @@ C = {
     # Towns that rise and fall (World/Region/RiseFallMath.cs): ruins kept per home's reach, fights' ruins waiting at once.
     "RegionRuins": const("World/Region/RiseFallMath.cs", "MaxRuinsPerHome", 12),
     "RegionRuinsWaiting": const("World/Region/RiseFallMath.cs", "MaxWaiting", 6),
+    # Trading posts (World/Region/TradingPostMath.cs): posts per home at most.
+    "PostsPerHome": const("World/Region/TradingPostMath.cs", "MaxPerHome", 2),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -510,6 +512,10 @@ MODEL = {
     # The ruins Rimfolk made within reach (World/Region/RiseFallLedger.cs): a town given up every 60 days at most, a fight's
     # ruin now and then; twelve per home's reach (RiseFallMath.MaxRuinsPerHome), each gone after 300 days or settled
     # again, and the fights' ruins waiting for the game's destroyed settlement to go (RiseFallMath.MaxWaiting).
+    # Each home's trading posts (World/Region/TradingPost.cs): two at most (TradingPostMath.MaxPerHome), one opened every
+    # 60 days at most and a few a year at the generous rate; each a dozen values and a reference, gone with its post.
+    "World/Region/TradingPost.cs:posts": ("cap", (C["PostsPerHome"], 0.02), 260,
+                                          "per home: the trading posts standing near it, TradingPostMath.MaxPerHome at most, each dropped when it closes"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

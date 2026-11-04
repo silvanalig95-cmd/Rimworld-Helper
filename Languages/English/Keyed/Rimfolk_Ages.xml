@@ -119,4 +119,14 @@
   <CC_Form_Founding_Spacer>a comms relay's report</CC_Form_Founding_Spacer>
   <CC_Form_Founding_Spacer_Rite>its charter filed and its first habitats sealed</CC_Form_Founding_Spacer_Rite>
 
+  <!-- A trading post (World/Region/TradingPost.cs): the word is how the colony goes there to trade, the rite what their post is -->
+  <CC_Form_Post_Tribal>a trading party on foot</CC_Form_Post_Tribal>
+  <CC_Form_Post_Tribal_Rite>trading camp</CC_Form_Post_Tribal_Rite>
+  <CC_Form_Post_Medieval>a pack train</CC_Form_Post_Medieval>
+  <CC_Form_Post_Medieval_Rite>market</CC_Form_Post_Medieval_Rite>
+  <CC_Form_Post_Industrial>a caravan</CC_Form_Post_Industrial>
+  <CC_Form_Post_Industrial_Rite>depot</CC_Form_Post_Industrial_Rite>
+  <CC_Form_Post_Spacer>a supply run</CC_Form_Post_Spacer>
+  <CC_Form_Post_Spacer_Rite>ground station</CC_Form_Post_Spacer_Rite>
+
 </LanguageData>

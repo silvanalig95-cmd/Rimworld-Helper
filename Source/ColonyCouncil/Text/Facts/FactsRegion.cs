@@ -18,6 +18,8 @@ namespace ColonyCouncil
         /// </summary>
         private static void Region(FactScene s, FactSet f)
         {
+            // Trading posts near the colony (World/Region/TradingPostFacts.cs).
+            Posts(s, f);
             int now = Now;
             var rec = s.place != null ? WorldLedger.TownRecord(s.place.ID) : null;
             if (rec != null && rec.gone < 0)

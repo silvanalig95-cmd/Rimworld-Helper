@@ -342,7 +342,7 @@ namespace ColonyCouncil
     /// passed, ages, and can die or be followed by someone new. Letters and calls to them: World/NeighbourLetters.cs.
     /// Its own game component; the hour's pass at <see cref="Sched.Neighbours"/>.
     /// </summary>
-    public class NotableBook : GameComponent
+    public partial class NotableBook : GameComponent
     {
         public List<Notable> notables = new List<Notable>();
         public List<NeighbourLetter> letters = new List<NeighbourLetter>();
@@ -1019,6 +1019,8 @@ namespace ColonyCouncil
                     if (!n.made && n.faction != null && n.pawn != null && n.faction.leader == n.pawn && !n.faction.LeaderTitle.NullOrEmpty()) return n.faction.LeaderTitle;
                     // An Empire town's founder is called by the title the game shows for them (World/Region/RegionFaces.cs).
                     if (n.pawn != null && Ages.IsEmpire(n.faction) && WorldMechanics.Title(n.pawn) is RoyalTitleView royal && !royal.label.NullOrEmpty()) return royal.label;
+                    // A trading post's keeper by their age: trader, factor, manager, quartermaster (World/Region/TradingPost.cs).
+                    if (TradingPosts.KeeperTitle(n) is string keeper) return keeper;
                     return ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).CanTranslate()
                         ? ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).Translate().Resolve()
                         : ("CC_Notable_Title_Head_" + era).Translate().Resolve();

@@ -58,11 +58,13 @@ namespace ColonyCouncil
         public static readonly string[] RegionTags =
         {
             "town:struggling", "town:poor", "town:steady", "town:thriving", "town:flourishing", "town:new", "town:founder", "town:mother", "them:founder",
-            "region:newtown", "region:newtown:theirs", "region:newtown:other"
+            "region:newtown", "region:newtown:theirs", "region:newtown:other",
+            // Trading posts (World/Region/TradingPostFacts.cs): their town is one, its keeper has warned, theirs near the colony, another people's.
+            "town:post", "town:post:warned", "their:post", "region:post"
         };
 
         /// <summary>The region's placeholders: their town's fortune in a word, its founder, mother town and why it was founded; a new town near and its people.</summary>
-        public static readonly string[] RegionValues = { "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE" };
+        public static readonly string[] RegionValues = { "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER" };
 
         /// <summary>A new town's newness: current over its first year, the more so in its first weeks.</summary>
         public static float NewTownHeat(float days) => Fresh(days, 60f, 2f);

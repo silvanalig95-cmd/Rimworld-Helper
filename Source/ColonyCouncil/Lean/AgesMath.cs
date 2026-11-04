@@ -22,7 +22,9 @@ namespace ColonyCouncil
         Renown,
         Schemes,
         /// <summary>A new town founded: the word is how the colony hears of it (its means), the rite how their people found one (World/Region/).</summary>
-        Founding
+        Founding,
+        /// <summary>A trading post: the word is how the colony goes there to trade (its means), the rite what their people's post is (World/Region/TradingPost.cs).</summary>
+        Post
     }
 
     /// <summary>
@@ -42,7 +44,7 @@ namespace ColonyCouncil
         public static readonly AgeFeature[] Features =
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
-            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding
+            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

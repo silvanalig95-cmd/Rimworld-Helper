@@ -87,8 +87,8 @@ public static class WorldMechanicsTests
             }
             C(words.Distinct().Count() == 4 && rites.Distinct().Count() == 4, $"{f}'s four ages each have a word and a rite of their own");
         }
-        C(AgesMath.Features.Length == 11 && AgesMath.Features.Distinct().Count() == 11 && Enum.GetValues(typeof(AgeFeature)).Length == 11,
-            "ten features, as ROADMAP's table has, and the region's founding");
+        C(AgesMath.Features.Length == 12 && AgesMath.Features.Distinct().Count() == 12 && Enum.GetValues(typeof(AgeFeature)).Length == 12,
+            "ten features, as ROADMAP's table has, and the region's founding and trading post");
         var extra = keyed.Keys.Where(k => k.StartsWith("CC_Form_") && !expected.Contains(k)).ToList();
         C(extra.Count == 0, "no form key outside the table: " + string.Join(", ", extra));
         C(AgesMath.WordKey(AgeFeature.Favor, WorldAge.Tribal) == "CC_Form_Favor_Tribal" && AgesMath.RiteKey(AgeFeature.CouncilTasks, WorldAge.Spacer) == "CC_Form_CouncilTasks_Spacer_Rite",
