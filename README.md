@@ -2519,6 +2519,13 @@ so ("They've asked for Ana by name"). The region window's Peoples page shows it 
 keep their memories; those deeds just name nobody. Visitors, callers, traders and their asks say it in their letters
 too: 32 lines in 22 events ("Among the Lenlia, the colony is known as the place that set Ana free.").
 
+In talk and in their letters, a people's own speak of what lies between them and the colony: a favor they owe and
+whether it came, a good word promised and whether it was said, their family's claim on someone who joined you,
+silver owed and come due, a grant of land or a town made your vassal, their grudge for their dead or a colonist's
+vendetta against them. They speak of what happened at their town lately (a world event begun or over there, the town
+just built or taken) and of how their people's age stands to the colony's: 135 conversation pieces and 51 lines for
+their letters.
+
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
@@ -2532,9 +2539,9 @@ settlers came from and why they chose the place (a road, a river, the coast, the
 crowded mother town, families whose town was given up). The colony news tells it once when begun and once when built,
 in place of the other mod's own message. A new town within about 15 tiles welcomes itself in full, once a year at most:
 a runner at the gate, a neighbor's gift hoped for and remembered, timber wanted, its first traders; else its founder
-writes. 40 conversation pieces cover new towns and fortunes. The region map shows how remote each home is. Settings →
-**The region** has towns' fortunes, their say in the trade stock and new towns' faces. The Almanac has a page, *the
-region*.
+writes. 73 conversation pieces cover new towns, fortunes and what moved them. The region map shows how remote each
+home is. Settings → **The region** has towns' fortunes, their say in the trade stock and new towns' faces. The Almanac
+has a page, *the region*.
 
 **Travelers seek out the remote.** The farther a home is from everyone, the more often camps come to it (up to 60% more
 at the most remote, with a shorter rest after each) and the more of Rimfolk's visitors (up to 60% more), and the kinds

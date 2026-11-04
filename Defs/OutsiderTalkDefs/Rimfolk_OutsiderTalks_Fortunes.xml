@@ -46,7 +46,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,their:medieval</when>
     <lines>
-      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, and the tithe is still the tithe.</li>
+      <li>[them] Since {FORTUNEWHY} {TOWN} has been {FORTUNE}, and the tithe is still the tithe.</li>
       <li>[us] Won't your lord ease it?</li>
       <li>[them] Lords ease nothing, aye, except their belts at the feast.</li>
     </lines>
@@ -70,7 +70,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,their:spacer,!their:empire</when>
     <lines>
-      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, and I have the figures to prove it.</li>
+      <li>[them] Our figures say {TOWN} has been {FORTUNE} since {FORTUNEWHY}, to the decimal.</li>
       <li>[us] I'll take your word for it.</li>
       <li>[them] Most people do, nobody likes my figures.</li>
     </lines>
@@ -82,7 +82,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,their:empire</when>
     <lines>
-      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, though the court prefers not to hear it.</li>
+      <li>[them] The court prefers not to hear that {TOWN} has been {FORTUNE} since {FORTUNEWHY}.</li>
       <li>[us] Won't the court help?</li>
       <li>[them] The court helps where it will be seen helping, and {TOWN} is a long way from being seen.</li>
     </lines>
@@ -169,7 +169,7 @@
     <topic>fortune</topic>
     <when>town:thriving|town:flourishing,role:head</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and for once the people blame me for nothing.</li>
+      <li>[them] For once the people of {TOWN} blame me for nothing, now that we're {FORTUNE}.</li>
       <li>[us] Enjoy it.</li>
       <li>[them] I am, quietly, before somebody notices.</li>
     </lines>
@@ -192,7 +192,7 @@
     <topic>fortune</topic>
     <when>town:thriving|town:flourishing,town:caravan</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and a caravan of ours is already on the road to you.</li>
+      <li>[them] With {TOWN} {FORTUNE}, a caravan of ours is already on the road to you.</li>
       <li>[us] Then we'd better have something worth selling.</li>
       <li>[them] Have silver, mostly, they're bringing plenty to sell.</li>
     </lines>
@@ -310,7 +310,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,town:short:food</when>
     <lines>
-      <li>[them,their:tribal] {TOWN} is {FORTUNE}, and the meat runs out before the moon does.</li>
+      <li>[them,their:tribal] The meat at {TOWN} runs out before the moon does, we're that {FORTUNE}.</li>
       <li>[them] {TOWN} is {FORTUNE}, and food is the first thing to run short.</li>
       <li>[us,colony:plenty] We could spare some, if your people asked.</li>
       <li>[us] That's a hard way to live, and I'm sorry for it.</li>
@@ -324,7 +324,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,town:short:medicine</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and medicine is the hardest thing of all to find.</li>
+      <li>[them] Medicine is the hardest thing of all to find at {TOWN}, with things as they are.</li>
       <li>[us,colony:hospital] We might spare a little from our {HOSPITAL}, if it came to that.</li>
       <li>[us] I hope it doesn't come to the worst.</li>
       <li>[them] So do we, every night.</li>
@@ -359,7 +359,7 @@
     <topic>fortune</topic>
     <when>town:struggling,town:visitors</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and some of ours are already on the road your way.</li>
+      <li>[them] Some of ours are already on the road your way, with {TOWN} as it is.</li>
       <li>[us] They'll be welcome.</li>
       <li>[them] I hope so, they've had a hard season.</li>
     </lines>
@@ -371,7 +371,7 @@
     <uses>home,chat</uses>
     <when>town:struggling|town:poor,their:lowtech</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, but we'd sooner tighten our belts than complain.</li>
+      <li>[them] We'd sooner tighten our belts than complain, {FORTUNE} or not.</li>
       <li>[us] There's no shame in asking for help.</li>
       <li>[them] Tell that to my grandmother.</li>
     </lines>
@@ -410,7 +410,7 @@
     <topic>fortune</topic>
     <when>town:struggling|town:poor,colony:hungry</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and I hear your people are tightening their belts too.</li>
+      <li>[them] I hear your stores are low as well, and {TOWN} is {FORTUNE}.</li>
       <li>[us] It's a lean time all round.</li>
       <li>[them] Then we'll be lean together, and fat together when it turns.</li>
     </lines>
@@ -421,7 +421,7 @@
     <topic>fortune</topic>
     <when>town:thriving|town:flourishing,colony:hungry</when>
     <lines>
-      <li>[them] {TOWN} is {FORTUNE}, and our traders will have food to sell if your people are short.</li>
+      <li>[them] If your people are short, our traders will have food to sell, {TOWN} is {FORTUNE} enough.</li>
       <li>[us] We might take you up on that.</li>
       <li>[them] Do, and bring silver, it's still trade.</li>
     </lines>
