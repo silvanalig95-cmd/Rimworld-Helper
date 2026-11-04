@@ -255,7 +255,8 @@ namespace ColonyCouncil
             float sinceAsk = lastAskTick < 0 ? 0f : (Now - lastAskTick) / (float)GenDate.TicksPerDay;
             if (!HerdStoryMath.AskDue(DaysNamed, asks, sinceAsk)) return;
             string def = pokemon ? PokemonDilemma : Dilemma;
-            if (comp.dilemmas.TryFire(true, d => d.defName == def))
+            // Asked of the colony whose land it roams.
+            if ((DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(true, d => d.defName == def))
             {
                 asks++;
                 lastAskTick = Now;

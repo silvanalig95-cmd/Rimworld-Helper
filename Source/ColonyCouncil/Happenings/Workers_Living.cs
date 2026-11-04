@@ -1202,7 +1202,7 @@ namespace ColonyCouncil
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             var home = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_HarvestHome");
-            if (home != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(home) ?? false)) tags.Add("harvesthome");
+            if (home != null && (DilemmaTracker.For(ctx.map)?.IsTradition(home) ?? false)) tags.Add("harvesthome");
         }
 
         protected override string Extra(HappeningContext ctx) =>
@@ -1304,7 +1304,7 @@ namespace ColonyCouncil
             if (ctx.map != null && PlayCarry.Have(ctx.map, "meals", null) > 0) tags.Add("hot");
             if (ctx.map != null && ctx.map.mapTemperature.OutdoorTemp < -15f) tags.Add("bitter");
             var supper = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_Midwinter");
-            if (supper != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(supper) ?? false)) tags.Add("supper");
+            if (supper != null && (DilemmaTracker.For(ctx.map)?.IsTradition(supper) ?? false)) tags.Add("supper");
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
@@ -1392,7 +1392,7 @@ namespace ColonyCouncil
         {
             tags.Add(GenDate.DaysPassed < GenDate.DaysPerYear ? "first" : "again");
             var year = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_NameTheYear");
-            if (year != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(year) ?? false)) tags.Add("nameyear");
+            if (year != null && (DilemmaTracker.For(ctx.map)?.IsTradition(year) ?? false)) tags.Add("nameyear");
             if (ctx.a?.DevelopmentalStage.Child() == true) tags.Add("child");
         }
     }

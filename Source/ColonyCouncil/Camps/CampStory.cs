@@ -112,7 +112,9 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             try
             {
-                if (comp != null && comp.dilemmas.TryFire(false, d => d.workerClass != null && typeof(DilemmaWorker_Camp).IsAssignableFrom(d.workerClass))) return true;
+                // Asked of the colony the camp is beside.
+                var council = DilemmaTracker.For(map) ?? comp?.dilemmas;
+                if (council != null && council.TryFire(false, d => d.workerClass != null && typeof(DilemmaWorker_Camp).IsAssignableFrom(d.workerClass))) return true;
             }
             catch (Exception e)
             {
