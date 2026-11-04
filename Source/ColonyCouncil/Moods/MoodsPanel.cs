@@ -29,6 +29,8 @@ namespace ColonyCouncil
             public List<PawnMood> shaky;
             /// <summary>Each of the shaky's names as a link to their card, made with the report.</summary>
             public List<string> shakyNames;
+            /// <summary>The colony's mood these last days (a week and today), oldest first, for its line of days.</summary>
+            public readonly List<float> moodDays = new List<float>();
             public HeartView.ColonyModel heart;
             public CompactModel compact;
             public string nothingBad;
@@ -60,6 +62,9 @@ namespace ColonyCouncil
             }
             r.badHeader = "CC_Moods_Weighing".Translate() + "  (" + MoodView.Number(colony.Where(c => !c.good).Sum(c => c.total)) + ")";
             r.goodHeader = "CC_Moods_Lifting".Translate() + "  (" + MoodView.Number(colony.Where(c => c.good).Sum(c => c.total)) + ")";
+            var history = CouncilGameComponent.Instance?.history;
+            if (history != null)
+                for (int i = Mathf.Max(0, history.Count - 8); i < history.Count; i++) r.moodDays.Add(history[i].mood * 100f);
             r.shaky = r.pawns.OrderBy(m => m.now - m.minor).Take(6).ToList();
             r.shakyNames = r.shaky.Select(m => ThingRefs.Link(m.pawn.LabelShort, ThingRefs.Of(m.pawn))).ToList();
             r.heart = HeartView.BuildColony(r.pawns.Select(m => m.pawn));
@@ -118,6 +123,13 @@ namespace ColonyCouncil
                     return;
                 }
                 y += UiKit.Paragraph(0f, y, w, r.summary, UiKit.Ink) + 2f;
+                // The colony's mood over the last week: a line of days with where it is heading in a word.
+                if (r.moodDays.Count >= 2)
+                {
+                    UiKit.LabelFit(new Rect(0f, y, 150f, 20f), WeekWord, UiKit.Faint, GameFont.Tiny);
+                    UiKit.DaysLineWithWord(new Rect(150f, y, 150f, 20f), r.moodDays, r.moodDays.Count, 0f, 100f, 2f);
+                    y += 22f;
+                }
                 y += UiKit.Paragraph(0f, y, w, r.sources, MoodView.Faint) + 2f;
                 y += UiKit.Paragraph(0f, y, w, "CC_Moods_Intro".Translate(), MoodView.Faint) + 10f;
                 // The groups' totals; a click goes down to the group.
@@ -190,7 +202,8 @@ namespace ColonyCouncil
             }
         }
 
-        private static string nothing;
+        private static string nothing, weekWord;
+        private static string WeekWord => weekWord ??= "CC_Moods_LastWeek".Translate();
         private static string Nothing => nothing ??= "CC_Mood_Nothing".Translate();
 
         /// <summary>Sour when breaking or below the major break line, soon below the minor one, faint otherwise.</summary>

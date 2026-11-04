@@ -23,7 +23,8 @@ namespace ColonyCouncil
         /// <summary>The old page names, now addresses of the Peoples view and of Here and away.</summary>
         public const string DiplomacyPage = "Diplomacy", HouseholdPage = "Household";
 
-        private static readonly Color Accent = new Color(0.78f, 0.74f, 0.92f);
+        /// <summary>A people's name on its card leads to it: link ink (UI/UiKit.cs's tokens; the page's own violet gave way).</summary>
+        private static readonly Color Accent = UiKit.Link;
 
         static DiplomacyPanels()
         {

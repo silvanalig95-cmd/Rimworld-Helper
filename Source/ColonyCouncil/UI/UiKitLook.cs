@@ -223,7 +223,7 @@ namespace ColonyCouncil
                 whyCount = 0;
                 whyLines[act] = d = new Dictionary<string, string>();
             }
-            s = act.NullOrEmpty() ? whyNot : "CC_Look_WhyNot".Translate(act.Named("ACT"), whyNot.Named("WHY")).Resolve();
+            s = act.NullOrEmpty() ? whyNot : "CC_Card_WhyLine".Translate(act.Named("ACT"), whyNot.Named("WHY")).Resolve();
             d[whyNot] = s;
             return s;
         }
