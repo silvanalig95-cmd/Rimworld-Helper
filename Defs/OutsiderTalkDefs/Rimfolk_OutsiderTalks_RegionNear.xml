@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What stands near the colony now, and what their own town has been through (Source/ColonyCouncil/World/Region/
+       RegionNearFacts.cs): a raiders' camp the colony knows of standing near it (region:camp, {RAIDCAMP} its kind by its
+       people's age, "brigands' hold", {RAIDCAMPPEOPLE} its people; region:camp:theirfoe when their people are at war with
+       the camp's); a ruin within the colony's reach (region:ruin, {RUINNAME} the town it was, {RUINPEOPLE} whose it was;
+       region:ruin:theirs or region:ruin:other; region:ruin:fight when a fight left it, else it was given up); what brought
+       a traveller of a camp at the colony (them:seeking and them:seeking:REASON: relic wonder trees ruins ruinRegion
+       library history ore rush grazing road far, with {SEEK} what they came for in words, "the old ruins to the north");
+       their town in its first year raised on its own people's old walls (town:resettled:own) or on another people's
+       (town:resettled:newcomers); a town of their people given up in the last 30 days (their:givenup, {GIVENUP} its name,
+       there after the world event that gave it up is over); a world event at their own town (town:situation,
+       town:situation:bad or :good, {TOWNSITUATION} its name, "the gray cough"), whichever is their people's newest. The
+       facts give no direction for a camp or a ruin, and nothing of who destroyed a ruin a fight left. The format is
+       described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= A raiders' camp near the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampHeard</defName>
+    <topic>raiders</topic>
+    <uses>chat,home</uses>
+    <when>region:camp</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] We heard there's a {RAIDCAMP} of {RAIDCAMPPEOPLE} a few days from your walls.</li>
+      <li>[us] There is, and we keep a closer watch than we used to.</li>
+      <li>[them,their:tribal] The elders say a camp like that should be burned out before it grows.</li>
+      <li>[them,their:medieval] A hold like that is a thorn, and thorns are best pulled early.</li>
+      <li>[them,their:hightech] A camp that close is a problem that only gets more expensive.</li>
+      <li>[them] A camp that close to anyone's home is a bad business.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampLongWay</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,role:trader</when>
+    <lines>
+      <li>[them] I came the long way round, to keep well clear of that {RAIDCAMP}.</li>
+      <li>[us] Was it far out of your way?</li>
+      <li>[them,their:tribal] Two more sleeps, and the pack beasts did not thank me for them.</li>
+      <li>[them,their:spacer] Nineteen hours by my count, and I did count.</li>
+      <li>[them] A day, and a day on the road is money out of my pocket.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampTheirFoe</defName>
+    <topic>raiders</topic>
+    <uses>chat,home</uses>
+    <when>region:camp,region:camp:theirfoe</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {RAIDCAMPPEOPLE} are our enemies too, so that camp of theirs is our business.</li>
+      <li>[us] Then wish us luck with it.</li>
+      <li>[them,their:tribal] More than luck, we wish {RAIDCAMPPEOPLE} a hungry winter.</li>
+      <li>[them,their:empire] The Empire wishes every camp of its enemies burned, and says so plainly.</li>
+      <li>[them] More than luck, we'd like to see it burned.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampPay</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,their:hightech</when>
+    <lines>
+      <li>[them] Some colonies just pay a camp like that to move on.</li>
+      <li>[us] Does it work?</li>
+      <li>[them] For a while, until they run short and remember where the money came from.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampGoOut</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,their:lowtech</when>
+    <lines>
+      <li>[them,their:tribal] When a war band camps that close, our hunters go to it before it comes to them.</li>
+      <li>[them] When raiders camp that close, our people ride out to them before they ride in.</li>
+      <li>[us] We've thought about it.</li>
+      <li>[them] Think quickly, they are thinking about you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampChildren</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,them:parent</when>
+    <lines>
+      <li>[them] I'd keep the children inside the walls while that {RAIDCAMP} stands.</li>
+      <li>[us] We do, mostly.</li>
+      <li>[them] Children wander, so make it always.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampCourt</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,their:empire</when>
+    <lines>
+      <li>[them] The court would not suffer brigands camped so near one of its houses.</li>
+      <li>[us] We don't have a court to call on.</li>
+      <li>[them] No, and that is exactly why they camped near you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampOld</defName>
+    <topic>raiders</topic>
+    <uses>chat,know</uses>
+    <when>region:camp,them:old</when>
+    <lines>
+      <li>[them] I've seen camps like that {RAIDCAMP} come and go all my life.</li>
+      <li>[us] How do they usually go?</li>
+      <li>[them] Burned, bought off, or bored, and bored takes the longest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampWarm</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] I'll be glad to hear that {RAIDCAMP} is gone, for your sake.</li>
+      <li>[us] So will we.</li>
+      <li>[them,their:tribal] Then I will throw a pinch of salt on our fire for it.</li>
+      <li>[them] Then I'll raise a cup to it when I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampCool</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,tone:cool</when>
+    <lines>
+      <li>[them] With that {RAIDCAMP} so near, I won't stay longer than I have to.</li>
+      <li>[us] Understood.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_CampSour</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>region:camp,tone:sour</when>
+    <lines>
+      <li>[them] A {RAIDCAMP} on your doorstep, and you call this a safe place to trade?</li>
+      <li>[us] You found your way here well enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A ruin within reach ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinOurs</defName>
+    <topic>ruin</topic>
+    <uses>home,chat,know</uses>
+    <when>region:ruin,region:ruin:theirs,!region:ruin:fight</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {RUINNAME} was a town of ours before it was given up, and its walls still stand.</li>
+      <li>[us] Do your people ever go back?</li>
+      <li>[them,their:tribal] Only to leave something for the ones who are buried there.</li>
+      <li>[them,their:medieval] Some go to fetch stone, and some just to stand in the old square.</li>
+      <li>[them,their:hightech] A few salvagers, and a few who can't let it go.</li>
+      <li>[them] A few, to look, and they come back quiet.</li>
+    </lines>
+    <heard>The old walls of {RUINNAME}, a town of {PEOPLE} given up, still stand.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinOursFell</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>region:ruin,region:ruin:theirs,region:ruin:fight</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {RUINNAME} was ours until it fell, and no one has built on it since.</li>
+      <li>[us] I'm sorry.</li>
+      <li>[them,their:tribal] The elders say the spirits there are still angry.</li>
+      <li>[them] So are we, some days.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinWhatsLeft</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>region:ruin,region:ruin:theirs</when>
+    <lines>
+      <li>[us] What's left at {RUINNAME} now?</li>
+      <li>[them,their:tribal] Cold hearths, fallen poles, and grass growing in the longhouses.</li>
+      <li>[them,their:medieval] Roofless houses, and a well that no one draws from.</li>
+      <li>[them,their:industrial] Empty streets, broken glass, and the odd stray dog.</li>
+      <li>[them,their:spacer] Dead habitat frames, and seals that won't hold air.</li>
+      <li>[them] Walls, mostly, and the weather getting into everything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinRemember</defName>
+    <topic>ruin</topic>
+    <uses>chat,know</uses>
+    <when>region:ruin,region:ruin:theirs,them:old</when>
+    <lines>
+      <li>[them] I remember {RUINNAME} with people in it.</li>
+      <li>[us] What was it like?</li>
+      <li>[them,their:tribal] Loud with drums, and it smelled of smoke and meat.</li>
+      <li>[them] Loud, and it smelled of bread in the mornings.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinOthers</defName>
+    <topic>ruin</topic>
+    <uses>chat,home</uses>
+    <when>region:ruin,region:ruin:other</when>
+    <lines>
+      <li>[them] Have you been out to the ruins of {RUINNAME}?</li>
+      <li>[us] Not yet.</li>
+      <li>[them] {RUINPEOPLE} lived there once, and the place still has their look about it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinOthersFell</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,region:ruin:other,region:ruin:fight</when>
+    <lines>
+      <li>[them] {RUINNAME} fell in a fight, and {RUINPEOPLE} never came back for it.</li>
+      <li>[us] Who fought there?</li>
+      <li>[them] Depends who's telling it, and everyone tells it differently.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinAgain</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,!region:ruin:fight</when>
+    <lines>
+      <li>[us] Will anyone settle {RUINNAME} again?</li>
+      <li>[them] Someone will, once the place has been quiet a while.</li>
+      <li>[us] Even after it was given up?</li>
+      <li>[them,their:tribal] A good spring draws people back, whatever the elders say.</li>
+      <li>[them] Walls are walls, and good walls are hard to come by.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinScavengers</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,role:trader</when>
+    <lines>
+      <li>[them] Ruins like {RUINNAME} bring the scavengers out, and scavengers buy from me.</li>
+      <li>[us] Good for business, then.</li>
+      <li>[them] Good for mine, bad for whoever lived there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinEstate</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,their:empire</when>
+    <lines>
+      <li>[them] The ruins at {RUINNAME} would make a fine estate, for a house with the means.</li>
+      <li>[us] Are you thinking of it?</li>
+      <li>[them] I think of everything, it is what a title is for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinCool</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,region:ruin:theirs,tone:cool</when>
+    <lines>
+      <li>[them] I'd rather not talk about {RUINNAME}.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_RuinSour</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>region:ruin,tone:sour</when>
+    <lines>
+      <li>[them] Towns empty out around here, so I wouldn't get too comfortable.</li>
+      <li>[us] We're not going anywhere.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= What brought a traveller ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Relic</defName>
+    <topic>seeking</topic>
+    <uses>home,chat,know</uses>
+    <when>them:seeking:relic</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] We came all this way to pray before {SEEK}.</li>
+      <li>[us] It means that much to you?</li>
+      <li>[them,samefaith] It is ours as much as yours, the same faith keeps it.</li>
+      <li>[them] Holy things don't belong to one people, whatever their keepers think.</li>
+      <li>[us] Then you're welcome to it, for a while.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Wonder</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:wonder</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came to see {SEEK} with our own eyes, and it was worth the road.</li>
+      <li>[us] We hardly notice it anymore.</li>
+      <li>[them] People who live beside a wonder never do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Trees</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:trees</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them,their:tribal] We came to sit beneath {SEEK} and listen, as our grandmothers did.</li>
+      <li>[them] We came for {SEEK}, and we'd like to sit under it a while, if you'll let us.</li>
+      <li>[us] It's a quiet place.</li>
+      <li>[them] Quiet is the point.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Ruins</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:ruins</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came for {SEEK}, and we mean to see every stone of them.</li>
+      <li>[us] There's not much there but stone.</li>
+      <li>[them,their:hightech] Stone is a record, if you know how to read it.</li>
+      <li>[them,their:tribal] The old ones left marks on it, and marks can be read.</li>
+      <li>[them] Stone is what we came for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_RuinRegion</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:ruinRegion</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We're on our way to {SEEK}, and your colony was on the road.</li>
+      <li>[us] What do you hope to find there?</li>
+      <li>[them,their:spacer] Records, ideally, and failing that, a record of what failed.</li>
+      <li>[them] What the families left behind, and why they left it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Library</defName>
+    <topic>seeking</topic>
+    <uses>home,chat,know</uses>
+    <when>them:seeking:library</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Word of {SEEK} reached us a long way from here.</li>
+      <li>[us] It's not much of a library.</li>
+      <li>[them,their:lowtech] Where we come from, a single book is a treasure.</li>
+      <li>[them] It's more than most colonies out here bother with.</li>
+      <li>[us] Then read what you like.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_History</defName>
+    <topic>seeking</topic>
+    <uses>home,chat,know</uses>
+    <when>them:seeking:history</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came to hear {SEEK}, from the people who lived it.</li>
+      <li>[us] Where do you want me to start?</li>
+      <li>[them,their:tribal] At the first fire, and slowly, so we can learn it by heart.</li>
+      <li>[them] At the beginning, and slowly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Ore</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:ore</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came for {SEEK}, and we'd like a closer look, if you'll allow it.</li>
+      <li>[us] Looking is free.</li>
+      <li>[them,their:hightech] Good, the assays can wait until we've talked terms.</li>
+      <li>[them] Good, and the digging we can talk about later.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Rush</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:rush</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came on {SEEK}, and we're not the only ones on the road.</li>
+      <li>[us] Do you think there's anything to it?</li>
+      <li>[them] There's always something to it, the trick is getting there first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Grazing</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:grazing</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We came for {SEEK}, and the herds knew it before we did.</li>
+      <li>[us] There's enough for a few days.</li>
+      <li>[them] A few days is all a herd asks of anyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Road</defName>
+    <topic>seeking</topic>
+    <uses>chat</uses>
+    <when>them:seeking:road</when>
+    <lines>
+      <li>[them] We came along {SEEK}, and roads out here are few enough.</li>
+      <li>[us] Where does it take you next?</li>
+      <li>[them] Wherever the next town is that will trade with us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Far</defName>
+    <topic>seeking</topic>
+    <uses>home,chat</uses>
+    <when>them:seeking:far</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] You're {SEEK}, did you know that?</li>
+      <li>[us] It does get quiet out here.</li>
+      <li>[them,their:hightech] Quiet, and nobody close enough to undercut your prices.</li>
+      <li>[them] Quiet, and worth the walk for us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_WhatBrought</defName>
+    <topic>seeking</topic>
+    <uses>chat,know</uses>
+    <when>them:seeking</when>
+    <lines>
+      <li>[us] What brought you all this way?</li>
+      <li>[them] Mostly {SEEK}, and the chance to see somewhere new.</li>
+      <li>[us] Was it worth the trip?</li>
+      <li>[them] Ask me again when we leave.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Warm</defName>
+    <topic>seeking</topic>
+    <uses>chat</uses>
+    <when>them:seeking,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] We came for {SEEK}, but it's the people here I'll remember.</li>
+      <li>[us] That's kind of you.</li>
+      <li>[them] It's true, which is better than kind.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Cool</defName>
+    <topic>seeking</topic>
+    <uses>chat</uses>
+    <when>them:seeking,tone:cool</when>
+    <lines>
+      <li>[them] We came for {SEEK}, not for conversation.</li>
+      <li>[us] Then don't let me keep you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Seek_Sour</defName>
+    <topic>seeking</topic>
+    <uses>chat</uses>
+    <when>them:seeking,tone:sour</when>
+    <lines>
+      <li>[them] We're here for {SEEK}, and we'll be gone as soon as we've had it.</li>
+      <li>[us] Good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their town on old walls ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_BackHome</defName>
+    <topic>ruin</topic>
+    <uses>home,chat,know</uses>
+    <when>town:resettled:own</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] Our people have come back to the old walls at {TOWN}, where we lived before.</li>
+      <li>[us] Is it the same as it was?</li>
+      <li>[them,their:tribal] The hearths are where they were, and that is enough.</li>
+      <li>[them,their:medieval] Smaller, poorer, and ours again.</li>
+      <li>[them,their:hightech] Not yet, but the bones of the place are good.</li>
+      <li>[them] Not yet, but it's ours again.</li>
+    </lines>
+    <heard>{PEOPLE} have come back to their old walls at {TOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_BackHomeWhy</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>town:resettled:own</when>
+    <lines>
+      <li>[us] Why go back to the old walls, when you could have built anywhere?</li>
+      <li>[them,their:tribal] Our dead lie there, and the dead should not be left alone.</li>
+      <li>[them,their:empire] The household held that ground once, and the court remembers such things.</li>
+      <li>[them] Because it was ours, and it never stopped being ours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_BackHomeOld</defName>
+    <topic>ruin</topic>
+    <uses>chat,know</uses>
+    <when>town:resettled:own,them:old</when>
+    <lines>
+      <li>[them] I never thought I'd see our families at {TOWN} again in my lifetime.</li>
+      <li>[us] And here you are.</li>
+      <li>[them] Here we are, with sore backs and a great deal of rubble.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_BackHomeWarm</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>town:resettled:own,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] When smoke rose over {TOWN} again, some of us wept.</li>
+      <li>[us] I think I would have too.</li>
+      <li>[them] Then you understand us better than most.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_Newcomers</defName>
+    <topic>ruin</topic>
+    <uses>home,chat,know</uses>
+    <when>town:resettled:newcomers</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] {TOWN} stands on walls another people raised, long before we came.</li>
+      <li>[us] Does that bother anyone?</li>
+      <li>[them,their:tribal] Our old ones leave gifts at the doorways, for whoever lived there first.</li>
+      <li>[them,their:hightech] Only the surveyors, who keep finding things that aren't on the plans.</li>
+      <li>[them] Only on windy nights, when the old doors creak.</li>
+    </lines>
+    <heard>{PEOPLE} have settled the old walls at {TOWN}, another people's town once.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_NewcomersCool</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>town:resettled:newcomers,tone:cool</when>
+    <lines>
+      <li>[them] We took over the old walls at {TOWN} fair and square.</li>
+      <li>[us] I didn't say otherwise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A town of theirs given up lately ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUp</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>their:givenup</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] We gave up {GIVENUP} not long ago, and some of us still call it home.</li>
+      <li>[us] Where did everyone go?</li>
+      <li>[them,their:tribal] To our other fires, wherever there was room by them.</li>
+      <li>[them] To our other towns, wherever there was room.</li>
+      <li>[us] I hope there was enough.</li>
+      <li>[them] There's never enough, but there was some.</li>
+    </lines>
+    <heard>{PEOPLE} have given up {GIVENUP}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpAfter</defName>
+    <topic>ruin</topic>
+    <uses>chat,home</uses>
+    <when>ended:ws:Rimfolk_WS_GivenUp,ended:theirs,their:givenup</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] The last families from {GIVENUP} have found somewhere to sleep now.</li>
+      <li>[us] And {GIVENUP} itself?</li>
+      <li>[them,their:tribal] Cold hearths, and the grass coming back in.</li>
+      <li>[them,their:hightech] Empty streets, and the weather moving in.</li>
+      <li>[them] Empty houses, and the weather moving in.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpHelped</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>ended:ws:Rimfolk_WS_GivenUp,ended:theirs,ended:helped,their:givenup</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] The families from {GIVENUP} remember who helped them on the road.</li>
+      <li>[us] We did what we could.</li>
+      <li>[them] Then they remember you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpCarried</defName>
+    <topic>ruin</topic>
+    <uses>know,chat</uses>
+    <when>their:givenup</when>
+    <lines>
+      <li>[us] What did the families of {GIVENUP} take with them?</li>
+      <li>[them,their:tribal] The hearthstones, the drums, and the carvings from the lodge door.</li>
+      <li>[them,their:medieval] The bell, the tithe book, and every pot that would fit on a cart.</li>
+      <li>[them,their:industrial] The generators, the good tools, and the town records.</li>
+      <li>[them,their:spacer] The data cores, the medical stores, and the spare seals.</li>
+      <li>[them] Whatever would fit on a cart, and not much else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpChildren</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>their:givenup,them:parent</when>
+    <lines>
+      <li>[them] The children from {GIVENUP} ask when they're going home, and it's hard to answer.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them] That home is where the family is, and we keep saying it until we believe it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpCourt</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>their:givenup,their:empire</when>
+    <lines>
+      <li>[them] The court has closed its books on {GIVENUP}, and does not speak of it.</li>
+      <li>[us] And you?</li>
+      <li>[them] I am speaking of it now, which is unwise of me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpCool</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>their:givenup,tone:cool</when>
+    <lines>
+      <li>[them] Losing {GIVENUP} is still raw, so let's talk about something else.</li>
+      <li>[us] Of course.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_GivenUpSour</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>their:givenup,tone:sour</when>
+    <lines>
+      <li>[them] We just lost {GIVENUP}, so don't expect me to be cheerful.</li>
+      <li>[us] I wasn't expecting it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A world event at their own town ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownBad</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>town:situation,town:situation:bad</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] It isn't somewhere down the road, {TOWNSITUATION} is right there in {TOWN}.</li>
+      <li>[us] How bad is it?</li>
+      <li>[them,their:tribal] Bad enough that the elders sit up talking all night.</li>
+      <li>[them,their:hightech] Bad enough that the town meeting runs past midnight.</li>
+      <li>[them] Bad enough that I'm glad of a few days away from it.</li>
+      <li>[us] Stay as long as you need.</li>
+    </lines>
+    <heard>{PEOPLE} have {TOWNSITUATION} at {TOWN} itself.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownGetBy</defName>
+    <topic>situation</topic>
+    <uses>home,know</uses>
+    <when>town:situation,town:situation:bad</when>
+    <lines>
+      <li>[us] How does {TOWN} get through {TOWNSITUATION}?</li>
+      <li>[them,their:tribal] Together, around the fire, the way our people get through everything.</li>
+      <li>[them,their:medieval] With prayer, patience, and the reeve shouting at everyone.</li>
+      <li>[them,their:industrial] With rationing, overtime, and a lot of arguing at the meeting hall.</li>
+      <li>[them,their:spacer] By procedure, and when procedure fails, by improvising.</li>
+      <li>[them] Together, mostly, and with a lot of complaining.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownChildren</defName>
+    <topic>situation</topic>
+    <uses>chat</uses>
+    <when>town:situation,town:situation:bad,them:parent,!them:childhere</when>
+    <lines>
+      <li>[them] With {TOWNSITUATION} at {TOWN}, I worry about my children every hour I'm away.</li>
+      <li>[us] Who's with them?</li>
+      <li>[them] Family, and family will have to do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownSteward</defName>
+    <topic>situation</topic>
+    <uses>chat</uses>
+    <when>town:situation,their:empire</when>
+    <lines>
+      <li>[them] The steward at {TOWN} has {TOWNSITUATION} to deal with, and is welcome to it.</li>
+      <li>[us] You're not worried?</li>
+      <li>[them] Worry is for those without stewards.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownGood</defName>
+    <topic>situation</topic>
+    <uses>home,chat</uses>
+    <when>town:situation,town:situation:good</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We have {TOWNSITUATION} at {TOWN} right now, and I'm missing it to be here.</li>
+      <li>[us] Sorry to keep you.</li>
+      <li>[them] Don't be, someone will tell me all about it.</li>
+    </lines>
+    <heard>{PEOPLE} have {TOWNSITUATION} at {TOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownWelcome</defName>
+    <topic>situation</topic>
+    <uses>chat</uses>
+    <when>town:situation,town:situation:good,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Come to {TOWN} while {TOWNSITUATION} lasts, you'd be welcome.</li>
+      <li>[us] Maybe we will.</li>
+      <li>[them,their:tribal] Bring something for the fire, and you'll be more than welcome.</li>
+      <li>[them] Bring something to share, and you'll be more than welcome.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownCool</defName>
+    <topic>situation</topic>
+    <uses>chat</uses>
+    <when>town:situation,town:situation:bad,tone:cool</when>
+    <lines>
+      <li>[them] I've got {TOWNSITUATION} waiting at home, so mind what you ask.</li>
+      <li>[us] I'll keep it short.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Near_AtTownSour</defName>
+    <topic>situation</topic>
+    <uses>chat</uses>
+    <when>town:situation,tone:sour</when>
+    <lines>
+      <li>[them] I left {TOWN} in the middle of {TOWNSITUATION}, and I'm not here to chat.</li>
+      <li>[us] Then don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

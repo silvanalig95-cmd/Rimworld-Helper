@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What stands near
+
+*4 November 2026, version 0.80.0*
+
+- A raiders' camp's raid comes in from the camp's side, or from the nearest side that lets it in, and its letter says which.
+- A raiders' camp breaks up once its leader is dead, taken or one of the colony, and the warlord's son no longer names or weakens a camp he can't lead.
+- A trading post given up in hard times closes in the posts' history, and a family at the gate from a town given up is always of that town's own people.
+- Visitors talk about what stands near the colony: a raiders' camp, a ruin within reach, a town given up lately by name, a town raised on old walls, and what is happening at their own town (60 new conversation pieces).
+- Travelers say in conversation what brought them: a relic, a landmark, ruins, books, ore, a rush, grazing, the road or the distance.
+
 ## Quiet by the bed
 
 *4 November 2026, version 0.79.1*

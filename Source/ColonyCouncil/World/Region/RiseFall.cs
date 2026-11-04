@@ -241,13 +241,17 @@ namespace ColonyCouncil
             FamilyAtTheGate(home, t, tiles);
         }
 
-        /// <summary>The quiet way: a family of theirs may make camp at the gate on the road away (the camps' refugee family), a third of the time, from a town within 25 tiles.</summary>
+        /// <summary>
+        /// The quiet way: a family of theirs may make camp at the gate on the road away (the camps' refugee family), a
+        /// third of the time, from a town within 25 tiles; only of their own people (a people at war with the colony sends
+        /// none).
+        /// </summary>
         private static void FamilyAtTheGate(Map home, Settlement t, float tiles)
         {
             if (tiles > RiseFallMath.ResettleTiles || !Rand.Chance(0.35f)) return;
-            var kind = DefDatabase<CampKindDef>.GetNamedSilentFail("Council_Camp_Refugees");
+            var kind = DefDatabase<CampKindDef>.GetNamedSilentFail(RiseFallEffects.RefugeeCamp);
             var camps = CampTracker.Instance;
-            if (kind == null || camps == null) return;
+            if (kind == null || camps == null || !RiseFallEffects.SendsOwn(kind, t.Faction)) return;
             camps.StartKind(home, kind, t.Faction);
         }
 

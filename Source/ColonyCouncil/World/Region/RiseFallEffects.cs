@@ -153,13 +153,20 @@ namespace ColonyCouncil
 
         // ---------------- The hungry at the gate ----------------
 
+        /// <summary>
+        /// This people can send a family of their own as this camp's kind (at peace with the colony, of its ages, with
+        /// ordinary people to send). A town of a people that can't (one at war with the colony) sends no family to the
+        /// gate: the camps would send another people's in their place, and the words would name the wrong ones.
+        /// </summary>
+        public static bool SendsOwn(CampKindDef kind, Faction f) => kind != null && f != null && kind.FitsFaction(f) && Arrivals.Usable(f) && Arrivals.PersonKind(f) != null;
+
         /// <summary>How likely a camp's kind is to be the one that comes: a refugee family twice as likely while a town in reach struggles.</summary>
         public static float CampFactor(CampKindDef kind, Map map)
         {
             if (kind == null || map == null || kind.defName != RefugeeCamp || !On) return 1f;
             try
             {
-                return Struggling(map, f => kind.FitsFaction(f) && Arrivals.Usable(f) && Arrivals.PersonKind(f) != null) != null ? RiseFallMath.HardTimes : 1f;
+                return Struggling(map, f => SendsOwn(kind, f)) != null ? RiseFallMath.HardTimes : 1f;
             }
             catch (Exception e)
             {

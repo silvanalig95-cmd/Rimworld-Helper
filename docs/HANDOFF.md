@@ -10,6 +10,40 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   player has played and given feedback. Stage 2's first release (2a.1, diplomacy's base and favours) is next and
   waits for it; 2a.2 and 2a.3 wait also for the stage 2 decisions 1 to 6, stage 3 for its 17 decisions, the harm
   review for the player's picks. Bug reports first, as always.
+- 0.80.0, stage 1 polish: the review's open doubts of 0.77.1, each
+  checked in the code and the 1.6 game, and the facts the 0.79.0 text pass found missing, with their talk.
+  - A raiders' camp's raid whose side had no edge cell reaching the colony came from anywhere (`EdgeWalkIn` falls back
+    to `TryFindRandomPawnEntryCell`) while its letter named the camp's side: fixed. `RaidersCampMath.Sides` tries the
+    camp's own side (the game's `GetRotFromTo`), the side next to it nearer the heading, the other one, the far side,
+    then any open cell on its own side (the game's own fallback); when the side used is not one the camp's eight-way
+    direction names (`SideFits`), the letter adds `CC_RaidCamp_RaidRound` ("...coming in from the east").
+  - A warlord's son taken (a prisoner, a slave, one of the colony) or dead still named his camp, and one held where he
+    wasn't spawned (a caravan's prisoner) still had his combat power taken off its raids (`Raids.Send` subtracted it,
+    then `Lead` refused him): fixed by the son event's own words ("His band will not stay a band for long without
+    him"). `RaidersCamps.LeaderLost`; the camp breaks up once no raid of theirs is on the map and no price is on its way
+    (`RaidersCampMath.BreaksUp`), ends as given up with `CC_RaidCamp_End_GaveUp_Leader` naming him, and is not put back
+    after an attack that took him; `Raids.CanLead` now decides both the subtraction and the walk-in.
+  - A post given up for hard times (rise and fall's struggling rule, or the town-abandoned event) ended with no line of
+    its own on the posts page: `PostEnd.HardTimes` writes one `world:post:closed` line (`CC_Post_H_HardTimes`) when the
+    post's town is gone and the region keeps its ruin as given up; no message (the giving up was told).
+  - With the new towns' faces off, foundings whose towns stood waited for good (up to 6, founders kept): the day's look
+    (`RegionMath.FoundingDay`) lets them go with their founders, as it already did for those finished while off.
+  - `FarNews` used `town.Name` of a town with no name: far towns must have one (`HasName`).
+  - A hostile town given up quietly brought another people's refugee family (`CampTracker.StartKind` falls back to a
+    friendly people): a family comes only of the town's own people (`RiseFallEffects.SendsOwn`; a sacked post's too).
+  - Facts (`World/Region/RegionNearFacts.cs`, from `Facts.Region`, each part in its own try/catch): `region:camp`
+    (`:theirfoe`) with `{RAIDCAMP}` `{RAIDCAMPPEOPLE}` for a camp the colony knows of; `region:ruin` (`:theirs` or
+    `:other`, `:fight`) with `{RUINNAME}` `{RUINPEOPLE}` for a ruin on the map within the home's reach; `them:seeking` and
+    `them:seeking:REASON` with `{SEEK}` for a traveler's camp; `town:resettled:own` or `:newcomers` in a resettled town's
+    first year (from the history's `world:resettled` entry at the town); `their:givenup` with `{GIVENUP}` (their people's
+    town given up in the last 30 days, from the region's ruins); `town:situation` (`:bad`, `:good`) with
+    `{TOWNSITUATION}`, the running world event whose place is their town (not its giving up). In `FactsMath`, the
+    DefValidator and `OutsiderTalkTests`. Talk: 60 pieces in `Rimfolk_OutsiderTalks_RegionNear.xml` (a camp near 11, a
+    ruin 11, travelers' reasons 16, old walls 6, a town given up 8, the event at their town 8), every age, warm, cool
+    and sour. Tests in `RaidersCampTests`, `TradingPostTests`, `RegionTests`, `RiseFallTests`, `TravelTests`.
+  - Not changed: the camp's found letter still says its raids come "from the {DIR}" (true unless that side has no way
+    in, which the raid's own letter now says). To look at in game: a raid from a camp beyond a mountain or a lake edge,
+    the son taken in a raid and his camp breaking up, the new facts in talk with travelers and a resettled town's people.
 - 3 November 2026, the player's rule change (binding): harm is part of the game. Features may hurt pawns (injuries,
   illness, attacks, fights) when flavourful or interesting, at a rate comparable to vanilla's chance of something bad
   happening; never gratuitous, always from something on the map. It replaces "nobody is hurt for flavour" in

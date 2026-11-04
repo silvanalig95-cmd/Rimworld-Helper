@@ -115,6 +115,38 @@ public static class RaidersCampTests
         C(RaidersCampMath.Beaten(8, 4, false) && !RaidersCampMath.Beaten(8, 3, false) && RaidersCampMath.Beaten(8, 0, true) && !RaidersCampMath.Beaten(0, 0, false),
             "a raid beaten off: half its fighters down or taken, or they fled");
 
+        // ---------------- The side a raid comes in from ----------------
+
+        // The game's own Rot4 from a heading (PlanetLayer.GetRotFromTo): north from 315 to 45, east to 135, south to 225.
+        int GameRot(float h) => h >= 315f || h < 45f ? 0 : h < 135f ? 1 : h < 225f ? 2 : 3;
+        bool sidesOk = true, ownFits = true;
+        for (float h = 0f; h < 360f; h += 2.5f)
+        {
+            var s = RaidersCampMath.Sides(h);
+            if (s.Length != 4 || s.Distinct().Count() != 4 || s[0] != GameRot(h) || s[3] != (s[0] + 2) % 4) sidesOk = false;
+            if (!RaidersCampMath.SideFits(h, s[0])) ownFits = false;
+        }
+        C(sidesOk, "a raid tries the camp's own side first (the game's rule), the far side last, each side once");
+        C(ownFits, "the camp's own side always fits the direction the words give it");
+        C(RaidersCampMath.Sides(10f).SequenceEqual(new[] { 0, 1, 3, 2 }) && RaidersCampMath.Sides(350f).SequenceEqual(new[] { 0, 3, 1, 2 })
+          && RaidersCampMath.Sides(100f).SequenceEqual(new[] { 1, 2, 0, 3 }), "after its own side, the side next to it nearer the camp's heading");
+        C(RaidersCampMath.SideFits(30f, 0) && RaidersCampMath.SideFits(30f, 1) && !RaidersCampMath.SideFits(10f, 1) && !RaidersCampMath.SideFits(10f, 3)
+          && !RaidersCampMath.SideFits(10f, 2), "a camp to the northeast fits the north and east sides; one due north, the north side only");
+        C(RaidersCampMath.SideFits(340f, 0) && RaidersCampMath.SideFits(320f, 3) && RaidersCampMath.SideFits(-20f, 0) && RaidersCampMath.SideFits(float.NaN, 0),
+            "headings round the circle, and a broken one, read safely");
+
+        // ---------------- Its leader ----------------
+
+        C(!RaidersCampMath.LeaderLost(false, true, true, false), "a camp with no leader loses none");
+        C(!RaidersCampMath.LeaderLost(true, false, false, true), "a leader alive, free and of its people leads it");
+        C(RaidersCampMath.LeaderLost(true, true, false, true) && RaidersCampMath.LeaderLost(true, false, true, true) && RaidersCampMath.LeaderLost(true, false, false, false),
+            "dead, taken, or one of the colony now: its leader is lost");
+        C(RaidersCampMath.BreaksUp(true, CampStage.Found, false) && RaidersCampMath.BreaksUp(true, CampStage.Hidden, false), "without its leader the band breaks up");
+        C(!RaidersCampMath.BreaksUp(true, CampStage.Found, true) && !RaidersCampMath.BreaksUp(true, CampStage.Paying, false) && !RaidersCampMath.BreaksUp(false, CampStage.Found, false),
+            "not while a raid of theirs is on the map, nor while their price is on its way, nor with its leader there");
+        C(RaidersCampMath.GaveUpWhy(true, 2) == "_Leader" && RaidersCampMath.GaveUpWhy(false, 1) == "_Time" && RaidersCampMath.GaveUpWhy(false, 2) == "",
+            "a camp given up says why: its leader lost, its raids beaten off, or the months gone");
+
         // ---------------- The give-up rule ----------------
 
         C(RaidersCampMath.GivesUp(2, 0, 10 * D) && !RaidersCampMath.GivesUp(1, 0, 59 * D), "two raids beaten off and they move on");
@@ -173,6 +205,9 @@ public static class RaidersCampTests
         foreach (var e in ends.Where(e => e != CampEnd.Gone))
             C(keyed.Contains("<CC_RaidCamp_End_" + e + ">") && keyed.Contains("<CC_RaidCamp_End_" + e + "_Label>"), $"the words of an ending: {e}");
         C(keyed.Contains("<CC_RaidCamp_End_GaveUp_Time>"), "giving up after two months has words of its own");
+        C(keyed.Contains("<CC_RaidCamp_End_GaveUp_Leader>") && Regex.Match(mine, "<CC_RaidCamp_End_GaveUp_Leader>([^<]*)<").Groups[1].Value.Contains("{LEADER}"),
+            "breaking up without its leader has words of its own, naming him");
+        C(Regex.Match(mine, "<CC_RaidCamp_RaidRound>([^<]*)<").Groups[1].Value.Contains("{SIDE}"), "a raid that came round says from which side");
         string memory = File.ReadAllText(Path.Combine(src, "World", "FactionMemory.cs"));
         var deeds = ends.Select(e => RaidersCampMath.DeedOf(e, out _)).Where(d => d != null).Append(RaidersCampMath.DeedCamped).ToList();
         foreach (var d in deeds)
@@ -198,6 +233,15 @@ public static class RaidersCampTests
         C(code.Contains("LetterDefOf.ThreatSmall") && code.Contains("\"CC_RaidCamp_Found_Label\""), "it is found with a threat letter");
         C(code.Contains("if (On) TryFind(home, rh, c, now);") && code.Contains("else if (On) TryWarn(home, c, now);"),
             "switched off, a hidden camp is never found (its letter would promise raids that never come)");
+        C(code.Contains("RaidersCampMath.Sides(heading)") && code.Contains("!RaidersCampMath.SideFits(heading, side)") && code.Contains("\"CC_RaidCamp_RaidRound\""),
+            "a raid walks in from the nearest side that lets it in, and its letter names the side when it isn't the camp's");
+        C(code.Contains("RaidersCampMath.BreaksUp(leaderLost, c.stage, c.raidOpen)") && code.Contains("else if (leaderLost) End(home, rh, c, CampEnd.GaveUp, null);"),
+            "a camp whose leader is lost breaks up (and isn't put back after an attack)");
+        C(code.Contains("c.leader != null && !LeaderLost(c) && !c.leader.Spawned") && code.Contains("!RaidersCamps.LeaderLost(c)"),
+            "a lost leader leads no raid and isn't named on the page");
+        string helpers = File.ReadAllText(Path.Combine(src, "Happenings", "HappeningHelpers.cs"));
+        C(helpers.Contains("if (CanLead(leader, f) && leader.kindDef != null) points -= leader.kindDef.combatPower;") && helpers.Contains("if (!CanLead(leader, f)) return;"),
+            "a raid's leader counts against its strength only when he can walk in with it");
         string settings = File.ReadAllText(Path.Combine(src, "CouncilSettings.cs"));
         C(settings.Contains("public float raidersCamps = 1f;") && settings.Contains("Scribe_Values.Look(ref raidersCamps, \"raidersCamps\", 1f);"), "the setting is on by default, at 100%");
         C(File.ReadAllText(Path.Combine(src, "UI", "SettingsCatalog.cs")).Contains("Slider(\"raidersCamps\""), "the setting is in the settings window");

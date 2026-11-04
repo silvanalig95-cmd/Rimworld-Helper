@@ -27,6 +27,14 @@ namespace ColonyCouncil
         Hamlet
     }
 
+    /// <summary>What becomes of a founding record at the day's look (RegionMath.FoundingDay).</summary>
+    public enum FoundingFate : byte
+    {
+        Keep,
+        Built,
+        LetGo
+    }
+
     /// <summary>
     /// The region's small rules (docs/design/stage1-region.md; DESIGN.md, "The region"): which towns are kept in detail
     /// (the reach), how remote a home is, a town's prosperity (its bands, its seed, what a world event does to it, the
@@ -267,6 +275,20 @@ namespace ColonyCouncil
         public const int FoundersADay = 2;
         /// <summary>Founding records kept at most (a site being built within reach), the oldest going first.</summary>
         public const int MaxFoundings = 6;
+
+        /// <summary>
+        /// A founding record at the day's look: kept (<see cref="FoundingFate.Keep"/>), its town found standing
+        /// (<see cref="FoundingFate.Built"/>, its faces come in the region's hour), or let go with its founder
+        /// (<see cref="FoundingFate.LetGo"/>). Built already, it waits for its faces only while the new towns' faces are on
+        /// (off, the hour that gives them stands down); still being built, while its site stands within reach; finished
+        /// meanwhile, it is built when its town stands within reach with the faces on.
+        /// </summary>
+        public static FoundingFate FoundingDay(bool built, bool facesOn, bool building, bool inReach, bool townThere)
+        {
+            if (built) return facesOn ? FoundingFate.Keep : FoundingFate.LetGo;
+            if (building && inReach) return FoundingFate.Keep;
+            return townThere && facesOn && inReach ? FoundingFate.Built : FoundingFate.LetGo;
+        }
         /// <summary>Families (houses) kept per town in detail: the founder's line and one more founding family.</summary>
         public const int HousesPerTown = 2;
         /// <summary>Members known by name per house.</summary>

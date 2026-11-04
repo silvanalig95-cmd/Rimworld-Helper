@@ -188,6 +188,19 @@ public static class RegionTests
         C(RegionMath.TrimOldest(list, RegionMath.MaxFoundings) == 3 && list.SequenceEqual(new[] { 3, 4, 5, 6, 7, 8 }), "6 foundings at most, the oldest going first");
         C(RegionMath.TrimOldest(list, 6) == 0 && RegionMath.TrimOldest<int>(null, 6) == 0, "nothing to trim under the cap");
         C(RegionMath.HousesPerTown == 2 && RegionMath.MembersPerHouse == 6, "two houses per town, six members each");
+        // A founding at the day's look.
+        C(RegionMath.FoundingDay(true, true, false, false, false) == FoundingFate.Keep, "a town built, its faces coming in the hour: kept");
+        C(RegionMath.FoundingDay(true, false, false, true, true) == FoundingFate.LetGo,
+            "a town built with the new towns' faces off: let go with its founder (no faces will come, and nothing is kept for good)");
+        C(RegionMath.FoundingDay(false, false, true, true, false) == FoundingFate.Keep && RegionMath.FoundingDay(false, true, true, true, false) == FoundingFate.Keep,
+            "a site still being built within reach: kept");
+        C(RegionMath.FoundingDay(false, true, false, true, true) == FoundingFate.Built, "finished without the hook seeing it, faces on: its town stands");
+        C(RegionMath.FoundingDay(false, false, false, true, true) == FoundingFate.LetGo && RegionMath.FoundingDay(false, true, true, false, false) == FoundingFate.LetGo
+          && RegionMath.FoundingDay(false, true, false, true, false) == FoundingFate.LetGo, "finished with the faces off, out of reach, or razed: let go");
+        // With the faces off, no founding stays for good (none is ever made then, and those there go within a day).
+        var sitesLeft = new List<bool> { true, false, false, true, false, true };
+        int day1 = sitesLeft.Count(b => RegionMath.FoundingDay(b, false, false, true, true) == FoundingFate.Keep);
+        C(day1 == 0, "with the faces off, the foundings whose towns stand are gone the next day");
         C(RegionMath.KeepTown(false, true, true, -1, 0), "a standing town in detail is kept");
         C(!RegionMath.KeepTown(false, true, false, -1, 0), "beyond every home's reach, nothing is kept");
         C(RegionMath.KeepTown(true, true, false, -1, 0), "a town a notable lives in is kept wherever it is");
@@ -273,6 +286,9 @@ public static class RegionTests
             "Faction Territories' near message is held, dropped when the region took the town, else given back: one message, never none");
         string faces = Code("World/Region/RegionFaces.cs") + Code("World/Region/RegionWords.cs") + Code("World/Region/RegionFortunes.cs");
         C(!Regex.IsMatch(faces, @"Messages\.Message|LetterStack|News\.Post|Notify\."), "the region tells the player through Tell only");
+        C(faces.Contains("RegionMath.FoundingDay(built, RegionBook.FacesOn, stands, inReach,")
+          && Code("World/Region/RegionBook.cs").Contains("if (FacesOn) RegionFaces.Hourly(this, now);") && Code("World/Region/RegionBook.cs").Contains("RegionFaces.Daily(now)"),
+            "the day looks over every founding by the rule, the faces' hour only while they are on");
         C(faces.Contains("Tell.Minor(NewsKind.World, Importance.Notable, home, text") && faces.Contains("Tell.Letter(NewsKind.World, Importance.Notable, home, label"),
             "a line when begun and when built, and the founder's letter");
         C(faces.Contains("Ages.Form(AgeFeature.Founding, home, people)") && faces.Contains("Ages.Form(AgeFeature.Founding, home, town.Faction)"), "the news by the colony's means and their rite (Ages)");
@@ -327,6 +343,33 @@ public static class RegionTests
             C(moves.TryGetValue(kv.Key, out var m) && m.p == kv.Value, $"{kv.Key} moves its town {kv.Value}, as the design has it");
         C(moves.TryGetValue("Council_WS_HolyWar", out var hw) && hw.o < 0f, "a war of creeds hurts the other people's towns too");
         C(Code("World/Region/RegionFortunes.cs").Contains("s.SetNum(AppliedKey, applied + due)"), "each event keeps how many days' shares it gave");
+
+        // ---------------- What stands near, in the talk ----------------
+
+        string near = Code("World/Region/RegionNearFacts.cs");
+        C(Code("Text/Facts/FactsRegion.cs").Contains("Near(s, f);"), "the region's provider reads what stands near the colony");
+        var nearTags = new[]
+        {
+            "region:camp", "region:camp:theirfoe", "region:ruin", "region:ruin:theirs", "region:ruin:other", "region:ruin:fight", "them:seeking",
+            "town:resettled:own", "town:resettled:newcomers", "their:givenup", "town:situation", "town:situation:bad", "town:situation:good"
+        };
+        foreach (var t in nearTags) C(FactsMath.RegionTags.Contains(t) && near.Contains("\"" + t + "\""), $"the facts set {t}, and the talk may ask for it");
+        foreach (var why in TravelMath.Reasons) C(FactsMath.RegionTags.Contains("them:seeking:" + why), $"a traveller's reason {why} is a tag the talk may ask for");
+        C(near.Contains("f.Tag(\"them:seeking:\" + c.seeking") && near.Contains("TravelMath.Known(c.seeking)"), "the traveller's reason is one of the known ones");
+        foreach (var v in new[] { "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION" })
+            C(FactsMath.RegionValues.Contains(v) && near.Contains("f.Value(\"" + v + "\""), $"the facts fill {{{v}}}");
+        C(near.Contains("!c.Shown") && near.Contains("r.Waiting") && near.Contains("RegionTowns.ReachTiles"),
+            "only a camp the colony knows of, and a ruin on the map within the colony's reach");
+        C(near.Contains("x.place == place") && near.Contains("!(x.def.Worker is SituationWorker_Abandoned)"), "the event at their own town, not the giving up of it");
+        C(near.Contains("RiseFallWords.ResettledKind") && near.Contains("RefKind.People"), "own people or newcomers, as the history's entry of the resettling tells");
+        C(!Regex.IsMatch(near, @"Rand\.|\.Set\(|History\.Add|WorldLedger\.(Add|Set|Keep|Release)"), "the facts only read");
+        var nearTalk = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_RegionNear.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        string nearAll = string.Join("\n", nearTalk.Select(d => d.ToString()));
+        C(nearTalk.Count >= 40 && nearTalk.Count <= 80, $"40 to 80 talk pieces on what stands near ({nearTalk.Count})");
+        foreach (var t in nearTags)
+            C(nearAll.Contains(t), $"the talk speaks of {t}");
+        foreach (var voice in new[] { "their:tribal", "their:medieval", "their:industrial", "their:spacer", "their:empire", "tone:warm", "tone:cool", "tone:sour" })
+            C(nearAll.Contains(voice), $"the near pieces have {voice}");
 
         return n;
     }

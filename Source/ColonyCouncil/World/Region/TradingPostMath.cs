@@ -14,8 +14,13 @@ namespace ColonyCouncil
         Sacked,
         /// <summary>The colony's own people attacked it and destroyed it.</summary>
         Razed,
-        /// <summary>Gone without a story of its own (taken, made a vassal, given up for hard times, the home lost): its record ends.</summary>
-        Gone
+        /// <summary>Gone without a story of its own (taken, made a vassal, the home lost): its record ends.</summary>
+        Gone,
+        /// <summary>
+        /// Its people gave it up for hard times (the region's rise and fall, or the world event that gives a town up): what
+        /// gave it up told it, and the post's own history closes with it.
+        /// </summary>
+        HardTimes
     }
 
     /// <summary>
@@ -246,7 +251,7 @@ namespace ColonyCouncil
 
         public static readonly string[] Kinds = { KindOpened, KindWarned, KindMended, KindClosed, KindSacked, KindRazed };
 
-        /// <summary>How a post's end goes into the history: closed for souring, war and a sack it couldn't take; razed by the colony; nothing for one simply gone.</summary>
+        /// <summary>How a post's end goes into the history: closed for souring, war, a sack it couldn't take and hard times; razed by the colony; nothing for one simply gone.</summary>
         public static string EndKind(PostEnd e)
         {
             switch (e)
@@ -254,6 +259,7 @@ namespace ColonyCouncil
                 case PostEnd.Soured:
                 case PostEnd.War:
                 case PostEnd.Sacked:
+                case PostEnd.HardTimes:
                     return KindClosed;
                 case PostEnd.Razed:
                     return KindRazed;

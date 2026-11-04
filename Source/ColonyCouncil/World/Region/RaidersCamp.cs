@@ -341,18 +341,27 @@ namespace ColonyCouncil
                 End(home, rh, c, CampEnd.Peace, null);
                 return;
             }
+            bool leaderLost = LeaderLost(c);
             if (c.stage != CampStage.Hidden && site == null)
             {
-                // The game removed the site: the colony left its map, cleared or not.
+                // The game removed the site: the colony left its map, cleared or not. Without its leader (taken there), the
+                // band breaks up rather than camp again.
                 if (c.entered)
                 {
                     if (RaidersCampMath.Broken(c.threatLeft, c.fighters, c.standing)) End(home, rh, c, CampEnd.Broken, null);
+                    else if (leaderLost) End(home, rh, c, CampEnd.GaveUp, null);
                     else PutBack(home, c, now);
                 }
                 else End(home, rh, c, CampEnd.Gone, null);
                 return;
             }
             if (c.raidOpen) Track(home, c, now);
+            // Its leader dead, taken or gone over to the colony: the band he held together breaks up once its raid is over.
+            if (RaidersCampMath.BreaksUp(leaderLost, c.stage, c.raidOpen))
+            {
+                End(home, rh, c, CampEnd.GaveUp, null);
+                return;
+            }
             switch (c.stage)
             {
                 case CampStage.Hidden:
@@ -846,7 +855,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A raid from the camp: never on top of another threat on the map nor within a day of the last big one; at 0.6 of
-        /// the home's threat points, walking in from the map's edge on the camp's side, led by its leader if it has one.
+        /// the home's threat points, walking in from the map's edge on the camp's side (or the nearest side that lets them
+        /// in, which the letter then names), led by its leader if it has one.
         /// </summary>
         private static void TryRaid(Map home, RaidersCamp c, int now)
         {
@@ -857,8 +867,12 @@ namespace ColonyCouncil
             string where = Where(home, c);
             string label = "CC_RaidCamp_RaidLabel".Translate(c.kind.Named("KIND")).Resolve().CapitalizeFirst();
             string text = TextVariants.Vary("CC_RaidCamp_RaidText").Translate(people, c.kind.Named("KIND"), where.Named("WHERE")).Resolve();
-            var lead = c.leader != null && !c.leader.Dead && !c.leader.Spawned ? c.leader : null;
-            if (!Raids.Send(home, c.people, points, label, text, lead, EdgeToward(home, TileOf(c)), false)) return;
+            var from = EdgeToward(home, TileOf(c), out int side, out float heading);
+            // No way in from the camp's own side: they come round, and the letter says from where.
+            if (from.HasValue && !RaidersCampMath.SideFits(heading, side))
+                text += " " + "CC_RaidCamp_RaidRound".Translate(SideWord(side).Named("SIDE")).Resolve();
+            var lead = c.leader != null && !LeaderLost(c) && !c.leader.Spawned ? c.leader : null;
+            if (!Raids.Send(home, c.people, points, label, text, lead, from, false)) return;
             c.raids++;
             c.lastRaid = now;
             c.raidOpen = true;
@@ -870,24 +884,47 @@ namespace ColonyCouncil
             History.Add(RaidersCampMath.KindRaid, Actors(c, null, null), Refs.Colony(home), HistoryMath.Everyday, text, mergeTicks: Day);
         }
 
-        /// <summary>A cell on the map's edge on the side the camp lies, open to the sky, from which the colony can be reached; null for none.</summary>
-        private static IntVec3? EdgeToward(Map home, PlanetTile camp)
+        /// <summary>
+        /// A cell on the map's edge for a raid from the camp, open to the sky, from which the colony can be reached: on the
+        /// side the camp lies, else the side next to it nearer its heading, the other side next to it, the far side
+        /// (RaidersCampMath.Sides); with none that reaches the colony, any open cell on the camp's own side, as the game's
+        /// own walk-in falls back. Null for none (the game then chooses). <paramref name="side"/> is the side it lies on
+        /// (0 north to 3 west, -1 for none) and <paramref name="heading"/> the camp's heading from the home.
+        /// </summary>
+        private static IntVec3? EdgeToward(Map home, PlanetTile camp, out int side, out float heading)
         {
+            side = -1;
+            heading = 0f;
             if (home == null || !camp.Valid || camp.Layer != home.Tile.Layer) return null;
             try
             {
-                var rot = Find.WorldGrid.GetRotFromTo(home.Tile, camp);
+                heading = Find.WorldGrid.GetHeadingFromTo(home.Tile, camp);
                 bool roofOk = home.TileInfo.AllowRoofedEdgeWalkIn;
-                if (CellFinder.TryFindRandomEdgeCellWith(c => c.Walkable(home) && (roofOk || !home.roofGrid.Roofed(c)) && home.reachability.CanReachColony(c), home, rot,
-                        CellFinder.EdgeRoadChance_Hostile, out var cell))
-                    return cell;
+                bool Open(IntVec3 c) => c.Walkable(home) && (roofOk || !home.roofGrid.Roofed(c));
+                var sides = RaidersCampMath.Sides(heading);
+                foreach (int s in sides)
+                    if (CellFinder.TryFindRandomEdgeCellWith(c => Open(c) && home.reachability.CanReachColony(c), home, new Rot4(s), CellFinder.EdgeRoadChance_Hostile,
+                            out var cell))
+                    {
+                        side = s;
+                        return cell;
+                    }
+                if (CellFinder.TryFindRandomEdgeCellWith(Open, home, new Rot4(sides[0]), CellFinder.EdgeRoadChance_Hostile, out var any))
+                {
+                    side = sides[0];
+                    return any;
+                }
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("raiders' camp: the edge on its side", e);
             }
+            side = -1;
             return null;
         }
+
+        /// <summary>A side of the map in words: "north", "east", "south", "west".</summary>
+        private static string SideWord(int side) => ("CC_Letter_Dir_" + "NESW"[(side % 4 + 4) % 4]).Translate().Resolve();
 
         /// <summary>
         /// The raid on the map: how many fell (dead, down or taken) and whether they fled in a panic, until none of them
@@ -985,6 +1022,8 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("raiders' camp: its site taken away", e);
                 }
+            // Its leader by name, when the camp broke up for want of him (before he is let go).
+            string lost = LeaderLost(c) ? c.leader.LabelShort : null;
             LetLeaderGo(c);
             if (rh.camp == c) rh.camp = null;
             rh.endedAt = now;
@@ -993,9 +1032,9 @@ namespace ColonyCouncil
             var args = new[]
             {
                 people, c.kind.Named("KIND"), Where(home, c).Named("WHERE"), Homes.Name(home).Named("COLONY"), (ally?.Name ?? "").Named("ALLY"),
-                (ally != null ? RaidersCampMath.AllyKey(Ages.Of(ally)).Translate().Resolve() : "").Named("ALLIES")
+                (ally != null ? RaidersCampMath.AllyKey(Ages.Of(ally)).Translate().Resolve() : "").Named("ALLIES"), (lost ?? "").Named("LEADER")
             };
-            string key = "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp && c.beaten < RaidersCampMath.BeatenToGiveUp ? "_Time" : "");
+            string key = "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp ? RaidersCampMath.GaveUpWhy(lost != null, c.beaten) : "");
             string text = TextVariants.Vary(key).Translate(args).Resolve();
             string label = ("CC_RaidCamp_End_" + end + "_Label").Translate(args).Resolve().CapitalizeFirst();
             // Peace: the game's own letter already said the site is gone (it takes away a hostile people's sites when peace

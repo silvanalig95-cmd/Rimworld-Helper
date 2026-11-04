@@ -447,7 +447,10 @@ wishPh.UnionWith(new[]
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.
     "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
     // A hamlet under the colony's protection (World/Region/HamletFacts.cs): its name, its word by their age, its people.
-    "HAMLET", "HAMLETWORD", "HAMLETPEOPLE"
+    "HAMLET", "HAMLETWORD", "HAMLETPEOPLE",
+    // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs): a raiders' camp
+    // (its kind, its people), a ruin (its old name, its people), a town of theirs given up lately, the event at their town.
+    "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "GIVENUP", "TOWNSITUATION"
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });

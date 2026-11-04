@@ -179,6 +179,7 @@ public static class TravelTests
         C(camp.Contains("StartSocialFight") && camp.Contains("seeking != TravelMath.Ore"), "the quarrel only among prospectors who came for the ore, between two of their own");
         string farSrc = File.ReadAllText(Path.Combine(src, "World", "Region", "FarNews.cs"));
         C(farSrc.Contains("OutsiderTalkMath.HeardMax") && farSrc.Contains("History.Add(Kind"), "far news goes into Heard lately (within its bound) and the history");
+        C(farSrc.Contains("RegionTowns.Fits(s) && s.HasName"), "far news only of towns with a name of their own (it is told by name)");
         return n;
     }
 }

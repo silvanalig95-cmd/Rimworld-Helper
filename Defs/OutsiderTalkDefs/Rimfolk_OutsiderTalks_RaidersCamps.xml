@@ -7,9 +7,9 @@
        fighters burned for the colony (deed:burnedCamp), and, for the camp's own people once they are at peace with the
        colony again, the camp they made (deed:camped), the camp the colony broke (deed:campBroken; wrongbest:campBroken with
        {WRONGNAME} its kind), the camp that gave up (deed:campFailed), the silver it was paid (deed:paidOff) and the camp
-       struck at the peace (deed:campStruck); and the colonist who went out to break it (you:remembered:campbroken). Nothing
-       here says where a camp stands now: the facts don't give it. The format is described at the top of
-       Rimfolk_OutsiderTalks_Greetings.xml. -->
+       struck at the peace (deed:campStruck); and the colonist who went out to break it (you:remembered:campbroken). A camp
+       standing near the colony now is talked of in Rimfolk_OutsiderTalks_RegionNear.xml (region:camp). The format is
+       described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 
   <!-- ================= A camp the colony broke, as its neighbours remember it ================= -->
 

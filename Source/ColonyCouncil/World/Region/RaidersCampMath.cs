@@ -223,6 +223,54 @@ namespace ColonyCouncil
         /// <summary>A raid the colony never saw end (a load, its raiders lost track of) is given up on after so many days.</summary>
         public const int RaidWatchDays = 3;
 
+        // ---------------- The side a raid comes in from ----------------
+
+        /// <summary>
+        /// The map's sides to try for a raid's way in (0 north, 1 east, 2 south, 3 west, as the game's Rot4), by the camp's
+        /// heading from the home (degrees from north, clockwise, as the world grid gives it): its own side (the game's own
+        /// rule: north from 315 to 45), then the side next to it nearer the heading, the other side next to it, the far
+        /// side last.
+        /// </summary>
+        public static int[] Sides(float heading)
+        {
+            float h = Norm(heading);
+            int own = (int)Math.Floor((h + 45f) / 90f) % 4;
+            float off = h - own * 90f;
+            if (off > 180f) off -= 360f;
+            int right = (own + 1) % 4, left = (own + 3) % 4;
+            return off >= 0f ? new[] { own, right, left, (own + 2) % 4 } : new[] { own, left, right, (own + 2) % 4 };
+        }
+
+        /// <summary>
+        /// A side of the map lies the way the words name the camp: its direction in eight (the world grid's own: north from
+        /// 337.5 to 22.5), and a side fits that direction and the two beside it (north takes in northeast and northwest).
+        /// </summary>
+        public static bool SideFits(float heading, int side)
+        {
+            int dir8 = (int)Math.Floor((Norm(heading) + 22.5f) / 45f) % 8;
+            int d = Math.Abs(dir8 - ((side % 4 + 4) % 4) * 2);
+            return Math.Min(d, 8 - d) <= 1;
+        }
+
+        private static float Norm(float heading)
+        {
+            if (float.IsNaN(heading) || float.IsInfinity(heading)) return 0f;
+            float h = heading % 360f;
+            return h < 0f ? h + 360f : h;
+        }
+
+        // ---------------- Its leader ----------------
+
+        /// <summary>
+        /// A camp whose leader can no longer lead it (dead, taken, gone over to another people) breaks up: "his band will not
+        /// stay a band for long without him". Not while a raid of theirs is on the map (it ends first), nor while their price
+        /// is on its way to them (it is handed over first).
+        /// </summary>
+        public static bool BreaksUp(bool leaderLost, CampStage stage, bool raidOpen) => leaderLost && stage != CampStage.Paying && !raidOpen;
+
+        /// <summary>Its leader can't lead it: dead, a prisoner or a slave (of anyone), or no longer one of its people (one of the colony now).</summary>
+        public static bool LeaderLost(bool hasLeader, bool dead, bool taken, bool ofItsPeople) => hasLeader && (dead || taken || !ofItsPeople);
+
         // ---------------- Giving up ----------------
 
         /// <summary>Two raids beaten off and they move on.</summary>
@@ -232,6 +280,12 @@ namespace ColonyCouncil
 
         /// <summary>They give up: <see cref="BeatenToGiveUp"/> raids beaten off, or <see cref="GiveUpDays"/> since the camp was set up.</summary>
         public static bool GivesUp(int beaten, int setAt, int now) => beaten >= BeatenToGiveUp || setAt >= 0 && now - setAt >= (long)GiveUpDays * DayTicks;
+
+        /// <summary>
+        /// The words for a camp given up: its leader lost ("_Leader"), else two raids beaten off (none), else the two months
+        /// gone ("_Time"); the suffix of CC_RaidCamp_End_GaveUp.
+        /// </summary>
+        public static string GaveUpWhy(bool leaderLost, int beaten) => leaderLost ? "_Leader" : beaten < BeatenToGiveUp ? "_Time" : "";
 
         // ---------------- Attacked ----------------
 
