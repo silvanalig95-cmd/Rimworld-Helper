@@ -391,7 +391,7 @@ namespace ColonyCouncil
             string text = VarietyUtil.Line(lines, ctx, tags, item);
             if (text.NullOrEmpty()) return;
             if (look != null && look.IsValid) News.Post(text, look, NewsKind.World, type ?? MessageTypeDefOf.NeutralEvent);
-            else News.Post(text, null, NewsKind.World, type ?? MessageTypeDefOf.NeutralEvent);
+            else ColonyCouncil.Tell.Minor(NewsKind.World, null, ctx?.map, text, null, type ?? MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>Things handed over at the trade spot (or near someone), split into stacks.</summary>

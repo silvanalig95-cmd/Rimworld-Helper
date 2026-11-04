@@ -103,7 +103,7 @@ namespace ColonyCouncil
                 if (!People.Passionate(plants) && !(p.workSettings?.WorkIsActive(WorkTypeDefOf.Growing) ?? false)) continue;
                 if (goodStart != null) CouncilGameComponent.GiveThought(p, goodStart);
             }
-            News.Post("CC_Planting_GoodStart".Translate().Resolve(), null, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Colony, Importance.Flavor, map, "CC_Planting_GoodStart".Translate().Resolve(), null, MessageTypeDefOf.PositiveEvent);
         }
     }
 
@@ -225,7 +225,7 @@ namespace ColonyCouncil
                     if (SeasonWishMath.FullySown(sown, cells))
                     {
                         stage = 1;
-                        News.Post("CC_Planting_AllSown".Translate().Resolve(), null, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+                        Tell.Minor(NewsKind.Colony, Importance.Flavor, map, "CC_Planting_AllSown".Translate().Resolve(), null, MessageTypeDefOf.PositiveEvent);
                         CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Planting_Chronicle".Translate().Resolve(), null));
                     }
                     else stage = 2;

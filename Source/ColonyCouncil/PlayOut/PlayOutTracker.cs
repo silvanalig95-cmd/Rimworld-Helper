@@ -631,7 +631,8 @@ namespace ColonyCouncil
             {
                 var look = (took ?? new List<Pawn> { p.visitor, p.other }).Where(x => x != null && x.Spawned).ToList();
                 string learned = took != null ? PlayWords.Learned(p, took) : null;
-                News.Post(learned.NullOrEmpty() ? p.outcome : p.outcome + " " + learned, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, learned.NullOrEmpty() ? p.outcome : p.outcome + " " + learned, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid,
+                    MessageTypeDefOf.PositiveEvent);
             }
             if (took == null)
             {
@@ -666,7 +667,7 @@ namespace ColonyCouncil
             bool told = !p.outcome.NullOrEmpty() && p.map != null && Find.Maps.Contains(p.map);
             if (told && !PlayOuts.On)
             {
-                News.Post(p.outcome, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, p.outcome, null, MessageTypeDefOf.NeutralEvent);
                 told = false;
             }
             if (told) quiet = false;
@@ -698,7 +699,7 @@ namespace ColonyCouncil
             string text = !p.IsGathering
                 ? (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve()
                 : (why.NullOrEmpty() ? "CC_Play_FallbackPlain".Translate(label) : "CC_Play_Fallback".Translate(label, why)).Resolve();
-            News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, text, null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>The risks it held, now.</summary>

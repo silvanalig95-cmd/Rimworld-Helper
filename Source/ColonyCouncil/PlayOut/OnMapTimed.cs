@@ -570,7 +570,7 @@ namespace ColonyCouncil
             // The colony was told of it, and no tree came down: a word instead of the answer's.
             if (k.done <= 0 && !k.text.NullOrEmpty())
             {
-                News.Post("CC_Timed_Felling_Never".Translate().Resolve(), LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Felling_Never".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             if (k.done <= 0 || !k.cell.IsValid) return;
@@ -654,7 +654,7 @@ namespace ColonyCouncil
         {
             var planted = k.things.Where(t => t != null && t.Spawned).ToList();
             if (k.done <= 0 && !k.text.NullOrEmpty() && k.map != null && Find.Maps.Contains(k.map))
-                News.Post("CC_Timed_Planting_Never".Translate().Resolve(), LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Planting_Never".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
             if (k.done <= 0 || planted.Count == 0) return;
             // A little fence round them, marked out for building, once they're in.
             if (k.count == 1) DilemmaEffect_SowPatch.Fence(k.map, planted.Select(t => t.Position).ToList());

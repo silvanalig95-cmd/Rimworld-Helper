@@ -532,7 +532,7 @@ namespace ColonyCouncil
                 }
                 if (now > v.until || x == null || x.Dead || !x.Spawned)
                 {
-                    News.Post("Rimfolk_Evt_GameOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                    Tell.Minor(NewsKind.World, null, v.map, "Rimfolk_Evt_GameOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                     return false;
                 }
                 return true;
@@ -719,7 +719,7 @@ namespace ColonyCouncil
                     t.Use(m);
                     DropBill(map, m.text);
                     string off = VarietyUtil.Line(more?.cancelled, ctx);
-                    if (!off.NullOrEmpty()) News.Post(off, null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                    if (!off.NullOrEmpty()) Tell.Minor(NewsKind.World, null, map, off, null, MessageTypeDefOf.NeutralEvent);
                     continue;
                 }
                 var piece = Pieces(map, def, (QualityCategory)m.left, m.times).OrderBy(x => x.TryGetQuality(out var q) ? (int)q : 0).FirstOrDefault();

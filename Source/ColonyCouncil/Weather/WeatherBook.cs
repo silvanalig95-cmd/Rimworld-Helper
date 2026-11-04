@@ -208,7 +208,7 @@ namespace ColonyCouncil
             if (!watched || prevYear != d.year - 1 || prevDoy < 0) return;
             int earlier = WeatherMath.SnowEarlier(d.dayOfYear, prevDoy);
             if (Math.Abs(earlier) < 5) return;
-            News.Post((earlier > 0 ? "CC_Weather_SnowEarlier" : "CC_Weather_SnowLater").Translate(Math.Abs(earlier)).Resolve(), LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Land, Importance.Flavor, map, (earlier > 0 ? "CC_Weather_SnowEarlier" : "CC_Weather_SnowLater").Translate(Math.Abs(earlier)).Resolve(), null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>A record broken: a word from someone in view (with the touches), and the news (no more than one every two days).</summary>
@@ -237,7 +237,7 @@ namespace ColonyCouncil
                     break;
             }
             WeatherTalk.SayOne(map, pool);
-            News.Post(text, LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Land, Importance.Flavor, map, text, null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>A season ended: set against the year before, and named if it was far from usual here.</summary>
@@ -259,13 +259,13 @@ namespace ColonyCouncil
             {
                 string named = NameText(q);
                 string text = "CC_Weather_Named".Translate(named, Why(q)).Resolve();
-                News.Post(text, LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Land, Importance.Notable, map, text, null, MessageTypeDefOf.NeutralEvent);
                 comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Weather_NamedChronicle".Translate(named.CapitalizeFirst()).Resolve()));
             }
             var change = WeatherMath.Compare(q, before, out float by);
             if (change == WeatherChange.Same) return;
             string line = Change(change, season, q, before, by);
-            News.Post(line, LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Land, Importance.Flavor, map, line, null, MessageTypeDefOf.NeutralEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, line));
             // Someone who has lived through both writes it down: the longest with the colony.
             var writer = ColonyCalendar.AtHome(map).Where(p => !p.DevelopmentalStage.Baby())

@@ -937,7 +937,7 @@ namespace ColonyCouncil
             hospital.level = level;
             string key = level >= 2 ? "CC_Health_Hospital_Renowned" : "CC_Health_Hospital_Known";
             string text = key.Translate(HospitalWord.Named("HOSPITAL"), hospital.Good.Named("COUNT")).Resolve();
-            News.Post(text, doctor != null && doctor.Spawned ? new LookTargets(doctor) : LookTargets.Invalid, NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            Tell.Minor(NewsKind.Health, Importance.Notable, doctor?.MapHeld, text, doctor != null && doctor.Spawned ? new LookTargets(doctor) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             if (level >= 2) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, doctor));
             if (doctor != null && People.HasInnerLife(doctor) && Ours(doctor)) JournalTagged(doctor, "Council_Journal_Health_Hospital", new[] { level >= 2 ? "renowned" : "known" });
         }

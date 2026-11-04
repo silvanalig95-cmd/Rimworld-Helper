@@ -136,7 +136,7 @@ namespace ColonyCouncil
             if (species == null) return;
             rumourKind = species.defName;
             rumourUntil = Now + Mathf.RoundToInt(HerdStoryMath.RumourDays * GenDate.TicksPerDay);
-            News.Post("CC_PW_RumourHeld".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rumourUntil - Now).Named("DAYS")).Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Land, Importance.Flavor, HomeMap, "CC_PW_RumourHeld".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rumourUntil - Now).Named("DAYS")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>While the rumour holds: the shiny may show itself on the land; when it runs out, it was a story.</summary>
@@ -146,7 +146,7 @@ namespace ColonyCouncil
             var species = DefDatabase<ThingDef>.GetNamedSilentFail(rumourKind);
             if (rumourUntil <= Now)
             {
-                if (species != null) News.Post("CC_PW_RumourFaded".Translate(species.label.Named("SPECIES")).Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                if (species != null) Tell.Minor(NewsKind.Land, Importance.Flavor, map, "CC_PW_RumourFaded".Translate(species.label.Named("SPECIES")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 rumourKind = null;
                 return;
             }
@@ -313,7 +313,7 @@ namespace ColonyCouncil
                 var who = namer != null && !namer.Dead ? namer : null;
                 if (key == "tamed" && pokemon) key = "caught";
                 string text = ("CC_Beast_End_" + key).Translate(a.Named("PET"), (who ?? a).Named("PAWN")).Resolve();
-                News.Post(text, a.Spawned ? new LookTargets(a) : LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Land, Importance.Notable, HomeMap, text, a.Spawned ? new LookTargets(a) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, who));
                 if (key == "stays" && who != null && who.Spawned) CouncilGameComponent.GiveThought(who, HerdStoryDefOf.Council_Beast_PartOfTheLand);
             }

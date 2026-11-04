@@ -268,7 +268,7 @@ namespace ColonyCouncil
                 {
                     t.Use(m);
                     string off = VarietyUtil.Line(more?.cancelled, ctx);
-                    if (!off.NullOrEmpty()) News.Post(off, null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                    if (!off.NullOrEmpty()) Tell.Minor(NewsKind.World, null, map, off, null, MessageTypeDefOf.NeutralEvent);
                     continue;
                 }
                 if (now < m.due)
