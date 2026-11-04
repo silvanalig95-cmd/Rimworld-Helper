@@ -141,7 +141,7 @@ MODEL = {
     "CouncilGameComponent.cs:nextSteps": ("fixed", 40, 260, "the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs)"),
     "Lives/LifeNew.cs:read": ("fixed", 600, 60, "books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead)"),
     "Building/RoomRearranger.cs:orders": ("fixed", 30, 120, "per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs)"),
-    "CouncilGameComponent.cs:guestKin": ("fixed", 6, 220, "those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs)"),
+    "CouncilGameComponent.cs:oldGuestKin": ("fixed", 0, 220, "an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again"),
     "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
     "CouncilGameComponent.cs:lastAtHome": ("colonists", 1, D, "colonists still ours"),

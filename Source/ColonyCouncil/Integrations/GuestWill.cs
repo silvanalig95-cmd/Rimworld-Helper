@@ -505,8 +505,12 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Someone who joined from a Hospitality visit and has family with the people they came from (CouncilGameComponent
-    /// .guestKin): when the family may come to ask for them back, and whether they were taken by force.
+    /// Someone who joined from a Hospitality visit and has family with the people they came from: when the family may come
+    /// to ask for them back, and whether they were taken by force. The world ledger keeps it as a Claim tie (from their
+    /// people, to the one who joined, about the colony keeping them; the due day and "forced" in its terms, since they
+    /// joined), read here afresh each time (<see cref="Open"/>). Their family coming to ask calls the claim in; letting
+    /// them go home keeps it, and a claim called in and not met in the fortnight after is broken. An older save kept
+    /// these in CouncilGameComponent.guestKin, moved into the ledger on load.
     /// </summary>
     public class GuestKin : IExposable
     {
@@ -514,6 +518,11 @@ namespace ColonyCouncil
         public Faction faction;
         public int due;
         public bool forced;
+        /// <summary>The ledger's tie this was read from (none for an older save's, before it moves).</summary>
+        [Unsaved] public Tie tie;
+
+        /// <summary>The origin of the ledger's claim ties kept here.</summary>
+        public const string Origin = "guestKin";
 
         public void ExposeData()
         {
@@ -523,18 +532,66 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref forced, "forced");
         }
 
+        /// <summary>The claims not yet pressed, in the order they were made.</summary>
+        public static List<GuestKin> Open()
+        {
+            var list = new List<GuestKin>();
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Claim))
+                if (t.state == Tie.State.Open && t.origin == Origin)
+                    list.Add(new GuestKin { tie = t, pawn = WorldLedger.PawnOf(t.to), faction = Refs.Faction(t.from), due = t.terms.count, forced = t.terms.key == "forced" });
+            return list;
+        }
+
+        /// <summary>The claim on someone (called in or not) is over: kept (they went home), or ended.</summary>
+        private static void End(GuestKin k, Tie.State how)
+        {
+            if (k?.tie != null) WorldLedger.Set(k.tie, how);
+        }
+
         /// <summary>Someone joined from a visit (Hospitality's Adopt): their family there may come asking, weeks from now.</summary>
         public static void Joined(Pawn p, Faction from)
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null || p == null || from == null || from.IsPlayer || !GuestWill.On) return;
             if (!Close(p).Any(k => k.Faction == from)) return;
-            comp.guestKin.RemoveAll(k => k.pawn == p);
-            comp.guestKin.Add(new GuestKin
+            foreach (var old in Open().Where(k => k.pawn == p)) End(old, Tie.State.Ended);
+            int due = Find.TickManager.TicksGame + Rand.RangeInclusive(GuestWillMath.AskMinDays, GuestWillMath.AskMaxDays) * GenDate.TicksPerDay;
+            var terms = new TieTerms { count = due, key = GuestWill.ForcedNow ? "forced" : null, days = GuestWillMath.AskWindowDays, about = Refs.Colony(Homes.Of(p)) };
+            if (terms.about.IsNone) terms.about = Refs.Us;
+            WorldLedger.AddTie(Tie.Kind.Claim, Refs.Of(from), WorldLedger.PersonOf(p), terms, StoreMath.After(due, GuestWillMath.AskWindowDays), Origin);
+        }
+
+        /// <summary>Their family went home with them: the claim was met.</summary>
+        public static void WentHome(Pawn p)
+        {
+            if (p == null) return;
+            var r = Refs.Of(p);
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Claim).Where(t => t.state == Tie.State.CalledIn && t.origin == Origin && t.to == r).ToList())
+                WorldLedger.Set(t, Tie.State.Kept);
+        }
+
+        /// <summary>An older save's guest kin: moved into the ledger in their order (no day they joined: none was kept).</summary>
+        public static void Adopt(List<GuestKin> old)
+        {
+            if (old == null) return;
+            foreach (var k in old)
             {
-                pawn = p, faction = from, forced = GuestWill.ForcedNow,
-                due = Find.TickManager.TicksGame + Rand.RangeInclusive(GuestWillMath.AskMinDays, GuestWillMath.AskMaxDays) * GenDate.TicksPerDay
-            });
+                if (k?.pawn == null || k.faction == null) continue;
+                try
+                {
+                    var terms = new TieTerms { count = k.due, key = k.forced ? "forced" : null, days = GuestWillMath.AskWindowDays, about = Refs.Colony(Homes.Of(k.pawn)) };
+                    if (terms.about.IsNone) terms.about = Refs.Us;
+                    WorldLedger.Adopt(new Tie
+                    {
+                        kind = Tie.Kind.Claim, from = Refs.Of(k.faction), to = WorldLedger.PersonOf(k.pawn), terms = terms, since = Tie.Never,
+                        until = StoreMath.After(k.due, GuestWillMath.AskWindowDays), origin = Origin
+                    });
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("guest kin: an older save's", e);
+                }
+            }
         }
 
         /// <summary>Their close family, alive: partners, parents, children and brothers and sisters.</summary>
@@ -592,10 +649,15 @@ namespace ColonyCouncil
         /// </summary>
         public static void Hourly(CouncilGameComponent comp)
         {
-            var list = comp?.guestKin;
-            if (list == null || list.Count == 0) return;
+            if (comp == null) return;
+            var list = Open();
+            if (list.Count == 0) return;
             int now = Find.TickManager.TicksGame;
-            list.RemoveAll(k => k.pawn == null || k.pawn.Dead || !k.pawn.IsColonist || now > k.due + GuestWillMath.AskWindowDays * GenDate.TicksPerDay);
+            foreach (var k in list.Where(k => k.pawn == null || k.pawn.Dead || !k.pawn.IsColonist || k.faction == null || now > k.due + GuestWillMath.AskWindowDays * GenDate.TicksPerDay).ToList())
+            {
+                End(k, Tie.State.Ended);
+                list.Remove(k);
+            }
             if (!GuestWill.On || !(ColonyCouncilMod.Settings?.enableDilemmas ?? true)) return;
             foreach (var k in list.Where(k => now >= k.due).ToList())
             {
@@ -605,25 +667,42 @@ namespace ColonyCouncil
                 if (!MovingOn.Friendly(k.faction) || Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) continue;
                 try
                 {
-                    list.Remove(k);
+                    // Their time has come: the claim is pressed now, whether anyone comes or not (each family comes once).
+                    if (k.tie != null) WorldLedger.Set(k.tie, Tie.State.CalledIn);
                     var who = k.Who(out string kind);
-                    if (who == null || !Rand.Chance(GuestWillMath.AskChance(kind, who.relations?.OpinionOf(p) ?? 0f, k.forced))) continue;
+                    if (who == null || !Rand.Chance(GuestWillMath.AskChance(kind, who.relations?.OpinionOf(p) ?? 0f, k.forced)))
+                    {
+                        End(k, Tie.State.Ended);
+                        continue;
+                    }
                     var gate = PlaySpots.GateCell(map, p);
                     var lord = Arrivals.Visit(new List<Pawn> { who }, map, k.faction, gate.IsValid ? gate : (IntVec3?)null, 30f);
                     if (lord == null)
                     {
                         Arrivals.Release(who);
+                        End(k, Tie.State.Ended);
                         continue;
                     }
                     DilemmaWorker_KinAsks.coming = new DilemmaWorker_KinAsks.Coming { pawn = p, kin = who, kind = kind, faction = k.faction, forced = k.forced };
                     bool asked = comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_KinAsks);
                     DilemmaWorker_KinAsks.coming = null;
                     // Nobody to ask after all: they visit, and go home again.
-                    if (!asked) Arrivals.SendAway(new[] { who });
+                    if (!asked)
+                    {
+                        Arrivals.SendAway(new[] { who });
+                        End(k, Tie.State.Ended);
+                    }
+                    // Asked: the council's answer settles it (they go home with them: kept), or a fortnight on it's broken.
+                    else if (k.tie != null)
+                    {
+                        k.tie.until = now + GuestWillMath.AskWindowDays * GenDate.TicksPerDay;
+                        WorldLedger.Touch(k.tie);
+                    }
                     return;
                 }
                 catch (Exception e)
                 {
+                    if (k.tie != null && k.tie.state == Tie.State.CalledIn && k.tie.until == Tie.Never) End(k, Tie.State.Ended);
                     CouncilLog.ErrorOnce("family asking for a guest back", e);
                 }
             }
@@ -779,6 +858,8 @@ namespace ColonyCouncil
         {
             // apart: who goes with whom; it shows when they set off together.
             if (ctx?.a != null && ctx.stranger != null) DilemmaEffect_LeaveForGood.GoesWith(ctx.a, ctx.stranger);
+            // Their family's claim on them is met.
+            if (ctx?.a != null) GuestKin.WentHome(ctx.a);
         }
     }
 

@@ -11,8 +11,6 @@ namespace ColonyCouncil
     /// <list type="bullet">
     /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
     /// date, called in while the letter waits for an answer.</item>
-    /// <item>Someone who joined from a visit with family among their people (CouncilGameComponent.guestKin): a ward of
-    /// that people in the colony's keeping, until their family's time to ask has passed.</item>
     /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
     /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge.</item>
     /// </list>
@@ -38,7 +36,6 @@ namespace ColonyCouncil
             if (Current.Game != null)
             {
                 Read("debts", list, Debts);
-                Read("guest kin", list, GuestKin);
                 Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
             }
@@ -76,19 +73,6 @@ namespace ColonyCouncil
                 var terms = new TieTerms { goods = "Silver", count = m.amount, key = m.def, number = m.times, about = Refs.Of(m.pawn) };
                 View(list, "happenings:debt", Tie.Kind.Debt, Refs.Colony(Homes.ForMemo(m.home)), Refs.Of(m.faction), terms, m.tick,
                     asking ? Tie.Never : m.due, asking ? Tie.State.CalledIn : Tie.State.Open);
-            }
-        }
-
-        private static void GuestKin(List<Tie> list)
-        {
-            var kin = CouncilGameComponent.Instance?.guestKin;
-            if (kin == null) return;
-            foreach (var k in kin)
-            {
-                if (k?.pawn == null || k.faction == null) continue;
-                // Their family may come asking from the due day for GuestWillMath.AskWindowDays: until less days is when.
-                var terms = new TieTerms { key = k.forced ? "forced" : null, days = GuestWillMath.AskWindowDays, about = Refs.Of(k.pawn) };
-                View(list, "council:guestKin", Tie.Kind.Ward, Refs.Of(k.faction), Refs.Colony(Homes.Of(k.pawn)), terms, Tie.Never, k.due + GuestWillMath.AskWindowDays * GenDate.TicksPerDay);
             }
         }
 

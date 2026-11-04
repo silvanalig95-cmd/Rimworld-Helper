@@ -52,8 +52,9 @@ namespace ColonyCouncil
             /// <summary>How from regards to (number: the score).</summary>
             Regard,
             /// <summary>
-            /// From (a family's people) has a claim on someone kept by to (about: the one claimed): their family may come to
-            /// ask for them back. Pressing it is calling it in; letting them go keeps it, refusing breaks it.
+            /// From (a family's people) has a claim on to, one of theirs who joined another (about: who keeps them now):
+            /// their family may come to ask for them back. Pressing it is calling it in; letting them go keeps it, refusing
+            /// breaks it.
             /// </summary>
             Claim
         }

@@ -201,6 +201,75 @@ public static class LedgerMovesTests
             Check(!refused, "and the ledger always had room for one");
         }
 
+        // ---------------- Guest kin: a family's claim ----------------
+
+        {
+            const int Window = 15;
+            Check(TieRules.CanCallIn(Tie.Kind.Claim), "a claim can be called in: the family comes to ask");
+            int due = 40 * Day;
+            var claim = new Tie { kind = Tie.Kind.Claim, from = Ref.People(3), to = Ref.Person(9), since = 20 * Day, until = StoreMath.After(due, Window) };
+            claim.terms.count = due;
+            claim.terms.about = Ref.Colony(12);
+            Check(TieRules.StateAt(claim, due + Window * Day) == Tie.State.Open, "on the last tick of the window the family may still come");
+            Check(TieRules.StateAt(claim, due + Window * Day + 1) == Tie.State.Ended, "past the window, never: ended (the old store dropped it then)");
+            Check(TieRules.Move(claim, Tie.State.CalledIn, due + Day) && claim.until == Tie.Never, "the family comes: called in");
+            claim.until = due + Day + Window * Day;
+            var refused = new Tie { kind = Tie.Kind.Claim, state = Tie.State.CalledIn, until = claim.until };
+            Check(TieRules.Move(claim, Tie.State.Kept, due + 2 * Day) && claim.closed == due + 2 * Day, "they go home with them: kept");
+            Check(TieRules.Expire(refused, refused.until) && refused.state == Tie.State.Broken, "the council keeps them: a fortnight on, broken");
+            var lapsed = new Tie { kind = Tie.Kind.Claim, state = Tie.State.CalledIn };
+            Check(TieRules.Move(lapsed, Tie.State.Ended, 5), "nobody came after all: ended");
+            var many = new List<Tie>();
+            bool room = true;
+            for (int i = 0; i < 12; i++)
+            {
+                if (!TieRules.MakeRoom(many, Tie.Kind.Claim, Ref.People(3), Ref.Person(100 + i))) room = false;
+                many.Add(new Tie { kind = Tie.Kind.Claim, from = Ref.People(3), to = Ref.Person(100 + i) });
+            }
+            Check(room, "a claim is on the one who joined: twelve from one people all have room");
+
+            // The old list (CouncilGameComponent.guestKin) against the ledger's open claims: joined (again: the old one
+            // goes), each hour the gone and the lapsed go, and the first whose time has come and who can be asked is.
+            var r = new Random(3);
+            var oldKin = new List<(int pawn, int due)>();
+            var ties = new List<Tie>();
+            bool same = true;
+            int now = 0;
+            for (int step = 0; step < 3000; step++)
+            {
+                now += r.Next(0, Day / 3);
+                if (r.Next(4) == 0) TieRules.Tidy(ties, now);
+                int p = r.Next(1, 12);
+                if (r.Next(3) == 0)
+                {
+                    int d = now + r.Next(10, 31) * Day;
+                    oldKin.RemoveAll(k => k.pawn == p);
+                    oldKin.Add((p, d));
+                    foreach (var t in ties.Where(t => t.state == Tie.State.Open && t.to == Ref.Person(p))) TieRules.Move(t, Tie.State.Ended, now);
+                    var t2 = new Tie { kind = Tie.Kind.Claim, from = Ref.People(1), to = Ref.Person(p), since = now, until = StoreMath.After(d, Window) };
+                    t2.terms.count = d;
+                    ties.Add(t2);
+                }
+                else
+                {
+                    int gone = r.Next(1, 30);
+                    oldKin.RemoveAll(k => k.pawn == gone || now > k.due + Window * Day);
+                    foreach (var t in ties.Where(t => t.state == Tie.State.Open).ToList())
+                        if (t.to == Ref.Person(gone) || now > t.terms.count + Window * Day) TieRules.Move(t, Tie.State.Ended, now);
+                    int ready = r.Next(1, 12);
+                    var o = oldKin.Where(k => now >= k.due).FirstOrDefault(k => k.pawn == ready);
+                    if (o.pawn != 0) oldKin.Remove(o);
+                    var mine = ties.Where(t => t.state == Tie.State.Open && now >= t.terms.count).FirstOrDefault(t => t.to == Ref.Person(ready));
+                    if (mine != null) TieRules.Move(mine, Tie.State.CalledIn, now);
+                    if ((o.pawn != 0) != (mine != null)) same = false;
+                }
+                var open = ties.Where(t => t.state == Tie.State.Open && TieRules.StateAt(t, now) == Tie.State.Open).Select(t => (t.to.id, t.terms.count)).ToList();
+                var theirs = oldKin.Where(k => now <= k.due + Window * Day).ToList();
+                if (!open.SequenceEqual(theirs)) same = false;
+            }
+            Check(same, "three thousand joinings and hours: the ledger's open claims are the old list's, and the same one is pressed");
+        }
+
         return n;
     }
 }

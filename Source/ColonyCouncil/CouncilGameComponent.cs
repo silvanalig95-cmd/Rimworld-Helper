@@ -74,7 +74,8 @@ namespace ColonyCouncil
         /// <summary>Those the council kept from moving on, and what it owes them (Social/MovingOnHeld.cs).</summary>
         public List<HeldBack> movingOnHeld = new List<HeldBack>();
         /// <summary>Those who joined from a Hospitality visit, whose family may come to ask for them back (Integrations/GuestWill.cs).</summary>
-        public List<GuestKin> guestKin = new List<GuestKin>();
+        /// <summary>An older save's guest kin, read on load and moved into the world ledger (Claim ties: GuestKin).</summary>
+        private List<GuestKin> oldGuestKin;
         /// <summary>Weddings the council planned with the couple, and which couples it asked (Social/WeddingPlans.cs).</summary>
         public List<WeddingPlan> weddingPlans = new List<WeddingPlan>();
         public List<string> weddingAsked = new List<string>();
@@ -244,6 +245,9 @@ namespace ColonyCouncil
         /// <summary>An older save's guest kin, moved into the world ledger (GuestWill.cs, GuestKin).</summary>
         private void MoveToLedger()
         {
+            if (oldGuestKin == null) return;
+            GuestKin.Adopt(oldGuestKin);
+            oldGuestKin = null;
         }
 
         public override void ExposeData()
@@ -257,7 +261,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref sharedNameAsked, "sharedNameAsked", LookMode.Value);
             Scribe_Collections.Look(ref movingOnAsked, "movingOnAsked", LookMode.Value);
             Scribe_Collections.Look(ref movingOnHeld, "movingOnHeld", LookMode.Deep);
-            Scribe_Collections.Look(ref guestKin, "guestKin", LookMode.Deep);
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref oldGuestKin, "guestKin", LookMode.Deep);
             Scribe_Collections.Look(ref weddingPlans, "weddingPlans", LookMode.Deep);
             Scribe_Collections.Look(ref weddingAsked, "weddingAsked", LookMode.Value);
             Scribe_Collections.Look(ref nextSteps, "nextSteps", LookMode.Deep);
@@ -329,8 +333,7 @@ namespace ColonyCouncil
                 if (movingOnAsked == null) movingOnAsked = new List<string>();
                 movingOnHeld ??= new List<HeldBack>();
                 movingOnHeld.RemoveAll(h => h?.pawn == null || h.kind == null);
-                guestKin ??= new List<GuestKin>();
-                guestKin.RemoveAll(k => k?.pawn == null || k.faction == null);
+                oldGuestKin?.RemoveAll(k => k?.pawn == null || k.faction == null);
                 weddingPlans ??= new List<WeddingPlan>();
                 weddingPlans.RemoveAll(w => w?.a == null || w.b == null);
                 weddingAsked ??= new List<string>();
