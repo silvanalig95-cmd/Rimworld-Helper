@@ -214,6 +214,7 @@ namespace ColonyCouncil
                         }
                         f.trades = f.stance != Stance.Sour && Trades(s);
                         f.eventHere = eventPlaces.Contains(Ref.Town(s.ID));
+                        f.truce = home != null && Truces.KeepsAway(s.Faction, home);
                     }
                 }
                 else if (wo is Caravan c)

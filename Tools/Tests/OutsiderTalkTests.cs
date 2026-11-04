@@ -36,8 +36,8 @@ public static class OutsiderTalkTests
         C(OutsiderTalkMath.Cost(OutsiderAct.Provoke) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Duel) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Letter) == 0f
           && OutsiderTalkMath.Cost(OutsiderAct.Chat) == 1f && OutsiderTalkMath.Cost(OutsiderAct.Gift) == 1f, "hard words, a challenge and a letter ask no patience; the rest one each");
         var asks = Enum.GetValues(typeof(OutsiderAct)).Cast<OutsiderAct>().Where(OutsiderTalkMath.Asks).ToList();
-        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour }),
-            "the asks: news, a good word, a lesson, a favour, an invitation, getting to know them, courting, faith, a debt of honour called in");
+        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour, OutsiderAct.SpeakPact }),
+            "the asks: news, a good word, a lesson, a favour, an invitation, getting to know them, courting, faith, a debt of honour called in, a pact");
         C(!OutsiderTalkMath.Asks(OutsiderAct.Gift) && !OutsiderTalkMath.Asks(OutsiderAct.Meal) && !OutsiderTalkMath.Asks(OutsiderAct.Chat), "a gift, a meal and a chat are offers, not asks");
         C(!OutsiderTalkMath.Pushy(0) && !OutsiderTalkMath.Pushy(1) && OutsiderTalkMath.Pushy(2) && OutsiderTalkMath.Pushy(5), "the third ask in a row is pushy");
         C(OutsiderTalkMath.PushyWarmth < 0f && OutsiderTalkMath.PushyRegard < 0f && OutsiderTalkMath.PushyRegard > -5f, "pushy costs a little regard, not much");
@@ -246,6 +246,8 @@ public static class OutsiderTalkTests
         .Concat(new[] { "favour", "promise", "claim", "debt", "fealty", "grudge" }.SelectMany(k => Expand("tie:" + k, " :ours :theirs :you :due")))
         // A debt of honour (Diplomacy/FavoursOwed.cs): its own family, apart from a favour to bring.
         .Concat(Expand(FactsMath.HonourTag, " :ours :theirs :you :due"))
+        // A pact or a truce with their people (Diplomacy/FactsPacts.cs).
+        .Concat(Expand(PactMath.PactTag, " :ours :theirs :due :defence :trade")).Concat(Expand(PactMath.TruceTag, " :ours :theirs :due"))
         // The region (Text/Facts/FactsRegion.cs): their town's fortune and founding, a new town near.
         .Concat(FactsMath.RegionTags)
         .ToHashSet();
@@ -267,6 +269,8 @@ public static class OutsiderTalkTests
         "BATTLEA", "BATTLEB", "SITUATION", "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "CAMP", "TRADERS",
         "NEWCOMER", "DAY", "RAIDERS", "DEAD", "BORN", "WEDDING", "DECREE", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND",
         "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "HONOURTO", "FAVOURWHY",
+        // A pact or a truce with their people (Diplomacy/FactsPacts.cs).
+        "PACTWITH", "TRUCEWITH",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

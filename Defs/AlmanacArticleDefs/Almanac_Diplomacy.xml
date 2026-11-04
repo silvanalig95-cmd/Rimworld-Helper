@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- The Almanac page on diplomacy (Source/ColonyCouncil/Diplomacy/; docs/design/stage2-diplomacy.md): its base, and
-       favors owed and called in (the rules in FavourMath.cs). -->
+  <!-- The Almanac page on diplomacy (Source/ColonyCouncil/Diplomacy/; docs/design/stage2-diplomacy.md): its base, favors
+       owed and called in (the rules in FavourMath.cs), and pacts and truces (the rules in PactMath.cs). -->
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_Diplomacy</defName>
     <label>diplomacy</label>
     <category>Council</category>
     <order>16</order>
-    <summary>A good turn big enough leaves a debt of honor between the colony and a people, either way. The colony can call in what it is owed, and the peoples call in what the colony owes them when the world shows they are in need.</summary>
+    <summary>A good turn big enough leaves a debt of honor between the colony and a people, either way. The colony can call in what it is owed, and the peoples call in what the colony owes them when the world shows they are in need. A truce keeps a people at war away for a season or a year, and a pact with a friend brings their fighters or their trade.</summary>
     <tip>Call a debt in while their head thinks well of the colony: at a regard of 20 or more they always honor it.</tip>
-    <description>The colony's dealings with the peoples around it are kept as ties between two sides: what one owes the other, what was promised, what is held against whom. A town's card on the region map shows the debts of honor between its people and the colony and what the colony can do, each greyed with why not. The region window's Peoples has all of it, what is owed each way at its top and a card for each people, and its Here and away has who is here from outside and who of the colony's people is away. The map's Stance and ties lens draws each debt as a dotted line from home.
+    <description>The colony's dealings with the peoples around it are kept as ties between two sides: what one owes the other, what was promised, what is held against whom. A town's card on the region map shows the debts of honor between its people and the colony and what the colony can do, each greyed with why not. The region window's Peoples has all of it, what is owed each way at its top and a card for each people, and its Here and away has who is here from outside and who of the colony's people is away. The map's Stance and ties lens draws each debt as a dotted line from home, a pact as a solid line and a truce as a dashed one; the Threats lens dims a town whose people hold a truce with the colony.
 
 When the colony does a people a good turn of size 10 or more in their memory, they owe the colony a debt of honor for it, and the letter that tells of it says so (or, when no letter comes, the evening's news). A notable helped in person, freed or tended or well hosted, owes the colonist who did it. When a people does the colony a good turn of that size (their fighters in a fight, relief, medicine sent when asked by letter, lessons, a raiders' camp struck), the colony owes them.</description>
     <sections>
@@ -29,7 +29,7 @@ When the colony does a people a good turn of size 10 or more in their memory, th
       </li>
       <li>
         <heading>Calling a debt in</heading>
-        <text>The colony calls one in by a letter or a call to their head (or to the notable who owes it in person), from the region map's town panel or the letters, or face to face with someone of theirs at the colony ("Ask a favor of their people" when talking with them). What they can do now is listed, each greyed with why not: a load of goods (food, medicine, wood, steel or silver by their ways, about 400 silver's worth from a steady town, three quarters of that from a struggling one, a quarter more from a flourishing one), brought by their porters or with the answer's messenger; a word for the colony with a third people they are on good terms with (10 goodwill, said in that people's own letter); a colonist of the colony they hold, set down at the edge of the colony's land to walk home; or their help toward peace with a people at war with the colony, a promise kept for a year that the truce talks of a later release will read.</text>
+        <text>The colony calls one in by a letter or a call to their head (or to the notable who owes it in person), from the region map's town panel or the letters, or face to face with someone of theirs at the colony ("Ask a favor of their people" when talking with them). What they can do now is listed, each greyed with why not: a load of goods (food, medicine, wood, steel or silver by their ways, about 400 silver's worth from a steady town, three quarters of that from a struggling one, a quarter more from a flourishing one), brought by their porters or with the answer's messenger; a word for the colony with a third people they are on good terms with (10 goodwill, said in that people's own letter); a colonist of the colony they hold, set down at the edge of the colony's land to walk home; their help toward peace with a people at war with the colony, a promise kept for a year that their truce answer reads as if that people thought 20 better of the colony; or, while a threat is on a home, their fighters, whose band walks in some hours later as a defense partner's does.</text>
         <table>
           <li>Their head's regard of the colony | They honor it</li>
           <li>20 or more | always</li>
@@ -44,7 +44,35 @@ When the colony does a people a good turn of size 10 or more in their memory, th
       </li>
       <li>
         <heading>Settings</heading>
-        <text>The section "Diplomacy" of the settings has "Favors owed and called in". Off, no debt is made or called in, and those open run out by their terms. Later releases of the diplomacy add their own parts to that section.</text>
+        <text>The section "Diplomacy" of the settings has "Favors owed and called in", "Pacts and truces", and "Truces keep raids away" (a hook on the game's choice of raiders, with the deeper game hooks). Off, no debt, pact or truce is made or called in, and those open run out by their terms. Later releases of the diplomacy add their own parts to that section.</text>
+      </li>
+      <li>
+        <heading>Truces</heading>
+        <text>A truce can be offered to a people at war with the colony when the colony has beaten a raid of theirs in the last 15 days, holds one of their notables or their kin in its cells, or a friend of both has called in a debt for peace. The offer is a letter or a call to their head (their people's card, "Offer a truce"): a season or a year, and a price either way, the colony's silver, theirs, or their captives in the colony's cells returned. How they take it follows their goodwill, a raid just beaten, one of theirs held, a friend's word, the term and the price. Now and then, after a raid of theirs is beaten, they offer one themselves. Agreed, their envoy walks to the colony's gate under their sign of parley, vouched for by a people at peace with both, and the colony's speaker walks out to them (with the silver when that is the price) and they swear it there. When a colonist has sworn vengeance on them, that colonist has their say before the council first, and the council may send the envoy home.</text>
+        <table>
+          <li>Age | The colony's word | Their way</li>
+          <li>Tribal | a peace at the river | green branches carried between camps</li>
+          <li>Medieval | a truce under a flag | a truce sworn on the hilt</li>
+          <li>Industrial | a ceasefire | terms signed at a crossing</li>
+          <li>Spacer | a ceasefire by comms | terms logged and witnessed</li>
+        </table>
+        <after>While it holds, the storyteller doesn't send their raids to that home, Rimfolk's own raids keep away, and their raiders' camp near it breaks up. Once per truce their firebrands may raid anyway, one truce in ten (15% for a people of bitter ways), at 0.6 of the game's threat points, and that breaks it, as any raid or ambush of theirs does. At its end it is a peace if their goodwill has come to 0, and runs out otherwise; the people's card says how far their goodwill is from peace.</after>
+      </li>
+      <li>
+        <heading>Pacts</heading>
+        <text>A pact is sworn with a people at peace with the colony at goodwill 20 or more, by a letter or a call to their head ("Propose a pact"), or face to face with one of theirs ("Speak of a pact"); a friend whose head thinks 50 or more of the colony, with an enemy in common, may offer one once a year at most. It runs a year, and at its end they offer to keep it another while they still think well enough of the colony. The Empire makes truces, but keeps its own oaths and makes no pacts. A defense pact: each comes when the other is attacked. A trade pact: each season a trader caravan of theirs comes to the colony, and a cart of the colony's surplus (about 250 silver's worth of the good chosen when it was sworn) is carried out to the gate for their porters, who pay four fifths of its worth in silver.</text>
+      </li>
+      <li>
+        <heading>Calling a defense pact in</heading>
+        <text>While a threat is on a home, "Call them" on their card or the alert makes the call by the colony's means: the caller at a comms console when both sides can use one, else a signal fire laid and lit by the gate where their watchers see it (20 wood, a fire on the hill to a tribe, a beacon for their riders to a medieval people). Their band walks in some hours later, more the further their town, and fights beside the colony. At most once a season a pact; nine times in ten they come, and once their riders are elsewhere. If the attacker is their friend, they decline and the pact ends without blame. Their fallen leave the colony owing them in turn. A debt of honor called in for fighters brings their band the same way.</text>
+      </li>
+      <li>
+        <heading>Their call to arms</heading>
+        <text>When a town of theirs within reach is attacked (a war in the world near it, or with Faction Territories an invasion of it), a defense partner's letter asks the colony for fighters, and so may a people the colony owes a debt of honor. Two of the colony's grown people or more set out by caravan for their town within five days. There the fight is on the game's caravan battle map beside the town, their attackers' band at half the home's threat points against the colony's people and a few of theirs; with Faction Territories its own invasion fight is joined at the town. Arriving keeps the colony's word. Refused, or nobody set out in time, the pact is broken (a debt, refused).</text>
+      </li>
+      <li>
+        <heading>Breaking them</heading>
+        <text>The colony breaks a truce or a pact by attacking that people, their caravans, visitors or towns, or by refusing a call; it may end a pact by letter without blame. Broken by the colony, each people at peace with a town in reach hears that it broke its word. With Factional War, a battle on the colony's land names a pact or truce partner among the two sides: fighting beside a pact partner keeps the pact, and harm done to a truce partner's fighters breaks the truce.</text>
       </li>
     </sections>
     <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>

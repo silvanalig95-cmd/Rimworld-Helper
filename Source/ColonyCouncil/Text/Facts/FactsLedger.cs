@@ -80,6 +80,8 @@ namespace ColonyCouncil
                 fact.toName = NameOf(s, honour.tie.to);
                 FactsMath.AddHonour(f, fact, DipWords.Why(honour.tie));
             }
+            // A pact or a truce with their people (Diplomacy/FactsPacts.cs): tie:pact, tie:truce, {PACTWITH}, {TRUCEWITH}.
+            PactTies(s, f, now);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

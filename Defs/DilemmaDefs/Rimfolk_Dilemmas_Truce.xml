@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A truce with a people one of the colony swore vengeance on (Source/ColonyCouncil/Diplomacy/TruceObjection.cs): their
+    envoy stands at the gate under their sign of parley, and the avenger has their say before the council first. A the
+    avenger, X their envoy, {FACTION} their people, {VICTIM} the one the vengeance is for. Tag "pet": the vengeance is for
+    an animal. Only from TruceObjection.Ask; never on its own schedule. Sworn all the same, the avenger takes it as peace
+    with the killers (the vendettas' own thought); sent away, their people feel turned away.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmTruce_Avenger</defName>
+    <label>a truce with the killers</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_TruceAvenger</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} waits at the gate to swear a truce, and {A_nameDef} has asked the council to send {X_objective} away. {A_nameDef} swore vengeance on {FACTION} for {VICTIM}, and says a truce with them would make that oath worth nothing.</li>
+      <li>Their envoy {X_nameDef} is at the gate under the sign of parley. {A_nameDef} has not forgotten {VICTIM}, and stood up before the council to say the colony owes {FACTION} nothing but a fight.</li>
+      <li>[pet] {A_nameDef} swore to make {FACTION} pay for {VICTIM}, and now their envoy {X_nameDef} waits at the gate with a truce. {A_nameDef} wants the council to hear what that means to {A_objective} before anyone walks out there.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Swear the truce all the same</label>
+        <outcome>The council heard {A_nameDef} out and sent the speaker out to {X_nameDef} all the same. {A_nameDef} watched from the wall and said nothing.</outcome>
+        <ways><openness>1</openness><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TruceSwear" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Vendetta_Betrayed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send their envoy away</label>
+        <outcome>The council sided with {A_nameDef}. {X_nameDef} was told at the gate there would be no truce, and turned for home.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TruceTurnAway" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_ObjectionHeard</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

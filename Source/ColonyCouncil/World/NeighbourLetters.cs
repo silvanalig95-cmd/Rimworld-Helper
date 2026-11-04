@@ -302,8 +302,8 @@ namespace ColonyCouncil
                                 && Find.WorldGrid.ApproxDistanceInTiles(site.Tile, town.Tile) <= 12f)
                                 Add("site:" + site.ID, "CC_Letter_Topic_Site".Translate(site.LabelCap.Named("SITE"), Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve());
                 }
-                // A debt of honour to call in, or the colony's word owed on a call of theirs (Diplomacy/DiplomacyLetters.cs).
-                else if (DiplomacyLetters.Owns(p)) list.AddRange(DiplomacyLetters.Topics(n));
+                // A debt of honour to call in, or the colony's word owed on a call of theirs; a pact's kind, a truce's term (Diplomacy/DiplomacyLetters.cs).
+                else if (DiplomacyLetters.Owns(p)) list.AddRange(DiplomacyLetters.Topics(n, p));
             }
             catch (Exception e)
             {

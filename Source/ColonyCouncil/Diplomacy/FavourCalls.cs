@@ -15,8 +15,9 @@ namespace ColonyCouncil
     /// one of theirs at the colony (DiplomacyActs.cs). What they can do now, each greyed with why not: a load of goods by
     /// their town's fortune, brought by their porters; a word for the colony with a third people (10 goodwill, said in that
     /// people's letter); a colonist of the colony they hold, set down at the edge of the colony's land to walk home; their
-    /// help toward peace with a people at war with the colony (a promise the truce's answer reads: stage 2, release 2a.2).
-    /// Fighters come with that release (decision 3). They honour it while their head (or the notable who owes) thinks well
+    /// help toward peace with a people at war with the colony (a promise the truce's answer reads: Truces.cs); their fighters
+    /// while a threat is on a home (their band walks in some hours later, as a defence pact's does: Pacts.cs, release 2a.2,
+    /// decision 3). They honour it while their head (or the notable who owes) thinks well
     /// of the colony (20 or more), seven times in ten at a lower regard, four in ten below 0; a refusal is their letter (or
     /// their word face to face) and the deed "brokeWord".
     /// </summary>
@@ -32,7 +33,10 @@ namespace ColonyCouncil
             public string label;
             public string why;
 
-            public string Code => FavourMath.AskCode(ask, arg);
+            /// <summary>Another purpose's own code for it (a truce's price, a trade pact's cart), or null for a debt's ask.</summary>
+            public string code;
+
+            public string Code => code ?? FavourMath.AskCode(ask, arg);
         }
 
         // ================= Whether it can be called in =================
@@ -102,7 +106,24 @@ namespace ColonyCouncil
                     ask = FavourAsk.Peace, arg = Refs.Of(e).ToString(), label = DipWords.P("CC_Dip_Opt_Peace", DipWords.People(e).Named("PEOPLE")),
                     why = PeacePromised(f, e) != null ? DipWords.P("CC_Dip_Why_Promised", DipWords.People(f).Named("PEOPLE")) : null
                 });
+            // Their fighters, only while a threat is on a home (release 2a.2).
+            list.Add(new Option
+            {
+                ask = FavourAsk.Fighters, arg = home != null ? Homes.KeyOf(home).ToString() : "", label = DipWords.P("CC_Dip_Opt_Fighters", DipWords.People(f).Named("PEOPLE")),
+                why = FightersWhy(f, home)
+            });
             return list;
+        }
+
+        /// <summary>Why their fighters can't be asked for now: no threat on the home, a band already on its land, no fighters of theirs to send.</summary>
+        public static string FightersWhy(Faction f, Map home)
+        {
+            if (home == null) return DipWords.P("CC_Dip_Why_NoHome");
+            if (!MapFacts.ThreatOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
+            if (CampTracker.WarBandAt(home) != null) return PactWords.P("CC_Pact_Why_BandHere");
+            if (f?.def?.pawnGroupMakers == null || !f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat))
+                return DipWords.P("CC_Dip_Why_NoFighters", DipWords.People(f).Named("PEOPLE"));
+            return null;
         }
 
         /// <summary>The goods a kind means for them, and how many make the load (by their nearest town's fortune).</summary>
@@ -262,7 +283,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("favours: honoured", e);
                 done = null;
             }
-            if (done == null && ask == FavourAsk.Captive)
+            if (done == null && (ask == FavourAsk.Captive || ask == FavourAsk.Fighters))
             {
                 // Willing, but it couldn't be done now (no way onto the colony's land): the debt stands, open again.
                 FavoursOwed.Close(t, Tie.State.Open);
@@ -270,7 +291,8 @@ namespace ColonyCouncil
                 a.line = DipWords.T("CC_Dip_Ans_NotNow", DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"));
                 return a;
             }
-            FavoursOwed.Close(t, Tie.State.Kept);
+            // Their fighters are kept when the band walks in (Pacts.cs); everything else is done now.
+            if (ask != FavourAsk.Fighters) FavoursOwed.Close(t, Tie.State.Kept);
             a.line = DipWords.T("CC_Dip_Ans_Honoured", who.Named("WHO"), DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"))
                      + (done.NullOrEmpty() ? "" : " " + done);
             return a;
@@ -311,6 +333,17 @@ namespace ColonyCouncil
                     var p = DipWords.PawnOf(arg);
                     if (p == null || home == null) return null;
                     return WalkHome(f, p, home) ? DipWords.P("CC_Dip_Done_Captive", p.Named("PAWN")) : null;
+                }
+                case FavourAsk.Fighters:
+                {
+                    var at = int.TryParse(arg, out int key) ? Homes.MapOf(key) ?? home : home;
+                    if (at == null) return null;
+                    // Their band sets out now and walks in some hours later (a letter's answer adds its walk back).
+                    var town = WorldSituationWorker.NearestTown(f, at);
+                    float hours = PactMath.BandHours(town != null ? WorldSituationWorker.Distance(at, town) : 6f) + (byLetter ? 12f : 0f);
+                    t.terms.days = Find.TickManager.TicksGame / (float)FavourMath.DayTicks + hours / 24f;
+                    WorldLedger.Touch(t);
+                    return DipWords.P("CC_Dip_Done_Fighters", DipWords.People(f).Named("PEOPLE"));
                 }
                 default:
                 {

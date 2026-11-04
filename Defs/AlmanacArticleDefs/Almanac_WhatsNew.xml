@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.88.0</version>
+        <date>4 November 2026</date>
+        <title>Pacts and truces</title>
+        <points>
+          <li>After beating a raid, holding one of their notables or kin, or with a friend's word for peace, the colony can offer a people at war a truce for a season or a year, with a price either way; they now and then offer one themselves after a defeat.</li>
+          <li>Their envoy walks to the gate under their sign of parley and the colony's speaker walks out to swear it there; a colonist sworn to vengeance on them has their say before the council first.</li>
+          <li>While a truce holds, their raids keep away from that home and their raiders' camp breaks up; once per truce their firebrands may raid anyway, and at its end it is a peace if their goodwill has come round.</li>
+          <li>Defense and trade pacts with friends, for a year and renewable: by letter, face to face ("Speak of a pact"), or offered by them; the Empire makes truces but no pacts.</li>
+          <li>During a threat, call a defense partner by the comms console or a signal fire by the gate, and their band walks in some hours later; when their town is attacked, send fighters by caravan and fight beside them there.</li>
+          <li>A trade pact brings their caravan each season and takes a cart of the colony's surplus for silver.</li>
+          <li>Debts of honor can now be called in for fighters, both ways.</li>
+          <li>Attacking a partner breaks a pact or truce, and the peoples in reach hear of it; it all shows on the people and town cards, the inbox and the map's lenses.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.87.0</version>
         <date>4 November 2026</date>
         <title>One look across every window</title>

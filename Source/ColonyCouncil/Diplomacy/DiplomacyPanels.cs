@@ -36,15 +36,21 @@ namespace ColonyCouncil
 
         private const float ButtonW = 170f;
 
-        /// <summary>An act's button: greyed with its why-not in the tooltip when it can't be now. Returns whether it was used.</summary>
+        /// <summary>Why an act can't be done now, for the kit's buttons (null: it can).</summary>
+        private static string WhyNot(DipAct a) => a.why ?? (a.run == null ? a.tip ?? "" : null);
+
+        /// <summary>An act's button (the kit's card act): greyed with its why-not in the tooltip when it can't be now. Returns whether it was used.</summary>
         public static bool ActButton(Rect r, DipAct a)
         {
             if (a == null) return false;
-            bool ok = a.why == null && a.run != null;
-            bool clicked = Widgets.ButtonText(r, a.label.Truncate(r.width - 8f), true, true, ok);
-            string tip = ok ? a.tip : (a.why ?? a.tip);
-            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
-            if (!clicked || !ok) return false;
+            return UiKit.ActButton(r, a.label, WhyNot(a), a.tip) && Run(a);
+        }
+
+        /// <summary>A row's act (the kit's small one on the right of a row). Returns whether it was used.</summary>
+        public static bool RowActButton(Rect r, DipAct a) => a != null && UiKit.RowAct(r, a.label, WhyNot(a), a.tip) && Run(a);
+
+        private static bool Run(DipAct a)
+        {
             try
             {
                 a.run();
@@ -57,11 +63,15 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>A row: its words (a click opens what it names), a quieter note below, its act at the right. Returns the height used.</summary>
+        /// <summary>
+        /// A row: its words (a click opens what it names), a quieter note below, its act at the right (the kit's row act),
+        /// and when the act can't be done now, a line of why under the words. Returns the height used.
+        /// </summary>
         public static float Row(float x, float y, float w, DipRow r)
         {
             if (r == null) return 0f;
-            float textW = r.act != null ? w - ButtonW - 10f : w;
+            float actW = r.act != null ? UiKit.RowActWidth(r.act.label) : 0f;
+            float textW = r.act != null ? w - actW - 10f : w;
             Text.Font = GameFont.Small;
             float h = Text.CalcHeight(r.text, textW);
             var textRect = new Rect(x, y, textW, h);
@@ -85,8 +95,12 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Small;
                 used += nh;
             }
-            if (r.act != null) ActButton(new Rect(x + w - ButtonW, y, ButtonW, 26f), r.act);
-            return Mathf.Max(used, r.act != null ? 28f : 0f) + 4f;
+            if (r.act != null)
+            {
+                RowActButton(new Rect(x + w - actW, y, actW, 24f), r.act);
+                if (r.act.why != null) used += UiKit.WhyNotLine(x, y + used, textW, r.act.label, r.act.why);
+            }
+            return Mathf.Max(used, r.act != null ? 26f : 0f) + 4f;
         }
 
         /// <summary>A people's card. Returns the height used.</summary>
@@ -141,7 +155,7 @@ namespace ColonyCouncil
         public static float RowHeight(DipRow r, float w)
         {
             if (r == null) return 0f;
-            float tw = r.act != null ? w - ButtonW - 10f : w;
+            float tw = r.act != null ? w - UiKit.RowActWidth(r.act.label) - 10f : w;
             Text.Font = GameFont.Small;
             float t = Text.CalcHeight(r.text, tw);
             if (!r.note.NullOrEmpty())
@@ -150,7 +164,8 @@ namespace ColonyCouncil
                 t += Text.CalcHeight(r.note, tw);
                 Text.Font = GameFont.Small;
             }
-            return Mathf.Max(t, r.act != null ? 28f : 0f) + 4f;
+            if (r.act?.why != null) t += 18f;
+            return Mathf.Max(t, r.act != null ? 26f : 0f) + 4f;
         }
 
         /// <summary>
@@ -238,8 +253,9 @@ namespace ColonyCouncil
                     r.act = act;
                     if (act != null)
                     {
-                        ActButton(new Rect(rect.x, y, Mathf.Min(rect.width, ButtonW), 26f), act);
+                        ActButton(new Rect(rect.x, y, Mathf.Min(rect.width, UiKit.ActButtonWidth(act.label)), 26f), act);
                         y += 30f;
+                        if (act.why != null) y += UiKit.WhyNotLine(rect.x, y, rect.width, act.label, act.why) + 2f;
                     }
                 }
                 Reset();
@@ -272,7 +288,7 @@ namespace ColonyCouncil
                     var people = ThingRefs.Of(f);
                     string text = DipWords.P("CC_Dip_Week", ThingRefs.Link(DipWords.People(f), people).Named("PEOPLE"), DipWords.Need(need).Named("NEED"));
                     if (Homes.All.Count > 1 && home != null) text = Homes.Name(home) + ": " + text;
-                    var letter = FavourAsks.LetterFor(t);
+                    var letter = FavourAsks.AnyLetterFor(t);
                     Action open = letter != null ? (Action)(() => DiplomacyLinks.Open(letter)) : WeekModel.Page(DiplomacyPage);
                     rows.Add(new WeekRow
                     {

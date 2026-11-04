@@ -11,8 +11,10 @@ namespace ColonyCouncil
         Word,
         /// <summary>A colonist of the colony they hold, walked to the colony's land.</summary>
         Captive,
-        /// <summary>Their help toward peace with a people at war with the colony: a promise kept for the truce's answer (stage 2, release 2a.2).</summary>
-        Peace
+        /// <summary>Their help toward peace with a people at war with the colony: a promise the truce's answer reads (PactMath.TruceScore).</summary>
+        Peace,
+        /// <summary>Their fighters, only while a threat is on a home: their war band walks in some hours later (Diplomacy/Pacts.cs, release 2a.2).</summary>
+        Fighters
     }
 
     /// <summary>What a people asks when it calls in a debt of honour the colony owes it: only what the world shows they need.</summary>
@@ -27,7 +29,9 @@ namespace ColonyCouncil
         /// <summary>Their homeless taken in: the existing mission.</summary>
         Refugees,
         /// <summary>The colony's word on their side in a dispute (a blood feud, a contested seat).</summary>
-        Dispute
+        Dispute,
+        /// <summary>Fighters while their town within reach is attacked: two colonists or more set out for it (Diplomacy/CallsToArms.cs, release 2a.2).</summary>
+        Fighters
     }
 
     /// <summary>
@@ -125,6 +129,7 @@ namespace ColonyCouncil
                 case FavourNeed.Harvest:
                 case FavourNeed.Refugees: return MissionDays;
                 case FavourNeed.Dispute: return DisputeDays;
+                case FavourNeed.Fighters: return PactMath.SetOutDays;
                 default: return AnswerDays;
             }
         }

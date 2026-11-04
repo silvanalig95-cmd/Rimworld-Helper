@@ -85,6 +85,8 @@ namespace ColonyCouncil
                 }
             var season = GenLocalDate.Season(home);
             if (season == Season.Summer || season == Season.Fall || season == Season.PermanentSummer) Add(list, FavourNeed.Harvest);
+            // Their town within reach attacked: fighters (release 2a.2; answered far away, CallsToArms.cs).
+            if (Pacts.On && CallsToArms.Attacked(f, home, out _, out _)) Add(list, FavourNeed.Fighters);
             return list;
         }
 
@@ -116,6 +118,17 @@ namespace ColonyCouncil
         {
             if (t == null || f == null || home == null || t.state != Tie.State.Open) return false;
             int now = Now;
+            if (need == FavourNeed.Fighters)
+            {
+                // Fighters for their town: their letter asks; answered by the colony's caravan there (CallsToArms.cs).
+                if (!CallsToArms.Attacked(f, home, out var town, out var enemy)) return false;
+                if (!FavoursOwed.CallIn(t, FavourMath.NeedCode(need), FavourMath.DueDay(need, now))) return false;
+                t.terms.about = Refs.Of(town);
+                t.terms.count = enemy != null ? enemy.loadID + 1 : 0;
+                WorldLedger.Touch(t);
+                CallsToArms.Letter(t, f, home, town, enemy, false);
+                return true;
+            }
             if (FavourMath.ByMission(need))
             {
                 // The mission first: when it can't happen here, nothing was asked.
@@ -353,7 +366,8 @@ namespace ColonyCouncil
         {
             List<Tie> due = null;
             foreach (var t in FavoursOwed.Live())
-                if (t.state == Tie.State.CalledIn && FavoursOwed.ColonyOwes(t) && FavourMath.Overdue(t.terms.days, now))
+                if (t.state == Tie.State.CalledIn && FavoursOwed.ColonyOwes(t) && FavourMath.Overdue(t.terms.days, now)
+                    && !(FavourMath.ParseNeed(t.terms.goods, out var need) && need == FavourNeed.Fighters))
                     (due ??= new List<Tie>()).Add(t);
             if (due == null) return;
             foreach (var t in due) Refuse(t, true);
@@ -367,6 +381,16 @@ namespace ColonyCouncil
                 if (t.state == Tie.State.CalledIn && FavoursOwed.ColonyOwes(t))
                     list.Add(t);
             return list;
+        }
+
+        /// <summary>Their letter for this call (asking for goods or the colony's word, or for fighters), still in the letter stack, or null.</summary>
+        public static Letter AnyLetterFor(Tie t)
+        {
+            if (t == null) return null;
+            foreach (var l in Find.LetterStack.LettersListForReading)
+                if (l is ChoiceLetter_FavourAsk a && a.tie == t.id || l is ChoiceLetter_CallToArms c && c.tie == t.id)
+                    return l;
+            return null;
         }
 
         /// <summary>Their letter for this call, still in the letter stack, or null.</summary>

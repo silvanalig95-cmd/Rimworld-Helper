@@ -47,6 +47,7 @@
   <CC_Out_Act_Invite>Invite them to stay</CC_Out_Act_Invite>
   <!-- Stage 2 (Diplomacy/DiplomacyActs.cs): call in a debt of honor face to face -->
   <CC_Out_Act_AskFavour>Ask a favor of their people...</CC_Out_Act_AskFavour>
+  <CC_Out_Act_SpeakPact>Speak of a pact...</CC_Out_Act_SpeakPact>
   <CC_Out_Act_Befriend>Spend time getting to know them</CC_Out_Act_Befriend>
   <CC_Out_Act_Court>Court them</CC_Out_Act_Court>
   <CC_Out_Act_Faith>Talk faith</CC_Out_Act_Faith>

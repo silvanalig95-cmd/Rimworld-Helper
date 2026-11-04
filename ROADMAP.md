@@ -307,8 +307,8 @@ placeholder for the world event at a town, talk for towns given up or resettled.
 
 ### Stage 2: diplomacy (the Crusader Kings ideas, every one of the brainstorm's fourteen)
 Done already: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
-interactions. Still to build: favours owed and called in (3); pacts and truces with terms that can be broken, and what
-breaking costs (4); feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
+interactions; favours owed and called in (3, release 2a.1); pacts and truces with terms that can be broken, and what
+breaking costs (4, release 2a.2). Still to build: feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
 wards and hostages (7); ransom (8); swearing fealty to a stronger neighbour (9) and vassals of one's own, with Faction
 Territories' vassals (10); council tasks made concrete as letters, visits and caravans, with a new office, the keeper
 of secrets (11); schemes (12), now under the harm rule rather than non-violent only: swaying, befriending, courting and

@@ -446,6 +446,8 @@ wishPh.UnionWith(new[]
     "HOSPITAL", "DOCTOR",
     // The ties between the two sides (Facts.Ties): the party each is toward.
     "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST", "HONOURTO", "FAVOURWHY",
+    // A pact or a truce with their people (Diplomacy/FactsPacts.cs): the people it is with.
+    "PACTWITH", "TRUCEWITH",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

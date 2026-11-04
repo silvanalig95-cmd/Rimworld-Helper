@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Pacts and truces (Source/ColonyCouncil/Diplomacy/). Two pools the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call of the
+      new purposes "pact" (a pact proposed, or ended by the colony's letter) and "truce" (a truce offered to a people at
+      war), by how they took it: warm or cordial and cool (agreed), refusal (not); and their words in a letter of any
+      purpose while a pact or a truce holds (tie:pact, tie:pact:due, tie:truce, tie:truce:due; {PACTWITH}, {TRUCEWITH}
+      their own people's name). By their ways: theirLowtech, theirHightech; war (a people at war with the colony).
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the truce sworn at the gate (the speaker's
+      opening, parley, us; their envoy's terms, parleyterms, them; the oath, parleysworn, them) and of "Speak of a pact"
+      face to face (the colonist's ask, pactask, us; a word each, pacttalk; their answer, pactyes and pactno, them). One
+      sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Pacts</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- A truce offered -->
+        <li>[truce,warm,war] We are as tired of this as you are, {WRITER}. Our envoy will come to your gate to swear it.</li>
+        <li>[truce,cordial,war] Your terms are fair. We will send someone to your gate to swear them.</li>
+        <li>[truce,cool,war] We have read your terms. We will send someone to your gate to swear it, and no more than that.</li>
+        <li>[truce,cool,war,theirLowtech] The elders talked late into the night about your words. We will carry green branches to your gate.</li>
+        <li>[truce,cool,war,theirHightech] Your terms are acceptable. Expect our envoy at your gate, and see that nobody on your walls gets nervous.</li>
+        <li>[truce,cool,call] Fine. We'll send someone to your gate to make it official.</li>
+        <li>[truce,refusal,war] You beat one band of ours and think we will beg. We will not.</li>
+        <li>[truce,refusal,war,theirLowtech] The elders will not carry branches to your camp. Not this season.</li>
+        <li>[truce,refusal,war,theirHightech] Your terms were discussed and rejected. That's all.</li>
+        <li>[truce,refusal,call] No truce, {WRITER}. Don't call about it again.</li>
+        <!-- A pact proposed, or ended -->
+        <li>[pact,warm] We hoped you would ask, {WRITER}. My people will be glad of it.</li>
+        <li>[pact,warm,theirLowtech] It is a good thing to stand together. We will make the oath and keep it.</li>
+        <li>[pact,warm,theirHightech] Consider it signed on our side. We look forward to the year.</li>
+        <li>[pact,cordial] We've talked it over, and we accept, {WRITER}.</li>
+        <li>[pact,cordial,call] Good to hear from you, {WRITER}. Yes, we'll do it.</li>
+        <li>[pact,cool] We'll agree to it. Let's see how the year goes.</li>
+        <li>[pact,refusal] It's too much to promise right now, {WRITER}. Ask us again another time.</li>
+        <li>[pact,refusal,theirLowtech] The elders are not ready to swear to that. In time, perhaps.</li>
+        <li>[pact,refusal,theirHightech] Our council voted against it this time. It may come up again next year.</li>
+        <!-- While a pact holds -->
+        <li>[greetings,warm,tie:pact] Thank you for writing, {WRITER}. Our pact is the talk of the town in a good way.</li>
+        <li>[greetings,cordial,tie:pact:defence] Good to hear from you. Our people know your colony stands with us, and we with you.</li>
+        <li>[greetings,cordial,tie:pact:trade] Thank you for your letter. The traders here already count on your colony's cart each season.</li>
+        <li>[news,cordial,tie:pact] Here is our news, and since we are pact-bound, I'll tell you more than I tell most.</li>
+        <li>[warning,warm,tie:pact:defence] A warning from a friend under the pact is worth twice one from a stranger. Thank you.</li>
+        <li>[greetings,cool,tie:pact:due] We have your letter. Our minds are on the call between our peoples just now.</li>
+        <!-- While a truce holds -->
+        <li>[greetings,cool,tie:truce] The truce holds, and we have your letter. That is about as far as things go between us.</li>
+        <li>[greetings,curt,tie:truce,theirLowtech] Green branches don't make friends. Still, we read your words.</li>
+        <li>[news,cool,tie:truce] You want our news while the truce holds. Very well, a little.</li>
+        <li>[greetings,cordial,tie:truce:due] The truce runs out soon. I would not mind if it ended in a peace, {WRITER}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Pacts</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- The truce sworn at the gate -->
+        <li>[parley,us] You came under the sign of parley, and you'll leave under it.</li>
+        <li>[parley,us] Let's have it done, then, and nobody else hurt.</li>
+        <li>[parley,us,theirLowtech] We accept the green branches you carried here.</li>
+        <li>[parley,us,theirHightech] Let's go over the terms one more time.</li>
+        <li>[parleyterms,them] My people will keep their raiders off your land while it lasts.</li>
+        <li>[parleyterms,them] These are the terms we agreed, and I'll swear to them.</li>
+        <li>[parleyterms,them,theirLowtech] The elders send me with these branches and their word.</li>
+        <li>[parleysworn,them] It is sworn, and my people will hear of it tonight.</li>
+        <li>[parleysworn,them] Sworn, then, and may it hold.</li>
+        <li>[parleysworn,them,theirHightech] Done, and witnessed on both sides.</li>
+        <!-- Speaking of a pact face to face -->
+        <li>[pactask,us] I'd like to talk about a pact between our peoples.</li>
+        <li>[pactask,us] Our peoples could do more together than apart.</li>
+        <li>[pactask,us,theirLowtech] Would your elders swear an oath with us?</li>
+        <li>[pacttalk,them] That's a big thing to promise for my people.</li>
+        <li>[pacttalk,them] What would your colony give in return?</li>
+        <li>[pacttalk,us] We'd keep our side of it, every season.</li>
+        <li>[pactyes,them] Then it's agreed, and I'll tell my people so.</li>
+        <li>[pactyes,them,theirLowtech] Then it is sworn between us, and I'll carry it home.</li>
+        <li>[pactno,them] I can't promise that for my people, not yet.</li>
+        <li>[pactno,them] Ask me again when we know each other better.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

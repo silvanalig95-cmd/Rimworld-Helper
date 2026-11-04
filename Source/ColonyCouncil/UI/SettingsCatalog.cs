@@ -366,6 +366,8 @@ namespace ColonyCouncil
             // Diplomacy (Diplomacy/): stage 2's parts, each release adding its own.
             Section("CC_SetSec_Diplomacy");
             Toggle("diplomacyFavours", "CC_Settings_DiplomacyFavours", "CC_SetNote_DiplomacyFavours", "factionMemory");
+            Toggle("diplomacyPacts", "CC_Settings_DiplomacyPacts", "CC_SetNote_DiplomacyPacts", "factionMemory");
+            Toggle("truceRaids", "CC_Settings_TruceRaids", "CC_SetNote_TruceRaids", "diplomacyPacts,deepHooks");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");

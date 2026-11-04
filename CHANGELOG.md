@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pacts and truces
+
+*4 November 2026, version 0.88.0*
+
+- After beating a raid, holding one of their notables or kin, or with a friend's word for peace, the colony can offer a people at war a truce for a season or a year, with a price either way; they now and then offer one themselves after a defeat.
+- Their envoy walks to the gate under their sign of parley and the colony's speaker walks out to swear it there; a colonist sworn to vengeance on them has their say before the council first.
+- While a truce holds, their raids keep away from that home and their raiders' camp breaks up; once per truce their firebrands may raid anyway, and at its end it is a peace if their goodwill has come round.
+- Defense and trade pacts with friends, for a year and renewable: by letter, face to face ("Speak of a pact"), or offered by them; the Empire makes truces but no pacts.
+- During a threat, call a defense partner by the comms console or a signal fire by the gate, and their band walks in some hours later; when their town is attacked, send fighters by caravan and fight beside them there.
+- A trade pact brings their caravan each season and takes a cart of the colony's surplus for silver.
+- Debts of honor can now be called in for fighters, both ways.
+- Attacking a partner breaks a pact or truce, and the peoples in reach hear of it; it all shows on the people and town cards, the inbox and the map's lenses.
+
 ## One look across every window
 
 *4 November 2026, version 0.87.0*
