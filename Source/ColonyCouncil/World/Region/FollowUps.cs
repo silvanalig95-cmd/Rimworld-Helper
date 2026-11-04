@@ -170,7 +170,8 @@ namespace ColonyCouncil
                 {
                     try
                     {
-                        if (f.people == null || f.people.defeated || FollowUpsMath.Lapsed(f.endTick, now))
+                        // Their people gone, the town that was to grow gone from the map, or waited too long: let go.
+                        if (f.people == null || f.people.defeated || FollowUpsMath.Lapsed(f.endTick, now) || f.kind == "town" && GrownTowns.TownOf(f) == null)
                         {
                             mine.waiting.Remove(f);
                             Release(f);

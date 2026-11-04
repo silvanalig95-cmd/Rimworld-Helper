@@ -49,9 +49,10 @@ namespace ColonyCouncil
                     flags = s.flags.ToList()
                 };
                 var x = s.ctx.stranger;
-                if (x != null && !x.Discarded)
+                if (x != null)
                 {
-                    fu.who = x;
+                    // His name is kept even when the game has let him go; the pawn only while it has him.
+                    fu.who = x.Discarded ? null : x;
                     fu.whoName = x.LabelShort;
                     fu.whoLast = (x.Name as NameTriple)?.Last;
                     fu.whoGender = x.gender;
@@ -95,24 +96,28 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>His people can raise a camp near the home: raiders' camps on, none there now, his people at war with the colony and able to hold one.</summary>
+        /// <summary>
+        /// His people can raise a camp near the home: raiders' camps on, fights in world events allowed (the band's own
+        /// event is a fight), none there now, his people at war with the colony and able to hold one.
+        /// </summary>
         public static bool CanCamp(Map home, Faction people) =>
-            RaidersCamps.On && IncidentWorker_Happening.ScenarioFightsPossible && RaidersCamps.CampOf(home) == null && people != null && !people.defeated
+            RaidersCamps.On && IncidentWorker_Happening.FightsPossible && RaidersCamps.CampOf(home) == null && people != null && !people.defeated
             && people.HostileTo(Faction.OfPlayer) && RaidersCamps.CanOwn(people);
 
         /// <summary>
         /// The people he rides with to the gate: his own while they are at peace with the colony, else the people at peace
         /// with the town nearest the home (never those who hunted his father down). Null when there is none.
         /// </summary>
-        public static Faction Banner(Map home, FollowUp f)
+        public static Faction Banner(Map home, FollowUp f, bool othersFirst = false)
         {
             if (home == null || f?.people == null) return null;
-            if (!f.people.defeated && Visitors.Usable(f.people) && WorldSituationWorker.NearestTown(f.people, home) != null) return f.people;
+            bool own = !f.people.defeated && Visitors.Usable(f.people) && WorldSituationWorker.NearestTown(f.people, home) != null;
+            if (own && !othersFirst) return f.people;
             Faction best = null;
             float bestTiles = float.MaxValue;
             foreach (var p in Find.FactionManager.AllFactionsListForReading)
             {
-                if (p == null || p == f.other || !FactionMemory.Remembers(p) || !Visitors.Usable(p)) continue;
+                if (p == null || p == f.other || p == f.people || !FactionMemory.Remembers(p) || !Visitors.Usable(p)) continue;
                 var town = WorldSituationWorker.NearestTown(p, home);
                 if (town == null) continue;
                 float d = WorldSituationWorker.Distance(home, town);
@@ -122,7 +127,7 @@ namespace ColonyCouncil
                     bestTiles = d;
                 }
             }
-            return best;
+            return best ?? (own ? f.people : null);
         }
     }
 
@@ -422,6 +427,9 @@ namespace ColonyCouncil
     /// </summary>
     public class SituationWorker_SonExile : SituationWorker_Son
     {
+        /// <summary>Turned out by his own people, he rides with another people at peace with the colony when there is one.</summary>
+        protected override Faction PeopleFor(Map map, FollowUp f) => WarlordSons.Banner(map, f, true);
+
         protected override bool CastBranch(WorldSituation s, Map map, FollowUp f)
         {
             if (f.other != null && !f.other.defeated && f.other != s.ctx.faction)

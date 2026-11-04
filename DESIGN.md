@@ -2336,7 +2336,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   by the ledger's reason `followup`, and the name, last name, sex and age for when it doesn't), the colonist it
   remembers, a thing (the weapon, the town) and its flags. Due 60 to 180 days after (`FollowUpsMath.DueTick`), started
   in the region's day when a world event's slot is free there (`WorldSituations.SlotFree`), one a day; let go 60 days
-  past the window. They never start by themselves (a static `pending`, as the welcome and the giving up). **The
+  past the window. They never start by themselves (a static `pending`, as the welcome and the giving up); dev actions
+  in `FollowUpsDebug.cs` force each. **The
   warlord's son** (`Rimfolk_WS_Son*`, kind `son`, `SituationWorker_Son`): his branch by the ending
   (`FollowUpsMath.Branch`), a band only while his people are hostile and can hold a camp near the home, else the gate;
   he rides with his people when they are at peace with the colony, else with the people at peace nearest the home
@@ -2364,7 +2365,7 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   and person rebuilt when the ledger changes. Marks of its own: `campBroken` (everyone noted on the camp's map, for
   each people at peace with a town within 20 tiles, which also remember the colony's `brokeCamp`), `foughtBeside` (an
   enemy killed with their fighters near and fighting), `tradedPost` and `walkedSettlers` (hooks for the posts and
-  hamlets), `killedRaid` 3 / `killedField` 6 / `killedPeace` 15 (the death's instigator, `Patch_ColonistMemoryDied`),
+  hamlets), `killedRaid` 2 (10 a raid at most) / `killedField` 6 / `killedPeace` 15 (the death's instigator, `Patch_ColonistMemoryDied`),
   `executed` 25, `harvested` 20 (`Patch_ColonistMemoryHarvest` on `ThoughtUtility.GiveThoughtsForPawnOrganHarvested`);
   every deed `KinMemory.Name` gives a colonist goes in too, so one way names colonists. Read by `KinMemory.Friend` (the
   warmer of a deed's name and this), `KinMemory.AddTags` (`their:foe`, `their:foe:KIND`, `their:foeA`), the facts

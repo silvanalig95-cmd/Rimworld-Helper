@@ -35,6 +35,7 @@
       <li>Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and young fighters of {FACTION} have gathered to him. They have made camp somewhere near the colony, and nobody has seen where yet.\n\n{DEAD} died at the colony's hands. The son means to finish what {TALE} began.</li>
       <li>[hisLowtech] {FACTION} tell it at their fires: {X_nameDef}, the son of {DEAD}, cut his hair short on the day he heard how his {RELATION} died, and has called up every young spear who would follow him. They are camped in the hills within a few days of the colony.\n\nWhere, nobody has said. Whoever is out beyond the walls should watch for smoke.</li>
       <li>[hisHightech] A trader passing through brought the news: {X_nameDef}, the son of {DEAD}, has put a crew together among {FACTION}, armed it out of what was left of {TALE}, and set up somewhere within a few days of the colony.\n\nNobody knows where yet. He is in no hurry to say.</li>
+      <li>[their:foe,!slayer] Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and fighters of {FACTION} have gathered to him somewhere near the colony.\n\n{FACTION} have a name for the colony's people they hate most, and it is {FOE}. The son has heard it too.</li>
       <li>[slayer] Word has come down the roads: {X_nameDef}, the son of {DEAD}, has sworn to avenge his {RELATION}, and fighters of {FACTION} have gathered to him. He has made camp somewhere near the colony.\n\nHe knows who brought {DEAD} down. {B_nameDef}'s name has been said at his fire more than once.</li>
     </texts>
     <summaries>
@@ -298,8 +299,9 @@
       <li>An exile on the road</li>
     </titles>
     <texts>
-      <li>[hunted] {ENEMY} brought {DEAD} down, and they have not stopped at the father: {X_nameDef}, the son, has been on the run ever since, turned out by his own people and sheltering with {FACTION}. Word has come that he is making for the colony.</li>
-      <li>[!hunted] {DEAD} was brought down out in the world, and {X_nameDef}, the son, has been on the run ever since, turned out by his own people and sheltering where he can. Word has come that he is making for the colony with one companion.</li>
+      <li>[hunted,among] {ENEMY} brought {DEAD} down, and they have not stopped there: {X_nameDef}, the son, has been on the run ever since, turned out by his own people and sheltering with {FACTION}. Word has come that he is making for the colony.</li>
+      <li>[hunted,own] {ENEMY} brought {DEAD} down, and they have not stopped there: {X_nameDef}, the son, has been on the run ever since, and his own people are afraid to keep him. Word has come that he is making for the colony.</li>
+      <li>[!hunted] {DEAD} was brought down out in the world, and {X_nameDef}, the son, has been on the run ever since with one companion, sheltering where he can. Word has come that he is making for the colony.</li>
       <li>[hunted,hisLowtech] The hunters who ran {DEAD} down are hunting the son now. {X_nameDef} has been sleeping in barns and ditches since, with one companion who would not leave him, and word has come that he is making for the colony.</li>
     </texts>
     <summaries>

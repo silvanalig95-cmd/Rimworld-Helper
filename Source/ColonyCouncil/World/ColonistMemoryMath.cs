@@ -72,7 +72,7 @@ namespace ColonyCouncil
             ["tradedPost"] = K(1, 2, 15f, 10),
             ["walkedSettlers"] = K(1, 14, 0f, 28),
             // Wrongs: one of theirs killed in a fight (in their raid on the colony, elsewhere, or at peace), a prisoner executed or cut open.
-            ["killedRaid"] = K(-1, 3, 2f, 18),
+            ["killedRaid"] = K(-1, 2, 2f, 10),
             ["killedField"] = K(-1, 6, 2f, 24),
             ["killedPeace"] = K(-1, 15, 2f, 30),
             ["executed"] = K(-1, 25, 0f, 40),

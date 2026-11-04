@@ -101,7 +101,7 @@ public static class FollowUpTests
         var marks = new List<ColonistMemoryMath.Mark>();
         ColonistMemoryMath.AddKind(marks, "killedRaid", 10 * Day);
         ColonistMemoryMath.AddKind(marks, "killedRaid", 11 * Day);
-        C(marks.Count == 1 && marks[0].count == 2 && marks[0].weight >= 5, "two raiders killed within two days are one mark, adding up");
+        C(marks.Count == 1 && marks[0].count == 2 && marks[0].weight >= 3, "two raiders killed within two days are one mark, adding up");
         ColonistMemoryMath.AddKind(marks, "killedRaid", 20 * Day);
         C(marks.Count == 2, "another raid later is a mark of its own");
         ColonistMemoryMath.AddKind(marks, "foughtBeside", 20 * Day);
@@ -130,7 +130,9 @@ public static class FollowUpTests
         C(ColonistMemoryMath.Foe(-ColonistMemoryMath.Named) && !ColonistMemoryMath.Foe(k1) && !ColonistMemoryMath.Refuses(k1), "one raider killed at the colony's walls: not yet a foe");
         for (int i = 1; i < 6; i++) ColonistMemoryMath.AddKind(killer, "killedRaid", now + i * Day / 4);
         float k6 = ColonistMemoryMath.Standing(killer, now + 2 * Day);
-        C(ColonistMemoryMath.Foe(k6) && ColonistMemoryMath.Refuses(k6), "six of their raiders killed by one colonist: a foe their traders won't deal with");
+        C(ColonistMemoryMath.Foe(k6) && !ColonistMemoryMath.Refuses(k6), "six of their raiders killed by one colonist in one raid: a foe, but their traders still deal");
+        for (int i = 0; i < 6; i++) ColonistMemoryMath.AddKind(killer, "killedRaid", now + 10 * Day + i * Day / 4);
+        C(ColonistMemoryMath.Refuses(ColonistMemoryMath.Standing(killer, now + 12 * Day)), "a second raid's worth soon after: their traders won't deal with them");
         var peace = new List<ColonistMemoryMath.Mark>();
         ColonistMemoryMath.AddKind(peace, "killedPeace", now);
         C(ColonistMemoryMath.Refuses(ColonistMemoryMath.Standing(peace, now)), "one of theirs killed at peace: their traders won't deal");

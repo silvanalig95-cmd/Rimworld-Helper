@@ -36,7 +36,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   and `GrownTowns.Note(home, town, leader, firstYear, tale)` (hamlets). Bug fix: the ledger's daily check now knows a
   camp leader's `raidcamp` reason (it dropped it, so a leader could be let go). New deed `brokeCamp`; 7 talk pieces
   (`Rimfolk_OutsiderTalks_Remembered.xml`); Almanac: world events (the son, the town that grew), what the world
-  remembers (by name, for good or ill), raiders' camps. `FollowUpTests`. To check in game: the trade option greyed with
+  remembers (by name, for good or ill), raiders' camps. `FollowUpTests`. Dev actions (`FollowUpsDebug.cs`): the son by
+  an ending and a people, a town grown now, every follow-up due now. To check in game: the trade option greyed with
   the reason (`CanTradeWith` is what the float menu and a caravan's negotiator use), the son on the camp's map, the
   father walked out to his son, the grown town's rename in the notables and the region map. Left: the sword is the
   weapon's kind from the stores (any of that def), settlers as a son's branch and the posts' and hamlets' calls wait
