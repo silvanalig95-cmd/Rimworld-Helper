@@ -225,18 +225,42 @@ double the conflicts and the upkeep. Without them, Rimfolk's world still works, 
   news and Heard lately, talk and letters about them.
 - Towns rise and fall: Rimfolk's world events move each town's prosperity; famine, plague and war leave marks; some
   towns are abandoned and their ruins resettled.
-- Who comes near depends on the colony: friends open a trading post a few days away; a rich colony on bad terms may
-  find a raiders' camp set up near it (raids from it until it is dealt with, by the harm rule).
+- Who comes near depends on the colony: friends open a trading post a few days away (a trading camp for a tribe, a
+  market post, a depot, an orbital beacon's ground station, by age); a rich colony on bad terms may find a raiders'
+  camp set up near it (raids from it until it is dealt with, by the harm rule).
 - Travellers who seek out the remote (pilgrims, scholars, nomads, prospectors) in place of the town visitors who
   rarely make the trip; settlers who ask to found a hamlet under the colony's protection (with Faction Territories, a
   vassal in time).
 
-### Stage 2: diplomacy (the Crusader Kings ideas)
-Favours owed and called in, pacts and truces (with terms that can be broken, and what breaking costs), an envoy who
-lives at the colony for a season, feasts, hunts and tournaments with guests, marriage alliances (with Diplomatic
-Marriage+), wards and hostages, ransom, fealty and vassals (with Faction Territories' vassals), council tasks made
-concrete as letters, visits and caravans, the renown of the colony's houses, and stress when someone acts against
-their nature. Each with its bad side under the harm rule: a broken truce, a hostage harmed, a feud carried down.
+### Stage 2: diplomacy (the Crusader Kings ideas, every one of the brainstorm's fourteen)
+Done already: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
+interactions. Still to build: favours owed and called in (3); pacts and truces with terms that can be broken, and what
+breaking costs (4); feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
+wards and hostages (7); ransom (8); swearing fealty to a stronger neighbour (9) and vassals of one's own, with Faction
+Territories' vassals (10); council tasks made concrete as letters, visits and caravans, with a new office, the keeper
+of secrets (11); schemes (12), now under the harm rule rather than non-violent only: swaying, befriending, courting and
+uncovering secrets as before, and darker ones (sabotage, theft, a provoked quarrel) at about the game's own rate of
+bad things, never gratuitous and always seen on the map; the renown of the colony's houses (13); stress when someone
+acts against their nature (14). Plus the envoy who lives at the colony for a season. Each with its bad side: a broken
+truce, a hostage harmed, a feud carried down, a scheme found out.
+
+**Every age, not only the medieval one (the player's rule, 4 November 2026).** Nothing is switched off for not being
+medieval; each feature takes the form of the age. Both sides count: the colony's own tech level sets its means (a
+runner or a comms console, a feast hall or a gala), the other people's ways set the rites. The Empire keeps its own
+titles and honour. Forms by age (tribal / medieval / industrial / spacer):
+| Feature | Tribal | Medieval | Industrial | Spacer and beyond |
+|---|---|---|---|---|
+| Favour owed | a debt of the hearth, a gift owed back | a debt of honour | an IOU, a favour on the books | a ledger entry, credit owed |
+| Pact, truce | a blood oath, gifts exchanged, a peace at the river | a treaty under seal | a signed agreement, a trade contract | an accord by comms, a registered treaty |
+| Feast, contest | a great hunt, a gift feast, wrestling and races | a feast, a hunt, a tournament | a fair, a shooting match, races, a banquet | a gala, an exhibition match, a sim tourney |
+| Marriage alliance | a match between clans | a match between houses | a match between families or firms | a partnership contract between lines |
+| Ward, hostage | fostering with the other clan | a ward at their hall, hostages for a pact | an apprentice or an exchange, a guarantor | an exchange posting, a guarantor |
+| Ransom | captives traded back | ransom by messenger | ransom by radio, an exchange at a crossing | a negotiated exchange by comms |
+| Fealty, vassals | tribute to a stronger clan, protection | fealty, tribute and levies | a protectorate, a company town, a union's dues | a charter, a protectorate, a corporate accord |
+| Council tasks | the elders' errands | the council's offices | the committee's portfolios | the board's or the directorate's remits |
+| House renown | a clan's name and totem | a house and its arms | a family name, a family firm | a lineage, a name that carries |
+| Schemes | whispers at the fire, a stolen totem | intrigue at court | a smear in the papers, a bribe, sabotage | a data leak, a hack, a corporate plant |
+The talk, letters and news for each feature are written per age too, from the shared facts (stage 0).
 
 ### Stage 3: many colonies, one world
 More than one colony supported in every system; handing a colony over to those who stay (it becomes a town of a new

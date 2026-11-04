@@ -22,6 +22,7 @@ Claude-Session: https://claude.ai/code/session_01BPumbqQfw465PjV9qCCwHZ
   - use `MayRequire` / `MayRequireAnyOf` on def references to DLC or mod content.
 - **Only content the colony has unlocked.** Era, research and tech level must fit. Look at how existing workers check this.
 - **Harm at the game's own rate** (the player's rule since 3 November 2026, replacing "nobody is hurt for flavour"): features may hurt pawns (injuries, illness, attacks, fights) when it's flavourful or makes the game more interesting, at a rate comparable to the game's own chance of something bad happening; never gratuitous, always from something that happens on the map, and shown.
+- **Every age, not only the medieval one** (the player's rule since 4 November 2026): nothing is switched off for not being medieval; each feature takes the form of the age, by the colony's own tech level (its means: a runner or a comms console, a feast hall or a gala) and the other people's ways (the rites). The Empire keeps its own titles and honour. ROADMAP.md, "The world and its people", has a table of forms by age.
 - Not wanted:
   - integrating the Diplomatic Marriage mod's system (Rimfolk's own diplomacy layer, with marriage alliances, is wanted: see ROADMAP.md)
   - Factional War features of Rimfolk's own (the player runs the [SR] Factional War mod; Rimfolk's diplomacy works beside it)
