@@ -60,7 +60,7 @@ beside the title that opens its page of the Almanac:
 
 | View | Modes | What's there |
 |---|---|---|
-| **This week** | | what needs you, what's coming and how people are |
+| **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
 | **People** | Table · Moods · Bonds · Ideoligions · Houses | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's families and the houses it knows of in the region |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
 | **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
@@ -87,7 +87,11 @@ people named there opening its card in the drawer at the window's right. The **p
 mode), Base, Making and Rooms (the room plans as a list, or every room at a glance); see "Planning" below.
 
 Tabs and modes show a count when something there wants your attention (what waits on you, open wishes, petitions,
-the plan's steps, letters under way).
+the plan's steps, letters under way). Every window's corner has, beside back and forward, a **search** (a magnifying
+glass, and a key you can bind): type a name and it finds colonists, people outside, places, peoples, houses, the
+windows' views ("Bonds") and the Almanac's pages, grouped by kind; Enter opens the first. Beside it, **This week's
+inbox** with the number of things waiting on you (the same number as This week's tab and, by a setting on at first, the
+council button on the bottom bar), and **what you follow**.
 Each colonist also has a **Story** and a **Culture** tab in their inspect panel and a Rimfolk column in the game's own
 **Social** tab (see "Story, Culture and Social" below), and clicking a colonist's portrait or name in the council
 window opens their card in the drawer at the window's right, beside what you were looking at.
@@ -99,14 +103,21 @@ preview beside it. A click opens the card: in the drawer of the window you are i
 window of its own with a button to open it in its window. The settings under "Names and cards" set the pause or turn
 previews off.
 
-**This week** (the council window's first view) is one place for everything that wants you. Wishes and petitions
-(oldest first), dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
-left before it's held against the council); gatherings and play-outs planned, the council meeting, calendar days,
-fights, missions with their deadlines and a camp on the map; colonists under strain or near a break, serious illness
-and convalescence, trust that moved this week, and the balance of Rimfolk's own good and bad moods. Each line opens its
-page or goes to the colonist or the place on the map. Pin a colonist or a wish to keep it at the top (the pin shows on
-hover there, in the People table and on a wish card), and "Mark all read" puts the evenings' colony news away from
-the letter stack. **People**, **Table** is the people overview: a table of every colonist with mood and Rimfolk's
+**This week** (the council window's first view) is the one inbox, where everything waiting on you is. **Following**:
+what you follow, each with its newest change. **Needs you**: wishes and petitions (oldest first), dilemmas and other
+letters waiting for an answer, a hamlet's ask, a raiders' camp's terms, a debt a people calls in, settlers at the gate,
+and promises at risk (granted wishes gone missing, with the day by which to put it right), each with its act on the
+right (Answer, Decide, Look, Pay). **Under way**: letters on the road, the journey planned, caravans, missions taken
+on, settlers on the road to their hamlet and what an answer set going on the map, each by the step it is at (written,
+on the road, arrived, answered), never with a time left. **Coming**: calendar days, the council meeting, fights,
+missions offered, a post that may close and a raiders' camp, by the day they come. **How people are**: colonists under
+strain or near a break, serious illness and convalescence, trust that moved this week, and the balance of Rimfolk's own
+good and bad moods. **The plan**: the advisor's two most pressing steps. Each line is one sentence whose names open
+their cards; a click on it opens its page or goes to the colonist or the place on the map, and "and 3 more" opens the
+rest in place. The pin on any card's head follows it (up to twelve: a colonist, someone outside, a town, a people, a
+family, a debt): it shows at the top of This week, in the corner's list, and in the optional **Following** panel on
+the screen. The pin also shows on hover on a colonist's line, in the People table, and on a wish card for the wish,
+and "Put away" on the news line puts the evenings' colony news away from the letter stack. **People**, **Table** is the people overview: a table of every colonist with mood and Rimfolk's
 share of it, trust and its week, strain and the feeling on top, the setbacks and pressures weighing on them with what
 helps, their open wish, personal story, health and quirks, office and epithet; sort by any column, hover for details,
 click a row for the colonist's card beside the table. **Dilemmas** keeps every answer the council gives, with a "how it went" column (as answered,
@@ -2873,7 +2884,7 @@ with prisoners), the graph's range, the health panel's rows, the inventory's loo
 panel, rows before "and more", size 75% to 150%, background. Where they start is laid
 out so nothing overlaps at 1080p and nothing sits under the game's readouts: the inventory in the resource list's place,
 the board and the trend beside it, the vitals, the council and the alerts on the right, work and health in a column
-beside them. The settings (Interface, **On-screen panels** and **Hover card**) have all of it, plus a lock, hiding
+beside them, and under them **Following** (off at first): what you follow, each with its newest change. The settings (Interface, **On-screen panels** and **Hover card**) have all of it, plus a lock, hiding
 under big windows (off: they stay, beneath the window) and on the world map, the game's own alert and resource lists,
 a darker or clearer look, small or normal text, the food and mood lines, and the hover card's wait, key, people,
 place, parts, size and background. Each panel gathers its data at most twice a second, and one that fails hides
