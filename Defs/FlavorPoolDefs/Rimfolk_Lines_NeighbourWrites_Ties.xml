@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More of what neighbours write or say on the comms console in answer (Rimfolk_Pool_NeighbourWrites, in
+    Rimfolk_Neighbours.xml, whose tags and placeholders these keep), for the ties between the two sides and what the
+    history holds of their town and of them lately (NeighbourLetters.Quote takes the facts' tags and values, the letter's
+    scene asking for the ties and the history: Text/Facts/FactsLedger.cs). Each line names its purpose and how they took
+    it, and one such fact:
+    - tie:grudge:theirs (their people's grudge for their own who died as the colony's prisoners, {GRUDGEAGAINST} the
+      colony); tie:grudge:ours and tie:grudge:you (a colonist's vendetta against their people, the writer's own);
+    - tie:favour:theirs (a favor their people owe {FAVOURFOR}, to come with their next visit);
+    - tie:promise:theirs (one of theirs promised a good word at home for {PROMISEDTO}); them:lately:tie:promise:kept (a
+      good word about them, or by them, lately said: written for either);
+    - tie:claim:theirs, :you, :due (their family's claim on {CLAIMON}, who joined the colony; the writer is the one
+      claimed; the family has come to ask);
+    - tie:debt:ours, :due (silver the colony owes their people);
+    - tie:fealty:ours (the colony holds its land by their grant, {FEALTYTO} their people), tie:fealty:theirs (a town of
+      theirs answers to the colony, {FEALTYTO} the colony);
+    - town:lately:world:began, :ended, :built, :taken, :vassal (at their town in the last thirty days); them:lately:world
+      (a world event that names them), them:lately:world:built (they founded their town lately).
+    A line that names none of these is chosen as it always was.
+  -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Ties</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- Their grudge, for their dead -->
+        <li>[greetings,warm,tie:grudge:theirs] My people still hold a grudge against {GRUDGEAGAINST}, {WRITER}. I don't, and I wanted you to hear it from me.</li>
+        <li>[greetings,cordial,tie:grudge:theirs] Thank you for writing. Not everyone here has forgiven what happened to our people in your keeping, but I read your letter with an open mind.</li>
+        <li>[greetings,cool,tie:grudge:theirs] We read your letter. Some here still say {GRUDGEAGAINST} and our dead in the same breath.</li>
+        <li>[greetings,curt,tie:grudge:theirs] Our people died as your prisoners. Beyond that, we have nothing to say to {GRUDGEAGAINST}.</li>
+        <li>[condolences,cool,tie:grudge:theirs] You send sympathy for our losses. The ones of ours who died as your prisoners were losses too.</li>
+        <li>[warning,cordial,tie:grudge:theirs] We have our grievance with {GRUDGEAGAINST}, but a warning is a warning, and we thank you for it.</li>
+        <li>[warning,warm,call,tie:grudge:theirs] We have our quarrel with your colony, and still you called to warn us. That will be remembered here.</li>
+        <li>[news,curt,tie:grudge:theirs] You want our news. Our news is that we have not forgotten our dead.</li>
+        <li>[invitation,refusal,tie:grudge:theirs] Visit the place where our people died as prisoners? No.</li>
+        <li>[help,refusal,tie:grudge:theirs] You ask us for {HELP}, with our dead still unanswered for? No.</li>
+        <!-- A vendetta against their people -->
+        <li>[greetings,cool,tie:grudge:you] I know you have sworn vengeance on my people, {WRITER}. You will understand if this letter is short.</li>
+        <li>[greetings,cordial,tie:grudge:ours,!tie:grudge:you] I am told someone in your colony has sworn vengeance on my people. I hope letters like these count for something against it.</li>
+        <!-- A favor their people owe -->
+        <li>[greetings,warm,tie:favour:theirs] Tell {FAVOURFOR} we have not forgotten what they asked of us. It is meant to come with the next of ours who visits.</li>
+        <li>[greetings,cordial,tie:favour:theirs] Thank you for your letter. And the favor {FAVOURFOR} asked of us has not slipped anyone's mind here.</li>
+        <li>[greetings,cordial,call,tie:favour:theirs] Good of you to call. Tell {FAVOURFOR} we haven't forgotten what they asked us for.</li>
+        <li>[news,cordial,tie:favour:theirs] Here is what we hear. Tell {FAVOURFOR} that what they asked of us is still owed and still remembered.</li>
+        <li>[help,warm,tie:favour:theirs] Of course we send {HELP}. It changes nothing of what we already owe {FAVOURFOR}.</li>
+        <!-- A good word promised -->
+        <li>[greetings,warm,tie:promise:theirs] One of ours has promised to speak well of {PROMISEDTO} here. From your letter, I can see why.</li>
+        <li>[greetings,cordial,tie:promise:theirs] I hear a good word for {PROMISEDTO} is on its way to us. I will listen when it comes.</li>
+        <li>[invitation,warm,tie:promise:theirs] A good word for {PROMISEDTO} is already on its way here, and now an invitation as well. I will come and see for myself.</li>
+        <li>[greetings,warm,them:lately:tie:promise:kept] Good words have been spoken of your people here lately, and your letter bears every one of them out.</li>
+        <li>[invitation,cordial,them:lately:tie:promise:kept] After the good words spoken of your people here lately, I would like to see them for myself.</li>
+        <!-- Their family's claim on one who joined -->
+        <li>[greetings,cordial,tie:claim:theirs,!tie:claim:you] Tell {CLAIMON} their family here has not forgotten them.</li>
+        <li>[greetings,warm,tie:claim:you] Your family here has not forgotten you, {WRITER}. Write to them too, when you can.</li>
+        <li>[greetings,cool,tie:claim:theirs,!tie:claim:you] Your letter came. Some here would rather {CLAIMON} had written it, and from home.</li>
+        <li>[condolences,warm,tie:claim:you] Your words mean more coming from you, {WRITER}. You are still one of ours, whatever roof you sleep under.</li>
+        <li>[invitation,cordial,tie:claim:theirs,!tie:claim:you] I will come, and I would like to see {CLAIMON} while I am there, if they will see me.</li>
+        <li>[greetings,cordial,tie:claim:due,!tie:claim:you] {CLAIMON}'s family has come to ask them home, as is their right. Whatever your council decides, let it be decided fairly.</li>
+        <li>[help,refusal,tie:claim:theirs,!tie:claim:you] You keep {CLAIMON} from their family and then ask us for {HELP}? Ask again when that is settled.</li>
+        <!-- Silver the colony owes -->
+        <li>[greetings,curt,tie:debt:ours] Your colony owes us silver. A letter is not a payment.</li>
+        <li>[greetings,cool,tie:debt:due] The silver your colony owes us is due. We would rather have read about that than this.</li>
+        <li>[news,curt,tie:debt:ours] Here is the news you want: your debt to us has not gone anywhere.</li>
+        <li>[help,refusal,tie:debt:ours] You already owe us silver, and now you ask for {HELP}? No.</li>
+        <!-- Fealty, from both sides -->
+        <li>[greetings,warm,tie:fealty:ours,theirLowtech] It is good to hear from those who hold land by our grant. Write often, and tell us how the fields do.</li>
+        <li>[greetings,cordial,tie:fealty:ours] The land you hold of {FEALTYTO} is in good hands, it seems. Thank you for your letter.</li>
+        <li>[help,warm,tie:fealty:ours] Those who hold land of {FEALTYTO} do not go without. We send {HELP} gladly.</li>
+        <li>[help,cordial,tie:fealty:ours] We can spare some {HELP}. Remember whose grant you live on when we are the ones asking.</li>
+        <li>[invitation,cordial,tie:fealty:ours,theirHightech] I will come and see how our grant is kept, as a guest and not an inspector.</li>
+        <li>[greetings,cordial,tie:fealty:theirs] One of our towns answers to {FEALTYTO} now. Letters like yours make that easier to bear.</li>
+        <li>[greetings,curt,tie:fealty:theirs] You hold one of our towns. Do not expect warm letters as well.</li>
+        <!-- Their town lately -->
+        <li>[news,cordial,town:lately:world:began] You ask for news. The biggest is at our own gate, and we are still taking it in.</li>
+        <li>[news,warm,town:lately:world:ended] You ask for our news, and the best of it is that what kept {TOWN} so busy has run its course.</li>
+        <li>[help,refusal,town:lately:world:began] We are sorry, but with all that has begun here at {TOWN}, we cannot spare {HELP}.</li>
+        <li>[greetings,cordial,town:lately:world:built] Your letter is among the first to reach {TOWN} since its last roofs went up. It will be kept.</li>
+        <li>[greetings,cordial,town:lately:world:taken] Since {TOWN} changed hands, it is good to have a letter that asks nothing of us.</li>
+        <li>[warning,warm,town:lately:world:taken] {TOWN} has only just changed hands, and a warning is worth more to us now than ever. Thank you.</li>
+        <li>[invitation,cool,town:lately:world:taken] {TOWN} changed hands not long ago. This is no season for visiting.</li>
+        <li>[greetings,warm,town:lately:world:vassal] {TOWN} answers to your colony now, and your letter is a kind start. We will hold you to that kindness.</li>
+        <!-- Them lately -->
+        <li>[greetings,warm,them:lately:world:built] I founded {TOWN} only lately, and yours is one of the first letters I have had here. Thank you, {WRITER}.</li>
+        <li>[news,cordial,them:lately:world:began] You ask for news, and some of it is about me, which I did not ask for.</li>
+        <li>[greetings,cool,them:lately:world:began] I have had little time for letters lately, with my own name in everyone's mouth.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -61,8 +61,8 @@ namespace ColonyCouncil
             "region:newtown", "region:newtown:theirs", "region:newtown:other"
         };
 
-        /// <summary>The region's placeholders: their town's fortune in a word, its founder, mother town and why it was founded; a new town near and its people.</summary>
-        public static readonly string[] RegionValues = { "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE" };
+        /// <summary>The region's placeholders: their town's fortune in a word and the world event behind it, its founder, mother town and why it was founded; a new town near and its people.</summary>
+        public static readonly string[] RegionValues = { "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE" };
 
         /// <summary>A new town's newness: current over its first year, the more so in its first weeks.</summary>
         public static float NewTownHeat(float days) => Fresh(days, 60f, 2f);

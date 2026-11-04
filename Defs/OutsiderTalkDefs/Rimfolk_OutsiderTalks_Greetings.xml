@@ -70,7 +70,8 @@
         town:quest (offered) quest:ongoing (taken on, under way: {QUESTNOW}) town:caravan town:visitors (theirs on
         the way) town:short:food town:short:medicine town:short:hands town:short:fuel
       the region (World/Region/, their town kept in detail): town:struggling town:poor town:steady town:thriving
-        town:flourishing (its fortune, {FORTUNE} in their age's word: "struggling", "hungry", "prospering"); in its first
+        town:flourishing (its fortune, {FORTUNE} in their age's word: "struggling", "hungry", "prospering"; {FORTUNEWHY}
+        the world event that moved it that way lately, as its panel names it: "the blight"); in its first
         year town:new, town:founder ({FOUNDER}), them:founder (the one spoken to led its settlers), town:mother (the town
         they came from, {MOTHERTOWN}), town:why:KEY (refugees ruin mother road river coast hills land; {WHYFOUNDED}
         finishes "We came ...": "for the river"); region:newtown (a town founded near the colony this year that isn't
@@ -121,7 +122,7 @@
       {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {HOSPITAL} {DOCTOR} {THEN} {NOW} (who leads now, in a
       then:changed callback) {FAVOURFOR} (who a favour of theirs is owed to) {PROMISEDTO} (who they promised)
       {CLAIMON} (the one of the colony their family has a claim on) {DEBTTO} (whom a debt is owed) {FEALTYTO} (whom
-      fealty is sworn) {GRUDGEAGAINST} (whom a grudge is held against) {FORTUNE} {FOUNDER} {MOTHERTOWN} {WHYFOUNDED}
+      fealty is sworn) {GRUDGEAGAINST} (whom a grudge is held against) {FORTUNE} {FORTUNEWHY} {FOUNDER} {MOTHERTOWN} {WHYFOUNDED}
       {NEWTOWN} {NEWTOWNPEOPLE} (the region, above). Values that are names keep their case;
       {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
       one is capitalized for you.

@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.74.0</version>
+        <date>4 November 2026</date>
+        <title>What lies between you</title>
+        <points>
+          <li>Visitors and their letters now speak of what lies between your peoples: a favor they owe and whether it came, a good word promised and said, a family's claim on someone who joined you, silver owed, a grant of land or a town made your vassal.</li>
+          <li>They speak of their grudges too: for their dead, or for a colonist's vendetta against them.</li>
+          <li>They talk of what happened at their town lately (a world event begun or over there, the town just built, taken or made your vassal) and of how their people's age stands beside yours.</li>
+          <li>A town's people say what moved its fortune, the same cause its panel on the region map names, and how it mends once a hard time or a war is over.</li>
+          <li>In all, 168 new conversation pieces and 51 new lines for your neighbours' letters.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.73.0</version>
         <date>4 November 2026</date>
         <title>Towns rise and fall</title>

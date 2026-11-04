@@ -15,6 +15,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.74.0, the stage 1 writing pass: 168 talk pieces in four new files (`Rimfolk_OutsiderTalks_Ties.xml` 61,
+  `_Lately.xml` 41, `_Ages.xml` 33, `_Fortunes.xml` 33) and 51 letter lines (`Rimfolk_Lines_NeighbourWrites_Ties.xml`,
+  a pool extension of `Rimfolk_Pool_NeighbourWrites`); new placeholder `{FORTUNEWHY}` (`FactsRegion.cs`, the world
+  event a town's panel names as the cause of its fortune, recent and fitting its band). Thin still: ties the game
+  never makes (a favor owed by the colony, a grudge coming due); `world:battle`, `world:heard`, `world:founded` never
+  reach a town's lately; no placeholder for the world event at their town (`{SITUATION}` is their people's newest);
+  `{FORTUNEWHY}` names world events only; a favor's goods unnamed.
 - 0.73.0, stage 1 release 3, rise and fall: `World/Region/RiseFallMath.cs` (pure), `RiseFall.cs`, `NewTowns.cs`,
   `RiseFallLedger.cs` (`LedgerRuin`), `RiseFallSituation.cs` (`Rimfolk_WS_GivenUp`), `RiseFallWords.cs`,
   `RiseFallEffects.cs`, `RiseFallPatches.cs` (`SettlementDefeatUtility.CheckDefeated` postfix notes a fall); given up

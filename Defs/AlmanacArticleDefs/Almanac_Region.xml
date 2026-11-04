@@ -26,7 +26,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
           <li>60 to 79 | Thriving (prospering, for medieval folk)</li>
           <li>80 or more | Flourishing (booming, for spacers)</li>
         </table>
-        <after>Once a day, each town drifts back toward 50 (45 on poor land) by 0.3, a town within 20 tiles of a town of a people its own is at war with loses 0.3, and the world's events move it. Its panel names what moved it last, for 60 days, when that fits how it stands now: "Struggling, since the plague", "Thriving: the new road", "Poor: newly founded".</after>
+        <after>Once a day, each town drifts back toward 50 (45 on poor land) by 0.3, a town within 20 tiles of a town of a people its own is at war with loses 0.3, and the world's events move it. Its panel names what moved it last, for 60 days, when that fits how it stands now: "Struggling, since the plague", "Thriving: the new road", "Poor: newly founded". Its people say the same when they talk of their town, and how it mends once a hard time or a war is over.</after>
         <after>It shows in what the town sells, too. When the game restocks a town within reach, a struggling one has a quarter less food, medicine and silver to trade, a thriving one a tenth more silver and a flourishing one a fifth more; nothing else in its stock changes, and other mods' changes to the stock are made first (with the deeper game hooks).</after>
       </li>
       <li>

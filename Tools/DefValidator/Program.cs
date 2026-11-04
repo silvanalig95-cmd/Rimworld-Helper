@@ -442,8 +442,8 @@ wishPh.UnionWith(new[]
     "HOSPITAL", "DOCTOR",
     // The ties between the two sides (Facts.Ties): the party each is toward.
     "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST",
-    // The region (Facts.Region): their town's fortune and founding, a new town near the colony and its people.
-    "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE"
+    // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
+    "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE"
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });

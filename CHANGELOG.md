@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What lies between you
+
+*4 November 2026, version 0.74.0*
+
+- Visitors and their letters now speak of what lies between your peoples: a favor they owe and whether it came, a good word promised and said, a family's claim on someone who joined you, silver owed, a grant of land or a town made your vassal.
+- They speak of their grudges too: for their dead, or for a colonist's vendetta against them.
+- They talk of what happened at their town lately (a world event begun or over there, the town just built, taken or made your vassal) and of how their people's age stands beside yours.
+- A town's people say what moved its fortune, the same cause its panel on the region map names, and how it mends once a hard time or a war is over.
+- In all, 168 new conversation pieces and 51 new lines for your neighbours' letters.
+
 ## Towns rise and fall
 
 *4 November 2026, version 0.73.0*

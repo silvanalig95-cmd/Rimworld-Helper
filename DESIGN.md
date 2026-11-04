@@ -2206,7 +2206,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   one a season per home). Rimfolk's own new towns are told and welcomed by their own event.
 - **Words and facts.** The region map's panel (`RegionPanel`, through `NeighbourPanel.Sections`, `PlaceSections` and
   the new `HomeSections`): a town's fortune and founding, a site's settlers, a home's remoteness. The facts service's
-  provider `region` (`Text/Facts/FactsRegion.cs`): `town:struggling` to `town:flourishing` with `{FORTUNE}`,
+  provider `region` (`Text/Facts/FactsRegion.cs`): `town:struggling` to `town:flourishing` with `{FORTUNE}` (and
+  `{FORTUNEWHY}`, the world event its panel names as the cause),
   `town:new`, `town:founder` `{FOUNDER}`, `them:founder`, `town:mother` `{MOTHERTOWN}`, `town:why:KEY` `{WHYFOUNDED}`,
   `region:newtown` (`:theirs`, `:other`) `{NEWTOWN}` `{NEWTOWNPEOPLE}`; 40 talk pieces use them.
 - **Settings off**: a part makes nothing new and tells nothing, and keeps its records (the reach is still worked out,
