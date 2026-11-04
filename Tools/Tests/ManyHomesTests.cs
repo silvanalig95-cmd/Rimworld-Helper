@@ -126,6 +126,31 @@ public static class ManyHomesTests
             Check(none[0, 3] == 0.8f, "no colonies given: nothing changes");
         }
 
+        // ---------------- Names per colony ----------------
+
+        {
+            const string healer = "Council_Epithet_Healer";
+            Check(EpithetMath.Key(healer, 12, false) == healer, "one colony: a name is kept under itself, as always");
+            Check(EpithetMath.Key(healer, None, true) == healer, "no colony given: under itself");
+            string k12 = EpithetMath.Key(healer, 12, true), k40 = EpithetMath.Key(healer, 40, true);
+            Check(k12 != k40 && k12 != healer, "more than one colony: each colony's healer is a name of its own");
+            Check(EpithetMath.DefOf(k40, out int c40) == healer && c40 == 40, "a colony's key gives back the name and the colony");
+            Check(EpithetMath.DefOf(healer, out int cOld) == healer && cOld == None, "an older key is the name alone, with no colony");
+            Check(EpithetMath.DefOf("Council_Epithet_Odd|x", out int cOdd) == "Council_Epithet_Odd|x" && cOdd == None, "a key that only looks like one stays as it is");
+            Check(EpithetMath.ForColony(k40, 40, 12) && !EpithetMath.ForColony(k40, 12, 40), "a colony's key is that colony's, whoever holds it");
+            Check(EpithetMath.ForColony(healer, 40, 40) && !EpithetMath.ForColony(healer, 12, 40), "an older key is the colony of the one who holds it");
+            Check(EpithetMath.Rivals(12, 12, 12), "taking a name over within one colony makes a rival");
+            Check(!EpithetMath.Rivals(40, 12, 12) && !EpithetMath.Rivals(12, 40, 12), "never across two colonies (someone who moved away)");
+            // Founders and firstborn: the game's are the colony settled with it, else the seat's.
+            Check(EpithetMath.FirstColony(new List<int> { 12, 40 }, new List<bool> { true, false }, 12) == 12, "the colony settled with the game has the game's founders");
+            Check(EpithetMath.FirstColony(new List<int> { 12, 40 }, new List<bool> { false, true }, 12) == 40, "even when it isn't the seat");
+            Check(EpithetMath.FirstColony(new List<int> { 55 }, new List<bool> { false }, 55) == 55, "a colony that moved: its seat keeps its first settlers");
+            Check(EpithetMath.FirstColony(new List<int>(), new List<bool>(), None) == None, "no home: none");
+            Check(EpithetMath.Entry(40, "Human123") == "40|Human123", "a later colony's founder is written down with the colony");
+            Check(EpithetMath.FirstDays(Day * 31, Day * 30, Day) && !EpithetMath.FirstDays(Day * 33, Day * 30, Day) && !EpithetMath.FirstDays(Day * 31, -1, Day),
+                "a colony settled later has its founders in its own first two days");
+        }
+
         return n;
     }
 

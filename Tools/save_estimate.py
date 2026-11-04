@@ -228,6 +228,8 @@ MODEL = {
     "Offices/Election.cs:voted": ("while", COLONISTS, P, "who has voted, while it lasts"),
     "Epithets/Epithets.cs:holders": ("defs", ("EpithetDef", 1), D, "one per title"),
     "Epithets/Epithets.cs:founders": ("fixed", 6, 40, "those here in the colony's first two days (by ThingID)"),
+    "Epithets/Epithets.cs:laterFounders": ("fixed", 0, 50, "a colony settled later: those who were its people in its first two days (none with one colony); a lost home's dropped"),
+    "Epithets/Epithets.cs:laterFirstborn": ("fixed", 0, 50, "a colony settled later: its first child (none with one colony); a lost home's dropped"),
     # Heart
     "Heart/HeartData.cs:recentBuild": ("fixed", 8, V, "per heart: one per strain source (counted under hearts)"),
     "Heart/HeartData.cs:recentRelief": ("fixed", 8, V, "per heart"),

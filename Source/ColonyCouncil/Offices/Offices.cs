@@ -479,7 +479,7 @@ namespace ColonyCouncil
             if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
             if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
             // A speaker the colony has never once voted against (a name: Epithets/NameRecords.cs).
-            if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten") == winner)
+            if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten", colony?.Map ?? Homes.Seat) == winner)
                 text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
             CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
             comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));

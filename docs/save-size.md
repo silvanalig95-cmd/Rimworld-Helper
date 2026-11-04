@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 478; modelled: 478; growing without end: 0.
+Saved collections found: 480; modelled: 480; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** after two, **3,001 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -404,6 +404,8 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Lives/Legacy.cs:cameOfAge` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Building/ShelfReserves.cs:kinds` | read from saves of 0.23.0 and 0.23.1 only, then kept as entries | while | 0 | 0 | 0 | 0.0 |
 | `CouncilGameComponent.cs:oldGuestKin` | an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
+| `Epithets/Epithets.cs:laterFirstborn` | a colony settled later: its first child (none with one colony); a lost home's dropped | fixed | 0 | 0 | 0 | 0.0 |
+| `Epithets/Epithets.cs:laterFounders` | a colony settled later: those who were its people in its first two days (none with one colony); a lost home's dropped | fixed | 0 | 0 | 0 | 0.0 |
 | `Happenings/Happenings.cs:oldGrudges` | an older save's grudges, read on load and moved into the world ledger (one Grudge tie per people); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldFavours` | an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldWords` | an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
