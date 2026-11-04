@@ -15,6 +15,21 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Text pass: everyday colony life (words only, no code). 1,151 new lines in seven files, all in pools the game
+  already draws on: talk 643 (`Rimfolk_Talk_Lines_Everyday_Closes.xml`, `_Any.xml`, `_Times.xml`: closing words for
+  all 23 topics 343, any topic's close, reply and last word 95, comfort 103, the three jokes 58, eleven memories'
+  closes 44; extra `TalkLinesDef`s that `Talk.BuildLines` joins to the pool of the same topic or memory and turn), plays
+  on the map 113 (`Rimfolk_Lines_Everyday_PlayOut.xml`: gift, burn, fetch, rounds, the enemy dead, a secret told),
+  weather and habits 183 (`Rimfolk_Lines_Everyday_Weather.xml`: forecasts 61, records, warm spell and lightning 35,
+  small habits 43, the herd's leader, the beast and a following animal 34, hail and a fight won 10), the social log
+  196 (`Rimfolk_LogLines_Everyday.xml`: three more `gossip_topic` phrases for each of 41 deeds, 73 rules for nine
+  moments and frictions and bitter council talk), nuisances 16 (draught at the bed, butcher's smell, in place).
+  `Tools/variety_report.py` now counts talk-line defs the game joins as one pool. Top seen-per-line 3.00 to 1.89.
+  Still thin: the any-topic reply, close and last word and the comfort pools (about 1.8: drawn most, and comfort's
+  lines split eight ways by feeling), the common topics' openings and replies (council, food, newcomer, raid, 1.6 to
+  1.9; `Rimfolk_TL_Drugs_Open` flagged), topic closes (about 1.5, split by outcome and side), the tease pools (plain
+  and cheerful only). The report can't see a caller's own tags (give, burn, fetch; the herd's first, line, new), so
+  it undercounts those pools' tagged lines.
 - 0.77.0, stage 1 release 6, the hamlet (item 6, decisions 4 and 9 to 11): `World/Region/HamletMath.cs` (pure, `HamletTests`),
   `Hamlet.cs` (`HamletHome` on `RegionHome.hamlet`, `Hamlets`: day and hour, looks, the ways in, ends, `KeepFor.Hamlet`),
   `HamletPlace.cs` (6 to 10 tiles by the posts' rules, `WhyNotHere` for the world targeter), `HamletAsk.cs`
