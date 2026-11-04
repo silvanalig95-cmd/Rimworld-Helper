@@ -6,6 +6,10 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 4 November 2026, paused for the player's play test (the player's word): after 0.79.0 nothing new is built until the
+  player has played and given feedback. Stage 2's first release (2a.1, diplomacy's base and favours) is next and
+  waits for it; 2a.2 and 2a.3 wait also for the stage 2 decisions 1 to 6, stage 3 for its 17 decisions, the harm
+  review for the player's picks. Bug reports first, as always.
 - 3 November 2026, the player's rule change (binding): harm is part of the game. Features may hurt pawns (injuries,
   illness, attacks, fights) when flavourful or interesting, at a rate comparable to vanilla's chance of something bad
   happening; never gratuitous, always from something on the map. It replaces "nobody is hurt for flavour" in
