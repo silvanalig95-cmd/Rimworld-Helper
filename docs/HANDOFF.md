@@ -6,6 +6,37 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Interface review: fixes (the six interface releases 0.82.0 to 0.87.0, and 2a.2's inbox rows, card rows and acts, read
+  against the 1.6 game; no version of its own: its points go with the next round). Fixed, each checked in the code and the
+  game's source: Enter in the search (`Window_Search`) closed the window whose corner opened it and took nothing (the game
+  hands its accept key to the topmost window that takes it before any window draws, and the search had
+  `closeOnAccept = false`, so the council or region window under it closed): it now catches the key
+  (`forceCatchAcceptAndCancelEventEvenIfUnfocused`, `OnAcceptKeyPressed` takes the result lit). Enter while typing in
+  the Almanac's search closed the Almanac's window (`Window_Almanac.OnAcceptKeyPressed` keeps it while a text field has
+  the keyboard; Enter elsewhere still closes it, as the game's windows do). The search's colonists and persons looked
+  for their pawn among every pawn of the world on every frame (`Refs.Pawn` falls back to
+  `PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead` for anyone the ledger doesn't keep, colonists mostly): found once
+  per index now (`Search.portraits`). This week's Needs you heading counted its rows, the news letters' row among them,
+  so it said one more than the stat above it, the tab, the corner and the council button: it says the one count
+  (`Inbox.Count`) now. A colonist's card in a window's drawer and another in the floating card shared one story model
+  (`StoryParts.Card`), so each draw of either built it again: two card models now (`StoryView.cardCaches`). Tests:
+  `InboxTests` (the heading's count, the search's Enter, the portraits once per index). Looked at and found sound: the
+  drawer (Escape first, the trail, gone things, the mouse hidden from the view under it), previews (ids, levels, the
+  mouse inside one, clicks absorbed, hidden on close and load), the way back (dead steps dropped, settling after a step,
+  filters, the side buttons once a frame), cards (models once a second, gone things, acts greyed), link markers (only
+  LinkText reads them; letters, messages, bubbles, tooltips, float menus and the corner's list get plain words), every
+  window's Begin/End pairs (no early exit leaves a scroll view or group open), the corner, the council button's count,
+  following (the saved list cleaned, old pins taken over), the page addresses and the settings' old page names, the
+  on-screen panels' name links (left click the card, right click the menu, the row's own click after), the region views,
+  2a.2's rows, acts and alert. Not confirmed, left as they are: whether keyboard focus stays on the search's field after
+  it closes (Rimfolk's own keys wait for `GUIUtility.keyboardControl == 0`); the mouse wheel over a preview scrolling the
+  view under it (Unity's scroll view tests the rect, not the window); a card's why-not line naming an act that sits under
+  "More"; the pact alert's word staying up to 250 ticks after a call made from the card; small per-frame allocations
+  (`PagesMath.TryAddress` from `ArticleOf`/`SectionOf`, the planning window's label keys, `RegionView.Within`). To look
+  at in game: Enter in the search from a window's corner and from its key; Enter in the Almanac's search; This week's
+  Needs you with news letters waiting; a colonist's card in the floating card while another shows in the council
+  window's drawer.
+
 - 0.88.0, stage 2 release 2a.2, pacts and truces (docs/design/stage2-diplomacy.md, item 2, and item 1's fighters through a favour
   both ways, left for this release; the player's decisions 1, 2, 3, 9 and 18 as recommended; built beside UI 5b, which
   restyles the pages and was merged in at 0445b20: this release adds rows, sections, acts and inbox rows through the
