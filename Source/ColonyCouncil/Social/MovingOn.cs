@@ -66,7 +66,8 @@ namespace ColonyCouncil
                 OnlyLove = true;
                 try
                 {
-                    comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_LoveOutside);
+                    // The council of the colony whose home it is.
+                    (DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(true, d => d.Worker is DilemmaWorker_LoveOutside);
                 }
                 finally
                 {

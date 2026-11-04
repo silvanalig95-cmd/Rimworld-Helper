@@ -292,7 +292,7 @@ namespace ColonyCouncil
             {
                 if (!asked.Add(x.thingIDNumber)) continue;
                 if (!colonists.Any(c => Of(c, x))) continue;
-                comp.dilemmas.TryFire(false, d => d.defName == "Council_DlmS_KinInChains");
+                (DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(false, d => d.defName == "Council_DlmS_KinInChains");
             }
             if (asked.Count > 300) asked.Clear();
         }

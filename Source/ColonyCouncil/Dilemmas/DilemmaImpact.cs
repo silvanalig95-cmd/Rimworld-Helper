@@ -372,7 +372,8 @@ namespace ColonyCouncil
         private static void Tradition(DilemmaContext ctx, DilemmaOption o, List<ImpactLine> lines)
         {
             var def = ctx.def;
-            var tracker = CouncilGameComponent.Instance?.dilemmas;
+            // The traditions of the colony it's about.
+            var tracker = DilemmaTracker.ForQuestion(ctx);
             if (def == null || tracker == null || def.traditionOption < 0 || def.traditionOption >= def.options.Count) return;
             bool kept = def.options[def.traditionOption] == o;
             string name = def.traditionLabel ?? def.label;
