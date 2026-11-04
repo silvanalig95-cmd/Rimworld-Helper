@@ -385,6 +385,7 @@ MODEL = {
     "Journeys/Journeys.cs:animals": ("fixed", 10, P, "the animals they bring"),
     "Journeys/Journeys.cs:packing": ("fixed", 20, 130, "the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off"),
     "Journeys/Journeys.cs:done": ("fixed", COLONISTS * 6, V, "the last hours' steps each traveller has done (six steps)"),
+    "Journeys/Journeys.cs:roadFood": ("fixed", COLONISTS, 160, "travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references)"),
     "Journeys/Journeys.cs:slots": ("fixed", COLONISTS * 12, 140, "timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off"),
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     "World/FactionMemory.cs:notes": ("window", (C["KinNoteDays"], 1), 200, "who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies"),

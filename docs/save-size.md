@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 460; modelled: 460; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,149 KB** after a year, **2,545 KB** after two, **2,661 KB** after five.
+Saved collections found: 461; modelled: 461; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,152 KB** after a year, **2,548 KB** after two, **2,665 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -111,6 +111,7 @@ Rimfolk's part of the save, roughly: **2,149 KB** after a year, **2,545 KB** aft
 | `Hud/HudComponent.cs:samples` | the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples) | cap | 168 | 168 | 168 | 3.3 |
 | `Faith/FaithCouncilTracker.cs:heard` | who heard which faith spoken for lately: one per colonist, 30 days, FaithCouncilTracker.MaxHeard | cap | 36 | 40 | 40 | 3.1 |
 | `Faith/FaithPeople.cs:people` | one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving | colonists | 20 | 20 | 20 | 3.1 |
+| `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Journeys/Journeys.cs:done` | the last hours' steps each traveller has done (six steps) | fixed | 120 | 120 | 120 | 2.9 |

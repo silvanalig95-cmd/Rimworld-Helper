@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.64.1</version>
+        <date>4 November 2026</date>
+        <title>Food for the road</title>
+        <points>
+          <li>In a caravan the game lets someone eat only what their food policy allows, so a policy that keeps the survival meals or the jelly for the road left travellers out of food with full packs.</li>
+          <li>Choose one of your food policies for the road, once, in the journey planner or with a caravan's food button. The colony's people eat by it while they travel, on a journey or not, and by their own again when they are home.</li>
+          <li>The journey planner says when the food on the list isn't allowed for someone by the policy they will eat by on the road, and an alert says when a caravan carries food its people may not eat.</li>
+          <li>The planner packs drugs for travellers with an addiction or a chemical dependency, enough for the days away, and the caravan gives a dose when one is due.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.64.0</version>
         <date>3 November 2026</date>
         <title>Much more to talk about</title>

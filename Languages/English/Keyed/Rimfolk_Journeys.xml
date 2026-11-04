@@ -107,6 +107,8 @@
   <CC_Journey_Group_food_Tip>Food the travellers eat on the road. They pack it themselves, each a share in proportion to what they eat, as much as they can carry; the rest is loaded at the gate.</CC_Journey_Group_food_Tip>
   <CC_Journey_Group_medicine>Medicine</CC_Journey_Group_medicine>
   <CC_Journey_Group_medicine_Tip>Medicine for the road, shared out among the travellers to carry.</CC_Journey_Group_medicine_Tip>
+  <CC_Journey_Group_drugs>Drugs for addictions</CC_Journey_Group_drugs>
+  <CC_Journey_Group_drugs_Tip>Drugs for the travellers' addictions and chemical dependencies, enough for the days away with the margin. They go with the caravan's goods, loaded at the gate, and on the road the caravan gives a dose when one is due.</CC_Journey_Group_drugs_Tip>
   <CC_Journey_Group_bedding>Bedding</CC_Journey_Group_bedding>
   <CC_Journey_Group_bedding_Tip>Bedrolls (a double counts for two) and any mod's tents for nights on the road, carried by the travellers in turn.</CC_Journey_Group_bedding_Tip>
   <CC_Journey_Group_feed>Feed for the animals</CC_Journey_Group_feed>
@@ -220,5 +222,24 @@
   <CC_Journey_HereDraft>Make this the journey's destination</CC_Journey_HereDraft>
   <CC_Journey_HereOpen>Open the journey planned here</CC_Journey_HereOpen>
   <CC_Journey_Here_Tip>Opens the journey planner with this place as the destination.</CC_Journey_Here_Tip>
+
+  <!-- The food policy on the road (Source/ColonyCouncil/Journeys/RoadFood.cs). -->
+  <CC_RoadFood_TheirOwn>their own</CC_RoadFood_TheirOwn>
+  <CC_RoadFood_Chosen>{0} (chosen)</CC_RoadFood_Chosen>
+  <CC_RoadFood_MenuTitle>Food policy on the road</CC_RoadFood_MenuTitle>
+  <CC_RoadFood_Row>Food policy on the road: {0}</CC_RoadFood_Row>
+  <CC_RoadFood_Row_Tip>The food policy the colony's people eat by while they travel in a caravan, on a journey or not: one of your own, chosen once for every trip. In a caravan the game lets someone eat only what their food policy allows, so a policy at home that keeps the survival meals or the jelly for the road leaves travellers hungry with full packs. At home they eat by their own policy again. Someone whose policy you change on the road keeps the one you gave them.</CC_RoadFood_Row_Tip>
+  <CC_RoadFood_Button>Food: {0}</CC_RoadFood_Button>
+  <CC_RoadFood_Button_Tip>The food policy the colony's people eat by while they travel in a caravan: one of your own, chosen once for every trip, or their own. In a caravan the game lets someone eat only what their food policy allows. At home they eat by their own policy again.</CC_RoadFood_Button_Tip>
+  <CC_RoadFood_Set>{1} is the food policy on the road for {0} now, and at home their own again.</CC_RoadFood_Set>
+  <CC_RoadFood_Home>Home again, their own food policy is back for {0}.</CC_RoadFood_Home>
+  <CC_RoadFood_NoneOwn>{0} may not eat {1} by their food policy, {2}, so on the road they would go hungry with full packs. Choose a food policy for the road above, or allow it in {2}.</CC_RoadFood_NoneOwn>
+  <CC_RoadFood_NoneRoad>{0} may not eat {1} by {2}, the food policy for the road, so on the road they would go hungry with full packs. Choose another above, or allow it in {2}.</CC_RoadFood_NoneRoad>
+  <CC_RoadFood_Some>{0} may not eat {1} by {2}, so once the rest is eaten they would go hungry on the road.</CC_RoadFood_Some>
+  <CC_RoadFood_PlanRoad>On the road they eat by {0}, and by their own food policy again at home.</CC_RoadFood_PlanRoad>
+  <CC_RoadFood_More>more</CC_RoadFood_More>
+  <CC_RoadFood_Alert>Food they may not eat</CC_RoadFood_Alert>
+  <CC_RoadFood_AlertLine>{0}: the food carried ({2}) isn't allowed for {1} by their food policy, {3}, so they go hungry with full packs.</CC_RoadFood_AlertLine>
+  <CC_RoadFood_AlertWhat>Choose a food policy for the road with the caravan's food button, or allow the food in their policy.</CC_RoadFood_AlertWhat>
 
 </LanguageData>

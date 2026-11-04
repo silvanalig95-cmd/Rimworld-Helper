@@ -47,6 +47,8 @@ namespace ColonyCouncil
         /// <summary>What the stores hold and the travellers carry, by thing: counted with the list and every two seconds.</summary>
         private Dictionary<ThingDef, (int stores, int carried)> held = new Dictionary<ThingDef, (int, int)>();
         private float heldAt = -10f;
+        /// <summary>The food on the list against the policy each traveller eats by on the road (Journeys/RoadFood.cs), counted with the stores.</summary>
+        private List<(string text, int level)> roadNotes = new List<(string, int)>();
         /// <summary>A line's count as it is being typed: set when the box is left or Enter pressed.</summary>
         private readonly Dictionary<string, string> countText = new Dictionary<string, string>();
         private string countEditing;
@@ -467,6 +469,15 @@ namespace ColonyCouncil
         {
             heldAt = Time.realtimeSinceStartup;
             held = JourneyPack.Holdings(plan.map, plan.travellers);
+            try
+            {
+                roadNotes = RoadFood.PlanNotes(plan.travellers, plan.packing.Where(l => l.Taken && l.kind == "food").Select(l => l.def).ToList());
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("journeys: the food policy on the road, in the planner", e);
+                roadNotes = new List<(string, int)>();
+            }
         }
 
         private (int stores, int carried) Held(ThingDef def) => def != null && held.TryGetValue(def, out var h) ? h : default;
@@ -514,6 +525,13 @@ namespace ColonyCouncil
                     l.removed = false;
                 }
                 dirty = true;
+            }
+            y += 32f;
+            // The food policy they eat by on the road: one of the colony's, or their own.
+            if (SmallButton(4f, y, Mathf.Min(w - 8f, 420f), "CC_RoadFood_Row".Translate(RoadFood.Label).Resolve(), "CC_RoadFood_Row_Tip".Translate().Resolve()))
+            {
+                RoadFood.Menu();
+                heldAt = -10f;
             }
             y += 32f;
             if (!plan.packing.Any(l => !l.removed))
@@ -816,6 +834,9 @@ namespace ColonyCouncil
                     list.Add(("CC_Journey_FoodLasts".Translate(D(lasts), who, road).Resolve() + " " + verdict, CoverColor(cover), tip));
                 }
             }
+            // Food the policy they eat by on the road doesn't allow.
+            foreach (var n in roadNotes)
+                list.Add((n.text, n.level >= 2 ? UiKit.Bad : n.level == 1 ? UiKit.Warn : UiKit.Faint, "CC_RoadFood_Row_Tip".Translate().Resolve()));
             // The animals' feed against the days they can't graze.
             if (plan.animals.Count > 0)
             {

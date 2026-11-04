@@ -37,6 +37,18 @@ public static class JourneyTests
 
     private static void When(Action<bool, string> Check)
     {
+        // Drugs for addictions and chemical dependencies.
+        Check(AddictionDoses(0f, 0.5f, 1f) == 0 && AddictionDoses(5f, 0f, 1f) == 0, "no trip or no craving: no doses");
+        Check(AddictionDoses(4f, 0.5f, 1f) == 2, $"a craving falling half a day over four days: two doses ({AddictionDoses(4f, 0.5f, 1f)})");
+        Check(AddictionDoses(1f, 0.1f, 1f) == 1, "a short trip still takes one");
+        Check(AddictionDoses(4f, 0.5f, 0f) == 2, "a drug that says no amount fills one");
+        Check(DependencyDoses(0f, 3f, 5f) == 0, "no trip: no doses");
+        Check(DependencyDoses(7.7f, 0f, 5f) == 1, $"just taken, 7.7 days at five-day intervals: one ({DependencyDoses(7.7f, 0f, 5f)})");
+        Check(DependencyDoses(7.7f, 4f, 5f) == 2, $"four days since, 7.7 days: two ({DependencyDoses(7.7f, 4f, 5f)})");
+        Check(DependencyDoses(2f, 100f, 5f) == 1, "a long time since counts as one interval at most");
+        Check(DependencyDoses(1f, 0f, 5f) == 1, "a short trip still takes one");
+        Check(GroupOf("drug") == "drugs" && Array.IndexOf(Groups, "drugs") > Array.IndexOf(Groups, "medicine"), "drugs have a group of their own after medicine");
+
         Check(DefaultHoursAhead(20) == 10, $"at 20h the next dawn is ten hours off ({DefaultHoursAhead(20)})");
         Check(DefaultHoursAhead(22) == 32, $"at 22h dawn is too soon, so the one after ({DefaultHoursAhead(22)})");
         Check(DefaultHoursAhead(6) == 24, $"at dawn itself, the next day's ({DefaultHoursAhead(6)})");
@@ -262,7 +274,7 @@ public static class JourneyTests
 
         Check(GroupOf("food") == "food" && GroupOf("medicine") == "medicine" && GroupOf("feed") == "feed", "food, medicine and feed are their own groups");
         Check(GroupOf("bed") == "bedding" && GroupOf("tent") == "bedding", "beds and tents together as bedding");
-        Check(GroupOf("other") == "other" && GroupOf(null) == "other" && GroupOf("drug") == "other", "anything else is other");
+        Check(GroupOf("other") == "other" && GroupOf(null) == "other" && GroupOf("weapon") == "other", "anything else is other");
         Check(Groups.Distinct().Count() == Groups.Length && Groups[0] == "food" && Groups.Last() == "other", "the groups once each, food first, other last");
         foreach (var kind in new[] { "food", "medicine", "bed", "tent", "feed", "other" }) Check(Groups.Contains(GroupOf(kind)), $"a {kind} line shows in a group");
 

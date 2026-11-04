@@ -155,8 +155,8 @@ namespace ColonyCouncil
         public static int Sleeps(ThingDef def) => Mathf.Max(1, def?.size.x ?? 1);
 
         /// <summary>
-        /// The kind of line a thing makes when the player adds it: a bed caravans can use, a mod's tent, medicine, food the
-        /// travellers can eat, feed only animals eat, or anything else.
+        /// The kind of line a thing makes when the player adds it: a bed caravans can use, a mod's tent, medicine, a drug,
+        /// food the travellers can eat, feed only animals eat, or anything else.
         /// </summary>
         public static string KindFor(ThingDef def)
         {
@@ -164,6 +164,7 @@ namespace ColonyCouncil
             if (def.building != null && def.building.bed_caravansCanUse) return "bed";
             if (IsTent(def)) return "tent";
             if (def.IsMedicine) return "medicine";
+            if (def.IsDrug) return "drug";
             if (def.IsNutritionGivingIngestible && !def.IsDrug && !def.IsCorpse && def.ingestible != null)
                 return def.ingestible.HumanEdible ? "food" : "feed";
             return "other";
@@ -285,6 +286,9 @@ namespace ColonyCouncil
                     medWant -= take;
                 }
 
+                // Drugs for the travellers' addictions and chemical dependencies, for the days away with the margin.
+                lines.AddRange(Drugs(map, people, days, carried, off));
+
                 // A sleeping place each for nights on the road: packed-up beds caravans can use, a double counting two.
                 int beds = JourneyMath.Bedrolls(people.Count, days);
                 var packed = Stored(map, ThingRequestGroup.MinifiedThing).Concat(carried).OfType<MinifiedThing>()
@@ -359,6 +363,75 @@ namespace ColonyCouncil
             for (int i = 0; i < (old?.Count ?? 0); i++)
                 if (old[i]?.def != null && !order.ContainsKey((old[i].def, old[i].kind))) order[(old[i].def, old[i].kind)] = i;
             return lines.OrderBy(l => order.TryGetValue((l.def, l.kind), out int i) ? i : int.MaxValue).ToList();
+        }
+
+        /// <summary>
+        /// Drugs for the travellers' addictions and chemical dependencies, for the trip with its margin. An addiction: the
+        /// craving falls by its rate a day and a dose fills it by the drug's own amount (the caravan gives a dose when the
+        /// craving runs low). A chemical dependency (Biotech's genes): a dose each time it comes due. For each chemical the
+        /// drug their drug policy allows for an addiction comes first, then the cheapest; only what the stores have or the
+        /// travellers carry already.
+        /// </summary>
+        public static List<JourneyLine> Drugs(Map map, List<Pawn> people, float days, List<Thing> carried, HashSet<ThingDef> off)
+        {
+            var lines = new List<JourneyLine>();
+            float span = JourneyMath.MarginDays(days);
+            if (span <= 0f) return lines;
+            // Per chemical: the craving to cover (in the need's own amount), the dependency doses, and who needs it.
+            var want = new Dictionary<ChemicalDef, (float craving, int doses, List<Pawn> who)>();
+            void Want(ChemicalDef chem, Pawn p, float craving, int doses)
+            {
+                if (chem == null) return;
+                if (!want.TryGetValue(chem, out var w)) w = (0f, 0, new List<Pawn>());
+                w.craving += craving;
+                w.doses += doses;
+                if (!w.who.Contains(p)) w.who.Add(p);
+                want[chem] = w;
+            }
+            foreach (var p in people)
+            {
+                var hediffs = p.health?.hediffSet?.hediffs;
+                if (hediffs != null)
+                    foreach (var a in hediffs.OfType<Hediff_Addiction>())
+                        Want(a.Chemical, p, span * (a.Need?.def?.fallPerDay ?? 0f), 0);
+                var genes = p.genes?.GenesListForReading;
+                if (genes != null)
+                    foreach (var g in genes.OfType<Gene_ChemicalDependency>())
+                    {
+                        if (!g.Active || g.def?.chemical == null) continue;
+                        float since = (Find.TickManager.TicksGame - g.lastIngestedTick) / 60000f;
+                        Want(g.def.chemical, p, 0f, JourneyMath.DependencyDoses(span, since, DependencyDays(g.LinkedHediff)));
+                    }
+            }
+            if (want.Count == 0) return lines;
+            var drugs = Stored(map, ThingRequestGroup.Drug).Concat(carried.Where(t => t.def.IsDrug)).GroupBy(t => t.def).ToList();
+            foreach (var kv in want)
+            {
+                var chem = kv.Key;
+                var (craving, doses, who) = kv.Value;
+                var best = drugs.Where(g => !off.Contains(g.Key) && g.Key.GetCompProperties<CompProperties_Drug>()?.chemical == chem)
+                    .OrderByDescending(g => who.Count(p => p.drugs?.CurrentPolicy?[g.Key]?.allowedForAddiction ?? true))
+                    .ThenBy(g => g.Key.BaseMarketValue).FirstOrDefault();
+                if (best == null) continue;
+                float perDose = best.Key.GetCompProperties<CompProperties_Drug>()?.needLevelOffset ?? 1f;
+                int need = doses + (craving > 0f ? JourneyMath.AddictionDoses(1f, craving, perDose) : 0);
+                int take = Mathf.Min(need, best.Sum(t => t.stackCount));
+                if (take > 0) lines.Add(new JourneyLine(best.Key, take, "drug"));
+            }
+            return lines;
+        }
+
+        /// <summary>
+        /// How many days a chemical dependency goes between doses: its first stage of want, by the rate its severity rises
+        /// (a day a day when the hediff counts days itself). Five days when the hediff says nothing usable.
+        /// </summary>
+        public static float DependencyDays(Hediff dependency)
+        {
+            var def = dependency?.def;
+            float first = def?.stages?.Where(s => s.minSeverity > 0f).Select(s => s.minSeverity).DefaultIfEmpty(0f).Min() ?? 0f;
+            float rate = def?.CompProps<HediffCompProperties_SeverityPerDay>()?.severityPerDay ?? 1f;
+            if (first <= 0f || rate <= 0f) return 5f;
+            return Mathf.Clamp(first / rate, 1f, 30f);
         }
 
         /// <summary>

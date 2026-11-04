@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Food for the road
+
+*4 November 2026, version 0.64.1*
+
+- In a caravan the game lets someone eat only what their food policy allows, so a policy that keeps the survival meals or the jelly for the road left travellers out of food with full packs.
+- Choose one of your food policies for the road, once, in the journey planner or with a caravan's food button. The colony's people eat by it while they travel, on a journey or not, and by their own again when they are home.
+- The journey planner says when the food on the list isn't allowed for someone by the policy they will eat by on the road, and an alert says when a caravan carries food its people may not eat.
+- The planner packs drugs for travellers with an addiction or a chemical dependency, enough for the days away, and the caravan gives a dose when one is due.
+
 ## Much more to talk about
 
 *3 November 2026, version 0.64.0*

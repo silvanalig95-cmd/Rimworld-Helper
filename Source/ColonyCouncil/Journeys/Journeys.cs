@@ -30,8 +30,9 @@ namespace ColonyCouncil
         public ThingDef def;
         public int count;
         /// <summary>
-        /// food, medicine, bed, tent, feed (for the animals) or other (anything else: it goes with the caravan's goods,
-        /// loaded at the gate, rather than in the travellers' own packs).
+        /// food, medicine, drug (for a traveller's addiction or chemical dependency), bed, tent, feed (for the animals) or
+        /// other (anything else). Drugs, feed and anything else go with the caravan's goods, loaded at the gate, rather
+        /// than in the travellers' own packs.
         /// </summary>
         public string kind;
         /// <summary>The player set this number: kept when the list is worked out again.</summary>
@@ -68,6 +69,21 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref edited, "edited");
             Scribe_Values.Look(ref added, "added");
             Scribe_Values.Look(ref removed, "removed");
+        }
+    }
+
+    /// <summary>A traveller eating by the road's food policy, with their own to go back to at home (Journeys/RoadFood.cs).</summary>
+    public class RoadFoodEntry : IExposable
+    {
+        public Pawn pawn;
+        public FoodPolicy own;
+        public FoodPolicy road;
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_References.Look(ref own, "own");
+            Scribe_References.Look(ref road, "road");
         }
     }
 
@@ -216,6 +232,12 @@ namespace ColonyCouncil
     {
         public JourneyPlan plan;
         public int nextId = 1;
+        /// <summary>The food policy the colony's travellers eat by on the road, chosen by the player; null keeps their own (Journeys/RoadFood.cs).</summary>
+        public FoodPolicy roadPolicy;
+        /// <summary>Travellers eating by <see cref="roadPolicy"/> on the road, with their own policy to go back to at home.</summary>
+        public List<RoadFoodEntry> roadFood = new List<RoadFoodEntry>();
+        /// <summary>The caravans were looked at once since the load.</summary>
+        [Unsaved] private bool roadLooked;
 
         private static JourneyBook cached;
         private static Game cachedGame;
@@ -267,16 +289,30 @@ namespace ColonyCouncil
 
         public override void GameComponentTick()
         {
-            if (plan == null) return;
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareJourneys)) return;
+            if (plan != null)
+            {
+                try
+                {
+                    JourneyRun.Rare(this, plan);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("journeys", e);
+                }
+            }
+            // The food policy on the road: the caravans once an hour, inside this pass (and on its first look after a load).
+            if (roadLooked && !Sched.Every(now, Sched.HourTicks, Sched.RareJourneys)) return;
+            roadLooked = true;
+            if (roadPolicy == null && roadFood.Count == 0) return;
             try
             {
-                JourneyRun.Rare(this, plan);
+                RoadFood.Hour(this);
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("journeys", e);
+                CouncilLog.ErrorOnce("journeys: the food policy on the road", e);
             }
         }
 
@@ -285,6 +321,13 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Deep.Look(ref plan, "plan");
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_References.Look(ref roadPolicy, "roadPolicy");
+            Scribe_Collections.Look(ref roadFood, "roadFood", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (roadFood == null) roadFood = new List<RoadFoodEntry>();
+                roadFood.RemoveAll(e => e?.pawn == null);
+            }
             if (Scribe.mode == LoadSaveMode.PostLoadInit && plan != null && (plan.map == null || plan.travellers.Count == 0)) plan = null;
         }
     }

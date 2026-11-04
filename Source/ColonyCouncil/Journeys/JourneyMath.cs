@@ -332,6 +332,28 @@ namespace ColonyCouncil
         // ---------------- How long it lasts ----------------
 
         /// <summary>The days the packing is for: the days on the road, a quarter more and a spare day (none without a road).</summary>
+        /// <summary>
+        /// Doses for an addiction over <paramref name="days"/>: the craving falls by <paramref name="fallPerDay"/> a day and a
+        /// dose fills it by <paramref name="perDose"/> (the drug's own amount, one when it says none). At least one.
+        /// </summary>
+        public static int AddictionDoses(float days, float fallPerDay, float perDose)
+        {
+            if (days <= 0f || fallPerDay <= 0f) return 0;
+            return Math.Max(1, (int)Math.Ceiling(days * fallPerDay / (perDose > 0f ? perDose : 1f) - 1e-4));
+        }
+
+        /// <summary>
+        /// Doses for a chemical dependency over <paramref name="days"/>: one each time it comes due, every
+        /// <paramref name="everyDays"/>, counting the days since the last (no more than one interval). At least one.
+        /// </summary>
+        public static int DependencyDoses(float days, float daysSince, float everyDays)
+        {
+            if (days <= 0f) return 0;
+            float every = Math.Max(0.5f, everyDays);
+            float since = Math.Max(0f, Math.Min(daysSince, every));
+            return Math.Max(1, (int)Math.Floor((since + days) / every + 1e-4));
+        }
+
         public static float MarginDays(float roadDays) => roadDays <= 0f ? 0f : roadDays * (1f + FoodMargin) + SpareDays;
 
         /// <summary>A simple meal's nourishment: the shortfall is told in meals of this much.</summary>
@@ -408,9 +430,9 @@ namespace ColonyCouncil
         public static float PerPerson(int count, int people) => people <= 0 ? 0f : Math.Max(0, count) / (float)people;
 
         /// <summary>The list's groups in the order they are shown.</summary>
-        public static readonly string[] Groups = { "food", "medicine", "bedding", "feed", "other" };
+        public static readonly string[] Groups = { "food", "medicine", "drugs", "bedding", "feed", "other" };
 
-        /// <summary>A line's group: food, medicine and feed by their kind, beds and tents together as bedding, anything else other.</summary>
+        /// <summary>A line's group: food, medicine and feed by their kind, drugs, beds and tents together as bedding, anything else other.</summary>
         public static string GroupOf(string kind)
         {
             switch (kind)
@@ -419,6 +441,8 @@ namespace ColonyCouncil
                 case "medicine":
                 case "feed":
                     return kind;
+                case "drug":
+                    return "drugs";
                 case "bed":
                 case "tent":
                     return "bedding";
