@@ -181,6 +181,10 @@ namespace ColonyCouncil
                     case CardKind.Letter: LetterCard(m); break;
                 }
                 Registered(m);
+                // Slot by slot, by order, the builder's and the features' sections together (a stable sort: equals keep their order).
+                var sorted = m.blocks.OrderBy(b => b.slot).ThenBy(b => b.order).ToList();
+                m.blocks.Clear();
+                m.blocks.AddRange(sorted);
             }
             catch (Exception e)
             {
