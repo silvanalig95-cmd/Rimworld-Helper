@@ -15,6 +15,34 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Text pass: the region's voices (the words around stage 1's features, every age). Talk: 132 new pieces in six new
+  files, each on facts the providers set: `Rimfolk_OutsiderTalks_PostsMore.xml` 34 (posts 14 -> 48: the post's people by
+  age, season and tone, the keeper as `role:head`, the warning, their people's and others' posts, `deed:postRazed`,
+  the colonists' own means of getting there by the colony's age), `_HamletsMore.xml` 30 (hamlets 14 -> 44: by age and
+  season, its head and founder, `deed:hamletHarvest`/`hamletHelped`/`hamletRefused`, fealty by their rite, a grown
+  hamlet), `_RaidersCamps.xml` 22 (new: `deed:brokeCamp`, `burnedCamp`, and the camp's own people's `camped`,
+  `campBroken`, `campFailed`, `paidOff`, `campStruck`), `_Ruins.xml` 16 (new: `ws:Rimfolk_WS_GivenUp` while it runs and
+  just after, `town:lately:world:resettled`, `town:why:ruin` and `:refugees`), `_FollowUps.xml` 13 (new: the grown town
+  6, the warlord's son 7 at the gate, in exile, with riders, after), `_RememberedMore.xml` 17 (remembered 7 -> 24:
+  known by name before they've met, {FRIEND} and {FOE} by kind, `you:foe` cool and sour). Letters and news: a keyed
+  text may have numbered fellows (`CC_X_2` to `CC_X_6`), picked at random by `TextVariants.Vary`
+  (`Text/TextVariants.cs`); 84 in `Languages/English/Keyed/Rimfolk_RegionVariants.xml` (posts 15, hamlets 10, rise and
+  fall 23 with the resettled and renamed by age, new towns begun and built 7, raiders' camps 12 with the raid letter and
+  a raid beaten off, far news and travelers 17). Code, one line each where the words are read: the `T` helpers of
+  `FarNews`, `HamletWords`, `RiseFallWords`, `TradingPostWords`; `RegionWords.Begun`/`Built`; `RaidersCamp` (the
+  sighting line, the raid text, a raid beaten off, the ending); `CampSeekers` (why they came, the prospectors'
+  quarrel). Only keys with a `_2` vary, so panels and history lines read as before; the hamlet's ask (retold when the
+  place changes) has no variants on purpose. Bubbles: 9 of the keyed above (a camp sighted, a visitor's warning, far
+  news, the quarrel), and `Patches/Rimfolk_SeekerLines.xml` gives the prospectors and surveyors `[seek:ore]` and
+  `[seek:ruins]` moment lines for their walk out (a conditional add: textcheck refuses a new list in an old def), the
+  scholars two more. World events: a town given up 3 texts more, the town that grew 4, the son's endings 5. Thin still:
+  no fact names a raiders' camp standing near the colony or a ruin in the region (only deeds after the fact), so nobody
+  remarks on one while it is there; no fact for a camp of travelers who sought out the remote (`seeking` on the camp is
+  not in the facts), so their talk is the far news only; a ruin's own people coming back and newcomers read the same
+  (the history knows, the facts don't); `{SITUATION}` of a town given up reads "a town given up", so its pieces use
+  `{SITUATIONPLACE}`; the son's band can't be talked of (his people are at war). Not a text fix: `RaidersCamp.Found`
+  translates `CC_RaidCamp_Say_Letter`, a key that doesn't exist, when a neighbour's letter finds a camp (nobody says it,
+  but the missing key is looked up).
 - 0.77.0, stage 1 release 6, the hamlet (item 6, decisions 4 and 9 to 11): `World/Region/HamletMath.cs` (pure, `HamletTests`),
   `Hamlet.cs` (`HamletHome` on `RegionHome.hamlet`, `Hamlets`: day and hour, looks, the ways in, ends, `KeepFor.Hamlet`),
   `HamletPlace.cs` (6 to 10 tiles by the posts' rules, `WhyNotHere` for the world targeter), `HamletAsk.cs`

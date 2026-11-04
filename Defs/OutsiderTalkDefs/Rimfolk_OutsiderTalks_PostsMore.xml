@@ -73,7 +73,7 @@
       <li>[them] Winter at {TOWN} is counting stock and listening for carts that don't come.</li>
       <li>[us] Do you go home for it?</li>
       <li>[them,their:tribal] Some do, but the fire at the trading camp is never left alone.</li>
-      <li>[them] Someone has to stay with the stock, and this winter it's me.</li>
+      <li>[them] Some do, but someone always stays behind with the stock.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

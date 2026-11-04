@@ -33,10 +33,10 @@
     <uses>chat</uses>
     <when>ws:Rimfolk_WS_GrownTown,situation:theirs</when>
     <lines>
-      <li>[them] They mean to hold a first market at {SITUATIONPLACE}, a proper one with stalls.</li>
+      <li>[them] {SITUATIONPLACE} is a market town now, with proper stalls and a weighing table.</li>
       <li>[us] We might go.</li>
       <li>[them,role:trader] Go early, the best stalls go to whoever gets there first.</li>
-      <li>[them] Go, it isn't every year a town has its first.</li>
+      <li>[them] Go, your colony would be welcome there.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
