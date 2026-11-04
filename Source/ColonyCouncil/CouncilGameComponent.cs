@@ -190,6 +190,9 @@ namespace ColonyCouncil
             Nav.Reset();
             Drawer.Reset();
             Previews.Hide();
+            // The region's lens and modes, and the lens's model of the last game's places.
+            RegionView.Reset();
+            LensModel.Dirty();
             SocialColumn.Reset();
             Bonds.ResetCaches();
             FightSides.Clear();

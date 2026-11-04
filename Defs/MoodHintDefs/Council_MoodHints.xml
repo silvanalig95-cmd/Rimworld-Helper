@@ -646,7 +646,7 @@
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Strangers</article>
-    <councilTab>Neighbours</councilTab>
+    <councilTab>Peoples/Faces</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -884,7 +884,7 @@
     <act>Build up the defenses</act>
     <actionable>false</actionable>
     <signal>Council_Adv_Defense</signal>
-    <councilTab>Neighbours</councilTab>
+    <councilTab>Map/Threats/List</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

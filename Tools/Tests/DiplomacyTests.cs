@@ -214,8 +214,11 @@ public static class DiplomacyTests
         C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour,[\s\S]{0,40}OutsiderAct\.Spar"), "the new act right after Invite");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");
-        C(dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(DiplomacyPage, \"CC_Tab_Diplomacy\"") && dip["DiplomacyPanels.cs"].Contains("DiplomacyMath.HouseholdOrder")
-          && dip["DiplomacyPanels.cs"].Contains("CardSections.Town(CardSlot.Ties, 10f, DrawTown, \"CC_Dip_TownHeader\""), "the two pages, and the town's debts in its card's Ties");
+        C(!dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(") && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.Owed(y, w, dip, folds)")
+          && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.PeopleBody(") && Code("UI/Region/HereAndAwayView.cs").Contains("dip.here")
+          && Code("UI/Region/HereAndAwayView.cs").Contains("dip.away") && Code("UI/Region/HereAndAwayView.cs").Contains("dip.houses")
+          && dip["DiplomacyPanels.cs"].Contains("CardSections.Town(CardSlot.Ties, 10f, DrawTown, \"CC_Dip_TownHeader\""),
+            "the panels in the region's views (the owed strip and each people's ties on Peoples; here, away and houses on Here and away), and the town's debts in its card's Ties");
         C(dip["DiplomacyLinks.cs"].Contains("Cards.Open(") && !dip["DiplomacyLinks.cs"].Contains("CameraJumper"), "a name in diplomacy's rows opens its card");
         C(Regex.Matches(dip["DiplomacyPanels.cs"] + dip["DiplomacyModel.cs"], @"DiplomacyLinks\.Open\(").Count >= 3 && !Regex.IsMatch(dip["DiplomacyPanels.cs"], @"CameraJumper|ShowOnMap"),
             "a click on a name goes through one helper");

@@ -46,15 +46,12 @@ public static class PagesTests
         foreach (RimfolkWindow w in Enum.GetValues(typeof(RimfolkWindow)))
         {
             var views = PagesMath.ViewsOf(w);
-            // The region window's pages are one section until its own release makes them four views (UI 2); then it
-            // joins this check like the others.
-            if (w == RimfolkWindow.World && views.Count == 1) continue;
             C(views.Count <= PagesMath.MaxViews, $"the {w} window has at most five views ({views.Count})");
             foreach (var v in views)
                 C(PagesMath.ModesOf(w, v).Count <= PagesMath.MaxModes, $"the {w} window's {v} view has at most five modes ({PagesMath.ModesOf(w, v).Count})");
         }
-        C(PagesMath.HasViews(RimfolkWindow.Council) && PagesMath.HasViews(RimfolkWindow.Planning) && !PagesMath.HasViews(RimfolkWindow.Defense),
-            "the council and planning windows are made of views; the defense window is one");
+        C(PagesMath.HasViews(RimfolkWindow.Council) && PagesMath.HasViews(RimfolkWindow.Planning) && PagesMath.HasViews(RimfolkWindow.World)
+          && !PagesMath.HasViews(RimfolkWindow.Defense), "the council, region and planning windows are made of views; the defense window is one");
 
         // ---------------- The player's layout (4 November 2026, the council in four views) ----------------
         bool Same(IEnumerable<string> a, params string[] b) => a.SequenceEqual(b);
@@ -65,8 +62,10 @@ public static class PagesTests
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Council"), "Decrees", "Ambition", "Ways", "Wishes", "Dilemmas"),
             "Council: offices and decrees, ambition, ways, wishes, dilemmas");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Colony"), "Overview", "Calendar", "Chronicle"), "Colony: overview, calendar, chronicle");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.World), "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory"),
-            "the region window: the map first, then neighbours, peoples, letters and calls, journeys, world events, the world's history");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "WorldHistory"),
+            "the region window in four views (UI 2): the map first, then peoples, here and away, history");
+        C(Same(PagesMath.ViewsOf(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "WorldHistory") && PagesMath.HasViews(RimfolkWindow.World),
+            "the region window's four views, each one page with its own modes and lenses as parts of its address");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Defense), "Defenses"), "the defense window has the Defenses page, and only there");
         C(Same(PagesMath.ViewsOf(RimfolkWindow.Planning), "Plan", "Base", "Making", "Rooms"), "the planning window: Plan, Base, Making, Rooms");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Planning, "Plan"), "Plan", "Priorities"), "Plan: the plan, and the advisor's priorities joined to it");
@@ -78,7 +77,7 @@ public static class PagesTests
         {
             ["Week"] = ("Week", RimfolkWindow.Council, "Week"), ["Overview"] = ("Overview", RimfolkWindow.Council, "Colony"),
             ["Priorities"] = ("Priorities", RimfolkWindow.Planning, "Plan"), ["Moods"] = ("Moods", RimfolkWindow.Council, "People"),
-            ["World"] = ("Neighbours", RimfolkWindow.World, "World"), ["Defenses"] = ("Defenses", RimfolkWindow.Defense, "Defense"),
+            ["World"] = ("Map", RimfolkWindow.World, "Map"), ["Defenses"] = ("Defenses", RimfolkWindow.Defense, "Defense"),
             ["Plan"] = ("Plan", RimfolkWindow.Planning, "Plan"), ["Base"] = ("Base", RimfolkWindow.Planning, "Base"),
             ["Making"] = ("Making", RimfolkWindow.Planning, "Making"), ["Build"] = ("Build", RimfolkWindow.Planning, "Rooms"),
             ["Rooms"] = ("Rooms", RimfolkWindow.Planning, "Rooms"), ["Roster"] = ("Table", RimfolkWindow.Council, "People"),
@@ -88,7 +87,7 @@ public static class PagesTests
             ["Ambition"] = ("Ambition", RimfolkWindow.Council, "Council"), ["Ways"] = ("Ways", RimfolkWindow.Council, "Council"),
             ["Dilemmas"] = ("Dilemmas", RimfolkWindow.Council, "Council"), ["Chronicle"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
             ["Calendar"] = ("Calendar", RimfolkWindow.Council, "Colony"), ["Dreams"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
-            ["Journals"] = ("Chronicle", RimfolkWindow.Council, "Colony"), ["RegionMap"] = ("Map", RimfolkWindow.World, "World"),
+            ["Journals"] = ("Chronicle", RimfolkWindow.Council, "Colony"), ["RegionMap"] = ("Map", RimfolkWindow.World, "Map"),
             ["History"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
             // A view's name opens it (on the mode last looked at in the game; its first here).
             ["People"] = ("Table", RimfolkWindow.Council, "People"), ["Council"] = ("Decrees", RimfolkWindow.Council, "Council"),
@@ -105,16 +104,57 @@ public static class PagesTests
         // The Almanac: no window's page, a window of its own, and still an address.
         C(PagesMath.IsPage("Almanac") && PagesMath.IsAlmanac("almanac") && PagesMath.Resolve("Almanac") == PagesMath.Almanac && PagesMath.WindowOf("Almanac") == null
             && !names.Contains("Almanac"), "the Almanac is an address of its own window, no window's page");
-        C(PagesMath.Resolve("decrees") == "Decrees" && PagesMath.Resolve("WORLD") == "Neighbours" && PagesMath.Resolve("roster") == "Table", "names are read in any case");
+        C(PagesMath.Resolve("decrees") == "Decrees" && PagesMath.Resolve("WORLD") == "Map" && PagesMath.Resolve("roster") == "Table", "names are read in any case");
         C(!PagesMath.IsPage(null) && !PagesMath.IsPage("") && !PagesMath.IsPage("Nowhere") && PagesMath.WindowOf("Nowhere") == null, "a name that is no page is none");
         C(PagesMath.IsView("People", out var vw, out var vv) && vw == RimfolkWindow.Council && vv == "People" && PagesMath.IsView("Rooms", out var vw2, out _) && vw2 == RimfolkWindow.Planning
+            && PagesMath.IsView("Map", out var vw3, out _) && vw3 == RimfolkWindow.World
             && !PagesMath.IsView("World", out _, out _) && !PagesMath.IsView("Defense", out _, out _) && !PagesMath.IsView("Roster", out _, out _),
             "views by name: the council's and the planning window's, not a window of one view");
         foreach (var kv in PagesMath.Moved)
         {
             C(!names.Contains(kv.Key, StringComparer.OrdinalIgnoreCase), $"the old name {kv.Key} is no page's own");
-            C(names.Contains(kv.Value), $"the old name {kv.Key} leads to a page");
+            var parts = kv.Value.Split('/');
+            C(names.Contains(parts[0]), $"the old name {kv.Key} leads to a view ({parts[0]})");
+            for (int i = 1; i < parts.Length; i++)
+                C(PagesMath.ModesOf(parts[0]).Contains(parts[i]) || PagesMath.LensesOf(parts[0]).Contains(parts[i]),
+                    $"the old name {kv.Key} leads to {parts[i]}, a mode or lens of {parts[0]}");
         }
+
+        // ---------------- The region in four views (UI 2) ----------------
+        // Every page the region window had, each with the view, the lens and the mode it is now (null: none named).
+        var region = new Dictionary<string, (string view, string lens, string mode)>
+        {
+            ["Map"] = ("Map", null, null), ["RegionMap"] = ("Map", null, null), ["Region"] = ("Map", null, null),
+            ["Neighbours"] = ("Map", "Stance", "List"), ["World"] = ("Map", "Stance", "List"),
+            ["TradingPosts"] = ("Map", "Trade", "List"), ["RaidersCamps"] = ("Map", "Threats", "List"), ["Hamlets"] = ("Map", "Ours", "List"),
+            ["Peoples"] = ("Peoples", null, null), ["Diplomacy"] = ("Peoples", null, null),
+            ["Letters"] = ("HereAndAway", null, null), ["Journeys"] = ("HereAndAway", null, null), ["Household"] = ("HereAndAway", null, null),
+            ["Events"] = ("WorldHistory", null, null), ["WorldHistory"] = ("WorldHistory", null, null)
+        };
+        foreach (var kv in region)
+        {
+            bool ok = PagesMath.TryAddress(kv.Key, out var a);
+            C(ok && a.page == kv.Value.view && a.lens == kv.Value.lens && a.mode == kv.Value.mode && PagesMath.WindowOf(kv.Key) == RimfolkWindow.World,
+                $"the old region page {kv.Key} is {kv.Value.view}" + (kv.Value.lens != null ? ", " + kv.Value.lens : "") + (kv.Value.mode != null ? ", " + kv.Value.mode : "") + $" ({a})");
+        }
+        C(PagesMath.TryAddress("Map/Trade/List", out var t1) && t1.page == "Map" && t1.lens == "Trade" && t1.mode == "List" && t1.Within == "Trade/List",
+            "an address names a view, a lens and a mode");
+        C(PagesMath.TryAddress("map/threats", out var t2) && t2.page == "Map" && t2.lens == "Threats" && t2.mode == null, "in any case, a mode left unnamed");
+        C(PagesMath.TryAddress("TradingPosts/Map", out var t3) && t3.lens == "Trade" && t3.mode == "Map", "a part after an old name overrides what it forwards to");
+        C(PagesMath.TryAddress("Peoples/Faces", out var t4) && t4.page == "Peoples" && t4.mode == "Faces" && t4.lens == null, "Peoples' faces by address");
+        C(PagesMath.TryAddress("Peoples/Trade", out var t5) && t5.page == "Peoples" && t5.lens == null && t5.mode == null, "a part that is no mode or lens of the view is passed over");
+        C(!PagesMath.TryAddress("Nowhere/List", out _) && PagesMath.Resolve("Map/Trade/List") == "Map", "no view, no address; a view's address resolves to the view");
+        C(PagesMath.MaxViews == 5 && PagesMath.MaxModes == 5 && PagesMath.MaxLenses == 6 && RegionViewsMath.MaxLenses == PagesMath.MaxLenses, "five views, five modes, six lenses at most");
+        foreach (var kv in PagesMath.Modes)
+        {
+            C(names.Contains(kv.Key), $"{kv.Key}'s modes are a view's");
+            C(kv.Value.Length >= 2 && kv.Value.Length <= PagesMath.MaxModes && kv.Value.Distinct().Count() == kv.Value.Length, $"{kv.Key} has two to {PagesMath.MaxModes} modes, each once");
+        }
+        foreach (var kv in PagesMath.Lenses)
+            C(names.Contains(kv.Key) && kv.Value.Length <= PagesMath.MaxLenses && kv.Value.Distinct().Count() == kv.Value.Length, $"{kv.Key} has at most {PagesMath.MaxLenses} lenses, each once");
+        C(PagesMath.LensesOf("Map").SequenceEqual(RegionViewsMath.Lenses.Select(l => l.ToString())), "the map's lenses by address are the lens bar's, in its order");
+        C(Same(PagesMath.ModesOf("Map"), "Map", "List") && Same(PagesMath.ModesOf("Peoples"), "Peoples", "Faces"), "Map or List; Peoples or Faces");
+        C(PagesMath.ModesOf("HereAndAway").Length == 0 && PagesMath.ModesOf("WorldHistory").Length == 0, "Here and away and History have no modes (History's scope is its filter)");
         foreach (var kv in PagesMath.MovedFilters) C(PagesMath.Moved.ContainsKey(kv.Key), $"the old name {kv.Key} that is a filter now also leads to its page");
 
         // ---------------- Every view's "?" leads to an Almanac article ----------------
@@ -125,7 +165,7 @@ public static class PagesTests
                 string dn = d.Element("defName")?.Value;
                 if (dn != null) articles.Add(dn);
             }
-        foreach (var w in new[] { RimfolkWindow.Council, RimfolkWindow.Planning })
+        foreach (var w in new[] { RimfolkWindow.Council, RimfolkWindow.Planning, RimfolkWindow.World })
             foreach (var p in PagesMath.PagesIn(w))
             {
                 string a = PagesMath.ArticleOf(p);
@@ -180,13 +220,15 @@ public static class PagesTests
 
         // ---------------- Every page the code asks for is a page ----------------
         string src = Path.Combine(root, "Source", "ColonyCouncil");
+        // An address may name a view's lens and mode after slashes ("Map/Threats/List"): each part must be one of the view's.
         var asks = new[]
         {
-            new Regex(@"MainTabWindow_Council\.(?:OpenTab|OpenOrClose)\(""(\w+)""\)"),
-            new Regex(@"\bPages\.(?:Open|OpenOrClose)\(""(\w+)""\)"),
-            new Regex(@"\.page = ""(\w+)"""),
-            new Regex(@"\bpage = ""(\w+)"""),
-            new Regex(@"\b(?:Page|ClickPage|CouncilPage)\((?:\w+, )?""(\w+)""\)")
+            new Regex(@"MainTabWindow_Council\.(?:OpenTab|OpenOrClose)\(""(\w+(?:/\w+)*)""\)"),
+            new Regex(@"\bPages\.(?:Open|OpenOrClose)\(""(\w+(?:/\w+)*)""\)"),
+            new Regex(@"\.page = ""(\w+(?:/\w+)*)"""),
+            new Regex(@"\bpage = ""(\w+(?:/\w+)*)"""),
+            new Regex(@"\b(?:Page|ClickPage|CouncilPage)\((?:\w+, )?""(\w+(?:/\w+)*)""\)"),
+            new Regex(@"return ""(\w+/\w+(?:/\w+)*)"";")
         };
         int asked = 0;
         foreach (var file in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
@@ -198,6 +240,10 @@ public static class PagesTests
                     asked++;
                     string page = m.Groups[1].Value;
                     C(PagesMath.IsPage(page), $"{Path.GetFileName(file)} asks for the page {page}, which is one");
+                    var parts = page.Split('/');
+                    string view = PagesMath.Resolve(parts[0]);
+                    for (int i = 1; i < parts.Length; i++)
+                        C(PagesMath.ModesOf(view).Contains(parts[i]) || PagesMath.LensesOf(view).Contains(parts[i]), $"{Path.GetFileName(file)} asks for {page}: {parts[i]} is a mode or lens of {view}");
                 }
         }
         C(asked >= 40, $"found the code's asks for pages ({asked})");
@@ -279,7 +325,23 @@ public static class PagesTests
         C(pagesFile.Contains("History.Of(") && pagesFile.Contains("History.At(") && pagesFile.Contains("CardWords.HistoryLine(e, true)") && cardWords.Contains("History.Text(e)"),
             "the History page reads the one history through its own queries and words (with links, UI/Cards/CardWords.cs)");
         string worldWindow = File.ReadAllText(Path.Combine(src, "UI", "MainTabWindow_World.cs"));
-        C(Regex.IsMatch(worldWindow, @"public static WorldPage Register\(string name, string labelKey, Texture2D icon, Action<Rect> draw"), "adding a region page is one call");
+        C(Regex.IsMatch(worldWindow, @"public static WorldPage Register\(string name, string labelKey, Texture2D icon, Action<Rect> draw"), "another mod still adds a region page in one call");
+        C(pagesFile.Contains("MainTabWindow_World.ExtraPages()") && worldWindow.Contains("RegionView.History : page"), "such a page is under History's More, with History's tab lit");
+        // Its scope: this colony, the region, the world.
+        var colony = Ref.Colony(1);
+        var parties = new HashSet<Ref> { colony, people };
+        var far = new HistoryEntry { kind = "deed:traded" };
+        far.actors.Add(new HistoryActor(Ref.People(99), HistoryRole.Did));
+        C(WorldHistoryMath.InScope(far, HistoryScope.World, null) && !WorldHistoryMath.InScope(far, HistoryScope.Region, parties), "the world keeps everything, the region only what involves it");
+        C(WorldHistoryMath.InScope(e, HistoryScope.Region, parties), "an event of a people in the region is in its scope");
+        var atHome = new HistoryEntry { kind = "loss", place = colony };
+        C(WorldHistoryMath.InScope(atHome, HistoryScope.Colony, new HashSet<Ref> { colony }) && !WorldHistoryMath.InScope(atHome, HistoryScope.Colony, new HashSet<Ref>()),
+            "what happened at the colony is the colony's");
+        C(!WorldHistoryMath.InScope(null, HistoryScope.World, null), "no event is in no scope");
+        C(WorldHistoryMath.DefaultScope == HistoryScope.Region, "History opens on the region (the Chronicle is the colony's door)");
+        foreach (HistoryScope s in Enum.GetValues(typeof(HistoryScope)))
+            C(WorldHistoryMath.ScopeOf(WorldHistoryMath.ScopeCode(s)) == s, $"the scope {s} is kept on the way back");
+        C(WorldHistoryMath.ScopeOf("?") == WorldHistoryMath.DefaultScope && WorldHistoryMath.ScopeOf(null) == WorldHistoryMath.DefaultScope, "an unknown scope is the default");
         return n;
     }
 }

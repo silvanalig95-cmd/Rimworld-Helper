@@ -122,17 +122,23 @@ namespace ColonyCouncil
             Pages.Open(FullPage(kind));
         }
 
-        /// <summary>The region page that lists a kind of thing (where its card opens in full until the region's views come).</summary>
+        /// <summary>
+        /// The region view that lists a kind of thing, where its card opens in full (docs/design/interface.md, "Things and
+        /// their cards"): a person among the faces of Peoples, a people and a tie on Peoples, an event in History, a letter
+        /// and a house on Here and away, a place on the map.
+        /// </summary>
         public static string FullPage(CardKind k)
         {
             switch (k)
             {
                 case CardKind.Place: return "Map";
+                case CardKind.Person: return "Peoples/Faces";
                 case CardKind.People:
-                case CardKind.Tie: return "Peoples";
+                case CardKind.Tie: return "Peoples/Peoples";
                 case CardKind.Event: return "WorldHistory";
-                case CardKind.Letter: return "Letters";
-                default: return "Neighbours";
+                case CardKind.Letter:
+                case CardKind.House: return "HereAndAway";
+                default: return "Peoples/Faces";
             }
         }
 
@@ -669,7 +675,7 @@ namespace ColonyCouncil
                 m.Glance(status);
             }
             if (!l.topic.NullOrEmpty()) m.Block(CardSlot.Words, 10f, "about", T("CC_Card_Head_About")).Line(l.topic.CapitalizeFirst());
-            m.Act(T("CC_Card_Act_Letters"), null, () => Pages.Open("Letters"));
+            m.Act(T("CC_Card_Act_Letters"), null, () => Pages.Open("HereAndAway"));
         }
 
         /// <summary>A click sound for opening a card.</summary>

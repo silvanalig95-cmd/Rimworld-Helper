@@ -432,6 +432,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {CouncilUiTests.Run(root, Check)} things about the council window (This week, the tables, page links, shortcuts).");
         Console.WriteLine($"Checked {PagesTests.Run(root, Check)} things about Rimfolk's four windows (which page is where, views and modes, old addresses, each view's \"?\", the view header, the table beside the drawer, the buttons, the world's history list).");
         Console.WriteLine($"Checked {CardsTests.Run(root, Check)} things about names that lead somewhere (things, links and their layout, no marker in the game's text, the way back, cards' slots, the drawer's place).");
+        Console.WriteLine($"Checked {RegionViewsTests.Run(root, Check)} things about the region in four views (six lenses, their marks, lines and lists, the views' parts).");
         Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");
         Console.WriteLine($"Checked {PassClockTests.Run(root, Check)} things about Rimfolk's clock (hours and days by game ticks, the worst run, the table, every pass timed).");

@@ -66,9 +66,9 @@
       <li>Council_Story_PlayFamous</li>
       <li>Council_Mission_Shrine</li>
     </thoughts>
-    <keep>A story in several parts that ended well. The region window's Neighbours page shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</keep>
+    <keep>A story in several parts that ended well. The region window's Here and away shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</keep>
     <article>Council_Alm_C_WorldEvents</article>
-    <councilTab>Neighbours</councilTab>
+    <councilTab>HereAndAway</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -81,11 +81,11 @@
       <li>Council_Story_Schism</li>
       <li>Council_Story_SeedsChoked</li>
     </thoughts>
-    <fix>A story that went badly. It fades on its own within ten days, and good moments in between make up for it. The region window's Neighbours page shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</fix>
+    <fix>A story that went badly. It fades on its own within ten days, and good moments in between make up for it. The region window's Here and away shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</fix>
     <act>Fades within ten days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>
-    <councilTab>Neighbours</councilTab>
+    <councilTab>HereAndAway</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

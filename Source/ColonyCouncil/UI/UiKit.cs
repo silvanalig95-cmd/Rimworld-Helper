@@ -45,6 +45,17 @@ namespace ColonyCouncil
         public static readonly Texture2D Back = Load("Back");
         public static readonly Texture2D Forward = Load("Forward");
 
+        // The region window's views, its map's lenses and modes (UI/Region/)
+        public static readonly Texture2D Away = Load("Away");
+        public static readonly Texture2D LensLand = Load("LensLand");
+        public static readonly Texture2D LensStance = Load("LensStance");
+        public static readonly Texture2D LensFortunes = Load("LensFortunes");
+        public static readonly Texture2D LensThreats = Load("LensThreats");
+        public static readonly Texture2D LensTrade = Load("LensTrade");
+        public static readonly Texture2D LensOurs = Load("LensOurs");
+        public static readonly Texture2D ModeMap = Load("ModeMap");
+        public static readonly Texture2D ModeList = Load("ModeList");
+
         // Markers
         public static readonly Texture2D Pin = Load("Pin");
         public static readonly Texture2D More = Load("More");

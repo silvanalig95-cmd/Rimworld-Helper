@@ -100,7 +100,15 @@ namespace ColonyCouncil
         /// How far a place is from the home the region map is drawn around, by the game's own caravan estimate (worked out
         /// once per place and home): "3.2 days by caravan (14 tiles)". Null when there is no home.
         /// </summary>
-        public static string Distance(PlanetTile tile)
+        public static string Distance(PlanetTile tile) => Distance(tile, false);
+
+        /// <summary>
+        /// How far a place is, short, for a row of a list (the region map's lenses): "3.2 days by caravan", or its tiles
+        /// when there is no way by caravan. The same estimate as <see cref="Distance(PlanetTile)"/>, kept with it.
+        /// </summary>
+        public static string DistanceShort(PlanetTile tile) => Distance(tile, true);
+
+        private static string Distance(PlanetTile tile, bool brief)
         {
             if (!tile.Valid || !RegionMap.HomeTile(out _, out var home)) return null;
             try
@@ -122,6 +130,7 @@ namespace ColonyCouncil
                     if (ticksTo.Count > 400) ticksTo.Clear();
                     ticksTo[key] = ticks;
                 }
+                if (brief) return ticks > 0 ? "CC_Lens_ByCaravan".Translate(TextUtil.DaysString(ticks).Named("DAYS")).Resolve() : "CC_Lens_Tiles".Translate(tiles.Named("TILES")).Resolve();
                 if (ticks > 0) return "CC_Region_Days".Translate(TextUtil.DaysString(ticks), tiles).Resolve();
                 if (ticks == 0) return "CC_Region_NoWay".Translate(tiles).Resolve();
                 return "CC_Region_TilesAway".Translate(tiles).Resolve();

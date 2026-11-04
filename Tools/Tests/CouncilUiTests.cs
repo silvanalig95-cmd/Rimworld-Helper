@@ -108,7 +108,7 @@ public static class CouncilUiTests
         // ---------- Mood hints: "Go to ..." leads to the page the text names ----------
         var named = new Dictionary<string, string>
         {
-            ["Wishes page"] = "Wishes", ["Decrees page"] = "Decrees", ["Neighbours page"] = "Neighbours", ["Peoples page"] = "Peoples", ["Ambition page"] = "Ambition",
+            ["Wishes page"] = "Wishes", ["Decrees page"] = "Decrees", ["Here and away"] = "HereAndAway", ["Peoples view"] = "Peoples", ["Ambition page"] = "Ambition",
             ["Moods page"] = "Moods", ["Dilemmas page"] = "Dilemmas", ["Calendar page"] = "Calendar", ["Bonds page"] = "Bonds"
         };
         int hints = 0, linked = 0;
@@ -123,12 +123,17 @@ public static class CouncilUiTests
                 if (tab != null)
                 {
                     linked++;
-                    // By its own name, or an old one that forwards ("Roster" is People's table, "Dreams" the Chronicle's dreams).
-                    Check(pages.Contains(tab) || PagesMath.Moved.ContainsKey(tab) && pages.Contains(PagesMath.Moved[tab]),
-                        $"{name}: its page {tab} is a page of one of Rimfolk's windows, or an old name that leads to one");
+                    // By its own name (a region view's address may name its lens and mode after it, "Map/Threats/List"), or an
+                    // old one that forwards ("Roster" is People's table, "Dreams" the Chronicle's dreams).
+                    var parts = tab.Split('/');
+                    bool own = pages.Contains(parts[0]) && parts.Skip(1).All(x => PagesMath.ModesOf(parts[0]).Contains(x) || PagesMath.LensesOf(parts[0]).Contains(x));
+                    bool forwards = PagesMath.Moved.ContainsKey(tab) && PagesMath.Resolve(tab) != null && pages.Contains(PagesMath.Resolve(tab));
+                    Check(own || forwards, $"{name}: its page {tab} is a page of one of Rimfolk's windows, or an old name that leads to one");
                 }
                 string keep = d.Element("keep")?.Value ?? "";
                 Check(!fix.Contains("World page") && !keep.Contains("World page"), $"{name}: no hint sends the player to the old World page");
+                foreach (var old in new[] { "Neighbours page", "Letters page", "Journeys page", "World events page", "Events page", "Trading posts page", "Raiders' camps page", "Hamlets page" })
+                    Check(!fix.Contains(old) && !keep.Contains(old), $"{name}: no hint names the region's old {old} (the region has four views)");
                 foreach (var kv in named)
                     if (fix.Contains(kv.Key))
                         Check(tab == kv.Value, $"{name}: its text names the {kv.Key}, and its button goes there (goes to {tab ?? "nothing"})");

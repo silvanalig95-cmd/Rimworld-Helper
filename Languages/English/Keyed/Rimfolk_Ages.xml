@@ -150,7 +150,7 @@
   <CC_Form_Oath_Spacer_Rite>a registered charter</CC_Form_Oath_Spacer_Rite>
 
   <!-- Stage 2, diplomacy (docs/design/stage2-diplomacy.md, "Forms by age"): the colony's word for it by its own age, and the
-       rite by the other people's. Read by the Diplomacy page from stage 2's base on; truces, hostages, envoys and levies
+       rite by the other people's. Read by the region window's Peoples from stage 2's base on; truces, hostages, envoys and levies
        themselves come in later releases. -->
   <!-- A truce with a people at war with the colony -->
   <CC_Form_Truce_Tribal>a peace at the river</CC_Form_Truce_Tribal>

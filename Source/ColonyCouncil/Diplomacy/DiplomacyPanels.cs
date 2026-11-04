@@ -10,27 +10,23 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Diplomacy's panels, each a static Draw over the one model (DiplomacyModel), its rows small pieces that can be drawn
-    /// anywhere: the Diplomacy page (what is owed each way, then a card for each people: stance, head, ties in their age's
-    /// words, what is under way, the acts that fit, each greyed with why not), the Household page (who is here from outside,
-    /// who of the colony's is away, the colony's houses), a town's ties and calling one in (the Ties slot of the town's card,
-    /// UI/Cards/), and This week's line for a call of theirs waiting on the colony (never with a timer). Registered as region
-    /// pages for now; the interface's redesign may move them. A name in a row opens its card through DiplomacyLinks.
+    /// anywhere: what is owed each way (the owed strip at the top of Region → Peoples), a people's diplomacy (stance, head,
+    /// ties in their age's words, what is under way, the acts that fit, each greyed with why not; in each people's card on
+    /// Peoples), who is here from outside, who of the colony's is away and the colony's houses (sections of Region → Here
+    /// and away), a town's ties and calling one in (the Ties slot of the town's card, UI/Cards/), and This week's line for a
+    /// call of theirs waiting on the colony (never with a timer). Their old page names (Diplomacy, Household) forward to
+    /// those views (UI/PagesMath.cs). A name in a row opens its card through DiplomacyLinks.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class DiplomacyPanels
     {
+        /// <summary>The old page names, now addresses of the Peoples view and of Here and away.</summary>
         public const string DiplomacyPage = "Diplomacy", HouseholdPage = "Household";
 
         private static readonly Color Accent = new Color(0.78f, 0.74f, 0.92f);
-        private static Vector2 scrollD, scrollH;
-        private static float heightD = 600f, heightH = 600f;
 
         static DiplomacyPanels()
         {
-            // Shown in development mode only until the interface's region release (docs/design/interface.md, UI 2) gives
-            // these panels their place in the Peoples and Here and away views: the player asked for fewer region tabs.
-            MainTabWindow_World.Register(DiplomacyPage, "CC_Tab_Diplomacy", Icons.Promise ?? Icons.Trust, DrawDiplomacy, () => Prefs.DevMode, DiplomacyMath.DiplomacyOrder);
-            MainTabWindow_World.Register(HouseholdPage, "CC_Tab_Household", Icons.People ?? Icons.Colony, DrawHousehold, () => Prefs.DevMode, DiplomacyMath.HouseholdOrder);
             // A town's debts of honor are its card's Ties (UI/Cards/: the card draws the heading).
             CardSections.Town(CardSlot.Ties, 10f, DrawTown, "CC_Dip_TownHeader", "debts");
         }
@@ -129,89 +125,89 @@ namespace ColonyCouncil
         private static float Measure(DipPeople p, float inner)
         {
             float h = 8f + 32f;
-            float RowH(DipRow r, float w)
-            {
-                float tw = r.act != null ? w - ButtonW - 10f : w;
-                Text.Font = GameFont.Small;
-                float t = Text.CalcHeight(r.text, tw);
-                if (!r.note.NullOrEmpty())
-                {
-                    Text.Font = GameFont.Tiny;
-                    t += Text.CalcHeight(r.note, tw);
-                    Text.Font = GameFont.Small;
-                }
-                return Mathf.Max(t, r.act != null ? 28f : 0f) + 4f;
-            }
-            if (p.head != null) h += RowH(p.head, inner);
+            if (p.head != null) h += RowHeight(p.head, inner);
             if (p.ties.Count == 0) h += Text.CalcHeight(DipWords.P("CC_Dip_NoTies"), inner) + 4f;
-            foreach (var r in p.ties) h += RowH(r, inner);
+            foreach (var r in p.ties) h += RowHeight(r, inner);
             if (p.underway.Count > 0)
             {
                 h += Text.CalcHeight(DipWords.P("CC_Dip_UnderWay"), inner) + 2f;
-                foreach (var r in p.underway) h += RowH(r, inner - 8f);
+                foreach (var r in p.underway) h += RowHeight(r, inner - 8f);
             }
             return h + 10f;
         }
 
-        private static float Section(float y, float w, string title, Texture2D icon, List<DipRow> rows, string empty)
+        /// <summary>How tall a row is in a width, as <see cref="Row"/> draws it.</summary>
+        public static float RowHeight(DipRow r, float w)
         {
-            y += UiKit.SectionTitle(0f, y, w, title, icon, Accent);
-            if (rows.Count == 0) return y + UiKit.Paragraph(0f, y, w, empty, UiKit.Faint) + 8f;
+            if (r == null) return 0f;
+            float tw = r.act != null ? w - ButtonW - 10f : w;
+            Text.Font = GameFont.Small;
+            float t = Text.CalcHeight(r.text, tw);
+            if (!r.note.NullOrEmpty())
+            {
+                Text.Font = GameFont.Tiny;
+                t += Text.CalcHeight(r.note, tw);
+                Text.Font = GameFont.Small;
+            }
+            return Mathf.Max(t, r.act != null ? 28f : 0f) + 4f;
+        }
+
+        /// <summary>
+        /// A section of rows under its heading with its count, folding with <paramref name="folds"/>, or a sentence of what
+        /// will show there. Returns the y below it.
+        /// </summary>
+        public static float Section(float y, float w, string title, List<DipRow> rows, string empty, Folds folds = null, string key = null)
+        {
+            y += UiKit.SectionHeading(0f, y, w, title, rows.Count, folds, key ?? title, out bool open);
+            if (!open) return y + 4f;
+            if (rows.Count == 0) return y + UiKit.Paragraph(4f, y, w - 4f, empty, UiKit.Faint) + 10f;
             foreach (var r in rows) y += Row(8f, y, w - 8f, r);
-            return y + 6f;
+            return y + 8f;
         }
 
-        // ================= The Diplomacy page =================
+        // ================= What is owed each way (Region → Peoples) =================
 
-        public static void DrawDiplomacy(Rect rect)
+        /// <summary>
+        /// The owed strip: what peoples owe the colony and what it owes them, each row with its act (call it in, answer it).
+        /// Nothing while there are no debts and favours are off. Returns the y below it.
+        /// </summary>
+        public static float Owed(float y, float w, DiplomacyModel m, Folds folds = null)
         {
-            var m = DiplomacyModel.Current;
+            if (!Diplomacy.FavoursOn && m.owedUs.Count == 0 && m.owedByUs.Count == 0) return y;
+            y = Section(y, w, DipWords.P("CC_Dip_OwedUs"), m.owedUs, DipWords.P("CC_Dip_OwedUs_None"), folds, "owedUs");
+            return Section(y, w, DipWords.P("CC_Dip_OwedByUs"), m.owedByUs, DipWords.P("CC_Dip_OwedByUs_None"), folds, "owedByUs");
+        }
+
+        /// <summary>What is owed each way, counted (the Peoples view's stat).</summary>
+        public static string OwedStat(DiplomacyModel m)
+        {
             int owed = m.owedUs.Count + m.owedByUs.Count;
-            string stat = owed > 0 ? DipWords.P("CC_Dip_Stat", owed.Named("COUNT")) : null;
-            float top = UiKit.PageHeader(rect, Icons.Promise ?? Icons.Trust, "CC_Dip_Header".Translate(), "CC_Dip_Sub".Translate(), stat, UiKit.Good);
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, heightD);
-            Widgets.BeginScrollView(outRect, ref scrollD, view);
-            try
-            {
-                float y = 0f, w = view.width;
-                if (!Diplomacy.FavoursOn) y += UiKit.Paragraph(0f, y, w, DipWords.P("CC_Dip_Off"), UiKit.Faint) + 8f;
-                y = Section(y, w, DipWords.P("CC_Dip_OwedUs"), Icons.Promise, m.owedUs, DipWords.P("CC_Dip_OwedUs_None"));
-                y = Section(y, w, DipWords.P("CC_Dip_OwedByUs"), Icons.Trader, m.owedByUs, DipWords.P("CC_Dip_OwedByUs_None"));
-                y += UiKit.SectionTitle(0f, y, w, DipWords.P("CC_Dip_Peoples"), Icons.People, Accent);
-                if (m.peoples.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.World, DipWords.P("CC_Dip_NoPeoples"), 60f);
-                foreach (var p in m.peoples) y += PeopleCard(0f, y, w, p) + 8f;
-                heightD = Mathf.Max(y + 10f, 100f);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Reset();
-            }
+            return owed > 0 ? DipWords.P("CC_Dip_Stat", owed.Named("COUNT")) : null;
         }
 
-        // ================= The Household page =================
-
-        public static void DrawHousehold(Rect rect)
+        /// <summary>
+        /// A people's diplomacy inside its card on the Peoples view: its head, its ties in their age's words (or that it has
+        /// none), what is under way. Returns the height used; <paramref name="draw"/> false only measures.
+        /// </summary>
+        public static float PeopleBody(float x, float y, float w, DipPeople p, bool draw)
         {
-            var m = DiplomacyModel.Current;
-            float top = UiKit.PageHeader(rect, Icons.People ?? Icons.Colony, "CC_Dip_HouseHeader".Translate(), "CC_Dip_HouseSub".Translate());
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, heightH);
-            Widgets.BeginScrollView(outRect, ref scrollH, view);
-            try
+            float y0 = y;
+            if (p == null) return 0f;
+            Text.Font = GameFont.Small;
+            if (p.head != null) y += draw ? Row(x, y, w, p.head) : RowHeight(p.head, w);
+            if (p.ties.Count == 0)
             {
-                float y = 0f, w = view.width;
-                y = Section(y, w, DipWords.P("CC_Dip_Here_Title"), Icons.Visitor, m.here, DipWords.P("CC_Dip_Here_None"));
-                y = Section(y, w, DipWords.P("CC_Dip_Away_Title"), Icons.Trader, m.away, DipWords.P("CC_Dip_Away_None"));
-                y = Section(y, w, DipWords.P("CC_Dip_Houses_Title"), Icons.Bonds ?? Icons.People, m.houses, DipWords.P("CC_Dip_Houses_None"));
-                heightH = Mathf.Max(y + 10f, 100f);
+                string none = DipWords.P("CC_Dip_NoTies");
+                y += (draw ? UiKit.Paragraph(x, y, w, none, UiKit.Faint) : Text.CalcHeight(none, w)) + 4f;
             }
-            finally
+            foreach (var r in p.ties) y += draw ? Row(x, y, w, r) : RowHeight(r, w);
+            if (p.underway.Count > 0)
             {
-                Widgets.EndScrollView();
-                Reset();
+                string uw = DipWords.P("CC_Dip_UnderWay");
+                y += (draw ? UiKit.Paragraph(x, y, w, uw, UiKit.HeaderColor) : Text.CalcHeight(uw, w)) + 2f;
+                foreach (var r in p.underway) y += draw ? Row(x + 8f, y, w - 8f, r) : RowHeight(r, w - 8f);
             }
+            return y - y0;
         }
 
         private static void Reset()

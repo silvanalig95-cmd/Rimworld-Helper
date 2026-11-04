@@ -25,7 +25,7 @@ A colonist can write to any of them, or call them on a comms console. The writer
           <li>Envoy | A speaker, herald, envoy or liaison by their era | Someone new, later</li>
           <li>Trader | Of the kind their caravans bring | Someone new, later</li>
         </table>
-        <after>Up to 10 faces the colony met are kept besides; when there are more, the one with nothing to remember for longest makes way. A town out of reach, a people fallen, or a person gone is let go, unless something passed between them in the last 60 days. Those Rimfolk made for a role grow old: from sixty, about 4% a year die of it, and 1.2 points more for every year after (16% at seventy). The region window's Neighbours page tells of who now leads.</after>
+        <after>Up to 10 faces the colony met are kept besides; when there are more, the one with nothing to remember for longest makes way. A town out of reach, a people fallen, or a person gone is let go, unless something passed between them in the last 60 days. Those Rimfolk made for a role grow old: from sixty, about 4% a year die of it, and 1.2 points more for every year after (16% at seventy). A town's card on the region map tells of who now leads.</after>
       </li>
       <li>
         <heading>How they regard the colony</heading>
@@ -44,7 +44,7 @@ A colonist can write to any of them, or call them on a comms console. The writer
       </li>
       <li>
         <heading>Writing a letter</heading>
-        <text>On the region window's Neighbours page, or in a town's panel on its map, press Write by someone's name. Pick what for, who writes (the speaker unless you choose someone else) and how. One letter at a time to each person, three letters and calls under way at most, and a wait before writing to the same person for the same thing again.</text>
+        <text>In a town's card on the region map, or on the region window's Peoples under Faces, press Write by someone's name. Pick what for, who writes (the speaker unless you choose someone else) and how. One letter at a time to each person, three letters and calls under way at most, and a wait before writing to the same person for the same thing again.</text>
         <table>
           <li>What for | When | Wait</li>
           <li>Greetings | Always | 6 days</li>
@@ -109,7 +109,7 @@ A colonist can write to any of them, or call them on a comms console. The writer
       <li>
         <heading>What they talk about</heading>
         <text>Each conversation is a piece chosen by what is true right now, the newest news first: their town and its people by name (a new head, a death, someone ill, letters exchanged), the land and the weather they came through, what they're short of, their traders on the way, places near their town; their people's wars and peace as the game's relations have them (whoever set them), and fighting seen on the colony's land; the world's events running or just over, and the conditions over the land; the colony's own news (a raid and who came, a death, a birth, a wedding, a newcomer, a decree, the speaker chosen, a camp, the harvest, the stores) and its hospital once it has a name, with the doctor people trust most; what their people remember the colony for; what is owed between the two sides (a favor their people owe, a good word promised, their family's claim on someone who joined the colony, silver the colony owes, fealty either way, their grudge for their dead or a colonist's vendetta against them) and what became of it; what happened at their town and to them lately (a town just built, taken or made the colony's vassal, a world event begun or over there); how their people's age stands to the colony's; their town's fortune and the world event that moved it; and their own lives (work, family, faith). Each people speaks in its own way. The same piece isn't said to the same person again while another fits, and two who just talked of something drift to another subject.</text>
-        <after>What is said is kept. News goes into the town's Heard lately, under its people on the Neighbours page and in its panel on the region map, with who told whom and when. Talks leave marks the same two pick up later, with what became of it since: the war they asked about over, the sick notable recovered or dead, someone new leading. Only what matters comes as a message or a letter: a promise made (a good word, something brought), an invitation accepted, a courtship answered, a new friend, hard words, a duel, an injury, or a thing that couldn't be done.</after>
+        <after>What is said is kept. News goes into the town's Heard lately, under its people in the town's card on the region map, with who told whom and when. Talks leave marks the same two pick up later, with what became of it since: the war they asked about over, the sick notable recovered or dead, someone new leading. Only what matters comes as a message or a letter: a promise made (a good word, something brought), an invitation accepted, a courtship answered, a new friend, hard words, a duel, an injury, or a thing that couldn't be done.</after>
       </li>
       <li>
         <heading>Bouts, hard words and duels</heading>

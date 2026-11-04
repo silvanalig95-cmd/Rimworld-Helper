@@ -246,7 +246,7 @@ public static class CardsTests
         foreach (var cls in new[] { "MainTabWindow_Council", "MainTabWindow_World", "MainTabWindow_Defenses", "MainTabWindow_Planning" })
             C(Code("UI/" + cls + ".cs").Contains("Nav.Observe("), $"{cls} tells the way back where it is");
         C(Code("UI/WindowTabs.cs").Contains("Nav.Arrows(") && Code("UI/WindowTabs.cs").Contains("Drawer.Cancel(Which)"), "back and forward in every corner; Escape closes the drawer first");
-        C(Code("UI/MainTabWindow_World.cs").Contains("Drawer.Around(RimfolkWindow.World"), "the region window has the drawer, the map's panel");
+        C(Code("UI/MainTabWindow_World.cs").Contains("Drawer.Around(Drawer.Of(RimfolkWindow.World)"), "the region window has the drawer, the map's panel");
         var keys = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_NavKeys.xml")).Root!.Elements("KeyBindingDef").Select(e => e.Element("defName")!.Value).ToList();
         C(keys.SequenceEqual(new[] { "Council_Key_Back", "Council_Key_Forward" }) && Code("UI/Cards/Nav.cs").Contains("\"Council_Key_Back\""), "two keys for back and forward");
         C(Code("UI/Cards/Nav.cs").Contains("Input.GetMouseButtonDown(3)") && Code("UI/Cards/Nav.cs").Contains("Input.GetMouseButtonDown(4)"), "the mouse's side buttons");
@@ -254,7 +254,7 @@ public static class CardsTests
         string catalog = Code("UI/SettingsCatalog.cs");
         C(settings.Contains("public bool linkPreviews = true;") && settings.Contains("public float linkPreviewDelay = 0.35f;")
           && catalog.Contains("Toggle(\"linkPreviews\"") && catalog.Contains("Slider(\"linkPreviewDelay\""), "previews on at first, after 0.35 seconds, both in the settings");
-        foreach (var show in new[] { "World/Region/HamletPage.cs", "World/Region/TradingPostPage.cs", "World/Region/RaidersCampPage.cs", "UI/WeekModel.cs" })
+        foreach (var show in new[] { "UI/Region/MapView.cs", "UI/Region/HereAndAwayView.cs", "UI/WeekModel.cs" })
             C(Code(show).Contains("Cards.ShowOnMap("), $"{show}: Show opens the place on the region map");
 
         // ---------------- The drawer's place ----------------

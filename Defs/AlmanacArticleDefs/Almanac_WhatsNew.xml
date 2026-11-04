@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.84.0</version>
+        <date>4 November 2026</date>
+        <title>The region in four views</title>
+        <points>
+          <li>The region window has four views instead of ten tabs: Map, Peoples, Here and away, and History. Every old page name, key and link still leads to the right place.</li>
+          <li>The region map reads six ways through its lenses, Land, Stance and ties, Fortunes, Threats, Trade and Ours, each with its legend at the map's foot and a List of what it shows, nearest first.</li>
+          <li>Stance and ties draws a line from home for each tie, with debts of honor dotted, protection double and a grudge in red; Threats draws a raiders' camp's line to the home it raids, and Trade each post's line to its town.</li>
+          <li>Trading posts, raiders' camps and hamlets are the Trade, Threats and Ours lenses now, with their lists, Pay on a camp's row, and how the last ones went.</li>
+          <li>Peoples shows what is owed each way and a card for each people with its ties and acts; its Faces mode has everyone the colony knows by name, its old foes and those who left.</li>
+          <li>Here and away gathers who is here from outside, what is on its way, letters on the road, who of the colony's is away, missions and the colony's houses.</li>
+          <li>History looks at this colony, the region or the whole world, shows the world's events running in a strip at its top, and lists the colony's letters lately.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.83.0</version>
         <date>4 November 2026</date>
         <title>The council in four views</title>

@@ -369,7 +369,7 @@ public static class HistoryTests
         string hist2 = File.ReadAllText(Path.Combine(src, "World", "Ledger", "History.cs"));
         var from = Regex.Match(hist2, @"public static void FromChronicle\(ChronicleEntry entry\)(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
         C(from.Contains("try") && from.Contains("catch") && !from.Contains(".chronicle"), "the history's side can't throw into it, and never touches the chronicle's list");
-        foreach (var reader in new[] { "UI/ChroniclePanel.cs", "World/YearLetter.cs", "Annals.cs", "UI/WorldPanel.cs", "UI/OverviewPanel.cs", "UI/AmbitionPanel.cs", "UI/WishesPanel.cs" })
+        foreach (var reader in new[] { "UI/ChroniclePanel.cs", "World/YearLetter.cs", "Annals.cs", "UI/OverviewPanel.cs", "UI/AmbitionPanel.cs", "UI/WishesPanel.cs" })
         {
             string text = File.ReadAllText(Path.Combine(src, reader));
             C(text.Contains("comp.chronicle") && !Regex.IsMatch(text, @"\bHistory\.(Of|At|Latest|Count|Get)\("), $"{reader} reads the chronicle as before");

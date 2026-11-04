@@ -24,7 +24,8 @@ namespace ColonyCouncil
     /// for "Decrees" or "Defenses" (UI/Pages.cs) and the right window opens there, on that view and mode. Old addresses
     /// keep working (<see cref="Moved"/>): the council window's Roster and Everyone are People's table, its Dreams and
     /// Journals the Chronicle with that filter, its Priorities the planning window's Plan, its Almanac the Almanac's own
-    /// window; the council window's World page is the region window's Neighbours page.
+    /// window; the council window's World page, and the region window's ten pages before its four views, forward to
+    /// a region view with its lens and mode ("Map/Stance/List").
     /// </summary>
     public static class PagesMath
     {
@@ -70,14 +71,13 @@ namespace ColonyCouncil
             new Page("Overview", RimfolkWindow.Council, "Colony"),
             new Page("Calendar", RimfolkWindow.Council, "Colony"),
             new Page("Chronicle", RimfolkWindow.Council, "Colony"),
-            // The region window: the map first, then what lies beyond the colony.
-            new Page("Map", RimfolkWindow.World, "World"),
-            new Page("Neighbours", RimfolkWindow.World, "World"),
-            new Page("Peoples", RimfolkWindow.World, "World"),
-            new Page("Letters", RimfolkWindow.World, "World"),
-            new Page("Journeys", RimfolkWindow.World, "World"),
-            new Page("Events", RimfolkWindow.World, "World"),
-            new Page("WorldHistory", RimfolkWindow.World, "World"),
+            // The region window in four views (UI 2): the map with its lenses, the peoples, who is here and who is away,
+            // the history. Each view is one page; its own modes and lenses are parts of its address ("Map/Trade/List",
+            // "Peoples/Faces": Modes and Lenses below).
+            new Page("Map", RimfolkWindow.World, "Map"),
+            new Page("Peoples", RimfolkWindow.World, "Peoples"),
+            new Page("HereAndAway", RimfolkWindow.World, "HereAndAway"),
+            new Page("WorldHistory", RimfolkWindow.World, "WorldHistory"),
             // The defense window.
             new Page("Defenses", RimfolkWindow.Defense, "Defense"),
             // The planning window: Plan (the plan, the advisor's priorities); Base; Making; Rooms (the room plans as a
@@ -91,17 +91,29 @@ namespace ColonyCouncil
         };
 
         /// <summary>
-        /// Old addresses that are now another page: the council window's World page (now the region window's
-        /// Neighbours, which kept what it showed), the region map's own window, the History section (its first page), the
-        /// roster and the table of everyone (People's table, where a colonist's card opens beside the list), dreams and
-        /// journals (the Chronicle with their filter, <see cref="MovedFilters"/>), and the offices (Offices and decrees).
+        /// Old addresses that are now another page: the council window's World page (later the region window's
+        /// Neighbours), the region map's own window, the History section (its first page), the roster and the table of
+        /// everyone (People's table, where a colonist's card opens beside the list), dreams and journals (the Chronicle
+        /// with their filter, <see cref="MovedFilters"/>), the offices (Offices and decrees), and the region window's ten
+        /// pages before its four views, each a view, a mode or a lens of one now (an address after a slash).
         /// </summary>
         public static readonly Dictionary<string, string> Moved = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            ["World"] = "Neighbours",
+            ["World"] = "Map/Stance/List",
             ["RegionMap"] = "Map",
             ["Region"] = "Map",
             ["History"] = "Chronicle",
+            // The region window's pages before it had four views (UI 2): each is a view, a mode or a lens now.
+            ["Neighbours"] = "Map/Stance/List",
+            ["TradingPosts"] = "Map/Trade/List",
+            ["RaidersCamps"] = "Map/Threats/List",
+            ["Hamlets"] = "Map/Ours/List",
+            ["Letters"] = "HereAndAway",
+            ["Journeys"] = "HereAndAway",
+            ["Household"] = "HereAndAway",
+            ["Diplomacy"] = "Peoples",
+            ["Events"] = "WorldHistory",
+            // The council window's pages before it had four views (UI 4).
             ["Roster"] = "Table",
             ["Everyone"] = "Table",
             ["Dreams"] = "Chronicle",
@@ -141,6 +153,10 @@ namespace ColonyCouncil
             ["Overview"] = "Council_Alm_Basics_ReadingTheCouncil",
             ["Calendar"] = "Council_Alm_C_Calendar",
             ["Chronicle"] = "Council_Alm_C_Names",
+            ["Map"] = "Council_Alm_C_Region",
+            ["Peoples"] = "Council_Alm_C_Diplomacy",
+            ["HereAndAway"] = "Council_Alm_C_Neighbours",
+            ["WorldHistory"] = "Council_Alm_C_WorldMemory",
             ["Plan"] = "Council_Alm_C_Ahead",
             ["Priorities"] = "Council_Alm_C_Priorities",
             ["Base"] = "Council_Alm_9_00_BaseGrowth",
@@ -156,23 +172,128 @@ namespace ColonyCouncil
             return p != null && Articles.TryGetValue(p, out var a) ? a : null;
         }
 
+        /// <summary>The most lenses the region map has: a seventh comes only by replacing one (docs/design/interface.md).</summary>
+        public const int MaxLenses = 6;
+
         /// <summary>
-        /// The page a name means, as its tabs know it ("decrees" is "Decrees", "World" is "Neighbours", "Roster" the People
-        /// table); a view's name is its first mode ("People" is the table); the Almanac is itself. Null for none.
+        /// A region view's own modes (the same things shown another way, where the view is one page), in the order of their
+        /// buttons; the first is where the view opens when an address names no mode. A mode's name is part of an address:
+        /// "Peoples/Faces". (The council's and planning window's views have their pages as their modes instead.)
         /// </summary>
-        public static string Resolve(string name)
+        public static readonly Dictionary<string, string[]> Modes = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            if (string.IsNullOrEmpty(name)) return null;
+            // The region window (UI 2).
+            ["Map"] = new[] { "Map", "List" },
+            ["Peoples"] = new[] { "Peoples", "Faces" }
+        };
+
+        /// <summary>A view's lenses (the region map's, UI/RegionViewsMath.cs), in the order of the lens bar: "Map/Trade/List".</summary>
+        public static readonly Dictionary<string, string[]> Lenses = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Map"] = new[] { "Land", "Stance", "Fortunes", "Threats", "Trade", "Ours" }
+        };
+
+        /// <summary>An address: a page, and a mode and a lens of it where it names them (null where it doesn't).</summary>
+        public readonly struct Address
+        {
+            public readonly string page;
+            public readonly string mode;
+            public readonly string lens;
+
+            public Address(string page, string mode, string lens)
+            {
+                this.page = page;
+                this.mode = mode;
+                this.lens = lens;
+            }
+
+            /// <summary>The lens and mode as the way back keeps them ("Trade/List"), or null.</summary>
+            public string Within => lens == null ? mode : mode == null ? lens : lens + "/" + mode;
+
+            public override string ToString() => page + (Within == null ? "" : "/" + Within);
+        }
+
+        /// <summary>A region view's own modes, or none.</summary>
+        public static string[] ModesOf(string page) => page != null && Modes.TryGetValue(page, out var m) ? m : Array.Empty<string>();
+
+        /// <summary>The lenses of a view, or none.</summary>
+        public static string[] LensesOf(string page) => page != null && Lenses.TryGetValue(page, out var l) ? l : Array.Empty<string>();
+
+        private static string Named(string[] list, string name)
+        {
+            foreach (var x in list)
+                if (string.Equals(x, name, StringComparison.OrdinalIgnoreCase))
+                    return x;
+            return null;
+        }
+
+        private static string PageNamed(string name)
+        {
             foreach (var p in All)
                 if (string.Equals(p.name, name, StringComparison.OrdinalIgnoreCase))
                     return p.name;
-            if (Moved.TryGetValue(name, out var to)) return to;
-            if (IsAlmanac(name)) return Almanac;
+            return null;
+        }
+
+        /// <summary>A view's first page, by the view's name (of a window made of views), or null.</summary>
+        private static string FirstOfView(string name)
+        {
             foreach (var p in All)
                 if (HasViews(p.window) && string.Equals(p.section, name, StringComparison.OrdinalIgnoreCase))
                     return p.name;
             return null;
         }
+
+        /// <summary>
+        /// What a name means as an address: its page, and the mode or lens it names after a slash ("Map/Trade/List",
+        /// "Peoples/Faces"). An old page name forwards to where it is now ("TradingPosts" is the map's Trade lens as a
+        /// list, "Roster" the People table), and parts after it override what it forwards to; a view's name is its first
+        /// page ("People" is the table); the Almanac is itself. False for none. A part that is neither a mode nor a lens of
+        /// the page is passed over.
+        /// </summary>
+        public static bool TryAddress(string name, out Address address)
+        {
+            address = default;
+            if (string.IsNullOrEmpty(name)) return false;
+            var parts = new List<string>(name.Split('/'));
+            string page = PageNamed(parts[0]);
+            if (page == null && Moved.TryGetValue(parts[0], out var to))
+            {
+                var moved = to.Split('/');
+                page = PageNamed(moved[0]);
+                parts.RemoveAt(0);
+                parts.InsertRange(0, moved);
+            }
+            if (page == null && IsAlmanac(parts[0]))
+            {
+                address = new Address(Almanac, null, null);
+                return true;
+            }
+            if (page == null) page = FirstOfView(parts[0]);
+            if (page == null) return false;
+            string mode = null, lens = null;
+            var modes = ModesOf(page);
+            var lenses = LensesOf(page);
+            for (int i = 1; i < parts.Count; i++)
+            {
+                string m = Named(modes, parts[i]);
+                if (m != null)
+                {
+                    mode = m;
+                    continue;
+                }
+                string l = Named(lenses, parts[i]);
+                if (l != null) lens = l;
+            }
+            address = new Address(page, mode, lens);
+            return true;
+        }
+
+        /// <summary>
+        /// The page a name means, as its tabs know it ("decrees" is "Decrees", "Roster" the People table, "TradingPosts" the
+        /// region's Map); a view's name is its first mode ("People" is the table); the Almanac is itself. Null for none.
+        /// </summary>
+        public static string Resolve(string name) => TryAddress(name, out var a) ? a.page : null;
 
         /// <summary>The filter an old address opens its page with ("Dreams": the Chronicle's dreams), or null.</summary>
         public static string FilterOf(string name) => !string.IsNullOrEmpty(name) && MovedFilters.TryGetValue(name, out var f) ? f : null;

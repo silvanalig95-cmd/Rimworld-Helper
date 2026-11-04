@@ -68,13 +68,18 @@ The **Almanac**, the knowledge base, has a window of its own: the book in every 
 the "?" on every view, on that view's page. It moves and sizes like any window, so it can sit beside what it
 explains, and a page you come back to opens where you left it.
 
-The **region** window opens on the region map (the land around the colony and its towns, see "The region" below), with
-its other pages along the top: **Neighbours** (what's coming, missions, a camp on the land, who's out there with the
-colony on their mind, and the towns nearby with the people the colony knows there), **Peoples** (how each stands with
-the colony, whom it is at war with, the world events about it, and what it remembers), **Letters and calls** (what is
-under way and where each letter is, the answers of the last days, and everyone the colony can write to), **Journeys**
-(the journey planned ahead and the caravans out on the land), **World events**, and **History**: the world's one
-history, newest first, filtered by a people, a town or a kind of event. The **defense** window is the Defenses page
+The **region** window, in four views along its top:
+
+| View | Modes and lenses | What's there |
+|---|---|---|
+| **Map** | Land · Stance and ties · Fortunes · Threats · Trade · Ours, each as Map or List | the region map (the land around the colony and its towns, see "The region" below) read six ways: the land; each town by how its people stand with the colony, its head's regard as a ring, and a line from home for each tie (a pact, a truce, a favour owed either way, protection, a grudge); each town by its fortune, with an arrow where it moved this season and the world's events where they are; hostile towns, raiders' camps and the homes they threaten, with a camp's raids drawn to its home; trading posts and the towns that trade; the colony's homes, hamlets and caravans. Each lens has its legend at the map's foot, and its List shows what it shows, nearest first, each row opening its card beside it |
+| **Peoples** | Peoples · Faces | what is owed each way, then each people: how it stands with the colony, whom it is at war with, the world events about it, its head and its ties, and what it remembers; Faces: the people the colony knows by name with a way to write, its old foes, those who left, and the faces it keeps up with |
+| **Here and away** | | who is here from outside (a camp on the land, guests), what's coming (questions waiting, debts and visits due, a story's next stage), letters and calls on the road, who of the colony's is away (the journey planned, the caravans out on the land), missions and the colony's houses |
+| **History** | this colony · the region · the world | the world's one history, newest first, with the world's events running in a strip at its top, the colony's letters lately, and filters for a people, a town or a kind of event |
+
+Every name in it leads to its card in the drawer at the right, and the region's old pages (Neighbours, Letters and
+calls, Journeys, World events, trading posts, raiders' camps, hamlets) still answer to their names, each in its view
+or lens. The **defense** window is the Defenses page
 (see "Defenses" below). The **planning** window has four views: Plan (with the advisor's priorities as its second
 mode), Base, Making and Rooms (the room plans as a list, or every room at a glance); see "Planning" below.
 
@@ -443,7 +448,7 @@ colony has something worth remarking on, once per thing seen: a great hall, art 
 more, a shrine, walls with turrets or a long run of wall, many animals, wide fields. When enough of them have remarked
 on the same thing over the months, word spreads and the colony is known for it: a **famed hall** (tourists, the
 celebrity, the players and guests of note come more often), **artful** (tourists, the celebrity, scholars and
-scribes), **hallowed** (pilgrims) or **walled** (tourists). "Travellers speak of..." on the region window's Neighbours page says what the
+scribes), **hallowed** (pilgrims) or **walled** (tourists). "Travellers speak of..." on the region window's Peoples, under Faces, says what the
 colony is known for. Like the work names, these fade if the colony stops living up to them.
 
 ### Dilemmas: hard choices
@@ -1258,7 +1263,7 @@ everyone out to sow the fields together, with a word at the field's edge after, 
 together to what the day remembers (a camp's gift, a grave, the fields, the gate) and back, an **ideoligion evening** gathers the
 day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
-journals, talk about it in the social log, and mention it the evening before; the region window's Neighbours page shows the days coming
+journals, talk about it in the social log, and mention it the evening before; This week shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
 pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
@@ -1278,7 +1283,7 @@ most often have many in each.
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
 the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
 or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
-what's on the table. The region window's Neighbours page, in its coming-up list, and the Ambition page count down to it, a reminder comes an
+what's on the table. This week and the Ambition page count down to it, a reminder comes an
 hour before, and the Ambition page can hold it now or put it off a day. No meeting starts at night.
 
 At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
@@ -2098,7 +2103,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   minstrels on the hill, and a **famous visitor** stopping for the night.
 - **Everyday things.** None of these ends in a fight. Merchants **stranded** on the road (send your best crafter to
   help, or sell them the materials), a neighbor's **order** for goods you keep in your stores (have the whole amount
-  ready when they send for it in five days; the Neighbours page shows when), a **tinker** who mends every worn coat and
+  ready when they send for it in five days; Here and away shows when), a **tinker** who mends every worn coat and
   weapon for silver, **neighbors in need** of medicine (give, sell or keep it), two neighbors asking you to settle a
   **quarrel** (take a side, or let your best talker find a middle way), **growing weather** that puts open fields
   days ahead, a **warm spell** in spring or fall, an **old grave** or a **box of old letters** turned up outside,
@@ -2113,8 +2118,8 @@ medieval things). Many ask the council what to do, with a day or so to answer.
 - **With the seasons, and over days.** A **harvest fair** at a neighbor's town in the fall (send a cart of your crop;
   the silver comes back days later, and your best grower may take a prize), a **traveler on a winter night** who
   asks to share the fire (and leaves something in the morning), **the thaw** where winters are hard, and a **caravan
-  to a far market** that takes your surplus and brings back what the colony is short of a week later. The Neighbours page
-  shows each of these while it's on its way.
+  to a far market** that takes your surplus and brings back what the colony is short of a week later. The region window's
+  Here and away shows each of these while it's on its way.
 - **With your mods.** Only when the mod is active: **shards from the sky** that leave magicyte (A RimWorld of
   Magic), a **strange creature** your best handler can try to win over (Alpha Animals), travelers asking to use your
   **bath** or sauna (Dubs Bad Hygiene), and a **guest of note** who writes ahead and judges your guest room when they
@@ -2163,8 +2168,8 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   remembered when they go, up to five at a time. From twenty days on one of them may come back as a familiar face at
   the gate, asking after the colonist they dealt with and teaching a lesson in their trade for a welcome, greeted in
   the terms of their trade from the third visit on. Warm visits deepen the thread and cold ones fray it; on a third
-  visit or later they may ask to stay for good, or ask their friend to come along on the road. The Neighbours page lists
-  them under "Out there".
+  visit or later they may ask to stay for good, or ask their friend to come along on the road. The region window's Peoples
+  lists them under Faces.
 - **Visitors for what the colony keeps.** Each comes only for what the colony really has, waits at the gate for your
   answer and does on the map what it says. With Ideology, **pilgrims** of a relic's faith come to pray before it: let
   into the reliquary, kept to the gate, or let in for an offering of silver; with Royalty, **meditators** sit in a ring round the anima tree and their
@@ -2216,7 +2221,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was, and the day goes
   on your calendar. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
-  take; trade, gifts and friendships ease it. The Neighbours page shows the camp and lets you talk to them. One camp at a
+  take; trade, gifts and friendships ease it. The region window's Here and away shows the camp and lets you talk to them. One camp at a
   time, never in a colony's first twenty days, with its own switch.
 
   A camp's good turns come from somewhere real: the healer gathers wild healroot at dawn, the drovers milk or shear a
@@ -2305,12 +2310,12 @@ who did it, by name. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
-The region window's **Neighbours** page (the council window's World page before it) shows what's coming (fights the
-colony knows about and how soon, questions waiting for an answer, caravans, carts and relatives on their way, the next
-stage of a story), missions under way with a bar for each thing to deliver and the time left, who's out there with the
-colony on their mind (nemeses at large, people who left and might come back, peoples with a grudge, rivals, a great
-beast and how long it'll stay), and the towns nearby; its **Peoples** page what each people remembers of the colony,
-and its **World events** page the latest Rimfolk events.
+The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and
+relatives on their way, the next stage of a story) and the missions under way with a bar for each thing to deliver and
+the time left; the region map's **Threats** lens the fights the colony knows about and how soon; **Peoples**, under
+**Faces**, who's out there with the colony on their mind (nemeses at large, people who left and might come back,
+peoples with a grudge, rivals, a great beast and how long it'll stay), and what each people remembers of the colony;
+and **History** the world's events running at its top.
 
 Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
@@ -2334,7 +2339,7 @@ they fade after some seasons or when their people fall out with the colony. A mo
 camp could come again, it may be the same faces coming back: likelier after a warm stay (help given, gifts, trade) or
 when the colony asked them back, less each time, and never more than three times. The letter brings news of what
 became of them since; they start with no unease and settle in quicker, and the colonist who made a friend of them is
-glad to see them. The Neighbours page lists the camps that may pass this way again, and when no camp is on the land it says
+glad to see them. Here and away lists the camps that may pass this way again, and when no camp is on the land it says
 why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the
 way is open.
 
@@ -2355,7 +2360,7 @@ their trader takes on a new stock every fifteen days, one of them comes over to 
 council's questions about a camp (a theft, their beasts in the fields, one who wants to join) can be about them. Their
 unease eases a little each day instead of growing. Now and then one of them falls ill and they ask for the colony's
 doctor, and enemies on the land may kill one of them, after which the rest may bury their dead and move on. Their
-card on the Neighbours page, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
+card on the region window's Here and away, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
 to ask them to move on. Or the colony takes them all in instead, camp and goods and children.
 
 **Road wardens and deserters** come with the world's events rather than on their own. The wardens camp to build a post
@@ -2463,7 +2468,7 @@ the colony half.
   a few days off, a new town on the world map, and their leader walks up to say hello and ask for timber. It is the
   longest world event, nearly a year: their hunters work the colony's woods (let them, divide the hunting grounds, or
   warn them off), a hungry month comes when their first planting fails (or, slighted, their traps turn up on the
-  colony's side of the stream), the steading grows household by household on the region window's World events page, and at the turning of the
+  colony's side of the stream), the steading grows household by household among the world's events at the top of the region window's History, and at the turning of the
   year the leader comes back in person. Every warm answer is weighed against every slight, and the year ends in an
   alliance, in the settlers coming over to join the colony (while the steading is still small), in bad blood (a
   scuffle at the stream that hurts nobody badly), in the settlers giving up and going home, or in plain neighbours.
@@ -2521,7 +2526,7 @@ its biggest memories; hover for everything. Settings → **Peoples remember the 
 A people remembers **who**, too: the warden who let one of theirs go, the doctor who tended their wounded, the one
 who found their lost child or walked their pilgrim home. Their visitors stop that colonist to thank them, their
 traders give them a friend's price, their envoys and camps ask for them by name at the gate, and their letters say
-so ("They've asked for Ana by name"). The region window's Peoples page shows it with the deed: "They remember Ana for it." Older saves
+so ("They've asked for Ana by name"). The region window's Peoples shows it with the deed: "They remember Ana for it." Older saves
 keep their memories; those deeds just name nobody. Visitors, callers, traders and their asks say it in their letters
 too: 32 lines in 22 events ("Among the Lenlia, the colony is known as the place that set Ana free.").
 
@@ -2543,7 +2548,7 @@ why, and a caravan at their town sends someone else to do the talking. No raid c
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
 others, a fair 8 up: 32 world events in all), that a war near it wears down and that drifts back toward the middle;
-its panel on the region map says how it stands and what moved it ("Struggling, since the plague"), its people speak
+its card on the region map, and the map's Fortunes lens, say how it stands and what moved it ("Struggling, since the plague"), its people speak
 of it, and what it has to trade follows it (a struggling town has a quarter less food, medicine and silver).
 
 A **new town** within reach (Faction Territories' builders, or Rimfolk's own new-town, other-settlers and crossroads
@@ -2573,7 +2578,7 @@ letter that looks at it. Caravans trade there as at any of their towns; while it
 again as often, and the bandit road is twice as likely. When relations sour, its keeper writes that it will close unless
 things mend; ten more days and it is packed up, leaving a ruin. War closes it, raiders of their enemies may sack it, and
 a post the colony razes is a heavy wrong their people remember. 14 conversation pieces speak of the posts. The region
-window has a *trading posts* page; This week shows a post that may close. Setting: *Trading posts*.
+map's Trade lens shows the posts, with a line to each one's town and a list; This week shows a post that may close. Setting: *Trading posts*.
 
 **Settlers' hamlets.** Families of a people at peace may ask to settle a few days off under the colony's protection: a
 holding that has lived a year on its land, families of a town given up (offered a place at the gate), or settlers from
@@ -2583,7 +2588,7 @@ named in its panel; after a night there the hamlet stands, a town of their own p
 and the road may bring a demand or an ambush with the settlers fighting beside the caravan. Alone, a third are turned
 back. The hamlet brings produce at harvest, asks for food, a doctor or tools in hard seasons (refused twice in one, it
 stops counting on the colony), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
-14 conversation pieces speak of it. The region window has a *hamlets* page; This week shows settlers waiting. Setting:
+14 conversation pieces speak of it. The region map's Ours lens shows the hamlets and the settlers on their way; This week shows settlers waiting. Setting:
 *Hamlets*. **Small towns look small**: a hamlet, a trading post or a town in its first year has a smaller base with
 fewer defenders on its own map, through Vanilla Base Generation Expanded's layouts too. Setting: *Small towns' maps*.
 
@@ -2593,8 +2598,8 @@ beyond the walls sees its smoke, and the letter names the danger before any raid
 colony from its side of the map at the game's own raid-source rate, on top of the usual raids, until the colony breaks
 it (a camp left with fighters standing is back behind its walls), pays their price (silver carried out to them, and
 their word for a year), makes peace with their people, sees an ally burn it, or beats off their raids until they give
-up. Each ending is told, written into the history and remembered by the peoples. The region window has a *raiders'
-camps* page; the region map and This week show a camp standing. Setting: *Raiders' camps* (0 to 200%, 100% by
+up. Each ending is told, written into the history and remembered by the peoples. The region map's Threats
+lens shows a camp standing, with a line to the home it raids, and lists it with its price and Pay; This week shows it too. Setting: *Raiders' camps* (0 to 200%, 100% by
 default). The Almanac has a page, *raiders' camps*. A visitor who passed its fires on the road may warn of it, or a
 neighbouring town may send word, and a camp with a leader has him behind its walls and at the head of its raids; with
 its leader dead, taken or one of the colony, the band breaks up. A raid with no way in from the camp's side comes from
@@ -2617,9 +2622,9 @@ notable helped in person owes the colonist who did it. The colony calls a debt i
 ("Ask a favor of their people"): a load of goods brought by their porters, a word with a third people, a colonist they
 hold sent home, or their help toward peace; their head's regard decides whether they honor it. They call in what the
 colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof
-for their homeless, the colony's word in a feud; refused or left unanswered, they remember it. A town's panel on the
-region map shows its debts; the views of all of it (what is owed each way, who is here from outside and who is away)
-come with the region window's redesign. 14 conversation pieces speak of it. Setting: *Favors owed and called in*. The Almanac
+for their homeless, the colony's word in a feud; refused or left unanswered, they remember it. A town's card on the
+region map shows its debts, and the map's Stance and ties lens draws each as a dotted line from home; the region
+window's Peoples has what is owed each way, and its Here and away who is here from outside and who is away. 14 conversation pieces speak of it. Setting: *Favors owed and called in*. The Almanac
 has a page, *diplomacy*.
 
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
@@ -2900,7 +2905,7 @@ declare **days of rest**: everyone works 10% slower for three days, and strain d
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they
 love who is downed, ill, carried off or away); joy, pride, love, gratitude, hope, awe, contentment, curiosity,
 restlessness, nostalgia, relief, tenderness, fellowship and resolve. They come from the moods a colonist has right now (the
-game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the Neighbours page says is
+game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the region map's Threats lens says is
 coming, a newcomer, quiet days. Feelings add no mood, since that would count the same thing twice. They nudge
 instead: a wish that fits becomes up to half again as likely (fear asks for defenses, grief for a grave,
 restlessness for a journey, pride for art), moments between colonists go warmer or pricklier, dreams change color,

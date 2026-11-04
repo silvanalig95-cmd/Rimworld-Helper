@@ -9,155 +9,14 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Region → Peoples: each people of the world the colony can know, how it stands with the colony, whom it is at war
-    /// with and the world events about it, with a way to its history; then what the peoples remember of the colony
-    /// (World/FactionMemoryPanel.cs). Built every two seconds while the page is open.
-    /// </summary>
-    public static class PeoplesPage
-    {
-        private static readonly Color Accent = new Color(0.8f, 0.72f, 0.92f);
-        private static Vector2 scroll;
-        private static float height = 600f;
-
-        private class Row
-        {
-            public Faction f;
-            public string standing, kind, wars, events;
-            public Color color;
-            public float width = -1f, height;
-        }
-
-        private static List<Row> rows = new List<Row>();
-        private static float builtAt = -1f;
-
-        public static void Draw(Rect rect)
-        {
-            if (Time.realtimeSinceStartup - builtAt > 2f)
-            {
-                try
-                {
-                    rows = Build();
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region window: the peoples", e);
-                    rows = new List<Row>();
-                }
-                builtAt = Time.realtimeSinceStartup;
-            }
-            string stat = rows.Count > 0 ? "CC_Peoples_Stat".Translate(rows.Count).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.Trust ?? Icons.People, "CC_Peoples_Header".Translate(), "CC_Peoples_Sub".Translate(), stat, Accent);
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            try
-            {
-                float y = 0f, w = view.width;
-                y += UiKit.SectionTitle(0f, y, w, "CC_Peoples_Stance".Translate(), Icons.Trust ?? Icons.People, Accent);
-                if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.People, "CC_Peoples_None".Translate(), 60f);
-                else
-                {
-                    y += 4f;
-                    foreach (var r in rows)
-                    {
-                        float h = Measure(r, w);
-                        DrawRow(new Rect(0f, y, w, h), r);
-                        y += h + 6f;
-                    }
-                }
-                y += 12f;
-                // What each people remembers of the colony.
-                y = FactionMemoryPanel.Draw(y, w);
-                height = Mathf.Max(y + 10f, 100f);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
-            }
-        }
-
-        /// <summary>A people the colony can know: of humans, not hidden, not gone.</summary>
-        public static bool Listed(Faction f) => f != null && !f.IsPlayer && !f.Hidden && !f.defeated && f.def != null && f.def.humanlikeFaction;
-
-        private static List<Row> Build()
-        {
-            var list = new List<Row>();
-            var all = Find.FactionManager?.AllFactionsListForReading;
-            if (all == null) return list;
-            var ws = ColonyCouncilMod.Settings.worldSituations ? WorldSituations.Instance : null;
-            foreach (var f in all)
-            {
-                if (!Listed(f)) continue;
-                var r = new Row { f = f, standing = RegionMap.StandingText(f), color = RegionMap.StandingColor(f), kind = f.def.LabelCap };
-                if (f.def.permanentEnemy) r.wars = "CC_Peoples_EveryonesFoe".Translate().Resolve();
-                else if (Facts.Counts(f))
-                {
-                    var foes = new List<string>();
-                    foreach (var g in all)
-                        if (g != f && Facts.Counts(g) && f.HostileTo(g))
-                            foes.Add(ThingRefs.Link(g.Name, ThingRefs.Of(g)));
-                    if (foes.Count > 0) r.wars = "CC_Peoples_Wars".Translate(TextUtil.JoinAnd(foes).Named("FOES")).Resolve();
-                }
-                if (ws != null)
-                {
-                    var about = new List<string>();
-                    foreach (var s in ws.Running)
-                        if ((s.ctx?.faction == f || s.ctx?.enemy == f) && !s.Label.NullOrEmpty())
-                            about.Add(s.Label);
-                    if (about.Count > 0) r.events = "CC_Peoples_Events".Translate(TextUtil.JoinAnd(about).Named("EVENTS")).Resolve();
-                }
-                list.Add(r);
-            }
-            // Allies and friends first, enemies last.
-            return list.OrderByDescending(r => r.f.HasGoodwill ? r.f.PlayerGoodwill : -200).ThenBy(r => r.f.Name).ToList();
-        }
-
-        private const float HistoryW = 130f;
-
-        private static float Measure(Row r, float w)
-        {
-            if (Mathf.Abs(r.width - w) < 0.5f) return r.height;
-            r.width = w;
-            float tw = w - 20f - HistoryW - 8f;
-            Text.Font = GameFont.Small;
-            float h = 6f + 26f + 18f;
-            if (!r.wars.NullOrEmpty()) h += LinkText.Height(r.wars, tw) + 2f;
-            if (!r.events.NullOrEmpty()) h += Text.CalcHeight(r.events, tw) + 2f;
-            r.height = Mathf.Max(h + 6f, 60f);
-            return r.height;
-        }
-
-        private static void DrawRow(Rect card, Row r)
-        {
-            UiKit.Card(card, UiKit.WithAlpha(r.color, 0.6f), false, false);
-            float x = card.x + 10f, y = card.y + 6f;
-            float tw = card.width - 20f - HistoryW - 8f;
-            float chip = UiKit.FactionChip(x, y, r.f, 22f, Mathf.Min(260f, tw * 0.55f), true);
-            UiKit.LabelFit(new Rect(x + chip + 10f, y, Mathf.Max(0f, tw - chip - 10f), 22f), r.standing, r.color);
-            y += 26f;
-            UiKit.LabelFit(new Rect(x, y, tw, 18f), r.kind, UiKit.Faint, GameFont.Tiny);
-            y += 18f;
-            if (!r.wars.NullOrEmpty()) y += LinkText.Draw(new Rect(x, y, tw, 999f), r.wars, r.f.def.permanentEnemy ? UiKit.Faint : UiKit.Warn) + 2f;
-            if (!r.events.NullOrEmpty()) y += UiKit.Paragraph(x, y, tw, r.events, UiKit.WorldColor) + 2f;
-            var b = new Rect(card.xMax - HistoryW - 10f, card.y + 8f, HistoryW, 26f);
-            if (Widgets.ButtonText(b, "CC_Peoples_TheirHistory".Translate())) WorldHistoryPage.ShowFor(Refs.Of(r.f), Ref.None);
-            TooltipHandler.TipRegion(b, "CC_Peoples_TheirHistoryTip".Translate(r.f.Name.Named("PEOPLE")));
-        }
-    }
-
-    /// <summary>
-    /// Region → Letters and calls: what the colony has written to its neighbours or called them about, where each letter
-    /// is (in words, never a countdown), the answers of the last days, and everyone it can write to with the button to
-    /// do so (World/NeighbourLetters.cs).
+    /// The colony's letters and calls (World/NeighbourLetters.cs), as the region's views show them: those on the road (in
+    /// words, never a countdown) as a section of Here and away, the letters of the last days as the History view's
+    /// "Letters lately", and everyone the colony can write to, with the button to do so, as Peoples → Faces' "Known by
+    /// name". Built when the letters change and at most every two seconds while a view shows them. (Its old page name,
+    /// Letters, forwards to Here and away.)
     /// </summary>
     public static class LettersPage
     {
-        private static readonly Color Accent = new Color(0.78f, 0.86f, 0.7f);
-        private static Vector2 scroll;
-        private static float height = 600f;
         private const float DateW = 74f;
 
         private class Line
@@ -166,6 +25,7 @@ namespace ColonyCouncil
             public string title, status, date;
             public Color color;
             public bool call;
+            public ThingRef letter;
         }
 
         private class Person
@@ -181,64 +41,95 @@ namespace ColonyCouncil
         private static float builtAt = -1f;
         private static int builtVersion = -1;
 
-        public static void Draw(Rect rect)
+        private static void BuildIfStale()
+        {
+            if (builtVersion == NotableBook.Version && Time.realtimeSinceStartup - builtAt <= 2f && builtAt <= Time.realtimeSinceStartup) return;
+            try
+            {
+                Build();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("region window: letters and calls", e);
+                under = new List<Line>();
+                lately = new List<Line>();
+                people = new List<Person>();
+            }
+            builtAt = Time.realtimeSinceStartup;
+            builtVersion = NotableBook.Version;
+        }
+
+        /// <summary>How many letters and calls are on the road.</summary>
+        public static int UnderWay
+        {
+            get
+            {
+                if (!NotableBook.On) return 0;
+                BuildIfStale();
+                return under.Count;
+            }
+        }
+
+        /// <summary>
+        /// Letters on the road, under their heading with their count (Here and away): each with whom to, from whom and
+        /// where it is; a sentence when none is, or when letters are off. Returns the y below it.
+        /// </summary>
+        public static float UnderWaySection(float y, float w, Folds folds)
         {
             if (!NotableBook.On)
             {
-                UiKit.EmptyState(rect, Icons.Journal, "CC_LettersPg_Off".Translate());
-                return;
+                y += UiKit.SectionHeading(0f, y, w, "CC_LettersPg_UnderWay".Translate(), -1, null, null, out _);
+                return y + UiKit.Paragraph(4f, y, w - 4f, "CC_LettersPg_Off".Translate(), UiKit.Faint) + 10f;
             }
-            if (builtVersion != NotableBook.Version || Time.realtimeSinceStartup - builtAt > 2f)
+            BuildIfStale();
+            y += UiKit.SectionHeading(0f, y, w, "CC_LettersPg_UnderWay".Translate(), under.Count, folds, "letters", out bool open);
+            if (!open) return y + 4f;
+            if (under.Count == 0) return y + UiKit.Paragraph(4f, y, w - 4f, "CC_LettersPg_NoneUnderWay".Translate(), UiKit.Faint) + 10f;
+            return Lines(y, w, under) + 8f;
+        }
+
+        /// <summary>The letters of the last days, newest first, answered or called off (the History view's "Letters lately"). Returns the y below them.</summary>
+        public static float LatelyRows(float y, float w)
+        {
+            BuildIfStale();
+            if (lately.Count == 0 && under.Count == 0)
+                return y + UiKit.EmptyState(0f, y, w, Icons.Journal, (NotableBook.On ? "CC_LettersPg_NoneLately" : "CC_LettersPg_Off").Translate(), 80f);
+            if (under.Count > 0) y = Lines(y, w, under) + 4f;
+            return Lines(y, w, lately);
+        }
+
+        /// <summary>How many letters "Letters lately" lists.</summary>
+        public static int LatelyCount
+        {
+            get
             {
-                try
-                {
-                    Build();
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region window: letters and calls", e);
-                    under = new List<Line>();
-                    lately = new List<Line>();
-                    people = new List<Person>();
-                }
-                builtAt = Time.realtimeSinceStartup;
-                builtVersion = NotableBook.Version;
+                BuildIfStale();
+                return under.Count + lately.Count;
             }
-            string stat = under.Count > 0 ? "CC_Neighbours_OnTheirWay".Translate(under.Count).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.Journal, "CC_LettersPg_Header".Translate(), "CC_LettersPg_Sub".Translate(), stat, Accent);
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            try
+        }
+
+        /// <summary>
+        /// Everyone the colony knows by name, by their town, each with their portrait and name leading to their card and a
+        /// button to write (Peoples → Faces). Returns the y below it.
+        /// </summary>
+        public static float KnownSection(float y, float w, Folds folds, float sightTop = float.MinValue, float sightBottom = float.MaxValue)
+        {
+            if (!NotableBook.On)
             {
-                float y = 0f, w = view.width;
-                y += UiKit.SectionTitle(0f, y, w, "CC_LettersPg_UnderWay".Translate(), Icons.Journal, Accent);
-                if (under.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Journal, "CC_LettersPg_NoneUnderWay".Translate(), 56f);
-                else y = Lines(y, w, under);
-                if (lately.Count > 0)
-                {
-                    y += 10f;
-                    y += UiKit.SectionTitle(0f, y, w, "CC_LettersPg_Lately".Translate(), Icons.Journal, UiKit.Faint);
-                    y = Lines(y, w, lately);
-                }
-                y += 10f;
-                y += UiKit.SectionTitle(0f, y, w, "CC_LettersPg_WriteTo".Translate(), Icons.Visitor, Accent);
-                if (people.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_LettersPg_NoOne".Translate(), 56f);
-                else
-                    foreach (var p in people)
-                    {
-                        DrawPerson(new Rect(0f, y, w, 46f), p);
-                        y += 48f;
-                    }
-                height = Mathf.Max(y + 10f, 100f);
+                y += UiKit.SectionHeading(0f, y, w, "CC_Faces_Known".Translate(), -1, null, null, out _);
+                return y + UiKit.Paragraph(4f, y, w - 4f, "CC_Faces_Known_Off".Translate(), UiKit.Faint) + 10f;
             }
-            finally
+            BuildIfStale();
+            y += UiKit.SectionHeading(0f, y, w, "CC_Faces_Known".Translate(), people.Count, folds, "known", out bool open);
+            if (!open) return y + 4f;
+            if (people.Count == 0) return y + UiKit.Paragraph(4f, y, w - 4f, "CC_LettersPg_NoOne".Translate(), UiKit.Faint) + 10f;
+            foreach (var p in people)
             {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                // Only the rows in sight are drawn.
+                if (y + 46f >= sightTop && y <= sightBottom) DrawPerson(new Rect(0f, y, w, 46f), p);
+                y += 48f;
             }
+            return y + 8f;
         }
 
         private static void Build()
@@ -284,6 +175,7 @@ namespace ColonyCouncil
             var line = new Line
             {
                 call = call,
+                letter = ThingRefs.Of(l),
                 date = ThingRefs.Link(MainTabWindow_Council.DayString(l.created), ThingRefs.Of(l)),
                 title = (call ? "CC_LettersPg_Call" : "CC_LettersPg_Letter").Translate(purpose.Named("PURPOSE"), to.Named("NAME"), writer.Named("PAWN")).Resolve()
             };
@@ -315,10 +207,17 @@ namespace ColonyCouncil
                 float h = LinkText.Height(l.title, tw) + (l.status.NullOrEmpty() ? 0f : 18f) + 6f;
                 var r = new Rect(0f, y, w, Mathf.Max(28f, h));
                 UiKit.Zebra(r, i);
+                Widgets.DrawHighlightIfMouseover(r);
                 LinkText.Line(new Rect(4f, y + 3f, DateW - 6f, 20f), l.date, UiKit.Faint, GameFont.Tiny);
                 UiKit.Icon(new Rect(DateW, y + 4f, 16f, 16f), l.call ? Icons.Visitor : Icons.Journal, l.color);
                 float th = LinkText.Draw(new Rect(DateW + 22f, y + 2f, tw, 999f), l.title, Color.white);
                 if (!l.status.NullOrEmpty()) UiKit.LabelFit(new Rect(DateW + 22f, y + 2f + th, tw, 18f), l.status, l.color, GameFont.Tiny);
+                // A click on the row (not on a name) opens the letter's card.
+                if (!l.letter.IsNone && Widgets.ButtonInvisible(r, false))
+                {
+                    Cards.Click();
+                    Cards.Open(l.letter);
+                }
                 y += r.height + 2f;
             }
             return y;
@@ -345,156 +244,24 @@ namespace ColonyCouncil
             if (Widgets.ButtonText(b, "CC_Neighbours_Write".Translate(), true, true, can) && can) Find.WindowStack.Add(new Dialog_NeighbourLetter(p.n));
             if (!can) TooltipHandler.TipRegion(b, p.why);
             Widgets.DrawLineHorizontal(r.x, r.yMax, r.width, UiKit.DividerColor);
-        }
-    }
-
-    /// <summary>
-    /// Region → Journeys: the journey planned ahead from the colony in view (UI/JourneyDialog.cs), the other colonies'
-    /// plans, and the colony's caravans out on the land, each with a button to see it on the world.
-    /// </summary>
-    public static class JourneysPage
-    {
-        private static readonly Color Accent = new Color(0.8f, 0.86f, 0.7f);
-        private static Vector2 scroll;
-        private static float height = 400f;
-
-        private class Away
-        {
-            public Caravan c;
-            /// <summary>Its name, and the same as a link to its card.</summary>
-            public string name, link, line;
-        }
-
-        private static List<Away> caravans = new List<Away>();
-        private static List<string> others = new List<string>();
-        private static float builtAt = -1f;
-
-        public static void Draw(Rect rect)
-        {
-            if (Time.realtimeSinceStartup - builtAt > 1f)
+            // The rest of the row opens their card too.
+            if (Widgets.ButtonInvisible(r, false))
             {
-                try
-                {
-                    Build();
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region window: journeys", e);
-                    caravans = new List<Away>();
-                    others = new List<string>();
-                }
-                builtAt = Time.realtimeSinceStartup;
-            }
-            float top = UiKit.PageHeader(rect, Icons.Trader, "CC_JourneysPg_Header".Translate(), "CC_JourneysPg_Sub".Translate(),
-                caravans.Count > 0 ? "CC_JourneysPg_Stat".Translate(caravans.Count).Resolve() : null, Accent);
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            try
-            {
-                float y = 0f, w = view.width;
-                if (!JourneyBook.On) y += UiKit.Paragraph(0f, y, w, "CC_JourneysPg_Off".Translate(), UiKit.Faint) + 10f;
-                else
-                {
-                    y += JourneyPanel.Section(0f, y, w);
-                    foreach (var o in others) y += UiKit.Paragraph(4f, y, w - 8f, o, UiKit.Faint) + 4f;
-                    y += 6f;
-                }
-                y += UiKit.SectionTitle(0f, y, w, "CC_JourneysPg_Away".Translate(), Icons.Trader, Accent);
-                if (caravans.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Trader, "CC_JourneysPg_NoneAway".Translate(), 56f);
-                else
-                    for (int i = 0; i < caravans.Count; i++)
-                    {
-                        var a = caravans[i];
-                        var r = new Rect(0f, y, w, 46f);
-                        UiKit.Zebra(r, i);
-                        LinkText.Line(new Rect(8f, y + 3f, w - 150f, 22f), a.link, UiKit.HeaderColor);
-                        UiKit.LabelFit(new Rect(8f, y + 24f, w - 150f, 18f), a.line, UiKit.Faint, GameFont.Tiny);
-                        var b = new Rect(w - 134f, y + 9f, 130f, 26f);
-                        // On the region map with its card, not the game's world view (the card's head keeps a button for that).
-                        if (Widgets.ButtonText(b, "CC_JourneysPg_Show".Translate()) && a.c != null && !a.c.Destroyed) Cards.ShowOnMap(a.c);
-                        y += 48f;
-                    }
-                height = Mathf.Max(y + 10f, 100f);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
-            }
-        }
-
-        private static void Build()
-        {
-            caravans = new List<Away>();
-            others = new List<string>();
-            var here = Dialog_JourneyPlan.HomeMap();
-            if (ColonyState.Several)
-                foreach (var plan in JourneyBook.Plans)
-                    if (plan.map != null && plan.map != here)
-                        others.Add("CC_Tell_At".Translate(Homes.Name(plan.map).Named("PLACE"), JourneyPanel.Status(plan).Named("TEXT")).Resolve());
-            var all = Find.WorldObjects?.Caravans;
-            if (all == null) return;
-            foreach (var c in all)
-            {
-                if (c == null || c.Destroyed || !c.IsPlayerControlled) continue;
-                int people = c.PawnsListForReading.Count(p => p.RaceProps.Humanlike);
-                string line = "CC_JourneysPg_People".Translate(people).Resolve();
-                if (c.pather != null && c.pather.Moving)
-                {
-                    var to = Find.WorldObjects.SettlementAt(c.pather.Destination);
-                    line += " · " + (to != null ? "CC_JourneysPg_HeadingTo".Translate(to.LabelCap.Named("PLACE")).Resolve() : "CC_JourneysPg_OnTheMove".Translate().Resolve());
-                }
-                else line += " · " + "CC_JourneysPg_Resting".Translate().Resolve();
-                caravans.Add(new Away { c = c, name = c.LabelCap, link = ThingRefs.Link(c.LabelCap, ThingRefs.Of(c)), line = line });
+                Cards.Click();
+                Cards.Open(p.thing);
             }
         }
     }
 
     /// <summary>
-    /// Region → World events: what's going on in the world around the colony (World/WorldSituationsPanel.cs), and what
-    /// the world has brought lately (the chronicle's world lines, UI/WorldPanel.cs).
-    /// </summary>
-    public static class EventsPage
-    {
-        private static Vector2 scroll;
-        private static float height = 600f;
-
-        public static void Draw(Rect rect)
-        {
-            var comp = CouncilGameComponent.Instance;
-            int running = ColonyCouncilMod.Settings.worldSituations ? WorldSituations.Instance?.Running.Count() ?? 0 : 0;
-            float top = UiKit.PageHeader(rect, Icons.WorldEvent, "CC_EventsPg_Header".Translate(), "CC_EventsPg_Sub".Translate(),
-                running > 0 ? "CC_EventsPg_Stat".Translate(running).Resolve() : null, UiKit.WorldColor);
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            try
-            {
-                float y = 0f, w = view.width;
-                if (!ColonyCouncilMod.Settings.worldSituations) y += UiKit.Paragraph(0f, y, w, "CC_EventsPg_Off".Translate(), UiKit.Faint) + 10f;
-                else y = WorldSituationsPanel.Draw(0f, y, w);
-                y = WorldPanel.Lately(y, w, comp);
-                height = Mathf.Max(y + 10f, 100f);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Region → History: the world's one history (World/Ledger/History.cs), newest first, filtered by a people, a town
-    /// or a kind of event: History.Of for a people, History.At (and what the town itself did) for a town, the history's
-    /// own words (History.Text) for each line, or the kind and who took part where it has none, each name it mentions a
-    /// link to its card and each day a link to the entry's own (UI/Cards/CardWords.HistoryLine). Built again when the
-    /// history or a filter changes, at most once a second. Its filters are part of the way back (UI/Cards/Nav.cs).
+    /// Region → History: the world's one history (World/Ledger/History.cs), newest first. At its top the world's events
+    /// running now, as a strip (each leading to where it is, or to its people); then its scope (this colony, the region
+    /// around it, the whole world) and "Letters lately" as chips; then the filters by a people, a town or a kind of event:
+    /// History.Of for a people, History.At (and what the town itself did) for a town, the history's own words
+    /// (History.Text) for each line, or the kind and who took part where it has none, each name it mentions a link to
+    /// its card and each day a link to the entry's own (UI/Cards/CardWords.HistoryLine). Built again when the history,
+    /// the scope or a filter changes, at most once a second. Its scope and filters are part of the way back
+    /// (UI/Cards/Nav.cs). Pages other mods still add with MainTabWindow_World.Register are under its "More".
     /// </summary>
     public static class WorldHistoryPage
     {
@@ -503,23 +270,29 @@ namespace ColonyCouncil
             Nav.Filters("WorldHistory", () => filters, SetFilters);
         }
 
-        /// <summary>The filters as the way back keeps them ("f3|t55|deed"), or null for none; made when they change.</summary>
+        /// <summary>The scope and filters as the way back keeps them ("R|f3|t55|deed|L"), or null for the view as it opens; made when they change.</summary>
         private static string filters;
 
         private static void FiltersChanged() =>
-            filters = people.IsNone && town.IsNone && family == null ? null : people + "|" + town + "|" + (family ?? "");
+            filters = people.IsNone && town.IsNone && family == null && scope == WorldHistoryMath.DefaultScope && !letters
+                ? null
+                : WorldHistoryMath.ScopeCode(scope) + "|" + people + "|" + town + "|" + (family ?? "") + "|" + (letters ? "L" : "");
 
-        /// <summary>The filters put back from a step of the way back.</summary>
+        /// <summary>The scope and filters put back from a step of the way back.</summary>
         private static void SetFilters(string text)
         {
             people = town = Ref.None;
             family = null;
+            scope = WorldHistoryMath.DefaultScope;
+            letters = false;
             if (!text.NullOrEmpty())
             {
                 var parts = text.Split('|');
-                if (parts.Length > 0) people = Ref.Parse(parts[0]);
-                if (parts.Length > 1) town = Ref.Parse(parts[1]);
-                if (parts.Length > 2 && parts[2].Length > 0) family = parts[2];
+                if (parts.Length > 0) scope = WorldHistoryMath.ScopeOf(parts[0]);
+                if (parts.Length > 1) people = Ref.Parse(parts[1]);
+                if (parts.Length > 2) town = Ref.Parse(parts[2]);
+                if (parts.Length > 3 && parts[3].Length > 0) family = parts[3];
+                letters = parts.Length > 4 && parts[4] == "L";
             }
             FiltersChanged();
             dirty = true;
@@ -529,30 +302,45 @@ namespace ColonyCouncil
         private static Vector2 scroll;
         private static float height = 600f;
         private const float DateW = 96f;
+        /// <summary>The view's header's "?" (UI/UiKitViews.cs), made once.</summary>
+        private static ViewHeadModel head;
 
         private static Ref people = Ref.None, town = Ref.None;
         private static string family;
+        private static HistoryScope scope = WorldHistoryMath.DefaultScope;
+        private static bool letters;
 
         private class Row
         {
             public string date, text;
             public Texture2D icon;
             public Color color;
+            public ThingRef entry;
             public float width = -1f, h;
         }
 
+        private sealed class Running
+        {
+            public string label, tip;
+            public ThingRef thing;
+            public float width;
+        }
+
         private static List<Row> rows = new List<Row>();
+        private static List<Running> running = new List<Running>();
         private static int builtVersion = -1;
-        private static float builtAt = -1f;
+        private static float builtAt = -1f, runningAt = -1f;
         private static bool dirty = true;
         private static readonly Dictionary<Ref, string> names = new Dictionary<Ref, string>();
 
-        /// <summary>Opens the region window's History page on what one people (or one town) took part in.</summary>
+        /// <summary>Opens the region window's History view on what one people (or one town) took part in, anywhere in the world.</summary>
         public static void ShowFor(Ref who, Ref where)
         {
             people = who;
             town = where;
             family = null;
+            letters = false;
+            scope = HistoryScope.World;
             FiltersChanged();
             dirty = true;
             scroll = Vector2.zero;
@@ -576,35 +364,62 @@ namespace ColonyCouncil
                 builtVersion = History.Version;
                 builtAt = Time.realtimeSinceStartup;
             }
-            float top = UiKit.PageHeader(rect, Icons.History ?? Icons.Chronicle, "CC_WHist_Header".Translate(), "CC_WHist_Sub".Translate(),
-                "CC_WHist_Stat".Translate(rows.Count).Resolve(), UiKit.HeaderColor);
-            float y = rect.y + top;
-            y += Filters(new Rect(rect.x, y, rect.width, 28f)) + 8f;
+            if (Time.realtimeSinceStartup - runningAt > 1f || runningAt > Time.realtimeSinceStartup)
+            {
+                try
+                {
+                    BuildRunning();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("region window: the world's events running", e);
+                    running = new List<Running>();
+                }
+                runningAt = Time.realtimeSinceStartup;
+            }
+            string stat = letters ? "CC_WHist_StatLetters".Translate(LettersPage.LatelyCount.Named("COUNT")).Resolve() : "CC_WHist_Stat".Translate(rows.Count).Resolve();
+            float y = rect.y + UiKit.ViewHeader(rect, Icons.History ?? Icons.Chronicle, "CC_Tab_WorldHistory".Translate(), "CC_WHist_Line".Translate(), stat, null, 0f, null,
+                head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.History) });
+            y += Strip(new Rect(rect.x, y + 2f, rect.width, 24f)) + 6f;
+            y += Chips(new Rect(rect.x, y, rect.width, 24f)) + 6f;
+            if (!letters) y += Filters(new Rect(rect.x, y, rect.width, 28f)) + 8f;
             var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             try
             {
                 float ry = 0f, w = view.width;
-                if (rows.Count == 0) ry += UiKit.EmptyState(0f, ry, w, Icons.History ?? Icons.Chronicle, "CC_WHist_None".Translate(), 80f);
-                for (int i = 0; i < rows.Count; i++)
+                if (letters) ry = LettersPage.LatelyRows(ry, w);
+                else
                 {
-                    var r = rows[i];
-                    if (Mathf.Abs(r.width - w) >= 0.5f)
+                    if (rows.Count == 0)
+                        ry += UiKit.EmptyState(0f, ry, w, Icons.History ?? Icons.Chronicle, ("CC_WHist_None_" + scope).Translate(), 80f);
+                    for (int i = 0; i < rows.Count; i++)
                     {
-                        r.width = w;
-                        r.h = Mathf.Max(24f, LinkText.Height(r.text, w - DateW - 28f) + 4f);
+                        var r = rows[i];
+                        if (Mathf.Abs(r.width - w) >= 0.5f)
+                        {
+                            r.width = w;
+                            r.h = Mathf.Max(24f, LinkText.Height(r.text, w - DateW - 28f) + 4f);
+                        }
+                        // Only the rows on screen are drawn.
+                        if (ry + r.h >= scroll.y && ry <= scroll.y + outRect.height)
+                        {
+                            var row = new Rect(0f, ry, w, r.h);
+                            UiKit.Zebra(row, i);
+                            Widgets.DrawHighlightIfMouseover(row);
+                            LinkText.Line(new Rect(4f, ry + 2f, DateW - 6f, 20f), r.date, UiKit.Faint, GameFont.Tiny);
+                            UiKit.Icon(new Rect(DateW, ry + 4f, 14f, 14f), r.icon, r.color);
+                            LinkText.Draw(new Rect(DateW + 22f, ry + 2f, w - DateW - 28f, r.h), r.text, r.color);
+                            // A click on the row (not on a name) opens the entry's own card.
+                            if (!r.entry.IsNone && Widgets.ButtonInvisible(row, false))
+                            {
+                                Cards.Click();
+                                Cards.Open(r.entry);
+                            }
+                        }
+                        ry += r.h;
                     }
-                    // Only the rows on screen are drawn.
-                    if (ry + r.h >= scroll.y && ry <= scroll.y + outRect.height)
-                    {
-                        var row = new Rect(0f, ry, w, r.h);
-                        UiKit.Zebra(row, i);
-                        LinkText.Line(new Rect(4f, ry + 2f, DateW - 6f, 20f), r.date, UiKit.Faint, GameFont.Tiny);
-                        UiKit.Icon(new Rect(DateW, ry + 4f, 14f, 14f), r.icon, r.color);
-                        LinkText.Draw(new Rect(DateW + 22f, ry + 2f, w - DateW - 28f, r.h), r.text, r.color);
-                    }
-                    ry += r.h;
                 }
                 height = Mathf.Max(ry + 10f, 100f);
             }
@@ -615,6 +430,111 @@ namespace ColonyCouncil
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
             }
+        }
+
+        // ---------------- The world's events running ----------------
+
+        private static void BuildRunning()
+        {
+            running = new List<Running>();
+            var ws = ColonyCouncilMod.Settings.worldSituations ? WorldSituations.Instance : null;
+            if (ws == null) return;
+            foreach (var s in ws.Running.OrderBy(s => s.startTick))
+            {
+                var thing = !s.place.IsNone ? ThingRef.From(s.place) : s.ctx?.faction != null ? ThingRefs.Of(s.ctx.faction) : ThingRef.None;
+                var tip = new List<string> { s.Label };
+                string summary = WorldSituationsPanel.Summary(s);
+                if (!summary.NullOrEmpty()) tip.Add(summary);
+                if (s.deeds.Count > 0) tip.Add("CC_WS_ColonyPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve());
+                if (!s.ctx.placeName.NullOrEmpty()) tip.Add("CC_WHist_EventAt".Translate(s.ctx.placeName.Named("PLACE")).Resolve());
+                string label = s.Label;
+                running.Add(new Running { label = label, tip = string.Join("\n\n", tip), thing = thing, width = UiKit.KeptWidth(label, GameFont.Tiny) + 30f });
+            }
+        }
+
+        /// <summary>The world's events running now, as chips along the top: a click leads to where each is (or to its people). Returns the height used.</summary>
+        private static float Strip(Rect r)
+        {
+            UiKit.Icon(new Rect(r.x, r.y + 4f, 16f, 16f), Icons.WorldEvent, UiKit.WorldColor);
+            float x = r.x + 22f;
+            if (running.Count == 0)
+            {
+                UiKit.LabelFit(new Rect(x, r.y, r.width - 22f, r.height), (ColonyCouncilMod.Settings.worldSituations ? "CC_WHist_NoEvents" : "CC_EventsPg_Off").Translate(),
+                    UiKit.Faint, GameFont.Tiny);
+                return r.height;
+            }
+            for (int i = 0; i < running.Count; i++)
+            {
+                var s = running[i];
+                float w = Mathf.Min(s.width, r.xMax - x);
+                if (w < 40f) break;
+                var c = new Rect(x, r.y + 1f, w, r.height - 2f);
+                bool over = Mouse.IsOver(c);
+                Widgets.DrawBoxSolidWithOutline(c, over ? UiKit.CardHover : UiKit.CardFill, UiKit.WithAlpha(UiKit.WorldColor, 0.45f), 1);
+                UiKit.DiscFill(new Rect(c.x + 7f, c.y + c.height / 2f - 3.5f, 7f, 7f), UiKit.WorldColor);
+                UiKit.LabelFit(new Rect(c.x + 18f, c.y, c.width - 22f, c.height), s.label, over ? Color.white : UiKit.WorldColor, GameFont.Tiny);
+                TooltipHandler.TipRegion(c, s.tip);
+                if (!s.thing.IsNone && Widgets.ButtonInvisible(c, false))
+                {
+                    Cards.Click();
+                    if (s.thing.IsPlace) Cards.ShowOnMap(s.thing);
+                    else Cards.Open(s.thing);
+                }
+                x += w + 6f;
+            }
+            return r.height;
+        }
+
+        // ---------------- Scope, letters and the pages under More ----------------
+
+        private static string[] scopeLabels, scopeTips;
+
+        /// <summary>The scope's chips (this colony, the region, the world), "Letters lately", and More for other mods' pages. Returns the height used.</summary>
+        private static float Chips(Rect r)
+        {
+            scopeLabels ??= new[] { "CC_WHist_Scope_Colony".Translate().ToString(), "CC_WHist_Scope_Region".Translate().ToString(), "CC_WHist_Scope_World".Translate().ToString() };
+            scopeTips ??= new[] { "CC_WHist_Scope_Colony_Tip".Translate().ToString(), "CC_WHist_Scope_Region_Tip".Translate().ToString(), "CC_WHist_Scope_World_Tip".Translate().ToString() };
+            float x = r.x;
+            for (int i = 0; i < 3; i++)
+            {
+                float w = UiKit.FilterChipWidth(scopeLabels[i]);
+                if (UiKit.FilterChip(new Rect(x, r.y, w, r.height), scopeLabels[i], !letters && (int)scope == i, scopeTips[i]))
+                {
+                    scope = (HistoryScope)i;
+                    letters = false;
+                    FiltersChanged();
+                    dirty = true;
+                    scroll = Vector2.zero;
+                }
+                x += w + 4f;
+            }
+            x += 8f;
+            string lettersLabel = "CC_WHist_Letters".Translate();
+            float lw = UiKit.FilterChipWidth(lettersLabel);
+            if (UiKit.FilterChip(new Rect(x, r.y, lw, r.height), lettersLabel, letters, "CC_WHist_Letters_Tip".Translate()))
+            {
+                letters = !letters;
+                FiltersChanged();
+                scroll = Vector2.zero;
+            }
+            // Pages other mods added to the region window, until they find their place in a view.
+            var more = MainTabWindow_World.ExtraPages();
+            if (more.Count > 0)
+            {
+                string label = "CC_WHist_More".Translate();
+                float mw = UiKit.FilterChipWidth(label) + 8f;
+                if (UiKit.FilterChip(new Rect(r.xMax - mw, r.y, mw, r.height), label, false, "CC_WHist_More_Tip".Translate()))
+                {
+                    var options = new List<FloatMenuOption>();
+                    foreach (var p in more)
+                    {
+                        string name = p.name;
+                        options.Add(new FloatMenuOption(p.Label, () => Pages.Open(name), p.icon, Color.white));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(options));
+                }
+            }
+            return r.height;
         }
 
         /// <summary>The three filters (a people, a town, a kind) and a button to clear them; returns the height used.</summary>
@@ -729,13 +649,41 @@ namespace ColonyCouncil
                 found = History.At(town, kinds, max: WorldHistoryMath.MaxShown).Concat(History.Of(town, kinds, max: WorldHistoryMath.MaxShown))
                     .GroupBy(e => e.id).Select(g => g.First()).OrderByDescending(e => e.tick).ThenByDescending(e => e.id).ToList();
             }
-            else found = book.OfKind(family, max: WorldHistoryMath.MaxShown);
+            else found = book.OfKind(family, max: scope == HistoryScope.World ? WorldHistoryMath.MaxShown : int.MaxValue);
+            var parties = Parties(scope);
             foreach (var e in found)
             {
                 if (rows.Count >= WorldHistoryMath.MaxShown) break;
-                if (!WorldHistoryMath.Keeps(e, people, town, family)) continue;
+                if (!WorldHistoryMath.Keeps(e, people, town, family) || !WorldHistoryMath.InScope(e, scope, parties)) continue;
                 rows.Add(MakeRow(e));
             }
+        }
+
+        /// <summary>
+        /// Who a scope is about: for the colony, its homes, its people and its own colonists; for the region, those and the
+        /// towns within reach, their peoples and the people of them the colony knows by name. Null for the world.
+        /// </summary>
+        private static HashSet<Ref> Parties(HistoryScope s)
+        {
+            if (s == HistoryScope.World) return null;
+            var set = new HashSet<Ref>();
+            foreach (var home in Homes.All) set.Add(Refs.Colony(home));
+            set.Add(Refs.Of(Faction.OfPlayerSilentFail));
+            foreach (var p in WeekModel.Colonists()) set.Add(Refs.Of(p));
+            if (s == HistoryScope.Colony) return set;
+            var reach = RegionTowns.InDetail();
+            foreach (int id in reach)
+            {
+                set.Add(Ref.Town(id));
+                var t = NotableBook.TownOf(id);
+                if (t?.Faction != null) set.Add(Refs.Of(t.Faction));
+            }
+            var book = NotableBook.Instance;
+            if (book != null)
+                foreach (var n in book.notables)
+                    if (n != null && reach.Contains(n.town))
+                        set.Add(n.Person);
+            return set;
         }
 
         private static Row MakeRow(HistoryEntry e)
@@ -746,6 +694,7 @@ namespace ColonyCouncil
             int ck = Array.IndexOf(HistoryKinds.Chronicle, fam);
             return new Row
             {
+                entry = ThingRefs.Of(e),
                 date = CardWords.HistoryDate(e, true),
                 text = text,
                 icon = ck >= 0 ? Icons.For((ChronicleKind)ck) : fam == HistoryKinds.Deed ? Icons.Trust ?? Icons.Chronicle : fam == HistoryKinds.Tie ? Icons.Promise : Icons.WorldEvent,

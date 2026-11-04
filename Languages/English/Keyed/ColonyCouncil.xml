@@ -1963,7 +1963,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_ContestWonStakeB>It was close for a while, and then {A_nameDef} pulled ahead and beat {X_nameDef} at {2}, winning {3} silver for the colony. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
   <CC_Evt_ContestLostB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The onlookers are already arguing about how close it was.</CC_Evt_ContestLostB>
   <CC_Evt_ContestLostStakeB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The colony's {3} silver went with {X_nameDef}, and the onlookers are still arguing about how close it was.</CC_Evt_ContestLostStakeB>
-  <!-- The region window's Neighbours page (the council window's World page before), chains, victories, quests -->
+  <!-- What the region window's Neighbours page held (now Here and away, Peoples under Faces, and the map's lenses), chains, victories, quests -->
   <CC_World_Header>Neighbours and what's coming</CC_World_Header>
   <CC_World_Intro>What's coming to the colony, the missions and camps, who's out there with the colony on their mind, and the towns nearby with the people the colony knows there. Fights and questions show up here as soon as the colony knows of them. World events have a page of their own, and so do the peoples, letters and journeys.</CC_World_Intro>
   <CC_World_Coming>Coming</CC_World_Coming>

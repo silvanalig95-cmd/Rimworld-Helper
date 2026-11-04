@@ -44,7 +44,7 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
       </li>
       <li>
         <heading>When a day comes round</heading>
-        <text>A day comes on its date in the daytime (from 9 in the morning to 8 in the evening), once nothing hostile is on the home map. A day that can't come on its date, because of a fight or another day's letter, can still come the next day; after that its year is spent, with no blame. The region window's Neighbours page lists the days coming in the next five.</text>
+        <text>A day comes on its date in the daytime (from 9 in the morning to 8 in the evening), once nothing hostile is on the home map. A day that can't come on its date, because of a fight or another day's letter, can still come the next day; after that its year is spent, with no blame. This week lists the days coming in the next five.</text>
         <table>
           <li>Kept as | What happens</li>
           <li>Feast | A letter: hold the feast, or not this year. Kept: a party at the gathering spot, thrown by whoever stands for the day. If no party can start, everyone at home gets "a feast day" (+2 mood for a day).</li>

@@ -10,10 +10,10 @@
   <CC_Win_What_Planning>planning the base and its rooms</CC_Win_What_Planning>
 
   <CC_Settings_WorldButton>Show the "region" button in the bottom bar</CC_Settings_WorldButton>
-  <CC_Settings_WorldButton_Tip>A button next to the council's that opens the region window: the region map, the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history. Hidden, the region window is still one click away in the top right corner of Rimfolk's other windows.</CC_Settings_WorldButton_Tip>
+  <CC_Settings_WorldButton_Tip>A button next to the council's that opens the region window: the region map with its lenses, the peoples of the world and their faces, who is here and who is away, and the history. Hidden, the region window is still one click away in the top right corner of Rimfolk's other windows.</CC_Settings_WorldButton_Tip>
   <CC_SetNote_WorldButton>A Region button in the bottom bar, with the region map and everything beyond the colony.</CC_SetNote_WorldButton>
 
-  <!-- The region window's pages (UI/MainTabWindow_World.cs, UI/WorldPages.cs). -->
+  <!-- The region window's tabs (UI/MainTabWindow_World.cs): its four views, and the names of its pages before (their addresses forward). -->
   <CC_Tab_Map>Map</CC_Tab_Map>
   <CC_Tab_Neighbours>Neighbours</CC_Tab_Neighbours>
   <CC_Tab_NeighboursComing>Neighbours ({0})</CC_Tab_NeighboursComing>
@@ -26,6 +26,151 @@
   <!-- The planning window's last page: what the rooms button showed. -->
   <CC_Tab_Rooms>Rooms</CC_Tab_Rooms>
 
+  <!-- The region window in four views (UI/MainTabWindow_World.cs, UI/Region/): Map, Peoples, Here and away, History. -->
+  <CC_Tab_HereAndAway>Here and away</CC_Tab_HereAndAway>
+  <CC_Region_AddrLens>{VIEW}: {LENS}</CC_Region_AddrLens>
+  <CC_Region_AddrLensList>{VIEW}: {LENS}, as a list</CC_Region_AddrLensList>
+  <CC_Mode_Map>Map</CC_Mode_Map>
+  <CC_Mode_List>List</CC_Mode_List>
+  <CC_Mode_Map_Tip>The region map, read through the lens.</CC_Mode_Map_Tip>
+  <CC_Mode_List_Tip>What the lens shows, as a list. A click on a row opens its card beside it.</CC_Mode_List_Tip>
+  <CC_Mode_Peoples>Peoples</CC_Mode_Peoples>
+  <CC_Mode_Faces>Faces</CC_Mode_Faces>
+  <CC_Mode_Peoples_Tip>Each people of the world, how it stands with the colony, whom it is at war with, what is owed each way and the ties between you.</CC_Mode_Peoples_Tip>
+  <CC_Mode_Faces_Tip>The people the colony knows by name, its old foes, those who left, and the faces it keeps up with.</CC_Mode_Faces_Tip>
+
+  <!-- The region map's lenses (UI/Region/LensModel.cs, MapView.cs). -->
+  <CC_Lens_Land>Land</CC_Lens_Land>
+  <CC_Lens_Stance>Stance and ties</CC_Lens_Stance>
+  <CC_Lens_Fortunes>Fortunes</CC_Lens_Fortunes>
+  <CC_Lens_Threats>Threats</CC_Lens_Threats>
+  <CC_Lens_Trade>Trade</CC_Lens_Trade>
+  <CC_Lens_Ours>Ours</CC_Lens_Ours>
+  <CC_Lens_Land_Tip>The land as it lies, each place in its people's colours.</CC_Lens_Land_Tip>
+  <CC_Lens_Stance_Tip>Each town by how its people stand with the colony, with a line from home for each tie between you.</CC_Lens_Stance_Tip>
+  <CC_Lens_Fortunes_Tip>Each town by how it is faring, an arrow where that changed this season, and the world's events where they are.</CC_Lens_Fortunes_Tip>
+  <CC_Lens_Threats_Tip>Hostile towns, raiders' camps and the homes they threaten, and the fights on their way.</CC_Lens_Threats_Tip>
+  <CC_Lens_Trade_Tip>The trading posts and the towns that trade with the colony.</CC_Lens_Trade_Tip>
+  <CC_Lens_Ours_Tip>The colony's homes, its hamlets and its caravans out on the land.</CC_Lens_Ours_Tip>
+  <CC_Lens_Land_Line>The land around the colony and the places on it.</CC_Lens_Land_Line>
+  <CC_Lens_Stance_Line>How each town's people stand with the colony, and a line from home for each tie.</CC_Lens_Stance_Line>
+  <CC_Lens_Fortunes_Line>How each town is faring, from struggling to flourishing, and what moved it.</CC_Lens_Fortunes_Line>
+  <CC_Lens_Threats_Line>Hostile towns, raiders' camps and fights on their way, and the homes they threaten.</CC_Lens_Threats_Line>
+  <CC_Lens_Trade_Line>The colony's trading posts and the towns that deal with it.</CC_Lens_Trade_Line>
+  <CC_Lens_Ours_Line>The colony's own homes, hamlets and caravans out on the land.</CC_Lens_Ours_Line>
+  <CC_Lens_Land_Empty>The towns within the map's reach show here, nearest first; a wider reach, set above the map, takes in more.</CC_Lens_Land_Empty>
+  <CC_Lens_Stance_Empty>The towns within reach show here with the people the colony knows there; a visit, a trade or a letter brings their names.</CC_Lens_Stance_Empty>
+  <CC_Lens_Fortunes_Empty>The towns within reach show here by how they fare, while the region's fortunes are on in the settings.</CC_Lens_Fortunes_Empty>
+  <CC_Lens_Threats_Empty>Nothing threatens the colony now; hostile towns within reach, raiders' camps found and fights a people promised show here.</CC_Lens_Threats_Empty>
+  <CC_Lens_Trade_Empty>The towns within reach that trade with the colony show here, and a trading post once a friendly people far off trades with it often enough to open one.</CC_Lens_Trade_Empty>
+  <CC_Lens_Ours_Empty>The colony's homes show here, with a hamlet once settlers ask to found one and its caravans while they are out.</CC_Lens_Ours_Empty>
+  <CC_Lens_Land_Group0>Towns</CC_Lens_Land_Group0>
+  <CC_Lens_Stance_Group0>Towns and who the colony knows there</CC_Lens_Stance_Group0>
+  <CC_Lens_Fortunes_Group0>Towns by fortune</CC_Lens_Fortunes_Group0>
+  <CC_Lens_Fortunes_Group1>Ruins and towns being built</CC_Lens_Fortunes_Group1>
+  <CC_Lens_Threats_Group0>Raiders' camps</CC_Lens_Threats_Group0>
+  <CC_Lens_Threats_Group1>Fights on their way</CC_Lens_Threats_Group1>
+  <CC_Lens_Threats_Group2>Hostile towns</CC_Lens_Threats_Group2>
+  <CC_Lens_Trade_Group0>Trading posts</CC_Lens_Trade_Group0>
+  <CC_Lens_Trade_Group1>Towns that trade</CC_Lens_Trade_Group1>
+  <CC_Lens_Trade_Group2>Caravans out</CC_Lens_Trade_Group2>
+  <CC_Lens_Ours_Group0>Homes</CC_Lens_Ours_Group0>
+  <CC_Lens_Ours_Group1>Hamlets and settlers</CC_Lens_Ours_Group1>
+  <CC_Lens_Ours_Group2>Caravans out</CC_Lens_Ours_Group2>
+  <CC_Lens_Stance_Ours>ours</CC_Lens_Stance_Ours>
+  <CC_Lens_Stance_Warm>friendly</CC_Lens_Stance_Warm>
+  <CC_Lens_Stance_Cool>wary</CC_Lens_Stance_Cool>
+  <CC_Lens_Stance_Sour>hostile</CC_Lens_Stance_Sour>
+  <CC_Lens_Leg_Warm>friendly or allied</CC_Lens_Leg_Warm>
+  <CC_Lens_Leg_Cool>neutral or wary</CC_Lens_Leg_Cool>
+  <CC_Lens_Leg_Sour>hostile</CC_Lens_Leg_Sour>
+  <CC_Lens_Leg_Ours>ours</CC_Lens_Leg_Ours>
+  <CC_Lens_Leg_HeadRing>a ring for how the town's head regards the colony</CC_Lens_Leg_HeadRing>
+  <CC_Lens_Leg_OursAll>the colony's homes, hamlets and caravans</CC_Lens_Leg_OursAll>
+  <CC_Lens_Leg_Thriving>thriving or flourishing</CC_Lens_Leg_Thriving>
+  <CC_Lens_Leg_Steady>steady</CC_Lens_Leg_Steady>
+  <CC_Lens_Leg_Poor>poor</CC_Lens_Leg_Poor>
+  <CC_Lens_Leg_Struggling>struggling</CC_Lens_Leg_Struggling>
+  <CC_Lens_Leg_Rose>better this season</CC_Lens_Leg_Rose>
+  <CC_Lens_Leg_Fell>worse this season</CC_Lens_Leg_Fell>
+  <CC_Lens_Leg_Event>a world event there</CC_Lens_Leg_Event>
+  <CC_Lens_Leg_Ruin>a ruin, or a town being built</CC_Lens_Leg_Ruin>
+  <CC_Lens_Leg_Hostile>hostile, or a raiders' camp</CC_Lens_Leg_Hostile>
+  <CC_Lens_Leg_Threatened>a home with a threat now</CC_Lens_Leg_Threatened>
+  <CC_Lens_Leg_Post>a trading post</CC_Lens_Leg_Post>
+  <CC_Lens_Leg_Trades>trades with the colony</CC_Lens_Leg_Trades>
+  <CC_Lens_Line_Pact>a pact</CC_Lens_Line_Pact>
+  <CC_Lens_Line_Truce>a truce</CC_Lens_Line_Truce>
+  <CC_Lens_Line_FavourOwedUs>owes the colony</CC_Lens_Line_FavourOwedUs>
+  <CC_Lens_Line_FavourWeOwe>the colony owes them</CC_Lens_Line_FavourWeOwe>
+  <CC_Lens_Line_Fealty>protection, by oath or grant</CC_Lens_Line_Fealty>
+  <CC_Lens_Line_Grudge>a grudge against the colony</CC_Lens_Line_Grudge>
+  <CC_Lens_Line_Raids>a camp's raids</CC_Lens_Line_Raids>
+  <CC_Lens_Line_Post>a post and its town</CC_Lens_Line_Post>
+  <CC_Lens_Line_Holding>a hamlet of the colony's</CC_Lens_Line_Holding>
+  <CC_Lens_ShowTip>Show it on the map, its card beside it.</CC_Lens_ShowTip>
+  <CC_Lens_ByCaravan>{DAYS} by caravan</CC_Lens_ByCaravan>
+  <CC_Lens_Tiles>{TILES} tiles</CC_Lens_Tiles>
+  <CC_Lens_Notable>{NAME}, {TITLE}</CC_Lens_Notable>
+  <CC_Lens_NotableTip>{NAME}, {TITLE}: {REGARD}.</CC_Lens_NotableTip>
+  <CC_Lens_NobodyKnown>The colony knows none of its people by name yet.</CC_Lens_NobodyKnown>
+  <CC_Lens_Ruin>a ruin</CC_Lens_Ruin>
+  <CC_Lens_RuinFell>Fell {AGO}.</CC_Lens_RuinFell>
+  <CC_Lens_RuinGivenUp>Given up {AGO}.</CC_Lens_RuinGivenUp>
+  <CC_Lens_Building>being built</CC_Lens_Building>
+  <CC_Lens_BuildingBy>Settlers of {PEOPLE} are building a town here.</CC_Lens_BuildingBy>
+  <CC_Lens_NoFortune>no word</CC_Lens_NoFortune>
+  <CC_Lens_PostOpen>open</CC_Lens_PostOpen>
+  <CC_Lens_PostWarned>warned</CC_Lens_PostWarned>
+  <CC_Lens_Hamlet>hamlet</CC_Lens_Hamlet>
+  <CC_Lens_Settlers>on their way</CC_Lens_Settlers>
+  <CC_Lens_Home>home</CC_Lens_Home>
+  <CC_Lens_Seat>the seat</CC_Lens_Seat>
+  <CC_Lens_HomePeople>Colonists: {COUNT}</CC_Lens_HomePeople>
+  <CC_Lens_ThreatNow>a threat now</CC_Lens_ThreatNow>
+  <CC_Lens_CampPaying>paid off</CC_Lens_CampPaying>
+  <CC_Lens_CampNoRaids>no raid yet</CC_Lens_CampNoRaids>
+  <CC_Lens_CampRaids>raids: {RAIDS}</CC_Lens_CampRaids>
+  <CC_Lens_Caravan>caravan</CC_Lens_Caravan>
+  <CC_Lens_FightComing>on its way</CC_Lens_FightComing>
+
+  <!-- Region → Peoples, its two modes (UI/Region/PeoplesView.cs). -->
+  <CC_Peoples_Line>Each people of the world, how it stands with the colony, and what is owed each way.</CC_Peoples_Line>
+  <CC_Faces_Line>The people the colony knows by name, and who is out there with the colony on their mind.</CC_Faces_Line>
+  <CC_Faces_Stat>{COUNT} known by name</CC_Faces_Stat>
+  <CC_Faces_Known>Known by name</CC_Faces_Known>
+  <CC_Faces_Known_Off>Neighbours by name are switched off in the settings.</CC_Faces_Known_Off>
+  <CC_Faces_Foes>Old foes</CC_Faces_Foes>
+  <CC_Faces_Foes_None>No nemesis, grudge or rival is out there now; one who escapes the colony or a people it wronged shows here.</CC_Faces_Foes_None>
+  <CC_Faces_Left>Those who left</CC_Faces_Left>
+  <CC_Faces_Left_None>No colonist who left is known to be out there; one who quits or is sent away shows here.</CC_Faces_Left_None>
+  <CC_Faces_Others>Out there</CC_Faces_Others>
+  <CC_Faces_Others_None>None of the others out there has the colony on their mind; a hunt, pilgrims or a story under way shows here.</CC_Faces_Others_None>
+
+  <!-- Region → Here and away (UI/Region/HereAndAwayView.cs). -->
+  <CC_Away_Line>Who is here from outside, what is on its way, letters on the road, and who of the colony's is away.</CC_Away_Line>
+  <CC_Away_Ours>The colony's people away</CC_Away_Ours>
+
+  <!-- Region → History: scope, the world's events running, letters lately, More (UI/WorldPages.cs). -->
+  <CC_WHist_Line>What the world remembers, newest first.</CC_WHist_Line>
+  <CC_WHist_StatLetters>{COUNT} letters</CC_WHist_StatLetters>
+  <CC_WHist_None_Colony>Nothing in the colony's history matches yet; what it does and what is done to it shows here.</CC_WHist_None_Colony>
+  <CC_WHist_None_Region>Nothing in the region's history matches yet; what happens in the towns within reach and to the colony shows here.</CC_WHist_None_Region>
+  <CC_WHist_None_World>Nothing in the history matches yet; what the world remembers shows here as it happens.</CC_WHist_None_World>
+  <CC_WHist_NoEvents>No world event is running now; plagues, famines, wars and hard winters show here while they last.</CC_WHist_NoEvents>
+  <CC_WHist_EventAt>At {PLACE}.</CC_WHist_EventAt>
+  <CC_WHist_Scope_Colony>This colony</CC_WHist_Scope_Colony>
+  <CC_WHist_Scope_Region>The region</CC_WHist_Scope_Region>
+  <CC_WHist_Scope_World>The world</CC_WHist_Scope_World>
+  <CC_WHist_Scope_Colony_Tip>What the colony did and what was done to it, its homes and its people.</CC_WHist_Scope_Colony_Tip>
+  <CC_WHist_Scope_Region_Tip>The colony's history and that of the towns within reach, their peoples and the people of them the colony knows.</CC_WHist_Scope_Region_Tip>
+  <CC_WHist_Scope_World_Tip>Everything the world remembers, near and far.</CC_WHist_Scope_World_Tip>
+  <CC_WHist_Letters>Letters lately</CC_WHist_Letters>
+  <CC_WHist_Letters_Tip>The colony's letters and calls of the last days, those on the road and how the others were answered.</CC_WHist_Letters_Tip>
+  <CC_WHist_More>More</CC_WHist_More>
+  <CC_WHist_More_Tip>Pages other mods added to the region window.</CC_WHist_More_Tip>
+  <CC_LettersPg_NoneLately>No letter or call of the colony's is recent; one written from a person's card or from Peoples, under Faces, shows here.</CC_LettersPg_NoneLately>
+
   <CC_Peoples_Header>The peoples of the world</CC_Peoples_Header>
   <CC_Peoples_Sub>How each people stands with the colony, whom it is at war with, and what it remembers.</CC_Peoples_Sub>
   <CC_Peoples_Stat>{0} peoples</CC_Peoples_Stat>
@@ -35,7 +180,7 @@
   <CC_Peoples_Wars>At war with {FOES}.</CC_Peoples_Wars>
   <CC_Peoples_Events>In the world: {EVENTS}.</CC_Peoples_Events>
   <CC_Peoples_TheirHistory>Their history</CC_Peoples_TheirHistory>
-  <CC_Peoples_TheirHistoryTip>What {PEOPLE} took part in, on the History page.</CC_Peoples_TheirHistoryTip>
+  <CC_Peoples_TheirHistoryTip>What {PEOPLE} took part in, in the region window's History.</CC_Peoples_TheirHistoryTip>
 
   <CC_LettersPg_Off>Neighbours by name are switched off in the settings, and letters and calls with them.</CC_LettersPg_Off>
   <CC_LettersPg_Header>Letters and calls</CC_LettersPg_Header>

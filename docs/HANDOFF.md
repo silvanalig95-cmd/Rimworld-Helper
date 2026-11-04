@@ -6,6 +6,47 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.84.0, UI 2, the region in four views (docs/design/interface.md, the second of its five releases, on the player's decision
+  1; built beside UI 4 and merged with it: the region's views are sections of their own in `PagesMath.All`, so the
+  five-views check holds for the region window too). DESIGN.md, "Rimfolk's windows" → "The region in four views" has
+  the whole of it. Pure and tested: `UI/RegionViewsMath.cs` (`Lens`, six at most; `Hue`; `LineKind`, `Dash`,
+  `LineLook`; `Stance`; `PlaceKind`, `PlaceFacts`; `MarkTone`, `Look`, `Draws`, `LinesOf`, `TieLine`, `DashAt`; the
+  List's `RowKind`, `Group`, `Key`, `RowOrder`, `Compare`; `Tools/Tests/RegionViewsTests.cs`), `PagesMath.TryAddress`
+  with `Address`, `Modes`, `Lenses`, `MaxLenses` (addresses like `Map/Trade/List`, `Peoples/Faces`; every old region
+  name in `Moved`), `WorldHistoryMath.InScope` with `HistoryScope` (`PagesTests`). Game side, `UI/Region/`:
+  `RegionView` (the lens, Map or List, Peoples or Faces, kept for the session; `Apply(address)`, `Within` for the way
+  back), `LensModel` (once a second while the Map view shows: each mark's colour, arrows, event rings, a head's regard
+  ring, event tiles, the lines from the ledger's live pacts, truces, favours, fealty and grudges plus other mods' fealty
+  views, the camps' raids, posts to their towns, homes to hamlets; the legend; the List's rows in groups with what came
+  before), `MapView` (lens bar, Map or List, "?", the List's rows), `PeoplesView`, `HereAndAwayView`; History is
+  `WorldHistoryPage` (UI/WorldPages.cs) with the strip of world events running, the scope chips, "Letters lately" and
+  More for other mods' pages. `RegionMapView` draws the lens (`Draw(rect, LensModel)`, `DrawLines`,
+  `DrawEventTiles`, the legend strip, `LandLegend`, the panel's legend per lens); `RegionMap.MarksVersion`.
+  Components: `UI/UiKitLenses.cs` (`ToneColor`, `KeptWidth`, `Modes`, `LensBar`, `LegendItem`, `LegendStrip`,
+  `LegendList`, `DashedLine`, `FilterChip`), beside UI 4's view header (`UiKit.ViewHeader` with `ViewHeadModel`),
+  which Peoples, Here and away and History use. Icons `Away`, `LensLand` to `LensOurs`, `ModeMap`, `ModeList`. The old
+  pages' code: `WorldPanel` is sections (what's coming without fights, calendar and meetings; who's out there by
+  `OutGroup`), `NeighboursPanel` only the town card's Who, `LettersPage` sections (`UnderWaySection`, `LatelyRows`,
+  `KnownSection`), `PeoplesPage`, `JourneysPage`, `EventsPage` gone; the posts', camps' and hamlets' pages register
+  nothing (their This week rows, card sections and words stay; `RaidersCampPage.AskToPay` is the Threats list's Pay;
+  `HamletPage.Title`/`Target` the settlers' rows); `DiplomacyPanels` registers no page and gives `Owed`, `OwedStat`,
+  `PeopleBody`, `Section`, `RowHeight`. `MainTabWindow_World.Register` still adds another mod's page, under History's
+  More. `Nav.Observe(w, page, mode, card)` keeps a view's lens and mode; `CardWords.DistanceShort`; `Cards.FullPage`
+  points at the views. Mood hints (`councilTab` now an address, e.g. `Map/Threats/List`), This week, the advisor and
+  the overview lead to the new views; the Almanac, README, keyed strings and letters name the views and lenses. Not
+  built, by the design's order or because nothing feeds them yet: war bands and a bandit road on Threats, towns by what
+  they trade on Trade, vassals' and kin towns' marks and colonies of the past on Ours (stage 3), pacts and truces (the
+  code reads them when stage 2a.2 makes them), tab counts (they move to UI 3's inbox), lens and mode kept in the
+  settings file. textcheck reports nine mood hints' changed `councilTab` values (identifiers, deliberately changed from
+  `Neighbours`, which now forwards to the Stance list, to where camps, missions, stories, foes and threats are; the
+  `Events` hints keep their old name, which forwards to History). To look at in game: each lens on a real region (colours, lines between
+  the right places, the legend at the foot and in the panel), the lens bar at 1080p scale 1.5 (names or icons), the
+  List with a card open beside it and over it, Pay on a camp's row, Peoples' cards with a debt and their acts, Faces'
+  Write, Here and away with a camp on the map, History's strip and scopes, every old page key and link, another mod's
+  page under More.
+  At the merge: textcheck flags nine mood hints whose page target moved from `Neighbours` to the view that now holds
+  their subject (Here and away, Peoples → Faces, the Threats list); changed on purpose, since `Neighbours` forwards to
+  the Stance list.
 - 0.83.0, UI 4, the council in four views (docs/design/interface.md, the fourth of its five releases, on the player's
   decisions 4 and 5; built beside UI 2, which another agent builds at the same time: expect keep-both merges in
   `PagesMath`/`Pages` and `Tools/Tests`). DESIGN.md, "Rimfolk's windows" → "The council in four views" has the whole

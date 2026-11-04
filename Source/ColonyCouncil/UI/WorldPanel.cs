@@ -7,19 +7,29 @@ using Verse;
 
 namespace ColonyCouncil
 {
+    /// <summary>Who's out there, by what they are to the colony (Region → Peoples → Faces draws each group as a section).</summary>
+    public enum OutGroup
+    {
+        /// <summary>Nemeses, grudges, rivals, a great beast.</summary>
+        Foes,
+        /// <summary>Those who quit or were sent away, a deserter.</summary>
+        Left,
+        /// <summary>The rest: a child raised elsewhere, pilgrims, hunts, stories under way.</summary>
+        Others
+    }
+
     /// <summary>
-    /// Region → Neighbours (the council window's World page before the region window had its own): what's coming
-    /// (promised fights, questions waiting for an answer) as a timeline, missions, a camp on the land, who's out there
-    /// with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), and the towns nearby
-    /// with their people and what they told the colony lately. What the world brought lately is on the World events
-    /// page (<see cref="Lately"/>), what the peoples remember on Peoples, journeys on Journeys.
+    /// What the region window's Neighbours page held before the region had four views, as sections the views draw: what's
+    /// coming (questions waiting for an answer, debts, orders and visits due, stories with a stage on its way) on Here and
+    /// away, as a timeline; who's out there with the colony on their mind (old foes, those who left, the rest) and the faces
+    /// the colony keeps up with on Peoples → Faces. The fights on their way are the Threats lens's (UI/Region/LensModel.cs),
+    /// the calendar's days and the council's meetings This week's and the Calendar's, the towns nearby the Stance lens's.
+    /// Built at most once a second while a view shows them.
     /// </summary>
     public static class WorldPanel
     {
         private static readonly Color Threat = new Color(0.9f, 0.55f, 0.45f);
         private static readonly Color Calm = new Color(0.72f, 0.8f, 0.95f);
-        private static Vector2 scroll;
-        private static float height = 600f;
 
         /// <summary>Countdown bars run over this many days: a fight five days off shows half a bar.</summary>
         private const int Horizon = GenDate.TicksPerDay * 10;
@@ -31,6 +41,9 @@ namespace ColonyCouncil
             public Color color = Color.white;
             public Faction faction;
             public Thing thing;
+            /// <summary>Whose card a click opens (a nemesis, someone who left, a people), or none.</summary>
+            public ThingRef card;
+            public OutGroup group = OutGroup.Others;
             public int dueTick = -1;
             public System.Action click;
             // Layout, worked out again when the width changes.
@@ -40,69 +53,60 @@ namespace ColonyCouncil
         private class Model
         {
             public List<Entry> coming, outThere;
-            public string next;
-            public int raids;
         }
 
         private static Model model;
         private static float modelAt = -1f;
 
-        public static void Draw(Rect rect, CouncilGameComponent comp)
+        private static Model Current(CouncilGameComponent comp)
         {
             if (model == null || Time.realtimeSinceStartup - modelAt > 1f)
             {
                 model = Build(comp);
                 modelAt = Time.realtimeSinceStartup;
             }
-            var m = model;
-            string stat = m.coming.Count > 0 ? "CC_UI_Stat_Coming".Translate(m.coming.Count).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.Visitor, "CC_World_Header".Translate(), "CC_UI_Sub_World".Translate(), stat, Threat, 0f,
-                "CC_World_Intro".Translate());
-            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            try
-            {
-                float y = 0f;
-                float w = view.width;
-                y += UiKit.SectionTitle(0f, y, w, "CC_World_Coming".Translate(), Icons.Raid, Threat);
-                if (m.coming.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.World, "CC_World_NothingComing".Translate(), 70f);
-                else y = Timeline(y + 4f, w, m.coming);
-                if (m.next != null)
-                {
-                    UiKit.Icon(new Rect(4f, y + 3f, 16f, 16f), Icons.WorldEvent, UiKit.Faint);
-                    y += UiKit.Paragraph(26f, y, w - 26f, m.next, UiKit.Faint) + 4f;
-                }
-                // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
-                y = MissionPanel.Draw(y, w);
-                y += 14f;
-                // A camp on the map, if there is one: who, how long, terms, tension, and a way to talk to them.
-                y = CampPanel.Section(y, w);
-                y += UiKit.SectionTitle(0f, y, w, "CC_World_OutThere".Translate(), Icons.Visitor, Calm);
-                if (m.outThere.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_World_NobodyOut".Translate(), 70f);
-                else y = Grid(y + 2f, w, m.outThere);
-                // Faces that come back, and what travellers have come to know the colony for.
-                y = Known(y, w, comp);
-                y += 14f;
-                // The neighbours by name, and letters to them (World/NeighboursPanel.cs).
-                y = NeighboursPanel.Draw(y, w);
-                height = Mathf.Max(y + 10f, 100f);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
-            }
+            return model;
+        }
+
+        /// <summary>How many things are on their way (Here and away's count).</summary>
+        public static int ComingCount(CouncilGameComponent comp) => comp == null ? 0 : Current(comp).coming.Count;
+
+        /// <summary>
+        /// "What's coming" at <paramref name="y"/> under its heading (Region → Here and away): the timeline of what is on
+        /// its way to the colony, or a sentence of what would show. Returns the y below it.
+        /// </summary>
+        public static float ComingSection(float y, float w, CouncilGameComponent comp, Folds folds)
+        {
+            if (comp == null) return y;
+            var m = Current(comp);
+            y += UiKit.SectionHeading(0f, y, w, "CC_World_Coming".Translate(), m.coming.Count, folds, "coming", out bool open);
+            if (!open) return y + 4f;
+            if (m.coming.Count == 0) return y + UiKit.Paragraph(4f, y, w - 4f, "CC_World_NothingComing".Translate(), UiKit.Faint) + 10f;
+            return Timeline(y + 4f, w, m.coming) + 4f;
         }
 
         /// <summary>
-        /// Under "Out there": the regulars the colony keeps up with (Happenings/Regulars.cs) and what visitors have
-        /// come to notice about the place (Immersion/VisitorNotices.cs), as one faint line each.
+        /// One group of who's out there under its heading (Region → Peoples → Faces), a click on one opening their card.
+        /// Returns the y below it; a group with nobody in it says so in a sentence.
         /// </summary>
-        private static float Known(float y, float w, CouncilGameComponent comp)
+        public static float OutThereSection(float y, float w, CouncilGameComponent comp, OutGroup group, Folds folds)
         {
+            if (comp == null) return y;
+            var m = Current(comp);
+            var list = m.outThere.Where(e => e.group == group).ToList();
+            y += UiKit.SectionHeading(0f, y, w, ("CC_Faces_" + group).Translate(), list.Count, folds, "out:" + group, out bool open);
+            if (!open) return y + 4f;
+            if (list.Count == 0) return y + UiKit.Paragraph(4f, y, w - 4f, ("CC_Faces_" + group + "_None").Translate(), UiKit.Faint) + 10f;
+            return Grid(y + 2f, w, list) + 6f;
+        }
+
+        /// <summary>
+        /// The regulars the colony keeps up with (Happenings/Regulars.cs) and what visitors have come to notice about the
+        /// place (Immersion/VisitorNotices.cs), as one faint line each.
+        /// </summary>
+        public static float Known(float y, float w, CouncilGameComponent comp)
+        {
+            if (comp == null) return y;
             string regulars = UiCache.Get(comp, 75, () => Regulars.Line());
             string known = UiCache.Get(comp, 76, () => VisitorNotices.KnownLine());
             foreach (var text in new[] { regulars, known })
@@ -118,14 +122,18 @@ namespace ColonyCouncil
         private static Model Build(CouncilGameComponent comp)
         {
             var t = comp.happenings;
-            var m = new Model { coming = Coming(t), outThere = OutThere(comp) };
             // Events come unannounced: no countdown to the next one (with the storyteller in charge of them, Rimfolk's
             // own timer doesn't run at all, so a countdown would only ever show a time long past).
-            return m;
+            return new Model { coming = Coming(t), outThere = OutThere(comp) };
         }
 
         // ---------------- What's coming ----------------
 
+        /// <summary>
+        /// Questions waiting for an answer first, then what is due in the order it comes: debts, orders, commissions,
+        /// visits and markets announced, stories with a stage on its way. The fights on their way are the Threats lens's;
+        /// the calendar's days and the council's meetings are This week's.
+        /// </summary>
         private static List<Entry> Coming(HappeningTracker t)
         {
             int now = Find.TickManager.TicksGame;
@@ -144,20 +152,6 @@ namespace ColonyCouncil
                 });
             }
             var timed = new List<Entry>();
-            foreach (var r in t.raids)
-            {
-                if (r.faction == null) continue;
-                timed.Add(new Entry
-                {
-                    title = r.label.NullOrEmpty() ? "CC_World_AFight".Translate().ToString() : r.label,
-                    tip = r.text,
-                    icon = Icons.Raid,
-                    color = Threat,
-                    faction = r.faction,
-                    dueTick = r.tick,
-                    meterLabel = "CC_UI_Arrives".Translate()
-                });
-            }
             foreach (var mm in t.memos)
             {
                 if (mm.used) continue;
@@ -205,32 +199,6 @@ namespace ColonyCouncil
             }
             // Story chains with a stage on its way (Workers_Chains2.cs).
             foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
-            // The colony calendar's next days (Calendar/).
-            foreach (var n in ColonyCalendar.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
-            // Each colony's council meeting that has been called, with a countdown to when the chair calls everyone together.
-            foreach (var council in ColonyState.Ticking())
-            {
-                var meeting = council.ambitions?.meeting;
-                if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))
-                {
-                    var at = meeting.map;
-                    timed.Add(new Entry
-                    {
-                        title = ColonyState.Several ? "CC_Tell_At".Translate(Homes.Name(meeting.map).Named("PLACE"), "CC_World_Meeting".Translate().Named("TEXT")).Resolve() : "CC_World_Meeting".Translate().ToString(),
-                        text = meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now),
-                        icon = Icons.Council,
-                        color = Calm,
-                        dueTick = meeting.Started ? -1 : Mathf.Max(now, meeting.scheduledTick),
-                        meterLabel = "CC_UI_StartsIn".Translate(),
-                        click = () =>
-                        {
-                            // With more than one colony, to the colony that meets, so the page shows its council.
-                            if (ColonyState.Several && Find.CurrentMap != at && Homes.IsHome(at)) Current.Game.CurrentMap = at;
-                            MainTabWindow_Council.OpenTab("Ambition");
-                        }
-                    });
-                }
-            }
             // The rest in the order they'll happen; those without a date last.
             list.AddRange(timed.OrderBy(e => e.dueTick < 0 ? int.MaxValue : e.dueTick));
             return list;
@@ -259,25 +227,31 @@ namespace ColonyCouncil
                     text = "CC_World_Beast".Translate(t.beastName ?? beast.LabelShort, TextUtil.DaysString(left)).Resolve(),
                     thing = beast,
                     color = Threat,
+                    group = OutGroup.Foes,
                     click = () => CameraJumper.TryJumpAndSelect(beast)
                 });
             }
             if (ColonyCouncilMod.Settings.nemeses)
                 foreach (var n in comp.nemeses.Open.Where(n => !n.captured && n.pawn != null && !n.pawn.Dead && !n.pawn.Spawned).Take(6))
-                    list.Add(new Entry { text = "CC_World_Nemesis".Translate(n.Name, n.DeedText).Resolve(), icon = Icons.Nemesis, color = UiKit.Bad });
+                    list.Add(new Entry { text = "CC_World_Nemesis".Translate(n.Name, n.DeedText).Resolve(), icon = Icons.Nemesis, color = UiKit.Bad, group = OutGroup.Foes, card = ThingRefs.Of(n.pawn) });
             foreach (var d in t.departed.Where(d => d.pawn != null && !d.pawn.Dead).OrderByDescending(d => d.tick))
                 list.Add(new Entry
                 {
                     text = (d.quit ? "CC_World_Departed_Quit" : "CC_World_Departed_Banished").Translate(d.name, TextUtil.DaysString(now - d.tick)).Resolve(),
                     icon = Icons.Visitor,
-                    color = UiKit.Faint
+                    color = UiKit.Faint,
+                    group = OutGroup.Left,
+                    card = ThingRefs.Of(d.pawn)
                 });
             foreach (var g in Grudges.All().Where(g => !g.Settled && g.faction != null && !g.faction.defeated))
-                list.Add(new Entry { text = "CC_World_Grudge".Translate(g.faction.Name, g.Name).Resolve(), icon = Icons.Vendetta, color = Threat });
+                list.Add(new Entry { text = "CC_World_Grudge".Translate(g.faction.Name, g.Name).Resolve(), icon = Icons.Vendetta, color = Threat, group = OutGroup.Foes, card = ThingRefs.Of(g.faction) });
             foreach (var mm in t.memos.Where(x => !x.used))
             {
                 string line = mm.kind == "hunt" ? ScenarioStakes.WorldLine(mm, now) : Memo(mm);
-                if (line != null) list.Add(new Entry { text = line, icon = MemoIcon(mm.kind), color = Calm });
+                if (line == null) continue;
+                var group = mm.kind == "challenger" ? OutGroup.Foes : mm.kind == "deserter" ? OutGroup.Left : OutGroup.Others;
+                var card = mm.pawn != null && !mm.pawn.Dead ? ThingRefs.Of(mm.pawn) : ThingRefs.Of(mm.faction);
+                list.Add(new Entry { text = line, icon = MemoIcon(mm.kind), color = Calm, group = group, card = card });
             }
             foreach (var n in StoryChains.OutThere(now)) list.Add(FromNote(n));
             return list;
@@ -319,40 +293,6 @@ namespace ColonyCouncil
                 default:
                     return LivingEvents.MemoLine(m) ?? StorytellerEvents.MemoLine(m);
             }
-        }
-
-        // ---------------- Lately ----------------
-
-        private static List<Entry> lately;
-        private static float latelyAt = -1f;
-
-        /// <summary>
-        /// "What the world brought lately" (the World events page, UI/WorldPages.cs): the chronicle's last world lines with
-        /// their dates, at <paramref name="y"/>; returns the y below.
-        /// </summary>
-        public static float Lately(float y, float w, CouncilGameComponent comp)
-        {
-            if (comp == null) return y;
-            if (lately == null || Time.realtimeSinceStartup - latelyAt > 1f)
-            {
-                lately = Lately(comp);
-                latelyAt = Time.realtimeSinceStartup;
-            }
-            y += UiKit.SectionTitle(0f, y, w, "CC_World_Lately".Translate(), Icons.WorldEvent, Color.white);
-            if (lately.Count == 0) return y + UiKit.EmptyState(0f, y, w, Icons.WorldEvent, "CC_World_NothingLately".Translate(), 60f);
-            return Rows(y, w, lately);
-        }
-
-        private static List<Entry> Lately(CouncilGameComponent comp)
-        {
-            var list = new List<Entry>();
-            for (int i = comp.chronicle.Count - 1; i >= 0 && list.Count < 12; i--)
-            {
-                var e = comp.chronicle[i];
-                if (e.kind != ChronicleKind.World) continue;
-                list.Add(new Entry { text = e.text, date = MainTabWindow_Council.DayString(e.tick), icon = Icons.WorldEvent, color = UiKit.WorldColor });
-            }
-            return list;
         }
 
         // ---------------- Drawing ----------------
@@ -428,12 +368,23 @@ namespace ColonyCouncil
                 {
                     var e = entries[i + c];
                     var r = new Rect(c * (cw + 8f), y, cw, rowH);
-                    UiKit.Card(r, null, false, e.click != null);
+                    bool opens = !e.card.IsNone;
+                    UiKit.Card(r, null, false, e.click != null || opens);
                     var iconRect = new Rect(r.x + 8f, r.y + 7f, 22f, 22f);
                     if (e.thing != null) Widgets.ThingIcon(iconRect, e.thing);
                     else UiKit.Icon(iconRect, e.icon, e.color);
                     Widgets.Label(new Rect(r.x + 38f, r.y + 6f, cw - 46f, e.textH), e.text);
-                    if (e.click != null && Widgets.ButtonInvisible(r)) e.click();
+                    // Their card in the drawer (a nemesis, someone who left, a people), else what the line leads to.
+                    if (opens && Mouse.IsOver(r)) Previews.Hover(e.card, r);
+                    if ((opens || e.click != null) && Widgets.ButtonInvisible(r))
+                    {
+                        if (opens)
+                        {
+                            Cards.Click();
+                            Cards.Open(e.card);
+                        }
+                        else e.click();
+                    }
                 }
                 y += rowH + 6f;
             }
@@ -450,30 +401,5 @@ namespace ColonyCouncil
             return e.height;
         }
 
-        /// <summary>The date on the left, the line beside it, every other row shaded.</summary>
-        private static float Rows(float y, float w, List<Entry> entries)
-        {
-            const float dateW = 64f;
-            for (int i = 0; i < entries.Count; i++)
-            {
-                var e = entries[i];
-                if (Mathf.Abs(e.width - w) >= 0.5f)
-                {
-                    e.width = w;
-                    Text.Font = GameFont.Small;
-                    e.textH = Text.CalcHeight(e.text ?? "", w - dateW - 28f);
-                    e.height = Mathf.Max(24f, e.textH + 4f);
-                }
-                var r = new Rect(0f, y, w, e.height);
-                UiKit.Zebra(r, i);
-                UiKit.LabelFit(new Rect(4f, y + 2f, dateW - 6f, 20f), e.date, UiKit.Faint, GameFont.Tiny);
-                UiKit.Icon(new Rect(dateW, y + 4f, 14f, 14f), e.icon, e.color);
-                GUI.color = e.color;
-                Widgets.Label(new Rect(dateW + 22f, y + 2f, w - dateW - 28f, e.textH), e.text);
-                GUI.color = Color.white;
-                y += e.height;
-            }
-            return y;
-        }
     }
 }

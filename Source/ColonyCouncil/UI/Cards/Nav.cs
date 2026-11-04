@@ -67,16 +67,22 @@ namespace ColonyCouncil
         private static bool Alive(NavStep s) => s.card.IsNone || ThingRefs.Exists(s.card);
 
         /// <summary>From each window once a frame while it draws: where it is. A new place is a step.</summary>
-        public static void Observe(RimfolkWindow w, string page, ThingRef card)
+        public static void Observe(RimfolkWindow w, string page, ThingRef card) => Observe(w, page, null, card);
+
+        /// <summary>
+        /// The same, with the view's mode or lens as an address part ("Trade/List", "Faces"): a lens or a mode chosen is a
+        /// step too, and going back puts it back.
+        /// </summary>
+        public static void Observe(RimfolkWindow w, string page, string mode, ThingRef card)
         {
             if (Event.current == null || Event.current.type != EventType.Repaint || page == null) return;
             string f = FiltersOf(page);
-            if (trail.HasCurrent && trail.Current.Same(w, page, null, f, card))
+            if (trail.HasCurrent && trail.Current.Same(w, page, mode, f, card))
             {
                 settle = false;
                 return;
             }
-            var step = new NavStep(w, page, null, f, card);
+            var step = new NavStep(w, page, mode, f, card);
             if (settle) trail.Replace(step);
             else trail.Push(step);
             settle = false;
@@ -106,7 +112,7 @@ namespace ColonyCouncil
                     if (filters.TryGetValue(s.page, out var f))
                         f.set(s.filters);
                 Drawer.FromNav(s.window, s.card);
-                Pages.Open(s.page);
+                Pages.Open(s.mode == null ? s.page : s.page + "/" + s.mode);
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
             catch (Exception e)
@@ -118,7 +124,7 @@ namespace ColonyCouncil
         /// <summary>Where a step leads, in words, for the arrows' tooltips: the page, and the card open there.</summary>
         private static string Words(NavStep s)
         {
-            string page = Pages.Name(s.page);
+            string page = Pages.Name(s.mode == null ? s.page : s.page + "/" + s.mode);
             return s.card.IsNone ? page : "CC_Nav_PageCard".Translate(page.Named("PAGE"), ThingRefs.Name(s.card).Named("CARD")).Resolve();
         }
 
