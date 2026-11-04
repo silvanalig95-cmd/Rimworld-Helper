@@ -33,8 +33,7 @@
       <li>[hard] {PLACE}, {TALE}, has had one bad year after another, and nobody there believes the next will be better. {FACTION} are giving the town up.\n\nIts families are on the road to {ITEM}. Some of them will look for something nearer.</li>
     </texts>
     <summaries>
-      <li>When it's over, {PLACE} will be a ruin on the map. Until then its families pass the colony on the road, and what they leave behind is anyone's to take.</li>
-    </summaries>
+      <li>When it's over, {PLACE} will be a ruin on the map. Until then its families pass the colony on the road, and what they leave behind is anyone's to take.</li>    </summaries>
     <modifiers>
       <li><group>Visitors</group><factor>1.2</factor></li>
     </modifiers>
@@ -104,6 +103,7 @@
         <texts>
           <li>The last carts are leaving {PLACE}, and what didn't fit is being left behind: doors, tools, a cooking pot too big to carry. {FACTION} don't much mind who takes the rest.\n\n{A_nameDef} says the colony could fill a few carts of its own. Some of the others would rather not pick over a town that's still warm.</li>
           <li>[fire] What the fire left of {PLACE} is being left for good: blackened beams, a forge, stone that will take a new wall. {FACTION} say anyone who wants it can have it.\n\n{A_nameDef} thinks the colony should take its share before someone else does.</li>
+          <li>{FACTION} are leaving more of {PLACE} behind than they take. Roof timbers, a mill wheel and tools too heavy for the carts will all be there for whoever comes for them.\n\n{A_nameDef} wants to send the colony's carts. Some of the others would rather not pick over a town that's still warm.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -133,6 +133,7 @@
         <texts>
           <li>The last of {FACTION} left {PLACE} yesterday. The gates stand open, the wells are covered, and the road through the town is already going to grass.\n\nIt is a ruin on the map now. In two years or so, families may come back to the old walls, or newcomers may.</li>
           <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now, and the rest is the weather's business.\n\nIt is a ruin on the map now, and swallows have moved into the meeting hall.</li>
+          <li>{FACTION} have gone from {PLACE}, and only the wind moves in its empty doorways.\n\nIt is a ruin on the map. In two years or so, families may come back to the old walls, or newcomers may.</li>
         </texts>
       </li>
       <li>
@@ -143,6 +144,7 @@
         </titles>
         <texts>
           <li>{PLACE} is mostly empty now, but not all of it. A few families refused to leave, and {FACTION} have stopped trying to make them. The town stays on the map, smaller and quieter than it was.</li>
+          <li>A handful of families stayed on at {PLACE} after the rest had gone, and {FACTION} have let them be. The town is still on the map, with more dark windows than lit ones.</li>
         </texts>
       </li>
     </endings>

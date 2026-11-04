@@ -72,6 +72,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}'s band has broken up, and he has ridden on with the few who stayed with him. {DEAD} is not avenged, and the colony is not sorry.</li>
+          <li>The band {X_nameDef} raised in {DEAD}'s name has scattered. He has gone on with the handful who would still follow him, and no more raids will come in that name.</li>
         </texts>
         <chronicle>{X_nameDef}, the son of {DEAD}, gave up his revenge and rode on.</chronicle>
       </li>
@@ -276,6 +277,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} has gone home with nothing. Whatever he tells his family about the colony, it will not be kind.</li>
+          <li>{X_nameDef} turned from the gate with nothing and did not look back. His family will hear what the colony said, every word of it.</li>
         </texts>
         <chronicle>The colony sent {X_nameDef}, the son of {DEAD}, away from its gate.</chronicle>
       </li>
@@ -375,6 +377,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}, the son of {DEAD}, lives at the colony now. Whatever {TALE} was to the world, he is one of the colony's own here.</li>
+          <li>{X_nameDef} has a bed inside the colony's wall now, and work to earn it. To the world he is still the son of {DEAD}, and here he is one of the colony's own.</li>
         </texts>
         <chronicle>The colony took in {X_nameDef}, the son of {DEAD}.</chronicle>
       </li>
@@ -386,6 +389,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} has gone on down the road, rested and fed. Where he goes from here, the colony will probably never know.</li>
+          <li>{X_nameDef} and his companion have gone on, better fed than they came. They did not say where, and the colony did not ask.</li>
         </texts>
         <chronicle>The colony gave {X_nameDef}, the son of {DEAD}, two nights' rest.</chronicle>
       </li>
@@ -396,6 +400,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} has gone back to the road. The colony has no part in what becomes of him.</li>
+          <li>{X_nameDef} has turned back to the road with his companion. Whoever is hunting him, the colony has kept out of it.</li>
         </texts>
         <chronicle>The colony turned {X_nameDef}, the son of {DEAD}, away.</chronicle>
       </li>

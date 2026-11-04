@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The region's voices
+
+*4 November 2026, version 0.79.0*
+
+- Visitors now talk about the region's new places: trading posts, hamlets, raiders' camps their neighbours remember, a town being given up, a ruin settled again, the town that grew and the warlord's son, each people in the words of its own age.
+- A visitor who has never met one of your colonists may already know their name from home, for good or ill, and say what for.
+- The region's letters and news read differently from one time to the next: a post opening or closing, a hamlet's harvest and its asks, a town given up or settled again, a new town begun and built, each raid from a raiders' camp and how the camp ended.
+- Travelers who came for the ore or the ruins talk while they work out there, and news of far towns starts in more than one way.
+- A town given up, the town that grew and the warlord's son have more endings.
+
 ## More to say about the day
 
 *4 November 2026, version 0.78.0*

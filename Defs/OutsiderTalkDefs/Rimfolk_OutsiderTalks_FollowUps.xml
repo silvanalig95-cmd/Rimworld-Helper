@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The world events' follow-ups (Source/ColonyCouncil/World/Region/GrownTown.cs, WarlordSon.cs): the town that grew from
+       a settlers' steading or a hamlet, while its people's event runs (ws:Rimfolk_WS_GrownTown with situation:theirs,
+       {SITUATIONPLACE} the town), in its first month as a town (town:lately:world:grown, {TOWN}) and just after
+       (ended:ws:Rimfolk_WS_GrownTown); and the warlord's son, by his people or the people he lives among, while he comes to
+       the gate to ask something (ws:Rimfolk_WS_SonGate), on the run (ws:Rimfolk_WS_SonExile) or with a few riders looking
+       for work (ws:Rimfolk_WS_SonRiders), {SITUATION} "the warlord's son", and just after. His band of raiders is not
+       spoken of here: his people are at war with the colony while it stands. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The town that grew ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_Proud</defName>
+    <topic>town</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_GrownTown,situation:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {SITUATIONPLACE} is a proper town now, and our people are proud of it.</li>
+      <li>[us] We knew it in its first year.</li>
+      <li>[them,their:tribal] So the elders say, and the elders remember everything about that year.</li>
+      <li>[them] So the families there say, they still talk about that first year.</li>
+    </lines>
+    <heard>{SITUATIONPLACE} of {PEOPLE} has grown into a town.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_Market</defName>
+    <topic>town</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_GrownTown,situation:theirs</when>
+    <lines>
+      <li>[them] {SITUATIONPLACE} is a market town now, with proper stalls and a weighing table.</li>
+      <li>[us] We might go.</li>
+      <li>[them,role:trader] Go early, the best stalls go to whoever gets there first.</li>
+      <li>[them] Go, your colony would be welcome there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_Naming</defName>
+    <topic>town</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_GrownTown,situation:theirs</when>
+    <lines>
+      <li>[them] The families at {SITUATIONPLACE} have been arguing about what to call the place.</li>
+      <li>[us] It has a name.</li>
+      <li>[them] It had a camp's name, and now they want a town's.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_LookAtIt</defName>
+    <topic>town</topic>
+    <uses>home,chat,know</uses>
+    <when>town:lately:world:grown</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them,their:tribal] {TOWN} was a few lean-tos once, and now it has a great hall.</li>
+      <li>[them,their:medieval] {TOWN} was a steading once, and now it has a wall the whole way round.</li>
+      <li>[them,their:hightech] {TOWN} has its charter now, and a council that meets on time, mostly.</li>
+      <li>[them] {TOWN} was a settlers' camp not long ago, and now it's a town with a market.</li>
+      <li>[us] We remember the camp.</li>
+      <li>[them] So do we, and who was there with us in that first year.</li>
+    </lines>
+    <heard>{TOWN} has grown from a settlers' steading into a town.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_NoLongerSmall</defName>
+    <topic>town</topic>
+    <uses>chat</uses>
+    <when>town:lately:world:grown,tone:cool</when>
+    <lines>
+      <li>[them] {TOWN} is a town now, and it doesn't need anyone looking out for it.</li>
+      <li>[us] Good for {TOWN}.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Grown_After</defName>
+    <topic>town</topic>
+    <uses>chat</uses>
+    <when>ended:ws:Rimfolk_WS_GrownTown,ended:theirs</when>
+    <lines>
+      <li>[them] The fuss at home about the town that grew near you has finally died down.</li>
+      <li>[us] It earned some fuss.</li>
+      <li>[them] It did, but there's only so much anyone can say about a market square.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The warlord's son ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_Gate</defName>
+    <topic>son</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_SonGate,situation:theirs</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] {SITUATION} is on the road to your gate, they say, with no weapon drawn.</li>
+      <li>[us] What does he want?</li>
+      <li>[them] To ask your colony for something, and that's all he's told anyone.</li>
+      <li>[us] We'll hear him out.</li>
+      <li>[them] Good, that's all he's asking for, as far as I know.</li>
+    </lines>
+    <heard>The warlord's son is on his way to the colony's gate.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_GateOld</defName>
+    <topic>son</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_SonGate,situation:theirs,their:lowtech</when>
+    <lines>
+      <li>[them] The old ones say a son who walks unarmed to his enemy's gate is brave or a fool.</li>
+      <li>[us] Which is he?</li>
+      <li>[them] We'll know when he walks back.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_GateCool</defName>
+    <topic>son</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_SonGate,tone:cool</when>
+    <lines>
+      <li>[them] You'll have {SITUATION} at your gate before long.</li>
+      <li>[us] We know.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_Exile</defName>
+    <topic>son</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_SonExile,situation:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {SITUATION} is on the run, and the road he's on leads past your gate.</li>
+      <li>[us] Who's after him?</li>
+      <li>[them] Whoever brought the warlord down, and they don't seem finished.</li>
+      <li>[us] And what do your people say?</li>
+      <li>[them,tone:warm|tone:good] That he's done nothing yet, whatever his blood.</li>
+      <li>[them] That it's none of our business, mostly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_ExileCool</defName>
+    <topic>son</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_SonExile,tone:cool</when>
+    <lines>
+      <li>[them] Whoever takes in {SITUATION} takes in his enemies too, remember that.</li>
+      <li>[us] We'll remember.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_Riders</defName>
+    <topic>son</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_SonRiders,situation:theirs</when>
+    <lines>
+      <li>[them,their:lowtech] {SITUATION} has a few spears left and nowhere to point them.</li>
+      <li>[them] {SITUATION} has a few fighters left and no war to spend them on.</li>
+      <li>[us] What will he do?</li>
+      <li>[them] Hire on with whoever will feed them, I'd guess, and that might be you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Son_After</defName>
+    <topic>son</topic>
+    <uses>chat</uses>
+    <when>ended:ws:Rimfolk_WS_SonGate|ended:ws:Rimfolk_WS_SonExile|ended:ws:Rimfolk_WS_SonRiders</when>
+    <lines>
+      <li>[them] People at home still talk about the warlord's son and your colony.</li>
+      <li>[us] Kindly?</li>
+      <li>[them] Depends who you ask, and how much they've had to drink.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

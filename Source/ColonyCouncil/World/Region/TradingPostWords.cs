@@ -25,7 +25,7 @@ namespace ColonyCouncil
             NeighbourPanel.Sections.Add(DrawPost);
         }
 
-        private static string T(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
+        private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
 
         private static string PeopleName(Faction f) => f?.Name ?? "CC_RiseFall_Someone".Translate().Resolve();
 

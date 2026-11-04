@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    What travelers who came for the ore or the ruins on the colony's land say when they walk out to it (Camps/
+    CampSeekers.cs: their walk takes the kind's momentLines tagged [seek:REASON], said over their heads through
+    Speech.Say). The prospectors and the surveyors had none, so their walk out was silent. Conditional, so it never
+    fails: if the kind has moment lines, these join them; if it has none, it gets its own list; if the kind isn't
+    there, nothing happens. One sentence each.
+  -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Prospectors"]/momentLines</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Prospectors"]/momentLines</xpath>
+      <value>
+        <li>[seek:ore] Tap it here and listen to that.</li>
+        <li>[seek:ore] That's the color I was hoping for.</li>
+        <li>[seek:ore] A sample from every face, and label them.</li>
+        <li>[seek:ore] It runs deeper than it looks.</li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Prospectors"]</xpath>
+      <value>
+        <momentLines>
+          <li>[seek:ore] Tap it here and listen to that.</li>
+          <li>[seek:ore] That's the color I was hoping for.</li>
+          <li>[seek:ore] A sample from every face, and label them.</li>
+          <li>[seek:ore] It runs deeper than it looks.</li>
+        </momentLines>
+      </value>
+    </nomatch>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Surveyors"]/momentLines</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Surveyors"]/momentLines</xpath>
+      <value>
+        <li>[seek:ruins] Corners first, then the walls.</li>
+        <li>[seek:ruins] These walls aren't on any map I've seen.</li>
+        <li>[seek:ruins] Pace it out and I'll write it down.</li>
+        <li>[seek:ore] Mark the outcrop on the sheet.</li>
+        <li>[seek:ore] Note which way it runs, and how far.</li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.CampKindDef[defName="Council_Camp_Surveyors"]</xpath>
+      <value>
+        <momentLines>
+          <li>[seek:ruins] Corners first, then the walls.</li>
+          <li>[seek:ruins] These walls aren't on any map I've seen.</li>
+          <li>[seek:ruins] Pace it out and I'll write it down.</li>
+          <li>[seek:ore] Mark the outcrop on the sheet.</li>
+          <li>[seek:ore] Note which way it runs, and how far.</li>
+        </momentLines>
+      </value>
+    </nomatch>
+  </Operation>
+
+</Patch>

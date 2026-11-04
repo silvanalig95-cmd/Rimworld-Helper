@@ -82,7 +82,7 @@ namespace ColonyCouncil
             return book.heard.Any(h => h != null && h.town == town.ID && h.text == text && TravelMath.ToldLately(h.tick, now));
         }
 
-        private static string T(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
+        private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
 
         /// <summary>What is true of a far town now, as its news.</summary>
         private static IEnumerable<Piece> NewsOf(Settlement town, Map home, float tiles)

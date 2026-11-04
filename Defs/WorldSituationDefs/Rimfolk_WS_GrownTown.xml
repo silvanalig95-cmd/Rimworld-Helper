@@ -34,6 +34,7 @@
     </texts>
     <summaries>
       <li>{PLACE} is a town of {FACTION} for good, and doing well. Its people will want to settle a name and hold a first market, and they have not forgotten their first year beside the colony.</li>
+      <li>{PLACE} has outgrown its first walls, and {FACTION} count it among their towns now. It will want a name settled and a first market held, and it remembers who stood near it in its first year.</li>
     </summaries>
     <modifiers>
       <li><incident>TraderCaravanArrival</incident><factor>1.3</factor></li>
@@ -131,6 +132,7 @@
         </effects>
         <texts>
           <li>Market day at {PLACE} drew a crowd, and some of it has walked up the road to see the colony.</li>
+          <li>Some of the market crowd at {PLACE} didn't go home afterwards. A few have walked on up the road to see the colony the town keeps talking about.</li>
         </texts>
       </li>
     </beats>
@@ -146,6 +148,8 @@
           <li>[!named,first:fed] {PLACE} is a town of {FACTION} for good, with a market every week. Its families tell newcomers how the town began as {TALE}, and that the colony fed them when nobody else would.</li>
           <li>[!named,first:sour] {PLACE} is a town of {FACTION} for good. Its families remember their first year beside the colony, and not all of it fondly, but they are neighbours now and mean to stay that way.</li>
           <li>[!named] {PLACE} is a town of {FACTION} for good, with a market every week and a road to the colony's turning. What began as {TALE} has grown up.</li>
+          <li>[named] {PLACE} keeps the name the colony gave it, and that is how {FACTION} write it on their maps now. Newcomers ask where the name came from, and the older families tell them how the town began as {TALE}.</li>
+          <li>[!named,first:sour] {PLACE} is a town of {FACTION} for good. When its families talk about {TALE}, the colony's coldness that first year still comes up, though less often than it did.</li>
         </texts>
         <chronicle>{TALE} grew into the town of {PLACE}.</chronicle>
         <effects>
