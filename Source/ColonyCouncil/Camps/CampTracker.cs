@@ -202,6 +202,23 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// Homes lost (Homes.Changed): each one's camps and clock are kept a while, as the council's; the camps by a home no
+        /// longer ours are none of the colony's now, and are let be.
+        /// </summary>
+        internal void HomesLost(IReadOnlyList<int> lost)
+        {
+            ColonyBook.Lost(homes, lost, h =>
+            {
+                h.camp = null;
+                h.holding = null;
+                h.warBand = null;
+            });
+        }
+
+        /// <summary>Once a day: the camps' clocks of homes lost long enough ago are let go.</summary>
+        internal void Daily() => ColonyBook.Daily(homes, null);
+
         /// <summary>A war party is gone from the colony it came to help.</summary>
         public void Forget(WarBand b)
         {

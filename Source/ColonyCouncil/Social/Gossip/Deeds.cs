@@ -168,7 +168,7 @@ namespace ColonyCouncil
             if (map == null) return false;
             if (MapFacts.ThreatOn(map)) return true;
             var social = CouncilGameComponent.Instance?.social;
-            return social != null && social.battleActive && social.battleMap == map;
+            return social != null && social.BattleOn(map);
         }
 
         /// <summary>Food running short: a few days' worth or less at home, or a hunger in the world.</summary>

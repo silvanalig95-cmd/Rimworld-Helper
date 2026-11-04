@@ -127,10 +127,10 @@ namespace ColonyCouncil
         /// A fight at home is over: if the colony saw off a real threat, it tells itself the story. Who fought, how many
         /// of them fell, what it cost, and who stood out.
         /// </summary>
-        public static void Victory(CouncilGameComponent comp, List<Pawn> fighters, Faction foe, int kills, List<string> fallen, Dictionary<Pawn, int> killsBy)
+        public static void Victory(CouncilGameComponent comp, List<Pawn> fighters, Faction foe, int kills, List<string> fallen, Dictionary<Pawn, int> killsBy, Map map)
         {
-            // A battle the colony will remember goes on its calendar (its own switch).
-            ColonyCalendar.Notify_Victory(fighters, foe, kills, fallen, comp?.social?.battleMap);
+            // A battle the colony will remember goes on the calendar of the colony where it was fought (its own switch).
+            ColonyCalendar.Notify_Victory(fighters, foe, kills, fallen, map);
             // Who held the line, who fought through a costly one, and raid after raid (Persona/Marks.cs).
             PersonaMarks.Notify_Battle(fighters, foe, kills, fallen, killsBy);
             // Those who brought many down, and who held their ground, are talked of (Social/Gossip/).
@@ -138,7 +138,8 @@ namespace ColonyCouncil
             if (!On || comp == null || fighters.NullOrEmpty()) return;
             // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
             if (kills < 3 && !(foe != null && kills >= 1)) return;
-            var home = Find.Maps.Where(m => m.IsPlayerHome).ToList();
+            // The home that fought it (every home when it isn't known).
+            var home = Find.Maps.Where(m => m.IsPlayerHome && (map == null || m == map)).ToList();
             if (home.Count == 0 || home.All(m => m.mapPawns.FreeColonistsSpawnedCount == 0)) return;
             // With raids every couple of days (a hard storyteller), a clean win is routine: told in the chronicle, not
             // celebrated each time. A costly one is always felt.
@@ -158,8 +159,8 @@ namespace ColonyCouncil
             Notify.Message(text, new LookTargets(fighters.Where(p => p.Spawned)), MessageTypeDefOf.PositiveEvent, Importance.Notable);
             using var _cause = Causes.Push("CC_Cause_Victory".Translate(foeName).Resolve());
             var thought = costly ? CouncilDefOf.Council_VictoryCostly : CouncilDefOf.Council_Victory;
-            foreach (var map in home)
-                foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).ToList())
+            foreach (var m in home)
+                foreach (var p in m.mapPawns.FreeColonistsSpawned.Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).ToList())
                     CouncilGameComponent.GiveThought(p, thought);
             if (hero != null) CouncilGameComponent.GiveThought(hero, CouncilDefOf.Council_BattleHero);
             if (!costly) VisualTouches.Victory(fighters);

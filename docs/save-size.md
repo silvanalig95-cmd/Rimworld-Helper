@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 473; modelled: 473; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** after two, **3,000 KB** after five.
+Saved collections found: 477; modelled: 477; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** after two, **3,001 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Aspirations/Aspirations.cs:counters` | counters of known pawns | known | 165 | 180 | 225 | 19.8 |
-| `Strangers/Encounters.cs:lastTick` | one per encounter def | defs | 225 | 225 | 225 | 19.8 |
+| `Strangers/Encounters.cs:lastTick` | one per encounter def, per colony | defs | 225 | 225 | 225 | 19.8 |
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Outsiders/OutsiderBook.cs:pairs` | OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days | fixed | 60 | 60 | 60 | 19.3 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
@@ -232,7 +232,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `PlayOut/PlayOutLord.cs:fed` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
 | `PlayOut/PlayOutLord.cs:served` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
 | `Social/Autonomy.cs:pawns` | who acted when: the last 2 days | window | 20 | 20 | 20 | 0.8 |
-| `Social/SocialWeb.cs:fighters` | while a fight lasts | while | 20 | 20 | 20 | 0.8 |
+| `Social/Battle.cs:fighters` | while a fight lasts | while | 20 | 20 | 20 | 0.8 |
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
 | `World/WorldSituation.cs:beats` | per situation | fixed | 4 | 4 | 4 | 0.8 |
 | `Building/BuildAhead.cs:cells` | with the above: where they stood | fixed | 30 | 30 | 30 | 0.7 |
@@ -275,6 +275,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
+| `CouncilGameComponent.cs:herds` | one per colony: its herd's leader and line (the line's ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
 | `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
 | `Calendar/ColonyCalendar.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
 | `Camps/Camp.cs:trees` | while the camp stays | while | 10 | 10 | 10 | 0.4 |
@@ -282,6 +283,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `Journeys/Journeys.cs:animals` | the animals they bring | fixed | 10 | 10 | 10 | 0.4 |
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
+| `CouncilGameComponent.cs:beasts` | one per colony: the beast that stays on its land (its known ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:strays` | FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map | fixed | 15 | 15 | 15 | 0.4 |
@@ -325,7 +327,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Missions/StoriesComponent.cs:missions` | missions 2 days after they end | window | 0 | 0 | 0 | 0.2 |
-| `Social/SocialWeb.cs:battleFallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
+| `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Annals.cs:secretsOut` | the year in progress | yearly | 3 | 3 | 3 | 0.2 |
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
@@ -367,6 +369,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `PlayOut/PlayOuts.cs:risks` | per play-out: an answer's fight or walk-out held for the scene, one or two at most | fixed | 1 | 1 | 1 | 0.1 |
 | `PlayOut/PlayOuts.cs:spots` | per play-out | fixed | 2 | 2 | 2 | 0.1 |
 | `Scenarios/Scenarios.cs:events` | a scenario part's events | fixed | 3 | 3 | 3 | 0.1 |
+| `Social/SocialWeb.cs:battles` | one fight per home while it lasts (one home in the model); dropped when over | while | 1 | 1 | 1 | 0.1 |
 | `Wishes/Kept.cs:cells` | per watch | fixed | 4 | 4 | 4 | 0.1 |
 | `Decrees/Decrees.cs:useTicks` | with the above | window | 4 | 4 | 4 | 0.1 |
 | `Ailments/AilmentTracker.cs:bitesRolled` | only hediffs colonists still have | colonists | 4 | 4 | 4 | 0.1 |
@@ -385,6 +388,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,838 KB** aft
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:round` | per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:things` | per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most) | fixed | 2 | 2 | 2 | 0.1 |
+| `Strangers/Encounters.cs:homes` | one per colony (EncounterHome: the day's count, the last, each kind's cooldown; one home in the model) | fixed | 1 | 1 | 1 | 0.1 |
 | `Visitors/Callers.cs:people` | per task: the undertakers (four at most) or the wedding party (five at most) | fixed | 2 | 2 | 2 | 0.1 |
 | `Visitors/Callers.cs:plots` | per task: the undertakers' row of graves (CallerMath.MaxGraves at most), graves only | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |

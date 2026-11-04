@@ -371,7 +371,7 @@ namespace ColonyCouncil
             }
 
             // The herd.
-            var herd = comp.herd;
+            var herd = comp.HerdOf(map);
             var head = AnimalFacts.Herd(map);
             if (herd?.leader != null && !herd.leader.Dead)
             {
@@ -384,7 +384,7 @@ namespace ColonyCouncil
                 : "Herd leader: none; the herd has " + head.Count + " head on this map and needs " + HerdStoryMath.MinHerd + " for a leader.", UiKit.Faint);
 
             // The beast that stays.
-            var rb = comp.beast;
+            var rb = comp.BeastOf(map);
             if (rb == null) return;
             if (!ResidentBeast.On) part.Add("The beast that stays needs the strangers setting on.", UiKit.Warn);
             else if (rb.Here)

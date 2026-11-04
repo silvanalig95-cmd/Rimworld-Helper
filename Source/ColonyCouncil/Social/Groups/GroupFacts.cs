@@ -86,6 +86,13 @@ namespace ColonyCouncil
                 }
                 aff[i, j] = aff[j, i] = a;
             }
+            // Groups form within one home: people of two colonies hold to each other not at all (stage 0, step 7b).
+            if (ColonyState.Several)
+            {
+                var colony = new int[n];
+                for (int i = 0; i < n; i++) colony[i] = Homes.KeyOf(Homes.Of(pawns[i]));
+                GroupMath.Apart(aff, n, colony);
+            }
         }
 
         // ---------------- Pairs ----------------

@@ -276,7 +276,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var x = ctx?.stranger;
-            var rb = CouncilGameComponent.Instance?.beast;
+            var rb = CouncilGameComponent.Instance?.BeastOf(ctx.map);
             if (x == null || rb == null || !rb.CanTakeUp(x)) return;
             sheet.Add(ImpactKind.Other, 0, "Rimfolk_Impact_WatchBeast".Translate(x.LabelShort).Resolve(), "Rimfolk_Impact_WatchBeastBrief".Translate().Resolve());
         }
@@ -285,8 +285,9 @@ namespace ColonyCouncil
         {
             var x = ctx?.stranger;
             var comp = CouncilGameComponent.Instance;
-            if (x == null || comp?.beast == null) return;
-            comp.beast.TakeUp(comp, x);
+            var rb = comp?.BeastOf(ctx.map);
+            if (x == null || rb == null) return;
+            rb.TakeUp(comp, x);
         }
     }
 

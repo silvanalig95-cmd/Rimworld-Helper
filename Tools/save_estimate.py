@@ -452,6 +452,9 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # The herd's year and the beast that stays, one per colony (Animals/HerdStory.cs, ResidentBeast.cs; one home in the model)
+    "CouncilGameComponent.cs:herds": ("fixed", 1, 420, "one per colony: its herd's leader and line (the line's ids have rows of their own)"),
+    "CouncilGameComponent.cs:beasts": ("fixed", 1, 380, "one per colony: the beast that stays on its land (its known ids have rows of their own)"),
     # One calendar per colony (Calendar/CalendarTracker.cs): each calendar's rows are below, sized for one colony
     "Calendar/CalendarTracker.cs:colonies": ("fixed", 1, 120,
                                              "one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept "
@@ -612,7 +615,8 @@ MODEL = {
     "Character/ColonyTraits.cs:known": ("defs", ("ColonyTraitDef", 0.5), 40, "traits the colony grew into"),
     "Character/ColonyTraits.cs:today": ("fixed", 3, D, "today's tallies, emptied each day"),
     # Strangers
-    "Strangers/Encounters.cs:lastTick": ("defs", ("EncounterDef", 1), D, "one per encounter def"),
+    "Strangers/Encounters.cs:homes": ("fixed", 1, 80, "one per colony (EncounterHome: the day's count, the last, each kind's cooldown; one home in the model)"),
+    "Strangers/Encounters.cs:lastTick": ("defs", ("EncounterDef", 1), D, "one per encounter def, per colony"),
     "Strangers/Nemeses.cs:all": ("cap", (30 + 3, 0.05), 300, "30 that have ended"),
     "Strangers/Nuisances.cs:last": ("window", (10, COLONISTS * 0.1), D, "10 days"),
     "Strangers/Pets.cs:known": ("fixed", 30, P, "animals known: the dead get their farewell, the discarded are dropped"),
@@ -626,8 +630,9 @@ MODEL = {
     "Social/SocialWeb.cs:history": ("fixed", 10, 60, "per tie (counted under ties)"),
     "Social/SocialWeb.cs:ties": ("pairs", 0.3, 400, "ties of the dead dropped daily, of the gone faded out"),
     "Social/SocialWeb.cs:lost": ("cap", (40, 0.05), 200, "40 lost bonds"),
-    "Social/SocialWeb.cs:fighters": ("while", COLONISTS, P, "while a fight lasts"),
-    "Social/SocialWeb.cs:battleFallen": ("while", 5, 40, "while a fight lasts"),
+    "Social/SocialWeb.cs:battles": ("while", 1, 120, "one fight per home while it lasts (one home in the model); dropped when over"),
+    "Social/Battle.cs:fighters": ("while", COLONISTS, P, "while a fight lasts"),
+    "Social/Battle.cs:fallen": ("while", 5, 40, "while a fight lasts"),
     # Faith and the council (Faith/FaithCouncilTracker.cs)
     "Faith/FaithCouncilTracker.cs:faithEvenings": ("fixed", 6, D, "each faith's last evening of faith: one per faith, gone after 60 days or with the faith"),
     "Faith/FaithCouncilTracker.cs:plans": ("while", 1, R, "the evening of faith waiting to be held: one at a time, let go when its gathering is over"),

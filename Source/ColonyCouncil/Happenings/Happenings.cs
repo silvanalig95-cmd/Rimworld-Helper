@@ -949,6 +949,8 @@ namespace ColonyCouncil
             /// <summary>A wild animal on a home map (a hunt's kill, for the orphaned young), and where it fell.</summary>
             public bool wild;
             public IntVec3 cell;
+            /// <summary>Where they died (the home whose fight it counts in).</summary>
+            public Map map;
         }
 
         public DeathNote Before(Pawn victim)
@@ -958,6 +960,7 @@ namespace ColonyCouncil
             note.afterFight = note.foe && victim.Downed && !GenHostility.AnyHostileActiveThreatToPlayer(victim.Map, false, false);
             note.wild = victim.Spawned && victim.Map.IsPlayerHome && victim.RaceProps.Animal && victim.Faction == null;
             note.cell = victim.Spawned ? victim.Position : IntVec3.Invalid;
+            note.map = victim.MapHeld;
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -967,7 +970,7 @@ namespace ColonyCouncil
         public void Notify_Killed(Pawn victim, DamageInfo? dinfo, DeathNote note)
         {
             if (victim == null) return;
-            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn);
+            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn, note.map);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);

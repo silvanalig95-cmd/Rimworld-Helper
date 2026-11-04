@@ -116,6 +116,7 @@ namespace ColonyCouncil
             {
                 var tracker = CampTracker.Instance;
                 if (tracker == null) return;
+                if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) tracker.Daily();
                 var seat = HappeningTracker.HomeMap();
                 // Each home on the ground, in the order they were founded: camps of its own, on its own day. Nobody camps by
                 // a home in space.

@@ -202,11 +202,23 @@ namespace ColonyCouncil
         public ColonyState ColonyByKey(int key) => ColonyBook.ByKey(colonies, key);
 
         /// <summary>Homes founded or lost (Homes.Changed): a lost home's council is kept a while, or carried when no home is left.</summary>
-        internal void HomesLost(IReadOnlyList<int> lost) =>
+        internal void HomesLost(IReadOnlyList<int> lost)
+        {
             ColonyBook.Lost(colonies, lost, c => Safe("a colony's council, its home lost", () => c.HomeLost()));
+            // The other books kept here per colony: the herd's year, the beast that stays, the encounters.
+            ColonyBook.Lost(herds, lost, null);
+            ColonyBook.Lost(beasts, lost, null);
+            encounters?.HomesLost(lost);
+        }
 
         /// <summary>Once a day: a home that came back is ours again, and councils of homes lost long enough ago are let go.</summary>
-        private void ColoniesDaily() => ColonyBook.Daily(colonies, c => Safe("a colony's council let go", () => c.HomeLost()));
+        private void ColoniesDaily()
+        {
+            ColonyBook.Daily(colonies, c => Safe("a colony's council let go", () => c.HomeLost()));
+            ColonyBook.Daily(herds, null);
+            ColonyBook.Daily(beasts, null);
+            encounters?.Daily();
+        }
 
         /// <summary>Saves the book; an old save's trackers become the seat's council.</summary>
         private void ExposeColonies()
@@ -338,6 +350,7 @@ namespace ColonyCouncil
             {
                 CouncilGameComponent.Instance?.HomesLost(lost);
                 CalendarTracker.Instance?.HomesLost(lost);
+                CampTracker.Instance?.HomesLost(lost);
             };
         }
     }

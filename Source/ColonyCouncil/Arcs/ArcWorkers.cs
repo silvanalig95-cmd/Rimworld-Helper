@@ -651,7 +651,8 @@ namespace ColonyCouncil
             if (comp == null || arc.stage >= arc.def.LastStage) return null;
             if (!comp.vendettas.Of(arc.pawn).Any(v => v.faction == arc.faction)) return "settled";
             // Their banners at the walls again.
-            if (comp.social.battleActive && comp.social.battleFaction == arc.faction && arc.pawn.MapHeld == comp.social.battleMap) return "anger";
+            var fight = comp.social.BattleAt(arc.pawn.MapHeld);
+            if (fight != null && fight.active && fight.faction == arc.faction) return "anger";
             return null;
         }
     }

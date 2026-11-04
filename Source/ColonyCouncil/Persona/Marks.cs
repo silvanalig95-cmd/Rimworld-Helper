@@ -315,9 +315,10 @@ namespace ColonyCouncil
             if (now - t.lastFight > GenDate.TicksPerHour * 12 || t.fightLabel.NullOrEmpty())
             {
                 var social = CouncilGameComponent.Instance?.social;
-                foe ??= social?.battleFaction;
+                var current = social?.Current;
+                foe ??= current?.faction;
                 // The name the fight has everywhere else too (deeds, shared memories).
-                t.fightLabel = FightNames.Of(social?.battleMap ?? Find.AnyPlayerHomeMap, foe);
+                t.fightLabel = FightNames.Of(current?.Map ?? Find.AnyPlayerHomeMap, foe);
             }
             t.lastFight = now;
         }
@@ -325,7 +326,7 @@ namespace ColonyCouncil
         private static string FightLabel => Tracker?.fightLabel ?? FightNames.Of(null);
 
         private static bool FightOn(Map map) =>
-            (CouncilGameComponent.Instance?.social?.battleActive ?? false) || MapFacts.ThreatOn(map);
+            (CouncilGameComponent.Instance?.social?.BattleOn(map) ?? false) || MapFacts.ThreatOn(map);
 
         /// <summary>A fight is on, or was within the last half day.</summary>
         private static bool FightLately(Pawn p)

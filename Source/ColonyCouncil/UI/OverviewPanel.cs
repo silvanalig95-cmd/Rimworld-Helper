@@ -280,7 +280,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             try
             {
-                var herd = comp.herd;
+                var herd = comp.HerdOf(map);
                 var leader = herd?.leader;
                 if (leader != null && !leader.Dead && AnimalFacts.Ours(leader))
                 {
@@ -290,7 +290,7 @@ namespace ColonyCouncil
                         : "CC_Overview_HerdLeader".Translate(leader.Named("PET"), head.Named("COUNT")).Resolve());
                     if (herd.lastSeasonTick >= 0) list.Add("CC_Overview_HerdOld".Translate(leader.Named("PET")).Resolve());
                 }
-                var rb = comp.beast;
+                var rb = comp.BeastOf(map);
                 if (rb != null && rb.Here)
                 {
                     string stanceKey = "CC_Beast_Stance_" + rb.stance;

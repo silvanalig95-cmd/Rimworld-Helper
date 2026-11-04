@@ -13,8 +13,35 @@ namespace ColonyCouncil
     /// told, and when it dies the herd follows one of its own. Saved on the council (CouncilGameComponent.herd); runs
     /// from AnimalLife.Daily and AnimalLife.Born.
     /// </summary>
-    public class HerdStory : IExposable
+    public class HerdStory : IExposable, IColonyEntry
     {
+        /// <summary>The colony's key (<see cref="Homes.KeyOf"/>), or none while it has no home (an old save's, not yet placed).</summary>
+        public int home = HomesMath.None;
+        /// <summary>When its home stopped being ours; -1 while it is.</summary>
+        public int lostAt = ColonyStateMath.NotLost;
+
+        public int Home
+        {
+            get => home;
+            set => home = value;
+        }
+
+        public int LostAt
+        {
+            get => lostAt;
+            set => lostAt = value;
+        }
+
+        /// <summary>Its colony's home on the ground; null in space or with no home.</summary>
+        public Map HomeMap
+        {
+            get
+            {
+                var m = home == HomesMath.None ? null : Homes.MapOf(home);
+                return MapFacts.InVacuum(m) ? null : m;
+            }
+        }
+
         public Pawn leader;
         public int leaderSince = -1;
         /// <summary>The leader's generation in its line (1: the line began with it), and the name of the one the line began with.</summary>
@@ -36,7 +63,8 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             if (!On || comp == null) return;
-            var map = HappeningTracker.HomeMap();
+            // This colony's own herd, at its own home.
+            var map = HomeMap;
             if (map == null) return;
             if (leader != null && (leader.Dead || leader.Destroyed || !AnimalFacts.Ours(leader))) Lost(comp, map);
             if (leader == null)
@@ -288,6 +316,8 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
             Scribe_References.Look(ref leader, "leader");
             Scribe_Values.Look(ref leaderSince, "leaderSince", -1);
             Scribe_Values.Look(ref generation, "generation", 1);

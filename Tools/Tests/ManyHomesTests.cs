@@ -98,6 +98,34 @@ public static class ManyHomesTests
             Check(ColonyStateMath.Find(camps, 40, 12) == null && ColonyStateMath.Find(camps, 12, 12) == old && old.Home == 12, "an old save's camp and clock go to the seat");
         }
 
+        // ---------------- Groups within one home ----------------
+
+        {
+            // Four close friends: two at each of two homes.
+            float[,] Close()
+            {
+                var a = new float[4, 4];
+                for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    if (i != j) a[i, j] = 0.8f;
+                return a;
+            }
+            var free = new[] { true, true, true, true };
+            var together = GroupMath.Cluster(Close(), 4, free, null);
+            var same = Close();
+            GroupMath.Apart(same, 4, new[] { 12, 12, 12, 12 });
+            var single = GroupMath.Cluster(same, 4, free, null);
+            Check(together != null && single != null && together.SequenceEqual(single), "one colony: the same group forms as before");
+            var split = Close();
+            GroupMath.Apart(split, 4, new[] { 12, 12, 40, 40 });
+            var g = GroupMath.Cluster(split, 4, free, null);
+            Check(g == null || g.All(i => i < 2) || g.All(i => i >= 2), "no group forms across two homes");
+            Check(split[0, 2] < 0f && split[0, 1] == 0.8f, "people of two colonies hold to each other not at all; those of one as before");
+            var none = Close();
+            GroupMath.Apart(none, 4, null);
+            Check(none[0, 3] == 0.8f, "no colonies given: nothing changes");
+        }
+
         return n;
     }
 

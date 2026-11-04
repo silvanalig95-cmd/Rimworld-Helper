@@ -295,7 +295,7 @@ namespace ColonyCouncil
         private static void Watch(Arc arc)
         {
             var social = CouncilGameComponent.Instance?.social;
-            if (social != null && social.battleActive && arc.pawn.MapHeld != null && arc.pawn.MapHeld == social.battleMap) arc.sawBattle = true;
+            if (social != null && arc.pawn.MapHeld != null && social.BattleOn(arc.pawn.MapHeld)) arc.sawBattle = true;
         }
 
         private void CountHeld(Arc arc, ArcGate gate)
@@ -358,7 +358,7 @@ namespace ColonyCouncil
                 case ArcGateKind.Battle:
                 {
                     var social = comp?.social;
-                    if (!arc.sawBattle || social == null || social.battleActive || p.Downed || p.InMentalState) return false;
+                    if (!arc.sawBattle || social == null || social.BattleOn(p.MapHeld) || p.Downed || p.InMentalState) return false;
                     float damage = p.records?.GetValue(RecordDefOf.DamageDealt) ?? 0f;
                     return damage > arc.baseDamage || (p.mindState != null && p.mindState.lastAttackTargetTick >= arc.stageTick);
                 }

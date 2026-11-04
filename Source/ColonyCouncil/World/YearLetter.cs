@@ -63,7 +63,7 @@ namespace ColonyCouncil
             var herd = AnimalFacts.Herd(map);
             if (herd.Count > 0)
             {
-                var hs = comp.herd;
+                var hs = comp.HerdOf(map);
                 var leader = hs?.leader;
                 bool leads = leader != null && !leader.Dead && AnimalFacts.Ours(leader);
                 int born = herd.Count(a => a.ageTracker != null && a.ageTracker.AgeBiologicalTicks < GenDate.TicksPerYear);
@@ -78,7 +78,7 @@ namespace ColonyCouncil
             }
 
             // The beast that stays.
-            var rb = comp.beast;
+            var rb = comp.BeastOf(map);
             if (rb != null && rb.Here)
             {
                 string stanceKey = "CC_Beast_Stance_" + rb.stance;
