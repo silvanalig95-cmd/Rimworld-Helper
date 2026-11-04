@@ -134,7 +134,7 @@
     <uses>home,chat</uses>
     <when>town:thriving|town:flourishing,their:medieval</when>
     <lines>
-      <li>[them] Since {FORTUNEWHY} the market at {TOWN} has been fuller than anyone remembers.</li>
+      <li>[them] Since {FORTUNEWHY} the market at {TOWN} has been full from dawn to dusk.</li>
       <li>[us] And the tithe?</li>
       <li>[them] Paid early, which has the reeve worried we're hiding something.</li>
     </lines>
@@ -203,7 +203,7 @@
     <topic>fortune</topic>
     <when>town:flourishing,them:old</when>
     <lines>
-      <li>[them] {TOWN} has never done so well, and I've lived long enough to worry about it.</li>
+      <li>[them] Times are good at {TOWN}, and I've lived long enough to worry about that.</li>
       <li>[us] Worry about doing well?</li>
       <li>[them] Good years make people careless, and careless people forget to put things by.</li>
     </lines>

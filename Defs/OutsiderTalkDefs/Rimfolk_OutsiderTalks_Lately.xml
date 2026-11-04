@@ -136,7 +136,7 @@
     <lines>
       <li>[us] Is it quieter at {TOWN} now?</li>
       <li>[them,ended:theirs,ended:bad] Quieter, now {ENDED} is behind us.</li>
-      <li>[them,ended:theirs,!ended:bad] Quieter, now {ENDED} is over and the crowds have gone home.</li>
+      <li>[them,ended:theirs,!ended:bad] Quieter, now {ENDED} is over, and some of us miss it.</li>
       <li>[them] Quieter, what was going on there has run its course.</li>
       <li>[us] Good.</li>
       <li>[them] Quiet never lasts, but we'll take it while it does.</li>
