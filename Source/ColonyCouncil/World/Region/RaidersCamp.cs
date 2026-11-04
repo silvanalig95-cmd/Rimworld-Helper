@@ -143,7 +143,7 @@ namespace ColonyCouncil
     /// pass and they give up. Each ending is told, written into the history (world:camp) and into what the peoples
     /// remember. It runs in the region's two passes (<see cref="Pass.Region"/>, <see cref="Pass.DailyRegion"/>), nothing per tick.
     /// </summary>
-    public static class RaidersCamps
+    public static partial class RaidersCamps
     {
         /// <summary>Why the ledger keeps a camp's leader in the world.</summary>
         public const string KeepReason = "raidcamp";
@@ -345,7 +345,7 @@ namespace ColonyCouncil
             switch (c.stage)
             {
                 case CampStage.Hidden:
-                    TryFind(home, c, now);
+                    TryFind(home, rh, c, now);
                     return;
                 case CampStage.Paying:
                     if (PaidUp(c)) End(home, rh, c, CampEnd.Paid, null);
@@ -631,12 +631,23 @@ namespace ColonyCouncil
         /// Someone out of doors beyond the walls by day may see its smoke: a hunter after game first, then whoever works
         /// past the colony's ground, and from a few days on anyone out of doors.
         /// </summary>
-        private static void TryFind(Map home, RaidersCamp c, int now)
+        private static void TryFind(Map home, RaidersCampHome rh, RaidersCamp c, int now)
         {
             if (!RaidersCampMath.Daylight(GenLocalDate.HourOfDay(home))) return;
             float days = (now - c.setAt) / (float)Day;
             var spotter = Spotter(home, days >= RaidersCampMath.FindByDays, out string doing);
             if (spotter == null || !Rand.Chance(RaidersCampMath.FindChance(days))) return;
+            // Something else took its place on the world map meanwhile: they camp a little way off instead, or nowhere.
+            if (Find.WorldObjects.AnyMapParentAt(TileOf(c)))
+            {
+                var t = FindTile(home);
+                if (!t.Valid)
+                {
+                    End(home, rh, c, CampEnd.Gone, null);
+                    return;
+                }
+                c.tile = Refs.Of(t);
+            }
             Found(home, c, spotter, doing, now);
         }
 
@@ -927,8 +938,6 @@ namespace ColonyCouncil
             if (c?.people != null) list.Add(new HistoryActor(Refs.Of(c.people), ally != null ? HistoryRole.Against : HistoryRole.About));
             if (c?.leader != null) list.Add(new HistoryActor(Refs.Of(c.leader), HistoryRole.About));
             if (ours != null) list.Add(new HistoryActor(Refs.Of(ours), HistoryRole.With));
-            var t = c != null ? c.tile : Ref.None;
-            if (!t.IsNone) list.Add(new HistoryActor(t, HistoryRole.About));
             return list;
         }
 
@@ -964,7 +973,10 @@ namespace ColonyCouncil
             string key = "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp && c.beaten < RaidersCampMath.BeatenToGiveUp ? "_Time" : "");
             string text = key.Translate(args).Resolve();
             string label = ("CC_RaidCamp_End_" + end + "_Label").Translate(args).Resolve().CapitalizeFirst();
-            Tell.Letter(NewsKind.World, Importance.Notable, home, label, text, LetterDefOf.PositiveEvent, site != null && !site.Destroyed ? new LookTargets(site) : null, ally ?? c.people);
+            // Peace: the game's own letter already said the site is gone (it takes away a hostile people's sites when peace
+            // is made), so Rimfolk's word is a line of the colony news.
+            if (end == CampEnd.Peace) Tell.Minor(NewsKind.World, Importance.Notable, home, text, null, MessageTypeDefOf.PositiveEvent);
+            else Tell.Letter(NewsKind.World, Importance.Notable, home, label, text, LetterDefOf.PositiveEvent, null, ally ?? c.people);
             History.Add(RaidersCampMath.KindOf(end), Actors(c, ally, null), Refs.Colony(home), HistoryMath.Milestone, text);
             string deed = RaidersCampMath.DeedOf(end, out bool byAlly);
             if (deed != null) FactionMemory.Note(byAlly ? ally : c.people, deed, c.kind);
