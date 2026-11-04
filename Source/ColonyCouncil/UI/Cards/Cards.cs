@@ -506,7 +506,7 @@ namespace ColonyCouncil
                 {
                     if (t.Faction != f) continue;
                     var tr = ThingRefs.Of(t);
-                    who.rows.Add(new CardRow { thing = tr, icon = t.ExpandingIcon, ring = f.Color, name = Link(t.Name, tr), second = CardWords.Distance(t.Tile) });
+                    who.rows.Add(new CardRow { thing = tr, icon = t.ExpandingIcon == BaseContent.BadTex ? Icons.World : t.ExpandingIcon, ring = f.Color, name = Link(t.Name, tr), second = CardWords.Distance(t.Tile) });
                     if (who.rows.Count >= 8) break;
                 }
             who.count = who.rows.Count;

@@ -34,7 +34,7 @@ namespace ColonyCouncil
 
         private static Folds FoldsOf(CardKind k)
         {
-            if (!folds.TryGetValue(k, out var f)) folds[k] = f = new Folds("land");
+            if (!folds.TryGetValue(k, out var f)) folds[k] = f = new Folds();
             return f;
         }
 
@@ -314,7 +314,7 @@ namespace ColonyCouncil
         /// <summary>The region map panel's old lists, for what other mods or older code still add there (World/NeighbourPanel.cs).</summary>
         private static float Legacy(CardModel m, CardSlot slot, float x, float y, float w)
         {
-            if (m.kind != CardKind.Place) return 0f;
+            if (m.kind != CardKind.Place || NeighbourPanel.Sections.Count + NeighbourPanel.PlaceSections.Count + NeighbourPanel.HomeSections.Count == 0) return 0f;
             float start = y;
             if (slot == CardSlot.Ties)
             {

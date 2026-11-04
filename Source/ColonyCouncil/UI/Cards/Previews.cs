@@ -46,6 +46,8 @@ namespace ColonyCouncil
             if (r.IsNone || !On || Event.current == null || Event.current.type != EventType.Repaint) return;
             float now = Time.realtimeSinceStartup;
             hoverFrame = Time.frameCount;
+            // Its card was just opened from it: no preview again until the mouse leaves it.
+            if (r == quiet) return;
             if (r == shown)
             {
                 lastIn = now;
@@ -66,12 +68,16 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>No preview now (a card opened, a window closed).</summary>
+        /// <summary>No preview now (a card opened, a window closed); none again for the name under the mouse until it leaves it.</summary>
         public static void Hide()
         {
+            if (!pending.IsNone) quiet = pending;
+            else if (!shown.IsNone) quiet = shown;
             shown = ThingRef.None;
             pending = ThingRef.None;
         }
+
+        private static ThingRef quiet;
 
         /// <summary>From the game's OnGUI every event (UI/WeekMemory.cs): shows, keeps or lets go of the preview, and asks for its window.</summary>
         public static void OnGUI()
@@ -93,7 +99,11 @@ namespace ColonyCouncil
             }
             // The links were drawn last frame (the windows draw after this).
             bool hovered = hoverFrame >= Time.frameCount - 2;
-            if (!hovered) pending = ThingRef.None;
+            if (!hovered)
+            {
+                pending = ThingRef.None;
+                quiet = ThingRef.None;
+            }
             bool busy = Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || now - scrolledAt < 0.3f;
             if (!pending.IsNone && pending != shown && !busy && now - pendingSince >= Delay)
             {
