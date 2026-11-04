@@ -240,8 +240,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The day's look: a founding whose site is gone with no town standing in its place (razed, abandoned) or that
-        /// has fallen out of every home's reach is let go, and its founder with it.
+        /// The day's look (RegionMath.FoundingDay): a founding whose site is gone with no town standing in its place
+        /// (razed, abandoned) or that has fallen out of every home's reach is let go, and its founder with it; so is one
+        /// whose town stands while the new towns' faces are off (the hour that would give them its faces stands down).
         /// </summary>
         internal static void Daily(int now)
         {
@@ -250,19 +251,25 @@ namespace ColonyCouncil
             var building = WorldMechanics.SettlementsBeingBuilt();
             foreach (var f in l.Foundings.ToList())
             {
-                if (f == null || f.built >= 0) continue;
-                bool stands = building.Any(b => b != null && b.id == f.site);
-                var tile = TileOf(f.tile);
-                if (stands && RegionTowns.InReach(tile)) continue;
+                if (f == null) continue;
+                bool built = f.built >= 0;
+                bool stands = !built && building.Any(b => b != null && b.id == f.site);
+                var tile = built ? PlanetTile.Invalid : TileOf(f.tile);
+                bool inReach = !built && RegionTowns.InReach(tile);
                 // Finished meanwhile without the hook seeing it (the setting was off): the town on its tile.
-                var town = tile.Valid ? Find.WorldObjects.SettlementAt(tile) : null;
-                if (town != null && town.Faction == f.people && RegionBook.FacesOn && RegionTowns.InReach(tile))
+                var town = !built && !(stands && inReach) && tile.Valid ? Find.WorldObjects.SettlementAt(tile) : null;
+                switch (RegionMath.FoundingDay(built, RegionBook.FacesOn, stands, inReach, town != null && town.Faction == f.people))
                 {
-                    f.built = town.ID;
-                    continue;
+                    case FoundingFate.Keep:
+                        continue;
+                    case FoundingFate.Built:
+                        f.built = town.ID;
+                        continue;
+                    default:
+                        WorldLedger.RemoveFounding(f);
+                        FoundingGone(f);
+                        continue;
                 }
-                WorldLedger.RemoveFounding(f);
-                FoundingGone(f);
             }
         }
 

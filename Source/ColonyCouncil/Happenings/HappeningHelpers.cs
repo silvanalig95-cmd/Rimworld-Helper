@@ -201,8 +201,8 @@ namespace ColonyCouncil
         public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null, IntVec3? from = null, bool tellStoryteller = true)
         {
             if (map == null || !CanRaid(f)) return false;
-            // Whoever leads it is part of its strength, not on top of it.
-            if (leader != null && !leader.Dead && leader.kindDef != null) points -= leader.kindDef.combatPower;
+            // Whoever leads it is part of its strength, not on top of it (only one who can walk in with them).
+            if (CanLead(leader, f) && leader.kindDef != null) points -= leader.kindDef.combatPower;
             float min = 0f;
             try
             {
@@ -268,11 +268,15 @@ namespace ColonyCouncil
 
         private static string NoBraces(string s) => s.Replace('{', '(').Replace('}', ')');
 
+        /// <summary>Someone special can walk in at the head of this people's raid: one of them, alive, free and out in the world, held by no caravan or quest.</summary>
+        public static bool CanLead(Pawn leader, Faction f) =>
+            leader != null && !leader.Dead && !leader.Discarded && !leader.Spawned && leader.Faction == f && !leader.IsPrisoner && !People.Kidnapped(leader)
+            && leader.GetCaravan() == null && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(leader);
+
         /// <summary>Someone special (a nemesis) walks in with the raiders who just arrived.</summary>
         private static void Lead(Map map, Faction f, Pawn leader, HashSet<Lord> before)
         {
-            if (leader.Dead || leader.Discarded || leader.Spawned || leader.Faction != f || leader.IsPrisoner || People.Kidnapped(leader)
-                || leader.GetCaravan() != null || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(leader)) return;
+            if (!CanLead(leader, f)) return;
             var lord = map.lordManager.lords.FirstOrDefault(l => !before.Contains(l) && l.faction == f && l.ownedPawns.Any(p => p.Spawned));
             if (lord == null) return;
             // Raiders still in drop pods aren't anywhere yet: walk in beside one who is.

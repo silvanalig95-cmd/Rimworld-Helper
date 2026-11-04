@@ -160,6 +160,9 @@ public static class RiseFallTests
         C(fall.Contains("o.def == WorldObjectDefOf.AbandonedSettlement") && fall.Contains("GivenUpByEvent(id)"),
             "only Rimfolk's own ruins are kept: another mod's sites (Real Ruins') are left alone");
         C(fall.Contains("SituationWorker_Abandoned.Safe(t)") && towns.Contains("RiseFall.RuinSafe(o)"), "a town or a ruin comes off the map only when safe (no map, quest, caravan or pods)");
+        C(fall.Contains("!RiseFallEffects.SendsOwn(kind, t.Faction)") && Code("World/Region/TradingPost.cs").Contains("!RiseFallEffects.SendsOwn(kind, people)")
+          && Code("World/Region/RiseFallEffects.cs").Contains("Arrivals.Usable(f)"),
+            "a family at the gate from a town given up is of its own people, or none comes (a people at war with the colony sends none)");
         C(fall.Contains("WorldObjectDefOf.AbandonedSettlement") && towns.Contains("WorldObjectDefOf.Settlement") && towns.Contains("SettlementNameGenerator.GenerateSettlementName"),
             "the game's own objects: a town of the vanilla def named by its people's rule, a ruin the game's abandoned settlement");
         C(towns.Contains("RegionFaces.Founded(town, null, why)") && towns.Contains("f.motherName"), "Rimfolk's new towns get the region's faces, with the town their settlers came from");

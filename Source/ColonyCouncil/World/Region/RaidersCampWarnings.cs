@@ -29,6 +29,17 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// The camp's leader can no longer lead it: dead, lost from the save, a prisoner or a slave (the colony's or
+        /// anyone's), or no longer one of its people (taken into the colony). The camp then breaks up
+        /// (RaidersCampMath.BreaksUp), and his strength is no longer part of its raids.
+        /// </summary>
+        public static bool LeaderLost(RaidersCamp c)
+        {
+            var p = c?.leader;
+            return p != null && RaidersCampMath.LeaderLost(true, p.Dead || p.Discarded, p.IsPrisoner || p.IsSlave, p.Faction == c.people);
+        }
+
+        /// <summary>
         /// The leader kept in the world while the camp stands: after a raid he led, the game took him back into the world
         /// with nothing keeping him there.
         /// </summary>

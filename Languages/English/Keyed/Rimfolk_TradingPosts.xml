@@ -64,6 +64,7 @@
   <CC_Post_H_War>{PEOPLE} closed {POST} when they went to war with the colony.</CC_Post_H_War>
   <CC_Post_H_Sacked>{PEOPLE} gave up {POST} after raiders of {ENEMY} sacked it.</CC_Post_H_Sacked>
   <CC_Post_H_Razed>The colony razed {POST} of {PEOPLE}.</CC_Post_H_Razed>
+  <CC_Post_H_HardTimes>{PEOPLE} gave up {POST} in hard times, and the post closed with it.</CC_Post_H_HardTimes>
 
   <!-- What the peoples remember of it (World/FactionMemory.cs). -->
   <CC_Memory_Deed_postRazed>razed the trading post they opened for the colony</CC_Memory_Deed_postRazed>

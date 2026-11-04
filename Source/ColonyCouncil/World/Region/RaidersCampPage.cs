@@ -58,7 +58,7 @@ namespace ColonyCouncil
                 ? "CC_RaidCampPg_WhereHome".Translate(where.Named("WHERE"), Homes.Name(home).Named("HOME")).Resolve().CapitalizeFirst()
                 : where.CapitalizeFirst() + ".");
             lines.Add("CC_RaidCampPg_Since".Translate(FactionMemory.AgoText(c.foundAt).Named("FOUND"), people.Named("PEOPLE")).Resolve());
-            if (c.leader != null && !c.leader.Dead) lines.Add("CC_RaidCampPg_Leader".Translate(c.leader.LabelShort.Named("LEADER")).Resolve());
+            if (c.leader != null && !RaidersCamps.LeaderLost(c)) lines.Add("CC_RaidCampPg_Leader".Translate(c.leader.LabelShort.Named("LEADER")).Resolve());
             lines.Add(c.raids == 0 ? "CC_RaidCampPg_NoRaids".Translate().Resolve()
                 : "CC_RaidCampPg_Raids".Translate(c.raids.Named("RAIDS"), c.beaten.Named("BEATEN")).Resolve());
             if (c.stage == CampStage.Paying) lines.Add("CC_RaidCampPg_Paying".Translate(c.price.Named("SILVER")).Resolve());

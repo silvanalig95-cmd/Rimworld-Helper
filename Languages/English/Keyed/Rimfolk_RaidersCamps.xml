@@ -32,6 +32,7 @@
   <!-- Its raids. -->
   <CC_RaidCamp_RaidLabel>Raid from the {KIND}</CC_RaidCamp_RaidLabel>
   <CC_RaidCamp_RaidText>{PEOPLE} have come from their {KIND} {WHERE}.</CC_RaidCamp_RaidText>
+  <CC_RaidCamp_RaidRound>They found no way in from that side and are coming in from the {SIDE}.</CC_RaidCamp_RaidRound>
   <CC_RaidCamp_Beaten>The raid from the {KIND} of {PEOPLE} was beaten off: {DOWN} of the {SIZE} who came fell or were taken.</CC_RaidCamp_Beaten>
 
   <!-- Put back after an attack it survived. -->
@@ -59,6 +60,7 @@
   <CC_RaidCamp_End_GaveUp_Label>{KIND} abandoned</CC_RaidCamp_End_GaveUp_Label>
   <CC_RaidCamp_End_GaveUp>Their raids beaten off, {PEOPLE} have abandoned their {KIND} {WHERE} and moved on.</CC_RaidCamp_End_GaveUp>
   <CC_RaidCamp_End_GaveUp_Time>With two months gone and nothing to show for them, {PEOPLE} have abandoned their {KIND} {WHERE} and moved on.</CC_RaidCamp_End_GaveUp_Time>
+  <CC_RaidCamp_End_GaveUp_Leader>Without {LEADER} to hold them together, {PEOPLE} have abandoned their {KIND} {WHERE} and scattered.</CC_RaidCamp_End_GaveUp_Leader>
 
   <!-- What the peoples remember of it (World/FactionMemory.cs). -->
   <CC_Memory_Deed_camped>made camp near the colony to raid it</CC_Memory_Deed_camped>

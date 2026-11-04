@@ -44,7 +44,8 @@ namespace ColonyCouncil
             for (int i = 0; i < all.Count; i++)
             {
                 var s = all[i];
-                bool ok = RegionTowns.Fits(s) && s.Tile.Valid && s.Tile.Layer == home.Tile.Layer && !detail.Contains(s.ID);
+                // A town with no name of its own has no news to tell by name.
+                bool ok = RegionTowns.Fits(s) && s.HasName && s.Tile.Valid && s.Tile.Layer == home.Tile.Layer && !detail.Contains(s.ID);
                 distances.Add(ok ? Find.WorldGrid.ApproxDistanceInTiles(home.Tile, s.Tile) : float.MaxValue);
                 fit.Add(ok);
             }

@@ -134,6 +134,7 @@ public static class TradingPostTests
         C(TradingPostMath.EndKind(PostEnd.Soured) == TradingPostMath.KindClosed && TradingPostMath.EndKind(PostEnd.War) == TradingPostMath.KindClosed
           && TradingPostMath.EndKind(PostEnd.Sacked) == TradingPostMath.KindClosed && TradingPostMath.EndKind(PostEnd.Razed) == TradingPostMath.KindRazed
           && TradingPostMath.EndKind(PostEnd.Gone) == null, "closed for souring, war and a sack; razed; nothing for a post simply gone");
+        C(TradingPostMath.EndKind(PostEnd.HardTimes) == TradingPostMath.KindClosed, "a post given up for hard times closes in its history too");
         foreach (var k in TradingPostMath.Kinds)
             C(HistoryKinds.Matches(k, TradingPostMath.Family) && HistoryKinds.Matches(k, "world"), $"{k} is of the families world:post and world");
         C(TradingPostMath.Milestone(TradingPostMath.KindOpened) && TradingPostMath.Milestone(TradingPostMath.KindClosed) && TradingPostMath.Milestone(TradingPostMath.KindRazed)
@@ -184,6 +185,9 @@ public static class TradingPostTests
         foreach (var e in new[] { PostEnd.Soured, PostEnd.War, PostEnd.Sacked })
             C(keyed.ContainsKey("CC_Post_Closed_" + e) && keyed.ContainsKey("CC_Post_H_" + e), $"the words of a closing: {e}");
         C(keyed.ContainsKey("CC_Post_H_Razed") && keyed.ContainsKey("CC_Post_Razed"), "the words of a post razed");
+        C(keyed.ContainsKey("CC_Post_H_HardTimes") && run.Contains("ruin.why == LedgerRuin.GivenUp ? PostEnd.HardTimes : PostEnd.Gone")
+          && !Regex.IsMatch(Code("World/Region/TradingPostWords.cs"), @"case PostEnd\.HardTimes"),
+            "a post given up for hard times: one line in its history, no message of its own (the giving up told it)");
         string mine = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_TradingPosts.xml"));
         C(!mine.Contains("—") && !Regex.IsMatch(mine, ">[^<]*![^<]*<"), "no em dashes and no exclamation marks in its words");
         var told = keyed.Where(kv => kv.Key.StartsWith("CC_Post_")).Select(kv => kv.Value).ToList();

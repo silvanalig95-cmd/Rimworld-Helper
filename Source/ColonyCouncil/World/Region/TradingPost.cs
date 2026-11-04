@@ -239,10 +239,12 @@ namespace ColonyCouncil
         {
             var t = TownOf(p);
             // Gone some other way (taken in an invasion, made the colony's vassal, given up for hard times, another mod):
-            // its record ends without a word of its own (what took it told it).
+            // its record ends without a word of its own (what took it told it). Given up for hard times (a ruin the region
+            // keeps), the post's history still closes with one line.
             if (t == null || t.Faction != p.people || p.people == null || p.people.defeated)
             {
-                End(home, ph, p, PostEnd.Gone, null, null);
+                var ruin = t == null ? WorldLedger.RuinOfTown(p.town) : null;
+                End(home, ph, p, ruin != null && ruin.why == LedgerRuin.GivenUp ? PostEnd.HardTimes : PostEnd.Gone, null, null);
                 return;
             }
             // Its home's records came with the colony to a far place (a gravship landed elsewhere, the colony settled anew):
@@ -611,7 +613,7 @@ namespace ColonyCouncil
         {
             var kind = DefDatabase<CampKindDef>.GetNamedSilentFail(RiseFallEffects.RefugeeCamp);
             var camps = CampTracker.Instance;
-            if (kind == null || camps == null || home == null) return;
+            if (kind == null || camps == null || home == null || !RiseFallEffects.SendsOwn(kind, people)) return;
             try
             {
                 camps.StartKind(home, kind, people);

@@ -28,7 +28,7 @@ It can be found other ways too, once it has stood two days: a visitor or trader 
       </li>
       <li>
         <heading>Its raids</heading>
-        <text>A camp raids at the game's own raid-source rate, by its threat points: a raid every 25 days on average at 400 points, 10 at 1,500, 5 at 5,000, straight between them. Each is a little over half a raid on the colony (0.6 of its threat points), walks in from the edge of the map on the camp's side, and comes on top of the storyteller's own. The first comes no sooner than two days after the camp was set up and a day after it was found, and never within a day and a half of the last, nor on top of another threat on the map or within a day of the last big one.</text>
+        <text>A camp raids at the game's own raid-source rate, by its threat points: a raid every 25 days on average at 400 points, 10 at 1,500, 5 at 5,000, straight between them. Each is a little over half a raid on the colony (0.6 of its threat points), walks in from the edge of the map on the camp's side (when that side gives no way in, from the nearest side that does, and the letter says which), and comes on top of the storyteller's own. The first comes no sooner than two days after the camp was set up and a day after it was found, and never within a day and a half of the last, nor on top of another threat on the map or within a day of the last big one.</text>
       </li>
       <li>
         <heading>How it ends</heading>
@@ -41,7 +41,7 @@ It can be found other ways too, once it has stood two days: a visitor or trader 
           <li>Given up | Two of their raids beaten off (half of those who came fell or were taken, or they fled), or two months since they made camp, and they move on.</li>
         </table>
         <after>Each ending is told, goes into the world's history (world:camp) and into what the peoples remember: a camp broken or given up is a wrong their people hold against the colony, a price paid a good turn to them, a camp struck for peace and a camp burned by an ally good turns the colony owes. The camp itself, once found, is their wrong against the colony. A camp broken is a good turn to the peoples at peace whose towns stand within 20 tiles of it, and they remember everyone of the colony who fought on its map by name (see what the world remembers).</after>
-        <after>A camp led by someone of note (the warlord's son, see world events) has its leader behind its walls when the colony attacks it, and at the head of its raids.</after>
+        <after>A camp led by someone of note (the warlord's son, see world events) has its leader behind its walls when the colony attacks it, and at the head of its raids. Once its leader is dead, taken or one of the colony, the band breaks up as soon as no raid of theirs is on the map: the camp is given up, and its letter says why.</after>
       </li>
       <li>
         <heading>Where it shows</heading>
