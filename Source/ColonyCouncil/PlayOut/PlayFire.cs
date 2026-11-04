@@ -9,7 +9,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A bonfire with no fire to gather at (<see cref="PlayOut.buildFire"/>): before it starts, one of the colony carries
-    /// wood out from the stores to a place in the open near the colony's middle, lays a campfire there (the game's own)
+    /// wood out from the stores to the place in the open the colony's gatherings choose now (PlayYard.cs), lays a campfire there (the game's own)
     /// and lights it, and the gathering is held round it once it burns. When the gathering is over, the fire laid for it
     /// burns down to ash (LordJob_PlayOut.laidFire). With the wood already paid for by the answer, they lay it with what
     /// they find there. With no wood in the stores, or nowhere in the open to lay it, there is no fire, and the answer's
@@ -87,19 +87,30 @@ namespace ColonyCouncil
                 .OrderByDescending(t => t.stackCount >= Cost).ThenBy(t => t.Position.DistanceToSquared(by.Position)).FirstOrDefault();
         }
 
-        /// <summary>Open ground near the colony's middle where a campfire can go, with room to stand round it.</summary>
+        /// <summary>
+        /// Open ground where a campfire can go, with room to stand round it: at the place in the open the colony's
+        /// gatherings choose now (PlayYard.cs, which varies from one gathering to the next), else near the colony's middle.
+        /// </summary>
         public static IntVec3 Cell(Map map, Pawn by)
         {
+            var yard = PlayYard.Best(map, by, true);
+            if (yard.IsValid)
+                foreach (var c in GenRadial.RadialCellsAround(yard, 4.9f, true))
+                    if (Fits(c, map, by))
+                        return c;
             var center = TemplatePlanner.ColonyCenter(map);
             foreach (var c in GenRadial.RadialCellsAround(center, 18f, true))
-            {
-                if (!c.InBounds(map) || c.Roofed(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetZone(map) != null) continue;
-                if (c.GetTerrain(map)?.IsWater ?? false) continue;
-                if (!PlaySpots.Ok(c, map, by) || !GenConstruct.CanPlaceBlueprintAt(Def, c, Rot4.North, map).Accepted) continue;
-                if (GenAdj.CellsAdjacent8Way(new TargetInfo(c, map)).Count(x => x.InBounds(map) && x.Standable(map) && x.GetEdifice(map) == null) < 6) continue;
-                return c;
-            }
+                if (Fits(c, map, by))
+                    return c;
             return IntVec3.Invalid;
+        }
+
+        private static bool Fits(IntVec3 c, Map map, Pawn by)
+        {
+            if (!c.InBounds(map) || c.Roofed(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetZone(map) != null) return false;
+            if (c.GetTerrain(map)?.IsWater ?? false) return false;
+            if (!PlaySpots.Ok(c, map, by) || !GenConstruct.CanPlaceBlueprintAt(Def, c, Rot4.North, map).Accepted) return false;
+            return GenAdj.CellsAdjacent8Way(new TargetInfo(c, map)).Count(x => x.InBounds(map) && x.Standable(map) && x.GetEdifice(map) == null) >= 6;
         }
 
         /// <summary>The campfire on its cell, burning: the wood carried out goes into it.</summary>

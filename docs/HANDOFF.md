@@ -6,6 +6,12 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.81.1, the player's report (outdoor gatherings always at the same spot): `PlayYard.Best` returned the top-ranked
+  cell every time and `PlayFire.Cell` the nearest free cell to the colony's middle. Now the yard keeps the best 400
+  cells, finds up to six distinct places among them (`YardMath.Places`, 8 cells apart), and a gathering picks one by
+  `YardMath.Weight` (nearer the best score likelier, none twice `Spread` below, the last three used held back), held
+  three hours per map so a gathering, its walk and its fire share it; `PlayFire.Cell` lays the fire at that place
+  (else as before). `YardTests` cover the places and the pick.
 - 0.81.0, stage 2 release 2a.1, diplomacy's base and favours (docs/design/stage2-diplomacy.md, item 1 and the base): built
   while the player plays, with the design's decisions left alone (no fighters through a favour either way: 2a.2's war
   bands and decision 3; no Empire honour for a favour: decision 9). `Source/ColonyCouncil/Diplomacy/`: `DiplomacyMath.cs`,

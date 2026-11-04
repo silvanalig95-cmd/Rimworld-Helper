@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.81.1</version>
+        <date>4 November 2026</date>
+        <title>More than one place to gather</title>
+        <points>
+          <li>Fixed: gatherings, walks and fires held out of doors always met on the same patch of ground, and a fire laid for a gathering always went to the same spot by the middle of the colony.</li>
+          <li>The colony now knows its few good places in the open (a terrace, the yard by the kitchen, the ground by the river) and each gathering chooses one, the nicer ones more often and not the place used last time while another good one is there.</li>
+          <li>A gathering keeps the place it chose: its walk, its fire and everyone in it meet there.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.81.0</version>
         <date>4 November 2026</date>
         <title>Debts of honor</title>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More than one place to gather
+
+*4 November 2026, version 0.81.1*
+
+- Fixed: gatherings, walks and fires held out of doors always met on the same patch of ground, and a fire laid for a gathering always went to the same spot by the middle of the colony.
+- The colony now knows its few good places in the open (a terrace, the yard by the kitchen, the ground by the river) and each gathering chooses one, the nicer ones more often and not the place used last time while another good one is there.
+- A gathering keeps the place it chose: its walk, its fire and everyone in it meet there.
+
 ## Debts of honor
 
 *4 November 2026, version 0.81.0*
