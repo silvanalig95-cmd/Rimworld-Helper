@@ -252,7 +252,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        private static Color ColorOf(int priority) => priority >= 2 ? UiKit.Bad : priority == 1 ? UiKit.Warn : new Color(0.9f, 0.9f, 0.9f);
+        private static Color ColorOf(int priority) => priority >= 2 ? UiKit.Sour : priority == 1 ? UiKit.Soon : UiKit.Ink;
 
         protected override void DrawBody(Rect r, float s)
         {

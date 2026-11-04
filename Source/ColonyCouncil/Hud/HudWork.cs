@@ -436,14 +436,15 @@ namespace ColonyCouncil
                 }
                 // The name, then what they're doing.
                 float nameW = doing ? Mathf.Min(Mathf.Round(66f * s), HudKit.Width(row.name, main) + 4f) : right - x;
-                HudKit.Label(new Rect(x, rr.y, nameW, rh), row.name, level >= HudLevel.Life ? UiKit.Bad : Color.white, main);
+                // Their name leads to their card (the rest of the row to them on the map).
+                NameLink(new Rect(x, rr.y, nameW, rh), row.name, row.pawn, main, level >= HudLevel.Life ? UiKit.Sour : (Color?)null);
                 if (doing && !row.doing.NullOrEmpty())
                 {
                     float dx = x + nameW + Mathf.Round(4f * s);
                     HudKit.Label(new Rect(dx, rr.y, Mathf.Max(0f, right - dx - 2f), rh), row.doing, row.idle ? BarLow : UiKit.Faint, minor);
                 }
                 var data = row;
-                Tip(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E2);
+                if (Previews.Shown.IsNone) Tip(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E2);
                 if (Clicked(rr))
                 {
                     if (Event.current.button == 1) OpenMenu();
