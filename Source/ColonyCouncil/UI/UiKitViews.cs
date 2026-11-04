@@ -7,327 +7,192 @@ using Verse.Sound;
 
 namespace ColonyCouncil
 {
-    /// <summary>One entry of a legend: a dot in its tone and a word, or a sample of a line and a word.</summary>
-    public sealed class LegendItem
+    /// <summary>
+    /// What a view's header carries besides what its page says of itself: its modes (the same things shown another
+    /// way), the one lit, what a click on another does, and its Almanac article for the "?". A window makes one per view
+    /// and keeps it; its labels change only when their counts do.
+    /// </summary>
+    public sealed class ViewHeadModel
     {
-        public string word;
-        public Color color;
-        /// <summary>A line's sample instead of a dot.</summary>
-        public LineLook? line;
-        /// <summary>A square swatch instead of a dot (the land's colours).</summary>
-        public bool swatch;
-        /// <summary>An icon instead of a dot (an arrow for a fortune that moved).</summary>
-        public Texture2D icon;
-        /// <summary>A ring instead of a dot (a town's head's regard around its mark).</summary>
-        public bool ring;
-        internal float width = -1f;
+        public readonly List<string> labels = new List<string>();
+        public readonly List<string> tips = new List<string>();
+        public int lit = -1;
+        public Action<int> pick;
+        /// <summary>The Almanac article the "?" opens (its defName), or null for no "?".</summary>
+        public string article;
+
+        public bool HasModes => labels.Count > 1;
     }
 
     /// <summary>
-    /// The interface design's view components (docs/design/interface.md, "The look"): a view's header with its modes, the
-    /// modes as a row of small buttons, the lens bar, a legend, filter chips, the tones as colours, and a line drawn in
-    /// its dashes. Each takes a rect and plain data, so any window can draw it (the region window's views are the first);
-    /// widths are measured once per label and kept.
+    /// The view header's extras on their way to the page: a window says what its view's header carries
+    /// (<see cref="Draw"/>), and the page's own header (UiKit.PageHeader) takes them, so every page keeps its own title,
+    /// line and stat and gains the modes and the "?" without knowing of them. A page that draws no header (an empty
+    /// state) gets one from the window above it from the next frame on, so its modes stay in reach. Nothing here knows
+    /// of Rimfolk's tab windows: any window can draw a view this way.
     /// </summary>
+    public static class ViewHead
+    {
+        private static ViewHeadModel pending;
+        private static bool taken;
+        /// <summary>A header drawn by the window already: a page's own header takes this and adds nothing.</summary>
+        private static readonly ViewHeadModel Nothing = new ViewHeadModel();
+        /// <summary>The pages that drew no header of their own last time (the window draws one for them).</summary>
+        private static readonly HashSet<string> headless = new HashSet<string>();
+
+        /// <summary>The extras for the next page header drawn, or null; taking them is noted.</summary>
+        internal static ViewHeadModel Take()
+        {
+            var m = pending;
+            pending = null;
+            if (m != null) taken = true;
+            return m == Nothing ? null : m;
+        }
+
+        /// <summary>
+        /// Draws a page as a view: the page in <paramref name="rect"/> with its header's extras, or, when it drew no
+        /// header last time, a header from <paramref name="title"/> and <paramref name="icon"/> above it.
+        /// </summary>
+        public static void Draw(Rect rect, string key, string title, Texture2D icon, ViewHeadModel extras, Action<Rect> draw)
+        {
+            bool own = key != null && headless.Contains(key);
+            var body = rect;
+            if (own)
+            {
+                float h = UiKit.ViewHeader(rect, icon, title, null, null, null, 0f, null, extras);
+                body = new Rect(rect.x, rect.y + h, rect.width, rect.height - h);
+                pending = Nothing;
+            }
+            else pending = extras;
+            taken = false;
+            try
+            {
+                draw(body);
+            }
+            finally
+            {
+                // Settled once a frame, when it is painted: the page drew a header of its own, or it didn't.
+                if (key != null && Event.current.type == EventType.Repaint)
+                {
+                    if (own && taken) headless.Remove(key);
+                    else if (!own && !taken) headless.Add(key);
+                }
+                pending = null;
+            }
+        }
+    }
+
     public static partial class UiKit
     {
-        // ---------------- Tones ----------------
-
-        /// <summary>A tone's colour: warm, cool and sour stance, gold for ours, soon, dim, the world's.</summary>
-        public static Color ToneColor(Hue t)
-        {
-            switch (t)
-            {
-                case Hue.Warm: return Good;
-                case Hue.Cool: return Cool;
-                case Hue.Sour: return Bad;
-                case Hue.Gold: return Gold;
-                case Hue.Soon: return Warn;
-                case Hue.Dim: return WithAlpha(Dim, 0.55f);
-                case Hue.World: return WorldColor;
-                default: return Color.white;
-            }
-        }
-
-        // ---------------- Widths, kept ----------------
-
-        private static readonly Dictionary<string, float> smallWidths = new Dictionary<string, float>();
-        private static readonly Dictionary<string, float> tinyWidths = new Dictionary<string, float>();
-
-        /// <summary>A label's width in a font, measured once and kept (labels are a short, fixed set).</summary>
-        public static float KeptWidth(string label, GameFont font)
-        {
-            if (label.NullOrEmpty()) return 0f;
-            var d = font == GameFont.Tiny ? tinyWidths : smallWidths;
-            if (d.TryGetValue(label, out float w)) return w;
-            var old = Text.Font;
-            Text.Font = font;
-            w = Text.CalcSize(label).x;
-            Text.Font = old;
-            if (d.Count > 400) d.Clear();
-            d[label] = w;
-            return w;
-        }
-
-        // ---------------- Modes ----------------
-
-        /// <summary>Height of the modes' row and of the lens bar.</summary>
-        public const float ModesHeight = 26f;
-
-        /// <summary>How wide the modes are, each with its icon and word.</summary>
-        public static float ModesWidth(IList<string> labels, IList<Texture2D> icons = null)
-        {
-            float w = 0f;
-            for (int i = 0; i < labels.Count; i++) w += ModeWidth(labels[i], icons != null && i < icons.Count ? icons[i] : null);
-            return w;
-        }
-
-        private static float ModeWidth(string label, Texture2D icon) => KeptWidth(label, GameFont.Small) + 18f + (icon != null ? 18f : 0f);
-
         /// <summary>
-        /// A view's modes (the same things shown another way): small buttons side by side in one frame, the one showing lit.
-        /// Returns the index clicked, or -1.
+        /// A view's header (docs/design/interface.md, "The look", component 1): its icon, title, one line saying what it
+        /// is, the stat on the right and a "?" to its Almanac article beside it, then its modes as a row of small buttons
+        /// (component 2), one lit. <paramref name="reserveRight"/> leaves the page's own controls their room on the
+        /// right. Returns its height with the space below it.
         /// </summary>
-        public static int Modes(Rect r, IList<string> labels, int lit, IList<Texture2D> icons = null, IList<string> tips = null)
+        public static float ViewHeader(Rect rect, Texture2D icon, string title, string subtitle, string stat, Color? statColor, float reserveRight, string tip,
+            ViewHeadModel extras)
         {
-            if (labels == null || labels.Count == 0) return -1;
-            int clicked = -1;
-            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
-            float x = r.x;
-            float full = ModesWidth(labels, icons);
-            float scale = full > r.width ? r.width / full : 1f;
-            for (int i = 0; i < labels.Count; i++)
-            {
-                var icon = icons != null && i < icons.Count ? icons[i] : null;
-                float w = ModeWidth(labels[i], icon) * scale;
-                var b = new Rect(x, r.y, w, r.height);
-                bool on = i == lit;
-                bool over = Mouse.IsOver(b);
-                if (on) Widgets.DrawBoxSolid(b.ContractedBy(1f), CardSelected);
-                else if (over) Widgets.DrawBoxSolid(b.ContractedBy(1f), CardHover);
-                float tx = b.x + 9f;
-                var c = on ? Gold : over ? Color.white : Faint;
-                if (icon != null)
-                {
-                    Icon(new Rect(tx, b.y + (b.height - 14f) / 2f, 14f, 14f), icon, c);
-                    tx += 18f;
-                }
-                LabelFit(new Rect(tx, b.y, b.xMax - tx - 4f, b.height), labels[i], c);
-                if (i > 0) Widgets.DrawBoxSolid(new Rect(b.x, b.y + 4f, 1f, b.height - 8f), CardBorder);
-                if (tips != null && i < tips.Count && !tips[i].NullOrEmpty()) TooltipHandler.TipRegion(b, tips[i]);
-                if (!on && Widgets.ButtonInvisible(b, false))
-                {
-                    SoundDefOf.Click.PlayOneShotOnCamera();
-                    clicked = i;
-                }
-                x += w;
-            }
-            return clicked;
-        }
-
-        // ---------------- The view's header ----------------
-
-        /// <summary>Height of <see cref="ViewHeader"/>, with the space under it.</summary>
-        public const float ViewHeaderHeight = 48f;
-
-        /// <summary>
-        /// A view's header: its icon and title, one line saying what it is, a stat on the right, and its modes beside the
-        /// stat. Returns the height used; <paramref name="pickedMode"/> is the mode clicked, or -1.
-        /// </summary>
-        public static float ViewHeader(Rect r, Texture2D icon, string title, string line, string stat, IList<string> modes, int lit, out int pickedMode,
-            IList<Texture2D> modeIcons = null, IList<string> modeTips = null)
-        {
-            pickedMode = -1;
-            float right = r.xMax;
-            if (modes != null && modes.Count > 1)
-            {
-                float mw = Mathf.Min(ModesWidth(modes, modeIcons), r.width * 0.45f);
-                pickedMode = Modes(new Rect(right - mw, r.y + 4f, mw, ModesHeight), modes, lit, modeIcons, modeTips);
-                right -= mw + 10f;
-            }
-            if (!stat.NullOrEmpty())
-            {
-                float sw = Mathf.Min(KeptWidth(stat, GameFont.Small) + 6f, r.width * 0.3f);
-                LabelFit(new Rect(right - sw, r.y + 4f, sw, ModesHeight), stat, Faint, GameFont.Small, TextAnchor.MiddleRight);
-                right -= sw + 10f;
-            }
-            float x = r.x;
+            float x = rect.x;
             if (icon != null)
             {
-                Icon(new Rect(x, r.y + 6f, 22f, 22f), icon, Gold);
-                x += 30f;
+                Icon(new Rect(rect.x + 1f, rect.y + 6f, 32f, 32f), icon, Gold);
+                x += ViewHeadMath.IconSpace;
             }
-            LabelFit(new Rect(x, r.y, Mathf.Max(0f, right - x), 32f), title, HeaderColor, GameFont.Medium);
-            if (!line.NullOrEmpty()) LabelFit(new Rect(x, r.y + 28f, Mathf.Max(0f, r.xMax - x), 16f), line, Faint, GameFont.Tiny);
-            Divider(r.x, r.y + ViewHeaderHeight - 3f, r.width);
-            return ViewHeaderHeight;
+            float right = Mathf.Max(x, rect.xMax - reserveRight);
+            var article = extras?.article == null ? null : DefDatabase<AlmanacArticleDef>.GetNamedSilentFail(extras.article);
+            if (article != null)
+            {
+                float hx = rect.x + ViewHeadMath.HelpX(rect.width, reserveRight, x - rect.x, out float r);
+                HelpButton(new Rect(hx, rect.y + 6f, ViewHeadMath.Help, ViewHeadMath.Help), article);
+                right = rect.x + r;
+            }
+            float statW = 0f;
+            if (!stat.NullOrEmpty())
+            {
+                Text.Font = GameFont.Small;
+                statW = Mathf.Min(Text.CalcSize(stat).x + 6f, (right - x) * 0.45f);
+                LabelFit(new Rect(right - statW, rect.y + 4f, statW, 26f), stat, statColor ?? Gold, GameFont.Small, TextAnchor.MiddleRight);
+                statW += 10f;
+            }
+            LabelFit(new Rect(x, rect.y + 1f, Mathf.Max(0f, right - statW - x), 32f), title, Color.white, GameFont.Medium);
+            float lineRight = article != null ? right + ViewHeadMath.HelpGap + ViewHeadMath.Help : right;
+            if (!subtitle.NullOrEmpty()) LabelFit(new Rect(x, rect.y + 29f, Mathf.Max(0f, lineRight - x), 22f), subtitle, Faint);
+            bool modes = extras != null && extras.HasModes;
+            float height = ViewHeadMath.Height(modes);
+            if (modes) ModeButtons(x, rect.y + ViewHeadMath.ModesY, rect.xMax - x, extras);
+            float lineY = rect.y + height - 5f;
+            Divider(rect.x, lineY, rect.width);
+            Widgets.DrawBoxSolid(new Rect(rect.x, lineY - 1f, Mathf.Min(rect.width, 34f), 2f), WithAlpha(Gold, 0.8f));
+            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(rect.x, rect.y, Mathf.Max(0f, right - rect.x), 50f), tip);
+            Text.Font = GameFont.Small;
+            return height;
         }
 
-        // ---------------- The lens bar ----------------
+        // Each mode's measured width, by its label (measured once).
+        private static readonly Dictionary<string, float> modeWidths = new Dictionary<string, float>();
+        private static float[] modeNatural = new float[0], modeX = new float[0], modeW = new float[0];
 
-        /// <summary>
-        /// The lens bar: an icon and a name for each lens, the one in use lit with a line under it. Where the names don't all
-        /// fit, the lens in use keeps its name and the others show their icon (their name on hover); narrower still, icons
-        /// only. Returns the index clicked, or -1.
-        /// </summary>
-        public static int LensBar(Rect r, IList<string> labels, IList<Texture2D> icons, int lit, IList<string> tips = null)
+        /// <summary>The modes as a row of small buttons from (x, y) in a width: the lit one gold and underlined, a click on another picks it.</summary>
+        public static void ModeButtons(float x, float y, float width, ViewHeadModel m)
         {
-            if (labels == null || labels.Count == 0) return -1;
-            const float pad = 10f, iconW = 16f, gap = 4f;
-            float IconOnly() => pad * 2f + iconW;
-            float Named(int i) => pad * 2f + iconW + 5f + KeptWidth(labels[i], GameFont.Small);
-            float all = 0f, mixed = 0f;
-            for (int i = 0; i < labels.Count; i++)
+            int n = m.labels.Count;
+            if (modeNatural.Length < n)
             {
-                all += Named(i) + gap;
-                mixed += (i == lit ? Named(i) : IconOnly()) + gap;
+                modeNatural = new float[n];
+                modeX = new float[n];
+                modeW = new float[n];
             }
-            int mode = all <= r.width ? 0 : mixed <= r.width ? 1 : 2;
-            int clicked = -1;
-            float x = r.x;
-            for (int i = 0; i < labels.Count; i++)
+            var natural = modeNatural;
+            Text.Font = GameFont.Small;
+            for (int i = 0; i < n; i++)
             {
-                bool named = mode == 0 || mode == 1 && i == lit;
-                float w = named ? Named(i) : mode == 2 ? Mathf.Min(IconOnly(), (r.width - gap * labels.Count) / labels.Count) : IconOnly();
-                var b = new Rect(x, r.y, w, r.height);
-                bool on = i == lit;
-                bool over = Mouse.IsOver(b);
-                if (on) Widgets.DrawBoxSolid(b, CardSelected);
-                else if (over) Widgets.DrawBoxSolid(b, CardHover);
-                if (on) Widgets.DrawBoxSolid(new Rect(b.x + 3f, b.yMax - 2f, b.width - 6f, 2f), Gold);
-                var c = on ? Gold : over ? Color.white : Faint;
-                var icon = icons != null && i < icons.Count ? icons[i] : null;
-                float ix = named ? b.x + pad : b.x + (b.width - iconW) / 2f;
-                if (icon != null) Icon(new Rect(ix, b.y + (b.height - iconW) / 2f, iconW, iconW), icon, c);
-                if (named) LabelFit(new Rect(ix + iconW + 5f, b.y, b.xMax - ix - iconW - 5f, b.height), labels[i], c);
-                string tip = tips != null && i < tips.Count ? tips[i] : null;
-                if (!named) tip = tip.NullOrEmpty() ? labels[i] : labels[i] + "\n\n" + tip;
-                if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(b, tip);
-                if (!on && Widgets.ButtonInvisible(b, false))
+                string label = m.labels[i] ?? "";
+                if (!modeWidths.TryGetValue(label, out float w))
                 {
-                    SoundDefOf.Click.PlayOneShotOnCamera();
-                    clicked = i;
+                    if (modeWidths.Count > 200) modeWidths.Clear();
+                    modeWidths[label] = w = ViewHeadMath.ModeWidth(Text.CalcSize(label).x);
                 }
-                x += w + gap;
+                natural[i] = w;
             }
-            return clicked;
-        }
-
-        // ---------------- Legend ----------------
-
-        private static float LegendWidth(LegendItem it)
-        {
-            if (it.width < 0f) it.width = (it.line.HasValue ? 22f : 14f) + 4f + KeptWidth(it.word, GameFont.Tiny) + 12f;
-            return it.width;
-        }
-
-        /// <summary>
-        /// A legend in one row at the foot of a map: as many entries as fit, on a dark strip, the whole of it in the strip's
-        /// tooltip. Returns the strip's height (0 with nothing to say).
-        /// </summary>
-        public static float LegendStrip(Rect r, List<LegendItem> items, string tip = null)
-        {
-            if (items == null || items.Count == 0) return 0f;
-            float used = 8f;
-            int fit = 0;
-            for (int i = 0; i < items.Count; i++)
+            ViewHeadMath.Modes(x, width, natural, n, modeX, modeW);
+            for (int i = 0; i < n; i++)
             {
-                float w = LegendWidth(items[i]);
-                if (used + w > r.width) break;
-                used += w;
-                fit++;
-            }
-            var strip = new Rect(r.x, r.yMax - 22f, Mathf.Min(r.width, used + 4f), 22f);
-            Widgets.DrawBoxSolid(strip, new Color(0f, 0f, 0f, 0.62f));
-            float x = strip.x + 8f;
-            for (int i = 0; i < fit; i++)
-            {
-                LegendEntry(x, strip.y + 3f, items[i]);
-                x += LegendWidth(items[i]);
-            }
-            if (!tip.NullOrEmpty() || fit < items.Count) TooltipHandler.TipRegion(strip, tip ?? LegendText(items));
-            return strip.height;
-        }
-
-        /// <summary>A legend as a list, one entry a line (the map's panel with nothing picked). Returns the height used.</summary>
-        public static float LegendList(float x, float y, float width, List<LegendItem> items)
-        {
-            float y0 = y;
-            if (items == null) return 0f;
-            foreach (var it in items)
-            {
-                LegendEntry(x + 2f, y, it, width - 4f);
-                y += 18f;
-            }
-            return y - y0;
-        }
-
-        private static void LegendEntry(float x, float y, LegendItem it, float width = -1f)
-        {
-            float sw = it.line.HasValue ? 22f : 14f;
-            if (it.line.HasValue)
-            {
-                if (Event.current.type == EventType.Repaint) DashedLine(new Vector2(x, y + 8f), new Vector2(x + sw, y + 8f), it.line.Value);
-            }
-            else if (it.icon != null) Icon(new Rect(x + 1f, y + 2f, 12f, 12f), it.icon, it.color);
-            else if (it.swatch) Widgets.DrawBoxSolid(new Rect(x + 1f, y + 3f, 12f, 10f), it.color);
-            else if (it.ring) RingDraw(new Rect(x + 1f, y + 2f, 12f, 12f), it.color);
-            else DiscFill(new Rect(x + 3f, y + 4f, 8f, 8f), it.color);
-            float w = width > 0f ? width - sw - 4f : KeptWidth(it.word, GameFont.Tiny) + 6f;
-            LabelFit(new Rect(x + sw + 4f, y, w, 16f), it.word, Faint, GameFont.Tiny);
-        }
-
-        private static string LegendText(List<LegendItem> items)
-        {
-            var parts = new List<string>();
-            foreach (var it in items) parts.Add(it.word);
-            return string.Join("\n", parts);
-        }
-
-        // ---------------- Lines ----------------
-
-        /// <summary>A line from a to b in its dashes, colour and width (repaint only; a few dozen draws).</summary>
-        public static void DashedLine(Vector2 a, Vector2 b, LineLook look, float alpha = 1f)
-        {
-            var d = b - a;
-            float len = d.magnitude;
-            if (len < 1f) return;
-            var dir = d / len;
-            var color = WithAlpha(ToneColor(look.tone), alpha);
-            if (look.dash == Dash.Double)
-            {
-                var n = new Vector2(-dir.y, dir.x) * 1.6f;
-                Widgets.DrawLine(a + n, b + n, color, look.width);
-                Widgets.DrawLine(a - n, b - n, color, look.width);
-                return;
-            }
-            for (int i = 0; RegionViewsMath.DashAt(look.dash, len, i, out float s, out float e); i++)
-            {
-                if (look.dash == Dash.Dotted)
+                if (modeW[i] < 8f) continue;
+                var r = new Rect(modeX[i], y, modeW[i], ViewHeadMath.ModeH);
+                bool lit = i == m.lit;
+                bool over = Mouse.IsOver(r);
+                Widgets.DrawBoxSolid(r, lit ? CardSelected : over ? CardHover : CardFill);
+                if (lit) Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), Gold);
+                LabelFit(r, m.labels[i], lit ? Gold : over ? Color.white : Faint, GameFont.Small, TextAnchor.MiddleCenter);
+                string tip = i < m.tips.Count ? m.tips[i] : null;
+                if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
+                if (!lit && Widgets.ButtonInvisible(r, false))
                 {
-                    var c = a + dir * ((s + e) / 2f);
-                    float r = look.width * 0.75f;
-                    DiscFill(new Rect(c.x - r, c.y - r, r * 2f, r * 2f), color);
-                    continue;
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    m.pick?.Invoke(i);
                 }
-                Widgets.DrawLine(a + dir * s, a + dir * e, color, look.width);
             }
         }
 
-        // ---------------- Filter chips ----------------
+        private static string helpTipFor;
+        private static string helpTip;
 
-        public static float FilterChipWidth(string label) => KeptWidth(label, GameFont.Tiny) + 20f;
-
-        /// <summary>A filter chip: a word in a small frame, lit while on. Returns true when clicked.</summary>
-        public static bool FilterChip(Rect r, string label, bool on, string tip = null)
+        /// <summary>The "?" that opens an Almanac article in the Almanac's own window, beside what it explains.</summary>
+        public static void HelpButton(Rect r, AlmanacArticleDef article)
         {
             bool over = Mouse.IsOver(r);
-            Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
-            LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Color.white : Faint, GameFont.Tiny);
-            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
-            if (!Widgets.ButtonInvisible(r, false)) return false;
+            Widgets.DrawBoxSolidWithOutline(r, over ? CardHover : CardFill, over ? WithAlpha(Gold, 0.7f) : CardBorder);
+            LabelFit(r, "?", over ? Gold : Faint, GameFont.Small, TextAnchor.MiddleCenter);
+            if (helpTipFor != article.defName)
+            {
+                helpTipFor = article.defName;
+                helpTip = "CC_View_HelpTip".Translate(article.LabelCap.Named("PAGE")).Resolve();
+            }
+            TooltipHandler.TipRegion(r, helpTip);
+            if (!Widgets.ButtonInvisible(r, false)) return;
             SoundDefOf.Click.PlayOneShotOnCamera();
-            return true;
+            Window_Almanac.Open(article);
         }
     }
 }

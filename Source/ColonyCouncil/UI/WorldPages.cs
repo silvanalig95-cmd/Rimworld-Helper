@@ -302,6 +302,8 @@ namespace ColonyCouncil
         private static Vector2 scroll;
         private static float height = 600f;
         private const float DateW = 96f;
+        /// <summary>The view's header's "?" (UI/UiKitViews.cs), made once.</summary>
+        private static ViewHeadModel head;
 
         private static Ref people = Ref.None, town = Ref.None;
         private static string family;
@@ -376,7 +378,8 @@ namespace ColonyCouncil
                 runningAt = Time.realtimeSinceStartup;
             }
             string stat = letters ? "CC_WHist_StatLetters".Translate(LettersPage.LatelyCount.Named("COUNT")).Resolve() : "CC_WHist_Stat".Translate(rows.Count).Resolve();
-            float y = rect.y + UiKit.ViewHeader(rect, Icons.History ?? Icons.Chronicle, "CC_Tab_WorldHistory".Translate(), "CC_WHist_Line".Translate(), stat, null, -1, out _);
+            float y = rect.y + UiKit.ViewHeader(rect, Icons.History ?? Icons.Chronicle, "CC_Tab_WorldHistory".Translate(), "CC_WHist_Line".Translate(), stat, null, 0f, null,
+                head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.History) });
             y += Strip(new Rect(rect.x, y + 2f, rect.width, 24f)) + 6f;
             y += Chips(new Rect(rect.x, y, rect.width, 24f)) + 6f;
             if (!letters) y += Filters(new Rect(rect.x, y, rect.width, 28f)) + 8f;

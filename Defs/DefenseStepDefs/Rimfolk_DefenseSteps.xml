@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    The ladder a defense line climbs (Colony → Defenses, "Defense lines"). Each step says why it comes now, how it works
+    The ladder a defense line climbs (the defense window, "Defense lines"). Each step says why it comes now, how it works
     and the common mistakes; its worker (Source/ColonyCouncil/Defense/DefenseStepWorkers.cs) reads from the map whether it's
     done, so steps built by hand count too. templates: the plans it places, best first, looked up by name (one that's
     missing is passed over); a worker may pick another of them for the line, and a finished step offers them all again. placeAt: where, relative to the line: "line" (its wall row on the gate, distance cells back),

@@ -185,7 +185,7 @@ namespace ColonyCouncil
             var area = new Rect(x, y, FaceW - 4f, Face + 29f);
             Widgets.DrawHighlightIfMouseover(area);
             TooltipHandler.TipRegion(area, tip);
-            if (Widgets.ButtonInvisible(area)) MainTabWindow_Council.OpenPerson(p);
+            if (Widgets.ButtonInvisible(area)) Cards.Open(p);
         }
 
         private static string RoleTip(SocialGroup g, GroupMember m)

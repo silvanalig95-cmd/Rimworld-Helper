@@ -8,7 +8,8 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The Almanac tab: categories on the left, the page list in the middle, the page on the right. The categories and
+    /// The Almanac, in its own window (Almanac/Window_Almanac.cs): categories on the left, the page list in the middle,
+    /// the page on the right, each page coming back where it was read to this session. The categories and
     /// the list fold into a thin strip so a page gets the whole width, and the page is written at the text size picked
     /// with the "Aa" buttons at the top (UI/TextScale.cs). The widths, and how a table's columns share the page, are
     /// worked out in UI/AlmanacLayoutMath.cs.
@@ -31,17 +32,16 @@ namespace ColonyCouncil
         private static readonly Color TableHeader = new Color(0.85f, 0.8f, 0.6f);
         private static readonly Color CardValue = new Color(0.92f, 0.92f, 0.92f);
 
-        /// <summary>The page open in the almanac, if any (remembered between sessions by the council window).</summary>
+        /// <summary>The page open in the almanac, if any (remembered between sessions by the Almanac's window).</summary>
         public static AlmanacArticleDef Selected => selected;
 
-        /// <summary>Open the almanac on this page (from a priority's "read more").</summary>
+        /// <summary>Open the almanac on this page (a view's "?", a priority's "read more"), where it was last read to this session.</summary>
         public static void Show(AlmanacArticleDef article)
         {
             if (article == null) return;
-            selected = article;
+            if (article != selected) Turn(article);
             category = article.category;
             search = "";
-            pageScroll = Vector2.zero;
         }
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
@@ -69,13 +69,14 @@ namespace ColonyCouncil
             countsFor = showAllDlc;
         }
 
-        public static void Draw(Rect rect)
+        /// <summary>The Almanac in a rect (its own window's); <paramref name="headerInset"/> keeps the header's buttons clear of the window's close button.</summary>
+        public static void Draw(Rect rect, float headerInset = 0f)
         {
             Count();
             float controls = HeaderControlsWidth;
             float top = UiKit.PageHeader(rect, Icons.Almanac, "CC_Tab_Almanac".Translate(), "CC_UI_Sub_Almanac".Translate(),
-                "CC_UI_Stat_Pages".Translate(visibleCount).Resolve(), reserveRight: controls + 12f);
-            DrawHeaderControls(new Rect(rect.xMax - controls, rect.y + 5f, controls, 24f));
+                "CC_UI_Stat_Pages".Translate(visibleCount).Resolve(), reserveRight: controls + 12f + headerInset);
+            DrawHeaderControls(new Rect(rect.xMax - controls - headerInset, rect.y + 5f, controls, 24f));
             rect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             bool folded = Folded;
             AlmanacLayoutMath.Columns(rect.width, folded, out float catW, out float listW, out float pageW);
@@ -278,10 +279,17 @@ namespace ColonyCouncil
             }
         }
 
-        private static void Open(AlmanacArticleDef a)
+        private static void Open(AlmanacArticleDef a) => Turn(a);
+
+        // Where each page was read to, for the session: a page opened again comes back to where it was left.
+        private static readonly Dictionary<AlmanacArticleDef, Vector2> readTo = new Dictionary<AlmanacArticleDef, Vector2>();
+
+        /// <summary>Turns to a page, keeping where the one left was read to and coming back to where this one was.</summary>
+        private static void Turn(AlmanacArticleDef a)
         {
+            if (selected != null) readTo[selected] = pageScroll;
             selected = a;
-            pageScroll = Vector2.zero;
+            pageScroll = a != null && readTo.TryGetValue(a, out var at) ? at : Vector2.zero;
         }
 
         // ---------------- The page list ----------------

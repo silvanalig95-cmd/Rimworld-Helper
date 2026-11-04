@@ -246,7 +246,7 @@ public static class CardsTests
         foreach (var cls in new[] { "MainTabWindow_Council", "MainTabWindow_World", "MainTabWindow_Defenses", "MainTabWindow_Planning" })
             C(Code("UI/" + cls + ".cs").Contains("Nav.Observe("), $"{cls} tells the way back where it is");
         C(Code("UI/WindowTabs.cs").Contains("Nav.Arrows(") && Code("UI/WindowTabs.cs").Contains("Drawer.Cancel(Which)"), "back and forward in every corner; Escape closes the drawer first");
-        C(Code("UI/MainTabWindow_World.cs").Contains("Drawer.Around(RimfolkWindow.World"), "the region window has the drawer, the map's panel");
+        C(Code("UI/MainTabWindow_World.cs").Contains("Drawer.Around(Drawer.Of(RimfolkWindow.World)"), "the region window has the drawer, the map's panel");
         var keys = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_NavKeys.xml")).Root!.Elements("KeyBindingDef").Select(e => e.Element("defName")!.Value).ToList();
         C(keys.SequenceEqual(new[] { "Council_Key_Back", "Council_Key_Forward" }) && Code("UI/Cards/Nav.cs").Contains("\"Council_Key_Back\""), "two keys for back and forward");
         C(Code("UI/Cards/Nav.cs").Contains("Input.GetMouseButtonDown(3)") && Code("UI/Cards/Nav.cs").Contains("Input.GetMouseButtonDown(4)"), "the mouse's side buttons");

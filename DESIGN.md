@@ -2529,23 +2529,26 @@ window's, and the same place, so going from one to another keeps the frame):
 
 | Button (def) | Label | Window | Pages |
 |---|---|---|---|
-| `Council_MainButton` | council | `MainTabWindow_Council` | sections Council (Decrees, Ambition, Ways, Dilemmas, Wishes), People (Roster, Everyone, Bonds, Faiths, Moods, Dreams, Journals), Colony (Week, Overview, Priorities, Calendar, Chronicle), Almanac |
+| `Council_MainButton` | council | `MainTabWindow_Council` | views Week (This week), People (modes Table, Moods, Bonds, Faiths, Houses), Council (Decrees, Ambition, Ways, Wishes, Dilemmas), Colony (Overview, Calendar, Chronicle) |
 | `Rimfolk_WorldButton` | region | `MainTabWindow_World` | Map, Neighbours, Peoples, Letters, Journeys, Events, WorldHistory, and pages other parts add |
 | `Council_DefenseButton` | defense | `MainTabWindow_Defenses` | Defenses |
-| `Council_RoomsButton` | planning | `MainTabWindow_Planning` | Plan, Base, Making, Build, Rooms |
+| `Council_RoomsButton` | planning | `MainTabWindow_Planning` | views Plan (modes Plan, Priorities), Base, Making, Rooms (modes Build, Rooms: List and At a glance) |
 
 - **One list of pages** (`UI/PagesMath.cs`, pure, tested in `Tools/Tests/PagesTests.cs`): each page's window and
-  section, in tab order. The council window builds its sections from it. A page's name is its address:
-  `Pages.Open(name)` (`UI/Pages.cs`; `MainTabWindow_Council.OpenTab`, `OpenOrClose`, `IsPage` and `TabName` forward to
-  it, so every older caller, mood hint, advisor step, This week card, panel line and page key routes through it) opens
-  the window that has the page, on it. Old addresses resolve (`PagesMath.Moved`): `World` is the region window's
-  Neighbours (it kept what the World page showed), `RegionMap` its Map, `History` (the old section) the Chronicle;
-  `Defenses` and the planning pages simply live in their windows now. A window opens through its button's def, which
-  works with the button hidden or put away.
+  view (its section), in tab and mode order. A window of more than one section is made of views (`HasViews`): its
+  tabs are the views, and a view's pages its modes; a window of one section has its pages as tabs. The windows build
+  their tabs and modes from it. A page's name is its address: `Pages.Open(name)` (`UI/Pages.cs`;
+  `MainTabWindow_Council.OpenTab`, `OpenOrClose`, `IsPage` and `TabName` forward to it, so every older caller, mood
+  hint, advisor step, This week card, panel line and page key routes through it) opens the window that has the page,
+  on its view and mode; a view's name ("People") opens the mode last looked at there; "Almanac" opens the Almanac's
+  own window. Old addresses resolve (`PagesMath.Moved`, below for UI 4's): `World` is the region window's Neighbours
+  (it kept what the World page showed), `RegionMap` its Map, `History` (the old section) the Chronicle; `Defenses`
+  lives in its window. A window opens through its button's def, which works with the button hidden or put away.
 - **The corner** (`UI/WindowTabs.cs`): every window draws its tabs with `WindowTabs.Draw`, the game's tabs with their
   icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner back and forward
-  (below, "Names that lead somewhere") and the four windows' icons, the one showing lit. A click opens that window as
-  its button would. The defense window has one tab, so its corner is where the others' is.
+  (below, "Names that lead somewhere"), the Almanac's book (its window, lit while open) and the four windows' icons,
+  the one showing lit. A click opens that window as its button would. The defense window has one tab, so its corner
+  is where the others' is.
 - **The region window** opens on the region map unless something asked for a page. The map is `RegionMapView` (what
   was `Window_RegionMap`, the same drawing, now inside the page): its picture is made when the page is first drawn and
   let go when the window closes; where it looked is kept for the session. Its panel is the window's drawer: what is
@@ -2602,9 +2605,10 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   `NeighbourPanel`'s three lists stay for a release as a shim: what is still added there draws on the place card, a
   town's in Ties, any other place's and a home's in Now.
 - **Opening a card.** `Cards.Open(ThingRef)` (and overloads for a pawn, a people, a world object, a notable, a tie, a
-  ref) opens it where the player is: in the region window's drawer when it shows, else in a small floating card
-  window (`Window_Card`) with its own trail and "Open in its window" (a colonist in the People roster, a place on the
-  region map, anything else in the region window's drawer on the page that lists it). `Cards.ShowOnMap` opens a place
+  ref) opens it where the player is: in the drawer in sight (the council, region and planning windows', since UI 4;
+  `Drawer.Active`), else in a small floating card window (`Window_Card`) with its own trail and "Open in its window"
+  (a colonist in the People table, a place on the region map, anything else in the region window's drawer on the page
+  that lists it). `Cards.ShowOnMap` opens a place
   on the region map with its card as the panel: the "Show" buttons of the trading posts, hamlets, raiders' camps and
   journeys pages, This week's rows about places and the missions lead there now rather than to the game's world view;
   something on a map is still jumped to. `DiplomacyLinks.Open` opens cards.
@@ -2612,7 +2616,8 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   area of 900 (at 1920 by 1080, scale 1 and 1.5, the map is 558 wide beside it) and over it with a shadow below that,
   where the view under it doesn't see the mouse. Its head is the trail of cards opened in it ("Tallbrook › Edda
   Marsh"), each a link back, and a close button; Escape closes it before the window (`RimfolkTabWindow`). In UI 1 it
-  is the region window's; the other windows open the floating card.
+  was the region window's; since UI 4 the council and planning windows hold one too (below), and the defense window
+  opens the floating card.
 - **Links in text.** A link is a marker only `LinkText` reads: three characters of Unicode's private use area around
   the thing's text form and the words shown (`LinkTextMath.Wrap`). Text for Rimfolk's windows asks for links: the
   history's lines (`CardWords.HistoryLine`: each name of who took part or where, marked at its first mention), the
@@ -2638,6 +2643,65 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   drawer's and the preview's surfaces) and the components UI 1 draws: a section heading with its count and fold, a
   thing chip, a state chip, an act button with why not, steps, an icon button.
 - **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page.
+
+#### The council in four views (UI 4 of docs/design/interface.md)
+
+The fourth release, on the player's decisions 4 and 5: the council window's eighteen pages in two rows of tabs became
+four views in one row, the planning window's five pages four views, and the Almanac left for a window of its own.
+
+- **Views and modes.** A window made of views (`PagesMath.HasViews`) has them as its tabs; a view's pages are its
+  modes, at most five, a row of small buttons under the view's title (`UiKit.ModeButtons`). The council window: This
+  week; People (Table, Moods, Bonds, Faiths (shown with "Faith in the colony" on), Houses); Council (Offices and
+  decrees, Ambition, Ways, Wishes, Dilemmas); Colony (Overview, Calendar, Chronicle). The planning window: Plan (the
+  plan, Priorities), Base, Making, Rooms (Build as List, Rooms as At a glance). Each window keeps the mode last
+  looked at in each view for the session; the council window's page is saved in the settings as before
+  (`lastCouncilPage`, an old name read as where it went). The page keys step through the modes view by view. Tab and
+  mode labels carry their counts (This week's, the Council view's petitions and wishes, Wishes, Offices and
+  decrees, the plan's steps), made twice a second.
+- **The view header** (`UI/UiKitViews.cs`, `UI/ViewHeadMath.cs`, pure and tested): icon, title, one line, the stat,
+  the "?" to the page's Almanac article (`PagesMath.Articles`) just left of the page's own buttons, and the modes in a
+  row of their own under the line (26 more, so a view with modes is 82 tall against the old header and sub-tabs'
+  94), always at the same place so a mode doesn't move under the mouse; squeezed evenly when they don't fit. A page
+  keeps drawing its own header (`UiKit.PageHeader`, so every page keeps its title, line, stat and buttons): the
+  window says what its view's header carries (`ViewHead.Draw(rect, key, title, icon, model, draw)`) and the page's
+  `PageHeader` takes it. A page that draws no header (an empty state) gets one from the window from the next frame
+  on, so its modes stay in reach. None of it knows of Rimfolk's tab windows: it takes a rect and a model, so one of
+  the game's windows could draw a view the same way.
+- **The drawer in any window** (`UI/Cards/Drawer.cs`): a `DrawerHost` is one drawer's trail and card; each of the four
+  windows has one (`Drawer.Of(window)`), another window can make its own (`Drawer.Make()`) and draw it with
+  `Drawer.Around(host, rect, view, empty)`. A host drawn this frame or the last is in sight; `Drawer.Active`, the one
+  drawn last, is where `Cards.Open` puts a card, the floating card only when none is. The council and planning
+  windows draw every view inside theirs, so a name clicked anywhere in them opens its card beside the view. The
+  region window's calls are as before.
+- **People.** The Roster and Everyone are one list, the table (`PeopleTable`): a click on a row opens the colonist's
+  card in the drawer, the row lit while it shows, and the columns that don't fit beside it give way (the name, mood
+  and trust always stay; `PagesTests` checks it at the screens and scales the game offers); a right click shows them
+  on the map, their Mood tab, the pin. The colonist's card is the Roster's page of them (StoryView): their whole
+  story with their dreams and the newest of their journal, and since UI 4 their years asleep beside their age. The
+  old Roster page (`PeoplePanel`) is gone. Houses (`UI/HousesPanel.cs`, built once a second): the colony's families,
+  found from the game's family ties among its people (blood and marriage, joined), named by the surname most share
+  or after the eldest, everyone a link to their card; then the houses the world ledger knows in the region, each a
+  link to its house card.
+- **Colony.** The Chronicle has two more filters, what were pages: Dreams (every dream told, by dreamer and kind) and
+  Journals (each colonist's journal), `UI/HistoryPanels.cs`. Its filter is part of the way back (`Nav.Filters`), and
+  `Nav.SetFilter` puts it when an old address asks. A chronicle line about a colonist names them as a link to their
+  card (`LinkTextMath.MarkNames`, made once per line).
+- **Links.** A colonist's portrait opens their card in the drawer: This week's rows, the Wishes cards, the dreamers and
+  journal writers, the ideoligions' people, the groups, a mood row, `UiKit.PawnChip`; This week's colonist rows open
+  it too. `MainTabWindow_Council.OpenPerson` (from the colonist bar, the Story tab, a panel, the card's own act) opens
+  People's table with the colonist's card in the drawer.
+- **The Almanac's window** (`Almanac/Window_Almanac.cs`): movable, resizable, never pausing, one at a time. It opens
+  beside Rimfolk's windows where the screen has room (they open at the bottom left; it at the top right), else in the
+  middle, and comes back where it stood and at its size for the session. Every view's "?" opens it on that view's
+  article, the book in every corner opens or closes it, and `MainTabWindow_Council.OpenAlmanac`, "Almanac" and the
+  Almanac key do as before. A page opened again comes back where it was read to (`AlmanacPanel`, kept for the
+  session); the page last read is kept in the settings (`lastAlmanacPage`) for the next session.
+- **Old addresses** (`PagesMath.Moved`, `MovedFilters`; `PagesTests` resolves each): Roster and Everyone are People's
+  Table, Dreams and Journals the Chronicle with their filter, Offices is Offices and decrees, Priorities is the
+  planning window's Plan view, Build and Rooms are the Rooms view's two modes, Almanac is the Almanac's window, a
+  view's name ("People", "Council", "Colony") its last mode; every other page kept its name. The mood hints, the
+  advisor's steps, This week's cards, the panels, the page keys (Everyone's is People's table now) and the bottom bar
+  buttons made in XML (a section "Almanac" opens the window) all go through `Pages.Open`.
 
 ### A colonist's tabs
 

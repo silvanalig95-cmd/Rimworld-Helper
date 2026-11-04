@@ -225,7 +225,7 @@ namespace ColonyCouncil
                 // A card opens in the drawer at the right; on the map (not its List) the drawer is the map's panel, always there.
                 drawing = current;
                 bool mapPanel = current.name == RegionView.Map && !RegionView.list;
-                Drawer.Around(RimfolkWindow.World, content, drawPage, mapPanel ? drawLegend : null);
+                Drawer.Around(Drawer.Of(RimfolkWindow.World), content, drawPage, mapPanel ? drawLegend : null);
                 Nav.Observe(RimfolkWindow.World, current.name, RegionView.Within(current.name), Drawer.Current(RimfolkWindow.World));
             }
             catch (Exception e)

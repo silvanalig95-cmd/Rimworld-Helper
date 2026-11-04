@@ -10,12 +10,14 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// People → Everyone: one table of the colonists, a row each, with two lines per cell: mood and Rimfolk's share of
-    /// it, trust and how it moved this week, strain and the feeling on top, the setbacks and pressures weighing on them
-    /// (with what helps), their open wish, their personal story's stage, ailments and convalescence, and quirks; office
-    /// and epithet under the name. A click on a heading sorts by it (again for the other way); hovering a cell tells
-    /// more; a click on a row selects the colonist on the map, a right click offers their page and the pin. The rows
-    /// are worked out about once a second; the sort and the filter are remembered (<see cref="PageMemory"/>).
+    /// People → Table (what were the Roster and Everyone): one table of the colonists, a row each, with two lines per
+    /// cell: mood and Rimfolk's share of it, trust and how it moved this week, strain and the feeling on top, the
+    /// setbacks and pressures weighing on them (with what helps), their open wish, their personal story's stage,
+    /// ailments and convalescence, and quirks; office and epithet under the name. A click on a heading sorts by it (again
+    /// for the other way); hovering a cell tells more; a click on a row opens the colonist's card in the drawer beside the
+    /// table (their whole story, with their dreams and journal), the columns that don't fit beside it giving way; a
+    /// right click offers the map, their Mood tab and the pin. The rows are worked out about once a second; the sort and
+    /// the filter are remembered (<see cref="PageMemory"/>).
     /// </summary>
     public static class PeopleTable
     {
@@ -60,6 +62,7 @@ namespace ColonyCouncil
         private sealed class Row
         {
             public Pawn pawn;
+            public ThingRef thing;
             public readonly Cell[] cells = new Cell[Cols.Length];
             public float mood, minor, major;
             public Color moodColor;
@@ -182,6 +185,13 @@ namespace ColonyCouncil
         {
             UiKit.Zebra(r, index);
             bool over = Mouse.IsOver(r);
+            // The colonist whose card is open in the drawer beside the table.
+            bool chosen = !row.thing.IsNone && row.thing == Drawer.Current(RimfolkWindow.Council);
+            if (chosen)
+            {
+                Widgets.DrawBoxSolid(r, UiKit.CardSelected);
+                Widgets.DrawBoxSolid(new Rect(r.xMax - 3f, r.y, 3f, r.height), UiKit.Gold);
+            }
             if (over) Widgets.DrawHighlight(r);
             if (row.attention) Widgets.DrawBoxSolid(new Rect(r.x, r.y + 3f, 2f, r.height - 6f), UiKit.WithAlpha(UiKit.Warn, 0.8f));
             for (int i = 0; i < Cols.Length; i++)
@@ -253,15 +263,11 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 19f, cr.width - 6f, 18f), cell.text, row.moodColor, GameFont.Tiny);
         }
 
+        /// <summary>A row clicked: the colonist's card in the drawer beside the table (where their whole story is).</summary>
         private static void Select(Pawn p)
         {
             if (p == null) return;
-            if (p.Spawned || p.CarriedBy != null)
-            {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(p);
-            }
-            else MainTabWindow_Council.OpenPerson(p);
+            Cards.Open(p);
         }
 
         private static void Menu(Pawn p)
@@ -271,7 +277,12 @@ namespace ColonyCouncil
             bool pinned = memory != null && memory.IsPinned(p);
             var options = new List<FloatMenuOption>
             {
-                new FloatMenuOption("CC_Week_OpenPage".Translate(p.LabelShort).Resolve(), () => MainTabWindow_Council.OpenPerson(p)),
+                new FloatMenuOption("CC_Table_ShowOnMap".Translate(p.LabelShort.Named("NAME")).Resolve(), () =>
+                {
+                    if (!p.Spawned && p.CarriedBy == null) return;
+                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    CameraJumper.TryJumpAndSelect(p);
+                }),
                 new FloatMenuOption("CC_Table_MoodTab".Translate(), () => MoodView.ShowMoodTab(p)),
                 new FloatMenuOption(pinned ? PinTips.Unpin : PinTips.Pin, () =>
                 {
@@ -289,7 +300,7 @@ namespace ColonyCouncil
             builtAt = Time.realtimeSinceStartup;
             if (headers == null)
             {
-                header = "CC_Table_Header".Translate();
+                header = "CC_Table_Title".Translate();
                 subtitle = "CC_UI_Sub_Everyone".Translate();
                 headerTip = "CC_Table_HeaderTip".Translate();
                 noneAll = "CC_People_None".Translate();
@@ -359,7 +370,7 @@ namespace ColonyCouncil
         private static Row RowFor(CouncilGameComponent comp, Pawn p)
         {
             var s = ColonyCouncilMod.Settings;
-            var row = new Row { pawn = p, pinned = WeekMemory.Instance?.IsPinned(p) ?? false };
+            var row = new Row { pawn = p, thing = ThingRefs.Of(p), pinned = WeekMemory.Instance?.IsPinned(p) ?? false };
             var c = row.cells;
             int now = Find.TickManager.TicksGame;
 

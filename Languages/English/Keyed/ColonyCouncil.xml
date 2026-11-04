@@ -653,7 +653,7 @@
   <!-- ===================== Settings ===================== -->
   <CC_Settings_Layers>What should the council do?</CC_Settings_Layers>
   <CC_Settings_EnableAdvisor>Advisor: rank what the colony needs</CC_Settings_EnableAdvisor>
-  <CC_Settings_EnableAdvisor_Tip>Shows ranked advice, with the reasons behind it, on the council window's Priorities page.</CC_Settings_EnableAdvisor_Tip>
+  <CC_Settings_EnableAdvisor_Tip>Shows ranked advice, with the reasons behind it, in the planning window under Plan, Priorities.</CC_Settings_EnableAdvisor_Tip>
   <CC_Settings_EnableWishes>Wishes: colonists make requests</CC_Settings_EnableWishes>
   <CC_Settings_EnableWishes_Tip>Colonists voice wishes based on their traits, passions, relationships and mood.</CC_Settings_EnableWishes_Tip>
   <CC_Settings_EnableAmbitions>Council meetings and ambitions</CC_Settings_EnableAmbitions>
@@ -1171,7 +1171,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Journal_Departed>Journals of the departed</CC_Journal_Departed>
   <CC_Journal_Empty>Nothing written yet.</CC_Journal_Empty>
   <CC_Settings_Journals>Colonists keep journals</CC_Settings_Journals>
-  <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Read them on the Journals page under History, or on a colonist's page in the Roster.</CC_Settings_Journals_Tip>
+  <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Read them in the council window under Colony, Chronicle, Journals, or in a colonist's card.</CC_Settings_Journals_Tip>
 
   <!-- Traditions -->
   <CC_Tradition_Note>This is a tradition now ({0}). The colonists expect "{1}", and anything else will disappoint them.</CC_Tradition_Note>
@@ -1289,7 +1289,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_DreamOmens>Dreams that come true</CC_Settings_DreamOmens>
   <CC_Settings_DreamOmens_Tip>Rarely, a dream is an omen: a visitor, a trader, a newcomer, a storm or a raid, and a few days later it happens. At most one omen waits at a time.</CC_Settings_DreamOmens_Tip>
   <CC_Settings_AllDreamMessages>A message for every dream</CC_Settings_AllDreamMessages>
-  <CC_Settings_AllDreamMessages_Tip>Off: only dreams that change something get a message; the rest are in the journals, the mood tooltip and the Dreams page. On: every dream.</CC_Settings_AllDreamMessages_Tip>
+  <CC_Settings_AllDreamMessages_Tip>Off: only dreams that change something get a message; the rest are in the journals, the mood tooltip and the Chronicle's Dreams. On: every dream.</CC_Settings_AllDreamMessages_Tip>
   <CC_Dream_Message>{PAWN_nameDef} woke from a dream: "{DREAM}"</CC_Dream_Message>
   <CC_Dream_CameTrue>{PAWN_nameDef}'s dream came true. Days ago {PAWN_pronoun} woke up saying: "{DREAM}"</CC_Dream_CameTrue>
   <CC_TieNote_Dream>{0} dreamt about it</CC_TieNote_Dream>
@@ -2012,7 +2012,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Overview_TileTrust>trust in the council</CC_Overview_TileTrust>
   <CC_Overview_TileTrust_Tip>How much the colonists trust the council, on average ({0}, from -100 to 100). Granting wishes and keeping promises raises it; ignoring them lowers it.</CC_Overview_TileTrust_Tip>
   <CC_Overview_TileWishes>open wishes</CC_Overview_TileWishes>
-  <CC_Overview_TileWishes_Tip>Wishes waiting for the council's answer (People → Wishes).</CC_Overview_TileWishes_Tip>
+  <CC_Overview_TileWishes_Tip>Wishes waiting for the council's answer (Council → Wishes).</CC_Overview_TileWishes_Tip>
   <CC_Overview_TileWealth>wealth</CC_Overview_TileWealth>
   <CC_Overview_TileWealth_Tip>The colony's wealth. Raids grow with it.</CC_Overview_TileWealth_Tip>
   <CC_Overview_Trend>{0} this week</CC_Overview_Trend>

@@ -20,20 +20,29 @@ namespace ColonyCouncil
         private static float height = 600f;
         private static readonly Folds folds = new Folds("past");
         private const float RowH = 44f;
+        private static AlmanacArticleDef article;
 
         /// <summary>The view in its rect: the lens bar and the modes, then the map or the List.</summary>
         public static void Draw(Rect rect, RegionMapView map)
         {
             var model = LensModel.Get(RegionView.lens);
+            // The "?" to the region's Almanac article at the right, as on every view.
+            float right = rect.xMax;
+            article ??= DefDatabase<AlmanacArticleDef>.GetNamedSilentFail(PagesMath.ArticleOf(RegionView.Map) ?? "");
+            if (article != null)
+            {
+                UiKit.HelpButton(new Rect(right - 24f, rect.y + 1f, 24f, 24f), article);
+                right -= 30f;
+            }
             float mw = Mathf.Min(UiKit.ModesWidth(RegionView.MapModes, RegionView.MapModeIcons), rect.width * 0.4f);
-            int mode = UiKit.Modes(new Rect(rect.xMax - mw, rect.y, mw, UiKit.ModesHeight), RegionView.MapModes, RegionView.list ? 1 : 0, RegionView.MapModeIcons,
+            int mode = UiKit.Modes(new Rect(right - mw, rect.y, mw, UiKit.ModesHeight), RegionView.MapModes, RegionView.list ? 1 : 0, RegionView.MapModeIcons,
                 RegionView.MapModeTips);
             if (mode >= 0)
             {
                 RegionView.list = mode == 1;
                 scroll = Vector2.zero;
             }
-            int lens = UiKit.LensBar(new Rect(rect.x, rect.y, rect.width - mw - 12f, UiKit.ModesHeight), RegionView.LensLabels, RegionView.LensIcons, (int)RegionView.lens,
+            int lens = UiKit.LensBar(new Rect(rect.x, rect.y, right - mw - 12f - rect.x, UiKit.ModesHeight), RegionView.LensLabels, RegionView.LensIcons, (int)RegionView.lens,
                 RegionView.LensTips);
             if (lens >= 0)
             {

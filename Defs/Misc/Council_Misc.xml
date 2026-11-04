@@ -9,7 +9,7 @@
   <MainButtonDef>
     <defName>Council_MainButton</defName>
     <label>council</label>
-    <description>The colony's own life: the council (decrees, offices and elections, the ambition and its meetings, the colony's ways, dilemmas, wishes and petitions), its people (the roster, bonds, faiths, moods, dreams and journals), the colony (this week, the overview, priorities, the calendar and the chronicle), and the Almanac.</description>
+    <description>The colony's own life in four views: this week (what waits on you), its people (a table of everyone with each colonist's card beside it, their moods, bonds, ideoligions and houses), the council (offices and decrees, the ambition and its meetings, the colony's ways, wishes and petitions, dilemmas), and the colony (the overview, the calendar and the chronicle with the dreams and journals).</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Council</tabWindowClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/UI/MainButton</iconPath>
@@ -41,7 +41,7 @@
   <MainButtonDef>
     <defName>Council_RoomsButton</defName>
     <label>planning</label>
-    <description>Planning the base: the colony's next steps and the ground plan, the base looked over with what a click can put right, what you could make from the stock, the room plans with Rearrange a room, and every room at a glance, ready to plan.</description>
+    <description>Planning the base, in four views: the plan (the colony's next steps and the ground plan, with the advisor's priorities), the base looked over with what a click can put right, what you could make from the stock, and the rooms (the room plans with Rearrange a room, or every room at a glance, ready to plan).</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Planning</tabWindowClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/Icons/Plan</iconPath>

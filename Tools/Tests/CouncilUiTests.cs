@@ -85,16 +85,18 @@ public static class CouncilUiTests
 
         // ---------- The council window's pages (the rest of Rimfolk's windows: PagesTests) ----------
         string ui = Path.Combine(root, "Source", "ColonyCouncil", "UI");
-        string window = File.ReadAllText(Path.Combine(ui, "MainTabWindow_Council.cs"));
-        var tabMatch = Regex.Match(window, @"private enum Tab\s*\{([^}]*)\}");
-        Check(tabMatch.Success, "found the window's pages");
-        var councilPages = tabMatch.Groups[1].Value.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToHashSet();
-        Check(councilPages.Contains("Week") && councilPages.Contains("Everyone") && councilPages.Contains("Dilemmas"), "the new pages are pages");
-        // The window's pages are the ones PagesMath puts in it, which gives each its section.
-        var listed = PagesMath.PagesIn(RimfolkWindow.Council).ToHashSet();
-        foreach (var p in councilPages) Check(listed.Contains(p), $"page {p} is in a section");
-        foreach (var p in listed) Check(councilPages.Contains(p), $"page {p} of the council window is drawn there");
-        Check(PagesMath.PagesIn(RimfolkWindow.Council, "Colony")[0] == "Week", "This week is the Colony section's first page");
+        // Each window draws its pages by name (a case each in its DrawPage), and those are the pages PagesMath puts in it.
+        foreach (var (cls, w) in new[] { ("MainTabWindow_Council", RimfolkWindow.Council), ("MainTabWindow_Planning", RimfolkWindow.Planning) })
+        {
+            string window = File.ReadAllText(Path.Combine(ui, cls + ".cs"));
+            var drawn = Regex.Matches(window, @"case ""(\w+)"": \w+\.Draw\(").Select(m => m.Groups[1].Value).ToHashSet();
+            Check(drawn.Count > 0, $"found the {w} window's pages");
+            var listed = PagesMath.PagesIn(w).ToHashSet();
+            foreach (var p in drawn) Check(listed.Contains(p), $"page {p} drawn in the {w} window is in one of its views");
+            foreach (var p in listed) Check(drawn.Contains(p), $"page {p} of the {w} window is drawn there");
+            Check(window.Contains("Drawer.Around(RimfolkWindow." + w) && window.Contains("ViewHead.Draw("), $"the {w} window holds the drawer and gives each view its header");
+        }
+        Check(PagesMath.PagesIn(RimfolkWindow.Council)[0] == "Week" && PagesMath.FirstOf(RimfolkWindow.Council) == "Week", "This week is the council window's first view");
         var pages = PagesMath.All.Select(p => p.name).ToHashSet();
 
         var keyed = new Dictionary<string, string>();
@@ -121,10 +123,12 @@ public static class CouncilUiTests
                 if (tab != null)
                 {
                     linked++;
-                    // A region view's address may name its lens and mode after it ("Map/Threats/List").
+                    // By its own name (a region view's address may name its lens and mode after it, "Map/Threats/List"), or an
+                    // old one that forwards ("Roster" is People's table, "Dreams" the Chronicle's dreams).
                     var parts = tab.Split('/');
-                    Check(pages.Contains(parts[0]) && parts.Skip(1).All(x => PagesMath.ModesOf(parts[0]).Contains(x) || PagesMath.LensesOf(parts[0]).Contains(x)),
-                        $"{name}: its page {tab} is a page of one of Rimfolk's windows, by its own name");
+                    bool own = pages.Contains(parts[0]) && parts.Skip(1).All(x => PagesMath.ModesOf(parts[0]).Contains(x) || PagesMath.LensesOf(parts[0]).Contains(x));
+                    bool forwards = PagesMath.Moved.ContainsKey(tab) && PagesMath.Resolve(tab) != null && pages.Contains(PagesMath.Resolve(tab));
+                    Check(own || forwards, $"{name}: its page {tab} is a page of one of Rimfolk's windows, or an old name that leads to one");
                 }
                 string keep = d.Element("keep")?.Value ?? "";
                 Check(!fix.Contains("World page") && !keep.Contains("World page"), $"{name}: no hint sends the player to the old World page");

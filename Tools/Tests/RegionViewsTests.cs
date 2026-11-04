@@ -151,10 +151,15 @@ public static class RegionViewsTests
         string away = Code("UI/Region/HereAndAwayView.cs");
         C(away.Contains("CampPanel.Section(") && away.Contains("WorldPanel.ComingSection(") && away.Contains("LettersPage.UnderWaySection(") && away.Contains("MissionPanel.Draw("),
             "Here and away: the camp, what's coming, letters on the road, missions");
-        string kit = Code("UI/UiKitViews.cs");
-        foreach (var part in new[] { "public static int Modes(Rect r", "public static float ViewHeader(Rect r", "public static int LensBar(Rect r", "public static float LegendStrip(Rect r",
-                     "public static void DashedLine(Vector2 a" })
+        string kit = Code("UI/UiKitLenses.cs");
+        foreach (var part in new[] { "public static int Modes(Rect r", "public static int LensBar(Rect r", "public static float LegendStrip(Rect r", "public static void DashedLine(Vector2 a" })
             C(kit.Contains(part), $"the component {part.Split('(')[0].Split(' ').Last()} takes a rect and plain data, for any window");
+        // The views' headers are the one view header (UI/UiKitViews.cs), with Peoples' modes and every view's "?".
+        foreach (var view in new[] { "UI/Region/PeoplesView.cs", "UI/Region/HereAndAwayView.cs", "UI/WorldPages.cs" })
+            C(Code(view).Contains("UiKit.ViewHeader(") && Code(view).Contains("ViewHeadModel") && Code(view).Contains("PagesMath.ArticleOf(RegionView."),
+                $"{view}: the view's header with its \"?\"");
+        C(Code("UI/Region/MapView.cs").Contains("UiKit.HelpButton(") && Code("UI/Region/PeoplesView.cs").Contains("m.labels.AddRange(RegionView.PeopleModes)"),
+            "the map's \"?\" beside its lens bar; Peoples' modes in its header");
         return n;
     }
 }

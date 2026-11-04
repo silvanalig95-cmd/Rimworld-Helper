@@ -4,7 +4,7 @@
   <!-- Rimfolk's four windows (Source/ColonyCouncil/UI/WindowTabs.cs, Pages.cs, PagesMath.cs): the icons in each window's
        top right corner that lead to the others. -->
   <CC_Win_Tip>{WINDOW}: {WHAT}.</CC_Win_Tip>
-  <CC_Win_What_Council>the colony's own life, with the council, its people, the colony and the Almanac</CC_Win_What_Council>
+  <CC_Win_What_Council>the colony's own life: this week, its people, the council and the colony</CC_Win_What_Council>
   <CC_Win_What_World>the region map and everything beyond the colony</CC_Win_What_World>
   <CC_Win_What_Defense>the colony's defenses</CC_Win_What_Defense>
   <CC_Win_What_Planning>planning the base and its rooms</CC_Win_What_Planning>

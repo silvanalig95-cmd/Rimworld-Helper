@@ -543,3 +543,19 @@ the drawer; previews that stay when entered, two levels at most, with a setting;
 council in four views; the window size setting, standard by default; the colonies of stage 3 in the Ours lens. The
 last two change where stage 3's design and today's Colony section put things: Priorities moves to Planning → Plan, and
 stage 3's Colonies page becomes the Ours lens.
+
+## Beyond Rimfolk's windows (the player, 4 November 2026)
+The player's word: if Rimfolk's windows come out as the mockup shows, more of the game's own interface may be reworked
+in the same language later. So that the work of UI 1 to UI 5 carries over:
+- **The kit stands on its own.** `UiKit`/`UiKitCards`, `LinkText`, the drawer, previews, cards and the trail take a rect
+  and a model and nothing of Rimfolk's windows, so they can be drawn inside one of the game's windows or a patch on it.
+- **Cards for the game's own things.** `ThingRef` and the card kinds leave room for more nouns (an item, an animal, a
+  building, a faction leader the game knows, a quest); the game's own info card stays reachable from a card's head.
+- **Each reworked screen behind its own setting**, off falling back to the game's own, so a player (or another mod)
+  can keep the vanilla screen; the game's hotkeys and its own behaviour are kept.
+- **Living beside other interface mods.** The player uses RimHUD (the guest checklist already makes room for it);
+  any rework reads what such a mod changed and steps aside where both would draw.
+- **What could come**, only if the player asks: the inspect pane and its tabs, the colonist bar's hover, the letter
+  stack, the world map's inspect pane, the work and assign tabs, the trade window. Each would be designed first, with
+  the player's choices, as this one was.
+

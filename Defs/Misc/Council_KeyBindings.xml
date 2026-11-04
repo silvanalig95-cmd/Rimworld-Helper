@@ -5,9 +5,10 @@
     Optional keyboard shortcuts for the pages of Rimfolk's windows (Source/ColonyCouncil/UI/CouncilKeys.cs). None has a
     key until the player picks one in Options, Keyboard, under "Rimfolk", so they never clash with the game's own keys or
     another mod's. A page's key opens the window that has the page on it, or closes it when that page is already
-    showing (the world key's page is the region map's Stance and ties lens as a list, the defenses key's the defense window); the next
-    and previous page keys step through the pages of the window that is open. The def names stay as they were, so keys
-    already picked keep working.
+    showing (the world key's page is the region map's Stance and ties lens as a list, the defenses key's the defense
+    window, the everyone key's the council's People table, the almanac key opens or closes the Almanac's own window);
+    the next and previous page keys step through the pages of the window that is open, view by view and mode by mode.
+    The def names stay as they were, so keys already picked keep working.
   -->
 
   <KeyBindingCategoryDef>
@@ -27,7 +28,7 @@
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_Everyone</defName>
-    <label>council: everyone (the people table)</label>
+    <label>council: people (the table)</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
@@ -62,7 +63,7 @@
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_Almanac</defName>
-    <label>council: almanac</label>
+    <label>the almanac (its own window, open or close)</label>
   </KeyBindingDef>
 
   <!-- The region window on its map (Source/ColonyCouncil/UI/MainTabWindow_World.cs), opened or closed. -->

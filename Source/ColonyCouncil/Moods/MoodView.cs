@@ -262,7 +262,7 @@ namespace ColonyCouncil
                 CameraJumper.TryJumpAndSelect(p, CameraJumper.MovementMode.Pan);
                 // A carried baby or someone in a shuttle selects whoever holds them: don't show the wrong person.
                 if (Find.Selector.SingleSelectedThing == p) InspectPaneUtility.OpenTab(typeof(ITab_Pawn_Mood));
-                else MainTabWindow_Council.OpenPerson(p);
+                else Cards.Open(p);
             }
             catch (System.Exception e)
             {

@@ -360,35 +360,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The top of a page: an icon, the title, a one-line subtitle and, on the right, an optional stat. Keeps
-        /// <paramref name="reserveRight"/> free at the right for the page's own buttons. Returns <see cref="HeaderHeight"/>.
+        /// <paramref name="reserveRight"/> free at the right for the page's own buttons. Returns its height:
+        /// <see cref="HeaderHeight"/>, more with a view's modes under it.
         /// </summary>
         public static float PageHeader(Rect rect, Texture2D icon, string title, string subtitle, string stat = null, Color? statColor = null,
-            float reserveRight = 0f, string tip = null)
-        {
-            float x = rect.x;
-            if (icon != null)
-            {
-                Icon(new Rect(rect.x + 1f, rect.y + 6f, 32f, 32f), icon, Gold);
-                x += 42f;
-            }
-            float right = Mathf.Max(x, rect.xMax - reserveRight);
-            float statW = 0f;
-            if (!stat.NullOrEmpty())
-            {
-                Text.Font = GameFont.Small;
-                statW = Mathf.Min(Text.CalcSize(stat).x + 6f, (right - x) * 0.45f);
-                LabelFit(new Rect(right - statW, rect.y + 4f, statW, 26f), stat, statColor ?? Gold, GameFont.Small, TextAnchor.MiddleRight);
-                statW += 10f;
-            }
-            LabelFit(new Rect(x, rect.y + 1f, Mathf.Max(0f, right - statW - x), 32f), title, Color.white, GameFont.Medium);
-            if (!subtitle.NullOrEmpty()) LabelFit(new Rect(x, rect.y + 29f, Mathf.Max(0f, right - x), 22f), subtitle, Faint);
-            float lineY = rect.y + HeaderHeight - 5f;
-            Divider(rect.x, lineY, rect.width);
-            Widgets.DrawBoxSolid(new Rect(rect.x, lineY - 1f, Mathf.Min(rect.width, 34f), 2f), WithAlpha(Gold, 0.8f));
-            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(rect.x, rect.y, Mathf.Max(0f, right - rect.x), HeaderHeight - 6f), tip);
-            Text.Font = GameFont.Small;
-            return HeaderHeight;
-        }
+            float reserveRight = 0f, string tip = null) =>
+            // Drawn in a window's view, it is that view's header, with its modes and its "?" (UI/UiKitViews.cs).
+            ViewHeader(rect, icon, title, subtitle, stat, statColor, reserveRight, tip, ViewHead.Take());
 
         /// <summary>A small heading inside a page: icon, text, an optional note on the right, and a line under it. Returns <see cref="SectionHeight"/>.</summary>
         public static float SectionTitle(float x, float y, float width, string text, Texture2D icon = null, Color? color = null, string right = null)
@@ -786,7 +764,7 @@ namespace ColonyCouncil
             }
             var pawn = p;
             TooltipHandler.TipRegion(r, tip ?? (() => ChipTip(pawn, clickable)), p.thingIDNumber ^ 0x51C4);
-            if (clickable && Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenPerson(p);
+            if (clickable && Widgets.ButtonInvisible(r)) Cards.Open(p);
             return r.width;
         }
 

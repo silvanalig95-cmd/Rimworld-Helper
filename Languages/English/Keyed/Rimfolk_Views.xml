@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The council window's four views and the planning window's (UI/MainTabWindow_Council.cs, MainTabWindow_Planning.cs,
+       PagesMath.cs): each view's tab, what it holds, and its modes' buttons in the view's header (UI/UiKitViews.cs). -->
+  <CC_View_Week>This week</CC_View_Week>
+  <CC_View_People>People</CC_View_People>
+  <CC_View_Council>Council</CC_View_Council>
+  <CC_View_Colony>Colony</CC_View_Colony>
+  <CC_View_Rooms>Rooms</CC_View_Rooms>
+  <CC_View_Tip_Week>What waits on you, what is coming, and how people are.</CC_View_Tip_Week>
+  <CC_View_Tip_People>The colonists in one table, their moods, bonds, ideoligions and houses. Click someone to open their card beside the list.</CC_View_Tip_People>
+  <CC_View_Tip_Council>Offices and decrees, the ambition, the colony's ways, wishes and petitions, and dilemmas.</CC_View_Tip_Council>
+  <CC_View_Tip_Colony>The overview, the calendar and the chronicle, with the colonists' dreams and journals.</CC_View_Tip_Colony>
+  <CC_View_Tip_Plan>The colony's next steps, and the advisor's priorities.</CC_View_Tip_Plan>
+  <CC_View_Tip_Rooms>The room plans as a list, or every room at a glance.</CC_View_Tip_Rooms>
+  <CC_View_HelpTip>Read about this in the Almanac: {PAGE}. It opens in a window of its own, which you can move beside this one.</CC_View_HelpTip>
+
+  <!-- The modes' buttons, where the page's own name doesn't fit as one. -->
+  <CC_Mode_Table>Table</CC_Mode_Table>
+  <CC_Mode_Decrees>Offices and decrees</CC_Mode_Decrees>
+  <CC_Mode_Plan>The plan</CC_Mode_Plan>
+  <CC_Mode_Build>List</CC_Mode_Build>
+  <CC_Mode_Rooms>At a glance</CC_Mode_Rooms>
+  <!-- The People table and the houses, by name ("Go to People"). -->
+  <CC_Tab_Table>People</CC_Tab_Table>
+  <CC_Tab_Houses>Houses</CC_Tab_Houses>
+
+  <!-- The Almanac's book in every window's corner (UI/WindowTabs.cs). -->
+  <CC_Win_AlmanacTip>The Almanac: how Rimfolk works, and good practice. It opens in a window of its own, which you can move and size beside what it explains.</CC_Win_AlmanacTip>
+
+  <!-- The Chronicle's filter that was the Journals page. -->
+  <CC_ChronicleFilter_Journals>Journals</CC_ChronicleFilter_Journals>
+
+  <!-- People, Houses (UI/HousesPanel.cs). -->
+  <CC_Houses_Header>The colony's houses</CC_Houses_Header>
+  <CC_Houses_Sub>Its families, from the ties of blood and marriage among its people, and the houses it knows of in the region.</CC_Houses_Sub>
+  <CC_Houses_Stat>Families: {0}</CC_Houses_Stat>
+  <CC_Houses_AtHome>At home</CC_Houses_AtHome>
+  <CC_Houses_NoneAtHome>No two of the colony's people are kin yet. When two are kin by blood or married, their house shows here.</CC_Houses_NoneAtHome>
+  <CC_Houses_Alone>Colonists with no kin here: {0}</CC_Houses_Alone>
+  <CC_Houses_Known>Out in the region</CC_Houses_Known>
+  <CC_Houses_KnownLine>{HOUSE}, of {TOWN}</CC_Houses_KnownLine>
+  <CC_Houses_None>No houses yet. When two of the colony's people are kin by blood or married, their house shows here, and so do the families of the towns the colony hears of.</CC_Houses_None>
+
+  <!-- The People table's title and right click, and the rooms at a glance's line. -->
+  <CC_Table_Title>People</CC_Table_Title>
+  <CC_Table_ShowOnMap>Show {NAME} on the map</CC_Table_ShowOnMap>
+  <CC_Rooms_Sub>Every room plan in columns, the ones the advisor asks for marked.</CC_Rooms_Sub>
+
+</LanguageData>

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.83.0</version>
+        <date>4 November 2026</date>
+        <title>The council in four views</title>
+        <points>
+          <li>The council window has one row of four tabs: This week, People, Council and Colony. What were pages under them are now modes, small buttons under each view's title.</li>
+          <li>People is one table of everyone. A click on a row opens that colonist's card beside it, with their whole story, their dreams and their journal.</li>
+          <li>People, then Houses shows the colony's families, from the ties of blood and marriage among its people, and the houses it knows of in the region.</li>
+          <li>Every dream and journal is in the Chronicle under its Dreams and Journals filters, and a colonist named in the chronicle is a link to their card.</li>
+          <li>The planning window has four views: Plan, with the advisor's priorities as its second mode, Base, Making, and Rooms, as a list or at a glance.</li>
+          <li>The Almanac opens in a window of its own that you can move and size beside what it explains: from the book in every window's corner, or from the "?" on every view, which opens that view's page. A page you come back to opens where you left it.</li>
+          <li>A colonist's portrait in the council window opens their card in the drawer at the window's right, and the old shortcuts and buttons still lead where they went.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.82.0</version>
         <date>4 November 2026</date>
         <title>Names that lead somewhere</title>

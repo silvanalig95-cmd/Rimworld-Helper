@@ -34,6 +34,8 @@ namespace ColonyCouncil
         private static List<string> others = new List<string>();
         private static float builtAt = -1f;
         private static DiplomacyModel dip;
+        /// <summary>The view's header's "?" (UI/UiKitViews.cs), made once.</summary>
+        private static ViewHeadModel head;
 
         public static void Draw(Rect rect)
         {
@@ -54,7 +56,8 @@ namespace ColonyCouncil
             }
             int letters = LettersPage.UnderWay;
             string stat = letters > 0 ? "CC_Neighbours_OnTheirWay".Translate(letters).Resolve() : caravans.Count > 0 ? "CC_JourneysPg_Stat".Translate(caravans.Count).Resolve() : null;
-            float top = UiKit.ViewHeader(rect, Icons.Away ?? Icons.Visitor, "CC_Tab_HereAndAway".Translate(), "CC_Away_Line".Translate(), stat, null, -1, out _);
+            float top = UiKit.ViewHeader(rect, Icons.Away ?? Icons.Visitor, "CC_Tab_HereAndAway".Translate(), "CC_Away_Line".Translate(), stat, null, 0f, null,
+                head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.HereAndAway) });
             var outRect = new Rect(rect.x, rect.y + top + 4f, rect.width, rect.height - top - 4f);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);

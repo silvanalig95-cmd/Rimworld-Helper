@@ -619,7 +619,7 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
       </li>
       <li>
         <heading>Telling them</heading>
-        <text>Colonists tell each other their dreams, and telling someone you dreamt about them makes them like you a little more. Someone who keeps a dream book (a quirk, after a dream came true) dreams half again as often and writes every dream down. Recent dreams are listed on the Dreams page, and dreams that came true go in the chronicle and the year's annals.</text>
+        <text>Colonists tell each other their dreams, and telling someone you dreamt about them makes them like you a little more. Someone who keeps a dream book (a quirk, after a dream came true) dreams half again as often and writes every dream down. Recent dreams are listed in the Chronicle under Dreams and in each dreamer's card, and dreams that came true go in the chronicle and the year's annals.</text>
       </li>
     </sections>
     <keywords><li>dream</li><li>nightmare</li><li>omen</li><li>prophecy</li><li>sleep</li><li>fever</li></keywords>
@@ -633,7 +633,7 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
     <tip>A wish takes a few days to grant. A life goal can take years.</tip>
-    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, their letters, an animal of their own, growing up) that grow into a grown-up's goal when they come of age, the young want to be taken seriously or to see past the hills, the old may want a grandchild, one more year or a last wish (a fine last piece, family set right), believers a role in their ideoligion or their faith found again, and some only want to feel at home, safe, loved or free of a grief. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, their letters, an animal of their own, growing up) that grow into a grown-up's goal when they come of age, the young want to be taken seriously or to see past the hills, the old may want a grandchild, one more year or a last wish (a fine last piece, family set right), believers a role in their ideoligion or their faith found again, and some only want to feel at home, safe, loved or free of a grief. A colonist's card (People, then click their row) shows their goal and how close they are; the page "every life goal" lists them all.</description>
     <sections>
       <li>
         <heading>How a goal is chosen</heading>
@@ -651,7 +651,7 @@ The skill the goal was about (its own skill, or what it counted: meals for cooki
 
 After a while they may choose another goal, never the same one twice.
 
-Check the Roster page now and then. A colonist one level short of mastery is worth a few days at their workbench. Goals like marriage, friends or peace with a rival can't be ordered, but shared work, shared rooms and shared battles help them along. Some dreams are about a colonist's goal, and some dilemmas come up because of one.</text>
+Check their cards in People now and then. A colonist one level short of mastery is worth a few days at their workbench. Goals like marriage, friends or peace with a rival can't be ordered, but shared work, shared rooms and shared battles help them along. Some dreams are about a colonist's goal, and some dilemmas come up because of one.</text>
       </li>
       <li>
         <heading>Goals left unfinished</heading>

@@ -12,8 +12,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Every thing's card (docs/design/interface.md, "Things and their cards"): one builder for each of the eight kinds,
     /// each card's model built at most once a second while it shows (nothing while no card does), and the one way to
-    /// open a card. <see cref="Open(ThingRef)"/> opens it where the player is: in the drawer of the region window when it
-    /// shows, else in a small floating card window (from the other windows, a panel, a letter). <see cref="ShowOnMap"/>
+    /// open a card. <see cref="Open(ThingRef)"/> opens it where the player is: in the drawer of the window in sight (the
+    /// council, region and planning windows hold one), else in a small floating card window (from the defense window, a
+    /// panel, a letter). <see cref="ShowOnMap"/>
     /// opens a place on the region map with its card as the map's panel; that is where "Show" leads now, the game's world
     /// view only one small button on the place card's head.
     /// </summary>
@@ -22,16 +23,20 @@ namespace ColonyCouncil
     {
         // ---------------- Opening ----------------
 
-        /// <summary>Opens a thing's card where the player is (the region window's drawer, else the floating card). Nothing for none.</summary>
+        /// <summary>
+        /// Opens a thing's card where the player is: the drawer in sight (the council, region or planning window's, or one
+        /// another window holds), else the floating card. Nothing for none.
+        /// </summary>
         public static void Open(ThingRef r)
         {
             if (r.IsNone) return;
             Previews.Hide();
             try
             {
-                if (Pages.Showing(RimfolkWindow.World))
+                var host = Drawer.Active;
+                if (host != null)
                 {
-                    Drawer.Open(RimfolkWindow.World, r);
+                    host.Open(r);
                     return;
                 }
                 Window_Card.Show(r);
@@ -259,6 +264,9 @@ namespace ColonyCouncil
             var parts = new List<string>();
             if (p.story != null) parts.Add(p.story.TitleShortCap);
             if (p.ageTracker != null) parts.Add(T("CC_People_Age", p.ageTracker.AgeBiologicalYears));
+            // The years asleep beside the age, as the roster showed them.
+            string slept = FamilyYears.SleptNote(p);
+            if (slept != null) parts.Add(slept);
             if (p.IsPrisonerOfColony) parts.Add(T("CC_Card_Prisoner"));
             else if (p.IsSlaveOfColony) parts.Add(T("CC_Card_Slave"));
             m.subtitle = string.Join("  ·  ", parts);

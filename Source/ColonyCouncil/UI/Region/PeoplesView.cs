@@ -37,6 +37,23 @@ namespace ColonyCouncil
         private static float builtAt = -1f;
         private static DiplomacyModel dip;
 
+        /// <summary>The view's header: its two modes (Peoples, Faces) and its "?" (UI/UiKitViews.cs), made once.</summary>
+        private static ViewHeadModel head => headModel ??= MakeHead();
+        private static ViewHeadModel headModel;
+
+        private static ViewHeadModel MakeHead()
+        {
+            var m = new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.Peoples) };
+            m.labels.AddRange(RegionView.PeopleModes);
+            m.tips.AddRange(RegionView.PeopleModeTips);
+            m.pick = i =>
+            {
+                RegionView.faces = i == 1;
+                scroll = Vector2.zero;
+            };
+            return m;
+        }
+
         /// <summary>A people the colony can know: of humans, not hidden, not gone.</summary>
         public static bool Listed(Faction f) => f != null && !f.IsPlayer && !f.Hidden && !f.defeated && f.def != null && f.def.humanlikeFaction;
 
@@ -58,14 +75,9 @@ namespace ColonyCouncil
             }
             bool faces = RegionView.faces;
             string stat = faces ? FacesStat() : DiplomacyPanels.OwedStat(dip) ?? (rows.Count > 0 ? "CC_Peoples_Stat".Translate(rows.Count).Resolve() : null);
+            head.lit = faces ? 1 : 0;
             float top = UiKit.ViewHeader(rect, faces ? Icons.Visitor : Icons.Trust ?? Icons.People, "CC_Tab_Peoples".Translate(),
-                (faces ? "CC_Faces_Line" : "CC_Peoples_Line").Translate(), stat, RegionView.PeopleModes, faces ? 1 : 0, out int mode, RegionView.PeopleModeIcons,
-                RegionView.PeopleModeTips);
-            if (mode >= 0)
-            {
-                RegionView.faces = mode == 1;
-                scroll = Vector2.zero;
-            }
+                (faces ? "CC_Faces_Line" : "CC_Peoples_Line").Translate(), stat, null, 0f, null, head);
             var outRect = new Rect(rect.x, rect.y + top + 4f, rect.width, rect.height - top - 4f);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);

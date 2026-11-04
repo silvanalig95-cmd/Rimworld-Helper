@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council in four views
+
+*4 November 2026, version 0.83.0*
+
+- The council window has one row of four tabs: This week, People, Council and Colony. What were pages under them are now modes, small buttons under each view's title.
+- People is one table of everyone. A click on a row opens that colonist's card beside it, with their whole story, their dreams and their journal.
+- People, then Houses shows the colony's families, from the ties of blood and marriage among its people, and the houses it knows of in the region.
+- Every dream and journal is in the Chronicle under its Dreams and Journals filters, and a colonist named in the chronicle is a link to their card.
+- The planning window has four views: Plan, with the advisor's priorities as its second mode, Base, Making, and Rooms, as a list or at a glance.
+- The Almanac opens in a window of its own that you can move and size beside what it explains: from the book in every window's corner, or from the "?" on every view, which opens that view's page. A page you come back to opens where you left it.
+- A colonist's portrait in the council window opens their card in the drawer at the window's right, and the old shortcuts and buttons still lead where they went.
+
 ## Names that lead somewhere
 
 *4 November 2026, version 0.82.0*
