@@ -15,6 +15,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.64.2, the player's report (the guest tab still off screen, with RimHUD's taller inspect pane):
+  `GuestCheck.MaxTabHeight` reads the tab's own `InspectTabBase.PaneTopY` and leaves the 30 of the tab buttons; under
+  `MinScroll` (100) of room the checklist opens from a "What it takes" button in `GuestCheck.Window_GuestCheck`.
 - 0.64.1, the player's report (a journey's caravan "out of food" with full packs: their Lavish policy allowed none of
   the survival meals, insect jelly or agave) and requests (a reminder; one of their food policies set automatically
   on travel; addicts bring their drugs): `Journeys/RoadFood.cs` (`JourneyBook.roadPolicy` and `roadFood`, an hourly

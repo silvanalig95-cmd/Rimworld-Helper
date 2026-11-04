@@ -225,10 +225,64 @@ namespace ColonyCouncil
         private static Pawn scrolledFor;
 
         /// <summary>
-        /// The tallest the guest tab may grow: what's left of the screen above the inspect pane and the bottom bar, so its
-        /// top never goes off screen (the player's report: a long checklist did).
+        /// The tallest the guest tab may grow: what's left of the screen above the inspect pane and its row of tab buttons,
+        /// so its top never goes off screen (the player's report: a long checklist did). The pane's top is the tab's own
+        /// (InspectTabBase.PaneTopY), which follows a taller pane such as RimHUD's; the game's usual pane when unread.
         /// </summary>
-        internal static float MaxTabHeight => Mathf.Max(300f, UI.screenHeight - 35f - 165f - 12f);
+        internal static float MaxTabHeight
+        {
+            get
+            {
+                float top = paneTop > 0f ? paneTop : UI.screenHeight - 35f - InspectPaneUtility.PaneHeight;
+                return Mathf.Max(300f, top - InspectPaneUtility.TabHeight - 12f);
+            }
+        }
+
+        /// <summary>The least room worth a scrolling area for the checklist; less than that, it opens in its own window.</summary>
+        private const float MinScroll = 100f;
+
+        /// <summary>The whole checklist for one guest in a window of its own, for when the tab has no room for it.</summary>
+        public class Window_GuestCheck : Window
+        {
+            private readonly Pawn guest;
+            private Vector2 scrollPos;
+
+            public override Vector2 InitialSize => new Vector2(520f, Mathf.Min(620f, UI.screenHeight - 80f));
+
+            public Window_GuestCheck(Pawn guest)
+            {
+                this.guest = guest;
+                doCloseX = true;
+                draggable = true;
+                closeOnClickedOutside = false;
+                absorbInputAroundWindow = false;
+                preventCameraMotion = false;
+            }
+
+            public override void DoWindowContents(Rect inRect)
+            {
+                if (guest == null || guest.Destroyed || guest.Dead)
+                {
+                    Close();
+                    return;
+                }
+                var c = Of(guest);
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, 34f), "CC_GuestCheck_Title".Translate(guest.Named("PAWN")));
+                Text.Font = GameFont.Small;
+                if (c.verdictText.NullOrEmpty()) return;
+                var outer = new Rect(0f, 40f, inRect.width, inRect.height - 40f);
+                var view = new Rect(0f, 0f, outer.width - 16f, BodyHeight(c, guest, outer.width - 16f));
+                Widgets.BeginScrollView(outer, ref scrollPos, view);
+                DrawBody(view, c, guest);
+                Widgets.EndScrollView();
+                Text.Font = GameFont.Small;
+            }
+        }
+
+        /// <summary>The inspect pane's top as the guest tab saw it last (-1 until read).</summary>
+        private static float paneTop = -1f;
+        private static readonly MethodInfo PaneTopGetter = AccessTools.PropertyGetter(typeof(InspectTabBase), "PaneTopY");
 
         /// <summary>The checklist's own height at this width (the verdict and the lines), as <see cref="DrawBody"/> draws it.</summary>
         private static float BodyHeight(Check c, Pawn g, float w)
@@ -287,7 +341,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Below Hospitality's own lines, in its listing. The tab grows to fit, up to <see cref="MaxTabHeight"/>; a
-        /// checklist longer than that scrolls in its own area (mouse wheel or the bar at its side).
+        /// checklist longer than that scrolls in its own area (mouse wheel or the bar at its side), and with hardly any
+        /// room left it opens in a window of its own from the button beside its title.
         /// </summary>
         internal static void Draw(Listing_Standard listing, Pawn g)
         {
@@ -303,14 +358,33 @@ namespace ColonyCouncil
             listing.GapLine(8f);
             Text.Font = GameFont.Small;
             var head = listing.GetRect(Text.LineHeight);
-            UiKit.LabelFit(head, "CC_GuestCheck_Title".Translate(g.Named("PAWN")), UiKit.HeaderColor);
             float w = listing.ColumnWidth;
             float body = BodyHeight(c, g, w);
             // The listing starts 30 in and ends 10 short of the bottom: room left in the tallest tab for the checklist.
             float room = MaxTabHeight - 44f - listing.CurHeight;
-            if (body <= room || room < 80f)
+            bool fits = body <= room;
+            // Not all of it fits: a button beside the title opens the whole checklist in a window of its own.
+            float buttonW = fits ? 0f : Mathf.Min(170f, head.width * 0.4f);
+            UiKit.LabelFit(new Rect(head.x, head.y, head.width - buttonW - (fits ? 0f : 6f), head.height), "CC_GuestCheck_Title".Translate(g.Named("PAWN")), UiKit.HeaderColor);
+            if (!fits)
+            {
+                var b = new Rect(head.xMax - buttonW, head.y, buttonW, head.height);
+                if (Widgets.ButtonText(b, "CC_GuestCheck_Open".Translate()))
+                {
+                    Find.WindowStack.TryRemove(typeof(Window_GuestCheck));
+                    Find.WindowStack.Add(new Window_GuestCheck(g));
+                }
+                TooltipHandler.TipRegion(b, "CC_GuestCheck_Open_Tip".Translate());
+            }
+            if (fits)
             {
                 DrawBody(listing.GetRect(body), c, g);
+            }
+            else if (room < MinScroll)
+            {
+                // Hardly any room under Hospitality's own lines (a tall inspect pane, a small screen): the verdict on
+                // the title's hover, the rest in the window.
+                TooltipHandler.TipRegion(head, c.verdictText);
             }
             else
             {
@@ -337,6 +411,7 @@ namespace ColonyCouncil
         internal static void Size(ITab tab, Pawn g)
         {
             if (tab == null) return;
+            if (PaneTopGetter != null && PaneTopGetter.Invoke(tab, null) is float top) paneTop = top;
             ref Vector2 size = ref TabSize(tab);
             if (baseHeight < 0f) baseHeight = size.y;
             size.y = On && g != null && g == sizedFor ? Mathf.Min(MaxTabHeight, Mathf.Max(baseHeight, wanted)) : baseHeight;

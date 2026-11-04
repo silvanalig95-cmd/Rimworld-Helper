@@ -14,6 +14,8 @@
 
   <!-- The checklist on the guest tab (Source/ColonyCouncil/Integrations/GuestCheck.cs). -->
   <CC_GuestCheck_Title>Recruiting {PAWN_nameDef}</CC_GuestCheck_Title>
+  <CC_GuestCheck_Open>What it takes</CC_GuestCheck_Open>
+  <CC_GuestCheck_Open_Tip>The whole recruiting checklist in a window of its own, for when the guest tab has no room to show all of it.</CC_GuestCheck_Open_Tip>
   <CC_GuestCheck_Ready>{PAWN_nameDef} would join now: use Recruit.</CC_GuestCheck_Ready>
   <CC_GuestCheck_ForceOnly>{PAWN_nameDef} won't join of {PAWN_possessive} own will yet, so only Recruit by force works for now. What's missing is below.</CC_GuestCheck_ForceOnly>
   <CC_GuestCheck_ForceOnlyAcid>{PAWN_nameDef} carries a death acidifier and has no relative among your people, so {PAWN_pronoun} joins only by force.</CC_GuestCheck_ForceOnlyAcid>

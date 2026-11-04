@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The guest tab on screen
+
+*4 November 2026, version 0.64.2*
+
+- The guest tab with the recruiting checklist could still reach off the top of the screen with a taller inspect pane, such as RimHUD's, because its limit assumed the game's usual pane and left out the row of tab buttons. It now stops at the real top of the pane and its buttons.
+- When Hospitality's own lines leave little room, the checklist scrolls in what is left, and with hardly any room a "What it takes" button beside its title opens the whole checklist in a window of its own.
+
 ## Food for the road
 
 *4 November 2026, version 0.64.1*
