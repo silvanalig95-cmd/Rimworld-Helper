@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 480; modelled: 480; growing without end: 0.
+Saved collections found: 481; modelled: 481; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** after two, **3,001 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -326,6 +326,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
+| `Journeys/Journeys.cs:plans` | one plan per home at most, until it sets off (one home in the model) | fixed | 1 | 1 | 1 | 0.2 |
 | `Missions/StoriesComponent.cs:missions` | missions 2 days after they end | window | 0 | 0 | 0 | 0.2 |
 | `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |

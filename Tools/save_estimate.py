@@ -390,6 +390,7 @@ MODEL = {
     "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),
     # The world
     # A journey planned ahead (Journeys/Journeys.cs): one plan at a time, gone when they set off or it's called off.
+    "Journeys/Journeys.cs:plans": ("fixed", 1, 200, "one plan per home at most, until it sets off (one home in the model)"),
     "Journeys/Journeys.cs:travellers": ("fixed", COLONISTS, P, "the one plan's travellers, until they set off"),
     "Journeys/Journeys.cs:animals": ("fixed", 10, P, "the animals they bring"),
     "Journeys/Journeys.cs:packing": ("fixed", 20, 130, "the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off"),

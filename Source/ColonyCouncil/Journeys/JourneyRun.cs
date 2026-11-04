@@ -327,7 +327,7 @@ namespace ColonyCouncil
         /// <summary>Someone arrived at the gate: now and then a word about being ready to go.</summary>
         public static void AtGate(Pawn p)
         {
-            var plan = JourneyBook.Plan;
+            var plan = JourneyBook.PlanOf(p);
             if (plan == null || !plan.Has(p) || plan.Done(p, JourneyMath.Step.Gather) || !Speech.On) return;
             plan.MarkDone(p, JourneyMath.Step.Gather);
             if (!Rand.Chance(0.35f)) return;
@@ -456,7 +456,7 @@ namespace ColonyCouncil
             foreach (var p in plan.travellers)
                 if (p != null && p.Spawned && !p.Dead && p.inventory != null && plan.packing.Any(l => JourneyPack.Carried(p, l.def) > 0))
                     p.inventory.UnloadEverything = true;
-            if (book != null && book.plan == plan) book.plan = null;
+            book?.Remove(plan);
             JourneyBook.Touch();
             Notify.Message(key.Translate(plan.Dest).Resolve(), new LookTargets(plan.travellers.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent,
                 Importance.Important);
@@ -500,7 +500,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("journeys: setting off", e);
             }
-            if (book != null && book.plan == plan) book.plan = null;
+            book?.Remove(plan);
             JourneyBook.Touch();
             if (!forming)
             {
@@ -542,7 +542,8 @@ namespace ColonyCouncil
         {
             var book = JourneyBook.Instance;
             if (book == null || plan == null) return;
-            var old = book.plan;
+            // The plan setting off from this home is replaced (another home's goes on as it was).
+            var old = book.Put(plan);
             if (old != null && old != plan)
             {
                 // Replacing a plan: whoever no longer goes gets their hours and packs back.
@@ -559,7 +560,6 @@ namespace ColonyCouncil
             tries.Clear();
             plan.Changed();
             if (isNew || plan.id == 0) plan.id = book.nextId++;
-            book.plan = plan;
             JourneyBook.Touch();
             Notify.Message("CC_Journey_Planned".Translate(Who(plan), plan.Dest, When(plan)).Resolve(), new LookTargets(plan.travellers.Where(p => p != null && p.Spawned)),
                 MessageTypeDefOf.PositiveEvent, Importance.Important);
