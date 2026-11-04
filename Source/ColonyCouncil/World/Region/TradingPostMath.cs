@@ -109,6 +109,13 @@ namespace ColonyCouncil
             valid && fromHome >= MinTiles && fromHome <= MaxTiles && RiseFallMath.ClearOfHomes(nearestOurs, goodwillTiles)
             && (nearestTown < 0f || nearestTown >= TownGap) && settlementWeight > 0f;
 
+        /// <summary>
+        /// A post is still near its home: on the home's layer of the world and within the region map's reach of it
+        /// (<paramref name="reach"/>). Its home's records carried far away (a gravship landed elsewhere, the colony settled
+        /// anew), it is no longer that home's post.
+        /// </summary>
+        public static bool StaysNear(bool sameLayer, float tiles, float reach) => sameLayer && tiles >= 0f && tiles <= reach;
+
         /// <summary>A tile whose heading from the home is within <see cref="HeadingDegrees"/> of their nearest town's (an angle of 0 to 180).</summary>
         public static bool Toward(float degrees) => degrees >= 0f && degrees <= HeadingDegrees;
 

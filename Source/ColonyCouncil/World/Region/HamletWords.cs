@@ -258,7 +258,10 @@ namespace ColonyCouncil
                         Tell.Minor(NewsKind.World, Importance.Notable, home, T("CC_Hamlet_End_Failed", a), look, MessageTypeDefOf.NegativeEvent);
                         return;
                     case HamletEnd.Gone:
-                        Tell.Minor(NewsKind.World, Importance.Notable, home, T(stood ? "CC_Hamlet_End_Gone" : "CC_Hamlet_End_GoneHome", a), look, MessageTypeDefOf.NeutralEvent);
+                        // Before it stood: turned for home over a war only when there is one; else no place near the colony would do
+                        // (the place taken meanwhile and no other found, or their people fallen apart).
+                        string gone = stood ? "CC_Hamlet_End_Gone" : h.people != null && h.people.HostileTo(Faction.OfPlayer) ? "CC_Hamlet_End_GoneHome" : "CC_Hamlet_End_NoPlace";
+                        Tell.Minor(NewsKind.World, Importance.Notable, home, T(gone, a), look, MessageTypeDefOf.NeutralEvent);
                         return;
                 }
             }

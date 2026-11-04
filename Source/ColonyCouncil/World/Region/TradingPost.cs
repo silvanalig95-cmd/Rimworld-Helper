@@ -245,6 +245,14 @@ namespace ColonyCouncil
                 End(home, ph, p, PostEnd.Gone, null, null);
                 return;
             }
+            // Its home's records came with the colony to a far place (a gravship landed elsewhere, the colony settled anew):
+            // no longer this home's post, it is an ordinary town of theirs, and the home has room for one of its own again.
+            bool sameLayer = home.Tile.Valid && t.Tile.Layer == home.Tile.Layer;
+            if (!TradingPostMath.StaysNear(sameLayer, sameLayer ? Find.WorldGrid.ApproxDistanceInTiles(home.Tile, t.Tile) : -1f, RegionTowns.ReachTiles))
+            {
+                End(home, ph, p, PostEnd.Gone, null, null);
+                return;
+            }
             var rec = WorldLedger.TownFor(t.ID, t.HasName ? t.Name : p.name, t.Faction, true);
             if (rec != null && rec.kind != TownKind.Post)
             {

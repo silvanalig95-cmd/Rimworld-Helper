@@ -196,6 +196,8 @@ public static class RaidersCampTests
         C(code.Contains("SiteMaker.MakeSite(SitePartDefOf.BanditCamp"), "the camp is the game's own bandit camp site");
         C(code.Contains("QuestTuning.PointsToRaidSourceRaidsMTBDaysCurve"), "its raids read the game's raid-source curve");
         C(code.Contains("LetterDefOf.ThreatSmall") && code.Contains("\"CC_RaidCamp_Found_Label\""), "it is found with a threat letter");
+        C(code.Contains("if (On) TryFind(home, rh, c, now);") && code.Contains("else if (On) TryWarn(home, c, now);"),
+            "switched off, a hidden camp is never found (its letter would promise raids that never come)");
         string settings = File.ReadAllText(Path.Combine(src, "CouncilSettings.cs"));
         C(settings.Contains("public float raidersCamps = 1f;") && settings.Contains("Scribe_Values.Look(ref raidersCamps, \"raidersCamps\", 1f);"), "the setting is on by default, at 100%");
         C(File.ReadAllText(Path.Combine(src, "UI", "SettingsCatalog.cs")).Contains("Slider(\"raidersCamps\""), "the setting is in the settings window");

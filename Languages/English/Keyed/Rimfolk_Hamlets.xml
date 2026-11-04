@@ -119,6 +119,7 @@
   <CC_Hamlet_End_Failed>{HAMLET}, the hamlet under the colony's protection, has been given up by its people.</CC_Hamlet_End_Failed>
   <CC_Hamlet_End_Gone>{HAMLET} is no longer the colony's hamlet.</CC_Hamlet_End_Gone>
   <CC_Hamlet_End_GoneHome>The settlers of {PEOPLE} have turned for home: their people and the colony are at war.</CC_Hamlet_End_GoneHome>
+  <CC_Hamlet_End_NoPlace>The settlers of {PEOPLE} found no place near the colony to settle after all, and have gone to look for one elsewhere.</CC_Hamlet_End_NoPlace>
 
   <!-- The history's lines -->
   <CC_Hamlet_H_Founded>The settlers of {PEOPLE} founded {HAMLET} under the protection of {COLONY}.</CC_Hamlet_H_Founded>

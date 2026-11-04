@@ -173,6 +173,11 @@ public static class HamletTests
         C(escort.Contains("tracker.Make(home, center, CampSite.ColonyCenter(home), kind, h.people, hot, null, null, given)") && escort.Contains("\"Rimfolk_Camp_Settlers\""),
             "they camp at the gate by the camps' own machinery, the settlers' kind");
         C(!escort.Contains("AddPawn") && !escort.Contains("CaravanMaker"), "beside the caravan, never in its pawn list (decision 10)");
+        string hamlet = Code("World/Region/Hamlet.cs");
+        C(hamlet.Contains("p.Faction == people && !p.IsPrisonerOfColony && !p.IsSlaveOfColony") && found.Contains("living.Contains(h.leader)"),
+            "a settler the colony took prisoner, enslaved or took in is no longer one of them: never taken off the map with the rest, never the hamlet's founder");
+        C(Code("World/Region/HamletWords.cs").Contains("h.people.HostileTo(Faction.OfPlayer) ? \"CC_Hamlet_End_GoneHome\" : \"CC_Hamlet_End_NoPlace\""),
+            "settlers who give up before their hamlet stands are told turned home for a war only when there is one");
         string patches = Code("World/Region/HamletPatches.cs");
         C(patches.Contains("nameof(Caravan.GetInspectString)") && patches.Contains("nameof(CaravanIncidentUtility.SetupCaravanAttackMap)") && !Regex.IsMatch(patches, @"return false;"),
             "the caravan's panel line and the fight, notes only");

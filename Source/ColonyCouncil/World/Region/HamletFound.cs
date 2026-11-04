@@ -39,7 +39,8 @@ namespace ColonyCouncil
             var town = MakeTown(people, tile);
             if (town == null) return null;
             int now = Now;
-            var leader = h.leader != null && !h.leader.Dead && !h.leader.Discarded ? h.leader : h.Living.FirstOrDefault(p => !p.DevelopmentalStage.Juvenile());
+            var living = h.Living;
+            var leader = h.leader != null && living.Contains(h.leader) ? h.leader : living.FirstOrDefault(p => !p.DevelopmentalStage.Juvenile());
             h.leader = leader;
             h.town = town.ID;
             h.name = town.Name;

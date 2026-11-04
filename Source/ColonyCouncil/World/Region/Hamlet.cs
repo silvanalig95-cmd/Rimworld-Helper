@@ -117,8 +117,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The settlers still alive and not lost to the game.</summary>
-        public List<Pawn> Living => settlers.Where(p => p != null && !p.Dead && !p.Discarded).ToList();
+        /// <summary>
+        /// The settlers still alive, not lost to the game and still of their people: one the colony took prisoner or
+        /// enslaved, or who joined it, stays where they are and is no longer one of them.
+        /// </summary>
+        public List<Pawn> Living => settlers.Where(p => p != null && !p.Dead && !p.Discarded && p.Faction == people && !p.IsPrisonerOfColony && !p.IsSlaveOfColony).ToList();
     }
 
     /// <summary>
