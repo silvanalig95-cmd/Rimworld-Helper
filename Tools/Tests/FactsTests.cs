@@ -33,7 +33,52 @@ public static class FactsTests
         TalkFill(texts, C);
         Replaces(root, C);
         Sayings(C);
+        Letters(root, C);
         return n;
+    }
+
+    // ---------------- Letters ----------------
+
+    /// <summary>
+    /// The neighbour letters' quote takes the facts' tags (the ties and the history) and values: every line that names
+    /// none of them is matched exactly as before, so the same line is picked with the same dice, and the facts' tags are
+    /// only those families. The news provider adds no tag, and the letters' own news reader is gone.
+    /// </summary>
+    private static void Letters(string root, Action<bool, string> C)
+    {
+        // Every tag the ties and the history can give.
+        var given = new FactSet();
+        foreach (var k in FactsMath.TieKinds)
+            foreach (bool ours in new[] { false, true })
+                FactsMath.AddTie(given, new TieFact { kind = k, oursBound = ours, you = true, calledIn = true, days = 1f, toName = "x" });
+        FactsMath.AddLately(given, "town", NewKinds.Select(k => (k, 1f)));
+        FactsMath.AddLately(given, "them", NewKinds.Select(k => (k, 1f)));
+        C(given.tags.All(NewTag), "the ties and the history give only tags of their own families");
+        string src = Path.Combine(root, "Source", "ColonyCouncil");
+        C(!File.ReadAllText(Path.Combine(src, "Text", "Facts", "FactsNews.cs")).Contains(".Tag("), "the news adds no tag");
+        string letters = File.ReadAllText(Path.Combine(src, "World", "NeighbourLetters.cs"));
+        C(!letters.Contains("NewsItems") && letters.Contains("FactScene.Letter("), "the letters ask the facts service for their news, with no reader of their own");
+
+        var pools = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Neighbours.xml")).Root!.Elements("ColonyCouncil.FlavorPoolDef")
+            .Where(d => d.Element("defName")?.Value == "Rimfolk_Pool_NeighbourWrites").SelectMany(d => d.Descendants("li")).Select(li => li.Value).ToList();
+        C(pools.Count >= 20, $"the letters' lines ({pools.Count})");
+        var own = pools.Select(LineTags.Parse).Where(p => p.tags != null).SelectMany(p => p.alts.SelectMany(a => a)).Select(a => a.name).Distinct().ToList();
+        var r = new Random(3);
+        int same = 0, all = 0;
+        foreach (var line in pools)
+        {
+            var parsed = LineTags.Parse(line);
+            if (parsed.alts != null && parsed.alts.SelectMany(a => a).Any(a => NewTag(a.name))) continue;
+            for (int k = 0; k < 20; k++)
+            {
+                var ctx = own.Where(_ => r.NextDouble() < 0.4).ToHashSet();
+                var with = new HashSet<string>(ctx);
+                with.UnionWith(given.tags.Where(_ => r.NextDouble() < 0.5));
+                all++;
+                if (LineTags.Match(parsed, ctx) == LineTags.Match(parsed, with)) same++;
+            }
+        }
+        C(same == all, $"a letter's line that names no tie or history is matched as before ({same} of {all})");
     }
 
     // ---------------- One fill ----------------

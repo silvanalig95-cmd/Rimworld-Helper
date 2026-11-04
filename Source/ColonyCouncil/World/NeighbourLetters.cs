@@ -956,9 +956,12 @@ namespace ColonyCouncil
                 introKey.Translate(n.Name.Named("NAME"), title.Named("TITLE"), town.Named("TOWN"), (speaker?.LabelShort ?? l.WriterName).Named("PAWN"),
                     PurposeWord(l.purpose).Named("PURPOSE"), (n.faction?.Name ?? "").Named("FACTION")).Resolve()
             };
-            string quote = Quote(l, n, tone, speaker);
+            // What is true between the colony and them, for their words and their news (the facts service, Text/Facts/).
+            bool news = l.purpose == LetterPurpose.News && tone != AnswerTone.Refusal;
+            var facts = Facts.For(FactScene.Letter(n, speaker ?? l.writer, l.map, news));
+            string quote = Quote(l, n, tone, speaker, facts);
             if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
-            if (l.purpose == LetterPurpose.News && tone != AnswerTone.Refusal) parts.Add(News(n, tone));
+            if (news) parts.Add(News(n, tone, facts));
             if (l.purpose == LetterPurpose.Help)
                 parts.Add(things.Count > 0 ? (l.channel == LetterChannel.Console ? "CC_Letter_HelpSent_Call" : "CC_Letter_HelpSent").Translate(Couriers.Describe(things).Named("GOODS")).Resolve()
                     : "CC_Letter_HelpNot".Translate(n.Name.Named("NAME")).Resolve());
@@ -970,8 +973,13 @@ namespace ColonyCouncil
             return string.Join("\n\n", parts);
         }
 
-        /// <summary>Their own words: a line that fits what it was for, how they took it, their people's ways and the way it went.</summary>
-        private static string Quote(NeighbourLetter l, Notable n, AnswerTone tone, Pawn speaker)
+        /// <summary>
+        /// Their own words: a line that fits what it was for, how they took it, their people's ways and the way it went,
+        /// and (for lines written for them) the ties between the two sides and what happened at their town or to them
+        /// lately (<paramref name="facts"/>: tie:KIND, town:lately..., with {FAVOURFOR} and the like). A line that names
+        /// none of those is chosen as it always was.
+        /// </summary>
+        private static string Quote(NeighbourLetter l, Notable n, AnswerTone tone, Pawn speaker, FactSet facts)
         {
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(WritePool);
             if (pool == null) return null;
@@ -981,60 +989,31 @@ namespace ColonyCouncil
             if (l.hostile) tags.Add("war");
             if (l.help == "food") tags.Add("food");
             if (l.help == "medicine") tags.Add("medicine");
+            if (facts != null) tags.UnionWith(facts.tags);
             var lines = pool.lines.For(Tone.Plain);
             string line = Flavor.PickTagged(lines.Where(x => LineTags.Of(x).tags?.Contains(l.purpose.ToString().ToLowerInvariant()) ?? false), tags)
                           ?? Flavor.PickTagged(lines, tags);
             if (line.NullOrEmpty()) return null;
-            return Texts.Fill(line, ("WRITER", speaker?.LabelShort ?? l.WriterName), ("NAME", n.Name), ("TOWN", n.townName ?? ""), ("FACTION", n.faction?.Name ?? ""),
-                ("TOPIC", l.topic ?? ""), ("HELP", HelpLabel(l.help)));
-        }
-
-        /// <summary>What they tell of when asked for news: real things near them (a world event, a place, a quest of theirs, their wars).</summary>
-        private static string News(Notable n, AnswerTone tone)
-        {
-            int max = tone <= AnswerTone.Cordial ? 3 : tone == AnswerTone.Cool ? 2 : 1;
-            var items = NewsItems(n.faction, NotableBook.TownOf(n.town));
-            if (items.Count == 0) return "CC_News_Nothing".Translate().Resolve();
-            return "CC_News_Head".Translate(n.Name.Named("NAME")).Resolve() + "\n" + string.Join("\n", items.Take(max).Select(i => "  - " + i));
+            var values = facts != null ? new Dictionary<string, string>(facts.values) : new Dictionary<string, string>();
+            values["WRITER"] = speaker?.LabelShort ?? l.WriterName;
+            values["NAME"] = n.Name;
+            values["TOWN"] = n.townName ?? "";
+            values["FACTION"] = n.faction?.Name ?? "";
+            values["TOPIC"] = l.topic ?? "";
+            values["HELP"] = HelpLabel(l.help);
+            return Texts.Fill(line, values);
         }
 
         /// <summary>
-        /// Real things near a people's town, as they'd tell of them (a letter's news, and someone of theirs asked about
-        /// home, Outsiders/): world events in the region or on them, places near the town, a quest of theirs, their wars.
+        /// What they tell of when asked for news: real things near them (a world event, a place, a quest of theirs, their
+        /// wars), the world's news the facts service read for the letter.
         /// </summary>
-        public static List<string> NewsItems(Faction f, Settlement town)
+        private static string News(Notable n, AnswerTone tone, FactSet facts)
         {
-            var items = new List<string>();
-            if (f == null) return items;
-            try
-            {
-                foreach (var s in WorldSituations.Instance?.Running ?? Enumerable.Empty<WorldSituation>())
-                    if (s.ctx?.faction == null || s.ctx.faction == f || s.ctx.enemy == f)
-                        items.Add((s.ctx?.placeName).NullOrEmpty() ? "CC_News_Situation".Translate(s.Label.Named("WHAT")).Resolve()
-                            : "CC_News_SituationAt".Translate(s.Label.Named("WHAT"), s.ctx.placeName.Named("PLACE")).Resolve());
-                if (town != null)
-                    foreach (var site in Find.WorldObjects.Sites.Where(x => x != null && x.Tile.Layer == town.Tile.Layer).OrderBy(x => Find.WorldGrid.ApproxDistanceInTiles(x.Tile, town.Tile)).Take(2))
-                        if (Find.WorldGrid.ApproxDistanceInTiles(site.Tile, town.Tile) <= 15f)
-                            items.Add("CC_News_Site".Translate(site.LabelCap.Named("SITE"), Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve());
-                foreach (var q in Find.QuestManager.QuestsListForReading)
-                {
-                    if (q == null || q.hidden || q.State != QuestState.NotYetAccepted || q.name.NullOrEmpty()) continue;
-                    if (!q.InvolvedFactions.Contains(f)) continue;
-                    items.Add("CC_News_Quest".Translate(q.name.Named("QUEST")).Resolve());
-                    break;
-                }
-                foreach (var g in Find.FactionManager.AllFactionsListForReading)
-                {
-                    if (g == null || g == f || g.IsPlayer || g.Hidden || g.defeated || !g.def.humanlikeFaction || !f.HostileTo(g) || g.def.permanentEnemy) continue;
-                    items.Add("CC_News_War".Translate(g.Name.Named("FACTION")).Resolve());
-                    break;
-                }
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("letter news", e);
-            }
-            return items;
+            int max = tone <= AnswerTone.Cordial ? 3 : tone == AnswerTone.Cool ? 2 : 1;
+            var items = facts.news;
+            if (items.Count == 0) return "CC_News_Nothing".Translate().Resolve();
+            return "CC_News_Head".Translate(n.Name.Named("NAME")).Resolve() + "\n" + string.Join("\n", items.Take(max).Select(i => "  - " + i));
         }
 
         // ---------------- An invitation ----------------
