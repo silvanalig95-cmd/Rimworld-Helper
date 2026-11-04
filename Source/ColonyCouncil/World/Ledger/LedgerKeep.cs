@@ -120,6 +120,9 @@ namespace ColonyCouncil
                            || (CampTracker.Instance?.All.Any(c => c?.members != null && c.members.Contains(p)) ?? false);
                 case KeepFor.Chain: return StoryChains.Holds(p);
                 case KeepFor.Founding: return FounderNamed(Refs.Of(p));
+                // A raiders' camp's leader (World/Region/RaidersCamp.cs), and a follow-up's own person while it waits (World/Region/FollowUps.cs).
+                case RaidersCamps.KeepReason: return RaidersCamps.Leads(p);
+                case FollowUps.KeepReason: return FollowUps.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

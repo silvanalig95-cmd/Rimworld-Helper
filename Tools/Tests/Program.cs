@@ -441,6 +441,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {TravelTests.Run(root, Check)} things about travelers to the remote (the rates by remoteness, the land's reasons, far news and its bounds, a quarrel's rate, rites and titles in invitations).");
         Console.WriteLine($"Checked {RaidersCampTests.Run(root, Check)} things about raiders' camps (when one is set up, where, found, the raid schedule from the curve, giving up, after an attack, price and word, the endings).");
         Console.WriteLine($"Checked {RiseFallTests.Run(root, Check)} things about towns that rise and fall (the pace, who is given up, ruins and their days, who settles a ruin, new towns and where they stand, caravans, five years of a reach).");
+        Console.WriteLine($"Checked {FollowUpTests.Run(root, Check)} things about the follow-ups and the memory of single colonists (the warlord's son by his father's end, the town that grew, a camp found another way, marks, fading, friend and foe, a trader's refusal).");
         Console.WriteLine($"Checked {DefenseTests.Run(root, Check)} things about the defense planner (its plans in every turn, reading a map's ways in).");
         Console.WriteLine($"Checked {DefenseLineTests.Run(root, Check)} things about defense lines (the way round, the steps, strength and lessons).");
         Console.WriteLine($"Checked {CoverDragTests.Run(root, Check)} things about taking cover with a drag (cells, order, never off the map).");

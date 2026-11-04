@@ -259,6 +259,8 @@ namespace ColonyCouncil
             ["campBroken"] = K(DeedSide.Wrong, 12),
             ["campFailed"] = K(DeedSide.Wrong, 4),
             ["paidOff"] = K(DeedSide.Favor, 5),
+            // A raiders' camp that troubled their roads, broken by the colony (World/ColonistMemory.cs).
+            ["brokeCamp"] = K(DeedSide.Favor, 10),
             ["campStruck"] = K(DeedSide.TheirFavor, 5),
             ["burnedCamp"] = K(DeedSide.TheirFavor, 10)
         };

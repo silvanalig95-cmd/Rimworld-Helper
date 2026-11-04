@@ -482,3 +482,17 @@ Rimfolk_Evt_Wedding [option 2] a refusal: the families take the couple home (Dil
 
 # Defs/WorldSituationDefs/Rimfolk_WS_Region.xml
 Rimfolk_WS_NewTownMet [end:settled] far away, told (the gift went out by hand to the runner in the welcome beat)
+
+# Defs/WorldSituationDefs/Rimfolk_WS_GrownTown.xml
+Rimfolk_WS_GrownTown [name/0] a name given: the town "carries" it on the maps, nothing carried
+Rimfolk_WS_GrownTown [market/0] already real: the goods are carried out to the carter at the gate (WorldEffect_Sell toVisitor)
+Rimfolk_WS_GrownTown [crowd] already real: the game's own visitors come (WorldEffect_Incident)
+
+# Defs/WorldSituationDefs/Rimfolk_WS_WarlordSon.xml
+Rimfolk_WS_SonBand [end:slain] told after it happened ("held it together" is the band)
+Rimfolk_WS_SonGate [end:grave] told after it happened (the token was carried to the grave in the answer)
+Rimfolk_WS_SonExile [shelter/0] already real: they join (WorldEffect_Join); the hunters' raid, if it comes, is a real raid
+Rimfolk_WS_SonExile [shelter/2] a refusal: the visitors at the gate go back to the road
+Rimfolk_WS_SonExile [end:refused] a refusal, told
+Rimfolk_WS_SonRiders [end:fed] told after it happened (the meal was carried out in the answer)
+Rimfolk_WS_SonRiders [end:refused] a refusal, told

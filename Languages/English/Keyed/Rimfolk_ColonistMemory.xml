@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A people's memory of single colonists (World/ColonistMemory.cs; docs/design/stage1-region.md, item 7;
+       decision 13). -->
+
+  <!-- What a colonist is remembered for, in a few words (a notable's page; {COUNT} how many times). -->
+  <CC_ColMem_Why_campBroken>broke a raiders' camp that troubled their roads</CC_ColMem_Why_campBroken>
+  <CC_ColMem_Why_foughtBeside>fought beside their people</CC_ColMem_Why_foughtBeside>
+  <CC_ColMem_Why_tradedPost>trades at their post</CC_ColMem_Why_tradedPost>
+  <CC_ColMem_Why_walkedSettlers>walked their settlers out to their new land</CC_ColMem_Why_walkedSettlers>
+  <CC_ColMem_Why_killedRaid>killed one of theirs who came raiding</CC_ColMem_Why_killedRaid>
+  <CC_ColMem_Why_killedField>killed one of theirs in a fight</CC_ColMem_Why_killedField>
+  <CC_ColMem_Why_killedPeace>killed one of theirs in time of peace</CC_ColMem_Why_killedPeace>
+  <CC_ColMem_Why_executed>executed one of theirs held prisoner</CC_ColMem_Why_executed>
+  <CC_ColMem_Why_harvested>cut organs out of one of theirs held prisoner</CC_ColMem_Why_harvested>
+
+  <!-- Their trader won't deal with this colonist: the trade option, greyed out, says why. -->
+  <CC_ColMem_Refuse>{FACTION} won't trade with {PAWN}: they remember that {PAWN} {WHY}</CC_ColMem_Refuse>
+
+  <!-- A raiders' camp broken, as the peoples it troubled remember the colony for it (World/FactionMemory.cs). -->
+  <CC_Memory_Deed_brokeCamp>broke the raiders' camp that troubled their roads</CC_Memory_Deed_brokeCamp>
+  <CC_Memory_Deed_brokeCamp_Name>broke the {NAME} that troubled their roads</CC_Memory_Deed_brokeCamp_Name>
+
+</LanguageData>

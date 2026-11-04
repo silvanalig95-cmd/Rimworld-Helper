@@ -15,6 +15,32 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Stage 1 release 7, follow-ups (decisions 12 and 13): `World/Region/FollowUpsMath.cs` (pure: the son's branch by
+  the warlord's ending, the window, his age, what he asks; the grown town's boost; `CampWarnMath`), `FollowUps.cs`
+  (`FollowUp`, `FollowUpsHome` on `RegionHome.followUps`, six waiting a home; due 60 to 180 days after, started in the
+  region's day when `SlotFree`, one a day, let go 60 days past the window; keep reason `followup`), `WarlordSon.cs`
+  (`WarlordSons.Remember`/`Watch` hooked in `WarlordWorker`; `SituationWorker_Son` and four defs in
+  `Rimfolk_WS_WarlordSon.xml`, kind `son`: Band via `RaidersCamps.SetUp(home, people, son, "son")`, Gate asking for his
+  father (`DilemmaEffect_KinFree`), to meet him, a token on his grave, his weapon (thing id noted while the warlord was at
+  a home) or a peace (ledger Promise `warlordson`), Exile (shelter; hunters at war raid 30%), Riders; his parent's
+  child by `PawnRelationDefOf.Parent` while the game has the parent, else by name), `GrownTown.cs` (`GrownTowns.Remember`
+  hooked in the other settlers' `Ended`, `GrownTowns.Note` for a hamlet's second year; `Rimfolk_WS_GrownTown`: kind
+  Town, prosperity +15 to 90, `NotableBook.MakeHead`, `world:grown`, a name by their age, the first market's carter,
+  `first:FLAG` lines), `RaidersCampWarnings.cs` (partial `RaidersCamps`: the leader kept hourly, on the camp's map at
+  `MapMade`, `fought` noted; a hidden camp found by a visitor's warning or a neighbour's letter), `World/ColonistMemory.cs`
+  and `ColonistMemoryMath.cs` (one ledger Regard tie per people and colonist, origin `colonist`, marks in its key, six a
+  people, 48 in all; kinds campBroken, foughtBeside, tradedPost, walkedSettlers, killedRaid/Field/Peace, executed,
+  harvested, plus every deed `KinMemory.Name` gives; read by `KinMemory.Friend`/`AddTags`, the facts' `{FOE}`,
+  `you:foe`, `you:remembered`, `Notable.OpinionOf`/`Known`, and `FactionUtility.CanTradeWith` at -12). Hooks for later
+  releases: `ColonistMemory.TradedAtPost(f, negotiator, value)` (posts), `ColonistMemory.WalkedSettlers(f, escorts)`
+  and `GrownTowns.Note(home, town, leader, firstYear, tale)` (hamlets). Bug fix: the ledger's daily check now knows a
+  camp leader's `raidcamp` reason (it dropped it, so a leader could be let go). New deed `brokeCamp`; 7 talk pieces
+  (`Rimfolk_OutsiderTalks_Remembered.xml`); Almanac: world events (the son, the town that grew), what the world
+  remembers (by name, for good or ill), raiders' camps. `FollowUpTests`. To check in game: the trade option greyed with
+  the reason (`CanTradeWith` is what the float menu and a caravan's negotiator use), the son on the camp's map, the
+  father walked out to his son, the grown town's rename in the notables and the region map. Left: the sword is the
+  weapon's kind from the stores (any of that def), settlers as a son's branch and the posts' and hamlets' calls wait
+  for their releases, talk pieces for given-up or resettled towns (the writing pass has fortunes).
 - 0.73.0, stage 1 release 3, rise and fall: `World/Region/RiseFallMath.cs` (pure), `RiseFall.cs`, `NewTowns.cs`,
   `RiseFallLedger.cs` (`LedgerRuin`), `RiseFallSituation.cs` (`Rimfolk_WS_GivenUp`), `RiseFallWords.cs`,
   `RiseFallEffects.cs`, `RiseFallPatches.cs` (`SettlementDefeatUtility.CheckDefeated` postfix notes a fall); given up

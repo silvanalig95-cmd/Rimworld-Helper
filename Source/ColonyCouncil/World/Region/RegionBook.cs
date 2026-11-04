@@ -35,6 +35,8 @@ namespace ColonyCouncil
         public RaidersCampHome raiders;
         /// <summary>When a town in this home's reach was last given up, settled again from a ruin, or founded by Rimfolk (World/Region/RiseFall.cs), or -1.</summary>
         public int givenUpAt = -1, resettledAt = -1, foundedAt = -1;
+        /// <summary>World events that will follow from ones that ended here (the warlord's son, a town that grew: World/Region/FollowUps.cs); null until needed.</summary>
+        public FollowUpsHome followUps;
 
         public void ExposeData()
         {
@@ -46,6 +48,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref givenUpAt, "givenUpAt", -1);
             Scribe_Values.Look(ref resettledAt, "resettledAt", -1);
             Scribe_Values.Look(ref foundedAt, "foundedAt", -1);
+            Scribe_Deep.Look(ref followUps, "followUps");
         }
     }
 
@@ -179,6 +182,7 @@ namespace ColonyCouncil
             Safe("raiders' camps", () => RaidersCamps.Daily(this, now));
             // Towns given up, ruins, ruins settled again, Rimfolk's own new towns (World/Region/RiseFall.cs).
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
+            Safe("follow-ups", () => FollowUps.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 

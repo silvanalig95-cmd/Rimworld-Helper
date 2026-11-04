@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 486; modelled: 486; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** after two, **3,055 KB** after five.
+Saved collections found: 489; modelled: 489; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,887 KB** after two, **3,057 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -81,6 +81,7 @@ Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** aft
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 68 | 68 | 68 | 6.0 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Outsiders/OutsiderBook.cs:visits` | OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave | fixed | 30 | 30 | 30 | 5.9 |
@@ -89,7 +90,6 @@ Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** aft
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 63 | 63 | 63 | 5.5 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
@@ -193,6 +193,7 @@ Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** aft
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
+| `World/Region/FollowUps.cs:waiting` | follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows | cap | 1 | 1 | 3 | 1.2 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
 | `Building/BuildAhead.cs:defs` | per step: the blueprints taken out of a room's kept side, one strip at most | fixed | 30 | 30 | 30 | 1.2 |
 | `Building/BuildAhead.cs:stuffs` | with the above: their materials | fixed | 30 | 30 | 30 | 1.2 |
@@ -496,6 +497,8 @@ Rimfolk's part of the save, roughly: **2,432 KB** after a year, **2,886 KB** aft
 | `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Notables.cs:notes` | per notable: NotableMath.MaxMemory lines, the oldest go (counted under notables) | fixed | 8 | 8 | 8 | (in its record) |
 | `World/Notables.cs:regards` | per notable: NotableMath.MaxRegards colonists, the faded dropped daily (counted under notables) | fixed | 8 | 8 | 8 | (in its record) |
+| `World/Region/FollowUps.cs:flags` | per follow-up: the flags what it follows ended with (counted under waiting) | fixed | 8 | 8 | 8 | (in its record) |
+| `World/Region/RaidersCamp.cs:fought` | the colony's people who fought on a camp's map, while it stands (counted under the home's part of the region) | while | 12 | 12 | 12 | (in its record) |
 | `World/WorldSituation.cs:flags` | per situation (counted under active and history) | fixed | 4 | 4 | 4 | (in its record) |
 | `World/WorldSituation.cs:followUps` | per past situation: what followed from it, once per def (counted under history) | fixed | 2 | 2 | 2 | (in its record) |
 

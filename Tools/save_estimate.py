@@ -84,6 +84,10 @@ C = {
     # Towns that rise and fall (World/Region/RiseFallMath.cs): ruins kept per home's reach, fights' ruins waiting at once.
     "RegionRuins": const("World/Region/RiseFallMath.cs", "MaxRuinsPerHome", 12),
     "RegionRuinsWaiting": const("World/Region/RiseFallMath.cs", "MaxWaiting", 6),
+    # World events' follow-ups waiting at a home (World/Region/FollowUpsMath.cs), and those of the colony who fought at a
+    # raiders' camp (World/ColonistMemoryMath.cs).
+    "FollowUpsWaiting": const("World/Region/FollowUpsMath.cs", "MaxWaiting", 6),
+    "CampFought": const("World/ColonistMemoryMath.cs", "MaxFought", 12),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -507,6 +511,14 @@ MODEL = {
     "World/Region/RegionBook.cs:homes": ("fixed", 1, 90 + 900 + 150 + 40, "one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) "
                                          "and the last word given to keep away, when a town in its reach was last given up, settled again or founded by "
                                          "Rimfolk; a lost home's kept 30 days, its camp gone with it"),
+    # World events that follow from ones that ended (World/Region/FollowUps.cs): the warlord's son after each warlord (one
+    # every 160 days at most), a town grown after other settlers' year (one every 300 days), each waiting 60 to 240 days;
+    # FollowUpsMath.MaxWaiting a home at most, the oldest let go. Each keeps the flags it ended with.
+    "World/Region/FollowUps.cs:waiting": ("cap", (C["FollowUpsWaiting"], 0.01), 420,
+                                          "follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows"),
+    "World/Region/FollowUps.cs:flags": ("fixed", 8, 25, "per follow-up: the flags what it follows ended with (counted under waiting)"),
+    # A raiders' camp's fighters from the colony (World/Region/RaidersCamp.cs): while it stands, ColonistMemoryMath.MaxFought.
+    "World/Region/RaidersCamp.cs:fought": ("while", C["CampFought"], 40, "the colony's people who fought on a camp's map, while it stands (counted under the home's part of the region)"),
     # The ruins Rimfolk made within reach (World/Region/RiseFallLedger.cs): a town given up every 60 days at most, a fight's
     # ruin now and then; twelve per home's reach (RiseFallMath.MaxRuinsPerHome), each gone after 300 days or settled
     # again, and the fights' ruins waiting for the game's destroyed settlement to go (RiseFallMath.MaxWaiting).

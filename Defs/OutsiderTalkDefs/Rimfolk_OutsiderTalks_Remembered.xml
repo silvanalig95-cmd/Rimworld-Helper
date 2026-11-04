@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What their people remember of single colonists (Source/ColonyCouncil/World/ColonistMemory.cs; decision 13): the one
+       talking remembered for a good turn (you:remembered:campbroken, :foughtbeside, :tradedpost, :walkedsettlers), the one
+       talking or another held to account ({FOE}, their:foe, you:foe and their kinds: killed, executed, harvested,
+       insulted, brawled). The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_CampBroken</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered:campbroken</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] You were one of those who broke that camp, weren't you?</li>
+      <li>[us] I was there, yes.</li>
+      <li>[them,their:lowtech] The road to our town is open again because of it, and the elders know your name.</li>
+      <li>[them] Our carts use that road again because of it, and people at home know your name.</li>
+      <li>[us] It needed doing.</li>
+      <li>[them] Plenty of things need doing, and nobody does them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_FoughtBeside</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered:foughtbeside</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] Our fighters still talk about the day you stood with them.</li>
+      <li>[us] I hope they tell it kindly.</li>
+      <li>[them,their:tribal] They tell it at the fire, and you are always in it.</li>
+      <li>[them] They tell it every time someone buys them a drink.</li>
+      <li>[us] Then I'll buy the next one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_Post</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>you:remembered:tradedpost</when>
+    <lines>
+      <li>[them] You're the one who trades at our post, the traders there know you.</li>
+      <li>[us] They drive a hard bargain.</li>
+      <li>[them] They say the same about you, and they mean it as praise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_Settlers</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered:walkedsettlers</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] You walked our settlers out to their new land, didn't you?</li>
+      <li>[us] All the way, and back again.</li>
+      <li>[them] They still talk about that road, and who walked it with them.</li>
+      <li>[us] Tell them I asked after them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_YouFoe</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>you:foe,tone:cool|tone:sour</when>
+    <weight>2</weight>
+    <lines>
+      <li>[them,you:foe:killed] I know your face, you killed one of ours.</li>
+      <li>[them,you:foe:executed] You're the one who put one of ours to death in your cells.</li>
+      <li>[them,you:foe:harvested] You're the one who cut one of ours open for parts.</li>
+      <li>[them,you:foe:insulted] I know you, you threw hard words at one of ours.</li>
+      <li>[them] I know what you did to one of ours, and so does everyone at home.</li>
+      <li>[us] Then there's nothing more to say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_Foe</defName>
+    <topic>deeds</topic>
+    <uses>chat,home</uses>
+    <when>their:foe,!you:foe</when>
+    <lines>
+      <li>[them] Is {FOE} still at the colony?</li>
+      <li>[us] Why do you ask?</li>
+      <li>[them,their:foe:killed] My people haven't forgotten the one of ours {FOE} killed, that's all.</li>
+      <li>[them,their:foe:executed] My people haven't forgotten the one of ours {FOE} put to death.</li>
+      <li>[them] My people haven't forgotten what {FOE} did, that's all.</li>
+      <li>[us] It was a hard time, for all of us.</li>
+      <li>[them] Hard times end, and names stay.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Remembered_FoeTrade</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>their:foe,!you:foe,role:trader</when>
+    <lines>
+      <li>[them] I'll trade with you, but not with {FOE}, you understand.</li>
+      <li>[us] I understand why.</li>
+      <li>[them] Good, then we'll get on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
