@@ -22,10 +22,12 @@ namespace ColonyCouncil
         private static readonly Dictionary<int, string> focus = new Dictionary<int, string>();
         private static readonly HashSet<int> howOpen = new HashSet<int>(), allNotes = new HashSet<int>();
 
-        private static readonly Color DoneColor = new Color(0.52f, 0.85f, 0.5f);
-        private static readonly Color NowColor = new Color(1f, 0.83f, 0.47f);
-        private static readonly Color LaterColor = new Color(0.55f, 0.55f, 0.55f);
-        private static readonly Color WaitColor = new Color(0.56f, 0.73f, 0.96f);
+        // A line's steps in the design's colours for steps (UI/UiKit.cs's tokens): done in done's colour, the one it is at
+        // gold, what waits on something cool, the rest quiet.
+        private static readonly Color DoneColor = UiKit.Done;
+        private static readonly Color NowColor = UiKit.Gold;
+        private static readonly Color LaterColor = UiKit.Dim;
+        private static readonly Color WaitColor = UiKit.Cool;
 
         private static float Measure(string text, float w, GameFont font)
         {
@@ -67,13 +69,13 @@ namespace ColonyCouncil
                 lines.Count == 0 ? "CC_DefLine_SectionNone".Translate().Resolve() : "CC_DefLine_SectionCount".Translate(lines.Count).Resolve());
             if (!open) return y + 4f;
             var newRect = new Rect(x + w - 200f, y, 200f, ButtonH);
-            if (Widgets.ButtonText(newRect, "CC_DefLine_New".Translate())) NewMenu(s, comp);
+            if (UiKit.ActButton(newRect, "CC_DefLine_New".Translate(), null)) NewMenu(s, comp);
             TooltipHandler.TipRegion(newRect, "CC_DefLine_New_Tip".Translate());
             var almanac = DefDatabase<AlmanacArticleDef>.GetNamedSilentFail("Rimfolk_AlmDef_Lines");
             if (almanac != null)
             {
                 var readRect = new Rect(x + w - 200f - 6f - 150f, y, 150f, ButtonH);
-                if (Widgets.ButtonText(readRect, "CC_DefLine_HowLines".Translate())) MainTabWindow_Council.OpenAlmanac(almanac);
+                if (UiKit.ActButton(readRect, "CC_DefLine_HowLines".Translate(), null)) MainTabWindow_Council.OpenAlmanac(almanac);
             }
             y += ButtonH + 6f;
             if (lines.Count == 0)
@@ -84,7 +86,7 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Tiny;
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(x + Pad, y + Pad, w - 2 * Pad, h - 2 * Pad), intro);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
                 return y + h + 12f;
             }
@@ -190,7 +192,7 @@ namespace ColonyCouncil
             {
                 case StepState.Done: return DoneColor;
                 case StepState.NotYet: return WaitColor;
-                case StepState.Partly: return new Color(0.9f, 0.8f, 0.45f);
+                case StepState.Partly: return UiKit.Soon;
                 default: return LaterColor;
             }
         }
@@ -248,7 +250,7 @@ namespace ColonyCouncil
                 }
                 TooltipHandler.TipRegion(nameRect, "CC_DefLine_Name_Tip".Translate());
                 var aimRect = new Rect(x + w - aimW, y, aimW, ButtonH);
-                if (Widgets.ButtonText(aimRect, AimLabel(line.aim))) AimMenu(line);
+                if (UiKit.ActButton(aimRect, AimLabel(line.aim), null)) AimMenu(line);
                 TooltipHandler.TipRegion(aimRect, "CC_DefLine_Aim_Tip".Translate() + "\n\n" + AimTip(line.aim));
             }
             y += 26f;
@@ -264,7 +266,7 @@ namespace ColonyCouncil
                     Text.Font = GameFont.Tiny;
                     GUI.color = UiKit.Faint;
                     Widgets.Label(new Rect(x + 22f, y, w - 22f, 18f), row.Truncate(w - 26f));
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     Text.Font = GameFont.Small;
                 }
                 return y + 20f - y0 + 4f;
@@ -303,10 +305,10 @@ namespace ColonyCouncil
             {
                 var removeRect = new Rect(x + w - 120f, y, 120f, 20f);
                 Text.Font = GameFont.Tiny;
-                if (Widgets.ButtonText(removeRect, "CC_DefLine_Remove".Translate()))
+                if (UiKit.ActButton(removeRect, "CC_DefLine_Remove".Translate(), null))
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_DefLine_Remove_Confirm".Translate(name).Resolve(), () => comp.Remove(line), true));
                 var renameRect = new Rect(x + w - 120f - 6f - 120f, y, 120f, 20f);
-                if (Widgets.ButtonText(renameRect, "CC_DefLine_Rename".Translate())) Rename(line, map);
+                if (UiKit.ActButton(renameRect, "CC_DefLine_Rename".Translate(), null)) Rename(line, map);
                 Text.Font = GameFont.Small;
             }
             y += 24f;
@@ -333,7 +335,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Tiny;
             GUI.color = color;
             Widgets.Label(r, text);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
         }
 
@@ -362,12 +364,12 @@ namespace ColonyCouncil
                     else if (now)
                     {
                         UiKit.DiscFill(rect.ExpandedBy(1f), color);
-                        UiKit.DiscFill(rect.ContractedBy(5f), new Color(0.15f, 0.12f, 0.05f));
+                        UiKit.DiscFill(rect.ContractedBy(5f), UiKit.PortraitBack);
                     }
                     else
                     {
                         UiKit.DiscFill(rect, UiKit.WithAlpha(color, 0.75f));
-                        UiKit.DiscFill(rect.ContractedBy(3f), new Color(0.12f, 0.12f, 0.12f));
+                        UiKit.DiscFill(rect.ContractedBy(3f), UiKit.PortraitBack);
                         if (s.state == StepState.Partly) UiKit.DiscFill(rect.ContractedBy(6f), UiKit.WithAlpha(color, 0.9f));
                     }
                     if (s == shown && !now) Widgets.DrawBox(rect.ExpandedBy(2f));
@@ -387,7 +389,7 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Tiny;
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(cx + 4f, y + 2f, Mathf.Max(0f, x + w - cx - 4f), 18f), "CC_DefLine_StepsDone".Translate(done, counted).Resolve());
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
             }
             return y + Disc + 8f;
@@ -403,9 +405,9 @@ namespace ColonyCouncil
             float th = Measure(title, w - 120f, GameFont.Small);
             if (draw)
             {
-                GUI.color = color;
+                // The state's colour on its tag beside the words; the step's title in ink.
+                GUI.color = UiKit.Ink;
                 Widgets.Label(new Rect(x, y, w - 120f, th), title);
-                GUI.color = Color.white;
                 UiKit.Pill(x + w - 110f, y + 2f, StateWord(s.state), color, null, null, 110f);
             }
             y += th + 2f;
@@ -413,14 +415,14 @@ namespace ColonyCouncil
             {
                 string why = "CC_DefLine_WhyNow".Translate(s.def.whyNow).Resolve();
                 float h = Measure(why, w, GameFont.Tiny);
-                if (draw) Tiny(new Rect(x, y, w, h), why, Color.white);
+                if (draw) Tiny(new Rect(x, y, w, h), why, UiKit.Ink);
                 y += h + 2f;
             }
             if (!s.left.NullOrEmpty())
             {
                 string left = (s.state == StepState.NotYet ? "CC_DefLine_NotYet" : s.state == StepState.Later ? "CC_DefLine_LaterLine" : s.state == StepState.NotApplicable ? "CC_DefLine_NotApplicableLine" : "CC_DefLine_LeftLine").Translate(s.left).Resolve();
                 float h = Measure(left, w, GameFont.Tiny);
-                if (draw) Tiny(new Rect(x, y, w, h), left, s.state == StepState.NotYet ? WaitColor : new Color(1f, 0.78f, 0.45f));
+                if (draw) Tiny(new Rect(x, y, w, h), left, s.state == StepState.NotYet ? WaitColor : UiKit.Soon);
                 y += h + 2f;
             }
             foreach (var note in s.notes) y += Bullet(x + 4f, y, w - 4f, note, UiKit.Faint, draw) + 1f;
@@ -430,9 +432,9 @@ namespace ColonyCouncil
             if (draw)
             {
                 Text.Font = GameFont.Tiny;
-                GUI.color = UiKit.Info;
+                GUI.color = UiKit.Faint;
                 Widgets.Label(howRect, (open ? "CC_DefLine_HowOpen" : "CC_DefLine_HowShut").Translate());
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
                 if (Widgets.ButtonInvisible(howRect))
                 {
@@ -444,14 +446,14 @@ namespace ColonyCouncil
             if (open)
             {
                 float h = Measure(s.def.howItWorks, w - 8f, GameFont.Tiny);
-                if (draw) Tiny(new Rect(x + 8f, y, w - 8f, h), s.def.howItWorks, Color.white);
+                if (draw) Tiny(new Rect(x + 8f, y, w - 8f, h), s.def.howItWorks, UiKit.Ink);
                 y += h + 3f;
                 if (!s.def.mistakes.NullOrEmpty())
                 {
                     string head = "CC_DefLine_Mistakes".Translate();
                     if (draw) Tiny(new Rect(x + 8f, y, w - 8f, 16f), head, UiKit.Faint);
                     y += 16f;
-                    foreach (var m in s.def.mistakes) y += Bullet(x + 12f, y, w - 12f, m, new Color(0.9f, 0.8f, 0.75f), draw) + 1f;
+                    foreach (var m in s.def.mistakes) y += Bullet(x + 12f, y, w - 12f, m, UiKit.Faint, draw) + 1f;
                 }
                 y += 2f;
             }
@@ -543,6 +545,7 @@ namespace ColonyCouncil
             float bx = x;
             var old = Text.Font;
             Text.Font = font;
+            string firstWhy = null, firstWhyAct = null;
             foreach (var (label, tip, act, enabled) in buttons)
             {
                 float bw = Mathf.Max(70f, Text.CalcSize(label).x + 20f);
@@ -551,20 +554,32 @@ namespace ColonyCouncil
                     bx = x;
                     y += height + 4f;
                 }
+                if (!enabled && firstWhy == null && !tip.NullOrEmpty())
+                {
+                    firstWhy = tip;
+                    firstWhyAct = label;
+                }
                 if (draw)
                 {
+                    // An act that can't be done now is greyed with why not as its tooltip (and in a line under the row),
+                    // rather than refused after the click.
                     var rect = new Rect(bx, y, bw, height);
-                    if (Widgets.ButtonText(rect, label, true, true, enabled ? Color.white : UiKit.Faint))
-                    {
-                        if (enabled) act?.Invoke();
-                        else if (!tip.NullOrEmpty()) Messages.Message(tip, MessageTypeDefOf.RejectInput, false);
-                    }
-                    if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(rect, tip);
+                    string why = enabled ? null : tip ?? "";
+                    bool used = font == GameFont.Tiny ? UiKit.RowAct(rect, label, why, tip) : UiKit.ActButton(rect, label, why, tip);
+                    Text.Font = font;
+                    if (used) act?.Invoke();
                 }
                 bx += bw + 4f;
             }
             Text.Font = old;
-            return buttons.Count > 0 ? y + height + 4f : y;
+            if (buttons.Count == 0) return y;
+            y += height + 4f;
+            if (firstWhy != null)
+            {
+                if (draw) UiKit.WhyNotLine(x, y, w, firstWhyAct, firstWhy);
+                y += 18f;
+            }
+            return y;
         }
 
         private const int NotesShown = 4;
@@ -582,14 +597,14 @@ namespace ColonyCouncil
             if (draw)
             {
                 UiKit.Divider(x, y + 2f, w);
-                Tiny(new Rect(x, y + 4f, w, 16f), "CC_DefLine_Notes".Translate(), UiKit.HeaderColor);
+                Tiny(new Rect(x, y + 4f, w, 16f), "CC_DefLine_Notes".Translate(), UiKit.Heading);
             }
             y += 22f;
             bool all = allNotes.Contains(r.line.id);
             var list = all ? notes : notes.Take(NotesShown).ToList();
             foreach (var n in list)
             {
-                float h = Bullet(x + 4f, y, w - 4f, n.text, n.good ? DoneColor : Color.white, draw, n.good);
+                float h = Bullet(x + 4f, y, w - 4f, n.text, n.good ? DoneColor : UiKit.Ink, draw, n.good);
                 if (draw)
                 {
                     var rect = new Rect(x + 4f, y, w - 4f, h);
@@ -662,7 +677,7 @@ namespace ColonyCouncil
                 var bar = new Rect(x, y, w, 6f);
                 UiKit.Bar(bar, r.f.raidPoints > 0f ? Mathf.Clamp01(r.strength.total / (r.f.raidPoints * 2f)) : 1f, color);
                 // The raids now, as a tick at the middle of the bar (the bar runs to twice their size).
-                Widgets.DrawBoxSolid(new Rect(bar.center.x - 1f, bar.y - 2f, 2f, bar.height + 4f), Color.white);
+                Widgets.DrawBoxSolid(new Rect(bar.center.x - 1f, bar.y - 2f, 2f, bar.height + 4f), UiKit.Ink);
                 var tr = new Rect(x, y + 8f, w, h);
                 Tiny(tr, text, color);
                 TooltipHandler.TipRegion(new Rect(x, y, w, h + 8f), r.StrengthTip());
@@ -686,7 +701,7 @@ namespace ColonyCouncil
             {
                 string text = DefenseLines.LessonText(r.line, raid, lesson);
                 if (text.NullOrEmpty()) continue;
-                y += Bullet(x + 4f, y, w - 4f, text, Color.white, draw) + 2f;
+                y += Bullet(x + 4f, y, w - 4f, text, UiKit.Ink, draw) + 2f;
                 var act = LessonAction(r, lesson);
                 if (act != null) y = ButtonRow(new List<(string, string, System.Action, bool)> { (act.label, act.tip, act.act, true) }, x + 12f, y, w - 12f, draw, 20f, GameFont.Tiny);
             }
@@ -793,9 +808,9 @@ namespace ColonyCouncil
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(0f, 68f, inRect.width, 20f), "CC_DefLine_NameEmpty".Translate());
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
-            if (Widgets.ButtonText(new Rect(inRect.width / 2f - 70f, inRect.height - 38f, 140f, 34f), "OK".Translate()) || KeyBindingDefOf.Accept.KeyDownEvent)
+            if (UiKit.ActButton(new Rect(inRect.width / 2f - 70f, inRect.height - 38f, 140f, 34f), "OK".Translate(), null) || KeyBindingDefOf.Accept.KeyDownEvent)
                 Accept();
         }
 
