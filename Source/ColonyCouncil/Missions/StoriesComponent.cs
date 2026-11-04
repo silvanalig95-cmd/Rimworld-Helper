@@ -53,8 +53,10 @@ namespace ColonyCouncil
             int t = Find.TickManager.TicksGame;
             if (!Sched.Every(t, Sched.RareTicks, Sched.RareMissions) || Find.Maps.Count == 0) return;
             // Every few seconds: a mission accepted in the Quests tab starts at once, a goal met is noticed soon.
-            Safe("missions", () => Missions.Tick(this, t));
+            using (PassClock.Time(Pass.RareMissions))
+                Safe("missions", () => Missions.Tick(this, t));
             if (!Sched.Hourly(t, Sched.Stories)) return;
+            using var clock = PassClock.Time(Pass.Stories);
             Safe("story chains", () => StoryChains.Hourly(t));
             Safe("missions hourly", () => Missions.Hourly(this, t));
             // What the world's peoples remember fades a little each day (World/FactionMemory.cs).

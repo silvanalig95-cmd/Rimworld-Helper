@@ -127,6 +127,7 @@ namespace ColonyCouncil
             if (!MagicNeeds.Ready() || !MagicNeeds.On) return;
             int t = Find.TickManager.TicksGame;
             if (swept && !Sched.Every(t, Sched.DayTicks, Sched.DailyMagicNeeds)) return;
+            using var clock = PassClock.Time(Pass.DailyMagicNeeds);
             swept = true;
             try
             {

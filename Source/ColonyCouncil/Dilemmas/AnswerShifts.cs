@@ -153,6 +153,7 @@ namespace ColonyCouncil
             int now = Now;
             // On the tick of the things answers keep on the map (OnMapTimed): light, and only while something is changed.
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareTimed)) return;
+            using var clock = PassClock.Time(Pass.RareAnswerShifts);
             List<AnswerShift> over = null;
             foreach (var s in shifts)
             {

@@ -305,6 +305,7 @@ namespace ColonyCouncil
             if (OutsiderTalk.Live && Sched.Every(now, OutsiderTalk.LinePeriod, OutsiderTalk.LineOffset)) OutsiderTalk.Step(now);
             if (Sched.Every(now, Sched.RareTicks, Sched.RareOutsiderTalk))
             {
+                using var talk = PassClock.Time(Pass.RareOutsiderTalk);
                 try
                 {
                     OutsiderTalk.Rare(now);
@@ -316,6 +317,7 @@ namespace ColonyCouncil
             }
             if (!Outsiders.AnyLive) return;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareOutsiders)) return;
+            using var clock = PassClock.Time(Pass.RareOutsiders);
             try
             {
                 Outsiders.Rare(now);

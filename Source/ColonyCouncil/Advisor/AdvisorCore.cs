@@ -179,6 +179,7 @@ namespace ColonyCouncil
             int t = Find.TickManager.TicksGame;
             if (Sched.Every(t, Sched.DayTicks, Sched.DailyWealth))
             {
+                using var clock = PassClock.Time(Pass.DailyWealth);
                 wealthHistory.Add(map.wealthWatcher.WealthTotal);
                 if (wealthHistory.Count > 60) wealthHistory.RemoveAt(0);
             }

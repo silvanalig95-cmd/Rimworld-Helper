@@ -183,8 +183,11 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    c.Tick250();
-                    if (Sched.Hourly(now, Sched.Camp) && (camp == c || holding == c)) c.Hourly();
+                    // Timed for Rimfolk's clock: the quarter hour, then the camp's hour (the hour's other part is CampTimer's).
+                    using (PassClock.Time(Pass.RareCamp)) c.Tick250();
+                    if (Sched.Hourly(now, Sched.Camp) && (camp == c || holding == c))
+                        using (PassClock.Time(Pass.Camp))
+                            c.Hourly();
                 }
                 catch (Exception e)
                 {

@@ -120,6 +120,7 @@ namespace ColonyCouncil
                 if (frost.Count > 0 || outlooks.Count > 0) Clear();
                 return;
             }
+            using var clock = PassClock.Time(Pass.Fields);
             try
             {
                 Hour(tick);

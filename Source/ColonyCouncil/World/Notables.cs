@@ -274,8 +274,10 @@ namespace ColonyCouncil
         {
             int now = Now;
             if (letters.Count > 0 && Sched.Every(now, Sched.RareTicks, Sched.RareNeighbours) && NeighbourLetters.WantsRare(this))
-                Safe("rare", () => NeighbourLetters.Rare(this, now));
+                using (PassClock.Time(Pass.RareNeighbours))
+                    Safe("rare", () => NeighbourLetters.Rare(this, now));
             if (!Sched.Hourly(now, Sched.Neighbours)) return;
+            using var clock = PassClock.Time(Pass.Neighbours);
             if (!(ColonyCouncilMod.Settings?.notables ?? true))
             {
                 if (notables.Count > 0) Safe("let go", LetAllGo);

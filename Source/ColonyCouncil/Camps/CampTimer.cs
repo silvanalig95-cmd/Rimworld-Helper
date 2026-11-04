@@ -58,6 +58,7 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Hourly(now, Sched.Camp)) return;
+            using var clock = PassClock.Time(Pass.Camp);
             try
             {
                 var map = HappeningTracker.HomeMap();

@@ -124,6 +124,7 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Hourly(now, Sched.Groups) || !GroupLife.Active) return;
+            using var clock = PassClock.Time(Pass.Groups);
             try
             {
                 SampleWork();

@@ -123,6 +123,26 @@ public static class LeanTests
         for (int tick = o; tick < Sched.HourTicks; tick += Sched.RareTicks)
             C(!hourly.Contains(tick), $"the 250-tick pass at {o} misses every hourly pass (tick {tick})");
 
+        // ---------------- Rimfolk's clock: every slot in Sched has a pass, every pass a slot ----------------
+
+        var notSlots = new HashSet<string> { nameof(Sched.HourTicks), nameof(Sched.DayTicks), nameof(Sched.RareTicks), nameof(Sched.Slices), nameof(Sched.PeopleLogPeriod) };
+        var slots = typeof(Sched).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+            .Where(f => f.IsLiteral && f.FieldType == typeof(int) && !notSlots.Contains(f.Name))
+            .ToDictionary(f => f.Name, f => (int)f.GetRawConstantValue()!);
+        C(slots.Count >= 40, $"Sched's slots read ({slots.Count})");
+        foreach (var slot in slots.Keys) C(PassTable.All.Any(p => p.slot == slot), $"the clock has a pass for Sched.{slot}");
+        foreach (var p in PassTable.All)
+        {
+            C(slots.TryGetValue(p.slot ?? "", out int value) && value == p.offset, $"the pass {p.pass} runs at Sched.{p.slot}");
+            C(p.offset >= 0 && p.offset < p.period, $"the pass {p.pass} has a tick inside its period");
+            // An hourly pass has an hourly slot of its own, or rides inside a 250-tick pass of its own system on that tick.
+            if (p.period == Sched.HourTicks)
+                C(hourly.Contains(p.offset) || PassTable.All.Any(q => q.period == Sched.RareTicks && q.offset == p.offset % Sched.RareTicks && q.slot == p.slot),
+                    $"the hourly pass {p.pass} has a tick of the hour");
+        }
+        foreach (int o in hourly) C(PassTable.All.Any(p => p.period == Sched.HourTicks && p.offset == o), $"the hourly slot {o} is timed");
+        foreach (int o in Sched.RareOffsets) C(PassTable.All.Any(p => p.period == Sched.RareTicks && p.offset == o && !p.waiting), $"the 250-tick slot {o} is timed");
+
         // ---------------- Caps ----------------
 
         // Over the cap, the oldest go first.

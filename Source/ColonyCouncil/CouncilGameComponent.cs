@@ -385,20 +385,39 @@ namespace ColonyCouncil
                 Safe("council meeting", () => ambitions.MeetingTick(this));
             // The hour's work in four parts and the day's in two, each on its own tick of the hour (Sched), in the order
             // they always ran, so no single tick carries all of it.
-            if (Settings.quirks && Sched.Every(t, Sched.RareTicks, Sched.RareSmoke)) Safe("light sleepers", QuirkMoments.Smoke);
+            // Each part is timed for Rimfolk's clock (Lean/PassClock.cs), which changes nothing it does.
+            if (Settings.quirks && Sched.Every(t, Sched.RareTicks, Sched.RareSmoke))
+                using (PassClock.Time(Pass.RareSmoke))
+                    Safe("light sleepers", QuirkMoments.Smoke);
             int hourTick = t % HourTicks;
-            if (hourTick == Sched.CouncilWishes) HourlyWishes();
+            if (hourTick == Sched.CouncilWishes)
+            {
+                using (PassClock.Time(Pass.CouncilWishes)) HourlyWishes();
+            }
             else if (hourTick == Sched.CouncilDayFirst)
             {
-                if (Sched.FirstHourOfDay(t)) Safe("daily", DailyFirst);
+                if (Sched.FirstHourOfDay(t))
+                    using (PassClock.Time(Pass.CouncilDayFirst))
+                        Safe("daily", DailyFirst);
             }
             else if (hourTick == Sched.CouncilDaySecond)
             {
-                if (Sched.FirstHourOfDay(t)) Safe("daily", DailySecond);
+                if (Sched.FirstHourOfDay(t))
+                    using (PassClock.Time(Pass.CouncilDaySecond))
+                        Safe("daily", DailySecond);
             }
-            else if (hourTick == Sched.CouncilLife) HourlyLife();
-            else if (hourTick == Sched.CouncilPeople) HourlyPeople();
-            else if (hourTick == Sched.CouncilEvents) HourlyEvents();
+            else if (hourTick == Sched.CouncilLife)
+            {
+                using (PassClock.Time(Pass.CouncilLife)) HourlyLife();
+            }
+            else if (hourTick == Sched.CouncilPeople)
+            {
+                using (PassClock.Time(Pass.CouncilPeople)) HourlyPeople();
+            }
+            else if (hourTick == Sched.CouncilEvents)
+            {
+                using (PassClock.Time(Pass.CouncilEvents)) HourlyEvents();
+            }
         }
 
         [Unsaved] private bool builtSomething;

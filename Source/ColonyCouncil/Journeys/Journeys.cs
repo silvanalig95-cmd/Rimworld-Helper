@@ -293,6 +293,7 @@ namespace ColonyCouncil
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareJourneys)) return;
             if (plan != null)
             {
+                using var clock = PassClock.Time(Pass.RareJourneys);
                 try
                 {
                     JourneyRun.Rare(this, plan);
@@ -306,6 +307,7 @@ namespace ColonyCouncil
             if (roadLooked && !Sched.Every(now, Sched.HourTicks, Sched.RareJourneys)) return;
             roadLooked = true;
             if (roadPolicy == null && roadFood.Count == 0) return;
+            using var road = PassClock.Time(Pass.RoadFood);
             try
             {
                 RoadFood.Hour(this);

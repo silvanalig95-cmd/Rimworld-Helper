@@ -655,6 +655,7 @@ namespace ColonyCouncil
         public override void MapComponentTick()
         {
             if (orders.Count == 0 || !Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RareRearrange)) return;
+            using var clock = PassClock.Time(Pass.RareRearrange);
             Work();
         }
 

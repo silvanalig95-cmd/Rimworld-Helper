@@ -25,6 +25,10 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Rimfolk: check myself", displayPriority = 1000, allowedGameStates = AllowedGameStates.Playing)]
         private static void CheckMyself() => Find.WindowStack.Add(new Dialog_SelfCheck());
 
+        /// <summary>How long each of Rimfolk's regular passes takes on this computer, and how big its saved stores are (UI/ClockWindow.cs).</summary>
+        [DebugAction("Rimfolk", "Rimfolk's clock", displayPriority = 999, allowedGameStates = AllowedGameStates.Playing)]
+        private static void Clock() => Find.WindowStack.Add(new Dialog_Clock());
+
         [DebugAction("Rimfolk", "Send the welcome letter again", allowedGameStates = AllowedGameStates.Playing)]
         private static void WelcomeAgain()
         {

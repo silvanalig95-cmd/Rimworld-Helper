@@ -100,6 +100,7 @@ namespace ColonyCouncil
             if (trips.Count == 0) return;
             int now = Now;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareCouriers)) return;
+            using var clock = PassClock.Time(Pass.RareCouriers);
             foreach (var t in trips.ToList())
             {
                 try

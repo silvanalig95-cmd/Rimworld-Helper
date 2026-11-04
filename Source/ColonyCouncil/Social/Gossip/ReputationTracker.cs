@@ -290,6 +290,7 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Hourly(now, Sched.Reputation) || !Reputations.On) return;
+            using var clock = PassClock.Time(Pass.Reputation);
             try
             {
                 ReputationWatch.Hourly(this);

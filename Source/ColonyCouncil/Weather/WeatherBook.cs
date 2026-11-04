@@ -89,6 +89,7 @@ namespace ColonyCouncil
             int tick = Find.TickManager.TicksGame;
             if (Sched.Every(tick, Sched.RareTicks, Sched.RareWeather) && (dyn.offset != 0f || WeatherDynamics.TemperatureOn))
             {
+                using var rare = PassClock.Time(Pass.RareWeather);
                 try
                 {
                     WeatherDynamics.Rare(map, this);
@@ -99,6 +100,7 @@ namespace ColonyCouncil
                 }
             }
             if (!Sched.Hourly(tick, Sched.Weather) || !map.IsPlayerHome || map.weatherManager == null) return;
+            using var clock = PassClock.Time(Pass.Weather);
             try
             {
                 Hour(tick);

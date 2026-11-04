@@ -48,6 +48,7 @@ namespace ColonyCouncil
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareWelcome)) return;
             var comp = CouncilGameComponent.Instance;
             if (comp == null || comp.Welcomed) return;
+            using var clock = PassClock.Time(Pass.RareWelcome);
             if (firstSeen < 0) firstSeen = now;
             if (now - firstSeen < Delay) return;
             comp.MarkWelcomed();

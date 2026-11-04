@@ -66,6 +66,7 @@ namespace ColonyCouncil
         {
             if (levels.Count == 0) return;
             if (!Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RareBuildPriority)) return;
+            using var clock = PassClock.Time(Pass.RareBuildPriority);
             try
             {
                 Look();

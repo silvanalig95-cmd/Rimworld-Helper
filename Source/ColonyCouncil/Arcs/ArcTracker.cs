@@ -130,6 +130,7 @@ namespace ColonyCouncil
         {
             int t = Find.TickManager.TicksGame;
             if (!Sched.Hourly(t, Sched.Arcs)) return;
+            using var clock = PassClock.Time(Pass.Arcs);
             if (!On)
             {
                 // Switched off: stories wait where they are, clocks and all.
