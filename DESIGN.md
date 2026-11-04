@@ -2245,6 +2245,43 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   really has (Ideology, read from its rituals' names: a feast, a wedding, a funeral; `{RITE}`, tags `[rite]`), else how
   their age keeps the day (`Ages.Form`, `[agerite]`). The funeral and wedding asks (the feast mission) name their rite the
   same way. Saved on the mission as words (`host`, `rite`, `guest`); `{HOST}`, `{RITE}` and `{GUEST}` fill its lines.
+- **Raiders' camps** (the fifth release, item 4, decisions 7 and 12; `World/Region/RaidersCampMath.cs` pure,
+  `RaidersCamp.cs`, `RaidersCampTerms.cs`, `RaidersCampPage.cs`, `RaidersCampDebug.cs`; setting "Raiders' camps", 0 to
+  200%, 100% by default; `RaidersCampTests`). Each home's camp is a `RaidersCamp` on its `RegionHome` (`raiders`, a
+  `RaidersCampHome` with the last end and the word of the last people paid off), run in the region's two passes: no
+  pass, slot or tick of its own. **Set up**: a look every 10 days per home from day 60; a home of 1,000 threat points or
+  more (`StorytellerUtility.DefaultThreatPointsNow`), no camp and 60 days since the last ended, then 10% × the rate,
+  then a people that can raid and hold a camp (`Raids.CanRaid`, a settlement pawn group, `BanditCamp.FactionCanOwn`)
+  with a town within 60 tiles, Faction Territories territory within 30 (`WorldMechanics.TerritoryOwner` over a flood
+  fill, only when needed) or a grudge of 20 (memory's wrongs + 15 a held dead + 20 a vendetta), never while a world
+  event about them runs or their word holds; the biggest grudge first, then the nearest. The tile: a flood fill to 10
+  tiles over passable land, more than 5 tiles from every home, a base could stand there with nothing on it, 3 tiles
+  from friendly towns, weighed toward hills (×2) and forest (×1.5). Points: `DefaultSiteThreatPointsNow`. **Hidden**
+  until found: by day, the first of a hunter, someone past the home area or (from day 3) anyone out of doors sees it,
+  30% a day and certain from the third (`FindChance` an hour), says one line, and a threat letter names the danger, who
+  leads it (`leader`, `leaderWhy`: the hook for the warlord's son), a grudge's wrong or a broken word. Only then the
+  site: `SiteMaker.MakeSite(SitePartDefOf.BanditCamp, tile, people, true, points)`, `customLabel` by their age
+  (`CC_RaidCamp_Kind_<Age>`). Faction Territories counts no territory for it. **Raids**: an hourly roll on
+  `QuestTuning.PointsToRaidSourceRaidsMTBDaysCurve` at its points, the mean divided by the rate, no sooner than two days
+  after set up and a day after found, 1.5 days apart, never on another threat or within a day of a big one, at 0.6 of
+  the home's threat points through `Raids.Send` (new optional `from`, an edge cell on the camp's side by
+  `WorldGrid.GetRotFromTo` kept as `IncidentParms.spawnCenter`, and `tellStoryteller` false: on top of the
+  storyteller's, as the game's own raid-source camps); its raiders watched hourly (not saved: found again on the map
+  after a load) until none stands; beaten when half fell or they fled (`LordToil_PanicFlee`). **Attacked**: two
+  look-only patches (`Site.PostMapGenerate`, `Site.Notify_MyMapAboutToBeRemoved`) and the hour's look count its
+  fighters and any threat left; when the game removes the site (`Site.ShouldRemoveMapNow` removes a bandit camp's
+  either way) it is broken unless a quarter or more still stood with a threat left, else put back on its tile with its
+  points times the share standing and half the loot. **Ends**: broken; paid (terms a day after found through
+  `Tell.Ask` when `Tell.CanAsk`, `ChoiceLetter_RaidersCamp`, price half a raid's points in tens, at least 100, also from
+  the page; the silver carried to the gate by `DilemmaEffect_RaidersCampPrice`, a `DilemmaEffect_CarryOut` with no
+  courier, raids paused; a ledger Promise tie for a year, kept or broken, one in ten break it); peace (the game removes
+  such sites itself with its letter, so Rimfolk's is a news line); burned (an ally at war with them with a town within
+  30 tiles, 10% every 5 days); given up (two raids beaten or 60 days). Told (`Tell.Letter`, threat letters for found and
+  put back), history `world:camp:found/raid/back/broken/paid/peace/burned/gaveUp` (milestones but the raid and put
+  back), memory deeds `camped` (their wrong), `campBroken` and `campFailed` (the colony's wrongs to them), `paidOff`
+  (a favor), `campStruck` and `burnedCamp` (good turns the colony owes; the ally's for a burning). A home lost takes its
+  camp (`ColonyBook.Lost`). Shown: the region page `RaidersCamps` (`MainTabWindow_World.Register`, order 55), the
+  panel's `PlaceSections` for its site and `HomeSections` for its home, This week's missions card.
 
 ### Rimfolk's windows
 
