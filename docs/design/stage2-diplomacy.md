@@ -913,3 +913,6 @@ on a proud colonist.
     pact partner keeps the pact, harming a truce partner's fighters breaks the truce? Recommended: yes.
 19. **Against their nature.** Strain through the heart only (no new mood), easing when someone acts with their nature,
     marks for repeated acts, the service written in round a and switched on in round d? Recommended: yes.
+
+## The player's decisions (4 November 2026)
+All nineteen as recommended ("all sounds great").
