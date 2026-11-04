@@ -254,10 +254,13 @@ namespace ColonyCouncil
 
         // ================= This week =================
 
-        /// <summary>A call of theirs waiting for the colony's answer (never with a timer).</summary>
-        public static void WeekRows(WeekCard card)
+        /// <summary>
+        /// A call of theirs waiting for the colony's answer, in This week's Needs you (UI/Inbox.cs): never with a timer,
+        /// its people a link, its act opening the letter.
+        /// </summary>
+        public static void WeekRows(List<WeekRow> rows)
         {
-            if (card == null || WorldLedger.Instance == null) return;
+            if (rows == null || WorldLedger.Instance == null) return;
             try
             {
                 foreach (var t in FavourAsks.Waiting())
@@ -265,18 +268,24 @@ namespace ColonyCouncil
                     var f = Refs.Faction(t.to);
                     if (f == null || !FavourMath.ParseNeed(t.terms.goods, out var need)) continue;
                     var home = FavoursOwed.HomeOf(t);
-                    string text = DipWords.P("CC_Dip_Week", DipWords.People(f).Named("PEOPLE"), DipWords.Need(need).Named("NEED"));
+                    var people = ThingRefs.Of(f);
+                    string text = DipWords.P("CC_Dip_Week", ThingRefs.Link(DipWords.People(f), people).Named("PEOPLE"), DipWords.Need(need).Named("NEED"));
                     if (Homes.All.Count > 1 && home != null) text = Homes.Name(home) + ": " + text;
                     var letter = FavourAsks.LetterFor(t);
-                    card.rows.Add(new WeekRow
+                    Action open = letter != null ? (Action)(() => DiplomacyLinks.Open(letter)) : WeekModel.Page(DiplomacyPage);
+                    rows.Add(new WeekRow
                     {
                         icon = Icons.Promise ?? Icons.Trust,
                         color = UiKit.Warn,
+                        faction = f,
                         text = text,
-                        note = DipWords.P(FavourMath.ByMission(need) ? "CC_Dip_WeekNote_Mission" : "CC_Dip_WeekNote"),
-                        noteColor = UiKit.Warn,
+                        sub = DipWords.P(FavourMath.ByMission(need) ? "CC_Dip_WeekNote_Mission" : "CC_Dip_WeekNote"),
+                        subColor = UiKit.Warn,
                         tip = DipWords.DebtLine(t),
-                        click = letter != null ? (Action)(() => DiplomacyLinks.Open(letter)) : WeekModel.Page(DiplomacyPage),
+                        click = open,
+                        act = InboxWords.Answer,
+                        actRun = open,
+                        follow = ThingRefs.Of(t),
                         order = -1
                     });
                 }
@@ -285,6 +294,17 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("diplomacy: this week", e);
             }
+        }
+
+        /// <summary>How many of their calls wait for the colony's answer (the one count of what waits on the player).</summary>
+        public static int WeekCount()
+        {
+            if (WorldLedger.Instance == null) return 0;
+            int n = 0;
+            foreach (var t in FavourAsks.Waiting())
+                if (Refs.Faction(t.to) != null && FavourMath.ParseNeed(t.terms.goods, out _))
+                    n++;
+            return n;
         }
     }
 }

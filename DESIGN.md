@@ -2548,9 +2548,11 @@ one to another keeps the frame):
   lives in its window. An address may name a region view's lens and mode after slashes (`PagesMath.TryAddress`). A window opens through its button's def, which works with the button hidden or put away.
 - **The corner** (`UI/WindowTabs.cs`): every window draws its tabs with `WindowTabs.Draw`, the game's tabs with their
   icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner back and forward
-  (below, "Names that lead somewhere"), the Almanac's book (its window, lit while open) and the four windows' icons,
-  the one showing lit. A click opens that window as its button would. The defense window has one tab, so its corner
-  is where the others' is.
+  (below, "Names that lead somewhere"), the search, This week's inbox with its count and what is followed (below, "One
+  inbox and search"), the Almanac's book (its window, lit while open) and the four windows' icons, the one showing lit.
+  A click opens that window as its button would. The corner is `WindowLayoutMath.CornerWidth()` wide (316: six tools and
+  four windows of 24 with their gaps), which the layout test tries on every screen. The defense window has one tab, so
+  its corner is where the others' is.
 - **The region window** opens on the region map unless something asked for a view: four views (below, "The region
   in four views"). The map is `RegionMapView` (what was `Window_RegionMap`, the same drawing, now inside the view): its
   picture is made when the view is first drawn and let go when the window closes; where it looked is kept for the
@@ -2827,8 +2829,77 @@ the grammar across every window (UI 5b) waits for it.
   A row's or a chip's plain tooltip gives way while a preview shows, so the two don't cover each other.
 - **Left for UI 5b**, once UI 3 is in: the tokens and components across every window's pages (the council's and the
   planning window's sections and rows, This week's rows in the inbox's grammar), the page accents giving way to the
-  tokens, `WindowTabs.LinksWidth` read from `WindowLayoutMath`'s corner, the Planning window's pages in the section
-  grammar, links in the remaining panels (the on-screen panels, the colonist bar's hover).
+  tokens, the Planning window's pages in the section grammar, links in the remaining panels (the on-screen panels, the
+  colonist bar's hover). (`WindowTabs.LinksWidth` reads `WindowLayoutMath`'s corner since UI 3.)
+
+#### One inbox and search (UI 3 of docs/design/interface.md)
+
+The third release: This week becomes the one place where everything waits on the player, with one count shown
+everywhere, any thing can be followed, and a search in every corner finds anyone and anything by name. Built beside UI
+5a and merged with it. Pure and tested (`Tools/Tests/InboxTests.cs`): `UI/InboxMath.cs`, `UI/FollowMath.cs`,
+`UI/SearchMath.cs`.
+
+- **The inbox** (`UI/Inbox.cs`): `Inbox.Register(provider)` (an `InboxProvider`: its id, its section, its order, its
+  rows into a list, how many of them wait on the player, and whether they stand at the section's foot) is how a
+  feature adds to This week: rows, not pages (docs/design/interface.md, "Where a new thing goes", rule 1). The sections,
+  in order (`InboxSection`, `InboxMath.Sections`): Following, Needs you, Under way, Coming, How people are, The plan.
+  `InboxRegistry` (pure, like `CardRegistry`) keeps the providers by section, order and the order added; one added again
+  under its id replaces the first.
+- **The providers** (`UI/InboxProviders.cs`, `UI/InboxUnderWay.cs`), what were This week's twelve cards and the region's
+  and diplomacy's lines. Following: the things followed (`FollowWords.Rows`), then the wishes pinned. Needs you (each
+  row with its act on the right): wishes and petitions (Look, Decide), Rimfolk's letters waiting for an answer and the
+  evening news (Answer, Put away), the region's and the council's questions still open (a raiders' camp's terms, a
+  hamlet's ask, the election while the council may step in, a journey waiting at the gate: each letter's `Waiting`;
+  Answer), a people's call on a debt (`DiplomacyPanels.WeekRows`, Answer), settlers at the gate (`HamletPage.WeekRows`,
+  Look), promises at risk (Look, with the day by which to put it right). Under way, each as steps (`UiKit.StepsLine`:
+  a dot and a word for each, the one it is at lit) and never a time left: letters on the road (written, on the road,
+  arrived, answered; `CardWords.LetterSteps`), the journey planned (planned, getting ready, at the gate, set out), the
+  colony's caravans (set out, on the road, there, on the way home; `InboxMath.CaravanStep`), missions taken on (taken
+  on, under way, done), settlers on the road (at the gate, on the road, settled), a raiders' camp's price going out
+  (agreed, going out, handed over), what an answer set going on the map (set going, happening, done) and what it keeps
+  there, the council meeting in session, the camp on the colony's land, Hospitality's guests. Coming, by the day
+  (`InboxWords.When`: today, tomorrow, or the date, never "in 3 days"): the calendar's days, the council's meetings,
+  fights promised, stories, missions offered (until their date), a post that may close, a raiders' camp standing (Pay
+  while its price is offered, greyed with why not). How people are as before (strain, illness, trust, the colony's
+  trust trend), the mood balance at its foot (`footer`). The plan: the advisor's steps, two showing, the proposals
+  waiting at its foot.
+- **This week** (`UI/WeekModel.cs`, `UI/WeekPanel.cs`): the model asks each provider once a second, section by
+  section, each provider's rows sorted as its card always sorted them (by their order, equals as found), provider by
+  provider (`InboxMath.Order`). A row is one sentence with its names as links (`LinkText.Line`), a second line in small
+  print (what it is, its newest change, or its steps; 40 high, else 26), a note on the right, its act (a small button,
+  greyed with why not), and the pin where it names a thing. A section shows six rows (the plan two) and "and 3 more",
+  which opens the rest in place ("Show fewer" folds them, kept for the session); its heading opens its view (Under way:
+  Here and away; Coming: the calendar; How people are: Moods; The plan: Planning's Plan). Following and the plan show
+  only with something in them.
+- **The one count** (`Inbox.Count`, at most twice a second): what Needs you's providers count. Rimfolk's own count what
+  0.83's `NeedsCount` counted (every colony's petitions, the open wishes, Rimfolk's letters waiting, promises at risk), so
+  with no new asks the number is the same (`InboxTests`), and the region's and diplomacy's asks add to it. It shows on
+  This week's tab (`WeekModel.NeedsCount`), as the stat in its header, on the inbox in every window's corner
+  (`UiKit.CountBadge`), and on the council button on the bottom bar (`MainButtonWorker_Council`, the button's own
+  worker in `Council_MainButton`; the setting `inboxCountOnButton`, on at first, on the Interface page).
+- **Following** (`UI/FollowMath.cs`, `WeekMemory.following`, `UI/FollowWords.cs`): a pin in every card's head (and on a
+  row that names a thing, the People table's rows, a wish card for the wish) follows any thing a card shows: a
+  colonist, anyone outside, a place, a people, a house, a tie, a letter, an entry of the history. At most twelve
+  (`FollowMath.Max`; a thirteenth is refused with a word why), kept with the game as their text forms ("p123", "t55";
+  a model in `Tools/save_estimate.py`); an older save's pinned colonists (by ThingID) are followed on loading
+  (`FollowMath.TakeOldPins`). Each shows at the top of This week with its newest change in one line, built once a
+  second while something shows it: a colonist's strain, feeling and wish with their mood; anyone or anything else the
+  history's newest line about it in the last fifteen days, else where it stands (a person's regard, a town's fortune or
+  stance, a people's stance, a tie's state, a letter's step); a thing gone says so until it is let go. The pin in the
+  corner lists them (each opening its card) and switches the Following panel (`Hud/HudFollowing.cs`), a ninth on-screen
+  panel beside the other eight (off at first, under health in the second column; five panels to a row in the settings
+  now).
+- **Search** (`UI/Search.cs`, `UI/SearchMath.cs`): the magnifying glass in every corner and the key `Council_Key_Search`
+  (`Defs/Misc/Rimfolk_SearchKeys.xml`, unbound) open `Window_Search` under it (never pausing, shut by Escape or a
+  click outside). Its index is made when it opens, never before: the colonists, the people the notables and the ledger
+  know, the homes, every named town and the raiders' camps found, the peoples in sight, the houses, every view, mode
+  and lens of the four windows by its name ("Bonds", "Map: Trade"), the Almanac's articles (by title and keywords); and
+  whatever `Search.Register` adds. As the player types it is filtered (names folded: any case, no accents or apostrophes,
+  no link markers; scored by the whole name, its start, a word's start, every word of the query, inside a word, then
+  other words), grouped by kind with the best group first and six of each; Enter takes the one lit (the first), the
+  arrows move it. A result opens the thing's card (the drawer in sight, else the floating card), the view, or the
+  Almanac's window.
+- **Icons**: `Inbox` (a tray) and `Search` (a magnifying glass) (`Tools/make_icons.py`).
 
 ### A colonist's tabs
 
@@ -3045,7 +3116,8 @@ rule for all of it, from the player: the most impactful and relevant data comes 
   (bottom at 78%) 160 px in from the left (`HudMath.LeftColumn`), right of it and of the game's list when that shows, and
   below the colonist bar's height; on the right edge the vitals (20% down) and the council (33%), above the alerts,
   which take the game's alert place; a second column 262 px in from the right, clear of the colonist bar, for work and
-  idle (14%) and health (41%). Places are worked out for the screen at the time a panel's state is made. Old places move
+  idle (14%), health (41%) and, since UI 3, what the player follows (60%, `HudFollowing`, off at first: each thing
+  followed with its newest change, `FollowWords`, then the wishes pinned; a click opens its card). Places are worked out for the screen at the time a panel's state is made. Old places move
   in `HudLayout.Migrate` (above); a panel the player moved stays. With the panels beneath the game's interface an
   overlap no longer hides anything of the game's, but the places still avoid it.
 - **The alerts panel** (`HudAlerts`) mirrors the game's alert list, every mod's alerts included (Rimfolk's

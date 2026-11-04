@@ -12,14 +12,14 @@
   <CC_Tab_WeekCount>This week ({0})</CC_Tab_WeekCount>
   <CC_Tab_Everyone>Everyone</CC_Tab_Everyone>
   <CC_Tab_Dilemmas>Dilemmas</CC_Tab_Dilemmas>
-  <CC_UI_Sub_Week>What needs you, what's coming, and how people are.</CC_UI_Sub_Week>
+  <CC_UI_Sub_Week>What waits on you, what is under way, what is coming, and how people are.</CC_UI_Sub_Week>
   <CC_UI_Sub_Everyone>Every colonist in one table: mood, trust, strain, wishes, stories and health.</CC_UI_Sub_Everyone>
   <CC_UI_Sub_Dilemmas>Questions waiting for the council, and how its answers went.</CC_UI_Sub_Dilemmas>
   <CC_Keys_TabTip>{0}. Shortcut: {1}</CC_Keys_TabTip>
 
   <!-- This week: the page -->
   <CC_Week_Header>This week</CC_Week_Header>
-  <CC_Week_HeaderTip>Everything that wants your attention, in one place. Each line opens its page or goes to the colonist or the place on the map; a click on a card's heading opens the whole page.\n\nPin a colonist or a wish to keep it at the top: the pin shows when you hover a line, a row in the People table or a wish card. A right click on a line offers it too. A colonist's portrait opens their card beside the week.</CC_Week_HeaderTip>
+  <CC_Week_HeaderTip>Everything that waits on you, in one place: what you follow, what needs you, what is under way (by the step it is at), what is coming (by the day), how people are and the plan. Each line opens its page or goes to the colonist or the place on the map, a name in it opens its card beside the week, and the button on its right does what it asks. A click on a section's heading opens its view; "and 3 more" opens the rest in place.\n\nThe pin on any card's head follows it, twelve at most: it then shows at the top here with its newest change. The pin on a colonist's line, a row in the People table or a wish card does the same, and a right click on a line offers it too.</CC_Week_HeaderTip>
   <CC_Week_StatNeeds>{0} waiting on you</CC_Week_StatNeeds>
   <CC_Week_StatCalm>Nothing waiting on you</CC_Week_StatCalm>
   <CC_Week_More>and {0} more</CC_Week_More>
@@ -30,8 +30,8 @@
   <CC_Week_ClickMood>Click to select {0} and open their Mood tab.</CC_Week_ClickMood>
   <CC_Week_ClickHealth>Click to select {0} and open their Health tab.</CC_Week_ClickHealth>
   <CC_Week_ClickPerson>Click to open {0}'s card.</CC_Week_ClickPerson>
-  <CC_Week_Pin>Pin to This week</CC_Week_Pin>
-  <CC_Week_Unpin>Unpin from This week</CC_Week_Unpin>
+  <CC_Week_Pin>Follow: keep it at the top of This week</CC_Week_Pin>
+  <CC_Week_Unpin>Stop following</CC_Week_Unpin>
   <CC_Week_OpenPage>Open {0}'s card</CC_Week_OpenPage>
   <CC_Week_Left>{0} left</CC_Week_Left>
   <CC_Week_In>in {0}</CC_Week_In>
@@ -139,7 +139,7 @@
   <CC_Table_Filter_Attention>Needs attention</CC_Table_Filter_Attention>
   <CC_Table_Filter_Attention_Tip>Colonists in a break or close to one, worn down by strain, about to leave, seriously ill, or with a wish about to run out.</CC_Table_Filter_Attention_Tip>
   <CC_Table_Filter_Pinned>Pinned</CC_Table_Filter_Pinned>
-  <CC_Table_Filter_Pinned_Tip>The colonists pinned to This week.</CC_Table_Filter_Pinned_Tip>
+  <CC_Table_Filter_Pinned_Tip>The colonists you follow, at the top of This week.</CC_Table_Filter_Pinned_Tip>
   <CC_Table_SortTip>Click to sort by this; again for the other way.</CC_Table_SortTip>
   <CC_Table_Col_Name>Colonist</CC_Table_Col_Name>
   <CC_Table_Col_Name_Tip>Their name, with their office and the names they've earned under it.</CC_Table_Col_Name_Tip>

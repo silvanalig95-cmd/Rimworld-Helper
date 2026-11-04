@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One inbox, and search
+
+*4 November 2026, version 0.86.0*
+
+- This week is now the one place where everything waits on you: what you follow, what needs you, what is under way, what is coming, how people are and the plan, each line one sentence with its names leading to their cards and its act on the right.
+- A raiders' camp's terms, a hamlet's ask, a debt a people calls in and settlers at the gate now wait in This week with the rest, and count with them.
+- What is under way shows the step it is at (written, on the road, arrived, answered), never a countdown, and what is coming shows the day it comes.
+- One count of what waits on you, the same on This week's tab, on the inbox in every window's corner and on the council button (a setting, on at first).
+- The pin on any card follows it, up to twelve: a colonist, someone out in the world, a town, a people, a family, a debt. Each shows at the top of This week with its newest change, in the corner's list and in an optional Following panel on the screen.
+- A search in every window's corner, and a key you can bind, finds colonists, people outside, places, peoples, houses, the windows' views and the Almanac's pages by name. Enter opens the first.
+
 ## One look, the first part
 
 *4 November 2026, version 0.85.0*

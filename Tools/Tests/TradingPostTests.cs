@@ -168,7 +168,7 @@ public static class TradingPostTests
         C(Code("World/Region/RiseFallPatches.cs").Contains("TradingPosts.CaravanFactor(f, map)"), "their caravans' odds through the region's caravan hook");
         C(Code("World/WorldSituations.cs").Contains("TradingPosts.EventFactor(d, map)"), "the bandit road's odds where the world events are weighed");
         C(run.Contains("LinksOn => On && Interplay.On"), "both behind \"Systems talk to each other\"");
-        C(Code("UI/WeekModel.cs").Contains("TradingPostPage.WeekRows(c)"), "This week shows a post that may close");
+        C(Code("UI/InboxProviders.cs").Contains("InboxSection.Coming, 50f, TradingPostPage.WeekRows"), "This week shows a post that may close, in Coming");
         C(!code.Contains("MainTabWindow_World.Register(") && Code("UI/Region/LensModel.cs").Contains("TradingPosts.All()") && Code("UI/Region/LensModel.cs").Contains("TradingPostWords.Lines(postHome, post, true)"),
             "the posts are the region map's Trade lens, with their list (their old page's name forwards there)");
         C(code.Contains("nameof(SettlementDefeatUtility.CheckDefeated)") && !Regex.IsMatch(Code("World/Region/TradingPostPatches.cs"), @"return false;"),

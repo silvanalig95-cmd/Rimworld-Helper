@@ -31,8 +31,10 @@ namespace ColonyCouncil
         public const string Health = "health";
         public const string Work = "work";
         public const string Inventory = "inventory";
+        /// <summary>What the player follows, with each one's newest change (Hud/HudFollowing.cs); off at first.</summary>
+        public const string Following = "following";
 
-        public static readonly string[] All = { Moods, Trend, Vitals, Council, Alerts, Health, Work, Inventory };
+        public static readonly string[] All = { Moods, Trend, Vitals, Council, Alerts, Health, Work, Inventory, Following };
     }
 
     /// <summary>
@@ -218,6 +220,12 @@ namespace ColonyCouncil
                 case HudIds.Health:
                     fx = column2;
                     fy = 0.413f;
+                    right = true;
+                    break;
+                case HudIds.Following:
+                    // Under health, in the second column.
+                    fx = column2;
+                    fy = 0.6f;
                     right = true;
                     break;
             }

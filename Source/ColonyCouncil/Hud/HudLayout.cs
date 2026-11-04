@@ -19,6 +19,7 @@ namespace ColonyCouncil
         public const string Health = HudIds.Health;
         public const string Work = HudIds.Work;
         public const string Inventory = HudIds.Inventory;
+        public const string Following = HudIds.Following;
 
         /// <summary>
         /// The panels' settings version (CouncilSettings.hudVersion). 1 (0.9.4): the panels paint beneath the game's
@@ -87,6 +88,11 @@ namespace ColonyCouncil
                     break;
                 case Work:
                     st.maxRows = 10;
+                    break;
+                case Following:
+                    // Off at first: the corner's following list and the panel button put it on the screen.
+                    st.on = false;
+                    st.maxRows = 8;
                     break;
                 case Inventory:
                     st.maxRows = 25;

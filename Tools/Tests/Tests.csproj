@@ -39,6 +39,9 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/NavTrailMath.cs" Link="NavTrailMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/WindowLayoutMath.cs" Link="WindowLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/PreviewMath.cs" Link="PreviewMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/InboxMath.cs" Link="InboxMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/FollowMath.cs" Link="FollowMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/SearchMath.cs" Link="SearchMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ShelfReserveMath.cs" Link="ShelfReserveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestCheckMath.cs" Link="GuestCheckMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/NextStepsMath.cs" Link="NextStepsMath.cs" />

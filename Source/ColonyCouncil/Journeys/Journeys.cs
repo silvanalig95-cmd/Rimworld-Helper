@@ -398,6 +398,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The travellers still wait at the gate for the colony's answer (This week's Needs you counts it).</summary>
+        public bool Waiting => !ArchivedOnly && Live != null;
+
         public override IEnumerable<DiaOption> Choices
         {
             get

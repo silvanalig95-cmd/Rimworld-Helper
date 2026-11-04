@@ -16,9 +16,9 @@ namespace ColonyCouncil
     /// </summary>
     public static class GuestsWeek
     {
-        public static void AddRows(WeekCard card)
+        public static void AddRows(List<WeekRow> rows)
         {
-            if (card == null || !People.ModActive(Guests.Mod)) return;
+            if (rows == null || !People.ModActive(Guests.Mod)) return;
             foreach (var map in Find.Maps)
             {
                 if (map == null || !map.IsPlayerHome) continue;
@@ -63,10 +63,11 @@ namespace ColonyCouncil
                         else note = "CC_Week_GuestsSo".Translate();
                     }
                     var target = new GlobalTargetInfo(first);
-                    card.rows.Add(new WeekRow
+                    rows.Add(new WeekRow
                     {
                         icon = Icons.Visitor,
                         color = UiKit.StrangerColor,
+                        faction = faction,
                         text = (party.Count == 1 ? "CC_Week_GuestOne" : "CC_Week_Guests").Translate(from.Named("FROM"), party.Count.Named("COUNT")).Resolve(),
                         note = note,
                         noteColor = noteColor,

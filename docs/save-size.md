@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 493; modelled: 493; growing without end: 0.
+Saved collections found: 494; modelled: 494; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** after two, **3,058 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -299,6 +299,7 @@ Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** aft
 | `Building/Suggest/SameRules.cs:owners` | per store step: the stores whose priority or filter it changed | fixed | 12 | 12 | 12 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
+| `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
 | `Camps/Camp.cs:members` | the camp's people, while it stays | while | 8 | 8 | 8 | 0.3 |
 | `Camps/Camp.cs:willing` | while the camp stays | while | 8 | 8 | 8 | 0.3 |
@@ -353,7 +354,6 @@ Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** aft
 | `Missions/Missions.cs:group` | per mission | fixed | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
 | `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
-| `UI/WeekMemory.cs:pinnedPawns` | pins: only the player's clicks, the gone dropped | fixed | 4 | 4 | 4 | 0.2 |
 | `Visitors/Callers.cs:pawns` | per task: who is still to have a cut (one per colonist), or the animals still to tend (CallerMath.MaxPatients at most) | fixed | 4 | 4 | 4 | 0.2 |
 | `Visitors/Callers.cs:things` | per task: the art still to see (seven at most) or the dead still to lay to rest (eight graves at most) | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:deeds` | per situation | fixed | 4 | 4 | 4 | 0.2 |
@@ -419,6 +419,7 @@ Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** aft
 | `Happenings/Happenings.cs:oldGrudges` | an older save's grudges, read on load and moved into the world ledger (one Grudge tie per people); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldFavours` | an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldWords` | an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
+| `UI/WeekMemory.cs:pinnedPawns` | colonists pinned before following: read from an older save only, then followed; never written | fixed | 0 | 0 | 0 | 0.0 |
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
 | `Building/Ahead.cs:cells` | per step (counted under done): the cells a field step's check looks at, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Automations.cs:things` | per action (counted under actions): the bench, the things ordered down, the blueprints, the trees | fixed | 8 | 8 | 8 | (in its record) |

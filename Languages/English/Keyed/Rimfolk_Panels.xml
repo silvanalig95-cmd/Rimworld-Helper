@@ -313,7 +313,7 @@
   <CC_Settings_HudPanelOptions>Each panel's options</CC_Settings_HudPanelOptions>
   <CC_SetNote_HudPanelOptions>Rows and columns, order, whom it lists, rows before "and more", size and background.</CC_SetNote_HudPanelOptions>
   <CC_Settings_HudPanelOptions2>Each panel's options (more)</CC_Settings_HudPanelOptions2>
-  <CC_SetNote_HudPanelOptions2>The alerts, health, work and idle, and the inventory.</CC_SetNote_HudPanelOptions2>
+  <CC_SetNote_HudPanelOptions2>Health, work and idle, the inventory, and what you follow.</CC_SetNote_HudPanelOptions2>
   <CC_Settings_HudHideGameResources>Hide the game's own resource list while the Inventory panel shows</CC_Settings_HudHideGameResources>
   <CC_Settings_HudHideGameResources_Tip>The Inventory panel shows the same counts as the game's list down the left, so that list steps aside while the panel is up. The counting goes on as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameResources_Tip>
   <CC_SetNote_HudHideGameResources>The Inventory panel instead of the game's resource list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameResources>

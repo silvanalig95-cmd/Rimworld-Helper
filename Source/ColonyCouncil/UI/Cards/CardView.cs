@@ -8,6 +8,14 @@ using Verse.Sound;
 
 namespace ColonyCouncil
 {
+    /// <summary>The card head's follow pin, in words, translated once.</summary>
+    internal static class FollowTips
+    {
+        private static string follow, unfollow;
+        public static string Follow => follow ??= "CC_Card_Follow".Translate(FollowMath.Max.Named("COUNT")).Resolve();
+        public static string Unfollow => unfollow ??= "CC_Card_Unfollow".Translate();
+    }
+
     /// <summary>Where one card shown somewhere is scrolled to (a drawer's, the floating card's).</summary>
     public sealed class CardState
     {
@@ -111,6 +119,16 @@ namespace ColonyCouncil
                     var target = m.place != null && !m.place.Destroyed ? new GlobalTargetInfo(m.place) : new GlobalTargetInfo(m.tile);
                     CameraJumper.TryJumpAndSelect(target);
                 }
+            }
+            // The follow pin: what is followed shows at the top of This week with its newest change, and in the Following panel.
+            var memory = WeekMemory.Instance;
+            if (memory != null && !m.thing.IsNone)
+            {
+                bool followed = memory.IsFollowed(m.thing);
+                var pin = new Rect(x + w - right - 24f, y + 2f, 24f, 24f);
+                right += 28f;
+                if (UiKit.IconButton(pin, Icons.Pin ?? Icons.Promise, followed ? FollowTips.Unfollow : FollowTips.Follow, true, followed ? UiKit.Gold : UiKit.Dim))
+                    memory.ToggleFollow(m.thing);
             }
             float tx = x + Pic + 10f, tw = Mathf.Max(0f, w - Pic - 10f - right);
             UiKit.LabelFit(new Rect(tx, y - 1f, tw, 28f), m.title, m.gone ? UiKit.Faint : UiKit.HeaderColor, GameFont.Medium);

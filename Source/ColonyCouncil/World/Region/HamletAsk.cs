@@ -129,6 +129,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The question still waits for the colony's answer (This week's Needs you counts it).</summary>
+        public bool Waiting => !ArchivedOnly && Live(out _) != null;
+
         private DiaOption Option(string key, Action<Map, HamletHome> act, string disabled = null, NamedArgument? arg = null)
         {
             var o = new DiaOption((arg.HasValue ? key.Translate(arg.Value) : key.Translate()).Resolve())

@@ -236,6 +236,55 @@ namespace ColonyCouncil
             return 32f;
         }
 
+        /// <summary>
+        /// The same steps on one line in small print, for a row (This week's Under way): a dot and a word for each, the
+        /// ones done in done's colour, the one it is at lit, the rest quiet; cut where the width ends. Never a time left.
+        /// </summary>
+        public static void StepsLine(Rect r, string[] words, int at)
+        {
+            if (words == null || words.Length == 0) return;
+            float x = r.x;
+            float cy = r.y + r.height / 2f;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (x + 12f > r.xMax) break;
+                var c = i < at ? Done : i == at ? Info : Dim;
+                var dot = new Rect(x, cy - 3f, 6f, 6f);
+                if (i <= at) DiscFill(dot, c);
+                else RingDraw(dot, c);
+                x += 9f;
+                float w = KeptWidth(words[i], GameFont.Tiny) + 2f;
+                float room = r.xMax - x;
+                LabelFit(new Rect(x, r.y, Mathf.Min(w, room), r.height), words[i], i == at ? Color.white : i < at ? Done : Dim, GameFont.Tiny);
+                x += w + 8f;
+            }
+        }
+
+        // ---------------- Count badge ----------------
+
+        private static readonly Color BadgeFill = new Color(0.62f, 0.45f, 0.16f, 1f);
+        private static readonly string[] counts = new string[100];
+
+        /// <summary>
+        /// A count on an icon's top right corner (the inbox in the corner, the council button): a small gold plate with the
+        /// number, "99+" above ninety-nine.
+        /// </summary>
+        public static void CountBadge(Rect icon, int n)
+        {
+            if (n <= 0 || Event.current.type != EventType.Repaint) return;
+            string s = n > 99 ? "99+" : counts[n] ??= n.ToString();
+            float w = Mathf.Max(14f, KeptWidth(s, GameFont.Tiny) + 6f);
+            var r = new Rect(icon.xMax - w + 5f, icon.y - 4f, w, 14f);
+            Widgets.DrawBoxSolidWithOutline(r, BadgeFill, WithAlpha(Gold, 0.9f), 1);
+            var old = Text.Font;
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = Color.white;
+            Widgets.Label(new Rect(r.x, r.y - 1f, r.width, r.height + 2f), s);
+            Text.Anchor = TextAnchor.UpperLeft;
+            Text.Font = old;
+        }
+
         // ---------------- Small buttons ----------------
 
         /// <summary>A square icon button, lit under the mouse, with its tooltip; returns true when clicked.</summary>

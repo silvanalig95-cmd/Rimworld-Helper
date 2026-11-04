@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    This week as the one inbox, search and following (Source/ColonyCouncil/UI/Inbox*.cs, WeekModel.cs, WeekPanel.cs,
+    FollowWords.cs, Search.cs, WindowTabs.cs; Hud/HudFollowing.cs). Under way shows steps, never a time left: the step
+    words below (CC_Inbox_Step_*) are checked for that by Tools/Tests (InboxTests).
+  -->
+
+  <!-- This week's sections -->
+  <CC_Inbox_Following>Following</CC_Inbox_Following>
+  <CC_Inbox_Empty_Following>Follow a person, a place or a people with the pin on its card, and its newest change shows here.</CC_Inbox_Empty_Following>
+  <CC_Inbox_Needs>Needs you</CC_Inbox_Needs>
+  <CC_Inbox_Empty_Needs>Nothing waits on you: no wish, petition, letter or ask is open.</CC_Inbox_Empty_Needs>
+  <CC_Inbox_UnderWay>Under way</CC_Inbox_UnderWay>
+  <CC_Inbox_Empty_UnderWay>Nothing is under way: no letter on the road, no caravan out, no mission taken on.</CC_Inbox_Empty_UnderWay>
+  <CC_Inbox_Coming>Coming</CC_Inbox_Coming>
+  <CC_Inbox_Empty_Coming>No days, fights or offers in sight.</CC_Inbox_Empty_Coming>
+  <CC_Inbox_People>How people are</CC_Inbox_People>
+  <CC_Inbox_Empty_People>Nobody is near a break, seriously ill or losing trust.</CC_Inbox_Empty_People>
+  <CC_Inbox_Plan>The plan</CC_Inbox_Plan>
+  <CC_Inbox_Empty_Plan>The plan has no steps yet.</CC_Inbox_Empty_Plan>
+  <CC_Inbox_Fewer>Show fewer</CC_Inbox_Fewer>
+
+  <!-- When something comes: a day, never how long until -->
+  <CC_Inbox_Today>today</CC_Inbox_Today>
+  <CC_Inbox_Tomorrow>tomorrow</CC_Inbox_Tomorrow>
+  <CC_Inbox_Until>until {DATE}</CC_Inbox_Until>
+  <CC_Inbox_DueBy>Due by {DATE}.</CC_Inbox_DueBy>
+  <CC_Inbox_Lapses>If nothing comes of it, it lapses on {DATE}.</CC_Inbox_Lapses>
+  <CC_Inbox_LetterGoes>The letter leaves the stack on {DATE}.</CC_Inbox_LetterGoes>
+
+  <!-- A row's act -->
+  <CC_Inbox_Act_Answer>Answer</CC_Inbox_Act_Answer>
+  <CC_Inbox_Act_Decide>Decide</CC_Inbox_Act_Decide>
+  <CC_Inbox_Act_Look>Look</CC_Inbox_Act_Look>
+  <CC_Inbox_Act_Pay>Pay</CC_Inbox_Act_Pay>
+  <CC_Inbox_Act_Plan>Plan</CC_Inbox_Act_Plan>
+  <CC_Inbox_Act_PutAway>Put away</CC_Inbox_Act_PutAway>
+  <CC_Inbox_Act_Send>Send</CC_Inbox_Act_Send>
+
+  <!-- Needs you: what each row is, in small print under it -->
+  <CC_Inbox_Sub_Wish>a wish, asked on {DATE}</CC_Inbox_Sub_Wish>
+  <CC_Inbox_Sub_WishPromised>a wish the council promised, asked on {DATE}</CC_Inbox_Sub_WishPromised>
+  <CC_Inbox_Sub_Petition>a petition to the council, made on {DATE}</CC_Inbox_Sub_Petition>
+  <CC_Inbox_Sub_Letter>a letter waiting for your answer</CC_Inbox_Sub_Letter>
+  <CC_Inbox_Sub_Meeting>the council meeting, waiting for your choice</CC_Inbox_Sub_Meeting>
+  <CC_Inbox_Sub_CampTerms>a raiders' camp's terms</CC_Inbox_Sub_CampTerms>
+  <CC_Inbox_Sub_Hamlet>a hamlet's ask</CC_Inbox_Sub_Hamlet>
+  <CC_Inbox_Sub_Election>the election, while the council may still step in</CC_Inbox_Sub_Election>
+  <CC_Inbox_Sub_Journey>a journey waiting at the gate</CC_Inbox_Sub_Journey>
+  <CC_Inbox_Sub_At>{WHAT}, at {PLACE}</CC_Inbox_Sub_At>
+  <CC_Inbox_Sub_Missing>what was granted is missing; put it back by {DATE}</CC_Inbox_Sub_Missing>
+  <CC_Inbox_Sub_TakenBack>what was granted was taken back; make it right by {DATE}</CC_Inbox_Sub_TakenBack>
+  <CC_Inbox_Sub_OfferFrom>offered by {PEOPLE}</CC_Inbox_Sub_OfferFrom>
+
+  <!-- How people are -->
+  <CC_Inbox_ColonyTrust>The colony's trust in the council: {LEVEL}</CC_Inbox_ColonyTrust>
+
+  <!-- Under way: the sentences, and the steps (never a time left) -->
+  <CC_Inbox_Journey>{WHO}'s journey to {PLACE}</CC_Inbox_Journey>
+  <CC_Inbox_CaravanTo>{CARAVAN} to {PLACE}</CC_Inbox_CaravanTo>
+  <CC_Inbox_Settlers>Settlers of {PEOPLE} on the road to their hamlet</CC_Inbox_Settlers>
+  <CC_Inbox_CampPrice>The price for {NAME} goes out: {SILVER} silver</CC_Inbox_CampPrice>
+  <CC_Inbox_Step_SetOut>set out</CC_Inbox_Step_SetOut>
+  <CC_Inbox_Step_Road>on the road</CC_Inbox_Step_Road>
+  <CC_Inbox_Step_There>there</CC_Inbox_Step_There>
+  <CC_Inbox_Step_HomeWay>on the way home</CC_Inbox_Step_HomeWay>
+  <CC_Inbox_Step_TakenOn>taken on</CC_Inbox_Step_TakenOn>
+  <CC_Inbox_Step_UnderWay>under way</CC_Inbox_Step_UnderWay>
+  <CC_Inbox_Step_Done>done</CC_Inbox_Step_Done>
+  <CC_Inbox_Step_AtGate>at the gate</CC_Inbox_Step_AtGate>
+  <CC_Inbox_Step_Settled>settled</CC_Inbox_Step_Settled>
+  <CC_Inbox_Step_Planned>planned</CC_Inbox_Step_Planned>
+  <CC_Inbox_Step_Ready>getting ready</CC_Inbox_Step_Ready>
+  <CC_Inbox_Step_Agreed>agreed</CC_Inbox_Step_Agreed>
+  <CC_Inbox_Step_GoingOut>going out</CC_Inbox_Step_GoingOut>
+  <CC_Inbox_Step_HandedOver>handed over</CC_Inbox_Step_HandedOver>
+  <CC_Inbox_Step_SetGoing>set going</CC_Inbox_Step_SetGoing>
+  <CC_Inbox_Step_Happening>happening</CC_Inbox_Step_Happening>
+
+  <!-- Following -->
+  <CC_Card_Follow>Follow: it shows at the top of This week with its newest change, and in the Following panel. At most {COUNT}.</CC_Card_Follow>
+  <CC_Card_Unfollow>Stop following</CC_Card_Unfollow>
+  <CC_Follow_Full>You already follow {COUNT} things. Stop following one first, with the pin on its card or its row.</CC_Follow_Full>
+  <CC_Follow_News>{LINE}, {AGO}</CC_Follow_News>
+  <CC_Follow_Steady>steady</CC_Follow_Steady>
+
+  <!-- The corner -->
+  <CC_Corner_SearchTip>Search: a colonist, a person, a place, a people, a house, a view or an Almanac page, by name.</CC_Corner_SearchTip>
+  <CC_Corner_InboxTip>This week: {COUNT} things wait on you.</CC_Corner_InboxTip>
+  <CC_Corner_InboxTipCalm>This week: nothing waits on you.</CC_Corner_InboxTipCalm>
+  <CC_Corner_FollowTip>What you follow, each with its newest change. The pin on any card follows it.</CC_Corner_FollowTip>
+  <CC_Corner_FollowNone>Nothing followed yet: the pin on a card's head follows it.</CC_Corner_FollowNone>
+  <CC_Corner_FollowPanelOn>Show the Following panel on the screen</CC_Corner_FollowPanelOn>
+  <CC_Corner_FollowPanelOff>Hide the Following panel</CC_Corner_FollowPanelOff>
+
+  <!-- Search -->
+  <CC_Search_Hint>Type a name: a colonist, a person, a place, a people, a house, a view such as Bonds, or an Almanac page. Enter opens the first.</CC_Search_Hint>
+  <CC_Search_None>Nothing found for "{QUERY}".</CC_Search_None>
+  <CC_Search_OfMore>{SHOWN} of {ALL}</CC_Search_OfMore>
+  <CC_Search_TitleOf>{TITLE} of {TOWN}</CC_Search_TitleOf>
+  <CC_Search_In>{VIEW}, in the {WINDOW} window</CC_Search_In>
+  <CC_Search_Kind_Colonist>Colonists</CC_Search_Kind_Colonist>
+  <CC_Search_Kind_Person>People outside</CC_Search_Kind_Person>
+  <CC_Search_Kind_Place>Places</CC_Search_Kind_Place>
+  <CC_Search_Kind_People>Peoples</CC_Search_Kind_People>
+  <CC_Search_Kind_House>Houses</CC_Search_Kind_House>
+  <CC_Search_Kind_View>Views</CC_Search_Kind_View>
+  <CC_Search_Kind_Article>The Almanac</CC_Search_Kind_Article>
+  <CC_Search_Kind_Other>More</CC_Search_Kind_Other>
+
+  <!-- Settings: the count on the council button -->
+  <CC_Settings_InboxCount>The count on the council button</CC_Settings_InboxCount>
+  <CC_Settings_InboxCount_Tip>The council button on the bottom bar shows how many things wait on you: the same number as This week's tab and the inbox in the corner of every Rimfolk window.</CC_Settings_InboxCount_Tip>
+  <CC_SetNote_InboxCount>The council button shows how many things wait on you.</CC_SetNote_InboxCount>
+
+  <!-- The Following panel on the screen -->
+  <CC_Pnl_Name_following>Following</CC_Pnl_Name_following>
+  <CC_Pnl_Opt_Compact_following>Icons and names only, two to a row.</CC_Pnl_Opt_Compact_following>
+  <CC_Pnl_Part_followed>What you follow</CC_Pnl_Part_followed>
+  <CC_Pnl_Part_pinnedwishes>Wishes pinned to This week</CC_Pnl_Part_pinnedwishes>
+  <CC_Pnl_FollowNone>Nothing followed: the pin on a card follows it.</CC_Pnl_FollowNone>
+  <CC_Pnl_FollowLine>{NAME}: {NEWS}</CC_Pnl_FollowLine>
+  <CC_Pnl_FollowClick>Click to open its card.</CC_Pnl_FollowClick>
+
+</LanguageData>
