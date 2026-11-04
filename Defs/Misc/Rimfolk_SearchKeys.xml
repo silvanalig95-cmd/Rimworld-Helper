@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The search in every Rimfolk window's corner (Source/ColonyCouncil/UI/Search.cs), as a key in Options, Keyboard,
+    under "Rimfolk". It has no key until the player picks one. It opens the search's field wherever the game is played,
+    and shuts it again; it does nothing while a text field has the keyboard.
+  -->
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Search</defName>
+    <label>search (Rimfolk's windows)</label>
+  </KeyBindingDef>
+
+</Defs>

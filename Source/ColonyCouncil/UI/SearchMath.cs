@@ -76,6 +76,8 @@ namespace ColonyCouncil
         public static string Fold(string s)
         {
             if (string.IsNullOrEmpty(s)) return "";
+            // A link's words, without its markers and the thing it names.
+            if (LinkTextMath.HasMarks(s)) s = LinkTextMath.Plain(s);
             string d;
             try
             {

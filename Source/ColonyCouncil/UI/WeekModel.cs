@@ -93,6 +93,7 @@ namespace ColonyCouncil
                 headerTip = "CC_Week_HeaderTip".Translate()
             };
             var rows = new List<WeekRow>();
+            var memory = WeekMemory.Instance;
             foreach (var section in InboxMath.Sections)
             {
                 var c = Card(section);
@@ -111,6 +112,10 @@ namespace ColonyCouncil
                         continue;
                     }
                     rows.RemoveAll(r => r == null);
+                    // A thing already followed shows its pin lit, whichever part's row it is.
+                    foreach (var r in rows)
+                        if (!r.follow.IsNone && r.pinWish == null)
+                            r.pinned = memory != null && memory.IsFollowed(r.follow);
                     // Each part's rows as its card on This week always sorted them: by their order, equals as found (a stable sort).
                     var into = p.footer ? c.footer : c.rows;
                     into.AddRange(rows.OrderBy(r => r.order));

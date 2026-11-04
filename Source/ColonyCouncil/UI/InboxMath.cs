@@ -141,9 +141,10 @@ namespace ColonyCouncil
 
         public static int JourneyStep(int stage) => stage <= 0 ? 0 : stage == 1 ? 1 : 2;
 
+        // "left" alone is no time ("message left"): with a number before it, the number gives it away.
         private static readonly string[] TimeWords =
         {
-            "day", "days", "hour", "hours", "week", "weeks", "season", "seasons", "year", "years", "left", "soon", "until", "tomorrow", "today", "minutes"
+            "day", "days", "hour", "hours", "week", "weeks", "season", "seasons", "year", "years", "soon", "until", "tomorrow", "today", "minutes"
         };
 
         /// <summary>A step's words say how long is left (a number, or a word of time): never allowed, the player's rule.</summary>

@@ -222,7 +222,8 @@ public static class DiplomacyTests
         C(dip["DiplomacyLinks.cs"].Contains("Cards.Open(") && !dip["DiplomacyLinks.cs"].Contains("CameraJumper"), "a name in diplomacy's rows opens its card");
         C(Regex.Matches(dip["DiplomacyPanels.cs"] + dip["DiplomacyModel.cs"], @"DiplomacyLinks\.Open\(").Count >= 3 && !Regex.IsMatch(dip["DiplomacyPanels.cs"], @"CameraJumper|ShowOnMap"),
             "a click on a name goes through one helper");
-        C(Code("UI/WeekModel.cs").Contains("DiplomacyPanels.WeekRows(c)") && !dip["DiplomacyPanels.cs"].Contains("CC_Week_In"), "This week shows their calls waiting, never with a timer");
+        C(Code("UI/InboxProviders.cs").Contains("InboxSection.Needs, 30f, DiplomacyPanels.WeekRows, DiplomacyPanels.WeekCount") && !dip["DiplomacyPanels.cs"].Contains("CC_Week_In"),
+            "This week shows their calls waiting in Needs you, counted, never with a timer");
         string settings = Code("CouncilSettings.cs");
         string catalog = Code("UI/SettingsCatalog.cs");
         C(settings.Contains("public bool diplomacyFavours = true;") && settings.Contains("Scribe_Values.Look(ref diplomacyFavours, \"diplomacyFavours\", true);")

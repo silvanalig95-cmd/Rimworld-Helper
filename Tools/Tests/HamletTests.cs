@@ -192,7 +192,8 @@ public static class HamletTests
         C(settings.Contains("public bool hamlets = true;") && settings.Contains("Scribe_Values.Look(ref hamlets, \"hamlets\", true);") && catalog.Contains("Toggle(\"hamlets\""),
             "the setting Hamlets, on by default, in the region's settings");
         C(settings.Contains("public bool smallTownMaps = true;") && catalog.Contains("Toggle(\"smallTownMaps\"") && catalog.Contains("\"deepHooks\""), "the setting Small towns' maps, with the deeper hooks");
-        C(Code("UI/WeekModel.cs").Contains("HamletPage.WeekRows(c)"), "This week shows settlers waiting at the gate");
+        C(Code("UI/InboxProviders.cs").Contains("InboxSection.Needs, 35f, HamletPage.WeekRows, HamletPage.WeekCount") && Code("UI/InboxUnderWay.cs").Contains("InboxMath.SettlerStep(h.stage)"),
+            "This week shows settlers waiting at the gate in Needs you, and on the road under way");
         C(!code.Contains("MainTabWindow_World.Register(") && Code("UI/Region/LensModel.cs").Contains("Hamlets.All()") && Code("UI/Region/LensModel.cs").Contains("HamletWords.Lines(home, h, true)"),
             "the hamlets are the region map's Ours lens, with the settlers on their way in its list (their old page's name forwards there)");
         string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));

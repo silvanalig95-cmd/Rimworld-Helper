@@ -245,6 +245,8 @@ namespace ColonyCouncil
                 open.Close();
                 return;
             }
+            // The click on the corner's icon that shut it (as a click outside it) doesn't open it again.
+            if (Time.realtimeSinceStartup - Window_Search.closedAt < 0.3f) return;
             Find.WindowStack?.Add(new Window_Search(anchor));
         }
 
@@ -299,6 +301,8 @@ namespace ColonyCouncil
         private Vector2 scroll;
         private float height;
         private const string Field = "RimfolkSearchField";
+        /// <summary>When the last one shut (Search.Toggle).</summary>
+        internal static float closedAt = -1f;
         private const float RowH = 34f, HeadH = 22f;
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(400f, UI.screenWidth - 20f), Mathf.Min(460f, UI.screenHeight - 60f));
@@ -314,11 +318,18 @@ namespace ColonyCouncil
             closeOnCancel = true;
             closeOnClickedOutside = true;
             absorbInputAroundWindow = false;
-            preventCameraMotion = false;
+            // The keys typed into its field don't move the camera.
+            preventCameraMotion = true;
             forcePause = false;
             soundAppear = SoundDefOf.TabOpen;
             soundClose = null;
             index = Search.Index();
+        }
+
+        public override void PostClose()
+        {
+            base.PostClose();
+            closedAt = Time.realtimeSinceStartup;
         }
 
         protected override void SetInitialSizeAndPosition()
