@@ -6,6 +6,43 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- Stage 2 release 2a.1, diplomacy's base and favours (docs/design/stage2-diplomacy.md, item 1 and the base): built
+  while the player plays, with the design's decisions left alone (no fighters through a favour either way: 2a.2's war
+  bands and decision 3; no Empire honour for a favour: decision 9). `Source/ColonyCouncil/Diplomacy/`: `DiplomacyMath.cs`,
+  `FavourMath.cs`, `NatureMath.cs` (pure, `DiplomacyTests`, 675 checks), `Diplomacy.cs` (the hub; its hour and day ride
+  on the neighbours' pass at `Sched.Neighbours`, no slot of its own), `FavoursOwed.cs` (debts of honour as Favour ties of
+  origin `debts`: from a deed of size 10+ in `FavourMath.OurGoodTurns`/`TheirGoodTurns`, hooked in `FactionMemory.Note`;
+  personal from a notable helped in person, hooked in `KinMemory.Credit`/`Note`; one open each way per people and colony,
+  renewed, 120 days; twelve personal; the line appended to the letter that told the good turn within two hours, else
+  `Tell.Minor`), `FavourCalls.cs` (the colony calls in: goods by fortune and age, a word with a third people (+10, their
+  own letter, `dip:word`), a colonist they hold walked from the edge to the gate (`KidnappedPawnsTracker.RemoveKidnappedPawn`,
+  `dip:freed`), help toward peace (a Promise tie, key `peace`, number 20, a year, `dip:peace`: release 2a.2's truce
+  answer should read it as that people thinking 20 better of the colony); honoured by regard 20+/0+/below 0 at
+  1/0.7/0.4; refused: deed `brokeWord`), `FavourAsks.cs` (their calls: daily, 1 in 90, a season apart, only with a need
+  the world shows; medicine and food by `ChoiceLetter_FavourAsk` (`Rimfolk_FavourAsk`), sent as a `DilemmaEffect_CarryOut`
+  to the gate; harvest and refugees by firing the existing missions for them (`MissionPeoples.Only`), kept by the
+  mission's deed, broken by its other ends (`Missions.Finish` hook); a dispute (feud, contested seat) by the speaker's
+  letter to their head (`dip:side`, deeds `sidedWith`, `tookSides`); overdue or refused: broken, `refused`, -5 goodwill;
+  kept: `keptWord`), `DiplomacyLetters.cs` (the letter purposes' frame: `LetterPurpose.Favour`, topics `tie:ID` and
+  `side:ID`, the ask in the letter's help field, hooks in `NeighbourLetters.WhyNot`/`Topics`/`Read` and the dialog),
+  `DiplomacyActs.cs` (the right-click frame: `OutsiderAct.AskFavour` after Invite, hooks in `Outsiders`), `DiplomacyModel.cs`
+  and `DiplomacyPanels.cs` (the Diplomacy page, order 35, and Household, 36, as panels over one cached model, rows as
+  pieces; the town section; This week's line), `DiplomacyLinks.cs` (every click on a name; opens the region map with the
+  town picked: `RegionMapView.Pick`, `MainTabWindow_World.ShowOnMap`), `DiplomacyWords.cs`, `Nature.cs` (no effect until
+  round d), `DiplomacyDebug.cs` (dev actions: make a debt, call one in, they call one in). Shared: `TieRules.Kinds` 14
+  (Secret, Scheme reserved; 1,080 ties; the save model reads the kinds), the twenty new deeds in `FactionMemory.Kinds`,
+  `AgeFeature` Truce, Hostage, Envoy, Levy (18 features), setting `diplomacyFavours` (section Diplomacy). Facts: a debt
+  speaks as `tie:honour` (`:ours :theirs :you :due`, `{HONOURTO}`, `{FAVOURWHY}`), apart from `tie:favour`, whose
+  existing talk is about a thing to bring next visit (a deviation from the design's wording, so those lines don't
+  misfire). Content: 14 talk pieces (`Rimfolk_OutsiderTalks_Honour.xml`), 15 letter lines and 16 bubble lines
+  (`Rimfolk_Lines_Diplomacy.xml`), keyed words with variants (`Rimfolk_Diplomacy.xml`), Almanac `Council_Alm_C_Diplomacy`.
+  To check in game: a debt's line in the letter of a prisoner released, a mission done; the Diplomacy page's cards and
+  "Call it in" opening the letter with the debt and its asks; an answer bringing goods with the messenger, a word's
+  letter from the third people, a kidnapped colonist walking in; their medicine letter and the carry-out to their
+  messenger; a harvest mission they ask; the right-click ask and the bubbles; the town section on the region map; the
+  Household page. Thin: the household's council tasks, schemes and envoys wait for their releases; their ask names no
+  messenger at the gate before the answer (the carry-out brings one).
+
 - 4 November 2026, paused for the player's play test (the player's word): after 0.79.0 nothing new is built until the
   player has played and given feedback. Stage 2's first release (2a.1, diplomacy's base and favours) is next and
   waits for it; 2a.2 and 2a.3 wait also for the stage 2 decisions 1 to 6, stage 3 for its 17 decisions, the harm

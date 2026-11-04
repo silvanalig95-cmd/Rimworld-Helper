@@ -2599,6 +2599,18 @@ few riders looking for work if the band broke up. And after other settlers' year
 grows into a town: its leader heads it, the colony may name it, its families remember the first year, and its carter
 comes for a load for the first market.
 
+**Debts of honor.** A good turn big enough in a people's memory leaves them owing the colony (one of theirs freed or
+tended, refugees taken in, a lost child found, a town rebuilt), and help the colony takes from them (fighters, relief,
+medicine, lessons) leaves it owing them; the letter that tells of it says so, in both sides' words by their age. A
+notable helped in person owes the colonist who did it. The colony calls a debt in by letter, by call or face to face
+("Ask a favor of their people"): a load of goods brought by their porters, a word with a third people, a colonist they
+hold sent home, or their help toward peace; their head's regard decides whether they honor it. They call in what the
+colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof
+for their homeless, the colony's word in a feud; refused or left unanswered, they remember it. The region window has a
+*Diplomacy* page (what is owed each way, a card for each people) and a *Household* page (who is here from outside, who
+is away, the colony's houses). 14 conversation pieces speak of it. Setting: *Favors owed and called in*. The Almanac
+has a page, *diplomacy*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town
