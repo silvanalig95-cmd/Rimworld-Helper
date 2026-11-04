@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a people remembers, in the letters of Rimfolk's events about them (visitors, callers, traders, envoys, their
+    asks), merged in at startup (LetterVariantsDef, Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs). The event's people
+    are read by the facts service's event scene (Text/Facts/FactScene.cs, FactScene.Event): what they remember of the
+    colony ([deed:good] with {DEED}, the good turn they remember best: "set Ana free"; [deed:bad] with {WRONG}, the wrong
+    they remember worst), the ties between the two sides ([tie:favour:theirs] with {FAVOURFOR}), and the region's word
+    on their town ([town:struggling] to [town:flourishing] with {FORTUNE}). {DEED} and {WRONG} finish "the colony ...".
+    A line is picked only when its tags hold, and every value it names is there when they do.
+  -->
+
+  <!-- ===================== Callers ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Scribe</defName>
+    <incident>Council_Evt_Scribe</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef}, a scribe of {FACTION}, has set up at the colony's table with quills and good paper. Among {FACTION}, the colony is known as the place that {DEED}, and {X_nameDef} wanted to see it.\n\nFor {COUNT} silver, {X_nameDef} will write a letter for anyone who wants to send word somewhere.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_WanderingCook</defName>
+    <incident>Council_Evt_WanderingCook</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef}, a cook of {FACTION}, heard on the road that this colony is the place that {DEED}, and came to cook for it. Give {X_nameDef} the run of the kitchen and the stores for a day, and the colony will remember the meal.\n\nOr, for {COUNT} silver, {X_nameDef} will spend the day teaching the colony's own cook.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Bonesetter</defName>
+    <incident>Council_Evt_Bonesetter</incident>
+    <texts>
+      <li>[deed:good] Among {FACTION}, the colony is known as the place that {DEED}, so when {X_nameDef}, a traveling healer of theirs, saw {A_nameDef}'s {TALE} from the gate, the healer stopped. For {COUNT} silver, or a few doses of medicine for the road, {X_nameDef} will see to it today.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Fiddler</defName>
+    <incident>Council_Evt_Fiddler</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef}, a wandering player of {FACTION}, came this way on purpose: among {FACTION}, the colony is known as the place that {DEED}. Tonight {X_nameDef} has noticed {A_nameDef}, worn thin and short with everyone, and offers to play for {A_objective} alone after supper.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Peacemaker</defName>
+    <incident>Council_Evt_Peacemaker</incident>
+    <texts>
+      <li>[deed:bad] {X_nameDef}, a peacemaker of {FACTION}, came in spite of what {FACTION} say of the colony: that it {WRONG}. Mending quarrels is {X_nameDef}'s trade, and within the hour the peacemaker had noticed {A_nameDef} and {B_nameDef} keeping well apart, and offered to hear them both out.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_CouncilGuests</defName>
+    <incident>Council_Evt_CouncilGuests</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef} and a few others of {FACTION} have come with an unusual request. Among {FACTION}, the colony is known as the place that {DEED}, and now word has reached {PLACE} that it decides things in council. They would like to stay a day and see how it's done.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Schoolteacher</defName>
+    <incident>Council_Evt_Schoolteacher</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef} of {FACTION} teaches children their letters, a day here and a week there, and chose this colony for the name it has among {FACTION}: the place that {DEED}. For {COUNT} silver, {X_nameDef} will give the colony's children a day of lessons.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_HiredHands</defName>
+    <incident>Council_Evt_HiredHands</incident>
+    <texts>
+      <li>[town:struggling] Three of {FACTION}'s people stopped at the gate with axes on their shoulders and nothing in their packs. Their home is {FORTUNE} this year, and they are looking for work wherever there is any: a day's work for a day's food, or a winter's wood for {COUNT} silver.</li>
+      <li>[deed:good] {X_nameDef} and two others of {FACTION} have come to the gate looking for work. Among {FACTION}, the colony is known as the place that {DEED}, and they would rather work for it than for anyone. They'll fell and split wood for a meal each, or a winter's worth for {COUNT} silver.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Barber</defName>
+    <incident>Rimfolk_Evt_Barber</incident>
+    <texts>
+      <li>[deed:good,!station] {X_nameDef}, a traveling barber of {FACTION}, has set a stool down by the gate. Among {FACTION}, the colony is known as the place that {DEED}, and the barber has come to give any of its people a new cut, whatever their way or their taste. Those who'd like one: {TALE}.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Inoculation</defName>
+    <incident>Council_Evt_Inoculation</incident>
+    <texts>
+      <li>[town:struggling,!lowtech] {X_nameDef}, a traveling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. {X_nameDef}'s home is {FORTUNE} this year, and every sale helps. For {COUNT} silver, every colonist gets a shot, and for a month they'll fight off sickness noticeably better.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Visitors ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Storyteller</defName>
+    <incident>Council_Evt_Storyteller</incident>
+    <texts>
+      <li>[deed:good,tale] {X_nameDef}, a storyteller of {FACTION}, has a tale about this colony, the place that {DEED}, and has come to try it on the people it is about: "{TALE}"</li>
+      <li>[deed:good,notale] {X_nameDef}, a storyteller of {FACTION}, has come to spend an evening at the colony. Among {FACTION} it is known as the place that {DEED}, and {X_nameDef} would like to hear the colony's side of it over supper.</li>
+      <li>[tie:favour:theirs,notale] {X_nameDef}, a storyteller of {FACTION}, has come to spend an evening at the colony, and asks after {FAVOURFOR}, to whom {X_possessive} people still owe a favour. {X_nameDef} will pay for supper and a bed in stories.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Pilgrims</defName>
+    <incident>Council_Evt_Pilgrims</incident>
+    <texts>
+      <li>[deed:good] Pilgrims of {FACTION} have walked up to the gate, footsore and thin. Among {FACTION}, the colony is known as the place that {DEED}, and they came this way hoping for a meal before they go on.</li>
+      <li>[deed:bad] Pilgrims of {FACTION} have stopped outside the colony. They know what their people say of it, that it {WRONG}, and they are hungry enough to ask for a meal anyway.</li>
+      <li>[town:struggling] Pilgrims of {FACTION} have come to the gate with nothing left in their bags. Their home is {FORTUNE} this year, and they left it with less than they would have liked. They ask for one meal before they go on.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Scholar</defName>
+    <incident>Council_Evt_Scholar</incident>
+    <texts>
+      <li>[deed:good] {X_nameDef}, a scholar of {FACTION}, asks for a bed for the night. Among {FACTION}, the colony is known as the place that {DEED}, and {X_nameDef} would like to write it down properly. On hearing that the colony is working on {TALE}, {X_nameDef} offers what {X_pronoun} knows.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Mourners</defName>
+    <incident>Council_Evt_Mourners</incident>
+    <texts>
+      <li>[deed:good] Travelers from {FACTION} are on their way to stand at the grave of {DEAD}. Among {FACTION}, the colony is known as the place that {DEED}, and they would rather mourn among friends.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_MidwinterGuest</defName>
+    <incident>Council_Evt_MidwinterGuest</incident>
+    <texts>
+      <li>[deed:good] A lone traveler knocked at the gate at dusk, white with frost: {X_nameDef} of {FACTION}, who won't make it home before dark. It's {TALE} outside, and {X_nameDef} came to this gate because the colony is known as the place that {DEED}.\n\n{X_nameDef} asks for a place near the fire for the night.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Traders and asks ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Tinker</defName>
+    <incident>Council_Evt_Tinker</incident>
+    <texts>
+      <li>[deed:bad] {X_nameDef}, a tinker of {FACTION}, has pulled a handcart up to the gate and names a price: {COUNT} silver to go through everything the colony wears or fights with. {FACTION} have not forgotten that the colony {WRONG}, and {X_nameDef} doesn't pretend otherwise.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_NeighborsSick</defName>
+    <incident>Council_Evt_NeighborsSick</incident>
+    <texts>
+      <li>[deed:good] A runner of {FACTION} came in at dawn. Fever is going through their settlement, and among {FACTION} the colony is known as the place that {DEED}, so they came here first. They ask for {TALE}, and can pay {COUNT} silver if they must.</li>
+      <li>[town:struggling] A runner of {FACTION} came in at dawn with bad news. Their home was already {FORTUNE} before the fever came, and now their healers have nothing left. They ask for {TALE}, and can pay {COUNT} silver if they must.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Stranded</defName>
+    <incident>Council_Evt_Stranded</incident>
+    <texts>
+      <li>[deed:good] Traders of {FACTION} have broken down on the road below with a full load. Among {FACTION}, the colony is known as the place that {DEED}, and they came up to the gate hoping that still holds.\n\n{A_nameDef} is the best hand in the colony for the repair. Otherwise they'll pay {COUNT} silver for {TALE} and manage it themselves.</li>
+      <li>[deed:bad] Traders of {FACTION} have broken down on the road below. They know what their people say of the colony, that it {WRONG}, and they came up to the gate anyway, because there is nowhere else.\n\n{A_nameDef} is the best hand in the colony for the repair. Otherwise they'll pay {COUNT} silver for {TALE} and manage it themselves.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_BulkOrder</defName>
+    <incident>Council_Evt_BulkOrder</incident>
+    <texts>
+      <li>[deed:good] {FACTION} would rather buy from people they trust, their rider says, and among them the colony is known as the place that {DEED}. They want {TALE}, for {COUNT} silver, and will send for it in five days, the whole order or none of it.</li>
+      <li>[deed:bad] {FACTION} have not forgotten that the colony {WRONG}, and their rider says so plainly. But they are short, and they want {TALE} for {COUNT} silver. They'll send for it in five days, all of it or none.</li>
+      <li>[town:thriving|town:flourishing] {FACTION} are doing well, {FORTUNE} by their rider's account, and they are buying. They want {TALE} from the colony's stores for {COUNT} silver, and will send for it in five days, all of it or none.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_FarMarket</defName>
+    <incident>Council_Evt_FarMarket</incident>
+    <texts>
+      <li>[deed:good] {FACTION}'s caravan has stopped in the road on its way to the market at {PLACE}. Among them, the colony is known as the place that {DEED}, and the caravan master offers room on the wagons: send {TALE} along, and they'll bring back {THING}, which the colony is short of.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_HarvestFair</defName>
+    <incident>Council_Evt_HarvestFair</incident>
+    <texts>
+      <li>[deed:good] {FACTION}'s crier stopped at the colony on the way round: the harvest fair at {PLACE} opens this week, and the place that {DEED} is wanted there. A cart of {TALE} would sell well, and {A_nameDef} thinks the best of it could take a prize.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Mem_Tithe</defName>
+    <incident>Council_Evt_Tithe</incident>
+    <texts>
+      <li>[deed:bad] {X_nameDef}, reeve to a lord of {FACTION}, read the claim out at the gate: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}. {FACTION} have not forgotten that the colony {WRONG}, and the reeve reads the sum with some satisfaction.\n\n{A_nameDef} would like to see the deed to these lands.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
