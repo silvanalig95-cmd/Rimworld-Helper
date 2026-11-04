@@ -191,6 +191,12 @@ namespace ColonyCouncil
         /// own map (World/Region/SmallTowns.cs; needs the deeper hooks). Off: every town's map as the game makes it.
         /// </summary>
         public bool smallTownMaps = true;
+        /// <summary>
+        /// Diplomacy: a good turn big enough leaves a debt of honour either way, the colony calls in what is owed it and
+        /// the peoples call in what the colony owes them (Diplomacy/). Off: no debt is made or called in, and those open run
+        /// out by their terms.
+        /// </summary>
+        public bool diplomacyFavours = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -559,6 +565,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tradingPosts, "tradingPosts", true);
             Scribe_Values.Look(ref hamlets, "hamlets", true);
             Scribe_Values.Look(ref smallTownMaps, "smallTownMaps", true);
+            Scribe_Values.Look(ref diplomacyFavours, "diplomacyFavours", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

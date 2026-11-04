@@ -73,6 +73,16 @@ namespace ColonyCouncil
             hoverMark = null;
         }
 
+        /// <summary>Picks a settlement or other world object for the panel, as a click on it would (a link from another page).</summary>
+        public void Pick(WorldObject o)
+        {
+            if (o == null || o.Destroyed) return;
+            picked = o;
+            pickedTile = -1;
+            pickedCorners = null;
+            scroll = Vector2.zero;
+        }
+
         /// <summary>The map and its panel, with the reach and the way home along the top of <paramref name="inRect"/>.</summary>
         public void Draw(Rect inRect)
         {

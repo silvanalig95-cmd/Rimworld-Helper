@@ -253,6 +253,10 @@ namespace ColonyCouncil
                     if (hostile) return "CC_Letter_Why_AtWar".Translate();
                     if (!NotableMath.CanAskHelp(NotableBook.Opinion(n), false)) return "CC_Letter_Why_NotEnough".Translate(n.Name.Named("NAME")).Resolve();
                     break;
+                default:
+                    // Stage 2's purposes (Diplomacy/DiplomacyLetters.cs): a debt of honour called in, the colony's word given.
+                    if (DiplomacyLetters.Owns(p)) return DiplomacyLetters.WhyNot(n, p);
+                    break;
             }
             return null;
         }
@@ -298,6 +302,8 @@ namespace ColonyCouncil
                                 && Find.WorldGrid.ApproxDistanceInTiles(site.Tile, town.Tile) <= 12f)
                                 Add("site:" + site.ID, "CC_Letter_Topic_Site".Translate(site.LabelCap.Named("SITE"), Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve());
                 }
+                // A debt of honour to call in, or the colony's word owed on a call of theirs (Diplomacy/DiplomacyLetters.cs).
+                else if (DiplomacyLetters.Owns(p)) list.AddRange(DiplomacyLetters.Topics(n));
             }
             catch (Exception e)
             {
@@ -798,6 +804,8 @@ namespace ColonyCouncil
         {
             var x = Input(n, speaker, l.purpose, l.channel);
             var tone = NotableMath.Answer(x, Rand.Value, Rand.Value);
+            // Stage 2's purposes (Diplomacy/DiplomacyLetters.cs): what they do about it, which colours the answer's tone.
+            var dip = DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone);
             // A call never walked the road: how far they are still sets when a guest or raiders could come.
             if (l.backDays <= 0f) l.backDays = NotableMath.TravelDays(Tiles(n, l.map), TechOf(n.faction));
             l.tone = tone;
@@ -827,6 +835,7 @@ namespace ColonyCouncil
             if (l.purpose == LetterPurpose.Help && granted) FactionMemory.Note(n.faction, "letterAid", HelpLabel(l.help));
             // What comes back with it.
             var things = new List<Thing>();
+            if (dip != null) things.AddRange(dip.things);
             if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction));
             else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
                 things.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
@@ -863,7 +872,7 @@ namespace ColonyCouncil
                 return tone;
             }
             string title = Title(l, n, how);
-            string text = Body(l, n, speaker, tone, things, visit, how);
+            string text = Body(l, n, speaker, tone, things, visit, how, dip?.line);
             if (threat != null) text += "\n\n" + threat;
             var def = tone <= AnswerTone.Cordial ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent;
             string chronicle = "CC_Letter_Chronicle".Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME"), ToneWord(tone).Named("TONE")).Resolve();
@@ -946,7 +955,7 @@ namespace ColonyCouncil
             return key.Translate(n.Name.Named("NAME")).Resolve();
         }
 
-        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, string visit, string how)
+        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, string visit, string how, string dip = null)
         {
             string town = n.townName ?? n.faction?.Name ?? "";
             string title = NotableBook.TitleOf(n);
@@ -970,6 +979,8 @@ namespace ColonyCouncil
                 parts.Add((l.channel == LetterChannel.Console ? "CC_Letter_Gift_Call" : "CC_Letter_Gift").Translate(Couriers.Describe(things).Named("GOODS")).Resolve());
             if (l.purpose == LetterPurpose.Invitation)
                 parts.Add(visit ?? "CC_Letter_InviteNot".Translate(n.Name.Named("NAME")).Resolve());
+            // What they did about a debt of honour called in, or the colony's word given (Diplomacy/DiplomacyLetters.cs).
+            if (!dip.NullOrEmpty()) parts.Add(dip);
             parts.Add(("CC_Letter_Outcome_" + tone).Translate(n.Name.Named("NAME"), (speaker?.LabelShort ?? l.WriterName).Named("PAWN")).Resolve());
             return string.Join("\n\n", parts);
         }

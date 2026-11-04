@@ -17,9 +17,18 @@ namespace ColonyCouncil
     /// <summary>Which people asks, and where they live.</summary>
     public static class MissionPeoples
     {
+        /// <summary>
+        /// While set, the one people a mission may come from (a people calling in a debt the colony owes them through the
+        /// mission: Diplomacy/FavourAsks.cs); null the rest of the time. Not saved: set and cleared around one firing.
+        /// </summary>
+        [ThreadStatic] public static Faction Only;
+
         /// <summary>A people on good terms with the colony, likelier the more it owes it; with <paramref name="pred"/>.</summary>
         public static Faction Grateful(Func<Faction, bool> pred = null)
         {
+            if (Only != null)
+                return FactionMemory.Remembers(Only) && !Only.defeated && LivingEvents.Friendly(Only) && Arrivals.PersonKind(Only) != null && (pred == null || pred(Only))
+                    ? Only : null;
             var mem = FactionMemory.On ? FactionMemory.Instance : null;
             var tech = Avail.EffectiveTech;
             return Find.FactionManager.AllFactionsListForReading
@@ -827,6 +836,8 @@ namespace ColonyCouncil
         {
             var map = ctx.map;
             string fled = Fled(out var f);
+            // Asked by a people calling in what the colony owes them: theirs, whoever else fled.
+            if (MissionPeoples.Only != null && f != MissionPeoples.Only) f = null;
             m.faction = f ?? MissionPeoples.Grateful();
             if (m.faction == null) return false;
             m.variant = fled ?? "fire";

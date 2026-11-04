@@ -28,7 +28,15 @@ namespace ColonyCouncil
         /// <summary>A hamlet under the colony's protection: the word is the protection by the colony's age, the rite the hamlet's word by its people's (World/Region/Hamlet.cs).</summary>
         Hamlet,
         /// <summary>A hamlet's oath of fealty: the word is where the colony takes it (its means), the rite how their people swear it (World/Region/HamletLife.cs).</summary>
-        Oath
+        Oath,
+        /// <summary>A truce: the word is the colony's (a ceasefire by comms), the rite how their people make one (green branches carried between camps). Stage 2.</summary>
+        Truce,
+        /// <summary>A hostage given for a pact: the word is the colony's (a guarantor), the rite theirs (one of the chief's kin given). Stage 2.</summary>
+        Hostage,
+        /// <summary>An envoy who lives with the other side for a season: the word is the colony's (a consul), the rite how theirs come (letters of credence). Stage 2.</summary>
+        Envoy,
+        /// <summary>Fighters raised for a liege or a pact: the word is the colony's (a militia), the rite how theirs are raised (warriors at the chief's call). Stage 2.</summary>
+        Levy
     }
 
     /// <summary>
@@ -48,7 +56,8 @@ namespace ColonyCouncil
         public static readonly AgeFeature[] Features =
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
-            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath
+            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath,
+            AgeFeature.Truce, AgeFeature.Hostage, AgeFeature.Envoy, AgeFeature.Levy
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

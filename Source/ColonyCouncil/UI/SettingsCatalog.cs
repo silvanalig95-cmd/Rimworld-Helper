@@ -363,6 +363,9 @@ namespace ColonyCouncil
             Toggle("hamlets", "CC_Settings_Hamlets", "CC_SetNote_Hamlets");
             Toggle("smallTownMaps", "CC_Settings_SmallTownMaps", "CC_SetNote_SmallTownMaps", "deepHooks");
             Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
+            // Diplomacy (Diplomacy/): stage 2's parts, each release adding its own.
+            Section("CC_SetSec_Diplomacy");
+            Toggle("diplomacyFavours", "CC_Settings_DiplomacyFavours", "CC_SetNote_DiplomacyFavours", "factionMemory");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");

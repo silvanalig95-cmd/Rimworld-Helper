@@ -56,7 +56,10 @@ namespace ColonyCouncil
         private static readonly OutsiderAct[] MenuOrder =
         {
             OutsiderAct.Chat, OutsiderAct.AskHome, OutsiderAct.Meal, OutsiderAct.Drink, OutsiderAct.Gift, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith,
-            OutsiderAct.GoodWord, OutsiderAct.Letter, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Spar, OutsiderAct.Provoke, OutsiderAct.Duel
+            OutsiderAct.GoodWord, OutsiderAct.Letter, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite,
+            // Stage 2's acts after Invite (Diplomacy/DiplomacyActs.cs): ask a favour of their people now, later ones as they come.
+            OutsiderAct.AskFavour,
+            OutsiderAct.Spar, OutsiderAct.Provoke, OutsiderAct.Duel
         };
 
         /// <summary>What the two can do, each with why not when it can't be now (greyed).</summary>
@@ -103,7 +106,9 @@ namespace ColonyCouncil
                     var skill = TeachSkill(c, x);
                     return skill != null ? "CC_Out_Act_TeachSkill".Translate(skill.label.Named("SKILL")).Resolve() : "CC_Out_Act_Teach".Translate().Resolve();
                 }
-                default: return ("CC_Out_Act_" + act).Translate().Resolve();
+                default:
+                    if (DiplomacyActs.Owns(act)) return DiplomacyActs.Label(c, x, act);
+                    return ("CC_Out_Act_" + act).Translate().Resolve();
             }
         }
 
@@ -141,6 +146,12 @@ namespace ColonyCouncil
                     return;
                 }
                 default:
+                    // Stage 2's acts pick what to ask first (Diplomacy/DiplomacyActs.cs).
+                    if (DiplomacyActs.Owns(act))
+                    {
+                        DiplomacyActs.Choose(c, x, act);
+                        return;
+                    }
                     StartTalk(c, x, act);
                     return;
             }

@@ -149,4 +149,47 @@
   <CC_Form_Oath_Spacer>the comms console</CC_Form_Oath_Spacer>
   <CC_Form_Oath_Spacer_Rite>a registered charter</CC_Form_Oath_Spacer_Rite>
 
+  <!-- Stage 2, diplomacy (docs/design/stage2-diplomacy.md, "Forms by age"): the colony's word for it by its own age, and the
+       rite by the other people's. Read by the Diplomacy page from stage 2's base on; truces, hostages, envoys and levies
+       themselves come in later releases. -->
+  <!-- A truce with a people at war with the colony -->
+  <CC_Form_Truce_Tribal>a peace at the river</CC_Form_Truce_Tribal>
+  <CC_Form_Truce_Tribal_Rite>green branches carried between camps</CC_Form_Truce_Tribal_Rite>
+  <CC_Form_Truce_Medieval>a truce under a flag</CC_Form_Truce_Medieval>
+  <CC_Form_Truce_Medieval_Rite>a truce sworn on the hilt</CC_Form_Truce_Medieval_Rite>
+  <CC_Form_Truce_Industrial>a ceasefire</CC_Form_Truce_Industrial>
+  <CC_Form_Truce_Industrial_Rite>terms signed at a crossing</CC_Form_Truce_Industrial_Rite>
+  <CC_Form_Truce_Spacer>a ceasefire by comms</CC_Form_Truce_Spacer>
+  <CC_Form_Truce_Spacer_Rite>terms logged and witnessed</CC_Form_Truce_Spacer_Rite>
+
+  <!-- A hostage given for a pact -->
+  <CC_Form_Hostage_Tribal>a pledge of the clan's blood</CC_Form_Hostage_Tribal>
+  <CC_Form_Hostage_Tribal_Rite>one of the chief's kin given</CC_Form_Hostage_Tribal_Rite>
+  <CC_Form_Hostage_Medieval>a hostage for the pact</CC_Form_Hostage_Medieval>
+  <CC_Form_Hostage_Medieval_Rite>hostages exchanged before witnesses</CC_Form_Hostage_Medieval_Rite>
+  <CC_Form_Hostage_Industrial>a guarantor</CC_Form_Hostage_Industrial>
+  <CC_Form_Hostage_Industrial_Rite>a guarantor held to the contract</CC_Form_Hostage_Industrial_Rite>
+  <CC_Form_Hostage_Spacer>a guarantor posted</CC_Form_Hostage_Spacer>
+  <CC_Form_Hostage_Spacer_Rite>a guarantor held to the terms</CC_Form_Hostage_Spacer_Rite>
+
+  <!-- An envoy who lives with the other side for a season -->
+  <CC_Form_Envoy_Tribal>a guest-friend by the fire</CC_Form_Envoy_Tribal>
+  <CC_Form_Envoy_Tribal_Rite>a guest-gift and a seat by the fire</CC_Form_Envoy_Tribal_Rite>
+  <CC_Form_Envoy_Medieval>an envoy at court</CC_Form_Envoy_Medieval>
+  <CC_Form_Envoy_Medieval_Rite>letters of credence</CC_Form_Envoy_Medieval_Rite>
+  <CC_Form_Envoy_Industrial>a consul</CC_Form_Envoy_Industrial>
+  <CC_Form_Envoy_Industrial_Rite>credentials presented</CC_Form_Envoy_Industrial_Rite>
+  <CC_Form_Envoy_Spacer>a liaison</CC_Form_Envoy_Spacer>
+  <CC_Form_Envoy_Spacer_Rite>credentials sent ahead by comms</CC_Form_Envoy_Spacer_Rite>
+
+  <!-- Fighters raised for a liege or a pact -->
+  <CC_Form_Levy_Tribal>the clan's spears</CC_Form_Levy_Tribal>
+  <CC_Form_Levy_Tribal_Rite>warriors at the chief's call</CC_Form_Levy_Tribal_Rite>
+  <CC_Form_Levy_Medieval>levies</CC_Form_Levy_Medieval>
+  <CC_Form_Levy_Medieval_Rite>men at arms raised</CC_Form_Levy_Medieval_Rite>
+  <CC_Form_Levy_Industrial>a militia</CC_Form_Levy_Industrial>
+  <CC_Form_Levy_Industrial_Rite>volunteers mustered</CC_Form_Levy_Industrial_Rite>
+  <CC_Form_Levy_Spacer>a security detail</CC_Form_Levy_Spacer>
+  <CC_Form_Levy_Spacer_Rite>contractors deployed</CC_Form_Levy_Spacer_Rite>
+
 </LanguageData>

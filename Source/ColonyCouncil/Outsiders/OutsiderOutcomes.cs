@@ -87,6 +87,10 @@ namespace ColonyCouncil
                     case OutsiderAct.Spar: return Spar(c, x);
                     case OutsiderAct.Provoke: Provoke(c, x); return null;
                     case OutsiderAct.Duel: return Duel(c, x, (DuelTerms)Mathf.Clamp(extra, 0, 1));
+                    default:
+                        // Stage 2's acts (Diplomacy/DiplomacyActs.cs): their answer, face to face.
+                        if (DiplomacyActs.Owns(act)) return DiplomacyActs.Talked(c, x, act);
+                        break;
                 }
             }
             catch (Exception e)

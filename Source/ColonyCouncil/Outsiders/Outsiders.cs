@@ -351,7 +351,9 @@ namespace ColonyCouncil
                     bool titled = x.royalty != null && x.royalty.AllTitlesInEffectForReading.Count > 0;
                     return OutsiderMath.DuelFits((int)f.def.techLevel, f.def.HasRoyalTitles, titled);
                 }
-                default: return true;
+                default:
+                    if (DiplomacyActs.Owns(act)) return DiplomacyActs.Shown(c, x, act);
+                    return true;
             }
         }
 
@@ -435,6 +437,9 @@ namespace ColonyCouncil
                     if (Peaceful(c)) return Why("Peaceful", c.Named("PAWN"));
                     if (Peaceful(x)) return Why("PeacefulThem");
                     if (Hurt(c) || Hurt(x)) return Why("Hurt");
+                    break;
+                default:
+                    if (DiplomacyActs.Owns(act)) return DiplomacyActs.WhyNot(c, x, act);
                     break;
             }
             return null;
@@ -560,7 +565,7 @@ namespace ColonyCouncil
                 case OutsiderAct.Spar: return "sparask";
                 case OutsiderAct.Provoke: return "provoke";
                 case OutsiderAct.Duel: return "duelask";
-                default: return "greet";
+                default: return DiplomacyActs.Owns(a) ? DiplomacyActs.Opening(a) : "greet";
             }
         }
 
@@ -573,7 +578,7 @@ namespace ColonyCouncil
                 case OutsiderAct.Faith: return "faithtalk";
                 case OutsiderAct.Court: return "courttalk";
                 case OutsiderAct.Provoke: return "provoked";
-                default: return "chat";
+                default: return DiplomacyActs.Owns(a) ? DiplomacyActs.During(a) : "chat";
             }
         }
 
