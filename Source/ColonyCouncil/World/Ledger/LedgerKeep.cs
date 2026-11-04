@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public const string Camp = "camp";
         /// <summary>A story chain running (Happenings/Workers_Chains2.cs: StoryChains).</summary>
         public const string Chain = "chain";
+        /// <summary>Who led settlers to a town being founded or kept in detail (World/Region/RegionFaces.cs).</summary>
+        public const string Founding = "founding";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -117,6 +119,7 @@ namespace ColonyCouncil
                     return CampReturns.Past.Any(c => c?.people != null && c.people.Contains(p))
                            || (CampTracker.Instance?.All.Any(c => c?.members != null && c.members.Contains(p)) ?? false);
                 case KeepFor.Chain: return StoryChains.Holds(p);
+                case KeepFor.Founding: return FounderNamed(Refs.Of(p));
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

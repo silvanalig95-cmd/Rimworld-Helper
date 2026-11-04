@@ -157,6 +157,38 @@ namespace ColonyCouncil
 
         public override string SkillText => HappeningText.SkillNoun(skill, contest);
 
+        /// <summary>
+        /// What is true of the event's people for its lines (the facts service's event scene: what they remember of the
+        /// colony, the ties, their town lately, the region's word on it), read once when its text is first picked.
+        /// </summary>
+        [Unsaved] private FactSet facts;
+        [Unsaved] private bool factsRead;
+
+        /// <summary>The people the event is about: its own, else the stranger's.</summary>
+        public Faction People => faction ?? (stranger != null && stranger.RaceProps.Humanlike ? stranger.Faction : null);
+
+        public FactSet Facts
+        {
+            get
+            {
+                if (factsRead) return facts;
+                factsRead = true;
+                try
+                {
+                    var people = People;
+                    if (people == null || !FactionMemory.Remembers(people)) return facts = null;
+                    var town = (stranger != null ? Outsiders.TownOf(stranger) : null) ?? WorldSituationWorker.NearestTown(people, map);
+                    facts = ColonyCouncil.Facts.For(FactScene.Event(map, people, town, stranger));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("an event's facts", e);
+                    facts = null;
+                }
+                return facts;
+            }
+        }
+
         protected override void AddArgs(List<NamedArgument> args)
         {
             args.Add((relation ?? "").Named("RELATION"));
@@ -166,7 +198,16 @@ namespace ColonyCouncil
             args.Add((tale ?? "").Named("TALE"));
             args.Add((placeName ?? "").Named("PLACE"));
             // The colonist their people remember by name (World/KinMemory.cs), for lines tagged [their:friend].
-            args.Add(KinMemory.FriendArg(faction ?? (stranger != null && stranger.RaceProps.Humanlike ? stranger.Faction : null)));
+            args.Add(KinMemory.FriendArg(People));
+            // What their people remember and the region's word on their town ({DEED}, {WRONG}, {FORTUNE}...), for the lines
+            // tagged with the facts behind them; never one of the event's own names.
+            var f = Facts;
+            if (f == null) return;
+            var taken = new HashSet<string>();
+            foreach (var a in args) taken.Add(a.label);
+            foreach (var kv in f.values)
+                if (!kv.Value.NullOrEmpty() && taken.Add(kv.Key))
+                    args.Add(kv.Value.Named(kv.Key));
         }
 
         public override void ExposeData()

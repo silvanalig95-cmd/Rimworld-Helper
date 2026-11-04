@@ -135,12 +135,24 @@ public static class LeanTests
         {
             C(slots.TryGetValue(p.slot ?? "", out int value) && value == p.offset, $"the pass {p.pass} runs at Sched.{p.slot}");
             C(p.offset >= 0 && p.offset < p.period, $"the pass {p.pass} has a tick inside its period");
-            // An hourly pass has an hourly slot of its own, or rides inside a 250-tick pass of its own system on that tick.
+            // An hourly pass has an hourly slot of its own, rides inside a 250-tick pass of its own system on that tick, or
+            // has a tick of the hour's first 250-tick stretch to itself (the hour's own ticks are all taken).
             if (p.period == Sched.HourTicks)
-                C(hourly.Contains(p.offset) || PassTable.All.Any(q => q.period == Sched.RareTicks && q.offset == p.offset % Sched.RareTicks && q.slot == p.slot),
+                C(hourly.Contains(p.offset) || PassTable.All.Any(q => q.period == Sched.RareTicks && q.offset == p.offset % Sched.RareTicks && q.slot == p.slot)
+                  || Sched.HourlyOnCycle.Contains(p.offset),
                     $"the hourly pass {p.pass} has a tick of the hour");
         }
         foreach (int o in hourly) C(PassTable.All.Any(p => p.period == Sched.HourTicks && p.offset == o), $"the hourly slot {o} is timed");
+        // An hourly pass on the hour's first stretch keeps off every other pass's tick.
+        var everyRare = Sched.RareOffsets.Concat(new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed,
+            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk }).ToList();
+        foreach (int o in Sched.HourlyOnCycle)
+        {
+            C(o >= 0 && o < Sched.RareTicks && !hourly.Contains(o), $"the hourly pass at {o} is on the hour's first stretch, off the hour's own ticks");
+            C(!everyRare.Contains(o) && hourly.All(h => h % Sched.RareTicks != o), $"the hourly pass at {o} is on no other pass's tick of the cycle");
+            C(PassTable.All.Any(p => p.period == Sched.HourTicks && p.offset == o), $"the hourly pass at {o} is timed");
+        }
+        C(Sched.HourlyOnCycle.Distinct().Count() == Sched.HourlyOnCycle.Length, "each of them has a tick of its own");
         foreach (int o in Sched.RareOffsets) C(PassTable.All.Any(p => p.period == Sched.RareTicks && p.offset == o && !p.waiting), $"the 250-tick slot {o} is timed");
 
         // ---------------- Caps ----------------

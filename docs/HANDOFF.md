@@ -15,6 +15,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.69.0, stage 1 release 1, the region's towns (with decisions 1 and 3): `World/Ledger/LedgerRegion.cs`
+  (`LedgerTown` kind, founding, founder, mother town, reason, prosperity, last move; `LedgerHouse`; `LedgerFounding`,
+  6), `RegionBook`/`RegionHome` per home (`ColonyBook`), `Pass.Region` hourly at tick 107 (`Sched.HourlyOnCycle`, a
+  new kind of slot LeanTests accepts) and `Pass.DailyRegion` at 1373, `RegionTowns` (nearest 40 humanlike towns per
+  home within `regionMapRadius`), remoteness (not saved), `WorldSituationDef.prosperity`/`prosperityOther` (32 events),
+  founders (`KeepFor.Founding`), two families, the envoy born to the second, a reason from the land, `NotableMath.MaxNew`
+  (notables cap 42), `AgeFeature.Founding`, Faction Territories' message held then dropped or given back, facts
+  provider `region` and 40 talk pieces, `FactScene.Event` and 32 memory lines in 22 events, Almanac
+  `Council_Alm_C_Region`. Decision 1: `Rimfolk_WS_NewTownMet` (`World/Region/RegionWelcome.cs`, within 15 tiles, once a
+  year per home, a free situation slot). Decision 3: `Patch_RegionStock` (postfix, Priority.Last, on
+  `Settlement_TraderTracker.RegenerateStock`; struggling 0.75 food, medicine, silver; thriving silver 1.1,
+  flourishing 1.2). Settings section "The region": regionFortunes, regionStock, regionFaces.
 - 0.68.0, stage 0 step 7b (F7b), stage 0 done: `ColonyBook` (shared per-colony rules: old record to the seat, a
   lost home's kept 30 days, carried on), per colony: memo pick-ups and unanswered event letters, the calendar
   (`ColonyCalendar`; `CalendarTracker` is the book; founding day per settlement), all Interplay officers, the speaker

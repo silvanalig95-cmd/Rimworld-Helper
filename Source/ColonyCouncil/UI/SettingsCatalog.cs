@@ -350,6 +350,11 @@ namespace ColonyCouncil
             Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
                 "worldSituations");
             Toggle("factionMemory", "CC_Settings_FactionMemory", "CC_SetNote_FactionMemory");
+            // The region (World/Region/): the towns within the region map's reach kept in detail.
+            Section("CC_SetSec_Region");
+            Toggle("regionFortunes", "CC_Settings_RegionFortunes", "CC_SetNote_RegionFortunes");
+            Toggle("regionStock", "CC_Settings_RegionStock", "CC_SetNote_RegionStock", "regionFortunes,deepHooks");
+            Toggle("regionFaces", "CC_Settings_RegionFaces", "CC_SetNote_RegionFaces");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");

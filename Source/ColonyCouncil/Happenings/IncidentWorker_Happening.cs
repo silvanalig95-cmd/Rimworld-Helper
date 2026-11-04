@@ -288,7 +288,24 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("event tags " + def.defName, e);
             }
             LetterTags.Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction, false);
+            AddFactTags(tags, ctx.Facts);
             return tags;
+        }
+
+        /// <summary>
+        /// What is true of the event's people (the facts service's event scene: deed:, deedbest:, wrongbest:, tie:,
+        /// town:lately, the region's town: and region: tags), for lines written to their memory. An event about one deed of
+        /// theirs (it set its own deed: tags) keeps to that deed.
+        /// </summary>
+        public static void AddFactTags(HashSet<string> tags, FactSet facts)
+        {
+            if (tags == null || facts == null) return;
+            bool ownDeed = tags.Any(t => t.StartsWith("deed:", StringComparison.Ordinal));
+            foreach (var t in facts.tags)
+            {
+                if (ownDeed && t.StartsWith("deed:", StringComparison.Ordinal)) continue;
+                tags.Add(t);
+            }
         }
 
         /// <summary>Something to add under the letter's text (what's at stake, a tip).</summary>

@@ -29,15 +29,15 @@ namespace ColonyCouncil
 
         public const string Moment = "moment", People = "people", Persons = "persons", Pair = "pair", Town = "town", Land = "land", Notables = "notables",
             Places = "places", Wars = "wars", Situations = "situations", Conditions = "conditions", Colony = "colony", Hospital = "hospital", Deeds = "deeds",
-            Marks = "marks", Ages = "ages", Ties = "ties", History = "history", News = "news";
+            Marks = "marks", Ages = "ages", Ties = "ties", History = "history", News = "news", Region = "region";
 
         /// <summary>
         /// A conversation with someone from outside the colony: the outsider talks' sections in the order they were always
-        /// read, then the ages, the ties and the history.
+        /// read, then the ages, the ties, the history and the region (their town's fortune and founding, new towns near).
         /// </summary>
         public static readonly string[] Talk =
         {
-            Moment, People, Persons, Pair, Town, Land, Notables, Places, Wars, Situations, Conditions, Colony, Hospital, Deeds, Marks, Ages, Ties, History
+            Moment, People, Persons, Pair, Town, Land, Notables, Places, Wars, Situations, Conditions, Colony, Hospital, Deeds, Marks, Ages, Ties, History, Region
         };
 
         private static readonly string[] LetterFacts = { Ties, History };
@@ -45,6 +45,27 @@ namespace ColonyCouncil
 
         /// <summary>A letter to a neighbour: the ties and the history, and the world's news near them when it tells some.</summary>
         public static string[] Letter(bool news) => news ? LetterNews : LetterFacts;
+
+        /// <summary>
+        /// One of Rimfolk's events about a people (its letter's text): what they remember of the colony, the ties between
+        /// the two sides, what the history holds of their town lately, and the region's word on their town.
+        /// </summary>
+        public static readonly string[] Event = { Deeds, Ties, History, Region };
+
+        // ---------------- The region ----------------
+
+        /// <summary>The region's tags (Facts.Region): their town's fortune and founding, a new town near the colony.</summary>
+        public static readonly string[] RegionTags =
+        {
+            "town:struggling", "town:poor", "town:steady", "town:thriving", "town:flourishing", "town:new", "town:founder", "town:mother", "them:founder",
+            "region:newtown", "region:newtown:theirs", "region:newtown:other"
+        };
+
+        /// <summary>The region's placeholders: their town's fortune in a word, its founder, mother town and why it was founded; a new town near and its people.</summary>
+        public static readonly string[] RegionValues = { "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE" };
+
+        /// <summary>A new town's newness: current over its first year, the more so in its first weeks.</summary>
+        public static float NewTownHeat(float days) => Fresh(days, 60f, 2f);
 
         // ---------------- How current ----------------
 

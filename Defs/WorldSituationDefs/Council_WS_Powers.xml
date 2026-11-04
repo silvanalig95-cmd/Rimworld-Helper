@@ -166,6 +166,7 @@
     <cooldownDays>120</cooldownDays>
     <durationDays>8~12</durationDays>
     <kind>court</kind>
+    <prosperity>-6</prosperity>
     <faction>
       <friendly>true</friendly>
       <leader>true</leader>
@@ -336,6 +337,8 @@
     <cooldownDays>140</cooldownDays>
     <durationDays>10~16</durationDays>
     <kind>creed</kind>
+    <prosperity>-15</prosperity>
+    <prosperityOther>-15</prosperityOther>
     <mods>
       <li>ludeon.rimworld.ideology</li>
     </mods>
@@ -709,6 +712,7 @@
     <cooldownDays>120</cooldownDays>
     <durationDays>12~20</durationDays>
     <kind>roads</kind>
+    <prosperity>-8</prosperity>
     <bad>true</bad>
     <faction>
       <friendly>true</friendly>

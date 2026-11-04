@@ -168,6 +168,14 @@ namespace ColonyCouncil
         /// <summary>A world event's question nobody has answered yet.</summary>
         public static bool Waiting => Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Situation c && !c.resolved);
 
+        /// <summary>
+        /// A world event could start at this home now, as the rhythm above would let one: world events on, a slot free,
+        /// no fight on the map, no question of the world's waiting, and the letters' gap open. (The region's welcome of a
+        /// new town asks: World/Region/RegionWelcome.cs.)
+        /// </summary>
+        public bool SlotFree(Map map) =>
+            S.worldSituations && map != null && active.Count(s => !s.ended) < MaxActive && !MapFacts.ThreatOn(map) && !Waiting && Tell.CanAsk;
+
         /// <summary>The setting, varied: by default 30 to 60 days. A second one at once is less likely to come soon.</summary>
         private int Interval()
         {

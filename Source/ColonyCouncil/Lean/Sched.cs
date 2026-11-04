@@ -67,6 +67,16 @@ namespace ColonyCouncil
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>
         public static readonly int[] HourlyInsideRare = { Camp, Stories, Ailments };
 
+        /// <summary>
+        /// The region's hour (World/Region/RegionBook.cs): founders to make and towns begun or built to be told. The hour's
+        /// own ticks are all taken at 90 apart, so it runs once an hour on a tick of the hour's first 250-tick stretch that
+        /// no other pass uses.
+        /// </summary>
+        public const int Region = 107;
+
+        /// <summary>The hourly passes on a tick of the hour's first 250-tick stretch of their own (not in <see cref="HourlyOffsets"/>).</summary>
+        public static readonly int[] HourlyOnCycle = { Region };
+
         // ---------------- Every 250 ticks, at this tick of the cycle ----------------
 
         /// <summary>World situations keep their people from the world's clean-up.</summary>
@@ -138,6 +148,8 @@ namespace ColonyCouncil
         public const int DailyMagicNeeds = 1117;
         /// <summary>Once a day: the world's history folds its old small events into their seasons' summaries (World/Ledger/History.cs).</summary>
         public const int DailyHistory = 1489;
+        /// <summary>Once a day: the region's towns in detail, each home's remoteness, the towns' fortunes (World/Region/RegionBook.cs).</summary>
+        public const int DailyRegion = 1373;
 
         // ---------------- Arithmetic ----------------
 

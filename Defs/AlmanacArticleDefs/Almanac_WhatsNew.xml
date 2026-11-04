@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.69.0</version>
+        <date>4 November 2026</date>
+        <title>The region's towns</title>
+        <points>
+          <li>Towns within reach of your colony now have a fortune that the world's events move, from struggling to flourishing, shown on the region map and in what they say and sell.</li>
+          <li>A new town near you has a founder who leads it, two founding families, the town its settlers came from and the reason they chose the place.</li>
+          <li>A new town close by welcomes itself in full: a runner at your gate, a neighbor's gift hoped for and remembered, and its first traders.</li>
+          <li>The colony news tells a town begun or built nearby once, in place of the other mod's message, by your own means of hearing it.</li>
+          <li>Visitors, callers and traders now mention in their letters what their people remember of you.</li>
+          <li>The region map shows how remote your colony is, and the Almanac has a new page on the region. Three settings under "The region" turn fortunes, the trade stock and new towns' faces off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.68.0</version>
         <date>4 November 2026</date>
         <title>Every colony its own</title>

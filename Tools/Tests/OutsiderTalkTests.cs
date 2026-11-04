@@ -240,13 +240,16 @@ public static class OutsiderTalkTests
         .Concat(Expand("byyou:", "freed tended helped"))
         .Concat(Expand("then:", "still over dead changed recent long success failed"))
         .Concat(new[] { "favour", "promise", "claim", "debt", "fealty", "grudge" }.SelectMany(k => Expand("tie:" + k, " :ours :theirs :you :due")))
+        // The region (Text/Facts/FactsRegion.cs): their town's fortune and founding, a new town near.
+        .Concat(FactsMath.RegionTags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
 
     internal static readonly string[] Families =
     {
-        "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:", "town:lately:", "them:lately:"
+        "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:", "town:lately:", "them:lately:",
+        "town:why:"
     };
 
     /// <summary>The placeholders the game fills (the facts service, Text/Facts/, and OutsiderTalk.cs).</summary>
@@ -258,7 +261,7 @@ public static class OutsiderTalkTests
         "BATTLEA", "BATTLEB", "SITUATION", "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "CAMP", "TRADERS",
         "NEWCOMER", "DAY", "RAIDERS", "DEAD", "BORN", "WEDDING", "DECREE", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND",
         "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO",
-        "GRUDGEAGAINST"
+        "GRUDGEAGAINST", "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE"
     };
 
     private static int Library(string root, Action<bool, string> C0)

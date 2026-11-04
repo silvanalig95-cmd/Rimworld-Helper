@@ -314,6 +314,7 @@
     <cooldownDays>260</cooldownDays>
     <durationDays>14~20</durationDays>
     <kind>ruins</kind>
+    <prosperity>5</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -562,6 +563,7 @@
     <cooldownDays>220</cooldownDays>
     <durationDays>14~20</durationDays>
     <kind>embargo</kind>
+    <prosperityOther>-10</prosperityOther>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -822,6 +824,7 @@
     <cooldownDays>220</cooldownDays>
     <durationDays>15~22</durationDays>
     <kind>trade</kind>
+    <prosperity>-10</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>

@@ -63,6 +63,7 @@
   <CC_Clock_Pass_CouncilEvents>Council: encounters and nuisances, Rimfolk's own events</CC_Clock_Pass_CouncilEvents>
   <CC_Clock_Pass_Talk>Conversations: what people go through together</CC_Clock_Pass_Talk>
   <CC_Clock_Pass_Ailments>Ailments, the colony's part, with the slice it rides on</CC_Clock_Pass_Ailments>
+  <CC_Clock_Pass_Region>The region: founders made, new towns begun and built told</CC_Clock_Pass_Region>
 
   <!-- Every 250 ticks: -->
   <CC_Clock_Pass_RareSmoke>Light sleepers wake at the smell of smoke</CC_Clock_Pass_RareSmoke>
@@ -102,5 +103,6 @@
   <CC_Clock_Pass_DailyMagicNeeds>RimWorld of Magic's travel need</CC_Clock_Pass_DailyMagicNeeds>
   <CC_Clock_Pass_DailyBestFriends>Other mods' people: best friends</CC_Clock_Pass_DailyBestFriends>
   <CC_Clock_Pass_DailyHistory>The world's history: old small events folded into their seasons</CC_Clock_Pass_DailyHistory>
+  <CC_Clock_Pass_DailyRegion>The region's day: the towns in detail, each home's remoteness, the towns' fortunes</CC_Clock_Pass_DailyRegion>
 
 </LanguageData>

@@ -1863,9 +1863,18 @@ moved in, each against the old store's own rules).
   their pawn and name; the notable keeps its role, town and people. Anyone a tie names is a person too
   (`WorldLedger.PersonOf(pawn)`), so a colonist or outsider the game has let go of is still known by name, and a ref
   turns back into its pawn at once (`WorldLedger.PawnOf`, which `Refs.Pawn` asks first). A person stays while they are
-  a notable, a tie names them or a reason keeps them in the world; a town while a notable lives there, and a gone town
-  two years from when it was missed (`LedgerMath.KeepPerson`, `KeepTown`, at the day's tidy). The person and town
-  views read these records first.
+  a notable, a tie names them or a reason keeps them in the world; a town while a notable lives there or while it stands
+  within the region map's reach of a home (kept in detail, below: "The region"), and a gone town two years from when it
+  was missed (`LedgerMath.KeepPerson`, `RegionMath.KeepTown`, at the day's tidy); beyond the reach nothing is kept. The
+  person and town views read these records first.
+- **The region's records** (stage 1, `World/Ledger/LedgerRegion.cs`). A town in detail has on its `LedgerTown` what it
+  is (`TownKind`: town, and later ruin, post, hamlet), when and by whom it was founded (`founder`, a person of the
+  ledger), the town its settlers came from and why (`mother`, `why`), its prosperity, when it last moved and what moved
+  it last, and since when it has been low. `LedgerHouse` is a family line known by name (the house ref, its name, its
+  town and people, its head as a person, its members by first name only, so a family costs a line in the save): two
+  founding families per new town. `LedgerFounding` is a town being built within reach (its site, tile, people, start
+  and due, founder, mother town and reason, what was told), six at most, dropped when built or gone. A founder is kept
+  in the world with `KeepFor.Founding` while a founding or a town record names them, then let go as a notable is.
 - **What the ledger owns** (stage 0 step 3b). Each tie that lived in another store is now the ledger's own `Tie`,
   written and read through it by a small helper beside the system that uses it; the old store keeps only what isn't a
   tie, and an older save's ties move in on load (each store, once its save has loaded):
@@ -1975,7 +1984,12 @@ world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text
   colony, their town and their people, how it goes (a tone, the tag `tone:X`), and the providers it asks for, in order.
   `FactScene.Talk(colonist, outsider, tone)` is a conversation with an outsider (every provider);
   `FactScene.Letter(notable, writer, home, news)` is a letter's answer (the ties and the history, and the world's news
-  when it tells some).
+  when it tells some); `FactScene.Event(home, people, town, stranger)` is one of Rimfolk's events about a people, with
+  nobody speaking (what their people remember of the colony, the ties, their town lately, the region's word on it:
+  `deed:`, `deedbest:`, `wrongbest:`, `tie:`, `town:lately`, the region's tags, and `{DEED}` and `{WRONG}`, the good turn
+  remembered best and the worst wrong in words). `HappeningContext.Facts` reads it once when the event's text is first
+  picked: its tags join the event's own (an event about one deed of theirs keeps to that deed) and its values fill the
+  lines that name them. The talks also ask the region's provider (`region`, after the history; see "The region").
 - **Asking.** `Facts.For(scene)` gives a `FactSet`: tags for the lines' conditions; the speaker's and the listener's own
   tags for their own lines (traits, age); values for the placeholders, each with the fact behind it where a later
   mention can follow it (`ws:12`, `war:5`); how current each tag is (heat: `FactsMath.Fresh`, new news first); earlier
@@ -2111,7 +2125,9 @@ nothing when its mod isn't there. Adapters read and write the history; they tell
   - Diplomatic Marriage+: its permanent alliance (`PermanentAlliance.WithFaction`, `PlayerBetrothed`,
     `NpcMarriageSeeker`, read only; its `IsValid` changes the alliance, so it isn't called).
 
-No pass of their own: the hooks run when the mods act, and the views when asked.
+No pass of their own: the hooks run when the mods act, and the views when asked. Through the facade the hooks also hand
+the region a town begun or built within reach (its site, and the founder named in `world:built`), and a town taken
+starts its fortune again ("The region").
 
 ### Ages
 
@@ -2134,8 +2150,66 @@ one place: `Lean/Ages.cs`, with its pure rules in `Lean/AgesMath.cs`.
   of honor, an IOU; ransom by messenger or by radio; a feast in the hall or a gala). The other people's age sets the
   rite: how it is done with them by their ways (a gift owed back, oaths sworn before witnesses, an exchange at a
   crossing). `Form` takes both and says which part came from which (`AgeForm.ours` for the word, `AgeForm.theirs` for
-  the rite, `AgeForm.empire` when the other people are the Empire). Nothing uses it yet; the diplomacy of stage 2
+  the rite, `AgeForm.empire` when the other people are the Empire). The region's news of a new town reads the
+  eleventh feature, the founding (its word how the colony hears of it, its rite how their people found one); the diplomacy of stage 2
   will.
+
+### The region
+
+Stage 1's first release (docs/design/stage1-region.md, item 1 with item 2's prosperity): the towns within the region
+map's reach of a home kept in detail, each with a fortune, and the new towns given faces. `World/Region/`, its pure
+rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
+
+- **The reach in detail** (`RegionTowns`). For each home, the nearest 40 towns of humanlike peoples (not hidden, not
+  the player's) within the region map's reach (`regionMapRadius`, 35 tiles by default), by straight-line distance on
+  the home's layer; one set for all homes, so a town within reach of two has one fortune. Worked out again at most once
+  a 250-tick stretch when the world's towns, the homes or the reach changed, and every day; nothing saved. The ledger
+  keeps a standing town's record only while it is in this set or a notable lives there: beyond the reach nothing is
+  kept and nothing changed, and the hooks write nothing there (as `WorldMath.Records` rules).
+- **Remoteness** per home: from the nearest town of a humanlike people at peace with the colony, 0 within 12 tiles,
+  rising evenly to 1 at 40, 0.2 more with fewer than two such towns within 40, at most 1. Worked out with the reach,
+  not saved; shown for a home on the region map. The travellers who seek out the remote read it in the next release.
+- **Each home's part** (`RegionHome`, kept by `ColonyBook` in `RegionBook.homes`): when a new town's founder last wrote
+  to it and when a new town last welcomed it. With one colony there is one.
+- **Two passes.** `Pass.Region` once an hour at tick 107 (`Sched.Region`, on `Sched.HourlyOnCycle`: the hour's own
+  ticks are all taken at 90 apart, so it has a tick of the hour's first 250-tick stretch that no other pass uses), only
+  with work waiting; `Pass.DailyRegion` at tick 1373 of the day. Both timed by Rimfolk's clock; see "Ticking".
+- **Fortunes** (`RegionFortunes`, setting "Towns' fortunes"). Prosperity 0 to 100 on the town's record: seeded at 50,
+  up to 15 less on poor land (its biome's `settlementSelectionWeight`) and 10 less while its people are in hard times;
+  a new town at 30; a town taken in an invasion again at 25. Each day: the drift back toward 50 (45 on poor land) by
+  0.3, 0.3 off for a town within 20 tiles of a town of a people its own is at war with (the game's relations between
+  peoples that count), and the world events' moves: `WorldSituationDef.prosperity` (32 events), in full at the event's
+  town and half at its people's other towns in detail, a fifth on each of its first five days (the event keeps how many
+  shares it gave, `regionDays`, so a day is never given twice), and `prosperityOther` for the second people of a war
+  of words, a feud or an embargo, at half. Bands: struggling under 20, poor, steady, thriving, flourishing from 80, in
+  their age's word where it has one. The last cause is named in the town's panel for 60 days when it fits how the town
+  stands. In what it sells (decision 3, `RegionStock`, setting "Fortunes in the trade stock", with the deeper hooks): a
+  postfix on the game's `Settlement_TraderTracker.RegenerateStock`, last of all patches, brings a struggling town's
+  food, medicine and silver to three quarters, a thriving one's silver to 1.1 and a flourishing one's to 1.2, by count
+  across each good's stacks; nothing else is touched.
+- **New towns' faces** (`RegionFaces`, setting "New towns' faces"). Sources: Faction Territories' settlements begun and
+  finished (its hooks through `WorldMechanics.Founded` and `Built`, which now pass the site and name the founder in the
+  history's `world:built`), and Rimfolk's own new towns (the new-town, other-settlers and crossroads events' `Begin`).
+  A founding within reach gets, in the region's hour, a founder (their leaders' kind, an Empire's titled kind, aged 30
+  to 55, two a day at most, a day's wait at most), the mother town (their nearest other town) and a reason read from
+  the land (`RegionMath.WhyFounded`: a town of theirs given up in 120 days, a ruin, a flourishing mother town, a road,
+  a river, the coast, the hills, else the land). When it stands: its record, two founding families (`LedgerHouse`; the
+  envoy the notables make is born to the second), its founder the Head notable, and the town kept among the notables'
+  towns for its first year (`NotableMath.MaxNew`, two). Told once begun and once built (`Tell.Minor`, the colony's
+  means and their rite by `Ages.Form(AgeFeature.Founding)`): within reach Faction Territories' own message is held
+  while its method runs (`TerritoryNews`) and dropped once the region took the town (`RegionFaces.Claims`), else given
+  back, so there is one message and never none. A town within 15 tiles of a home gets the full welcome (decision 1,
+  `Rimfolk_WS_NewTownMet`, `SituationWorker_NewTownMet`: the new-town event's runner at the gate, gift and timber,
+  traders and visitors on the town that stands) at most once a year per home when a world event's slot is free
+  (`WorldSituations.SlotFree`), whose letter is then the town's news; else the founder's letter (`RegionWords`,
+  one a season per home). Rimfolk's own new towns are told and welcomed by their own event.
+- **Words and facts.** The region map's panel (`RegionPanel`, through `NeighbourPanel.Sections`, `PlaceSections` and
+  the new `HomeSections`): a town's fortune and founding, a site's settlers, a home's remoteness. The facts service's
+  provider `region` (`Text/Facts/FactsRegion.cs`): `town:struggling` to `town:flourishing` with `{FORTUNE}`,
+  `town:new`, `town:founder` `{FOUNDER}`, `them:founder`, `town:mother` `{MOTHERTOWN}`, `town:why:KEY` `{WHYFOUNDED}`,
+  `region:newtown` (`:theirs`, `:other`) `{NEWTOWN}` `{NEWTOWNPEOPLE}`; 40 talk pieces use them.
+- **Settings off**: a part makes nothing new and tells nothing, and keeps its records (the reach is still worked out,
+  which changes no play). Neither is per tick; the daily pass loops once over the world's towns per home.
 
 ### A colonist's tabs
 
@@ -2526,7 +2600,8 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | Tick | Pass | Work |
 |---|---|---|
 | 0-30 | Visual touches, the hour's look (the first pulse of the hour; only with visual touches on) | the map in view: maybe one comet gazer, one ambient line or a hum |
-| 64 | The neighbours by name (World/Notables.cs; with "Neighbours by name" on): traders and visitors seen at the colony, those kept held in the world; every six hours the towns within reach looked over (the gone followed, the missing made, two at most an hour); old age in the first hour of the day; then the letters' and calls' hour (World/NeighbourLetters.cs) | per notable (34 at most), per town in reach (six), per letter or call under way (three) |
+| 64 | The neighbours by name (World/Notables.cs; with "Neighbours by name" on): traders and visitors seen at the colony, those kept held in the world; every six hours the towns within reach looked over (the gone followed, the missing made, two at most an hour); old age in the first hour of the day; then the letters' and calls' hour (World/NeighbourLetters.cs) | per notable (42 at most), per town in reach (eight), per letter or call under way (three) |
+| 107 | The region's hour (World/Region/RegionBook.cs; with "New towns' faces" on, only while a town is being founded within reach; on a tick of the hour's first 250-tick stretch that no other pass uses, `Sched.HourlyOnCycle`, since the hour's own ticks are all taken 90 apart): each founding gets its founder (two made a day at most), its line in the news when begun, and its faces when built (its record, two founding families, the news line, the full welcome or the founder's letter) | per founding (six at most): a founder made now and then, a few ledger writes |
 | 157 | Council: fights and losses, decrees, wish upkeep, promises kept (every other hour), event wishes, new wishes | per home map (a fight going on?), per open wish, per granted wish still watched (its own check, and a look at plans being built only when something is missing); a new wish rolls once, and only when it comes does it ask every wish of every colonist |
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
@@ -2594,6 +2669,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | once a day, tick 433 | Advisor: the wealth sample (per home map) | one number |
 | once a day, tick 1789 | Other mods' people: best friends | per pair of colonists |
 | once a day, tick 1489 | The world's history (World/Ledger/History.cs): everyday entries past sixty days folded into one per actor, kind and season, and the history kept within its bound | per entry |
+| once a day, tick 1373 | The region's day (World/Region/RegionBook.cs): the towns in detail worked out again (each home's nearest 40 within the region map's reach, straight-line distances) with each home's remoteness; foundings whose site is gone let go; with "Towns' fortunes" on, each town in detail seeded or moved (the running world events' shares, a war within 20 tiles, the drift back) | per home, per town in the world (one distance); per town in detail (40 a home) its enemies' towns (one distance each); per running world event |
 | once a day, tick 1117 (and the first tick after a load) | RimWorld of Magic's travel need, which the mod switches off, taken from anyone who has it (Integrations/MagicNeeds.cs; only with the mod) | every living pawn: one need looked up |
 | every frame | Slow time: the speed keys and the tick budget; its two buttons (when shown) | a few checks |
 | a building finished or gone (Harmony on `Frame.CompleteConstruction`, `Building.DeSpawn`) | The defense survey is marked to be read again (at most once a game hour, when next asked) | one check: the kind of building, then its distance to each line and the survey's gaps |
@@ -2693,7 +2769,8 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
-| World ledger | its own ties (grudges, favours, good words, claims, the scenario's debt, fealty, a notable's and a regular's regard): three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; a grudge's dead ten at most over all peoples, two years; persons while a notable, named by a tie or kept in the world, with their reasons; towns while a notable lives there, a gone one two years; the counter for ledger numbers |
+| World ledger | its own ties (grudges, favours, good words, claims, the scenario's debt, fealty, a notable's and a regular's regard): three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; a grudge's dead ten at most over all peoples, two years; persons while a notable, named by a tie or kept in the world, with their reasons; towns while a notable lives there or while they stand within the region map's reach of a home (the nearest 40 a home), a gone one two years; the founding families of new towns, two per town, six members each by first name, going with the town's record; the towns being built within reach, six at most, dropped when built or gone; the counter for ledger numbers |
+| The region | one part per colony (when a new town last wrote to it and last welcomed it), a lost home's kept 30 days; the towns in detail and remoteness are worked out, not saved |
 | World history | 800 entries; everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |

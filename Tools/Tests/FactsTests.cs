@@ -224,7 +224,8 @@ public static class FactsTests
     {
         var talk = FactsMath.Talk;
         C(talk.Take(OldSections.Length).SequenceEqual(OldSections), "a talk asks for the outsider talks' sections first, in their old order: " + string.Join(",", talk));
-        C(talk.Skip(OldSections.Length).SequenceEqual(new[] { FactsMath.Ages, FactsMath.Ties, FactsMath.History }), "then the ages, the ties and the history");
+        C(talk.Skip(OldSections.Length).SequenceEqual(new[] { FactsMath.Ages, FactsMath.Ties, FactsMath.History, FactsMath.Region }), "then the ages, the ties, the history and the region");
+        C(FactsMath.Event.SequenceEqual(new[] { FactsMath.Deeds, FactsMath.Ties, FactsMath.History, FactsMath.Region }), "an event asks what their people remember, the ties, the history and the region");
         C(talk.Distinct().Count() == talk.Length, "each provider once in a talk");
         C(FactsMath.Letter(false).SequenceEqual(new[] { FactsMath.Ties, FactsMath.History }) && FactsMath.Letter(true).SequenceEqual(new[] { FactsMath.News, FactsMath.Ties, FactsMath.History }),
             "a letter asks for the ties and the history, and the news when it tells some");
@@ -324,11 +325,12 @@ public static class FactsTests
 
     // ---------------- The talks choose as they did ----------------
 
-    /// <summary>The tags only the new providers (ages beside ours, the ties, the history) give.</summary>
+    /// <summary>The tags only the new providers (ages beside ours, the ties, the history, the region) give.</summary>
     private static bool NewTag(string t) =>
-        t.StartsWith("tie:") || t.StartsWith("town:lately") || t.StartsWith("them:lately") || t == "their:sameage" || t == "their:behind" || t == "their:ahead";
+        t.StartsWith("tie:") || t.StartsWith("town:lately") || t.StartsWith("them:lately") || t == "their:sameage" || t == "their:behind" || t == "their:ahead"
+        || FactsMath.RegionTags.Contains(t) || t.StartsWith("town:why:");
 
-    private static bool NewValue(string key) => FactsMath.TieKinds.Any(k => FactsMath.TieKey(k) == key);
+    private static bool NewValue(string key) => FactsMath.TieKinds.Any(k => FactsMath.TieKey(k) == key) || FactsMath.RegionValues.Contains(key);
 
     /// <summary>A piece names one of the new facts in its conditions or a line's.</summary>
     private static bool NamesNew(TalkPiece p)
@@ -442,6 +444,14 @@ public static class FactsTests
                 });
         foreach (var who in new[] { "town", "them" })
             FactsMath.AddLately(f, who, Enumerable.Range(0, r.Next(0, 4)).Select(_ => (NewKinds[r.Next(NewKinds.Length)], (float)(r.NextDouble() * 40.0))).ToList());
+        // The region: their town's fortune and founding, a new town near.
+        foreach (var t in FactsMath.RegionTags)
+            if (r.NextDouble() < 0.3)
+                f.Tag(t, (float)(r.NextDouble() * 2.0));
+        if (r.NextDouble() < 0.3) f.Tag("town:why:" + RegionMath.Reasons[r.Next(RegionMath.Reasons.Length)]);
+        foreach (var v in FactsMath.RegionValues)
+            if (r.NextDouble() < 0.5)
+                f.Value(v, Word(r));
     }
 
     private static readonly string[] Words =

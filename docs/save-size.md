@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 481; modelled: 481; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** after two, **3,001 KB** after five.
+Saved collections found: 485; modelled: 485; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,427 KB** after a year, **2,882 KB** after two, **3,049 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -17,8 +17,8 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
+| `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards | fixed | 42 | 42 | 42 | 106.6 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
-| `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards | fixed | 34 | 34 | 34 | 86.3 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600) and in words (about 400, at most 1200) | cap | 30 | 60 | 60 | 76.2 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
@@ -31,7 +31,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
-| `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 137 | 137 | 137 | 24.1 |
+| `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Aspirations/Aspirations.cs:counters` | counters of known pawns | known | 165 | 180 | 225 | 19.8 |
@@ -43,6 +43,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
+| `World/Ledger/LedgerPersons.cs:townRecords` | the towns in detail within the region map's reach (RegionMath.MaxTownsPerHome a home, one home here), the towns the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding | fixed | 54 | 54 | 54 | 17.4 |
 | `Offices/Election.cs:canvassed` | three visits a day for three days a candidate, while it lasts | while | 180 | 180 | 180 | 15.8 |
 | `Offices/Election.cs:heard` | who heard each candidate at the hustings, while it lasts | while | 400 | 400 | 400 | 15.6 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
@@ -62,6 +63,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
+| `World/Ledger/LedgerRegion.cs:houses` | two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record | cap | 12 | 24 | 60 | 10.0 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
@@ -89,7 +91,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 61 | 61 | 61 | 5.4 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 62 | 62 | 62 | 5.4 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
@@ -145,7 +147,6 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Offices/Election.cs:campaigners` | one per candidate, while it lasts | while | 20 | 20 | 20 | 2.3 |
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
-| `World/Ledger/LedgerPersons.cs:townRecords` | the towns the notables live in, and a gone town for two years (LedgerMath.KeepTown) | fixed | 20 | 20 | 20 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
@@ -178,6 +179,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Building/Automations.cs:droppedKeys` | bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays) | fixed | 40 | 40 | 40 | 1.6 |
 | `Building/BuildAhead.cs:queueDefs` | with the above: what each was | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
+| `World/Ledger/LedgerRegion.cs:foundings` | towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone | cap | 6 | 6 | 6 | 1.5 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Animals/HerdStory.cs:lineGens` | their generations, beside the ids | fixed | 60 | 60 | 60 | 1.5 |
 | `Animals/HerdStory.cs:lineIds` | animals of the herd leader's line (ids), the newest 60 (HerdStory.LineMax) | fixed | 60 | 60 | 60 | 1.5 |
@@ -382,6 +384,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Annals.cs:threatSeen` | each home's last big threat counted, one per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Happenings/Happenings.cs:timers` | Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it | fixed | 1 | 1 | 1 | 0.1 |
 | `Setbacks/SetbackTracker.cs:lastGathering` | one per home map | fixed | 1 | 1 | 1 | 0.1 |
+| `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 0.1 |
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
@@ -486,6 +489,7 @@ Rimfolk's part of the save, roughly: **2,387 KB** after a year, **2,839 KB** aft
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/History.cs:values` | per event: a deed's name, when it has one (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
+| `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |
 | `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |

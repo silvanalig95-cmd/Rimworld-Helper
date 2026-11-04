@@ -29,6 +29,8 @@ namespace ColonyCouncil
         CouncilEvents,
         Talk,
         Ailments,
+        /// <summary>The region's hour, on a tick of the hour's first 250-tick stretch (Sched.HourlyOnCycle).</summary>
+        Region,
 
         // Every 250 ticks, in the order they come in the cycle.
         RareSmoke,
@@ -68,6 +70,7 @@ namespace ColonyCouncil
         DailyMagicNeeds,
         DailyBestFriends,
         DailyHistory,
+        DailyRegion,
     }
 
     /// <summary>One pass in the clock's table: its name (a key in the keyed file), the slot in Sched it runs on and how often.</summary>
@@ -123,6 +126,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.CouncilEvents, "CC_Clock_Pass_CouncilEvents", nameof(Sched.CouncilEvents), H, Sched.CouncilEvents),
             new PassInfo(Pass.Talk, "CC_Clock_Pass_Talk", nameof(Sched.Talk), H, Sched.Talk),
             new PassInfo(Pass.Ailments, "CC_Clock_Pass_Ailments", nameof(Sched.Ailments), H, Sched.Ailments),
+            new PassInfo(Pass.Region, "CC_Clock_Pass_Region", nameof(Sched.Region), H, Sched.Region),
 
             new PassInfo(Pass.RareSmoke, "CC_Clock_Pass_RareSmoke", nameof(Sched.RareSmoke), R, Sched.RareSmoke),
             new PassInfo(Pass.RareBuildPriority, "CC_Clock_Pass_RareBuildPriority", nameof(Sched.RareBuildPriority), R, Sched.RareBuildPriority),
@@ -159,6 +163,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.DailyMagicNeeds, "CC_Clock_Pass_DailyMagicNeeds", nameof(Sched.DailyMagicNeeds), D, Sched.DailyMagicNeeds),
             new PassInfo(Pass.DailyBestFriends, "CC_Clock_Pass_DailyBestFriends", nameof(Sched.DailyBestFriends), D, Sched.DailyBestFriends),
             new PassInfo(Pass.DailyHistory, "CC_Clock_Pass_DailyHistory", nameof(Sched.DailyHistory), D, Sched.DailyHistory),
+            new PassInfo(Pass.DailyRegion, "CC_Clock_Pass_DailyRegion", nameof(Sched.DailyRegion), D, Sched.DailyRegion),
         };
 
         public static int Count => All.Length;

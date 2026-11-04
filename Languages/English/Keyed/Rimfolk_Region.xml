@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The region (Source/ColonyCouncil/World/Region/): the towns within the region map's reach kept in detail, their
+    fortunes, and the new towns' faces. The founding's news opens with the colony's means of hearing it (Ages.Form,
+    CC_Form_Founding_*, Rimfolk_Ages.xml); the founder's letter speaks in their people's own voice.
+  -->
+
+  <!-- Settings -->
+  <CC_SetSec_Region>The region</CC_SetSec_Region>
+  <CC_Settings_RegionFortunes>Towns' fortunes</CC_Settings_RegionFortunes>
+  <CC_SetNote_RegionFortunes>Each town within reach has a fortune the world's events move, shown in its panel and its people's words.</CC_SetNote_RegionFortunes>
+  <CC_Settings_RegionStock>Fortunes in the trade stock</CC_Settings_RegionStock>
+  <CC_SetNote_RegionStock>A struggling town has less food, medicine and silver to trade, a thriving or flourishing one more silver.</CC_SetNote_RegionStock>
+  <CC_Settings_RegionStock_Tip>When the game restocks a town within reach, its fortune has a say in what it has to trade: a struggling town has a quarter less food, medicine and silver, a thriving one a tenth more silver, a flourishing one a fifth more. Nothing else in its stock changes, and other mods' changes to it are made first. Needs the towns' fortunes and the deeper game hooks.</CC_Settings_RegionStock_Tip>
+  <CC_Settings_RegionFaces>New towns' faces</CC_Settings_RegionFaces>
+  <CC_SetNote_RegionFaces>A new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter.</CC_SetNote_RegionFaces>
+  <CC_Settings_RegionFortunes_Tip>Every town of a people within the region map's reach of your homes (the nearest 40 for each home) has a prosperity from 0 to 100. A town first seen starts at 50, less on poor land and while its people are in hard times; a new town starts at 30. The world's events move it, all of it at the event's own town and half at its people's other towns, over the event's first five days (a plague 20 down, a fair 8 up); a war near it wears it down; and it drifts back toward 50 by 0.3 a day. Its panel on the region map says how it stands and what moved it, and its people speak of it. Off: nothing is moved or shown, and the records are kept.</CC_Settings_RegionFortunes_Tip>
+  <CC_Settings_RegionFaces_Tip>A town begun or built within the region map's reach (by Faction Territories and Vassalage, or by Rimfolk's own world events) gets a founder of its people, two founding families, the town its settlers came from and a reason read from the land. The colony news tells it once when begun and once when built, in place of the other mod's own message. Its founder is its head for its first year, and its people speak of it. A town within about 15 tiles welcomes itself in full once a year at most (a runner at the gate, a neighbor's gift hoped for), when a world event's slot is free, else its founder writes (one letter a season at most). Off: no founder is made and nothing is told, and the records are kept.</CC_Settings_RegionFaces_Tip>
+
+  <!-- Where a place lies from a home ({DIR}: north, northeast...) -->
+  <CC_Region_Where_0>less than a day's walk {DIR}</CC_Region_Where_0>
+  <CC_Region_Where_1>a day's walk {DIR}</CC_Region_Where_1>
+  <CC_Region_Where_2>two days' walk {DIR}</CC_Region_Where_2>
+  <CC_Region_Where_3>{DAYS} days' walk {DIR}</CC_Region_Where_3>
+  <CC_Region_Where_Near>not far off</CC_Region_Where_Near>
+
+  <!-- A town begun and built, in the colony news ({MEANS}: how the colony hears of it, by its own age) -->
+  <CC_Region_Begun>{MEANS}: settlers of {PEOPLE} under {FOUNDER}, from {MOTHER}, have begun a town {WHERE}.</CC_Region_Begun>
+  <CC_Region_Begun_NoMother>{MEANS}: settlers of {PEOPLE} under {FOUNDER} have begun a town {WHERE}.</CC_Region_Begun_NoMother>
+  <CC_Region_Begun_NoFounder>{MEANS}: settlers of {PEOPLE}, from {MOTHER}, have begun a town {WHERE}.</CC_Region_Begun_NoFounder>
+  <CC_Region_Begun_NoFounder_NoMother>{MEANS}: settlers of {PEOPLE} have begun a town {WHERE}.</CC_Region_Begun_NoFounder_NoMother>
+  <CC_Region_Built>{MEANS}: {TOWN} of {PEOPLE} stands {WHERE}, {RITE}, with {FOUNDER} as its {TITLE}.</CC_Region_Built>
+  <CC_Region_Built_NoFounder>{MEANS}: {TOWN} of {PEOPLE} stands {WHERE}, {RITE}.</CC_Region_Built_NoFounder>
+
+  <!-- A town's fortune: its band in words (by their people's age where it has a word of its own), and what moved it -->
+  <CC_Region_Fortune_Struggling>struggling</CC_Region_Fortune_Struggling>
+  <CC_Region_Fortune_Struggling_Tribal>hungry</CC_Region_Fortune_Struggling_Tribal>
+  <CC_Region_Fortune_Struggling_Industrial>short of everything</CC_Region_Fortune_Struggling_Industrial>
+  <CC_Region_Fortune_Poor>poor</CC_Region_Fortune_Poor>
+  <CC_Region_Fortune_Poor_Tribal>lean</CC_Region_Fortune_Poor_Tribal>
+  <CC_Region_Fortune_Steady>steady</CC_Region_Fortune_Steady>
+  <CC_Region_Fortune_Thriving>thriving</CC_Region_Fortune_Thriving>
+  <CC_Region_Fortune_Thriving_Medieval>prospering</CC_Region_Fortune_Thriving_Medieval>
+  <CC_Region_Fortune_Flourishing>flourishing</CC_Region_Fortune_Flourishing>
+  <CC_Region_Fortune_Flourishing_Spacer>booming</CC_Region_Fortune_Flourishing_Spacer>
+  <CC_Region_FortuneDown>{0}, since {1}</CC_Region_FortuneDown>
+  <CC_Region_FortuneUp>{0}: {1}</CC_Region_FortuneUp>
+  <CC_Region_Cause_Founded>newly founded</CC_Region_Cause_Founded>
+  <CC_Region_Cause_Taken>taken by {0}</CC_Region_Cause_Taken>
+
+  <!-- Families, and why settlers came (to finish "They came ...") -->
+  <CC_Region_House_Family>the {NAME} family</CC_Region_House_Family>
+  <CC_Region_House_Kin>{NAME}'s kin</CC_Region_House_Kin>
+  <CC_Region_Why_refugees>after the old town was given up</CC_Region_Why_refugees>
+  <CC_Region_Why_ruin>to the old walls of a ruin</CC_Region_Why_ruin>
+  <CC_Region_Why_mother>out of {MOTHER}, which had grown crowded and prosperous</CC_Region_Why_mother>
+  <CC_Region_Why_road>for the road through it</CC_Region_Why_road>
+  <CC_Region_Why_river>for the river</CC_Region_Why_river>
+  <CC_Region_Why_coast>for the sea at its door</CC_Region_Why_coast>
+  <CC_Region_Why_hills>for the shelter of the hills</CC_Region_Why_hills>
+  <CC_Region_Why_land>for the land itself</CC_Region_Why_land>
+
+  <!-- The region map's panel -->
+  <CC_Region_Panel_Header>The town</CC_Region_Panel_Header>
+  <CC_Region_Panel_SiteHeader>A town being built</CC_Region_Panel_SiteHeader>
+  <CC_Region_Panel_HomeHeader>The region around it</CC_Region_Panel_HomeHeader>
+  <CC_Region_Panel_Fortune>Fortune: {0}</CC_Region_Panel_Fortune>
+  <CC_Region_Panel_Founded>Founded {AGO} by {FOUNDER}, its {TITLE}.</CC_Region_Panel_Founded>
+  <CC_Region_Panel_Founded_NoFounder>Founded {AGO}.</CC_Region_Panel_Founded_NoFounder>
+  <CC_Region_Panel_From>Its settlers came out from {MOTHER}.</CC_Region_Panel_From>
+  <CC_Region_Panel_Why>They came {WHY}.</CC_Region_Panel_Why>
+  <CC_Region_Panel_Families>Founding families: {FAMILIES}.</CC_Region_Panel_Families>
+  <CC_Region_Panel_Members>{HOUSE} ({MEMBERS})</CC_Region_Panel_Members>
+  <CC_Region_Panel_Site>Settlers of {PEOPLE} are building a town here.</CC_Region_Panel_Site>
+  <CC_Region_Panel_Site_Founder>Settlers of {PEOPLE} under {FOUNDER} are building a town here.</CC_Region_Panel_Site_Founder>
+  <CC_Region_Panel_Remote_0>Close to its neighbors.</CC_Region_Panel_Remote_0>
+  <CC_Region_Panel_Remote_1>A little out of the way.</CC_Region_Panel_Remote_1>
+  <CC_Region_Panel_Remote_2>Rather remote.</CC_Region_Panel_Remote_2>
+  <CC_Region_Panel_Remote_3>Remote.</CC_Region_Panel_Remote_3>
+  <CC_Region_Panel_Remote_4>Far from everyone.</CC_Region_Panel_Remote_4>
+  <CC_Region_Panel_RemoteNearest>The nearest town at peace with the colony is {0} tiles away; {1} within 40 tiles.</CC_Region_Panel_RemoteNearest>
+  <CC_Region_Panel_RemoteNone>No town at peace with the colony stands on this part of the world.</CC_Region_Panel_RemoteNone>
+  <CC_Region_Panel_InDetail>{0} towns within reach are known in detail.</CC_Region_Panel_InDetail>
+
+  <!-- The founder's first letter, in their people's own voice -->
+  <CC_Region_Letter_Label_Tribal>Word from the new hearth at {TOWN}</CC_Region_Letter_Label_Tribal>
+  <CC_Region_Letter_Label_Medieval>A letter from {TOWN}</CC_Region_Letter_Label_Medieval>
+  <CC_Region_Letter_Label_Industrial>A letter from {TOWN}</CC_Region_Letter_Label_Industrial>
+  <CC_Region_Letter_Label_Spacer>A message from {TOWN}</CC_Region_Letter_Label_Spacer>
+  <CC_Region_Letter_Label_Empire>A letter under seal from {TOWN}</CC_Region_Letter_Label_Empire>
+  <CC_Region_Letter_Open_Tribal>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came out from {MOTHER} with our families and our fire, and we wanted you to hear it from us before you heard it on the wind.</CC_Region_Letter_Open_Tribal>
+  <CC_Region_Letter_Open_Tribal_NoMother>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came with our families and our fire, and we wanted you to hear it from us before you heard it on the wind.</CC_Region_Letter_Open_Tribal_NoMother>
+  <CC_Region_Letter_Open_Medieval>To the folk of {COLONY}, from {FOUNDER}, {TITLE} of {TOWN}, greeting. We have raised our first roofs {WHERE} of you, having come out from {MOTHER}, and would be good neighbors if you will have us.</CC_Region_Letter_Open_Medieval>
+  <CC_Region_Letter_Open_Medieval_NoMother>To the folk of {COLONY}, from {FOUNDER}, {TITLE} of {TOWN}, greeting. We have raised our first roofs {WHERE} of you, and would be good neighbors if you will have us.</CC_Region_Letter_Open_Medieval_NoMother>
+  <CC_Region_Letter_Open_Industrial>{FOUNDER} here, {TITLE} of {TOWN}, the new settlement {WHERE} of you. We came out from {MOTHER} this season and we're putting up walls as fast as we can cut the timber. I thought you should know who your neighbors are.</CC_Region_Letter_Open_Industrial>
+  <CC_Region_Letter_Open_Industrial_NoMother>{FOUNDER} here, {TITLE} of {TOWN}, the new settlement {WHERE} of you. We're putting up walls as fast as we can cut the timber, and I thought you should know who your neighbors are.</CC_Region_Letter_Open_Industrial_NoMother>
+  <CC_Region_Letter_Open_Spacer>This is {FOUNDER}, {TITLE} of the new settlement at {TOWN}, {WHERE} of your colony. Our charter is filed, our first habitats are sealed, and most of our people came out from {MOTHER}. We would like to keep a channel open with you.</CC_Region_Letter_Open_Spacer>
+  <CC_Region_Letter_Open_Spacer_NoMother>This is {FOUNDER}, {TITLE} of the new settlement at {TOWN}, {WHERE} of your colony. Our charter is filed and our first habitats are sealed. We would like to keep a channel open with you.</CC_Region_Letter_Open_Spacer_NoMother>
+  <CC_Region_Letter_Open_Empire>{FOUNDER}, {TITLE}, holds {TOWN} for the Empire from this season, {WHERE} of your settlement. The household came out from {MOTHER}, and it is proper that the nearest of our neighbors hear it from us first.</CC_Region_Letter_Open_Empire>
+  <CC_Region_Letter_Open_Empire_NoMother>{FOUNDER}, {TITLE}, holds {TOWN} for the Empire from this season, {WHERE} of your settlement. It is proper that the nearest of our neighbors hear it from us first.</CC_Region_Letter_Open_Empire_NoMother>
+  <CC_Region_Letter_Why_refugees>Most of us lost our homes when our old town was given up. This is a fresh start, and we mean to make it last.</CC_Region_Letter_Why_refugees>
+  <CC_Region_Letter_Why_ruin>There were old walls here when we came, and we have built on them. Whoever lived here before chose the place well.</CC_Region_Letter_Why_ruin>
+  <CC_Region_Letter_Why_mother>{MOTHER} has done well and grown crowded, and the young families wanted land of their own.</CC_Region_Letter_Why_mother>
+  <CC_Region_Letter_Why_road>We chose the place for the road: whatever comes along it will stop with us now.</CC_Region_Letter_Why_road>
+  <CC_Region_Letter_Why_river>We chose the place for the river: water for the fields, and a way down to the world.</CC_Region_Letter_Why_river>
+  <CC_Region_Letter_Why_coast>We chose the place for the sea at our door.</CC_Region_Letter_Why_coast>
+  <CC_Region_Letter_Why_hills>We chose the place for the shelter of the hills.</CC_Region_Letter_Why_hills>
+  <CC_Region_Letter_Why_land>We chose the place for the land itself, which is better than it looks.</CC_Region_Letter_Why_land>
+  <CC_Region_Letter_Deed>{PEOPLE} still speak of how you {DEED}. It is good to settle near people like that.</CC_Region_Letter_Deed>
+  <CC_Region_Letter_Wrong>We know there is bad blood between you and {PEOPLE}, since you {WRONG}. We had no part in it, and we would rather keep it that way.</CC_Region_Letter_Wrong>
+  <CC_Region_Letter_Families>The first to come were {FAMILIES}.</CC_Region_Letter_Families>
+  <CC_Region_Letter_Close_Tribal>May your fires burn long. {FOUNDER}</CC_Region_Letter_Close_Tribal>
+  <CC_Region_Letter_Close_Medieval>Written in my own hand, {FOUNDER}</CC_Region_Letter_Close_Medieval>
+  <CC_Region_Letter_Close_Industrial>Drop by if you're ever out our way. {FOUNDER}</CC_Region_Letter_Close_Industrial>
+  <CC_Region_Letter_Close_Spacer>{FOUNDER}, {TITLE}, {TOWN}</CC_Region_Letter_Close_Spacer>
+  <CC_Region_Letter_Close_Empire>Given at {TOWN}. {FOUNDER}, {TITLE}</CC_Region_Letter_Close_Empire>
+
+</LanguageData>

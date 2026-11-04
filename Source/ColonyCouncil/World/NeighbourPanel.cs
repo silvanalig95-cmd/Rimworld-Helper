@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using RimWorld.Planet;
 using UnityEngine;
+using Verse;
 
 namespace ColonyCouncil
 {
@@ -19,5 +20,8 @@ namespace ColonyCouncil
         /// null for a bare tile). Not called for the towns of other peoples (those get <see cref="Sections"/>) nor for home.
         /// </summary>
         public static readonly List<Func<Rect, PlanetTile, WorldObject, float>> PlaceSections = new List<Func<Rect, PlanetTile, WorldObject, float>>();
+
+        /// <summary>The same for the home the region map is drawn around (the region: how remote it is).</summary>
+        public static readonly List<Func<Rect, Map, float>> HomeSections = new List<Func<Rect, Map, float>>();
     }
 }

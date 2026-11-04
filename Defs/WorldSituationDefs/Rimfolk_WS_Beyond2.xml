@@ -496,6 +496,7 @@
     <cooldownDays>200</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>scarcity</kind>
+    <prosperity>-5</prosperity>
     <minTech>Medieval</minTech>
     <faction>
       <friendly>true</friendly>

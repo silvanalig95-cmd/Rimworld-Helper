@@ -18,6 +18,7 @@
     <cooldownDays>90</cooldownDays>
     <durationDays>14~20</durationDays>
     <kind>rebuild</kind>
+    <prosperity>10</prosperity>
     <after>
       <li>Council_WS_Warlord</li>
       <li>Council_WS_HolyWar</li>
@@ -211,6 +212,7 @@
     <cooldownDays>90</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>road</kind>
+    <prosperity>8</prosperity>
     <after>
       <li>Council_WS_BanditRoad</li>
       <li>Council_WS_HardWinter</li>

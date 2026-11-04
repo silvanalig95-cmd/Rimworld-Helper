@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The region's towns
+
+*4 November 2026, version 0.69.0*
+
+- Towns within reach of your colony now have a fortune that the world's events move, from struggling to flourishing, shown on the region map and in what they say and sell.
+- A new town near you has a founder who leads it, two founding families, the town its settlers came from and the reason they chose the place.
+- A new town close by welcomes itself in full: a runner at your gate, a neighbor's gift hoped for and remembered, and its first traders.
+- The colony news tells a town begun or built nearby once, in place of the other mod's message, by your own means of hearing it.
+- Visitors, callers and traders now mention in their letters what their people remember of you.
+- The region map shows how remote your colony is, and the Almanac has a new page on the region. Three settings under "The region" turn fortunes, the trade stock and new towns' faces off.
+
 ## Every colony its own
 
 *4 November 2026, version 0.68.0*

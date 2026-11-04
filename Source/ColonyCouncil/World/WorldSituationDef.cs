@@ -111,6 +111,14 @@ namespace ColonyCouncil
         public List<DilemmaEffect> effects = new List<DilemmaEffect>();
         /// <summary>Events made likelier or rarer while it lasts.</summary>
         public List<SituationModifier> modifiers = new List<SituationModifier>();
+        /// <summary>
+        /// What it does to the fortunes of its people's towns within the region map's reach (World/Region/RegionFortunes.cs):
+        /// points of prosperity (0 to 100), in full at its own town ({PLACE}) and half at its people's other towns, spread
+        /// over its first five days (a plague -20, a bumper year +10). 0: none.
+        /// </summary>
+        public float prosperity;
+        /// <summary>The same for the other people ({ENEMY}), at half in each of their towns within reach: the other side of a war.</summary>
+        public float prosperityOther;
         /// <summary>What happens along the way: letters, questions, arrivals.</summary>
         public List<SituationBeat> beats = new List<SituationBeat>();
         /// <summary>How it can end. On timeout, the first that fits (in order) is told.</summary>
@@ -142,6 +150,8 @@ namespace ColonyCouncil
             if (endings.NullOrEmpty()) yield return "world situation has no endings";
             else if (!endings.Any(e => e.timeout)) yield return "no ending can be told when time runs out";
             if (workerClass != null && !typeof(WorldSituationWorker).IsAssignableFrom(workerClass)) yield return "workerClass is not a WorldSituationWorker";
+            if (prosperity < -50f || prosperity > 50f || prosperityOther < -50f || prosperityOther > 50f) yield return "prosperity moves a town by 50 at most";
+            if ((prosperity != 0f || prosperityOther != 0f) && faction == null) yield return "a prosperity move needs a people it is about";
             var keys = new HashSet<string>();
             foreach (var b in beats)
             {

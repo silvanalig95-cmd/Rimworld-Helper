@@ -17,6 +17,7 @@
     <cooldownDays>160</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>fire</kind>
+    <prosperity>-30</prosperity>
     <bad>true</bad>
     <seasons>
       <li>Spring</li>
@@ -278,6 +279,8 @@
     <cooldownDays>180</cooldownDays>
     <durationDays>14~22</durationDays>
     <kind>feud</kind>
+    <prosperity>-6</prosperity>
+    <prosperityOther>-6</prosperityOther>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -733,6 +736,7 @@
     <cooldownDays>150</cooldownDays>
     <durationDays>10~16</durationDays>
     <kind>harvest</kind>
+    <prosperity>10</prosperity>
     <seasons>
       <li>Summer</li>
       <li>Fall</li>

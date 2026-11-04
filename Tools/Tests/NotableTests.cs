@@ -28,7 +28,14 @@ public static class NotableTests
         C(NotableMath.InReach(new List<float>(), null).Count == 0 && NotableMath.InReach(null, null).Count == 0, "no towns, no neighbours");
         var many = Enumerable.Range(0, 30).Select(i => (float)i).ToList();
         var dealtAll = Enumerable.Repeat(true, 30).ToList();
-        C(NotableMath.InReach(many, dealtAll).Count == NotableMath.MaxTowns, $"never more than {NotableMath.MaxTowns} towns");
+        C(NotableMath.InReach(many, dealtAll).Count == NotableMath.MaxNear + NotableMath.MaxDealt, "without new towns, the nearest four and two dealt with, as before");
+        C(NotableMath.InReach(many, dealtAll, dealtAll).Count == NotableMath.MaxTowns, $"never more than {NotableMath.MaxTowns} towns");
+        // A new town in its first year (the region's) is kept beside them, two at most.
+        var fresh = Enumerable.Range(0, 30).Select(i => i == 20 || i == 25 || i == 29).ToList();
+        var withNew = NotableMath.InReach(many, null, fresh);
+        C(withNew.Take(4).SequenceEqual(new[] { 0, 1, 2, 3 }) && withNew.Skip(4).SequenceEqual(new[] { 20, 25 }), "the two nearest new towns join the nearest four");
+        C(NotableMath.InReach(many, null, null).SequenceEqual(NotableMath.InReach(many, null)), "no new towns: the same as before");
+        C(NotableMath.MaxNew == 2 && NotableMath.MaxTowns == 8, "eight towns at most: four near, two dealt with, two new");
         C(NotableMath.MaxNotables == NotableMath.MaxTowns * NotableMath.RolesPerTown + NotableMath.MaxAcquaintances, "the notables' cap adds up");
 
         // ---------------- How they regard the colony ----------------

@@ -75,7 +75,12 @@ C = {
     "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
     "VisitorAnimals": const("Visitors/VisitorMath.cs", "MaxAnimals", 8),
     "KinNoteDays": const("World/MemoryMath.cs", "NoteDays", 30),
-    "NotableTowns": const("World/NotableMath.cs", "MaxNear", 4) + const("World/NotableMath.cs", "MaxDealt", 2),
+    "NotableTowns": const("World/NotableMath.cs", "MaxNear", 4) + const("World/NotableMath.cs", "MaxDealt", 2) + const("World/NotableMath.cs", "MaxNew", 2),
+    # The region (World/Region/RegionMath.cs): the towns kept in detail per home, houses per town, foundings at once.
+    "RegionTowns": const("World/Region/RegionMath.cs", "MaxTownsPerHome", 40),
+    "RegionHouses": const("World/Region/RegionMath.cs", "HousesPerTown", 2),
+    "RegionMembers": const("World/Region/RegionMath.cs", "MembersPerHouse", 6),
+    "RegionFoundings": const("World/Region/RegionMath.cs", "MaxFoundings", 6),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -483,8 +488,18 @@ MODEL = {
                                               + 24 + 6 + 5 + 20 + 10, 180,
                                               "every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson)"),
     "World/Ledger/LedgerPersons.cs:kept": ("fixed", 2, 30, "per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons)"),
-    "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["NotableTowns"] + C["NotableFaces"] + 4, 120,
-                                                  "the towns the notables live in, and a gone town for two years (LedgerMath.KeepTown)"),
+    "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["RegionTowns"] + C["NotableFaces"] + 4, 330,
+                                                  "the towns in detail within the region map's reach (RegionMath.MaxTownsPerHome a home, one home here), the towns "
+                                                  "the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding"),
+    # The region's records on the ledger (World/Ledger/LedgerRegion.cs): the founding families of the new towns in detail
+    # (a new town within reach every ten days or so, two houses each), and the towns being built within reach.
+    "World/Ledger/LedgerRegion.cs:houses": ("cap", (C["RegionTowns"] * C["RegionHouses"], 0.2), 170,
+                                            "two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record"),
+    "World/Ledger/LedgerRegion.cs:members": ("fixed", 4, 25, "per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses)"),
+    "World/Ledger/LedgerRegion.cs:foundings": ("cap", (C["RegionFoundings"], 0.1), 260,
+                                               "towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone"),
+    # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book.
+    "World/Region/RegionBook.cs:homes": ("fixed", 1, 90, "one per colony (one home in the model): when a founder last wrote to it; a lost home's kept 30 days"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

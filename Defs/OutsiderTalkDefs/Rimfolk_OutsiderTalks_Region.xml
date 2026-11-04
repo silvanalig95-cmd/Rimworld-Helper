@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The region (Source/ColonyCouncil/World/Region/, the facts in Text/Facts/FactsRegion.cs): a new town's own people
+       on its founding (who led them, where from, why there, its first seasons, its ways by their age), a town's fortune
+       in their words, other peoples' visitors on a new town near the colony, and the colony's people asking. The format
+       is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= A new town's own people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_NewTown</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,town:founder,!them:founder</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] I hear {TOWN} is new.</li>
+      <li>[them,their:tribal] It is, we followed {FOUNDER} out to a new hearth this year.</li>
+      <li>[them,their:medieval] It is, {FOUNDER} led us out and holds the charter.</li>
+      <li>[them,their:spacer] It is, {FOUNDER} filed the charter and we came down with the first habitats.</li>
+      <li>[them] It is, {FOUNDER} led the first of us out this year.</li>
+      <li>[us] How is it going?</li>
+      <li>[them,town:struggling|town:poor] Slowly, but nobody has gone back yet.</li>
+      <li>[them,!town:struggling,!town:poor] Better than anyone at home said it would.</li>
+    </lines>
+    <heard>{TOWN} is a new town, founded this year by settlers under {FOUNDER}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_FounderSelf</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>them:founder,town:mother</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] You led the settlers out to {TOWN}, didn't you?</li>
+      <li>[them,their:tribal] I did, I carried the embers from {MOTHERTOWN} myself.</li>
+      <li>[them] I did, I walked the first carts out from {MOTHERTOWN} myself.</li>
+      <li>[us] That's a lot to carry.</li>
+      <li>[them,town:struggling] Some nights it feels like I carry all of it alone.</li>
+      <li>[them,!town:struggling] Every family who came is carrying it with me.</li>
+    </lines>
+    <heard>{FOUNDER} led the settlers of {TOWN} out from {MOTHERTOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_FounderSelfAlone</defName>
+    <topic>founding</topic>
+    <uses>chat,know</uses>
+    <when>them:founder,!town:mother</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] You founded {TOWN}, didn't you?</li>
+      <li>[them] I did, and some days I wonder what I was thinking.</li>
+      <li>[us] And other days?</li>
+      <li>[them] Other days I look at what we built and I know exactly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_MotherTown</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:mother,!them:founder</when>
+    <lines>
+      <li>[us] Where did your people come from, before {TOWN}?</li>
+      <li>[them] Out of {MOTHERTOWN}, most of us, with whatever we could carry.</li>
+      <li>[us] Do you miss it?</li>
+      <li>[them,their:tribal] The old fires, yes, but a hearth is a hearth.</li>
+      <li>[them] Some nights, but you can't go back once you've built something.</li>
+    </lines>
+    <heard>The settlers of {TOWN} came out from {MOTHERTOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyAsked</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new</when>
+    <lines>
+      <li>[us] What made your people settle at {TOWN}?</li>
+      <li>[them] We came {WHYFOUNDED}.</li>
+      <li>[us] And will you stay?</li>
+      <li>[them,town:struggling] If the next season is kinder than the last.</li>
+      <li>[them,!town:struggling] That's the idea, we didn't put up walls to leave them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyRiver</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:river</when>
+    <lines>
+      <li>[us] Why build {TOWN} where you did?</li>
+      <li>[them] For the river, water for the fields and a road that never needs mending.</li>
+      <li>[us] Until it floods.</li>
+      <li>[them] We built on the high bank, we're not fools.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyRoad</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:road</when>
+    <lines>
+      <li>[us] Why build {TOWN} where you did?</li>
+      <li>[them] The road, everything that moves along it stops with us now.</li>
+      <li>[us] Traders and trouble both.</li>
+      <li>[them] We have a gate for the one and a welcome for the other.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyCoast</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:coast</when>
+    <lines>
+      <li>[us] What brought your people to the coast?</li>
+      <li>[them] The sea at our door, salt and fish and a way out if we ever need one.</li>
+      <li>[us] And the storms?</li>
+      <li>[them] We build low and we build stubborn.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyHills</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:hills</when>
+    <lines>
+      <li>[us] It's hard country around {TOWN}.</li>
+      <li>[them] That's why we chose it, the hills keep off the wind and the raiders.</li>
+      <li>[us] All of them?</li>
+      <li>[them] Enough of them, nobody climbs a hill to be disappointed twice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyRuin</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:ruin</when>
+    <lines>
+      <li>[us] Someone told me {TOWN} stands on old walls.</li>
+      <li>[them] It does, we found them half buried and built on what was sound.</li>
+      <li>[us] Any idea who built them?</li>
+      <li>[them,their:tribal] The elders say people like us, and they chose well.</li>
+      <li>[them] No, but they chose the place well, whoever they were.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyRefugees</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,town:why:refugees</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Were you at {TOWN} from the start?</li>
+      <li>[them] Most of us came after the old town was given up, so yes, from the very start.</li>
+      <li>[us] That must have been hard.</li>
+      <li>[them] Losing a home is hard, building one is just work.</li>
+    </lines>
+    <heard>Families who lost their homes when a town was given up helped found {TOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyMother</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:mother,town:mother</when>
+    <lines>
+      <li>[us] Why leave {MOTHERTOWN}, if it was doing so well?</li>
+      <li>[them] Because it was doing so well, every room was taken and every field spoken for.</li>
+      <li>[us] So the young ones moved out.</li>
+      <li>[them] The young and the restless, and a few of us who should know better.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_WhyLand</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:land</when>
+    <lines>
+      <li>[us] What made you settle at {TOWN}?</li>
+      <li>[them] The land, it's better than it looks, and nobody had built on it.</li>
+      <li>[us] That's usually a reason it's empty.</li>
+      <li>[them] Or a reason nobody looked closely.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_AskFounder</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:founder,!them:founder</when>
+    <lines>
+      <li>[us] What is {FOUNDER} like?</li>
+      <li>[them,their:tribal] {FOUNDER} listens to the land, and the elders trust that.</li>
+      <li>[them] Stubborn, which is the only kind of person who starts a town.</li>
+      <li>[us] And you followed.</li>
+      <li>[them] Somebody had to carry the other end of everything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_EnvoyNew</defName>
+    <topic>founding</topic>
+    <uses>chat,know</uses>
+    <when>role:envoy,town:new,town:founder</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {TOWN} is new, so every friend we make now counts twice.</li>
+      <li>[us] Then count us.</li>
+      <li>[them] I will, and I'll tell {FOUNDER} so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Its first seasons -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_FirstWinter</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,winter</when>
+    <lines>
+      <li>[them] It's our first winter at {TOWN}, and every family is counting the woodpile.</li>
+      <li>[us] Will you have enough?</li>
+      <li>[them,town:struggling|town:poor] If it's short, we'll be short of a few things by spring.</li>
+      <li>[them,!town:struggling,!town:poor] Enough, if the cold doesn't drag on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_FirstSpring</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,spring</when>
+    <lines>
+      <li>[them] It's our first spring at {TOWN}, and the fields we broke are coming up green.</li>
+      <li>[us] That must feel good.</li>
+      <li>[them] Like proof, after a year of being told we were mad.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_FirstHarvest</defName>
+    <topic>founding</topic>
+    <uses>home,chat</uses>
+    <when>town:new,summer|fall</when>
+    <lines>
+      <li>[them] The first harvest at {TOWN} is coming in, and everyone's in the fields.</li>
+      <li>[us] Good soil?</li>
+      <li>[them,town:why:land] Better than it looks, as I keep telling people.</li>
+      <li>[them,!town:why:land] Good enough, we'll know for certain by winter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Its ways, by their age -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_HearthTribal</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,their:tribal</when>
+    <lines>
+      <li>[them] The elders lit the new hearth at {TOWN} with embers carried from the old one.</li>
+      <li>[us] All that way?</li>
+      <li>[them] In a clay pot, fed every night, so the fire never forgets where it came from.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_CharterMedieval</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,their:medieval</when>
+    <lines>
+      <li>[them] They read the charter for {TOWN} at the market cross, and now it's a proper town.</li>
+      <li>[us] What changed?</li>
+      <li>[them] Nothing at all, except now the tithe collector knows where to find us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_StreetsIndustrial</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,their:industrial</when>
+    <lines>
+      <li>[them] We staked out every street at {TOWN} before the first roof went up.</li>
+      <li>[us] Planning ahead.</li>
+      <li>[them] Somebody has to, the last town grew like a weed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_HabitatsSpacer</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] Our charter for {TOWN} is filed, and the habitat seals passed on the first try.</li>
+      <li>[us] Is that unusual?</li>
+      <li>[them] Ask anyone who's lived through a second try.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_HouseholdEmpire</defName>
+    <topic>founding</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,their:empire</when>
+    <lines>
+      <li>[them] {TOWN} has its charter from the throne now, and a household to fill it.</li>
+      <li>[us] Is that an honor?</li>
+      <li>[them] It is a duty, which at court is the same thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_NewHungry</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:struggling</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] A new town is a hungry thing, and {TOWN} is hungrier than most.</li>
+      <li>[us] Lean years are worst at the start.</li>
+      <li>[them] So they say, and so we hope.</li>
+    </lines>
+    <heard>{TOWN}, a new town, is having a hard first year.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_NewSteady</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:steady</when>
+    <lines>
+      <li>[them] For a town this young, {TOWN} is holding steady, which surprises everyone.</li>
+      <li>[us] Including you?</li>
+      <li>[them] Me most of all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A town's fortune ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_Struggling</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How are things at {TOWN}?</li>
+      <li>[them,situation:theirs] Between {SITUATION} and everything else, we're {FORTUNE}.</li>
+      <li>[them,!situation:theirs] We're {FORTUNE}, if I'm honest.</li>
+      <li>[us] I'm sorry to hear it.</li>
+      <li>[them,deed:good] Your people helped mine once, so I'll say it plainly: we could use it again.</li>
+      <li>[them,!deed:good] We'll get through it, we always have.</li>
+    </lines>
+    <heard>{TOWN} is {FORTUNE} these days.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_StrugglingKind</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling,them:kind</when>
+    <lines>
+      <li>[them] We're {FORTUNE} at {TOWN}, but nobody has been turned away from a fire yet.</li>
+      <li>[us] That says something about your people.</li>
+      <li>[them] It says we remember being turned away ourselves.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_StrugglingTrader</defName>
+    <topic>fortune</topic>
+    <uses>chat</uses>
+    <when>town:struggling,role:trader</when>
+    <lines>
+      <li>[them] Trade has been bad since {TOWN} fell on hard times, so I hope you're buying.</li>
+      <li>[us] We'll have a look.</li>
+      <li>[them] That's all I ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_Poor</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:poor</when>
+    <lines>
+      <li>[us] How are things at {TOWN}?</li>
+      <li>[them,their:tribal] Lean, the hunting is thin and the stores are thinner.</li>
+      <li>[them] Thin, if I'm honest, we're getting by and no more.</li>
+      <li>[us] I hope it turns.</li>
+      <li>[them] It will, these things come round.</li>
+    </lines>
+    <heard>{TOWN} is {FORTUNE} this season.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_PoorTrader</defName>
+    <topic>fortune</topic>
+    <uses>chat</uses>
+    <when>town:poor,role:trader</when>
+    <lines>
+      <li>[them] Things are {FORTUNE} at {TOWN}, so every sale counts this trip.</li>
+      <li>[us] Then let's see what you have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_Steady</defName>
+    <topic>fortune</topic>
+    <uses>home</uses>
+    <when>town:steady,!town:new</when>
+    <lines>
+      <li>[us] How is {TOWN} faring?</li>
+      <li>[them] Steady, nothing to boast of and nothing to fear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_Thriving</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving</when>
+    <lines>
+      <li>[us] How is {TOWN} faring these days?</li>
+      <li>[them,their:medieval] Prospering, the market's full and the tithe was paid early.</li>
+      <li>[them,their:tribal] Well, the hunts are good and every child is fat.</li>
+      <li>[them] Thriving, there's work for anyone who wants it.</li>
+      <li>[us] Glad to hear it.</li>
+      <li>[them,situation:theirs,situation:good] {SITUATION} has done us a lot of good.</li>
+      <li>[them] Long may it last.</li>
+    </lines>
+    <heard>{TOWN} is {FORTUNE} these days.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_Flourishing</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:flourishing</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,their:spacer] {TOWN} is booming, every pad is booked and every hand is working.</li>
+      <li>[them,their:tribal] {TOWN} has never eaten so well, and the elders say it is a sign.</li>
+      <li>[them] {TOWN} has never done better, there's more work than hands.</li>
+      <li>[us] What's the secret?</li>
+      <li>[them,town:why:road] The road, everything comes through us now.</li>
+      <li>[them,town:why:river] The river, mostly, and people willing to work it.</li>
+      <li>[them] Good years and people who work, mostly.</li>
+    </lines>
+    <heard>{TOWN} is {FORTUNE}, and has never done better.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_GoodTrader</defName>
+    <topic>fortune</topic>
+    <uses>chat</uses>
+    <when>town:thriving|town:flourishing,role:trader</when>
+    <lines>
+      <li>[them] Business is good at {TOWN}, so I can afford to be generous today.</li>
+      <li>[us] Generous how?</li>
+      <li>[them] Generous in conversation, mostly, let's not get carried away.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_GoodSentOut</defName>
+    <topic>newtown</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing,region:newtown:theirs</when>
+    <lines>
+      <li>[them] Times are good, good enough that some of our people went off to found {NEWTOWN}.</li>
+      <li>[us] Will they do as well?</li>
+      <li>[them] If they work half as hard as they argue, they'll do better.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A new town near the colony, of another people or of theirs ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_HeardNewTown</defName>
+    <topic>newtown</topic>
+    <uses>chat</uses>
+    <when>region:newtown:other</when>
+    <lines>
+      <li>[them] Have you heard that {NEWTOWNPEOPLE} have founded a new town at {NEWTOWN}?</li>
+      <li>[us] We heard something of it.</li>
+      <li>[them,their:tribal] New fires near the old paths, and the elders don't like it.</li>
+      <li>[them] More neighbors means more trade or more trouble, and we'll see which.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_NewTownTrade</defName>
+    <topic>newtown</topic>
+    <uses>chat</uses>
+    <when>region:newtown:other,role:trader</when>
+    <lines>
+      <li>[them] {NEWTOWN} will want everything a new town wants, and a trader could do well there.</li>
+      <li>[us] Will you go?</li>
+      <li>[them] If the road is safe, I'll be there before the dust settles.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_NewTownEmpire</defName>
+    <topic>newtown</topic>
+    <uses>chat</uses>
+    <when>region:newtown:other,their:empire</when>
+    <lines>
+      <li>[them] The Empire has taken note of {NEWTOWN}, as it takes note of everything.</li>
+      <li>[us] And what does it think?</li>
+      <li>[them] That it would look better under a proper banner.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_OursWentOut</defName>
+    <topic>newtown</topic>
+    <uses>home,chat</uses>
+    <when>region:newtown:theirs,!town:new</when>
+    <lines>
+      <li>[them] Some of our families went out to found {NEWTOWN} this year.</li>
+      <li>[us] Do you know any of them?</li>
+      <li>[them] A few by name, and I wish them a gentle first winter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Reg_UsNewTown</defName>
+    <topic>newtown</topic>
+    <uses>chat</uses>
+    <when>region:newtown</when>
+    <lines>
+      <li>[us] There's a new town at {NEWTOWN}, did you know?</li>
+      <li>[them,region:newtown:theirs] Of course, those are our own people out there.</li>
+      <li>[them,!region:newtown:theirs] Everyone on the road knows by now.</li>
+      <li>[us] What do you make of it?</li>
+      <li>[them,region:newtown:theirs] They'll do well, they're stubborn like the rest of us.</li>
+      <li>[them,!region:newtown:theirs] New neighbors are new mouths, but also new hands.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

@@ -260,6 +260,7 @@
     <cooldownDays>100</cooldownDays>
     <durationDays>15~24</durationDays>
     <kind>trade</kind>
+    <prosperity>10</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -384,6 +385,7 @@
     <cooldownDays>100</cooldownDays>
     <durationDays>8~12</durationDays>
     <kind>fair</kind>
+    <prosperity>8</prosperity>
     <seasons>
       <li>Spring</li>
       <li>Summer</li>
@@ -511,6 +513,7 @@
     <cooldownDays>150</cooldownDays>
     <durationDays>10~16</durationDays>
     <kind>faith</kind>
+    <prosperity>5</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -640,6 +643,7 @@
     <cooldownDays>200</cooldownDays>
     <durationDays>15~24</durationDays>
     <kind>rush</kind>
+    <prosperity>12</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>

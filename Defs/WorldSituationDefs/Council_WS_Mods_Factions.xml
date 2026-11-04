@@ -418,6 +418,7 @@
     <cooldownDays>180</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>rush</kind>
+    <prosperity>12</prosperity>
     <mods>
       <li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li>
     </mods>

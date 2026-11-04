@@ -40,6 +40,9 @@ namespace ColonyCouncil
 
         public static int Households(WorldSituation s) => RivalMath.Households(Mathf.Max(1, s.Num("start")), s.DaysIn, RivalMath.Warm(s.flags));
 
+        /// <summary>Their leader founded the steading.</summary>
+        protected override Pawn Founder(WorldSituation s) => s.ctx.stranger;
+
         /// <summary>Where the colony stands with them, from every answer so far.</summary>
         private static void Sync(WorldSituation s)
         {
@@ -169,6 +172,9 @@ namespace ColonyCouncil
     /// </summary>
     public class SituationWorker_Crossroads : SituationWorker_NewTown
     {
+        /// <summary>It grew up for the road the colony let past its gate.</summary>
+        protected override string WhyFounded(WorldSituation s) => "road";
+
         public override string Chosen(WorldSituation s, SituationContext ctx, SituationBeat beat, int option, bool risk, bool byDefault, string outcome)
         {
             if (beat.key != "name" || option != 0) return outcome;

@@ -176,7 +176,7 @@ namespace ColonyCouncil
             {
                 var o = all[i];
                 if (o == null || o.Destroyed || !construction.IsInstanceOfType(o) || Int(siteOwner, o) != people.loadID || Int(siteCreated, o) != now) continue;
-                WorldMechanics.Founded(people, o.Tile);
+                WorldMechanics.Founded(people, o.Tile, o.ID, Int(siteCreated, o, Tie.Never), Int(siteCompletes, o, Tie.Never));
                 return;
             }
         }
@@ -188,7 +188,7 @@ namespace ColonyCouncil
             if (!(site is WorldObject o) || siteOwner == null) return;
             var people = FactionOf(Int(siteOwner, o));
             var town = Find.WorldObjects.SettlementAt(o.Tile);
-            if (town != null && town.Faction == people) WorldMechanics.Built(people, town);
+            if (town != null && town.Faction == people) WorldMechanics.Built(people, town, o.ID);
         }
 
         /// <summary>A site beaten (IsDefeated said so, and the mod destroys it next): razed by the colony's people, who alone can attack it.</summary>

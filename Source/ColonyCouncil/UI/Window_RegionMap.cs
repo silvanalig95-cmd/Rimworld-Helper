@@ -637,6 +637,32 @@ namespace ColonyCouncil
                     if (used > 0f) y += used + 6f;
                 }
             else if (wo.Tile != map.home) y = Places(wo.Tile, wo, w, y);
+            else if (wo is MapParent home && home.HasMap) y = HomePlaces(home.Map, w, y);
+            return y;
+        }
+
+        /// <summary>What other parts of Rimfolk add about the home the map is drawn around (NeighbourPanel.HomeSections).</summary>
+        private static float HomePlaces(Map home, float w, float y)
+        {
+            for (int i = 0; i < NeighbourPanel.HomeSections.Count; i++)
+            {
+                float used = 0f;
+                try
+                {
+                    used = NeighbourPanel.HomeSections[i](new Rect(0f, y, w, 80f), home);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("region map home section " + i, e);
+                }
+                finally
+                {
+                    Text.Font = GameFont.Small;
+                    Text.Anchor = TextAnchor.UpperLeft;
+                    GUI.color = Color.white;
+                }
+                if (used > 0f) y += used + 6f;
+            }
             return y;
         }
 

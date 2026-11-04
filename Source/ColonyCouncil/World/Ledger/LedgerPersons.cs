@@ -39,7 +39,11 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A town the ledger knows: its name and people, and when the colony first missed it from the world (-1 while it stands).</summary>
+    /// <summary>
+    /// A town the ledger knows: its name and people, and when the colony first missed it from the world (-1 while it
+    /// stands). A town within the region map's reach of a home is kept in detail (World/Region/): what it is, when and by
+    /// whom it was founded, from which town and why, and its prosperity with what moved it last.
+    /// </summary>
     public class LedgerTown : IExposable
     {
         public int id = -1;
@@ -47,7 +51,34 @@ namespace ColonyCouncil
         public Faction people;
         public int gone = -1;
 
+        // ---------------- In detail (the region) ----------------
+
+        /// <summary>A town, a ruin, a trading post or a hamlet.</summary>
+        public TownKind kind;
+        /// <summary>When it was founded (the tick it stood), or -1 for a town that was there before the colony knew.</summary>
+        public int founded = -1;
+        /// <summary>Who led its settlers (a person of the ledger), or none.</summary>
+        public Ref founder;
+        /// <summary>The town its settlers came from, or none; its name kept for when it's gone.</summary>
+        public Ref mother;
+        public string motherName;
+        /// <summary>Why they chose the place (RegionMath.Reasons, or "land"); null when not known.</summary>
+        public string why;
+        /// <summary>0 to 100; below 0 while it hasn't been seeded yet.</summary>
+        public float prosperity = -1f;
+        /// <summary>When the region's day last moved it.</summary>
+        public int movedAt = -1;
+        /// <summary>What moved it last that its panel names (a world event, its founding), the way it went (up 1, down -1), and when.</summary>
+        public string cause;
+        public int causeDir;
+        public int causeAt = -1;
+        /// <summary>Since when it has been low (under RegionMath.Low), or -1.</summary>
+        public int lowSince = -1;
+
         public Ref Town => Ref.Town(id);
+
+        /// <summary>It has a prosperity of its own.</summary>
+        public bool Seeded => prosperity >= 0f;
 
         public void ExposeData()
         {
@@ -55,6 +86,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref name, "name");
             Scribe_References.Look(ref people, "people");
             Scribe_Values.Look(ref gone, "gone", -1);
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref founded, "founded", -1);
+            Refs.Look(ref founder, "founder");
+            Refs.Look(ref mother, "mother");
+            Scribe_Values.Look(ref motherName, "motherName");
+            Scribe_Values.Look(ref why, "why");
+            Scribe_Values.Look(ref prosperity, "prosperity", -1f);
+            Scribe_Values.Look(ref movedAt, "movedAt", -1);
+            Scribe_Values.Look(ref cause, "cause");
+            Scribe_Values.Look(ref causeDir, "causeDir");
+            Scribe_Values.Look(ref causeAt, "causeAt", -1);
+            Scribe_Values.Look(ref lowSince, "lowSince", -1);
         }
     }
 
@@ -218,7 +261,16 @@ namespace ColonyCouncil
             foreach (var t in townRecords)
                 if (t != null && t.gone < 0 && !standing.Contains(t.id))
                     t.gone = now;
-            townRecords.RemoveAll(t => t == null || t.id < 0 || !LedgerMath.KeepTown(lived.Contains(t.id), standing.Contains(t.id), t.gone, now));
+            // Towns within the region map's reach of a home are kept in detail (World/Region/); beyond it, nothing is kept.
+            var detail = RegionTowns.InDetail();
+            List<LedgerTown> dropped = null;
+            townRecords.RemoveAll(t =>
+            {
+                if (t != null && t.id >= 0 && RegionMath.KeepTown(lived.Contains(t.id), standing.Contains(t.id), detail.Contains(t.id), t.gone, now)) return false;
+                if (t != null) (dropped ??= new List<LedgerTown>()).Add(t);
+                return true;
+            });
+            if (dropped != null) TownsDropped(dropped);
             if (persons.Count + townRecords.Count != before)
             {
                 personIndex = null;

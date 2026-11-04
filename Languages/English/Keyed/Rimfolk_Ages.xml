@@ -6,7 +6,7 @@
     only the medieval one"). Short noun phrases, to sit inside a sentence.
     CC_Form_<Feature>_<Age>: the word, by the colony's own age (its means: what it calls the thing and does it with).
     CC_Form_<Feature>_<Age>_Rite: the rite, by the other people's age (their ways: how it is done with them).
-    Nothing reads these yet; the diplomacy (stage 2) will.
+    The region's news of a new town reads the founding's (World/Region/RegionWords.cs); the diplomacy (stage 2) will read the rest.
   -->
 
   <!-- A favor owed -->
@@ -108,5 +108,15 @@
   <CC_Form_Schemes_Industrial_Rite>a smear in the papers</CC_Form_Schemes_Industrial_Rite>
   <CC_Form_Schemes_Spacer>a hack or a data leak</CC_Form_Schemes_Spacer>
   <CC_Form_Schemes_Spacer_Rite>a corporate plant</CC_Form_Schemes_Spacer_Rite>
+
+  <!-- A new town founded (World/Region/): the word is how the colony hears of it, the rite how their people found one -->
+  <CC_Form_Founding_Tribal>word from a traveler</CC_Form_Founding_Tribal>
+  <CC_Form_Founding_Tribal_Rite>its new hearth lit before the elders</CC_Form_Founding_Tribal_Rite>
+  <CC_Form_Founding_Medieval>a rider's news</CC_Form_Founding_Medieval>
+  <CC_Form_Founding_Medieval_Rite>its charter read and its market cross raised</CC_Form_Founding_Medieval_Rite>
+  <CC_Form_Founding_Industrial>news on the radio</CC_Form_Founding_Industrial>
+  <CC_Form_Founding_Industrial_Rite>its streets staked out, its first roofs up</CC_Form_Founding_Industrial_Rite>
+  <CC_Form_Founding_Spacer>a comms relay's report</CC_Form_Founding_Spacer>
+  <CC_Form_Founding_Spacer_Rite>its charter filed and its first habitats sealed</CC_Form_Founding_Spacer_Rite>
 
 </LanguageData>

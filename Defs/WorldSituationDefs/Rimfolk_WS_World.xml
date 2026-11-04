@@ -457,6 +457,7 @@
     <cooldownDays>120</cooldownDays>
     <durationDays>20~28</durationDays>
     <kind>road</kind>
+    <prosperity>6</prosperity>
     <after>
       <li>Council_WS_NewRoad</li>
     </after>
