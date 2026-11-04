@@ -489,9 +489,10 @@ namespace ColonyCouncil
             }
             for (int tries = 0; tries < 6; tries++)
             {
-                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land));
+                // A refugee family comes more often while a town in reach struggles, and is likeliest of its people (World/Region/RiseFallEffects.cs).
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
-                var f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
+                var f = Arrivals.Friendly(x => kind.FitsFaction(x), x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x));
                 if (f == null)
                 {
                     why?.Add(kind.label + ": no friendly people for it");

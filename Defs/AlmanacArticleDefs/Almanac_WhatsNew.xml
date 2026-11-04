@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.73.0</version>
+        <date>4 November 2026</date>
+        <title>Towns rise and fall</title>
+        <points>
+          <li>Struggling towns near your colonies can now be given up by their people, as a world event or quietly in the news, and leave a ruin in their colour.</li>
+          <li>A town destroyed in a fight within reach leaves a ruin once its map is gone, and the ruin's panel says what town it was.</li>
+          <li>After two years a ruin may be settled again, by its own people under the old name or by newcomers with a name of their own.</li>
+          <li>A town that flourishes for a year may send settlers out to found a new town nearby, beside Faction Territories' builders, never within 6 tiles of a colony.</li>
+          <li>Struggling towns ask for provisions and rebuilding more often and their families camp at your gate; thriving towns send their caravans more often.</li>
+          <li>The pace is slow (one town given up in 60 days, one ruin settled in 120, one town founded in 90 near each home), and a new setting, Towns rise and fall, switches it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.72.0</version>
         <date>4 November 2026</date>
         <title>Raiders' camps</title>

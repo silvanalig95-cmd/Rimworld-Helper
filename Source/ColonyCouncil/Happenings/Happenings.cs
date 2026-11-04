@@ -768,6 +768,8 @@ namespace ColonyCouncil
             // A remote home draws more visitors (World/Region/TravelLand.cs): up to 60% more at the most remote.
             if (remote && ext.group == HappeningGroup.Visitors) w *= TravelLand.VisitorFactor(map);
             w *= DrawnFactor(ext);
+            // A town struggling in this home's reach asks for help more often (World/Region/RiseFallEffects.cs).
+            w *= RiseFallEffects.EventFactor(d, map);
             return Mathf.Max(0.001f, w);
         }
 

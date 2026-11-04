@@ -2555,6 +2555,17 @@ up. Each ending is told, written into the history and remembered by the peoples.
 camps* page; the region map and This week show a camp standing. Setting: *Raiders' camps* (0 to 200%, 100% by
 default). The Almanac has a page, *raiders' camps*.
 
+**Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
+event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
+it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town
+within reach, a ruin stays too. A ruin may be settled again after two years, by its own people under its old name or
+by newcomers; a town flourishing for a year may send settlers out to found a new one nearby, beside Faction
+Territories' builders, never within 6 tiles of a colony. Every change gets its line in the news, its founder and
+families, and its place in the history, at a slow pace: in a home's reach at most one town given up in 60 days, one
+ruin settled in 120, one town founded in 90, and a ruin Rimfolk made gone after 300 days. A struggling town asks for
+help more often and its families camp at the gate; a thriving one's caravans come more often. Setting: *Towns rise and
+fall*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

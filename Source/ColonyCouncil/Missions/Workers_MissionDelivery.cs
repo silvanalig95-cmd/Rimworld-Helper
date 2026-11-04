@@ -124,9 +124,11 @@ namespace ColonyCouncil
             if (d == null) return false;
             var variant = d.variants.Where(v => v.Fits(map)).RandomElementByWeightWithFallback(v => Mathf.Max(0.01f, v.weight));
             if (variant == null) return false;
-            m.faction = Neighbor(map);
+            // A town struggling in the colony's reach asks first, in its own name (World/Region/RiseFallEffects.cs).
+            var hard = RiseFallEffects.AskTown(def, map);
+            m.faction = hard?.Faction ?? Neighbor(map);
             if (m.faction == null) return false;
-            m.place = LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
+            m.place = hard?.Name ?? LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
             // The reeve deals with neighbours who need goods, when there is one (Interplay/).
             m.a = Interplay.MissionHead(map) ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;

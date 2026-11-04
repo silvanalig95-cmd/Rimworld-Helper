@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Towns that rise and fall (Source/ColonyCouncil/World/Region/RiseFall.cs, NewTowns.cs, RiseFallWords.cs): a town
+    given up, a ruin left by a fight, a ruin gone to grass, a ruin settled again, a town founded by settlers from a
+    flourishing one. The news opens with the colony's means of hearing it ({MEANS}: CC_Form_Founding_*); {WHERE} is
+    which way and how far ("two days' walk to the north"); {RUIN} what is left of a town by its people's age.
+  -->
+
+  <!-- Settings -->
+  <CC_Settings_RegionChange>Towns rise and fall</CC_Settings_RegionChange>
+  <CC_SetNote_RegionChange>Struggling towns may be given up and leave ruins, ruins settled again, and flourishing towns found new ones.</CC_SetNote_RegionChange>
+  <CC_Settings_RegionChange_Tip>A town within the region map's reach that has struggled for a month (or was struck twice in a season while poor, or met a hard first season) may be given up by its people while they keep two other towns, never their seat or the Empire's, nor a town the colony has business with. A town destroyed in a fight leaves a ruin once its map is gone. A ruin 120 days old may be settled again by a people at peace with the colony doing well nearby, its own people first. A town flourishing for 60 days may send settlers to found a new town 6 to 15 tiles away, beside any other mod's builders, and only while fewer than 10 towns stand in reach. In a home's reach: at most one town given up in 60 days, one ruin settled in 120, one town founded in 90; a ruin Rimfolk made goes after 300 days, twelve at most. Nothing new is placed within 6 tiles of a colony. Needs the towns' fortunes for anything that turns on a town's prosperity. Off: nothing changes on the map, and the records are kept.</CC_Settings_RegionChange_Tip>
+
+  <!-- What is left of a town, by its people's age -->
+  <CC_RiseFall_Ruin_Tribal>empty longhouses and cold hearths</CC_RiseFall_Ruin_Tribal>
+  <CC_RiseFall_Ruin_Medieval>an empty town</CC_RiseFall_Ruin_Medieval>
+  <CC_RiseFall_Ruin_Industrial>a ghost town</CC_RiseFall_Ruin_Industrial>
+  <CC_RiseFall_Ruin_Spacer>a derelict colony</CC_RiseFall_Ruin_Spacer>
+  <CC_RiseFall_Someone>its people</CC_RiseFall_Someone>
+
+  <!-- The colony news -->
+  <CC_RiseFall_Leaving>{MEANS}: {PEOPLE} are giving up {TOWN}, {WHERE}. Its families are on the road to {NEXT}.</CC_RiseFall_Leaving>
+  <CC_RiseFall_Leaving_NoNext>{MEANS}: {PEOPLE} are giving up {TOWN}, {WHERE}. Its families are on the road.</CC_RiseFall_Leaving_NoNext>
+  <CC_RiseFall_HeldOn>{MEANS}: a few families would not leave {TOWN}, {WHERE}, and {PEOPLE} have let them stay. The town hangs on, smaller than it was.</CC_RiseFall_HeldOn>
+  <CC_RiseFall_Empty>{MEANS}: the last families have left {TOWN}, {WHERE}. Nothing is left there but {RUIN}.</CC_RiseFall_Empty>
+  <CC_RiseFall_Fell>{MEANS}: where {TOWN} of {PEOPLE} stood, {WHERE}, there is only {RUIN} now.</CC_RiseFall_Fell>
+  <CC_RiseFall_Fell_Ours>Where {TOWN} of {PEOPLE} stood, {WHERE}, there is only {RUIN} now.</CC_RiseFall_Fell_Ours>
+  <CC_RiseFall_Faded>{MEANS}: hardly a wall of {TOWN} is left standing, {WHERE}, and the grass has the rest.</CC_RiseFall_Faded>
+  <CC_RiseFall_Daughter>{MEANS}: settlers from {MOTHER} have founded {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter>
+
+  <!-- A ruin settled again: its own people come back ({TOWN} the old name), or newcomers raise a town on it ({NEWNAME}) -->
+  <CC_RiseFall_Back_Tribal>{MEANS}: a clan of {PEOPLE} has come back to the old walls of {TOWN}, {WHERE}, and lit its hearths there again.</CC_RiseFall_Back_Tribal>
+  <CC_RiseFall_Back_Medieval>{MEANS}: families of {PEOPLE} have come back to the old walls of {TOWN}, {WHERE}.</CC_RiseFall_Back_Medieval>
+  <CC_RiseFall_Back_Industrial>{MEANS}: a company of {PEOPLE} settlers has come back to {TOWN}, {WHERE}, and is clearing the old streets.</CC_RiseFall_Back_Industrial>
+  <CC_RiseFall_Back_Spacer>{MEANS}: {PEOPLE} have filed a new charter for {TOWN}, {WHERE}, and settlers are resealing the old habitats.</CC_RiseFall_Back_Spacer>
+  <CC_RiseFall_Newcomers_Tribal>{MEANS}: a clan of {PEOPLE} has made its home in the old walls of {TOWN}, {WHERE}, and kept the old name.</CC_RiseFall_Newcomers_Tribal>
+  <CC_RiseFall_Newcomers_Medieval>{MEANS}: families of {PEOPLE} have raised a town on the old walls of {TOWN}, {WHERE}, and kept the old name.</CC_RiseFall_Newcomers_Medieval>
+  <CC_RiseFall_Newcomers_Industrial>{MEANS}: a company of {PEOPLE} settlers has moved into the empty streets of {TOWN}, {WHERE}, and kept the old name.</CC_RiseFall_Newcomers_Industrial>
+  <CC_RiseFall_Newcomers_Spacer>{MEANS}: {PEOPLE} have filed a charter for the derelict colony at {TOWN}, {WHERE}, under its old name.</CC_RiseFall_Newcomers_Spacer>
+  <CC_RiseFall_Renamed_Tribal>{MEANS}: a clan of {PEOPLE} has made its home in the old walls of {TOWN}, {WHERE}, and calls the place {NEWNAME}.</CC_RiseFall_Renamed_Tribal>
+  <CC_RiseFall_Renamed_Medieval>{MEANS}: families of {PEOPLE} have raised a town on the old walls of {TOWN}, {WHERE}, and call it {NEWNAME}.</CC_RiseFall_Renamed_Medieval>
+  <CC_RiseFall_Renamed_Industrial>{MEANS}: a company of {PEOPLE} settlers has moved into the empty streets of {TOWN}, {WHERE}, and renamed the place {NEWNAME}.</CC_RiseFall_Renamed_Industrial>
+  <CC_RiseFall_Renamed_Spacer>{MEANS}: {PEOPLE} have filed a charter for the derelict colony at {TOWN}, {WHERE}, and registered it as {NEWNAME}.</CC_RiseFall_Renamed_Spacer>
+
+  <!-- The history's lines -->
+  <CC_RiseFall_H_GivenUp>{PEOPLE} gave up {TOWN} and left it a ruin.</CC_RiseFall_H_GivenUp>
+  <CC_RiseFall_H_Fell>{TOWN} of {PEOPLE} fell in a fight, and only a ruin was left.</CC_RiseFall_H_Fell>
+  <CC_RiseFall_H_Faded>The last of the ruin of {TOWN} went to grass.</CC_RiseFall_H_Faded>
+  <CC_RiseFall_H_Back>{PEOPLE} settled the old walls of {TOWN} again.</CC_RiseFall_H_Back>
+  <CC_RiseFall_H_Renamed>{PEOPLE} settled the old walls of {TOWN} again, as {NEWNAME}.</CC_RiseFall_H_Renamed>
+
+  <!-- The region map's panel, and the inspect pane of a ruin -->
+  <CC_RiseFall_Panel_Header>The ruin</CC_RiseFall_Panel_Header>
+  <CC_RiseFall_Panel_Was>Once {TOWN} of {PEOPLE}; {RUIN} now.</CC_RiseFall_Panel_Was>
+  <CC_RiseFall_Panel_GivenUp>Given up {AGO}.</CC_RiseFall_Panel_GivenUp>
+  <CC_RiseFall_Panel_Fight>Left a ruin by a fight {AGO}.</CC_RiseFall_Panel_Fight>
+  <CC_RiseFall_Panel_Ours>Destroyed by the colony's people {AGO}.</CC_RiseFall_Panel_Ours>
+  <CC_RiseFall_Panel_Again>In time, families may come back to it, or newcomers may.</CC_RiseFall_Panel_Again>
+  <CC_RiseFall_Panel_LeavingHeader>Being given up</CC_RiseFall_Panel_LeavingHeader>
+  <CC_RiseFall_Panel_Leaving>Its families are leaving for {NEXT}.</CC_RiseFall_Panel_Leaving>
+  <CC_RiseFall_Panel_Leaving_NoNext>Its families are leaving.</CC_RiseFall_Panel_Leaving_NoNext>
+  <CC_RiseFall_Inspect_GivenUp>Once {TOWN} of {PEOPLE}, given up {AGO}.</CC_RiseFall_Inspect_GivenUp>
+  <CC_RiseFall_Inspect_Fight>Once {TOWN} of {PEOPLE}, ruined in a fight {AGO}.</CC_RiseFall_Inspect_Fight>
+
+</LanguageData>

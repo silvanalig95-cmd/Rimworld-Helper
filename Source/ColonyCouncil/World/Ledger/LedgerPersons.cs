@@ -74,6 +74,10 @@ namespace ColonyCouncil
         public int causeAt = -1;
         /// <summary>Since when it has been low (under RegionMath.Low), or -1.</summary>
         public int lowSince = -1;
+        /// <summary>Since when it has been flourishing (RiseFallMath.FoundAt or more), or -1 (World/Region/NewTowns.cs).</summary>
+        public int highSince = -1;
+        /// <summary>Since when its people have been giving it up, or -1 (World/Region/RiseFall.cs).</summary>
+        public int closing = -1;
 
         public Ref Town => Ref.Town(id);
 
@@ -98,6 +102,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref causeDir, "causeDir");
             Scribe_Values.Look(ref causeAt, "causeAt", -1);
             Scribe_Values.Look(ref lowSince, "lowSince", -1);
+            Scribe_Values.Look(ref highSince, "highSince", -1);
+            Scribe_Values.Look(ref closing, "closing", -1);
         }
     }
 

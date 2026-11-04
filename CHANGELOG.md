@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Towns rise and fall
+
+*4 November 2026, version 0.73.0*
+
+- Struggling towns near your colonies can now be given up by their people, as a world event or quietly in the news, and leave a ruin in their colour.
+- A town destroyed in a fight within reach leaves a ruin once its map is gone, and the ruin's panel says what town it was.
+- After two years a ruin may be settled again, by its own people under the old name or by newcomers with a name of their own.
+- A town that flourishes for a year may send settlers out to found a new town nearby, beside Faction Territories' builders, never within 6 tiles of a colony.
+- Struggling towns ask for provisions and rebuilding more often and their families camp at your gate; thriving towns send their caravans more often.
+- The pace is slow (one town given up in 60 days, one ruin settled in 120, one town founded in 90 near each home), and a new setting, Towns rise and fall, switches it off.
+
 ## Raiders' camps
 
 *4 November 2026, version 0.72.0*

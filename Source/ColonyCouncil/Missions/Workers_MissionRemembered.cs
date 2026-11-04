@@ -786,7 +786,8 @@ namespace ColonyCouncil
                     case "Council_WS_Drought": tag = "famine"; break;
                     case "Council_WS_Flood": tag = "flood"; break;
                     case "Council_WS_HardWinter": tag = "winter"; break;
-                    case "Council_WS_Abandoned": tag = "abandoned"; break;
+                    case "Council_WS_Abandoned":
+                    case "Rimfolk_WS_GivenUp": tag = "abandoned"; break;
                     case "Council_WS_GreatFire": tag = "fire"; break;
                     case "Council_WS_Warlord":
                     case "Council_WS_BanditRoad": tag = "war"; break;

@@ -2282,6 +2282,49 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   (a favor), `campStruck` and `burnedCamp` (good turns the colony owes; the ally's for a burning). A home lost takes its
   camp (`ColonyBook.Lost`). Shown: the region page `RaidersCamps` (`MainTabWindow_World.Register`, order 55), the
   panel's `PlaceSections` for its site and `HomeSections` for its home, This week's missions card.
+- **Towns that rise and fall** (the third release, item 2 with decisions 2, 5 and 14; `World/Region/RiseFall.cs`,
+  `NewTowns.cs`, `RiseFallLedger.cs`, `RiseFallSituation.cs`, `RiseFallWords.cs`, `RiseFallEffects.cs`,
+  `RiseFallPatches.cs`; rules in `RiseFallMath.cs`, Tools/Tests `RiseFallTests`; setting "Towns rise and fall"). Run on
+  the region's two passes, no new pass. The pace per home's reach (`RegionHome.givenUpAt`, `resettledAt`, `foundedAt`;
+  a change needs every home whose reach holds the place past its gap): one town given up in 60 days, one ruin settled
+  in 120, one town founded by Rimfolk in 90; Rimfolk's world events that give a town up (`Council_WS_Abandoned`, whose
+  candidates now also keep two other towns and wait for the pace) or found one (the new-town event's `Begin`) count on
+  the same clocks. **Given up**: a town in detail under 15 for 30 days (`LedgerTown.lowSince`), or under 25 with two
+  bad events of its people's in 60 days, or a new town under 10 in its first 15 days; not its people's seat
+  (`NotableBook.SeatOf`), not the Empire's, its people keeping two other towns, `SituationWorker_Abandoned.Safe`; 7%
+  on its own day every 5 days. With a world event's slot free at the home nearest it, `Rimfolk_WS_GivenUp`
+  (`SituationWorker_GivenUp`, the abandoned event's beats on that town, its letter by what struck it, read from its
+  people's latest bad event); else quietly (`LedgerTown.closing`): a line in the news, a refugee family's camp of
+  theirs a third of the time within 25 tiles, the ruin on the fifth day, or a few families holding on. Its notables the
+  colony dealt with become acquaintances in their people's nearest town. **Ruins** (`LedgerRuin` on the ledger: the
+  town it was, the game's `AbandonedSettlement` in their colour, since when and why): made by a giving up, adopted
+  from the abandoned event's ending (a town in detail gone from the map with an abandoned settlement on its tile and
+  the event's record), or left by a fight: the game's defeat of a town (`Patch_RiseFallDefeated`, a note only) or a
+  town in detail gone with the game's destroyed settlement on its tile; such a ruin waits (30 days at most, six at
+  once) until only a caravan or nothing stands there, so a vassal or the colony's own settlement on the tile wins.
+  Gone after 300 days, twelve per home's reach (the oldest first), each only when safe (no map, quest, caravan or
+  pods); one another took off the map is let go. Only the vanilla def is adopted, so Real Ruins' sites are left alone.
+  **Settled again**: a ruin 120 days old, 10% every 15 days, by the ruin's own people with a town in detail within 25
+  tiles at 50 or more, else the people at peace doing best there at 60 or more; its tile still valid, clear of homes
+  and of another people's territory; the old name kept (newcomers' own half the time), history `world:resettled`.
+  **Founded by Rimfolk** (decision 2, beside Faction Territories' builders): a town flourishing (80) for 60 days
+  (`LedgerTown.highSince`), 15% every 15 days, a tile 6 to 15 tiles from it found by `TileFinder`'s flood fill with
+  straight-line checks only (valid for a town and empty, within reach, more than 6.5 tiles from every one of the
+  colony's settlements by the game's `SettlementProximityGoodwillUtility.MaxDist`, not in another people's territory,
+  not beside a town being built), weighed by the biome's settlement weight, only while fewer than 10 towns stand in
+  every reach it lies in. Both kinds of new town go through `RegionFaces.Founded` (a founder in the region's hour,
+  families, the town their settlers came from, why: `mother` or `ruin`) and its own line in the news. History kinds
+  `world:abandoned`, `world:ruined` (a milestone when the colony did it), `world:ruingone`, `world:resettled`; the
+  new towns' `world:built` as the region writes it. The words (`RiseFallWords`): the colony's means
+  (`Ages.Form(AgeFeature.Founding)`), a ruin by its people's age, the settlers by theirs (a clan, families, a company,
+  a charter), the region map's panel for a ruin and for a town being given up, a line in the ruin's own inspect pane
+  (`Patch_RiseFallRuinInspect`). **Prosperity's effects** (`RiseFallEffects`, with the fortunes and "Systems talk to
+  each other"): provisions and rebuilding asks twice as likely while a town of a people on good terms struggles in the
+  home's reach, asked in that town's name (`HappeningWorker_MissionDelivery`); sheltering refugees twice as likely when
+  the people they flee have a town struggling there (and a town given up is a hardship they flee); the refugee
+  family's camp twice as likely, six times as likely to be of that people (`CampTracker`); trader caravans' people
+  weighed 1.25 thriving or flourishing, 0.6 struggling, by their town nearest the home, when the game sends one without
+  a people (`Patch_RiseFallCaravans`, with the deeper hooks).
 
 ### Rimfolk's windows
 

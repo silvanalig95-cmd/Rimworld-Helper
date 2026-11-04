@@ -267,6 +267,8 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref houses, "houses", LookMode.Deep);
             Scribe_Collections.Look(ref foundings, "foundings", LookMode.Deep);
+            // The ruins of towns given up or destroyed in a fight (World/Region/RiseFallLedger.cs).
+            ExposeRiseFall();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 houses ??= new List<LedgerHouse>();

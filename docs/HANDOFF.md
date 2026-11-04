@@ -15,6 +15,19 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.73.0, stage 1 release 3, rise and fall: `World/Region/RiseFallMath.cs` (pure), `RiseFall.cs`, `NewTowns.cs`,
+  `RiseFallLedger.cs` (`LedgerRuin`), `RiseFallSituation.cs` (`Rimfolk_WS_GivenUp`), `RiseFallWords.cs`,
+  `RiseFallEffects.cs`, `RiseFallPatches.cs` (`SettlementDefeatUtility.CheckDefeated` postfix notes a fall); given up
+  (under 15 for 30 days, or under 25 with two bad events in 60, or a new town under 10 in its first 15; not a seat,
+  its people keep two other towns, `SituationWorker_Abandoned.Safe`); the game's `AbandonedSettlement` as a ruin; a
+  fight's ruin once only a caravan or nothing stands (30 days at most, six waiting); resettled after 120 days (own
+  people within 25 tiles at 50+, else a people at peace at 60+); Rimfolk's own towns from one flourishing 60 days, 6 to
+  15 tiles out, not in others' territory, under 10 in the reach; history `world:abandoned/ruined/ruingone/resettled`;
+  effects on provisions and rebuild asks, refugees, the refugee camp and trader caravans' people; setting
+  `regionChange`. Rates per home's reach: given up 7% every 5 days (one per 60), resettled 10% every 15 days (one per
+  120), founded 15% every 15 days (one per 90), Rimfolk's ruins 12 kept, gone after 300 days. Not done: talk pieces
+  for given-up or resettled towns; the beggars dilemma's odds. Unknown: whether a Faction Territories invasion ever
+  razes a town without a `DestroyedSettlement`.
 - 0.72.0, stage 1 release 5, raiders' camps: `World/Region/RaidersCampMath.cs`, `RaidersCamp.cs`, `RaidersCampTerms.cs`,
   `RaidersCampPage.cs`, `RaidersCampDebug.cs` (dev actions); each home looked at every 10 days from day 60 (1,000
   threat points, no camp, 60 days since the last; 10% x rate); a hostile people by grudge then distance; 6 to 10 tiles

@@ -53,6 +53,8 @@ namespace ColonyCouncil
             // Drawn by the storyteller, a remote home's visitors weigh more in its pool (World/Region/TravelLand.cs).
             if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category && Ext?.group == HappeningGroup.Visitors)
                 f *= TravelLand.VisitorFactor(target as Map);
+            // A town struggling in this home's reach asks for help more often (World/Region/RiseFallEffects.cs).
+            if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= RiseFallEffects.EventFactor(def, target as Map);
             return f;
         }
 

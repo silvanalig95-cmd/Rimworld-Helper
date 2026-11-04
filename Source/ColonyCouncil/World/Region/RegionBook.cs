@@ -33,6 +33,8 @@ namespace ColonyCouncil
         public int welcomeAt = -1;
         /// <summary>Its raiders' camp, standing or last ended, and the word of the last people paid off (World/Region/RaidersCamp.cs); null until needed.</summary>
         public RaidersCampHome raiders;
+        /// <summary>When a town in this home's reach was last given up, settled again from a ruin, or founded by Rimfolk (World/Region/RiseFall.cs), or -1.</summary>
+        public int givenUpAt = -1, resettledAt = -1, foundedAt = -1;
 
         public void ExposeData()
         {
@@ -41,6 +43,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref letterAt, "letterAt", -1);
             Scribe_Values.Look(ref welcomeAt, "welcomeAt", -1);
             Scribe_Deep.Look(ref raiders, "raiders");
+            Scribe_Values.Look(ref givenUpAt, "givenUpAt", -1);
+            Scribe_Values.Look(ref resettledAt, "resettledAt", -1);
+            Scribe_Values.Look(ref foundedAt, "foundedAt", -1);
         }
     }
 
@@ -161,6 +166,8 @@ namespace ColonyCouncil
         {
             if (FacesOn) RegionFaces.Hourly(this, now);
             RaidersCamps.Hourly(this, now);
+            // Towns gone from the map and fights' ruins waiting (World/Region/RiseFall.cs).
+            if (RiseFall.On) Safe("rise and fall, the hour", () => RiseFall.Hourly(this, now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -170,6 +177,8 @@ namespace ColonyCouncil
             Safe("foundings looked over", () => RegionFaces.Daily(now));
             if (FortunesOn) Safe("fortunes", () => RegionFortunes.Daily(now));
             Safe("raiders' camps", () => RaidersCamps.Daily(this, now));
+            // Towns given up, ruins, ruins settled again, Rimfolk's own new towns (World/Region/RiseFall.cs).
+            if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 
