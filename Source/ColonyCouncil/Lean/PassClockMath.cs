@@ -67,6 +67,7 @@ namespace ColonyCouncil
         DailyWealth,
         DailyMagicNeeds,
         DailyBestFriends,
+        DailyHistory,
     }
 
     /// <summary>One pass in the clock's table: its name (a key in the keyed file), the slot in Sched it runs on and how often.</summary>
@@ -157,6 +158,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.DailyWealth, "CC_Clock_Pass_DailyWealth", nameof(Sched.DailyWealth), D, Sched.DailyWealth),
             new PassInfo(Pass.DailyMagicNeeds, "CC_Clock_Pass_DailyMagicNeeds", nameof(Sched.DailyMagicNeeds), D, Sched.DailyMagicNeeds),
             new PassInfo(Pass.DailyBestFriends, "CC_Clock_Pass_DailyBestFriends", nameof(Sched.DailyBestFriends), D, Sched.DailyBestFriends),
+            new PassInfo(Pass.DailyHistory, "CC_Clock_Pass_DailyHistory", nameof(Sched.DailyHistory), D, Sched.DailyHistory),
         };
 
         public static int Count => All.Length;

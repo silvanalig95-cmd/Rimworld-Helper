@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.66.1, stage 0 step 4 (F4): `World/Ledger/History.cs` and `HistoryMath.cs` (`HistoryEntry`, not HistoryEvent:
+  Ideology's `Verse.HistoryEvent` is in use), kinds as string keys with families (`world:`, `deed:`, `tie:`), actors with
+  roles, places (colony, town, tile: `Ref` gained a tile kind `w801`), indexes, queries `Of`/`At`/`Latest`/`Count`/`Text`;
+  the views carry `recent` (12). Dual-write: `AddChronicle` as before plus `History.FromChronicle`; an old save's
+  chronicle copied in once. Writers: the chronicle, world situations, `FactionMemory.Note` (a day's repeats merge),
+  ties. Folding daily (`Pass.DailyHistory`, tick 1489): everyday entries past 60 days into a summary per kind, actor
+  and season; bound 800, newest 200 kept; about +234 KB at five years (2,978 KB). `WorldSituation.At(town, orName)`
+  sets a place. Not yet writing through: Heard lately, talk news, situation records, calendar days; deeds have no
+  place or doer. If later features need old years' counts, add a yearly fold or raise the bound.
 - 0.66.0, stage 0 step 6 (F6): `UI/Tell.cs` and `UI/TellMath.cs` (`TellBook`, `TellTests`): `Tell.Message`, `Minor`
   (News.Post), `Letter`, `Ask`/`CanAsk` (LetterGap), caps 20 messages and 6 letters a day per kind and colony (two
   settings), 4-hour merge, overflow to the evening letter (held news saved with a `held` flag), the settlement named

@@ -52,7 +52,7 @@ namespace ColonyCouncil
             {
                 ctx.faction = Nearest(Named(Candidates(def.faction, null, map), ext.factions), map);
                 if (ctx.faction == null) return false;
-                ctx.placeName = NearestTown(ctx.faction, map)?.Name ?? ctx.faction.Name;
+                s.At(NearestTown(ctx.faction, map), ctx.faction.Name);
             }
             if (def.second != null)
             {

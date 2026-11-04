@@ -136,6 +136,8 @@ namespace ColonyCouncil
         public const int DailyBestFriends = 1789;
         /// <summary>Once a day: RimWorld of Magic's travel need, which the mod switches off, taken from anyone who has it (Integrations/MagicNeeds.cs).</summary>
         public const int DailyMagicNeeds = 1117;
+        /// <summary>Once a day: the world's history folds its old small events into their seasons' summaries (World/Ledger/History.cs).</summary>
+        public const int DailyHistory = 1489;
 
         // ---------------- Arithmetic ----------------
 

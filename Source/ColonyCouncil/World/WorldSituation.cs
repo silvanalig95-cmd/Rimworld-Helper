@@ -94,6 +94,11 @@ namespace ColonyCouncil
         public List<Pawn> held = new List<Pawn>();
         /// <summary>Numbers a worker keeps (raids beaten off, the day the last one came).</summary>
         public Dictionary<string, int> numbers = new Dictionary<string, int>();
+        /// <summary>
+        /// Where it happens, as the world ledger names places: the town ({PLACE}) when it is at one, else the tile when it
+        /// has one, else none (a people with no town in reach). Set with the place's name (<see cref="At"/>); none in older saves.
+        /// </summary>
+        public Ref place;
 
         public WorldSituationWorker Worker => def?.Worker;
 
@@ -129,6 +134,20 @@ namespace ColonyCouncil
         public int Duration => Mathf.Max(1, endTick - startTick);
 
         public string Label => (def?.LabelCap.ToString() ?? "?") + (ctx.name.NullOrEmpty() ? "" : ": " + ctx.name);
+
+        /// <summary>It happens at this town ({PLACE} its name), or, with none, at a place only named (a people's own name).</summary>
+        public void At(Settlement town, string orName = null)
+        {
+            ctx.placeName = town?.Name ?? orName;
+            place = Refs.Place(town);
+        }
+
+        /// <summary>It happens on this tile of the planet, with no town on it: {PLACE} is the name the texts give it.</summary>
+        public void At(PlanetTile tile, string name)
+        {
+            ctx.placeName = name;
+            place = Refs.Of(tile);
+        }
 
         /// <summary>Keeps someone in the world while the situation needs them.</summary>
         public void Hold(Pawn p)
@@ -171,6 +190,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref sufferers, "sufferers", LookMode.Reference);
             Scribe_Collections.Look(ref held, "held", LookMode.Reference);
             Scribe_Collections.Look(ref numbers, "numbers", LookMode.Value, LookMode.Value);
+            Refs.Look(ref place, "place");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (ctx == null) ctx = new SituationContext();
@@ -205,6 +225,8 @@ namespace ColonyCouncil
         public List<string> flags = new List<string>();
         /// <summary>What has followed from it already (world events and Rimfolk events, by defName): each only once.</summary>
         public List<string> followUps = new List<string>();
+        /// <summary>Where it happened (<see cref="WorldSituation.place"/>): a town, a tile, or none (and none in older saves).</summary>
+        public Ref place;
 
         public bool Followed(string defName) => followUps != null && followUps.Contains(defName);
 
@@ -232,6 +254,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref name, "name");
             Scribe_Collections.Look(ref flags, "flags", LookMode.Value);
             Scribe_Collections.Look(ref followUps, "followUps", LookMode.Value);
+            Refs.Look(ref place, "place");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (flags == null) flags = new List<string>();

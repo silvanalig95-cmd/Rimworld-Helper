@@ -1699,9 +1699,10 @@ town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. 
 
 - **Refs.** A `Ref` is a kind and a number, a plain value: a person is a pawn's `thingIDNumber`, or a ledger number
   for someone with no pawn, stored below zero so the two never meet; a town is its `Settlement.ID`; a people its
-  faction's `loadID`; a colony its home's key (`Homes.KeyOf`); a house a ledger number. Its text form (`p123`, `p-4`,
-  `t55`, `f3`, `c12`, `h2`) is what is saved and what history keys and tests use. `Refs` turns pawns, factions,
-  towns and homes into refs and back while the game still has them.
+  faction's `loadID`; a colony its home's key (`Homes.KeyOf`); a house a ledger number; a tile of the planet its tile
+  id (a layer other than the surface adds its id times ten million). Its text form (`p123`, `p-4`, `t55`, `f3`,
+  `c12`, `h2`, `w801`) is what is saved and what history keys and tests use. `Refs` turns pawns, factions, towns,
+  homes and tiles into refs and back while the game still has them.
 - **Ties.** A `Tie` is one record for any tie between two parties: its kind (favour owed, pact, truce, marriage, ward,
   hostage, fealty, grudge, debt, promise, regard), `from` (the party bound: who owes, swore, promised or holds the
   grudge) and `to`, its terms (goods, count, days, a free key, a number, and the third party it concerns), since,
@@ -1739,8 +1740,54 @@ town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. 
   tie between two parties as a `Tie` (not a new list of their own), and ask about a town, a people or a person
   through its views, never through the notables', the memory's or the outsiders' insides.
 
-It has no pass of its own: ties reaching their end and closed ones dropped are seen to when the ledger is asked, at
-most once a 250-tick stretch, and before saving.
+Its ties have no pass of their own: ties reaching their end and closed ones dropped are seen to when the ledger is
+asked, at most once a 250-tick stretch, and before saving. The history it keeps folds once a day (below).
+
+### One history
+
+One history of the world, which later features (the region's towns, the diplomacy, letters and talk that remember)
+read and write instead of keeping lists of their own: `World/Ledger/History.cs`, kept by the world ledger and saved
+with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with its indexes and folding) are tested
+(`Tools/Tests/HistoryTests.cs`).
+
+- **An entry** (`HistoryEntry`; the game's own `HistoryEvent` is Ideology's): an id, when, a kind, who took part (refs
+  with a role each: did, for, against, about, with; the one it is mostly of first), where (a colony, a town, a tile, or
+  none), how much it matters (everyday, or a milestone by the chronicle's own rule), and its words: the finished line
+  as the chronicle wrote it, or a text key with values (a deed's). A summary stands for several: its count, from its
+  first to its last.
+- **Kinds** are small keys with families before a colon: the chronicle's twenty kinds as they are (`loss`,
+  `wishGranted`...), `world:began` and `world:ended` for world situations (in the chronicle's family `world`),
+  `deed:` and the deed's kind for what a people remembers, `tie:`, the tie's kind and what happened (made, kept,
+  calledIn, broken, ended, putOff) for the ledger's ties. Asking for a family finds every kind in it.
+- **What writes.** Every line of the chronicle: `AddChronicle` adds to the chronicle and trims it exactly as before,
+  then writes the same line into the history (its tick, words and kind, the colonist as an actor, their colony as the
+  place; a milestone of the chronicle is one here). The chronicle stays a list of its own rather than becoming a view:
+  its panel, the year letter, the annals, the calendar and its other readers index it directly, its cap keeps
+  milestones for years where the history folds and bounds by rules of its own, and the save keeps it where it was, so
+  every reader sees exactly what it saw. A world situation's lines carry its place, its people, its enemy and its own
+  person (`History.Situation`). The deeds the peoples remember (`FactionMemory.Note`): the people and the colony with
+  their parts by the deed's side, a run of the same within a day one entry with a count (a raid's fallen), a deed of
+  size 15 or more a milestone. The ledger's ties when made or moved, and when they reach their end at their until. An
+  older save's chronicle is taken in on its first load (where its lines happened isn't known: the seat).
+- **Folding**, once a day: everyday entries older than sixty days fold into one summary per kind, per the one they are
+  of and per season (the planet's quadrum); milestones stay as they are, and a lone one in its season stays as it was.
+  The bound is 800 entries. Over it, the oldest everyday ones from before those sixty days go first (older seasons'
+  summaries), so the last sixty days stay whole; only when those and the milestones alone are too many do everyday
+  ones fold sooner (from thirty days, then fifteen); then the oldest everyday ones go, then the oldest milestones, the
+  newest 200 always kept. Far over it between folds (a quarter past), the oldest everyday ones go at once.
+- **Asking.** `History.Of(ref, kinds, since, max)`: what someone (a person, a people, a town, a colony) took part in;
+  `History.At(place, ...)`: what happened there; `History.Latest(kind, who, place)`; `History.Count(kind, who, place,
+  since)` (a summary counts all it stands for); `History.Get(id)`; `History.Text(entry)`, its words (a deed's from the
+  memory's keys: "traded fairly with them, 11 times"). The newest first, from indexes by actor, by place, by kind (each
+  family too) and by id, kept up as entries come and rebuilt on load. The ledger's views carry the newest twelve: a
+  town's what happened there, a people's and a person's what they took part in.
+- **Places of world events.** A world situation and its record keep a place ref: the town when it is at a settlement
+  (`WorldSituation.At(town, orName)`, which sets the name the texts use with it), else the tile, else none (no
+  situation today has a tile without a town). Older saves have none; a town's view still finds those by name.
+
+The history asks nothing heavy of the game: no pawn searches, a few index lookups an entry, and its fold has a pass of
+its own (`Pass.DailyHistory`, timed by Rimfolk's clock).
+
 ### Telling the player
 
 Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't
@@ -2229,6 +2276,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | every 600 ticks | Fireflies (a game condition, while it lasts) | colonists outside at night |
 | once a day, tick 433 | Advisor: the wealth sample (per home map) | one number |
 | once a day, tick 1789 | Other mods' people: best friends | per pair of colonists |
+| once a day, tick 1489 | The world's history (World/Ledger/History.cs): everyday entries past sixty days folded into one per actor, kind and season, and the history kept within its bound | per entry |
 | once a day, tick 1117 (and the first tick after a load) | RimWorld of Magic's travel need, which the mod switches off, taken from anyone who has it (Integrations/MagicNeeds.cs; only with the mod) | every living pawn: one need looked up |
 | every frame | Slow time: the speed keys and the tick budget; its two buttons (when shown) | a few checks |
 | a building finished or gone (Harmony on `Frame.CompleteConstruction`, `Building.DeSpawn`) | The defense survey is marked to be read again (at most once a game hour, when next asked) | one check: the kind of building, then its distance to each line and the survey's gaps |
@@ -2329,6 +2377,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
 | World ledger | its own ties: three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; the counter for ledger numbers |
+| World history | 800 entries; everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |

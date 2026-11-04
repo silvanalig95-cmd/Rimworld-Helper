@@ -108,6 +108,8 @@ namespace ColonyCouncil
         public List<EventView> events = new List<EventView>();
         /// <summary>Heard lately, newest first.</summary>
         public List<HeardView> heard = new List<HeardView>();
+        /// <summary>What happened there, from the world's history: the newest <see cref="WorldLedger.RecentEvents"/> first.</summary>
+        public List<HistoryEntry> recent = new List<HistoryEntry>();
 
         public StanceView MoodToward(Ref colony) => mood.FirstOrDefault(m => m.colony == colony)?.stance ?? overall;
     }
@@ -158,6 +160,8 @@ namespace ColonyCouncil
         public WorldAge age;
         /// <summary>A people of royal titles (the Empire): its own titles and honour, apart from the ages.</summary>
         public bool empire;
+        /// <summary>What they took part in, from the world's history (deeds, world events, ties): the newest first.</summary>
+        public List<HistoryEntry> recent = new List<HistoryEntry>();
 
         public StanceView StanceToward(Ref colony) => stance.FirstOrDefault(m => m.colony == colony)?.stance ?? overall;
     }
@@ -197,6 +201,8 @@ namespace ColonyCouncil
         public bool alive;
         /// <summary>Notables' records first, then outsider pairs, regulars and departed ex-colonists; one line a colonist.</summary>
         public List<MetView> metBy = new List<MetView>();
+        /// <summary>What they took part in, from the world's history: the newest first.</summary>
+        public List<HistoryEntry> recent = new List<HistoryEntry>();
     }
 
     /// <summary>
@@ -206,14 +212,16 @@ namespace ColonyCouncil
     public partial class WorldLedger
     {
         private const float EndedLatelyDays = 15f;
+        /// <summary>How many of the history's events a view carries as its recent ones.</summary>
+        public const int RecentEvents = 12;
 
         private static Game viewsGame;
         private static readonly KeptAnswers<TownView> towns = new KeptAnswers<TownView>(Sched.RareTicks);
         private static readonly KeptAnswers<PeopleView> peoples = new KeptAnswers<PeopleView>(Sched.RareTicks);
         private static readonly KeptAnswers<PersonView> persons = new KeptAnswers<PersonView>(Sched.RareTicks);
 
-        /// <summary>What the views are read from changed (the ledger, the faction memory, the notables).</summary>
-        private static int SourcesVersion => unchecked(version + FactionMemory.Version + NotableBook.Version);
+        /// <summary>What the views are read from changed (the ledger, the faction memory, the notables, the history).</summary>
+        private static int SourcesVersion => unchecked(version + FactionMemory.Version + NotableBook.Version + History.Version);
 
         private static void CheckViews()
         {
@@ -317,7 +325,8 @@ namespace ColonyCouncil
             var stance = StanceOf(v.people);
             v.overall = v.head != null ? stance.ByHead(v.head.opinion) : stance;
             v.mood = PerColony(v.overall);
-            v.events = Events(v.people, v.name);
+            v.events = Events(v.people, v.name, v.town);
+            v.recent = History.At(v.town, max: RecentEvents);
             if (outs != null)
                 foreach (var h in outs.heard.Where(h => h != null && h.town == id).OrderByDescending(h => h.tick))
                     v.heard.Add(new HeardView { text = h.text, teller = h.teller, told = h.told, tick = h.tick });
@@ -326,9 +335,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The world situations touching a people or a town: running ones about them, against them or placed at the town
-        /// (by name, as the situations name their place), and those about them ended in the last fifteen days.
+        /// (by their place, or by name for one from an older save), and those about them or there ended in the last
+        /// fifteen days.
         /// </summary>
-        private static List<EventView> Events(Faction f, string townName)
+        private static List<EventView> Events(Faction f, string townName, Ref town = default)
         {
             var list = new List<EventView>();
             var ws = WorldSituations.Instance;
@@ -337,7 +347,7 @@ namespace ColonyCouncil
             {
                 if (s?.def == null || s.ctx == null) continue;
                 bool theirs = f != null && s.ctx.faction == f, against = f != null && s.ctx.enemy == f;
-                bool here = !townName.NullOrEmpty() && s.ctx.placeName == townName;
+                bool here = !town.IsNone && s.place == town || s.place.IsNone && !townName.NullOrEmpty() && s.ctx.placeName == townName;
                 if (!theirs && !against && !here) continue;
                 list.Add(new EventView
                 {
@@ -345,13 +355,14 @@ namespace ColonyCouncil
                     helped = s.help > 0
                 });
             }
-            if (f != null)
+            if (f != null || !town.IsNone)
             {
                 int now = Now;
                 foreach (var r in ws.history)
                 {
-                    if (r == null || r.faction != f || r.endTick <= 0 || (now - r.endTick) / (float)GenDate.TicksPerDay > EndedLatelyDays) continue;
-                    list.Add(new EventView { defName = r.defName, label = r.Called, theirs = true, start = r.startTick, end = r.endTick, helped = r.helped });
+                    if (r == null || r.endTick <= 0 || (now - r.endTick) / (float)GenDate.TicksPerDay > EndedLatelyDays) continue;
+                    if (!(f != null && r.faction == f || !town.IsNone && r.place == town)) continue;
+                    list.Add(new EventView { defName = r.defName, label = r.Called, theirs = f != null && r.faction == f, start = r.startTick, end = r.endTick, helped = r.helped });
                 }
             }
             return list;
@@ -391,6 +402,7 @@ namespace ColonyCouncil
                     var other = w.Other(f);
                     v.wars.Add(new WarView { other = other, otherRef = Refs.Of(other), start = w.start, end = w.end, fought = w.fought });
                 }
+            v.recent = History.Of(v.people, max: RecentEvents);
             return v;
         }
 
@@ -443,6 +455,7 @@ namespace ColonyCouncil
             }
             v.trade = reg?.kind;
             Met(v, n, pairs, reg, dep);
+            v.recent = History.Of(r, max: RecentEvents);
             return v;
         }
 

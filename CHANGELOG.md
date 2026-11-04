@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groundwork: one history
+
+*4 November 2026, version 0.66.1*
+
+- Groundwork: one history of the world, which the chronicle, world events, the peoples' memories and the ledger's ties now write to; the chronicle, the year letter and the annals read as before.
+- World events now know the town they happen at. Older everyday entries fold into a summary for their season, and the weighty ones stay as written.
+
 ## One voice
 
 *4 November 2026, version 0.66.0*

@@ -65,7 +65,7 @@ namespace ColonyCouncil
             if (!nick.NullOrEmpty() && x.Name is NameTriple nt) x.Name = new NameTriple(nt.First, nick.Trim(), nt.Last);
             s.ctx.stranger = x;
             // His seat: his people's town nearest the colony.
-            s.ctx.placeName = NearestTown(f, map)?.Name ?? f.Name;
+            s.At(NearestTown(f, map), f.Name);
             // Who hunts him: a neighbor at peace with the colony, if there is one (the one the colony can help).
             var hunters = Hunters(s);
             s.ctx.enemy = hunters.Where(h => !h.HostileTo(Faction.OfPlayer)).OrderBy(h => Distance(map, NearestTown(h, map))).FirstOrDefault()
@@ -226,7 +226,7 @@ namespace ColonyCouncil
             if (hunter != null) s.ctx.enemy = hunter;
             // Somewhere between his seat and theirs.
             var town = hunter != null ? NearestTown(hunter, s.ctx.map) : null;
-            if (town != null) s.ctx.placeName = town.Name;
+            if (town != null) s.At(town);
             if (Rand.Chance(0.4f)) s.flags.AddDistinct("takenAlive");
             if (ending == "bounty")
             {
@@ -235,7 +235,7 @@ namespace ColonyCouncil
                 var p = anyone != null ? MakePerson(s, anyone, null, new FloatRange(25f, 50f), true) : null;
                 if (p != null) s.ctx.other = p;
                 var home = anyone != null ? NearestTown(anyone, s.ctx.map) : null;
-                if (home != null) s.ctx.placeName = home.Name;
+                if (home != null) s.At(home);
             }
             return ending;
         }
@@ -309,7 +309,7 @@ namespace ColonyCouncil
                         {
                             if (Rand.Chance(0.4f)) s.flags.AddDistinct("takenAlive");
                             var town = NearestTown(marching, map);
-                            if (town != null) s.ctx.placeName = town.Name;
+                            if (town != null) s.At(town);
                             s.pendingEnding = "allies";
                             s.pendingTick = Find.TickManager.TicksGame;
                             return false;
@@ -374,7 +374,7 @@ namespace ColonyCouncil
             {
                 // Tried in the hunters' own town.
                 var town = NearestTown(ctx.enemy, s.ctx.map);
-                if (town != null) s.ctx.placeName = town.Name;
+                if (town != null) s.At(town);
             }
             if (beat.key == "terms")
             {

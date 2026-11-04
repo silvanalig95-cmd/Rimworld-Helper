@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.66.1</version>
+        <date>4 November 2026</date>
+        <title>Groundwork: one history</title>
+        <points>
+          <li>Groundwork: one history of the world, which the chronicle, world events, the peoples' memories and the ledger's ties now write to; the chronicle, the year letter and the annals read as before.</li>
+          <li>World events now know the town they happen at. Older everyday entries fold into a summary for their season, and the weighty ones stay as written.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.66.0</version>
         <date>4 November 2026</date>
         <title>One voice</title>

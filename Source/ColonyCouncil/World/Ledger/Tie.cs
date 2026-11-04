@@ -41,6 +41,12 @@ namespace ColonyCouncil
 
         public static Ref Of(Settlement s) => s == null ? Ref.None : Ref.Town(s.ID);
 
+        /// <summary>A tile of the planet (its layer kept), or none.</summary>
+        public static Ref Of(PlanetTile t) => t.Valid ? Ref.Tile(t.tileId, t.Layer?.LayerID ?? 0) : Ref.None;
+
+        /// <summary>A settlement as a place: one of the player's homes is a colony (its key is the settlement's id), anyone else's a town.</summary>
+        public static Ref Place(Settlement s) => s == null ? Ref.None : s.Faction != null && s.Faction.IsPlayer ? Ref.Colony(s.ID) : Ref.Town(s.ID);
+
         /// <summary>A colony: one of the player's homes, by its key (Homes.KeyOf).</summary>
         public static Ref Colony(Map home) => home == null ? Ref.None : Ref.Colony(Homes.KeyOf(home));
 
