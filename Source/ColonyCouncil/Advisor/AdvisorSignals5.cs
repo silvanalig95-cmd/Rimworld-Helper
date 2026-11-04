@@ -254,8 +254,8 @@ namespace ColonyCouncil
             }
 
             // The keeper of days, with a day on the calendar within three days.
-            var cal = CalendarTracker.Instance;
-            if (CalendarTracker.On && cal != null)
+            var cal = ColonyCalendar.For(map);
+            if (ColonyCalendar.On && cal != null)
             {
                 int today = GenLocalDate.DayOfYear(map);
                 var day = cal.days.Where(d => d != null && d.way != DayWay.Personal && d.kind != CalendarKind.FirstSnow)
@@ -304,8 +304,9 @@ namespace ColonyCouncil
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var cal = CalendarTracker.Instance;
-            if (!CalendarTracker.On || cal == null || map != HappeningTracker.HomeMap()) yield break;
+            // At each home, from its own calendar.
+            var cal = Homes.IsHome(map) ? ColonyCalendar.For(map) : null;
+            if (!ColonyCalendar.On || cal == null || map != cal.HomeMap) yield break;
             int today = GenLocalDate.DayOfYear(map);
             foreach (var d in cal.days.ToList())
             {
@@ -326,7 +327,7 @@ namespace ColonyCouncil
                         break;
                 }
                 var s = Signal(d.tradition ? 0.3f : 0.18f, "CC_Adv_CalPrep_Title".Translate(d.label.CapitalizeFirst()).Resolve(),
-                    "CC_Adv_CalPrep_Detail".Translate(d.label, CalendarTracker.WayLabel(d.way), what).Resolve(), 0.7f);
+                    "CC_Adv_CalPrep_Detail".Translate(d.label, ColonyCalendar.WayLabel(d.way), what).Resolve(), 0.7f);
                 s.page = "Calendar";
                 s.key = "calendar-prep:" + d.id;
                 yield return s;

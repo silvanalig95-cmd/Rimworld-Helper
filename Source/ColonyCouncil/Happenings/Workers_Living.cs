@@ -992,7 +992,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             string known = comp?.character.Describe();
             if (!known.NullOrEmpty()) parts.Add(Part(lines, ctx, "known", known));
-            var customs = comp?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(CalendarTracker.TraditionLabels()).Where(l => !l.NullOrEmpty()).Distinct().ToList();
+            var customs = ColonyState.For(ctx.map)?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(ColonyCalendar.TraditionLabels(ctx.map)).Where(l => !l.NullOrEmpty()).Distinct().ToList();
             if (!customs.NullOrEmpty()) parts.Add(Part(lines, ctx, "customs", TextUtil.JoinAnd(customs)));
             return string.Join("\n", parts.Where(p => !p.NullOrEmpty()));
         }

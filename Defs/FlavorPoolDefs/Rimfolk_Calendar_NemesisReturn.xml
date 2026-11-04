@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    The day a nemesis first came back, on the colony's calendar (Source/ColonyCouncil/Calendar/CalendarTracker.cs,
+    The day a nemesis first came back, on the colony's calendar (Source/ColonyCouncil/Calendar/ColonyCalendar.cs,
     WatchNemeses: a battle day whose id starts with "return|", tagged [nemesisreturn] when none of ours fell). {ENEMY}
     is the nemesis; [first] the first year, [years] after; the battle pools' own tags otherwise.
   -->

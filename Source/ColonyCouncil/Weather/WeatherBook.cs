@@ -175,7 +175,7 @@ namespace ColonyCouncil
             if (tornado && !tornadoOn) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Weather_TornadoChronicle".Translate().Resolve()));
             if (!tornado && tornadoOn)
             {
-                var home = CalendarTracker.AtHome(map);
+                var home = ColonyCalendar.AtHome(map);
                 if (home.Count > 0) CouncilGameComponent.Instance?.journals.WriteTagged(home.RandomElement(), "Council_Journal_Tornado", new string[0]);
             }
             tornadoOn = tornado;
@@ -268,7 +268,7 @@ namespace ColonyCouncil
             News.Post(line, LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, line));
             // Someone who has lived through both writes it down: the longest with the colony.
-            var writer = CalendarTracker.AtHome(map).Where(p => !p.DevelopmentalStage.Baby())
+            var writer = ColonyCalendar.AtHome(map).Where(p => !p.DevelopmentalStage.Baby())
                 .OrderByDescending(p => p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0).FirstOrDefault();
             if (writer != null) comp?.journals.WriteTagged(writer, "Council_Journal_SeasonCompare", new[] { change.ToString().ToLowerInvariant(), WeatherMath.SeasonWord(q.season) }, null, season.Named("SEASON"));
         }

@@ -175,7 +175,7 @@ namespace ColonyCouncil
             w.snowPlayUntil = now + SnowPlayTicks;
             if (!touches) return false;
             // The calendar writes the colony's very first snow down itself.
-            var noted = CalendarTracker.Instance?.Get("snow");
+            var noted = ColonyCalendar.For(map)?.Get("snow");
             if (noted == null || now - noted.tick > GenDate.TicksPerHour * 2) Write(map, "Council_Journal_FirstSnowSeason", true);
             return here && Say(vt, map, view, now, "Council_Pool_SayFirstSnow", 2, true, true) > 0;
         }
@@ -246,7 +246,7 @@ namespace ColonyCouncil
         {
             var journals = CouncilGameComponent.Instance?.journals;
             if (journals == null) return;
-            var home = CalendarTracker.AtHome(map);
+            var home = ColonyCalendar.AtHome(map);
             if (home.Count == 0) return;
             var writer = home.RandomElementByWeight(p => children && p.DevelopmentalStage.Child() ? 3f : 1f);
             journals.WriteTagged(writer, pool, tags);

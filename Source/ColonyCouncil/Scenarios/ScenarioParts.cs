@@ -92,8 +92,8 @@ namespace ColonyCouncil
 
         public override void Setup(ScenarioSetupContext ctx)
         {
-            var cal = CalendarTracker.Instance;
-            if (!CalendarTracker.On || cal == null || days.NullOrEmpty()) return;
+            var cal = ColonyCalendar.For(ctx.map);
+            if (!ColonyCalendar.On || cal == null || days.NullOrEmpty()) return;
             int today = GenLocalDate.DayOfYear(ctx.map);
             int year = GenLocalDate.Year(ctx.map);
             int now = Find.TickManager.TicksGame;

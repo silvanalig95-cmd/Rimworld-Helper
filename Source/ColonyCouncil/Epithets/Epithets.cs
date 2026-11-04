@@ -94,7 +94,7 @@ namespace ColonyCouncil
                 if (here > 0 && ColonyTraitMath.Founder(now - here, GenDate.TicksPerDay)) founders.Add(p.ThingID);
             }
             if (firstbornId != null || !ModsConfig.BiotechActive) return;
-            string fromCalendar = CalendarTracker.Instance?.Get("firstchild")?.pawnId;
+            string fromCalendar = ColonyCalendar.Seat?.Get("firstchild")?.pawnId;
             if (!fromCalendar.NullOrEmpty())
             {
                 firstbornId = fromCalendar;

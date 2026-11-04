@@ -99,16 +99,18 @@ namespace ColonyCouncil
         private static void Born(CouncilGameComponent comp, Pawn baby, Pawn mother)
         {
             string kind = AnimalFacts.KindLabel(mother);
-            bool first = CalendarTracker.Instance != null && CalendarTracker.Instance.Get("foal") == null;
+            // The first foal of the colony whose herd it was born to (its own calendar).
+            var cal = ColonyCalendar.For(baby.MapHeld);
+            bool first = cal != null && cal.Get("foal") == null;
             var person = PetTracker.PersonOf(mother);
             News.Post((person != null ? "CC_Animal_BornTo" : "CC_Animal_Born").Translate(kind.Named("KIND"), mother.Named("MOTHER"), (person ?? mother).Named("PAWN")).Resolve(),
                 new LookTargets(baby), NewsKind.Land, MessageTypeDefOf.PositiveEvent, first ? Importance.Notable : Importance.Flavor);
-            if (first && CalendarTracker.On)
+            if (first && ColonyCalendar.On)
             {
                 var keeper = person ?? AnimalFacts.Herdmaster
                              ?? baby.Map?.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && People.HasInnerLife(p))
                                  .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
-                CalendarTracker.Notify_FirstFoal(baby, mother, keeper);
+                ColonyCalendar.Notify_FirstFoal(baby, mother, keeper);
             }
             if (Interplay.On) Interplay.Notify_Newborn(comp, baby, mother);
             comp.herd?.Notify_Newborn(comp, baby, mother);
@@ -127,7 +129,7 @@ namespace ColonyCouncil
         public static void Notify_PetDied(Pawn pet, Pawn person, bool bonded, bool hero, float years)
         {
             if (!On || pet == null || person == null) return;
-            Safe("animals: a beloved animal's day", () => CalendarTracker.Notify_Companion(pet, person, years, bonded, hero));
+            Safe("animals: a beloved animal's day", () => ColonyCalendar.Notify_Companion(pet, person, years, bonded, hero));
         }
 
         // ---------------- On screen ----------------

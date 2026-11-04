@@ -173,7 +173,7 @@ namespace ColonyCouncil
             int due = int.MaxValue;
             try
             {
-                var day = CalendarTracker.Coming(now).FirstOrDefault();
+                var day = ColonyCalendar.Coming(now).FirstOrDefault();
                 if (day != null && day.due > now)
                 {
                     due = day.due;

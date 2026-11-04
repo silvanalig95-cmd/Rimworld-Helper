@@ -243,12 +243,13 @@ namespace ColonyCouncil
         /// <summary>The day someone they loved died (the colony's calendar keeps the date) comes round again.</summary>
         private static void Anniversary(Pawn p, List<Option> list)
         {
-            var cal = CalendarTracker.Instance;
             var map = p.MapHeld;
-            if (cal?.days == null || map == null) return;
+            if (map == null) return;
             int today = GenLocalDate.DayOfYear(map), year = GenLocalDate.Year(map);
             CalendarDay pick = null;
             bool kin = false;
+            // On whichever colony's calendar the day is kept (the colony the one who died belonged to).
+            foreach (var cal in ColonyCalendar.All())
             foreach (var d in cal.days)
             {
                 if (d == null || d.kind != CalendarKind.Death || d.day != today || year <= d.sinceYear || d.pawnName.NullOrEmpty()) continue;

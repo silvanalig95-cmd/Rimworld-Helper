@@ -545,7 +545,7 @@ namespace ColonyCouncil
         {
             var c = Card("CC_Week_Coming", "CC_Week_Empty_Coming", CalendarPanel.Icon ?? Icons.Chronicle, UiKit.HeaderColor, "Calendar");
             int now = Now;
-            foreach (var n in CalendarTracker.Coming(now)) c.rows.Add(Note(n, now, "Calendar"));
+            foreach (var n in ColonyCalendar.Coming(now)) c.rows.Add(Note(n, now, "Calendar"));
             foreach (var r in comp.happenings.raids)
             {
                 if (r?.faction == null) continue;

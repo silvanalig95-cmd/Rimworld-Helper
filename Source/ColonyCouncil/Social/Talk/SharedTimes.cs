@@ -301,7 +301,7 @@ namespace ColonyCouncil
         public static CalendarDay DayOf(PlayOut p)
         {
             if (p == null || !p.IsGathering || p.label.NullOrEmpty()) return null;
-            var days = CalendarTracker.Instance?.days;
+            var days = p.map == null ? null : ColonyCalendar.For(p.map)?.days;
             if (days == null) return null;
             int year = Year(p.map);
             foreach (var d in days)

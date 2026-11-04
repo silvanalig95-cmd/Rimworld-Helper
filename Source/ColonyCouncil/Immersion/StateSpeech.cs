@@ -185,7 +185,7 @@ namespace ColonyCouncil
         /// </summary>
         private static void Tomorrow(Pawn p, Map map)
         {
-            if (!CalendarTracker.On || !map.IsPlayerHome) return;
+            if (!ColonyCalendar.On || !map.IsPlayerHome) return;
             var d = TomorrowDay(map);
             if (d == null) return;
             bool mine = d.pawnId == p.ThingID || d.otherId == p.ThingID;
@@ -218,7 +218,7 @@ namespace ColonyCouncil
             if (tomorrowKnown) return tomorrow;
             tomorrowKnown = true;
             tomorrow = null;
-            var cal = CalendarTracker.Instance;
+            var cal = ColonyCalendar.For(map);
             if (cal?.days == null) return null;
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);

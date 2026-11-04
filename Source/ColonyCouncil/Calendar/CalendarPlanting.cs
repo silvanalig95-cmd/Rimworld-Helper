@@ -21,7 +21,7 @@ namespace ColonyCouncil
     /// (Council_Cal_PlantingDay: hope and a little practice, no mood). The fields are watched afterwards, as for the
     /// council's own planting day (Dilemmas/PlantingDay.cs).
     /// </summary>
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         private static void Planting(CalendarDay d, Map map, List<Pawn> home)
         {

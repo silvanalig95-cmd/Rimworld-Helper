@@ -126,7 +126,8 @@ namespace ColonyCouncil
             switch (level)
             {
                 case "calendar":
-                    var days = CalendarTracker.On ? CalendarTracker.Instance?.days : null;
+                    // The colony's character is one for the game: the seat's calendar.
+                    var days = ColonyCalendar.On ? ColonyCalendar.Seat?.days : null;
                     return days == null ? 0f : ColonyTraitMath.CalendarLevel(days.Where(d => d != null).Select(d => (d.Personal, d.keptYears, d.tradition)));
                 default: return 0f;
             }

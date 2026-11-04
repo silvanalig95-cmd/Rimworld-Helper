@@ -186,9 +186,9 @@ namespace ColonyCouncil
         /// </summary>
         private void FindDay(int now)
         {
-            var cal = CalendarTracker.Instance;
-            if (cal?.days == null || cal.days.Count == 0 || !CalendarTracker.On) return;
-            int today = CalendarTracker.DayOf(now, map), year = CalendarTracker.YearOf(now, map);
+            var cal = ColonyCalendar.For(map);
+            if (cal?.days == null || cal.days.Count == 0 || !ColonyCalendar.On) return;
+            int today = ColonyCalendar.DayOf(now, map), year = ColonyCalendar.YearOf(now, map);
             float best = 0f;
             foreach (var d in cal.days)
             {

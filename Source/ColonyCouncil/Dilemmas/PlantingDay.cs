@@ -66,7 +66,7 @@ namespace ColonyCouncil
         /// <summary>The calendar already holds a planting day this season (one of the player's, kept or coming within ten days).</summary>
         public static bool OnCalendar(Map map)
         {
-            var cal = CalendarTracker.Instance;
+            var cal = map == null ? null : ColonyCalendar.For(map);
             if (cal?.days == null || map == null) return false;
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);

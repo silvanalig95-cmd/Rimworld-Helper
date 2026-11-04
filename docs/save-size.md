@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 471; modelled: 471; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** after two, **2,999 KB** after five.
+Saved collections found: 472; modelled: 472; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** after two, **3,000 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -45,7 +45,7 @@ Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** aft
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `Offices/Election.cs:canvassed` | three visits a day for three days a candidate, while it lasts | while | 180 | 180 | 180 | 15.8 |
 | `Offices/Election.cs:heard` | who heard each candidate at the hustings, while it lasts | while | 400 | 400 | 400 | 15.6 |
-| `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
+| `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `Social/Bonds.cs:pairs` | one short line per pair of colonists who met, pairs not both among the colony's people for 60 days dropped daily | pairs | 209 | 209 | 209 | 14.3 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -138,7 +138,7 @@ Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** aft
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
 | `Journeys/Journeys.cs:packing` | the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off | fixed | 20 | 20 | 20 | 2.5 |
 | `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
-| `Calendar/CalendarTracker.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
+| `Calendar/ColonyCalendar.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Happenings/VisitorServices.cs:tasks` | a night to a day each, at most VisitorServices.MaxTasks at once | cap | 8 | 8 | 8 | 2.3 |
@@ -159,8 +159,8 @@ Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** aft
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Building/ShelfReserves.cs:reserves` | shelves with reserved slots, per map, while the shelf stands | while | 30 | 30 | 30 | 1.8 |
-| `Calendar/CalendarTracker.cs:harvested` | the year's harvest, per colonist; cleared yearly | colonists | 20 | 20 | 20 | 1.8 |
 | `Calendar/CalendarWatch.cs:huntKills` | one per colonist, those no longer ours dropped daily | colonists | 20 | 20 | 20 | 1.8 |
+| `Calendar/ColonyCalendar.cs:harvested` | the year's harvest, per colonist; cleared yearly | colonists | 20 | 20 | 20 | 1.8 |
 | `Camps/Camp.cs:felled` | trees felled during one stay | while | 60 | 60 | 60 | 1.8 |
 | `Camps/CampTracker.cs:past` | camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons | fixed | 6 | 6 | 6 | 1.8 |
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
@@ -276,7 +276,7 @@ Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** aft
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
 | `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
-| `Calendar/CalendarTracker.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
+| `Calendar/ColonyCalendar.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
 | `Camps/Camp.cs:trees` | while the camp stays | while | 10 | 10 | 10 | 0.4 |
 | `Happenings/VisitorServices.cs:things` | per task: what the tinker still has to mend (30 at most, fewer as the work goes on), mending only | fixed | 10 | 10 | 10 | 0.4 |
 | `Journeys/Journeys.cs:animals` | the animals they bring | fixed | 10 | 10 | 10 | 0.4 |
@@ -356,6 +356,7 @@ Rimfolk's part of the save, roughly: **2,385 KB** after a year, **2,838 KB** aft
 | `Annals.cs:quit` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBroken` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Calendar/CalendarDay.cs:things` | a camp gift's things, per day on the calendar (CalendarMath.MaxDayThings, at most 2 such days) | fixed | 3 | 3 | 3 | 0.1 |
+| `Calendar/CalendarTracker.cs:colonies` | one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept 30 days, then let go | fixed | 1 | 1 | 1 | 0.1 |
 | `Camps/Camp.cs:joined` | while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:people` | a trip's people, while it lasts | while | 3 | 3 | 3 | 0.1 |

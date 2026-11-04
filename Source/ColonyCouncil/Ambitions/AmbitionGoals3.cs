@@ -125,25 +125,26 @@ namespace ColonyCouncil
     {
         public int count = 2;
 
-        private static int Kept()
+        /// <summary>Days this colony's calendar has kept.</summary>
+        private static int Kept(Map map)
         {
-            var cal = CalendarTracker.Instance;
+            var cal = ColonyCalendar.For(map);
             return cal == null ? 0 : cal.days.Where(d => d != null && !d.Personal).Sum(d => d.timesKept);
         }
 
         public override bool Possible(Map map)
         {
-            var cal = CalendarTracker.Instance;
-            if (cal == null || !CalendarTracker.On || map == null) return false;
+            var cal = ColonyCalendar.For(map);
+            if (cal == null || !ColonyCalendar.On || map == null) return false;
             int today = GenLocalDate.DayOfYear(map);
             return cal.days.Count(d => d != null && !d.Personal && d.kind != CalendarKind.FirstSnow && CalendarMath.DaysUntil(today, d.day) >= 1 && CalendarMath.DaysUntil(today, d.day) <= 40) >= count;
         }
 
-        public override float Baseline(Map map) => Kept();
+        public override float Baseline(Map map) => Kept(map);
 
-        public override float Progress(Map map, float baseline) => Ratio(Kept() - baseline, count);
+        public override float Progress(Map map, float baseline) => Ratio(Kept(map) - baseline, count);
 
-        public override string Describe(Map map, float baseline) => "CC_Goal_DaysKept".Translate(count, Mathf.Max(0, Kept() - (int)baseline));
+        public override string Describe(Map map, float baseline) => "CC_Goal_DaysKept".Translate(count, Mathf.Max(0, Kept(map) - (int)baseline));
     }
 
     /// <summary>Hospitality: so many guest beds in rooms indoors. Never pitched without Hospitality.</summary>

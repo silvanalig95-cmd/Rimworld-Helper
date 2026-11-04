@@ -77,21 +77,22 @@ namespace ColonyCouncil
 
         public static void Draw(Rect rect)
         {
-            var cal = CalendarTracker.Instance;
-            var map = HappeningTracker.HomeMap();
+            // The calendar of the colony in view (its own days, kept at its own home).
+            var cal = ColonyCalendar.InView;
+            var map = cal?.HomeMap;
             if (cal == null)
             {
                 UiKit.EmptyState(rect, Icon, "CC_NoGame".Translate());
                 return;
             }
             int today = map != null ? GenLocalDate.DayOfYear(map) : 0;
-            string stat = map != null ? "CC_Cal_Today".Translate(CalendarTracker.DateText(today, map)).Resolve() : null;
+            string stat = map != null ? "CC_Cal_Today".Translate(ColonyCalendar.DateText(today, map)).Resolve() : null;
             const float buttonW = 150f;
             float top = UiKit.PageHeader(rect, Icon, "CC_Cal_Title".Translate(), "CC_UI_Sub_Calendar".Translate(), stat, null, buttonW + 10f);
             var button = new Rect(rect.xMax - buttonW, rect.y + 6f, buttonW, 30f);
             bool full = cal.days.Count(d => d.byPlayer) >= CalendarMath.MaxNamedDays;
             if (Widgets.ButtonText(button, "CC_Cal_NameDay".Translate(), active: !full && map != null))
-                Find.WindowStack.Add(new Dialog_CalendarDay(null));
+                Find.WindowStack.Add(new Dialog_CalendarDay(null, cal));
             TooltipHandler.TipRegion(button, full ? "CC_Cal_NameDay_Full".Translate(CalendarMath.MaxNamedDays) : "CC_Cal_NameDay_Tip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -99,7 +100,7 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
             float w = view.width;
-            if (!CalendarTracker.On) y += UiKit.Paragraph(0f, y, w, "CC_Cal_Off".Translate(), UiKit.Warn) + 8f;
+            if (!ColonyCalendar.On) y += UiKit.Paragraph(0f, y, w, "CC_Cal_Off".Translate(), UiKit.Warn) + 8f;
             y += UiKit.Paragraph(0f, y, w, "CC_Cal_Intro".Translate(CalendarMath.TraditionAfter), UiKit.Faint) + 10f;
 
             // The days, soonest first; the first snow, which has no date, last.
@@ -139,7 +140,7 @@ namespace ColonyCouncil
             public bool soon;
         }
 
-        private static List<Row> Rows(CalendarTracker cal, Map map, int today)
+        private static List<Row> Rows(ColonyCalendar cal, Map map, int today)
         {
             var list = new List<Row>();
             foreach (var d in cal.days.OrderBy(d => d.kind == CalendarKind.FirstSnow ? 999 : CalendarMath.DaysUntil(today, d.day)).ThenByDescending(d => d.Standing))
@@ -150,14 +151,14 @@ namespace ColonyCouncil
                 {
                     day = d,
                     soon = !snow && until <= 5,
-                    date = snow ? "CC_Cal_WithSnow".Translate().ToString() : CalendarTracker.DateText(d.day, map),
+                    date = snow ? "CC_Cal_WithSnow".Translate().ToString() : ColonyCalendar.DateText(d.day, map),
                     when = snow ? null
                         : until == 0 ? "CC_Today".Translate().ToString().CapitalizeFirst()
                         : until == 1 ? "CC_Cal_Tomorrow".Translate().ToString()
                         : "CC_Cal_InDays".Translate(until).Resolve(),
                     name = d.label.CapitalizeFirst(),
                     origin = Origin(d),
-                    way = CalendarTracker.WayLabel(d.way) + (d.way == DayWay.Faith && d.kind == CalendarKind.Holiday && !d.subject.NullOrEmpty() ? ": " + d.subject : ""),
+                    way = ColonyCalendar.WayLabel(d.way) + (d.way == DayWay.Faith && d.kind == CalendarKind.Holiday && !d.subject.NullOrEmpty() ? ": " + d.subject : ""),
                     wayTip = ("CC_Cal_Way_" + d.way + "_Desc").Translate()
                 };
                 if (d.tradition)
@@ -258,10 +259,10 @@ namespace ColonyCouncil
 
         private static List<FloatMenuOption> Options(CalendarDay d)
         {
-            var cal = CalendarTracker.Instance;
+            var cal = ColonyCalendar.InView;
             var list = new List<FloatMenuOption>
             {
-                new FloatMenuOption("CC_Cal_Menu_Change".Translate(), () => Find.WindowStack.Add(new Dialog_CalendarDay(d)))
+                new FloatMenuOption("CC_Cal_Menu_Change".Translate(), () => Find.WindowStack.Add(new Dialog_CalendarDay(d, cal)))
             };
             if (d.kind != CalendarKind.Founding)
             {
@@ -285,7 +286,7 @@ namespace ColonyCouncil
             {
                 case CalendarKind.Founding: return "CC_Cal_Origin_Founding".Translate(d.sinceYear).Resolve();
                 case CalendarKind.Harvest: return "CC_Cal_Origin_Harvest".Translate(d.sinceYear).Resolve();
-                case CalendarKind.FirstSnow: return "CC_Cal_Origin_FirstSnow".Translate(CalendarTracker.DateText(d.day), d.sinceYear).Resolve();
+                case CalendarKind.FirstSnow: return "CC_Cal_Origin_FirstSnow".Translate(ColonyCalendar.DateText(d.day), d.sinceYear).Resolve();
                 case CalendarKind.Battle:
                     if (d.id != null && d.id.StartsWith("nemesis|")) return "CC_Cal_Origin_Nemesis".Translate(d.enemy ?? "?", d.sinceYear).Resolve();
                     if (d.id != null && d.id.StartsWith("return|")) return "CC_Cal_Origin_NemesisReturn".Translate(d.enemy ?? "?", d.sinceYear).Resolve();
@@ -323,6 +324,8 @@ namespace ColonyCouncil
         public const int MaxNameLength = 40;
 
         private readonly CalendarDay editing;
+        /// <summary>The calendar the day is on (the colony in view when the dialog opened).</summary>
+        private readonly ColonyCalendar cal;
         private string name;
         private DayWay way;
         private int quadrum;
@@ -341,15 +344,16 @@ namespace ColonyCouncil
         /// <summary>The faith a day kept as an evening of faith speaks for (by name, as the day keeps it).</summary>
         private string faithName;
 
-        public Dialog_CalendarDay(CalendarDay editing)
+        public Dialog_CalendarDay(CalendarDay editing, ColonyCalendar cal)
         {
             this.editing = editing;
+            this.cal = cal;
             forcePause = true;
             doCloseX = true;
             absorbInputAroundWindow = true;
             closeOnClickedOutside = true;
             closeOnAccept = false;
-            var map = HappeningTracker.HomeMap();
+            var map = cal?.HomeMap;
             int day = editing?.day ?? (map != null ? GenLocalDate.DayOfYear(map) : 0);
             CalendarMath.Split(day, out quadrum, out dayOfQuadrum);
             name = editing?.label ?? "";
@@ -388,7 +392,7 @@ namespace ColonyCouncil
                 foreach (var wy in Ways)
                 {
                     var r = new Rect(0f, y, inRect.width, 26f);
-                    if (Widgets.RadioButtonLabeled(r, CalendarTracker.WayLabel(wy).CapitalizeFirst() + ": " + ("CC_Cal_Way_" + wy + "_Desc").Translate(), way == wy))
+                    if (Widgets.RadioButtonLabeled(r, ColonyCalendar.WayLabel(wy).CapitalizeFirst() + ": " + ("CC_Cal_Way_" + wy + "_Desc").Translate(), way == wy))
                         way = wy;
                     y += 28f;
                 }
@@ -419,7 +423,7 @@ namespace ColonyCouncil
             }
             y += 6f;
 
-            var map = HappeningTracker.HomeMap();
+            var map = cal?.HomeMap;
             Widgets.Label(new Rect(0f, y, inRect.width, 24f), "CC_Cal_Dialog_Date".Translate());
             y += 26f;
             if (DateEditable && editing?.kind != CalendarKind.FirstSnow)
@@ -435,12 +439,12 @@ namespace ColonyCouncil
                 y += 34f;
                 float v = Widgets.HorizontalSlider(new Rect(0f, y + 6f, inRect.width - 170f, 20f), dayOfQuadrum, 1f, CalendarMath.DaysPerQuadrum, true, null, null, null, 1f);
                 dayOfQuadrum = Mathf.Clamp(Mathf.RoundToInt(v), 1, CalendarMath.DaysPerQuadrum);
-                UiKit.LabelFit(new Rect(inRect.width - 160f, y, 160f, 30f), CalendarTracker.DateText(CalendarMath.Join(quadrum, dayOfQuadrum), map), UiKit.Gold);
+                UiKit.LabelFit(new Rect(inRect.width - 160f, y, 160f, 30f), ColonyCalendar.DateText(CalendarMath.Join(quadrum, dayOfQuadrum), map), UiKit.Gold);
                 y += 34f;
             }
             else
             {
-                string date = editing?.kind == CalendarKind.FirstSnow ? "CC_Cal_WithSnow".Translate().ToString() : CalendarTracker.DateText(editing?.day ?? 0, map);
+                string date = editing?.kind == CalendarKind.FirstSnow ? "CC_Cal_WithSnow".Translate().ToString() : ColonyCalendar.DateText(editing?.day ?? 0, map);
                 UiKit.Paragraph(0f, y, inRect.width, "CC_Cal_Dialog_DateFixed".Translate(date).Resolve(), UiKit.Faint);
                 y += 30f;
             }
@@ -461,7 +465,6 @@ namespace ColonyCouncil
                 Messages.Message("CC_Cal_Dialog_NeedName".Translate(), MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            var cal = CalendarTracker.Instance;
             if (cal == null) return;
             if (editing == null)
             {
@@ -473,7 +476,7 @@ namespace ColonyCouncil
                 }
                 if (way == DayWay.Faith) d.subject = faithName;
                 // direct: the dialog's own confirmation of the day the player just added.
-                Messages.Message("CC_Cal_Dialog_Added".Translate(d.label, CalendarTracker.DateText(d.day)).Resolve(), MessageTypeDefOf.PositiveEvent, false);
+                Messages.Message("CC_Cal_Dialog_Added".Translate(d.label, ColonyCalendar.DateText(d.day, cal.HomeMap)).Resolve(), MessageTypeDefOf.PositiveEvent, false);
             }
             else
             {
@@ -486,7 +489,7 @@ namespace ColonyCouncil
                     if (day != editing.day)
                     {
                         // Moved: it comes on its new date, once this year at most.
-                        var map = HappeningTracker.HomeMap();
+                        var map = cal?.HomeMap;
                         if (map != null && editing.lastYear < GenLocalDate.Year(map))
                             editing.lastYear = CalendarMath.InitialLastYear(GenLocalDate.DayOfYear(map), GenLocalDate.Year(map), day, GenLocalDate.HourOfDay(map) <= 18);
                         editing.day = day;

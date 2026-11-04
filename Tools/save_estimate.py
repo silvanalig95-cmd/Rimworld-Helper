@@ -199,10 +199,10 @@ MODEL = {
     "Calendar/CalendarDay.cs:fallen": ("fixed", 2, 40, "per day on the calendar (counted under days)"),
     "Calendar/CalendarDay.cs:knew": ("fixed", 4, 40, "per day on the calendar"),
     "Calendar/CalendarDay.cs:kin": ("fixed", 2, 40, "per day on the calendar"),
-    "Calendar/CalendarTracker.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding"),
-    "Calendar/CalendarTracker.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
-    "Calendar/CalendarTracker.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
-    "Calendar/CalendarTracker.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
+    "Calendar/ColonyCalendar.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding"),
+    "Calendar/ColonyCalendar.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
+    "Calendar/ColonyCalendar.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
+    "Calendar/ColonyCalendar.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
     "Calendar/CalendarWatch.cs:awaySince": ("colonists", 0.5, D, "the colony's people away now; the dead and those no longer ours dropped"),
     "Calendar/CalendarWatch.cs:huntKills": ("colonists", 1, D, "one per colonist, those no longer ours dropped daily"),
     "Calendar/CalendarWatch.cs:knownCrops": ("fixed", 40, 40, "one per crop the colony has grown (crop defs)"),
@@ -450,6 +450,10 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # One calendar per colony (Calendar/CalendarTracker.cs): each calendar's rows are below, sized for one colony
+    "Calendar/CalendarTracker.cs:colonies": ("fixed", 1, 120,
+                                             "one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept "
+                                             f"{const('Lean/ColonyStateMath.cs', 'KeepLostDays', 30):.0f} days, then let go"),
     # One council per colony (ColonyState.cs): the trackers inside each have rows of their own below, sized for one colony
     "ColonyState.cs:colonies": ("fixed", 1, 160,
                                 "one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept "

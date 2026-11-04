@@ -173,7 +173,7 @@ namespace ColonyCouncil
             {
                 if (d == null || home.NullOrEmpty() || !On(SetbackTimesDefOf.Council_Setback_EmptyChair)) return;
                 if (d.way != DayWay.Feast && d.way != DayWay.Games && d.way != DayWay.Bonfire && d.way != DayWay.Gifts && d.way != DayWay.Faith) return;
-                var days = CalendarTracker.Instance?.days;
+                var days = ColonyCalendar.For(map)?.days;
                 if (days == null) return;
                 int now = Find.TickManager.TicksGame;
                 string dayName = SharedTimes.The(d.label);

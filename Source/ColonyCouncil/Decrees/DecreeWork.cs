@@ -462,7 +462,7 @@ namespace ColonyCouncil
                     var a = p.timetable.GetAssignment(h);
                     if (a == null || a == sleep) continue;
                     // An hour today's rest day turned to recreation goes back to what it was before that, when the curfew ends.
-                    string was = CalendarTracker.Instance?.TakeRestHour(p, h) ?? a.defName;
+                    string was = ColonyCalendar.Of(p)?.TakeRestHour(p, h) ?? a.defName;
                     changed.Add(h + "=" + was);
                     p.timetable.SetAssignment(h, sleep);
                 }

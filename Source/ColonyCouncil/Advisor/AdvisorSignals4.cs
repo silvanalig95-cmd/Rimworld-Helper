@@ -80,8 +80,9 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var cal = CalendarTracker.Instance;
-            if (!CalendarTracker.On || cal == null || map != HappeningTracker.HomeMap()) yield break;
+            // At each home, from its own calendar.
+            var cal = Homes.IsHome(map) ? ColonyCalendar.For(map) : null;
+            if (!ColonyCalendar.On || cal == null || map != cal.HomeMap) yield break;
             int today = GenLocalDate.DayOfYear(map);
             CalendarDay next = null;
             int soonest = 99;
@@ -96,7 +97,7 @@ namespace ColonyCouncil
                 soonest = until;
             }
             if (next == null) yield break;
-            string detail = "CC_Adv_CalSoon_Detail".Translate(next.label, CalendarTracker.WayLabel(next.way)).Resolve();
+            string detail = "CC_Adv_CalSoon_Detail".Translate(next.label, ColonyCalendar.WayLabel(next.way)).Resolve();
             if (next.tradition) detail += " " + "CC_Adv_CalSoon_Tradition".Translate().Resolve();
             yield return Signal(next.tradition ? 0.3f : 0.15f, "CC_Adv_CalSoon_Title".Translate(next.label.CapitalizeFirst(), soonest), detail, 0.6f);
         }

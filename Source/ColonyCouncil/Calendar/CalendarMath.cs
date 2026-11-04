@@ -75,6 +75,26 @@ namespace ColonyCouncil
             dayOfQuadrum = day % DaysPerQuadrum + 1;
         }
 
+        // ---------------- One calendar per colony ----------------
+
+        public const int TicksPerDay = 60000;
+        public const int TicksPerYear = TicksPerDay * DaysPerYear;
+
+        /// <summary>A colony settled within the game's first days is founded with the game (its founding day is the game's start).</summary>
+        public const int FirstDays = 2;
+
+        /// <summary>
+        /// A colony's founding, as a game tick: the game's start (0) for a colony settled in the game's first days, or when
+        /// the game doesn't say when it was settled (-1, or a tick still to come); else the tick its settlement was made.
+        /// </summary>
+        public static int FoundedTick(int settled, int now) => settled <= FirstDays * TicksPerDay || settled > now ? 0 : settled;
+
+        /// <summary>
+        /// One of a colony's first members: joined after its founding day itself and within its first year (a colony founded
+        /// at the game's start, <paramref name="founded"/> 0: joined after the first two days and within the first year).
+        /// </summary>
+        public static bool FirstMember(int joined, int founded) => joined > founded + TicksPerDay * 2 && joined <= founded + TicksPerYear;
+
         public static int Join(int quadrum, int dayOfQuadrum) =>
             Wrap(Math.Max(0, Math.Min(3, quadrum)) * DaysPerQuadrum + Math.Max(1, Math.Min(DaysPerQuadrum, dayOfQuadrum)) - 1);
 

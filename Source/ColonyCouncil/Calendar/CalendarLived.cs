@@ -16,7 +16,7 @@ namespace ColonyCouncil
     /// event, the rite no longer the faith's, the one brought home gone. And a way to keep any day by walking out to
     /// what it remembers (<see cref="DayWay.Walk"/>): to the gift, the grave, the fields, the gate.
     /// </summary>
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         // ---------------- Saved ----------------
 
@@ -36,7 +36,8 @@ namespace ColonyCouncil
 
         private void WatchLived(Map map, Dictionary<string, Pawn> known, int today, int year)
         {
-            Safe("calendar world events", () => WatchSituations(map, known, today, year));
+            // The world's events are the colony's as a whole: the seat's calendar remembers them.
+            if (AtSeat) Safe("calendar world events", () => WatchSituations(map, known, today, year));
             Safe("calendar faith days", () => WatchFaithDays(today, year));
             Safe("calendar rescues", () => WatchRescues(map, known, today, year));
         }
@@ -49,11 +50,12 @@ namespace ColonyCouncil
         /// </summary>
         public static void Notify_CampGift(Camp c, CampGift g, List<Thing> placed, IntVec3 at)
         {
-            var self = Instance;
+            // On the calendar of the colony the camp stayed by.
+            var self = c?.map != null && Homes.IsHome(c.map) ? For(c.map) : null;
             if (self == null || c == null || g == null || placed.NullOrEmpty()) return;
             try
             {
-                var map = Home;
+                var map = self.HomeMap;
                 if (map == null || c.map != map) return;
                 string id = "camp|" + c.id + "|" + c.arrivedTick;
                 var have = self.Get(id);
@@ -109,7 +111,7 @@ namespace ColonyCouncil
         /// <summary>The gift a day remembers is gone from the map (cut down, sold, burned) for three looks running.</summary>
         private bool GiftGone(CalendarDay d)
         {
-            var map = Home;
+            var map = HomeMap;
             if (map == null || d.things.Count == 0) return false;
             string key = "gift|" + d.id;
             if (DayThing(d, map) != null)
@@ -259,7 +261,7 @@ namespace ColonyCouncil
                 var list = f?.kidnapped?.KidnappedPawnsListForReading;
                 if (list == null) continue;
                 foreach (var p in list)
-                    if (p != null && !p.Dead && p.RaceProps?.Humanlike == true && p.Faction == Faction.OfPlayer && People.HasInnerLife(p) && !captives.ContainsKey(p.ThingID))
+                    if (p != null && !p.Dead && p.RaceProps?.Humanlike == true && p.Faction == Faction.OfPlayer && People.HasInnerLife(p) && !captives.ContainsKey(p.ThingID) && Belongs(p))
                         captives[p.ThingID] = now + "|" + (f.Name ?? "");
             }
             foreach (var kv in captives.ToList())
@@ -304,7 +306,7 @@ namespace ColonyCouncil
             var friend = friends.FirstOrDefault();
             if (friend != null && On)
                 CouncilGameComponent.Instance?.journals.WriteTagged(friend, "Council_Journal_Cal_Rescue", new[] { "new", "friend" }, null, d.label.Named("NAME"), 0.Named("YEARS"),
-                    (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (Home?.Biome?.label ?? "").Named("PLACE"), p.Named("OTHER"), captors.Named("WHO"));
+                    (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (HomeMap?.Biome?.label ?? "").Named("PLACE"), p.Named("OTHER"), captors.Named("WHO"));
         }
 
         // ---------------- Walking out to it ----------------
