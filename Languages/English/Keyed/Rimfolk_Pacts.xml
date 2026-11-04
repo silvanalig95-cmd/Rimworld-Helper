@@ -66,7 +66,6 @@
   <CC_Pact_CartOption>A cart of {GOODS} each season</CC_Pact_CartOption>
   <CC_Pact_CartTerms>Each season a cart of {GOODS} goes out to their porters.</CC_Pact_CartTerms>
   <CC_Pact_Menu_Title>What pact to speak of with {OTHER}</CC_Pact_Menu_Title>
-  <CC_Out_Act_SpeakPact>Speak of a pact...</CC_Out_Act_SpeakPact>
   <CC_Pact_Note_Yes>a pact sworn</CC_Pact_Note_Yes>
   <CC_Pact_Note_No>a pact refused</CC_Pact_Note_No>
 

@@ -9,7 +9,8 @@ namespace ColonyCouncil
         /// <summary>
         /// A pact or a truce between the colony and the scene's people (the one at the speaker's own home first, else the
         /// newest): tie:pact or tie:truce (more current when new), :ours or :theirs (who offered it), :due (a pact's call under
-        /// way either way, a truce's end near), and the people it is with ({PACTWITH}, {TRUCEWITH}). A truce still to be sworn
+        /// way either way, a truce's end near), a pact's kind (:defence, :trade), and the people it is with ({PACTWITH},
+        /// {TRUCEWITH}). A truce still to be sworn
         /// at the gate isn't spoken of yet. Only reads.
         /// </summary>
         private static void PactTies(FactScene s, FactSet f, int now)
@@ -33,7 +34,7 @@ namespace ColonyCouncil
                 if (best == null) continue;
                 float days = best.since >= 0 && best.since <= now ? (now - best.since) / (float)GenDate.TicksPerDay : float.MaxValue;
                 bool due = pact ? Pacts.CallUnderWay(best) : PactMath.Due(best.terms.number, day);
-                foreach (var (tag, heat) in PactMath.Tags(pact, best.from.kind == RefKind.Colony, due, days)) f.Tag(tag, heat);
+                foreach (var (tag, heat) in PactMath.Tags(pact, best.from.kind == RefKind.Colony, due, days, pact ? best.terms.key : null)) f.Tag(tag, heat);
                 f.Value(PactMath.WithKey(pact), s.people.Name);
             }
         }

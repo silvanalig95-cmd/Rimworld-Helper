@@ -263,7 +263,8 @@ namespace ColonyCouncil
             var form = PactWords.PactForm(home, f);
             if (old != null && old.Live)
             {
-                old.terms.number = Mathf.Max(old.terms.number, Day) + PactMath.PactDays;
+                old.terms.number = Day + PactMath.PactDays;
+                renewAsked.Remove(old.id);
                 WorldLedger.Touch(old);
                 FactionMemory.Note(f, "keptWord", PactWords.Kind(k));
                 // apart: the colony's answer to their letter, told in a message.
@@ -319,14 +320,18 @@ namespace ColonyCouncil
             FavourBands(day);
         }
 
-        /// <summary>Its year is over: they offer to renew it while they think well enough of the colony, else it ends.</summary>
+        /// <summary>Pacts whose renewal was offered (this session): left unanswered a season, they end.</summary>
+        private static readonly HashSet<int> renewAsked = new HashSet<int>();
+
+        /// <summary>Its year is over: they offer to renew it while they think well enough of the colony (once), else it ends.</summary>
         private static void YearOver(Tie t, Faction f, Map home)
         {
             var k = KindOf(t);
             bool asked = Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_PactOffer o && o.renew == t.id);
             if (asked) return;
-            if (On && PactMath.Renews(Goodwill(f), HeadRegard(f, home), Diplomacy.Hostile(f)) && Tell.CanAsk && t.terms.number > 0f)
+            if (On && !renewAsked.Contains(t.id) && PactMath.Renews(Goodwill(f), HeadRegard(f, home), Diplomacy.Hostile(f)) && Tell.CanAsk)
             {
+                renewAsked.Add(t.id);
                 Offer(f, home, k, null, t);
                 // Their letter waits the season for its answer; unanswered by then, it ends.
                 t.terms.number = Day + PactMath.SeasonDays;

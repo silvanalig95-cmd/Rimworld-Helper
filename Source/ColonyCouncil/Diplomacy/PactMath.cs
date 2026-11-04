@@ -368,9 +368,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A pact's or a truce's tags for the talk: tie:pact or tie:truce (more current when new), :ours or :theirs (who
-        /// offered it), :due (a pact: a call under way either way; a truce: its end near).
+        /// offered it), :due (a pact: a call under way either way; a truce: its end near), and a pact's kind
+        /// (tie:pact:defence, tie:pact:trade).
         /// </summary>
-        public static List<(string tag, float heat)> Tags(bool pact, bool oursOffered, bool due, float days)
+        public static List<(string tag, float heat)> Tags(bool pact, bool oursOffered, bool due, float days, string kind = null)
         {
             string t = pact ? PactTag : TruceTag;
             var list = new List<(string, float)>
@@ -379,6 +380,7 @@ namespace ColonyCouncil
                 (t + (oursOffered ? ":ours" : ":theirs"), 1f)
             };
             if (due) list.Add((t + ":due", 2f));
+            if (pact && (kind == Defence || kind == Trade)) list.Add((t + ":" + kind, 1f));
             return list;
         }
 

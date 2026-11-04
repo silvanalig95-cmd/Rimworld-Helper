@@ -118,8 +118,8 @@ public static class DiplomacyTests
             string nc = FavourMath.NeedCode(need);
             C(FavourMath.ParseNeed(nc, out var back) && back == need && !FavourMath.ParseAsk(nc, out _, out _), $"the need {need} kept in a tie's terms and read back");
         }
-        C(!FavourMath.ParseAsk(null, out _, out _) && !FavourMath.ParseAsk("ask:Fighters:x", out _, out _) && !FavourMath.ParseNeed("need:", out _) && !FavourMath.ParseNeed("Steel", out _),
-            "anything else is no ask (fighters come with release 2a.2)");
+        C(!FavourMath.ParseAsk(null, out _, out _) && !FavourMath.ParseAsk("ask:Levies:x", out _, out _) && !FavourMath.ParseNeed("need:", out _) && !FavourMath.ParseNeed("Steel", out _),
+            "anything else is no ask");
         C(FavourMath.Personal(Ref.Person(5), Ref.Person(6)) && !FavourMath.Personal(Ref.People(3), Ref.Colony(9)), "a personal favour: a person owes a person");
         C(FavourMath.ColonyOwes(Ref.Colony(9), Ref.People(3)) && !FavourMath.ColonyOwes(Ref.People(3), Ref.Colony(9)), "which way a debt runs");
 
@@ -140,8 +140,8 @@ public static class DiplomacyTests
         C(DiplomacyMath.DiplomacyOrder > 30f && DiplomacyMath.DiplomacyOrder < DiplomacyMath.HouseholdOrder && DiplomacyMath.HouseholdOrder < 40f,
             "the Diplomacy and Household pages after Letters, before Journeys");
         C(DiplomacyMath.Purposes[0] == "Favour" && DiplomacyMath.Purposes.Length == 8 && DiplomacyMath.Acts[0] == "AskFavour", "the purposes and acts in the design's order, the first built");
-        C(Enum.GetNames(typeof(LetterPurpose)).Last() == "Favour", "the letters' new purpose after the old ones");
-        C(Enum.GetNames(typeof(OutsiderAct)).Last() == "AskFavour", "the new act after the old ones (saved by name)");
+        C(Enum.GetNames(typeof(LetterPurpose)).Reverse().Take(3).Reverse().SequenceEqual(DiplomacyMath.Purposes.Take(3)), "the letters' new purposes after the old ones, in the design's order (Favour; Pact and Truce in 2a.2)");
+        C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(2).Reverse().SequenceEqual(DiplomacyMath.Acts.Take(2)), "the new acts after the old ones, in the design's order (saved by name)");
         C(DiplomacyMath.StanceKey(0, true, false) == "Hostile" && DiplomacyMath.StanceKey(10, false, true) == "Allied" && DiplomacyMath.StanceKey(80, false, false) == "Allied"
           && DiplomacyMath.StanceKey(30, false, false) == "Friendly" && DiplomacyMath.StanceKey(0, false, false) == "Peace" && DiplomacyMath.StanceKey(-10, false, false) == "Cool",
             "a people's stance in a word");
@@ -195,9 +195,10 @@ public static class DiplomacyTests
             "the parts in Diplomacy/");
         foreach (var f in new[] { "FavourMath.cs", "DiplomacyMath.cs", "NatureMath.cs" })
             C(!Regex.IsMatch(dip[f], @"using (Verse|RimWorld|UnityEngine)"), $"{f} is pure");
-        foreach (var (file, text) in dip.Where(kv => kv.Key != "DiplomacyDebug.cs" && kv.Key != "DiplomacyPanels.cs"))
+        foreach (var (file, text) in dip.Where(kv => !kv.Key.EndsWith("Debug.cs") && kv.Key != "DiplomacyPanels.cs"))
             C(!text.Contains("Messages.Message(") && !text.Contains("Find.LetterStack.ReceiveLetter("), $"{file} tells the player only through Tell");
-        C(!Regex.IsMatch(code.Replace(dip["FavourAsks.cs"], ""), @"Scribe_"), "favours keep nothing but the ledger's ties (only their letter saves which call it is)");
+        C(!Regex.IsMatch(string.Concat(dip.Where(kv => kv.Key.StartsWith("Favour") && kv.Key != "FavourAsks.cs" || kv.Key.StartsWith("Diplomacy")).Select(kv => kv.Value)), @"Scribe_"),
+            "favours keep nothing but the ledger's ties (only their letter saves which call it is; pacts and truces: PactTests)");
         C(Regex.IsMatch(dip["FavourAsks.cs"], @"class ChoiceLetter_FavourAsk[\s\S]*Scribe_Values\.Look\(ref tie"), "their letter knows its tie");
         C(code.Contains("WorldLedger.AddTie(Tie.Kind.Favour") && code.Contains("FavourMath.Origin") && code.Contains("WorldLedger.AddTie(Tie.Kind.Promise"),
             "debts are Favour ties of their own origin, help toward peace a Promise");
@@ -208,10 +209,10 @@ public static class DiplomacyTests
         C(Code("Missions/Missions.cs").Contains("FavourAsks.MissionEnded(m, state);") && Code("Missions/Workers_MissionRemembered.cs").Contains("public static Faction Only;"),
             "their calls through the existing missions, and the mission's end answers them");
         string letters = Code("World/NeighbourLetters.cs");
-        C(letters.Contains("DiplomacyLetters.WhyNot(n, p)") && letters.Contains("DiplomacyLetters.Topics(n)") && letters.Contains("DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone)"),
+        C(letters.Contains("DiplomacyLetters.WhyNot(n, p)") && letters.Contains("DiplomacyLetters.Topics(n, p)") && letters.Contains("DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone)"),
             "the letters' frame: why not, what about, the answer");
         string menu = Code("Outsiders/OutsiderMenu.cs");
-        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour,[\s\S]{0,40}OutsiderAct\.Spar"), "the new act right after Invite");
+        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour, OutsiderAct\.SpeakPact,[\s\S]{0,40}OutsiderAct\.Spar"), "the new acts right after Invite");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");
         C(!dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(") && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.Owed(y, w, dip, folds)")
