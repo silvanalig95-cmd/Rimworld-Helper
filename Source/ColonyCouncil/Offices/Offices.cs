@@ -181,8 +181,7 @@ namespace ColonyCouncil
         {
             var home = colony?.Map;
             if (home == null || p == null || colony.Has(p)) return false;
-            var last = Homes.LastHome(p);
-            return last != null && last != home;
+            return ColonyStateMath.MovedAway(Homes.KeyOf(home), Homes.KeyOf(Homes.Of(p)), Homes.KeyOf(Homes.LastHome(p)));
         }
 
         /// <summary>This colony's home, for its election's dates and texts.</summary>

@@ -799,7 +799,7 @@ namespace ColonyCouncil
             if (now - st.bitterSince < GenDate.TicksPerDay * 3 || p.DevelopmentalStage.Juvenile() || p.IsQuestLodger()) return;
             // Never the colony's last few people: that would just end the game (or that colony's life, counted per colony).
             var colony = ColonyState.Of(p);
-            if (PawnsFinder.AllMaps_FreeColonists.Count(c => !c.IsQuestLodger() && (colony == null || colony.Has(c))) < 4) return;
+            if (!ColonyStateMath.MayLeave(PawnsFinder.AllMaps_FreeColonists.Count(c => !c.IsQuestLodger() && (colony == null || colony.Has(c))))) return;
             var partner = LovePartnerRelationUtility.ExistingLovePartner(p);
             if (partner != null && partner.IsColonist && !partner.Dead && standings.LevelOf(partner) != TrustLevel.Bitter) return;
             if (!Rand.Chance(0.3f)) return;

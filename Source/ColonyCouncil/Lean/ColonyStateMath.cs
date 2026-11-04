@@ -137,5 +137,31 @@ namespace ColonyCouncil
             }
             return book.RemoveAll(e => e == null || Drops(e.LostAt, now, any));
         }
+
+        // ---------------- Each colony's own people ----------------
+
+        /// <summary>A colony's people never walk out below this many: that would end its life (counted per colony).</summary>
+        public const int FewestLeft = 4;
+
+        /// <summary>How many of these people (each by the colony they belong to, HomesMath.Of) belong to <paramref name="colony"/>.</summary>
+        public static int CountIn(IEnumerable<int> homesOfPeople, int colony)
+        {
+            int n = 0;
+            if (homesOfPeople == null) return 0;
+            foreach (int h in homesOfPeople)
+                if (h == colony) n++;
+            return n;
+        }
+
+        /// <summary>Someone may walk out of a colony with this many people (lodgers aside), or it would be left with too few.</summary>
+        public static bool MayLeave(int peopleOfColony) => peopleOfColony >= FewestLeft;
+
+        /// <summary>
+        /// An officer of <paramref name="colony"/> who has gone to live at another: they belong elsewhere now
+        /// (<paramref name="ofNow"/>, HomesMath.Of) and the last home they lived on for a day (<paramref name="lastHome"/>) is
+        /// another too. Away on a caravan (still theirs by their bed) or on a short visit, they keep their seat.
+        /// </summary>
+        public static bool MovedAway(int colony, int ofNow, int lastHome) =>
+            colony != None && ofNow != colony && lastHome != None && lastHome != colony;
     }
 }
