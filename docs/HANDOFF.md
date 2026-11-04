@@ -15,6 +15,17 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.72.0, stage 1 release 5, raiders' camps: `World/Region/RaidersCampMath.cs`, `RaidersCamp.cs`, `RaidersCampTerms.cs`,
+  `RaidersCampPage.cs`, `RaidersCampDebug.cs` (dev actions); each home looked at every 10 days from day 60 (1,000
+  threat points, no camp, 60 days since the last; 10% x rate); a hostile people by grudge then distance; 6 to 10 tiles
+  out; hidden until a colonist out of doors sees its smoke (no raid before the letter); the game's `BanditCamp` site;
+  raids from its side (`Raids.Send` gained an edge cell and whether to tell the storyteller) at the raid-source curve,
+  0.6 of threat points; ends: broken (put back if a quarter stand), paid (half a raid's points in silver carried to
+  the edge; a word for a year on the ledger, one in ten broken), peace (the game's own letter plus a news line), an
+  ally (10% every 5 days), gave up (two raids beaten off or 60 days); history `world:camp:*`, six deed kinds; region page
+  "raiders' camps"; setting 0 to 200%. Hook for release 7: `RaidersCamps.SetUp(home, people, leader, why)`. Left: other
+  ways to find it (a visitor's warning, a neighbour's letter), the leader on the camp's map and those who fought there
+  remembered (release 7), a put-back camp's loot halved only once.
 - 0.71.0, stage 1 release 2, travelers to the remote: `World/Region/TravelMath.cs`, `TravelLand.cs` (reasons read from
   the land once a day per home, in memory), `FarNews.cs` (news of far towns: nearest 12 beyond the reach within three
   reaches, 2 a stay, into Heard lately, history `world:heard`, colony news), `Camps/CampSeekers.cs` (`seeks` on eleven

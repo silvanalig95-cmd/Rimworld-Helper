@@ -31,6 +31,8 @@ namespace ColonyCouncil
         public int letterAt = -1;
         /// <summary>When a new town last gave this home its full welcome (once a year at most), or -1.</summary>
         public int welcomeAt = -1;
+        /// <summary>Its raiders' camp, standing or last ended, and the word of the last people paid off (World/Region/RaidersCamp.cs); null until needed.</summary>
+        public RaidersCampHome raiders;
 
         public void ExposeData()
         {
@@ -38,6 +40,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
             Scribe_Values.Look(ref letterAt, "letterAt", -1);
             Scribe_Values.Look(ref welcomeAt, "welcomeAt", -1);
+            Scribe_Deep.Look(ref raiders, "raiders");
         }
     }
 
@@ -106,7 +109,7 @@ namespace ColonyCouncil
         /// <summary>Homes lost (Homes.Changed): each one's part kept a while, as the council's.</summary>
         internal void HomesLost(IReadOnlyList<int> lost)
         {
-            ColonyBook.Lost(homes, lost, null);
+            ColonyBook.Lost(homes, lost, RaidersCamps.HomeLost);
             RegionTowns.Invalidate();
         }
 
@@ -156,8 +159,8 @@ namespace ColonyCouncil
         /// <summary>The hour: towns being founded get their founder and their line in the news; towns just built get their faces.</summary>
         private void Hourly(int now)
         {
-            if (!FacesOn) return;
-            RegionFaces.Hourly(this, now);
+            if (FacesOn) RegionFaces.Hourly(this, now);
+            RaidersCamps.Hourly(this, now);
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -166,6 +169,7 @@ namespace ColonyCouncil
             RegionTowns.Refresh(true);
             Safe("foundings looked over", () => RegionFaces.Daily(now));
             if (FortunesOn) Safe("fortunes", () => RegionFortunes.Daily(now));
+            Safe("raiders' camps", () => RaidersCamps.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 

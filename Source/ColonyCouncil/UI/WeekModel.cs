@@ -668,6 +668,8 @@ namespace ColonyCouncil
             }
             // Hospitality's guests staying now (Integrations/GuestsWeek.cs).
             GuestsWeek.AddRows(c);
+            // A raiders' camp standing near a home (World/Region/RaidersCampPage.cs).
+            RaidersCampPage.WeekRows(c);
             return c;
         }
 

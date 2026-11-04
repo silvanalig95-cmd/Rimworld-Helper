@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.72.0</version>
+        <date>4 November 2026</date>
+        <title>Raiders' camps</title>
+        <points>
+          <li>Raiders' camps: a rich colony on bad terms with a hostile people may find raiders camped a few days off, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base).</li>
+          <li>Someone out beyond the walls sees its smoke, and its letter says what it means before any raid comes.</li>
+          <li>While it stands, it raids the colony from its side of the map at the game's own raid-source rate, on top of the usual raids.</li>
+          <li>It ends five ways: break it (a camp left with fighters standing is back behind its walls), pay their price and take their word for a year, make peace, see an ally burn it, or beat off their raids until they give up.</li>
+          <li>Each ending goes into the world's history and into what the peoples remember.</li>
+          <li>A new region page, raiders' camps, with an Almanac page and a setting from 0 to 200%.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.71.0</version>
         <date>4 November 2026</date>
         <title>Travelers to the remote</title>

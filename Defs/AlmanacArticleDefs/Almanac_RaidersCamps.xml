@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on raiders' camps (Source/ColonyCouncil/World/Region/RaidersCamp*.cs; the rules in
+       RaidersCampMath.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_RaidersCamps</defName>
+    <label>raiders' camps</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>A rich colony on bad terms with a hostile people may find raiders camped a few days off. While the camp stands it raids the colony on top of the usual raids, until it is broken, paid off, struck for peace, burned by an ally, or gives up.</summary>
+    <tip>The camp's letter comes before any raid. Breaking it is the surest end: send a caravan to attack it from the world map, and finish the job, since a camp left with fighters standing is back behind its walls.</tip>
+    <description>When a home is rich enough to be worth the trouble and a hostile people is near or holds a grudge, raiders may make camp a few days' walk off: the game's own bandit camp, with their fighters behind their walls and their loot inside. It is hidden at first. Someone out beyond the walls sees its smoke within a few days, says so, and the letter that follows names the danger before any raid comes. Then the camp is on the world map and the region map, and its raids come from its side of the map now and then, on top of the colony's usual raids, until it is dealt with.
+
+This is a real danger by design, at the game's own rate for such camps. Each camp is one people's, named by their age: a war camp for a tribe, a brigands' hold for medieval folk, a bandit camp for an industrial people, a raider base for spacers.</description>
+    <sections>
+      <li>
+        <heading>When one is set up</heading>
+        <text>From day 60, each home is looked at every 10 days. A home with 1,000 threat points or more (the game's measure of a colony's wealth and strength, about a mid-game colony) has a 10% chance of a camp at each look when a hostile people could set one up: one with a town within 60 tiles, territory within 30 (with Faction Territories), or a grudge against the colony (the wrongs they remember, their dead held against it, a vendetta). The biggest grudge goes first, then the nearest. A home has one camp at most, gets none for 60 days after its last ended, and none from a people while a world event about them runs. At this rate a camp comes in about 100 days of a people qualifying.</text>
+        <after>The camp stands 6 to 10 tiles from the home, never within 5 tiles of any of the colony's homes, on land where a base could stand, at least 3 tiles from a friendly town, in the hills or a forest when it can.</after>
+      </li>
+      <li>
+        <heading>Found</heading>
+        <text>By day, someone hunting or working beyond the colony's ground has a 30 in 100 chance a day of seeing its smoke; from the third day anyone out of doors sees it. They say so where they stand, and the letter says who leads it (when someone does), what their people hold against the colony, and how it can end. No raid comes before it is found.</text>
+      </li>
+      <li>
+        <heading>Its raids</heading>
+        <text>A camp raids at the game's own raid-source rate, by its threat points: a raid every 25 days on average at 400 points, 10 at 1,500, 5 at 5,000, straight between them. Each is a little over half a raid on the colony (0.6 of its threat points), walks in from the edge of the map on the camp's side, and comes on top of the storyteller's own. The first comes no sooner than two days after the camp was set up and a day after it was found, and never within a day and a half of the last, nor on top of another threat on the map or within a day of the last big one.</text>
+      </li>
+      <li>
+        <heading>How it ends</heading>
+        <table>
+          <li>Ending | How</li>
+          <li>Broken | The colony attacks it and clears it. Left with a quarter or more of its fighters standing, the game takes the site away anyway, and the camp is back on its tile with its points less those who fell and half the loot.</li>
+          <li>Paid off | A day after it is found, their terms come: about half a raid's points in silver, in tens, at least 100. One of the colony carries it out to the edge of the colony's ground and leaves it for them; no raid comes meanwhile, and they break camp once it is handed over and give their word to keep away for a year. One in ten break it, and may come back once the 60 days' rest is over.</li>
+          <li>Peace | Their people make peace with the colony, and they strike camp.</li>
+          <li>Burned | An ally of the colony at war with them, with a town within 30 tiles, has a 10% chance every 5 days of burning it.</li>
+          <li>Given up | Two of their raids beaten off (half of those who came fell or were taken, or they fled), or two months since they made camp, and they move on.</li>
+        </table>
+        <after>Each ending is told, goes into the world's history (world:camp) and into what the peoples remember: a camp broken or given up is a wrong their people hold against the colony, a price paid a good turn to them, a camp struck for peace and a camp burned by an ally good turns the colony owes. The camp itself, once found, is their wrong against the colony.</after>
+      </li>
+      <li>
+        <heading>Where it shows</heading>
+        <text>The region window's raiders' camps page shows each camp standing near a home (where, since when, its raids, its price with a way to pay it, a way to look at it) and how the last ones went. The region map's panel shows it for its site and for the home it threatens, and This week has a line for it while it stands. The setting Raiders' camps (0 to 200%) scales both the chance of a camp and how often it raids; at 0 none is set up and none raids, and a camp standing still ends in any of the ways above.</text>
+      </li>
+    </sections>
+    <keywords><li>raiders' camp</li><li>raiders</li><li>bandit camp</li><li>war camp</li><li>brigands</li><li>raider base</li><li>raid source</li><li>tribute</li></keywords>
+    <seeAlso><li>Council_Alm_C_Region</li><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_Neighbours</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

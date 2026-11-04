@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Raiders' camps
+
+*4 November 2026, version 0.72.0*
+
+- Raiders' camps: a rich colony on bad terms with a hostile people may find raiders camped a few days off, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base).
+- Someone out beyond the walls sees its smoke, and its letter says what it means before any raid comes.
+- While it stands, it raids the colony from its side of the map at the game's own raid-source rate, on top of the usual raids.
+- It ends five ways: break it (a camp left with fighters standing is back behind its walls), pay their price and take their word for a year, make peace, see an ally burn it, or beat off their raids until they give up.
+- Each ending goes into the world's history and into what the peoples remember.
+- A new region page, raiders' camps, with an Almanac page and a setting from 0 to 200%.
+
 ## Travelers to the remote
 
 *4 November 2026, version 0.71.0*

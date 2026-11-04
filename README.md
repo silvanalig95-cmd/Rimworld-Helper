@@ -2545,6 +2545,16 @@ stay: a world event among a people, a war begun or ended, a new town, a site nea
 lately*, the history and the colony news, and the region map's panel for a home has the latest *word from far towns*
 and what draws travelers there. Setting: *Travelers to the remote* (0 to 200%, 100% by default).
 
+**Raiders' camps.** A rich colony on bad terms with a hostile people may find raiders camped a few days off: the
+game's own bandit camp, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base). Someone out
+beyond the walls sees its smoke, and the letter names the danger before any raid comes. While it stands, it raids the
+colony from its side of the map at the game's own raid-source rate, on top of the usual raids, until the colony breaks
+it (a camp left with fighters standing is back behind its walls), pays their price (silver carried out to them, and
+their word for a year), makes peace with their people, sees an ally burn it, or beats off their raids until they give
+up. Each ending is told, written into the history and remembered by the peoples. The region window has a *raiders'
+camps* page; the region map and This week show a camp standing. Setting: *Raiders' camps* (0 to 200%, 100% by
+default). The Almanac has a page, *raiders' camps*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

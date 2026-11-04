@@ -193,8 +193,12 @@ namespace ColonyCouncil
         /// <summary>A raid of Rimfolk's own is being sent: its letter already tells its story, and it brings its own leader.</summary>
         public static bool Sending => sending > 0;
 
-        /// <summary>Sends them now, with the event's own letter above the game's usual raid text.</summary>
-        public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null)
+        /// <summary>
+        /// Sends them now, with the event's own letter above the game's usual raid text. <paramref name="from"/>: a cell on
+        /// the map's edge they walk in from (their camp's side); <paramref name="tellStoryteller"/> false: the storyteller
+        /// isn't told of it, so it comes on top of its own raids (a raiders' camp's, as the game's own raid-source camps do).
+        /// </summary>
+        public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null, IntVec3? from = null, bool tellStoryteller = true)
         {
             if (map == null || !CanRaid(f)) return false;
             // Whoever leads it is part of its strength, not on top of it.
@@ -212,6 +216,7 @@ namespace ColonyCouncil
                 target = map, faction = f, points = Mathf.Max(points, min * 1.1f, 60f), forced = true,
                 raidStrategy = RaidStrategyDefOf.ImmediateAttack, raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn
             };
+            if (from.HasValue && from.Value.IsValid && from.Value.InBounds(map)) parms.spawnCenter = from.Value;
             if (!label.NullOrEmpty()) parms.customLetterLabel = NoBraces(label);
             if (!text.NullOrEmpty()) parms.customLetterText = NoBraces(text) + "\n\n{BASETEXT}";
             var before = new HashSet<Lord>(map.lordManager.lords);
@@ -233,7 +238,7 @@ namespace ColonyCouncil
                 sending--;
             }
             // The storyteller should know a big fight just happened, so it doesn't send its own right on top of it.
-            if (ok)
+            if (ok && tellStoryteller)
             {
                 try
                 {

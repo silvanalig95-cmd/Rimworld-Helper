@@ -165,6 +165,12 @@ namespace ColonyCouncil
         /// far towns told at their fire (World/Region/TravelLand.cs). 0: as before, and no far news.
         /// </summary>
         public float remoteTravellers = 1f;
+        /// <summary>
+        /// The region: raiders' camps (0 to 2, 1 by default): how likely a rich colony on bad terms with a hostile people is
+        /// to find one set up near it, and how often it raids (the game's raid-source rate at 1). 0: none set up, none raids
+        /// (World/Region/RaidersCamp.cs).
+        /// </summary>
+        public float raidersCamps = 1f;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -528,6 +534,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
+            Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

@@ -498,8 +498,11 @@ MODEL = {
     "World/Ledger/LedgerRegion.cs:members": ("fixed", 4, 25, "per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses)"),
     "World/Ledger/LedgerRegion.cs:foundings": ("cap", (C["RegionFoundings"], 0.1), 260,
                                                "towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone"),
-    # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book.
-    "World/Region/RegionBook.cs:homes": ("fixed", 1, 90, "one per colony (one home in the model): when a founder last wrote to it; a lost home's kept 30 days"),
+    # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book. Inside it, its
+    # raiders' camp (World/Region/RaidersCamp.cs): one at most, about 30 values and two references, no list (the raid's
+    # people aren't saved), and the word of the last people paid off; a camp's history is in the history's bound.
+    "World/Region/RegionBook.cs:homes": ("fixed", 1, 90 + 900 + 150, "one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) "
+                                         "and the last word given to keep away; a lost home's kept 30 days, its camp gone with it"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

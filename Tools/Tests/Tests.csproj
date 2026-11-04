@@ -78,6 +78,7 @@
     <Compile Include="../../Source/ColonyCouncil/World/RegionMapMath.cs" Link="RegionMapMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RegionMath.cs" Link="RegionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/TravelMath.cs" Link="TravelMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Region/RaidersCampMath.cs" Link="RaidersCampMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/InviteMath.cs" Link="InviteMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Journeys/JourneyMath.cs" Link="JourneyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/RoadPostMath.cs" Link="RoadPostMath.cs" />
