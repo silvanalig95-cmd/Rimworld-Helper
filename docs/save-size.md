@@ -91,7 +91,7 @@ Rimfolk's part of the save, roughly: **2,427 KB** after a year, **2,882 KB** aft
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 61 | 61 | 61 | 5.4 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 62 | 62 | 62 | 5.4 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |

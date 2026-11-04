@@ -501,6 +501,10 @@ remote start's camps over a year; an escort with the settlers, the hamlet, and i
 
 ## Decisions for the player
 
+The player's answers (4 November 2026): 1 and 3 yes, built in the first release; 2 changed: Rimfolk founds its own new
+towns even while Faction Territories builds towns, at Rimfolk's own pace; 4 yes, and small towns' maps must cooperate
+with the player's base-generation mods; 5 to 14 as recommended.
+
 1. New towns' welcome: the full welcome (a runner at the gate, a gift hoped for) for towns within about 15 tiles, at
    most once a year per home, and news, faces and talk for the rest of the reach? Recommended: yes.
 2. Rimfolk's own new towns only while no other mod builds towns (on without Faction Territories or with its builders

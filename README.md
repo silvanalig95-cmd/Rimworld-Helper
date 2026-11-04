@@ -2486,7 +2486,25 @@ A people remembers **who**, too: the warden who let one of theirs go, the doctor
 who found their lost child or walked their pilgrim home. Their visitors stop that colonist to thank them, their
 traders give them a friend's price, their envoys and camps ask for them by name at the gate, and their letters say
 so ("They've asked for Ana by name"). The World page shows it with the deed: "They remember Ana for it." Older saves
-keep their memories; those deeds just name nobody.
+keep their memories; those deeds just name nobody. Visitors, callers, traders and their asks say it in their letters
+too: 32 lines in 22 events ("Among the Lenlia, the colony is known as the place that set Ana free.").
+
+### The region
+The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
+from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
+others, a fair 8 up: 32 world events in all), that a war near it wears down and that drifts back toward the middle;
+its panel on the region map says how it stands and what moved it ("Struggling, since the plague"), its people speak
+of it, and what it has to trade follows it (a struggling town has a quarter less food, medicine and silver).
+
+A **new town** within reach (Faction Territories' builders, or Rimfolk's own new-town, other-settlers and crossroads
+events) gets a face: a founder of its people who becomes its head, two founding families known by name, the town its
+settlers came from and why they chose the place (a road, a river, the coast, the hills, the old walls of a ruin, a
+crowded mother town, families whose town was given up). The colony news tells it once when begun and once when built,
+in place of the other mod's own message. A new town within about 15 tiles welcomes itself in full, once a year at most:
+a runner at the gate, a neighbor's gift hoped for and remembered, timber wanted, its first traders; else its founder
+writes. 40 conversation pieces cover new towns and fortunes. The region map shows how remote each home is. Settings →
+**The region** has towns' fortunes, their say in the trade stock and new towns' faces. The Almanac has a page, *the
+region*.
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

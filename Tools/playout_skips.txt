@@ -479,3 +479,6 @@ Rimfolk_Evt_GravshipGawkers [option 2] a refusal: the gawkers are sent home from
 
 # Defs/IncidentDefs/Rimfolk_Events_Callers.xml
 Rimfolk_Evt_Wedding [option 2] a refusal: the families take the couple home (DilemmaEffect_SendAway)
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Region.xml
+Rimfolk_WS_NewTownMet [end:settled] far away, told (the gift went out by hand to the runner in the welcome beat)
