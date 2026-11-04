@@ -251,7 +251,11 @@ namespace ColonyCouncil
             {
                 var t = Truces.Get(tie);
                 var f = lord.faction;
-                if (t != null && t.Live) Truces.End(t, Tie.State.Broken, null);
+                if (t != null && t.Live)
+                {
+                    t.terms.goods = Truces.BrokenByUsKey;
+                    Truces.End(t, Tie.State.Broken, null);
+                }
                 if (f != null)
                 {
                     FactionMemory.Note(f, "brokeTruce", PactWords.P("CC_Truce_By_Parley"));

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Pacts and truces (Source/ColonyCouncil/Diplomacy/Pacts.cs, Truces.cs, CallsToArms.cs): their letters, which wait for
+       the colony's answer, and the jobs that play them out on the map. -->
+
+  <!-- A people at war offers a truce after a raid of theirs was beaten: accept (their envoy comes to the gate), or refuse. -->
+  <LetterDef>
+    <defName>Rimfolk_TruceOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_TruceOffer</letterClass>
+    <color>(150, 175, 205)</color>
+    <flashColor>(175, 200, 230)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- A friend offers a pact, or to renew one at its end: accept, or let it be. -->
+  <LetterDef>
+    <defName>Rimfolk_PactOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_PactOffer</letterClass>
+    <color>(175, 160, 215)</color>
+    <flashColor>(200, 185, 240)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- A partner (or a people the colony owes) asks for fighters at their town: send them by caravan, or refuse. -->
+  <LetterDef>
+    <defName>Rimfolk_CallToArms</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_CallToArms</letterClass>
+    <color>(210, 150, 110)</color>
+    <flashColor>(235, 175, 135)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The colony's speaker walks out to their envoy at the gate, and they swear the truce face to face. -->
+  <JobDef>
+    <defName>Rimfolk_TruceParley</defName>
+    <driverClass>ColonyCouncil.JobDriver_Parley</driverClass>
+    <reportString>walking out to their envoy.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- A signal fire laid and lit by the gate, calling a defence pact in. -->
+  <JobDef>
+    <defName>Rimfolk_SignalFire</defName>
+    <driverClass>ColonyCouncil.JobDriver_SignalFire</driverClass>
+    <reportString>laying a signal fire.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The caller at the comms console, calling a defence pact in. -->
+  <JobDef>
+    <defName>Rimfolk_PactCall</defName>
+    <driverClass>ColonyCouncil.JobDriver_PactCall</driverClass>
+    <reportString>calling for help.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

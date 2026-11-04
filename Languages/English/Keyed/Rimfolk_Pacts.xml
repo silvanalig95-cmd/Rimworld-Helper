@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, pacts and truces (Source/ColonyCouncil/Diplomacy/Truces.cs, Pacts.cs, CallsToArms.cs;
+       docs/design/stage2-diplomacy.md, round a, item 2). Keys with numbered fellows (_2 ...) are picked at random
+       (TextVariants). -->
+
+  <!-- Their words by both ages: a pact's kind, a truce's term and price, the colony's means of calling -->
+  <CC_Pact_Kind_Defence>a defense pact</CC_Pact_Kind_Defence>
+  <CC_Pact_Kind_Trade>a trade pact</CC_Pact_Kind_Trade>
+  <CC_Pact_What_Defence>A defense pact: each comes when the other is attacked. While a threat is on the colony, it can call {PEOPLE} once a season, and their band walks in some hours later. When a town of theirs is attacked, they may ask the colony for fighters.</CC_Pact_What_Defence>
+  <CC_Pact_What_Trade>A trade pact: each season a trader caravan of {PEOPLE} comes to the colony, and a cart of the colony's surplus goes out to their porters, who pay for it in silver.</CC_Pact_What_Trade>
+  <CC_Truce_Term_Season>for a season</CC_Truce_Term_Season>
+  <CC_Truce_Term_Year>for a year</CC_Truce_Term_Year>
+  <CC_Truce_Price_None>no price either way</CC_Truce_Price_None>
+  <CC_Truce_Price_Ours>{SILVER} silver from the colony</CC_Truce_Price_Ours>
+  <CC_Truce_Price_Theirs>{SILVER} silver from them</CC_Truce_Price_Theirs>
+  <CC_Truce_Price_Captives>their captives returned</CC_Truce_Price_Captives>
+  <CC_Pact_Fire_Tribal>a fire on the hill</CC_Pact_Fire_Tribal>
+  <CC_Pact_Fire_Medieval>a beacon fire for their riders</CC_Pact_Fire_Medieval>
+  <CC_Pact_Fire_Industrial>a signal fire</CC_Pact_Fire_Industrial>
+  <CC_Pact_Fire_Spacer>a signal fire</CC_Pact_Fire_Spacer>
+  <CC_Pact_Comms_Tribal>a call over the console</CC_Pact_Comms_Tribal>
+  <CC_Pact_Comms_Medieval>a call over the console</CC_Pact_Comms_Medieval>
+  <CC_Pact_Comms_Industrial>a radio call</CC_Pact_Comms_Industrial>
+  <CC_Pact_Comms_Spacer>a call by comms</CC_Pact_Comms_Spacer>
+  <CC_Truce_FromPeace>Their goodwill is {GAP} short of peace; a truce that ends there is a peace.</CC_Truce_FromPeace>
+  <CC_Truce_AtPeaceNow>Their goodwill has come round to peace.</CC_Truce_AtPeaceNow>
+  <CC_Truce_Deed>a truce</CC_Truce_Deed>
+
+  <!-- Why it can't be now (shown greyed beside the act) -->
+  <CC_Truce_Why_Off>pacts and truces are switched off in the settings</CC_Truce_Why_Off>
+  <CC_Truce_Why_NotAtWar>{PEOPLE} aren't at war with the colony</CC_Truce_Why_NotAtWar>
+  <CC_Truce_Why_Never>{PEOPLE} make no peace with anyone</CC_Truce_Why_Never>
+  <CC_Truce_Why_Holds>a truce with {PEOPLE} holds already, or waits to be sworn</CC_Truce_Why_Holds>
+  <CC_Truce_Why_NoReason>{PEOPLE} have no reason to listen yet: beat a raid of theirs, hold one of their notables or kin, or have a friend of both speak for peace</CC_Truce_Why_NoReason>
+  <CC_Truce_Why_NoSilver>the colony has less than {SILVER} silver</CC_Truce_Why_NoSilver>
+  <CC_Truce_Why_NoCaptives>the colony holds none of {PEOPLE}</CC_Truce_Why_NoCaptives>
+  <CC_Truce_Why_Gone>it is over already</CC_Truce_Why_Gone>
+  <CC_Pact_Why_Empire>{PEOPLE} keep their own oaths and make no pacts with the colony</CC_Pact_Why_Empire>
+  <CC_Pact_Why_Goodwill>{PEOPLE} don't think well enough of the colony yet (goodwill {NEED} or more)</CC_Pact_Why_Goodwill>
+  <CC_Pact_Why_Already>{KIND} with {PEOPLE} holds already</CC_Pact_Why_Already>
+  <CC_Pact_Why_NoSurplus>the colony's stores hold no surplus to send each season</CC_Pact_Why_NoSurplus>
+  <CC_Pact_Why_Nothing>there is nothing to say to {PEOPLE} about a pact now</CC_Pact_Why_Nothing>
+  <CC_Pact_Why_NoDefence>the colony has no defense pact with {PEOPLE}</CC_Pact_Why_NoDefence>
+  <CC_Pact_Why_NoThreat>only while a threat is on the colony</CC_Pact_Why_NoThreat>
+  <CC_Pact_Why_Calling>the call is being made</CC_Pact_Why_Calling>
+  <CC_Pact_Why_BandComing>the band of {PEOPLE} is on its way already</CC_Pact_Why_BandComing>
+  <CC_Pact_Why_TheirCall>{PEOPLE} have called on the colony's fighters, and that waits first</CC_Pact_Why_TheirCall>
+  <CC_Pact_Why_Season>{PEOPLE} were called once this season already</CC_Pact_Why_Season>
+  <CC_Pact_Why_BandHere>a band of fighters from outside is on the colony's land already</CC_Pact_Why_BandHere>
+  <CC_Pact_Why_NoFireKnown>the colony can't build a campfire for a signal, and has no comms console to call with</CC_Pact_Why_NoFireKnown>
+  <CC_Pact_Why_NoWood>no comms console that reaches them, and fewer than {COUNT} wood for a signal fire</CC_Pact_Why_NoWood>
+  <CC_Pact_Why_NoCaller>nobody is up and able to make the call</CC_Pact_Why_NoCaller>
+  <CC_Pact_Why_EndCall>a call is under way</CC_Pact_Why_EndCall>
+  <CC_Dip_Why_NoFighters>{PEOPLE} have no fighters to send</CC_Dip_Why_NoFighters>
+
+  <!-- Letters and calls: the new purposes -->
+  <CC_Letter_Purpose_Pact>a pact</CC_Letter_Purpose_Pact>
+  <CC_Letter_PurposeCap_Pact>A pact</CC_Letter_PurposeCap_Pact>
+  <CC_Letter_Purpose_Truce>a truce</CC_Letter_Purpose_Truce>
+  <CC_Letter_PurposeCap_Truce>A truce</CC_Letter_PurposeCap_Truce>
+  <CC_Truce_Topic>A truce {TERM}</CC_Truce_Topic>
+  <CC_Pact_Topic>{KIND}</CC_Pact_Topic>
+  <CC_Pact_TopicEnd>End {KIND} with them, without blame</CC_Pact_TopicEnd>
+  <CC_Pact_CartOption>A cart of {GOODS} each season</CC_Pact_CartOption>
+  <CC_Pact_CartTerms>Each season a cart of {GOODS} goes out to their porters.</CC_Pact_CartTerms>
+  <CC_Pact_Menu_Title>What pact to speak of with {OTHER}</CC_Pact_Menu_Title>
+  <CC_Out_Act_SpeakPact>Speak of a pact...</CC_Out_Act_SpeakPact>
+  <CC_Pact_Note_Yes>a pact sworn</CC_Pact_Note_Yes>
+  <CC_Pact_Note_No>a pact refused</CC_Pact_Note_No>
+
+  <!-- Their answer to a truce offered -->
+  <CC_Truce_Ans_Moot>{PEOPLE} had nothing to answer: things had changed by the time it reached them.</CC_Truce_Ans_Moot>
+  <CC_Truce_Ans_No>{PEOPLE} will have no truce with the colony, not now.</CC_Truce_Ans_No>
+  <CC_Truce_Ans_No_2>{PEOPLE} heard the colony out and sent back no: there will be no {WORD} between them yet.</CC_Truce_Ans_No_2>
+  <CC_Truce_Ans_No_3>The answer from {PEOPLE} is short. They are not ready to put their weapons down.</CC_Truce_Ans_No_3>
+  <CC_Truce_Ans_Yes>{PEOPLE} agree to a truce {TERM}, with {PRICE}. Their envoy will come to the colony's gate to swear it by their custom: {RITE}.</CC_Truce_Ans_Yes>
+  <CC_Truce_Ans_Yes_2>{PEOPLE} will take the colony's terms: {WORD} {TERM}, with {PRICE}. An envoy of theirs is coming to the gate to swear it, {RITE} as their ways ask.</CC_Truce_Ans_Yes_2>
+  <CC_Truce_Ans_Yes_3>The answer is yes. {PEOPLE} will send someone to the gate to swear {WORD} {TERM}, with {PRICE}.</CC_Truce_Ans_Yes_3>
+
+  <!-- Their offer of a truce, after a raid of theirs was beaten -->
+  <CC_Truce_Offer_Label>A truce offered: {PEOPLE}</CC_Truce_Offer_Label>
+  <CC_Truce_Offer>Word has come from {WHO} of {PEOPLE}, sent under a white flag. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. If the colony agrees, their envoy will come to the gate to swear it: {RITE}.</CC_Truce_Offer>
+  <CC_Truce_Offer_2>{WHO} of {PEOPLE} has sent word under a white flag. They lost more than they meant to in that raid, and they offer {WORD} {TERM}, with {PRICE}, sworn at the colony's gate by their custom: {RITE}.</CC_Truce_Offer_2>
+  <CC_Truce_Offer_Call>{WHO} called the colony's console for {PEOPLE}. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. If the colony agrees, their envoy will come to the gate to swear it: {RITE}.</CC_Truce_Offer_Call>
+  <CC_Truce_Offer_How>While it holds, the raids of {PEOPLE} keep away from this home, and any camp of theirs near it breaks up. {PEACE}</CC_Truce_Offer_How>
+  <CC_Truce_Opt_Accept>Accept the truce</CC_Truce_Opt_Accept>
+  <CC_Truce_Opt_Refuse>Refuse</CC_Truce_Opt_Refuse>
+  <CC_Truce_Accepted>The colony has accepted the truce. The envoy of {PEOPLE} will come to the gate to swear it.</CC_Truce_Accepted>
+  <CC_Truce_Hist_Offer>{PEOPLE} offered the colony a truce.</CC_Truce_Hist_Offer>
+
+  <!-- Their envoy at the gate, and the oath -->
+  <CC_Truce_Envoy_Comes>An envoy of {PEOPLE} walks toward the gate under the protection of {ESCORT}, to swear the truce: {RITE}.</CC_Truce_Envoy_Comes>
+  <CC_Truce_Envoy_Comes_2>The envoy of {PEOPLE} is on the colony's land, vouched for by {ESCORT}, and making for the gate.</CC_Truce_Envoy_Comes_2>
+  <CC_Truce_Speaker_Goes>{PAWN} walks out to meet the envoy of {PEOPLE} at the gate.</CC_Truce_Speaker_Goes>
+  <CC_Truce_Report>swearing a truce with {PEOPLE}</CC_Truce_Report>
+  <CC_Truce_Sworn_Label>A truce with {PEOPLE}</CC_Truce_Sworn_Label>
+  <CC_Truce_Sworn>{SPEAKER} met {ENVOY} of {PEOPLE} at the gate, and they swore {WORD} {TERM}: {RITE}.</CC_Truce_Sworn>
+  <CC_Truce_Sworn_2>At the colony's gate, {ENVOY} of {PEOPLE} and {SPEAKER} swore {WORD} {TERM}, by their custom: {RITE}.</CC_Truce_Sworn_2>
+  <CC_Truce_Sworn_3>{SPEAKER} walked out to {ENVOY} of {PEOPLE}, and the two of them swore it there: {WORD} {TERM}.</CC_Truce_Sworn_3>
+  <CC_Truce_SwornByWord>No people at peace with both could vouch for an envoy of {PEOPLE}, so the truce was sworn by word instead: {WORD} {TERM}.</CC_Truce_SwornByWord>
+  <CC_Truce_Sworn_What>While it holds, the raids of {PEOPLE} keep away from this home, and any camp of theirs near it breaks up. Attacking them, their caravans or their towns breaks it. {PEACE}</CC_Truce_Sworn_What>
+  <CC_Truce_Paid_Ours>{SILVER} silver went into the hands of {PEOPLE}.</CC_Truce_Paid_Ours>
+  <CC_Truce_Paid_Theirs>Their envoy set down {SILVER} silver at the gate, the price of {PEOPLE}.</CC_Truce_Paid_Theirs>
+  <CC_Truce_Paid_Captives>The wardens will walk {COUNT} captives of {PEOPLE} out to their people, as agreed.</CC_Truce_Paid_Captives>
+  <CC_Truce_Hist_Sworn>The colony swore {WORD} with {PEOPLE} at its gate, {TERM}.</CC_Truce_Hist_Sworn>
+  <CC_Truce_Msg_PeaceFirst>Peace with {PEOPLE} came before their envoy did: there is no truce left to swear.</CC_Truce_Msg_PeaceFirst>
+  <CC_Truce_Msg_EnvoyLeft>The envoy of {PEOPLE} went home without the truce sworn.</CC_Truce_Msg_EnvoyLeft>
+  <CC_Truce_Msg_EnvoyNever>The envoy of {PEOPLE} never came to the gate, and the truce was never sworn.</CC_Truce_Msg_EnvoyNever>
+  <CC_Truce_Msg_RaidedFirst>Raiders of {PEOPLE} came before their envoy did. There will be no truce.</CC_Truce_Msg_RaidedFirst>
+  <CC_Truce_Msg_OffByUs>The colony turned on {PEOPLE} before the truce was sworn. It is off.</CC_Truce_Msg_OffByUs>
+  <CC_Truce_ParleyHarmed>The colony's people struck the envoy of {PEOPLE} under the sign of parley ({RITE}). Their envoy is running for home, there will be no truce, and every people in reach will hear the colony broke its word.</CC_Truce_ParleyHarmed>
+
+  <!-- Its end -->
+  <CC_Truce_End_Peace_Label>Peace with {PEOPLE}</CC_Truce_End_Peace_Label>
+  <CC_Truce_End_Peace>The truce with {PEOPLE} held to its end, and it ends as a peace. {PEACE}</CC_Truce_End_Peace>
+  <CC_Truce_End_Peace_2>{WORD} with {PEOPLE} is over, and nobody is at war anymore. {PEACE}</CC_Truce_End_Peace_2>
+  <CC_Truce_End_RanOut_Label>The truce with {PEOPLE} ran out</CC_Truce_End_RanOut_Label>
+  <CC_Truce_End_RanOut>The truce with {PEOPLE} has run its course. They are still at war with the colony, and their raids may come again. {PEACE}</CC_Truce_End_RanOut>
+  <CC_Truce_End_RanOut_2>{WORD} with {PEOPLE} is over. Nothing came of it beyond the quiet it bought, and their raiders are free to come again. {PEACE}</CC_Truce_End_RanOut_2>
+
+  <!-- Their firebrands, and a truce broken -->
+  <CC_Truce_Firebrands_Label>Firebrands of {PEOPLE}</CC_Truce_Firebrands_Label>
+  <CC_Truce_Firebrands>Some of {PEOPLE} never wanted {WORD}. A band of their firebrands is coming at the colony anyway, and the truce will not survive it.</CC_Truce_Firebrands>
+  <CC_Truce_Firebrands_2>Not everyone among {PEOPLE} swore to the truce. A band that didn't is on its way, and when it gets here the truce is broken.</CC_Truce_Firebrands_2>
+  <CC_Truce_BrokenByThem_Label>The truce with {PEOPLE} is broken</CC_Truce_BrokenByThem_Label>
+  <CC_Truce_BrokenByThem>{PEOPLE} broke {WORD}: {HOW}. The colony will remember it, and their raids may come again.</CC_Truce_BrokenByThem>
+  <CC_Truce_BrokenByThem_2>So much for the truce with {PEOPLE}: {HOW}. It is broken, and the colony owes them nothing now.</CC_Truce_BrokenByThem_2>
+  <CC_Truce_BrokenByUs_Label>The colony broke its truce</CC_Truce_BrokenByUs_Label>
+  <CC_Truce_BrokenByUs>The truce with {PEOPLE} is broken by the colony: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Truce_BrokenByUs>
+  <CC_Truce_By_Raid>their raiders came at the colony anyway</CC_Truce_By_Raid>
+  <CC_Truce_By_Ambush>they ambushed a caravan of the colony's</CC_Truce_By_Ambush>
+  <CC_Truce_By_Killed>they killed one of the colony's people</CC_Truce_By_Killed>
+  <CC_Truce_By_Parley>struck their envoy under the sign of parley</CC_Truce_By_Parley>
+
+  <!-- Their answer to a pact proposed -->
+  <CC_Pact_Ans_Moot>{PEOPLE} had nothing to answer: things had changed by the time it reached them.</CC_Pact_Ans_Moot>
+  <CC_Pact_Ans_No>{PEOPLE} won't swear {KIND} with the colony, not yet.</CC_Pact_Ans_No>
+  <CC_Pact_Ans_No_2>{PEOPLE} thanked the colony and said no: {KIND} is more than they will promise now.</CC_Pact_Ans_No_2>
+  <CC_Pact_Ans_Yes>{PEOPLE} swear {KIND} with the colony, for a year: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Pact_Ans_Yes>
+  <CC_Pact_Ans_Yes_2>The answer is yes. {PEOPLE} and the colony have {KIND} for a year, {RITE} as their ways ask.</CC_Pact_Ans_Yes_2>
+  <CC_Pact_Ans_Yes_3>{PEOPLE} will stand by the colony in {KIND} this year, and they want it written down: {WORD}.</CC_Pact_Ans_Yes_3>
+  <CC_Pact_Ans_Ended>{PEOPLE} take the colony's word that the pact is over. They are sorry to see it go, and hold nothing against the colony for it.</CC_Pact_Ans_Ended>
+
+  <!-- Their offer of a pact, or to renew one -->
+  <CC_Pact_Offer_Label>A pact offered: {PEOPLE}</CC_Pact_Offer_Label>
+  <CC_Pact_Offer>{WHO} writes for {PEOPLE}: with {ENEMY} at war with both, they offer the colony {KIND} for a year, {RITE} as their ways ask.</CC_Pact_Offer>
+  <CC_Pact_Offer_2>{PEOPLE} want {KIND} with the colony. {WHO} puts it plainly: {ENEMY} are enemies of both, and two can hold them off better than one.</CC_Pact_Offer_2>
+  <CC_Pact_Renew_Label>The pact with {PEOPLE}</CC_Pact_Renew_Label>
+  <CC_Pact_Renew>The year of {KIND} with {PEOPLE} is over. {WHO} writes that they would keep it another year, {RITE} as before.</CC_Pact_Renew>
+  <CC_Pact_Renew_2>{WHO} of {PEOPLE} asks whether the colony will keep {KIND} for another year. They would.</CC_Pact_Renew_2>
+  <CC_Pact_Opt_Accept>Swear the pact</CC_Pact_Opt_Accept>
+  <CC_Pact_Opt_Refuse>Decline</CC_Pact_Opt_Refuse>
+  <CC_Pact_Opt_Renew>Keep it another year</CC_Pact_Opt_Renew>
+  <CC_Pact_Opt_LetEnd>Let it end</CC_Pact_Opt_LetEnd>
+  <CC_Pact_Made>The colony and {PEOPLE} have sworn {KIND} for a year: {WORD}.</CC_Pact_Made>
+  <CC_Pact_Renewed>{KIND} with {PEOPLE} will hold another year.</CC_Pact_Renewed>
+  <CC_Pact_Hist_Offer>{PEOPLE} offered the colony {KIND}.</CC_Pact_Hist_Offer>
+  <CC_Pact_Msg_Over>The year of {KIND} with {PEOPLE} is over, and it ends without ill will.</CC_Pact_Msg_Over>
+  <CC_Pact_Msg_War>{PEOPLE} are at war with the colony now, and the pact with them is over.</CC_Pact_Msg_War>
+  <CC_Pact_Msg_EndedByUs>The colony has ended {KIND} with {PEOPLE} by its letter, without blame.</CC_Pact_Msg_EndedByUs>
+
+  <!-- Calling a defense pact in -->
+  <CC_Pact_Act_Call>Call {PEOPLE}</CC_Pact_Act_Call>
+  <CC_Pact_Act_CallShort>Call them</CC_Pact_Act_CallShort>
+  <CC_Pact_Act_Call_Tip>Call them to the colony's aid while a threat is on it: by the comms console if both sides can use one, else by a signal fire laid and lit by the gate where their watchers see it. Their band walks in some hours later, at most once a season.</CC_Pact_Act_Call_Tip>
+  <CC_Pact_Call_Comms>{PAWN} goes to the comms console to call {PEOPLE}: {MEANS}.</CC_Pact_Call_Comms>
+  <CC_Pact_Call_Fire>{PAWN} carries wood out to the gate for {MEANS}, so the watchers of {PEOPLE} see it.</CC_Pact_Call_Fire>
+  <CC_Pact_Report_Call>calling {PEOPLE} for help</CC_Pact_Report_Call>
+  <CC_Pact_Report_Fire>laying a signal fire</CC_Pact_Report_Fire>
+  <CC_Pact_Coming>{PEOPLE} saw {MEANS} and answer it: their band is setting out for the colony.</CC_Pact_Coming>
+  <CC_Pact_Coming_2>Word comes back from {PEOPLE} after {MEANS}: their fighters are on their way.</CC_Pact_Coming_2>
+  <CC_Pact_PutOff>{PEOPLE} answered {MEANS}, but their riders are elsewhere this time. Nobody is coming.</CC_Pact_PutOff>
+  <CC_Pact_PutOff_2>After {MEANS}, word comes from {PEOPLE} that their fighters are out on another errand. They are sorry.</CC_Pact_PutOff_2>
+  <CC_Pact_Decline_Label>{PEOPLE} won't come</CC_Pact_Decline_Label>
+  <CC_Pact_Decline>{PEOPLE} won't fight {ENEMY}, who are friends of theirs. The pact can't hold against them, and they end it with no blame on either side: {WORD}, set aside.</CC_Pact_Decline>
+  <CC_Pact_Band_Label>Fighters of {PEOPLE}</CC_Pact_Band_Label>
+  <CC_Pact_Band>{COUNT} fighters of {PEOPLE} have walked in to fight {ENEMY} beside the colony, as the pact asks: {WORD}.</CC_Pact_Band>
+  <CC_Pact_Band_2>The band of {PEOPLE} has come. {COUNT} of them are on the colony's land, making for {ENEMY}.</CC_Pact_Band_2>
+  <CC_Pact_Band_Late>The band of {PEOPLE} reached the colony's land after the fight was over. They saw nothing left to do and turned for home.</CC_Pact_Band_Late>
+  <CC_Pact_Band_Late_2>Fighters of {PEOPLE} came over the hill an hour too late. Finding the fight over, they went home.</CC_Pact_Band_Late_2>
+  <CC_Pact_Hist_Band>{PEOPLE} sent their band to fight {ENEMY} beside the colony.</CC_Pact_Hist_Band>
+  <CC_Pact_Hist_BandLate>{PEOPLE} sent their band to the colony's aid, too late for the fight.</CC_Pact_Hist_BandLate>
+  <CC_Pact_Alert>Call {PEOPLE}</CC_Pact_Alert>
+  <CC_Pact_AlertWhat>A threat is on the colony, and it has a defense pact with {PEOPLE}. Click to call them: {MEANS}. Their band walks in some hours later, once a season at most.</CC_Pact_AlertWhat>
+
+  <!-- A trade pact's season -->
+  <CC_Pact_Season_Label>The season's trade with {PEOPLE}</CC_Pact_Season_Label>
+  <CC_Pact_Season>A trader caravan of {PEOPLE} is on its way, as the trade pact promises each season: {WORD}.</CC_Pact_Season>
+  <CC_Pact_Season_2>The season turns, and {PEOPLE} keep their side of the trade pact: their caravan is coming.</CC_Pact_Season_2>
+  <CC_Pact_Season_NoCaravan>{PEOPLE} could send no caravan this season, though the pact stands: {WORD}.</CC_Pact_Season_NoCaravan>
+  <CC_Pact_Cart>The colony's cart this season: {GOODS}, carried out to the gate for their porters, who will pay {SILVER} silver for it.</CC_Pact_Cart>
+  <CC_Pact_CartShort>The stores hold less than the {GOODS} the colony promised, so no cart goes out this season.</CC_Pact_CartShort>
+  <CC_Pact_CartLabel>The cart for {PEOPLE}</CC_Pact_CartLabel>
+
+  <!-- A pact broken by the colony -->
+  <CC_Pact_BrokenByUs_Label>The colony broke its pact</CC_Pact_BrokenByUs_Label>
+  <CC_Pact_BrokenByUs>{KIND} with {PEOPLE} is broken by the colony: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Pact_BrokenByUs>
+
+  <!-- Their call to arms -->
+  <CC_Arms_Label>{PEOPLE} ask for fighters</CC_Arms_Label>
+  <CC_Arms_Pact>{WHO} writes for {PEOPLE}: {ENEMY} have come against {TOWN}, and under the pact they ask the colony for fighters, {RITE} as their ways put it.</CC_Arms_Pact>
+  <CC_Arms_Pact_2>{ENEMY} are at {TOWN}. {WHO} of {PEOPLE} calls on the pact: the colony's fighters, as soon as they can get there.</CC_Arms_Pact_2>
+  <CC_Arms_Favour>{WHO} writes for {PEOPLE}: {ENEMY} have come against {TOWN}, and they call in the debt the colony owes them: its fighters, as {RITE}.</CC_Arms_Favour>
+  <CC_Arms_How>Two of the colony's grown people or more should set out by caravan for {TOWN} ({DISTANCE}) within five days. There they will fight beside {PEOPLE}.</CC_Arms_How>
+  <CC_Arms_Refuse_Pact>Refused, or nobody set out in time, and the pact is broken by the colony.</CC_Arms_Refuse_Pact>
+  <CC_Arms_Refuse_Favour>Refused, or nobody set out in time, and the debt is broken.</CC_Arms_Refuse_Favour>
+  <CC_Arms_Opt_Send>Send fighters</CC_Arms_Opt_Send>
+  <CC_Arms_Opt_Refuse>Refuse</CC_Arms_Opt_Refuse>
+  <CC_Arms_Msg_Send>The colony will send fighters to {TOWN}: form a caravan of {COUNT} grown colonists or more and send it there.</CC_Arms_Msg_Send>
+  <CC_Arms_By_Refused>it refused their call to arms</CC_Arms_By_Refused>
+  <CC_Arms_By_Unanswered>nobody set out when they called for fighters</CC_Arms_By_Unanswered>
+  <CC_Arms_Fight_Label>The fight at {TOWN}</CC_Arms_Fight_Label>
+  <CC_Arms_Fight>The colony's caravan came to {TOWN} as {PEOPLE} asked, and found {ENEMY} there. {ALLIES} fighters of theirs stand with the colony's people: {WORD}.</CC_Arms_Fight>
+  <CC_Arms_Fight_2>Outside {TOWN} the band of {ENEMY} turns to meet the colony's people. {ALLIES} of {PEOPLE} fight beside them.</CC_Arms_Fight_2>
+  <CC_Arms_Fought>The colony's people are fighting at {TOWN}.</CC_Arms_Fought>
+  <CC_Arms_JoinedInvasion>The colony's people joined the fight for {TOWN}.</CC_Arms_JoinedInvasion>
+  <CC_Arms_Late>The colony's caravan reached {TOWN}, and the danger there had passed. {PEOPLE} thank it all the same.</CC_Arms_Late>
+  <CC_Arms_Hist>The colony's fighters came to {TOWN} when {PEOPLE} asked.</CC_Arms_Hist>
+  <CC_Arms_Deed>fighters sent to {TOWN}</CC_Arms_Deed>
+
+  <!-- A debt called in for fighters -->
+  <CC_Dip_Opt_Fighters>Their fighters, now: a band of {PEOPLE}</CC_Dip_Opt_Fighters>
+  <CC_Dip_Ask_Fighters>their fighters</CC_Dip_Ask_Fighters>
+  <CC_Dip_Done_Fighters>The band of {PEOPLE} is setting out, and will walk in some hours from now.</CC_Dip_Done_Fighters>
+  <CC_Dip_Need_Fighters>fighters for their town</CC_Dip_Need_Fighters>
+
+  <!-- On the cards and pages -->
+  <CC_Truce_Row>{WORD} with {PEOPLE} {TERM}</CC_Truce_Row>
+  <CC_Truce_RowPending>{WORD} with {PEOPLE} {TERM}, agreed and not yet sworn</CC_Truce_RowPending>
+  <CC_Truce_RowPendingNote>Their envoy is to come to the gate to swear it: {RITE}.</CC_Truce_RowPendingNote>
+  <CC_Truce_Card_Price>The price: {PRICE}.</CC_Truce_Card_Price>
+  <CC_Pact_Row>{KIND} with {PEOPLE}: {WORD}</CC_Pact_Row>
+  <CC_Pact_State_Calling>a call is being made</CC_Pact_State_Calling>
+  <CC_Pact_State_Band>the band of {PEOPLE} is on its way</CC_Pact_State_Band>
+  <CC_Pact_State_Arms>they ask for the colony's fighters at {TOWN}</CC_Pact_State_Arms>
+  <CC_Pact_State_Cart>a cart of {GOODS} each season</CC_Pact_State_Cart>
+  <CC_Pact_Card_Calls>Called {COUNT} times.</CC_Pact_Card_Calls>
+  <CC_Card_OfferedByUs>The colony offered it.</CC_Card_OfferedByUs>
+  <CC_Card_OfferedByThem>{PEOPLE} offered it.</CC_Card_OfferedByThem>
+  <CC_Truce_Act_Offer>Offer a truce</CC_Truce_Act_Offer>
+  <CC_Truce_Act_Offer_Tip>A letter or a call to their head with the terms: a season or a year, and a price either way. Their answer comes back, and if they agree their envoy comes to the gate to swear it.</CC_Truce_Act_Offer_Tip>
+  <CC_Pact_Act_Propose>Propose a pact</CC_Pact_Act_Propose>
+  <CC_Pact_Act_Propose_Tip>A letter or a call to their head: a defense pact, or a trade pact with the cart the colony sends each season.</CC_Pact_Act_Propose_Tip>
+  <CC_Pact_Act_End>End it by letter</CC_Pact_Act_End>
+  <CC_Pact_Act_End_Tip>A letter to their head ending the pact, without blame on either side.</CC_Pact_Act_End_Tip>
+
+  <!-- This week -->
+  <CC_Pact_Week_TruceOffer>{PEOPLE} offer a truce</CC_Pact_Week_TruceOffer>
+  <CC_Pact_Week_PactOffer>{PEOPLE} offer a pact</CC_Pact_Week_PactOffer>
+  <CC_Pact_Week_Arms>{PEOPLE} ask for the colony's fighters</CC_Pact_Week_Arms>
+  <CC_Pact_WeekNote>waiting for an answer</CC_Pact_WeekNote>
+  <CC_Pact_Week_Truce>A truce with {PEOPLE}, to be sworn at the gate</CC_Pact_Week_Truce>
+  <CC_Pact_Week_Band>The band of {PEOPLE}, called to the colony's aid</CC_Pact_Week_Band>
+  <CC_Pact_Week_Fighters>The colony's fighters, on their way to {PEOPLE}</CC_Pact_Week_Fighters>
+  <CC_Pact_Week_BrokenByThem>{PEOPLE} broke their truce: their raids may come again</CC_Pact_Week_BrokenByThem>
+  <CC_Pact_Week_BrokenByUs>The colony broke its truce with {PEOPLE}: their raids may come again</CC_Pact_Week_BrokenByUs>
+  <CC_Pact_Step_Agreed>agreed</CC_Pact_Step_Agreed>
+  <CC_Pact_Step_EnvoyRoad>their envoy on the road</CC_Pact_Step_EnvoyRoad>
+  <CC_Pact_Step_AtGate>at the gate</CC_Pact_Step_AtGate>
+  <CC_Pact_Step_Sworn>sworn</CC_Pact_Step_Sworn>
+  <CC_Pact_Step_Calling>calling</CC_Pact_Step_Calling>
+  <CC_Pact_Step_BandRoad>on their way</CC_Pact_Step_BandRoad>
+  <CC_Pact_Step_Here>here</CC_Pact_Step_Here>
+  <CC_Pact_Step_Asked>asked</CC_Pact_Step_Asked>
+  <CC_Pact_Step_SetOut>set out</CC_Pact_Step_SetOut>
+  <CC_Pact_Step_There>there</CC_Pact_Step_There>
+
+  <!-- [SR] Factional War: a battle on the colony's land with a partner among the sides -->
+  <CC_War_Pact>{PEOPLE}, the colony's pact partners, are one side of the battle on its land, against {OTHER}. Fighting beside them keeps the pact.</CC_War_Pact>
+  <CC_War_Truce>{PEOPLE}, who hold a truce with the colony, are one side of the battle on its land, against {OTHER}. Harm done to their fighters breaks the truce.</CC_War_Truce>
+  <CC_War_Sided>the battle against {OTHER} on the colony's land</CC_War_Sided>
+  <CC_War_SidedMsg>{PEOPLE} saw the colony fight beside them, and will remember it.</CC_War_SidedMsg>
+
+  <!-- A raiders' camp broken up by a truce -->
+  <CC_RaidCamp_End_Truce>With a truce sworn, {PEOPLE} have struck their {KIND} {WHERE} and gone home.</CC_RaidCamp_End_Truce>
+  <CC_RaidCamp_End_Truce_2>The truce reached the camp of {PEOPLE} {WHERE}. Their {KIND} has been struck, and they are gone.</CC_RaidCamp_End_Truce_2>
+
+  <!-- The council's question (Rimfolk_DlmTruce_Avenger) -->
+  <CC_Impact_TruceSwear>The speaker walks out to the envoy of {PEOPLE}, and the truce is sworn at the gate.</CC_Impact_TruceSwear>
+  <CC_Impact_TruceSwearBrief>the truce sworn</CC_Impact_TruceSwearBrief>
+  <CC_Impact_TruceTurnAway>Their envoy is sent home, there is no truce, and {PEOPLE} feel turned away.</CC_Impact_TruceTurnAway>
+  <CC_Impact_TruceTurnAwayBrief>no truce</CC_Impact_TruceTurnAwayBrief>
+
+  <!-- Settings -->
+  <CC_Settings_DiplomacyPacts>Pacts and truces</CC_Settings_DiplomacyPacts>
+  <CC_SetNote_DiplomacyPacts>Truces with peoples at war with the colony, and defense and trade pacts with its friends.</CC_SetNote_DiplomacyPacts>
+  <CC_Settings_DiplomacyPacts_Tip>A truce can be offered to a people at war with the colony when it has beaten a raid of theirs in the last 15 days, holds one of their notables or kin, or a friend of both has spoken for peace; they offer one now and then after a raid of theirs is beaten. Agreed, their envoy comes to the gate under their sign of parley, and the colony's speaker walks out to swear it. A season or a year, with a price either way. While it holds, their raiders' camp near the colony breaks up; once per truce their firebrands may raid anyway (one in ten). At its end it is a peace if their goodwill has come to 0. A pact (with a people at goodwill 20 or more, never the Empire) runs a year and can be renewed: a defense pact brings their band when the colony calls during a threat (at most once a season, nine times in ten) and asks the colony's fighters for their town when it is attacked; a trade pact brings their caravan each season and takes a cart of the colony's surplus for silver. Attacking a partner breaks it, and every people in reach hears of it. Off: nothing new is made, and those live run out by their terms.</CC_Settings_DiplomacyPacts_Tip>
+  <CC_Settings_TruceRaids>Truces keep raids away</CC_Settings_TruceRaids>
+  <CC_SetNote_TruceRaids>While a truce holds, the storyteller doesn't send that people's raids to that home.</CC_SetNote_TruceRaids>
+  <CC_Settings_TruceRaids_Tip>A small hook on the game's choice of raiders: a people holding a truce with the home being raided isn't chosen. Raids whose people is set beforehand (quests, other mods) still come, and break the truce when they do. Needs the deeper game hooks. Off: a truce keeps only Rimfolk's own raids and camps away.</CC_Settings_TruceRaids_Tip>
+
+</LanguageData>

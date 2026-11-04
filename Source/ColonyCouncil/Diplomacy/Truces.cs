@@ -656,6 +656,7 @@ namespace ColonyCouncil
 
         private static void BrokenByThem(Tie t, Faction f, Map home, string how)
         {
+            t.terms.goods = BrokenByThemKey;
             WorldLedger.Set(t, Tie.State.Broken);
             Dirty();
             Diplomacy.Dirty();
@@ -664,7 +665,6 @@ namespace ColonyCouncil
             string text = PactWords.T("CC_Truce_BrokenByThem", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), how.Named("HOW"));
             Tell.Letter(NewsKind.World, Importance.Important, home, PactWords.P("CC_Truce_BrokenByThem_Label", PactWords.People(f).Named("PEOPLE")), text, LetterDefOf.ThreatSmall,
                 LookTargets.Invalid, f);
-            Broken.Add(t.id);
         }
 
         /// <summary>
@@ -682,6 +682,7 @@ namespace ColonyCouncil
                     End(t, Tie.State.Broken, PactWords.P("CC_Truce_Msg_OffByUs", PactWords.People(f).Named("PEOPLE")));
                     continue;
                 }
+                t.terms.goods = BrokenByUsKey;
                 WorldLedger.Set(t, Tie.State.Broken);
                 any = true;
                 var form = PactWords.TruceForm(home, f);
@@ -709,7 +710,7 @@ namespace ColonyCouncil
                 }
         }
 
-        /// <summary>Truces they broke lately (this session), for This week's row: "a truce broken".</summary>
-        internal static readonly List<int> Broken = new List<int>();
+        /// <summary>Who broke a truce, kept in its terms once broken (the price is past): for This week's row, "a truce broken".</summary>
+        public const string BrokenByThemKey = "brokenByThem", BrokenByUsKey = "brokenByUs";
     }
 }

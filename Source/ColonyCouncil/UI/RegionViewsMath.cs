@@ -140,6 +140,8 @@ namespace ColonyCouncil
         public bool trades;
         /// <summary>A world event runs there.</summary>
         public bool eventHere;
+        /// <summary>Its people hold a sworn truce with the home (Diplomacy/Truces.cs): the Threats lens dims it.</summary>
+        public bool truce;
     }
 
     /// <summary>
@@ -248,7 +250,7 @@ namespace ColonyCouncil
                         case PlaceKind.Home: return p.threatened ? Hue.Sour : Hue.Gold;
                         case PlaceKind.Camp: return Hue.Sour;
                         case PlaceKind.Town:
-                        case PlaceKind.Post: return p.stance == Stance.Sour ? Hue.Sour : Hue.Dim;
+                        case PlaceKind.Post: return p.stance == Stance.Sour && !p.truce ? Hue.Sour : Hue.Dim;
                         default: return Hue.Dim;
                     }
                 case Lens.Trade:

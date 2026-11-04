@@ -271,7 +271,7 @@ namespace ColonyCouncil
             topics = NeighbourLetters.Topics(to, purpose);
         }
 
-        public override Vector2 InitialSize => new Vector2(600f, 640f);
+        public override Vector2 InitialSize => new Vector2(600f, 700f);
 
         public Dialog_NeighbourLetter(Notable n)
         {

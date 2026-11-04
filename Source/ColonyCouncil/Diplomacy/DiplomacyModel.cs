@@ -191,6 +191,12 @@ namespace ColonyCouncil
                     color = NotableBook.RegardColor(op)
                 };
             }
+            // Pacts and truces with this home (release 2a.2), in their age's words, with their acts.
+            foreach (var pr in PactsPanels.Rows(f, home))
+            {
+                c.ties.Add(pr);
+                c.weight += 12;
+            }
             // Debts of honour, either way, and the notables' personal ones.
             foreach (var t in FavoursOwed.OwedBy(f).Concat(FavoursOwed.OwedTo(f)))
             {
@@ -202,6 +208,7 @@ namespace ColonyCouncil
             foreach (var t in WorldLedger.TiesOf(r))
             {
                 if (t == null || !t.Live || t.kind == Tie.Kind.Regard || t.kind == Tie.Kind.Favour && t.origin == FavourMath.Origin) continue;
+                if (t.kind == Tie.Kind.Pact && t.origin == Pacts.Origin || t.kind == Tie.Kind.Truce && t.origin == Truces.Origin) continue;
                 string line = TieLine(t);
                 if (line.NullOrEmpty()) continue;
                 c.ties.Add(new DipRow { text = line, note = t.since >= 0 ? DipWords.Since(t.since) : null, color = UiKit.Info, link = f });
@@ -230,6 +237,8 @@ namespace ColonyCouncil
                 write.run = () => Find.WindowStack.Add(new Dialog_NeighbourLetter(n));
             }
             c.acts.Add(write);
+            // Offer a truce, propose a pact, call a defence pact in (release 2a.2), each greyed with why not.
+            c.acts.AddRange(PactsPanels.Acts(f, home));
             if (!Diplomacy.Hostile(f)) c.weight += 1;
             return c;
         }
@@ -344,6 +353,7 @@ namespace ColonyCouncil
             var f = s?.Faction;
             if (f == null) return list;
             var home = Home;
+            list.AddRange(PactsPanels.Rows(f, home));
             foreach (var t in FavoursOwed.OwedBy(f).Concat(FavoursOwed.OwedTo(f)))
             {
                 if (FavoursOwed.IsPersonal(t) && FavoursOwed.NotableOf(t)?.town != s.ID) continue;
