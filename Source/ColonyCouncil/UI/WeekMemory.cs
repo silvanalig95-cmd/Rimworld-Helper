@@ -171,6 +171,7 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (now % Sched.RareTicks != DilemmaLog.WatchTick) return;
+            using var clock = PassClock.Time(Pass.RareWeekMemory);
             try
             {
                 int day = GenDate.DaysPassed;

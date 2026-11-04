@@ -195,6 +195,7 @@ namespace ColonyCouncil
             if (!due) return;
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareWelcome)) return;
+            using var clock = PassClock.Time(Pass.RareWelcome);
             if (firstSeen < 0) firstSeen = now;
             if (now - firstSeen < Delay) return;
             due = false;

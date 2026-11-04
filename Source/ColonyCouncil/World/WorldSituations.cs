@@ -93,6 +93,7 @@ namespace ColonyCouncil
             int t = Now;
             if (Sched.Every(t, Sched.RareTicks, Sched.RareWorldKeep) && active.Count > 0)
             {
+                using var keep = PassClock.Time(Pass.RareWorldKeep);
                 try
                 {
                     foreach (var s in active)
@@ -104,6 +105,7 @@ namespace ColonyCouncil
                 }
             }
             if (!Sched.Hourly(t, Sched.WorldSituations)) return;
+            using var clock = PassClock.Time(Pass.WorldSituations);
             try
             {
                 Hourly(t);

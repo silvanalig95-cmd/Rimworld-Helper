@@ -140,6 +140,7 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RarePlayOut)) return;
+            using var clock = PassClock.Time(Pass.RarePlayOut);
             // Strangers fed and staying the night bed down by the wall (PlayStrangers.cs).
             PlayStrangers.Tick(now);
             if (plays.Count == 0) return;

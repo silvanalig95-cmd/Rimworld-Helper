@@ -80,6 +80,7 @@ namespace ColonyCouncil
         public override void MapComponentTick()
         {
             if (queue.Count == 0 || !Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RarePlanQueue)) return;
+            using var clock = PassClock.Time(Pass.RarePlanQueue);
             try
             {
                 int given = 0;

@@ -197,6 +197,7 @@ namespace ColonyCouncil
             if (statesTick < 0 && t % 60 == 17 && (S?.MoodEffects ?? false)) Safe("lasting setbacks", () => Refresh(t));
             if (!Sched.Hourly(t, Sched.Setbacks)) return;
             if (!(S?.MoodEffects ?? false)) return;
+            using var clock = PassClock.Time(Pass.Setbacks);
             Safe("hour", Hourly);
             if (Sched.FirstHourOfDay(t)) Safe("day", Daily);
         }

@@ -278,6 +278,7 @@ namespace ColonyCouncil
         {
             // A few times an hour is plenty for "around six".
             if (!Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RareNews)) return;
+            using var clock = PassClock.Time(Pass.RareNews);
             try
             {
                 Check();

@@ -182,6 +182,7 @@ namespace ColonyCouncil
             int slice = Sched.SliceTurn(now, Sched.HourTicks, Sched.Slices, Sched.RareAilments);
             if (slice < 0) return;
             if (!On) return;
+            using var clock = PassClock.Time(Sched.Hourly(now, Sched.Ailments) ? Pass.Ailments : Pass.RareAilments);
             try
             {
                 Slice(slice, now);

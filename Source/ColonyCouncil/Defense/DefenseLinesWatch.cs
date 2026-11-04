@@ -57,6 +57,7 @@ namespace ColonyCouncil
             if (lines.Count == 0 && !raidOn) return;
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareDefenseLines)) return;
+            using var clock = PassClock.Time(Pass.RareDefenseLines);
             try
             {
                 Watch(now);

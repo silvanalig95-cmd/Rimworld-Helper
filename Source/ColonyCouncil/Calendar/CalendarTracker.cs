@@ -142,6 +142,7 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             if (!Sched.Hourly(Find.TickManager.TicksGame, Sched.Calendar)) return;
+            using var clock = PassClock.Time(Pass.Calendar);
             Safe("calendar", Hourly);
         }
 

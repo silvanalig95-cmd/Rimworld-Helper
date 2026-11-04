@@ -347,6 +347,7 @@ namespace ColonyCouncil
             // Often enough that the play log (which keeps only the last 150 or so entries) never runs past us.
             if (Sched.Every(t, Sched.PeopleLogPeriod, Sched.PeopleLog))
             {
+                using var clock = PassClock.Time(Pass.PeopleLog);
                 Safe("social interactions", () =>
                 {
                     SocialInteractions.ScanLog(this);
@@ -355,7 +356,9 @@ namespace ColonyCouncil
                 // People changed by Big & Small, a xenogerm or a character editor (Integrations/PeopleChanges.cs).
                 Safe("people changes", PeopleChanges.Check);
             }
-            if (Sched.Every(t, Sched.DayTicks, Sched.DailyBestFriends)) Safe("best friends", () => SocialInteractions.BestFriends(this));
+            if (Sched.Every(t, Sched.DayTicks, Sched.DailyBestFriends))
+                using (PassClock.Time(Pass.DailyBestFriends))
+                    Safe("best friends", () => SocialInteractions.BestFriends(this));
         }
 
         private static void Safe(string what, System.Action a)

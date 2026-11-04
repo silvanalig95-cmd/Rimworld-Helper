@@ -236,6 +236,7 @@ namespace ColonyCouncil
             int now = Now;
             // On the tick of the things answers keep on the map (OnMapTimed), as the visitors' own services are.
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareTimed)) return;
+            using var clock = PassClock.Time(Pass.RareCallers);
             foreach (var t in tasks.ToList())
             {
                 bool over;

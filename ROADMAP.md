@@ -357,7 +357,10 @@ play deep. In order:
   Rooms tab and Almanac draw from kept models; defs by name are kept (`Lean/DefRef.cs`). Caches have tested rules
   (`Lean/Fresh.cs`). A five-year save estimate (`Tools/save_estimate.py`, `docs/save-size.md`): about 1.3 MB,
   nothing without a bound. Behaviour is unchanged (the tests and the balance simulator's numbers are the same).
-  Still open: one shared clock for the remaining hourly passes, and a profiler pass in a long save.
+  Still open: a profiler pass in a long save (the player's Dubs Performance Analyzer capture, read against Rimfolk's
+  clock). The shared clock for the remaining hourly passes was looked at in stage 0 (0.65.1) and left: the game calls
+  every component's tick anyway, so a dispatcher saves one comparison per component per tick, and it would change the
+  order of passes within a tick (and with it which pass draws which random numbers).
 
 ### 3. Clear (UI/UX)
 - Done (October 2026): the settings window on seven pages (council and wishes, people and moods, heart and health,

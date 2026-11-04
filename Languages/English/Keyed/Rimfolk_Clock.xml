@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Rimfolk's clock: how long each regular pass takes (dev window; Source/ColonyCouncil/UI/ClockWindow.cs, Lean/PassClock.cs) ===================== -->
+
+  <CC_Clock_Title>Rimfolk's clock</CC_Clock_Title>
+  <CC_Clock_Subtitle>How long each of Rimfolk's regular passes takes on this computer, and how much it keeps in the save.</CC_Clock_Subtitle>
+  <CC_Clock_Stat>{0} ms a tick</CC_Clock_Stat>
+  <CC_Clock_NothingYet>Nothing has been timed in this game yet. Let the game run for a moment.</CC_Clock_NothingYet>
+  <CC_Clock_Summary>Timed over {0} of game time since this game was loaded. Over the day below, Rimfolk's passes took {1} ms of each tick on average.</CC_Clock_Summary>
+  <CC_Clock_Reading>Each line is one of Rimfolk's regular passes, the most costly first. Runs are how often it came round and did its work; one that waits for something (a visit, a letter, an answer playing out) runs only while there is one. Times are real milliseconds on this computer. The hour and the day are the last whole ones once the clock has seen one, and the one so far until then. Per run is the average since the game was loaded, and the worst run the longest single one. Nothing here is saved. Hover over a line to see when it runs.</CC_Clock_Reading>
+  <CC_Clock_Col_Pass>Pass</CC_Clock_Col_Pass>
+  <CC_Clock_Col_LastHour>Last hour</CC_Clock_Col_LastHour>
+  <CC_Clock_Col_ThisHour>This hour so far</CC_Clock_Col_ThisHour>
+  <CC_Clock_Col_LastDay>Last day</CC_Clock_Col_LastDay>
+  <CC_Clock_Col_Today>Today so far</CC_Clock_Col_Today>
+  <CC_Clock_Col_Runs>runs</CC_Clock_Col_Runs>
+  <CC_Clock_Col_Ms>ms</CC_Clock_Col_Ms>
+  <CC_Clock_Col_PerRun>per run</CC_Clock_Col_PerRun>
+  <CC_Clock_Col_Worst>worst run</CC_Clock_Col_Worst>
+  <CC_Clock_Total>All of Rimfolk's passes</CC_Clock_Total>
+  <CC_Clock_Rhythm_Hour>Once an hour, at tick {0} of the hour.</CC_Clock_Rhythm_Hour>
+  <CC_Clock_Rhythm_Day>Once a day, at tick {0} of the day.</CC_Clock_Rhythm_Day>
+  <CC_Clock_Rhythm_Every>Every {0} ticks, at tick {1} of each.</CC_Clock_Rhythm_Every>
+  <CC_Clock_Rhythm_Waiting>Only while something waits for it.</CC_Clock_Rhythm_Waiting>
+  <CC_Clock_SinceLoad>Since this game was loaded: {0} runs, {1} ms.</CC_Clock_SinceLoad>
+  <CC_Clock_WorstAt>The worst run came {0} ago.</CC_Clock_WorstAt>
+  <CC_Clock_Stores>What Rimfolk keeps in the save</CC_Clock_Stores>
+  <CC_Clock_Store_Chronicle>The chronicle: {0} entries.</CC_Clock_Store_Chronicle>
+  <CC_Clock_Store_Notables>The neighbours by name: {0} people.</CC_Clock_Store_Notables>
+  <CC_Clock_Store_Outsiders>Outsiders: {0} pairs of a colonist and an outsider who know each other, {1} pieces of news heard lately.</CC_Clock_Store_Outsiders>
+  <CC_Clock_Store_Deeds>What the peoples remember: {0} deeds.</CC_Clock_Store_Deeds>
+  <CC_Clock_Store_Memos>What Rimfolk's events left behind: {0} memos.</CC_Clock_Store_Memos>
+  <CC_Clock_Store_Journals>Journals: {0}, with {1} lines between them.</CC_Clock_Store_Journals>
+  <CC_Clock_Store_Situations>World situations: {0} going on, {1} in their record.</CC_Clock_Store_Situations>
+  <CC_Clock_Store_Camps>Camps that have been: {0}.</CC_Clock_Store_Camps>
+  <CC_Clock_World>The world</CC_Clock_World>
+  <CC_Clock_WorldObjects>World objects: {0}, of them {1} settlements.</CC_Clock_WorldObjects>
+  <CC_Clock_WorldPawns>World pawns: {0} alive, {1} dead.</CC_Clock_WorldPawns>
+  <CC_Clock_CantRead>Couldn't read this one ({0}).</CC_Clock_CantRead>
+  <CC_Clock_Copy>Copy to clipboard</CC_Clock_Copy>
+  <CC_Clock_Copied>Copied Rimfolk's clock to the clipboard.</CC_Clock_Copied>
+
+  <!-- The passes, named as in DESIGN.md ("Ticking"). Once an hour: -->
+  <CC_Clock_Pass_Neighbours>The neighbours by name, and the letters' and calls' hour</CC_Clock_Pass_Neighbours>
+  <CC_Clock_Pass_CouncilWishes>Council: fights and losses, decrees, wish upkeep, promises kept, new wishes</CC_Clock_Pass_CouncilWishes>
+  <CC_Clock_Pass_Camp>A camp's hour, and whether one comes</CC_Clock_Pass_Camp>
+  <CC_Clock_Pass_CouncilDayFirst>Council's day, first half</CC_Clock_Pass_CouncilDayFirst>
+  <CC_Clock_Pass_Health>Health stories, the colony's part</CC_Clock_Pass_Health>
+  <CC_Clock_Pass_CouncilDaySecond>Council's day, second half</CC_Clock_Pass_CouncilDaySecond>
+  <CC_Clock_Pass_CouncilLife>Council: ambitions, personal touches, dilemmas, annals, dreams, quirks</CC_Clock_Pass_CouncilLife>
+  <CC_Clock_Pass_WorldSituations>World situations</CC_Clock_Pass_WorldSituations>
+  <CC_Clock_Pass_Calendar>Colony calendar</CC_Clock_Pass_Calendar>
+  <CC_Clock_Pass_Setbacks>Setbacks</CC_Clock_Pass_Setbacks>
+  <CC_Clock_Pass_CouncilPeople>Council: nemeses, pets, autonomy, who is home, everyday pressures</CC_Clock_Pass_CouncilPeople>
+  <CC_Clock_Pass_Reputation>Reputation and gossip</CC_Clock_Pass_Reputation>
+  <CC_Clock_Pass_Arcs>Personal stories</CC_Clock_Pass_Arcs>
+  <CC_Clock_Pass_Groups>Groups</CC_Clock_Pass_Groups>
+  <CC_Clock_Pass_Fields>Fields by the weather</CC_Clock_Pass_Fields>
+  <CC_Clock_Pass_Stories>Story chains and missions</CC_Clock_Pass_Stories>
+  <CC_Clock_Pass_Weather>The weather record</CC_Clock_Pass_Weather>
+  <CC_Clock_Pass_CouncilEvents>Council: encounters and nuisances, Rimfolk's own events</CC_Clock_Pass_CouncilEvents>
+  <CC_Clock_Pass_Talk>Conversations: what people go through together</CC_Clock_Pass_Talk>
+  <CC_Clock_Pass_Ailments>Ailments, the colony's part, with the slice it rides on</CC_Clock_Pass_Ailments>
+
+  <!-- Every 250 ticks: -->
+  <CC_Clock_Pass_RareSmoke>Light sleepers wake at the smell of smoke</CC_Clock_Pass_RareSmoke>
+  <CC_Clock_Pass_RareBuildPriority>Build priorities</CC_Clock_Pass_RareBuildPriority>
+  <CC_Clock_Pass_RareWorldKeep>World situations keep their people</CC_Clock_Pass_RareWorldKeep>
+  <CC_Clock_Pass_RarePlanQueue>Room planner queue</CC_Clock_Pass_RarePlanQueue>
+  <CC_Clock_Pass_RareHeart>The heart: a tenth of the colonists</CC_Clock_Pass_RareHeart>
+  <CC_Clock_Pass_RareCamp>A camp's phase, hunts and trees</CC_Clock_Pass_RareCamp>
+  <CC_Clock_Pass_RareMissions>Missions: a quest accepted, a goal met</CC_Clock_Pass_RareMissions>
+  <CC_Clock_Pass_RareWeather>The weather's push on the outdoor temperature</CC_Clock_Pass_RareWeather>
+  <CC_Clock_Pass_RareWelcome>The welcome letter and the letter after an update</CC_Clock_Pass_RareWelcome>
+  <CC_Clock_Pass_RareHealth>Health stories: a tenth of the colonists</CC_Clock_Pass_RareHealth>
+  <CC_Clock_Pass_RareFightSides>Who stands beside whom in a fight</CC_Clock_Pass_RareFightSides>
+  <CC_Clock_Pass_RareAilments>Ailments: a tenth of the colonists</CC_Clock_Pass_RareAilments>
+  <CC_Clock_Pass_RareDefenseLines>Defense lines watch a raid</CC_Clock_Pass_RareDefenseLines>
+
+  <!-- Every 250 ticks, only while something waits: -->
+  <CC_Clock_Pass_RareRearrange>A room's furniture moves</CC_Clock_Pass_RareRearrange>
+  <CC_Clock_Pass_RareCouriers>Courier trips</CC_Clock_Pass_RareCouriers>
+  <CC_Clock_Pass_RareOutsiderTalk>Colonists starting a talk with an outsider</CC_Clock_Pass_RareOutsiderTalk>
+  <CC_Clock_Pass_RarePlayOut>Answers playing out on the map</CC_Clock_Pass_RarePlayOut>
+  <CC_Clock_Pass_RareVisitors>Visitors on the map</CC_Clock_Pass_RareVisitors>
+  <CC_Clock_Pass_RareTimed>Things an answer keeps on the map for a while</CC_Clock_Pass_RareTimed>
+  <CC_Clock_Pass_RareVisitorServices>What visitors do at the colony for an answer</CC_Clock_Pass_RareVisitorServices>
+  <CC_Clock_Pass_RareCallers>Visitors who came to do something, and commissions</CC_Clock_Pass_RareCallers>
+  <CC_Clock_Pass_RareAnswerShifts>What an answer changes for a while and puts back</CC_Clock_Pass_RareAnswerShifts>
+  <CC_Clock_Pass_RareNews>The colony news</CC_Clock_Pass_RareNews>
+  <CC_Clock_Pass_RareJourneys>A journey planned ahead</CC_Clock_Pass_RareJourneys>
+  <CC_Clock_Pass_RoadFood>The food policy on the road</CC_Clock_Pass_RoadFood>
+  <CC_Clock_Pass_RareWeekMemory>The council window's memory</CC_Clock_Pass_RareWeekMemory>
+  <CC_Clock_Pass_RareNeighbours>A neighbour's letter being written, a call or the comms console ringing</CC_Clock_Pass_RareNeighbours>
+  <CC_Clock_Pass_RareOutsiders>A meal, a bout or a brawl with an outsider</CC_Clock_Pass_RareOutsiders>
+
+  <!-- Other rhythms: -->
+  <CC_Clock_Pass_PeopleLog>Other mods' people: the play log, the tales, who changed</CC_Clock_Pass_PeopleLog>
+  <CC_Clock_Pass_DailyWealth>Advisor: the wealth sample</CC_Clock_Pass_DailyWealth>
+  <CC_Clock_Pass_DailyMagicNeeds>RimWorld of Magic's travel need</CC_Clock_Pass_DailyMagicNeeds>
+  <CC_Clock_Pass_DailyBestFriends>Other mods' people: best friends</CC_Clock_Pass_DailyBestFriends>
+
+</LanguageData>

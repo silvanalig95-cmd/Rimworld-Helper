@@ -280,8 +280,12 @@ namespace ColonyCouncil
             if (!ConvalescenceOn && !ReputationOn) return;
             try
             {
-                if (slice >= 0) Slice(slice, now);
-                if (colony) Colony(now);
+                if (slice >= 0)
+                    using (PassClock.Time(Pass.RareHealth))
+                        Slice(slice, now);
+                if (colony)
+                    using (PassClock.Time(Pass.Health))
+                        Colony(now);
             }
             catch (Exception e)
             {

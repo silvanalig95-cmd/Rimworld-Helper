@@ -171,6 +171,7 @@ namespace ColonyCouncil
             int now = Now;
             Flames(now);
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareTimed)) return;
+            using var clock = PassClock.Time(Pass.RareTimed);
             foreach (var k in kept.ToList())
             {
                 bool over;

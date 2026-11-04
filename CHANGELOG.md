@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's clock
+
+*4 November 2026, version 0.65.1*
+
+- A dev window, Rimfolk's clock (Debug actions, Rimfolk), shows how long each of Rimfolk's regular passes takes on your computer: runs and milliseconds in the last hour and day, the average and the worst run, the most costly first.
+- The same window shows how much Rimfolk keeps in the save (the chronicle, the neighbours by name, outsiders, the peoples' memory, memos, journals, world situations, past camps) and how many world objects and world pawns the game holds, and copies it all for a bug report.
+- Nothing in play changes: every pass runs on the same tick and in the same order as before, and the clock saves nothing.
+
 ## One colony, one seat
 
 *4 November 2026, version 0.65.0*

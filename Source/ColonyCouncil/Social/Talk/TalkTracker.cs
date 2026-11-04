@@ -110,6 +110,7 @@ namespace ColonyCouncil
             // Who stands beside whom in a fight, for the talk's memories and for comradeship (Social/FightSides.cs).
             if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides) && (Persona.On || ColonyCouncilMod.Settings.socialWeb))
             {
+                using var fight = PassClock.Time(Pass.RareFightSides);
                 try
                 {
                     FightSides.Sample();
@@ -121,6 +122,7 @@ namespace ColonyCouncil
             }
             if (!Sched.Hourly(t, Sched.Talk)) return;
             if (!Persona.On) return;
+            using var clock = PassClock.Time(Pass.Talk);
             try
             {
                 TalkHooks.Hourly(this);

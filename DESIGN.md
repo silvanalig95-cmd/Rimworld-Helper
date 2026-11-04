@@ -2202,6 +2202,23 @@ old tick.
 runs times what it does, loops weighed by what they go over): `docs/perf-audit.md`, with the ranking before this pass
 beside it. Estimates, not measurements; a profiler pass in a long save is still to come.
 
+**Rimfolk's clock (measured).** Every pass with a slot in `Sched` (hourly, every 250 ticks, waiting, daily, the
+people log) is timed where it runs: `Lean/PassClock.cs` reads `Stopwatch.GetTimestamp` before and after it (a struct
+scope, nothing allocated) and keeps per pass its runs and time in this in-game hour and day and the ones before
+(rolled on by game ticks), and the worst run since loading; nothing is saved. The table of passes is
+`Lean/PassClockMath.cs` (Tools/Tests: every slot has a pass, every pass is timed); systems sharing a slot (four at 149)
+have a pass each. Timing changes nothing a pass does: same tick, same order, no random numbers, exceptions as before.
+The dev window "Rimfolk's clock" (Debug actions, Rimfolk) lists the passes by cost, with runs and milliseconds in the
+last whole hour and day (the one so far until the clock has seen a whole one), the average and worst run, the totals
+and Rimfolk's average share of a tick (60 ticks are a second at normal speed), then the sizes of the main saved stores
+and the world's objects and pawns; hover a line for when it runs. Its model is built at most every half second.
+
+There is no dispatcher: each system still checks its own tick. One component running the passes would move them to
+its own place in the game's loop over components, past work that can share their tick in components whose place
+differs from save to save (a talk's next line every 15 ticks, the visual touches every 30, the council meeting every
+60, the ailments' and health stories' queued work on any tick), so it would not be provably the same; and the game
+calls every component's tick anyway, so it would save one comparison per component per tick.
+
 ## Save size
 
 Everything Rimfolk saves has a fixed size, a cap, or is pruned of the dead, the departed and the old. The caps are in

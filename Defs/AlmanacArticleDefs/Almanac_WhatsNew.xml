@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.65.1</version>
+        <date>4 November 2026</date>
+        <title>Rimfolk's clock</title>
+        <points>
+          <li>A dev window, Rimfolk's clock (Debug actions, Rimfolk), shows how long each of Rimfolk's regular passes takes on your computer: runs and milliseconds in the last hour and day, the average and the worst run, the most costly first.</li>
+          <li>The same window shows how much Rimfolk keeps in the save (the chronicle, the neighbours by name, outsiders, the peoples' memory, memos, journals, world situations, past camps) and how many world objects and world pawns the game holds, and copies it all for a bug report.</li>
+          <li>Nothing in play changes: every pass runs on the same tick and in the same order as before, and the clock saves nothing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.65.0</version>
         <date>4 November 2026</date>
         <title>One colony, one seat</title>

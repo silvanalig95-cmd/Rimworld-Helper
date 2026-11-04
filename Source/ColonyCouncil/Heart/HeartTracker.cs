@@ -125,6 +125,7 @@ namespace ColonyCouncil
             int slice = Sched.SliceTurn(now, GenDate.TicksPerHour, Slices, Sched.RareHeart);
             if (slice < 0) return;
             if (!Heart.On) return;
+            using var clock = PassClock.Time(Pass.RareHeart);
             try
             {
                 Slice(slice, now);
