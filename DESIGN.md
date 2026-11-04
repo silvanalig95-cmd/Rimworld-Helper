@@ -1695,7 +1695,8 @@ where it was set going, talks with visitors start on every home, and a raid is w
 
 One way to name anything out in the world, one record for every tie between two parties, and one place to ask about a
 town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. Its pure parts (`LedgerMath.cs`,
-`TieMath.cs`) are tested (`Tools/Tests/LedgerTests.cs`).
+`TieMath.cs`, `StoreMath.cs`) are tested (`Tools/Tests/LedgerTests.cs`, and `LedgerMovesTests.cs` for the stores that
+moved in, each against the old store's own rules).
 
 - **Refs.** A `Ref` is a kind and a number, a plain value: a person is a pawn's `thingIDNumber`, or a ledger number
   for someone with no pawn, stored below zero so the two never meet; a town is its `Settlement.ID`; a people its
@@ -1703,15 +1704,15 @@ town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. 
   `t55`, `f3`, `c12`, `h2`) is what is saved and what history keys and tests use. `Refs` turns pawns, factions,
   towns and homes into refs and back while the game still has them.
 - **Ties.** A `Tie` is one record for any tie between two parties: its kind (favour owed, pact, truce, marriage, ward,
-  hostage, fealty, grudge, debt, promise, regard), `from` (the party bound: who owes, swore, promised or holds the
-  grudge) and `to`, its terms (goods, count, days, a free key, a number, and the third party it concerns), since,
-  until, its state and where it came from. Open and called in are live; kept, broken and ended are closed for good.
-  From open a tie can be kept, called in, broken or ended; from called in kept, broken, ended or put off (open again).
-  Only what can be asked for is called in (a favour, a pact, fealty, a debt, a promise, a hostage); a regard only
-  ends. At its until an open debt comes due (called in), any other open tie ends, and one called in and not met by
-  then is broken. Three of one kind between the same two at most, sixty of a kind (three hundred regards); a new one
-  makes the oldest closed one go and is refused when all are live. Closed ties are dropped after sixty days (the
-  history will fold them in).
+  hostage, fealty, grudge, debt, promise, regard, a family's claim), `from` (the party bound: who owes, swore, promised
+  or holds the grudge or the claim) and `to`, its terms (goods, count, days, a free key, a number, and the third party
+  it concerns), since, until, its state and where it came from. Open and called in are live; kept, broken and ended are
+  closed for good. From open a tie can be kept, called in, broken or ended; from called in kept, broken, ended or put
+  off (open again). Only what can be asked for is called in (a favour, a pact, fealty, a debt, a promise, a hostage, a
+  claim); a regard only ends. At its until an open debt comes due (called in), any other open tie ends, and one called
+  in and not met by then is broken. Three of one kind between the same two at most, sixty of a kind (three hundred
+  regards); a new one makes the oldest closed one go and is refused when all are live. Closed ties are dropped after
+  sixty days (the history will fold them in).
 - **Views.** `WorldLedger.Town(id)`: its name and people, the notables there with their roles and regard, its mood
   toward each colony, the world situations about its people or at the town (running, or ended in the last fifteen
   days), Heard lately, and whether it stands; a town gone from the world is still known by what the notables and the
@@ -1725,22 +1726,67 @@ town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. 
   has one stance per people today, so each colony gets the same until the colonies keep their own (many homes, stage
   0 step 7). Views are built when asked and kept for one 250-tick stretch (`Lean/Fresh.cs`), sooner when the faction
   memory, the notables or the ledger change.
-- **What is stored and what is a view.** The ledger saves only its own ties and the counter for ledger numbers.
-  Everything else it reads from the stores that exist today, and `TiesOf(ref)` and `TiesBetween(a, b)` return the
-  ties kept there too, marked as views (`Tie.IsView`) and not editable through the ledger (`Set` refuses them): a
-  favour asked of an outsider (a favour their people owe the colonist who asked), a good word promised (the
-  outsider's promise to the colonist, about the notable), the scenario's debt memo (a debt from its colony, coming due
-  at its date, called in while the letter waits), a prisoner who died in the colony's hands (their people's grudge),
-  someone who joined from a visit with family among their people (a ward of that people in the colony's keeping), the
-  scenario's grant of land (fealty), and a vendetta (the avenger's grudge against a people). Only what is still in
-  force is shown; what ended stays in its own store. These move into the ledger one at a time (stage 0 step 3b),
-  each when the ledger reads the same as the old store.
-- **The rule.** New features about the world read and write through the ledger: they name parties with refs, keep a
-  tie between two parties as a `Tie` (not a new list of their own), and ask about a town, a people or a person
-  through its views, never through the notables', the memory's or the outsiders' insides.
+- **Persons and towns.** The ledger keeps a record of everyone it knows (`LedgerPerson`: their ref, their pawn by
+  reference while the game keeps one, their name for when it doesn't, their people as last known) and of the towns
+  they live in (`LedgerTown`: name, people, and when the colony first missed it from the world). Every notable is a
+  person: their pawn's ref, or a ledger number (`WorldLedger.NewPerson`) for one known only by name. The ledger keeps
+  their pawn and name; the notable keeps its role, town and people. Anyone a tie names is a person too
+  (`WorldLedger.PersonOf(pawn)`), so a colonist or outsider the game has let go of is still known by name, and a ref
+  turns back into its pawn at once (`WorldLedger.PawnOf`, which `Refs.Pawn` asks first). A person stays while they are
+  a notable, a tie names them or a reason keeps them in the world; a town while a notable lives there, and a gone town
+  two years from when it was missed (`LedgerMath.KeepPerson`, `KeepTown`, at the day's tidy). The person and town
+  views read these records first.
+- **What the ledger owns** (stage 0 step 3b). Each tie that lived in another store is now the ledger's own `Tie`,
+  written and read through it by a small helper beside the system that uses it; the old store keeps only what isn't a
+  tie, and an older save's ties move in on load (each store, once its save has loaded):
+  - *Grudges* (`Happenings/Grudges.cs`): one Grudge tie per people against the colony, the prisoners of theirs who
+    died in its hands in its key and how many are not yet settled in its count (`GrudgeTally`: ten at most over all
+    peoples, the oldest first; settled ones and those held two years go at the day's tidy). Kept once its last went
+    settled (the revenge came), ended once forgotten. The deed "prisonerDied" stays the people's memory.
+  - *Favours* (`Outsiders/OutsiderTies.cs`, `Favours`): from the outsider's people to the colonist who asked, about the
+    outsider, goods and count in its terms; brought keeps it, thirty days with nobody coming lets it go with its
+    message. The bearer on the way stays unsaved, by the tie's id.
+  - *Good words* (`GoodWords`): a Promise from the outsider to the colonist, about the notable's person, with how much
+    it moves them and the notable's record in its terms; it lands (kept) on whoever holds that place by then, and ends
+    twenty days on exactly when the old list let it go (`StoreMath.After`).
+  - *Guest kin* (`Integrations/GuestWill.cs`, `GuestKin`): a new kind, Claim, from the family's people to the one who
+    joined, about the colony keeping them, the due day and "forced" in its terms, since the day they joined (an older
+    save's have none). A claim can be called in: the family coming to ask presses it; going home with them keeps it;
+    one called in and not met in a fortnight is broken.
+  - *The scenario's silver debt* (`Scenarios/ScenarioDebts.cs`): a Debt from the colony to the people it owes, the
+    silver, the times put off and the story in its terms, coming due (called in) at its day; paid kept, refused
+    broken, half paid put off. The memo stays as the scenario's handle: its place in the scenario's hour, so events keep
+    their order, its story, the one it's about, its colony, and when the scenario next looks.
+  - *The grant of land* (`ScenPart_CouncilBeholden`): a Fealty tie from the colony to the people who granted it, about
+    the lord who did; the deed stays what they remember (their tone and their notables' regard read it).
+  - *Regard*: a notable's own regard of the colony and a regular's bond are Regard ties (from them to the colony, the
+    score the number), fed and faded where they always were, ended when the notable or regular goes.
+- **What stays a view.** `TiesOf(ref)` and `TiesBetween(a, b)` also return the ties still kept in other stores, marked
+  as views (`Tie.IsView`) and not editable through the ledger: a vendetta (the avenger's grudge against a people: the
+  vendetta is the colonist's own story), a notable's regard of each colonist, an outsider pair's warmth and
+  familiarity, and a camp's warmth toward each colonist. Those regards stay with their records because moved in, the
+  notables' regard of up to eight colonists each (272) with the pairs (60) could pass the ledger's three hundred
+  regards, and a regard refused would change play.
+- **Keeping someone in the world.** One way: `WorldLedger.Keep(pawn, reason)` and `Release(pawn, reason)`. A pawn stays
+  in the world while any reason holds (`KeepFor`: a notable, a world situation by its id, a memo, a departed colonist,
+  a regular, a camp that may come back, a story chain); the reasons are kept on the person and saved. The game is told
+  as Rimfolk always told it, through its world pawns' forceful keep (`Find.WorldPawns.ForcefullyKeptPawns`, the set
+  `PawnDiscardDecideMode.KeepForever` adds to), added when a reason is given; Rimfolk patches nothing of the world's
+  clean-up. Each part still lets go its own way (back to the world's own keeping, or gone for good if Rimfolk made
+  them), once `Release` says nothing else holds them. `WorldLedger.Held(pawn)` is the one "held elsewhere" check: a
+  reason here, or a part that keeps people without a reason of its own (a nemesis, a raid one of them leads, an open
+  mission, whose quest reserves them in the game's own way, a world situation's stranger or other). An older save's
+  reasons are noted once on load, and a reason whose part let go without saying so is dropped at the day's tidy. So
+  someone two parts need is no longer let go by one of them while the other still needs them.
+- **The rule.** New features about the world read and write through the ledger: they name parties with refs (a person
+  through `PersonOf`, so the ledger knows them), keep a tie between two parties as a `Tie` (not a new list of their
+  own), keep someone in the world with `Keep` and a reason of their own (never the game's keep directly), and ask
+  about a town, a people or a person through its views, never through the notables', the memory's or the outsiders'
+  insides.
 
-It has no pass of its own: ties reaching their end and closed ones dropped are seen to when the ledger is asked, at
-most once a 250-tick stretch, and before saving.
+It has no pass of its own: ties reaching their end, closed ones dropped, and persons, towns and reasons nothing needs
+any more are seen to when the ledger is asked (ties at most once a 250-tick stretch, the rest once a day), and before
+saving.
 ### Telling the player
 
 Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't
@@ -2326,9 +2372,9 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Nemeses | 30 that have ended |
 | Pets | animals known: the dead get their farewell, the discarded are dropped |
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
-| Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
+| Rimfolk's events | raids until they come; the departed 2 years (unless asked about); memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
-| World ledger | its own ties: three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; the counter for ledger numbers |
+| World ledger | its own ties (grudges, favours, good words, claims, the scenario's debt, fealty, a notable's and a regular's regard): three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; a grudge's dead ten at most over all peoples, two years; persons while a notable, named by a tie or kept in the world, with their reasons; towns while a notable lives there, a gone one two years; the counter for ledger numbers |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |

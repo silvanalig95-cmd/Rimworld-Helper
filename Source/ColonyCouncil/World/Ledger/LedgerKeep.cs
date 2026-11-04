@@ -88,7 +88,7 @@ namespace ColonyCouncil
         {
             if (p == null) return false;
             var rec = PersonRecord(Refs.Of(p));
-            return rec != null && rec.kept.Contains(reason);
+            return rec?.kept != null && rec.kept.Contains(reason);
         }
 
         private static bool HeldOutside(Pawn p, bool nemesis)

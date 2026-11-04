@@ -9,12 +9,15 @@ namespace ColonyCouncil
     /// <summary>
     /// The world ledger: one way to name anything out in the world (<see cref="Ref"/>), one record for every tie between
     /// two parties (<see cref="Tie"/>), and one place to ask about a town, a people or a person (<see cref="Town"/>,
-    /// <see cref="People"/>, <see cref="Person"/>, in LedgerViews.cs). It saves its own ties and the counter for ledger
-    /// numbers; everything else it reads from the stores that exist today (the notables, what the peoples remember, the
-    /// outsiders, the world situations, Rimfolk's events), and the ties kept there come back from <see cref="TiesOf"/> as
-    /// views (LedgerToday.cs), marked and not editable here yet. New features about the world read and write through it.
-    /// No pass of its own: its upkeep (ties reaching their end, closed ones dropped) runs when it's asked, at most once a
-    /// 250-tick stretch, and before saving.
+    /// <see cref="People"/>, <see cref="Person"/>, in LedgerViews.cs). It saves its own ties (grudges, favours, good
+    /// words, claims, the scenario's debt, fealty, a notable's and a regular's regard: each kept through a small helper
+    /// beside the system that uses it), the persons and towns it knows (LedgerPersons.cs), why each person is kept in the
+    /// world (LedgerKeep.cs), and the counter for ledger numbers. The rest it reads from the stores that keep it (the
+    /// notables, what the peoples remember, the outsiders, the world situations), and the ties still kept there (a
+    /// vendetta, the regard kept with its records) come back from <see cref="TiesOf"/> as views (LedgerToday.cs), marked
+    /// and not editable here. New features about the world read and write through it. No pass of its own: its upkeep
+    /// (ties reaching their end, closed ones dropped, and once a day persons, towns and reasons nothing needs) runs when
+    /// it's asked, at most once a 250-tick stretch, and before saving.
     /// </summary>
     public partial class WorldLedger : GameComponent
     {
