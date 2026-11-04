@@ -67,13 +67,6 @@ namespace ColonyCouncil
         /// <summary>How many dreams the filters show (the Chronicle's stat on its Dreams filter).</summary>
         public static int DreamCount(CouncilGameComponent comp) => ColonyCouncilMod.Settings.dreams ? Dreams(comp.dreams.recent).Count : 0;
 
-        /// <summary>Shows one dreamer's dreams (from their card), or everyone's (null).</summary>
-        public static void DreamsOf(string name)
-        {
-            dreamFilter = name;
-            dreamScroll = Vector2.zero;
-        }
-
         /// <summary>The Chronicle's Dreams filter: who dreamt and what kind on a row of their own, then the dreams as cards.</summary>
         public static void DreamsBody(Rect rect, CouncilGameComponent comp)
         {

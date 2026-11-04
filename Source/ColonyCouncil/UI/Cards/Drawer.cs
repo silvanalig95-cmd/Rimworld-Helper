@@ -94,7 +94,7 @@ namespace ColonyCouncil
         /// <summary>A Rimfolk window's drawer.</summary>
         public static DrawerHost Of(RimfolkWindow w) => hosts[(int)w];
 
-        /// <summary>A drawer for another window (one of the game's), known to <see cref="Active"/>.</summary>
+        /// <summary>A drawer for another window (one of the game's), known to <see cref="Active"/>; made once per kind of window and kept.</summary>
         public static DrawerHost Make()
         {
             var h = new DrawerHost();
