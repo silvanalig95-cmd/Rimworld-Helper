@@ -277,9 +277,13 @@ taken as "the colony"). Each step below ships as a release of its own with the g
    the voice anyway, and its negative side is proposed per system then.
 
 ### Stage 1: the region comes alive
-The design and its seven releases: `docs/design/stage1-region.md`. Built so far: the region's towns (the towns within
-reach kept in detail, their fortunes moved by world events and shown in words, the trade stock and talk, the new
-towns' faces and their full welcome, remoteness, memory in more events' texts; DESIGN.md, "The region").
+The design and its seven releases: `docs/design/stage1-region.md`. **Done (0.69.0 to 0.77.0, 4 November 2026)**: the
+region's towns (the towns within reach kept in detail, their fortunes moved by world events and shown in words, the
+trade stock and talk, the new towns' faces and their full welcome, remoteness, memory in more events' texts),
+travelers to the remote, towns that rise and fall, trading posts, raiders' camps, the settlers' hamlet with small
+towns' maps, the follow-ups (the warlord's son, the town that grew) and a people's memory of single colonists, and the
+writing pass (DESIGN.md, "The region"). Left for later: the son's settlers' branch, the factor's own letters, a
+placeholder for the world event at a town, talk for towns given up or resettled.
 - New settlements from Faction Territories given life: who led the settlers, the new town's notables and houses,
   news and Heard lately, talk and letters about them.
 - Towns rise and fall: Rimfolk's world events move each town's prosperity; famine, plague and war leave marks; some

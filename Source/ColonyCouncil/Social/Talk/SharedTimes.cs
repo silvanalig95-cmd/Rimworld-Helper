@@ -164,9 +164,9 @@ namespace ColonyCouncil
 
         // ---------------- Camps ----------------
 
-        /// <summary>The endings of a camp that went in peace (its time up, asked, the weather, a raid, hunger, crowding).</summary>
+        /// <summary>The endings of a camp that went in peace (its time up, asked, the weather, a raid, hunger, crowding, settlers off to found their hamlet).</summary>
         public static bool Peaceful(string ending) =>
-            ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded";
+            ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "hamlet";
 
         /// <summary>
         /// A camp has gone (CampLife.Finish): those who spent evenings at its fire remember them together; those its healer

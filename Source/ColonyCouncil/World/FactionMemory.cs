@@ -264,7 +264,13 @@ namespace ColonyCouncil
             ["campStruck"] = K(DeedSide.TheirFavor, 5),
             ["burnedCamp"] = K(DeedSide.TheirFavor, 10),
             // A trading post they opened near the colony, razed by the colony (World/Region/TradingPost.cs): a heavy wrong.
-            ["postRazed"] = K(DeedSide.Wrong, 30)
+            ["postRazed"] = K(DeedSide.Wrong, 30),
+            // A hamlet of theirs under the colony's protection (World/Region/Hamlet.cs): its settlers walked out and settled,
+            // its harvest brought to the colony's gate, help sent or refused in a hard season.
+            ["hamlet"] = K(DeedSide.Favor, 15),
+            ["hamletHarvest"] = K(DeedSide.TheirFavor, 4, 30f, 12),
+            ["hamletHelped"] = K(DeedSide.Favor, 8, 10f, 20),
+            ["hamletRefused"] = K(DeedSide.Wrong, 6, 15f, 18)
         };
 
         public static DeedKind KindOf(string kind) => kind != null && Kinds.TryGetValue(kind, out var k) ? k : null;

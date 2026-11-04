@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Hamlets under the colony's protection (Source/ColonyCouncil/World/Region/Hamlet*.cs, the facts in
+       World/Region/HamletFacts.cs): the hamlet's own people (town:hamlet: {TOWN} the hamlet, {HAMLETWORD} what their age
+       calls it; town:hamlet:sworn once it has sworn fealty), their people from another town (their:hamlet, {HAMLET},
+       {HAMLETWORD}), and other peoples on another's hamlet near the colony (region:hamlet, {HAMLET}, {HAMLETPEOPLE}). The
+       format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The hamlet's own people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_FromThere</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat,know</uses>
+    <when>town:hamlet</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] You're from {TOWN}, the hamlet your people founded near us?</li>
+      <li>[them,their:tribal] Yes, the new hearth, and your spears walked us there.</li>
+      <li>[them,their:medieval] Aye, and we've not forgotten whose road we came out on.</li>
+      <li>[them,their:spacer] Correct, and the outpost is holding together better than the survey said it would.</li>
+      <li>[them] That's right, and we'd not be there without your people.</li>
+      <li>[us] How is it doing?</li>
+      <li>[them,town:struggling|town:poor] Hard going, the first years always are.</li>
+      <li>[them,!town:struggling,!town:poor] Better every season, and the fields are coming good.</li>
+    </lines>
+    <heard>{PEOPLE} keep {TOWN}, a hamlet founded under the colony's protection.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Road</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet</when>
+    <lines>
+      <li>[them] I remember the night we lit our first fires at {TOWN}, your caravan beside us.</li>
+      <li>[us] Was it a hard road?</li>
+      <li>[them] Long, and the carts were heavy, but nobody was alone on it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Fields</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,town:steady|town:thriving|town:flourishing</when>
+    <lines>
+      <li>[them] We turned a second field at {TOWN} this spring.</li>
+      <li>[us] Already?</li>
+      <li>[them] Hungry people dig fast, and we've had enough of being hungry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Hard</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,town:struggling|town:poor</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {TOWN} is a hard place to start over, and this season has been the hardest yet.</li>
+      <li>[us] You know where we are.</li>
+      <li>[them,tone:warm|tone:good] We do, and that's half of what keeps us going.</li>
+      <li>[them] We do, and we try not to ask more than we must.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Harvest</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,fall</when>
+    <lines>
+      <li>[them] When the harvest is in at {TOWN}, the first cart goes to your gate.</li>
+      <li>[us] You don't owe us that.</li>
+      <li>[them] Maybe not, but it's how we want it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Word</defName>
+    <topic>hamlet</topic>
+    <uses>home,know</uses>
+    <when>town:hamlet</when>
+    <lines>
+      <li>[them] Back home they call {TOWN} {HAMLETWORD}, as if it were still a camp.</li>
+      <li>[us] And what do you call it?</li>
+      <li>[them] Home, since the first winter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Sworn</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet:sworn</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] {TOWN} swore to your colony, and we meant every word of it.</li>
+      <li>[us] We know you did.</li>
+      <li>[them,their:tribal] The gifts at the river were the best we had, and we'd give them again.</li>
+      <li>[them] Then hold us to it, the way we hold you to yours.</li>
+    </lines>
+    <heard>{TOWN} has sworn fealty to the colony.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_SwornKin</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet:sworn</when>
+    <lines>
+      <li>[them] Some of our kin say {TOWN} isn't really ours any more, since the oath.</li>
+      <li>[us] Is it?</li>
+      <li>[them] It's ours, and it's sworn to you, and I don't see why it can't be both.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their people from another town ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Theirs</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>their:hamlet</when>
+    <lines>
+      <li>[them] Some of our families went out to {HAMLET} under your protection.</li>
+      <li>[us] They're doing well enough.</li>
+      <li>[them] So they write, though they'd say that to keep their mothers from worrying.</li>
+    </lines>
+    <heard>{PEOPLE} have families at {HAMLET}, under the colony's protection.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_TheirsThanks</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>their:hamlet,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] My cousin is at {HAMLET}, and she says your people walked them every step of the way.</li>
+      <li>[us] It was the least we could do.</li>
+      <li>[them] Plenty would have done less.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_TheirsDoubt</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>their:hamlet,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] There are those back home who say {HAMLET} answers more to you than to us.</li>
+      <li>[us] It's your town.</li>
+      <li>[them] Then you won't mind us visiting it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Other peoples ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_Region</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet</when>
+    <lines>
+      <li>[them] I hear {HAMLETPEOPLE} put a hamlet down near you, at {HAMLET}.</li>
+      <li>[us] Under our protection, yes.</li>
+      <li>[them] That's a kindness, or a claim, depending on who's telling it.</li>
+    </lines>
+    <heard>{HAMLETPEOPLE} keep {HAMLET} under the colony's protection.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_RegionRoad</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet</when>
+    <lines>
+      <li>[them] We passed {HAMLET} on the road, smoke from every chimney.</li>
+      <li>[us] It's grown.</li>
+      <li>[them] Settlers usually do, once someone's watching their backs.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hamlet_RegionWary</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Your colony takes in hamlets of {HAMLETPEOPLE} now?</li>
+      <li>[us] We protect one.</li>
+      <li>[them] That's how it starts, in the stories.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

@@ -181,6 +181,16 @@ namespace ColonyCouncil
         /// (World/Region/TradingPost.cs). Off: none opens, and those standing are left as ordinary towns of theirs.
         /// </summary>
         public bool tradingPosts = true;
+        /// <summary>
+        /// The region: settlers may ask to found a hamlet a few days off under the colony's protection (World/Region/Hamlet.cs).
+        /// Off: no settlers ask, and a hamlet standing goes on as their town while its record is kept.
+        /// </summary>
+        public bool hamlets = true;
+        /// <summary>
+        /// The region: a hamlet, a trading post or a town in its first year has a smaller base with fewer defenders on its
+        /// own map (World/Region/SmallTowns.cs; needs the deeper hooks). Off: every town's map as the game makes it.
+        /// </summary>
+        public bool smallTownMaps = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -547,6 +557,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref tradingPosts, "tradingPosts", true);
+            Scribe_Values.Look(ref hamlets, "hamlets", true);
+            Scribe_Values.Look(ref smallTownMaps, "smallTownMaps", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

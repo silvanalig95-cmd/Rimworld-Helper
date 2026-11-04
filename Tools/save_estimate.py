@@ -90,6 +90,9 @@ C = {
     # raiders' camp (World/ColonistMemoryMath.cs).
     "FollowUpsWaiting": const("World/Region/FollowUpsMath.cs", "MaxWaiting", 6),
     "CampFought": const("World/ColonistMemoryMath.cs", "MaxFought", 12),
+    # A home's hamlet (World/Region/HamletMath.cs): the settlers on their way, and its refusals kept.
+    "HamletSettlers": const("World/Region/HamletMath.cs", "MaxSettlers", 8),
+    "HamletRefused": const("World/Region/HamletMath.cs", "MaxRefused", 4),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -528,6 +531,15 @@ MODEL = {
     # 60 days at most and a few a year at the generous rate; each a dozen values and a reference, gone with its post.
     "World/Region/TradingPost.cs:posts": ("cap", (C["PostsPerHome"], 0.02), 260,
                                           "per home: the trading posts standing near it, TradingPostMath.MaxPerHome at most, each dropped when it closes"),
+    # Each home's hamlet (World/Region/Hamlet.cs): the settlers on their way to it and the colonists who walked them out,
+    # HamletMath.MaxSettlers each at most (references, emptied once it stands), and the help it was refused, the newest
+    # HamletMath.MaxRefused (a tick each).
+    "World/Region/Hamlet.cs:settlers": ("cap", (C["HamletSettlers"], 0.05), 30,
+                                        "per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands"),
+    "World/Region/Hamlet.cs:escorts": ("cap", (C["HamletSettlers"], 0.05), 30,
+                                       "per home: the colonists who walked its hamlet's settlers out, HamletMath.MaxSettlers at most"),
+    "World/Region/Hamlet.cs:refused": ("cap", (C["HamletRefused"], 0.05), 12,
+                                       "per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

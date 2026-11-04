@@ -445,7 +445,9 @@ wishPh.UnionWith(new[]
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.
-    "POST", "POSTKIND", "POSTPEOPLE", "KEEPER"
+    "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
+    // A hamlet under the colony's protection (World/Region/HamletFacts.cs): its name, its word by their age, its people.
+    "HAMLET", "HAMLETWORD", "HAMLETPEOPLE"
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });

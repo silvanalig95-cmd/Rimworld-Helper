@@ -672,6 +672,8 @@ namespace ColonyCouncil
             RaidersCampPage.WeekRows(c);
             // A trading post whose keeper has warned it will close unless things mend (World/Region/TradingPostPage.cs).
             TradingPostPage.WeekRows(c);
+            // Settlers waiting at the gate for the colony's caravan to their hamlet's place (World/Region/HamletPage.cs).
+            HamletPage.WeekRows(c);
             return c;
         }
 

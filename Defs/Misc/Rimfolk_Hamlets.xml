@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A hamlet's questions to the colony: the settlers' ask, the hard season's ask, the oath, the families' choice when
+       their people turn on the colony (World/Region/HamletAsk.cs). -->
+  <LetterDef>
+    <defName>Rimfolk_HamletAsk</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Hamlet</letterClass>
+    <color>(140, 190, 120)</color>
+    <flashColor>(165, 215, 145)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

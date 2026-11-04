@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A hamlet under your protection
+
+*4 November 2026, version 0.77.0*
+
+- Settlers may ask to found a hamlet a few days off under your protection: a holding after a year on your land, families of a town given up, or settlers from a struggling town. The letter shows the place, and you can choose another on the world map.
+- Take them under your protection and they camp by the colony with their carts until a caravan of two grown colonists sets out for the place. They travel beside it, named in its panel, and light their first fires after a night there. Let them go alone, and a third are turned back.
+- On the road the founding may bring a demand or an ambush, and the settlers take up arms beside your caravan.
+- The hamlet is a town of their own people with its founder and families. It brings some of its harvest to your gate and asks for food, a doctor or tools in hard seasons. Refuse it twice in one season and it stops counting on you.
+- In time it asks to swear fealty: as a Faction Territories vassal when that mod's vassalage is on, otherwise sworn to the colony. If its people turn on you first, its families choose whether to come to you or stay.
+- Small towns look small: a hamlet, a trading post or a town in its first year has a smaller base with fewer defenders on its own map, through Vanilla Base Generation Expanded's layouts too.
+- The region window has a hamlets page, This week shows settlers waiting at the gate, and two new settings sit in The region: Hamlets and Small towns' maps.
+
 ## The warlord's son, and those remembered
 
 *4 November 2026, version 0.76.0*

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -39,6 +40,8 @@ namespace ColonyCouncil
         public TradingPostHome posts;
         /// <summary>World events that will follow from ones that ended here (the warlord's son, a town that grew: World/Region/FollowUps.cs); null until needed.</summary>
         public FollowUpsHome followUps;
+        /// <summary>Its hamlet: settlers who asked, on their way, or the hamlet standing under its protection (World/Region/Hamlet.cs); null until needed.</summary>
+        public HamletHome hamlet;
 
         public void ExposeData()
         {
@@ -52,6 +55,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref foundedAt, "foundedAt", -1);
             Scribe_Deep.Look(ref posts, "posts");
             Scribe_Deep.Look(ref followUps, "followUps");
+            Scribe_Deep.Look(ref hamlet, "hamlet");
         }
     }
 
@@ -120,6 +124,11 @@ namespace ColonyCouncil
         /// <summary>Homes lost (Homes.Changed): each one's part kept a while, as the council's.</summary>
         internal void HomesLost(IReadOnlyList<int> lost)
         {
+            // A home's hamlet story ends with the home (World/Region/Hamlet.cs).
+            if (lost != null)
+                foreach (var rh in homes)
+                    if (rh != null && lost.Contains(rh.Home))
+                        Hamlets.HomeLost(rh);
             ColonyBook.Lost(homes, lost, RaidersCamps.HomeLost);
             RegionTowns.Invalidate();
         }
@@ -174,6 +183,8 @@ namespace ColonyCouncil
             RaidersCamps.Hourly(this, now);
             // Towns gone from the map and fights' ruins waiting (World/Region/RiseFall.cs).
             if (RiseFall.On) Safe("rise and fall, the hour", () => RiseFall.Hourly(this, now));
+            // Settlers at the gate or on the road to found a hamlet (World/Region/Hamlet.cs).
+            if (Hamlets.AnyOnTheRoad()) Safe("hamlets, the hour", () => Hamlets.Hourly(this, now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -187,6 +198,7 @@ namespace ColonyCouncil
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             Safe("trading posts", () => TradingPosts.Daily(this, now));
             Safe("follow-ups", () => FollowUps.Daily(this, now));
+            Safe("hamlets", () => Hamlets.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 

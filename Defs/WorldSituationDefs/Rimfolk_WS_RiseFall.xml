@@ -82,6 +82,17 @@
             <label>Point them to {ITEM}</label>
             <outcome>The family is pointed down the road to {ITEM}, and goes.</outcome>
           </li>
+          <!-- A hamlet near the colony (Source/ColonyCouncil/World/Region/Hamlet.cs): the settlers' ask comes at once. -->
+          <li>
+            <label>Offer them a place for a hamlet near the colony</label>
+            <outcome>The family goes back up the road to tell the others from {PLACE}. If the colony takes them under its protection, they will come back with their carts.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Hamlet" />
+            </effects>
+            <help>1</help>
+            <deed>offered families from {PLACE} a place for a hamlet</deed>
+            <ways><openness>1</openness></ways>
+          </li>
         </options>
       </li>
       <li>
