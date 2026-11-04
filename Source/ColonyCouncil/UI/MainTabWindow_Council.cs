@@ -176,7 +176,7 @@ namespace ColonyCouncil
                 float named = ColonyView.Header(new Rect(rect.x, rect.y, rect.width, 26f));
                 if (named > 0f) rect = new Rect(rect.x, rect.y + named + 6f, rect.width, rect.height - named - 6f);
             }
-            ViewHead.Draw(rect, page, Pages.ModeName(page), TabIcon(page), Head(ViewOf(page)), drawPage);
+            ViewHead.Draw(rect, page, Get(names, page, ModeName), TabIcon(page), Head(ViewOf(page)), drawPage);
         }
 
         private static void DrawPage(Rect content)
@@ -259,7 +259,9 @@ namespace ColonyCouncil
         }
 
         // The labels, from the twice-a-second caches (the methods are made into delegates once).
-        private static readonly System.Func<string, string> ViewLabel = ViewLabelOf, ViewTip = ViewTipOf, ModeLabel = ModeLabelOf, TabTip = TabTipOf;
+        private static readonly System.Func<string, string> ViewLabel = ViewLabelOf, ViewTip = ViewTipOf, ModeLabel = ModeLabelOf, TabTip = TabTipOf, ModeName = Pages.ModeName;
+        /// <summary>Each page's plain name (the header a page with none of its own gets), made once.</summary>
+        private static readonly Dictionary<string, string> names = new Dictionary<string, string>();
 
         private static string Get(Dictionary<string, string> cache, string key, System.Func<string, string> make)
         {

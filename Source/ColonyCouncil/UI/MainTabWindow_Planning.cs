@@ -95,7 +95,14 @@ namespace ColonyCouncil
             GUI.color = Color.white;
         }
 
-        private static void DrawView(Rect rect) => ViewHead.Draw(rect, page, Pages.ModeName(page), IconOf(page), Head(ViewOf(page)), drawPage);
+        private static void DrawView(Rect rect)
+        {
+            // A page with no header of its own gets one by its name, made once.
+            if (!names.TryGetValue(page, out var name)) names[page] = name = Pages.ModeName(page);
+            ViewHead.Draw(rect, page, name, IconOf(page), Head(ViewOf(page)), drawPage);
+        }
+
+        private static readonly Dictionary<string, string> names = new Dictionary<string, string>();
 
         private static void DrawPage(Rect content)
         {
