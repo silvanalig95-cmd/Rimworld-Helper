@@ -160,6 +160,11 @@ namespace ColonyCouncil
         /// <summary>The region: a town's fortune in what it sells when the game restocks it (World/Region/RegionStock.cs; needs the fortunes and the deeper hooks).</summary>
         public bool regionStock = true;
         /// <summary>
+        /// The region: towns rise and fall at a slow pace (World/Region/RiseFall.cs): struggling towns given up, ruins where
+        /// towns fell, ruins settled again, Rimfolk's own new towns. Off: nothing changes on the map, and the records are kept.
+        /// </summary>
+        public bool regionChange = true;
+        /// <summary>
         /// The region: how much a home's remoteness draws travellers (0 to 2, 1 by default): camps up to 60% more often and
         /// Rimfolk's visitors up to 60% more at the most remote, the kinds that seek what its land has likelier, and news of
         /// far towns told at their fire (World/Region/TravelLand.cs). 0: as before, and no far news.
@@ -527,6 +532,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);
+            Scribe_Values.Look(ref regionChange, "regionChange", true);
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);

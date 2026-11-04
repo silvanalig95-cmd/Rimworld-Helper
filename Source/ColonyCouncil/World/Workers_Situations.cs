@@ -239,6 +239,8 @@ namespace ColonyCouncil
         public override void Begin(WorldSituation s)
         {
             base.Begin(s);
+            // One of Rimfolk's own new towns: it counts on the region's pace of foundings (World/Region/RiseFall.cs).
+            RiseFall.NoteFounded(Town(s));
             RegionFaces.Founded(Town(s), Founder(s), WhyFounded(s));
         }
 
@@ -307,7 +309,10 @@ namespace ColonyCouncil
         private static IEnumerable<Settlement> Candidates(Map map) =>
             Find.WorldObjects.Settlements.Where(t => t.HasName && t.Faction != null && !t.Faction.HostileTo(Faction.OfPlayer) && !t.Faction.Hidden
                                                      && t.Tile.Layer == map.Tile.Layer && LivingEvents.Distance(map.Tile, t.Tile) <= 30f
-                                                     && !(WorldSituations.Instance?.Busy(t.Faction) ?? false) && Safe(t));
+                                                     && !(WorldSituations.Instance?.Busy(t.Faction) ?? false) && Safe(t)
+                                                     // Never one of its people's last two, and at the region's pace (World/Region/RiseFall.cs).
+                                                     && RiseFallMath.KeepsEnough(Find.WorldObjects.Settlements.Count(x => x.Faction == t.Faction && !x.Destroyed))
+                                                     && RiseFall.EventMayGiveUp(t));
 
         protected override bool CanHappen(Map map) => Candidates(map).Any();
 

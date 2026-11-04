@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Towns that rise and fall (Source/ColonyCouncil/World/Region/RiseFall.cs). A town within reach whose fortune has
+       failed (struggling a month, or struck twice in a season, or a new town's hard first season) is given up by its
+       people. When a world event's slot is free at the home nearest it, it runs as this event on that town; else it is
+       given up quietly with a line in the colony news. It never starts by itself. {PLACE} is the town, {TALE} which way
+       and how far, {ITEM} the town its families go to. Flags: what struck it (sickness, hunger, winter, flood, fire,
+       strife, hard). At its end the town is a ruin in its people's colour, unless the colony has business there: then
+       a few families hold on. -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GivenUp</defName>
+    <label>a town given up</label>
+    <workerClass>ColonyCouncil.SituationWorker_GivenUp</workerClass>
+    <weight>1</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>0</cooldownDays>
+    <durationDays>6~9</durationDays>
+    <kind>town</kind>
+    <bad>true</bad>
+    <titles>
+      <li>{PLACE} is being given up</li>
+      <li>The last days of {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[sickness] {PLACE}, {TALE}, never got over the sickness. Too many houses stand empty, and the ones still lived in have a cough in them. {FACTION} are giving the town up.\n\nTheir families are on the road to {ITEM}. Some of them will stop at the colony's gate on the way.</li>
+      <li>[hunger] {PLACE}, {TALE}, has eaten its seed grain two years running, and there is nothing left to plant. {FACTION} are giving the town up.\n\nThe carts on the road to {ITEM} are lighter than carts usually are.</li>
+      <li>[winter] The winter broke {PLACE}, {TALE}. The roofs that fell in under the snow were never put back, and the families who are left have had enough. {FACTION} are giving the town up.\n\nThe road to {ITEM} is full of carts piled with bedding.</li>
+      <li>[flood] The water came through {PLACE}, {TALE}, and took the low fields and half the houses with it. {FACTION} have decided not to rebuild.\n\nThe road to {ITEM} is busy with carts, and some of them will come this way.</li>
+      <li>[fire] Since the fire, {PLACE}, {TALE}, has been more ash than town. {FACTION} have given up trying to raise it again.\n\nIts families are on the road to {ITEM}, with whatever the fire left them.</li>
+      <li>[strife] Trouble on the roads and quarrels at home have worn {PLACE}, {TALE}, down to nothing. {FACTION} are giving the town up.\n\nThe road to {ITEM} is full of carts, and not everyone on it is sure of a welcome there.</li>
+      <li>[hard] {PLACE}, {TALE}, has had one bad year after another, and nobody there believes the next will be better. {FACTION} are giving the town up.\n\nIts families are on the road to {ITEM}. Some of them will look for something nearer.</li>
+    </texts>
+    <summaries>
+      <li>When it's over, {PLACE} will be a ruin on the map. Until then its families pass the colony on the road, and what they leave behind is anyone's to take.</li>
+    </summaries>
+    <modifiers>
+      <li><group>Visitors</group><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>refugees</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>family</what><count>2~3</count><family>true</family><pet>dog</pet></li>
+        </effects>
+        <day>1~4</day>
+        <titles>
+          <li>Leaving {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A family from {PLACE} has stopped at the colony's gate instead of going on to {ITEM}. They have a handcart, a dog and not much else.\n\nThey'd like to stay, if the colony will have them.</li>
+          <li>[sickness] A family from {PLACE} has stopped at the gate. They are thin and tired but well, and they say so before anyone asks.\n\nThey would rather start again here than in {ITEM}, where they know nobody.</li>
+          <li>[hunger] A family from {PLACE} has stopped at the gate. The children look at the colony's fields the way other children look at sweets.\n\nThey ask whether the colony would take them in.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The family unloads the handcart. The dog has already found the warmest spot.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>dog</animal></li>
+            </effects>
+            <help>1</help>
+            <deed>took in a family from {PLACE}</deed>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Feed them and send them on</label>
+            <outcome>They sleep a night in the lee of the colony's wall and set off for {ITEM} at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><night>true</night></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+            </effects>
+            <help>1</help>
+            <flags><li>sheltered</li></flags>
+            <deed>fed people leaving {PLACE}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Point them to {ITEM}</label>
+            <outcome>The family is pointed down the road to {ITEM}, and goes.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>salvage</key>
+        <day>2~5</day>
+        <titles>
+          <li>What {PLACE} leaves behind</li>
+        </titles>
+        <texts>
+          <li>The last carts are leaving {PLACE}, and what didn't fit is being left behind: doors, tools, a cooking pot too big to carry. {FACTION} don't much mind who takes the rest.\n\n{A_nameDef} says the colony could fill a few carts of its own. Some of the others would rather not pick over a town that's still warm.</li>
+          <li>[fire] What the fire left of {PLACE} is being left for good: blackened beams, a forge, stone that will take a new wall. {FACTION} say anyone who wants it can have it.\n\n{A_nameDef} thinks the colony should take its share before someone else does.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Salvage what's left</label>
+            <outcome>The colony's carts come back loaded with what {PLACE} left behind.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>200~400</value><by>Home</by></li>
+            </effects>
+            <flags><li>salvaged</li></flags>
+            <ways><tradition>-1</tradition><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it</label>
+            <outcome>The colony leaves {PLACE} alone. Somebody else will take it, or the weather will.</outcome>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>empty</key>
+        <titles>
+          <li>{PLACE} stands empty</li>
+        </titles>
+        <texts>
+          <li>The last of {FACTION} left {PLACE} yesterday. The gates stand open, the wells are covered, and the road through the town is already going to grass.\n\nIt is a ruin on the map now. In a year or two, families may come back to the old walls, or newcomers may.</li>
+          <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now, and the rest is the weather's business.\n\nIt is a ruin on the map now, and swallows have moved into the meeting hall.</li>
+        </texts>
+      </li>
+      <li>
+        <key>holdouts</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{PLACE} hangs on</li>
+        </titles>
+        <texts>
+          <li>{PLACE} is mostly empty now, but not all of it. A few families refused to leave, and {FACTION} have stopped trying to make them. The town stays on the map, smaller and quieter than it was.</li>
+        </texts>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

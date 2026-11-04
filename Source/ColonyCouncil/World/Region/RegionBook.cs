@@ -31,6 +31,8 @@ namespace ColonyCouncil
         public int letterAt = -1;
         /// <summary>When a new town last gave this home its full welcome (once a year at most), or -1.</summary>
         public int welcomeAt = -1;
+        /// <summary>When a town in this home's reach was last given up, settled again from a ruin, or founded by Rimfolk (World/Region/RiseFall.cs), or -1.</summary>
+        public int givenUpAt = -1, resettledAt = -1, foundedAt = -1;
 
         public void ExposeData()
         {
@@ -38,6 +40,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
             Scribe_Values.Look(ref letterAt, "letterAt", -1);
             Scribe_Values.Look(ref welcomeAt, "welcomeAt", -1);
+            Scribe_Values.Look(ref givenUpAt, "givenUpAt", -1);
+            Scribe_Values.Look(ref resettledAt, "resettledAt", -1);
+            Scribe_Values.Look(ref foundedAt, "foundedAt", -1);
         }
     }
 
@@ -156,8 +161,9 @@ namespace ColonyCouncil
         /// <summary>The hour: towns being founded get their founder and their line in the news; towns just built get their faces.</summary>
         private void Hourly(int now)
         {
-            if (!FacesOn) return;
-            RegionFaces.Hourly(this, now);
+            if (FacesOn) RegionFaces.Hourly(this, now);
+            // Towns gone from the map and fights' ruins waiting (World/Region/RiseFall.cs).
+            if (RiseFall.On) Safe("rise and fall, the hour", () => RiseFall.Hourly(this, now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -166,6 +172,8 @@ namespace ColonyCouncil
             RegionTowns.Refresh(true);
             Safe("foundings looked over", () => RegionFaces.Daily(now));
             if (FortunesOn) Safe("fortunes", () => RegionFortunes.Daily(now));
+            // Towns given up, ruins, ruins settled again, Rimfolk's own new towns (World/Region/RiseFall.cs).
+            if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             ColonyBook.Daily(homes, null);
         }
 
