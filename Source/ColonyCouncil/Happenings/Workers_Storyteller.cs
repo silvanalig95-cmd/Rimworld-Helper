@@ -176,7 +176,7 @@ namespace ColonyCouncil
             var def = EventOf(m.kind);
             string line = Stable(More(def)?.coming, null, m.tick);
             if (line.NullOrEmpty()) return null;
-            return Context(m, def, null).Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, m.due - now))));
+            return Context(m, def, null).Format(Texts.Fill(line, ("DAYS", TextUtil.DaysString(Mathf.Max(0, m.due - now)))));
         }
 
         /// <summary>A memory waiting for a later event, for the World page's "who's out there".</summary>

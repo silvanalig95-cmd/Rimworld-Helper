@@ -30,7 +30,141 @@ public static class FactsTests
         Rules(C);
         var pieces = Pieces(root, out var texts);
         Talks(pieces, C);
+        TalkFill(texts, C);
+        Replaces(root, C);
+        Sayings(C);
         return n;
+    }
+
+    // ---------------- One fill ----------------
+
+    /// <summary>The talks' own fill as it was (OutsiderTalkMath.Fill before Texts): an earlier talk's values first, a placeholder without one left empty.</summary>
+    private static string OldFill(string text, Dictionary<string, string> f, Dictionary<string, string> m)
+    {
+        string Value(string key)
+        {
+            if (m != null && m.TryGetValue(key, out var v)) return v;
+            return f.TryGetValue(key, out v) ? v : null;
+        }
+        if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return text;
+        var sb = new StringBuilder(text.Length + 32);
+        int i = 0;
+        while (i < text.Length)
+        {
+            int a = text.IndexOf('{', i);
+            if (a < 0)
+            {
+                sb.Append(text, i, text.Length - i);
+                break;
+            }
+            int b = text.IndexOf('}', a + 1);
+            if (b < 0)
+            {
+                sb.Append(text, i, text.Length - i);
+                break;
+            }
+            sb.Append(text, i, a - i);
+            sb.Append(Value(text.Substring(a + 1, b - a - 1)) ?? "");
+            i = b + 1;
+        }
+        return sb.ToString();
+    }
+
+    /// <summary>The talks' own placeholders as they were read (OutsiderTalkMath.Holes before Texts).</summary>
+    private static string[] OldHoles(string text)
+    {
+        if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return Array.Empty<string>();
+        var list = new List<string>();
+        int i = 0;
+        while (i < text.Length)
+        {
+            int a = text.IndexOf('{', i);
+            if (a < 0) break;
+            int b = text.IndexOf('}', a + 1);
+            if (b < 0) break;
+            string h = text.Substring(a + 1, b - a - 1);
+            if (h.Length > 0 && !list.Contains(h)) list.Add(h);
+            i = b + 1;
+        }
+        return list.ToArray();
+    }
+
+    private static string OldCapitalize(string s) => string.IsNullOrEmpty(s) || !char.IsLower(s[0]) ? s : char.ToUpperInvariant(s[0]) + s.Substring(1);
+
+    /// <summary>Values as the game gives them: names, a few with "the", now and then empty; never a brace.</summary>
+    private static readonly string[] Values = { "Kettleford", "the gray cough", "Ana", "the old mill", "a fever", "Lenlia", "", "sister", "an ox", "Bo Reyes", "the Iron Hand" };
+
+    private static void TalkFill(List<string> texts, Action<bool, string> C)
+    {
+        var r = new Random(11);
+        var keys = OutsiderTalkTests.Placeholders.ToList();
+        int holes = 0, same = 0, all = 0;
+        string diff = "";
+        foreach (var text in texts)
+        {
+            if (OldHoles(text).SequenceEqual(Texts.Holes(text))) holes++;
+            for (int k = 0; k < 8; k++)
+            {
+                var f = keys.Where(_ => r.NextDouble() < 0.85).ToDictionary(x => x, _ => Values[r.Next(Values.Length)]);
+                var m = r.Next(2) == 0 ? null : new[] { "THEN", "NOW", keys[r.Next(keys.Count)] }.Distinct().Where(_ => r.NextDouble() < 0.7).ToDictionary(x => x, _ => Values[r.Next(Values.Length)]);
+                all++;
+                string want = OldCapitalize(OldFill(text, f, m)), got = Texts.FillLine(text, f, m);
+                if (want == got) same++;
+                else if (diff == "") diff = $"'{text}': '{want}' / '{got}'";
+            }
+        }
+        C(holes == texts.Count, $"the talks' placeholders read as before in every line and news heard ({holes} of {texts.Count})");
+        C(same == all, $"the talks' lines and news filled exactly as before ({same} of {all}{(diff == "" ? "" : "; " + diff)})");
+    }
+
+    /// <summary>
+    /// Every text in the defs and the keyed strings with a placeholder: filling some of its placeholders (in any order,
+    /// with one it doesn't have) gives what a chain of Replace gave, and leaves the rest as written.
+    /// </summary>
+    private static void Replaces(string root, Action<bool, string> C)
+    {
+        var files = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories)
+            .Concat(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"));
+        var texts = files.SelectMany(f => XDocument.Load(f).Descendants().Where(e => !e.HasElements).Select(e => e.Value)).Where(t => t.IndexOf('{') >= 0).Distinct().ToList();
+        var r = new Random(5);
+        int same = 0, all = 0, kept = 0;
+        string diff = "";
+        foreach (var text in texts)
+        {
+            var holes = Texts.Holes(text);
+            for (int k = 0; k < 6; k++)
+            {
+                var pairs = holes.Where(_ => r.NextDouble() < 0.6).OrderBy(_ => r.Next()).Select(h => (key: h, value: r.Next(8) == 0 ? null : Values[r.Next(Values.Length)])).ToList();
+                if (r.Next(3) == 0) pairs.Insert(r.Next(pairs.Count + 1), ("NOTHERE", "x"));
+                string chain = text;
+                foreach (var (key, value) in pairs) chain = chain.Replace("{" + key + "}", value);
+                var dict = pairs.ToDictionary(p => p.key, p => p.value);
+                all++;
+                string got = Texts.Fill(text, pairs.ToArray());
+                if (got == chain && Texts.Fill(text, dict) == chain) same++;
+                else if (diff == "") diff = $"'{text}' with {string.Join(",", pairs.Select(p => p.key))}: '{chain}' / '{got}'";
+                // What wasn't filled is still there, as written.
+                if (holes.Where(h => !dict.ContainsKey(h)).All(h => got.Contains("{" + h + "}"))) kept++;
+            }
+        }
+        C(texts.Count >= 2000, $"texts with placeholders in the defs and keyed strings ({texts.Count})");
+        C(same == all, $"filling them gives what a chain of Replace gave ({same} of {all}{(diff == "" ? "" : "; " + diff)})");
+        C(kept == all, $"and leaves the placeholders it has no value for as written ({kept} of {all})");
+    }
+
+    private static void Sayings(Action<bool, string> C)
+    {
+        C(Texts.WithThe("the Long Thaw", "plague") == "the Long Thaw" && Texts.WithThe(null, "plague") == "the plague" && Texts.WithThe("", "The plague") == "The plague"
+          && Texts.WithThe(null, "a comet") == "a comet" && Texts.WithThe(null, "An eclipse") == "An eclipse" && Texts.WithThe(null, null) == null,
+            "a placeholder that comes with \"the\": its own name, else what it is with \"the\" unless it has an article");
+        C(Texts.Capitalize("the gray cough is back") == "The gray cough is back" && Texts.Capitalize("Ana") == "Ana" && Texts.Capitalize("") == "" && Texts.Capitalize(null) == null
+          && Texts.Capitalize(" x") == " x", "a line that starts with a value in lower case is capitalized");
+        C(Texts.Fill("{A} and {B}", ("A", "x")) == "x and {B}" && Texts.Fill("{A}{A}", ("A", null)) == "" && Texts.FillLine("{A} and {B}", new Dictionary<string, string> { ["B"] = "y" }) == " and y",
+            "a fill leaves what it has no value for; a line leaves nothing unfilled");
+        C(Texts.Fill("{PAWN_gender ? he : she} took {ITEM}", ("ITEM", "the axe")) == "{PAWN_gender ? he : she} took the axe" && Texts.Fill("{x {ITEM}}", ("ITEM", "it")) == "{x it}",
+            "the game's own grammar left for it; the innermost braces are the placeholder");
+        C(Texts.FillLine("{THEN} is over", new Dictionary<string, string> { ["THEN"] = "now" }, new Dictionary<string, string> { ["THEN"] = "the war" }) == "The war is over",
+            "an earlier talk's own values first");
     }
 
     // ---------------- Scenes ----------------

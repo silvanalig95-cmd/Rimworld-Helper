@@ -98,7 +98,7 @@ public static class OutsiderTalkTests
         errs.Clear();
         OutsiderTalkMath.Parse("cb2", "callback", null, 1f, "then:over", new[] { "[them] It's over.", "[us] Good." }, null, null, null, errs);
         C(errs.Any(e => e.Contains("talked:")), "a then: condition needs its talked:");
-        C(OutsiderTalkMath.Holes("{TOWN} and {WAR} and {TOWN}").SequenceEqual(new[] { "TOWN", "WAR" }) && OutsiderTalkMath.Holes("none").Length == 0, "placeholders found once each");
+        C(Texts.Holes("{TOWN} and {WAR} and {TOWN}").SequenceEqual(new[] { "TOWN", "WAR" }) && Texts.Holes("none").Length == 0, "placeholders found once each");
 
         FactSet Facts(params string[] tags)
         {
@@ -181,7 +181,7 @@ public static class OutsiderTalkTests
                 tribal++;
         C(tribal > 140, $"a people's own line is chosen over the plain one ({tribal} of 200)");
         C(OutsiderTalkMath.Choose(new List<TalkPiece> { specific }, Facts(), "chat", 6, false, null, null, null, () => 0.01f)?.lines[1].text == "Hello.", "others get the plain one");
-        C(OutsiderTalkMath.Fill("{SITE} lies near {TOWN}.", ft, null) == "{SITE} lies near Kettleford.".Replace("{SITE}", "") && OutsiderTalkMath.Capitalize("the gray cough") == "The gray cough",
+        C(Texts.FillLine("{SITE} lies near {TOWN}.", ft.values) == " lies near Kettleford." && Texts.FillLine("{TOWN} is quiet.", ft.values) == "Kettleford is quiet." && Texts.Capitalize("the gray cough") == "The gray cough",
             "filling, and a line starting with a fact capitalized");
 
         // ---------------- Marks ----------------

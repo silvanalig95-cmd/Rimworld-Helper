@@ -108,7 +108,7 @@ namespace ColonyCouncil
                 var s = running.Count > 0 ? running.RandomElement() : null;
                 string line = Flavor.FromPool(kind.roadWord, speaker, null, null, RoadPostMath.WordTags(s?.def.kind).ToArray());
                 if (line.NullOrEmpty()) continue;
-                line = line.Replace("{SITUATION}", CampWords.SituationName(s));
+                line = Texts.Fill(line, ("SITUATION", CampWords.SituationName(s)));
                 if (!lines.Contains(line)) lines.Add(line);
             }
             return lines.Count > 0 ? lines : null;

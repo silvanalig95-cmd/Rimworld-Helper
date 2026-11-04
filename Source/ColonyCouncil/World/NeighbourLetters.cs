@@ -985,8 +985,8 @@ namespace ColonyCouncil
             string line = Flavor.PickTagged(lines.Where(x => LineTags.Of(x).tags?.Contains(l.purpose.ToString().ToLowerInvariant()) ?? false), tags)
                           ?? Flavor.PickTagged(lines, tags);
             if (line.NullOrEmpty()) return null;
-            return line.Replace("{WRITER}", speaker?.LabelShort ?? l.WriterName).Replace("{NAME}", n.Name).Replace("{TOWN}", n.townName ?? "")
-                .Replace("{FACTION}", n.faction?.Name ?? "").Replace("{TOPIC}", l.topic ?? "").Replace("{HELP}", HelpLabel(l.help));
+            return Texts.Fill(line, ("WRITER", speaker?.LabelShort ?? l.WriterName), ("NAME", n.Name), ("TOWN", n.townName ?? ""), ("FACTION", n.faction?.Name ?? ""),
+                ("TOPIC", l.topic ?? ""), ("HELP", HelpLabel(l.help)));
         }
 
         /// <summary>What they tell of when asked for news: real things near them (a world event, a place, a quest of theirs, their wars).</summary>
@@ -1219,7 +1219,7 @@ namespace ColonyCouncil
                 string line = Flavor.PickTagged(lines.Where(x => LineTags.Of(x).tags?.Contains(moment) ?? false), tags)
                               ?? Flavor.PickTagged(pool.lines.plain.Where(x => LineTags.Of(x).tags?.Contains(moment) ?? false), tags);
                 if (line.NullOrEmpty()) return;
-                line = line.Replace("{NAME}", n?.Name ?? "").Replace("{TOWN}", n?.townName ?? "");
+                line = Texts.Fill(line, ("NAME", n?.Name ?? ""), ("TOWN", n?.townName ?? ""));
                 Speech.Say(p, line);
             }
             catch (Exception e)

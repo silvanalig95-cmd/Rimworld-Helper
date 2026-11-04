@@ -531,8 +531,7 @@ namespace ColonyCouncil
                 string line = Flavor.PickTagged(lines.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags)
                               ?? Flavor.PickTagged(pool.lines.plain.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags);
                 if (line.NullOrEmpty()) return null;
-                return line.Replace("{NAME}", other?.LabelShort ?? "").Replace("{TOWN}", (x != null ? TownOf(x)?.Name : null) ?? "")
-                    .Replace("{ASKER}", asker?.LabelShort ?? "");
+                return Texts.Fill(line, ("NAME", other?.LabelShort ?? ""), ("TOWN", (x != null ? TownOf(x)?.Name : null) ?? ""), ("ASKER", asker?.LabelShort ?? ""));
             }
             catch (Exception e)
             {

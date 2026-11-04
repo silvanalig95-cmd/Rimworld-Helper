@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyCouncil
 {
@@ -76,7 +75,8 @@ namespace ColonyCouncil
     /// someone has for the colony on a visit, asking the same thing twice, a pushy colonist, gifts in a row, how often
     /// colonists start a talk by themselves, and the conversation pieces: taking them apart, whether one fits the
     /// moment, which one is said (what's current and recent first, never the same one twice to the same person while
-    /// another fits), and filling their placeholders with the facts. No game types, so Tools/Tests can check it.
+    /// another fits), and filling their placeholders with the facts (Texts.FillLine). No game types, so Tools/Tests can
+    /// check it.
     /// </summary>
     public static class OutsiderTalkMath
     {
@@ -241,25 +241,6 @@ namespace ColonyCouncil
 
         // ---------------- Pieces taken apart ----------------
 
-        /// <summary>The placeholders in a text ("{TOWN} is quiet" gives TOWN).</summary>
-        public static string[] Holes(string text)
-        {
-            if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return Array.Empty<string>();
-            var list = new List<string>();
-            int i = 0;
-            while (i < text.Length)
-            {
-                int a = text.IndexOf('{', i);
-                if (a < 0) break;
-                int b = text.IndexOf('}', a + 1);
-                if (b < 0) break;
-                string h = text.Substring(a + 1, b - a - 1);
-                if (h.Length > 0 && !list.Contains(h)) list.Add(h);
-                i = b + 1;
-            }
-            return list.ToArray();
-        }
-
         /// <summary>
         /// A piece from its def's fields: the speakers' lines in order ("[us] ...", "[them,their:tribal] ..."; lines
         /// one after another for the same speaker are choices for one turn), its conditions and what it leaves. The
@@ -273,7 +254,7 @@ namespace ColonyCouncil
             p.when = LineTags.Parse("[" + (when ?? "") + "] x");
             p.mark = string.IsNullOrEmpty(mark) ? null : mark.Trim();
             p.about = string.IsNullOrEmpty(about) ? null : about.Trim();
-            p.heardHoles = Holes(p.heard);
+            p.heardHoles = Texts.Holes(p.heard);
             if (p.when.tags != null)
                 foreach (var alts in p.when.alts)
                     foreach (var a in alts)
@@ -303,7 +284,7 @@ namespace ColonyCouncil
                         errors?.Add($"{name}: a line needs [us] or [them]: {raw.Trim()}");
                         continue;
                     }
-                    var line = new TalkLine { us = hasUs, text = parsed.text, holes = Holes(parsed.text) };
+                    var line = new TalkLine { us = hasUs, text = parsed.text, holes = Texts.Holes(parsed.text) };
                     line.tags = rest.Count == 0 ? LineTags.Parse(parsed.text) : LineTags.Parse("[" + string.Join(",", rest) + "] " + parsed.text);
                     if (last != hasUs) p.turns.Add(new List<TalkLine>());
                     p.turns[p.turns.Count - 1].Add(line);
@@ -530,9 +511,9 @@ namespace ColonyCouncil
                         break;
                     }
                 }
-                ch.lines.Add((pick.us, Capitalize(Fill(pick.text, f, m))));
+                ch.lines.Add((pick.us, Texts.FillLine(pick.text, f.values, m?.values)));
             }
-            if (p.heard != null) ch.heard = Capitalize(Fill(p.heard, f, m));
+            if (p.heard != null) ch.heard = Texts.FillLine(p.heard, f.values, m?.values);
             if (p.about != null)
             {
                 ch.markSubject = Value(f, m, p.about);
@@ -546,36 +527,6 @@ namespace ColonyCouncil
             if (m != null && m.values.TryGetValue(key, out var v)) return v;
             return f.values.TryGetValue(key, out v) ? v : null;
         }
-
-        /// <summary>The text with its placeholders filled (an earlier talk's own values first).</summary>
-        public static string Fill(string text, FactSet f, MarkFacts m)
-        {
-            if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return text;
-            var sb = new StringBuilder(text.Length + 32);
-            int i = 0;
-            while (i < text.Length)
-            {
-                int a = text.IndexOf('{', i);
-                if (a < 0)
-                {
-                    sb.Append(text, i, text.Length - i);
-                    break;
-                }
-                int b = text.IndexOf('}', a + 1);
-                if (b < 0)
-                {
-                    sb.Append(text, i, text.Length - i);
-                    break;
-                }
-                sb.Append(text, i, a - i);
-                string key = text.Substring(a + 1, b - a - 1);
-                sb.Append(Value(f, m, key) ?? "");
-                i = b + 1;
-            }
-            return sb.ToString();
-        }
-
-        public static string Capitalize(string s) => string.IsNullOrEmpty(s) || !char.IsLower(s[0]) ? s : char.ToUpperInvariant(s[0]) + s.Substring(1);
 
         // ---------------- Marks ----------------
 

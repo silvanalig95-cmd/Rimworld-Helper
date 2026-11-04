@@ -339,7 +339,7 @@ namespace ColonyCouncil
             string line = Stable(More(def)?.coming, null, m.tick);
             if (line.NullOrEmpty()) return null;
             var ctx = Context(m, def, null);
-            return ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, m.due - now))));
+            return ctx.Format(Texts.Fill(line, ("DAYS", TextUtil.DaysString(Mathf.Max(0, m.due - now)))));
         }
 
         /// <summary>A memory waiting for its follow-up, for the World page's "who's out there".</summary>
@@ -999,7 +999,7 @@ namespace ColonyCouncil
             var tags = new HashSet<string> { tag };
             Flavor.AddEraTags(tags);
             string s = Flavor.PickTagged(lines.Where(l => Flavor.Strip(l, out var t) != null && t != null && t.Contains(tag)), tags);
-            return s.NullOrEmpty() ? null : ctx.Format(s.Replace("{ITEM}", item));
+            return s.NullOrEmpty() ? null : ctx.Format(Texts.Fill(s, ("ITEM", item)));
         }
 
         public override string Unavailable(HappeningContext ctx, int option) =>

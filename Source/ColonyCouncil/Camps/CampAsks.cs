@@ -176,7 +176,7 @@ namespace ColonyCouncil
                 AddStoryTags(tags);
                 string raw = a.outcomes.NullOrEmpty() ? null : Flavor.Pick(a.outcomes, tags) ?? Flavor.PickText(a.outcomes);
                 // The one lying ill, by name (CampStory.cs).
-                if (raw != null && sick != null) raw = raw.Replace("{SICK}", sick.LabelShort);
+                if (raw != null && sick != null) raw = Texts.Fill(raw, ("SICK", sick.LabelShort));
                 line = Format(raw, ctx.stranger, ctx.a, cost, thing);
                 ctx.why = a.label;
                 ctx.cause = line;

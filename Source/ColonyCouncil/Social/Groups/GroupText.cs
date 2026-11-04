@@ -85,7 +85,7 @@ namespace ColonyCouncil
                 if (text.Contains("{ANCHOR}"))
                 {
                     if (anchor == null) continue;
-                    text = text.Replace("{ANCHOR}", anchor.LabelShort);
+                    text = Texts.Fill(text, ("ANCHOR", anchor.LabelShort));
                 }
                 list.Add(text);
             }
