@@ -21,9 +21,10 @@ namespace ColonyCouncil
         private static Vector2 scroll;
         private static float height = 600f;
 
-        private static readonly Color Good = new Color(0.55f, 0.9f, 0.55f);
-        private static readonly Color Bad = new Color(0.95f, 0.55f, 0.45f);
-        private static readonly Color Asked = new Color(1f, 0.85f, 0.45f);
+        // The interface's tokens (UI/UiKit.cs): in force warm, forced or a warning sour, asked for by someone soon.
+        private static readonly Color Good = UiKit.Warm;
+        private static readonly Color Bad = UiKit.Sour;
+        private static readonly Color Asked = UiKit.Soon;
 
         private const float IconX = 12f;
         private const float TextX = 54f;
@@ -78,7 +79,7 @@ namespace ColonyCouncil
                 float w = view.width;
                 float cy = 0f;
                 cy += UiKit.Paragraph(0f, cy, w, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive), UiKit.Faint) + 10f;
-                if (ColonyCouncilMod.Settings.offices) cy += DrawOffices(comp, w, cy) + 14f;
+                if (ColonyCouncilMod.Settings.offices) cy += DrawOffices(comp, w, cy) + UiKit.SectionGap;
                 // A journey planned ahead: its own order rather than a decree (UI/JourneyDialog.cs).
                 cy += JourneyPanel.Section(0f, cy, w);
 
@@ -91,13 +92,17 @@ namespace ColonyCouncil
                     listed.Add((def, LayoutOf(def, comp, pawns, w)));
                 }
                 int ready = listed.Count(x => x.l.ready);
-                cy += UiKit.SectionTitle(0f, cy, w, "CC_Decrees_Header".Translate(), Icons.Decree, null,
+                cy += UiKit.SectionTitle(0f, cy, w, "CC_Decrees_Header".Translate(), listed.Count, Icons.Decree, null,
                     "CC_Decrees_Listed".Translate(listed.Count, ready, tracker.active.Count).Resolve());
                 cy += Toolbar(0f, cy, w) + 6f;
                 if (glance) cy += Glance(listed, 0f, cy, w, pawns.Count, tracker) + 10f;
 
                 var shown = listed.Where(x => Passes(x.l)).ToList();
-                if (shown.Count == 0) cy += UiKit.Paragraph(8f, cy, w - 16f, "CC_Decrees_NoneFit".Translate(), UiKit.Dim) + 8f;
+                if (shown.Count == 0)
+                {
+                    UiKit.EmptyLine(new Rect(0f, cy, w, UiKit.RowStandard), "CC_Decrees_NoneFit".Translate());
+                    cy += UiKit.RowStandard + UiKit.CardGap;
+                }
                 else if (sort == Sort.Kind)
                 {
                     foreach (var kind in Kinds)
@@ -108,8 +113,8 @@ namespace ColonyCouncil
                         cy += KindTitle(kind, part, 0f, cy, w, ref fold) + 4f;
                         folded[kind] = fold;
                         if (fold) continue;
-                        foreach (var (def, l) in part) cy += Card(def, l, comp, pawns, w, cy, outRect.height) + 8f;
-                        cy += 6f;
+                        foreach (var (def, l) in part) cy += Card(def, l, comp, pawns, w, cy, outRect.height) + UiKit.CardGap;
+                        cy += UiKit.SectionGap - UiKit.CardGap;
                     }
                     // A kind the defs name that the page doesn't: listed last rather than lost.
                     var odd = shown.Where(x => !Kinds.Contains(x.def.kind)).ToList();
@@ -173,20 +178,19 @@ namespace ColonyCouncil
             string show = "CC_Decrees_Show".Translate();
             float showW = Text.CalcSize(show).x + 4f;
             GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(cx, py - 1f, showW, 20f), show);
-            GUI.color = Color.white;
+            Widgets.Label(new Rect(cx, py + 1f, showW, 20f), show);
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             cx += showW + 6f;
+            // What shows, and in what order: the design's filter chips.
             foreach (Filter f in System.Enum.GetValues(typeof(Filter)))
             {
                 string label = ("CC_Decrees_Filter_" + f).Translate();
-                var color = f == Filter.InForce ? Good : f == Filter.Asked ? Asked : f == Filter.Needed ? UiKit.Info : f == Filter.Cooldown ? UiKit.Faint : Color.white;
-                float pw = PillButton(cx, py, label, color, filter == f, ("CC_Decrees_Filter_" + f + "_Tip").Translate());
-                if (pw < 0f)
+                float pw = UiKit.FilterChipWidth(label);
+                if (UiKit.FilterChip(new Rect(cx, py, pw, ChipRowH), label, filter == f, ("CC_Decrees_Filter_" + f + "_Tip").Translate()) && filter != f)
                 {
                     filter = f;
                     PageMemory.SetEnum("decrees.filter", f);
-                    pw = -pw;
                 }
                 cx += pw + 4f;
             }
@@ -197,9 +201,9 @@ namespace ColonyCouncil
             {
                 var s = sorts[i];
                 string label = ("CC_Decrees_Sort_" + s).Translate();
-                rx -= UiKit.PillWidth(label);
-                float pw = PillButton(rx, py, label, UiKit.Gold, sort == s, ("CC_Decrees_Sort_" + s + "_Tip").Translate());
-                if (pw < 0f)
+                float pw = UiKit.FilterChipWidth(label);
+                rx -= pw;
+                if (UiKit.FilterChip(new Rect(rx, py, pw, ChipRowH), label, sort == s, ("CC_Decrees_Sort_" + s + "_Tip").Translate()) && sort != s)
                 {
                     sort = s;
                     PageMemory.SetEnum("decrees.sort", s);
@@ -210,46 +214,26 @@ namespace ColonyCouncil
             string order = "CC_Decrees_Order".Translate();
             float ow = Text.CalcSize(order).x + 6f;
             GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(rx - ow, py - 1f, ow, 20f), order);
-            GUI.color = Color.white;
+            Widgets.Label(new Rect(rx - ow, py + 1f, ow, 20f), order);
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
-            return UiKit.PillHeight + 8f;
+            return ChipRowH + 8f;
         }
 
-        /// <summary>A pill that can be clicked: drawn fuller when on. Returns its width, negative when it was clicked.</summary>
-        private static float PillButton(float x, float y, string label, Color color, bool on, string tip = null)
-        {
-            float pw = UiKit.PillWidth(label);
-            var r = new Rect(x, y, pw, UiKit.PillHeight);
-            if (on) Widgets.DrawBoxSolid(r, UiKit.WithAlpha(color, 0.25f));
-            else if (Mouse.IsOver(r)) Widgets.DrawBoxSolid(r, UiKit.WithAlpha(color, 0.1f));
-            UiKit.Pill(x, y, label, on ? color : UiKit.WithAlpha(color, 0.7f), null, tip);
-            if (Widgets.ButtonInvisible(r))
-            {
-                SoundDefOf.Click.PlayOneShotOnCamera();
-                return -pw;
-            }
-            return pw;
-        }
+        private const float ChipRowH = 22f;
 
         // ---------------- At a glance: a chip per decree ----------------
 
         private static float Glance(List<(DecreeDef def, Layout l)> listed, float x, float y, float w, int pawnCount, DecreeTracker tracker)
         {
             float start = y;
-            // The title with its fold.
-            var fold = new Rect(x + 2f, y + 4f, 18f, 18f);
-            if (Widgets.ButtonImage(fold, glance ? TexButton.Collapse : TexButton.Reveal))
+            // The section's heading with its fold (kept between sessions, UI/PageMemory.cs).
+            if (FoldHeading(x, y, w, "CC_Decrees_Glance".Translate(), listed.Count, null, glance, "CC_Decrees_GlanceTip".Translate()))
             {
                 glance = !glance;
                 PageMemory.SetBool("decrees.glance", glance);
             }
-            Text.Font = GameFont.Small;
-            GUI.color = UiKit.HeaderColor;
-            Widgets.Label(new Rect(x + 24f, y + 2f, w - 24f, 24f), "CC_Decrees_Glance".Translate());
-            GUI.color = Color.white;
-            TooltipHandler.TipRegion(new Rect(x, y, 240f, 24f), "CC_Decrees_GlanceTip".Translate());
-            y += 26f;
+            y += UiKit.HeadingHeight;
             if (!glance) return y - start;
 
             int perRow = Mathf.Clamp(Mathf.FloorToInt((w + 6f) / 196f), 2, 6);
@@ -269,12 +253,12 @@ namespace ColonyCouncil
 
         private static void Chip(DecreeDef def, Layout l, Rect r, int pawnCount)
         {
-            var status = l.active ? Good : l.asked ? Asked : l.ready ? Color.white : UiKit.Dim;
+            var status = l.active ? Good : l.asked ? Asked : l.ready ? UiKit.Ink : UiKit.Dim;
             bool hot = marked == def && Time.realtimeSinceStartup - markedAt < 2.5f;
-            UiKit.Card(r, l.active || l.asked ? status : (Color?)null, hot, true);
+            UiKit.Card(r, null, hot, true);
             Widgets.DrawBoxSolid(new Rect(r.x + 1f, r.y + 1f, 3f, r.height - 2f), status);
             Text.Font = GameFont.Tiny;
-            UiKit.LabelFit(new Rect(r.x + 8f, r.y + 2f, r.width - 12f, 16f), def.LabelCap, l.active ? Good : l.ready || l.asked ? Color.white : UiKit.Faint, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(r.x + 8f, r.y + 2f, r.width - 12f, 16f), def.LabelCap, l.active || l.ready || l.asked ? UiKit.Ink : UiKit.Faint, GameFont.Tiny);
             Text.Font = GameFont.Small;
             SupportBar(new Rect(r.x + 8f, r.y + 21f, r.width - 16f, 7f), l, pawnCount);
             string tip = def.LabelCap + "\n" + l.supportLine + "\n" + (l.active ? "CC_UI_Pill_InForce".Translate().ToString() : l.ready ? "CC_Decrees_Filter_Ready".Translate().ToString() : l.why ?? "")
@@ -319,21 +303,28 @@ namespace ColonyCouncil
 
         // ---------------- Kinds ----------------
 
+        /// <summary>A section heading that folds (caret, name, count, a note on the right), its state kept by the page. Returns true when clicked.</summary>
+        private static bool FoldHeading(float x, float y, float w, string label, int count, string right, bool open, string tip)
+        {
+            var hit = new Rect(x, y, w, 22f);
+            if (Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+            UiKit.HeadingLine(x, y, w, label, count, right, null, UiKit.Heading, true, open);
+            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(hit, tip);
+            if (!Widgets.ButtonInvisible(hit, false)) return false;
+            (open ? SoundDefOf.TabClose : SoundDefOf.TabOpen).PlayOneShotOnCamera();
+            return true;
+        }
+
         private static float KindTitle(string kind, List<(DecreeDef def, Layout l)> part, float x, float y, float w, ref bool fold)
         {
-            var fr = new Rect(x + 2f, y + 6f, 18f, 18f);
-            if (Widgets.ButtonImage(fr, fold ? TexButton.Reveal : TexButton.Collapse)) fold = !fold;
             int inForce = part.Count(p => p.l.active), ready = part.Count(p => p.l.ready), asked = part.Count(p => p.l.asked);
             var bits = new List<string>();
             if (inForce > 0) bits.Add("CC_Decrees_KindInForce".Translate(inForce).Resolve());
             if (ready > 0) bits.Add("CC_Decrees_KindReady".Translate(ready).Resolve());
             if (asked > 0) bits.Add("CC_Decrees_KindAsked".Translate(asked).Resolve());
             string right = bits.Count > 0 ? string.Join(", ", bits) : "CC_Decrees_KindNone".Translate().Resolve();
-            float h = UiKit.SectionTitle(x + 24f, y, w - 24f, ("CC_Decrees_Kind_" + kind).Translate() + " (" + part.Count + ")", null, UiKit.HeaderColor, right);
-            TooltipHandler.TipRegion(new Rect(x, y, 260f, h), ("CC_Decrees_Kind_" + kind + "_Tip").Translate());
-            // The whole title folds and unfolds too.
-            if (Widgets.ButtonInvisible(new Rect(x + 24f, y, 240f, h))) fold = !fold;
-            return h;
+            if (FoldHeading(x, y, w, ("CC_Decrees_Kind_" + kind).Translate(), part.Count, right, !fold, ("CC_Decrees_Kind_" + kind + "_Tip").Translate())) fold = !fold;
+            return UiKit.HeadingHeight;
         }
 
         // ---------------- Decree cards ----------------
@@ -343,6 +334,8 @@ namespace ColonyCouncil
         {
             public float width = -1f, at, titleH, effectsH, noteH, needH, warnH, facesH, leftH, height;
             public string effects, note, need, warning, supportLine;
+            /// <summary>The note as drawn: who asked as a link to their card.</summary>
+            public string noteShown;
             public List<Pawn>[] faces = new List<Pawn>[4];
             public int[] counts = new int[4];
             /// <summary>Each reaction's pill and its tooltip ("Loves it: ...").</summary>
@@ -377,6 +370,7 @@ namespace ColonyCouncil
             l.asked = req?.pawn != null;
             l.note = req?.pawn == null ? null
                 : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
+            l.noteShown = l.note == null ? null : PaneLinks.Mark(l.note, req.pawn);
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
             // Needed now and wanted: it can come again sooner, and a repeat is minded less.
             l.need = active == null && (tracker.OnCooldown(def) || fatigue > 0) ? NeedLine(tracker, def, fatigue) : null;
@@ -421,13 +415,15 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             l.titleH = 26f;
             l.effectsH = Text.CalcHeight(l.effects, leftW);
-            l.noteH = l.note == null ? 0f : Text.CalcHeight(l.note, leftW) + 2f;
+            l.noteH = l.note == null ? 0f : LinkText.Height(l.noteShown, leftW) + 2f;
             l.needH = l.need == null ? 0f : Text.CalcHeight(l.need, leftW) + 2f;
             l.warnH = l.warning == null ? 0f : Text.CalcHeight(l.warning, leftW) + 2f;
             l.facesH = Faces(l, 0f, 0f, FacesW, false);
             l.leftH = l.noteH + l.needH + l.warnH + l.effectsH + (active != null ? 4f + UiKit.MeterHeight : 0f);
             float h = 8f + l.titleH + 14f + Mathf.Max(l.leftH, l.facesH) + 8f;
-            l.height = Mathf.Max(h, 74f);
+            // The acts on the right: enact (or repeal), greyed with the reason under it, and force where it can be forced.
+            float acts = 10f + UiKit.RowStandard + (active == null && l.why != null ? 20f + (l.forcible ? UiKit.RowStandard + 4f : 0f) : 0f) + 8f;
+            l.height = Mathf.Max(h, Mathf.Max(74f, acts));
             layouts[def] = l;
             return l;
         }
@@ -468,7 +464,7 @@ namespace ColonyCouncil
             var box = new Rect(0f, y, width, l.height);
             bool hot = marked == def && Time.realtimeSinceStartup - markedAt < 2.5f;
             UiKit.Card(box, accent, hot, false);
-            if (active != null) Widgets.DrawBoxSolid(box.ContractedBy(1f), new Color(0.3f, 0.45f, 0.3f, 0.12f));
+            if (active != null) Widgets.DrawBoxSolid(box.ContractedBy(1f), UiKit.Wash(Good));
             UiKit.Badge(new Rect(IconX, y + 10f, 32f, 32f), Icons.Decree, active != null ? Good : req != null ? Asked : UiKit.Faint);
 
             float textX = TextX;
@@ -481,7 +477,7 @@ namespace ColonyCouncil
             float titleW = Mathf.Min(Text.CalcSize(title).x + 4f, textW);
             // Back to the body font before anything else is drawn: the card's heights were measured with it.
             Text.Font = GameFont.Small;
-            UiKit.LabelFit(new Rect(textX, cy - 2f, titleW, 28f), title, active != null ? Good : Color.white, GameFont.Medium);
+            UiKit.LabelFit(new Rect(textX, cy - 2f, titleW, 28f), title, UiKit.Ink, GameFont.Medium);
             if (!def.description.NullOrEmpty())
             {
                 TooltipHandler.TipRegion(new Rect(textX, cy - 2f, titleW, 28f), def.description);
@@ -500,14 +496,14 @@ namespace ColonyCouncil
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(bar.xMax + 8f, cy - 3f, textW - bar.width - 8f, 18f), l.supportLine);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             TooltipHandler.TipRegion(new Rect(textX, cy - 2f, textW, 16f), string.Join("\n", l.reactionTips.Where(t => t != null)));
             cy += 14f;
 
             // Left: the lines and what it does; right: who minds.
             float ly = cy;
-            if (l.note != null) ly += UiKit.Paragraph(textX, ly, leftW, l.note, Asked) + 2f;
+            if (l.note != null) ly += LinkText.Draw(new Rect(textX, ly, leftW, l.noteH), l.noteShown ?? l.note, UiKit.Ink) + 2f;
             if (l.need != null) ly += UiKit.Paragraph(textX, ly, leftW, l.need, Good) + 2f;
             if (l.warning != null) ly += UiKit.Paragraph(textX, ly, leftW, l.warning, Bad) + 2f;
             Widgets.Label(new Rect(textX, ly, leftW, l.effectsH), l.effects);
@@ -555,7 +551,7 @@ namespace ColonyCouncil
                         cx = x + 12f;
                         cy += rowH;
                     }
-                    if (draw) UiKit.PawnChip(cx, cy, p, FaceSize, false, FaceSize, color);
+                    if (draw) UiKit.PawnChip(cx, cy, p, FaceSize, false, FaceSize, color, link: true);
                     cx += FaceSize + 2f;
                 }
                 cx += 10f;
@@ -573,36 +569,25 @@ namespace ColonyCouncil
         {
             var tracker = View.decrees;
             var active = tracker.Get(def);
-            var btn = new Rect(width - ButtonsW + 4f, y + 10f, ButtonsW - 14f, 32f);
+            var btn = new Rect(width - ButtonsW + 4f, y + 10f, ButtonsW - 14f, UiKit.RowStandard);
             if (active != null)
             {
-                if (Widgets.ButtonText(btn, "CC_Decree_Repeal".Translate())) tracker.Repeal(def, comp, true);
+                if (UiKit.ActButton(btn, "CC_Decree_Repeal".Translate(), null)) tracker.Repeal(def, comp, true);
                 return;
             }
             // What stands in the way is worked out with the card, once a second (the card's layout); a click asks again.
+            // Enact greyed with why not as its tooltip and in a line under it (the design's act with why not).
             string why = l.why;
-            if (why == null)
-            {
-                if (Widgets.ButtonText(btn, UiKit.Fit(l.enactLabel ?? "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))), btn.width - 10f)))
-                    DecreeFaith.Enact(def, () => tracker.Enact(def, comp));
-                return;
-            }
+            string enact = why == null ? l.enactLabel ?? "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))).ToString()
+                : EnactWord;
+            if (UiKit.ActButton(btn, enact, why)) DecreeFaith.Enact(def, () => tracker.Enact(def, comp));
+            if (why == null) return;
+            UiKit.WhyNotLine(btn.x, btn.yMax + 2f, btn.width, null, why);
             // Only the cooldown stands in the way: it can be forced through, at a price.
-            bool forcible = l.forcible;
-            var whyRect = forcible ? new Rect(btn.x, btn.y - 4f, btn.width, 24f) : btn;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = UiKit.Faint;
-            Text.Font = GameFont.Tiny;
-            Widgets.Label(whyRect, UiKit.Fit(why, whyRect.width));
-            Text.Font = GameFont.Small;
-            GUI.color = Color.white;
-            Text.Anchor = TextAnchor.UpperLeft;
-            TooltipHandler.TipRegion(whyRect, why);
-            if (!forcible) return;
-            var forceBtn = new Rect(btn.x, btn.y + 22f, btn.width, 28f);
+            if (!l.forcible) return;
+            var forceBtn = new Rect(btn.x, btn.yMax + 22f, btn.width, UiKit.RowStandard);
             string chance = l.chance ?? tracker.UnrestChance(def, true).ToStringPercent();
-            TooltipHandler.TipRegion(forceBtn, l.forceTip ?? "CC_Decree_ForceTip".Translate(chance));
-            if (Widgets.ButtonText(forceBtn, "CC_Decree_Force".Translate()))
+            if (UiKit.ActButton(forceBtn, "CC_Decree_Force".Translate(), null, l.forceTip ?? "CC_Decree_ForceTip".Translate(chance)))
             {
                 var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).Select(p => p.LabelShort).ToList();
                 string who = against.Count > 0 ? string.Join(", ", against) : "CC_Decree_ForceNobody".Translate().ToString();
@@ -611,6 +596,10 @@ namespace ColonyCouncil
                     () => DecreeFaith.Enact(def, () => tracker.Enact(def, comp, true)), true));
             }
         }
+
+        private static string enactWord;
+        /// <summary>The enact button's word while it can't be (its days are the enact label's, which is made only when it can).</summary>
+        private static string EnactWord => enactWord ??= "CC_Decree_EnactPlain".Translate();
 
         // ---------------- Offices ----------------
 
@@ -628,19 +617,18 @@ namespace ColonyCouncil
             // The seats of the colony in view.
             var colony = View;
             var offices = colony.offices;
-            UiKit.SectionTitle(0f, y, width - 210f, "CC_Offices_Header".Translate(), Icons.Office);
-            UiKit.Divider(width - 210f, y + 25f, 210f);
-            // With an election under way, it is the one being held; otherwise one is called (announced, or at once with the event off).
+            // With an election under way, it is the one being held; otherwise one is called (announced, or at once with the event off):
+            // the heading's act, greyed with why not while one runs.
             bool running = offices.election != null;
-            var call = new Rect(width - 200f, y, 200f, 24f);
-            if (Widgets.ButtonText(call, running ? "CC_Elect_UnderWay".Translate() : "CC_Office_CallElection".Translate(), active: !running) && !running)
+            UiKit.SectionHeading(0f, y, width, "CC_Offices_Header".Translate(), -1, null, null, out _, "CC_Office_CallElection".Translate(),
+                running ? "CC_Elect_UnderWayTip".Translate().ToString() : null, out bool call);
+            if (call)
             {
                 // The colony's own year.
                 var map = colony.Map ?? Find.AnyPlayerHomeMap;
                 if (map != null) offices.Call(comp, GenLocalDate.Year(map), false);
             }
-            if (running) TooltipHandler.TipRegion(call, "CC_Elect_UnderWayTip".Translate());
-            y += UiKit.SectionHeight;
+            y += UiKit.HeadingHeight + 4f;
             y += UiKit.Paragraph(0f, y, width, "CC_Offices_Sub".Translate(), UiKit.Faint) + 4f;
             // The election under way: its dates, the candidates, how support leans, the council's hand (UI/ElectionPanel.cs).
             float election = ElectionPanel.Draw(comp, width, y);
@@ -653,20 +641,21 @@ namespace ColonyCouncil
                 // A seat this game can't have (the chaplain without a faith) isn't listed, unless someone still holds it.
                 if (!office.Available && holder == null) continue;
                 int seatNow = seat;
-                var row = new Rect(0f, y, width, 32f);
+                const float rh = UiKit.RowStandard + 4f;
+                var row = new Rect(0f, y, width, rh);
                 UiKit.Zebra(row, i++);
-                UiKit.Icon(new Rect(6f, y + 7f, 18f, 18f), Icons.Office, holder != null ? UiKit.Gold : UiKit.Dim);
+                UiKit.Icon(new Rect(6f, y + (rh - UiKit.IconRow) / 2f, UiKit.IconRow, UiKit.IconRow), Icons.Office, holder != null ? UiKit.Gold : UiKit.Dim);
                 string name = office.Seats > 1 ? "CC_Office_Seat".Translate(office.LabelCap, seat + 1).Resolve() : office.LabelCap.ToString();
-                UiKit.LabelFit(new Rect(30f, y, 150f, 32f), name, Color.white);
+                UiKit.LabelFit(new Rect(30f, y, 150f, rh), name, UiKit.Ink);
                 if (holder != null)
                 {
-                    UiKit.PawnChip(186f, y + 3f, holder, 26f, true, 180f);
-                    UiKit.LabelFit(new Rect(372f, y, Mathf.Max(0f, Mathf.Min(120f, width - 240f - 372f)), 32f),
+                    UiKit.PawnChip(186f, y + 4f, holder, 24f, true, 180f, link: true);
+                    UiKit.LabelFit(new Rect(372f, y, Mathf.Max(0f, Mathf.Min(120f, width - 240f - 372f)), rh),
                         "CC_Office_Competence".Translate(office.Competence(holder).ToString("0")), UiKit.Faint, GameFont.Tiny);
                 }
-                else UiKit.LabelFit(new Rect(186f, y, 180f, 32f), "CC_Office_Empty".Translate(), UiKit.Dim);
-                TooltipHandler.TipRegion(new Rect(0f, y, 180f, 32f), office.description + "\n\n" + string.Join("\n", office.duties.Select(d => "- " + d)));
-                if (Widgets.ButtonText(new Rect(width - 230f, y + 3f, 120f, 26f), "CC_Office_Appoint".Translate()))
+                else UiKit.LabelFit(new Rect(186f, y, 180f, rh), "CC_Office_Empty".Translate(), UiKit.Dim);
+                TooltipHandler.TipRegion(new Rect(0f, y, 180f, rh), office.description + "\n\n" + string.Join("\n", office.duties.Select(d => "- " + d)));
+                if (UiKit.RowAct(new Rect(width - 230f, y + (rh - 22f) / 2f, 120f, 22f), "CC_Office_Appoint".Translate(), null))
                 {
                     var options = PawnsFinder.AllMaps_FreeColonistsSpawned
                         .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && colony.Has(p))
@@ -678,9 +667,9 @@ namespace ColonyCouncil
                         .ToList();
                     if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
                 }
-                if (holder != null && Widgets.ButtonText(new Rect(width - 105f, y + 3f, 100f, 26f), "CC_Office_Dismiss".Translate()))
+                if (holder != null && UiKit.RowAct(new Rect(width - 105f, y + (rh - 22f) / 2f, 100f, 22f), "CC_Office_Dismiss".Translate(), null))
                     offices.Dismiss(office, comp, seatNow);
-                y += 32f;
+                y += rh;
             }
             return y - start;
         }

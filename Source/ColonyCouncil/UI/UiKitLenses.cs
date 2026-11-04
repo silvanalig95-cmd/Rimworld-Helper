@@ -285,7 +285,7 @@ namespace ColonyCouncil
         {
             bool over = Mouse.IsOver(r);
             Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
-            LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Color.white : Faint, GameFont.Tiny);
+            LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Ink : Faint, GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             if (!Widgets.ButtonInvisible(r, false)) return false;
             SoundDefOf.Click.PlayOneShotOnCamera();

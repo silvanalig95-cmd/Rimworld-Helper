@@ -95,8 +95,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class StoryView
     {
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        private static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
+        private static readonly Color Faint = UiKit.Faint;
+        private static readonly Color HeaderColor = UiKit.Heading;
 
         /// <summary>The character page's sections the Culture tab shows (its views and faith).</summary>
         public static readonly string[] CultureKeys = { "talk.views", "faith" };
@@ -381,7 +381,7 @@ namespace ColonyCouncil
             {
                 var secrets = new Section { key = "secrets", header = "CC_Social_Secrets".Translate(), icon = Icons.Secret };
                 var secret = comp.secrets.Of(p);
-                if (secret != null && secret.revealed) secrets.lines.Add((secret.Truth, new Color(0.9f, 0.6f, 0.5f)));
+                if (secret != null && secret.revealed) secrets.lines.Add((secret.Truth, UiKit.Sour));
                 else if (secret != null && secret.knowers.Count > 0)
                     secrets.lines.Add((PaneLinks.Mark("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(secret.knowers.Select(k => k.LabelShort).ToList())).Resolve(),
                         secret.knowers), Faint));
@@ -481,7 +481,7 @@ namespace ColonyCouncil
             for (int i = 0; i < n; i++)
             {
                 var d = new Rect(r.xMax - dotsW + i * (dot + dotGap), r.center.y - dot / 2f, dot, dot);
-                UiKit.DiscFill(d, i < o.stage ? UiKit.WithAlpha(UiKit.Info, 0.85f) : i == o.stage ? UiKit.Gold : new Color(1f, 1f, 1f, 0.15f));
+                UiKit.DiscFill(d, i < o.stage ? UiKit.Done : i == o.stage ? UiKit.Gold : UiKit.WithAlpha(UiKit.Ink, 0.15f));
             }
             if (!o.storyTip.NullOrEmpty()) TooltipHandler.TipRegion(r, o.storyTip);
         }

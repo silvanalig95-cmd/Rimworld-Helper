@@ -469,6 +469,13 @@ namespace ColonyCouncil
             return SectionHeight;
         }
 
+        /// <summary>A <see cref="SectionTitle"/> with how many it holds on a small plate after its name.</summary>
+        public static float SectionTitle(float x, float y, float width, string text, int count, Texture2D icon = null, Color? color = null, string right = null)
+        {
+            HeadingLine(x, y, width, text, count, right, icon, color ?? Heading, false, false);
+            return SectionHeight;
+        }
+
         /// <summary>
         /// A <see cref="SectionTitle"/> that folds its section away when clicked, with the caret in front saying which
         /// way it is. <paramref name="open"/> says whether to draw the section under it; the key names the section in

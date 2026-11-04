@@ -11,8 +11,9 @@ namespace ColonyCouncil
     /// </summary>
     public static class AmbitionPanel
     {
-        private static readonly Color GoodColor = new Color(0.55f, 0.9f, 0.55f);
-        private static readonly Color AmbitionColor = new Color(0.56f, 0.73f, 0.96f);
+        // The interface's tokens (UI/UiKit.cs): an ambition reached is done, one under way gold (the colony's chosen aim).
+        private static readonly Color GoodColor = UiKit.Done;
+        private static readonly Color AmbitionColor = UiKit.Gold;
         private static Vector2 scroll;
         private static float height = 1000f;
 
@@ -54,7 +55,7 @@ namespace ColonyCouncil
                 if (a.proposer != null)
                 {
                     UiKit.LabelFit(new Rect(0f, y, 110f, 26f), "CC_UI_ProposedBy".Translate(), UiKit.Faint, GameFont.Tiny);
-                    UiKit.PawnChip(112f, y + 1f, a.proposer, 24f, true, 200f);
+                    UiKit.PawnChip(112f, y + 1f, a.proposer, 24f, true, 200f, link: true);
                     y += 32f;
                 }
 
@@ -78,22 +79,25 @@ namespace ColonyCouncil
                     var row = new Rect(0f, y, width, h);
                     UiKit.Zebra(row, i);
                     Widgets.CheckboxDraw(6f, y + (h - 22f) / 2f, done, false, 22f);
-                    GUI.color = done ? GoodColor : later ? UiKit.Faint : Color.white;
+                    GUI.color = done ? GoodColor : later ? UiKit.Faint : UiKit.Ink;
                     Widgets.Label(new Rect(36f, y + 3f, textW, h - 6f), desc);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     UiKit.Bar(new Rect(width - barW - 6f, y + h / 2f - 4f, barW, 8f), p, done ? GoodColor : AmbitionColor);
                     y += h;
                 }
                 y += 12f;
-                if (a.def.template != null && map != null && a.def.template.UnavailableReason(map) == null)
+                // Its acts: plan the room it asks for (greyed with why where the colony can't), give it up.
+                if (a.def.template != null && map != null)
                 {
-                    if (Widgets.ButtonText(new Rect(0f, y, 200f, 30f), "CC_PlanIt".Translate())) MainTabWindow_Council.StartPlanning(a.def.template, true);
+                    string why = a.def.template.UnavailableReason(map);
+                    if (UiKit.ActButton(new Rect(0f, y, 200f, UiKit.RowStandard), "CC_PlanIt".Translate(), why)) MainTabWindow_Council.StartPlanning(a.def.template, true);
+                    if (why != null) UiKit.WhyNotLine(0f, y + UiKit.RowStandard + 2f, width, "CC_PlanIt".Translate(), why);
                 }
-                if (Widgets.ButtonText(new Rect(210f, y, 220f, 30f), "CC_Ambition_Abandon".Translate()))
+                if (UiKit.ActButton(new Rect(210f, y, 220f, UiKit.RowStandard), "CC_Ambition_Abandon".Translate(), null))
                 {
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Ambition_AbandonConfirm".Translate(a.def.label), () => tracker.Abandon(), true));
                 }
-                y += 44f;
+                y += 50f;
             }
             else
             {
@@ -108,11 +112,11 @@ namespace ColonyCouncil
                 float meterH = scheduled || inSession ? UiKit.MeterHeight + 10f : 0f;
                 float cardH = 16f + 36f + 8f + th + 10f + meterH + (inSession ? 0f : 32f) + 14f;
                 UiKit.Card(new Rect(0f, y, width, cardH), null, false, false);
-                UiKit.Icon(new Rect(width / 2f - 18f, y + 16f, 36f, 36f), Icons.Council, new Color(1f, 1f, 1f, 0.3f));
+                UiKit.Icon(new Rect(width / 2f - 18f, y + 16f, 36f, 36f), Icons.Council, UiKit.Dim);
                 Text.Anchor = TextAnchor.UpperCenter;
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(20f, y + 60f, width - 40f, th), status);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Anchor = TextAnchor.UpperLeft;
                 float by = y + 60f + th + 10f;
                 if (scheduled)
@@ -120,16 +124,16 @@ namespace ColonyCouncil
                     UiKit.Countdown(new Rect(20f, by, width - 40f, UiKit.MeterHeight), m.scheduledTick - now, Mathf.Max(1, m.scheduledTick - m.calledTick), "CC_UI_StartsIn".Translate());
                     by += meterH;
                     float bw = Mathf.Min(200f, (width - 50f) / 2f);
-                    var hold = new Rect(width / 2f - bw - 5f, by, bw, 32f);
-                    var off = new Rect(width / 2f + 5f, by, bw, 32f);
+                    var hold = new Rect(width / 2f - bw - 5f, by, bw, UiKit.RowStandard);
+                    var off = new Rect(width / 2f + 5f, by, bw, UiKit.RowStandard);
                     bool due = now >= m.scheduledTick;
                     bool canHold = tracker.CanHoldNow, canPutOff = tracker.CanPutOffADay;
-                    if (Widgets.ButtonText(hold, "CC_Meeting_HoldNow".Translate(), true, true, canHold) && canHold) tracker.HoldNow();
                     string holdTip = due && m.waitReason != null ? "CC_Meeting_Waiting".Translate(m.waitReason).ToString()
                         : !due && !canHold ? "CC_Meeting_HoldNow_Night".Translate().ToString() : "CC_Meeting_HoldNow_Tip".Translate().ToString();
-                    TooltipHandler.TipRegion(hold, holdTip);
-                    if (Widgets.ButtonText(off, "CC_Meeting_PutOffDayButton".Translate(), true, true, canPutOff) && canPutOff) tracker.PutOffADay();
-                    TooltipHandler.TipRegion(off, "CC_Meeting_PutOffDayButton_Tip".Translate());
+                    // Greyed with why not (the reason as its tooltip) rather than refused.
+                    if (UiKit.ActButton(hold, "CC_Meeting_HoldNow".Translate(), canHold ? null : holdTip, holdTip)) tracker.HoldNow();
+                    if (UiKit.ActButton(off, "CC_Meeting_PutOffDayButton".Translate(), canPutOff ? null : "CC_Meeting_PutOffDayButton_Tip".Translate().ToString(),
+                            "CC_Meeting_PutOffDayButton_Tip".Translate())) tracker.PutOffADay();
                 }
                 else if (inSession)
                 {
@@ -139,9 +143,8 @@ namespace ColonyCouncil
                 else
                 {
                     bool can = tracker.CanCallMeetingNow(out string reason);
-                    var btn = new Rect(width / 2f - 130f, by, 260f, 32f);
-                    if (Widgets.ButtonText(btn, "CC_Ambition_CallMeeting".Translate(), true, true, can) && can) tracker.HoldMeeting(comp, true);
-                    if (!can && reason != null) TooltipHandler.TipRegion(btn, reason);
+                    var btn = new Rect(width / 2f - 130f, by, 260f, UiKit.RowStandard);
+                    if (UiKit.ActButton(btn, "CC_Ambition_CallMeeting".Translate(), can ? null : reason ?? "")) tracker.HoldMeeting(comp, true);
                 }
                 y += cardH + 14f;
             }
@@ -153,19 +156,22 @@ namespace ColonyCouncil
             {
                 var e = comp.chronicle[i];
                 if (e.kind < ChronicleKind.Meeting || e.kind > ChronicleKind.AmbitionAbandoned) continue;
-                var col = e.kind == ChronicleKind.AmbitionAchieved ? GoodColor : UiKit.Faint;
-                Text.Font = GameFont.Small;
-                float h = Mathf.Max(24f, Text.CalcHeight(e.text, width - dateW - 28f) + 4f);
+                var col = UiKit.ChronicleColor(e.kind);
+                string text = ChroniclePanel.TextOf(e, comp);
+                float h = Mathf.Max(24f, LinkText.Height(text, width - dateW - 28f) + 4f);
                 UiKit.Zebra(new Rect(0f, y, width, h), shown);
                 UiKit.LabelFit(new Rect(4f, y + 2f, dateW - 6f, 20f), MainTabWindow_Council.AgoString(e.tick), UiKit.Faint, GameFont.Tiny);
-                UiKit.Icon(new Rect(dateW, y + 4f, 14f, 14f), Icons.For(e.kind), col);
-                GUI.color = col;
-                Widgets.Label(new Rect(dateW + 22f, y + 2f, width - dateW - 28f, h - 4f), e.text);
-                GUI.color = Color.white;
+                UiKit.Icon(new Rect(dateW, y + 4f, UiKit.IconDense, UiKit.IconDense), Icons.For(e.kind), col);
+                // The kind's colour on its icon; the words in ink with the colonists they name as links.
+                LinkText.Draw(new Rect(dateW + 22f, y + 2f, width - dateW - 28f, h - 4f), text, col == UiKit.Faint ? UiKit.Faint : UiKit.Ink);
                 y += h;
                 shown++;
             }
-            if (shown == 0) y += UiKit.Paragraph(4f, y, width, "CC_Overview_Nothing".Translate(), UiKit.Faint) + 4f;
+            if (shown == 0)
+            {
+                UiKit.EmptyLine(new Rect(0f, y, width, UiKit.RowDense + 4f), "CC_Overview_Nothing".Translate());
+                y += UiKit.RowDense + 8f;
+            }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
         }

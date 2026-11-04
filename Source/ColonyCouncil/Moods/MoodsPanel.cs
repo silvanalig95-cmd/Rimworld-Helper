@@ -27,6 +27,8 @@ namespace ColonyCouncil
             public string summary, sources, badHeader, goodHeader, average;
             public Color averageColor;
             public List<PawnMood> shaky;
+            /// <summary>Each of the shaky's names as a link to their card, made with the report.</summary>
+            public List<string> shakyNames;
             public HeartView.ColonyModel heart;
             public CompactModel compact;
             public string nothingBad;
@@ -59,6 +61,7 @@ namespace ColonyCouncil
             r.badHeader = "CC_Moods_Weighing".Translate() + "  (" + MoodView.Number(colony.Where(c => !c.good).Sum(c => c.total)) + ")";
             r.goodHeader = "CC_Moods_Lifting".Translate() + "  (" + MoodView.Number(colony.Where(c => c.good).Sum(c => c.total)) + ")";
             r.shaky = r.pawns.OrderBy(m => m.now - m.minor).Take(6).ToList();
+            r.shakyNames = r.shaky.Select(m => ThingRefs.Link(m.pawn.LabelShort, ThingRefs.Of(m.pawn))).ToList();
             r.heart = HeartView.BuildColony(r.pawns.Select(m => m.pawn));
             if (r.pawns.Count > 0)
             {
@@ -114,7 +117,7 @@ namespace ColonyCouncil
                     UiKit.EmptyState(0f, y, w, Icons.Moods, "CC_Moods_NoColonists".Translate(), 140f);
                     return;
                 }
-                y += UiKit.Paragraph(0f, y, w, r.summary, Color.white) + 2f;
+                y += UiKit.Paragraph(0f, y, w, r.summary, UiKit.Ink) + 2f;
                 y += UiKit.Paragraph(0f, y, w, r.sources, MoodView.Faint) + 2f;
                 y += UiKit.Paragraph(0f, y, w, "CC_Moods_Intro".Translate(), MoodView.Faint) + 10f;
                 // The groups' totals; a click goes down to the group.
@@ -125,23 +128,33 @@ namespace ColonyCouncil
                 }
 
                 // Who's closest to breaking.
-                y += UiKit.SectionTitle(0f, y, w, "CC_Moods_Closest".Translate(), Icons.Warning, Color.white);
+                y += UiKit.SectionTitle(0f, y, w, "CC_Moods_Closest".Translate(), Icons.Warning, UiKit.Soon);
                 for (int i = 0; i < r.shaky.Count; i++)
                 {
                     var m = r.shaky[i];
-                    var row = new Rect(0f, y, w, 34f);
+                    var row = new Rect(0f, y, w, UiKit.RowPortrait);
                     UiKit.Zebra(row, i);
                     Widgets.DrawHighlightIfMouseover(row);
-                    UiKit.Portrait(new Rect(4f, y + 3f, 28f, 28f), m.pawn, StateColor(m));
-                    UiKit.LabelFit(new Rect(40f, y + 2f, 130f, 30f), m.pawn.LabelShort, Color.white);
-                    MoodView.DrawBar(new Rect(176f, y + 10f, 160f, 14f), m);
-                    UiKit.LabelFit(new Rect(346f, y + 2f, Mathf.Max(0f, w - 350f), 30f), m.worst, MoodView.Faint, GameFont.Tiny);
+                    // Their portrait and name lead to their card; the rest of the row to their Mood tab.
+                    var face = new Rect(4f, y + 5f, 30f, 30f);
+                    UiKit.Portrait(face, m.pawn, StateColor(m));
+                    var who = ThingRefs.Of(m.pawn);
+                    if (Mouse.IsOver(face)) Previews.Hover(who, face);
+                    if (Widgets.ButtonInvisible(face, false))
+                    {
+                        Cards.Click();
+                        Cards.Open(who);
+                    }
+                    LinkText.Line(new Rect(42f, y, 130f, row.height), r.shakyNames[i], UiKit.Ink);
+                    MoodView.DrawBar(new Rect(176f, y + 13f, 160f, 14f), m);
+                    UiKit.LabelFit(new Rect(346f, y, Mathf.Max(0f, w - 350f), row.height), m.worst, MoodView.Faint, GameFont.Tiny);
                     var pm = m;
-                    TooltipHandler.TipRegion(row, () => pm.state + "\n\n" + "CC_Moods_ClickPerson".Translate(), Gen.HashCombineInt(m.pawn.thingIDNumber, 0x300D));
-                    if (Widgets.ButtonInvisible(row)) MoodView.ShowMoodTab(m.pawn);
-                    y += 36f;
+                    TooltipHandler.TipRegion(new Rect(176f, y, Mathf.Max(0f, w - 176f), row.height), () => pm.state + "\n\n" + "CC_Moods_ClickPerson".Translate(),
+                        Gen.HashCombineInt(m.pawn.thingIDNumber, 0x300D));
+                    if (Widgets.ButtonInvisible(new Rect(176f, y, Mathf.Max(0f, w - 176f), row.height))) MoodView.ShowMoodTab(m.pawn);
+                    y += UiKit.RowPortrait;
                 }
-                y += 12f;
+                y += UiKit.SectionGap;
                 // Who is worn down (strain, Heart/).
                 if (r.heart != null) y = HeartView.DrawColony(r.heart, y, w) + 4f;
 
@@ -152,11 +165,19 @@ namespace ColonyCouncil
                     return;
                 }
                 y += UiKit.SectionTitle(0f, y, w, r.badHeader, Icons.TrendDown, MoodView.BadColor);
-                if (r.bad.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
+                if (r.bad.Count == 0)
+                {
+                    UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), Nothing);
+                    y += UiKit.RowDense + 8f;
+                }
                 y = MoodView.DrawList(r.bad, y, w, scroll.y, outRect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
-                y += 12f;
+                y += UiKit.SectionGap;
                 y += UiKit.SectionTitle(0f, y, w, r.goodHeader, Icons.TrendUp, MoodView.GoodColor);
-                if (r.good.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
+                if (r.good.Count == 0)
+                {
+                    UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), Nothing);
+                    y += UiKit.RowDense + 8f;
+                }
                 y = MoodView.DrawList(r.good, y, w, scroll.y, outRect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
                 height = Mathf.Max(y + 10f, 100f);
             }
@@ -169,8 +190,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Red when breaking or below the major break line, orange below the minor one, gray otherwise.</summary>
+        private static string nothing;
+        private static string Nothing => nothing ??= "CC_Mood_Nothing".Translate();
+
+        /// <summary>Sour when breaking or below the major break line, soon below the minor one, faint otherwise.</summary>
         private static Color StateColor(PawnMood m) =>
-            m.pawn.InMentalState || m.now < m.major ? MoodView.BadColor : m.now < m.minor ? UiKit.Warn : UiKit.Neutral;
+            m.pawn.InMentalState || m.now < m.major ? UiKit.Sour : m.now < m.minor ? UiKit.Soon : UiKit.Faint;
     }
 }

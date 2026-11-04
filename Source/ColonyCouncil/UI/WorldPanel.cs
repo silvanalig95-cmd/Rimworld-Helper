@@ -28,8 +28,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class WorldPanel
     {
-        private static readonly Color Threat = new Color(0.9f, 0.55f, 0.45f);
-        private static readonly Color Calm = new Color(0.72f, 0.8f, 0.95f);
+        private static readonly Color Threat = UiKit.Sour;
+        private static readonly Color Calm = UiKit.World;
 
         /// <summary>Countdown bars run over this many days: a fight five days off shows half a bar.</summary>
         private const int Horizon = GenDate.TicksPerDay * 10;
@@ -308,7 +308,7 @@ namespace ColonyCouncil
             {
                 var e = entries[i];
                 float h = Measure(e, cardW);
-                if (i < entries.Count - 1) Widgets.DrawBoxSolid(new Rect(RailX - 1f, y + 26f, 2f, h + 8f - 22f), new Color(1f, 1f, 1f, 0.12f));
+                if (i < entries.Count - 1) Widgets.DrawBoxSolid(new Rect(RailX - 1f, y + 26f, 2f, h + 8f - 22f), UiKit.CardBorder);
                 UiKit.Badge(new Rect(RailX - 12f, y + 4f, 24f, 24f), e.icon, e.color);
                 DrawCard(new Rect(CardX, y, cardW, h), e);
                 y += h + 8f;

@@ -69,6 +69,30 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
         }
 
+        // ---------------- Filter chips with a count ----------------
+
+        /// <summary>A filter chip's width with its count beside its word ("All 9").</summary>
+        public static float FilterChipWidth(string label, int count) => FilterChipWidth(label) + (count >= 0 ? KeptWidth(CountWord(count), GameFont.Tiny) + 6f : 0f);
+
+        /// <summary>
+        /// A filter chip (component 15) with how many it shows beside its word, in faint print: lit while on. Returns true
+        /// when clicked.
+        /// </summary>
+        public static bool FilterChip(Rect r, string label, int count, bool on, string tip = null)
+        {
+            if (count < 0) return FilterChip(r, label, on, tip);
+            bool over = Mouse.IsOver(r);
+            Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
+            string cw = CountWord(count);
+            float nw = KeptWidth(cw, GameFont.Tiny) + 2f;
+            LabelFit(new Rect(r.x + 10f, r.y, Mathf.Max(0f, r.width - 18f - nw), r.height), label, on ? Gold : over ? Ink : Faint, GameFont.Tiny);
+            LabelFit(new Rect(r.xMax - 8f - nw, r.y, nw, r.height), cw, on ? Ink : Dim, GameFont.Tiny, TextAnchor.MiddleRight);
+            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
+            if (!Widgets.ButtonInvisible(r, false)) return false;
+            SoundDefOf.Click.PlayOneShotOnCamera();
+            return true;
+        }
+
         // ---------------- The row ----------------
 
         /// <summary>
@@ -125,6 +149,34 @@ namespace ColonyCouncil
             else LinkText.Line(new Rect(x, r.y, Mathf.Max(0f, right - x), r.height), line, lineColor);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(r.x, r.y, Mathf.Max(0f, r.width - rightReserve), r.height), tip);
             return clickable && Widgets.ButtonInvisible(new Rect(r.x, r.y, Mathf.Max(0f, r.width - rightReserve), r.height));
+        }
+
+        /// <summary>
+        /// A name on its own drawn as a link (component 8, where a name stands alone rather than in a sentence): link ink
+        /// with its dotted line, a preview after a pause, its card on a click. Without a thing it is plain ink. Returns the
+        /// width the name took.
+        /// </summary>
+        public static float NameLink(Rect r, string name, ThingRef thing, GameFont font = GameFont.Small)
+        {
+            if (name.NullOrEmpty()) return 0f;
+            float w = Mathf.Min(KeptWidth(name, font) + 2f, r.width);
+            if (thing.IsNone)
+            {
+                LabelFit(r, name, Ink, font);
+                return w;
+            }
+            var hit = new Rect(r.x, r.y, w, r.height);
+            bool over = Mouse.IsOver(hit);
+            LabelFit(r, name, over ? LinkHot : Link, font);
+            float lineH = Text.LineHeightOf(font);
+            LinkText.Underline(r.x, r.y + (r.height + lineH) / 2f - (font == GameFont.Tiny ? 3f : 4f), w - 2f, over);
+            if (over) Previews.Hover(thing, hit);
+            if (Widgets.ButtonInvisible(hit, false))
+            {
+                Cards.Click();
+                Cards.Open(thing);
+            }
+            return w;
         }
 
         /// <summary>A colonist's ring in their trust's colour; anyone else's quiet.</summary>
@@ -290,6 +342,17 @@ namespace ColonyCouncil
                 GUI.DrawTexture(new Rect(r.xMax - 1f, y, 1f, h), BaseContent.WhiteTex);
             }
             GUI.color = Ink;
+        }
+
+        /// <summary>
+        /// An empty state in one row (a section of a card or of This week with nothing in it): its sentence in small print
+        /// in a dashed frame, the same block as <see cref="EmptyState"/>, only short.
+        /// </summary>
+        public static void EmptyLine(Rect r, string text)
+        {
+            if (text.NullOrEmpty()) return;
+            DashedBox(r, CardBorder);
+            LabelFit(new Rect(r.x + 8f, r.y, r.width - 16f, r.height), text, Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
         }
     }
 }

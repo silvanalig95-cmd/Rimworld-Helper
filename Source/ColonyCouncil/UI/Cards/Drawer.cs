@@ -198,7 +198,7 @@ namespace ColonyCouncil
             if (!shows) return;
             if (over && e.type == EventType.Repaint)
             {
-                GUI.color = new Color(1f, 1f, 1f, 0.9f);
+                GUI.color = UiKit.WithAlpha(UiKit.Ink, 0.9f);
                 Widgets.DrawShadowAround(drawerRect);
                 GUI.color = Color.white;
             }

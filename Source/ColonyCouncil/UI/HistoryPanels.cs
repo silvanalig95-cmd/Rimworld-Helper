@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// </summary>
     public static class HistoryPanels
     {
-        private static readonly Color Gold = new Color(1f, 0.85f, 0.5f);
+        private static readonly Color Gold = UiKit.Gold;
 
         // ---------------- Dreams ----------------
 
@@ -52,15 +52,19 @@ namespace ColonyCouncil
         private static readonly Dictionary<DreamRecord, float> dreamHeights = new Dictionary<DreamRecord, float>();
         private static float dreamWidth;
 
+        private static readonly DreamKind[] Kinds = (DreamKind[])System.Enum.GetValues(typeof(DreamKind));
+        private static List<string> kindLabels;
+
         public static Color DreamKindColor(DreamKind k)
         {
             switch (k)
             {
-                case DreamKind.Sweet: return new Color(0.95f, 0.72f, 0.82f);
-                case DreamKind.Strange: return UiKit.DreamColor;
-                case DreamKind.Nightmare: return new Color(0.88f, 0.48f, 0.42f);
+                // By the interface's tokens (UI/UiKit.cs): a sweet dream warm, a strange one cool, a nightmare sour, an omen gold.
+                case DreamKind.Sweet: return UiKit.Warm;
+                case DreamKind.Strange: return UiKit.Cool;
+                case DreamKind.Nightmare: return UiKit.Sour;
                 case DreamKind.Omen: return Gold;
-                default: return new Color(0.62f, 0.74f, 0.9f);
+                default: return UiKit.Faint;
             }
         }
 
@@ -85,16 +89,20 @@ namespace ColonyCouncil
                 options.AddRange(all.Select(d => d.pawn?.LabelShort ?? d.name).Where(n => n != null).Distinct().OrderBy(n => n).Select(n => new FloatMenuOption(n, () => dreamFilter = n)));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
-            string kindLabel = kindFilter.HasValue ? ("CC_DreamKind_" + kindFilter.Value).Translate().ToString() : "CC_History_AllKinds".Translate().ToString();
-            if (Widgets.ButtonText(new Rect(rect.x + 228f, rect.y, 200f, 28f), kindLabel))
+            // The kinds of dream as filter chips: every kind, or one.
+            if (kindLabels == null)
             {
-                var options = new List<FloatMenuOption> { new FloatMenuOption("CC_History_AllKinds".Translate(), () => kindFilter = null) };
-                foreach (DreamKind k in System.Enum.GetValues(typeof(DreamKind)))
-                {
-                    var local = k;
-                    options.Add(new FloatMenuOption(("CC_DreamKind_" + k).Translate(), () => kindFilter = local));
-                }
-                Find.WindowStack.Add(new FloatMenu(options));
+                kindLabels = new List<string> { "CC_History_AllKinds".Translate() };
+                foreach (DreamKind k in Kinds) kindLabels.Add(("CC_DreamKind_" + k).Translate());
+            }
+            float kx = rect.x + 228f;
+            for (int i = 0; i < kindLabels.Count; i++)
+            {
+                DreamKind? k = i == 0 ? (DreamKind?)null : Kinds[i - 1];
+                float kw = UiKit.FilterChipWidth(kindLabels[i]);
+                if (kx + kw > rect.xMax) break;
+                if (UiKit.FilterChip(new Rect(kx, rect.y + 3f, kw, 22f), kindLabels[i], kindFilter == k) && kindFilter != k) kindFilter = k;
+                kx += kw + 4f;
             }
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -120,7 +128,7 @@ namespace ColonyCouncil
                 }
                 if (y + h < dreamScroll.y || y > dreamScroll.y + outRect.height)
                 {
-                    y += h + 6f;
+                    y += h + UiKit.CardGap;
                     continue;
                 }
                 var color = DreamKindColor(d.kind);
@@ -129,13 +137,13 @@ namespace ColonyCouncil
                 var face = new Rect(12f, y + 10f, 36f, 36f);
                 if (d.pawn != null && !d.pawn.Dead) UiKit.Portrait(face, d.pawn, color);
                 else UiKit.Badge(face, Icons.Dream, color);
-                // The dreamer's card, in the drawer beside the dreams.
-                if (d.pawn != null && d.pawn.IsColonist && Widgets.ButtonInvisible(face)) Cards.Open(d.pawn);
+                // The dreamer's card, in the drawer beside the dreams: their portrait and their name lead there.
+                var dreamer = d.pawn != null && d.pawn.IsColonist ? ThingRefs.Of(d.pawn) : ThingRef.None;
+                if (!dreamer.IsNone && Widgets.ButtonInvisible(face)) Cards.Open(dreamer);
                 // Who, what kind, and when; the tags give way before they reach the date.
                 string name = d.pawn?.LabelShort ?? d.name ?? "?";
-                Text.Font = GameFont.Small;
-                float nameW = Mathf.Min(Text.CalcSize(name).x + 4f, w * 0.4f);
-                UiKit.LabelFit(new Rect(textX, y + 6f, nameW, 24f), name, Color.white);
+                float nameW = Mathf.Min(UiKit.KeptWidth(name, GameFont.Small) + 4f, w * 0.4f);
+                UiKit.NameLink(new Rect(textX, y + 6f, nameW, 24f), name, dreamer);
                 float px = textX + nameW + 8f;
                 float pillsEnd = w - 116f;
                 if (pillsEnd - px > 40f) px += UiKit.Pill(px, y + 9f, ("CC_DreamKind_" + d.kind).Translate(), color, Icons.Dream, null, pillsEnd - px) + 4f;
@@ -143,8 +151,8 @@ namespace ColonyCouncil
                 UiKit.LabelFit(new Rect(w - 110f, y + 6f, 100f, 22f), MainTabWindow_Council.DayString(d.tick), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
                 GUI.color = UiKit.Quote;
                 Widgets.Label(new Rect(textX, y + 34f, w - textX - 12f, h - 40f), text);
-                GUI.color = Color.white;
-                y += h + 6f;
+                GUI.color = UiKit.Ink;
+                y += h + UiKit.CardGap;
             }
             dreamHeight = Mathf.Max(y, 100f);
             Widgets.EndScrollView();
@@ -216,7 +224,7 @@ namespace ColonyCouncil
                     var pawn = alive ? PawnOf(j) : null;
                     if (pawn != null) UiKit.Portrait(face, pawn, UiKit.TrustColor(comp.standings.TrustOf(pawn)));
                     else UiKit.Badge(face, Icons.Journal, UiKit.Dim);
-                    UiKit.LabelFit(new Rect(r.x + 42f, r.y + 2f, r.width - 46f, 20f), j.name, alive ? Color.white : UiKit.Faint);
+                    UiKit.LabelFit(new Rect(r.x + 42f, r.y + 2f, r.width - 46f, 20f), j.name, alive ? UiKit.Ink : UiKit.Faint);
                     string sub = (alive ? "" : "CC_History_Departed".Translate().ToString() + "  ") + "CC_UI_Entries".Translate(j.entries.Count).ToString();
                     UiKit.LabelFit(new Rect(r.x + 42f, r.y + 20f, r.width - 46f, 18f), sub, UiKit.Dim, GameFont.Tiny);
                     if (Widgets.ButtonInvisible(r))
@@ -251,7 +259,7 @@ namespace ColonyCouncil
                 UiKit.Icon(new Rect(inner.x + 4f, inner.y + 6f, 26f, 26f), Icons.Journal, UiKit.Faint);
                 tx += 40f;
             }
-            UiKit.LabelFit(new Rect(tx, inner.y + 2f, inner.xMax - tx, 32f), "CC_Journal_Title".Translate(selectedJournal.name), Color.white, GameFont.Medium);
+            UiKit.LabelFit(new Rect(tx, inner.y + 2f, inner.xMax - tx, 32f), "CC_Journal_Title".Translate(selectedJournal.name), UiKit.Ink, GameFont.Medium);
             UiKit.Divider(inner.x, inner.y + 42f, inner.width);
             var outRect = new Rect(inner.x, inner.y + 48f, inner.width, inner.height - 48f);
             var eview = new Rect(0f, 0f, outRect.width - 16f, entryHeight);
@@ -276,11 +284,11 @@ namespace ColonyCouncil
                 if (ey + h >= entryScroll.y && ey <= entryScroll.y + outRect.height)
                 {
                     UiKit.Zebra(new Rect(0f, ey, ew, h), n);
-                    UiKit.Icon(new Rect(4f, ey + 4f, 14f, 14f), Icons.Journal, UiKit.Faint);
+                    UiKit.Icon(new Rect(4f, ey + 4f, UiKit.IconDense, UiKit.IconDense), Icons.Journal, UiKit.Faint);
                     UiKit.LabelFit(new Rect(22f, ey + 1f, ew - 26f, 20f), e.date, UiKit.Faint, GameFont.Tiny);
                     GUI.color = UiKit.Quote;
                     Widgets.Label(new Rect(22f, ey + 22f, ew - 24f, h - 30f), e.text);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                 }
                 ey += h;
                 n++;

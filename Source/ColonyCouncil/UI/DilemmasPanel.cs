@@ -48,6 +48,8 @@ namespace ColonyCouncil
             public List<Line> lines = new List<Line>();
             public string stat, next, countText;
             public int count;
+            /// <summary>How many each filter shows (all, went wrong, unanswered).</summary>
+            public readonly int[] filterCounts = new int[3];
         }
 
         private static Model model;
@@ -83,13 +85,16 @@ namespace ColonyCouncil
                 }
             }
             var m = model;
-            float top = UiKit.PageHeader(rect, Icons.Dilemmas ?? Icons.Decree, "CC_Dil_Header".Translate(), "CC_UI_Sub_Dilemmas".Translate(), m.stat, null, 330f);
+            float chips = 0f;
+            for (int i = 0; i < filterLabels.Length; i++) chips += UiKit.FilterChipWidth(filterLabels[i], m.filterCounts[i]) + 4f;
+            float top = UiKit.PageHeader(rect, Icons.Dilemmas ?? Icons.Decree, "CC_Dil_Header".Translate(), "CC_UI_Sub_Dilemmas".Translate(), m.stat, null, chips + 8f);
+            // The filter, as filter chips with their counts at the top right.
             float fx = rect.xMax;
             for (int i = filterLabels.Length - 1; i >= 0; i--)
             {
-                float fw = UiKit.TabButtonWidth(filterLabels[i], null) - 8f;
+                float fw = UiKit.FilterChipWidth(filterLabels[i], m.filterCounts[i]);
                 fx -= fw + 4f;
-                if (UiKit.TabButton(new Rect(fx, rect.y + 8f, fw, 26f), filterLabels[i], null, (int)filter == i) && (int)filter != i)
+                if (UiKit.FilterChip(new Rect(fx, rect.y + 10f, fw, 22f), filterLabels[i], m.filterCounts[i], (int)filter == i) && (int)filter != i)
                 {
                     filter = (Filter)i;
                     PageMemory.SetEnum("dilemmas.filter", filter);
@@ -102,31 +107,29 @@ namespace ColonyCouncil
             {
                 float w = view.width;
                 float y = 0f;
-                if (!ColonyCouncilMod.Settings.enableDilemmas) y += UiKit.Paragraph(0f, y, w, "CC_Dil_Off".Translate(), UiKit.Warn) + 8f;
+                if (!ColonyCouncilMod.Settings.enableDilemmas) y += UiKit.Paragraph(0f, y, w, "CC_Dil_Off".Translate(), UiKit.Soon) + 8f;
 
-                // Waiting for an answer.
-                y += UiKit.SectionTitle(0f, y, w, "CC_Dil_Waiting".Translate(), Icons.Warning, UiKit.Gold, m.next);
-                if (m.waiting.Count == 0) y += UiKit.Paragraph(4f, y, w - 4f, "CC_Dil_NoneWaiting".Translate(), UiKit.Faint) + 6f;
+                // Waiting for an answer: each a row (a letter, the day it goes, never a time left), a click opens it.
+                y += UiKit.SectionTitle(0f, y, w, "CC_Dil_Waiting".Translate(), m.waiting.Count, Icons.Warning, UiKit.Soon, m.next);
+                if (m.waiting.Count == 0)
+                {
+                    UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), "CC_Dil_NoneWaiting".Translate());
+                    y += UiKit.RowDense + 8f;
+                }
                 for (int i = 0; i < m.waiting.Count; i++)
                 {
                     var (letter, text, left) = m.waiting[i];
-                    var row = new Rect(0f, y, w, 30f);
-                    UiKit.Zebra(row, i);
-                    Widgets.DrawHighlightIfMouseover(row);
-                    UiKit.Icon(new Rect(6f, y + 7f, 16f, 16f), Icons.Decree, UiKit.Gold);
-                    float lw = left == null ? 0f : 140f;
-                    UiKit.LabelFit(new Rect(28f, y, w - 34f - lw, 30f), text, Color.white);
-                    if (left != null) UiKit.LabelFit(new Rect(w - lw - 4f, y, lw, 30f), left, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-                    TooltipHandler.TipRegion(row, "CC_Week_ClickLetter".Translate());
-                    if (Widgets.ButtonInvisible(row)) letter.OpenLetter();
-                    y += 30f;
+                    if (UiKit.Row(new Rect(0f, y, w, UiKit.RowStandard), i, text, UiKit.Ink, null, null, null, Icons.Decree, UiKit.Gold, left, UiKit.Faint,
+                            ClickLetter, true))
+                        letter.OpenLetter();
+                    y += UiKit.RowStandard;
                 }
-                y += 10f;
+                y += UiKit.SectionGap;
 
                 // The traditions the answers founded.
                 if (m.traditions.Count > 0)
                 {
-                    y += UiKit.SectionTitle(0f, y, w, "CC_Dil_Traditions".Translate(), Icons.Ways, UiKit.HeaderColor);
+                    y += UiKit.SectionTitle(0f, y, w, "CC_Dil_Traditions".Translate(), m.traditions.Count, Icons.Ways);
                     float tx = 0f, ty = y;
                     foreach (var (label, tip) in m.traditions)
                     {
@@ -139,22 +142,25 @@ namespace ColonyCouncil
                         UiKit.Pill(tx, ty, label, UiKit.Gold, Icons.Ways, tip, w);
                         tx += pw + 4f;
                     }
-                    y = ty + UiKit.PillHeight + 14f;
+                    y = ty + UiKit.PillHeight + UiKit.SectionGap;
                 }
 
                 // Every answer since, newest first.
-                y += UiKit.SectionTitle(0f, y, w, "CC_Dil_History".Translate(), Icons.Chronicle, UiKit.HeaderColor, m.countText);
+                y += UiKit.SectionTitle(0f, y, w, "CC_Dil_History".Translate(), Icons.Chronicle, null, m.countText);
                 if (Mathf.Abs(laidWidth - w) > 0.5f)
                 {
                     CouncilLayoutMath.Layout(w, MinW, WeightW, Prio, colX, colW, colShown);
                     laidWidth = w;
                 }
                 if (m.lines.Count == 0)
-                    y += UiKit.Paragraph(4f, y, w - 4f, (m.count == 0 ? "CC_Dil_NoHistory" : "CC_Dil_NoneMatch").Translate(), UiKit.Faint) + 6f;
+                {
+                    UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), (m.count == 0 ? "CC_Dil_NoHistory" : "CC_Dil_NoneMatch").Translate());
+                    y += UiKit.RowDense + 8f;
+                }
                 else
                 {
-                    var hr = new Rect(0f, y, w, 22f);
-                    Widgets.DrawBoxSolid(hr, new Color(1f, 1f, 1f, 0.05f));
+                    var hr = new Rect(0f, y, w, UiKit.RowDense);
+                    Widgets.DrawBoxSolid(hr, UiKit.CardFill);
                     for (int c = 0; c < headers.Length; c++)
                         if (colShown[c])
                             UiKit.LabelFit(new Rect(colX[c] + 4f, y, colW[c] - 6f, 22f), headers[c], UiKit.Faint, GameFont.Tiny);
@@ -183,7 +189,7 @@ namespace ColonyCouncil
             Widgets.DrawHighlightIfMouseover(r);
             Widgets.DrawBoxSolid(new Rect(r.x, r.y + 4f, 2f, r.height - 8f), UiKit.WithAlpha(l.wentColor, 0.8f));
             Cell(r, 0, l.day, null, UiKit.Faint);
-            Cell(r, 1, l.question, null, Color.white);
+            Cell(r, 1, l.question, null, UiKit.Ink);
             Cell(r, 2, l.answer, l.answerSub, UiKit.Quote);
             Cell(r, 3, l.who, null, UiKit.Faint);
             Cell(r, 4, l.went, l.wentSub, l.wentColor);
@@ -196,10 +202,11 @@ namespace ColonyCouncil
             float x = r.x + colX[c] + 4f, w = colW[c] - 6f;
             if (sub.NullOrEmpty())
             {
-                UiKit.LabelFit(new Rect(x, r.y, w, r.height), text, color, c == 0 || c == 3 ? GameFont.Tiny : GameFont.Small);
+                // Names in the question and in who answered are links to their cards (marked with the model).
+                LinkText.Line(new Rect(x, r.y, w, r.height), text, color, c == 0 || c == 3 ? GameFont.Tiny : GameFont.Small);
                 return;
             }
-            UiKit.LabelFit(new Rect(x, r.y + 2f, w, 20f), text, color);
+            LinkText.Line(new Rect(x, r.y + 2f, w, 20f), text, color);
             UiKit.LabelFit(new Rect(x, r.y + 20f, w, 18f), sub, UiKit.Faint, GameFont.Tiny);
         }
 
@@ -210,8 +217,9 @@ namespace ColonyCouncil
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Dilemma>())
             {
                 if (l.resolved) continue;
-                int left = l.TimeoutActive ? l.disappearAtTick - now : -1;
-                m.waiting.Add((l, l.Label.ToString(), left > 0 ? "CC_Week_Left".Translate(UiKit.Duration(left)).Resolve() : null));
+                // The day the letter goes, never how long until (InboxWords.When: today, tomorrow, or its date).
+                bool goes = l.TimeoutActive && l.disappearAtTick > now;
+                m.waiting.Add((l, l.Label.ToString(), goes ? "CC_Inbox_Until".Translate(InboxWords.When(l.disappearAtTick).Named("DATE")).Resolve() : null));
             }
             // The traditions of the colony in view.
             var tracker = ColonyView.Current?.dilemmas ?? comp.dilemmas;
@@ -220,19 +228,27 @@ namespace ColonyCouncil
                 m.traditions.Add(((d.traditionLabel ?? d.label).CapitalizeFirst(), "CC_Dil_TraditionTip".Translate(d.LabelCap).Resolve()));
             var records = DilemmaLog.Records ?? new List<DilemmaRecord>();
             m.count = records.Count;
+            var colonists = PawnsFinder.AllMaps_FreeColonists;
             for (int i = records.Count - 1; i >= 0; i--)
             {
                 var r = records[i];
-                if (filter == Filter.WentWrong && r.Went != DilemmaWent.WentWrong && r.Went != DilemmaWent.FellThrough) continue;
+                bool wrong = r.Went == DilemmaWent.WentWrong || r.Went == DilemmaWent.FellThrough;
+                m.filterCounts[0]++;
+                if (wrong) m.filterCounts[1]++;
+                if (r.byDefault) m.filterCounts[2]++;
+                if (filter == Filter.WentWrong && !wrong) continue;
                 if (filter == Filter.Unanswered && !r.byDefault) continue;
-                m.lines.Add(LineFor(r));
+                m.lines.Add(LineFor(r, colonists));
             }
             m.stat = "CC_Dil_Stat".Translate(m.waiting.Count).Resolve();
             m.countText = "CC_Dil_HistoryCount".Translate(m.count).Resolve();
             return m;
         }
 
-        private static Line LineFor(DilemmaRecord r)
+        private static string clickLetter;
+        private static string ClickLetter => clickLetter ??= "CC_Week_ClickLetter".Translate();
+
+        private static Line LineFor(DilemmaRecord r, List<Pawn> colonists)
         {
             var went = r.Went;
             string wentSub = null;
@@ -263,10 +279,10 @@ namespace ColonyCouncil
             {
                 r = r,
                 day = "CC_DayN".Translate(r.tick / GenDate.TicksPerDay + 1),
-                question = r.question,
+                question = PaneLinks.Mark(r.question, colonists),
                 answer = r.answer,
                 answerSub = r.byDefault ? "CC_Dil_NoAnswer".Translate().ToString() : null,
-                who = r.who,
+                who = PaneLinks.Mark(r.who, colonists),
                 went = DilemmaLog.WentLabel(r),
                 wentSub = wentSub,
                 wentColor = DilemmaLog.WentColor(went),

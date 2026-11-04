@@ -5,4 +5,6 @@
   <CC_Look_Rising>rising</CC_Look_Rising>
   <CC_Look_Falling>falling</CC_Look_Falling>
   <CC_Look_Steady>steady</CC_Look_Steady>
+  <!-- A decree that can't be enacted now: its button, greyed, with the reason under it. -->
+  <CC_Decree_EnactPlain>Enact</CC_Decree_EnactPlain>
 </LanguageData>

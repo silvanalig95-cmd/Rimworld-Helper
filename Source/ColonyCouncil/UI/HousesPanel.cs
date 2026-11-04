@@ -66,22 +66,27 @@ namespace ColonyCouncil
                     height = y;
                     return;
                 }
-                y += UiKit.SectionTitle(0f, y, w, "CC_Houses_AtHome".Translate(), Icons.People, UiKit.HeaderColor) + 2f;
-                if (m.families.Count == 0) y += UiKit.Paragraph(8f, y, w - 16f, "CC_Houses_NoneAtHome".Translate(), UiKit.Faint) + 8f;
-                foreach (var f in m.families) y += DrawFamily(f, 0f, y, w, outRect.height) + 8f;
-                if (m.alone > 0) y += UiKit.Paragraph(8f, y, w - 16f, "CC_Houses_Alone".Translate(m.alone), UiKit.Faint, GameFont.Tiny) + 12f;
+                y += UiKit.SectionTitle(0f, y, w, "CC_Houses_AtHome".Translate(), m.families.Count, Icons.People);
+                if (m.families.Count == 0)
+                {
+                    UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowStandard), "CC_Houses_NoneAtHome".Translate());
+                    y += UiKit.RowStandard + UiKit.CardGap;
+                }
+                foreach (var f in m.families) y += DrawFamily(f, 0f, y, w, outRect.height) + UiKit.CardGap;
+                if (m.alone > 0) y += UiKit.Paragraph(8f, y, w - 16f, "CC_Houses_Alone".Translate(m.alone), UiKit.Faint, GameFont.Tiny) + 4f;
+                y += UiKit.SectionGap - UiKit.CardGap;
                 if (m.known.Count > 0)
                 {
-                    y += UiKit.SectionTitle(0f, y, w, "CC_Houses_Known".Translate(), Icons.World, UiKit.HeaderColor) + 2f;
+                    y += UiKit.SectionTitle(0f, y, w, "CC_Houses_Known".Translate(), m.known.Count, Icons.World);
                     for (int i = 0; i < m.known.Count; i++)
                     {
                         // Only lines in sight are drawn.
-                        if (y + 24f >= scroll.y && y <= scroll.y + outRect.height)
+                        if (y + UiKit.RowStandard >= scroll.y && y <= scroll.y + outRect.height)
                         {
-                            UiKit.Zebra(new Rect(0f, y, w, 24f), i);
-                            LinkText.Line(new Rect(8f, y + 2f, w - 16f, 20f), m.known[i], Color.white);
+                            UiKit.Zebra(new Rect(0f, y, w, UiKit.RowStandard), i);
+                            LinkText.Line(new Rect(8f, y, w - 16f, UiKit.RowStandard), m.known[i], UiKit.Ink);
                         }
-                        y += 24f;
+                        y += UiKit.RowStandard;
                     }
                 }
                 height = y + 10f;
@@ -109,7 +114,7 @@ namespace ColonyCouncil
             float h = cy + UiKit.ChipHeight + 10f - y;
             if (y + h < scroll.y || y > scroll.y + sight) return h;
             UiKit.Card(new Rect(x, y, w, h), UiKit.WithAlpha(UiKit.Gold, 0.5f), false, false);
-            UiKit.LabelFit(new Rect(x + 10f, y + 4f, w - 20f, 24f), f.name, UiKit.HeaderColor);
+            UiKit.LabelFit(new Rect(x + UiKit.CardInset, y + 4f, w - 2f * UiKit.CardInset, 24f), f.name, UiKit.Heading);
             cx = x + 10f;
             cy = y + 30f;
             for (int i = 0; i < f.members.Count; i++)

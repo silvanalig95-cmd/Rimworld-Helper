@@ -69,6 +69,8 @@ namespace ColonyCouncil
         private static List<ChronicleEntry> entriesSource;
         private static ChronicleEntry entriesLast;
 
+        private static string[] filterLabels;
+
         private const float DateW = 74f;
         private const float RailX = DateW + 12f;
         private const float TextX = DateW + 32f;
@@ -88,7 +90,7 @@ namespace ColonyCouncil
                 if (bx - dw - 6f >= minLeft)
                 {
                     bx -= dw + 6f;
-                    if (Widgets.ButtonText(new Rect(bx, rect.y + 6f, dw, 28f), dl))
+                    if (UiKit.ActButton(new Rect(bx, rect.y + 6f, dw, UiKit.RowStandard), dl, null))
                         Find.WindowStack.Add(new FloatMenu(departed.Select(j => new FloatMenuOption(j.name, () => Find.WindowStack.Add(new Dialog_Journal(j)))).ToList()));
                 }
             }
@@ -99,7 +101,7 @@ namespace ColonyCouncil
                 if (bx - w - 6f < minLeft) break;
                 bx -= w + 6f;
                 var entry = a;
-                if (Widgets.ButtonText(new Rect(bx, rect.y + 6f, w, 28f), label))
+                if (UiKit.ActButton(new Rect(bx, rect.y + 6f, w, UiKit.RowStandard), label, null))
                     Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: "CC_Annals_Title".Translate(entry.year)));
             }
 
@@ -111,23 +113,24 @@ namespace ColonyCouncil
                 : "CC_UI_Stat_Entries".Translate(list.Count).Resolve();
             float top = UiKit.PageHeader(rect, Icons.Chronicle, "CC_Chronicle_Header".Translate(), sub, stat, null, rect.xMax - bx);
 
-            // Filters: everything, or one part of colony life. Squeezed evenly when they don't all fit.
+            // Filters: everything, or one part of colony life, as filter chips. Squeezed evenly when they don't all fit.
+            filterLabels ??= Filters.Select(f => ("CC_ChronicleFilter_" + f).Translate().ToString()).ToArray();
             float total = 0f;
-            foreach (var f in Filters) total += UiKit.TabButtonWidth(("CC_ChronicleFilter_" + f).Translate(), FilterIcon(f)) + 4f;
+            foreach (var label in filterLabels) total += UiKit.FilterChipWidth(label) + 4f;
             float even = (rect.width - 4f * (Filters.Length - 1)) / Filters.Length;
             float fx = rect.x;
-            foreach (var f in Filters)
+            for (int i = 0; i < Filters.Length; i++)
             {
-                string label = ("CC_ChronicleFilter_" + f).Translate();
-                float fw = total > rect.width ? even : UiKit.TabButtonWidth(label, FilterIcon(f));
-                if (UiKit.TabButton(new Rect(fx, rect.y + top, fw, 28f), label, FilterIcon(f), f == chronicleFilter))
+                var f = Filters[i];
+                float fw = total > rect.width ? even : UiKit.FilterChipWidth(filterLabels[i]);
+                if (UiKit.FilterChip(new Rect(fx, rect.y + top, fw, 22f), filterLabels[i], f == chronicleFilter) && f != chronicleFilter)
                 {
                     chronicleFilter = f;
                     scroll = Vector2.zero;
                 }
                 fx += fw + 4f;
             }
-            top += 36f;
+            top += 22f + UiKit.CardGap + 2f;
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             // What were the Dreams and Journals pages.
@@ -156,7 +159,7 @@ namespace ColonyCouncil
             if (list.Count > 0)
             {
                 float lineTop = Mathf.Max(0f, scroll.y), lineBottom = Mathf.Min(height - 10f, scroll.y + outRect.height);
-                if (lineBottom > lineTop) Widgets.DrawBoxSolid(new Rect(RailX - 1f, lineTop, 2f, lineBottom - lineTop), new Color(1f, 1f, 1f, 0.1f));
+                if (lineBottom > lineTop) Widgets.DrawBoxSolid(new Rect(RailX - 1f, lineTop, 2f, lineBottom - lineTop), UiKit.CardBorder);
             }
             Text.Font = GameFont.Small;
             int lastDay = -1;
@@ -181,33 +184,52 @@ namespace ColonyCouncil
                 UiKit.Zebra(row, i);
                 if (firstOfDay)
                 {
-                    if (i > 0) Widgets.DrawBoxSolid(new Rect(0f, y, width, 1f), new Color(1f, 1f, 1f, 0.06f));
+                    if (i > 0) Widgets.DrawBoxSolid(new Rect(0f, y, width, 1f), UiKit.WithAlpha(UiKit.Ink, 0.06f));
                     UiKit.LabelFit(new Rect(4f, y + 3f, DateW - 6f, 20f), MainTabWindow_Council.DayString(e.tick), UiKit.Faint, GameFont.Tiny);
                 }
+                // The kind's colour on its icon, beside the words; the words in ink (faint for what came to nothing).
                 var color = UiKit.ChronicleColor(e.kind);
                 UiKit.Badge(new Rect(RailX - 10f, y + 3f, 20f, 20f), Icons.For(e.kind), color);
-                LinkText.Draw(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), TextOf(e, comp), color);
-                GUI.color = Color.white;
+                LinkText.Draw(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), TextOf(e, comp), color == UiKit.Faint ? UiKit.Faint : UiKit.Ink);
+                GUI.color = UiKit.Ink;
                 y += h;
             }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
         }
 
-        // Each entry's text with the colonist it is about as a link to their card, made once per entry.
+        // Each entry's text with the colonists it names as links to their cards (the one it is about first), made once per entry.
         private static readonly Dictionary<ChronicleEntry, string> marked = new Dictionary<ChronicleEntry, string>();
+        private static readonly List<KeyValuePair<string, string>> names = new List<KeyValuePair<string, string>>();
 
-        private static string TextOf(ChronicleEntry e, CouncilGameComponent comp)
+        /// <summary>An entry's text with the colony's people it names as links (the Chronicle, the Wishes page's earlier wishes).</summary>
+        internal static string TextOf(ChronicleEntry e, CouncilGameComponent comp)
         {
             if (marked.TryGetValue(e, out var s)) return s;
             s = e.text;
-            if (!e.pawnId.NullOrEmpty() && !s.NullOrEmpty() && Colonists(comp).TryGetValue(e.pawnId, out var p))
+            if (!s.NullOrEmpty())
             {
-                var thing = ThingRefs.Of(p);
-                if (!thing.IsNone) s = LinkTextMath.MarkNames(s, new[] { new KeyValuePair<string, string>(p.LabelShort, thing.ToString()) });
+                var colonists = Colonists(comp);
+                names.Clear();
+                if (!e.pawnId.NullOrEmpty() && colonists.TryGetValue(e.pawnId, out var about)) Add(about);
+                foreach (var p in colonists.Values)
+                    if (s.IndexOf(p.LabelShort, System.StringComparison.Ordinal) >= 0)
+                        Add(p);
+                if (names.Count > 0) s = LinkTextMath.MarkNames(s, names);
             }
+            if (marked.Count > 3000) marked.Clear();
             marked[e] = s;
             return s;
+        }
+
+        private static void Add(Pawn p)
+        {
+            var thing = ThingRefs.Of(p);
+            if (thing.IsNone || p.LabelShort.NullOrEmpty()) return;
+            foreach (var kv in names)
+                if (kv.Key == p.LabelShort)
+                    return;
+            names.Add(new KeyValuePair<string, string>(p.LabelShort, thing.ToString()));
         }
 
         /// <summary>The colony's people by their ids, found again every few seconds.</summary>
