@@ -64,7 +64,7 @@ namespace ColonyCouncil
         /// <summary>Dust behind the camp's people as they walk in, and a word from a colonist who sees them come (once a camp).</summary>
         private void Camp(VisualTouches vt, Map map, CellRect view, int now)
         {
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(map);
             if (camp == null || camp.map != map || !camp.Active || camp.members == null) return;
             bool coming = camp.phase == CampPhase.Coming;
             if (!coming && camp.phase != CampPhase.Building) return;

@@ -47,12 +47,23 @@ namespace ColonyCouncil
     {
         public static float Section(float y, float w)
         {
-            var tracker = CampTracker.Instance;
-            var h = tracker?.holding;
+            // The colony in view's camps (each colony has its own).
+            var map = InView;
+            var h = CampTracker.HoldingAt(map);
             if (h != null && h.Active && h.map != null && Find.Maps.Contains(h.map)) y = Card(h, y, w, true);
-            var c = tracker?.camp;
+            var c = CampTracker.VisitingAt(map);
             if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return NoCamp(y, w);
             return Card(c, y, w, false);
+        }
+
+        /// <summary>The colony in view: the map on screen when it's a home, else the seat (on the ground).</summary>
+        private static Map InView
+        {
+            get
+            {
+                var m = Find.CurrentMap;
+                return m != null && Homes.IsHome(m) && !MapFacts.InVacuum(m) ? m : HappeningTracker.HomeMap();
+            }
         }
 
         /// <summary>One camp's card: the visitors, or the neighbours settled for good.</summary>
@@ -101,14 +112,15 @@ namespace ColonyCouncil
         {
             var tracker = CampTracker.Instance;
             if (tracker == null || !CampTracker.Enabled) return y;
-            var map = HappeningTracker.HomeMap();
+            var map = InView;
             if (map == null) return y;
-            string why = UiCache.Get(tracker, 73, () => tracker.WhyNotForPlayer(map));
+            var home = tracker.HomeOf(map);
+            string why = UiCache.Get(home, 73, () => tracker.WhyNotForPlayer(map));
             if (why.NullOrEmpty()) return y;
             string text = "CC_Camp_NoneLine".Translate() + " " + why;
             string known = UiCache.Get(tracker, 74, () => CampReturns.KnownLine());
             if (!known.NullOrEmpty()) text += " " + known;
-            string diary = UiCache.Get(tracker, 75, () => tracker.DiaryLine());
+            string diary = UiCache.Get(home, 75, () => home.DiaryLine());
             if (!diary.NullOrEmpty()) text += " " + diary;
             UiKit.Icon(new Rect(2f, y + 2f, 16f, 16f), Icons.Visitor, UiKit.Dim);
             float h = UiKit.Paragraph(24f, y, w - 24f, text, UiKit.Faint, GameFont.Tiny);

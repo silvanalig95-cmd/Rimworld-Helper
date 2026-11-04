@@ -136,7 +136,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             if (!CampTracker.Enabled) yield break;
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(map);
             if (camp == null || camp.map != map) yield break;
             int now = Find.TickManager.TicksGame;
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Camp>().ToList())

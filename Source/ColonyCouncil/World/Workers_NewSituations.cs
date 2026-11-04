@@ -30,7 +30,7 @@ namespace ColonyCouncil
             {
                 // Only when a traders' camp could really come up on the land now.
                 var kind = DefDatabase<CampKindDef>.GetNamedSilentFail("Council_Camp_Market");
-                return kind != null && kind.FitsEra() && kind.Possible && CampTracker.Enabled && CampTracker.Instance != null && CampTracker.Instance.camp == null;
+                return kind != null && kind.FitsEra() && kind.Possible && CampTracker.Enabled && CampTracker.Instance != null && CampTracker.VisitingAt(map) == null;
             }
             if (beat.key == "quarrel")
             {

@@ -20,7 +20,8 @@ namespace ColonyCouncil
         public static bool Going(List<string> during)
         {
             if (during.NullOrEmpty()) return false;
-            var camp = CampTracker.Instance?.camp;
+            // A camp settled by any of the colonies.
+            var camp = CampTracker.Instance?.Visiting.FirstOrDefault(c => c.Settled && c.map != null);
             bool settled = camp != null && camp.Settled && camp.map != null;
             var ws = WorldSituations.Instance;
             foreach (var d in during)

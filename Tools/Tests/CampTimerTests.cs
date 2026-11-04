@@ -22,8 +22,8 @@ public static class CampTimerTests
         string src = Path.Combine(root, "Source", "ColonyCouncil", "Camps");
         string timer = File.ReadAllText(Path.Combine(src, "CampTimer.cs"));
         string tracker = File.ReadAllText(Path.Combine(src, "CampTracker.cs"));
-        C(!timer.Contains("!= Hour)") && timer.Contains("now < tracker.nextTryTick"), "a try at an hour of its own, not ten each morning");
-        C(timer.Contains("Passing.Contains(code) && tracker.tryHours < Retries"), "a passing reason only puts the try off by the hour, for up to a day");
+        C(!timer.Contains("!= Hour)") && timer.Contains("now < home.nextTryTick"), "a try at an hour of its own, not ten each morning");
+        C(timer.Contains("CampStoryMath.PutOff(Passing.Contains(code), home.tryHours, Retries)"), "a passing reason only puts the try off by the hour, for up to a day");
         C(tracker.Contains("Scribe_Values.Look(ref nextTryTick"), "the next try is saved");
         // Which kind comes follows the hour (CampKindDef.arrives, CampStoryMath.ArrivalFit); the try hour itself is any hour alike.
         C(timer.Contains("Rand.RangeInclusive(0, 23)") && !timer.Contains("HourWeight"), "the try comes at any hour alike");
@@ -37,7 +37,7 @@ public static class CampTimerTests
         foreach (var f in Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml"))
             foreach (Match m in Regex.Matches(File.ReadAllText(f), @"<arrives>(\d+)~(\d+)</arrives>"))
                 C(int.Parse(m.Groups[1].Value) <= 23 && int.Parse(m.Groups[2].Value) <= 23, $"arrival hours within the day ({m.Value})");
-        C(Regex.Matches(timer, @"tracker\.Record\(").Count >= 5, "every way the day ends goes into the diary");
+        C(Regex.Matches(timer, @"home\.Record\(").Count >= 5, "every way the day ends goes into the diary");
         C(tracker.Contains("Scribe_Collections.Look(ref diary, \"diary\"") && tracker.Contains("DiaryMax"), "the diary is saved and kept short");
         // Every code the diary can hold has a word for the player.
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Camps.xml"));

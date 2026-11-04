@@ -17,7 +17,9 @@ namespace ColonyCouncil
             var t = CampTracker.Instance;
             if (t == null) return null;
             // The visitors first; else the neighbours settled for good (Holding.cs), whom the same questions can be about.
-            var c = Fits(t.camp, map) ? t.camp : Fits(t.holding, map) ? t.holding : null;
+            var visiting = CampTracker.VisitingAt(map);
+            var holding = CampTracker.HoldingAt(map);
+            var c = Fits(visiting, map) ? visiting : Fits(holding, map) ? holding : null;
             return c;
         }
 

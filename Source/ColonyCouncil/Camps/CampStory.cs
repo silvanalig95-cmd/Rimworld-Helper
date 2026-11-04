@@ -260,7 +260,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             var sick = c?.sick;
             if (sick == null || sick.Dead || ctx?.a == null) return;
             sheet.Play("CC_Impact_TendAtCamp".Translate(ctx.a.LabelShort, sick.LabelShort).Resolve(), "CC_Impact_TendBrief".Translate(sick.LabelShort).Resolve());
@@ -269,7 +269,7 @@ namespace ColonyCouncil
 
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (c?.sick == null || c.sick.Dead || !c.sick.Spawned) return "CC_CampTrouble_NobodySick".Translate();
             if (ctx.a == null || ctx.a.WorkTagIsDisabled(WorkTags.Caring)) return "CC_CampTrouble_NoDoctor".Translate();
             return null;
@@ -277,7 +277,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             var sick = c?.sick;
             if (sick == null || sick.Dead || ctx.a == null) return;
             if (OutsiderTend.Send(ctx.a, new[] { sick }))
@@ -311,7 +311,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (ctx?.map == null || c == null) return;
             sheet.Goods(-1, Part, Count);
             sheet.Play("CC_Impact_CarryCamp".Translate(ctx.a?.LabelShort ?? "CC_Impact_Someone".Translate().Resolve(), c.Label).Resolve());
@@ -328,7 +328,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (ctx.map == null || c == null) return;
             // A carries the makings over, as the words say; whoever is free if A can't.
             CampAnswers.Carry(c, Part.defName, Count, ctx.a, "CC_Camp_CartLabel".Translate(c.Label.Named("NAME")).Resolve());

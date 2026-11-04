@@ -127,7 +127,7 @@ namespace ColonyCouncil
                 var c = new IntVec3(Rand.RangeInclusive(margin, map.Size.x - margin - 1), 0, Rand.RangeInclusive(margin, map.Size.z - margin - 1));
                 if (!OpenGround(c, map)) continue;
                 // Well clear of neighbours settled for good (Holding.cs).
-                var h = CampTracker.Instance?.holding;
+                var h = CampTracker.HoldingAt(map);
                 if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CoreRadius * 2 + 10)) continue;
                 int d = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
                 if (d < minSq || (pts.Count > 0 && d > maxSq)) continue;

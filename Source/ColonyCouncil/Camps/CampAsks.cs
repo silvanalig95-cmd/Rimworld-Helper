@@ -228,7 +228,7 @@ namespace ColonyCouncil
 
         private static Camp CampOn(Map map)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(map);
             return c != null && map != null && c.map == map && c.Settled && c.herd.Count > 0 ? c : null;
         }
 

@@ -33,7 +33,7 @@ namespace ColonyCouncil
         public float DaysSettled => settledTick < 0 ? 0f : (Now - settledTick) / (float)GenDate.TicksPerDay;
 
         /// <summary>The settle question is due: at the parting of a kind that can, after a good stay, with the land free.</summary>
-        public bool SettleOffered => CampStoryMath.SettleOffered(kind != null && kind.canSettle && !kind.fights, tension, DaysHere, CampTracker.Instance?.holding == null) && !holding;
+        public bool SettleOffered => CampStoryMath.SettleOffered(kind != null && kind.canSettle && !kind.fights, tension, DaysHere, CampTracker.HoldingAt(map) == null) && !holding;
 
         /// <summary>They stay for good: the camp becomes the colony's neighbour.</summary>
         public string Settle()

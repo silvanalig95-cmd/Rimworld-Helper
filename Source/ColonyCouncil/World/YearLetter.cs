@@ -89,7 +89,7 @@ namespace ColonyCouncil
 
             // The neighbours: settled for good, the road, the camps that came, the faces that came back.
             var tracker = CampTracker.Instance;
-            var holding = tracker?.holding;
+            var holding = CampTracker.HoldingAt(map);
             if (holding != null && holding.Here.Count > 0)
             {
                 Para((holding.settledTick >= sinceTick ? "CC_Year_HoldingNew" : "CC_Year_Holding").Translate(holding.HoldingName.Named("NAME"), (holding.faction?.Name ?? "").Named("FACTION"),

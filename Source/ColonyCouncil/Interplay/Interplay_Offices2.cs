@@ -128,12 +128,13 @@ namespace ColonyCouncil
         private static void WardenDay(Pawn w)
         {
             if (!Able(w) || w.Map == null || !w.Map.IsPlayerHome) return;
-            var camp = CampTracker.Enabled ? CampTracker.Instance?.camp : null;
-            if (camp != null && camp.map == w.Map && camp.Settled && camp.CanTalk && Ready("warden|camp", 0.9f))
+            // The camp at the warden's own home.
+            var camp = CampTracker.Enabled ? CampTracker.VisitingAt(w.Map) : null;
+            if (camp != null && camp.map == w.Map && camp.Settled && camp.CanTalk && Ready("warden|camp|" + camp.id, 0.9f))
             {
                 var camper = camp.Here.Where(m => Together.Able(m)).InRandomOrder().FirstOrDefault();
                 if (camper != null)
-                    Together.When("warden|camp", w, camper, () =>
+                    Together.When("warden|camp|" + camp.id, w, camper, () =>
                     {
                         // together: the warden is at the camp, beside one of them.
                         if (!On || !Holds(w, Warden) || !camp.Settled || !camp.CanTalk) return;

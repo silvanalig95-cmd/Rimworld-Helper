@@ -303,7 +303,7 @@ namespace ColonyCouncil
                     var species = DefDatabase<ThingDef>.GetNamedSilentFail(rb.rumourKind);
                     if (species != null) list.Add("CC_Overview_Rumour".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rb.rumourUntil - now).Named("DAYS")).Resolve());
                 }
-                var holding = CampTracker.Instance?.holding;
+                var holding = CampTracker.HoldingAt(map);
                 if (holding != null && holding.Here.Count > 0) list.Add(holding.HoldingLine());
             }
             catch (Exception e)

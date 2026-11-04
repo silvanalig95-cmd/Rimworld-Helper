@@ -306,7 +306,9 @@ MODEL = {
     "Camps/Camp.cs:trees": ("while", 10, P, "while the camp stays"),
     "Camps/CampStory.cs:beats": ("while", 3, V, "the beats of the stay played (ask, trouble, parting), while the camp stays"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
-    "Camps/CampTracker.cs:diary": ("fixed", 30, 40, "the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax)"),
+    "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
+                                   "below), a lost home's kept 30 days, then let go"),
+    "Camps/CampTracker.cs:diary": ("fixed", 30, 40, "the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax), one per colony"),
     "Camps/CampTracker.cs:diaryCounts": ("fixed", 18, D, "how often each outcome came, one count per kind of outcome"),
     "Camps/CampMemory.cs:people": ("fixed", 24, P, "the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp"),
     "Camps/WarCamp.cs:pawns": ("while", 7, P, "a war party's fighters, while it's on the map"),

@@ -7,8 +7,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Camps come on their own time, not only by luck among Rimfolk's many events (where one stood among some two hundred
-    /// and fifty and a colony could go years without seeing one): once a day, in the daytime at the colony (its seat) on the
-    /// ground, while a camp could come (CampTracker.CanStartOn: none here, none gone in the last fortnight or so, never in
+    /// and fifty and a colony could go years without seeing one): once a day at each colony on the ground, on its own
+    /// clock (CampHome: its own day to try, its own gap since its last camp, its own diary), while a camp could come (CampTracker.CanStartOn: none here, none gone in the last fortnight or so, never in
     /// the first twenty days, no really extreme weather, room on the map, a friendly people) and no other question is
     /// waiting, there's a <see cref="DailyChance"/> one makes camp. So about one in three weeks, by day, unannounced.
     /// <para>
@@ -44,14 +44,67 @@ namespace ColonyCouncil
         /// <summary>What only puts the day's choice off to a later hour: it may pass by the afternoon.</summary>
         private static readonly HashSet<string> Passing = new HashSet<string> { "threat", "weather", "hazard", "waiting", "lettergap" };
 
-        private static void Next(CampTracker tracker, int now, int hour)
+        private static void Next(CampHome home, int now, int hour)
         {
-            tracker.tryHours = 0;
-            tracker.nextTryTick = NextTry(now, hour, false);
+            home.tryHours = 0;
+            home.nextTryTick = NextTry(now, hour, false);
         }
 
         public CampTimer(Game game)
         {
+        }
+
+        /// <summary>One home's hour: help in a fight, and its day's try for a camp.</summary>
+        private static void HourAt(Map map, CampTracker tracker, bool seat, int now)
+        {
+            var home = tracker.HomeOf(map);
+            // Help in a fight from the colony's friends (WarCamp.cs), and the remembered camps' fading (CampMemory.cs, once a day, by the seat's hour).
+            WarCamps.Hourly(map, tracker);
+            if (seat && GenLocalDate.HourOfDay(map) == 3) CampReturns.Daily();
+            int hour = GenLocalDate.HourOfDay(map);
+            // A try further off than a few days is another game's (one loaded since): pick again.
+            if (CampStoryMath.RepickTry(home.nextTryTick, now)) home.nextTryTick = NextTry(now, hour, true);
+            if (now < home.nextTryTick) return;
+            int day = GenDate.DaysPassed;
+            var (code, detail, _) = tracker.Blocker(map);
+            // A world event's question about this colony still unanswered.
+            if (code == null && HappeningTracker.WaitingAt(map)) code = "waiting";
+            if (code == null && !Tell.CanAsk) code = "lettergap";
+            if (code != null)
+            {
+                // A passing reason puts the try off by the hour, for up to a day; anything else settles the day at once.
+                if (CampStoryMath.PutOff(Passing.Contains(code), home.tryHours, Retries))
+                {
+                    home.tryHours++;
+                    return;
+                }
+                home.Record(day, hour, code, detail);
+                Next(home, now, hour);
+                return;
+            }
+            Next(home, now, hour);
+            home.openMornings++;
+            if (!Rand.Chance(DailyChance))
+            {
+                home.Record(day, hour, "open", null);
+                return;
+            }
+            var def = DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_Camp");
+            if (def?.Worker == null)
+            {
+                home.Record(day, hour, "failed", "the camp event is missing");
+                return;
+            }
+            var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, map);
+            parms.forced = true;
+            if (!def.Worker.CanFireNow(parms))
+            {
+                home.Record(day, hour, "checks", null);
+                return;
+            }
+            tracker.lastWhy.Clear();
+            bool came = def.Worker.TryExecute(parms);
+            home.Record(day, hour, came ? "came" : "failed", came ? null : string.Join("; ", tracker.lastWhy));
         }
 
         public override void GameComponentTick()
@@ -61,55 +114,23 @@ namespace ColonyCouncil
             using var clock = PassClock.Time(Pass.Camp);
             try
             {
-                var map = HappeningTracker.HomeMap();
                 var tracker = CampTracker.Instance;
-                if (map == null || tracker == null) return;
-                // Help in a fight from the colony's friends (WarCamp.cs), and the remembered camps' fading (CampMemory.cs).
-                WarCamps.Hourly(map, tracker);
-                if (GenLocalDate.HourOfDay(map) == 3) CampReturns.Daily();
-                int hour = GenLocalDate.HourOfDay(map);
-                // A try further off than a few days is another game's (one loaded since): pick again.
-                if (tracker.nextTryTick < 0 || tracker.nextTryTick > now + 3 * GenDate.TicksPerDay) tracker.nextTryTick = NextTry(now, hour, true);
-                if (now < tracker.nextTryTick) return;
-                int day = GenDate.DaysPassed;
-                var (code, detail, _) = tracker.Blocker(map);
-                if (code == null && HappeningTracker.Waiting) code = "waiting";
-                if (code == null && !Tell.CanAsk) code = "lettergap";
-                if (code != null)
+                if (tracker == null) return;
+                var seat = HappeningTracker.HomeMap();
+                // Each home on the ground, in the order they were founded: camps of its own, on its own day. Nobody camps by
+                // a home in space.
+                foreach (var map in Homes.All)
                 {
-                    // A passing reason puts the try off by the hour, for up to a day; anything else settles the day at once.
-                    if (Passing.Contains(code) && tracker.tryHours < Retries)
+                    if (map == null || MapFacts.InVacuum(map)) continue;
+                    try
                     {
-                        tracker.tryHours++;
-                        return;
+                        HourAt(map, tracker, map == seat, now);
                     }
-                    tracker.Record(day, hour, code, detail);
-                    Next(tracker, now, hour);
-                    return;
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("a camp on its own time", e);
+                    }
                 }
-                Next(tracker, now, hour);
-                tracker.openMornings++;
-                if (!Rand.Chance(DailyChance))
-                {
-                    tracker.Record(day, hour, "open", null);
-                    return;
-                }
-                var def = DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_Camp");
-                if (def?.Worker == null)
-                {
-                    tracker.Record(day, hour, "failed", "the camp event is missing");
-                    return;
-                }
-                var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, map);
-                parms.forced = true;
-                if (!def.Worker.CanFireNow(parms))
-                {
-                    tracker.Record(day, hour, "checks", null);
-                    return;
-                }
-                tracker.lastWhy.Clear();
-                bool came = def.Worker.TryExecute(parms);
-                tracker.Record(day, hour, came ? "came" : "failed", came ? null : string.Join("; ", tracker.lastWhy));
             }
             catch (Exception e)
             {

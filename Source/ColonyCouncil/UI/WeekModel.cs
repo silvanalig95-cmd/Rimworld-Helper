@@ -531,6 +531,13 @@ namespace ColonyCouncil
             };
         }
 
+        /// <summary>With more than one colony, the settlement's name before a line about something at one home.</summary>
+        private static string AtHome(Map map, string text)
+        {
+            if (map == null || !ColonyState.Several || !Homes.IsHome(map)) return text;
+            return "CC_Tell_At".Translate(Homes.Name(map).Named("PLACE"), text.Named("TEXT")).Resolve();
+        }
+
         /// <summary>With more than one colony, the settlement's name before a line about one colony's council.</summary>
         private static string AtColony(ColonyState council, string text)
         {
@@ -625,15 +632,16 @@ namespace ColonyCouncil
                     order = left > 0 ? left : int.MaxValue / 2
                 });
             }
-            var camp = CampTracker.Instance?.camp;
-            if (camp != null && camp.Active && camp.map != null && Find.Maps.Contains(camp.map))
+            // Each colony's visiting camp (named by its settlement with more than one colony).
+            foreach (var camp in CampTracker.Instance?.Visiting.ToList() ?? new List<Camp>())
             {
+                if (!camp.Active || camp.map == null || !Find.Maps.Contains(camp.map)) continue;
                 var target = camp.center.IsValid ? new GlobalTargetInfo(camp.center, camp.map) : GlobalTargetInfo.Invalid;
                 c.rows.Add(new WeekRow
                 {
                     icon = Icons.Visitor,
                     color = UiKit.StrangerColor,
-                    text = "CC_Week_Camp".Translate(camp.kind?.LabelCap.ToString() ?? "?").Resolve(),
+                    text = AtHome(camp.map, "CC_Week_Camp".Translate(camp.kind?.LabelCap.ToString() ?? "?").Resolve()),
                     note = "CC_Week_Tension".Translate(camp.TensionWord).Resolve(),
                     noteColor = CampPanel.TensionColor(camp.tension),
                     tip = Tip(camp.StatusLine() + "\n" + camp.TermsLine(), target.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("World")),

@@ -20,7 +20,7 @@ namespace ColonyCouncil
             if (p == null || !p.Spawned || !CampTracker.Enabled) return;
             try
             {
-                var camp = CampTracker.Instance?.camp;
+                var camp = CampTracker.VisitingAt(p.Map);
                 if (camp == null || camp.map != p.Map || !camp.Settled || camp.Hostile || camp.warmth == null) return;
                 if (!camp.warmth.TryGetValue(p, out int w) || w < 3) return;
                 sink.Add(Mathf.Min(4f, 1f + 0.5f * w), "CC_Heart_Cause_CampFriends".Translate(camp.faction?.Name ?? "?"));

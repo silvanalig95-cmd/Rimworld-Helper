@@ -79,6 +79,25 @@ public static class ManyHomesTests
             Check(ColonyStateMath.Find(moving, 55, 55, new HashSet<int> { 55 }) == moving[0] && moving[0].Home == 55, "a colony that moves keeps its calendar");
         }
 
+        // ---------------- Camps per home ----------------
+
+        {
+            // Two homes, each with its own clock: the seat's last camp left yesterday, the new home has never had one.
+            int at = Day * 100;
+            var seat = (lastEnded: at - Day, nextTry: at - 10, tryHours: 0);
+            var other = (lastEnded: -9999999, nextTry: -1, tryHours: 3);
+            Check(CampStoryMath.InGap(at, seat.lastEnded, 15f) && !CampStoryMath.InGap(at, other.lastEnded, 15f), "one home's last camp keeps only that home waiting");
+            Check(!CampStoryMath.RepickTry(seat.nextTry, at) && CampStoryMath.RepickTry(other.nextTry, at), "each home picks its own day to try");
+            Check(CampStoryMath.RepickTry(at + Day * 4, at) && !CampStoryMath.RepickTry(at + Day * 3, at), "a try further off than a few days is picked again");
+            Check(CampStoryMath.PutOff(true, other.tryHours, 23) && !CampStoryMath.PutOff(true, 23, 23) && !CampStoryMath.PutOff(false, 0, 23),
+                "a passing reason puts a home's try off by the hour, for up to a day");
+            Check(!CampStoryMath.InGap(at, at - Day * 15, 15f) && CampStoryMath.InGap(at, at - Day * 15 + 1, 15f), "the gap is the days given, to the tick");
+            // An old save's camps and clock are the seat's (the camps' book follows the council's rules).
+            var old = new Cal(None);
+            var camps = new List<Cal> { old };
+            Check(ColonyStateMath.Find(camps, 40, 12) == null && ColonyStateMath.Find(camps, 12, 12) == old && old.Home == 12, "an old save's camp and clock go to the seat");
+        }
+
         return n;
     }
 

@@ -41,7 +41,7 @@ namespace ColonyCouncil
 
         /// <summary>The camp's own tags for its letter: faith, the world event behind it.</summary>
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags) =>
-            CampWords.AddTags(tags, setup?.kind ?? CampTracker.Instance?.camp?.kind, ctx.faction, ctx.map);
+            CampWords.AddTags(tags, setup?.kind ?? CampTracker.VisitingAt(ctx.map)?.kind, ctx.faction, ctx.map);
 
         protected override void Abort(HappeningContext ctx)
         {
@@ -53,7 +53,7 @@ namespace ColonyCouncil
 
         protected override void Send(HappeningContext ctx, HappeningExtension ext)
         {
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(ctx.map);
             var kind = camp?.kind;
             if (camp == null || kind == null || ext.options.NullOrEmpty())
             {
@@ -116,13 +116,13 @@ namespace ColonyCouncil
         public override string Unavailable(HappeningContext ctx, int option)
         {
             if (option == 0) return null;
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(ctx.map);
             return camp != null && camp.CanTalk ? null : "CC_Camp_NotTalking".Translate().ToString();
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(ctx.map);
             if (camp == null || !camp.CanTalk) return outcome;
             switch (option)
             {
