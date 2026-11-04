@@ -194,11 +194,13 @@ namespace ColonyCouncil
                 int age = newcomer ? (int)p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) : Rand.Range(1, GenDate.TicksPerDay);
                 WriteAt(p, age, newcomer ? "Council_Journal_Arrival" : "Council_Journal_Begin");
             }
-            var map = Find.AnyPlayerHomeMap;
-            int threat = map?.storyState.LastThreatBigTick ?? 0;
-            if (threat > lastThreatWritten && Find.TickManager.TicksGame - threat < GenDate.TicksPerDay * 2)
+            // Each home raided since the last fight written about: two of those who were there write of it.
+            int written = lastThreatWritten;
+            foreach (var map in Homes.All)
             {
-                lastThreatWritten = threat;
+                int threat = map.storyState.LastThreatBigTick;
+                if (threat <= written || Find.TickManager.TicksGame - threat >= GenDate.TicksPerDay * 2) continue;
+                lastThreatWritten = Mathf.Max(lastThreatWritten, threat);
                 // Not those who already wrote about the fight in their own words (it marked them: Persona/Marks.cs).
                 var writers = colonists.Where(p => p.MapHeld == map && !WroteWithin(p, GenDate.TicksPerDay))
                     .OrderByDescending(p => (p.health.hediffSet.hediffs.Any(h => h is Hediff_Injury) ? 2f : 0f) + Rand.Value)

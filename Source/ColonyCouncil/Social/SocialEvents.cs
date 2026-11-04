@@ -113,8 +113,9 @@ namespace ColonyCouncil
             if (TryOne(comp, map, pawns, true)) pendingToday--;
         }
 
+        /// <summary>Where most people are right now: a social event is between two who are there, not the colony's business.</summary>
         private static Map HomeMap() =>
-            MapFacts.BusiestHome;
+            Homes.Busiest;
 
         private static List<Pawn> Available(Map map) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();

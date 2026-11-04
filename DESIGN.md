@@ -1668,6 +1668,29 @@ Things the game exposes that this relies on (all available to mods):
 | Building | Placing standard blueprints (so pawns build them normally) |
 | Rewards | Mood memories, inspirations |
 
+### Homes: what a colony is
+
+A colony is a player home map, known by its settlement's world object id (`map.Parent.ID`, which outlives the map's
+own id). `Lean/Homes.cs` is the one place that says which; its rules are pure (`Lean/HomesMath.cs`) and tested.
+
+- `Homes.All`: the player's homes in the order they were founded, those on the ground before those in orbit.
+- `Homes.Seat`: the colony the council sits at. The first home founded, unless a seat is stored (a saved id; no button
+  yet) and is still a home. It doesn't move as people do.
+- `Homes.Of(pawn)`: the colony someone belongs to. On a home map now (held there too, as in a casket): that one. Else
+  the home where they own a bed. Else the last home they lived on (set once they've been on it a day without a break,
+  kept per colonist, forgotten once they're dead, discarded or no longer the colony's). Else the seat.
+- `Homes.People(map)`: the free colonists who belong to a home; a meeting's members are those of them with a say.
+- `Homes.Name(map)`: the settlement's name, for texts that have to tell two colonies apart.
+- `Homes.Changed`: a home founded or lost, noticed in the council's hour (nothing listens yet).
+
+With one colony every answer is that colony, so it plays as before. `MapFacts.BusiestHome` and
+`HappeningTracker.HomeMap()` (the seat, on the ground) keep their names but return the seat; "the colony" used to be
+the home with the most colonists on it, which moved as people did. New code asks `Homes`: the seat for what the colony
+as a whole has, a loop over `Homes.All` for what each home has, and `Homes.Busiest` only for what follows people about
+(a social event between two who are there). Rimfolk's own event timer runs per home (the seat carries on an older
+save's single timer), a memo keeps its colony so its follow-up (a guest, goods brought back, an order collected) comes
+where it was set going, talks with visitors start on every home, and a raid is written up by those at the home raided.
+
 ### A colonist's tabs
 
 A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second
@@ -1955,7 +1978,7 @@ rule for all of it, from the player: the most impactful and relevant data comes 
   tames, prisoners, things to haul, a research project). Drafted colonists are an option.
 - **The inventory panel** (`HudInventory`, rules in `HudInventoryMath`, tested): the game's own counts, as its resource
   list shows them (`map.resourceCounter.AllCountedAmounts`, read twice a second; the categories' totals from
-  `GetCountIn`), for the map on screen or the busiest home, with the game's icons (`Widgets.ThingIcon`, which carries the
+  `GetCountIn`), for the map on screen or the colony's seat, with the game's icons (`Widgets.ThingIcon`, which carries the
   def's colour). Four looks, kept in the panel's `style`: classic (icon and count a line, the name on hover or as an
   option, on the far left in the game's list's place), grouped (the resource list's root categories,
   `ThingCategoryDef.resourceReadoutRoot`, in the game's order, each a folding header with its total; the folds kept),
@@ -2045,11 +2068,11 @@ an hour and no tick carries the whole colony. "Tick" below is the tick of the ho
 or of the day.
 
 What many passes ask about a map is worked out once and shared (`Lean/MapFacts.cs`): whether a threat is on the map (as
-of this 250-tick stretch), the busiest home map (the same), and for the hour the colonists at home, the days of food,
-the medicine and the colony's beds. The first pass to ask in its stretch works it out; the rest read it. The heart's map
-context, decrees, the life checks behind dilemmas, the advisor, ambition goals, autonomy, encounters, social events,
-nuisances, the calendar, Rimfolk's events, world situations, scenarios, story chains, nemeses, camps, play-outs, the
-fights pass and the worn-out episode read from it. (A downed victim after a fight is still judged at that moment.)
+of this 250-tick stretch), the homes and their seat (the same, `Lean/Homes.cs`), and for the hour the colonists at
+home, the days of food, the medicine and the colony's beds. The first pass to ask in its stretch works it out; the
+rest read it. The heart's map context, decrees, the life checks behind dilemmas, the advisor, ambition goals,
+autonomy, encounters, social events, nuisances, the calendar, Rimfolk's events, world situations, scenarios, story
+chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read from it. (A downed victim after a fight is still judged at that moment.)
 `Lean/Fresh.cs` holds the rules for how long such an answer holds; Tools/Tests checks them.
 
 **Every hour** (2,500 ticks), in the order they come in the hour:
@@ -2068,14 +2091,14 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor, guests eating from low stores, a day's mishaps turned to jokes; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
-| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
+| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, which home is whose (a day on a home makes it someone's last home; a home founded or lost is told; Lean/Homes.cs), everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work, their home: one lookup), per home map (crowded rooms, half-built frames) |
 | 1660 | Reputation and gossip (only with "Personalities and social life"): in a fight, rescues under way and the brave's company; otherwise who idles while the rest work and who tends whom; in the first hour of the day, the day's idling and tending made deeds, the names that formed or faded told, the dead and departed let go | per spawned colonist on home maps (a job look; a sight check only for the idle, the brave and their side) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 1996 | Fields by the weather (Fields/FieldWeather.cs, a map component; with "Fields by the weather" or the frost harvest on): how much colder than the land's own reckoning the hour is, kept as the day's coldest; every other hour (every hour while a frost harvest stands, at once when a field's crop or setting changes) the forecast for each hour ahead from the game's own numbers, each field set to sow by the weather grown hour by hour, and the frost harvest picked plant by plant; the frost checks' coldest hour | per home map: one forecast (31 hours, or 120 days with a field set to sow by the weather), per field set to sow by the weather a few crop runs, per outdoor plant in a growing zone a limit read |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2185 | The weather record (Weather/WeatherBook.cs, a map component): the hour's rain, snow, storm, fog and temperature noted; a finished day, and a finished season set against the year before and named; then the weather dynamics' hour (Weather/WeatherDynamics.cs): the hour's temperature kept for tomorrow's front, events' pulls that ended dropped, and a forecast when the weather is a few hours from changing | per home map: a few numbers; a forecast rolls the game's next weather once per weather |
-| 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
+| 2280 | Council: encounters and nuisances, Rimfolk's own events (a timer per home) | one roll each, Rimfolk's events one per home whose timer is due; event memory pruned in the first hour of the day |
 | 2375 | Conversations: the hour's look for what people go through together (with social life on); views drift in the first hour of the day | per home map: colonists up between one and four at night (pairs together), active conditions, lords, fires, fresh food poisoning, newcomers, prisoners, traders; new play-log lines (tames); finished studies; daily per colonist and view, mentors and secrets |
 | 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |
 
@@ -2100,7 +2123,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
-| 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; only while outsiders are on a home map, with the setting on) | per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures |
+| 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 
@@ -2204,7 +2227,8 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Nemeses | 30 that have ended |
 | Pets | animals known: the dead get their farewell, the discarded are dropped |
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
-| Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps |
+| Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
+| Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |

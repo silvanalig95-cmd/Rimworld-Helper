@@ -84,12 +84,12 @@ namespace ColonyCouncil
 
         public static HappeningLivingText More(IncidentDef def) => def?.GetModExtension<HappeningLivingText>();
 
-        /// <summary>Something on its way: comes due in <paramref name="days"/>.</summary>
-        public static Memo Schedule(string kind, Pawn pawn, Faction f, string def, string text, Pawn other, float days)
+        /// <summary>Something on its way: comes due in <paramref name="days"/>, to the colony of <paramref name="map"/> (where it was set going).</summary>
+        public static Memo Schedule(string kind, Pawn pawn, Faction f, string def, string text, Pawn other, float days, Map map)
         {
             var t = Tracker;
             if (t == null) return null;
-            var m = t.Remember(kind, pawn, f, def, text, false, other);
+            var m = t.Remember(kind, pawn, f, def, text, false, other, map);
             m.due = Now + Mathf.RoundToInt(days * GenDate.TicksPerDay);
             return m;
         }
@@ -98,11 +98,10 @@ namespace ColonyCouncil
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
-            bool home = HappeningTracker.HomeMap() != null;
             foreach (var m in t.memos.Where(m => IsPending(m) && now >= m.due).ToList())
             {
                 // No home right now (a gravship in flight, a caravan life): it waits.
-                if (!home)
+                if (HappeningTracker.MapFor(m) == null)
                 {
                     m.due = now + GenDate.TicksPerHour;
                     continue;
@@ -400,7 +399,7 @@ namespace ColonyCouncil
             if (option == 0 && !byDefault) Couriers.Loot(Loot.Make(ctx.variant, true), ctx.map, near, Couriers.PeopleOf(ctx), x);
             else if (option == 1 && !risk && x != null && x.Faction == Faction.OfPlayer) Loot.Deliver(Loot.Make(ctx.variant, true), ctx.map, near, false);
             if (option == 1 && !risk && x != null && x.Faction == Faction.OfPlayer)
-                CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Adventurer, x, null, null, null, false, ctx.a);
+                CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Adventurer, x, null, null, null, false, ctx.a, ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -482,7 +481,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (option <= 1 && ctx.stranger != null)
-                StorytellerEvents.Schedule(StorytellerEvents.MonkGift, null, ctx.faction, null, ctx.stranger.LabelShort, option == 1 ? ctx.a : null, Rand.Range(1.2f, 1.6f));
+                StorytellerEvents.Schedule(StorytellerEvents.MonkGift, null, ctx.faction, null, ctx.stranger.LabelShort, option == 1 ? ctx.a : null, Rand.Range(1.2f, 1.6f), ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
 
@@ -490,7 +489,7 @@ namespace ColonyCouncil
         public static void Gift(Memo m)
         {
             var def = StorytellerEvents.EventOf(m.kind);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = StorytellerEvents.Context(m, def, map);
             var more = StorytellerEvents.More(def);
@@ -699,7 +698,7 @@ namespace ColonyCouncil
                 float con = Mathf.Clamp(0.3f - social * 0.015f - (OldTrader(ctx.a) ? 0.1f : 0f), 0.04f, 0.3f);
                 float roll = Rand.Value;
                 string fate = roll < con ? "con" : roll < con + 0.2f ? "lost" : "good";
-                var m = StorytellerEvents.Schedule(StorytellerEvents.Venture, null, ctx.faction, fate, ctx.stranger.LabelShort, ctx.a, Rand.Range(8f, 12f));
+                var m = StorytellerEvents.Schedule(StorytellerEvents.Venture, null, ctx.faction, fate, ctx.stranger.LabelShort, ctx.a, Rand.Range(8f, 12f), ctx.map);
                 if (m != null) m.amount = Stake(ctx, option);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
@@ -709,7 +708,7 @@ namespace ColonyCouncil
         public static void Return(Memo m)
         {
             var def = StorytellerEvents.EventOf(m.kind);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null || m.amount <= 0) return;
             var more = StorytellerEvents.More(def);
             var ctx = StorytellerEvents.Context(m, def, map);
@@ -797,7 +796,7 @@ namespace ColonyCouncil
                     p.guest?.SetGuestStatus(null);
                     if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.Decide);
                 }
-                var m = CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.HandedOver, null, ctx.faction, null, name, false, ctx.a);
+                var m = CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.HandedOver, null, ctx.faction, null, name, false, ctx.a, ctx.map);
                 if (m != null && ctx.enemy != null) m.amount = ctx.enemy.loadID;
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
@@ -872,7 +871,7 @@ namespace ColonyCouncil
                 if (errand != null) errand.other = null;
                 // The bundle that may come back is tied with the colony's own bandage: only when food and bandages went out.
                 bool left = !PlayOuts.On || errand != null;
-                StorytellerEvents.Schedule(StorytellerEvents.Mended, null, null, left && Rand.Chance(0.55f) ? "gift" : "none", x.LabelShort, ctx.a, Rand.Range(5f, 12f));
+                StorytellerEvents.Schedule(StorytellerEvents.Mended, null, null, left && Rand.Chance(0.55f) ? "gift" : "none", x.LabelShort, ctx.a, Rand.Range(5f, 12f), ctx.map);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
@@ -882,7 +881,7 @@ namespace ColonyCouncil
         {
             if (m.def != "gift") return;
             var def = StorytellerEvents.EventOf(m.kind);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = StorytellerEvents.Context(m, def, map);
             var things = Loot.Make(Rand.Range(120f, 300f) * LivingEvents.WealthFactor(map));
@@ -927,7 +926,7 @@ namespace ColonyCouncil
         {
             // They know now, whatever was decided: a later event may bring them back.
             if (ctx.stranger != null && ctx.a != null && !(option == 2 && !risk))
-                CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Recognized, ctx.stranger, ctx.faction, null, null, option == 0 || !risk, ctx.a);
+                CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Recognized, ctx.stranger, ctx.faction, null, null, option == 0 || !risk, ctx.a, ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -1006,7 +1005,7 @@ namespace ColonyCouncil
         {
             if (option == 0 && !byDefault && ctx.thing != null && ctx.stranger != null && ctx.enemy != null && Couriers.TakeFromStoresFor(ctx, ctx.thing, ctx.variant))
             {
-                var m = StorytellerEvents.Schedule(StorytellerEvents.Campaign, null, ctx.faction, ctx.thing.defName, ctx.stranger.LabelShort, ctx.a, Rand.Range(7f, 12f));
+                var m = StorytellerEvents.Schedule(StorytellerEvents.Campaign, null, ctx.faction, ctx.thing.defName, ctx.stranger.LabelShort, ctx.a, Rand.Range(7f, 12f), ctx.map);
                 if (m != null)
                 {
                     m.amount = ctx.variant;
@@ -1020,7 +1019,7 @@ namespace ColonyCouncil
         public static void Report(Memo m)
         {
             var def = StorytellerEvents.EventOf(m.kind);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var more = StorytellerEvents.More(def);
             var ctx = StorytellerEvents.Context(m, def, map);
@@ -1209,7 +1208,7 @@ namespace ColonyCouncil
                     var drop = DropCellFinder.RandomDropSpot(ctx.map);
                     DropPodUtility.DropThingsNear(drop, ctx.map, new List<Thing> { x }, 110, false, false, true, false);
                     ctx.stranger = x;
-                    CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Survivor, x, null, null, null, false, ctx.a);
+                    CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Survivor, x, null, null, null, false, ctx.a, ctx.map);
                 }
                 outcome = VarietyUtil.Line(more?.outcomes, ctx, new[] { x != null ? "survivor" : "beacon" }) ?? outcome;
             }
@@ -1329,7 +1328,7 @@ namespace ColonyCouncil
                 // envoy at the gate; taken at once if it never happens).
                 // Lifted to just above zero, where the game ends a war.
                 e.TryAffectGoodwillWith(Faction.OfPlayer, Mathf.Max(5, 5 - e.PlayerGoodwill), true, false);
-                if (!e.HostileTo(Faction.OfPlayer)) CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Peace, null, e, null, null, false, ctx.a);
+                if (!e.HostileTo(Faction.OfPlayer)) CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Peace, null, e, null, null, false, ctx.a, ctx.map);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }

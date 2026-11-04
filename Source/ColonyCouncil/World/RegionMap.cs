@@ -73,7 +73,7 @@ namespace ColonyCouncil
         // ---------------- Where home is ----------------
 
         /// <summary>
-        /// The tile the map is centred on: the colony the player is looking at, else the busiest home, else any of the
+        /// The tile the map is centred on: the colony the player is looking at, else the seat (Homes), else any of the
         /// colony's settlements or caravans; on the planet's surface (a home in orbit is centred on the ground below it).
         /// </summary>
         public static bool HomeTile(out PlanetLayer layer, out PlanetTile tile)

@@ -7,7 +7,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Camps come on their own time, not only by luck among Rimfolk's many events (where one stood among some two hundred
-    /// and fifty and a colony could go years without seeing one): once a day, in the daytime on the busiest home on the
+    /// and fifty and a colony could go years without seeing one): once a day, in the daytime at the colony (its seat) on the
     /// ground, while a camp could come (CampTracker.CanStartOn: none here, none gone in the last fortnight or so, never in
     /// the first twenty days, no really extreme weather, room on the map, a friendly people) and no other question is
     /// waiting, there's a <see cref="DailyChance"/> one makes camp. So about one in three weeks, by day, unannounced.

@@ -96,30 +96,20 @@ namespace ColonyCouncil
             && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby();
 
         /// <summary>
-        /// Everyone with a say whose home is this map: here, or away with a caravan, at an outpost, on another (not home)
-        /// map or in the air. Those who live at another of the player's settlements, or sleep in a casket here, aren't counted.
+        /// Everyone with a say whose home is this map (<see cref="Homes.People"/>): here, or away with a caravan, at an
+        /// outpost, on another (not home) map or in the air. Those who belong to another of the player's settlements, or
+        /// sleep in a casket here, aren't counted.
         /// </summary>
-        public static List<Pawn> Members(Map map)
-        {
-            var found = new HashSet<Pawn>();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers.ToList()) found.Add(p);
-            try
-            {
-                foreach (var p in People.OffMapColonists()) found.Add(p);
-            }
-            catch (System.Exception e)
-            {
-                CouncilLog.ErrorOnce("meeting members off map", e);
-            }
-            return found.Where(p => IsMember(p) && HomeIs(p, map)).OrderBy(p => p.thingIDNumber).ToList();
-        }
+        public static List<Pawn> Members(Map map) =>
+            Homes.FreeColonistsAnywhere().Where(p => IsMember(p) && HomeIs(p, map)).OrderBy(p => p.thingIDNumber).ToList();
 
         private static bool HomeIs(Pawn p, Map map)
         {
             var held = p.MapHeld;
-            if (held == null) return true;
-            if (held == map) return p.Spawned;
-            return !held.IsPlayerHome;
+            // A map that is no longer a home (given up while a meeting was set there): those on it and everyone away.
+            if (!Homes.IsHome(map)) return held == null || (held == map ? p.Spawned : !held.IsPlayerHome);
+            // Here but not up and about (asleep in a casket) doesn't count.
+            return Homes.Of(p) == map && (held != map || p.Spawned);
         }
 
         /// <summary>Fewer than this many present makes a thin meeting: half of those with a say, and never fewer than two.</summary>

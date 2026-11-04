@@ -450,6 +450,7 @@ for (int r = 0; r < 4; r++)
 Console.WriteLine($"Checked {UiTests.Run(Check)} tab sizes.");
 Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)} days.");
 Console.WriteLine($"Checked {LeanTests.Run(Check)} things about the clock's spread and the save caps.");
+Console.WriteLine($"Checked {HomesTests.Run(Check)} things about what a colony is (the order of the homes, the seat, whose home, a day to make it theirs, where a memo goes).");
 Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peoples remember (fading, adding up, making way, tone).");
 Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
 Console.WriteLine($"Checked {PlayOutGroupTests.Run(Check)} things about work parties, walks, vigils, searches, errands and hunts.");

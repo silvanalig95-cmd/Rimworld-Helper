@@ -447,14 +447,18 @@ namespace ColonyCouncil
         // ================= Talks they start themselves =================
 
         /// <summary>
-        /// Every 250 ticks with outsiders on the map being looked at: a colonist free and near one may start a talk with
-        /// them by themselves (one at most a look). Never with danger about; the visit's own pace and the colony's other
-        /// exchanges hold it back.
+        /// Every 250 ticks, on each home with outsiders about (whichever map is being looked at): a colonist free and near
+        /// one may start a talk with them by themselves (one at most a look on each home). Never with danger about; the
+        /// visit's own pace and the colony's other exchanges hold it back.
         /// </summary>
         public static void Rare(int now)
         {
             if (!ChatterOn || OutsiderTalkDef.All.Count == 0) return;
-            var map = Find.CurrentMap;
+            foreach (var map in Homes.All) RareOn(map, now);
+        }
+
+        private static void RareOn(Map map, int now)
+        {
             if (map == null || !map.IsPlayerHome || map.dangerWatcher.DangerRating != StoryDanger.None) return;
             List<Pawn> outsiders = null;
             foreach (var p in map.mapPawns.AllPawnsSpawned)

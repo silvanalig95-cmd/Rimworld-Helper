@@ -223,7 +223,7 @@ namespace ColonyCouncil
             bool comes = firstDays.max > 0f;
             if (comes)
             {
-                var m = ctx.comp.happenings.Remember("hunt", foe, faction, story);
+                var m = ctx.comp.happenings.Remember("hunt", foe, faction, story, map: ctx.map);
                 // Never the same day they land, and never back to back.
                 m.due = now + Mathf.RoundToInt(Mathf.Max(1f, Days(firstDays)) * GenDate.TicksPerDay);
                 m.everyMin = Mathf.Max(3f, everyDays.min);
@@ -295,7 +295,7 @@ namespace ColonyCouncil
         {
             var faction = ctx.foeFaction ?? ScenarioSetup.Enemy(true);
             if (faction == null) return;
-            var m = ctx.comp.happenings.Remember("debt", ctx.foe, faction, story);
+            var m = ctx.comp.happenings.Remember("debt", ctx.foe, faction, story, map: ctx.map);
             m.amount = Mathf.Max(10, amount);
             int days = Mathf.Max(1, Mathf.RoundToInt(Days(dueDays)));
             m.due = Find.TickManager.TicksGame + days * GenDate.TicksPerDay;
@@ -349,7 +349,7 @@ namespace ColonyCouncil
             bool first = true;
             foreach (var p in chosen)
             {
-                var m = ctx.comp.happenings.Remember("deserter", p, faction);
+                var m = ctx.comp.happenings.Remember("deserter", p, faction, map: ctx.map);
                 if (first && firstDays.max > 0f) m.due = now + Mathf.RoundToInt(Days(firstDays) * GenDate.TicksPerDay);
                 first = false;
             }
@@ -574,11 +574,12 @@ namespace ColonyCouncil
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
-            var map = HappeningTracker.HomeMap();
             foreach (var m in t.memos.Where(m => !m.used).ToList())
             {
                 try
                 {
+                    // At the colony the stakes were set at while it's still a home, else the seat.
+                    var map = HappeningTracker.MapFor(m);
                     switch (m.kind)
                     {
                         case "hunt": Hunt(t, comp, m, map, now); break;
@@ -814,7 +815,7 @@ namespace ColonyCouncil
         {
             var defs = events.Where(d => d?.Worker is IncidentWorker_Happening).ToList();
             if (defs.Count == 0) return;
-            var m = ctx.comp.happenings.Remember("event", null, null, null, string.Join(",", defs.Select(d => d.defName)));
+            var m = ctx.comp.happenings.Remember("event", null, null, null, string.Join(",", defs.Select(d => d.defName)), map: ctx.map);
             m.due = Find.TickManager.TicksGame + Mathf.RoundToInt(Mathf.Max(1f, Days(days)) * GenDate.TicksPerDay);
             if (!hint.NullOrEmpty() && hint.CanTranslate()) ctx.lines.Add(hint.Translate().Resolve());
         }
@@ -1019,7 +1020,7 @@ namespace ColonyCouncil
                     t.Use(m);
                     // They'll be back: a few more times with the one who was wronged at their head, or collectors once more.
                     bool led = ctx.stranger != null;
-                    var hunt = t.Remember("hunt", ctx.stranger, m.faction, m.def);
+                    var hunt = t.Remember("hunt", ctx.stranger, m.faction, m.def, map: ctx.map);
                     hunt.everyMin = led ? 30f : 20f;
                     hunt.everyMax = led ? 45f : 30f;
                     hunt.left = led ? 2 : 1;

@@ -43,7 +43,7 @@ namespace ColonyCouncil
             var map = victim.MapHeld ?? hunter.Map;
             if (map == null || !map.IsPlayerHome) return;
             foreach (var old in t.Memos(Kind).ToList()) t.Use(old);
-            var m = t.Remember(Kind, null, null, victim.kindDef.defName, cell.x + "," + cell.z, false, hunter);
+            var m = t.Remember(Kind, null, null, victim.kindDef.defName, cell.x + "," + cell.z, false, hunter, map);
             if (m != null) m.amount = map.uniqueID;
             // Now and then the young one is found a few hours later (the storyteller may still bring it while the kill is fresh).
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail(DefName);
@@ -680,7 +680,7 @@ namespace ColonyCouncil
             var bill = Making.AddBill(bench, recipe, ctx.thing, have.Count + 1, false);
             if (bill == null) return;
             bill.qualityRange = range;
-            var m = CouncilGameComponent.Instance?.happenings.Remember(Kind, null, ctx.faction, ctx.thing.defName, bill.GetUniqueLoadID(), false, ctx.a);
+            var m = CouncilGameComponent.Instance?.happenings.Remember(Kind, null, ctx.faction, ctx.thing.defName, bill.GetUniqueLoadID(), false, ctx.a, map);
             if (m == null) return;
             m.amount = price;
             m.left = (int)least;
@@ -700,9 +700,10 @@ namespace ColonyCouncil
             if (due.Count == 0) return;
             var incident = DefDatabase<IncidentDef>.GetNamedSilentFail(DefName);
             var more = VarietyUtil.More(incident);
-            var map = HappeningTracker.HomeMap();
             foreach (var m in due)
             {
+                // Made and collected at the colony that took it on (its bill is on that colony's bench).
+                var map = HappeningTracker.MapFor(m);
                 var def = DefDatabase<ThingDef>.GetNamedSilentFail(m.def ?? "");
                 if (incident == null || def == null || map == null || m.faction == null)
                 {
@@ -767,7 +768,7 @@ namespace ColonyCouncil
             {
                 var t = comp.happenings;
                 foreach (var old in t.Memos(Patron).ToList()) t.Use(old);
-                t.Remember(Patron, null, ctx.faction, null, null, false, ctx.a);
+                t.Remember(Patron, null, ctx.faction, null, null, false, ctx.a, map);
             }
             var tags = new List<string> { fine ? "fine" : "plain" };
             string title = VarietyUtil.Line(more?.doneTitles, ctx, tags) ?? ctx.incident.LabelCap.ToString();
