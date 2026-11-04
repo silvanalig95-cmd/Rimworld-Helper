@@ -123,6 +123,37 @@ public static class LedgerMovesTests
         GrudgeTally.Add(moved, 2, 40, "Di");
         Check(GrudgeTally.InOrder(moved).Last().Value.name == "Di", "a death after the move comes after them");
 
+        // ---------------- Favours: the ledger never refuses one the old store allowed ----------------
+
+        // The act allows one open favour per people and six in all; each is brought or let go (closed), and asked again.
+        {
+            var ties = new List<Tie>();
+            var r = new Random(11);
+            bool refused = false, tooMany = false;
+            int now = 0, id = 1;
+            for (int step = 0; step < 3000; step++)
+            {
+                now += r.Next(0, Day);
+                TieRules.Tidy(ties, now);
+                var people = Ref.People(r.Next(1, 9));
+                var by = Ref.Person(r.Next(1, 4));
+                var live = ties.Where(t => t.kind == Tie.Kind.Favour && t.Live).ToList();
+                if (r.Next(2) == 0 && live.Count < 6 && !live.Any(t => t.from == people))
+                {
+                    if (!TieRules.MakeRoom(ties, Tie.Kind.Favour, people, by)) refused = true;
+                    else ties.Add(new Tie { id = id++, kind = Tie.Kind.Favour, from = people, to = by, since = now, until = Tie.Never });
+                }
+                else if (live.Count > 0)
+                    TieRules.Move(live[r.Next(live.Count)], r.Next(2) == 0 ? Tie.State.Kept : Tie.State.Ended, now);
+                if (ties.Count(t => t.kind == Tie.Kind.Favour && t.Live) > 6) tooMany = true;
+            }
+            Check(!refused, "three thousand favours asked, brought and let go: the ledger always has room for one the act allows");
+            Check(!tooMany, "and never more than six open");
+            var lapse = new Tie { kind = Tie.Kind.Favour, from = Ref.People(1), to = Ref.Person(1), since = 0, until = Tie.Never };
+            Check(!TieRules.Expire(lapse, 1000 * Day) && lapse.Live, "a favour has no until: the outsiders' hour lets it go after thirty days, with its message");
+            Check(StoreMath.Past(30 * Day + 1, 0, 30f) && !StoreMath.Past(30 * Day, 0, 30f), "let go once more than thirty days have passed, as before");
+        }
+
         return n;
     }
 }

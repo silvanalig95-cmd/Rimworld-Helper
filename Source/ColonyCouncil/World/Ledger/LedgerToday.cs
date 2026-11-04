@@ -9,7 +9,6 @@ namespace ColonyCouncil
     /// The ties that exist today in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store,
     /// none is editable through the ledger yet). Only those still in force: what ended stays in its own store's record.
     /// <list type="bullet">
-    /// <item>A favour asked of an outsider (OutsiderBook.favours): a favour their people owe the colonist who asked.</item>
     /// <item>A good word promised (OutsiderBook.words): a promise from the outsider to the colonist, about the notable.</item>
     /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
     /// date, called in while the letter waits for an answer.</item>
@@ -39,7 +38,6 @@ namespace ColonyCouncil
             var list = new List<Tie>();
             if (Current.Game != null)
             {
-                Read("favours", list, Favours);
                 Read("words", list, Words);
                 Read("debts", list, Debts);
                 Read("guest kin", list, GuestKin);
@@ -66,19 +64,6 @@ namespace ColonyCouncil
         {
             if (from.IsNone || to.IsNone || from == to) return;
             list.Add(new Tie { kind = kind, from = from, to = to, terms = terms ?? new TieTerms(), since = since, until = until, state = state, origin = origin, source = source });
-        }
-
-        private static void Favours(List<Tie> list)
-        {
-            var book = OutsiderBook.Instance;
-            if (book == null) return;
-            foreach (var f in book.favours)
-            {
-                if (f?.faction == null || f.def == null) continue;
-                var to = f.by != null ? Refs.Of(f.by) : Refs.Seat;
-                var terms = new TieTerms { goods = f.def.defName, count = f.count, days = OutsiderMath.BringGiveUpDays, about = Refs.Of(f.outsider) };
-                View(list, "outsiders:favour", Tie.Kind.Favour, Refs.Of(f.faction), to, terms, f.asked, f.asked + (int)(OutsiderMath.BringGiveUpDays * GenDate.TicksPerDay));
-            }
         }
 
         private static void Words(List<Tie> list)

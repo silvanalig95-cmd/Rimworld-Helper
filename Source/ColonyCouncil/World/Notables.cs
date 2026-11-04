@@ -159,6 +159,16 @@ namespace ColonyCouncil
             oldName = null;
         }
 
+        /// <summary>Who they are in the world ledger (an older save's notable handed over first, if it wasn't yet).</summary>
+        public Ref Person
+        {
+            get
+            {
+                if (person.IsNone) HandOver();
+                return person;
+            }
+        }
+
         /// <summary>The record is someone's from now on: the ledger's person for this pawn.</summary>
         public void SetPerson(Pawn p)
         {

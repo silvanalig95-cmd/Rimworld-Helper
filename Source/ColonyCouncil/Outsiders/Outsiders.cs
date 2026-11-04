@@ -399,8 +399,8 @@ namespace ColonyCouncil
                     if (!OutsiderMath.WillDoFavour(ofColony, ofColonist)) return Why("NotWell");
                     break;
                 case OutsiderAct.Bring:
-                    if (book != null && book.favours.Any(f => f.faction == PeopleOf(x))) return Why("Asked");
-                    if (book != null && book.favours.Count >= OutsiderBook.MaxFavours) return Why("TooManyAsked");
+                    if (book != null && Favours.AskedOf(PeopleOf(x))) return Why("Asked");
+                    if (book != null && Favours.Count >= OutsiderBook.MaxFavours) return Why("TooManyAsked");
                     if (BringChoices(x).Count == 0) return Why("NoBring");
                     if (!OutsiderMath.WillBring(ofColony, ofColonist)) return Why("NotWell");
                     break;
@@ -684,12 +684,13 @@ namespace ColonyCouncil
         /// </summary>
         public static void FavoursHourly(OutsiderBook book, int now)
         {
-            if (book.favours.Count == 0) return;
-            foreach (var f in book.favours.ToList())
+            var open = Favours.Open();
+            if (open.Count == 0) return;
+            foreach (var f in open)
             {
                 if (f.faction == null || f.faction.defeated || f.def == null || now - f.asked > OutsiderMath.BringGiveUpDays * GenDate.TicksPerDay)
                 {
-                    book.favours.Remove(f);
+                    Favours.Close(f, false);
                     // apart: a favour that never came, told in a message.
                     if (f.faction != null && f.def != null)
                         Notify.Message("CC_Out_Msg_BringLapsed".Translate((f.faction?.Name ?? "?").Named("FACTION"), f.def.label.Named("THING"), (f.outsiderName ?? "?").Named("OTHER")).Resolve(),
@@ -713,7 +714,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Someone of their people at the colony now, free to walk over with it: the one who promised, else any grown one of them.</summary>
-        private static Pawn Bearer(OutsiderFavour f)
+        private static Pawn Bearer(Favour f)
         {
             // Not the visit the favour was asked on: the one who promised goes home first.
             if (f.outsider != null && f.outsider.Spawned) return null;
@@ -732,9 +733,9 @@ namespace ColonyCouncil
         public static void Brought(Pawn bearer, Pawn to, ThingDef def, int count)
         {
             var book = Book;
-            var f = book?.favours.FirstOrDefault(v => v.def == def && v.faction == bearer.Faction);
+            var f = book != null ? Favours.Open().FirstOrDefault(v => v.def == def && v.faction == bearer.Faction) : null;
             if (f == null || def == null) return;
-            book.favours.Remove(f);
+            Favours.Close(f, true);
             try
             {
                 var things = Couriers.Make(def, Mathf.Max(1, count));

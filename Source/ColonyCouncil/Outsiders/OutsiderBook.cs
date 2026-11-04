@@ -180,7 +180,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Something asked of an outsider for their people's next visit: what, how many, who asked.</summary>
+    /// <summary>
+    /// Something asked of an outsider for their people's next visit, as an older save kept it: read on load and moved into
+    /// the world ledger (Outsiders/OutsiderTies.cs, Favours).
+    /// </summary>
     public class OutsiderFavour : IExposable
     {
         public Pawn outsider;
@@ -191,8 +194,6 @@ namespace ColonyCouncil
         public ThingDef def;
         public int count;
         public int asked;
-        /// <summary>Someone of theirs is on the way over with it now (not saved: after a load they come round again).</summary>
-        [Unsaved] public Pawn bearer;
 
         public void ExposeData()
         {
@@ -258,7 +259,8 @@ namespace ColonyCouncil
         public const int MaxWars = 30;
 
         public List<OutsiderPair> pairs = new List<OutsiderPair>();
-        public List<OutsiderFavour> favours = new List<OutsiderFavour>();
+        /// <summary>An older save's favours, read on load and moved into the world ledger (Favours).</summary>
+        private List<OutsiderFavour> oldFavours;
         public List<OutsiderWord> words = new List<OutsiderWord>();
         public List<OutsiderVisit> visits = new List<OutsiderVisit>();
         public List<HeardNews> heard = new List<HeardNews>();
@@ -296,6 +298,16 @@ namespace ColonyCouncil
             cached = this;
             cachedGame = Current.Game;
             Outsiders.Reset();
+            // An older save's favours and good words go into the world ledger.
+            try
+            {
+                if (oldFavours != null) Favours.Adopt(oldFavours);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("moving an older save's favours into the world ledger", e);
+            }
+            oldFavours = null;
         }
 
         public override void GameComponentTick()
@@ -413,14 +425,13 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 pairs.RemoveAll(r => r == null || r.colonist == null && r.outsider == null);
-                favours.RemoveAll(f => f == null || f.def == null || f.faction == null);
                 words.RemoveAll(w => w == null);
                 visits.RemoveAll(v => v == null || v.outsider == null || v.outsider.Discarded);
                 heard.RemoveAll(h => h == null || h.text.NullOrEmpty());
                 wars.RemoveAll(w => w == null || w.a == null || w.b == null);
             }
             Scribe_Collections.Look(ref pairs, "pairs", LookMode.Deep);
-            Scribe_Collections.Look(ref favours, "favours", LookMode.Deep);
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref oldFavours, "favours", LookMode.Deep);
             Scribe_Collections.Look(ref words, "words", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
             Scribe_Collections.Look(ref heard, "heard", LookMode.Deep);
@@ -436,8 +447,7 @@ namespace ColonyCouncil
                 wars.RemoveAll(w => w == null || w.a == null || w.b == null);
                 pairs ??= new List<OutsiderPair>();
                 pairs.RemoveAll(r => r == null || r.colonist == null || r.outsider == null);
-                favours ??= new List<OutsiderFavour>();
-                favours.RemoveAll(f => f == null || f.def == null || f.faction == null);
+                oldFavours?.RemoveAll(f => f == null || f.def == null || f.faction == null);
                 words ??= new List<OutsiderWord>();
                 words.RemoveAll(w => w == null);
             }

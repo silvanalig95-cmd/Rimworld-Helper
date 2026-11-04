@@ -103,7 +103,12 @@ namespace ColonyCouncil
                 l.personIndex[r] = rec;
                 Changed();
             }
-            else if (rec.pawn == null && !p.Discarded) rec.pawn = p;
+            else if (!p.Discarded)
+            {
+                // The name as it is now (a colonist may have been renamed since).
+                if (rec.pawn == null) rec.pawn = p;
+                rec.name = p.LabelShort;
+            }
             return r;
         }
 

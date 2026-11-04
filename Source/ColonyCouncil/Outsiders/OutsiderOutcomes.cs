@@ -308,7 +308,7 @@ namespace ColonyCouncil
             }
             int count = OutsiderMath.BringCount(thing.BaseMarketValue, ofColony);
             var book = Book;
-            book?.favours.Add(new OutsiderFavour { outsider = x, outsiderName = x.LabelShort, faction = f, by = c, byName = c.LabelShort, def = thing, count = count, asked = Now });
+            if (book != null) Favours.Ask(x, f, c, thing, count);
             Say(x, "bringyes", c);
             // together: promised face to face.
             Good("CC_Out_Msg_BringYes", c, c.Named("PAWN"), x.Named("OTHER"), Couriers.Amount(count, null, thing).Named("THING"));
