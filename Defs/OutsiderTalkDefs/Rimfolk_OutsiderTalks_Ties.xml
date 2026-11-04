@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The ties between the two sides (the world ledger, World/Ledger/; the facts in Text/Facts/FactsLedger.cs), as the
+       game makes them today:
+       - a favor their people owe one of the colony (tie:favour:theirs, {FAVOURFOR} the colonist who asked): something to
+         be brought on their people's next visit, asked of the outsider who agreed (them:lately:tie:favour:made), brought
+         (kept) or let go after thirty days (ended);
+       - a good word one of their people promised to put in at home for one of the colony (tie:promise:theirs,
+         {PROMISEDTO}): said once the one who promised is home (kept), or lapsed (ended);
+       - their family's claim on someone who joined the colony from a visit (tie:claim:theirs, {CLAIMON}), pressed when
+         the family comes to ask them home and the council is asked (tie:claim:due);
+       - silver the colony owes their people from its start (tie:debt:ours, {DEBTTO}), come due (tie:debt:due);
+       - fealty: the colony holding its land by their people's grant (tie:fealty:ours, {FEALTYTO} their people), or a
+         town of theirs made the colony's vassal (tie:fealty:theirs, {FEALTYTO} the colony);
+       - grudges: their people's, for their own who died as the colony's prisoners (tie:grudge:theirs, {GRUDGEAGAINST}
+         the colony), or a colonist's sworn vendetta against their people for someone they took (tie:grudge:ours,
+         {GRUDGEAGAINST} their people; tie:grudge:you when it is the colonist speaking).
+       Favors and good words are only ever theirs to keep, and never called in; a grudge is never called in either. The
+       callbacks pick up the marks favour, goodword, claim, debt and grudge with what became of the tie since. The format
+       is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= A favor their people owe ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourOwed</defName>
+    <topic>favour</topic>
+    <uses>chat,home</uses>
+    <when>tie:favour:theirs</when>
+    <lines>
+      <li>[them,tie:favour:you] What you asked of my people is meant to come with the next of us to visit.</li>
+      <li>[them,!tie:favour:you] What {FAVOURFOR} asked of my people is meant to come with the next of us to visit.</li>
+      <li>[us] There's no hurry.</li>
+      <li>[them,their:tribal] A thing asked is a gift owed back, and owed things sit heavy by the fire.</li>
+      <li>[them,their:medieval] It's a debt of honor all the same, and we pay ours.</li>
+      <li>[them,their:spacer] It's an open entry, and I dislike open entries.</li>
+      <li>[them] All the same, nobody at home likes a favor hanging over them.</li>
+    </lines>
+    <mark>favour</mark><about>FAVOURFOR</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourAgreed</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,them:lately:tie:favour:made,!them:lately:tie:favour:kept,!them:lately:tie:favour:ended</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us,tie:favour:you] Thank you again for saying yes to what I asked.</li>
+      <li>[us,!tie:favour:you] Thank you for saying yes to what {FAVOURFOR} asked.</li>
+      <li>[them] Thank me when it's here, not before.</li>
+      <li>[us] Then I'll thank you twice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourIOU</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,their:industrial</when>
+    <lines>
+      <li>[them,tie:favour:you] What you asked us for is written down back home, you know.</li>
+      <li>[them,!tie:favour:you] What {FAVOURFOR} asked us for is written down back home, you know.</li>
+      <li>[us] Written down where?</li>
+      <li>[them] In the caravan book, an IOU between the fuel and the salt.</li>
+      <li>[us] Then I hope somebody crosses it out soon.</li>
+      <li>[them] So does the bookkeeper, believe me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourTally</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,their:medieval</when>
+    <lines>
+      <li>[them,tie:favour:you] You asked a favor of my people, and we're folk who keep a tally.</li>
+      <li>[them,!tie:favour:you] {FAVOURFOR} asked a favor of us, and we're folk who keep a tally.</li>
+      <li>[us] A tally of what?</li>
+      <li>[them] Who owes whom, back to my grandmother's day, notched on a stick by the hearth.</li>
+      <li>[us] And we're on the stick now?</li>
+      <li>[them] Aye, on the side that gets paid, which is the better side.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourEmpire</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,their:empire</when>
+    <lines>
+      <li>[them] A favor asked of the Empire's people is a matter of honor, however small.</li>
+      <li>[us] We didn't mean it as a burden.</li>
+      <li>[them] It isn't one, but it will be done properly or not at all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourCool</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,tone:cool</when>
+    <lines>
+      <li>[us,tie:favour:you] Your people still mean to bring what I asked for?</li>
+      <li>[us,!tie:favour:you] Your people still mean to bring what {FAVOURFOR} asked for?</li>
+      <li>[them] Somebody said yes, so somebody will see to it.</li>
+      <li>[us] That's all we ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FavourAndGrudge</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,tie:grudge:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Strange, my people owing your colony a favor, with our dead between us.</li>
+      <li>[us] We'd rather it were favors between us than the dead.</li>
+      <li>[them,their:tribal] Then let the gift walk the path the grudge walked, and see which is stronger.</li>
+      <li>[them] So would I, but I'm not the one who needs convincing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Callbacks: the favor talked of before -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FavourStill</defName>
+    <topic>callback</topic>
+    <when>talked:favour,tie:favour:theirs,!then:recent</when>
+    <lines>
+      <li>[us] Still no sign of what we asked your people to bring.</li>
+      <li>[them,their:tribal] The one who carries it walks when the path is ready, not before.</li>
+      <li>[them] I'll ask at home what's keeping it.</li>
+      <li>[us] Thank you, we're not in a rush.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FavourBrought</defName>
+    <topic>callback</topic>
+    <when>talked:favour,!tie:favour,them:lately:tie:favour:kept</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Did what I promised your people reach you in the end?</li>
+      <li>[us] It did, one of yours walked it over.</li>
+      <li>[them,their:medieval] Good, then my word's good, and I can hold my head up at the market.</li>
+      <li>[them] Good, I'd hate to be the one who said and didn't do.</li>
+      <li>[us] You're not, and we won't forget it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_FavourLapsed</defName>
+    <topic>callback</topic>
+    <when>talked:favour,!tie:favour,them:lately:tie:favour:ended,!them:lately:tie:favour:kept</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] What I said my people would bring you never came, did it?</li>
+      <li>[us] No, it never did.</li>
+      <li>[them,their:medieval] Then I've a debt of honor I couldn't pay, and I don't like the taste of it.</li>
+      <li>[them] Nobody of ours came this way in time, and I'm sorry for it.</li>
+      <li>[us] These things happen on long roads.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A good word promised ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_WordCarried</defName>
+    <topic>promise</topic>
+    <uses>chat,home</uses>
+    <when>tie:promise:theirs,!them:lately:tie:promise:made</when>
+    <lines>
+      <li>[them,tie:promise:you] I hear one of ours means to speak well of you at home.</li>
+      <li>[them,!tie:promise:you] I hear one of ours means to speak well of {PROMISEDTO} at home.</li>
+      <li>[us] We'd be grateful for it.</li>
+      <li>[them,their:tribal] A good word carried to the fire travels farther than a runner.</li>
+      <li>[them,their:medieval] A good word in the right ear is worth a cartload, aye.</li>
+      <li>[them,their:empire] At court a good word opens a door, and what follows is up to you.</li>
+      <li>[them] A good word in the right ear goes a long way.</li>
+    </lines>
+    <mark>goodword</mark><about>PROMISEDTO</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_WordMine</defName>
+    <topic>promise</topic>
+    <when>tie:promise:theirs,them:lately:tie:promise:made,!them:lately:tie:promise:kept,!them:lately:tie:promise:ended,!role:notable</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I haven't forgotten the good word I promised, it goes home with me.</li>
+      <li>[us] That's good of you.</li>
+      <li>[them,their:tribal] Words carried far must be carried with care, like embers in a pot.</li>
+      <li>[them] Then give me nothing to take back before I go.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_WordCool</defName>
+    <topic>promise</topic>
+    <when>tie:promise:theirs,tone:cool,!them:lately:tie:promise:made</when>
+    <lines>
+      <li>[us,tie:promise:you] One of yours promised to speak well of me at home.</li>
+      <li>[us,!tie:promise:you] One of yours promised to speak well of {PROMISEDTO} at home.</li>
+      <li>[them] Then I hope they find kinder words than I would.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_WordSour</defName>
+    <topic>promise</topic>
+    <when>tie:promise:theirs,tone:sour,!them:lately:tie:promise:made</when>
+    <lines>
+      <li>[them] One of ours has promised to speak well of your lot, more fool them.</li>
+      <li>[us] Some of your people are more generous than others.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Callbacks: the good word talked of before -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WordSaid</defName>
+    <topic>callback</topic>
+    <when>talked:goodword,!tie:promise,them:lately:tie:promise:kept,!role:notable</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] The good word I promised your people, I said it when I got home.</li>
+      <li>[us] Thank you, truly.</li>
+      <li>[them,their:medieval] It was no trouble, I only told them what I'd seen with my own eyes.</li>
+      <li>[them] I only told them what I'd seen here.</li>
+      <li>[us] Then I'm glad of what you saw.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WordLapsed</defName>
+    <topic>callback</topic>
+    <when>talked:goodword,!tie:promise,them:lately:tie:promise:ended,!them:lately:tie:promise:kept,!role:notable</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] The word I meant to put in for your people never got said, and I'm sorry.</li>
+      <li>[us] What happened?</li>
+      <li>[them] Things went otherwise, and I'll leave it there.</li>
+      <li>[us] Another time, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_WordStill</defName>
+    <topic>callback</topic>
+    <when>talked:goodword,tie:promise:theirs,!then:recent</when>
+    <lines>
+      <li>[us] Has that good word gone home yet?</li>
+      <li>[them] Not yet, it goes when the one who carries it does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A family's claim on one who joined ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimKin</defName>
+    <topic>claim</topic>
+    <uses>chat,home</uses>
+    <when>tie:claim:theirs,!tie:claim:you,!tie:claim:due</when>
+    <lines>
+      <li>[them] {CLAIMON} has family among my people, you know.</li>
+      <li>[us] We know.</li>
+      <li>[them,their:tribal] A clan does not forget its own, however far they walk.</li>
+      <li>[them,their:medieval] Blood is blood, aye, wherever a body lays its head.</li>
+      <li>[them] Family doesn't stop being family because someone moved.</li>
+      <li>[us] Nobody here would ask them to forget it.</li>
+    </lines>
+    <mark>claim</mark><about>CLAIMON</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimYou</defName>
+    <topic>claim</topic>
+    <uses>chat,know</uses>
+    <when>tie:claim:you,!tie:claim:due</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your family among my people still hopes you'll come home one day.</li>
+      <li>[us,trait:Kind] I think of them often, tell them that.</li>
+      <li>[us,grieving] I can't think about that right now.</li>
+      <li>[us] This is my home now.</li>
+      <li>[them] Then I hope they come and see it for themselves.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimDue</defName>
+    <topic>claim</topic>
+    <when>tie:claim:due,!tie:claim:you</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] {CLAIMON}'s family has come to ask them home.</li>
+      <li>[us] We know, and they'll be heard.</li>
+      <li>[them,their:tribal] Then let it be heard properly, the way it would be at a fire.</li>
+      <li>[them,their:empire] Then let it be heard with honor on both sides.</li>
+      <li>[them] Then hear them well, that's all I ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimDueYou</defName>
+    <topic>claim</topic>
+    <when>tie:claim:due,tie:claim:you</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] Your family has come to ask you home, {COLONIST}.</li>
+      <li>[us,lowmood] I know, and I've barely slept since.</li>
+      <li>[us] I know, and I wish it were simpler.</li>
+      <li>[them] It never is, with family.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimCouncil</defName>
+    <topic>claim</topic>
+    <when>tie:claim:due,!tie:claim:you,!first</when>
+    <lines>
+      <li>[us] The council is weighing your people's request about {CLAIMON}.</li>
+      <li>[them] And what do you think they'll say?</li>
+      <li>[us,us:leader|us:speaker] I think we'll listen to {CLAIMON} before anyone.</li>
+      <li>[us] I think it's not my place to guess.</li>
+      <li>[them] Fair enough, I'd say the same in your boots.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimCool</defName>
+    <topic>claim</topic>
+    <when>tie:claim:theirs,!tie:claim:you,tone:cool</when>
+    <lines>
+      <li>[them] You keep one of ours, {CLAIMON}, and some at home haven't made their peace with it.</li>
+      <li>[us] {CLAIMON} is one of us now.</li>
+      <li>[them] That's exactly what worries them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimSour</defName>
+    <topic>claim</topic>
+    <when>tie:claim:theirs,!tie:claim:you,tone:sour</when>
+    <lines>
+      <li>[them] {CLAIMON} belongs with their own blood, not with you.</li>
+      <li>[us] That's not yours to decide.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimElders</defName>
+    <topic>claim</topic>
+    <uses>chat,home</uses>
+    <when>tie:claim:theirs,their:tribal,!tie:claim:due</when>
+    <lines>
+      <li>[us,tie:claim:you] What do your people say about me living here?</li>
+      <li>[us,!tie:claim:you] What do your people say about {CLAIMON} living with us?</li>
+      <li>[them] The elders say a hearth may call its own home once, and must listen to the answer.</li>
+      <li>[us] And will they listen?</li>
+      <li>[them] They say so, and nobody lies at the fire.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimDoor</defName>
+    <topic>claim</topic>
+    <uses>chat,home</uses>
+    <when>tie:claim:theirs,their:medieval,!tie:claim:due</when>
+    <lines>
+      <li>[them] Among my people a family keeps its claim on its own, wherever they go.</li>
+      <li>[us] Even when they've made a life somewhere else?</li>
+      <li>[them] Aye, it's not a chain, it's a door left open.</li>
+      <li>[us,tie:claim:you] Then I'll remember the door is there.</li>
+      <li>[us,!tie:claim:you] Then I'll tell {CLAIMON} the door is open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_ClaimRight</defName>
+    <topic>claim</topic>
+    <uses>chat,home</uses>
+    <when>tie:claim:theirs,their:hightech,!tie:claim:due</when>
+    <lines>
+      <li>[them,tie:claim:you] As far as your family is concerned, they still have a claim on you.</li>
+      <li>[them,!tie:claim:you] As far as {CLAIMON}'s family is concerned, their claim still stands.</li>
+      <li>[us] What claim, exactly?</li>
+      <li>[them,their:spacer] The right to ask them home once, in person, and be answered.</li>
+      <li>[them] The right to come and ask them home once, face to face.</li>
+      <li>[us] And then?</li>
+      <li>[them] Then it's down to the asking and the answer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Callbacks: the claim talked of before -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_ClaimCalled</defName>
+    <topic>callback</topic>
+    <when>talked:claim,tie:claim:due,!tie:claim:you</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] You remember what I said about {THEN}'s family?</li>
+      <li>[us] They've come, haven't they?</li>
+      <li>[them] They have, and they're asking.</li>
+      <li>[us] Then the council will hear them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_ClaimSettled</defName>
+    <topic>callback</topic>
+    <when>talked:claim,!tie:claim</when>
+    <lines>
+      <li>[us] Is there still talk at home about {THEN}?</li>
+      <li>[them] Not anymore, that's been settled one way or another.</li>
+      <li>[us] Good, I hope everyone can live with how it went.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Silver the colony owes ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_DebtOwed</defName>
+    <topic>debt</topic>
+    <uses>chat,home</uses>
+    <when>tie:debt:ours,!tie:debt:due</when>
+    <lines>
+      <li>[them] Your colony still owes my people silver, I'm told.</li>
+      <li>[us] We know what we owe.</li>
+      <li>[them,their:rough] Good, the ones who forget tend to get reminded.</li>
+      <li>[them] Good, then there's no need to say more about it.</li>
+    </lines>
+    <mark>debt</mark><about>DEBTTO</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_DebtDue</defName>
+    <topic>debt</topic>
+    <when>tie:debt:due</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] The silver your colony owes us has come due.</li>
+      <li>[us] The council knows.</li>
+      <li>[them,their:rough] Then the council had better know where the silver is, too.</li>
+      <li>[them] Then I'll leave it with them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_DebtBook</defName>
+    <topic>debt</topic>
+    <when>tie:debt:ours,their:hightech,!tie:debt:due</when>
+    <lines>
+      <li>[us] About the silver we owe your people.</li>
+      <li>[them,their:spacer] It's in the record, with the date and the sum.</li>
+      <li>[them] It's in the book, with the date and the sum.</li>
+      <li>[us] We'll see it closed.</li>
+      <li>[them] People always say that, and I always write it down.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_DebtCool</defName>
+    <topic>debt</topic>
+    <when>tie:debt:ours,tone:cool</when>
+    <lines>
+      <li>[them] Talk is cheap, and your colony owes us more than talk.</li>
+      <li>[us] We haven't forgotten.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_DebtSour</defName>
+    <topic>debt</topic>
+    <when>tie:debt:ours,tone:sour</when>
+    <lines>
+      <li>[them] Pay what you owe before you try to make friends.</li>
+      <li>[us] That's between your people and our council.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Callbacks: the silver talked of before -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_DebtDue</defName>
+    <topic>callback</topic>
+    <when>talked:debt,tie:debt:due</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] The silver we spoke of, it's due now.</li>
+      <li>[us] I know, the council has it in hand.</li>
+      <li>[them] Good, I'd rather we stayed friends.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_DebtDone</defName>
+    <topic>callback</topic>
+    <when>talked:debt,!tie:debt</when>
+    <lines>
+      <li>[us] The silver we spoke of, that's done with now.</li>
+      <li>[them,their:rough] Then I'll drink to it, and to never speaking of it again.</li>
+      <li>[them] Then that's one thing less between our peoples.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Fealty, from both sides ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyLiege</defName>
+    <topic>fealty</topic>
+    <uses>chat,home</uses>
+    <when>tie:fealty:ours,their:medieval</when>
+    <lines>
+      <li>[them] Your colony holds its land of {FEALTYTO}, so in a way you're our people too.</li>
+      <li>[us] We remember who granted it.</li>
+      <li>[them,their:leader] Aye, and so does {LEADER}, I'd wager.</li>
+      <li>[them] Aye, and so do we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyCourt</defName>
+    <topic>fealty</topic>
+    <uses>chat,home</uses>
+    <when>tie:fealty:ours,their:empire</when>
+    <lines>
+      <li>[them] Your land is held by the Empire's grant, and the court keeps the record.</li>
+      <li>[us] We know whose grant it is.</li>
+      <li>[them] Then you know more than most of the fringe.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyElders</defName>
+    <topic>fealty</topic>
+    <uses>chat,home</uses>
+    <when>tie:fealty:ours,their:tribal</when>
+    <lines>
+      <li>[them] The elders still speak of the day they let your people live on this land.</li>
+      <li>[us] We remember it too.</li>
+      <li>[them] Then the gift is still alive, and the elders will be glad.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyLedger</defName>
+    <topic>fealty</topic>
+    <uses>chat,home</uses>
+    <when>tie:fealty:ours,their:industrial</when>
+    <lines>
+      <li>[them] Technically you're on land our people granted you, a protectorate of sorts.</li>
+      <li>[us] Is that how they see it at home?</li>
+      <li>[them] At home they see what the ledger says, and it says yours by our leave.</li>
+      <li>[us] Then we'll keep the ledger happy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyCool</defName>
+    <topic>fealty</topic>
+    <when>tie:fealty:ours,tone:cool</when>
+    <lines>
+      <li>[them] Remember whose grant you live on.</li>
+      <li>[us] We've not forgotten.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyVassal</defName>
+    <topic>fealty</topic>
+    <uses>chat,home</uses>
+    <when>tie:fealty:theirs</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] One of our towns answers to {FEALTYTO} now, as I suppose you know.</li>
+      <li>[us] We mean to be fair to it.</li>
+      <li>[them,their:medieval] Fair is all a vassal asks, aye, that and a light levy.</li>
+      <li>[them,their:tribal] A stronger clan is meant to shelter the weaker, not feed on it.</li>
+      <li>[them] See that you are, people remember how they were treated.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyVassalSour</defName>
+    <topic>fealty</topic>
+    <when>tie:fealty:theirs,tone:sour</when>
+    <lines>
+      <li>[them] You've one of our towns under your thumb, and you want small talk?</li>
+      <li>[us] We want what's good for both our peoples.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_FealtyAndGrudge</defName>
+    <topic>fealty</topic>
+    <when>tie:fealty:ours,tie:grudge:theirs</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] You hold your land by our grant, and our people died as your prisoners.</li>
+      <li>[us] Both are true, and we haven't forgotten either.</li>
+      <li>[them] See that you don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their grudge, for their dead ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeDead</defName>
+    <topic>grudge</topic>
+    <uses>chat,home</uses>
+    <when>tie:grudge:theirs</when>
+    <lines>
+      <li>[them] My people haven't forgotten who died as your prisoners.</li>
+      <li>[us] Neither have we.</li>
+      <li>[them,their:tribal] Their names are still said at the fire, and your colony's name after them.</li>
+      <li>[them,their:medieval] There are families at home who'd spit to hear {GRUDGEAGAINST} named.</li>
+      <li>[them] Some at home still say {GRUDGEAGAINST} like a curse.</li>
+      <li>[us] I'm sorry for it.</li>
+      <li>[them] Sorry won't bring anyone home, but it's more than some would say.</li>
+    </lines>
+    <mark>grudge</mark><about>GRUDGEAGAINST</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeCool</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,tone:cool</when>
+    <lines>
+      <li>[them] Don't expect warmth from me, not with our dead on your conscience.</li>
+      <li>[us] I understand.</li>
+      <li>[them] I doubt it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeSour</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,tone:sour</when>
+    <lines>
+      <li>[them] Our people died as your prisoners, and you want to chat?</li>
+      <li>[us] Then say what you came to say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeSpirits</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,tone:sour,their:tribal</when>
+    <lines>
+      <li>[them] The spirits of our dead still walk your cells, and they know where you sleep.</li>
+      <li>[us] Then I'll say their names too, if you tell me them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeNotMine</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,tone:warm|tone:good</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You know my people hold a grudge against {GRUDGEAGAINST}.</li>
+      <li>[us] I know, for the ones who died in our keeping.</li>
+      <li>[them] I don't hold it myself, not against you.</li>
+      <li>[us] That means a great deal.</li>
+      <li>[them,their:tribal] The elders would scold me for saying so, so don't tell them.</li>
+      <li>[them] Just don't make me sorry I said it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeTrade</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,role:trader</when>
+    <lines>
+      <li>[them] Business is business, even with {GRUDGEAGAINST}, but my people would rather I hadn't come.</li>
+      <li>[us] Then we're grateful you did.</li>
+      <li>[them] Don't be grateful, be fair with your prices.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeCourt</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:theirs,their:empire</when>
+    <lines>
+      <li>[them] Subjects of the Empire died as your prisoners, and the court has a long memory.</li>
+      <li>[us] So do we.</li>
+      <li>[them] Then remember it whenever you deal with us, and deal with honor.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeEase</defName>
+    <topic>grudge</topic>
+    <uses>chat,home</uses>
+    <when>tie:grudge:theirs,!tone:cool,!tone:sour</when>
+    <lines>
+      <li>[us] Is there anything that would ease your people's grudge?</li>
+      <li>[them,their:rough] Blood, usually, though I'd rather it were time.</li>
+      <li>[them,their:tribal] Seasons, many of them, and nothing new to mourn.</li>
+      <li>[them] Time, mostly, old grudges fade like anything else.</li>
+      <li>[us] Then we'll give it time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A colonist's vendetta against their people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_VendettaYou</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:you,!tone:sour</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Your people took someone from me, and I swore on it.</li>
+      <li>[them] Not me, I hope you know that.</li>
+      <li>[us,trait:Kind] I know, it isn't you I swore against.</li>
+      <li>[us] I know, but you'll forgive me if I don't smile.</li>
+      <li>[them] Then I'll keep my distance, and wish you peace of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_VendettaSour</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:you,tone:sour</when>
+    <lines>
+      <li>[us] I swore an oath against {GRUDGEAGAINST}, and you're one of them.</li>
+      <li>[them] Then we've nothing more to say to each other.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_VendettaWarn</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:ours,!tie:grudge:you,!tone:sour</when>
+    <lines>
+      <li>[us] One of ours has sworn vengeance on your people, you should know.</li>
+      <li>[them] For what?</li>
+      <li>[us] For someone your people took from them.</li>
+      <li>[them,them:kind] Then I'm sorry for it, whoever it was.</li>
+      <li>[them] Then I'll keep out of their way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_VendettaFeud</defName>
+    <topic>grudge</topic>
+    <uses>chat,home</uses>
+    <when>tie:grudge:ours,their:tribal,!tone:sour</when>
+    <lines>
+      <li>[us,tie:grudge:you] I've sworn blood against your people, and I won't hide it.</li>
+      <li>[us,!tie:grudge:you] One of ours has sworn blood against your people.</li>
+      <li>[them] Among my people that is no small thing, a feud can outlive the ones who start it.</li>
+      <li>[us] Is there a way to end one?</li>
+      <li>[them] Blood, or a price paid, or the elders of both sides at one fire.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_VendettaHonor</defName>
+    <topic>grudge</topic>
+    <when>tie:grudge:ours,their:medieval|their:empire,!tone:sour</when>
+    <lines>
+      <li>[them] I hear someone in your colony has sworn vengeance on my people.</li>
+      <li>[us,tie:grudge:you] Someone has, and it's me.</li>
+      <li>[us,!tie:grudge:you] Someone has, though it isn't me.</li>
+      <li>[them,their:empire] An oath is a matter of honor, I'd not ask anyone to break one.</li>
+      <li>[them] Oaths like that are kept or they're bought off, there's rarely a third way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Callbacks: the grudge talked of before -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_GrudgeDone</defName>
+    <topic>callback</topic>
+    <when>talked:grudge,!tie:grudge</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The grudge I told you about, it's behind my people now.</li>
+      <li>[us] Truly?</li>
+      <li>[them] Truly, it's not spoken of the way it was.</li>
+      <li>[us] I'm glad.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_GrudgeStill</defName>
+    <topic>callback</topic>
+    <when>talked:grudge,tie:grudge:theirs,then:long</when>
+    <lines>
+      <li>[us] Does your people's grudge still stand?</li>
+      <li>[them] It stands, and it'll stand a while yet.</li>
+      <li>[us] Then we'll wait.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Ties together ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_Knotted</defName>
+    <topic>favour</topic>
+    <when>tie:favour:theirs,tie:claim:theirs,!tie:claim:you</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] We owe {FAVOURFOR} a favor and our families have a claim on {CLAIMON}.</li>
+      <li>[us] Our peoples are knotted together, then.</li>
+      <li>[them] Knots hold things together, or trip you up, depending who pulls.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Tie_GrudgeAndWord</defName>
+    <topic>promise</topic>
+    <when>tie:promise:theirs,tie:grudge:theirs,!them:lately:tie:promise:made</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] One of ours means to speak well of your people at home, grudge or no grudge.</li>
+      <li>[us] That takes some courage, with things as they are.</li>
+      <li>[them] It does, and they'll be argued with all evening.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

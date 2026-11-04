@@ -10,7 +10,8 @@ namespace ColonyCouncil
     public static partial class Facts
     {
         /// <summary>
-        /// Their town in detail: its fortune (town:struggling to town:flourishing, {FORTUNE}, with the fortunes on), and in
+        /// Their town in detail: its fortune (town:struggling to town:flourishing, {FORTUNE}, with the world event that moved
+        /// it that way lately as {FORTUNEWHY}, with the fortunes on), and in
         /// its first year its founding (town:new; town:founder with {FOUNDER}, them:founder when the one spoken to led
         /// them; town:mother with {MOTHERTOWN}; town:why:KEY with {WHYFOUNDED}). A town founded near the colony in its
         /// first year that isn't theirs: region:newtown, region:newtown:theirs (of their people) or :other, {NEWTOWN},
@@ -27,6 +28,8 @@ namespace ColonyCouncil
                     var band = RegionMath.Band(rec.prosperity);
                     f.Tag(RegionMath.Tag(band));
                     f.Value("FORTUNE", RegionFortunes.Word(band, rec.people ?? s.people));
+                    string cause = FortuneWhy(rec, band, now);
+                    if (cause != null) f.Value("FORTUNEWHY", cause);
                 }
                 if (RegionBook.FacesOn && RegionMath.IsNew(rec.founded, now))
                 {
@@ -61,6 +64,22 @@ namespace ColonyCouncil
             f.Tag(s.people != null && other.people == s.people ? "region:newtown:theirs" : "region:newtown:other");
             f.Value("NEWTOWN", other.name);
             if (other.people != null) f.Value("NEWTOWNPEOPLE", other.people.Name);
+        }
+
+        /// <summary>
+        /// What moved their town's fortune the way it now stands, as its panel on the region map names it (within
+        /// RegionMath.CauseDays, a blow while it is steady or worse, a boon while steady or better), when that was a world
+        /// event ("the blight", "the trading season"): {FORTUNEWHY}. Not its founding, its taking or any other cause.
+        /// </summary>
+        private static string FortuneWhy(LedgerTown rec, Fortune band, int now)
+        {
+            if (rec.cause.NullOrEmpty() || rec.causeDir == 0 || rec.causeAt < 0 || now - rec.causeAt >= RegionMath.CauseDays * GenDate.TicksPerDay) return null;
+            if (!RegionMath.CauseFits(band, rec.causeDir)) return null;
+            var ws = WorldSituations.Instance;
+            if (ws == null) return null;
+            bool anEvent = ws.Running.Any(x => x?.def != null && x.ctx != null && Texts.WithThe(x.ctx.name, x.def.label) == rec.cause)
+                           || ws.history.Any(r => r != null && Texts.WithThe(r.name, DefDatabase<WorldSituationDef>.GetNamedSilentFail(r.defName ?? "")?.label ?? r.label) == rec.cause);
+            return anEvent ? rec.cause : null;
         }
     }
 }
