@@ -7,9 +7,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Planning → Rooms (what the "rooms" button showed): every room plan at a glance, architect-style, grouped into
-    /// columns. Click a room to plan it, right-click to plan it at a good spot. Rooms the advisor is currently asking for
-    /// are marked.
+    /// Planning → Rooms, At a glance (what the "rooms" button showed): every room plan at a glance, architect-style,
+    /// grouped into columns. Click a room to plan it, right-click to plan it at a good spot. Rooms the advisor is
+    /// currently asking for are marked.
     /// </summary>
     public static class RoomsPanel
     {
@@ -21,7 +21,6 @@ namespace ColonyCouncil
         private const float Gap = 10f;
         private const float RowH = 28f;
         private const float HeaderH = 26f;
-        private const float TopH = 34f;
         private const float BottomH = 34f;
 
         private static readonly Color Faint = new Color(0.65f, 0.65f, 0.65f);
@@ -44,22 +43,22 @@ namespace ColonyCouncil
                 UiKit.EmptyState(inRect, Icons.Rooms, "CC_NoHomeMap".Translate());
                 return;
             }
-            UiKit.Icon(new Rect(inRect.x, inRect.y + 4f, 24f, 24f), Icons.Rooms, UiKit.Gold);
-            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f - 266f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
+            // The view's header, with the same buttons as the list of room plans beside it.
+            float topH = UiKit.PageHeader(inRect, Icons.Rooms, "CC_Rooms_Title".Translate(), "CC_Rooms_Sub".Translate(), null, null, 270f);
             Text.Font = GameFont.Small;
-            var saveRect = new Rect(inRect.xMax - 250f - 266f, inRect.y + 2f, 124f, 26f);
+            Widgets.CheckboxLabeled(new Rect(inRect.xMax - 260f, inRect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
+            var saveRect = new Rect(inRect.xMax - 260f, inRect.y + 28f, 126f, 22f);
             if (Widgets.ButtonText(saveRect, "CC_Yours_Save".Translate())) Designator_SaveRoom.Begin();
             TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
-            var tidyRect = new Rect(inRect.xMax - 250f - 136f, inRect.y + 2f, 126f, 26f);
+            var tidyRect = new Rect(inRect.xMax - 130f, inRect.y + 28f, 130f, 22f);
             if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
             TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
-            Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
 
             // The advisor's suggestions and the group headings, worked out once a second rather than every frame.
             var suggested = UiCache.Get(map, 6101, () => SuggestedRooms(map));
             int cols = ColumnsFor(inRect.width);
             var heights = Layout(map, cols, out var columns);
-            var outRect = new Rect(inRect.x, inRect.y + TopH, inRect.width, inRect.height - TopH - BottomH);
+            var outRect = new Rect(inRect.x, inRect.y + topH, inRect.width, inRect.height - topH - BottomH);
             float tallest = heights.Length > 0 ? heights.Max() : 0f;
             var viewRect = new Rect(0f, 0f, outRect.width - (tallest > outRect.height ? 16f : 0f), tallest);
             Widgets.BeginScrollView(outRect, ref scroll, viewRect);

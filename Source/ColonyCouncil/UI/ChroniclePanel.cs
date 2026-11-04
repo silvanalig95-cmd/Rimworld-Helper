@@ -8,12 +8,30 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Colony → Chronicle: everything the colony has been through, newest first, as a timeline (the day on the left,
-    /// an icon for each kind of entry on the line), with filters and the yearly annals.
+    /// an icon for each kind of entry on the line, the colonist it is about a link to their card), with filters and the
+    /// yearly annals. Two filters are what were pages of their own: Dreams (every dream told, by dreamer and kind) and
+    /// Journals (each colonist's journal to read), UI/HistoryPanels.cs. The filter is part of the way back
+    /// (UI/Cards/Nav.cs), and the old addresses "Dreams" and "Journals" open the Chronicle on theirs.
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class ChroniclePanel
     {
         private static Vector2 scroll;
         private static float height = 1000f;
+
+        static ChroniclePanel()
+        {
+            Nav.Filters("Chronicle", () => chronicleFilter == ChronicleFilter.All ? null : chronicleFilter.ToString(), SetFilter);
+        }
+
+        /// <summary>The filter put back from a step of the way back, or asked for by an old address ("Dreams"); none for all.</summary>
+        private static void SetFilter(string name)
+        {
+            var f = name != null && System.Enum.TryParse(name, out ChronicleFilter parsed) ? parsed : ChronicleFilter.All;
+            if (f == chronicleFilter) return;
+            chronicleFilter = f;
+            scroll = Vector2.zero;
+        }
 
         private enum ChronicleFilter
         {
@@ -24,6 +42,7 @@ namespace ColonyCouncil
             Strangers,
             World,
             Dreams,
+            Journals,
             Losses
         }
 
@@ -85,8 +104,12 @@ namespace ColonyCouncil
             }
 
             var list = Entries(comp);
-            float top = UiKit.PageHeader(rect, Icons.Chronicle, "CC_Chronicle_Header".Translate(), "CC_UI_Sub_Chronicle".Translate(),
-                "CC_UI_Stat_Entries".Translate(list.Count).Resolve(), null, rect.xMax - bx);
+            var filter = chronicleFilter;
+            string sub = filter == ChronicleFilter.Dreams ? "CC_UI_Sub_Dreams".Translate() : filter == ChronicleFilter.Journals ? "CC_UI_Sub_Journals".Translate() : "CC_UI_Sub_Chronicle".Translate();
+            string stat = filter == ChronicleFilter.Dreams ? "CC_UI_Stat_Dreams".Translate(HistoryPanels.DreamCount(comp)).Resolve()
+                : filter == ChronicleFilter.Journals ? "CC_UI_Stat_Journals".Translate(HistoryPanels.JournalCount(comp)).Resolve()
+                : "CC_UI_Stat_Entries".Translate(list.Count).Resolve();
+            float top = UiKit.PageHeader(rect, Icons.Chronicle, "CC_Chronicle_Header".Translate(), sub, stat, null, rect.xMax - bx);
 
             // Filters: everything, or one part of colony life. Squeezed evenly when they don't all fit.
             float total = 0f;
@@ -107,6 +130,17 @@ namespace ColonyCouncil
             top += 36f;
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
+            // What were the Dreams and Journals pages.
+            if (chronicleFilter == ChronicleFilter.Dreams)
+            {
+                HistoryPanels.DreamsBody(outRect, comp);
+                return;
+            }
+            if (chronicleFilter == ChronicleFilter.Journals)
+            {
+                HistoryPanels.JournalsBody(outRect, comp);
+                return;
+            }
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float width = view.width;
@@ -117,6 +151,7 @@ namespace ColonyCouncil
                 chronicleHeights.Clear();
                 chronicleWidth = width;
             }
+            if (marked.Count > 3000) marked.Clear();
             // The line the entries hang on, only where it's in sight.
             if (list.Count > 0)
             {
@@ -133,7 +168,7 @@ namespace ColonyCouncil
                 lastDay = day;
                 if (!chronicleHeights.TryGetValue(e, out float h))
                 {
-                    h = Mathf.Max(26f, Text.CalcHeight(e.text, width - TextX - 6f) + 6f);
+                    h = Mathf.Max(26f, LinkText.Height(TextOf(e, comp), width - TextX - 6f) + 6f);
                     chronicleHeights[e] = h;
                 }
                 // Only what's on screen is drawn; the rest just takes up its space.
@@ -151,14 +186,38 @@ namespace ColonyCouncil
                 }
                 var color = UiKit.ChronicleColor(e.kind);
                 UiKit.Badge(new Rect(RailX - 10f, y + 3f, 20f, 20f), Icons.For(e.kind), color);
-                GUI.color = color;
-                Widgets.Label(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), e.text);
+                LinkText.Draw(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), TextOf(e, comp), color);
                 GUI.color = Color.white;
                 y += h;
             }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
         }
+
+        // Each entry's text with the colonist it is about as a link to their card, made once per entry.
+        private static readonly Dictionary<ChronicleEntry, string> marked = new Dictionary<ChronicleEntry, string>();
+
+        private static string TextOf(ChronicleEntry e, CouncilGameComponent comp)
+        {
+            if (marked.TryGetValue(e, out var s)) return s;
+            s = e.text;
+            if (!e.pawnId.NullOrEmpty() && !s.NullOrEmpty() && Colonists(comp).TryGetValue(e.pawnId, out var p))
+            {
+                var thing = ThingRefs.Of(p);
+                if (!thing.IsNone) s = LinkTextMath.MarkNames(s, new[] { new KeyValuePair<string, string>(p.LabelShort, thing.ToString()) });
+            }
+            marked[e] = s;
+            return s;
+        }
+
+        /// <summary>The colony's people by their ids, found again every few seconds.</summary>
+        private static Dictionary<string, Pawn> Colonists(CouncilGameComponent comp) =>
+            UiCache.Get(comp.chronicle, 94, () =>
+            {
+                var d = new Dictionary<string, Pawn>();
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists) d[p.ThingID] = p;
+                return d;
+            }, 3f);
 
         private static List<ChronicleEntry> Entries(CouncilGameComponent comp)
         {
@@ -185,6 +244,7 @@ namespace ColonyCouncil
                 case ChronicleFilter.Strangers: return Icons.Visitor;
                 case ChronicleFilter.World: return Icons.WorldEvent;
                 case ChronicleFilter.Dreams: return Icons.Dream;
+                case ChronicleFilter.Journals: return Icons.Journal;
                 case ChronicleFilter.Losses: return Icons.Death;
                 default: return Icons.Chronicle;
             }
@@ -210,6 +270,9 @@ namespace ColonyCouncil
                     return k == ChronicleKind.Dream;
                 case ChronicleFilter.Losses:
                     return k == ChronicleKind.Loss;
+                case ChronicleFilter.Journals:
+                    // The journals themselves show (UI/HistoryPanels.cs), not lines of the chronicle.
+                    return false;
                 default:
                     return true;
             }

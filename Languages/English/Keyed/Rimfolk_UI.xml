@@ -4,7 +4,7 @@
   <!-- Interface text for the council window's page headers, cards, timelines and charts (Source/ColonyCouncil/UI). -->
 
   <!-- Shared -->
-  <CC_UI_OpenPage>Click to open their page.</CC_UI_OpenPage>
+  <CC_UI_OpenPage>Click to open their card.</CC_UI_OpenPage>
   <CC_UI_TimeLeft>Time left</CC_UI_TimeLeft>
   <CC_UI_Arrives>Arrives in</CC_UI_Arrives>
   <CC_UI_StartsIn>Starts in</CC_UI_StartsIn>

@@ -6,6 +6,50 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.83.0, UI 4, the council in four views (docs/design/interface.md, the fourth of its five releases, on the player's
+  decisions 4 and 5; built beside UI 2, which another agent builds at the same time: expect keep-both merges in
+  `PagesMath`/`Pages` and `Tools/Tests`). DESIGN.md, "Rimfolk's windows" → "The council in four views" has the whole
+  of it. `PagesMath` (pure): a window of more than one section is made of views (`HasViews`), its sections the views,
+  its pages their modes (at most five each, `MaxViews`/`MaxModes`); the council window's views Week, People (Table,
+  Moods, Bonds, Faiths, Houses), Council (Decrees, Ambition, Ways, Wishes, Dilemmas), Colony (Overview, Calendar,
+  Chronicle); the planning window's Plan (Plan, Priorities), Base, Making, Rooms (Build, Rooms); `Moved` gains
+  Roster and Everyone (Table), Dreams and Journals (Chronicle, with `MovedFilters` setting its filter through
+  `Nav.SetFilter`), Offices (Decrees); `Almanac`/`IsAlmanac` an address of its own window; a view's name resolves to
+  its first mode (`Pages.Open` takes the last looked at); `Articles` gives each page its "?". `PagesTests` checks every
+  old name lands in its view and mode, no window over five views or view over five modes (the region window joins
+  that check once UI 2 makes its pages more than one section: the skip is one line), each "?" an existing article,
+  the view header's layout and the People table beside the drawer at the game's screens and scales. Game side:
+  `MainTabWindow_Council` and `MainTabWindow_Planning` rebuilt around page names (no `Tab` enum), every view drawn in
+  `Drawer.Around` and `ViewHead.Draw`; `UI/UiKitViews.cs` (`ViewHeadModel`, `ViewHead`, `UiKit.ViewHeader`,
+  `ModeButtons`, `HelpButton`) and `UI/ViewHeadMath.cs` (pure): the modes are a row under each page's own header,
+  which `UiKit.PageHeader` draws now through `ViewHeader`, the "?" left of the page's own buttons; a page with no
+  header of its own gets one from the window. `Drawer` is generalized: `DrawerHost` (one drawer's trail and card),
+  `Drawer.Of(window)`, `Drawer.Make()` for any other window, `Drawer.Around(host, ...)`, `Drawer.Active` (the one
+  drawn last) where `Cards.Open` puts a card; the region window's calls unchanged. Pieces independent of the tab
+  windows (they take a rect and a model), so the game's own windows could use them later. `Almanac/Window_Almanac.cs`:
+  movable, resizable, at the top right beside Rimfolk's windows where there is room, its place and size kept for the
+  session; `AlmanacPanel.Draw(rect, headerInset)`, each page's reading place kept for the session, `lastAlmanacPage`
+  saved by the window now; the book in every corner (`WindowTabs`, the corner 30 wider). People: `PeopleTable` is
+  the list (title "People"), a row click opens the colonist's card in the drawer (the row lit), a right click shows
+  them on the map; `PeoplePanel` (the Roster) removed, its keys left in place (textcheck refuses removed keys); the
+  colonist card's subtitle has their years asleep. `UI/HousesPanel.cs`: the colony's families from blood and
+  marriage among its people, and the houses the world ledger knows. The Chronicle's filters Dreams and Journals draw
+  `HistoryPanels.DreamsBody`/`JournalsBody` (what were the pages), its colonist lines link their names. Colonist
+  portraits and chips in the council window open the card in the drawer (`Cards.Open`), `OpenPerson` from outside
+  opens People's table with it. `RoomsPanel` has a page header now (the modes need one). Texts: keyed strings,
+  mood hint and key labels, the welcome letter, the bar buttons' descriptions, the Almanac's start page and nine
+  more pages, README; new keys in `Languages/English/Keyed/Rimfolk_Views.xml`; the DefValidator knows the new
+  dynamic keys (`CC_View_`, `CC_View_Tip_`, `CC_Mode_`). Left out: the view header across the full width above the
+  drawer (each page draws its own header, so the drawer runs the content's full height beside the view); the
+  Houses mode is the colony's families now, its renown waits for stage 2d; This week's cards as they were (UI 3 makes
+  it the inbox); the defense window keeps the floating card (not part of this release). To look at in game: the
+  modes' row under every view's title and its place on a narrow window, the "?" beside the stat and the Almanac's
+  window opening beside the council window (and its size and place coming back), the People table beside a card at
+  1080p scale 1 and 1.5 and over it below, a click on a colonist's portrait on This week and in Wishes, the
+  Chronicle's Dreams and Journals, Houses with a married pair or a family, the page keys (Everyone's opens People,
+  the Almanac's opens and closes its window), back and forward across views and cards, the old council page
+  restored from a settings file of before (Roster, Almanac).
+
 - 0.82.0, UI 1, names that lead somewhere (docs/design/interface.md, the first of its five releases, on its recommended
   decisions 2 and 3: the drawer and previews). All in `Source/ColonyCouncil/UI/Cards/`; DESIGN.md, "Rimfolk's windows",
   "Names that lead somewhere" has the whole of it. Pure and tested (`Tools/Tests/CardsTests.cs`, with `PagesTests`):

@@ -46,7 +46,7 @@
 
   <!-- What you'll notice: Council and wishes -->
   <CC_SetNote_QuickSetup>Whole parts of Rimfolk on or off at once. You see what changes before anything does.</CC_SetNote_QuickSetup>
-  <CC_SetNote_EnableAdvisor>A Priorities page ranking what the colony needs next, and why.</CC_SetNote_EnableAdvisor>
+  <CC_SetNote_EnableAdvisor>The priorities in the planning window, ranking what the colony needs next, and why.</CC_SetNote_EnableAdvisor>
   <CC_SetNote_EnableWishes>Colonists ask for things now and then; granting or ignoring them moves mood and trust.</CC_SetNote_EnableWishes>
   <CC_SetNote_EnableAmbitions>Every couple of weeks the council meets and picks a bigger goal for the colony.</CC_SetNote_EnableAmbitions>
   <CC_SetNote_Penalty>How much an ignored wish, a broken promise or a slight costs in mood.</CC_SetNote_Penalty>

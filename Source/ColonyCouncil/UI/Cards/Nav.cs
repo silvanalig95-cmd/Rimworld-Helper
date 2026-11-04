@@ -50,6 +50,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Puts a page's filters as the text says (an old address that is a filter now: "Dreams" on the Chronicle).</summary>
+        public static void SetFilter(string page, string value)
+        {
+            if (page == null || !filters.TryGetValue(page, out var f)) return;
+            try
+            {
+                f.set(value);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a page's filter " + page, e);
+            }
+        }
+
         private static bool Alive(NavStep s) => s.card.IsNone || ThingRefs.Exists(s.card);
 
         /// <summary>From each window once a frame while it draws: where it is. A new place is a step.</summary>

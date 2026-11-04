@@ -2,8 +2,8 @@
 <LanguageData>
 
   <!--
-    The council window's newer pages and helpers (Source/ColonyCouncil/UI): Colony → This week (WeekPanel, WeekModel),
-    People → Everyone (PeopleTable), Council → Dilemmas (DilemmasPanel, DilemmaLog), the pin, the page shortcuts
+    The council window's newer pages and helpers (Source/ColonyCouncil/UI): This week (WeekPanel, WeekModel),
+    People → Table (PeopleTable), Council → Dilemmas (DilemmasPanel, DilemmaLog), the pin, the page shortcuts
     (CouncilKeys) and the "Council window opens on" setting.
   -->
 
@@ -19,7 +19,7 @@
 
   <!-- This week: the page -->
   <CC_Week_Header>This week</CC_Week_Header>
-  <CC_Week_HeaderTip>Everything that wants your attention, in one place. Each line opens its page or goes to the colonist or the place on the map; a click on a card's heading opens the whole page.\n\nPin a colonist or a wish to keep it at the top: the pin shows when you hover a line, a row in Everyone, a wish card or a colonist's page in the roster. A right click on a line offers it too.</CC_Week_HeaderTip>
+  <CC_Week_HeaderTip>Everything that wants your attention, in one place. Each line opens its page or goes to the colonist or the place on the map; a click on a card's heading opens the whole page.\n\nPin a colonist or a wish to keep it at the top: the pin shows when you hover a line, a row in the People table or a wish card. A right click on a line offers it too. A colonist's portrait opens their card beside the week.</CC_Week_HeaderTip>
   <CC_Week_StatNeeds>{0} waiting on you</CC_Week_StatNeeds>
   <CC_Week_StatCalm>Nothing waiting on you</CC_Week_StatCalm>
   <CC_Week_More>and {0} more</CC_Week_More>
@@ -29,10 +29,10 @@
   <CC_Week_ClickMap>Click to go to {0} on the map.</CC_Week_ClickMap>
   <CC_Week_ClickMood>Click to select {0} and open their Mood tab.</CC_Week_ClickMood>
   <CC_Week_ClickHealth>Click to select {0} and open their Health tab.</CC_Week_ClickHealth>
-  <CC_Week_ClickPerson>Click to open {0}'s page in the roster.</CC_Week_ClickPerson>
+  <CC_Week_ClickPerson>Click to open {0}'s card.</CC_Week_ClickPerson>
   <CC_Week_Pin>Pin to This week</CC_Week_Pin>
   <CC_Week_Unpin>Unpin from This week</CC_Week_Unpin>
-  <CC_Week_OpenPage>Open {0}'s page</CC_Week_OpenPage>
+  <CC_Week_OpenPage>Open {0}'s card</CC_Week_OpenPage>
   <CC_Week_Left>{0} left</CC_Week_Left>
   <CC_Week_In>in {0}</CC_Week_In>
   <CC_Week_Within>within {0}</CC_Week_Within>
@@ -130,9 +130,9 @@
   <CC_Week_BalanceTip>Rimfolk's own moods, added up and shared out per colonist: {0} from the good ones, {1} from the bad ones.\n\nAll moods together, from the game, its DLCs, Rimfolk and other mods: {2} good and {3} bad per colonist.\n\nThe lines below are the Rimfolk moods that weigh and lift most across the colony.</CC_Week_BalanceTip>
   <CC_Week_BalanceLineTip>One of Rimfolk's moods, added up across everyone who has it. The Moods page says why it's there and what to do about it.</CC_Week_BalanceLineTip>
 
-  <!-- People → Everyone -->
+  <!-- People → Table (what were the Roster and Everyone) -->
   <CC_Table_Header>Everyone</CC_Table_Header>
-  <CC_Table_HeaderTip>Click a heading to sort by it, and again to sort the other way. Hover a cell to see more. Click a row to select the colonist on the map; right click for their page, their Mood tab and the pin. A mark on the left of a row means it wants attention.</CC_Table_HeaderTip>
+  <CC_Table_HeaderTip>Click a heading to sort by it, and again to sort the other way. Hover a cell to see more. Click a row to open the colonist's card beside the table, with their whole story; right click to show them on the map, for their Mood tab and the pin. A mark on the left of a row means it wants attention.</CC_Table_HeaderTip>
   <CC_Table_NoneShown>Nobody fits this filter right now.</CC_Table_NoneShown>
   <CC_Table_Filter_All>All</CC_Table_Filter_All>
   <CC_Table_Filter_All_Tip>Every colonist.</CC_Table_Filter_All_Tip>

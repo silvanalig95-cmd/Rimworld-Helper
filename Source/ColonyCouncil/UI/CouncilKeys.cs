@@ -8,7 +8,8 @@ namespace ColonyCouncil
     /// Optional keyboard shortcuts for Rimfolk's pages: the game's own key bindings (Defs/Misc/Council_KeyBindings.xml,
     /// under "Rimfolk" in Options → Keyboard), none of them bound until the player picks a key. A page's key opens the
     /// window that has the page on it (or closes it when that page is already showing): "World" is the region window's
-    /// Neighbours, "Defenses" the defense window. The next and previous page keys work while one of the windows is
+    /// Neighbours, "Defenses" the defense window, "Everyone" the council's People table, "Almanac" the Almanac's own
+    /// window. The next and previous page keys work while one of the windows is
     /// open; the region map's key opens the region window on its map, or closes it. Nothing happens while a text field
     /// has the keyboard.
     /// </summary>
@@ -81,13 +82,14 @@ namespace ColonyCouncil
             return step;
         }
 
-        /// <summary>The key bound to a page ("F5"), or null when none is.</summary>
+        /// <summary>The key bound to a page ("F5"), or null when none is; a key named after an old page is its page's now ("Everyone" the People table's).</summary>
         public static string KeyFor(string page)
         {
             Look();
+            string p = PagesMath.Resolve(page) ?? page;
             for (int i = 0; i < Pages.Length; i++)
             {
-                if (Pages[i] != page || keys[i] == null) continue;
+                if (Pages[i] != page && PagesMath.Resolve(Pages[i]) != p || keys[i] == null) continue;
                 try
                 {
                     return keys[i].MainKey == KeyCode.None ? null : keys[i].MainKeyLabel;

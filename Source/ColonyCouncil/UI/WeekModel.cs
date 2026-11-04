@@ -155,7 +155,7 @@ namespace ColonyCouncil
             {
                 if (!p.Spawned && p.CarriedBy == null)
                 {
-                    MainTabWindow_Council.OpenPerson(p);
+                    Cards.Open(p);
                     return;
                 }
                 Find.MainTabsRoot.EscapeCurrentTab(false);
@@ -829,7 +829,7 @@ namespace ColonyCouncil
                     note = note,
                     noteColor = leaving || (trend ?? 0f) < 0f ? UiKit.Bad : UiKit.Good,
                     tip = Tip(st.log.Count > 0 ? string.Join("\n", st.log.AsEnumerable().Reverse()) : null, "CC_Week_ClickPerson".Translate(p.LabelShort).Resolve()),
-                    click = () => MainTabWindow_Council.OpenPerson(pawn),
+                    click = () => Cards.Open(pawn),
                     pinPawn = p,
                     pinned = memory != null && memory.IsPinned(p),
                     order = leaving ? -1000f : -Mathf.Abs(trend ?? 0f)

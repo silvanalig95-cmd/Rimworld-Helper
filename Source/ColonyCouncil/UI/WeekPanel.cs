@@ -7,11 +7,11 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → This week, the council window's first page: what needs the player (wishes and petitions, letters
-    /// waiting for an answer, promises at risk), what's coming (gatherings and plans, days on the calendar, fights,
-    /// missions, a camp), and how people are (strain and breaks, serious illness and recovery, trust, the mood balance
-    /// of Rimfolk's own moods). Each line goes to its page, or to the colonist or the place on the map; colonists and
-    /// wishes can be pinned to the top. The model (<see cref="WeekModel"/>) is built at most once a second, so drawing
+    /// This week, the council window's first view: what needs the player (wishes and petitions, letters waiting for an
+    /// answer, promises at risk), what's coming (gatherings and plans, days on the calendar, fights, missions, a camp),
+    /// and how people are (strain and breaks, serious illness and recovery, trust, the mood balance of Rimfolk's own
+    /// moods). Each line goes to its page, or to the colonist or the place on the map; a colonist's portrait opens their
+    /// card in the drawer; colonists and wishes can be pinned to the top. The model (<see cref="WeekModel"/>) is built at most once a second, so drawing
     /// asks nothing of the game and allocates nothing per frame.
     /// </summary>
     public static class WeekPanel
@@ -176,7 +176,15 @@ namespace ColonyCouncil
             float x = r.x + 2f;
             if (row.pawn != null)
             {
-                UiKit.Portrait(new Rect(x, r.y + 2f, r.height - 4f, r.height - 4f), row.pawn, UiKit.TrustColor(TrustOf(row.pawn)));
+                var face = new Rect(x, r.y + 2f, r.height - 4f, r.height - 4f);
+                UiKit.Portrait(face, row.pawn, UiKit.TrustColor(TrustOf(row.pawn)));
+                // Their card, in the drawer beside the week; the rest of the line does what it says.
+                if (Widgets.ButtonInvisible(face, false))
+                {
+                    Cards.Click();
+                    Cards.Open(row.pawn);
+                    return;
+                }
                 x += r.height + 2f;
             }
             else if (row.icon != null)
@@ -268,7 +276,7 @@ namespace ColonyCouncil
                 new FloatMenuOption(row.pinned ? PinTips.Unpin : PinTips.Pin, () => TogglePin(row))
             };
             var p = row.pinPawn ?? row.pinWish?.pawn;
-            if (p != null) options.Add(new FloatMenuOption("CC_Week_OpenPage".Translate(p.LabelShort).Resolve(), () => MainTabWindow_Council.OpenPerson(p)));
+            if (p != null) options.Add(new FloatMenuOption("CC_Week_OpenPage".Translate(p.LabelShort).Resolve(), () => Cards.Open(p)));
             Find.WindowStack.Add(new FloatMenu(options));
         }
     }

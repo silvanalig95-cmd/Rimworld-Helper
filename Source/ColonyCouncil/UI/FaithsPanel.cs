@@ -401,7 +401,7 @@ namespace ColonyCouncil
                 Widgets.DrawHighlightIfMouseover(r);
                 UiKit.LabelFit(r, s.text, UiKit.Info, GameFont.Tiny);
                 TooltipHandler.TipRegion(r, s.tip);
-                if (Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenPerson(s.listener);
+                if (Widgets.ButtonInvisible(r)) Cards.Open(s.listener);
                 cy += Row;
             }
 
@@ -456,7 +456,7 @@ namespace ColonyCouncil
             var area = new Rect(x, y, FaceW - 6f, Face + 41f);
             Widgets.DrawHighlightIfMouseover(area);
             TooltipHandler.TipRegion(area, b.tip);
-            if (Widgets.ButtonInvisible(area)) MainTabWindow_Council.OpenPerson(p);
+            if (Widgets.ButtonInvisible(area)) Cards.Open(p);
         }
 
         /// <summary>The hook's buttons for a faith (perFaith) or for the colony, in as many rows as they need; returns the height used.</summary>

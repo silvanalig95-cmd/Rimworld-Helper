@@ -3,7 +3,7 @@
 
   <!-- Many homes: each colony's own council (Source/ColonyCouncil/ColonyState.cs, UI/ColonyView.cs). Shown only with more than one colony. -->
 
-  <!-- Above the Council section's pages: whose council the page shows, and the way to another colony's. -->
+  <!-- Above the Council view's pages: whose council the page shows, and the way to another colony's. -->
   <CC_Colony_CouncilOf>The council of {PLACE}</CC_Colony_CouncilOf>
   <CC_Colony_TheSeat>(the seat)</CC_Colony_TheSeat>
   <CC_Colony_NotInView>The map in view isn't one of the colonies, so this is the seat's.</CC_Colony_NotInView>

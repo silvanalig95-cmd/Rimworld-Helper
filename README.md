@@ -54,14 +54,19 @@ rooms button's place). Each window has the four in its top right corner, so you 
 switched off in the settings or put away under "more" is still a click away there. All four open the same size in the
 same place.
 
-The **council** window, organized in four sections:
+The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
+beside the title that opens its page of the Almanac:
 
-| Section | Sub-tabs | What's there |
+| View | Modes | What's there |
 |---|---|---|
-| **Council** | Decrees · Ambition · Our ways · Dilemmas · Wishes | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; questions waiting and how the answers went; open wishes, promises kept and trust |
-| **People** | Roster · Everyone · Bonds · Ideoligions · Moods · Dreams · Journals | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; every mood added up; recent dreams; every colonist's journal |
-| **Colony** | This week · Overview · Priorities · Calendar · Chronicle | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses) |
-| **Almanac** | | the knowledge base |
+| **This week** | | what needs you, what's coming and how people are |
+| **People** | Table · Moods · Bonds · Ideoligions · Houses | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's families and the houses it knows of in the region |
+| **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
+| **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
+
+The **Almanac**, the knowledge base, has a window of its own: the book in every window's corner opens it, and so does
+the "?" on every view, on that view's page. It moves and sizes like any window, so it can sit beside what it
+explains, and a page you come back to opens where you left it.
 
 The **region** window opens on the region map (the land around the colony and its towns, see "The region" below), with
 its other pages along the top: **Neighbours** (what's coming, missions, a camp on the land, who's out there with the
@@ -70,30 +75,31 @@ the colony, whom it is at war with, the world events about it, and what it remem
 under way and where each letter is, the answers of the last days, and everyone the colony can write to), **Journeys**
 (the journey planned ahead and the caravans out on the land), **World events**, and **History**: the world's one
 history, newest first, filtered by a people, a town or a kind of event. The **defense** window is the Defenses page
-(see "Defenses" below). The **planning** window has Plan · Base · Making · Room plans · Rooms (see "Planning" below).
+(see "Defenses" below). The **planning** window has four views: Plan (with the advisor's priorities as its second
+mode), Base, Making and Rooms (the room plans as a list, or every room at a glance); see "Planning" below.
 
-Section and page names show a count when something there wants your attention (urgent advice, open wishes,
-petitions, fights coming, letters under way).
+Tabs and modes show a count when something there wants your attention (what waits on you, open wishes, petitions,
+the plan's steps, letters under way).
 Each colonist also has a **Story** and a **Culture** tab in their inspect panel and a Rimfolk column in the game's own
-**Social** tab (see "Story, Culture and Social" below), and clicking a colonist's name in the council window opens
-their page in the roster.
+**Social** tab (see "Story, Culture and Social" below), and clicking a colonist's portrait or name in the council
+window opens their card in the drawer at the window's right, beside what you were looking at.
 
-**This week** (the Colony section's first page) is one place for everything that wants you. Wishes and petitions
+**This week** (the council window's first view) is one place for everything that wants you. Wishes and petitions
 (oldest first), dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
 left before it's held against the council); gatherings and play-outs planned, the council meeting, calendar days,
 fights, missions with their deadlines and a camp on the map; colonists under strain or near a break, serious illness
 and convalescence, trust that moved this week, and the balance of Rimfolk's own good and bad moods. Each line opens its
 page or goes to the colonist or the place on the map. Pin a colonist or a wish to keep it at the top (the pin shows on
-hover there, in Everyone, on a wish card and on a colonist's roster page), and "Mark all read" puts the evenings'
-colony news away from the letter stack. **Everyone** is the people overview: a table of every colonist with mood and
-Rimfolk's share of it, trust and its week, strain and the feeling on top, the setbacks and pressures weighing on them
-with what helps, their open wish, personal story, health and quirks, office and epithet; sort by any column, hover for
-details, click to select. **Dilemmas** keeps every answer the council gives, with a "how it went" column (as answered,
+hover there, in the People table and on a wish card), and "Mark all read" puts the evenings' colony news away from
+the letter stack. **People**, **Table** is the people overview: a table of every colonist with mood and Rimfolk's
+share of it, trust and its week, strain and the feeling on top, the setbacks and pressures weighing on them with what
+helps, their open wish, personal story, health and quirks, office and epithet; sort by any column, hover for details,
+click a row for the colonist's card beside the table. **Dilemmas** keeps every answer the council gives, with a "how it went" column (as answered,
 went wrong, still to happen, took place, never came about). The pages remember their filters and sort orders, and
 Options → Keyboard has optional shortcuts for the pages of Rimfolk's windows under "Rimfolk" (none set until you pick
 a key).
 
-The window reopens on the page you last looked at, also after a restart (it's kept with the mod settings); the
+The window reopens on the view you last looked at, also after a restart (it's kept with the mod settings); the
 "Council window opens on" setting can make it always open on This week instead. A colony's
 first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
 button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
@@ -102,7 +108,7 @@ scale or above RimHUD's taller pane they get shorter and scroll instead of runni
 on a section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab (and the Social
 tab's column) remembers that for the session.
 
-### Priorities: what the colony needs
+### Priorities: what the colony needs (Planning, then Plan, Priorities)
 A ranked list of concerns (65 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
 and buttons to jump to the problem, plan a fitting room, open the council page that deals with it, or read more in
 the Almanac. Some take the first step for you: open the camp's letter or the mission's quest, open the Work tab, or
@@ -717,7 +723,7 @@ The Almanac pages "character" and "what shapes a person" explain it.
 
 #### Across the years
 The game gives many people years in cryptosleep and builds families by calendar years, so a grandmother can be
-younger than her grandson. The People roster shows each colonist's years asleep beside their age, their story has a
+younger than her grandson. A colonist's card shows their years asleep beside their age, their story has a
 part, *Across the years*, that explains every parent, grandparent, child or grandchild whose age runs the wrong way
 round (and whose sleep explains it), and two such relatives now and then say a word about it when they're together.
 
@@ -883,7 +889,7 @@ colony".
 The character page has one section for each part, each folding away: **Character** (in words and on eight bars),
 **What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and lost**, **Views**,
 **Ideoligion** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. The council
-window's People roster shows it whole. In the inspect pane each part sits where it belongs: who they are in the
+window's People view shows it whole in their card. In the inspect pane each part sits where it belongs: who they are in the
 **Story** tab (character, what shaped them, traits gained and lost), what they believe in the **Culture** tab (ideoligion
 and views), and their life among others in Rimfolk's column of the **Social** tab (shared memories, groups and role,
 what people say).
@@ -1263,8 +1269,8 @@ keep. An older save fills its calendar in from the chronicle, its dead and its n
 Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
 names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
 that's really on their mind that day (a meal eaten off their knees, a cold night, a long talk with a friend, a
-corpse nobody has buried yet) becomes the evening's entry. Read them on the Journals page under History, or from a
-colonist's page in the Roster. The journals of the dead and departed are kept (the thirty written in most lately).
+corpse nobody has buried yet) becomes the evening's entry. Read them in the Chronicle under Journals, or in a
+colonist's card. The journals of the dead and departed are kept (the thirty written in most lately).
 Every kind of entry has lines in each voice (plain, warm, blunt, cheerful, gloomy and cold), and the ones written
 most often have many in each.
 
@@ -1313,9 +1319,9 @@ Almanac page "council projects" lists them all.
 ### Planning: what to build, make and grow next
 The **planning** window, behind its own button in the bottom bar (it took the rooms button's place and kept its
 name, so a bar you arranged around the rooms button stays as it was), is for what needs planning ahead rather than
-reacting to: the base's growth, its stores and its production. It has five pages, **Plan**, **Base**, **Making**,
-**Room plans** and **Rooms** (every room at a glance, as the rooms button showed them), and opens on the page you
-last looked at. The setting "Show the planning button" hides the button; the window is still in the top right corner
+reacting to: the base's growth, its stores and its production. It has four views: **Plan** (with the advisor's
+**Priorities** as its second mode), **Base**, **Making** and **Rooms** (the room plans as a **List**, or every room
+**At a glance** as the rooms button showed them), and opens on the page you last looked at. The setting "Show the planning button" hides the button; the window is still in the top right corner
 of Rimfolk's other windows.
 
 Everything here only suggests. Each suggestion is worked out from the colony as it is now and what it really used
@@ -1326,7 +1332,7 @@ its reason is gone. Nothing changes on the map until you click, and every button
 or orders.
 
 #### The same rules for all the council's advice
-Every piece of the council's advice works the same way: the advisor's cards on the Priorities page, the steps on the
+Every piece of the council's advice works the same way: the advisor's cards under Priorities, the steps on the
 Plan page, the base review's findings, the Ahead and Building ahead suggestions, the defense advice and the notes on a
 defense line, and the automations' next actions.
 - **Do it** (or the step's own button, such as Place the blueprints or Plan the airlock) carries it out as one step
@@ -1490,7 +1496,7 @@ did is listed there too, each undone at a click, and undoing one counts as Not t
 again, nor offers it by hand, until you bring it back.
 
 #### Rearrange a room
-**Rearrange a room**, on the Room plans page and on the planning window's Rooms page, takes a built room and shows where the council
+**Rearrange a room**, on both of the planning window's Rooms modes (List and At a glance), takes a built room and shows where the council
 would put its furniture, on the map, before you say go. Beds get their head to a wall and room to get in, benches
 stand with their back to a wall and their work spot free (in a big workshop in rows, then back to back in islands),
 the table in the middle with the chairs facing it, a lamp where it lights the work, a tool cabinet where it reaches
@@ -1504,7 +1510,7 @@ stay (and shelves with goods in them, unless you tick the box), and a piece that
 place gets a run of conduit planned to it.
 
 ### Build: room plans
-On the **Room plans** page (planning window): 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
+In the **Rooms** view (planning window), as a list or at a glance: 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
 several sizes and kinds, picked in the planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a
 dining room for 4, 8 or 12; an infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a
 prisoner you hope to recruit, a shared cell, or a cell block of three cells off a corridor; a kitchen with one stove,
@@ -2766,7 +2772,7 @@ why, when it fades, what helps); click it to open the card in place, with button
 the council page that deals with it, or an Almanac page. The heart section (strain, feelings, the heart's needs)
 comes after the moods, folded. **Details** in the tab's header brings back every mood as a card; the choice is kept.
 
-The council window's **Moods** page (People section) adds it up for the whole colony, grouped the same way: what
+The council window's **Moods** (People, then Moods) adds it up for the whole colony, grouped the same way: what
 weighs on everyone, who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each
 of your mods. Every "Go to" button leads to a real page, and to the one its hint names (dilemmas and traditions to
 Dilemmas, names to the roster, strangers and world events to World, a missed gathering to This week); the game checks

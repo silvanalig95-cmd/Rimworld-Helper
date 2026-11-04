@@ -6,7 +6,7 @@
   <CC_Mark_Date>{0} {1}</CC_Mark_Date>
   <CC_MarkLabel_HungrySeason>the hungry {0} of {1}</CC_MarkLabel_HungrySeason>
 
-  <!-- The character page (Source/ColonyCouncil/Persona/CharacterView.cs), in the Story tab and the People roster. -->
+  <!-- The character page (Source/ColonyCouncil/Persona/CharacterView.cs), in the Story tab and a colonist's card. -->
   <CC_Char_Title>Character</CC_Char_Title>
   <CC_Char_WordsTip>How {PAWN_nameDef} is now: {PAWN_possessive} nature, set by traits, the Social skill and age, moved by what has happened to {PAWN_objective}. Hover a side below to see what put it there.</CC_Char_WordsTip>
   <CC_Char_NatureOnly>Nothing has marked {PAWN_nameDef} yet: this is {PAWN_possessive} nature, from traits, skills and age.</CC_Char_NatureOnly>
