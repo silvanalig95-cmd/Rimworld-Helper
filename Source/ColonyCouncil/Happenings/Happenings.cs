@@ -1046,6 +1046,7 @@ namespace ColonyCouncil
             foreach (var m in memos)
                 if (m != null && m.kind == "debt" && !m.used && m.tie <= 0)
                     Debts.Adopt(m, Now);
+            foreach (var r in regulars) r?.MoveBond();
         }
 
         public void ExposeData()

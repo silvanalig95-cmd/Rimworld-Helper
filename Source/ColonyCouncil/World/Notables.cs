@@ -107,9 +107,69 @@ namespace ColonyCouncil
         public string metByName;
         /// <summary>Made by Rimfolk for their role (let go when no longer needed); else someone the game or another part keeps.</summary>
         public bool made;
-        /// <summary>What passed between them and the colony in person, and when it last faded.</summary>
-        public float personal;
+        /// <summary>
+        /// What passed between them and the colony in person: a Regard tie in the world ledger, from them to the colony,
+        /// its score the tie's number (none while it's nothing). It fades daily from <see cref="faded"/>, as before.
+        /// </summary>
+        public float personal
+        {
+            get => RegardTie(false)?.terms.number ?? 0f;
+            set
+            {
+                var t = RegardTie(value != 0f);
+                if (t == null || t.terms.number == value) return;
+                t.terms.number = value;
+                WorldLedger.Touch(t);
+            }
+        }
+
+        /// <summary>When what passed between them last faded.</summary>
         public int faded;
+
+        /// <summary>The origin of the ledger's regard ties for a notable's own regard of the colony (the notable's id in its count).</summary>
+        public const string RegardOrigin = "notable";
+
+        [Unsaved] private Tie regard;
+        [Unsaved] private int regardLooked = -1;
+        /// <summary>An older save's regard, read on load and moved into the ledger (NotableBook.FinalizeInit).</summary>
+        private float oldPersonal;
+
+        /// <summary>Their regard tie, found once (looked for again when the ledger changes), made when asked to.</summary>
+        private Tie RegardTie(bool make)
+        {
+            if (regard != null && regard.Live && regard.from == person) return regard;
+            regard = null;
+            if (regardLooked != WorldLedger.Version || make)
+            {
+                var me = Person;
+                foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard))
+                    if (t.Live && t.origin == RegardOrigin && t.from == me && t.terms.count == id)
+                    {
+                        regard = t;
+                        break;
+                    }
+                if (regard == null && make && !me.IsNone)
+                    regard = WorldLedger.AddTie(Tie.Kind.Regard, me, Refs.Us, new TieTerms { count = id }, origin: RegardOrigin);
+                regardLooked = WorldLedger.Version;
+            }
+            return regard;
+        }
+
+        /// <summary>Their regard is over (they're no longer a notable, or the record went to someone else).</summary>
+        public void EndRegard()
+        {
+            var t = RegardTie(false);
+            if (t != null) WorldLedger.Set(t, Tie.State.Ended);
+            regard = null;
+        }
+
+        /// <summary>An older save's regard goes into the ledger.</summary>
+        public void MoveRegard()
+        {
+            if (oldPersonal == 0f) return;
+            personal = oldPersonal;
+            oldPersonal = 0f;
+        }
         public List<NotableRegard> regards = new List<NotableRegard>();
         public List<NotableNote> notes = new List<NotableNote>();
         /// <summary>The last letter for each purpose (by name), for the wait between letters.</summary>
@@ -243,7 +303,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref metBy, "metBy");
             Scribe_Values.Look(ref metByName, "metByName");
             Scribe_Values.Look(ref made, "made");
-            Scribe_Values.Look(ref personal, "personal");
+            // An older save kept the regard here; it's the ledger's now.
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Values.Look(ref oldPersonal, "personal");
             Scribe_Values.Look(ref faded, "faded");
             Scribe_Collections.Look(ref regards, "regards", LookMode.Deep);
             Scribe_Collections.Look(ref notes, "notes", LookMode.Deep);
@@ -329,10 +390,28 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            // An older save's regard of each notable goes into the world ledger.
+            try
+            {
+                foreach (var n in notables) n?.MoveRegard();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("moving an older save's notables' regard into the world ledger", e);
+            }
             Changed();
         }
 
         public Notable Get(int id) => notables.FirstOrDefault(n => n.id == id);
+
+        /// <summary>Regard ties of notables the book no longer has (dropped without a word, or an edited save): ended.</summary>
+        private void EndStrayRegard()
+        {
+            var mine = new HashSet<(Ref, int)>(notables.Where(n => n != null).Select(n => (n.person, n.id)));
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard).Where(t => t.Live && t.origin == Notable.RegardOrigin).ToList())
+                if (!mine.Contains((t.from, t.terms.count)))
+                    WorldLedger.Set(t, Tie.State.Ended);
+        }
 
         // ---------------- The hour ----------------
 
@@ -519,6 +598,7 @@ namespace ColonyCouncil
         /// <summary>The seat's head is someone else now: the record goes to them, with nothing of the old one's memory.</summary>
         private static void Replace(Notable n, Pawn p, bool made)
         {
+            n.EndRegard();
             n.SetPerson(p);
             n.made = made;
             n.personal = 0f;
@@ -630,6 +710,7 @@ namespace ColonyCouncil
         private void Drop(Notable n)
         {
             notables.Remove(n);
+            n.EndRegard();
             var p = n.pawn;
             if (p != null && !p.Discarded && !notables.Any(x => x.pawn == p) && !letters.Any(l => l.Open && l.notable == n.id))
             {
@@ -695,6 +776,7 @@ namespace ColonyCouncil
             }
             losses.RemoveAll(l => l == null || l.faction == null || now - l.tick > GenDate.TicksPerDay * 30);
             seen.RemoveAll(s => s.pawn == null || s.pawn.Discarded || s.pawn.Dead || now - s.tick > GenDate.TicksPerDay * 3);
+            EndStrayRegard();
             Changed();
         }
 

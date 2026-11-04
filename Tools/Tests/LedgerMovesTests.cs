@@ -315,6 +315,50 @@ public static class LedgerMovesTests
             Check(TieRules.MakeRoom(list, Tie.Kind.Fealty, Ref.Colony(12), Ref.People(5)), "a grant of another people has room beside it");
         }
 
+        // ---------------- Regard ----------------
+
+        {
+            // A notable's own regard of the colony and a regular's bond are the ledger's: one each, far inside its room
+            // for regard even if every notable lingered three times over.
+            int own = NotableMath.MaxNotables + RegularMath.KeepMax + 1;
+            Check(NotableMath.MaxNotables == 34 && 3 * own <= TieRules.MaxRegard, "the notables' own regard and the regulars' bonds fit the ledger's regard three times over");
+            // The notables' regard of each colonist stays with the notable: with it the ledger could run out of room.
+            int withColonists = NotableMath.MaxNotables * (1 + NotableMath.MaxRegards) + RegularMath.KeepMax + 1;
+            Check(withColonists > TieRules.MaxRegard, "the notables' regard of eight colonists each would pass the ledger's three hundred: it stays a view");
+            // Feeding and fading are the notables' own: the tie only holds the score.
+            var reg = new Tie { kind = Tie.Kind.Regard, from = Ref.Person(5), to = Ref.Colony(12) };
+            reg.terms.count = 7;
+            float field = 0f;
+            var rr = new Random(13);
+            bool sameScore = true;
+            for (int i = 0; i < 1000; i++)
+            {
+                float add = (float)(rr.NextDouble() * 40 - 20);
+                if (rr.Next(3) == 0)
+                {
+                    float days = rr.Next(1, 5);
+                    field = NotableMath.Fade(field, days);
+                    reg.terms.number = NotableMath.Fade(reg.terms.number, days);
+                }
+                else
+                {
+                    field += add;
+                    reg.terms.number += add;
+                }
+                if (field != reg.terms.number) sameScore = false;
+            }
+            Check(sameScore, "a regard fed and faded a thousand times holds the same score as the field it replaced");
+            Check(!TieRules.CanCallIn(Tie.Kind.Regard) && !TieRules.Expire(reg, int.MaxValue) && reg.Live, "a regard has no end of its own: it ends when its notable or regular goes");
+            var regards = new List<Tie>();
+            bool room = true;
+            for (int i = 0; i < own; i++)
+            {
+                if (!TieRules.MakeRoom(regards, Tie.Kind.Regard, Ref.Person(100 + i), Ref.Colony(12))) room = false;
+                regards.Add(new Tie { kind = Tie.Kind.Regard, from = Ref.Person(100 + i), to = Ref.Colony(12) });
+            }
+            Check(room, "every notable and regular has room for their regard");
+        }
+
         return n;
     }
 }
