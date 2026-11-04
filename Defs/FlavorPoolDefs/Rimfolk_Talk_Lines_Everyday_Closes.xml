@@ -276,7 +276,7 @@
       </plain>
       <warm>
         <li>[agree] Thank you for remembering them with me.</li>
-        <li>[debate,against] I'll keep them in my heart, quietly, then.</li>
+        <li>[debate,against] I'll keep them in my own heart, then, without the fuss.</li>
       </warm>
       <blunt>
         <li>[agree,for] They're not forgotten.</li>
@@ -306,7 +306,7 @@
       <plain>
         <li>[agree,for] I'll bring them a proper blanket.</li>
         <li>[agree,against] I'll check the cell doors before bed.</li>
-        <li>[debate] They're people, and they're dangerous, both at once.</li>
+        <li>[debate] They're people, and they're dangerous, and both are true.</li>
         <li>[argue,for] Lock up your own heart while you're at it.</li>
         <li>[argue,against] Feed them cake, then, and see what happens.</li>
       </plain>
@@ -564,7 +564,7 @@
       </plain>
       <warm>
         <li>[agree] Let's work on it side by side tomorrow.</li>
-        <li>[debate,against] Give it a little longer, for the ones who care about it.</li>
+        <li>[debate,against] Give it till the season's out, for the ones who care about it.</li>
       </warm>
       <blunt>
         <li>[agree,for] Get it done.</li>
@@ -630,14 +630,14 @@
       <plain>
         <li>[agree,for] I'll help set the tables on the day.</li>
         <li>[agree,against] We'll keep it short and get back to work.</li>
-        <li>[debate] Come for an hour, and if it's dull you can leave.</li>
+        <li>[debate] Come for the start, and if it's dull you can leave.</li>
         <li>[argue,for] Work through it, then, and miss the best supper of the season.</li>
         <li>[argue,against] Keep your day, I'll keep the stores full.</li>
         <li>[agree,sombre] I'll stand with you when it comes.</li>
       </plain>
       <warm>
         <li>[agree,coming] I've been looking forward to it for weeks.</li>
-        <li>[debate,against] Come for a little while, for me.</li>
+        <li>[debate,against] Come for the supper at least, for me.</li>
       </warm>
       <blunt>
         <li>[agree,for] Good, I'll be there.</li>

@@ -25,6 +25,12 @@
       <li>[!eating] {A_nameDef} lay down to the smell of old blood from the {THING} in the room.</li>
       <li>[morning,!eating] {A_nameDef} woke up to the smell of the {THING} again.</li>
       <li>[child] "Why do we sleep next to where the animals get cut up?" {A_nameDef} asked.</li>
+      <li>[eating] {A_nameDef} chewed slowly and tried not to look at the {THING}.</li>
+      <li>[eating] The {THING} was too close to the table for {A_nameDef}'s liking, and the meal tasted of it.</li>
+      <li>[!eating] {A_nameDef} pulled the blanket up over {A_possessive} nose against the smell of the {THING}.</li>
+      <li>[!eating] The smell of the {THING} seemed worse in the dark, and {A_nameDef} lay awake with it.</li>
+      <li>[eating] {A_nameDef} left half the bowl, with the {THING} so close.</li>
+      <li>{A_nameDef} asked aloud who had thought it a good idea to put the {THING} in here.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -45,6 +51,16 @@
       <li>[evening] {A_nameDef} pulled the blanket up and turned away from the cold coming in at the {THING}.</li>
       <li>[morning,snow] Snow had blown in under the {THING} by {A_nameDef}'s bed during the night.</li>
       <li>[child,morning] {A_nameDef} had slept with {A_possessive} head under the blanket because of the cold from the {THING}.</li>
+      <li>[morning] The first thing {A_nameDef} felt on waking was the cold off the {THING}.</li>
+      <li>[morning] {A_nameDef} got up stiff and chilled, with the wind still pushing at the {THING} beside the bed.</li>
+      <li>[morning] {A_nameDef}'s joints ached from a night next to the cold {THING}.</li>
+      <li>[morning] There was frost on the inside of the {THING} by {A_nameDef}'s bed.</li>
+      <li>[evening] {A_nameDef} lay listening to the wind work at the {THING} by the bed.</li>
+      <li>[evening] {A_nameDef} went to bed in two layers, for the draught from the {THING}.</li>
+      <li>[child,morning] {A_nameDef} asked for another blanket, because the {THING} had let the cold in all night.</li>
+      <li>{A_nameDef} slept at the far end of the bed, as far from the {THING} as {A_pronoun} could get.</li>
+      <li>{A_nameDef} could feel the cold from the {THING} right through the blanket.</li>
+      <li>The {THING} by {A_nameDef}'s bed let in a thin, steady cold, and {A_nameDef} slept badly for it.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 

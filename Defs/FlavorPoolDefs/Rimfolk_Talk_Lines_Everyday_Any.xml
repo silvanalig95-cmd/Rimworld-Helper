@@ -208,7 +208,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] Bad one today?</li>
-        <li>[grief] It's no good pretending, is it.</li>
+        <li>[grief] It's no good acting brave, is it.</li>
         <li>[fear] I can't sleep either, if it helps.</li>
         <li>[worry] I worry too, all the time.</li>
         <li>[lonely] It's easy to feel alone here, I know.</li>
@@ -260,7 +260,7 @@
         <li>[lowmood] I'll be all right, I always bounce back eventually.</li>
         <li>[despair] Well, you've made me smile, which is a start.</li>
         <li>[lonely] Careful, I might follow you around now.</li>
-        <li>[fear] I'm only a little bit terrified, most of the time.</li>
+        <li>[fear] I'm only slightly terrified, most of the time.</li>
         <li>[grief] They'd laugh at me moping like this.</li>
       </cheerful>
       <gloomy>
@@ -288,7 +288,7 @@
     <lines>
       <plain>
         <li>[night] Try and get some sleep, I'll be close by.</li>
-        <li>[eating] Eat a little, for me.</li>
+        <li>[eating] Eat something, even a few mouthfuls, for me.</li>
         <li>[afterraid] It's over now, and you're still here.</li>
         <li>[grief,subject] {SUBJECT} would be glad you've got people around you.</li>
         <li>[homesick] Tell me how they cooked it back home, and we'll try it here.</li>

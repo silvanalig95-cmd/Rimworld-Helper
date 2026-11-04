@@ -635,7 +635,7 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [INITIATOR_pronoun] had done something wrong, since [INITIATOR_pronoun] hadn't been asked to [plan].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would have gone to [plan], if anyone had said.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that next time [INITIATOR_pronoun] would plan something and not tell anyone either.</li>
-        <li>plan->a game of cards by the fire</li>
+        <li>plan->a game of cards after supper</li>
         <li>plan->a picnic out by the trees</li>
       </rulesStrings>
     </rulePack>
@@ -646,7 +646,7 @@
     <interaction>Council_Friction_Slacking</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the tools had offended [RECIPIENT_objective] somehow.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the tools had done something to offend [RECIPIENT_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the work wouldn't notice if [RECIPIENT_pronoun] stared at it a bit longer.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered to fetch [RECIPIENT_nameDef] a chair, since [RECIPIENT_pronoun] seemed to be settling in.</li>
         <li>lazyjab->keeping an eye on the clouds for the rest of us</li>

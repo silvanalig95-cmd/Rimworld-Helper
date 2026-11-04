@@ -185,7 +185,7 @@
         <li>The paths are mud from here to the fields.</li>
         <li>Everything smells damp, even the bedding.</li>
       </plain>
-      <warm><li>Come in and dry off by the fire.</li></warm>
+      <warm><li>Come in and get those wet things off.</li></warm>
       <blunt><li>Rain, rain, and more rain.</li></blunt>
       <gloomy><li>My boots haven't been dry in a week.</li></gloomy>
       <cold><li>The low ground will flood if this goes on.</li></cold>
@@ -303,7 +303,7 @@
         <li>This one sits in the palm just right.</li>
         <li>[lowtech] Good flint, this, I'll knock an edge on it later.</li>
       </plain>
-      <cheerful><li>This one looks like a little face, see the eyes?</li></cheerful>
+      <cheerful><li>This one looks like a face, see the eyes?</li></cheerful>
       <cold><li>Mostly worthless, but this one has a vein of something.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -427,7 +427,7 @@
     <pool>Council_Pool_BeastSighting</pool>
     <lines>
       <plain>
-        <li>{PET_nameDef}'s about again, just at the edge of things.</li>
+        <li>{PET_nameDef}'s about again, keeping its distance.</li>
         <li>Somebody tell the others {PET_nameDef}'s back.</li>
         <li>[grazer] {PET_nameDef}'s eating our grass again, the cheek of it.</li>
         <li>[predator] Keep the animals close, {PET_nameDef}'s out.</li>
