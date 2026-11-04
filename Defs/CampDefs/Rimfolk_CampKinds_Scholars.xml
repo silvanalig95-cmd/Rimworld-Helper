@@ -117,6 +117,8 @@
       <li>[seek:ruins] Measure it again, from the corner.</li>
       <li>[seek:ruins] Someone lived here, and liked the view.</li>
       <li>[seek:ruins] Don't move anything yet.</li>
+      <li>[seek:ruins] Look at the wear on this step.</li>
+      <li>[seek:ruins] Draw it before the light goes.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat up late at the scholars' fire while {X_nameDef} told of the old ruins and the people who built them, and came back with more questions than answers.</li>
