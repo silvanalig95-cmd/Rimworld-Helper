@@ -495,13 +495,16 @@ namespace ColonyCouncil
             public Color color;
             public Texture2D icon;
             public string tip;
+            /// <summary>The thing the pill names (a people, a person), or none: with one, the pill is a link to its card.</summary>
+            public ThingRef thing;
 
-            public PillSpec(string label, Color color, Texture2D icon = null, string tip = null)
+            public PillSpec(string label, Color color, Texture2D icon = null, string tip = null, ThingRef thing = default)
             {
                 this.label = label;
                 this.color = color;
                 this.icon = icon;
                 this.tip = tip;
+                this.thing = thing;
             }
         }
 
@@ -552,10 +555,28 @@ namespace ColonyCouncil
                     cx = x;
                     cy += h + 4f;
                 }
-                if (draw) Pill(cx, cy, p.label, p.color, p.icon, p.tip, width);
+                if (draw)
+                {
+                    // A pill that names a thing keeps its meaning in its colour and tooltip, and leads to the thing's card.
+                    bool link = !p.thing.IsNone;
+                    Pill(cx, cy, p.label, p.color, p.icon, link && Previews.Shown == p.thing ? null : p.tip, width);
+                    if (link) PillLink(new Rect(cx, cy, w, PillHeight), p);
+                }
                 cx += w + 4f;
             }
             return cy - y + h;
+        }
+
+        /// <summary>A pill as a link: a fine line under its words, a preview after a pause, the thing's card on a click.</summary>
+        private static void PillLink(Rect r, PillSpec p)
+        {
+            bool over = Mouse.IsOver(r);
+            float lx = r.x + 6f + (p.icon != null ? 14f : 0f);
+            LinkText.Underline(lx, r.yMax - 3f, Mathf.Max(0f, r.xMax - 6f - lx), over);
+            if (over) Previews.Hover(p.thing, r);
+            if (!Widgets.ButtonInvisible(r, false)) return;
+            Cards.Click();
+            Cards.Open(p.thing);
         }
 
         // ---------------- Meters ----------------
@@ -736,11 +757,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A colonist's portrait with a ring in their trust color, and their name; clicking it opens their page in the
-        /// People roster. Returns the width used.
+        /// A colonist's portrait with a ring in their trust color, and their name; clicking it opens their card. Returns the
+        /// width used. With <paramref name="link"/>, the name is drawn as a link (link ink, a fine line under it) and a pause
+        /// on the chip shows their preview, which then stands in for its tooltip.
         /// </summary>
         public static float PawnChip(float x, float y, Pawn p, float size = 24f, bool showName = true, float maxWidth = 160f, Color? ring = null,
-            Func<string> tip = null, bool clickable = true)
+            Func<string> tip = null, bool clickable = true, bool link = false)
         {
             if (p == null) return 0f;
             var comp = CouncilGameComponent.Instance;
@@ -757,16 +779,23 @@ namespace ColonyCouncil
             var r = new Rect(x, y, Mathf.Min(w, Mathf.Max(size, maxWidth)), size);
             if (clickable) Widgets.DrawHighlightIfMouseover(r);
             Portrait(new Rect(x, y, size, size), p, rc);
+            var thing = link && clickable ? ThingRefs.Of(p) : ThingRef.None;
+            bool over = Mouse.IsOver(r);
             if (name != null)
             {
                 Text.Font = font;
                 Text.Anchor = TextAnchor.MiddleLeft;
-                Widgets.Label(new Rect(x + size + 5f, y, r.width - size - 5f, size), name);
+                var nr = new Rect(x + size + 5f, y, r.width - size - 5f, size);
+                if (!thing.IsNone) GUI.color = over ? LinkHot : Link;
+                Widgets.Label(nr, name);
+                GUI.color = Color.white;
+                if (!thing.IsNone) LinkText.Underline(nr.x, y + size / 2f + (font == GameFont.Tiny ? 6f : 8f), Mathf.Min(Text.CalcSize(name).x - 4f, nr.width), over);
                 Text.Anchor = TextAnchor.UpperLeft;
                 Text.Font = GameFont.Small;
             }
+            if (!thing.IsNone && over) Previews.Hover(thing, r);
             var pawn = p;
-            TooltipHandler.TipRegion(r, tip ?? (() => ChipTip(pawn, clickable)), p.thingIDNumber ^ 0x51C4);
+            if (thing.IsNone || Previews.Shown != thing) TooltipHandler.TipRegion(r, tip ?? (() => ChipTip(pawn, clickable)), p.thingIDNumber ^ 0x51C4);
             if (clickable && Widgets.ButtonInvisible(r)) Cards.Open(p);
             return r.width;
         }

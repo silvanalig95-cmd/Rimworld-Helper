@@ -486,6 +486,8 @@ namespace ColonyCouncil
                 new[] { "ThisWeek", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
+            // How large Rimfolk's four windows are (UI/WindowLayoutMath.cs): standard, or grown on a large screen.
+            Choice("windowSize", "CC_SetLabel_WindowSize", "CC_SetTip_WindowSize", "CC_WindowSize_", "CC_SetNote_WindowSize_", new[] { "Standard", "Large" });
             Slider("regionMapRadius", "CC_Settings_RegionMapRadius", "CC_SetNote_RegionMapRadius", 20f, 60f, 1f, "0");
             // Names that lead to their cards in Rimfolk's windows, and their previews (UI/Cards/).
             Section("CC_SetSec_Links");

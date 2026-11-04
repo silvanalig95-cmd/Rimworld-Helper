@@ -146,9 +146,12 @@ namespace ColonyCouncil
             for (int i = skip; i < s.lines.Count; i++)
             {
                 string text = s.lines[i];
-                float h = Text.CalcHeight(text, r.width);
+                // A line may name the colony's people as links (UI/Cards/PaneLinks.cs).
+                bool links = LinkTextMath.HasMarks(text);
+                float h = links ? LinkText.Height(text, r.width) : Text.CalcHeight(text, r.width);
                 var lr = new Rect(r.x, y, r.width, h);
-                Widgets.Label(lr, text);
+                if (links) LinkText.Draw(lr, text, Color.white);
+                else Widgets.Label(lr, text);
                 string tip = i < s.tips.Count ? s.tips[i] : null;
                 if (!tip.NullOrEmpty())
                 {

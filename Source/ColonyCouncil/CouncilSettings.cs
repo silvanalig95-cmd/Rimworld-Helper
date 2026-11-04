@@ -445,6 +445,8 @@ namespace ColonyCouncil
         public bool linkPreviews = true;
         /// <summary>How long the mouse rests on a name before its preview shows, in seconds.</summary>
         public float linkPreviewDelay = 0.35f;
+        /// <summary>How large Rimfolk's four windows are: standard (1010 by 720) or large (up to 1280 by 860 where the screen has room).</summary>
+        public WindowSizeChoice windowSize = WindowSizeChoice.Standard;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
@@ -734,6 +736,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref regionMapRadius, "regionMapRadius", 35);
             Scribe_Values.Look(ref linkPreviews, "linkPreviews", true);
             Scribe_Values.Look(ref linkPreviewDelay, "linkPreviewDelay", 0.35f);
+            Scribe_Values.Look(ref windowSize, "windowSize", WindowSizeChoice.Standard);
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 councilPageState ??= new System.Collections.Generic.List<string>();

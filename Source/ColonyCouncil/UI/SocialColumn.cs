@@ -14,7 +14,9 @@ namespace ColonyCouncil
     /// say about them, the memories and in-jokes they share, their last few Rimfolk talks (read from the game's own
     /// log, nothing new is saved) and the secrets the colony knows of. Each section folds away. Hovering a row of the
     /// game's list adds a line about the pair to the game's own tooltip (<see cref="PairNote"/>).
-    /// <para>The model is built a couple of times a second, like the Story tab's; drawing only lays it out.</para>
+    /// <para>The model is built a couple of times a second, like the Story tab's; drawing only lays it out. A colonist named
+    /// in a row (a bond, a secret, a group, what people say, a shared memory) is a link with its preview, opening their card
+    /// in the floating card (PaneLinks); the talks are the game's own log lines and stay as the game writes them.</para>
     /// </summary>
     public static class SocialColumn
     {
@@ -206,10 +208,10 @@ namespace ColonyCouncil
                 if (own != null && own.revealed)
                     sec.Add(own.Truth, own.def != null && own.def.good ? UiKit.Good : new Color(0.9f, 0.6f, 0.5f), "CC_SocialCol_SecretOutTip".Translate());
                 else if (own != null && own.knowers.Count > 0)
-                    sec.Add("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(own.knowers.Where(k => k != null).Select(k => k.LabelShort).ToList())).Resolve(),
-                        UiKit.Faint, "CC_SocialCol_ConfidedTip".Translate());
+                    sec.Add(PaneLinks.Mark("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(own.knowers.Where(k => k != null).Select(k => k.LabelShort).ToList())).Resolve(),
+                        own.knowers), UiKit.Faint, "CC_SocialCol_ConfidedTip".Translate());
                 foreach (var other in comp.secrets.secrets.Where(x => x?.owner != null && x.owner != p && !x.revealed && x.knowers.Contains(p)))
-                    sec.Add("CC_Story_Keeps".Translate(other.owner.LabelShort).Resolve(), UiKit.Faint, "CC_SocialCol_KeepsTip".Translate());
+                    sec.Add(PaneLinks.Mark("CC_Story_Keeps".Translate(other.owner.LabelShort).Resolve(), other.owner), UiKit.Faint, "CC_SocialCol_KeepsTip".Translate());
                 if (!sec.Empty) list.Add(sec);
             }
             return list;
@@ -219,6 +221,7 @@ namespace ColonyCouncil
         {
             var cs = CharacterPage.Make(key, p);
             if (cs == null) return;
+            PaneLinks.MarkColony(cs, p);
             list.Add(new PaneSection { key = key, header = header ?? cs.title, icon = icon, character = cs });
         }
 
@@ -240,7 +243,7 @@ namespace ColonyCouncil
             var tie = t;
             return new PaneRow
             {
-                text = text, face = other, accent = color, right = right, bar = Mathf.Clamp01(t.strength / 100f), select = other,
+                text = PaneLinks.Mark(text, other), face = other, accent = color, right = right, bar = Mathf.Clamp01(t.strength / 100f), select = other,
                 tipFn = () => SocialPanel.Tip(tie), tipId = Gen.HashCombineInt(t.a?.thingIDNumber ?? 0, t.b?.thingIDNumber ?? 0) ^ 0x50C1A1
             };
         }

@@ -89,7 +89,9 @@ namespace ColonyCouncil
     /// life changed, their family tree, the years in cryptosleep, their life so far (goals reached, stories lived
     /// through), the social parts while the Social tab's column is off, dreams and the newest lines of their journal.
     /// Each place passes its own folds, so a section folded in the tab stays open in the roster, and its own parts: the
-    /// roster shows everything, the Story tab leaves out what the Social tab's column and the Culture tab show.
+    /// roster shows everything, the Story tab leaves out what the Social tab's column and the Culture tab show. A colonist,
+    /// a relative, a nemesis or a people named in it is a link with its preview (PaneLinks, UiKit's chips and pills): in
+    /// the tab it opens the floating card, in a card or a window the drawer.
     /// </summary>
     public static class StoryView
     {
@@ -304,11 +306,11 @@ namespace ColonyCouncil
             if (s.vendettas)
                 foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
                     o.tags.Add(new UiKit.PillSpec("CC_Story_VendettaTag".Translate(v.faction.Name).Resolve(), v.settled ? Faint : UiKit.Bad, Icons.Vendetta,
-                        v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve()));
+                        v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve(), ThingRefs.Of(v.faction)));
             if (s.nemeses && comp.nemeses != null)
                 foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
                     o.tags.Add(new UiKit.PillSpec("CC_Story_Nemesis".Translate(n.pawn?.LabelShort ?? n.name).Resolve(), n.ended ? Faint : UiKit.Bad, Icons.Nemesis,
-                        "CC_Story_Nemesis".Translate(n.Line).Resolve()));
+                        "CC_Story_Nemesis".Translate(n.Line).Resolve(), n.pawn != null && !n.pawn.Discarded ? ThingRefs.Of(n.pawn) : ThingRef.None));
             // The family who are here, closest first; the rest counted, and everyone in the tooltip (Social/Family.cs).
             var tree = Family.Tree(p, out int further);
             foreach (var e in tree.Where(e => !e.pawn.Dead && e.pawn.Spawned && e.pawn.Map == p.MapHeld).Take(FamilyShown))
@@ -333,17 +335,21 @@ namespace ColonyCouncil
             {
                 if (tab && CultureKeys.Contains(cs.key)) continue;
                 if (socialElsewhere && SocialColumn.CharacterKeys.Contains(cs.key)) continue;
+                // Their groups, what people say and their shared memories name the colony's people: links.
+                if (SocialColumn.CharacterKeys.Contains(cs.key)) PaneLinks.MarkColony(cs, p);
                 int skip = cs == words ? 1 : 0;
                 // Their character in words is the overview's: the section keeps the bars and their nature.
                 list.Add(new Section { key = "character" + cs.order, header = cs.title, icon = CharacterView.Icon(cs.order), character = cs, skip = skip });
             }
 
             // Their family, a row each, and where everyone is.
+            // The family alive, whose names in these lines lead to their cards.
+            var kin = tree.Where(e => e.pawn != null && !e.pawn.Dead && !e.pawn.Discarded).Select(e => e.pawn).ToList();
             if (tree.Count > 0 || further > 0)
             {
                 var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds, tree = tree, treeMore = further };
-                if (known != null) family.lines.Add((known, Faint));
-                if (named != null) family.lines.Add((named, Faint));
+                if (known != null) family.lines.Add((PaneLinks.Mark(known, kin), Faint));
+                if (named != null) family.lines.Add((PaneLinks.Mark(named, kin), Faint));
                 list.Add(family);
             }
 
@@ -352,7 +358,7 @@ namespace ColonyCouncil
             if (yearLines.Count > 0)
             {
                 var years = new Section { key = "years", header = "CC_Story_Years".Translate(), icon = Icons.Birth };
-                foreach (var line in yearLines) years.lines.Add((line, Color.white));
+                foreach (var line in yearLines) years.lines.Add((PaneLinks.Mark(line, kin), Color.white));
                 list.Add(years);
             }
 
@@ -363,7 +369,8 @@ namespace ColonyCouncil
             {
                 var bonds = new Section { key = "bonds", header = "CC_Story_Bonds".Translate(), icon = Icons.Bonds };
                 string describe = comp.social.Describe(p);
-                if (!describe.NullOrEmpty()) bonds.lines.Add((describe, Color.white));
+                if (!describe.NullOrEmpty())
+                    bonds.lines.Add((PaneLinks.Mark(describe, comp.social.ties.Where(t => t != null && t.Involves(p)).Select(t => t.Other(p)).Where(o => o != null && !o.Dead)), Color.white));
                 foreach (var l in comp.social.lost.Where(l => l.survivor == p).Take(5))
                     bonds.lines.Add(("CC_Story_Lost".Translate(l.name, ("CC_Tie_" + l.kind).Translate()).Resolve(), Faint));
                 if (bonds.lines.Count > 0) list.Add(bonds);
@@ -376,9 +383,10 @@ namespace ColonyCouncil
                 var secret = comp.secrets.Of(p);
                 if (secret != null && secret.revealed) secrets.lines.Add((secret.Truth, new Color(0.9f, 0.6f, 0.5f)));
                 else if (secret != null && secret.knowers.Count > 0)
-                    secrets.lines.Add(("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(secret.knowers.Select(k => k.LabelShort).ToList())).Resolve(), Faint));
+                    secrets.lines.Add((PaneLinks.Mark("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(secret.knowers.Select(k => k.LabelShort).ToList())).Resolve(),
+                        secret.knowers), Faint));
                 foreach (var other in comp.secrets.secrets.Where(x => x.owner != p && !x.revealed && x.knowers.Contains(p) && x.owner != null))
-                    secrets.lines.Add(("CC_Story_Keeps".Translate(other.owner.LabelShort).Resolve(), Faint));
+                    secrets.lines.Add((PaneLinks.Mark("CC_Story_Keeps".Translate(other.owner.LabelShort).Resolve(), other.owner), Faint));
                 if (secrets.lines.Count > 0) list.Add(secrets);
             }
 
@@ -496,10 +504,9 @@ namespace ColonyCouncil
                     rest += o.family.Count - i;
                     break;
                 }
-                bool open = pawn.IsColonist && !pawn.IsQuestLodger();
+                // Their name a link: a preview after a pause, their card on a click.
                 string line = tip;
-                x += UiKit.PawnChip(x, r.y, pawn, 24f, true, Mathf.Min(120f, room), null,
-                    () => open ? line + "\n\n" + "CC_UI_OpenPage".Translate() : line, open) + 8f;
+                x += UiKit.PawnChip(x, r.y, pawn, 24f, true, Mathf.Min(120f, room), null, () => line + "\n\n" + "CC_UI_OpenPage".Translate(), true, true) + 8f;
             }
             if (rest <= 0) return;
             // Some portraits found no room after all: the count says so (rarely, so worded here).
@@ -515,7 +522,7 @@ namespace ColonyCouncil
         private static float DrawFamily(Rect r, Section s)
         {
             float y = r.y;
-            foreach (var (text, color) in s.lines) y += UiKit.Paragraph(r.x, y, r.width, text, color) + 4f;
+            foreach (var (text, color) in s.lines) y += LinkText.Draw(new Rect(r.x, y, r.width, 999f), text, color) + 4f;
             const float row = 26f;
             float nameW = Mathf.Min(110f, r.width * 0.27f), relW = Mathf.Min(120f, r.width * 0.29f), ageW = 28f;
             for (int i = 0; i < s.tree.Count; i++)
@@ -529,14 +536,16 @@ namespace ColonyCouncil
                 if (!e.pawn.Dead && e.pawn.Spawned) UiKit.Portrait(face, e.pawn, color);
                 else UiKit.Badge(face, e.pawn.Dead ? Icons.Death : Icons.World, color);
                 float x = face.xMax + 6f;
-                UiKit.LabelFit(new Rect(x, rr.y, nameW, rr.height), e.pawn.LabelShort, e.pawn.Dead ? UiKit.Dim : Color.white);
+                // A relative the game still has is a link to their card.
+                if (!e.pawn.Dead && !e.pawn.Discarded) LinkText.Line(new Rect(x, rr.y, nameW, rr.height), ThingRefs.Link(e.pawn.LabelShort, ThingRefs.Of(e.pawn)), Color.white);
+                else UiKit.LabelFit(new Rect(x, rr.y, nameW, rr.height), e.pawn.LabelShort, e.pawn.Dead ? UiKit.Dim : Color.white);
                 x += nameW + 4f;
                 UiKit.LabelFit(new Rect(x, rr.y, relW, rr.height), e.relation.CapitalizeFirst(), Faint);
                 x += relW + 4f;
                 if (!e.pawn.Dead) UiKit.LabelFit(new Rect(x, rr.y, ageW, rr.height), FamilyYears.Lived(e.pawn).ToString(), Faint);
                 x += ageW + 4f;
                 UiKit.LabelFit(new Rect(x, rr.y, Mathf.Max(0f, rr.xMax - x - 4f), rr.height), e.where.CapitalizeFirst(), color);
-                TooltipHandler.TipRegion(rr, e.line);
+                if (Previews.Shown.IsNone) TooltipHandler.TipRegion(rr, e.line);
                 y += row;
             }
             if (s.treeMore > 0) y += 2f + UiKit.Paragraph(r.x, y + 2f, r.width, "CC_Family_More".Translate(s.treeMore).Resolve(), Faint);
@@ -568,6 +577,12 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             foreach (var (text, color) in s.lines)
             {
+                // A line naming the colony's people or kin has them as links.
+                if (LinkTextMath.HasMarks(text))
+                {
+                    y += LinkText.Draw(new Rect(r.x, y, r.width, 999f), text, color) + 2f;
+                    continue;
+                }
                 float h = Text.CalcHeight(text, r.width);
                 GUI.color = color;
                 Widgets.Label(new Rect(r.x, y, r.width, h), text);

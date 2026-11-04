@@ -53,8 +53,19 @@ namespace ColonyCouncil
 
         private static string iconPad;
 
-        /// <summary>The size every Rimfolk window asks for (the council window's), so going from one to another keeps the place.</summary>
-        public static Vector2 Size => new Vector2(Mathf.Min(1010f, UI.screenWidth - 20f), Mathf.Min(720f, UI.screenHeight - 35f - 20f));
+        /// <summary>
+        /// The size every Rimfolk window asks for, so going from one to another keeps the place: 1010 by 720, or with the
+        /// setting "Window size" on large up to 1280 by 860, within the screen (WindowLayoutMath).
+        /// </summary>
+        public static Vector2 Size
+        {
+            get
+            {
+                bool large = ColonyCouncilMod.Settings != null && ColonyCouncilMod.Settings.windowSize == WindowSizeChoice.Large;
+                WindowLayoutMath.Size(UI.screenWidth, UI.screenHeight, large, out float w, out float h);
+                return new Vector2(w, h);
+            }
+        }
 
         /// <summary>
         /// The tabs along the top of <paramref name="inRect"/>, the window links in the corner, and the framed body under

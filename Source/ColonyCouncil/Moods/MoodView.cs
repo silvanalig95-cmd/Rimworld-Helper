@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public class Texts
         {
             public string title, meta, why, advice;
+            /// <summary>The why line as drawn: the one it is about named as a link to their card (why itself stays plain, for tooltips).</summary>
+            public string whyShown;
             public bool bad;
             public MoodHintDef hint;
             public AdvisorSignal signal;
@@ -103,6 +105,8 @@ namespace ColonyCouncil
                 hint = MoodInsight.HintFor(l.def),
                 tipId = Gen.HashCombineInt(l.pawn?.thingIDNumber ?? 0, l.def.shortHash ^ (l.label?.GetHashCode() ?? 0))
             };
+            // A mood about someone (an insult, a talk, a bond) names them as a link where the why line says who.
+            t.whyShown = t.why == null ? null : PaneLinks.Mark(t.why, OtherOf(l.thought));
             Finish(t, MoodInsight.Advice(l), l.pawn?.MapHeld);
             return t;
         }
@@ -122,6 +126,20 @@ namespace ColonyCouncil
             };
             Finish(t, MoodInsight.Advice(c.sample), c.sample.pawn?.MapHeld);
             return t;
+        }
+
+        /// <summary>The one a mood is about, for a mood about someone (the game's social thoughts), or null.</summary>
+        private static Pawn OtherOf(Thought thought)
+        {
+            try
+            {
+                var other = (thought as ISocialThought)?.OtherPawn();
+                return other != null && !other.Dead && !other.Discarded ? other : null;
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
         }
 
         private static void Finish(Texts t, string advice, Map map)
@@ -157,7 +175,8 @@ namespace ColonyCouncil
             t.th = Text.CalcHeight(t.title, textW);
             Text.Font = GameFont.Tiny;
             t.mh = Text.CalcHeight(t.meta, textW);
-            t.wh = t.why == null ? 0f : Text.CalcHeight(t.why, textW);
+            string why = t.whyShown ?? t.why;
+            t.wh = why == null ? 0f : LinkText.Height(why, textW, GameFont.Tiny);
             t.ah = t.advice == null ? 0f : Text.CalcHeight(t.advice, textW);
             Text.Font = GameFont.Small;
             t.height = t.th + t.mh + t.wh + t.ah + (t.buttons ? 24f : 0f) + 8f;
@@ -192,7 +211,8 @@ namespace ColonyCouncil
             cy += t.mh;
             if (t.why != null)
             {
-                Widgets.Label(new Rect(tx, cy, textW, t.wh), t.why);
+                if (t.whyShown != null && LinkTextMath.HasMarks(t.whyShown)) LinkText.Draw(new Rect(tx, cy, textW, t.wh), t.whyShown, Faint, GameFont.Tiny);
+                else Widgets.Label(new Rect(tx, cy, textW, t.wh), t.why);
                 cy += t.wh;
             }
             GUI.color = t.bad ? AdviceColor : Faint;
