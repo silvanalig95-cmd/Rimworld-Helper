@@ -302,6 +302,19 @@ public static class LedgerMovesTests
             Check(!closesAlone, "a debt open or called in is still live after any tidy: unused memo, live tie");
         }
 
+        // ---------------- The grant of land: fealty ----------------
+
+        {
+            var fealty = new Tie { kind = Tie.Kind.Fealty, from = Ref.Colony(12), to = Ref.People(4), since = 5 * Day };
+            fealty.terms.key = "granted";
+            fealty.terms.count = 25;
+            var list = new List<Tie> { fealty };
+            TieRules.Tidy(list, 5000 * Day);
+            Check(list.Count == 1 && fealty.state == Tie.State.Open, "the colony holds its land by their grant for as long as it lasts: no end of its own");
+            Check(TieRules.CanCallIn(Tie.Kind.Fealty), "their grant can be called in, as the deed they remember says");
+            Check(TieRules.MakeRoom(list, Tie.Kind.Fealty, Ref.Colony(12), Ref.People(5)), "a grant of another people has room beside it");
+        }
+
         return n;
     }
 }

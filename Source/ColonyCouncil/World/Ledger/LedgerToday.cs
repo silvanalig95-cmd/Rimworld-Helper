@@ -6,12 +6,15 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The ties that exist today in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store,
-    /// none is editable through the ledger yet). Only those still in force: what ended stays in its own store's record.
+    /// The ties still kept in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store, not
+    /// editable through the ledger). Only those still in force: what ended stays in its own store's record.
     /// <list type="bullet">
-    /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
-    /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge.</item>
+    /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge. It stays a view: the
+    /// vendetta is the colonist's own story (their kills, the victim), and the tie is only how the world sees it.</item>
     /// </list>
+    /// The rest moved into the ledger as its own ties (stage 0 step 3b): grudges (Happenings/Grudges.cs), favours and good
+    /// words (Outsiders/OutsiderTies.cs), guest kin as claims (Integrations/GuestWill.cs), the scenario's debt
+    /// (Scenarios/ScenarioDebts.cs) and the grant of land as fealty (ScenPart_CouncilBeholden).
     /// Read once a 250-tick stretch (sooner when the faction memory, the notables or the ledger change).
     /// </summary>
     public partial class WorldLedger
@@ -33,7 +36,6 @@ namespace ColonyCouncil
             var list = new List<Tie>();
             if (Current.Game != null)
             {
-                Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
             }
             today = list;
@@ -56,19 +58,6 @@ namespace ColonyCouncil
         {
             if (from.IsNone || to.IsNone || from == to) return;
             list.Add(new Tie { kind = kind, from = from, to = to, terms = terms ?? new TieTerms(), since = since, until = until, state = state, origin = origin, source = source });
-        }
-
-        private static void Granted(List<Tie> list)
-        {
-            var mem = FactionMemory.Instance;
-            if (mem == null || !FactionMemory.On) return;
-            int now = Now;
-            foreach (var d in mem.deeds)
-            {
-                if (d?.faction == null || d.kind != "granted" || d.settled) continue;
-                var terms = new TieTerms { key = "granted", count = d.weight, number = d.StrengthAt(now) };
-                View(list, "memory:granted", Tie.Kind.Fealty, Refs.Seat, Refs.Of(d.faction), terms, d.first, Tie.Never, Tie.State.Open, "deed:" + d.id);
-            }
         }
 
         private static void Vendettas(List<Tie> list)

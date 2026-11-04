@@ -245,9 +245,10 @@ namespace ColonyCouncil
         /// <summary>An older save's guest kin, moved into the world ledger (GuestWill.cs, GuestKin).</summary>
         private void MoveToLedger()
         {
-            if (oldGuestKin == null) return;
-            GuestKin.Adopt(oldGuestKin);
+            if (oldGuestKin != null) GuestKin.Adopt(oldGuestKin);
             oldGuestKin = null;
+            // The grant of land of a "beholden" start (its deed stays the people's memory; the fealty is the ledger's).
+            ScenPart_CouncilBeholden.MoveToLedger();
         }
 
         public override void ExposeData()
