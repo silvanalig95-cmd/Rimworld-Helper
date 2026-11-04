@@ -455,7 +455,8 @@ MODEL = {
     "World/Ledger/WorldLedger.cs:ties": ("cap", (C["LedgerTies"], 1), 260,
                                          "ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days"),
     # The world's one history: every chronicle line (8 a day, as the chronicle's model) and the deeds the peoples
-    # remember (a run within a day is one), with their words; summaries of old seasons are smaller.
+    # remember (a run within a day is one), with their words; summaries of old seasons are smaller. Other mods' world
+    # events (Integrations/World/) add a few a season: only those near a home or touching the colony.
     "World/Ledger/History.cs:events": ("cap", (C["HistoryEvents"], 11), 300,
                                        "HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first"),
     "World/Ledger/History.cs:values": ("fixed", 1, 40, "per event: a deed's name, when it has one (counted under events)"),

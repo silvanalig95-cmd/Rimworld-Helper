@@ -408,6 +408,24 @@ namespace ColonyCouncil
             return n;
         }
 
+        /// <summary>
+        /// Gives someone already in an event another part (a battle's winner, known only after it was written): true when
+        /// it changed. Their place in the event and the indexes stay as they are (the indexes go by who, not by part).
+        /// </summary>
+        public bool SetRole(HistoryEntry e, Ref who, HistoryRole role)
+        {
+            if (e?.actors == null || who.IsNone || !byId.TryGetValue(e.id, out var mine) || mine != e) return false;
+            for (int i = 0; i < e.actors.Count; i++)
+            {
+                if (e.actors[i].who != who) continue;
+                if (e.actors[i].role == role) return false;
+                e.actors[i] = new HistoryActor(who, role);
+                Version++;
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>Into a list kept oldest first: at the end, unless it is older than the last.</summary>
         private static void Insert(List<HistoryEntry> list, HistoryEntry e)
         {

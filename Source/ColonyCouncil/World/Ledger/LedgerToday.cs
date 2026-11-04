@@ -18,6 +18,7 @@ namespace ColonyCouncil
     /// that people in the colony's keeping, until their family's time to ask has passed.</item>
     /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
     /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge.</item>
+    /// <item>What other mods keep (WorldMechanics.Ties): a vassal's fealty to the colony, a marriage alliance.</item>
     /// </list>
     /// Read once a 250-tick stretch (sooner when the faction memory, the notables or the ledger change).
     /// </summary>
@@ -47,6 +48,7 @@ namespace ColonyCouncil
                 Read("guest kin", list, GuestKin);
                 Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
+                Read("other mods' world", list, WorldMechanics.Ties);
             }
             today = list;
             return today;

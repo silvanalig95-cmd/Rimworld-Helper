@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The form each feature takes in each age (Source/ColonyCouncil/Lean/Ages.cs, Ages.Form; ROADMAP.md, "Every age, not
+    only the medieval one"). Short noun phrases, to sit inside a sentence.
+    CC_Form_<Feature>_<Age>: the word, by the colony's own age (its means: what it calls the thing and does it with).
+    CC_Form_<Feature>_<Age>_Rite: the rite, by the other people's age (their ways: how it is done with them).
+    Nothing reads these yet; the diplomacy (stage 2) will.
+  -->
+
+  <!-- A favor owed -->
+  <CC_Form_Favor_Tribal>a debt of the hearth</CC_Form_Favor_Tribal>
+  <CC_Form_Favor_Tribal_Rite>a gift owed back</CC_Form_Favor_Tribal_Rite>
+  <CC_Form_Favor_Medieval>a debt of honor</CC_Form_Favor_Medieval>
+  <CC_Form_Favor_Medieval_Rite>a pledge given by hand</CC_Form_Favor_Medieval_Rite>
+  <CC_Form_Favor_Industrial>an IOU</CC_Form_Favor_Industrial>
+  <CC_Form_Favor_Industrial_Rite>a favor on the books</CC_Form_Favor_Industrial_Rite>
+  <CC_Form_Favor_Spacer>a ledger entry</CC_Form_Favor_Spacer>
+  <CC_Form_Favor_Spacer_Rite>credit owed</CC_Form_Favor_Spacer_Rite>
+
+  <!-- A pact or a truce -->
+  <CC_Form_Pact_Tribal>a blood oath</CC_Form_Pact_Tribal>
+  <CC_Form_Pact_Tribal_Rite>gifts exchanged and a peace at the river</CC_Form_Pact_Tribal_Rite>
+  <CC_Form_Pact_Medieval>a treaty under seal</CC_Form_Pact_Medieval>
+  <CC_Form_Pact_Medieval_Rite>oaths sworn before witnesses</CC_Form_Pact_Medieval_Rite>
+  <CC_Form_Pact_Industrial>a signed agreement</CC_Form_Pact_Industrial>
+  <CC_Form_Pact_Industrial_Rite>a trade contract</CC_Form_Pact_Industrial_Rite>
+  <CC_Form_Pact_Spacer>an accord by comms</CC_Form_Pact_Spacer>
+  <CC_Form_Pact_Spacer_Rite>a registered treaty</CC_Form_Pact_Spacer_Rite>
+
+  <!-- A feast or a contest with guests -->
+  <CC_Form_Feast_Tribal>a gift feast</CC_Form_Feast_Tribal>
+  <CC_Form_Feast_Tribal_Rite>a great hunt, wrestling and races</CC_Form_Feast_Tribal_Rite>
+  <CC_Form_Feast_Medieval>a feast in the hall</CC_Form_Feast_Medieval>
+  <CC_Form_Feast_Medieval_Rite>a hunt and a tournament</CC_Form_Feast_Medieval_Rite>
+  <CC_Form_Feast_Industrial>a banquet</CC_Form_Feast_Industrial>
+  <CC_Form_Feast_Industrial_Rite>a fair, a shooting match and races</CC_Form_Feast_Industrial_Rite>
+  <CC_Form_Feast_Spacer>a gala</CC_Form_Feast_Spacer>
+  <CC_Form_Feast_Spacer_Rite>an exhibition match</CC_Form_Feast_Spacer_Rite>
+
+  <!-- A marriage alliance -->
+  <CC_Form_Marriage_Tribal>a match between clans</CC_Form_Marriage_Tribal>
+  <CC_Form_Marriage_Tribal_Rite>bride gifts and a shared fire</CC_Form_Marriage_Tribal_Rite>
+  <CC_Form_Marriage_Medieval>a match between houses</CC_Form_Marriage_Medieval>
+  <CC_Form_Marriage_Medieval_Rite>vows in the hall and a dowry</CC_Form_Marriage_Medieval_Rite>
+  <CC_Form_Marriage_Industrial>a match between families or firms</CC_Form_Marriage_Industrial>
+  <CC_Form_Marriage_Industrial_Rite>a wedding and papers signed</CC_Form_Marriage_Industrial_Rite>
+  <CC_Form_Marriage_Spacer>a partnership contract between lines</CC_Form_Marriage_Spacer>
+  <CC_Form_Marriage_Spacer_Rite>a contract witnessed and filed</CC_Form_Marriage_Spacer_Rite>
+
+  <!-- A ward or a hostage -->
+  <CC_Form_Ward_Tribal>fostering with the other clan</CC_Form_Ward_Tribal>
+  <CC_Form_Ward_Tribal_Rite>a child raised among them</CC_Form_Ward_Tribal_Rite>
+  <CC_Form_Ward_Medieval>a ward at their hall</CC_Form_Ward_Medieval>
+  <CC_Form_Ward_Medieval_Rite>hostages given for a pact</CC_Form_Ward_Medieval_Rite>
+  <CC_Form_Ward_Industrial>an apprentice exchange</CC_Form_Ward_Industrial>
+  <CC_Form_Ward_Industrial_Rite>a guarantor sent to them</CC_Form_Ward_Industrial_Rite>
+  <CC_Form_Ward_Spacer>an exchange posting</CC_Form_Ward_Spacer>
+  <CC_Form_Ward_Spacer_Rite>a guarantor held to the terms</CC_Form_Ward_Spacer_Rite>
+
+  <!-- Ransom -->
+  <CC_Form_Ransom_Tribal>captives traded back</CC_Form_Ransom_Tribal>
+  <CC_Form_Ransom_Tribal_Rite>an exchange of captives for goods</CC_Form_Ransom_Tribal_Rite>
+  <CC_Form_Ransom_Medieval>ransom by messenger</CC_Form_Ransom_Medieval>
+  <CC_Form_Ransom_Medieval_Rite>a price paid in silver</CC_Form_Ransom_Medieval_Rite>
+  <CC_Form_Ransom_Industrial>ransom by radio</CC_Form_Ransom_Industrial>
+  <CC_Form_Ransom_Industrial_Rite>an exchange at a crossing</CC_Form_Ransom_Industrial_Rite>
+  <CC_Form_Ransom_Spacer>a negotiated exchange by comms</CC_Form_Ransom_Spacer>
+  <CC_Form_Ransom_Spacer_Rite>an exchange on agreed terms</CC_Form_Ransom_Spacer_Rite>
+
+  <!-- Fealty and vassals -->
+  <CC_Form_Fealty_Tribal>tribute to a stronger clan</CC_Form_Fealty_Tribal>
+  <CC_Form_Fealty_Tribal_Rite>protection for tribute</CC_Form_Fealty_Tribal_Rite>
+  <CC_Form_Fealty_Medieval>fealty and tribute</CC_Form_Fealty_Medieval>
+  <CC_Form_Fealty_Medieval_Rite>an oath of fealty and levies</CC_Form_Fealty_Medieval_Rite>
+  <CC_Form_Fealty_Industrial>a protectorate</CC_Form_Fealty_Industrial>
+  <CC_Form_Fealty_Industrial_Rite>a company town and a union's dues</CC_Form_Fealty_Industrial_Rite>
+  <CC_Form_Fealty_Spacer>a charter</CC_Form_Fealty_Spacer>
+  <CC_Form_Fealty_Spacer_Rite>a corporate accord</CC_Form_Fealty_Spacer_Rite>
+
+  <!-- The council's tasks -->
+  <CC_Form_CouncilTasks_Tribal>the elders' errands</CC_Form_CouncilTasks_Tribal>
+  <CC_Form_CouncilTasks_Tribal_Rite>a word carried to their elders</CC_Form_CouncilTasks_Tribal_Rite>
+  <CC_Form_CouncilTasks_Medieval>the council's offices</CC_Form_CouncilTasks_Medieval>
+  <CC_Form_CouncilTasks_Medieval_Rite>an envoy received at court</CC_Form_CouncilTasks_Medieval_Rite>
+  <CC_Form_CouncilTasks_Industrial>the committee's portfolios</CC_Form_CouncilTasks_Industrial>
+  <CC_Form_CouncilTasks_Industrial_Rite>a delegate at their committee</CC_Form_CouncilTasks_Industrial_Rite>
+  <CC_Form_CouncilTasks_Spacer>the board's remits</CC_Form_CouncilTasks_Spacer>
+  <CC_Form_CouncilTasks_Spacer_Rite>a liaison to their directorate</CC_Form_CouncilTasks_Spacer_Rite>
+
+  <!-- A house's renown -->
+  <CC_Form_Renown_Tribal>a clan's name and totem</CC_Form_Renown_Tribal>
+  <CC_Form_Renown_Tribal_Rite>deeds told to the children</CC_Form_Renown_Tribal_Rite>
+  <CC_Form_Renown_Medieval>a house and its arms</CC_Form_Renown_Medieval>
+  <CC_Form_Renown_Medieval_Rite>deeds sung in the hall</CC_Form_Renown_Medieval_Rite>
+  <CC_Form_Renown_Industrial>a family name and a family firm</CC_Form_Renown_Industrial>
+  <CC_Form_Renown_Industrial_Rite>deeds in the papers</CC_Form_Renown_Industrial_Rite>
+  <CC_Form_Renown_Spacer>a lineage</CC_Form_Renown_Spacer>
+  <CC_Form_Renown_Spacer_Rite>a name that carries</CC_Form_Renown_Spacer_Rite>
+
+  <!-- Schemes -->
+  <CC_Form_Schemes_Tribal>whispers at the fire</CC_Form_Schemes_Tribal>
+  <CC_Form_Schemes_Tribal_Rite>a stolen totem</CC_Form_Schemes_Tribal_Rite>
+  <CC_Form_Schemes_Medieval>a paid informer</CC_Form_Schemes_Medieval>
+  <CC_Form_Schemes_Medieval_Rite>intrigue at court</CC_Form_Schemes_Medieval_Rite>
+  <CC_Form_Schemes_Industrial>a bribe or sabotage</CC_Form_Schemes_Industrial>
+  <CC_Form_Schemes_Industrial_Rite>a smear in the papers</CC_Form_Schemes_Industrial_Rite>
+  <CC_Form_Schemes_Spacer>a hack or a data leak</CC_Form_Schemes_Spacer>
+  <CC_Form_Schemes_Spacer_Rite>a corporate plant</CC_Form_Schemes_Spacer_Rite>
+
+</LanguageData>

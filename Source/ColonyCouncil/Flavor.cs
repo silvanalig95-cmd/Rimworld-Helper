@@ -282,14 +282,13 @@ namespace ColonyCouncil
             System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
 
 
-        /// <summary>The colony's era as tags: tribal, medieval, industrial or spacer, plus lowtech before electricity.</summary>
+        /// <summary>
+        /// The colony's era as tags: its age (Ages.Ours: tribal, medieval, industrial or spacer), plus lowtech before
+        /// electricity.
+        /// </summary>
         public static void AddEraTags(HashSet<string> tags)
         {
-            var tech = Avail.EffectiveTech;
-            if (tech <= TechLevel.Neolithic) tags.Add("tribal");
-            else if (tech == TechLevel.Medieval) tags.Add("medieval");
-            else if (tech == TechLevel.Industrial) tags.Add("industrial");
-            else if (tech >= TechLevel.Spacer) tags.Add("spacer");
+            tags.Add(Ages.Tag(Ages.Ours));
             if (Avail.IsPreIndustrial) tags.Add("lowtech");
         }
 
