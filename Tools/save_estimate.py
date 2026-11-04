@@ -88,6 +88,8 @@ C = {
     "OutsiderHeard": const("Outsiders/OutsiderTalkMath.cs", "HeardMax", 40),
     "OutsiderMarks": const("Outsiders/OutsiderTalkMath.cs", "MaxMarks", 10),
     "OutsiderSaid": const("Outsiders/OutsiderTalkMath.cs", "MaxSaid", 16),
+    # The world ledger's bound (World/Ledger/TieMath.cs, TieRules.MaxTies): ten kinds at MaxPerKind, regard at MaxRegard.
+    "LedgerTies": 10 * const("World/Ledger/TieMath.cs", "MaxPerKind", 60) + const("World/Ledger/TieMath.cs", "MaxRegard", 300),
 }
 
 # How many defs of a kind there are, counted from the mod's own XML (more with other mods' content).
@@ -446,6 +448,10 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # The world ledger (World/Ledger/): its own ties. Nothing writes them yet (stage 0 step 3a reads today's stores as
+    # views); modelled at a generous pace for when favours, words, grudges, debts and guest kin move in, and stage 2.
+    "World/Ledger/WorldLedger.cs:ties": ("cap", (C["LedgerTies"], 1), 260,
+                                         "ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

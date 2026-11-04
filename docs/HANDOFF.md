@@ -15,6 +15,17 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.65.3, stage 0 step 3a (F3a): `World/Ledger/` (`LedgerMath.cs` and `TieMath.cs` pure; `Tie.cs`, `WorldLedger.cs`,
+  `LedgerToday.cs`, `LedgerViews.cs`), `LedgerTests`. `Ref` (p/t/f/c/h text form; ledger persons negative), `Refs`
+  (game objects both ways), `WorldAge`, `Tie` (11 kinds, 5 states, `TieTerms` with `about`, `TieRules` state machine and
+  bounds: 3 per pair and kind, 60 per kind, 300 regard, 900 in all, closed dropped after 60 days), `WorldLedger`
+  (saved ties; `AddTie`, `Set`, `TiesOf`, `TiesBetween`, `Town`, `People`, `Person`; upkeep when asked, no pass).
+  Views of today's ties: favours (per people), words (promises), the silver debt memo, grudges, guest kin (as Ward),
+  granted (Fealty, from the deed), vendettas. Decisions for 3b: a town's mood is its people's stance, the head's regard
+  when the head is known; grudges merge into one tie with a count; guest kin gets a kind of its own (Claim: a family's
+  claim on someone) rather than Ward; granted keeps its deed (Tone and Baseline read it) and gains a Fealty tie;
+  vendettas stay a view. For F4: world situations need a place ref (today only faction, enemy and a place name).
+  Nothing is per colony yet (step 7).
 - 0.65.2 (A1 and H1, under way before the priority was set): `Integrations/BeforeWork.cs` (was DrinkBeforeWork.cs)
   with `BeforeWork.Rows` (drink and smoke; setting `smokeBeforeWork`, pool `Rimfolk_Pool_SmokeBeforeWork`,
   `SmokeBeforeWorkTests`). The drink never happened before: 1.6 gives drug harm as a curve (its first point, 0.45 for

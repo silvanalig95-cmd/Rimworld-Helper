@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groundwork: the world ledger
+
+*4 November 2026, version 0.65.3*
+
+- Groundwork for the world and its people: one way to name anyone and anything out in the world (a person, a town, a people, one of your colonies, a family), one kind of record for every tie between two of them (a favour owed, a pact, a truce, a marriage, a ward, a hostage, fealty, a grudge, a debt, a promise), and one place to ask about a town, a people or a person.
+- Nothing in play changes yet: the ledger reads what Rimfolk already keeps, and the coming features of the region and the diplomacy are built on it.
+
 ## A smoke before work, and after the fever
 
 *4 November 2026, version 0.65.2*

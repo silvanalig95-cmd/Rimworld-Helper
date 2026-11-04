@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.65.3</version>
+        <date>4 November 2026</date>
+        <title>Groundwork: the world ledger</title>
+        <points>
+          <li>Groundwork for the world and its people: one way to name anyone and anything out in the world (a person, a town, a people, one of your colonies, a family), one kind of record for every tie between two of them (a favour owed, a pact, a truce, a marriage, a ward, a hostage, fealty, a grudge, a debt, a promise), and one place to ask about a town, a people or a person.</li>
+          <li>Nothing in play changes yet: the ledger reads what Rimfolk already keeps, and the coming features of the region and the diplomacy are built on it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.65.2</version>
         <date>4 November 2026</date>
         <title>A smoke before work, and after the fever</title>
