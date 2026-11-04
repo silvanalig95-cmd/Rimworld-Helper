@@ -86,6 +86,8 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/LineTags.cs" Link="LineTags.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Fresh.cs" Link="Fresh.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/HomesMath.cs" Link="HomesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Ledger/LedgerMath.cs" Link="LedgerMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Ledger/TieMath.cs" Link="TieMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/MemoryMath.cs" Link="MemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="SettingsCatalog.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsLayoutMath.cs" Link="SettingsLayoutMath.cs" />

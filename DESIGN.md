@@ -1691,6 +1691,57 @@ as a whole has, a loop over `Homes.All` for what each home has, and `Homes.Busie
 save's single timer), a memo keeps its colony so its follow-up (a guest, goods brought back, an order collected) comes
 where it was set going, talks with visitors start on every home, and a raid is written up by those at the home raided.
 
+### The world ledger
+
+One way to name anything out in the world, one record for every tie between two parties, and one place to ask about a
+town, a people or a person: `World/Ledger/`, one game component, `WorldLedger`. Its pure parts (`LedgerMath.cs`,
+`TieMath.cs`) are tested (`Tools/Tests/LedgerTests.cs`).
+
+- **Refs.** A `Ref` is a kind and a number, a plain value: a person is a pawn's `thingIDNumber`, or a ledger number
+  for someone with no pawn, stored below zero so the two never meet; a town is its `Settlement.ID`; a people its
+  faction's `loadID`; a colony its home's key (`Homes.KeyOf`); a house a ledger number. Its text form (`p123`, `p-4`,
+  `t55`, `f3`, `c12`, `h2`) is what is saved and what history keys and tests use. `Refs` turns pawns, factions,
+  towns and homes into refs and back while the game still has them.
+- **Ties.** A `Tie` is one record for any tie between two parties: its kind (favour owed, pact, truce, marriage, ward,
+  hostage, fealty, grudge, debt, promise, regard), `from` (the party bound: who owes, swore, promised or holds the
+  grudge) and `to`, its terms (goods, count, days, a free key, a number, and the third party it concerns), since,
+  until, its state and where it came from. Open and called in are live; kept, broken and ended are closed for good.
+  From open a tie can be kept, called in, broken or ended; from called in kept, broken, ended or put off (open again).
+  Only what can be asked for is called in (a favour, a pact, fealty, a debt, a promise, a hostage); a regard only
+  ends. At its until an open debt comes due (called in), any other open tie ends, and one called in and not met by
+  then is broken. Three of one kind between the same two at most, sixty of a kind (three hundred regards); a new one
+  makes the oldest closed one go and is refused when all are live. Closed ties are dropped after sixty days (the
+  history will fold them in).
+- **Views.** `WorldLedger.Town(id)`: its name and people, the notables there with their roles and regard, its mood
+  toward each colony, the world situations about its people or at the town (running, or ended in the last fifteen
+  days), Heard lately, and whether it stands; a town gone from the world is still known by what the notables and the
+  news kept of it. `WorldLedger.People(faction)`: its stance toward each colony, what it remembers (the faction
+  memory's deeds, strongest first), its wars as the colony saw them, its age (tribal, medieval, industrial or spacer
+  by its tech level, as the colony's own era is read) and whether it is the Empire. `WorldLedger.Person(ref)`: name,
+  people, town, role and title, and who of the colony met them (the notables' record first, then outsider pairs,
+  regulars and departed ex-colonists). A stance is today's: goodwill, the tone of what the people remember
+  (`FactionMemory.Tone`) and the regard of `NotableBook.Baseline` with no nature of its own (as `Outsiders.OfColony`
+  gives it); a town whose head the colony knows has the head's own regard (`NotableBook.Opinion`). The player faction
+  has one stance per people today, so each colony gets the same until the colonies keep their own (many homes, stage
+  0 step 7). Views are built when asked and kept for one 250-tick stretch (`Lean/Fresh.cs`), sooner when the faction
+  memory, the notables or the ledger change.
+- **What is stored and what is a view.** The ledger saves only its own ties and the counter for ledger numbers.
+  Everything else it reads from the stores that exist today, and `TiesOf(ref)` and `TiesBetween(a, b)` return the
+  ties kept there too, marked as views (`Tie.IsView`) and not editable through the ledger (`Set` refuses them): a
+  favour asked of an outsider (a favour their people owe the colonist who asked), a good word promised (the
+  outsider's promise to the colonist, about the notable), the scenario's debt memo (a debt from its colony, coming due
+  at its date, called in while the letter waits), a prisoner who died in the colony's hands (their people's grudge),
+  someone who joined from a visit with family among their people (a ward of that people in the colony's keeping), the
+  scenario's grant of land (fealty), and a vendetta (the avenger's grudge against a people). Only what is still in
+  force is shown; what ended stays in its own store. These move into the ledger one at a time (stage 0 step 3b),
+  each when the ledger reads the same as the old store.
+- **The rule.** New features about the world read and write through the ledger: they name parties with refs, keep a
+  tie between two parties as a `Tie` (not a new list of their own), and ask about a town, a people or a person
+  through its views, never through the notables', the memory's or the outsiders' insides.
+
+It has no pass of its own: ties reaching their end and closed ones dropped are seen to when the ledger is asked, at
+most once a 250-tick stretch, and before saving.
+
 ### A colonist's tabs
 
 A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second
@@ -2229,6 +2280,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
+| World ledger | its own ties: three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; the counter for ledger numbers |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
