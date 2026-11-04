@@ -38,10 +38,10 @@ namespace ColonyCouncil
         private const float LinkSize = 24f;
         private const float LinkGap = 6f;
 
-        /// <summary>The back and forward arrows before the windows' icons, and the gap after them.</summary>
-        private const float ArrowsWidth = 2f * (LinkSize + LinkGap) + 8f;
+        /// <summary>The back and forward arrows and the Almanac's book before the windows' icons, and the gap after them.</summary>
+        private const float ArrowsWidth = 3f * (LinkSize + LinkGap) + 8f;
 
-        /// <summary>The corner's width: back and forward, the four windows' icons, and the space around them.</summary>
+        /// <summary>The corner's width: back and forward, the Almanac, the four windows' icons, and the space around them.</summary>
         public static float LinksWidth => ArrowsWidth + PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
 
         private static string iconPad;
@@ -131,6 +131,7 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<RimfolkWindow, string> tips = new Dictionary<RimfolkWindow, string>();
+        private static string almanacTip;
 
         private static string Tip(RimfolkWindow w)
         {
@@ -149,6 +150,10 @@ namespace ColonyCouncil
             float top = row.y + (row.height - LinkSize) / 2f;
             float ax = row.xMax - LinksWidth + 4f;
             Nav.Arrows(new Rect(ax, top, LinkSize, LinkSize), new Rect(ax + LinkSize + LinkGap, top, LinkSize, LinkSize));
+            // The Almanac, in its own window beside this one.
+            var book = new Rect(ax + 2f * (LinkSize + LinkGap), top, LinkSize, LinkSize);
+            almanacTip ??= "CC_Win_AlmanacTip".Translate().Resolve();
+            if (UiKit.IconButton(book, Icons.Almanac, almanacTip, true, Window_Almanac.IsOpen ? UiKit.Gold : (Color?)null)) Window_Almanac.Toggle();
             float x = row.xMax - 4f;
             var order = PagesMath.CornerOrder;
             for (int i = order.Length - 1; i >= 0; i--)

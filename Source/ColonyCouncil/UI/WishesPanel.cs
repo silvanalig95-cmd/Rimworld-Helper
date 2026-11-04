@@ -177,7 +177,7 @@ namespace ColonyCouncil
             var portrait = new Rect(x + 14f, y + 10f, PortraitSize, PortraitSize);
             UiKit.Portrait(portrait, w.pawn, UiKit.TrustColor(comp.standings.TrustOf(w.pawn)));
             TooltipHandler.TipRegion(portrait, () => w.pawn.LabelShortCap + "\n\n" + "CC_UI_OpenPage".Translate(), w.id ^ 0x2A11);
-            if (Widgets.ButtonInvisible(portrait)) MainTabWindow_Council.OpenPerson(w.pawn);
+            if (Widgets.ButtonInvisible(portrait)) Cards.Open(w.pawn);
             if (w.ForSomeoneElse && w.Beneficiary != null)
             {
                 var small = new Rect(portrait.xMax - 20f, portrait.yMax - 20f, 28f, 28f);

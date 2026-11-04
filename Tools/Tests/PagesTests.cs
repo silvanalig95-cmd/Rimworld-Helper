@@ -3,12 +3,14 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// Rimfolk's four windows (Source/ColonyCouncil/UI/PagesMath.cs): every page in one window and section, laid out as the
-/// player asked (the council's own life in one window, the region's in another, defense, planning); the old page names
-/// (the council window's World, Defenses, Planning and History pages and sections) still lead somewhere, and to the
-/// right place; every page name the code opens is a page; the bottom bar buttons are the four windows (the planning
-/// button in the rooms button's def), and the rooms and planning buttons' settings merge as they should. The region
-/// window's History page: its kinds in words, its filters.
+/// Rimfolk's four windows (Source/ColonyCouncil/UI/PagesMath.cs): every page in one window and view, laid out as the
+/// player asked (the council in four views, This week, People, Council, Colony; the planning window's Plan, Base, Making,
+/// Rooms), no window over five views and no view over five modes; every old page name (the Roster, Everyone, Dreams,
+/// Journals, Priorities, the Almanac, the council window's World, Defenses, Planning and History pages and sections)
+/// still leads somewhere, to its view and mode or the Almanac's window; every view's "?" opens an Almanac article; a
+/// view's header and the People table beside the drawer; every page name the code opens is a page; the bottom bar
+/// buttons are the four windows (the planning button in the rooms button's def), and the rooms and planning buttons'
+/// settings merge as they should. The region window's History page: its kinds in words, its filters.
 /// </summary>
 public static class PagesTests
 {
@@ -27,11 +29,11 @@ public static class PagesTests
         foreach (var p in PagesMath.All)
         {
             C(PagesMath.Resolve(p.name) == p.name, $"{p.name} is its own address");
-            C(PagesMath.WindowOf(p.name) == p.window && PagesMath.SectionOf(p.name) == p.section, $"{p.name}: its window and section");
-            if (p.window == RimfolkWindow.Council) C(PagesMath.CouncilSections.Contains(p.section), $"{p.name} is in one of the council window's sections");
-            else C(p.section == PagesMath.OnlySection(p.window), $"{p.name}: a window with no sections of its own");
+            C(PagesMath.WindowOf(p.name) == p.window && PagesMath.SectionOf(p.name) == p.section, $"{p.name}: its window and view");
+            if (p.window == RimfolkWindow.Council) C(PagesMath.CouncilSections.Contains(p.section), $"{p.name} is in one of the council window's views");
+            else if (!PagesMath.HasViews(p.window)) C(p.section == PagesMath.OnlySection(p.window), $"{p.name}: a window with no views of its own");
         }
-        foreach (var s in PagesMath.CouncilSections) C(PagesMath.PagesIn(RimfolkWindow.Council, s).Count > 0, $"the council window's {s} section has pages");
+        foreach (var s in PagesMath.CouncilSections) C(PagesMath.PagesIn(RimfolkWindow.Council, s).Count > 0, $"the council window's {s} view has pages");
         foreach (RimfolkWindow w in Enum.GetValues(typeof(RimfolkWindow)))
         {
             C(PagesMath.PagesIn(w).Count > 0, $"the {w} window has pages");
@@ -40,53 +42,136 @@ public static class PagesTests
         }
         C(PagesMath.CornerOrder.Length == 4, "four windows in the corner");
 
-        // ---------------- The player's layout (4 November 2026) ----------------
+        // ---------------- At most five views to a window, five modes to a view (docs/design/interface.md) ----------------
+        foreach (RimfolkWindow w in Enum.GetValues(typeof(RimfolkWindow)))
+        {
+            var views = PagesMath.ViewsOf(w);
+            // The region window's pages are one section until its own release makes them four views (UI 2); then it
+            // joins this check like the others.
+            if (w == RimfolkWindow.World && views.Count == 1) continue;
+            C(views.Count <= PagesMath.MaxViews, $"the {w} window has at most five views ({views.Count})");
+            foreach (var v in views)
+                C(PagesMath.ModesOf(w, v).Count <= PagesMath.MaxModes, $"the {w} window's {v} view has at most five modes ({PagesMath.ModesOf(w, v).Count})");
+        }
+        C(PagesMath.HasViews(RimfolkWindow.Council) && PagesMath.HasViews(RimfolkWindow.Planning) && !PagesMath.HasViews(RimfolkWindow.Defense),
+            "the council and planning windows are made of views; the defense window is one");
+
+        // ---------------- The player's layout (4 November 2026, the council in four views) ----------------
         bool Same(IEnumerable<string> a, params string[] b) => a.SequenceEqual(b);
-        C(PagesMath.CouncilSections.SequenceEqual(new[] { "Council", "People", "Colony", "Almanac" }), "the council window: council, people, colony and the Almanac, in that order");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Council"), "Decrees", "Ambition", "Ways", "Dilemmas", "Wishes"),
-            "Council: decrees (offices and elections), ambition (meetings), ways, dilemmas, wishes (and petitions)");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "People"), "Roster", "Everyone", "Bonds", "Faiths", "Moods", "Dreams", "Journals"),
-            "People: roster, everyone, bonds, faiths, moods, dreams, journals");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Colony"), "Week", "Overview", "Priorities", "Calendar", "Chronicle"),
-            "Colony: this week, overview, priorities, calendar, the chronicle");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Almanac"), "Almanac"), "the Almanac");
+        C(PagesMath.CouncilSections.SequenceEqual(new[] { "Week", "People", "Council", "Colony" }) && Same(PagesMath.ViewsOf(RimfolkWindow.Council), "Week", "People", "Council", "Colony"),
+            "the council window: This week, People, Council, Colony, in that order, one row of tabs");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Week"), "Week"), "This week is one view without modes");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "People"), "Table", "Moods", "Bonds", "Faiths", "Houses"), "People: table, moods, bonds, ideoligions, houses");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Council"), "Decrees", "Ambition", "Ways", "Wishes", "Dilemmas"),
+            "Council: offices and decrees, ambition, ways, wishes, dilemmas");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Colony"), "Overview", "Calendar", "Chronicle"), "Colony: overview, calendar, chronicle");
         C(Same(PagesMath.PagesIn(RimfolkWindow.World), "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory"),
             "the region window: the map first, then neighbours, peoples, letters and calls, journeys, world events, the world's history");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Defense), "Defenses"), "the defense window has the Defenses page, and only there");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Planning), "Plan", "Base", "Making", "Build", "Rooms"), "the planning window: plan, base, making, build, rooms");
+        C(Same(PagesMath.ViewsOf(RimfolkWindow.Planning), "Plan", "Base", "Making", "Rooms"), "the planning window: Plan, Base, Making, Rooms");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Planning, "Plan"), "Plan", "Priorities"), "Plan: the plan, and the advisor's priorities joined to it");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Planning, "Rooms"), "Build", "Rooms"), "Rooms: the list of room plans, every room at a glance");
 
         // ---------------- Old addresses ----------------
-        // The council window's pages before this round, by the names the code, the settings and the keys used.
-        var old = new Dictionary<string, (string page, RimfolkWindow window)>
+        // Every page before this round, by the names the code, the settings and the keys used: its view and mode now.
+        var old = new Dictionary<string, (string page, RimfolkWindow window, string view)>
         {
-            ["Week"] = ("Week", RimfolkWindow.Council), ["Overview"] = ("Overview", RimfolkWindow.Council), ["Priorities"] = ("Priorities", RimfolkWindow.Council),
-            ["Moods"] = ("Moods", RimfolkWindow.Council), ["World"] = ("Neighbours", RimfolkWindow.World), ["Defenses"] = ("Defenses", RimfolkWindow.Defense),
-            ["Plan"] = ("Plan", RimfolkWindow.Planning), ["Base"] = ("Base", RimfolkWindow.Planning), ["Making"] = ("Making", RimfolkWindow.Planning),
-            ["Build"] = ("Build", RimfolkWindow.Planning), ["Roster"] = ("Roster", RimfolkWindow.Council), ["Everyone"] = ("Everyone", RimfolkWindow.Council),
-            ["Bonds"] = ("Bonds", RimfolkWindow.Council), ["Faiths"] = ("Faiths", RimfolkWindow.Council), ["Wishes"] = ("Wishes", RimfolkWindow.Council),
-            ["Decrees"] = ("Decrees", RimfolkWindow.Council), ["Ambition"] = ("Ambition", RimfolkWindow.Council), ["Ways"] = ("Ways", RimfolkWindow.Council),
-            ["Dilemmas"] = ("Dilemmas", RimfolkWindow.Council), ["Chronicle"] = ("Chronicle", RimfolkWindow.Council), ["Calendar"] = ("Calendar", RimfolkWindow.Council),
-            ["Dreams"] = ("Dreams", RimfolkWindow.Council), ["Journals"] = ("Journals", RimfolkWindow.Council), ["Almanac"] = ("Almanac", RimfolkWindow.Council),
-            ["RegionMap"] = ("Map", RimfolkWindow.World), ["History"] = ("Chronicle", RimfolkWindow.Council)
+            ["Week"] = ("Week", RimfolkWindow.Council, "Week"), ["Overview"] = ("Overview", RimfolkWindow.Council, "Colony"),
+            ["Priorities"] = ("Priorities", RimfolkWindow.Planning, "Plan"), ["Moods"] = ("Moods", RimfolkWindow.Council, "People"),
+            ["World"] = ("Neighbours", RimfolkWindow.World, "World"), ["Defenses"] = ("Defenses", RimfolkWindow.Defense, "Defense"),
+            ["Plan"] = ("Plan", RimfolkWindow.Planning, "Plan"), ["Base"] = ("Base", RimfolkWindow.Planning, "Base"),
+            ["Making"] = ("Making", RimfolkWindow.Planning, "Making"), ["Build"] = ("Build", RimfolkWindow.Planning, "Rooms"),
+            ["Rooms"] = ("Rooms", RimfolkWindow.Planning, "Rooms"), ["Roster"] = ("Table", RimfolkWindow.Council, "People"),
+            ["Everyone"] = ("Table", RimfolkWindow.Council, "People"), ["Bonds"] = ("Bonds", RimfolkWindow.Council, "People"),
+            ["Faiths"] = ("Faiths", RimfolkWindow.Council, "People"), ["Wishes"] = ("Wishes", RimfolkWindow.Council, "Council"),
+            ["Decrees"] = ("Decrees", RimfolkWindow.Council, "Council"), ["Offices"] = ("Decrees", RimfolkWindow.Council, "Council"),
+            ["Ambition"] = ("Ambition", RimfolkWindow.Council, "Council"), ["Ways"] = ("Ways", RimfolkWindow.Council, "Council"),
+            ["Dilemmas"] = ("Dilemmas", RimfolkWindow.Council, "Council"), ["Chronicle"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
+            ["Calendar"] = ("Calendar", RimfolkWindow.Council, "Colony"), ["Dreams"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
+            ["Journals"] = ("Chronicle", RimfolkWindow.Council, "Colony"), ["RegionMap"] = ("Map", RimfolkWindow.World, "World"),
+            ["History"] = ("Chronicle", RimfolkWindow.Council, "Colony"),
+            // A view's name opens it (on the mode last looked at in the game; its first here).
+            ["People"] = ("Table", RimfolkWindow.Council, "People"), ["Council"] = ("Decrees", RimfolkWindow.Council, "Council"),
+            ["Colony"] = ("Overview", RimfolkWindow.Council, "Colony")
         };
         foreach (var kv in old)
         {
             C(PagesMath.Resolve(kv.Key) == kv.Value.page, $"the old page {kv.Key} is {kv.Value.page} now");
             C(PagesMath.WindowOf(kv.Key) == kv.Value.window, $"the old page {kv.Key} opens the {kv.Value.window} window");
+            C(PagesMath.SectionOf(kv.Key) == kv.Value.view, $"the old page {kv.Key} opens its {kv.Value.view} view");
         }
-        C(PagesMath.SectionOf("Moods") == "People" && PagesMath.SectionOf("Dreams") == "People" && PagesMath.SectionOf("Journals") == "People",
-            "moods, dreams and journals moved to People");
-        C(PagesMath.SectionOf("Calendar") == "Colony" && PagesMath.SectionOf("Chronicle") == "Colony", "the calendar and the chronicle moved to Colony");
-        C(PagesMath.SectionOf("Wishes") == "Council", "wishes moved to Council");
-        C(PagesMath.Resolve("decrees") == "Decrees" && PagesMath.Resolve("WORLD") == "Neighbours", "names are read in any case");
+        C(PagesMath.FilterOf("Dreams") == "Dreams" && PagesMath.FilterOf("Journals") == "Journals" && PagesMath.FilterOf("Chronicle") == null && PagesMath.FilterOf("Roster") == null,
+            "dreams and journals open the Chronicle on their filter; the rest open as they are");
+        // The Almanac: no window's page, a window of its own, and still an address.
+        C(PagesMath.IsPage("Almanac") && PagesMath.IsAlmanac("almanac") && PagesMath.Resolve("Almanac") == PagesMath.Almanac && PagesMath.WindowOf("Almanac") == null
+            && !names.Contains("Almanac"), "the Almanac is an address of its own window, no window's page");
+        C(PagesMath.Resolve("decrees") == "Decrees" && PagesMath.Resolve("WORLD") == "Neighbours" && PagesMath.Resolve("roster") == "Table", "names are read in any case");
         C(!PagesMath.IsPage(null) && !PagesMath.IsPage("") && !PagesMath.IsPage("Nowhere") && PagesMath.WindowOf("Nowhere") == null, "a name that is no page is none");
+        C(PagesMath.IsView("People", out var vw, out var vv) && vw == RimfolkWindow.Council && vv == "People" && PagesMath.IsView("Rooms", out var vw2, out _) && vw2 == RimfolkWindow.Planning
+            && !PagesMath.IsView("World", out _, out _) && !PagesMath.IsView("Defense", out _, out _) && !PagesMath.IsView("Roster", out _, out _),
+            "views by name: the council's and the planning window's, not a window of one view");
         foreach (var kv in PagesMath.Moved)
         {
             C(!names.Contains(kv.Key, StringComparer.OrdinalIgnoreCase), $"the old name {kv.Key} is no page's own");
             C(names.Contains(kv.Value), $"the old name {kv.Key} leads to a page");
         }
+        foreach (var kv in PagesMath.MovedFilters) C(PagesMath.Moved.ContainsKey(kv.Key), $"the old name {kv.Key} that is a filter now also leads to its page");
+
+        // ---------------- Every view's "?" leads to an Almanac article ----------------
+        var articles = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "AlmanacArticleDefs"), "*.xml"))
+            foreach (var d in XDocument.Load(file).Root!.Elements())
+            {
+                string dn = d.Element("defName")?.Value;
+                if (dn != null) articles.Add(dn);
+            }
+        foreach (var w in new[] { RimfolkWindow.Council, RimfolkWindow.Planning })
+            foreach (var p in PagesMath.PagesIn(w))
+            {
+                string a = PagesMath.ArticleOf(p);
+                C(a != null && articles.Contains(a), $"the {p} page's \"?\" opens an Almanac article ({a ?? "none"})");
+            }
+        foreach (var kv in PagesMath.Articles) C(names.Contains(kv.Key), $"the article for {kv.Key} is a page's");
+        C(PagesMath.ArticleOf("Roster") == PagesMath.ArticleOf("Table"), "an old name's \"?\" is its page's");
+
+        // ---------------- A view's header: the modes keep their place, the "?" left of the page's own buttons ----------------
+        C(ViewHeadMath.Height(false) == 56f && ViewHeadMath.Height(true) == 56f + ViewHeadMath.ModeRow, "a header is as before, a row taller with modes");
+        C(ViewHeadMath.Height(true) <= 56f + 38f, "a header with modes is no taller than the old header and its row of sub-tabs");
+        var nat = new[] { 70f, 66f, 64f, 98f, 70f };
+        var mx = new float[5];
+        var mw = new float[5];
+        ViewHeadMath.Modes(42f, 900f, nat, 5, mx, mw);
+        bool inOrder = true;
+        for (int i = 0; i < 5; i++) inOrder &= mw[i] == nat[i] && (i == 0 ? mx[i] == 42f : Math.Abs(mx[i] - (mx[i - 1] + mw[i - 1] + ViewHeadMath.ModeGap)) < 0.01f);
+        C(inOrder, "modes that fit sit at their own widths, one after another from where the title begins");
+        ViewHeadMath.Modes(42f, 200f, nat, 5, mx, mw);
+        C(mx[4] + mw[4] <= 242.01f && mw[0] >= ViewHeadMath.MinMode - 0.01f && Math.Abs(mw[0] - mw[3]) < 0.01f, "modes that don't fit are squeezed evenly within the width");
+        ViewHeadMath.Modes(42f, 100f, nat, 5, mx, mw);
+        C(mx[4] + mw[4] <= 142.01f && mw.All(x => x >= 0f), "squeezed past their least, the last are cut at the edge");
+        ViewHeadMath.Modes(0f, 900f, nat, 3, mx, mw);
+        C(mw[2] == nat[2], "only as many modes as asked");
+        float hx = ViewHeadMath.HelpX(950f, 330f, 42f, out float statRight);
+        C(Math.Abs(hx - (950f - 330f - ViewHeadMath.Help)) < 0.01f && statRight < hx && hx + ViewHeadMath.Help <= 950f - 330f + 0.01f,
+            "the \"?\" sits just left of the page's own buttons, the stat left of it");
+        hx = ViewHeadMath.HelpX(300f, 400f, 42f, out statRight);
+        C(hx >= 42f && statRight >= 42f, "a narrow header keeps the \"?\" right of the icon");
+
+        // ---------------- The drawer in the council window: the People table beside a colonist's card ----------------
+        var cx = new float[CouncilLayoutMath.PeopleMin.Length];
+        var cw = new float[CouncilLayoutMath.PeopleMin.Length];
+        var shown = new bool[CouncilLayoutMath.PeopleMin.Length];
+        foreach (var (sw, sh, scale) in new[] { (1920f, 1080f, 1f), (1920f, 1080f, 1.5f), (1366f, 768f, 1f), (2560f, 1440f, 2f), (1280f, 720f, 1f) })
+        {
+            DrawerMath.WindowSize(sw / scale, sh / scale, out float ww, out _);
+            float content = DrawerMath.ContentWidth(ww);
+            DrawerMath.Split(0f, content, out _, out float viewW, out _, out _, out bool over);
+            // The table scrolls with a bar 16 wide; beside the drawer it has the view, over it the whole content.
+            CouncilLayoutMath.Layout((over ? content : viewW) - 16f, CouncilLayoutMath.PeopleMin, CouncilLayoutMath.PeopleWeight, CouncilLayoutMath.PeoplePriority, cx, cw, shown);
+            C(shown[0] && shown[1] && shown[3], $"{sw}x{sh} at {scale}: the table keeps the name, mood and trust beside the card ({(over ? "over" : "beside")}, {viewW:0})");
+        }
+
         // Sections by name (a bottom bar button made in XML, MainButtonWorker_Page).
-        C(PagesMath.TrySection("People", out var w1, out var s1) && w1 == RimfolkWindow.Council && s1 == "People", "the People section is the council window's");
+        C(PagesMath.TrySection("People", out var w1, out var s1) && w1 == RimfolkWindow.Council && s1 == "People", "the People view is the council window's");
         C(PagesMath.TrySection("Planning", out var w2, out _) && w2 == RimfolkWindow.Planning, "the old Planning section is the planning window");
         C(PagesMath.TrySection("History", out var w3, out var s3) && w3 == RimfolkWindow.Council && s3 == "Colony", "the old History section opens Colony");
         C(PagesMath.TrySection("Defense", out var w4, out _) && w4 == RimfolkWindow.Defense, "the defense window by name");

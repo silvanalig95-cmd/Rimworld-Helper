@@ -6,7 +6,10 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>People → Dreams (cards with the dreamer, the kind of dream and the dream itself) and People → Journals.</summary>
+    /// <summary>
+    /// The Chronicle's Dreams filter (cards with the dreamer, the kind of dream and the dream itself) and its Journals
+    /// filter (whose journals, and the one chosen to read). A colonist's own dreams and journal are also in their card.
+    /// </summary>
     public static class HistoryPanels
     {
         private static readonly Color Gold = new Color(1f, 0.85f, 0.5f);
@@ -61,7 +64,18 @@ namespace ColonyCouncil
             }
         }
 
-        public static void DrawDreams(Rect rect, CouncilGameComponent comp)
+        /// <summary>How many dreams the filters show (the Chronicle's stat on its Dreams filter).</summary>
+        public static int DreamCount(CouncilGameComponent comp) => ColonyCouncilMod.Settings.dreams ? Dreams(comp.dreams.recent).Count : 0;
+
+        /// <summary>Shows one dreamer's dreams (from their card), or everyone's (null).</summary>
+        public static void DreamsOf(string name)
+        {
+            dreamFilter = name;
+            dreamScroll = Vector2.zero;
+        }
+
+        /// <summary>The Chronicle's Dreams filter: who dreamt and what kind on a row of their own, then the dreams as cards.</summary>
+        public static void DreamsBody(Rect rect, CouncilGameComponent comp)
         {
             if (!ColonyCouncilMod.Settings.dreams)
             {
@@ -70,17 +84,16 @@ namespace ColonyCouncil
             }
             var all = comp.dreams.recent;
             var list = Dreams(all);
-            float top = UiKit.PageHeader(rect, Icons.Dreams, "CC_Tab_Dreams".Translate(), "CC_UI_Sub_Dreams".Translate(), "CC_UI_Stat_Dreams".Translate(list.Count).Resolve(),
-                UiKit.DreamColor, 436f);
+            const float top = 36f;
             string who = dreamFilter ?? "CC_Social_Everyone".Translate().ToString();
-            if (Widgets.ButtonText(new Rect(rect.xMax - 428f, rect.y + 6f, 220f, 30f), UiKit.Fit("CC_Social_Filter".Translate() + ": " + who, 200f)))
+            if (Widgets.ButtonText(new Rect(rect.x, rect.y, 220f, 28f), UiKit.Fit("CC_Social_Filter".Translate() + ": " + who, 200f)))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Social_Everyone".Translate(), () => dreamFilter = null) };
                 options.AddRange(all.Select(d => d.pawn?.LabelShort ?? d.name).Where(n => n != null).Distinct().OrderBy(n => n).Select(n => new FloatMenuOption(n, () => dreamFilter = n)));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
             string kindLabel = kindFilter.HasValue ? ("CC_DreamKind_" + kindFilter.Value).Translate().ToString() : "CC_History_AllKinds".Translate().ToString();
-            if (Widgets.ButtonText(new Rect(rect.xMax - 200f, rect.y + 6f, 200f, 30f), kindLabel))
+            if (Widgets.ButtonText(new Rect(rect.x + 228f, rect.y, 200f, 28f), kindLabel))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_History_AllKinds".Translate(), () => kindFilter = null) };
                 foreach (DreamKind k in System.Enum.GetValues(typeof(DreamKind)))
@@ -123,7 +136,8 @@ namespace ColonyCouncil
                 var face = new Rect(12f, y + 10f, 36f, 36f);
                 if (d.pawn != null && !d.pawn.Dead) UiKit.Portrait(face, d.pawn, color);
                 else UiKit.Badge(face, Icons.Dream, color);
-                if (d.pawn != null && d.pawn.IsColonist && Widgets.ButtonInvisible(face)) MainTabWindow_Council.OpenPerson(d.pawn);
+                // The dreamer's card, in the drawer beside the dreams.
+                if (d.pawn != null && d.pawn.IsColonist && Widgets.ButtonInvisible(face)) Cards.Open(d.pawn);
                 // Who, what kind, and when; the tags give way before they reach the date.
                 string name = d.pawn?.LabelShort ?? d.name ?? "?";
                 Text.Font = GameFont.Small;
@@ -169,7 +183,17 @@ namespace ColonyCouncil
         private static readonly Dictionary<JournalEntry, float> entryHeights = new Dictionary<JournalEntry, float>();
         private static float entryWidth;
 
-        public static void DrawJournals(Rect rect, CouncilGameComponent comp)
+        private static List<PawnJournal> Journals(CouncilGameComponent comp)
+        {
+            var here = People.OursIds();
+            return UiCache.Get(comp.journals, 90, () => comp.journals.All.OrderBy(j => here.Contains(j.pawnId) ? 0 : 1).ThenBy(j => j.name).ToList(), 0.5f);
+        }
+
+        /// <summary>How many journals there are (the Chronicle's stat on its Journals filter).</summary>
+        public static int JournalCount(CouncilGameComponent comp) => ColonyCouncilMod.Settings.journals ? Journals(comp).Count : 0;
+
+        /// <summary>The Chronicle's Journals filter: whose journals on the left, the one chosen to read on the right.</summary>
+        public static void JournalsBody(Rect rect, CouncilGameComponent comp)
         {
             if (!ColonyCouncilMod.Settings.journals)
             {
@@ -177,10 +201,9 @@ namespace ColonyCouncil
                 return;
             }
             var here = People.OursIds();
-            var journals = UiCache.Get(comp.journals, 90, () => comp.journals.All.OrderBy(j => here.Contains(j.pawnId) ? 0 : 1).ThenBy(j => j.name).ToList(), 0.5f);
+            var journals = Journals(comp);
             if (selectedJournal == null || !journals.Contains(selectedJournal)) selectedJournal = journals.FirstOrDefault();
-            float top = UiKit.PageHeader(rect, Icons.Journals, "CC_Tab_Journals".Translate(), "CC_UI_Sub_Journals".Translate(),
-                "CC_UI_Stat_Journals".Translate(journals.Count).Resolve());
+            const float top = 0f;
 
             const float rowH = 40f;
             var left = new Rect(rect.x, rect.y + top, Mathf.Min(250f, rect.width * 0.35f), rect.height - top);
@@ -224,7 +247,10 @@ namespace ColonyCouncil
             float tx = inner.x;
             if (owner != null)
             {
-                UiKit.Portrait(new Rect(inner.x, inner.y, 36f, 36f), owner, UiKit.TrustColor(comp.standings.TrustOf(owner)));
+                var face = new Rect(inner.x, inner.y, 36f, 36f);
+                UiKit.Portrait(face, owner, UiKit.TrustColor(comp.standings.TrustOf(owner)));
+                // The writer's card, in the drawer beside the journal.
+                if (Widgets.ButtonInvisible(face)) Cards.Open(owner);
                 tx += 44f;
             }
             else

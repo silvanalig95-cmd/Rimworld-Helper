@@ -6,7 +6,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>Planning → Room plans: every room plan, grouped, with buttons to plan it by hand or at a good spot.</summary>
+    /// <summary>Planning → Rooms, List: every room plan, grouped, with buttons to plan it by hand or at a good spot.</summary>
     public static class BuildPanel
     {
         private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);

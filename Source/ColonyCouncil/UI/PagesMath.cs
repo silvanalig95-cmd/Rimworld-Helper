@@ -6,7 +6,7 @@ namespace ColonyCouncil
     /// <summary>Rimfolk's four windows on the bottom bar, one button each.</summary>
     public enum RimfolkWindow
     {
-        /// <summary>The colony's own life: the council, its people, the colony, the Almanac.</summary>
+        /// <summary>The colony's own life: this week, its people, the council, the colony.</summary>
         Council,
         /// <summary>The Rimfolk map and everything beyond the colony (the "region" button).</summary>
         World,
@@ -17,11 +17,14 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Where every page of Rimfolk's windows is: which window, which section of it, in what order. Pure, so Tools/Tests
-    /// can check it, and the one list the windows build their tabs from. A page's name is its address: code asks for
-    /// "Decrees" or "Defenses" (UI/Pages.cs) and the right window opens there. Old addresses keep working: the council
-    /// window's World page is now the region window's Neighbours page, its History section's pages went to People and
-    /// Colony, its Defenses page to the defense window and its Planning section to the planning window.
+    /// Where every page of Rimfolk's windows is: which window, which view of it (its section), in what order. Pure, so
+    /// Tools/Tests can check it, and the one list the windows build their tabs and modes from (docs/design/interface.md,
+    /// "The windows and their views"). A window has at most five views, as its tabs; a view with more than one page
+    /// shows them as its modes, at most five, as small buttons in its header. A page's name is its address: code asks
+    /// for "Decrees" or "Defenses" (UI/Pages.cs) and the right window opens there, on that view and mode. Old addresses
+    /// keep working (<see cref="Moved"/>): the council window's Roster and Everyone are People's table, its Dreams and
+    /// Journals the Chronicle with that filter, its Priorities the planning window's Plan, its Almanac the Almanac's own
+    /// window; the council window's World page is the region window's Neighbours page.
     /// </summary>
     public static class PagesMath
     {
@@ -39,34 +42,34 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The council window's sections, in their order along its top.</summary>
-        public static readonly string[] CouncilSections = { "Council", "People", "Colony", "Almanac" };
+        /// <summary>The council window's views, in their order along its top (each a section of <see cref="All"/>).</summary>
+        public static readonly string[] CouncilSections = { "Week", "People", "Council", "Colony" };
 
-        /// <summary>The section a window with no sections of its own gives its pages.</summary>
+        /// <summary>The section a window with no views of its own gives its pages.</summary>
         public static string OnlySection(RimfolkWindow w) => w.ToString();
 
-        /// <summary>Every page, window by window and section by section, in the order of their tabs.</summary>
+        /// <summary>At most this many views to a window and modes to a view (the design's rule).</summary>
+        public const int MaxViews = 5, MaxModes = 5;
+
+        /// <summary>Every page, window by window and view by view, in the order of their tabs and modes.</summary>
         public static readonly Page[] All =
         {
-            // The council window.
+            // The council window: This week; People (table, moods, bonds, ideoligions, houses); Council (offices and
+            // decrees, ambition, ways, wishes, dilemmas); Colony (overview, calendar, chronicle).
+            new Page("Week", RimfolkWindow.Council, "Week"),
+            new Page("Table", RimfolkWindow.Council, "People"),
+            new Page("Moods", RimfolkWindow.Council, "People"),
+            new Page("Bonds", RimfolkWindow.Council, "People"),
+            new Page("Faiths", RimfolkWindow.Council, "People"),
+            new Page("Houses", RimfolkWindow.Council, "People"),
             new Page("Decrees", RimfolkWindow.Council, "Council"),
             new Page("Ambition", RimfolkWindow.Council, "Council"),
             new Page("Ways", RimfolkWindow.Council, "Council"),
-            new Page("Dilemmas", RimfolkWindow.Council, "Council"),
             new Page("Wishes", RimfolkWindow.Council, "Council"),
-            new Page("Roster", RimfolkWindow.Council, "People"),
-            new Page("Everyone", RimfolkWindow.Council, "People"),
-            new Page("Bonds", RimfolkWindow.Council, "People"),
-            new Page("Faiths", RimfolkWindow.Council, "People"),
-            new Page("Moods", RimfolkWindow.Council, "People"),
-            new Page("Dreams", RimfolkWindow.Council, "People"),
-            new Page("Journals", RimfolkWindow.Council, "People"),
-            new Page("Week", RimfolkWindow.Council, "Colony"),
+            new Page("Dilemmas", RimfolkWindow.Council, "Council"),
             new Page("Overview", RimfolkWindow.Council, "Colony"),
-            new Page("Priorities", RimfolkWindow.Council, "Colony"),
             new Page("Calendar", RimfolkWindow.Council, "Colony"),
             new Page("Chronicle", RimfolkWindow.Council, "Colony"),
-            new Page("Almanac", RimfolkWindow.Council, "Almanac"),
             // The region window: the map first, then what lies beyond the colony.
             new Page("Map", RimfolkWindow.World, "World"),
             new Page("Neighbours", RimfolkWindow.World, "World"),
@@ -77,39 +80,106 @@ namespace ColonyCouncil
             new Page("WorldHistory", RimfolkWindow.World, "World"),
             // The defense window.
             new Page("Defenses", RimfolkWindow.Defense, "Defense"),
-            // The planning window.
-            new Page("Plan", RimfolkWindow.Planning, "Planning"),
-            new Page("Base", RimfolkWindow.Planning, "Planning"),
-            new Page("Making", RimfolkWindow.Planning, "Planning"),
-            new Page("Build", RimfolkWindow.Planning, "Planning"),
-            new Page("Rooms", RimfolkWindow.Planning, "Planning")
+            // The planning window: Plan (the plan, the advisor's priorities); Base; Making; Rooms (the room plans as a
+            // list, every room at a glance).
+            new Page("Plan", RimfolkWindow.Planning, "Plan"),
+            new Page("Priorities", RimfolkWindow.Planning, "Plan"),
+            new Page("Base", RimfolkWindow.Planning, "Base"),
+            new Page("Making", RimfolkWindow.Planning, "Making"),
+            new Page("Build", RimfolkWindow.Planning, "Rooms"),
+            new Page("Rooms", RimfolkWindow.Planning, "Rooms")
         };
 
         /// <summary>
         /// Old addresses that are now another page: the council window's World page (now the region window's
-        /// Neighbours, which kept what it showed), the region map's own window, and the History section (its first page).
+        /// Neighbours, which kept what it showed), the region map's own window, the History section (its first page), the
+        /// roster and the table of everyone (People's table, where a colonist's card opens beside the list), dreams and
+        /// journals (the Chronicle with their filter, <see cref="MovedFilters"/>), and the offices (Offices and decrees).
         /// </summary>
         public static readonly Dictionary<string, string> Moved = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["World"] = "Neighbours",
             ["RegionMap"] = "Map",
             ["Region"] = "Map",
-            ["History"] = "Chronicle"
+            ["History"] = "Chronicle",
+            ["Roster"] = "Table",
+            ["Everyone"] = "Table",
+            ["Dreams"] = "Chronicle",
+            ["Journals"] = "Chronicle",
+            ["Offices"] = "Decrees"
         };
 
-        /// <summary>The page a name means, as its tabs know it ("decrees" is "Decrees", "World" is "Neighbours"); null for none.</summary>
+        /// <summary>An old address that is a page's filter now: the filter it opens the page with (Pages.Open sets it).</summary>
+        public static readonly Dictionary<string, string> MovedFilters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Dreams"] = "Dreams",
+            ["Journals"] = "Journals"
+        };
+
+        /// <summary>The Almanac's address: no page of a window but a window of its own, which any window opens.</summary>
+        public const string Almanac = "Almanac";
+
+        public static bool IsAlmanac(string name) => string.Equals(name, Almanac, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Each page's Almanac article, which the "?" in its view's header opens (by defName; a test checks each is in the
+        /// Almanac). A page with none has no "?".
+        /// </summary>
+        public static readonly Dictionary<string, string> Articles = new Dictionary<string, string>
+        {
+            ["Week"] = "Council_Alm_StartHere",
+            ["Table"] = "Council_Alm_C_Trust",
+            ["Moods"] = "Council_Alm_C_Moods",
+            ["Bonds"] = "Council_Alm_C_Social",
+            ["Faiths"] = "Council_Alm_C_FaithCouncil",
+            ["Houses"] = "Council_Alm_C_Family",
+            ["Decrees"] = "Council_Alm_C_Decrees",
+            ["Ambition"] = "Council_Alm_C_Meetings",
+            ["Ways"] = "Council_Alm_C_Ways",
+            ["Wishes"] = "Council_Alm_C_Wishes",
+            ["Dilemmas"] = "Council_Alm_C_Dilemmas",
+            ["Overview"] = "Council_Alm_Basics_ReadingTheCouncil",
+            ["Calendar"] = "Council_Alm_C_Calendar",
+            ["Chronicle"] = "Council_Alm_C_Names",
+            ["Plan"] = "Council_Alm_C_Ahead",
+            ["Priorities"] = "Council_Alm_C_Priorities",
+            ["Base"] = "Council_Alm_9_00_BaseGrowth",
+            ["Making"] = "Council_Alm_C_Ahead",
+            ["Build"] = "Council_Alm_9_00_RoomPlanner",
+            ["Rooms"] = "Council_Alm_9_00_RoomPlanner"
+        };
+
+        /// <summary>A page's Almanac article (its defName), or null.</summary>
+        public static string ArticleOf(string page)
+        {
+            string p = Resolve(page);
+            return p != null && Articles.TryGetValue(p, out var a) ? a : null;
+        }
+
+        /// <summary>
+        /// The page a name means, as its tabs know it ("decrees" is "Decrees", "World" is "Neighbours", "Roster" the People
+        /// table); a view's name is its first mode ("People" is the table); the Almanac is itself. Null for none.
+        /// </summary>
         public static string Resolve(string name)
         {
             if (string.IsNullOrEmpty(name)) return null;
             foreach (var p in All)
                 if (string.Equals(p.name, name, StringComparison.OrdinalIgnoreCase))
                     return p.name;
-            return Moved.TryGetValue(name, out var to) ? to : null;
+            if (Moved.TryGetValue(name, out var to)) return to;
+            if (IsAlmanac(name)) return Almanac;
+            foreach (var p in All)
+                if (HasViews(p.window) && string.Equals(p.section, name, StringComparison.OrdinalIgnoreCase))
+                    return p.name;
+            return null;
         }
+
+        /// <summary>The filter an old address opens its page with ("Dreams": the Chronicle's dreams), or null.</summary>
+        public static string FilterOf(string name) => !string.IsNullOrEmpty(name) && MovedFilters.TryGetValue(name, out var f) ? f : null;
 
         public static bool IsPage(string name) => Resolve(name) != null;
 
-        /// <summary>The page by its name (resolved), or false.</summary>
+        /// <summary>The page by its name (resolved), or false (the Almanac is no window's page).</summary>
         public static bool TryGet(string name, out Page page)
         {
             string n = Resolve(name);
@@ -123,13 +193,13 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>The window a page is in; null for no page.</summary>
+        /// <summary>The window a page is in; null for no page (and for the Almanac, a window of its own).</summary>
         public static RimfolkWindow? WindowOf(string name) => TryGet(name, out var p) ? p.window : (RimfolkWindow?)null;
 
-        /// <summary>The section a page is in (the council window's sections; another window's own name); null for no page.</summary>
+        /// <summary>The section a page is in (its view; a window without views' own name); null for no page.</summary>
         public static string SectionOf(string name) => TryGet(name, out var p) ? p.section : null;
 
-        /// <summary>A window's pages in order, or one section's.</summary>
+        /// <summary>A window's pages in order, or one view's.</summary>
         public static List<string> PagesIn(RimfolkWindow w, string section = null)
         {
             var list = new List<string>();
@@ -137,6 +207,53 @@ namespace ColonyCouncil
                 if (p.window == w && (section == null || p.section == section))
                     list.Add(p.name);
             return list;
+        }
+
+        /// <summary>A window's views in the order of its tabs (a window with no views of its own has one, its own name).</summary>
+        public static List<string> ViewsOf(RimfolkWindow w)
+        {
+            var list = new List<string>();
+            foreach (var p in All)
+                if (p.window == w && !list.Contains(p.section))
+                    list.Add(p.section);
+            return list;
+        }
+
+        // Which windows are made of views (more than one section), worked out once from All.
+        private static bool[] viewed;
+
+        /// <summary>
+        /// The window is made of views, each a tab with its own pages as modes (more than one section; a window of one
+        /// section, as the defense window, is one view, its tabs its pages).
+        /// </summary>
+        public static bool HasViews(RimfolkWindow w)
+        {
+            if (viewed == null)
+            {
+                var v = new bool[Enum.GetValues(typeof(RimfolkWindow)).Length];
+                foreach (RimfolkWindow x in Enum.GetValues(typeof(RimfolkWindow))) v[(int)x] = ViewsOf(x).Count > 1;
+                viewed = v;
+            }
+            return viewed[(int)w];
+        }
+
+        /// <summary>A view's modes (its pages) in order; a view of one page has no modes.</summary>
+        public static List<string> ModesOf(RimfolkWindow w, string view) => PagesIn(w, view);
+
+        /// <summary>A name is one of the windows' views (a section that isn't the window's own name).</summary>
+        public static bool IsView(string name, out RimfolkWindow window, out string view)
+        {
+            window = RimfolkWindow.Council;
+            view = null;
+            if (string.IsNullOrEmpty(name)) return false;
+            foreach (var p in All)
+                if (HasViews(p.window) && string.Equals(p.section, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    window = p.window;
+                    view = p.section;
+                    return true;
+                }
+            return false;
         }
 
         /// <summary>A window's first page: where its button opens when nothing else was asked for.</summary>
@@ -149,8 +266,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// What a bottom bar button's section name meant (MainButtonWorker_Page): a council section ("People"), or a
-        /// window by its name ("Planning", "Defense", "World"), or the old History section (now in Colony). Null for none.
+        /// What a bottom bar button's section name meant (MainButtonWorker_Page): a council view ("People"), or a window by
+        /// its name ("Planning", "Defense", "World"), or the old History section (now the Colony view). False for none
+        /// (the old Almanac section is the Almanac's window, which Pages opens).
         /// </summary>
         public static bool TrySection(string name, out RimfolkWindow window, out string section)
         {
