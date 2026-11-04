@@ -69,6 +69,12 @@
         town:headdied town:loss town:ill town:letter (a letter under way) town:wrote (one in 20 days) town:site
         town:quest (offered) quest:ongoing (taken on, under way: {QUESTNOW}) town:caravan town:visitors (theirs on
         the way) town:short:food town:short:medicine town:short:hands town:short:fuel
+      the region (World/Region/, their town kept in detail): town:struggling town:poor town:steady town:thriving
+        town:flourishing (its fortune, {FORTUNE} in their age's word: "struggling", "hungry", "prospering"); in its first
+        year town:new, town:founder ({FOUNDER}), them:founder (the one spoken to led its settlers), town:mother (the town
+        they came from, {MOTHERTOWN}), town:why:KEY (refugees ruin mother road river coast hills land; {WHYFOUNDED}
+        finishes "We came ...": "for the river"); region:newtown (a town founded near the colony this year that isn't
+        theirs: {NEWTOWN} of {NEWTOWNPEOPLE}) with region:newtown:theirs (of their people) or region:newtown:other
       wars: their:war war:new war:long war:losing (they have fewer towns than when it began) war:winning (the
         enemy has) war:fought (their fighters and the enemy's met on the colony's land) war:ourfoe (their enemy is
         the colony's too) war:ourfriend; their:peace (a war of theirs over in 30 days); world:war (two other
@@ -115,7 +121,8 @@
       {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {HOSPITAL} {DOCTOR} {THEN} {NOW} (who leads now, in a
       then:changed callback) {FAVOURFOR} (who a favour of theirs is owed to) {PROMISEDTO} (who they promised)
       {CLAIMON} (the one of the colony their family has a claim on) {DEBTTO} (whom a debt is owed) {FEALTYTO} (whom
-      fealty is sworn) {GRUDGEAGAINST} (whom a grudge is held against). Values that are names keep their case;
+      fealty is sworn) {GRUDGEAGAINST} (whom a grudge is held against) {FORTUNE} {FOUNDER} {MOTHERTOWN} {WHYFOUNDED}
+      {NEWTOWN} {NEWTOWNPEOPLE} (the region, above). Values that are names keep their case;
       {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
       one is capitalized for you.
   -->
