@@ -175,6 +175,7 @@ MODEL = {
     "Standing.cs:asked": ("colonists", 15, 35, "per colonist, one per wish def asked for"),
     "Standing.cs:standings": ("colonists", 1, R, "one per colonist, the gone dropped daily"),
     "Annals.cs:present": ("colonists", 1, P, "the year in progress"),
+    "Annals.cs:threatSeen": ("fixed", 1, D, "each home's last big threat counted, one per home (one in the model); homes no longer ours dropped"),
     "Annals.cs:joined": ("yearly", 0.1, 40, "the year in progress"),
     "Annals.cs:died": ("yearly", 0.07, 40, "the year in progress"),
     "Annals.cs:gone": ("yearly", 0.05, 40, "the year in progress"),

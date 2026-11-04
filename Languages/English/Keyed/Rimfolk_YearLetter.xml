@@ -5,6 +5,8 @@
   <CC_Year_Title>The {ORD} year on this land</CC_Year_Title>
   <CC_Year_Opening>On the {ORD} anniversary of the landing, {PAWN_nameDef} writes down what the year brought on the land and from beyond it.</CC_Year_Opening>
   <CC_Year_OpeningNobody>On the {ORD} anniversary of the landing, the council writes down what the year brought on the land and from beyond it.</CC_Year_OpeningNobody>
+  <!-- With more than one colony, each colony's own part of the year (its herd, its beast, its neighbours) under its name. -->
+  <CC_Year_AtHome>At {PLACE}:</CC_Year_AtHome>
   <CC_Year_Herd>The herd numbers {COUNT}, {BORN} of them born this year. {LEAD}</CC_Year_Herd>
   <CC_Year_HerdLeader>{PET_nameDef} leads it.</CC_Year_HerdLeader>
   <CC_Year_HerdLeaderLine>{PET_nameDef} leads it, the {ORD} generation of {LINE}'s line.</CC_Year_HerdLeaderLine>
