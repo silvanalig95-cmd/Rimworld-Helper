@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The new windows, checked over
+
+*4 November 2026, version 0.88.1*
+
+- Fixed: Enter in the search opens the result it shows, instead of closing the window under the search; and when the search closes, the keyboard is the game's again at once.
+- Fixed: pressing Enter while typing in the Almanac's search keeps the Almanac open.
+- Fixed: This week's Needs you counts what waits on you, the same number as its tab, the corner and the council button.
+- Fixed: the search no longer slows the game while it lists colonists.
+- Fixed: a colonist's card in a window and another in the floating card no longer rebuild their story on every frame.
+
 ## Pacts and truces
 
 *4 November 2026, version 0.88.0*

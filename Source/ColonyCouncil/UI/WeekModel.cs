@@ -129,12 +129,17 @@ namespace ColonyCouncil
                     if (shown < c.rows.Count) c.more = "CC_Week_More".Translate(hidden).Resolve();
                     else c.less = "CC_Inbox_Fewer".Translate().Resolve();
                 }
-                // The heading's count: how many rows (Needs you's own, what waits on the player).
+                // The heading's count: how many rows (Needs you's is the one count, below).
                 if (section != InboxSection.People && section != InboxSection.Plan) c.count = c.rows.Count;
                 m.cards.Add(c);
             }
             // The same count as the tab, the corner and the council button (the news letters aren't counted: they ask nothing).
             m.needs = Inbox.Count;
+            // Needs you's heading says that count too, not its rows (the news letters' row among them), so it never
+            // disagrees with the stat above it and the tab.
+            foreach (var c in m.cards)
+                if (c.section == InboxSection.Needs)
+                    c.count = m.needs;
             m.stat = m.needs > 0 ? "CC_Week_StatNeeds".Translate(m.needs).Resolve() : "CC_Week_StatCalm".Translate().Resolve();
             m.statColor = m.needs > 0 ? UiKit.Gold : UiKit.Good;
             return m;

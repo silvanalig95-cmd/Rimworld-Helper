@@ -65,6 +65,9 @@ public static class InboxTests
           && Regex.IsMatch(providers, @"PromisesCount\(\)[\s\S]*?KeptPhase\.Kept"), "today's four parts count what NeedsCount counted");
         C(model.Contains("public static int NeedsCount(CouncilGameComponent comp) => comp == null ? 0 : Inbox.Count;") && model.Contains("m.needs = Inbox.Count;"),
             "the tab, This week's stat and the old NeedsCount are the one count");
+        // Needs you's own rows hold the news letters' row, which asks nothing: its heading says the one count, not its rows.
+        C(Regex.IsMatch(model, @"m\.needs = Inbox\.Count;[\s\S]*?c\.section == InboxSection\.Needs\)\s*c\.count = m\.needs;"),
+            "Needs you's heading says the one count, as the stat above it and the tab do");
         C(inbox.Contains("now - countAt < 0.5f") && Regex.IsMatch(inbox, @"foreach \(var e in In\(InboxSection\.Needs\)\)"), "counted from Needs you's providers, at most twice a second");
         C(Code("UI/WindowTabs.cs").Contains("Inbox.Count") && Code("UI/MainTabWindow_Council.cs").Contains("WeekModel.NeedsCount(comp)") && Code("UI/CouncilButton.cs").Contains("Inbox.Count"),
             "the same count in the corner, on This week's tab and on the council button");
@@ -211,6 +214,12 @@ public static class InboxTests
         C(search.Contains("SearchMath.Find(query, index)") && Regex.IsMatch(search, @"if \(query != searched\)"), "filtered as the player types, only when the words change");
         C(search.Contains("public static void Register(Func<IEnumerable<SearchItem>> items)") && search.Contains("\"Council_Key_Search\""), "Search.Register for later kinds; a key");
         foreach (var kind in Enum.GetValues(typeof(SearchKind)).Cast<SearchKind>()) C(search.Contains("case SearchKind." + kind) || kind == SearchKind.Other, $"the {kind} kind has its heading");
+        // The game hands Enter (its accept key) to the topmost window that takes it before any window draws: the search
+        // takes it, or the window under it (the one whose corner opened it) closes instead.
+        C(search.Contains("forceCatchAcceptAndCancelEventEvenIfUnfocused = true;") && Regex.IsMatch(search, @"public override void OnAcceptKeyPressed\(\)\s*\{\s*Event\.current\.Use\(\);\s*Take\(Lit\);"),
+            "Enter takes the result lit, and never closes the window under the search");
+        C(search.Contains("!portraits.TryGetValue(item.key, out pawn)") && Regex.IsMatch(search,@"public static List<SearchItem> Index\(\)\s*\{\s*portraits\.Clear\(\);"),
+            "the results' portraits found once per index, not every frame");
         var searchKey = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_SearchKeys.xml")).Root!.Elements("KeyBindingDef").Select(e => e.Element("defName")!.Value).ToList();
         C(searchKey.SequenceEqual(new[] { "Council_Key_Search" }), "the search's key");
 

@@ -34,6 +34,7 @@ namespace ColonyCouncil
         /// <summary>Everything the search can find now, its names folded once.</summary>
         public static List<SearchItem> Index()
         {
+            portraits.Clear();
             var items = new List<SearchItem>();
             void Part(string what, Action add)
             {
@@ -192,6 +193,12 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The portraits of the results, found once per index: finding a pawn the ledger doesn't keep (a colonist, mostly)
+        /// goes through every pawn of the world, too much for every frame.
+        /// </summary>
+        private static readonly Dictionary<string, Pawn> portraits = new Dictionary<string, Pawn>();
+
         /// <summary>A result's picture: a colonist's or a person's portrait, a people's banner, else its kind's icon.</summary>
         public static void Picture(Rect r, SearchItem item)
         {
@@ -202,7 +209,11 @@ namespace ColonyCouncil
             {
                 case SearchKind.Colonist:
                 case SearchKind.Person:
-                    if (ThingRef.TryParse(item.key, out var pr)) pawn = ThingRefs.Pawn(pr);
+                    if (item.key != null && !portraits.TryGetValue(item.key, out pawn))
+                    {
+                        pawn = ThingRef.TryParse(item.key, out var pr) ? ThingRefs.Pawn(pr) : null;
+                        portraits[item.key] = pawn;
+                    }
                     icon = Icons.People;
                     break;
                 case SearchKind.People:
@@ -315,6 +326,9 @@ namespace ColonyCouncil
             layer = WindowLayer.Dialog;
             doCloseX = false;
             closeOnAccept = false;
+            // Enter is the game's accept key, which the game hands to the topmost window that takes it before any window
+            // draws: the search takes it (OnAcceptKeyPressed), or the window under it would close instead.
+            forceCatchAcceptAndCancelEventEvenIfUnfocused = true;
             closeOnCancel = true;
             closeOnClickedOutside = true;
             absorbInputAroundWindow = false;
@@ -330,6 +344,8 @@ namespace ColonyCouncil
         {
             base.PostClose();
             closedAt = Time.realtimeSinceStartup;
+            // The field gives the keyboard back, so the game's keys and Rimfolk's own work again at once.
+            UI.UnfocusCurrentControl();
         }
 
         protected override void SetInitialSizeAndPosition()
@@ -348,6 +364,16 @@ namespace ColonyCouncil
             Search.Open(item);
         }
 
+        /// <summary>The one lit, or the first found.</summary>
+        private SearchItem Lit => lit >= 0 && lit < flat.Count ? flat[lit] : SearchMath.First(groups);
+
+        /// <summary>Enter (the accept key): takes the one lit, and the key goes no further (to the window under the search).</summary>
+        public override void OnAcceptKeyPressed()
+        {
+            Event.current.Use();
+            Take(Lit);
+        }
+
         public override void DoWindowContents(Rect inRect)
         {
             // The keys before the field takes them: Enter takes the one lit, the arrows move it.
@@ -357,7 +383,7 @@ namespace ColonyCouncil
                 if (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter)
                 {
                     e.Use();
-                    Take(lit >= 0 && lit < flat.Count ? flat[lit] : SearchMath.First(groups));
+                    Take(Lit);
                     return;
                 }
                 if ((e.keyCode == KeyCode.DownArrow || e.keyCode == KeyCode.UpArrow) && flat.Count > 0)
