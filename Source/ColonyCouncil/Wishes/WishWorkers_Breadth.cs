@@ -194,11 +194,12 @@ namespace ColonyCouncil
     /// </summary>
     public class WishWorker_Meeting : WishWorker
     {
-        private static AmbitionTracker Tracker => CouncilGameComponent.Instance?.ambitions;
+        /// <summary>The council of someone's own colony (the seat's without one).</summary>
+        private static AmbitionTracker Tracker(Pawn p) => (p != null ? ColonyState.Of(p) : null)?.ambitions ?? CouncilGameComponent.Instance?.ambitions;
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
-            var t = Tracker;
+            var t = Tracker(pawn);
             var comp = CouncilGameComponent.Instance;
             var map = HomeMap(pawn);
             if (t == null || comp == null || map == null || !ColonyCouncilMod.Settings.enableAmbitions || pawn.DevelopmentalStage.Juvenile()) yield break;
@@ -219,7 +220,7 @@ namespace ColonyCouncil
 
         public override bool IsFulfilled(Wish wish)
         {
-            var t = Tracker;
+            var t = Tracker(wish.pawn);
             return t != null && t.lastMeetingTick > wish.createdTick && t.meeting == null;
         }
 
@@ -228,7 +229,7 @@ namespace ColonyCouncil
         /// <summary>Promised: the council calls the meeting now, as it would from the Ambition page.</summary>
         public override string OnPromised(Wish wish)
         {
-            var t = Tracker;
+            var t = Tracker(wish.pawn);
             var comp = CouncilGameComponent.Instance;
             if (t == null || comp == null || !t.CanCallMeetingNow(out _)) return null;
             t.HoldMeeting(comp, true);

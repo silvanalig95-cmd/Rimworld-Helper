@@ -150,10 +150,11 @@ namespace ColonyCouncil
             TrustEffects.Sync(p, st);
         }
 
-        /// <summary>Average trust of the free colonists, for the council tab and meetings.</summary>
-        public float ColonyTrust()
+        /// <summary>Average trust of the free colonists, for the council tab and meetings; of one colony's people with <paramref name="map"/> (its home).</summary>
+        public float ColonyTrust(Map map = null)
         {
-            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger()).ToList();
+            var colony = map != null ? ColonyState.For(map) : null;
+            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && (colony == null || colony.Has(p))).ToList();
             if (pawns.Count == 0) return 0f;
             return pawns.Average(TrustOf);
         }

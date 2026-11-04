@@ -535,8 +535,10 @@ namespace ColonyCouncil
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
         public Wish TryWishFromDream(Pawn p, WishDef def)
         {
-            if (!Settings.enableWishes || def == null || decrees.SuspendsWishes || OpenWishBy(p) != null || OnCooldown(p, def) || !CanVoiceWishes(p)) return null;
-            if (OpenWishes.Count() >= Settings.maxOpenWishes + 1) return null;
+            // Their own colony's decrees and its share of the wishes (ColonyState.cs).
+            var colony = ColonyState.Of(p);
+            if (!Settings.enableWishes || def == null || (colony?.decrees ?? decrees).SuspendsWishes || OpenWishBy(p) != null || OnCooldown(p, def) || !CanVoiceWishes(p)) return null;
+            if (OpenWishCount(colony) >= Settings.maxOpenWishes + 1) return null;
             var c = SafeCandidates(def, p).OrderByDescending(x => x.weight).FirstOrDefault();
             if (c == null) return null;
             var w = CreateWish(def, p, p, c, "dream");
@@ -560,6 +562,21 @@ namespace ColonyCouncil
         // ================= Queries =================
 
         public IEnumerable<Wish> OpenWishes => wishes.Where(w => w.state == WishState.Open);
+
+        /// <summary>
+        /// The open wishes of one colony's people (those who asked), for the cap on how many wait at once, which is each
+        /// colony's own; every colony's with none given.
+        /// </summary>
+        public int OpenWishCount(ColonyState colony)
+        {
+            int n = 0;
+            for (int i = 0; i < wishes.Count; i++)
+            {
+                var w = wishes[i];
+                if (w.state == WishState.Open && (colony == null || colony.Has(w.pawn))) n++;
+            }
+            return n;
+        }
 
         public Wish OpenWishBy(Pawn p)
         {
@@ -643,17 +660,32 @@ namespace ColonyCouncil
             public float weight;
         }
 
-        /// <summary>Rolls for a new wish (or forces one). Returns the new wish, if any.</summary>
-        public Wish TryGenerateWish(bool force, Pawn onlyFrom = null)
+        /// <summary>
+        /// Rolls for a new wish in each colony, with its own people, its own decrees and its own cap (or forces one, in
+        /// <paramref name="colony"/>, or <paramref name="onlyFrom"/>'s). Returns the new wish, if any (the first colony's).
+        /// </summary>
+        public Wish TryGenerateWish(bool force, Pawn onlyFrom = null, ColonyState colony = null)
+        {
+            if (colony != null || onlyFrom != null) return TryGenerateWishIn(force, onlyFrom, colony ?? ColonyState.Of(onlyFrom));
+            Wish made = null;
+            foreach (var c in ColonyState.Ticking())
+            {
+                var w = TryGenerateWishIn(force, null, c);
+                made ??= w;
+            }
+            return made;
+        }
+
+        private Wish TryGenerateWishIn(bool force, Pawn onlyFrom, ColonyState colony)
         {
             var s = Settings;
             // Let a new colony settle in before anyone starts asking for things.
             if (!force && Find.TickManager.TicksGame < GenDate.TicksPerDay * 3) return null;
-            if (!force && decrees.SuspendsWishes) return null;
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(CanVoiceWishes).ToList();
+            if (!force && (colony?.decrees ?? decrees).SuspendsWishes) return null;
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => CanVoiceWishes(p) && (colony == null || colony.Has(p))).ToList();
             if (pawns.Count == 0) return null;
             if (!force && !Rand.Chance(Standards.WishRateFactor(pawns) / (Mathf.Max(0.25f, s.daysBetweenWishes) * 24f))) return null;
-            if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
+            if (OpenWishCount(colony) >= s.maxOpenWishes && !force) return null;
 
             var options = new List<Option>();
             // Each roll asks every wish about every colonist; remember the answers so kind colonists speaking up
@@ -681,7 +713,7 @@ namespace ColonyCouncil
                     if (defFactor <= 0f) continue;
                     foreach (var c in Candidates(def, requester))
                     {
-                        AddOption(options, def, requester, requester, c, defFactor);
+                        AddOption(options, def, requester, requester, c, defFactor, colony);
                     }
                 }
 
@@ -696,7 +728,7 @@ namespace ColonyCouncil
                             if (!def.allowForOthers || OnCooldown(other, def)) continue;
                             foreach (var c in Candidates(def, other))
                             {
-                                AddOption(options, def, requester, other, c, def.weight * 0.5f);
+                                AddOption(options, def, requester, other, c, def.weight * 0.5f, colony);
                             }
                         }
                     }
@@ -745,11 +777,12 @@ namespace ColonyCouncil
             }
         }
 
-        private void AddOption(List<Option> options, WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, float factor)
+        private void AddOption(List<Option> options, WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, float factor, ColonyState colony)
         {
             if (c == null || c.weight <= 0f) return;
+            // A petition is joined only within the colony: another colony's wish is theirs to ask for.
             var existing = wishes.FirstOrDefault(w => w.state == WishState.Open && w.def == def && w.subjectKey == (c.subjectKey ?? "")
-                                                      && (def.allowPetition || w.Beneficiary == beneficiary));
+                                                      && (def.allowPetition || w.Beneficiary == beneficiary) && (colony == null || colony.Has(w.pawn)));
             if (existing != null)
             {
                 if (!Settings.petitions || !def.allowPetition || existing.Involves(requester) || beneficiary != requester) return;

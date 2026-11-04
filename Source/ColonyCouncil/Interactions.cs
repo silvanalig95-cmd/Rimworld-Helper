@@ -30,7 +30,8 @@ namespace ColonyCouncil
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             if (!ColonyCouncilMod.Settings.enableAmbitions) return 0f;
-            var active = CouncilGameComponent.Instance?.ambitions?.active;
+            // The ambition of the initiator's own colony.
+            var active = initiator == null ? null : ColonyState.Of(initiator)?.ambitions?.active;
             if (active == null || recipient == null || !recipient.RaceProps.Humanlike) return 0f;
             if (!initiator.IsColonist || initiator.IsQuestLodger() || initiator.MapHeld != active.map) return 0f;
             return initiator == active.proposer ? 0.05f : 0.01f;

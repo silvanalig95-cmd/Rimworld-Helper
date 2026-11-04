@@ -345,7 +345,8 @@ namespace ColonyCouncil
             Setbacks.Tracker?.Notify_Granted(w);
             // A lasting wish (a bed, a room, a telescope) is watched for a while: taking it away again is noticed.
             Safe("promises kept", () => kept.Notify_Granted(this, w));
-            ambitions.Notify_WishGranted(w);
+            // The ambition of the colony that asked.
+            (ColonyState.Of(w.pawn)?.ambitions ?? ambitions).Notify_WishGranted(w);
             Safe("ripples", () => GrantRipples(w));
             Safe("objection", () => ResolveObjection(w, true));
         }
@@ -491,10 +492,12 @@ namespace ColonyCouncil
             if (passedOver > 0)
                 AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_PassedOver".Translate(passedOver, who.LabelShort, w.Label).Resolve(), who));
 
-            if (envious != null && OpenWishes.Count() < s.maxOpenWishes && !OnCooldown(envious, w.def) && CanVoiceWishes(envious))
+            // The envious one's own colony: its share of the wishes and its decrees.
+            var enviousColony = envious != null ? ColonyState.Of(envious) : null;
+            if (envious != null && OpenWishCount(enviousColony) < s.maxOpenWishes && !OnCooldown(envious, w.def) && CanVoiceWishes(envious))
             {
                 var c = SafeCandidates(w.def, envious).FirstOrDefault();
-                if (c != null && !decrees.SuspendsWishes) CreateWish(w.def, envious, envious, c, "envy", who);
+                if (c != null && !(enviousColony?.decrees ?? decrees).SuspendsWishes) CreateWish(w.def, envious, envious, c, "envy", who);
             }
         }
 
@@ -637,14 +640,22 @@ namespace ColonyCouncil
         private void CheckTriggers()
         {
             var s = Settings;
-            if (!s.eventWishes || decrees.SuspendsWishes) return;
+            if (!s.eventWishes) return;
             int now = Find.TickManager.TicksGame;
             if (now < GenDate.TicksPerDay * 2) return;
-            if (OpenWishes.Count() >= s.maxOpenWishes + 1) return;
+            // Each colony with its own people, decrees and share of the wishes (ColonyState.cs).
+            foreach (var colony in ColonyState.Ticking()) CheckTriggers(colony, now);
+        }
+
+        private void CheckTriggers(ColonyState colony, int now)
+        {
+            var s = Settings;
+            if (colony.decrees.SuspendsWishes) return;
+            if (OpenWishCount(colony) >= s.maxOpenWishes + 1) return;
             var options = new List<(WishDef def, Pawn pawn, WishCandidate c, WishTrigger trig, float w)>();
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
-                if (!CanVoiceWishes(p) || OpenWishBy(p) != null) continue;
+                if (!CanVoiceWishes(p) || !colony.Has(p) || OpenWishBy(p) != null) continue;
                 var st = standings.For(p);
                 if (now - st.lastTriggerTick < GenDate.TicksPerDay * 1.5f) continue;
                 tmpThoughts.Clear();

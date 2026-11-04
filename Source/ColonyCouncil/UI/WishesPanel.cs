@@ -58,7 +58,8 @@ namespace ColonyCouncil
             if (Widgets.ButtonText(listenRect, "CC_Listen".Translate(), true, true, canListen))
             {
                 lastListenTick = now;
-                var w = comp.TryGenerateWish(true);
+                // In the colony in view.
+                var w = comp.TryGenerateWish(true, null, ColonyState.InView);
                 // direct: the answer to the player's click on "Listen".
                 if (w == null) Messages.Message("CC_Listen_Nothing".Translate(), MessageTypeDefOf.NeutralEvent, false);
             }
