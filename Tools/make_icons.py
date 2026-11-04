@@ -422,6 +422,23 @@ def g_forward():
     return g_back().transpose(Image.FLIP_LEFT_RIGHT)
 
 
+def g_inbox():
+    """The inbox (This week, what waits on you): a tray with a dip in its rim, seen from the front."""
+    m = new()
+    poly(m, [(18, 140), (56, 40), (200, 40), (238, 140), (238, 222), (18, 222)])
+    poly(m, [(54, 132), (82, 64), (174, 64), (202, 132)], fill=OFF)  # the tray's inside, above the rim
+    poly(m, [(44, 152), (98, 152), (114, 178), (142, 178), (158, 152), (212, 152), (212, 198), (44, 198)], fill=OFF)  # its front, with the dip
+    return m
+
+
+def g_search():
+    """Search: a magnifying glass, its handle down to the right."""
+    m = new()
+    ring(m, 104, 104, 70, 26)
+    line(m, [(156, 156), (226, 226)], 34)
+    return m
+
+
 # The region window's views, its map's lenses and modes (Source/ColonyCouncil/UI/Region/)
 
 def g_away():
@@ -1020,6 +1037,8 @@ def g_cat_mods():
 GLYPHS = [
     # the corner's way back and forward
     ("Back", g_back), ("Forward", g_forward),
+    # the corner's inbox and search
+    ("Inbox", g_inbox), ("Search", g_search),
     # the region window's views, its map's lenses and modes
     ("Away", g_away), ("LensLand", g_lens_land), ("LensStance", g_lens_stance), ("LensFortunes", g_lens_fortunes),
     ("LensThreats", g_lens_threats), ("LensTrade", g_lens_trade), ("LensOurs", g_lens_ours), ("ModeMap", g_mode_map),

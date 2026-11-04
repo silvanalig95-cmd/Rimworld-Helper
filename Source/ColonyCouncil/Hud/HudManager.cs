@@ -76,6 +76,7 @@ namespace ColonyCouncil
                 case HudLayout.Health: return new HudHealth();
                 case HudLayout.Work: return new HudWork();
                 case HudLayout.Inventory: return new HudInventory();
+                case HudLayout.Following: return new HudFollowing();
                 default: return null;
             }
         }

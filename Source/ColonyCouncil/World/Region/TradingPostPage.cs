@@ -20,25 +20,33 @@ namespace ColonyCouncil
 
         // ---------------- This week ----------------
 
-        /// <summary>A line for each post whose keeper has warned it will close unless things mend (UI/WeekModel.cs): no timer, what would mend it.</summary>
-        public static void WeekRows(WeekCard card)
+        /// <summary>
+        /// A line in This week's Coming for each post whose keeper has warned it will close unless things mend
+        /// (UI/Inbox.cs): no timer, what would mend it, the post a link to its card.
+        /// </summary>
+        public static void WeekRows(List<WeekRow> rows)
         {
-            if (card == null || RegionBook.Instance == null || !TradingPosts.On) return;
+            if (rows == null || RegionBook.Instance == null || !TradingPosts.On) return;
             foreach (var (home, p) in TradingPosts.All())
             {
                 if (p.warnedAt < 0 && p.closing < 0) continue;
                 var town = TradingPosts.TownOf(p);
-                string text = "CC_PostPg_Week".Translate((p.name ?? "?").Named("POST"), (p.people?.Name ?? "?").Named("PEOPLE")).Resolve();
+                var place = town != null ? ThingRefs.Of(town) : ThingRef.None;
+                string post = place.IsNone ? p.name ?? "?" : ThingRefs.Link(p.name ?? town.Name, place);
+                string people = p.people != null ? ThingRefs.Link(p.people.Name, ThingRefs.Of(p.people)) : "?";
+                string text = "CC_PostPg_Week".Translate(post.Named("POST"), people.Named("PEOPLE")).Resolve();
                 if (Homes.All.Count > 1) text = Homes.Name(home) + ": " + text;
-                card.rows.Add(new WeekRow
+                rows.Add(new WeekRow
                 {
                     icon = Icons.Trader,
                     color = UiKit.Warn,
+                    faction = p.people,
                     text = text,
-                    note = (p.closing >= 0 ? "CC_PostPg_WeekClosing" : "CC_PostPg_WeekWarned").Translate().Resolve(),
-                    noteColor = UiKit.Warn,
+                    sub = (p.closing >= 0 ? "CC_PostPg_WeekClosing" : "CC_PostPg_WeekWarned").Translate().Resolve(),
+                    subColor = UiKit.Warn,
                     tip = string.Join("\n", TradingPostWords.Lines(home, p, false)),
-                    click = town != null ? WeekModel.Go(new GlobalTargetInfo(town)) : WeekModel.Page(Name),
+                    click = town != null ? WeekModel.Go(new GlobalTargetInfo(town)) : WeekModel.Page("Map/Trade/List"),
+                    follow = place,
                     order = -1
                 });
             }

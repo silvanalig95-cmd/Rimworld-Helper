@@ -44,6 +44,9 @@ namespace ColonyCouncil
         // The corner's way back and forward (UI/Cards/Nav.cs)
         public static readonly Texture2D Back = Load("Back");
         public static readonly Texture2D Forward = Load("Forward");
+        // The corner's inbox (This week, with its count) and search (UI/WindowTabs.cs, UI/Search.cs)
+        public static readonly Texture2D Inbox = Load("Inbox");
+        public static readonly Texture2D Search = Load("Search");
 
         // The region window's views, its map's lenses and modes (UI/Region/)
         public static readonly Texture2D Away = Load("Away");

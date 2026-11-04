@@ -195,7 +195,7 @@ namespace ColonyCouncil
             int bound = CouncilKeys.Pages.Count(p => CouncilKeys.KeyFor(p) != null);
             var memory = WeekMemory.Instance;
             part.Add("Council window opens on " + s.councilOpensOn + ", " + (s.councilPageState?.Count ?? 0) + " page settings remembered, " + bound + " page shortcuts bound"
-                     + (memory != null ? "; " + memory.pinnedPawns.Count + " colonists and " + memory.pinnedWishes.Count + " wishes pinned, " + memory.dilemmas.Count + " answers kept" : "") + ".");
+                     + (memory != null ? "; " + memory.following.Count + " things followed and " + memory.pinnedWishes.Count + " wishes pinned, " + memory.dilemmas.Count + " answers kept" : "") + ".");
             var comp = CouncilGameComponent.Instance;
             if (comp != null)
                 part.Add("This colony: era " + comp.era + " (works out as " + Avail.EffectiveTech.ToStringHuman() + "), "

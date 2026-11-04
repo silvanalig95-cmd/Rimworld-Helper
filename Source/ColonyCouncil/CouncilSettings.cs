@@ -423,6 +423,8 @@ namespace ColonyCouncil
         public bool defenseButton = true;
         /// <summary>A "region" button in the bottom bar: the Rimfolk map and everything beyond the colony (UI/MainTabWindow_World.cs).</summary>
         public bool worldButton = true;
+        /// <summary>The council button on the bottom bar carries the count of what waits on the player, as This week's tab does (UI/Inbox.cs).</summary>
+        public bool inboxCountOnButton = true;
         /// <summary>A More button on the bottom bar, for the buttons put away (UI/BarMore.cs; a deeper game hook).</summary>
         public bool barMore = true;
         /// <summary>The bottom bar's buttons put away under More, by def name (arranged in the game).</summary>
@@ -712,6 +714,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planButton, "planButton", true);
             Scribe_Values.Look(ref defenseButton, "defenseButton", true);
             Scribe_Values.Look(ref worldButton, "worldButton", true);
+            Scribe_Values.Look(ref inboxCountOnButton, "inboxCountOnButton", true);
             Scribe_Values.Look(ref barMore, "barMore", true);
             Scribe_Collections.Look(ref barPutAway, "barPutAway", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) barPutAway = BarMoreMath.Clean(barPutAway);

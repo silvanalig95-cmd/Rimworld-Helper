@@ -8,15 +8,19 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// What the council window keeps with each game: the colonists and wishes pinned to This week, a week of each
-    /// colonist's trust (one sample a day, for the trends), and the answered dilemmas (<see cref="DilemmaLog"/>). People
-    /// are kept by ThingID, never by reference, so someone gone can't break a save. Its tick does almost nothing: one
-    /// check every 250 ticks, a sample once a day, and the dilemma watch only while an answer is still playing out. It
-    /// also hears the optional keyboard shortcuts for the council's pages (<see cref="CouncilKeys"/>).
+    /// What the council window keeps with each game: the things the player follows (at most twelve, by their text form,
+    /// "p123", "t55": UI/FollowMath.cs) and the wishes pinned to This week, a week of each colonist's trust (one sample a
+    /// day, for the trends), and the answered dilemmas (<see cref="DilemmaLog"/>). Things are kept by their text form,
+    /// never by reference, so something gone can't break a save. Its tick does almost nothing: one check every 250 ticks,
+    /// a sample once a day, and the dilemma watch only while an answer is still playing out. It also hears the optional
+    /// keyboard shortcuts for the council's pages (<see cref="CouncilKeys"/>) and the search's key.
     /// </summary>
     public class WeekMemory : GameComponent
     {
-        public List<string> pinnedPawns = new List<string>();
+        /// <summary>What the player follows (docs/design/interface.md, "Following"): things' text forms, at most twelve.</summary>
+        public List<string> following = new List<string>();
+        /// <summary>The colonists pinned before following, by ThingID: read from an older save only, then followed.</summary>
+        private List<string> pinnedPawns;
         public List<int> pinnedWishes = new List<int>();
         public List<DilemmaRecord> dilemmas = new List<DilemmaRecord>();
         /// <summary>Trust by day, per colonist: "ThingID" → "lastDay|v;v;v" (oldest first), parallel lists for saving.</summary>
@@ -68,18 +72,45 @@ namespace ColonyCouncil
             PeopleTable.Dirty();
         }
 
-        // ---------------- Pins ----------------
+        // ---------------- Following, and the wishes pinned ----------------
 
-        public bool IsPinned(Pawn p) => p != null && pinnedPawns.Contains(p.ThingID);
+        public bool IsFollowed(ThingRef r) => FollowMath.Has(following, r);
+
+        /// <summary>
+        /// Follows a thing, or stops following it (the pin on its card's head, a row, the People table). A thirteenth
+        /// is refused with a word why.
+        /// </summary>
+        public FollowChange ToggleFollow(ThingRef r)
+        {
+            var change = FollowMath.Toggle(following, r);
+            if (change == FollowChange.Full)
+                // direct: the answer to the player's own click.
+                Messages.Message("CC_Follow_Full".Translate(FollowMath.Max.Named("COUNT")).Resolve(), MessageTypeDefOf.RejectInput, false);
+            if (change == FollowChange.Followed || change == FollowChange.Unfollowed)
+            {
+                WeekPanel.Dirty();
+                PeopleTable.Dirty();
+                FollowWords.Dirty();
+            }
+            return change;
+        }
+
+        /// <summary>The things followed, in the order they were followed.</summary>
+        public IEnumerable<ThingRef> Followed()
+        {
+            foreach (var s in following)
+                if (ThingRef.TryParse(s, out var r))
+                    yield return r;
+        }
+
+        /// <summary>A colonist is followed (what was "pinned").</summary>
+        public bool IsPinned(Pawn p) => p != null && IsFollowed(ThingRefs.Of(p));
 
         public bool IsPinned(Wish w) => w != null && pinnedWishes.Contains(w.id);
 
         public void TogglePin(Pawn p)
         {
-            if (p == null) return;
-            if (!pinnedPawns.Remove(p.ThingID)) pinnedPawns.Add(p.ThingID);
-            WeekPanel.Dirty();
-            PeopleTable.Dirty();
+            if (p != null) ToggleFollow(ThingRefs.Of(p));
         }
 
         public void TogglePin(Wish w)
@@ -156,12 +187,7 @@ namespace ColonyCouncil
             if (gone != null)
                 foreach (var k in gone)
                     trails.Remove(k);
-            // Pins of colonists the colony no longer has go too.
-            if (pinnedPawns.Count > 0)
-            {
-                var ours = People.OursIds();
-                pinnedPawns.RemoveAll(id => id == null || !ours.Contains(id));
-            }
+            // Pins of wishes no longer open go; what is followed stays, gone or not, until the player lets it go.
             if (pinnedWishes.Count > 0) pinnedWishes.RemoveAll(id => !comp.wishes.Exists(w => w.id == id && w.state == WishState.Open));
         }
 
@@ -193,8 +219,9 @@ namespace ColonyCouncil
             try
             {
                 CouncilKeys.OnGUI();
-                // Back and forward through Rimfolk's windows (keys, side buttons), and a name's preview (UI/Cards/).
+                // Back and forward through Rimfolk's windows (keys, side buttons), the search's key, and a name's preview (UI/Cards/).
                 Nav.OnGUI();
+                Search.OnGUI();
                 Previews.OnGUI();
             }
             catch (Exception e)
@@ -207,7 +234,9 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.Saving) Store();
-            Scribe_Collections.Look(ref pinnedPawns, "pinnedPawns", LookMode.Value);
+            Scribe_Collections.Look(ref following, "following", LookMode.Value);
+            // An older save's pinned colonists, followed from now on.
+            if (Scribe.mode == LoadSaveMode.LoadingVars) Scribe_Collections.Look(ref pinnedPawns, "pinnedPawns", LookMode.Value);
             Scribe_Collections.Look(ref pinnedWishes, "pinnedWishes", LookMode.Value);
             Scribe_Collections.Look(ref dilemmas, "dilemmas", LookMode.Deep);
             Scribe_Collections.Look(ref trustKeys, "trustKeys", LookMode.Value);
@@ -215,7 +244,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSampleDay, "lastSampleDay", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                pinnedPawns ??= new List<string>();
+                following ??= new List<string>();
+                if (pinnedPawns != null) FollowMath.TakeOldPins(following, pinnedPawns);
+                pinnedPawns = null;
+                FollowMath.Clean(following);
                 pinnedWishes ??= new List<int>();
                 dilemmas ??= new List<DilemmaRecord>();
                 dilemmas.RemoveAll(d => d == null);

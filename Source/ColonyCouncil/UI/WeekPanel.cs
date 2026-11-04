@@ -7,24 +7,35 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// This week, the council window's first view: what needs the player (wishes and petitions, letters waiting for an
-    /// answer, promises at risk), what's coming (gatherings and plans, days on the calendar, fights, missions, a camp),
-    /// and how people are (strain and breaks, serious illness and recovery, trust, the mood balance of Rimfolk's own
-    /// moods). Each line goes to its page, or to the colonist or the place on the map; a colonist's portrait opens their
-    /// card in the drawer; colonists and wishes can be pinned to the top. The model (<see cref="WeekModel"/>) is built at most once a second, so drawing
-    /// asks nothing of the game and allocates nothing per frame.
+    /// This week, the council window's first view and the one inbox (docs/design/interface.md, "This week: one inbox"):
+    /// Following (what the player follows, each with its newest change), Needs you (wishes and petitions, letters waiting
+    /// for an answer, the region's and diplomacy's asks, promises at risk), Under way (letters, caravans, missions,
+    /// settlers, in steps, never a countdown), Coming (by date), How people are (strain, illness, trust, the mood
+    /// balance) and the plan (the advisor's two most pressing steps). Each row is one sentence with its names as links,
+    /// its act on the right; a click goes to its page, the colonist or the place; "and 3 more" opens the rest in place.
+    /// Features add rows through Inbox.Register (UI/Inbox.cs). The model (<see cref="WeekModel"/>) is built at most once a
+    /// second, so drawing asks nothing of the game and allocates nothing per frame.
     /// </summary>
     public static class WeekPanel
     {
+        /// <summary>A row with a second line (what it is, its steps) under its sentence.</summary>
+        public const float TallRow = 40f;
+
         private static Vector2 scroll;
         private static float height = 600f;
         private static WeekModel model;
         private static float modelAt = -1f;
         private static float placedWidth = -1f;
         private static WeekModel placedModel;
+        /// <summary>The sections opened in place ("and 3 more"), kept for the session.</summary>
+        private static readonly HashSet<InboxSection> opened = new HashSet<InboxSection>();
 
-        /// <summary>Something changed (a pin, letters put away): the next draw builds the page again.</summary>
-        public static void Dirty() => modelAt = -1f;
+        /// <summary>Something changed (a pin, letters put away, a section opened): the next draw builds the page and the count again.</summary>
+        public static void Dirty()
+        {
+            modelAt = -1f;
+            Inbox.Dirty();
+        }
 
         public static WeekModel Model(CouncilGameComponent comp, Map map)
         {
@@ -33,7 +44,7 @@ namespace ColonyCouncil
                 modelAt = Time.realtimeSinceStartup;
                 try
                 {
-                    model = WeekModel.Build(comp, map);
+                    model = WeekModel.Build(comp, map, opened);
                 }
                 catch (System.Exception e)
                 {
@@ -47,7 +58,7 @@ namespace ColonyCouncil
         public static void Draw(Rect rect, CouncilGameComponent comp, Map map)
         {
             var m = Model(comp, map);
-            float top = UiKit.PageHeader(rect, Icons.Week ?? Icons.Overview, m.title, m.sub, m.stat, m.statColor, 0f, m.headerTip);
+            float top = UiKit.PageHeader(rect, Icons.Inbox ?? Icons.Week ?? Icons.Overview, m.title, m.sub, m.stat, m.statColor, 0f, m.headerTip);
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -78,6 +89,19 @@ namespace ColonyCouncil
             }
         }
 
+        private static float RowHeight(WeekRow r) => r.Tall ? TallRow : CouncilLayoutMath.RowHeight;
+
+        /// <summary>A section's height: its heading, the rows that show, "and 3 more" (or "Show fewer"), its footer, or one line saying it's empty.</summary>
+        private static float CardHeight(WeekCard c)
+        {
+            float h = CouncilLayoutMath.CardHeader + CouncilLayoutMath.CardPad;
+            if (c.rows.Count == 0 && c.footer.Count == 0) return h + CouncilLayoutMath.RowHeight;
+            for (int i = 0; i < c.shown; i++) h += RowHeight(c.rows[i]);
+            if (c.more != null || c.less != null) h += CouncilLayoutMath.RowHeight;
+            foreach (var r in c.footer) h += RowHeight(r);
+            return h;
+        }
+
         /// <summary>Each card into the shorter column, worked out again only when the model or the width changes.</summary>
         private static void Place(WeekModel m, float width)
         {
@@ -89,8 +113,8 @@ namespace ColonyCouncil
             for (int i = 0; i < heights.Length; i++)
             {
                 var c = m.cards[i];
-                c.shown = CouncilLayoutMath.ShownRows(c.rows.Count);
-                c.height = CouncilLayoutMath.CardHeight(c.rows.Count);
+                c.shown = InboxMath.Shown(c.section, c.rows.Count, c.opened);
+                c.height = CardHeight(c);
                 heights[i] = c.height;
             }
             var into = CouncilLayoutMath.Place(heights, cols);
@@ -107,30 +131,12 @@ namespace ColonyCouncil
         private static void DrawCard(Rect r, WeekCard c)
         {
             UiKit.Card(r, UiKit.WithAlpha(c.color, 0.55f), false, false);
-            // The heading: icon, title, a note on the right, and the card's action; a click opens its page.
-            float right = r.xMax - 8f;
-            if (c.action != null && c.actionLabel != null)
-            {
-                Text.Font = GameFont.Tiny;
-                float bw = Text.CalcSize(c.actionLabel).x + 16f;
-                Text.Font = GameFont.Small;
-                var br = new Rect(right - bw, r.y + 5f, bw, 20f);
-                Text.Font = GameFont.Tiny;
-                bool clicked = Widgets.ButtonText(br, c.actionLabel);
-                Text.Font = GameFont.Small;
-                if (c.actionTip != null) TooltipHandler.TipRegion(br, c.actionTip);
-                if (clicked) c.action();
-                right = br.x - 6f;
-            }
-            if (!c.right.NullOrEmpty())
-            {
-                float rw = Mathf.Min(150f, (right - r.x) * 0.4f);
-                UiKit.LabelFit(new Rect(right - rw, r.y + 4f, rw, 22f), c.right, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-                right -= rw + 6f;
-            }
-            var titleRect = new Rect(r.x + 8f, r.y, Mathf.Max(0f, right - r.x - 8f), CouncilLayoutMath.CardHeader);
+            // The heading: icon, title and its count; a click opens its view.
+            var titleRect = new Rect(r.x + 8f, r.y, Mathf.Max(0f, r.width - 16f), CouncilLayoutMath.CardHeader);
             UiKit.Icon(new Rect(titleRect.x + 2f, r.y + 7f, 16f, 16f), c.icon, c.color);
-            UiKit.LabelFit(new Rect(titleRect.x + 24f, r.y + 3f, Mathf.Max(0f, titleRect.width - 24f), 24f), c.title, c.color);
+            float tw = Mathf.Min(UiKit.KeptWidth(c.title, GameFont.Small) + 2f, Mathf.Max(0f, titleRect.width - 60f));
+            UiKit.LabelFit(new Rect(titleRect.x + 24f, r.y + 3f, tw, 24f), c.title, c.color);
+            if (c.count > 0) UiKit.LabelFit(new Rect(titleRect.x + 30f + tw, r.y + 4f, 40f, 24f), c.count.ToString(), UiKit.Faint, GameFont.Tiny);
             UiKit.Divider(r.x + 6f, r.y + CouncilLayoutMath.CardHeader - 2f, r.width - 12f);
             if (c.page != null)
             {
@@ -140,26 +146,38 @@ namespace ColonyCouncil
             }
 
             float y = r.y + CouncilLayoutMath.CardHeader;
-            if (c.rows.Count == 0)
+            if (c.rows.Count == 0 && c.footer.Count == 0)
             {
                 UiKit.LabelFit(new Rect(r.x + 12f, y, r.width - 20f, CouncilLayoutMath.RowHeight), c.empty, UiKit.Dim, GameFont.Tiny);
                 return;
             }
-            for (int i = 0; i < c.shown; i++)
+            int index = 0;
+            for (int i = 0; i < c.shown && i < c.rows.Count; i++)
             {
-                DrawRow(new Rect(r.x + 4f, y, r.width - 8f, CouncilLayoutMath.RowHeight), c.rows[i], i);
+                float h = RowHeight(c.rows[i]);
+                DrawRow(new Rect(r.x + 4f, y, r.width - 8f, h), c.rows[i], index++);
+                y += h;
+            }
+            string fold = c.more ?? c.less;
+            if (fold != null)
+            {
+                // "and 3 more" opens the rest in place; "Show fewer" folds them again.
+                var mr = new Rect(r.x + 4f, y, r.width - 8f, CouncilLayoutMath.RowHeight);
+                Widgets.DrawHighlightIfMouseover(mr);
+                UiKit.LabelFit(new Rect(mr.x + 26f, mr.y, mr.width - 30f, mr.height), fold, UiKit.Link, GameFont.Tiny);
+                if (Widgets.ButtonInvisible(mr))
+                {
+                    if (!opened.Remove(c.section)) opened.Add(c.section);
+                    (c.more != null ? SoundDefOf.TabOpen : SoundDefOf.TabClose).PlayOneShotOnCamera();
+                    modelAt = -1f;
+                }
                 y += CouncilLayoutMath.RowHeight;
             }
-            if (c.more != null)
+            foreach (var row in c.footer)
             {
-                var mr = new Rect(r.x + 4f, y, r.width - 8f, CouncilLayoutMath.RowHeight);
-                if (c.page != null) Widgets.DrawHighlightIfMouseover(mr);
-                UiKit.LabelFit(new Rect(mr.x + 26f, mr.y, mr.width - 30f, mr.height), c.more, UiKit.Faint, GameFont.Tiny);
-                if (c.page != null)
-                {
-                    TooltipHandler.TipRegion(mr, c.pageName);
-                    if (Widgets.ButtonInvisible(mr)) MainTabWindow_Council.OpenTab(c.page);
-                }
+                float h = RowHeight(row);
+                DrawRow(new Rect(r.x + 4f, y, r.width - 8f, h), row, index++);
+                y += h;
             }
         }
 
@@ -173,29 +191,36 @@ namespace ColonyCouncil
                 DrawBalance(r, row);
                 return;
             }
+            bool tall = row.Tall;
+            float lineH = CouncilLayoutMath.RowHeight;
             float x = r.x + 2f;
-            if (row.pawn != null)
+            float pic = tall ? 30f : r.height - 4f;
+            var face = new Rect(x, r.y + (r.height - pic) / 2f, pic, pic);
+            if (row.pawn != null || row.faction != null)
             {
-                var face = new Rect(x, r.y + 2f, r.height - 4f, r.height - 4f);
-                UiKit.Portrait(face, row.pawn, UiKit.TrustColor(TrustOf(row.pawn)));
-                // Their card, in the drawer beside the week; the rest of the line does what it says.
-                if (Widgets.ButtonInvisible(face, false))
+                UiKit.Picture(face, row.pawn, row.faction, row.icon, UiKit.WithAlpha(row.color, 0.9f), row.pawn != null ? UiKit.TrustColor(TrustOf(row.pawn)) : (Color?)null);
+                // A portrait opens their card in the drawer beside the week; the rest of the line does what it says.
+                var who = row.pawn != null ? ThingRefs.Of(row.pawn) : ThingRefs.Of(row.faction);
+                if (!who.IsNone)
                 {
-                    Cards.Click();
-                    Cards.Open(row.pawn);
-                    return;
+                    if (Mouse.IsOver(face)) Previews.Hover(who, face);
+                    if (Widgets.ButtonInvisible(face, false))
+                    {
+                        Cards.Click();
+                        Cards.Open(who);
+                        return;
+                    }
                 }
-                x += r.height + 2f;
+                x += pic + 4f;
             }
             else if (row.icon != null)
             {
-                UiKit.Icon(new Rect(x + 3f, r.y + 5f, 16f, 16f), row.icon, UiKit.WithAlpha(row.color, 0.9f));
+                UiKit.Icon(new Rect(x + 3f, r.y + (tall ? 12f : 5f), 16f, 16f), row.icon, UiKit.WithAlpha(row.color, 0.9f));
                 x += 24f;
             }
             float right = r.xMax - 2f;
-            // The pin: always when pinned, else under the mouse.
-            bool pinnable = row.pinPawn != null || row.pinWish != null;
-            if (pinnable)
+            // The pin: always when followed, else under the mouse.
+            if (row.Pinnable)
             {
                 if (PinButton(new Rect(right - 17f, r.y + 5f, 16f, 16f), row.pinned, over))
                 {
@@ -204,29 +229,60 @@ namespace ColonyCouncil
                 }
                 right -= 22f;
             }
+            // Its act on the right: "Answer", "Decide", "Look", "Pay".
+            if (!row.act.NullOrEmpty() && row.actRun != null)
+            {
+                if (row.actWidth < 0f) row.actWidth = Mathf.Clamp(UiKit.KeptWidth(row.act, GameFont.Tiny) + 18f, 54f, 110f);
+                var ar = new Rect(right - row.actWidth, r.y + (r.height - 22f) / 2f, row.actWidth, 22f);
+                if (ActButton(ar, row.act, row.actWhy, row.actTip))
+                {
+                    row.actRun();
+                    WeekPanel.Dirty();
+                    return;
+                }
+                right = ar.x - 6f;
+            }
+            float textTop = tall ? r.y + 2f : r.y;
+            // The second line runs under the note, up to the act.
+            float secondRight = right;
             if (!row.note.NullOrEmpty())
             {
-                if (row.noteWidth < 0f)
-                {
-                    Text.Font = GameFont.Tiny;
-                    row.noteWidth = Mathf.Ceil(Text.CalcSize(row.note).x) + 4f;
-                    Text.Font = GameFont.Small;
-                }
+                if (row.noteWidth < 0f) row.noteWidth = UiKit.KeptWidth(row.note, GameFont.Tiny) + 4f;
                 float nw = Mathf.Min(row.noteWidth, (right - x) * 0.45f);
-                UiKit.LabelFit(new Rect(right - nw, r.y, nw, r.height), row.note, row.noteColor, GameFont.Tiny, TextAnchor.MiddleRight);
+                UiKit.LabelFit(new Rect(right - nw, textTop, nw, lineH), row.note, row.noteColor, GameFont.Tiny, TextAnchor.MiddleRight);
                 right -= nw + 6f;
             }
-            UiKit.LabelFit(new Rect(x, r.y, Mathf.Max(0f, right - x), r.height), row.text, row.color);
-            // The line's tooltip leaves the pin to its own.
-            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(pinnable ? new Rect(r.x, r.y, r.width - 22f, r.height) : r, row.tip);
-            // A right click offers the pin and the colonist's page.
-            if (over && Event.current.type == EventType.MouseDown && Event.current.button == 1 && pinnable)
+            var textRect = new Rect(x, textTop, Mathf.Max(0f, right - x), lineH);
+            LinkText.Line(textRect, row.text, row.color);
+            if (tall)
+            {
+                var second = new Rect(x, r.y + 21f, Mathf.Max(0f, secondRight - x), 17f);
+                if (row.steps != null) UiKit.StepsLine(second, row.steps, row.step);
+                else LinkText.Line(second, row.sub, row.subColor, GameFont.Tiny);
+            }
+            // The line's tooltip leaves the pin and the act to their own.
+            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(r.x, r.y, Mathf.Max(0f, right - r.x), r.height), row.tip);
+            // A right click offers the pin and the card.
+            if (over && Event.current.type == EventType.MouseDown && Event.current.button == 1 && row.Pinnable)
             {
                 Event.current.Use();
                 Menu(row);
                 return;
             }
             if (row.click != null && Widgets.ButtonInvisible(r)) row.click();
+        }
+
+        /// <summary>A row's act, small: greyed with why not as its tooltip.</summary>
+        private static bool ActButton(Rect r, string label, string whyNot, string tip)
+        {
+            bool can = whyNot == null;
+            var old = Text.Font;
+            Text.Font = GameFont.Tiny;
+            bool clicked = Widgets.ButtonText(r, UiKit.Fit(label, r.width - 6f), true, true, can);
+            Text.Font = old;
+            string t = can ? tip : whyNot;
+            if (!t.NullOrEmpty()) TooltipHandler.TipRegion(r, t);
+            return clicked && can;
         }
 
         /// <summary>Rimfolk's good moods against its bad ones, as one bar, with the sums either side.</summary>
@@ -248,8 +304,8 @@ namespace ColonyCouncil
         private static float TrustOf(Pawn p) => CouncilGameComponent.Instance?.standings.TrustOf(p) ?? 0f;
 
         /// <summary>
-        /// The pin to This week, for other pages (a wish card, the roster): gold when pinned, faint under the mouse,
-        /// hidden otherwise. Returns true when clicked; the caller toggles the pin.
+        /// The follow pin, for other pages (a wish card, the People table, a card's head): gold when followed, faint under
+        /// the mouse, hidden otherwise. Returns true when clicked; the caller toggles it.
         /// </summary>
         public static bool PinButton(Rect r, bool pinned, bool show)
         {
@@ -266,7 +322,8 @@ namespace ColonyCouncil
             var memory = WeekMemory.Instance;
             if (memory == null) return;
             if (row.pinWish != null) memory.TogglePin(row.pinWish);
-            else memory.TogglePin(row.pinPawn);
+            else memory.ToggleFollow(row.follow);
+            Dirty();
         }
 
         private static void Menu(WeekRow row)
@@ -275,8 +332,8 @@ namespace ColonyCouncil
             {
                 new FloatMenuOption(row.pinned ? PinTips.Unpin : PinTips.Pin, () => TogglePin(row))
             };
-            var p = row.pinPawn ?? row.pinWish?.pawn;
-            if (p != null) options.Add(new FloatMenuOption("CC_Week_OpenPage".Translate(p.LabelShort).Resolve(), () => Cards.Open(p)));
+            var thing = !row.follow.IsNone ? row.follow : ThingRefs.Of(row.pinWish?.pawn);
+            if (!thing.IsNone) options.Add(new FloatMenuOption("CC_Week_OpenPage".Translate(ThingRefs.Name(thing)).Resolve(), () => Cards.Open(thing)));
             Find.WindowStack.Add(new FloatMenu(options));
         }
     }

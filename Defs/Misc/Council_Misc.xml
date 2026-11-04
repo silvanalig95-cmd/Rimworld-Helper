@@ -11,6 +11,8 @@
     <label>council</label>
     <description>The colony's own life in four views: this week (what waits on you), its people (a table of everyone with each colonist's card beside it, their moods, bonds, ideoligions and houses), the council (offices and decrees, the ambition and its meetings, the colony's ways, wishes and petitions, dilemmas), and the colony (the overview, the calendar and the chronicle with the dreams and journals).</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Council</tabWindowClass>
+    <!-- The game's own button, with the count of what waits on you on its corner (the setting "inboxCountOnButton"). -->
+    <workerClass>ColonyCouncil.MainButtonWorker_Council</workerClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/UI/MainButton</iconPath>
   </MainButtonDef>

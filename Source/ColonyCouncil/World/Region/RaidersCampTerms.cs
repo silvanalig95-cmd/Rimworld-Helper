@@ -61,6 +61,9 @@ namespace ColonyCouncil
             return c != null && c.setAt == setAt && c.stage == CampStage.Found ? c : null;
         }
 
+        /// <summary>Their terms still wait for the colony's answer (This week's Needs you counts it).</summary>
+        public bool Waiting => !ArchivedOnly && Live(out _) != null;
+
         public override IEnumerable<DiaOption> Choices
         {
             get

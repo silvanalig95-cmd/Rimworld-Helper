@@ -19,6 +19,17 @@ namespace ColonyCouncil
         /// <summary>The council whose election this letter is about.</summary>
         private OfficeTracker Tracker => map != null ? OfficeTracker.WithElectionOn(map) ?? OfficeTracker.For(map) : CouncilGameComponent.Instance?.offices;
 
+        /// <summary>The campaign still runs, so the council may still step in (This week's Needs you counts it).</summary>
+        public bool Waiting
+        {
+            get
+            {
+                if (ArchivedOnly) return false;
+                var e = Tracker?.election;
+                return e != null && e.year == year && !e.ceremony;
+            }
+        }
+
         public override IEnumerable<DiaOption> Choices
         {
             get

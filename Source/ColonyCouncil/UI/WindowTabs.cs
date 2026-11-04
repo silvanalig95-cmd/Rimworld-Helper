@@ -29,21 +29,27 @@ namespace ColonyCouncil
     /// <summary>
     /// What Rimfolk's four windows share at their top: the game's own tabs, each with its icon where it has room (only
     /// the icon, with the name on hover, where even the name doesn't fit), and in the top right corner back and forward,
-    /// the Almanac's book, and a small icon for each of the four windows (the council, the region, defense, planning) to
-    /// go from one to another. The one showing is lit; the others open their window as its button would, whether or not
-    /// that button is on the bar.
+    /// the search, This week's inbox with the count of what waits on the player, what is followed, the Almanac's book,
+    /// and a small icon for each of the four windows (the council, the region, defense, planning) to go from one to
+    /// another. The one showing is lit; the others open their window as its button would, whether or not that button
+    /// is on the bar.
     /// </summary>
     public static class WindowTabs
     {
         private const float TabIconSize = 18f;
         private const float LinkSize = 24f;
         private const float LinkGap = 6f;
+        /// <summary>The search field's width where the window is wide enough; below, the search is an icon like the rest.</summary>
+        private const float SearchWide = 82f, SearchFrom = 860f;
 
-        /// <summary>The back and forward arrows and the Almanac's book before the windows' icons, and the gap after them.</summary>
-        private const float ArrowsWidth = 3f * (LinkSize + LinkGap) + 8f;
+        private static float SearchWidth(float width) => width >= SearchFrom ? SearchWide : LinkSize;
 
-        /// <summary>The corner's width: back and forward, the Almanac, the four windows' icons, and the space around them.</summary>
-        public static float LinksWidth => ArrowsWidth + PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
+        /// <summary>
+        /// The corner's width in a window of this width: back and forward, the search, the inbox, following and the
+        /// Almanac's book, the four windows' icons, and the space around them.
+        /// </summary>
+        public static float CornerWidth(float width) =>
+            2f * (LinkSize + LinkGap) + SearchWidth(width) + LinkGap + 3f * (LinkSize + LinkGap) + 8f + PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
 
         private static string iconPad;
 
@@ -60,9 +66,10 @@ namespace ColonyCouncil
             float tabH = TabDrawer.TabHeight;
             var body = new Rect(inRect.x, inRect.y + tabH, inRect.width, inRect.height - tabH);
             Widgets.DrawMenuSection(body);
-            var area = new Rect(body.x, body.y, Mathf.Max(120f, body.width - LinksWidth), body.height);
+            float corner = CornerWidth(body.width);
+            var area = new Rect(body.x, body.y, Mathf.Max(120f, body.width - corner), body.height);
             if (tabs.Count > 0) Tabs(area, tabs);
-            Links(new Rect(body.xMax - LinksWidth, inRect.y, LinksWidth, tabH), current);
+            Links(new Rect(body.xMax - corner, inRect.y, corner, tabH), current, body.width);
             return body;
         }
 
@@ -132,7 +139,9 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<RimfolkWindow, string> tips = new Dictionary<RimfolkWindow, string>();
-        private static string almanacTip;
+        private static string almanacTip, searchTip, searchWord, followTip;
+        private static int inboxTipFor = -1;
+        private static string inboxTip;
 
         private static string Tip(RimfolkWindow w)
         {
@@ -143,16 +152,28 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Back and forward (UI/Cards/Nav.cs), the Almanac's book (its own window, lit while open), then the four windows'
-        /// icons, right-aligned in <paramref name="row"/>; the window showing is lit and does nothing.
+        /// Back and forward (UI/Cards/Nav.cs), the search (UI/Search.cs), This week's inbox with its count (UI/Inbox.cs),
+        /// what is followed, the Almanac's book (its own window, lit while open), then the four windows' icons,
+        /// right-aligned in <paramref name="row"/>; the window showing is lit and does nothing.
         /// </summary>
-        public static void Links(Rect row, RimfolkWindow current)
+        public static void Links(Rect row, RimfolkWindow current, float width)
         {
             float top = row.y + (row.height - LinkSize) / 2f;
-            float ax = row.xMax - LinksWidth + 4f;
+            float ax = row.xMax - CornerWidth(width) + 4f;
             Nav.Arrows(new Rect(ax, top, LinkSize, LinkSize), new Rect(ax + LinkSize + LinkGap, top, LinkSize, LinkSize));
+            ax += 2f * (LinkSize + LinkGap);
+            // The search: a field where there is room, else its icon; the index is made only when it opens.
+            float sw = SearchWidth(width);
+            SearchField(new Rect(ax, top, sw, LinkSize));
+            ax += sw + LinkGap;
+            // This week, the one inbox, with the count of what waits on the player.
+            InboxIcon(new Rect(ax, top, LinkSize, LinkSize));
+            ax += LinkSize + LinkGap;
+            // What is followed: a list of it, each opening its card.
+            FollowingIcon(new Rect(ax, top, LinkSize, LinkSize));
+            ax += LinkSize + LinkGap;
             // The Almanac, in its own window beside this one.
-            var book = new Rect(ax + 2f * (LinkSize + LinkGap), top, LinkSize, LinkSize);
+            var book = new Rect(ax, top, LinkSize, LinkSize);
             almanacTip ??= "CC_Win_AlmanacTip".Translate().Resolve();
             if (UiKit.IconButton(book, Icons.Almanac, almanacTip, true, Window_Almanac.Showing ? UiKit.Gold : (Color?)null)) Window_Almanac.Toggle();
             float x = row.xMax - 4f;
@@ -178,6 +199,66 @@ namespace ColonyCouncil
                     Pages.Show(w);
                 }
             }
+        }
+
+        /// <summary>The search: a field with its icon and word where there is room, its icon alone where not; a click opens it under the field.</summary>
+        private static void SearchField(Rect r)
+        {
+            bool over = Mouse.IsOver(r);
+            bool open = Find.WindowStack?.WindowOfType<Window_Search>() != null;
+            if (searchTip == null)
+            {
+                string key = Search.KeyLabel();
+                searchTip = "CC_Corner_SearchTip".Translate().Resolve() + (key == null ? "" : " (" + key + ")");
+                searchWord = "CC_Corner_Search".Translate().Resolve();
+            }
+            if (r.width > LinkSize + 1f)
+            {
+                Widgets.DrawBoxSolidWithOutline(r, over || open ? UiKit.CardHover : UiKit.CardFill, open ? UiKit.WithAlpha(UiKit.Gold, 0.5f) : UiKit.CardBorder, 1);
+                UiKit.Icon(new Rect(r.x + 5f, r.y + 5f, 14f, 14f), Icons.Search, open ? UiKit.Gold : over ? Color.white : UiKit.Faint);
+                UiKit.LabelFit(new Rect(r.x + 23f, r.y, r.width - 26f, r.height), searchWord, over ? Color.white : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(r, searchTip);
+                if (!Widgets.ButtonInvisible(r, false)) return;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            else if (!UiKit.IconButton(r, Icons.Search, searchTip, true, open ? UiKit.Gold : (Color?)null)) return;
+            Search.Toggle(UI.GUIToScreenRect(r));
+        }
+
+        /// <summary>This week, the one inbox: lit while it shows, with the count of what waits on the player (the same as its tab and the council button).</summary>
+        private static void InboxIcon(Rect r)
+        {
+            int n = Inbox.Count;
+            bool here = Pages.Showing(RimfolkWindow.Council) && MainTabWindow_Council.Page == "Week";
+            if (inboxTipFor != n || inboxTip == null)
+            {
+                inboxTipFor = n;
+                inboxTip = (n > 0 ? "CC_Corner_InboxTip".Translate(n.Named("COUNT")) : "CC_Corner_InboxTipCalm".Translate()).Resolve();
+            }
+            if (here) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
+            if (UiKit.IconButton(r, Icons.Inbox ?? Icons.Week, inboxTip, true, here ? UiKit.Gold : (Color?)null) && !here) Pages.Open("Week");
+            if (n > 0) UiKit.CountBadge(r, n);
+        }
+
+        /// <summary>What is followed: a list of it with each one's newest change, each opening its card, and the panel on the screen.</summary>
+        private static void FollowingIcon(Rect r)
+        {
+            var memory = WeekMemory.Instance;
+            int n = memory?.following.Count ?? 0;
+            followTip ??= "CC_Corner_FollowTip".Translate().Resolve();
+            if (!UiKit.IconButton(r, Icons.Pin ?? Icons.Promise, followTip, memory != null, n > 0 ? UiKit.Gold : (Color?)null)) return;
+            var options = new List<FloatMenuOption>();
+            foreach (var l in FollowWords.Lines())
+            {
+                var thing = l.thing;
+                string label = LinkTextMath.Plain(l.name) + (l.plainNews.NullOrEmpty() ? "" : ": " + l.plainNews);
+                options.Add(new FloatMenuOption(label, () => Cards.Open(thing)));
+            }
+            if (options.Count == 0) options.Add(new FloatMenuOption("CC_Corner_FollowNone".Translate(), null));
+            bool panel = HudLayout.State(HudLayout.Following).on && ColonyCouncilMod.Settings.hudShown;
+            options.Add(new FloatMenuOption((panel ? "CC_Corner_FollowPanelOff" : "CC_Corner_FollowPanelOn").Translate(),
+                () => HudManager.SetPanel(HudLayout.Following, !panel)));
+            Find.WindowStack.Add(new FloatMenu(options));
         }
     }
 

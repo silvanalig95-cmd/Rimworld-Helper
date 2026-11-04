@@ -117,25 +117,40 @@ namespace ColonyCouncil
 
         // ---------------- This week ----------------
 
-        /// <summary>A line for each camp standing near a home, on the card of missions, camps and guests (UI/WeekModel.cs): no timer, its raids so far.</summary>
-        public static void WeekRows(WeekCard card)
+        /// <summary>
+        /// A line in This week's Coming for each camp standing near a home (UI/Inbox.cs): no timer, its raids so far, its
+        /// price with Pay while it is offered. A price being paid is under way (UI/InboxUnderWay.cs); their terms waiting
+        /// in a letter are in Needs you.
+        /// </summary>
+        public static void WeekRows(List<WeekRow> rows)
         {
-            if (card == null || RegionBook.Instance == null) return;
+            if (rows == null || RegionBook.Instance == null) return;
             foreach (var (home, c) in RaidersCamps.Known())
             {
+                if (c.stage == CampStage.Paying) continue;
                 var site = RaidersCamps.SiteOf(c);
-                string text = "CC_RaidCampPg_Week".Translate(c.label.Named("NAME"), (c.people?.Name ?? "?").Named("PEOPLE")).Resolve();
+                var place = site != null ? ThingRefs.Of(site) : ThingRef.None;
+                string name = place.IsNone ? c.label : ThingRefs.Link(c.label, place);
+                string people = c.people != null ? ThingRefs.Link(c.people.Name, ThingRefs.Of(c.people)) : "?";
+                string text = "CC_RaidCampPg_Week".Translate(name.Named("NAME"), people.Named("PEOPLE")).Resolve();
                 if (Homes.All.Count > 1) text = Homes.Name(home) + ": " + text;
-                card.rows.Add(new WeekRow
+                var map = home;
+                var camp = c;
+                var go = site != null ? WeekModel.Go(new GlobalTargetInfo(site)) : WeekModel.Page("Map/Threats/List");
+                rows.Add(new WeekRow
                 {
                     icon = Icons.Raid,
                     color = UiKit.Bad,
+                    faction = c.people,
                     text = text,
-                    note = c.stage == CampStage.Paying ? "CC_RaidCampPg_WeekPaying".Translate().Resolve()
-                        : c.raids == 0 ? "CC_RaidCampPg_WeekNoRaid".Translate().Resolve() : "CC_RaidCampPg_WeekRaids".Translate(c.raids.Named("RAIDS")).Resolve(),
-                    noteColor = UiKit.Bad,
+                    sub = c.raids == 0 ? "CC_RaidCampPg_WeekNoRaid".Translate().Resolve() : "CC_RaidCampPg_WeekRaids".Translate(c.raids.Named("RAIDS")).Resolve(),
+                    subColor = UiKit.Bad,
                     tip = string.Join("\n", Lines(home, c, false)),
-                    click = site != null ? WeekModel.Go(new GlobalTargetInfo(site)) : WeekModel.Page(Name),
+                    click = go,
+                    act = c.offered ? InboxWords.Pay : InboxWords.Look,
+                    actWhy = c.offered ? RaidersCampTerms.CantPay(home, c) : null,
+                    actRun = c.offered ? () => AskToPay(map, camp) : go,
+                    follow = place,
                     order = -2
                 });
             }
