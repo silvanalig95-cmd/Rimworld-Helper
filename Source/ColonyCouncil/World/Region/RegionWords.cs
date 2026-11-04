@@ -33,7 +33,7 @@ namespace ColonyCouncil
         {
             var form = Ages.Form(AgeFeature.Founding, home, people);
             string key = "CC_Region_Begun" + (founder == null ? "_NoFounder" : "") + (mother.NullOrEmpty() ? "_NoMother" : "");
-            return key.Translate(form.word.CapitalizeFirst().Named("MEANS"), (people?.Name ?? "?").Named("PEOPLE"), (founder?.LabelShort ?? "").Named("FOUNDER"),
+            return TextVariants.Vary(key).Translate(form.word.CapitalizeFirst().Named("MEANS"), (people?.Name ?? "?").Named("PEOPLE"), (founder?.LabelShort ?? "").Named("FOUNDER"),
                 (mother ?? "").Named("MOTHER"), where.Named("WHERE")).Resolve();
         }
 
@@ -42,7 +42,7 @@ namespace ColonyCouncil
         {
             var form = Ages.Form(AgeFeature.Founding, home, town.Faction);
             string key = founder == null ? "CC_Region_Built_NoFounder" : "CC_Region_Built";
-            return key.Translate(form.word.CapitalizeFirst().Named("MEANS"), town.Name.Named("TOWN"), (town.Faction?.Name ?? "?").Named("PEOPLE"), where.Named("WHERE"),
+            return TextVariants.Vary(key).Translate(form.word.CapitalizeFirst().Named("MEANS"), town.Name.Named("TOWN"), (town.Faction?.Name ?? "?").Named("PEOPLE"), where.Named("WHERE"),
                 form.rite.Named("RITE"), (founder?.LabelShort ?? "").Named("FOUNDER"), RegionFaces.TitleOf(founder, town.Faction).Named("TITLE")).Resolve();
         }
 

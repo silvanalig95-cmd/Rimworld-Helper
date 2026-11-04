@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Other wordings of the region's letters, news and lines (Source/ColonyCouncil/Text/TextVariants.cs): a key here ending
+    _2 to _6 is another wording of the key without it, in the file named above each group, and the code picks one of
+    them at random each time it tells it. Each keeps the placeholders of the first and says the same thing from another
+    side: a detail, a voice, an angle. A spoken line ("_Say") is one sentence of 90 characters at most.
+  -->
+
+  <!-- ================= Trading posts (Rimfolk_TradingPosts.xml) ================= -->
+
+  <CC_Post_Opened_Text_2>Their goods used to come all the way from {FROM}. Now {PEOPLE} have opened {POST}, a {KIND} of theirs {WHERE}, to trade with {COLONY} from close by.</CC_Post_Opened_Text_2>
+  <CC_Post_Opened_Text_3>{PEOPLE} have traded with {COLONY} often enough that {FROM} is too far to send everything from. They have opened {POST}, a {KIND} of theirs {WHERE}.</CC_Post_Opened_Text_3>
+  <CC_Post_Opened_Text_NoFrom_2>{COLONY} has traded with {PEOPLE} often enough that they have opened {POST}, a {KIND} of theirs {WHERE}, to be nearer to it.</CC_Post_Opened_Text_NoFrom_2>
+  <CC_Post_Opened_Keeper_2>{KEEPER} keeps it as their {TITLE}, and has sent word that the colony's people will be welcome there in any season.</CC_Post_Opened_Keeper_2>
+  <CC_Post_Opened_Keeper_3>{KEEPER}, their {TITLE} there, sends greetings, and asks that the colony's traders come and see the place for themselves.</CC_Post_Opened_Keeper_3>
+  <CC_Post_Opened_Keeper_NoName_2>Their {TITLE} there has sent word that the colony's people will be welcome at the post in any season.</CC_Post_Opened_Keeper_NoName_2>
+  <CC_Post_Warned_Text_2>{KEEPER} has written from {POST}. {PEOPLE} will not keep a {KIND} open for a colony they are on bad terms with, the {TITLE} says, and unless things mend with {COLONY}, it will close.</CC_Post_Warned_Text_2>
+  <CC_Post_Warned_Text_NoName_2>The {TITLE} at {POST} has written. Unless things mend between {PEOPLE} and {COLONY}, the {KIND} will close.</CC_Post_Warned_Text_NoName_2>
+  <CC_Post_Mended_2>Things have mended between {PEOPLE} and {COLONY}, and {KEEPER} writes from {POST} that the {KIND} will stay open.</CC_Post_Mended_2>
+  <CC_Post_Mended_NoName_2>{POST} will stay open, now that {PEOPLE} and {COLONY} are on better terms again.</CC_Post_Mended_NoName_2>
+  <CC_Post_Sacked_Text_2>{POST} has been sacked. Raiders of {ENEMY}, at war with {PEOPLE}, came on the {KIND} {WHERE} and stripped it, and what they could not carry they broke. Its people are still there and mean to stay, but it will be poorer for a long while.</CC_Post_Sacked_Text_2>
+  <CC_Post_Closed_Soured_2>Things never mended between {PEOPLE} and {COLONY}, and {POST}, their {KIND} {WHERE}, is closed. Its people have gone home with what they could carry, and left {LEFT}.</CC_Post_Closed_Soured_2>
+  <CC_Post_Closed_War_2>{PEOPLE} and {COLONY} are at war, and no {KIND} of theirs stays open for an enemy. {POST}, {WHERE}, has been packed up and left. There is nothing there now but {LEFT}.</CC_Post_Closed_War_2>
+  <CC_Post_Closed_Sacked_2>Raiders of {ENEMY} have sacked {POST}, the {KIND} {PEOPLE} kept {WHERE}, and it will not be rebuilt. Its families are on the road home, and nothing is left there but {LEFT}.</CC_Post_Closed_Sacked_2>
+  <CC_Post_Razed_2>{POST} is gone, razed by {COLONY}. {PEOPLE} opened that {KIND} to trade with the colony, and they will remember who brought it down.</CC_Post_Razed_2>
+
+  <!-- ================= Hamlets (Rimfolk_Hamlets.xml) ================= -->
+
+  <CC_Hamlet_Harvest_Coming_2>{HAMLET} has its harvest in, and a carter is on the road up to the colony's gate with {GOODS}, the first of it.</CC_Hamlet_Harvest_Coming_2>
+  <CC_Hamlet_Harvest_Coming_3>{LEADER} has sent a carter up from {HAMLET} with {GOODS}, the first of the harvest, for the colony's gate.</CC_Hamlet_Harvest_Coming_3>
+  <CC_Hamlet_Harvest_Left_2>{HAMLET}'s carters have left {GOODS} at the colony's gate, the first of what their fields gave this year.</CC_Hamlet_Harvest_Left_2>
+  <CC_Hamlet_Help_Food_2>{LEADER} sends word that the families at {HAMLET} have started eating their seed. If the colony could spare {GOODS}, carried down to their carter at the gate, they could keep the rest for planting.</CC_Hamlet_Help_Food_2>
+  <CC_Hamlet_Help_Doctor_2>A sickness has gone through {HAMLET}, and the families have nothing to treat it with. {LEADER} asks whether the colony's doctor could bring {GOODS} down to their carter at the gate, and say how it should be used.</CC_Hamlet_Help_Doctor_2>
+  <CC_Hamlet_Help_Tools_2>A hard season has found {HAMLET} short of everything at once. {LEADER} asks for {GOODS}, carried down to their carter at the gate, to keep the place standing until it turns.</CC_Hamlet_Help_Tools_2>
+  <CC_Hamlet_Refused_2>{LEADER} has the colony's answer, and {HAMLET} will get through this season without its help.</CC_Hamlet_Refused_2>
+  <CC_Hamlet_NotYet_2>{HAMLET} will wait for its oath, and {LEADER} will ask again when the colony is ready.</CC_Hamlet_NotYet_2>
+  <CC_Hamlet_End_Broken_2>Twice this season {HAMLET} asked the colony for help, and twice it was refused. {LEADER} has told the families not to look to the colony again. The tie is broken, and {HAMLET} is simply a town of {PEOPLE} now.</CC_Hamlet_End_Broken_2>
+  <CC_Hamlet_End_Failed_2>{HAMLET} could not last. Its people are giving up the hamlet the colony took under its protection, and its families are leaving.</CC_Hamlet_End_Failed_2>
+
+  <!-- ================= Towns that rise and fall (Rimfolk_RiseFall.xml) ================= -->
+
+  <CC_RiseFall_Leaving_2>{MEANS}: the families of {TOWN}, {WHERE}, are packing up for {NEXT}. {PEOPLE} are giving the town up.</CC_RiseFall_Leaving_2>
+  <CC_RiseFall_Leaving_3>{MEANS}: {TOWN} of {PEOPLE}, {WHERE}, is emptying. Its families are taking the road to {NEXT}, and the town is being given up.</CC_RiseFall_Leaving_3>
+  <CC_RiseFall_Leaving_NoNext_2>{MEANS}: {PEOPLE} are giving up {TOWN}, {WHERE}, and its families are leaving with whatever they can carry.</CC_RiseFall_Leaving_NoNext_2>
+  <CC_RiseFall_HeldOn_2>{MEANS}: {TOWN}, {WHERE}, is not quite empty. A few families stayed when the rest left, and {PEOPLE} have let them keep the town.</CC_RiseFall_HeldOn_2>
+  <CC_RiseFall_Empty_2>{MEANS}: {TOWN}, {WHERE}, stands empty, the last of {PEOPLE} gone from it. What remains is {RUIN}.</CC_RiseFall_Empty_2>
+  <CC_RiseFall_Empty_3>{MEANS}: the road out of {TOWN}, {WHERE}, is quiet again. {PEOPLE} have gone, and left {RUIN} behind them.</CC_RiseFall_Empty_3>
+  <CC_RiseFall_Fell_2>{MEANS}: {TOWN} of {PEOPLE}, {WHERE}, did not come through the fighting. All that stands there now is {RUIN}.</CC_RiseFall_Fell_2>
+  <CC_RiseFall_Fell_Ours_2>{TOWN} of {PEOPLE}, {WHERE}, is {RUIN} now, after the colony's people were done there.</CC_RiseFall_Fell_Ours_2>
+  <CC_RiseFall_Faded_2>{MEANS}: the ruin of {TOWN}, {WHERE}, has gone back to the land, and travelers no longer turn aside for it.</CC_RiseFall_Faded_2>
+  <CC_RiseFall_Faded_3>{MEANS}: the last walls of {TOWN}, {WHERE}, have come down, and the place is hard to find now.</CC_RiseFall_Faded_3>
+  <CC_RiseFall_Daughter_2>{MEANS}: {MOTHER} has grown too full for its families, and some have gone out to found {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter_2>
+  <CC_RiseFall_Back_Tribal_2>{MEANS}: {PEOPLE} have gone back to {TOWN}, {WHERE}. The old hearths there burn again, and the elders have blessed the stones.</CC_RiseFall_Back_Tribal_2>
+  <CC_RiseFall_Back_Medieval_2>{MEANS}: there is smoke over {TOWN}, {WHERE}, again. Families of {PEOPLE} have come back to the old walls and are roofing the houses.</CC_RiseFall_Back_Medieval_2>
+  <CC_RiseFall_Back_Industrial_2>{MEANS}: {PEOPLE} have reopened {TOWN}, {WHERE}. Settlers are clearing the old streets and getting the water running again.</CC_RiseFall_Back_Industrial_2>
+  <CC_RiseFall_Back_Spacer_2>{MEANS}: {TOWN}, {WHERE}, is back on {PEOPLE}'s charts. Settlers have reopened the old habitats and are bringing the systems back up.</CC_RiseFall_Back_Spacer_2>
+  <CC_RiseFall_Newcomers_Tribal_2>{MEANS}: the old walls of {TOWN}, {WHERE}, belong to a clan of {PEOPLE} now. They have kept the old name, and made new hearths in the old houses.</CC_RiseFall_Newcomers_Tribal_2>
+  <CC_RiseFall_Newcomers_Medieval_2>{MEANS}: {PEOPLE} have taken up the empty town of {TOWN}, {WHERE}. The new families keep its old name, and have already raised a market cross.</CC_RiseFall_Newcomers_Medieval_2>
+  <CC_RiseFall_Newcomers_Industrial_2>{MEANS}: new settlers of {PEOPLE} are living in the old streets of {TOWN}, {WHERE}, under its old name, and the first shops are open.</CC_RiseFall_Newcomers_Industrial_2>
+  <CC_RiseFall_Newcomers_Spacer_2>{MEANS}: {PEOPLE} have registered the derelict colony at {TOWN}, {WHERE}, as their own, keeping its old name on the charts.</CC_RiseFall_Newcomers_Spacer_2>
+  <CC_RiseFall_Renamed_Tribal_2>{MEANS}: a clan of {PEOPLE} lives in the old walls of {TOWN}, {WHERE}, now. The place is {NEWNAME} at their fires.</CC_RiseFall_Renamed_Tribal_2>
+  <CC_RiseFall_Renamed_Medieval_2>{MEANS}: the old walls of {TOWN}, {WHERE}, have new families of {PEOPLE} in them and a new name, {NEWNAME}.</CC_RiseFall_Renamed_Medieval_2>
+  <CC_RiseFall_Renamed_Industrial_2>{MEANS}: {TOWN}, {WHERE}, is called {NEWNAME} now. Settlers of {PEOPLE} have moved into its empty streets and painted over the old signs.</CC_RiseFall_Renamed_Industrial_2>
+  <CC_RiseFall_Renamed_Spacer_2>{MEANS}: the derelict colony at {TOWN}, {WHERE}, is {NEWNAME} now, chartered to {PEOPLE} and lit again.</CC_RiseFall_Renamed_Spacer_2>
+
+  <!-- ================= New towns (Rimfolk_Region.xml) ================= -->
+
+  <CC_Region_Begun_2>{MEANS}: {FOUNDER} has led settlers of {PEOPLE} out of {MOTHER} to begin a town {WHERE}.</CC_Region_Begun_2>
+  <CC_Region_Begun_3>{MEANS}: there are settlers of {PEOPLE} {WHERE}, out from {MOTHER}, putting up a town under {FOUNDER}.</CC_Region_Begun_3>
+  <CC_Region_Begun_NoMother_2>{MEANS}: {FOUNDER} has led settlers of {PEOPLE} out to begin a town {WHERE}.</CC_Region_Begun_NoMother_2>
+  <CC_Region_Begun_NoFounder_2>{MEANS}: families of {PEOPLE} have come out from {MOTHER} to begin a town {WHERE}.</CC_Region_Begun_NoFounder_2>
+  <CC_Region_Begun_NoFounder_NoMother_2>{MEANS}: families of {PEOPLE} are putting up a town {WHERE}.</CC_Region_Begun_NoFounder_NoMother_2>
+  <CC_Region_Built_2>{MEANS}: the town {PEOPLE} began {WHERE} is finished. It is called {TOWN}, {RITE}, and {FOUNDER} is its {TITLE}.</CC_Region_Built_2>
+  <CC_Region_Built_NoFounder_2>{MEANS}: the settlers of {PEOPLE} {WHERE} have finished their town, {TOWN}, {RITE}.</CC_Region_Built_NoFounder_2>
+
+  <!-- ================= Raiders' camps (Rimfolk_RaidersCamps.xml, Rimfolk_FollowUps.xml) ================= -->
+
+  <CC_RaidCamp_Say_2>There's a camp out to the {DIR}, and it isn't anyone friendly.</CC_RaidCamp_Say_2>
+  <CC_RaidCamp_Say_3>Someone's camped to the {DIR}, and they're watching us.</CC_RaidCamp_Say_3>
+  <CC_RaidCamp_Say_Visitor_2>There's a {KIND} off to the {DIR}, we gave it a wide berth on the way here.</CC_RaidCamp_Say_Visitor_2>
+  <CC_RaidCamp_RaidText_2>Fighters have come out of the {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_RaidText_2>
+  <CC_RaidCamp_RaidText_3>The {KIND} of {PEOPLE} {WHERE} has sent its fighters toward the colony.</CC_RaidCamp_RaidText_3>
+  <CC_RaidCamp_Beaten_2>The raiders from the {KIND} have been beaten off. Of the {SIZE} {PEOPLE} sent, {DOWN} fell or were taken.</CC_RaidCamp_Beaten_2>
+  <CC_RaidCamp_End_Broken_2>Nothing stands at the {KIND} of {PEOPLE} {WHERE} now but cold fires and trampled ground. Its fighters are dead, taken or scattered, and its raids are over.</CC_RaidCamp_End_Broken_2>
+  <CC_RaidCamp_End_Paid_2>The silver was collected at the edge of the colony's ground, and {PEOPLE} have broken camp {WHERE}. Their word is to keep away from {COLONY} for a year.</CC_RaidCamp_End_Paid_2>
+  <CC_RaidCamp_End_Peace_2>{PEOPLE} are at peace with {COLONY} now, and their {KIND} {WHERE} has been struck.</CC_RaidCamp_End_Peace_2>
+  <CC_RaidCamp_End_Burned_2>The {KIND} of {PEOPLE} {WHERE} is ashes. {ALLIES} of {ALLY} came on it and burned it, and {ALLY} count it a good turn done for the colony.</CC_RaidCamp_End_Burned_2>
+  <CC_RaidCamp_End_GaveUp_2>{PEOPLE} have had enough of being beaten off. Their {KIND} {WHERE} stands empty, and they have moved on.</CC_RaidCamp_End_GaveUp_2>
+  <CC_RaidCamp_End_GaveUp_Time_2>{PEOPLE} have given up waiting for their chance at the colony. Their {KIND} {WHERE} stands empty.</CC_RaidCamp_End_GaveUp_Time_2>
+
+  <!-- ================= Travelers and news of far towns (Rimfolk_Travellers.xml) ================= -->
+
+  <CC_FarNews_Say_2>There's news from {TOWN}, and it's worth hearing.</CC_FarNews_Say_2>
+  <CC_FarNews_Say_3>They were all talking about one thing in {TOWN}.</CC_FarNews_Say_3>
+  <CC_FarNews_Say_4>You're a long way from {TOWN}, so let me tell you what's going on there.</CC_FarNews_Say_4>
+  <CC_FarNews_Say_5>Sit down, I've news from {TOWN} you won't have heard.</CC_FarNews_Say_5>
+  <CC_FarNews_Told_2>{X_nameDef} of the {CAMP} sat {A_nameDef} down at their fire with the news from {TOWN}, {WHERE}: {NEWS}</CC_FarNews_Told_2>
+  <CC_FarNews_situation_2>{PEOPLE} can talk of nothing but {WHAT}.</CC_FarNews_situation_2>
+  <CC_FarNews_war_2>{PEOPLE} and {ENEMY} are at war, and {TOWN} is getting ready for it.</CC_FarNews_war_2>
+  <CC_FarNews_peace_2>{PEOPLE} and {ENEMY} have made peace, and {TOWN} has been celebrating.</CC_FarNews_peace_2>
+  <CC_FarNews_new_2>{PEOPLE} raised {TOWN} only this year, and it is still half built.</CC_FarNews_new_2>
+  <CC_FarNews_site_2>Travelers on the road speak of {SITE}, {DIR} of {TOWN}.</CC_FarNews_site_2>
+  <CC_FarNews_quest_2>In {TOWN} they are still asking for someone to take on "{QUEST}".</CC_FarNews_quest_2>
+  <CC_Travel_Quarrel_Say_2>I staked that rock first, and you know it.</CC_Travel_Quarrel_Say_2>
+  <CC_Travel_Quarrel_Say_3>Go and find your own seam.</CC_Travel_Quarrel_Say_3>
+  <CC_Travel_Came_ruins_2>It was {SEEK} that brought them this far out.</CC_Travel_Came_ruins_2>
+  <CC_Travel_Came_ruins_3>They had heard of {SEEK}, and wanted to see them before anyone else did.</CC_Travel_Came_ruins_3>
+  <CC_Travel_Came_ore_2>Word of {SEEK} had reached them, and they want to see it for themselves.</CC_Travel_Came_ore_2>
+  <CC_Travel_Came_trees_2>They came to see {SEEK}, and to sit under it a while.</CC_Travel_Came_trees_2>
+
+</LanguageData>

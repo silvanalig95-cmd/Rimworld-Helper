@@ -699,7 +699,7 @@ namespace ColonyCouncil
             var people = c.people.Name.Named("PEOPLE");
             // How it was found: a colonist who saw its smoke, a visitor who came past it, a neighbour's letter.
             string suffix = how.NullOrEmpty() ? "" : "_" + how;
-            string said = ("CC_RaidCamp_Say" + suffix).Translate(dir.Named("DIR"), c.kind.Named("KIND")).Resolve();
+            string said = TextVariants.Vary("CC_RaidCamp_Say" + suffix).Translate(dir.Named("DIR"), c.kind.Named("KIND")).Resolve();
             if (spotter != null && spotter.Spawned) Speech.Say(spotter, said);
             string who = spotter?.LabelShort ?? "?";
             var parts = new List<string>
@@ -851,7 +851,7 @@ namespace ColonyCouncil
             var people = c.people.Name.Named("PEOPLE");
             string where = Where(home, c);
             string label = "CC_RaidCamp_RaidLabel".Translate(c.kind.Named("KIND")).Resolve().CapitalizeFirst();
-            string text = "CC_RaidCamp_RaidText".Translate(people, c.kind.Named("KIND"), where.Named("WHERE")).Resolve();
+            string text = TextVariants.Vary("CC_RaidCamp_RaidText").Translate(people, c.kind.Named("KIND"), where.Named("WHERE")).Resolve();
             var lead = c.leader != null && !c.leader.Dead && !c.leader.Spawned ? c.leader : null;
             if (!Raids.Send(home, c.people, points, label, text, lead, EdgeToward(home, TileOf(c)), false)) return;
             c.raids++;
@@ -911,7 +911,7 @@ namespace ColonyCouncil
             if (!RaidersCampMath.Beaten(c.raidSize, c.raidDown, c.raidFled)) return;
             c.beaten++;
             Tell.Minor(NewsKind.World, Importance.Notable, home,
-                "CC_RaidCamp_Beaten".Translate(c.kind.Named("KIND"), c.people.Name.Named("PEOPLE"), c.raidDown.Named("DOWN"), c.raidSize.Named("SIZE")).Resolve(), null);
+                TextVariants.Vary("CC_RaidCamp_Beaten").Translate(c.kind.Named("KIND"), c.people.Name.Named("PEOPLE"), c.raidDown.Named("DOWN"), c.raidSize.Named("SIZE")).Resolve(), null);
         }
 
         // ---------------- Paid ----------------
@@ -991,7 +991,7 @@ namespace ColonyCouncil
                 (ally != null ? RaidersCampMath.AllyKey(Ages.Of(ally)).Translate().Resolve() : "").Named("ALLIES")
             };
             string key = "CC_RaidCamp_End_" + end + (end == CampEnd.GaveUp && c.beaten < RaidersCampMath.BeatenToGiveUp ? "_Time" : "");
-            string text = key.Translate(args).Resolve();
+            string text = TextVariants.Vary(key).Translate(args).Resolve();
             string label = ("CC_RaidCamp_End_" + end + "_Label").Translate(args).Resolve().CapitalizeFirst();
             // Peace: the game's own letter already said the site is gone (it takes away a hostile people's sites when peace
             // is made), so Rimfolk's word is a line of the colony news.

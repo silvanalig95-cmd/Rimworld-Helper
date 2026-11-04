@@ -121,7 +121,7 @@ namespace ColonyCouncil
             {
                 string key = "CC_Travel_Came_" + seeking;
                 if (!key.CanTranslate()) return null;
-                raw = key.Translate().RawText;
+                raw = TextVariants.Vary(key).Translate().RawText;
             }
             return Format(Texts.Fill(raw, ("SEEK", seekWhat ?? "")), x, a);
         }
@@ -292,7 +292,7 @@ namespace ColonyCouncil
             var b = fit.Where(x => x != a && Together.Can(a, x)).RandomElementWithFallback();
             if (b == null) return;
             quarrelled = true;
-            Speech.Say(a, "CC_Travel_Quarrel_Say".Translate().Resolve(), b);
+            Speech.Say(a, TextVariants.Vary("CC_Travel_Quarrel_Say").Translate().Resolve(), b);
             a.interactions.StartSocialFight(b);
             if (a.MentalStateDef != MentalStateDefOf.SocialFighting) return;
             AddTension(3f);

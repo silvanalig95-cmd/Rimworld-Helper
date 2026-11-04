@@ -34,7 +34,7 @@ namespace ColonyCouncil
             NeighbourPanel.Sections.Add(DrawClosing);
         }
 
-        private static string T(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
+        private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
 
         /// <summary>The colony's means of hearing news of a town, capitalized ("Word from a traveler").</summary>
         private static string Means(Map home, Faction people) => Ages.Form(AgeFeature.Founding, home, people).word.CapitalizeFirst();
