@@ -220,6 +220,8 @@ namespace ColonyCouncil
             public readonly List<Piece> pieces = new List<Piece>();
             /// <summary>Each link's thing (its text form), in the order they come.</summary>
             public readonly List<string> links = new List<string>();
+            /// <summary>Each link's thing read back (none for a text form that names nothing).</summary>
+            public readonly List<ThingRef> things = new List<ThingRef>();
             public int lines;
         }
 
@@ -252,6 +254,7 @@ namespace ColonyCouncil
                 {
                     runLink[r] = layout.links.Count;
                     layout.links.Add(runs[r].thing);
+                    layout.things.Add(ThingRef.Parse(runs[r].thing));
                 }
                 string text = runs[r].text ?? "";
                 int i = 0;

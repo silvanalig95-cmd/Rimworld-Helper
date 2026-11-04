@@ -31,7 +31,8 @@ namespace ColonyCouncil
             // these panels their place in the Peoples and Here and away views: the player asked for fewer region tabs.
             MainTabWindow_World.Register(DiplomacyPage, "CC_Tab_Diplomacy", Icons.Promise ?? Icons.Trust, DrawDiplomacy, () => Prefs.DevMode, DiplomacyMath.DiplomacyOrder);
             MainTabWindow_World.Register(HouseholdPage, "CC_Tab_Household", Icons.People ?? Icons.Colony, DrawHousehold, () => Prefs.DevMode, DiplomacyMath.HouseholdOrder);
-            NeighbourPanel.Sections.Add(DrawTown);
+            // A town's debts of honor are its card's Ties (UI/Cards/: the card draws the heading).
+            CardSections.Town(CardSlot.Ties, 10f, DrawTown, "CC_Dip_TownHeader", "debts");
         }
 
         // ================= The pieces =================
@@ -222,7 +223,7 @@ namespace ColonyCouncil
 
         // ================= The region map's town panel =================
 
-        /// <summary>A town's ties with the colony and calling one in (NeighbourPanel.Sections); nothing when there are none.</summary>
+        /// <summary>A town's ties with the colony and calling one in (the town's card, its Ties slot, under the card's heading); nothing when there are none.</summary>
         public static float DrawTown(Rect rect, Settlement s)
         {
             if (s == null || s.Faction == null) return 0f;
@@ -231,8 +232,6 @@ namespace ColonyCouncil
                 var rows = DiplomacyModel.TownRows(s);
                 if (rows.Count == 0) return 0f;
                 float y = rect.y;
-                UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), DipWords.P("CC_Dip_TownHeader"), Accent);
-                y += 24f;
                 foreach (var r in rows)
                 {
                     // The panel is narrow: the act goes under the words.

@@ -410,6 +410,18 @@ def g_pin():
     return m
 
 
+def g_back():
+    """Back (the corner's way back through Rimfolk's windows): a bold arrow pointing left."""
+    m = new()
+    poly(m, [(28, 128), (120, 40), (120, 96), (228, 96), (228, 160), (120, 160), (120, 216)])
+    return m
+
+
+def g_forward():
+    """Forward: the back arrow turned to point right."""
+    return g_back().transpose(Image.FLIP_LEFT_RIGHT)
+
+
 def g_more():
     """More (the bottom bar's button for the buttons put away): three bold dots in a row."""
     m = new()
@@ -922,6 +934,8 @@ def g_cat_mods():
 
 
 GLYPHS = [
+    # the corner's way back and forward
+    ("Back", g_back), ("Forward", g_forward),
     # sections
     ("Colony", g_colony), ("People", g_people), ("Council", g_council), ("History", g_history), ("Almanac", g_almanac),
     # sub-tabs

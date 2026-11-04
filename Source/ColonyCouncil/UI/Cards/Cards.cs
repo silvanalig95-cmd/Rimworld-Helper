@@ -659,16 +659,6 @@ namespace ColonyCouncil
             m.Act(T("CC_Card_Act_Letters"), null, () => Pages.Open("Letters"));
         }
 
-        // ---------------- The section and the act every place card had ----------------
-
-        static Cards()
-        {
-            // "Plan a journey here" (UI/JourneyDialog.cs) was a button in the region map's panel; it is an act of the place card.
-            CardActs.Register(CardKind.Place, r => JourneyPanel.HereLabel(ThingRefs.TileOf(r)), r => JourneyPanel.HereWhyNot(ThingRefs.TileOf(r)),
-                r => JourneyPanel.PlanTo(ThingRefs.TileOf(r), ThingRefs.WorldObject(r)), r => JourneyBook.On && ThingRefs.TileOf(r).Valid && CardSections.HomeOf(r) == null,
-                20f, "CC_Journey_Here_Tip".Translate(), "journey");
-        }
-
         /// <summary>A click sound for opening a card.</summary>
         public static void Click() => SoundDefOf.Click.PlayOneShotOnCamera();
     }

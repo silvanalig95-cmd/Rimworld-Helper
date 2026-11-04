@@ -93,13 +93,8 @@ namespace ColonyCouncil
             return page;
         }
 
-        /// <summary>Opens the region map with a settlement (or another world object) picked, its panel beside the map.</summary>
-        public static void ShowOnMap(RimWorld.Planet.WorldObject o)
-        {
-            if (o == null) return;
-            map.Pick(o);
-            Pages.Open("Map");
-        }
+        /// <summary>Opens the region map with a settlement (or another world object) picked, its card the map's panel (Cards.ShowOnMap).</summary>
+        public static void ShowOnMap(RimWorld.Planet.WorldObject o) => Cards.ShowOnMap(o);
 
         /// <summary>A page another part of Rimfolk added, by its name (any case); null for none.</summary>
         public static WorldPage Extra(string name)
@@ -149,6 +144,10 @@ namespace ColonyCouncil
 
         private readonly List<WindowTab> tabs = new List<WindowTab>();
         private readonly List<WorldPage> shown = new List<WorldPage>();
+        /// <summary>The page being drawn beside the drawer, and the two drawers made once (nothing made per frame).</summary>
+        private static WorldPage drawing;
+        private static readonly Action<Rect> drawPage = r => drawing?.draw(r);
+        private static readonly Action<Rect> drawLegend = r => map.DrawEmpty(r);
         private static readonly Dictionary<string, string> labels = new Dictionary<string, string>();
         private static float labelsAt = -1f;
 
@@ -186,13 +185,19 @@ namespace ColonyCouncil
                 UiKit.EmptyState(content, Icons.World, "CC_NoGame".Translate());
                 return;
             }
-            var current = shown.FirstOrDefault(p => p.name == page);
+            WorldPage current = null;
+            for (int i = 0; i < shown.Count; i++)
+                if (shown[i].name == page)
+                    current = shown[i];
             if (current == null) return;
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
             try
             {
-                current.draw(content);
+                // A card opens in the drawer at the right; on the map the drawer is the map's panel, always there.
+                drawing = current;
+                Drawer.Around(RimfolkWindow.World, content, drawPage, current.name == "Map" ? drawLegend : null);
+                Nav.Observe(RimfolkWindow.World, current.name, Drawer.Current(RimfolkWindow.World));
             }
             catch (Exception e)
             {

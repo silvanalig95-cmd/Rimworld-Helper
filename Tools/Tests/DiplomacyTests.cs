@@ -215,7 +215,8 @@ public static class DiplomacyTests
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");
         C(dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(DiplomacyPage, \"CC_Tab_Diplomacy\"") && dip["DiplomacyPanels.cs"].Contains("DiplomacyMath.HouseholdOrder")
-          && dip["DiplomacyPanels.cs"].Contains("NeighbourPanel.Sections.Add(DrawTown)"), "the two pages and the town panel's section");
+          && dip["DiplomacyPanels.cs"].Contains("CardSections.Town(CardSlot.Ties, 10f, DrawTown, \"CC_Dip_TownHeader\""), "the two pages, and the town's debts in its card's Ties");
+        C(dip["DiplomacyLinks.cs"].Contains("Cards.Open(") && !dip["DiplomacyLinks.cs"].Contains("CameraJumper"), "a name in diplomacy's rows opens its card");
         C(Regex.Matches(dip["DiplomacyPanels.cs"] + dip["DiplomacyModel.cs"], @"DiplomacyLinks\.Open\(").Count >= 3 && !Regex.IsMatch(dip["DiplomacyPanels.cs"], @"CameraJumper|ShowOnMap"),
             "a click on a name goes through one helper");
         C(Code("UI/WeekModel.cs").Contains("DiplomacyPanels.WeekRows(c)") && !dip["DiplomacyPanels.cs"].Contains("CC_Week_In"), "This week shows their calls waiting, never with a timer");

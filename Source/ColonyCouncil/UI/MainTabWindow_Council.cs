@@ -248,6 +248,7 @@ namespace ColonyCouncil
                 case Tab.Calendar: CalendarPanel.Draw(content); break;
                 case Tab.Almanac: AlmanacPanel.Draw(content); break;
             }
+            Nav.Observe(RimfolkWindow.Council, Page, ThingRef.None);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = Color.white;
@@ -376,7 +377,10 @@ namespace ColonyCouncil
         // ---------------- Where the window opens ----------------
 
         /// <summary>The page the window shows (or will, opened), by name.</summary>
-        internal static string Page => tab.ToString();
+        internal static string Page => TabNames[(int)tab];
+
+        /// <summary>The pages' names, made once (asked every frame by the way back, UI/Cards/Nav.cs).</summary>
+        private static readonly string[] TabNames = System.Enum.GetNames(typeof(Tab));
 
         /// <summary>The last page looked at in one of the window's sections (its first page before any).</summary>
         internal static string LastIn(string section)

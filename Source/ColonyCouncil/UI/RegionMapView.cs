@@ -13,11 +13,11 @@ namespace ColonyCouncil
     /// <summary>
     /// The region map, the first page of the region window (UI/MainTabWindow_World.cs): the land around the colony over
     /// the colony, never the game's world view. Where it was looking is kept for the session. The mouse wheel zooms, a
-    /// drag looks around, a hover tells the land, a click picks a settlement (or any tile) for the panel beside the map:
-    /// its name, its people and how they stand with the colony, how far it is by caravan, what Rimfolk knows of them,
-    /// the sections other parts of Rimfolk add (World/NeighbourPanel.cs), and a button to see it in the game's world
-    /// view, only when asked. Its picture is World/RegionMap.cs, made when the page is first drawn and let go when the
-    /// window closes.
+    /// drag looks around, a hover tells the land, a click picks a settlement (or any tile) and opens its card in the
+    /// region window's drawer, the map's panel (UI/Cards/: the place card has its name, its people and how they stand
+    /// with the colony, how far it is by caravan, what Rimfolk knows of them, the sections other parts add, and a small
+    /// button to see it in the game's world view, only when asked). Its picture is World/RegionMap.cs, made when the
+    /// page is first drawn and let go when the window closes.
     /// </summary>
     public class RegionMapView
     {
@@ -38,7 +38,6 @@ namespace ColonyCouncil
         private WorldObject picked;
         private int pickedTile = -1;
         private List<Vector2> pickedCorners;
-        private readonly Dictionary<int, int> ticksTo = new Dictionary<int, int>();
 
         private bool pressed, dragging;
         private Vector2 pressAt, lastMouse;
@@ -47,8 +46,6 @@ namespace ColonyCouncil
         private List<Vector2> hoverCorners;
         private int hoverCornersFor = -1;
         private string tip;
-        private Vector2 scroll;
-        private float panelHeight = 400f;
         private readonly List<Rect> labelRects = new List<Rect>();
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
@@ -73,17 +70,17 @@ namespace ColonyCouncil
             hoverMark = null;
         }
 
-        /// <summary>Picks a settlement or other world object for the panel, as a click on it would (a link from another page).</summary>
+        /// <summary>Picks a settlement or other world object, as a click on it would: its card becomes the map's panel (a link from another page).</summary>
         public void Pick(WorldObject o)
         {
             if (o == null || o.Destroyed) return;
-            picked = o;
-            pickedTile = -1;
-            pickedCorners = null;
-            scroll = Vector2.zero;
+            Drawer.Open(RimfolkWindow.World, ThingRefs.Of(o), true);
         }
 
-        /// <summary>The map and its panel, with the reach and the way home along the top of <paramref name="inRect"/>.</summary>
+        /// <summary>
+        /// The map, with the reach and the way home along the top of <paramref name="inRect"/>. Its panel is the region
+        /// window's drawer (UI/Cards/Drawer.cs): what is picked is the place whose card is open there.
+        /// </summary>
         public void Draw(Rect inRect)
         {
             if (Current.ProgramState != ProgramState.Playing || Find.World == null)
@@ -96,27 +93,14 @@ namespace ColonyCouncil
             {
                 Header(new Rect(inRect.x, inRect.y, inRect.width, HeaderH));
                 Keep();
-                var body = new Rect(inRect.x, inRect.y + HeaderH + 6f, inRect.width, inRect.height - HeaderH - 6f);
-                Rect mapRect, panelRect;
-                if (body.width >= 640f)
-                {
-                    float pw = Mathf.Clamp(body.width * 0.34f, 250f, 340f);
-                    mapRect = new Rect(body.x, body.y, body.width - pw - 10f, body.height);
-                    panelRect = new Rect(mapRect.xMax + 10f, body.y, pw, body.height);
-                }
-                else
-                {
-                    float ph = Mathf.Clamp(body.height * 0.4f, 170f, 260f);
-                    mapRect = new Rect(body.x, body.y, body.width, body.height - ph - 8f);
-                    panelRect = new Rect(body.x, mapRect.yMax + 8f, body.width, ph);
-                }
+                SyncPick();
+                var mapRect = new Rect(inRect.x, inRect.y + HeaderH + 6f, inRect.width, inRect.height - HeaderH - 6f);
                 if (map?.texture == null)
                 {
                     Widgets.DrawBoxSolid(mapRect, MapBack);
                     UiKit.EmptyState(mapRect, Icons.World, failed ?? "CC_Region_NoHome".Translate().ToString());
                 }
                 else DrawMap(mapRect);
-                Panel(panelRect);
             }
             catch (Exception e)
             {
@@ -193,7 +177,6 @@ namespace ColonyCouncil
             string key = layer.LayerID + ":" + tile.tileId + ":" + reach;
             if (key == builtFor) return;
             bool sameHome = builtFor != null && builtFor.StartsWith(layer.LayerID + ":" + tile.tileId + ":");
-            var oldPicked = picked;
             Drop();
             builtFor = key;
             try
@@ -213,8 +196,8 @@ namespace ColonyCouncil
             if (sameHome) view = new View(view.cx, view.cy, view.scale);
             else if (lastView.HasValue && lastViewFor == key) view = lastView.Value;
             else view = new View(0, 0, 0);
-            // What was picked stays picked while it is still in this game's world and on the picture.
-            if (oldPicked != null && !oldPicked.Destroyed && Find.WorldObjects.Contains(oldPicked) && map.TryIndex(oldPicked.Tile, out _)) picked = oldPicked;
+            // What was picked stays picked while it is still on the picture (the drawer keeps its card).
+            pickedFor = ThingRef.None;
         }
 
         private void Drop()
@@ -224,12 +207,41 @@ namespace ColonyCouncil
             picked = null;
             pickedTile = -1;
             pickedCorners = null;
+            pickedFor = ThingRef.None;
             hoverTile = -1;
             hoverMark = null;
             hoverCornersFor = -1;
             hoverCorners = null;
             tipFor = int.MinValue;
-            ticksTo.Clear();
+        }
+
+        /// <summary>The place the drawer's card is (or the last place followed from), picked on the map; nothing picked with no card.</summary>
+        private ThingRef pickedFor;
+
+        private void SyncPick()
+        {
+            var cur = Drawer.Current(RimfolkWindow.World);
+            // A person or a people followed from a place keeps the place picked.
+            if (!cur.IsNone && !cur.IsPlace) return;
+            if (cur == pickedFor && (picked == null || !picked.Destroyed)) return;
+            pickedFor = cur;
+            picked = null;
+            pickedTile = -1;
+            pickedCorners = null;
+            if (cur.IsNone || map == null) return;
+            var wo = ThingRefs.WorldObject(cur);
+            if (wo != null && map.TryIndex(wo.Tile, out int i))
+            {
+                picked = wo;
+                pickedTile = i;
+                return;
+            }
+            var t = ThingRefs.TileOf(cur);
+            if (t.Valid && map.TryIndex(t, out i))
+            {
+                pickedTile = i;
+                pickedCorners = map.Corners(i);
+            }
         }
 
         // ---------------- The map ----------------
@@ -451,71 +463,24 @@ namespace ColonyCouncil
                     ?? marks.FirstOrDefault(o => o.index == tile);
                 if (m == null)
                 {
-                    picked = null;
-                    pickedTile = tile;
-                    pickedCorners = map.Corners(tile);
-                    scroll = Vector2.zero;
+                    // A bare tile: its card (the land, how far, what other parts know of it).
+                    Drawer.Open(RimfolkWindow.World, ThingRefs.OfTile(map.TileOf(tile)), true);
                     SoundDefOf.Click.PlayOneShotOnCamera();
                     return;
                 }
             }
-            picked = m.obj;
-            pickedTile = m.index;
-            pickedCorners = null;
-            scroll = Vector2.zero;
+            Drawer.Open(RimfolkWindow.World, ThingRefs.Of(m.obj), true);
             SoundDefOf.Click.PlayOneShotOnCamera();
         }
 
-        // ---------------- The panel ----------------
+        // ---------------- The panel with nothing picked ----------------
 
-        private void Panel(Rect rect)
-        {
-            Widgets.DrawBoxSolidWithOutline(rect, UiKit.CardFill, UiKit.CardBorder);
-            var inner = rect.ContractedBy(10f);
-            if (picked != null && (picked.Destroyed || map == null || !map.TryIndex(picked.Tile, out pickedTile)))
-            {
-                picked = null;
-                pickedTile = -1;
-            }
-            if (map == null || (picked == null && pickedTile < 0))
-            {
-                Hint(inner);
-                return;
-            }
-            const float buttonH = 30f;
-            // The button sits at the panel's foot, short of its right edge.
-            var button = new Rect(inner.x, inner.yMax - buttonH - 8f, Mathf.Min(inner.width - 20f, 240f), buttonH);
-            var outRect = new Rect(inner.x, inner.y, inner.width, button.y - inner.y - 8f);
-            var viewRect = new Rect(0f, 0f, outRect.width - 16f, Mathf.Max(panelHeight, outRect.height));
-            Widgets.BeginScrollView(outRect, ref scroll, viewRect);
-            float y = 0f, w = viewRect.width;
-            try
-            {
-                if (picked != null) y = Picked(picked, w, y, outRect.height);
-                else y = LandPanel(pickedTile, w, y);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("region map panel", e);
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
-            }
-            panelHeight = y + 6f;
-            if (Widgets.ButtonText(button, "CC_Region_ShowOnWorld".Translate()))
-            {
-                if (picked != null) CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(picked));
-                else CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(map.TileOf(pickedTile)));
-            }
-            TooltipHandler.TipRegion(button, "CC_Region_ShowOnWorld_Tip".Translate());
-        }
-
-        /// <summary>What the panel says before anything is picked: how to use the map, and what its colours mean.</summary>
-        private void Hint(Rect r)
+        /// <summary>
+        /// The map's panel (the region window's drawer) before anything is picked: how to use the map, and what its colours
+        /// mean. With something picked, the drawer shows its card (UI/Cards/Cards.cs: the place card, which took the panel's
+        /// lines and sections).
+        /// </summary>
+        public void DrawEmpty(Rect r)
         {
             float y = r.y;
             y += UiKit.Paragraph(r.x, y, r.width, map == null ? failed ?? "CC_Region_NoHome".Translate().ToString() : "CC_Region_PickHint".Translate().ToString(), UiKit.Faint) + 12f;
@@ -548,151 +513,5 @@ namespace ColonyCouncil
             ("CC_Region_Leg_Road", new Rgb(138, 104, 70))
         };
 
-        private float Picked(WorldObject wo, float w, float y, float visibleH)
-        {
-            int index = pickedTile;
-            string title = wo is Settlement && wo.Faction == Faction.OfPlayerSilentFail && wo.Tile == map.home
-                ? "CC_Region_YourColony".Translate(wo.LabelCap).Resolve()
-                : wo.LabelCap;
-            UiKit.LabelFit(new Rect(0f, y, w, 30f), title, UiKit.HeaderColor, GameFont.Medium);
-            y += 32f;
-            var f = wo.Faction;
-            if (f != null && !(wo is Caravan))
-            {
-                y += UiKit.FactionChip(0f, y, f, 22f, w) > 0f ? 26f : 0f;
-                y += UiKit.Paragraph(0f, y, w, RegionMap.StandingText(f), RegionMap.StandingColor(f)) + 2f;
-                if (!f.IsPlayer && f.def != null) y += UiKit.Paragraph(0f, y, w, f.def.LabelCap, UiKit.Faint, GameFont.Tiny) + 4f;
-            }
-            else if (!(wo is Settlement) && wo.def != null) y += UiKit.Paragraph(0f, y, w, wo.def.LabelCap, UiKit.Faint, GameFont.Tiny) + 4f;
-            y += UiKit.Paragraph(0f, y, w, Distance(wo.Tile, index), Color.white) + 6f;
-            if (f != null && !f.IsPlayer) y = Known(f, w, y);
-            y += UiKit.Paragraph(0f, y, w, map.TileText(index, false), UiKit.Faint, GameFont.Tiny) + 8f;
-            // What other parts of Rimfolk add about another people's settlement (the colony's own get none).
-            if (wo is Settlement s && (s.Faction == null || !s.Faction.IsPlayer))
-                for (int i = 0; i < NeighbourPanel.Sections.Count; i++)
-                {
-                    float used = 0f;
-                    try
-                    {
-                        used = NeighbourPanel.Sections[i](new Rect(0f, y, w, Mathf.Max(80f, visibleH)), s);
-                    }
-                    catch (Exception e)
-                    {
-                        CouncilLog.ErrorOnce("region map section " + i, e);
-                    }
-                    finally
-                    {
-                        Text.Font = GameFont.Small;
-                        Text.Anchor = TextAnchor.UpperLeft;
-                        GUI.color = Color.white;
-                    }
-                    if (used > 0f) y += used + 6f;
-                }
-            else if (wo.Tile != map.home) y = Places(wo.Tile, wo, w, y);
-            else if (wo is MapParent home && home.HasMap) y = HomePlaces(home.Map, w, y);
-            return y;
-        }
-
-        /// <summary>What other parts of Rimfolk add about the home the map is drawn around (NeighbourPanel.HomeSections).</summary>
-        private static float HomePlaces(Map home, float w, float y)
-        {
-            for (int i = 0; i < NeighbourPanel.HomeSections.Count; i++)
-            {
-                float used = 0f;
-                try
-                {
-                    used = NeighbourPanel.HomeSections[i](new Rect(0f, y, w, 80f), home);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region map home section " + i, e);
-                }
-                finally
-                {
-                    Text.Font = GameFont.Small;
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    GUI.color = Color.white;
-                }
-                if (used > 0f) y += used + 6f;
-            }
-            return y;
-        }
-
-        /// <summary>What other parts of Rimfolk add about a place that isn't another people's town (NeighbourPanel.PlaceSections).</summary>
-        private static float Places(PlanetTile tile, WorldObject wo, float w, float y)
-        {
-            for (int i = 0; i < NeighbourPanel.PlaceSections.Count; i++)
-            {
-                float used = 0f;
-                try
-                {
-                    used = NeighbourPanel.PlaceSections[i](new Rect(0f, y, w, 80f), tile, wo);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region map place section " + i, e);
-                }
-                finally
-                {
-                    Text.Font = GameFont.Small;
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    GUI.color = Color.white;
-                }
-                if (used > 0f) y += used + 6f;
-            }
-            return y;
-        }
-
-        /// <summary>A tile without a settlement: what the land is and how far.</summary>
-        private float LandPanel(int index, float w, float y)
-        {
-            UiKit.LabelFit(new Rect(0f, y, w, 30f), "CC_Region_TileTitle".Translate(), UiKit.HeaderColor, GameFont.Medium);
-            y += 32f;
-            y += UiKit.Paragraph(0f, y, w, Distance(map.TileOf(index), index), Color.white) + 6f;
-            y += UiKit.Paragraph(0f, y, w, map.TileText(index, false), UiKit.Faint) + 6f;
-            var tile = map.TileOf(index);
-            if (tile.Valid && tile != map.home) y = Places(tile, null, w, y);
-            return y;
-        }
-
-        /// <summary>What Rimfolk knows of a people: the world events about them, and what they remember of the colony.</summary>
-        private static float Known(Faction f, float w, float y)
-        {
-            var lines = new List<string>();
-            var ws = WorldSituations.Instance;
-            if (ws != null && S.worldSituations)
-                foreach (var s in ws.Running)
-                    if (s.ctx?.faction == f && !s.Label.NullOrEmpty()) lines.Add("CC_Region_InTheWorld".Translate(s.Label).Resolve());
-            if (FactionMemory.On && FactionMemory.Remembers(f))
-            {
-                int tone = FactionMemory.Instance.Tone(f);
-                if (tone != 0) lines.Add("CC_Region_Remember".Translate(("CC_Memory_Tone_" + tone).Translate()).Resolve());
-            }
-            foreach (var l in lines) y += UiKit.Paragraph(0f, y, w, l, UiKit.WorldColor, GameFont.Small) + 2f;
-            return lines.Count > 0 ? y + 4f : y;
-        }
-
-        /// <summary>How far from the colony: the game's own caravan estimate, worked out once for each place picked.</summary>
-        private string Distance(PlanetTile tile, int index)
-        {
-            int tiles = Mathf.RoundToInt(map.TilesFromHome(index));
-            if (tile == map.home) return "CC_Region_HomeTile".Translate();
-            if (!ticksTo.TryGetValue(tile.tileId, out int ticks))
-            {
-                try
-                {
-                    ticks = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(map.home, tile, null);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("region map: the caravan estimate", e);
-                    ticks = -1;
-                }
-                ticksTo[tile.tileId] = ticks;
-            }
-            if (ticks > 0) return "CC_Region_Days".Translate(TextUtil.DaysString(ticks), tiles).Resolve();
-            if (ticks == 0) return "CC_Region_NoWay".Translate(tiles).Resolve();
-            return "CC_Region_TilesAway".Translate(tiles).Resolve();
-        }
     }
 }

@@ -193,6 +193,9 @@ namespace ColonyCouncil
             try
             {
                 CouncilKeys.OnGUI();
+                // Back and forward through Rimfolk's windows (keys, side buttons), and a name's preview (UI/Cards/).
+                Nav.OnGUI();
+                Previews.OnGUI();
             }
             catch (Exception e)
             {

@@ -486,6 +486,10 @@ namespace ColonyCouncil
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
             Slider("regionMapRadius", "CC_Settings_RegionMapRadius", "CC_SetNote_RegionMapRadius", 20f, 60f, 1f, "0");
+            // Names that lead to their cards in Rimfolk's windows, and their previews (UI/Cards/).
+            Section("CC_SetSec_Links");
+            Toggle("linkPreviews", "CC_Settings_LinkPreviews", "CC_SetNote_LinkPreviews");
+            Slider("linkPreviewDelay", "CC_Settings_LinkPreviewDelay", "CC_SetNote_LinkPreviewDelay", 0.1f, 1.5f, 0.05f, "0.00", "linkPreviews");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
