@@ -184,42 +184,125 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static partial class UiKit
     {
-        // ---------------- Palette ----------------
+        // ---------------- Tokens ----------------
+        // The colours by meaning (docs/design/interface.md, "Colour"), one set for every page and window: a page draws
+        // with these and makes no colour of its own (Tools/Tests/LookTests.cs reads every file under UI/ for one). Colour
+        // carries meaning only, and always beside a word or an icon, never alone. A token made fainter (WithAlpha) or
+        // quieter (Quieter) keeps its meaning. The tokens end at "End of the tokens"; nothing else in UiKit makes a colour.
 
-        public static readonly Color Gold = new Color(1f, 0.83f, 0.47f);
-        public static readonly Color Good = new Color(0.52f, 0.85f, 0.5f);
-        public static readonly Color Bad = new Color(0.93f, 0.45f, 0.38f);
-        public static readonly Color Warn = new Color(0.95f, 0.66f, 0.28f);
-        public static readonly Color Info = new Color(0.56f, 0.73f, 0.96f);
+        /// <summary>Text.</summary>
+        public static readonly Color Ink = Color.white;
+        /// <summary>Secondary text: what something is, a note, a date.</summary>
         public static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        /// <summary>Quiet: what is out of reach, past or empty.</summary>
         public static readonly Color Dim = new Color(0.5f, 0.5f, 0.5f);
-        public static readonly Color Neutral = new Color(0.62f, 0.62f, 0.62f);
-        public static readonly Color Quote = new Color(1f, 0.93f, 0.75f);
-        public static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
-        public static readonly Color DreamColor = new Color(0.8f, 0.72f, 0.96f);
-        public static readonly Color LossColor = new Color(0.85f, 0.7f, 0.65f);
-        public static readonly Color StrangerColor = new Color(0.75f, 0.85f, 0.7f);
-        public static readonly Color WorldColor = new Color(0.72f, 0.8f, 0.95f);
+        /// <summary>A section's heading.</summary>
+        public static readonly Color Heading = new Color(0.95f, 0.85f, 0.6f);
+        /// <summary>Ours, chosen, the colony; the mode or tab that shows.</summary>
+        public static readonly Color Gold = new Color(1f, 0.83f, 0.47f);
+        /// <summary>A name that leads to its card: a light parchment, a little warmer than the text, a dotted line under it.</summary>
+        public static readonly Color Link = new Color(0.945f, 0.863f, 0.667f);
+        public static readonly Color LinkLine = new Color(0.945f, 0.863f, 0.667f, 0.5f);
+        public static readonly Color LinkHot = new Color(1f, 0.949f, 0.812f);
+        /// <summary>A stance or a state that is good: friendly, allied, well, for.</summary>
+        public static readonly Color Warm = new Color(0.52f, 0.85f, 0.5f);
+        /// <summary>A stance neither warm nor sour: neutral or wary; what is under way.</summary>
+        public static readonly Color Cool = new Color(0.616f, 0.714f, 0.839f);
+        /// <summary>Hostile, bad, against.</summary>
+        public static readonly Color Sour = new Color(0.93f, 0.45f, 0.38f);
+        /// <summary>Needs the player soon.</summary>
+        public static readonly Color Soon = new Color(0.95f, 0.66f, 0.28f);
+        /// <summary>Harm now: brighter than Sour, always with the warning icon.</summary>
+        public static readonly Color Danger = new Color(1f, 0.353f, 0.282f);
+        /// <summary>Finished, kept, answered.</summary>
+        public static readonly Color Done = new Color(0.561f, 0.627f, 0.561f);
+        /// <summary>World events and news from afar.</summary>
+        public static readonly Color World = new Color(0.72f, 0.8f, 0.95f);
 
-        // Surfaces: all translucent, so they sit on any vanilla panel.
+        // Surfaces: translucent, so they sit on any of the game's panels (the drawer's and a preview's are solid).
         public static readonly Color CardFill = new Color(1f, 1f, 1f, 0.035f);
         public static readonly Color CardHover = new Color(1f, 1f, 1f, 0.07f);
         public static readonly Color CardSelected = new Color(1f, 1f, 1f, 0.11f);
         public static readonly Color CardBorder = new Color(1f, 1f, 1f, 0.09f);
         public static readonly Color ZebraFill = new Color(1f, 1f, 1f, 0.03f);
         public static readonly Color DividerColor = new Color(1f, 1f, 1f, 0.13f);
+        /// <summary>A meter's or a bar's dark track, and its edge.</summary>
         public static readonly Color MeterBack = new Color(0f, 0f, 0f, 0.4f);
-        private static readonly Color PortraitBack = new Color(0.12f, 0.13f, 0.14f, 1f);
+        public static readonly Color MeterEdge = new Color(1f, 1f, 1f, 0.1f);
+        /// <summary>A dark backing under words drawn on a picture (a map's labels, its legend), and behind an icon.</summary>
+        public static readonly Color Shade = new Color(0f, 0f, 0f, 0.6f);
+        /// <summary>The ground of a map drawn in a page, and a portrait's or a badge's disc.</summary>
+        public static readonly Color Ground = new Color(0.07f, 0.08f, 0.09f, 1f);
+        public static readonly Color PortraitBack = new Color(0.12f, 0.13f, 0.14f, 1f);
+        public static readonly Color DrawerFill = new Color(0.125f, 0.141f, 0.157f, 1f);
+        public static readonly Color PreviewFill = new Color(0.165f, 0.184f, 0.204f, 1f);
+        public static readonly Color PreviewEdge = new Color(0.298f, 0.318f, 0.341f, 1f);
+        /// <summary>The count badge's plate: the gold, darkened.</summary>
+        public static readonly Color BadgeFill = new Color(0.62f, 0.45f, 0.16f, 1f);
 
-        // ---------------- Spacing ----------------
+        // The names the pages used before the tokens, each now one of them, so code that reads them draws the same.
+        public static readonly Color Good = Warm;
+        public static readonly Color Bad = Sour;
+        public static readonly Color Warn = Soon;
+        public static readonly Color Info = Cool;
+        public static readonly Color Neutral = Faint;
+        public static readonly Color Quote = Ink;
+        public static readonly Color HeaderColor = Heading;
+        public static readonly Color DreamColor = Faint;
+        public static readonly Color LossColor = Faint;
+        public static readonly Color StrangerColor = Cool;
+        public static readonly Color WorldColor = World;
 
-        public const float Gap = 6f;
+        // ---------------- End of the tokens ----------------
+
+        /// <summary>A token a step quieter (toward Faint): "likes" beside "loves", "dislikes" beside "hates".</summary>
+        public static Color Quieter(Color c, float t = 0.45f) => Color.Lerp(c, Faint, t);
+
+        /// <summary>A token as a faint wash behind a card or a row (in force, chosen, asked for).</summary>
+        public static Color Wash(Color c) => WithAlpha(c, 0.07f);
+
+        /// <summary>An advice's level by its token: harm now, bad, soon, worth knowing, an idea.</summary>
+        public static Color LevelColor(AdviceLevel level)
+        {
+            switch (level)
+            {
+                case AdviceLevel.Critical: return Danger;
+                case AdviceLevel.High: return Sour;
+                case AdviceLevel.Medium: return Soon;
+                case AdviceLevel.Low: return Faint;
+                default: return Cool;
+            }
+        }
+
+        // ---------------- The grid ----------------
+        // docs/design/interface.md, "Spacing and sizes": a 4 pixel grid; the pages lay out with these.
+
+        /// <summary>Window and drawer padding.</summary>
+        public const float Padding = 12f;
+        /// <summary>Between sections.</summary>
+        public const float SectionGap = 16f;
+        /// <summary>Between cards.</summary>
+        public const float CardGap = 8f;
+        /// <summary>Inside a card.</summary>
+        public const float CardInset = 10f;
+        /// <summary>A row in a dense list.</summary>
+        public const float RowDense = 22f;
+        /// <summary>A standard row, and a button.</summary>
+        public const float RowStandard = 28f;
+        /// <summary>A row with a portrait, or with a second line.</summary>
+        public const float RowPortrait = 40f;
+        /// <summary>A card's head.</summary>
+        public const float CardHeadHeight = 56f;
+        /// <summary>Icons: in a dense row, in a row, in the corner and on a card's head.</summary>
+        public const float IconDense = 14f, IconRow = 18f, IconHead = 24f;
+
+        public const float Gap = 8f;
         public const float Pad = 8f;
         /// <summary>Height of <see cref="PageHeader"/>, with the space below it.</summary>
         public const float HeaderHeight = 56f;
         /// <summary>Height of <see cref="SectionTitle"/>, with the space below it.</summary>
         public const float SectionHeight = 32f;
-        public const float RowHeight = 26f;
+        public const float RowHeight = RowStandard;
         /// <summary>Height of <see cref="Meter"/>: a line of tiny text and the bar under it.</summary>
         public const float MeterHeight = 28f;
 
@@ -236,11 +319,11 @@ namespace ColonyCouncil
         {
             switch (k)
             {
-                case TieKind.Friends: return new Color(0.45f, 0.82f, 0.45f);
-                case TieKind.Rivals: return new Color(0.92f, 0.42f, 0.35f);
-                case TieKind.Comrades: return new Color(0.48f, 0.64f, 0.95f);
-                case TieKind.Mentor: return new Color(0.93f, 0.77f, 0.36f);
-                default: return Neutral;
+                case TieKind.Friends: return Warm;
+                case TieKind.Rivals: return Sour;
+                case TieKind.Comrades: return Cool;
+                case TieKind.Mentor: return Gold;
+                default: return Faint;
             }
         }
 
@@ -248,40 +331,44 @@ namespace ColonyCouncil
         {
             switch (r)
             {
-                case DecreeReaction.Love: return new Color(0.45f, 0.86f, 0.45f);
-                case DecreeReaction.Like: return new Color(0.66f, 0.83f, 0.56f);
-                case DecreeReaction.Dislike: return new Color(0.93f, 0.66f, 0.4f);
-                case DecreeReaction.Hate: return new Color(0.93f, 0.38f, 0.32f);
-                default: return Neutral;
+                case DecreeReaction.Love: return Warm;
+                case DecreeReaction.Like: return Quieter(Warm);
+                case DecreeReaction.Dislike: return Quieter(Sour);
+                case DecreeReaction.Hate: return Sour;
+                default: return Faint;
             }
         }
 
+        /// <summary>A chronicle entry's colour by what it means: good news warm, what came to nothing quiet, the council's choices gold.</summary>
         public static Color ChronicleColor(ChronicleKind k)
         {
             switch (k)
             {
                 case ChronicleKind.WishGranted:
                 case ChronicleKind.AmbitionAchieved:
-                case ChronicleKind.PersonalTouch: return new Color(0.55f, 0.9f, 0.55f);
+                case ChronicleKind.PersonalTouch: return Warm;
                 case ChronicleKind.WishExpired:
                 case ChronicleKind.AmbitionFailed:
                 case ChronicleKind.AmbitionAbandoned:
                 case ChronicleKind.WishDismissed: return Faint;
                 case ChronicleKind.Meeting:
                 case ChronicleKind.AmbitionChosen:
-                case ChronicleKind.Council: return new Color(0.45f, 0.7f, 0.95f);
-                case ChronicleKind.Dream: return Quote;
-                case ChronicleKind.Loss: return LossColor;
-                case ChronicleKind.Stranger: return StrangerColor;
-                case ChronicleKind.World: return WorldColor;
-                default: return Color.white;
+                case ChronicleKind.Council: return Gold;
+                case ChronicleKind.Loss: return Faint;
+                case ChronicleKind.Stranger: return Cool;
+                case ChronicleKind.World: return World;
+                default: return Ink;
             }
         }
 
         /// <summary>Green with plenty of time left, orange when it's getting short, red at the end.</summary>
-        public static Color Urgency(float fractionLeft) => fractionLeft > 0.5f ? Good : fractionLeft > 0.25f ? Warn : Bad;
+        public static Color Urgency(float fractionLeft) => fractionLeft > 0.5f ? Warm : fractionLeft > 0.25f ? Soon : Sour;
 
-        public static Color WithAlpha(Color c, float a) => new Color(c.r, c.g, c.b, a);
+        public static Color WithAlpha(Color c, float a)
+        {
+            c.a = a;
+            return c;
+        }
 
         // ---------------- Text ----------------
 
@@ -371,32 +458,19 @@ namespace ColonyCouncil
             // Drawn in a window's view, it is that view's header, with its modes and its "?" (UI/UiKitViews.cs).
             ViewHeader(rect, icon, title, subtitle, stat, statColor, reserveRight, tip, ViewHead.Take());
 
-        /// <summary>A small heading inside a page: icon, text, an optional note on the right, and a line under it. Returns <see cref="SectionHeight"/>.</summary>
+        /// <summary>
+        /// A section's heading inside a page, drawn as every section heading is (<see cref="SectionHeading"/>): an optional
+        /// icon, the name in heading ink, an optional note on the right, and a line under it. A colour given tints the icon
+        /// only (colour beside an icon, never a page's own). Returns <see cref="SectionHeight"/>, the space under it included.
+        /// </summary>
         public static float SectionTitle(float x, float y, float width, string text, Texture2D icon = null, Color? color = null, string right = null)
         {
-            var c = color ?? HeaderColor;
-            float tx = x;
-            if (icon != null)
-            {
-                Icon(new Rect(x, y + 3f, 18f, 18f), icon, c);
-                tx += 24f;
-            }
-            float rw = 0f;
-            if (!right.NullOrEmpty())
-            {
-                Text.Font = GameFont.Tiny;
-                rw = Mathf.Min(Text.CalcSize(right).x + 4f, width * 0.4f);
-                LabelFit(new Rect(x + width - rw, y, rw, 24f), right, Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-                rw += 8f;
-            }
-            LabelFit(new Rect(tx, y, Mathf.Max(0f, width - (tx - x) - rw), 24f), text, c);
-            Divider(x, y + 25f, width);
-            Text.Font = GameFont.Small;
+            HeadingLine(x, y, width, text, -1, right, icon, color ?? Heading, false, false);
             return SectionHeight;
         }
 
         /// <summary>
-        /// A <see cref="SectionTitle"/> that folds its section away when clicked, with a small arrow in front saying which
+        /// A <see cref="SectionTitle"/> that folds its section away when clicked, with the caret in front saying which
         /// way it is. <paramref name="open"/> says whether to draw the section under it; the key names the section in
         /// <paramref name="folds"/> (without folds it's a plain heading, always open). Returns <see cref="SectionHeight"/>.
         /// </summary>
@@ -405,13 +479,10 @@ namespace ColonyCouncil
         {
             open = folds == null || folds.IsOpen(key);
             if (folds == null) return SectionTitle(x, y, width, text, icon, color, right);
-            const float arrow = 15f;
-            var hit = new Rect(x, y, width, 26f);
+            var hit = new Rect(x, y, width, 24f);
             if (Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
-            Icon(new Rect(x + 1f, y + 7f, 10f, 10f), open ? TexButton.Collapse : TexButton.Reveal, WithAlpha(color ?? HeaderColor, 0.8f));
-            SectionTitle(x + arrow, y, width - arrow, text, icon, color, right);
-            Divider(x, y + 25f, arrow);
-            TooltipHandler.TipRegion(hit, open ? "CC_UI_FoldTip".Translate() : "CC_UI_UnfoldTip".Translate());
+            HeadingLine(x, y, width, text, -1, right, icon, color ?? Heading, true, open);
+            TooltipHandler.TipRegion(hit, open ? FoldTips.Fold : FoldTips.Unfold);
             if (Widgets.ButtonInvisible(hit, false))
             {
                 folds.Toggle(key);
@@ -420,22 +491,30 @@ namespace ColonyCouncil
             return SectionHeight;
         }
 
-        /// <summary>An icon and one line, centered: what a list shows when there's nothing in it. Returns the height used.</summary>
+        /// <summary>
+        /// What a list shows when there's nothing in it (component 12): an icon and one sentence saying what will show here
+        /// and what brings it, in a dashed frame, in the middle of the room given. Returns the height used.
+        /// </summary>
         public static float EmptyState(float x, float y, float width, Texture2D icon, string text, float height = 110f)
         {
             Text.Font = GameFont.Small;
-            const float iconSize = 36f;
-            float th = text.NullOrEmpty() ? 0f : Text.CalcHeight(text, Mathf.Max(20f, width - 20f));
-            float total = (icon != null ? iconSize + 8f : 0f) + th;
-            height = Mathf.Max(height, total + 16f);
+            const float iconSize = 26f;
+            float textW = Mathf.Max(20f, Mathf.Min(width - 40f, 460f));
+            float th = text.NullOrEmpty() ? 0f : Text.CalcHeight(text, textW);
+            float total = (icon != null ? iconSize + 6f : 0f) + th;
+            height = Mathf.Max(height, total + 36f);
             float top = y + (height - total) / 2f;
-            if (icon != null) Icon(new Rect(x + width / 2f - iconSize / 2f, top, iconSize, iconSize), icon, new Color(1f, 1f, 1f, 0.22f));
+            // The frame around the words, not the whole room: it reads as one empty block wherever it is drawn.
+            float tw = th > 0f ? Mathf.Min(textW, Text.CalcSize(text).x + 2f) : iconSize;
+            float fw = Mathf.Min(width - 4f, Mathf.Max(tw, iconSize) + 40f);
+            DashedBox(new Rect(x + (width - fw) / 2f, top - 12f, fw, total + 24f), CardBorder);
+            if (icon != null) Icon(new Rect(x + width / 2f - iconSize / 2f, top, iconSize, iconSize), icon, Dim);
             if (th > 0f)
             {
                 Text.Anchor = TextAnchor.UpperCenter;
                 GUI.color = Faint;
-                Widgets.Label(new Rect(x + 10f, top + (icon != null ? iconSize + 8f : 0f), Mathf.Max(20f, width - 20f), th), text);
-                GUI.color = Color.white;
+                Widgets.Label(new Rect(x + (width - textW) / 2f, top + (icon != null ? iconSize + 6f : 0f), textW, th), text);
+                GUI.color = Ink;
                 Text.Anchor = TextAnchor.UpperLeft;
             }
             return height;
@@ -462,7 +541,7 @@ namespace ColonyCouncil
         /// <summary>A flat tab: icon and label, a gold line under it when active. Returns true when clicked.</summary>
         public static bool TabButton(Rect r, string label, Texture2D icon, bool active, string tip = null)
         {
-            if (active) Widgets.DrawBoxSolid(r, new Color(1f, 1f, 1f, 0.1f));
+            if (active) Widgets.DrawBoxSolid(r, CardSelected);
             Widgets.DrawHighlightIfMouseover(r);
             var c = active ? Color.white : Faint;
             Text.Font = GameFont.Small;
@@ -508,35 +587,43 @@ namespace ColonyCouncil
             }
         }
 
-        public static float PillWidth(string label, Texture2D icon = null)
-        {
-            var old = Text.Font;
-            Text.Font = GameFont.Tiny;
-            float w = Text.CalcSize(label ?? "").x + 12f + (icon != null ? 14f : 0f);
-            Text.Font = old;
-            return w;
-        }
+        /// <summary>Whether a colour says something (a stance, a state), so a chip shows it as a dot: not the inks.</summary>
+        private static bool Says(Color c) => c != Ink && c != Faint && c != Dim && c != Heading && c.a > 0.5f;
 
-        /// <summary>Draws a pill; returns its width.</summary>
-        public static float Pill(float x, float y, string label, Color color, Texture2D icon = null, string tip = null, float maxWidth = 9999f)
+        public static float PillWidth(string label, Texture2D icon = null) => KeptWidth(label ?? "", GameFont.Tiny) + 12f + (icon != null ? 14f : 10f);
+
+        /// <summary>A pill's width as drawn in its colour (a dot only where the colour says something).</summary>
+        public static float PillWidth(string label, Texture2D icon, Color color) =>
+            KeptWidth(label ?? "", GameFont.Tiny) + 12f + (icon != null ? 14f : Says(color) ? 10f : 0f);
+
+        /// <summary>
+        /// A tag ("In force", "Last call", "friendly"), drawn as a state chip (component 7): a small frame, its icon or a dot
+        /// in its colour, and its word in ink, so the colour sits beside the word. Returns its width.
+        /// </summary>
+        public static float Pill(float x, float y, string label, Color color, Texture2D icon = null, string tip = null, float maxWidth = 9999f) =>
+            Chip(x, y, label, color, icon, tip, maxWidth, PillHeight, false);
+
+        /// <summary>A pill or a state chip: the frame, the icon or the dot, the word (link ink with <paramref name="link"/>). Returns its width.</summary>
+        private static float Chip(float x, float y, string label, Color color, Texture2D icon, string tip, float maxWidth, float height, bool link)
         {
-            float w = Mathf.Min(PillWidth(label, icon), maxWidth);
-            var r = new Rect(x, y, w, PillHeight);
-            Widgets.DrawBoxSolidWithOutline(r, WithAlpha(color, 0.15f), WithAlpha(color, 0.5f), 1);
+            if (label.NullOrEmpty()) return 0f;
+            bool dot = icon == null && Says(color);
+            float w = Mathf.Min(PillWidth(label, icon, color), maxWidth);
+            var r = new Rect(x, y, w, height);
+            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
             float tx = r.x + 6f;
             if (icon != null)
             {
                 Icon(new Rect(tx - 1f, r.center.y - 6f, 12f, 12f), icon, color);
                 tx += 14f;
             }
-            var old = Text.Font;
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            GUI.color = color;
-            Widgets.Label(new Rect(tx, r.y, Mathf.Max(0f, r.xMax - tx), r.height), Fit(label, r.xMax - tx - 2f));
-            GUI.color = Color.white;
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = old;
+            else if (dot)
+            {
+                DiscFill(new Rect(tx, r.center.y - 3f, 6f, 6f), color);
+                tx += 10f;
+            }
+            LabelFit(new Rect(tx, r.y, Mathf.Max(0f, r.xMax - tx - 2f), r.height), label, link ? Mouse.IsOver(r) ? LinkHot : Link : Says(color) ? Ink : color,
+                GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             return w;
         }
@@ -549,7 +636,7 @@ namespace ColonyCouncil
             for (int i = 0; i < pills.Count; i++)
             {
                 var p = pills[i];
-                float w = Mathf.Min(PillWidth(p.label, p.icon), width);
+                float w = Mathf.Min(PillWidth(p.label, p.icon, p.color), width);
                 if (cx > x && cx + w > x + width)
                 {
                     cx = x;
@@ -559,7 +646,7 @@ namespace ColonyCouncil
                 {
                     // A pill that names a thing keeps its meaning in its colour and tooltip, and leads to the thing's card.
                     bool link = !p.thing.IsNone;
-                    Pill(cx, cy, p.label, p.color, p.icon, link && Previews.Shown == p.thing ? null : p.tip, width);
+                    Chip(cx, cy, p.label, p.color, p.icon, link && Previews.Shown == p.thing ? null : p.tip, width, PillHeight, link);
                     if (link) PillLink(new Rect(cx, cy, w, PillHeight), p);
                 }
                 cx += w + 4f;
@@ -571,8 +658,8 @@ namespace ColonyCouncil
         private static void PillLink(Rect r, PillSpec p)
         {
             bool over = Mouse.IsOver(r);
-            float lx = r.x + 6f + (p.icon != null ? 14f : 0f);
-            LinkText.Underline(lx, r.yMax - 3f, Mathf.Max(0f, r.xMax - 6f - lx), over);
+            float lx = r.x + 6f + (p.icon != null ? 14f : Says(p.color) ? 10f : 0f);
+            LinkText.Underline(lx, r.yMax - 3f, Mathf.Max(0f, Mathf.Min(r.xMax - 6f, lx + KeptWidth(p.label, GameFont.Tiny) - 2f) - lx), over);
             if (over) Previews.Hover(p.thing, r);
             if (!Widgets.ButtonInvisible(r, false)) return;
             Cards.Click();
@@ -584,12 +671,12 @@ namespace ColonyCouncil
         /// <summary>A thin bar with a dark track.</summary>
         public static void Bar(Rect r, float fill, Color color)
         {
-            Widgets.DrawBoxSolidWithOutline(r, MeterBack, new Color(1f, 1f, 1f, 0.1f), 1);
+            Widgets.DrawBoxSolidWithOutline(r, MeterBack, MeterEdge, 1);
             fill = Mathf.Clamp01(fill);
             if (fill <= 0f) return;
             var f = new Rect(r.x + 1f, r.y + 1f, Mathf.Max(1f, (r.width - 2f) * fill), Mathf.Max(1f, r.height - 2f));
             Widgets.DrawBoxSolid(f, WithAlpha(color, 0.85f));
-            Widgets.DrawBoxSolid(new Rect(f.x, f.y, f.width, 1f), new Color(1f, 1f, 1f, 0.2f));
+            Widgets.DrawBoxSolid(new Rect(f.x, f.y, f.width, 1f), WithAlpha(Ink, 0.2f));
         }
 
         /// <summary>
@@ -637,7 +724,7 @@ namespace ColonyCouncil
             GUI.color = WithAlpha(PortraitBack, alpha);
             if (Disc != null) GUI.DrawTexture(r, Disc);
             else Widgets.DrawBoxSolid(r, WithAlpha(PortraitBack, alpha));
-            GUI.color = new Color(1f, 1f, 1f, alpha);
+            GUI.color = WithAlpha(Ink, alpha);
             float inset = Mathf.Max(1f, Mathf.Round(r.width * 0.07f));
             var inner = r.ContractedBy(inset);
             Texture tex = null;
@@ -655,7 +742,7 @@ namespace ColonyCouncil
             }
             if (tex != null) DrawInCircle(inner, tex);
             else Widgets.ThingIcon(inner, p);
-            GUI.color = new Color(ring.r, ring.g, ring.b, ring.a * alpha);
+            GUI.color = WithAlpha(ring, ring.a * alpha);
             if (Ring != null) GUI.DrawTexture(r, Ring);
             else Widgets.DrawBox(r, 2);
             GUI.color = Color.white;

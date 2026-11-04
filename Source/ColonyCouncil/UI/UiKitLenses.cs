@@ -200,7 +200,7 @@ namespace ColonyCouncil
                 fit++;
             }
             var strip = new Rect(r.x, r.yMax - 22f, Mathf.Min(r.width, used + 4f), 22f);
-            Widgets.DrawBoxSolid(strip, new Color(0f, 0f, 0f, 0.62f));
+            Widgets.DrawBoxSolid(strip, Shade);
             float x = strip.x + 8f;
             for (int i = 0; i < fit; i++)
             {

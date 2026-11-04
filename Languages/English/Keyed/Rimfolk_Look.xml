@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- One look (docs/design/interface.md, "The look"): the words the design's components draw. -->
+  <CC_Look_WhyNot>{ACT}: {WHY}</CC_Look_WhyNot>
+  <CC_Look_Rising>rising</CC_Look_Rising>
+  <CC_Look_Falling>falling</CC_Look_Falling>
+  <CC_Look_Steady>steady</CC_Look_Steady>
+</LanguageData>
