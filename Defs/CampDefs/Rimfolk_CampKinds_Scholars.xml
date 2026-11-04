@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Scholars (ColonyCouncil.CampKindDef, see Council_CampKinds.xml): travelers who seek out the remote
+       (docs/design/stage1-region.md, item 5; Camps/CampSeekers.cs, World/Region/TravelLand.cs). They come only when the
+       land near the home has what they study: the ancient ruins on the colony's land, the ruins of a town in the region,
+       the colony's books, its history, or a landmark. They take the form of their own people's age ([their:tribal] a
+       tale-seeker, [their:medieval] a scholar with a mule of books, [their:industrial] a professor and two students,
+       [their:spacer] an archaeotech survey team). Out on the land they walk to the ruins themselves; in the colony they
+       ask leave (to read in its library, to hear its story); they tell news of far towns at their fire, and may leave a
+       book at the gate. {SEEK}: what they came for. -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampStudy</defName>
+    <reportString>writing up notes.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Scholars</defName>
+    <label>scholars</label>
+    <arrives>9~17</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.6</weight>
+    <people>1~3</people>
+    <days>3~7</days>
+    <ages>24~70</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Rimfolk_CampStudy</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>tales</li>
+      <li>book</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>ruins</li>
+    </situationKinds>
+    <seeks>
+      <li>ruins</li>
+      <li>ruinRegion</li>
+      <li>library</li>
+      <li>history</li>
+      <li>wonder</li>
+    </seeks>
+    <seekOnly>true</seekOnly>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Scholars come</li>
+      <li>[their:tribal] A tale-seeker comes</li>
+      <li>[their:medieval] A scholar on the road</li>
+      <li>[their:industrial] A professor and two students</li>
+      <li>[their:spacer] A survey team</li>
+    </titles>
+    <texts>
+      <li>[their:tribal] A tale-seeker of {FACTION} has walked in from the hills with a staff notched for every story {X_pronoun} carries. {X_nameDef} told {A_nameDef} that {X_pronoun} goes where the old stories are, and asked to sit at a fire {PLACE} for a few days.</li>
+      <li>[their:medieval] A scholar of {FACTION} has come up the track with a mule so laden with books it walks sideways. {X_nameDef} told {A_nameDef} that {X_pronoun} has come a long way to see this land with {X_possessive} own eyes, and asked to camp {PLACE} a few days.</li>
+      <li>[their:industrial] A professor of {FACTION} has arrived with two students, a theodolite and a crate of notebooks. {X_nameDef} explained to {A_nameDef}, at some length, what their study is for, and asked whether they might camp {PLACE} for a few days.</li>
+      <li>[their:spacer] An archaeotech survey team of {FACTION} has set down its gear at the edge of the colony's land: scanners, sample cases and a drone that won't stop humming. {X_nameDef}, who leads it, asked {A_nameDef} for leave to camp {PLACE} a few days.</li>
+      <li>Scholars of {FACTION} have come a long way to a place most people never think about. {X_nameDef} told {A_nameDef} they mean to study and write while they're here, and asked to camp {PLACE} for a few days.</li>
+    </texts>
+    <seekTexts>
+      <li>[seek:ruins] What they have come for is {SEEK}: nobody has written down who built them, and {X_nameDef} would like to be the first.</li>
+      <li>[seek:ruins,their:spacer] Their charts show {SEEK} as unsurveyed, and the team means to change that.</li>
+      <li>[seek:ruinRegion] They are on their way to {SEEK}, to see what is left of it before the weather takes the rest.</li>
+      <li>[seek:library] Word of {SEEK} had reached them on the road, and {X_nameDef} would dearly like an afternoon with them.</li>
+      <li>[seek:library,their:tribal] Word had reached {X_objective} that the colony keeps its stories in {SEEK}, and {X_pronoun} would like to see how that is done.</li>
+      <li>[seek:history] They came to hear {SEEK}, told by the people who lived it, before the tellings change.</li>
+      <li>[seek:history,their:tribal] {X_nameDef} has heard pieces of {SEEK} at other fires, and wants it whole.</li>
+      <li>[seek:wonder] They came to see {SEEK} and set it down properly, for the people at home who will never stand here.</li>
+    </seekTexts>
+    <settled>
+      <li>The scholars' camp {PLACE} is up: a table under an awning, weighted down with stones and papers, and a lamp to write by after dark.</li>
+      <li>The scholars from {FACTION} have made camp {PLACE}. The pack beast grazes, and the table is already covered in notes.</li>
+      <li>At the scholars' camp {PLACE}, a line of drying pages hangs between two stakes like washing.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the scholars' youngest, has decided the colony is more interesting than anything in the notebooks, and asks to stay and write it down from the inside.</li>
+      <li>{X_nameDef} from the scholars' camp says {X_pronoun} has seen enough of the road and would rather teach than travel. {X_nameDef} asks whether the colony could use someone who reads.</li>
+    </joinTexts>
+    <farewell>
+      <li>The scholars from {FACTION} packed their notes in oilcloth and went on, arguing cheerfully about a date.</li>
+      <li>The scholars' camp {PLACE} is gone. Somewhere out on the road, the colony is becoming a chapter.</li>
+      <li>{X_nameDef} shook every hand at the gate, thanked the colony twice, and led the scholars off with the pack beast complaining behind them.</li>
+    </farewell>
+    <lines>
+      <li>Write that down.</li>
+      <li>No, the other notebook.</li>
+      <li>Fascinating.</li>
+      <li>That can't be right.</li>
+      <li>Hold the lamp closer.</li>
+      <li>Who told you that?</li>
+      <li>Older than I thought.</li>
+      <li>I need a better word for it.</li>
+    </lines>
+    <momentLines>
+      <li>[seek:ruins] Measure it again, from the corner.</li>
+      <li>[seek:ruins] Someone lived here, and liked the view.</li>
+      <li>[seek:ruins] Don't move anything yet.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat up late at the scholars' fire while {X_nameDef} told of the old ruins and the people who built them, and came back with more questions than answers.</li>
+      <li>[tales,their:tribal] {X_nameDef} told {A_nameDef} three of the stories on {X_possessive} staff, one notch at a time, and asked for one of the colony's in return.</li>
+      <li>[book] {X_nameDef} carried a book of the scholars' to the colony's gate and left it there for the colony: {THING}, with a note inside the cover thanking its hosts.</li>
+    </helpTexts>
+    <!-- What they ask of the colony (CampAsks.cs, CampRequests.cs): to read in its library or hear its story (asked of
+         the colony on their first day when that is what brought them), and a lesson the colony can ask of them. -->
+    <asks>
+      <li>
+        <key>library</key>
+        <theyAsk>true</theyAsk>
+        <needs>seek:library</needs>
+        <label>Let them read in the colony's library</label>
+        <refuseLabel>Not today</refuseLabel>
+        <tension>-6</tension>
+        <askTexts>
+          <li>{X_nameDef} asks, very politely, whether the scholars might spend an afternoon with the colony's books. They will touch nothing they're not shown, and put everything back.</li>
+          <li>The scholars have heard the colony keeps books, and {X_nameDef} would like to read in its library for an afternoon. {X_pronoun} has offered to leave notes for whoever reads after.</li>
+        </askTexts>
+        <tip>Two of the scholars read in the colony's library for an afternoon. Their notes in the margins help whatever the colony is studying now, a little.</tip>
+        <outcomes>
+          <li>Two of the scholars will read in the colony's library this afternoon. {X_nameDef} has brought clean hands and a stack of paper for notes.</li>
+          <li>{X_nameDef} thanked {A_nameDef} warmly and went to fetch {X_possessive} reading glass.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the scholars quite understood, and went back to their own books.</li>
+          <li>The scholars stayed at their camp with the books they brought.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>seek</to>
+            <count>2</count>
+            <doing>read</doing>
+            <hours>3~4</hours>
+            <when>9~17</when>
+            <lines>
+              <li>Look at the binding on this.</li>
+              <li>Someone has read this one many times.</li>
+              <li>I'll put it back exactly where it was.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>history</key>
+        <theyAsk>true</theyAsk>
+        <needs>seek:history</needs>
+        <label>Let {A_nameDef} tell them the colony's story</label>
+        <refuseLabel>Some other time</refuseLabel>
+        <skill>Social</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <askTexts>
+          <li>{X_nameDef} would like to hear the colony's story from someone who was there, and asks whether {A_nameDef} might sit with {X_objective} for an afternoon.</li>
+          <li>The scholars have come for the colony's story, and {X_nameDef} asks for an afternoon of {A_nameDef}'s time to write it down as {A_pronoun} tells it.</li>
+        </askTexts>
+        <tip>One of the scholars sits with {A_nameDef} for an afternoon and writes down the colony's story as {A_pronoun} tells it. Practice in social skills, and the story goes into the colony's chronicle.</tip>
+        <outcomes>
+          <li>{X_nameDef} will come to sit with {A_nameDef} this afternoon, with a fresh notebook and two pens in case one runs dry.</li>
+          <li>{A_nameDef} has agreed to tell the colony's story, and is already arguing with {A_objective}self about where it starts.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the story would keep, and asked only that nobody change it before {X_pronoun} comes back.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>A</to>
+            <count>1</count>
+            <doing>listen</doing>
+            <hours>2~3</hours>
+            <when>10~19</when>
+            <lines>
+              <li>And then what happened?</li>
+              <li>Say that part again, slowly.</li>
+              <li>Who was there with you?</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} study with them</label>
+        <tip>{A_nameDef} spends a few hours at the scholars' table, copying and listening. Practice in intellectual work.</tip>
+        <skill>Intellectual</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is at the scholars' table today, copying out {X_nameDef}'s notes and asking what half of them mean.</li>
+          <li>{X_nameDef} has taken {A_nameDef} through a chapter of {X_possessive} work, and set {A_objective} a question to answer by evening.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

@@ -23,7 +23,7 @@ namespace ColonyCouncil
     /// </summary>
     public class CampTimer : GameComponent
     {
-        /// <summary>Each morning a camp could come: about three weeks' wait on average.</summary>
+        /// <summary>Each morning a camp could come: about three weeks' wait on average (more at a remote home: TravelLand.CampChance).</summary>
         public const float DailyChance = 0.05f;
 
         /// <summary>How often a passing reason may put the day's try off by an hour before the day counts as shut.</summary>
@@ -84,7 +84,8 @@ namespace ColonyCouncil
             }
             Next(home, now, hour);
             home.openMornings++;
-            if (!Rand.Chance(DailyChance))
+            // A remote home draws more travellers (World/Region/TravelLand.cs): up to 60% more at the most remote.
+            if (!Rand.Chance(TravelLand.CampChance(map)))
             {
                 home.Record(day, hour, "open", null);
                 return;
@@ -104,7 +105,8 @@ namespace ColonyCouncil
             }
             tracker.lastWhy.Clear();
             bool came = def.Worker.TryExecute(parms);
-            home.Record(day, hour, came ? "came" : "failed", came ? null : string.Join("; ", tracker.lastWhy));
+            // What brought them, when the land gave them a reason (CampSeekers.cs), goes in the diary beside the day.
+            home.Record(day, hour, came ? "came" : "failed", came ? CampTracker.VisitingAt(map)?.seeking : string.Join("; ", tracker.lastWhy));
         }
 
         public override void GameComponentTick()

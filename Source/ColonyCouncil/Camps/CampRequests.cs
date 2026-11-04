@@ -247,6 +247,8 @@ namespace ColonyCouncil
             try
             {
                 if (errandDoing == "blessing") Blessed();
+                // A walk out to what travellers came for, done (CampSeekers.cs).
+                SeekErrandDone(errandDoing);
                 if (!errandGive.NullOrEmpty() && errandGiveCount > 0)
                 {
                     // What a test hole gave is left beside it, where they dug; anything else at the camp's edge.

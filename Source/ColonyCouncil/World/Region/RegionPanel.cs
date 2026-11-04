@@ -24,6 +24,7 @@ namespace ColonyCouncil
             NeighbourPanel.Sections.Add(DrawTown);
             NeighbourPanel.PlaceSections.Add(DrawSite);
             NeighbourPanel.HomeSections.Add(DrawHome);
+            NeighbourPanel.HomeSections.Add(DrawFarNews);
         }
 
         private static int Now => Find.TickManager?.TicksGame ?? 0;
@@ -109,11 +110,46 @@ namespace ColonyCouncil
                     ? "CC_Region_Panel_RemoteNearest".Translate(Mathf.RoundToInt(r.nearestPeaceful), r.peacefulWithin).Resolve()
                     : "CC_Region_Panel_RemoteNone".Translate().Resolve());
                 if (r.towns.Count > 0 && (RegionBook.FortunesOn || RegionBook.FacesOn)) lines.Add("CC_Region_Panel_InDetail".Translate(r.towns.Count).Resolve());
+                lines.AddRange(TravelLines(home));
                 return Draw(rect, lines, "CC_Region_Panel_HomeHeader");
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("region panel: a home", e);
+                return 0f;
+            }
+        }
+
+        /// <summary>
+        /// A home's travellers (World/Region/TravelLand.cs): how much more often they come for its remoteness, and what of
+        /// its land draws them.
+        /// </summary>
+        public static List<string> TravelLines(Map home)
+        {
+            var lines = new List<string>();
+            if (home == null) return lines;
+            int more = Mathf.RoundToInt((TravelLand.VisitorFactor(home) - 1f) * 100f);
+            if (more >= 5) lines.Add("CC_Travel_Panel_Pull".Translate(more.Named("PCT")).Resolve());
+            var land = TravelLand.Read(home);
+            var draws = TravelMath.Reasons.Where(land.Has).Select(land.What).Where(w => !w.NullOrEmpty()).ToList();
+            if (draws.Count > 0) lines.Add("CC_Travel_Panel_Draws".Translate(TextUtil.JoinAnd(draws).Named("WHAT")).Resolve());
+            return lines;
+        }
+
+        /// <summary>The news of far towns travellers told lately (FarNews), newest first: what the far world does.</summary>
+        private static float DrawFarNews(Rect rect, Map home)
+        {
+            if (!TravelLand.NewsOn) return 0f;
+            try
+            {
+                var heard = FarNews.Heard(4);
+                if (heard.Count == 0) return 0f;
+                var lines = heard.Select(h => "CC_Travel_Panel_FarLine".Translate((h.townName ?? "?").Named("TOWN"), h.text.Named("TEXT"), FactionMemory.AgoText(h.tick).Named("AGO")).Resolve()).ToList();
+                return Draw(rect, lines, "CC_Travel_Panel_FarHeader");
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("region panel: far news", e);
                 return 0f;
             }
         }

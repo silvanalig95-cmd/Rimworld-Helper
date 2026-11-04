@@ -445,6 +445,8 @@ namespace ColonyCouncil
             ExposeMarket();
             // The land kinds' work: the catch, the ruins stripped, the harvest, the hull, the watch (CampKindsLand.cs).
             ExposeLand();
+            // What brought travellers, and what they told and did of it (CampSeekers.cs).
+            ExposeSeek();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

@@ -678,7 +678,8 @@ namespace ColonyCouncil
                 }
                 // Moved on first, so an event that throws can't fire again every hour.
                 timers[key] = now + GenDate.TicksPerDay / 2;
-                if (TryFire(map, null)) timers[key] = now + Interval();
+                // A remote home's wait is cut by its visitors' share, so they come more often and the rest as before (TravelMath.IntervalFactor).
+                if (TryFire(map, null)) timers[key] = now + Mathf.RoundToInt(Interval() * TravelLand.IntervalFactor(map, lastVisitorShare));
             }
             if (seat != HomesMath.None && timers.TryGetValue(seat, out int seatNext)) nextTick = seatNext;
         }
@@ -723,6 +724,15 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("event check " + d.defName, e);
                 }
             }
+            // The visitors' share of what could come, as weighed before a remote home's pull (for its next wait: EventTimers).
+            float visitors = 0f, all = 0f;
+            foreach (var d in pool)
+            {
+                float w = Weight(d, map, false);
+                all += w;
+                if (d.GetModExtension<HappeningExtension>()?.group == HappeningGroup.Visitors) visitors += w;
+            }
+            lastVisitorShare = TravelMath.VisitorShare(visitors, all);
             while (pool.Count > 0)
             {
                 var def = pool.RandomElementByWeight(d => Weight(d, map));
@@ -732,7 +742,10 @@ namespace ColonyCouncil
             return false;
         }
 
-        private float Weight(IncidentDef d, Map map)
+        /// <summary>The visitors' share of the events that could come at the last try (not saved: a load starts from none).</summary>
+        [Unsaved] private float lastVisitorShare;
+
+        private float Weight(IncidentDef d, Map map, bool remote = true)
         {
             var ext = d.GetModExtension<HappeningExtension>();
             float w = d.baseChance;
@@ -743,6 +756,8 @@ namespace ColonyCouncil
             w *= WorldSituations.EventFactor(d, ext);
             // A quarantine or open gates decree, as in the storyteller's own pools (StorytellerFactor).
             if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor(map);
+            // A remote home draws more visitors (World/Region/TravelLand.cs): up to 60% more at the most remote.
+            if (remote && ext.group == HappeningGroup.Visitors) w *= TravelLand.VisitorFactor(map);
             w *= DrawnFactor(ext);
             return Mathf.Max(0.001f, w);
         }
