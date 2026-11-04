@@ -182,8 +182,8 @@ namespace ColonyCouncil
                 }
             }
             if (told.Count > 0 && !label.NullOrEmpty())
-                Messages.Message("CC_Shift_Back".Translate(label.CapitalizeFirst(), TextUtil.JoinAnd(told.Select(p => p.LabelShort).Distinct().ToList())).Resolve(),
-                    new LookTargets(told.Where(p => p.Spawned)), MessageTypeDefOf.SilentInput, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Shift_Back".Translate(label.CapitalizeFirst(), TextUtil.JoinAnd(told.Select(p => p.LabelShort).Distinct().ToList())).Resolve(),
+                    new LookTargets(told.Where(p => p.Spawned)), MessageTypeDefOf.SilentInput);
         }
 
         /// <summary>What it was for is still going on (the heat wave isn't over).</summary>

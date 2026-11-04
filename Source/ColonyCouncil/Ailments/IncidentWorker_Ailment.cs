@@ -155,6 +155,7 @@ namespace ColonyCouncil
             if (!blocked.NullOrEmpty()) text += "\n\n" + blocked;
             string label = def.letterLabel.NullOrEmpty() ? def.diseaseIncident.LabelCap.ToString() : def.letterLabel;
             var letterDef = def.letterDef ?? (Serious ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent);
+            // direct: the storyteller's own incident letter (it carries the incident's faction and quest), paced by the storyteller.
             SendStandardLetter(label, text, letterDef, parms, new LookTargets(got));
         }
     }

@@ -221,7 +221,7 @@ namespace ColonyCouncil
             try
             {
                 if (look == null || !look.IsValid) look = Look(t);
-                Find.LetterStack.ReceiveLetter(t.letterLabel ?? "", t.letterText, t.letterDef ?? LetterDefOf.NeutralEvent, look ?? LookTargets.Invalid);
+                Tell.Letter(NewsKind.World, Importance.Notable, null, t.letterLabel ?? "", t.letterText, t.letterDef ?? LetterDefOf.NeutralEvent, look ?? LookTargets.Invalid);
                 if (!t.chronicle.NullOrEmpty())
                     CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, t.chronicle,
                         t.chroniclePawn != null && !t.chroniclePawn.Dead && t.chroniclePawn.IsColonist ? t.chroniclePawn : null));

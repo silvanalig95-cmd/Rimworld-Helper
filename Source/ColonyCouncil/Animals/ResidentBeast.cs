@@ -193,7 +193,7 @@ namespace ColonyCouncil
                 var who = namer ?? HerdStory.Keeper(map, null);
                 if (who != null)
                 {
-                    Find.LetterStack.ReceiveLetter("CC_Beast_NamedTitle".Translate(kind.Named("KIND")).Resolve(),
+                    Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Beast_NamedTitle".Translate(kind.Named("KIND")).Resolve(),
                         "CC_Beast_Named".Translate(a.Named("PET"), who.Named("PAWN"), kind.Named("KIND")).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(a));
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, "CC_Beast_NamedChronicle".Translate(a.Named("PET"), who.Named("PAWN"), kind.Named("KIND")).Resolve(), who));
                     Interplay.Journal(who, "Council_Journal_Beast_Named", Tags().ToArray(), a.Named("PET"), kind.Named("KIND"));

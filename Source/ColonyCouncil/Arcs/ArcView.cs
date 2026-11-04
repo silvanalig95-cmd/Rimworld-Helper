@@ -131,6 +131,7 @@ namespace ColonyCouncil
             string text = options.Count == 0 ? "No personal story fits anyone right now."
                 : string.Join("\n", options.Select(o => o.c.pawn.LabelShort + ": " + o.def.label + (o.c.other != null ? " with " + o.c.other.LabelShort : "") + (o.c.third != null ? " and " + o.c.third.LabelShort : "") + " (" + o.weight.ToString("0.##") + ")"));
             Log.Message("[Rimfolk] Personal stories that could begin:\n" + text);
+            // direct: a developer's button.
             Messages.Message(options.Count + " personal stories could begin (listed in the log).", MessageTypeDefOf.NeutralEvent, false);
         }
     }

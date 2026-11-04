@@ -80,7 +80,7 @@ namespace ColonyCouncil
             var letter = (ChoiceLetter_Happening)LetterMaker.MakeLetter(label, body, CouncilDefOf.Council_EventLetter, Look(ctx));
             letter.ctx = ctx;
             letter.StartTimeout(ticks);
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, ctx.map);
             setup = null;
         }
 

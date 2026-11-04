@@ -15,6 +15,12 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.66.0, stage 0 step 6 (F6): `UI/Tell.cs` and `UI/TellMath.cs` (`TellBook`, `TellTests`): `Tell.Message`, `Minor`
+  (News.Post), `Letter`, `Ask`/`CanAsk` (LetterGap), caps 20 messages and 6 letters a day per kind and colony (two
+  settings), 4-hour merge, overflow to the evening letter (held news saved with a `held` flag), the settlement named
+  with more than one colony. 133 direct messages moved, 103 kept (click answers; others carry `// direct:`; TellTests
+  checks), 61 letters through Tell.Letter, 9 through Ask. New code tells the player through Tell (DESIGN.md "Telling
+  the player", the agents' brief). "Important only" now quiets the moved Notable messages.
 - 0.65.3, stage 0 step 3a (F3a): `World/Ledger/` (`LedgerMath.cs` and `TieMath.cs` pure; `Tie.cs`, `WorldLedger.cs`,
   `LedgerToday.cs`, `LedgerViews.cs`), `LedgerTests`. `Ref` (p/t/f/c/h text form; ledger persons negative), `Refs`
   (game objects both ways), `WorldAge`, `Tie` (11 kinds, 5 states, `TieTerms` with `about`, `TieRules` state machine and

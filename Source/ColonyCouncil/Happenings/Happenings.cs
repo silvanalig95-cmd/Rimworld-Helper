@@ -746,7 +746,7 @@ namespace ColonyCouncil
                 if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Evt_NoAnswer".Translate().ToString() : null))
                 {
                     if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
-                    Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                    Tell.Message(NewsKind.World, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
                 }
                 if (ext.notable)
                     comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Chronicle_EventChoice".Translate(ctx.incident.LabelCap, ctx.Format(option.label)).Resolve(), ctx.a));

@@ -254,6 +254,7 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Camp_Opt_Force_Confirm".Translate(c.faction?.Name ?? "?"), () =>
                     {
                         string told = CampAnswers.DriveOff(c);
+                        // direct: the answer to the player's click on "drive them off", with the threat's sound.
                         if (!told.NullOrEmpty()) Messages.Message(told, c.Look, MessageTypeDefOf.ThreatSmall, false);
                     }, true));
                     Close();

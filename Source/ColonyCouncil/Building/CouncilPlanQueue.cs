@@ -143,7 +143,7 @@ namespace ColonyCouncil
                         queue.RemoveAt(i);
                 }
                 if (given > 0)
-                    Messages.Message("CC_Plan_QueueGaveUp".Translate(given), MessageTypeDefOf.SilentInput, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Plan_QueueGaveUp".Translate(given), null, MessageTypeDefOf.SilentInput);
             }
             catch (System.Exception e)
             {

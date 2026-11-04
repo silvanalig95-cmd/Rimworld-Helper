@@ -73,7 +73,7 @@ namespace ColonyCouncil
                 if (now > w.until)
                 {
                     list.Remove(w);
-                    if (a.Spawned) Messages.Message("CC_Wed_Lapsed".Translate(a.Named("A"), b.Named("B")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent, false);
+                    if (a.Spawned) Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Wed_Lapsed".Translate(a.Named("A"), b.Named("B")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent);
                     continue;
                 }
                 if (now < w.from || !a.Spawned || !b.Spawned || a.Map != b.Map || !a.Map.IsPlayerHome) continue;

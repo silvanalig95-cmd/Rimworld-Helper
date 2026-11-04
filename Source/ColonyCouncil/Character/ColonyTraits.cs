@@ -253,7 +253,7 @@ namespace ColonyCouncil
                 string label = "CC_Ways_TraitLabel".Translate(def.label.CapitalizeFirst()).Resolve();
                 // Those who love the work take pride in it; a name with no one skill behind it is simply the colony's.
                 if (def.skill != null) text += "\n\n" + "CC_Ways_TraitPride".Translate(def.skill.label).Resolve();
-                Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent);
+                Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.PositiveEvent);
                 comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, label, null));
             }
             else if (isKnown && !ColonyTraitMath.Known(true, rate, def.knownAt, LoseShare))

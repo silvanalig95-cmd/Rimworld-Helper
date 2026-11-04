@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One voice
+
+*4 November 2026, version 0.66.0*
+
+- On a day when one kind of news goes on and on, Rimfolk's messages past a set number wait for the evening's Colony news instead of filling the corner, so nothing is lost.
+- The same message twice within a few hours now shows once.
+- Letters that only tell work the same way: past a few of one kind in a day, the rest become lines in the evening letter. Questions and serious news always come at once.
+- With more than one colony, every message, letter and line of the news names the settlement it comes from.
+- Two new settings under Messages set how many messages and letters a day Rimfolk shows of each kind, and "How many messages" now covers all of Rimfolk's messages about what happens, so "Important only" is quieter than before.
+
 ## Groundwork: the world ledger
 
 *4 November 2026, version 0.65.3*

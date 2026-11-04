@@ -577,7 +577,7 @@ namespace ColonyCouncil
             string key = won ? (v.stake > 0 ? "Rimfolk_Evt_GameWonStake" : "Rimfolk_Evt_GameWon") : (v.stake > 0 ? "Rimfolk_Evt_GameLostStake" : "Rimfolk_Evt_GameLost");
             string game = v.place?.def?.defName == "PokerTable" ? "Rimfolk_Evt_Game_Poker".Translate().Resolve() : v.place?.def?.defName == "ChessTable" ? "Rimfolk_Evt_Game_Chess".Translate().Resolve() : (v.place?.LabelNoCount ?? "?");
             string text = key.Translate(a.Named("A"), x.Named("X"), game.Named("GAME"), v.stake.Named("COUNT")).Resolve();
-            Find.LetterStack.ReceiveLetter((won ? "Rimfolk_Evt_GameWonTitle" : "Rimfolk_Evt_GameLostTitle").Translate(a.Named("A"), game.Named("GAME")).Resolve(), text,
+            Tell.Letter(NewsKind.World, Importance.Notable, null, (won ? "Rimfolk_Evt_GameWonTitle" : "Rimfolk_Evt_GameLostTitle").Translate(a.Named("A"), game.Named("GAME")).Resolve(), text,
                 won ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(a));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
         }
@@ -733,7 +733,7 @@ namespace ColonyCouncil
                 WorldSituationWorker.Goodwill(m.faction, -4);
                 string title = VarietyUtil.Line(more?.failTitles, ctx) ?? incident.LabelCap.ToString();
                 string text = VarietyUtil.Line(more?.fail, ctx);
-                if (!text.NullOrEmpty()) Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NeutralEvent);
+                if (!text.NullOrEmpty()) Tell.Letter(NewsKind.World, Importance.Notable, null, title, text, LetterDefOf.NeutralEvent);
             }
         }
 
@@ -774,7 +774,7 @@ namespace ColonyCouncil
             string title = VarietyUtil.Line(more?.doneTitles, ctx, tags) ?? ctx.incident.LabelCap.ToString();
             string text = VarietyUtil.Line(more?.done, ctx, tags, piece.LabelNoCount);
             if (text.NullOrEmpty()) return;
-            Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.PositiveEvent, new LookTargets(piece.Spawned ? (Thing)piece : null));
+            Tell.Letter(NewsKind.World, Importance.Notable, null, title, text, LetterDefOf.PositiveEvent, new LookTargets(piece.Spawned ? (Thing)piece : null));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, title + ": " + text, ctx.a != null && !ctx.a.Dead ? ctx.a : null));
         }
 

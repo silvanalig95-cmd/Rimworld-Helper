@@ -82,7 +82,7 @@ namespace ColonyCouncil
             {
                 told = true;
                 Log.Message("[Rimfolk] RimWorld of Magic's travel need (which the mod switches off) had reached " + colonists + " colonists; it is gone again.");
-                Messages.Message("CC_MagicNeeds_TravelGone".Translate(colonists.Named("COUNT")).Resolve(), MessageTypeDefOf.PositiveEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_MagicNeeds_TravelGone".Translate(colonists.Named("COUNT")).Resolve(), null, MessageTypeDefOf.PositiveEvent);
             }
             return colonists;
         }

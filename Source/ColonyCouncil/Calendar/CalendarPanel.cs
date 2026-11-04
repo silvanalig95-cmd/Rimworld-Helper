@@ -471,6 +471,7 @@ namespace ColonyCouncil
                     return;
                 }
                 if (way == DayWay.Faith) d.subject = faithName;
+                // direct: the dialog's own confirmation of the day the player just added.
                 Messages.Message("CC_Cal_Dialog_Added".Translate(d.label, CalendarTracker.DateText(d.day)).Resolve(), MessageTypeDefOf.PositiveEvent, false);
             }
             else

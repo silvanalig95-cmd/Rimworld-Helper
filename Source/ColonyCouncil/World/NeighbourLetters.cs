@@ -899,7 +899,7 @@ namespace ColonyCouncil
             LookTargets look = LookTargets.Invalid;
             if (KinMemory.Ours(l.other) && l.other.Spawned) look = new LookTargets(l.other);
             else if (KinMemory.Ours(l.writer) && l.writer.Spawned) look = new LookTargets(l.writer);
-            Find.LetterStack.ReceiveLetter(title, text, def, look);
+            Tell.Letter(NewsKind.World, Importance.Notable, null, title, text, def, look);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, chronicle, KinMemory.Ours(l.writer) ? l.writer : null));
             if (things.Count > 0 && map != null)
             {

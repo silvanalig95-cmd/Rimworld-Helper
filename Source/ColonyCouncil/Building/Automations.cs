@@ -387,7 +387,7 @@ namespace ColonyCouncil
             while (actions.Count > AutomationMath.ActionsKept) actions.RemoveAt(0);
             log.Add(GenDate.DaysPassed + ": " + text);
             while (log.Count > AutomationMath.LogLines) log.RemoveAt(0);
-            Messages.Message(text, look ?? LookTargets.Invalid, MessageTypeDefOf.SilentInput, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map, text, look ?? LookTargets.Invalid, MessageTypeDefOf.SilentInput);
             return a;
         }
 

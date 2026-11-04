@@ -515,8 +515,8 @@ namespace ColonyCouncil
             p.organizer = first;
             p.count = Math.Max(1, Math.Min(3, count));
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
-            Messages.Message("CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
-                MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
+                MessageTypeDefOf.NeutralEvent);
             return true;
         }
     }

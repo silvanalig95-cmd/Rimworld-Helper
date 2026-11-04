@@ -58,6 +58,7 @@ namespace ColonyCouncil
             foreach (var p in w.Supporters) standings.Change(p, 4f, "CC_Log_Promised".Translate(w.Label));
             if (w.ForSomeoneElse) standings.Change(w.Beneficiary, 4f, "CC_Log_Promised".Translate(w.Label));
             string line = PoolLine("Council_Pool_Promised", w.pawn, w, "CC_PromisedFallback");
+            // direct: the answer to the player's click on "Promise", and below what the promise sets going.
             Messages.Message("CC_PromisedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechGood);
@@ -71,6 +72,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("promise " + w.def.defName, e);
             }
+            // direct: still the answer to the click on "Promise".
             if (!act.NullOrEmpty())
                 Messages.Message(w.Format(act.CanTranslate() ? act.Translate().ToString() : act), w.Worker.LookAt(w), MessageTypeDefOf.PositiveEvent, false);
         }
@@ -94,6 +96,7 @@ namespace ColonyCouncil
                 SetCooldown(p, w.def, 3f);
             }
             string line = PoolLine("Council_Pool_Refused", w.pawn, w, "CC_RefusedFallback");
+            // direct: the answer to the player's click on "Refuse".
             Messages.Message("CC_RefusedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechSour);
@@ -216,8 +219,8 @@ namespace ColonyCouncil
             string line = w.def.reminder.Any ? w.def.reminder.Pick(ToneUtility.ToneFor(w.pawn), tags) : null;
             line = line != null ? w.Format(line) : PoolLine("Council_Pool_Reminder", w.pawn, w);
             if (line.NullOrEmpty()) return;
-            Messages.Message("CC_ReminderMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(w.pawn), MessageTypeDefOf.SilentInput, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_ReminderMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(w.pawn), MessageTypeDefOf.SilentInput);
             Speak(w.pawn, line, SpeechWish);
         }
 
@@ -244,7 +247,7 @@ namespace ColonyCouncil
                     standings.Change(w.pawn, proud ? -1f : -4f, "CC_Log_SelfHelp".Translate(w.Label));
                     if (Settings.Negatives && !proud) GiveThought(w.pawn, CouncilDefOf.Council_TookMatters, null, Settings.PenaltyScale);
                     string line = PoolLine("Council_Pool_SelfHelp", w.pawn, w);
-                    Find.LetterStack.ReceiveLetter("CC_SelfHelpTitle".Translate(w.pawn.Named("PAWN")).Resolve(),
+                    Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_SelfHelpTitle".Translate(w.pawn.Named("PAWN")).Resolve(),
                         w.Format(what.CanTranslate() ? what.Translate().ToString() : what) + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NeutralEvent, w.Worker.LookAt(w));
                     Speak(w.pawn, line, SpeechWish);
                     AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_SelfHelp".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
@@ -253,9 +256,9 @@ namespace ColonyCouncil
             }
             string call = PoolLine("Council_Pool_LastCall", w.pawn, w);
             if (call.NullOrEmpty()) return;
-            Messages.Message("CC_LastCallMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH"), TextUtil.DaysString(w.TicksLeft).Named("TIME")).Resolve()
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_LastCallMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH"), TextUtil.DaysString(w.TicksLeft).Named("TIME")).Resolve()
                              + " \"" + TextUtil.ShortSpeech(call, 140) + "\"",
-                new LookTargets(w.pawn), MessageTypeDefOf.CautionInput, false);
+                new LookTargets(w.pawn), MessageTypeDefOf.CautionInput);
             Speak(w.pawn, call, SpeechSour);
         }
 
@@ -327,7 +330,7 @@ namespace ColonyCouncil
             if (inspired != null) body += "\n\n" + "CC_InspiredNote".Translate(who.Named("PAWN"), inspired.Named("INSPIRATION")).Resolve();
 
             if (s.grantedLetters || inspired != null)
-                Find.LetterStack.ReceiveLetter(title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
+                Tell.Letter(NewsKind.Colony, Importance.Notable, null, title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
             else
                 News.Post(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
 
@@ -761,7 +764,7 @@ namespace ColonyCouncil
                 {
                     st.leavingTick = 0;
                     string line = Scene("Council_Pool_Staying", p, null);
-                    Find.LetterStack.ReceiveLetter("CC_StayingTitle".Translate(p.Named("PAWN")).Resolve(),
+                    Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_StayingTitle".Translate(p.Named("PAWN")).Resolve(),
                         "CC_StayingText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.PositiveEvent, new LookTargets(p));
                     AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Staying".Translate(p.LabelShort).Resolve(), p));
                     return;
@@ -780,7 +783,7 @@ namespace ColonyCouncil
 
             st.leavingTick = now + GenDate.TicksPerDay * 3;
             string say = Scene("Council_Pool_Quitting", p, null);
-            Find.LetterStack.ReceiveLetter("CC_QuittingTitle".Translate(p.Named("PAWN")).Resolve(),
+            Tell.Letter(NewsKind.People, Importance.Important, null, "CC_QuittingTitle".Translate(p.Named("PAWN")).Resolve(),
                 "CC_QuittingText".Translate(p.Named("PAWN")).Resolve() + (say != null ? "\n\n\"" + say + "\"" : ""), LetterDefOf.ThreatSmall, new LookTargets(p));
             Speak(p, say, SpeechSour);
             AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Quitting".Translate(p.LabelShort).Resolve(), p));
@@ -806,7 +809,7 @@ namespace ColonyCouncil
             }
             foreach (var w in wishes.Where(x => x.state == WishState.Open && x.Involves(p)).ToList()) Resolve(w, WishState.Cancelled);
             string line = Scene("Council_Pool_Quit", p, null);
-            Find.LetterStack.ReceiveLetter("CC_QuitTitle".Translate(p.Named("PAWN")).Resolve(),
+            Tell.Letter(NewsKind.People, Importance.Important, null, "CC_QuitTitle".Translate(p.Named("PAWN")).Resolve(),
                 "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
             AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
             annals.Notify_Quit(p);
@@ -858,7 +861,7 @@ namespace ColonyCouncil
             }
             if (lovers.Count + haters.Count > 0)
                 text.Append("\n\n").Append("CC_Decree_Count".Translate(lovers.Count, haters.Count).Resolve());
-            Find.LetterStack.ReceiveLetter("CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
+            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
             AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
             annals.decrees.Add(def.label);
         }

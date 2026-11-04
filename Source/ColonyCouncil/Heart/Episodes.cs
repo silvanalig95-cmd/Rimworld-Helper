@@ -167,7 +167,7 @@ namespace ColonyCouncil
             string text = "CC_Heart_Episode_Text".Translate(p.Named("PAWN"), (sources.NullOrEmpty() ? "CC_Heart_Episode_NoSources".Translate().Resolve() : sources).Named("SOURCES")).Resolve();
             string help = HeartView.HelpText(p, h, 3);
             if (!help.NullOrEmpty()) text += "\n\n" + "CC_Heart_Episode_Helps".Translate(p.Named("PAWN"), help.Named("HELP")).Resolve();
-            Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NegativeEvent, p);
+            Tell.Letter(NewsKind.People, Importance.Important, null, title, text, LetterDefOf.NegativeEvent, p);
             var comp = CouncilGameComponent.Instance;
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Heart_Episode_Chronicle".Translate(p.Named("PAWN")).Resolve(), p));
             comp?.journals?.WriteText(p, "CC_Heart_Episode_Journal".Translate(p.Named("PAWN")).Resolve());
@@ -186,7 +186,7 @@ namespace ColonyCouncil
             LogicChange(p, full ? -HeartMath.EpisodeRelief : -HeartMath.EpisodeRelief * 0.5f);
             if (!full)
             {
-                if (interrupted && p.Spawned) Messages.Message("CC_Heart_Episode_Interrupted".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
+                if (interrupted && p.Spawned) Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Heart_Episode_Interrupted".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             if (letItOut != null && S.MoodEffects && p.needs?.mood?.thoughts?.memories != null && ThoughtMaker.MakeThought(letItOut) is Thought_Memory relief)
@@ -196,7 +196,7 @@ namespace ColonyCouncil
                 if (relief is ICouncilMood mood) mood.Scaled = true;
                 p.needs.mood.thoughts.memories.TryGainMemory(relief);
             }
-            Messages.Message("CC_Heart_Episode_Over".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Heart_Episode_Over".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.PositiveEvent);
         }
 
         private static void LogicChange(Pawn p, float amount) => HeartLogic.Change(p, amount, StrainRelief.Episode);

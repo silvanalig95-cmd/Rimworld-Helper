@@ -141,7 +141,7 @@ namespace ColonyCouncil
             // apart: news of someone grown up; family and friends are proud.
             if (!S.comingOfAge) return;
             string text = "CC_ComingOfAge_Text".Translate(p.Named("PAWN")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
+            Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             comp.journals.Write(p, "Council_Journal_ComingOfAge");
             foreach (var o in PawnsFinder.AllMaps_FreeColonists.ToList().Where(o => o != p && Eligible(o) && o.relations != null && !o.DevelopmentalStage.Juvenile()))

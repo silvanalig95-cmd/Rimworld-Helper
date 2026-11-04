@@ -279,7 +279,7 @@ namespace ColonyCouncil
                 }
             }
             string text = key.Translate((b.faction?.Name ?? "").Named("FACTION"), (b.enemy?.Name ?? "").Named("ENEMY"), b.came.Named("COUNT"), b.Fell.Named("FELL")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_WarCamp_GoneTitle".Translate((b.faction?.Name ?? "").Named("FACTION")).Resolve(), text, LetterDefOf.NeutralEvent,
+            Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_WarCamp_GoneTitle".Translate((b.faction?.Name ?? "").Named("FACTION")).Resolve(), text, LetterDefOf.NeutralEvent,
                 new LookTargets(b.Here.Cast<Thing>()), b.faction);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
             tracker.warBand = null;

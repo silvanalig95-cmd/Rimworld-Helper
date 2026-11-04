@@ -164,7 +164,7 @@ namespace ColonyCouncil
             c.willing.Remove(p);
             if (!c.joined.Contains(p)) c.joined.Add(p);
             string text = (price > 0 ? "CC_Camp_Hired" : "CC_Camp_Welcomed").Translate(p.Named("X"), (c.faction?.Name ?? "").Named("FACTION"), c.Label.Named("NAME"), price.Named("COUNT")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Camp_JoinedTitle".Translate(p.Named("X")).Resolve(), text, LetterDefOf.PositiveEvent, p);
+            Tell.Letter(NewsKind.World, Importance.Important, null, "CC_Camp_JoinedTitle".Translate(p.Named("X")).Resolve(), text, LetterDefOf.PositiveEvent, p);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, p));
             return null;
         }
@@ -435,7 +435,7 @@ namespace ColonyCouncil
             {
                 string told;
                 using (CampTracker.Talking(camp)) told = o.act?.Invoke();
-                if (!told.NullOrEmpty()) Messages.Message(told, camp.Look, MessageTypeDefOf.NeutralEvent, false);
+                if (!told.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Notable, null, told, camp.Look, MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

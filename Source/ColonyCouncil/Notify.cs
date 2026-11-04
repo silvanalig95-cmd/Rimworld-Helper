@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.CompilerServices;
 using RimWorld;
 using Verse;
 
@@ -10,7 +12,7 @@ namespace ColonyCouncil
         Flavor,
         /// <summary>Worth knowing: a bond formed, a vendetta sworn, a secret out.</summary>
         Notable,
-        /// <summary>Hard to miss: something that changes the colony.</summary>
+        /// <summary>Hard to miss: something that changes the colony. Never held back by a day's cap (UI/Tell.cs).</summary>
         Important
     }
 
@@ -21,12 +23,16 @@ namespace ColonyCouncil
         LettersOnly
     }
 
-    /// <summary>One place where the mod's many systems send their messages, so one setting can quiet them all.</summary>
+    /// <summary>
+    /// The "How many messages" setting, and the older way in for the mod's messages: <see cref="Message"/> goes through
+    /// <see cref="Tell.Message"/>, Rimfolk's one voice to the player, counted under the kind of news of the folder its
+    /// caller sits in (World/ as world news, Social/ as people's, and so on: <see cref="TellMath.KindOfFolder"/>).
+    /// </summary>
     public static class Notify
     {
         public static bool Shows(Importance importance)
         {
-            switch (ColonyCouncilMod.Settings.messageLevel)
+            switch (ColonyCouncilMod.Settings?.messageLevel ?? MessageLevel.Notable)
             {
                 case MessageLevel.Everything: return true;
                 case MessageLevel.LettersOnly: return importance >= Importance.Important;
@@ -34,10 +40,14 @@ namespace ColonyCouncil
             }
         }
 
-        public static void Message(string text, LookTargets look, MessageTypeDef type, Importance importance)
+        public static void Message(string text, LookTargets look, MessageTypeDef type, Importance importance, [CallerFilePath] string caller = "")
         {
             if (text.NullOrEmpty() || !Shows(importance)) return;
-            Messages.Message(text, look ?? LookTargets.Invalid, type, false);
+            Tell.Message(KindOf(caller), importance, null, text, look, type);
         }
+
+        /// <summary>The kind of news a caller's messages count under, from its source folder.</summary>
+        private static NewsKind KindOf(string caller) =>
+            Enum.TryParse(TellMath.KindOfFolder(TellMath.FolderOf(caller)), out NewsKind k) ? k : NewsKind.Colony;
     }
 }

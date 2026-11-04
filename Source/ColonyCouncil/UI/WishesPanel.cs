@@ -59,6 +59,7 @@ namespace ColonyCouncil
             {
                 lastListenTick = now;
                 var w = comp.TryGenerateWish(true);
+                // direct: the answer to the player's click on "Listen".
                 if (w == null) Messages.Message("CC_Listen_Nothing".Translate(), MessageTypeDefOf.NeutralEvent, false);
             }
             TooltipHandler.TipRegion(listenRect, canListen ? "CC_Listen_Tip".Translate() : "CC_Listen_Cooldown".Translate());

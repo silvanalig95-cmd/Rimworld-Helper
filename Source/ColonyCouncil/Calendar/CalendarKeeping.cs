@@ -265,7 +265,7 @@ namespace ColonyCouncil
             letter.ritual = ritual?.LabelCap;
             letter.keepLabel = keepLabel;
             letter.StartTimeout(ticks);
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, map);
         }
 
         private void RemembranceLetter(CalendarDay d, Map map, List<Pawn> home, int years)
@@ -277,7 +277,7 @@ namespace ColonyCouncil
             else parts.Add("CC_Cal_Way_Remembrance_Letter".Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
             var ritual = RitualFor(DayWay.Remembrance);
             if (ritual != null) parts.Add("CC_Cal_Ritual_Remembrance".Translate(IdeoName(), ritual.LabelCap).Resolve());
-            Find.LetterStack.ReceiveLetter(d.label.CapitalizeFirst(), string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), LetterDefOf.NeutralEvent,
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, d.label.CapitalizeFirst(), string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), LetterDefOf.NeutralEvent,
                 new LookTargets(who.Count > 0 ? who : new List<Pawn> { keeper }));
         }
 
@@ -329,7 +329,7 @@ namespace ColonyCouncil
             bool told = false;
             if (ritual != null)
             {
-                Messages.Message("CC_Cal_Ritual_Chosen".Translate(d.label, ritual).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Cal_Ritual_Chosen".Translate(d.label, ritual).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 told = true;
             }
             else if (!quiet) told = DoWay(d, map, home);
@@ -730,7 +730,7 @@ namespace ColonyCouncil
                 Interplay.Notify_DayTradition(d, false);
                 return;
             }
-            Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
+            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
                 LetterDefOf.PositiveEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(d.label).Resolve(), null));
             comp?.annals.Notify_TraditionBorn(d.label);

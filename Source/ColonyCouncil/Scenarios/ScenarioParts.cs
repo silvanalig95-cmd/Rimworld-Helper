@@ -332,7 +332,7 @@ namespace ColonyCouncil
                 t.Use(m);
                 return;
             }
-            bool quiet = map != null && !MapFacts.ThreatOn(map) && !HappeningTracker.Waiting && LetterGap.Open && inst.Running.Count() < WorldSituations.MaxActive;
+            bool quiet = map != null && !MapFacts.ThreatOn(map) && !HappeningTracker.Waiting && Tell.CanAsk && inst.Running.Count() < WorldSituations.MaxActive;
             if (quiet && inst.TryStart(map, d => d == def, true) != null)
             {
                 t.Use(m);

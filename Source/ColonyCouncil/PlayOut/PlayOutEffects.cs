@@ -474,7 +474,7 @@ namespace ColonyCouncil
                 string names = target == DilemmaTarget.Colony && given.Count > 2 ? "CC_Play_Everyone".Translate().Resolve()
                     : TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList());
                 string text = (sleep ? "CC_Play_Sleep" : "CC_Play_Rest").Translate(names, given.Count).Resolve();
-                Messages.Message(text, new LookTargets(given), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, text, new LookTargets(given), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {
@@ -526,8 +526,8 @@ namespace ColonyCouncil
                     .Take(Math.Max(1, count)).ToList();
                 if (game.Count == 0) return;
                 foreach (var a in game) dm.AddDesignation(new Designation(a, DesignationDefOf.Hunt));
-                Messages.Message("CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
-                    MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
+                    MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

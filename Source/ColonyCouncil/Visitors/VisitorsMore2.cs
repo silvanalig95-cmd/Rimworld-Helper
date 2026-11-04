@@ -458,8 +458,8 @@ namespace ColonyCouncil
                 }
                 VisitorWork2.Say(p, VisitorWork2Math.Swap);
                 if (left != null)
-                    Messages.Message("CC_V2_Book_Swapped".Translate(p.Named("PAWN"), VisitorWork2.Title(want).Named("BOOK"), left.Named("LEFT")).Resolve(),
-                        new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
+                    Tell.Message(NewsKind.World, Importance.Notable, null, "CC_V2_Book_Swapped".Translate(p.Named("PAWN"), VisitorWork2.Title(want).Named("BOOK"), left.Named("LEFT")).Resolve(),
+                        new LookTargets(p), MessageTypeDefOf.NeutralEvent);
                 // Their business done: they go within the hour.
                 if (trip != null && trip.arrived >= 0) trip.hours = Mathf.Min(trip.hours, (Find.TickManager.TicksGame - trip.arrived) / (float)VisitorMath.TicksPerHour + 0.5f);
             }

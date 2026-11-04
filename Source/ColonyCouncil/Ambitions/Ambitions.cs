@@ -437,7 +437,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             string text = AnnouncementText(m, now);
             var look = m.spot.IsValid ? new LookTargets(new TargetInfo(m.spot, m.map)) : new LookTargets(m.chair);
-            Messages.Message(text, look, MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, m.map, text, look, MessageTypeDefOf.NeutralEvent);
         }
 
         public static string AnnouncementText(CouncilMeeting m, int now)
@@ -499,7 +499,7 @@ namespace ColonyCouncil
                 m.reminded = true;
                 string text = m.venue.NullOrEmpty() ? "CC_Meeting_ReminderNoVenue".Translate().Resolve() : "CC_Meeting_Reminder".Translate(m.venue.Named("VENUE")).Resolve();
                 var look = m.spot.IsValid ? new LookTargets(new TargetInfo(m.spot, m.map)) : LookTargets.Invalid;
-                Messages.Message(text, look, MessageTypeDefOf.SilentInput, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, m.map, text, look, MessageTypeDefOf.SilentInput);
             }
             if (now >= m.scheduledTick) TryStartMeeting(comp);
         }
@@ -550,7 +550,7 @@ namespace ColonyCouncil
             {
                 meeting = null;
                 nextMeetingTick = now + GenDate.TicksPerDay;
-                Messages.Message("CC_Meeting_Cancelled".Translate(), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Meeting_Cancelled".Translate(), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             string wait = MeetingAttendance.WhyNotNow(map);
@@ -596,8 +596,8 @@ namespace ColonyCouncil
                 m.thinPostponed = true;
                 string names = TextUtil.JoinAnd(expected.Select(i => i.pawn.LabelShort).ToList());
                 Reschedule(m, now);
-                Messages.Message("CC_Meeting_PutOffThin".Translate(names.Named("NAMES"), chair.Named("CHAIR"), MeetingAttendance.When(map, now, m.scheduledTick).Named("WHEN")).Resolve(),
-                    new LookTargets(chair), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Meeting_PutOffThin".Translate(names.Named("NAMES"), chair.Named("CHAIR"), MeetingAttendance.When(map, now, m.scheduledTick).Named("WHEN")).Resolve(),
+                    new LookTargets(chair), MessageTypeDefOf.NeutralEvent);
                 return;
             }
 
@@ -612,7 +612,7 @@ namespace ColonyCouncil
             m.Lord = lord;
             foreach (var p in starting) MeetingAttendance.CallFromWork(p);
             if (callFromWork) MeetingAttendance.ArrangeWaking(m, lord);
-            Messages.Message(SummonsText(m, callFromWork), new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map, SummonsText(m, callFromWork), new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent);
             meetingsHeld++;
         }
 
@@ -635,8 +635,8 @@ namespace ColonyCouncil
             }
             int now = Find.TickManager.TicksGame;
             Reschedule(m, now);
-            Messages.Message("CC_Meeting_PutOffEvening".Translate(why.Named("REASON"), MeetingAttendance.When(m.map, now, m.scheduledTick).Named("WHEN")).Resolve(),
-                MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, m.map, "CC_Meeting_PutOffEvening".Translate(why.Named("REASON"), MeetingAttendance.When(m.map, now, m.scheduledTick).Named("WHEN")).Resolve(), null,
+                MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>To the next evening (at least eight hours off, so never the same evening), starting afresh.</summary>
@@ -702,7 +702,7 @@ namespace ColonyCouncil
                 interruptions++;
                 int now = Find.TickManager.TicksGame;
                 Reschedule(m, now);
-                Messages.Message("CC_Meeting_BrokenUpAgain".Translate(MeetingAttendance.When(m.map, now, m.scheduledTick).Named("WHEN")).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, m.map, "CC_Meeting_BrokenUpAgain".Translate(MeetingAttendance.When(m.map, now, m.scheduledTick).Named("WHEN")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             Conclude(comp, false);
@@ -842,7 +842,7 @@ namespace ColonyCouncil
                     letter.voterChoice.Add(k);
                 }
             }
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, m.map);
 
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Meeting,
                 "CC_Chronicle_Meeting".Translate(TextUtil.JoinAnd(m.pitches.Select(p => p.def.label + " (" + p.proposer.LabelShort + ")").ToList())).Resolve(),
@@ -924,6 +924,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("ambition start progress", e);
             }
+            // direct: the answer to the player's pick in the meeting's letter.
             Messages.Message("CC_Ambition_Chosen".Translate(def.LabelCap.ToString(), proposer?.LabelShort ?? "?"), new LookTargets(proposer), MessageTypeDefOf.PositiveEvent, false);
             if (proposer != null)
             {
@@ -990,7 +991,7 @@ namespace ColonyCouncil
             string line = a.proposer != null ? (a.def.achieved.Pick(ToneUtility.ToneFor(a.proposer)) ?? "").Formatted(a.proposer.Named("PAWN")).Resolve() : "";
             string text = "CC_Ambition_AchievedText".Translate(a.def.label, ((Find.TickManager.TicksGame - a.startTick) / (float)GenDate.TicksPerDay).ToString("0.#")).Resolve();
             if (!line.NullOrEmpty()) text = "\"" + line + "\"\n\n" + text;
-            Find.LetterStack.ReceiveLetter("CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
+            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
             if (a.proposer != null) CouncilGameComponent.Speak(a.proposer, line, new Color(0.6f, 1f, 0.6f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));

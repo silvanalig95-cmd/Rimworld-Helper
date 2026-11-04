@@ -156,7 +156,7 @@ namespace ColonyCouncil
             var map = HappeningTracker.HomeMap();
             if (map == null) return;
             // Not in the middle of a fight, and not while the last one's question is still open.
-            if (MapFacts.ThreatOn(map) || Waiting || !LetterGap.Open)
+            if (MapFacts.ThreatOn(map) || Waiting || !Tell.CanAsk)
             {
                 nextTick = now + GenDate.TicksPerHour * 6;
                 return;
@@ -336,7 +336,7 @@ namespace ColonyCouncil
                 string summary = WorldSituationsPanel.Summary(s);
                 if (!summary.NullOrEmpty()) text += "\n\n" + "CC_WS_ForTheColony".Translate(summary, TextUtil.DaysString(s.Duration)).Resolve();
                 var letterDef = def.letter ?? (def.bad ? WorldSituationDefOf.Council_WorldNewsBad : WorldSituationDefOf.Council_WorldNews);
-                Find.LetterStack.ReceiveLetter(label, text, letterDef, worker.StartLook(s));
+                Tell.Letter(NewsKind.World, Importance.Notable, map, label, text, letterDef, worker.StartLook(s));
                 CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World,
                     "CC_WS_ChronicleStart".Translate(label, FirstSentence(body)).Resolve(), s.ctx.a));
             }
@@ -467,7 +467,7 @@ namespace ColonyCouncil
             {
                 if (text.NullOrEmpty()) return true;
                 if (beat.message) News.Post(text, look, NewsKind.World, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-                else Find.LetterStack.ReceiveLetter(label, text, beat.letter ?? WorldSituationDefOf.Council_WorldNews, look);
+                else Tell.Letter(NewsKind.World, Importance.Notable, map, label, text, beat.letter ?? WorldSituationDefOf.Council_WorldNews, look);
                 return true;
             }
             int ticks = Mathf.RoundToInt(Mathf.Max(0.1f, beat.answerDays) * GenDate.TicksPerDay);
@@ -477,7 +477,7 @@ namespace ColonyCouncil
             letter.ctx = ctx;
             letter.beatKey = beat.key;
             letter.StartTimeout(ticks);
-            Find.LetterStack.ReceiveLetter(letter);
+            Tell.Ask(letter, map);
             return true;
         }
 
@@ -547,7 +547,7 @@ namespace ColonyCouncil
                 if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(PlayOuts.Collected(), told, byDefault ? "CC_Evt_NoAnswer".Translate().ToString() : null))
                 {
                     if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
-                    Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.stranger, ctx.other }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                    Tell.Message(NewsKind.World, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.stranger, ctx.other }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
                 }
                 comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Chronicle_EventChoice".Translate(s.def.LabelCap, ctx.Format(o.label)).Resolve(), ctx.a));
             }
@@ -605,7 +605,7 @@ namespace ColonyCouncil
                         string text = worker.Line(ending.texts, s) ?? "";
                         if (s.deeds.Count > 0) text += "\n\n" + "CC_WS_YourPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve();
                         var look = new LookTargets(new[] { s.ctx.stranger, s.ctx.other }.Where(p => p != null && p.Spawned));
-                        Find.LetterStack.ReceiveLetter(label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);
+                        Tell.Letter(NewsKind.World, Importance.Notable, null, label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);
                         string line = ending.chronicle.NullOrEmpty() ? Flavor.Strip(FirstSentence(text)) : WorldSituationWorker.Sentences(s.ctx.Format(ending.chronicle));
                         string part = s.deeds.Count > 0 ? " " + "CC_WS_ChroniclePart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve() : "";
                         comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleEnd".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay), line).Resolve() + part, s.ctx.a));

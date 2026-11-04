@@ -98,7 +98,7 @@ namespace ColonyCouncil
                 if (told.Add(p.thingIDNumber))
                 {
                     Log.Message("[Rimfolk] " + p.LabelShort + " (a RimWorld of Magic golem) had lost its energy need and was frozen; it has it back.");
-                    Messages.Message("CC_MagicGolem_Repaired".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.PositiveEvent, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_MagicGolem_Repaired".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.PositiveEvent);
                 }
             }
             return fixedNow;

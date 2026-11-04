@@ -129,7 +129,7 @@ namespace ColonyCouncil
             Para("CC_Year_Close".Translate().Resolve());
 
             var look = author != null ? new LookTargets(author) : holding != null ? holding.Look : LookTargets.Invalid;
-            Find.LetterStack.ReceiveLetter("CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), sb.ToString(), LetterDefOf.NeutralEvent, look);
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), sb.ToString(), LetterDefOf.NeutralEvent, look);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_YearLetter".Translate(ord.Named("ORD")).Resolve(), author));
         }
 

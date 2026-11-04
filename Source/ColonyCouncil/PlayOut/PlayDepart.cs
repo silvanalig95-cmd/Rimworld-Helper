@@ -147,7 +147,7 @@ namespace ColonyCouncil
                     a.mindState.exitMapAfterTick = now + (p.ledHerd ? Rand.Range(GenDate.TicksPerHour * 3, GenDate.TicksPerDay) : Rand.Range(GenDate.TicksPerHour, GenDate.TicksPerHour * 4));
             }
             if (p.ledHerd && led.Count > 0)
-                Messages.Message("CC_Dlm_TurnedOut".Translate(led.Count).Resolve(), new LookTargets(led.Where(a => a.Spawned)), MessageTypeDefOf.NegativeEvent, false);
+                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Dlm_TurnedOut".Translate(led.Count).Resolve(), new LookTargets(led.Where(a => a.Spawned)), MessageTypeDefOf.NegativeEvent);
         }
 
         /// <summary>The visit to someone sent away counts once they've set off together and the visitor has gone a little way with them.</summary>

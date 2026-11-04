@@ -69,7 +69,7 @@ namespace ColonyCouncil
             if (ctx.lines.Count == 0) return;
             string text = "CC_Scen_LetterIntro".Translate() + "\n\n" + string.Join("\n\n", ctx.lines);
             var look = ctx.look.Where(p => p != null && p.Spawned).Distinct().ToList();
-            Find.LetterStack.ReceiveLetter("CC_Scen_LetterLabel".Translate(), text, ctx.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent,
+            Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_Scen_LetterLabel".Translate(), text, ctx.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent,
                 look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid);
         }
 
@@ -687,7 +687,7 @@ namespace ColonyCouncil
             // A nemesis's own end already came with a letter (slain, joined): this one is a message.
             bool told = (why == "dead" || why == "joined" || why == "enslaved") && m.pawn != null && comp.nemeses.all.Any(n => n.pawn == m.pawn && n.announced);
             if (told) Notify.Message(text, m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            else Find.LetterStack.ReceiveLetter("CC_Scen_HuntOver_Label".Translate(), text, LetterDefOf.PositiveEvent, m.pawn != null && m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid);
+            else Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_Scen_HuntOver_Label".Translate(), text, LetterDefOf.PositiveEvent, m.pawn != null && m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
             using (Causes.Push(text))
             {

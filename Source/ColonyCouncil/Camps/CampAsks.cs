@@ -188,7 +188,7 @@ namespace ColonyCouncil
                 if (cost > 0 && paysNow) gifts++;
                 if (!line.NullOrEmpty())
                 {
-                    Messages.Message(line, new LookTargets(new[] { ctx.a, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.PositiveEvent, false);
+                    ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, null, line, new LookTargets(new[] { ctx.a, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.PositiveEvent);
                     CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, line, ctx.a));
                 }
             }

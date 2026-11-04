@@ -213,7 +213,7 @@ namespace ColonyCouncil
             p.phase = 0;
             p.tally = 0;
             p.waitReason = null;
-            Messages.Message("CC_Made_Done".Translate(mk.Named("MAKER"), PlayGive.Label(thing).Named("THING")).Resolve(), new LookTargets(thing), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Made_Done".Translate(mk.Named("MAKER"), PlayGive.Label(thing).Named("THING")).Resolve(), new LookTargets(thing), MessageTypeDefOf.NeutralEvent);
             return true;
         }
     }

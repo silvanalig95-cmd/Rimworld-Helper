@@ -307,7 +307,7 @@ namespace ColonyCouncil
             string title = Line(text.endingTitles, ctx, key, tags, item) ?? home.LabelCap.ToString();
             var letter = text.good != null && text.good.Contains(key) ? LetterDefOf.PositiveEvent
                 : text.bad != null && text.bad.Contains(key) ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent;
-            Find.LetterStack.ReceiveLetter(title, body, letter, look ?? LookTargets.Invalid);
+            ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, null, title, body, letter, look ?? LookTargets.Invalid);
             string summary = Line(text.summaries, ctx, key, tags, item) ?? FirstSentence(body);
             var who = ctx.a != null && !ctx.a.Dead && ctx.a.IsColonist ? ctx.a : null;
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, home.LabelCap + ": " + summary, who));

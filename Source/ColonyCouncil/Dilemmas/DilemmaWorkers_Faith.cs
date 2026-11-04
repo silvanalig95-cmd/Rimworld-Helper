@@ -335,7 +335,7 @@ namespace ColonyCouncil
                 lines.Add("CC_FaithClash_CornerLine".Translate(f.ideo.name.Named("FAITH"), Corner(map, f, used).Named("WHERE")).Resolve());
             }
             if (lines.Count == 0) return;
-            Find.LetterStack.ReceiveLetter("CC_FaithClash_CornersTitle".Translate(), "CC_FaithClash_CornersText".Translate(string.Join("\n", lines)).Resolve(),
+            Tell.Letter(NewsKind.People, Importance.Notable, map, "CC_FaithClash_CornersTitle".Translate(), "CC_FaithClash_CornersText".Translate(string.Join("\n", lines)).Resolve(),
                 LetterDefOf.NeutralEvent);
         }
 

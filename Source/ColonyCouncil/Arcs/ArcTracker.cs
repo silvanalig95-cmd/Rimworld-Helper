@@ -655,7 +655,7 @@ namespace ColonyCouncil
             var p = arc.pawn;
             string text = string.Join("\n\n", arc.told);
             if (!arc.lastLine.NullOrEmpty()) text += "\n\n" + "CC_Arc_DoneQuote".Translate(p.Named("PAWN"), arc.lastLine.Named("LINE")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Arc_DoneLabel".Translate(p.LabelShort, arc.def.LabelCap).Resolve(), text, LetterDefOf.PositiveEvent, Look(arc));
+            Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_Arc_DoneLabel".Translate(p.LabelShort, arc.def.LabelCap).Resolve(), text, LetterDefOf.PositiveEvent, Look(arc));
         }
 
         /// <summary>It came to nothing, gently: a journal line, the chronicle, and whatever the story says follows.</summary>

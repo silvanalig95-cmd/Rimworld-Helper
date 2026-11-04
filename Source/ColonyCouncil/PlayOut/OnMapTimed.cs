@@ -309,7 +309,7 @@ namespace ColonyCouncil
             if (off == 0) return false;
             k.on = true;
             k.until = now + GenDate.TicksPerHour * 3;
-            Messages.Message("CC_Timed_Race_Off".Translate().Resolve(), new LookTargets(k.pawns.Where(x => x.Spawned)), MessageTypeDefOf.SilentInput, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Race_Off".Translate().Resolve(), new LookTargets(k.pawns.Where(x => x.Spawned)), MessageTypeDefOf.SilentInput);
             return false;
         }
 
@@ -374,7 +374,7 @@ namespace ColonyCouncil
                 if (k.things.Count == 0) return true;
                 k.on = true;
                 k.until = now + k.nights * GenDate.TicksPerHour;
-                Messages.Message("CC_Timed_Smudge_Lit".Translate(k.things.Count).Resolve(), new LookTargets(k.things), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Smudge_Lit".Translate(k.things.Count).Resolve(), new LookTargets(k.things), MessageTypeDefOf.NeutralEvent);
                 return false;
             }
             k.things.RemoveAll(t => t == null || t.Destroyed || !t.Spawned);
@@ -403,7 +403,7 @@ namespace ColonyCouncil
                 n++;
             }
             k.things.Clear();
-            if (n > 0) Messages.Message("CC_Timed_Smudge_Out".Translate().Resolve(), MessageTypeDefOf.SilentInput, false);
+            if (n > 0) Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Smudge_Out".Translate().Resolve(), null, MessageTypeDefOf.SilentInput);
         }
 
         /// <summary>Just outside the colony's biggest field, a few steps apart all along its edge: where the smudge fires go.</summary>
@@ -483,7 +483,7 @@ namespace ColonyCouncil
             }
             k.cells.Clear();
             var set = k.things.Where(t => t != null && t.Spawned).ToList();
-            if (set.Count > 0) Messages.Message("CC_Markers_Set".Translate(set.Count).Resolve(), new LookTargets(set), MessageTypeDefOf.NeutralEvent, false);
+            if (set.Count > 0) Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Markers_Set".Translate(set.Count).Resolve(), new LookTargets(set), MessageTypeDefOf.NeutralEvent);
         }
 
         // ---------------- Felling ----------------
@@ -577,7 +577,7 @@ namespace ColonyCouncil
             var look = new LookTargets(new TargetInfo(k.cell, k.map));
             // The answer's own words, now the trees are down.
             if (!k.text.NullOrEmpty()) News.Post(k.text, look, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            else Messages.Message("CC_Felled_Wood".Translate(k.done).Resolve(), look, MessageTypeDefOf.SilentInput, false);
+            else Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Felled_Wood".Translate(k.done).Resolve(), look, MessageTypeDefOf.SilentInput);
         }
 
         // ---------------- Planting ----------------
@@ -665,7 +665,7 @@ namespace ColonyCouncil
                 return;
             }
             string text = k.done == 1 ? "CC_Saplings_One".Translate().Resolve() : "CC_Saplings_Many".Translate(k.done).Resolve();
-            Messages.Message(text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, k.map, text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent);
         }
 
         private static bool Danger(Map map) => map == null || map.dangerWatcher.DangerRating != StoryDanger.None || MapFacts.ThreatOn(map);
@@ -690,7 +690,7 @@ namespace ColonyCouncil
                 if (now < k.until) return false;
                 int still = k.things.Count(t => t != null && t.Spawned);
                 if (still > 0)
-                    Messages.Message((k.where == "gate" ? "CC_Timed_Lantern_Out" : k.where == "doors" ? "CC_Timed_DoorTorches_Out" : "CC_Timed_Lanterns_Out").Translate(), MessageTypeDefOf.SilentInput, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, k.map, (k.where == "gate" ? "CC_Timed_Lantern_Out" : k.where == "doors" ? "CC_Timed_DoorTorches_Out" : "CC_Timed_Lanterns_Out").Translate(), null, MessageTypeDefOf.SilentInput);
                 return true;
             }
             // Not set out within two days (the setting turned off, nowhere to put them): forgotten.
@@ -720,7 +720,7 @@ namespace ColonyCouncil
             string text = k.where == "gate" ? "CC_Timed_Lantern_Lit".Translate().Resolve()
                 : k.where == "doors" ? "CC_Timed_DoorTorches_Lit".Translate(k.things.Count).Resolve()
                 : "CC_Timed_Lanterns_Lit".Translate(k.things.Count).Resolve();
-            Messages.Message(text, new LookTargets(k.things), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, k.map, text, new LookTargets(k.things), MessageTypeDefOf.NeutralEvent);
             return false;
         }
 
@@ -826,8 +826,8 @@ namespace ColonyCouncil
             if ((fuel == null || fuel.HasFuel) && now < k.until) return false;
             fire.Destroy(DestroyMode.Vanish);
             if (k.pawn != null)
-                Messages.Message("CC_Timed_Fire_Out".Translate(k.pawn.Named("PAWN")).Resolve(), k.pawn.Spawned ? new LookTargets(k.pawn) : LookTargets.Invalid,
-                    MessageTypeDefOf.SilentInput, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Fire_Out".Translate(k.pawn.Named("PAWN")).Resolve(), k.pawn.Spawned ? new LookTargets(k.pawn) : LookTargets.Invalid,
+                    MessageTypeDefOf.SilentInput);
             k.things.Clear();
             return true;
         }
@@ -870,7 +870,7 @@ namespace ColonyCouncil
                 // The answer's outcome ("burned on a pyre that went all night") now that it has.
                 if (!k.text.NullOrEmpty())
                     News.Post(k.text, new LookTargets(k.cell, map), NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
-                else Messages.Message("CC_Timed_Pyre_Out".Translate(), new LookTargets(k.cell, map), MessageTypeDefOf.SilentInput, false);
+                else Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Timed_Pyre_Out".Translate(), new LookTargets(k.cell, map), MessageTypeDefOf.SilentInput);
                 return true;
             }
             var bodies = PyreBodies(k);
@@ -879,7 +879,7 @@ namespace ColonyCouncil
             // Never lit (danger every evening for two days): the bodies are let go, for the colony to see to (End).
             if (now - k.start > Sched.DayTicks * 2)
             {
-                Messages.Message("CC_Timed_Pyre_Never".Translate(), new LookTargets(bodies), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Timed_Pyre_Never".Translate(), new LookTargets(bodies), MessageTypeDefOf.NeutralEvent);
                 return true;
             }
             int hour = Hour(map);
@@ -979,7 +979,7 @@ namespace ColonyCouncil
                 ? "CC_Timed_Pyre_LitBy".Translate(by.Named("PAWN"), bodies.Count.Named("COUNT")).Resolve()
                 : "CC_Timed_Pyre_Lit".Translate(bodies.Count).Resolve();
             if (gear) text += " " + "CC_Timed_Pyre_Gear".Translate().Resolve();
-            Messages.Message(text, new LookTargets(k.cell, map), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map, text, new LookTargets(k.cell, map), MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>Burned down: the bodies gone to ash where they lay, the fire out.</summary>
@@ -1081,7 +1081,7 @@ namespace ColonyCouncil
                     door.SetForbidden(true, false);
                     k.on = true;
                     k.count = 1;
-                    Messages.Message("CC_Timed_Bolt".Translate(p.Named("PAWN")).Resolve(), new LookTargets(door), MessageTypeDefOf.SilentInput, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, k.map, "CC_Timed_Bolt".Translate(p.Named("PAWN")).Resolve(), new LookTargets(door), MessageTypeDefOf.SilentInput);
                 }
                 return false;
             }
@@ -1379,7 +1379,7 @@ namespace ColonyCouncil
                     kind = TimedKind.Fire, map = map, pawn = p, things = new List<Thing> { fire },
                     until = Find.TickManager.TicksGame + (int)(days * Sched.DayTicks)
                 });
-                Messages.Message("CC_Timed_Fire".Translate(p.Named("PAWN")).Resolve(), new LookTargets(fire), MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Timed_Fire".Translate(p.Named("PAWN")).Resolve(), new LookTargets(fire), MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)
             {

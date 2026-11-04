@@ -250,8 +250,8 @@ namespace ColonyCouncil
             if (v == null || comp == null) return;
             if (byAvenger && !Accepts(v.avenger, how))
             {
-                Messages.Message("CC_VendettaEnd_Refused".Translate(v.avenger.Named("PAWN"), (v.victim ?? "?").Named("LOST"), v.faction.Name.Named("FACTION")).Resolve(),
-                    v.avenger, MessageTypeDefOf.NeutralEvent, false);
+                Tell.Message(NewsKind.People, Importance.Notable, null, "CC_VendettaEnd_Refused".Translate(v.avenger.Named("PAWN"), (v.victim ?? "?").Named("LOST"), v.faction.Name.Named("FACTION")).Resolve(),
+                    v.avenger, MessageTypeDefOf.NeutralEvent);
                 var resolve = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Vendetta_NotForSale");
                 if (resolve != null) CouncilGameComponent.GiveThought(v.avenger, resolve);
                 return;

@@ -68,7 +68,8 @@ Reuse existing generic workers wherever possible: data-driven defs beat new code
 ## Conventions from recent rounds (follow them)
 
 - **Balance simulator.** If you add or change moods, ailments, questions or their rates, run `dotnet run -c Release --project Tools/Balance -- . --before Tools/Balance/before.json` from the repo root before and after. Rimfolk's net mood must stay inside the targets in DESIGN.md ("Balance targets"). Do not commit a changed `before.json`.
-- **Questions keep apart.** A new letter that asks the player something and can wait must check `LetterGap.Open` (see `Lean/LetterGap.cs` and how `Dilemmas.cs` uses it).
+- **One voice to the player.** Messages and letters go through `Tell` (`UI/Tell.cs`; DESIGN.md, "Telling the player"): `Tell.Message` for something that happened, `News.Post` for the smaller news, `Tell.Letter` for a letter that only tells, `Tell.Ask` for a question. Only the answer to the player's own click stays a direct `Messages.Message` (a rejection, a button's confirmation).
+- **Questions keep apart.** A new letter that asks the player something and can wait must check `Tell.CanAsk` (`LetterGap.Open`; see `Lean/LetterGap.cs` and how `Dilemmas.cs` uses it).
 - **Answers play out on the map.** When an answer says people do something (eat together, visit a grave, hold a vigil, teach), use the play-out system in `Source/ColonyCouncil/PlayOut/`. Look at how dilemmas declare play-out effects; the Almanac page "answers on the map" explains it.
 - **Colonists talk only when near.** A conversation or social log entry between two pawns needs `SocialLog.Near(a, b)`.
 - **Copy shared pawn lists.** Loop over `PawnsFinder.*` lists with `.ToList()` if the body might query them again.

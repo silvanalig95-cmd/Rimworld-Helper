@@ -354,7 +354,7 @@ namespace ColonyCouncil
             if (t == null || o == null || t.Dead || o.Dead) return;
             string last = FamilyNames.Take(t, o, keep);
             if (last.NullOrEmpty()) return;
-            Messages.Message("CC_FamName_Taken".Translate(t.Named("A"), o.Named("B"), last.Named("LAST")).Resolve(), new LookTargets(t, o), MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_FamName_Taken".Translate(t.Named("A"), o.Named("B"), last.Named("LAST")).Resolve(), new LookTargets(t, o), MessageTypeDefOf.PositiveEvent);
         }
     }
 }

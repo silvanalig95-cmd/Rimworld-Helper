@@ -296,7 +296,7 @@ namespace ColonyCouncil
             p.organizer = organizer;
             string begin = BeginText(p, where, meals, able.Count, laid != null ? p.fireBy : null);
             if (job.guests.Count > 0) begin += " " + "CC_Play_GuestsCome".Translate(PlayGuests.Names(job.guests)).Resolve();
-            Messages.Message(begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map, begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace ColonyCouncil
                 p.started = -1;
                 return;
             }
-            Messages.Message(begin, new LookTargets(v), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.People, Importance.Notable, null, begin, new LookTargets(v), MessageTypeDefOf.NeutralEvent);
             // Someone sent away sets off now, with the visitor beside them; animals led along fall in behind (PlayDepart.cs).
             PlayDepart.Started(p);
         }
@@ -537,8 +537,8 @@ namespace ColonyCouncil
             sit.expiryInterval = -1;
             o.jobs.StartJob(sit, JobCondition.InterruptForced, null, false, true);
             string where = (p.sitBy == PlaySpot.Fire ? "CC_Play_Where_FireSide" : "CC_Play_Where_Table").Translate();
-            Messages.Message("CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
-                new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent, false);
+            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
+                new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent);
             return true;
         }
 

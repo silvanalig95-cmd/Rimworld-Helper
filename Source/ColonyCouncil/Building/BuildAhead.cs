@@ -125,7 +125,7 @@ namespace ColonyCouncil
                     }
                     p.doneTick = now;
                     tracker.Changed();
-                    Messages.Message("CC_Build_ProjectDone".Translate(p.Label).Resolve(), new LookTargets(p.Rect.CenterCell, p.map), MessageTypeDefOf.PositiveEvent, false);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, p.map, "CC_Build_ProjectDone".Translate(p.Label).Resolve(), new LookTargets(p.Rect.CenterCell, p.map), MessageTypeDefOf.PositiveEvent);
                 }
                 else if (p.Done && !standing) tracker.Forget(p.id);
             }

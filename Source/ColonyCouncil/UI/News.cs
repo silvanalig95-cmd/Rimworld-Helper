@@ -44,6 +44,11 @@ namespace ColonyCouncil
         public LookTargets look;
         /// <summary>How it would have come as a message (its sound and colour).</summary>
         public MessageTypeDef type;
+        /// <summary>
+        /// A message or letter past the day's cap for its kind (UI/Tell.cs): it waits for the evening's letter whatever the
+        /// "Colony news" setting, rather than coming at once or only to the History tab.
+        /// </summary>
+        public bool held;
 
         public void ExposeData()
         {
@@ -54,6 +59,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref kind, "kind", NewsKind.People);
             Scribe_Deep.Look(ref look, "look");
             Scribe_Defs.Look(ref type, "type");
+            Scribe_Values.Look(ref held, "held");
         }
     }
 
@@ -62,11 +68,13 @@ namespace ColonyCouncil
     /// traditions, dreams, camps, moments, encounters, names...): a message the moment it happens, a line in the
     /// evening's "Colony news" letter (the default), or only the History tab's message log, by the "Colony news"
     /// setting. Decisions (dilemmas, petitions, wishes) and serious news (deaths, raids, serious illness, a camp
-    /// arriving) don't come through here: they keep their own letters and messages.
+    /// arriving) don't come through here: they keep their own letters and messages. <see cref="Post"/> goes through
+    /// <see cref="Tell.Minor"/>, Rimfolk's one voice to the player; the evening's letter also carries what Tell held back
+    /// past a day's cap.
     /// </summary>
     public static class News
     {
-        /// <summary>The most news kept waiting for the evening; past it, the oldest gives way.</summary>
+        /// <summary>The most news kept waiting for the evening; past it, the oldest goes to the History tab's message log.</summary>
         public const int MaxWaiting = 40;
 
         /// <summary>The local hour the day's news comes in.</summary>
@@ -78,36 +86,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// One piece of minor news. With an importance, the "How many messages" setting first decides whether it's told
-        /// at all (as Notify.Message always did); without one it always is, as the plain messages always were.
+        /// at all (as Notify.Message always did); without one it always is, as the plain messages always were. Through
+        /// <see cref="Tell.Minor"/>, which also names the settlement once there's more than one colony.
         /// </summary>
-        public static void Post(string text, LookTargets look, NewsKind kind, MessageTypeDef type = null, Importance? importance = null)
-        {
-            if (text.NullOrEmpty()) return;
-            if (importance.HasValue && !Notify.Shows(importance.Value)) return;
-            // A copy of the places, so what's kept for the evening isn't shared with (or changed under) whoever sent it.
-            var places = look?.targets != null && look.IsValid ? new LookTargets(look.targets) : null;
-            var item = new NewsItem { text = text, kind = kind, look = places, type = type ?? MessageTypeDefOf.NeutralEvent };
-            try
-            {
-                switch (Mode)
-                {
-                    case NewsMode.Digest:
-                        var waiting = NewsComponent.Instance;
-                        if (waiting == null) break;
-                        waiting.Add(item);
-                        return;
-                    case NewsMode.Off:
-                        if (Find.Archive == null) break;
-                        Archive(item);
-                        return;
-                }
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("colony news", e);
-            }
-            Show(item);
-        }
+        public static void Post(string text, LookTargets look, NewsKind kind, MessageTypeDef type = null, Importance? importance = null) =>
+            Tell.Minor(kind, importance, null, text, look, type);
 
         /// <summary>A message on screen. Rimfolk's messages as they happen were never kept in the History tab.</summary>
         internal static void Show(NewsItem item, bool historical = false) =>
@@ -236,7 +219,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Keeps the day's minor news until the evening (saved with the game, so a save and load mid-day loses nothing) and
     /// sends it around six as one "Colony news" letter.
-    /// If the setting moves away from the digest, what was waiting goes out at once the new way.
+    /// If the setting moves away from the digest, what was waiting goes out at once the new way; what Tell held back past a
+    /// day's cap (UI/Tell.cs) still comes in the evening, whatever the setting.
     /// </summary>
     public class NewsComponent : GameComponent
     {
@@ -255,11 +239,29 @@ namespace ColonyCouncil
 
         public void Add(NewsItem item)
         {
+            if (item == null || item.text.NullOrEmpty()) return;
             // The same line twice in a day says nothing new.
             for (int i = 0; i < waiting.Count; i++)
-                if (waiting[i].text == item.text) return;
+                if (waiting[i].text == item.text)
+                {
+                    waiting[i].held |= item.held;
+                    return;
+                }
             waiting.Add(item);
-            if (waiting.Count > News.MaxWaiting) waiting.RemoveRange(0, waiting.Count - News.MaxWaiting);
+            // Past the most kept, the oldest goes to the History tab's message log rather than nowhere.
+            while (waiting.Count > News.MaxWaiting)
+            {
+                var oldest = waiting[0];
+                waiting.RemoveAt(0);
+                try
+                {
+                    if (Find.Archive != null) News.Archive(oldest);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("colony news: the oldest to the History tab", e);
+                }
+            }
         }
 
         public override void ExposeData()
@@ -293,11 +295,9 @@ namespace ColonyCouncil
         private void Check()
         {
             var mode = News.Mode;
-            if (mode != NewsMode.Digest)
-            {
-                if (waiting.Count > 0) Flush(mode);
-                return;
-            }
+            // Without the digest the smaller news goes out the setting's way; what Tell held past a day's cap still waits.
+            if (mode != NewsMode.Digest && waiting.Count > 0) Flush(mode);
+            if (mode != NewsMode.Digest && waiting.Count == 0) return;
             Clock(out int hour, out int day);
             if (hour < News.EveningHour || day == lastEvening) return;
             lastEvening = day;
@@ -312,11 +312,12 @@ namespace ColonyCouncil
             News.Send(NewsDays.Group(day));
         }
 
-        /// <summary>The setting changed: what was waiting goes out the new way.</summary>
+        /// <summary>The setting changed: what was waiting goes out the new way, except what Tell held past a day's cap.</summary>
         private void Flush(NewsMode mode)
         {
-            var items = waiting.ToList();
-            waiting.Clear();
+            var items = waiting.Where(i => !i.held).ToList();
+            if (items.Count == 0) return;
+            waiting.RemoveAll(i => !i.held);
             foreach (var i in items)
             {
                 if (mode == NewsMode.Off && Find.Archive != null) News.Archive(i);

@@ -168,8 +168,8 @@ namespace ColonyCouncil
                 wayToLine = line;
                 wayTick = Find.TickManager.TicksGame;
                 foreach (var l in lines) l.Changed();
-                Messages.Message("CC_DefLine_WayMoved".Translate(WayWords(s, wayTo, wayToLine), WayWords(s, wayFrom, wayFromLine)).Resolve(),
-                    new LookTargets(wayTo, map), MessageTypeDefOf.CautionInput, false);
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_DefLine_WayMoved".Translate(WayWords(s, wayTo, wayToLine), WayWords(s, wayFrom, wayFromLine)).Resolve(),
+                    new LookTargets(wayTo, map), MessageTypeDefOf.CautionInput);
             }
             if (cell.IsValid)
             {

@@ -73,6 +73,7 @@ namespace ColonyCouncil
             string text = "CC_Welcome_Text".Translate(where).Resolve();
             if (def == null)
             {
+                // direct: the mod's own welcome, once a game; nothing to cap.
                 Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent);
                 return;
             }

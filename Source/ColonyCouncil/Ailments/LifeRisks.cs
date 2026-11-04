@@ -146,8 +146,8 @@ namespace ColonyCouncil
             float chance = SeverityCurve.Evaluate(wound.Severity) * (Find.Storyteller?.difficulty?.playerPawnInfectionChanceFactor ?? 1f);
             if (!Rand.Chance(LifeRiskMath.ExtraInfectionChance(chance, dirt))) return false;
             p.health.AddHediff(HediffDefOf.WoundInfection, wound.Part);
-            Messages.Message("CC_Life_DirtyWound".Translate(p.Named("PAWN"), (wound.Part?.Label ?? wound.Label).Named("PART")).Resolve(), new LookTargets(p),
-                MessageTypeDefOf.NegativeHealthEvent, false);
+            Tell.Message(NewsKind.Health, Importance.Important, null, "CC_Life_DirtyWound".Translate(p.Named("PAWN"), (wound.Part?.Label ?? wound.Label).Named("PART")).Resolve(), new LookTargets(p),
+                MessageTypeDefOf.NegativeHealthEvent);
             return true;
         }
     }

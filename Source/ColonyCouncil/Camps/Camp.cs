@@ -244,7 +244,7 @@ namespace ColonyCouncil
         public void Tell(string label, string text, LetterDef def, bool chronicle = true, Pawn about = null)
         {
             if (text.NullOrEmpty()) return;
-            Find.LetterStack.ReceiveLetter(label, text, def, Look, faction);
+            ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, map, label, text, def, Look, faction);
             if (chronicle) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, label + ": " + FirstSentence(text), about));
         }
 
@@ -275,7 +275,7 @@ namespace ColonyCouncil
             int ticks = Mathf.RoundToInt(days * GenDate.TicksPerDay);
             letter.Text = text + "\n\n" + "CC_Camp_Deadline".Translate(TextUtil.DaysString(ticks), CampAnswers.DefaultLabel(this, what, pawn, askKey)).Resolve();
             letter.StartTimeout(ticks);
-            Find.LetterStack.ReceiveLetter(letter);
+            ColonyCouncil.Tell.Ask(letter, map);
         }
 
         // ---------------- Tension ----------------

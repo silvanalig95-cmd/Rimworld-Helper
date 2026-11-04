@@ -148,7 +148,7 @@ namespace ColonyCouncil
                     {
                         s.state = NextStepsMath.Done;
                         s.changedTick = now;
-                        Messages.Message("CC_Plan_StepDone".Translate(s.title.Named("STEP")).Resolve(), MessageTypeDefOf.PositiveEvent, false);
+                        Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Plan_StepDone".Translate(s.title.Named("STEP")).Resolve(), null, MessageTypeDefOf.PositiveEvent);
                     }
                 }
                 // Proposals: what's current and not already in the plan, done lately or let go.

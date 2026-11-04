@@ -116,7 +116,7 @@ namespace ColonyCouncil
                 }
                 m.stage = 1;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
-                if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x), MessageTypeDefOf.PositiveEvent, false);
+                if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(x), MessageTypeDefOf.PositiveEvent);
                 return;
             }
             if (m.stage == 1)
@@ -133,8 +133,8 @@ namespace ColonyCouncil
                     Arrivals.Hold(x);
                     m.a = MissionPeoples.Colonists(c).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).First();
                     m.stage = 2;
-                    Messages.Message("CC_Mission_Escort_Set".Translate(m.name.Named("NAME"), m.a.Named("A"), (m.place ?? "?").Named("PLACE")).Resolve(), new LookTargets(c),
-                        MessageTypeDefOf.PositiveEvent, false);
+                    Tell.Message(NewsKind.World, Importance.Important, map, "CC_Mission_Escort_Set".Translate(m.name.Named("NAME"), m.a.Named("A"), (m.place ?? "?").Named("PLACE")).Resolve(), new LookTargets(c),
+                        MessageTypeDefOf.PositiveEvent);
                     return;
                 }
                 if (now >= m.deadline)
@@ -445,7 +445,7 @@ namespace ColonyCouncil
                     var spot = Avail.ColonyBuildings(map, d => d.defName == "PartySpot" || d.defName == "Campfire").FirstOrDefault()?.Position ?? finder.Position;
                     LordMaker.MakeNewLord(m.faction, new LordJob_VisitColony(m.faction, spot, GenDate.TicksPerDay * 2), map, new List<Pawn> { x });
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
-                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x, finder), MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(x, finder), MessageTypeDefOf.PositiveEvent);
                     return;
                 }
                 if (now >= m.deadline)
@@ -569,7 +569,7 @@ namespace ColonyCouncil
                     m.stage = 1;
                     m.lastLook = now;
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(HoursNeeded * GenDate.TicksPerHour));
-                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(here), MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(here), MessageTypeDefOf.PositiveEvent);
                 }
                 else m.tally += Mathf.Max(0, now - Mathf.Max(m.lastLook, m.started));
             }

@@ -481,7 +481,7 @@ namespace ColonyCouncil
                 else if (moved.Add(who)) OtherSeat(comp, office, now, who);
             }
             SyncHediffs();
-            Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NeutralEvent, look);
+            Tell.Letter(NewsKind.Colony, Importance.Notable, null, title, text, LetterDefOf.NeutralEvent, look);
         }
 
         /// <summary>
@@ -644,6 +644,7 @@ namespace ColonyCouncil
                 comp.journals.Write(current, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
                 foreach (var voter in Eligible().Where(v => v != current && v != p && v.relations != null && v.relations.OpinionOf(current) > v.relations.OpinionOf(p)))
                     comp.standings.Change(voter, -3f, "CC_Log_VoteOverruled".Translate(office.label));
+                // direct: the answer to the player's click (appointing in the council window, or calling a vote off).
                 Messages.Message("CC_Office_Overruled".Translate(p.Named("PAWN"), office.label.Named("OFFICE"), current.Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
             }
             else Messages.Message("CC_Office_Appointed".Translate(p.Named("PAWN"), office.label.Named("OFFICE")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);

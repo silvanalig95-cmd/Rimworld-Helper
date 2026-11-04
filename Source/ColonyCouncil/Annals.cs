@@ -257,7 +257,7 @@ namespace ColonyCouncil
             string text = sb.ToString();
             written.Add(new AnnalsEntry { year = year, author = author.LabelShort, text = text });
             Caps.TrimOldest(written, Caps.AnnalsYears);
-            Find.LetterStack.ReceiveLetter("CC_Annals_Title".Translate(year).Resolve(), text, LetterDefOf.NeutralEvent, new LookTargets(author));
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Annals_Title".Translate(year).Resolve(), text, LetterDefOf.NeutralEvent, new LookTargets(author));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Annals".Translate(year, author.LabelShort).Resolve(), author));
         }
 
