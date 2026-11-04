@@ -326,6 +326,7 @@ More than one colony supported in every system; handing a colony over to those w
 people, with the former colonists as its notables and the council's speaker as its head, keeping its history,
 writing, trading, asking for help, open to be taken back); and a fresh start inside the same save (a new place, a
 group from the old colony or newcomers, the old colony handed over, kept or abandoned).
+The design and its five releases: `docs/design/stage3-many-colonies.md` (17 decisions waiting for the player).
 
 ### Alongside every stage
 - A content pass after each stage (conversations, letters, news, journals), to the line rules and with lint tests.
