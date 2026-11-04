@@ -154,7 +154,7 @@ namespace ColonyCouncil
             if (article != null)
                 list.Add(new Button { label = "CC_ReadMore".Translate(), tip = "CC_Same_ReadMoreTip".Translate(article.label.CapitalizeFirst()), act = () => MainTabWindow_Council.OpenAlmanac(article) });
             string key = AdvisorSteps.KeyOf(s), title = s.title;
-            list.Add(new Button { label = "CC_Ahead_NotThis".Translate(), tip = "CC_Ahead_NotThisTip".Translate(), act = () => SuggestTracker.Instance?.Decline(key, title) });
+            list.Add(new Button { label = "CC_Ahead_NotThis".Translate(), tip = "CC_Ahead_NotThisTip".Translate(), act = () => SuggestTracker.Instance?.Decline(key, title, 0f, map) });
             return list;
         }
 

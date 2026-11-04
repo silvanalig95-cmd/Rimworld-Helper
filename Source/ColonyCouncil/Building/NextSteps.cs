@@ -118,11 +118,11 @@ namespace ColonyCouncil
             // A step let go in an older save is set aside like any other (the shared "Not this", until brought back).
             foreach (var s in list.Where(s => s != null && s.Dropped).ToList())
             {
-                tracker?.Decline(s.key, s.title);
+                tracker?.Decline(s.key, s.title, 0f, s.map);
                 list.Remove(s);
             }
             // Done ones taken off the list after a few days; a planned step set aside since (on its own page) leaves the plan.
-            list.RemoveAll(s => s == null || s.Done && !NextStepsMath.StillShownDone(s.changedTick, now, day) || s.Planned && s.HasSource && tracker != null && tracker.Declined(s.key));
+            list.RemoveAll(s => s == null || s.Done && !NextStepsMath.StillShownDone(s.changedTick, now, day) || s.Planned && s.HasSource && tracker != null && tracker.Declined(s.key, s.map));
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 List<NextStep> found;
@@ -158,7 +158,7 @@ namespace ColonyCouncil
                 var inPlan = found.Select(c => keys.Any(s => s.Planned && s.key == c.key)).ToList();
                 var doneLately = found.Select(c => keys.Any(s => s.Done && s.key == c.key)).ToList();
                 // Not proposed: what was set aside, a step done that waits for its check, and a room building ahead proposes above.
-                var dropped = found.Select(c => c.buildAhead || tracker != null && !tracker.Offered(c.key)).ToList();
+                var dropped = found.Select(c => c.buildAhead || tracker != null && !tracker.Offered(c.key, map)).ToList();
                 foreach (int i in NextStepsMath.Propose(scores, inPlan, doneLately, dropped))
                 {
                     var c = found[i];
@@ -297,7 +297,7 @@ namespace ColonyCouncil
             if (s == null || list == null) return;
             list.Remove(s);
             if (!s.HasSource || s.Done) return;
-            SuggestTracker.Instance?.Decline(s.key, s.title);
+            SuggestTracker.Instance?.Decline(s.key, s.title, 0f, s.map);
         }
 
         public static void MarkDone(NextStep s)

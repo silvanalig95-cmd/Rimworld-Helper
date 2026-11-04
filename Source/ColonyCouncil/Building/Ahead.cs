@@ -52,7 +52,7 @@ namespace ColonyCouncil
             v = new View { needs = needs, needsTick = needs.tick, version = version, mealDays = MealDays, reserveDays = ReserveDays };
             try
             {
-                v.plan = AheadMath.Plan(needs.Input(MealDays, ReserveDays, tracker?.DeclinedKeys()));
+                v.plan = AheadMath.Plan(needs.Input(MealDays, ReserveDays, tracker?.DeclinedKeys(map)));
                 foreach (var idea in v.plan.ideas)
                 {
                     var s = FromIdea(idea, needs, v.plan);

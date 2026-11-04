@@ -22,7 +22,8 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            if (map != HappeningTracker.HomeMap()) yield break;
+            // Game-wide advice, shown at each home on the ground.
+            if (!Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
             int now = Find.TickManager.TicksGame;
             foreach (var m in Missions.All.ToList())
             {
@@ -75,7 +76,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             var ws = WorldSituations.Instance;
-            if (ws == null || map != HappeningTracker.HomeMap()) yield break;
+            if (ws == null || !Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
             var colonists = Colonists(map);
             if (colonists.Count == 0) yield break;
             foreach (var sit in ws.Running.ToList())

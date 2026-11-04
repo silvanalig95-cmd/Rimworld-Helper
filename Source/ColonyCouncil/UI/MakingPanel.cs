@@ -126,7 +126,7 @@ namespace ColonyCouncil
                     y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + ")" + (body.NullOrEmpty() ? "" : ": " + body), on ? UiKit.Good : UiKit.Faint) + 4f;
                     foreach (var s in steps)
                     {
-                        if (SuggestTracker.Instance != null && !SuggestTracker.Instance.Offered(s.key)) continue;
+                        if (SuggestTracker.Instance != null && !SuggestTracker.Instance.Offered(s.key, s.map)) continue;
                         y += AheadPanel.DrawStep(s, 8f, y, view.width - 8f) + 4f;
                     }
                 }

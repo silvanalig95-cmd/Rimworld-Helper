@@ -151,6 +151,20 @@ public static class ManyHomesTests
                 "a colony settled later has its founders in its own first two days");
         }
 
+        // ---------------- Suggestions and automations per home ----------------
+
+        {
+            const string key = "adv:Council_Adv_BedsDark:beds-dark";
+            Check(SuggestMath.HomeKey(key, 12, false) == key, "one colony: a suggestion's key as always (Not this, waiting, an automation's cooldown)");
+            Check(SuggestMath.HomeKey(key, 12, true) != SuggestMath.HomeKey(key, 40, true) && SuggestMath.HomeKey(key, 12, true) != key,
+                "two colonies: the same suggestion at each is its own");
+            Check(SuggestMath.HomeKey(key, None, true) == key, "no home given: as always (set aside everywhere)");
+            Check(SuggestMath.HomeKey(null, 12, true) == null && SuggestMath.HomeKey("", 12, true) == "", "no key: none");
+            Check(SuggestMath.SameHome(12, 40, false), "one colony: a step done waits wherever it is asked");
+            Check(SuggestMath.SameHome(12, 12, true) && !SuggestMath.SameHome(12, 40, true), "two colonies: a step done at one home waits only there");
+            Check(SuggestMath.SameHome(None, 40, true) && SuggestMath.SameHome(12, None, true), "a step or a question that names no home: waits everywhere");
+        }
+
         return n;
     }
 

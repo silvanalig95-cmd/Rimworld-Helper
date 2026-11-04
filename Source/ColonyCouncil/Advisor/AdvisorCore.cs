@@ -209,7 +209,7 @@ namespace ColonyCouncil
                 if (tracker == null) return signals;
                 if (open == null || openFrom != signals || openVersion != tracker.Version)
                 {
-                    open = signals.Where(s => tracker.Offered(AdvisorSteps.KeyOf(s))).ToList();
+                    open = signals.Where(s => tracker.Offered(AdvisorSteps.KeyOf(s), map)).ToList();
                     openFrom = signals;
                     openVersion = tracker.Version;
                 }

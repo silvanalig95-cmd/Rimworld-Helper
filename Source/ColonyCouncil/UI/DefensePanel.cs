@@ -470,7 +470,7 @@ namespace ColonyCouncil
                 by += 28f;
             }
             // Not this: set aside here and on the Plan page alike, until brought back below the advice.
-            if (!a.done && AheadPanel.NotThis(new Rect(bx, by, ButtonsW, 24f), DefenseAdvice.KeyOf(a), a.title)) modelAt = -1f;
+            if (!a.done && AheadPanel.NotThis(new Rect(bx, by, ButtonsW, 24f), DefenseAdvice.KeyOf(a), a.title, s.map)) modelAt = -1f;
             return y + h;
         }
 

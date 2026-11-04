@@ -152,7 +152,7 @@ namespace ColonyCouncil
             list.Add(("CC_Ahead_NotThis".Translate().Resolve(), "CC_Ahead_NotThisTip".Translate().Resolve(), () =>
             {
                 SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                SuggestTracker.Instance?.Decline(key, title);
+                SuggestTracker.Instance?.Decline(key, title, 0f, map);
             }));
             return list;
         }

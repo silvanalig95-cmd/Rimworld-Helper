@@ -101,7 +101,7 @@ namespace ColonyCouncil
             needs = GrowthNeeds.For(map);
             var r = needs?.plan?.Row(kind);
             if (r == null || !r.Wanting || r.why == null) return null;
-            if (SuggestTracker.Instance?.Declined(GrowthMath.RoomKey(kind)) ?? false) return null;
+            if (SuggestTracker.Instance?.Declined(GrowthMath.RoomKey(kind), map) ?? false) return null;
             return r;
         }
 

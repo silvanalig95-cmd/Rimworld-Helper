@@ -120,6 +120,57 @@ namespace ColonyCouncil
         public float spentToday;
         public int takenDownToday, choppedToday;
 
+        /// <summary>One other home's day of spending and counts (with more than one colony; the seat's are the saved ones above).</summary>
+        private class HomeDay
+        {
+            public int day;
+            public float spent;
+            public int takenDown, chopped;
+        }
+
+        /// <summary>The other homes' days, not saved: a load only lets a little more through that day.</summary>
+        [Unsaved] private readonly Dictionary<int, HomeDay> homeDays = new Dictionary<int, HomeDay>();
+
+        /// <summary>A home's own day of spending and counts; null for the seat (or with one colony), whose are the saved fields.</summary>
+        private HomeDay DayAt(Map map)
+        {
+            if (!ColonyState.Several || map == null || !Homes.IsHome(map) || map == Homes.Seat) return null;
+            int key = Homes.KeyOf(map), today = GenDate.DaysPassed;
+            if (!homeDays.TryGetValue(key, out var d) || d.day != today) homeDays[key] = d = new HomeDay { day = today };
+            return d;
+        }
+
+        private float SpentAt(Map map) => DayAt(map)?.spent ?? spentToday;
+
+        private void Spend(Map map, float worth)
+        {
+            var d = DayAt(map);
+            if (d != null) d.spent += worth;
+            else spentToday += worth;
+        }
+
+        private int TakenDownAt(Map map) => DayAt(map)?.takenDown ?? takenDownToday;
+
+        private void CountTakenDown(Map map, int n)
+        {
+            var d = DayAt(map);
+            if (d != null) d.takenDown += n;
+            else takenDownToday += n;
+        }
+
+        private int ChoppedAt(Map map) => DayAt(map)?.chopped ?? choppedToday;
+
+        private void CountChopped(Map map, int n)
+        {
+            var d = DayAt(map);
+            if (d != null) d.chopped += n;
+            else choppedToday += n;
+        }
+
+        /// <summary>A home's own key for what is done and when (with one colony, the key as always): each home's cooldowns are its own.</summary>
+        private static string At(string key, Map map) =>
+            SuggestMath.HomeKey(key, map != null && Homes.IsHome(map) ? Homes.KeyOf(map) : HomesMath.None, ColonyState.Several);
+
         private static CouncilSettings S => ColonyCouncilMod.Settings;
         private static int Now => Find.TickManager.TicksGame;
 
@@ -272,7 +323,7 @@ namespace ColonyCouncil
                     {
                         // The shared "Not this": what the player set aside, or did by hand and is still to be checked, isn't
                         // done again; nor, by the automation, what the player undid the last time it was done.
-                        if (p.stepKey != null && tracker != null && (!tracker.Offered(p.stepKey) || onlyOn && tracker.UndoneLast(p.stepKey))) continue;
+                        if (p.stepKey != null && tracker != null && (!tracker.Offered(p.stepKey, map) || onlyOn && tracker.UndoneLast(p.stepKey, map))) continue;
                         p.key = key;
                         list.Add(p);
                     }
@@ -440,7 +491,7 @@ namespace ColonyCouncil
                 foreach (var c in r.needs.ToList())
                 {
                     if (set >= AutomationMath.BillsAnHour) yield break;
-                    if (c.billed || c.bench == null || Dropped(BillKey(c.bench, c.recipe)) || !Offered(BillStepKey(c.bench, c.recipe))) continue;
+                    if (c.billed || c.bench == null || Dropped(BillKey(c.bench, c.recipe)) || !Offered(BillStepKey(c.bench, c.recipe), map)) continue;
                     var link = c;
                     string numbers = "CC_Same_Auto_BillNumbers".Translate(link.stock.Named("HAVE"), link.target.Named("N")).Resolve();
                     string text = "CC_Auto_BillSet".Translate(link.product.label.Named("PRODUCT"), link.target.Named("N"), link.bench.LabelCap.ToString().Named("BENCH"), link.why.Named("WHY")).Resolve()
@@ -451,7 +502,7 @@ namespace ColonyCouncil
             foreach (var o in r.could.ToList())
             {
                 if (set >= AutomationMath.BillsAnHour) yield break;
-                if (o.bench == null || o.wantedBy != null || !KindOn(o.kind) || Dropped(BillKey(o.bench, o.recipe)) || !Offered(BillStepKey(o.bench, o.recipe))) continue;
+                if (o.bench == null || o.wantedBy != null || !KindOn(o.kind) || Dropped(BillKey(o.bench, o.recipe)) || !Offered(BillStepKey(o.bench, o.recipe), map)) continue;
                 var option = o;
                 string why = option.targetWhy ?? "CC_Auto_Why_Staple".Translate().Resolve();
                 string text = "CC_Auto_BillSet".Translate(option.product.label.Named("PRODUCT"), option.target.Named("N"), option.bench.LabelCap.ToString().Named("BENCH"), why.Named("WHY")).Resolve()
@@ -463,7 +514,7 @@ namespace ColonyCouncil
 
         private static string BillStepKey(Building_WorkTable bench, RecipeDef recipe) => AutomationSource + ":bill:" + BillKey(bench, recipe);
 
-        private static bool Offered(string key) => SuggestTracker.Instance?.Offered(key) ?? true;
+        private static bool Offered(string key, Map map) => SuggestTracker.Instance?.Offered(key, map) ?? true;
 
         /// <summary>A "make until" bill as a pending action: the bill set (by hand or by the automation), its undo the bill taken off, its check whether the stock rose.</summary>
         private AutoPending BillPending(Map map, Building_WorkTable bench, RecipeDef recipe, ThingDef product, int target, int stock, string text, string reason)
@@ -568,7 +619,7 @@ namespace ColonyCouncil
         private IEnumerable<AutoPending> Stockpile(Map map)
         {
             var f = BaseReview.Finding(map, "unstored");
-            if (f?.fix == null || f.Level < AdviceLevel.Medium || !Due("unstored", AutomationMath.StockpileDays)) yield break;
+            if (f?.fix == null || f.Level < AdviceLevel.Medium || !Due(At("unstored", map), AutomationMath.StockpileDays)) yield break;
             string key = BaseReview.KeyOf(f);
             string text = "CC_Auto_Stockpile".Translate(f.title.Named("WHAT")).Resolve();
             var fix = f.fix;
@@ -580,7 +631,7 @@ namespace ColonyCouncil
                 {
                     var d = fix();
                     if (d == null) return;
-                    Done("unstored");
+                    Done(At("unstored", map));
                     var a = Record(AutoAction.Stockpile, map, text, f.look.IsValid ? new LookTargets(f.look, map) : null, d, key);
                     if (d.undo is UndoZone z) a.zoneId = z.zoneId;
                 }
@@ -592,13 +643,13 @@ namespace ColonyCouncil
         /// <summary>What the base review would take down (wall stubs, dead conduit and pipe ends, doors between the same room) gets its deconstruct orders, so many a day at most.</summary>
         private IEnumerable<AutoPending> TakeDown(Map map)
         {
-            int left = AutomationMath.Allowed(takenDownToday, S.autoTakeDownsADay, int.MaxValue);
+            int left = AutomationMath.Allowed(TakenDownAt(map), S.autoTakeDownsADay, int.MaxValue);
             foreach (var f in BaseReview.For(map).ToList())
             {
                 if (left <= 0) yield break;
                 if (f.fix == null || f.things.NullOrEmpty()) continue;
                 if (!TakeDownKeys.Contains(f.key) && !f.key.StartsWith("pipes:")) continue;
-                if (!Due("takedown:" + f.key, AutomationMath.TakeDownDays)) continue;
+                if (!Due(At("takedown:" + f.key, map), AutomationMath.TakeDownDays)) continue;
                 var finding = f;
                 var things = f.things.Where(t => t != null && !t.Destroyed).Take(left).ToList();
                 if (things.Count == 0) continue;
@@ -614,8 +665,8 @@ namespace ColonyCouncil
                     {
                         var d = run();
                         if (d == null) return;
-                        takenDownToday += things.Count;
-                        if (things.Count >= finding.things.Count) Done("takedown:" + finding.key);
+                        CountTakenDown(map, things.Count);
+                        if (things.Count >= finding.things.Count) Done(At("takedown:" + finding.key, map));
                         var a = Record(AutoAction.TakeDown, map, text, finding.look.IsValid ? new LookTargets(finding.look, map) : null, d, key);
                         a.things.AddRange(things);
                     }
@@ -634,8 +685,8 @@ namespace ColonyCouncil
             if (signals == null) yield break;
             foreach (var s in signals.ToList())
             {
-                if (s.def == null || s.act == null || !LampSignals.Contains(s.def.defName) || !Due(s.def.defName, AutomationMath.LampsDays)) continue;
-                if (!AutomationMath.BudgetLeft(spentToday, S.autoBudget))
+                if (s.def == null || s.act == null || !LampSignals.Contains(s.def.defName) || !Due(At(s.def.defName, map), AutomationMath.LampsDays)) continue;
+                if (!AutomationMath.BudgetLeft(SpentAt(map), S.autoBudget))
                 {
                     yield return new AutoPending { text = "CC_Auto_BudgetSpent".Translate(s.title.Named("WHAT")).Resolve() };
                     continue;
@@ -652,10 +703,10 @@ namespace ColonyCouncil
                     {
                         var d = step.apply();
                         if (d == null) return;
-                        Done(signal.def.defName);
+                        Done(At(signal.def.defName, map));
                         var placed = (d.undo as UndoOrders)?.pieceCells.SelectMany(c => c.GetThingList(map).OfType<Blueprint_Build>()).Distinct().Cast<Thing>().ToList() ?? new List<Thing>();
                         float worth = placed.Sum(Worth);
-                        spentToday += worth;
+                        Spend(map, worth);
                         string line = text + " " + "CC_Same_Auto_Placed".Translate(placed.Count.Named("N"), Mathf.RoundToInt(worth).Named("WORTH")).Resolve();
                         var a = Record(AutoAction.Lamps, map, line, signal.look, d, key);
                         a.things.AddRange(placed);
@@ -682,8 +733,8 @@ namespace ColonyCouncil
         private IEnumerable<AutoPending> Firewood(Map map)
         {
             var s = CouncilMapComponent.For(map)?.Signals?.FirstOrDefault(x => x.def?.defName == "Council_Adv_Firewood");
-            if (s == null || !Due("firewood", AutomationMath.FirewoodDays)) yield break;
-            int want = AutomationMath.Allowed(choppedToday, S.autoChopsADay, AutomationMath.TreesToMark((int)s.Level));
+            if (s == null || !Due(At("firewood", map), AutomationMath.FirewoodDays)) yield break;
+            int want = AutomationMath.Allowed(ChoppedAt(map), S.autoChopsADay, AutomationMath.TreesToMark((int)s.Level));
             if (want <= 0) yield break;
             var trees = Trees(map).Take(want).ToList();
             if (trees.Count == 0) yield break;
@@ -715,8 +766,8 @@ namespace ColonyCouncil
                     var d = run();
                     if (d == null) return;
                     int marked = (d.undo as UndoOrders)?.marked.Count ?? 0;
-                    choppedToday += marked;
-                    Done("firewood");
+                    CountChopped(map, marked);
+                    Done(At("firewood", map));
                     var a = Record(AutoAction.Firewood, map, text, new LookTargets(trees[0]), d, key);
                     a.things.AddRange(trees.Cast<Thing>());
                 }
@@ -753,7 +804,7 @@ namespace ColonyCouncil
                 foreach (var n in root.All())
                 {
                     if (n.plant == null || n.recipe != null || n.zone != null || n.cells <= 0 || !seen.Add(n.thing)) continue;
-                    if (!Due("grow:" + n.thing.defName, AutomationMath.GrowDays)) continue;
+                    if (!Due(At("grow:" + n.thing.defName, map), AutomationMath.GrowDays)) continue;
                     var node = n;
                     string key = AutomationSource + ":grow:" + node.thing.defName;
                     string text = "CC_Auto_Grow".Translate(node.cells.Named("N"), node.plant.label.Named("PLANT"), node.thing.label.Named("PRODUCT")).Resolve() + " "
@@ -780,7 +831,7 @@ namespace ColonyCouncil
                         {
                             var d = run();
                             if (d == null) return;
-                            Done("grow:" + node.thing.defName);
+                            Done(At("grow:" + node.thing.defName, map));
                             var z = d.undo as UndoZone;
                             var a = Record(AutoAction.Grow, map, text, z != null && z.cells.Count > 0 ? new LookTargets(z.cells[0], map) : null, d, key);
                             a.zoneId = z?.zoneId ?? -1;
@@ -903,7 +954,7 @@ namespace ColonyCouncil
                 var bench = a.things.OfType<Building_WorkTable>().FirstOrDefault();
                 if (bench != null) stepKey = AutomationSource + ":bill:" + bench.thingIDNumber + ":" + a.recipe;
             }
-            if (stepKey != null) SuggestTracker.Instance?.Decline(stepKey, a.text);
+            if (stepKey != null) SuggestTracker.Instance?.Decline(stepKey, a.text, 0f, a.map);
             log.Add(GenDate.DaysPassed + ": " + "CC_Auto_Undone".Translate(a.text).Resolve());
             while (log.Count > AutomationMath.LogLines) log.RemoveAt(0);
             Messages.Message("CC_Auto_Undone".Translate(a.text).Resolve(), MessageTypeDefOf.SilentInput, false);
