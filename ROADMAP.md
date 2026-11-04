@@ -283,6 +283,8 @@ letter, opened in a drawer from wherever its name appears, with previews, back a
 with six lenses in place of the posts', camps' and hamlets' pages; This week as the one inbox; a rule for where every
 new feature goes; one visual grammar. Five releases (UI 1 to UI 5) before stage 2a.2. The player's decisions (4 November 2026): all seven as
 recommended.
+Later, if the player asks once these are in: the game's own screens reworked in the same language, each behind
+its own setting (interface.md, "Beyond Rimfolk's windows"); the kit is built to carry over.
 
 ### Stage 1: the region comes alive
 The design and its seven releases: `docs/design/stage1-region.md`. **Done (0.69.0 to 0.77.0, 4 November 2026)**: the
