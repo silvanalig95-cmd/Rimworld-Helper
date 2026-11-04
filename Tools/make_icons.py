@@ -422,6 +422,90 @@ def g_forward():
     return g_back().transpose(Image.FLIP_LEFT_RIGHT)
 
 
+# The region window's views, its map's lenses and modes (Source/ColonyCouncil/UI/Region/)
+
+def g_away():
+    """Here and away: an arrow to a post, someone on the way."""
+    m = new()
+    rect(m, 196, 28, 228, 228, r=10)  # the post
+    rect(m, 24, 106, 132, 150, r=8)  # the arrow's shaft
+    poly(m, [(116, 54), (184, 128), (116, 202)])  # its head
+    return m
+
+
+def g_lens_land():
+    """The Land lens: a mountain and its foothill."""
+    m = new()
+    poly(m, [(14, 214), (96, 62), (150, 158), (178, 118), (242, 214)])
+    poly(m, [(96, 104), (128, 164), (64, 164)], fill=OFF)  # the snow line's notch, so it reads as a peak
+    return m
+
+
+def g_lens_stance():
+    """Stance and ties: two rings linked."""
+    m = new()
+    ring(m, 92, 128, 70, 26)
+    ring(m, 164, 128, 70, 26)
+    return m
+
+
+def g_lens_fortunes():
+    """Fortunes: three bars rising and an arrow up."""
+    m = new()
+    rect(m, 26, 162, 70, 234, r=6)
+    rect(m, 106, 116, 150, 234, r=6)
+    rect(m, 186, 70, 230, 234, r=6)
+    poly(m, [(208, 14), (250, 60), (166, 60)])
+    return m
+
+
+def g_lens_threats():
+    """Threats: two blades crossed."""
+    m = new()
+    line(m, [(46, 46), (210, 210)], 30)
+    line(m, [(210, 46), (46, 210)], 30)
+    line(m, [(26, 170), (86, 230)], 26)  # the guards
+    line(m, [(230, 170), (170, 230)], 26)
+    return m
+
+
+def g_lens_trade():
+    """Trade: a pair of scales."""
+    m = new()
+    rect(m, 116, 30, 140, 216)  # the post
+    rect(m, 64, 208, 192, 232, r=8)  # its foot
+    rect(m, 28, 58, 228, 80, r=8)  # the beam
+    poly(m, [(52, 80), (10, 160), (94, 160)])  # the pans
+    poly(m, [(204, 80), (162, 160), (246, 160)])
+    return m
+
+
+def g_lens_ours():
+    """Ours: a flag on its pole."""
+    m = new()
+    rect(m, 50, 24, 76, 238, r=8)
+    poly(m, [(76, 32), (226, 32), (186, 86), (226, 140), (76, 140)])
+    return m
+
+
+def g_mode_map():
+    """Map (a mode): a folded map."""
+    m = new()
+    poly(m, [(18, 58), (90, 28), (166, 58), (238, 28), (238, 200), (166, 230), (90, 200), (18, 230)])
+    rect(m, 80, 40, 100, 210, fill=OFF)  # the folds
+    rect(m, 156, 46, 176, 218, fill=OFF)
+    return m
+
+
+def g_mode_list():
+    """List (a mode): three rows, each with its dot."""
+    m = new()
+    for y in (60, 128, 196):
+        circle(m, 40, y, 20)
+        rect(m, 86, y - 16, 236, y + 16, r=10)
+    return m
+
+
 def g_more():
     """More (the bottom bar's button for the buttons put away): three bold dots in a row."""
     m = new()
@@ -936,6 +1020,10 @@ def g_cat_mods():
 GLYPHS = [
     # the corner's way back and forward
     ("Back", g_back), ("Forward", g_forward),
+    # the region window's views, its map's lenses and modes
+    ("Away", g_away), ("LensLand", g_lens_land), ("LensStance", g_lens_stance), ("LensFortunes", g_lens_fortunes),
+    ("LensThreats", g_lens_threats), ("LensTrade", g_lens_trade), ("LensOurs", g_lens_ours), ("ModeMap", g_mode_map),
+    ("ModeList", g_mode_list),
     # sections
     ("Colony", g_colony), ("People", g_people), ("Council", g_council), ("History", g_history), ("Almanac", g_almanac),
     # sub-tabs

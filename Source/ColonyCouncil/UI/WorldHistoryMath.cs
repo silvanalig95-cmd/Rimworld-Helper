@@ -4,15 +4,49 @@ using System.Text;
 
 namespace ColonyCouncil
 {
+    /// <summary>How far the History view looks: what happened to the colony, in the region around it, or anywhere in the world.</summary>
+    public enum HistoryScope
+    {
+        Colony,
+        Region,
+        World
+    }
+
     /// <summary>
-    /// The rules of the region window's History page (UI/WorldPages.cs), free of game types so Tools/Tests can check
-    /// them: which kinds of event its filter offers, how a kind reads when there is no text for it, and which events a
-    /// people and a town together leave in the list.
+    /// The rules of the region window's History view (UI/WorldPages.cs), free of game types so Tools/Tests can check
+    /// them: which kinds of event its filter offers, how a kind reads when there is no text for it, which events a
+    /// people and a town together leave in the list, and which a scope keeps.
     /// </summary>
     public static class WorldHistoryMath
     {
         /// <summary>The most events the page lists at once (the history keeps at most HistoryMath.MaxEvents).</summary>
         public const int MaxShown = 300;
+
+        /// <summary>The scope the view opens on: the region (the Chronicle is the colony's own door to the same history).</summary>
+        public const HistoryScope DefaultScope = HistoryScope.Region;
+
+        /// <summary>
+        /// An event in a scope: the world keeps everything; the region and the colony keep an event that happened at, or
+        /// was done by or to, one of the parties in <paramref name="parties"/> (the colony's homes, its people and its own
+        /// for the colony; with the towns within reach, their peoples and the people of them it knows for the region).
+        /// </summary>
+        public static bool InScope(HistoryEntry e, HistoryScope scope, ICollection<Ref> parties)
+        {
+            if (e == null) return false;
+            if (scope == HistoryScope.World) return true;
+            if (parties == null || parties.Count == 0) return false;
+            if (!e.place.IsNone && parties.Contains(e.place)) return true;
+            if (e.actors != null)
+                foreach (var a in e.actors)
+                    if (parties.Contains(a.who))
+                        return true;
+            return false;
+        }
+
+        /// <summary>The scope as the way back keeps it (one letter), and read back; an unknown letter is the default.</summary>
+        public static string ScopeCode(HistoryScope s) => s == HistoryScope.Colony ? "C" : s == HistoryScope.World ? "W" : "R";
+
+        public static HistoryScope ScopeOf(string code) => code == "C" ? HistoryScope.Colony : code == "W" ? HistoryScope.World : DefaultScope;
 
         /// <summary>The families of these kinds ("deed:traded" is of "deed"), the most common first, then by name; each once.</summary>
         public static List<string> Families(IEnumerable<string> kinds)

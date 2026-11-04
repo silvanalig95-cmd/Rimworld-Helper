@@ -32,6 +32,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/PagesMath.cs" Link="PagesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/WorldHistoryMath.cs" Link="WorldHistoryMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/RegionViewsMath.cs" Link="RegionViewsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/ThingRefMath.cs" Link="ThingRefMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/LinkTextMath.cs" Link="LinkTextMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/NavTrailMath.cs" Link="NavTrailMath.cs" />

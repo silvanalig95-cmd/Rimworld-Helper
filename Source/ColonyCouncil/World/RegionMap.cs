@@ -401,6 +401,7 @@ namespace ColonyCouncil
         {
             if (Time.realtimeSinceStartup - marksAt < 2f) return marks;
             marksAt = Time.realtimeSinceStartup;
+            MarksVersion++;
             marks.Clear();
             try
             {
@@ -452,6 +453,9 @@ namespace ColonyCouncil
 
         /// <summary>Gather the marks again at the next chance (a selection may have changed what is there).</summary>
         public void MarksDirty() => marksAt = -100f;
+
+        /// <summary>Counts each gathering of the marks, so a view keyed by them knows to look again.</summary>
+        public int MarksVersion { get; private set; }
 
         // ---------------- Words ----------------
 

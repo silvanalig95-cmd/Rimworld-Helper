@@ -55,7 +55,7 @@ namespace ColonyCouncil
                     detail = "CC_Adv_MissionDue_DetailNoGoods".Translate(TextUtil.DaysString(left)).Resolve() + (status.NullOrEmpty() ? "" : " " + status);
                 }
                 var s = Signal(left <= GenDate.TicksPerDay ? 0.5f : 0.38f, "CC_Adv_MissionDue_Title".Translate(title, TextUtil.DaysString(left)).Resolve(), detail, 0.9f);
-                s.page = "Neighbours";
+                s.page = "HereAndAway";
                 var mission = m;
                 if (Missions.QuestOf(m) != null)
                 {
@@ -93,7 +93,7 @@ namespace ColonyCouncil
                         break;
                 }
                 if (s == null) continue;
-                s.page = "Events";
+                s.page = "WorldHistory";
                 s.key = "world:" + sit.id;
                 yield return s;
             }

@@ -67,13 +67,11 @@ namespace ColonyCouncil
             new Page("Calendar", RimfolkWindow.Council, "Colony"),
             new Page("Chronicle", RimfolkWindow.Council, "Colony"),
             new Page("Almanac", RimfolkWindow.Council, "Almanac"),
-            // The region window: the map first, then what lies beyond the colony.
+            // The region window in four views (UI 2): the map with its lenses, the peoples, who is here and who is away,
+            // the history.
             new Page("Map", RimfolkWindow.World, "World"),
-            new Page("Neighbours", RimfolkWindow.World, "World"),
             new Page("Peoples", RimfolkWindow.World, "World"),
-            new Page("Letters", RimfolkWindow.World, "World"),
-            new Page("Journeys", RimfolkWindow.World, "World"),
-            new Page("Events", RimfolkWindow.World, "World"),
+            new Page("HereAndAway", RimfolkWindow.World, "World"),
             new Page("WorldHistory", RimfolkWindow.World, "World"),
             // The defense window.
             new Page("Defenses", RimfolkWindow.Defense, "Defense"),
@@ -86,26 +84,130 @@ namespace ColonyCouncil
         };
 
         /// <summary>
-        /// Old addresses that are now another page: the council window's World page (now the region window's
-        /// Neighbours, which kept what it showed), the region map's own window, and the History section (its first page).
+        /// Old addresses that are now another page: the council window's World page (later the region window's
+        /// Neighbours), the region map's own window, the History section (its first page), and the region window's ten
+        /// pages before its four views, each a view, a mode or a lens of one now (an address after a slash).
         /// </summary>
         public static readonly Dictionary<string, string> Moved = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            ["World"] = "Neighbours",
+            ["World"] = "Map/Stance/List",
             ["RegionMap"] = "Map",
             ["Region"] = "Map",
-            ["History"] = "Chronicle"
+            ["History"] = "Chronicle",
+            // The region window's pages before it had four views (UI 2): each is a view, a mode or a lens now.
+            ["Neighbours"] = "Map/Stance/List",
+            ["TradingPosts"] = "Map/Trade/List",
+            ["RaidersCamps"] = "Map/Threats/List",
+            ["Hamlets"] = "Map/Ours/List",
+            ["Letters"] = "HereAndAway",
+            ["Journeys"] = "HereAndAway",
+            ["Household"] = "HereAndAway",
+            ["Diplomacy"] = "Peoples",
+            ["Events"] = "WorldHistory"
         };
 
-        /// <summary>The page a name means, as its tabs know it ("decrees" is "Decrees", "World" is "Neighbours"); null for none.</summary>
-        public static string Resolve(string name)
+        /// <summary>The most views a window has, modes a view has, and lenses the region map has (docs/design/interface.md).</summary>
+        public const int MaxViews = 5, MaxModes = 5, MaxLenses = 6;
+
+        /// <summary>
+        /// A view's modes (the same things shown another way), in the order of their buttons; the first is where the view
+        /// opens when an address names no mode. A mode's name is part of an address: "Peoples/Faces".
+        /// </summary>
+        public static readonly Dictionary<string, string[]> Modes = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            if (string.IsNullOrEmpty(name)) return null;
+            // The region window (UI 2).
+            ["Map"] = new[] { "Map", "List" },
+            ["Peoples"] = new[] { "Peoples", "Faces" }
+        };
+
+        /// <summary>A view's lenses (the region map's, UI/RegionViewsMath.cs), in the order of the lens bar: "Map/Trade/List".</summary>
+        public static readonly Dictionary<string, string[]> Lenses = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Map"] = new[] { "Land", "Stance", "Fortunes", "Threats", "Trade", "Ours" }
+        };
+
+        /// <summary>An address: a view, and a mode and a lens of it where it names them (null where it doesn't).</summary>
+        public readonly struct Address
+        {
+            public readonly string page;
+            public readonly string mode;
+            public readonly string lens;
+
+            public Address(string page, string mode, string lens)
+            {
+                this.page = page;
+                this.mode = mode;
+                this.lens = lens;
+            }
+
+            /// <summary>The lens and mode as the way back keeps them ("Trade/List"), or null.</summary>
+            public string Within => lens == null ? mode : mode == null ? lens : lens + "/" + mode;
+
+            public override string ToString() => page + (Within == null ? "" : "/" + Within);
+        }
+
+        /// <summary>The modes of a view, or none.</summary>
+        public static string[] ModesOf(string page) => page != null && Modes.TryGetValue(page, out var m) ? m : Array.Empty<string>();
+
+        /// <summary>The lenses of a view, or none.</summary>
+        public static string[] LensesOf(string page) => page != null && Lenses.TryGetValue(page, out var l) ? l : Array.Empty<string>();
+
+        private static string Named(string[] list, string name)
+        {
+            foreach (var x in list)
+                if (string.Equals(x, name, StringComparison.OrdinalIgnoreCase))
+                    return x;
+            return null;
+        }
+
+        private static string PageNamed(string name)
+        {
             foreach (var p in All)
                 if (string.Equals(p.name, name, StringComparison.OrdinalIgnoreCase))
                     return p.name;
-            return Moved.TryGetValue(name, out var to) ? to : null;
+            return null;
         }
+
+        /// <summary>
+        /// What a name means as an address: its view, and the mode or lens it names after a slash ("Map/Trade/List",
+        /// "Peoples/Faces"). An old page name forwards to where it is now ("TradingPosts" is the map's Trade lens as a
+        /// list), and parts after it override what it forwards to. False for no view. A part that is neither a mode nor a
+        /// lens of the view is passed over.
+        /// </summary>
+        public static bool TryAddress(string name, out Address address)
+        {
+            address = default;
+            if (string.IsNullOrEmpty(name)) return false;
+            var parts = new List<string>(name.Split('/'));
+            string page = PageNamed(parts[0]);
+            if (page == null && Moved.TryGetValue(parts[0], out var to))
+            {
+                var moved = to.Split('/');
+                page = PageNamed(moved[0]);
+                parts.RemoveAt(0);
+                parts.InsertRange(0, moved);
+            }
+            if (page == null) return false;
+            string mode = null, lens = null;
+            var modes = ModesOf(page);
+            var lenses = LensesOf(page);
+            for (int i = 1; i < parts.Count; i++)
+            {
+                string m = Named(modes, parts[i]);
+                if (m != null)
+                {
+                    mode = m;
+                    continue;
+                }
+                string l = Named(lenses, parts[i]);
+                if (l != null) lens = l;
+            }
+            address = new Address(page, mode, lens);
+            return true;
+        }
+
+        /// <summary>The page (view) a name means, as its tabs know it ("decrees" is "Decrees", "TradingPosts" is "Map"); null for none.</summary>
+        public static string Resolve(string name) => TryAddress(name, out var a) ? a.page : null;
 
         public static bool IsPage(string name) => Resolve(name) != null;
 

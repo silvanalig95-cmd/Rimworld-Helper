@@ -21,7 +21,7 @@ namespace ColonyCouncil
     /// </summary>
     public class RegionMapView
     {
-        private const float HeaderH = 32f;
+        private const float HeaderH = 26f;
         private static readonly Color MapBack = new Color(0.07f, 0.08f, 0.09f);
         private static readonly Color LabelBack = new Color(0f, 0f, 0f, 0.6f);
         private static readonly Color MarkBack = new Color(0.06f, 0.07f, 0.08f, 0.8f);
@@ -77,24 +77,29 @@ namespace ColonyCouncil
             Drawer.Open(RimfolkWindow.World, ThingRefs.Of(o), true);
         }
 
+        /// <summary>The lens the map is read through (UI/Region/LensModel.cs): its marks' colours, its lines, its legend.</summary>
+        private LensModel lens;
+
         /// <summary>
-        /// The map, with the reach and the way home along the top of <paramref name="inRect"/>. Its panel is the region
-        /// window's drawer (UI/Cards/Drawer.cs): what is picked is the place whose card is open there.
+        /// The map read through a lens, with what the lens shows, the way home and the reach along the top of
+        /// <paramref name="inRect"/> and the lens's legend at its foot. Its panel is the region window's drawer
+        /// (UI/Cards/Drawer.cs): what is picked is the place whose card is open there.
         /// </summary>
-        public void Draw(Rect inRect)
+        public void Draw(Rect inRect, LensModel lens)
         {
             if (Current.ProgramState != ProgramState.Playing || Find.World == null)
             {
                 UiKit.EmptyState(inRect, Icons.World, "CC_NoGame".Translate());
                 return;
             }
+            this.lens = lens;
             var font = Text.Font;
             try
             {
                 Header(new Rect(inRect.x, inRect.y, inRect.width, HeaderH));
                 Keep();
                 SyncPick();
-                var mapRect = new Rect(inRect.x, inRect.y + HeaderH + 6f, inRect.width, inRect.height - HeaderH - 6f);
+                var mapRect = new Rect(inRect.x, inRect.y + HeaderH + 4f, inRect.width, inRect.height - HeaderH - 4f);
                 if (map?.texture == null)
                 {
                     Widgets.DrawBoxSolid(mapRect, MapBack);
@@ -116,30 +121,31 @@ namespace ColonyCouncil
 
         // ---------------- The header ----------------
 
+        /// <summary>What the lens shows in one line on the left; the way home and the reach on the right.</summary>
         private void Header(Rect r)
         {
-            UiKit.Icon(new Rect(r.x, r.y + 3f, 26f, 26f), Icons.World, UiKit.Gold);
             float right = r.xMax;
-            const float bw = 26f;
+            const float bw = 22f;
             int reach = Mathf.Clamp(S.regionMapRadius, ReachMin, ReachMax);
-            var plus = new Rect(right - bw, r.y + 3f, bw, bw);
+            var plus = new Rect(right - bw, r.y + (r.height - bw) / 2f, bw, bw);
             string reachText = "CC_Region_Reach".Translate(reach).Resolve();
-            Text.Font = GameFont.Small;
-            float tw = Text.CalcSize(reachText).x + 12f;
+            float tw = UiKit.KeptWidth(reachText, GameFont.Small) + 12f;
             var reachRect = new Rect(plus.x - tw, r.y, tw, r.height);
-            var minus = new Rect(reachRect.x - bw, r.y + 3f, bw, bw);
+            var minus = new Rect(reachRect.x - bw, plus.y, bw, bw);
             if (Widgets.ButtonImage(minus, TexButton.Minus) && reach > ReachMin) SetReach(reach - ReachStep);
             UiKit.LabelFit(reachRect, reachText, Color.white, GameFont.Small, TextAnchor.MiddleCenter);
             if (Widgets.ButtonImage(plus, TexButton.Plus) && reach < ReachMax) SetReach(reach + ReachStep);
             TooltipHandler.TipRegion(new Rect(minus.x, r.y, plus.xMax - minus.x, r.height), "CC_Region_Reach_Tip".Translate());
-            var home = new Rect(minus.x - 10f - 150f, r.y + 2f, 150f, 28f);
-            if (Widgets.ButtonText(home, "CC_Region_Home".Translate(), active: map != null))
+            string homeLabel = "CC_Region_Home".Translate();
+            float hw = Mathf.Clamp(UiKit.KeptWidth(homeLabel, GameFont.Small) + 24f, 80f, 150f);
+            var home = new Rect(minus.x - 10f - hw, r.y + (r.height - 24f) / 2f, hw, 24f);
+            if (Widgets.ButtonText(home, homeLabel, active: map != null))
             {
                 view = new View(0, 0, map != null ? view.scale : 0);
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
             TooltipHandler.TipRegion(home, "CC_Region_Home_Tip".Translate());
-            UiKit.LabelFit(new Rect(r.x + 34f, r.y, Mathf.Max(0f, home.x - r.x - 44f), r.height), "CC_Region_Title".Translate(), Color.white, GameFont.Medium);
+            if (lens != null) UiKit.LabelFit(new Rect(r.x + 2f, r.y, Mathf.Max(0f, home.x - r.x - 12f), r.height), lens.line, UiKit.Faint, GameFont.Tiny);
         }
 
         public const int ReachMin = 20, ReachMax = 60, ReachStep = 5;
@@ -268,8 +274,13 @@ namespace ColonyCouncil
 
                 if (hoverTile >= 0 && hoverMark == null) Outline(HoverCorners(), new Color(1f, 1f, 1f, 0.45f), 1f, w, h);
                 if (picked == null && pickedTile >= 0) Outline(pickedCorners, UiKit.Gold, 2f, w, h);
+                Index(marks);
+                DrawLines(w, h);
+                DrawEventTiles(w, h);
                 DrawMarks(marks, w, h);
                 Labels(marks, w, h);
+                // The lens's legend at the map's foot (the whole of it in the panel with nothing picked).
+                if (lens != null) UiKit.LegendStrip(new Rect(6f, 0f, local.width - 44f, local.height - 6f), lens.legend);
 
                 // The zoom buttons, before the map's own mouse handling so a click on them stays theirs.
                 var zin = new Rect(local.xMax - 30f, 6f, 24f, 24f);
@@ -372,17 +383,77 @@ namespace ColonyCouncil
                 float s = m.Size;
                 if (sx < -s || sy < -s || sx > w + s || sy > h + s) continue;
                 var r = new Rect((float)sx - s / 2f, (float)sy - s / 2f, s, s);
-                UiKit.DiscFill(r.ExpandedBy(3f), m.kind == RegionMarkKind.Other ? UiKit.WithAlpha(MarkBack, 0.55f) : MarkBack);
+                // The lens's colour for the mark, where it has one (a mark it isn't about is drawn faint).
+                var color = m.color;
+                bool faint = m.kind == RegionMarkKind.Other;
+                if (lens != null && lens.colours.TryGetValue(m.obj.ID, out var c))
+                {
+                    color = c;
+                    faint = c.a < 0.9f;
+                }
+                UiKit.DiscFill(r.ExpandedBy(3f), faint ? UiKit.WithAlpha(MarkBack, 0.55f) : MarkBack);
                 if (m.kind == RegionMarkKind.Colony) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.Gold);
+                if (lens != null && lens.events.Contains(m.obj.ID)) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WorldColor);
                 if (m.obj == picked) UiKit.RingDraw(r.ExpandedBy(7f), Color.white);
                 else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), new Color(1f, 1f, 1f, 0.5f));
                 if (m.icon != null)
                 {
-                    GUI.color = m.kind == RegionMarkKind.Other ? UiKit.WithAlpha(m.color, 0.75f) : m.color;
+                    GUI.color = faint ? UiKit.WithAlpha(color, Mathf.Min(color.a, 0.75f)) : color;
                     GUI.DrawTexture(r, m.icon);
                     GUI.color = Color.white;
                 }
-                else UiKit.DiscFill(r.ContractedBy(s * 0.25f), m.color);
+                else UiKit.DiscFill(r.ContractedBy(s * 0.25f), color);
+                // A fortune that moved this season: a small arrow at the mark's top right.
+                if (lens != null && lens.arrows.TryGetValue(m.obj.ID, out int moved))
+                    UiKit.Icon(new Rect(r.xMax - 2f, r.y - 6f, 10f, 10f), moved > 0 ? Icons.TrendUp : Icons.TrendDown, moved > 0 ? UiKit.Good : UiKit.Bad);
+            }
+        }
+
+        // ---------------- The lens's lines ----------------
+
+        /// <summary>The marks by their world object's id, made again when the marks are gathered again.</summary>
+        private readonly Dictionary<int, RegionMark> byId = new Dictionary<int, RegionMark>();
+        private int indexedFor = -1;
+        private RegionMap indexedMap;
+
+        private void Index(List<RegionMark> marks)
+        {
+            if (indexedMap == map && indexedFor == map.MarksVersion) return;
+            indexedMap = map;
+            indexedFor = map.MarksVersion;
+            byId.Clear();
+            foreach (var m in marks)
+                if (m.obj != null)
+                    byId[m.obj.ID] = m;
+        }
+
+        /// <summary>The lens's lines between places on the map (a few dozen at most), under the marks.</summary>
+        private void DrawLines(double w, double h)
+        {
+            if (lens == null || lens.lines.Count == 0 || Event.current.type != EventType.Repaint) return;
+            foreach (var l in lens.lines)
+            {
+                if (!byId.TryGetValue(l.from, out var a) || !byId.TryGetValue(l.to, out var b)) continue;
+                ToScreen(view, w, h, a.x, a.y, out double ax, out double ay);
+                ToScreen(view, w, h, b.x, b.y, out double bx, out double by);
+                // Neither end in sight and the line not across it: nothing to draw.
+                if (Math.Max(ax, bx) < 0 || Math.Min(ax, bx) > w || Math.Max(ay, by) < 0 || Math.Min(ay, by) > h) continue;
+                UiKit.DashedLine(new Vector2((float)ax, (float)ay), new Vector2((float)bx, (float)by), RegionViewsMath.Look(l.kind), 0.9f);
+            }
+        }
+
+        /// <summary>World events at no town: a small mark of the world's colour on their tile.</summary>
+        private void DrawEventTiles(double w, double h)
+        {
+            if (lens == null || lens.eventTiles.Count == 0 || Event.current.type != EventType.Repaint) return;
+            foreach (var t in lens.eventTiles)
+            {
+                if (!map.TryIndex(t, out int i)) continue;
+                ToScreen(view, w, h, map.cx[i], map.cy[i], out double sx, out double sy);
+                if (sx < -10 || sy < -10 || sx > w + 10 || sy > h + 10) continue;
+                var r = new Rect((float)sx - 8f, (float)sy - 8f, 16f, 16f);
+                UiKit.DiscFill(r.ExpandedBy(2f), MarkBack);
+                UiKit.Icon(r, Icons.WorldEvent, UiKit.WorldColor);
             }
         }
 
@@ -484,15 +555,22 @@ namespace ColonyCouncil
         {
             float y = r.y;
             y += UiKit.Paragraph(r.x, y, r.width, map == null ? failed ?? "CC_Region_NoHome".Translate().ToString() : "CC_Region_PickHint".Translate().ToString(), UiKit.Faint) + 12f;
-            if (map == null) return;
-            y += UiKit.SectionTitle(r.x, y, r.width, "CC_Region_Legend".Translate()) + 2f;
+            if (map == null || lens == null) return;
+            y += UiKit.SectionTitle(r.x, y, r.width, "CC_Region_Legend".Translate(), RegionView.LensIcons[(int)lens.lens], UiKit.HeaderColor, RegionView.LensLabel(lens.lens)) + 2f;
+            y += UiKit.Paragraph(r.x, y, r.width, lens.line, UiKit.Faint, GameFont.Tiny) + 6f;
+            UiKit.LegendList(r.x, y, r.width, lens.legend);
+        }
+
+        private static List<LegendItem> landLegend;
+
+        /// <summary>The land's colours as a legend (the Land lens's), made once.</summary>
+        public static List<LegendItem> LandLegend()
+        {
+            if (landLegend != null) return landLegend;
+            landLegend = new List<LegendItem>();
             foreach (var (key, colour) in Legend)
-            {
-                if (y + 18f > r.yMax - 10f) break;
-                Widgets.DrawBoxSolid(new Rect(r.x + 2f, y + 3f, 14f, 12f), new Color32(colour.r, colour.g, colour.b, 255));
-                UiKit.LabelFit(new Rect(r.x + 24f, y, r.width - 24f, 18f), key.Translate(), Color.white, GameFont.Tiny);
-                y += 18f;
-            }
+                landLegend.Add(new LegendItem { word = key.Translate(), color = new Color32(colour.r, colour.g, colour.b, 255), swatch = true });
+            return landLegend;
         }
 
         private static readonly (string key, Rgb colour)[] Legend =

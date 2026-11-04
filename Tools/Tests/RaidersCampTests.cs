@@ -227,7 +227,9 @@ public static class RaidersCampTests
         C(book.Contains("Scribe_Deep.Look(ref raiders, \"raiders\")"), "each home's camp is saved with its part of the region");
         C(book.Contains("ColonyBook.Lost(homes, lost, RaidersCamps.HomeLost)"), "a home lost takes its camp with it");
         C(!code.Contains("GameComponentTick") && !code.Contains("override void Tick"), "nothing per tick");
-        C(code.Contains("MainTabWindow_World.Register(Name, \"CC_Tab_RaidersCamps\""), "the region window has a raiders' camps page");
+        string lens = File.ReadAllText(Path.Combine(src, "UI", "Region", "LensModel.cs"));
+        C(!code.Contains("MainTabWindow_World.Register(") && lens.Contains("RaidersCamps.Known()") && lens.Contains("RaidersCampPage.AskToPay(h, camp)"),
+            "the camps are the region map's Threats lens, with their list and Pay (their old page's name forwards there)");
         C(code.Contains("SiteMaker.MakeSite(SitePartDefOf.BanditCamp"), "the camp is the game's own bandit camp site");
         C(code.Contains("QuestTuning.PointsToRaidSourceRaidsMTBDaysCurve"), "its raids read the game's raid-source curve");
         C(code.Contains("LetterDefOf.ThreatSmall") && code.Contains("\"CC_RaidCamp_Found_Label\""), "it is found with a threat letter");

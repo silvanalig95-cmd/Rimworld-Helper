@@ -67,7 +67,8 @@ namespace ColonyCouncil
                 switch (w.Value)
                 {
                     case RimfolkWindow.World:
-                        MainTabWindow_World.Select(page);
+                        // The whole address: an old page's name or "Map/Trade/List" sets the view's lens and mode too.
+                        MainTabWindow_World.Select(name);
                         break;
                     case RimfolkWindow.Planning:
                         MainTabWindow_Planning.Select(page);
@@ -96,7 +97,7 @@ namespace ColonyCouncil
                 Find.MainTabsRoot.EscapeCurrentTab();
                 return;
             }
-            Open(page);
+            Open(name);
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace ColonyCouncil
             root.SetCurrentTab(b, false);
         }
 
-        /// <summary>A page's plain name, for the buttons that lead there ("Go to Wishes").</summary>
+        /// <summary>A page's plain name, for the buttons that lead there ("Go to Wishes"); a region view's with the lens or mode its address names ("Map: Trade, as a list").</summary>
         public static string Name(string name)
         {
             string page = Resolve(name);
@@ -139,7 +140,9 @@ namespace ColonyCouncil
             switch (page)
             {
                 case "Wishes": return "CC_Mood_WishesTab".Translate();
-                default: return ("CC_Tab_" + page).Translate();
+                default:
+                    string view = ("CC_Tab_" + page).Translate();
+                    return WindowOf(page) == RimfolkWindow.World && PagesMath.TryAddress(name, out var a) ? RegionView.Name(a, view) : view;
             }
         }
 

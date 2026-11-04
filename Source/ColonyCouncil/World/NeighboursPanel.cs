@@ -9,19 +9,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The region window's Neighbours page, its "Neighbours": the towns within reach, nearest first, each with the people of it the colony knows
-    /// by name (head, heir, envoy, trader, and the faces it met who live there), how each regards the colony in words,
-    /// which colonists they know, the last thing between them or the letter on its way, and a button to write. The same
-    /// rows, shorter, are the region map's section for a town (<see cref="NeighbourPanel"/>), registered at startup.
+    /// The people of a town the colony knows by name (head, heir, envoy, trader, and the faces it met who live there), how
+    /// each regards the colony in words, which colonists they know, the last thing between them or the letter on its way,
+    /// and a button to write: the Who of a town's card (UI/Cards/), registered at startup. The towns within reach, nearest
+    /// first, with their people, are Region → Map's Stance and ties lens as a list (UI/Region/LensModel.cs), which was the
+    /// Neighbours page.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class NeighboursPanel
     {
-        private static readonly Color Accent = new Color(0.78f, 0.86f, 0.7f);
-        private const float RowH = 60f;
         private const float SmallRowH = 46f;
-        private static readonly HashSet<int> open = new HashSet<int>();
-        private static readonly HashSet<int> shut = new HashSet<int>();
 
         static NeighboursPanel()
         {
@@ -43,8 +40,7 @@ namespace ColonyCouncil
             public Settlement s;
             /// <summary>The town's name as a link to its card.</summary>
             public string link;
-            public string name, distance, standing;
-            public Color standingColor;
+            public string name;
             public List<Row> rows = new List<Row>();
         }
 
@@ -76,12 +72,7 @@ namespace ColonyCouncil
             if (book == null || map == null) return list;
             foreach (var s in book.Towns(map))
             {
-                var t = new Town { s = s, name = s.Name, link = ThingRefs.Link(s.Name, ThingRefs.Of(s)), distance = DistanceWords(map, s) };
-                var f = s.Faction;
-                bool hostile = f.HostileTo(Faction.OfPlayer);
-                t.standing = hostile ? "CC_Neighbours_AtWar".Translate().Resolve() : f.HasGoodwill && f.PlayerGoodwill >= 75 ? "CC_Neighbours_Allies".Translate().Resolve()
-                    : "CC_Neighbours_AtPeace".Translate().Resolve();
-                t.standingColor = hostile ? UiKit.Bad : f.HasGoodwill && f.PlayerGoodwill >= 75 ? UiKit.Good : UiKit.Faint;
+                var t = new Town { s = s, name = s.Name, link = ThingRefs.Link(s.Name, ThingRefs.Of(s)) };
                 foreach (var n in RowsOf(book, s.ID)) t.rows.Add(MakeRow(n));
                 list.Add(t);
             }
@@ -136,84 +127,6 @@ namespace ColonyCouncil
         {
             string key = "CC_Letter_Status_" + l.stage;
             return key.CanTranslate() ? key.Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME")).Resolve() : null;
-        }
-
-        /// <summary>"about a day's walk", "about four days by courier": how far, by the colony's messengers' means.</summary>
-        private static string DistanceWords(Map map, Settlement s)
-        {
-            float tiles = LivingEvents.Distance(map.Tile, s.Tile);
-            float days = NotableMath.TravelDays(tiles, (int)(s.Faction?.def?.techLevel ?? TechLevel.Industrial));
-            int d = Mathf.Max(1, Mathf.RoundToInt(days));
-            return d <= 1 ? "CC_Neighbours_Day".Translate().Resolve() : "CC_Neighbours_Days".Translate(d).Resolve();
-        }
-
-        // ---------------- The Neighbours page ----------------
-
-        /// <summary>Draws the section at <paramref name="y"/> inside the Neighbours page's scroll view; returns the y below it.</summary>
-        public static float Draw(float y, float w)
-        {
-            if (!NotableBook.On) return y;
-            BuildIfStale();
-            int under = NeighbourLetters.OpenCount;
-            string right = under > 0 ? "CC_Neighbours_OnTheirWay".Translate(under).Resolve() : null;
-            y += UiKit.SectionTitle(0f, y, w, "CC_Neighbours_Header".Translate(), Icons.Visitor, Accent, right);
-            if (towns.Count == 0) return y + UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_Neighbours_None".Translate(), 60f) + 10f;
-            y += 2f;
-            for (int i = 0; i < towns.Count; i++)
-            {
-                var t = towns[i];
-                bool isOpen = open.Contains(t.s.ID) || i < 2 && !shut.Contains(t.s.ID);
-                y = DrawTownCard(y, w, t, isOpen, i);
-            }
-            return y + 8f;
-        }
-
-        private static float DrawTownCard(float y, float w, Town t, bool isOpen, int index)
-        {
-            // What its people told the colony lately (Outsiders/OutsiderHeard.cs), under its people.
-            float heardH = isOpen ? OutsiderHeard.Height(t.s.ID) : 0f;
-            float h = 30f + (isOpen ? Mathf.Max(1, t.rows.Count) * RowH + 6f + heardH : 0f);
-            var card = new Rect(0f, y, w, h);
-            UiKit.Card(card, UiKit.WithAlpha(t.standingColor, 0.6f), false, false);
-            var head = new Rect(card.x, card.y, card.width, 28f);
-            Widgets.DrawHighlightIfMouseover(head);
-            float x = card.x + 10f;
-            UiKit.LabelFit(new Rect(x, y + 4f, 18f, 20f), isOpen ? "-" : "+", UiKit.Faint);
-            x += 16f;
-            // The town's name and its people lead to their cards; the rest of the head folds the town.
-            float nameW = Mathf.Min(220f, LinkText.Width(t.link) + 8f);
-            LinkText.Line(new Rect(x, y + 4f, nameW, 22f), t.link, UiKit.HeaderColor);
-            x += nameW + 6f;
-            x += UiKit.FactionChip(x, y + 4f, t.s.Faction, 22f, Mathf.Min(200f, w * 0.3f), true) + 8f;
-            UiKit.LabelFit(new Rect(x, y + 4f, card.xMax - x - 10f, 22f), t.distance + " · " + t.standing, t.standingColor, GameFont.Tiny, TextAnchor.MiddleRight);
-            if (Widgets.ButtonInvisible(head))
-            {
-                if (isOpen)
-                {
-                    open.Remove(t.s.ID);
-                    shut.Add(t.s.ID);
-                }
-                else
-                {
-                    open.Add(t.s.ID);
-                    shut.Remove(t.s.ID);
-                }
-            }
-            if (!isOpen) return y + h + 6f;
-            float ry = y + 30f;
-            if (t.rows.Count == 0)
-            {
-                UiKit.LabelFit(new Rect(card.x + 12f, ry, card.width - 24f, RowH - 8f), "CC_Neighbours_NobodyYet".Translate(t.name).Resolve(), UiKit.Faint, GameFont.Small);
-                if (heardH > 0f) OutsiderHeard.Draw(new Rect(card.x + 12f, ry + RowH, card.width - 24f, heardH), t.s.ID);
-                return y + h + 6f;
-            }
-            foreach (var r in t.rows)
-            {
-                DrawRow(new Rect(card.x + 8f, ry, card.width - 16f, RowH), r, false);
-                ry += RowH;
-            }
-            if (heardH > 0f) OutsiderHeard.Draw(new Rect(card.x + 12f, ry + 2f, card.width - 24f, heardH), t.s.ID);
-            return y + h + 6f;
         }
 
         private static void DrawRow(Rect r, Row row, bool small)
