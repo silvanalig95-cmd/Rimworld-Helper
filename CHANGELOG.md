@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One look across every window
+
+*4 November 2026, version 0.87.0*
+
+- Every window reads the same way now: one set of colours by meaning, each beside its word or icon (friendly green, neutral blue, hostile red, needs you soon orange, harm now a brighter red with the warning sign, done a muted green, the colony's own gold), and the pages' own colours gave way.
+- Section headings carry their counts, tags are a dot and a word, filters are small chips with counts, numbers line up on the right, and an empty list says in one sentence what will show there.
+- An act that can't be done now is greyed with the reason as its tooltip and, on a card and on the defense lines, in a line under it, instead of saying no after the click.
+- The overview's numbers and the Moods page show a short line of the last week, rising, falling or steady.
+- Names are links in more places: the on-screen panels (a click on a colonist's name opens their card, the rest of the row still takes you to them), the hover card in the corner, This week's journeys, and the council's pages (decrees, offices, wishes, dilemmas, the chronicle, bonds, faiths, the calendar).
+
 ## One inbox, and search
 
 *4 November 2026, version 0.86.0*

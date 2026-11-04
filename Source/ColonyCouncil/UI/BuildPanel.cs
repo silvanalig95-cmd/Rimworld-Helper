@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// <summary>Planning → Rooms, List: every room plan, grouped, with buttons to plan it by hand or at a good spot.</summary>
     public static class BuildPanel
     {
-        private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);
+        /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
+        private static readonly Color HighColor = UiKit.Soon;
         private static Vector2 scroll;
         private static float height = 1000f;
         private static bool buildOnlyAvailable = true;
@@ -50,12 +51,8 @@ namespace ColonyCouncil
             float top = UiKit.PageHeader(rect, Icons.Rooms, "CC_Build_Header".Translate(), "CC_Build_Sub".Translate(),
                 "CC_UI_Stat_Plans".Translate(available).Resolve(), null, 270f);
             Widgets.CheckboxLabeled(new Rect(rect.xMax - 260f, rect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
-            var saveRect = new Rect(rect.xMax - 260f, rect.y + 28f, 126f, 22f);
-            if (Widgets.ButtonText(saveRect, "CC_Yours_Save".Translate())) Designator_SaveRoom.Begin();
-            TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
-            var tidyRect = new Rect(rect.xMax - 130f, rect.y + 28f, 130f, 22f);
-            if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
-            TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
+            if (UiKit.RowAct(new Rect(rect.xMax - 260f, rect.y + 30f, 126f, 22f), "CC_Yours_Save".Translate(), null, "CC_Yours_SaveDesc".Translate())) Designator_SaveRoom.Begin();
+            if (UiKit.RowAct(new Rect(rect.xMax - 130f, rect.y + 30f, 130f, 22f), "CC_Rearr_Button".Translate(), null, "CC_Rearr_Desc".Translate())) Designator_RearrangeRoom.Begin();
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -75,13 +72,13 @@ namespace ColonyCouncil
                 if (t.group != lastGroup)
                 {
                     lastGroup = t.group;
-                    if (y > 0f) y += 8f;
+                    if (y > 0f) y += UiKit.SectionGap - UiKit.CardGap;
                     string key = "CC_BuildGroup_" + t.group;
                     y += UiKit.SectionTitle(0f, y, width, key.CanTranslate() ? key.Translate().ToString() : t.group ?? "", GroupIcon(t.group));
                 }
                 // Only cards on screen are drawn.
                 if (y + l.height >= scroll.y && y <= scroll.y + outRect.height) DrawCard(t, l, y, width);
-                y += l.height + 6f;
+                y += l.height + UiKit.CardGap;
             }
             if (hidden > 0) y += UiKit.Paragraph(0f, y + 6f, width, "CC_Build_Hidden".Translate(hidden), UiKit.Faint) + 10f;
             height = Mathf.Max(y + 10f, 100f);
@@ -124,10 +121,10 @@ namespace ColonyCouncil
             var row = new Rect(0f, y, width, l.height);
             UiKit.Card(row, l.reason != null ? UiKit.WithAlpha(HighColor, 0.6f) : (Color?)null);
             var iconRect = new Rect(10f, y + 6f, IconW, IconW);
-            Widgets.DrawBoxSolid(iconRect, new Color(0f, 0f, 0f, 0.25f));
-            GUI.color = l.reason == null ? Color.white : new Color(1f, 1f, 1f, 0.4f);
+            Widgets.DrawBoxSolid(iconRect, UiKit.WithAlpha(UiKit.Shade, 0.25f));
+            GUI.color = l.reason == null ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.4f);
             if (t.Icon != null) GUI.DrawTexture(iconRect.ContractedBy(4f), t.Icon);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
 
             float textX = IconW + 20f;
             float textW = TextWidth(width);
@@ -138,34 +135,25 @@ namespace ColonyCouncil
             {
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(textX, cy, textW, l.descH), l.desc);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 cy += l.descH;
             }
             if (l.lineH > 0f)
             {
                 Text.Font = GameFont.Tiny;
-                GUI.color = l.reason != null ? HighColor : new Color(0.85f, 0.85f, 0.85f);
+                GUI.color = l.reason != null ? HighColor : UiKit.Faint;
                 Widgets.Label(new Rect(textX, cy + 2f, textW, l.lineH), l.line);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
             }
 
             float bx = width - ButtonsW + 4f;
             float bw = (ButtonsW - 18f) / 2f;
-            if (l.reason == null)
-            {
-                if (Widgets.ButtonText(new Rect(bx, y + 8f, bw, 30f), "CC_Build_Plan".Translate())) MainTabWindow_Council.StartPlanning(t, false);
-                if (Widgets.ButtonText(new Rect(bx + bw + 6f, y + 8f, bw, 30f), "CC_Plan_FindSpot".Translate())) MainTabWindow_Council.StartPlanning(t, true);
-                Text.Font = GameFont.Tiny;
-                if (Widgets.ButtonText(new Rect(bx, y + 42f, bw, 22f), "CC_Upgrade_Button".Translate())) Designator_PlanRoom.Begin(t, false, true);
-                Text.Font = GameFont.Small;
-            }
-            if (t.custom != null)
-            {
-                Text.Font = GameFont.Tiny;
-                if (Widgets.ButtonText(new Rect(bx + bw + 6f, y + 42f, bw, 22f), "CC_Yours_Delete".Translate())) CustomRooms.Delete(t.custom);
-                Text.Font = GameFont.Small;
-            }
+            // A plan the colony can't build yet: its acts greyed with why not (the reason is the card's last line too).
+            if (UiKit.ActButton(new Rect(bx, y + 8f, bw, UiKit.RowStandard), "CC_Build_Plan".Translate(), l.reason)) MainTabWindow_Council.StartPlanning(t, false);
+            if (UiKit.ActButton(new Rect(bx + bw + 6f, y + 8f, bw, UiKit.RowStandard), "CC_Plan_FindSpot".Translate(), l.reason)) MainTabWindow_Council.StartPlanning(t, true);
+            if (l.reason == null && UiKit.RowAct(new Rect(bx, y + 42f, bw, 22f), "CC_Upgrade_Button".Translate(), null)) Designator_PlanRoom.Begin(t, false, true);
+            if (t.custom != null && UiKit.RowAct(new Rect(bx + bw + 6f, y + 42f, bw, 22f), "CC_Yours_Delete".Translate(), null)) CustomRooms.Delete(t.custom);
         }
 
         private static Texture2D GroupIcon(string group)

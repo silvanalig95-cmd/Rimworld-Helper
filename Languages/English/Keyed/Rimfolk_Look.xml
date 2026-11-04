@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- One look (docs/design/interface.md, "The look"): the words the design's components draw. -->
+  <CC_Look_Rising>rising</CC_Look_Rising>
+  <CC_Look_Falling>falling</CC_Look_Falling>
+  <CC_Look_Steady>steady</CC_Look_Steady>
+  <!-- The Moods page: the colony's mood over the last week, as a line of days. -->
+  <CC_Moods_LastWeek>The colony's mood this week:</CC_Moods_LastWeek>
+  <!-- A decree that can't be enacted now: its button, greyed, with the reason under it. -->
+  <CC_Decree_EnactPlain>Enact</CC_Decree_EnactPlain>
+  <!-- The plan's Add, greyed until the player has written a step. -->
+  <CC_Plan_AddWhyNot>Write what the step is first.</CC_Plan_AddWhyNot>
+</LanguageData>

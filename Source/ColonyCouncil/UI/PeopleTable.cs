@@ -57,6 +57,8 @@ namespace ColonyCouncil
             public string text, sub, tip;
             public Color color, subColor;
             public float sort;
+            /// <summary>A number: right-aligned in its column.</summary>
+            public bool number;
         }
 
         private sealed class Row
@@ -79,6 +81,8 @@ namespace ColonyCouncil
         private static Filter filter = Filter.All;
         private static Vector2 scroll;
         private static string[] headers, headerTips, filterLabels, filterTips;
+        /// <summary>How many each filter shows, counted with the rows.</summary>
+        private static readonly int[] filterCounts = new int[3];
         private static string countText, header, subtitle, headerTip, noneAll, noneShown;
 
         // The columns' places, worked out again when the width changes.
@@ -102,16 +106,19 @@ namespace ColonyCouncil
             Load();
             if (builtAt < 0f || Time.realtimeSinceStartup - builtAt > 1f) Build(comp);
 
-            float top = UiKit.PageHeader(rect, Icons.Table ?? Icons.Roster, header, subtitle, countText, null, 330f, headerTip);
-            // The filter, as three small tabs at the top right.
+            float chips = 0f;
+            for (int i = 0; i < filterLabels.Length; i++) chips += UiKit.FilterChipWidth(filterLabels[i], i < filterCounts.Length ? filterCounts[i] : -1) + 4f;
+            float top = UiKit.PageHeader(rect, Icons.Table ?? Icons.Roster, header, subtitle, countText, null, chips + 8f, headerTip);
+            // The filter, as three filter chips with their counts at the top right.
             float fx = rect.xMax;
             for (int i = filterLabels.Length - 1; i >= 0; i--)
             {
                 var f = (Filter)i;
                 string label = filterLabels[i];
-                float fw = UiKit.TabButtonWidth(label, null) - 8f;
+                int count = i < filterCounts.Length ? filterCounts[i] : -1;
+                float fw = UiKit.FilterChipWidth(label, count);
                 fx -= fw + 4f;
-                if (UiKit.TabButton(new Rect(fx, rect.y + 8f, fw, 26f), label, null, filter == f, filterTips[i]) && filter != f)
+                if (UiKit.FilterChip(new Rect(fx, rect.y + 10f, fw, 22f), label, count, filter == f, filterTips[i]) && filter != f)
                 {
                     filter = f;
                     PageMemory.SetEnum("everyone.filter", f);
@@ -146,13 +153,13 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 
         private static void DrawHeader(Rect r)
         {
-            Widgets.DrawBoxSolid(r, new Color(1f, 1f, 1f, 0.05f));
+            Widgets.DrawBoxSolid(r, UiKit.CardFill);
             for (int i = 0; i < Cols.Length; i++)
             {
                 if (!colShown[i]) continue;
@@ -193,7 +200,7 @@ namespace ColonyCouncil
                 Widgets.DrawBoxSolid(new Rect(r.xMax - 3f, r.y, 3f, r.height), UiKit.Gold);
             }
             if (over) Widgets.DrawHighlight(r);
-            if (row.attention) Widgets.DrawBoxSolid(new Rect(r.x, r.y + 3f, 2f, r.height - 6f), UiKit.WithAlpha(UiKit.Warn, 0.8f));
+            if (row.attention) Widgets.DrawBoxSolid(new Rect(r.x, r.y + 3f, 2f, r.height - 6f), UiKit.WithAlpha(UiKit.Soon, 0.8f));
             for (int i = 0; i < Cols.Length; i++)
             {
                 if (!colShown[i]) continue;
@@ -229,9 +236,11 @@ namespace ColonyCouncil
                 UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 2f, cr.width - 6f, 20f), "-", UiKit.Dim, GameFont.Tiny);
                 return;
             }
-            UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 2f, cr.width - 6f, 20f), cell.text, cell.color.a > 0f ? cell.color : Color.white);
+            // Numbers right-aligned in their column, words from the left.
+            var anchor = cell.number ? TextAnchor.MiddleRight : TextAnchor.MiddleLeft;
+            UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 2f, cr.width - 10f, 20f), cell.text, cell.color.a > 0f ? cell.color : UiKit.Ink, GameFont.Small, anchor);
             if (!cell.sub.NullOrEmpty())
-                UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 20f, cr.width - 6f, 18f), cell.sub, cell.subColor.a > 0f ? cell.subColor : UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 20f, cr.width - 10f, 18f), cell.sub, cell.subColor.a > 0f ? cell.subColor : UiKit.Faint, GameFont.Tiny, anchor);
         }
 
         private static void DrawName(Rect cr, Row row, ref Cell cell, bool over)
@@ -259,8 +268,8 @@ namespace ColonyCouncil
             var bar = new Rect(cr.x + 4f, cr.y + 8f, Mathf.Max(10f, cr.width - 8f), 8f);
             UiKit.Bar(bar, row.mood, row.moodColor);
             // The minor break line.
-            if (row.minor > 0f) Widgets.DrawBoxSolid(new Rect(bar.x + bar.width * row.minor, bar.y - 2f, 1f, bar.height + 4f), UiKit.WithAlpha(UiKit.Warn, 0.9f));
-            UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 19f, cr.width - 6f, 18f), cell.text, row.moodColor, GameFont.Tiny);
+            if (row.minor > 0f) Widgets.DrawBoxSolid(new Rect(bar.x + bar.width * row.minor, bar.y - 2f, 1f, bar.height + 4f), UiKit.WithAlpha(UiKit.Soon, 0.9f));
+            UiKit.LabelFit(new Rect(cr.x + 4f, cr.y + 19f, cr.width - 8f, 18f), cell.text, row.moodColor, GameFont.Tiny, TextAnchor.MiddleRight);
         }
 
         /// <summary>A row clicked: the colonist's card in the drawer beside the table (where their whole story is).</summary>
@@ -350,6 +359,13 @@ namespace ColonyCouncil
 
         private static void Refilter()
         {
+            filterCounts[0] = rows.Count;
+            filterCounts[1] = filterCounts[2] = 0;
+            foreach (var r in rows)
+            {
+                if (r.attention) filterCounts[1]++;
+                if (r.pinned) filterCounts[2]++;
+            }
             shown.Clear();
             foreach (var r in rows)
                 if (filter == Filter.All || (filter == Filter.Attention && r.attention) || (filter == Filter.Pinned && r.pinned))
@@ -384,7 +400,7 @@ namespace ColonyCouncil
             {
                 text = p.LabelShortCap,
                 sub = under.Count > 0 ? string.Join(" · ", under) : p.story?.TitleShortCap,
-                color = Color.white,
+                color = UiKit.Ink,
                 subColor = office != null ? UiKit.Gold : UiKit.Faint
             };
 
@@ -423,7 +439,8 @@ namespace ColonyCouncil
             c[(int)Col.Rimfolk] = new Cell
             {
                 text = Mathf.Abs(rimfolk) < 0.05f ? "0" : MoodView.Number(rimfolk),
-                color = rimfolk > 0.05f ? MoodView.GoodColor : rimfolk < -0.05f ? MoodView.BadColor : UiKit.Faint,
+                color = rimfolk > 0.05f ? UiKit.Warm : rimfolk < -0.05f ? UiKit.Sour : UiKit.Faint,
+                number = true,
                 // How many of their moods are Rimfolk's, as "×3" under the sum.
                 sub = ours > 0 ? "CC_Table_RimfolkSub".Translate(ours).Resolve() : null,
                 subColor = UiKit.Dim,
@@ -473,7 +490,7 @@ namespace ColonyCouncil
                 c[(int)Col.Wish] = new Cell
                 {
                     text = wish.Label,
-                    color = wish.promised ? UiKit.Gold : Color.white,
+                    color = wish.promised ? UiKit.Gold : UiKit.Ink,
                     sub = "CC_Week_Left".Translate(UiKit.Duration(left)).Resolve() + (wish.promised ? " · " + "CC_PromisedTag".Translate() : ""),
                     subColor = UiKit.Urgency(frac),
                     tip = "\"" + wish.quote + "\"" + (wish.reason.NullOrEmpty() ? "" : "\n\n" + "CC_Why".Translate() + ": " + wish.reason)
@@ -517,7 +534,7 @@ namespace ColonyCouncil
                     text = quirks[0].Label.CapitalizeFirst(),
                     sub = quirks.Count > 1 ? (quirks.Count == 2 ? quirks[1].Label : "CC_Table_More".Translate(quirks.Count - 1).Resolve()) : null,
                     subColor = UiKit.Faint,
-                    color = new Color(0.85f, 0.85f, 0.85f),
+                    color = UiKit.Ink,
                     tip = string.Join("\n\n", quirks.Select(q => q.Label.CapitalizeFirst().Colorize(ColoredText.TipSectionTitleColor) + (q.def.description.NullOrEmpty() ? "" : "\n" + q.def.description))),
                     sort = quirks.Count
                 };

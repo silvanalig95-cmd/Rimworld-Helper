@@ -4,7 +4,48 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
-## State (1 November 2026, later)
+## State (4 November 2026)
+
+- 0.87.0, UI 5b, one look across every window (docs/design/interface.md, "The look", the second and last part of its fifth
+  release; built beside stage 2a.2, which another agent builds at the same time: expect small merges where both touch a
+  page, in `DiplomacyPanels` (only its `Accent` line here), `PeoplesView` (one button), `InboxUnderWay` (two rows'
+  links), `WeekPanel`, `HudLines`). DESIGN.md, "Rimfolk's windows" → "One look across every window" has the whole of it.
+  The tokens are one block in `UI/UiKit.cs` (Ink, Faint, Dim, Heading, Gold, Link, Warm, Cool, Sour, Soon, Danger, Done,
+  World and the surfaces); the old names (Good, Bad, Warn, Info, Neutral, Quote, HeaderColor, DreamColor, LossColor,
+  StrangerColor, WorldColor) are those tokens, so stage 2's code that reads them draws the set (new code: the design's
+  names); `Quieter`, `Wash`, `LevelColor`; every colour helper by token; no page makes a colour (pictures' own colours
+  and the game's stay). The grid's measures in `UiKit` (Padding 12, SectionGap 16, CardGap 8, CardInset 10, rows 22, 28,
+  40, a card's head 56, icons 14, 18, 24); This week's cards and rows on them (`CouncilLayoutMath`). The components in
+  `UI/UiKitLook.cs` beside UiKit and UiKitCards: one `HeadingLine` behind SectionTitle (now with a count), FoldTitle and
+  SectionHeading (now with an act on its right); pills as state chips; steps with the current one gold; the empty state
+  in a dashed frame and `EmptyLine`; `Row`, `RowAct`, `WhyNotLine`, `DaysLine`/`DaysLineWithWord`, filter chips with a
+  count, `NameLink`. Every page of the council window (This week, People's five modes, Council's five, Colony's three),
+  the planning window (Plan, Priorities, Base, Making, Rooms' two), the defense window, the region views' old pieces,
+  the cards and the Almanac drawn through them: acts greyed with why not (a card and the defense lines with a line of
+  the reason under them; nothing refused after the click), filters as chips with counts, view switches as modes,
+  section headings with counts, numbers right-aligned in the tables, lines of days on the overview's tiles and the
+  colony's mood, the page accents gone. Names as links: the on-screen panels (`HudPanel.NameLink`/`LinkWords`; moods,
+  health, work: the name opens the card, the rest of the row still jumps; Following's lines via `HudLine.thing`), the
+  hover card in the corner (where the mouse can reach it), This week's journey and plays, the council's pages (decrees'
+  askers, offices' holders, wishes' askers and tags, dilemmas' answerers, the chronicle's colonists through the shared
+  `ChroniclePanel.TextOf`, bonds, vendettas, nemeses, secrets, faiths' asks and sways, calendar days, every colonist chip
+  with `link: true`). Keys in `Languages/English/Keyed/Rimfolk_Look.xml`. `Tools/Tests/LookTests.cs` (301 checks: the
+  token block, no colour made outside it in UiKit or anywhere under UI/ and the pages elsewhere, the grid, the
+  components, the pages through them, names as links, no bold). Docs: DESIGN.md, README, the Almanac's start page (no
+  keyword changes). Left out, and why: the Almanac's own buttons keep the game's button at the Almanac's text size
+  (`UiKit.ActButton` draws at the windows' size); the calendar's day dialog keeps its tabs (a dialog, not a page); the
+  hover card's name is a link only in the corner (beside the mouse the card moves with it and can't be clicked); the
+  colonist bar's badges keep the game's tooltips (they can't hold a link); dialogs (journeys, the stall counter, the
+  settings) read the tokens but keep their own layout; map overlays and speech colours are the map's, not a page's;
+  the region map's and the little maps' land colours are pictures. To look at in game: every page at 1080p standard and
+  large (the section headings with their counts, the tags as dots and words, the greyed acts and their lines, the
+  filter chips with counts, the empty states' dashed frames); the overview's tiles' lines and the Moods page's line of
+  the week (rising, falling, steady); This week's sections; Decrees' enact greyed with its line and Force below, the
+  offices' heading with "Call an election"; the People table's chips and its right-aligned Rimfolk column; the planning
+  tables' numbers; a plan the colony can't build in Rooms; the defense lines' greyed steps; the mood board's, health's
+  and work's names (a click opens the card, a click beside it still jumps, right-click still the menu) and the Following
+  panel's lines; the hover card in the corner with its name clicked; a preview over a panel's name with the panel's
+  tooltip giving way.
 
 - 0.86.0, UI 3, one inbox and search (docs/design/interface.md, the third of its five releases; built beside UI 5a and merged
   with it at 12b9521: the corner is 5a's `WindowLayoutMath.CornerWidth()`, 316, and `WindowTabs.LinksWidth` reads it).

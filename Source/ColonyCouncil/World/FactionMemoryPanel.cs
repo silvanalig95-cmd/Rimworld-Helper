@@ -16,7 +16,8 @@ namespace ColonyCouncil
         private const float Pad = 10f;
         private const int Shown = 4;
         private const int MaxPeoples = 8;
-        private static readonly Color Accent = new Color(0.8f, 0.72f, 0.92f);
+        /// <summary>What a people remembers of the colony: news from afar, the world's colour (UI/UiKit.cs's tokens).</summary>
+        private static readonly Color Accent = UiKit.World;
 
         private class Line
         {

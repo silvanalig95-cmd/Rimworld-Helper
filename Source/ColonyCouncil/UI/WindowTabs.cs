@@ -109,7 +109,7 @@ namespace ColonyCouncil
                 string tip = modes[i] == 2 ? t.label + (t.tip.NullOrEmpty() ? "" : "\n\n" + t.tip) : t.tip;
                 if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(tr, tip);
                 if (modes[i] == 0) continue;
-                var color = t.selected ? UiKit.Gold : Mouse.IsOver(tr) ? Color.white : new Color(1f, 1f, 1f, 0.75f);
+                var color = t.selected ? UiKit.Gold : Mouse.IsOver(tr) ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.75f);
                 float left = modes[i] == 2 ? tr.center.x - TabIconSize / 2f - 1f : tr.center.x - Text.CalcSize(records[i].label).x / 2f;
                 UiKit.Icon(new Rect(left + 1f, tr.center.y - TabIconSize / 2f, TabIconSize, TabIconSize), t.icon, color);
             }
@@ -194,7 +194,7 @@ namespace ColonyCouncil
                 if (here) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
                 else if (over) Widgets.DrawBoxSolid(r.ExpandedBy(2f), UiKit.CardHover);
                 var tex = IconOf(w);
-                var color = here ? UiKit.Gold : over ? Color.white : new Color(1f, 1f, 1f, 0.6f);
+                var color = here ? UiKit.Gold : over ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.6f);
                 if (tex != null) UiKit.Icon(r.ContractedBy(2f), tex, color);
                 else UiKit.LabelFit(r, Pages.WindowName(w).Substring(0, 1), color, GameFont.Small, TextAnchor.MiddleCenter);
                 TooltipHandler.TipRegion(r, Tip(w));

@@ -33,7 +33,7 @@ namespace ColonyCouncil
             if (needs == null) return 0f;
             string from = needs.measured ? "CC_Ahead_FromRecord".Translate(needs.measuredDays.ToString("0.#")).Resolve()
                 : ColonyUse.Recording ? "CC_Ahead_FromSoon".Translate().Resolve() : "CC_Ahead_FromOff".Translate().Resolve();
-            y += UiKit.SectionTitle(x, y, width, "CC_Ahead_Section".Translate(), null, UiKit.HeaderColor);
+            y += UiKit.SectionTitle(x, y, width, "CC_Ahead_Section".Translate());
             TooltipHandler.TipRegion(new Rect(x, y - UiKit.SectionHeight, width, 24f), "CC_Ahead_SectionTip".Translate());
             y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Ahead_Intro".Translate(Ahead.Who(needs)).Resolve() + " " + from, UiKit.Faint, GameFont.Tiny) + 6f;
 
@@ -46,7 +46,11 @@ namespace ColonyCouncil
 
             // The suggestions.
             var open = Ahead.Open(map);
-            if (open.Count == 0) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Ahead_None".Translate(), UiKit.Faint) + 6f;
+            if (open.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(x, y, width, UiKit.RowDense + 4f), "CC_Ahead_None".Translate());
+                y += UiKit.RowDense + 10f;
+            }
             foreach (var s in open) y += DrawStep(s, x, y, width) + 4f;
 
             y += Done(x, y + 4f, width, map, Sources) + 4f;
@@ -70,7 +74,7 @@ namespace ColonyCouncil
             }
         }
 
-        private static Color StatusColor(int status) => status == AheadMath.Short ? UiKit.Bad : status == AheadMath.Low ? UiKit.Warn : status == AheadMath.More ? UiKit.Info : status == AheadMath.Enough ? UiKit.Good : UiKit.Faint;
+        private static Color StatusColor(int status) => status == AheadMath.Short ? UiKit.Sour : status == AheadMath.Low ? UiKit.Soon : status == AheadMath.More ? UiKit.Cool : status == AheadMath.Enough ? UiKit.Warm : UiKit.Faint;
 
         private static string RowLabel(AheadRow r) => r.kind == AheadMath.Material ? r.label.CapitalizeFirst() : ("CC_Ahead_Kind_" + r.kind).Translate().Resolve();
 
@@ -86,11 +90,14 @@ namespace ColonyCouncil
             GUI.color = UiKit.Faint;
             for (int i = 0; i < Columns.Length; i++)
             {
-                var r = new Rect(Col(i), y, share[i] * inner - 4f, 18f);
+                // The number columns (have, a day, days, aim) right-aligned, as their numbers are.
+                var r = new Rect(Col(i), y, share[i] * inner - (i >= 1 && i <= 4 ? 10f : 4f), 18f);
+                Text.Anchor = i >= 1 && i <= 4 ? TextAnchor.UpperRight : TextAnchor.UpperLeft;
                 Widgets.Label(r, Columns[i].Translate());
                 TooltipHandler.TipRegion(r, (Columns[i] + "Tip").Translate());
             }
-            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            GUI.color = UiKit.Ink;
             y += 18f;
             int index = 0;
             foreach (var row in rows)
@@ -99,14 +106,15 @@ namespace ColonyCouncil
                 UiKit.Zebra(line, index++);
                 if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
                 Text.Font = GameFont.Small;
-                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), RowLabel(row), Color.white);
+                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), RowLabel(row), UiKit.Ink);
                 Text.Font = GameFont.Tiny;
                 bool material = row.kind == AheadMath.Material;
                 string have = row.food ? Num(row.have) : ((int)row.have).ToString();
-                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 4f, 22f), have, Color.white, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 4f, 22f), material ? "-" : Num(row.useADay), UiKit.Faint, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 4f, 22f), material ? "-" : Num(row.daysLeft), row.status == AheadMath.Short ? UiKit.Bad : UiKit.Faint, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(4), y, share[4] * inner - 4f, 22f), row.food ? Num(row.target) : ((int)row.target).ToString(), UiKit.Faint, GameFont.Tiny);
+                const TextAnchor num = TextAnchor.MiddleRight;
+                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 10f, 22f), have, UiKit.Ink, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 10f, 22f), material ? "-" : Num(row.useADay), UiKit.Faint, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 10f, 22f), material ? "-" : Num(row.daysLeft), row.status == AheadMath.Short ? UiKit.Sour : UiKit.Faint, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(4), y, share[4] * inner - 10f, 22f), row.food ? Num(row.target) : ((int)row.target).ToString(), UiKit.Faint, GameFont.Tiny, num);
                 UiKit.LabelFit(new Rect(Col(5), y, share[5] * inner - 4f, 22f), material ? "CC_Ahead_Status_ShortBy".Translate((int)(row.target - row.have)).Resolve() : StatusText(row),
                     StatusColor(row.status), GameFont.Tiny);
                 TooltipHandler.TipRegion(line, RowTip(row, needs));
@@ -149,7 +157,7 @@ namespace ColonyCouncil
             if (plan.feedOnlyGive > 0f) line += " " + "CC_AheadMore_FieldsHay".Translate(Num(plan.feedOnlyGive).Named("HAY"), Num(plan.peopleNeed).Named("PEOPLE")).Resolve();
             if (plan.cellsShort > 0) line += " " + "CC_Ahead_FieldsShort".Translate(plan.cellsShort).Resolve();
             else if (plan.cropNeed > 0f) line += " " + "CC_Ahead_FieldsEnough".Translate().Resolve();
-            float h = UiKit.Paragraph(x + Pad, y, width - 2 * Pad, line, plan.cellsShort > 0 ? UiKit.Warn : UiKit.Faint, GameFont.Tiny);
+            float h = UiKit.Paragraph(x + Pad, y, width - 2 * Pad, line, plan.cellsShort > 0 ? UiKit.Soon : UiKit.Faint, GameFont.Tiny);
             var tip = new List<string> { "CC_Ahead_FieldsTip".Translate().Resolve(), "" };
             foreach (var f in needs.fields.OrderByDescending(f => f.food).ThenByDescending(f => f.cells).Take(20))
                 tip.Add(f.food
@@ -176,14 +184,9 @@ namespace ColonyCouncil
         /// </summary>
         public static bool NotThis(Rect r, string key, string title, Map map = null)
         {
-            bool pressed = Widgets.ButtonText(r, "CC_Ahead_NotThis".Translate());
-            if (pressed)
-            {
-                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                // At the home it's about (with more than one colony, each has its own "Not this").
-                SuggestTracker.Instance?.Decline(key, title, 0f, map);
-            }
-            TooltipHandler.TipRegion(r, "CC_Ahead_NotThisTip".Translate());
+            bool pressed = UiKit.ActButton(r, "CC_Ahead_NotThis".Translate(), null, "CC_Ahead_NotThisTip".Translate());
+            // At the home it's about (with more than one colony, each has its own "Not this").
+            if (pressed) SuggestTracker.Instance?.Decline(key, title, 0f, map);
             return pressed;
         }
 
@@ -213,7 +216,7 @@ namespace ColonyCouncil
             BuildAhead.Refresh(map);
         }
 
-        private static Color LevelColor(int level) => level >= 4 ? UiKit.Bad : level >= 3 ? UiKit.Warn : level >= 2 ? UiKit.Gold : level >= 1 ? UiKit.Info : UiKit.Faint;
+        private static Color LevelColor(int level) => level >= 4 ? UiKit.Sour : level >= 3 ? UiKit.Soon : level >= 2 ? UiKit.Gold : level >= 1 ? UiKit.Cool : UiKit.Faint;
 
         /// <summary>One suggestion as a card, from any source: its urgency, its words and numbers, and Do it / Show / Not this.</summary>
         public static float DrawStep(Suggestion s, float x, float y, float width)
@@ -244,7 +247,7 @@ namespace ColonyCouncil
             }
             UiKit.Pill(textX, y + 5f, urgency, color, null, "CC_Ahead_UrgencyTip".Translate().Resolve());
             float ty = y + 5f + pillH + 2f;
-            UiKit.Paragraph(textX, ty, textW, s.title ?? "", Color.white);
+            UiKit.Paragraph(textX, ty, textW, s.title ?? "", UiKit.Ink);
             ty += titleH;
             if (reasonH > 0f) UiKit.Paragraph(textX, ty, textW, s.reason, UiKit.Faint, GameFont.Tiny);
 
@@ -253,29 +256,16 @@ namespace ColonyCouncil
             var tracker = SuggestTracker.Instance;
             if (doLabel != null)
             {
-                var r = new Rect(bx, by, bw, 24f);
-                if (Widgets.ButtonText(r, doLabel))
-                {
-                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    if (tracker?.Apply(s) != null) Refresh(s.map);
-                }
-                TooltipHandler.TipRegion(r, (s.doTip ?? s.title) + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve());
+                if (UiKit.ActButton(new Rect(bx, by, bw, 24f), doLabel, null, (s.doTip ?? s.title) + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve()) && tracker?.Apply(s) != null)
+                    Refresh(s.map);
                 by += 28f;
             }
             if (s.CanShow)
             {
-                var r = new Rect(bx, by, bw, 24f);
-                if (Widgets.ButtonText(r, show)) Show(s, color);
-                TooltipHandler.TipRegion(r, "CC_Ahead_ShowTip".Translate().Resolve());
+                if (UiKit.ActButton(new Rect(bx, by, bw, 24f), show, null, "CC_Ahead_ShowTip".Translate().Resolve())) Show(s, color);
                 by += 28f;
             }
-            var nr = new Rect(bx, by, bw, 24f);
-            if (Widgets.ButtonText(nr, notThis))
-            {
-                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                tracker?.Decline(s);
-            }
-            TooltipHandler.TipRegion(nr, "CC_Ahead_NotThisTip".Translate().Resolve());
+            if (UiKit.ActButton(new Rect(bx, by, bw, 24f), notThis, null, "CC_Ahead_NotThisTip".Translate().Resolve())) tracker?.Decline(s);
             return h;
         }
 
@@ -307,11 +297,8 @@ namespace ColonyCouncil
             var done = tracker?.DoneFor(sources, map, 6);
             if (done == null || done.Count == 0) return 0f;
             float top = y;
-            Text.Font = GameFont.Small;
-            GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(x + Pad, y, width - 2 * Pad, 22f), "CC_Ahead_DoneTitle".Translate());
-            GUI.color = Color.white;
-            y += 24f;
+            UiKit.HeadingLine(x, y, width, "CC_Ahead_DoneTitle".Translate(), done.Count, null, null, UiKit.Heading, false, false);
+            y += UiKit.HeadingHeight;
             string undoLabel = "CC_Auto_Undo".Translate().Resolve();
             float bw = ButtonsWidth(new[] { undoLabel });
             foreach (var d in done)
@@ -322,11 +309,11 @@ namespace ColonyCouncil
                 {
                     case SuggestMath.Worked:
                         state = d.found.NullOrEmpty() ? "CC_Ahead_State_Worked".Translate().Resolve() : d.found.CapitalizeFirst();
-                        color = UiKit.Good;
+                        color = UiKit.Done;
                         break;
                     case SuggestMath.Failed:
                         state = "CC_Ahead_State_Failed".Translate(d.why ?? "").Resolve();
-                        color = UiKit.Warn;
+                        color = UiKit.Soon;
                         break;
                     case SuggestMath.Undone:
                         state = "CC_Ahead_State_Undone".Translate().Resolve();
@@ -347,18 +334,12 @@ namespace ColonyCouncil
                 float th = Text.CalcHeight(text, tw);
                 GUI.color = color;
                 Widgets.Label(new Rect(x + Pad, y, tw, th), text);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
-                if (d.CanUndo)
+                if (d.CanUndo && UiKit.ActButton(new Rect(x + width - Pad - bw, y, bw, 24f), undoLabel, null, "CC_Ahead_UndoTip".Translate(d.text).Resolve()))
                 {
-                    var ur = new Rect(x + width - Pad - bw, y, bw, 24f);
-                    if (Widgets.ButtonText(ur, undoLabel))
-                    {
-                        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                        tracker.Undo(d);
-                        Refresh(d.map);
-                    }
-                    TooltipHandler.TipRegion(ur, "CC_Ahead_UndoTip".Translate(d.text).Resolve());
+                    tracker.Undo(d);
+                    Refresh(d.map);
                 }
                 y += Mathf.Max(th, 24f) + 4f;
             }
@@ -377,7 +358,7 @@ namespace ColonyCouncil
             var aside = tracker?.DeclinedFor(sources);
             if (aside == null || aside.Count == 0) return 0f;
             float top = y;
-            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), into ?? folds, "aside", out bool open, null, UiKit.Faint);
+            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), into ?? folds, "aside", out bool open);
             if (!open) return y - top;
             string back = "CC_Ahead_BringBack".Translate().Resolve();
             float bw = ButtonsWidth(new[] { back });
@@ -388,15 +369,9 @@ namespace ColonyCouncil
                 float th = Text.CalcHeight(title, tw);
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(x + Pad, y, tw, th), title);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
-                var r = new Rect(x + width - Pad - bw, y, bw, 24f);
-                if (Widgets.ButtonText(r, back))
-                {
-                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    tracker.BringBack(key);
-                }
-                TooltipHandler.TipRegion(r, "CC_Ahead_BringBackTip".Translate().Resolve());
+                if (UiKit.ActButton(new Rect(x + width - Pad - bw, y, bw, 24f), back, null, "CC_Ahead_BringBackTip".Translate().Resolve())) tracker.BringBack(key);
                 y += Mathf.Max(th, 24f) + 4f;
             }
             return y - top;

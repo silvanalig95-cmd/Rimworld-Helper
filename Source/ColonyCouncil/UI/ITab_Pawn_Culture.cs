@@ -266,11 +266,11 @@ namespace ColonyCouncil
                 UiKit.LabelFit(new Rect(x, y, w * 0.6f, 18f), barLabel, UiKit.Faint, GameFont.Tiny);
                 UiKit.LabelFit(new Rect(x + w * 0.4f, y, w * 0.6f, 18f), word, color, GameFont.Tiny, TextAnchor.MiddleRight);
                 var bar = new Rect(x, y + 19f, w, 8f);
-                Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, new Color(1f, 1f, 1f, 0.1f), 1);
+                Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, UiKit.MeterEdge, 1);
                 float mid = bar.center.x;
                 float to = mid + fill * (bar.width / 2f - 1f);
                 if (Mathf.Abs(to - mid) >= 1f) Widgets.DrawBoxSolid(new Rect(Mathf.Min(mid, to), bar.y + 1f, Mathf.Abs(to - mid), bar.height - 2f), UiKit.WithAlpha(color, 0.75f));
-                Widgets.DrawBoxSolid(new Rect(mid, bar.y - 2f, 1f, bar.height + 4f), new Color(1f, 1f, 1f, 0.3f));
+                Widgets.DrawBoxSolid(new Rect(mid, bar.y - 2f, 1f, bar.height + 4f), UiKit.WithAlpha(UiKit.Ink, 0.3f));
                 var area = new Rect(x, y, w, 30f);
                 if (Mouse.IsOver(area)) Widgets.DrawHighlight(area);
                 TooltipHandler.TipRegion(area, barTip);

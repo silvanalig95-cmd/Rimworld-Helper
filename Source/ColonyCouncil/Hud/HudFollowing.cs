@@ -36,6 +36,8 @@ namespace ColonyCouncil
                 var line = Add(PartFollowed, l.icon ?? (l.faction != null ? Icons.People : Icons.Pin), text, null, 0f,
                     Tip(name + (l.plainNews.NullOrEmpty() ? "" : "\n" + l.plainNews), HudKit.T("CC_Pnl_FollowClick")), () => Cards.Open(thing));
                 line.quiet = l.gone ? UiKit.Dim : UiKit.HeaderColor;
+                // Its click opens the thing's card: the line is a link (a preview after a pause), unless the thing is gone.
+                if (!l.gone) line.thing = thing;
             }
             var comp = CouncilGameComponent.Instance;
             var memory = WeekMemory.Instance;

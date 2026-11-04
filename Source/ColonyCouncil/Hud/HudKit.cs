@@ -15,12 +15,13 @@ namespace ColonyCouncil
     {
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        public static readonly Color MinorLine = new Color(0.95f, 0.78f, 0.3f, 0.9f);
-        public static readonly Color MajorLine = new Color(0.93f, 0.38f, 0.3f, 0.95f);
-        public static readonly Color BarOk = new Color(0.42f, 0.66f, 0.45f);
-        public static readonly Color BarLow = new Color(0.92f, 0.72f, 0.3f);
-        public static readonly Color BarBad = new Color(0.93f, 0.5f, 0.25f);
-        public static readonly Color BarWorst = new Color(0.9f, 0.26f, 0.24f);
+        // The mood bar's colours by the interface's tokens (UI/UiKit.cs): fine warm, low soon, bad sour, at the extreme danger.
+        public static readonly Color MinorLine = UiKit.WithAlpha(UiKit.Soon, 0.9f);
+        public static readonly Color MajorLine = UiKit.WithAlpha(UiKit.Sour, 0.95f);
+        public static readonly Color BarOk = UiKit.WithAlpha(UiKit.Warm, 0.75f);
+        public static readonly Color BarLow = UiKit.Soon;
+        public static readonly Color BarBad = UiKit.Sour;
+        public static readonly Color BarWorst = UiKit.Danger;
         private static readonly Color Border = new Color(1f, 1f, 1f, 0.08f);
 
         // ---------------- Background ----------------

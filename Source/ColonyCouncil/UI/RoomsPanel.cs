@@ -23,8 +23,9 @@ namespace ColonyCouncil
         private const float HeaderH = 26f;
         private const float BottomH = 34f;
 
-        private static readonly Color Faint = new Color(0.65f, 0.65f, 0.65f);
-        private static readonly Color Suggested = new Color(1f, 0.85f, 0.4f);
+        // The interface's tokens (UI/UiKit.cs): what the council suggests gold, what can't be built faint.
+        private static readonly Color Faint = UiKit.Faint;
+        private static readonly Color Suggested = UiKit.Gold;
 
         private struct Block
         {
@@ -47,12 +48,8 @@ namespace ColonyCouncil
             float topH = UiKit.PageHeader(inRect, Icons.Rooms, "CC_Rooms_Title".Translate(), "CC_Rooms_Sub".Translate(), null, null, 270f);
             Text.Font = GameFont.Small;
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 260f, inRect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
-            var saveRect = new Rect(inRect.xMax - 260f, inRect.y + 28f, 126f, 22f);
-            if (Widgets.ButtonText(saveRect, "CC_Yours_Save".Translate())) Designator_SaveRoom.Begin();
-            TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
-            var tidyRect = new Rect(inRect.xMax - 130f, inRect.y + 28f, 130f, 22f);
-            if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
-            TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
+            if (UiKit.RowAct(new Rect(inRect.xMax - 260f, inRect.y + 30f, 126f, 22f), "CC_Yours_Save".Translate(), null, "CC_Yours_SaveDesc".Translate())) Designator_SaveRoom.Begin();
+            if (UiKit.RowAct(new Rect(inRect.xMax - 130f, inRect.y + 30f, 130f, 22f), "CC_Rearr_Button".Translate(), null, "CC_Rearr_Desc".Translate())) Designator_RearrangeRoom.Begin();
 
             // The advisor's suggestions and the group headings, worked out once a second rather than every frame.
             var suggested = UiCache.Get(map, 6101, () => SuggestedRooms(map));
@@ -68,10 +65,8 @@ namespace ColonyCouncil
                 float y = 0f;
                 foreach (var block in columns[c])
                 {
-                    GUI.color = Faint;
-                    Widgets.Label(new Rect(x, y, ColW, HeaderH), GroupLabel(block.group));
-                    GUI.color = Color.white;
-                    Widgets.DrawLineHorizontal(x, y + HeaderH - 3f, ColW);
+                    // Each group under a section heading with how many rooms it has.
+                    UiKit.HeadingLine(x, y, ColW, GroupLabel(block.group), block.rooms.Count, null, null, UiKit.Heading, false, false);
                     y += HeaderH;
                     foreach (var t in block.rooms)
                     {
@@ -87,7 +82,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Tiny;
             Widgets.Label(new Rect(inRect.x, inRect.yMax - BottomH + 4f, inRect.width, BottomH), "CC_Rooms_Hint".Translate());
             Text.Font = GameFont.Small;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
         }
 
         private static void DrawRoom(Rect r, RoomTemplateDef t, Map map, string suggestedBecause)
@@ -95,10 +90,10 @@ namespace ColonyCouncil
             t.ResolveCached(map, out string reason);
             bool ok = reason == null;
             Widgets.DrawHighlightIfMouseover(r);
-            if (suggestedBecause != null) Widgets.DrawBoxSolid(r, new Color(1f, 0.85f, 0.4f, 0.12f));
-            GUI.color = ok ? Color.white : new Color(1f, 1f, 1f, 0.35f);
+            if (suggestedBecause != null) Widgets.DrawBoxSolid(r, UiKit.WithAlpha(Suggested, 0.12f));
+            GUI.color = ok ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.35f);
             GUI.DrawTexture(new Rect(r.x + 2f, r.y + 2f, r.height - 4f, r.height - 4f), t.Icon);
-            GUI.color = !ok ? Faint : suggestedBecause != null ? Suggested : Color.white;
+            GUI.color = !ok ? Faint : suggestedBecause != null ? Suggested : UiKit.Ink;
             Text.Anchor = TextAnchor.MiddleLeft;
             var type = RoomTypeDef.Of(t);
             int sizes = type?.Variants.Count ?? 1;
@@ -113,7 +108,7 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Small;
             }
             Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             TooltipHandler.TipRegion(r, () => Tip(t, map, reason, suggestedBecause), t.GetHashCode());
             if (!Widgets.ButtonInvisible(r)) return;
             if (!ok && t.custom == null)
@@ -145,7 +140,7 @@ namespace ColonyCouncil
             if (furniture.Count > 0)
                 lines.Add("CC_Build_Contains".Translate(string.Join(", ", furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label))));
             if (suggestedBecause != null) lines.Add("\n" + "CC_Rooms_Suggested".Translate(suggestedBecause).Colorize(Suggested));
-            if (reason != null) lines.Add("\n" + reason.Colorize(new Color(1f, 0.5f, 0.45f)));
+            if (reason != null) lines.Add("\n" + reason.Colorize(UiKit.Sour));
             string tip = Flavor.PickTip(t.tips, 0);
             if (!tip.NullOrEmpty()) lines.Add("\n" + tip);
             return string.Join("\n", lines);

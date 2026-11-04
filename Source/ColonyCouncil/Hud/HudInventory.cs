@@ -354,8 +354,8 @@ namespace ColonyCouncil
             }
         }
 
-        private static readonly Color Gain = new Color(0.55f, 0.8f, 0.55f);
-        private static readonly Color Loss = new Color(0.92f, 0.62f, 0.45f);
+        private static readonly Color Gain = UiKit.Warm;
+        private static readonly Color Loss = UiKit.Sour;
 
         private void Icon(Rect r, Item it)
         {

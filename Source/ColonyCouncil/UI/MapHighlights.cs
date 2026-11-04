@@ -92,8 +92,8 @@ namespace ColonyCouncil
             foreach (var h in drawn)
             {
                 float a = h.bright ? 1f : 0.45f;
-                if (h.cells.Count > 0) GenDraw.DrawFieldEdges(h.cells, new Color(h.color.r, h.color.g, h.color.b, a));
-                if (h.other.Count > 0) GenDraw.DrawFieldEdges(h.other, new Color(h.otherColor.r, h.otherColor.g, h.otherColor.b, a));
+                if (h.cells.Count > 0) GenDraw.DrawFieldEdges(h.cells, UiKit.WithAlpha(h.color, a));
+                if (h.other.Count > 0) GenDraw.DrawFieldEdges(h.other, UiKit.WithAlpha(h.otherColor, a));
                 if (h.from.IsValid && h.to.IsValid && h.from.InBounds(map) && h.to.InBounds(map))
                     GenDraw.DrawLineBetween(h.from.ToVector3Shifted(), h.to.ToVector3Shifted(), h.lineColor, h.bright ? 0.3f : 0.15f);
             }
@@ -105,7 +105,7 @@ namespace ColonyCouncil
             foreach (var h in MapHighlights.Current(map))
             {
                 if (h.label.NullOrEmpty() || !(h.bright || h.labelAlways) || !h.labelAt.IsValid || !h.labelAt.InBounds(map)) continue;
-                var color = h.bright ? Color.white : new Color(h.color.r, h.color.g, h.color.b, 0.85f);
+                var color = h.bright ? UiKit.Ink : UiKit.WithAlpha(h.color, 0.85f);
                 GenMapUI.DrawThingLabel(h.labelAt.ToVector3Shifted().MapToUIPosition(), h.label, color);
             }
         }

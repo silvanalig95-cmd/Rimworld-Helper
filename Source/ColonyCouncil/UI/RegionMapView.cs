@@ -22,9 +22,9 @@ namespace ColonyCouncil
     public class RegionMapView
     {
         private const float HeaderH = 26f;
-        private static readonly Color MapBack = new Color(0.07f, 0.08f, 0.09f);
-        private static readonly Color LabelBack = new Color(0f, 0f, 0f, 0.6f);
-        private static readonly Color MarkBack = new Color(0.06f, 0.07f, 0.08f, 0.8f);
+        private static readonly Color MapBack = UiKit.Ground;
+        private static readonly Color LabelBack = UiKit.Shade;
+        private static readonly Color MarkBack = UiKit.WithAlpha(UiKit.Ground, 0.8f);
 
         // Kept for the session: the view of the last map shown.
         private static View? lastView;
@@ -273,7 +273,7 @@ namespace ColonyCouncil
                 bool over = Mouse.IsOver(local);
                 Hover(marks, mouse, over, w, h);
 
-                if (hoverTile >= 0 && hoverMark == null) Outline(HoverCorners(), new Color(1f, 1f, 1f, 0.45f), 1f, w, h);
+                if (hoverTile >= 0 && hoverMark == null) Outline(HoverCorners(), UiKit.WithAlpha(UiKit.Ink, 0.45f), 1f, w, h);
                 if (picked == null && pickedTile >= 0) Outline(pickedCorners, UiKit.Gold, 2f, w, h);
                 Index(marks);
                 DrawLines(w, h);
@@ -397,7 +397,7 @@ namespace ColonyCouncil
                 if (lens != null && lens.events.Contains(m.obj.ID)) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WorldColor);
                 else if (lens != null && lens.rings.TryGetValue(m.obj.ID, out var regard)) UiKit.RingDraw(r.ExpandedBy(4f), UiKit.WithAlpha(regard, 0.85f));
                 if (m.obj == picked) UiKit.RingDraw(r.ExpandedBy(7f), Color.white);
-                else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), new Color(1f, 1f, 1f, 0.5f));
+                else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WithAlpha(UiKit.Ink, 0.5f));
                 if (m.icon != null)
                 {
                     GUI.color = faint ? UiKit.WithAlpha(color, Mathf.Min(color.a, 0.75f)) : color;

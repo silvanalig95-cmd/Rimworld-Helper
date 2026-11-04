@@ -9,8 +9,9 @@ namespace ColonyCouncil
     /// <summary>Council → Ways: what the colony is known for, who's proud of it and who chafes, and what shaped it.</summary>
     public static class WaysPanel
     {
-        private static readonly Color Pos = new Color(0.55f, 0.8f, 0.55f);
-        private static readonly Color Neg = new Color(0.85f, 0.6f, 0.5f);
+        // The interface's tokens (UI/UiKit.cs): the proud end warm, the chafing end sour.
+        private static readonly Color Pos = UiKit.Warm;
+        private static readonly Color Neg = UiKit.Sour;
         private static Vector2 scroll;
         private static float height = 600f;
 
@@ -50,14 +51,18 @@ namespace ColonyCouncil
 
             // What shaped it.
             y += UiKit.SectionTitle(0f, y, w, "CC_Ways_History".Translate(), Icons.Chronicle);
-            if (ch.recent.Count == 0) y += UiKit.Paragraph(4f, y, w, "CC_Ways_NoHistory".Translate(), UiKit.Faint) + 6f;
+            if (ch.recent.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), "CC_Ways_NoHistory".Translate());
+                y += UiKit.RowDense + 8f;
+            }
             int row = 0;
             foreach (var e in Enumerable.Reverse(ch.recent))
             {
                 string line = "CC_Ways_HistoryLine".Translate("CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1), e.what, e.shift).Resolve();
                 float h = Mathf.Max(24f, Text.CalcHeight(line, w - 28f) + 4f);
                 UiKit.Zebra(new Rect(0f, y, w, h), row++);
-                UiKit.Icon(new Rect(4f, y + 4f, 14f, 14f), Icons.Ways, UiKit.Faint);
+                UiKit.Icon(new Rect(4f, y + 4f, UiKit.IconDense, UiKit.IconDense), Icons.Ways, UiKit.Faint);
                 Widgets.Label(new Rect(24f, y + 2f, w - 28f, h - 4f), line);
                 y += h;
             }
@@ -98,17 +103,17 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(0f, y, labelW, rowH), CharacterTracker.PoleLabel(way, false).CapitalizeFirst(), tier < 0 ? Neg : UiKit.Faint, GameFont.Small, TextAnchor.MiddleRight);
             UiKit.LabelFit(new Rect(labelW + barW + 20f, y, labelW, rowH), CharacterTracker.PoleLabel(way, true).CapitalizeFirst(), tier > 0 ? Pos : UiKit.Faint);
             var bar = new Rect(labelW + 10f, y + 10f, barW, 10f);
-            Widgets.DrawBoxSolidWithOutline(bar, new Color(0.15f, 0.15f, 0.15f, 0.8f), new Color(1f, 1f, 1f, 0.1f), 1);
+            Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, UiKit.MeterEdge, 1);
             // The "known" zones at each end.
             float kw = barW * (100f - CharacterTracker.Known) / 200f;
-            Widgets.DrawBoxSolid(new Rect(bar.x, bar.y, kw, bar.height), new Color(Neg.r, Neg.g, Neg.b, 0.15f));
-            Widgets.DrawBoxSolid(new Rect(bar.xMax - kw, bar.y, kw, bar.height), new Color(Pos.r, Pos.g, Pos.b, 0.15f));
+            Widgets.DrawBoxSolid(new Rect(bar.x, bar.y, kw, bar.height), UiKit.WithAlpha(Neg, 0.15f));
+            Widgets.DrawBoxSolid(new Rect(bar.xMax - kw, bar.y, kw, bar.height), UiKit.WithAlpha(Pos, 0.15f));
             Widgets.DrawLineVertical(bar.center.x, bar.y - 3f, bar.height + 6f);
             float x = bar.x + (v + 100f) / 200f * barW;
             var fill = v >= 0f ? new Rect(bar.center.x, bar.y, x - bar.center.x, bar.height) : new Rect(x, bar.y, bar.center.x - x, bar.height);
             Widgets.DrawBoxSolid(fill, v >= 0f ? Pos : Neg);
             // Where the colony stands, as a small marker.
-            Widgets.DrawBoxSolid(new Rect(x - 2f, bar.y - 3f, 4f, bar.height + 6f), Color.white);
+            Widgets.DrawBoxSolid(new Rect(x - 2f, bar.y - 3f, 4f, bar.height + 6f), UiKit.Ink);
             TooltipHandler.TipRegion(row, ("CC_Ways_Meaning_" + way + "_Pos").Translate() + "\n\n" + ("CC_Ways_Meaning_" + way + "_Neg").Translate()
                                           + "\n\n" + "CC_Ways_Value".Translate(v.ToString("0")));
             return rowH + 2f;
@@ -122,7 +127,7 @@ namespace ColonyCouncil
             float start = y;
             y += UiKit.SectionTitle(0f, y, w, "CC_Ways_TraitsHeader".Translate(), Icons.Ways);
             y += UiKit.Paragraph(0f, y, w, "CC_Ways_TraitsIntro".Translate(), UiKit.Faint) + 4f;
-            const float rowH = 26f;
+            const float rowH = UiKit.RowStandard;
             int i = 0;
             foreach (var d in defs)
             {
@@ -132,9 +137,9 @@ namespace ColonyCouncil
                 UiKit.Zebra(row, i++);
                 Widgets.DrawHighlightIfMouseover(row);
                 float labelW = Mathf.Min(160f, w * 0.3f);
-                UiKit.LabelFit(new Rect(6f, y, labelW, rowH), d.LabelCap, known ? Pos : Color.white);
+                UiKit.LabelFit(new Rect(6f, y, labelW, rowH), d.LabelCap, UiKit.Ink);
                 var bar = new Rect(labelW + 12f, y + 9f, Mathf.Max(20f, w - labelW - 140f), 8f);
-                Widgets.DrawBoxSolidWithOutline(bar, new Color(0.15f, 0.15f, 0.15f, 0.8f), new Color(1f, 1f, 1f, 0.1f), 1);
+                Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, UiKit.MeterEdge, 1);
                 Widgets.DrawBoxSolid(new Rect(bar.x, bar.y, bar.width * progress, bar.height), known ? Pos : UiKit.Faint);
                 string status = known ? "CC_Ways_TraitKnown".Translate().ToString() : "CC_Ways_TraitProgress".Translate(progress.ToStringPercent()).ToString();
                 UiKit.LabelFit(new Rect(bar.xMax + 8f, y, w - bar.xMax - 10f, rowH), status, known ? Pos : UiKit.Faint, GameFont.Tiny);
@@ -150,8 +155,8 @@ namespace ColonyCouncil
             y += UiKit.SectionTitle(x, y, w, header, icon, color);
             if (list.Count == 0)
             {
-                y += UiKit.Paragraph(x + 4f, y, w - 4f, "CC_Ways_Nobody".Translate(), UiKit.Faint) + 4f;
-                return y - start;
+                UiKit.EmptyLine(new Rect(x, y, w, UiKit.RowDense + 4f), "CC_Ways_Nobody".Translate());
+                return y - start + UiKit.RowDense + 8f;
             }
             int i = 0;
             foreach (var r in list.Take(8))
@@ -162,13 +167,13 @@ namespace ColonyCouncil
                 float h = 28f + th + 4f;
                 var row = new Rect(x, y, w, h);
                 UiKit.Zebra(row, i++);
-                UiKit.PawnChip(x + 4f, y + 3f, r.p, 24f, true, w - 8f, color);
+                UiKit.PawnChip(x + 4f, y + 3f, r.p, 24f, true, w - 8f, color, link: true);
                 if (th > 0f)
                 {
                     Text.Font = GameFont.Tiny;
                     GUI.color = UiKit.Faint;
                     Widgets.Label(new Rect(x + 32f, y + 28f, w - 36f, th), r.reasons);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     Text.Font = GameFont.Small;
                 }
                 y += h;

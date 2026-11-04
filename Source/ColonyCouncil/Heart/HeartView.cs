@@ -14,10 +14,11 @@ namespace ColonyCouncil
     /// </summary>
     public static class HeartView
     {
-        public static readonly Color SteadyColor = new Color(0.55f, 0.75f, 0.6f);
-        public static readonly Color StrainedColor = new Color(0.95f, 0.8f, 0.35f);
-        public static readonly Color WornColor = new Color(0.95f, 0.58f, 0.25f);
-        public static readonly Color BreakingColor = new Color(0.92f, 0.3f, 0.3f);
+        // The interface's tokens (UI/UiKit.cs): steady warm, strained soon, worn sour, breaking danger.
+        public static readonly Color SteadyColor = UiKit.Warm;
+        public static readonly Color StrainedColor = UiKit.Soon;
+        public static readonly Color WornColor = UiKit.Sour;
+        public static readonly Color BreakingColor = UiKit.Danger;
 
         public static Color BandColor(StrainBand b)
         {
@@ -597,7 +598,8 @@ namespace ColonyCouncil
         public class ColonyModel
         {
             public string summary;
-            public List<(Pawn pawn, float fill, Color color, string band, string feelings, string tip)> rows = new List<(Pawn, float, Color, string, string, string)>();
+            public List<(Pawn pawn, float fill, Color color, string band, string feelings, string tip, string name)> rows =
+                new List<(Pawn, float, Color, string, string, string, string)>();
         }
 
         /// <summary>Built with the Moods page's report (about once a second).</summary>
@@ -620,7 +622,7 @@ namespace ColonyCouncil
             {
                 string feelings = DominantText(h);
                 m.rows.Add((p, h.strain / HeartMath.Max, BandColor(h.Band), "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve(),
-                    feelings ?? "", StrainTip(p, h)));
+                    feelings ?? "", StrainTip(p, h), ThingRefs.Link(p.LabelShort, ThingRefs.Of(p))));
             }
             return m;
         }
@@ -629,27 +631,37 @@ namespace ColonyCouncil
         public static float DrawColony(ColonyModel m, float y, float w)
         {
             if (m == null) return y;
-            y += UiKit.SectionTitle(0f, y, w, "CC_Heart_ColonyHeader".Translate(), Icons.Heart, UiKit.HeaderColor);
+            y += UiKit.SectionTitle(0f, y, w, "CC_Heart_ColonyHeader".Translate(), Icons.Heart);
             y += UiKit.Paragraph(0f, y, w, m.summary, MoodView.Faint, GameFont.Tiny) + 4f;
             if (m.rows.Count == 0)
             {
-                y += UiKit.Paragraph(0f, y, w, "CC_Heart_ColonyNone".Translate(), MoodView.Faint) + 4f;
-                return y + 8f;
+                UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), "CC_Heart_ColonyNone".Translate());
+                return y + UiKit.RowDense + 12f;
             }
             for (int i = 0; i < m.rows.Count; i++)
             {
                 var r = m.rows[i];
-                var row = new Rect(0f, y, w, 34f);
+                var row = new Rect(0f, y, w, UiKit.RowPortrait);
                 UiKit.Zebra(row, i);
                 Widgets.DrawHighlightIfMouseover(row);
-                UiKit.Portrait(new Rect(4f, y + 3f, 28f, 28f), r.pawn, r.color);
-                UiKit.LabelFit(new Rect(40f, y + 2f, 130f, 30f), r.pawn.LabelShort, Color.white);
-                UiKit.Bar(new Rect(176f, y + 10f, 120f, 12f), r.fill, r.color);
-                UiKit.LabelFit(new Rect(304f, y + 2f, Mathf.Max(0f, w - 308f), 15f), r.band, r.color, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(304f, y + 17f, Mathf.Max(0f, w - 308f), 15f), r.feelings, MoodView.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(row, r.tip);
-                if (Widgets.ButtonInvisible(row)) MoodView.ShowMoodTab(r.pawn);
-                y += 36f;
+                // Their portrait and name lead to their card; the rest of the row to their Mood tab.
+                var face = new Rect(4f, y + 5f, 30f, 30f);
+                UiKit.Portrait(face, r.pawn, r.color);
+                var who = ThingRefs.Of(r.pawn);
+                if (Mouse.IsOver(face)) Previews.Hover(who, face);
+                if (Widgets.ButtonInvisible(face, false))
+                {
+                    Cards.Click();
+                    Cards.Open(who);
+                }
+                LinkText.Line(new Rect(42f, y, 130f, row.height), r.name, UiKit.Ink);
+                UiKit.Bar(new Rect(176f, y + 14f, 120f, 12f), r.fill, r.color);
+                UiKit.LabelFit(new Rect(304f, y + 4f, Mathf.Max(0f, w - 308f), 15f), r.band, UiKit.Ink, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(304f, y + 20f, Mathf.Max(0f, w - 308f), 15f), r.feelings, MoodView.Faint, GameFont.Tiny);
+                var rest = new Rect(176f, y, Mathf.Max(0f, w - 176f), row.height);
+                TooltipHandler.TipRegion(rest, r.tip);
+                if (Widgets.ButtonInvisible(rest)) MoodView.ShowMoodTab(r.pawn);
+                y += UiKit.RowPortrait;
             }
             return y + 8f;
         }

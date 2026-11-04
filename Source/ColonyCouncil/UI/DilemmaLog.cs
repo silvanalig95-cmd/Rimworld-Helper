@@ -193,11 +193,11 @@ namespace ColonyCouncil
         {
             switch (w)
             {
-                case DilemmaWent.WentWrong: return UiKit.Bad;
-                case DilemmaWent.FellThrough: return UiKit.Warn;
+                case DilemmaWent.WentWrong: return UiKit.Sour;
+                case DilemmaWent.FellThrough: return UiKit.Soon;
                 case DilemmaWent.Waiting:
-                case DilemmaWent.UnderWay: return UiKit.Info;
-                default: return UiKit.Good;
+                case DilemmaWent.UnderWay: return UiKit.Cool;
+                default: return UiKit.Done;
             }
         }
     }

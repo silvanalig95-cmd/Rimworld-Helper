@@ -486,6 +486,58 @@ namespace ColonyCouncil
             else if (r.Contains(m)) tips.Add((clipping ? new Rect(r.x + clipOrigin.x, r.y + clipOrigin.y, r.width, r.height) : r, tip));
         }
 
+        // ---------------- Names as links ----------------
+
+        /// <summary>
+        /// Words drawn as a link (docs/design/interface.md, "Links and previews"; the on-screen panels draw names as the
+        /// windows do): link ink with its dotted line, brighter under the mouse, a preview after a pause. The click is the
+        /// caller's (a Following line opens its card). Returns the width the words took.
+        /// </summary>
+        protected float LinkWords(Rect r, string text, ThingRef thing, GameFont font)
+        {
+            if (text.NullOrEmpty() || r.width <= 2f) return 0f;
+            float w = Mathf.Min(HudKit.Width(text, font) + 2f, r.width);
+            var hit = new Rect(r.x, r.y, w, r.height);
+            bool over = Over(hit);
+            HudKit.Label(r, text, over ? UiKit.LinkHot : UiKit.Link, font);
+            if (Event.current.type == EventType.Repaint)
+            {
+                float lh = HudKit.LineHeight(font);
+                LinkText.Underline(r.x, Mathf.Round(r.y + (r.height + lh) / 2f - (font == GameFont.Tiny ? 4f : 5f)), w - 3f, over);
+            }
+            if (over && !thing.IsNone) Previews.Hover(thing, hit);
+            return w;
+        }
+
+        /// <summary>
+        /// A colonist's name at the start of a row, as a link: their card (the floating card, there being no drawer over the
+        /// map) on a left click, a preview after a pause; the rest of the row keeps its own click. With
+        /// <paramref name="alarm"/> the name keeps the alarm's colour (life and limb), still leading to the card. Returns
+        /// true when the click was the name's, so the row's own click doesn't follow.
+        /// </summary>
+        protected bool NameLink(Rect r, string name, Pawn p, GameFont font, Color? alarm = null)
+        {
+            var thing = ThingRefs.Of(p);
+            if (thing.IsNone)
+            {
+                HudKit.Label(r, name, alarm ?? Color.white, font);
+                return false;
+            }
+            float w;
+            if (alarm.HasValue)
+            {
+                HudKit.Label(r, name, alarm.Value, font);
+                w = Mathf.Min(HudKit.Width(name, font) + 2f, r.width);
+                if (Over(new Rect(r.x, r.y, w, r.height))) Previews.Hover(thing, new Rect(r.x, r.y, w, r.height));
+            }
+            else w = LinkWords(r, name, thing, font);
+            var hit = new Rect(r.x, r.y, w, r.height);
+            if (Painting || Event.current.button != 0 || !Clicked(hit)) return false;
+            Cards.Click();
+            Cards.Open(thing);
+            return true;
+        }
+
         /// <summary>A small picture button whose colour lights up under the mouse; true when clicked.</summary>
         protected bool ImageButton(Rect r, Texture2D tex, Color color, Color overColor, string tip)
         {

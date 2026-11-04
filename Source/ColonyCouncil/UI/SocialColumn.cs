@@ -206,7 +206,7 @@ namespace ColonyCouncil
                 var sec = new PaneSection { key = "secrets", header = "CC_Social_Secrets".Translate(), icon = Icons.Secret };
                 var own = comp.secrets.Of(p);
                 if (own != null && own.revealed)
-                    sec.Add(own.Truth, own.def != null && own.def.good ? UiKit.Good : new Color(0.9f, 0.6f, 0.5f), "CC_SocialCol_SecretOutTip".Translate());
+                    sec.Add(own.Truth, own.def != null && own.def.good ? UiKit.Warm : UiKit.Sour, "CC_SocialCol_SecretOutTip".Translate());
                 else if (own != null && own.knowers.Count > 0)
                     sec.Add(PaneLinks.Mark("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(own.knowers.Where(k => k != null).Select(k => k.LabelShort).ToList())).Resolve(),
                         own.knowers), UiKit.Faint, "CC_SocialCol_ConfidedTip".Translate());

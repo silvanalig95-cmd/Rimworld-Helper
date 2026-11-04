@@ -13,10 +13,12 @@ namespace ColonyCouncil
 
         /// <summary>Below this width the cards stack in one column.</summary>
         public const float TwoColumnsFrom = 700f;
-        public const float ColumnGap = 12f;
-        public const float CardHeader = 30f;
-        public const float CardPad = 6f;
-        public const float RowHeight = 26f;
+        // On the design's grid (docs/design/interface.md, "Spacing and sizes"): cards 8 apart, a heading of 32 with its
+        // line, rows of 28 (a row with a second line is 40: WeekPanel.TallRow).
+        public const float ColumnGap = 8f;
+        public const float CardHeader = 32f;
+        public const float CardPad = 8f;
+        public const float RowHeight = 28f;
         /// <summary>The most rows a card shows; the rest are one "and N more" row that opens the page.</summary>
         public const int MaxRows = 6;
 

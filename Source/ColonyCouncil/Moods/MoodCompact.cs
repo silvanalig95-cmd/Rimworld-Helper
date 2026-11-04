@@ -482,25 +482,35 @@ namespace ColonyCouncil
         /// </summary>
         public static float DrawViewToggle(float right, float y, float h = 24f)
         {
-            float dw = ToggleWidth(true), cw = ToggleWidth(false);
-            bool details = Details;
-            float x = right - dw;
-            if (UiKit.TabButton(new Rect(x, y, dw, h), detailsLabel, null, details, detailsTip) && !details) SetDetails(true);
-            x -= cw + 2f;
-            if (UiKit.TabButton(new Rect(x, y, cw, h), compactLabel, null, !details, compactTip) && details) SetDetails(false);
-            return right - x;
+            Words();
+            float w = ViewToggleWidth;
+            // The same things shown two ways: the design's modes switch (UiKit.Modes), as on the region's Map or List.
+            int picked = UiKit.Modes(new Rect(right - w, y, w, h), toggleLabels, Details ? 1 : 0, null, toggleTips);
+            if (picked >= 0) SetDetails(picked == 1);
+            return w;
         }
 
         /// <summary>The width <see cref="DrawViewToggle"/> takes.</summary>
-        public static float ViewToggleWidth => ToggleWidth(true) + ToggleWidth(false) + 2f;
-
-        private static float ToggleWidth(bool details)
+        public static float ViewToggleWidth
         {
+            get
+            {
+                Words();
+                return UiKit.ModesWidth(toggleLabels);
+            }
+        }
+
+        private static List<string> toggleLabels, toggleTips;
+
+        private static void Words()
+        {
+            if (toggleLabels != null) return;
             compactLabel ??= "CC_MoodC_Compact".Translate().Resolve();
             detailsLabel ??= "CC_MoodC_Details".Translate().Resolve();
             compactTip ??= "CC_MoodC_CompactTip".Translate().Resolve();
             detailsTip ??= "CC_MoodC_DetailsTip".Translate().Resolve();
-            return UiKit.TabButtonWidth(details ? detailsLabel : compactLabel, null) - 8f;
+            toggleLabels = new List<string> { compactLabel, detailsLabel };
+            toggleTips = new List<string> { compactTip, detailsTip };
         }
 
         /// <summary>Whether the pages show every mood as a card (the switch's "Details"); compact otherwise.</summary>

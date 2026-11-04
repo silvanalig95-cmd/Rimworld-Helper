@@ -71,6 +71,8 @@ namespace ColonyCouncil
             public float mood;
             public List<Pawn> who = new List<Pawn>();
             public string text, tip;
+            /// <summary>The line as drawn, its names as links (the tooltip keeps the plain text).</summary>
+            public string shown;
         }
 
         private class SwayRow
@@ -79,6 +81,8 @@ namespace ColonyCouncil
             public float amount;
             public string why;
             public string text, tip;
+            /// <summary>The line as drawn, its names as links (the tooltip keeps the plain text).</summary>
+            public string shown;
         }
 
         private class Card
@@ -188,6 +192,7 @@ namespace ColonyCouncil
                     a.text = "CC_FaithPg_AskRow".Translate(a.label.Named("WHAT"), a.mood.ToString("0").Named("MOOD"),
                         TextUtil.JoinAnd(a.who.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
                     a.tip = a.text + "\n\n" + asksTip;
+                    a.shown = PaneLinks.Mark(a.text, a.who);
                 }
                 // Who of this faith could sway whom of another: its devout speakers against everyone else, best first.
                 foreach (var speaker in card.believers.Where(b => FaithMath.Devout(b.certainty)).Select(b => b.p))
@@ -210,6 +215,7 @@ namespace ColonyCouncil
                     s.text = (s.why.NullOrEmpty() ? "CC_FaithPg_SwayRowPlain" : "CC_FaithPg_SwayRow")
                         .Translate(s.speaker.Named("PAWN"), s.listener.Named("OTHER"), pct.Named("PTS"), (s.why ?? "").Named("WHY")).Resolve();
                     s.tip = s.text + "\n\n" + swayTip;
+                    s.shown = PaneLinks.Mark(s.text, new[] { s.speaker, s.listener });
                 }
                 m.cards.Add(card);
             }
@@ -336,19 +342,19 @@ namespace ColonyCouncil
             return "CC_FaithPg_Off".Translate();
         }
 
-        private const float Pad = 8f, Face = 34f, FaceW = 96f, Row = 20f;
+        private const float Pad = UiKit.CardInset, Face = 34f, FaceW = 96f, Row = 20f, HeadH = 26f;
 
         private static float DrawCard(Card card, float x, float y, float w)
         {
             float cy = y + Pad;
             float ix = x + Pad + 4f, inner = w - Pad * 2f - 4f;
-            // Its name and icon, in its own colour; how many hold it and how firmly.
-            if (card.icon != null) UiKit.Icon(new Rect(ix, cy + 1f, 24f, 24f), card.icon, card.color);
+            // Its name (the card's one title) and its icon in the game's own colour for it; how many hold it and how firmly.
+            if (card.icon != null) UiKit.Icon(new Rect(ix, cy + 1f, UiKit.IconHead, UiKit.IconHead), card.icon, card.color);
             float nx = ix + (card.icon != null ? 30f : 0f);
             Text.Font = GameFont.Medium;
             float nameW = Mathf.Min(inner * 0.55f, Text.CalcSize(card.name).x + 8f);
             Text.Font = GameFont.Small;
-            UiKit.LabelFit(new Rect(nx, cy - 2f, nameW, 30f), card.name, Color.Lerp(card.color, Color.white, 0.35f), GameFont.Medium);
+            UiKit.LabelFit(new Rect(nx, cy - 2f, nameW, 30f), card.name, UiKit.Ink, GameFont.Medium);
             UiKit.LabelFit(new Rect(nx + nameW + 6f, cy + 4f, Mathf.Max(0f, inner - (nx - ix) - nameW - 6f), 20f), card.countText, UiKit.Faint, GameFont.Tiny);
             var ideo = card.ideo;
             TooltipHandler.TipRegion(new Rect(ix, cy, inner, 26f), () => IdeoTip(ideo), ideo.id ^ 0x2F1A);
@@ -367,40 +373,42 @@ namespace ColonyCouncil
                 DrawBeliever(ix + (i % perRow) * FaceW, cy + (i / perRow) * (Face + 44f), card.believers[i]);
             cy += Mathf.CeilToInt(card.believers.Count / (float)perRow) * (Face + 44f) + 2f;
 
-            // What it asks that weighs on someone right now.
-            UiKit.LabelFit(new Rect(ix, cy, inner, Row), "CC_FaithPg_Asks".Translate(), UiKit.HeaderColor, GameFont.Tiny);
-            TooltipHandler.TipRegion(new Rect(ix, cy, inner, Row), "CC_FaithP_AsksTip".Translate());
-            cy += Row;
+            // What it asks that weighs on someone right now: a section of the card, its names as links.
+            UiKit.HeadingLine(ix, cy, inner, "CC_FaithPg_Asks".Translate(), card.asks.Count, null, null, UiKit.Heading, false, false);
+            TooltipHandler.TipRegion(new Rect(ix, cy, inner, 22f), "CC_FaithP_AsksTip".Translate());
+            cy += HeadH;
             if (card.asks.Count == 0)
             {
-                UiKit.LabelFit(new Rect(ix + 10f, cy, inner - 10f, Row), "CC_FaithPg_AsksNone".Translate(), UiKit.Dim, GameFont.Tiny);
-                cy += Row;
+                UiKit.EmptyLine(new Rect(ix, cy, inner, Row), "CC_FaithPg_AsksNone".Translate());
+                cy += Row + 2f;
             }
             foreach (var a in card.asks)
             {
                 var r = new Rect(ix + 10f, cy, inner - 10f, Row);
-                UiKit.LabelFit(r, a.text, a.mood <= -5f ? UiKit.Bad : UiKit.LossColor, GameFont.Tiny);
-                TooltipHandler.TipRegion(r, a.tip);
+                UiKit.DiscFill(new Rect(ix + 2f, cy + Row / 2f - 2.5f, 5f, 5f), a.mood <= -5f ? UiKit.Sour : UiKit.Faint);
+                LinkText.Line(r, a.shown ?? a.text, UiKit.Ink, GameFont.Tiny);
+                if (Previews.Shown.IsNone) TooltipHandler.TipRegion(r, a.tip);
                 cy += Row;
             }
 
             // Who is likely to sway whom.
-            cy += 4f;
-            UiKit.LabelFit(new Rect(ix, cy, inner, Row), "CC_FaithPg_Sways".Translate(), UiKit.HeaderColor, GameFont.Tiny);
-            TooltipHandler.TipRegion(new Rect(ix, cy, inner, Row), "CC_FaithP_SwayTip".Translate());
-            cy += Row;
+            cy += 6f;
+            UiKit.HeadingLine(ix, cy, inner, "CC_FaithPg_Sways".Translate(), card.sways.Count, null, null, UiKit.Heading, false, false);
+            TooltipHandler.TipRegion(new Rect(ix, cy, inner, 22f), "CC_FaithP_SwayTip".Translate());
+            cy += HeadH;
             if (card.sways.Count == 0)
             {
                 string none = card.believers.Any(b => FaithMath.Devout(b.certainty)) ? "CC_FaithPg_SwaysNone" : "CC_FaithPg_SwaysNoDevout";
-                UiKit.LabelFit(new Rect(ix + 10f, cy, inner - 10f, Row), none.Translate(), UiKit.Dim, GameFont.Tiny);
-                cy += Row;
+                UiKit.EmptyLine(new Rect(ix, cy, inner, Row), none.Translate());
+                cy += Row + 2f;
             }
             foreach (var s in card.sways)
             {
                 var r = new Rect(ix + 10f, cy, inner - 10f, Row);
                 Widgets.DrawHighlightIfMouseover(r);
-                UiKit.LabelFit(r, s.text, UiKit.Info, GameFont.Tiny);
-                TooltipHandler.TipRegion(r, s.tip);
+                UiKit.DiscFill(new Rect(ix + 2f, cy + Row / 2f - 2.5f, 5f, 5f), UiKit.Cool);
+                LinkText.Line(r, s.shown ?? s.text, UiKit.Ink, GameFont.Tiny);
+                if (Previews.Shown.IsNone) TooltipHandler.TipRegion(r, s.tip);
                 if (Widgets.ButtonInvisible(r)) Cards.Open(s.listener);
                 cy += Row;
             }
@@ -408,7 +416,7 @@ namespace ColonyCouncil
             // The council's buttons for this faith (see the hook at the top).
             cy += DrawButtons(ix, cy + 4f, inner, card.ideo, true);
             cy += Pad;
-            UiKit.Card(new Rect(x, y, w, cy - y), card.color, false, false);
+            UiKit.Card(new Rect(x, y, w, cy - y), null, false, false);
             return cy - y;
         }
 
@@ -434,11 +442,11 @@ namespace ColonyCouncil
             var rest = new Rect(x + lw, y, w - lw, 24f);
             if (holder != null)
             {
-                UiKit.PawnChip(rest.x, y, holder, 24f, true, rest.width);
+                UiKit.PawnChip(rest.x, y, holder, 24f, true, rest.width, link: true);
                 return;
             }
             string text = !exists ? "CC_FaithPg_RoleNone".Translate() : away ? "CC_FaithPg_RoleAway".Translate() : "CC_FaithPg_RoleEmpty".Translate();
-            UiKit.LabelFit(rest, text, exists ? UiKit.Warn : UiKit.Dim);
+            UiKit.LabelFit(rest, text, exists ? UiKit.Soon : UiKit.Dim);
             TooltipHandler.TipRegion(rest, () => "CC_FaithPg_RoleEmptyTip".Translate(what.Named("ROLE")).Resolve(), what.GetHashCode() ^ 0x51D3);
         }
 
@@ -446,25 +454,36 @@ namespace ColonyCouncil
         {
             var p = b.p;
             float c = b.certainty;
-            var color = FaithMath.Devout(c) ? UiKit.Good : FaithMath.Wavering(c) ? UiKit.Warn : UiKit.Info;
+            var color = FaithMath.Devout(c) ? UiKit.Warm : FaithMath.Wavering(c) ? UiKit.Soon : UiKit.Cool;
             var face = new Rect(x + (FaceW - Face) / 2f, y, Face, Face);
+            var area = new Rect(x, y, FaceW - 6f, Face + 41f);
+            bool over = Mouse.IsOver(area);
             UiKit.Portrait(face, p, color);
-            UiKit.LabelFit(new Rect(x, y + Face + 1f, FaceW - 6f, 15f), p.LabelShort, Color.white, GameFont.Tiny, TextAnchor.UpperCenter);
+            // Their name leads to their card (the whole of them does): link ink, a preview after a pause.
+            UiKit.LabelFit(new Rect(x, y + Face + 1f, FaceW - 6f, 15f), p.LabelShort, over ? UiKit.LinkHot : UiKit.Link, GameFont.Tiny, TextAnchor.UpperCenter);
             UiKit.Bar(new Rect(x + 8f, y + Face + 18f, FaceW - 22f, 6f), c, color);
             string word = FaithPeople.StateWord(c) + " " + c.ToStringPercent();
             UiKit.LabelFit(new Rect(x, y + Face + 25f, FaceW - 6f, 15f), word, color, GameFont.Tiny, TextAnchor.UpperCenter);
-            var area = new Rect(x, y, FaceW - 6f, Face + 41f);
             Widgets.DrawHighlightIfMouseover(area);
-            TooltipHandler.TipRegion(area, b.tip);
-            if (Widgets.ButtonInvisible(area)) Cards.Open(p);
+            var who = ThingRefs.Of(p);
+            if (over) Previews.Hover(who, area);
+            if (Previews.Shown != who) TooltipHandler.TipRegion(area, b.tip);
+            if (Widgets.ButtonInvisible(area))
+            {
+                Cards.Click();
+                Cards.Open(who);
+            }
         }
 
         /// <summary>The hook's buttons for a faith (perFaith) or for the colony, in as many rows as they need; returns the height used.</summary>
+        private static readonly List<(string act, string why)> whyNot = new List<(string, string)>();
+
         private static float DrawButtons(float x, float y, float w, Ideo ideo, bool perFaith)
         {
             if (Buttons.Count == 0) return 0f;
             float bx = x, by = y;
             bool any = false;
+            whyNot.Clear();
             foreach (var b in Buttons)
             {
                 if (b == null || b.perFaith != perFaith) continue;
@@ -480,21 +499,12 @@ namespace ColonyCouncil
                         bx = x;
                         by += 34f;
                     }
-                    var r = new Rect(bx, by, bw, 28f);
+                    var r = new Rect(bx, by, bw, UiKit.RowStandard);
                     string blocked = b.blocked?.Invoke(ideo);
                     string tip = b.tip?.Invoke(ideo);
-                    if (!blocked.NullOrEmpty()) tip = (tip.NullOrEmpty() ? "" : tip + "\n\n") + blocked;
-                    if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
-                    if (blocked.NullOrEmpty())
-                    {
-                        if (Widgets.ButtonText(r, label)) b.act?.Invoke(ideo);
-                    }
-                    else
-                    {
-                        GUI.color = UiKit.Dim;
-                        Widgets.ButtonText(r, label, true, true, false);
-                        GUI.color = Color.white;
-                    }
+                    // Greyed with why not as its tooltip, and the reason in a line under the buttons.
+                    if (UiKit.ActButton(r, label, blocked.NullOrEmpty() ? null : blocked, tip)) b.act?.Invoke(ideo);
+                    if (!blocked.NullOrEmpty()) whyNot.Add((label, blocked));
                     bx += bw + 6f;
                     any = true;
                 }
@@ -503,26 +513,29 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("faiths page: button " + b.key, e);
                 }
             }
-            return any ? by - y + 34f : 0f;
+            if (!any) return 0f;
+            by += 32f;
+            foreach (var (act, why) in whyNot) by += UiKit.WhyNotLine(x, by, w, act, why);
+            return by - y + 2f;
         }
 
         /// <summary>How to bring people together: the game's own tools, and what Rimfolk adds; then the council's buttons.</summary>
         private static float DrawTogether(float x, float y, float w, Model m)
         {
             float start = y;
-            y += UiKit.SectionTitle(x, y, w, "CC_FaithPg_Together".Translate(), Icons.Heart, UiKit.HeaderColor);
+            y += UiKit.SectionTitle(x, y, w, "CC_FaithPg_Together".Translate(), Icons.Heart);
             if (m.togetherText != null) y += UiKit.Paragraph(x, y, w, m.togetherText, UiKit.Faint) + 6f;
             foreach (var key in new[] { "CC_FaithPg_ToolConvert", "CC_FaithPg_ToolRitual", "CC_FaithPg_ToolMood", "CC_FaithPg_ToolTalk", "CC_FaithPg_ToolRoles" })
             {
                 UiKit.DiscFill(new Rect(x + 4f, y + 7f, 5f, 5f), UiKit.Gold);
-                y += UiKit.Paragraph(x + 16f, y, w - 16f, key.Translate(), Color.white) + 4f;
+                y += UiKit.Paragraph(x + 16f, y, w - 16f, key.Translate(), UiKit.Ink) + 4f;
             }
             y += DrawButtons(x, y + 4f, w, null, false);
             var almanac = DefDatabase<AlmanacArticleDef>.GetNamedSilentFail("Rimfolk_Alm_C_Faith");
             if (almanac != null)
             {
                 y += 4f;
-                if (Widgets.ButtonText(new Rect(x, y, 220f, 28f), "CC_FaithPg_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(almanac);
+                if (UiKit.ActButton(new Rect(x, y, 220f, UiKit.RowStandard), "CC_FaithPg_ReadMore".Translate(), null)) MainTabWindow_Council.OpenAlmanac(almanac);
                 y += 32f;
             }
             return y - start;

@@ -15,7 +15,8 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static class OutsiderHeard
     {
-        private static readonly Color Accent = new Color(0.78f, 0.86f, 0.7f);
+        /// <summary>What was heard of outsiders: cool, neither warm nor sour (UI/UiKit.cs's tokens).</summary>
+        private static readonly Color Accent = UiKit.Cool;
         private const float HeadH = 22f, LineH = 20f;
 
         static OutsiderHeard()

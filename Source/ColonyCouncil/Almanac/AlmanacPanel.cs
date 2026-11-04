@@ -26,11 +26,12 @@ namespace ColonyCouncil
         private static float listHeight = 500f;
         private static float pageHeight = 500f;
 
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        private static readonly Color QuoteColor = new Color(1f, 0.93f, 0.75f);
-        private static readonly Color Header = new Color(0.85f, 0.8f, 0.6f);
-        private static readonly Color TableHeader = new Color(0.85f, 0.8f, 0.6f);
-        private static readonly Color CardValue = new Color(0.92f, 0.92f, 0.92f);
+        // The interface's tokens (UI/UiKit.cs): headings in heading ink, what is read in ink, the rest faint.
+        private static readonly Color Faint = UiKit.Faint;
+        private static readonly Color QuoteColor = UiKit.Ink;
+        private static readonly Color Header = UiKit.Heading;
+        private static readonly Color TableHeader = UiKit.Heading;
+        private static readonly Color CardValue = UiKit.Ink;
 
         /// <summary>The page open in the almanac, if any (remembered between sessions by the Almanac's window).</summary>
         public static AlmanacArticleDef Selected => selected;
@@ -127,10 +128,10 @@ namespace ColonyCouncil
                 {
                     Text.Font = GameFont.Small;
                     Text.Anchor = TextAnchor.MiddleCenter;
-                    GUI.color = chosen ? UiKit.Gold : Color.white;
+                    GUI.color = chosen ? UiKit.Gold : UiKit.Ink;
                     Widgets.Label(b, "A");
                 }
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Anchor = TextAnchor.UpperLeft;
                 Text.Font = GameFont.Small;
                 TooltipHandler.TipRegion(b, StepTip(step));
@@ -163,8 +164,8 @@ namespace ColonyCouncil
         private static bool FlatButton(Rect r, string glyph, bool active, string tip, Texture2D icon = null)
         {
             UiKit.Card(r, null, active);
-            if (icon != null) UiKit.Icon(new Rect(r.center.x - 8f, r.center.y - 8f, 16f, 16f), icon, Mouse.IsOver(r) ? Color.white : Faint);
-            else UiKit.LabelFit(r, glyph, Mouse.IsOver(r) ? UiKit.Gold : Color.white, GameFont.Small, TextAnchor.MiddleCenter);
+            if (icon != null) UiKit.Icon(new Rect(r.center.x - 8f, r.center.y - 8f, 16f, 16f), icon, Mouse.IsOver(r) ? UiKit.Ink : Faint);
+            else UiKit.LabelFit(r, glyph, Mouse.IsOver(r) ? UiKit.Gold : UiKit.Ink, GameFont.Small, TextAnchor.MiddleCenter);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             return Widgets.ButtonInvisible(r);
         }
@@ -198,7 +199,7 @@ namespace ColonyCouncil
             {
                 GUI.color = Faint;
                 Widgets.Label(new Rect(searchRect.x + 6f, searchRect.y + 4f, searchRect.width, 24f), UiKit.Fit("CC_Almanac_Search".Translate(), searchRect.width - 10f));
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
             if (before != search) listScroll = Vector2.zero;
             y += 34f;
@@ -237,7 +238,7 @@ namespace ColonyCouncil
             else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
             if (active) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
             UiKit.Icon(new Rect(r.x + 6f, r.y + 5f, 16f, 16f), icon, active ? UiKit.Gold : Faint);
-            UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 56f, r.height), label, active ? Color.white : new Color(0.9f, 0.9f, 0.9f));
+            UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 56f, r.height), label, active ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.85f));
             UiKit.LabelFit(new Rect(r.xMax - 28f, r.y, 25f, r.height), count.ToString(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             return Widgets.ButtonInvisible(r);
         }
@@ -363,7 +364,7 @@ namespace ColonyCouncil
                     Text.Font = GameFont.Tiny;
                     GUI.color = Faint;
                     Widgets.Label(new Rect(textX, y + 3f + th, view.width - textX - 4f, sh), sub);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                 }
                 Text.Font = GameFont.Small;
                 if (Widgets.ButtonInvisible(row)) Open(a);
@@ -412,7 +413,7 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
         }
 
         private static void DrawArticle(Rect rect, AlmanacArticleDef a)
@@ -445,7 +446,7 @@ namespace ColonyCouncil
                 h = Text.CalcHeight(q, w - 20f);
                 GUI.color = QuoteColor;
                 Widgets.Label(new Rect(14f, y, w - 20f, h), q);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 y += h + m.paragraph;
             }
             y = Paragraph(y, w, a.description);
@@ -481,13 +482,19 @@ namespace ColonyCouncil
                 string reason = a.template.UnavailableReason(Find.CurrentMap);
                 string label = "CC_Almanac_PlanRoom".Translate(a.template.label);
                 var br = new Rect(0f, y, Mathf.Min(w, Mathf.Max(240f, Text.CalcSize(label).x + 24f)), buttonH);
+                // Greyed with why not as its tooltip and in a line under it where the colony can't build it yet; drawn at the
+                // Almanac's own text size (UiKit.ActButton draws at the windows'), so the button keeps the page's scale.
                 if (Widgets.ButtonText(br, label, true, true, reason == null) && reason == null)
                 {
                     var des = new Designator_PlanRoom(a.template);
                     Find.MainTabsRoot.EscapeCurrentTab(false);
                     Find.DesignatorManager.Select(des);
                 }
-                if (reason != null) TooltipHandler.TipRegion(br, reason);
+                if (reason != null)
+                {
+                    TooltipHandler.TipRegion(br, reason);
+                    y += UiKit.WhyNotLine(0f, br.yMax + 2f, w, label, reason) + 2f;
+                }
                 y += buttonH + m.paragraph;
             }
             if (a.seeAlso != null && a.seeAlso.Count > 0)
@@ -531,7 +538,7 @@ namespace ColonyCouncil
             GUI.color = Header;
             float h = Text.CalcHeight(title, w);
             Widgets.Label(new Rect(0f, y, w, h), title);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             return y + h + m.headingBelow;
         }
 
@@ -703,14 +710,14 @@ namespace ColonyCouncil
                 var row = t.cells[i];
                 float rh = t.heights[i];
                 var rr = new Rect(0f, y, tableW, rh);
-                if (i == 0) Widgets.DrawBoxSolid(rr, new Color(1f, 1f, 1f, 0.06f));
+                if (i == 0) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
                 else if (i % 2 == 0) Widgets.DrawLightHighlight(rr);
                 float x = 0f;
                 for (int c = 0; c < row.Length && c < t.cols; c++)
                 {
                     if (i == 0) GUI.color = TableHeader;
                     Widgets.Label(new Rect(x + AlmanacLayoutMath.CellPad / 2f, y + 2f, t.widths[c] - AlmanacLayoutMath.CellPad, rh), row[c]);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     x += t.widths[c];
                 }
                 y += rh;
@@ -754,7 +761,7 @@ namespace ColonyCouncil
                         GUI.color = CardValue;
                         Widgets.Label(new Rect(pad, cy, inside, lines[c]), t.inline?[i]?[c] ?? Inline(name, row[c]));
                     }
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     cy += lines[c] + 1f;
                 }
                 y += t.heights[i] + CardGap;
