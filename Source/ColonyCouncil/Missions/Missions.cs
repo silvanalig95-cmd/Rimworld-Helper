@@ -98,7 +98,7 @@ namespace ColonyCouncil
         /// <summary>What the guests went without since the day began (<see cref="Hosting.Lack"/>: food, a bed).</summary>
         public int lacks;
 
-        /// <summary>The home it's done at: the one it was taken on at while that's still there, else the busiest home.</summary>
+        /// <summary>The home it's done at: the one it was taken on at while that's still there, else the colony (its seat).</summary>
         public Map Map
         {
             get

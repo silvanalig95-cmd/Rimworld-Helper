@@ -231,7 +231,7 @@ namespace ColonyCouncil
         {
             if (option == 0 && ctx.thing != null && ctx.faction != null && ctx.variant > 0)
             {
-                var m = CouncilGameComponent.Instance?.happenings.Remember(Kind, null, ctx.faction, ctx.thing.defName, null, false, ctx.a);
+                var m = CouncilGameComponent.Instance?.happenings.Remember(Kind, null, ctx.faction, ctx.thing.defName, null, false, ctx.a, ctx.map);
                 if (m != null)
                 {
                     m.amount = ctx.variant;
@@ -251,7 +251,7 @@ namespace ColonyCouncil
             foreach (var m in due)
             {
                 var goods = DefDatabase<ThingDef>.GetNamedSilentFail(m.def ?? "");
-                var map = HappeningTracker.HomeMap();
+                var map = HappeningTracker.MapFor(m);
                 if (incident == null || goods == null || map == null || m.amount <= 0 || m.faction == null)
                 {
                     t.Use(m);
@@ -316,7 +316,7 @@ namespace ColonyCouncil
             // A broken promise costs a little, but never a war.
             else if (f.PlayerGoodwill > -65) f.TryAffectGoodwillWith(Faction.OfPlayer, -5, true, false);
             // A filled order may make them regular buyers; a broken one ends that (Workers_Living.cs).
-            LivingEvents.Notify_OrderCollected(f, ctx.thing, filled);
+            LivingEvents.Notify_OrderCollected(f, ctx.thing, filled, map);
             string title = VarietyUtil.Line(filled ? more?.doneTitles : more?.failTitles, ctx) ?? ctx.incident.LabelCap.ToString();
             string text = VarietyUtil.Line(filled ? more?.done : more?.fail, ctx, new[] { have > 0 ? "some" : "none" }, VarietyUtil.Bundle(ctx.thing, have));
             if (text.NullOrEmpty()) return;

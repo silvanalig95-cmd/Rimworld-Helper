@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.65.0</version>
+        <date>4 November 2026</date>
+        <title>One colony, one seat</title>
+        <points>
+          <li>With more than one settlement, the colony is now the one founded first, and it stays put: the council, the calendar and the rest no longer jump to wherever most people happen to be.</li>
+          <li>Rimfolk's own events come to each settlement on its own rhythm.</li>
+          <li>Something set going at a settlement (a guest invited, goods sent to market, an order or a commission taken on) comes back to that settlement.</li>
+          <li>Council meetings count those away with a caravan for their own settlement, not for every one.</li>
+          <li>A raid on any settlement is written up in the journals of those who were there.</li>
+          <li>Colonists start talks with visitors at home even while you are looking at the world or another map.</li>
+          <li>With one colony everything else plays as before. This is the first step of the groundwork for the world and its people.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.64.4</version>
         <date>4 November 2026</date>
         <title>Quiet news of distant towns</title>

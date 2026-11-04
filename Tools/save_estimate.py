@@ -442,6 +442,10 @@ MODEL = {
     "Happenings/Happenings.cs:visits": ("window", (30, 0.2), 300, "visits a month"),
     "Happenings/Happenings.cs:memos": ("window", (180, 0.3), 200, "memos 3 years (children's 10), used ones a day"),
     "Happenings/Happenings.cs:seenQuests": ("fixed", 60, V, "quests the game still keeps"),
+    "Happenings/Happenings.cs:timers": ("fixed", 1, D, "Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it"),
+    # Homes (Lean/Homes.cs)
+    "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
+    "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

@@ -35,7 +35,7 @@ namespace ColonyCouncil
 
         protected override string Empty => HudKit.T("CC_Pnl_NoMap");
 
-        /// <summary>The map the vitals are for: the one on screen if it's a home, else the busiest home.</summary>
+        /// <summary>The map the vitals are for: the one on screen if it's a home, else the colony (its seat, Homes).</summary>
         public static Map MapFor()
         {
             var cur = Find.CurrentMap;

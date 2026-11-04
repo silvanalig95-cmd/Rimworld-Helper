@@ -294,7 +294,7 @@ namespace ColonyCouncil
                     // Star iron and a smith's best: one step above what they'd make from ordinary steel.
                     var q = ctx.a?.skills != null ? QualityUtility.GenerateQualityCreatedByPawn(ctx.a, SkillDefOf.Crafting, false) : QualityCategory.Good;
                     if (q < QualityCategory.Legendary) q += 1;
-                    CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.StarBlade, null, null, ctx.thing.defName, ctx.thing.label, false, ctx.a);
+                    CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.StarBlade, null, null, ctx.thing.defName, ctx.thing.label, false, ctx.a, ctx.map);
                     outcome = VarietyUtil.Line(more?.outcomes, ctx, null, QualityUtility.GetLabel(q)) ?? outcome;
                     // The star carried in to the colony's forge and worked there; the blade lies at the forge (PlayMake.cs).
                     if (PlayMake.KeepMade(ctx.map, ctx.a, ctx.thing, "Steel", ctx.place, (int)q, 1, forging, SkillDefOf.Crafting, ctx.plays) == null)

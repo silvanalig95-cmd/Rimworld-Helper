@@ -171,7 +171,7 @@ namespace ColonyCouncil
             // They'll want a rematch one day (or to defend their title).
             // (Once: a rematch settles it.)
             if (x.Faction != null && x.RaceProps.Humanlike && !(v.incident?.Worker is HappeningWorker_Rematch))
-                comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a);
+                comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a, v.map);
             Arrivals.SendAway(new[] { x });
         }
     }
@@ -316,7 +316,7 @@ namespace ColonyCouncil
             if (map != null)
                 foreach (var p in IncidentWorker_Happening.Colonists(map).Where(p => p != killer)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_BeastDown, killer);
             // Its young may come one day, to take its place.
-            t.Remember("beast", null, null, beast.kindDef?.defName, name, false, killer);
+            t.Remember("beast", null, null, beast.kindDef?.defName, name, false, killer, map);
             string text = "CC_Evt_BeastSlain".Translate(name, killer.Named("PAWN")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_Evt_BeastSlainTitle".Translate(name).Resolve(), text, LetterDefOf.PositiveEvent, new LookTargets(killer));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, killer));

@@ -34,7 +34,7 @@ namespace ColonyCouncil
         public const int Calendar = 1311;
         /// <summary>Setbacks: the lasting ones, crops lost, noisy nights, long hauls, rain on gatherings; the day's in its first hour.</summary>
         public const int Setbacks = 1427;
-        /// <summary>The council: nemeses, pets, PokeWorld, autonomy, who is home, everyday pressures.</summary>
+        /// <summary>The council: nemeses, pets, PokeWorld, autonomy, who is home and which home is whose, everyday pressures.</summary>
         public const int CouncilPeople = 1544;
         /// <summary>Reputation and gossip: the fight's rescues and the brave's company, idling and tending watched; the day's deeds and names in its first hour.</summary>
         public const int Reputation = 1660;

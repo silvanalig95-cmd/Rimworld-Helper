@@ -8,9 +8,9 @@ namespace ColonyCouncil
     /// <summary>
     /// The facts about a map that many of Rimfolk's hourly passes ask for, worked out once and shared: whether a threat
     /// is on the map (every 250 ticks, like the heart always had it), and for the in-game hour the colonists at home,
-    /// the days of food, the medicine, the colony's beds, and which home map is the busiest. Each fact is worked out by
-    /// the first pass that asks for it in its stretch of time (see <see cref="Fresh"/>) and read by the others; nothing
-    /// is worked out that nobody asks for. The heart's map context, decrees, the life checks behind dilemmas, autonomy,
+    /// the days of food, the medicine and the colony's beds (and, through <see cref="Homes"/>, which map is the colony).
+    /// Each fact is worked out by the first pass that asks for it in its stretch of time (see <see cref="Fresh"/>) and
+    /// read by the others; nothing is worked out that nobody asks for. The heart's map context, decrees, the life checks behind dilemmas, autonomy,
     /// encounters, social events, nuisances, the calendar, Rimfolk's events, world situations, scenarios, story chains,
     /// nemeses, camps, the fights pass and the worn-out episode read from here.
     /// </summary>
@@ -71,8 +71,7 @@ namespace ColonyCouncil
         public static void Clear()
         {
             facts.Clear();
-            busiestAt = Fresh.Never;
-            busiest = null;
+            Homes.Clear();
         }
 
         // ---------------- Every 250 ticks ----------------
@@ -190,44 +189,13 @@ namespace ColonyCouncil
 
         // ---------------- The colony ----------------
 
-        private static int busiestAt = Fresh.Never;
-        private static Map busiest;
-
         /// <summary>
-        /// The home map with the most free colonists on it (the first such in the game's order, as the old
-        /// Where/OrderByDescending/FirstOrDefault had it), as of this 250-tick stretch: asked for by many passes and pages.
+        /// The colony: the seat (<see cref="Homes.Seat"/>), the first home founded unless a seat is stored. It used to be
+        /// the home with the most free colonists on it, which moved as people did; the name stays so its callers read as
+        /// before, and with one colony it is the same map. New code asks <see cref="Homes"/> (the seat, a loop over the
+        /// homes, or <see cref="Homes.Busiest"/> where most people are right now).
         /// </summary>
-        public static Map BusiestHome
-        {
-            get
-            {
-                int now = Now;
-                CheckGame();
-                if (!Fresh.Holds(busiestAt, now, ThreatTicks) || (busiest != null && !Find.Maps.Contains(busiest)))
-                {
-                    busiestAt = now;
-                    busiest = null;
-                    int most = -1;
-                    bool ground = false;
-                    var maps = Find.Maps;
-                    for (int i = 0; i < maps.Count; i++)
-                    {
-                        var m = maps[i];
-                        if (!m.IsPlayerHome) continue;
-                        // A home on the ground before one in space (an orbital base), however many are up there.
-                        bool onGround = !InVacuum(m);
-                        int n = m.mapPawns.FreeColonistsSpawnedCount;
-                        if ((onGround && !ground) || (onGround == ground && n > most))
-                        {
-                            most = n;
-                            busiest = m;
-                            ground = onGround;
-                        }
-                    }
-                }
-                return busiest;
-            }
-        }
+        public static Map BusiestHome => Homes.Seat;
 
         /// <summary>In space (Odyssey's orbit): nobody walks in there, and anyone set down outside dies.</summary>
         public static bool InVacuum(Map map) => map?.Biome != null && map.Biome.inVacuum;

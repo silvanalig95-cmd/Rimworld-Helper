@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One colony, one seat
+
+*4 November 2026, version 0.65.0*
+
+- With more than one settlement, the colony is now the one founded first, and it stays put: the council, the calendar and the rest no longer jump to wherever most people happen to be.
+- Rimfolk's own events come to each settlement on its own rhythm.
+- Something set going at a settlement (a guest invited, goods sent to market, an order or a commission taken on) comes back to that settlement.
+- Council meetings count those away with a caravan for their own settlement, not for every one.
+- A raid on any settlement is written up in the journals of those who were there.
+- Colonists start talks with visitors at home even while you are looking at the world or another map.
+- With one colony everything else plays as before. This is the first step of the groundwork for the world and its people.
+
 ## Quiet news of distant towns
 
 *4 November 2026, version 0.64.4*

@@ -283,7 +283,7 @@ namespace ColonyCouncil
         {
             // Taken in (openly, or as drowned), and nobody came looking (yet): their old unit may find them one day.
             if ((option == 0 || option == 3) && !risk && ctx.stranger != null && ctx.stranger.Faction == Faction.OfPlayer && ctx.enemy != null)
-                CouncilGameComponent.Instance?.happenings.Remember("deserter", ctx.stranger, ctx.enemy);
+                CouncilGameComponent.Instance?.happenings.Remember("deserter", ctx.stranger, ctx.enemy, map: ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

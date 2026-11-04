@@ -208,7 +208,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             // Fed: their gratitude may come back down the road.
-            if (option == 0 && !byDefault && ctx.faction != null) CouncilGameComponent.Instance?.happenings.Remember("pilgrims", null, ctx.faction);
+            if (option == 0 && !byDefault && ctx.faction != null) CouncilGameComponent.Instance?.happenings.Remember("pilgrims", null, ctx.faction, map: ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -296,7 +296,7 @@ namespace ColonyCouncil
         {
             // Taken home: one day, grown, they may come back to say thank you.
             if (option == 0 && ctx.stranger != null && !ctx.stranger.Dead && ctx.stranger.Faction == ctx.faction)
-                CouncilGameComponent.Instance?.happenings.Remember("child", ctx.stranger, ctx.faction, null, null, false, ctx.a);
+                CouncilGameComponent.Instance?.happenings.Remember("child", ctx.stranger, ctx.faction, null, null, false, ctx.a, ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.65.0, stage 0 step 1 (F1): `Lean/Homes.cs` and `Lean/HomesMath.cs` (All, Seat, SetSeat, Of, People, Name,
+  KeyOf/MapOf/IsHome, Changed, Busiest; per-pawn ties set after a day on a home; `Homes.Hourly` in the 1544 pass),
+  `MapFacts.BusiestHome => Homes.Seat`, `HappeningTracker.timers` (one event timer per home; the old `nextTick` is the
+  seat's), `Memo.home` (follow-ups go back to their colony via `HappeningTracker.MapFor`), outsider talks on every
+  home, raid journals per raided home, `MeetingAttendance.HomeIs` by `Homes.Of`; `HomesTests`. Left for F7: memo
+  pick-ups by colony, an unanswered letter holding back every home, `Ambitions.MeetingMap`. Note: the build stamps the
+  git commit into the DLL, so rebuilding after a commit shows the DLL changed with no code change.
+- Wave plan: ROADMAP.md, "The step-by-step plan". Wave 1 beside F1: A1 (smoke before work) with H1 (health) in one
+  worktree, D1 (defense) in another.
 - Stage 0 started (4 November 2026): `docs/design/foundation.md` (Homes, the world ledger, one history, one facts
   service, one voice, budgets, many homes, adapters, ages, the coupling rule; nine steps, each a release that plays as
   before), `docs/design/world-stores-inventory.md`, `docs/design/multicolony-audit.md`. Next: step 1, `Lean/Homes.cs`

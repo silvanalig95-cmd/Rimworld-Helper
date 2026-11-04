@@ -398,6 +398,12 @@ namespace ColonyCouncil
         public float everyMax;
         /// <summary>A debt: times it was put off. A hunt: times they came.</summary>
         public int times;
+        /// <summary>
+        /// The colony it belongs to (its settlement's id, <see cref="Homes"/>): the map of whatever made it, else the seat.
+        /// Its follow-up comes there while that's still a home (<see cref="HappeningTracker.MapFor"/>); an older memo has
+        /// none and goes to the seat.
+        /// </summary>
+        public int home = HomesMath.None;
 
         public void ExposeData()
         {
@@ -417,6 +423,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref everyMin, "everyMin");
             Scribe_Values.Look(ref everyMax, "everyMax");
             Scribe_Values.Look(ref times, "times");
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
         }
     }
 
@@ -428,6 +435,15 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningTracker : IExposable
     {
+        /// <summary>
+        /// Rimfolk's own event timer, one per home (a settlement's id and when its next event is due), so each colony
+        /// gets its events on its own rhythm.
+        /// </summary>
+        public Dictionary<int, int> timers = new Dictionary<int, int>();
+        /// <summary>
+        /// The seat's timer as it carries on: an older save's single timer, kept while there's no home (a gravship in
+        /// flight) and taken up by the next seat that has none of its own.
+        /// </summary>
         public int nextTick = -1;
         public int lastFiredTick = -999999;
         public HappeningGroup lastGroup = HappeningGroup.Nature;
@@ -528,11 +544,21 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        /// <summary>The busiest home on the ground; null when the colony lives only in space, where nobody can walk in.</summary>
+        /// <summary>The colony (the seat, <see cref="Homes.Seat"/>), on the ground; null when it lives only in space, where nobody can walk in.</summary>
         public static Map HomeMap()
         {
             var m = MapFacts.BusiestHome;
             return MapFacts.InVacuum(m) ? null : m;
+        }
+
+        /// <summary>
+        /// Where a memo's follow-up comes (a guest arriving, goods brought back, an order collected): its colony while
+        /// that's still a home on the ground, else the seat (<see cref="HomeMap"/>). Null with no home on the ground.
+        /// </summary>
+        public static Map MapFor(Memo m)
+        {
+            var map = Homes.ForMemo(m?.home ?? HomesMath.None);
+            return map != null && !MapFacts.InVacuum(map) ? map : HomeMap();
         }
 
         public void Hourly(CouncilGameComponent comp)
@@ -557,19 +583,52 @@ namespace ColonyCouncil
             Safe("quests", () => Quests(comp));
             // With the storyteller in charge of them, Rimfolk's own timer stays quiet.
             if (!S.worldEvents || S.eventsFromStoryteller) return;
-            if (nextTick < 0) nextTick = now + Interval();
-            if (now < GenDate.TicksPerDay * 3 || now < nextTick) return;
-            var map = HomeMap();
-            if (map == null) return;
-            // Not on top of a fight, and not while the colony still has an event to answer.
-            if (MapFacts.ThreatOn(map) || Waiting)
+            EventTimers(now);
+        }
+
+        /// <summary>
+        /// Rimfolk's own timer, one per home: when a home's comes round, an event that fits comes to that home. The seat
+        /// carries on the timer it had before there was one per home (<see cref="nextTick"/>), so one colony keeps its
+        /// rhythm, and a home lost takes its timer with it.
+        /// </summary>
+        private void EventTimers(int now)
+        {
+            var homes = Homes.All;
+            int seat = Homes.KeyOf(Homes.Seat);
+            if (homes.Count == 0)
             {
-                nextTick = now + GenDate.TicksPerHour * 4;
+                timers.Clear();
+                if (nextTick < 0) nextTick = now + Interval();
                 return;
             }
-            // Moved on first, so an event that throws can't fire again every hour.
-            nextTick = now + GenDate.TicksPerDay / 2;
-            if (TryFire(map, null)) nextTick = now + Interval();
+            if (timers.Count > 0)
+                foreach (int key in timers.Keys.ToList())
+                {
+                    var m = Homes.MapOf(key);
+                    if (m == null || (key != seat && MapFacts.InVacuum(m))) timers.Remove(key);
+                }
+            if (seat != HomesMath.None && !timers.ContainsKey(seat) && nextTick >= 0) timers[seat] = nextTick;
+            foreach (var map in homes)
+            {
+                int key = Homes.KeyOf(map);
+                // Nobody walks in on a home in space: it has no timer of its own, and the seat's waits while it's up there
+                // (as the colony's one timer always waited while it lived only in orbit).
+                bool space = MapFacts.InVacuum(map);
+                if (space && key != seat) continue;
+                if (!timers.TryGetValue(key, out int next) || next < 0) next = now + Interval();
+                timers[key] = next;
+                if (now < GenDate.TicksPerDay * 3 || now < next || space) continue;
+                // Not on top of a fight, and not while the colony still has an event to answer.
+                if (MapFacts.ThreatOn(map) || Waiting)
+                {
+                    timers[key] = now + GenDate.TicksPerHour * 4;
+                    continue;
+                }
+                // Moved on first, so an event that throws can't fire again every hour.
+                timers[key] = now + GenDate.TicksPerDay / 2;
+                if (TryFire(map, null)) timers[key] = now + Interval();
+            }
+            if (seat != HomesMath.None && timers.TryGetValue(seat, out int seatNext)) nextTick = seatNext;
         }
 
         /// <summary>An event letter nobody has answered yet.</summary>
@@ -895,9 +954,10 @@ namespace ColonyCouncil
 
         // ---------------- Memos for later events ----------------
 
-        public Memo Remember(string kind, Pawn pawn, Faction faction = null, string def = null, string text = null, bool won = false, Pawn other = null)
+        /// <summary>Notes something a later event can pick up; <paramref name="map"/> is where it happened (its colony: that home, else the seat).</summary>
+        public Memo Remember(string kind, Pawn pawn, Faction faction = null, string def = null, string text = null, bool won = false, Pawn other = null, Map map = null)
         {
-            var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won };
+            var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won, home = Homes.KeyForMemo(map) };
             if (pawn != null && !pawn.Dead && pawn.Faction != Faction.OfPlayer) m.pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(pawn);
             memos.Add(m);
             while (memos.Count > 24 && memos.Any(x => !Keeps(x)))
@@ -970,6 +1030,7 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Values.Look(ref nextTick, "nextTick", -1);
+            Scribe_Collections.Look(ref timers, "timers", LookMode.Value, LookMode.Value);
             Scribe_Values.Look(ref lastFiredTick, "lastFiredTick", -999999);
             Scribe_Values.Look(ref lastGroup, "lastGroup");
             Scribe_Collections.Look(ref raids, "raids", LookMode.Deep);
@@ -997,6 +1058,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref beastTick, "beastTick");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (timers == null) timers = new Dictionary<int, int>();
                 if (raids == null) raids = new List<PendingRaid>();
                 if (departed == null) departed = new List<Departed>();
                 if (grudges == null) grudges = new List<Grudge>();

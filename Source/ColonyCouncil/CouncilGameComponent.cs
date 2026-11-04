@@ -481,6 +481,8 @@ namespace ColonyCouncil
             Safe("animal life", () => AnimalLife.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
+            // Which home is whose (the last home each lived on for a day), and a home founded or lost (Lean/Homes.cs).
+            Safe("homes", Homes.Hourly);
             Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));

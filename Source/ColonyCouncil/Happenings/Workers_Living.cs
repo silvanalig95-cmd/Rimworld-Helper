@@ -135,8 +135,8 @@ namespace ColonyCouncil
 
         // ---------------- What earlier events leave behind ----------------
 
-        /// <summary>A neighbor's order was collected: filled, they may come back as regular buyers; not filled, they won't.</summary>
-        public static void Notify_OrderCollected(Faction f, ThingDef goods, bool filled)
+        /// <summary>A neighbor's order was collected at <paramref name="map"/>: filled, they may come back as regular buyers; not filled, they won't.</summary>
+        public static void Notify_OrderCollected(Faction f, ThingDef goods, bool filled, Map map)
         {
             var t = Tracker;
             if (t == null || f == null || goods == null) return;
@@ -148,7 +148,7 @@ namespace ColonyCouncil
             }
             if (m == null)
             {
-                m = t.Remember(Buyer, null, f, goods.defName);
+                m = t.Remember(Buyer, null, f, goods.defName, map: map);
                 m.amount = 1;
             }
             else
@@ -167,7 +167,7 @@ namespace ColonyCouncil
             var x = ctx?.stranger;
             var y = ctx?.group.FirstOrDefault();
             if (x == null || y == null || ctx.faction == null || x.Faction != Faction.OfPlayer || y.Faction != Faction.OfPlayer) return;
-            Tracker?.Remember(Eloped, x, ctx.faction, null, null, false, y);
+            Tracker?.Remember(Eloped, x, ctx.faction, null, null, false, y, ctx.map);
         }
 
         /// <summary>A relative visited and went home again: they may write.</summary>
@@ -178,7 +178,7 @@ namespace ColonyCouncil
             if (t == null || x == null || x.Dead || x.Faction == null || x.Faction == Faction.OfPlayer || ctx.a == null) return;
             // One letter-writer per colonist at a time.
             foreach (var old in t.memos.Where(m => m.kind == Kin && !m.used && m.other == ctx.a).ToList()) t.Use(old);
-            t.Remember(Kin, x, x.Faction, null, ctx.relation, false, ctx.a);
+            t.Remember(Kin, x, x.Faction, null, ctx.relation, false, ctx.a, ctx.map);
         }
 
         /// <summary>The fortune teller saw something bad for them.</summary>
@@ -186,7 +186,7 @@ namespace ColonyCouncil
         {
             var t = Tracker;
             if (t == null || p == null || t.memos.Any(m => m.kind == Unlucky && !m.used && m.other == p)) return;
-            t.Remember(Unlucky, null, null, null, null, false, p);
+            t.Remember(Unlucky, null, null, null, null, false, p, p.MapHeld);
         }
 
         /// <summary>
@@ -201,18 +201,21 @@ namespace ColonyCouncil
             if (t == null) return;
             var favored = option == 1 ? ctx.enemy : ctx.faction;
             var other = option == 1 ? ctx.faction : ctx.enemy;
-            var m = t.Remember(Quarrel, null, favored, option == 2 ? "middle" : "sided", null, false, ctx.a);
+            var m = t.Remember(Quarrel, null, favored, option == 2 ? "middle" : "sided", null, false, ctx.a, ctx.map);
             m.amount = other.loadID;
         }
 
-        /// <summary>Something on its way: comes due in <paramref name="days"/>. The memo pins its pawn in the world until then.</summary>
-        public static Memo Schedule(string kind, Pawn pawn, Faction f, string def, string text, Pawn other, float days)
+        /// <summary>
+        /// Something on its way: comes due in <paramref name="days"/>, to the colony of <paramref name="map"/> (where it was
+        /// set going). The memo pins its pawn in the world until then.
+        /// </summary>
+        public static Memo Schedule(string kind, Pawn pawn, Faction f, string def, string text, Pawn other, float days, Map map)
         {
             var t = Tracker;
             if (t == null) return null;
             // Whatever held them before (the letter that asked about them) lets go; the memo holds them now.
             if (pawn != null) Find.WorldPawns.ForcefullyKeptPawns.Remove(pawn);
-            var m = t.Remember(kind, pawn, f, def, text, false, other);
+            var m = t.Remember(kind, pawn, f, def, text, false, other, map);
             m.due = Now + Mathf.RoundToInt(days * GenDate.TicksPerDay);
             return m;
         }
@@ -221,11 +224,10 @@ namespace ColonyCouncil
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
-            bool home = HappeningTracker.HomeMap() != null;
             foreach (var m in t.memos.Where(m => IsPending(m) && now >= m.due).ToList())
             {
                 // No home to come back to right now (a gravship in flight, a caravan life): what's on its way waits.
-                if (!home)
+                if (HappeningTracker.MapFor(m) == null)
                 {
                     m.due = now + GenDate.TicksPerHour;
                     continue;
@@ -489,7 +491,7 @@ namespace ColonyCouncil
             if (t != null && option == 0 && ctx.thing != null && ctx.variant > 0 && LivingEvents.Friendly(ctx.faction))
             {
                 // An order like the first one: the neighbor's order event collects it.
-                var m = t.Remember("order", null, ctx.faction, ctx.thing.defName, null, false, ctx.a);
+                var m = t.Remember("order", null, ctx.faction, ctx.thing.defName, null, false, ctx.a, ctx.map);
                 m.amount = ctx.variant;
                 m.due = Find.TickManager.TicksGame + HappeningWorker_Order.DueDays * GenDate.TicksPerDay;
                 if (buyer != null) buyer.times = 1;
@@ -655,7 +657,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (option == 1 && !byDefault && ctx.stranger != null && ctx.a != null && !ctx.stranger.Dead)
-                LivingEvents.Schedule(LivingEvents.KinComing, ctx.stranger, ctx.faction, null, ctx.relation, ctx.a, Rand.Range(3f, 6f));
+                LivingEvents.Schedule(LivingEvents.KinComing, ctx.stranger, ctx.faction, null, ctx.relation, ctx.a, Rand.Range(3f, 6f), ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
 
@@ -672,7 +674,7 @@ namespace ColonyCouncil
         {
             var def = LivingEvents.EventOf(LivingEvents.KinComing);
             var more = LivingEvents.More(def);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = LivingEvents.Context(m, def, map);
             var x = m.pawn;
@@ -1123,7 +1125,7 @@ namespace ColonyCouncil
             var sent = LivingEvents.ThingNamed(ctx.note);
             if (option == 0 && !byDefault && sent != null && ctx.thing != null && Couriers.TakeFromStoresFor(ctx, sent, ctx.variant))
             {
-                var m = LivingEvents.Schedule(LivingEvents.Market, null, ctx.faction, sent.defName, ctx.thing.defName + "|" + ctx.placeName, ctx.a, Rand.Range(6f, 9f));
+                var m = LivingEvents.Schedule(LivingEvents.Market, null, ctx.faction, sent.defName, ctx.thing.defName + "|" + ctx.placeName, ctx.a, Rand.Range(6f, 9f), ctx.map);
                 if (m != null)
                 {
                     m.amount = ctx.variant;
@@ -1138,7 +1140,7 @@ namespace ColonyCouncil
         {
             var def = LivingEvents.EventOf(LivingEvents.Market);
             var more = LivingEvents.More(def);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = LivingEvents.Context(m, def, map);
             if (!LivingEvents.Friendly(m.faction) || ctx.thing == null)
@@ -1211,7 +1213,7 @@ namespace ColonyCouncil
         {
             if (option == 0 && !byDefault && ctx.thing != null && Couriers.TakeFromStoresFor(ctx, ctx.thing, ctx.variant))
             {
-                var m = LivingEvents.Schedule(LivingEvents.Fair, null, ctx.faction, ctx.thing.defName, ctx.placeName, ctx.a, Rand.Range(3f, 4f));
+                var m = LivingEvents.Schedule(LivingEvents.Fair, null, ctx.faction, ctx.thing.defName, ctx.placeName, ctx.a, Rand.Range(3f, 4f), ctx.map);
                 if (m != null) m.amount = ctx.variant;
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
@@ -1222,7 +1224,7 @@ namespace ColonyCouncil
         {
             var def = LivingEvents.EventOf(LivingEvents.Fair);
             var more = LivingEvents.More(def);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = LivingEvents.Context(m, def, map);
             if (!LivingEvents.Friendly(m.faction) || ctx.thing == null)
@@ -1306,7 +1308,7 @@ namespace ColonyCouncil
             var x = ctx.stranger;
             if (option == 0 && x != null && x.Spawned && ctx.map != null)
             {
-                LivingEvents.Schedule(LivingEvents.Morning, x, ctx.faction, null, null, ctx.a, HoursToMorning(ctx.map) / 24f);
+                LivingEvents.Schedule(LivingEvents.Morning, x, ctx.faction, null, null, ctx.a, HoursToMorning(ctx.map) / 24f, ctx.map);
                 // The night in a warm corner indoors, until first light; they go on in the morning (Morning).
                 VisitorServices.Lodge(ctx.map, x, false);
                 // Two people with the same sort of past find each other by the fire.
@@ -1332,7 +1334,7 @@ namespace ColonyCouncil
         {
             var def = LivingEvents.EventOf(LivingEvents.Morning);
             var more = LivingEvents.More(def);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = LivingEvents.Context(m, def, map);
             var x = m.pawn;
@@ -1656,7 +1658,7 @@ namespace ColonyCouncil
         {
             var x = ctx.stranger;
             if (option == 0 && x != null && !x.Dead && !x.Spawned && LivingEvents.Friendly(ctx.faction))
-                LivingEvents.Schedule(LivingEvents.Guest, x, ctx.faction, null, ctx.placeName, ctx.a, Rand.Range(2f, 3f));
+                LivingEvents.Schedule(LivingEvents.Guest, x, ctx.faction, null, ctx.placeName, ctx.a, Rand.Range(2f, 3f), ctx.map);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
 
@@ -1673,7 +1675,7 @@ namespace ColonyCouncil
         {
             var def = LivingEvents.EventOf(LivingEvents.Guest);
             var more = LivingEvents.More(def);
-            var map = HappeningTracker.HomeMap();
+            var map = HappeningTracker.MapFor(m);
             if (def == null || map == null) return;
             var ctx = LivingEvents.Context(m, def, map);
             var x = m.pawn;

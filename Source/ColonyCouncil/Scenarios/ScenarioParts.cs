@@ -312,7 +312,7 @@ namespace ColonyCouncil
         public override void Setup(ScenarioSetupContext ctx)
         {
             if (situation == null || !ColonyCouncilMod.Settings.worldSituations) return;
-            var m = ctx.comp.happenings.Remember("situation", null, null, null, situation.defName);
+            var m = ctx.comp.happenings.Remember("situation", null, null, null, situation.defName, map: ctx.map);
             m.due = Find.TickManager.TicksGame + Mathf.RoundToInt(Mathf.Max(1f, Days(days)) * GenDate.TicksPerDay);
             if (!hint.NullOrEmpty() && hint.CanTranslate()) ctx.lines.Add(hint.Translate().Resolve());
         }
