@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More of what colonists say about the sky and the day (Immersion/WeatherTalk.cs, Weather/WeatherDynamics.cs,
+    Immersion/HabitBubbles.cs, Touches/VisualTouches.cs): the forecast a few hours before the weather turns (one
+    sentence, no times), a record broken, an odd warm spell, lightning, and the small habits (snow falling, sitting in
+    the sun, sunrise, the birds, the stones, a tidy floor, the tree line, a birthday, the animals). The speaker's own
+    tags (season, hour, weather, [child], [old], the work) as in the pools they join; [lowtech] and [!lowtech] keep a
+    line to the ages it fits. One sentence each, said over the head.
+  -->
+
+  <!-- ===================== Forecasts ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastRain</defName>
+    <pool>Council_Pool_SayForecastRain</pool>
+    <lines>
+      <plain>
+        <li>The wind's swung round, and it smells wet.</li>
+        <li>The frogs are calling, so there's rain coming.</li>
+        <li>[spacer] Rain's coming, and there's no weather control out here to stop it.</li>
+      </plain>
+      <warm><li>Rain's coming, so I'll bring your washing in with mine.</li></warm>
+      <blunt><li>Rain soon, cover the wood.</li></blunt>
+      <cheerful><li>Rain's coming, and I'm going to stand out in it.</li></cheerful>
+      <gloomy><li>Rain again, and I've only just dried out.</li></gloomy>
+      <cold><li>Rain coming, so the outdoor work goes first.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastStorm</defName>
+    <pool>Council_Pool_SayForecastStorm</pool>
+    <lines>
+      <plain>
+        <li>Look at those clouds stacking up, there's a storm in them.</li>
+        <li>[!lowtech] Check the conduits, there's a storm on the way.</li>
+      </plain>
+      <warm><li>Stay in if you can, there's a storm on the way.</li></warm>
+      <blunt><li>Storm's coming, tie everything down.</li></blunt>
+      <cheerful><li>There's a storm coming, and I love the sound of it on the roof.</li></cheerful>
+      <gloomy><li>Storm coming, and lightning always finds something to burn.</li></gloomy>
+      <cold><li>A storm's coming, so keep away from the tall trees.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastSnow</defName>
+    <pool>Council_Pool_SayForecastSnow</pool>
+    <lines>
+      <plain>
+        <li>The wind's gone round to the north, it'll snow.</li>
+        <li>[lowtech] Bank the fires well, snow's coming.</li>
+        <li>[!lowtech] Check the heaters, there's snow coming.</li>
+      </plain>
+      <warm><li>Snow's coming, so wrap up warm, all of you.</li></warm>
+      <blunt><li>Snow soon, so finish the outside work.</li></blunt>
+      <cheerful><li>Snow's coming, proper snow by the look of it.</li></cheerful>
+      <gloomy><li>Snow's coming, and it'll be ankle-deep in the fields.</li></gloomy>
+      <cold><li>Snow coming, and the hunting will be harder in it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastFog</defName>
+    <pool>Council_Pool_SayForecastFog</pool>
+    <lines>
+      <plain><li>The low ground's already gone white, fog's coming up.</li></plain>
+      <warm><li>Fog's coming, so stay where we can see you.</li></warm>
+      <blunt><li>Fog soon, stay close to the walls.</li></blunt>
+      <cheerful><li>Fog's coming, it'll make the trees look like ghosts.</li></cheerful>
+      <gloomy><li>Fog's coming, and it always feels like something's in it.</li></gloomy>
+      <cold><li>Fog coming, so the watch won't see far.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastClear</defName>
+    <pool>Council_Pool_SayForecastClear</pool>
+    <lines>
+      <plain>
+        <li>Not a cloud anywhere, it'll stay fine.</li>
+        <li>The dew's heavy on the grass, so it'll be fine.</li>
+      </plain>
+      <warm><li>Fine weather coming, we'll get the washing dry at last.</li></warm>
+      <blunt><li>Fair weather, so no excuses for the outside work.</li></blunt>
+      <cheerful><li>Sun's coming, and I've already picked my spot to sit in it.</li></cheerful>
+      <gloomy><li>Fine weather coming, and it'll rain the day we harvest anyway.</li></gloomy>
+      <cold><li>Clear weather ahead, so the hunters can go out.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastCloud</defName>
+    <pool>Council_Pool_SayForecastCloud</pool>
+    <lines>
+      <plain><li>Gray coming in from the west, and staying, by the look of it.</li></plain>
+      <warm><li>Gray weather coming, good for staying in with a story.</li></warm>
+      <blunt><li>Gray day coming.</li></blunt>
+      <cheerful><li>Cloud's coming, it'll be cooler for the work.</li></cheerful>
+      <gloomy><li>No sun again, I expect.</li></gloomy>
+      <cold><li>[!lowtech] Overcast coming, so the solar panels will be slow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastWind</defName>
+    <pool>Council_Pool_SayForecastWind</pool>
+    <lines>
+      <plain>
+        <li>The grass is all leaning one way, wind's on its way.</li>
+        <li>[!lowtech] Good wind coming, the turbines will spin fast.</li>
+      </plain>
+      <warm><li>Wind's coming, put a warm layer on before you go out.</li></warm>
+      <blunt><li>Wind coming, weigh down anything light.</li></blunt>
+      <cheerful><li>Windy weather coming, good for drying the washing.</li></cheerful>
+      <gloomy><li>Wind's coming, it'll blow the heat right out of the rooms.</li></gloomy>
+      <cold><li>Strong wind coming, the fires will need more fuel.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastDust</defName>
+    <pool>Council_Pool_SayForecastDust</pool>
+    <lines>
+      <plain><li>The air's gone gritty already, dust's on the way.</li></plain>
+      <warm><li>Dust's coming, wet a cloth for your face.</li></warm>
+      <blunt><li>Dust coming, cover the food.</li></blunt>
+      <cheerful><li>Dust coming, so it's a day for indoor work.</li></cheerful>
+      <gloomy><li>Dust's coming, and it'll be in the beds for days.</li></gloomy>
+      <cold><li>Dust coming, keep the doors closed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayForecastWrong</defName>
+    <pool>Council_Pool_SayForecastWrong</pool>
+    <lines>
+      <plain><li>I'd have bet my supper on that forecast.</li></plain>
+      <warm><li>I'm glad I was wrong this time.</li></warm>
+      <blunt><li>The sky lied to me.</li></blunt>
+      <cheerful><li>Can't win them all, the sky's a tricky one.</li></cheerful>
+      <gloomy><li>Even the sky won't do what I say.</li></gloomy>
+      <cold><li>My reading of the sky was off.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Records, a warm spell, lightning ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayRecordCold</defName>
+    <pool>Council_Pool_SayRecordCold</pool>
+    <lines>
+      <plain>
+        <li>The water froze in the bucket by the door.</li>
+        <li>[lowtech] Keep the fires going all night, all of you.</li>
+        <li>[!lowtech] Check the heaters, every one of them.</li>
+      </plain>
+      <warm><li>Sleep close together and share the blankets until this breaks.</li></warm>
+      <cheerful><li>Well, at least it's a record.</li></cheerful>
+      <cold><li>Keep your hands covered, frostbite's the danger now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayRecordHot</defName>
+    <pool>Council_Pool_SayRecordHot</pool>
+    <lines>
+      <plain>
+        <li>Drink before you're thirsty, all of you.</li>
+        <li>[lowtech] Wet cloths on your necks, and work in the shade.</li>
+        <li>[!lowtech] The coolers can barely keep up with this.</li>
+      </plain>
+      <warm><li>Take it slow today, I don't want anyone collapsing.</li></warm>
+      <cheerful><li>Hot enough to cook on a rock, I'd bet.</li></cheerful>
+      <gloomy><li>The crops won't take much more of this.</li></gloomy>
+      <cold><li>Work at dawn and dusk, not in this.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayRecordWet</defName>
+    <pool>Council_Pool_SayRecordWet</pool>
+    <lines>
+      <plain>
+        <li>The paths are mud from here to the fields.</li>
+        <li>Everything smells damp, even the bedding.</li>
+      </plain>
+      <warm><li>Come in and dry off by the fire.</li></warm>
+      <blunt><li>Rain, rain, and more rain.</li></blunt>
+      <gloomy><li>My boots haven't been dry in a week.</li></gloomy>
+      <cold><li>The low ground will flood if this goes on.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayRecordDry</defName>
+    <pool>Council_Pool_SayRecordDry</pool>
+    <lines>
+      <plain><li>The topsoil blows off the fields in clouds.</li></plain>
+      <warm><li>Water the young plants first, they feel it most.</li></warm>
+      <blunt><li>No rain, again.</li></blunt>
+      <cheerful><li>Good drying weather, if nothing else.</li></cheerful>
+      <cold><li>If it doesn't rain soon, we lose the crop.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayWarmSpell</defName>
+    <pool>Council_Pool_SayWarmSpell</pool>
+    <lines>
+      <plain>
+        <li>Strange weather for the season, but I won't complain.</li>
+        <li>[winter] Water's dripping off the roofs in the middle of winter.</li>
+      </plain>
+      <warm><li>Let's have supper outside if it holds.</li></warm>
+      <blunt><li>Warm, odd, back to work.</li></blunt>
+      <cheerful><li>Coats off, everyone, it's practically summer.</li></cheerful>
+      <gloomy><li>The ground'll freeze again overnight, you'll see.</li></gloomy>
+      <cold><li>Use it for the outside work while it lasts.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_SayLightningFlinch</defName>
+    <pool>Council_Pool_SayLightningFlinch</pool>
+    <lines>
+      <plain><li>I felt that one in my teeth.</li></plain>
+      <warm><li>Stay close to me until it passes.</li></warm>
+      <cheerful><li>That one lit up the whole sky!</li></cheerful>
+      <cold><li>It's further off than it sounds.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Small habits ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitSnowFall</defName>
+    <pool>Council_Pool_HabitSnowFall</pool>
+    <lines>
+      <plain>
+        <li>It's coming down thicker now.</li>
+        <li>The tracks from this morning are gone already.</li>
+        <li>We'll be shoveling paths before long.</li>
+      </plain>
+      <warm>
+        <li>Look at it on the fence posts, like little caps.</li>
+        <li>Stand here with me a minute, it's lovely.</li>
+      </warm>
+      <blunt><li>Pretty, and a nuisance by morning.</li></blunt>
+      <cheerful><li>Fresh snow, and not a footprint in it yet.</li></cheerful>
+      <gloomy><li>There goes the last of the green.</li></gloomy>
+      <cold><li>Heavy flakes, so it'll settle.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitSun</defName>
+    <pool>Council_Pool_HabitSun</pool>
+    <lines>
+      <plain>
+        <li>Close your eyes and you could be anywhere.</li>
+        <li>[summer] Too hot by noon, but this early it's just right.</li>
+      </plain>
+      <warm><li>Come and sit, there's room in the sun for two.</li></warm>
+      <blunt><li>Don't stand in my sun.</li></blunt>
+      <cheerful><li>I'm not moving until the shadow gets me.</li></cheerful>
+      <gloomy><li>My knees are older than they were last summer.</li></gloomy>
+      <cold><li>The warmth loosens the joints, that's all.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitSunrise</defName>
+    <pool>Council_Pool_HabitSunrise</pool>
+    <lines>
+      <plain>
+        <li>First light, and the birds already at it.</li>
+        <li>[winter] The frost's going pink in the light.</li>
+      </plain>
+      <blunt><li>Sun's up, so the day's on.</li></blunt>
+      <cheerful><li>Morning, everything, it's a good one.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitBirds</defName>
+    <pool>Council_Pool_HabitBirds</pool>
+    <lines>
+      <plain>
+        <li>That little brown one always comes last.</li>
+        <li>[fall] Getting fat for the cold, are you?</li>
+      </plain>
+      <warm><li>Slow down, there's enough for all of you.</li></warm>
+      <blunt><li>Eat and go, I've work to do.</li></blunt>
+      <cold><li>They know where the scraps go, that's all.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitStones</defName>
+    <pool>Council_Pool_HabitStones</pool>
+    <lines>
+      <plain>
+        <li>This one sits in the palm just right.</li>
+        <li>[lowtech] Good flint, this, I'll knock an edge on it later.</li>
+      </plain>
+      <cheerful><li>This one looks like a little face, see the eyes?</li></cheerful>
+      <cold><li>Mostly worthless, but this one has a vein of something.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitTidy</defName>
+    <pool>Council_Pool_HabitTidy</pool>
+    <lines>
+      <plain><li>Crumbs under the table again.</li></plain>
+      <cheerful><li>Nearly done, and then it'll shine.</li></cheerful>
+      <cold><li>Dirt spreads sickness, so it goes.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitTreeLine</defName>
+    <pool>Council_Pool_HabitTreeLine</pool>
+    <lines>
+      <plain><li>Something's been at the bark on that one.</li></plain>
+      <cheerful><li>Rabbits all along the edge, look.</li></cheerful>
+      <cold><li>No tracks I don't know, that's what matters.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitBirthday</defName>
+    <pool>Council_Pool_HabitBirthday</pool>
+    <lines>
+      <plain><li>Many happy returns, {OTHER_nameDef}.</li></plain>
+      <gloomy><li>Another year older, {OTHER_nameDef}, same as the rest of us.</li></gloomy>
+      <cold><li>Happy birthday, {OTHER_nameDef}, I've marked the day.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_HabitAnimals</defName>
+    <pool>Council_Pool_HabitAnimals</pool>
+    <lines>
+      <plain><li>You've got straw all through your coat again.</li></plain>
+      <warm><li>There's a good one, steady now.</li></warm>
+      <blunt><li>Hold still, I'm nearly done.</li></blunt>
+      <cheerful><li>Who's getting fat on our scraps, then?</li></cheerful>
+      <gloomy><li>You don't care what day it is, do you.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_AnimalFollows</defName>
+    <pool>Council_Pool_AnimalFollows</pool>
+    <lines>
+      <plain><li>All right, {PET_nameDef}, but stay out from under my feet.</li></plain>
+      <warm><li>Good company, you are, {PET_nameDef}.</li></warm>
+      <blunt><li>Keep up or stay behind.</li></blunt>
+      <cheerful><li>Look who's following me about again.</li></cheerful>
+      <gloomy><li>You'll get bored of me soon enough.</li></gloomy>
+      <cold><li>Stay close and stay quiet.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Touches: hail, a fight won ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_TouchHail</defName>
+    <pool>Council_Pool_TouchHail</pool>
+    <lines>
+      <plain><li>It's bouncing off the roof like gravel.</li></plain>
+      <warm><li>Get under here with me.</li></warm>
+      <gloomy><li>That's the seedlings flattened.</li></gloomy>
+      <cold><li>Hail never lasts long, wait it out.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_TouchVictory</defName>
+    <pool>Council_Pool_TouchVictory</pool>
+    <lines>
+      <plain><li>Count heads, all of you.</li></plain>
+      <warm><li>You were brave out there, every one of you.</li></warm>
+      <blunt><li>Wounded inside first, then the rest.</li></blunt>
+      <cheerful><li>We're still here, and they're not.</li></cheerful>
+      <gloomy><li>I keep seeing their faces.</li></gloomy>
+      <cold><li>Count our losses, then theirs.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The herd's leader and the beast that stays ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_Herd_SayLeader</defName>
+    <pool>Council_Pool_Herd_SayLeader</pool>
+    <lines>
+      <plain>
+        <li>Keep them out of the crops, {PET_nameDef}, that's all I ask.</li>
+        <li>[first] Somebody had to go first, {PET_nameDef}, and it's you.</li>
+        <li>[line] It runs in the family, {PET_nameDef}.</li>
+        <li>[new] New blood at the front, {PET_nameDef}, let's see what you make of it.</li>
+      </plain>
+      <warm>
+        <li>They trust you, {PET_nameDef}, so look after them.</li>
+        <li>[line] The old one would be proud of you, {PET_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>Keep them in line, {PET_nameDef}.</li>
+        <li>[new] Your turn now, {PET_nameDef}.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at you out in front, {PET_nameDef}!</li>
+        <li>[first] The very first to lead them, {PET_nameDef}, how about that.</li>
+      </cheerful>
+      <gloomy>
+        <li>Don't lead them anywhere bad, {PET_nameDef}.</li>
+        <li>[line] The old one's gone, {PET_nameDef}, and it's down to you now.</li>
+      </gloomy>
+      <cold>
+        <li>You lead because the others let you, {PET_nameDef}.</li>
+        <li>[new] The strongest leads, {PET_nameDef}, and that's you for now.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_BeastSighting</defName>
+    <pool>Council_Pool_BeastSighting</pool>
+    <lines>
+      <plain>
+        <li>{PET_nameDef}'s about again, just at the edge of things.</li>
+        <li>Somebody tell the others {PET_nameDef}'s back.</li>
+        <li>[grazer] {PET_nameDef}'s eating our grass again, the cheek of it.</li>
+        <li>[predator] Keep the animals close, {PET_nameDef}'s out.</li>
+      </plain>
+      <warm>
+        <li>There you are, {PET_nameDef}, safe another day.</li>
+        <li>[grazer] Leave {PET_nameDef} be, it's doing no harm.</li>
+      </warm>
+      <blunt>
+        <li>{PET_nameDef} again, same as always.</li>
+        <li>[predator] {PET_nameDef}'s out, so watch yourselves.</li>
+      </blunt>
+      <cheerful>
+        <li>Hello, {PET_nameDef}, nice of you to drop by.</li>
+        <li>[grazer] {PET_nameDef}'s getting fat on our meadow.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PET_nameDef}'s still out there, still watching us.</li>
+        <li>[grazer] One hard winter and {PET_nameDef} won't come back.</li>
+      </gloomy>
+      <cold>
+        <li>{PET_nameDef} is getting too close to the fields.</li>
+        <li>[grazer] {PET_nameDef} would feed us for a week.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

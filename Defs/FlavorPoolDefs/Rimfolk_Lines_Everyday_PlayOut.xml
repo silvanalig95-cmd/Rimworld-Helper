@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for the plays of one thing or one round (PlayOut/OnMapPlays.cs, said through PlayWords): a gift carried
+    over by hand ([give], said to {OTHER}, the one it's for), a stash carried out to the yard and burned ([burn]: nobody
+    is {OTHER}), a visitor's work collected ([fetch]); rounds to each colonist in turn (a look at everyone, or [outdoors]
+    a pot taken to those working outside); the enemy dead carried out ([pyre], [treeline], [graves], [trench],
+    [crematorium]); and what's said before a secret comes out in front of everyone. Untagged lines fit every mode of
+    their pool. One sentence each, said over the head.
+  -->
+
+  <!-- ===================== A thing carried over by hand ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayGiveInvite</defName>
+    <pool>Council_Pool_PlayGiveInvite</pool>
+    <lines>
+      <plain>
+        <li>Won't be long.</li>
+        <li>Mind your backs, I'm carrying.</li>
+        <li>I've an errand to see to first.</li>
+        <li>[give] {OTHER_nameDef} should have this today, not tomorrow.</li>
+        <li>[give] If anyone sees {OTHER_nameDef}, don't say a word.</li>
+        <li>[burn] Somebody clear a spot in the yard.</li>
+        <li>[burn] Keep the door open, I'm carrying this straight through.</li>
+        <li>[fetch] Our visitor says it's ready, so I'll go and fetch it.</li>
+      </plain>
+      <warm>
+        <li>I'll be back before you miss me.</li>
+        <li>[give] {OTHER_nameDef} has earned this, I think.</li>
+        <li>[fetch] I'll thank our visitor while I'm over there.</li>
+        <li>[burn] Better on the fire than causing any more grief.</li>
+      </warm>
+      <blunt>
+        <li>Out of my way, I'm carrying.</li>
+        <li>[give] It's for {OTHER_nameDef}, so hands off.</li>
+        <li>[fetch] Going to get it, back soon.</li>
+      </blunt>
+      <cheerful>
+        <li>Errand time, wish me luck.</li>
+        <li>[give] {OTHER_nameDef} is going to be so surprised.</li>
+        <li>[burn] There'll be a fire in the yard in a minute, a small one.</li>
+        <li>[fetch] Our visitor's made something, and I get to see it first.</li>
+      </cheerful>
+      <gloomy>
+        <li>Let's get this over with.</li>
+        <li>[give] {OTHER_nameDef} will probably put it in a chest and forget it.</li>
+        <li>[burn] We should have burned it the day we found it.</li>
+      </gloomy>
+      <cold>
+        <li>I'll be a few minutes.</li>
+        <li>[give] Delivering this to {OTHER_nameDef}.</li>
+        <li>[burn] Taking it out to be destroyed.</li>
+        <li>[fetch] Collecting our visitor's work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Said as it's set down: to the one it's for, or to nobody in the yard. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayGive</defName>
+    <pool>Council_Pool_PlayGive</pool>
+    <lines>
+      <plain>
+        <li>That's that seen to.</li>
+        <li>Mind where you step.</li>
+        <li>[give] Don't say anything yet, just look at it.</li>
+        <li>[give] I've had this set aside for you, {OTHER_nameDef}.</li>
+        <li>[burn] Let it burn right down, then we'll rake it over.</li>
+        <li>[burn] Keep the smoke out of your eyes.</li>
+        <li>[fetch] I'll set it down here where everyone can see it.</li>
+        <li>[fetch] Our visitor does fine work, I'll say that.</li>
+      </plain>
+      <warm>
+        <li>There now, that's done.</li>
+        <li>[give] This is for all the times you helped me, {OTHER_nameDef}.</li>
+        <li>[give] Keep it somewhere you'll see it every day.</li>
+      </warm>
+      <blunt>
+        <li>Done, back to work.</li>
+        <li>[give] Yours, {OTHER_nameDef}, don't lose it.</li>
+        <li>[burn] Gone, and good riddance.</li>
+      </blunt>
+      <cheerful>
+        <li>That went better than I expected.</li>
+        <li>[give] No reason, {OTHER_nameDef}, I just wanted you to have it.</li>
+        <li>[fetch] Look what our visitor made for us!</li>
+      </cheerful>
+      <gloomy>
+        <li>Well, that's done, I suppose.</li>
+        <li>[give] You don't have to like it, {OTHER_nameDef}.</li>
+        <li>[burn] There goes a good few days' trouble, up in smoke.</li>
+      </gloomy>
+      <cold>
+        <li>That's taken care of.</li>
+        <li>[give] It's yours now, {OTHER_nameDef}, and I've no further use for it.</li>
+        <li>[burn] Make sure every bit of it burns.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Rounds ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayRoundsInvite</defName>
+    <pool>Council_Pool_PlayRoundsInvite</pool>
+    <lines>
+      <plain>
+        <li>Nearest first, and I'll work my way round.</li>
+        <li>[outdoors] Bowls out, I'm coming round with the pot.</li>
+        <li>[outdoors] Whoever's working outside, the pot's on its way.</li>
+      </plain>
+      <warm>
+        <li>I'll see every one of you before the day's out.</li>
+        <li>[outdoors] You've all earned something hot.</li>
+      </warm>
+      <blunt>
+        <li>Don't make me chase you.</li>
+        <li>[outdoors] Pot's coming, so don't wander off.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll get round to every one of you, I promise.</li>
+        <li>[outdoors] Soup on legs, coming your way.</li>
+      </cheerful>
+      <gloomy>
+        <li>This'll take the rest of the day.</li>
+        <li>[outdoors] It'll be cold before I reach the last of you.</li>
+      </gloomy>
+      <cold>
+        <li>I'll start with whoever's nearest.</li>
+        <li>[outdoors] Meals for the outside workers, nearest first.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Said to each one, as the one going round comes up to them. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayRounds</defName>
+    <pool>Council_Pool_PlayRounds</pool>
+    <lines>
+      <plain>
+        <li>There you are, {OTHER_nameDef}.</li>
+        <li>Just a moment of your time, {OTHER_nameDef}.</li>
+        <li>[outdoors] Take a bowl, the pot's still warm.</li>
+      </plain>
+      <warm>
+        <li>You're looking better than last time, {OTHER_nameDef}.</li>
+        <li>[outdoors] Sit down a minute and eat, {OTHER_nameDef}, the work will keep.</li>
+      </warm>
+      <blunt>
+        <li>Stand still, {OTHER_nameDef}, this won't take long.</li>
+        <li>[outdoors] Bowl, quick, I've others to get to.</li>
+      </blunt>
+      <cheerful>
+        <li>Your turn, {OTHER_nameDef}, and you've been very patient.</li>
+        <li>[outdoors] Hot soup for the hardest worker out here.</li>
+      </cheerful>
+      <gloomy>
+        <li>Don't mind me, I'll be gone in a moment.</li>
+        <li>[outdoors] There's not much in it, but drink it while it's hot.</li>
+      </gloomy>
+      <cold>
+        <li>Stay where you are, {OTHER_nameDef}, this is quick.</li>
+        <li>[outdoors] Eat it now, I'll need the bowl back.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The enemy dead carried out ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayHaulInvite</defName>
+    <pool>Council_Pool_PlayHaulInvite</pool>
+    <lines>
+      <plain>
+        <li>Two to a body, and lift with your legs.</li>
+        <li>Let's get them out before the flies find them.</li>
+        <li>[pyre] Pile the wood high, it has to burn a long time.</li>
+        <li>[graves] Someone fetch the shovels, it'll be a long dig.</li>
+      </plain>
+      <warm>
+        <li>Let's do this decently, whoever they were.</li>
+        <li>[graves] They tried to kill us, and they still get a grave.</li>
+      </warm>
+      <blunt>
+        <li>Grab the feet, I'll take the arms.</li>
+        <li>Cloth over your nose and get on with it.</li>
+      </blunt>
+      <cheerful>
+        <li>The faster we work, the sooner we wash.</li>
+        <li>Come on, it's a nasty job but it's a short one.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll be dreaming about this tonight.</li>
+        <li>Somebody's waiting for these ones to come home.</li>
+      </gloomy>
+      <cold>
+        <li>Take one each and come back for the next.</li>
+        <li>The sooner they're gone, the sooner the place is clean.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlayHaul</defName>
+    <pool>Council_Pool_PlayHaul</pool>
+    <lines>
+      <plain>
+        <li>Watch the step here.</li>
+        <li>Put it down a moment, my grip's going.</li>
+        <li>[pyre] Higher up the pile, it'll burn better.</li>
+        <li>[treeline] Far enough, the animals will do the rest.</li>
+        <li>[trench] Straighten that one, there's more to fit in.</li>
+      </plain>
+      <warm>
+        <li>Gently with this one.</li>
+        <li>[graves] Rest easy, whoever you were.</li>
+      </warm>
+      <blunt>
+        <li>Lift, don't drag.</li>
+        <li>Keep moving.</li>
+      </blunt>
+      <cheerful>
+        <li>Nearly done, then it's a wash and a hot meal.</li>
+      </cheerful>
+      <gloomy>
+        <li>This one was younger than me.</li>
+        <li>Same as the last one, and the one before.</li>
+      </gloomy>
+      <cold>
+        <li>That one's done, go back for another.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A secret said out loud (a personal story's end) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Everyday_Pool_PlaySaidAloud</defName>
+    <pool>Council_Pool_PlaySaidAloud</pool>
+    <lines>
+      <plain>
+        <li>Sit down, all of you, please.</li>
+        <li>I've kept something from you, and I'm done keeping it.</li>
+      </plain>
+      <warm>
+        <li>You're the people I trust most, so you should hear this.</li>
+        <li>Please hear me out to the end.</li>
+      </warm>
+      <blunt>
+        <li>No interruptions until I'm finished.</li>
+        <li>Listen, all of you.</li>
+      </blunt>
+      <cheerful>
+        <li>Don't panic, but I have news about myself.</li>
+      </cheerful>
+      <gloomy>
+        <li>I've put this off long enough.</li>
+        <li>There's no good way to say this.</li>
+      </gloomy>
+      <cold>
+        <li>Listen carefully, I'll only say it once.</li>
+        <li>You'll want to hear this from me before you hear it from anyone else.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
