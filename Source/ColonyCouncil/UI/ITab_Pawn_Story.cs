@@ -124,10 +124,26 @@ namespace ColonyCouncil
 
         private static readonly Cache[] caches = { new Cache(), new Cache(), new Cache() };
 
+        /// <summary>
+        /// The cards' models: a window's drawer and the floating card can show two colonists at once, and one model for
+        /// both would be built again on every draw of each.
+        /// </summary>
+        private static readonly Cache[] cardCaches = { new Cache(), new Cache() };
+
+        private static Cache CacheFor(StoryParts parts, Pawn p)
+        {
+            if (parts != StoryParts.Card) return caches[(int)parts];
+            foreach (var c in cardCaches)
+                if (c.pawn == p)
+                    return c;
+            // A colonist not kept yet takes the model built longest ago.
+            return cardCaches[0].at <= cardCaches[1].at ? cardCaches[0] : cardCaches[1];
+        }
+
         /// <summary>Forget the last game's colonist (called when a game loads).</summary>
         public static void Reset()
         {
-            foreach (var c in caches)
+            foreach (var c in caches.Concat(cardCaches))
             {
                 c.pawn = null;
                 c.overview = null;
@@ -141,7 +157,7 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             if (p == null || comp == null) return;
-            var cache = caches[(int)parts];
+            var cache = CacheFor(parts, p);
             // The social parts move to the Social tab's column only while it can show.
             bool socialElsewhere = parts == StoryParts.StoryTab && SocialColumn.Available;
             float time = Time.realtimeSinceStartup;
