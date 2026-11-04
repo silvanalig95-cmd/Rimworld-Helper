@@ -154,18 +154,18 @@ namespace ColonyCouncil
         {
             if (p == null || p.Dead || p.Spawned) return;
             if (!held.Contains(p)) held.Add(p);
+            // The ledger's reason; the game told as always (into the world for good, or kept there).
+            WorldLedger.Keep(p, KeepFor.Situation(id), false);
             if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.KeepForever);
             else Find.WorldPawns.ForcefullyKeptPawns.Add(p);
         }
 
-        /// <summary>Lets go of everyone it kept (a nemesis, or someone a Rimfolk event still needs, stays held by them).</summary>
+        /// <summary>Lets go of everyone it kept (anyone something else of Rimfolk still keeps stays: WorldLedger.Release).</summary>
         public void ReleaseAll()
         {
-            var comp = CouncilGameComponent.Instance;
             foreach (var p in held.Where(p => p != null))
             {
-                if (comp != null && (comp.nemeses.IsNemesis(p) || comp.happenings.Holds(p))) continue;
-                if ((WorldSituations.Instance?.HoldsElsewhere(this, p) ?? false) || StoryChains.Holds(p) || Missions.Holds(p)) continue;
+                if (!WorldLedger.Release(p, KeepFor.Situation(id))) continue;
                 Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
             }
             held.Clear();

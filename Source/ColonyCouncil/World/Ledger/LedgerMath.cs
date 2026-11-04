@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
@@ -174,6 +175,49 @@ namespace ColonyCouncil
             if (techLevel == 3) return WorldAge.Medieval;
             if (techLevel == 4) return WorldAge.Industrial;
             return WorldAge.Spacer;
+        }
+
+        /// <summary>A town gone from the world is remembered this long (two years) once nobody the colony knows lives there.</summary>
+        public const int GoneTownDays = 120;
+
+        /// <summary>
+        /// A person stays in the ledger while they are a notable, while a tie of the ledger names them (from, to or about,
+        /// live or closed and not yet dropped), or while some reason keeps them in the world.
+        /// </summary>
+        public static bool KeepPerson(bool notable, bool named, bool kept) => notable || named || kept;
+
+        /// <summary>
+        /// A town stays in the ledger while a notable lives there; with nobody there, a gone town is remembered
+        /// <see cref="GoneTownDays"/> days from when it was missed, and a standing one isn't kept (the world has it).
+        /// </summary>
+        public static bool KeepTown(bool notableThere, bool stands, int gone, int now, int dayTicks = TieRules.DayTicks) =>
+            notableThere || !stands && gone >= 0 && now - gone < (long)GoneTownDays * dayTicks;
+
+        // ---------------- Keeping someone in the world ----------------
+
+        /// <summary>A reason to keep someone, once each. Returns whether it is new.</summary>
+        public static bool AddReason(List<string> kept, string reason)
+        {
+            if (kept == null || string.IsNullOrEmpty(reason) || kept.Contains(reason)) return false;
+            kept.Add(reason);
+            return true;
+        }
+
+        /// <summary>A reason taken back. Returns whether it was there.</summary>
+        public static bool RemoveReason(List<string> kept, string reason) => kept != null && reason != null && kept.Remove(reason);
+
+        /// <summary>Someone stays in the world while any reason holds (or something outside the ledger holds them).</summary>
+        public static bool Held(List<string> kept, bool outside) => outside || kept != null && kept.Count > 0;
+
+        /// <summary>Held for something other than this reason.</summary>
+        public static bool HeldBesides(List<string> kept, string reason, bool outside)
+        {
+            if (outside) return true;
+            if (kept != null)
+                foreach (var k in kept)
+                    if (k != reason)
+                        return true;
+            return false;
         }
     }
 }

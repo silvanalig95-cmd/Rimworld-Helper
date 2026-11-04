@@ -17,7 +17,67 @@ namespace ColonyCouncil
         public Faction faction;
         /// <summary>The colonist they dealt with first, and ask after.</summary>
         public Pawn friendOf;
-        public int visits, bond, lastTick;
+        public int visits, lastTick;
+
+        /// <summary>
+        /// How close the colony and they have grown: a Regard tie in the world ledger, from them to the colony, the bond its
+        /// number (none while it's nothing).
+        /// </summary>
+        public int bond
+        {
+            get => (int)(BondTie(false)?.terms.number ?? 0f);
+            set
+            {
+                var t = BondTie(value != 0);
+                if (t == null || (int)t.terms.number == value) return;
+                t.terms.number = value;
+                WorldLedger.Touch(t);
+            }
+        }
+
+        /// <summary>The origin of the ledger's regard ties for a regular's bond (the regular's id in its count).</summary>
+        public const string RegardOrigin = "regular";
+
+        [Unsaved] private Tie bondTie;
+        [Unsaved] private int bondLooked = -1;
+        /// <summary>An older save's bond, read on load and moved into the ledger (HappeningTracker.MoveToLedger).</summary>
+        private int oldBond;
+
+        private Tie BondTie(bool make)
+        {
+            if (bondTie != null && bondTie.Live) return bondTie;
+            bondTie = null;
+            if (bondLooked != WorldLedger.Version || make)
+            {
+                var me = Refs.Of(pawn);
+                foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard))
+                    if (t.Live && t.origin == RegardOrigin && t.from == me && t.terms.count == id)
+                    {
+                        bondTie = t;
+                        break;
+                    }
+                if (bondTie == null && make && pawn != null)
+                    bondTie = WorldLedger.AddTie(Tie.Kind.Regard, WorldLedger.PersonOf(pawn), Refs.Us, new TieTerms { count = id }, origin: RegardOrigin);
+                bondLooked = WorldLedger.Version;
+            }
+            return bondTie;
+        }
+
+        /// <summary>The bond is over: the colony let go of them.</summary>
+        public void EndBond()
+        {
+            var t = BondTie(false);
+            if (t != null) WorldLedger.Set(t, Tie.State.Ended);
+            bondTie = null;
+        }
+
+        /// <summary>An older save's bond goes into the ledger.</summary>
+        public void MoveBond()
+        {
+            if (oldBond == 0) return;
+            bond = oldBond;
+            oldBond = 0;
+        }
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -55,7 +115,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref faction, "faction");
             Scribe_References.Look(ref friendOf, "friendOf");
             Scribe_Values.Look(ref visits, "visits");
-            Scribe_Values.Look(ref bond, "bond");
+            // An older save kept the bond here; it's the ledger's now.
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Values.Look(ref oldBond, "bond");
             Scribe_Values.Look(ref lastTick, "lastTick");
         }
     }
@@ -96,7 +157,7 @@ namespace ColonyCouncil
             r.lastTick = Now;
             if (kind != "back") r.bond += RegularMath.Warm;
             if (r.friendOf == null || r.friendOf.Dead) r.friendOf = ctx.a;
-            Find.WorldPawns.ForcefullyKeptPawns.Add(x);
+            WorldLedger.Keep(x, KeepFor.Regular);
             while (t.regulars.Count > RegularMath.KeepMax)
             {
                 int i = RegularMath.Weakest(t.regulars.Select(q => q.bond).ToArray(), t.regulars.Select(q => q.DaysSince).ToArray());
@@ -124,8 +185,10 @@ namespace ColonyCouncil
         {
             var t = CouncilGameComponent.Instance?.happenings;
             if (r == null || t == null) return;
-            if (r.pawn != null && !r.pawn.Spawned && !r.pawn.IsColonist) Find.WorldPawns.ForcefullyKeptPawns.Remove(r.pawn);
+            // Back to the world's own keeping, unless something else of Rimfolk keeps them (WorldLedger.Release).
+            if (r.pawn != null && WorldLedger.Release(r.pawn, KeepFor.Regular) && !r.pawn.Spawned && !r.pawn.IsColonist) Find.WorldPawns.ForcefullyKeptPawns.Remove(r.pawn);
             t.regulars.Remove(r);
+            r.EndBond();
         }
 
         /// <summary>Once a day: the dead, the fallen-out and the long unseen are forgotten.</summary>
@@ -133,6 +196,11 @@ namespace ColonyCouncil
         {
             foreach (var r in All.ToList())
                 if (!r.Alive || r.DaysSince > RegularMath.FadeDays || r.pawn.IsColonist) Forget(r);
+            // Bonds of regulars no longer kept (let go on loading, their pawn gone): ended.
+            var mine = new HashSet<(Ref, int)>(All.Where(r => r?.pawn != null).Select(r => (Refs.Of(r.pawn), r.id)));
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard).Where(t => t.Live && t.origin == Regular.RegardOrigin).ToList())
+                if (!mine.Contains((t.from, t.terms.count)))
+                    WorldLedger.Set(t, Tie.State.Ended);
         }
 
         /// <summary>The regular due back now, the closest bond first, then the longest away; null when none is.</summary>

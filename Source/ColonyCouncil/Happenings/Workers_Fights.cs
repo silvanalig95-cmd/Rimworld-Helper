@@ -97,11 +97,11 @@ namespace ColonyCouncil
     /// <summary>The people of a prisoner who died in the colony's hands come to settle it.</summary>
     public class HappeningWorker_Revenge : HappeningWorker_Attack
     {
-        private static Grudge Usable()
+        private static Grudges.Dead Usable()
         {
-            var t = CouncilGameComponent.Instance?.happenings;
+            if (CouncilGameComponent.Instance?.happenings == null) return null;
             int now = Find.TickManager.TicksGame;
-            return t?.grudges.Where(g => !g.settled && Raids.CanRaid(g.faction) && now - g.tick > GenDate.TicksPerDay * 8).RandomElementWithFallback();
+            return Grudges.All().Where(g => !g.Settled && Raids.CanRaid(g.faction) && now - g.Tick > GenDate.TicksPerDay * GrudgeTally.ActDays).RandomElementWithFallback();
         }
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Usable() != null;
@@ -111,15 +111,14 @@ namespace ColonyCouncil
             var g = Usable();
             if (g == null) return false;
             ctx.enemy = g.faction;
-            ctx.dead = g.name;
+            ctx.dead = g.Name;
             ctx.a = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
             return ctx.a != null;
         }
 
         protected override void Attacked(HappeningContext ctx)
         {
-            var grudges = CouncilGameComponent.Instance?.happenings.grudges;
-            foreach (var g in grudges?.Where(g => g.faction == ctx.enemy && g.name == ctx.dead) ?? Enumerable.Empty<Grudge>()) g.settled = true;
+            if (CouncilGameComponent.Instance?.happenings != null) Grudges.Settle(ctx.enemy, ctx.dead);
         }
     }
 

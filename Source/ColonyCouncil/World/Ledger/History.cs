@@ -262,6 +262,9 @@ namespace ColonyCouncil
         public static void Tie(Tie t, string what, int tick = -1)
         {
             if (t == null || t.IsView || Book == null) return;
+            // A regard is a running score (a notable's or a regular's), not an event: made with every new face, it would
+            // crowd the history with nothing to tell.
+            if (t.kind == ColonyCouncil.Tie.Kind.Regard) return;
             var actors = new List<HistoryActor>
             {
                 new HistoryActor(t.from, HistoryRole.Did),

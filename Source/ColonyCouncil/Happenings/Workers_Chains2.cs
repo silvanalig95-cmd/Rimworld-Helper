@@ -432,16 +432,14 @@ namespace ColonyCouncil
                 Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
                 return;
             }
-            Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+            WorldLedger.Keep(p, KeepFor.Chain);
         }
 
         private static void Release(Pawn p)
         {
+            // Another running story still needs them; else let go unless something else of Rimfolk keeps them.
             if (p == null || Holds(p)) return;
-            var t = CouncilGameComponent.Instance?.happenings;
-            if (t != null && (t.Holds(p) || t.departed.Any(d => d.pawn == p) || t.raids.Any(r => r.leader == p))) return;
-            if (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) return;
-            if (Missions.Holds(p) || WorldSituations.Holds(p)) return;
+            if (!WorldLedger.Release(p, KeepFor.Chain)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
 

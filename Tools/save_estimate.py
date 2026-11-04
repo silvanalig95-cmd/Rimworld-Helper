@@ -143,7 +143,7 @@ MODEL = {
     "CouncilGameComponent.cs:nextSteps": ("fixed", 40, 260, "the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs)"),
     "Lives/LifeNew.cs:read": ("fixed", 600, 60, "books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead)"),
     "Building/RoomRearranger.cs:orders": ("fixed", 30, 120, "per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs)"),
-    "CouncilGameComponent.cs:guestKin": ("fixed", 6, 220, "those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs)"),
+    "CouncilGameComponent.cs:oldGuestKin": ("fixed", 0, 220, "an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again"),
     "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
     "CouncilGameComponent.cs:lastAtHome": ("colonists", 1, D, "colonists still ours"),
@@ -411,8 +411,8 @@ MODEL = {
     "Outsiders/OutsiderBook.cs:pairs": ("fixed", C["OutsiderPairs"], 330,
                                         "OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days"),
     "Outsiders/OutsiderBook.cs:last": ("fixed", 16, V, "per pair: when they last did each of the 16 things (counted under pairs)"),
-    "Outsiders/OutsiderBook.cs:favours": ("fixed", C["OutsiderFavours"], 220, "OutsiderBook.MaxFavours, one per people, let go after 30 days"),
-    "Outsiders/OutsiderBook.cs:words": ("fixed", C["OutsiderWords"], 180, "OutsiderBook.MaxWords good words promised, carried home or let go after 20 days"),
+    "Outsiders/OutsiderBook.cs:oldFavours": ("fixed", 0, 220, "an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again"),
+    "Outsiders/OutsiderBook.cs:oldWords": ("fixed", 0, 180, "an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again"),
     # Conversations with outsiders (Outsiders/OutsiderTalk.cs): their earlier talks' marks, the pieces said, the last
     # subjects; each outsider's visit (patience, gifts, asks); a town's news heard; the world's wars as seen.
     "Outsiders/OutsiderBook.cs:marks": ("fixed", C["OutsiderMarks"], 70, "per pair: OutsiderTalkMath.MaxMarks, one per key, the oldest go (counted under pairs)"),
@@ -442,7 +442,7 @@ MODEL = {
     "Happenings/Happenings.cs:touched": ("fixed", 3, P, "per visit"),
     "Happenings/Happenings.cs:raids": ("cap", (5, 0.05), 400, "until they come"),
     "Happenings/Happenings.cs:departed": ("window", (120, 0.05), 400, "the departed 2 years"),
-    "Happenings/Happenings.cs:grudges": ("window", (120, 0.05), 200, "grudges 2 years"),
+    "Happenings/Happenings.cs:oldGrudges": ("fixed", 0, 200, "an older save's grudges, read on load and moved into the world ledger (one Grudge tie per people); never saved again"),
     "Happenings/Happenings.cs:visits": ("window", (30, 0.2), 300, "visits a month"),
     "Happenings/Happenings.cs:memos": ("window", (180, 0.3), 200, "memos 3 years (children's 10), used ones a day"),
     "Happenings/Happenings.cs:seenQuests": ("fixed", 60, V, "quests the game still keeps"),
@@ -460,6 +460,14 @@ MODEL = {
     "World/Ledger/History.cs:events": ("cap", (C["HistoryEvents"], 11), 300,
                                        "HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first"),
     "World/Ledger/History.cs:values": ("fixed", 1, 40, "per event: a deed's name, when it has one (counted under events)"),
+    # Persons: every notable, anyone a tie names (the parties to favours, words, claims, regard; a pawn reference and a
+    # name), and anyone kept in the world (memos 24, the departed 6, regulars 5, past camps' people, stories, situations).
+    "World/Ledger/LedgerPersons.cs:persons": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"] + 2 * (C["OutsiderFavours"] + C["OutsiderWords"]) + 10
+                                              + 24 + 6 + 5 + 20 + 10, 180,
+                                              "every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson)"),
+    "World/Ledger/LedgerPersons.cs:kept": ("fixed", 2, 30, "per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons)"),
+    "World/Ledger/LedgerPersons.cs:townRecords": ("fixed", C["NotableTowns"] + C["NotableFaces"] + 4, 120,
+                                                  "the towns the notables live in, and a gone town for two years (LedgerMath.KeepTown)"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

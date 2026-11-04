@@ -300,7 +300,7 @@ namespace ColonyCouncil
             {
                 int fights = t.raids.Count(r => r != null && r.faction != null && (r.map == null || r.map == map) && r.tick - now < GenDate.TicksPerDay * 15);
                 if (fights > 0) dread.Add(("CC_Heart_Cause_FightComing".Translate(), Mathf.Min(8f, 4f * fights)));
-                if (t.memos.Any(m => m != null && !m.used && m.kind == "debt")) dread.Add(("CC_Heart_Cause_Debt".Translate(), 3f));
+                if (Debts.AnyOwed(t)) dread.Add(("CC_Heart_Cause_Debt".Translate(), 3f));
             }
             var world = WorldSituations.Instance;
             if (world != null)

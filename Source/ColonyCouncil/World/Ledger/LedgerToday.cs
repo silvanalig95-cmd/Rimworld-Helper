@@ -6,20 +6,22 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The ties that exist today in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store,
-    /// none is editable through the ledger yet). Only those still in force: what ended stays in its own store's record.
+    /// The ties still kept in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store, not
+    /// editable through the ledger). Only those still in force: what ended stays in its own store's record.
     /// <list type="bullet">
-    /// <item>A favour asked of an outsider (OutsiderBook.favours): a favour their people owe the colonist who asked.</item>
-    /// <item>A good word promised (OutsiderBook.words): a promise from the outsider to the colonist, about the notable.</item>
-    /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
-    /// date, called in while the letter waits for an answer.</item>
-    /// <item>A prisoner who died in the colony's hands (Happenings.grudges): their people's grudge against the colony.</item>
-    /// <item>Someone who joined from a visit with family among their people (CouncilGameComponent.guestKin): a ward of
-    /// that people in the colony's keeping, until their family's time to ask has passed.</item>
-    /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
-    /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge.</item>
+    /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge. It stays a view: the
+    /// vendetta is the colonist's own story (their kills, the victim), and the tie is only how the world sees it.</item>
+    /// <item>The regard kept with the records it belongs to: a notable's regard of each colonist (Notable.regards: from
+    /// the notable to the colonist, key "letters"), an outsider pair's warmth and familiarity (OutsiderBook.pairs: two
+    /// regards from the outsider to the colonist, keys "warmth" and "familiarity"), and a camp's warmth toward each
+    /// colonist (Camp.warmth: from the camp's people, key "camp"). Their scores stay where they are fed and faded: moved
+    /// in, the notables' regard of up to eight colonists each (272) and the pairs (60) could pass the ledger's 300
+    /// regards, and one refused would change play. A notable's own regard and a regular's bond are the ledger's.</item>
     /// <item>What other mods keep (WorldMechanics.Ties): a vassal's fealty to the colony, a marriage alliance.</item>
     /// </list>
+    /// The rest moved into the ledger as its own ties (stage 0 step 3b): grudges (Happenings/Grudges.cs), favours and good
+    /// words (Outsiders/OutsiderTies.cs), guest kin as claims (Integrations/GuestWill.cs), the scenario's debt
+    /// (Scenarios/ScenarioDebts.cs) and the grant of land as fealty (ScenPart_CouncilBeholden).
     /// Read once a 250-tick stretch (sooner when the faction memory, the notables or the ledger change).
     /// </summary>
     public partial class WorldLedger
@@ -41,14 +43,9 @@ namespace ColonyCouncil
             var list = new List<Tie>();
             if (Current.Game != null)
             {
-                Read("favours", list, Favours);
-                Read("words", list, Words);
-                Read("debts", list, Debts);
-                Read("grudges", list, Grudges);
-                Read("guest kin", list, GuestKin);
-                Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
                 Read("other mods' world", list, WorldMechanics.Ties);
+                Read("regard", list, Regard);
             }
             today = list;
             return today;
@@ -72,84 +69,35 @@ namespace ColonyCouncil
             list.Add(new Tie { kind = kind, from = from, to = to, terms = terms ?? new TieTerms(), since = since, until = until, state = state, origin = origin, source = source });
         }
 
-        private static void Favours(List<Tie> list)
+        private static void Regard(List<Tie> list)
         {
-            var book = OutsiderBook.Instance;
-            if (book == null) return;
-            foreach (var f in book.favours)
-            {
-                if (f?.faction == null || f.def == null) continue;
-                var to = f.by != null ? Refs.Of(f.by) : Refs.Seat;
-                var terms = new TieTerms { goods = f.def.defName, count = f.count, days = OutsiderMath.BringGiveUpDays, about = Refs.Of(f.outsider) };
-                View(list, "outsiders:favour", Tie.Kind.Favour, Refs.Of(f.faction), to, terms, f.asked, f.asked + (int)(OutsiderMath.BringGiveUpDays * GenDate.TicksPerDay));
-            }
-        }
-
-        private static void Words(List<Tie> list)
-        {
-            var book = OutsiderBook.Instance;
-            if (book == null) return;
-            foreach (var w in book.words)
-            {
-                if (w?.outsider == null) continue;
-                var n = NotableBook.Instance?.Get(w.notable);
-                var to = w.by != null ? Refs.Of(w.by) : Refs.Seat;
-                var terms = new TieTerms { number = w.shift, days = OutsiderMath.GoodWordDays, key = "notable:" + w.notable, about = Refs.Of(n?.pawn) };
-                View(list, "outsiders:word", Tie.Kind.Promise, Refs.Of(w.outsider), to, terms, w.asked, w.asked + (int)(OutsiderMath.GoodWordDays * GenDate.TicksPerDay));
-            }
-        }
-
-        private static void Debts(List<Tie> list)
-        {
-            var t = CouncilGameComponent.Instance?.happenings;
-            if (t == null) return;
-            foreach (var m in t.memos)
-            {
-                if (m == null || m.used || m.kind != "debt" || m.faction == null) continue;
-                // Waiting for the council's answer: the letter asks for it now.
-                bool asking = m.due == int.MaxValue;
-                var terms = new TieTerms { goods = "Silver", count = m.amount, key = m.def, number = m.times, about = Refs.Of(m.pawn) };
-                View(list, "happenings:debt", Tie.Kind.Debt, Refs.Colony(Homes.ForMemo(m.home)), Refs.Of(m.faction), terms, m.tick,
-                    asking ? Tie.Never : m.due, asking ? Tie.State.CalledIn : Tie.State.Open);
-            }
-        }
-
-        private static void Grudges(List<Tie> list)
-        {
-            var t = CouncilGameComponent.Instance?.happenings;
-            if (t == null) return;
-            foreach (var g in t.grudges)
-            {
-                if (g == null || g.settled || g.faction == null) continue;
-                // Kept two years (HappeningTracker's pruning).
-                View(list, "happenings:grudge", Tie.Kind.Grudge, Refs.Of(g.faction), Refs.Seat, new TieTerms { key = g.name }, g.tick, g.tick + GenDate.TicksPerYear * 2);
-            }
-        }
-
-        private static void GuestKin(List<Tie> list)
-        {
-            var kin = CouncilGameComponent.Instance?.guestKin;
-            if (kin == null) return;
-            foreach (var k in kin)
-            {
-                if (k?.pawn == null || k.faction == null) continue;
-                // Their family may come asking from the due day for GuestWillMath.AskWindowDays: until less days is when.
-                var terms = new TieTerms { key = k.forced ? "forced" : null, days = GuestWillMath.AskWindowDays, about = Refs.Of(k.pawn) };
-                View(list, "council:guestKin", Tie.Kind.Ward, Refs.Of(k.faction), Refs.Colony(Homes.Of(k.pawn)), terms, Tie.Never, k.due + GuestWillMath.AskWindowDays * GenDate.TicksPerDay);
-            }
-        }
-
-        private static void Granted(List<Tie> list)
-        {
-            var mem = FactionMemory.Instance;
-            if (mem == null || !FactionMemory.On) return;
-            int now = Now;
-            foreach (var d in mem.deeds)
-            {
-                if (d?.faction == null || d.kind != "granted" || d.settled) continue;
-                var terms = new TieTerms { key = "granted", count = d.weight, number = d.StrengthAt(now) };
-                View(list, "memory:granted", Tie.Kind.Fealty, Refs.Seat, Refs.Of(d.faction), terms, d.first, Tie.Never, Tie.State.Open, "deed:" + d.id);
-            }
+            var book = NotableBook.Instance;
+            if (book != null)
+                foreach (var n in book.notables)
+                {
+                    if (n == null) continue;
+                    foreach (var r in n.regards)
+                        if (r?.pawn != null)
+                            View(list, "notables:regard", Tie.Kind.Regard, n.person, Refs.Of(r.pawn), new TieTerms { key = "letters", number = r.personal }, n.since, Tie.Never);
+                }
+            var outs = OutsiderBook.Instance;
+            if (outs != null)
+                foreach (var p in outs.pairs)
+                {
+                    if (p?.colonist == null || p.outsider == null) continue;
+                    View(list, "outsiders:pair", Tie.Kind.Regard, Refs.Of(p.outsider), Refs.Of(p.colonist), new TieTerms { key = "warmth", number = p.warmth, count = p.visits }, Tie.Never, Tie.Never);
+                    View(list, "outsiders:pair", Tie.Kind.Regard, Refs.Of(p.outsider), Refs.Of(p.colonist), new TieTerms { key = "familiarity", number = p.fam, count = p.visits }, Tie.Never, Tie.Never);
+                }
+            var camps = CampTracker.Instance;
+            if (camps != null)
+                foreach (var c in camps.All)
+                {
+                    if (c?.faction == null || c.warmth == null) continue;
+                    foreach (var kv in c.warmth)
+                        if (kv.Key != null)
+                            View(list, "camps:warmth", Tie.Kind.Regard, Refs.Of(c.faction), Refs.Of(kv.Key), new TieTerms { key = "camp", number = kv.Value, count = c.id },
+                                c.startTick, Tie.Never);
+                }
         }
 
         private static void Vendettas(List<Tie> list)

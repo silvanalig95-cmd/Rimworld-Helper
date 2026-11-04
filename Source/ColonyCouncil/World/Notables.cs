@@ -90,9 +90,11 @@ namespace ColonyCouncil
     public class Notable : IExposable
     {
         public int id;
-        public Pawn pawn;
-        /// <summary>Their name, kept for when they're gone.</summary>
-        public string name;
+        /// <summary>
+        /// Who they are in the world ledger: their pawn's ref, or a ledger number for someone known only by name. The
+        /// ledger keeps their pawn (while the game does) and their name; the notable keeps its role and town.
+        /// </summary>
+        public Ref person;
         public Faction faction;
         /// <summary>Their town (the settlement's world object ID; an acquaintance's is their people's town nearest the colony).</summary>
         public int town = -1;
@@ -105,9 +107,69 @@ namespace ColonyCouncil
         public string metByName;
         /// <summary>Made by Rimfolk for their role (let go when no longer needed); else someone the game or another part keeps.</summary>
         public bool made;
-        /// <summary>What passed between them and the colony in person, and when it last faded.</summary>
-        public float personal;
+        /// <summary>
+        /// What passed between them and the colony in person: a Regard tie in the world ledger, from them to the colony,
+        /// its score the tie's number (none while it's nothing). It fades daily from <see cref="faded"/>, as before.
+        /// </summary>
+        public float personal
+        {
+            get => RegardTie(false)?.terms.number ?? 0f;
+            set
+            {
+                var t = RegardTie(value != 0f);
+                if (t == null || t.terms.number == value) return;
+                t.terms.number = value;
+                WorldLedger.Touch(t);
+            }
+        }
+
+        /// <summary>When what passed between them last faded.</summary>
         public int faded;
+
+        /// <summary>The origin of the ledger's regard ties for a notable's own regard of the colony (the notable's id in its count).</summary>
+        public const string RegardOrigin = "notable";
+
+        [Unsaved] private Tie regard;
+        [Unsaved] private int regardLooked = -1;
+        /// <summary>An older save's regard, read on load and moved into the ledger (NotableBook.FinalizeInit).</summary>
+        private float oldPersonal;
+
+        /// <summary>Their regard tie, found once (looked for again when the ledger changes), made when asked to.</summary>
+        private Tie RegardTie(bool make)
+        {
+            if (regard != null && regard.Live && regard.from == person) return regard;
+            regard = null;
+            if (regardLooked != WorldLedger.Version || make)
+            {
+                var me = Person;
+                foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard))
+                    if (t.Live && t.origin == RegardOrigin && t.from == me && t.terms.count == id)
+                    {
+                        regard = t;
+                        break;
+                    }
+                if (regard == null && make && !me.IsNone)
+                    regard = WorldLedger.AddTie(Tie.Kind.Regard, me, Refs.Us, new TieTerms { count = id }, origin: RegardOrigin);
+                regardLooked = WorldLedger.Version;
+            }
+            return regard;
+        }
+
+        /// <summary>Their regard is over (they're no longer a notable, or the record went to someone else).</summary>
+        public void EndRegard()
+        {
+            var t = RegardTie(false);
+            if (t != null) WorldLedger.Set(t, Tie.State.Ended);
+            regard = null;
+        }
+
+        /// <summary>An older save's regard goes into the ledger.</summary>
+        public void MoveRegard()
+        {
+            if (oldPersonal == 0f) return;
+            personal = oldPersonal;
+            oldPersonal = 0f;
+        }
         public List<NotableRegard> regards = new List<NotableRegard>();
         public List<NotableNote> notes = new List<NotableNote>();
         /// <summary>The last letter for each purpose (by name), for the wait between letters.</summary>
@@ -116,6 +178,63 @@ namespace ColonyCouncil
         /// <summary>Threats warned of and losses mourned already (each once).</summary>
         public List<string> done = new List<string>();
         public int since;
+
+        /// <summary>An older save's pawn and name, read once and handed to the ledger.</summary>
+        private Pawn oldPawn;
+        private string oldName;
+        [Unsaved] private LedgerPerson record;
+
+        /// <summary>The ledger's record of them (found once, then kept).</summary>
+        private LedgerPerson Record
+        {
+            get
+            {
+                if (record == null || record.person != person)
+                {
+                    if (person.IsNone) HandOver();
+                    record = WorldLedger.PersonRecord(person);
+                }
+                return record;
+            }
+        }
+
+        /// <summary>Their pawn, as the ledger keeps it (null once the game let them go).</summary>
+        public Pawn pawn => Record?.pawn ?? oldPawn;
+
+        /// <summary>Their name, kept for when they're gone.</summary>
+        public string name => Record?.name ?? oldName;
+
+        /// <summary>
+        /// An older save's notable becomes a person of the ledger: their pawn's, or a ledger number for one known only by
+        /// name. Done on load; if the ledger wasn't there yet, the first time they're asked about.
+        /// </summary>
+        private void HandOver()
+        {
+            if (!person.IsNone || oldPawn == null && oldName.NullOrEmpty() || WorldLedger.Instance == null) return;
+            person = oldPawn != null ? WorldLedger.PersonOf(oldPawn) : WorldLedger.NewPerson(oldName, faction);
+            var rec = WorldLedger.PersonRecord(person);
+            if (rec == null) return;
+            if (!oldName.NullOrEmpty()) rec.name = oldName;
+            oldPawn = null;
+            oldName = null;
+        }
+
+        /// <summary>Who they are in the world ledger (an older save's notable handed over first, if it wasn't yet).</summary>
+        public Ref Person
+        {
+            get
+            {
+                if (person.IsNone) HandOver();
+                return person;
+            }
+        }
+
+        /// <summary>The record is someone's from now on: the ledger's person for this pawn.</summary>
+        public void SetPerson(Pawn p)
+        {
+            person = WorldLedger.PersonOf(p);
+            record = null;
+        }
 
         public bool Alive => pawn != null && !pawn.Dead && !pawn.Discarded;
 
@@ -164,13 +283,18 @@ namespace ColonyCouncil
         {
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                if (pawn != null && pawn.Discarded) pawn = null;
+                if (oldPawn != null && oldPawn.Discarded) oldPawn = null;
                 if (metBy != null && metBy.Discarded) metBy = null;
                 regards.RemoveAll(r => r == null || r.pawn == null && r.name.NullOrEmpty());
             }
             Scribe_Values.Look(ref id, "id");
-            Scribe_References.Look(ref pawn, "pawn", true);
-            Scribe_Values.Look(ref name, "name");
+            Refs.Look(ref person, "person");
+            // An older save kept the pawn and the name here (saved again only if they couldn't be handed to the ledger).
+            if (Scribe.mode != LoadSaveMode.Saving || person.IsNone)
+            {
+                Scribe_References.Look(ref oldPawn, "pawn", true);
+                Scribe_Values.Look(ref oldName, "name");
+            }
             Scribe_References.Look(ref faction, "faction");
             Scribe_Values.Look(ref town, "town", -1);
             Scribe_Values.Look(ref townName, "townName");
@@ -179,7 +303,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref metBy, "metBy");
             Scribe_Values.Look(ref metByName, "metByName");
             Scribe_Values.Look(ref made, "made");
-            Scribe_Values.Look(ref personal, "personal");
+            // An older save kept the regard here; it's the ledger's now.
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Values.Look(ref oldPersonal, "personal");
             Scribe_Values.Look(ref faded, "faded");
             Scribe_Collections.Look(ref regards, "regards", LookMode.Deep);
             Scribe_Collections.Look(ref notes, "notes", LookMode.Deep);
@@ -189,6 +314,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref since, "since");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                HandOver();
+                record = null;
                 regards ??= new List<NotableRegard>();
                 regards.RemoveAll(r => r == null);
                 notes ??= new List<NotableNote>();
@@ -263,10 +390,28 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            // An older save's regard of each notable goes into the world ledger.
+            try
+            {
+                foreach (var n in notables) n?.MoveRegard();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("moving an older save's notables' regard into the world ledger", e);
+            }
             Changed();
         }
 
         public Notable Get(int id) => notables.FirstOrDefault(n => n.id == id);
+
+        /// <summary>Regard ties of notables the book no longer has (dropped without a word, or an edited save): ended.</summary>
+        private void EndStrayRegard()
+        {
+            var mine = new HashSet<(Ref, int)>(notables.Where(n => n != null).Select(n => (n.person, n.id)));
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard).Where(t => t.Live && t.origin == Notable.RegardOrigin).ToList())
+                if (!mine.Contains((t.from, t.terms.count)))
+                    WorldLedger.Set(t, Tie.State.Ended);
+        }
 
         // ---------------- The hour ----------------
 
@@ -373,7 +518,16 @@ namespace ColonyCouncil
                 n.town = near.ID;
                 n.townName = near.Name;
             }
+            NoteTowns();
             Changed();
+        }
+
+        /// <summary>The towns the notables live in, noted in the ledger (kept there for when a town is gone).</summary>
+        private void NoteTowns()
+        {
+            foreach (var n in notables)
+                if (n != null && n.town >= 0)
+                    WorldLedger.NoteTown(n.town, n.townName, n.faction);
         }
 
         /// <summary>One notable: still there and still theirs? Gone: remembered as a loss, and followed in their role.</summary>
@@ -444,8 +598,12 @@ namespace ColonyCouncil
         /// <summary>The seat's head is someone else now: the record goes to them, with nothing of the old one's memory.</summary>
         private static void Replace(Notable n, Pawn p, bool made)
         {
-            n.pawn = p;
-            n.name = p.LabelShort;
+            n.EndRegard();
+            var old = n.pawn;
+            n.SetPerson(p);
+            // The one who led is no longer kept as a notable (the game keeps a people's leaders itself); their follower is.
+            if (old != null && Instance != null && !Instance.notables.Any(x => x != n && x.pawn == old)) WorldLedger.Release(old, KeepFor.Notable);
+            WorldLedger.Keep(p, KeepFor.Notable, false);
             n.made = made;
             n.personal = 0f;
             n.regards.Clear();
@@ -501,11 +659,15 @@ namespace ColonyCouncil
         {
             var n = new Notable
             {
-                id = nextId++, pawn = p, name = p.LabelShort, faction = s?.Faction ?? p.Faction, town = s?.ID ?? -1, townName = s?.Name, role = role, made = made,
+                id = nextId++, faction = s?.Faction ?? p.Faction, town = s?.ID ?? -1, townName = s?.Name, role = role, made = made,
                 met = met, metBy = by, metByName = by?.LabelShort, since = Now, faded = Now
             };
+            n.SetPerson(p);
             notables.Add(n);
-            if (!p.Spawned && !made && Find.WorldPawns.Contains(p) && !PawnUtility.IsFactionLeader(p)) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+            if (s != null) WorldLedger.NoteTown(s.ID, s.Name, s.Faction);
+            // Kept in the world while they're a notable; the game told now unless it keeps them already (made with
+            // KeepForever, a people's leader) or they're on a map.
+            WorldLedger.Keep(p, KeepFor.Notable, !p.Spawned && !made && Find.WorldPawns.Contains(p) && !PawnUtility.IsFactionLeader(p));
             Changed();
             return n;
         }
@@ -554,11 +716,16 @@ namespace ColonyCouncil
         private void Drop(Notable n)
         {
             notables.Remove(n);
+            n.EndRegard();
             var p = n.pawn;
-            if (p != null && !p.Discarded && !notables.Any(x => x.pawn == p) && !letters.Any(l => l.Open && l.notable == n.id))
+            // No longer kept as a notable; let go (back to the world's own keeping, or gone if Rimfolk made them) when
+            // nothing else of Rimfolk keeps them (WorldLedger.Release).
+            bool last = p != null && !notables.Any(x => x.pawn == p);
+            bool free = last && WorldLedger.Release(p, KeepFor.Notable);
+            if (last && !p.Discarded && !letters.Any(l => l.Open && l.notable == n.id))
             {
-                if (n.made && !p.Dead && WorldSituationWorker.FreeInWorld(p) && !PawnUtility.IsFactionLeader(p) && !HeldElsewhere(p) && !HasTies(p)) Arrivals.Discard(p);
-                else if (!p.Spawned && !PawnUtility.IsFactionLeader(p) && !HeldElsewhere(p)) Arrivals.Release(p);
+                if (n.made && !p.Dead && WorldSituationWorker.FreeInWorld(p) && !PawnUtility.IsFactionLeader(p) && free && !HasTies(p)) Arrivals.Discard(p);
+                else if (!p.Spawned && !PawnUtility.IsFactionLeader(p) && free) Arrivals.Release(p);
             }
             foreach (var l in letters.Where(l => l.Open && l.notable == n.id)) NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
             Changed();
@@ -566,14 +733,6 @@ namespace ColonyCouncil
 
         /// <summary>Someone of the colony's own is family to them (then the world's own clean-up decides, not Rimfolk).</summary>
         private static bool HasTies(Pawn p) => p.relations != null && p.relations.DirectRelations.Any(r => r.otherPawn != null && r.otherPawn.Faction == Faction.OfPlayer);
-
-        /// <summary>Another part of Rimfolk keeps them in the world (a camp that may come back, a world event, an event waiting).</summary>
-        private static bool HeldElsewhere(Pawn p)
-        {
-            if (CampReturns.Past.Any(c => c.people.Contains(p))) return true;
-            if (WorldSituations.Holds(p)) return true;
-            return CouncilGameComponent.Instance?.happenings?.Holds(p) ?? false;
-        }
 
         private void LetAllGo()
         {
@@ -589,7 +748,7 @@ namespace ColonyCouncil
             {
                 var p = n.pawn;
                 if (p == null || p.Dead || p.Discarded || p.Spawned || PawnUtility.IsFactionLeader(p) || !Find.WorldPawns.Contains(p)) continue;
-                Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+                WorldLedger.Keep(p, KeepFor.Notable);
             }
         }
 
@@ -619,6 +778,7 @@ namespace ColonyCouncil
             }
             losses.RemoveAll(l => l == null || l.faction == null || now - l.tick > GenDate.TicksPerDay * 30);
             seen.RemoveAll(s => s.pawn == null || s.pawn.Discarded || s.pawn.Dead || now - s.tick > GenDate.TicksPerDay * 3);
+            EndStrayRegard();
             Changed();
         }
 
@@ -872,7 +1032,7 @@ namespace ColonyCouncil
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                notables.RemoveAll(n => n == null || n.pawn == null && n.name.NullOrEmpty());
+                notables.RemoveAll(n => n == null || n.person.IsNone || n.pawn == null && n.name.NullOrEmpty());
                 seen.RemoveAll(s => s == null || s.pawn == null);
                 letters.RemoveAll(l => l == null || !l.Open && Now - l.stageTick > GenDate.TicksPerDay * 2);
             }
@@ -893,6 +1053,7 @@ namespace ColonyCouncil
                 losses.RemoveAll(l => l == null || l.faction == null);
                 seen ??= new List<SeenVisitor>();
                 seen.RemoveAll(s => s == null || s.pawn == null);
+                NoteTowns();
                 Changed();
             }
         }

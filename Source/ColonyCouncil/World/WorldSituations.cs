@@ -127,7 +127,7 @@ namespace ColonyCouncil
             foreach (var p in s.held)
             {
                 if (p == null || p.Dead || p.Discarded || p.Faction == Faction.OfPlayer || p.IsPrisoner) continue;
-                if (p.Spawned || Find.WorldPawns.Contains(p) && p.GetCaravan() == null) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
+                if (p.Spawned || Find.WorldPawns.Contains(p) && p.GetCaravan() == null) WorldLedger.Keep(p, KeepFor.Situation(s.id));
             }
         }
 

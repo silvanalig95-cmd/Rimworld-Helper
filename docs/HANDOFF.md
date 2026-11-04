@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.66.3, stage 0 step 3b (F3b): the ledger owns persons and towns (`LedgerPersons.cs`: every notable, anyone a tie
+  names, anyone kept; a gone town two years), grudges (one tie per people with a count, `Happenings/Grudges.cs`),
+  favours and words (`Outsiders/OutsiderTies.cs`), guest kin as the new kind `Claim` (can be called in), the silver
+  debt (`Scenarios/ScenarioDebts.cs`; the memo stays as the scenario's handle), granted as Fealty (the deed kept), a
+  notable's own regard and a regular's bond as Regard ties; per-colonist regard, outsider pairs and camp warmth stay
+  views (moving them could pass the 300-regard cap). One keep-in-world: `LedgerKeep.cs` (`Keep`, `Release`, `Held`)
+  for notables, situations, memos, the departed, regulars, camps and story chains (missions keep the game's own quest
+  reservation); the old held-elsewhere checks call `Held`. Old saves move in at FinalizeInit (`WorldLedger.Adopt`, no
+  history entries); the notables' handover at PostLoadInit. Regard ties don't write to the history (merge fix).
 - 0.66.2, stage 0 steps 8 and 9 (F8, F9): `Integrations/World/` (`WorldAdapter`, `WorldMechanics` finding adapters by
   type: `TerritoryOwner`, `SettlementsBeingBuilt`, `OurVassals`, `OurHoldings`, `Title`, `Ties` into LedgerToday).
   Faction Territories (ownership cache delegate, `SettlementConstruction`, `FactionTerritories_VassalOutpost`; hooks on

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groundwork: the world's ties in one place
+
+*4 November 2026, version 0.66.3*
+
+- Groundwork: grudges for prisoners who died in your hands, favours owed, good words promised, a family's claim on someone who joined, the scenario's silver debt and fealty, the neighbours' notables and their towns, and a notable's and a regular's regard now live in the world ledger. Older saves move in on load, and play is as before.
+- Fixed: someone two parts of Rimfolk needed (a regular who was also a guest of a world event, a notable in a story) could be let go by one while the other still needed them. One place now keeps a person in the world while anything needs them.
+- A notable keeps their name after their pawn is gone from the world.
+
 ## Groundwork: other mods' world, and the ages
 
 *4 November 2026, version 0.66.2*

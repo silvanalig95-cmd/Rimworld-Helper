@@ -296,10 +296,11 @@ namespace ColonyCouncil
             var faction = ctx.foeFaction ?? ScenarioSetup.Enemy(true);
             if (faction == null) return;
             var m = ctx.comp.happenings.Remember("debt", ctx.foe, faction, story, map: ctx.map);
-            m.amount = Mathf.Max(10, amount);
+            int owed = Mathf.Max(10, amount);
             int days = Mathf.Max(1, Mathf.RoundToInt(Days(dueDays)));
             m.due = Find.TickManager.TicksGame + days * GenDate.TicksPerDay;
-            string line = ("CC_Scen_Debt_" + story).Translate(m.amount.Named("AMOUNT"), faction.Name.Named("FACTION"), days.Named("DAYS"),
+            Debts.Owe(m, owed, m.due);
+            string line = ("CC_Scen_Debt_" + story).Translate(owed.Named("AMOUNT"), faction.Name.Named("FACTION"), days.Named("DAYS"),
                 (ctx.foe?.LabelShort ?? faction.Name).Named("FOE")).Resolve();
             ctx.lines.Add(line);
             ctx.threat = true;
@@ -708,7 +709,7 @@ namespace ColonyCouncil
                 return "CC_World_Hunt".Translate(m.faction.Name).Resolve();
             }
             if (m.kind == "debt" && m.due != int.MaxValue)
-                return "CC_World_Debt".Translate(m.amount, m.faction.Name, TextUtil.DaysString(Mathf.Max(0, m.due - now))).Resolve();
+                return "CC_World_Debt".Translate(Debts.Amount(m), m.faction.Name, TextUtil.DaysString(Mathf.Max(0, m.due - now))).Resolve();
             return null;
         }
 
@@ -731,6 +732,7 @@ namespace ColonyCouncil
                 return;
             }
             if (map == null || now < m.due) return;
+            Debts.Due(m);
             HappeningWorker_DebtDue.pending = m;
             bool ok;
             try
@@ -962,8 +964,8 @@ namespace ColonyCouncil
             if (m == null || m.faction == null) return false;
             ctx.enemy = m.faction;
             ctx.faction = m.faction;
-            ctx.count = m.amount;
-            ctx.variant = m.times;
+            ctx.count = Debts.Amount(m);
+            ctx.variant = Debts.Times(m);
             var x = m.pawn;
             ctx.stranger = x != null && !x.Dead && !x.Discarded && !x.Spawned && x.Faction == m.faction ? x : null;
             ctx.scenario = true;
@@ -1006,17 +1008,19 @@ namespace ColonyCouncil
             switch (option)
             {
                 case 0:
+                    Debts.Close(m, Tie.State.Kept);
                     t.Use(m);
                     foreach (var p in Colonists(ctx.map)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Scen_DebtPaid);
                     // Paid back: the one who was robbed calls it square.
                     if (m.pawn != null) comp.nemeses.Settle(m.pawn, "CC_Nemesis_End_Paid".Translate(m.pawn.LabelShort).Resolve());
                     break;
                 case 1:
-                    m.amount = Mathf.Max(10, Later(m.amount));
-                    m.times++;
+                    int left = Mathf.Max(10, Later(Debts.Amount(m)));
                     m.due = now + Mathf.RoundToInt(Rand.Range(18f, 24f) * GenDate.TicksPerDay);
+                    Debts.PutOff(m, left, m.due);
                     break;
                 default:
+                    Debts.Close(m, Tie.State.Broken);
                     t.Use(m);
                     // They'll be back: a few more times with the one who was wronged at their head, or collectors once more.
                     bool led = ctx.stranger != null;

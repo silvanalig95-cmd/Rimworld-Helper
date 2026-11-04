@@ -184,10 +184,15 @@ namespace ColonyCouncil
     /// <summary>
     /// The colony holds its land by another people's grant, and owes them for it: they remember it (a debt in the
     /// region's memory, World/FactionMemory.cs) and will one day call it in, as a favour asked. Their goodwill starts warm.
-    /// A people of the old ways first (a lord's realm), then the Empire, then any people at peace with the colony.
+    /// A people of the old ways first (a lord's realm), then the Empire, then any people at peace with the colony. The
+    /// grant itself is a Fealty tie in the world ledger (from the colony to that people, about the lord who granted it);
+    /// the deed stays what they remember, as their tone and their notables' regard read it.
     /// </summary>
     public class ScenPart_CouncilBeholden : ScenPart_Council
     {
+        /// <summary>The origin of the ledger's fealty ties made here.</summary>
+        public const string Origin = "granted";
+
         /// <summary>The deed they remember (a FactionMemory kind on their side: "granted").</summary>
         public string deed = "granted";
         /// <summary>How big a debt it is (it fades slowly from there).</summary>
@@ -212,6 +217,7 @@ namespace ColonyCouncil
             string lord = f.leader != null && !f.leader.Dead ? f.leader.LabelShort : null;
             if (f.PlayerGoodwill < goodwill) f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill - f.PlayerGoodwill, false, false);
             var d = FactionMemory.Note(f, deed, lord, weight);
+            Hold(f, Refs.Colony(ctx.map), deed, weight, f.leader != null && !f.leader.Dead ? f.leader : null, Find.TickManager.TicksGame);
             string key = "CC_Scen_Beholden_" + deed + (lord != null ? "_Lord" : "");
             if (!key.CanTranslate()) key = "CC_Scen_Beholden";
             string line = key.Translate(f.Name.Named("FACTION"), (lord ?? "").Named("LORD")).Resolve();
@@ -221,6 +227,37 @@ namespace ColonyCouncil
         }
 
         public override string Summary(Scenario scen) => "CC_ScenPart_Beholden".Translate();
+
+        /// <summary>The colony holds its land of this people by their grant (once: a second grant of the same people is the same fealty).</summary>
+        private static void Hold(Faction f, Ref colony, string deed, int weight, Pawn lord, int since)
+        {
+            if (f == null) return;
+            if (colony.IsNone) colony = Refs.Us;
+            var people = Refs.Of(f);
+            if (WorldLedger.OwnTies(Tie.Kind.Fealty).Any(t => t.Live && t.origin == Origin && t.to == people)) return;
+            var terms = new TieTerms { key = deed, count = weight, about = lord != null ? WorldLedger.PersonOf(lord) : Ref.None };
+            if (since == Find.TickManager.TicksGame) WorldLedger.AddTie(Tie.Kind.Fealty, colony, people, terms, origin: Origin);
+            else WorldLedger.Adopt(new Tie { kind = Tie.Kind.Fealty, from = colony, to = people, terms = terms, since = since, origin = Origin });
+        }
+
+        /// <summary>
+        /// An older save from this scenario: the grant its people remember (the deed this part names, "granted" by default)
+        /// becomes the colony's fealty in the ledger, since the deed was first noted.
+        /// </summary>
+        public static void MoveToLedger()
+        {
+            var mem = FactionMemory.Instance;
+            if (mem == null) return;
+            var kinds = new HashSet<string> { "granted" };
+            var parts = Find.Scenario?.AllParts;
+            if (parts != null)
+                foreach (var p in parts)
+                    if (p is ScenPart_CouncilBeholden b && !b.deed.NullOrEmpty())
+                        kinds.Add(b.deed);
+            foreach (var d in mem.deeds.ToList())
+                if (d?.faction != null && kinds.Contains(d.kind))
+                    Hold(d.faction, Refs.Us, d.kind, d.weight, null, d.first);
+        }
 
         public override void ExposeData()
         {

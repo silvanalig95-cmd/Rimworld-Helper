@@ -383,7 +383,7 @@ namespace ColonyCouncil
                     break;
                 case OutsiderAct.GoodWord:
                     if (WordTo(x) == null) return Why("NoNotable");
-                    if (book != null && book.words.Any(w => w.outsider == x)) return Why("Promised");
+                    if (book != null && GoodWords.PromisedBy(x)) return Why("Promised");
                     if (!OutsiderMath.WillPutInWord(ofColony, ofColonist)) return Why("NotWell");
                     break;
                 case OutsiderAct.Letter:
@@ -399,8 +399,8 @@ namespace ColonyCouncil
                     if (!OutsiderMath.WillDoFavour(ofColony, ofColonist)) return Why("NotWell");
                     break;
                 case OutsiderAct.Bring:
-                    if (book != null && book.favours.Any(f => f.faction == PeopleOf(x))) return Why("Asked");
-                    if (book != null && book.favours.Count >= OutsiderBook.MaxFavours) return Why("TooManyAsked");
+                    if (book != null && Favours.AskedOf(PeopleOf(x))) return Why("Asked");
+                    if (book != null && Favours.Count >= OutsiderBook.MaxFavours) return Why("TooManyAsked");
                     if (BringChoices(x).Count == 0) return Why("NoBring");
                     if (!OutsiderMath.WillBring(ofColony, ofColonist)) return Why("NotWell");
                     break;
@@ -655,18 +655,19 @@ namespace ColonyCouncil
         /// <summary>Good words land once the one who promised is home (gone from the map into the world).</summary>
         public static void WordsHourly(OutsiderBook book, int now)
         {
-            if (book.words.Count == 0) return;
-            foreach (var w in book.words.ToList())
+            var open = GoodWords.Open();
+            if (open.Count == 0) return;
+            foreach (var w in open)
             {
                 var x = w.outsider;
                 if (x == null || x.Dead || x.Discarded || now - w.asked > OutsiderMath.GoodWordDays * GenDate.TicksPerDay)
                 {
-                    book.words.Remove(w);
+                    GoodWords.Close(w, false);
                     continue;
                 }
                 if (x.Spawned || !Find.WorldPawns.Contains(x)) continue;
-                book.words.Remove(w);
                 var n = NotableBook.Instance?.Get(w.notable);
+                GoodWords.Close(w, n != null && n.Alive);
                 if (n == null || !n.Alive) continue;
                 n.personal += w.shift;
                 if (KinMemory.Ours(w.by)) n.RegardOf(w.by, true).personal += w.shift * 0.7f;
@@ -684,12 +685,13 @@ namespace ColonyCouncil
         /// </summary>
         public static void FavoursHourly(OutsiderBook book, int now)
         {
-            if (book.favours.Count == 0) return;
-            foreach (var f in book.favours.ToList())
+            var open = Favours.Open();
+            if (open.Count == 0) return;
+            foreach (var f in open)
             {
                 if (f.faction == null || f.faction.defeated || f.def == null || now - f.asked > OutsiderMath.BringGiveUpDays * GenDate.TicksPerDay)
                 {
-                    book.favours.Remove(f);
+                    Favours.Close(f, false);
                     // apart: a favour that never came, told in a message.
                     if (f.faction != null && f.def != null)
                         Notify.Message("CC_Out_Msg_BringLapsed".Translate((f.faction?.Name ?? "?").Named("FACTION"), f.def.label.Named("THING"), (f.outsiderName ?? "?").Named("OTHER")).Resolve(),
@@ -713,7 +715,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Someone of their people at the colony now, free to walk over with it: the one who promised, else any grown one of them.</summary>
-        private static Pawn Bearer(OutsiderFavour f)
+        private static Pawn Bearer(Favour f)
         {
             // Not the visit the favour was asked on: the one who promised goes home first.
             if (f.outsider != null && f.outsider.Spawned) return null;
@@ -732,9 +734,9 @@ namespace ColonyCouncil
         public static void Brought(Pawn bearer, Pawn to, ThingDef def, int count)
         {
             var book = Book;
-            var f = book?.favours.FirstOrDefault(v => v.def == def && v.faction == bearer.Faction);
+            var f = book != null ? Favours.Open().FirstOrDefault(v => v.def == def && v.faction == bearer.Faction) : null;
             if (f == null || def == null) return;
-            book.favours.Remove(f);
+            Favours.Close(f, true);
             try
             {
                 var things = Couriers.Make(def, Mathf.Max(1, count));

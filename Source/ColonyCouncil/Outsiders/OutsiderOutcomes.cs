@@ -164,8 +164,7 @@ namespace ColonyCouncil
             }
             var book = Book;
             float shift = OutsiderMath.GoodWordShift(ofColony, ofColonist, c.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 4) * (tone == TalkTone.Warm ? 1.25f : 1f);
-            book?.words.Add(new OutsiderWord { outsider = x, outsiderName = x.LabelShort, notable = to.id, by = c, byName = c.LabelShort, shift = shift, asked = Now });
-            while (book != null && book.words.Count > OutsiderBook.MaxWords) book.words.RemoveAt(0);
+            if (book != null) GoodWords.Promise(x, c, to, shift);
             Say(x, "wordyes", c);
             // together: promised face to face.
             Good("CC_Out_Msg_WordYes", c, c.Named("PAWN"), x.Named("OTHER"), NotableBook.Called(to).Named("NAME"));
@@ -308,7 +307,7 @@ namespace ColonyCouncil
             }
             int count = OutsiderMath.BringCount(thing.BaseMarketValue, ofColony);
             var book = Book;
-            book?.favours.Add(new OutsiderFavour { outsider = x, outsiderName = x.LabelShort, faction = f, by = c, byName = c.LabelShort, def = thing, count = count, asked = Now });
+            if (book != null) Favours.Ask(x, f, c, thing, count);
             Say(x, "bringyes", c);
             // together: promised face to face.
             Good("CC_Out_Msg_BringYes", c, c.Named("PAWN"), x.Named("OTHER"), Couriers.Amount(count, null, thing).Named("THING"));
