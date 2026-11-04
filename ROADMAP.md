@@ -276,6 +276,13 @@ taken as "the colony"). Each step below ships as a release of its own with the g
 9. The harm review (queued since 3 November) runs alongside: each existing system is visited once for the ledger and
    the voice anyway, and its negative side is proposed per system then.
 
+### The interface for the long run (the player's priority, 4 November 2026)
+The design: `docs/design/interface.md`, with a visual mockup (`docs/design/interface-mockup.html`). Four windows as
+now, at most five views each (34 pages become 13); a card for every person, place, people, house, tie, event and
+letter, opened in a drawer from wherever its name appears, with previews, back and forward; the region map as the hub
+with six lenses in place of the posts', camps' and hamlets' pages; This week as the one inbox; a rule for where every
+new feature goes; one visual grammar. Five releases (UI 1 to UI 5) before stage 2a.1. Seven decisions with the player.
+
 ### Stage 1: the region comes alive
 The design and its seven releases: `docs/design/stage1-region.md`. **Done (0.69.0 to 0.77.0, 4 November 2026)**: the
 region's towns (the towns within reach kept in detail, their fortunes moved by world events and shown in words, the
