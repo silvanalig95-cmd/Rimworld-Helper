@@ -44,7 +44,7 @@ namespace ColonyCouncil
         public override float ChanceFactorNow(IIncidentTarget target)
         {
             float f = base.ChanceFactorNow(target);
-            if (HappeningTracker.Waiting) return 0f;
+            if (HappeningTracker.WaitingAt(target as Map)) return 0f;
             var t = CouncilGameComponent.Instance?.happenings;
             if (t != null && Find.TickManager.TicksGame - t.lastFiredTick < GenDate.TicksPerDay * 1.5f) f *= 0.3f;
             return f;

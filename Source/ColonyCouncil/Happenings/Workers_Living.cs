@@ -71,7 +71,9 @@ namespace ColonyCouncil
         public static HappeningLivingText More(IncidentDef def) => def?.GetModExtension<HappeningLivingText>();
 
         /// <summary>An unused memo of this kind about this people, or null.</summary>
-        public static Memo MemoOf(string kind, Faction f) => Tracker?.memos.FirstOrDefault(m => m.kind == kind && !m.used && m.faction == f);
+        /// <summary>An unused memo of this kind about this people; with a <paramref name="map"/>, of that colony's (Homes.MemoFor).</summary>
+        public static Memo MemoOf(string kind, Faction f, Map map = null) =>
+            Tracker?.memos.FirstOrDefault(m => m.kind == kind && !m.used && m.faction == f && (map == null || Homes.MemoFor(m.home, map)));
 
         public static Faction FactionById(int id) => Find.FactionManager.AllFactionsListForReading.FirstOrDefault(f => f.loadID == id);
 
@@ -140,7 +142,7 @@ namespace ColonyCouncil
         {
             var t = Tracker;
             if (t == null || f == null || goods == null) return;
-            var m = MemoOf(Buyer, f);
+            var m = MemoOf(Buyer, f, map);
             if (!filled)
             {
                 if (m != null) t.Use(m);
@@ -448,14 +450,15 @@ namespace ColonyCouncil
         private static ThingDef Goods(Memo m) => LivingEvents.ThingNamed(m?.def);
 
         private static Memo Pick(Map map) =>
-            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Buyer, 15f)
+            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Buyer, 15f, map)
                 .Where(m => m.times == 0 && LivingEvents.Friendly(m.faction) && VarietyUtil.OnGoodTerms(m.faction) && Goods(m) is ThingDef d && VarietyUtil.InStores(map, d) >= 10)
                 .RandomElementWithFallback();
 
-        private static bool OrderOut => CouncilGameComponent.Instance?.happenings.Memos("order").Any() ?? false;
+        /// <summary>An order of this colony's still out.</summary>
+        private static bool OrderOut(Map map) => CouncilGameComponent.Instance?.happenings.Memos("order", 0f, map).Any() ?? false;
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            !OrderOut && Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+            !OrderOut(map) && Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -477,7 +480,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
-            var m = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction);
+            var m = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction, ctx.map);
             tags.Add(m != null && m.amount >= 2 ? "again" : "once");
         }
 
@@ -487,7 +490,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var t = CouncilGameComponent.Instance?.happenings;
-            var buyer = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction);
+            var buyer = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction, ctx.map);
             if (t != null && option == 0 && ctx.thing != null && ctx.variant > 0 && LivingEvents.Friendly(ctx.faction))
             {
                 // An order like the first one: the neighbor's order event collects it.
@@ -752,16 +755,17 @@ namespace ColonyCouncil
     {
         private Memo chosen;
 
-        private static Memo Pick() =>
-            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Quarrel, 25f)
+        /// <summary>A quarrel this colony judged.</summary>
+        private static Memo Pick(Map map) =>
+            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Quarrel, 25f, map)
                 .Where(m => LivingEvents.Friendly(m.faction) && LivingEvents.FactionById(m.amount) is Faction o && o != m.faction && LivingEvents.Friendly(o))
                 .RandomElementWithFallback();
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Pick() != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            var m = Pick();
+            var m = Pick(ctx.map);
             if (m == null) return false;
             ctx.faction = m.faction;
             ctx.enemy = LivingEvents.FactionById(m.amount);
@@ -1021,7 +1025,7 @@ namespace ColonyCouncil
             var map = HappeningTracker.HomeMap();
             if (def == null || map == null) return;
             int hour = GenLocalDate.HourOfDay(map);
-            if (hour < 9 || hour > 19 || HappeningTracker.Waiting || MapFacts.ThreatOn(map)) return;
+            if (hour < 9 || hour > 19 || HappeningTracker.WaitingAt(map) || MapFacts.ThreatOn(map)) return;
             var parms = StorytellerUtility.DefaultParmsNow(def.category, map);
             if (def.Worker.CanFireNow(parms)) Find.Storyteller.TryFire(new FiringIncident(def, null, parms));
         }
@@ -1630,10 +1634,11 @@ namespace ColonyCouncil
 
         private static string Stage(float score) => score < 0f ? "" : RoomStatDefOf.Impressiveness.GetScoreStage(score)?.label ?? "";
 
-        private static bool Expected => CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Guest).Any() ?? false;
+        /// <summary>A guest this colony invited is still on the way.</summary>
+        private static bool Expected(Map map) => CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Guest, 0f, map).Any() ?? false;
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            !Expected && GuestBeds(map).Any() && Arrivals.Friendly(VarietyUtil.OnGoodTerms) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+            !Expected(map) && GuestBeds(map).Any() && Arrivals.Friendly(VarietyUtil.OnGoodTerms) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

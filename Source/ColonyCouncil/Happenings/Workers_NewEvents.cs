@@ -42,7 +42,7 @@ namespace ColonyCouncil
             if (t == null || !cell.IsValid || hunter == null || !hunter.IsColonist || !hunter.RaceProps.Humanlike || !Fits(victim)) return;
             var map = victim.MapHeld ?? hunter.Map;
             if (map == null || !map.IsPlayerHome) return;
-            foreach (var old in t.Memos(Kind).ToList()) t.Use(old);
+            foreach (var old in t.Memos(Kind, 0f, map).ToList()) t.Use(old);
             var m = t.Remember(Kind, null, null, victim.kindDef.defName, cell.x + "," + cell.z, false, hunter, map);
             if (m != null) m.amount = map.uniqueID;
             // Now and then the young one is found a few hours later (the storyteller may still bring it while the kill is fresh).
@@ -605,7 +605,8 @@ namespace ColonyCouncil
             "Bow_Recurve", "Bow_Great", "MeleeWeapon_LongSword", "MeleeWeapon_Gladius", "Gun_BoltActionRifle", "Gun_Revolver", "Gun_PumpShotgun"
         };
 
-        private static bool Pending => CouncilGameComponent.Instance?.happenings.Memos(Kind).Any() ?? false;
+        /// <summary>A commission this colony took on is still being made.</summary>
+        private static bool Pending(Map map) => CouncilGameComponent.Instance?.happenings.Memos(Kind, 0f, map).Any() ?? false;
 
         /// <summary>A product the colony can make now: a bench of its own with the recipe, its research done, and someone good at the work.</summary>
         private static IEnumerable<(ThingDef product, RecipeDef recipe, Building_WorkTable bench, Pawn maker)> Makeable(Map map)
@@ -628,15 +629,16 @@ namespace ColonyCouncil
             }
         }
 
-        private static Faction PatronOf() =>
-            CouncilGameComponent.Instance?.happenings.Memos(Patron).Select(m => m.faction).FirstOrDefault(f => f != null && !f.defeated && !f.HostileTo(Faction.OfPlayer));
+        /// <summary>A people who were pleased with this colony's last commission.</summary>
+        private static Faction PatronOf(Map map) =>
+            CouncilGameComponent.Instance?.happenings.Memos(Patron, 0f, map).Select(m => m.faction).FirstOrDefault(f => f != null && !f.defeated && !f.HostileTo(Faction.OfPlayer));
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending && (PatronOf() ?? Arrivals.Friendly()) != null && Makeable(map).Any();
+        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending(map) && (PatronOf(map) ?? Arrivals.Friendly()) != null && Makeable(map).Any();
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             var map = ctx.map;
-            ctx.faction = PatronOf() ?? Arrivals.Friendly();
+            ctx.faction = PatronOf(map) ?? Arrivals.Friendly();
             var pick = Makeable(map).RandomElementWithFallback();
             if (ctx.faction == null || pick.product == null) return false;
             ctx.thing = pick.product;
@@ -654,7 +656,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
-            if (ctx.faction != null && PatronOf() == ctx.faction) tags.Add("patron");
+            if (ctx.faction != null && PatronOf(ctx.map) == ctx.faction) tags.Add("patron");
             if (ctx.thing != null) tags.Add(ctx.thing.IsWeapon ? "weapon" : "apparel");
         }
 
@@ -767,7 +769,7 @@ namespace ColonyCouncil
             if (fine)
             {
                 var t = comp.happenings;
-                foreach (var old in t.Memos(Patron).ToList()) t.Use(old);
+                foreach (var old in t.Memos(Patron, 0f, map).ToList()) t.Use(old);
                 t.Remember(Patron, null, ctx.faction, null, null, false, ctx.a, map);
             }
             var tags = new List<string> { fine ? "fine" : "plain" };

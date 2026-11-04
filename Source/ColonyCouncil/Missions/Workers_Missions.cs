@@ -432,7 +432,7 @@ namespace ColonyCouncil
         private static bool Ask(Mission m, Map map)
         {
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail(TamedDef);
-            if (def == null || HappeningTracker.Waiting) return false;
+            if (def == null || HappeningTracker.WaitingAt(map)) return false;
             HappeningWorker_MissionTamed.current = m;
             try
             {

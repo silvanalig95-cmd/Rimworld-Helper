@@ -107,7 +107,7 @@ namespace ColonyCouncil
             && ((sk != SkillDefOf.Shooting && sk != SkillDefOf.Melee) || !p.WorkTagIsDisabled(WorkTags.Violent));
 
         private static Memo Pick(Map map) =>
-            CouncilGameComponent.Instance?.happenings.Memos("challenger", 45f).Where(m =>
+            CouncilGameComponent.Instance?.happenings.Memos("challenger", 45f, map).Where(m =>
             {
                 var x = m.pawn;
                 var sk = DefDatabase<SkillDef>.GetNamedSilentFail(m.def ?? "");
@@ -170,7 +170,7 @@ namespace ColonyCouncil
     public class HappeningWorker_BeastHeir : HappeningWorker_GreatBeast
     {
         private static Memo Pick(Map map) =>
-            CouncilGameComponent.Instance?.happenings.Memos("beast", 40f).Where(m =>
+            CouncilGameComponent.Instance?.happenings.Memos("beast", 40f, map).Where(m =>
                 !m.text.NullOrEmpty() && Fits(DefDatabase<PawnKindDef>.GetNamedSilentFail(m.def ?? ""), map)
                 && PokeWorldLink.Allows(DefDatabase<PawnKindDef>.GetNamedSilentFail(m.def ?? ""))).RandomElementWithFallback();
 
@@ -226,15 +226,16 @@ namespace ColonyCouncil
     /// <summary>Pilgrims the colony fed send their thanks down the road.</summary>
     public class HappeningWorker_PilgrimsReturn : IncidentWorker_Happening
     {
-        private static Memo Pick() =>
-            CouncilGameComponent.Instance?.happenings.Memos("pilgrims", 15f).Where(m =>
+        /// <summary>Pilgrims this colony fed (their thanks come to where they were fed).</summary>
+        private static Memo Pick(Map map) =>
+            CouncilGameComponent.Instance?.happenings.Memos("pilgrims", 15f, map).Where(m =>
                 m.faction != null && !m.faction.defeated && !m.faction.HostileTo(Faction.OfPlayer)).RandomElementWithFallback();
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Colonists(map).Count > 0 && Pick() != null;
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Colonists(map).Count > 0 && Pick(map) != null;
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            var m = Pick();
+            var m = Pick(ctx.map);
             if (m == null || !base.Cast(ctx, ext)) return false;
             ctx.faction = m.faction;
             CouncilGameComponent.Instance.happenings.Use(m);

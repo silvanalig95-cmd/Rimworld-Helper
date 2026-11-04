@@ -196,9 +196,10 @@ namespace ColonyCouncil
         private static IEnumerable<KeyValuePair<ThingDef, int>> Stock(Map map, Faction f) =>
             map.resourceCounter.AllCountedAmounts.Where(kv => kv.Value >= 10 && Orderable(kv.Key, f) && kv.Value * kv.Key.BaseMarketValue >= 40f).ToList();
 
-        private static bool Pending => CouncilGameComponent.Instance?.happenings.Memos(Kind).Any() ?? false;
+        /// <summary>An order this colony took on is still out.</summary>
+        private static bool Pending(Map map) => CouncilGameComponent.Instance?.happenings.Memos(Kind, 0f, map).Any() ?? false;
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending && Arrivals.Friendly() != null && Stock(map, null).Any();
+        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending(map) && Arrivals.Friendly() != null && Stock(map, null).Any();
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

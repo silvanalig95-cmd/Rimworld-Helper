@@ -629,7 +629,7 @@ namespace ColonyCouncil
                 timers[key] = next;
                 if (now < GenDate.TicksPerDay * 3 || now < next || space) continue;
                 // Not on top of a fight, and not while the colony still has an event to answer.
-                if (MapFacts.ThreatOn(map) || Waiting)
+                if (MapFacts.ThreatOn(map) || WaitingAt(map))
                 {
                     timers[key] = now + GenDate.TicksPerHour * 4;
                     continue;
@@ -641,8 +641,21 @@ namespace ColonyCouncil
             if (seat != HomesMath.None && timers.TryGetValue(seat, out int seatNext)) nextTick = seatNext;
         }
 
-        /// <summary>An event letter nobody has answered yet.</summary>
-        public static bool Waiting => Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Happening h && !h.resolved);
+        /// <summary>An event letter nobody has answered yet, about any colony.</summary>
+        public static bool Waiting => WaitingAt(null);
+
+        /// <summary>
+        /// An event letter nobody has answered yet that holds back the colony of <paramref name="map"/>: one about that home,
+        /// or about no home (<see cref="Homes.HoldsBack"/>). One about another home waits without keeping this one quiet.
+        /// With one colony, or no map, any unanswered letter does.
+        /// </summary>
+        public static bool WaitingAt(Map map)
+        {
+            var letters = Find.LetterStack.LettersListForReading;
+            for (int i = 0; i < letters.Count; i++)
+                if (letters[i] is ChoiceLetter_Happening h && !h.resolved && Homes.HoldsBack(h.ctx?.map, map)) return true;
+            return false;
+        }
 
         private static int Interval() => Mathf.RoundToInt(Mathf.Max(0.5f, S.daysBetweenWorldEvents) * Rand.Range(0.6f, 1.4f) * GenDate.TicksPerDay);
 
@@ -978,9 +991,13 @@ namespace ColonyCouncil
             return m;
         }
 
-        /// <summary>Unused memos of this kind at least <paramref name="minDays"/> old.</summary>
-        public IEnumerable<Memo> Memos(string kind, float minDays = 0f) =>
-            memos.Where(m => m.kind == kind && !m.used && Now - m.tick >= minDays * GenDate.TicksPerDay);
+        /// <summary>
+        /// Unused memos of this kind at least <paramref name="minDays"/> old; with a <paramref name="map"/>, only those of its
+        /// colony (an older memo, or one of a home no longer ours, is the seat's: <see cref="Homes.MemoFor"/>), so a later
+        /// event picks up only what its own colony left. With one colony that is every memo.
+        /// </summary>
+        public IEnumerable<Memo> Memos(string kind, float minDays = 0f, Map map = null) =>
+            memos.Where(m => m.kind == kind && !m.used && Now - m.tick >= minDays * GenDate.TicksPerDay && (map == null || Homes.MemoFor(m.home, map)));
 
         /// <summary>A later event picked it up: it won't come round again.</summary>
         public void Use(Memo m)

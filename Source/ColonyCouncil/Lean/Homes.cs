@@ -276,6 +276,28 @@ namespace ColonyCouncil
             return MapOf(HomesMath.Deliver(key, keys, SeatKey));
         }
 
+        /// <summary>
+        /// A memo of colony <paramref name="key"/> belongs to the colony of <paramref name="map"/> (its follow-up goes
+        /// there: <see cref="ForMemo"/>). With one colony every memo does.
+        /// </summary>
+        public static bool MemoFor(int key, Map map)
+        {
+            Refresh();
+            return HomesMath.MemoAt(key, KeyForMemo(map), keys, SeatKey);
+        }
+
+        /// <summary>
+        /// A letter about <paramref name="about"/> still waiting for its answer holds back the colony of <paramref name="map"/>:
+        /// one about that home, about no map, or about a map that isn't a home does (<see cref="HomesMath.HoldsBack"/>).
+        /// With one colony every letter does. Asked for no map, any letter does.
+        /// </summary>
+        public static bool HoldsBack(Map about, Map map)
+        {
+            if (map == null) return true;
+            Refresh();
+            return HomesMath.HoldsBack(KeyIfHome(about), KeyForMemo(map), keys);
+        }
+
         // ---------------- Where most people are ----------------
 
         private static int busiestAt = Fresh.Never;
