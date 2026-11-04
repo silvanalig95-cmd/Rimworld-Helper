@@ -119,6 +119,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// Enter (the game's accept key) while typing in its search stays in the Almanac; otherwise it closes it, as the
+        /// game's windows do.
+        /// </summary>
+        public override void OnAcceptKeyPressed()
+        {
+            if (GUIUtility.keyboardControl != 0)
+            {
+                Event.current.Use();
+                return;
+            }
+            base.OnAcceptKeyPressed();
+        }
+
         public override void PreClose()
         {
             base.PreClose();
