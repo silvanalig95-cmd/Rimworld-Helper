@@ -2521,6 +2521,60 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   effect until round d.
 - **Settings**: the section Diplomacy, `diplomacyFavours`.
 
+#### Pacts and truces
+
+Release 2a.2 (docs/design/stage2-diplomacy.md, item 2, and the fighters through a favour from item 1): `Diplomacy/`,
+its rules pure and tested (`PactMath.cs`; `Tools/Tests/PactTests.cs`).
+
+- **Ties only.** A truce is a Truce tie of origin `truce`, a pact a Pact tie of origin `pact`, between a colony and a
+  people, from whoever offered. Their ends are in their terms (`number`, a game day) and reached in diplomacy's hour,
+  not by the ledger's until (unset), so a truce's end can be a peace (kept) and a pact's an offer to renew. A truce's
+  terms: `key` the term (`season`, `year`; `parley:` before it is sworn), `days` the firebrands' day, `count` and
+  `goods` the price; a pact's: `key` its kind (`defence`, `trade`), `days` the last call or season, `count` the calls
+  (a trade pact: the cart's count), `goods` a call under way (`band:DAY`, `arms:TOWN:DAY`; a trade pact: the cart's
+  thing), `about` the enemy. Their letters (`ChoiceLetter_TruceOffer`, `_PactOffer`, `_CallToArms`), the parley's lord
+  and the jobs keep their own; nothing else is saved.
+- **Truces** (`Truces`): offered by letter or call (`LetterPurpose.Truce`, `DiplomacyLetters`) when `PactMath.Why`
+  holds (a raid beaten in 15 days, one of their notables or kin held, a friend's `peace` promise, read as 20), answered
+  by `PactMath.TruceScore`; offered by them after a raid is beaten (`Truces.WatchRaids`, a quarter of the time, a season
+  apart). Agreed, the envoy and a guard walk to the gate as guests of a people at peace with both (`TruceParley`,
+  `LordJob_Parley`, so neither side's fighters raise a hand), an avenger's objection comes first
+  (`Rimfolk_DlmTruce_Avenger`), and the speaker walks out (`JobDriver_Parley`, with the silver when that is the price);
+  `Truces.Swear` starts the term, pays the price (silver handed over or set down, their captives set to be released),
+  rolls the firebrands once (10%, 15% for natural goodwill below -50), breaks up their raiders' camp
+  (`RaidersCamps.TruceSworn`) and writes `dip:parley`. `Patch_TruceRaids` (a postfix on
+  `IncidentWorker_RaidEnemy.FactionCanBeGroupSource`) reads `Truces.KeepsAway`, a set built once a 250-tick stretch;
+  `Raids.CanRaid(f, home)` asks `Truces.Bars`, so Rimfolk's own raids and camps keep away too, but the firebrands'
+  (`Truces.letting`). A raid of theirs that arrives anyway (`Patch_TruceRaided`), their ambush (`Patch_TruceAmbush`) or
+  a colonist killed breaks it (`truceBroken`).
+- **Pacts** (`Pacts`): proposed by letter or call (`LetterPurpose.Pact`), face to face (`OutsiderAct.SpeakPact`), or
+  offered by them (`Pacts.Daily`: regard 50, an enemy in common, a year apart), answered by `PactMath.PactScore`; the
+  Empire makes none. A year, renewable by their letter. Called in (`Pacts.Call`; the people card's act and
+  `Alert_PactCall`) by the comms console (`JobDriver_PactCall`) or a signal fire by the gate (`JobDriver_SignalFire`,
+  the bonfire's own campfire, done in danger), `PactMath.Answer` decides (the attacker their friend: they decline and
+  it ends without blame; nine in ten they come; else put off), and their band walks in some hours later as a war band
+  (`WarCamps.MakeFighters`, `Start`, the band's `called`: only their fallen leave a debt). A debt of honour called in
+  for fighters (`FavourAsk.Fighters`) brings a band the same way. A trade pact: `IncidentDefOf.TraderCaravanArrival` for
+  them each season, and the cart carried out to the gate (`DilemmaEffect_CarryOut`, their porters waiting) and paid for
+  (`Couriers.PaySilver`, four fifths of its worth).
+- **Calls to arms** (`CallsToArms`): a partner's town within reach attacked (a Faction Territories invasion,
+  `Territories.InvasionAt`, or a running bad war world event within 10 tiles) brings a defense partner's letter (once a
+  day, a third of the time) or a debt's call (`FavourNeed.Fighters`); answered by a caravan of two grown colonists or more
+  bound there within five days; at the town the fight is on the game's caravan battle map beside it
+  (`CaravanIncidentUtility.SetupCaravanAttackMap`, their attackers at half the home's threat points, a few of theirs
+  with `LordJob_AssistColony`), or Faction Territories' own fight joined through its `ArrivalAction_JoinFight`.
+- **Breaches** (`PactsHooks.Noted`, from `FactionMemory.Note`): a wrong of the colony's (`PactMath.OurBreaches`, for a
+  pact `PactBreaches`) breaks every truce and pact with them (`brokeTruce`, `brokePact`, and `wordBroken` with every
+  people at peace with a town in reach); refusing a call breaks a pact. Factional War's battles
+  (`PactsHooks.BattleBegan` from `WorldMechanics.Battle`) name a partner among the sides; a wrong done to the other side
+  then is `sidedWith` for a pact partner.
+- **What the player sees** (`PactsPanels`): rows on each people's card (Peoples) and its town's card, the tie's own card
+  (`CardSections`, `CardActs`), the people card's acts (offer a truce, propose a pact, call them), the inbox (Needs you:
+  their offers and calls; Under way: a truce to be sworn, a band coming, the colony's fighters away, in steps; Coming: a
+  truce broken), the Stance lens' lines and the Threats lens dimming a truce partner. Facts: `tie:pact`, `tie:truce`
+  (`:ours`, `:theirs`, `:due`; a pact's `:defence`, `:trade`), `{PACTWITH}`, `{TRUCEWITH}` (`Facts.PactTies`). Words by
+  both ages (`AgeFeature.Pact`, `Truce`), the call by the colony's means. Settings `diplomacyPacts`, `truceRaids`.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

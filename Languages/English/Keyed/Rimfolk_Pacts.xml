@@ -215,6 +215,7 @@
   <CC_Arms_Fight_2>Outside {TOWN} the band of {ENEMY} turns to meet the colony's people. {ALLIES} of {PEOPLE} fight beside them.</CC_Arms_Fight_2>
   <CC_Arms_Fought>The colony's people are fighting at {TOWN}.</CC_Arms_Fought>
   <CC_Arms_JoinedInvasion>The colony's people joined the fight for {TOWN}.</CC_Arms_JoinedInvasion>
+  <CC_Arms_NotOurs>The colony's caravan reached {TOWN}. {ENEMY} are at peace with the colony, and drew off rather than fight its people.</CC_Arms_NotOurs>
   <CC_Arms_Late>The colony's caravan reached {TOWN}, and the danger there had passed. {PEOPLE} thank it all the same.</CC_Arms_Late>
   <CC_Arms_Hist>The colony's fighters came to {TOWN} when {PEOPLE} asked.</CC_Arms_Hist>
   <CC_Arms_Deed>fighters sent to {TOWN}</CC_Arms_Deed>
@@ -271,6 +272,8 @@
   <CC_War_Truce>{PEOPLE}, who hold a truce with the colony, are one side of the battle on its land, against {OTHER}. Harm done to their fighters breaks the truce.</CC_War_Truce>
   <CC_War_Sided>the battle against {OTHER} on the colony's land</CC_War_Sided>
   <CC_War_SidedMsg>{PEOPLE} saw the colony fight beside them, and will remember it.</CC_War_SidedMsg>
+  <CC_War_InvasionHeld>The fight for {TOWN} is over: {PEOPLE} held it.</CC_War_InvasionHeld>
+  <CC_War_InvasionLost>The fight for {TOWN} is over: {WINNER} took it from {PEOPLE}.</CC_War_InvasionLost>
 
   <!-- A raiders' camp broken up by a truce -->
   <CC_RaidCamp_End_Truce>With a truce sworn, {PEOPLE} have struck their {KIND} {WHERE} and gone home.</CC_RaidCamp_End_Truce>

@@ -6,6 +6,69 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- Stage 2 release 2a.2, pacts and truces (docs/design/stage2-diplomacy.md, item 2, and item 1's fighters through a favour
+  both ways, left for this release; the player's decisions 1, 2, 3, 9 and 18 as recommended; built beside UI 5b, which
+  restyles the pages: this release only adds rows, sections, acts and inbox rows through the registration APIs).
+  DESIGN.md, "Diplomacy" → "Pacts and truces" has the whole of it. Pure and tested (`Tools/Tests/PactTests.cs`, 591
+  checks): `Diplomacy/PactMath.cs` (`PactKind`, `TruceTerm`, `TrucePrice`, `TruceWhy`, `PactAnswer`; who may offer a truce,
+  `TruceScore` with the 2a.1 `peace` promise read as 20, `TruceChance`, `PriceSilver`, `SwornGoodwill`, their offer
+  (`TheyOffer`, a quarter of beaten raids, a season apart), the firebrands (10%, 15% below natural goodwill -50, once per
+  truce, `FirebrandDay`), `Peace`/`FromPeace`/`Due`; `MayPropose` (goodwill 20, never the Empire), `PactScore`/`PactChance`,
+  `MayOfferPact` (regard 50, an enemy in common, a year apart), `Renews`; `MayCall` (a season), `Answer` (a friend of the
+  attacker declines, nine in ten come), `BandHours`; `CartCount`/`CartPay`; `Answers` (two grown colonists, five days);
+  `OurBreaches`, `PactBreaches`, `TheirBreaches`; the terms' codes; the facts' `Tags`). `FavourMath`: `FavourAsk.Fighters`,
+  `FavourNeed.Fighters`. Game side, all in `Diplomacy/`: `Truces.cs` (Truce ties of origin `truce`, their ends in their
+  terms and reached in diplomacy's hour, the ledger's until unset; `KeepsAway`, a set built once a 250-tick stretch;
+  `Bars` for `Raids.CanRaid(f, home)`; why it can be offered, `Hear`, `MakePending`, their offer after a raid beaten
+  (`WatchRaids`, `ChoiceLetter_TruceOffer`), `Swear` (term, price paid, firebrands rolled, `RaidersCamps.TruceSworn`,
+  `dip:parley`), the firebrands' raid past it (`letting`), its end (a peace, kept, or run out), broken by them (a raid, an
+  ambush, a colonist killed: `truceBroken`) or by the colony (`brokeTruce`, `wordBroken` in reach), who broke it kept in its
+  terms for the inbox), `TruceParley.cs` (their envoy and a guard as guests of a people at peace with both, so neither
+  side's fighters raise a hand; `LordJob_Parley`: to the gate, wait, home; harmed by the colony, they run and the colony
+  broke its word; `JobDriver_Parley`: the speaker walks out with the silver and they swear it; no escort people: sworn by
+  word), `TruceObjection.cs` (`Rimfolk_DlmTruce_Avenger` in `Defs/DilemmaDefs/Rimfolk_Dilemmas_Truce.xml`: the avenger's
+  objection before the speaker goes out; the vendettas' own thoughts, no new mood), `Pacts.cs` (Pact ties of origin
+  `pact`; propose, `Hear`, `Make`, the cart's goods, their offer and renewal (`ChoiceLetter_PactOffer`), the call
+  (`Call`, `CallMade`, `CallWhyNot`), their band as a war band (`WarCamps.MakeFighters`/`Start`, `WarBand.called`: only
+  their fallen leave a debt, as "protected" for a pact, "aid" for a favour), a debt's band (`FavourBands`), a trade pact's
+  season (their caravan, the cart carried out to the gate and paid for), broken by the colony, ended by its letter;
+  `PactsDefOf`), `PactCalls.cs` (the comms console or a signal fire by the gate, `JobDriver_PactCall`,
+  `JobDriver_SignalFire`, done in danger), `CallsToArms.cs` (their town attacked: a Faction Territories invasion or a bad
+  war world event within 10 tiles; their letter `ChoiceLetter_CallToArms` for a pact or a debt; a caravan of two grown
+  colonists bound there; the fight on the game's caravan battle map beside the town, or the mod's own invasion fight;
+  refused or late: the pact broken, the debt refused), `PactsHooks.cs` (`Noted` from `FactionMemory.Note`;
+  `Patch_TruceRaids`, `Patch_TruceRaided`, `Patch_TruceAmbush`; Factional War's battles naming a partner, `sidedWith`;
+  Faction Territories' invasion's end told), `PactsPanels.cs` (rows on people and town cards, the tie's card, the people
+  card's acts, the inbox: `pacts` in Needs you, `pacts-under-way`, `truces-broken` in Coming; `Alert_PactCall`),
+  `FactsPacts.cs` (`tie:pact`, `tie:truce`, `:ours`, `:theirs`, `:due`, a pact's `:defence`/`:trade`, `{PACTWITH}`,
+  `{TRUCEWITH}`), `PactWords.cs`, `PactsDebug.cs` (dev actions: their truce offer, one agreed with the envoy due, the
+  firebrands now, a truce's end, a pact made, their pact offer, their band now, their call to arms, a trade season).
+  Shared, small: `LetterPurpose.Pact`/`Truce` and `OutsiderAct.SpeakPact` at the ends of their enums; `DiplomacyLetters`
+  (topics `truce:TERM:PEOPLE`, `pact:KIND:PEOPLE`, `pactend:ID`; asks `price:`, `cart:`), `DiplomacyActs` ("Speak of a
+  pact..."), `FavourCalls`/`FavourAsks` (fighters both ways, `AnyLetterFor`), `DiplomacyModel` (the rows and acts),
+  `DiplomacyMath` (`dip:truceOffer`, `dip:pactOffer`, `dip:parley`, `dip:band`, `dip:arms`), `Raids.CanRaid(f, home)`,
+  `RaidersCamp` (a truce breaks the camp up and none is set up while it holds), `WarCamp` (`called`),
+  `WorldMechanics.Battle`, `TerritoriesAdapter` (`InvasionAt`, `JoinFight`, the end told), `RegionViewsMath`/`LensModel`
+  (`PlaceFacts.truce` dims the Threats lens), `FactsLedger` (calls `PactTies`), the letter dialog 60 taller, settings
+  `diplomacyPacts` and `truceRaids` (with the deeper hooks) in Diplomacy. Defs: `Defs/Misc/Rimfolk_Pacts.xml` (three
+  letters, three jobs). Content: 14 talk pieces (`Rimfolk_OutsiderTalks_Pacts.xml`), 29 letter lines and 20 spoken lines
+  (`Rimfolk_Lines_Pacts.xml`), keyed words with variants (`Rimfolk_Pacts.xml`), the Almanac's diplomacy page extended
+  (five sections after Settings, no keyword changes), README, DESIGN.md. Tests changed with it: `DiplomacyTests` (the
+  new purposes and act at the ends of their enums, `Topics(n, p)`, fighters an ask now, Debug files), `OutsiderTalkTests`
+  (the ask, the tags, the placeholders); the DefValidator knows `PACTWITH`, `TRUCEWITH`. textcheck reports the Almanac
+  page's five new sections as "added outside an existing list" (the check is for prose passes; the page was extended on
+  purpose). Left out: hostages as a truce's price (round b's), the harm review's 3.8.1 (an avenger picking a fight with
+  their trader, not picked), the envoy hurt or killed at the gate as its own case (2a.3's envoy; now the truce lapses).
+  To look at in game: a truce offered by letter after a raid beaten and by their letter; the envoy and guard walking to
+  the gate untouched by turrets and colonists, the speaker walking out with the silver, the oath's bubbles, the letter,
+  the raiders' camp struck; the storyteller sending no raid of theirs to that home for the term; the firebrands' raid and
+  its letter; the truce's end as a peace with goodwill raised to 0; an avenger's objection before the council; a pact
+  proposed by letter and face to face, their offer, the renewal letter at the year's end; "Call them" by the comms console
+  and by a signal fire by the gate during a raid, their band walking in some hours later, put off and declined; a
+  trade season's caravan and the cart carried to their porters; their call to arms and a caravan sent, the fight beside
+  their town, and with Faction Territories the invasion joined; Factional War naming a partner; each on the people card,
+  the town card, the tie's card, the inbox and the Stance and Threats lenses.
+
 - 0.86.0, UI 3, one inbox and search (docs/design/interface.md, the third of its five releases; built beside UI 5a and merged
   with it at 12b9521: the corner is 5a's `WindowLayoutMath.CornerWidth()`, 316, and `WindowTabs.LinksWidth` reads it).
   DESIGN.md, "Rimfolk's windows" → "One inbox and search" has the whole of it. Pure and tested

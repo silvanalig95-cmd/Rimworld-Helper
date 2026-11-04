@@ -45,6 +45,29 @@ namespace ColonyCouncil
             }
         }
 
+        // ================= Faction Territories' invasions =================
+
+        /// <summary>
+        /// An invasion of a town ended (Faction Territories' ResolveWithWinner): when the town's people are a pact partner
+        /// of the colony's, or the colony owes them, how it ended is told in the news.
+        /// </summary>
+        public static void InvasionEnded(Faction owner, string town, Faction winner)
+        {
+            if (owner == null || winner == null || owner.IsPlayer) return;
+            try
+            {
+                if (Pacts.With(owner).Count == 0 && FavoursOwed.OwedTo(owner).Count == 0) return;
+                string key = winner == owner ? "CC_War_InvasionHeld" : "CC_War_InvasionLost";
+                // apart: news of a fight far away, told in the evening's news.
+                Tell.Minor(NewsKind.World, Importance.Notable, Homes.Seat, PactWords.P(key, PactWords.People(owner).Named("PEOPLE"), (town ?? "?").Named("TOWN"),
+                    PactWords.People(winner).Named("WINNER")), LookTargets.Invalid);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("pacts: an invasion's end", e);
+            }
+        }
+
         // ================= Factional War's battles =================
 
         private sealed class Battle

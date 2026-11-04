@@ -231,6 +231,8 @@ namespace ColonyCouncil
         /// <summary>An invasion's winner named: when the attacker won and the town there is theirs now, it was taken.</summary>
         public static void AfterWinner(Before b, Faction winner)
         {
+            // How an invasion of a partner's town ended, told (Diplomacy/PactsHooks.cs).
+            if (b != null && !b.resolved && winner != null && b.owner != null) PactsHooks.InvasionEnded(b.owner, b.name, winner);
             if (b == null || b.resolved || winner == null || winner.loadID != b.attacker || !b.tile.Valid) return;
             var town = Find.WorldObjects.SettlementAt(b.tile);
             if (town == null || town.Faction != winner) return;

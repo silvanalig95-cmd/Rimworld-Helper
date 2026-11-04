@@ -2650,6 +2650,21 @@ region map shows its debts, and the map's Stance and ties lens draws each as a d
 window's Peoples has what is owed each way, and its Here and away who is here from outside and who is away. 14 conversation pieces speak of it. Setting: *Favors owed and called in*. The Almanac
 has a page, *diplomacy*.
 
+**Pacts and truces.** After the colony beats a raid, holds one of their notables or kin, or a friend of both speaks
+for peace, it can offer a people at war a truce by letter or call: a season or a year, a price either way. Agreed,
+their envoy walks to the gate under their sign of parley and the colony's speaker walks out to swear it (a colonist
+sworn to vengeance on them objects before the council first); they offer one themselves now and then after a defeat.
+While it holds their raids keep away from that home (a hook on the game's choice of raiders) and their camp near it
+breaks up; once per truce their firebrands may raid anyway, and at its end it is a peace if their goodwill has come to
+0. With a friend at goodwill 20 or more the colony swears a defense or a trade pact for a year, by letter or face to
+face ("Speak of a pact"), or takes one they offer. While a threat is on the colony it calls a defense partner by its
+comms console or a signal fire by the gate, and their band walks in some hours later; when a partner's town is
+attacked, the colony's fighters go there by caravan and fight on the game's caravan battle map (or in Faction
+Territories' invasion). A trade pact brings their caravan each season and takes a cart of the colony's surplus for
+silver. Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
+card, the inbox and the map's lenses. 14 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Settings: *Pacts and
+truces*, *Truces keep raids away*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town

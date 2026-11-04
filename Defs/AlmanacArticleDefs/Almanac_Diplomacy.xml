@@ -43,6 +43,10 @@ When the colony does a people a good turn of size 10 or more in their memory, th
         <text>A people the colony owes looks at it once a day and calls it in about once in 90 days, but only when the world shows a need, and at most once a season. Medicine while a sickness runs among them, food in a famine: their letter, answered by carrying it out to their messenger at the colony's gate, or refused. Hands at their harvest, or a roof for their homeless: the harvest and refugee missions, asked by them, with the debt named in the letter. The colony's word on their side in a blood feud or a contested seat: the speaker writes it to their head. Refused, or left unanswered for three days (a mission until it ends), the debt is broken: they remember it, and lose 5 goodwill toward the colony. Answered, they remember that the colony kept its word.</text>
       </li>
       <li>
+        <heading>Settings</heading>
+        <text>The section "Diplomacy" of the settings has "Favors owed and called in", "Pacts and truces", and "Truces keep raids away" (a hook on the game's choice of raiders, with the deeper game hooks). Off, no debt, pact or truce is made or called in, and those open run out by their terms. Later releases of the diplomacy add their own parts to that section.</text>
+      </li>
+      <li>
         <heading>Truces</heading>
         <text>A truce can be offered to a people at war with the colony when the colony has beaten a raid of theirs in the last 15 days, holds one of their notables or their kin in its cells, or a friend of both has called in a debt for peace. The offer is a letter or a call to their head (their people's card, "Offer a truce"): a season or a year, and a price either way, the colony's silver, theirs, or their captives in the colony's cells returned. How they take it follows their goodwill, a raid just beaten, one of theirs held, a friend's word, the term and the price. Now and then, after a raid of theirs is beaten, they offer one themselves. Agreed, their envoy walks to the colony's gate under their sign of parley, vouched for by a people at peace with both, and the colony's speaker walks out to them (with the silver when that is the price) and they swear it there. When a colonist has sworn vengeance on them, that colonist has their say before the council first, and the council may send the envoy home.</text>
         <table>
@@ -60,7 +64,7 @@ When the colony does a people a good turn of size 10 or more in their memory, th
       </li>
       <li>
         <heading>Calling a defense pact in</heading>
-        <text>While a threat is on a home, "Call them" on their card or the alert makes the call by the colony's means: the caller at a comms console when both sides can use one, else a signal fire laid and lit by the gate where their watchers see it (20 wood, a fire on the hill to a tribe, a beacon for their riders to a medieval people). Their band walks in some hours later, more the further their town, and fights beside the colony. At most once a season a pact; nine times in ten they come, and once their riders are elsewhere. If the attacker is their friend, they decline and the pact ends with nobody at fault. Their fallen leave the colony owing them in turn. A debt of honor called in for fighters brings their band the same way.</text>
+        <text>While a threat is on a home, "Call them" on their card or the alert makes the call by the colony's means: the caller at a comms console when both sides can use one, else a signal fire laid and lit by the gate where their watchers see it (20 wood, a fire on the hill to a tribe, a beacon for their riders to a medieval people). Their band walks in some hours later, more the further their town, and fights beside the colony. At most once a season a pact; nine times in ten they come, and once their riders are elsewhere. If the attacker is their friend, they decline and the pact ends without blame. Their fallen leave the colony owing them in turn. A debt of honor called in for fighters brings their band the same way.</text>
       </li>
       <li>
         <heading>Their call to arms</heading>
@@ -68,11 +72,7 @@ When the colony does a people a good turn of size 10 or more in their memory, th
       </li>
       <li>
         <heading>Breaking them</heading>
-        <text>The colony breaks a truce or a pact by attacking that people, their caravans, visitors or towns, or by refusing a call; it may end a pact by letter without blame. Broken by the colony, every people at peace with a town in reach hears that it broke its word. With Factional War, a battle on the colony's land names a pact or truce partner among the two sides: fighting beside a pact partner keeps the pact, and harm done to a truce partner's fighters breaks the truce.</text>
-      </li>
-      <li>
-        <heading>Settings</heading>
-        <text>The section "Diplomacy" of the settings has "Favors owed and called in", "Pacts and truces", and "Truces keep raids away" (a hook on the game's choice of raiders, with the deeper game hooks). Off, no debt, pact or truce is made or called in, and those open run out by their terms. Later releases of the diplomacy add their own parts to that section.</text>
+        <text>The colony breaks a truce or a pact by attacking that people, their caravans, visitors or towns, or by refusing a call; it may end a pact by letter without blame. Broken by the colony, each people at peace with a town in reach hears that it broke its word. With Factional War, a battle on the colony's land names a pact or truce partner among the two sides: fighting beside a pact partner keeps the pact, and harm done to a truce partner's fighters breaks the truce.</text>
       </li>
     </sections>
     <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>

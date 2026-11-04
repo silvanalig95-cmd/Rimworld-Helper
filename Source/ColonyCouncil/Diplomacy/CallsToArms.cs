@@ -53,7 +53,7 @@ namespace ColonyCouncil
                 if (sit?.def == null || sit.def.kind != "war" || !sit.def.bad || sit.ctx == null) continue;
                 var by = sit.ctx.faction != null && sit.ctx.faction != f && sit.ctx.faction.HostileTo(f) ? sit.ctx.faction
                     : sit.ctx.enemy != null && sit.ctx.enemy != f && sit.ctx.enemy.HostileTo(f) ? sit.ctx.enemy : null;
-                if (by == null || !Raids.CanRaid(by)) continue;
+                if (by == null || !Fields(by)) continue;
                 var at = RiseFall.TileOf(sit.place);
                 if (!at.Valid) continue;
                 foreach (var s in reach.towns)
@@ -66,6 +66,11 @@ namespace ColonyCouncil
             }
             return false;
         }
+
+        /// <summary>A people that can field a band: still standing, of people, with fighters (whatever its terms with the colony).</summary>
+        public static bool Fields(Faction f) =>
+            f != null && !f.IsPlayer && !f.defeated && f.def != null && f.def.humanlikeFaction && f.def.pawnGroupMakers != null
+            && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat);
 
         // ================= A defence partner's call =================
 
@@ -252,7 +257,15 @@ namespace ColonyCouncil
         public static string Fight(Faction f, Map home, Settlement town, Faction enemy, Caravan c)
         {
             if (Territories.JoinFight(c, town)) return PactWords.P("CC_Arms_JoinedInvasion", town.Name.Named("TOWN"));
-            if (enemy == null || enemy.defeated || !enemy.HostileTo(f) || !Raids.CanRaid(enemy)) return null;
+            if (enemy == null || enemy.defeated || !enemy.HostileTo(f) || !Fields(enemy)) return null;
+            // At peace with the colony: they draw off rather than fight its people.
+            if (!enemy.HostileTo(Faction.OfPlayer))
+            {
+                string peace = PactWords.P("CC_Arms_NotOurs", town.Name.Named("TOWN"), PactWords.People(enemy).Named("ENEMY"));
+                // apart: what the colony's caravan found at their town, told in a message.
+                Tell.Message(NewsKind.World, Importance.Notable, home, peace, new LookTargets(c), MessageTypeDefOf.NeutralEvent);
+                return peace;
+            }
             if (c.Tile == town.Tile && !MoveBeside(c, town)) return null;
             if (!CaravanIncidentUtility.CanFireIncidentWhichWantsToGenerateMapAt(c.Tile)) return null;
             float points = StorytellerUtility.DefaultThreatPointsNow(home ?? Homes.Seat);
