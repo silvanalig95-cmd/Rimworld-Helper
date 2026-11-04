@@ -17,7 +17,8 @@ namespace ColonyCouncil
         /// <summary>Draws the election, if one is under way; returns the height used (0 with none).</summary>
         public static float Draw(CouncilGameComponent comp, float width, float y)
         {
-            var offices = comp?.offices;
+            // The election of the colony in view.
+            var offices = comp == null ? null : (ColonyView.Current?.offices ?? comp.offices);
             var e = offices?.election;
             if (e == null || e.map == null) return 0f;
             float start = y;

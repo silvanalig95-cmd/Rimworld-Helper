@@ -92,7 +92,8 @@ namespace ColonyCouncil
 
         private void Petitions(CouncilGameComponent comp)
         {
-            var reqs = comp.decrees.requests.Where(r => r?.def != null && r.pawn != null).ToList();
+            // The colony in view's petitions.
+            var reqs = (ColonyView.Current?.decrees ?? comp.decrees).requests.Where(r => r?.def != null && r.pawn != null).ToList();
             if (reqs.Count == 0) return;
             string tip = string.Join("\n", reqs.Take(6).Select(r =>
                 (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(r.pawn.LabelShort, r.def.label).Resolve()));
@@ -155,7 +156,7 @@ namespace ColonyCouncil
 
         private void Decrees(CouncilGameComponent comp, int now)
         {
-            foreach (var d in comp.decrees.active)
+            foreach (var d in (ColonyView.Current?.decrees ?? comp.decrees).active)
             {
                 if (d?.def == null) continue;
                 int left = d.endTick - now;
@@ -185,7 +186,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("council panel: calendar", e);
             }
-            var amb = comp.ambitions;
+            var amb = ColonyView.Current?.ambitions ?? comp.ambitions;
             if (S.enableAmbitions && amb != null)
             {
                 var meeting = amb.meeting;

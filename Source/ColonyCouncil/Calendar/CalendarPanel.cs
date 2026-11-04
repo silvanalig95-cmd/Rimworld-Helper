@@ -108,7 +108,7 @@ namespace ColonyCouncil
             int index = 0;
             // Election day, while an election is under way: once, not every year (Offices/OfficesElection.cs).
             y += DrawElection(0f, y, w, index);
-            if (CouncilGameComponent.Instance?.offices?.election != null) index++;
+            if (ColonyView.Current?.offices?.election != null) index++;
             if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
             foreach (var r in rows) y += DrawDay(r, 0f, y, w, index++);
             y += 14f;
@@ -180,7 +180,8 @@ namespace ColonyCouncil
         /// <summary>Election day as a row of its own at the top of the days: its date, what it is, and a click to the Decrees page.</summary>
         private static float DrawElection(float x, float y, float w, int index)
         {
-            var e = CouncilGameComponent.Instance?.offices?.election;
+            // The election of the colony in view.
+            var e = ColonyView.Current?.offices?.election;
             if (e == null || !ColonyCouncilMod.Settings.offices) return 0f;
             const float dateW = 130f;
             var r = new Rect(x, y, w, 48f);
@@ -200,7 +201,7 @@ namespace ColonyCouncil
         private static List<(string label, string tip)> Customs()
         {
             var list = new List<(string, string)>();
-            var traditions = CouncilGameComponent.Instance?.dilemmas?.Traditions;
+            var traditions = ColonyView.Current?.dilemmas?.Traditions;
             if (traditions == null) return list;
             foreach (var c in traditions)
             {

@@ -271,6 +271,13 @@ namespace ColonyCouncil
                 content = new Rect(content.x, content.y + 38f, content.width, content.height - 38f);
             }
 
+            // The council's own pages, with more than one colony: whose council this is, and the way to another's.
+            if (tab == Tab.Decrees || tab == Tab.Ambition || tab == Tab.Dilemmas)
+            {
+                float named = ColonyView.Header(new Rect(content.x, content.y, content.width, 26f));
+                if (named > 0f) content = new Rect(content.x, content.y + named + 6f, content.width, content.height - named - 6f);
+            }
+
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
             switch (tab)
@@ -432,7 +439,7 @@ namespace ColonyCouncil
                     n = OpenWishCount();
                     break;
                 case Section.Council:
-                    n = comp.decrees.requests.Count;
+                    n = (ColonyView.Current?.decrees ?? comp.decrees).requests.Count;
                     break;
             }
             return n > 0 ? label + " (" + n + ")" : label;
@@ -450,7 +457,9 @@ namespace ColonyCouncil
                     int steps = NextSteps.PlannedCount(Find.CurrentMap);
                     return steps > 0 ? "CC_Tab_PlanCount".Translate(steps).ToString() : "CC_Tab_Plan".Translate().ToString();
                 case Tab.Decrees:
-                    return comp.decrees.requests.Count > 0 ? "CC_Tab_DecreesAsked".Translate(comp.decrees.requests.Count).ToString() : "CC_Tab_Decrees".Translate().ToString();
+                    // The colony in view's petitions.
+                    int asked = (ColonyView.Current?.decrees ?? comp.decrees).requests.Count;
+                    return asked > 0 ? "CC_Tab_DecreesAsked".Translate(asked).ToString() : "CC_Tab_Decrees".Translate().ToString();
                 case Tab.World:
                     return comp.happenings.raids.Count > 0 ? "CC_Tab_WorldComing".Translate(comp.happenings.raids.Count).ToString() : "CC_Tab_World".Translate().ToString();
                 default: return ("CC_Tab_" + t).Translate();

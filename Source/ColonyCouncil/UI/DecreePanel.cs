@@ -49,21 +49,25 @@ namespace ColonyCouncil
         private static DecreeDef scrollTo, marked;
         private static float markedAt = -10f;
 
+        /// <summary>The council of the colony in view (UI/ColonyView.cs).</summary>
+        private static ColonyState View => ColonyView.Current ?? CouncilGameComponent.Instance?.SeatColony;
+
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
-            var tracker = comp.decrees;
-            // Who is at home, worked out once a second rather than every frame (the cards are, too).
-            var pawns = UiCache.Get(comp, 72, () => PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && p.needs?.mood != null).ToList());
+            var colony = View;
+            var tracker = colony.decrees;
+            // The colony's own people at home, worked out once a second rather than every frame (the cards are, too).
+            var pawns = UiCache.Get(colony, 72, () => PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && p.needs?.mood != null && colony.Has(p)).ToList());
             string state = null;
             if (pawns.Count > 0)
-                state = UiCache.Get(comp, 70, () => "CC_Decrees_State".Translate(pawns.Average(p => p.needs.mood.CurLevelPercentage).ToStringPercent(),
+                state = UiCache.Get(colony, 70, () => "CC_Decrees_State".Translate(pawns.Average(p => p.needs.mood.CurLevelPercentage).ToStringPercent(),
                     ("CC_Standards_" + Standards.LevelFor(pawns.Average(p => Standards.Of(p)))).Translate()).Resolve());
             string stat = "CC_UI_Stat_InForce".Translate(tracker.active.Count, DecreeTracker.MaxActive).Resolve();
             float top = UiKit.PageHeader(rect, Icons.Decrees, "CC_Decrees_Header".Translate(), state ?? "CC_UI_Sub_Decrees".Translate().ToString(), stat,
                 tracker.active.Count > 0 ? Good : UiKit.Faint, Prefs.DevMode ? 190f : 0f, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive));
             if (Prefs.DevMode && Widgets.ButtonText(new Rect(rect.xMax - 180f, rect.y + 6f, 180f, 28f), "CC_Dev_Dilemma".Translate()))
             {
-                if (!comp.dilemmas.TryFire(true)) Messages.Message("No dilemma could happen right now.", MessageTypeDefOf.RejectInput, false);
+                if (!colony.dilemmas.TryFire(true)) Messages.Message("No dilemma could happen right now.", MessageTypeDefOf.RejectInput, false);
             }
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -358,7 +362,7 @@ namespace ColonyCouncil
         private static Layout LayoutOf(DecreeDef def, CouncilGameComponent comp, List<Pawn> pawns, float width)
         {
             float now = Time.realtimeSinceStartup;
-            var tracker = comp.decrees;
+            var tracker = View.decrees;
             var active = tracker.Get(def);
             // Enacted or repealed since: the card is laid out again at once.
             if (layouts.TryGetValue(def, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 1f && l.active == (active != null)) return l;
@@ -457,7 +461,7 @@ namespace ColonyCouncil
 
         private static void DrawDecree(DecreeDef def, Layout l, CouncilGameComponent comp, List<Pawn> pawns, float width, float y)
         {
-            var tracker = comp.decrees;
+            var tracker = View.decrees;
             var active = tracker.Get(def);
             var req = tracker.RequestFor(def);
             var accent = active != null ? Good : req != null ? Asked : l.warning != null ? Bad : (Color?)null;
@@ -567,7 +571,7 @@ namespace ColonyCouncil
 
         private static void DrawButtons(DecreeDef def, Layout l, CouncilGameComponent comp, List<Pawn> pawns, float width, float y)
         {
-            var tracker = comp.decrees;
+            var tracker = View.decrees;
             var active = tracker.Get(def);
             var btn = new Rect(width - ButtonsW + 4f, y + 10f, ButtonsW - 14f, 32f);
             if (active != null)
@@ -611,25 +615,29 @@ namespace ColonyCouncil
         // ---------------- Offices ----------------
 
         /// <summary>The council names an officer; a seat an election is voting on has its vote called off first, at that cost.</summary>
-        private static void AppointNow(CouncilGameComponent comp, OfficeDef office, Pawn p, int seat)
+        private static void AppointNow(CouncilGameComponent comp, OfficeTracker offices, OfficeDef office, Pawn p, int seat)
         {
-            var race = comp.offices.RaceFor(office, seat);
-            if (race != null && comp.offices.CouncilMayStepIn) comp.offices.CallOff(race, p, comp);
-            else comp.offices.Appoint(office, p, comp, seat);
+            var race = offices.RaceFor(office, seat);
+            if (race != null && offices.CouncilMayStepIn) offices.CallOff(race, p, comp);
+            else offices.Appoint(office, p, comp, seat);
         }
 
         private static float DrawOffices(CouncilGameComponent comp, float width, float y)
         {
             float start = y;
+            // The seats of the colony in view.
+            var colony = View;
+            var offices = colony.offices;
             UiKit.SectionTitle(0f, y, width - 210f, "CC_Offices_Header".Translate(), Icons.Office);
             UiKit.Divider(width - 210f, y + 25f, 210f);
             // With an election under way, it is the one being held; otherwise one is called (announced, or at once with the event off).
-            bool running = comp.offices.election != null;
+            bool running = offices.election != null;
             var call = new Rect(width - 200f, y, 200f, 24f);
             if (Widgets.ButtonText(call, running ? "CC_Elect_UnderWay".Translate() : "CC_Office_CallElection".Translate(), active: !running) && !running)
             {
-                var map = Find.AnyPlayerHomeMap;
-                if (map != null) comp.offices.Call(comp, GenLocalDate.Year(map), false);
+                // The colony's own year.
+                var map = colony.Map ?? Find.AnyPlayerHomeMap;
+                if (map != null) offices.Call(comp, GenLocalDate.Year(map), false);
             }
             if (running) TooltipHandler.TipRegion(call, "CC_Elect_UnderWayTip".Translate());
             y += UiKit.SectionHeight;
@@ -641,7 +649,7 @@ namespace ColonyCouncil
             foreach (var office in OfficeTracker.Offices)
             for (int seat = 0; seat < office.Seats; seat++)
             {
-                var holder = comp.offices.HolderOf(office, seat);
+                var holder = offices.HolderOf(office, seat);
                 // A seat this game can't have (the chaplain without a faith) isn't listed, unless someone still holds it.
                 if (!office.Available && holder == null) continue;
                 int seatNow = seat;
@@ -661,17 +669,17 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(new Rect(width - 230f, y + 3f, 120f, 26f), "CC_Office_Appoint".Translate()))
                 {
                     var options = PawnsFinder.AllMaps_FreeColonistsSpawned
-                        .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave)
+                        .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && colony.Has(p))
                         .OrderByDescending(p => office.CanHold(p))
                         .ThenByDescending(p => office.Competence(p))
                         .Select(p => office.CanHold(p)
-                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => AppointNow(comp, office, p, seatNow))
+                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => AppointNow(comp, offices, office, p, seatNow))
                             : new FloatMenuOption(p.LabelShort + " (" + "CC_Office_CantHold".Translate() + ")", null))
                         .ToList();
                     if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
                 }
                 if (holder != null && Widgets.ButtonText(new Rect(width - 105f, y + 3f, 100f, 26f), "CC_Office_Dismiss".Translate()))
-                    comp.offices.Dismiss(office, comp, seatNow);
+                    offices.Dismiss(office, comp, seatNow);
                 y += 32f;
             }
             return y - start;

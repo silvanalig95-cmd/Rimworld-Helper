@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Many homes: each colony's own council (Source/ColonyCouncil/ColonyState.cs, UI/ColonyView.cs). Shown only with more than one colony. -->
+
+  <!-- Above the Council section's pages: whose council the page shows, and the way to another colony's. -->
+  <CC_Colony_CouncilOf>The council of {PLACE}</CC_Colony_CouncilOf>
+  <CC_Colony_TheSeat>(the seat)</CC_Colony_TheSeat>
+  <CC_Colony_NotInView>The map in view isn't one of the colonies, so this is the seat's.</CC_Colony_NotInView>
+  <CC_Colony_Switch>Another colony</CC_Colony_Switch>
+  <CC_Colony_SwitchTip>Each colony has a council of its own: its offices and elections, its decrees, its ambition and meetings, its questions and traditions. The pages show the colony in view; this goes to another, and its council.</CC_Colony_SwitchTip>
+
+</LanguageData>

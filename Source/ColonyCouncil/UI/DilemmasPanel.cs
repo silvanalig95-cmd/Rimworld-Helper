@@ -213,7 +213,8 @@ namespace ColonyCouncil
                 int left = l.TimeoutActive ? l.disappearAtTick - now : -1;
                 m.waiting.Add((l, l.Label.ToString(), left > 0 ? "CC_Week_Left".Translate(UiKit.Duration(left)).Resolve() : null));
             }
-            var tracker = comp.dilemmas;
+            // The traditions of the colony in view.
+            var tracker = ColonyView.Current?.dilemmas ?? comp.dilemmas;
             // Questions come unannounced, like events: no countdown to the next one.
             foreach (var d in tracker.Traditions)
                 m.traditions.Add(((d.traditionLabel ?? d.label).CapitalizeFirst(), "CC_Dil_TraditionTip".Translate(d.LabelCap).Resolve()));

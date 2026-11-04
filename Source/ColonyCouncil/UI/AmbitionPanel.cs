@@ -25,7 +25,8 @@ namespace ColonyCouncil
                 UiKit.EmptyState(rect, Icons.Ambition, "CC_AmbitionsDisabled".Translate());
                 return;
             }
-            var tracker = comp.ambitions;
+            // The ambition and meeting of the colony in view.
+            var tracker = ColonyView.Current?.ambitions ?? comp.ambitions;
             var a = tracker.active;
             int now = Find.TickManager.TicksGame;
             float total = a != null ? UiCache.Get(a, -1, () => a.Progress) : 0f;
