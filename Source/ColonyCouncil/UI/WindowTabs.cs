@@ -28,9 +28,10 @@ namespace ColonyCouncil
 
     /// <summary>
     /// What Rimfolk's four windows share at their top: the game's own tabs, each with its icon where it has room (only
-    /// the icon, with the name on hover, where even the name doesn't fit), and in the top right corner a small icon for
-    /// each of the four windows (the council, the region, defense, planning) to go from one to another. The one showing
-    /// is lit; the others open their window as its button would, whether or not that button is on the bar.
+    /// the icon, with the name on hover, where even the name doesn't fit), and in the top right corner back and forward,
+    /// the Almanac's book, and a small icon for each of the four windows (the council, the region, defense, planning) to
+    /// go from one to another. The one showing is lit; the others open their window as its button would, whether or not
+    /// that button is on the bar.
     /// </summary>
     public static class WindowTabs
     {
@@ -142,8 +143,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Back and forward (UI/Cards/Nav.cs), then the four windows' icons, right-aligned in <paramref name="row"/>; the
-        /// window showing is lit and does nothing.
+        /// Back and forward (UI/Cards/Nav.cs), the Almanac's book (its own window, lit while open), then the four windows'
+        /// icons, right-aligned in <paramref name="row"/>; the window showing is lit and does nothing.
         /// </summary>
         public static void Links(Rect row, RimfolkWindow current)
         {
@@ -153,7 +154,7 @@ namespace ColonyCouncil
             // The Almanac, in its own window beside this one.
             var book = new Rect(ax + 2f * (LinkSize + LinkGap), top, LinkSize, LinkSize);
             almanacTip ??= "CC_Win_AlmanacTip".Translate().Resolve();
-            if (UiKit.IconButton(book, Icons.Almanac, almanacTip, true, Window_Almanac.IsOpen ? UiKit.Gold : (Color?)null)) Window_Almanac.Toggle();
+            if (UiKit.IconButton(book, Icons.Almanac, almanacTip, true, Window_Almanac.Showing ? UiKit.Gold : (Color?)null)) Window_Almanac.Toggle();
             float x = row.xMax - 4f;
             var order = PagesMath.CornerOrder;
             for (int i = order.Length - 1; i >= 0; i--)

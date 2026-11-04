@@ -39,7 +39,7 @@
   <CC_Pnl_NoOne>No colonists here.</CC_Pnl_NoOne>
   <CC_Pnl_MoreTip>Not everyone fits, so the board keeps those most at risk; no one in trouble is ever left off. Click for the Moods page, or allow more rows in the panel's options.</CC_Pnl_MoreTip>
   <CC_Pnl_MoodTabTip>Open {0}'s Mood tab</CC_Pnl_MoodTabTip>
-  <CC_Pnl_OpenPage>Open {0}'s page in the council window</CC_Pnl_OpenPage>
+  <CC_Pnl_OpenPage>Open {0}'s card in the council window</CC_Pnl_OpenPage>
   <CC_Pnl_WishMark>Open wish: {0}</CC_Pnl_WishMark>
   <CC_Pnl_RowClick>Click to go to them. Shift-click for their Mood tab. Right-click for more.</CC_Pnl_RowClick>
   <CC_Pnl_WhatHelps>What would help most: {1} ({0}).</CC_Pnl_WhatHelps>

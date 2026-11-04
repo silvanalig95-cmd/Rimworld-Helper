@@ -300,7 +300,7 @@ namespace ColonyCouncil
             builtAt = Time.realtimeSinceStartup;
             if (headers == null)
             {
-                header = "CC_Table_Header".Translate();
+                header = "CC_Table_Title".Translate();
                 subtitle = "CC_UI_Sub_Everyone".Translate();
                 headerTip = "CC_Table_HeaderTip".Translate();
                 noneAll = "CC_People_None".Translate();

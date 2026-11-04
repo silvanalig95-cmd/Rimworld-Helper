@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- ===================== Colony → Defenses (Source/ColonyCouncil/UI/DefensePanel.cs) ===================== -->
+  <!-- ===================== The defense window (Source/ColonyCouncil/UI/DefensePanel.cs) ===================== -->
 
   <CC_Tab_Defenses>Defenses</CC_Tab_Defenses>
   <CC_AlmanacCat_Defending>Defending the colony</CC_AlmanacCat_Defending>

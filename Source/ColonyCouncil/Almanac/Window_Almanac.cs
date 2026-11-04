@@ -35,7 +35,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The Almanac's window is open.</summary>
-        public static bool IsOpen => Find.WindowStack?.WindowOfType<Window_Almanac>() != null;
+        public static bool Showing => Find.WindowStack?.WindowOfType<Window_Almanac>() != null;
 
         /// <summary>Opens the Almanac's window on an article (null: where it was), or turns the open one to it.</summary>
         public static void Open(AlmanacArticleDef article)

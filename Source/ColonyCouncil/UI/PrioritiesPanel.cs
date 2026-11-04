@@ -9,7 +9,8 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → Priorities: what the advisor thinks the colony needs, most urgent first, as cards. Each card says why in
+    /// Planning → Plan, Priorities: what the advisor thinks the colony needs, most urgent first, as cards (the second mode
+    /// of the Plan view, beside the plan its cards are acted on in). Each card says why in
     /// the colony's numbers and offers what helps: Show, the room planner, its own action as a step of the shared
     /// suggestion core (kept with Undo and checked later), the page that deals with it, the Almanac, and "Not this" (set
     /// aside until brought back, here and on the Plan page alike). Under the cards: the steps done lately with Undo and

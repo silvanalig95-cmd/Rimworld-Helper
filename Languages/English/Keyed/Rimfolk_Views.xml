@@ -43,7 +43,8 @@
   <CC_Houses_KnownLine>{HOUSE}, of {TOWN}</CC_Houses_KnownLine>
   <CC_Houses_None>No houses yet. When two of the colony's people are kin by blood or married, their house shows here, and so do the families of the towns the colony hears of.</CC_Houses_None>
 
-  <!-- The People table's right click, and the rooms at a glance's line. -->
+  <!-- The People table's title and right click, and the rooms at a glance's line. -->
+  <CC_Table_Title>People</CC_Table_Title>
   <CC_Table_ShowOnMap>Show {NAME} on the map</CC_Table_ShowOnMap>
   <CC_Rooms_Sub>Every room plan in columns, the ones the advisor asks for marked.</CC_Rooms_Sub>
 

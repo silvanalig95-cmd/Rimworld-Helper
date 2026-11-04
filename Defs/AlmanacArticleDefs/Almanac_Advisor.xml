@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Almanac: what the council's Priorities page watches, and what its buttons do (Source/ColonyCouncil/Advisor/). -->
+  <!-- Almanac: what the advisor's priorities watch (Planning, Plan, Priorities), and what their buttons do (Source/ColonyCouncil/Advisor/). -->
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_Priorities</defName>
@@ -10,7 +10,7 @@
     <order>23</order>
     <summary>What the advisor watches, from the food against the winter to a promise about to break, and what its buttons do</summary>
     <tip>Start at the top of the list. Gentle advice sits low and never shows among the alerts.</tip>
-    <description>Priorities, in the Colony section of the council window, lists what the colony needs right now, worst first. The advisor looks again every hour, and each piece of advice says why it matters in the colony's own numbers, what helps, and a rotating tip. It never acts on its own: every button only shows, plans or opens something for you to decide on, and what one does on the map is kept under "Done lately" with Undo and looked at again a day or two later. "Not this" sets a piece of advice aside, here and on the Plan page alike, until you bring it back from "Set aside" at the end of the page.</description>
+    <description>Priorities, in the planning window beside the plan (Plan, then Priorities), lists what the colony needs right now, worst first. The advisor looks again every hour, and each piece of advice says why it matters in the colony's own numbers, what helps, and a rotating tip. It never acts on its own: every button only shows, plans or opens something for you to decide on, and what one does on the map is kept under "Done lately" with Undo and looked at again a day or two later. "Not this" sets a piece of advice aside, here and on the Plan page alike, until you bring it back from "Set aside" at the end of the page.</description>
     <sections>
       <li>
         <heading>The buttons</heading>

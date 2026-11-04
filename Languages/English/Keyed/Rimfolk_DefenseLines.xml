@@ -3,7 +3,7 @@
 
   <!-- ===================== Defense lines (Source/ColonyCouncil/Defense/DefenseLine*.cs, UI/DefenseLinesPanel.cs) ===================== -->
 
-  <!-- The section on Colony → Defenses -->
+  <!-- The section in the defense window -->
   <CC_DefLine_Section>Defense lines</CC_DefLine_Section>
   <CC_DefLine_SectionCount>{0} line(s)</CC_DefLine_SectionCount>
   <CC_DefLine_SectionNone>none yet</CC_DefLine_SectionNone>
@@ -14,7 +14,7 @@
   <CC_DefLine_New_Open>Where the busiest way in crosses open ground, to the {0}</CC_DefLine_New_Open>
   <CC_DefLine_New_Pick>Pick a spot on the map...</CC_DefLine_New_Pick>
   <CC_DefLine_HowLines>Lines, step by step</CC_DefLine_HowLines>
-  <CC_DefLine_Made>Started a defense line: {0}. Its steps are on Colony → Defenses.</CC_DefLine_Made>
+  <CC_DefLine_Made>Started a defense line: {0}. Its steps are in the defense window.</CC_DefLine_Made>
   <CC_DefLine_MakeLine>Make a defense line</CC_DefLine_MakeLine>
   <CC_DefLine_MakeLine_Tip>Make this gap a defense line. The helper then takes you through building it up step by step, from closing the gap to a killbox, and keeps checking it as you go.</CC_DefLine_MakeLine_Tip>
   <CC_DefLine_OpenIts>Open its line</CC_DefLine_OpenIts>
@@ -275,7 +275,7 @@
 
   <!-- Raids -->
   <CC_DefLine_Remind>Raiders are here, and the gate of {0} is shut. With no way in, they break the wall wherever they like. If you mean to fight there, select the gate and set it to stay open.</CC_DefLine_Remind>
-  <CC_DefLine_RaidOver>The raid at {0} is over. {1} Colony → Defenses has what it teaches.</CC_DefLine_RaidOver>
+  <CC_DefLine_RaidOver>The raid at {0} is over. {1} The defense window has what it teaches.</CC_DefLine_RaidOver>
   <CC_DefLine_LastRaid>Last raid ({0} ago): {1}</CC_DefLine_LastRaid>
   <CC_DefLine_Raid_Through>{0} came through the gate</CC_DefLine_Raid_Through>
   <CC_DefLine_Raid_Round>{0} went round to the {1}</CC_DefLine_Raid_Round>

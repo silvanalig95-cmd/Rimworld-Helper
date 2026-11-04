@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Defense plans for the Defenses page (Colony → Defenses) and the defense planner. A plan with a <shape> is drawn for
+    Defense plans for the Defenses page (the defense window) and the defense planner. A plan with a <shape> is drawn for
     the colony's own numbers (its shooters and their reach, its turret, the raiders it meets, raid size) by
     Source/ColonyCouncil/Defense/DefenseShapes.cs, by what docs/defense-research found to hold in 1.6; its <layout> is
     then only what plans placed before 0.14 were built from, so the line reviews read those as they were. A plan without

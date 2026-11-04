@@ -258,6 +258,9 @@ namespace ColonyCouncil
             var parts = new List<string>();
             if (p.story != null) parts.Add(p.story.TitleShortCap);
             if (p.ageTracker != null) parts.Add(T("CC_People_Age", p.ageTracker.AgeBiologicalYears));
+            // The years asleep beside the age, as the roster showed them.
+            string slept = FamilyYears.SleptNote(p);
+            if (slept != null) parts.Add(slept);
             if (p.IsPrisonerOfColony) parts.Add(T("CC_Card_Prisoner"));
             else if (p.IsSlaveOfColony) parts.Add(T("CC_Card_Slave"));
             m.subtitle = string.Join("  ·  ", parts);
