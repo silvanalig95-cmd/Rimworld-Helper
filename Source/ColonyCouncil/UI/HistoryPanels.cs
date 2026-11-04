@@ -83,7 +83,7 @@ namespace ColonyCouncil
             var list = Dreams(all);
             const float top = 36f;
             string who = dreamFilter ?? "CC_Social_Everyone".Translate().ToString();
-            if (Widgets.ButtonText(new Rect(rect.x, rect.y, 220f, 28f), UiKit.Fit("CC_Social_Filter".Translate() + ": " + who, 200f)))
+            if (UiKit.ActButton(new Rect(rect.x, rect.y, 220f, 28f), UiKit.Fit("CC_Social_Filter".Translate() + ": " + who, 200f), null))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Social_Everyone".Translate(), () => dreamFilter = null) };
                 options.AddRange(all.Select(d => d.pawn?.LabelShort ?? d.name).Where(n => n != null).Distinct().OrderBy(n => n).Select(n => new FloatMenuOption(n, () => dreamFilter = n)));

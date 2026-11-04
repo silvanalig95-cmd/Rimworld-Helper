@@ -153,7 +153,7 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 
@@ -400,7 +400,7 @@ namespace ColonyCouncil
             {
                 text = p.LabelShortCap,
                 sub = under.Count > 0 ? string.Join(" · ", under) : p.story?.TitleShortCap,
-                color = Color.white,
+                color = UiKit.Ink,
                 subColor = office != null ? UiKit.Gold : UiKit.Faint
             };
 
@@ -490,7 +490,7 @@ namespace ColonyCouncil
                 c[(int)Col.Wish] = new Cell
                 {
                     text = wish.Label,
-                    color = wish.promised ? UiKit.Gold : Color.white,
+                    color = wish.promised ? UiKit.Gold : UiKit.Ink,
                     sub = "CC_Week_Left".Translate(UiKit.Duration(left)).Resolve() + (wish.promised ? " · " + "CC_PromisedTag".Translate() : ""),
                     subColor = UiKit.Urgency(frac),
                     tip = "\"" + wish.quote + "\"" + (wish.reason.NullOrEmpty() ? "" : "\n\n" + "CC_Why".Translate() + ": " + wish.reason)

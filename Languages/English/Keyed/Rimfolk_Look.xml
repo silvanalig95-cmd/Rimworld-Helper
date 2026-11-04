@@ -7,4 +7,6 @@
   <CC_Look_Steady>steady</CC_Look_Steady>
   <!-- A decree that can't be enacted now: its button, greyed, with the reason under it. -->
   <CC_Decree_EnactPlain>Enact</CC_Decree_EnactPlain>
+  <!-- The plan's Add, greyed until the player has written a step. -->
+  <CC_Plan_AddWhyNot>Write what the step is first.</CC_Plan_AddWhyNot>
 </LanguageData>

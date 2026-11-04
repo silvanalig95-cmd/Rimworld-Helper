@@ -66,7 +66,7 @@ namespace ColonyCouncil
             string stat = "CC_UI_Stat_InForce".Translate(tracker.active.Count, DecreeTracker.MaxActive).Resolve();
             float top = UiKit.PageHeader(rect, Icons.Decrees, "CC_Decrees_Header".Translate(), state ?? "CC_UI_Sub_Decrees".Translate().ToString(), stat,
                 tracker.active.Count > 0 ? Good : UiKit.Faint, Prefs.DevMode ? 190f : 0f, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive));
-            if (Prefs.DevMode && Widgets.ButtonText(new Rect(rect.xMax - 180f, rect.y + 6f, 180f, 28f), "CC_Dev_Dilemma".Translate()))
+            if (Prefs.DevMode && UiKit.ActButton(new Rect(rect.xMax - 180f, rect.y + 6f, 180f, 28f), "CC_Dev_Dilemma".Translate(), null))
             {
                 if (!colony.dilemmas.TryFire(true)) Messages.Message("No dilemma could happen right now.", MessageTypeDefOf.RejectInput, false);
             }
@@ -134,7 +134,7 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 

@@ -35,11 +35,10 @@ namespace ColonyCouncil
             var r = Making.For(map);
             string stat = r.could.Count > 0 ? "CC_Making_Stat".Translate(r.could.Count).Resolve() : null;
             float top = UiKit.PageHeader(rect, Icons.Making, "CC_Making_Header".Translate(), "CC_Making_Sub".Translate(), stat, UiKit.Gold, 170f, "CC_Making_HeaderTip".Translate());
-            if (Widgets.ButtonText(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, 30f), "CC_Base_LookAgain".Translate()))
+            if (UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, UiKit.RowStandard), "CC_Base_LookAgain".Translate(), null))
             {
                 Making.For(map, true);
                 Ahead.For(map, true);
-                SoundDefOf.Click.PlayOneShotOnCamera();
             }
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -50,8 +49,8 @@ namespace ColonyCouncil
             // Planning ahead: the stocks, the fields and what to do about them, at the top (UI/AheadPanel.cs).
             y += AheadPanel.Draw(0f, y, view.width, map) + 6f;
 
-            y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Could".Translate(), null, UiKit.HeaderColor) + 4f;
-            if (r.could.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_CouldNone".Translate(), UiKit.Faint) + 8f;
+            y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Could".Translate(), r.could.Count) + 4f;
+            if (r.could.Count == 0) y += Empty(y, view.width, "CC_Making_CouldNone".Translate());
             ThingDef lastBench = null;
             foreach (var o in r.could)
             {
@@ -61,17 +60,17 @@ namespace ColonyCouncil
                     Text.Font = GameFont.Small;
                     GUI.color = UiKit.Faint;
                     Widgets.Label(new Rect(8f, y + 4f, view.width - 16f, 22f), o.benchDef.LabelCap);
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     y += 26f;
                 }
                 y += DrawOption(o, 0f, y, view.width) + 4f;
             }
-            y += 10f;
+            y += UiKit.SectionGap - 4f;
 
             // The chains followed to the end: what the building and the bills wait on, link by link, and the bills that can't go on.
             if (r.chains.Count > 0 || r.starved.Count > 0)
             {
-                y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Chains".Translate(), null, UiKit.HeaderColor) + 4f;
+                y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Chains".Translate(), r.chains.Count + r.starved.Count) + 4f;
                 // Where the rates come from: the colony's record of the last days, or the estimate until it covers a day.
                 string from = r.measured ? "CC_Making_Chain_Record".Translate(r.measuredDays.ToString("0.#")).Resolve()
                     : ColonyUse.Recording ? "CC_Making_Chain_RecordSoon".Translate().Resolve() : "CC_Making_Chain_RecordOff".Translate().Resolve();
@@ -82,17 +81,17 @@ namespace ColonyCouncil
                     y += 6f;
                 }
                 foreach (var sb in r.starved) y += DrawStarved(sb, 0f, y, view.width) + 4f;
-                y += 10f;
+                y += UiKit.SectionGap - 4f;
             }
 
-            y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Unused".Translate(), null, UiKit.HeaderColor) + 4f;
-            if (r.unused.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_UnusedNone".Translate(), UiKit.Faint) + 8f;
+            y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Unused".Translate(), r.unused.Count) + 4f;
+            if (r.unused.Count == 0) y += Empty(y, view.width, "CC_Making_UnusedNone".Translate());
             foreach (var u in r.unused) y += DrawUnused(u, 0f, y, view.width, map) + 4f;
-            y += 10f;
+            y += UiKit.SectionGap - 4f;
 
             if (r.idle.Count > 0)
             {
-                y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Idle".Translate(r.idle.Count), null, UiKit.HeaderColor) + 4f;
+                y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Idle".Translate(r.idle.Count)) + 4f;
                 string names = string.Join(", ", r.idle.Take(8).Select(i => i.bench.LabelCap.ToString()));
                 if (r.idle.Count > 8) names += " ...";
                 y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_IdleLine".Translate(names), UiKit.Faint) + 8f;
@@ -102,7 +101,7 @@ namespace ColonyCouncil
             var auto = CouncilGameComponent.Instance?.automations;
             if (auto != null)
             {
-                y += UiKit.SectionTitle(0f, y, view.width, "CC_Auto_Section".Translate(), null, UiKit.HeaderColor) + 4f;
+                y += UiKit.SectionTitle(0f, y, view.width, "CC_Auto_Section".Translate()) + 4f;
                 TooltipHandler.TipRegion(new Rect(0f, y - 28f, view.width, 24f), "CC_Auto_SectionTip".Translate());
                 int version = SuggestTracker.Instance?.Version ?? 0;
                 if (Time.frameCount - previewFrame > 120 || previewMap != map || version != previewVersion)
@@ -123,7 +122,7 @@ namespace ColonyCouncil
                     // Lines with nothing to do by hand (the day's budget spent) still say so.
                     var said = texts.Where(t => !steps.Any(s => s.title == t)).Take(2).ToList();
                     string body = steps.Count == 0 && said.Count == 0 ? "CC_Auto_WouldNothing".Translate().Resolve() : string.Join(" ", said);
-                    y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + ")" + (body.NullOrEmpty() ? "" : ": " + body), on ? UiKit.Good : UiKit.Faint) + 4f;
+                    y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + ")" + (body.NullOrEmpty() ? "" : ": " + body), on ? UiKit.Ink : UiKit.Faint) + 4f;
                     foreach (var s in steps)
                     {
                         if (SuggestTracker.Instance != null && !SuggestTracker.Instance.Offered(s.key, s.map)) continue;
@@ -139,7 +138,7 @@ namespace ColonyCouncil
                     Text.Font = GameFont.Small;
                     GUI.color = UiKit.Faint;
                     Widgets.Label(new Rect(8f, y, view.width - 16f, 22f), "CC_Auto_Last".Translate());
-                    GUI.color = Color.white;
+                    GUI.color = UiKit.Ink;
                     y += 24f;
                     foreach (var a in last)
                     {
@@ -148,12 +147,12 @@ namespace ColonyCouncil
                         float th = Text.CalcHeight(text, view.width - 16f - 90f);
                         GUI.color = a.undone ? UiKit.Dim : UiKit.Faint;
                         Widgets.Label(new Rect(8f, y, view.width - 16f - 90f, th), text);
-                        GUI.color = Color.white;
+                        GUI.color = UiKit.Ink;
                         Text.Font = GameFont.Small;
                         if (a.CanUndo)
                         {
                             var ur = new Rect(view.width - 84f, y, 76f, 24f);
-                            if (Widgets.ButtonText(ur, "CC_Auto_Undo".Translate()))
+                            if (UiKit.ActButton(ur, "CC_Auto_Undo".Translate(), null))
                             {
                                 SoundDefOf.Tick_Low.PlayOneShotOnCamera();
                                 auto.Undo(a);
@@ -180,21 +179,21 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
-            UiKit.Card(row, UiKit.Good);
+            UiKit.Card(row, UiKit.Warm);
             if (Mouse.IsOver(row) && o.bench != null && o.bench.Spawned && o.bench.Map == Find.CurrentMap)
                 MapHighlights.Cells("making:" + o.recipe.defName, o.bench.Map, o.bench.OccupiedRect().Cells, UiKit.Good, o.product.LabelCap, o.bench.Position);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), o.product);
             string title = o.product.LabelCap + (o.productStock > 0 ? " " + "CC_Making_Have".Translate(o.productStock).Resolve() : "");
             if (o.wantedBy != null) title += " " + o.wantedBy;
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, o.wantedBy != null ? UiKit.Gold : Color.white);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, o.wantedBy != null ? UiKit.Gold : UiKit.Ink);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             TooltipHandler.TipRegion(new Rect(x, y, width - ButtonsW, h), o.recipe.LabelCap + "\n" + (o.recipe.description ?? ""));
             var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
-            if (Widgets.ButtonText(br, "CC_Making_SetBill".Translate(o.target)))
+            if (UiKit.ActButton(br, "CC_Making_SetBill".Translate(o.target), null))
             {
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 Making.SetUpBill(o);
@@ -249,16 +248,16 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
-            UiKit.Card(row, n.cycle || n.tooDeep ? UiKit.Dim : n.recipe == null && n.plant == null ? UiKit.Warn : n.canMake || n.plant != null ? UiKit.Gold : UiKit.Info);
+            UiKit.Card(row, n.cycle || n.tooDeep ? UiKit.Dim : n.recipe == null && n.plant == null ? UiKit.Soon : n.canMake || n.plant != null ? UiKit.Gold : UiKit.Cool);
             if (Mouse.IsOver(row) && n.bench != null && n.bench.Spawned && n.bench.Map == Find.CurrentMap)
                 MapHighlights.Cells("chain:" + n.thing.defName + n.depth, n.bench.Map, n.bench.OccupiedRect().Cells, UiKit.Gold, n.thing.LabelCap, n.bench.Position);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), n.thing);
             string title = n.thing.LabelCap + " " + "CC_Making_Have".Translate(n.stock).Resolve() + " " + "CC_Making_ShortLine".Translate(n.want).Resolve();
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, n == root ? UiKit.Gold : Color.white);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, n == root ? UiKit.Gold : UiKit.Ink);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             if (n.recipe != null) TooltipHandler.TipRegion(new Rect(x, y, width - ButtonsW, h), n.recipe.LabelCap + " (" + n.bench.def.label + ")\n" + (n.recipe.description ?? ""));
             var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
@@ -266,7 +265,7 @@ namespace ColonyCouncil
             int unset = root.All().Count(o => o.recipe != null && !o.billed);
             if (n == root && unset >= 2)
             {
-                if (Widgets.ButtonText(br, "CC_Making_Chain_SetAll".Translate(unset)))
+                if (UiKit.ActButton(br, "CC_Making_Chain_SetAll".Translate(unset), null))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     foreach (var link in r.needs.Where(c => c.root == root && !c.billed).ToList()) Making.SetUpChain(link, true);
@@ -282,7 +281,7 @@ namespace ColonyCouncil
                 else
                 {
                     var link = r.needs.FirstOrDefault(c => c.node == n);
-                    if (link != null && Widgets.ButtonText(br, "CC_Making_SetBill".Translate(n.target)))
+                    if (link != null && UiKit.ActButton(br, "CC_Making_SetBill".Translate(n.target), null))
                     {
                         SoundDefOf.Tick_High.PlayOneShotOnCamera();
                         Making.SetUpChain(link);
@@ -292,7 +291,7 @@ namespace ColonyCouncil
             }
             else if (n.plant != null && n.cells > 0)
             {
-                if (Widgets.ButtonText(br, "CC_Making_Sow".Translate(n.cells)))
+                if (UiKit.ActButton(br, "CC_Making_Sow".Translate(n.cells), null))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     var zone = Sowing.Sow(map, n.plant, n.cells);
@@ -319,31 +318,38 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
-            UiKit.Card(row, c.canMake ? UiKit.Gold : UiKit.Warn);
+            UiKit.Card(row, c.canMake ? UiKit.Gold : UiKit.Soon);
             if (Mouse.IsOver(row) && c.bench != null && c.bench.Spawned && c.bench.Map == Find.CurrentMap)
                 MapHighlights.Cells("chain:" + c.recipe.defName, c.bench.Map, c.bench.OccupiedRect().Cells, UiKit.Gold, c.product.LabelCap, c.bench.Position);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), c.product);
             string title = c.product.LabelCap + " " + "CC_Making_Have".Translate(c.stock).Resolve() + (c.shortBy > 0 ? " " + "CC_Making_ShortLine".Translate(c.shortBy).Resolve() : "");
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, Color.white);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, UiKit.Ink);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             TooltipHandler.TipRegion(new Rect(x, y, width - ButtonsW, h), c.recipe.LabelCap + " (" + c.benchDef.label + ")\n" + (c.recipe.description ?? ""));
             var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
             if (c.billed) UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_BillOn".Translate(), UiKit.Faint);
             else if (c.canMake)
             {
-                if (Widgets.ButtonText(br, "CC_Making_SetBill".Translate(c.target)))
+                if (UiKit.ActButton(br, "CC_Making_SetBill".Translate(c.target), null))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     Making.SetUpChain(c);
                 }
                 TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(c.bench.LabelCap.ToString()));
             }
-            else UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_PartsShort".Translate(), UiKit.Warn);
+            else UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_PartsShort".Translate(), UiKit.Soon);
             return h;
+        }
+
+        /// <summary>A section with nothing in it: its sentence as an empty state in one row. Returns the height used.</summary>
+        private static float Empty(float y, float width, string text)
+        {
+            UiKit.EmptyLine(new Rect(0f, y, width, UiKit.RowStandard), text);
+            return UiKit.RowStandard + UiKit.CardGap;
         }
 
         /// <summary>A bill that can't go on, what it waits on, and the bill that would feed it when a bench here can.</summary>
@@ -358,20 +364,20 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
-            UiKit.Card(row, UiKit.Warn);
+            UiKit.Card(row, UiKit.Soon);
             if (Mouse.IsOver(row) && sb.bench != null && sb.bench.Spawned && sb.bench.Map == Find.CurrentMap)
                 MapHighlights.Cells("starved:" + sb.bench.thingIDNumber, sb.bench.Map, sb.bench.OccupiedRect().Cells, UiKit.Warn, sb.bench.LabelCap, sb.bench.Position);
             if (sb.bench != null) Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), sb.bench);
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), sb.bench.LabelCap + ": " + sb.bill.LabelCap, Color.white);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), sb.bench.LabelCap + ": " + sb.bill.LabelCap, UiKit.Ink);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
             if (sb.fix != null && sb.fix.canMake && !sb.fix.billed)
             {
-                if (Widgets.ButtonText(br, "CC_Making_SetBillFor".Translate(sb.fix.product.label)))
+                if (UiKit.ActButton(br, "CC_Making_SetBillFor".Translate(sb.fix.product.label), null))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     Making.SetUpChain(sb.fix);
@@ -394,27 +400,27 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
-            UiKit.Card(row, UiKit.Info);
+            UiKit.Card(row, UiKit.Cool);
             if (Mouse.IsOver(row) && map == Find.CurrentMap)
                 MapHighlights.Cells("unused:" + u.def.defName, map, map.listerThings.ThingsOfDef(u.def).Where(t => t.Spawned).Take(12).Select(t => t.Position), UiKit.Info, u.def.LabelCap);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), u.def);
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), u.def.LabelCap + " " + "CC_Making_Have".Translate(u.stock).Resolve(), Color.white);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), u.def.LabelCap + " " + "CC_Making_Have".Translate(u.stock).Resolve(), UiKit.Ink);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
             if (u.research != null)
             {
-                if (Widgets.ButtonText(br, "CC_Plan_OpenResearch".Translate()))
+                if (UiKit.ActButton(br, "CC_Plan_OpenResearch".Translate(), null))
                 {
                     var r = u.research;
                     Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Research);
                     if (MainButtonDefOf.Research.TabWindow is MainTabWindow_Research w) w.Select(r);
                 }
             }
-            else if (!u.benchBuilt && Widgets.ButtonText(br, "CC_Making_OpenBuild".Translate()))
+            else if (!u.benchBuilt && UiKit.ActButton(br, "CC_Making_OpenBuild".Translate(), null))
             {
                 var des = BuildCopyCommandUtility.FindAllowedDesignator(u.benchDef);
                 if (des != null)

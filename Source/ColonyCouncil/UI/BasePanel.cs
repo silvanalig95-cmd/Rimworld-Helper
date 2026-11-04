@@ -34,11 +34,7 @@ namespace ColonyCouncil
             int pressing = findings.Count(f => f.Level >= AdviceLevel.Medium);
             string stat = findings.Count > 0 ? "CC_Base_Stat".Translate(findings.Count, pressing).Resolve() : null;
             float top = UiKit.PageHeader(rect, Icons.Base, "CC_Base_Header".Translate(), "CC_Base_Sub".Translate(), stat, UiKit.Gold, 330f, "CC_Base_HeaderTip".Translate());
-            if (Widgets.ButtonText(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, 30f), "CC_Base_LookAgain".Translate()))
-            {
-                BaseReview.For(map, true);
-                SoundDefOf.Click.PlayOneShotOnCamera();
-            }
+            if (UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, UiKit.RowStandard), "CC_Base_LookAgain".Translate(), null)) BaseReview.For(map, true);
             bool show = BaseOverlay.Show;
             var showRect = new Rect(rect.xMax - 320f, rect.y + 8f, 150f, 24f);
             Widgets.CheckboxLabeled(showRect, "CC_Base_ShowOnMap".Translate(), ref show);
@@ -64,7 +60,7 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 
@@ -95,8 +91,9 @@ namespace ColonyCouncil
                 string name = role == "Freezer" ? "CC_Base_Freezer".Translate().Resolve() : RoomUtil.RoleNamed(role)?.label ?? role.ToLower();
                 legend.Add((color, n > 1 ? n + " " + Find.ActiveLanguageWorker.Pluralize(name, n) : name));
             }
-            legend.Add((new Color(0.78f, 0.78f, 0.78f), "CC_Base_Legend_Walls".Translate().Resolve()));
-            legend.Add((new Color(0.45f, 0.75f, 1f), "CC_Base_Legend_Doors".Translate().Resolve()));
+            // The little map's own colours for walls and doors (a picture's colours, as the region map's land is).
+            legend.Add((BaseMiniMap.WallColor, "CC_Base_Legend_Walls".Translate().Resolve()));
+            legend.Add((BaseMiniMap.DoorColor, "CC_Base_Legend_Doors".Translate().Resolve()));
             y += BaseMiniMap.Legend(x + 4f, y, w - 8f, legend) + 6f;
 
             // In numbers.
@@ -105,7 +102,7 @@ namespace ColonyCouncil
             string facts = "CC_Base_Facts".Translate(roles.Count, findings.Count, findings.Count(f => f.fix != null), findings.Count(f => f.template != null)).Resolve();
             float fh = Text.CalcHeight(facts, w - 8f);
             Widgets.Label(new Rect(x + 4f, y, w - 8f, fh), facts);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             return y + fh + 4f;
         }
@@ -121,9 +118,9 @@ namespace ColonyCouncil
             {
                 var part = findings.Where(f => f.group == group).ToList();
                 if (part.Count == 0) continue;
-                y += UiKit.SectionTitle(x, y, w, ("CC_Base_Group_" + group).Translate(), null, UiKit.HeaderColor) + 4f;
-                foreach (var f in part) y += DrawFinding(f, x, y, w, map) + 6f;
-                y += 8f;
+                y += UiKit.SectionTitle(x, y, w, ("CC_Base_Group_" + group).Translate(), part.Count) + 4f;
+                foreach (var f in part) y += DrawFinding(f, x, y, w, map) + UiKit.CardGap;
+                y += UiKit.SectionGap - UiKit.CardGap;
             }
             // The fixes done lately, with Undo and whether each worked; and the findings set aside, to bring back.
             y += AheadPanel.Done(x, y, w, map, BaseReview.Source) + 4f;
@@ -160,7 +157,7 @@ namespace ColonyCouncil
         private static float DrawFinding(BaseFinding f, float x, float y, float width, Map map)
         {
             var level = f.Level;
-            var color = LevelColor(level);
+            var color = UiKit.LevelColor(level);
             var buttonsList = ButtonsOf(f, map);
             float buttonsW = AheadPanel.ButtonsWidth(buttonsList.Select(b => b.label), ButtonsW - 12f) + 12f;
             Text.Font = GameFont.Small;
@@ -168,7 +165,7 @@ namespace ColonyCouncil
             float titleH = Text.CalcHeight(f.title ?? "", textW);
             float detailH = f.detail.NullOrEmpty() ? 0f : Text.CalcHeight(f.detail, textW);
             int buttons = buttonsList.Count;
-            float h = Mathf.Max(48f, titleH + detailH + 18f, buttons * 30f + 10f);
+            float h = Mathf.Max(48f, titleH + detailH + 18f, buttons * (UiKit.RowStandard + 4f) + 10f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, color);
             bool hovered = Mouse.IsOver(row);
@@ -177,37 +174,23 @@ namespace ColonyCouncil
             UiKit.Pill(x + 10f, y + 8f, ("CC_Level_" + level).Translate(), color, level >= AdviceLevel.High ? Icons.Warning : null, null, LeftW - 14f);
 
             float textX = x + LeftW;
-            GUI.color = color;
+            // The level's colour on its tag and the card's edge, beside the words; the title in ink.
+            GUI.color = UiKit.Ink;
             Widgets.Label(new Rect(textX, y + 8f, textW, titleH), f.title);
-            GUI.color = Color.white;
             if (detailH > 0f)
             {
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(textX, y + 8f + titleH, textW, detailH), f.detail);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
 
             float bx = x + width - buttonsW + 4f, bw = buttonsW - 12f, by = y + 6f;
             foreach (var (label, tip, act) in buttonsList)
             {
-                var r = new Rect(bx, by, bw, 26f);
-                TooltipHandler.TipRegion(r, tip);
-                if (Widgets.ButtonText(r, label)) act();
-                by += 30f;
+                if (UiKit.ActButton(new Rect(bx, by, bw, UiKit.RowStandard), label, null, tip)) act();
+                by += UiKit.RowStandard + 4f;
             }
             return h;
-        }
-
-        private static Color LevelColor(AdviceLevel level)
-        {
-            switch (level)
-            {
-                case AdviceLevel.Critical: return new Color(0.9f, 0.3f, 0.25f);
-                case AdviceLevel.High: return new Color(0.95f, 0.6f, 0.2f);
-                case AdviceLevel.Medium: return new Color(0.9f, 0.85f, 0.35f);
-                case AdviceLevel.Low: return new Color(0.65f, 0.65f, 0.65f);
-                default: return new Color(0.45f, 0.7f, 0.95f);
-            }
         }
     }
 }

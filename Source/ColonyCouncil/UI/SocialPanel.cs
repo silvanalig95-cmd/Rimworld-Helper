@@ -141,7 +141,7 @@ namespace ColonyCouncil
                 "CC_UI_Stat_Bonds".Translate(m.ties.Count).Resolve(), null, reserve, "CC_Social_Intro".Translate());
             float bx = rect.xMax - 220f;
             var filterRect = new Rect(bx, rect.y + 6f, 220f, 30f);
-            if (Widgets.ButtonText(filterRect, UiKit.Fit("CC_Social_Filter".Translate() + ": " + (focus?.LabelShort ?? "CC_Social_Everyone".Translate().ToString()), 200f)))
+            if (UiKit.ActButton(filterRect, UiKit.Fit("CC_Social_Filter".Translate() + ": " + (focus?.LabelShort ?? "CC_Social_Everyone".Translate().ToString()), 200f), null))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Social_Everyone".Translate(), () => focus = null) };
                 options.AddRange(m.colonists.OrderBy(p => p.LabelShort).Select(p => new FloatMenuOption(p.LabelShort, () => focus = p)));
@@ -166,12 +166,12 @@ namespace ColonyCouncil
         private static void DevButtons(Rect r, CouncilGameComponent comp)
         {
             if (Find.CurrentMap == null) return;
-            if (Widgets.ButtonText(new Rect(r.x, r.y, 120f, r.height), "Dev: dream"))
+            if (UiKit.ActButton(new Rect(r.x, r.y, 120f, r.height), "Dev: dream", null))
             {
                 var dreamer = focus ?? Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Baby()).RandomElementWithFallback();
                 if (dreamer == null || !comp.dreams.TryDream(comp, dreamer, false)) Messages.Message("No dream fits right now.", MessageTypeDefOf.RejectInput, false);
             }
-            if (Widgets.ButtonText(new Rect(r.x + 126f, r.y, 170f, r.height), "Dev: social event"))
+            if (UiKit.ActButton(new Rect(r.x + 126f, r.y, 170f, r.height), "Dev: social event", null))
             {
                 var pawns = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).ToList();
                 if (!SocialEvents.TryOne(comp, Find.CurrentMap, pawns)) Messages.Message("No social event fits right now.", MessageTypeDefOf.RejectInput, false);

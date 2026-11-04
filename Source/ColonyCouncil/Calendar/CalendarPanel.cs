@@ -439,7 +439,7 @@ namespace ColonyCouncil
                 y += 30f;
             }
 
-            if (Widgets.ButtonText(new Rect(inRect.width / 2f - 80f, inRect.height - 38f, 160f, 34f), (editing == null ? "CC_Cal_Dialog_Add" : "CC_Cal_Dialog_Save").Translate())
+            if (UiKit.ActButton(new Rect(inRect.width / 2f - 80f, inRect.height - 38f, 160f, 34f), (editing == null ? "CC_Cal_Dialog_Add" : "CC_Cal_Dialog_Save").Translate(), null)
                 || KeyBindingDefOf.Accept.KeyDownEvent)
                 Accept();
         }

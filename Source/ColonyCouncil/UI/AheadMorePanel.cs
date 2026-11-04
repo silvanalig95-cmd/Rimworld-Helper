@@ -19,18 +19,22 @@ namespace ColonyCouncil
         private static readonly string[] JobColumns = { "CC_AheadMore_Col_Job", "CC_AheadMore_Col_Counts", "CC_AheadMore_Col_Now", "CC_AheadMore_Col_Target", "CC_AheadMore_Col_State" };
         private static readonly string[] ShopColumns = { "CC_AheadMore_Col_Item", "CC_AheadMore_Col_Short", "CC_AheadMore_Col_Have", "CC_AheadMore_Col_Worth", "CC_AheadMore_Col_Trader" };
 
-        private static float Header(float x, float y, float width, string[] columns, float[] share)
+        /// <summary>A table's heads; the number columns (from <paramref name="numFrom"/> to <paramref name="numTo"/>) right-aligned, as their numbers are.</summary>
+        private static float Header(float x, float y, float width, string[] columns, float[] share, int numFrom, int numTo)
         {
             float inner = width - 2 * Pad;
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             for (int i = 0; i < columns.Length; i++)
             {
-                var r = new Rect(x + Pad + share.Take(i).Sum() * inner, y, share[i] * inner - 4f, 18f);
+                bool num = i >= numFrom && i <= numTo;
+                var r = new Rect(x + Pad + share.Take(i).Sum() * inner, y, share[i] * inner - (num ? 10f : 4f), 18f);
+                Text.Anchor = num ? TextAnchor.UpperRight : TextAnchor.UpperLeft;
                 Widgets.Label(r, columns[i].Translate());
                 TooltipHandler.TipRegion(r, (columns[i] + "Tip").Translate());
             }
-            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            GUI.color = UiKit.Ink;
             return 18f;
         }
 
@@ -45,20 +49,20 @@ namespace ColonyCouncil
             }
             if (i.suspended)
             {
-                color = AheadMoreMath.ShouldResume(i) ? UiKit.Warn : UiKit.Faint;
+                color = AheadMoreMath.ShouldResume(i) ? UiKit.Soon : UiKit.Faint;
                 return "CC_AheadMore_State_Suspended".Translate();
             }
             if (AheadMoreMath.ShouldRaise(i))
             {
-                color = UiKit.Warn;
+                color = UiKit.Soon;
                 return "CC_AheadMore_State_Wants".Translate(i.wanted);
             }
             if (i.completed)
             {
-                color = UiKit.Good;
+                color = UiKit.Done;
                 return "CC_AheadMore_State_Done".Translate();
             }
-            color = UiKit.Info;
+            color = UiKit.Cool;
             return "CC_AheadMore_State_Working".Translate();
         }
 
@@ -68,13 +72,13 @@ namespace ColonyCouncil
             var more = view?.more;
             if (more == null || more.jobs.Count == 0) return 0f;
             float top = y;
-            UiKit.LabelFit(new Rect(x + Pad, y, width - 2 * Pad, 22f), "CC_AheadMore_ManagerTitle".Translate(), UiKit.HeaderColor);
+            UiKit.HeadingLine(x, y, width, "CC_AheadMore_ManagerTitle".Translate(), more.jobs.Count, null, null, UiKit.Heading, false, false);
             TooltipHandler.TipRegion(new Rect(x, y, width, 22f), "CC_AheadMore_ManagerTip".Translate());
-            y += 22f;
+            y += UiKit.HeadingHeight;
             float[] share = { 0.27f, 0.25f, 0.11f, 0.12f, 0.25f };
             float inner = width - 2 * Pad;
             float Col(int i) => x + Pad + share.Take(i).Sum() * inner;
-            y += Header(x, y, width, JobColumns, share);
+            y += Header(x, y, width, JobColumns, share, 2, 3);
             int index = 0;
             foreach (var j in more.jobs.OrderBy(j => System.Array.IndexOf(AheadMoreMath.ManagerKinds, j.info.kind)).ThenBy(j => j.index))
             {
@@ -83,10 +87,10 @@ namespace ColonyCouncil
                 UiKit.Zebra(line, index++);
                 if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
                 string name = ("CC_AheadMore_Job_" + i.kind).Translate(i.label).Resolve();
-                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), name, Color.white);
+                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), name, UiKit.Ink);
                 UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 4f, 22f), i.goods ?? "-", UiKit.Faint, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 4f, 22f), i.current.ToString(), Color.white, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 4f, 22f), i.target.ToString(), UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 10f, 22f), i.current.ToString(), UiKit.Ink, GameFont.Tiny, TextAnchor.MiddleRight);
+                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 10f, 22f), i.target.ToString(), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
                 string state = StateText(i, out var color);
                 UiKit.LabelFit(new Rect(Col(4), y, share[4] * inner - 4f, 22f), state, color, GameFont.Tiny);
                 var tip = new List<string>
@@ -101,7 +105,7 @@ namespace ColonyCouncil
             if (more.stall != null)
             {
                 y += 2f;
-                y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_AheadMore_Idle".Translate(("CC_AheadMore_Stall_" + more.stall).Translate().Resolve()).Resolve(), UiKit.Warn, GameFont.Tiny);
+                y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_AheadMore_Idle".Translate(("CC_AheadMore_Stall_" + more.stall).Translate().Resolve()).Resolve(), UiKit.Soon, GameFont.Tiny);
             }
             Text.Font = GameFont.Small;
             return y - top;
@@ -115,23 +119,24 @@ namespace ColonyCouncil
             var more = view?.more;
             if (more == null || more.shop.Count == 0) return 0f;
             float top = y;
-            UiKit.LabelFit(new Rect(x + Pad, y, width - 2 * Pad, 22f), "CC_AheadMore_ShopTitle".Translate(), UiKit.HeaderColor);
+            UiKit.HeadingLine(x, y, width, "CC_AheadMore_ShopTitle".Translate(), more.shop.Count, null, null, UiKit.Heading, false, false);
             TooltipHandler.TipRegion(new Rect(x, y, width, 22f), "CC_AheadMore_ShopTip".Translate());
-            y += 22f;
+            y += UiKit.HeadingHeight;
             float[] share = { 0.3f, 0.12f, 0.16f, 0.14f, 0.28f };
             float inner = width - 2 * Pad;
             float Col(int i) => x + Pad + share.Take(i).Sum() * inner;
-            y += Header(x, y, width, ShopColumns, share);
+            y += Header(x, y, width, ShopColumns, share, 1, 3);
             int index = 0;
             foreach (var n in more.shop)
             {
                 var line = new Rect(x, y, width, 22f);
                 UiKit.Zebra(line, index++);
                 if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
-                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), n.label.CapitalizeFirst(), Color.white);
-                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 4f, 22f), n.Short.ToString(), UiKit.Warn, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 4f, 22f), "CC_AheadMore_HaveOf".Translate(n.have, n.want).Resolve(), UiKit.Faint, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 4f, 22f), Mathf.RoundToInt(n.Short * n.price).ToString(), UiKit.Faint, GameFont.Tiny);
+                const TextAnchor num = TextAnchor.MiddleRight;
+                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), n.label.CapitalizeFirst(), UiKit.Ink);
+                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 10f, 22f), n.Short.ToString(), UiKit.Soon, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 10f, 22f), "CC_AheadMore_HaveOf".Translate(n.have, n.want).Resolve(), UiKit.Faint, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 10f, 22f), Mathf.RoundToInt(n.Short * n.price).ToString(), UiKit.Faint, GameFont.Tiny, num);
                 string trader = n.traderHas > 0 ? "CC_AheadMore_TraderHas".Translate(n.traderHas).Resolve()
                     : n.managerMines ? "CC_AheadMore_ManagerMines".Translate().Resolve()
                     : n.deposit ? "CC_AheadMore_CanMine".Translate().Resolve() : "-";
@@ -145,7 +150,7 @@ namespace ColonyCouncil
             }
             y += 2f;
             if (more.traders.Count == 0) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_AheadMore_NoTrader".Translate(), UiKit.Faint, GameFont.Tiny);
-            foreach (var t in more.traders) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, t, UiKit.Info, GameFont.Tiny) + 2f;
+            foreach (var t in more.traders) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, t, UiKit.Faint, GameFont.Tiny) + 2f;
             Text.Font = GameFont.Small;
             return y - top;
         }

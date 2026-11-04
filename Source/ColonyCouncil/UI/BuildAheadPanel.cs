@@ -30,7 +30,7 @@ namespace ColonyCouncil
             var n = view.needs;
             if (n?.food == null) return 0f;
             var input = n.input;
-            y += UiKit.SectionTitle(x, y, width, "CC_Build_Section".Translate(), Icons.Plan, UiKit.HeaderColor);
+            y += UiKit.SectionTitle(x, y, width, "CC_Build_Section".Translate(), Icons.Plan);
             TooltipHandler.TipRegion(new Rect(x, y - UiKit.SectionHeight, width, 24f), "CC_Build_SectionTip".Translate());
             string builders = input.builders == 0
                 ? "CC_Build_BuildersNone".Translate().Resolve()
@@ -39,10 +39,14 @@ namespace ColonyCouncil
 
             y += Rows(x, y, width, n) + 6f;
             y += Projects(x, y, width, n) + 4f;
-            if (!view.heldBack.NullOrEmpty()) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, view.heldBack, UiKit.Warn, GameFont.Tiny) + 6f;
+            if (!view.heldBack.NullOrEmpty()) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, view.heldBack, UiKit.Soon, GameFont.Tiny) + 6f;
 
             var open = BuildAhead.Open(map);
-            if (open.Count == 0) y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Build_None".Translate(), UiKit.Faint) + 6f;
+            if (open.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(x, y, width, UiKit.RowDense + 4f), "CC_Build_None".Translate());
+                y += UiKit.RowDense + 10f;
+            }
             foreach (var s in open) y += AheadPanel.DrawStep(s, x, y, width) + 4f;
 
             y += AheadPanel.Done(x, y + 4f, width, map, BuildAhead.Source) + 4f;
@@ -51,7 +55,7 @@ namespace ColonyCouncil
         }
 
         private static Color StateColor(GrowthRow r) =>
-            r.Short > 0 ? r.level >= 3 ? UiKit.Bad : UiKit.Warn : r.SoonShort > 0 ? UiKit.Gold : UiKit.Good;
+            r.Short > 0 ? r.level >= 3 ? UiKit.Sour : UiKit.Soon : r.SoonShort > 0 ? UiKit.Gold : UiKit.Warm;
 
         private static float Rows(float x, float y, float width, GrowthNeeds n)
         {
@@ -65,11 +69,15 @@ namespace ColonyCouncil
             GUI.color = UiKit.Faint;
             for (int i = 0; i < Columns.Length; i++)
             {
-                var r = new Rect(Col(i), y, share[i] * inner - 4f, 18f);
+                // The number columns (need, built, planned) right-aligned, as their numbers are.
+                bool num = i >= 1 && i <= 3;
+                var r = new Rect(Col(i), y, share[i] * inner - (num ? 10f : 4f), 18f);
+                Text.Anchor = num ? TextAnchor.UpperRight : TextAnchor.UpperLeft;
                 Widgets.Label(r, Columns[i].Translate());
                 TooltipHandler.TipRegion(r, (Columns[i] + "Tip").Translate());
             }
-            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            GUI.color = UiKit.Ink;
             y += 18f;
             int index = 0;
             foreach (var row in rows)
@@ -77,11 +85,12 @@ namespace ColonyCouncil
                 var line = new Rect(x, y, width, 22f);
                 UiKit.Zebra(line, index++);
                 if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
-                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), ("CC_Build_Row_" + row.kind).Translate().Resolve(), Color.white);
+                const TextAnchor num = TextAnchor.MiddleRight;
+                UiKit.LabelFit(new Rect(Col(0), y, share[0] * inner - 4f, 22f), ("CC_Build_Row_" + row.kind).Translate().Resolve(), UiKit.Ink);
                 string need = row.soon > row.need ? "CC_Build_NeedSoon".Translate(row.need, row.soon).Resolve() : row.need.ToString();
-                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 4f, 22f), need, Color.white, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 4f, 22f), row.built.ToString(), UiKit.Faint, GameFont.Tiny);
-                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 4f, 22f), row.planned > 0 ? row.planned.ToString() : "-", UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(Col(1), y, share[1] * inner - 10f, 22f), need, UiKit.Ink, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(2), y, share[2] * inner - 10f, 22f), row.built.ToString(), UiKit.Faint, GameFont.Tiny, num);
+                UiKit.LabelFit(new Rect(Col(3), y, share[3] * inner - 10f, 22f), row.planned > 0 ? row.planned.ToString() : "-", UiKit.Faint, GameFont.Tiny, num);
                 UiKit.LabelFit(new Rect(Col(4), y, share[4] * inner - 4f, 22f), BuildAhead.RowState(row), StateColor(row), GameFont.Tiny);
                 TooltipHandler.TipRegion(line, BuildAhead.RowReason(row, n));
                 y += 22f;
@@ -99,7 +108,7 @@ namespace ColonyCouncil
             {
                 string line = BuildAhead.ProjectLine(st);
                 if (st.project.KeepsSide) line += " " + "CC_Build_Project_Keeps".Translate(("CC_Build_Side_" + st.project.growSide).Translate().Resolve()).Resolve();
-                float h = UiKit.Paragraph(x + Pad, y, width - 2 * Pad, line, UiKit.Info, GameFont.Tiny);
+                float h = UiKit.Paragraph(x + Pad, y, width - 2 * Pad, line, UiKit.Cool, GameFont.Tiny);
                 var rect = new Rect(x, y, width, h);
                 var tip = new List<string>();
                 for (int i = 0; i < GrowthMath.Finished; i++)
