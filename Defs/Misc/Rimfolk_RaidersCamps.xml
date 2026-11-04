@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A raiders' camp's terms: pay their price, or refuse (World/Region/RaidersCampTerms.cs). -->
+  <LetterDef>
+    <defName>Rimfolk_RaidersCampTerms</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_RaidersCamp</letterClass>
+    <color>(205, 120, 100)</color>
+    <flashColor>(230, 145, 120)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

@@ -253,7 +253,14 @@ namespace ColonyCouncil
             ["granted"] = K(DeedSide.TheirFavor, 25),
             // Their wrongs.
             ["raided"] = K(DeedSide.TheirWrong, 6, 1f, 20),
-            ["killedOurs"] = K(DeedSide.TheirWrong, 15, 2f)
+            ["killedOurs"] = K(DeedSide.TheirWrong, 15, 2f),
+            // A raiders' camp near a home (World/Region/RaidersCamp.cs): set up to raid it, and how it ended.
+            ["camped"] = K(DeedSide.TheirWrong, 10),
+            ["campBroken"] = K(DeedSide.Wrong, 12),
+            ["campFailed"] = K(DeedSide.Wrong, 4),
+            ["paidOff"] = K(DeedSide.Favor, 5),
+            ["campStruck"] = K(DeedSide.TheirFavor, 5),
+            ["burnedCamp"] = K(DeedSide.TheirFavor, 10)
         };
 
         public static DeedKind KindOf(string kind) => kind != null && Kinds.TryGetValue(kind, out var k) ? k : null;

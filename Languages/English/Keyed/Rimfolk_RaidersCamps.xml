@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Raiders' camps (World/Region/RaidersCamp.cs; docs/design/stage1-region.md, item 4). -->
+
+  <!-- The camp's kind by its people's age, in a sentence; its name on the world map, with a leader. -->
+  <CC_RaidCamp_Kind_Tribal>war camp</CC_RaidCamp_Kind_Tribal>
+  <CC_RaidCamp_Kind_Medieval>brigands' hold</CC_RaidCamp_Kind_Medieval>
+  <CC_RaidCamp_Kind_Industrial>bandit camp</CC_RaidCamp_Kind_Industrial>
+  <CC_RaidCamp_Kind_Spacer>raider base</CC_RaidCamp_Kind_Spacer>
+  <CC_RaidCamp_Label_Leader>{LEADER}'s {KIND}</CC_RaidCamp_Label_Leader>
+
+  <!-- Who of an ally burns it, by the ally's age. -->
+  <CC_RaidCamp_Allies_Tribal>Warriors</CC_RaidCamp_Allies_Tribal>
+  <CC_RaidCamp_Allies_Medieval>Riders</CC_RaidCamp_Allies_Medieval>
+  <CC_RaidCamp_Allies_Industrial>A patrol</CC_RaidCamp_Allies_Industrial>
+  <CC_RaidCamp_Allies_Spacer>A strike team</CC_RaidCamp_Allies_Spacer>
+
+  <!-- Found: what the one who saw it was doing, what they say, and the letter that names the danger. -->
+  <CC_RaidCamp_Doing_Hunt>hunting</CC_RaidCamp_Doing_Hunt>
+  <CC_RaidCamp_Doing_Out>past the fields</CC_RaidCamp_Doing_Out>
+  <CC_RaidCamp_Doing_About>of doors</CC_RaidCamp_Doing_About>
+  <CC_RaidCamp_Say>Smoke to the {DIR}, and not from any hearth of ours.</CC_RaidCamp_Say>
+  <CC_RaidCamp_Found_Label>{KIND} nearby</CC_RaidCamp_Found_Label>
+  <CC_RaidCamp_Found_Text>{SPOTTER}, out {DOING}, saw the smoke of a camp {WHERE}: {PEOPLE} have made a {KIND} there, near enough to strike at {COLONY}.</CC_RaidCamp_Found_Text>
+  <CC_RaidCamp_Found_Danger>This is a real danger. While it stands, their raiders will come from the {DIR} now and then, on top of the colony's usual raids, each a little over half the size of a raid on the colony. A rich colony is worth the trouble to {PEOPLE}.</CC_RaidCamp_Found_Danger>
+  <CC_RaidCamp_Found_Leader>{LEADER} leads them.</CC_RaidCamp_Found_Leader>
+  <CC_RaidCamp_Found_BrokeWord>{PEOPLE} were paid to keep away from the colony for a year, and gave their word. They have broken it.</CC_RaidCamp_Found_BrokeWord>
+  <CC_RaidCamp_Found_Ends>It ends when the colony breaks it (send a caravan from the world map to attack it), pays their price, makes peace with {PEOPLE}, sees an ally burn it, or beats off their raids until they give up.</CC_RaidCamp_Found_Ends>
+  <CC_RaidCamp_Found_Line>{SPOTTER} saw the smoke of a {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_Found_Line>
+
+  <!-- Its raids. -->
+  <CC_RaidCamp_RaidLabel>Raid from the {KIND}</CC_RaidCamp_RaidLabel>
+  <CC_RaidCamp_RaidText>{PEOPLE} have come from their {KIND} {WHERE}.</CC_RaidCamp_RaidText>
+  <CC_RaidCamp_Beaten>The raid from the {KIND} of {PEOPLE} was beaten off: {DOWN} of the {SIZE} who came fell or were taken.</CC_RaidCamp_Beaten>
+
+  <!-- Put back after an attack it survived. -->
+  <CC_RaidCamp_Back_Label>{KIND} holds out</CC_RaidCamp_Back_Label>
+  <CC_RaidCamp_Back_Text>The colony left the {KIND} of {PEOPLE} with {STANDING} of its fighters still standing ({FELL} fell). They are back behind their walls {WHERE}, fewer than before, and their raids will go on until the camp is dealt with.</CC_RaidCamp_Back_Text>
+
+  <!-- Their terms. -->
+  <CC_RaidCamp_Terms_Label>Terms from the {KIND}</CC_RaidCamp_Terms_Label>
+  <CC_RaidCamp_Terms_Text>Word has come from the {KIND} of {PEOPLE} {WHERE}: for {SILVER} silver they will break camp and keep away from {COLONY} for a year.</CC_RaidCamp_Terms_Text>
+  <CC_RaidCamp_Terms_How>If the colony pays, one of its people will carry the silver out to the edge of the colony's ground and leave it there for them to collect. No raid comes from the camp while it is on its way, and they break camp once it is handed over. Their price stands as long as the camp does: it can be paid later from the raiders' camps page of the region window.</CC_RaidCamp_Terms_How>
+  <CC_RaidCamp_Pay>Pay {SILVER} silver</CC_RaidCamp_Pay>
+  <CC_RaidCamp_Refuse>Refuse</CC_RaidCamp_Refuse>
+  <CC_RaidCamp_NotEnough>The colony has only {HAVE} silver of the {SILVER} they ask.</CC_RaidCamp_NotEnough>
+  <CC_RaidCamp_PayLabel>the {KIND}'s price</CC_RaidCamp_PayLabel>
+
+  <!-- How it ended. -->
+  <CC_RaidCamp_End_Broken_Label>{KIND} broken</CC_RaidCamp_End_Broken_Label>
+  <CC_RaidCamp_End_Broken>The {KIND} of {PEOPLE} {WHERE} is broken: its fighters are dead, taken or scattered, and no more raids will come from it.</CC_RaidCamp_End_Broken>
+  <CC_RaidCamp_End_Paid_Label>{KIND} paid off</CC_RaidCamp_End_Paid_Label>
+  <CC_RaidCamp_End_Paid>{PEOPLE} took the silver and broke camp {WHERE}. They have given their word to keep away from {COLONY} for a year.</CC_RaidCamp_End_Paid>
+  <CC_RaidCamp_End_Peace_Label>{KIND} struck</CC_RaidCamp_End_Peace_Label>
+  <CC_RaidCamp_End_Peace>With peace made, {PEOPLE} have struck their {KIND} {WHERE} and gone home.</CC_RaidCamp_End_Peace>
+  <CC_RaidCamp_End_Burned_Label>{KIND} burned</CC_RaidCamp_End_Burned_Label>
+  <CC_RaidCamp_End_Burned>{ALLIES} of {ALLY} fell on the {KIND} of {PEOPLE} {WHERE} and burned it. {ALLY} count it a good turn done for the colony.</CC_RaidCamp_End_Burned>
+  <CC_RaidCamp_End_GaveUp_Label>{KIND} abandoned</CC_RaidCamp_End_GaveUp_Label>
+  <CC_RaidCamp_End_GaveUp>Their raids beaten off, {PEOPLE} have abandoned their {KIND} {WHERE} and moved on.</CC_RaidCamp_End_GaveUp>
+  <CC_RaidCamp_End_GaveUp_Time>With two months gone and nothing to show for them, {PEOPLE} have abandoned their {KIND} {WHERE} and moved on.</CC_RaidCamp_End_GaveUp_Time>
+
+  <!-- What the peoples remember of it (World/FactionMemory.cs). -->
+  <CC_Memory_Deed_camped>made camp near the colony to raid it</CC_Memory_Deed_camped>
+  <CC_Memory_Deed_camped_Name>made a {NAME} near the colony to raid it</CC_Memory_Deed_camped_Name>
+  <CC_Memory_Deed_campBroken>broke their raiders' camp</CC_Memory_Deed_campBroken>
+  <CC_Memory_Deed_campBroken_Name>broke their {NAME}</CC_Memory_Deed_campBroken_Name>
+  <CC_Memory_Deed_campFailed>beat off their raids until their camp gave up</CC_Memory_Deed_campFailed>
+  <CC_Memory_Deed_paidOff>paid them silver to break camp</CC_Memory_Deed_paidOff>
+  <CC_Memory_Deed_campStruck>broke camp near the colony when peace was made</CC_Memory_Deed_campStruck>
+  <CC_Memory_Deed_burnedCamp>burned a raiders' camp near the colony</CC_Memory_Deed_burnedCamp>
+  <CC_Memory_Deed_burnedCamp_Name>burned the {NAME} near the colony</CC_Memory_Deed_burnedCamp_Name>
+
+  <!-- The region window's page, the region map's panel and This week (World/Region/RaidersCampPage.cs). -->
+  <CC_Tab_RaidersCamps>raiders' camps</CC_Tab_RaidersCamps>
+  <CC_RaidCampPg_Header>Raiders' camps</CC_RaidCampPg_Header>
+  <CC_RaidCampPg_Sub>Enemy camps near the colony's homes, and how the last ones went.</CC_RaidCampPg_Sub>
+  <CC_RaidCampPg_Stat>{COUNT} standing</CC_RaidCampPg_Stat>
+  <CC_RaidCampPg_Off>Raiders' camps are switched off in the settings: no new camp is set up, and none raids.</CC_RaidCampPg_Off>
+  <CC_RaidCampPg_Standing>Standing near the colony</CC_RaidCampPg_Standing>
+  <CC_RaidCampPg_None>No raiders' camp stands near the colony.</CC_RaidCampPg_None>
+  <CC_RaidCampPg_Rules>A rich colony on bad terms with a hostile people within reach may find raiders camped a few days off. While a camp stands, its raids come on top of the colony's usual raids, until the colony breaks it, pays their price, makes peace with their people, sees an ally burn it, or beats off their raids until they give up.</CC_RaidCampPg_Rules>
+  <CC_RaidCampPg_Past>How the last ones went</CC_RaidCampPg_Past>
+  <CC_RaidCampPg_NoPast>No raiders' camp has come and gone yet.</CC_RaidCampPg_NoPast>
+  <CC_RaidCampPg_PastLine>{AGO}: {TEXT}</CC_RaidCampPg_PastLine>
+  <CC_RaidCampPg_Title>{NAME} of {PEOPLE}</CC_RaidCampPg_Title>
+  <CC_RaidCampPg_WhereHome>{WHERE} of {HOME}.</CC_RaidCampPg_WhereHome>
+  <CC_RaidCampPg_Since>{PEOPLE} made camp there; it was found {FOUND}.</CC_RaidCampPg_Since>
+  <CC_RaidCampPg_Leader>{LEADER} leads them.</CC_RaidCampPg_Leader>
+  <CC_RaidCampPg_NoRaids>No raid has come from it yet.</CC_RaidCampPg_NoRaids>
+  <CC_RaidCampPg_Raids>Raids from it so far: {RAIDS}, beaten off: {BEATEN}.</CC_RaidCampPg_Raids>
+  <CC_RaidCampPg_Paying>Their price, {SILVER} silver, is on its way out to them.</CC_RaidCampPg_Paying>
+  <CC_RaidCampPg_Price>Their price: {SILVER} silver, to break camp and keep away for a year.</CC_RaidCampPg_Price>
+  <CC_RaidCampPg_NoTerms>Their terms haven't come yet.</CC_RaidCampPg_NoTerms>
+  <CC_RaidCampPg_Show>Show it</CC_RaidCampPg_Show>
+  <CC_RaidCampPg_PayTip>One of the colony carries the silver out to the edge of the colony's ground and leaves it there for them; they break camp once it is handed over.</CC_RaidCampPg_PayTip>
+  <CC_RaidCampPg_PayConfirm>Pay the {KIND} {SILVER} silver? One of the colony will carry it out to the edge of the colony's ground and leave it for them, and they will break camp and keep away for a year.</CC_RaidCampPg_PayConfirm>
+  <CC_RaidCampPg_HomeLine>A {KIND} of {PEOPLE} stands {WHERE}.</CC_RaidCampPg_HomeLine>
+  <CC_RaidCampPg_PanelHeader>Raiders' camp</CC_RaidCampPg_PanelHeader>
+  <CC_RaidCampPg_Week>{NAME} of {PEOPLE}</CC_RaidCampPg_Week>
+  <CC_RaidCampPg_WeekPaying>being paid off</CC_RaidCampPg_WeekPaying>
+  <CC_RaidCampPg_WeekNoRaid>no raid yet</CC_RaidCampPg_WeekNoRaid>
+  <CC_RaidCampPg_WeekRaids>raids: {RAIDS}</CC_RaidCampPg_WeekRaids>
+
+  <!-- The setting. -->
+  <CC_Settings_RaidersCamps>Raiders' camps</CC_Settings_RaidersCamps>
+  <CC_SetNote_RaidersCamps>A rich colony on bad terms with a hostile people may find raiders camped a few days off, who raid it until dealt with.</CC_SetNote_RaidersCamps>
+  <CC_Settings_RaidersCamps_Tip>How likely a raiders' camp is, and how often it raids. At 100% (the default), from day 60 a home with 1,000 threat points or more (about a mid-game colony) is looked at every 10 days, with a 10% chance of a camp when a hostile people with a town within 60 tiles (or Faction Territories territory within 30), or with a grudge against the colony, could set one up: one camp a home at most, none for 60 days after the last ended, never within 5 tiles of a home. A camp raids at the game's own raid-source rate (a raid every 25 days on average for a small camp, 10 at 1,500 points, 5 at 5,000), each at 0.6 of the colony's raid points, on top of the storyteller's raids. Its letter comes before any raid. 200% doubles the chance and the raids; 0% switches camps off.</CC_Settings_RaidersCamps_Tip>
+
+</LanguageData>
