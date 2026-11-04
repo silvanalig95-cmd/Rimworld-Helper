@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A people's call on a debt of honor the colony owes them: send what they ask, give the colony's word on their side,
+       or refuse (Diplomacy/FavourAsks.cs). -->
+  <LetterDef>
+    <defName>Rimfolk_FavourAsk</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_FavourAsk</letterClass>
+    <color>(175, 160, 215)</color>
+    <flashColor>(200, 185, 240)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

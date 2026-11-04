@@ -118,25 +118,17 @@ namespace ColonyCouncil
             int now = Now;
             if (FavourMath.ByMission(need))
             {
+                // The mission first: when it can't happen here, nothing was asked.
+                if (!Mission(f, need, home)) return false;
                 if (!FavoursOwed.CallIn(t, FavourMath.NeedCode(need), FavourMath.DueDay(need, now))) return false;
-                if (!Mission(f, need, home))
-                {
-                    FavoursOwed.Close(t, Tie.State.Open);
-                    return false;
-                }
                 // The mission's own letter asks it; the debt's line goes in it.
                 var form = DipWords.Form(home, f);
                 FavoursOwed.SayWithLetter(f, home, DipWords.T("CC_Dip_Line_TheyCall", DipWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
                     form.rite.Named("RITE"), DipWords.Why(t).Named("WHY")));
                 return true;
             }
-            if (!FavoursOwed.CallIn(t, FavourMath.NeedCode(need), FavourMath.DueDay(need, now))) return false;
             var letter = Letter(t, f, need, home);
-            if (letter == null)
-            {
-                FavoursOwed.Close(t, Tie.State.Open);
-                return false;
-            }
+            if (letter == null || !FavoursOwed.CallIn(t, FavourMath.NeedCode(need), FavourMath.DueDay(need, now))) return false;
             Tell.Ask(letter, home);
             return true;
         }

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Debts of honor (Source/ColonyCouncil/Diplomacy/FavoursOwed.cs; the facts in Text/Facts/FactsLedger.cs): a good turn
+       big enough in a people's memory leaves them owing the colony, or the colony owing them, until it is called in or two
+       years pass. As facts: tie:honour:theirs (their people owe the colony, or the outsider owes the colonist in person:
+       tie:honour:you), tie:honour:ours (the colony owes their people), tie:honour:due (called in, waiting for its answer),
+       {HONOURTO} the one owed and {FAVOURWHY} what it was for ("a prisoner freed", "relief sent"). How it ended is what
+       their people remember: deed:keptWord (the colony answered their call), deed:refused (it didn't), deed:brokeWord
+       (they refused the colony's). By their ways: the word for a debt is a gift owed back, a pledge given by hand, a favor
+       on the books, credit owed. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Their people owe the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_TheyOwe</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,!tie:honour:you</when>
+    <lines>
+      <li>[them] My people haven't forgotten {FAVOURWHY}.</li>
+      <li>[us] We didn't do it to be owed anything.</li>
+      <li>[them,their:tribal] A gift is owed back all the same, and the elders know it.</li>
+      <li>[them,their:medieval] It's a debt of honor all the same, and we pay ours.</li>
+      <li>[them,their:industrial] It's on the books at home, and people there remember it.</li>
+      <li>[them,their:spacer] It's logged, and nobody where I come from leaves an entry open.</li>
+      <li>[them] All the same, we owe the colony, and we know it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_OwedYou</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,tie:honour:you</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I owe you for {FAVOURWHY}, and I haven't forgotten it.</li>
+      <li>[us] I'd do it again.</li>
+      <li>[them] Then I hope you'll let me pay it back someday.</li>
+      <li>[us] If I ever need something, you'll be the first I ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Elders</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,their:tribal</when>
+    <lines>
+      <li>[them] The elders still tell of {FAVOURWHY} by the fire.</li>
+      <li>[us] I'd rather they told it than forgot it.</li>
+      <li>[them] A gift owed back is never forgotten among us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Lord</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,their:medieval</when>
+    <lines>
+      <li>[them] My lord says a debt of honor is the only kind worth paying promptly.</li>
+      <li>[us] We're in no hurry.</li>
+      <li>[them] Then name it when you're ready, and it will be done.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Pinned</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,their:industrial</when>
+    <lines>
+      <li>[them] Somebody at home wrote down {FAVOURWHY} and pinned it to the wall.</li>
+      <li>[us] Is that good or bad?</li>
+      <li>[them] Good, it means we owe you, and we pay our IOUs.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Entry</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,their:spacer</when>
+    <lines>
+      <li>[them] There's an open entry in our records with your colony's name on it.</li>
+      <li>[us] What does it say?</li>
+      <li>[them] Credit owed, for {FAVOURWHY}.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_House</defName>
+    <topic>honour</topic>
+    <when>tie:honour:theirs,their:empire</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] My house keeps a ledger of favors, and your colony's name is in it.</li>
+      <li>[us] I hope it's on the good side of the page.</li>
+      <li>[them] It's on the side we repay.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colony owes their people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_WeOwe</defName>
+    <topic>honour</topic>
+    <when>tie:honour:ours,!tie:honour:due</when>
+    <lines>
+      <li>[us] We still owe your people for {FAVOURWHY}.</li>
+      <li>[them,tone:warm] Between friends it hardly counts as a debt.</li>
+      <li>[them,their:tribal] Then the fire will remember it, and so will we.</li>
+      <li>[them,their:medieval] Then it stands between us, as a debt of honor should.</li>
+      <li>[them,their:hightech] It's on the books, and it can stay there until we need it.</li>
+      <li>[them] We'll ask when we need something, not before.</li>
+      <li>[us] That's fair.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Remembered</defName>
+    <topic>honour</topic>
+    <when>tie:honour:ours,their:lowtech,!tie:honour:due</when>
+    <lines>
+      <li>[them] You remember the help my people gave you?</li>
+      <li>[us] We do, and we know we owe you for it.</li>
+      <li>[them] Good, a debt remembered is half paid.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Reminder</defName>
+    <topic>honour</topic>
+    <when>tie:honour:ours,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Your colony still owes my people, I'd remind you.</li>
+      <li>[us] We haven't forgotten.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Waiting</defName>
+    <topic>honour</topic>
+    <when>tie:honour:ours,tie:honour:due</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] My people called in what the colony owes us, and we're waiting on the answer.</li>
+      <li>[us] It's being talked over at the colony.</li>
+      <li>[them,tone:cool|tone:sour] We helped when you needed it, and talking is cheap.</li>
+      <li>[them] I hope the answer is yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= How it ended ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Kept</defName>
+    <topic>honour</topic>
+    <when>deed:keptWord</when>
+    <lines>
+      <li>[them] Your colony answered when my people called in the debt.</li>
+      <li>[us] We owed it.</li>
+      <li>[them] Plenty of people owe things, and fewer pay.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_Refused</defName>
+    <topic>honour</topic>
+    <when>deed:refused</when>
+    <lines>
+      <li>[them] My people asked the colony for help once, and got nothing.</li>
+      <li>[us] It was a hard season for us too.</li>
+      <li>[them] It was harder for us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Honour_BrokeWord</defName>
+    <topic>honour</topic>
+    <when>deed:brokeWord</when>
+    <lines>
+      <li>[them] My people let the colony down when it called in what we owed.</li>
+      <li>[us] We remember.</li>
+      <li>[them] Not everyone at home agreed with the answer, for what it's worth.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

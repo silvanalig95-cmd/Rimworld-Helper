@@ -786,6 +786,8 @@ namespace ColonyCouncil
             if (ws == null) return null;
             foreach (var s in ws.Running)
             {
+                // Asked by a people calling in a debt (Diplomacy/FavourAsks.cs): only their own trouble.
+                if (MissionPeoples.Only != null && s.ctx?.faction != MissionPeoples.Only) continue;
                 string tag = null;
                 switch (s.def?.defName)
                 {
@@ -812,6 +814,7 @@ namespace ColonyCouncil
             {
                 var r = ws.history[i];
                 if (r == null || r.ending == null || r.ending == WorldSituations.Quietly || now - r.endTick > GenDate.TicksPerDay * 30) continue;
+                if (MissionPeoples.Only != null && r.faction != MissionPeoples.Only) continue;
                 string tag = r.defName == "Council_WS_Murrain" ? null : HappeningWorker_Aftermath.KindTag(r.defName);
                 if (tag == null || tag == "locusts") continue;
                 if (tag == "drought") tag = "famine";

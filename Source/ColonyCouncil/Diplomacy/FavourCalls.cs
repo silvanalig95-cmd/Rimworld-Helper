@@ -262,6 +262,14 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("favours: honoured", e);
                 done = null;
             }
+            if (done == null && ask == FavourAsk.Captive)
+            {
+                // Willing, but it couldn't be done now (no way onto the colony's land): the debt stands, open again.
+                FavoursOwed.Close(t, Tie.State.Open);
+                a.honoured = false;
+                a.line = DipWords.T("CC_Dip_Ans_NotNow", DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"));
+                return a;
+            }
             FavoursOwed.Close(t, Tie.State.Kept);
             a.line = DipWords.T("CC_Dip_Ans_Honoured", who.Named("WHO"), DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"))
                      + (done.NullOrEmpty() ? "" : " " + done);

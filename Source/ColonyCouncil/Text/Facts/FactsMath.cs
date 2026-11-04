@@ -138,7 +138,7 @@ namespace ColonyCouncil
         /// tie:honour:theirs (which side owes), tie:honour:you (the speaker is owed, or owes, in person), tie:honour:due (called
         /// in), the party owed by name ({HONOURTO}) and what it was for ({FAVOURWHY}: "a prisoner freed", "relief sent").
         /// </summary>
-        public const string HonourTag = "tie:honour";
+        public static readonly string HonourTag = "tie:honour";
 
         public static void AddHonour(FactSet f, TieFact t, string why)
         {

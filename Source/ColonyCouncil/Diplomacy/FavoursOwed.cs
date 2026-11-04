@@ -160,6 +160,15 @@ namespace ColonyCouncil
             if (d?.faction == null || !On || !KinMemory.Ours(colonist) || d.side != DeedSide.Favor || !FavourMath.Earns(d.kind, true, d.weight)) return;
             try
             {
+                // The people's debt for this good turn names who did it (the memory names them only after noting the deed).
+                var people = Refs.Of(d.faction);
+                foreach (var t0 in WorldLedger.OwnTies(Tie.Kind.Favour))
+                    if (t0 != null && t0.state == Tie.State.Open && t0.origin == Origin && t0.from == people && t0.terms.key == d.kind && t0.terms.about.IsNone)
+                    {
+                        t0.terms.about = WorldLedger.PersonOf(colonist);
+                        WorldLedger.Touch(t0);
+                        break;
+                    }
                 var book = NotableBook.Instance;
                 if (book == null || !NotableBook.On) return;
                 var n = helped != null

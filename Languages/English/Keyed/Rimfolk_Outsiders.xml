@@ -45,6 +45,8 @@
   <CC_Out_Act_TeachSkill>Ask them to teach {SKILL} for an hour</CC_Out_Act_TeachSkill>
   <CC_Out_Act_Bring>Ask them to bring something next time...</CC_Out_Act_Bring>
   <CC_Out_Act_Invite>Invite them to stay</CC_Out_Act_Invite>
+  <!-- Stage 2 (Diplomacy/DiplomacyActs.cs): call in a debt of honor face to face -->
+  <CC_Out_Act_AskFavour>Ask a favor of their people...</CC_Out_Act_AskFavour>
   <CC_Out_Act_Befriend>Spend time getting to know them</CC_Out_Act_Befriend>
   <CC_Out_Act_Court>Court them</CC_Out_Act_Court>
   <CC_Out_Act_Faith>Talk faith</CC_Out_Act_Faith>
@@ -130,6 +132,7 @@
   <CC_Out_Note_Letter>Carried a letter home for {PAWN}.</CC_Out_Note_Letter>
   <CC_Out_Note_Teach>Taught {PAWN} something of {HOW}.</CC_Out_Note_Teach>
   <CC_Out_Note_Bring>Promised {PAWN} to bring {HOW} next time.</CC_Out_Note_Bring>
+  <CC_Out_Note_AskFavour>{PAWN} called in what was owed the colony; it was {HOW}.</CC_Out_Note_AskFavour>
   <CC_Out_Note_Befriend>Spent time getting to know {PAWN}, {HOW}.</CC_Out_Note_Befriend>
   <CC_Out_Note_Court>Was courted by {PAWN}, and {HOW}.</CC_Out_Note_Court>
   <CC_Out_Note_Faith>Talked faith with {PAWN}: {HOW}.</CC_Out_Note_Faith>

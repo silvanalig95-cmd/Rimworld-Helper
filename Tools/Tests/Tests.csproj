@@ -83,6 +83,9 @@
     <Compile Include="../../Source/ColonyCouncil/World/Region/TradingPostMath.cs" Link="TradingPostMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/FollowUpsMath.cs" Link="FollowUpsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/HamletMath.cs" Link="HamletMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/DiplomacyMath.cs" Link="DiplomacyMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/FavourMath.cs" Link="FavourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/NatureMath.cs" Link="NatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/SmallTownsMath.cs" Link="SmallTownsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/ColonistMemoryMath.cs" Link="ColonistMemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/InviteMath.cs" Link="InviteMath.cs" />

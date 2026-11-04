@@ -68,11 +68,19 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>What can be asked in a letter about this topic, each with why not (none for the colony's word: the letter is the answer).</summary>
+        private static string asksFor;
+        private static float asksAt = -1f;
+        private static List<FavourCalls.Option> asks = new List<FavourCalls.Option>();
+
+        /// <summary>What can be asked in a letter about this topic, each with why not (none for the colony's word: the letter is the answer). Worked out at most twice a second.</summary>
         public static List<FavourCalls.Option> Asks(string topicKey, Map map)
         {
+            if (asksFor == topicKey && Time.realtimeSinceStartup - asksAt < 0.5f) return asks;
             var t = TieOf(topicKey, TiePrefix);
-            return t == null ? new List<FavourCalls.Option>() : FavourCalls.Options(t, map);
+            asks = t == null ? new List<FavourCalls.Option>() : FavourCalls.Options(t, map);
+            asksFor = topicKey;
+            asksAt = Time.realtimeSinceStartup;
+            return asks;
         }
 
         // ================= The dialog's own rows =================

@@ -310,17 +310,35 @@ namespace ColonyCouncil
         /// <summary>Why someone of theirs is here: a lodger, trading, visiting, staying at the camp, or just here.</summary>
         private static string WhyHere(Pawn p)
         {
-            if (p.IsQuestLodger()) return DipWords.P("CC_Dip_Why_Lodger");
+            if (p.IsQuestLodger()) return DipWords.P("CC_Dip_HereAs_Lodger");
             var job = p.GetLord()?.LordJob;
-            if (job is LordJob_TradeWithColony) return DipWords.P("CC_Dip_Why_Trading");
-            if (job is LordJob_VisitColony) return DipWords.P("CC_Dip_Why_Visiting");
-            return DipWords.P("CC_Dip_Why_Here");
+            if (job is LordJob_TradeWithColony) return DipWords.P("CC_Dip_HereAs_Trading");
+            if (job is LordJob_VisitColony) return DipWords.P("CC_Dip_HereAs_Visiting");
+            return DipWords.P("CC_Dip_HereAs_Here");
         }
 
         // ================= A town's panel =================
 
-        /// <summary>A town's part: its people's debts with the colony, the personal ones of its notables, and calling one in.</summary>
+        private static int townFor = -1;
+        private static float townAt = -1f;
+        private static int townVersion;
+        private static List<DipRow> townRows = new List<DipRow>();
+
+        /// <summary>A town's part: its people's debts with the colony, the personal ones of its notables, and calling one in. Built at most twice a second.</summary>
         public static List<DipRow> TownRows(Settlement s)
+        {
+            if (s == null) return new List<DipRow>();
+            float now = Time.realtimeSinceStartup;
+            int v = VersionNow;
+            if (townFor == s.ID && townVersion == v && now - townAt < 0.5f) return townRows;
+            townRows = BuildTownRows(s);
+            townFor = s.ID;
+            townVersion = v;
+            townAt = now;
+            return townRows;
+        }
+
+        private static List<DipRow> BuildTownRows(Settlement s)
         {
             var list = new List<DipRow>();
             var f = s?.Faction;

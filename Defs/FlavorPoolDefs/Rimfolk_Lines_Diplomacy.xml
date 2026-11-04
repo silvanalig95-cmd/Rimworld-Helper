@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Debts of honor called in and answered (Source/ColonyCouncil/Diplomacy/). Two pools the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call of the new
+      purpose "favour" (a debt of theirs the colony called in, or the colony's word on their side when they called in
+      one of the colony's). By how they took it: warm or cordial (the colony's word, or a debt paid gladly), cool (paid,
+      and no more), refusal (not paid). By their ways: theirLowtech, theirHightech. The lines must read true either way
+      the debt ran: settled, square, paid.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of "Ask a favor of their people" face to face: the
+      colonist's ask (favourask, us), a word each while they talk (favourtalk), and their answer (favouryes, favourno).
+      One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Favours</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <li>[favour,warm] We keep what we owe, {WRITER}, and we're glad to.</li>
+        <li>[favour,warm,theirLowtech] A debt between friends is the easiest kind to settle.</li>
+        <li>[favour,warm,theirHightech] Consider the account settled, and gladly.</li>
+        <li>[favour,warm,letter] I wrote this one myself, so you'd know we meant it.</li>
+        <li>[favour,cordial] What was owed is settled, and we're square with the colony.</li>
+        <li>[favour,cordial,theirLowtech] It is done as our ways ask, and nothing stands between us now.</li>
+        <li>[favour,cordial,theirHightech] We've marked it settled on our side.</li>
+        <li>[favour,cordial,call] Good to hear your voice, {WRITER}, and good to have this settled.</li>
+        <li>[favour,cool] We pay our debts, {WRITER}, so this one is paid.</li>
+        <li>[favour,cool,theirLowtech] It is given, and now nothing is owed between us.</li>
+        <li>[favour,cool,theirHightech] Done, and the books are closed on it.</li>
+        <li>[favour,refusal] We owe the colony, but we will not be held to this.</li>
+        <li>[favour,refusal,theirLowtech] The elders will not give it, whatever was owed.</li>
+        <li>[favour,refusal,theirHightech] Our council voted it down, and I can't change that.</li>
+        <li>[favour,refusal,call] I'm sorry, {WRITER}, but the answer is no.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Favours</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[favourask,us] Your people owe the colony one, and I've come to ask for it.</li>
+        <li>[favourask,us] I'd like to talk about what your people owe us.</li>
+        <li>[favourask,us,theirLowtech] There's a debt between our peoples, and I'm here to call it in.</li>
+        <li>[favourask,us,theirHightech] Your people have an open account with us, and I'd like to settle it.</li>
+        <li>[favourtalk,them] I remember what your colony did for us.</li>
+        <li>[favourtalk,them] That's a fair thing to ask, given what we owe.</li>
+        <li>[favourtalk,them] I'll have to answer for my people, so let me think.</li>
+        <li>[favourtalk,us] It would mean a great deal to the colony.</li>
+        <li>[favourtalk,us] We wouldn't ask if we didn't need it.</li>
+        <li>[favouryes,them] A debt is a debt, and you'll have it.</li>
+        <li>[favouryes,them] My people pay what they owe, so consider it done.</li>
+        <li>[favouryes,them,theirLowtech] It is given, and the debt between us is settled.</li>
+        <li>[favouryes,them,theirHightech] Fine, we'll call the account settled.</li>
+        <li>[favourno,them] We owe you, but not that.</li>
+        <li>[favourno,them] My people won't agree to it, debt or no debt.</li>
+        <li>[favourno,them] Ask me for something else, because that I can't give.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

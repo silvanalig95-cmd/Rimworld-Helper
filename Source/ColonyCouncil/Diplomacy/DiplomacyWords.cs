@@ -29,9 +29,9 @@ namespace ColonyCouncil
         /// </summary>
         public static string Why(string deedKind)
         {
-            if (deedKind.NullOrEmpty()) return "CC_Dip_Why_Any".Translate().Resolve();
-            string key = "CC_Dip_Why_" + deedKind;
-            return key.CanTranslate() ? key.Translate().Resolve() : "CC_Dip_Why_Any".Translate().Resolve();
+            if (deedKind.NullOrEmpty()) return "CC_Dip_For_Any".Translate().Resolve();
+            string key = "CC_Dip_For_" + deedKind;
+            return key.CanTranslate() ? key.Translate().Resolve() : "CC_Dip_For_Any".Translate().Resolve();
         }
 
         public static string Why(Tie t) => Why(t?.terms?.key);

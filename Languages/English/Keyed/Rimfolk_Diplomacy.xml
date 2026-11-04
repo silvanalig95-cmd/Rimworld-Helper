@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, diplomacy's base and favors owed and called in (Source/ColonyCouncil/Diplomacy/;
+       docs/design/stage2-diplomacy.md, round a, item 1). Keys with numbered fellows (_2 ...) are picked at random
+       (TextVariants). -->
+
+  <!-- The region window's pages -->
+  <CC_Tab_Diplomacy>Diplomacy</CC_Tab_Diplomacy>
+  <CC_Tab_Household>Household</CC_Tab_Household>
+  <CC_WHist_Kind_dip>Diplomacy</CC_WHist_Kind_dip>
+
+  <CC_Dip_Header>Diplomacy</CC_Dip_Header>
+  <CC_Dip_Sub>What is owed each way, and the colony's ties with each people within reach.</CC_Dip_Sub>
+  <CC_Dip_Stat>{COUNT} debts of honor</CC_Dip_Stat>
+  <CC_Dip_Off>Favors owed and called in are switched off in the settings: no new debt is made or called in, and those open run out by their terms.</CC_Dip_Off>
+  <CC_Dip_OwedUs>Owed to the colony</CC_Dip_OwedUs>
+  <CC_Dip_OwedUs_None>Nobody owes the colony a debt of honor now. A good turn big enough in a people's memory leaves one: one of theirs freed or tended, refugees taken in, a lost child found, a town rebuilt.</CC_Dip_OwedUs_None>
+  <CC_Dip_OwedByUs>Owed by the colony</CC_Dip_OwedByUs>
+  <CC_Dip_OwedByUs_None>The colony owes nobody now. Help it takes from a people (their fighters, relief, medicine, lessons) leaves a debt they may call in when they are in need.</CC_Dip_OwedByUs_None>
+  <CC_Dip_Peoples>The peoples</CC_Dip_Peoples>
+  <CC_Dip_NoPeoples>No people has a town within the region map's reach, and none has a tie with the colony.</CC_Dip_NoPeoples>
+  <CC_Dip_NoTies>No ties with the colony yet.</CC_Dip_NoTies>
+  <CC_Dip_UnderWay>Under way</CC_Dip_UnderWay>
+  <CC_Dip_Head>Their head: {NAME}, who {REGARD}.</CC_Dip_Head>
+  <CC_Dip_TownHeader>Debts of honor</CC_Dip_TownHeader>
+  <CC_Dip_Someone>someone</CC_Dip_Someone>
+  <CC_Dip_TheColony>the colony</CC_Dip_TheColony>
+
+  <!-- A people's stance -->
+  <CC_Dip_Stance_Allied>allied with the colony</CC_Dip_Stance_Allied>
+  <CC_Dip_Stance_Friendly>friendly to the colony</CC_Dip_Stance_Friendly>
+  <CC_Dip_Stance_Peace>at peace with the colony</CC_Dip_Stance_Peace>
+  <CC_Dip_Stance_Cool>cool toward the colony</CC_Dip_Stance_Cool>
+  <CC_Dip_Stance_Hostile>at war with the colony</CC_Dip_Stance_Hostile>
+
+  <!-- The colony's means of calling on them, by its age -->
+  <CC_Dip_Means_Tribal>a runner</CC_Dip_Means_Tribal>
+  <CC_Dip_Means_Medieval>a rider</CC_Dip_Means_Medieval>
+  <CC_Dip_Means_Industrial>the radio</CC_Dip_Means_Industrial>
+  <CC_Dip_Means_Spacer>comms</CC_Dip_Means_Spacer>
+
+  <!-- A debt in a sentence (the page, the town panel, a letter's topic): the colony's word by its age, their rite by theirs -->
+  <CC_Dip_Debt_Theirs>{FROM} owe {TO} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Theirs>
+  <CC_Dip_Debt_Ours>Owed by {FROM} to {TO} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Ours>
+  <CC_Dip_Debt_Personal>{FROM} owes {TO} a favor in person for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Personal>
+  <CC_Dip_Since>Made {AGO}.</CC_Dip_Since>
+  <CC_Dip_State_Asked>Called in for {ASK}.</CC_Dip_State_Asked>
+  <CC_Dip_State_TheyAsked>Called in: they ask for {NEED}.</CC_Dip_State_TheyAsked>
+  <CC_Dip_State_Called>Called in.</CC_Dip_State_Called>
+
+  <!-- What a debt was for ({FAVOURWHY}): phrases that read in either side's mouth -->
+  <CC_Dip_For_Any>a good turn</CC_Dip_For_Any>
+  <CC_Dip_For_released>a prisoner freed</CC_Dip_For_released>
+  <CC_Dip_For_tended>wounded tended</CC_Dip_For_tended>
+  <CC_Dip_For_quest>a task seen through</CC_Dip_For_quest>
+  <CC_Dip_For_mission>a request seen through</CC_Dip_For_mission>
+  <CC_Dip_For_campHelped>a camp helped on its way</CC_Dip_For_campHelped>
+  <CC_Dip_For_hardship>a hard time eased</CC_Dip_For_hardship>
+  <CC_Dip_For_dignitary>a dignitary well hosted</CC_Dip_For_dignitary>
+  <CC_Dip_For_refugees>refugees taken in</CC_Dip_For_refugees>
+  <CC_Dip_For_sidedWith>a side taken in a quarrel</CC_Dip_For_sidedWith>
+  <CC_Dip_For_mediated>a quarrel mediated</CC_Dip_For_mediated>
+  <CC_Dip_For_madePeace>a peace made</CC_Dip_For_madePeace>
+  <CC_Dip_For_forgave>a wrong forgiven</CC_Dip_For_forgave>
+  <CC_Dip_For_escorted>a pilgrim escorted</CC_Dip_For_escorted>
+  <CC_Dip_For_carriedWord>word carried for them</CC_Dip_For_carriedWord>
+  <CC_Dip_For_foundChild>a lost child found</CC_Dip_For_foundChild>
+  <CC_Dip_For_harvestHelp>a harvest brought in</CC_Dip_For_harvestHelp>
+  <CC_Dip_For_rebuilt>a town rebuilt</CC_Dip_For_rebuilt>
+  <CC_Dip_For_sheltered>people sheltered from the weather</CC_Dip_For_sheltered>
+  <CC_Dip_For_campHealed>a camp's sick healed</CC_Dip_For_campHealed>
+  <CC_Dip_For_warned>a warning sent in time</CC_Dip_For_warned>
+  <CC_Dip_For_brokeCamp>a raiders' camp broken</CC_Dip_For_brokeCamp>
+  <CC_Dip_For_hamlet>a hamlet taken under protection</CC_Dip_For_hamlet>
+  <CC_Dip_For_hamletHelped>help in a hard season</CC_Dip_For_hamletHelped>
+  <CC_Dip_For_envoyHonored>an envoy well kept</CC_Dip_For_envoyHonored>
+  <CC_Dip_For_fostered>a ward fostered</CC_Dip_For_fostered>
+  <CC_Dip_For_hostageReturned>a hostage returned</CC_Dip_For_hostageReturned>
+  <CC_Dip_For_aid>fighters sent in a fight</CC_Dip_For_aid>
+  <CC_Dip_For_relief>relief sent</CC_Dip_For_relief>
+  <CC_Dip_For_taught>lessons given</CC_Dip_For_taught>
+  <CC_Dip_For_letterAid>help sent when asked by letter</CC_Dip_For_letterAid>
+  <CC_Dip_For_campStruck>a raiders' camp struck</CC_Dip_For_campStruck>
+  <CC_Dip_For_burnedCamp>a raiders' camp burned</CC_Dip_For_burnedCamp>
+  <CC_Dip_For_protected>protection given</CC_Dip_For_protected>
+
+  <!-- The line in the letter that tells of the good turn (or the evening's news) -->
+  <CC_Dip_Line_TheyOwe>For this, {PEOPLE} owe the colony a debt: {WORD} by its reckoning, {RITE} by theirs.</CC_Dip_Line_TheyOwe>
+  <CC_Dip_Line_TheyOwe_2>{PEOPLE} hold themselves in the colony's debt for it, {RITE} by their ways.</CC_Dip_Line_TheyOwe_2>
+  <CC_Dip_Line_TheyOwe_3>It leaves {PEOPLE} owing the colony, {WORD} as the colony would put it.</CC_Dip_Line_TheyOwe_3>
+  <CC_Dip_Line_TheyOwe_4>{PEOPLE} will not forget {WHY}: they owe the colony for it, {RITE} by their ways.</CC_Dip_Line_TheyOwe_4>
+  <CC_Dip_Line_WeOwe>The colony owes {PEOPLE} for it now: {WORD} by its reckoning, {RITE} by theirs. They may call it in when they are in need.</CC_Dip_Line_WeOwe>
+  <CC_Dip_Line_WeOwe_2>It leaves the colony in debt to {PEOPLE}, {RITE} by their ways, and they will remember it when they need help.</CC_Dip_Line_WeOwe_2>
+  <CC_Dip_Line_WeOwe_3>For {WHY}, the colony owes {PEOPLE}: {WORD}, as the colony would put it.</CC_Dip_Line_WeOwe_3>
+  <CC_Dip_Line_Personal>{NOTABLE} owes {PAWN} a favor in person for it.</CC_Dip_Line_Personal>
+  <CC_Dip_Line_Personal_2>{NAME} will remember who it was: {PAWN} is owed a favor in person.</CC_Dip_Line_Personal_2>
+  <CC_Dip_Line_Personal_3>{NOTABLE} counts it a debt of their own to {PAWN}.</CC_Dip_Line_Personal_3>
+  <CC_Dip_Line_TheyCall>In asking, {PEOPLE} call in the debt the colony owes them for {WHY}, {RITE} by their ways.</CC_Dip_Line_TheyCall>
+  <CC_Dip_Line_TheyCall_2>{PEOPLE} make it plain that this is the debt for {WHY} called in: {WORD} by the colony's reckoning.</CC_Dip_Line_TheyCall_2>
+
+  <!-- What the colony can ask, and why it can't now -->
+  <CC_Dip_Ask_Goods>a load of {GOODS}</CC_Dip_Ask_Goods>
+  <CC_Dip_Ask_Word>a word for the colony with {PEOPLE}</CC_Dip_Ask_Word>
+  <CC_Dip_Ask_Captive>{NAME} let go</CC_Dip_Ask_Captive>
+  <CC_Dip_Ask_Peace>their help toward peace with {PEOPLE}</CC_Dip_Ask_Peace>
+  <CC_Dip_Goods_food>food</CC_Dip_Goods_food>
+  <CC_Dip_Goods_medicine>medicine</CC_Dip_Goods_medicine>
+  <CC_Dip_Goods_wood>wood</CC_Dip_Goods_wood>
+  <CC_Dip_Goods_steel>steel</CC_Dip_Goods_steel>
+  <CC_Dip_Goods_silver>silver</CC_Dip_Goods_silver>
+  <CC_Dip_Opt_Goods>A load of goods: {GOODS}, brought by their porters</CC_Dip_Opt_Goods>
+  <CC_Dip_Opt_Word>A word for the colony with {PEOPLE}</CC_Dip_Opt_Word>
+  <CC_Dip_Opt_WordAny>A word for the colony with another people</CC_Dip_Opt_WordAny>
+  <CC_Dip_Opt_Captive>{PAWN} let go and sent home</CC_Dip_Opt_Captive>
+  <CC_Dip_Opt_CaptiveAny>One of the colony's people they hold, sent home</CC_Dip_Opt_CaptiveAny>
+  <CC_Dip_Opt_Peace>Their help toward peace with {PEOPLE}</CC_Dip_Opt_Peace>
+  <CC_Dip_Opt_PeaceAny>Their help toward peace with a people at war with the colony</CC_Dip_Opt_PeaceAny>
+  <CC_Dip_Dlg_NothingToAsk>Nothing they can do now</CC_Dip_Dlg_NothingToAsk>
+  <CC_Dip_Why_Nothing>nothing is owed here</CC_Dip_Why_Nothing>
+  <CC_Dip_Why_Off>favors owed are switched off in the settings</CC_Dip_Why_Off>
+  <CC_Dip_Why_Called>called in already, and waiting for their answer</CC_Dip_Why_Called>
+  <CC_Dip_Why_Gone>the one who owes it is gone</CC_Dip_Why_Gone>
+  <CC_Dip_Why_War>{PEOPLE} are at war with the colony</CC_Dip_Why_War>
+  <CC_Dip_Why_OwedGone>the one it is owed to is no longer with the colony</CC_Dip_Why_OwedGone>
+  <CC_Dip_Why_NoGoods>they have none of it to give</CC_Dip_Why_NoGoods>
+  <CC_Dip_Why_NoFriends>{PEOPLE} are on good terms with no other people at peace with the colony</CC_Dip_Why_NoFriends>
+  <CC_Dip_Why_FullGoodwill>{PEOPLE} could think no better of the colony than they do</CC_Dip_Why_FullGoodwill>
+  <CC_Dip_Why_NoCaptive>{PEOPLE} hold none of the colony's people</CC_Dip_Why_NoCaptive>
+  <CC_Dip_Why_NoHome>the colony has no home to walk to</CC_Dip_Why_NoHome>
+  <CC_Dip_Why_NoEnemy>no people at war with the colony still speaks with {PEOPLE}</CC_Dip_Why_NoEnemy>
+  <CC_Dip_Why_Promised>{PEOPLE} have promised that already</CC_Dip_Why_Promised>
+  <CC_Dip_Why_NoNotable>the colony knows nobody of {PEOPLE} by name to write to</CC_Dip_Why_NoNotable>
+  <CC_Dip_Why_NothingOwed>{PEOPLE} owe the colony nothing now</CC_Dip_Why_NothingOwed>
+  <CC_Dip_Why_ByMission>their own letter or quest about it is the answer</CC_Dip_Why_ByMission>
+  <CC_Dip_Why_LetterGone>their letter has gone from the letters, so it can't be answered here</CC_Dip_Why_LetterGone>
+
+  <!-- Their answer when the colony calls a debt in -->
+  <CC_Dip_Ans_Moot>By the time they heard it, nothing was owed any more.</CC_Dip_Ans_Moot>
+  <CC_Dip_Ans_Moot_2>They heard the colony out, but the debt it spoke of is no longer owed.</CC_Dip_Ans_Moot_2>
+  <CC_Dip_Ans_Honoured>The debt is honored: {PEOPLE} grant {ASK}.</CC_Dip_Ans_Honoured>
+  <CC_Dip_Ans_Honoured_2>{PEOPLE} pay what they owe, and grant {ASK}.</CC_Dip_Ans_Honoured_2>
+  <CC_Dip_Ans_Honoured_3>They owed it, and they keep their word: {ASK}, as the colony asked.</CC_Dip_Ans_Honoured_3>
+  <CC_Dip_Ans_Refused>{PEOPLE} refuse {ASK}, debt or no debt, and the colony will remember that.</CC_Dip_Ans_Refused>
+  <CC_Dip_Ans_Refused_2>The answer is no: {PEOPLE} will not grant {ASK}, whatever they owe.</CC_Dip_Ans_Refused_2>
+  <CC_Dip_Ans_Refused_3>{PEOPLE} turn the colony away. Whatever they once owed, they will not pay it with {ASK}.</CC_Dip_Ans_Refused_3>
+  <CC_Dip_Ans_NotNow>{PEOPLE} would grant {ASK}, but there is no way to do it now, and the debt still stands.</CC_Dip_Ans_NotNow>
+  <CC_Dip_Ans_Side>{NAME} thanks the colony for its word on the side of {PEOPLE}. The debt between them is paid.</CC_Dip_Ans_Side>
+  <CC_Dip_Ans_Side_2>{NAME} writes that the colony's word has been heard, and that {PEOPLE} count the old debt paid.</CC_Dip_Ans_Side_2>
+  <CC_Dip_Done_GoodsLetter>{GOODS} come with this answer.</CC_Dip_Done_GoodsLetter>
+  <CC_Dip_Done_Goods>Porters of {PEOPLE} will bring {GOODS} to the colony's gate.</CC_Dip_Done_Goods>
+  <CC_Dip_Done_Word>Word has gone to {PEOPLE} already.</CC_Dip_Done_Word>
+  <CC_Dip_Done_Captive>{PAWN} has been set down at the edge of the colony's land and is walking home.</CC_Dip_Done_Captive>
+  <CC_Dip_Done_Peace>They have promised to speak for the colony to {PEOPLE}, should it seek terms with them.</CC_Dip_Done_Peace>
+
+  <!-- A word put in with a third people: that people's own letter -->
+  <CC_Dip_WordLetter_Label>A good word from {PEOPLE}</CC_Dip_WordLetter_Label>
+  <CC_Dip_WordLetter>{PEOPLE} have heard {FRIEND} speak well of the colony, and they think the better of it for that.</CC_Dip_WordLetter>
+  <CC_Dip_WordLetter_2>Word comes from {PEOPLE}: {FRIEND} vouched for the colony with them, and it has done the colony some good there.</CC_Dip_WordLetter_2>
+  <CC_Dip_WordLetter_3>{PEOPLE} write that {FRIEND} told them what the colony is like, and that they were glad to hear it.</CC_Dip_WordLetter_3>
+
+  <!-- Their call on a debt the colony owes them -->
+  <CC_Dip_AskLabel>{PEOPLE} call in a debt</CC_Dip_AskLabel>
+  <CC_Dip_AskLabel_2>A debt called in</CC_Dip_AskLabel_2>
+  <CC_Dip_AskIntro>A letter has come from {WHO} for {PEOPLE}. They call in the debt the colony owes them for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_AskIntro>
+  <CC_Dip_AskIntro_2>{WHO} writes for {PEOPLE}, and the letter is short: they helped the colony once, with {WHY}, and now they ask the colony to help them. To them it is {RITE}.</CC_Dip_AskIntro_2>
+  <CC_Dip_AskIntro_3>{PEOPLE} remember {WHY}. In a letter from {WHO} they call in what the colony owes them for it, {WORD} as the colony would put it.</CC_Dip_AskIntro_3>
+  <CC_Dip_AskIntro_Call>{WHO} called the colony's comms console for {PEOPLE}. They call in the debt the colony owes them for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_AskIntro_Call>
+  <CC_Dip_AskIntro_Call_2>The comms console rang with {WHO} on the line for {PEOPLE}: they are calling in what the colony owes them for {WHY}.</CC_Dip_AskIntro_Call_2>
+  <CC_Dip_AskNeed_Medicine>A sickness is going through {TOWN}, and they ask for {GOODS}, carried out to their messenger at the colony's gate.</CC_Dip_AskNeed_Medicine>
+  <CC_Dip_AskNeed_Medicine_2>They have sick in every other house at {TOWN}, and their healers are out of what they need. They ask for {GOODS}, carried out to their messenger at the gate.</CC_Dip_AskNeed_Medicine_2>
+  <CC_Dip_AskNeed_Food>{TOWN} is short of food this season, and they ask for {GOODS}, carried out to their messenger at the colony's gate.</CC_Dip_AskNeed_Food>
+  <CC_Dip_AskNeed_Food_2>The stores at {TOWN} won't last the season. They ask for {GOODS}, carried out to their messenger at the gate.</CC_Dip_AskNeed_Food_2>
+  <CC_Dip_AskNeed_Feud>{PEOPLE} are in a blood feud with {OTHER}, and ask the colony to speak on their side.</CC_Dip_AskNeed_Feud>
+  <CC_Dip_AskNeed_Seat>The seat at {TOWN} is contested, and {PEOPLE} ask the colony to speak for the claimant they stand behind.</CC_Dip_AskNeed_Seat>
+  <CC_Dip_AskAnswer_Goods>Sent, one of the colony carries it out to the gate, where their messenger will come for it. Refused, or left unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Goods>
+  <CC_Dip_AskAnswer_Word>Given, the colony's speaker writes the colony's word to them, and their messenger carries it home. Refused, or left unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Word>
+  <CC_Dip_AskOpt_Send>Send the {NEED}</CC_Dip_AskOpt_Send>
+  <CC_Dip_AskOpt_Word>Speak on the side of {PEOPLE}</CC_Dip_AskOpt_Word>
+  <CC_Dip_AskOpt_Refuse>Refuse</CC_Dip_AskOpt_Refuse>
+  <CC_Dip_CarryLabel>What {PEOPLE} asked for</CC_Dip_CarryLabel>
+  <CC_Dip_Need_Medicine>medicine</CC_Dip_Need_Medicine>
+  <CC_Dip_Need_Food>food</CC_Dip_Need_Food>
+  <CC_Dip_Need_Harvest>hands at their harvest</CC_Dip_Need_Harvest>
+  <CC_Dip_Need_Refugees>a roof for their homeless</CC_Dip_Need_Refugees>
+  <CC_Dip_Need_Dispute>the colony's word on their side</CC_Dip_Need_Dispute>
+  <CC_Dip_Topic_Side>The colony's word on the side of {PEOPLE}, as they asked</CC_Dip_Topic_Side>
+  <CC_Dip_Msg_Refused>The colony refused {PEOPLE} what they asked of it. The debt is broken, and they will remember it.</CC_Dip_Msg_Refused>
+  <CC_Dip_Msg_Refused_2>{PEOPLE} called in {WORD} and the colony said no. They will remember it.</CC_Dip_Msg_Refused_2>
+  <CC_Dip_Msg_Unanswered>{PEOPLE} called in what the colony owed them and heard nothing back. The debt is broken, and they will remember it.</CC_Dip_Msg_Unanswered>
+  <CC_Dip_Msg_Unanswered_2>No answer went back to {PEOPLE} when they called in {WORD}, and they take that as a refusal.</CC_Dip_Msg_Unanswered_2>
+  <CC_Dip_Msg_SideNow>The colony's word on the side of {PEOPLE} has been given, and the debt it owed them is paid.</CC_Dip_Msg_SideNow>
+  <CC_Dip_Msg_Freed>{PEOPLE} have let {PAWN} go. {PAWN} has been set down at the edge of the colony's land and is walking home.</CC_Dip_Msg_Freed>
+
+  <!-- The history's lines (dip:) -->
+  <CC_Dip_Hist_Word>{FRIEND} put in a word for the colony with {PEOPLE}.</CC_Dip_Hist_Word>
+  <CC_Dip_Hist_Peace>{FRIEND} promised to speak for the colony to {PEOPLE}.</CC_Dip_Hist_Peace>
+  <CC_Dip_Hist_Freed>{PEOPLE} let {PAWN} go home, a debt of honor called in.</CC_Dip_Hist_Freed>
+  <CC_Dip_Hist_Side>The colony spoke on the side of {PEOPLE} in their quarrel.</CC_Dip_Hist_Side>
+
+  <!-- The acts on the page and the town panel -->
+  <CC_Dip_Act_Call>Call it in</CC_Dip_Act_Call>
+  <CC_Dip_Act_Call_Tip>Write to them, or call them where both sides have the means, to call the debt in. Whoever answers for it hears what is asked and gives their answer by letter.</CC_Dip_Act_Call_Tip>
+  <CC_Dip_Act_Answer>Answer their call</CC_Dip_Act_Answer>
+  <CC_Dip_Act_Answer_Tip>Opens their letter, to answer it.</CC_Dip_Act_Answer_Tip>
+  <CC_Dip_Act_Write>Write to them</CC_Dip_Act_Write>
+  <CC_Dip_Act_Write_Tip>A letter or a call to their head, for anything a letter can be about.</CC_Dip_Act_Write_Tip>
+
+  <!-- Face to face (right-click "Talk with...") -->
+  <CC_Dip_Menu_Title>What to ask of {OTHER}</CC_Dip_Menu_Title>
+  <CC_Dip_Menu_People>What {PEOPLE} owe</CC_Dip_Menu_People>
+  <CC_Dip_Menu_Personal>What {OTHER} owes you</CC_Dip_Menu_Personal>
+  <CC_Dip_Note_Yes>honored</CC_Dip_Note_Yes>
+  <CC_Dip_Note_No>refused</CC_Dip_Note_No>
+
+  <!-- Letters and calls: the new purpose -->
+  <CC_Letter_Purpose_Favour>obligation</CC_Letter_Purpose_Favour>
+  <CC_Letter_PurposeCap_Favour>A debt of honor</CC_Letter_PurposeCap_Favour>
+
+  <!-- The other ties the ledger keeps with a people, on its card -->
+  <CC_Dip_Tie_Peace>{FROM} have promised to speak for the colony to {ABOUT}, should it seek terms with them.</CC_Dip_Tie_Peace>
+  <CC_Dip_Tie_Promise>{FROM} promised {TO} a good word at home.</CC_Dip_Tie_Promise>
+  <CC_Dip_Tie_Favour>{FROM} owe {TO} something to bring on their next visit.</CC_Dip_Tie_Favour>
+  <CC_Dip_Tie_Claim>{FROM} have a claim on {ABOUT}, who joined the colony.</CC_Dip_Tie_Claim>
+  <CC_Dip_Tie_Debt>Silver owed by {FROM} to {TO}.</CC_Dip_Tie_Debt>
+  <CC_Dip_Tie_Fealty>Fealty owed by {FROM} to {TO}.</CC_Dip_Tie_Fealty>
+  <CC_Dip_Tie_Grudge>A grudge held by {FROM} against {TO}.</CC_Dip_Tie_Grudge>
+
+  <!-- The Household page -->
+  <CC_Dip_HouseHeader>Household</CC_Dip_HouseHeader>
+  <CC_Dip_HouseSub>Who is here from outside, who of the colony's people is away, and the colony's families known by name.</CC_Dip_HouseSub>
+  <CC_Dip_Here_Title>Here from outside</CC_Dip_Here_Title>
+  <CC_Dip_Here_None>Nobody from outside is at the colony now.</CC_Dip_Here_None>
+  <CC_Dip_Here>{PAWN} of {PEOPLE}, {WHY}</CC_Dip_Here>
+  <CC_Dip_HereAlone>{PAWN}, {WHY}</CC_Dip_HereAlone>
+  <CC_Dip_HereAs_Lodger>staying with the colony for a while</CC_Dip_HereAs_Lodger>
+  <CC_Dip_HereAs_Trading>here to trade</CC_Dip_HereAs_Trading>
+  <CC_Dip_HereAs_Visiting>visiting</CC_Dip_HereAs_Visiting>
+  <CC_Dip_HereAs_Here>at the colony</CC_Dip_HereAs_Here>
+  <CC_Dip_Away_Title>The colony's people away</CC_Dip_Away_Title>
+  <CC_Dip_Away_None>All of the colony's people are at home.</CC_Dip_Away_None>
+  <CC_Dip_Away_Caravan>{PAWN}, with {CARAVAN}</CC_Dip_Away_Caravan>
+  <CC_Dip_Away_Map>{PAWN}, at {PLACE}</CC_Dip_Away_Map>
+  <CC_Dip_Away_Held>{PAWN}, held by {PEOPLE}</CC_Dip_Away_Held>
+  <CC_Dip_Houses_Title>The colony's houses</CC_Dip_Houses_Title>
+  <CC_Dip_Houses_None>No family of the colony is known by name yet: two or more of its people who are family and share a last name.</CC_Dip_Houses_None>
+  <CC_Dip_House>The {HOUSE}: {MEMBERS}</CC_Dip_House>
+
+  <!-- This week -->
+  <CC_Dip_Week>{PEOPLE} call in a debt: {NEED}</CC_Dip_Week>
+  <CC_Dip_WeekNote>waiting for an answer</CC_Dip_WeekNote>
+  <CC_Dip_WeekNote_Mission>asked in their letter</CC_Dip_WeekNote_Mission>
+
+  <!-- Settings -->
+  <CC_SetSec_Diplomacy>Diplomacy</CC_SetSec_Diplomacy>
+  <CC_Settings_DiplomacyFavours>Favors owed and called in</CC_Settings_DiplomacyFavours>
+  <CC_SetNote_DiplomacyFavours>Debts of honor either way: the colony calls in what it is owed, and the peoples what it owes them.</CC_SetNote_DiplomacyFavours>
+  <CC_Settings_DiplomacyFavours_Tip>A good turn of size 10 or more in a people's memory leaves a debt of honor: they owe the colony for one of theirs freed or tended, refugees taken in, a lost child found, a town rebuilt; the colony owes them for their fighters, relief, medicine or lessons. One each way per people and colony, renewed by a new good turn, let go two years after if nobody asks; a notable helped in person owes the colonist who did it (twelve such at most). The colony calls one in by letter, by call, from the Diplomacy page or face to face: a load of goods (about 400 silver's worth by their town's fortune), a word with a third people (10 goodwill), a colonist of the colony they hold, or their help toward peace with a people at war with the colony. They honor it while their head thinks well of the colony (regard 20 or more), seven times in ten below that, four in ten below 0; a refusal is remembered. They call in what the colony owes them about once in 90 days, only with a need the world shows (medicine in a sickness, food in a famine, hands at harvest, their homeless taken in, the colony's word in a feud), at most once a season; refused or left unanswered, the debt breaks and they lose 5 goodwill toward the colony. Off: no debt is made or called in, and those open run out by their terms.</CC_Settings_DiplomacyFavours_Tip>
+
+  <!-- What the peoples remember of diplomacy (World/FactionMemory.cs): the colony's deeds, its wrongs, and theirs -->
+  <CC_Memory_Deed_swore>swore an oath to them</CC_Memory_Deed_swore>
+  <CC_Memory_Deed_keptWord>repaid a debt of honor when they called it in</CC_Memory_Deed_keptWord>
+  <CC_Memory_Deed_keptWord_Name>repaid the debt for {NAME} when they called it in</CC_Memory_Deed_keptWord_Name>
+  <CC_Memory_Deed_ransomed>ransomed one of theirs back to them</CC_Memory_Deed_ransomed>
+  <CC_Memory_Deed_envoyHonored>kept their envoy well</CC_Memory_Deed_envoyHonored>
+  <CC_Memory_Deed_fostered>fostered a child of theirs</CC_Memory_Deed_fostered>
+  <CC_Memory_Deed_married>married into their people</CC_Memory_Deed_married>
+  <CC_Memory_Deed_hostageReturned>returned a hostage of theirs unharmed</CC_Memory_Deed_hostageReturned>
+  <CC_Memory_Deed_levies>sent fighters when they called for them</CC_Memory_Deed_levies>
+  <CC_Memory_Deed_levies_Many>sent fighters when they called for them, {COUNT} times</CC_Memory_Deed_levies_Many>
+  <CC_Memory_Deed_tribute>paid them tribute</CC_Memory_Deed_tribute>
+  <CC_Memory_Deed_tribute_Many>paid them tribute, {COUNT} times</CC_Memory_Deed_tribute_Many>
+  <CC_Memory_Deed_brokeTruce>broke a truce with them</CC_Memory_Deed_brokeTruce>
+  <CC_Memory_Deed_brokePact>broke a pact with them</CC_Memory_Deed_brokePact>
+  <CC_Memory_Deed_wordBroken>broke its word to another people</CC_Memory_Deed_wordBroken>
+  <CC_Memory_Deed_spouseWronged>wronged a spouse from among them</CC_Memory_Deed_spouseWronged>
+  <CC_Memory_Deed_schemed>schemed against them</CC_Memory_Deed_schemed>
+  <CC_Memory_Deed_renounced>renounced its fealty to them</CC_Memory_Deed_renounced>
+  <CC_Memory_Deed_tributeShort>fell short with their tribute</CC_Memory_Deed_tributeShort>
+  <CC_Memory_Deed_brokeWord>refused a debt of honor the colony called in</CC_Memory_Deed_brokeWord>
+  <CC_Memory_Deed_brokeWord_Name>refused the colony {NAME}, though they owed it</CC_Memory_Deed_brokeWord_Name>
+  <CC_Memory_Deed_truceBroken>broke a truce with the colony</CC_Memory_Deed_truceBroken>
+  <CC_Memory_Deed_schemedUs>schemed against the colony</CC_Memory_Deed_schemedUs>
+  <CC_Memory_Deed_protected>came to the colony's protection</CC_Memory_Deed_protected>
+
+</LanguageData>
