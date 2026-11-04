@@ -165,6 +165,91 @@ when a mod is active, only what the colony has unlocked, never harder without a 
   should be possible." Propose the list per system first, as with new features.
 - An audit of existing content against these rules (unlocked-only, mod removal, era fit) comes first.
 
+## The world and its people (plan, November 2026)
+The player liked every world idea (new towns, trading posts, envoys, settlers, many colonies on one world) and every
+diplomacy idea in the Crusader Kings vein (favours owed, pacts and truces, feasts and tournaments, marriages, wards
+and hostages, ransom, fealty and vassals, house renown, council tasks, stress against one's nature), and asked for a
+strategy that builds a strong foundation, because Rimfolk is a long-term project.
+
+**Where Rimfolk stands (4 November 2026).** About 215,000 lines of code (not counting comments), 796 def files,
+173 Harmony patches, some 220 settings, 19,000 lines of tests. Already guarding it: every periodic pass on a tick
+of its own (`Lean/Sched.cs`, LeanTests), a five-year save model with a bound on every saved list
+(`Tools/save_estimate.py`), the static hot-spot audit, the 1.7 API diff, the self-check, the def validator, and a
+switch for nearly every feature. The player sees no slowdown on a modest computer.
+
+**What could go wrong as it grows, and the guard for each.**
+- Features that each keep their own copy of the world (their own list of towns, people, debts, timers) drift apart
+  and contradict each other. Guard: one world ledger (below) that every feature reads and writes.
+- Moods and opinions stacking from many systems at once. Guard: the good-life shares already scale Rimfolk's good
+  moods; a check per release that sums what all systems can add at most for one event, in the tests.
+- Too many messages and letters. Guard: one voice to the player (below); every system asks it to tell.
+- Saves that grow without end. Guard: the save model, plus a rule that histories fold old small events into summaries.
+- Work that grows with the world (294 settlements, thousands of world pawns). Guard: towns within the region map's
+  reach are kept in detail, the rest coarse and seasonal; nothing per tick at world level; work spread over the day.
+- Conflicts with other mods. Guard: soft integrations only, read by name; each mod behind an adapter of its own.
+
+**Our own layer, other mods' mechanics (the player asked which is better).** Rimfolk owns the people and their stories:
+who lives in a town, its houses and families, what they remember, what they owe and promised, what they say and
+write. The map mechanics other mods already do well stay theirs, and Rimfolk gives them faces, causes and
+consequences. Faction Territories and Vassalage (jaeger972.factionterritories) has territories, settlements built at
+the edge of a territory (each people about every 30 days, ten days to build, attackable meanwhile), vassals made of
+defeated settlements, vassal outposts, invasions and encounters in territory. [SR] Factional War has battles between
+two peoples on the colony's map (assaults, shelling, camps, contested sites). Building our own copy of either would
+double the conflicts and the upkeep. Without them, Rimfolk's world still works, only without new towns on the map.
+
+### Stage 0: the foundation (first, little to see)
+1. The world ledger: one saved store for the people outside the colony (the notables grow into it), their houses and
+   families, each town's state (prosperity, its mood toward the colony, its needs, its head, its recent events), each
+   people's stance, and one kind of record for every tie between two parties: a favour owed, a pact, a truce, a
+   marriage, a ward, a hostage, fealty, a grudge, each with its terms, since when and until when. The diplomacy
+   features in stage 2 are then mostly rules and text on records that already exist.
+2. One history: the chronicle grown into the world's history, each event with who, where and when, read by
+   conversations, letters, news and the Almanac; old small events fold into summaries.
+3. One vocabulary of facts: the conditions and placeholders of the outsider talks (about 200 and 70) become a shared
+   service for letters, petitions, dilemmas and news, so a line is written once and reacts to the same world.
+4. One voice to the player: every system tells through the colony news (which already merges and holds small news
+   for the evening), with a cap per day by kind; other mods' world noise goes the same way (Faction Territories'
+   distant settlements, 0.64.4).
+5. Budgets in sight: a dev window with the time each pass takes, and now and then a Dubs Performance Analyzer capture
+   from the player's own save.
+6. Many homes: every system checked for more than one colony (one council each or one shared), before stage 3.
+7. Adapters for Faction Territories and Vassalage (who owns a tile, settlements being built, vassals), Factional War
+   (battles on our map), Vanilla Outposts, the Empire, Diplomatic Marriage+.
+8. The coupling rule in DESIGN.md: systems talk through the ledger, the history and the facts, never through each
+   other's insides; each new system lists its ticks, saved data, messages and moods in DESIGN.md's tables.
+9. The harm review (queued since 3 November) runs alongside: each existing system is visited once for the ledger and
+   the voice anyway, and its negative side is proposed per system then.
+
+### Stage 1: the region comes alive
+- New settlements from Faction Territories given life: who led the settlers, the new town's notables and houses,
+  news and Heard lately, talk and letters about them.
+- Towns rise and fall: Rimfolk's world events move each town's prosperity; famine, plague and war leave marks; some
+  towns are abandoned and their ruins resettled.
+- Who comes near depends on the colony: friends open a trading post a few days away; a rich colony on bad terms may
+  find a raiders' camp set up near it (raids from it until it is dealt with, by the harm rule).
+- Travellers who seek out the remote (pilgrims, scholars, nomads, prospectors) in place of the town visitors who
+  rarely make the trip; settlers who ask to found a hamlet under the colony's protection (with Faction Territories, a
+  vassal in time).
+
+### Stage 2: diplomacy (the Crusader Kings ideas)
+Favours owed and called in, pacts and truces (with terms that can be broken, and what breaking costs), an envoy who
+lives at the colony for a season, feasts, hunts and tournaments with guests, marriage alliances (with Diplomatic
+Marriage+), wards and hostages, ransom, fealty and vassals (with Faction Territories' vassals), council tasks made
+concrete as letters, visits and caravans, the renown of the colony's houses, and stress when someone acts against
+their nature. Each with its bad side under the harm rule: a broken truce, a hostage harmed, a feud carried down.
+
+### Stage 3: many colonies, one world
+More than one colony supported in every system; handing a colony over to those who stay (it becomes a town of a new
+people, with the former colonists as its notables and the council's speaker as its head, keeping its history,
+writing, trading, asking for help, open to be taken back); and a fresh start inside the same save (a new place, a
+group from the old colony or newcomers, the old colony handed over, kept or abandoned).
+
+### Alongside every stage
+- A content pass after each stage (conversations, letters, news, journals), to the line rules and with lint tests.
+- Smaller things already offered: Alpha Skills P1, P2 and P12; journeys (travel moods, Dubs Bad Hygiene water,
+  several journeys at once, road clothes back); a short guide.
+- Bug reports first, as always.
+
 ## The longer road (plan, October 2026)
 Rimfolk is now large (about 63,000 lines of code, 3,000 defs, more than a hundred settings) and the game has moved
 to 1.7. The next stretch is less about adding systems and more about making what's there run lean, read well and

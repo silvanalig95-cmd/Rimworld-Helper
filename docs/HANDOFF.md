@@ -15,6 +15,17 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- The plan from here (player-approved ideas, 4 November 2026): ROADMAP.md, "The world and its people": stage 0 the
+  foundation (world ledger, one history, shared facts, one voice, budgets, many homes, adapters, coupling rule; the
+  harm review alongside), stage 1 the region comes alive, stage 2 the Crusader Kings diplomacy, stage 3 many colonies
+  on one world. Rimfolk owns people and stories; Faction Territories and Vassalage (territories, settlement building,
+  vassals, invasions) and [SR] Factional War (battles between peoples on our map) keep their mechanics. Their files:
+  Factional War ships its source; Faction Territories was read decompiled (`FactionTerritories.Expansion.Utility`
+  `TryCreateForFaction`/`TryComplete`, settings `enableSettlementConstruction`, `factionExpansionIntervalTicks`
+  1,800,000 per people).
+- 0.64.4, the player's request (Faction Territories' settlement messages too many): `Integrations/TerritoryNews.cs`
+  counts the depth inside the two methods and sends their `Messages.Message` beyond `regionMapRadius` of a home to
+  `News.Post` (World, Flavor); setting `territoryNewsQuiet`.
 - 0.64.3, the player's request (harvest before a frost by default): setting `frostHarvestAuto` (on), `FieldWeather.Tell`
   applies an offered frost step through `SuggestTracker.Apply(s, quiet: true)` unless `UndoneLast` (the player undid it).
 - 0.64.2, the player's report (the guest tab still off screen, with RimHUD's taller inspect pane):

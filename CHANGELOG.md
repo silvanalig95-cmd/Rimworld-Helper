@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Quiet news of distant towns
+
+*4 November 2026, version 0.64.4*
+
+- With Faction Territories and Vassalage, each people builds new settlements at the edge of its territory and the mod told every start and every completion as a message, a message or two a day in a world of many peoples.
+- Now only those within the region map's reach of your homes come as a message; the rest go to the colony news, in the evening letter, as world news. Its settlement building can be switched on again without the noise.
+
 ## Harvest before the frost, by itself
 
 *4 November 2026, version 0.64.3*

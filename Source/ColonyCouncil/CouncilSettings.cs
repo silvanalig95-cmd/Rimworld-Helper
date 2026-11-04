@@ -297,6 +297,8 @@ namespace ColonyCouncil
         public bool magicGolemRepair = true;
         /// <summary>With RimWorld of Magic: the mod's own rules about needs hold (nobody has its unfinished travel need; the undead have no mana or stamina), even when another mod answers the needs check first (Integrations/MagicNeeds.cs).</summary>
         public bool magicNeedRules = true;
+        /// <summary>With Faction Territories and Vassalage: its messages about new settlements far away go to the colony news; nearby ones stay messages (Integrations/TerritoryNews.cs).</summary>
+        public bool territoryNewsQuiet = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/DrinkBeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
@@ -585,6 +587,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref coveredLooks, "coveredLooks", true);
             Scribe_Values.Look(ref magicGolemRepair, "magicGolemRepair", true);
             Scribe_Values.Look(ref magicNeedRules, "magicNeedRules", true);
+            Scribe_Values.Look(ref territoryNewsQuiet, "territoryNewsQuiet", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref marketCampersBuy, "marketCampersBuy", true);

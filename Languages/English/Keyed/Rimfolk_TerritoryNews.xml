@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Faction Territories and Vassalage's new settlements, far away, in the colony news (Source/ColonyCouncil/Integrations/TerritoryNews.cs). -->
+  <CC_Settings_TerritoryNewsQuiet>Distant new settlements in the colony news (Faction Territories and Vassalage)</CC_Settings_TerritoryNewsQuiet>
+  <CC_Settings_TerritoryNewsQuiet_Tip>With Faction Territories and Vassalage: each people founds new settlements at the edge of its territory, and the mod tells each start and each completion as a message, a message or two a day in a world of many peoples. With this on, only those within the region map's reach of your homes stay messages; those further away go to the colony news (the evening letter, by the Colony news setting) as world news. Needs the deeper game hooks.</CC_Settings_TerritoryNewsQuiet_Tip>
+  <CC_SetNote_TerritoryNewsQuiet>With Faction Territories and Vassalage, new settlements far away go to the evening news instead of a message each.</CC_SetNote_TerritoryNewsQuiet>
+
+</LanguageData>
