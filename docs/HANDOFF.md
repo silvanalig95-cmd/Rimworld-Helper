@@ -19,6 +19,10 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.79.1, the player's report (Toni got "building work by my bed" while working across the base): the nuisance
+  `BuildingWork` (`Strangers/Nuisances.cs`) fired for any frame of ours within 6 cells of the bed, through walls, worked
+  on or not, wherever the colonist was. Now: they are in their bed's proper room, and the frame stands in that room or
+  against it (`InOrBy`) with someone of ours on `FinishFrame` at it now (`BeingBuilt`).
 - 0.79.0, text pass: the region's voices (the words around stage 1's features, every age). Talk: 132 new pieces in six new
   files, each on facts the providers set: `Rimfolk_OutsiderTalks_PostsMore.xml` 34 (posts 14 -> 48: the post's people by
   age, season and tone, the keeper as `role:head`, the warning, their people's and others' posts, `deed:postRazed`,

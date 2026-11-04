@@ -406,15 +406,43 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Building work of ours (a frame being put up) a few steps from their bed.</summary>
+        /// <summary>
+        /// Building work of ours going on in their bedroom or on its walls while they're in it: a frame a few steps from
+        /// their bed, inside the room or touching it, that someone is working on right now. A frame left standing, or work
+        /// in another room or on the far side of the base, is no noise by their bed.
+        /// </summary>
         private static string BuildingWork(Pawn p, Map map)
         {
             var bed = Bed(p, map);
             if (bed == null) return null;
+            var room = bed.GetRoom();
+            if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors || p.GetRoom() != room) return null;
             foreach (var t in GenRadial.RadialDistinctThingsAround(bed.Position, map, 6f, true))
-                if (t is Frame frame && frame.Faction == Faction.OfPlayer && frame.def.entityDefToBuild != null)
+                if (t is Frame frame && frame.Faction == Faction.OfPlayer && frame.def.entityDefToBuild != null
+                    && InOrBy(frame, room, map) && BeingBuilt(frame, map))
                     return frame.def.entityDefToBuild.label;
             return null;
+        }
+
+        /// <summary>The thing stands in the room or right against it (a wall or door of the room itself being put up).</summary>
+        private static bool InOrBy(Thing t, Room room, Map map)
+        {
+            foreach (var c in t.OccupiedRect().ExpandedBy(1))
+                if (c.InBounds(map) && c.GetRoom(map) == room)
+                    return true;
+            return false;
+        }
+
+        /// <summary>Someone of ours is working on the frame right now.</summary>
+        private static bool BeingBuilt(Frame frame, Map map)
+        {
+            var pawns = map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer);
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                var job = pawns[i].CurJob;
+                if (job != null && job.def == JobDefOf.FinishFrame && job.targetA.Thing == frame) return true;
+            }
+            return false;
         }
 
         /// <summary>A small wild animal (a rat, a squirrel) in the closed room they're in.</summary>

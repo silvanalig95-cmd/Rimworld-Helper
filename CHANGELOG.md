@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Quiet by the bed
+
+*4 November 2026, version 0.79.1*
+
+- Fixed: "building work by my bed" no longer comes to colonists far from their beds, or for an unfinished building behind a wall that nobody is working on.
+- It now comes only to someone in their own bedroom while a colonist is building in that room or on its walls, as its words say.
+
 ## The region's voices
 
 *4 November 2026, version 0.79.0*
