@@ -15,15 +15,18 @@ namespace ColonyCouncil
         /// <summary>One of the player's homes: its settlement's id (Homes.KeyOf; negative only for a home with no settlement).</summary>
         Colony,
         /// <summary>A family line, ours or theirs: a ledger number (1 or more).</summary>
-        House
+        House,
+        /// <summary>A place on the planet with no town or colony on it: its tile id, and its layer's (surface 0) times <see cref="Ref.TileLayerSpan"/>.</summary>
+        Tile
     }
 
     /// <summary>
     /// One way to name anything out in the world: a kind and a number. A person with a pawn is their thingIDNumber; a
     /// person with no pawn is a ledger number, stored as its negative (so the two can never meet); a town is its
-    /// settlement's id, a people its faction's loadID, a colony its home's settlement id, a house a ledger number. Plain
-    /// values, equal when kind and number are, with a short text form ("p123", "p-4", "t55", "f3", "c12", "h2", and "-"
-    /// for none) for saving, for history keys and for the tests. Pure (no game types): Tools/Tests checks it.
+    /// settlement's id, a people its faction's loadID, a colony its home's settlement id, a house a ledger number, a tile
+    /// its tile id (on a layer other than the surface, the layer's id times <see cref="TileLayerSpan"/> added). Plain
+    /// values, equal when kind and number are, with a short text form ("p123", "p-4", "t55", "f3", "c12", "h2", "w801",
+    /// and "-" for none) for saving, for history keys and for the tests. Pure (no game types): Tools/Tests checks it.
     /// </summary>
     public readonly struct Ref : IEquatable<Ref>, IComparable<Ref>
     {
@@ -56,6 +59,19 @@ namespace ColonyCouncil
 
         public static Ref House(int number) => number <= 0 ? None : new Ref(RefKind.House, number);
 
+        /// <summary>Tile ids of one layer stay below this; a tile on another layer adds its layer's id times it.</summary>
+        public const int TileLayerSpan = 10000000;
+
+        /// <summary>A tile of the planet by its id and its layer's (0, the surface, unless the game has others).</summary>
+        public static Ref Tile(int tileId, int layer = 0) =>
+            tileId < 0 || tileId >= TileLayerSpan || layer < 0 || layer > int.MaxValue / TileLayerSpan - 1 ? None : new Ref(RefKind.Tile, layer * TileLayerSpan + tileId);
+
+        /// <summary>A tile's id on its layer, or -1 for anything else.</summary>
+        public int TileId => kind == RefKind.Tile ? id % TileLayerSpan : -1;
+
+        /// <summary>A tile's layer id, or -1 for anything else.</summary>
+        public int TileLayer => kind == RefKind.Tile ? id / TileLayerSpan : -1;
+
         /// <summary>A person who has a pawn (the id is its thingIDNumber).</summary>
         public bool HasPawn => kind == RefKind.Person && id >= 0;
 
@@ -71,6 +87,7 @@ namespace ColonyCouncil
                 case RefKind.People: return 'f';
                 case RefKind.Colony: return 'c';
                 case RefKind.House: return 'h';
+                case RefKind.Tile: return 'w';
                 default: return '-';
             }
         }
@@ -84,11 +101,12 @@ namespace ColonyCouncil
                 case 'f': return RefKind.People;
                 case 'c': return RefKind.Colony;
                 case 'h': return RefKind.House;
+                case 'w': return RefKind.Tile;
                 default: return RefKind.None;
             }
         }
 
-        /// <summary>"p123" (a pawn), "p-4" (a person with no pawn), "t55", "f3", "c12", "h2"; "-" for none.</summary>
+        /// <summary>"p123" (a pawn), "p-4" (a person with no pawn), "t55", "f3", "c12", "h2", "w801"; "-" for none.</summary>
         public override string ToString() => IsNone ? "-" : Letter(kind) + id.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         /// <summary>Reads the text form back. Anything else (empty, an unknown letter, a number that kind can't have) is false and none.</summary>
@@ -111,6 +129,7 @@ namespace ColonyCouncil
                 case RefKind.People: r = People(n); break;
                 case RefKind.Colony: r = Colony(n); break;
                 case RefKind.House: r = House(n); break;
+                case RefKind.Tile: r = n < 0 ? None : Tile(n % TileLayerSpan, n / TileLayerSpan); break;
             }
             return !r.IsNone;
         }

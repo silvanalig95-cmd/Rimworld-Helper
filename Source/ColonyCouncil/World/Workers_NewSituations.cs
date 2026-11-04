@@ -89,7 +89,7 @@ namespace ColonyCouncil
                 var f = Candidates(def.faction, null, map).Where(HighTech).RandomElementWithFallback();
                 if (f == null) return false;
                 s.ctx.faction = f;
-                s.ctx.placeName = NearestTown(f, map)?.Name ?? f.Name;
+                s.At(NearestTown(f, map), f.Name);
             }
             return true;
         }

@@ -277,7 +277,10 @@ namespace ColonyCouncil
             {
                 // Taking people in counts toward a name for hospitality (Character/ColonyTraits.cs).
                 if (ColonyTraitMath.Hosting(kind)) ColonyTraits.Tally("welcomed");
-                return Instance.Add(f, kind, k, name, weight > 0 ? weight : k.weight, Mathf.Max(1, count));
+                var d = Instance.Add(f, kind, k, name, weight > 0 ? weight : k.weight, Mathf.Max(1, count));
+                // The world's history keeps every one, where the memory merges and fades them (World/Ledger/History.cs).
+                History.Deed(f, kind, k.side, weight > 0 ? weight : k.weight, Mathf.Max(1, count), name);
+                return d;
             }
             catch (Exception e)
             {

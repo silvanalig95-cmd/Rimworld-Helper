@@ -13,8 +13,8 @@ namespace ColonyCouncil
     /// numbers; everything else it reads from the stores that exist today (the notables, what the peoples remember, the
     /// outsiders, the world situations, Rimfolk's events), and the ties kept there come back from <see cref="TiesOf"/> as
     /// views (LedgerToday.cs), marked and not editable here yet. New features about the world read and write through it.
-    /// No pass of its own: its upkeep (ties reaching their end, closed ones dropped) runs when it's asked, at most once a
-    /// 250-tick stretch, and before saving.
+    /// Its upkeep (ties reaching their end, closed ones dropped) runs when it's asked, at most once a 250-tick stretch, and
+    /// before saving. It also keeps the world's one history (History.cs), which folds once a day.
     /// </summary>
     public partial class WorldLedger : GameComponent
     {
@@ -58,6 +58,7 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            HistoryReady();
             Changed();
         }
 
@@ -104,6 +105,7 @@ namespace ColonyCouncil
                 var t = new Tie { id = l.nextTie++, kind = kind, from = from, to = to, terms = terms?.Copy() ?? new TieTerms(), since = now, until = until, origin = origin };
                 l.ties.Add(t);
                 Changed();
+                History.Tie(t, "made");
                 return t;
             }
             catch (Exception e)
@@ -123,8 +125,10 @@ namespace ColonyCouncil
             if (l == null || tie == null || tie.IsView || !l.ties.Contains(tie)) return false;
             int now = Now;
             l.Tidy(now);
+            var was = tie.state;
             if (!TieRules.Move(tie, state, now)) return false;
             Changed();
+            History.Tie(tie, History.TieWord(tie.state, was));
             return true;
         }
 
@@ -190,7 +194,19 @@ namespace ColonyCouncil
             tidiedAt = now;
             try
             {
-                if (TieRules.Tidy(ties, now) > 0) Changed();
+                // What reaches its end by itself goes into the history, at its until.
+                Dictionary<Tie, (Tie.State state, int until)> was = null;
+                foreach (var t in ties)
+                    if (t != null && t.Live && TieRules.Due(t.until, now))
+                        (was ??= new Dictionary<Tie, (Tie.State, int)>())[t] = (t.state, t.until);
+                if (TieRules.Tidy(ties, now) > 0)
+                {
+                    Changed();
+                    if (was != null)
+                        foreach (var kv in was)
+                            if (kv.Key.state != kv.Value.state)
+                                History.Tie(kv.Key, History.TieWord(kv.Key.state, kv.Value.state), Math.Min(now, kv.Value.until));
+                }
             }
             catch (Exception e)
             {
@@ -218,6 +234,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
             Scribe_Values.Look(ref nextTie, "nextTie", 1);
             Scribe_Values.Look(ref nextNumber, "nextNumber", 1);
+            ExposeHistory();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<Tie>();

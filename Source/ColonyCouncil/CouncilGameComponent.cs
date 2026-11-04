@@ -585,6 +585,8 @@ namespace ColonyCouncil
             // Full: the newest always stay; of the older lines the everyday ones go first, so the colony's milestones
             // (its losses, ambitions, life events) are still there years later.
             if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
+            // The same line in the world's history, which keeps it by rules of its own (World/Ledger/History.cs).
+            History.FromChronicle(entry);
         }
 
         // ================= Eligibility =================

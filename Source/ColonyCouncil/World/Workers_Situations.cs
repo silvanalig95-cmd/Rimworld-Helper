@@ -230,7 +230,7 @@ namespace ColonyCouncil
                 return false;
             }
             s.SetNum("town", town.ID);
-            s.ctx.placeName = town.Name;
+            s.At(town);
             s.ctx.tale = Where(map, tile);
             return true;
         }
@@ -304,7 +304,7 @@ namespace ColonyCouncil
             if (town == null) return false;
             s.ctx.map = map;
             s.ctx.faction = town.Faction;
-            s.ctx.placeName = town.Name;
+            s.At(town);
             s.ctx.tale = SituationWorker_NewTown.Where(map, town.Tile);
             s.ctx.item = TownsOf(town.Faction, map).Where(t => t != town && t.HasName).OrderBy(t => LivingEvents.Distance(town.Tile, t.Tile)).FirstOrDefault()?.Name ?? town.Faction.Name;
             s.SetNum("town", town.ID);
@@ -510,8 +510,8 @@ namespace ColonyCouncil
             if (beat.key == "offer")
             {
                 ctx.count = Silver(ctx.map, new IntRange(600, 1100));
-                ctx.placeName = NearestTown(s.ctx.enemy, ctx.map)?.Name ?? s.ctx.enemy?.Name;
-                s.ctx.placeName = ctx.placeName;
+                s.At(NearestTown(s.ctx.enemy, ctx.map), s.ctx.enemy?.Name);
+                ctx.placeName = s.ctx.placeName;
                 return s.ctx.enemy != null && !s.ctx.enemy.defeated;
             }
             if (beat.key == "return")
@@ -676,7 +676,7 @@ namespace ColonyCouncil
             if (pair.Item1 == null) return false;
             s.ctx.faction = pair.Item1;
             s.ctx.enemy = pair.Item2;
-            s.ctx.placeName = NearestTown(pair.Item1, map)?.Name ?? pair.Item1.Name;
+            s.At(NearestTown(pair.Item1, map), pair.Item1.Name);
             var a = s.ctx.faction.ideos?.PrimaryIdeo;
             var b = s.ctx.enemy?.ideos?.PrimaryIdeo;
             if (a == null || b == null || a == b) return false;
@@ -733,7 +733,7 @@ namespace ColonyCouncil
             if (pair.Item1 == null) return false;
             s.ctx.faction = pair.Item1;
             s.ctx.enemy = pair.Item2;
-            s.ctx.placeName = NearestTown(pair.Item1, map)?.Name ?? pair.Item1.Name;
+            s.At(NearestTown(pair.Item1, map), pair.Item1.Name);
             return true;
         }
 

@@ -40,6 +40,8 @@ namespace ColonyCouncil
         public string text;
         /// <summary>ThingID of the colonist the entry is mostly about.</summary>
         public string pawnId;
+        /// <summary>That colonist, only until the entry is added (the history asks where they belong); never saved.</summary>
+        [Unsaved] public Pawn about;
 
         public ChronicleEntry()
         {
@@ -59,6 +61,7 @@ namespace ColonyCouncil
             this.kind = kind;
             this.text = text;
             pawnId = pawn?.ThingID;
+            about = pawn;
         }
 
         public void ExposeData()

@@ -27,6 +27,7 @@
   <CC_Clock_WorstAt>The worst run came {0} ago.</CC_Clock_WorstAt>
   <CC_Clock_Stores>What Rimfolk keeps in the save</CC_Clock_Stores>
   <CC_Clock_Store_Chronicle>The chronicle: {0} entries.</CC_Clock_Store_Chronicle>
+  <CC_Clock_Store_History>The world's history: {0} events, {1} of them summaries of older seasons.</CC_Clock_Store_History>
   <CC_Clock_Store_Notables>The neighbours by name: {0} people.</CC_Clock_Store_Notables>
   <CC_Clock_Store_Outsiders>Outsiders: {0} pairs of a colonist and an outsider who know each other, {1} pieces of news heard lately.</CC_Clock_Store_Outsiders>
   <CC_Clock_Store_Deeds>What the peoples remember: {0} deeds.</CC_Clock_Store_Deeds>
@@ -100,5 +101,6 @@
   <CC_Clock_Pass_DailyWealth>Advisor: the wealth sample</CC_Clock_Pass_DailyWealth>
   <CC_Clock_Pass_DailyMagicNeeds>RimWorld of Magic's travel need</CC_Clock_Pass_DailyMagicNeeds>
   <CC_Clock_Pass_DailyBestFriends>Other mods' people: best friends</CC_Clock_Pass_DailyBestFriends>
+  <CC_Clock_Pass_DailyHistory>The world's history: old small events folded into their seasons</CC_Clock_Pass_DailyHistory>
 
 </LanguageData>

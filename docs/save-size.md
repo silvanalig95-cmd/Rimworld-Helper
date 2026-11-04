@@ -7,12 +7,13 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 465; modelled: 465; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,170 KB** after a year, **2,582 KB** after two, **2,744 KB** after five.
+Saved collections found: 467; modelled: 467; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,363 KB** after a year, **2,816 KB** after two, **2,978 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
+| `World/Ledger/History.cs:events` | HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first | cap | 660 | 800 | 800 | 234.4 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
@@ -470,6 +471,7 @@ Rimfolk's part of the save, roughly: **2,170 KB** after a year, **2,582 KB** aft
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
+| `World/Ledger/History.cs:values` | per event: a deed's name, when it has one (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |
 | `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |

@@ -329,6 +329,8 @@ namespace ColonyCouncil
             }
             try
             {
+                // Its chronicle line goes into the world's history at its place, with its peoples (World/Ledger/History.cs).
+                using var began = History.Situation(s, "began");
                 string body = worker.Line(def.texts, s) ?? "";
                 string text = body;
                 string extra = worker.StartExtra(s);
@@ -608,7 +610,8 @@ namespace ColonyCouncil
                         Find.LetterStack.ReceiveLetter(label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);
                         string line = ending.chronicle.NullOrEmpty() ? Flavor.Strip(FirstSentence(text)) : WorldSituationWorker.Sentences(s.ctx.Format(ending.chronicle));
                         string part = s.deeds.Count > 0 ? " " + "CC_WS_ChroniclePart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve() : "";
-                        comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleEnd".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay), line).Resolve() + part, s.ctx.a));
+                        using (History.Situation(s, "ended"))
+                            comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleEnd".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay), line).Resolve() + part, s.ctx.a));
                     }
                     catch (Exception e)
                     {
@@ -631,7 +634,8 @@ namespace ColonyCouncil
                         }
                     }
                     if (key == Quietly)
-                        comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
+                        using (History.Situation(s, "ended"))
+                            comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
                 }
                 try
                 {
@@ -648,7 +652,7 @@ namespace ColonyCouncil
                 {
                     defName = def.defName, label = s.Label, faction = s.ctx.faction, ending = key, help = s.help,
                     helped = ending != null && ending.helped, startTick = s.startTick, endTick = Now,
-                    name = s.ctx.name, flags = s.flags.ToList()
+                    name = s.ctx.name, flags = s.flags.ToList(), place = s.place
                 });
                 while (history.Count > 40) history.RemoveAt(0);
             }

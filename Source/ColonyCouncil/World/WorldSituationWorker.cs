@@ -81,7 +81,7 @@ namespace ColonyCouncil
             if (def.faction != null && r.faction != null && Candidates(def.faction, null, map).Contains(r.faction))
             {
                 s.ctx.faction = r.faction;
-                s.ctx.placeName = NearestTown(r.faction, map)?.Name ?? r.faction.Name;
+                s.At(NearestTown(r.faction, map), r.faction.Name);
             }
         }
 
@@ -204,7 +204,7 @@ namespace ColonyCouncil
             {
                 ctx.faction = PickFaction(def.faction, null, map);
                 if (ctx.faction == null) return false;
-                ctx.placeName = NearestTown(ctx.faction, map)?.Name ?? ctx.faction.Name;
+                s.At(NearestTown(ctx.faction, map), ctx.faction.Name);
             }
             // A follow-up: the people of what came before, and what to call it ({TALE}).
             TakeOver(s, map);

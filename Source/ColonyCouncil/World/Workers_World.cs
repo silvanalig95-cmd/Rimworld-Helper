@@ -179,7 +179,8 @@ namespace ColonyCouncil
             try
             {
                 town.Name = "CC_WS_CrossingName".Translate(ours).Resolve();
-                s.ctx.placeName = ctx.placeName = town.Name;
+                s.At(town);
+                ctx.placeName = s.ctx.placeName;
             }
             catch (System.Exception e)
             {
