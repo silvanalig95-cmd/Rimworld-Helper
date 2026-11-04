@@ -269,7 +269,9 @@ public static class OutsiderTalkTests
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",
         // A hamlet under the colony's protection (World/Region/HamletFacts.cs).
-        "HAMLET", "HAMLETWORD", "HAMLETPEOPLE"
+        "HAMLET", "HAMLETWORD", "HAMLETPEOPLE",
+        // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs).
+        "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION"
     };
 
     private static int Library(string root, Action<bool, string> C0)

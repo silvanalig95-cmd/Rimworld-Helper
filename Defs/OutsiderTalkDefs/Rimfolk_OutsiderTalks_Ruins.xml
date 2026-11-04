@@ -6,9 +6,9 @@
        situation:helped once the colony has helped its families) and just after (ended:ws:Rimfolk_WS_GivenUp, ended:theirs:
        mostly empty, a few families may hold on); the people of a ruin settled again in its first month
        (town:lately:world:resettled, {TOWN} the town on the old walls) and in its first year (town:new with town:why:ruin);
-       and a town founded by families of one given up (town:new with town:why:refugees). Nothing names the ruin a town left
-       or where it lies: the facts don't give it. The format is described at the top of
-       Rimfolk_OutsiderTalks_Greetings.xml. -->
+       and a town founded by families of one given up (town:new with town:why:refugees). A ruin standing within reach, a
+       town of theirs given up lately by name, and a town on its own people's old walls or another's are talked of in
+       Rimfolk_OutsiderTalks_RegionNear.xml. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 
   <!-- ================= A town of theirs being given up ================= -->
 

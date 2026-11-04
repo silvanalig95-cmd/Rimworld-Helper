@@ -54,7 +54,7 @@ namespace ColonyCouncil
 
         // ---------------- The region ----------------
 
-        /// <summary>The region's tags (Facts.Region): their town's fortune and founding, a new town near the colony.</summary>
+        /// <summary>The region's tags (Facts.Region): their town's fortune and founding, a new town near the colony, and what else stands near it.</summary>
         public static readonly string[] RegionTags =
         {
             "town:struggling", "town:poor", "town:steady", "town:thriving", "town:flourishing", "town:new", "town:founder", "town:mother", "them:founder",
@@ -62,12 +62,22 @@ namespace ColonyCouncil
             // Trading posts (World/Region/TradingPostFacts.cs): their town is one, its keeper has warned, theirs near the colony, another people's.
             "town:post", "town:post:warned", "their:post", "region:post",
             // Hamlets (World/Region/HamletFacts.cs): their town is the colony's hamlet (and has sworn fealty), theirs near the colony, another people's.
-            "town:hamlet", "town:hamlet:sworn", "their:hamlet", "region:hamlet"
+            "town:hamlet", "town:hamlet:sworn", "their:hamlet", "region:hamlet",
+            // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs): a raiders' camp the colony
+            // knows of (at war with theirs), a ruin within reach (theirs, another people's, a fight's), what brought a traveller
+            // (TravelMath.Reasons), their town on its own people's old walls or another's, a town of theirs given up lately, a world event at their town.
+            "region:camp", "region:camp:theirfoe", "region:ruin", "region:ruin:theirs", "region:ruin:other", "region:ruin:fight",
+            "them:seeking", "them:seeking:relic", "them:seeking:wonder", "them:seeking:trees", "them:seeking:ruins", "them:seeking:ruinRegion", "them:seeking:library",
+            "them:seeking:history", "them:seeking:ore", "them:seeking:rush", "them:seeking:grazing", "them:seeking:road", "them:seeking:far",
+            "town:resettled:own", "town:resettled:newcomers", "their:givenup", "town:situation", "town:situation:bad", "town:situation:good"
         };
 
-        /// <summary>The region's placeholders: their town's fortune in a word and the world event behind it, its founder, mother town and why it was founded; a new town near and its people; a trading post near, its kind, its people and its keeper.</summary>
+        /// <summary>The region's placeholders: their town's fortune in a word and the world event behind it, its founder, mother town and why it was founded; a new town near and its people; a trading post near, its kind, its people and its keeper; a hamlet; a raiders' camp, a ruin, a traveller's reason, a town given up, the event at their town.</summary>
         public static readonly string[] RegionValues = { "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER", "HAMLET", "HAMLETWORD",
-            "HAMLETPEOPLE" };
+            "HAMLETPEOPLE",
+            // A raiders' camp near (its kind, its people), a ruin near (its old name, its people), what a traveller came for, a town of theirs given up
+            // lately, the world event at their town (World/Region/RegionNearFacts.cs).
+            "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION" };
 
         /// <summary>A new town's newness: current over its first year, the more so in its first weeks.</summary>
         public static float NewTownHeat(float days) => Fresh(days, 60f, 2f);

@@ -344,6 +344,33 @@ public static class RegionTests
         C(moves.TryGetValue("Council_WS_HolyWar", out var hw) && hw.o < 0f, "a war of creeds hurts the other people's towns too");
         C(Code("World/Region/RegionFortunes.cs").Contains("s.SetNum(AppliedKey, applied + due)"), "each event keeps how many days' shares it gave");
 
+        // ---------------- What stands near, in the talk ----------------
+
+        string near = Code("World/Region/RegionNearFacts.cs");
+        C(Code("Text/Facts/FactsRegion.cs").Contains("Near(s, f);"), "the region's provider reads what stands near the colony");
+        var nearTags = new[]
+        {
+            "region:camp", "region:camp:theirfoe", "region:ruin", "region:ruin:theirs", "region:ruin:other", "region:ruin:fight", "them:seeking",
+            "town:resettled:own", "town:resettled:newcomers", "their:givenup", "town:situation", "town:situation:bad", "town:situation:good"
+        };
+        foreach (var t in nearTags) C(FactsMath.RegionTags.Contains(t) && near.Contains("\"" + t + "\""), $"the facts set {t}, and the talk may ask for it");
+        foreach (var why in TravelMath.Reasons) C(FactsMath.RegionTags.Contains("them:seeking:" + why), $"a traveller's reason {why} is a tag the talk may ask for");
+        C(near.Contains("f.Tag(\"them:seeking:\" + c.seeking") && near.Contains("TravelMath.Known(c.seeking)"), "the traveller's reason is one of the known ones");
+        foreach (var v in new[] { "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION" })
+            C(FactsMath.RegionValues.Contains(v) && near.Contains("f.Value(\"" + v + "\""), $"the facts fill {{{v}}}");
+        C(near.Contains("!c.Shown") && near.Contains("r.Waiting") && near.Contains("RegionTowns.ReachTiles"),
+            "only a camp the colony knows of, and a ruin on the map within the colony's reach");
+        C(near.Contains("x.place == place") && near.Contains("!(x.def.Worker is SituationWorker_Abandoned)"), "the event at their own town, not the giving up of it");
+        C(near.Contains("RiseFallWords.ResettledKind") && near.Contains("RefKind.People"), "own people or newcomers, as the history's entry of the resettling tells");
+        C(!Regex.IsMatch(near, @"Rand\.|\.Set\(|History\.Add|WorldLedger\.(Add|Set|Keep|Release)"), "the facts only read");
+        var nearTalk = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_RegionNear.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        string nearAll = string.Join("\n", nearTalk.Select(d => d.ToString()));
+        C(nearTalk.Count >= 40 && nearTalk.Count <= 80, $"40 to 80 talk pieces on what stands near ({nearTalk.Count})");
+        foreach (var t in nearTags)
+            C(nearAll.Contains(t), $"the talk speaks of {t}");
+        foreach (var voice in new[] { "their:tribal", "their:medieval", "their:industrial", "their:spacer", "their:empire", "tone:warm", "tone:cool", "tone:sour" })
+            C(nearAll.Contains(voice), $"the near pieces have {voice}");
+
         return n;
     }
 }

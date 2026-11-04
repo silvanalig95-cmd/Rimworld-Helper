@@ -2590,7 +2590,12 @@ their word for a year), makes peace with their people, sees an ally burn it, or 
 up. Each ending is told, written into the history and remembered by the peoples. The region window has a *raiders'
 camps* page; the region map and This week show a camp standing. Setting: *Raiders' camps* (0 to 200%, 100% by
 default). The Almanac has a page, *raiders' camps*. A visitor who passed its fires on the road may warn of it, or a
-neighbouring town may send word, and a camp with a leader has him behind its walls and at the head of its raids.
+neighbouring town may send word, and a camp with a leader has him behind its walls and at the head of its raids; with
+its leader dead, taken or one of the colony, the band breaks up. A raid with no way in from the camp's side comes from
+the nearest side that has one, and its letter says which. What stands near the colony comes up in talk too: 60
+conversation pieces speak of a raiders' camp the colony knows of, a ruin within reach, what brought a traveler, a
+town raised on its own people's old walls or another's, a town given up lately by name, and a world event at the
+speaker's own town.
 
 **What follows.** Some world events come back later. Between 60 and 180 days after a warlord's story ends, his son
 comes, by how it ended: at the head of a raiders' camp if the colony killed his father; at the gate for his father,
