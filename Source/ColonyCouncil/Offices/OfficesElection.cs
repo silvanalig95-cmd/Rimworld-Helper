@@ -345,7 +345,8 @@ namespace ColonyCouncil
                 foreach (var en in r.entries.ToList())
                 {
                     var p = en.pawn;
-                    if (p != null && MeetingAttendance.IsMember(p) && Ours(p) && !p.DevelopmentalStage.Juvenile() && r.office.CanHold(p)) continue;
+                    // One who has gone to live at another colony drops out (a short visit doesn't count).
+                    if (p != null && MeetingAttendance.IsMember(p) && !MovedAway(p) && !p.DevelopmentalStage.Juvenile() && r.office.CanHold(p)) continue;
                     r.entries.Remove(en);
                     if (r.endorsed == p) r.endorsed = null;
                     if (p != null)

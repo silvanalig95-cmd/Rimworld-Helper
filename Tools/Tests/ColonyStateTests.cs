@@ -4,8 +4,8 @@ using ColonyCouncil;
 
 /// <summary>
 /// A council per colony (Lean/ColonyStateMath.cs): which council a colony reads, an old save's single council going to
-/// the seat, a home lost (kept a while, carried by its people when no home is left, back again), each colony's own
-/// people and its last-few guard, and an officer who moves to another colony.
+/// the seat, a home lost (kept a while, carried by its people when no home is left, taken by the new home when they move
+/// in one go, back again), each colony's own people and its last-few guard, and an officer who moves to another colony.
 /// </summary>
 public static class ColonyStateTests
 {
@@ -91,6 +91,22 @@ public static class ColonyStateTests
         Check(ColonyStateMath.Carried(new List<Entry>(), noHome) == null, "with nothing to carry, the caller makes a new one");
         var lostLong = new List<Entry> { new Entry(5) { LostAt = 100 }, new Entry(8) { LostAt = 300 } };
         Check(ColonyStateMath.Carried(lostLong, noHome) == lostLong[1], "with every loss noticed, the one lost last is carried");
+        // Moved in one go (a gravship landed, or a caravan settled after giving up the old home within the hour): the new
+        // seat, the only home and with no council yet, takes the one just left, noticed or not.
+        var gravship = new List<Entry> { new Entry(5) };
+        Check(ColonyStateMath.Find(gravship, 9, 9, new HashSet<int> { 9 }) == gravship[0] && gravship[0].Home == 9 && gravship.Count == 1,
+            "moved in one go, the loss not yet noticed: the new home takes the council");
+        var landed = new List<Entry> { new Entry(5) };
+        ColonyStateMath.Lost(landed, 5, 6000, new HashSet<int> { 9 });
+        Check(ColonyStateMath.Find(landed, 9, 9, new HashSet<int> { 9 }) == landed[0] && landed[0].LostAt == NotLost, "and once the loss is noticed too");
+        var lostBefore = new List<Entry> { new Entry(8) { LostAt = 100 }, new Entry(5) };
+        Check(ColonyStateMath.Find(lostBefore, 9, 9, new HashSet<int> { 9 }) == lostBefore[1], "the council of the home just left, not one lost long before");
+        var stillTwo = new List<Entry> { new Entry(5) };
+        Check(ColonyStateMath.Find(stillTwo, 9, 5, new HashSet<int> { 5, 9 }) == null && stillTwo[0].Home == 5, "a second colony founded beside the first has a council of its own");
+        var keptOwn = new List<Entry> { new Entry(5), new Entry(9) };
+        ColonyStateMath.Lost(keptOwn, 5, 7000, new HashSet<int> { 9 });
+        Check(ColonyStateMath.Find(keptOwn, 9, 9, new HashSet<int> { 9 }) == keptOwn[1] && keptOwn[0].LostAt == 7000,
+            "people moving to a colony with a council of its own: it keeps its own, the other's is kept a while");
         // Those kept count down only once there's a home again.
         Check(ColonyStateMath.Upkeep(early, 5000 + keep * 3, noHome) == 0 && early.Count == 2, "with no home, nothing is let go");
         Check(ColonyStateMath.Upkeep(early, 5000 + keep * 3, new HashSet<int> { 9 }) == 1 && early.Count == 1 && early[0].Home == None,

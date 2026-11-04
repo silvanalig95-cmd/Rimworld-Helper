@@ -328,6 +328,8 @@ namespace ColonyCouncil
         public static float DecreeWorkFactor(Pawn p, out DecreeDef which)
         {
             which = null;
+            // Asked whenever work speed is: a quick look at every colony's decrees before asking whose someone is.
+            if (!AnyWorkDecree()) return 1f;
             var active = DecreeTracker.Of(p)?.active;
             if (active == null) return 1f;
             float f = 1f;
@@ -338,6 +340,24 @@ namespace ColonyCouncil
                     which = a.def;
                 }
             return f;
+        }
+
+        /// <summary>A decree that changes the work is in force in one of the colonies.</summary>
+        private static bool AnyWorkDecree()
+        {
+            var colonies = CouncilGameComponent.Instance?.colonies;
+            if (colonies == null) return false;
+            for (int i = 0; i < colonies.Count; i++)
+            {
+                var active = colonies[i]?.decrees?.active;
+                if (active == null) continue;
+                for (int k = 0; k < active.Count; k++)
+                {
+                    var def = active[k]?.def;
+                    if (def != null && def.workFactor > 0f && def.workFactor != 1f) return true;
+                }
+            }
+            return false;
         }
 
         public static void ResetCaches()

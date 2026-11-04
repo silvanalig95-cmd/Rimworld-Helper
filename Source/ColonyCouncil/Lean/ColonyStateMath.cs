@@ -33,9 +33,11 @@ namespace ColonyCouncil
         /// <summary>
         /// The entry a colony reads, or null when it has none yet (the caller makes one): its own; else, for the seat, the
         /// entry with no home (an old save's single state, or one its people carried while they had no home), which
-        /// becomes the seat's. A home that came back is ours again.
+        /// becomes the seat's; else, when the seat is the only home (<paramref name="homes"/>), the entry of a home just
+        /// left, as when the people moved in one go (a gravship landed, a caravan settled after giving up the old home
+        /// within the hour): <see cref="Carried"/>'s choice. A home that came back is ours again.
         /// </summary>
-        public static T Find<T>(IList<T> book, int key, int seat) where T : class, IColonyEntry
+        public static T Find<T>(IList<T> book, int key, int seat, ICollection<int> homes = null) where T : class, IColonyEntry
         {
             if (book == null || key == None) return null;
             for (int i = 0; i < book.Count; i++)
@@ -54,7 +56,10 @@ namespace ColonyCouncil
                 e.LostAt = NotLost;
                 return e;
             }
-            return null;
+            if (homes == null || homes.Count != 1 || !homes.Contains(key)) return null;
+            var moved = Carried(book, homes);
+            if (moved != null) moved.Home = key;
+            return moved;
         }
 
         /// <summary>

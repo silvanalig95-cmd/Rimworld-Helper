@@ -13,8 +13,9 @@ namespace ColonyCouncil
     /// already runs everything it holds and the trackers stay what they were. <see cref="For"/> gives a home's (the
     /// seat's for a map that isn't a home), made when a home first needs one; <see cref="Of"/> someone's. An old save's
     /// single state is the seat's. A home that stops being ours keeps its state a while, then lets it go
-    /// (<see cref="ColonyStateMath"/>); with no home left, its people carry it to the next home they found. What stays
-    /// shared (wishes, trust, the chronicle, names, the social web) is in the component itself.
+    /// (<see cref="ColonyStateMath"/>); with no home left, its people carry it to the next home they found, and a new seat
+    /// that is the only home takes the one just left (people who moved in one go). What stays shared (wishes, trust, the
+    /// chronicle, names, the social web) is in the component itself. DESIGN.md, "Many homes".
     /// </summary>
     public class ColonyState : IExposable, IColonyEntry
     {
@@ -196,6 +197,8 @@ namespace ColonyCouncil
         public ColonyState Colony(Map map)
         {
             colonies ??= new List<ColonyState>();
+            // While a game loads or starts, the homes aren't known yet: the book is read, never rearranged.
+            if (Scribe.mode != LoadSaveMode.Inactive || Current.ProgramState != ProgramState.Playing) return Settling(map);
             var homes = Homes.All;
             if (homes.Count == 0)
             {
@@ -215,9 +218,25 @@ namespace ColonyCouncil
                 var c = colonies[i];
                 if (c.home == key && c.lostAt == ColonyStateMath.NotLost) return c;
             }
-            var found = ColonyStateMath.Find(colonies, key, seat);
+            var found = ColonyStateMath.Find(colonies, key, seat, homes.Count == 1 ? new HashSet<int> { Homes.KeyOf(homes[0]) } : null);
             if (found != null) return found;
             var made = new ColonyState { home = key };
+            colonies.Add(made);
+            return made;
+        }
+
+        /// <summary>
+        /// Before the game is under way: the council kept under the map's key, else the first whose home wasn't lost, else
+        /// a new one with no home yet (the seat takes it once the homes are known).
+        /// </summary>
+        private ColonyState Settling(Map map)
+        {
+            int key = map?.Parent != null ? Homes.KeyOf(map) : HomesMath.None;
+            for (int i = 0; i < colonies.Count; i++)
+                if (key != HomesMath.None && colonies[i].home == key) return colonies[i];
+            for (int i = 0; i < colonies.Count; i++)
+                if (colonies[i].lostAt == ColonyStateMath.NotLost) return colonies[i];
+            var made = new ColonyState();
             colonies.Add(made);
             return made;
         }
