@@ -68,4 +68,8 @@ While a crop sown now would bring at least {0} of a full harvest, the field sows
   <CC_Settings_FrostHarvest>Harvest before a frost</CC_Settings_FrostHarvest>
   <CC_Settings_FrostHarvest_Tip>When the forecast for the next 30 hours falls below the cold limit of plants in an outdoor field that are ripe enough to harvest, the council suggests harvesting exactly those, with the numbers: in the alerts, on the field and on the Making page. One click marks them; Undo takes the marks off; after the frost it says whether the frost came and how many were saved. Any field, set to sow by the weather or not; never a roofed one.</CC_Settings_FrostHarvest_Tip>
   <CC_SetNote_FrostHarvest>One click marks the plants a coming frost would kill for harvest, with the numbers.</CC_SetNote_FrostHarvest>
+  <CC_Settings_FrostHarvestAuto>Harvest before a frost by itself</CC_Settings_FrostHarvestAuto>
+  <CC_Settings_FrostHarvestAuto_Tip>The plants a coming frost would kill are marked for harvest as soon as the forecast shows it, without waiting for a click, and a message says so. Undo under Planning, then Making takes the marks off, and that night's frost on that field is then left to you. Off, the council only suggests it.</CC_Settings_FrostHarvestAuto_Tip>
+  <CC_SetNote_FrostHarvestAuto>The plants a coming frost would kill are marked for harvest without a click.</CC_SetNote_FrostHarvestAuto>
+  <CC_Fields_Frost_Auto>Frost {WHEN}, about {TEMP}: {N} {CROPS} in {ZONE} would die, so they are marked to harvest before it. Undo is under Planning, then Making.</CC_Fields_Frost_Auto>
 </LanguageData>

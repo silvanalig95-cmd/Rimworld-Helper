@@ -74,6 +74,8 @@ namespace ColonyCouncil
 
         /// <summary>The frost harvest suggestion.</summary>
         public static bool FrostOn => S?.frostHarvestSuggest ?? true;
+        /// <summary>The frost harvest done by itself rather than suggested (the player's request; Undo leaves that frost's field to them).</summary>
+        public static bool FrostAuto => FrostOn && (S?.frostHarvestAuto ?? true);
 
         /// <summary>A field set to sow by the weather, and what its sowing is now (not saved).</summary>
         public sealed class Outlook
@@ -567,19 +569,40 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>A frost harvest that first appears is told once in a message (the alert and the field keep it in view).</summary>
+        /// <summary>
+        /// A frost harvest is done by itself when that's on: the plants marked at once and the message says so (unless the
+        /// player undid it for that frost, which leaves it to them). Otherwise, or when nothing could be marked, it is told
+        /// once in a message as a suggestion (the alert and the field keep it in view).
+        /// </summary>
         private void Tell()
         {
             var t = SuggestTracker.Instance;
+            bool auto = FrostAuto;
             foreach (var fs in frost)
             {
                 string key = fs.step.key;
-                if (!told.Add(key) || t == null || !t.Offered(key)) continue;
+                if (t == null || !t.Offered(key)) continue;
                 int n = fs.pick.harvest.Count;
+                if (auto && !t.UndoneLast(key) && Markable(fs) && t.Apply(fs.step, quiet: true) != null)
+                {
+                    told.Add(key);
+                    Notify.Message("CC_Fields_Frost_Auto".Translate(WhenWords(fs.pick.lowHour, last).Named("WHEN"), Temp(fs.pick.low).Named("TEMP"), n.Named("N"),
+                        Plural(fs.crop, n).Named("CROPS"), fs.zone.label.Named("ZONE")).Resolve(), fs.step.look, MessageTypeDefOf.TaskCompletion, Importance.Important);
+                    continue;
+                }
+                if (!told.Add(key)) continue;
                 Notify.Message("CC_Fields_Frost_Message".Translate(WhenWords(fs.pick.lowHour, last).Named("WHEN"), Temp(fs.pick.low).Named("TEMP"), n.Named("N"),
                     Plural(fs.crop, n).Named("CROPS"), fs.zone.label.Named("ZONE")).Resolve(), fs.step.look, MessageTypeDefOf.NegativeEvent, Importance.Important);
             }
             if (told.Count > 200) told.Clear();
+        }
+
+        /// <summary>At least one of the step's plants can still be marked (there, harvestable, not marked to harvest or cut).</summary>
+        private bool Markable(FrostStep fs)
+        {
+            var dm = map.designationManager;
+            return fs.plants.Any(p => p != null && p.Spawned && p.Map == map && p.HarvestableNow
+                                      && dm.DesignationOn(p, DesignationDefOf.HarvestPlant) == null && dm.DesignationOn(p, DesignationDefOf.CutPlant) == null);
         }
 
         // ---------------- What the pages, the field and the hooks ask ----------------

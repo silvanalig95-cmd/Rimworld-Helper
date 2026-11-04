@@ -246,8 +246,11 @@ namespace ColonyCouncil
             all.Where(s => s?.key != null && !Declined(s.key) && !Waiting(s.key))
                 .OrderBy(s => s, Comparer<Suggestion>.Create((a, b) => SuggestMath.Compare(a.days, a.Level, a.key, b.days, b.Level, b.key))).ToList();
 
-        /// <summary>Does the step (the player's click), tells the player, and keeps it in the log; null when it couldn't be done.</summary>
-        public SuggestDone Apply(Suggestion s)
+        /// <summary>
+        /// Does the step (the player's click, or an automation), tells the player, and keeps it in the log; null when it
+        /// couldn't be done. Quiet: the caller tells the player itself.
+        /// </summary>
+        public SuggestDone Apply(Suggestion s, bool quiet = false)
         {
             if (s?.apply == null) return null;
             SuggestDone d;
@@ -262,7 +265,7 @@ namespace ColonyCouncil
             }
             if (d == null)
             {
-                Messages.Message("CC_Suggest_Couldnt".Translate(s.title).Resolve(), MessageTypeDefOf.RejectInput, false);
+                if (!quiet) Messages.Message("CC_Suggest_Couldnt".Translate(s.title).Resolve(), MessageTypeDefOf.RejectInput, false);
                 return null;
             }
             d.key ??= s.key;
@@ -275,7 +278,7 @@ namespace ColonyCouncil
             done.Add(d);
             SuggestMath.TrimOldest(done, SuggestMath.DoneKept);
             Version++;
-            Messages.Message("CC_Suggest_Done".Translate(d.text).Resolve(), s.look ?? LookTargets.Invalid, MessageTypeDefOf.TaskCompletion, false);
+            if (!quiet) Messages.Message("CC_Suggest_Done".Translate(d.text).Resolve(), s.look ?? LookTargets.Invalid, MessageTypeDefOf.TaskCompletion, false);
             return d;
         }
 

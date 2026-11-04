@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Harvest before the frost, by itself
+
+*4 November 2026, version 0.64.3*
+
+- The plants a coming frost would kill are now marked for harvest by themselves as soon as the forecast shows it, instead of waiting for a click, and a message says when, how cold, and how many in which field.
+- Undo under Planning, then Making takes the marks off and leaves that night's frost on that field to you. Turn "Harvest before a frost by itself" off in the settings to have it only suggested again.
+
 ## The guest tab on screen
 
 *4 November 2026, version 0.64.2*

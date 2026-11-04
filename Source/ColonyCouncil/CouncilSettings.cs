@@ -347,6 +347,8 @@ namespace ColonyCouncil
         public bool fieldsByWeather = true;
         /// <summary>A one-click suggestion to harvest the plants of an outdoor field that a frost in the next day or so would kill (Fields/FieldWeather.cs).</summary>
         public bool frostHarvestSuggest = true;
+        /// <summary>The frost harvest is done by itself: the plants a coming frost would kill are marked for harvest as soon as the forecast shows it (Fields/FieldWeather.cs; the player's request).</summary>
+        public bool frostHarvestAuto = true;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -616,6 +618,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref aheadReserveDays, "aheadReserveDays", 5f);
             Scribe_Values.Look(ref fieldsByWeather, "fieldsByWeather", true);
             Scribe_Values.Look(ref frostHarvestSuggest, "frostHarvestSuggest", true);
+            Scribe_Values.Look(ref frostHarvestAuto, "frostHarvestAuto", true);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
