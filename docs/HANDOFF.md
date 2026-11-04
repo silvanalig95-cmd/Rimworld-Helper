@@ -15,6 +15,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.66.2, stage 0 steps 8 and 9 (F8, F9): `Integrations/World/` (`WorldAdapter`, `WorldMechanics` finding adapters by
+  type: `TerritoryOwner`, `SettlementsBeingBuilt`, `OurVassals`, `OurHoldings`, `Title`, `Ties` into LedgerToday).
+  Faction Territories (ownership cache delegate, `SettlementConstruction`, `FactionTerritories_VassalOutpost`; hooks on
+  TryCreateForFaction, TryComplete, IsDefeated, Invasions ResolveWithWinner, ExecuteVassalisation(AtTile); vassal
+  fealty a view), Factional War (namespace `SR.ModRimWorld.FactionalWar`; `IncidentWorkerFactionWar.TryExecuteWorker`,
+  `TriggerFactionAssaultVictory.ActivateOn`; `HistoryBook.SetRole`), Vanilla Outposts (`Outposts.Outpost`, view),
+  the Empire (`PersonView.royal`), Diplomatic Marriage+ (read-only, `PermanentAlliance`; `IsValid()` deliberately
+  not called). History kinds `world:founded/built/razed/taken/vassal/battle`, milestones when they touch the colony,
+  everyday within the region map's reach, nothing far away. `Lean/Ages.cs` and `AgesMath.cs`: `Ages.Ours`,
+  `Of(Map)`, `Of(Faction)`, `IsEmpire`, `Tag`; `Flavor.AddEraTags` uses it (identical tags, tested); `Ages.Form`
+  (`AgeForm` word/rite) from `Rimfolk_Ages.xml` (10 features x 4 ages); word by our age, rite by theirs; no Empire
+  rites yet (they use the Empire's titles). The self-check lists 8 new patches (skipped without the mods).
 - 0.66.1, stage 0 step 4 (F4): `World/Ledger/History.cs` and `HistoryMath.cs` (`HistoryEntry`, not HistoryEvent:
   Ideology's `Verse.HistoryEvent` is in use), kinds as string keys with families (`world:`, `deed:`, `tie:`), actors with
   roles, places (colony, town, tile: `Ref` gained a tile kind `w801`), indexes, queries `Of`/`At`/`Latest`/`Count`/`Text`;

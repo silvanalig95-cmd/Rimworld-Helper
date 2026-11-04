@@ -1758,7 +1758,9 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
 - **Kinds** are small keys with families before a colon: the chronicle's twenty kinds as they are (`loss`,
   `wishGranted`...), `world:began` and `world:ended` for world situations (in the chronicle's family `world`),
   `deed:` and the deed's kind for what a people remembers, `tie:`, the tie's kind and what happened (made, kept,
-  calledIn, broken, ended, putOff) for the ledger's ties. Asking for a family finds every kind in it.
+  calledIn, broken, ended, putOff) for the ledger's ties, and `world:founded`, `world:built`, `world:razed`,
+  `world:taken`, `world:vassal` and `world:battle` for what other mods do to the world (below). Asking for a family
+  finds every kind in it.
 - **What writes.** Every line of the chronicle: `AddChronicle` adds to the chronicle and trims it exactly as before,
   then writes the same line into the history (its tick, words and kind, the colonist as an actor, their colony as the
   place; a milestone of the chronicle is one here). The chronicle stays a list of its own rather than becoming a view:
@@ -1819,6 +1821,77 @@ a window's feedback, a developer's button. One that uses another message type ca
 why (the player's promise or refusal, an appointment, a pick in a letter); `TellTests` checks every direct message and
 letter against this. The other direct letters are the colony news itself, the welcome and update letters, and the
 storyteller's own ailment incident (`SendStandardLetter`).
+
+### Other mods' world mechanics
+
+Some mods already run parts of the world well (territories and new towns, battles between peoples, outposts, a
+marriage alliance), and the Empire has its titles. Rimfolk reads them through one small interface and keeps none of
+their state twice: `Integrations/World/`, an abstract `WorldAdapter` with an adapter per mod, behind the facade
+`WorldMechanics`. The facade finds every adapter by its type, so the core never names a mod; each adapter knows its mod
+by its package id and its types by name, reaches them by reflection or by Harmony patches on the mod's own methods
+(each a `[HarmonyPatch]` class that stands down without the mod and follows the deeper-hooks setting), and does
+nothing when its mod isn't there. Adapters read and write the history; they tell the player nothing.
+
+- **Asking.** `WorldMechanics.TerritoryOwner(tile)`: the people who own a tile, or null (nobody, a contested tile, no
+  such mod). `SettlementsBeingBuilt()`: each site's tile, people, start and due tick (`Progress(now)` from 0 to 1).
+  `OurVassals(colony)` and `OurHoldings(colony)`: the colony's vassal towns, and its vassals and outposts, each under
+  the home it names itself (an outpost's delivery colony) while that is a home, else the nearest one. `Title(pawn)`:
+  the royal title someone holds. These lists are read again at most once a 250-tick stretch.
+- **Ties, as views.** Each vassal's fealty to its colony (from the vassal, as a town, to the colony; since the
+  `world:vassal` entry when the history has one) and a marriage alliance (from the allied people, who proposed it, to
+  the colony, about the child who married, the spouse in its key) come back from the world ledger's `TiesOf` as views
+  (`WorldLedger.Today`). The mods' own world objects and components stay the record: nothing is saved twice, and
+  nothing is left behind when a mod is removed.
+- **The history.** The hooks write what those mods do: a people began a settlement (`world:founded`, at the tile) and
+  finished it (`world:built`, at the new town, about the tile), the colony's people beat a settlement being built
+  (`world:razed`), a town taken by another people, the colony among them when a vassal of its is taken
+  (`world:taken`, at the town as it is now, about the one it was when the mod made it afresh), a town made the
+  colony's vassal (`world:vassal`), and two peoples fighting on one of the colony's homes (`world:battle`: both "with"
+  while it lasts, then the winner "did" and the loser was "against" once the mod's own trigger says who won, by
+  `HistoryBook.SetRole`). What touches the colony is written wherever it is and is a milestone; the rest only within
+  the region map's reach of a home, as everyday events (towns far away stay the mods' business). The small rules are in
+  `WorldMath.cs` (Tools/Tests checks them).
+- **The adapters.**
+  - Faction Territories and Vassalage: territory owner (`TerritoryOwnershipCache.TryGetSingleFactionIfUncontested`),
+    settlements being built (its `SettlementConstruction` world objects), the colony's vassals (its
+    `FactionTerritories_VassalOutpost` world objects, with their people and name); hooks on
+    `Expansion.Utility.TryCreateForFaction`, `TryComplete` and `IsDefeated`, `Invasions.Utility.ResolveWithWinner` and
+    `VassaliseUtility.ExecuteVassalisation` / `ExecuteVassalisationAtTile`.
+  - [SR] Factional War: a battle begins when `IncidentWorkerFactionWar.TryExecuteWorker` succeeds on a home (its two
+    peoples), and is won when `TriggerFactionAssaultVictory.ActivateOn` fires (the lord's people beat the one it
+    watches). Its fights on sites away from the homes aren't written.
+  - Vanilla Outposts Expanded: the colony's outposts (`Outposts.Outpost` world objects: name, kind, delivery colony,
+    how many are posted). A view, nothing more.
+  - The Empire (Royalty, through the game's API): a person's most senior title, in the ledger's person view
+    (`PersonView.royal`).
+  - Diplomatic Marriage+: its permanent alliance (`PermanentAlliance.WithFaction`, `PlayerBetrothed`,
+    `NpcMarriageSeeker`, read only; its `IsValid` changes the alliance, so it isn't called).
+
+No pass of their own: the hooks run when the mods act, and the views when asked.
+
+### Ages
+
+Every feature takes the form of the age (ROADMAP.md, "Every age, not only the medieval one"), and the ages are read in
+one place: `Lean/Ages.cs`, with its pure rules in `Lean/AgesMath.cs`.
+
+- **The ages.** Tribal, medieval, industrial or spacer, from a tech level as `LedgerMath.AgeOf` reads it (neolithic and
+  below tribal, spacer and above spacer). `Ages.Of(colony)`: the colony's age, its own tech level or what it has
+  researched, whichever is higher (`Ages.Ours`, from `Avail.EffectiveTech`); the player's faction has one, so every home
+  has it until homes keep their own. `Ages.Of(faction)`: a people's age by its tech level. `Ages.IsEmpire(faction)`:
+  a people of royal titles, the Empire, which keeps its own titles and honor. Flavor's era tags (`AddEraTags`) and the
+  world ledger's people view ask here, and give exactly what they gave before (`WorldMechanicsTests` checks every tech
+  level against the old table).
+- **Forms.** `Ages.Form(feature, ours, theirs)` gives a feature's word and rite: the ten of ROADMAP's table (favor
+  owed, pact and truce, feast and contest, marriage alliance, ward and hostage, ransom, fealty and vassals, council
+  tasks, house renown, schemes), each with a word and a rite in each of the four ages, as keyed strings
+  (`CC_Form_<Feature>_<Age>` and `CC_Form_<Feature>_<Age>_Rite`, `Rimfolk_Ages.xml`), short noun phrases to sit in a
+  sentence.
+- **Mixed ages.** The colony's own age sets its means: the word it has for the thing and what it does it with (a debt
+  of honor, an IOU; ransom by messenger or by radio; a feast in the hall or a gala). The other people's age sets the
+  rite: how it is done with them by their ways (a gift owed back, oaths sworn before witnesses, an exchange at a
+  crossing). `Form` takes both and says which part came from which (`AgeForm.ours` for the word, `AgeForm.theirs` for
+  the rite, `AgeForm.empire` when the other people are the Empire). Nothing uses it yet; the diplomacy of stage 2
+  will.
 
 ### A colonist's tabs
 

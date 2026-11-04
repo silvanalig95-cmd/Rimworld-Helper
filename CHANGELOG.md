@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groundwork: other mods' world, and the ages
+
+*4 November 2026, version 0.66.2*
+
+- Groundwork: Rimfolk now reads other mods' world mechanics into its own records without changing them: Faction Territories and Vassalage (who holds a tile, settlements being built, towns founded, built, taken or razed near your homes, your vassals), Factional War (battles between two peoples on your map and who won), Vanilla Outposts Expanded (your outposts), Diplomatic Marriage+ (an alliance by marriage) and the Empire's titles.
+- Groundwork: one place reads the age of the colony and of every people, with the words and rites of each age for the diplomacy to come. Which lines are picked for your colony's age is exactly as before.
+
 ## Groundwork: one history
 
 *4 November 2026, version 0.66.1*

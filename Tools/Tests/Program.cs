@@ -435,6 +435,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {PassClockTests.Run(root, Check)} things about Rimfolk's clock (hours and days by game ticks, the worst run, the table, every pass timed).");
         Console.WriteLine($"Checked {TellTests.Run(root, Check)} things about Rimfolk's one voice (the day's caps, the same thing once, kinds by folder, what stays direct).");
         Console.WriteLine($"Checked {HistoryTests.Run(root, Check)} things about the world's history (kinds, indexes, a run in a day, folding by season, bounds, the chronicle as it was, places of world events).");
+        Console.WriteLine($"Checked {WorldMechanicsTests.Run(root, Check)} things about other mods' world mechanics and the ages (the same era tags, every feature's form in every age, what the history keeps, a battle decided, no mod named in the core).");
         Console.WriteLine($"Checked {DefenseTests.Run(root, Check)} things about the defense planner (its plans in every turn, reading a map's ways in).");
         Console.WriteLine($"Checked {DefenseLineTests.Run(root, Check)} things about defense lines (the way round, the steps, strength and lessons).");
         Console.WriteLine($"Checked {CoverDragTests.Run(root, Check)} things about taking cover with a drag (cells, order, never off the map).");

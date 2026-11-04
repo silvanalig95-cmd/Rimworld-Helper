@@ -194,6 +194,8 @@ namespace ColonyCouncil
         public string role;
         /// <summary>A notable's title ("mayor", "envoy"), or null.</summary>
         public string title;
+        /// <summary>The royal title they hold (the Empire's, through WorldMechanics.Title), or null.</summary>
+        public RoyalTitleView royal;
         /// <summary>A regular's trade on the road (tinker, scholar, doctor...), or null.</summary>
         public string trade;
         /// <summary>Their record in the notables, or -1.</summary>
@@ -375,11 +377,7 @@ namespace ColonyCouncil
 
         private static PeopleView BuildPeople(Faction f)
         {
-            var v = new PeopleView
-            {
-                faction = f, people = Refs.Of(f), name = f.Name, age = LedgerMath.AgeOf((int)(f.def?.techLevel ?? TechLevel.Industrial)),
-                empire = f.def != null && f.def.HasRoyalTitles
-            };
+            var v = new PeopleView { faction = f, people = Refs.Of(f), name = f.Name, age = Ages.Of(f), empire = Ages.IsEmpire(f) };
             v.overall = StanceOf(f);
             v.stance = PerColony(v.overall);
             var mem = FactionMemory.Instance;
@@ -454,6 +452,7 @@ namespace ColonyCouncil
                 v.role = reg != null ? "regular" : dep != null ? "departed" : pairs.Count > 0 ? "visitor" : null;
             }
             v.trade = reg?.kind;
+            v.royal = pawn != null && !pawn.Discarded ? WorldMechanics.Title(pawn) : null;
             Met(v, n, pairs, reg, dep);
             v.recent = History.Of(r, max: RecentEvents);
             return v;
