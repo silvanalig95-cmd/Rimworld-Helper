@@ -15,6 +15,24 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.77.1, stage 1 review: fixes. The two hooks on the game's
+  `SettlementDefeatUtility.CheckDefeated` (`Patch_RiseFallDefeated`, `Patch_TradingPostRazed`) stand down at once for a
+  town with no map: the game calls it for every town every 15 ticks (every tick with the world open), and the posts'
+  hook walked every home's posts each time (`RiseFallTests` checks both). Raiders' camps switched off (0%): a hidden
+  camp is no longer found (`TryFind`, `TryWarn`), so no threat letter promises raids that never come; it goes quietly
+  after its 60 days. A trading post whose home's records were carried far away (a gravship landed elsewhere, the colony
+  settled anew: `ColonyBook`'s carried entry) ends as a post in the region's day (`TradingPostMath.StaysNear`: the home's
+  layer and the region map's reach), instead of blocking that home's posts for good and being told as near. A hamlet's
+  settlers who give up before it stands while their people are not at war with the colony (the place taken and no other
+  found, their people fallen apart) are told so (`CC_Hamlet_End_NoPlace`), not "their people and the colony are at war".
+  A settler the colony took prisoner, enslaved or took in is no longer one of the hamlet's settlers (`HamletHome.Living`):
+  before, the caravan's pickup took a prisoner out of the colony's cells and off the map with the rest, and such a
+  leader could found the hamlet and head it from a cell. A follow-up whose day failed with an error lets its person go
+  from the world's keep too (it stayed kept for good).
+  Not changed, to look at in game: a raid from a camp whose side has no edge cell to walk in from comes from anywhere
+  while its letter names the camp's side; a post given up for hard times by rise and fall ends its record without a
+  closing of its own in the history; a recruited warlord's son still names his camp and still counts against its raids'
+  points.
 - 0.77.0, stage 1 release 6, the hamlet (item 6, decisions 4 and 9 to 11): `World/Region/HamletMath.cs` (pure, `HamletTests`),
   `Hamlet.cs` (`HamletHome` on `RegionHome.hamlet`, `Hamlets`: day and hour, looks, the ways in, ends, `KeepFor.Hamlet`),
   `HamletPlace.cs` (6 to 10 tiles by the posts' rules, `WhyNotHere` for the world targeter), `HamletAsk.cs`

@@ -192,6 +192,15 @@ namespace ColonyCouncil
                     {
                         CouncilLog.ErrorOnce("follow-ups: the day", e);
                         mine.waiting.Remove(f);
+                        // Its person is let go too, so a follow-up that failed doesn't keep them in the world for good.
+                        try
+                        {
+                            Release(f);
+                        }
+                        catch (Exception e2)
+                        {
+                            CouncilLog.ErrorOnce("follow-ups: letting go after a failed day", e2);
+                        }
                     }
                 }
             }

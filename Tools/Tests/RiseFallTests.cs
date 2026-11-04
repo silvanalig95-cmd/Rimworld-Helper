@@ -169,6 +169,10 @@ public static class RiseFallTests
         string patches = Code("World/Region/RiseFallPatches.cs");
         C(patches.Contains("nameof(SettlementDefeatUtility.CheckDefeated)") && patches.Contains("!factionBase.Destroyed") && !patches.Contains("return false;"),
             "a town defeated is only noted (the game's own defeat runs as before)");
+        // The game asks every town whether it is defeated every few ticks (every tick with the world open): both hooks stand
+        // down at once for a town with no map, as the game's own first check does.
+        string postPatches = Code("World/Region/TradingPostPatches.cs");
+        C(Regex.Matches(patches + postPatches, @"!factionBase\.HasMap\) return;").Count == 2, "the defeat hooks look only at a town with a map (a hot method)");
         C(patches.Contains("parms.faction != null") && patches.Contains("if (!any || can.Count == 0) return;"), "a caravan whose people is chosen is left alone; with no fortune to weigh, the game picks");
         C(Regex.Matches(patches, @"RimfolkPatches\.On").Count >= 3, "every hook stands down with the deeper game hooks off");
 

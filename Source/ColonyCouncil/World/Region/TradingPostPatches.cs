@@ -17,7 +17,8 @@ namespace ColonyCouncil
         public static void Prefix(Settlement factionBase, out (int id, Faction people, string name) __state)
         {
             __state = (-1, null, null);
-            if (factionBase == null || factionBase.Faction == null || factionBase.Faction.IsPlayer || !RimfolkPatches.On) return;
+            // The game asks this of every town every few ticks; only a town with a map can be defeated, as the game's own first check says.
+            if (factionBase == null || factionBase.Faction == null || factionBase.Faction.IsPlayer || !RimfolkPatches.On || !factionBase.HasMap) return;
             try
             {
                 if (TradingPosts.PostAt(factionBase.ID, out _) == null) return;

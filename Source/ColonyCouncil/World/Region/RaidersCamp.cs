@@ -356,7 +356,8 @@ namespace ColonyCouncil
             switch (c.stage)
             {
                 case CampStage.Hidden:
-                    TryFind(home, rh, c, now);
+                    // Switched off, a camp not yet seen stays unseen (its letter would promise raids that never come) and goes in time.
+                    if (On) TryFind(home, rh, c, now);
                     return;
                 case CampStage.Paying:
                     if (PaidUp(c)) End(home, rh, c, CampEnd.Paid, null);
@@ -382,8 +383,8 @@ namespace ColonyCouncil
             if (c.stage == CampStage.Hidden)
             {
                 if (RaidersCampMath.GivesUp(0, c.setAt, now)) End(home, rh, c, CampEnd.Gone, null);
-                // Found another way: a visitor who came past it, or a neighbour's letter (RaidersCampWarnings.cs).
-                else TryWarn(home, c, now);
+                // Found another way: a visitor who came past it, or a neighbour's letter (RaidersCampWarnings.cs); not while switched off.
+                else if (On) TryWarn(home, c, now);
                 return;
             }
             if (RaidersCampMath.GivesUp(c.beaten, c.setAt, now))

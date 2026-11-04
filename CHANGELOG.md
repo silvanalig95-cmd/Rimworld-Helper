@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The region, checked over
+
+*4 November 2026, version 0.77.1*
+
+- Fixed: the game no longer slows down with the world map open: two of the region's hooks looked at every town many times a second, and now look only at a town under attack.
+- Fixed: with raiders' camps switched off, a camp already set up in secret is no longer found, so no letter warns of raids that will never come.
+- Fixed: a trading post no longer stays tied to a colony that moved far away by gravship or settled anew; the new home can get posts of its own.
+- Fixed: settlers who could not found their hamlet because the place was taken no longer say their people are at war with the colony.
+- Fixed: a settler you take prisoner, enslave or take in no longer vanishes from your cells when the caravan takes the others to their hamlet, and never founds it from a cell.
+
 ## A hamlet under your protection
 
 *4 November 2026, version 0.77.0*

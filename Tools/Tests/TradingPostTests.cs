@@ -104,6 +104,13 @@ public static class TradingPostTests
         C(!TradingPostMath.CloseDue(0, 10 * D, 19 * D) && TradingPostMath.CloseDue(0, 10 * D, 20 * D) && !TradingPostMath.CloseDue(0, -1, 40 * D) && !TradingPostMath.CloseDue(-1, 10 * D, 40 * D),
             "it closes ten days after the warning while still sour; never unwarned");
         C(TradingPostMath.Mended(-1, 10 * D) && !TradingPostMath.Mended(0, 10 * D) && !TradingPostMath.Mended(-1, -1), "mended: no longer sour after a warning");
+
+        // ---------------- Its home far away ----------------
+
+        C(TradingPostMath.StaysNear(true, 6f, 35f) && TradingPostMath.StaysNear(true, 35f, 35f) && TradingPostMath.StaysNear(true, 12f, 20f),
+            "a post 6 to 12 tiles off stays its home's at any reach the setting allows");
+        C(!TradingPostMath.StaysNear(true, 48f, 35f) && !TradingPostMath.StaysNear(false, 8f, 35f) && !TradingPostMath.StaysNear(true, -1f, 35f),
+            "the home's records carried far away (a gravship, a colony settled anew) or to another layer: no longer its post");
         SimulateSouring(C);
 
         // ---------------- What it does ----------------
@@ -153,6 +160,7 @@ public static class TradingPostTests
         C(run.Contains("WorldObjectDefOf.Settlement") && run.Contains("SettlementNameGenerator.GenerateSettlementName"), "the game's own town, named by their naming rule and their age");
         C(run.Contains("SituationWorker_Abandoned.Safe(t)") && run.Contains("RiseFall.MakeRuin("), "it closes through the region's giving up, when safe (a ruin left)");
         C(run.Contains("rec.kind = TownKind.Post") && run.Contains("TradingPostMath.Start"), "on the ledger as a post, its fortune from 40");
+        C(run.Contains("TradingPostMath.StaysNear(sameLayer,") && run.Contains("RegionTowns.ReachTiles))"), "a post its home has moved away from ends as a post, the region's day sees to it");
         C(run.Contains("NotableBook.StaffPost(") && Code("World/Notables.cs").Contains("public partial class NotableBook")
           && Code("World/Notables.cs").Contains("TradingPosts.KeeperTitle(n)"), "its keeper and trader are notables at once, the keeper titled by their age");
         C(run.Contains("HistoryMath.Milestone") && run.Contains("TradingPostMath.KindOpened"), "its opening is a milestone in the history");
