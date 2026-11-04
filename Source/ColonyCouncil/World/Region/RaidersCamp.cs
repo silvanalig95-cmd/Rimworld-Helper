@@ -521,7 +521,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whose territory (Faction Territories, through the world mechanics) lies within RaidersCampMath.TerritoryTiles of
-        /// the home, each with its nearest tile. Straight-line distances inside the flood fill; nothing without such a mod.
+        /// the home, each with its nearest tile. Straight-line distances inside the flood fill; nothing without such a mod
+        /// (each tile's look is then a quick "nobody"). Asked at most once a look, only for a people not near by its towns.
         /// </summary>
         private static Dictionary<Faction, float> Territories(Map home)
         {
@@ -529,7 +530,6 @@ namespace ColonyCouncil
             try
             {
                 var root = home.Tile;
-                if (WorldMechanics.TerritoryOwner(root) == null && !AnyOwned(root)) return found;
                 var grid = Find.WorldGrid;
                 float max = RaidersCampMath.TerritoryTiles;
                 Action<PlanetTile, int> each = (t, _) =>
@@ -546,17 +546,6 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("raiders' camp: territories near a home", e);
             }
             return found;
-        }
-
-        /// <summary>Some tile next to the home is anyone's territory: worth a full look.</summary>
-        private static bool AnyOwned(PlanetTile root)
-        {
-            var near = new List<PlanetTile>();
-            root.Layer.GetTileNeighbors(root, near);
-            foreach (var t in near)
-                if (WorldMechanics.TerritoryOwner(t) != null)
-                    return true;
-            return false;
         }
 
         /// <summary>
@@ -718,7 +707,8 @@ namespace ColonyCouncil
             if (c?.people == null || !tile.Valid || SitePartDefOf.BanditCamp == null) return null;
             try
             {
-                if (Find.WorldObjects.AnyWorldObjectAt(tile)) return null;
+                // A place on the tile (a town, another site) takes it; the colony's own caravan standing there after the fight doesn't.
+                if (Find.WorldObjects.AnyMapParentAt(tile)) return null;
                 var site = SiteMaker.MakeSite(SitePartDefOf.BanditCamp, tile, c.people, true, points);
                 if (site == null) return null;
                 site.customLabel = c.label;

@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 485; modelled: 485; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,427 KB** after a year, **2,882 KB** after two, **3,049 KB** after five.
+Rimfolk's part of the save, roughly: **2,428 KB** after a year, **2,883 KB** after two, **3,051 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -200,6 +200,7 @@ Rimfolk's part of the save, roughly: **2,427 KB** after a year, **2,882 KB** aft
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
+| `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) and the last word given to keep away; a lost home's kept 30 days, its camp gone with it | fixed | 1 | 1 | 1 | 1.1 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
@@ -384,7 +385,6 @@ Rimfolk's part of the save, roughly: **2,427 KB** after a year, **2,882 KB** aft
 | `Annals.cs:threatSeen` | each home's last big threat counted, one per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Happenings/Happenings.cs:timers` | Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it | fixed | 1 | 1 | 1 | 0.1 |
 | `Setbacks/SetbackTracker.cs:lastGathering` | one per home map | fixed | 1 | 1 | 1 | 0.1 |
-| `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 0.1 |
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
