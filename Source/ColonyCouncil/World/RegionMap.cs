@@ -461,11 +461,45 @@ namespace ColonyCouncil
             if (index < 0 || index >= Count) return null;
             try
             {
-                var tile = layer[ids[index]];
+                var lines = LandLines(layer[ids[index]], water[index]);
+                if (withDistance)
+                {
+                    int tiles = Mathf.RoundToInt(TilesFromHome(index));
+                    lines.Add(tiles == 0 ? "CC_Region_HomeTile".Translate().ToString() : "CC_Region_TilesAway".Translate(tiles).Resolve());
+                }
+                return string.Join("\n", lines);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("region map tile text", e);
+                return null;
+            }
+        }
+
+        /// <summary>What a tile of the planet is, without a map drawn around it (a place's card): its land, climate, rivers and roads.</summary>
+        public static string LandText(PlanetTile pt)
+        {
+            if (!pt.Valid) return null;
+            try
+            {
+                var tile = Find.WorldGrid[pt];
+                TileColour(tile, out bool wet, out _);
+                return string.Join("\n", LandLines(tile, wet));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a tile's land in words", e);
+                return null;
+            }
+        }
+
+        private static List<string> LandLines(Tile tile, bool wet)
+        {
+            {
                 var lines = new List<string>();
                 string biome = tile.PrimaryBiome?.LabelCap.ToString() ?? "?";
                 var hills = HillsOf(tile);
-                lines.Add(hills == Hilliness.Undefined || water[index] ? biome : "CC_Region_Land".Translate(biome, HillinessUtility.GetLabel(hills)).Resolve());
+                lines.Add(hills == Hilliness.Undefined || wet ? biome : "CC_Region_Land".Translate(biome, HillinessUtility.GetLabel(hills)).Resolve());
                 string feature = tile.feature?.name, landmark = tile.Landmark?.name;
                 if (!feature.NullOrEmpty()) lines.Add(feature);
                 if (!landmark.NullOrEmpty() && landmark != feature) lines.Add(landmark);
@@ -483,17 +517,7 @@ namespace ColonyCouncil
                             if (l.road != null && !roads.Contains(l.road.LabelCap)) roads.Add(l.road.LabelCap);
                     if (roads.Count > 0) lines.Add("CC_Region_Road".Translate(TextUtil.JoinAnd(roads)).Resolve());
                 }
-                if (withDistance)
-                {
-                    int tiles = Mathf.RoundToInt(TilesFromHome(index));
-                    lines.Add(tiles == 0 ? "CC_Region_HomeTile".Translate().ToString() : "CC_Region_TilesAway".Translate(tiles).Resolve());
-                }
-                return string.Join("\n", lines);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("region map tile text", e);
-                return null;
+                return lines;
             }
         }
 

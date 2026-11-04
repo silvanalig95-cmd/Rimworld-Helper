@@ -70,6 +70,7 @@ namespace ColonyCouncil
                 case "Build": BuildPanel.Draw(content, map); break;
                 case "Rooms": RoomsPanel.Draw(content, map); break;
             }
+            Nav.Observe(RimfolkWindow.Planning, page, ThingRef.None);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = Color.white;

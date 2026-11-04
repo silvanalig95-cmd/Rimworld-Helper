@@ -976,8 +976,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Where a journey is planned from: a section on the Decrees page and the region window's Journeys page (the plan in words, and its buttons),
-    /// and on the region map, "Plan a journey here" for a town (in <see cref="NeighbourPanel.Sections"/>) and for any
-    /// other place (in <see cref="NeighbourPanel.PlaceSections"/>).
+    /// and "Plan a journey here", an act of every place's card but the colony's homes (UI/Cards/CardSections.cs, CardActs).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class JourneyPanel
@@ -986,8 +985,28 @@ namespace ColonyCouncil
 
         static JourneyPanel()
         {
-            NeighbourPanel.Sections.Add((r, s) => Here(r, s.Tile, s));
-            NeighbourPanel.PlaceSections.Add(Here);
+            // It was a button in the region map's panel for a town and for any other place.
+            CardActs.Register(CardKind.Place, r => HereLabel(ThingRefs.TileOf(r)), r => HereWhyNot(ThingRefs.TileOf(r)),
+                r => PlanTo(ThingRefs.TileOf(r), ThingRefs.WorldObject(r)), r => JourneyBook.On && ThingRefs.TileOf(r).Valid && CardSections.HomeOf(r) == null,
+                20f, "CC_Journey_Here_Tip".Translate(), "journey");
+        }
+
+        /// <summary>The act's words: plan a journey here, make it the plan's destination, or open the plan that goes here.</summary>
+        public static string HereLabel(PlanetTile tile)
+        {
+            var plan = JourneyBook.PlanAt(Dialog_JourneyPlan.HomeMap());
+            return Dialog_JourneyPlan.Draft != null ? "CC_Journey_HereDraft".Translate()
+                : plan != null && plan.destTile == tile.tileId ? "CC_Journey_HereOpen".Translate()
+                : "CC_Journey_Here".Translate();
+        }
+
+        /// <summary>Why no journey can be planned there now, or null.</summary>
+        public static string HereWhyNot(PlanetTile tile) => !JourneyBook.On ? "CC_JourneysPg_Off".Translate().ToString() : !tile.Valid ? "CC_Card_Why_NoPlace".Translate().ToString() : null;
+
+        /// <summary>The journey planner, with this place as where to.</summary>
+        public static void PlanTo(PlanetTile tile, WorldObject wo)
+        {
+            if (tile.Valid) Dialog_JourneyPlan.OpenTo(tile, wo);
         }
 
         /// <summary>The journey section of a page: returns the height used (with the gap under it).</summary>
@@ -1031,18 +1050,5 @@ namespace ColonyCouncil
             return text + " " + ("CC_Journey_Stage_" + plan.stage).Translate().Resolve();
         }
 
-        /// <summary>On the region map: a button to plan a journey to this place (or make it the destination of the plan being made).</summary>
-        public static float Here(Rect rect, PlanetTile tile, WorldObject wo)
-        {
-            if (!JourneyBook.On || !tile.Valid) return 0f;
-            var plan = JourneyBook.PlanAt(Dialog_JourneyPlan.HomeMap());
-            string label = Dialog_JourneyPlan.Draft != null ? "CC_Journey_HereDraft".Translate()
-                : plan != null && plan.destTile == tile.tileId ? "CC_Journey_HereOpen".Translate()
-                : "CC_Journey_Here".Translate();
-            var r = new Rect(rect.x, rect.y, Mathf.Min(rect.width, 260f), 28f);
-            TooltipHandler.TipRegion(r, "CC_Journey_Here_Tip".Translate());
-            if (Widgets.ButtonText(r, label)) Dialog_JourneyPlan.OpenTo(tile, wo);
-            return 32f;
-        }
     }
 }

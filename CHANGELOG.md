@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Names that lead somewhere
+
+*4 November 2026, version 0.82.0*
+
+- Every name in the region window now leads somewhere: click a town, a person, a people, a family, a debt or a line of the history and its card opens in a drawer beside what you were looking at.
+- Every card has the same parts in the same order: what is happening now, its people, its ties, what was said, its story with a link to its whole history, and what the colony can do, each act greyed with the reason when it can't be done.
+- On the region map the drawer is the map's panel: picking a town opens its card, and the small world button on a place's card still shows it in the game's world view.
+- Rest the mouse on a name for a moment and a small preview says who or what it is; move into it to keep it open. The settings under Names and cards set the pause or turn previews off.
+- Back and forward arrows in every Rimfolk window's corner retrace the pages, filters and cards you opened; two keys can be bound, and a mouse's side buttons work where the system reports them.
+- Show on the trading posts, hamlets, raiders' camps and journeys pages and on This week now opens the place on the region map with its card, instead of the game's world view.
+
 ## More than one place to gather
 
 *4 November 2026, version 0.81.1*

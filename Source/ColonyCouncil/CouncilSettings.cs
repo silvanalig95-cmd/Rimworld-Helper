@@ -439,6 +439,10 @@ namespace ColonyCouncil
         public CouncilOpensOn councilOpensOn = CouncilOpensOn.LastPage;
         /// <summary>How many tiles each way from the colony the region map shows (UI/RegionMapView.cs), also set at the top of the map.</summary>
         public int regionMapRadius = 35;
+        /// <summary>A name in Rimfolk's windows shows a small preview of its card when the mouse rests on it (UI/Cards/Previews.cs).</summary>
+        public bool linkPreviews = true;
+        /// <summary>How long the mouse rests on a name before its preview shows, in seconds.</summary>
+        public float linkPreviewDelay = 0.35f;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
@@ -725,6 +729,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref moodDetails, "moodDetails", false);
             Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.LastPage);
             Scribe_Values.Look(ref regionMapRadius, "regionMapRadius", 35);
+            Scribe_Values.Look(ref linkPreviews, "linkPreviews", true);
+            Scribe_Values.Look(ref linkPreviewDelay, "linkPreviewDelay", 0.35f);
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 councilPageState ??= new System.Collections.Generic.List<string>();

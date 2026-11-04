@@ -41,6 +41,10 @@ namespace ColonyCouncil
         public static readonly Texture2D Dilemmas = Load("Dilemmas");
         public static readonly Texture2D Defenses = Load("Defenses");
 
+        // The corner's way back and forward (UI/Cards/Nav.cs)
+        public static readonly Texture2D Back = Load("Back");
+        public static readonly Texture2D Forward = Load("Forward");
+
         // Markers
         public static readonly Texture2D Pin = Load("Pin");
         public static readonly Texture2D More = Load("More");
@@ -164,7 +168,7 @@ namespace ColonyCouncil
     /// language (dark panels, white and gray text, small accents, tinted white icons).
     /// </summary>
     [StaticConstructorOnStartup]
-    public static class UiKit
+    public static partial class UiKit
     {
         // ---------------- Palette ----------------
 
@@ -821,8 +825,11 @@ namespace ColonyCouncil
             return w;
         }
 
-        /// <summary>A faction's icon in its color, and its name. Returns the width used.</summary>
-        public static float FactionChip(float x, float y, Faction f, float height = 22f, float maxWidth = 220f)
+        /// <summary>
+        /// A faction's icon in its color, and its name. Returns the width used. With <paramref name="link"/> (Rimfolk's
+        /// windows that open cards), its name is a link: a preview after a pause, its people's card on a click.
+        /// </summary>
+        public static float FactionChip(float x, float y, Faction f, float height = 22f, float maxWidth = 220f, bool link = false)
         {
             if (f == null) return 0f;
             Texture2D icon = null;
@@ -843,9 +850,25 @@ namespace ColonyCouncil
             var r = new Rect(x, y, w, height);
             Widgets.DrawBoxSolidWithOutline(r, WithAlpha(color, 0.1f), WithAlpha(color, 0.35f), 1);
             if (icon != null) Icon(new Rect(x + 3f, y + 2f, height - 4f, height - 4f), icon, color);
+            var thing = link && !f.IsPlayer ? ThingRefs.Of(f) : ThingRef.None;
+            bool over = !thing.IsNone && Mouse.IsOver(r);
             Text.Anchor = TextAnchor.MiddleLeft;
+            if (!thing.IsNone) GUI.color = over ? LinkHot : Link;
             Widgets.Label(new Rect(x + height + 4f, y, w - height - 6f, height), name);
+            GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
+            if (!thing.IsNone)
+            {
+                LinkText.Underline(x + height + 4f, y + height - 4f, Mathf.Min(Text.CalcSize(name).x - 4f, w - height - 8f), over);
+                if (over) Previews.Hover(thing, r);
+                if (Widgets.ButtonInvisible(r, false))
+                {
+                    Cards.Click();
+                    Cards.Open(thing);
+                }
+                // With previews off, the plain tooltip it always had.
+                if (Previews.On) return w;
+            }
             var faction = f;
             TooltipHandler.TipRegion(r, () => FactionTip(faction), f.loadID ^ 0x3F11);
             return w;

@@ -26,12 +26,10 @@ namespace ColonyCouncil
 
         public static readonly string[] Kinds = { GivenUpKind, FellKind, FadedKind, ResettledKind };
 
-        private static readonly Color Accent = new Color(0.78f, 0.86f, 0.7f);
-
         static RiseFallWords()
         {
-            NeighbourPanel.PlaceSections.Add(DrawRuin);
-            NeighbourPanel.Sections.Add(DrawClosing);
+            CardSections.PlaceLines(CardSlot.Now, 20f, RuinPanel, "CC_RiseFall_Panel_Header", "ruin");
+            CardSections.TownLines(CardSlot.Now, 10f, ClosingPanel, "CC_RiseFall_Panel_LeavingHeader", "closing");
         }
 
         private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
@@ -138,46 +136,37 @@ namespace ColonyCouncil
             return lines;
         }
 
-        private static float DrawRuin(Rect rect, PlanetTile tile, WorldObject wo)
+        /// <summary>A ruin Rimfolk keeps, on its card: what town it was, how it was given up or taken, whether it may be built again.</summary>
+        private static List<string> RuinPanel(PlanetTile tile, WorldObject wo)
         {
-            if (!(wo is AbandonedSettlement)) return 0f;
+            if (!(wo is AbandonedSettlement)) return null;
             try
             {
                 var r = RiseFall.RuinOf(wo);
-                return r == null ? 0f : Draw(rect, RuinLines(r), "CC_RiseFall_Panel_Header");
+                return r == null ? null : RuinLines(r);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("rise and fall: a ruin's panel", e);
-                return 0f;
+                return null;
             }
         }
 
-        /// <summary>A town whose people are giving it up: one line under its own.</summary>
-        private static float DrawClosing(Rect rect, Settlement s)
+        /// <summary>A town whose people are giving it up: one line on its card, the town they go to a link.</summary>
+        private static List<string> ClosingPanel(Settlement s)
         {
-            if (s == null || !RiseFall.On || !RiseFall.IsClosing(s.ID)) return 0f;
+            if (s == null || !RiseFall.On || !RiseFall.IsClosing(s.ID)) return null;
             try
             {
                 var next = RiseFall.NextTown(s);
-                string line = next != null ? T("CC_RiseFall_Panel_Leaving", next.Name.Named("NEXT")) : T("CC_RiseFall_Panel_Leaving_NoNext");
-                return Draw(rect, new List<string> { line }, "CC_RiseFall_Panel_LeavingHeader");
+                string line = next != null ? T("CC_RiseFall_Panel_Leaving", ThingRefs.Link(next.Name, ThingRefs.Of(next)).Named("NEXT")) : T("CC_RiseFall_Panel_Leaving_NoNext");
+                return new List<string> { line };
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("rise and fall: a town being given up, its panel", e);
-                return 0f;
+                return null;
             }
-        }
-
-        private static float Draw(Rect rect, List<string> lines, string header)
-        {
-            if (lines == null || lines.Count == 0) return 0f;
-            float y = rect.y;
-            UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), header.Translate(), Accent);
-            y += 24f;
-            foreach (var l in lines) y += UiKit.Paragraph(rect.x, y, rect.width, l, Color.white, GameFont.Small) + 2f;
-            return y + 2f - rect.y;
         }
 
         /// <summary>The inspect pane of a ruin Rimfolk keeps: "Once Ashford of the Lenlia, given up 40 days ago."</summary>

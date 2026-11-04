@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -74,7 +75,9 @@ namespace ColonyCouncil
         /// <summary>Everything (the council window's People roster).</summary>
         All,
         /// <summary>The Story tab: without what the Culture tab shows, and without what the Social tab's column shows while it's on.</summary>
-        StoryTab
+        StoryTab,
+        /// <summary>Everything, as in the roster, for a colonist's card (UI/Cards/), with a model of its own so both can show at once.</summary>
+        Card
     }
 
     /// <summary>
@@ -117,7 +120,7 @@ namespace ColonyCouncil
             public List<Section> sections;
         }
 
-        private static readonly Cache[] caches = { new Cache(), new Cache() };
+        private static readonly Cache[] caches = { new Cache(), new Cache(), new Cache() };
 
         /// <summary>Forget the last game's colonist (called when a game loads).</summary>
         public static void Reset()
@@ -130,11 +133,13 @@ namespace ColonyCouncil
             }
         }
 
-        public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height, Folds folds = null, StoryParts parts = StoryParts.All)
+        /// <param name="after">Draws more at the foot of the story, inside its scroll view: (y, width) to the height used (a colonist's card's own sections).</param>
+        public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height, Folds folds = null, StoryParts parts = StoryParts.All,
+            Func<float, float, float> after = null)
         {
             var comp = CouncilGameComponent.Instance;
             if (p == null || comp == null) return;
-            var cache = caches[parts == StoryParts.StoryTab ? 1 : 0];
+            var cache = caches[(int)parts];
             // The social parts move to the Social tab's column only while it can show.
             bool socialElsewhere = parts == StoryParts.StoryTab && SocialColumn.Available;
             float time = Time.realtimeSinceStartup;
@@ -181,6 +186,17 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(new Dialog_Journal(section.journal));
                 if (section.journal != null) y += 30f;
                 y += 8f;
+            }
+            if (after != null)
+            {
+                try
+                {
+                    y += after(y, view.width);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("a colonist's story: what comes after it", e);
+                }
             }
             height = Mathf.Max(y, 100f);
             Widgets.EndScrollView();

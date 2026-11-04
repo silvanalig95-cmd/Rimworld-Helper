@@ -29,6 +29,11 @@ namespace ColonyCouncil
         /// <summary>For a placeholder, the fact behind it ("ws:12", "war:5"), so a mark can follow what became of it.</summary>
         public readonly Dictionary<string, string> refs = new Dictionary<string, string>();
         public readonly Dictionary<string, float> heat = new Dictionary<string, float>();
+        /// <summary>
+        /// For a placeholder that names a thing with a card (a town, a people, a person), the thing in its text form ("t55"),
+        /// so text drawn in Rimfolk's own windows can be filled with it as a link (Texts.Fill with links); the game's never is.
+        /// </summary>
+        public readonly Dictionary<string, string> things = new Dictionary<string, string>();
         public readonly List<MarkFacts> marks = new List<MarkFacts>();
         /// <summary>Real things near the place as someone there would tell of them, finished lines (the provider "news").</summary>
         public readonly List<string> news = new List<string>();
@@ -47,6 +52,13 @@ namespace ColonyCouncil
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value)) return;
             values[key] = value;
             if (fact != null) refs[key] = fact;
+        }
+
+        /// <summary>The thing a placeholder's value names (its text form, "t55"), for a linked fill.</summary>
+        public void Thing(string key, string thing)
+        {
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(thing) || !values.ContainsKey(key)) return;
+            things[key] = thing;
         }
     }
 }

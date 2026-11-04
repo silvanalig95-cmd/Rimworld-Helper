@@ -38,8 +38,11 @@ namespace ColonyCouncil
         private const float LinkSize = 24f;
         private const float LinkGap = 6f;
 
-        /// <summary>The corner's width: four icons and the space around them.</summary>
-        public static float LinksWidth => PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
+        /// <summary>The back and forward arrows before the windows' icons, and the gap after them.</summary>
+        private const float ArrowsWidth = 2f * (LinkSize + LinkGap) + 8f;
+
+        /// <summary>The corner's width: back and forward, the four windows' icons, and the space around them.</summary>
+        public static float LinksWidth => ArrowsWidth + PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
 
         private static string iconPad;
 
@@ -137,9 +140,15 @@ namespace ColonyCouncil
             return t;
         }
 
-        /// <summary>The four windows' icons, right-aligned in <paramref name="row"/>; the one showing is lit and does nothing.</summary>
+        /// <summary>
+        /// Back and forward (UI/Cards/Nav.cs), then the four windows' icons, right-aligned in <paramref name="row"/>; the
+        /// window showing is lit and does nothing.
+        /// </summary>
         public static void Links(Rect row, RimfolkWindow current)
         {
+            float top = row.y + (row.height - LinkSize) / 2f;
+            float ax = row.xMax - LinksWidth + 4f;
+            Nav.Arrows(new Rect(ax, top, LinkSize, LinkSize), new Rect(ax + LinkSize + LinkGap, top, LinkSize, LinkSize));
             float x = row.xMax - 4f;
             var order = PagesMath.CornerOrder;
             for (int i = order.Length - 1; i >= 0; i--)
@@ -175,5 +184,22 @@ namespace ColonyCouncil
         public abstract RimfolkWindow Which { get; }
 
         public override Vector2 RequestedTabSize => WindowTabs.Size;
+
+        /// <summary>Escape closes a card's drawer first, the window second.</summary>
+        public override void OnCancelKeyPressed()
+        {
+            if (Drawer.Cancel(Which))
+            {
+                Event.current.Use();
+                return;
+            }
+            base.OnCancelKeyPressed();
+        }
+
+        public override void PostClose()
+        {
+            base.PostClose();
+            Previews.Hide();
+        }
     }
 }

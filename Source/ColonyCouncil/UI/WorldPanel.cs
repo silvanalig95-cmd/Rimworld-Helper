@@ -399,7 +399,7 @@ namespace ColonyCouncil
                 {
                     float maxChip = Mathf.Min(220f, w * 0.5f);
                     chipW = UiKit.FactionChipWidth(e.faction, 22f, maxChip);
-                    UiKit.FactionChip(r.xMax - 8f - chipW, cy, e.faction, 22f, maxChip);
+                    UiKit.FactionChip(r.xMax - 8f - chipW, cy, e.faction, 22f, maxChip, true);
                     chipW += 8f;
                 }
                 UiKit.LabelFit(new Rect(x, cy, w - chipW, 22f), e.title, e.color);

@@ -19,11 +19,9 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static class HamletWords
     {
-        private static readonly Color Accent = new Color(0.62f, 0.80f, 0.55f);
-
         static HamletWords()
         {
-            NeighbourPanel.Sections.Add(DrawHamlet);
+            CardSections.TownLines(CardSlot.Now, 30f, PanelLines, "CC_Hamlet_Panel_Header", "hamlet");
         }
 
         private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
@@ -336,26 +334,19 @@ namespace ColonyCouncil
             return lines;
         }
 
-        /// <summary>The region map's panel for a town that is a hamlet: its own section under the town's.</summary>
-        private static float DrawHamlet(Rect rect, Settlement s)
+        /// <summary>A place's card for a town that is a hamlet: its own section in Now (what the region map's panel showed under the town's).</summary>
+        private static List<string> PanelLines(Settlement s)
         {
-            if (s == null) return 0f;
+            if (s == null) return null;
             try
             {
                 var h = Hamlets.HamletAt(s.ID, out var home);
-                if (h == null) return 0f;
-                var lines = Lines(home, h, true);
-                if (lines.Count == 0) return 0f;
-                float y = rect.y;
-                UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), "CC_Hamlet_Panel_Header".Translate(), Accent);
-                y += 24f;
-                foreach (var l in lines) y += UiKit.Paragraph(rect.x, y, rect.width, l, Color.white, GameFont.Small) + 2f;
-                return y + 2f - rect.y;
+                return h == null ? null : Lines(home, h, true);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("hamlets: a hamlet's panel", e);
-                return 0f;
+                return null;
             }
         }
 

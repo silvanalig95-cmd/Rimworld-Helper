@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Every thing's card, the drawer, previews and the way back (Source/ColonyCouncil/UI/Cards/). -->
+
+  <!-- What a thing is, on its card's head -->
+  <CC_Card_Tile>Open land</CC_Card_Tile>
+  <CC_Card_TileSub>a place in the region with nothing built on it</CC_Card_TileSub>
+  <CC_Card_Kind_Town>a town of {PEOPLE}</CC_Card_Kind_Town>
+  <CC_Card_Kind_Post>a trading post of {PEOPLE}</CC_Card_Kind_Post>
+  <CC_Card_Kind_Hamlet>a hamlet of {PEOPLE}</CC_Card_Kind_Hamlet>
+  <CC_Card_Kind_Ruin>the ruin of a town of {PEOPLE}</CC_Card_Kind_Ruin>
+  <CC_Card_NoPeople>a people now gone</CC_Card_NoPeople>
+  <CC_Card_GoneTown>a town of {PEOPLE}, no longer standing</CC_Card_GoneTown>
+  <CC_Card_ColonyHome>a home of the colony</CC_Card_ColonyHome>
+  <CC_Card_Colony>a settlement of the colony</CC_Card_Colony>
+  <CC_Card_TitleOf>{TITLE} of {TOWN}</CC_Card_TitleOf>
+  <CC_Card_TitleOfPeople>{TITLE}, {PEOPLE}</CC_Card_TitleOfPeople>
+  <CC_Card_OneOf>one of {PEOPLE}</CC_Card_OneOf>
+  <CC_Card_Someone>someone out in the world</CC_Card_Someone>
+  <CC_Card_Departed>once one of the colony</CC_Card_Departed>
+  <CC_Card_Dead>dead</CC_Card_Dead>
+  <CC_Card_Prisoner>a prisoner of the colony</CC_Card_Prisoner>
+  <CC_Card_Slave>a slave of the colony</CC_Card_Slave>
+  <CC_Card_Gone>No longer in the world.</CC_Card_Gone>
+  <CC_Card_Leader>their leader</CC_Card_Leader>
+  <CC_Card_HouseOf>a family of {TOWN}</CC_Card_HouseOf>
+  <CC_Card_FoundingHouseOf>a founding family of {TOWN}</CC_Card_FoundingHouseOf>
+  <CC_Card_HeadOfHouse>head of the family</CC_Card_HeadOfHouse>
+  <CC_Card_MembersLine>Others known by name: {MEMBERS}.</CC_Card_MembersLine>
+  <CC_Card_TieBetween>from {FROM} to {TO}</CC_Card_TieBetween>
+  <CC_Card_TieAbout>It concerns {WHO}.</CC_Card_TieAbout>
+  <CC_Card_LetterTo>A letter of {PURPOSE} to {NAME}</CC_Card_LetterTo>
+  <CC_Card_CallTo>A call of {PURPOSE} to {NAME}</CC_Card_CallTo>
+  <CC_Card_LetterFrom>from {PAWN}, {DAY}</CC_Card_LetterFrom>
+  <CC_Card_Days>{FROM} to {TO}</CC_Card_Days>
+  <CC_Card_DayAt>{DAY}, at {PLACE}</CC_Card_DayAt>
+  <CC_Card_Milestone>a milestone</CC_Card_Milestone>
+
+  <!-- Ties by their kind and where they stand -->
+  <CC_Card_TieKind_Favour>A favor owed</CC_Card_TieKind_Favour>
+  <CC_Card_TieKind_Pact>A pact</CC_Card_TieKind_Pact>
+  <CC_Card_TieKind_Truce>A truce</CC_Card_TieKind_Truce>
+  <CC_Card_TieKind_Marriage>A marriage</CC_Card_TieKind_Marriage>
+  <CC_Card_TieKind_Ward>A ward</CC_Card_TieKind_Ward>
+  <CC_Card_TieKind_Hostage>A hostage</CC_Card_TieKind_Hostage>
+  <CC_Card_TieKind_Fealty>Fealty</CC_Card_TieKind_Fealty>
+  <CC_Card_TieKind_Grudge>A grudge</CC_Card_TieKind_Grudge>
+  <CC_Card_TieKind_Debt>A debt</CC_Card_TieKind_Debt>
+  <CC_Card_TieKind_Promise>A promise</CC_Card_TieKind_Promise>
+  <CC_Card_TieKind_Regard>Regard</CC_Card_TieKind_Regard>
+  <CC_Card_TieKind_Claim>A claim</CC_Card_TieKind_Claim>
+  <CC_Card_TieKind_Secret>A secret</CC_Card_TieKind_Secret>
+  <CC_Card_TieKind_Scheme>A scheme</CC_Card_TieKind_Scheme>
+  <CC_Card_TieState_Open>open, made {AGO}</CC_Card_TieState_Open>
+  <CC_Card_TieState_CalledIn>called in, made {AGO}</CC_Card_TieState_CalledIn>
+  <CC_Card_TieState_Kept>kept, {AGO}</CC_Card_TieState_Kept>
+  <CC_Card_TieState_Broken>broken, {AGO}</CC_Card_TieState_Broken>
+  <CC_Card_TieState_Ended>ended, {AGO}</CC_Card_TieState_Ended>
+
+  <!-- Who took part in an entry of the history -->
+  <CC_Card_Role_Did>did it</CC_Card_Role_Did>
+  <CC_Card_Role_For>for them</CC_Card_Role_For>
+  <CC_Card_Role_Against>against them</CC_Card_Role_Against>
+  <CC_Card_Role_About>about them</CC_Card_Role_About>
+  <CC_Card_Role_With>with them</CC_Card_Role_With>
+
+  <!-- Section headings -->
+  <CC_Card_Head_Letter>A letter on its way</CC_Card_Head_Letter>
+  <CC_Card_Head_Known>Who of the colony knows them</CC_Card_Head_Known>
+  <CC_Card_Head_Remembers>What they remember of the colony</CC_Card_Head_Remembers>
+  <CC_Card_Head_TheyRemember>What they remember</CC_Card_Head_TheyRemember>
+  <CC_Card_Head_Theirs>Their leader and their towns</CC_Card_Head_Theirs>
+  <CC_Card_Head_Members>The family</CC_Card_Head_Members>
+  <CC_Card_Head_TookPart>Who took part</CC_Card_Head_TookPart>
+  <CC_Card_Head_About>What it is about</CC_Card_Head_About>
+  <CC_Card_Head_Founding>How it began</CC_Card_Head_Founding>
+  <CC_Card_Head_Story>Story</CC_Card_Head_Story>
+  <CC_Card_NoHistory>Nothing of it is in the history yet.</CC_Card_NoHistory>
+  <CC_Card_WholeHistory>Its whole history ({COUNT})</CC_Card_WholeHistory>
+  <CC_Card_Nothing>The colony knows little of it yet.</CC_Card_Nothing>
+  <CC_Card_NoteLine>{TEXT} ({AGO})</CC_Card_NoteLine>
+  <CC_Card_KnowsLine>Known to {NAMES}.</CC_Card_KnowsLine>
+
+  <!-- Steps of something under way (never a time left) -->
+  <CC_Card_Step_Written>written</CC_Card_Step_Written>
+  <CC_Card_Step_Road>on the road</CC_Card_Step_Road>
+  <CC_Card_Step_Arrived>arrived</CC_Card_Step_Arrived>
+  <CC_Card_Step_Answered>answered</CC_Card_Step_Answered>
+  <CC_Card_Step_Calling>calling</CC_Card_Step_Calling>
+  <CC_Card_Step_Through>message left</CC_Card_Step_Through>
+
+  <!-- Acts at a card's foot -->
+  <CC_Card_Act_Roster>Open in People</CC_Card_Act_Roster>
+  <CC_Card_Act_Jump>Go to them</CC_Card_Act_Jump>
+  <CC_Card_Act_Town>Their town</CC_Card_Act_Town>
+  <CC_Card_Act_WriteThere>Write to the town</CC_Card_Act_WriteThere>
+  <CC_Card_Act_WriteThere_Tip>Write to {NAME}, or to someone else the colony knows there.</CC_Card_Act_WriteThere_Tip>
+  <CC_Card_Act_People>Their people</CC_Card_Act_People>
+  <CC_Card_Act_InHistory>In the history</CC_Card_Act_InHistory>
+  <CC_Card_Act_Letters>Letters and calls</CC_Card_Act_Letters>
+  <CC_Card_Act_More>More</CC_Card_Act_More>
+  <CC_Card_WhyLine>{ACT}: {WHY}</CC_Card_WhyLine>
+  <CC_Card_Why_NotOnMap>{NAME} is not on a map.</CC_Card_Why_NotOnMap>
+  <CC_Card_Why_NoPlace>That place is not on the world any more.</CC_Card_Why_NoPlace>
+
+  <!-- The drawer, the floating card, previews -->
+  <CC_Card_CloseTip>Close the card.</CC_Card_CloseTip>
+  <CC_Card_WorldViewTip>See it in the game's world view.</CC_Card_WorldViewTip>
+  <CC_Card_OpenInWindow>Open in its window</CC_Card_OpenInWindow>
+  <CC_Card_PreviewHint>Click to open its card. Move here to keep this open.</CC_Card_PreviewHint>
+
+  <!-- Back and forward -->
+  <CC_Nav_Back>Back</CC_Nav_Back>
+  <CC_Nav_BackTip>Back to {WHERE}</CC_Nav_BackTip>
+  <CC_Nav_ForwardTip>Forward to {WHERE}</CC_Nav_ForwardTip>
+  <CC_Nav_PageCard>{PAGE}, {CARD}</CC_Nav_PageCard>
+
+  <!-- Settings -->
+  <CC_SetSec_Links>Names and cards</CC_SetSec_Links>
+  <CC_Settings_LinkPreviews>Previews of names</CC_Settings_LinkPreviews>
+  <CC_Settings_LinkPreviews_Tip>In Rimfolk's windows, a name rested on for a moment shows a small card: who or what it is and what matters about it now. Move the mouse into it to keep it open, and click it to open the whole card. Off, a name still opens its card on a click.</CC_Settings_LinkPreviews_Tip>
+  <CC_SetNote_LinkPreviews>Rest the mouse on a name in Rimfolk's windows: a small card says who or what it is.</CC_SetNote_LinkPreviews>
+  <CC_Settings_LinkPreviewDelay>Pause before a preview: {0} seconds</CC_Settings_LinkPreviewDelay>
+  <CC_SetNote_LinkPreviewDelay>How long the mouse rests on a name before its preview shows.</CC_SetNote_LinkPreviewDelay>
+
+</LanguageData>

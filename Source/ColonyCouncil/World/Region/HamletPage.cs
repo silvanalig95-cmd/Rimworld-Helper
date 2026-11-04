@@ -147,8 +147,8 @@ namespace ColonyCouncil
             var target = Target(r);
             if (target.IsValid && Widgets.ButtonText(new Rect(x + w - ButtonW - 10f, y + 10f, ButtonW, 28f), "CC_HamletPg_Show".Translate()))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(target);
+                // On the region map with its card (a settler on the home map is jumped to, as before).
+                Cards.ShowOnMap(target);
             }
             return h;
         }

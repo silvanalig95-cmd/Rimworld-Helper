@@ -20,6 +20,16 @@ namespace ColonyCouncil
         /// </summary>
         public static string Fill(string text, IReadOnlyDictionary<string, string> values) => Scan(text, values, null, null, false);
 
+        /// <summary>
+        /// The same, for text drawn in Rimfolk's own windows: with <paramref name="links"/>, each value whose placeholder
+        /// names a thing (<paramref name="things"/>: the key to the thing's text form, FactSet.things) is filled as a link to
+        /// it (LinkTextMath.Wrap), which only Rimfolk's LinkText reads. Without links it is exactly <see cref="Fill(string,
+        /// IReadOnlyDictionary{string, string})"/>: everything that goes to the game (letters, messages, bubbles, the play
+        /// log) is filled that way, so no marker reaches the game's windows.
+        /// </summary>
+        public static string Fill(string text, IReadOnlyDictionary<string, string> values, IReadOnlyDictionary<string, string> things, bool links) =>
+            !links || things == null || things.Count == 0 ? Scan(text, values, null, null, false) : Scan(text, values, null, null, false, things);
+
         /// <summary>The same with the values given in place: Texts.Fill(line, ("ITEM", item), ("DAYS", days)).</summary>
         public static string Fill(string text, params (string key, string value)[] values) => Scan(text, null, null, values, false);
 
@@ -99,7 +109,7 @@ namespace ColonyCouncil
         /// written. The text itself when nothing is filled.
         /// </summary>
         private static string Scan(string text, IReadOnlyDictionary<string, string> first, IReadOnlyDictionary<string, string> then, (string key, string value)[] pairs,
-            bool all)
+            bool all, IReadOnlyDictionary<string, string> things = null)
         {
             if (string.IsNullOrEmpty(text) || text.IndexOf('{') < 0) return text;
             StringBuilder sb = null;
@@ -109,6 +119,7 @@ namespace ColonyCouncil
                 string key = text.Substring(a + 1, b - a - 1);
                 if (Look(key, first, then, pairs, out string value) || all)
                 {
+                    if (things != null && value != null && things.TryGetValue(key, out string thing)) value = LinkTextMath.Wrap(value, thing);
                     sb ??= new StringBuilder(text.Length + 32);
                     sb.Append(text, copied, a - copied).Append(value ?? "");
                     copied = b + 1;

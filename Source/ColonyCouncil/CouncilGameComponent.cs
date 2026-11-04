@@ -185,6 +185,11 @@ namespace ColonyCouncil
             Avail.ResetCache();
             MoodsPanel.Reset();
             StoryView.Reset();
+            // The cards, the way back and the drawers named the last game's things.
+            Cards.Reset();
+            Nav.Reset();
+            Drawer.Reset();
+            Previews.Hide();
             SocialColumn.Reset();
             Bonds.ResetCaches();
             FightSides.Clear();

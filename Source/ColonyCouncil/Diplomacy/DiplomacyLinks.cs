@@ -6,55 +6,47 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Where a click on a name in diplomacy's rows goes: one helper, so the interface's redesign can point every link
-    /// somewhere new in one place. For now it opens what exists: a people or a town on the region map with its panel, a
-    /// notable's town there (or the notable themselves when they are on the map), a colonist or anyone on a map where they
-    /// stand, a caravan on the world map, a letter in the letter stack.
+    /// Where a click on a name in diplomacy's rows goes: one helper, pointed at the cards (UI/Cards/Cards.cs). A people, a
+    /// town, a notable, anyone, a tie or a ledger ref opens its card where the player is (the region window's drawer, else
+    /// the small floating card); a caravan shows on the region map; a letter of the game's opens in the letter stack.
     /// </summary>
     public static class DiplomacyLinks
     {
-        /// <summary>Opens what <paramref name="thing"/> names (a Faction, Settlement, Notable, Pawn, Caravan, Letter or Tie); false when there is nothing to open.</summary>
+        /// <summary>Opens what <paramref name="thing"/> names (a Faction, Settlement, Notable, Pawn, Caravan, Letter, Tie, Ref or ThingRef); false when there is nothing to open.</summary>
         public static bool Open(object thing)
         {
             try
             {
+                if (!Opens(thing)) return false;
                 switch (thing)
                 {
-                    case null:
-                        return false;
                     case Settlement s:
-                        if (s.Destroyed) return false;
-                        MainTabWindow_World.ShowOnMap(s);
+                        Cards.Open(ThingRefs.Of(s));
                         return true;
                     case Faction f:
-                    {
-                        var town = TownOf(f);
-                        if (town == null)
-                        {
-                            Pages.Open("Peoples");
-                            return true;
-                        }
-                        MainTabWindow_World.ShowOnMap(town);
+                        Cards.Open(ThingRefs.Of(f));
                         return true;
-                    }
                     case Notable n:
-                        if (n.pawn != null && n.pawn.Spawned) return Open(n.pawn);
-                        var home = NotableBook.TownOf(n.town);
-                        return home != null ? Open(home) : Open(n.faction);
-                    case Pawn p:
-                        return Jump(p);
+                        Cards.Open(ThingRefs.Of(n));
+                        return true;
                     case Caravan c:
-                        Find.MainTabsRoot.EscapeCurrentTab(false);
-                        CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(c));
+                        Cards.ShowOnMap(c);
+                        return true;
+                    case Pawn p:
+                        Cards.Open(ThingRefs.Of(p));
                         return true;
                     case Letter l:
-                        if (!Find.LetterStack.LettersListForReading.Contains(l)) return false;
                         l.OpenLetter();
                         return true;
                     case Tie t:
-                        return Open(FavoursOwed.PeopleOf(t));
+                        Cards.Open(ThingRefs.Of(t));
+                        return true;
                     case Ref r:
-                        return Open(Of(r));
+                        Cards.Open(ThingRef.From(r));
+                        return true;
+                    case ThingRef tr:
+                        Cards.Open(tr);
+                        return true;
                     default:
                         return false;
                 }
@@ -73,13 +65,14 @@ namespace ColonyCouncil
             {
                 case null: return false;
                 case Settlement s: return !s.Destroyed;
-                case Faction f: return true;
-                case Notable n: return n.pawn != null && n.pawn.Spawned || NotableBook.TownOf(n.town) != null || n.faction != null;
-                case Pawn p: return !p.Dead && (p.Spawned || p.GetCaravan() != null);
-                case Caravan _: return true;
+                case Faction f: return !f.IsPlayer;
+                case Notable n: return !n.Person.IsNone;
+                case Caravan c: return !c.Destroyed;
+                case Pawn p: return !p.Discarded;
                 case Letter l: return Find.LetterStack.LettersListForReading.Contains(l);
-                case Tie t: return FavoursOwed.PeopleOf(t) != null;
-                case Ref r: return Of(r) != null;
+                case Tie t: return !t.IsView && ThingRefs.Exists(ThingRefs.Of(t));
+                case Ref r: return ThingRefs.Exists(ThingRef.From(r));
+                case ThingRef tr: return ThingRefs.Exists(tr);
                 default: return false;
             }
         }
@@ -99,27 +92,6 @@ namespace ColonyCouncil
                 }
                 default: return null;
             }
-        }
-
-        private static Settlement TownOf(Faction f)
-        {
-            if (f == null) return null;
-            var home = Homes.Seat;
-            return home != null ? WorldSituationWorker.NearestTown(f, home) : NotableBook.SeatOf(f);
-        }
-
-        private static bool Jump(Pawn p)
-        {
-            if (p == null || p.Dead) return false;
-            if (p.Spawned)
-            {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(p);
-                return true;
-            }
-            var c = p.GetCaravan();
-            if (c != null) return Open(c);
-            return false;
         }
     }
 }

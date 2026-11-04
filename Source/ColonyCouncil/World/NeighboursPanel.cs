@@ -25,12 +25,15 @@ namespace ColonyCouncil
 
         static NeighboursPanel()
         {
-            NeighbourPanel.Sections.Add(DrawTown);
+            CardSections.Town(CardSlot.Who, 10f, DrawTown, "CC_Neighbours_TownHeader", "notables", CountAt);
         }
 
         private class Row
         {
             public Notable n;
+            public ThingRef thing;
+            /// <summary>The name as a link to their card, with their title: "Edda Marsh, head".</summary>
+            public string line;
             public string name, title, regard, knows, last, status, why, tip;
             public Color regardColor;
         }
@@ -38,6 +41,8 @@ namespace ColonyCouncil
         private class Town
         {
             public Settlement s;
+            /// <summary>The town's name as a link to its card.</summary>
+            public string link;
             public string name, distance, standing;
             public Color standingColor;
             public List<Row> rows = new List<Row>();
@@ -71,7 +76,7 @@ namespace ColonyCouncil
             if (book == null || map == null) return list;
             foreach (var s in book.Towns(map))
             {
-                var t = new Town { s = s, name = s.Name, distance = DistanceWords(map, s) };
+                var t = new Town { s = s, name = s.Name, link = ThingRefs.Link(s.Name, ThingRefs.Of(s)), distance = DistanceWords(map, s) };
                 var f = s.Faction;
                 bool hostile = f.HostileTo(Faction.OfPlayer);
                 t.standing = hostile ? "CC_Neighbours_AtWar".Translate().Resolve() : f.HasGoodwill && f.PlayerGoodwill >= 75 ? "CC_Neighbours_Allies".Translate().Resolve()
@@ -91,11 +96,18 @@ namespace ColonyCouncil
             int op = NotableBook.Opinion(n);
             var r = new Row
             {
-                n = n, name = n.Name, title = NotableBook.TitleOf(n).CapitalizeFirst(), regard = NotableBook.RegardWords(op), regardColor = NotableBook.RegardColor(op)
+                n = n, thing = ThingRefs.Of(n), name = n.Name, title = NotableBook.TitleOf(n).CapitalizeFirst(), regard = NotableBook.RegardWords(op),
+                regardColor = NotableBook.RegardColor(op)
             };
+            r.line = ThingRefs.Link(r.name, r.thing) + ", " + r.title;
             var known = NotableBook.Known(n).Take(3).ToList();
+            // The colonists who know them, each a link to their card.
             if (known.Count > 0)
-                r.knows = "CC_Neighbours_Knows".Translate(TextUtil.JoinAnd(known.Select(k => k.why.NullOrEmpty() ? k.pawn.LabelShort : "CC_Neighbours_KnowsFor".Translate(k.pawn.LabelShort, k.why).Resolve()).ToList())).Resolve();
+                r.knows = "CC_Neighbours_Knows".Translate(TextUtil.JoinAnd(known.Select(k =>
+                {
+                    string who = ThingRefs.Link(k.pawn.LabelShort, ThingRefs.Of(k.pawn));
+                    return k.why.NullOrEmpty() ? who : "CC_Neighbours_KnowsFor".Translate(who, k.why).Resolve();
+                }).ToList())).Resolve();
             var l = NeighbourLetters.OpenTo(n);
             if (l != null) r.status = StatusWords(l, n);
             var note = n.notes.LastOrDefault();
@@ -168,10 +180,11 @@ namespace ColonyCouncil
             float x = card.x + 10f;
             UiKit.LabelFit(new Rect(x, y + 4f, 18f, 20f), isOpen ? "-" : "+", UiKit.Faint);
             x += 16f;
-            float nameW = Mathf.Min(220f, Text.CalcSize(t.name).x + 8f);
-            UiKit.LabelFit(new Rect(x, y + 4f, nameW, 22f), t.name, UiKit.HeaderColor);
+            // The town's name and its people lead to their cards; the rest of the head folds the town.
+            float nameW = Mathf.Min(220f, LinkText.Width(t.link) + 8f);
+            LinkText.Line(new Rect(x, y + 4f, nameW, 22f), t.link, UiKit.HeaderColor);
             x += nameW + 6f;
-            x += UiKit.FactionChip(x, y + 4f, t.s.Faction, 22f, Mathf.Min(200f, w * 0.3f)) + 8f;
+            x += UiKit.FactionChip(x, y + 4f, t.s.Faction, 22f, Mathf.Min(200f, w * 0.3f), true) + 8f;
             UiKit.LabelFit(new Rect(x, y + 4f, card.xMax - x - 10f, 22f), t.distance + " · " + t.standing, t.standingColor, GameFont.Tiny, TextAnchor.MiddleRight);
             if (Widgets.ButtonInvisible(head))
             {
@@ -206,16 +219,25 @@ namespace ColonyCouncil
         private static void DrawRow(Rect r, Row row, bool small)
         {
             float size = small ? 32f : 40f;
-            UiKit.Portrait(new Rect(r.x, r.y + 4f, size, size), row.n.pawn, row.regardColor);
+            // Their portrait and their name lead to their card (a preview after a pause); what they remember stays in the
+            // tooltip of the lines under the name.
+            var pic = new Rect(r.x, r.y + 4f, size, size);
+            UiKit.Portrait(pic, row.n.pawn, row.regardColor);
+            if (Mouse.IsOver(pic)) Previews.Hover(row.thing, pic);
+            if (Widgets.ButtonInvisible(pic, false))
+            {
+                Cards.Click();
+                Cards.Open(row.thing);
+            }
             float x = r.x + size + 8f;
             const float btnW = 96f;
             float textW = r.xMax - x - btnW - 8f;
-            UiKit.LabelFit(new Rect(x, r.y + 2f, textW, 20f), row.name + ", " + row.title, Color.white);
+            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(x, r.y + 20f, textW, r.height - 20f), row.tip);
+            LinkText.Line(new Rect(x, r.y + 2f, textW, 20f), row.line, Color.white);
             string second = row.regard + (row.knows.NullOrEmpty() || small ? "" : ". " + row.knows);
-            UiKit.LabelFit(new Rect(x, r.y + 20f, textW, 18f), second, row.regardColor, GameFont.Tiny);
+            LinkText.Line(new Rect(x, r.y + 20f, textW, 18f), second, row.regardColor, GameFont.Tiny);
             string third = row.status ?? (small ? row.knows : row.last);
-            if (!third.NullOrEmpty()) UiKit.LabelFit(new Rect(x, r.y + 36f, textW, 18f), third, row.status != null ? UiKit.Info : UiKit.Faint, GameFont.Tiny);
-            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(r.x, r.y, r.width - btnW - 8f, r.height), row.tip);
+            if (!third.NullOrEmpty()) LinkText.Line(new Rect(x, r.y + 36f, textW, 18f), third, row.status != null ? UiKit.Info : UiKit.Faint, GameFont.Tiny);
             var b = new Rect(r.xMax - btnW, r.y + (small ? 8f : 12f), btnW, 26f);
             bool can = row.why == null;
             if (Widgets.ButtonText(b, "CC_Neighbours_Write".Translate(), true, true, can))
@@ -231,7 +253,7 @@ namespace ColonyCouncil
         {
             var n = row.n;
             var parts = new List<string> { NotableBook.Called(n) + ": " + row.regard + "." };
-            if (!row.knows.NullOrEmpty()) parts.Add(row.knows);
+            if (!row.knows.NullOrEmpty()) parts.Add(LinkTextMath.Plain(row.knows));
             if (n.notes.Count > 0)
             {
                 parts.Add("");
@@ -248,19 +270,30 @@ namespace ColonyCouncil
             return GenDate.DateShortStringAt(GenDate.TickGameToAbs(tick), new Vector2(lng, 0f));
         }
 
-        // ---------------- The region map's town panel ----------------
+        // ---------------- The town's card ----------------
 
-        /// <summary>A town's notables and a button to write, for the region map's panel (<see cref="NeighbourPanel.Sections"/>).</summary>
+        /// <summary>How many of a town's people the colony knows by name (the count in the heading of its card's Who).</summary>
+        private static int CountAt(Settlement s)
+        {
+            BuildIfStale();
+            foreach (var t in towns)
+                if (t.s == s)
+                    return t.rows.Count;
+            return -1;
+        }
+
+        /// <summary>A town's notables and a button to write to each, for the town's card (its Who slot; the card draws the heading).</summary>
         public static float DrawTown(Rect rect, Settlement s)
         {
             if (!NotableBook.On || s == null) return 0f;
             try
             {
                 BuildIfStale();
-                var t = towns.FirstOrDefault(x => x.s == s);
+                Town t = null;
+                foreach (var x in towns)
+                    if (x.s == s)
+                        t = x;
                 float y = rect.y;
-                UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), "CC_Neighbours_TownHeader".Translate(), Accent);
-                y += 24f;
                 if (t == null || t.rows.Count == 0)
                 {
                     string none = t == null ? "CC_Neighbours_OutOfReach".Translate(s.Name).Resolve() : "CC_Neighbours_NobodyYet".Translate(s.Name).Resolve();

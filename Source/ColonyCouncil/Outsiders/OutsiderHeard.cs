@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A town's "Heard lately": the news its people told the colony's people in their talks (OutsiderTalk.Heard), newest
-    /// first, each with who told whom and when. Drawn under the town's people on the World page's Neighbours section and,
-    /// registered here, in the region map's panel for the town (<see cref="NeighbourPanel.Sections"/>).
+    /// first, each with who told whom and when. Drawn under the town's people on the region window's Neighbours page and,
+    /// registered here, in the town's card (its Words slot, with the colonist told as a link).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class OutsiderHeard
@@ -19,7 +20,34 @@ namespace ColonyCouncil
 
         static OutsiderHeard()
         {
-            NeighbourPanel.Sections.Add(DrawTown);
+            CardSections.TownLines(CardSlot.Words, 10f, CardLines, "CC_Out_Heard_Header", "heard");
+        }
+
+        /// <summary>The town's news on its card (Words), each line with the colonist who was told as a link to their card.</summary>
+        private static List<string> CardLines(Settlement s)
+        {
+            if (s == null || !Outsiders.On) return null;
+            try
+            {
+                var list = OutsiderTalk.HeardAt(s.ID, OutsiderTalkMath.HeardShown);
+                if (list.Count == 0) return null;
+                var names = new List<KeyValuePair<string, string>>();
+                foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                    if (p != null && !p.LabelShort.NullOrEmpty())
+                        names.Add(new KeyValuePair<string, string>(p.LabelShort, ThingRefs.Of(p).ToString()));
+                var lines = new List<string>();
+                foreach (var h in list)
+                {
+                    string line = "CC_Out_Heard_Line".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO")).Resolve();
+                    lines.Add(LinkTextMath.MarkNames(line, names));
+                }
+                return lines;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("heard lately on a town's card", e);
+                return null;
+            }
         }
 
         /// <summary>The height the town's news takes (0 with none).</summary>
@@ -59,18 +87,5 @@ namespace ColonyCouncil
             return "CC_Out_Heard_DaysAgo".Translate(days).Resolve();
         }
 
-        private static float DrawTown(Rect rect, Settlement s)
-        {
-            if (s == null) return 0f;
-            try
-            {
-                return Draw(rect, s.ID);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("heard lately section", e);
-                return 0f;
-            }
-        }
     }
 }

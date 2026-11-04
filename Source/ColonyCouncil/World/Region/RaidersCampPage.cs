@@ -39,8 +39,8 @@ namespace ColonyCouncil
         static RaidersCampPage()
         {
             MainTabWindow_World.Register(Name, "CC_Tab_RaidersCamps", Icons.Raid, Draw, () => RaidersCamps.On || RaidersCamps.Known().Count > 0, 55f);
-            NeighbourPanel.PlaceSections.Add(DrawSite);
-            NeighbourPanel.HomeSections.Add(DrawHome);
+            CardSections.PlaceLines(CardSlot.Now, 10f, SitePanel, "CC_RaidCampPg_PanelHeader", "raidcamp");
+            CardSections.HomeLines(CardSlot.Now, 10f, HomePanel, "CC_RaidCampPg_PanelHeader", "raidcamp-home");
         }
 
         private static int Now => Find.TickManager?.TicksGame ?? 0;
@@ -156,8 +156,8 @@ namespace ColonyCouncil
             var site = RaidersCamps.SiteOf(r.camp);
             if (site != null && Widgets.ButtonText(new Rect(bx, by, ButtonW, 28f), "CC_RaidCampPg_Show".Translate()))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
-                CameraJumper.TryJumpAndSelect(site);
+                // On the region map with its card, not the game's world view.
+                Cards.ShowOnMap(site);
             }
             by += 34f;
             if (r.camp.offered && r.camp.stage == CampStage.Found)
@@ -190,52 +190,45 @@ namespace ColonyCouncil
 
         // ---------------- The region map's panel ----------------
 
-        private static float DrawSite(Rect rect, PlanetTile tile, WorldObject wo)
+        /// <summary>A camp's site, on its card: what the camp is, whose, and its raids so far.</summary>
+        private static List<string> SitePanel(PlanetTile tile, WorldObject wo)
         {
-            if (!(wo is Site s)) return 0f;
+            if (!(wo is Site s)) return null;
             try
             {
                 var c = RaidersCamps.CampAt(s, out var home);
-                if (c == null) return 0f;
+                if (c == null) return null;
                 var lines = Lines(home, c, true);
-                lines.Insert(0, "CC_RaidCampPg_Title".Translate(c.label.Named("NAME"), (c.people?.Name ?? "?").Named("PEOPLE")).Resolve());
-                return Panel(rect, lines);
+                string people = c.people != null ? ThingRefs.Link(c.people.Name, ThingRefs.Of(c.people)) : "?";
+                lines.Insert(0, "CC_RaidCampPg_Title".Translate(c.label.Named("NAME"), people.Named("PEOPLE")).Resolve());
+                return lines;
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("region panel: a raiders' camp", e);
-                return 0f;
+                return null;
             }
         }
 
-        private static float DrawHome(Rect rect, Map home)
+        /// <summary>A home a camp raids, on the home's card: the camp, where, and its raids so far.</summary>
+        private static List<string> HomePanel(Map home)
         {
             try
             {
                 var c = RaidersCamps.CampOf(home);
-                if (c == null || !c.Shown) return 0f;
-                var lines = new List<string>
+                if (c == null || !c.Shown) return null;
+                string people = c.people != null ? ThingRefs.Link(c.people.Name, ThingRefs.Of(c.people)) : "?";
+                return new List<string>
                 {
-                    "CC_RaidCampPg_HomeLine".Translate(c.kind.Named("KIND"), (c.people?.Name ?? "?").Named("PEOPLE"), RaidersCamps.Where(home, c).Named("WHERE")).Resolve(),
+                    "CC_RaidCampPg_HomeLine".Translate(c.kind.Named("KIND"), people.Named("PEOPLE"), RaidersCamps.Where(home, c).Named("WHERE")).Resolve(),
                     c.raids == 0 ? "CC_RaidCampPg_NoRaids".Translate().Resolve() : "CC_RaidCampPg_Raids".Translate(c.raids.Named("RAIDS"), c.beaten.Named("BEATEN")).Resolve()
                 };
-                return Panel(rect, lines);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("region panel: a home's raiders' camp", e);
-                return 0f;
+                return null;
             }
-        }
-
-        private static float Panel(Rect rect, List<string> lines)
-        {
-            if (lines == null || lines.Count == 0) return 0f;
-            float y = rect.y;
-            UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), "CC_RaidCampPg_PanelHeader".Translate(), Accent);
-            y += 24f;
-            foreach (var l in lines) y += UiKit.Paragraph(rect.x, y, rect.width, l, Color.white, GameFont.Small) + 2f;
-            return y + 2f - rect.y;
         }
 
         // ---------------- This week ----------------

@@ -33,6 +33,7 @@ namespace ColonyCouncil
                 return;
             }
             DefensePanel.Draw(content, Find.CurrentMap);
+            Nav.Observe(RimfolkWindow.Defense, "Defenses", ThingRef.None);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = Color.white;

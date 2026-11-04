@@ -71,6 +71,7 @@ namespace ColonyCouncil
         public static bool Say(Pawn p, string line, Pawn other = null, Color? color = null)
         {
             if (!On || p == null || !p.Spawned || line.NullOrEmpty()) return false;
+            line = LinkTextMath.Plain(line);
             if (other != null && other != p && !Together.Can(p, other)) return false;
             // Only the map being looked at shows anything; nothing is made for the others.
             if (Find.CurrentMap != p.Map) return false;

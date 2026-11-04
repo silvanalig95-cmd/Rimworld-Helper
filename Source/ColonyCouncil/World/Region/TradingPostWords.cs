@@ -18,11 +18,9 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static class TradingPostWords
     {
-        private static readonly Color Accent = new Color(0.86f, 0.78f, 0.52f);
-
         static TradingPostWords()
         {
-            NeighbourPanel.Sections.Add(DrawPost);
+            CardSections.TownLines(CardSlot.Now, 30f, PanelLines, "CC_Post_Panel_Header", "post");
         }
 
         private static string T(string key, params NamedArgument[] args) => TextVariants.Vary(key).Translate(args).Resolve();
@@ -242,26 +240,19 @@ namespace ColonyCouncil
             return lines;
         }
 
-        /// <summary>The region map's panel for a town that is a post: its own section under the town's.</summary>
-        private static float DrawPost(Rect rect, Settlement s)
+        /// <summary>A place's card for a town that is a post: its own section in Now (what the region map's panel showed under the town's).</summary>
+        private static List<string> PanelLines(Settlement s)
         {
-            if (s == null) return 0f;
+            if (s == null) return null;
             try
             {
                 var p = TradingPosts.PostAt(s.ID, out var home);
-                if (p == null) return 0f;
-                var lines = Lines(home, p, true);
-                if (lines.Count == 0) return 0f;
-                float y = rect.y;
-                UiKit.LabelFit(new Rect(rect.x, y, rect.width, 22f), "CC_Post_Panel_Header".Translate(), Accent);
-                y += 24f;
-                foreach (var l in lines) y += UiKit.Paragraph(rect.x, y, rect.width, l, Color.white, GameFont.Small) + 2f;
-                return y + 2f - rect.y;
+                return p == null ? null : Lines(home, p, true);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("trading posts: a post's panel", e);
-                return 0f;
+                return null;
             }
         }
     }

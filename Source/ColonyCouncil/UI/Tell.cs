@@ -60,6 +60,8 @@ namespace ColonyCouncil
             string key = null, bool historical = false)
         {
             if (text.NullOrEmpty() || !Notify.Shows(importance)) return;
+            // Links are for Rimfolk's own windows: a marker never reaches the game's (UI/Cards/LinkTextMath.cs).
+            text = LinkTextMath.Plain(text);
             AtOnce(kind, importance == Importance.Important, map, text, look, type, key, historical);
         }
 
@@ -72,6 +74,7 @@ namespace ColonyCouncil
         {
             if (text.NullOrEmpty()) return;
             if (importance.HasValue && !Notify.Shows(importance.Value)) return;
+            text = LinkTextMath.Plain(text);
             try
             {
                 switch (News.Mode)
@@ -126,6 +129,8 @@ namespace ColonyCouncil
             Faction faction = null, string key = null)
         {
             if (label.NullOrEmpty() && text.NullOrEmpty()) return;
+            label = LinkTextMath.Plain(label);
+            text = LinkTextMath.Plain(text);
             def ??= LetterDefOf.NeutralEvent;
             look ??= LookTargets.Invalid;
             // A threat or a death is never held back, whatever the sender said.
