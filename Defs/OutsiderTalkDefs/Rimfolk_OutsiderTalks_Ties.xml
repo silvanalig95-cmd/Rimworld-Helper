@@ -682,7 +682,7 @@
     <when>tie:grudge:theirs,their:empire</when>
     <lines>
       <li>[them] Subjects of the Empire died as your prisoners, and the court has a long memory.</li>
-      <li>[us] So do we.</li>
+      <li>[us] We remember them too.</li>
       <li>[them] Then remember it whenever you deal with us, and deal with honor.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>

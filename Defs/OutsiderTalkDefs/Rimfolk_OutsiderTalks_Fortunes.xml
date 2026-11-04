@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A town's fortune and why, as the region keeps it (World/Region/RegionFortunes.cs; the facts in
+       Text/Facts/FactsRegion.cs): town:struggling to town:flourishing with {FORTUNE} in their age's word ("hungry" for a
+       struggling tribe, "short of everything" for an outlanders' town, "prospering", "booming"), and {FORTUNEWHY}, the
+       world event its panel on the region map names as the cause (a blow while it is steady or worse, a boon while it
+       is steady or better). A turn that names {FORTUNEWHY} in every line is said only when the region has a cause.
+       Mending after a hard time of theirs or a war ended, the cost of being taken (a taken town starts again poor),
+       their shortages, their caravans and visitors on the way, and the colony's own stores beside theirs. Every town
+       drifts back toward steady with time. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Down, and why ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownWhy</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How is {TOWN} faring?</li>
+      <li>[them] {FORTUNE}, since {FORTUNEWHY}, if you want it plainly.</li>
+      <li>[us] Is it getting any better?</li>
+      <li>[them,town:struggling] Not yet, it takes more than one good season to climb out of that.</li>
+      <li>[them] Ask me again in a season.</li>
+    </lines>
+    <heard>{TOWN} has been {FORTUNE} since {FORTUNEWHY}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownBaskets</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:tribal</when>
+    <lines>
+      <li>[them] My people have been {FORTUNE} since {FORTUNEWHY}, and the elders count every basket.</li>
+      <li>[us] Is there anything we could send?</li>
+      <li>[them] Ask the elders, they're too proud to ask you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownTithe</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:medieval</when>
+    <lines>
+      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, and the tithe is still the tithe.</li>
+      <li>[us] Won't your lord ease it?</li>
+      <li>[them] Lords ease nothing, aye, except their belts at the feast.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownPrices</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:industrial</when>
+    <lines>
+      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, and prices only go one way.</li>
+      <li>[us] Up, I suppose.</li>
+      <li>[them] Up, and wages the other way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownFigures</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, and I have the figures to prove it.</li>
+      <li>[us] I'll take your word for it.</li>
+      <li>[them] Most people do, nobody likes my figures.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownCourt</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:empire</when>
+    <lines>
+      <li>[them] {TOWN} has been {FORTUNE} since {FORTUNEWHY}, though the court prefers not to hear it.</li>
+      <li>[us] Won't the court help?</li>
+      <li>[them] The court helps where it will be seen helping, and {TOWN} is a long way from being seen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownMarket</defName>
+    <topic>fortune</topic>
+    <when>town:struggling|town:poor,role:trader</when>
+    <lines>
+      <li>[them] Since {FORTUNEWHY}, I sell less at {TOWN} than I do on the road.</li>
+      <li>[us] Then sell to us.</li>
+      <li>[them] That's the idea, and I'll be glad of the silver.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Up, and why ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpWhy</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] {TOWN} seems to be doing well.</li>
+      <li>[them] {FORTUNE}, and mostly thanks to {FORTUNEWHY}.</li>
+      <li>[us] Long may it last.</li>
+      <li>[them,their:tribal] The elders say good seasons are lent, not given.</li>
+      <li>[them] It won't, these things never do, so we're enjoying it while it does.</li>
+    </lines>
+    <heard>{TOWN} is {FORTUNE}, thanks to {FORTUNEWHY}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpSilver</defName>
+    <topic>fortune</topic>
+    <when>town:thriving|town:flourishing,role:trader</when>
+    <lines>
+      <li>[them] Since {FORTUNEWHY} there's silver moving at {TOWN}, and I've brought some of it.</li>
+      <li>[us] Then let's see you spend it.</li>
+      <li>[them] Carefully, I didn't come by it by being careless.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpReeve</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing,their:medieval</when>
+    <lines>
+      <li>[them] Since {FORTUNEWHY} the market at {TOWN} has been fuller than anyone remembers.</li>
+      <li>[us] And the tithe?</li>
+      <li>[them] Paid early, which has the reeve worried we're hiding something.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpGifts</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing,their:tribal</when>
+    <lines>
+      <li>[them] Since {FORTUNEWHY} {TOWN} has had more gifts to give than to ask for.</li>
+      <li>[us] That's a good place to be.</li>
+      <li>[them] It is, and the elders say to give while we can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpNumbers</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing,their:hightech,!their:empire</when>
+    <lines>
+      <li>[them] {TOWN}'s numbers have been up since {FORTUNEWHY}, every one of them.</li>
+      <li>[us] Even the ones that ought to go down?</li>
+      <li>[them] Those too, which is the only thing that worries me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpHead</defName>
+    <topic>fortune</topic>
+    <when>town:thriving|town:flourishing,role:head</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and for once the people blame me for nothing.</li>
+      <li>[us] Enjoy it.</li>
+      <li>[them] I am, quietly, before somebody notices.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpNewFaces</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:thriving|town:flourishing,!town:new</when>
+    <lines>
+      <li>[them] People keep turning up at {TOWN} looking for work, and most of them find it.</li>
+      <li>[us] And the ones who don't?</li>
+      <li>[them] They move on, or they marry in, whichever comes first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpCaravan</defName>
+    <topic>fortune</topic>
+    <when>town:thriving|town:flourishing,town:caravan</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and a caravan of ours is already on the road to you.</li>
+      <li>[us] Then we'd better have something worth selling.</li>
+      <li>[them] Have silver, mostly, they're bringing plenty to sell.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpWorry</defName>
+    <topic>fortune</topic>
+    <when>town:flourishing,them:old</when>
+    <lines>
+      <li>[them] {TOWN} has never done so well, and I've lived long enough to worry about it.</li>
+      <li>[us] Worry about doing well?</li>
+      <li>[them] Good years make people careless, and careless people forget to put things by.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpWarInSpite</defName>
+    <topic>fortune</topic>
+    <when>town:thriving|town:flourishing,their:war,war:winning</when>
+    <lines>
+      <li>[them] The war's going our way, and {TOWN} is {FORTUNE} in spite of it.</li>
+      <li>[us] Some would call that lucky.</li>
+      <li>[them] Some would, but they weren't there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Steady ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_SteadyStirred</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:steady</when>
+    <lines>
+      <li>[them] {FORTUNEWHY} stirred things up at {TOWN}, but it's held steady.</li>
+      <li>[us] That's no small thing.</li>
+      <li>[them] No, steady is underrated.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_SteadyHardLand</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:steady,home:desert|home:frozen</when>
+    <lines>
+      <li>[them] On land like ours, steady is as good as it gets, and we're steady.</li>
+      <li>[us] Is that enough?</li>
+      <li>[them,their:tribal] The land gives what it gives, and we take no more.</li>
+      <li>[them] It has to be, the land won't give more however nicely you ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Mending ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_Mending</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,ended:theirs,ended:bad,!their:war</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] We're {FORTUNE} still, but {ENDED} is over, and the worst is behind us.</li>
+      <li>[us] Then things can only get better.</li>
+      <li>[them,their:tribal] Don't say that, the spirits listen.</li>
+      <li>[them] Don't say that aloud, it never helps.</li>
+    </lines>
+    <heard>{TOWN} is still {FORTUNE}, but mending now that {ENDED} is over.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_MendingPeace</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:peace,!their:war</when>
+    <lines>
+      <li>[them] The war's over and {TOWN} is {FORTUNE}, but at least nobody's marching.</li>
+      <li>[us] That's something to build on.</li>
+      <li>[them] It's all we've got to build on, so it'll have to do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_TakenCost</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:taken,town:struggling|town:poor</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Changing hands cost {TOWN} dearly, and it's {FORTUNE} now.</li>
+      <li>[us] Will it recover?</li>
+      <li>[them] Towns do, given a few quiet seasons.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Hard times ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownWar</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:war</when>
+    <lines>
+      <li>[them] With the war on, {TOWN} is {FORTUNE}, and nobody's surprised.</li>
+      <li>[us] Does the war reach {TOWN} itself?</li>
+      <li>[them,war:losing] More every season, we've lost towns already.</li>
+      <li>[them] Not the fighting, but the prices and the fear, yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownFood</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,town:short:food</when>
+    <lines>
+      <li>[them,their:tribal] {TOWN} is {FORTUNE}, and the meat runs out before the moon does.</li>
+      <li>[them] {TOWN} is {FORTUNE}, and food is the first thing to run short.</li>
+      <li>[us,colony:plenty] We could spare some, if your people asked.</li>
+      <li>[us] That's a hard way to live, and I'm sorry for it.</li>
+      <li>[them] Kind words, and we'll remember them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownMedicine</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,town:short:medicine</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and medicine is the hardest thing of all to find.</li>
+      <li>[us,colony:hospital] We might spare a little from our {HOSPITAL}, if it came to that.</li>
+      <li>[us] I hope it doesn't come to the worst.</li>
+      <li>[them] So do we, every night.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownHead</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling,town:head,!role:head</when>
+    <lines>
+      <li>[them] {HEAD} has aged a year every season since {TOWN} fell on hard times.</li>
+      <li>[us] It's a lot to carry.</li>
+      <li>[them] It is, and {HEAD} won't let anyone take the other end.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownHeadSelf</defName>
+    <topic>fortune</topic>
+    <when>town:struggling|town:poor,role:head</when>
+    <lines>
+      <li>[them] Every family in {TOWN} looks at me when the stores run thin.</li>
+      <li>[us] That's the burden of leading.</li>
+      <li>[them] I'd trade it for a full storehouse in a heartbeat.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownVisitors</defName>
+    <topic>fortune</topic>
+    <when>town:struggling,town:visitors</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and some of ours are already on the road your way.</li>
+      <li>[us] They'll be welcome.</li>
+      <li>[them] I hope so, they've had a hard season.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownProud</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,their:lowtech</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, but we'd sooner tighten our belts than complain.</li>
+      <li>[us] There's no shame in asking for help.</li>
+      <li>[them] Tell that to my grandmother.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownAsk</defName>
+    <topic>fortune</topic>
+    <uses>home,chat</uses>
+    <when>town:struggling|town:poor,likesus</when>
+    <lines>
+      <li>[us] Is there anything we could do for {TOWN}?</li>
+      <li>[them,town:short:food] Food, if you have any to spare, nothing else matters as much.</li>
+      <li>[them,town:short:medicine] Medicine, if you can spare it, the sick come first.</li>
+      <li>[them] Trade with us fairly and think well of us, that's all I'd ask.</li>
+      <li>[us] We'll do what we can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their fortune beside the colony's ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownFullStores</defName>
+    <topic>fortune</topic>
+    <when>town:struggling|town:poor,colony:plenty</when>
+    <lines>
+      <li>[them] Your stores are fuller than all of {TOWN}'s put together, I'd guess.</li>
+      <li>[us] We've had a good run.</li>
+      <li>[them,trait:Greedy] Then you won't miss a little, will you?</li>
+      <li>[them] Then I hope it lasts, and that you remember who went without.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_DownBoth</defName>
+    <topic>fortune</topic>
+    <when>town:struggling|town:poor,colony:hungry</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and I hear your people are tightening their belts too.</li>
+      <li>[us] It's a lean time all round.</li>
+      <li>[them] Then we'll be lean together, and fat together when it turns.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Fort_UpColonyLean</defName>
+    <topic>fortune</topic>
+    <when>town:thriving|town:flourishing,colony:hungry</when>
+    <lines>
+      <li>[them] {TOWN} is {FORTUNE}, and our traders will have food to sell if your people are short.</li>
+      <li>[us] We might take you up on that.</li>
+      <li>[them] Do, and bring silver, it's still trade.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

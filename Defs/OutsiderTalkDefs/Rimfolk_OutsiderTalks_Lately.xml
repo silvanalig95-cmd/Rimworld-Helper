@@ -435,7 +435,7 @@
       <li>[them,town:short:food] With all that's gone on at {TOWN}, the stores are running low.</li>
       <li>[them,!town:short:food] With all that's gone on at {TOWN}, medicine is hard to come by.</li>
       <li>[us,colony:plenty] We might be able to spare a little.</li>
-      <li>[us] I'm sorry to hear it.</li>
+      <li>[us] I'm sorry, that's hard on everyone.</li>
       <li>[them] Kind of you, and I'll tell them at home you said so.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
