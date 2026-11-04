@@ -2525,8 +2525,9 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.
 Four buttons, placed together after the council's by `CouncilStartup.ApplyButtonPosition` in the order of
-`Defs/Misc/Council_Misc.xml`, each a `MainTabWindow` deriving from `RimfolkTabWindow` (the same size, the council
-window's, and the same place, so going from one to another keeps the frame):
+`Defs/Misc/Council_Misc.xml`, each a `MainTabWindow` deriving from `RimfolkTabWindow` (the same size, `WindowTabs.Size`:
+1010 by 720, or up to 1280 by 860 with the setting "Window size" on Large, below; and the same place, so going from
+one to another keeps the frame):
 
 | Button (def) | Label | Window | Pages |
 |---|---|---|---|
@@ -2612,8 +2613,8 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   area of 900 (at 1920 by 1080, scale 1 and 1.5, the map is 558 wide beside it) and over it with a shadow below that,
   where the view under it doesn't see the mouse. Its head is the trail of cards opened in it ("Tallbrook › Edda
   Marsh"), each a link back, and a close button; Escape closes it before the window (`RimfolkTabWindow`). In UI 1 it
-  was the region window's; since UI 4 the council and planning windows hold one too (below), and the defense window
-  opens the floating card.
+  was the region window's; since UI 4 the council and planning windows hold one too (below), and since UI 5 the
+  defense window.
 - **Links in text.** A link is a marker only `LinkText` reads: three characters of Unicode's private use area around
   the thing's text form and the words shown (`LinkTextMath.Wrap`). Text for Rimfolk's windows asks for links: the
   history's lines (`CardWords.HistoryLine`: each name of who took part or where, marked at its first mention), the
@@ -2629,7 +2630,7 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   picture, the name, what it is, its state, two or three lines that matter now and how to keep it. It stays while the
   mouse is on the link or in it, and half a second after; a click on it opens the card. None while dragging or
   scrolling, none with `linkPreviews` off (a chip's plain tooltip comes back then). Buttons and icons keep the game's
-  tooltips. One level deep for now.
+  tooltips. Since UI 5 a link inside a preview shows a second one beside it, two levels at most (below, "One look").
 - **Back and forward** (`Nav.cs`, `NavTrail`): each window tells where it is once a frame (its page, the filters that
   matter (the History page's), the card open in its drawer); a new place is a step, scrolling and folding aren't. At
   most 50 steps, kept for the session; going back past a step whose thing is gone drops it. The arrows in every
@@ -2638,7 +2639,8 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
 - **The look** (`UI/UiKitCards.cs`): the design's tokens (link ink and its line, the cool stance, done, danger, the
   drawer's and the preview's surfaces) and the components UI 1 draws: a section heading with its count and fold, a
   thing chip, a state chip, an act button with why not, steps, an icon button.
-- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page.
+- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page (`windowSize`,
+  since UI 5, beside the Almanac's text size).
 
 #### The council in four views (UI 4 of docs/design/interface.md)
 
@@ -2766,6 +2768,67 @@ in the five-views check), its own modes and lenses parts of its address. All in 
   the advisor, the overview and the cards' "open in its window" (`Cards.FullPage`: a person on Peoples' faces, a
   people and a tie on Peoples, an event in History, a letter and a house on Here and away) lead to the new views.
 - **Icons**: `Away`, the six lenses (`LensLand` to `LensOurs`), `ModeMap`, `ModeList` (`Tools/make_icons.py`).
+
+#### One look, the first part (UI 5a of docs/design/interface.md)
+
+The fifth release's first part, on the player's decisions 3 and 6: the defense window in the views' grammar, names as
+links where Rimfolk draws them in the game's own panes, a second level of previews, the window size setting and a test
+of the windows' layout across screens. Built beside UI 3 (the inbox, search and following in the corner); the rest of
+the grammar across every window (UI 5b) waits for it.
+
+- **The window size** (`UI/WindowLayoutMath.cs`, pure, tested in `Tools/Tests/LayoutTests.cs`): `windowSize`
+  (`WindowSizeChoice`, Standard at first, on the Interface page beside the Almanac's text size). Standard is 1010 by
+  720, Large up to 1280 by 860; both within the screen less 20 at the side and 55 at the foot, the large never smaller
+  than the standard. `WindowTabs.Size` asks `WindowLayoutMath.Size`, so all four windows, the drawer, the region map
+  and the views lay out at either (they work from their rects); a window takes the new size the next time it opens.
+  `DrawerMath.WindowSize` and `ContentWidth` are `WindowLayoutMath`'s.
+- **The layout test** (`LayoutTests`, like `TabFitMath`'s): fourteen screens from 1024 by 768 to 3840 by 2160 (4:3,
+  16:9, 16:10, 21:9) at scales 1 to 2, standard and large: the window on the screen; the top row with five views and
+  the whole corner as it will be once UI 3 is in (back, forward, search, the inbox, following, the Almanac's book and the
+  four windows, `CornerWidth()` 316) never meeting, each tab at least its icon, icon and name from 1010 wide at five
+  views and from 900 at four; the drawer inside the window, beside from a content area of 900 with the view at least
+  500, over it below with its edge in sight; the region map (`RegionMap`: the view beside the panel or the whole
+  content under it, less the lens bar and the map's line) at least 400 wide and 150 tall everywhere, 300 tall from a
+  screen of 540; the People table's name, mood and trust beside a card. At 1080p the map is 558 wide standard and 828
+  large.
+- **Two levels of previews** (`UI/Cards/PreviewMath.cs`, pure, tested in `Tools/Tests/OneLookTests.cs`):
+  `PreviewStack` holds a preview per level; a link drawn in a window or pane asks for the first, a link drawn inside the
+  first (`Previews` knows which it is drawing) for the second, a link inside the second for none (a click still opens
+  its card). The second sits beside the first, level with its link, right where there is room, else left, under the
+  link only when neither side has room (`PreviewMath.Beside`), so the two never cover each other. The mouse in either
+  keeps both; the second goes half a second after the mouse leaves it and its link, the first when the mouse has left
+  both; a new first takes the second away; none while dragging or scrolling; `linkPreviews` off covers both. Each is
+  its own immediate window on the tooltips' layer (`WindowId + level`), asked for in order so the second stays on top;
+  the mouse inside one is its own (`Mouse.IsOver` is false in the windows under it), a click on its empty part stays in
+  it (`GenUI.AbsorbClicksInRect`), and when it goes the window under it has the mouse back.
+- **The defense window** (`MainTabWindow_Defenses`, `DefensePanel`): its one view drawn as the others are, through
+  `ViewHead.Draw` (the page's own header takes the "?" to `Rimfolk_AlmDef_Overview`, `PagesMath.Articles["Defenses"]`;
+  no modes, it has one way of looking) and `Drawer.Around` with the window's own drawer (`Drawer.Of(Defense)`), so a
+  name on the page opens its card beside it; the way back keeps its card (`Nav.Observe`). The page keeps everything it
+  did; how it reads changed: the map card first, then each part a section whose heading folds (`UiKit.SectionHeading`,
+  folds kept for the session) and carries its count where it counts things (defense lines, what to do, the plans);
+  facts as rows with a dot; advice and plans as rows with their acts at the right through `UiKit.ActButton` ("Plan it
+  here" and a plan the colony can't build yet greyed with the reason as their tooltip, rather than refused after the
+  click; "At the suggested spot" greyed where the survey found nowhere to put it); an empty state where there is no
+  advice. Names as links (`PaneLinks`): the best shot and the best in close fighting, the marshal (their portrait too),
+  the hostile peoples in what the colony faces. The Almanac button at the foot of the facts went: the "?" opens the same
+  page.
+- **Names as links in the game's panes** (`UI/Cards/PaneLinks.cs`: a line's names marked once when its model is built,
+  `LinkTextMath.MarkNames`, never in a tooltip): the Story tab (`StoryView`: the family's portraits in the overview with
+  their names as links, `UiKit.PawnChip(..., link: true)`; a vendetta's people and a nemesis on their tags,
+  `UiKit.PillSpec.thing`; the family tree's names; the family's, the years' and the bonds' lines; the secrets' names),
+  the Culture tab (a prisoner's people, who won them over), the Social column (each bond's colonist, the secrets'
+  names, the colony's people named in their groups, what people say and their shared memories,
+  `PaneLinks.MarkColony`), the Mood tab (the one a mood is about in its why line, from the game's social thoughts,
+  `MoodView.Texts.whyShown`; the plain `why` stays for the tooltips). `PawnPane` rows and `CharacterView.DrawSection`
+  draw through `LinkText` when a line has links. From the panes a link opens the floating card (`Window_Card`, no
+  drawer in sight there); in a card or a window, the drawer. The game's own text stays as it is: the Social column's
+  talks (the play log), the moods' names (the game's thoughts). The Needs tab's line names no one (the groups' totals).
+  A row's or a chip's plain tooltip gives way while a preview shows, so the two don't cover each other.
+- **Left for UI 5b**, once UI 3 is in: the tokens and components across every window's pages (the council's and the
+  planning window's sections and rows, This week's rows in the inbox's grammar), the page accents giving way to the
+  tokens, `WindowTabs.LinksWidth` read from `WindowLayoutMath`'s corner, the Planning window's pages in the section
+  grammar, links in the remaining panels (the on-screen panels, the colonist bar's hover).
 
 ### A colonist's tabs
 

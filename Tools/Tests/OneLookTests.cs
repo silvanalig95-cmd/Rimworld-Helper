@@ -138,7 +138,7 @@ public static class OneLookTests
             "the defense window draws its view with the drawer and the view header, and the way back knows its card");
         C(PagesMath.ArticleOf("Defenses") == "Rimfolk_AlmDef_Overview", "the defense view's \"?\" opens its Almanac page");
         string panel = Code("UI/DefensePanel.cs");
-        C(panel.Contains("UiKit.SectionHeading(") && panel.Contains("UiKit.ActButton(") && panel.Contains("UiKit.EmptyState(") && panel.Contains("ThingRefs.Link("),
+        C(panel.Contains("UiKit.SectionHeading(") && panel.Contains("UiKit.ActButton(") && panel.Contains("UiKit.EmptyState(") && panel.Contains("PaneLinks.Mark("),
             "the defense page's sections fold with their counts, its acts say why not, names are links");
         C(!panel.Contains("Messages.Message(reason"), "an act that can't be done is greyed with why, not refused after the click");
         foreach (var tab in new[] { "UI/SocialColumn.cs", "UI/ITab_Pawn_Story.cs", "UI/ITab_Pawn_Culture.cs" })
