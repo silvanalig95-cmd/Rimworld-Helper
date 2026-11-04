@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What the world's history holds lately (the last thirty days; World/Ledger/History.cs, the facts in
+       Text/Facts/FactsLedger.cs). At their town (town:lately): a world event that began or ended there (world:began,
+       world:ended), the town just built (world:built), taken in an invasion (world:taken), made the colony's vassal
+       (world:vassal). Of the one spoken to (them:lately): a world event that names them, the town they founded
+       (world:built), and their own dealings with the colony (a favor they agreed to bring, a good word they promised:
+       tie:favour and tie:promise, made, kept or ended). A town's news here never says which world event happened at it:
+       {SITUATION} is their people's newest, wherever it is. The callbacks pick up the marks takentown, builttown and
+       quiethome. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= At their town, lately ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_TownBusy</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately</when>
+    <lines>
+      <li>[us] Has much happened at {TOWN} lately?</li>
+      <li>[them,town:lately:world:taken] More than anyone wanted, the town has changed hands.</li>
+      <li>[them,town:lately:world:built] Everything has, the place was only just finished.</li>
+      <li>[them,situation:theirs,situation:bad] Enough, with {SITUATION} and everything that comes with it.</li>
+      <li>[them] More than usual, it's been a busy stretch at home.</li>
+      <li>[us] Is it settling down?</li>
+      <li>[them,town:lately:world:ended] Some of it has passed, and the rest we'll manage.</li>
+      <li>[them] Ask me again next time I'm through.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_TalkOfTown</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:began</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] What's the talk at {TOWN} these days?</li>
+      <li>[them,situation:theirs,situation:sickness] {SITUATION}, and nobody shakes hands anymore.</li>
+      <li>[them,situation:theirs,situation:hunger] {SITUATION}, and who has food put by and who hasn't.</li>
+      <li>[them,situation:theirs,situation:trade] {SITUATION}, and who's getting rich from it.</li>
+      <li>[them,situation:theirs,situation:faith] {SITUATION}, and whether the faithful are right this time.</li>
+      <li>[them,situation:theirs,situation:politics] {SITUATION}, and who stands on whose side.</li>
+      <li>[them,situation:theirs,situation:war] {SITUATION}, and who'll be sent if it comes to it.</li>
+      <li>[them,situation:theirs] {SITUATION}, from morning to night.</li>
+      <li>[them] Whatever's newest at our own gate, and there's been plenty.</li>
+      <li>[us] And what do you make of it?</li>
+      <li>[them,situation:bad] I make sure my door is barred at night.</li>
+      <li>[them] I keep my head down and my ears open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BeganElders</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:began,their:tribal</when>
+    <lines>
+      <li>[them] The elders have sat late at the fire since things changed at {TOWN}.</li>
+      <li>[us] Changed how?</li>
+      <li>[them,situation:theirs] {SITUATION}, and the elders read the smoke to see how long it stays.</li>
+      <li>[them] In ways the elders are still reading in the smoke.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BeganCross</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:began,their:medieval</when>
+    <lines>
+      <li>[them] There's been nothing but talk at the market cross since things turned at {TOWN}.</li>
+      <li>[us] Good talk or bad?</li>
+      <li>[them,situation:theirs,situation:good] Good for once, {SITUATION} has put coin in a few purses.</li>
+      <li>[them,situation:theirs,situation:bad] Bad, mostly, {SITUATION} sits on everyone's shoulders.</li>
+      <li>[them] Both, depending who's talking and how much ale they've had.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BeganRadio</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:began,their:hightech,!their:empire</when>
+    <lines>
+      <li>[them,their:spacer] The comms at {TOWN} haven't been quiet since things took a turn.</li>
+      <li>[them] The radio at {TOWN} hasn't been quiet since things took a turn.</li>
+      <li>[us] Anything worth hearing?</li>
+      <li>[them,situation:theirs] Mostly {SITUATION}, and the rest is people arguing about it.</li>
+      <li>[them] Mostly people arguing about what it all means.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BeganCourt</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:began,their:empire</when>
+    <lines>
+      <li>[them] The court has its eye on {TOWN} since the recent business there.</li>
+      <li>[us] What business is that?</li>
+      <li>[them,situation:theirs] {SITUATION}, which the court takes very seriously indeed.</li>
+      <li>[them] Nothing a guest of the Empire need trouble with.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_RoughTrouble</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:began,their:rough,situation:theirs,situation:bad</when>
+    <lines>
+      <li>[them] {SITUATION} is bad for most folk and good for a few, and I know which I am.</li>
+      <li>[us] Which?</li>
+      <li>[them] The kind still standing at the end of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_AwayFromIt</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:began,role:guest|role:lodger</when>
+    <lines>
+      <li>[them] It's strange to be here while so much is happening at {TOWN}.</li>
+      <li>[us] Do you wish you were home?</li>
+      <li>[them,trait:Kind] Some days, when I think of who might need me there.</li>
+      <li>[them] Some days, and some days I'm glad of the quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_EndedQuiet</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:ended</when>
+    <lines>
+      <li>[us] Is it quieter at {TOWN} now?</li>
+      <li>[them,ended:theirs,ended:bad] Quieter, now {ENDED} is behind us.</li>
+      <li>[them,ended:theirs,!ended:bad] Quieter, now {ENDED} is over and the crowds have gone home.</li>
+      <li>[them] Quieter, what was going on there has run its course.</li>
+      <li>[us] Good.</li>
+      <li>[them] Quiet never lasts, but we'll take it while it does.</li>
+    </lines>
+    <mark>quiethome</mark><about>TOWN</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_EndedSleep</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:ended,ended:theirs,ended:bad</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] People at {TOWN} are sleeping through the night again.</li>
+      <li>[us] What changed?</li>
+      <li>[them] {ENDED} is over, and nobody misses it.</li>
+      <li>[us,trait:Kind] I'm glad for every one of them.</li>
+      <li>[us] That's good to hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_EndedSpirits</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:ended,ended:theirs,ended:bad,their:tribal</when>
+    <lines>
+      <li>[them] {ENDED} has passed from my people, and the elders say the spirits are calmer.</li>
+      <li>[us] Do you believe that?</li>
+      <li>[them] I believe I slept well last night, and that's enough for me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_EndedMissIt</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:ended,ended:theirs,!ended:bad</when>
+    <lines>
+      <li>[them] {ENDED} is over, and I miss it already.</li>
+      <li>[us] Was it good while it lasted?</li>
+      <li>[them,their:medieval] Good enough that the old folk will be telling of it at the hearth.</li>
+      <li>[them,their:tribal] Good enough that the children still play at it.</li>
+      <li>[them] Good enough to talk about for a long while yet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Just built -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BuiltFresh</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:built</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,their:tribal] The last huts at {TOWN} went up only lately, the smoke still smells new.</li>
+      <li>[them,their:spacer] The last modules at {TOWN} were sealed only lately.</li>
+      <li>[them] The last roofs at {TOWN} went up not long ago.</li>
+      <li>[us] What's it like to live somewhere so new?</li>
+      <li>[them] Like wearing boots that haven't learned your feet yet.</li>
+    </lines>
+    <mark>builttown</mark><about>TOWN</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BuiltFounder</defName>
+    <topic>lately</topic>
+    <uses>home,chat,know</uses>
+    <when>them:lately:world:built</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] You only just finished building {TOWN}, didn't you?</li>
+      <li>[them,their:tribal] The last hut went up not long ago, and I've hardly slept since.</li>
+      <li>[them] The last of it went up not long ago, and I've hardly slept since.</li>
+      <li>[us] You should be proud.</li>
+      <li>[them] Ask me again after the first winter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_BuiltCome</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:built,!them:founder</when>
+    <lines>
+      <li>[them,their:tribal] Come and see {TOWN} while the hides are still new on the frames.</li>
+      <li>[them,their:spacer] Come and see {TOWN} while the seals still smell of the fabricator.</li>
+      <li>[them] Come and see {TOWN} while it still smells of fresh-cut wood.</li>
+      <li>[us] We might, if the roads allow.</li>
+      <li>[them] Then we'll keep a bench free for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Changed hands -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Taken</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:taken,!tone:cool,!tone:sour</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] I heard {TOWN} changed hands not long ago.</li>
+      <li>[them,their:tribal] It did, and the paths are still learning whose feet walk them.</li>
+      <li>[them] It did, and the streets are still learning whose they are.</li>
+      <li>[us] Was there much fighting?</li>
+      <li>[them] Enough that nobody wants to talk about it.</li>
+    </lines>
+    <heard>{TOWN} changed hands not long ago.</heard>
+    <mark>takentown</mark><about>TOWN</about>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_TakenBanners</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:taken,their:medieval,!tone:sour</when>
+    <lines>
+      <li>[them] There are new banners over the gate at {TOWN} since it was taken.</li>
+      <li>[us] And the people inside?</li>
+      <li>[them] Same faces, mostly, bowing to a different lord.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_TakenTrader</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:taken,role:trader</when>
+    <lines>
+      <li>[them] New masters at {TOWN} means new rules, and I'm still learning them.</li>
+      <li>[us] Are they fair, at least?</li>
+      <li>[them] Fair to themselves, which is a start.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_TakenCool</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:taken,tone:cool</when>
+    <lines>
+      <li>[us] I hear {TOWN} changed hands.</li>
+      <li>[them] It did, and that's all I'll say about it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Made the colony's vassal -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Vassal</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:vassal,!tone:sour</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] It wasn't long ago that {TOWN} came to answer to your colony.</li>
+      <li>[us] We mean to do right by it.</li>
+      <li>[them] People there are waiting to see what that means.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_VassalSour</defName>
+    <topic>lately</topic>
+    <when>town:lately:world:vassal,tone:sour</when>
+    <lines>
+      <li>[them] Your colony put {TOWN} under its thumb not long ago, and you expect a smile?</li>
+      <li>[us] We expect nothing, we only hope.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- Their people's own voice on what's passed -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Moon</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,their:tribal</when>
+    <lines>
+      <li>[them] Much has happened at {TOWN} since the last moon, and the old ones are tired of talking.</li>
+      <li>[us] And the young ones?</li>
+      <li>[them] The young ones never tire of it, that's how you know they're young.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Alehouse</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,their:medieval</when>
+    <lines>
+      <li>[them] Ask at {TOWN}'s alehouse what's new, and you'll be there till they bar the door.</li>
+      <li>[us] Then tell me the short version.</li>
+      <li>[them,situation:theirs] {SITUATION}, and everyone's cousin has a view on it.</li>
+      <li>[them] Things have happened, and everyone's cousin has a view on them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Paper</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,their:industrial</when>
+    <lines>
+      <li>[them] If {TOWN} had a newspaper, it would have had a fat few weeks.</li>
+      <li>[us] Good news or bad?</li>
+      <li>[them,situation:theirs,situation:good] Good, for once, {SITUATION} has people smiling.</li>
+      <li>[them,situation:theirs,situation:bad] The kind you read twice and then use to light the stove.</li>
+      <li>[them] Some of each, and the rest would be gossip.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Log</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] {TOWN}'s log has had more entries lately than I care to read.</li>
+      <li>[us] Anything we should know about?</li>
+      <li>[them,situation:theirs] Mostly {SITUATION}, filed under ongoing.</li>
+      <li>[them] Nothing that concerns you, I'd say so if it did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Dispatch</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,their:empire</when>
+    <lines>
+      <li>[them] All that passes at {TOWN} goes into a dispatch for the court, and much has.</li>
+      <li>[us] Does anyone at court read them?</li>
+      <li>[them] Someone always reads them, which is exactly the trouble.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_StalePacks</defName>
+    <topic>lately</topic>
+    <when>town:lately,role:trader</when>
+    <lines>
+      <li>[them] I left {TOWN} with news in my packs, and half of it went stale on the road.</li>
+      <li>[us] Tell me the half that didn't.</li>
+      <li>[them,town:lately:world:taken] {TOWN} changed hands, and that won't go stale for a while.</li>
+      <li>[them,situation:theirs] {SITUATION}, still, and more of it every day.</li>
+      <li>[them] Plenty has gone on at home, ask me anything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Seen</defName>
+    <topic>lately</topic>
+    <when>town:lately,them:old</when>
+    <lines>
+      <li>[them] I've seen {TOWN} through plenty, and this is only the latest.</li>
+      <li>[us] What was the worst?</li>
+      <li>[them] Ask me that when we've both an evening to spare.</li>
+      <li>[us] I'll hold you to it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Family</defName>
+    <topic>lately</topic>
+    <when>town:lately,them:married|them:parent,!them:spousehere,!first</when>
+    <lines>
+      <li>[us] You must think of your family at {TOWN}, with all that's gone on.</li>
+      <li>[them,them:smallchild] Every night, and the little one most of all.</li>
+      <li>[them] Every night on the road.</li>
+      <li>[us] They'll be glad to see you back.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_KinNews</defName>
+    <topic>lately</topic>
+    <when>town:lately,kin:you</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] There's news from {TOWN} you'll want to hear, {KINWORD}.</li>
+      <li>[us] Is everyone all right?</li>
+      <li>[them,town:lately:world:taken] As far as I know, but the town changed hands, and nothing's the same.</li>
+      <li>[them,situation:theirs,situation:sickness] As far as I know, though {SITUATION} keeps everyone indoors.</li>
+      <li>[them] As far as I know, it's the town that's had the eventful time.</li>
+      <li>[us] Tell me everything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_ShortNow</defName>
+    <topic>lately</topic>
+    <uses>home,chat</uses>
+    <when>town:lately,town:short:food|town:short:medicine</when>
+    <lines>
+      <li>[them,town:short:food] With all that's gone on at {TOWN}, the stores are running low.</li>
+      <li>[them,!town:short:food] With all that's gone on at {TOWN}, medicine is hard to come by.</li>
+      <li>[us,colony:plenty] We might be able to spare a little.</li>
+      <li>[us] I'm sorry to hear it.</li>
+      <li>[them] Kind of you, and I'll tell them at home you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The one spoken to, lately ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_CaughtUp</defName>
+    <topic>lately</topic>
+    <when>them:lately:world:began,!them:lately:world:ended</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] I hear you're caught up in what's going on out there.</li>
+      <li>[them,trait:Greedy] Caught up, and doing rather well out of it.</li>
+      <li>[them] Caught up is the word for it.</li>
+      <li>[us] How are you holding up?</li>
+      <li>[them] One day at a time, like everyone else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_PlainAgain</defName>
+    <topic>lately</topic>
+    <when>them:lately:world:ended</when>
+    <lines>
+      <li>[us] I hear the business you were part of is over now.</li>
+      <li>[them] Over, and I'm glad to be plain {OUTSIDER} again.</li>
+      <li>[us] Plain suits you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Busy</defName>
+    <topic>lately</topic>
+    <when>them:lately,!first</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[us] You look like someone who's had a busy few weeks.</li>
+      <li>[them,them:lately:world] Busier than I'd choose, the world doesn't ask first.</li>
+      <li>[them,them:lately:tie] Busy enough, and half of it with your colony, as it happens.</li>
+      <li>[them] Busy enough, thank you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_OneFavour</defName>
+    <topic>lately</topic>
+    <when>them:lately:tie:favour:made,tie:favour:theirs,!them:lately:tie:favour:kept,!them:lately:tie:favour:ended</when>
+    <lines>
+      <li>[them] I said yes to one favor already, so don't ask me for another just yet.</li>
+      <li>[us] I wouldn't dream of it.</li>
+      <li>[them] You would, I've seen that look before.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Even</defName>
+    <topic>lately</topic>
+    <when>them:lately:tie:favour:kept,!tie:favour</when>
+    <lines>
+      <li>[us] Thank you for seeing that what you promised reached us.</li>
+      <li>[them,their:tribal] A gift owed is a gift given, and now our hearths are even.</li>
+      <li>[them,their:medieval] A debt of honor paid, aye, and I'll sleep the better for it.</li>
+      <li>[them] Now we're even, and that's how I like it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_Owed</defName>
+    <topic>lately</topic>
+    <when>them:lately:tie:favour:ended,!them:lately:tie:favour:kept,!tie:favour</when>
+    <lines>
+      <li>[them] I owe your people an apology for what I said would come.</li>
+      <li>[us] It's forgotten.</li>
+      <li>[them,their:medieval] Not by me, a word not kept sits badly.</li>
+      <li>[them] Not by me, it isn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Lat_WordLanded</defName>
+    <topic>lately</topic>
+    <when>them:lately:tie:promise:kept,!tie:promise,!role:notable</when>
+    <lines>
+      <li>[them] I spoke for your people at home, as I said I would.</li>
+      <li>[us] And how was it taken?</li>
+      <li>[them,their:tribal] The elders listened and nodded, which is a great deal from them.</li>
+      <li>[them,their:empire] Graciously, which is all one can ask at court.</li>
+      <li>[them] Well enough, people listen when you've seen a place yourself.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Callbacks ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_TakenSettled</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:takentown,then:long</when>
+    <lines>
+      <li>[us] Has {THEN} settled under its new masters?</li>
+      <li>[them] As much as anywhere does, people get used to most things.</li>
+      <li>[us] Most, but not all.</li>
+      <li>[them] No, not all, and those are the ones to watch.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_BuiltFeet</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:builttown,then:long</when>
+    <lines>
+      <li>[us] Has {THEN} found its feet since we last spoke?</li>
+      <li>[them,their:tribal] It's learning to walk, and falls less than it did.</li>
+      <li>[them] Ask me in a year, new towns don't hurry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CB_QuietHome</defName>
+    <topic>callback</topic>
+    <uses>chat,home</uses>
+    <when>talked:quiethome,!then:recent</when>
+    <lines>
+      <li>[us] Has it stayed quiet at {THEN}?</li>
+      <li>[them,town:lately:world:began] Quiet isn't the word, there's always something.</li>
+      <li>[them,!town:lately:world:began] Quiet enough, thank you for asking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
