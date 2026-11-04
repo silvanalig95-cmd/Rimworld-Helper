@@ -383,7 +383,7 @@ namespace ColonyCouncil
                     break;
                 case OutsiderAct.GoodWord:
                     if (WordTo(x) == null) return Why("NoNotable");
-                    if (book != null && book.words.Any(w => w.outsider == x)) return Why("Promised");
+                    if (book != null && GoodWords.PromisedBy(x)) return Why("Promised");
                     if (!OutsiderMath.WillPutInWord(ofColony, ofColonist)) return Why("NotWell");
                     break;
                 case OutsiderAct.Letter:
@@ -655,18 +655,19 @@ namespace ColonyCouncil
         /// <summary>Good words land once the one who promised is home (gone from the map into the world).</summary>
         public static void WordsHourly(OutsiderBook book, int now)
         {
-            if (book.words.Count == 0) return;
-            foreach (var w in book.words.ToList())
+            var open = GoodWords.Open();
+            if (open.Count == 0) return;
+            foreach (var w in open)
             {
                 var x = w.outsider;
                 if (x == null || x.Dead || x.Discarded || now - w.asked > OutsiderMath.GoodWordDays * GenDate.TicksPerDay)
                 {
-                    book.words.Remove(w);
+                    GoodWords.Close(w, false);
                     continue;
                 }
                 if (x.Spawned || !Find.WorldPawns.Contains(x)) continue;
-                book.words.Remove(w);
                 var n = NotableBook.Instance?.Get(w.notable);
+                GoodWords.Close(w, n != null && n.Alive);
                 if (n == null || !n.Alive) continue;
                 n.personal += w.shift;
                 if (KinMemory.Ours(w.by)) n.RegardOf(w.by, true).personal += w.shift * 0.7f;

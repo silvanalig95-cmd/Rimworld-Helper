@@ -154,6 +154,53 @@ public static class LedgerMovesTests
             Check(StoreMath.Past(30 * Day + 1, 0, 30f) && !StoreMath.Past(30 * Day, 0, 30f), "let go once more than thirty days have passed, as before");
         }
 
+        // ---------------- Good words: the same words open as the old list ----------------
+
+        // The old list: a word added, the first over eight removed; each hour those more than twenty days old go, and
+        // those whose teller is home land. The ledger: a Promise tie with until After(asked, 20), the oldest open past
+        // eight ended, the ledger's tidy ending those past their until whenever it runs.
+        {
+            const float WordDays = 20f;
+            var r = new Random(5);
+            var oldWords = new List<(int outsider, int asked)>();
+            var ties = new List<Tie>();
+            bool same = true, refused = false;
+            int now = 0, id = 1;
+            for (int step = 0; step < 4000; step++)
+            {
+                now += r.Next(0, Day / 2);
+                if (r.Next(3) == 0) TieRules.Tidy(ties, now);
+                int x = r.Next(1, 40);
+                var open = ties.Where(t => t.Live).ToList();
+                int roll = r.Next(4);
+                if (roll == 0 && !oldWords.Any(w => w.outsider == x) && !open.Any(t => t.from == Ref.Person(x)))
+                {
+                    oldWords.Add((x, now));
+                    while (oldWords.Count > 8) oldWords.RemoveAt(0);
+                    var to = Ref.Person(1000);
+                    if (!TieRules.MakeRoom(ties, Tie.Kind.Promise, Ref.Person(x), to)) refused = true;
+                    else ties.Add(new Tie { id = id++, kind = Tie.Kind.Promise, from = Ref.Person(x), to = to, since = now, until = StoreMath.After(now, WordDays) });
+                    open = ties.Where(t => t.Live).ToList();
+                    for (int i = 0; i < open.Count - 8; i++) TieRules.Move(open[i], Tie.State.Ended, now);
+                }
+                else if (roll == 1)
+                {
+                    // The hour: lapsed ones go; one whose teller is home lands.
+                    int home = r.Next(1, 40);
+                    oldWords.RemoveAll(w => StoreMath.Past(now, w.asked, WordDays) || w.outsider == home);
+                    foreach (var t in ties.Where(t => t.Live).ToList())
+                        if (StoreMath.Past(now, t.since, WordDays)) TieRules.Move(t, Tie.State.Ended, now);
+                        else if (t.from == Ref.Person(home)) TieRules.Move(t, Tie.State.Kept, now);
+                }
+                // What an hour would see: the old list against the ledger's open words not yet past their until.
+                var mine = ties.Where(t => TieRules.Live(TieRules.StateAt(t, now))).Select(t => (t.from.id, t.since)).ToList();
+                var theirs = oldWords.Where(w => !StoreMath.Past(now, w.asked, WordDays)).ToList();
+                if (!mine.SequenceEqual(theirs)) same = false;
+            }
+            Check(same, "four thousand words given, landed and lapsed: the ledger's open words are the old list's, in order");
+            Check(!refused, "and the ledger always had room for one");
+        }
+
         return n;
     }
 }

@@ -9,7 +9,6 @@ namespace ColonyCouncil
     /// The ties that exist today in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store,
     /// none is editable through the ledger yet). Only those still in force: what ended stays in its own store's record.
     /// <list type="bullet">
-    /// <item>A good word promised (OutsiderBook.words): a promise from the outsider to the colonist, about the notable.</item>
     /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
     /// date, called in while the letter waits for an answer.</item>
     /// <item>Someone who joined from a visit with family among their people (CouncilGameComponent.guestKin): a ward of
@@ -38,7 +37,6 @@ namespace ColonyCouncil
             var list = new List<Tie>();
             if (Current.Game != null)
             {
-                Read("words", list, Words);
                 Read("debts", list, Debts);
                 Read("guest kin", list, GuestKin);
                 Read("granted", list, Granted);
@@ -64,20 +62,6 @@ namespace ColonyCouncil
         {
             if (from.IsNone || to.IsNone || from == to) return;
             list.Add(new Tie { kind = kind, from = from, to = to, terms = terms ?? new TieTerms(), since = since, until = until, state = state, origin = origin, source = source });
-        }
-
-        private static void Words(List<Tie> list)
-        {
-            var book = OutsiderBook.Instance;
-            if (book == null) return;
-            foreach (var w in book.words)
-            {
-                if (w?.outsider == null) continue;
-                var n = NotableBook.Instance?.Get(w.notable);
-                var to = w.by != null ? Refs.Of(w.by) : Refs.Seat;
-                var terms = new TieTerms { number = w.shift, days = OutsiderMath.GoodWordDays, key = "notable:" + w.notable, about = Refs.Of(n?.pawn) };
-                View(list, "outsiders:word", Tie.Kind.Promise, Refs.Of(w.outsider), to, terms, w.asked, w.asked + (int)(OutsiderMath.GoodWordDays * GenDate.TicksPerDay));
-            }
         }
 
         private static void Debts(List<Tie> list)

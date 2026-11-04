@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 467; modelled: 467; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,182 KB** after a year, **2,593 KB** after two, **2,755 KB** after five.
+Rimfolk's part of the save, roughly: **2,180 KB** after a year, **2,591 KB** after two, **2,753 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -188,7 +188,6 @@ Rimfolk's part of the save, roughly: **2,182 KB** after a year, **2,593 KB** aft
 | `Happenings/Happenings.cs:regulars` | visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away | fixed | 5 | 5 | 5 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
-| `Outsiders/OutsiderBook.cs:words` | OutsiderBook.MaxWords good words promised, carried home or let go after 20 days | fixed | 8 | 8 | 8 | 1.4 |
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
 | `CouncilGameComponent.cs:guestKin` | those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs) | fixed | 6 | 6 | 6 | 1.3 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
@@ -398,6 +397,7 @@ Rimfolk's part of the save, roughly: **2,182 KB** after a year, **2,593 KB** aft
 | `Building/ShelfReserves.cs:kinds` | read from saves of 0.23.0 and 0.23.1 only, then kept as entries | while | 0 | 0 | 0 | 0.0 |
 | `Happenings/Happenings.cs:oldGrudges` | an older save's grudges, read on load and moved into the world ledger (one Grudge tie per people); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldFavours` | an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
+| `Outsiders/OutsiderBook.cs:oldWords` | an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
 | `Building/Ahead.cs:cells` | per step (counted under done): the cells a field step's check looks at, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Automations.cs:things` | per action (counted under actions): the bench, the things ordered down, the blueprints, the trees | fixed | 8 | 8 | 8 | (in its record) |

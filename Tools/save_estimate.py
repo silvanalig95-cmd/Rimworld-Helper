@@ -410,7 +410,7 @@ MODEL = {
                                         "OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days"),
     "Outsiders/OutsiderBook.cs:last": ("fixed", 16, V, "per pair: when they last did each of the 16 things (counted under pairs)"),
     "Outsiders/OutsiderBook.cs:oldFavours": ("fixed", 0, 220, "an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again"),
-    "Outsiders/OutsiderBook.cs:words": ("fixed", C["OutsiderWords"], 180, "OutsiderBook.MaxWords good words promised, carried home or let go after 20 days"),
+    "Outsiders/OutsiderBook.cs:oldWords": ("fixed", 0, 180, "an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again"),
     # Conversations with outsiders (Outsiders/OutsiderTalk.cs): their earlier talks' marks, the pieces said, the last
     # subjects; each outsider's visit (patience, gifts, asks); a town's news heard; the world's wars as seen.
     "Outsiders/OutsiderBook.cs:marks": ("fixed", C["OutsiderMarks"], 70, "per pair: OutsiderTalkMath.MaxMarks, one per key, the oldest go (counted under pairs)"),

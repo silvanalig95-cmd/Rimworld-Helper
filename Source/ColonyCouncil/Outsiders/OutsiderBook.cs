@@ -213,7 +213,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A good word an outsider promised to put in at home, with one of their notables, once they're back.</summary>
+    /// <summary>
+    /// A good word an outsider promised to put in at home with one of their notables, as an older save kept it: read on
+    /// load and moved into the world ledger (Outsiders/OutsiderTies.cs, GoodWords).
+    /// </summary>
     public class OutsiderWord : IExposable
     {
         public Pawn outsider;
@@ -261,7 +264,8 @@ namespace ColonyCouncil
         public List<OutsiderPair> pairs = new List<OutsiderPair>();
         /// <summary>An older save's favours, read on load and moved into the world ledger (Favours).</summary>
         private List<OutsiderFavour> oldFavours;
-        public List<OutsiderWord> words = new List<OutsiderWord>();
+        /// <summary>An older save's good words, read on load and moved into the world ledger (GoodWords).</summary>
+        private List<OutsiderWord> oldWords;
         public List<OutsiderVisit> visits = new List<OutsiderVisit>();
         public List<HeardNews> heard = new List<HeardNews>();
         public List<WarSeen> wars = new List<WarSeen>();
@@ -302,12 +306,14 @@ namespace ColonyCouncil
             try
             {
                 if (oldFavours != null) Favours.Adopt(oldFavours);
+                if (oldWords != null) GoodWords.Adopt(oldWords);
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("moving an older save's favours into the world ledger", e);
+                CouncilLog.ErrorOnce("moving an older save's favours and words into the world ledger", e);
             }
             oldFavours = null;
+            oldWords = null;
         }
 
         public override void GameComponentTick()
@@ -425,14 +431,13 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 pairs.RemoveAll(r => r == null || r.colonist == null && r.outsider == null);
-                words.RemoveAll(w => w == null);
                 visits.RemoveAll(v => v == null || v.outsider == null || v.outsider.Discarded);
                 heard.RemoveAll(h => h == null || h.text.NullOrEmpty());
                 wars.RemoveAll(w => w == null || w.a == null || w.b == null);
             }
             Scribe_Collections.Look(ref pairs, "pairs", LookMode.Deep);
             if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref oldFavours, "favours", LookMode.Deep);
-            Scribe_Collections.Look(ref words, "words", LookMode.Deep);
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref oldWords, "words", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
             Scribe_Collections.Look(ref heard, "heard", LookMode.Deep);
             Scribe_Collections.Look(ref wars, "wars", LookMode.Deep);
@@ -448,8 +453,7 @@ namespace ColonyCouncil
                 pairs ??= new List<OutsiderPair>();
                 pairs.RemoveAll(r => r == null || r.colonist == null || r.outsider == null);
                 oldFavours?.RemoveAll(f => f == null || f.def == null || f.faction == null);
-                words ??= new List<OutsiderWord>();
-                words.RemoveAll(w => w == null);
+                oldWords?.RemoveAll(w => w == null);
             }
         }
     }
