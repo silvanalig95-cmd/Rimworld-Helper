@@ -79,7 +79,7 @@ namespace ColonyCouncil
             var form = PactWords.PactForm(home, f);
             var k = Pacts.KindOf(t);
             string text = PactWords.P("CC_Pact_Row", PactWords.Kind(k).Named("KIND"), PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"));
-            var row = new DipRow { text = text, note = PactState(t), color = UiKit.Good, link = t };
+            var row = new DipRow { text = text, note = PactState(t), color = UiKit.Warm, link = t };
             if (k == PactKind.Defence)
             {
                 var a = new DipAct { label = PactWords.P("CC_Pact_Act_CallShort"), tip = PactWords.P("CC_Pact_Act_Call_Tip"), why = Pacts.CallWhyNot(t, home) };
@@ -247,7 +247,7 @@ namespace ColonyCouncil
                     rows.Add(new WeekRow
                     {
                         icon = l is ChoiceLetter_CallToArms ? Icons.Raid : Icons.Promise ?? Icons.Trust,
-                        color = l is ChoiceLetter_CallToArms ? UiKit.Warn : UiKit.Gold,
+                        color = l is ChoiceLetter_CallToArms ? UiKit.Soon : UiKit.Gold,
                         faction = f,
                         text = PactWords.P(kind, ThingRefs.Link(PactWords.People(f), ThingRefs.Of(f)).Named("PEOPLE")),
                         sub = PactWords.P("CC_Pact_WeekNote"),
@@ -321,7 +321,7 @@ namespace ColonyCouncil
                     rows.Add(new WeekRow
                     {
                         icon = Icons.Raid,
-                        color = UiKit.Good,
+                        color = UiKit.Warm,
                         faction = f,
                         text = WeekModel.AtHome(home, PactWords.P(key, ThingRefs.Link(PactWords.People(f), ThingRefs.Of(f)).Named("PEOPLE"))),
                         steps = steps,
@@ -354,7 +354,7 @@ namespace ColonyCouncil
                     rows.Add(new WeekRow
                     {
                         icon = Icons.Raid,
-                        color = UiKit.Bad,
+                        color = UiKit.Sour,
                         faction = f,
                         text = WeekModel.AtHome(Truces.HomeOf(t), PactWords.P(theirs ? "CC_Pact_Week_BrokenByThem" : "CC_Pact_Week_BrokenByUs",
                             ThingRefs.Link(PactWords.People(f), ThingRefs.Of(f)).Named("PEOPLE"))),
