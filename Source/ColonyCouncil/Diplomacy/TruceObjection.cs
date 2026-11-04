@@ -35,12 +35,25 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>The avenger's objection comes before the council now: true when it was asked (the speaker waits for the answer).</summary>
+        /// <summary>Another question of the council's for this home still open in the letters.</summary>
+        private static bool CouncilBusy(Map home)
+        {
+            foreach (var l in Find.LetterStack.LettersListForReading)
+                if (l is ChoiceLetter_Dilemma d && !d.resolved && (d.ctx?.map == null || d.ctx.map == home || !Homes.IsHome(d.ctx.map)))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// The avenger's objection comes before the council now: true when it was asked, or waits its turn (another
+        /// question is open first), so the speaker waits for the answer. False when nobody objects.
+        /// </summary>
         public static bool Ask(Tie t, Pawn x, Map home)
         {
             var f = Truces.PeopleOf(t);
             var v = Avenger(f, home);
             if (v == null) return false;
+            if (CouncilBusy(home)) return true;
             asking = t;
             asker = v.avenger;
             envoy = x;

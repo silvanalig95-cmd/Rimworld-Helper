@@ -329,8 +329,10 @@ namespace ColonyCouncil
             var k = KindOf(t);
             bool asked = Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_PactOffer o && o.renew == t.id);
             if (asked) return;
-            if (On && !renewAsked.Contains(t.id) && PactMath.Renews(Goodwill(f), HeadRegard(f, home), Diplomacy.Hostile(f)) && Tell.CanAsk)
+            if (On && !renewAsked.Contains(t.id) && PactMath.Renews(Goodwill(f), HeadRegard(f, home), Diplomacy.Hostile(f)))
             {
+                // Their letter comes when one of Rimfolk's questions may: the pact holds a little longer meanwhile.
+                if (!Tell.CanAsk) return;
                 renewAsked.Add(t.id);
                 Offer(f, home, k, null, t);
                 // Their letter waits the season for its answer; unanswered by then, it ends.
@@ -671,7 +673,7 @@ namespace ColonyCouncil
                     {
                         Find.LetterStack.RemoveLetter(this);
                         var old = Pacts.Get(renew);
-                        if (old != null && old.Live) Pacts.End(old, Tie.State.Kept, PactWords.P("CC_Pact_Msg_Over", PactWords.People(people).Named("PEOPLE"),
+                        if (old != null && old.Live) Pacts.End(old, Tie.State.Ended, PactWords.P("CC_Pact_Msg_Over", PactWords.People(people).Named("PEOPLE"),
                             PactWords.Kind((PactKind)kind).Named("KIND")));
                     },
                     resolveTree = true
