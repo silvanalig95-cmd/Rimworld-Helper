@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- One look across Rimfolk's windows (docs/design/interface.md, UI 5): the window size, the defense window's sections. -->
+
+  <!-- Settings: the window size (UI/WindowLayoutMath.cs) -->
+  <CC_SetLabel_WindowSize>Window size</CC_SetLabel_WindowSize>
+  <CC_SetTip_WindowSize>How large Rimfolk's four windows (council, region, defense and planning) open. Standard is 1010 by 720. Large lets them grow up to 1280 by 860 where the screen has the room, so the map, the tables and a card beside them get more space. They take the new size the next time they open.</CC_SetTip_WindowSize>
+  <CC_WindowSize_Standard>Standard</CC_WindowSize_Standard>
+  <CC_WindowSize_Standard_Tip>1010 by 720, or less on a small screen.</CC_WindowSize_Standard_Tip>
+  <CC_WindowSize_Large>Large</CC_WindowSize_Large>
+  <CC_WindowSize_Large_Tip>Up to 1280 by 860 where the screen has the room.</CC_WindowSize_Large_Tip>
+  <CC_SetNote_WindowSize_Standard>Rimfolk's windows open at 1010 by 720, or less on a small screen.</CC_SetNote_WindowSize_Standard>
+  <CC_SetNote_WindowSize_Large>Rimfolk's windows grow up to 1280 by 860 on a screen with the room.</CC_SetNote_WindowSize_Large>
+
+  <!-- The defense window (UI/DefensePanel.cs) -->
+  <CC_Def_AdviceEmpty>No advice for this map yet: the survey found nothing to hold or to build.</CC_Def_AdviceEmpty>
+  <CC_Def_AtSpot_WhyNot>The survey found no way in or narrow place on this map to put it at.</CC_Def_AtSpot_WhyNot>
+
+</LanguageData>

@@ -162,7 +162,8 @@ namespace ColonyCouncil
             ["Base"] = "Council_Alm_9_00_BaseGrowth",
             ["Making"] = "Council_Alm_C_Ahead",
             ["Build"] = "Council_Alm_9_00_RoomPlanner",
-            ["Rooms"] = "Council_Alm_9_00_RoomPlanner"
+            ["Rooms"] = "Council_Alm_9_00_RoomPlanner",
+            ["Defenses"] = "Rimfolk_AlmDef_Overview"
         };
 
         /// <summary>A page's Almanac article (its defName), or null.</summary>

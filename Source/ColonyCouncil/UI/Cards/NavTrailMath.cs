@@ -169,7 +169,7 @@ namespace ColonyCouncil
     /// Where a card's drawer goes in a window (docs/design/interface.md, "Where a card opens"): 380 wide at the right of
     /// the content area, beside the view when the content area is 900 or more, over it with a shadow when narrower (and
     /// never wider than the content leaves room for). The size of Rimfolk's windows on a screen at an interface scale
-    /// is the one <c>WindowTabs.Size</c> asks for. Pure: Tools/Tests checks it at the screens and scales the game offers.
+    /// is the one <c>WindowTabs.Size</c> asks for (WindowLayoutMath). Pure: Tools/Tests checks it at the screens and scales the game offers.
     /// </summary>
     public static class DrawerMath
     {
@@ -180,15 +180,15 @@ namespace ColonyCouncil
         /// <summary>The view keeps at least this much when the drawer is over it, so the edge of what is under it shows.</summary>
         public const float OverMargin = 40f;
 
-        /// <summary>The window's size in the interface's units: 1010 by 720, or the screen less its edges.</summary>
-        public static void WindowSize(float uiWidth, float uiHeight, out float w, out float h)
-        {
-            w = Math.Min(1010f, uiWidth - 20f);
-            h = Math.Min(720f, uiHeight - 35f - 20f);
-        }
+        /// <summary>
+        /// The window's size in the interface's units: 1010 by 720, or the screen less its edges; with <paramref name="large"/>
+        /// (the setting "Window size"), up to 1280 by 860 (WindowLayoutMath).
+        /// </summary>
+        public static void WindowSize(float uiWidth, float uiHeight, out float w, out float h, bool large = false) =>
+            WindowLayoutMath.Size(uiWidth, uiHeight, large, out w, out h);
 
         /// <summary>The content area of a window that wide: less the window's margins (18 each side) and the body's padding (12 each side).</summary>
-        public static float ContentWidth(float windowWidth) => windowWidth - 2f * 18f - 2f * 12f;
+        public static float ContentWidth(float windowWidth) => WindowLayoutMath.ContentWidth(windowWidth);
 
         public static bool Beside(float contentWidth) => contentWidth >= BesideFrom;
 

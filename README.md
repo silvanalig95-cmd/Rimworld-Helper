@@ -52,7 +52,8 @@ each, with no window over them all: **council** (the colony's own life), **regio
 beyond the colony; not "world", which the game's own button is called), **defense** and **planning** (it took the
 rooms button's place). Each window has the four in its top right corner, so you can go from one to the next; one
 switched off in the settings or put away under "more" is still a click away there. All four open the same size in the
-same place.
+same place: 1010 by 720, or with **Window size** set to Large in the settings, up to 1280 by 860 on a screen with the
+room.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:
@@ -80,7 +81,9 @@ The **region** window, in four views along its top:
 Every name in it leads to its card in the drawer at the right, and the region's old pages (Neighbours, Letters and
 calls, Journeys, World events, trading posts, raiders' camps, hamlets) still answer to their names, each in its view
 or lens. The **defense** window is the Defenses page
-(see "Defenses" below). The **planning** window has four views: Plan (with the advisor's priorities as its second
+(see "Defenses" below), read as the other windows are: a "?" beside its title to its page of the Almanac, its parts
+as sections that fold with their counts, acts greyed with the reason when they can't be done, and a colonist or a
+people named there opening its card in the drawer at the window's right. The **planning** window has four views: Plan (with the advisor's priorities as its second
 mode), Base, Making and Rooms (the room plans as a list, or every room at a glance); see "Planning" below.
 
 Tabs and modes show a count when something there wants your attention (what waits on you, open wishes, petitions,
@@ -88,6 +91,13 @@ the plan's steps, letters under way).
 Each colonist also has a **Story** and a **Culture** tab in their inspect panel and a Rimfolk column in the game's own
 **Social** tab (see "Story, Culture and Social" below), and clicking a colonist's portrait or name in the council
 window opens their card in the drawer at the window's right, beside what you were looking at.
+
+A name drawn in parchment with a dotted line under it is a link, in Rimfolk's windows and in the tabs and the column it
+adds to the game's inspect panel (never in the game's own letters, messages or log). Rest the mouse on it for a moment
+and a small preview says who or what it is; move into the preview to keep it, and a name inside it shows one more
+preview beside it. A click opens the card: in the drawer of the window you are in, or from the inspect panel in a small
+window of its own with a button to open it in its window. The settings under "Names and cards" set the pause or turn
+previews off.
 
 **This week** (the council window's first view) is one place for everything that wants you. Wishes and petitions
 (oldest first), dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
@@ -917,7 +927,9 @@ Select a colonist and three places in their inspect panel tell Rimfolk's side of
 - **Social**: the game's own tab, a little wider, with a column of Rimfolk's on its right: their bonds (each with
   its strength, and the people they lost), their groups and role, what people say about them, the memories and
   in-jokes they share, their last few Rimfolk talks (from the game's own log) and the secrets the colony knows of.
-  Hover someone in the game's list on the left for a line about the two of them. The column only widens the tab and
+  Hover someone in the game's list on the left for a line about the two of them. A colonist named in the column (a
+  bond, a secret, a group, a shared memory) is a link to their card, as a relative, a nemesis or a people is in the
+  Story and Culture tabs and the one a mood is about in the Mood tab's why line. The column only widens the tab and
   draws beside the game's card; with another mod keeping the tab at a width of its own, or a screen too narrow, it
   stays out of the way, and the Story tab shows those parts again. **Rimfolk in the Social tab** (People & moods
   page) turns it off.

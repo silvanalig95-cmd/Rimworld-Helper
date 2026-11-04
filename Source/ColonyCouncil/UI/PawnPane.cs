@@ -31,8 +31,8 @@ namespace ColonyCouncil
         public Pawn select;
         public GameFont font = GameFont.Small;
 
-        /// <summary>The height last measured, and at what width.</summary>
-        public float measuredWidth = -1f, height;
+        /// <summary>The height last measured, and at what width; the text's own height (its links laid out once per width).</summary>
+        public float measuredWidth = -1f, height, textHeight;
     }
 
     /// <summary>A section of a pawn page: a heading that folds, then rows, a character section, or something drawn of its own.</summary>
@@ -64,7 +64,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Draws pawn pages made of folding sections, the way the Story tab looks: the Social tab's Rimfolk column and the
-    /// Culture tab. The page's model is built by its owner a couple of times a second; this only lays it out.
+    /// Culture tab. The page's model is built by its owner a couple of times a second; this only lays it out. A row's text
+    /// may name a colonist, a person outside or a people as a link (PaneLinks): drawn through LinkText, a preview after a
+    /// pause, its card on a click (the floating card here, outside Rimfolk's windows), the row's own click left for the rest.
     /// </summary>
     public static class PawnPane
     {
@@ -137,23 +139,35 @@ namespace ColonyCouncil
             float tx = x + (lead ? FaceSize + 6f : 0f);
             bool side = !r.right.NullOrEmpty() || r.bar >= 0f;
             float tw = Mathf.Max(40f, x + w - tx - (side ? RightW + 6f : 0f));
+            bool links = LinkTextMath.HasMarks(r.text);
             var oldFont = Text.Font;
             Text.Font = r.font;
             if (r.measuredWidth != tw)
             {
                 r.measuredWidth = tw;
-                r.height = Mathf.Max(lead ? FaceSize + 2f : 0f, Text.CalcHeight(r.text ?? "", tw));
+                r.textHeight = links ? LinkText.Height(r.text, tw, r.font) : Text.CalcHeight(r.text ?? "", tw);
+                r.height = Mathf.Max(lead ? FaceSize + 2f : 0f, r.textHeight);
             }
             float h = r.height;
             var rect = new Rect(x, y, w, h);
             if ((r.select != null || !r.tip.NullOrEmpty() || r.tipFn != null) && Mouse.IsOver(rect)) Widgets.DrawHighlight(rect);
             if (r.face != null) UiKit.Portrait(new Rect(x, y + 1f, FaceSize, FaceSize), r.face, r.accent);
             else if (r.icon != null) UiKit.Icon(new Rect(x + 3f, y + 4f, FaceSize - 6f, FaceSize - 6f), r.icon, r.accent);
-            GUI.color = r.color;
-            Text.Anchor = lead && h <= FaceSize + 3f ? TextAnchor.MiddleLeft : TextAnchor.UpperLeft;
-            Widgets.Label(new Rect(tx, y, tw, h), r.text ?? "");
-            Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = Color.white;
+            bool middle = lead && h <= FaceSize + 3f;
+            if (links)
+            {
+                // The names in it lead to their cards; drawn before the row's own click, so a click on a name stays the name's.
+                Text.Font = oldFont;
+                LinkText.Draw(new Rect(tx, middle ? y + (h - r.textHeight) / 2f : y, tw, r.textHeight), r.text, r.color, r.font);
+            }
+            else
+            {
+                GUI.color = r.color;
+                Text.Anchor = middle ? TextAnchor.MiddleLeft : TextAnchor.UpperLeft;
+                Widgets.Label(new Rect(tx, y, tw, h), r.text ?? "");
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+            }
             Text.Font = oldFont;
             if (side)
             {
@@ -163,8 +177,12 @@ namespace ColonyCouncil
                     UiKit.LabelFit(new Rect(rx, y + (both ? 0f : 2f), RightW, both ? 14f : 18f), r.right, r.accent, GameFont.Tiny, TextAnchor.MiddleRight);
                 if (r.bar >= 0f) UiKit.Bar(new Rect(rx + 8f, y + (both ? 15f : 8f), RightW - 8f, 6f), r.bar, r.accent);
             }
-            if (r.tipFn != null) TooltipHandler.TipRegion(rect, r.tipFn, r.tipId);
-            else if (!r.tip.NullOrEmpty()) TooltipHandler.TipRegion(rect, r.tip);
+            // A name's preview showing takes the place of the row's tooltip, so the two don't cover each other.
+            if (!links || Previews.Shown.IsNone)
+            {
+                if (r.tipFn != null) TooltipHandler.TipRegion(rect, r.tipFn, r.tipId);
+                else if (!r.tip.NullOrEmpty()) TooltipHandler.TipRegion(rect, r.tip);
+            }
             if (r.select != null && !r.select.Dead && Widgets.ButtonInvisible(rect, false)) CameraJumper.TryJumpAndSelect(r.select);
             return h;
         }

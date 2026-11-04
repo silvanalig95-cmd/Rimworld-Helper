@@ -77,7 +77,7 @@ namespace ColonyCouncil
     /// The drawer (docs/design/interface.md, "Where a card opens"): a panel at the right of a window, 380 wide, beside the
     /// view where the content area is 900 or more and over it, with a shadow, where it isn't (DrawerMath). Its head shows
     /// the trail of cards opened in it ("Tallbrook › Edda Marsh"), each a link back, and a way to close it; under it the
-    /// card (CardView). Escape closes it before the window. The council, region and planning windows hold one around
+    /// card (CardView). Escape closes it before the window. The council, region, defense and planning windows hold one around
     /// every view: a card opened from a link goes to the drawer in sight (<see cref="Active"/>), so following a name never
     /// leaves what the player was looking at. On the region map the drawer is the map's panel: it is always there,
     /// picking a place opens its card, and with nothing picked it shows what the map's colours mean. Kept for the

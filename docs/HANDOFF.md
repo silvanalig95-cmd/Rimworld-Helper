@@ -6,6 +6,46 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.85.0, UI 5a, one look: the first part (docs/design/interface.md, the fifth of its five releases, on the player's decisions 3
+  and 6; built beside UI 3, which another agent builds at the same time: expect keep-both merges in `WindowTabs.cs`
+  (only `Size` changed here), `CouncilSettings.cs`/`SettingsCatalog.cs` (`windowSize` after `linkPreviewDelay`, its
+  choice after the Almanac's text size), `Tools/Tests/Program.cs` and `Tests.csproj` (two lines each) and the Almanac's
+  start page (its names, previews and defense bullets)). DESIGN.md, "Rimfolk's windows" → "One look, the first part" has
+  the whole of it. Pure and tested: `UI/WindowLayoutMath.cs` (`WindowSizeChoice`, `Size` standard 1010 by 720 or large up
+  to 1280 by 860 within the screen, `ContentWidth`/`ContentHeight`, `CornerWidth` with the corner as it will be after UI 3:
+  back, forward, search, inbox, following, the book and the four windows, 316; `TabsRoom`, `TabWidth`, `NameFits`,
+  `IconFits`, `RegionMap`; `DrawerMath.WindowSize` and `ContentWidth` now read it; `Tools/Tests/LayoutTests.cs`, 2,207
+  checks over fourteen screens from 768 to 2160 high at scales 1 to 2, standard and large), `UI/Cards/PreviewMath.cs`
+  (`ScreenBox`, `PreviewMath.Place`/`Beside`/`Fit`, `PreviewStack`: a preview per level, two at most, the second beside
+  the first, kept while the mouse is in either; `Tools/Tests/OneLookTests.cs`). Game side: `Previews` draws both levels
+  as immediate windows (`WindowId + level`), knows which level it is drawing so a link there asks for the next, and keeps
+  a click on a preview's empty part (`GenUI.AbsorbClicksInRect`). The defense window draws its view through `ViewHead`
+  (the "?" to `Rimfolk_AlmDef_Overview`, `PagesMath.Articles["Defenses"]`) and `Drawer.Around` with its own drawer, and
+  the way back keeps its card; `DefensePanel` keeps what it did and reads as sections (`UiKit.SectionHeading`, folds for
+  the session, counts on the lines, what to do and the plans), facts as rows, acts through `UiKit.ActButton` (Plan it
+  here and a plan the colony can't build greyed with why; At the suggested spot greyed where the survey found no spot),
+  an empty state for no advice, names as links (the best shot and fighter, the marshal and their portrait, the hostile
+  peoples); the Almanac button at the foot of the facts went (the "?" opens that page); `DefenseLinesPanel.Draw` takes
+  the folds. Names as links in the game's panes (`UI/Cards/PaneLinks.cs`: `Mark` for a pawn, pawns, a people, a name and
+  thing; `ColonyPeople`, `MarkColony` for a character section): Story (`StoryView`: the family's chips, `UiKit.PawnChip(...,
+  link: true)`; vendetta and nemesis tags, `UiKit.PillSpec.thing`; the family tree's names; family, years, bonds and
+  secrets lines), Culture (a prisoner's people, who won them over), the Social column (bonds, secrets, the colony's
+  people in groups, what people say and shared memories), Mood (the one a mood is about in its why line,
+  `MoodView.Texts.whyShown`, `why` kept plain for the tooltips); `PawnPane` rows and `CharacterView.DrawSection` draw
+  through `LinkText`; a row's or chip's tooltip gives way while a preview shows. The talks (the play log) and the
+  game's thought labels stay plain; the Needs line names no one. Keys in `Languages/English/Keyed/Rimfolk_OneLook.xml`.
+  Docs: README (the windows' size, the defense window, links and previews), the Almanac's start page and "planning the
+  colony's defense" (no keyword changes). Left for UI 5b, once UI 3 is in: the tokens and components across every
+  window's pages (council, planning, This week as the inbox), the page accents giving way, `WindowTabs.LinksWidth` read
+  from `WindowLayoutMath` (the test assumes UI 3's corner), links in the on-screen panels and the colonist bar's hover.
+  To look at in game: the defense window with a card beside (1080p scale 1, the page then in one column) and over it
+  (scale 1.5 at 1366 by 768), its folds, the greyed acts and their reasons, the marshal's portrait; the setting
+  "Window size" on Large at 1080p and 1440p (all four windows, the region map, the People table, the Almanac's window
+  then in the middle where there's no room beside); a second preview from a name inside a preview (beside it, both
+  kept while the mouse moves between, the game's tooltips around them, clicks on a preview's empty part); names in the
+  Story tab (family chips, tree, tags), Culture (a prisoner's people), the Social column (a bond, a secret, a group) and
+  a mood's why line opening the floating card, and the same story in a colonist's card in the drawer.
+
 - 0.84.0, UI 2, the region in four views (docs/design/interface.md, the second of its five releases, on the player's decision
   1; built beside UI 4 and merged with it: the region's views are sections of their own in `PagesMath.All`, so the
   five-views check holds for the region window too). DESIGN.md, "Rimfolk's windows" → "The region in four views" has

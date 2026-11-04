@@ -393,7 +393,9 @@ namespace ColonyCouncil
             var f = p.Faction;
             if (p.IsPrisonerOfColony && f != null && !f.IsPlayer)
             {
-                var row = s.Add("CC_Culture_OfFaction".Translate(f.Name).Resolve(), Color.white, "CC_Culture_OfFactionTip".Translate(p.Named("PAWN"), f.Name.Named("FACTION")).Resolve());
+                // Their people's name leads to its card.
+                var row = s.Add(PaneLinks.Mark("CC_Culture_OfFaction".Translate(f.Name).Resolve(), f), Color.white,
+                    "CC_Culture_OfFactionTip".Translate(p.Named("PAWN"), f.Name.Named("FACTION")).Resolve());
                 if (row != null)
                 {
                     row.icon = FactionIcon(f.def);
@@ -443,8 +445,8 @@ namespace ColonyCouncil
             else if (here > 0 && age < long.MaxValue && here >= age - GenDate.TicksPerDay * 2) how = "CC_Culture_BornHere".Translate(p.Named("PAWN")).Resolve();
             else
             {
-                string by = RecruitedBy(p);
-                if (by != null) how = "CC_Culture_WonOver".Translate(p.Named("PAWN"), by.Named("BY")).Resolve();
+                string by = RecruitedBy(p, out var byPawn);
+                if (by != null) how = PaneLinks.Mark("CC_Culture_WonOver".Translate(p.Named("PAWN"), by.Named("BY")).Resolve(), byPawn != null && !byPawn.Dead ? byPawn : null);
             }
             if (here >= GenDate.TicksPerHour)
             {
@@ -459,9 +461,10 @@ namespace ColonyCouncil
             else if (how != null) s.Add(how, Color.white);
         }
 
-        /// <summary>Who won them over while they were held here, if the game's tales still remember it.</summary>
-        private static string RecruitedBy(Pawn p)
+        /// <summary>Who won them over while they were held here, if the game's tales still remember it (and the pawn, while the game has them).</summary>
+        private static string RecruitedBy(Pawn p, out Pawn byPawn)
         {
+            byPawn = null;
             try
             {
                 var tales = Find.TaleManager?.AllTalesListForReading;
@@ -470,6 +473,7 @@ namespace ColonyCouncil
                 {
                     if (!(tales[i] is Tale_DoublePawn t) || t.def != TaleDefOf.Recruited || t.secondPawnData?.pawn != p) continue;
                     var by = t.firstPawnData;
+                    byPawn = by?.pawn;
                     return by?.pawn?.LabelShort ?? by?.name?.ToStringShort;
                 }
             }

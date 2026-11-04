@@ -53,14 +53,19 @@ namespace ColonyCouncil
 
         // ---------------- The section ----------------
 
-        public static float Draw(DefenseSurvey s, float x, float y, float w)
+        /// <summary>
+        /// The defense lines' section on the Defenses page: its heading (folding with <paramref name="folds"/>, with the
+        /// count of lines), the buttons for a new line and how lines work, then a card for each line. Returns the y under it.
+        /// </summary>
+        public static float Draw(DefenseSurvey s, float x, float y, float w, Folds folds = null)
         {
             var map = s.map;
             var comp = DefenseLines.Of(map);
             if (comp == null) return y;
             var lines = comp.lines;
-            y += UiKit.SectionTitle(x, y, w, "CC_DefLine_Section".Translate(), Icons.Defenses ?? Icons.CatDefense, null,
+            y += UiKit.SectionHeading(x, y, w, "CC_DefLine_Section".Translate(), lines.Count, folds, "lines", out bool open,
                 lines.Count == 0 ? "CC_DefLine_SectionNone".Translate().Resolve() : "CC_DefLine_SectionCount".Translate(lines.Count).Resolve());
+            if (!open) return y + 4f;
             var newRect = new Rect(x + w - 200f, y, 200f, ButtonH);
             if (Widgets.ButtonText(newRect, "CC_DefLine_New".Translate())) NewMenu(s, comp);
             TooltipHandler.TipRegion(newRect, "CC_DefLine_New_Tip".Translate());

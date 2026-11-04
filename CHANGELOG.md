@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One look, the first part
+
+*4 November 2026, version 0.85.0*
+
+- The defense window reads like the other windows: a "?" beside its title to its Almanac page, sections that fold with their counts, buttons greyed with the reason when they can't be used yet, and the card of a colonist or a people named there in a drawer at its right.
+- Names in the Story, Culture and Mood tabs and in the Social tab's column are links: a relative, a bond, a nemesis, a people or the one a mood is about shows a preview after a pause and opens its card on a click.
+- A name inside a preview shows one more preview beside it, two at most, and both stay while the mouse moves between them; the setting that turns previews off covers both.
+- A new setting, Window size: Standard keeps Rimfolk's windows at 1010 by 720, and Large lets them grow up to 1280 by 860 on a screen with the room, so the map, the tables and a card beside them get more space.
+
 ## The region in four views
 
 *4 November 2026, version 0.84.0*
