@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Settlers on their way to found a hamlet under the colony's protection (Source/ColonyCouncil/World/Region/
+       HamletEscort.cs). They never come on their own (weight 0): taken under the colony's protection, they camp by it
+       with their families, carts and pack beasts until a caravan of the colony's sets out for the place of their hamlet,
+       and go with it (or set off alone). Their coming and going are told by the hamlet's own words; these lines are
+       their camp's while it stands. -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Settlers</defName>
+    <label>settlers</label>
+    <weight>0</weight>
+    <people>2~8</people>
+    <days>6~6</days>
+    <ages>16~60</ages>
+    <family>true</family>
+    <huntsPerDay>0.2</huntsPerDay>
+    <chopsPerDay>0.5</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Metal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>4</count></li>
+    </structures>
+    <!-- Their carts' beasts, tethered by the stash, and the timber and seed for their first houses and fields. -->
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Donkey</li><li>Dromedary</li><li>Yak</li></kinds><count>1~2</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>25~40</count><at>picket</at></li>
+      <li><defs><li>RawPotatoes</li><li>RawCorn</li></defs><count>15~25</count><at>picket</at></li>
+    </campGoods>
+    <titles>
+      <li>Settlers at the gate</li>
+    </titles>
+    <texts>
+      <li>The settlers of {FACTION} have come in with their carts, and {X_nameDef} asked {A_nameDef} where they might wait {PLACE} until the colony's caravan sets out.</li>
+      <li>[lowtech] Two carts piled with bedding, seed and a plough came up the track, and the settlers of {FACTION} behind them. {X_nameDef} told {A_nameDef} they would wait {PLACE} for the colony's caravan.</li>
+    </texts>
+    <settled>
+      <li>The settlers from {FACTION} have their carts drawn up {PLACE}, the beasts tethered and the fire lit, ready to go the moment the colony's caravan does.</li>
+      <li>The settlers' camp {PLACE} is half packed already: they unloaded only what they need for a few nights, and {X_nameDef} keeps looking down the road.</li>
+    </settled>
+    <farewell>
+      <li>The settlers from {FACTION} loaded their carts and left their camp {PLACE}.</li>
+    </farewell>
+    <lines>
+      <li>Is the caravan ready yet?</li>
+      <li>Keep the seed dry.</li>
+      <li>Our own roof, by summer.</li>
+      <li>Check the cart wheels again.</li>
+      <li>The children won't sleep, they're too excited.</li>
+      <li>We'll have a field turned in a week.</li>
+      <li>Don't unpack more than you need.</li>
+      <li>I hope the soil's as good as they say.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

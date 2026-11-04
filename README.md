@@ -2569,6 +2569,18 @@ things mend; ten more days and it is packed up, leaving a ruin. War closes it, r
 a post the colony razes is a heavy wrong their people remember. 14 conversation pieces speak of the posts. The region
 window has a *trading posts* page; This week shows a post that may close. Setting: *Trading posts*.
 
+**Settlers' hamlets.** Families of a people at peace may ask to settle a few days off under the colony's protection: a
+holding that has lived a year on its land, families of a town given up (offered a place at the gate), or settlers from
+a poor or struggling town. The letter shows the place; the colony may choose another. Taken under protection, they camp
+by the colony with their carts until a caravan of two grown colonists sets out for the place, and travel beside it,
+named in its panel; after a night there the hamlet stands, a town of their own people with its founder and families,
+and the road may bring a demand or an ambush with the settlers fighting beside the caravan. Alone, a third are turned
+back. The hamlet brings produce at harvest, asks for food, a doctor or tools in hard seasons (refused twice in one, it
+stops counting on the colony), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
+14 conversation pieces speak of it. The region window has a *hamlets* page; This week shows settlers waiting. Setting:
+*Hamlets*. **Small towns look small**: a hamlet, a trading post or a town in its first year has a smaller base with
+fewer defenders on its own map, through Vanilla Base Generation Expanded's layouts too. Setting: *Small towns' maps*.
+
 **Raiders' camps.** A rich colony on bad terms with a hostile people may find raiders camped a few days off: the
 game's own bandit camp, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base). Someone out
 beyond the walls sees its smoke, and the letter names the danger before any raid comes. While it stands, it raids the

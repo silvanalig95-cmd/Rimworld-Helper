@@ -21,6 +21,8 @@ namespace ColonyCouncil
         {
             // Trading posts near the colony (World/Region/TradingPostFacts.cs).
             Posts(s, f);
+            // The colony's hamlet (World/Region/HamletFacts.cs).
+            HamletTags(s, f);
             int now = Now;
             var rec = s.place != null ? WorldLedger.TownRecord(s.place.ID) : null;
             if (rec != null && rec.gone < 0)

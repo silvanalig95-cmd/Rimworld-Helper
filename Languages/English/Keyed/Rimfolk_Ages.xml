@@ -129,4 +129,24 @@
   <CC_Form_Post_Spacer>a supply run</CC_Form_Post_Spacer>
   <CC_Form_Post_Spacer_Rite>ground station</CC_Form_Post_Spacer_Rite>
 
+  <!-- A hamlet under the colony's protection (World/Region/Hamlet.cs): the word is the protection by the colony's age, the rite the hamlet by its people's -->
+  <CC_Form_Hamlet_Tribal>the clan's spear</CC_Form_Hamlet_Tribal>
+  <CC_Form_Hamlet_Tribal_Rite>a new hearth</CC_Form_Hamlet_Tribal_Rite>
+  <CC_Form_Hamlet_Medieval>a lord's protection</CC_Form_Hamlet_Medieval>
+  <CC_Form_Hamlet_Medieval_Rite>a hamlet</CC_Form_Hamlet_Medieval_Rite>
+  <CC_Form_Hamlet_Industrial>a protectorate's guarantee</CC_Form_Hamlet_Industrial>
+  <CC_Form_Hamlet_Industrial_Rite>a homestead</CC_Form_Hamlet_Industrial_Rite>
+  <CC_Form_Hamlet_Spacer>a charter of protection</CC_Form_Hamlet_Spacer>
+  <CC_Form_Hamlet_Spacer_Rite>an outpost colony</CC_Form_Hamlet_Spacer_Rite>
+
+  <!-- A hamlet's oath of fealty (World/Region/HamletLife.cs): the word is where the colony takes it, the rite how their people swear it -->
+  <CC_Form_Oath_Tribal>the council fire</CC_Form_Oath_Tribal>
+  <CC_Form_Oath_Tribal_Rite>gifts at the river</CC_Form_Oath_Tribal_Rite>
+  <CC_Form_Oath_Medieval>the great hall</CC_Form_Oath_Medieval>
+  <CC_Form_Oath_Medieval_Rite>an oath before witnesses</CC_Form_Oath_Medieval_Rite>
+  <CC_Form_Oath_Industrial>the town office</CC_Form_Oath_Industrial>
+  <CC_Form_Oath_Industrial_Rite>a signed agreement</CC_Form_Oath_Industrial_Rite>
+  <CC_Form_Oath_Spacer>the comms console</CC_Form_Oath_Spacer>
+  <CC_Form_Oath_Spacer_Rite>a registered charter</CC_Form_Oath_Spacer_Rite>
+
 </LanguageData>

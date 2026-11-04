@@ -15,6 +15,30 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- Stage 1 release 6, the hamlet (item 6, decisions 4 and 9 to 11): `World/Region/HamletMath.cs` (pure, `HamletTests`),
+  `Hamlet.cs` (`HamletHome` on `RegionHome.hamlet`, `Hamlets`: day and hour, looks, the ways in, ends, `KeepFor.Hamlet`),
+  `HamletPlace.cs` (6 to 10 tiles by the posts' rules, `WhyNotHere` for the world targeter), `HamletAsk.cs`
+  (`ChoiceLetter_Hamlet` for the settlers' ask, help, oath and war; `WorldEffect_Hamlet` in `Rimfolk_WS_GivenUp`'s
+  refugees beat), `HamletEscort.cs` (the settlers' camp `Rimfolk_Camp_Settlers` from the settlers themselves or the
+  holding, the caravan within 3 tiles bound for the place, kept beside it, the road's one roll of `CaravanDemand` or
+  `Ambush`, alone a third turned back), `HamletFound.cs` (the game's `Settlement` of their people, kind `Hamlet`, 25 or
+  12, founder and families, `StaffHamlet`, Fealty tie key `protection`, `world:hamlet:founded`, deed `hamlet`),
+  `HamletLife.cs` (harvest carter, hard season asks carried out at the gate, two refusals in 15 days break the tie,
+  fealty after 60 days at 40: Faction Territories' `ExecuteVassalisation` by name or the tie's key `oath`; war: families
+  join or stay), `HamletWords.cs`, `HamletPage.cs` (page `Hamlets`, This week while waiting), `HamletFacts.cs`,
+  `HamletNotables.cs`, `HamletPatches.cs` (`Patch_HamletCaravanLine`, `Patch_HamletFight`), `HamletDebug.cs`;
+  `AgeFeature.Hamlet` and `Oath` (14 features); deeds hamlet, hamletHarvest, hamletHelped, hamletRefused; facts
+  `town:hamlet`, `town:hamlet:sworn`, `their:hamlet`, `region:hamlet`, `{HAMLET}` `{HAMLETWORD}` `{HAMLETPEOPLE}`; 14 talk
+  pieces; settings `hamlets`, `smallTownMaps`; Almanac sections in the region page. Release 7's hooks are called:
+  `ColonistMemory.WalkedSettlers` when it stands, `GrownTowns.Note(..., "hamlet")` when its second year ends (a grown
+  hamlet's record stays a town and the hamlet stays the colony's). Decision 4: `SmallTowns.cs` (`Patch_SmallTownMap` on
+  `SymbolStack.Push` for `settlement` and Vanilla Expanded Framework's `kcsg_settlement`, read in its source: the
+  ground shrunk, defenders and stores fewer; Empire and gravcore bases keep their ground). Left: the warlord son's
+  settlers branch; a staged defense at the hamlet (decision 11: only Faction Territories' invasions fight there); a
+  hamlet's own letters beyond its asks. To check in game: the ask's look and the targeter, the settlers' camp and
+  pickup by a caravan (the panel line), an ambush at the place with the settlers fighting, the founding letter and the
+  region map panel, the harvest carter, help carried to the gate, the oath with and without Faction Territories, a small
+  town's map with and without Vanilla Base Generation Expanded.
 - 0.76.0, stage 1 release 7, follow-ups (decisions 12 and 13): `World/Region/FollowUpsMath.cs` (pure: the son's branch by
   the warlord's ending, the window, his age, what he asks; the grown town's boost; `CampWarnMath`), `FollowUps.cs`
   (`FollowUp`, `FollowUpsHome` on `RegionHome.followUps`, six waiting a home; due 60 to 180 days after, started in the

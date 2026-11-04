@@ -2365,6 +2365,64 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   sacked, razed). Facts (the region's provider): `town:post` ({TOWN}, `{POSTKIND}`, `{KEEPER}`), `town:post:warned`,
   `their:post` and `region:post` (`{POST}`, `{POSTPEOPLE}`); 14 talk pieces. Shown: the region page `TradingPosts`
   (order 54), the panel's `Sections` for a post, This week while warned. Dev actions open, warn, sack and close one.
+- **Settlers' hamlets** (the sixth release, item 6 with decisions 9 to 11; `World/Region/HamletMath.cs` pure, `Hamlet.cs`,
+  `HamletPlace.cs`, `HamletAsk.cs`, `HamletEscort.cs`, `HamletFound.cs`, `HamletLife.cs`, `HamletWords.cs`, `HamletPage.cs`,
+  `HamletFacts.cs`, `HamletNotables.cs`, `HamletPatches.cs`, `HamletDebug.cs`; setting "Hamlets"; `HamletTests`). Each home's
+  hamlet is a `HamletHome` on its `RegionHome` (`hamlet`: the stage, the way in, the settlers kept with `KeepFor.Hamlet`
+  (8 at most, emptied once they settle), the place, the town, the Fealty tie's id, its days at 40, the refusals, when it
+  last asked, harvested and swore), run in the region's day (looks, life) and hour (only while settlers wait or travel):
+  no pass, slot or tick of its own. **Who**: from day 90, five grown colonists, no hamlet under way at the home and a
+  year since the last ask, a question may come (`Tell.CanAsk`), a look every 10 days, then 15%: the colony's holding when
+  it has lived 60 days on its land with unease under 30, else the poorest town in reach under 40 of a people that
+  `CanFound` (humanlike, at peace, people to send, a naming rule); the town-abandoned event's refugees by its answer
+  "Offer them a place for a hamlet" (`WorldEffect_Hamlet`, greyed with the reason when no ask could come; the family at
+  the gate goes back for the others and is among the settlers). **Where**: the posts' flood fill to 10 tiles, 6 or more
+  from the home, x2 by a river, x1.5 on a road; "choose another place" opens the world targeter, held to the same rules
+  (`WhyNotHere`). **The ask** (`ChoiceLetter_Hamlet`, `Rimfolk_HamletAsk`): escort (two grown colonists at home), alone,
+  another place, refuse; unanswered 10 days, they look elsewhere. **The escort**: the settlers' own camp by the colony
+  (`Rimfolk_Camp_Settlers`, weight 0, built with `CampTracker.Make` from the settlers themselves; the holding stays as
+  their camp; another camp there: they wait on the road off the map), up to five days; a player caravan within three
+  tiles of the home, bound for the place, with two grown colonists takes them along: the camp packed (`Camp.Leave`
+  with ending `hamlet`, told by the hamlet's own words), the settlers despawned and held in the world beside it,
+  `Patch_HamletCaravanLine` names them in its inspect pane. Arrived (the caravan on the tile, or its people on a map
+  there): one roll of `CaravanDemand` or `Ambush` (15%, 35% with a raiders' camp at the home or a hostile town within 15
+  tiles of the place); `Patch_HamletFight` (on `CaravanIncidentUtility.SetupCaravanAttackMap`) spawns the grown settlers
+  near the caravan with `LordJob_AssistColony` when the attackers are hostile to their people too. After eight hours there
+  and the morning, or a day, with no map on the tile, the hamlet stands. The caravan home or bound elsewhere first: they
+  go alone. **Alone**: a third turned back (told when they would have arrived), the rest found it after a caravan's
+  pace and a day. **The hamlet**: the game's `Settlement` of their people named by their naming rule (decision 9); the
+  ledger's record of kind `Hamlet`, founded now, its founder, mother town and reason, prosperity 25 (12 alone); the
+  founder's line and a second founding family from the settlers' names; the founder its head (`NotableBook.StaffHamlet`
+  over `MakeHead`, remembering the colony); a Fealty tie hamlet to colony, key `protection`; history
+  `world:hamlet:founded`, a milestone; the memory's `hamlet` deed; `ColonistMemory.WalkedSettlers` for the caravan's
+  colonists (release 7). **Its life**: at harvest (autumn at the home, Septober where the seasons never turn), 45 days
+  apart, not while struggling, a carter brings 20 plus 0.6 of its fortune in raw food (`Couriers.Deliver`, else left at
+  the gate), +3 goodwill, `hamletHarvest`; struggling, an ask every five days at most for food (30 raw food), a doctor
+  (5 medicine, carried by the best doctor) or tools by the colony's age (40 wood, 25 steel, 4 components), carried out to
+  their carter at the gate (`DilemmaEffect_CarryOut`): +6 to its fortune and `hamletHelped`, or refused
+  (`hamletRefused`); two refusals within 15 days break the tie. **Fealty**: 60 days at 40 or more, no refusal in 60
+  days, a question (again 30 days after "not yet"): with Faction Territories and its vassalage on
+  (`IsVassalageEnabled`), its `VassaliseUtility.ExecuteVassalisation` by name, no goodwill price, the tie ended (the
+  adapter's vassal view takes over); else stage Sworn, the tie's key `oath`. **War**: its people hostile before that, a
+  question: its families come (two to four of its family names walk in and join; the hamlet given up through
+  `RiseFall.MakeRuin` when `SafeToClose`), or stay (the tie broken); unanswered ten days, they stay. **Second year**: 120
+  days after its founding, `GrownTowns.Note(home, town, founder, first-year flags fed/gift/refused, its word, "hamlet")`
+  (release 7); once grown, the ledger keeps it as a town and the hamlet stays the colony's. Ages: `AgeFeature.Hamlet`
+  (the protection by the colony's age, the hamlet's word by theirs) and `AgeFeature.Oath` (where the colony takes the
+  oath, the oath by theirs). Facts: `town:hamlet` (`{HAMLETWORD}`), `town:hamlet:sworn`, `their:hamlet` and
+  `region:hamlet` (`{HAMLET}`, `{HAMLETPEOPLE}`); 14 talk pieces. Shown: the region page `Hamlets` (order 56), the panel's
+  `Sections` for a hamlet, This week while settlers wait. Dev actions: settlers ask, found it now, a hard season's ask,
+  fealty, the harvest, the war's question.
+- **Small towns look small** (decision 4; `World/Region/SmallTownsMath.cs` pure, `SmallTowns.cs`; setting "Small towns'
+  maps", with the deeper hooks). `Patch_SmallTownMap` prefixes `SymbolStack.Push(string, ResolveParams, string)` for the
+  game's `settlement` and the Vanilla Expanded Framework's `kcsg_settlement` (Vanilla Base Generation Expanded's
+  layouts, which build inside the ground they are handed and scale defenders by their own multiplier): on a map whose
+  parent is the game's own `Settlement` of another people with a ledger record of a hamlet, a post or a town in its
+  first year, the ground is shrunk around its middle (0.6, 0.75, 0.8 a side, never under 18 cells), the defenders'
+  points (0.35, 0.5, 0.65 of the game's 1,150 to 1,600) and, for the game's base, the stockpile's worth (0.4, 0.75, 0.6)
+  and a hamlet's edge defense. An Empire town or a base that needs a gravcore room keeps its ground. Sites (Real Ruins',
+  bandit camps), Faction Territories' and Vanilla Outposts Expanded's world objects and Factional War's battles are
+  never a `Settlement` of the vanilla def, so never touched.
 - **The follow-ups and the memory of single colonists** (the seventh release, item 7, decisions 12 and 13;
   `World/Region/FollowUps.cs`, `WarlordSon.cs`, `GrownTown.cs`, `RaidersCampWarnings.cs`, `World/ColonistMemory.cs`;
   rules in `World/Region/FollowUpsMath.cs` and `World/ColonistMemoryMath.cs`, Tools/Tests `FollowUpTests`).

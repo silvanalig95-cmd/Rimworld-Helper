@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public const string Chain = "chain";
         /// <summary>Who led settlers to a town being founded or kept in detail (World/Region/RegionFaces.cs).</summary>
         public const string Founding = "founding";
+        /// <summary>Settlers on their way to found a hamlet under the colony's protection (World/Region/Hamlet.cs).</summary>
+        public const string Hamlet = "hamlet";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -123,6 +125,8 @@ namespace ColonyCouncil
                 // A raiders' camp's leader (World/Region/RaidersCamp.cs), and a follow-up's own person while it waits (World/Region/FollowUps.cs).
                 case RaidersCamps.KeepReason: return RaidersCamps.Leads(p);
                 case FollowUps.KeepReason: return FollowUps.Holds(p);
+                // Settlers on their way to found a hamlet (World/Region/Hamlet.cs).
+                case KeepFor.Hamlet: return Hamlets.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

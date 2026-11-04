@@ -24,7 +24,11 @@ namespace ColonyCouncil
         /// <summary>A new town founded: the word is how the colony hears of it (its means), the rite how their people found one (World/Region/).</summary>
         Founding,
         /// <summary>A trading post: the word is how the colony goes there to trade (its means), the rite what their people's post is (World/Region/TradingPost.cs).</summary>
-        Post
+        Post,
+        /// <summary>A hamlet under the colony's protection: the word is the protection by the colony's age, the rite the hamlet's word by its people's (World/Region/Hamlet.cs).</summary>
+        Hamlet,
+        /// <summary>A hamlet's oath of fealty: the word is where the colony takes it (its means), the rite how their people swear it (World/Region/HamletLife.cs).</summary>
+        Oath
     }
 
     /// <summary>
@@ -44,7 +48,7 @@ namespace ColonyCouncil
         public static readonly AgeFeature[] Features =
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
-            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post
+            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

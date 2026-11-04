@@ -267,7 +267,9 @@ public static class OutsiderTalkTests
         "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
-        "FOE"
+        "FOE",
+        // A hamlet under the colony's protection (World/Region/HamletFacts.cs).
+        "HAMLET", "HAMLETWORD", "HAMLETPEOPLE"
     };
 
     private static int Library(string root, Action<bool, string> C0)

@@ -360,6 +360,8 @@ namespace ColonyCouncil
             Toggle("regionChange", "CC_Settings_RegionChange", "CC_SetNote_RegionChange");
             Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
             Toggle("tradingPosts", "CC_Settings_TradingPosts", "CC_SetNote_TradingPosts");
+            Toggle("hamlets", "CC_Settings_Hamlets", "CC_SetNote_Hamlets");
+            Toggle("smallTownMaps", "CC_Settings_SmallTownMaps", "CC_SetNote_SmallTownMaps", "deepHooks");
             Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
