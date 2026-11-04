@@ -270,6 +270,38 @@ public static class LedgerMovesTests
             Check(same, "three thousand joinings and hours: the ledger's open claims are the old list's, and the same one is pressed");
         }
 
+        // ---------------- The scenario's debt ----------------
+
+        {
+            var debt = new Tie { kind = Tie.Kind.Debt, from = Ref.Colony(12), to = Ref.People(4), since = 0, until = 30 * Day };
+            debt.terms.goods = "Silver";
+            debt.terms.count = 3000;
+            Check(TieRules.StateAt(debt, 30 * Day - 1) == Tie.State.Open, "owed, not yet due");
+            Check(TieRules.Expire(debt, 30 * Day) && debt.state == Tie.State.CalledIn && debt.until == Tie.Never, "at its day it comes due: called in, with no end");
+            Check(!TieRules.Expire(debt, 900 * Day) && debt.Live, "called in, it waits for the council's answer however long the letter takes (the memo's next look retries)");
+            // Half paid: more owed, put off once more, due again.
+            Check(TieRules.Move(debt, Tie.State.Open, 31 * Day), "half paid: open again");
+            debt.terms.count = 2030;
+            debt.terms.number += 1;
+            debt.until = 52 * Day;
+            Check(debt.terms.count == 2030 && (int)debt.terms.number == 1 && TieRules.StateAt(debt, 52 * Day) == Tie.State.CalledIn, "more owed, put off once, due again at its new day");
+            TieRules.Expire(debt, 52 * Day);
+            var refusedDebt = new Tie { kind = Tie.Kind.Debt, state = Tie.State.CalledIn };
+            Check(TieRules.Move(debt, Tie.State.Kept, 53 * Day) && TieRules.Move(refusedDebt, Tie.State.Broken, 53 * Day), "paid: kept; refused: broken");
+            // A live debt never closes by itself (only the scenario closes it, as it uses the memo): the two stay in step.
+            var r = new Random(9);
+            bool closesAlone = false;
+            for (int i = 0; i < 500; i++)
+            {
+                var t = new Tie { kind = Tie.Kind.Debt, from = Ref.Colony(1), to = Ref.People(2), state = r.Next(2) == 0 ? Tie.State.Open : Tie.State.CalledIn };
+                t.until = t.state == Tie.State.Open ? r.Next(0, 100) * Day : Tie.Never;
+                var list = new List<Tie> { t };
+                TieRules.Tidy(list, r.Next(0, 200) * Day);
+                if (!t.Live || list.Count == 0) closesAlone = true;
+            }
+            Check(!closesAlone, "a debt open or called in is still live after any tidy: unused memo, live tie");
+        }
+
         return n;
     }
 }

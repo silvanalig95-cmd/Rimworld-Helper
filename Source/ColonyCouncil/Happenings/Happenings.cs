@@ -392,14 +392,19 @@ namespace ColonyCouncil
         public bool won;
         /// <summary>Debts and hunts (from a scenario): when it next comes due. A debt waiting for an answer: int.MaxValue.</summary>
         public int due;
-        /// <summary>A debt: how much silver is owed.</summary>
+        /// <summary>
+        /// What a kind of memo counts (an order's price, a commission's...). A debt's silver is in its tie (<see cref="tie"/>),
+        /// and only here if the ledger had no room for it.
+        /// </summary>
         public int amount;
+        /// <summary>A debt: its tie in the world ledger (Scenarios/ScenarioDebts.cs), 0 for none.</summary>
+        public int tie;
         /// <summary>A hunt: how many more times they come (-1: until the one leading it falls).</summary>
         public int left = -1;
         /// <summary>A hunt: days between attacks.</summary>
         public float everyMin;
         public float everyMax;
-        /// <summary>A debt: times it was put off. A hunt: times they came.</summary>
+        /// <summary>A hunt: times they came. (A debt's times put off are in its tie.)</summary>
         public int times;
         /// <summary>
         /// The colony it belongs to (its settlement's id, <see cref="Homes"/>): the map of whatever made it, else the seat.
@@ -422,6 +427,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref won, "won");
             Scribe_Values.Look(ref due, "due");
             Scribe_Values.Look(ref amount, "amount");
+            Scribe_Values.Look(ref tie, "tie");
             Scribe_Values.Look(ref left, "left", -1);
             Scribe_Values.Look(ref everyMin, "everyMin");
             Scribe_Values.Look(ref everyMax, "everyMax");
@@ -973,6 +979,8 @@ namespace ColonyCouncil
         public void Use(Memo m)
         {
             if (m == null) return;
+            // A debt still owed when its memo goes (its people gone): over, nobody's fault.
+            if (m.kind == "debt") Debts.Close(m, Tie.State.Ended);
             m.used = true;
             // Still being asked about in a letter: the pin stays until the memo is dropped.
             if (m.pinned && m.pawn != null && AskedAbout(m.pawn)) return;
@@ -1035,6 +1043,9 @@ namespace ColonyCouncil
                 Grudges.Adopt(oldGrudges);
                 oldGrudges = null;
             }
+            foreach (var m in memos)
+                if (m != null && m.kind == "debt" && !m.used && m.tie <= 0)
+                    Debts.Adopt(m, Now);
         }
 
         public void ExposeData()

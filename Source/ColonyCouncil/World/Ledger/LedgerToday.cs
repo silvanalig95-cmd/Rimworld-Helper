@@ -9,8 +9,6 @@ namespace ColonyCouncil
     /// The ties that exist today in Rimfolk's other stores, read as ties (views: <see cref="Tie.source"/> names the store,
     /// none is editable through the ledger yet). Only those still in force: what ended stays in its own store's record.
     /// <list type="bullet">
-    /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
-    /// date, called in while the letter waits for an answer.</item>
     /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
     /// <item>A vendetta a colonist swore against a people (VendettaTracker): the colonist's grudge.</item>
     /// </list>
@@ -35,7 +33,6 @@ namespace ColonyCouncil
             var list = new List<Tie>();
             if (Current.Game != null)
             {
-                Read("debts", list, Debts);
                 Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
             }
@@ -59,21 +56,6 @@ namespace ColonyCouncil
         {
             if (from.IsNone || to.IsNone || from == to) return;
             list.Add(new Tie { kind = kind, from = from, to = to, terms = terms ?? new TieTerms(), since = since, until = until, state = state, origin = origin, source = source });
-        }
-
-        private static void Debts(List<Tie> list)
-        {
-            var t = CouncilGameComponent.Instance?.happenings;
-            if (t == null) return;
-            foreach (var m in t.memos)
-            {
-                if (m == null || m.used || m.kind != "debt" || m.faction == null) continue;
-                // Waiting for the council's answer: the letter asks for it now.
-                bool asking = m.due == int.MaxValue;
-                var terms = new TieTerms { goods = "Silver", count = m.amount, key = m.def, number = m.times, about = Refs.Of(m.pawn) };
-                View(list, "happenings:debt", Tie.Kind.Debt, Refs.Colony(Homes.ForMemo(m.home)), Refs.Of(m.faction), terms, m.tick,
-                    asking ? Tie.Never : m.due, asking ? Tie.State.CalledIn : Tie.State.Open);
-            }
         }
 
         private static void Granted(List<Tie> list)
