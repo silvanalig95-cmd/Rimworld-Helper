@@ -517,6 +517,24 @@
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_MalariaAnemia_Mood</defName>
+    <hediff>Council_Ail_MalariaAnemia</hediff>
+    <stages>
+      <li><label>pale after malaria</label><description>The malaria's gone, and it took my color with it. My hands are cold all day.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>thin blood</label><description>One flight of stairs and my heart's pounding. The malaria left me half the blood I had.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_DrowsySpells_Mood</defName>
+    <hediff>Council_Ail_DrowsySpells</hediff>
+    <stages>
+      <li><label>heavy-eyed</label><description>I keep nodding off over my work. The sickness is gone; the sleepiness isn't.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>drowsy spells</label><description>Asleep by day, awake all night. My body has forgotten what time it is.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
     <defName>Council_Ail_Limp_Mood</defName>
     <hediff>Council_Ail_Limp</hediff>
     <stages>

@@ -1714,6 +1714,93 @@
   </HediffDef>
 
   <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_MalariaAnemia</defName>
+    <label>thin blood</label>
+    <description>Malaria feeds on the blood it hides in, and once the fever has gone the body takes a week or two to make good what it lost: pale lips and nails, cold hands, and a heart that pounds on the stairs. It isn't catching and passes on its own; rest in bed helps it along, and a doctor's tonic a little. The weakness after malaria is the convalescence that comes with any dangerous illness.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>MalariaAnemia</key>
+        <causes><li><trigger>AfterIllness</trigger><after><li>Malaria</li></after><minSeverity>0.2</minSeverity><chance>0.3</chance></li></causes>
+        <childFactor>1.3</childFactor>
+        <oldFactor>1.3</oldFactor>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} has beaten malaria, but it has left {PAWN_objective} pale and short of breath.</gotText>
+        <notes>
+          <li>Malaria eats the blood, and it comes back with rest, good food and time. No heavy carrying for a week.</li>
+          <li>[lowtech] Early nights, liver and greens at the table, and a cup of nettle broth. The color comes back in its own time.</li>
+          <li>[!lowtech] An iron tonic with meals, red meat and early nights. Keep them off the heavy work for a week or so.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.03</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>pale</label>
+        <capMods><li><capacity>BloodPumping</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>thin blood</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods>
+          <li><capacity>BloodPumping</capacity><offset>-0.05</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_DrowsySpells</defName>
+    <label>drowsy spells</label>
+    <description>Sleeping sickness gets into the body's clock, and the clock is slow to set itself right once the fever has gone: heavy eyes and nodding off in the middle of the day, then lying awake half the night, and a thick head in the morning. It isn't catching and passes over a week or two, sooner with time out of doors by day. It can't be tended. The weakness after sleeping sickness is the convalescence that comes with any dangerous illness.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>DrowsySpells</key>
+        <causes><li><trigger>AfterIllness</trigger><after><li>SleepingSickness</li></after><minSeverity>0.2</minSeverity><chance>0.3</chance></li></causes>
+        <oldFactor>1.3</oldFactor>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>The sleeping sickness has gone, but {PAWN_nameDef} still nods off by day and lies awake at night.</gotText>
+        <notes>
+          <li>The body's clock is still out of step after the sickness. Daylight and regular hours set it right.</li>
+          <li>[lowtech] Out in the sun in the morning, a walk after the noon meal instead of a nap, and a warm drink at bedtime.</li>
+          <li>[!lowtech] Daylight in the morning, no long naps, and the same bedtime every night. It goes in a week or two.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <outdoorsFactor>1.5</outdoorsFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>heavy-eyed</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>drowsy spells</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_Limp</defName>
     <label>limp</label>
     <description>A leg that has knit after a break but hasn't yet remembered how to walk: stiff in the morning, weak on stairs, and favoured without thinking. It goes in a week or two of ordinary walking. Lying in bed doesn't hurry it, but a doctor's strapping and exercises do.</description>

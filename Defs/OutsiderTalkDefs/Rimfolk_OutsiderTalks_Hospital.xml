@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The colony's hospital as visitors and traders know it, once it has a name (Health/HealthTracker.cs): well spoken
+       of (colony:hospital) or known across the region (colony:hospital:renowned). {HOSPITAL} is what the colony calls
+       it, "hospital", or "sickroom" before medicine has an industry behind it. {DOCTOR} is the doctor the colony trusts
+       most, at home (colony:doctor; us:doctor when it's the colonist talking). Only what the game holds: the name, the
+       sick who come for it, the doctor's standing; never a cure that didn't happen. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Heard</defName>
+    <topic>hospital</topic>
+    <when>colony:hospital,!colony:hospital:renowned,!us:doctor</when>
+    <lines>
+      <li>[them,their:tribal] At the fires they say your healers send the sick home on their feet.</li>
+      <li>[them,their:medieval] In the market they say your {HOSPITAL} sends folk home on their feet.</li>
+      <li>[them,their:hightech] People on the road say your {HOSPITAL} is worth the walk.</li>
+      <li>[them] People on the road speak well of your {HOSPITAL}.</li>
+      <li>[us,colony:doctor] That's {DOCTOR}'s doing, mostly.</li>
+      <li>[us] We do what we can for whoever comes.</li>
+      <li>[them] That counts for a lot out here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Renowned</defName>
+    <topic>hospital</topic>
+    <when>colony:hospital:renowned,!us:doctor</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your {HOSPITAL} is known across the whole region now.</li>
+      <li>[us] So we keep hearing.</li>
+      <li>[them,their:empire] Word of it has reached even our people, who listen to very little.</li>
+      <li>[them,their:tribal] The sick will walk many sleeps for hands they can trust.</li>
+      <li>[them] The sick will come a long way for a doctor they can trust.</li>
+      <li>[us,colony:doctor] Then {DOCTOR} had better get some sleep while there's time.</li>
+      <li>[us] Then we'd best keep the beds clean and the door open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Doctor</defName>
+    <topic>hospital</topic>
+    <when>colony:doctor,colony:hospital</when>
+    <lines>
+      <li>[them] Is {DOCTOR} the doctor people talk about?</li>
+      <li>[us] That's {DOCTOR}, who has pulled more than a few of us through.</li>
+      <li>[them,their:tribal] Then the spirits guide those hands.</li>
+      <li>[them,their:medieval] Then I'll remember the name, should I ever need it.</li>
+      <li>[them] Good to know, should I ever need one.</li>
+      <li>[us,their:tribal] I'll tell {DOCTOR} you said so.</li>
+      <li>[us] Let's hope you never do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_You</defName>
+    <topic>hospital</topic>
+    <when>us:doctor,colony:hospital</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You're the doctor they talk about on the road, aren't you?</li>
+      <li>[us,trait:Kind] I suppose I am, though I only do what anyone would.</li>
+      <li>[us] I suppose I am, though I'd rather they talked about the weather.</li>
+      <li>[them,their:medieval] Our reeve would pay good silver for hands like yours.</li>
+      <li>[them,their:tribal] Our healer would sit at your feet to learn, I think.</li>
+      <li>[them] Then I'll know whose door to knock on.</li>
+      <li>[us,their:medieval] Silver's welcome, but I'd sooner nobody needed me.</li>
+      <li>[us,their:tribal] Then we'd have a lot to talk about.</li>
+      <li>[us] Knock, and I'll see what I can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_TheirIll</defName>
+    <topic>hospital</topic>
+    <uses>home,chat</uses>
+    <when>town:ill,colony:hospital</when>
+    <lines>
+      <li>[them] With {ILL} ill at home, I wish we had a {HOSPITAL} like yours.</li>
+      <li>[us,lowtech] It's only clean linen, a warm fire and someone who knows what to do.</li>
+      <li>[us] It's only clean beds and a doctor who knows what to do.</li>
+      <li>[them,their:tribal] Then our elders should hear how it is done here.</li>
+      <li>[them,their:empire] Then I shall describe it to our physicians, who will not listen.</li>
+      <li>[them] Then I'll tell them at home how you go about it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Trader</defName>
+    <topic>trade</topic>
+    <when>role:trader,colony:hospital</when>
+    <lines>
+      <li>[them] A {HOSPITAL} with a name like yours must go through a lot of medicine.</li>
+      <li>[us] It does, so we're always glad of a trader.</li>
+      <li>[them,their:hightech] Then you'll want a look at my goods before I pack up.</li>
+      <li>[them] Then have a look at my goods before I go.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Child</defName>
+    <topic>hospital</topic>
+    <when>them:young,!us:young,colony:hospital</when>
+    <lines>
+      <li>[them] Is it true your {HOSPITAL} makes sick people better?</li>
+      <li>[us,us:doctor] Most of the time, and I'm the one who does it.</li>
+      <li>[us] Most of the time, yes.</li>
+      <li>[them] I'm going to be a doctor when I'm big, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Hosp_Cool</defName>
+    <topic>hospital</topic>
+    <when>colony:hospital,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Your {HOSPITAL} has quite a name, I hear.</li>
+      <li>[us] It earned it one patient at a time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

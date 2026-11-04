@@ -116,7 +116,7 @@
     <label>Alpha Skills</label>
     <order>17</order>
     <packageIds><li>sarg.alphaskills</li></packageIds>
-    <what>Its passions count by how fast they make someone learn, so apathy isn't a passion and critical passions count as burning.</what>
+    <what>Its passions count by how fast they make someone learn, so apathy isn't a passion and critical passions count as burning. A colonist with the drunken or stoned passion often has a drink or a joint from the stores before work that trains it.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>

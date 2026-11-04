@@ -229,6 +229,17 @@
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilAfterFever</defName>
+    <thoughts>
+      <li>Council_Ail_MalariaAnemia_Mood</li>
+      <li>Council_Ail_DrowsySpells_Mood</li>
+    </thoughts>
+    <fix>What malaria or sleeping sickness left behind. Rest in bed and a doctor's tonic for thin blood; time out of doors by day for drowsy spells, which can't be tended. They pass in a week or two.</fix>
+    <act>Rest them, or get them outdoors</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_AilHealed</defName>
     <thoughts>
       <li>Council_Ail_Limp_Mood</li>

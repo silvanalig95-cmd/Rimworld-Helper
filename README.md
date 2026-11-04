@@ -1063,7 +1063,8 @@ Social tab.
 ### Strangers, beasts and pets
 Colonists meet everyone else on the map, too:
 - **Visitors and traders** bring news from the road, swap recipes, admire someone's work, flirt, insult, haggle
-  and cheat. Warm moments make them like your colonists and can raise goodwill; insults can end in a fistfight.
+  and cheat, and once the colony's hospital has a name, they talk about it and the doctor people trust. Warm moments
+  make them like your colonists and can raise goodwill; insults can end in a fistfight.
 - **Guests and prisoners:** a noble's airs, a refugee's gratitude, kind words through a cell door that soften a
   prisoner, taunts that sour everyone.
 - **Fallen enemies** lying downed after a fight beg, curse and pray; how your people react depends on who they are.
@@ -1825,7 +1826,9 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Rimedieval:** events it removes stay removed (dream omens won't bring them back), and hidden buildings are
   never suggested.
 - **Vanilla Skills Expanded, Alpha Skills:** their passions are judged by how fast they make a pawn learn, so
-  apathy-type passions don't count as passions and natural/critical ones count as burning.
+  apathy-type passions don't count as passions and natural/critical ones count as burning. A colonist with Alpha
+  Skills' drunken or stoned passion often has a drink or a joint from the stores before work that trains it, within
+  their drug policy and beliefs and well short of addiction (settings: a drink before work, a smoke before work).
 - **Vanilla Outposts, gravships, vehicles (Vehicle Framework):** someone away at an outpost, in flight or aboard a
   vehicle is still one of the colony: no grief, no "gone" in the annals, and their records are kept.
 - **Anomaly ghouls, A RimWorld of Magic's raised undead and spirits:** not treated as people, so no life goals,
@@ -2781,7 +2784,7 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** (53 of them) are small and temporary: they never kill, never
+Colony life wears on the body too. **Everyday ailments** (55 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
 illness.
 
@@ -2810,9 +2813,11 @@ illness.
   Bees, stings at the hives (less for a skilled handler). The commonest small ones (lice, damp and smoke coughs,
   sleepless nights, heartburn) come a little less often than they did, so the colony is not sick more overall. Never
   more than two at once, never the same one again within days, and never on guests, prisoners or babies.
-- **After what happened**, once it's over: a cough after the flu, swellings after the plague, a limp once a broken leg
-  bone has knit, an itching burn once a bad burn has healed, bad nights after a fight at home (likelier for those hurt
-  in it), and with Anomaly, unease after a horror (an entity's wound, a chimera, the labyrinth, a psychic ritual).
+- **After what happened**, once it's over: a cough after the flu, swellings after the plague, thin blood after malaria
+  (pale and short of breath; rest helps), drowsy spells after sleeping sickness (asleep by day, awake at night; time
+  outdoors helps), a limp once a broken leg bone has knit, an itching burn once a bad burn has healed, bad nights
+  after a fight at home (likelier for those hurt in it), and with Anomaly, unease after a horror (an entity's wound, a
+  chimera, the labyrinth, a psychic ritual).
 
 **Serious illnesses** (15 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
 untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,

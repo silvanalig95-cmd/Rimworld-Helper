@@ -3,8 +3,9 @@ using System;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The numbers and rules behind a drink before work (Integrations/DrinkBeforeWork.cs), kept apart from the game so
-    /// they can be tested: how often, how near, which work, and how far from the colonist's tolerance limit.
+    /// The numbers and rules behind a drink or a smoke before work (Integrations/BeforeWork.cs), kept apart from the game
+    /// so they can be tested: how often, how near, which work, how far from the colonist's tolerance limit, and which
+    /// stages of the high are mild. Every row (the drink, the smoke) follows the same rules.
     /// </summary>
     public static class DrinkBeforeWorkMath
     {
@@ -84,5 +85,40 @@ namespace ColonyCouncil
 
         /// <summary>The drink is near enough: <paramref name="toWork"/> below zero means the work has no place.</summary>
         public static bool Near(float fromPawn, float toWork) => fromPawn <= MaxDistance && (toWork < 0f || toWork <= MaxDetour);
+
+        // ---------------- Every row: the drink, the smoke (Integrations/BeforeWork.cs) ----------------
+
+        /// <summary>
+        /// A mild stage makes a fight no likelier than one beer does in anyone (the game's warm stage, 1.5): one can still
+        /// come of it, at the game's own rate, never more.
+        /// </summary>
+        public const float MaxFightFactor = 1.5f;
+
+        /// <summary>The most a smoke's high may slow the mind or the hands: smokeleaf's own (consciousness down 30%).</summary>
+        public const float SmokeMaxSlowing = 0.3f;
+
+        /// <summary>A stage that makes a fight no likelier than one beer.</summary>
+        public static bool Calm(float fightFactor) => fightFactor <= MaxFightFactor + 0.0001f;
+
+        /// <summary>
+        /// How much one of a stage's capacity changes takes away: what is left of the capacity after its offset, its factor
+        /// and its cap (<paramref name="setMax"/> 1 or more is no cap), taken from 1.
+        /// </summary>
+        public static float Slowing(float offset, float postFactor, float setMax)
+        {
+            float left = (1f + offset) * postFactor;
+            if (setMax < 1f) left = Math.Min(left, setMax);
+            return Math.Max(0f, 1f - left);
+        }
+
+        /// <summary>The high slows them within the row's limit (<paramref name="cap"/> 1 or more is no limit).</summary>
+        public static bool SlowsWithin(float slowing, float cap) => cap >= 1f || slowing <= cap + 0.0001f;
+
+        /// <summary>
+        /// Where one of a tolerance's effects starts doing harm. The game's own give a curve and nothing at or below its
+        /// first point (<paramref name="curveStart"/>), and minSeverity counts for nothing then; older ones and some mods'
+        /// give minSeverity. 0 is harm from the start.
+        /// </summary>
+        public static float HarmStarts(float minSeverity, bool byCurve, float curveStart) => Math.Max(0f, byCurve ? curveStart : minSeverity);
     }
 }

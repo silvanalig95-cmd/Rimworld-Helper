@@ -54,7 +54,7 @@
         them:outranks (both hold a title, theirs the higher); kin (family of theirs in the colony) kin:you (the
         colonist is that family)
       the colonist: us:young (only pieces asking for it) us:old us:hurt us:newcomer us:leader us:speaker us:noble
-        us:outranks us:married us:widowed us:spousehere us:parent us:smallchild us:best:SKILLDEF; in a colonist's
+        us:doctor us:outranks us:married us:widowed us:spousehere us:parent us:smallchild us:best:SKILLDEF; in a colonist's
         own line also their traits and passions (trait:Kind, trait:Lazy, skill:Cooking) and old teen hurt grieving
         lowmood highmood; in an outsider's own line their traits by name (trait:Greedy, never a degree), old teen
         hurt
@@ -82,7 +82,9 @@
         colony:hungry colony:plenty colony:disaster colony:research colony:project colony:day colony:daytoday
         colony:daysoon colony:daypast colony:traders colony:young colony:old colony:children colony:animals
         colony:prisoners colony:expecting colony:noble (another colonist holds a title: {NOBLE} {NOBLETITLE})
-        colony:quiet (no big threat in 30 days)
+        colony:quiet (no big threat in 30 days) colony:hospital (its hospital has a name: {HOSPITAL}, "hospital" or
+        "sickroom") colony:hospital:renowned (known across the region) colony:doctor (the doctor the colony trusts
+        most is at home: {DOCTOR}; us:doctor when that's the colonist)
       what their people remember: deed:KIND (released tended gift gaveGift hardship refugees harvestHelp
         killed captured robbed slighted aid taught... see World/FactionMemory.cs) deed:good deed:bad deed:owed
         deedbest:KIND (the good deed {DEEDNAME} and {DEEDBY} come from) wrongbest:KIND ({WRONGNAME}) their:friend
@@ -100,8 +102,8 @@
       {SITE} {QUEST} {WAR} {PEACEWITH} {WARA} {WARB} {BATTLEA} {BATTLEB} {SITUATION} {SITUATIONPLACE} {ENDED}
       {CONDITION} {COOK} {ARTIST} {OURLEADER} {SPEAKER} {DISASTER} {CAMP} {TRADERS} {NEWCOMER} {DAY} {RAIDERS}
       {DEAD} {BORN} {WEDDING} {DECREE} {RESEARCH} {PROJECT} {DEEDNAME} {DEEDBY} {WRONGNAME} {YOURDEEDNAME}
-      {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {THEN} {NOW} (who leads now, in a then:changed
-      callback). Values that are names keep their case;
+      {FRIEND} {NOBLE} {NOBLETITLE} {QUESTNOW} {PEACEA} {PEACEB} {HOSPITAL} {DOCTOR} {THEN} {NOW} (who leads now, in a
+      then:changed callback). Values that are names keep their case;
       {SITUATION} {ENDED} {SITE} {CONDITION} {DISASTER} come with "the" ("the gray cough"), and a line starting with
       one is capitalized for you.
   -->

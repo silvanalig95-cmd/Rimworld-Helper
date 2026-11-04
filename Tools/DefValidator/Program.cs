@@ -435,7 +435,9 @@ wishPh.UnionWith(new[]
     "NOTABLETITLE", "ILL", "ILLTITLE", "LOSTTITLE", "OLDHEAD", "WROTE", "SITE", "QUEST", "WAR", "PEACEWITH", "WARA", "WARB", "BATTLEA", "BATTLEB",
     "SITUATIONPLACE", "ENDED", "CONDITION", "COOK", "ARTIST", "OURLEADER", "SPEAKER", "DISASTER", "TRADERS", "NEWCOMER", "DAY", "RAIDERS", "BORN",
     "WEDDING", "RESEARCH", "PROJECT", "DEEDNAME", "DEEDBY", "WRONGNAME", "YOURDEEDNAME", "FRIEND", "THEN", "NOW", "NOBLE", "NOBLETITLE",
-    "QUESTNOW", "PEACEA", "PEACEB"
+    "QUESTNOW", "PEACEA", "PEACEB",
+    // The colony's hospital once it has a name, and the doctor it trusts most (OutsiderFacts.Hospital).
+    "HOSPITAL", "DOCTOR"
 });
 // The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
 wishPh.Add("ASKER");

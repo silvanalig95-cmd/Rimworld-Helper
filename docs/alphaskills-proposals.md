@@ -1,7 +1,7 @@
 # Alpha Skills and Rimfolk: conditional passions
 
-A list to pick from, as the rules ask: nothing here is built, except the drink before work at the top, which the
-player asked for. Read from Alpha Skills' 1.6 folder (the 1.7 load uses it too): `Defs/PassionDefs`, the DLC folders
+A list to pick from, as the rules ask: nothing here is built, except the drink and the smoke before work at the top,
+which the player asked for. Read from Alpha Skills' 1.6 folder (the 1.7 load uses it too): `Defs/PassionDefs`, the DLC folders
 `Mods/Biotech`, `Mods/Ideology` and `Mods/Royalty`, `Patches/` and the source in `Source/AlphaSkills`. Every passion
 that switches is a pair (or a set) of Vanilla Skills Expanded passion defs, and the switch writes the other def's index
 into the skill's `passion` field, so the learning speed changes at once. The checks run in a hediff's `CompPostTick`
@@ -20,8 +20,10 @@ does the step. Everything matches by defName or type name and does nothing witho
 moment it's added until it wears off. One beer (severity 0.15, falling about 0.75 to 1 a day) keeps it awake for about
 four hours. Teetotalers never get the passion (`blockingTraitsWithDegree DrugDesire -1`).
 
-**As built** (`Integrations/DrinkBeforeWork.cs`, `DrinkBeforeWorkMath.cs`, tested in `DrinkBeforeWorkTests`; setting
-`drinkBeforeWork`, on by default; pool `Rimfolk_Pool_DrinkBeforeWork`). A postfix on `JobGiver_Work.TryIssueJobPackage`,
+**As built** (`Integrations/BeforeWork.cs`, `DrinkBeforeWorkMath.cs`, tested in `DrinkBeforeWorkTests` and
+`SmokeBeforeWorkTests`; setting `drinkBeforeWork`, on by default; pool `Rimfolk_Pool_DrinkBeforeWork`). Each passion
+is a row of `BeforeWork.Rows` (passion, Alpha Skills' comp, the game's hediff, setting, line pool, how much the high
+may slow the mind); the rules below hold for every row. A postfix on `JobGiver_Work.TryIssueJobPackage`,
 only between jobs (no current job, no emergency, nothing queued, never a job the player ordered): when the work
 trains a skill with the drunken passion asleep (a bill's `workSkill`, else the work type's skills; fetching, hauling
 and refuelling don't count), once in eight hours the colonist chooses, yes 70% of the time. Yes: the game's own
@@ -33,25 +35,40 @@ first in their queue. As the cup is raised, half the time a one-sentence line. S
   first drink, nothing hard. Alpha Skills' comp must be on AlcoholHigh, or nothing is patched.
 - The colonist: an adult (18 or older), free, at home, awake, not drafted, downed or in a mental state, not a
   teetotaler, not addicted to anything or just clean of a drug, not pregnant, hungover, overdosed, bleeding or needing
-  rest for their health, not already drunk, no enemy within 40 cells and no high danger on the map.
+  rest for their health, not already drunk or high (any row's hediff), no enemy within 40 cells and no high danger on
+  the map.
 - Their control: their drug policy allows that drink for fun, or a scheduled dose of it is due; their beliefs allow it
   (Rimfolk's `Beliefs`: precepts against drugs, social drugs or alcohol, unwilling by ideology, a bad memory).
 - Their health: the drink leaves them in one of AlcoholHigh's first two stages (warm or tipsy, by their body size),
-  and only a stage with no vomiting, mental breaks, extra fights or danger; their tolerance stays under 60% of where an
-  addiction can start or the tolerance starts doing harm, and never above 0.15 (beer: addiction from 0.25, cirrhosis
-  from 0.5).
+  and only a stage with no vomiting, mental breaks or danger, and fights no likelier than the game's warm stage after
+  one beer (1.5 times; tipsy's 2.5 is out); their tolerance stays under 60% of where an addiction can start or the
+  tolerance starts doing harm, and never above 0.15 (beer: addiction from 0.25; cirrhosis and carcinoma from 0.45, the
+  first point of their curves).
+- Fixed in the smoke's round: in 1.6 the game's drug harm is a curve (`severityToMtbDaysCurve`, nothing at or below
+  its first point) and `minSeverity` is 0, so the limit came out at 0.006 and no beer ever fitted; and the warm stage
+  makes fights 1.5 times as likely, which the old "no extra fights" refused. Both together kept the drink from ever
+  happening in a vanilla game.
 - The work: making, building, mining, growing, research, art; cooking only if the stage doesn't raise food poisoning;
   social only as a talk with a prisoner. Never tending, surgery, hunting, fighting or animals.
 
-## The other conditional passions, best first
+## Built: a smoke before work (stoned passion, P1)
 
-**P1. A joint before work: stoned passion (S, behaviour).** Condition: `Patches/SmokeleafHighPatch.xml` puts
-`HediffCompProperties_StonedPassions` on `SmokeleafHigh`; while that hediff is there, `AS_StonedPassion` (1.0) is
-`AS_StonedPassion_Active` (1.8), exactly like the drink. Teetotalers never get it. Proposal: the drink's code with a
-second row (passion, hediff, drug): a smokeleaf joint from the stores before that work, under every rule above (policy
-for fun or a due dose, beliefs, adults, no addiction, tolerance well under smokeleaf's addiction point, a mild stage,
-the same safe work), and its own setting. Smokeleaf slows work more than a beer, so the stage check decides; the line
-would be about the smoke, not a cup.
+**Condition (code).** `Patches/SmokeleafHighPatch.xml` puts `HediffCompProperties_StonedPassions` on `SmokeleafHigh`;
+`HediffComp_StonedPassions` is the drink's comp with the stoned defs: while that hediff is there, `AS_StonedPassion`
+(1.0) is `AS_StonedPassion_Active` (1.8). Teetotalers never get it (`blockingTraitsWithDegree DrugDesire -1`). The
+game's joint (1.6): the high at 0.5, falling 1 a day (twelve hours awake), one stage (consciousness -0.3, moving -0.1,
+pain -0.2, hungrier), tolerance 0.03 a dose falling 0.015 a day, addiction from 0.15, carcinoma from 0.36 and asthma
+from 0.45 by their curves, and a little rest lost.
+
+**As built**, the second row of `BeforeWork.Rows` (setting `smokeBeforeWork`, on by default; pool
+`Rimfolk_Pool_SmokeBeforeWork`): every rule of the drink. The drug is a smokeleaf joint, or another mod's drug that
+gives `SmokeleafHigh` for certain and nothing but that and its tolerance, read from the defs. Its high may slow the
+mind or the hands no more than smokeleaf's own (`SmokeMaxSlowing`, 30%), so a stronger high patched in by a mod is
+never had. Tolerance stays under 0.09 (60% of 0.15), so a colonist smokes about every other day at most; four months
+of it never reach the addiction point (`SmokeBeforeWorkTests`). The line, half the time as the joint is lit, is about
+the smoke.
+
+## The other conditional passions, best first
 
 **P2. Rainy day: that work first while it rains (S to M, behaviour within the player's priorities).** Condition:
 `HediffComp_RainyDayPassion`, every 1000 ticks while on a map: the map's current weather has `rainRate > 0` (rain,

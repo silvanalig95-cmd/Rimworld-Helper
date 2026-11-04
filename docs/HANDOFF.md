@@ -15,6 +15,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.65.2 (A1 and H1, under way before the priority was set): `Integrations/BeforeWork.cs` (was DrinkBeforeWork.cs)
+  with `BeforeWork.Rows` (drink and smoke; setting `smokeBeforeWork`, pool `Rimfolk_Pool_SmokeBeforeWork`,
+  `SmokeBeforeWorkTests`). The drink never happened before: 1.6 gives drug harm as a curve (its first point, 0.45 for
+  alcohol, is now read), and the warm stage's 1.5x fights is now allowed (tipsy's 2.5x still refused); no row on top of
+  another's high. Ailments `Council_Ail_MalariaAnemia` and `Council_Ail_DrowsySpells` (after malaria and sleeping
+  sickness), hint `Council_Mood_RF_AilAfterFever`. `OutsiderFacts.Hospital` (`colony:hospital`,
+  `colony:hospital:renowned`, `{HOSPITAL}`, `{DOCTOR}`, `colony:doctor`, `us:doctor`), 8 pieces in
+  `Rimfolk_OutsiderTalks_Hospital.xml`. The game's 1.6 data was read from a public mirror
+  (Adelphea/GuildForge_Mobile) and its code from 32bitx64bit/RW-Decompiled-1.6.
 - 0.65.1, stage 0 step 2 (F2): `Lean/PassClockMath.cs` (the `Pass` table of 52 passes with their Sched slots,
   windows rolled by game ticks) and `Lean/PassClock.cs` (`Time(Pass.X)` scope, no allocation, nothing saved), every
   Sched pass wrapped after its own gates, the dev window `UI/ClockWindow.cs` (debug action next to "check myself"),

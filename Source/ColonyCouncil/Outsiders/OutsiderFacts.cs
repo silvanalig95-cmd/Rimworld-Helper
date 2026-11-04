@@ -15,11 +15,11 @@ namespace ColonyCouncil
     /// ill, letters exchanged), the land and the cold back home, places and work near it, what they're short of; their
     /// people's wars and peace (the game's own relations, whichever mod set them, and battles seen on the colony's land),
     /// the world's events running or just over, the conditions over the land; the colony's own news (a raid and by whom,
-    /// a death, a birth, a wedding, a newcomer, a decree, the speaker elected, a camp, the harvest, the stores); what their
-    /// people remember the colony for; and what passed between the two before (their earlier talks, picked up by
-    /// callbacks with what became of it since). Every fact is a tag for the pieces' conditions, most with a value for a
-    /// placeholder and a heat for how current it is. Nothing is claimed that isn't so: a fact the game can't give is
-    /// simply left out, and a piece that needs it isn't said.
+    /// a death, a birth, a wedding, a newcomer, a decree, the speaker elected, a camp, the harvest, the stores, its
+    /// hospital's name and its trusted doctor); what their people remember the colony for; and what passed between the
+    /// two before (their earlier talks, picked up by callbacks with what became of it since). Every fact is a tag for the
+    /// pieces' conditions, most with a value for a placeholder and a heat for how current it is. Nothing is claimed that
+    /// isn't so: a fact the game can't give is simply left out, and a piece that needs it isn't said.
     /// </summary>
     public static class OutsiderFacts
     {
@@ -760,6 +760,41 @@ namespace ColonyCouncil
                 if (Now - offices.lastElectionTick <= GenDate.TicksPerDay * 10) f.Tag("colony:election", Fresh(Days(offices.lastElectionTick), 10f, 2f));
                 if (speaker == c) f.Tag("us:speaker");
             }
+            Hospital(f, c, scene);
+        }
+
+        /// <summary>
+        /// The colony's hospital once it has a name (Health/HealthTracker.cs: well spoken of, or known across the region),
+        /// as the colony calls it: "hospital", or "sickroom" before medicine has an industry behind it. And the doctor the
+        /// colony trusts most, at home with the colonist (us:doctor when it's the colonist).
+        /// </summary>
+        private static void Hospital(TalkFacts f, Pawn c, TalkScene scene)
+        {
+            var health = HealthTracker.Instance;
+            if (health == null || !HealthTracker.ReputationOn) return;
+            int level = health.HospitalLevel;
+            if (level >= 1)
+            {
+                // A standing fact rather than news: no heat of its own, a little for a name across the region.
+                f.Tag("colony:hospital");
+                if (level >= 2) f.Tag("colony:hospital:renowned", 0.5f);
+                f.Value("HOSPITAL", HealthTracker.HospitalWord);
+            }
+            if (scene == null) return;
+            Pawn doctor = null;
+            int best = 0, saved = 0;
+            foreach (var o in scene.colonists)
+            {
+                var rec = health.RecordOf(o);
+                int l = rec?.Level ?? 0;
+                if (l < 1 || l < best || (l == best && rec.Saved <= saved)) continue;
+                doctor = o;
+                best = l;
+                saved = rec.Saved;
+            }
+            if (doctor == null) return;
+            f.Value("DOCTOR", doctor.LabelShort);
+            f.Tag(doctor == c ? "us:doctor" : "colony:doctor");
         }
 
         private static void Note(TalkFacts f, TalkNote n, string tag, string key, float span, float top)

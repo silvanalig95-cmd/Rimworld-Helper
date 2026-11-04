@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.65.2</version>
+        <date>4 November 2026</date>
+        <title>A smoke before work, and after the fever</title>
+        <points>
+          <li>Fixed: the drink before work never happened in a game without other mods. Rimfolk misread the game's drug harm and refused the first, warm stage of drunkenness for making fights a little likelier. Colonists with the drunken passion now really have their drink, and are never drunk and stoned at once.</li>
+          <li>With Alpha Skills, a colonist with the stoned passion usually smokes one joint from the stores before work that trains it, then goes on to the work. The same rules as the drink apply: their drug policy and beliefs, adults only, never a high stronger than smokeleaf's own, never near the tolerance where addiction starts, never before tending, surgery, hunting or work with animals. The setting "A smoke before work" turns it off.</li>
+          <li>Getting over malaria can leave thin blood for a week or so: pale and short of breath, eased by rest in bed and a doctor's tonic.</li>
+          <li>Getting over sleeping sickness can leave drowsy spells: asleep by day and awake at night, gone sooner with time out of doors.</li>
+          <li>Visitors and traders talk about the colony's hospital once it has a name, and about the doctor people trust most.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.65.1</version>
         <date>4 November 2026</date>
         <title>Rimfolk's clock</title>

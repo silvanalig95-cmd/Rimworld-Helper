@@ -12,7 +12,7 @@ using ColonyCouncil;
 public static class ModsTests
 {
     private static readonly Regex Name = new(@"\b(?:AG|AM|AS|Outland|DankPyon|Dank|VFEC|VFEPD_AP|AP)_[A-Za-z0-9_]+");
-    /// <summary>An Alpha Skills name given in Rimfolk's code as a string (Integrations/DrinkBeforeWork.cs reads its passion by name).</summary>
+    /// <summary>An Alpha Skills name given in Rimfolk's code as a string (Integrations/BeforeWork.cs reads its passions by name).</summary>
     private static readonly Regex CodeName = new(@"""(AS_[A-Za-z0-9_]+)""");
     private static readonly Regex ModPeople = new(@"\bmod:([a-z0-9_.]+)");
 
