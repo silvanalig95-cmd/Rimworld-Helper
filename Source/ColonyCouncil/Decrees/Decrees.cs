@@ -314,6 +314,43 @@ namespace ColonyCouncil
 
     public class DecreeTracker : IExposable
     {
+        /// <summary>The colony these decrees are for (ColonyState.cs); set by it, not saved.</summary>
+        internal ColonyState colony;
+
+        /// <summary>The colony's home (as the busiest home was): where its needs are read and its petitions made.</summary>
+        internal Map HomeMap => colony != null ? colony.Map : MapFacts.BusiestHome;
+
+        /// <summary>The colony's home on the ground (as HappeningTracker.HomeMap was): where its stores are, and what's set going on enactment.</summary>
+        internal Map Ground => colony != null ? colony.Ground : HappeningTracker.HomeMap();
+
+        /// <summary>Someone of this colony, whom its decrees are for.</summary>
+        internal bool Ours(Pawn p) => colony == null || colony.Has(p);
+
+        /// <summary>The colony's quartermaster stretches what its decrees take from the stores.</summary>
+        internal float CostFactor => (colony?.offices ?? CouncilGameComponent.Instance?.offices)?.CostFactor ?? 1f;
+
+        /// <summary>The decrees of someone's own colony.</summary>
+        public static DecreeTracker Of(Pawn p) => ColonyState.Of(p)?.decrees;
+
+        /// <summary>The decrees of a colony (the seat's for a map that isn't a home).</summary>
+        public static DecreeTracker For(Map map) => ColonyState.For(map)?.decrees;
+
+        /// <summary>In force in any colony that's ours: a quick look before asking whose.</summary>
+        public static bool AnyInForce(DecreeDef def)
+        {
+            var all = CouncilGameComponent.Instance?.colonies;
+            if (def == null || all == null) return false;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var c = all[i];
+                if (c != null && c.lostAt == ColonyStateMath.NotLost && c.decrees.IsActive(def)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>In force for someone: in their own colony.</summary>
+        public static bool InForceFor(Pawn p, DecreeDef def) => p != null && AnyInForce(def) && (Of(p)?.IsActive(def) ?? false);
+
         public const int MaxActive = 2;
 
         public List<ActiveDecree> active = new List<ActiveDecree>();
@@ -376,7 +413,7 @@ namespace ColonyCouncil
             if (needs.TryGetValue(def, out var n) && now >= n.tick && now - n.tick < Sched.RareTicks) return n;
             n = new NeedNow { tick = now };
             needs[def] = n;
-            var map = MapFacts.BusiestHome;
+            var map = HomeMap;
             if (map == null) return n;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p)).ToList();
             if (pawns.Count == 0) return n;
@@ -462,7 +499,8 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             foreach (var map in Find.Maps)
             {
-                if (!map.IsPlayerHome || map.storyState == null) continue;
+                // The threats to this colony's own home.
+                if (!map.IsPlayerHome || map.storyState == null || (colony != null && map != colony.Map)) continue;
                 int t = map.storyState.LastThreatBigTick;
                 if (t > 0 && now - t < GenDate.TicksPerDay * 15 && (threatTicks.Count == 0 || t > threatTicks[threatTicks.Count - 1])) threatTicks.Add(t);
             }
@@ -516,8 +554,8 @@ namespace ColonyCouncil
             if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeart".Translate();
             if (!force && ReadyAt(def) > now) return (Sooner(def) ? "CC_Decree_CooldownSooner" : "CC_Decree_Cooldown").Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
-            if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
-            return DecreeWork.Blocked(def);
+            if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(p => Ours(p) && Flavor.IsGrieving(p))) return "CC_Decree_NeedsGrief".Translate();
+            return DecreeWork.Blocked(def, this);
         }
 
         public void Enact(DecreeDef def, CouncilGameComponent comp, bool force = false)
@@ -542,7 +580,7 @@ namespace ColonyCouncil
             });
             needs.Remove(def);
             SyncHediffs();
-            comp.Notify_DecreeEnacted(def);
+            comp.Notify_DecreeEnacted(def, colony);
             comp.character?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
             if (fatigue > 0) Backlash(def, fatigue, force, unrest, understood, comp);
             var req = RequestFor(def);
@@ -560,7 +598,7 @@ namespace ColonyCouncil
             }
             if (!def.onEnact.NullOrEmpty() && PlayOuts.On)
             {
-                var map = HappeningTracker.HomeMap();
+                var map = Ground;
                 if (map != null)
                 {
                     var a = asker != null && asker.Spawned && asker.Map == map ? asker : map.mapPawns.FreeColonistsSpawned.Where(PlayOuts.OurPerson).RandomElementWithFallback();
@@ -577,7 +615,7 @@ namespace ColonyCouncil
         private void Backlash(DecreeDef def, int fatigue, bool forced, float unrest, float understood, CouncilGameComponent comp)
         {
             using var _cause = Causes.Push("CC_Cause_DecreeAgain".Translate(def.label).Resolve());
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p)).ToList();
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && Ours(p)).ToList();
             var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).ToList();
             float let = DecreeMath.BacklashFactor(understood);
             float scale = ColonyCouncilMod.Settings.ChosenPenaltyScale * Mathf.Min(fatigue, 3) * let;
@@ -612,7 +650,7 @@ namespace ColonyCouncil
             needs.Remove(def);
             SyncHediffs();
             DecreeWork.Ended(this, def);
-            comp.Notify_DecreeEnded(def, early);
+            comp.Notify_DecreeEnded(def, early, HomeMap);
             comp.kept?.Notify_DecreeEnded(def, early);
             var req = RequestFor(def);
             if (req != null && req.repeal)
@@ -639,12 +677,12 @@ namespace ColonyCouncil
                 if (a.def.practiceSkills == null || a.def.practiceXpPerHour <= 0f) continue;
                 foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                 {
-                    if (p.skills == null || p.Downed || p.InBed() || p.InMentalState) continue;
+                    if (p.skills == null || p.Downed || p.InBed() || p.InMentalState || !Ours(p)) continue;
                     if (a.def.practiceNeedsViolence && p.WorkTagIsDisabled(WorkTags.Violent)) continue;
                     foreach (var sk in a.def.practiceSkills)
                     {
                         var rec = p.skills.GetSkill(sk);
-                        if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour * (CouncilGameComponent.Instance?.offices.DrillFactor ?? 1f));
+                        if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour * ((colony?.offices ?? CouncilGameComponent.Instance?.offices)?.DrillFactor ?? 1f));
                     }
                 }
             }
@@ -654,13 +692,14 @@ namespace ColonyCouncil
         /// An hour of banked fires: every lit fire, torch and fueled heater at home gets back this share of an hour's
         /// fuel. Not generators, not stoves that only burn while cooking, not mortars, not anything switched off.
         /// </summary>
-        private static void SaveFuel(float share)
+        private void SaveFuel(float share)
         {
             try
             {
                 foreach (var map in Find.Maps)
                 {
-                    if (!map.IsPlayerHome) continue;
+                    // The fires of this colony's own home.
+                    if (!map.IsPlayerHome || (colony != null && map != colony.Map)) continue;
                     foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Refuelable))
                     {
                         if (t.Faction != Faction.OfPlayer || !(t is ThingWithComps tw)) continue;
@@ -697,7 +736,8 @@ namespace ColonyCouncil
                     comp.standings.Change(r.pawn, -2f, "CC_Log_RepealIgnored".Translate(r.def.label));
             }
             if (!ColonyCouncilMod.Settings.decreeRequests || requests.Count >= 2 || now - lastRequestTick < GenDate.TicksPerDay * 3 || !Rand.Chance(0.35f)) return;
-            var map = MapFacts.BusiestHome;
+            // The colony's own people at its own home ask.
+            var map = HomeMap;
             if (map == null) return;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && CouncilGameComponent.CanVoiceWishes(p)).ToList();
             if (pawns.Count == 0) return;
@@ -713,7 +753,7 @@ namespace ColonyCouncil
                 gripe = gripe.NullOrEmpty() ? null : gripe.Formatted(hater.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = a.def, pawn = hater, tick = now, line = gripe, repeal = true });
                 lastRequestTick = now;
-                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Decree_RepealRequested".Translate(hater.Named("PAWN"), a.def.label.Named("DECREE")).Resolve() + (gripe != null ? " \"" + TextUtil.ShortSpeech(gripe, 120) + "\"" : ""),
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Decree_RepealRequested".Translate(hater.Named("PAWN"), a.def.label.Named("DECREE")).Resolve() + (gripe != null ? " \"" + TextUtil.ShortSpeech(gripe, 120) + "\"" : ""),
                     new LookTargets(hater), MessageTypeDefOf.NeutralEvent);
                 CouncilGameComponent.Speak(hater, gripe, new Color(0.95f, 0.6f, 0.5f));
                 return;
@@ -729,7 +769,7 @@ namespace ColonyCouncil
                 line = line.NullOrEmpty() ? null : line.Formatted(asker.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = def, pawn = asker, tick = now, line = line });
                 lastRequestTick = now;
-                Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                     new LookTargets(asker), MessageTypeDefOf.NeutralEvent);
                 CouncilGameComponent.Speak(asker, line, new Color(0.9f, 0.85f, 0.6f));
                 return;
@@ -792,6 +832,7 @@ namespace ColonyCouncil
                 if (a.def.griefFadePerDay <= 0f) continue;
                 foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
                 {
+                    if (!Ours(p)) continue;
                     var mem = p.needs?.mood?.thoughts?.memories;
                     if (mem == null) continue;
                     foreach (var m in mem.Memories)
@@ -804,16 +845,17 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Puts the decrees' hediffs on everyone they apply to, and takes off the ones that ended.</summary>
+        /// <summary>Puts the decrees' hediffs on everyone of the colony they apply to, and takes off the ones that ended.</summary>
         public void SyncHediffs()
         {
             var wanted = new HashSet<HediffDef>(active.Where(a => a.def.hediff != null).Select(a => a.def.hediff));
+            var people = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(Ours).ToList();
             foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading)
             {
                 var h = def.hediff;
                 if (h == null) continue;
                 bool on = wanted.Contains(h);
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
+                foreach (var p in people)
                 {
                     var set = p.health?.hediffSet;
                     if (set == null) continue;
@@ -861,9 +903,9 @@ namespace ColonyCouncil
         {
             get
             {
-                var comp = CouncilGameComponent.Instance;
+                // The decree as their own colony has it.
                 var decree = DecreeDef.ForThought(def);
-                var active = decree != null ? comp?.decrees.Get(decree) : null;
+                var active = decree != null ? DecreeTracker.Of(pawn)?.Get(decree) : null;
                 string cause = active == null ? null
                     : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
                 if (active != null && active.fatigue > 0)
@@ -883,7 +925,7 @@ namespace ColonyCouncil
             {
                 // Asked each time the mood is added up when it's a bad one: the decree is looked up once, not searched for.
                 var decree = DecreeDef.ForThought(def);
-                return decree != null ? CouncilGameComponent.Instance?.decrees.Get(decree) : null;
+                return decree != null && DecreeTracker.AnyInForce(decree) ? DecreeTracker.Of(pawn)?.Get(decree) : null;
             }
         }
 
@@ -907,7 +949,8 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return ThoughtState.Inactive;
             if (decree == null) decree = DecreeDef.ForThought(def);
-            if (decree == null || !comp.decrees.IsActive(decree)) return ThoughtState.Inactive;
+            // The decrees of their own colony.
+            if (decree == null || !DecreeTracker.InForceFor(p, decree)) return ThoughtState.Inactive;
             switch (decree.ReactionOf(p))
             {
                 case DecreeReaction.Hate: return ThoughtState.ActiveAtStage(0);

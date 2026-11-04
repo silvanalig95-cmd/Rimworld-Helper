@@ -256,17 +256,19 @@ namespace ColonyCouncil
                     row.pinned = memory != null && memory.IsPinned(w);
                     c.rows.Add(row);
                 }
-            foreach (var r in comp.decrees.requests)
+            // Every colony's petitions, each named with more than one colony.
+            foreach (var council in ColonyState.Ticking())
+            foreach (var r in council.decrees.requests)
             {
                 if (r?.def == null || r.pawn == null) continue;
                 var req = r;
                 c.rows.Add(new WeekRow
                 {
                     pawn = r.pawn,
-                    text = (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(r.pawn.LabelShort, r.def.label).Resolve(),
+                    text = AtColony(council, (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(r.pawn.LabelShort, r.def.label).Resolve()),
                     note = MainTabWindow_Council.AgoString(r.tick),
                     tip = Tip(r.line.NullOrEmpty() ? null : "\"" + r.line + "\"", ClickPage("Decrees")),
-                    click = Page("Decrees"),
+                    click = CouncilPage(council, "Decrees"),
                     order = r.tick
                 });
             }
@@ -488,26 +490,53 @@ namespace ColonyCouncil
                     var row = OnMapTimed.WeekRowFor(k);
                     if (row != null) c.rows.Add(row);
                 }
-            // The council meeting: called, or simply next on the calendar.
-            var amb = comp.ambitions;
-            var meeting = amb?.meeting;
-            if (S.enableAmbitions && amb != null)
+            // Each colony's council meeting: called, or simply next on the calendar.
+            foreach (var council in ColonyState.Ticking())
             {
-                bool called = meeting?.map != null && (meeting.Started || meeting.scheduledTick >= 0);
-                int until = called ? (meeting.Started ? 0 : meeting.scheduledTick - now) : amb.TicksUntilMeeting;
-                if (called || (until >= 0 && until <= GenDate.TicksPerDay * 7))
-                    c.rows.Add(new WeekRow
-                    {
-                        icon = Icons.Council,
-                        color = UiKit.Info,
-                        text = "CC_Week_Meeting".Translate(),
-                        note = called && meeting.Started ? "CC_Week_UnderWay".Translate().ToString() : "CC_Week_In".Translate(UiKit.Duration(Mathf.Max(0, until))).Resolve(),
-                        tip = Tip(called ? (meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now)) : null, ClickPage("Ambition")),
-                        click = Page("Ambition"),
-                        order = Mathf.Max(0, until)
-                    });
+                var amb = council.ambitions;
+                var meeting = amb?.meeting;
+                if (S.enableAmbitions && amb != null)
+                {
+                    bool called = meeting?.map != null && (meeting.Started || meeting.scheduledTick >= 0);
+                    int until = called ? (meeting.Started ? 0 : meeting.scheduledTick - now) : amb.TicksUntilMeeting;
+                    if (called || (until >= 0 && until <= GenDate.TicksPerDay * 7))
+                        c.rows.Add(new WeekRow
+                        {
+                            icon = Icons.Council,
+                            color = UiKit.Info,
+                            text = AtColony(council, "CC_Week_Meeting".Translate()),
+                            note = called && meeting.Started ? "CC_Week_UnderWay".Translate().ToString() : "CC_Week_In".Translate(UiKit.Duration(Mathf.Max(0, until))).Resolve(),
+                            tip = Tip(called ? (meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now)) : null, ClickPage("Ambition")),
+                            click = CouncilPage(council, "Ambition"),
+                            order = Mathf.Max(0, until)
+                        });
+                }
             }
             return c;
+        }
+
+        /// <summary>
+        /// A click to one of the council's pages about one colony: with more than one colony, the map in view goes to that
+        /// colony first, so the page shows its council.
+        /// </summary>
+        private static Action CouncilPage(ColonyState council, string page)
+        {
+            var open = Page(page);
+            var map = council?.Map;
+            if (map == null || !ColonyState.Several) return open;
+            return () =>
+            {
+                if (Find.CurrentMap != map && Homes.IsHome(map)) Current.Game.CurrentMap = map;
+                open();
+            };
+        }
+
+        /// <summary>With more than one colony, the settlement's name before a line about one colony's council.</summary>
+        private static string AtColony(ColonyState council, string text)
+        {
+            var map = council?.Map;
+            if (map == null || !ColonyState.Several) return text;
+            return "CC_Tell_At".Translate(Homes.Name(map).Named("PLACE"), text.Named("TEXT")).Resolve();
         }
 
         // ---------------- Coming days: the calendar, fights, stories ----------------
@@ -857,7 +886,8 @@ namespace ColonyCouncil
         public static int NeedsCount(CouncilGameComponent comp)
         {
             if (comp == null) return 0;
-            int n = comp.decrees.requests.Count;
+            int n = 0;
+            foreach (var council in ColonyState.Ticking()) n += council.decrees.requests.Count;
             if (S.enableWishes)
                 foreach (var w in comp.wishes)
                     if (w.state == WishState.Open)

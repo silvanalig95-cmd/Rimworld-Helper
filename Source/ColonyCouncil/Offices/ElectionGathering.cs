@@ -65,12 +65,12 @@ namespace ColonyCouncil
         {
             try
             {
-                CouncilGameComponent.Instance?.offices.GatheringOver(hustings, early);
+                OfficeTracker.WithElectionOn(lord?.Map)?.GatheringOver(hustings, early);
             }
             catch (System.Exception e)
             {
                 CouncilLog.ErrorOnce("election gathering end", e);
-                var offices = CouncilGameComponent.Instance?.offices;
+                var offices = OfficeTracker.WithElectionOn(lord?.Map);
                 if (offices?.election != null) offices.election.gathering = false;
             }
         }
@@ -81,7 +81,7 @@ namespace ColonyCouncil
             if (Find.TickManager.TicksGame % ElectionMath.LineTicks != 0) return;
             try
             {
-                var offices = CouncilGameComponent.Instance?.offices;
+                var offices = OfficeTracker.WithElectionOn(Map);
                 if (offices?.election == null) return;
                 if (hustings) offices.HustingsTalk(lord);
                 else offices.CountTalk(lord);
@@ -100,7 +100,7 @@ namespace ColonyCouncil
             try
             {
                 var map = Map;
-                if (map == null || CouncilGameComponent.Instance?.offices?.election == null) return true;
+                if (map == null || OfficeTracker.WithElectionOn(map)?.election == null) return true;
                 if (map.dangerWatcher.DangerRating != StoryDanger.None || !GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
                 return lord != null && lord.ownedPawns.Count == 0 && lord.ticksInToil > GenDate.TicksPerHour;
             }
@@ -166,7 +166,7 @@ namespace ColonyCouncil
 
         private static bool Open(Pawn p)
         {
-            var e = CouncilGameComponent.Instance?.offices?.election;
+            var e = OfficeTracker.WithElectionOn(p?.Map)?.election;
             return e != null && e.phase == ElectionPhase.Polling && !e.voted.Contains(p);
         }
 
@@ -177,7 +177,7 @@ namespace ColonyCouncil
             var mark = Toils_General.Wait(150, TargetIndex.A);
             mark.WithProgressBarToilDelay(TargetIndex.A);
             yield return mark;
-            yield return Toils_General.Do(() => CouncilGameComponent.Instance?.offices.CastVote(pawn));
+            yield return Toils_General.Do(() => OfficeTracker.WithElectionOn(pawn.Map)?.CastVote(pawn));
         }
     }
 }

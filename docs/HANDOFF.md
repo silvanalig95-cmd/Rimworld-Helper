@@ -15,6 +15,21 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.67.0, stage 0 step 7a (F7a): `ColonyState.cs` (per colony: offices and election, decrees, ambition and meeting,
+  dilemmas and traditions; keyed by `Homes.KeyOf`, saved in the council component as `colonies`; `For(map)`, `Of(pawn)`,
+  `Ticking()`), rules in `Lean/ColonyStateMath.cs` (old save to the seat, a lost home's council kept 30 days, carried to
+  the next home when none is left, a new lone seat takes the one just left). `CouncilGameComponent.offices/decrees/
+  ambitions/dilemmas` are properties reading the seat's. `OfficeTracker.HeldBy`. `UI/ColonyView.cs` (the colony in
+  view, "Another colony" button), `Rimfolk_Colonies.xml`, `ColonyStateTests`. One colony: the same people in the same
+  order (filtered PawnsFinder lists, not `Homes.People`). Left for F7b: memo pick-ups by colony, an unanswered event
+  letter holding every home, the calendar and keeper of days, herdmaster, `Interplay.Officer()`, the speaker in
+  NeighbourLetters and TalkScene, the annals' seat list, quarantine's `VisitorFactor`, the one faith of a decree,
+  dilemmas still asked of the seat (Workers_Living traditions, camps, GuestWill, shared names, guardians,
+  MovingOnHeld, ResidentBeast, Encounters), camps, encounters, herd, social events and battle state, groups, the year
+  letter, epithets' colony key, advisor and automation keys, journeys, map-less News.Post. Not built: moving the
+  seat, merging two councils.
+- Harm review: `docs/harm-review-proposals.md` (37 systems, 94 proposals, a pick each, top ten, shared rules); waiting
+  for the player's picks.
 - 0.66.3, stage 0 step 3b (F3b): the ledger owns persons and towns (`LedgerPersons.cs`: every notable, anyone a tie
   names, anyone kept; a gone town two years), grudges (one tie per people with a count, `Happenings/Grudges.cs`),
   favours and words (`Outsiders/OutsiderTies.cs`), guest kin as the new kind `Claim` (can be called in), the silver

@@ -110,6 +110,9 @@ namespace ColonyCouncil
 
     public partial class OfficeTracker : IExposable
     {
+        /// <summary>The colony these seats are of (ColonyState.cs); set by it, not saved.</summary>
+        internal ColonyState colony;
+
         private Dictionary<string, Pawn> holders = new Dictionary<string, Pawn>();
         /// <summary>Holders the colony voted for (to know when the council overrules them).</summary>
         private Dictionary<string, Pawn> elected = new Dictionary<string, Pawn>();
@@ -163,8 +166,64 @@ namespace ColonyCouncil
 
         private static bool Valid(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsPrisoner;
 
-        private static List<Pawn> Eligible() => PawnsFinder.AllMaps_FreeColonistsSpawned
-            .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && CouncilGameComponent.CanVoiceWishes(p)).ToList();
+        /// <summary>Who votes: those of this colony at home with a say (each colony elects its own council).</summary>
+        private List<Pawn> Eligible() => PawnsFinder.AllMaps_FreeColonistsSpawned
+            .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && CouncilGameComponent.CanVoiceWishes(p) && Ours(p)).ToList();
+
+        /// <summary>Someone of this council's colony (ColonyState.Has).</summary>
+        private bool Ours(Pawn p) => colony == null || colony.Has(p);
+
+        /// <summary>
+        /// An officer who has gone to live at another of the colonies (they're there now and have been a day): they step
+        /// down here. Away on a caravan, or on a short visit, they keep their seat.
+        /// </summary>
+        private bool MovedAway(Pawn p)
+        {
+            var home = colony?.Map;
+            if (home == null || p == null || colony.Has(p)) return false;
+            return ColonyStateMath.MovedAway(Homes.KeyOf(home), Homes.KeyOf(Homes.Of(p)), Homes.KeyOf(Homes.LastHome(p)));
+        }
+
+        /// <summary>This colony's home, for its election's dates and texts.</summary>
+        private Map HomeMap => colony?.Map;
+
+        /// <summary>The council of a colony (the seat's for a map that isn't a home).</summary>
+        public static OfficeTracker For(Map map) => ColonyState.For(map)?.offices;
+
+        /// <summary>
+        /// The office someone holds, in whichever colony's council: their own colony's first, then the others' (an officer
+        /// away on a visit still holds their seat at home).
+        /// </summary>
+        public static OfficeDef HeldBy(Pawn p)
+        {
+            if (p == null) return null;
+            var own = ColonyState.Of(p);
+            var o = own?.offices.OfficeOf(p);
+            if (o != null) return o;
+            var all = CouncilGameComponent.Instance?.colonies;
+            if (all == null || all.Count <= 1) return null;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var c = all[i];
+                if (c == own || c.lostAt != ColonyStateMath.NotLost) continue;
+                o = c.offices.OfficeOf(p);
+                if (o != null) return o;
+            }
+            return null;
+        }
+
+        /// <summary>The council whose election is held at this map, or null.</summary>
+        public static OfficeTracker WithElectionOn(Map map)
+        {
+            var all = CouncilGameComponent.Instance?.colonies;
+            if (all == null || map == null) return null;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var t = all[i]?.offices;
+                if (t?.election != null && t.election.map == map) return t;
+            }
+            return null;
+        }
 
         // ---------------- Duties the rest of the mod asks about ----------------
 
@@ -192,7 +251,7 @@ namespace ColonyCouncil
         {
             // A holder who can no longer do the seat's work (an injury, a new incapability) steps down with the dead and
             // the departed.
-            foreach (var k in holders.Where(kv => !Valid(kv.Value) || !(DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(kv.Key))?.CanHold(kv.Value) ?? true))
+            foreach (var k in holders.Where(kv => !Valid(kv.Value) || !(DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(kv.Key))?.CanHold(kv.Value) ?? true) || MovedAway(kv.Value))
                          .Select(kv => kv.Key).ToList())
             {
                 var gone = holders[k];
@@ -202,7 +261,7 @@ namespace ColonyCouncil
                 if (S.offices && gone != null)
                 {
                     var def = DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(k));
-                    if (def != null) News.Post("CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
+                    if (def != null) Tell.Minor(NewsKind.Colony, null, HomeMap, "CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 }
             }
             SyncHediffs();
@@ -211,7 +270,8 @@ namespace ColonyCouncil
                 election = null;
                 return;
             }
-            var map = Find.AnyPlayerHomeMap;
+            // The colony's own home and its own year.
+            var map = HomeMap;
             if (map == null || Find.TickManager.TicksGame < GenDate.TicksPerDay * 8) return;
             // An election already under way: the day's look is its own (Offices/OfficesElection.cs).
             if (election != null) ElectionDaily(comp);
@@ -250,8 +310,9 @@ namespace ColonyCouncil
         {
             var peacemaker = Peacemaker;
             if (peacemaker == null || !ColonyCouncilMod.Settings.socialWeb || comp.social == null) return;
+            // Rivalries in the peacemaker's own colony only.
             var rivalries = comp.social.ties.Where(t => t.kind == TieKind.Rivals && t.announced && t.a != null && t.b != null
-                                                        && t.a.IsColonist && t.b.IsColonist && !t.Involves(peacemaker)).ToList();
+                                                        && t.a.IsColonist && t.b.IsColonist && !t.Involves(peacemaker) && Ours(t.a) && Ours(t.b)).ToList();
             foreach (var t in rivalries) comp.social.Weaken(t.a, t.b, TieKind.Rivals, 0.5f, null);
             if (!peacemaker.Spawned || peacemaker.Downed || !Rand.Chance(0.15f)) return;
             var pair = rivalries.Where(t => comp.social.ties.Contains(t) && t.a.Spawned && t.b.Spawned && t.a.Map == peacemaker.Map && t.b.Map == peacemaker.Map)
@@ -481,7 +542,7 @@ namespace ColonyCouncil
                 else if (moved.Add(who)) OtherSeat(comp, office, now, who);
             }
             SyncHediffs();
-            Tell.Letter(NewsKind.Colony, Importance.Notable, null, title, text, LetterDefOf.NeutralEvent, look);
+            Tell.Letter(NewsKind.Colony, Importance.Notable, HomeMap, title, text, LetterDefOf.NeutralEvent, look);
         }
 
         /// <summary>
@@ -666,7 +727,7 @@ namespace ColonyCouncil
             seat = Mathf.Clamp(seat, 0, office.Seats - 1);
             if (HolderOf(office, seat) != null) return false;
             holders[Key(office, seat)] = p;
-            var map = Find.AnyPlayerHomeMap;
+            var map = HomeMap ?? Find.AnyPlayerHomeMap;
             if (map != null)
             {
                 lastElectionYear = GenLocalDate.Year(map);
@@ -689,10 +750,13 @@ namespace ColonyCouncil
             SyncHediffs();
         }
 
-        /// <summary>Office holders get their office's edge; everyone gets the colony-wide ones while the seat is filled.</summary>
+        /// <summary>
+        /// Office holders get their office's edge; everyone of the colony gets the colony-wide ones while the seat is filled
+        /// (each colony's council for its own people).
+        /// </summary>
         public void SyncHediffs()
         {
-            var colonists = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists;
+            var colonists = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(Ours).ToList();
             foreach (var office in Offices)
             {
                 var seated = S.offices ? HoldersOf(office) : new List<Pawn>();

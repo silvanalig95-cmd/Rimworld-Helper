@@ -40,12 +40,13 @@ namespace ColonyCouncil
                 tip = f => "CC_FaithBtn_Decree_Tip".Translate(f?.name ?? ""),
                 blocked = f =>
                 {
-                    var comp = CouncilGameComponent.Instance;
+                    // The council of the colony in view.
+                    var decrees = ColonyState.InView?.decrees;
                     var def = DecreeFaith.Def;
-                    if (comp?.decrees == null || def == null || f == null) return "CC_FaithBtn_NoHome".Translate();
+                    if (decrees == null || def == null || f == null) return "CC_FaithBtn_NoHome".Translate();
                     if (DecreeFaith.FaithOfColony == f) return "CC_FaithBtn_DecreeHeld_Tip".Translate(f.name);
-                    if (comp.decrees.IsActive(def)) return "CC_FaithBtn_DecreeOther".Translate(DecreeFaith.FaithOfColony?.name ?? "");
-                    return comp.decrees.CannotEnact(def);
+                    if (decrees.IsActive(def)) return "CC_FaithBtn_DecreeOther".Translate(DecreeFaith.FaithOfColony?.name ?? "");
+                    return decrees.CannotEnact(def);
                 },
                 act = f =>
                 {
@@ -53,10 +54,11 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_FaithBtn_Decree_Confirm".Translate(f.name), () =>
                     {
                         var comp = CouncilGameComponent.Instance;
+                        var decrees = ColonyState.InView?.decrees;
                         var def = DecreeFaith.Def;
-                        if (comp?.decrees == null || def == null || comp.decrees.CannotEnact(def) != null) return;
+                        if (comp == null || decrees == null || def == null || decrees.CannotEnact(def) != null) return;
                         DecreeFaith.Choose(f);
-                        comp.decrees.Enact(def, comp);
+                        decrees.Enact(def, comp);
                     }));
                 }
             });

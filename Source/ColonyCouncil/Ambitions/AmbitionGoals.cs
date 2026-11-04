@@ -632,13 +632,14 @@ namespace ColonyCouncil
     {
         public float trust = 30f;
 
-        private static float Now() => CouncilGameComponent.Instance?.standings.ColonyTrust() ?? 0f;
+        /// <summary>The trust of the colony whose ambition it is (its home's people).</summary>
+        private static float Now(Map map) => CouncilGameComponent.Instance?.standings.ColonyTrust(map) ?? 0f;
 
-        public override bool Possible(Map map) => ColonyCouncilMod.Settings.enableWishes && Now() < trust - 5f;
+        public override bool Possible(Map map) => ColonyCouncilMod.Settings.enableWishes && Now(map) < trust - 5f;
 
-        public override float Progress(Map map, float baseline) => Ratio(Now() + 100f, trust + 100f);
+        public override float Progress(Map map, float baseline) => Ratio(Now(map) + 100f, trust + 100f);
 
-        public override string Describe(Map map, float baseline) => "CC_Goal_ColonyTrust".Translate(trust.ToString("0"), Now().ToString("0"));
+        public override string Describe(Map map, float baseline) => "CC_Goal_ColonyTrust".Translate(trust.ToString("0"), Now(map).ToString("0"));
     }
 
     /// <summary>Nobody in the colony addicted to anything.</summary>

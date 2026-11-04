@@ -1681,7 +1681,8 @@ own id). `Lean/Homes.cs` is the one place that says which; its rules are pure (`
   kept per colonist, forgotten once they're dead, discarded or no longer the colony's). Else the seat.
 - `Homes.People(map)`: the free colonists who belong to a home; a meeting's members are those of them with a say.
 - `Homes.Name(map)`: the settlement's name, for texts that have to tell two colonies apart.
-- `Homes.Changed`: a home founded or lost, noticed in the council's hour (nothing listens yet).
+- `Homes.Changed`: a home founded or lost, noticed in the council's hour (the council's book of colonies listens: below).
+- `Homes.LastHome(pawn)`: the last home someone lived on for a day, while it's still a home.
 
 With one colony every answer is that colony, so it plays as before. `MapFacts.BusiestHome` and
 `HappeningTracker.HomeMap()` (the seat, on the ground) keep their names but return the seat; "the colony" used to be
@@ -1690,6 +1691,70 @@ as a whole has, a loop over `Homes.All` for what each home has, and `Homes.Busie
 (a social event between two who are there). Rimfolk's own event timer runs per home (the seat carries on an older
 save's single timer), a memo keeps its colony so its follow-up (a guest, goods brought back, an order collected) comes
 where it was set going, talks with visitors start on every home, and a raid is written up by those at the home raided.
+
+### Many homes
+
+Each colony has a council of its own (stage 0, step 7a): `ColonyState`, one per colony, known by its key
+(`Homes.KeyOf`), kept in the council component's `colonies` and saved with it (the council already runs and saves
+everything it holds, so the trackers stay what they were and only move one level down). Its rules are pure
+(`Lean/ColonyStateMath.cs`) and tested (`Tools/Tests/ColonyStateTests.cs`). `ColonyState.For(map)` gives a home's (the
+seat's for a map that isn't a home), made when a home first needs one; `ColonyState.Of(pawn)` someone's
+(`Homes.Of`); `ColonyState.Ticking()` the councils that run this hour, each home's in the order they were founded.
+
+**Per colony now.**
+- *Offices and elections* (`OfficeTracker`): one set of seats per colony. Only its own people at home vote and stand;
+  the election is held at its own home, by its own year; its peacemaker cools rivalries between its own people; a
+  seat's edge and the colony-wide edges reach only its people. An officer who has gone to live at another colony (there
+  now, and a day there) steps down; away on a caravan or a short visit they keep the seat. `OfficeTracker.HeldBy(pawn)`
+  finds anyone's office, their own colony's first. The elders sit with their own colony's young; days as physician
+  and marshal count in every colony.
+- *Ambition and meeting* (`AmbitionTracker`): one ambition and one meeting per colony, each at its own home
+  (`MeetingMap`); the meeting's gathering, its waking and its letter find their colony by the map. One whose home is no
+  longer ours ends quietly (clean-up asks "still our home", not "is the map still there").
+- *Decrees* (`DecreeTracker`): one per colony. What makes it needed, its petitions, the threats it counts, its tithes
+  and alms (from its own stores, stretched by its own quartermaster, the goodwill to the nearest friendly settlement
+  measured from its home), its hediffs, curfew hours, practice, banked fires, grief fading, the backlash of a repeat and
+  the daily trust are all its own people's and home's. The declaration's letter counts its own for and against. Decree
+  moods, the heart's strain and relief, a quarantine's contagion, a clean sweep's work order and the petitions' setback
+  read the decrees of the person's own colony. The one faith a decree names is still one for the game.
+- *Dilemmas and traditions* (`DilemmaTracker`): each colony keeps its own rhythm, cooldowns (the pool's colony key)
+  and traditions, and casts its questions at its own home; a raid's aftermath is asked at the colony raided. A question
+  waiting for its answer holds back only its own colony (one about no colony, or a home no longer ours, holds back all).
+  The answer goes to the council of the colony it's about. Secrets, a coming of age, kin in the cells and a partner from
+  outside ask the colony concerned.
+- *Wishes and trust*: the wishes stay one list, each counted under the colony of the one who asked. Each colony rolls
+  for its own wishes, from its own people, under its own decrees and its own cap on open wishes (the event wishes, a
+  dream's and an envious one's too); a petition is joined only within a colony; the speaker raises trust in their own
+  colony; "never the colony's last few people" counts each colony's own; `ColonyTrust(map)` and the steward's hold on
+  standards are per colony. Trust itself stays per person.
+
+**Still shared**: the chronicle, the annals, the year letter and names; the calendar; the social web and groups;
+camps, encounters, the herd and the resident beast; journeys; the heart's episodes. `comp.offices`, `decrees`,
+`ambitions` and `dilemmas` read the seat's council, for what still asks for "the council" as a whole until its own
+step: the calendar's keeper of days, the herdmaster, Interplay's officers, the neighbours' letters, a scenario's first
+council, the visitors' quarantine factor, and the questions raised by Happenings, camps, guests' kin, a wedding name
+and a guardian.
+
+**An old save** puts everything it had under its one colony: its offices, election, decrees, ambition, meeting,
+dilemmas and traditions become the seat's council, untouched (`ColonyState.FromOldSave`, placed when the seat first
+asks). An election letter from before has no map and reads the seat's council.
+
+**A home lost** (abandoned, taken, handed over; `Homes.Changed`): a meeting, an election and an ambition there end
+quietly; the council is kept thirty days (`ColonyStateMath.KeepLostDays`) in case the home comes back, then let go.
+With no home left, its people carry it, and the next home founded (the seat) takes it; a new seat that is the only home
+and has no council yet takes the one of the home just left. So a colony that moves keeps its council, whether it gives
+up the old home first, lands a gravship, or settles and gives up the old home within the hour. A colony founded beside
+the first has a council of its own, and people who move to a colony that has one join it.
+
+**The pages** show the colony in view (`UI/ColonyView.cs`: the map on screen when it's a home, else the seat): the
+Decrees page with the offices and the election, the Ambition and Dilemmas pages, the council HUD panel, the calendar's
+election and traditions, the Council tab's counts. With more than one colony those pages name the colony at the top
+("The council of Oakhold (the seat)") with a button to go to another colony, which changes the map in view. This
+week lists every colony's petitions and meetings, each named; texts that mix colonies name the settlement through
+`Tell`.
+
+With one colony there is one council, every colony check is that colony (`ColonyState.Has` and `Of` answer it at once),
+the same people are taken in the same order, and the same rolls are made in the same order: it plays as before.
 
 ### The world ledger
 
@@ -2499,7 +2564,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | World history | 800 entries; everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
-| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
+| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
 | Heart | one per colonist, the gone dropped hourly |
 | Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |

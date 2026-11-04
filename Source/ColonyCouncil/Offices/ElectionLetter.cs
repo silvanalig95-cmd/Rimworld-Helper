@@ -13,6 +13,11 @@ namespace ColonyCouncil
     public class ChoiceLetter_Election : ChoiceLetter
     {
         public int year;
+        /// <summary>Where the election is held: whose council's it is (an older letter has none: the seat's).</summary>
+        public Map map;
+
+        /// <summary>The council whose election this letter is about.</summary>
+        private OfficeTracker Tracker => map != null ? OfficeTracker.WithElectionOn(map) ?? OfficeTracker.For(map) : CouncilGameComponent.Instance?.offices;
 
         public override IEnumerable<DiaOption> Choices
         {
@@ -23,7 +28,7 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                var offices = CouncilGameComponent.Instance?.offices;
+                var offices = Tracker;
                 var e = offices?.election;
                 bool live = e != null && e.year == year && !e.ceremony;
                 if (!live)
@@ -39,7 +44,7 @@ namespace ColonyCouncil
                 yield return vote;
                 var back = new DiaOption("CC_Elect_Choice_Endorse".Translate())
                 {
-                    action = () => ElectionMenus.Endorse(),
+                    action = () => ElectionMenus.Endorse(null, offices),
                     resolveTree = true
                 };
                 if (!offices.CouncilMayStepIn) back.Disable("CC_Elect_TooLate".Translate());
@@ -47,7 +52,7 @@ namespace ColonyCouncil
                 yield return back;
                 var off = new DiaOption("CC_Elect_Choice_CallOff".Translate())
                 {
-                    action = () => ElectionMenus.CallOff(),
+                    action = () => ElectionMenus.CallOff(null, offices),
                     resolveTree = true
                 };
                 if (!offices.CouncilMayStepIn) off.Disable("CC_Elect_TooLate".Translate());
@@ -59,18 +64,27 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref year, "year");
+            Scribe_References.Look(ref map, "map");
         }
     }
 
     /// <summary>The menus for the council's hand in an election: from the letter and from the Decrees page.</summary>
     public static class ElectionMenus
     {
-        private static OfficeTracker Offices => CouncilGameComponent.Instance?.offices;
+        /// <summary>The council whose election has this race (else the colony in view's).</summary>
+        private static OfficeTracker Offices(ElectionRace race)
+        {
+            var all = CouncilGameComponent.Instance?.colonies;
+            if (race != null && all != null)
+                foreach (var c in all)
+                    if (c?.offices?.election != null && c.offices.election.races.Contains(race)) return c.offices;
+            return ColonyState.InView?.offices;
+        }
 
         /// <summary>Back a candidate: every seat with a race the council hasn't backed anyone in yet, each candidate with what it costs.</summary>
-        public static void Endorse(ElectionRace only = null)
+        public static void Endorse(ElectionRace only = null, OfficeTracker tracker = null)
         {
-            var offices = Offices;
+            var offices = tracker ?? Offices(only);
             var e = offices?.election;
             var comp = CouncilGameComponent.Instance;
             if (e == null || comp == null || !offices.CouncilMayStepIn) return;
@@ -88,9 +102,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>Call a seat's vote off: every seat and each candidate in it, with whose trust it costs.</summary>
-        public static void CallOff(ElectionRace only = null)
+        public static void CallOff(ElectionRace only = null, OfficeTracker tracker = null)
         {
-            var offices = Offices;
+            var offices = tracker ?? Offices(only);
             var e = offices?.election;
             var comp = CouncilGameComponent.Instance;
             if (e == null || comp == null || !offices.CouncilMayStepIn) return;

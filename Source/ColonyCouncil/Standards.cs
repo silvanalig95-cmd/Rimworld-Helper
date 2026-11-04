@@ -57,19 +57,24 @@ namespace ColonyCouncil
             return n == 0 ? 1f : 1f + 0.6f * sum / n;
         }
 
-        /// <summary>Once a day: drift up while happy, down in hard times; decrees can push them either way.</summary>
-        public static void Daily(StandingTracker tracker, float decreeShift)
+        /// <summary>
+        /// Once a day: drift up while happy, down in hard times; decrees can push them either way. For one colony's people
+        /// (<paramref name="colony"/>: its decrees' shift and its steward); everyone with none given.
+        /// </summary>
+        public static void Daily(StandingTracker tracker, float decreeShift, ColonyState colony = null)
         {
             if (!S.risingStandards) return;
+            float steward = (colony?.offices ?? CouncilGameComponent.Instance?.offices)?.StandardsFactor ?? 1f;
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 if (p.IsQuestLodger() || p.needs?.mood == null || p.DevelopmentalStage.Baby()) continue;
+                if (colony != null && !colony.Has(p)) continue;
                 var st = tracker.For(p);
                 float mood = p.needs.mood.CurLevelPercentage;
                 float rate;
                 if (mood >= 0.7f)
                 {
-                    rate = (mood >= 0.85f ? 0.06f : 0.04f) * (CouncilGameComponent.Instance?.offices.StandardsFactor ?? 1f);
+                    rate = (mood >= 0.85f ? 0.06f : 0.04f) * steward;
                     var traits = p.story?.traits;
                     if (traits != null)
                     {

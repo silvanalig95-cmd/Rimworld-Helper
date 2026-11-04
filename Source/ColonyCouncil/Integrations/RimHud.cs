@@ -42,7 +42,7 @@ namespace ColonyCouncil
         {
             var comp = RimHudUtil.For(pawn);
             if (comp == null) return (null, null, null, null, null);
-            var office = comp.offices.OfficeOf(pawn);
+            var office = OfficeTracker.HeldBy(pawn);
             if (office == null) return ("CC_Hud_Office".Translate(), "CC_Hud_None".Translate(), null, null, null);
             return ("CC_Hud_Office".Translate(), office.LabelCap, () => office.description, null, null);
         }

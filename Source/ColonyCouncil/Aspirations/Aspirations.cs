@@ -382,13 +382,13 @@ namespace ColonyCouncil
     /// <summary>Hold a council office (one in particular, or any).</summary>
     public class AspirationWorker_Office : AspirationWorker
     {
-        public override bool CanHave(Pawn p) => ColonyCouncilMod.Settings.offices && !p.DevelopmentalStage.Juvenile() && CouncilGameComponent.Instance?.offices.OfficeOf(p) == null;
+        public override bool CanHave(Pawn p) => ColonyCouncilMod.Settings.offices && !p.DevelopmentalStage.Juvenile() && OfficeTracker.HeldBy(p) == null;
 
         public override bool StillPossible(Aspiration a) => ColonyCouncilMod.Settings.offices;
 
         public override float Progress(Aspiration a)
         {
-            var held = CouncilGameComponent.Instance?.offices.OfficeOf(a.pawn);
+            var held = OfficeTracker.HeldBy(a.pawn);
             return held != null && (def.office == null || held == def.office) ? 1f : 0f;
         }
     }

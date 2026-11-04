@@ -277,9 +277,11 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null || !ColonyCouncilMod.Settings.offices || p.DevelopmentalStage.Juvenile()) return null;
-            var office = comp.offices.OfficeOf(p);
-            if (office == null || Find.TickManager.TicksGame - comp.offices.lastElectionTick > GenDate.TicksPerDay * 12) return null;
-            var speaker = comp.offices.Speaker;
+            var office = OfficeTracker.HeldBy(p);
+            // Their own colony's council: its last election and its speaker.
+            var council = ColonyState.Of(p)?.offices ?? comp.offices;
+            if (office == null || Find.TickManager.TicksGame - council.lastElectionTick > GenDate.TicksPerDay * 12) return null;
+            var speaker = council.Speaker;
             var other = speaker != null && speaker != p && home.Contains(speaker) ? speaker : ArcUtil.Closest(p, home, 10f);
             if (other == null) return null;
             return new ArcCandidate { other = other, key = office.defName, name = office.label, weight = 1.3f };
@@ -288,7 +290,7 @@ namespace ColonyCouncil
         public override string Broken(Arc arc)
         {
             if (arc.stage >= arc.def.LastStage) return null;
-            var office = CouncilGameComponent.Instance?.offices.OfficeOf(arc.pawn);
+            var office = OfficeTracker.HeldBy(arc.pawn);
             return office == null || office.defName != arc.key ? "officegone" : null;
         }
     }

@@ -313,31 +313,51 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The factor on strain relief from decrees in force (days of rest).</summary>
-        public static float DecreeRelief()
+        /// <summary>The factor on strain relief from decrees in force in their colony (days of rest).</summary>
+        public static float DecreeRelief(Pawn p)
         {
-            var comp = CouncilGameComponent.Instance;
-            if (comp?.decrees?.active == null) return 1f;
+            var active = DecreeTracker.Of(p)?.active;
+            if (active == null) return 1f;
             float f = 1f;
-            foreach (var a in comp.decrees.active)
+            foreach (var a in active)
                 if (a?.def != null && a.def.strainRelief > 0f) f *= a.def.strainRelief;
             return f;
         }
 
-        /// <summary>The work cost of decrees in force that the heart layer carries (days of rest), as a factor.</summary>
-        public static float DecreeWorkFactor(out DecreeDef which)
+        /// <summary>The work cost of decrees in force in their colony that the heart layer carries (days of rest), as a factor.</summary>
+        public static float DecreeWorkFactor(Pawn p, out DecreeDef which)
         {
             which = null;
-            var comp = CouncilGameComponent.Instance;
-            if (comp?.decrees?.active == null) return 1f;
+            // Asked whenever work speed is: a quick look at every colony's decrees before asking whose someone is.
+            if (!AnyWorkDecree()) return 1f;
+            var active = DecreeTracker.Of(p)?.active;
+            if (active == null) return 1f;
             float f = 1f;
-            foreach (var a in comp.decrees.active)
+            foreach (var a in active)
                 if (a?.def != null && a.def.workFactor > 0f && a.def.workFactor != 1f)
                 {
                     f *= a.def.workFactor;
                     which = a.def;
                 }
             return f;
+        }
+
+        /// <summary>A decree that changes the work is in force in one of the colonies.</summary>
+        private static bool AnyWorkDecree()
+        {
+            var colonies = CouncilGameComponent.Instance?.colonies;
+            if (colonies == null) return false;
+            for (int i = 0; i < colonies.Count; i++)
+            {
+                var active = colonies[i]?.decrees?.active;
+                if (active == null) continue;
+                for (int k = 0; k < active.Count; k++)
+                {
+                    var def = active[k]?.def;
+                    if (def != null && def.workFactor > 0f && def.workFactor != 1f) return true;
+                }
+            }
+            return false;
         }
 
         public static void ResetCaches()

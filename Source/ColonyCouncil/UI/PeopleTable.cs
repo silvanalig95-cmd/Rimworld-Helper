@@ -364,7 +364,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
 
             // Name, with office and epithet under it.
-            var office = s.offices ? comp.offices.OfficeOf(p) : null;
+            var office = s.offices ? OfficeTracker.HeldBy(p) : null;
             string titles = s.epithets ? comp.epithets.TitlesOf(p) : null;
             var under = new List<string>(2);
             if (office != null) under.Add(office.LabelCap);
@@ -694,7 +694,7 @@ namespace ColonyCouncil
             if (arc?.def != null && arc.Stage != null) sb.Append("\n").Append("CC_Table_SummaryStory".Translate(arc.def.label, arc.Stage.label).Resolve());
             string quirks = comp.quirks.Describe(p);
             if (!quirks.NullOrEmpty()) sb.Append("\n").Append(quirks);
-            var office = comp.offices.OfficeOf(p);
+            var office = OfficeTracker.HeldBy(p);
             if (office != null) sb.Append("\n").Append("CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve());
             string titles = comp.epithets.TitlesOf(p);
             if (!titles.NullOrEmpty()) sb.Append("\n").Append("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve());

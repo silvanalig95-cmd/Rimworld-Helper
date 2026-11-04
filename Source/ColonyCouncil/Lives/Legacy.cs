@@ -158,7 +158,8 @@ namespace ColonyCouncil
             cameOfAge.Add(p);
             cameOfAgeTick[p] = Find.TickManager.TicksGame;
             // The council is asked what path they should take.
-            if (S.enableDilemmas) comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_ComingOfAge);
+            // The council of their own colony.
+            if (S.enableDilemmas) (DilemmaTracker.Of(p) ?? comp.dilemmas).TryFire(true, d => d.Worker is DilemmaWorker_ComingOfAge);
         }
 
         public void Daily(CouncilGameComponent comp)

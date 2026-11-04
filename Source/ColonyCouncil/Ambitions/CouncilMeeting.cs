@@ -458,13 +458,13 @@ namespace ColonyCouncil
             calledOff.AddTrigger(new Trigger_PawnKilled());
             // Third, where the chair leaving used to be, so saves made mid-meeting load their timer into the right trigger.
             calledOff.AddTrigger(new Trigger_Memo(CallOffMemo));
-            calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(false)));
+            calledOff.AddPreAction(new TransitionAction_Custom(() => AmbitionTracker.WithMeetingOn(lord?.Map)?.EndMeetingSafely(false)));
             graph.AddTransition(calledOff);
 
             timeoutTrigger = GetTimeoutTrigger();
             var done = new Transition(meet, end);
             done.AddTrigger(timeoutTrigger);
-            done.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(true)));
+            done.AddPreAction(new TransitionAction_Custom(() => AmbitionTracker.WithMeetingOn(lord?.Map)?.EndMeetingSafely(true)));
             graph.AddTransition(done);
             return graph;
         }
@@ -475,7 +475,7 @@ namespace ColonyCouncil
             if (Find.TickManager.TicksGame % 300 != 0) return;
             try
             {
-                CouncilGameComponent.Instance?.ambitions.meeting?.Talk(lord);
+                AmbitionTracker.MeetingOn(Map)?.Talk(lord);
             }
             catch (System.Exception e)
             {
@@ -535,7 +535,7 @@ namespace ColonyCouncil
                 .FirstOrDefault();
             if (next == null) return false;
             organizer = next;
-            var m = CouncilGameComponent.Instance?.ambitions.meeting;
+            var m = AmbitionTracker.MeetingOn(Map);
             if (m != null) m.chair = next;
             News.Post("CC_Meeting_NewChair".Translate(next.Named("PAWN")).Resolve(), new LookTargets(next), NewsKind.Colony, MessageTypeDefOf.SilentInput);
             return true;
@@ -554,7 +554,7 @@ namespace ColonyCouncil
             {
                 // Never to a place that would hurt them (PlayOut/PlaySafety.cs).
                 if (!PlaySafety.Safe(p, spot, Map)) return 0f;
-                var m = CouncilGameComponent.Instance?.ambitions.meeting;
+                var m = AmbitionTracker.MeetingOn(Map);
                 if (m != null && m.invites.Count > 0)
                 {
                     var inv = m.InviteOf(p);

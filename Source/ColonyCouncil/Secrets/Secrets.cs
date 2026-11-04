@@ -436,7 +436,8 @@ namespace ColonyCouncil
                 }
             }
             // The council may be asked to do something about it.
-            if (S.enableDilemmas) comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_Secret);
+            // The council of the owner's own colony.
+            if (S.enableDilemmas) (DilemmaTracker.Of(owner) ?? comp.dilemmas).TryFire(true, d => d.Worker is DilemmaWorker_Secret);
         }
 
         /// <summary>Died with it. If someone knew, they tell it now; otherwise it's gone.</summary>

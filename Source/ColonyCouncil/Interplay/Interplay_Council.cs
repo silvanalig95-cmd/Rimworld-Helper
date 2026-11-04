@@ -159,7 +159,7 @@ namespace ColonyCouncil
             float s = 0f;
             try
             {
-                if (voter != candidate && KeptTracker.On && comp.offices.OfficeOf(candidate) != null && TookBackFrom(comp, voter)) s -= TakenBackVote;
+                if (voter != candidate && KeptTracker.On && OfficeTracker.HeldBy(candidate) != null && TookBackFrom(comp, voter)) s -= TakenBackVote;
                 if (S.epithets && comp.epithets != null)
                 {
                     int good = 0, bad = 0;

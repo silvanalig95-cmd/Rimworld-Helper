@@ -30,7 +30,8 @@ namespace ColonyCouncil
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             if (!ColonyCouncilMod.Settings.enableAmbitions) return 0f;
-            var active = CouncilGameComponent.Instance?.ambitions?.active;
+            // The ambition of the initiator's own colony.
+            var active = initiator == null ? null : ColonyState.Of(initiator)?.ambitions?.active;
             if (active == null || recipient == null || !recipient.RaceProps.Humanlike) return 0f;
             if (!initiator.IsColonist || initiator.IsQuestLodger() || initiator.MapHeld != active.map) return 0f;
             return initiator == active.proposer ? 0.05f : 0.01f;
@@ -89,9 +90,10 @@ namespace ColonyCouncil
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            var comp = CouncilGameComponent.Instance;
-            if (comp == null || comp.decrees.active.Count == 0 || recipient == null || !recipient.IsColonist || !initiator.IsColonist) return 0f;
-            foreach (var a in comp.decrees.active)
+            // The decrees of the initiator's own colony.
+            var decrees = initiator == null ? null : DecreeTracker.Of(initiator);
+            if (decrees == null || decrees.active.Count == 0 || recipient == null || !recipient.IsColonist || !initiator.IsColonist) return 0f;
+            foreach (var a in decrees.active)
             {
                 var mine = a.def.ReactionOf(initiator);
                 var theirs = a.def.ReactionOf(recipient);

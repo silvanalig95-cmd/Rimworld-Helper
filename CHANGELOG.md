@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A council for every colony
+
+*4 November 2026, version 0.67.0*
+
+- Each colony now has a council of its own: its own offices and elections, decrees, ambition and meetings, and questions and traditions.
+- Each colony votes at its own home in its own year, and an officer who goes to live at another colony steps down.
+- Decrees act on their own colony: its people, its stores, its petitions and the neighbours nearest to it.
+- Wishes and petitions stay within each colony, and so does the trust a good speaker brings.
+- A raid's aftermath is asked about at the colony that was raided.
+- With more than one colony, the council's pages name the colony in view, with a button to go to another.
+- Old saves keep everything, and a colony that moves by caravan or gravship keeps its council. With one colony the council plays as before.
+
 ## Groundwork: the world's ties in one place
 
 *4 November 2026, version 0.66.3*

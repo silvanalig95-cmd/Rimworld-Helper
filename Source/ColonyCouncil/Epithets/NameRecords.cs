@@ -46,8 +46,12 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp != null && ColonyCouncilMod.Settings.offices)
             {
-                foreach (var p in comp.offices.HoldersOf("Council_Office_Physician")) CouncilRecords.Add(p, DaysAsPhysician);
-                foreach (var p in comp.offices.HoldersOf("Council_Office_Marshal")) CouncilRecords.Add(p, DaysAsMarshal);
+                // Every colony's physician and marshal.
+                foreach (var c in ColonyState.Ticking())
+                {
+                    foreach (var p in c.offices.HoldersOf("Council_Office_Physician")) CouncilRecords.Add(p, DaysAsPhysician);
+                    foreach (var p in c.offices.HoldersOf("Council_Office_Marshal")) CouncilRecords.Add(p, DaysAsMarshal);
+                }
             }
             foreach (var p in colonists)
                 if (IsMoralGuide(p)) CouncilRecords.Add(p, DaysAsGuide);

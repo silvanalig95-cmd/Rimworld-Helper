@@ -148,7 +148,8 @@ namespace ColonyCouncil
             hot = temp >= 35f;
             foodDays = MapFacts.Of(map)?.FoodDays ?? 99f;
             leader = Leader();
-            var amb = CouncilGameComponent.Instance?.ambitions?.active;
+            // The ambition of the colony whose home this is.
+            var amb = Homes.IsHome(map) ? ColonyState.For(map)?.ambitions?.active : null;
             ambition = amb != null && amb.map == map ? amb : null;
             var trader = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.TraderKind != null && p.Faction != null && p.Faction != Faction.OfPlayer && !p.HostileTo(Faction.OfPlayer));
             traderPeople = trader?.Faction?.Name;

@@ -381,12 +381,14 @@ namespace ColonyCouncil
         /// <summary>A decree in force they dislike, two days in or more.</summary>
         private static void Decrees(CouncilGameComponent comp, Pawn p, SetbackState s, int now)
         {
-            foreach (var a in comp.decrees.active)
+            // Their own colony's decrees.
+            var decrees = DecreeTracker.Of(p) ?? comp.decrees;
+            foreach (var a in decrees.active)
             {
                 if (a?.def == null) continue;
                 var r = a.def.ReactionOf(p);
                 if (r != DecreeReaction.Dislike && r != DecreeReaction.Hate) continue;
-                var req = comp.decrees.RequestFor(a.def);
+                var req = decrees.RequestFor(a.def);
                 bool ignored = req != null && req.repeal && now - req.tick >= GenDate.TicksPerDay;
                 int stage = SetbackMath.DragStage((now - a.startTick) / (float)GenDate.TicksPerDay, r == DecreeReaction.Hate, ignored);
                 if (stage <= s.dragStage) continue;

@@ -170,11 +170,14 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             var settings = ColonyCouncilMod.Settings;
-            if (comp == null || settings == null || !settings.MoodEffects || map != HappeningTracker.HomeMap()) yield break;
+            // Each home on the ground, for its own council's decrees.
+            if (comp == null || settings == null || !settings.MoodEffects || !Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
+            var decrees = DecreeTracker.For(map);
+            if (decrees == null) yield break;
             var people = Colonists(map).Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && p.IsFreeNonSlaveColonist).ToList();
             if (people.Count < 2) yield break;
             int now = Find.TickManager.TicksGame;
-            foreach (var a in comp.decrees.active.ToList())
+            foreach (var a in decrees.active.ToList())
             {
                 var stages = a?.def?.thought?.stages;
                 if (stages == null || stages.Count < 4 || now - a.startTick < GenDate.TicksPerDay) continue;
@@ -227,15 +230,18 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             var comp = CouncilGameComponent.Instance;
-            if (comp == null || !ColonyCouncilMod.Settings.offices || map != HappeningTracker.HomeMap()) yield break;
+            // Each home on the ground, for its own council's seats.
+            if (comp == null || !ColonyCouncilMod.Settings.offices || !Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
+            var colony = ColonyState.For(map);
+            if (colony == null) yield break;
             var colonists = Colonists(map);
-            int voters = PawnsFinder.AllMaps_FreeColonistsSpawned.Count(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && CouncilGameComponent.CanVoiceWishes(p));
+            int voters = PawnsFinder.AllMaps_FreeColonistsSpawned.Count(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && CouncilGameComponent.CanVoiceWishes(p) && colony.Has(p));
 
             // The physician, with someone ill or hurt and needing care.
             var sick = colonists.Where(p => WishWorker_Sickbed.Ailing(p) || HealthAIUtility.ShouldBeTendedNowByPlayer(p)).ToList();
             if (sick.Count > 0)
             {
-                var s = Empty(comp, colonists, voters, Interplay.Physician, "CC_Adv_Office_Physician".Translate(TextUtil.JoinAnd(sick.Select(p => p.LabelShort).ToList())).Resolve(),
+                var s = Empty(colony.offices, colonists, voters, Interplay.Physician, "CC_Adv_Office_Physician".Translate(TextUtil.JoinAnd(sick.Select(p => p.LabelShort).ToList())).Resolve(),
                     0.3f + 0.05f * Mathf.Min(4, sick.Count));
                 if (s != null) yield return s;
             }
@@ -243,7 +249,7 @@ namespace ColonyCouncil
             // The reeve, with the harvest coming in.
             if (SeasonUtil.HasSeasons(map) && GenLocalDate.Season(map) == Season.Fall && map.zoneManager.AllZones.OfType<Zone_Growing>().Sum(z => z.CellCount) >= 40)
             {
-                var s = Empty(comp, colonists, voters, Interplay.Reeve, "CC_Adv_Office_Reeve".Translate().Resolve(), 0.16f);
+                var s = Empty(colony.offices, colonists, voters, Interplay.Reeve, "CC_Adv_Office_Reeve".Translate().Resolve(), 0.16f);
                 if (s != null) yield return s;
             }
 
@@ -256,17 +262,17 @@ namespace ColonyCouncil
                     .Select(d => (d, until: CalendarMath.DaysUntil(today, d.day))).Where(x => x.until >= 1 && x.until <= 3).OrderBy(x => x.until).FirstOrDefault();
                 if (day.d != null)
                 {
-                    var s = Empty(comp, colonists, voters, Interplay.Keeper, "CC_Adv_Office_Keeper".Translate(day.d.label).Resolve(), 0.14f);
+                    var s = Empty(colony.offices, colonists, voters, Interplay.Keeper, "CC_Adv_Office_Keeper".Translate(day.d.label).Resolve(), 0.14f);
                     if (s != null) yield return s;
                 }
             }
         }
 
         /// <summary>The advice for one office, if it's open in this colony, empty, and someone here could hold it.</summary>
-        private AdvisorSignal Empty(CouncilGameComponent comp, List<Pawn> colonists, int voters, string defName, string why, float severity)
+        private AdvisorSignal Empty(OfficeTracker offices, List<Pawn> colonists, int voters, string defName, string why, float severity)
         {
             var office = DefDatabase<OfficeDef>.GetNamedSilentFail(defName);
-            if (office == null || !office.OpenFor(voters) || comp.offices.HolderOf(office) != null) return null;
+            if (office == null || !office.OpenFor(voters) || offices.HolderOf(office) != null) return null;
             var best = colonists.Where(p => !p.DevelopmentalStage.Juvenile() && !p.IsSlave && office.CanHold(p)).OrderByDescending(office.Competence).FirstOrDefault();
             if (best == null) return null;
             var s = Signal(severity, "CC_Adv_Office_Title".Translate(office.label).Resolve(),

@@ -225,20 +225,29 @@ namespace ColonyCouncil
             foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // The colony calendar's next days (Calendar/).
             foreach (var n in CalendarTracker.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
-            // A council meeting that has been called, with a countdown to when the chair calls everyone together.
-            var meeting = CouncilGameComponent.Instance?.ambitions?.meeting;
-            if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))
+            // Each colony's council meeting that has been called, with a countdown to when the chair calls everyone together.
+            foreach (var council in ColonyState.Ticking())
             {
-                timed.Add(new Entry
+                var meeting = council.ambitions?.meeting;
+                if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))
                 {
-                    title = "CC_World_Meeting".Translate(),
-                    text = meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now),
-                    icon = Icons.Council,
-                    color = Calm,
-                    dueTick = meeting.Started ? -1 : Mathf.Max(now, meeting.scheduledTick),
-                    meterLabel = "CC_UI_StartsIn".Translate(),
-                    click = () => MainTabWindow_Council.OpenTab("Ambition")
-                });
+                    var at = meeting.map;
+                    timed.Add(new Entry
+                    {
+                        title = ColonyState.Several ? "CC_Tell_At".Translate(Homes.Name(meeting.map).Named("PLACE"), "CC_World_Meeting".Translate().Named("TEXT")).Resolve() : "CC_World_Meeting".Translate().ToString(),
+                        text = meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now),
+                        icon = Icons.Council,
+                        color = Calm,
+                        dueTick = meeting.Started ? -1 : Mathf.Max(now, meeting.scheduledTick),
+                        meterLabel = "CC_UI_StartsIn".Translate(),
+                        click = () =>
+                        {
+                            // With more than one colony, to the colony that meets, so the page shows its council.
+                            if (ColonyState.Several && Find.CurrentMap != at && Homes.IsHome(at)) Current.Game.CurrentMap = at;
+                            MainTabWindow_Council.OpenTab("Ambition");
+                        }
+                    });
+                }
             }
             // The rest in the order they'll happen; those without a date last.
             list.AddRange(timed.OrderBy(e => e.dueTick < 0 ? int.MaxValue : e.dueTick));

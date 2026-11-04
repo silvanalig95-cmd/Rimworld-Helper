@@ -296,7 +296,8 @@ namespace ColonyCouncil
 
         private static PaneSection Decrees(CouncilGameComponent comp, Pawn p)
         {
-            var decrees = comp.decrees;
+            // Their own colony's decrees.
+            var decrees = DecreeTracker.Of(p) ?? comp.decrees;
             if (decrees == null || !p.IsFreeNonSlaveColonist || p.DevelopmentalStage.Baby()) return null;
             var s = new PaneSection { key = "decrees", header = "CC_Culture_Decrees".Translate(), icon = Icons.Decrees };
             int now = Find.TickManager.TicksGame;

@@ -913,7 +913,7 @@ namespace ColonyCouncil
         public GoodsBy by;
 
         /// <summary>A quartermaster stretches the stores.</summary>
-        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (OfficeTracker.For(ctx.map)?.CostFactor ?? 1f)));
 
         public static int RawFood(Map map)
         {
@@ -1074,7 +1074,8 @@ namespace ColonyCouncil
                     // What the answer does, under it and on hover (Dilemmas/DilemmaImpact.cs).
                     yield return DilemmaImpact.Option(ctx, o, ctx.Format(o.label), why, () =>
                     {
-                        CouncilGameComponent.Instance?.dilemmas.Resolve(this, index, false);
+                        // The council of the colony it's about.
+                        DilemmaTracker.ForQuestion(ctx)?.Resolve(this, index, false);
                         Find.LetterStack.RemoveLetter(this);
                     });
                 }
@@ -1086,7 +1087,7 @@ namespace ColonyCouncil
         public override void Removed()
         {
             base.Removed();
-            if (!resolved && ctx?.def != null) CouncilGameComponent.Instance?.dilemmas.Resolve(this, ctx.def.defaultOption, true);
+            if (!resolved && ctx?.def != null) DilemmaTracker.ForQuestion(ctx)?.Resolve(this, ctx.def.defaultOption, true);
         }
 
         public override void ExposeData()
@@ -1101,6 +1102,36 @@ namespace ColonyCouncil
 
     public class DilemmaTracker : IExposable
     {
+        /// <summary>The colony whose questions and traditions these are (ColonyState.cs); set by it, not saved.</summary>
+        internal ColonyState colony;
+
+        /// <summary>This colony's home (as the busiest home was), where its questions are cast.</summary>
+        private Map HomeMap => colony != null ? colony.Map : MapFacts.BusiestHome;
+
+        /// <summary>Someone of this colony.</summary>
+        private bool Ours(Pawn p) => colony == null || colony.Has(p);
+
+        /// <summary>The questions and traditions of a colony (the seat's for a map that isn't a home).</summary>
+        public static DilemmaTracker For(Map map) => ColonyState.For(map)?.dilemmas;
+
+        /// <summary>The questions and traditions of someone's own colony.</summary>
+        public static DilemmaTracker Of(Pawn p) => ColonyState.Of(p)?.dilemmas;
+
+        /// <summary>The colony a question is about: its home's while that's ours, else the seat's.</summary>
+        public static DilemmaTracker ForQuestion(DilemmaContext ctx) => For(ctx?.map != null && Homes.IsHome(ctx.map) ? ctx.map : null);
+
+        /// <summary>
+        /// A question about this colony waits for its answer; one about no colony, or about a home no longer ours, holds
+        /// every colony back (as one question always held the colony back).
+        /// </summary>
+        private static bool Waiting(Map map)
+        {
+            var letters = Find.LetterStack.LettersListForReading;
+            for (int i = 0; i < letters.Count; i++)
+                if (letters[i] is ChoiceLetter_Dilemma d && !d.resolved && (d.ctx?.map == null || d.ctx.map == map || !Homes.IsHome(d.ctx.map))) return true;
+            return false;
+        }
+
         public int nextTick = -1;
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
         /// <summary>Traditions: how often the tradition answer was chosen, which are established, and breaks in a row.</summary>
@@ -1137,8 +1168,8 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             if (nextTick < 0) nextTick = now + Interval();
             if (now < GenDate.TicksPerDay * 5) return;
-            // The aftermath of a raid brings its own questions, outside the usual rhythm.
-            int threat = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
+            // The aftermath of a raid on this colony's own home brings its own questions, outside the usual rhythm.
+            int threat = Find.Maps.Where(m => m.IsPlayerHome && (colony == null || m == colony.Map)).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
             if (threat > 0 && now - threat > GenDate.TicksPerHour * 6 && now - threat < GenDate.TicksPerDay * 1.5f
                 && now - lastFiredTick > GenDate.TicksPerDay * 3 && Rand.Chance(0.08f))
             {
@@ -1148,7 +1179,7 @@ namespace ColonyCouncil
             foreach (var t in Traditions.ToList())
             {
                 if (lastTick.TryGetValue(t.defName, out int last) && now - last < GenDate.TicksPerDay * 30) continue;
-                var home = MapFacts.BusiestHome;
+                var home = HomeMap;
                 if (home == null || !t.Worker.CanHappenNow(home)) continue;
                 if (TryFire(true, d => d == t)) return;
             }
@@ -1161,10 +1192,10 @@ namespace ColonyCouncil
             else nextTick = now + GenDate.TicksPerDay;
         }
 
-        /// <summary>Roughly every few days; sooner when everyone is in a good mood, because that's when things get comfortable.</summary>
-        private static int Interval()
+        /// <summary>Roughly every few days; sooner when everyone of the colony is in a good mood, because that's when things get comfortable.</summary>
+        private int Interval()
         {
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => p.needs?.mood != null).ToList();
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => p.needs?.mood != null && Ours(p)).ToList();
             float mood = pawns.Count > 0 ? pawns.Average(p => p.needs.mood.CurLevelPercentage) : 0.5f;
             float factor = Mathf.Clamp(1.6f - mood, 0.6f, 1.3f);
             return Mathf.RoundToInt(S.daysBetweenDilemmas * factor * Rand.Range(0.7f, 1.3f) * GenDate.TicksPerDay);
@@ -1172,9 +1203,10 @@ namespace ColonyCouncil
 
         public bool TryFire(bool force, Func<DilemmaDef, bool> only = null)
         {
-            var map = MapFacts.BusiestHome;
+            // Cast at this colony's own home, while no question about it waits.
+            var map = HomeMap;
             if (map == null) return false;
-            if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) return false;
+            if (Waiting(map)) return false;
             if (!force && !Tell.CanAsk) return false;
             int now = Find.TickManager.TicksGame;
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
@@ -1286,7 +1318,7 @@ namespace ColonyCouncil
             {
                 traditionBreaks[key] = 0;
                 traditionCount[key] = (traditionCount.TryGetValue(key, out int n) ? n : 0) + 1;
-                comp.offices.Notify_CustomKept(colonists);
+                (colony?.offices ?? comp.offices).Notify_CustomKept(colonists);
                 if (IsTradition(def))
                 {
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
@@ -1299,7 +1331,7 @@ namespace ColonyCouncil
                     traditions.Add(key);
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     VisualTouches.Tradition(colonists, def.traditionLabel);
-                    Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
+                    Tell.Letter(NewsKind.Colony, Importance.Notable, ctx.map, "CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
                         "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(def.traditionLabel);
@@ -1325,12 +1357,12 @@ namespace ColonyCouncil
                 traditions.Remove(key);
                 traditionCount[key] = 0;
                 traditionBreaks[key] = 0;
-                News.Post("CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
+                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), null, MessageTypeDefOf.NegativeEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
             }
             else
             {
-                News.Post("CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
+                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), null, MessageTypeDefOf.NegativeEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
             }
         }

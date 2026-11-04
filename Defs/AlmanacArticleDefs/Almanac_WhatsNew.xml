@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.67.0</version>
+        <date>4 November 2026</date>
+        <title>A council for every colony</title>
+        <points>
+          <li>Each colony now has a council of its own: its own offices and elections, decrees, ambition and meetings, and questions and traditions.</li>
+          <li>Each colony votes at its own home in its own year, and an officer who goes to live at another colony steps down.</li>
+          <li>Decrees act on their own colony: its people, its stores, its petitions and the neighbours nearest to it.</li>
+          <li>Wishes and petitions stay within each colony, and so does the trust a good speaker brings.</li>
+          <li>A raid's aftermath is asked about at the colony that was raided.</li>
+          <li>With more than one colony, the council's pages name the colony in view, with a button to go to another.</li>
+          <li>Old saves keep everything, and a colony that moves by caravan or gravship keeps its council. With one colony the council plays as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.66.3</version>
         <date>4 November 2026</date>
         <title>Groundwork: the world's ties in one place</title>

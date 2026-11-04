@@ -81,11 +81,8 @@ namespace ColonyCouncil
         public List<string> weddingAsked = new List<string>();
         /// <summary>The colony's next steps: the plan and what the council proposes (Building/NextSteps.cs).</summary>
         public List<NextStep> nextSteps = new List<NextStep>();
-        public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
-        public DecreeTracker decrees = new DecreeTracker();
-        public DilemmaTracker dilemmas = new DilemmaTracker();
         public AnnalsTracker annals = new AnnalsTracker();
         /// <summary>The council's automations, each its own switch (Building/Automations.cs).</summary>
         public AutomationTracker automations = new AutomationTracker();
@@ -101,7 +98,6 @@ namespace ColonyCouncil
         public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
-        public OfficeTracker offices = new OfficeTracker();
         public SocialWeb social = new SocialWeb();
         public DreamTracker dreams = new DreamTracker();
         public AspirationTracker aspirations = new AspirationTracker();
@@ -266,11 +262,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref weddingPlans, "weddingPlans", LookMode.Deep);
             Scribe_Collections.Look(ref weddingAsked, "weddingAsked", LookMode.Value);
             Scribe_Collections.Look(ref nextSteps, "nextSteps", LookMode.Deep);
-            Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
-            Scribe_Deep.Look(ref decrees, "decrees");
-            Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref automations, "automations");
             Scribe_Deep.Look(ref relays, "relays");
@@ -280,7 +273,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
-            Scribe_Deep.Look(ref offices, "offices");
+            // Offices, decrees, ambitions and dilemmas: one council per colony (ColonyState.cs).
+            ExposeColonies();
             Scribe_Deep.Look(ref social, "social");
             Scribe_Deep.Look(ref dreams, "dreams");
             Scribe_Deep.Look(ref aspirations, "aspirations");
@@ -322,10 +316,13 @@ namespace ColonyCouncil
                     tamingsVersion = 1;
                     foreach (var w in wishes)
                         if (w?.def?.Worker is WishWorker_Companion) w.baseline = 0f;
-                    var a = ambitions?.active;
-                    if (a?.def?.goals != null && a.baselines != null)
-                        for (int i = 0; i < a.def.goals.Count && i < a.baselines.Count; i++)
-                            if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
+                    foreach (var c in colonies)
+                    {
+                        var a = c.ambitions?.active;
+                        if (a?.def?.goals != null && a.baselines != null)
+                            for (int i = 0; i < a.def.goals.Count && i < a.baselines.Count; i++)
+                                if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
+                    }
                 }
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
                 if (expectingTold == null) expectingTold = new List<int>();
@@ -349,11 +346,8 @@ namespace ColonyCouncil
                     recentWishTicks = new List<int>();
                 }
                 if (everWished == null) everWished = new HashSet<string>();
-                if (ambitions == null) ambitions = new AmbitionTracker();
                 if (touches == null) touches = new PersonalTouchTracker();
                 if (standings == null) standings = new StandingTracker();
-                if (decrees == null) decrees = new DecreeTracker();
-                if (dilemmas == null) dilemmas = new DilemmaTracker();
                 if (annals == null) annals = new AnnalsTracker();
                 if (automations == null) automations = new AutomationTracker();
                 if (relays == null) relays = new LineRelayTracker();
@@ -362,7 +356,6 @@ namespace ColonyCouncil
                 buildAhead ??= new BuildAheadTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
-                if (offices == null) offices = new OfficeTracker();
                 if (social == null) social = new SocialWeb();
                 if (dreams == null) dreams = new DreamTracker();
                 if (aspirations == null) aspirations = new AspirationTracker();
@@ -400,8 +393,13 @@ namespace ColonyCouncil
             }
             // A called council meeting: its start time, reminder, sleepers being fetched and anyone drafted away. One already
             // under way is looked after even if ambitions were just turned off, so nobody is left in it against the player.
-            if (t % 60 == 23 && ambitions.meeting != null && (Settings.enableAmbitions || ambitions.meeting.Started))
-                Safe("council meeting", () => ambitions.MeetingTick(this));
+            // Each colony's own (ColonyState.cs); one that lost its home lets its meeting go here.
+            if (t % 60 == 23)
+                for (int i = 0; i < colonies.Count; i++)
+                {
+                    var amb = colonies[i].ambitions;
+                    if (amb.meeting != null && (Settings.enableAmbitions || amb.meeting.Started)) Safe("council meeting", () => amb.MeetingTick(this));
+                }
             // The hour's work in four parts and the day's in two, each on its own tick of the hour (Sched), in the order
             // they always ran, so no single tick carries all of it.
             // Each part is timed for Rimfolk's clock (Lean/PassClock.cs), which changes nothing it does.
@@ -492,7 +490,8 @@ namespace ColonyCouncil
             Safe("battles", () => social.Hourly(this));
             Safe("bonds", Bonds.Hourly);
             Safe("losses", () => vendettas.Hourly(this));
-            Safe("decrees", () => decrees.Hourly(this));
+            // Each colony's council in turn, in the order the homes were founded (ColonyState.cs).
+            foreach (var c in ColonyState.Ticking()) Safe("decrees", () => c.decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
             if (Settings.enableWishes) Safe("promises kept", () => kept.Hourly(this));
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
@@ -501,9 +500,11 @@ namespace ColonyCouncil
 
         private void HourlyLife()
         {
-            if (Settings.enableAmbitions) Safe("ambitions", () => ambitions.HourlyTick(this));
+            var councils = ColonyState.Ticking();
+            if (Settings.enableAmbitions)
+                foreach (var c in councils) Safe("ambitions", () => c.ambitions.HourlyTick(this));
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
-            Safe("dilemmas", dilemmas.Hourly);
+            foreach (var c in councils) Safe("dilemmas", c.dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
@@ -525,7 +526,8 @@ namespace ColonyCouncil
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
             // An election under way: the campaign, the hustings, polling day and the count (Offices/OfficesElection.cs).
-            if (offices.election != null) Safe("election", () => offices.ElectionHourly(this));
+            foreach (var c in ColonyState.Ticking())
+                if (c.offices.election != null) Safe("election", () => c.offices.ElectionHourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
             Safe("together", () =>
             {
@@ -552,8 +554,10 @@ namespace ColonyCouncil
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
         public Wish TryWishFromDream(Pawn p, WishDef def)
         {
-            if (!Settings.enableWishes || def == null || decrees.SuspendsWishes || OpenWishBy(p) != null || OnCooldown(p, def) || !CanVoiceWishes(p)) return null;
-            if (OpenWishes.Count() >= Settings.maxOpenWishes + 1) return null;
+            // Their own colony's decrees and its share of the wishes (ColonyState.cs).
+            var colony = ColonyState.Of(p);
+            if (!Settings.enableWishes || def == null || (colony?.decrees ?? decrees).SuspendsWishes || OpenWishBy(p) != null || OnCooldown(p, def) || !CanVoiceWishes(p)) return null;
+            if (OpenWishCount(colony) >= Settings.maxOpenWishes + 1) return null;
             var c = SafeCandidates(def, p).OrderByDescending(x => x.weight).FirstOrDefault();
             if (c == null) return null;
             var w = CreateWish(def, p, p, c, "dream");
@@ -577,6 +581,21 @@ namespace ColonyCouncil
         // ================= Queries =================
 
         public IEnumerable<Wish> OpenWishes => wishes.Where(w => w.state == WishState.Open);
+
+        /// <summary>
+        /// The open wishes of one colony's people (those who asked), for the cap on how many wait at once, which is each
+        /// colony's own; every colony's with none given.
+        /// </summary>
+        public int OpenWishCount(ColonyState colony)
+        {
+            int n = 0;
+            for (int i = 0; i < wishes.Count; i++)
+            {
+                var w = wishes[i];
+                if (w.state == WishState.Open && (colony == null || colony.Has(w.pawn))) n++;
+            }
+            return n;
+        }
 
         public Wish OpenWishBy(Pawn p)
         {
@@ -660,17 +679,32 @@ namespace ColonyCouncil
             public float weight;
         }
 
-        /// <summary>Rolls for a new wish (or forces one). Returns the new wish, if any.</summary>
-        public Wish TryGenerateWish(bool force, Pawn onlyFrom = null)
+        /// <summary>
+        /// Rolls for a new wish in each colony, with its own people, its own decrees and its own cap (or forces one, in
+        /// <paramref name="colony"/>, or <paramref name="onlyFrom"/>'s). Returns the new wish, if any (the first colony's).
+        /// </summary>
+        public Wish TryGenerateWish(bool force, Pawn onlyFrom = null, ColonyState colony = null)
+        {
+            if (colony != null || onlyFrom != null) return TryGenerateWishIn(force, onlyFrom, colony ?? ColonyState.Of(onlyFrom));
+            Wish made = null;
+            foreach (var c in ColonyState.Ticking())
+            {
+                var w = TryGenerateWishIn(force, null, c);
+                made ??= w;
+            }
+            return made;
+        }
+
+        private Wish TryGenerateWishIn(bool force, Pawn onlyFrom, ColonyState colony)
         {
             var s = Settings;
             // Let a new colony settle in before anyone starts asking for things.
             if (!force && Find.TickManager.TicksGame < GenDate.TicksPerDay * 3) return null;
-            if (!force && decrees.SuspendsWishes) return null;
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(CanVoiceWishes).ToList();
+            if (!force && (colony?.decrees ?? decrees).SuspendsWishes) return null;
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => CanVoiceWishes(p) && (colony == null || colony.Has(p))).ToList();
             if (pawns.Count == 0) return null;
             if (!force && !Rand.Chance(Standards.WishRateFactor(pawns) / (Mathf.Max(0.25f, s.daysBetweenWishes) * 24f))) return null;
-            if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
+            if (OpenWishCount(colony) >= s.maxOpenWishes && !force) return null;
 
             var options = new List<Option>();
             // Each roll asks every wish about every colonist; remember the answers so kind colonists speaking up
@@ -698,7 +732,7 @@ namespace ColonyCouncil
                     if (defFactor <= 0f) continue;
                     foreach (var c in Candidates(def, requester))
                     {
-                        AddOption(options, def, requester, requester, c, defFactor);
+                        AddOption(options, def, requester, requester, c, defFactor, colony);
                     }
                 }
 
@@ -713,7 +747,7 @@ namespace ColonyCouncil
                             if (!def.allowForOthers || OnCooldown(other, def)) continue;
                             foreach (var c in Candidates(def, other))
                             {
-                                AddOption(options, def, requester, other, c, def.weight * 0.5f);
+                                AddOption(options, def, requester, other, c, def.weight * 0.5f, colony);
                             }
                         }
                     }
@@ -762,11 +796,12 @@ namespace ColonyCouncil
             }
         }
 
-        private void AddOption(List<Option> options, WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, float factor)
+        private void AddOption(List<Option> options, WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, float factor, ColonyState colony)
         {
             if (c == null || c.weight <= 0f) return;
+            // A petition is joined only within the colony: another colony's wish is theirs to ask for.
             var existing = wishes.FirstOrDefault(w => w.state == WishState.Open && w.def == def && w.subjectKey == (c.subjectKey ?? "")
-                                                      && (def.allowPetition || w.Beneficiary == beneficiary));
+                                                      && (def.allowPetition || w.Beneficiary == beneficiary) && (colony == null || colony.Has(w.pawn)));
             if (existing != null)
             {
                 if (!Settings.petitions || !def.allowPetition || existing.Involves(requester) || beneficiary != requester) return;

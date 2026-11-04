@@ -196,7 +196,8 @@ namespace ColonyCouncil
                     pieces.GroupBy(p => p.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label))).Resolve());
                 m.plans.Add((t, line, reason));
             }
-            if (ColonyCouncilMod.Settings.offices) m.marshal = CouncilGameComponent.Instance?.offices?.HolderOf(Interplay.Marshal);
+            // The marshal of the colony whose home this is.
+            if (ColonyCouncilMod.Settings.offices) m.marshal = OfficeTracker.For(s.map)?.HolderOf(Interplay.Marshal);
             return m;
         }
 

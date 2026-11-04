@@ -53,7 +53,7 @@ namespace ColonyCouncil
                 if (lapsed != null)
                     return (lapsed.promised ? "CC_BreakNote_Broken" : "CC_BreakNote_Lapsed").Translate(p.Named("PAWN"), lapsed.Label.Named("WISH")).Resolve();
             }
-            var hated = comp.decrees.active.FirstOrDefault(a => a.def != null && a.def.ReactionOf(p) == DecreeReaction.Hate);
+            var hated = (DecreeTracker.Of(p) ?? comp.decrees).active.FirstOrDefault(a => a.def != null && a.def.ReactionOf(p) == DecreeReaction.Hate);
             if (hated != null) return "CC_BreakNote_Decree".Translate(p.Named("PAWN"), hated.def.label.Named("DECREE")).Resolve();
             if (S.enableWishes)
             {
@@ -86,7 +86,7 @@ namespace ColonyCouncil
             }
             else if (bornHere) notes.Add("CC_DeathNote_Born".Translate(p.Named("PAWN")).Resolve());
             else if (years >= 2f) notes.Add("CC_DeathNote_Years".Translate(p.Named("PAWN"), yearsText.Named("YEARS")).Resolve());
-            string office = S.offices ? comp.offices.OfficeOf(p)?.label : null;
+            string office = S.offices ? OfficeTracker.HeldBy(p)?.label : null;
             string title = S.epithets ? comp.epithets.Of(p).FirstOrDefault()?.label : null;
             if (!office.NullOrEmpty()) notes.Add("CC_DeathNote_Office".Translate(office.Named("OFFICE")).Resolve());
             else if (!title.NullOrEmpty()) notes.Add("CC_DeathNote_Title".Translate(p.Named("PAWN"), title.Named("TITLE")).Resolve());
