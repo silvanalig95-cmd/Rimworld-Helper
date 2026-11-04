@@ -2218,6 +2218,15 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   ask for its free beds on a stormy evening. A travelling **beast show** brings beasts from far places (see "The
   colony's animals").
 
+  Some come for something the land near the colony has, and say so: the letter names it and looks at it. **Scholars**
+  (a tale-seeker, a scholar with a mule of books, a professor and two students, or an archaeotech survey team, by their
+  people's age) come only for the ruins on the colony's land or in the region, its books, its history or a landmark:
+  they walk out to the ruins themselves, ask to read in the colony's library or to hear its story from one of your
+  people, and may leave a book at the gate. Pilgrims and penitents ask to pray before the colony's relic (Ideology),
+  tree-singers to sing to its great tree, prospectors pitch by the ore they came for (and may come to blows over a
+  claim), drovers come for the grass in its season, caravans and merchants along the road or because the colony is the
+  only market for days.
+
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one
 who beat you, to defend the title); the **great beast**'s young turns up a season after it fell; **pilgrims** you fed
@@ -2258,7 +2267,10 @@ keep), a **shrine** for their pilgrims (a sculpture of good enough quality under
 **rebuild** a town after a fire, a storm or a flood (wood, stone blocks, cloth, and steel or components for an
 industrial town), or **provisions** for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals,
 medicine, cloth, firewood). The peoples that think best of the colony offer more: an **invitation** to their feast, a
-wedding or midwinter (send at least two of your people there by caravan, and come home with gifts), an
+wedding or midwinter (send at least two of your people there by caravan, and come home with gifts; it comes from the
+town's head by the title the game shows them, names a titled colonist of yours first among the guests when the Empire
+invites, and says how the day is kept: a rite their faith really has with Ideology, by its name, else their age's way,
+a hunt and a tournament, vows in the hall and a dowry; the funeral and wedding asks name their rite too), an
 **apprenticeship** with one of their masters (a colonist stays at their town for a day and a half and comes back about
 two levels better at the craft), a **dignitary** to host for a few days (a bedroom of a set impressiveness with one
 bed nobody else uses, checked every hour of the stay; they eat your stored meals at your table and sleep in that
@@ -2505,6 +2517,15 @@ a runner at the gate, a neighbor's gift hoped for and remembered, timber wanted,
 writes. 40 conversation pieces cover new towns and fortunes. The region map shows how remote each home is. Settings →
 **The region** has towns' fortunes, their say in the trade stock and new towns' faces. The Almanac has a page, *the
 region*.
+
+**Travelers seek out the remote.** The farther a home is from everyone, the more often camps come to it (up to 60% more
+at the most remote, with a shorter rest after each) and the more of Rimfolk's visitors (up to 60% more), and the kinds
+that seek what its land has are up to three times as likely: 11 kinds give a reason read from the land (a relic, a
+landmark, a great tree, ruins, books, the colony's history, ore, grass in season, a road, the distance from every
+market), true on the map. Scholars are a new kind of camp. Travelers tell news of far towns at their fire, two pieces a
+stay: a world event among a people, a war begun or ended, a new town, a site near it; it goes into the town's *Heard
+lately*, the history and the colony news, and the region map's panel for a home has the latest *word from far towns*
+and what draws travelers there. Setting: *Travelers to the remote* (0 to 200%, 100% by default).
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

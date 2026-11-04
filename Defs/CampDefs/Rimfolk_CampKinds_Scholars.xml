@@ -80,7 +80,7 @@
       <li>Scholars of {FACTION} have come a long way to a place most people never think about. {X_nameDef} told {A_nameDef} they mean to study and write while they're here, and asked to camp {PLACE} for a few days.</li>
     </texts>
     <seekTexts>
-      <li>[seek:ruins] What they have come for is {SEEK}: nobody has written down who built them, and {X_nameDef} would like to be the first.</li>
+      <li>[seek:ruins] They have come for {SEEK}, whose builders no one has written down yet, and {X_nameDef} would like to be the first.</li>
       <li>[seek:ruins,their:spacer] Their charts show {SEEK} as unsurveyed, and the team means to change that.</li>
       <li>[seek:ruinRegion] They are on their way to {SEEK}, to see what is left of it before the weather takes the rest.</li>
       <li>[seek:library] Word of {SEEK} had reached them on the road, and {X_nameDef} would dearly like an afternoon with them.</li>
@@ -137,7 +137,7 @@
           <li>{X_nameDef} asks, very politely, whether the scholars might spend an afternoon with the colony's books. They will touch nothing they're not shown, and put everything back.</li>
           <li>The scholars have heard the colony keeps books, and {X_nameDef} would like to read in its library for an afternoon. {X_pronoun} has offered to leave notes for whoever reads after.</li>
         </askTexts>
-        <tip>Two of the scholars read in the colony's library for an afternoon. Their notes in the margins help whatever the colony is studying now, a little.</tip>
+        <tip>Two of the scholars read in the colony's library for an afternoon. Their notes in the margins help with whatever the colony is studying now.</tip>
         <outcomes>
           <li>Two of the scholars will read in the colony's library this afternoon. {X_nameDef} has brought clean hands and a stack of paper for notes.</li>
           <li>{X_nameDef} thanked {A_nameDef} warmly and went to fetch {X_possessive} reading glass.</li>
@@ -181,7 +181,7 @@
           <li>{A_nameDef} has agreed to tell the colony's story, and is already arguing with {A_objective}self about where it starts.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} said the story would keep, and asked only that nobody change it before {X_pronoun} comes back.</li>
+          <li>{X_nameDef} said the story would keep until {X_pronoun} comes this way again.</li>
         </refused>
         <refuseTension>2</refuseTension>
         <effects>
