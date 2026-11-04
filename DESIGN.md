@@ -1688,7 +1688,7 @@ With one colony every answer is that colony, so it plays as before. `MapFacts.Bu
 `HappeningTracker.HomeMap()` (the seat, on the ground) keep their names but return the seat; "the colony" used to be
 the home with the most colonists on it, which moved as people did. New code asks `Homes`: the seat for what the colony
 as a whole has, a loop over `Homes.All` for what each home has, and `Homes.Busiest` only for what follows people about
-(a social event between two who are there). Rimfolk's own event timer runs per home (the seat carries on an older
+(nothing asks it since social events are worked out at each home, step 7b). Rimfolk's own event timer runs per home (the seat carries on an older
 save's single timer), a memo keeps its colony so its follow-up (a guest, goods brought back, an order collected) comes
 where it was set going, talks with visitors start on every home, and a raid is written up by those at the home raided.
 
@@ -1728,16 +1728,77 @@ seat's for a map that isn't a home), made when a home first needs one; `ColonySt
   colony; "never the colony's last few people" counts each colony's own; `ColonyTrust(map)` and the steward's hold on
   standards are per colony. Trust itself stays per person.
 
-**Still shared**: the chronicle, the annals, the year letter and names; the calendar; the social web and groups;
-camps, encounters, the herd and the resident beast; journeys; the heart's episodes. `comp.offices`, `decrees`,
-`ambitions` and `dilemmas` read the seat's council, for what still asks for "the council" as a whole until its own
-step: the calendar's keeper of days, the herdmaster, Interplay's officers, the neighbours' letters, a scenario's first
-council, the visitors' quarantine factor, and the questions raised by Happenings, camps, guests' kin, a wedding name
-and a guardian.
+**Per colony too (stage 0, step 7b).** The other books kept per colony follow the council's rules through one helper,
+`ColonyBook` (in `ColonyState.cs`: a home's entry made when first needed, the seat's for a map that isn't a home, an old
+save's single entry placed at the seat, a lost home's kept thirty days and carried by its people when no home is left),
+over any `IColonyEntry`.
+- *Happenings*: a later event picks up only its own colony's memos (`Memos(kind, days, map)`, `HomesMath.MemoAt`; an
+  old memo, or one of a home no longer ours, is the seat's): a rematch, a beast's young, pilgrims' thanks, a regular
+  buyer, a quarrel remembered, a guest expected, an orphaned young, a commission and its patron. Those that follow a
+  person on the map (a deserter, a lost child's finder, lovers, kin, a bad fortune) were per home already. An
+  unanswered event letter holds back only its own colony (`WaitingAt(map)`, `HomesMath.HoldsBack`; one about no colony,
+  or a home no longer ours, holds back all).
+- *Calendar*: one per colony (`Calendar/ColonyCalendar.cs`, kept in the calendars' book, `CalendarTracker`, the same
+  saved component). Each settlement has its own founding day (the game's start for a colony settled in the game's
+  first two days, else the day its settlement was made: `CalendarMath.FoundedTick`), its own days, date (`seenDay`,
+  `seenYear`), rest day, talk and traditions, and keeps them at its own home; a day's letter keeps its colony and holds
+  back only that colony's days. A victory is filed at the battle's colony, a death at the dead's, a wedding, a foal, a
+  companion and a camp's gift at their own; harvest, snow, homecomings, hunts, trades, rescues, the first child and
+  one of the first members (joined in its own first year: `CalendarMath.FirstMember`) are read from each colony's own
+  people and land. The seat's calendar keeps what is the colony's as a whole: the nemeses and the world's events. The
+  founding event keeps only the founding day of the colony settled with the game; a later colony keeps its own. The
+  Calendar page shows the colony in view (with the colony header); the World page, This week and the HUD list each
+  colony's coming days, named.
+- *Officers at work*: Interplay's officers are each colony's (`Interplay.Officer(def, map)`, `OfficerOf`, `Holds`,
+  `Officers`): the keeper of days, the peacemaker, the steward and the chaplain of the colony where it happens; each
+  colony's physician, herdmaster (`AnimalFacts.HerdmasterAt`, `IsHerdmaster`), chaplain, warden and marshal keep their
+  own days. The chaplain's faith factor, a steward's thrift, the speaker who writes the neighbour letters and leads a
+  talk, a scenario's first council, an office a question asks for, and the annals' list of seats (each colony's,
+  named) read the colony concerned. A quarantine shuts only its own gates (`DecreeWork.VisitorFactor(map)`: with one
+  colony it stays in the storyteller's base chance, with more it is in the event's chance at its target).
+- *Questions asked of the colony concerned*: the harvest home, supper and name-the-year traditions an event reads, a
+  camp's trouble, the resident beast, a guest's invitation and their kin, a shared name and a guardian (each colony's
+  council looks among its own), asking again after someone was kept from moving on.
+- *Camps*: one `CampHome` per colony (in `CampTracker.homes`): its visiting camp, its neighbours settled for good, its
+  war party, and its own clock (the day's try, the gap since its last camp, the diary: `CampStoryMath.RepickTry`,
+  `InGap`, `PutOff`). Camps are rolled at each home on the ground; allies answer a threat at any home;
+  `CampTracker.VisitingAt(map)`, `HoldingAt`, `WarBandAt` are what everything else asks.
+- *Encounters, the herd and the beast*: strangers are met at each home on its own (`EncounterHome`: the day's count,
+  the last, each kind's cooldown; their questions asked of that colony); the herd's year and the beast that stays are
+  one per colony (`comp.HerdOf(map)`, `BeastOf(map)`).
+- *The social web*: a fight per home (`Social/Battle.cs`, `SocialWeb.BattleAt(map)`, `BattleOn`, `AnyBattle`): two
+  fights at two homes are two fights, and a victory is felt at the home that fought it. Social events are worked out
+  and held at each home. Groups form within one home (`GroupMath.Apart`: people of two colonies hold to each other not
+  at all, so they never form, join or merge one group, and someone who moved away drifts out of their old one).
+- *The year's letter*: with more than one colony, a part for each colony under its name (its herd, its beast, its
+  neighbours), then the world once. The annals count big threats at each home (two raids at once are two) and compare
+  the whole colony's wealth; the Overview's wealth tile names each colony's.
+- *Names*: a colony key on each name (`EpithetMath.Key`; the name alone with one colony, as always): the Healer is the
+  best healer of that colony, and taking a name over makes a rival only within one colony. A name from one colony's
+  days belongs to its holder's colony. The game's founders and firstborn are the colony settled with the game, else the
+  seat's (`EpithetMath.FirstColony`); a colony settled later has its own (those who were its people in its first two
+  days, the first child on its own calendar).
+- *The advisor and automations*: with more than one colony "Not this" is set at the home it's said at
+  (`SuggestMath.HomeKey`, the list to bring it back names the settlement), a step done waits for its check only at its
+  home (`SuggestMath.SameHome`), and an automation's cooldowns, materials budget and daily caps are each home's own
+  (research stays one). What was set aside with one colony stays set aside everywhere. The game-wide advice (a mission
+  near its deadline, a plague or famine, a colony split between faiths) shows at each home on the ground.
+- *Journeys*: one plan per home at most (`JourneyBook.PlanAt(map)`, `PlanOf(pawn)`), each setting off from its own home.
+- *News*: what was told with no map but is about a home goes through `Tell` with it, so it names the settlement.
+
+**Still one for the game**: the chronicle and the annals (one book, each colony named in it), the wishes' list, trust,
+the heart's episodes, the colony's character, the remembered camps that may come back, the world's news. The one faith
+a decree names stays one for the game: the game keeps one faith per people (`Faction.OfPlayer.ideos`), not per map, so
+two colonies naming two faiths would pull the same people two ways. `comp.offices`, `decrees`, `ambitions` and
+`dilemmas` still read the seat's council where the colony as a whole is meant.
 
 **An old save** puts everything it had under its one colony: its offices, election, decrees, ambition, meeting,
 dilemmas and traditions become the seat's council, untouched (`ColonyState.FromOldSave`, placed when the seat first
-asks). An election letter from before has no map and reads the seat's council.
+asks). An election letter from before has no map and reads the seat's council. Its calendar, camps and their clock, a
+fight going on, encounters, herd, beast and journey plan are read from where they always were into the seat's entry
+(each book reads the old fields into an entry with no home, which the seat takes); its names stay under the name alone
+and count for the colony of the one who holds them; its memos, letters and suggestions with no colony are the seat's
+(or everywhere, for "Not this").
 
 **A home lost** (abandoned, taken, handed over; `Homes.Changed`): a meeting, an election and an ambition there end
 quietly; the council is kept thirty days (`ColonyStateMath.KeepLostDays`) in case the home comes back, then let go.
@@ -1754,7 +1815,10 @@ week lists every colony's petitions and meetings, each named; texts that mix col
 `Tell`.
 
 With one colony there is one council, every colony check is that colony (`ColonyState.Has` and `Of` answer it at once),
-the same people are taken in the same order, and the same rolls are made in the same order: it plays as before.
+the same people are taken in the same order, and the same rolls are made in the same order: it plays as before. Step
+7b keeps to the same: lists are filtered by colony, never sorted again; each per-home loop has one pass with one home;
+keys (names, suggestions, automations' cooldowns) are what they always were with one colony; and where the place of a
+roll moved (a quarantine's factor) it stays where it was with one colony. Tests: `Tools/Tests/ManyHomesTests.cs`.
 
 ### The world ledger
 
