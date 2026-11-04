@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More of what a people remembers of single colonists (Source/ColonyCouncil/World/ColonistMemory.cs, KinMemory.cs),
+       beside Rimfolk_OutsiderTalks_Remembered.xml: the colonist they remember best ({FRIEND}, their:friend; not the one
+       talking when byyou or you:remembered holds), the one they hold most against ({FOE}, their:foe and its kind:
+       killed, executed, harvested, insulted, brawled), and the one talking, remembered for a good turn
+       (you:remembered:campbroken, :foughtbeside, :tradedpost, :walkedsettlers) or held to account (you:foe and its kind),
+       met for the first time (first). The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The one talking, known before they've met ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_KnownName</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered,first</when>
+    <weight>1.8</weight>
+    <lines>
+      <li>[them] We've never met, but I know your name from home.</li>
+      <li>[us] Good things, I hope.</li>
+      <li>[them,you:remembered:campbroken] That camp you helped break, mostly.</li>
+      <li>[them,you:remembered:walkedsettlers] The settlers you walked out to their land, mostly.</li>
+      <li>[them,you:remembered:foughtbeside] The day you fought beside our people, mostly.</li>
+      <li>[them,you:remembered:tradedpost] That you're a regular at our post, mostly.</li>
+      <li>[them] Nothing but good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_KnownFoe</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>you:foe,first,tone:cool</when>
+    <weight>1.8</weight>
+    <lines>
+      <li>[them] We've never met, but I know your name, and not kindly.</li>
+      <li>[us] I can guess why.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Remembered for a good turn ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoughtBeside</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered:foughtbeside</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them,their:tribal] You stood with our warriors when it mattered, and our warriors don't forget.</li>
+      <li>[them,their:medieval] You fought in our line once, and those who were there still drink to you.</li>
+      <li>[them,their:empire] You fought beside the Empire's soldiers once, and it was noted.</li>
+      <li>[them] You fought beside our people once, and they still mention it.</li>
+      <li>[us] They'd have done the same for us.</li>
+      <li>[them] Maybe, but you did it first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_PostRegular</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>you:remembered:tradedpost,!town:post</when>
+    <lines>
+      <li>[them] The folk at our post say you're one of their regulars.</li>
+      <li>[us] It's a good post.</li>
+      <li>[them] They'll be glad to hear it, regulars are what keep a post open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_WalkedOut</defName>
+    <topic>deeds</topic>
+    <uses>chat,know</uses>
+    <when>you:remembered:walkedsettlers,!town:hamlet</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] You're one of those who walked our settlers out to their new land.</li>
+      <li>[us] I am.</li>
+      <li>[them,their:tribal] Then sit with me, the elders say a guide eats first.</li>
+      <li>[them] Then you've a friend in me, whatever else happens between our peoples.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colonist their people remember best ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FriendStory</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:friend,!byyou,!you:remembered</when>
+    <lines>
+      <li>[them] There's a story told at home about {FRIEND}, and it gets better every time.</li>
+      <li>[us] Is any of it true?</li>
+      <li>[them] The start of it, I'm sure.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FriendWays</defName>
+    <topic>deeds</topic>
+    <uses>home,chat</uses>
+    <when>their:friend,!byyou,!you:remembered</when>
+    <lines>
+      <li>[them,their:tribal] {FRIEND}'s name is spoken at our fires, and that is no small thing.</li>
+      <li>[them,their:medieval] {FRIEND} gets toasted in our alehouse by folk who've never met them.</li>
+      <li>[them,their:empire] {FRIEND} is spoken of well in the household, which few outsiders manage.</li>
+      <li>[them,their:hightech] {FRIEND} has a good name among our people, and they don't give those out freely.</li>
+      <li>[them] My people remember {FRIEND} kindly.</li>
+      <li>[us] I'll tell {FRIEND} that.</li>
+      <li>[them] Do, it's meant.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FriendCool</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:friend,!byyou,!you:remembered,tone:cool</when>
+    <lines>
+      <li>[them] We think well of {FRIEND} at home, whatever I think of the rest of you.</li>
+      <li>[us] That's something.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FriendAndFoe</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:friend,their:foe,!byyou,!you:remembered,!you:foe</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Your colony puzzles my people, they bless {FRIEND} and curse {FOE}.</li>
+      <li>[us] Both live here.</li>
+      <li>[them] So I hear, and I hope they don't share a table.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colonist they hold something against ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeAvoid</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:foe,!you:foe,tone:cool</when>
+    <lines>
+      <li>[them] Keep {FOE} out of my way while I'm here, for both our sakes.</li>
+      <li>[us] I'll see what I can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeKilled</defName>
+    <topic>deeds</topic>
+    <uses>chat,home</uses>
+    <when>their:foe:killed,!you:foe</when>
+    <lines>
+      <li>[them,their:tribal] The one {FOE} killed has a name at our fires, and so does {FOE}.</li>
+      <li>[them] The one {FOE} killed had a family, and they know the name.</li>
+      <li>[us] It was a fight.</li>
+      <li>[them] I know, and that isn't what they'll remember.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeHarvested</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:foe:harvested,!you:foe</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] They say at home that {FOE} cut one of ours open for parts.</li>
+      <li>[us] I won't argue with that.</li>
+      <li>[them] Then you understand why the name isn't said kindly at home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeExecuted</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:foe:executed,!you:foe,tone:cool</when>
+    <lines>
+      <li>[them] Whose hand was it, when your colony put one of ours to death?</li>
+      <li>[us] It was {FOE}'s.</li>
+      <li>[them] Then that's the name we'll keep.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeInsulted</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:foe:insulted,!you:foe</when>
+    <lines>
+      <li>[them,their:tribal] {FOE} spoke ill of one of ours, and words like that travel back to the fire.</li>
+      <li>[them] {FOE} said hard words to one of ours, and words travel further than people think.</li>
+      <li>[us] {FOE} has a temper.</li>
+      <li>[them] Then {FOE} should keep it at home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_FoeBrawled</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>their:foe:brawled,!you:foe</when>
+    <lines>
+      <li>[them] {FOE} and one of ours came to blows here once, and it's still talked about at home.</li>
+      <li>[us] It was a bad day.</li>
+      <li>[them] For both of them, from what I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The one talking, held to account ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_YouFoeCool</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>you:foe,tone:cool</when>
+    <lines>
+      <li>[them,you:foe:brawled] You're the one who brawled with one of ours, I'll keep my distance.</li>
+      <li>[them,you:foe:insulted] I've heard what you said to one of ours, so let's keep this short.</li>
+      <li>[them,you:foe:executed] I'll speak with you because I must, not because I've forgotten.</li>
+      <li>[them] I know who you are, and I'd rather talk to someone else.</li>
+      <li>[us] As you like.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Rem_YouFoeSour</defName>
+    <topic>deeds</topic>
+    <uses>chat</uses>
+    <when>you:foe,tone:sour</when>
+    <lines>
+      <li>[them] Of all the faces here, yours is the last I wanted to see.</li>
+      <li>[us] The feeling's mutual.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Towns given up, and ruins settled again (Source/ColonyCouncil/World/Region/RiseFall*.cs, NewTowns.cs): their people
+       while a town of theirs is being given up (ws:Rimfolk_WS_GivenUp with situation:theirs, {SITUATIONPLACE} the town;
+       situation:helped once the colony has helped its families) and just after (ended:ws:Rimfolk_WS_GivenUp, ended:theirs:
+       mostly empty, a few families may hold on); the people of a ruin settled again in its first month
+       (town:lately:world:resettled, {TOWN} the town on the old walls) and in its first year (town:new with town:why:ruin);
+       and a town founded by families of one given up (town:new with town:why:refugees). Nothing names the ruin a town left
+       or where it lies: the facts don't give it. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= A town of theirs being given up ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_GivingUp</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] Our people are giving up {SITUATIONPLACE}, and the families are already on the road.</li>
+      <li>[us] What happened there?</li>
+      <li>[them,their:tribal] Too many bad moons, and the elders said the place had turned against us.</li>
+      <li>[them] Too little left to keep the families, and the families have stopped hoping it will mend.</li>
+      <li>[us] I'm sorry.</li>
+      <li>[them] So are they, most of them were born there.</li>
+    </lines>
+    <heard>{PEOPLE} are giving up {SITUATIONPLACE}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_GivingUpWhere</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs</when>
+    <lines>
+      <li>[us] Where will the families from {SITUATIONPLACE} go?</li>
+      <li>[them,their:tribal] To our other hearths, with whatever they can carry on their backs.</li>
+      <li>[them,their:medieval] To kin in our other towns, mostly, with their carts piled to the sky.</li>
+      <li>[them,their:spacer] To our other settlements, wherever the habitats have room for them.</li>
+      <li>[them] To our other towns, mostly, wherever there's room and work.</li>
+      <li>[us] I hope they find it.</li>
+      <li>[them] Some will, the young ones always do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_LeftBehind</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs,role:trader</when>
+    <lines>
+      <li>[them] What doesn't fit on the carts at {SITUATIONPLACE} is being left behind.</li>
+      <li>[us] Left for anyone?</li>
+      <li>[them] Doors and pots and an old forge, for whoever comes with a cart of their own.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_GivingUpHelped</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs,situation:helped</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] We heard you did right by the families from {SITUATIONPLACE} on the road.</li>
+      <li>[us] It was little enough.</li>
+      <li>[them] It was more than most did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_GivingUpOld</defName>
+    <topic>ruin</topic>
+    <uses>chat,know</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs,them:old</when>
+    <lines>
+      <li>[them] I remember when {SITUATIONPLACE} was a place people walked a day to see.</li>
+      <li>[us] What was it like?</li>
+      <li>[them] Loud, and full, and nothing like it is now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_GivingUpCool</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>ws:Rimfolk_WS_GivenUp,situation:theirs,tone:cool</when>
+    <lines>
+      <li>[them] Our people are leaving {SITUATIONPLACE}, so you'll forgive me if I'm short.</li>
+      <li>[us] Of course.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_Emptied</defName>
+    <topic>ruin</topic>
+    <uses>chat,home</uses>
+    <when>ended:ws:Rimfolk_WS_GivenUp,ended:theirs</when>
+    <lines>
+      <li>[them] Most of the families from the town we gave up have found new roofs now.</li>
+      <li>[us] And the town?</li>
+      <li>[them,their:tribal] Cold hearths, mostly, and the grass coming back in.</li>
+      <li>[them,their:hightech] Empty streets, mostly, and the weather getting into everything.</li>
+      <li>[them] Empty houses, mostly, and the weather moving in.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A ruin settled again ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_Resettled</defName>
+    <topic>ruin</topic>
+    <uses>home,chat,know</uses>
+    <when>town:lately:world:resettled</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] We've only just moved into the old walls at {TOWN}, the place is still half rubble.</li>
+      <li>[us] Was much left?</li>
+      <li>[them,their:tribal] Hearthstones, and a lodge post with marks none of us can read.</li>
+      <li>[them,their:medieval] Good stone, a sound well, and a hall roof that wants patching.</li>
+      <li>[them,their:industrial] The foundations, the water lines, and a great deal of broken glass.</li>
+      <li>[them,their:spacer] The habitat frames were sound, but not one of the seals was.</li>
+      <li>[them] More than you'd think, and less than we hoped.</li>
+    </lines>
+    <heard>{PEOPLE} have settled the old walls of {TOWN}.</heard>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_ResettledWhy</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:resettled</when>
+    <lines>
+      <li>[us] Why settle a ruin?</li>
+      <li>[them] The walls were already there, and walls are the hard part.</li>
+      <li>[us] Aren't you afraid it'll go the same way?</li>
+      <li>[them,their:tribal] The spirits of a place forget, if you give them time.</li>
+      <li>[them] Whatever drove the others off, we're not them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_ResettledEmpire</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>town:lately:world:resettled,their:empire</when>
+    <lines>
+      <li>[them] The household has taken up the old site at {TOWN}, and will put it in proper order.</li>
+      <li>[us] Was it imperial before?</li>
+      <li>[them] It is now, which is what matters to the court.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_ResettledFirstNight</defName>
+    <topic>ruin</topic>
+    <uses>chat,know</uses>
+    <when>town:lately:world:resettled,them:parent</when>
+    <lines>
+      <li>[them] My children slept in a house with no door our first night at {TOWN}, and loved it.</li>
+      <li>[us] And you?</li>
+      <li>[them,their:lowtech] I sat up by the doorway with a spear, and loved it less.</li>
+      <li>[them] I sat up by the doorway with a rifle, and loved it less.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_OldStones</defName>
+    <topic>ruin</topic>
+    <uses>home,chat</uses>
+    <when>town:new,town:why:ruin</when>
+    <lines>
+      <li>[them,their:tribal] Our new hearth at {TOWN} burns where an older one did, we found its stones.</li>
+      <li>[them,their:medieval] We raised {TOWN} on old foundations, and the masons say they beat ours.</li>
+      <li>[them,their:hightech] {TOWN} went up on an old site, which saved us a season of digging.</li>
+      <li>[them] {TOWN} stands where an older town stood, and we used every stone it left.</li>
+      <li>[us] Do you know who lived there?</li>
+      <li>[them] Only what the walls tell us, and walls don't say much.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_OldStreets</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>town:new,town:why:ruin,their:lowtech</when>
+    <lines>
+      <li>[them] Some of the old folk at {TOWN} won't walk the old streets after dark.</li>
+      <li>[us] Afraid of ghosts?</li>
+      <li>[them] Afraid of tripping, mostly, the old streets are all holes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Families of a town given up ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_SecondHome</defName>
+    <topic>ruin</topic>
+    <uses>home,chat,know</uses>
+    <when>town:new,town:why:refugees</when>
+    <lines>
+      <li>[them] I lost one home when our old town was given up, and I'm building another at {TOWN}.</li>
+      <li>[us] Is it the same?</li>
+      <li>[them,their:tribal] No hearth is the same, but the fire is.</li>
+      <li>[them] Nothing's the same, but a roof is a roof.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_OneThingEach</defName>
+    <topic>ruin</topic>
+    <uses>chat,know</uses>
+    <when>town:new,town:why:refugees</when>
+    <lines>
+      <li>[them] We each brought one thing from the old town, and they're all on one shelf at {TOWN}.</li>
+      <li>[us] What did you bring?</li>
+      <li>[them,their:tribal] A carved bone from the old lodge door, for luck.</li>
+      <li>[them] A door key, for a door that isn't there anymore.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ruin_RefugeesCool</defName>
+    <topic>ruin</topic>
+    <uses>chat</uses>
+    <when>town:new,town:why:refugees,tone:cool</when>
+    <lines>
+      <li>[them] We've lost one town already, so don't expect cheerful neighbors.</li>
+      <li>[us] We don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
