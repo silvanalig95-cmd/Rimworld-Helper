@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on the region (Source/ColonyCouncil/World/Region/: RegionMath.cs, RegionTowns.cs,
+       RegionFortunes.cs, RegionFaces.cs, RegionWords.cs, RegionPanel.cs; the facts in Text/Facts/FactsRegion.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Region</defName>
+    <label>the region</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>The towns within the region map's reach are known in detail: each has a fortune the world's events move, and a new one has a founder, founding families and a reason it stands where it does.</summary>
+    <tip>A town that has just been founded is poor for a while. Its founder writes to a colony nearby, and its people are glad of friends in their first year.</tip>
+    <description>Rimfolk keeps the towns near each of your homes in detail: the towns of humanlike peoples within the region map's reach (35 tiles by default, set in the settings from 20 to 60), the nearest 40 for each home. A town within reach of two homes is one town, with one fortune. Beyond the reach the game and other mods keep the world as they always have, and Rimfolk keeps nothing there and changes nothing there.
+
+Every town in detail has a fortune, from 0 to 100, that the world's events move and that shows in its panel on the region map and in its people's words. A town founded within reach gets a face: someone of its people who led the settlers out, two founding families known by name, the town they came from and the reason they chose the place. The colony hears of it in the news, its founder writes when the town stands near enough, and its people talk of it.</description>
+    <sections>
+      <li>
+        <heading>Fortunes</heading>
+        <text>A town first seen starts at 50, up to 15 less on poor land (by its land's settlement weight, the game's own sense of where towns stand) and 10 less while its people are in hard times (a hard world event about them). A new town starts at 30, and a town taken in an invasion starts again at 25 under its new people.</text>
+        <table>
+          <li>Prosperity | In words</li>
+          <li>Under 20 | Struggling (a tribe's town is hungry, an industrial town short of everything)</li>
+          <li>20 to 39 | Poor (lean, for a tribe)</li>
+          <li>40 to 59 | Steady</li>
+          <li>60 to 79 | Thriving (prospering, for medieval folk)</li>
+          <li>80 or more | Flourishing (booming, for spacers)</li>
+        </table>
+        <after>Once a day, each town drifts back toward 50 (45 on poor land) by 0.3, a town within 20 tiles of a town of a people its own is at war with loses 0.3, and the world's events move it. Its panel names what moved it last, for 60 days, when that fits how it stands now: "Struggling, since the plague", "Thriving: the new road", "Poor: newly founded".</after>
+      </li>
+      <li>
+        <heading>What the world's events do to a town</heading>
+        <text>A world event about a people moves the town it happens at in full and that people's other towns in detail by half, a fifth of it on each of its first five days, so the change shows while it runs. A war of words between two creeds, a blood feud and markets closed against a people move the second people's towns too, each by half its number.</text>
+        <table>
+          <li>World event | Its town | Its people's other towns | The second people's towns</li>
+          <li>The great fire | -30 | -15 | none</li>
+          <li>Famine | -25 | -12.5 | none</li>
+          <li>Plague in the region | -20 | -10 | none</li>
+          <li>A locust swarm, a flood downriver, a long drought | -15 | -7.5 | none</li>
+          <li>A war of words | -15 | -7.5 | -7.5</li>
+          <li>A sickness in the herds | -12 | -6 | none</li>
+          <li>A hard winter, a merchant house fails | -10 | -5 | none</li>
+          <li>Bandit road | -8 | -4 | none</li>
+          <li>A contested seat | -6 | -3 | none</li>
+          <li>Blood feud | -6 | -3 | -3</li>
+          <li>Iron gone scarce | -5 | -2.5 | none</li>
+          <li>Markets closed | none | none | -5</li>
+          <li>A silver rush, gold fever | 12 | 6 | none</li>
+          <li>A bumper harvest, a trading season, a new road, rebuilding | 10 | 5 | none</li>
+          <li>A great fair, the road reopens, busy orbital lanes | 8 | 4 | none</li>
+          <li>Market days, the road in use, a bandit lord falls | 6 | 3 | none</li>
+          <li>A great pilgrimage, a ship comes down, an old vault opened, the ice road | 5 | 2.5 | none</li>
+          <li>A holy year | 4 | 2 | none</li>
+        </table>
+      </li>
+      <li>
+        <heading>New towns</heading>
+        <text>A town begun or built within reach (by Faction Territories and Vassalage's builders, or by Rimfolk's own world events: a new town, other settlers, the crossroads) gets a founder soon after: someone of its people of their leaders' kind, aged 30 to 55, kept in the world while the town is known in detail (for the Empire, one of its titled kinds, so the title the news gives is the one the game shows). Two founders are made a day at most; a founding waits a day for one at most, then goes on without. With them come two founding families known by name (the founder's line and one more; where a people goes by family names, the town's envoy is born to the second), the town the settlers came from (their people's nearest other town), and a reason read from the land.</text>
+        <table>
+          <li>Reason | When</li>
+          <li>Families whose town was given up | A town of theirs was given up in the last 120 days</li>
+          <li>The old walls of a ruin | A ruin stands on the place or beside it</li>
+          <li>A crowded mother town | The town they came from is flourishing</li>
+          <li>The road, the river, the coast, the hills | The place has one</li>
+          <li>The land itself | Nothing else</li>
+        </table>
+        <after>The strongest reason that holds is the usual one, the others now and then. When the town stands, its founder is its head, and for its first year (60 days) the town is kept among the neighbours by name beside the nearest four (two new towns at most). Its people speak of who led them, where they came from, why they chose the place and how their first seasons go, and visitors of other peoples mention the new town near the colony.</after>
+      </li>
+      <li>
+        <heading>How the colony hears of it</heading>
+        <text>The colony news has one line when a town is begun and one when it stands, by the colony's own means (word from a traveler, a rider's news, news on the radio, a comms relay's report) and in their people's way of founding (a new hearth lit before the elders, a charter read and a market cross raised, streets staked out, a charter filed and the first habitats sealed). Within reach, this line takes the place of Faction Territories' own message about the same town, so it comes once; when Rimfolk doesn't take the town, the mod's message comes as it always did. A town Rimfolk's own world events found is told by the event's letter.</text>
+        <after>A new town within 15 tiles of a home sends a letter from its founder, at most one a season to each home: who they are and where, why they came, what their people remember of the colony (the good turn they remember best, or a wrong they want no part of), the families who came first, in their people's own voice. The region map shows a town's fortune and founding in its panel, a town being built and its settlers, and for a home how remote it is.</after>
+      </li>
+      <li>
+        <heading>How remote a home is</heading>
+        <text>Remoteness runs from 0 to 1: 0 with a town of a people at peace with the colony within 12 tiles, rising evenly to 1 at 40 tiles, and 0.2 more with fewer than two such towns within 40 tiles. It is worked out each day and falls by itself as the region fills. The region map shows it for a home in words, from close to its neighbors to far from everyone.</text>
+      </li>
+      <li>
+        <heading>What their people remember, in events</heading>
+        <text>Rimfolk's events about a people (visitors, callers, traders, their asks) read what that people remembers of the colony: the good turn they remember best ("among them, the colony is known as the place that set Ana free"), the wrong they remember worst, a favour they owe, and how their town is doing. A letter says so only when it is true.</text>
+      </li>
+      <li>
+        <heading>With and without other mods</heading>
+        <text>With Faction Territories and Vassalage, its builders give most new towns (each people one about every 30 days somewhere in its territory, ten days to build), and Rimfolk gives those within reach their faces; a town taken in one of its invasions starts its fortune again. Without it, new towns come only from what the game and Rimfolk already do. Two settings in The region switch the fortunes and the new towns' faces off: then nothing is moved, made or told, and what is kept stays.</text>
+      </li>
+    </sections>
+    <keywords><li>region</li><li>town</li><li>towns</li><li>fortune</li><li>prosperity</li><li>founder</li><li>founding</li><li>new town</li><li>settlers</li><li>remote</li><li>remoteness</li><li>families</li><li>Faction Territories</li></keywords>
+    <seeAlso><li>Council_Alm_C_Neighbours</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldMemory</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
