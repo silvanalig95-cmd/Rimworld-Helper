@@ -115,7 +115,7 @@ namespace ColonyCouncil
             {
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 

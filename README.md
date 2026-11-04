@@ -103,6 +103,17 @@ preview beside it. A click opens the card: in the drawer of the window you are i
 window of its own with a button to open it in its window. The settings under "Names and cards" set the pause or turn
 previews off.
 
+Every window reads the same way. A colour always means one thing, and always sits beside its word or its icon, never
+alone: green for friendly or well, slate blue for neutral or under way, red for hostile or bad, orange for what needs
+you soon, a brighter red with the warning sign for harm now, a muted green for what is done or kept, gold for the
+colony's own and what it chose, pale blue for news from afar. A section's heading carries its count and folds, a tag is
+a dot and a word, a filter is a small chip with its count, numbers line up on the right of their columns, a short line
+of the last week (its area filled, today marked) sits beside the overview's numbers and the colony's mood, an empty
+list says in one sentence what will show there, and an act that can't be done now is greyed with the reason as its
+tooltip and, in a card, a line under it. On the on-screen panels (moods, health, work and idle, what you follow) a
+colonist's name is a link too: a click on the name opens their card, and the rest of the row still takes you to them
+on the map; the hover card's name is one when the card sits in the corner, where the mouse can reach it.
+
 **This week** (the council window's first view) is the one inbox, where everything waiting on you is. **Following**:
 what you follow, each with its newest change. **Needs you**: wishes and petitions (oldest first), dilemmas and other
 letters waiting for an answer, a hamlet's ask, a raiders' camp's terms, a debt a people calls in, settlers at the gate,

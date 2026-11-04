@@ -240,9 +240,8 @@ namespace ColonyCouncil
             LinkText.Line(new Rect(x, r.y + 3f, tw, 20f), p.name, Color.white);
             LinkText.Line(new Rect(x, r.y + 22f, tw, 18f), p.second, p.color, GameFont.Tiny);
             var b = new Rect(r.xMax - btnW - 4f, r.y + 10f, btnW, 26f);
-            bool can = p.why == null;
-            if (Widgets.ButtonText(b, "CC_Neighbours_Write".Translate(), true, true, can) && can) Find.WindowStack.Add(new Dialog_NeighbourLetter(p.n));
-            if (!can) TooltipHandler.TipRegion(b, p.why);
+            // Greyed with why not as its tooltip where a letter can't go now.
+            if (UiKit.ActButton(b, "CC_Neighbours_Write".Translate(), p.why)) Find.WindowStack.Add(new Dialog_NeighbourLetter(p.n));
             Widgets.DrawLineHorizontal(r.x, r.yMax, r.width, UiKit.DividerColor);
             // The rest of the row opens their card too.
             if (Widgets.ButtonInvisible(r, false))
@@ -555,7 +554,7 @@ namespace ColonyCouncil
             if (Widgets.ButtonText(c, UiKit.Fit("CC_WHist_Kind".Translate((family == null ? any : KindName(family)).Named("KIND")).Resolve(), c.width - 12f)))
                 Find.WindowStack.Add(new FloatMenu(KindOptions()));
             bool set = !people.IsNone || !town.IsNone || family != null;
-            if (Widgets.ButtonText(d, "CC_WHist_Clear".Translate(), true, true, set) && set)
+            if (UiKit.ActButton(d, "CC_WHist_Clear".Translate(), set ? null : ""))
             {
                 people = town = Ref.None;
                 family = null;

@@ -179,8 +179,8 @@ namespace ColonyCouncil
                 right -= aw + 3f;
             }
             // The name.
-            var nameColor = h.inBreak ? UiKit.Bad : Color.white;
-            HudKit.Label(new Rect(x, r.y + 1f, Mathf.Max(0f, right - x), line1), p.LabelShortCap, nameColor, main);
+            // Their name leads to their card (the rest of the row to them on the map); in a break it keeps the alarm's colour.
+            NameLink(new Rect(x, r.y + 1f, Mathf.Max(0f, right - x), line1), p.LabelShortCap, p, main, h.inBreak ? UiKit.Sour : (Color?)null);
             // Second line: the bar, then what drags them down.
             float barW = Mathf.Round(72f * s);
             float by = r.y + line1 + Mathf.Round(4f * s);
@@ -199,7 +199,7 @@ namespace ColonyCouncil
             }
             var pawn = p;
             var data = h;
-            Tip(r, () => HudMood.Tip(data), p.thingIDNumber ^ 0x48D7);
+            if (Previews.Shown.IsNone) Tip(r, () => HudMood.Tip(data), p.thingIDNumber ^ 0x48D7);
             if (Clicked(r)) Click(pawn);
         }
 

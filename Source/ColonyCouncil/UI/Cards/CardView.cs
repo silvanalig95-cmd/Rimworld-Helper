@@ -412,7 +412,7 @@ namespace ColonyCouncil
             {
                 string more = "CC_Card_Act_More".Translate();
                 float bw = Mathf.Min(UiKit.ActButtonWidth(more), r.xMax - x);
-                if (bw >= 50f && Widgets.ButtonText(new Rect(x, y, bw, 28f), more))
+                if (bw >= 50f && UiKit.ActButton(new Rect(x, y, bw, 28f), more, null))
                 {
                     var options = new List<FloatMenuOption>();
                     for (int i = shown; i < m.acts.Count; i++)
@@ -425,9 +425,7 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(new FloatMenu(options));
                 }
             }
-            if (firstWhy != null)
-                UiKit.LabelFit(new Rect(r.x, y + 30f, r.width, 18f), "CC_Card_WhyLine".Translate(firstWhy.label.Named("ACT"), firstWhy.why.Named("WHY")).Resolve(), UiKit.Dim,
-                    GameFont.Tiny);
+            if (firstWhy != null) UiKit.WhyNotLine(r.x, y + 30f, r.width, firstWhy.label, firstWhy.why);
         }
 
         private static void Run(CardAct a)

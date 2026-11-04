@@ -18,11 +18,6 @@ namespace ColonyCouncil
     /// </summary>
     public static class PrioritiesPanel
     {
-        private static readonly Color CriticalColor = new Color(0.9f, 0.3f, 0.25f);
-        private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);
-        private static readonly Color MediumColor = new Color(0.9f, 0.85f, 0.35f);
-        private static readonly Color LowColor = new Color(0.65f, 0.65f, 0.65f);
-        private static readonly Color IdeaColor = new Color(0.45f, 0.7f, 0.95f);
         private static readonly Folds folds = new Folds("aside");
         private static Vector2 scroll;
         private static float height = 1000f;
@@ -70,14 +65,12 @@ namespace ColonyCouncil
             for (int i = 0; i < signals.Count; i++)
                 if (signals[i].Level >= AdviceLevel.High) urgent++;
             string stat = urgent > 0 ? "CC_UI_Stat_Urgent".Translate(urgent).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.Priorities, "CC_Priorities_Header".Translate(), era, stat, HighColor, 160f);
-            var refresh = new Rect(rect.xMax - 150f, rect.y + 6f, 150f, 30f);
-            if (Widgets.ButtonText(refresh, "CC_Refresh".Translate()))
+            float top = UiKit.PageHeader(rect, Icons.Priorities, "CC_Priorities_Header".Translate(), era, stat, UiKit.LevelColor(AdviceLevel.High), 160f);
+            if (UiKit.ActButton(new Rect(rect.xMax - 150f, rect.y + 6f, 150f, UiKit.RowStandard), "CC_Refresh".Translate(), null, "CC_Same_RefreshTip".Translate()))
             {
                 mc?.Refresh(true);
                 layouts.Clear();
             }
-            TooltipHandler.TipRegion(refresh, "CC_Same_RefreshTip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -90,7 +83,7 @@ namespace ColonyCouncil
                 var layout = LayoutOf(s, view.width, map);
                 // Only cards on screen are drawn.
                 if (y + layout.height >= scroll.y && y <= scroll.y + outRect.height) DrawSignal(s, layout, 0f, y, view.width, map);
-                y += layout.height + 8f;
+                y += layout.height + UiKit.CardGap;
             }
             // The steps done from these cards lately, with Undo and whether each worked; and what was set aside.
             y += AheadPanel.Done(0f, y + 4f, view.width, map, AdvisorSteps.Source) + 4f;
@@ -174,7 +167,7 @@ namespace ColonyCouncil
             l.tipH = l.tip.NullOrEmpty() ? 0f : Text.CalcHeight("CC_WhyItMatters".Translate() + ": " + l.tip, textW);
             Text.Font = GameFont.Small;
             // Tall enough for the text, the level badge, and the column of buttons.
-            l.height = Mathf.Max(68f, l.titleH + l.detailH + l.tipH + 16f, l.buttons.Count * 30f + 10f);
+            l.height = Mathf.Max(68f, l.titleH + l.detailH + l.tipH + 16f, l.buttons.Count * (UiKit.RowStandard + 4f) + 10f);
             layouts[s] = l;
             return l;
         }
@@ -183,7 +176,7 @@ namespace ColonyCouncil
 
         private static void DrawSignal(AdvisorSignal s, Layout l, float x, float y, float width, Map map)
         {
-            var color = LevelColor(s.Level);
+            var color = UiKit.LevelColor(s.Level);
             var row = new Rect(x, y, width, l.height);
             UiKit.Card(row, color);
 
@@ -195,9 +188,9 @@ namespace ColonyCouncil
             float textX = x + LeftW;
             float textW = TextWidth(s, width, l.buttonsW);
             float cy = y + 8f;
-            GUI.color = color;
+            // The level's colour on its tag and the card's edge, beside the words; the title in ink.
+            GUI.color = UiKit.Ink;
             Widgets.Label(new Rect(textX, cy, textW, l.titleH), s.title);
-            GUI.color = Color.white;
             cy += l.titleH;
             Widgets.Label(new Rect(textX, cy, textW, l.detailH), s.detail ?? "");
             cy += l.detailH + 2f;
@@ -206,14 +199,14 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Tiny;
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(textX, cy, textW, l.tipH), "CC_WhyItMatters".Translate() + ": " + l.tip);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;
             }
 
             if (s.suggestThing != null)
             {
                 var iconRect = new Rect(textX + textW + 4f, y + 8f, 26f, 26f);
-                Widgets.DrawBoxSolid(iconRect, new Color(0f, 0f, 0f, 0.2f));
+                Widgets.DrawBoxSolid(iconRect, UiKit.WithAlpha(UiKit.Shade, 0.2f));
                 Widgets.ThingIcon(iconRect.ContractedBy(1f), s.suggestThing);
                 TooltipHandler.TipRegion(iconRect, s.suggestThing.LabelCap);
             }
@@ -224,27 +217,13 @@ namespace ColonyCouncil
             float by = y + 6f;
             foreach (var b in l.buttons)
             {
-                var r = new Rect(bx, by, bw, 26f);
-                if (!b.tip.NullOrEmpty()) TooltipHandler.TipRegion(r, b.tip);
-                if (Widgets.ButtonText(r, b.label))
+                var r = new Rect(bx, by, bw, UiKit.RowStandard);
+                if (UiKit.ActButton(r, b.label, null, b.tip))
                 {
-                    SoundDefOf.Click.PlayOneShotOnCamera();
                     b.act?.Invoke();
                     layouts.Clear();
                 }
-                by += 30f;
-            }
-        }
-
-        private static Color LevelColor(AdviceLevel level)
-        {
-            switch (level)
-            {
-                case AdviceLevel.Critical: return CriticalColor;
-                case AdviceLevel.High: return HighColor;
-                case AdviceLevel.Medium: return MediumColor;
-                case AdviceLevel.Low: return LowColor;
-                default: return IdeaColor;
+                by += UiKit.RowStandard + 4f;
             }
         }
     }

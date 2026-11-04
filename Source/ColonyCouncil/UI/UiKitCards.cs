@@ -8,65 +8,30 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The interface design's tokens and the components names, cards and the drawer are drawn with
-    /// (docs/design/interface.md, "The look"): link ink and its line, the cool stance, done and danger, the drawer's and
-    /// the preview's surfaces; a section heading with its count and fold, a thing chip (a link with its picture and a
-    /// preview), a state chip (a dot and a word), an act button with why not, steps for what is under way, an icon button.
-    /// Measured once per width where they can be (their words through UiKit.Fit and LinkText's layouts).
+    /// The interface design's components names, cards and the drawer are drawn with (docs/design/interface.md, "The
+    /// look"; the tokens are in UI/UiKit.cs): a section heading with its count, fold and act, a thing chip (a link with
+    /// its picture and a preview), a state chip (a dot and a word), an act button with why not, steps for what is under
+    /// way, the count badge, an icon button. Measured once per width where they can be (their words through UiKit.Fit,
+    /// KeptWidth and LinkText's layouts).
     /// </summary>
     public static partial class UiKit
     {
-        // ---------------- Tokens ----------------
-
-        /// <summary>A name that leads to its card: a light parchment, a little warmer than the text.</summary>
-        public static readonly Color Link = new Color(0.945f, 0.863f, 0.667f);
-        public static readonly Color LinkLine = new Color(0.945f, 0.863f, 0.667f, 0.5f);
-        public static readonly Color LinkHot = new Color(1f, 0.949f, 0.812f);
-        /// <summary>A stance neither warm nor sour: neutral or wary.</summary>
-        public static readonly Color Cool = new Color(0.616f, 0.714f, 0.839f);
-        /// <summary>Finished, kept, answered.</summary>
-        public static readonly Color Done = new Color(0.561f, 0.627f, 0.561f);
-        /// <summary>Harm now (brighter than Bad, always with the warning icon).</summary>
-        public static readonly Color Danger = new Color(1f, 0.353f, 0.282f);
-        public static readonly Color DrawerFill = new Color(0.125f, 0.141f, 0.157f, 1f);
-        public static readonly Color PreviewFill = new Color(0.165f, 0.184f, 0.204f, 1f);
-        public static readonly Color PreviewEdge = new Color(0.298f, 0.318f, 0.341f, 1f);
-
         // ---------------- Section heading ----------------
 
         /// <summary>Height of <see cref="SectionHeading"/>, with the space under it.</summary>
         public const float HeadingHeight = 26f;
 
         /// <summary>
-        /// A section's heading: a fold caret (with <paramref name="folds"/>), its name, its count, an optional note on the
-        /// right, and a line under it. Returns <see cref="HeadingHeight"/>; <paramref name="open"/> says whether to draw
-        /// the section under it.
+        /// A section's heading (component 4): a fold caret (with <paramref name="folds"/>), its name, its count, an optional
+        /// note on the right, and a line under it. Returns <see cref="HeadingHeight"/>; <paramref name="open"/> says whether
+        /// to draw the section under it.
         /// </summary>
         public static float SectionHeading(float x, float y, float width, string label, int count, Folds folds, string key, out bool open, string right = null)
         {
             open = folds == null || folds.IsOpen(key);
             var hit = new Rect(x, y, width, 22f);
-            float tx = x;
-            if (folds != null)
-            {
-                if (Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
-                Icon(new Rect(x + 1f, y + 6f, 10f, 10f), open ? TexButton.Collapse : TexButton.Reveal, WithAlpha(HeaderColor, 0.8f));
-                tx += 15f;
-            }
-            Text.Font = GameFont.Small;
-            float rw = 0f;
-            if (!right.NullOrEmpty())
-            {
-                Text.Font = GameFont.Tiny;
-                rw = Mathf.Min(Text.CalcSize(right).x + 4f, width * 0.45f);
-                LabelFit(new Rect(x + width - rw, y, rw, 22f), right, Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-                rw += 6f;
-                Text.Font = GameFont.Small;
-            }
-            float lw = Mathf.Min(Text.CalcSize(label ?? "").x + 2f, Mathf.Max(0f, x + width - rw - tx - 24f));
-            LabelFit(new Rect(tx, y, lw, 22f), label, HeaderColor);
-            if (count >= 0) LabelFit(new Rect(tx + lw + 5f, y + 1f, 40f, 22f), count.ToString(), Faint, GameFont.Tiny);
-            Divider(x, y + 22f, width);
+            if (folds != null && Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+            HeadingLine(x, y, width, label, count, right, null, Heading, folds != null, open);
             if (folds != null && Widgets.ButtonInvisible(hit, false))
             {
                 folds.Toggle(key);
@@ -75,30 +40,37 @@ namespace ColonyCouncil
             return HeadingHeight;
         }
 
+        /// <summary>
+        /// A section's heading with an act on its right ("Call an election"): a small button, greyed with why not as its
+        /// tooltip. <paramref name="acted"/> says whether it was used. Returns <see cref="HeadingHeight"/>.
+        /// </summary>
+        public static float SectionHeading(float x, float y, float width, string label, int count, Folds folds, string key, out bool open, string act, string actWhyNot,
+            out bool acted, string actTip = null)
+        {
+            acted = false;
+            float aw = act.NullOrEmpty() ? 0f : Mathf.Clamp(KeptWidth(act, GameFont.Tiny) + 18f, 60f, 200f);
+            if (aw > 0f && RowAct(new Rect(x + width - aw, y, aw, 20f), act, actWhyNot, actTip)) acted = true;
+            float h = SectionHeading(x, y, width - (aw > 0f ? aw + 6f : 0f), label, count, folds, key, out open);
+            if (aw > 0f) Divider(x + width - aw - 6f, y + 22f, aw + 6f);
+            return h;
+        }
+
         // ---------------- Chips ----------------
 
         /// <summary>Height of a chip.</summary>
         public const float ChipHeight = 20f;
 
-        public static float StateChipWidth(string word, float maxWidth = 260f)
-        {
-            if (word.NullOrEmpty()) return 0f;
-            var old = Text.Font;
-            Text.Font = GameFont.Tiny;
-            float w = Mathf.Min(maxWidth, Text.CalcSize(word).x + 22f);
-            Text.Font = old;
-            return w;
-        }
+        public static float StateChipWidth(string word, float maxWidth = 260f) => word.NullOrEmpty() ? 0f : Mathf.Min(maxWidth, KeptWidth(word, GameFont.Tiny) + 22f);
 
-        /// <summary>A state: a dot in its colour and a word ("friendly", "thriving"). Returns the width used.</summary>
+        /// <summary>A state (component 7): a dot in its colour and a word ("friendly", "thriving"). Returns the width used.</summary>
         public static float StateChip(float x, float y, string word, Color color, float maxWidth = 260f, string tip = null)
         {
             if (word.NullOrEmpty()) return 0f;
             float w = StateChipWidth(word, maxWidth);
             var r = new Rect(x, y, w, ChipHeight);
-            Widgets.DrawBoxSolidWithOutline(r, WithAlpha(color, 0.08f), WithAlpha(color, 0.35f), 1);
+            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
             DiscFill(new Rect(x + 6f, y + ChipHeight / 2f - 3.5f, 7f, 7f), color);
-            LabelFit(new Rect(x + 17f, y, w - 19f, ChipHeight), word, color, GameFont.Tiny);
+            LabelFit(new Rect(x + 17f, y, w - 19f, ChipHeight), word, Ink, GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             return w;
         }
@@ -171,7 +143,7 @@ namespace ColonyCouncil
                 if (fi == BaseContent.BadTex) fi = null;
                 if (fi != null)
                 {
-                    DiscFill(r, new Color(0.12f, 0.13f, 0.14f, 1f));
+                    DiscFill(r, PortraitBack);
                     Icon(r.ContractedBy(Mathf.Round(r.width * 0.18f)), fi, color);
                     return;
                 }
@@ -207,8 +179,8 @@ namespace ColonyCouncil
         // ---------------- Steps ----------------
 
         /// <summary>
-        /// Something under way in steps (written, on the road, arrived, answered): a dot for each, the ones done filled, the
-        /// one it is at lit, each with its word; never a time left. Returns the height used.
+        /// Something under way in steps (component 10: written, on the road, arrived, answered): a dot for each, the ones
+        /// done filled in done's colour, the one it is at gold, each with its word; never a time left. Returns the height used.
         /// </summary>
         public static float Steps(float x, float y, float width, string[] words, int at)
         {
@@ -221,13 +193,13 @@ namespace ColonyCouncil
             {
                 float cx = x + cell * i + cell / 2f;
                 var dot = new Rect(cx - 5f, lineY - 5f, 10f, 10f);
-                var c = i < at ? Done : i == at ? Info : Dim;
+                var c = i < at ? Done : i == at ? Gold : Dim;
                 if (i <= at) DiscFill(dot, c);
                 else RingDraw(dot, c);
                 var old = Text.Font;
                 Text.Font = GameFont.Tiny;
                 Text.Anchor = TextAnchor.UpperCenter;
-                GUI.color = i == at ? Color.white : i < at ? Done : Dim;
+                GUI.color = i == at ? Ink : i < at ? Faint : Dim;
                 Widgets.Label(new Rect(cx - cell / 2f, lineY + 7f, cell, 18f), Fit(words[i], cell - 2f));
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
@@ -248,21 +220,20 @@ namespace ColonyCouncil
             for (int i = 0; i < words.Length; i++)
             {
                 if (x + 12f > r.xMax) break;
-                var c = i < at ? Done : i == at ? Info : Dim;
+                var c = i < at ? Done : i == at ? Gold : Dim;
                 var dot = new Rect(x, cy - 3f, 6f, 6f);
                 if (i <= at) DiscFill(dot, c);
                 else RingDraw(dot, c);
                 x += 9f;
                 float w = KeptWidth(words[i], GameFont.Tiny) + 2f;
                 float room = r.xMax - x;
-                LabelFit(new Rect(x, r.y, Mathf.Min(w, room), r.height), words[i], i == at ? Color.white : i < at ? Done : Dim, GameFont.Tiny);
+                LabelFit(new Rect(x, r.y, Mathf.Min(w, room), r.height), words[i], i == at ? Ink : i < at ? Faint : Dim, GameFont.Tiny);
                 x += w + 8f;
             }
         }
 
         // ---------------- Count badge ----------------
 
-        private static readonly Color BadgeFill = new Color(0.62f, 0.45f, 0.16f, 1f);
         private static readonly string[] counts = new string[100];
 
         /// <summary>
@@ -292,7 +263,7 @@ namespace ColonyCouncil
         {
             bool over = active && Mouse.IsOver(r);
             if (over) Widgets.DrawBoxSolid(r, CardHover);
-            var c = !active ? WithAlpha(Dim, 0.6f) : over ? Color.white : color ?? new Color(1f, 1f, 1f, 0.7f);
+            var c = !active ? WithAlpha(Dim, 0.6f) : over ? Ink : color ?? WithAlpha(Ink, 0.7f);
             if (tex != null) Icon(r.ContractedBy(Mathf.Max(2f, r.width * 0.12f)), tex, c);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             if (!active) return false;

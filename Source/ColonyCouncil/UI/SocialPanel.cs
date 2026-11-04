@@ -38,7 +38,8 @@ namespace ColonyCouncil
 
         private const float RowH = 28f;
 
-        private static readonly Color CliqueColor = new Color(1f, 0.85f, 0.5f);
+        /// <summary>The colony's own circles: gold, the colony's colour (UI/UiKit.cs's tokens).</summary>
+        private static readonly Color CliqueColor = UiKit.Gold;
 
         private static bool Shown(Pawn p) => p != null && !p.Dead && p.IsColonist;
 
@@ -51,6 +52,11 @@ namespace ColonyCouncil
             /// <summary>With groups on (Social/Groups/): the colony's groups, which take the circles' place.</summary>
             public List<SocialGroup> groups = new List<SocialGroup>();
             public bool grouped;
+            /// <summary>Each bond's two names as links to their cards, and the lists' lines with their names as links, made with the model.</summary>
+            public readonly Dictionary<SocialTie, string> tieNames = new Dictionary<SocialTie, string>();
+            public readonly List<(Vendetta v, string line)> vendettas = new List<(Vendetta, string)>();
+            public readonly List<(Nemesis n, string line)> nemeses = new List<(Nemesis, string)>();
+            public readonly List<(Secret s, string line)> secrets = new List<(Secret, string)>();
         }
 
         private static Model model;
@@ -71,6 +77,33 @@ namespace ColonyCouncil
                 : colonists.OrderBy(p => CliqueIndex(m.cliques, p)).ThenBy(p => p.LabelShort).ToList();
             m.ties = on ? comp.social.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && colonists.Contains(t.a) && colonists.Contains(t.b)).ToList()
                 : new List<SocialTie>();
+            foreach (var t in m.ties)
+            {
+                string a = ThingRefs.Link(t.a.LabelShort, ThingRefs.Of(t.a)), b = ThingRefs.Link(t.b.LabelShort, ThingRefs.Of(t.b));
+                m.tieNames[t] = t.kind == TieKind.Mentor && t.skill != null ? a + " → " + b + " (" + t.skill.label + ")" : a + " & " + b;
+            }
+            if (ColonyCouncilMod.Settings.vendettas)
+                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger != null && !v.avenger.Dead && v.avenger.IsColonist && v.faction != null && (focus == null || v.avenger == focus))
+                             .OrderBy(v => v.settled).ThenByDescending(v => v.tick).Take(10))
+                {
+                    string line = v.LineKey.Translate(v.avenger.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
+                    m.vendettas.Add((v, PaneLinks.Mark(PaneLinks.Mark(line, v.avenger), v.faction)));
+                }
+            if (ColonyCouncilMod.Settings.nemeses)
+                foreach (var n in comp.nemeses.all.Where(n => n.announced && (focus == null || n.victim == focus)).OrderBy(n => n.ended).ThenByDescending(n => n.tick).Take(10))
+                    m.nemeses.Add((n, PaneLinks.Mark(n.Line, n.victim)));
+            if (ColonyCouncilMod.Settings.secrets)
+                foreach (var s in comp.secrets.secrets.Where(s => s.owner != null && !s.owner.Dead && s.owner.IsColonist && (focus == null || s.owner == focus)
+                                                                  && (s.revealed || s.knowers.Count > 0 || Prefs.DevMode)).OrderBy(s => s.revealed))
+                {
+                    string line;
+                    if (s.revealed) line = "CC_Social_SecretOut".Translate(s.owner.LabelShort, s.def.label).Resolve();
+                    else if (s.knowers.Count > 0) line = "CC_Social_SecretKnown".Translate(s.owner.LabelShort, TextUtil.JoinAnd(s.knowers.Select(k => k.LabelShort).ToList())).Resolve();
+                    else line = "(dev) " + s.owner.LabelShort + ": " + s.def.label;
+                    var named = new List<Pawn> { s.owner };
+                    named.AddRange(s.knowers);
+                    m.secrets.Add((s, PaneLinks.Mark(line, named)));
+                }
             return m;
         }
 
@@ -101,21 +134,23 @@ namespace ColonyCouncil
             if (focus != null && !m.colonists.Contains(focus)) focus = null;
 
             // Header, with the view switch and the filter on the right.
-            float reserve = 220f + 6f + 2f * 74f + (Prefs.DevMode ? 306f : 0f);
+            viewLabels ??= new List<string> { "CC_UI_View_List".Translate(), "CC_UI_View_Web".Translate() };
+            float modesW = UiKit.ModesWidth(viewLabels);
+            float reserve = 220f + 8f + modesW + (Prefs.DevMode ? 306f : 0f);
             float top = UiKit.PageHeader(rect, Icons.Bonds, "CC_Tab_Bonds".Translate(), "CC_UI_Sub_Bonds".Translate(),
                 "CC_UI_Stat_Bonds".Translate(m.ties.Count).Resolve(), null, reserve, "CC_Social_Intro".Translate());
             float bx = rect.xMax - 220f;
             var filterRect = new Rect(bx, rect.y + 6f, 220f, 30f);
-            if (Widgets.ButtonText(filterRect, UiKit.Fit("CC_Social_Filter".Translate() + ": " + (focus?.LabelShort ?? "CC_Social_Everyone".Translate().ToString()), 200f)))
+            if (UiKit.ActButton(filterRect, UiKit.Fit("CC_Social_Filter".Translate() + ": " + (focus?.LabelShort ?? "CC_Social_Everyone".Translate().ToString()), 200f), null))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Social_Everyone".Translate(), () => focus = null) };
                 options.AddRange(m.colonists.OrderBy(p => p.LabelShort).Select(p => new FloatMenuOption(p.LabelShort, () => focus = p)));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
-            bx -= 6f + 74f;
-            if (UiKit.TabButton(new Rect(bx, rect.y + 6f, 74f, 30f), "CC_UI_View_List".Translate(), null, mode == Mode.List)) mode = Mode.List;
-            bx -= 74f;
-            if (UiKit.TabButton(new Rect(bx, rect.y + 6f, 74f, 30f), "CC_UI_View_Web".Translate(), null, mode == Mode.Web)) mode = Mode.Web;
+            // The same bonds shown two ways: the design's modes switch, as on the region's Map or List.
+            bx -= 8f + modesW;
+            int picked = UiKit.Modes(new Rect(bx, rect.y + 8f, modesW, UiKit.ModesHeight), viewLabels, mode == Mode.List ? 0 : 1);
+            if (picked >= 0) mode = picked == 0 ? Mode.List : Mode.Web;
             if (Prefs.DevMode) DevButtons(new Rect(bx - 306f, rect.y + 6f, 300f, 30f), comp);
 
             var body = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -131,12 +166,12 @@ namespace ColonyCouncil
         private static void DevButtons(Rect r, CouncilGameComponent comp)
         {
             if (Find.CurrentMap == null) return;
-            if (Widgets.ButtonText(new Rect(r.x, r.y, 120f, r.height), "Dev: dream"))
+            if (UiKit.ActButton(new Rect(r.x, r.y, 120f, r.height), "Dev: dream", null))
             {
                 var dreamer = focus ?? Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Baby()).RandomElementWithFallback();
                 if (dreamer == null || !comp.dreams.TryDream(comp, dreamer, false)) Messages.Message("No dream fits right now.", MessageTypeDefOf.RejectInput, false);
             }
-            if (Widgets.ButtonText(new Rect(r.x + 126f, r.y, 170f, r.height), "Dev: social event"))
+            if (UiKit.ActButton(new Rect(r.x + 126f, r.y, 170f, r.height), "Dev: social event", null))
             {
                 var pawns = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).ToList();
                 if (!SocialEvents.TryOne(comp, Find.CurrentMap, pawns)) Messages.Message("No social event fits right now.", MessageTypeDefOf.RejectInput, false);
@@ -241,7 +276,7 @@ namespace ColonyCouncil
                 // The name under the portrait, kept inside the panel.
                 float lx = Mathf.Clamp(nodes[i].x - labelW / 2f, area.x + 2f, Mathf.Max(area.x + 2f, area.xMax - 2f - labelW));
                 var lr = new Rect(lx, nr.yMax + 1f, Mathf.Min(labelW, area.width - 4f), 18f);
-                UiKit.LabelFit(lr, p.LabelShort, new Color(1f, 1f, 1f, p == lit ? 1f : near ? 0.85f : 0.35f), GameFont.Tiny, TextAnchor.UpperCenter);
+                UiKit.LabelFit(lr, p.LabelShort, UiKit.WithAlpha(UiKit.Ink, p == lit ? 1f : near ? 0.85f : 0.35f), GameFont.Tiny, TextAnchor.UpperCenter);
                 var pawn = p;
                 TooltipHandler.TipRegion(nr, () => NodeTip(pawn, m), p.thingIDNumber ^ 0x0B0D);
                 if (Widgets.ButtonInvisible(nr)) focus = focus == p ? null : p;
@@ -345,7 +380,7 @@ namespace ColonyCouncil
                 string name = g.Name;
                 float w = Mathf.Min(140f, Text.CalcSize(name).x + 6f);
                 var lr = new Rect(at.x - w / 2f, at.y - 9f, w, 18f);
-                Widgets.DrawBoxSolid(lr, new Color(0f, 0f, 0f, 0.45f * alpha));
+                Widgets.DrawBoxSolid(lr, UiKit.WithAlpha(UiKit.Shade, 0.45f * alpha));
                 UiKit.LabelFit(lr, name, UiKit.WithAlpha(color, alpha), GameFont.Tiny, TextAnchor.MiddleCenter);
                 TooltipHandler.TipRegion(lr, () => GroupTip(g), g.id ^ 0x3E11);
             }
@@ -427,7 +462,7 @@ namespace ColonyCouncil
             var cliques = focus == null ? m.cliques : m.cliques.Where(c => c.members.Contains(focus)).ToList();
             if (cliques.Count > 0)
             {
-                cy += UiKit.SectionTitle(0f, cy, w, "CC_Social_Cliques".Translate(), Icons.Bonds, CliqueColor);
+                cy += UiKit.SectionTitle(0f, cy, w, "CC_Social_Cliques".Translate(), cliques.Count, Icons.Bonds, CliqueColor);
                 for (int i = 0; i < cliques.Count; i++)
                 {
                     var c = cliques[i];
@@ -441,17 +476,17 @@ namespace ColonyCouncil
             {
                 var list = ties.Where(t => t.kind == kind).OrderByDescending(t => t.strength).ToList();
                 if (list.Count == 0) continue;
-                cy += UiKit.SectionTitle(0f, cy, w, ("CC_TieKind_" + kind).Translate(), Icons.For(kind), UiKit.TieColor(kind), list.Count.ToString());
+                cy += UiKit.SectionTitle(0f, cy, w, ("CC_TieKind_" + kind).Translate(), list.Count, Icons.For(kind), UiKit.TieColor(kind));
                 for (int i = 0; i < list.Count; i++)
                 {
-                    DrawTie(new Rect(0f, cy, w, RowH), list[i], i);
+                    DrawTie(new Rect(0f, cy, w, RowH), list[i], i, m.tieNames.TryGetValue(list[i], out var names) ? names : null);
                     cy += RowH;
                 }
                 cy += 12f;
             }
-            if (ColonyCouncilMod.Settings.vendettas) cy += DrawVendettas(comp, w, cy);
-            if (ColonyCouncilMod.Settings.nemeses) cy += DrawNemeses(comp, w, cy);
-            if (ColonyCouncilMod.Settings.secrets) cy += DrawSecrets(comp, w, cy);
+            if (ColonyCouncilMod.Settings.vendettas) cy += DrawVendettas(m, w, cy);
+            if (ColonyCouncilMod.Settings.nemeses) cy += DrawNemeses(m, w, cy);
+            if (ColonyCouncilMod.Settings.secrets) cy += DrawSecrets(m, w, cy);
             height = Mathf.Max(cy, 100f);
             Widgets.EndScrollView();
         }
@@ -491,7 +526,7 @@ namespace ColonyCouncil
                     cx = 0f;
                     cy += 26f;
                 }
-                UiKit.PawnChip(x + nameW + cx, cy + 2f, p, 22f, true, 150f);
+                UiKit.PawnChip(x + nameW + cx, cy + 2f, p, 22f, true, 150f, link: true);
                 cx += cw;
             }
             return h;
@@ -509,10 +544,11 @@ namespace ColonyCouncil
             var shown = focus == null
                 ? m.groups
                 : m.groups.Where(g => g.Has(focus) || t.NewcomerOf(focus)?.groupId == g.id).ToList();
-            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Groups".Translate(), Icons.Bonds, UiKit.Gold, shown.Count.ToString());
+            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Groups".Translate(), shown.Count, Icons.Bonds, UiKit.Gold);
             if (shown.Count == 0)
             {
-                y += UiKit.Paragraph(0f, y, width, (focus == null ? "CC_Social_GroupsNone" : "CC_Social_GroupsNoneFor").Translate(focus?.LabelShort ?? "").Resolve(), UiKit.Faint) + 6f;
+                UiKit.EmptyLine(new Rect(0f, y, width, UiKit.RowDense + 4f), (focus == null ? "CC_Social_GroupsNone" : "CC_Social_GroupsNoneFor").Translate(focus?.LabelShort ?? "").Resolve());
+                y += UiKit.RowDense + 10f;
             }
             foreach (var g in shown)
             {
@@ -524,7 +560,7 @@ namespace ColonyCouncil
             var alone = t.newcomers.Where(n => n.pawn != null && !n.pawn.Dead && n.pawn.IsColonist && t.Get(n.groupId) == null && (focus == null || n.pawn == focus)).ToList();
             if (alone.Count > 0)
             {
-                UiKit.LabelFit(new Rect(0f, y, width, 22f), "CC_Social_Outsiders".Translate(TextUtil.JoinAnd(alone.Select(n => n.pawn.LabelShort).ToList())).Resolve(), UiKit.Info);
+                UiKit.LabelFit(new Rect(0f, y, width, 22f), "CC_Social_Outsiders".Translate(TextUtil.JoinAnd(alone.Select(n => n.pawn.LabelShort).ToList())).Resolve(), UiKit.Cool);
                 TooltipHandler.TipRegion(new Rect(0f, y, width, 22f), "CC_Group_OutsiderTip".Translate());
                 y += 24f;
             }
@@ -543,77 +579,70 @@ namespace ColonyCouncil
             return y - start + 12f;
         }
 
-        private static float DrawVendettas(CouncilGameComponent comp, float width, float y)
+        private static float DrawVendettas(Model m, float width, float y)
         {
-            var list = comp.vendettas.vendettas.Where(v => v.avenger != null && !v.avenger.Dead && v.avenger.IsColonist && v.faction != null && (focus == null || v.avenger == focus))
-                .OrderBy(v => v.settled).ThenByDescending(v => v.tick).Take(10).ToList();
+            var list = m.vendettas;
             if (list.Count == 0) return 0f;
             float start = y;
-            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Vendettas".Translate(), Icons.Vendetta, UiKit.Bad);
+            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Vendettas".Translate(), list.Count, Icons.Vendetta, UiKit.Sour);
             for (int i = 0; i < list.Count; i++)
             {
-                var v = list[i];
-                string line = v.LineKey
-                    .Translate(v.avenger.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
+                var (v, line) = list[i];
                 var r = new Rect(0f, y, width, RowH);
                 UiKit.Zebra(r, i);
-                UiKit.Portrait(new Rect(4f, y + 3f, 22f, 22f), v.avenger, v.settled ? UiKit.Neutral : UiKit.Bad);
-                UiKit.LabelFit(new Rect(32f, y, width - 36f, RowH), line, v.settled ? UiKit.Faint : new Color(0.9f, 0.55f, 0.45f));
+                UiKit.Portrait(new Rect(4f, y + 3f, 22f, 22f), v.avenger, v.settled ? UiKit.Faint : UiKit.Sour);
+                LinkText.Line(new Rect(32f, y, width - 36f, RowH), line, v.settled ? UiKit.Faint : UiKit.Ink);
                 y += RowH;
             }
-            return y - start + 12f;
+            return y - start + UiKit.SectionGap;
         }
 
-        private static float DrawNemeses(CouncilGameComponent comp, float width, float y)
+        private static float DrawNemeses(Model m, float width, float y)
         {
-            var list = comp.nemeses.all.Where(n => n.announced && (focus == null || n.victim == focus))
-                .OrderBy(n => n.ended).ThenByDescending(n => n.tick).Take(10).ToList();
+            var list = m.nemeses;
             if (list.Count == 0) return 0f;
             float start = y;
-            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Nemeses".Translate(), Icons.Nemesis, UiKit.Bad);
+            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Nemeses".Translate(), list.Count, Icons.Nemesis, UiKit.Sour);
             for (int i = 0; i < list.Count; i++)
             {
-                var n = list[i];
+                var (n, line) = list[i];
                 var r = new Rect(0f, y, width, RowH);
                 UiKit.Zebra(r, i);
-                UiKit.Icon(new Rect(7f, y + 6f, 16f, 16f), Icons.Nemesis, n.ended ? UiKit.Faint : UiKit.Bad);
-                UiKit.LabelFit(new Rect(32f, y, width - 36f, RowH), n.Line, n.ended ? UiKit.Faint : new Color(0.9f, 0.5f, 0.4f));
+                UiKit.Icon(new Rect(7f, y + (RowH - UiKit.IconRow) / 2f, UiKit.IconRow, UiKit.IconRow), Icons.Nemesis, n.ended ? UiKit.Faint : UiKit.Sour);
+                LinkText.Line(new Rect(32f, y, width - 36f, RowH), line, n.ended ? UiKit.Faint : UiKit.Ink);
                 if (n.endText != null) TooltipHandler.TipRegion(r, n.endText);
                 y += RowH;
             }
-            return y - start + 12f;
+            return y - start + UiKit.SectionGap;
         }
 
         /// <summary>Only what the colony could know: who has confided in whom (not what), and secrets that are out.</summary>
-        private static float DrawSecrets(CouncilGameComponent comp, float width, float y)
+        private static float DrawSecrets(Model m, float width, float y)
         {
-            var list = comp.secrets.secrets.Where(s => s.owner != null && !s.owner.Dead && s.owner.IsColonist && (focus == null || s.owner == focus)
-                                                       && (s.revealed || s.knowers.Count > 0 || Prefs.DevMode)).OrderBy(s => s.revealed).ToList();
+            var list = m.secrets;
             if (list.Count == 0) return 0f;
             float start = y;
-            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Secrets".Translate(), Icons.Secret, UiKit.HeaderColor);
+            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Secrets".Translate(), list.Count, Icons.Secret);
             for (int i = 0; i < list.Count; i++)
             {
-                var s = list[i];
-                string line;
-                if (s.revealed) line = "CC_Social_SecretOut".Translate(s.owner.LabelShort, s.def.label).Resolve();
-                else if (s.knowers.Count > 0) line = "CC_Social_SecretKnown".Translate(s.owner.LabelShort, TextUtil.JoinAnd(s.knowers.Select(k => k.LabelShort).ToList())).Resolve();
-                else line = "(dev) " + s.owner.LabelShort + ": " + s.def.label;
+                var (s, line) = list[i];
                 var r = new Rect(0f, y, width, RowH);
                 UiKit.Zebra(r, i);
                 Widgets.DrawHighlightIfMouseover(r);
-                var color = s.revealed ? (s.def.good ? new Color(0.6f, 0.9f, 0.6f) : new Color(0.9f, 0.6f, 0.5f)) : UiKit.Faint;
+                var color = s.revealed ? (s.def.good ? UiKit.Warm : UiKit.Sour) : UiKit.Faint;
                 UiKit.Portrait(new Rect(4f, y + 3f, 22f, 22f), s.owner, color);
-                UiKit.LabelFit(new Rect(32f, y, width - 36f, RowH), line, color);
+                LinkText.Line(new Rect(32f, y, width - 36f, RowH), line, s.revealed ? UiKit.Ink : UiKit.Faint);
                 var secret = s;
                 if (s.revealed) TooltipHandler.TipRegion(r, () => secret.Truth, s.GetHashCode());
                 else if (Prefs.DevMode) TooltipHandler.TipRegion(r, () => "(dev) " + secret.Truth, s.GetHashCode());
                 y += RowH;
             }
-            return y - start + 12f;
+            return y - start + UiKit.SectionGap;
         }
 
-        private static void DrawTie(Rect r, SocialTie t, int i)
+        private static List<string> viewLabels;
+
+        private static void DrawTie(Rect r, SocialTie t, int i, string linked)
         {
             UiKit.Zebra(r, i);
             Widgets.DrawHighlightIfMouseover(r);
@@ -621,11 +650,10 @@ namespace ColonyCouncil
             // The two of them: overlapping portraits, then their names.
             UiKit.Portrait(new Rect(r.x + 4f, r.y + 3f, 22f, 22f), t.a, color);
             UiKit.Portrait(new Rect(r.x + 20f, r.y + 3f, 22f, 22f), t.b, color);
-            string names = t.kind == TieKind.Mentor && t.skill != null
-                ? t.a.LabelShort + " → " + t.b.LabelShort + " (" + t.skill.label + ")"
-                : t.a.LabelShort + " & " + t.b.LabelShort;
+            // The two names lead to their cards; the rest of the row shows the first of them on the map.
             float nameW = Mathf.Min(280f, r.width * 0.42f);
-            UiKit.LabelFit(new Rect(r.x + 48f, r.y, nameW - 50f, r.height), names, Color.white);
+            var nameRect = new Rect(r.x + 48f, r.y, nameW - 50f, r.height);
+            LinkText.Line(nameRect, linked ?? t.a.LabelShort + " & " + t.b.LabelShort, UiKit.Ink);
             float bx = r.x + nameW + 4f;
             float barW = Mathf.Min(150f, Mathf.Max(60f, r.width * 0.2f));
             UiKit.Bar(new Rect(bx, r.y + 10f, barW, 8f), t.strength / 100f, color);
@@ -634,8 +662,9 @@ namespace ColonyCouncil
             string last = t.history.Count > 0 ? t.history[t.history.Count - 1] : "";
             float noteX = bx + barW + 76f;
             if (r.xMax - noteX > 40f) UiKit.LabelFit(new Rect(noteX, r.y, r.xMax - noteX - 4f, r.height), last, UiKit.Faint, GameFont.Tiny);
-            TooltipHandler.TipRegion(r, () => Tip(t), t.GetHashCode());
-            if (Widgets.ButtonInvisible(r) && t.a.Spawned) CameraJumper.TryJumpAndSelect(t.a);
+            var rest = new Rect(nameRect.xMax, r.y, Mathf.Max(0f, r.xMax - nameRect.xMax), r.height);
+            if (Previews.Shown.IsNone) TooltipHandler.TipRegion(r, () => Tip(t), t.GetHashCode());
+            if (Widgets.ButtonInvisible(rest) && t.a.Spawned) CameraJumper.TryJumpAndSelect(t.a);
         }
 
         /// <summary>A bond's tooltip: who, how strong, since when, what happened between them, what they went through together.</summary>

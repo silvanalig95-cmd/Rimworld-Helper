@@ -2881,10 +2881,9 @@ the grammar across every window (UI 5b) waits for it.
   drawer in sight there); in a card or a window, the drawer. The game's own text stays as it is: the Social column's
   talks (the play log), the moods' names (the game's thoughts). The Needs tab's line names no one (the groups' totals).
   A row's or a chip's plain tooltip gives way while a preview shows, so the two don't cover each other.
-- **Left for UI 5b**, once UI 3 is in: the tokens and components across every window's pages (the council's and the
-  planning window's sections and rows, This week's rows in the inbox's grammar), the page accents giving way to the
-  tokens, the Planning window's pages in the section grammar, links in the remaining panels (the on-screen panels, the
-  colonist bar's hover). (`WindowTabs.LinksWidth` reads `WindowLayoutMath`'s corner since UI 3.)
+- **Left for UI 5b**, once UI 3 is in, and built there (below, "One look across every window"): the tokens and
+  components across every window's pages, the page accents giving way to the tokens, the Planning window's pages in the
+  section grammar, links in the remaining panels. (`WindowTabs.LinksWidth` reads `WindowLayoutMath`'s corner since UI 3.)
 
 #### One inbox and search (UI 3 of docs/design/interface.md)
 
@@ -2954,6 +2953,95 @@ everywhere, any thing can be followed, and a search in every corner finds anyone
   arrows move it. A result opens the thing's card (the drawer in sight, else the floating card), the view, or the
   Almanac's window.
 - **Icons**: `Inbox` (a tray) and `Search` (a magnifying glass) (`Tools/make_icons.py`).
+
+#### One look across every window (UI 5b of docs/design/interface.md)
+
+The fifth release's second part: the design's visual grammar ("The look") across every page of Rimfolk's windows, so
+they read alike. It is how things read, not what they do: every page keeps its acts, and every old address forwards.
+
+- **The tokens** (`UI/UiKit.cs`, one block between "Tokens" and "End of the tokens"): Ink (white), Faint, Dim, Heading,
+  Gold, Link (with LinkLine and LinkHot), Warm, Cool, Sour, Soon, Danger, Done and World; the surfaces CardFill,
+  CardHover, CardSelected, CardBorder, ZebraFill, DividerColor, MeterBack, MeterEdge, Shade, Ground, PortraitBack,
+  DrawerFill, PreviewFill, PreviewEdge and BadgeFill. The names the pages used before are tokens now (Good is Warm, Bad
+  Sour, Warn Soon, Info Cool, Neutral Faint, Quote Ink, HeaderColor Heading, DreamColor and LossColor Faint,
+  StrangerColor Cool, WorldColor World), so code that reads them (stage 2's and other mods' included) draws the same
+  set; new code uses the design's names. Around them: `WithAlpha` (a token fainter; it changes only the alpha),
+  `Quieter` (a step toward Faint: "likes" beside "loves"), `Wash` (a token as a faint wash behind a card) and
+  `LevelColor(AdviceLevel)` (harm now Danger, high Sour, medium Soon, low Faint, an idea Cool), which the plan,
+  priorities, base and defense pages read instead of their own switches. The colour helpers map to tokens: ties
+  (friends warm, rivals sour, comrades cool, a mentor gold), a decree's reactions (loves warm, likes a quieter warm,
+  dislikes a quieter sour, hates sour), the chronicle's kinds (good news warm, what came to nothing faint, the council's
+  choices gold, strangers cool, the world's news World), urgency. No page makes a colour (`LookTests` reads every file
+  under UI/ and the pages elsewhere for `new Color(` and the named colours). A picture's own colours stay (the region
+  map's land, the base's and the defense window's little maps as pixels, their legends reading those same colours), and
+  so do the game's (a people's or an ideoligion's colour on its icon). The page accents gave way: the Peoples cards'
+  violet names are link ink (they are links), the world's panels' tan and violet the world's colour, the journeys'
+  sage the heading's, the calendar's ten ways of keeping a day gold (remembrance faint), dreams by their kind (sweet
+  warm, strange cool, a nightmare sour, an omen gold), the mood and strain bands (fine warm, near the minor break Soon,
+  major Sour, extreme Danger), the defense lines' steps in the steps' colours (done Done, the one it is at Gold, what
+  waits Cool, later Dim). The on-screen panels' mood bar and their meaning colours read the tokens too; their
+  backgrounds (the settings' looks) stay theirs.
+- **The grid** (`UiKit`): Padding 12, SectionGap 16, CardGap 8, CardInset 10, RowDense 22, RowStandard 28 (what
+  `RowHeight` is now), RowPortrait 40, CardHeadHeight 56; icons IconDense 14, IconRow 18, IconHead 24. This week's cards
+  8 apart with a heading of 32 and rows of 28, 40 with a second line (`CouncilLayoutMath`); the pages' gaps between
+  sections and cards and their rows on the same steps.
+- **The components, drawn one way** (`UI/UiKitLook.cs` beside UiKit and UiKitCards): every section heading through
+  one line (`HeadingLine`: the fold's caret, an icon in its meaning colour, the name in heading ink, the count on a
+  small plate, a note on the right, the line under it), which `SectionTitle` (with a count now), `FoldTitle` and
+  `SectionHeading` (with an act on its right now, greyed with why not) all draw; a tag (`Pill`, `Pills`) as a state chip
+  (a quiet frame, a dot or its icon in its colour, the word in ink, in link ink for a tag that names a thing; the dot
+  only where the colour says something), `StateChip` the same; steps with the one it is at in gold; the empty state
+  with its icon dim and its sentence in a dashed frame (`DashedBox`), and `EmptyLine`, the same in one row for a section;
+  the row (`Row`: zebra, a portrait or an icon, the line with its links, a second line in small print at 40, a note on
+  the right, room for an act); `RowAct`, a row's small act (This week's), greyed with why not; `WhyNotLine`, the line
+  under a card's acts ("Plan it: ...", made once per act and reason with the cards' `CC_Card_WhyLine`); the line of days
+  (`DaysLine`: 7 or 30 days, the area under it filled and its last point marked; `DaysHeading`, `DaysWord` rising,
+  falling or steady, `DaysColor`, `DaysLineWithWord`); filter chips with a count (`FilterChip(rect, label, count, on)`);
+  `NameLink`, a name standing alone as a link. Words measured once (`KeptWidth`), counts' words made once: nothing new
+  is made per frame.
+- **The pages through them.** This week: the sections' headings with their icon and count, an empty section as an
+  empty line, "and 3 more" with its caret, the rows' acts through `RowAct`, the mood balance warm and sour. People: the
+  table's filters as chips with their counts and its numbers right-aligned; Moods with those closest to breaking as rows
+  of 40 (the portrait and name to the card, the rest to the Mood tab), the colony's mood this week as a line of days with
+  its word, Compact or Details as the modes switch, and the strain list the same way; Bonds with List or Web as modes,
+  the sections' counts, each bond's two names, a vendetta's avenger and people, a nemesis's victim and a secret's people
+  as links made with the model; Faiths with a card's name in ink and the faith's own colour on its icon, Asks and Sways
+  as sections with counts and names as links, a believer's name in link ink, other mods' buttons greyed with why not and
+  a line under them; Houses with counts and empty lines. Council: the decrees' filters and order as filter chips, the
+  glance and each kind as folding headings with counts, Enact greyed with the reason as its tooltip and in a line under
+  it (Force below where it can be forced), who asked as a link, the offices' heading with "Call an election" on its
+  right (greyed while one runs), the seats as rows with small acts and their holders as links, the election's seats the
+  same; Ambition with "Plan it" and the meeting's acts greyed with why and its history's names as links; Ways with its
+  bars' ends warm and sour; Wishes with Listen greyed with why (once a day), the asker as links, an envious or objecting
+  colonist's tag a link, the acts at the design's height; Dilemmas with filter chips and counts, the waiting letters as
+  rows with the day they go (never a time left), who answered and the question's names as links. Colony: the overview's
+  tiles with no page colour and a line of their last week each, in the colour of where it went, its graphs in the colour
+  of their week, its cards of lines under headings with names as links; the calendar's "Name a day" greyed with why, a
+  day's menu behind the More icon, a day's name and origin naming the colony's people as links; the chronicle's filters
+  as chips, every colonist an entry names as a link (`ChroniclePanel.TextOf`, which the council's pages share), the
+  words in ink beside the kind's colour on its icon. Planning: the levels' tokens, "Take them all" on the proposals'
+  heading, Add greyed until there is a step; the priorities' and the base's level on its tag and edge with the title in
+  ink and their acts through the kit; the stock, Colony Manager, shopping and building tables with their numbers
+  right-aligned; Making's sections with counts and empty lines; a room plan the colony can't build with its acts greyed
+  with the reason, the rooms at a glance under headings with counts. Defense: the levels' tokens, the lines' acts greyed
+  with why and a line of the reason under them, never refused after the click. The region's views: Faces' Write and
+  History's Clear greyed with why. The cards' why line through the kit; the Almanac's colours as tokens (its own
+  buttons keep its text size; planning a room says why not under it).
+- **Names as links where Rimfolk draws them**: the on-screen panels (`HudPanel.NameLink` and `LinkWords`): the mood
+  board's, health's and work's rows draw the colonist's name as a link (a left click on it opens their card, the
+  floating one, there being no drawer over the map; a preview after a pause; the row's own click and its right-click
+  menu kept for the rest of it; its tooltip giving way while the preview shows), and the Following panel's lines, which
+  already opened their cards, read as links (`HudLine.thing`); the hover card, whose name is a link where the mouse can
+  reach it, in the corner (`PawnUnderMouse` keeps the card while a button is held over it; beside the mouse the card
+  moves with it and its name stays plain); This week (the journey's travellers and where they go, who a play on the map
+  is about); the council's pages (above). The game's own text stays plain.
+- **Keys** in `Languages/English/Keyed/Rimfolk_Look.xml` (rising, falling, steady, the colony's mood this week, Enact,
+  a step to write first). **Tests**: `Tools/Tests/LookTests.cs` (the token block and its names, the old names as tokens,
+  no colour made outside the block in UiKit and none in any file under UI/ or the pages elsewhere, the accents gone, the
+  grid's measures, the components and their one heading line, the pages without the game's bare buttons and tabs, the
+  filter chips and modes, lines of days, numbers right-aligned, the levels by token, names as links in the panels, the
+  hover card, This week and the council's pages, no bold in the keyed texts); `LayoutTests` at both window sizes as
+  before.
 
 ### A colonist's tabs
 

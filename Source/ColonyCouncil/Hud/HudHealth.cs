@@ -48,9 +48,9 @@ namespace ColonyCouncil
         private const int MaxChipLines = 2;
 
         // The colours of what the words mean (HealthTone): green and red as everywhere, a clear yellow between them.
-        private static readonly Color Yellow = new Color(0.9f, 0.84f, 0.36f);
-        private static readonly Color LabelQuiet = new Color(0.85f, 0.85f, 0.85f);
-        private static readonly Color PassingBar = new Color(0.56f, 0.73f, 0.96f, 0.9f);
+        private static readonly Color Yellow = UiKit.Soon;
+        private static readonly Color LabelQuiet = UiKit.Faint;
+        private static readonly Color PassingBar = UiKit.WithAlpha(UiKit.Cool, 0.9f);
 
         private sealed class Row
         {
@@ -869,7 +869,7 @@ namespace ColonyCouncil
             else if (it.facts.chronic && it.facts.Grave) notes.Add(GraveFact(it));
             else if (it.daysLeft >= 0f) notes.Add("CC_Pnl_H_PassesIn".Translate(Days(it.daysLeft)).Resolve());
             if (notes.Count > 0) line += ": " + string.Join(", ", notes);
-            return line.Colorize(HudKit.ColorOf(it.score, new Color(0.85f, 0.85f, 0.85f)));
+            return line.Colorize(HudKit.ColorOf(it.score, UiKit.Faint));
         }
 
         /// <summary>The row's tooltip: their health and pain as the Health tab says them, the bleeding, and each condition in full.</summary>
@@ -1045,13 +1045,14 @@ namespace ColonyCouncil
                 float sw = Mathf.Min(HudKit.Width(row.status, main) + 4f, rr.width * 0.5f);
                 HudKit.Label(new Rect(right - sw, topY, sw, topH), row.status, row.statusColor, main, TextAnchor.MiddleRight);
                 float nx = row.visual && row.health >= 0f ? DrawHealthMark(x, topY, topH, row, s) : x;
-                HudKit.Label(new Rect(nx, topY, Mathf.Max(0f, right - sw - 4f - nx), topH), row.name, level >= HudLevel.Life ? UiKit.Bad : Color.white, main);
+                // Their name leads to their card (the rest of the row to them on the map, the Health tab).
+                NameLink(new Rect(nx, topY, Mathf.Max(0f, right - sw - 4f - nx), topH), row.name, row.pawn, main, level >= HudLevel.Life ? UiKit.Sour : (Color?)null);
                 bool overItem = false;
                 if (each) overItem = DrawLines(new Rect(x, rr.y + line1, right - x, rh - line1), row, s);
                 else if (chips && row.chips.Count > 0) overItem = DrawChips(new Rect(x, rr.y + line1 - 1f, Mathf.Max(0f, right - x), rh - line1 + 1f), row, s, minor);
                 // On a chip or a condition's line its own tooltip shows instead of the whole row's.
                 var data = row;
-                if (!overItem) Tip(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E1);
+                if (!overItem && Previews.Shown.IsNone) Tip(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E1);
                 if (Clicked(rr)) Click(row.pawn);
             }
             if (moreText != null)

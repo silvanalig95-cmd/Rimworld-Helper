@@ -113,6 +113,10 @@ namespace ColonyCouncil
         {
             var map = Find.CurrentMap;
             if (map == null || WorldRendererUtility.WorldSelected) return null;
+            // In the corner, the card itself may be under the mouse, a button held to click the name on it: keep showing whom
+            // it was showing.
+            var onCard = Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted);
+            if (onCard != null && onCard.ID == -WindowId) return target != null && target.Map == map && Fits(target) ? target : null;
             // Not while a button is held (dragging a box, the camera, a panel), placing or targeting something, or with a menu open.
             if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) return null;
             if (Find.Selector?.dragBox != null && Find.Selector.dragBox.IsValidAndActive) return null;
@@ -285,7 +289,23 @@ namespace ColonyCouncil
                     HudKit.Heading(new Rect(x + w - numW - aw - 2f, y + (ps - aw) / 2f, aw, aw), h.now, h.heading);
                     numW += aw + 4f;
                 }
-                HudKit.Label(new Rect(tx, y, Mathf.Max(0f, x + w - numW - tx), ps), c.title, Color.white, titleFont);
+                var titleRect = new Rect(tx, y, Mathf.Max(0f, x + w - numW - tx), ps);
+                // In the corner the card can be reached, so their name there is a link to their card (beside the mouse the
+                // card moves with it and can't be: the name stays plain rather than promise a click it can't take).
+                if (S.hoverPlace == HoverPlace.Corner)
+                {
+                    float nw = Mathf.Min(HudKit.Width(c.title, titleFont) + 2f, titleRect.width);
+                    var hit = new Rect(titleRect.x, titleRect.y, nw, titleRect.height);
+                    bool over = Mouse.IsOver(hit);
+                    HudKit.Label(titleRect, c.title, over ? UiKit.LinkHot : UiKit.Link, titleFont);
+                    LinkText.Underline(hit.x, Mathf.Round(hit.y + (hit.height + HudKit.LineHeight(titleFont)) / 2f - 5f), nw - 3f, over);
+                    if (Widgets.ButtonInvisible(hit, false))
+                    {
+                        Cards.Click();
+                        Cards.Open(ThingRefs.Of(p));
+                    }
+                }
+                else HudKit.Label(titleRect, c.title, Color.white, titleFont);
                 y += ps + Mathf.Round(2f * s);
                 if (S.hoverMood && h != null)
                 {
@@ -301,7 +321,7 @@ namespace ColonyCouncil
                     for (int i = 0; i < c.concerns.Count; i++)
                     {
                         var con = c.concerns[i];
-                        var color = HudKit.ColorOf(con.Level, con.Level == HudLevel.Worth ? new Color(0.9f, 0.9f, 0.9f) : UiKit.Faint);
+                        var color = HudKit.ColorOf(con.Level, con.Level == HudLevel.Worth ? UiKit.Ink : UiKit.Faint);
                         if (con.icon != null) UiKit.Icon(new Rect(x, y + (line - icon) / 2f, icon, icon), con.icon, color);
                         var tr = new Rect(x + icon + 5f, y, w - icon - 5f, line);
                         bool below = i < c.actBelow.Count && c.actBelow[i];

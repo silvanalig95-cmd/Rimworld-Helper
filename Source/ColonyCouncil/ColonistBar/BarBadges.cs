@@ -36,7 +36,7 @@ namespace ColonyCouncil
 
         private static readonly Color Backing = new Color(0.06f, 0.06f, 0.07f, 0.62f);
         private static readonly Color BackingHover = new Color(0.12f, 0.12f, 0.13f, 0.88f);
-        private static readonly Color StrainWorn = new Color(0.94f, 0.62f, 0.68f);
+        private static readonly Color StrainWorn = UiKit.Sour;
 
         /// <summary>Seconds between two looks at one colonist.</summary>
         public const float RefreshSeconds = 1f;

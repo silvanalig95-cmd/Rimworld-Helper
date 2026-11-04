@@ -53,7 +53,7 @@ namespace ColonyCouncil
         private readonly Dictionary<string, string> countText = new Dictionary<string, string>();
         private string countEditing;
 
-        private static readonly Color Accent = new Color(0.8f, 0.86f, 0.7f);
+        private static readonly Color Accent = UiKit.Heading;
         private const int HourTicks = GenDate.TicksPerHour;
         private const string CountControl = "CC_JourneyCount_";
         private static readonly Regex Digits = new Regex("^[0-9]*$");
@@ -691,7 +691,7 @@ namespace ColonyCouncil
         {
             const float h = 30f;
             UiKit.Zebra(new Rect(0f, y, w, h), index);
-            GUI.color = new Color(1f, 1f, 1f, 0.45f);
+            GUI.color = UiKit.WithAlpha(UiKit.Ink, 0.45f);
             Widgets.ThingIcon(new Rect(8f, y + 5f, 20f, 20f), line.def);
             GUI.color = Color.white;
             var back = new Rect(w - 112f, y + 3f, 110f, 24f);
@@ -981,7 +981,7 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static class JourneyPanel
     {
-        private static readonly Color Accent = new Color(0.8f, 0.86f, 0.7f);
+        private static readonly Color Accent = UiKit.Heading;
 
         static JourneyPanel()
         {

@@ -200,7 +200,7 @@ namespace ColonyCouncil
                 fit++;
             }
             var strip = new Rect(r.x, r.yMax - 22f, Mathf.Min(r.width, used + 4f), 22f);
-            Widgets.DrawBoxSolid(strip, new Color(0f, 0f, 0f, 0.62f));
+            Widgets.DrawBoxSolid(strip, Shade);
             float x = strip.x + 8f;
             for (int i = 0; i < fit; i++)
             {
@@ -285,7 +285,7 @@ namespace ColonyCouncil
         {
             bool over = Mouse.IsOver(r);
             Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
-            LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Color.white : Faint, GameFont.Tiny);
+            LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Ink : Faint, GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             if (!Widgets.ButtonInvisible(r, false)) return false;
             SoundDefOf.Click.PlayOneShotOnCamera();

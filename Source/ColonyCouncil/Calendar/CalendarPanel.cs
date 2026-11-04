@@ -19,30 +19,24 @@ namespace ColonyCouncil
         private static Vector2 scroll;
         private static float height = 600f;
 
-        private static readonly Color FeastColor = new Color(1f, 0.83f, 0.47f);
-        private static readonly Color RestColor = new Color(0.56f, 0.73f, 0.96f);
-        private static readonly Color GamesColor = new Color(0.52f, 0.85f, 0.5f);
-        private static readonly Color BonfireColor = new Color(1f, 0.6f, 0.35f);
-        private static readonly Color GiftsColor = new Color(0.9f, 0.62f, 0.85f);
-        private static readonly Color HuntColor = new Color(0.72f, 0.66f, 0.45f);
-        private static readonly Color PlantingColor = new Color(0.62f, 0.8f, 0.42f);
-        private static readonly Color FaithColor = new Color(0.78f, 0.72f, 1f);
-        private static readonly Color WalkColor = new Color(0.62f, 0.78f, 0.74f);
-
+        /// <summary>
+        /// How a day is kept, by the interface's tokens (UI/UiKit.cs): the colony's own ways of keeping a day gold, a day of
+        /// remembrance quiet. The way's word on its tag says which it is; colour carries meaning only.
+        /// </summary>
         public static Color WayColor(DayWay way)
         {
             switch (way)
             {
-                case DayWay.Feast: return FeastColor;
-                case DayWay.Remembrance: return UiKit.LossColor;
-                case DayWay.Rest: return RestColor;
-                case DayWay.Games: return GamesColor;
-                case DayWay.Bonfire: return BonfireColor;
-                case DayWay.Gifts: return GiftsColor;
-                case DayWay.Hunt: return HuntColor;
-                case DayWay.Planting: return PlantingColor;
-                case DayWay.Faith: return FaithColor;
-                case DayWay.Walk: return WalkColor;
+                case DayWay.Remembrance: return UiKit.Faint;
+                case DayWay.Feast:
+                case DayWay.Rest:
+                case DayWay.Games:
+                case DayWay.Bonfire:
+                case DayWay.Gifts:
+                case DayWay.Hunt:
+                case DayWay.Planting:
+                case DayWay.Faith:
+                case DayWay.Walk: return UiKit.Gold;
                 default: return UiKit.Faint;
             }
         }
@@ -89,43 +83,44 @@ namespace ColonyCouncil
             string stat = map != null ? "CC_Cal_Today".Translate(ColonyCalendar.DateText(today, map)).Resolve() : null;
             const float buttonW = 150f;
             float top = UiKit.PageHeader(rect, Icon, "CC_Cal_Title".Translate(), "CC_UI_Sub_Calendar".Translate(), stat, null, buttonW + 10f);
-            var button = new Rect(rect.xMax - buttonW, rect.y + 6f, buttonW, 30f);
+            var button = new Rect(rect.xMax - buttonW, rect.y + 6f, buttonW, UiKit.RowStandard);
             bool full = cal.days.Count(d => d.byPlayer) >= CalendarMath.MaxNamedDays;
-            if (Widgets.ButtonText(button, "CC_Cal_NameDay".Translate(), active: !full && map != null))
+            // Greyed with why not (the calendar is full) rather than refused.
+            string whyNot = full ? "CC_Cal_NameDay_Full".Translate(CalendarMath.MaxNamedDays).ToString() : map == null ? "CC_NoHomeMap".Translate().ToString() : null;
+            if (UiKit.ActButton(button, "CC_Cal_NameDay".Translate(), whyNot, "CC_Cal_NameDay_Tip".Translate()))
                 Find.WindowStack.Add(new Dialog_CalendarDay(null, cal));
-            TooltipHandler.TipRegion(button, full ? "CC_Cal_NameDay_Full".Translate(CalendarMath.MaxNamedDays) : "CC_Cal_NameDay_Tip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
             float w = view.width;
-            if (!ColonyCalendar.On) y += UiKit.Paragraph(0f, y, w, "CC_Cal_Off".Translate(), UiKit.Warn) + 8f;
+            if (!ColonyCalendar.On) y += UiKit.Paragraph(0f, y, w, "CC_Cal_Off".Translate(), UiKit.Soon) + 8f;
             y += UiKit.Paragraph(0f, y, w, "CC_Cal_Intro".Translate(CalendarMath.TraditionAfter), UiKit.Faint) + 10f;
 
             // The days, soonest first; the first snow, which has no date, last.
             var rows = UiCache.Get(cal, 4101, () => Rows(cal, map, today));
-            y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Days".Translate(), Icon, null, "CC_Cal_DaysCount".Translate(rows.Count).Resolve());
+            y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Days".Translate(), rows.Count, Icon);
             int index = 0;
             // Election day, while an election is under way: once, not every year (Offices/OfficesElection.cs).
             y += DrawElection(0f, y, w, index);
             if (ColonyView.Current?.offices?.election != null) index++;
             if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
             foreach (var r in rows) y += DrawDay(r, 0f, y, w, index++);
-            y += 14f;
+            y += UiKit.SectionGap;
 
             // The council's seasonal customs (traditions grown from the dilemmas).
             var customs = UiCache.Get(cal, 4102, Customs);
-            y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Customs".Translate(), Icons.Ways);
-            if (customs.Count == 0) y += UiKit.Paragraph(4f, y, w - 4f, "CC_Cal_NoCustoms".Translate(), UiKit.Faint) + 6f;
+            y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Customs".Translate(), customs.Count, Icons.Ways);
+            if (customs.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), "CC_Cal_NoCustoms".Translate());
+                y += UiKit.RowDense + 8f;
+            }
             foreach (var (label, tip) in customs)
             {
-                var r = new Rect(0f, y, w, 26f);
-                UiKit.Zebra(r, index++);
-                UiKit.Icon(new Rect(4f, y + 4f, 16f, 16f), Icons.Ways, UiKit.Gold);
-                UiKit.LabelFit(new Rect(26f, y, w - 30f, 26f), label, Color.white);
-                TooltipHandler.TipRegion(r, tip);
-                y += 26f;
+                UiKit.Row(new Rect(0f, y, w, UiKit.RowStandard), index++, label, UiKit.Ink, null, null, null, Icons.Ways, UiKit.Gold, null, null, tip);
+                y += UiKit.RowStandard;
             }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
@@ -136,6 +131,8 @@ namespace ColonyCouncil
         {
             public CalendarDay day;
             public string date, when, name, origin, way, wayTip, status, statusTip;
+            /// <summary>The name and where it came from as drawn: the colony's people they name as links.</summary>
+            public string nameShown, originShown;
             public Color statusColor;
             public bool soon;
         }
@@ -143,6 +140,7 @@ namespace ColonyCouncil
         private static List<Row> Rows(ColonyCalendar cal, Map map, int today)
         {
             var list = new List<Row>();
+            var people = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists;
             foreach (var d in cal.days.OrderBy(d => d.kind == CalendarKind.FirstSnow ? 999 : CalendarMath.DaysUntil(today, d.day)).ThenByDescending(d => d.Standing))
             {
                 int until = CalendarMath.DaysUntil(today, d.day);
@@ -171,8 +169,10 @@ namespace ColonyCouncil
                 {
                     r.status = "CC_Cal_Pill_Kept".Translate(d.keptYears).Resolve();
                     r.statusTip = "CC_Cal_Pill_Kept_Tip".Translate(CalendarMath.YearsToTradition(d.keptYears, false)).Resolve();
-                    r.statusColor = UiKit.Good;
+                    r.statusColor = UiKit.Done;
                 }
+                r.nameShown = PaneLinks.Mark(r.name, people);
+                r.originShown = PaneLinks.Mark(r.origin, people);
                 list.Add(r);
             }
             return list;
@@ -192,7 +192,7 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(x + 32f, y + 3f, dateW, 22f), OfficeTracker.ElectionDay(e), UiKit.Gold);
             float nx = x + 32f + dateW + 8f;
             string name = (e.ceremony ? "CC_Elect_Cal_Ceremony" : "CC_Elect_Cal_Day").Translate();
-            UiKit.LabelFit(new Rect(nx, y + 3f, w - nx - 8f, 22f), name, Color.white);
+            UiKit.LabelFit(new Rect(nx, y + 3f, w - nx - 8f, 22f), name, UiKit.Ink);
             UiKit.LabelFit(new Rect(nx, y + 25f, w - nx - 8f, 18f), (e.ceremony ? "CC_Elect_Cal_CeremonyNote" : "CC_Elect_Cal_Note").Translate(), UiKit.Faint, GameFont.Tiny);
             TooltipHandler.TipRegion(r, "CC_Elect_Cal_Tip".Translate());
             if (Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenTab("Decrees");
@@ -220,9 +220,7 @@ namespace ColonyCouncil
             const float menuW = 30f;
             float nx = x + 32f + dateW + 8f;
             float nw = w - (nx - x) - menuW - 8f;
-            Text.Font = GameFont.Tiny;
-            float oh = row.origin.NullOrEmpty() ? 0f : Text.CalcHeight(row.origin, nw);
-            Text.Font = GameFont.Small;
+            float oh = row.origin.NullOrEmpty() ? 0f : LinkText.Height(row.originShown ?? row.origin, nw, GameFont.Tiny);
             float h = Mathf.Max(48f, 28f + oh + 6f);
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index);
@@ -236,24 +234,16 @@ namespace ColonyCouncil
             // The name, how it's kept, and how close it is to a tradition.
             Text.Font = GameFont.Small;
             float nameW = Mathf.Min(Text.CalcSize(row.name).x + 4f, nw * 0.55f);
-            UiKit.LabelFit(new Rect(nx, y + 3f, nameW, 22f), row.name, Color.white);
+            LinkText.Line(new Rect(nx, y + 3f, nameW, 22f), row.nameShown ?? row.name, UiKit.Ink);
             float px = nx + nameW + 8f;
             px += UiKit.Pill(px, y + 5f, row.way, WayColor(d.way), null, row.wayTip) + 4f;
             if (row.status != null) px += UiKit.Pill(px, y + 5f, row.status, row.statusColor, d.tradition ? Icons.Ways : null, row.statusTip) + 4f;
-            if (d.byPlayer) UiKit.Pill(px, y + 5f, "CC_Cal_Pill_Named".Translate(), UiKit.Info);
-            if (oh > 0f)
-            {
-                Text.Font = GameFont.Tiny;
-                GUI.color = UiKit.Faint;
-                Widgets.Label(new Rect(nx, y + 27f, nw, oh + 2f), row.origin);
-                GUI.color = Color.white;
-                Text.Font = GameFont.Small;
-            }
+            if (d.byPlayer) UiKit.Pill(px, y + 5f, "CC_Cal_Pill_Named".Translate(), UiKit.Gold);
+            if (oh > 0f) LinkText.Draw(new Rect(nx, y + 27f, nw, oh + 2f), row.originShown ?? row.origin, UiKit.Faint, GameFont.Tiny);
 
-            // What can be done with it.
-            var menu = new Rect(x + w - menuW - 4f, y + 6f, menuW, 24f);
-            if (Widgets.ButtonText(menu, "...")) Find.WindowStack.Add(new FloatMenu(Options(d)));
-            TooltipHandler.TipRegion(menu, "CC_Cal_Menu_Tip".Translate());
+            // What can be done with it: the More icon's menu.
+            var menu = new Rect(x + w - menuW - 4f, y + 6f, 24f, 24f);
+            if (UiKit.IconButton(menu, Icons.More, "CC_Cal_Menu_Tip".Translate())) Find.WindowStack.Add(new FloatMenu(Options(d)));
             return h;
         }
 
@@ -449,7 +439,7 @@ namespace ColonyCouncil
                 y += 30f;
             }
 
-            if (Widgets.ButtonText(new Rect(inRect.width / 2f - 80f, inRect.height - 38f, 160f, 34f), (editing == null ? "CC_Cal_Dialog_Add" : "CC_Cal_Dialog_Save").Translate())
+            if (UiKit.ActButton(new Rect(inRect.width / 2f - 80f, inRect.height - 38f, 160f, 34f), (editing == null ? "CC_Cal_Dialog_Add" : "CC_Cal_Dialog_Save").Translate(), null)
                 || KeyBindingDefOf.Accept.KeyDownEvent)
                 Accept();
         }

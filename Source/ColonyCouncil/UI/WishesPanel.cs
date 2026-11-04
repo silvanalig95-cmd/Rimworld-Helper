@@ -12,9 +12,10 @@ namespace ColonyCouncil
     /// </summary>
     public static class WishesPanel
     {
-        private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);
-        private static readonly Color MediumColor = new Color(0.9f, 0.85f, 0.35f);
-        private static readonly Color ProgressColor = new Color(0.56f, 0.73f, 0.96f);
+        // The interface's tokens (UI/UiKit.cs): spoiled and leaving sour, particular soon, a wish's progress under way.
+        private static readonly Color HighColor = UiKit.Sour;
+        private static readonly Color MediumColor = UiKit.Soon;
+        private static readonly Color ProgressColor = UiKit.Cool;
         private static int lastListenTick = -999999;
         private static Vector2 scroll;
         private static float height = 1000f;
@@ -31,6 +32,8 @@ namespace ColonyCouncil
         {
             public float width = -1f, at;
             public string header, quote, details, progressText;
+            /// <summary>The header as drawn: who asks (and for whom) as links to their cards.</summary>
+            public string headerShown;
             public float headerH, quoteH, pillsH, detailsH, height, progress = -1f;
             public List<UiKit.PillSpec> pills = new List<UiKit.PillSpec>();
             public RoomTemplateDef template;
@@ -54,8 +57,9 @@ namespace ColonyCouncil
 
             int now = Find.TickManager.TicksGame;
             bool canListen = now - lastListenTick > GenDate.TicksPerDay;
-            var listenRect = new Rect(rect.xMax - 210f, rect.y + 6f, 210f, 30f);
-            if (Widgets.ButtonText(listenRect, "CC_Listen".Translate(), true, true, canListen))
+            var listenRect = new Rect(rect.xMax - 210f, rect.y + 6f, 210f, UiKit.RowStandard);
+            // Greyed with why not (once a day) rather than refused after the click.
+            if (UiKit.ActButton(listenRect, "CC_Listen".Translate(), canListen ? null : "CC_Listen_Cooldown".Translate().ToString(), "CC_Listen_Tip".Translate()))
             {
                 lastListenTick = now;
                 // In the colony in view.
@@ -63,7 +67,6 @@ namespace ColonyCouncil
                 // direct: the answer to the player's click on "Listen".
                 if (w == null) Messages.Message("CC_Listen_Nothing".Translate(), MessageTypeDefOf.NeutralEvent, false);
             }
-            TooltipHandler.TipRegion(listenRect, canListen ? "CC_Listen_Tip".Translate() : "CC_Listen_Cooldown".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -77,10 +80,10 @@ namespace ColonyCouncil
                 var l = LayoutOf(comp, w, width);
                 // Only cards on screen are drawn.
                 if (y + l.height >= scroll.y && y <= scroll.y + outRect.height) DrawWish(comp, w, l, 0f, y, width);
-                y += l.height + 8f;
+                y += l.height + UiKit.CardGap;
             }
 
-            y += 12f;
+            y += UiKit.SectionGap - UiKit.CardGap;
             y += UiKit.SectionTitle(0f, y, width, "CC_Wishes_Recent".Translate(), Icons.Chronicle);
             int shown = 0;
             for (int i = comp.chronicle.Count - 1; i >= 0 && shown < 12; i--)
@@ -90,12 +93,16 @@ namespace ColonyCouncil
                 y += HistoryRow(e, y, width, shown);
                 shown++;
             }
-            if (shown == 0) y += UiKit.Paragraph(4f, y, width, "CC_Overview_Nothing".Translate(), UiKit.Faint) + 4f;
+            if (shown == 0)
+            {
+                UiKit.EmptyLine(new Rect(0f, y, width, UiKit.RowDense + 4f), "CC_Overview_Nothing".Translate());
+                y += UiKit.RowDense + 8f;
+            }
 
             // Promises kept: what was granted and could still be taken away (UI/KeptPanel.cs).
             y += KeptPanel.Draw(comp, y, width);
 
-            y += 16f;
+            y += UiKit.SectionGap;
             y += UiKit.SectionTitle(0f, y, width, "CC_Trust_Header".Translate(), Icons.Trust);
             y += UiKit.Paragraph(0f, y, width, "CC_Trust_Sub".Translate(), UiKit.Faint) + 6f;
             var pawns = UiCache.Get(comp, 61, () => PawnsFinder.AllMaps_FreeColonists.Where(x => !x.IsQuestLodger()).OrderBy(x => comp.standings.TrustOf(x)).ToList(), 0.5f);
@@ -129,8 +136,9 @@ namespace ColonyCouncil
                 "CC_TrustLabel".Translate(("CC_Trust_" + level).Translate())));
             if (w.promised) l.pills.Add(new UiKit.PillSpec("CC_PromisedTag".Translate().CapitalizeFirst(), UiKit.Gold, Icons.Promise, "CC_Promise_Tip".Translate()));
             if (w.stage >= 2) l.pills.Add(new UiKit.PillSpec("CC_LastCallTag".Translate().CapitalizeFirst(), UiKit.Bad, Icons.Warning));
-            if (w.envied != null) l.pills.Add(new UiKit.PillSpec("CC_EnvyTag".Translate(w.envied.LabelShort).CapitalizeFirst(), UiKit.Warn));
-            if (w.objector != null) l.pills.Add(new UiKit.PillSpec("CC_ObjectorTag".Translate(w.objector.LabelShort).CapitalizeFirst(), UiKit.Bad));
+            // Who envies it, who objects: the tag leads to their card.
+            if (w.envied != null) l.pills.Add(new UiKit.PillSpec("CC_EnvyTag".Translate(w.envied.LabelShort).CapitalizeFirst(), UiKit.Soon, null, null, ThingRefs.Of(w.envied)));
+            if (w.objector != null) l.pills.Add(new UiKit.PillSpec("CC_ObjectorTag".Translate(w.objector.LabelShort).CapitalizeFirst(), UiKit.Sour, null, null, ThingRefs.Of(w.objector)));
             if (w.coSigners.Count > 0)
                 l.pills.Add(new UiKit.PillSpec("CC_UI_Pill_Petition".Translate(w.coSigners.Count), UiKit.Info, Icons.People,
                     "CC_Petition".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList()))));
@@ -149,24 +157,25 @@ namespace ColonyCouncil
             l.template = SuggestedTemplate(w);
             l.canBuild = w.thingDef != null && w.thingDef.BuildableByPlayer && Avail.CanBuild(w.thingDef, Find.CurrentMap);
             l.buttons = 2 + (l.template != null ? 1 : 0) + (l.canBuild ? 1 : 0) + (w.promised ? 0 : 1);
+            l.headerShown = PaneLinks.Mark(l.header, w.ForSomeoneElse ? new[] { w.pawn, w.Beneficiary } : new[] { w.pawn });
 
             float textW = TextWidth(w, width);
             Text.Font = GameFont.Small;
-            l.headerH = Text.CalcHeight(l.header, textW);
+            l.headerH = LinkText.Height(l.headerShown, textW);
             l.quoteH = Text.CalcHeight(l.quote, textW);
             l.pillsH = UiKit.Pills(0f, 0f, textW, l.pills, false);
             Text.Font = GameFont.Tiny;
             l.detailsH = Text.CalcHeight(l.details, textW);
             Text.Font = GameFont.Small;
             float textH = 10f + l.headerH + l.quoteH + 4f + l.pillsH + 6f + l.detailsH + 6f + UiKit.MeterHeight + 8f;
-            l.height = Mathf.Max(textH, PortraitSize + 24f, l.buttons * 30f + 12f);
+            l.height = Mathf.Max(textH, PortraitSize + 24f, l.buttons * ButtonStep + 12f);
             layouts[w] = l;
             return l;
         }
 
         private static void DrawWish(CouncilGameComponent comp, Wish w, Layout l, float x, float y, float width)
         {
-            var accent = w.stage >= 2 ? UiKit.Bad : w.promised ? UiKit.Gold : UiKit.WithAlpha(UiKit.Faint, 0.5f);
+            var accent = w.stage >= 2 ? UiKit.Sour : w.promised ? UiKit.Gold : UiKit.WithAlpha(UiKit.Faint, 0.5f);
             var card = new Rect(x, y, width, l.height);
             UiKit.Card(card, accent, false, false);
             // The pin to This week, in the corner: always when pinned, else when the card is under the mouse.
@@ -176,8 +185,14 @@ namespace ColonyCouncil
             // Who asks (and for whom).
             var portrait = new Rect(x + 14f, y + 10f, PortraitSize, PortraitSize);
             UiKit.Portrait(portrait, w.pawn, UiKit.TrustColor(comp.standings.TrustOf(w.pawn)));
-            TooltipHandler.TipRegion(portrait, () => w.pawn.LabelShortCap + "\n\n" + "CC_UI_OpenPage".Translate(), w.id ^ 0x2A11);
-            if (Widgets.ButtonInvisible(portrait)) Cards.Open(w.pawn);
+            var asker = ThingRefs.Of(w.pawn);
+            if (Mouse.IsOver(portrait)) Previews.Hover(asker, portrait);
+            if (Previews.Shown != asker) TooltipHandler.TipRegion(portrait, () => w.pawn.LabelShortCap + "\n\n" + "CC_UI_OpenPage".Translate(), w.id ^ 0x2A11);
+            if (Widgets.ButtonInvisible(portrait))
+            {
+                Cards.Click();
+                Cards.Open(asker);
+            }
             if (w.ForSomeoneElse && w.Beneficiary != null)
             {
                 var small = new Rect(portrait.xMax - 20f, portrait.yMax - 20f, 28f, 28f);
@@ -188,17 +203,17 @@ namespace ColonyCouncil
             float textX = x + TextX;
             float textW = TextWidth(w, width);
             float cy = y + 10f;
-            Widgets.Label(new Rect(textX, cy, textW, l.headerH), l.header);
+            LinkText.Draw(new Rect(textX, cy, textW, l.headerH), l.headerShown ?? l.header, UiKit.Ink);
             cy += l.headerH;
             GUI.color = UiKit.Quote;
             Widgets.Label(new Rect(textX, cy, textW, l.quoteH), l.quote);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             cy += l.quoteH + 4f;
             cy += UiKit.Pills(textX, cy, textW, l.pills) + 6f;
             Text.Font = GameFont.Tiny;
-            GUI.color = new Color(0.85f, 0.85f, 0.85f);
+            GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(textX, cy, textW, l.detailsH), l.details);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             cy += l.detailsH + 6f;
 
@@ -222,7 +237,7 @@ namespace ColonyCouncil
             if (w.thingDef != null)
             {
                 var tr = new Rect(textX + textW + 8f, y + 10f, ThingW - 8f, ThingW - 8f);
-                Widgets.DrawBoxSolid(tr, new Color(0f, 0f, 0f, 0.22f));
+                Widgets.DrawBoxSolid(tr, UiKit.WithAlpha(UiKit.Shade, 0.22f));
                 try
                 {
                     if (Widgets.CanDrawIconFor(w.thingDef)) Widgets.DefIcon(tr.ContractedBy(3f), w.thingDef);
@@ -238,19 +253,22 @@ namespace ColonyCouncil
             DrawButtons(comp, w, l, x + width - ButtonsW, y + 8f);
         }
 
+        /// <summary>A card's acts, one under another: the design's button height and the gap between.</summary>
+        private const float ButtonH = UiKit.RowStandard, ButtonStep = UiKit.RowStandard + 4f;
+
         private static void DrawButtons(CouncilGameComponent comp, Wish w, Layout l, float bx, float by)
         {
             const float bw = ButtonsW - 10f;
-            if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(w.Worker.LookAt(w));
-            by += 30f;
+            if (UiKit.ActButton(new Rect(bx, by, bw, ButtonH), "CC_Show".Translate(), null)) MainTabWindow_Council.Jump(w.Worker.LookAt(w));
+            by += ButtonStep;
             if (l.template != null)
             {
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate())) MainTabWindow_Council.StartPlanning(l.template, true);
-                by += 30f;
+                if (UiKit.ActButton(new Rect(bx, by, bw, ButtonH), "CC_PlanIt".Translate(), null)) MainTabWindow_Council.StartPlanning(l.template, true);
+                by += ButtonStep;
             }
             if (l.canBuild)
             {
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), UiKit.Fit("CC_BuildThing".Translate(w.thingDef.label), bw - 10f)))
+                if (UiKit.ActButton(new Rect(bx, by, bw, ButtonH), "CC_BuildThing".Translate(w.thingDef.label), null))
                 {
                     var des = BuildCopyCommandUtility.FindAllowedDesignator(w.thingDef);
                     if (des != null)
@@ -259,23 +277,17 @@ namespace ColonyCouncil
                         Find.DesignatorManager.Select(des);
                     }
                 }
-                by += 30f;
+                by += ButtonStep;
             }
             if (!w.promised)
             {
-                var pr = new Rect(bx, by, bw, 26f);
-                if (Widgets.ButtonText(pr, "CC_Promise".Translate())) comp.Promise(w);
-                TooltipHandler.TipRegion(pr, "CC_Promise_Tip".Translate());
-                by += 30f;
+                if (UiKit.ActButton(new Rect(bx, by, bw, ButtonH), "CC_Promise".Translate(), null, "CC_Promise_Tip".Translate())) comp.Promise(w);
+                by += ButtonStep;
             }
             float half = (bw - 2f) / 2f;
-            var refuse = new Rect(bx, by, half, 26f);
-            if (Widgets.ButtonText(refuse, "CC_Refuse".Translate()))
+            if (UiKit.ActButton(new Rect(bx, by, half, ButtonH), "CC_Refuse".Translate(), null, "CC_Refuse_Tip".Translate()))
                 Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve(), () => comp.Refuse(w), true));
-            TooltipHandler.TipRegion(refuse, "CC_Refuse_Tip".Translate());
-            var notNow = new Rect(bx + half + 2f, by, half, 26f);
-            if (Widgets.ButtonText(notNow, "CC_NotNow".Translate())) comp.Dismiss(w);
-            TooltipHandler.TipRegion(notNow, "CC_NotNow_Tip".Translate());
+            if (UiKit.ActButton(new Rect(bx + half + 2f, by, half, ButtonH), "CC_NotNow".Translate(), null, "CC_NotNow_Tip".Translate())) comp.Dismiss(w);
         }
 
         private static RoomTemplateDef SuggestedTemplate(Wish w)
@@ -323,15 +335,14 @@ namespace ColonyCouncil
         {
             const float dateW = 64f;
             Text.Font = GameFont.Small;
-            float h = Mathf.Max(24f, Text.CalcHeight(e.text, width - dateW - 28f) + 4f);
+            float h = Mathf.Max(24f, LinkText.Height(ChroniclePanel.TextOf(e, CouncilGameComponent.Instance), width - dateW - 28f) + 4f);
             var r = new Rect(0f, y, width, h);
             UiKit.Zebra(r, i);
             var color = UiKit.ChronicleColor(e.kind);
             UiKit.LabelFit(new Rect(4f, y + 2f, dateW - 6f, 20f), MainTabWindow_Council.AgoString(e.tick), UiKit.Faint, GameFont.Tiny);
-            UiKit.Icon(new Rect(dateW, y + 4f, 14f, 14f), e.kind == ChronicleKind.WishGranted ? Icons.Promise : Icons.Wishes, color);
-            GUI.color = color;
-            Widgets.Label(new Rect(dateW + 22f, y + 2f, width - dateW - 28f, h - 4f), e.text);
-            GUI.color = Color.white;
+            UiKit.Icon(new Rect(dateW, y + 4f, UiKit.IconDense, UiKit.IconDense), e.kind == ChronicleKind.WishGranted ? Icons.Promise : Icons.Wishes, color);
+            // The kind's colour on its icon; the words in ink with the colonists they name as links.
+            LinkText.Draw(new Rect(dateW + 22f, y + 2f, width - dateW - 28f, h - 4f), ChroniclePanel.TextOf(e, CouncilGameComponent.Instance), color == UiKit.Faint ? UiKit.Faint : UiKit.Ink);
             return h;
         }
 
@@ -345,10 +356,10 @@ namespace ColonyCouncil
             UiKit.Zebra(row, i);
             if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
             // The portrait and name open their page in the People roster (story, goal, bonds, journal).
-            UiKit.PawnChip(4f, y + 2f, p, 24f, true, 170f, null, null);
+            UiKit.PawnChip(4f, y + 2f, p, 24f, true, 170f, null, null, link: true);
             var color = UiKit.TrustColor(trust);
             UiKit.Bar(new Rect(184f, y + 10f, 150f, 8f), (trust + 100f) / 200f, color);
-            Widgets.DrawBoxSolid(new Rect(184f + 75f, y + 8f, 1f, 12f), new Color(1f, 1f, 1f, 0.3f));
+            Widgets.DrawBoxSolid(new Rect(184f + 75f, y + 8f, 1f, 12f), UiKit.WithAlpha(UiKit.Ink, 0.3f));
             UiKit.LabelFit(new Rect(342f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate().CapitalizeFirst(), color);
             float x = 448f;
             if (Settings.risingStandards && width - x > 60f)

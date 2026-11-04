@@ -19,6 +19,11 @@ namespace ColonyCouncil
         public float score;
         public Action click;
         public Color quiet = UiKit.Faint;
+        /// <summary>
+        /// The thing the line names, when its click opens that thing's card (the Following panel): its words are then a
+        /// link (link ink, the dotted line, a preview after a pause).
+        /// </summary>
+        public ThingRef thing;
 
         public HudLevel Level => HudRank.LevelOf(score);
         public Color Color => HudKit.ColorOf(score, quiet);
@@ -115,11 +120,14 @@ namespace ColonyCouncil
                 {
                     float vw = l.value.NullOrEmpty() ? 0f : Mathf.Min(HudKit.Width(l.value, main) + 4f, row.width * 0.45f);
                     if (vw > 0f) HudKit.Label(new Rect(row.xMax - vw - 2f, row.y, vw, rh), l.value, level >= HudLevel.Soon ? c : Color.white, main, TextAnchor.MiddleRight);
-                    HudKit.Label(new Rect(x, row.y, Mathf.Max(0f, row.xMax - vw - 6f - x), rh), l.text, level >= HudLevel.Soon ? c : l.quiet, main);
+                    var tr = new Rect(x, row.y, Mathf.Max(0f, row.xMax - vw - 6f - x), rh);
+                    if (!l.thing.IsNone && level < HudLevel.Soon) LinkWords(tr, l.text, l.thing, main);
+                    else HudKit.Label(tr, l.text, level >= HudLevel.Soon ? c : l.quiet, main);
                 }
                 var line = l;
                 string full = compact ? l.text + (l.tip.NullOrEmpty() ? "" : "\n\n" + l.tip) : l.tip;
-                if (!full.NullOrEmpty()) Tip(row, full);
+                // A line that is a link shows its preview instead of its tooltip while the preview shows.
+                if (!full.NullOrEmpty() && (l.thing.IsNone || Previews.Shown != l.thing)) Tip(row, full);
                 if (Clicked(row))
                 {
                     if (Event.current.button == 1) OpenMenu();

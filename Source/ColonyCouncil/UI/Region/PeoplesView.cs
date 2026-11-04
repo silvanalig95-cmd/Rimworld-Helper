@@ -175,7 +175,7 @@ namespace ColonyCouncil
             // The acts at the right: their history, and what the colony can do with them now.
             float right = card.xMax - 10f;
             var hist = new Rect(right - HistoryW, y, HistoryW, 24f);
-            if (Widgets.ButtonText(hist, "CC_Peoples_TheirHistory".Translate())) WorldHistoryPage.ShowFor(Refs.Of(r.f), Ref.None);
+            if (UiKit.ActButton(hist, "CC_Peoples_TheirHistory".Translate(), null)) WorldHistoryPage.ShowFor(Refs.Of(r.f), Ref.None);
             TooltipHandler.TipRegion(hist, "CC_Peoples_TheirHistoryTip".Translate(r.f.Name.Named("PEOPLE")));
             right = hist.x - 6f;
             if (r.dip != null)

@@ -26,6 +26,9 @@ namespace ColonyCouncil
         private static readonly Color32 CHome = new Color32(70, 98, 58, 255);
         private static readonly Color32 CWater = new Color32(40, 76, 120, 255);
         private static readonly Color32 CWall = new Color32(200, 200, 200, 255);
+        /// <summary>Walls and doors as the little map draws them, for its legend.</summary>
+        public static Color WallColor => CWall;
+        public static Color DoorColor => CDoor;
         private static readonly Color32 CDoor = new Color32(115, 190, 255, 255);
         private static readonly Color32 CRoom = new Color32(96, 96, 92, 255);
 
@@ -76,7 +79,7 @@ namespace ColonyCouncil
             if (hov != null && findingBounds.TryGetValue(hov, out var fb))
             {
                 var box = new Rect(r.x + (fb.minX - bounds.minX) * scale - 2f, r.yMax - (fb.maxZ + 1 - bounds.minZ) * scale - 2f, fb.Width * scale + 4f, fb.Height * scale + 4f);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 Widgets.DrawBox(box, 2);
             }
             if (!Mouse.IsOver(r)) return r;
@@ -121,7 +124,7 @@ namespace ColonyCouncil
                 Widgets.DrawBoxSolid(new Rect(lx, ly + 5f, 10f, 8f), c);
                 GUI.color = UiKit.Faint;
                 Widgets.Label(new Rect(lx + 14f, ly, tw + 4f, 18f), text);
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
                 lx += 14f + tw + 12f;
             }
             Text.Font = GameFont.Small;

@@ -31,11 +31,8 @@ namespace ColonyCouncil
         private static readonly Folds folds = new Folds();
         private static readonly Dictionary<(string, int, GameFont), float> heights = new Dictionary<(string, int, GameFont), float>();
 
-        private static readonly Color CriticalColor = new Color(0.9f, 0.3f, 0.25f);
-        private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);
-        private static readonly Color MediumColor = new Color(0.9f, 0.85f, 0.35f);
-        private static readonly Color LowColor = new Color(0.65f, 0.65f, 0.65f);
-        private static readonly Color IdeaColor = new Color(0.45f, 0.7f, 0.95f);
+        /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
+        private static readonly Color HighColor = UiKit.Soon;
 
         private const float LeftW = 330f;
         private const float Gap = 14f;
@@ -81,7 +78,7 @@ namespace ColonyCouncil
             var m = model;
             float top = UiKit.PageHeader(rect, Icons.Defenses ?? Icons.CatDefense, "CC_Def_Header".Translate(), "CC_Def_Sub".Translate(), m.stat, null, 300f);
             var again = new Rect(rect.xMax - 140f, rect.y + 6f, 140f, 26f);
-            if (Widgets.ButtonText(again, "CC_Def_SurveyAgain".Translate()))
+            if (UiKit.ActButton(again, "CC_Def_SurveyAgain".Translate(), null))
             {
                 DefenseSurvey.For(map, true);
                 modelAt = -1f;
@@ -118,7 +115,7 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 
@@ -231,10 +228,11 @@ namespace ColonyCouncil
             DrawMiniMap(s, area);
             Text.Font = GameFont.Tiny;
             float lx = x + 10f;
-            lx = Legend(lx, y + mapH + 14f, new Color(0.95f, 0.3f, 0.25f), "CC_Def_Legend_Ways".Translate());
-            lx = Legend(lx, y + mapH + 14f, new Color(1f, 0.9f, 0.3f), "CC_Def_Legend_Gaps".Translate());
-            lx = Legend(lx, y + mapH + 14f, new Color(0.45f, 0.75f, 1f), "CC_Def_Legend_Gates".Translate());
-            Legend(lx, y + mapH + 14f, new Color(0.55f, 0.8f, 0.45f), "CC_Def_Legend_Home".Translate());
+            // The little map's own colours (a picture's colours, as the region map's land is).
+            lx = Legend(lx, y + mapH + 14f, CWay, "CC_Def_Legend_Ways".Translate());
+            lx = Legend(lx, y + mapH + 14f, CGap, "CC_Def_Legend_Gaps".Translate());
+            lx = Legend(lx, y + mapH + 14f, CDoor, "CC_Def_Legend_Gates".Translate());
+            Legend(lx, y + mapH + 14f, CHome, "CC_Def_Legend_Home".Translate());
             Text.Font = GameFont.Small;
             y += boxH + SectionGap;
             y = Facts(x, y, w, "CC_Def_Card_From".Translate(), "from", m.from) + SectionGap;
@@ -254,7 +252,7 @@ namespace ColonyCouncil
             float tw = Text.CalcSize(text).x;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 14f, y - 2f, tw + 4f, 18f), text);
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             return x + 14f + tw + 12f;
         }
 
@@ -284,7 +282,7 @@ namespace ColonyCouncil
             {
                 float lh = Measure(l, textW, GameFont.Tiny);
                 Widgets.DrawBoxSolid(new Rect(x + 3f, y + 6f, 3f, 3f), UiKit.HeaderColor);
-                LinkText.Draw(new Rect(x + 12f, y, textW, lh), l, Color.white, GameFont.Tiny);
+                LinkText.Draw(new Rect(x + 12f, y, textW, lh), l, UiKit.Ink, GameFont.Tiny);
                 y += lh + 3f;
             }
             Text.Font = GameFont.Small;
@@ -412,17 +410,7 @@ namespace ColonyCouncil
             return y;
         }
 
-        private static Color LevelColor(AdviceLevel l)
-        {
-            switch (l)
-            {
-                case AdviceLevel.Critical: return CriticalColor;
-                case AdviceLevel.High: return HighColor;
-                case AdviceLevel.Medium: return MediumColor;
-                case AdviceLevel.Low: return LowColor;
-                default: return IdeaColor;
-            }
-        }
+        private static Color LevelColor(AdviceLevel l) => UiKit.LevelColor(l);
 
         /// <summary>A piece of advice as a row: its level, what to do and why, and its acts at the right, each greyed with why when it can't be done.</summary>
         private static float AdviceCard(DefenseAdviceItem a, DefenseSurvey s, float x, float y, float w)
@@ -441,16 +429,17 @@ namespace ColonyCouncil
             if (a.done)
             {
                 UiKit.Pill(x + 10f, y + 10f, "CC_Def_Done_Pill".Translate(), UiKit.Done, null, null, 84f);
-                GUI.color = new Color(1f, 1f, 1f, 0.6f);
+                GUI.color = UiKit.WithAlpha(UiKit.Ink, 0.6f);
             }
             else UiKit.Pill(x + 10f, y + 10f, (a.standing ? "CC_Def_Standing_Pill" : "CC_Level_" + a.Level).Translate(), color, a.Level >= AdviceLevel.High ? Icons.Warning : null, null, 84f);
-            GUI.color = a.done ? UiKit.Faint : color;
+            // The level's colour on its tag and the card's edge, beside the words; the title in ink.
+            GUI.color = a.done ? UiKit.Faint : UiKit.Ink;
             Widgets.Label(new Rect(textX, y + 6f, textW, titleH), a.title);
-            GUI.color = a.done ? UiKit.Dim : Color.white;
+            GUI.color = a.done ? UiKit.Dim : UiKit.Ink;
             Text.Font = GameFont.Tiny;
             Widgets.Label(new Rect(textX, y + 6f + titleH, textW, whyH), a.why);
             Text.Font = GameFont.Small;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
 
             float bx = x + w - ButtonsW - 6f, by = y + 6f;
             if (a.template != null && !a.done)
@@ -508,21 +497,21 @@ namespace ColonyCouncil
             var r = new Rect(x, y, w, h);
             UiKit.Card(r, reason != null ? UiKit.WithAlpha(HighColor, 0.5f) : (Color?)null, false, false);
             var ir = new Rect(x + 8f, y + 6f, icon, icon);
-            Widgets.DrawBoxSolid(ir, new Color(0f, 0f, 0f, 0.25f));
-            GUI.color = reason == null ? Color.white : new Color(1f, 1f, 1f, 0.4f);
+            Widgets.DrawBoxSolid(ir, UiKit.WithAlpha(UiKit.Shade, 0.25f));
+            GUI.color = reason == null ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.4f);
             if (t.Icon != null) GUI.DrawTexture(ir.ContractedBy(4f), t.Icon);
-            GUI.color = reason == null ? Color.white : UiKit.Faint;
+            GUI.color = reason == null ? UiKit.Ink : UiKit.Faint;
             Widgets.Label(new Rect(textX, y + 6f, textW, titleH), title);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(textX, y + 6f + titleH, textW, purposeH), purpose);
             if (lineH > 0f)
             {
-                GUI.color = reason != null ? HighColor : new Color(0.85f, 0.85f, 0.85f);
+                GUI.color = reason != null ? HighColor : UiKit.Faint;
                 Widgets.Label(new Rect(textX, y + 6f + titleH + purposeH + 2f, textW, lineH), line);
             }
             Text.Font = GameFont.Small;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             float bx = x + w - ButtonsW - 6f;
             if (UiKit.ActButton(new Rect(bx, y + 6f, ButtonsW, 24f), "CC_Build_Plan".Translate(), reason)) Designator_PlanDefense.Begin(t, false);
             bool spot = s.chokes.Count > 0 || s.approach.IsValid || t.placeAt == "core";

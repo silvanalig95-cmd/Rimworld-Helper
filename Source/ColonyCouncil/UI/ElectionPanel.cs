@@ -30,26 +30,23 @@ namespace ColonyCouncil
             foreach (var race in e.races.ToList())
             {
                 string seat = race.office.Seats > 1 ? "CC_Office_Seat".Translate(race.office.LabelCap, race.seat + 1).Resolve() : race.office.LabelCap.ToString();
-                var head = new Rect(0f, y, width, 26f);
+                var head = new Rect(0f, y, width, UiKit.RowStandard);
                 UiKit.Zebra(head, i++);
-                UiKit.LabelFit(new Rect(6f, y, width * 0.4f, 26f), seat, UiKit.HeaderColor);
+                UiKit.LabelFit(new Rect(6f, y, width * 0.4f, UiKit.RowStandard), seat, UiKit.Heading);
+                // The council's hand, while it may step in: a row's small acts.
                 if (hand)
                 {
-                    var off = new Rect(width - 130f, y + 2f, 126f, 22f);
-                    if (Widgets.ButtonText(off, "CC_Elect_Panel_CallOff".Translate())) ElectionMenus.CallOff(race);
-                    TooltipHandler.TipRegion(off, "CC_Elect_Panel_CallOffTip".Translate());
-                    if (race.Contested && race.endorsed == null)
-                    {
-                        var back = new Rect(width - 260f, y + 2f, 126f, 22f);
-                        if (Widgets.ButtonText(back, "CC_Elect_Panel_Endorse".Translate())) ElectionMenus.Endorse(race);
-                        TooltipHandler.TipRegion(back, "CC_Elect_Panel_EndorseTip".Translate());
-                    }
+                    if (UiKit.RowAct(new Rect(width - 130f, y + 3f, 126f, 22f), "CC_Elect_Panel_CallOff".Translate(), null, "CC_Elect_Panel_CallOffTip".Translate()))
+                        ElectionMenus.CallOff(race);
+                    if (race.Contested && race.endorsed == null
+                        && UiKit.RowAct(new Rect(width - 260f, y + 3f, 126f, 22f), "CC_Elect_Panel_Endorse".Translate(), null, "CC_Elect_Panel_EndorseTip".Translate()))
+                        ElectionMenus.Endorse(race);
                 }
-                y += 28f;
+                y += UiKit.RowStandard + 2f;
                 if (!race.Contested)
                 {
                     var only = race.entries[0];
-                    UiKit.PawnChip(12f, y + 2f, only.pawn, 24f, true, 200f);
+                    UiKit.PawnChip(12f, y + 2f, only.pawn, 24f, true, 200f, link: true);
                     UiKit.LabelFit(new Rect(220f, y, width - 224f, RowH), "CC_Elect_Panel_Unopposed".Translate(), UiKit.Faint, GameFont.Tiny);
                     y += RowH + 4f;
                     continue;
@@ -59,10 +56,10 @@ namespace ColonyCouncil
                 for (int k = 0; k < race.entries.Count; k++)
                 {
                     var en = race.entries[k];
-                    UiKit.PawnChip(12f, y + 3f, en.pawn, 24f, true, 170f);
+                    UiKit.PawnChip(12f, y + 3f, en.pawn, 24f, true, 170f, link: true);
                     float share = k < poll.Length ? poll[k] / total : 0f;
                     var bar = new Rect(190f, y + 5f, 120f, 8f);
-                    UiKit.Bar(bar, share, race.endorsed == en.pawn ? UiKit.Gold : UiKit.Info);
+                    UiKit.Bar(bar, share, race.endorsed == en.pawn ? UiKit.Gold : UiKit.Cool);
                     UiKit.LabelFit(new Rect(190f, y + 13f, 120f, 16f), "CC_Elect_Panel_Votes".Translate((k < poll.Length ? poll[k] : 0f).ToString("0.#")).Resolve(), UiKit.Faint, GameFont.Tiny);
                     TooltipHandler.TipRegion(new Rect(190f, y, 120f, RowH), "CC_Elect_Panel_PollTip".Translate());
                     float tx = 320f;

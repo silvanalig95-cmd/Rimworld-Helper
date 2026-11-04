@@ -32,7 +32,7 @@ namespace ColonyCouncil
         public override void DoWindowContents(Rect inRect)
         {
             Text.Font = GameFont.Small;
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             label ??= "CC_Tab_Defenses".Translate();
             tabs.Clear();
             tabs.Add(new WindowTab(label, Icon, true, null));
@@ -56,7 +56,7 @@ namespace ColonyCouncil
             {
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 

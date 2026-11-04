@@ -90,6 +90,9 @@ namespace ColonyCouncil
             {
                 if (plan?.map == null) continue;
                 string text = "CC_Inbox_Journey".Translate(JourneyRun.Who(plan).Named("WHO"), plan.Dest.Named("PLACE")).Resolve();
+                // The travellers and the place they go to, as links (made once a second with the page).
+                text = PaneLinks.Mark(text, plan.travellers);
+                if (plan.HasDestination) text = PaneLinks.Mark(text, plan.Dest, ThingRefs.OfTile(plan.DestTile));
                 rows.Add(new WeekRow
                 {
                     icon = Icons.World,
@@ -246,7 +249,7 @@ namespace ColonyCouncil
                         pawn = who,
                         icon = PlayOutText.Icon(p),
                         color = running ? UiKit.Good : Color.white,
-                        text = label,
+                        text = PaneLinks.Mark(label, who),
                         steps = PlaySteps,
                         step = running ? 1 : 0,
                         tip = WeekModel.Tip(body, target.IsValid ? "CC_Week_ClickMap".Translate(who.LabelShort).Resolve() : null),

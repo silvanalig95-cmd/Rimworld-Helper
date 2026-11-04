@@ -9,14 +9,16 @@ namespace ColonyCouncil
     /// <summary>Drawing for the Mood tab and the council's Moods page: a mood bar with the break lines, and mood lines with their why and what to do.</summary>
     public static class MoodView
     {
-        public static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        public static readonly Color GoodColor = new Color(0.45f, 0.85f, 0.45f);
-        public static readonly Color BadColor = new Color(0.95f, 0.45f, 0.35f);
-        public static readonly Color AdviceColor = new Color(1f, 0.88f, 0.6f);
-        private static readonly Color OkColor = new Color(0.35f, 0.6f, 0.4f);
-        private static readonly Color MinorColor = new Color(0.95f, 0.85f, 0.3f);
-        private static readonly Color MajorColor = new Color(0.95f, 0.55f, 0.2f);
-        private static readonly Color ExtremeColor = new Color(0.9f, 0.2f, 0.2f);
+        // The interface's tokens (UI/UiKit.cs): a good mood warm, a bad one sour, what would help gold; the bar fainter warm
+        // while it is fine, then soon, sour and danger as it nears the minor, major and extreme break lines.
+        public static readonly Color Faint = UiKit.Faint;
+        public static readonly Color GoodColor = UiKit.Warm;
+        public static readonly Color BadColor = UiKit.Sour;
+        public static readonly Color AdviceColor = UiKit.Gold;
+        private static readonly Color OkColor = UiKit.WithAlpha(UiKit.Warm, 0.65f);
+        private static readonly Color MinorColor = UiKit.Soon;
+        private static readonly Color MajorColor = UiKit.Sour;
+        private static readonly Color ExtremeColor = UiKit.Danger;
         private const float NumW = 52f;
 
         /// <summary>A line's text and layout, worked out once per refresh rather than every frame.</summary>
@@ -42,7 +44,7 @@ namespace ColonyCouncil
         /// <summary>The mood bar: where they are, where they're heading, and the lines where breaks begin.</summary>
         public static void DrawBar(Rect r, PawnMood m)
         {
-            Widgets.DrawBoxSolid(r, new Color(0.12f, 0.12f, 0.12f, 0.9f));
+            Widgets.DrawBoxSolid(r, UiKit.PortraitBack);
             var color = m.now < m.extreme ? ExtremeColor : m.now < m.major ? MajorColor : m.now < m.minor ? MinorColor : OkColor;
             Widgets.DrawBoxSolid(new Rect(r.x, r.y, r.width * m.now, r.height), color);
             void Mark(float at, Color c, string key)

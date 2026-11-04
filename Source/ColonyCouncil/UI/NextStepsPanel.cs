@@ -31,7 +31,8 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
             y += BuildAheadPanel.Draw(0f, y, view.width, map) + 10f;
-            y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Plan_Off".Translate(), UiKit.Faint) + 8f;
+            UiKit.EmptyLine(new Rect(0f, y, view.width, UiKit.RowStandard), "CC_Plan_Off".Translate());
+            y += UiKit.RowStandard + UiKit.CardGap;
             height = Mathf.Max(y + 20f, outRect.height);
             Widgets.EndScrollView();
         }
@@ -54,14 +55,12 @@ namespace ColonyCouncil
             int open = plan.Count(s => s.Planned);
             string stat = open > 0 ? "CC_Plan_Stat".Translate(open).Resolve() : null;
             float top = UiKit.PageHeader(rect, Icons.Plan, "CC_Plan_Header".Translate(), "CC_Plan_Sub".Translate(), stat, UiKit.Gold, 170f, "CC_Plan_HeaderTip".Translate());
-            if (open > 1 && Widgets.ButtonText(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, 30f), "CC_Plan_SortUrgency".Translate())) NextSteps.SortByUrgency(map);
-            var groundRect = new Rect(rect.xMax - 160f, rect.y + 40f, 160f, 26f);
-            if (Widgets.ButtonText(groundRect, "CC_Ground_Button".Translate()))
+            if (open > 1 && UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, UiKit.RowStandard), "CC_Plan_SortUrgency".Translate(), null)) NextSteps.SortByUrgency(map);
+            if (UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 38f, 160f, UiKit.RowStandard - 2f), "CC_Ground_Button".Translate(), null, "CC_Ground_ButtonTip".Translate()))
             {
                 Find.MainTabsRoot.EscapeCurrentTab(false);
                 GroundPlan.Show(map);
             }
-            TooltipHandler.TipRegion(groundRect, "CC_Ground_ButtonTip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -71,26 +70,32 @@ namespace ColonyCouncil
             // Building ahead: the rooms the colony will be short of and what to build next (UI/BuildAheadPanel.cs).
             y += BuildAheadPanel.Draw(0f, y, view.width, map) + 10f;
 
-            y += UiKit.SectionTitle(0f, y, view.width, "CC_Plan_ThePlan".Translate(), Icons.Plan, UiKit.HeaderColor) + 4f;
-            if (plan.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Plan_Empty".Translate(), UiKit.Faint) + 8f;
+            y += UiKit.SectionTitle(0f, y, view.width, "CC_Plan_ThePlan".Translate(), open, Icons.Plan) + 4f;
+            if (plan.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(0f, y, view.width, UiKit.RowStandard), "CC_Plan_Empty".Translate());
+                y += UiKit.RowStandard + UiKit.CardGap;
+            }
             int n = 0;
             foreach (var s in plan)
             {
                 n += s.Planned ? 1 : 0;
-                y += DrawStep(s, s.Planned ? n : 0, 0f, y, view.width, true, plan.IndexOf(s) == 0, plan.IndexOf(s) == plan.Count - 1) + 6f;
+                y += DrawStep(s, s.Planned ? n : 0, 0f, y, view.width, true, plan.IndexOf(s) == 0, plan.IndexOf(s) == plan.Count - 1) + UiKit.CardGap;
             }
-            y += DrawAddOwn(0f, y, view.width, map) + 12f;
+            y += DrawAddOwn(0f, y, view.width, map) + UiKit.SectionGap;
 
-            y += UiKit.SectionTitle(0f, y, view.width, "CC_Plan_Proposes".Translate(), Icons.Priorities, UiKit.HeaderColor,
-                proposed.Count > 1 ? null : null) + 4f;
-            if (proposed.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Plan_NothingProposed".Translate(), UiKit.Faint) + 8f;
-            else
+            // What the council proposes, its act ("Take them all") on the heading's right.
+            UiKit.SectionHeading(0f, y, view.width, "CC_Plan_Proposes".Translate(), proposed.Count, null, null, out _,
+                proposed.Count > 0 ? "CC_Plan_TakeAll".Translate().ToString() : null, null, out bool takeAll, "CC_Same_Plan_TakeAllTip".Translate());
+            if (takeAll) NextSteps.TakeAll(map);
+            y += UiKit.HeadingHeight + 4f;
+            if (proposed.Count == 0)
             {
-                var takeAll = new Rect(view.width - 170f, y - 30f, 166f, 26f);
-                if (Widgets.ButtonText(takeAll, "CC_Plan_TakeAll".Translate())) NextSteps.TakeAll(map);
-                TooltipHandler.TipRegion(takeAll, "CC_Same_Plan_TakeAllTip".Translate());
-                foreach (var s in proposed) y += DrawStep(s, 0, 0f, y, view.width, false, false, false) + 6f;
+                UiKit.EmptyLine(new Rect(0f, y, view.width, UiKit.RowStandard), "CC_Plan_NothingProposed".Translate());
+                y += UiKit.RowStandard + UiKit.CardGap;
             }
+            else
+                foreach (var s in proposed) y += DrawStep(s, 0, 0f, y, view.width, false, false, false) + UiKit.CardGap;
             // The steps done from here lately (a fix, a room's lamps, the research started), with Undo and whether each
             // worked; and what was set aside with "Not this", here or on its own page, to bring back.
             y += AheadPanel.Done(0f, y + 4f, view.width, map, NextSteps.Sources) + 4f;
@@ -136,7 +141,7 @@ namespace ColonyCouncil
         private static float DrawStep(NextStep s, int number, float x, float y, float width, bool inPlan, bool first, bool last)
         {
             var level = NextSteps.LevelOf(s);
-            var color = s.Done ? UiKit.Dim : s.HasSource ? LevelColor(level) : UiKit.Info;
+            var color = s.Done ? UiKit.Dim : s.HasSource ? UiKit.LevelColor(level) : UiKit.Cool;
             var acts = s.Done ? new List<(string label, string tip, System.Action act)>() : NextSteps.Actions(s);
             if (s.Done)
             {
@@ -183,13 +188,14 @@ namespace ColonyCouncil
             // The number in the plan (or the level, for a proposal), and the arrows.
             if (inPlan)
             {
-                UiKit.LabelFit(new Rect(x + 8f, y + 6f, LeftW - 10f, 22f), s.Done ? "" : number.ToString(), color, GameFont.Medium, TextAnchor.MiddleCenter);
+                // Its place in the plan, in small type (Medium is for a view's or a card's one title).
+                UiKit.LabelFit(new Rect(x + 8f, y + 6f, LeftW - 10f, 22f), s.Done ? "" : number.ToString(), color, GameFont.Small, TextAnchor.MiddleCenter);
                 if (!s.Done)
                 {
                     var up = new Rect(x + 10f, y + h - 24f, 14f, 14f);
                     var down = new Rect(x + 24f, y + h - 24f, 14f, 14f);
-                    if (!first && Widgets.ButtonImage(up, TexButton.ReorderUp, Color.white, GenUI.MouseoverColor)) NextSteps.Move(s, -1);
-                    if (!last && Widgets.ButtonImage(down, TexButton.ReorderDown, Color.white, GenUI.MouseoverColor)) NextSteps.Move(s, 1);
+                    if (!first && Widgets.ButtonImage(up, TexButton.ReorderUp, UiKit.Ink, GenUI.MouseoverColor)) NextSteps.Move(s, -1);
+                    if (!last && Widgets.ButtonImage(down, TexButton.ReorderDown, UiKit.Ink, GenUI.MouseoverColor)) NextSteps.Move(s, 1);
                 }
             }
             else UiKit.Pill(x + 8f, y + 8f, ("CC_Level_" + level).Translate(), color, level >= AdviceLevel.High ? Icons.Warning : null, null, LeftW + 40f);
@@ -202,7 +208,7 @@ namespace ColonyCouncil
                 UiKit.Pill(textX, cy, ("CC_Level_" + level).Translate(), color, level >= AdviceLevel.High ? Icons.Warning : null, "CC_Same_Plan_LevelTip".Translate(), 200f);
                 cy += pillH;
             }
-            GUI.color = s.Done ? UiKit.Dim : Color.white;
+            GUI.color = s.Done ? UiKit.Dim : UiKit.Ink;
             Widgets.Label(new Rect(textX, cy, tw, titleH), s.title);
             cy += titleH;
             if (detailH > 0f)
@@ -212,10 +218,10 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(textX, cy, tw, detailH), s.detail);
                 Text.Font = GameFont.Small;
             }
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             if (s.Done)
             {
-                UiKit.Pill(textX, y + h - 24f, "CC_Plan_DonePill".Translate(), UiKit.Good, null, null, 120f);
+                UiKit.Pill(textX, y + h - 24f, "CC_Plan_DonePill".Translate(), UiKit.Done, null, null, 120f);
             }
             else if (s.thing != null)
             {
@@ -232,8 +238,7 @@ namespace ColonyCouncil
                 var (label, tip, act) = acts[i];
                 var spot = spots[i];
                 var r = new Rect(bx + spot.x, y + 6f + spot.y, spot.width, 24f);
-                TooltipHandler.TipRegion(r, tip);
-                if (Widgets.ButtonText(r, label))
+                if (UiKit.ActButton(r, label, null, tip))
                 {
                     SoundDefOf.Click.PlayOneShotOnCamera();
                     act();
@@ -261,12 +266,12 @@ namespace ColonyCouncil
             {
                 GUI.color = UiKit.Dim;
                 Widgets.Label(new Rect(field.x + 6f, field.y + 2f, field.width - 8f, 22f), "CC_Plan_OwnHint".Translate());
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
             // A room plan for the step, if it's a room to build.
             var roomRect = new Rect(field.xMax + 8f, y + 5f, 240f, 24f);
             string roomLabel = newTemplate != null ? newTemplate.FullLabel : "CC_Plan_OwnNoRoom".Translate().Resolve();
-            if (Widgets.ButtonText(roomRect, UiKit.Fit(roomLabel, 230f)))
+            if (UiKit.ActButton(roomRect, UiKit.Fit(roomLabel, 230f), null))
             {
                 var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Plan_OwnNoRoom".Translate(), () => newTemplate = null) };
                 foreach (var t in RoomMenu.Entries(map, false, false).OrderBy(t => t.label))
@@ -278,7 +283,8 @@ namespace ColonyCouncil
             }
             var add = new Rect(roomRect.xMax + 8f, y + 5f, 100f, 24f);
             bool can = !newStep.NullOrEmpty() && newStep.Trim().Length > 0;
-            if (Widgets.ButtonText(add, "CC_Plan_Add".Translate(), true, true, can) && can)
+            // Greyed with why not until there is something to add.
+            if (UiKit.ActButton(add, "CC_Plan_Add".Translate(), can ? null : "CC_Plan_AddWhyNot".Translate().ToString()))
             {
                 NextSteps.AddOwn(map, newStep, newTemplate);
                 newStep = "";
@@ -288,16 +294,5 @@ namespace ColonyCouncil
             return h;
         }
 
-        private static Color LevelColor(AdviceLevel level)
-        {
-            switch (level)
-            {
-                case AdviceLevel.Critical: return new Color(0.9f, 0.3f, 0.25f);
-                case AdviceLevel.High: return new Color(0.95f, 0.6f, 0.2f);
-                case AdviceLevel.Medium: return new Color(0.9f, 0.85f, 0.35f);
-                case AdviceLevel.Low: return new Color(0.65f, 0.65f, 0.65f);
-                default: return new Color(0.45f, 0.7f, 0.95f);
-            }
-        }
     }
 }

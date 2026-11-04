@@ -85,7 +85,7 @@ namespace ColonyCouncil
                 Widgets.EndScrollView();
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
-                GUI.color = Color.white;
+                GUI.color = UiKit.Ink;
             }
         }
 
@@ -130,14 +130,10 @@ namespace ColonyCouncil
 
         private static void DrawCard(Rect r, WeekCard c)
         {
-            UiKit.Card(r, UiKit.WithAlpha(c.color, 0.55f), false, false);
-            // The heading: icon, title and its count; a click opens its view.
-            var titleRect = new Rect(r.x + 8f, r.y, Mathf.Max(0f, r.width - 16f), CouncilLayoutMath.CardHeader);
-            UiKit.Icon(new Rect(titleRect.x + 2f, r.y + 7f, 16f, 16f), c.icon, c.color);
-            float tw = Mathf.Min(UiKit.KeptWidth(c.title, GameFont.Small) + 2f, Mathf.Max(0f, titleRect.width - 60f));
-            UiKit.LabelFit(new Rect(titleRect.x + 24f, r.y + 3f, tw, 24f), c.title, c.color);
-            if (c.count > 0) UiKit.LabelFit(new Rect(titleRect.x + 30f + tw, r.y + 4f, 40f, 24f), c.count.ToString(), UiKit.Faint, GameFont.Tiny);
-            UiKit.Divider(r.x + 6f, r.y + CouncilLayoutMath.CardHeader - 2f, r.width - 12f);
+            UiKit.Card(r, null, false, false);
+            // The section's heading: its icon in the section's colour, its name and its count; a click opens its view.
+            var titleRect = new Rect(r.x + UiKit.CardInset - 2f, r.y + 4f, Mathf.Max(0f, r.width - 2f * UiKit.CardInset + 4f), 24f);
+            UiKit.HeadingLine(titleRect.x, titleRect.y, titleRect.width, c.title, c.count > 0 ? c.count : -1, null, c.icon, c.color, false, false);
             if (c.page != null)
             {
                 if (Mouse.IsOver(titleRect)) Widgets.DrawHighlight(titleRect);
@@ -148,7 +144,7 @@ namespace ColonyCouncil
             float y = r.y + CouncilLayoutMath.CardHeader;
             if (c.rows.Count == 0 && c.footer.Count == 0)
             {
-                UiKit.LabelFit(new Rect(r.x + 12f, y, r.width - 20f, CouncilLayoutMath.RowHeight), c.empty, UiKit.Dim, GameFont.Tiny);
+                UiKit.EmptyLine(new Rect(r.x + 8f, y + 1f, r.width - 16f, CouncilLayoutMath.RowHeight - 4f), c.empty);
                 return;
             }
             int index = 0;
@@ -164,7 +160,8 @@ namespace ColonyCouncil
                 // "and 3 more" opens the rest in place; "Show fewer" folds them again.
                 var mr = new Rect(r.x + 4f, y, r.width - 8f, CouncilLayoutMath.RowHeight);
                 Widgets.DrawHighlightIfMouseover(mr);
-                UiKit.LabelFit(new Rect(mr.x + 26f, mr.y, mr.width - 30f, mr.height), fold, UiKit.Link, GameFont.Tiny);
+                UiKit.Icon(new Rect(mr.x + 8f, mr.y + (mr.height - 10f) / 2f, 10f, 10f), c.more != null ? TexButton.Reveal : TexButton.Collapse, UiKit.Dim);
+                UiKit.LabelFit(new Rect(mr.x + 26f, mr.y, mr.width - 30f, mr.height), fold, UiKit.Faint, GameFont.Tiny);
                 if (Widgets.ButtonInvisible(mr))
                 {
                     if (!opened.Remove(c.section)) opened.Add(c.section);
@@ -215,14 +212,14 @@ namespace ColonyCouncil
             }
             else if (row.icon != null)
             {
-                UiKit.Icon(new Rect(x + 3f, r.y + (tall ? 12f : 5f), 16f, 16f), row.icon, UiKit.WithAlpha(row.color, 0.9f));
-                x += 24f;
+                UiKit.Icon(new Rect(x + 3f, r.y + (tall ? 11f : (r.height - UiKit.IconRow) / 2f), UiKit.IconRow, UiKit.IconRow), row.icon, UiKit.WithAlpha(row.color, 0.9f));
+                x += 26f;
             }
             float right = r.xMax - 2f;
             // The pin: always when followed, else under the mouse.
             if (row.Pinnable)
             {
-                if (PinButton(new Rect(right - 17f, r.y + 5f, 16f, 16f), row.pinned, over))
+                if (PinButton(new Rect(right - 17f, r.y + (tall ? 5f : (r.height - 16f) / 2f), 16f, 16f), row.pinned, over))
                 {
                     TogglePin(row);
                     return;
@@ -232,9 +229,9 @@ namespace ColonyCouncil
             // Its act on the right: "Answer", "Decide", "Look", "Pay".
             if (!row.act.NullOrEmpty() && row.actRun != null)
             {
-                if (row.actWidth < 0f) row.actWidth = Mathf.Clamp(UiKit.KeptWidth(row.act, GameFont.Tiny) + 18f, 54f, 110f);
+                if (row.actWidth < 0f) row.actWidth = Mathf.Min(UiKit.RowActWidth(row.act), 110f);
                 var ar = new Rect(right - row.actWidth, r.y + (r.height - 22f) / 2f, row.actWidth, 22f);
-                if (ActButton(ar, row.act, row.actWhy, row.actTip))
+                if (UiKit.RowAct(ar, row.act, row.actWhy, row.actTip))
                 {
                     row.actRun();
                     WeekPanel.Dirty();
@@ -272,31 +269,18 @@ namespace ColonyCouncil
             if (row.click != null && Widgets.ButtonInvisible(r)) row.click();
         }
 
-        /// <summary>A row's act, small: greyed with why not as its tooltip.</summary>
-        private static bool ActButton(Rect r, string label, string whyNot, string tip)
-        {
-            bool can = whyNot == null;
-            var old = Text.Font;
-            Text.Font = GameFont.Tiny;
-            bool clicked = Widgets.ButtonText(r, UiKit.Fit(label, r.width - 6f), true, true, can);
-            Text.Font = old;
-            string t = can ? tip : whyNot;
-            if (!t.NullOrEmpty()) TooltipHandler.TipRegion(r, t);
-            return clicked && can;
-        }
-
         /// <summary>Rimfolk's good moods against its bad ones, as one bar, with the sums either side.</summary>
         private static void DrawBalance(Rect r, WeekRow row)
         {
             float labelW = Mathf.Min(120f, r.width * 0.28f);
-            UiKit.LabelFit(new Rect(r.x + 4f, r.y, labelW, r.height), row.balanceBad, MoodView.BadColor, GameFont.Tiny);
-            UiKit.LabelFit(new Rect(r.xMax - labelW - 4f, r.y, labelW, r.height), row.balanceGood, MoodView.GoodColor, GameFont.Tiny, TextAnchor.MiddleRight);
-            var bar = new Rect(r.x + labelW + 10f, r.y + 8f, Mathf.Max(10f, r.width - labelW * 2f - 20f), 10f);
-            Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, new Color(1f, 1f, 1f, 0.1f), 1);
+            UiKit.LabelFit(new Rect(r.x + 4f, r.y, labelW, r.height), row.balanceBad, UiKit.Sour, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(r.xMax - labelW - 4f, r.y, labelW, r.height), row.balanceGood, UiKit.Warm, GameFont.Tiny, TextAnchor.MiddleRight);
+            var bar = new Rect(r.x + labelW + 10f, r.y + (r.height - 10f) / 2f, Mathf.Max(10f, r.width - labelW * 2f - 20f), 10f);
+            Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, UiKit.MeterEdge, 1);
             float split = bar.width * (1f - Mathf.Clamp01(row.balance));
-            if (split > 1f) Widgets.DrawBoxSolid(new Rect(bar.x + 1f, bar.y + 1f, split - 1f, bar.height - 2f), UiKit.WithAlpha(MoodView.BadColor, 0.75f));
-            if (bar.width - split > 1f) Widgets.DrawBoxSolid(new Rect(bar.x + split, bar.y + 1f, bar.width - split - 1f, bar.height - 2f), UiKit.WithAlpha(MoodView.GoodColor, 0.75f));
-            Widgets.DrawBoxSolid(new Rect(bar.center.x - 0.5f, bar.y - 2f, 1f, bar.height + 4f), new Color(1f, 1f, 1f, 0.5f));
+            if (split > 1f) Widgets.DrawBoxSolid(new Rect(bar.x + 1f, bar.y + 1f, split - 1f, bar.height - 2f), UiKit.WithAlpha(UiKit.Sour, 0.75f));
+            if (bar.width - split > 1f) Widgets.DrawBoxSolid(new Rect(bar.x + split, bar.y + 1f, bar.width - split - 1f, bar.height - 2f), UiKit.WithAlpha(UiKit.Warm, 0.75f));
+            Widgets.DrawBoxSolid(new Rect(bar.center.x - 0.5f, bar.y - 2f, 1f, bar.height + 4f), UiKit.WithAlpha(UiKit.Ink, 0.5f));
             if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(r, row.tip);
             if (row.click != null && Widgets.ButtonInvisible(r)) row.click();
         }
@@ -310,7 +294,7 @@ namespace ColonyCouncil
         public static bool PinButton(Rect r, bool pinned, bool show)
         {
             if (!pinned && !show) return false;
-            UiKit.Icon(r, Icons.Pin ?? Icons.Promise, pinned ? UiKit.Gold : Mouse.IsOver(r) ? Color.white : UiKit.Dim);
+            UiKit.Icon(r, Icons.Pin ?? Icons.Promise, pinned ? UiKit.Gold : Mouse.IsOver(r) ? UiKit.Ink : UiKit.Dim);
             TooltipHandler.TipRegion(r, pinned ? PinTips.Unpin : PinTips.Pin);
             if (!Widgets.ButtonInvisible(r)) return false;
             (pinned ? SoundDefOf.Checkbox_TurnedOff : SoundDefOf.Checkbox_TurnedOn).PlayOneShotOnCamera();
