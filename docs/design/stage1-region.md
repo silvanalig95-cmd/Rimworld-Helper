@@ -542,3 +542,25 @@ remote start's camps over a year; an escort with the settlers, the hamlet, and i
 14. The pace of change in a home's reach: at most one town given up in 60 days, one resettled in 120, one founded by
     Rimfolk in 90; ruins Rimfolk made gone after 300 days? Recommended: these numbers, with the fortunes setting to
     switch it off.
+
+## The player's decisions (4 November 2026)
+1. The full welcome for new towns within about 15 tiles (a runner at the gate, a gift hoped for, once a year per
+   home at most): yes. Built in the first release.
+2. Rimfolk's own new towns: yes, and also while Faction Territories builds towns, at Rimfolk's own pace (at most one
+   founded by Rimfolk per 90 days in a home's reach, decision 14).
+3. Prosperity in the trade stock (the small patch on the game's restock): yes. Built in the first release.
+4. Small towns look small on their own map: yes, with the hamlet release, working with the player's generation mods.
+   In the modlist: Vanilla Base Generation Expanded (each people's settlements from its own layouts: the smaller base
+   goes through its layouts, not around them), Real Ruins (ruins and points of interest on the world: leave its
+   sites alone, and let a Rimfolk ruin be an ordinary `AbandonedSettlement` it may dress), Geological Landforms, Biome
+   Transitions and Grand Rivers Reborn (the land of a tile, not its base), Faction Territories, Vanilla Outposts
+   Expanded and Factional War (world objects and sites of their own). Read each mod's code before patching.
+5. Ruins where a fight destroys a town within reach: yes.
+6. The trading post: a real town on the world map.
+7. A raiders' camp's raids on top of the storyteller's, at the game's rate, with the rate setting and the give-up
+   rule: yes.
+8. Up to 60% more camps for the most remote colony, scholars the one new camp kind: yes.
+9. to 14. As recommended: the hamlet is the settlers' own people's town; settlers travel beside the caravan with a
+   line on its panel; fights at the hamlet only through Faction Territories' invasions for now; the warlord's son
+   returns at the head of a raiders' camp; bad memories of single colonists (no raid of their own); the pace of
+   change as given in decision 14, with a setting to switch it off.

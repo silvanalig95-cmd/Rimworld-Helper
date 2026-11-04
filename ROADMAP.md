@@ -232,7 +232,20 @@ the map, talk and groups, moods).
 Still waiting for a word from the player: the other Alpha Skills passions (P2 to P17), journeys' extras, a short
 guide, weapon duels under the harm rule, and the release to the Workshop.
 
-### Stage 0: the foundation (done, 4 November 2026: 0.65.0 to 0.68.0)
+### The interface (the player's word, 4 November 2026)
+Few buttons on the bottom bar, each with its own window and no master window. Four of Rimfolk's:
+- **Council**, one button for the colony's own life, organised in its menu: the council (decrees, offices and
+  elections, ambition and meetings, ways and traditions, dilemmas, wishes and petitions), people (roster, everyone,
+  bonds, faiths, moods, dreams, journals), the colony (this week, overview, priorities, calendar, the chronicle) and
+  the Almanac.
+- **World** (new), the Rimfolk map: everything beyond the colony, opening on the region map, with neighbours, peoples,
+  letters and calls, journeys, world events and the world's history; the region's and the diplomacy's pages land here.
+- **Defense**, as now.
+- **Planning**, replacing the Rooms button and taking rooms in (plan, base, making, build, rooms).
+The World page leaves the council's window for the World button, and the Defenses page for the Defense button. More
+keeps the buttons put away. Built after stage 1's first release (both touch the World page and the region map).
+
+ 4 November 2026: 0.65.0 to 0.68.0)
 Homes (0.65.0), Rimfolk's clock (0.65.1), the world ledger (0.65.3, 0.66.3), one voice (0.66.0), one history
 (0.66.1), other mods' world and the ages (0.66.2), a council per colony (0.67.0), the world's facts (0.67.1), every
 colony its own (0.68.0). What was left on purpose is in docs/HANDOFF.md and the audit's status lines.
