@@ -12,9 +12,9 @@ namespace ColonyCouncil
     /// Diplomacy's panels, each a static Draw over the one model (DiplomacyModel), its rows small pieces that can be drawn
     /// anywhere: the Diplomacy page (what is owed each way, then a card for each people: stance, head, ties in their age's
     /// words, what is under way, the acts that fit, each greyed with why not), the Household page (who is here from outside,
-    /// who of the colony's is away, the colony's houses), the region map's town section (its ties and calling one in), and
-    /// This week's line for a call of theirs waiting on the colony (never with a timer). Registered as region pages for now;
-    /// the interface's redesign may move them. A name in a row opens through DiplomacyLinks.
+    /// who of the colony's is away, the colony's houses), a town's ties and calling one in (the Ties slot of the town's card,
+    /// UI/Cards/), and This week's line for a call of theirs waiting on the colony (never with a timer). Registered as region
+    /// pages for now; the interface's redesign may move them. A name in a row opens its card through DiplomacyLinks.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class DiplomacyPanels

@@ -2204,8 +2204,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   traders and visitors on the town that stands) at most once a year per home when a world event's slot is free
   (`WorldSituations.SlotFree`), whose letter is then the town's news; else the founder's letter (`RegionWords`,
   one a season per home). Rimfolk's own new towns are told and welcomed by their own event.
-- **Words and facts.** The region map's panel (`RegionPanel`, through `NeighbourPanel.Sections`, `PlaceSections` and
-  the new `HomeSections`): a town's fortune and founding, a site's settlers, a home's remoteness. The facts service's
+- **Words and facts.** The place card, which the region map's panel became (`RegionPanel`, through `CardSections.TownLines`,
+  `PlaceLines` and `HomeLines`; "Rimfolk's windows"): a town's fortune and founding, a site's settlers, a home's remoteness. The facts service's
   provider `region` (`Text/Facts/FactsRegion.cs`): `town:struggling` to `town:flourishing` with `{FORTUNE}` (and
   `{FORTUNEWHY}`, the world event its panel names as the cause),
   `town:new`, `town:founder` `{FOUNDER}`, `them:founder`, `town:mother` `{MOTHERTOWN}`, `town:why:KEY` `{WHYFOUNDED}`,
@@ -2509,7 +2509,8 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   from the speaker to their head. Refused or overdue: broken, the deed `refused`, 5 goodwill.
 - **What the player sees.** The region window's Diplomacy page (order 35) and Household page (36), drawn by
   `DiplomacyPanels` over one model built at most every two seconds (`DiplomacyModel`), its rows small pieces any page
-  can draw; a click on a name goes through `DiplomacyLinks.Open`, one place to repoint; the region map's town section;
+  can draw; a click on a name goes through `DiplomacyLinks.Open`, which opens the thing's card; a town's ties in the Ties
+  slot of its card;
   This week's line for a call waiting (no timer); the line in the letter that tells the good turn (else the evening's
   news). Words by both ages (`Ages.Form(AgeFeature.Favor)`; truce, hostage, envoy and levy have their forms too). Facts:
   a debt of honour speaks as `tie:honour` (`:ours`, `:theirs`, `:you`, `:due`, `{HONOURTO}`, `{FAVOURWHY}`), apart from
