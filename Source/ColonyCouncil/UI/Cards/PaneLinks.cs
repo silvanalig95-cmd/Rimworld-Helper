@@ -67,6 +67,38 @@ namespace ColonyCouncil
             return list.Count == 0 ? text : LinkTextMath.MarkNames(text, list);
         }
 
+        private static readonly List<Pawn> colony = new List<Pawn>();
+
+        /// <summary>The colony's own people on the subject's map (colonists, prisoners and slaves), the subject left out. Kept until the next call.</summary>
+        public static List<Pawn> ColonyPeople(Pawn subject)
+        {
+            colony.Clear();
+            var mp = subject?.MapHeld?.mapPawns;
+            if (mp == null) return colony;
+            foreach (var p in mp.FreeColonists)
+                if (p != subject)
+                    colony.Add(p);
+            foreach (var p in mp.PrisonersOfColony)
+                if (p != subject)
+                    colony.Add(p);
+            foreach (var p in mp.SlavesOfColonySpawned)
+                if (p != subject && !colony.Contains(p))
+                    colony.Add(p);
+            return colony;
+        }
+
+        /// <summary>
+        /// A character section's lines (their groups, what people say, the memories they share) with the colony's people
+        /// they name marked as links. Only for sections drawn by CharacterView.DrawSection; their tooltips stay plain.
+        /// </summary>
+        public static void MarkColony(CharacterSection s, Pawn subject)
+        {
+            if (s?.lines == null || s.lines.Count == 0) return;
+            var people = ColonyPeople(subject);
+            if (people.Count == 0) return;
+            for (int i = 0; i < s.lines.Count; i++) s.lines[i] = Mark(s.lines[i], people);
+        }
+
         /// <summary>The text with a name marked as a link to a thing (a notable, a town, a house the ledger keeps).</summary>
         public static string Mark(string text, string name, ThingRef thing)
         {
