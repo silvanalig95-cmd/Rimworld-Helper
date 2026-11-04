@@ -372,7 +372,7 @@ namespace ColonyCouncil
             var faith = (ctx as FaithDilemmaContext)?.Faith;
             if (!Faiths.On || amount <= 0f || (faith == null && !allFaiths)) return;
             var who = Reached(ctx).Where(p => allFaiths ? Faiths.Holds(p) : Faiths.Of(p) == faith).ToList();
-            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor);
+            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor(ctx.map));
         }
 
         public float amount = 0.03f;
@@ -390,7 +390,7 @@ namespace ColonyCouncil
             if (!Faiths.On || amount <= 0f || (faith == null && !allFaiths)) return;
             foreach (var p in Targets(ctx).Distinct().ToList())
                 if (allFaiths ? Faiths.Holds(p) : Faiths.Of(p) == faith)
-                    Faiths.Steady(p, amount * Interplay.FaithFactor);
+                    Faiths.Steady(p, amount * Interplay.FaithFactor(ctx.map));
         }
     }
 

@@ -248,7 +248,8 @@ namespace ColonyCouncil
         /// <summary>The speaker of the council, else the faith's leader, else nobody.</summary>
         private Pawn Leader()
         {
-            var speaker = CouncilGameComponent.Instance?.offices?.HolderOf("Council_Office_Speaker");
+            // The speaker of the colony where they talk.
+            var speaker = ColonyState.For(map)?.offices?.HolderOf("Council_Office_Speaker");
             if (speaker != null && !speaker.Dead) return speaker;
             if (!ModsConfig.IdeologyActive) return null;
             foreach (var p in colonists)

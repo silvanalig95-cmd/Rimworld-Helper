@@ -1265,7 +1265,7 @@ namespace ColonyCouncil
             if (option == 1 && !byDefault && StorytellerEvents.Food(ctx.variant).Unavailable(ctx) == null)
             {
                 // Set aside for the lord's carters, who come for it (Couriers/); else it leaves the stores now, as before.
-                int n = Mathf.Max(1, Mathf.RoundToInt(ctx.variant * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+                int n = Mathf.Max(1, Mathf.RoundToInt(ctx.variant * (ColonyState.For(ctx.map)?.offices.CostFactor ?? 1f)));
                 if (!Couriers.Collect(ctx.map, "rawfood", null, n, ctx.faction)) StorytellerEvents.Food(ctx.variant).Apply(ctx);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);

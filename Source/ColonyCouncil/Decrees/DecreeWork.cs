@@ -268,7 +268,7 @@ namespace ColonyCouncil
                 }
                 if (def.certaintyPerDay > 0f && ColonyFaith != null)
                 {
-                    float amount = def.certaintyPerDay * Interplay.FaithFactor;
+                    float amount = def.certaintyPerDay * Interplay.FaithFactor(map);
                     foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                         if (Believer(p) && !p.IsQuestLodger() && (t == null || t.Ours(p))) p.ideo?.OffsetCertainty(amount);
                 }
@@ -534,18 +534,18 @@ namespace ColonyCouncil
             return Mathf.Clamp(f, 0f, 1f);
         }
 
-        /// <summary>The factor on Rimfolk's visitor events, from the decrees in force (1: none).</summary>
-        public static float VisitorFactor
+        /// <summary>
+        /// The factor on Rimfolk's visitor events at the colony of <paramref name="map"/> (the seat's for a map that isn't a
+        /// home), from its decrees in force (1: none). A quarantine shuts its own gates, not another colony's.
+        /// </summary>
+        public static float VisitorFactor(Map map)
         {
-            get
-            {
-                var active = CouncilGameComponent.Instance?.decrees?.active;
-                if (active == null || active.Count == 0) return 1f;
-                float f = 1f;
-                for (int i = 0; i < active.Count; i++)
-                    if (active[i]?.def != null) f *= active[i].def.visitorFactor;
-                return Mathf.Clamp(f, 0.05f, 2f);
-            }
+            var active = ColonyState.For(map)?.decrees?.active;
+            if (active == null || active.Count == 0) return 1f;
+            float f = 1f;
+            for (int i = 0; i < active.Count; i++)
+                if (active[i]?.def != null) f *= active[i].def.visitorFactor;
+            return Mathf.Clamp(f, 0.05f, 2f);
         }
     }
 }

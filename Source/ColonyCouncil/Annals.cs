@@ -236,8 +236,14 @@ namespace ColonyCouncil
             var bitter = now.Where(p => comp.standings.TrustOf(p) <= -15f).OrderBy(p => comp.standings.TrustOf(p)).FirstOrDefault();
             if (devoted != null) Para("CC_Annals_Devoted".Translate(devoted.Named("PAWN")).Resolve());
             if (bitter != null) Para("CC_Annals_Bitter".Translate(bitter.Named("PAWN")).Resolve());
-            var seats = OfficeTracker.Offices.SelectMany(o => comp.offices.HoldersOf(o).Select(h => (o, h))).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
-            if (seats.Count > 0) Para("CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve());
+            // Each colony's council (with more than one colony, each named by its settlement).
+            foreach (var council in ColonyState.Ticking())
+            {
+                var seats = OfficeTracker.Offices.SelectMany(o => council.offices.HoldersOf(o).Select(h => (o, h))).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
+                if (seats.Count == 0) continue;
+                string line = "CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve();
+                Para(ColonyState.Several && council.Map != null ? "CC_Tell_At".Translate(council.Name.Named("PLACE"), line.Named("TEXT")).Resolve() : line);
+            }
             var titled = now.Select(p => (p, titles: comp.epithets.TitlesOf(p))).Where(x => !x.titles.NullOrEmpty())
                 .Select(x => x.p.LabelShort + " " + x.titles).ToList();
             if (titled.Count > 0) Para("CC_Annals_Epithets".Translate(TextUtil.JoinAnd(titled)).Resolve());

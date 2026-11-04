@@ -16,11 +16,12 @@ namespace ColonyCouncil
         public static void Notify_Newborn(CouncilGameComponent comp, Pawn baby, Pawn mother)
         {
             if (!On || comp == null || baby == null || !S.offices) return;
-            var hm = AnimalFacts.Herdmaster;
+            // The herdmaster of the colony whose herd it was born to.
+            var hm = AnimalFacts.HerdmasterAt(baby.MapHeld);
             if (hm == null || hm.Dead || hm.MapHeld != baby.MapHeld || hm.DevelopmentalStage.Juvenile()) return;
             Together.When("newborn|" + baby.thingIDNumber, hm, baby, () =>
             {
-                if (!On || AnimalFacts.Herdmaster != hm || baby.Dead || !AnimalFacts.Ours(baby)) return;
+                if (!On || !AnimalFacts.IsHerdmaster(hm) || baby.Dead || !AnimalFacts.Ours(baby)) return;
                 bool named = false;
                 if (baby.Name == null || baby.Name.Numerical)
                 {
@@ -54,10 +55,13 @@ namespace ColonyCouncil
         public static void HerdmasterDay2(CouncilGameComponent comp)
         {
             if (!On || !S.offices) return;
-            var hm = AnimalFacts.Herdmaster;
-            if (hm == null || !hm.Spawned || hm.Map == null || !hm.Map.IsPlayerHome) return;
-            Safe("herdmaster: rounds", () => Rounds(comp, hm));
-            Safe("herdmaster: a lesson", () => Lesson(hm));
+            // Each colony's own herdmaster, with the herd where they are.
+            foreach (var hm in Officers(Herdmaster))
+            {
+                if (hm == null || !hm.Spawned || hm.Map == null || !hm.Map.IsPlayerHome) continue;
+                Safe("herdmaster: rounds", () => Rounds(comp, hm));
+                Safe("herdmaster: a lesson", () => Lesson(hm));
+            }
         }
 
         /// <summary>Strain eased when the herdmaster brings word of someone's sick animal.</summary>
@@ -75,7 +79,7 @@ namespace ColonyCouncil
                 bool sick = AnimalFacts.Illness(a) != null;
                 Together.When("rounds|" + person.thingIDNumber, hm, person, () =>
                 {
-                    if (!On || AnimalFacts.Herdmaster != hm || pet.Dead) return;
+                    if (!On || !AnimalFacts.IsHerdmaster(hm) || pet.Dead) return;
                     if (Heart.Eligible(person)) Ease(person, HerdmasterRounds, StrainRelief.Friends);
                     if (S.socialWeb) comp.social.Bump(person, hm, TieKind.Friends, 2f, "CC_TieNote_Herd_Rounds".Translate(pet.LabelShort), true);
                     string text = Line("Council_Pool_Herd_Rounds", hm, new[] { sick ? "sick" : "hurt" }, person.Named("OTHER"), pet.Named("PET"));

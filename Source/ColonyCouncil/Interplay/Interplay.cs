@@ -94,8 +94,42 @@ namespace ColonyCouncil
             return Flavor.IsGrieving(p);
         }
 
-        /// <summary>The holder of an office, while offices are on; null otherwise.</summary>
-        internal static Pawn Officer(string defName) => S.offices ? Comp?.offices.HolderOf(defName) : null;
+        /// <summary>
+        /// The holder of an office in the colony of this map (the seat's for a map that isn't a home), while offices are on;
+        /// null otherwise.
+        /// </summary>
+        internal static Pawn Officer(string defName, Map map) => S.offices ? ColonyState.For(map)?.offices.HolderOf(defName) : null;
+
+        /// <summary>The holder of an office in someone's own colony (Homes.Of), while offices are on; null otherwise.</summary>
+        internal static Pawn OfficerOf(string defName, Pawn p) => S.offices && p != null ? ColonyState.Of(p)?.offices.HolderOf(defName) : null;
+
+        /// <summary>
+        /// Someone holds this office: in their own colony, or in the one whose seat they keep while away on a visit
+        /// (OfficeTracker.HeldBy). With one colony, its holder.
+        /// </summary>
+        internal static bool Holds(Pawn p, string defName)
+        {
+            if (p == null || !S.offices) return false;
+            if (OfficerOf(defName, p) == p) return true;
+            var all = Comp?.colonies;
+            if (all == null || all.Count <= 1) return false;
+            for (int i = 0; i < all.Count; i++)
+                if (all[i]?.offices.HolderOf(defName) == p) return true;
+            return false;
+        }
+
+        /// <summary>Each colony's holder of an office, in the order the homes were founded (one colony: its one holder), while offices are on.</summary>
+        internal static List<Pawn> Officers(string defName)
+        {
+            var list = new List<Pawn>();
+            if (!S.offices) return list;
+            foreach (var council in ColonyState.Ticking())
+            {
+                var p = council.offices.HolderOf(defName);
+                if (p != null && !list.Contains(p)) list.Add(p);
+            }
+            return list;
+        }
 
         /// <summary>Up, about, and able to step in: spawned, awake, not downed, drafted or in a mental state.</summary>
         internal static bool Able(Pawn p) => p != null && p.Spawned && !p.Downed && !p.Drafted && !p.InMentalState && p.Awake();

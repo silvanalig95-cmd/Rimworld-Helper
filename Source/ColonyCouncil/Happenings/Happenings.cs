@@ -516,8 +516,9 @@ namespace ColonyCouncil
             if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             // A world event running in the region (a plague, a warlord) makes some likelier and others rarer.
             f *= WorldSituations.EventFactor(def, ext);
-            // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor).
-            if (ext != null && ext.group == HappeningGroup.Visitors) f *= DecreeWork.VisitorFactor;
+            // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor). With more than one colony each
+            // colony's own decrees count for its own home, by the event's target (IncidentWorker_Happening.ChanceFactorNow).
+            if (ext != null && ext.group == HappeningGroup.Visitors && !ColonyState.Several) f *= DecreeWork.VisitorFactor(null);
             // What the colony is known for draws those who come for it (Immersion/VisitorNotices.cs).
             f *= DrawnFactor(ext);
             return f;
@@ -683,14 +684,14 @@ namespace ColonyCouncil
             }
             while (pool.Count > 0)
             {
-                var def = pool.RandomElementByWeight(Weight);
+                var def = pool.RandomElementByWeight(d => Weight(d, map));
                 pool.Remove(def);
                 if (Find.Storyteller.TryFire(new FiringIncident(def, null, Parms(def)), false)) return true;
             }
             return false;
         }
 
-        private float Weight(IncidentDef d)
+        private float Weight(IncidentDef d, Map map)
         {
             var ext = d.GetModExtension<HappeningExtension>();
             float w = d.baseChance;
@@ -700,7 +701,7 @@ namespace ColonyCouncil
             if (ext.addsPeople) w *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             w *= WorldSituations.EventFactor(d, ext);
             // A quarantine or open gates decree, as in the storyteller's own pools (StorytellerFactor).
-            if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor;
+            if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor(map);
             w *= DrawnFactor(ext);
             return Mathf.Max(0.001f, w);
         }

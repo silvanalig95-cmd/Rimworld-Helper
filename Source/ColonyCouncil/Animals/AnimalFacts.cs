@@ -261,8 +261,11 @@ namespace ColonyCouncil
 
         public const string HerdmasterOffice = "Council_Office_Herdmaster";
 
-        /// <summary>The herdmaster, while offices are on; null otherwise.</summary>
-        public static Pawn Herdmaster => ColonyCouncilMod.Settings.offices ? CouncilGameComponent.Instance?.offices.HolderOf(HerdmasterOffice) : null;
+        /// <summary>The herdmaster of the colony of this map (the seat's for a map that isn't a home), while offices are on; null otherwise.</summary>
+        public static Pawn HerdmasterAt(Map map) => Interplay.Officer(HerdmasterOffice, map);
+
+        /// <summary>Someone is a herdmaster (of their own colony, or of the one whose seat they keep while away).</summary>
+        public static bool IsHerdmaster(Pawn p) => Interplay.Holds(p, HerdmasterOffice);
     }
 
     /// <summary>

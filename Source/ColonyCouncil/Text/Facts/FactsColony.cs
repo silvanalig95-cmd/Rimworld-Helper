@@ -122,7 +122,8 @@ namespace ColonyCouncil
                 Note(f, tr.Latest("Rimfolk_Topic_Tech", 7f), "colony:research", "RESEARCH", 7f, 1.2f);
                 Note(f, tr.Latest("Rimfolk_Topic_Project", 15f), "colony:project", "PROJECT", 15f, 1.2f);
             }
-            var offices = CouncilGameComponent.Instance?.offices;
+            // The council of the colony where it's said.
+            var offices = ColonyState.For(map)?.offices;
             var speaker = offices?.Speaker;
             if (speaker != null)
             {

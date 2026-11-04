@@ -39,7 +39,8 @@ namespace ColonyCouncil
                 case CalendarKind.Arrival:
                     return null;
             }
-            var keeper = Officer(Keeper);
+            // The keeper of days of the colony keeping it.
+            var keeper = Officer(Keeper, who.FirstOrDefault(p => p != null)?.MapHeld);
             if (keeper == null || !who.Contains(keeper) || !Able(keeper) || Grieving(keeper)) return null;
             if (Ready("keeperday|" + d.id, 0.5f) && Rand.Chance(0.6f))
                 Journal(keeper, "Council_Pool_Interplay_KeeperOrganised", null, (d.label ?? "").Named("NAME"));
@@ -60,7 +61,8 @@ namespace ColonyCouncil
             if (!On || tone == null || a == null || b == null || !S.frictions) return;
             try
             {
-                var pm = Officer(Peacemaker);
+                // The peacemaker of the colony where it happens.
+                var pm = Officer(Peacemaker, a.MapHeld);
                 if (pm == null || pm == a || pm == b || !Able(pm) || pm.Map != a.MapHeld) return;
                 if (!Together.Can(pm, a) && !Together.Can(pm, b)) return;
                 int now = Now;
@@ -95,7 +97,7 @@ namespace ColonyCouncil
         public static int DoctorLevel(Pawn doctor, HealerRecord rec)
         {
             int level = rec?.Level ?? 0;
-            if (!On || rec == null || doctor == null || Officer(Physician) != doctor) return level;
+            if (!On || rec == null || doctor == null || !Holds(doctor, Physician)) return level;
             return Mathf.Max(level, HealthMath.DoctorLevel(rec.Saved + 2, rec.lost));
         }
 
@@ -108,13 +110,16 @@ namespace ColonyCouncil
         private static void PhysicianRounds(CouncilGameComponent comp)
         {
             if (!HealthTracker.ConvalescenceOn) return;
-            var doc = Officer(Physician);
-            if (doc == null || doc.Dead || doc.MapHeld == null || !doc.MapHeld.IsPlayerHome) return;
-            foreach (var p in doc.MapHeld.mapPawns.FreeColonistsSpawned.ToList())
+            // Each colony's own physician, on the map they're on.
+            foreach (var doc in Officers(Physician))
             {
-                if (p == doc || !Ours(p) || HealthTracker.ConvalescenceOf(p) == null) continue;
-                var patient = p;
-                Together.When("rounds|" + doc.thingIDNumber + "|" + patient.thingIDNumber, doc, patient, () => LookIn(doc, patient), 20f, 1f);
+                if (doc == null || doc.Dead || doc.MapHeld == null || !doc.MapHeld.IsPlayerHome) continue;
+                foreach (var p in doc.MapHeld.mapPawns.FreeColonistsSpawned.ToList())
+                {
+                    if (p == doc || !Ours(p) || HealthTracker.ConvalescenceOf(p) == null) continue;
+                    var patient = p;
+                    Together.When("rounds|" + doc.thingIDNumber + "|" + patient.thingIDNumber, doc, patient, () => LookIn(doc, patient), 20f, 1f);
+                }
             }
         }
 
@@ -122,7 +127,7 @@ namespace ColonyCouncil
         private static void LookIn(Pawn doc, Pawn p)
         {
             // together: called once the physician is beside the patient (PhysicianRounds, through Together.When).
-            if (!On || Officer(Physician) != doc) return;
+            if (!On || !Holds(doc, Physician)) return;
             var h = HealthTracker.ConvalescenceOf(p);
             if (h == null) return;
             h.Severity = Mathf.Max(0.001f, h.Severity - PhysicianRoundsEase);
@@ -145,7 +150,7 @@ namespace ColonyCouncil
         public static Pawn MissionHead(Map map)
         {
             if (!On || map == null) return null;
-            var reeve = Officer(Reeve);
+            var reeve = Officer(Reeve, map);
             return reeve != null && reeve.Spawned && reeve.Map == map && !reeve.Downed ? reeve : null;
         }
 
@@ -158,7 +163,7 @@ namespace ColonyCouncil
             if (!On || m?.a == null || m.faction == null) return;
             try
             {
-                if (Officer(Reeve) != m.a) return;
+                if (!Holds(m.a, Reeve)) return;
                 Missions.Goodwill(m, ReeveGoodwill);
                 Journal(m.a, "Council_Pool_Interplay_ReeveDelivered", null, (m.place ?? m.faction.Name ?? "").Named("PLACE"), m.faction.Named("FACTION"));
             }
@@ -186,12 +191,13 @@ namespace ColonyCouncil
             if (!On || comp == null || pet == null || person == null || !S.petMoments) return;
             try
             {
-                var hm = Officer(Herdmaster);
+                // The herdmaster of the colony of the one who loved it.
+                var hm = OfficerOf(Herdmaster, person);
                 if (hm == null || hm == person || hm.Dead || person.Dead || hm.MapHeld == null || hm.MapHeld != person.MapHeld) return;
                 string petName = pet.LabelShort;
                 Together.When("petlost|" + person.thingIDNumber, hm, person, () =>
                 {
-                    if (!On || Officer(Herdmaster) != hm) return;
+                    if (!On || !Holds(hm, Herdmaster)) return;
                     if (S.socialWeb) comp.social.Bump(person, hm, TieKind.Friends, 4f, "CC_TieNote_Interplay_PetLost".Translate(petName), true);
                     if (Heart.Eligible(person)) Ease(person, HerdmasterComfort, StrainRelief.Friends);
                     string text = Line("Council_Pool_Interplay_HerdmasterComforts", hm, null, person.Named("OTHER"), pet.Named("PET"));
@@ -216,7 +222,6 @@ namespace ColonyCouncil
         private static void HerdmasterDay(CouncilGameComponent comp)
         {
             if (!S.petMoments) return;
-            var hm = Officer(Herdmaster);
             // Home again: thanks.
             foreach (var id in minded.Keys.ToList())
             {
@@ -240,15 +245,19 @@ namespace ColonyCouncil
                     SocialLog.Add(keptBy, who, text);
                 }, 48f);
             }
-            if (hm == null || !hm.Spawned || hm.Map == null || !hm.Map.IsPlayerHome) return;
-            foreach (var a in hm.Map.mapPawns.SpawnedColonyAnimals.ToList())
+            // Each colony's herdmaster minds the animals on the map they're on.
+            foreach (var hm in Officers(Herdmaster))
             {
-                if (a?.Name == null || a.Dead) continue;
-                var person = PetTracker.PersonOf(a);
-                if (person == null || person == hm || minded.ContainsKey(person.thingIDNumber)) continue;
-                if (person.MapHeld?.IsPlayerHome ?? false) continue;
-                if (comp.AwayTicks(person) < Day * 2) continue;
-                minded[person.thingIDNumber] = (a, hm);
+                if (hm == null || !hm.Spawned || hm.Map == null || !hm.Map.IsPlayerHome) continue;
+                foreach (var a in hm.Map.mapPawns.SpawnedColonyAnimals.ToList())
+                {
+                    if (a?.Name == null || a.Dead) continue;
+                    var person = PetTracker.PersonOf(a);
+                    if (person == null || person == hm || minded.ContainsKey(person.thingIDNumber)) continue;
+                    if (person.MapHeld?.IsPlayerHome ?? false) continue;
+                    if (comp.AwayTicks(person) < Day * 2) continue;
+                    minded[person.thingIDNumber] = (a, hm);
+                }
             }
         }
 
@@ -275,7 +284,12 @@ namespace ColonyCouncil
             int start = battleStart;
             battleStart = -1;
             if (!Heart.On) return;
-            var marshal = Officer(Marshal);
+            // Each colony's own marshal who fought in it.
+            foreach (var marshal in Officers(Marshal)) MarshalWalks(marshal, start);
+        }
+
+        private static void MarshalWalks(Pawn marshal, int start)
+        {
             if (!Able(marshal) || marshal.Map == null || !marshal.Map.IsPlayerHome) return;
             if ((marshal.mindState?.lastAttackTargetTick ?? -1) < start) return;
             var fought = marshal.Map.mapPawns.FreeColonistsSpawned

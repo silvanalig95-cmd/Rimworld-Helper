@@ -57,7 +57,7 @@ namespace ColonyCouncil
                 foreach (var o in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 {
                     if (o == person || !People.HasInnerLife(o) || o.DevelopmentalStage.Baby()) continue;
-                    if (AnimalFacts.Bonded(pet, o) || pet.playerSettings?.Master == o || AnimalFacts.Herdmaster == o) knew.Add(o.ThingID);
+                    if (AnimalFacts.Bonded(pet, o) || pet.playerSettings?.Master == o || AnimalFacts.IsHerdmaster(o)) knew.Add(o.ThingID);
                 }
                 int today = GenLocalDate.DayOfYear(map);
                 int year = GenLocalDate.Year(map);

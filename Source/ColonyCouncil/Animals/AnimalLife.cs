@@ -107,7 +107,7 @@ namespace ColonyCouncil
                 new LookTargets(baby), NewsKind.Land, MessageTypeDefOf.PositiveEvent, first ? Importance.Notable : Importance.Flavor);
             if (first && ColonyCalendar.On)
             {
-                var keeper = person ?? AnimalFacts.Herdmaster
+                var keeper = person ?? AnimalFacts.HerdmasterAt(baby.Map)
                              ?? baby.Map?.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && People.HasInnerLife(p))
                                  .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
                 ColonyCalendar.Notify_FirstFoal(baby, mother, keeper);

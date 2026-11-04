@@ -108,7 +108,8 @@ namespace ColonyCouncil
         private static void StewardThere(List<Pawn> attended)
         {
             // together: only those who were at the gathering with the steward (the play-out's own count of who came).
-            var steward = Officer(Steward);
+            // The steward of the colony where the gathering was.
+            var steward = Officer(Steward, attended?.FirstOrDefault(p => p != null)?.MapHeld);
             if (steward == null || !attended.Contains(steward) || !Heart.On) return;
             foreach (var p in attended)
                 if (p != null && p != steward && Heart.Eligible(p))

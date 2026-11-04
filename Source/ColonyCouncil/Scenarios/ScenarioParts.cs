@@ -29,15 +29,17 @@ namespace ColonyCouncil
             if (!ColonyCouncilMod.Settings.offices || offices.NullOrEmpty()) return;
             var seated = new List<string>();
             int grown = ctx.Adults.Count;
+            // The council of the colony the scenario starts at.
+            var council = ColonyState.For(ctx.map)?.offices ?? ctx.comp.offices;
             foreach (var office in offices.Where(o => o != null && o.Available))
             {
                 // A seat for a bigger colony waits for one (but the eldest's place at the fire is the custom's, not the vote's).
                 if (how != "eldest" && office.minColonists > grown) continue;
-                var able = ctx.Adults.Where(p => p.Spawned && office.CanHold(p) && ctx.comp.offices.OfficeOf(p) == null);
+                var able = ctx.Adults.Where(p => p.Spawned && office.CanHold(p) && council.OfficeOf(p) == null);
                 var pick = how == "eldest"
                     ? able.OrderByDescending(p => p.ageTracker.AgeBiologicalYearsFloat).FirstOrDefault()
                     : able.OrderByDescending(p => office.Competence(p)).FirstOrDefault();
-                if (pick == null || !ctx.comp.offices.Seat(office, pick)) continue;
+                if (pick == null || !council.Seat(office, pick)) continue;
                 seated.Add("CC_Scen_Seat".Translate(pick.Named("PAWN"), office.label.Named("OFFICE")).Resolve());
                 ctx.look.Add(pick);
             }

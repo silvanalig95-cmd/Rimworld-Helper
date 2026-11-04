@@ -261,7 +261,7 @@ namespace ColonyCouncil
         {
             var person = PetTracker.PersonOf(a);
             if (person != null && !person.Dead && person.Spawned && person.Map == map) return person;
-            var hm = AnimalFacts.Herdmaster;
+            var hm = AnimalFacts.HerdmasterAt(map);
             if (hm != null && !hm.Dead && hm.Spawned && hm.Map == map) return hm;
             return IncidentWorker_Happening.Colonists(map).Where(p => !p.DevelopmentalStage.Juvenile() && People.HasInnerLife(p))
                 .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();

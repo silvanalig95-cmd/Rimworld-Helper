@@ -127,7 +127,7 @@ namespace ColonyCouncil
             int target = AnimalMath.BarnBeds(herd);
             if (BarnBeds(map) >= target) yield break;
             var animals = pawn.skills?.GetSkill(SkillDefOf.Animals);
-            bool herdmaster = AnimalFacts.Herdmaster == pawn;
+            bool herdmaster = AnimalFacts.IsHerdmaster(pawn);
             bool fond = herdmaster || (animals != null && !animals.TotallyDisabled && People.Passionate(animals)) || HasTrait(pawn, TraitDefOf.Kind);
             if (!fond) yield break;
             var bed = Avail.BestBuildable(map, AnimalUtil.IsAnimalBed, "AnimalBed", "AnimalSleepingSpot");
