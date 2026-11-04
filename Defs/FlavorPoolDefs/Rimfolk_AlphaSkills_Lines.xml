@@ -2,7 +2,7 @@
 <Defs>
 
   <!-- A colonist with Alpha Skills' drunken passion, raising a drink before the work it trains; tagged with the skill
-       (Source/ColonyCouncil/Integrations/DrinkBeforeWork.cs). -->
+       (Source/ColonyCouncil/Integrations/BeforeWork.cs). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_DrinkBeforeWork</defName>
     <lines>
@@ -26,6 +26,34 @@
       <cheerful><li>Cheers, now watch what these hands can do!</li></cheerful>
       <gloomy><li>Easier to face the work after one of these.</li></gloomy>
       <cold><li>It helps me learn, so I drink.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist with Alpha Skills' stoned passion, lighting a joint before the work it trains; tagged with the skill
+       (Source/ColonyCouncil/Integrations/BeforeWork.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SmokeBeforeWork</defName>
+    <lines>
+      <plain>
+        <li>One smoke, then to work.</li>
+        <li>A few puffs to slow the world down, then the work.</li>
+        <li>This settles my head for the work ahead.</li>
+        <li>Half a joint and I'll see it all clearly.</li>
+        <li>[crafting] A smoke first, the bench can wait a minute.</li>
+        <li>[crafting] Slow hands make the best pieces, and this slows them nicely.</li>
+        <li>[construction] One smoke before I raise the walls.</li>
+        <li>[mining] A smoke before the dark of the mine.</li>
+        <li>[plants] The plants and I understand each other better after this.</li>
+        <li>[intellectual] Smoke first, then the problem looks different.</li>
+        <li>[artistic] The shapes come easier after a smoke.</li>
+        <li>[cooking] One smoke for the cook, then the pots.</li>
+        <li>[social] A calm smoke first, then I'll talk them round.</li>
+      </plain>
+      <warm><li>Here's to a good, slow day's work.</li></warm>
+      <blunt><li>Smoke, then work.</li></blunt>
+      <cheerful><li>Oh, today's work is going to be good.</li></cheerful>
+      <gloomy><li>The work's easier to face through a bit of smoke.</li></gloomy>
+      <cold><li>It helps me learn, so I smoke.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

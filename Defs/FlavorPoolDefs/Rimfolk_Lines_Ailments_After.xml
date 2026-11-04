@@ -2,8 +2,8 @@
 <Defs>
 
   <!--
-    Lines for the ailments that follow what really happened (an illness got over, a break or a burn healed, a fight at
-    home, a horror) and those of the land and the sky (pollution, snow glare, swamp leeches, orbit), and for swamp
+    Lines for the ailments that follow what really happened (an illness got over, the flu, the plague, malaria or
+    sleeping sickness, a break or a burn healed, a fight at home, a horror) and those of the land and the sky (pollution, snow glare, swamp leeches, orbit), and for swamp
     fever (Defs/HediffDefs/Council_Hediffs_Ailments.xml, Council_Hediffs_Illnesses.xml): added to the ailments' own
     journal pools (Council_Journal_Ailments.xml) and to what colonists say while they have one
     (Council_Pool_SayAilment, Rimfolk_Immersion_Say.xml), each tagged [ail:Key].
@@ -18,6 +18,10 @@
         <li>[ail:FluCough] People keep telling me I look better, right up until I cough.</li>
         <li>[ail:PlagueSwellings] The fever's gone. The lumps under my arms are still there, tender as bruises.</li>
         <li>[ail:PlagueSwellings] They tell me I've beaten the plague. I'd feel more like celebrating if I could lift my arms.</li>
+        <li>[ail:MalariaAnemia] The malaria's gone, and so is my color. I get out of breath carrying a bucket.</li>
+        <li>[ail:MalariaAnemia] Cold hands, white lips, and a heart that races on the stairs. My blood is coming back slowly, they say.</li>
+        <li>[ail:DrowsySpells] Fell asleep sitting up at noon, then lay awake half the night. The sickness has my days and nights mixed up.</li>
+        <li>[ail:DrowsySpells,child] I fell asleep at the table at noon with my spoon in my hand. Everyone laughed.</li>
         <li>[ail:Limp] The leg has knit. It just hasn't been told yet. I limp to the table and limp back.</li>
         <li>[ail:Limp] Walked the length of the yard today and had to sit on the woodpile. The bone's fine, they say; it's the muscle that's gone soft.</li>
         <li>[ail:BurnItch] The burn has healed into shiny new skin that itches all day. I sit on my hands.</li>
@@ -72,6 +76,8 @@
       <plain>
         <li>[ail:FluCough] Got through a whole night without coughing. The others say they slept better too.</li>
         <li>[ail:PlagueSwellings] The swellings have gone down at last. I can lift my arms over my head again.</li>
+        <li>[ail:MalariaAnemia] Climbed the stairs without stopping today. There's color in my face again.</li>
+        <li>[ail:DrowsySpells] Slept the whole night and stayed awake all day. My clock is my own again.</li>
         <li>[ail:Limp] Ran across the yard today without thinking about it. The leg's mine again.</li>
         <li>[ail:BurnItch] The burn has stopped itching. It's just a pale patch now.</li>
         <li>[ail:BadNights] Slept through the night. No raiders, no doors banging. Just sleep.</li>
@@ -93,6 +99,7 @@
       <plain>
         <li>[ail:FluCough] Gave {OTHER_nameDef} something for the cough the flu left behind. It's the lungs healing; it'll take its time.</li>
         <li>[ail:PlagueSwellings] Dressed the swellings the plague left on {OTHER_nameDef}. They're going down.</li>
+        <li>[ail:MalariaAnemia] Gave {OTHER_nameDef} a tonic for the blood the malaria took, and told {OTHER_objective} to rest.</li>
         <li>[ail:Limp] Strapped {OTHER_nameDef}'s healed leg and showed {OTHER_objective} the exercises. Walking, not bed.</li>
         <li>[ail:BurnItch] Put salve on {OTHER_nameDef}'s healed burn and told {OTHER_objective} not to scratch it; {OTHER_pronoun} scratched it on the way out.</li>
         <li>[ail:SnowBlind] Bathed {OTHER_nameDef}'s eyes and sat {OTHER_objective} in the dark. Goggles next time.</li>
@@ -121,6 +128,8 @@
       <plain>
         <li>[ail:FluCough] It's only the cough the flu left, I'm not catching.</li>
         <li>[ail:PlagueSwellings] Don't hug me yet, the swellings are still sore.</li>
+        <li>[ail:MalariaAnemia] Give me a moment, the stairs take my breath since the malaria.</li>
+        <li>[ail:DrowsySpells] Sorry, did I nod off again?</li>
         <li>[ail:Limp] Go on ahead, I'll catch up slowly.</li>
         <li>[ail:BurnItch] Tell me if I start scratching this burn again.</li>
         <li>[ail:BadNights] Sorry, I'm half asleep after another bad night.</li>

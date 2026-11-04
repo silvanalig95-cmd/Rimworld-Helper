@@ -155,6 +155,8 @@ Outland_VathunNobles
 # Alpha Skills 1.6 (sarg.alphaskills)
 AS_DrunkenPassion
 AS_DrunkenPassion_Active
+AS_StonedPassion
+AS_StonedPassion_Active
 # Traits read for a person's character (Defs/PersonaDefs/Rimfolk_PersonaNature_*.xml), from each mod's 1.6 TraitDefs
 # Medieval Overhaul 1.6 (dankpyon.medieval.overhaul)
 DankPyon_Fighter
