@@ -9,10 +9,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Defense → Defenses: the colony's defense read from its map. On the left, the map with the ways raiders walk in and
-    /// the narrow places on them, where they come from, what the colony faces, who fights, what stands already, and how
-    /// it's commonly done. On the right, the advice (most urgent first, what's done marked), each with its reasoning and
-    /// a button that puts the plan down at the place it's about, and the defense plans to place by hand. The survey is
-    /// worked out when the page opens (at most once a game hour unless asked again); the page's text once a second.
+    /// the narrow places on them, then where they come from, what the colony faces, who fights, what stands already, and
+    /// how it's commonly done. On the right, the defense lines, the advice (most urgent first, what's done marked), each
+    /// with its reasoning and a button that puts the plan down at the place it's about, and the defense plans to place by
+    /// hand. Drawn in the design's grammar (docs/design/interface.md, "The look"): the view header from the window (the
+    /// "?" to its Almanac page), each part a section whose heading folds and carries its count, rows, acts greyed with why
+    /// not, an empty state where a part has nothing; a colonist or a people named on the page is a link to its card, which
+    /// opens in the window's drawer. The survey is worked out when the page opens (at most once a game hour unless asked
+    /// again); the page's text once a second.
     /// </summary>
     public static class DefensePanel
     {
@@ -23,6 +27,8 @@ namespace ColonyCouncil
         private static Texture2D mini;
         private static DefenseSurvey miniFor;
         private static readonly Folds adviceFolds = new Folds("aside");
+        /// <summary>The page's sections folded away this session (by key: from, face, fight, stand, how, lines, advice, plans).</summary>
+        private static readonly Folds folds = new Folds();
         private static readonly Dictionary<(string, int, GameFont), float> heights = new Dictionary<(string, int, GameFont), float>();
 
         private static readonly Color CriticalColor = new Color(0.9f, 0.3f, 0.25f);
@@ -42,6 +48,8 @@ namespace ColonyCouncil
             public List<string> from = new List<string>(), face = new List<string>(), fight = new List<string>(), stand = new List<string>(), how = new List<string>();
             public List<(DefenseTemplateDef t, string line, string reason)> plans = new List<(DefenseTemplateDef, string, string)>();
             public Pawn marshal;
+            /// <summary>The marshal's line, their name a link.</summary>
+            public string marshalLine;
             public string stat;
             public int open;
         }
@@ -151,7 +159,11 @@ namespace ColonyCouncil
 
             // What they face.
             m.face.Add("CC_Def_Face_Points".Translate(s.raidPoints.ToString("0")).Resolve());
-            if (s.hostiles.Count > 0) m.face.Add("CC_Def_Face_Hostile".Translate(TextUtil.JoinAnd(s.hostiles.Select(f => f.Name).Distinct().Take(5).ToList())).Resolve());
+            if (s.hostiles.Count > 0)
+            {
+                var named = s.hostiles.Where(f => f != null).GroupBy(f => f.Name).Select(g => g.First()).Take(5).ToList();
+                m.face.Add(PaneLinks.Mark("CC_Def_Face_Hostile".Translate(TextUtil.JoinAnd(named.Select(f => f.Name).ToList())).Resolve(), named));
+            }
             else m.face.Add("CC_Def_Face_NoHostile".Translate());
             if (s.canDrop) m.face.Add("CC_Def_Face_Pods".Translate());
             if (s.canSiege) m.face.Add("CC_Def_Face_Siege".Translate());
@@ -164,10 +176,13 @@ namespace ColonyCouncil
 
             // Who fights.
             m.fight.Add("CC_Def_Fight_Count".Translate(s.fighters, s.ranged, s.melee).Resolve() + (s.unarmed > 0 ? " " + "CC_Def_Fight_Unarmed".Translate(s.unarmed).Resolve() : ""));
+            // The best shot and the best in close fighting by name, each a link to their card.
             if (s.bestShooter != null)
-                m.fight.Add("CC_Def_Fight_Shooter".Translate(s.bestShooter.Named("PAWN"), s.bestShooter.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0, s.bestShooter.equipment?.Primary?.LabelNoCount ?? "").Resolve());
+                m.fight.Add(PaneLinks.Mark("CC_Def_Fight_Shooter".Translate(s.bestShooter.Named("PAWN"), s.bestShooter.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0,
+                    s.bestShooter.equipment?.Primary?.LabelNoCount ?? "").Resolve(), s.bestShooter));
             if (s.bestMelee != null)
-                m.fight.Add("CC_Def_Fight_Melee".Translate(s.bestMelee.Named("PAWN"), s.bestMelee.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0, s.bestMelee.equipment?.Primary?.LabelNoCount ?? "").Resolve());
+                m.fight.Add(PaneLinks.Mark("CC_Def_Fight_Melee".Translate(s.bestMelee.Named("PAWN"), s.bestMelee.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0,
+                    s.bestMelee.equipment?.Primary?.LabelNoCount ?? "").Resolve(), s.bestMelee));
             if (s.bestRange > 0f) m.fight.Add("CC_Def_Fight_Reach".Translate(s.bestRange.ToString("0")).Resolve());
 
             // What stands already.
@@ -198,6 +213,7 @@ namespace ColonyCouncil
             }
             // The marshal of the colony whose home this is.
             if (ColonyCouncilMod.Settings.offices) m.marshal = OfficeTracker.For(s.map)?.HolderOf(Interplay.Marshal);
+            if (m.marshal != null) m.marshalLine = PaneLinks.Mark("CC_Def_Marshal".Translate(m.marshal.Named("PAWN")).Resolve(), m.marshal);
             return m;
         }
 
@@ -220,17 +236,17 @@ namespace ColonyCouncil
             lx = Legend(lx, y + mapH + 14f, new Color(0.45f, 0.75f, 1f), "CC_Def_Legend_Gates".Translate());
             Legend(lx, y + mapH + 14f, new Color(0.55f, 0.8f, 0.45f), "CC_Def_Legend_Home".Translate());
             Text.Font = GameFont.Small;
-            y += boxH + 8f;
-            y = Facts(x, y, w, "CC_Def_Card_From".Translate(), Icons.Raid ?? Icons.CatDefense, m.from) + 8f;
-            y = Facts(x, y, w, "CC_Def_Card_Face".Translate(), Icons.Warning, m.face) + 8f;
-            y = Facts(x, y, w, "CC_Def_Card_Fight".Translate(), Icons.People, m.fight) + 8f;
-            y = Facts(x, y, w, "CC_Def_Card_Stand".Translate(), Icons.CatDefense, m.stand) + 8f;
-            y = Facts(x, y, w, "CC_Def_Card_How".Translate(), Icons.Almanac, m.how);
-            var alm = new Rect(x, y + 4f, w, 26f);
-            var page = DefDatabase<AlmanacArticleDef>.GetNamedSilentFail("Rimfolk_AlmDef_Overview");
-            if (page != null && Widgets.ButtonText(alm, "CC_Def_ReadAlmanac".Translate())) MainTabWindow_Council.OpenAlmanac(page);
-            return y + 34f;
+            y += boxH + SectionGap;
+            y = Facts(x, y, w, "CC_Def_Card_From".Translate(), "from", m.from) + SectionGap;
+            y = Facts(x, y, w, "CC_Def_Card_Face".Translate(), "face", m.face) + SectionGap;
+            y = Facts(x, y, w, "CC_Def_Card_Fight".Translate(), "fight", m.fight) + SectionGap;
+            y = Facts(x, y, w, "CC_Def_Card_Stand".Translate(), "stand", m.stand) + SectionGap;
+            y = Facts(x, y, w, "CC_Def_Card_How".Translate(), "how", m.how);
+            return y + 8f;
         }
+
+        /// <summary>Between two sections (docs/design/interface.md, "Spacing and sizes").</summary>
+        private const float SectionGap = 16f;
 
         private static float Legend(float x, float y, Color c, string text)
         {
@@ -248,35 +264,31 @@ namespace ColonyCouncil
             if (heights.TryGetValue(key, out float h)) return h;
             var old = Text.Font;
             Text.Font = font;
-            h = Text.CalcHeight(text, w);
+            h = LinkTextMath.HasMarks(text) ? LinkText.Height(text, w, font) : Text.CalcHeight(text, w);
             Text.Font = old;
             if (heights.Count > 400) heights.Clear();
             heights[key] = h;
             return h;
         }
 
-        /// <summary>A small titled card of lines.</summary>
-        private static float Facts(float x, float y, float w, string title, Texture2D icon, List<string> lines)
+        /// <summary>
+        /// A section of facts: its heading (folding, with its name) and a row for each line, a small dot before it, the names
+        /// in it links. Returns the y under it.
+        /// </summary>
+        private static float Facts(float x, float y, float w, string title, string key, List<string> lines)
         {
-            float textW = w - 26f;
-            float h = 30f;
-            foreach (var l in lines) h += Measure(l, textW, GameFont.Tiny) + 3f;
-            h += 6f;
-            var r = new Rect(x, y, w, h);
-            UiKit.Card(r, null, false, false);
-            UiKit.Icon(new Rect(x + 8f, y + 6f, 16f, 16f), icon, UiKit.HeaderColor);
-            UiKit.LabelFit(new Rect(x + 30f, y + 3f, w - 38f, 22f), title, UiKit.HeaderColor);
-            float ly = y + 28f;
-            Text.Font = GameFont.Tiny;
+            y += UiKit.SectionHeading(x, y, w, title, -1, folds, key, out bool open);
+            if (!open) return y;
+            float textW = w - 12f;
             foreach (var l in lines)
             {
                 float lh = Measure(l, textW, GameFont.Tiny);
-                Widgets.DrawBoxSolid(new Rect(x + 9f, ly + 6f, 3f, 3f), UiKit.HeaderColor);
-                Widgets.Label(new Rect(x + 17f, ly, textW, lh), l);
-                ly += lh + 3f;
+                Widgets.DrawBoxSolid(new Rect(x + 3f, y + 6f, 3f, 3f), UiKit.HeaderColor);
+                LinkText.Draw(new Rect(x + 12f, y, textW, lh), l, Color.white, GameFont.Tiny);
+                y += lh + 3f;
             }
             Text.Font = GameFont.Small;
-            return y + h;
+            return y;
         }
 
         // ---------------- The little map ----------------
@@ -364,26 +376,39 @@ namespace ColonyCouncil
             var s = m.s;
             try
             {
-                y = DefenseLinesPanel.Draw(s, x, y, w);
+                y = DefenseLinesPanel.Draw(s, x, y, w, folds);
             }
             catch (System.Exception e)
             {
                 CouncilLog.ErrorOnce("defense lines on the page", e);
             }
-            y += UiKit.SectionTitle(x, y, w, "CC_Def_Advice".Translate(), Icons.Priorities,
-                null, m.open > 0 ? "CC_Def_AdviceOpen".Translate(m.open).Resolve() : "CC_Def_AdviceNone".Translate().Resolve());
-            if (m.marshal != null && m.advice.Any(a => !a.done && !a.standing))
+            y += SectionGap - 6f;
+            y += UiKit.SectionHeading(x, y, w, "CC_Def_Advice".Translate(), m.open, folds, "advice", out bool adviceOpen,
+                m.open > 0 ? "CC_Def_AdviceOpen".Translate(m.open).Resolve() : "CC_Def_AdviceNone".Translate().Resolve());
+            if (adviceOpen)
             {
-                var mr = new Rect(x, y, w, 30f);
-                UiKit.Portrait(new Rect(x + 2f, y + 2f, 26f, 26f), m.marshal, UiKit.Gold);
-                UiKit.LabelFit(new Rect(x + 34f, y + 4f, w - 36f, 22f), "CC_Def_Marshal".Translate(m.marshal.Named("PAWN")).Resolve(), UiKit.Quote, GameFont.Tiny);
-                y += mr.height + 4f;
+                if (m.marshalLine != null && m.advice.Any(a => !a.done && !a.standing))
+                {
+                    var face = new Rect(x + 2f, y + 2f, 26f, 26f);
+                    UiKit.Portrait(face, m.marshal, UiKit.Gold);
+                    if (Widgets.ButtonInvisible(face, false))
+                    {
+                        Cards.Click();
+                        Cards.Open(m.marshal);
+                    }
+                    LinkText.Line(new Rect(x + 34f, y + 4f, w - 36f, 22f), m.marshalLine, UiKit.Quote, GameFont.Tiny);
+                    y += 34f;
+                }
+                if (m.advice.Count == 0) y += UiKit.EmptyState(x, y, w, Icons.Priorities, "CC_Def_AdviceEmpty".Translate(), 90f);
+                foreach (var a in m.advice) y = AdviceCard(a, s, x, y, w) + 8f;
+                // The advice set aside with "Not this", to bring back.
+                y += AheadPanel.Aside(x, y, w, DefenseAdvice.Source, adviceFolds) + 8f;
             }
-            foreach (var a in m.advice) y = AdviceCard(a, s, x, y, w) + 6f;
-            // The advice set aside with "Not this", to bring back.
-            y += AheadPanel.Aside(x, y, w, DefenseAdvice.Source, adviceFolds) + 8f;
-            y += UiKit.SectionTitle(x, y, w, "CC_Def_Plans".Translate(), Icons.Rooms, null, "CC_Def_PlansSub".Translate().Resolve());
-            foreach (var (t, line, reason) in m.plans) y = PlanCard(t, line, reason, s, x, y, w) + 6f;
+            y += SectionGap - 8f;
+            y += UiKit.SectionHeading(x, y, w, "CC_Def_Plans".Translate(), m.plans.Count, folds, "plans", out bool plansOpen, "CC_Def_PlansSub".Translate().Resolve());
+            if (plansOpen)
+                foreach (var (t, line, reason) in m.plans)
+                    y = PlanCard(t, line, reason, s, x, y, w) + 8f;
             return y;
         }
 
@@ -399,6 +424,7 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A piece of advice as a row: its level, what to do and why, and its acts at the right, each greyed with why when it can't be done.</summary>
         private static float AdviceCard(DefenseAdviceItem a, DefenseSurvey s, float x, float y, float w)
         {
             float textX = x + 100f;
@@ -409,12 +435,12 @@ namespace ColonyCouncil
             var lineThere = gap ? DefenseLines.Of(s.map)?.ForChoke(s, s.chokes[a.choke]) : null;
             int buttons = (a.template != null && !a.done ? 1 : 0) + (a.look.IsValid ? 1 : 0) + (a.article != null ? 1 : 0) + (gap ? 1 : 0) + (a.done ? 0 : 1);
             float h = Mathf.Max(56f, titleH + whyH + 16f, buttons * 28f + 8f);
-            var color = a.done ? UiKit.Good : LevelColor(a.Level);
+            var color = a.done ? UiKit.Done : LevelColor(a.Level);
             var r = new Rect(x, y, w, h);
             UiKit.Card(r, UiKit.WithAlpha(color, a.done ? 0.35f : 0.7f), false, false);
             if (a.done)
             {
-                UiKit.Pill(x + 10f, y + 10f, "CC_Def_Done_Pill".Translate(), UiKit.Good, null, null, 84f);
+                UiKit.Pill(x + 10f, y + 10f, "CC_Def_Done_Pill".Translate(), UiKit.Done, null, null, 84f);
                 GUI.color = new Color(1f, 1f, 1f, 0.6f);
             }
             else UiKit.Pill(x + 10f, y + 10f, (a.standing ? "CC_Def_Standing_Pill" : "CC_Level_" + a.Level).Translate(), color, a.Level >= AdviceLevel.High ? Icons.Warning : null, null, 84f);
@@ -429,44 +455,36 @@ namespace ColonyCouncil
             float bx = x + w - ButtonsW - 6f, by = y + 6f;
             if (a.template != null && !a.done)
             {
+                // Greyed with the reason when the colony can't build it yet, rather than refused after the click.
                 string reason = a.template.UnavailableReason(s.map);
-                var br = new Rect(bx, by, ButtonsW, 24f);
-                if (Widgets.ButtonText(br, "CC_Def_PlanHere".Translate(), true, true, reason == null ? Color.white : UiKit.Faint))
-                {
-                    if (reason != null) Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
-                    else Designator_PlanDefense.Begin(a.template, true, a.choke);
-                }
-                TooltipHandler.TipRegion(br, reason ?? "CC_Def_PlanHere_Tip".Translate(a.template.LabelNow).Resolve());
+                if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), "CC_Def_PlanHere".Translate(), reason, "CC_Def_PlanHere_Tip".Translate(a.template.LabelNow).Resolve()))
+                    Designator_PlanDefense.Begin(a.template, true, a.choke);
                 by += 28f;
             }
             if (a.look.IsValid)
             {
-                var sr = new Rect(bx, by, ButtonsW, 24f);
-                if (Widgets.ButtonText(sr, "CC_Show".Translate()))
+                if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), "CC_Show".Translate(), null, "CC_Plan_ShowTip".Translate()))
                 {
                     Find.MainTabsRoot.EscapeCurrentTab(false);
                     DefenseOverlay.Show = true;
                     CameraJumper.TryJump(a.look, s.map);
                 }
-                TooltipHandler.TipRegion(sr, "CC_Plan_ShowTip".Translate());
                 by += 28f;
             }
             if (a.article != null)
             {
-                var ar = new Rect(bx, by, ButtonsW, 24f);
-                if (Widgets.ButtonText(ar, "CC_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(a.article);
-                TooltipHandler.TipRegion(ar, "CC_Same_ReadMoreTip".Translate(a.article.label.CapitalizeFirst()));
+                if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), "CC_ReadMore".Translate(), null, "CC_Same_ReadMoreTip".Translate(a.article.label.CapitalizeFirst()).Resolve()))
+                    MainTabWindow_Council.OpenAlmanac(a.article);
                 by += 28f;
             }
             if (gap)
             {
-                var lr = new Rect(bx, by, ButtonsW, 24f);
-                if (Widgets.ButtonText(lr, (lineThere != null ? "CC_DefLine_OpenIts" : "CC_DefLine_MakeLine").Translate()))
+                if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), (lineThere != null ? "CC_DefLine_OpenIts" : "CC_DefLine_MakeLine").Translate(), null,
+                        (lineThere != null ? "CC_DefLine_OpenIts_Tip" : "CC_DefLine_MakeLine_Tip").Translate()))
                 {
                     if (lineThere != null) DefenseLinesPanel.Open(s.map, lineThere);
                     else DefenseLinesPanel.MakeFromAdvice(s, a.choke);
                 }
-                TooltipHandler.TipRegion(lr, (lineThere != null ? "CC_DefLine_OpenIts_Tip" : "CC_DefLine_MakeLine_Tip").Translate());
                 by += 28f;
             }
             // Not this: set aside here and on the Plan page alike, until brought back below the advice.
@@ -474,6 +492,7 @@ namespace ColonyCouncil
             return y + h;
         }
 
+        /// <summary>A defense plan as a row: its picture, name, size and purpose, what it holds, and its acts, greyed with why when it can't be built yet.</summary>
         private static float PlanCard(DefenseTemplateDef t, string line, string reason, DefenseSurvey s, float x, float y, float w)
         {
             const float icon = 44f;
@@ -504,13 +523,11 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
-            if (reason == null)
-            {
-                float bx = x + w - ButtonsW - 6f;
-                if (Widgets.ButtonText(new Rect(bx, y + 6f, ButtonsW, 24f), "CC_Build_Plan".Translate())) Designator_PlanDefense.Begin(t, false);
-                bool spot = s.chokes.Count > 0 || s.approach.IsValid || t.placeAt == "core";
-                if (spot && Widgets.ButtonText(new Rect(bx, y + 34f, ButtonsW, 24f), "CC_Def_AtSpot".Translate())) Designator_PlanDefense.Begin(t, true);
-            }
+            float bx = x + w - ButtonsW - 6f;
+            if (UiKit.ActButton(new Rect(bx, y + 6f, ButtonsW, 24f), "CC_Build_Plan".Translate(), reason)) Designator_PlanDefense.Begin(t, false);
+            bool spot = s.chokes.Count > 0 || s.approach.IsValid || t.placeAt == "core";
+            string spotWhyNot = reason ?? (spot ? null : "CC_Def_AtSpot_WhyNot".Translate().Resolve());
+            if (UiKit.ActButton(new Rect(bx, y + 34f, ButtonsW, 24f), "CC_Def_AtSpot".Translate(), spotWhyNot)) Designator_PlanDefense.Begin(t, true);
             return y + h;
         }
     }

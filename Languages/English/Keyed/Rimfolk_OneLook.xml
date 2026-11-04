@@ -13,4 +13,8 @@
   <CC_SetNote_WindowSize_Standard>Rimfolk's windows open at 1010 by 720, or less on a small screen.</CC_SetNote_WindowSize_Standard>
   <CC_SetNote_WindowSize_Large>Rimfolk's windows grow up to 1280 by 860 on a screen with the room.</CC_SetNote_WindowSize_Large>
 
+  <!-- The defense window (UI/DefensePanel.cs) -->
+  <CC_Def_AdviceEmpty>No advice for this map yet: the survey found nothing to hold or to build.</CC_Def_AdviceEmpty>
+  <CC_Def_AtSpot_WhyNot>The survey found no way in or narrow place on this map to put it at.</CC_Def_AtSpot_WhyNot>
+
 </LanguageData>

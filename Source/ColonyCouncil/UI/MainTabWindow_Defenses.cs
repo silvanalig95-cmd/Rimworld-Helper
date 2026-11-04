@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
@@ -9,14 +10,24 @@ namespace ColonyCouncil
     /// The "defense" button in the bottom bar: the Defenses page (UI/DefensePanel.cs) in its own window, the size and
     /// place of Rimfolk's other windows, with their icons in its top right corner. The page is only here now: a click
     /// on a raid's warning, a next step about the defenses and the Defenses page key all open this window, whether or
-    /// not its button shows on the bar.
+    /// not its button shows on the bar. Since UI 5 (docs/design/interface.md, "one look") it reads as the other windows
+    /// do: its one view drawn with the view header (title, one line, the stat and the "?" to its Almanac page) and the
+    /// drawer, so a colonist or a people named on the page opens its card beside it.
     /// </summary>
     public class MainTabWindow_Defenses : RimfolkTabWindow
     {
         public override RimfolkWindow Which => RimfolkWindow.Defense;
 
+        private const string Page = "Defenses";
+
         private readonly List<WindowTab> tabs = new List<WindowTab>();
-        private string label;
+        private static string label;
+        /// <summary>The view's header extras: no modes (one way of looking), and the "?" to the defense planner's Almanac page.</summary>
+        private static readonly ViewHeadModel head = new ViewHeadModel { article = PagesMath.ArticleOf(Page) };
+        private static readonly Action<Rect> drawView = DrawView;
+        private static readonly Action<Rect> drawPage = r => DefensePanel.Draw(r, Find.CurrentMap);
+
+        private static Texture2D Icon => Icons.Defenses ?? Icons.CatDefense;
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -24,19 +35,32 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             label ??= "CC_Tab_Defenses".Translate();
             tabs.Clear();
-            tabs.Add(new WindowTab(label, Icons.Defenses ?? Icons.CatDefense, true, null));
+            tabs.Add(new WindowTab(label, Icon, true, null));
             var body = WindowTabs.Draw(inRect, tabs, RimfolkWindow.Defense);
             var content = body.ContractedBy(12f);
             if (CouncilGameComponent.Instance == null)
             {
-                UiKit.EmptyState(content, Icons.Defenses ?? Icons.CatDefense, "CC_NoGame".Translate());
+                UiKit.EmptyState(content, Icon, "CC_NoGame".Translate());
                 return;
             }
-            DefensePanel.Draw(content, Find.CurrentMap);
-            Nav.Observe(RimfolkWindow.Defense, "Defenses", ThingRef.None);
-            Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = Color.white;
+            try
+            {
+                Drawer.Around(RimfolkWindow.Defense, content, drawView);
+                Nav.Observe(RimfolkWindow.Defense, "Defenses", Drawer.Current(RimfolkWindow.Defense));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("defense window", e);
+            }
+            finally
+            {
+                Text.Font = GameFont.Small;
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+            }
         }
+
+        /// <summary>The page as a view: its own header takes the "?", or the window gives it one when it draws none (no home map).</summary>
+        private static void DrawView(Rect rect) => ViewHead.Draw(rect, Page, label, Icon, head, drawPage);
     }
 }
