@@ -79,6 +79,8 @@ namespace ColonyCouncil
         public readonly Dictionary<int, int> arrows = new Dictionary<int, int>();
         /// <summary>Marks with a world event at them (a ring in the world's colour).</summary>
         public readonly HashSet<int> events = new HashSet<int>();
+        /// <summary>Under Stance and ties, a town's head's regard of the colony as a ring in its colour, by the town's id.</summary>
+        public readonly Dictionary<int, Color> rings = new Dictionary<int, Color>();
         /// <summary>Tiles of world events at no town (a dot drawn there).</summary>
         public readonly List<PlanetTile> eventTiles = new List<PlanetTile>();
         public readonly List<LensLine> lines = new List<LensLine>();
@@ -151,6 +153,7 @@ namespace ColonyCouncil
                 }
             }
             if (lens == Lens.Fortunes) EventTiles(m);
+            if (lens == Lens.Stance) HeadRings(m);
             Lines(m, home);
             Legend(m);
             Rows(m, home, places);
@@ -289,6 +292,16 @@ namespace ColonyCouncil
         }
 
         private static string StanceWord(Stance s) => ("CC_Lens_Stance_" + s).Translate();
+
+        /// <summary>Each town's head the colony knows by name: how they regard the colony, as a ring around the town's mark.</summary>
+        private static void HeadRings(LensModel m)
+        {
+            var book = NotableBook.Instance;
+            if (book == null || !NotableBook.On) return;
+            foreach (var n in book.notables)
+                if (n != null && n.role == NotableRole.Head && n.Alive && n.town >= 0 && !m.rings.ContainsKey(n.town))
+                    m.rings[n.town] = NotableBook.RegardColor(NotableBook.Opinion(n));
+        }
 
         private static void EventTiles(LensModel m)
         {
@@ -434,6 +447,7 @@ namespace ColonyCouncil
                     l.Add(Dot("CC_Lens_Leg_Cool", UiKit.Cool));
                     l.Add(Dot("CC_Lens_Leg_Sour", UiKit.Bad));
                     l.Add(Dot("CC_Lens_Leg_Ours", UiKit.Gold));
+                    l.Add(new LegendItem { word = "CC_Lens_Leg_HeadRing".Translate(), color = UiKit.Faint, ring = true });
                     break;
                 case Lens.Fortunes:
                     l.Add(Dot("CC_Lens_Leg_Thriving", UiKit.Good));

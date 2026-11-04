@@ -42,7 +42,7 @@
   <!-- Their terms. -->
   <CC_RaidCamp_Terms_Label>Terms from the {KIND}</CC_RaidCamp_Terms_Label>
   <CC_RaidCamp_Terms_Text>Word has come from the {KIND} of {PEOPLE} {WHERE}: for {SILVER} silver they will break camp and keep away from {COLONY} for a year.</CC_RaidCamp_Terms_Text>
-  <CC_RaidCamp_Terms_How>If the colony pays, one of its people will carry the silver out to the edge of the colony's ground and leave it there for them to collect. No raid comes from the camp while it is on its way, and they break camp once it is handed over. Their price stands as long as the camp does: it can be paid later from the raiders' camps page of the region window.</CC_RaidCamp_Terms_How>
+  <CC_RaidCamp_Terms_How>If the colony pays, one of its people will carry the silver out to the edge of the colony's ground and leave it there for them to collect. No raid comes from the camp while it is on its way, and they break camp once it is handed over. Their price stands as long as the camp does: it can be paid later from the region map's Threats lens, as a list.</CC_RaidCamp_Terms_How>
   <CC_RaidCamp_Pay>Pay {SILVER} silver</CC_RaidCamp_Pay>
   <CC_RaidCamp_Refuse>Refuse</CC_RaidCamp_Refuse>
   <CC_RaidCamp_NotEnough>The colony has only {HAVE} silver of the {SILVER} they ask.</CC_RaidCamp_NotEnough>

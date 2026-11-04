@@ -5,7 +5,7 @@
     Optional keyboard shortcuts for the pages of Rimfolk's windows (Source/ColonyCouncil/UI/CouncilKeys.cs). None has a
     key until the player picks one in Options, Keyboard, under "Rimfolk", so they never clash with the game's own keys or
     another mod's. A page's key opens the window that has the page on it, or closes it when that page is already
-    showing (the world key's page is the region window's Neighbours, the defenses key's the defense window); the next
+    showing (the world key's page is the region map's Stance and ties lens as a list, the defenses key's the defense window); the next
     and previous page keys step through the pages of the window that is open. The def names stay as they were, so keys
     already picked keep working.
   -->
@@ -42,7 +42,7 @@
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_World</defName>
-    <label>region: neighbours and what's coming</label>
+    <label>region: the neighbours (stance and ties, as a list)</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">

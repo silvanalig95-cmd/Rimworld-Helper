@@ -132,7 +132,7 @@
   <CC_SetNote_StorytellerEventWeight>At 100%, each is about as likely as one of the game's own events.</CC_SetNote_StorytellerEventWeight>
   <CC_SetNote_DaysBetweenWorldEvents>On average; the same event won't come back soon.</CC_SetNote_DaysBetweenWorldEvents>
   <CC_SetNote_ScenarioThreat>Only the attacks a Rimfolk scenario promises; your storyteller's difficulty applies too.</CC_SetNote_ScenarioThreat>
-  <CC_SetNote_WorldSituations>A plague, a warlord or a hard winter across the region, followed on the region window's World events page.</CC_SetNote_WorldSituations>
+  <CC_SetNote_WorldSituations>A plague, a warlord or a hard winter across the region, followed in the region window's History.</CC_SetNote_WorldSituations>
   <CC_SetNote_DaysBetweenWorldSituations>On average; at most two run at the same time.</CC_SetNote_DaysBetweenWorldSituations>
   <CC_SetNote_Calendar>The founding day, the first snow and the days you name come round with a letter and a gathering.</CC_SetNote_Calendar>
 

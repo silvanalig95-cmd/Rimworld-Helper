@@ -56,7 +56,7 @@ Memories fade over the years, the big ones slowest, and a people keeps a dozen a
         <text>A people remembers not only what the colony did but who. When a colonist carries out a prisoner's release, or a colony doctor tends one of a people's own (a guest, a wounded visitor, a prisoner), it is noted; when that person goes home and the deed is remembered, the deed names the colonist. A pilgrim walked home, word carried to a far town, a lost child found and hands sent for a harvest name the colonist who did it too. A deed that already names someone keeps them: a people never forgets the first who helped.
 
 A colonist named in deeds worth 6 or more (adding up everything they did for that people, as it fades) is remembered by name. Their people's travellers stop that colonist to thank them; their envoys, the riders of their world events and their camps ask for that colonist at the gate and send them to meet the visitors; and their letters can name them ("they've asked for Ana by name"). At 20 or more, the colonist is a dear friend of that people, and the letters say so. Names are only remembered while the colonist is still with the colony, and fade with the deed.</text>
-        <after>The region window's Peoples page shows the colonist with each deed that names them ("They remember Ana for it"). Saves from before keep their deeds; they just name nobody.</after>
+        <after>The region window's Peoples view shows the colonist with each deed that names them ("They remember Ana for it"). Saves from before keep their deeds; they just name nobody.</after>
       </li>
       <li>
         <heading>Remembered by name, for good or ill</heading>
@@ -75,7 +75,7 @@ A colonist they remember warmly enough (4 or more, the good less the wrongs) is 
           <li>An old enemy offers peace | A people at war with the colony, with a grievance on either side still at 3 or more, and nothing between them for 90 days | Make peace; make peace and ask weregild for a colonist they killed (Social 6, a gamble); make peace over a meal (25 raw food); or send the envoy away</li>
           <li>A quarrel between neighbors | A people grateful at 6 or more (or with 40 goodwill), and another friendly people not at war with it | Side with either (8 goodwill with one, 8 less with the other), judge fairly (Social 6, a gamble: 6 goodwill with both if it works), or stay out</li>
         </table>
-        <after>The envoy of an old debt, of help from old friends, or of a quarrel asks for the colonist that people remembers by name, when they're at home. A world event's own aftermath (thanks after a plague, the first harvest after a famine, old friends' seed after locusts or a drought, a reckoning after a hard year the colony looked away from) is described on the world events page.</after>
+        <after>The envoy of an old debt, of help from old friends, or of a quarrel asks for the colonist that people remembers by name, when they're at home. A world event's own aftermath (thanks after a plague, the first harvest after a famine, old friends' seed after locusts or a drought, a reckoning after a hard year the colony looked away from) shows among the world's events at the top of the region window's History.</after>
         <after>Raid letters say what the raiders remember: an old wrong of the colony's (traders robbed, kin killed on its land, a camp driven off), how often they have raided before, or a colonist they killed. The prisoners, guests and envoys of an event are never harmed by it, and none of these events ends in a fight.</after>
       </li>
       <li>
@@ -103,8 +103,8 @@ A colonist they remember warmly enough (4 or more, the good less the wrongs) is 
         <after>The pilgrim, the messengers and the child are never in danger from the mission itself. A child nobody finds by then is found by their own people's searchers in the end, tired and hungry; their people are glad, and a little less fond of the colony.</after>
       </li>
       <li>
-        <heading>Reading the Peoples page</heading>
-        <text>The region window's Peoples page has a "What they remember" section: a card for each people that remembers the colony for something, with how it stands (well disposed, in the colony's debt, the colony owes them, wary, holding a grudge, or grateful and aggrieved at once) and its biggest memories with how long ago they were. Green is what the colony did for them, red what it did to them, gold what they did for the colony, orange what they did to it; a faded line has been settled. Hover over a card for everything the people remembers.</text>
+        <heading>Reading the Peoples view</heading>
+        <text>The region window's Peoples view has a "What they remember" section: a card for each people that remembers the colony for something, with how it stands (well disposed, in the colony's debt, the colony owes them, wary, holding a grudge, or grateful and aggrieved at once) and its biggest memories with how long ago they were. Green is what the colony did for them, red what it did to them, gold what they did for the colony, orange what they did to it; a faded line has been settled. Hover over a card for everything the people remembers.</text>
       </li>
       <li>
         <heading>The region map</heading>

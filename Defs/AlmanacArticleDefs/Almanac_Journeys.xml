@@ -10,7 +10,7 @@
     <order>17</order>
     <summary>Choose who goes, where and when: the travellers get ready together, rested, fed, washed, packed and dressed for the road, and set off at the hour.</summary>
     <tip>A dawn departure leaves time for an early night. Plan it the afternoon before.</tip>
-    <description>A journey is an order of its own rather than a decree: it is for the few who go, at an hour you choose, and nobody else's mood or a decree's place is spent on it. Plan it from the Journeys section on the Decrees page or the region window's Journeys page, or from a town or place on the region map with "Plan a journey here".
+    <description>A journey is an order of its own rather than a decree: it is for the few who go, at an hour you choose, and nobody else's mood or a decree's place is spent on it. Plan it from the Journeys section on the Decrees page or the region window's Here and away, or from a town or place on the region map with "Plan a journey here".
 
 The planner asks who goes (colonists, and the animals to bring), where to (a town or a place on the region map, or nowhere in particular for a length you choose) and when (an hour on a day, the next dawn at least ten hours off by default). It shows the days on the road by the game's own caravan estimate, the weather along the way and at the destination, what each traveller will change into, how their night before is shifted, and the packing list, which you can change line by line or add to from the stores. How long the food lasts against the road, and the load against the room, stay in sight at the foot of the planner.</description>
     <sections>

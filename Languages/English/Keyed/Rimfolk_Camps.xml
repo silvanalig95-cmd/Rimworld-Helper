@@ -32,7 +32,7 @@
   <CC_Camp_Facts_Wood>They will cut wood around their camp.</CC_Camp_Facts_Wood>
   <CC_Camp_Facts_Game>They will hunt around their camp.</CC_Camp_Facts_Game>
   <CC_Camp_Facts_Trader>{X_nameDef} will trade from the camp.</CC_Camp_Facts_Trader>
-  <CC_Camp_Facts_Talk>Once they are settled, the region window's Neighbours page has their camp: trade, terms, gifts, hiring, and asking them to move on.</CC_Camp_Facts_Talk>
+  <CC_Camp_Facts_Talk>Once they are settled, the region window's Here and away has their camp: trade, terms, gifts, hiring, and asking them to move on.</CC_Camp_Facts_Talk>
 
   <!-- Arriving and building -->
   <CC_Camp_Arrived>The {NAME} from {FACTION} reached their spot {PLACE} and started putting up a camp.</CC_Camp_Arrived>

@@ -151,8 +151,12 @@ namespace ColonyCouncil
         public override void PreOpen()
         {
             base.PreOpen();
-            // Its button opens it on the map (the lens as it was); a view asked for (a key, a link, a card) opens it there.
-            if (!asked) page = RegionView.Map;
+            // Its button opens it on the map itself (the lens as it was); a view asked for (a key, a link, a card) opens it there.
+            if (!asked)
+            {
+                page = RegionView.Map;
+                RegionView.list = false;
+            }
             asked = false;
         }
 

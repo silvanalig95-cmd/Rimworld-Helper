@@ -18,6 +18,8 @@ namespace ColonyCouncil
         public bool swatch;
         /// <summary>An icon instead of a dot (an arrow for a fortune that moved).</summary>
         public Texture2D icon;
+        /// <summary>A ring instead of a dot (a town's head's regard around its mark).</summary>
+        public bool ring;
         internal float width = -1f;
     }
 
@@ -269,6 +271,7 @@ namespace ColonyCouncil
             }
             else if (it.icon != null) Icon(new Rect(x + 1f, y + 2f, 12f, 12f), it.icon, it.color);
             else if (it.swatch) Widgets.DrawBoxSolid(new Rect(x + 1f, y + 3f, 12f, 10f), it.color);
+            else if (it.ring) RingDraw(new Rect(x + 1f, y + 2f, 12f, 12f), it.color);
             else DiscFill(new Rect(x + 3f, y + 4f, 8f, 8f), it.color);
             float w = width > 0f ? width - sw - 4f : KeptWidth(it.word, GameFont.Tiny) + 6f;
             LabelFit(new Rect(x + sw + 4f, y, w, 16f), it.word, Faint, GameFont.Tiny);

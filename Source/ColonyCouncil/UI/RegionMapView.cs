@@ -394,6 +394,7 @@ namespace ColonyCouncil
                 UiKit.DiscFill(r.ExpandedBy(3f), faint ? UiKit.WithAlpha(MarkBack, 0.55f) : MarkBack);
                 if (m.kind == RegionMarkKind.Colony) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.Gold);
                 if (lens != null && lens.events.Contains(m.obj.ID)) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WorldColor);
+                else if (lens != null && lens.rings.TryGetValue(m.obj.ID, out var regard)) UiKit.RingDraw(r.ExpandedBy(4f), UiKit.WithAlpha(regard, 0.85f));
                 if (m.obj == picked) UiKit.RingDraw(r.ExpandedBy(7f), Color.white);
                 else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), new Color(1f, 1f, 1f, 0.5f));
                 if (m.icon != null)

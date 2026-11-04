@@ -13,7 +13,7 @@
   <CC_Holding_SettledTitle>Neighbours</CC_Holding_SettledTitle>
   <CC_Holding_Settled>The {NAME} of {FACTION} are staying. Their camp {PLACE} is their home now: the colony's neighbours, on its land but not in it. {X_nameDef} shook every hand at the gate twice.</CC_Holding_Settled>
   <CC_Holding_SettledReply>They're staying. {X_nameDef} went back to the camp at a run to tell the others.</CC_Holding_SettledReply>
-  <CC_Holding_Facts>They live off the land around their camp and keep to their side of it. Their part of the region window's Neighbours page has trade, terms, gifts, hiring, what they can be asked, and a way to ask them to move on. One of them comes over to the gate every few days; one may fall ill now and then and ask for the colony's doctor; raiders on the land may hurt them.</CC_Holding_Facts>
+  <CC_Holding_Facts>They live off the land around their camp and keep to their side of it. Their part of the region window's Here and away has trade, terms, gifts, hiring, what they can be asked, and a way to ask them to move on. One of them comes over to the gate every few days; one may fall ill now and then and ask for the colony's doctor; raiders on the land may hurt them.</CC_Holding_Facts>
   <CC_Holding_TakenIn>{COUNT} of the {NAME} joined the colony today, and their camp with them.</CC_Holding_TakenIn>
   <CC_Holding_Section>Our neighbours</CC_Holding_Section>
   <CC_Holding_FamilyName>the {0} family</CC_Holding_FamilyName>
