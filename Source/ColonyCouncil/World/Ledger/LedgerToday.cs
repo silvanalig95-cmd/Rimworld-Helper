@@ -13,7 +13,6 @@ namespace ColonyCouncil
     /// <item>A good word promised (OutsiderBook.words): a promise from the outsider to the colonist, about the notable.</item>
     /// <item>The scenario's debt (a Happenings memo "debt"): a debt from its colony to the people, coming due at its
     /// date, called in while the letter waits for an answer.</item>
-    /// <item>A prisoner who died in the colony's hands (Happenings.grudges): their people's grudge against the colony.</item>
     /// <item>Someone who joined from a visit with family among their people (CouncilGameComponent.guestKin): a ward of
     /// that people in the colony's keeping, until their family's time to ask has passed.</item>
     /// <item>A grant of land the colony holds of a people (the deed "granted", ScenPart_CouncilBeholden): fealty.</item>
@@ -43,7 +42,6 @@ namespace ColonyCouncil
                 Read("favours", list, Favours);
                 Read("words", list, Words);
                 Read("debts", list, Debts);
-                Read("grudges", list, Grudges);
                 Read("guest kin", list, GuestKin);
                 Read("granted", list, Granted);
                 Read("vendettas", list, Vendettas);
@@ -109,18 +107,6 @@ namespace ColonyCouncil
                 var terms = new TieTerms { goods = "Silver", count = m.amount, key = m.def, number = m.times, about = Refs.Of(m.pawn) };
                 View(list, "happenings:debt", Tie.Kind.Debt, Refs.Colony(Homes.ForMemo(m.home)), Refs.Of(m.faction), terms, m.tick,
                     asking ? Tie.Never : m.due, asking ? Tie.State.CalledIn : Tie.State.Open);
-            }
-        }
-
-        private static void Grudges(List<Tie> list)
-        {
-            var t = CouncilGameComponent.Instance?.happenings;
-            if (t == null) return;
-            foreach (var g in t.grudges)
-            {
-                if (g == null || g.settled || g.faction == null) continue;
-                // Kept two years (HappeningTracker's pruning).
-                View(list, "happenings:grudge", Tie.Kind.Grudge, Refs.Of(g.faction), Refs.Seat, new TieTerms { key = g.name }, g.tick, g.tick + GenDate.TicksPerYear * 2);
             }
         }
 

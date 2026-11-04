@@ -281,8 +281,8 @@ namespace ColonyCouncil
                     icon = Icons.Visitor,
                     color = UiKit.Faint
                 });
-            foreach (var g in t.grudges.Where(g => !g.settled && g.faction != null && !g.faction.defeated))
-                list.Add(new Entry { text = "CC_World_Grudge".Translate(g.faction.Name, g.name).Resolve(), icon = Icons.Vendetta, color = Threat });
+            foreach (var g in Grudges.All().Where(g => !g.Settled && g.faction != null && !g.faction.defeated))
+                list.Add(new Entry { text = "CC_World_Grudge".Translate(g.faction.Name, g.Name).Resolve(), icon = Icons.Vendetta, color = Threat });
             foreach (var mm in t.memos.Where(x => !x.used))
             {
                 string line = mm.kind == "hunt" ? ScenarioStakes.WorldLine(mm, now) : Memo(mm);

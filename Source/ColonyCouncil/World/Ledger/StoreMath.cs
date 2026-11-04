@@ -17,8 +17,9 @@ namespace ColonyCouncil
         /// </summary>
         public static int After(int since, float days, int dayTicks = TieRules.DayTicks)
         {
-            double span = Math.Floor((double)days * dayTicks);
-            double t = since + span + 1;
+            // In float, as the old stores worked it out (a span of days a float, the ticks between compared to it).
+            float span = days * dayTicks;
+            double t = since + Math.Floor((double)span) + 1;
             return t >= int.MaxValue ? int.MaxValue - 1 : (int)t;
         }
 
@@ -147,6 +148,68 @@ namespace ColonyCouncil
                 n++;
             }
             return n;
+        }
+
+        // ---------------- Over all peoples (a book: a people's id to their dead) ----------------
+
+        /// <summary>One of theirs died in the colony's hands: kept after all the others, and the oldest over <see cref="Max"/> go.</summary>
+        public static void Add(Dictionary<int, List<GrudgeDead>> book, int people, int tick, string name)
+        {
+            int order = NextOrder(book.Values);
+            if (!book.TryGetValue(people, out var list)) book[people] = list = new List<GrudgeDead>();
+            list.Add(new GrudgeDead(order, tick, false, Clean(name)));
+            var drop = OverMax(book.Values);
+            if (drop.Count == 0) return;
+            foreach (var l in book.Values) l.RemoveAll(d => drop.Contains(d.order));
+        }
+
+        /// <summary>Their people settled it: the dead of that name of theirs are settled.</summary>
+        public static void Settle(Dictionary<int, List<GrudgeDead>> book, int people, string name)
+        {
+            if (book.TryGetValue(people, out var list)) Settle(list, name);
+        }
+
+        /// <summary>
+        /// The day's tidy: the settled go, any held two years, and every one of a people that is <paramref name="gone"/>.
+        /// Returns the peoples whose settled dead went (their grudge was kept, if nobody is left in it).
+        /// </summary>
+        public static HashSet<int> Prune(Dictionary<int, List<GrudgeDead>> book, int now, Func<int, bool> gone, int dayTicks = TieRules.DayTicks)
+        {
+            var settled = new HashSet<int>();
+            foreach (var kv in book)
+            {
+                bool all = gone != null && gone(kv.Key);
+                foreach (var d in kv.Value)
+                    if (d.settled)
+                        settled.Add(kv.Key);
+                kv.Value.RemoveAll(d => all || Forgotten(d, now, dayTicks));
+            }
+            return settled;
+        }
+
+        /// <summary>Every one of the dead, with their people, in the order they died.</summary>
+        public static List<KeyValuePair<int, GrudgeDead>> InOrder(Dictionary<int, List<GrudgeDead>> book)
+        {
+            var list = new List<KeyValuePair<int, GrudgeDead>>();
+            foreach (var kv in book)
+                foreach (var d in kv.Value)
+                    list.Add(new KeyValuePair<int, GrudgeDead>(kv.Key, d));
+            list.Sort((a, b) => a.Value.order.CompareTo(b.Value.order));
+            return list;
+        }
+
+        /// <summary>
+        /// An older save's list (people, name, tick, settled, in the order they came) into a book: each keeps their place in
+        /// the order, after any the book holds already.
+        /// </summary>
+        public static void AddOld(Dictionary<int, List<GrudgeDead>> book, IEnumerable<(int people, string name, int tick, bool settled)> old)
+        {
+            int order = NextOrder(book.Values);
+            foreach (var g in old)
+            {
+                if (!book.TryGetValue(g.people, out var list)) book[g.people] = list = new List<GrudgeDead>();
+                list.Add(new GrudgeDead(order++, g.tick, g.settled, Clean(g.name)));
+            }
         }
     }
 }

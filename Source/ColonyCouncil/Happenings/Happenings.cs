@@ -305,7 +305,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A prisoner who died in the colony's hands: their people may not forget.</summary>
+    /// <summary>
+    /// A prisoner who died in the colony's hands, as an older save kept it: read on load and moved into the world ledger
+    /// (Happenings/Grudges.cs keeps them there now).
+    /// </summary>
     public class Grudge : IExposable
     {
         public string name;
@@ -449,7 +452,8 @@ namespace ColonyCouncil
         public HappeningGroup lastGroup = HappeningGroup.Nature;
         public List<PendingRaid> raids = new List<PendingRaid>();
         public List<Departed> departed = new List<Departed>();
-        public List<Grudge> grudges = new List<Grudge>();
+        /// <summary>An older save's grudges, read on load and moved into the world ledger (Grudges.cs).</summary>
+        private List<Grudge> oldGrudges;
         public List<Visit> visits = new List<Visit>();
         public List<Memo> memos = new List<Memo>();
         /// <summary>Visitors the colony keeps up with, who come back (Happenings/Regulars.cs).</summary>
@@ -945,11 +949,7 @@ namespace ColonyCouncil
             if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
-            if (note.prisonerOf != null)
-            {
-                grudges.Add(new Grudge { name = note.name, faction = note.prisonerOf, tick = Now });
-                while (grudges.Count > 10) grudges.RemoveAt(0);
-            }
+            if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);
         }
 
         // ---------------- Memos for later events ----------------
@@ -1020,11 +1020,21 @@ namespace ColonyCouncil
             foreach (var d in departed.Where(d => d.pawn == null || d.pawn.Dead || d.pawn.Discarded || d.pawn.Faction == Faction.OfPlayer
                                                    || (now - d.tick > GenDate.TicksPerYear * 2 && !AskedAbout(d.pawn))).ToList())
                 Forget(d);
-            grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
+            Grudges.Prune(now);
             foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay)
                                                || (now - m.tick > GenDate.TicksPerYear * (m.kind == "child" ? 10 : 3) && !Keeps(m))
                                                || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded) && !Keeps(m))).ToList())
                 Drop(m);
+        }
+
+        /// <summary>Once the save has loaded: what an older save kept here that is a tie now goes into the world ledger.</summary>
+        public void MoveToLedger()
+        {
+            if (oldGrudges != null)
+            {
+                Grudges.Adopt(oldGrudges);
+                oldGrudges = null;
+            }
         }
 
         public void ExposeData()
@@ -1035,7 +1045,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastGroup, "lastGroup");
             Scribe_Collections.Look(ref raids, "raids", LookMode.Deep);
             Scribe_Collections.Look(ref departed, "departed", LookMode.Deep);
-            Scribe_Collections.Look(ref grudges, "grudges", LookMode.Deep);
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref oldGrudges, "grudges", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
             Scribe_Collections.Look(ref memos, "memos", LookMode.Deep);
             Scribe_Collections.Look(ref regulars, "regulars", LookMode.Deep);
@@ -1061,7 +1071,7 @@ namespace ColonyCouncil
                 if (timers == null) timers = new Dictionary<int, int>();
                 if (raids == null) raids = new List<PendingRaid>();
                 if (departed == null) departed = new List<Departed>();
-                if (grudges == null) grudges = new List<Grudge>();
+                oldGrudges?.RemoveAll(g => g == null || g.faction == null);
                 if (visits == null) visits = new List<Visit>();
                 if (memos == null) memos = new List<Memo>();
                 if (regulars == null) regulars = new List<Regular>();
@@ -1070,7 +1080,6 @@ namespace ColonyCouncil
                 memos.RemoveAll(m => m == null || m.kind == null);
                 raids.RemoveAll(r => r == null || r.map == null || r.faction == null);
                 departed.RemoveAll(d => d == null || d.pawn == null);
-                grudges.RemoveAll(g => g == null || g.faction == null);
                 visits.RemoveAll(v => v == null || v.incident == null || v.map == null);
             }
         }

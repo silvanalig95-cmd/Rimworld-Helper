@@ -440,7 +440,7 @@ MODEL = {
     "Happenings/Happenings.cs:touched": ("fixed", 3, P, "per visit"),
     "Happenings/Happenings.cs:raids": ("cap", (5, 0.05), 400, "until they come"),
     "Happenings/Happenings.cs:departed": ("window", (120, 0.05), 400, "the departed 2 years"),
-    "Happenings/Happenings.cs:grudges": ("window", (120, 0.05), 200, "grudges 2 years"),
+    "Happenings/Happenings.cs:oldGrudges": ("fixed", 0, 200, "an older save's grudges, read on load and moved into the world ledger (one Grudge tie per people); never saved again"),
     "Happenings/Happenings.cs:visits": ("window", (30, 0.2), 300, "visits a month"),
     "Happenings/Happenings.cs:memos": ("window", (180, 0.3), 200, "memos 3 years (children's 10), used ones a day"),
     "Happenings/Happenings.cs:seenQuests": ("fixed", 60, V, "quests the game still keeps"),

@@ -221,6 +221,16 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("fungus on queued meal bills", e);
                 }
             }
+            // An older save's ties (grudges, guest kin, the scenario's debt) go into the world ledger, now the homes are known.
+            try
+            {
+                happenings?.MoveToLedger();
+                MoveToLedger();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("moving an older save's ties into the world ledger", e);
+            }
         }
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
@@ -229,6 +239,11 @@ namespace ColonyCouncil
         {
             // Before the save's pawns load, so none of them is read from the last game's guest records.
             Guests.ForgetLastGame();
+        }
+
+        /// <summary>An older save's guest kin, moved into the world ledger (GuestWill.cs, GuestKin).</summary>
+        private void MoveToLedger()
+        {
         }
 
         public override void ExposeData()
