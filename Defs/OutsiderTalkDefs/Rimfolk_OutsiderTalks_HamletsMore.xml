@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More talk about hamlets under the colony's protection (Source/ColonyCouncil/World/Region/Hamlet*.cs, the facts in
+       World/Region/HamletFacts.cs), beside Rimfolk_OutsiderTalks_Hamlets.xml: the hamlet's own people by their age, season,
+       fortune and tone (town:hamlet: {TOWN} the hamlet, {HAMLETWORD} what their age calls it; town:hamlet:sworn; role:head
+       for its head, them:founder for the one who led its settlers in its first year; town:lately:world:grown once it has
+       grown into a town), what their people remember of it (deed:hamlet, deed:hamletHarvest, deed:hamletHelped with
+       deedbest:hamletHelped and {DEEDNAME} the hamlet, deed:hamletRefused with wrongbest:hamletRefused and {WRONGNAME}),
+       the colonist who walked its settlers out (you:remembered:walkedsettlers), their people from another town
+       (their:hamlet, {HAMLET}) and other peoples (region:hamlet, {HAMLET}, {HAMLETPEOPLE}). The format is described at the
+       top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The hamlet's own people ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Look</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat,know</uses>
+    <when>town:hamlet</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] What's {TOWN} like these days?</li>
+      <li>[them,their:tribal] A few longhouses and a drying rack, and a fire that hasn't gone out since we lit it.</li>
+      <li>[them,their:medieval] A dozen roofs, a common well, and a fence the goats have already got through.</li>
+      <li>[them,their:industrial] A water pump, a fence line, and houses that still smell of new timber.</li>
+      <li>[them,their:spacer] A few sealed domes, a hydroponics shed and a weather mast that keeps falling over.</li>
+      <li>[them] Small and new, and every roof on it put up by our own hands.</li>
+      <li>[us] It sounds like home.</li>
+      <li>[them,town:struggling|town:poor] It will be, if we get through the year.</li>
+      <li>[them] It's getting there, one roof at a time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Head</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,role:head</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them,their:tribal] Every quarrel at the new hearth comes to my fire, and most are about who hunts where.</li>
+      <li>[them,their:hightech] Every dispute at {TOWN} lands on my desk, and most are about water rights.</li>
+      <li>[them] Every quarrel at {TOWN} comes to my door, and most of them are about fences.</li>
+      <li>[us] Is it hard, leading them?</li>
+      <li>[them,tone:warm|tone:good] Easier, knowing your colony is close.</li>
+      <li>[them] Harder than founding it, and that was hard enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Founder</defName>
+    <topic>hamlet</topic>
+    <uses>chat,know</uses>
+    <when>town:hamlet,them:founder</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] I led the families out to {TOWN}, and some nights I still wonder if it was wise.</li>
+      <li>[us] Was it?</li>
+      <li>[them,town:struggling|town:poor] Ask me after the next harvest.</li>
+      <li>[them] The fields say so, and I'm learning to trust the fields.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Winter</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,winter</when>
+    <lines>
+      <li>[them] Winter at {TOWN} means three families to a house and the woodpile watched like gold.</li>
+      <li>[us] Do you have enough to eat?</li>
+      <li>[them,town:struggling|town:poor] Not quite, but we're careful with it.</li>
+      <li>[them] Enough, if the snow doesn't stay too long.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Spring</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,spring</when>
+    <lines>
+      <li>[them] We're breaking new ground at {TOWN} this spring, a field further out than the last.</li>
+      <li>[us] Is the land good?</li>
+      <li>[them,home:desert] Thin, but it takes water well enough.</li>
+      <li>[them,home:forest] Good, once the stumps are out, and the stumps are never all out.</li>
+      <li>[them,home:cold] Short-seasoned, so we plant fast and pray the frost is late.</li>
+      <li>[them] Better than we hoped, and we hoped for a lot.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Summer</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,summer</when>
+    <lines>
+      <li>[them] Every hand at {TOWN} is in the fields this time of year, even the children's.</li>
+      <li>[us] Who keeps watch?</li>
+      <li>[them] The old ones, and the dogs, and we trust your colony for the rest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Children</defName>
+    <topic>hamlet</topic>
+    <uses>chat,know</uses>
+    <when>town:hamlet,them:parent</when>
+    <lines>
+      <li>[them] My children talk about {TOWN} as if it had always been there.</li>
+      <li>[us] That's how it should be.</li>
+      <li>[them] I hope so, it's a lot to put on a few houses.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_New</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat,know</uses>
+    <when>town:hamlet,town:new</when>
+    <lines>
+      <li>[them] {TOWN} is still young enough that we all know who built which wall.</li>
+      <li>[us] And who built yours?</li>
+      <li>[them] I did, and it's the straightest one there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Outgrown</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,town:thriving|town:flourishing</when>
+    <lines>
+      <li>[them] {TOWN} has outgrown its first fence, and we've had to move it out.</li>
+      <li>[us] That's good news.</li>
+      <li>[them,their:tribal] The elders say a hearth that grows is a hearth the spirits like.</li>
+      <li>[them] It is, the fields have been good to us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Raid</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,colony:raid</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] We heard raiders came at your walls, and {TOWN} was sick with worry.</li>
+      <li>[us] We held.</li>
+      <li>[them] Good, because if you fall, we're next.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_War</defName>
+    <topic>hamlet</topic>
+    <uses>chat,home</uses>
+    <when>town:hamlet,their:war</when>
+    <lines>
+      <li>[them] With our people at war, {TOWN} feels very small and very far out.</li>
+      <li>[us] You're under our protection.</li>
+      <li>[them] That's what we keep telling each other at night.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Walked</defName>
+    <topic>hamlet</topic>
+    <uses>chat,know</uses>
+    <when>town:hamlet,you:remembered:walkedsettlers</when>
+    <weight>1.8</weight>
+    <lines>
+      <li>[them] You walked beside our carts to {TOWN}, I'd know you anywhere.</li>
+      <li>[us] It was a long road.</li>
+      <li>[them] The children still play at that walk, and one of them always has to be you.</li>
+      <li>[us] I hope they make me taller.</li>
+      <li>[them] Taller and braver, you should hear them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Harvest</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,deed:hamletHarvest</when>
+    <lines>
+      <li>[them] Did our carter bring you what we sent from the harvest?</li>
+      <li>[us] It came, thank you.</li>
+      <li>[them,their:tribal] Good, the first of the harvest belongs to those who walked us there.</li>
+      <li>[them] Good, it isn't much, but it's the first of what the land gave us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Helped</defName>
+    <topic>hamlet</topic>
+    <uses>chat,home</uses>
+    <when>town:hamlet,deed:hamletHelped</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] What your colony sent us in the hard season got {TOWN} through it.</li>
+      <li>[us] We were glad to.</li>
+      <li>[them,their:tribal] The elders cut a mark on the lodge post for it, so the children will ask.</li>
+      <li>[them] We haven't forgotten it, and we don't mean to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_HelpedKin</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>deedbest:hamletHelped,!town:hamlet</when>
+    <lines>
+      <li>[them] My people still speak of the help you sent to {DEEDNAME} in a hard season.</li>
+      <li>[us] They'd have done the same.</li>
+      <li>[them] Maybe, but you were the ones near enough to do it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Refused</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>deed:hamletRefused,tone:cool</when>
+    <lines>
+      <li>[them] Our hamlet asked your colony for help in a hard season, and got nothing.</li>
+      <li>[us] We couldn't spare it then.</li>
+      <li>[them] So you said.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_RefusedSour</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>wrongbest:hamletRefused,tone:sour</when>
+    <lines>
+      <li>[them] {WRONGNAME} turned to you in a hard season, and you turned away.</li>
+      <li>[us] It wasn't an easy choice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Cool</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,tone:cool</when>
+    <lines>
+      <li>[them] {TOWN} pays its way with the harvest, so don't think we're beholden.</li>
+      <li>[us] We never said you were.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Sour</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet,tone:sour</when>
+    <lines>
+      <li>[them] Being under your protection doesn't put us under your feet.</li>
+      <li>[us] Then stop standing under them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Fealty ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_SwornHead</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet:sworn,role:head</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I swore for every family at {TOWN}, and some of them still ask me what it means.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them,their:tribal] That when trouble comes to either fire, the other comes running.</li>
+      <li>[them] That if trouble comes, we stand with your colony and it stands with us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_SwornWays</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet:sworn</when>
+    <lines>
+      <li>[us] Do your people mind the oath?</li>
+      <li>[them,their:tribal] The gifts went into the river and the river took them, so it is done.</li>
+      <li>[them,their:medieval] It was sworn before witnesses, and that settles it for anyone at {TOWN}.</li>
+      <li>[them,their:industrial] It's signed and filed, and our people respect a signature.</li>
+      <li>[them,their:spacer] The charter is registered, which is about as binding as anything gets out here.</li>
+      <li>[them] Some do, but most of us sleep easier for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Grown</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,town:lately:world:grown</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] {TOWN} isn't {HAMLETWORD} anymore, our people count it a proper town now.</li>
+      <li>[us] We heard.</li>
+      <li>[them] It still looks to your colony first, that hasn't changed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their people from another town ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_TheirsYoung</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>their:hamlet</when>
+    <lines>
+      <li>[them,their:tribal] Our young hunters talk of {HAMLET} as if it were the best ground in the world.</li>
+      <li>[them] The young ones at home talk about {HAMLET} as if it were the edge of the world.</li>
+      <li>[us] It's not so far.</li>
+      <li>[them] Far enough, when you're seventeen and want a roof of your own.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_TheirsFamilies</defName>
+    <topic>hamlet</topic>
+    <uses>chat,home</uses>
+    <when>their:hamlet,deed:hamlet</when>
+    <lines>
+      <li>[them] Families I've known all my life went out to {HAMLET} under your protection.</li>
+      <li>[us] They're doing all right.</li>
+      <li>[them] So they say, and they'd tell me if they weren't, I think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Other peoples ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_RegionTrader</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet,role:trader</when>
+    <lines>
+      <li>[them] Settlers like those at {HAMLET} always need nails and needles.</li>
+      <li>[us] Are you headed there?</li>
+      <li>[them] After you, if you leave me anything to sell.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_RegionEmpire</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet,their:empire</when>
+    <lines>
+      <li>[them] A hamlet of {HAMLETPEOPLE} under your protection, so your colony keeps vassals now.</li>
+      <li>[us] It's a hamlet, not a fief.</li>
+      <li>[them] Every fief I know of began as somebody's hamlet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_RegionTribal</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>region:hamlet,their:tribal</when>
+    <lines>
+      <li>[them] The trails say {HAMLETPEOPLE} lit a fire at {HAMLET}, under your spears.</li>
+      <li>[us] We walked them there.</li>
+      <li>[them] Then their fire is partly yours, and so is its smoke.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
