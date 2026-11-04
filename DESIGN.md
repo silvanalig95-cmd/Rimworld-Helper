@@ -2472,6 +2472,53 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   reason (`Patch_ColonistMemoryTrade`), so the option is greyed out and a caravan's negotiator is someone else. No raid
   of its own.
 
+### Diplomacy
+
+Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):
+`Diplomacy/`, rules and text on records that exist, its pure parts tested (`DiplomacyMath.cs`, `FavourMath.cs`,
+`NatureMath.cs`; `Tools/Tests/DiplomacyTests.cs`).
+
+- **The ledger owns it.** A debt of honour is a Favour tie of origin `debts` (the outsiders' bring-next-time favours
+  keep `outsiders`): from the one who owes (their people, or a notable as a person) to the one owed (the colony that did
+  it, or the colonist), its terms the deed it came from (`key`), how big (`number`) and who did it (`about`), until two
+  years after. Made where the memory notes a deed (`FactionMemory.Note` calls `FavoursOwed.Noted`: a good turn of size
+  10 or more of `FavourMath.OurGoodTurns` or `TheirGoodTurns`) and where it names who did it (`KinMemory.Credit` and
+  `Note` call `FavoursOwed.Personal`: a notable helped in person owes the colonist, twelve such at most). One open each
+  way per people and colony; a new good turn renews it. While called in its terms also hold what was asked
+  (`goods`: `FavourMath.AskCode` or `NeedCode`) and, for a call of theirs, the day it is due (`days`). Help toward peace
+  is a Promise tie (key `peace`, 20 in its number, a year) that 2a.2's truce answer reads. `TieRules.Kinds` is 14: Secret
+  and Scheme are reserved (rules and bounds, nothing makes one), and all ties are bounded at 1,080.
+- **Nothing else saved.** No `DiplomacyHome` yet: favours need nothing beyond their ties (the last call of a people is
+  the history's `tie:favour:calledIn`); the first record that isn't a tie (an envoy's stay, an offer for a captive)
+  brings it, kept by the `ColonyBook` rules. Their letter (`ChoiceLetter_FavourAsk`) saves which tie and need it is.
+- **No pass of its own.** `Diplomacy.Hourly` rides on the neighbours' hour (`NotableBook`, `Sched.Neighbours`): lines
+  waiting for their letter, calls of theirs overdue, and once a day the look at each debt the colony owes.
+- **The colony calls one in** by a letter or a call (the purpose `LetterPurpose.Favour` in the letters' machinery,
+  `DiplomacyLetters`: what about, what is asked, their answer in `NeighbourLetters.Read`), from the Diplomacy page or
+  the town panel (which open that letter), or face to face (`OutsiderAct.AskFavour` after Invite, `DiplomacyActs`).
+  `FavourCalls.Options` lists what they can do, each greyed with why not: goods by their town's fortune and age, a word
+  with a third people, a colonist they hold walked home, help toward peace. `FavourCalls.Hear` rolls their head's
+  regard (`FavourMath.HonourChance`), does it (the goods with the answer's messenger or their porters, the third
+  people's own letter, the colonist set down at the edge to walk to the gate, the promise) and keeps or breaks the tie;
+  a refusal is the deed `brokeWord`.
+- **They call one in** (`FavourAsks`): once a day, 1 in 90, only with a need the world shows (a sickness, a famine or a
+  hard time among them, a feud or a contested seat, a harvest standing), a season apart. Medicine and food: their
+  letter, sent by carrying it out to their messenger (`DilemmaEffect_CarryOut` to the gate); hands at harvest and
+  refugees: the existing missions fired for them (`MissionPeoples.Only`), kept when the mission's deed is noted, broken
+  when it ends otherwise (`Missions.Finish` calls `FavourAsks.MissionEnded`); the colony's word in a dispute: a letter
+  from the speaker to their head. Refused or overdue: broken, the deed `refused`, 5 goodwill.
+- **What the player sees.** The region window's Diplomacy page (order 35) and Household page (36), drawn by
+  `DiplomacyPanels` over one model built at most every two seconds (`DiplomacyModel`), its rows small pieces any page
+  can draw; a click on a name goes through `DiplomacyLinks.Open`, one place to repoint; the region map's town section;
+  This week's line for a call waiting (no timer); the line in the letter that tells the good turn (else the evening's
+  news). Words by both ages (`Ages.Form(AgeFeature.Favor)`; truce, hostage, envoy and levy have their forms too). Facts:
+  a debt of honour speaks as `tie:honour` (`:ours`, `:theirs`, `:you`, `:due`, `{HONOURTO}`, `{FAVOURWHY}`), apart from
+  `tie:favour`, so the bring-next-time talk never takes one for the other. History: the family `dip:` for what isn't a
+  tie (`dip:word`, `dip:peace`, `dip:freed`, `dip:side`; the later releases' kinds named in `DiplomacyMath.Kinds`).
+- **The nature service** (`Nature.Felt`, `NatureMath`): every act of item 13 listed with its sides and worked out, no
+  effect until round d.
+- **Settings**: the section Diplomacy, `diplomacyFavours`.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

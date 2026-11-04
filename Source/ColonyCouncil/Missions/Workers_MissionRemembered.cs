@@ -17,9 +17,18 @@ namespace ColonyCouncil
     /// <summary>Which people asks, and where they live.</summary>
     public static class MissionPeoples
     {
+        /// <summary>
+        /// While set, the one people a mission may come from (a people calling in a debt the colony owes them through the
+        /// mission: Diplomacy/FavourAsks.cs); null the rest of the time. Not saved: set and cleared around one firing.
+        /// </summary>
+        [ThreadStatic] public static Faction Only;
+
         /// <summary>A people on good terms with the colony, likelier the more it owes it; with <paramref name="pred"/>.</summary>
         public static Faction Grateful(Func<Faction, bool> pred = null)
         {
+            if (Only != null)
+                return FactionMemory.Remembers(Only) && !Only.defeated && LivingEvents.Friendly(Only) && Arrivals.PersonKind(Only) != null && (pred == null || pred(Only))
+                    ? Only : null;
             var mem = FactionMemory.On ? FactionMemory.Instance : null;
             var tech = Avail.EffectiveTech;
             return Find.FactionManager.AllFactionsListForReading
@@ -777,6 +786,8 @@ namespace ColonyCouncil
             if (ws == null) return null;
             foreach (var s in ws.Running)
             {
+                // Asked by a people calling in a debt (Diplomacy/FavourAsks.cs): only their own trouble.
+                if (MissionPeoples.Only != null && s.ctx?.faction != MissionPeoples.Only) continue;
                 string tag = null;
                 switch (s.def?.defName)
                 {
@@ -803,6 +814,7 @@ namespace ColonyCouncil
             {
                 var r = ws.history[i];
                 if (r == null || r.ending == null || r.ending == WorldSituations.Quietly || now - r.endTick > GenDate.TicksPerDay * 30) continue;
+                if (MissionPeoples.Only != null && r.faction != MissionPeoples.Only) continue;
                 string tag = r.defName == "Council_WS_Murrain" ? null : HappeningWorker_Aftermath.KindTag(r.defName);
                 if (tag == null || tag == "locusts") continue;
                 if (tag == "drought") tag = "famine";
@@ -827,6 +839,8 @@ namespace ColonyCouncil
         {
             var map = ctx.map;
             string fled = Fled(out var f);
+            // Asked by a people calling in what the colony owes them: theirs, whoever else fled.
+            if (MissionPeoples.Only != null && f != MissionPeoples.Only) f = null;
             m.faction = f ?? MissionPeoples.Grateful();
             if (m.faction == null) return false;
             m.variant = fled ?? "fire";

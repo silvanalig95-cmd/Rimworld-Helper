@@ -300,6 +300,8 @@ namespace ColonyCouncil
         private readonly Pawn bearer;
         private int topicIndex;
         private string help = "medicine";
+        /// <summary>What a letter of stage 2's purposes asks (Diplomacy/DiplomacyLetters.cs: FavourMath.AskCode), or null.</summary>
+        private string dipAsk;
         private readonly Map map;
         // What can and can't be written, looked at twice a second rather than every frame (finding a messenger looks over
         // every people and town).
@@ -323,7 +325,7 @@ namespace ColonyCouncil
             topics = NeighbourLetters.Topics(to, purpose);
         }
 
-        public override Vector2 InitialSize => new Vector2(600f, 600f);
+        public override Vector2 InitialSize => new Vector2(600f, 640f);
 
         public Dialog_NeighbourLetter(Notable n)
         {
@@ -343,6 +345,15 @@ namespace ColonyCouncil
                 }
             if (NeighbourLetters.ChannelWhyNot(n, LetterChannel.Courier, map) != null && NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, map) == null)
                 channel = LetterChannel.Console;
+        }
+
+        /// <summary>A letter for a purpose and what it's about, chosen beforehand (the Diplomacy page's "call it in": Diplomacy/DiplomacyPanels.cs).</summary>
+        public Dialog_NeighbourLetter(Notable n, LetterPurpose p, string topicKey) : this(n)
+        {
+            if (NeighbourLetters.WhyNot(n, p) != null) return;
+            purpose = p;
+            int i = NeighbourLetters.Topics(n, p).FindIndex(t => t.key == topicKey);
+            topicIndex = Mathf.Max(0, i);
         }
 
         /// <summary>A letter for <paramref name="bearer"/>, someone of their people at the colony, to carry home; <paramref name="by"/> writes it unless the player picks someone else.</summary>
@@ -420,6 +431,9 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(new FloatMenu(topics.Select((t, i) => new FloatMenuOption(t.text, () => topicIndex = i)).ToList()));
                 y += 30f;
             }
+            // What about and what is asked, for stage 2's purposes (Diplomacy/DiplomacyLetters.cs).
+            string dipWhy = null;
+            if (DiplomacyLetters.Owns(purpose) && purposeWhy == null) y += DiplomacyLetters.DrawRows(inRect, y, topics, ref topicIndex, ref dipAsk, map, out dipWhy);
             if (purpose == LetterPurpose.Help)
             {
                 Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_Ask".Translate());
@@ -474,12 +488,14 @@ namespace ColonyCouncil
                 y += oh + 6f;
             }
             // Send.
-            bool ok = writer != null && purposeWhy == null && channelWhy == null;
+            bool ok = writer != null && purposeWhy == null && channelWhy == null && dipWhy == null;
             var send = new Rect(inRect.x, inRect.yMax - 34f, 200f, 32f);
             if (Widgets.ButtonText(send, (channel == LetterChannel.Console ? "CC_LetterDlg_Call" : "CC_LetterDlg_Send").Translate(), true, true, ok) && ok)
             {
-                LetterTopic? topic = topics.Count > 0 && (purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning) ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
-                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, purpose == LetterPurpose.Help ? help : null, bearer) != null) Close();
+                bool about = purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning || DiplomacyLetters.Owns(purpose);
+                LetterTopic? topic = topics.Count > 0 && about ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
+                string asked = purpose == LetterPurpose.Help ? help : DiplomacyLetters.Owns(purpose) ? dipAsk : null;
+                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer) != null) Close();
             }
             if (Widgets.ButtonText(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }

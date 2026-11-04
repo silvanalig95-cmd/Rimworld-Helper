@@ -92,7 +92,10 @@
       ties between the two sides (the colony, its people or one of the colony; the outsider, their people or town):
         tie:favour tie:promise tie:claim tie:debt tie:fealty tie:grudge, each with :ours or :theirs (which side is
         bound: owes, promised, swore, holds the grudge), :you (the colonist is a party to it), :due (asked for now);
-        the party it is toward by name: {FAVOURFOR} {PROMISEDTO} {CLAIMON} {DEBTTO} {FEALTYTO} {GRUDGEAGAINST}
+        the party it is toward by name: {FAVOURFOR} {PROMISEDTO} {CLAIMON} {DEBTTO} {FEALTYTO} {GRUDGEAGAINST};
+        a debt of honour (Diplomacy/FavoursOwed.cs) as its own family, apart from a favour to bring: tie:honour with
+        :ours (the colony owes them) or :theirs (they owe the colony, or the colonist), :you, :due, {HONOURTO} (the one
+        it is owed to) and {FAVOURWHY} (what it was for, "a prisoner freed", "relief sent")
       the colony: colony:raid colony:raidby colony:raid:them (their own people) colony:raid:theirfoe
         colony:raid:fallen colony:raid:mechs :insects :animals :tribal :people; colony:death colony:death:battle
         colony:birth colony:wedding colony:newcomer colony:decree colony:election colony:camp colony:harvest

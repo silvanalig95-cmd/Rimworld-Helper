@@ -21,7 +21,9 @@ namespace ColonyCouncil
         Faith,
         Spar,
         Provoke,
-        Duel
+        Duel,
+        /// <summary>Ask a favour of their people: call in a debt of honour they owe (Diplomacy/DiplomacyActs.cs; later stage 2 acts follow it).</summary>
+        AskFavour
     }
 
     /// <summary>How a talk went, best first.</summary>

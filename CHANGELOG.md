@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Debts of honor
+
+*4 November 2026, version 0.81.0*
+
+- A good turn big enough leaves a debt of honor between the colony and a people, either way, and the letter that tells of it says so in both sides' words by their age. A notable helped in person owes the colonist who did it.
+- Call a debt in by letter, by call, from a town's panel on the region map or face to face ("Ask a favor of their people"): a load of goods brought by their porters, a word with a third people, a colonist they hold sent home, or their help toward peace. Their head's regard decides whether they honor it.
+- The peoples call in what the colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof for their homeless, the colony's word in a feud. Refused or left unanswered, they remember it.
+- 14 conversation pieces and new letter lines speak of debts of honor, and the Almanac has a new page, diplomacy. The full view of what is owed each way comes with the region window's redesign, so it adds no tabs.
+
 ## What stands near
 
 *4 November 2026, version 0.80.0*

@@ -93,6 +93,14 @@ namespace ColonyCouncil
             return page;
         }
 
+        /// <summary>Opens the region map with a settlement (or another world object) picked, its panel beside the map.</summary>
+        public static void ShowOnMap(RimWorld.Planet.WorldObject o)
+        {
+            if (o == null) return;
+            map.Pick(o);
+            Pages.Open("Map");
+        }
+
         /// <summary>A page another part of Rimfolk added, by its name (any case); null for none.</summary>
         public static WorldPage Extra(string name)
         {

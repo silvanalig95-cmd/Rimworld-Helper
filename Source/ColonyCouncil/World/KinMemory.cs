@@ -80,6 +80,8 @@ namespace ColonyCouncil
                 mem.notes.RemoveAll(x => x != null && x.stranger == stranger);
                 if (pick == null || d.by != null && !d.by.Dead) return;
                 Name(d, pick.colonist);
+                // The one freed or tended owes the colonist in person (Diplomacy/FavoursOwed.cs).
+                FavoursOwed.Personal(d, stranger, pick.colonist);
             }
             catch (Exception e)
             {
@@ -105,7 +107,12 @@ namespace ColonyCouncil
         public static FactionDeed Note(Faction f, string kind, Pawn colonist, string name = null, int weight = 0)
         {
             var d = FactionMemory.Note(f, kind, name, weight);
-            if (Ours(colonist)) Name(d, colonist);
+            if (Ours(colonist))
+            {
+                Name(d, colonist);
+                // A notable of theirs helped in person (a guest of rank, one of theirs walked home) owes the colonist.
+                FavoursOwed.Personal(d, null, colonist);
+            }
             return d;
         }
 

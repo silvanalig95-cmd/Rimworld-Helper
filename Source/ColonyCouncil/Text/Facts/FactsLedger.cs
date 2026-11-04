@@ -39,9 +39,12 @@ namespace ColonyCouncil
             int now = Now;
             var speaker = s.speaker != null ? Refs.Of(s.speaker) : Ref.None;
             var best = new Dictionary<Tie.Kind, (Tie tie, TieFact fact)>();
+            // A debt of honour (Diplomacy/FavoursOwed.cs) speaks apart from a favour to bring: the one the speaker is party to, else the newest.
+            (Tie tie, TieFact fact) honour = (null, default);
             void Look(Tie t)
             {
                 if (t == null || !FactsMath.Speaks(t.kind)) return;
+                bool debt = t.kind == Tie.Kind.Favour && t.origin == FavourMath.Origin;
                 var state = TieRules.StateAt(t, now);
                 if (!TieRules.Live(state)) return;
                 int from = Side(s, t.from);
@@ -53,6 +56,11 @@ namespace ColonyCouncil
                     kind = t.kind, oursBound = from > 0, you = !speaker.IsNone && (t.from == speaker || t.to == speaker), calledIn = state == Tie.State.CalledIn,
                     days = t.since >= 0 && t.since <= now ? (now - t.since) / (float)GenDate.TicksPerDay : float.MaxValue
                 };
+                if (debt)
+                {
+                    if (honour.tie == null || FactsMath.Before(fact, honour.fact)) honour = (t, fact);
+                    return;
+                }
                 if (!best.TryGetValue(t.kind, out var was) || FactsMath.Before(fact, was.fact)) best[t.kind] = (t, fact);
             }
             foreach (var k in FactsMath.TieKinds)
@@ -65,6 +73,12 @@ namespace ColonyCouncil
                 var fact = b.fact;
                 fact.toName = NameOf(s, b.tie.to);
                 FactsMath.AddTie(f, fact);
+            }
+            if (honour.tie != null)
+            {
+                var fact = honour.fact;
+                fact.toName = NameOf(s, honour.tie.to);
+                FactsMath.AddHonour(f, fact, DipWords.Why(honour.tie));
             }
         }
 

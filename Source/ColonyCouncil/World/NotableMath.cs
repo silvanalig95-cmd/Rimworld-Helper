@@ -33,7 +33,13 @@ namespace ColonyCouncil
         /// <summary>Asking them to visit the colony.</summary>
         Invitation,
         /// <summary>Asking for a small help (medicine, food), when they think well enough of the colony.</summary>
-        Help
+        Help,
+        /// <summary>
+        /// Calling in a debt of honour their people (or they) owe the colony, or answering one they called in
+        /// (Diplomacy/DiplomacyLetters.cs: stage 2's letter purposes; Pact, Truce, Match, Ward, Ransom, Envoy and Fealty
+        /// come after it in later releases).
+        /// </summary>
+        Favour
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on diplomacy (Source/ColonyCouncil/Diplomacy/; docs/design/stage2-diplomacy.md): its base, and
+       favors owed and called in (the rules in FavourMath.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Diplomacy</defName>
+    <label>diplomacy</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>A good turn big enough leaves a debt of honor between the colony and a people, either way. The colony can call in what it is owed, and the peoples call in what the colony owes them when the world shows they are in need.</summary>
+    <tip>Call a debt in while their head thinks well of the colony: at a regard of 20 or more they always honor it.</tip>
+    <description>The colony's dealings with the peoples around it are kept as ties between two sides: what one owes the other, what was promised, what is held against whom. A town's panel on the region map shows the debts of honor between its people and the colony and what the colony can do, each greyed with why not. A view of all of it, what is owed each way with a card for each people, and who is here from outside and who of the colony's people is away, comes with the region window's coming redesign.
+
+When the colony does a people a good turn of size 10 or more in their memory, they owe the colony a debt of honor for it, and the letter that tells of it says so (or, when no letter comes, the evening's news). A notable helped in person, freed or tended or well hosted, owes the colonist who did it. When a people does the colony a good turn of that size (their fighters in a fight, relief, medicine sent when asked by letter, lessons, a raiders' camp struck), the colony owes them.</description>
+    <sections>
+      <li>
+        <heading>Debts of honor</heading>
+        <text>One debt is open each way between a people and each colony; a new good turn while one is open renews it. A notable's personal debts to single colonists are twelve at most, the oldest let go first. A debt nobody asks for is let go two years (120 days) after the good turn that made or renewed it. The words for a debt follow both sides' ages: the colony's word by its own age, and the way it is done among them by theirs.</text>
+        <table>
+          <li>Age | The colony's word | Their way</li>
+          <li>Tribal | a debt of the hearth | a gift owed back</li>
+          <li>Medieval | a debt of honor | a pledge given by hand</li>
+          <li>Industrial | an IOU | a favor on the books</li>
+          <li>Spacer | a ledger entry | credit owed</li>
+        </table>
+        <after>A trade, a gift or a payment leaves no debt: those are paid for already. Nor does the colony keeping its word when they call one in.</after>
+      </li>
+      <li>
+        <heading>Calling a debt in</heading>
+        <text>The colony calls one in by a letter or a call to their head (or to the notable who owes it in person), from the region map's town panel or the letters, or face to face with someone of theirs at the colony ("Ask a favor of their people" when talking with them). What they can do now is listed, each greyed with why not: a load of goods (food, medicine, wood, steel or silver by their ways, about 400 silver's worth from a steady town, three quarters of that from a struggling one, a quarter more from a flourishing one), brought by their porters or with the answer's messenger; a word for the colony with a third people they are on good terms with (10 goodwill, said in that people's own letter); a colonist of the colony they hold, set down at the edge of the colony's land to walk home; or their help toward peace with a people at war with the colony, a promise kept for a year that the truce talks of a later release will read.</text>
+        <table>
+          <li>Their head's regard of the colony | They honor it</li>
+          <li>20 or more | always</li>
+          <li>0 to 19 | seven times in ten</li>
+          <li>below 0 | four times in ten</li>
+        </table>
+        <after>A refusal is their answer, and the colony remembers it against them. A debt is not called in across a war.</after>
+      </li>
+      <li>
+        <heading>When they call one in</heading>
+        <text>A people the colony owes looks at it once a day and calls it in about once in 90 days, but only when the world shows a need, and at most once a season. Medicine while a sickness runs among them, food in a famine: their letter, answered by carrying it out to their messenger at the colony's gate, or refused. Hands at their harvest, or a roof for their homeless: the harvest and refugee missions, asked by them, with the debt named in the letter. The colony's word on their side in a blood feud or a contested seat: the speaker writes it to their head. Refused, or left unanswered for three days (a mission until it ends), the debt is broken: they remember it, and lose 5 goodwill toward the colony. Answered, they remember that the colony kept its word.</text>
+      </li>
+      <li>
+        <heading>Settings</heading>
+        <text>The section "Diplomacy" of the settings has "Favors owed and called in". Off, no debt is made or called in, and those open run out by their terms. Later releases of the diplomacy add their own parts to that section.</text>
+      </li>
+    </sections>
+    <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>
+    <seeAlso><li>Council_Alm_C_Neighbours</li><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

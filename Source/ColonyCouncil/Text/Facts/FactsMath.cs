@@ -142,6 +142,25 @@ namespace ColonyCouncil
             f.Value(TieKey(t.kind), t.toName);
         }
 
+        /// <summary>
+        /// A debt of honour (a Favour tie of origin "debts", Diplomacy/FavoursOwed.cs) speaks as its own family, so the talk
+        /// of a favour to bring on the next visit (tie:favour) never takes one for the other: tie:honour, tie:honour:ours or
+        /// tie:honour:theirs (which side owes), tie:honour:you (the speaker is owed, or owes, in person), tie:honour:due (called
+        /// in), the party owed by name ({HONOURTO}) and what it was for ({FAVOURWHY}: "a prisoner freed", "relief sent").
+        /// </summary>
+        public static readonly string HonourTag = "tie:honour";
+
+        public static void AddHonour(FactSet f, TieFact t, string why)
+        {
+            if (f == null) return;
+            f.Tag(HonourTag, t.days <= TieNewDays ? Fresh(t.days, TieNewDays, 2f) : 1f);
+            f.Tag(HonourTag + (t.oursBound ? ":ours" : ":theirs"));
+            if (t.you) f.Tag(HonourTag + ":you", 2f);
+            if (t.calledIn) f.Tag(HonourTag + ":due", 2f);
+            f.Value("HONOURTO", t.toName);
+            if (!string.IsNullOrEmpty(why)) f.Value("FAVOURWHY", why);
+        }
+
         // ---------------- The history ----------------
 
         /// <summary>What happened in the last this many days is "lately".</summary>

@@ -674,6 +674,8 @@ namespace ColonyCouncil
             TradingPostPage.WeekRows(c);
             // Settlers waiting at the gate for the colony's caravan to their hamlet's place (World/Region/HamletPage.cs).
             HamletPage.WeekRows(c);
+            // A people's call on a debt the colony owes them, waiting for its answer (Diplomacy/DiplomacyPanels.cs).
+            DiplomacyPanels.WeekRows(c);
             return c;
         }
 

@@ -105,8 +105,10 @@ C = {
     "OutsiderHeard": const("Outsiders/OutsiderTalkMath.cs", "HeardMax", 40),
     "OutsiderMarks": const("Outsiders/OutsiderTalkMath.cs", "MaxMarks", 10),
     "OutsiderSaid": const("Outsiders/OutsiderTalkMath.cs", "MaxSaid", 16),
-    # The world ledger's bound (World/Ledger/TieMath.cs, TieRules.MaxTies): ten kinds at MaxPerKind, regard at MaxRegard.
-    "LedgerTies": 10 * const("World/Ledger/TieMath.cs", "MaxPerKind", 60) + const("World/Ledger/TieMath.cs", "MaxRegard", 300),
+    # The world ledger's bound (World/Ledger/TieMath.cs, TieRules.MaxTies): every kind but regard at MaxPerKind, regard at
+    # MaxRegard (14 kinds since stage 2's base, Secret and Scheme reserved: 1,080 in all).
+    "LedgerTies": (const("World/Ledger/TieMath.cs", "Kinds", 14) - 1) * const("World/Ledger/TieMath.cs", "MaxPerKind", 60)
+                  + const("World/Ledger/TieMath.cs", "MaxRegard", 300),
     # The world's history (World/Ledger/HistoryMath.cs, HistoryMath.MaxEvents).
     "HistoryEvents": const("World/Ledger/HistoryMath.cs", "MaxEvents", 800),
 }

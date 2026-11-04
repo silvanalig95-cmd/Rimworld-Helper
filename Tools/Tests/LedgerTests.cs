@@ -83,7 +83,8 @@ public static class LedgerTests
 
         var kinds = (Tie.Kind[])Enum.GetValues(typeof(Tie.Kind));
         var states = (Tie.State[])Enum.GetValues(typeof(Tie.State));
-        Check(kinds.Length == 12 && kinds.Length == TieRules.Kinds, "twelve kinds of tie");
+        Check(kinds.Length == 14 && kinds.Length == TieRules.Kinds, "fourteen kinds of tie (Secret and Scheme reserved for stage 2)");
+        Check(TieRules.MaxTies == 1080, "all ties at most 1,080, as stage 2 designed");
         Check(TieRules.Live(Tie.State.Open) && TieRules.Live(Tie.State.CalledIn), "open and called in are live");
         Check(!TieRules.Live(Tie.State.Kept) && !TieRules.Live(Tie.State.Broken) && !TieRules.Live(Tie.State.Ended), "kept, broken and ended are closed");
         foreach (var k in kinds)
@@ -101,13 +102,13 @@ public static class LedgerTests
             Check(TieRules.CanMove(k, Tie.State.Open, Tie.State.Broken) == (k != Tie.Kind.Regard), $"{k}: broken unless a regard");
             Check(!TieRules.CanMove(k, Tie.State.Open, Tie.State.Open), $"{k}: open to open is nothing");
         }
-        foreach (var k in new[] { Tie.Kind.Favour, Tie.Kind.Pact, Tie.Kind.Fealty, Tie.Kind.Debt, Tie.Kind.Promise, Tie.Kind.Hostage, Tie.Kind.Claim })
+        foreach (var k in new[] { Tie.Kind.Favour, Tie.Kind.Pact, Tie.Kind.Fealty, Tie.Kind.Debt, Tie.Kind.Promise, Tie.Kind.Hostage, Tie.Kind.Claim, Tie.Kind.Secret })
         {
             Check(TieRules.CanCallIn(k), $"{k} can be called in");
             Check(TieRules.CanMove(k, Tie.State.CalledIn, Tie.State.Open), $"{k}: called in can be put off (open again)");
             Check(TieRules.CanMove(k, Tie.State.CalledIn, Tie.State.Kept) && TieRules.CanMove(k, Tie.State.CalledIn, Tie.State.Broken), $"{k}: called in is then kept or broken");
         }
-        foreach (var k in new[] { Tie.Kind.Truce, Tie.Kind.Marriage, Tie.Kind.Ward, Tie.Kind.Grudge, Tie.Kind.Regard })
+        foreach (var k in new[] { Tie.Kind.Truce, Tie.Kind.Marriage, Tie.Kind.Ward, Tie.Kind.Grudge, Tie.Kind.Regard, Tie.Kind.Scheme })
             Check(!TieRules.CanCallIn(k), $"{k} can't be called in");
 
         Tie Make(Tie.Kind k, Ref a, Ref b, Tie.State s = Tie.State.Open, int until = Tie.Never, int closed = Tie.Never) =>

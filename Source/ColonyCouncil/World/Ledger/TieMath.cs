@@ -56,7 +56,17 @@ namespace ColonyCouncil
             /// their family may come to ask for them back. Pressing it is calling it in; letting them go keeps it, refusing
             /// breaks it.
             /// </summary>
-            Claim
+            Claim,
+            /// <summary>
+            /// From (whoever knows it) holds a secret about to (the one it is about): leverage that can be called in (key:
+            /// what it is). Reserved for the keeper of secrets (stage 2, round c): its rules and bounds stand, nothing makes one yet.
+            /// </summary>
+            Secret,
+            /// <summary>
+            /// From (the schemer) works against to (the target), its progress in its terms (number). Reserved for schemes
+            /// (stage 2, round c): kept when it succeeds, broken when found out, ended when given up; nothing makes one yet.
+            /// </summary>
+            Scheme
         }
 
         public enum State
@@ -114,7 +124,8 @@ namespace ColonyCouncil
     /// <item>Open and called in are live; kept, broken and ended are closed, and stay closed.</item>
     /// <item>From open: kept, called in, broken or ended. From called in: kept, broken, ended, or open again (put off,
     /// given more time). Only what can be asked for can be called in (a favour, a pact, fealty, a debt, a promise, a
-    /// hostage, a family's claim); a regard is never kept or broken, only ended.</item>
+    /// hostage, a family's claim, a secret); a regard is never kept or broken, only ended; a scheme is kept (it worked),
+    /// broken (found out) or ended (given up), never called in.</item>
     /// <item>At its until: an open debt comes due (called in, with no end until the one asking sets one); any other open
     /// tie ends (it ran its course); a tie called in and not met by then is broken.</item>
     /// <item>Closed ties are dropped <see cref="KeepClosedDays"/> days after they closed (the history folds them in,
@@ -130,8 +141,8 @@ namespace ColonyCouncil
         public const int MaxPerKind = 60;
         /// <summary>Regard is kept between many pairs (each notable and colonist, each outsider pair): more room.</summary>
         public const int MaxRegard = 300;
-        /// <summary>How many kinds of tie there are.</summary>
-        public const int Kinds = 12;
+        /// <summary>How many kinds of tie there are (Secret and Scheme reserved for stage 2's round c).</summary>
+        public const int Kinds = 14;
         /// <summary>All ties at most: every kind but regard at <see cref="MaxPerKind"/>, and regard at <see cref="MaxRegard"/>.</summary>
         public const int MaxTies = (Kinds - 1) * MaxPerKind + MaxRegard;
 
@@ -139,10 +150,10 @@ namespace ColonyCouncil
 
         public static bool Live(Tie.State s) => s == Tie.State.Open || s == Tie.State.CalledIn;
 
-        /// <summary>Can be asked for: a favour, a pact, fealty, a debt, a promise, a hostage, a family's claim.</summary>
+        /// <summary>Can be asked for: a favour, a pact, fealty, a debt, a promise, a hostage, a family's claim, a secret held over someone.</summary>
         public static bool CanCallIn(Tie.Kind k) =>
             k == Tie.Kind.Favour || k == Tie.Kind.Pact || k == Tie.Kind.Fealty || k == Tie.Kind.Debt || k == Tie.Kind.Promise || k == Tie.Kind.Hostage
-            || k == Tie.Kind.Claim;
+            || k == Tie.Kind.Claim || k == Tie.Kind.Secret;
 
         /// <summary>Can be honoured or failed (everything but a regard, which only ends).</summary>
         public static bool CanKeepOrBreak(Tie.Kind k) => k != Tie.Kind.Regard;

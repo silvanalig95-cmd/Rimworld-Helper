@@ -270,7 +270,35 @@ namespace ColonyCouncil
             ["hamlet"] = K(DeedSide.Favor, 15),
             ["hamletHarvest"] = K(DeedSide.TheirFavor, 4, 30f, 12),
             ["hamletHelped"] = K(DeedSide.Favor, 8, 10f, 20),
-            ["hamletRefused"] = K(DeedSide.Wrong, 6, 15f, 18)
+            ["hamletRefused"] = K(DeedSide.Wrong, 6, 15f, 18),
+            // Diplomacy (Diplomacy/, docs/design/stage2-diplomacy.md, "Shared rules"): the whole list, so each release of
+            // stage 2 only uses them. Of the colony: an oath or pact sworn, its word kept (a debt of theirs answered), a
+            // captive ransomed back, their envoy well kept, a ward fostered, a marriage, a hostage returned, levies sent,
+            // tribute paid (merged by the season).
+            ["swore"] = K(DeedSide.Favor, 8),
+            ["keptWord"] = K(DeedSide.Favor, 10, 10f, 20),
+            ["ransomed"] = K(DeedSide.Favor, 4, 5f, 12),
+            ["envoyHonored"] = K(DeedSide.Favor, 8),
+            ["fostered"] = K(DeedSide.Favor, 12),
+            ["married"] = K(DeedSide.Favor, 15),
+            ["hostageReturned"] = K(DeedSide.Favor, 6),
+            ["levies"] = K(DeedSide.Favor, 8, 10f, 16),
+            ["tribute"] = K(DeedSide.Favor, 1, 15f, 6),
+            // The colony's wrongs: a truce or a pact broken, its word broken (heard by the other peoples in reach), a
+            // spouse wronged, a scheme against them, fealty renounced, tribute short.
+            ["brokeTruce"] = K(DeedSide.Wrong, 25),
+            ["brokePact"] = K(DeedSide.Wrong, 20),
+            ["wordBroken"] = K(DeedSide.Wrong, 4, 10f, 12),
+            ["spouseWronged"] = K(DeedSide.Wrong, 30),
+            ["schemed"] = K(DeedSide.Wrong, 15),
+            ["renounced"] = K(DeedSide.Wrong, 20),
+            ["tributeShort"] = K(DeedSide.Wrong, 6, 15f, 18),
+            // Theirs: a debt of theirs refused when the colony called it in, a truce they broke, a scheme of theirs found
+            // out, and their protection given.
+            ["brokeWord"] = K(DeedSide.TheirWrong, 12),
+            ["truceBroken"] = K(DeedSide.TheirWrong, 20),
+            ["schemedUs"] = K(DeedSide.TheirWrong, 12),
+            ["protected"] = K(DeedSide.TheirFavor, 10)
         };
 
         public static DeedKind KindOf(string kind) => kind != null && Kinds.TryGetValue(kind, out var k) ? k : null;
@@ -297,6 +325,8 @@ namespace ColonyCouncil
                 var d = Instance.Add(f, kind, k, name, weight > 0 ? weight : k.weight, Mathf.Max(1, count));
                 // The world's history keeps every one, where the memory merges and fades them (World/Ledger/History.cs).
                 History.Deed(f, kind, k.side, weight > 0 ? weight : k.weight, Mathf.Max(1, count), name);
+                // A good turn big enough is a debt of honour, either way (Diplomacy/FavoursOwed.cs).
+                FavoursOwed.Noted(d);
                 return d;
             }
             catch (Exception e)

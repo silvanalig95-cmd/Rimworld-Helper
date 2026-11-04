@@ -434,10 +434,12 @@ namespace ColonyCouncil
                 if (!body.NullOrEmpty())
                     Tell.Letter(NewsKind.World, Importance.Notable, null, title, body, letter ?? (success ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent), look ?? LookTargets.Invalid);
             }
-            // The people who asked remember how it went (World/FactionMemory.cs).
+            // The people who asked remember how it went (World/FactionMemory.cs), and a debt of honour they called in
+            // through it is kept or broken by it (Diplomacy/FavourAsks.cs).
             try
             {
                 MemoryHooks.MissionEnded(m, state, wasActive);
+                FavourAsks.MissionEnded(m, state);
             }
             catch (Exception e)
             {

@@ -423,6 +423,8 @@ namespace ColonyCouncil
                     Safe("rare", () => NeighbourLetters.Rare(this, now));
             if (!Sched.Hourly(now, Sched.Neighbours)) return;
             using var clock = PassClock.Time(Pass.Neighbours);
+            // Diplomacy's hour and day (Diplomacy/Diplomacy.cs): built on the neighbours and their letters, it rides on their pass.
+            Safe("diplomacy", () => Diplomacy.Hourly(now));
             if (!(ColonyCouncilMod.Settings?.notables ?? true))
             {
                 if (notables.Count > 0) Safe("let go", LetAllGo);

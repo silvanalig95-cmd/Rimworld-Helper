@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.81.0</version>
+        <date>4 November 2026</date>
+        <title>Debts of honor</title>
+        <points>
+          <li>A good turn big enough leaves a debt of honor between the colony and a people, either way, and the letter that tells of it says so in both sides' words by their age. A notable helped in person owes the colonist who did it.</li>
+          <li>Call a debt in by letter, by call, from a town's panel on the region map or face to face ("Ask a favor of their people"): a load of goods brought by their porters, a word with a third people, a colonist they hold sent home, or their help toward peace. Their head's regard decides whether they honor it.</li>
+          <li>The peoples call in what the colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof for their homeless, the colony's word in a feud. Refused or left unanswered, they remember it.</li>
+          <li>14 conversation pieces and new letter lines speak of debts of honor, and the Almanac has a new page, diplomacy. The full view of what is owed each way comes with the region window's redesign, so it adds no tabs.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.80.0</version>
         <date>4 November 2026</date>
         <title>What stands near</title>
