@@ -10,6 +10,19 @@ namespace ColonyCouncil
     /// </summary>
     public static class CampStoryMath
     {
+        // ---------------- Each home's clock of camps coming (CampHome, CampTimer) ----------------
+
+        private const int DayTicks = 60000;
+
+        /// <summary>A home's next try is picked again: none yet, or further off than a few days (another game's, one loaded since).</summary>
+        public static bool RepickTry(int nextTry, int now) => nextTry < 0 || nextTry > now + 3 * DayTicks;
+
+        /// <summary>A home's last camp left too lately for the next: within <paramref name="gapDays"/> of <paramref name="lastEnded"/>.</summary>
+        public static bool InGap(int now, int lastEnded, float gapDays) => now - lastEnded < DayTicks * gapDays;
+
+        /// <summary>A passing reason (danger, weather, a question) puts a home's try off by the hour, up to <paramref name="retries"/> hours.</summary>
+        public static bool PutOff(bool passing, int tryHours, int retries) => passing && tryHours < retries;
+
         /// <summary>How much likelier a kind of camp is at an hour that fits it (its own arrival hours).</summary>
         public const float FitsHour = 3f;
 

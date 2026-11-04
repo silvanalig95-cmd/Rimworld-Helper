@@ -32,7 +32,7 @@ namespace ColonyCouncil
             if (p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) && !p.DevelopmentalStage.Child()) return false;
             var animals = ArcUtil.Skill(p, SkillDefOf.Animals);
             return (animals != null && !animals.TotallyDisabled && People.Passionate(animals)) || ArcUtil.HasTrait(p, TraitDefOf.Kind)
-                   || p.DevelopmentalStage.Child() || AnimalFacts.Herdmaster == p;
+                   || p.DevelopmentalStage.Child() || AnimalFacts.IsHerdmaster(p);
         }
 
         public override ArcCandidate Candidate(Pawn p, List<Pawn> home)

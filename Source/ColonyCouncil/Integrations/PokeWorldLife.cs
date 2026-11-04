@@ -318,7 +318,7 @@ namespace ColonyCouncil
                     continue;
                 }
                 var map = p.MapHeld;
-                if (map != null && (MapFacts.ThreatOn(map) || (comp.social?.battleActive ?? false))) continue;
+                if (map != null && (MapFacts.ThreatOn(map) || (comp.social?.BattleOn(map) ?? false))) continue;
                 fainted.Remove(p);
                 comp.journals.WriteTagged(trainer, "Council_Journal_PW_Fainted", Tags(p), null, p.Named("PET"));
             }

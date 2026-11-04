@@ -39,6 +39,8 @@ namespace ColonyCouncil
         public List<string> gone = new List<string>();
         public int raids;
         private int lastThreatSeen;
+        /// <summary>Each home's last big threat counted (its key: the tick), so two raids on two homes at once are two raids.</summary>
+        private Dictionary<int, int> threatSeen = new Dictionary<int, int>();
         public List<string> decrees = new List<string>();
         public int dilemmas;
         public List<string> quit = new List<string>();
@@ -71,19 +73,32 @@ namespace ColonyCouncil
         private static List<Pawn> Colonists() =>
             PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers.Where(p => !p.IsQuestLodger()).ToList();
 
+        /// <summary>The seat: its date keeps the annals' year (the colony as a whole has one book of annals).</summary>
         private static Map Home => MapFacts.BusiestHome;
+
+        /// <summary>The colony's wealth, all its homes together (with one colony, its home's).</summary>
+        private static float Wealth() => Find.Maps.Where(m => m.IsPlayerHome).Sum(m => m.wealthWatcher.WealthTotal);
 
         public void Hourly(CouncilGameComponent comp)
         {
             var map = Home;
             if (map == null) return;
-            // Count big threats (raids, sieges, manhunters) as they happen.
-            int last = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
-            if (last > lastThreatSeen)
+            // Count big threats (raids, sieges, manhunters) as they happen, at each home: two at once are two. A home not
+            // looked at before goes by the last threat the annals counted anywhere (an older save's).
+            foreach (var m in Find.Maps.Where(m => m.IsPlayerHome).ToList())
             {
-                if (lastThreatSeen > 0 || year >= 0) raids++;
-                lastThreatSeen = last;
+                int key = Homes.KeyOf(m);
+                int seen = threatSeen.TryGetValue(key, out int s) ? s : lastThreatSeen;
+                int last = m.storyState.LastThreatBigTick;
+                if (last <= seen) continue;
+                if (seen > 0 || year >= 0) raids++;
+                threatSeen[key] = last;
+                lastThreatSeen = System.Math.Max(lastThreatSeen, last);
             }
+            // Homes no longer ours are forgotten.
+            if (threatSeen.Count > 0)
+                foreach (int key in threatSeen.Keys.ToList())
+                    if (Homes.MapOf(key) == null) threatSeen.Remove(key);
             if (year >= 0)
             {
                 var current = Colonists();
@@ -119,7 +134,7 @@ namespace ColonyCouncil
         {
             year = newYear;
             yearStartTick = Find.TickManager.TicksGame;
-            startWealth = map.wealthWatcher.WealthTotal;
+            startWealth = Wealth();
             partial = midway;
             present = Colonists();
             startCount = present.Count;
@@ -170,7 +185,7 @@ namespace ColonyCouncil
 
             // Danger and fortune
             Para(raids == 0 ? "CC_Annals_NoRaids".Translate().Resolve() : "CC_Annals_Raids".Translate(raids).Resolve());
-            float wealth = map.wealthWatcher.WealthTotal;
+            float wealth = Wealth();
             if (startWealth > 0f)
             {
                 float change = (wealth - startWealth) / startWealth;
@@ -236,8 +251,14 @@ namespace ColonyCouncil
             var bitter = now.Where(p => comp.standings.TrustOf(p) <= -15f).OrderBy(p => comp.standings.TrustOf(p)).FirstOrDefault();
             if (devoted != null) Para("CC_Annals_Devoted".Translate(devoted.Named("PAWN")).Resolve());
             if (bitter != null) Para("CC_Annals_Bitter".Translate(bitter.Named("PAWN")).Resolve());
-            var seats = OfficeTracker.Offices.SelectMany(o => comp.offices.HoldersOf(o).Select(h => (o, h))).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
-            if (seats.Count > 0) Para("CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve());
+            // Each colony's council (with more than one colony, each named by its settlement).
+            foreach (var council in ColonyState.Ticking())
+            {
+                var seats = OfficeTracker.Offices.SelectMany(o => council.offices.HoldersOf(o).Select(h => (o, h))).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
+                if (seats.Count == 0) continue;
+                string line = "CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve();
+                Para(ColonyState.Several && council.Map != null ? "CC_Tell_At".Translate(council.Name.Named("PLACE"), line.Named("TEXT")).Resolve() : line);
+            }
             var titled = now.Select(p => (p, titles: comp.epithets.TitlesOf(p))).Where(x => !x.titles.NullOrEmpty())
                 .Select(x => x.p.LabelShort + " " + x.titles).ToList();
             if (titled.Count > 0) Para("CC_Annals_Epithets".Translate(TextUtil.JoinAnd(titled)).Resolve());
@@ -281,6 +302,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref gone, "gone", LookMode.Value);
             Scribe_Values.Look(ref raids, "raids");
             Scribe_Values.Look(ref lastThreatSeen, "lastThreatSeen");
+            Scribe_Collections.Look(ref threatSeen, "threatSeen", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref decrees, "decrees", LookMode.Value);
             Scribe_Values.Look(ref dilemmas, "dilemmas");
             Scribe_Collections.Look(ref quit, "quit", LookMode.Value);
@@ -296,6 +318,7 @@ namespace ColonyCouncil
             {
                 if (present == null) present = new List<Pawn>();
                 present.RemoveAll(p => p == null);
+                threatSeen ??= new Dictionary<int, int>();
                 if (joined == null) joined = new List<string>();
                 if (died == null) died = new List<string>();
                 if (gone == null) gone = new List<string>();

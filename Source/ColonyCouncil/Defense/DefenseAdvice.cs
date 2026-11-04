@@ -60,7 +60,7 @@ namespace ColonyCouncil
             if (tracker == null) return all;
             if (open == null || openFrom != all || openVersion != tracker.Version)
             {
-                open = all.Where(a => !tracker.Declined(KeyOf(a))).ToList();
+                open = all.Where(a => !tracker.Declined(KeyOf(a), s.map)).ToList();
                 openFrom = all;
                 openVersion = tracker.Version;
             }

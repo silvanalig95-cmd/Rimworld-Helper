@@ -23,7 +23,7 @@ namespace ColonyCouncil
             if (p.DevelopmentalStage.Child()) return herd >= 1;
             if (herd < 3) return false;
             var animals = p.skills?.GetSkill(SkillDefOf.Animals);
-            return animals != null && !animals.TotallyDisabled && (People.Passionate(animals) || AnimalFacts.Herdmaster == p || MoreHabits.Feeling(p, "Contentment", 0.5f) != null);
+            return animals != null && !animals.TotallyDisabled && (People.Passionate(animals) || AnimalFacts.IsHerdmaster(p) || MoreHabits.Feeling(p, "Contentment", 0.5f) != null);
         }
 
         /// <summary>Where the herd is: the calm animal of it nearest the middle of the rest, near enough to walk to.</summary>

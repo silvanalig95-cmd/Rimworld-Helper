@@ -74,7 +74,7 @@ namespace ColonyCouncil
 
         // ---------------- Opening ----------------
 
-        private static Map HomeMap()
+        internal static Map HomeMap()
         {
             var cur = Find.CurrentMap;
             return cur != null && cur.IsPlayerHome ? cur : HappeningTracker.HomeMap();
@@ -102,7 +102,7 @@ namespace ColonyCouncil
         public static void Open(bool editPlanned = false)
         {
             if (Current.ProgramState != ProgramState.Playing) return;
-            var live = JourneyBook.Plan;
+            var live = JourneyBook.PlanAt(HomeMap());
             if (editPlanned && live != null)
             {
                 Draft = Clone(live);
@@ -122,7 +122,7 @@ namespace ColonyCouncil
         public static void OpenTo(PlanetTile tile, WorldObject wo)
         {
             if (Current.ProgramState != ProgramState.Playing) return;
-            var live = JourneyBook.Plan;
+            var live = JourneyBook.PlanAt(HomeMap());
             if (Draft == null || Draft.map == null || !Find.Maps.Contains(Draft.map))
             {
                 if (live != null && live.destTile == tile.tileId)
@@ -934,7 +934,7 @@ namespace ColonyCouncil
 
         private void DrawBottom(Rect rect)
         {
-            var live = JourneyBook.Plan;
+            var live = JourneyBook.PlanAt(plan?.map ?? HomeMap());
             float x = rect.x;
             if (editing && live != null)
             {
@@ -998,7 +998,8 @@ namespace ColonyCouncil
             {
                 float start = y;
                 y += UiKit.SectionTitle(x, y, w, "CC_Journey_Section".Translate(), Icons.World, Accent) + 4f;
-                var plan = JourneyBook.Plan;
+                // The plan of the colony in view.
+                var plan = JourneyBook.PlanAt(Dialog_JourneyPlan.HomeMap());
                 const float buttonsW = 180f;
                 string text = plan == null ? "CC_Journey_None".Translate().ToString() : Status(plan);
                 float h = UiKit.Paragraph(x + 4f, y, w - buttonsW - 16f, text, plan == null ? UiKit.Faint : Color.white);
@@ -1034,7 +1035,7 @@ namespace ColonyCouncil
         public static float Here(Rect rect, PlanetTile tile, WorldObject wo)
         {
             if (!JourneyBook.On || !tile.Valid) return 0f;
-            var plan = JourneyBook.Plan;
+            var plan = JourneyBook.PlanAt(Dialog_JourneyPlan.HomeMap());
             string label = Dialog_JourneyPlan.Draft != null ? "CC_Journey_HereDraft".Translate()
                 : plan != null && plan.destTile == tile.tileId ? "CC_Journey_HereOpen".Translate()
                 : "CC_Journey_Here".Translate();

@@ -37,7 +37,7 @@ namespace ColonyCouncil
         /// <summary>One of the camp's grown-ups, not its speaker, when a camp friendly to the colony is settled on the map.</summary>
         private static Pawn CampPatient(Map map)
         {
-            var camp = CampTracker.Enabled ? CampTracker.Instance?.camp : null;
+            var camp = CampTracker.Enabled ? CampTracker.VisitingAt(map) : null;
             if (camp == null || camp.map != map || !camp.Settled || !camp.CanTalk) return null;
             return camp.members.Where(p => p != null && p.Spawned && p.Map == map && !p.Dead && !p.Downed && p != camp.leader && p.RaceProps.Humanlike
                                             && !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();

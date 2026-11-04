@@ -236,11 +236,15 @@ namespace ColonyCouncil
     /// </summary>
     public class ArcWorker_CampRoad : ArcWorker
     {
-        private static Camp CampNow => CampTracker.Enabled ? CampTracker.Instance?.camp : null;
+        /// <summary>The camp visiting their home now.</summary>
+        private static Camp CampNow(Map map) => CampTracker.Enabled ? CampTracker.VisitingAt(map) : null;
+
+        /// <summary>The camp of an arc (by its id), at whichever colony it visits.</summary>
+        private static Camp CampOf(Arc arc) => CampTracker.Instance?.Visiting.FirstOrDefault(c => c.id.ToString() == arc.key);
 
         public override ArcCandidate Candidate(Pawn p, List<Pawn> home)
         {
-            var camp = CampNow;
+            var camp = CampNow(p.Map);
             if (camp == null || camp.map != p.Map || (camp.phase != CampPhase.Building && camp.phase != CampPhase.Living)) return null;
             if (p.DevelopmentalStage.Juvenile() || !camp.warmth.TryGetValue(p, out int warm) || warm < 2) return null;
             bool restless = ArcUtil.Feeling(p, "Restless") != null || ArcUtil.Feeling(p, "Curiosity") != null
@@ -254,14 +258,14 @@ namespace ColonyCouncil
         /// <summary>The camp has packed up and gone.</summary>
         public override bool CustomGate(Arc arc, ArcGate gate)
         {
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampOf(arc);
             return camp == null || camp.id.ToString() != arc.key || camp.phase == CampPhase.Leaving || camp.phase == CampPhase.Over;
         }
 
         /// <summary>The camp turned on the colony.</summary>
         public override string Broken(Arc arc)
         {
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampOf(arc);
             return camp != null && camp.id.ToString() == arc.key && camp.phase == CampPhase.Fighting ? "campfight" : null;
         }
     }

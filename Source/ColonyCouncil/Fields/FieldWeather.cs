@@ -582,9 +582,9 @@ namespace ColonyCouncil
             foreach (var fs in frost)
             {
                 string key = fs.step.key;
-                if (t == null || !t.Offered(key)) continue;
+                if (t == null || !t.Offered(key, map)) continue;
                 int n = fs.pick.harvest.Count;
-                if (auto && !t.UndoneLast(key) && Markable(fs) && t.Apply(fs.step, quiet: true) != null)
+                if (auto && !t.UndoneLast(key, map) && Markable(fs) && t.Apply(fs.step, quiet: true) != null)
                 {
                     told.Add(key);
                     Notify.Message("CC_Fields_Frost_Auto".Translate(WhenWords(fs.pick.lowHour, last).Named("WHEN"), Temp(fs.pick.low).Named("TEMP"), n.Named("N"),

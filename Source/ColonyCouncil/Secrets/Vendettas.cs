@@ -138,11 +138,13 @@ namespace ColonyCouncil
         {
             var social = comp.social;
             int now = Find.TickManager.TicksGame;
-            if (social.battleActive)
+            // The fight going on (the one that began last, when two homes fight at once).
+            var current = social.Current;
+            if (current != null)
             {
                 lastBattleTick = now;
-                lastBattleFaction = social.battleFaction;
-                lastBattleMap = social.battleMap;
+                lastBattleFaction = current.faction;
+                lastBattleMap = current.Map;
             }
             WatchLosses(comp, now);
             if (S.vendettas) Battles(comp, social);
@@ -187,7 +189,7 @@ namespace ColonyCouncil
                 if (p.Dead)
                 {
                     comp.nemeses.Notify_Death(p);
-                    CalendarTracker.Notify_Death(p);
+                    ColonyCalendar.Notify_Death(p);
                     var killers = Killers(p, now);
                     if (killers != null && S.vendettas) Swear(comp, p, killers, false);
                     comp.legacy.Notify_Death(comp, p);
@@ -309,8 +311,9 @@ namespace ColonyCouncil
         private void Battles(CouncilGameComponent comp, SocialWeb social)
         {
             using var _cause = Causes.Push("CC_Cause_VendettaBlood".Translate().Resolve());
-            bool fighting = social.battleActive;
-            var faction = social.battleFaction;
+            var current = social.Current;
+            bool fighting = current != null;
+            var faction = current?.faction;
             if (fighting && !wasFighting)
             {
                 killsAtBattleStart.Clear();

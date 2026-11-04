@@ -225,7 +225,9 @@ namespace ColonyCouncil
             OnlyEngaged = true;
             try
             {
-                comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_SharedName);
+                // Asked at the couple's own colony: each colony's council looks for one among its own.
+                foreach (var council in ColonyState.Ticking())
+                    if (council.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_SharedName)) break;
             }
             finally
             {

@@ -353,7 +353,7 @@ namespace ColonyCouncil
                 float sway = FaithCouncilMath.EveningSway(q);
                 foreach (var o in others)
                     if (Faiths.Sway(o, speaker, sway, cause) == Faiths.SwayResult.Moved) moved.Add(o);
-                float steady = FaithCouncilMath.EveningSteady(q) * Interplay.FaithFactor;
+                float steady = FaithCouncilMath.EveningSteady(q) * Interplay.FaithFactor(play.map);
                 foreach (var b in believers) Faiths.Steady(b, steady);
                 var thought = tier == EveningTier.Fine ? FaithCouncilDefs.FineEvening : FaithCouncilDefs.GoodEvening;
                 string why = "CC_FaithEve_ThoughtCause".Translate(faith.name.Named("FAITH"), speaker.Named("SPEAKER")).Resolve();

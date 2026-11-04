@@ -132,7 +132,7 @@ namespace ColonyCouncil
         {
             var tracker = CampTracker.Instance;
             var kind = Wardens;
-            return CampTracker.Enabled && tracker != null && tracker.holding == null && kind != null && kind.FitsEra() && CampSite.AnyRoom(map);
+            return CampTracker.Enabled && tracker != null && CampTracker.HoldingAt(map) == null && kind != null && kind.FitsEra() && CampSite.AnyRoom(map);
         }
 
         public override bool BeatCanHappen(WorldSituation s, SituationBeat beat, Map map, out bool retry)
@@ -140,7 +140,7 @@ namespace ColonyCouncil
             if (!base.BeatCanHappen(s, beat, map, out retry)) return false;
             if (beat.key != "settle") return true;
             var tracker = CampTracker.Instance;
-            var c = tracker?.camp;
+            var c = CampTracker.VisitingAt(map);
             if (c == null || c.kind != Wardens)
             {
                 // The wardens left before the post was done (the weather, a raid): the story goes on without it.
@@ -148,7 +148,7 @@ namespace ColonyCouncil
                 retry = false;
                 return false;
             }
-            if (tracker.holding != null)
+            if (CampTracker.HoldingAt(map) != null)
             {
                 s.Set("noRoom");
                 retry = false;
@@ -200,7 +200,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var def = DefDatabase<CampKindDef>.GetNamedSilentFail(kind ?? "");
-            if (def == null || !CampTracker.Enabled || CampTracker.Instance?.camp != null || !Allowed(ctx)) return;
+            if (def == null || !CampTracker.Enabled || CampTracker.VisitingAt(SituationEffectUtil.MapOf(ctx)) != null || !Allowed(ctx)) return;
             sheet.Add(ImpactKind.People, 0, "CC_Impact_CampComes".Translate(def.label).Resolve(), "CC_Impact_CampComesBrief".Translate(def.label).Resolve());
         }
 
@@ -235,9 +235,9 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var tracker = CampTracker.Instance;
-            var c = tracker?.camp;
-            if (c == null || tracker.holding != null || c.kind?.defName != kind || !c.CanTalk || !Allowed(ctx)) return;
+            var map = SituationEffectUtil.MapOf(ctx);
+            var c = CampTracker.VisitingAt(map);
+            if (c == null || CampTracker.HoldingAt(map) != null || c.kind?.defName != kind || !c.CanTalk || !Allowed(ctx)) return;
             sheet.Add(ImpactKind.People, 1, "CC_Impact_CampSettles".Translate(c.kind.label).Resolve(), "CC_Impact_CampSettlesBrief".Translate().Resolve());
         }
 
@@ -246,9 +246,9 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var tracker = CampTracker.Instance;
-            var c = tracker?.camp;
-            if (c == null || tracker.holding != null || c.kind?.defName != kind || !c.CanTalk || !Gate(ctx)) return;
+            var map = SituationEffectUtil.MapOf(ctx);
+            var c = CampTracker.VisitingAt(map);
+            if (c == null || CampTracker.HoldingAt(map) != null || c.kind?.defName != kind || !c.CanTalk || !Gate(ctx)) return;
             string told;
             try
             {

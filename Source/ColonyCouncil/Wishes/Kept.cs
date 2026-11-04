@@ -374,9 +374,10 @@ namespace ColonyCouncil
         private static Map MapOf(GrantWatch w)
         {
             var maps = Find.Maps;
+            // Still one of the colony's homes: a map handed over (or no longer ours) is gone from the council's eyes too.
             for (int i = 0; i < maps.Count; i++)
                 if (maps[i].uniqueID == w.mapId)
-                    return maps[i];
+                    return Homes.IsHome(maps[i]) ? maps[i] : null;
             return null;
         }
 

@@ -275,10 +275,11 @@ namespace ColonyCouncil
             var tracker = CampTracker.Instance;
             string not = tracker == null ? "Rimfolk's camps aren't running in this game" : tracker.WhyNot(map);
             // The camps' diary: what each day brought (kept in the save for reviews).
-            if (tracker != null && tracker.diary.Count > 0)
-                part.Add("Camps' diary since day " + (tracker.diarySince + 1) + ": " + string.Join(", ", tracker.diaryCounts.OrderByDescending(kv => kv.Value).Select(kv => kv.Key + " " + kv.Value))
-                         + ". Last days: " + string.Join("; ", tracker.diary.Skip(Math.Max(0, tracker.diary.Count - 8)).Select(d => d.TrimEnd('|'))) + ".", UiKit.Faint);
-            if (not != null) part.Add("Camps: none can come now: " + not + ".", tracker?.camp != null ? UiKit.Good : Color.white);
+            var home = tracker?.HomeOf(map);
+            if (home != null && home.diary.Count > 0)
+                part.Add("Camps' diary since day " + (home.diarySince + 1) + ": " + string.Join(", ", home.diaryCounts.OrderByDescending(kv => kv.Value).Select(kv => kv.Key + " " + kv.Value))
+                         + ". Last days: " + string.Join("; ", home.diary.Skip(Math.Max(0, home.diary.Count - 8)).Select(d => d.TrimEnd('|'))) + ".", UiKit.Faint);
+            if (not != null) part.Add("Camps: none can come now: " + not + ".", home?.camp != null ? UiKit.Good : Color.white);
             else
             {
                 var why = new List<string>();
@@ -370,7 +371,7 @@ namespace ColonyCouncil
             }
 
             // The herd.
-            var herd = comp.herd;
+            var herd = comp.HerdOf(map);
             var head = AnimalFacts.Herd(map);
             if (herd?.leader != null && !herd.leader.Dead)
             {
@@ -383,7 +384,7 @@ namespace ColonyCouncil
                 : "Herd leader: none; the herd has " + head.Count + " head on this map and needs " + HerdStoryMath.MinHerd + " for a leader.", UiKit.Faint);
 
             // The beast that stays.
-            var rb = comp.beast;
+            var rb = comp.BeastOf(map);
             if (rb == null) return;
             if (!ResidentBeast.On) part.Add("The beast that stays needs the strangers setting on.", UiKit.Warn);
             else if (rb.Here)
@@ -421,7 +422,7 @@ namespace ColonyCouncil
                 part.Add("Allies: " + ally.Name + ". They send food when the stores fall under " + Allies.HungryDays.ToString("0") + " days (" + AdvisorWorker_Food.DaysOfFood(map).ToString("0.0")
                          + " days now, event Council_Evt_AllyFood), and their fighters come first when the colony is attacked.", UiKit.Good);
             else part.Add("No allies: the other settlers' year (Council_WS_RivalColony) ends in an alliance when the colony has been warm to them.", UiKit.Faint);
-            var post = CampTracker.Instance?.holding;
+            var post = CampTracker.HoldingAt(map);
             if (post != null && !post.kind.roadWord.NullOrEmpty())
                 part.Add("The " + post.Label + " settled " + post.place + " are a trading stop: " + (post.LoadOnRoad ? post.LoadLine() : "no load on the road; food, hides or wool can be sent down with the carters from their page")
                          + ". Word from the road comes up with their visits.", UiKit.Good);

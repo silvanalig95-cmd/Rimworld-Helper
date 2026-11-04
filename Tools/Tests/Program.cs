@@ -457,6 +457,7 @@ Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)}
 Console.WriteLine($"Checked {LeanTests.Run(Check)} things about the clock's spread and the save caps.");
 Console.WriteLine($"Checked {HomesTests.Run(Check)} things about what a colony is (the order of the homes, the seat, whose home, a day to make it theirs, where a memo goes).");
 Console.WriteLine($"Checked {ColonyStateTests.Run(Check)} things about a council per colony (an old save's for the seat, a home lost, kept, carried or moved to, each colony's own people and guards).");
+Console.WriteLine($"Checked {ManyHomesTests.Run(Check)} things about many homes (memos and letters by colony, a calendar per colony, camps per home, names and suggestions per colony).");
 Console.WriteLine($"Checked {LedgerTests.Run(Check)} things about the world ledger (refs and their text form, ties' states and ends, bounds, ages).");
 Console.WriteLine($"Checked {LedgerMovesTests.Run(Check)} things about the stores moved into the world ledger (persons, towns, grudges, favours, words, claims, debts, fealty, regard, keeping someone in the world).");
 Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peoples remember (fading, adding up, making way, tone).");

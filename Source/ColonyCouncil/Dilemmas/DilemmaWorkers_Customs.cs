@@ -123,7 +123,7 @@ namespace ColonyCouncil
         {
             if (DecreeWork.ColonyFaith == null || amount == 0f) return;
             var who = Reached(ctx).Where(DecreeWork.Believer).ToList();
-            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor);
+            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor(ctx.map));
         }
 
         /// <summary>Certainty, as a share (0.05 = 5%).</summary>
@@ -137,7 +137,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             if (DecreeWork.ColonyFaith == null || amount == 0f) return;
-            float a = amount * Interplay.FaithFactor;
+            float a = amount * Interplay.FaithFactor(ctx.map);
             foreach (var p in Targets(ctx).Distinct().ToList())
                 if (DecreeWork.Believer(p)) p.ideo?.OffsetCertainty(a);
         }

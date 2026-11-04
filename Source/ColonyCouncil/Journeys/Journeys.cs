@@ -225,12 +225,14 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The colony's journey plan, one at a time: a game component of its own, looked at every 250 ticks at
-    /// <see cref="Sched.RareJourneys"/> only while there is a plan (JourneyRun.cs does the work).
+    /// The colony's journey plans, one at a time at each home (stage 0, step 7b; a plan sets off from its own home, its
+    /// map): a game component of its own, looked at every 250 ticks at <see cref="Sched.RareJourneys"/> only while there is
+    /// a plan (JourneyRun.cs does the work). An old save's one plan is kept as it was.
     /// </summary>
     public class JourneyBook : GameComponent
     {
-        public JourneyPlan plan;
+        /// <summary>Each home's plan (at most one per home).</summary>
+        public List<JourneyPlan> plans = new List<JourneyPlan>();
         public int nextId = 1;
         /// <summary>The food policy the colony's travellers eat by on the road, chosen by the player; null keeps their own (Journeys/RoadFood.cs).</summary>
         public FoodPolicy roadPolicy;
@@ -269,14 +271,41 @@ namespace ColonyCouncil
 
         public static bool On => ColonyCouncilMod.Settings?.journeys ?? true;
 
-        /// <summary>The plan, while there is one and the setting is on.</summary>
-        public static JourneyPlan Plan => On ? Instance?.plan : null;
+        /// <summary>The plan setting off from this home, while there is one and the setting is on.</summary>
+        public static JourneyPlan PlanAt(Map map)
+        {
+            if (!On || map == null) return null;
+            var list = Instance?.plans;
+            if (list == null) return null;
+            for (int i = 0; i < list.Count; i++)
+                if (list[i]?.map == map) return list[i];
+            return null;
+        }
+
+        /// <summary>Every plan, while the setting is on (one per home at most).</summary>
+        public static IEnumerable<JourneyPlan> Plans => On ? Instance?.plans?.Where(p => p != null) ?? Enumerable.Empty<JourneyPlan>() : Enumerable.Empty<JourneyPlan>();
+
+        /// <summary>The plan someone is going on, or null.</summary>
+        public static JourneyPlan PlanOf(Pawn p) => p == null ? null : Plans.FirstOrDefault(x => x.Has(p));
 
         /// <summary>A traveller in the last hours before setting off (or waiting at the gate): excused from work and from Rimfolk's gatherings.</summary>
         public static bool Excused(Pawn p)
         {
-            var plan = Plan;
+            var plan = PlanOf(p);
             return plan != null && plan.stage >= JourneyStage.Final && plan.Has(p);
+        }
+
+        /// <summary>A plan is over (set off, or called off): out of the book.</summary>
+        public void Remove(JourneyPlan plan) => plans?.Remove(plan);
+
+        /// <summary>A plan made or changed: it is its home's plan now (replacing the one there was).</summary>
+        public JourneyPlan Put(JourneyPlan plan)
+        {
+            plans ??= new List<JourneyPlan>();
+            var old = plans.FirstOrDefault(x => x != null && x != plan && x.map == plan.map);
+            if (old != null) plans.Remove(old);
+            if (!plans.Contains(plan)) plans.Add(plan);
+            return old;
         }
 
         public override void FinalizeInit()
@@ -291,16 +320,21 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareJourneys)) return;
-            if (plan != null)
+            if (plans != null && plans.Count > 0)
             {
                 using var clock = PassClock.Time(Pass.RareJourneys);
-                try
+                // Each home's own plan, in the order they were made.
+                foreach (var plan in plans.ToList())
                 {
-                    JourneyRun.Rare(this, plan);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("journeys", e);
+                    if (plan == null) continue;
+                    try
+                    {
+                        JourneyRun.Rare(this, plan);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("journeys", e);
+                    }
                 }
             }
             // The food policy on the road: the caravans once an hour, inside this pass (and on its first look after a load).
@@ -321,7 +355,16 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Deep.Look(ref plan, "plan");
+            if (Scribe.mode == LoadSaveMode.Saving) plans?.RemoveAll(p => p == null);
+            Scribe_Collections.Look(ref plans, "plans", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && plans == null)
+            {
+                // A save from before there was a plan per home: its one plan, kept as it was.
+                JourneyPlan old = null;
+                Scribe_Deep.Look(ref old, "plan");
+                plans = new List<JourneyPlan>();
+                if (old != null) plans.Add(old);
+            }
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_References.Look(ref roadPolicy, "roadPolicy");
             Scribe_Collections.Look(ref roadFood, "roadFood", LookMode.Deep);
@@ -330,7 +373,11 @@ namespace ColonyCouncil
                 if (roadFood == null) roadFood = new List<RoadFoodEntry>();
                 roadFood.RemoveAll(e => e?.pawn == null);
             }
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && plan != null && (plan.map == null || plan.travellers.Count == 0)) plan = null;
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                plans ??= new List<JourneyPlan>();
+                plans.RemoveAll(p => p == null || p.map == null || p.travellers.Count == 0);
+            }
         }
     }
 
@@ -346,7 +393,7 @@ namespace ColonyCouncil
         {
             get
             {
-                var plan = JourneyBook.Plan;
+                var plan = JourneyBook.Plans.FirstOrDefault(p => p.id == planId);
                 return plan != null && plan.id == planId && plan.stage == JourneyStage.Asking ? plan : null;
             }
         }

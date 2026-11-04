@@ -268,7 +268,7 @@ namespace ColonyCouncil
             if (map == null || !mother.Spawned) return;
             // The rest of today is theirs (only the timetable changes: the game's sickbed and the drafted are as always).
             var home = parents.Where(p => p.Spawned && p.Map == map).ToList();
-            var given = PlayOuts.On ? CalendarTracker.Instance?.RestFor(map, home, false) : null;
+            var given = PlayOuts.On ? ColonyCalendar.For(map)?.RestFor(map, home, false) : null;
             if (!given.NullOrEmpty())
                 Tell.Message(NewsKind.People, Importance.Notable, map, "CC_Fam_QuietDay".Translate(TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList())).Resolve(),
                     new LookTargets(given), MessageTypeDefOf.NeutralEvent);

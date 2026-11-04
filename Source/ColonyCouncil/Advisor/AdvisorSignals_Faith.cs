@@ -21,7 +21,7 @@ namespace ColonyCouncil
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            if (!Faiths.On || map != HappeningTracker.HomeMap()) yield break;
+            if (!Faiths.On || !Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
             var census = Faiths.Census();
             if (census.Count < FaithsFrom) yield break;
             float split = Faiths.Split();

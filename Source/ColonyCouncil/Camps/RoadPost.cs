@@ -178,7 +178,7 @@ namespace ColonyCouncil
         }
 
         private int Amount(DilemmaContext ctx) =>
-            PlayOutMath.CarryAmount(count, ctx?.count ?? 0, factor, steward ? CouncilGameComponent.Instance?.offices.CostFactor ?? 1f : 1f, tens);
+            PlayOutMath.CarryAmount(count, ctx?.count ?? 0, factor, steward ? ColonyState.For(ctx?.map)?.offices.CostFactor ?? 1f : 1f, tens);
 
         public override string Unavailable(DilemmaContext ctx)
         {

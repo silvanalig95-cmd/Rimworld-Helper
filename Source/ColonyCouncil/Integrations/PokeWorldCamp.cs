@@ -115,7 +115,7 @@ namespace ColonyCouncil
         private static IEnumerable<ThingDef> Species() => PokeWorldLink.Roaming();
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f && Species().Any() && (CouncilGameComponent.Instance?.beast?.rumourUntil ?? -1) < Find.TickManager.TicksGame && base.CanHappen(map, ext);
+            PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f && Species().Any() && (CouncilGameComponent.Instance?.BeastOf(map)?.rumourUntil ?? -1) < Find.TickManager.TicksGame && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -153,7 +153,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var rb = CouncilGameComponent.Instance?.beast;
+            var rb = CouncilGameComponent.Instance?.BeastOf(ctx?.map);
             if (rb == null || ctx?.thing == null) return;
             rb.Rumour(ctx.thing);
         }

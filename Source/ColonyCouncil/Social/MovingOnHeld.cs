@@ -129,8 +129,11 @@ namespace ColonyCouncil
                     list.Remove(h);
                 }
             }
-            if (MovingOn.On && list.Any(h => h.kind != "love" && Due(h)))
-                comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_AskAgain w && w.Kind != "love");
+            // Asked again at each colony that has someone due.
+            if (MovingOn.On)
+                foreach (var council in ColonyState.Ticking())
+                    if (list.Any(h => h.kind != "love" && council.Has(h.pawn) && Due(h)))
+                        council.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_AskAgain w && w.Kind != "love");
         }
 
         /// <summary>Each hour (MovingOn.Hourly): a relative sent for arrives by day; a partner back on a visit, for a second asking.</summary>
@@ -152,8 +155,10 @@ namespace ColonyCouncil
                     list.Remove(h);
                 }
             }
-            if (MovingOn.On && list.Any(h => h.kind == "love" && Due(h)))
-                comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_AskAgain w && w.Kind == "love");
+            if (MovingOn.On)
+                foreach (var council in ColonyState.Ticking())
+                    if (list.Any(h => h.kind == "love" && council.Has(h.pawn) && Due(h)))
+                        council.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_AskAgain w && w.Kind == "love");
         }
 
         private static void Day(List<HeldBack> list, HeldBack h)

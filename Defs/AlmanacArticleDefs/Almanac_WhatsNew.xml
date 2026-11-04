@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.68.0</version>
+        <date>4 November 2026</date>
+        <title>Every colony its own</title>
+        <points>
+          <li>Each colony now keeps its own calendar: its own founding day, its own days and traditions, kept at its own home.</li>
+          <li>Camps come to each colony on their own, with a camp, neighbours and a war party for each, and allies answer a raid at any home.</li>
+          <li>Each colony's herdmaster, physician, chaplain, warden, marshal and keeper of days look after their own people.</li>
+          <li>Raids on two homes at once are two fights with two victories, and groups and social events stay within one home.</li>
+          <li>Names are given per colony: each colony has its own Healer, and a name taken over never makes rivals across colonies.</li>
+          <li>With more than one colony, the year's letter has a part for each, and the colony's news says which settlement.</li>
+          <li>"Not this", the council's automations and journey plans are each colony's own.</li>
+          <li>Older saves put everything under the seat, and a single colony plays as before. This completes the groundwork for the world and its people.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.67.1</version>
         <date>4 November 2026</date>
         <title>Groundwork: the world's facts</title>

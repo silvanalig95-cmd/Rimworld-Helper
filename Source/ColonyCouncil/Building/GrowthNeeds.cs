@@ -79,7 +79,7 @@ namespace ColonyCouncil
             Workshop(x);
             Stores(x);
             Building(x);
-            x.declined = SuggestTracker.Instance?.DeclinedKeys() ?? new HashSet<string>();
+            x.declined = SuggestTracker.Instance?.DeclinedKeys(map) ?? new HashSet<string>();
             plan = GrowthMath.Plan(x);
         }
 

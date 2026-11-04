@@ -16,8 +16,35 @@ namespace ColonyCouncil
     /// tamed, driven off, gone, or still here after a season, part of the land. Saved on the council
     /// (CouncilGameComponent.beast); runs from AnimalLife.Daily and Hourly.
     /// </summary>
-    public class ResidentBeast : IExposable
+    public class ResidentBeast : IExposable, IColonyEntry
     {
+        /// <summary>The colony's key (<see cref="Homes.KeyOf"/>), or none while it has no home (an old save's, not yet placed).</summary>
+        public int home = HomesMath.None;
+        /// <summary>When its home stopped being ours; -1 while it is.</summary>
+        public int lostAt = ColonyStateMath.NotLost;
+
+        public int Home
+        {
+            get => home;
+            set => home = value;
+        }
+
+        public int LostAt
+        {
+            get => lostAt;
+            set => lostAt = value;
+        }
+
+        /// <summary>Its colony's home on the ground; null in space or with no home.</summary>
+        public Map HomeMap
+        {
+            get
+            {
+                var m = home == HomesMath.None ? null : Homes.MapOf(home);
+                return MapFacts.InVacuum(m) ? null : m;
+            }
+        }
+
         public Pawn animal;
         public Pawn namer;
         public int since = -1, namedTick = -1, fed, asks, lastAskTick = -1, lastSightTick = -1, candidateId, candidateDays, fateTick = -1;
@@ -51,7 +78,8 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             if (!On || comp == null) return;
-            var map = HappeningTracker.HomeMap();
+            // The beast of this colony's own land.
+            var map = HomeMap;
             if (map == null) return;
             RumourDay(map);
             if (animal != null)
@@ -108,7 +136,7 @@ namespace ColonyCouncil
             if (species == null) return;
             rumourKind = species.defName;
             rumourUntil = Now + Mathf.RoundToInt(HerdStoryMath.RumourDays * GenDate.TicksPerDay);
-            News.Post("CC_PW_RumourHeld".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rumourUntil - Now).Named("DAYS")).Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            Tell.Minor(NewsKind.Land, Importance.Flavor, HomeMap, "CC_PW_RumourHeld".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rumourUntil - Now).Named("DAYS")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>While the rumour holds: the shiny may show itself on the land; when it runs out, it was a story.</summary>
@@ -118,7 +146,7 @@ namespace ColonyCouncil
             var species = DefDatabase<ThingDef>.GetNamedSilentFail(rumourKind);
             if (rumourUntil <= Now)
             {
-                if (species != null) News.Post("CC_PW_RumourFaded".Translate(species.label.Named("SPECIES")).Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                if (species != null) Tell.Minor(NewsKind.Land, Importance.Flavor, map, "CC_PW_RumourFaded".Translate(species.label.Named("SPECIES")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 rumourKind = null;
                 return;
             }
@@ -255,7 +283,8 @@ namespace ColonyCouncil
             float sinceAsk = lastAskTick < 0 ? 0f : (Now - lastAskTick) / (float)GenDate.TicksPerDay;
             if (!HerdStoryMath.AskDue(DaysNamed, asks, sinceAsk)) return;
             string def = pokemon ? PokemonDilemma : Dilemma;
-            if (comp.dilemmas.TryFire(true, d => d.defName == def))
+            // Asked of the colony whose land it roams.
+            if ((DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(true, d => d.defName == def))
             {
                 asks++;
                 lastAskTick = Now;
@@ -284,7 +313,7 @@ namespace ColonyCouncil
                 var who = namer != null && !namer.Dead ? namer : null;
                 if (key == "tamed" && pokemon) key = "caught";
                 string text = ("CC_Beast_End_" + key).Translate(a.Named("PET"), (who ?? a).Named("PAWN")).Resolve();
-                News.Post(text, a.Spawned ? new LookTargets(a) : LookTargets.Invalid, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Tell.Minor(NewsKind.Land, Importance.Notable, HomeMap, text, a.Spawned ? new LookTargets(a) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, who));
                 if (key == "stays" && who != null && who.Spawned) CouncilGameComponent.GiveThought(who, HerdStoryDefOf.Council_Beast_PartOfTheLand);
             }
@@ -326,6 +355,8 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
             Scribe_References.Look(ref animal, "animal");
             Scribe_References.Look(ref namer, "namer");
             Scribe_Values.Look(ref since, "since", -1);
@@ -358,12 +389,13 @@ namespace ColonyCouncil
     /// <summary>The question about the beast that stays: X the beast, A the one who named it (grown) or whoever is best with animals, B the best shot.</summary>
     public class DilemmaWorker_ResidentBeast : DilemmaWorker
     {
-        private static ResidentBeast Beast => CouncilGameComponent.Instance?.beast;
+        /// <summary>The beast of the colony of this map.</summary>
+        private static ResidentBeast Beast(Map map) => CouncilGameComponent.Instance?.BeastOf(map);
 
         public override bool TryCast(Map map, out DilemmaContext ctx)
         {
             ctx = null;
-            var rb = Beast;
+            var rb = Beast(map);
             if (rb == null || !rb.Here || rb.animal.Map != map || !CanHappenNow(map)) return false;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && !p.DevelopmentalStage.Juvenile()).ToList();
             if (pawns.Count < def.minColonists) return false;
@@ -377,7 +409,7 @@ namespace ColonyCouncil
 
         public override void AddTags(DilemmaContext ctx, HashSet<string> tags)
         {
-            var rb = Beast;
+            var rb = Beast(ctx?.map);
             if (rb == null) return;
             foreach (var t in rb.Tags()) tags.Add(t);
             if (rb.asks >= 1) tags.Add("asked" + Mathf.Min(3, rb.asks + 1));
@@ -396,7 +428,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var rb = CouncilGameComponent.Instance?.beast;
+            var rb = CouncilGameComponent.Instance?.BeastOf(ctx?.map);
             if (rb == null || rb.animal == null) return;
             rb.stance = stance;
             if (stance == "fed")

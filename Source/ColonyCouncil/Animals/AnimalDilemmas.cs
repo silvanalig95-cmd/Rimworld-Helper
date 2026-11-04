@@ -81,7 +81,7 @@ namespace ColonyCouncil
             var sick = ctx.map.mapPawns.SpawnedColonyAnimals.Where(a => AnimalFacts.Illness(a) != null).ToList();
             if (sick.Count == 0) return false;
             ctx.pet = sick.FirstOrDefault(a => AnimalFacts.Theirs(a, ctx.a))
-                      ?? (AnimalFacts.Herdmaster == ctx.a ? sick.FirstOrDefault(a => PetTracker.PersonOf(a) == null) : null);
+                      ?? (AnimalFacts.IsHerdmaster(ctx.a) ? sick.FirstOrDefault(a => PetTracker.PersonOf(a) == null) : null);
             if (ctx.pet == null) return false;
             // {THEIRILLNESS} names X's illness: the animal is X too, for the effects that act on it.
             ctx.stranger = ctx.pet;
@@ -371,7 +371,7 @@ namespace ColonyCouncil
         {
             var a = ctx?.pet;
             if (!AnimalFacts.Ours(a) || a.playerSettings == null || ctx.map == null) return;
-            var hm = AnimalFacts.Herdmaster;
+            var hm = AnimalFacts.HerdmasterAt(ctx.map);
             var to = hm != null && hm != ctx.a && hm != ctx.b && hm.Spawned && hm.Map == ctx.map ? hm
                 : ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) && !p.DevelopmentalStage.Juvenile())
                     .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
@@ -384,7 +384,7 @@ namespace ColonyCouncil
             if (!AnimalFacts.Ours(a) || a.playerSettings == null || ctx.map == null) return;
             try
             {
-                var hm = AnimalFacts.Herdmaster;
+                var hm = AnimalFacts.HerdmasterAt(ctx.map);
                 var to = hm != null && hm != ctx.a && hm != ctx.b && hm.Spawned && hm.Map == ctx.map ? hm
                     : ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) && !p.DevelopmentalStage.Juvenile())
                         .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();

@@ -103,7 +103,7 @@ namespace ColonyCouncil
         private void Battle(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
-            bool active = comp.social.battleActive;
+            bool active = comp.social.AnyBattle;
             if (active && !inBattle)
             {
                 inBattle = true;

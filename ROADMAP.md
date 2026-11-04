@@ -232,7 +232,10 @@ the map, talk and groups, moods).
 Still waiting for a word from the player: the other Alpha Skills passions (P2 to P17), journeys' extras, a short
 guide, weapon duels under the harm rule, and the release to the Workshop.
 
-### Stage 0: the foundation (first, little to see)
+### Stage 0: the foundation (done, 4 November 2026: 0.65.0 to 0.68.0)
+Homes (0.65.0), Rimfolk's clock (0.65.1), the world ledger (0.65.3, 0.66.3), one voice (0.66.0), one history
+(0.66.1), other mods' world and the ages (0.66.2), a council per colony (0.67.0), the world's facts (0.67.1), every
+colony its own (0.68.0). What was left on purpose is in docs/HANDOFF.md and the audit's status lines.
 The design, the order and the tests: `docs/design/foundation.md`; what exists today: `docs/design/world-stores-inventory.md`
 and `docs/design/multicolony-audit.md` (38 places that break with two colonies; the root cause is the busiest home
 taken as "the colony"). Each step below ships as a release of its own with the game playing as before.

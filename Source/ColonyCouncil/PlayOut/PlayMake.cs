@@ -143,7 +143,7 @@ namespace ColonyCouncil
         private static LocalTargetInfo Place(PlayOut p, Pawn mk)
         {
             var map = p.map;
-            if (CampTracker.Instance?.camp is Camp camp && camp.Has(mk))
+            if (CampTracker.VisitingAt(map) is Camp camp && camp.Has(mk))
             {
                 var c = PlaySpots.CampCell(map, mk);
                 if (c.IsValid) return c;

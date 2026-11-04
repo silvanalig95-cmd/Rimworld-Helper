@@ -38,6 +38,20 @@ namespace ColonyCouncil
         public static int LevelOf(float days) => days <= 0.5f ? 4 : days <= 2f ? 3 : days <= 5f ? 2 : days <= 15f ? 1 : 0;
 
         /// <summary>The tick a "Not this" holds until: -1 for good (until brought back), else so many days on.</summary>
+        /// <summary>
+        /// A key for one colony (stage 0, step 7b): with more than one colony, "Not this" and a step waiting for its check
+        /// are each colony's own, so the key carries the colony; with one (or none given) it is the key as always.
+        /// </summary>
+        public static string HomeKey(string key, int colony, bool several) =>
+            several && colony != HomesMath.None && !string.IsNullOrEmpty(key) ? key + "@" + colony : key;
+
+        /// <summary>
+        /// A step done at one home (<paramref name="doneColony"/>) counts for another (<paramref name="askedColony"/>): with
+        /// one colony always; with more, at its own home, or when either side doesn't say which.
+        /// </summary>
+        public static bool SameHome(int doneColony, int askedColony, bool several) =>
+            !several || doneColony == HomesMath.None || askedColony == HomesMath.None || doneColony == askedColony;
+
         public static int DeclineUntil(int now, float days) => days <= 0f ? -1 : now + (int)(days * TicksPerDay);
 
         /// <summary>A "Not this" still holds: for good, or its days not yet passed.</summary>

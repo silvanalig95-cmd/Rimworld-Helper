@@ -174,13 +174,14 @@ namespace ColonyCouncil
         /// "Not this" for any source (an advisor card, a base finding, a piece of defense advice, a step of the plan): its
         /// key set aside in the shared store until brought back. Returns true when pressed.
         /// </summary>
-        public static bool NotThis(Rect r, string key, string title)
+        public static bool NotThis(Rect r, string key, string title, Map map = null)
         {
             bool pressed = Widgets.ButtonText(r, "CC_Ahead_NotThis".Translate());
             if (pressed)
             {
                 SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                SuggestTracker.Instance?.Decline(key, title);
+                // At the home it's about (with more than one colony, each has its own "Not this").
+                SuggestTracker.Instance?.Decline(key, title, 0f, map);
             }
             TooltipHandler.TipRegion(r, "CC_Ahead_NotThisTip".Translate());
             return pressed;

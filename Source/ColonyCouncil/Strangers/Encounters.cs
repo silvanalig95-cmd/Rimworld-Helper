@@ -68,22 +68,74 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// One home's encounters (stage 0, step 7b): when the last came, how many today, when one fell due, and each kind's
+    /// own cooldown. One per colony, kept by the council's rules (ColonyBook); an old save's are the seat's.
+    /// </summary>
+    public class EncounterHome : IExposable, IColonyEntry
+    {
+        /// <summary>The colony's key (<see cref="Homes.KeyOf"/>), or none while it has no home (an old save's, not yet placed).</summary>
+        public int home = HomesMath.None;
+        /// <summary>When its home stopped being ours; -1 while it is.</summary>
+        public int lostAt = ColonyStateMath.NotLost;
+
+        public int Home
+        {
+            get => home;
+            set => home = value;
+        }
+
+        public int LostAt
+        {
+            get => lostAt;
+            set => lostAt = value;
+        }
+
+        public Dictionary<string, int> lastTick = new Dictionary<string, int>();
+        public int lastFired = -999999;
+        public int day = -1;
+        public int today;
+        [Unsaved] public int dueSince = -1;
+
+        /// <summary>Saved under the names the encounters always used, so an old save's are read straight into the seat's.</summary>
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
+            Scribe_Collections.Look(ref lastTick, "lastTick", LookMode.Value, LookMode.Value);
+            Scribe_Values.Look(ref lastFired, "lastFired", -999999);
+            Scribe_Values.Look(ref day, "day", -1);
+            Scribe_Values.Look(ref today, "today");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && lastTick == null) lastTick = new Dictionary<string, int>();
+        }
+    }
+
+    /// <summary>
+    /// Strangers met on the map: each home on its own (EncounterHome), a few a day at most, after a stranger is present
+    /// (a visitor, a trader, a lodger, a prisoner, a pet, a wild animal...), sometimes one of the council's questions instead.
+    /// </summary>
     public class EncounterTracker : IExposable
     {
-        private Dictionary<string, int> lastTick = new Dictionary<string, int>();
-        private int lastFired = -999999;
-        /// <summary>The solo category: small irritations from a messy or cramped home (Strangers/Nuisances.cs).</summary>
+        /// <summary>One per colony; an old save's are the seat's.</summary>
+        private List<EncounterHome> homes = new List<EncounterHome>();
+        /// <summary>While an old save loads: its one record, read from where it always was, for the seat.</summary>
+        [Unsaved] private EncounterHome oldSave;
         public NuisanceTracker nuisances = new NuisanceTracker();
-        private int day = -1;
-        private int today;
-        /// <summary>
-        /// An encounter is due (the hour's chance came up) but nobody was with a stranger then: tried again each hour
-        /// for a few hours, so encounters stay as frequent while happening only between people who meet. Not saved.
-        /// </summary>
-        private int dueSince = -1;
         private const int DueHours = 6;
 
-        /// <summary>How likely an encounter is each hour while someone of this kind is around.</summary>
+        /// <summary>A home's encounters (the seat's for a map that isn't a home).</summary>
+        private EncounterHome HomeOf(Map map)
+        {
+            homes ??= new List<EncounterHome>();
+            return ColonyBook.Entry(homes, map, () => new EncounterHome());
+        }
+
+        /// <summary>Homes lost (Homes.Changed): each one's encounters kept a while, as the council's.</summary>
+        internal void HomesLost(IReadOnlyList<int> lost) => ColonyBook.Lost(homes, lost, null);
+
+        /// <summary>Once a day: encounters of homes lost long enough ago are let go.</summary>
+        internal void Daily() => ColonyBook.Daily(homes, null);
+
         private static readonly Dictionary<StrangerKind, float> HourlyChance = new Dictionary<StrangerKind, float>
         {
             { StrangerKind.Visitor, 0.10f },
@@ -130,37 +182,54 @@ namespace ColonyCouncil
             if (!S.strangers) return;
             int now = Find.TickManager.TicksGame;
             if (now < GenDate.TicksPerDay * 2) return;
-            if (now / GenDate.TicksPerDay != day)
+            // Each home on its own, in the order they were founded.
+            foreach (var map in Homes.All)
             {
-                day = now / GenDate.TicksPerDay;
-                today = 0;
+                try
+                {
+                    HourAt(comp, map, now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("encounters", e);
+                }
             }
-            if (today >= Mathf.CeilToInt(MaxPerDay * Mathf.Max(1f, S.encounterFrequency)) || now - lastFired < GenDate.TicksPerHour * 3) return;
-            var map = MapFacts.BusiestHome;
-            if (map == null || comp.social.battleActive || MapFacts.ThreatOn(map)) return;
+        }
+
+        private void HourAt(CouncilGameComponent comp, Map map, int now)
+        {
+            var h = HomeOf(map);
+            if (now / GenDate.TicksPerDay != h.day)
+            {
+                h.day = now / GenDate.TicksPerDay;
+                h.today = 0;
+            }
+            if (h.today >= Mathf.CeilToInt(MaxPerDay * Mathf.Max(1f, S.encounterFrequency)) || now - h.lastFired < GenDate.TicksPerHour * 3) return;
+            if (map == null || comp.social.BattleOn(map) || MapFacts.ThreatOn(map)) return;
             var present = Strangers.Present(map);
             if (present.Count == 0) return;
-            // Strangers only pass through, so their questions can't wait for the council's usual rhythm.
-            if (S.enableDilemmas && now - comp.dilemmas.lastFiredTick > GenDate.TicksPerDay * 3)
+            // Strangers only pass through, so their questions can't wait for the council's usual rhythm: asked of this colony.
+            var council = DilemmaTracker.For(map) ?? comp.dilemmas;
+            if (S.enableDilemmas && now - council.lastFiredTick > GenDate.TicksPerDay * 3)
             {
                 float quiet = 1f;
                 foreach (var k in present)
                     if (DilemmaChance.TryGetValue(k, out float c)) quiet *= 1f - c;
                 if (Rand.Chance(1f - quiet)
-                    && comp.dilemmas.TryFire(false, d => d.Worker is DilemmaWorker_Stranger && d.stranger != null && present.Contains(d.stranger.kind)))
+                    && council.TryFire(false, d => d.Worker is DilemmaWorker_Stranger && d.stranger != null && present.Contains(d.stranger.kind)))
                     return;
             }
-            if (dueSince >= 0 && now - dueSince >= GenDate.TicksPerHour * DueHours) dueSince = -1;
-            if (dueSince < 0)
+            if (h.dueSince >= 0 && now - h.dueSince >= GenDate.TicksPerHour * DueHours) h.dueSince = -1;
+            if (h.dueSince < 0)
             {
                 float none = 1f;
                 float freq = Mathf.Clamp(S.encounterFrequency, 0.1f, 4f);
                 foreach (var k in present)
                     if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - Mathf.Min(0.9f, c * freq);
                 if (!Rand.Chance(1f - none)) return;
-                dueSince = now;
+                h.dueSince = now;
             }
-            if (TryOne(comp, map, present)) dueSince = -1;
+            if (TryOne(comp, map, present)) h.dueSince = -1;
         }
 
         public bool TryOne(CouncilGameComponent comp, Map map, HashSet<StrangerKind> present, Func<EncounterDef, bool> only = null)
@@ -173,6 +242,9 @@ namespace ColonyCouncil
             int hour = GenLocalDate.HourOfDay(map);
             bool night = hour >= 21 || hour < 5;
             var season = GenLocalDate.Season(map);
+            // Each kind's cooldown at this home.
+            var h = HomeOf(map);
+            var lastTick = h.lastTick;
             var pool = DefDatabase<EncounterDef>.AllDefsListForReading.Where(d =>
                 d.stranger != null && present.Contains(d.stranger.kind)
                 && (only == null || only(d))
@@ -197,8 +269,8 @@ namespace ColonyCouncil
                 }
                 Fire(def, comp, map, a, x);
                 lastTick[def.defName] = now;
-                lastFired = now;
-                today++;
+                h.lastFired = now;
+                h.today++;
                 return true;
             }
             return false;
@@ -290,13 +362,23 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
-            Scribe_Collections.Look(ref lastTick, "lastTick", LookMode.Value, LookMode.Value);
-            Scribe_Values.Look(ref lastFired, "lastFired", -999999);
-            Scribe_Values.Look(ref day, "day", -1);
-            Scribe_Values.Look(ref today, "today");
+            if (Scribe.mode == LoadSaveMode.Saving) homes?.RemoveAll(h => h == null);
+            Scribe_Collections.Look(ref homes, "homes", LookMode.Deep);
+            // A save from before there were encounters per home: what it kept, where it always was, is the seat's.
+            if (Scribe.mode == LoadSaveMode.LoadingVars && homes == null)
+            {
+                oldSave = new EncounterHome();
+                homes = new List<EncounterHome> { oldSave };
+            }
+            if (oldSave != null && Scribe.mode != LoadSaveMode.Saving) oldSave.ExposeData();
             Scribe_Deep.Look(ref nuisances, "nuisances");
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && lastTick == null) lastTick = new Dictionary<string, int>();
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && nuisances == null) nuisances = new NuisanceTracker();
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                oldSave = null;
+                homes ??= new List<EncounterHome>();
+                homes.RemoveAll(h => h == null);
+                if (nuisances == null) nuisances = new NuisanceTracker();
+            }
         }
     }
 }

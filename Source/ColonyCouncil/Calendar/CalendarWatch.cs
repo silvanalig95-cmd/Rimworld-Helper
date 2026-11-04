@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// as the daily look allows. What happened before the calendar first looked (an older save's walls, its trades) is
     /// left alone rather than given a date it never had.
     /// </summary>
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         // ---------------- Saved ----------------
 
@@ -72,7 +72,7 @@ namespace ColonyCouncil
         {
             if (p == null || d == null || !On) return;
             CouncilGameComponent.Instance?.journals.WriteTagged(p, pool, new[] { "new" }, null, d.label.Named("NAME"), 0.Named("YEARS"),
-                (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (Home?.Biome?.label ?? "").Named("PLACE"), (d.otherName ?? "").Named("WHO"),
+                (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (HomeMap?.Biome?.label ?? "").Named("PLACE"), (d.otherName ?? "").Named("WHO"),
                 (d.enemy ?? "").Named("CAMP"));
         }
 
@@ -90,7 +90,7 @@ namespace ColonyCouncil
             int born = int.MaxValue;
             foreach (var p in known.Values)
             {
-                if (p.Dead || p.Faction != Faction.OfPlayer || p.ageTracker == null || p.records == null || p.RaceProps?.Humanlike != true) continue;
+                if (p.Dead || p.Faction != Faction.OfPlayer || p.ageTracker == null || p.records == null || p.RaceProps?.Humanlike != true || !Belongs(p)) continue;
                 if (Flavor.HumanAge(p) >= 13f) continue;
                 long age = p.ageTracker.AgeBiologicalTicks;
                 float here = p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal);
@@ -162,7 +162,7 @@ namespace ColonyCouncil
             var back = new List<(Pawn p, int since)>();
             foreach (var p in known.Values)
             {
-                if (p.Dead || !Ours(p)) continue;
+                if (p.Dead || !Mine(p)) continue;
                 bool home = p.MapHeld?.IsPlayerHome ?? false;
                 if (!home)
                 {
@@ -174,7 +174,7 @@ namespace ColonyCouncil
                 if (now - since >= CalendarMath.HomecomingMinDays * GenDate.TicksPerDay) back.Add((p, since));
             }
             foreach (var k in awaySince.Keys.ToList())
-                if (!known.TryGetValue(k, out var q) || q.Dead || !Ours(q)) awaySince.Remove(k);
+                if (!known.TryGetValue(k, out var q) || q.Dead || !Mine(q)) awaySince.Remove(k);
             if (back.Count == 0) return;
             float days = back.Max(x => now - x.since) / (float)GenDate.TicksPerDay;
             var lead = back.Select(x => x.p).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
@@ -269,7 +269,7 @@ namespace ColonyCouncil
             int best = 0;
             foreach (var p in known.Values)
             {
-                if (p.records == null || p.Faction != Faction.OfPlayer) continue;
+                if (p.records == null || p.Faction != Faction.OfPlayer || !Belongs(p)) continue;
                 int n = p.records.GetAsInt(rec);
                 total += n;
                 if (!p.Dead && n > best)
@@ -310,7 +310,7 @@ namespace ColonyCouncil
             var seen = new HashSet<string>();
             foreach (var p in known.Values)
             {
-                if (p.Dead || !Ours(p) || p.records == null) continue;
+                if (p.Dead || !Mine(p) || p.records == null) continue;
                 int n = p.records.GetAsInt(rec);
                 if (huntKills.TryGetValue(p.ThingID, out int before) && n > before)
                 {

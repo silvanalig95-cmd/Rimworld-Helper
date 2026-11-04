@@ -73,6 +73,20 @@ namespace ColonyCouncil
         public static int Deliver(int memoHome, ICollection<int> homes, int seat) =>
             memoHome != None && homes.Contains(memoHome) ? memoHome : seat;
 
+        /// <summary>
+        /// A later event at colony <paramref name="here"/> may pick up a memo of colony <paramref name="memoHome"/>: the
+        /// memo's follow-up goes there (<see cref="Deliver"/>), so an old memo, or one of a home no longer ours, is the seat's.
+        /// </summary>
+        public static bool MemoAt(int memoHome, int here, ICollection<int> homes, int seat) => Deliver(memoHome, homes, seat) == here;
+
+        /// <summary>
+        /// A letter about colony <paramref name="letterHome"/> still waiting for its answer holds back colony
+        /// <paramref name="here"/>: one about this colony, about no colony, or about a home no longer ours holds it back
+        /// (as one letter always held the colony back); one about another home doesn't. Asked for no colony, any letter does.
+        /// </summary>
+        public static bool HoldsBack(int letterHome, int here, ICollection<int> homes) =>
+            here == None || letterHome == None || letterHome == here || homes == null || !homes.Contains(letterHome);
+
         /// <summary>The homes in <paramref name="after"/> that weren't in <paramref name="before"/> (founded), and the other way round (lost).</summary>
         public static void Diff(IReadOnlyList<int> before, IReadOnlyList<int> after, List<int> founded, List<int> lost)
         {

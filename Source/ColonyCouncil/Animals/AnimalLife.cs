@@ -47,15 +47,17 @@ namespace ColonyCouncil
             if (!On || comp == null) return;
             Safe("animals: births", () => Births(comp));
             Safe("animals: on screen", OnScreen);
-            Safe("animals: the beast seen", () => comp.beast?.Hourly(comp));
+            // Each colony's own beast.
+            foreach (var m in Homes.All) Safe("animals: the beast seen", () => comp.BeastOf(m)?.Hourly(comp));
         }
 
         public static void Daily(CouncilGameComponent comp)
         {
             if (!On || comp == null) return;
             if (Interplay.On) Safe("animals: herdmaster", () => Interplay.HerdmasterDay2(comp));
-            Safe("animals: the herd's year", () => comp.herd?.Daily(comp));
-            Safe("animals: the beast that stays", () => comp.beast?.Daily(comp));
+            // Each colony's own herd and beast, in the order the homes were founded.
+            foreach (var m in Homes.All) Safe("animals: the herd's year", () => comp.HerdOf(m)?.Daily(comp));
+            foreach (var m in Homes.All) Safe("animals: the beast that stays", () => comp.BeastOf(m)?.Daily(comp));
         }
 
         // ---------------- Births ----------------
@@ -99,19 +101,21 @@ namespace ColonyCouncil
         private static void Born(CouncilGameComponent comp, Pawn baby, Pawn mother)
         {
             string kind = AnimalFacts.KindLabel(mother);
-            bool first = CalendarTracker.Instance != null && CalendarTracker.Instance.Get("foal") == null;
+            // The first foal of the colony whose herd it was born to (its own calendar).
+            var cal = ColonyCalendar.For(baby.MapHeld);
+            bool first = cal != null && cal.Get("foal") == null;
             var person = PetTracker.PersonOf(mother);
             News.Post((person != null ? "CC_Animal_BornTo" : "CC_Animal_Born").Translate(kind.Named("KIND"), mother.Named("MOTHER"), (person ?? mother).Named("PAWN")).Resolve(),
                 new LookTargets(baby), NewsKind.Land, MessageTypeDefOf.PositiveEvent, first ? Importance.Notable : Importance.Flavor);
-            if (first && CalendarTracker.On)
+            if (first && ColonyCalendar.On)
             {
-                var keeper = person ?? AnimalFacts.Herdmaster
+                var keeper = person ?? AnimalFacts.HerdmasterAt(baby.Map)
                              ?? baby.Map?.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && People.HasInnerLife(p))
                                  .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
-                CalendarTracker.Notify_FirstFoal(baby, mother, keeper);
+                ColonyCalendar.Notify_FirstFoal(baby, mother, keeper);
             }
             if (Interplay.On) Interplay.Notify_Newborn(comp, baby, mother);
-            comp.herd?.Notify_Newborn(comp, baby, mother);
+            comp.HerdOf(baby.MapHeld)?.Notify_Newborn(comp, baby, mother);
         }
 
         // ---------------- What the pets' watch tells it ----------------
@@ -127,7 +131,7 @@ namespace ColonyCouncil
         public static void Notify_PetDied(Pawn pet, Pawn person, bool bonded, bool hero, float years)
         {
             if (!On || pet == null || person == null) return;
-            Safe("animals: a beloved animal's day", () => CalendarTracker.Notify_Companion(pet, person, years, bonded, hero));
+            Safe("animals: a beloved animal's day", () => ColonyCalendar.Notify_Companion(pet, person, years, bonded, hero));
         }
 
         // ---------------- On screen ----------------

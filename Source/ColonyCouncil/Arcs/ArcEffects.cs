@@ -325,7 +325,7 @@ namespace ColonyCouncil
                 else if (rec.passion == Passion.Minor) rec.passion = Passion.Major;
                 else continue;
                 string text = "CC_Arc_Passion".Translate(p.Named("PAWN"), ArcText.SkillNoun(ctx.skill).Named("SKILL")).Resolve();
-                News.Post(text, p.Spawned ? new LookTargets(p) : LookTargets.Invalid, NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                Tell.Minor(NewsKind.People, Importance.Notable, p.MapHeld, text, p.Spawned ? new LookTargets(p) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
                 CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             }
         }

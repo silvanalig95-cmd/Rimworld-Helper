@@ -188,8 +188,6 @@ namespace ColonyCouncil
         /// <summary>The seat's council.</summary>
         public ColonyState SeatColony => Colony(Homes.Seat);
 
-        private static readonly HashSet<int> NoHomes = new HashSet<int>();
-
         /// <summary>
         /// A home's council, made when it first needs one (the seat takes an old save's); for a map that isn't a home, the
         /// seat's; with no home at all, the one its people carry.
@@ -197,82 +195,29 @@ namespace ColonyCouncil
         public ColonyState Colony(Map map)
         {
             colonies ??= new List<ColonyState>();
-            // While a game loads or starts, the homes aren't known yet: the book is read, never rearranged.
-            if (Scribe.mode != LoadSaveMode.Inactive || Current.ProgramState != ProgramState.Playing) return Settling(map);
-            var homes = Homes.All;
-            if (homes.Count == 0)
-            {
-                var carried = ColonyStateMath.Carried(colonies, NoHomes);
-                if (carried == null)
-                {
-                    carried = new ColonyState();
-                    colonies.Add(carried);
-                }
-                return carried;
-            }
-            int seat = Homes.KeyOf(Homes.Seat);
-            int key = map != null && Homes.IsHome(map) ? Homes.KeyOf(map) : seat;
-            // The one or two colonies of most games: a plain look first.
-            for (int i = 0; i < colonies.Count; i++)
-            {
-                var c = colonies[i];
-                if (c.home == key && c.lostAt == ColonyStateMath.NotLost) return c;
-            }
-            var found = ColonyStateMath.Find(colonies, key, seat, homes.Count == 1 ? new HashSet<int> { Homes.KeyOf(homes[0]) } : null);
-            if (found != null) return found;
-            var made = new ColonyState { home = key };
-            colonies.Add(made);
-            return made;
-        }
-
-        /// <summary>
-        /// Before the game is under way: the council kept under the map's key, else the first whose home wasn't lost, else
-        /// a new one with no home yet (the seat takes it once the homes are known).
-        /// </summary>
-        private ColonyState Settling(Map map)
-        {
-            int key = map?.Parent != null ? Homes.KeyOf(map) : HomesMath.None;
-            for (int i = 0; i < colonies.Count; i++)
-                if (key != HomesMath.None && colonies[i].home == key) return colonies[i];
-            for (int i = 0; i < colonies.Count; i++)
-                if (colonies[i].lostAt == ColonyStateMath.NotLost) return colonies[i];
-            var made = new ColonyState();
-            colonies.Add(made);
-            return made;
+            return ColonyBook.Entry(colonies, map, () => new ColonyState());
         }
 
         /// <summary>The council of a colony by its key while that's a home, else null (not made).</summary>
-        public ColonyState ColonyByKey(int key)
-        {
-            if (colonies == null) return null;
-            for (int i = 0; i < colonies.Count; i++)
-                if (colonies[i].home == key) return colonies[i];
-            return null;
-        }
+        public ColonyState ColonyByKey(int key) => ColonyBook.ByKey(colonies, key);
 
         /// <summary>Homes founded or lost (Homes.Changed): a lost home's council is kept a while, or carried when no home is left.</summary>
         internal void HomesLost(IReadOnlyList<int> lost)
         {
-            if (lost == null || lost.Count == 0 || colonies == null) return;
-            var homes = new HashSet<int>(Homes.All.Select(Homes.KeyOf));
-            int now = Find.TickManager?.TicksGame ?? 0;
-            foreach (int key in lost)
-            {
-                var c = ColonyByKey(key);
-                ColonyStateMath.Lost(colonies, key, now, homes);
-                if (c != null) Safe("a colony's council, its home lost", () => c.HomeLost());
-            }
+            ColonyBook.Lost(colonies, lost, c => Safe("a colony's council, its home lost", () => c.HomeLost()));
+            // The other books kept here per colony: the herd's year, the beast that stays, the encounters.
+            ColonyBook.Lost(herds, lost, null);
+            ColonyBook.Lost(beasts, lost, null);
+            encounters?.HomesLost(lost);
         }
 
         /// <summary>Once a day: a home that came back is ours again, and councils of homes lost long enough ago are let go.</summary>
         private void ColoniesDaily()
         {
-            if (colonies == null) return;
-            var homes = new HashSet<int>(Homes.All.Select(Homes.KeyOf));
-            int now = Find.TickManager.TicksGame;
-            var gone = colonies.Where(c => ColonyStateMath.Drops(c.lostAt, now, homes.Count > 0)).ToList();
-            ColonyStateMath.Upkeep(colonies, now, homes);
-            foreach (var c in gone) Safe("a colony's council let go", () => c.HomeLost());
+            ColonyBook.Daily(colonies, c => Safe("a colony's council let go", () => c.HomeLost()));
+            ColonyBook.Daily(herds, null);
+            ColonyBook.Daily(beasts, null);
+            encounters?.Daily();
         }
 
         /// <summary>Saves the book; an old save's trackers become the seat's council.</summary>
@@ -302,13 +247,111 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// A book of colonies: one entry per colony (<see cref="IColonyEntry"/>: the council's <see cref="ColonyState"/>, the
+    /// calendar's <see cref="ColonyCalendar"/>), found by the home's key, by the rules of <see cref="ColonyStateMath"/>: a
+    /// home's own entry, made when it first needs one; the seat's for a map that isn't a home; an old save's single entry
+    /// placed at the seat; with no home at all, the one its people carry; a lost home's kept a while, then let go.
+    /// </summary>
+    public static class ColonyBook
+    {
+        private static readonly HashSet<int> NoHomes = new HashSet<int>();
+
+        /// <summary>A home's entry in <paramref name="book"/>, made with <paramref name="make"/> when it has none.</summary>
+        public static T Entry<T>(List<T> book, Map map, Func<T> make) where T : class, IColonyEntry
+        {
+            // While a game loads or starts, the homes aren't known yet: the book is read, never rearranged.
+            if (Scribe.mode != LoadSaveMode.Inactive || Current.ProgramState != ProgramState.Playing) return Settling(book, map, make);
+            var homes = Homes.All;
+            if (homes.Count == 0)
+            {
+                var carried = ColonyStateMath.Carried(book, NoHomes);
+                if (carried == null)
+                {
+                    carried = make();
+                    book.Add(carried);
+                }
+                return carried;
+            }
+            int seat = Homes.KeyOf(Homes.Seat);
+            int key = map != null && Homes.IsHome(map) ? Homes.KeyOf(map) : seat;
+            // The one or two colonies of most games: a plain look first.
+            for (int i = 0; i < book.Count; i++)
+            {
+                var c = book[i];
+                if (c != null && c.Home == key && c.LostAt == ColonyStateMath.NotLost) return c;
+            }
+            var found = ColonyStateMath.Find(book, key, seat, homes.Count == 1 ? new HashSet<int> { Homes.KeyOf(homes[0]) } : null);
+            if (found != null) return found;
+            var made = make();
+            made.Home = key;
+            book.Add(made);
+            return made;
+        }
+
+        /// <summary>
+        /// Before the game is under way: the entry kept under the map's key, else the first whose home wasn't lost, else
+        /// a new one with no home yet (the seat takes it once the homes are known).
+        /// </summary>
+        private static T Settling<T>(List<T> book, Map map, Func<T> make) where T : class, IColonyEntry
+        {
+            int key = map?.Parent != null ? Homes.KeyOf(map) : HomesMath.None;
+            for (int i = 0; i < book.Count; i++)
+                if (key != HomesMath.None && book[i] != null && book[i].Home == key) return book[i];
+            for (int i = 0; i < book.Count; i++)
+                if (book[i] != null && book[i].LostAt == ColonyStateMath.NotLost) return book[i];
+            var made = make();
+            book.Add(made);
+            return made;
+        }
+
+        /// <summary>The entry of a colony by its key, else null (not made).</summary>
+        public static T ByKey<T>(List<T> book, int key) where T : class, IColonyEntry
+        {
+            if (book == null) return null;
+            for (int i = 0; i < book.Count; i++)
+                if (book[i] != null && book[i].Home == key) return book[i];
+            return null;
+        }
+
+        /// <summary>Homes lost (Homes.Changed): each one's entry is kept a while, or carried when no home is left; <paramref name="lost"/> hears of each.</summary>
+        public static void Lost<T>(List<T> book, IReadOnlyList<int> keys, Action<T> lost) where T : class, IColonyEntry
+        {
+            if (keys == null || keys.Count == 0 || book == null) return;
+            var homes = new HashSet<int>(Homes.All.Select(Homes.KeyOf));
+            int now = Find.TickManager?.TicksGame ?? 0;
+            foreach (int key in keys)
+            {
+                var c = ByKey(book, key);
+                ColonyStateMath.Lost(book, key, now, homes);
+                if (c != null) lost?.Invoke(c);
+            }
+        }
+
+        /// <summary>Once a day: a home that came back is ours again, and entries of homes lost long enough ago are let go (<paramref name="gone"/> hears of each).</summary>
+        public static void Daily<T>(List<T> book, Action<T> gone) where T : class, IColonyEntry
+        {
+            if (book == null) return;
+            var homes = new HashSet<int>(Homes.All.Select(Homes.KeyOf));
+            int now = Find.TickManager.TicksGame;
+            var going = book.Where(c => c != null && ColonyStateMath.Drops(c.LostAt, now, homes.Count > 0)).ToList();
+            ColonyStateMath.Upkeep(book, now, homes);
+            foreach (var c in going) gone?.Invoke(c);
+        }
+    }
+
     /// <summary>Listens for homes founded and lost (Homes.Changed) for the council's book of colonies.</summary>
     [StaticConstructorOnStartup]
     public static class ColonyStateListener
     {
         static ColonyStateListener()
         {
-            Homes.Changed += (founded, lost) => CouncilGameComponent.Instance?.HomesLost(lost);
+            Homes.Changed += (founded, lost) =>
+            {
+                CouncilGameComponent.Instance?.HomesLost(lost);
+                CalendarTracker.Instance?.HomesLost(lost);
+                CampTracker.Instance?.HomesLost(lost);
+            };
         }
     }
 }

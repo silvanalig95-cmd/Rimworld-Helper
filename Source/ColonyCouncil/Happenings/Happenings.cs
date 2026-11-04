@@ -516,8 +516,9 @@ namespace ColonyCouncil
             if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             // A world event running in the region (a plague, a warlord) makes some likelier and others rarer.
             f *= WorldSituations.EventFactor(def, ext);
-            // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor).
-            if (ext != null && ext.group == HappeningGroup.Visitors) f *= DecreeWork.VisitorFactor;
+            // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor). With more than one colony each
+            // colony's own decrees count for its own home, by the event's target (IncidentWorker_Happening.ChanceFactorNow).
+            if (ext != null && ext.group == HappeningGroup.Visitors && !ColonyState.Several) f *= DecreeWork.VisitorFactor(null);
             // What the colony is known for draws those who come for it (Immersion/VisitorNotices.cs).
             f *= DrawnFactor(ext);
             return f;
@@ -629,7 +630,7 @@ namespace ColonyCouncil
                 timers[key] = next;
                 if (now < GenDate.TicksPerDay * 3 || now < next || space) continue;
                 // Not on top of a fight, and not while the colony still has an event to answer.
-                if (MapFacts.ThreatOn(map) || Waiting)
+                if (MapFacts.ThreatOn(map) || WaitingAt(map))
                 {
                     timers[key] = now + GenDate.TicksPerHour * 4;
                     continue;
@@ -641,8 +642,21 @@ namespace ColonyCouncil
             if (seat != HomesMath.None && timers.TryGetValue(seat, out int seatNext)) nextTick = seatNext;
         }
 
-        /// <summary>An event letter nobody has answered yet.</summary>
-        public static bool Waiting => Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Happening h && !h.resolved);
+        /// <summary>An event letter nobody has answered yet, about any colony.</summary>
+        public static bool Waiting => WaitingAt(null);
+
+        /// <summary>
+        /// An event letter nobody has answered yet that holds back the colony of <paramref name="map"/>: one about that home,
+        /// or about no home (<see cref="Homes.HoldsBack"/>). One about another home waits without keeping this one quiet.
+        /// With one colony, or no map, any unanswered letter does.
+        /// </summary>
+        public static bool WaitingAt(Map map)
+        {
+            var letters = Find.LetterStack.LettersListForReading;
+            for (int i = 0; i < letters.Count; i++)
+                if (letters[i] is ChoiceLetter_Happening h && !h.resolved && Homes.HoldsBack(h.ctx?.map, map)) return true;
+            return false;
+        }
 
         private static int Interval() => Mathf.RoundToInt(Mathf.Max(0.5f, S.daysBetweenWorldEvents) * Rand.Range(0.6f, 1.4f) * GenDate.TicksPerDay);
 
@@ -670,14 +684,14 @@ namespace ColonyCouncil
             }
             while (pool.Count > 0)
             {
-                var def = pool.RandomElementByWeight(Weight);
+                var def = pool.RandomElementByWeight(d => Weight(d, map));
                 pool.Remove(def);
                 if (Find.Storyteller.TryFire(new FiringIncident(def, null, Parms(def)), false)) return true;
             }
             return false;
         }
 
-        private float Weight(IncidentDef d)
+        private float Weight(IncidentDef d, Map map)
         {
             var ext = d.GetModExtension<HappeningExtension>();
             float w = d.baseChance;
@@ -687,7 +701,7 @@ namespace ColonyCouncil
             if (ext.addsPeople) w *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             w *= WorldSituations.EventFactor(d, ext);
             // A quarantine or open gates decree, as in the storyteller's own pools (StorytellerFactor).
-            if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor;
+            if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor(map);
             w *= DrawnFactor(ext);
             return Mathf.Max(0.001f, w);
         }
@@ -935,6 +949,8 @@ namespace ColonyCouncil
             /// <summary>A wild animal on a home map (a hunt's kill, for the orphaned young), and where it fell.</summary>
             public bool wild;
             public IntVec3 cell;
+            /// <summary>Where they died (the home whose fight it counts in).</summary>
+            public Map map;
         }
 
         public DeathNote Before(Pawn victim)
@@ -944,6 +960,7 @@ namespace ColonyCouncil
             note.afterFight = note.foe && victim.Downed && !GenHostility.AnyHostileActiveThreatToPlayer(victim.Map, false, false);
             note.wild = victim.Spawned && victim.Map.IsPlayerHome && victim.RaceProps.Animal && victim.Faction == null;
             note.cell = victim.Spawned ? victim.Position : IntVec3.Invalid;
+            note.map = victim.MapHeld;
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -953,7 +970,7 @@ namespace ColonyCouncil
         public void Notify_Killed(Pawn victim, DamageInfo? dinfo, DeathNote note)
         {
             if (victim == null) return;
-            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn);
+            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn, note.map);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);
@@ -978,9 +995,13 @@ namespace ColonyCouncil
             return m;
         }
 
-        /// <summary>Unused memos of this kind at least <paramref name="minDays"/> old.</summary>
-        public IEnumerable<Memo> Memos(string kind, float minDays = 0f) =>
-            memos.Where(m => m.kind == kind && !m.used && Now - m.tick >= minDays * GenDate.TicksPerDay);
+        /// <summary>
+        /// Unused memos of this kind at least <paramref name="minDays"/> old; with a <paramref name="map"/>, only those of its
+        /// colony (an older memo, or one of a home no longer ours, is the seat's: <see cref="Homes.MemoFor"/>), so a later
+        /// event picks up only what its own colony left. With one colony that is every memo.
+        /// </summary>
+        public IEnumerable<Memo> Memos(string kind, float minDays = 0f, Map map = null) =>
+            memos.Where(m => m.kind == kind && !m.used && Now - m.tick >= minDays * GenDate.TicksPerDay && (map == null || Homes.MemoFor(m.home, map)));
 
         /// <summary>A later event picked it up: it won't come round again.</summary>
         public void Use(Memo m)

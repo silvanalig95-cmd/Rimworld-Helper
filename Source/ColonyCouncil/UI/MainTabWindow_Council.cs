@@ -271,8 +271,8 @@ namespace ColonyCouncil
                 content = new Rect(content.x, content.y + 38f, content.width, content.height - 38f);
             }
 
-            // The council's own pages, with more than one colony: whose council this is, and the way to another's.
-            if (tab == Tab.Decrees || tab == Tab.Ambition || tab == Tab.Dilemmas)
+            // The council's own pages and the calendar, with more than one colony: whose they are, and the way to another's.
+            if (tab == Tab.Decrees || tab == Tab.Ambition || tab == Tab.Dilemmas || tab == Tab.Calendar)
             {
                 float named = ColonyView.Header(new Rect(content.x, content.y, content.width, 26f));
                 if (named > 0f) content = new Rect(content.x, content.y + named + 6f, content.width, content.height - named - 6f);

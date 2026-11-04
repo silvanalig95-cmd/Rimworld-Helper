@@ -210,6 +210,23 @@ namespace ColonyCouncil
             return n;
         }
 
+        /// <summary>How two people of different colonies hold to each other: against (below zero), so no group spans two homes.</summary>
+        public const float AcrossColonies = -0.05f;
+
+        /// <summary>
+        /// Groups within one home (stage 0, step 7b): two people whose colonies differ (<paramref name="colony"/>, by index)
+        /// hold to each other <see cref="AcrossColonies"/> at most, so they never form, join or merge into one group, and
+        /// someone who moved to another colony drifts out of their old one. Null: one colony, nothing changes.
+        /// </summary>
+        public static void Apart(float[,] aff, int n, int[] colony)
+        {
+            if (colony == null) return;
+            for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                if (colony[i] != colony[j])
+                    aff[i, j] = aff[j, i] = Math.Min(aff[i, j], AcrossColonies);
+        }
+
         /// <summary>
         /// The best new group among <paramref name="n"/> people, or null. It grows from the closest pair of people still
         /// free to join one (<paramref name="free"/>): each step adds whoever pulls hardest towards those already in it,

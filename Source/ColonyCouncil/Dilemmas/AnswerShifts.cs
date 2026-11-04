@@ -94,7 +94,8 @@ namespace ColonyCouncil
             foreach (var p in who.Distinct())
             {
                 if (p?.timetable == null || p.Dead || Shifted(p)) continue;
-                var cal = CalendarTracker.Instance;
+                // The rest day of their own colony.
+                var cal = ColonyCalendar.Of(p);
                 var changes = AnswerShiftMath.Plan(plan, h => p.timetable.GetAssignment(h)?.defName);
                 if (changes.Count == 0) continue;
                 var done = new List<AnswerShiftMath.Change>();

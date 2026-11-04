@@ -186,9 +186,9 @@ namespace ColonyCouncil
         /// </summary>
         private void FindDay(int now)
         {
-            var cal = CalendarTracker.Instance;
-            if (cal?.days == null || cal.days.Count == 0 || !CalendarTracker.On) return;
-            int today = CalendarTracker.DayOf(now, map), year = CalendarTracker.YearOf(now, map);
+            var cal = ColonyCalendar.For(map);
+            if (cal?.days == null || cal.days.Count == 0 || !ColonyCalendar.On) return;
+            int today = ColonyCalendar.DayOf(now, map), year = ColonyCalendar.YearOf(now, map);
             float best = 0f;
             foreach (var d in cal.days)
             {
@@ -239,7 +239,7 @@ namespace ColonyCouncil
         /// <summary>The camp on this map, while camps are on and the camp is coming or settled and not at odds with the colony.</summary>
         private void FindCamp()
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.VisitingAt(map);
             if (c == null || c.map != map || !c.CanTalk || !CampTracker.Enabled) return;
             camp = c;
             campName = Find.ActiveLanguageWorker.WithDefiniteArticle(c.Label);
@@ -248,7 +248,8 @@ namespace ColonyCouncil
         /// <summary>The speaker of the council, else the faith's leader, else nobody.</summary>
         private Pawn Leader()
         {
-            var speaker = CouncilGameComponent.Instance?.offices?.HolderOf("Council_Office_Speaker");
+            // The speaker of the colony where they talk.
+            var speaker = ColonyState.For(map)?.offices?.HolderOf("Council_Office_Speaker");
             if (speaker != null && !speaker.Dead) return speaker;
             if (!ModsConfig.IdeologyActive) return null;
             foreach (var p in colonists)

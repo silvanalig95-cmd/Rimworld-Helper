@@ -146,7 +146,7 @@ namespace ColonyCouncil
                 if (d < min || d > max) continue;
                 if (c.x < margin || c.z < margin || c.x >= map.Size.x - margin || c.z >= map.Size.z - margin) continue;
                 if (!CampSite.OpenGround(c, map)) continue;
-                var h = CampTracker.Instance?.holding;
+                var h = CampTracker.HoldingAt(map);
                 if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CampSite.CoreRadius * 2 + 10)) continue;
                 int dsq = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
                 if (dsq < minSq || (pts.Count > 0 && dsq > maxSq)) continue;

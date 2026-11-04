@@ -10,16 +10,17 @@ namespace ColonyCouncil
     // The animals on the colony calendar (Animals/AnimalLife.cs tells it what happened): the first foal born to the
     // colony's herd, and a beloved animal's day, the day a bonded animal died that was long with the colony or fought for
     // its person, kept as a remembrance by the one who loved it.
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         /// <summary>The first animal born to the colony's own herd: written down once, the day it happened.</summary>
         public static void Notify_FirstFoal(Pawn newborn, Pawn mother, Pawn keeper)
         {
-            var self = Instance;
+            // The calendar of the colony whose herd it was born to.
+            var self = newborn == null ? null : For(newborn.MapHeld);
             if (self == null || newborn == null || self.Get("foal") != null) return;
             try
             {
-                var map = Home;
+                var map = self.HomeMap;
                 if (map == null) return;
                 int today = GenLocalDate.DayOfYear(map);
                 int year = GenLocalDate.Year(map);
@@ -43,19 +44,20 @@ namespace ColonyCouncil
         /// </summary>
         public static void Notify_Companion(Pawn pet, Pawn person, float years, bool bonded, bool hero)
         {
-            var self = Instance;
+            // Kept at the colony of the one who loved it.
+            var self = person == null ? null : Of(person);
             if (self == null || pet == null || person == null || !AnimalMath.CompanionDay(years, bonded, hero)) return;
             if (self.Get("pet|" + pet.ThingID) != null) return;
             try
             {
-                var map = Home;
+                var map = self.HomeMap;
                 if (map == null) return;
                 var knew = new List<string> { person.ThingID };
                 // Others it was bonded to or followed, and the herdmaster who looked after it.
                 foreach (var o in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 {
                     if (o == person || !People.HasInnerLife(o) || o.DevelopmentalStage.Baby()) continue;
-                    if (AnimalFacts.Bonded(pet, o) || pet.playerSettings?.Master == o || AnimalFacts.Herdmaster == o) knew.Add(o.ThingID);
+                    if (AnimalFacts.Bonded(pet, o) || pet.playerSettings?.Master == o || AnimalFacts.IsHerdmaster(o)) knew.Add(o.ThingID);
                 }
                 int today = GenLocalDate.DayOfYear(map);
                 int year = GenLocalDate.Year(map);

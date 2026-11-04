@@ -130,10 +130,19 @@ namespace ColonyCouncil
                 Make(("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate().CapitalizeFirst(), "CC_Overview_TileTrust".Translate(),
                     "CC_Overview_TileTrust_Tip".Translate(trust.ToString("0")), Icons.Trust, UiKit.TrustColor(trust), trust, week?.trust, 3f, v => v.ToString("+0;-0")),
                 Make(wishes.ToString(), "CC_Overview_TileWishes".Translate(), "CC_Overview_TileWishes_Tip".Translate(), Icons.Wishes, UiKit.Gold, 0f, null, 0f, null),
-                Make(wealth.ToString("#,0"), "CC_Overview_TileWealth".Translate(), "CC_Overview_TileWealth_Tip".Translate(), Icons.Trader, WealthColor,
+                Make(wealth.ToString("#,0"), "CC_Overview_TileWealth".Translate(), WealthTip(), Icons.Trader, WealthColor,
                     wealth, week?.wealth, Mathf.Max(100f, wealth * 0.03f), v => v.ToString("+#,0;-#,0"))
             };
             return tiles;
+        }
+
+        /// <summary>The wealth tile's words: the colony's wealth, all its homes together; with more than one colony, each one's too.</summary>
+        private static string WealthTip()
+        {
+            string tip = "CC_Overview_TileWealth_Tip".Translate();
+            if (!ColonyState.Several) return tip;
+            var each = Homes.All.Select(m => "CC_Tell_At".Translate(Homes.Name(m).Named("PLACE"), m.wealthWatcher.WealthTotal.ToString("#,0").Named("TEXT")).Resolve());
+            return tip + "\n\n" + string.Join("\n", each);
         }
 
         private static Tile Make(string value, string label, string tip, Texture2D icon, Color color, float now, float? then, float threshold, Func<float, string> format)
@@ -280,7 +289,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             try
             {
-                var herd = comp.herd;
+                var herd = comp.HerdOf(map);
                 var leader = herd?.leader;
                 if (leader != null && !leader.Dead && AnimalFacts.Ours(leader))
                 {
@@ -290,7 +299,7 @@ namespace ColonyCouncil
                         : "CC_Overview_HerdLeader".Translate(leader.Named("PET"), head.Named("COUNT")).Resolve());
                     if (herd.lastSeasonTick >= 0) list.Add("CC_Overview_HerdOld".Translate(leader.Named("PET")).Resolve());
                 }
-                var rb = comp.beast;
+                var rb = comp.BeastOf(map);
                 if (rb != null && rb.Here)
                 {
                     string stanceKey = "CC_Beast_Stance_" + rb.stance;
@@ -303,7 +312,7 @@ namespace ColonyCouncil
                     var species = DefDatabase<ThingDef>.GetNamedSilentFail(rb.rumourKind);
                     if (species != null) list.Add("CC_Overview_Rumour".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rb.rumourUntil - now).Named("DAYS")).Resolve());
                 }
-                var holding = CampTracker.Instance?.holding;
+                var holding = CampTracker.HoldingAt(map);
                 if (holding != null && holding.Here.Count > 0) list.Add(holding.HoldingLine());
             }
             catch (Exception e)

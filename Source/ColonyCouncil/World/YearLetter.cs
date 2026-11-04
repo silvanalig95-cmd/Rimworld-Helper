@@ -59,43 +59,19 @@ namespace ColonyCouncil
             string ord = HerdStory.Ordinal(year);
             Para(author != null ? "CC_Year_Opening".Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve() : "CC_Year_OpeningNobody".Translate(ord.Named("ORD")).Resolve());
 
-            // The herd.
-            var herd = AnimalFacts.Herd(map);
-            if (herd.Count > 0)
-            {
-                var hs = comp.herd;
-                var leader = hs?.leader;
-                bool leads = leader != null && !leader.Dead && AnimalFacts.Ours(leader);
-                int born = herd.Count(a => a.ageTracker != null && a.ageTracker.AgeBiologicalTicks < GenDate.TicksPerYear);
-                string lead = leads
-                    ? hs.generation > 1 && hs.lineName != null
-                        ? "CC_Year_HerdLeaderLine".Translate(leader.Named("PET"), HerdStory.Ordinal(hs.generation).Named("ORD"), hs.lineName.Named("LINE")).Resolve()
-                        : "CC_Year_HerdLeader".Translate(leader.Named("PET")).Resolve()
-                    : "CC_Year_HerdNoLeader".Translate().Resolve();
-                Para("CC_Year_Herd".Translate(herd.Count.Named("COUNT"), born.Named("BORN"), lead.Named("LEAD")).Resolve());
-                if (leads && hs.leaderSince >= sinceTick && hs.leaders > 1) Para("CC_Year_HerdNewLeader".Translate(leader.Named("PET")).Resolve());
-                if (leads && hs.lastSeasonTick >= 0) Para("CC_Year_HerdOld".Translate(leader.Named("PET")).Resolve());
-            }
+            // Each colony's own year (its herd, its beast, its neighbours settled for good): with one colony as it always
+            // was, with more than one a part for each, under its name.
+            if (!ColonyState.Several) Local(comp, map, sinceTick, now, Para);
+            else
+                foreach (var home in Homes.All)
+                {
+                    Para("CC_Year_AtHome".Translate(Homes.Name(home).Named("PLACE")).Resolve());
+                    Local(comp, home, sinceTick, now, Para);
+                }
 
-            // The beast that stays.
-            var rb = comp.beast;
-            if (rb != null && rb.Here)
-            {
-                string stanceKey = "CC_Beast_Stance_" + rb.stance;
-                string stance = (stanceKey.CanTranslate() ? stanceKey : "CC_Beast_Stance_watched").Translate();
-                Para((rb.namedTick >= sinceTick ? "CC_Year_BeastNew" : "CC_Year_BeastStill").Translate(rb.animal.Named("PET"), AnimalFacts.KindLabel(rb.animal).Named("KIND"), stance.Named("STANCE")).Resolve());
-                if (rb.stolen > 0) Para("CC_Year_BeastStole".Translate(rb.animal.Named("PET"), rb.stolen.Named("N")).Resolve());
-            }
-
-            // The neighbours: settled for good, the road, the camps that came, the faces that came back.
+            // The camps that came, the faces that came back.
             var tracker = CampTracker.Instance;
-            var holding = tracker?.holding;
-            if (holding != null && holding.Here.Count > 0)
-            {
-                Para((holding.settledTick >= sinceTick ? "CC_Year_HoldingNew" : "CC_Year_Holding").Translate(holding.HoldingName.Named("NAME"), (holding.faction?.Name ?? "").Named("FACTION"),
-                    holding.Here.Count.Named("COUNT"), TextUtil.DaysString(Mathf.Max(GenDate.TicksPerHour, now - Mathf.Max(0, holding.settledTick))).Named("DAYS")).Resolve());
-                if (holding.roadLoads > 0) Para("CC_Year_Road".Translate(holding.roadLoads.Named("N")).Resolve());
-            }
+            var holding = CampTracker.HoldingAt(map);
             var camps = tracker?.past?.Where(c => c?.kind != null && c.leftTick >= sinceTick).ToList() ?? new List<PastCamp>();
             if (camps.Count > 0)
             {
@@ -129,8 +105,50 @@ namespace ColonyCouncil
             Para("CC_Year_Close".Translate().Resolve());
 
             var look = author != null ? new LookTargets(author) : holding != null ? holding.Look : LookTargets.Invalid;
-            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), sb.ToString(), LetterDefOf.NeutralEvent, look);
+            // With more than one colony the letter is about them all (each named in its part).
+            Tell.Letter(NewsKind.Colony, Importance.Notable, ColonyState.Several ? null : map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), sb.ToString(), LetterDefOf.NeutralEvent, look);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_YearLetter".Translate(ord.Named("ORD")).Resolve(), author));
+        }
+
+        /// <summary>One colony's own year: its herd, the beast on its land, its neighbours settled for good and their road.</summary>
+        private static void Local(CouncilGameComponent comp, Map map, int sinceTick, int now, Action<string> Para)
+        {
+            // The herd.
+            var herd = AnimalFacts.Herd(map);
+            if (herd.Count > 0)
+            {
+                var hs = comp.HerdOf(map);
+                var leader = hs?.leader;
+                bool leads = leader != null && !leader.Dead && AnimalFacts.Ours(leader);
+                int born = herd.Count(a => a.ageTracker != null && a.ageTracker.AgeBiologicalTicks < GenDate.TicksPerYear);
+                string lead = leads
+                    ? hs.generation > 1 && hs.lineName != null
+                        ? "CC_Year_HerdLeaderLine".Translate(leader.Named("PET"), HerdStory.Ordinal(hs.generation).Named("ORD"), hs.lineName.Named("LINE")).Resolve()
+                        : "CC_Year_HerdLeader".Translate(leader.Named("PET")).Resolve()
+                    : "CC_Year_HerdNoLeader".Translate().Resolve();
+                Para("CC_Year_Herd".Translate(herd.Count.Named("COUNT"), born.Named("BORN"), lead.Named("LEAD")).Resolve());
+                if (leads && hs.leaderSince >= sinceTick && hs.leaders > 1) Para("CC_Year_HerdNewLeader".Translate(leader.Named("PET")).Resolve());
+                if (leads && hs.lastSeasonTick >= 0) Para("CC_Year_HerdOld".Translate(leader.Named("PET")).Resolve());
+            }
+
+            // The beast that stays.
+            var rb = comp.BeastOf(map);
+            if (rb != null && rb.Here)
+            {
+                string stanceKey = "CC_Beast_Stance_" + rb.stance;
+                string stance = (stanceKey.CanTranslate() ? stanceKey : "CC_Beast_Stance_watched").Translate();
+                Para((rb.namedTick >= sinceTick ? "CC_Year_BeastNew" : "CC_Year_BeastStill").Translate(rb.animal.Named("PET"), AnimalFacts.KindLabel(rb.animal).Named("KIND"), stance.Named("STANCE")).Resolve());
+                if (rb.stolen > 0) Para("CC_Year_BeastStole".Translate(rb.animal.Named("PET"), rb.stolen.Named("N")).Resolve());
+            }
+
+            // The neighbours settled for good, and the road.
+            var holding = CampTracker.HoldingAt(map);
+            if (holding != null && holding.Here.Count > 0)
+            {
+                Para((holding.settledTick >= sinceTick ? "CC_Year_HoldingNew" : "CC_Year_Holding").Translate(holding.HoldingName.Named("NAME"), (holding.faction?.Name ?? "").Named("FACTION"),
+                    holding.Here.Count.Named("COUNT"), TextUtil.DaysString(Mathf.Max(GenDate.TicksPerHour, now - Mathf.Max(0, holding.settledTick))).Named("DAYS")).Resolve());
+                if (holding.roadLoads > 0) Para("CC_Year_Road".Translate(holding.roadLoads.Named("N")).Resolve());
+            }
         }
 
         /// <summary>So many of the lines, evenly over the year: the first, the last, and some between.</summary>

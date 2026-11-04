@@ -71,7 +71,9 @@ namespace ColonyCouncil
         public static HappeningLivingText More(IncidentDef def) => def?.GetModExtension<HappeningLivingText>();
 
         /// <summary>An unused memo of this kind about this people, or null.</summary>
-        public static Memo MemoOf(string kind, Faction f) => Tracker?.memos.FirstOrDefault(m => m.kind == kind && !m.used && m.faction == f);
+        /// <summary>An unused memo of this kind about this people; with a <paramref name="map"/>, of that colony's (Homes.MemoFor).</summary>
+        public static Memo MemoOf(string kind, Faction f, Map map = null) =>
+            Tracker?.memos.FirstOrDefault(m => m.kind == kind && !m.used && m.faction == f && (map == null || Homes.MemoFor(m.home, map)));
 
         public static Faction FactionById(int id) => Find.FactionManager.AllFactionsListForReading.FirstOrDefault(f => f.loadID == id);
 
@@ -140,7 +142,7 @@ namespace ColonyCouncil
         {
             var t = Tracker;
             if (t == null || f == null || goods == null) return;
-            var m = MemoOf(Buyer, f);
+            var m = MemoOf(Buyer, f, map);
             if (!filled)
             {
                 if (m != null) t.Use(m);
@@ -389,7 +391,7 @@ namespace ColonyCouncil
             string text = VarietyUtil.Line(lines, ctx, tags, item);
             if (text.NullOrEmpty()) return;
             if (look != null && look.IsValid) News.Post(text, look, NewsKind.World, type ?? MessageTypeDefOf.NeutralEvent);
-            else News.Post(text, null, NewsKind.World, type ?? MessageTypeDefOf.NeutralEvent);
+            else ColonyCouncil.Tell.Minor(NewsKind.World, null, ctx?.map, text, null, type ?? MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>Things handed over at the trade spot (or near someone), split into stacks.</summary>
@@ -448,14 +450,15 @@ namespace ColonyCouncil
         private static ThingDef Goods(Memo m) => LivingEvents.ThingNamed(m?.def);
 
         private static Memo Pick(Map map) =>
-            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Buyer, 15f)
+            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Buyer, 15f, map)
                 .Where(m => m.times == 0 && LivingEvents.Friendly(m.faction) && VarietyUtil.OnGoodTerms(m.faction) && Goods(m) is ThingDef d && VarietyUtil.InStores(map, d) >= 10)
                 .RandomElementWithFallback();
 
-        private static bool OrderOut => CouncilGameComponent.Instance?.happenings.Memos("order").Any() ?? false;
+        /// <summary>An order of this colony's still out.</summary>
+        private static bool OrderOut(Map map) => CouncilGameComponent.Instance?.happenings.Memos("order", 0f, map).Any() ?? false;
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            !OrderOut && Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+            !OrderOut(map) && Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -477,7 +480,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
-            var m = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction);
+            var m = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction, ctx.map);
             tags.Add(m != null && m.amount >= 2 ? "again" : "once");
         }
 
@@ -487,7 +490,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var t = CouncilGameComponent.Instance?.happenings;
-            var buyer = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction);
+            var buyer = LivingEvents.MemoOf(LivingEvents.Buyer, ctx.faction, ctx.map);
             if (t != null && option == 0 && ctx.thing != null && ctx.variant > 0 && LivingEvents.Friendly(ctx.faction))
             {
                 // An order like the first one: the neighbor's order event collects it.
@@ -752,16 +755,17 @@ namespace ColonyCouncil
     {
         private Memo chosen;
 
-        private static Memo Pick() =>
-            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Quarrel, 25f)
+        /// <summary>A quarrel this colony judged.</summary>
+        private static Memo Pick(Map map) =>
+            CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Quarrel, 25f, map)
                 .Where(m => LivingEvents.Friendly(m.faction) && LivingEvents.FactionById(m.amount) is Faction o && o != m.faction && LivingEvents.Friendly(o))
                 .RandomElementWithFallback();
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Pick() != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Pick(map) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            var m = Pick();
+            var m = Pick(ctx.map);
             if (m == null) return false;
             ctx.faction = m.faction;
             ctx.enemy = LivingEvents.FactionById(m.amount);
@@ -977,18 +981,18 @@ namespace ColonyCouncil
             if (founders.Count > 0) parts.Add(Part(lines, ctx, "founders", TextUtil.JoinAnd(founders.Select(p => p.LabelShort).ToList())));
             // The names that come with the colony's years: the last of its founders, and its first child, grown.
             var names = ColonyCouncilMod.Settings.epithets ? CouncilGameComponent.Instance?.epithets : null;
-            var last = names?.HolderOf("Council_Epithet_LastOfTheFirst");
+            var last = names?.HolderOf("Council_Epithet_LastOfTheFirst", ctx.map);
             if (last != null && last.Spawned && last.Map == ctx.map) parts.Add(Part(lines, ctx, "lastfounder", last.LabelShort));
-            var founder = names?.HolderOf("Council_Epithet_Founder");
+            var founder = names?.HolderOf("Council_Epithet_Founder", ctx.map);
             if (founder != null && founder != last && founder.Spawned && founder.Map == ctx.map) parts.Add(Part(lines, ctx, "founder", founder.LabelShort));
-            var firstborn = names?.HolderOf("Council_Epithet_Firstborn");
+            var firstborn = names?.HolderOf("Council_Epithet_Firstborn", ctx.map);
             if (firstborn != null && firstborn.Spawned && firstborn.Map == ctx.map) parts.Add(Part(lines, ctx, "firstborn", firstborn.LabelShort));
             int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;
             if (lost > 0) parts.Add(Part(lines, ctx, "lost", lost.ToString()));
             var comp = CouncilGameComponent.Instance;
             string known = comp?.character.Describe();
             if (!known.NullOrEmpty()) parts.Add(Part(lines, ctx, "known", known));
-            var customs = comp?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(CalendarTracker.TraditionLabels()).Where(l => !l.NullOrEmpty()).Distinct().ToList();
+            var customs = ColonyState.For(ctx.map)?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(ColonyCalendar.TraditionLabels(ctx.map)).Where(l => !l.NullOrEmpty()).Distinct().ToList();
             if (!customs.NullOrEmpty()) parts.Add(Part(lines, ctx, "customs", TextUtil.JoinAnd(customs)));
             return string.Join("\n", parts.Where(p => !p.NullOrEmpty()));
         }
@@ -1021,7 +1025,7 @@ namespace ColonyCouncil
             var map = HappeningTracker.HomeMap();
             if (def == null || map == null) return;
             int hour = GenLocalDate.HourOfDay(map);
-            if (hour < 9 || hour > 19 || HappeningTracker.Waiting || MapFacts.ThreatOn(map)) return;
+            if (hour < 9 || hour > 19 || HappeningTracker.WaitingAt(map) || MapFacts.ThreatOn(map)) return;
             var parms = StorytellerUtility.DefaultParmsNow(def.category, map);
             if (def.Worker.CanFireNow(parms)) Find.Storyteller.TryFire(new FiringIncident(def, null, parms));
         }
@@ -1198,7 +1202,7 @@ namespace ColonyCouncil
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             var home = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_HarvestHome");
-            if (home != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(home) ?? false)) tags.Add("harvesthome");
+            if (home != null && (DilemmaTracker.For(ctx.map)?.IsTradition(home) ?? false)) tags.Add("harvesthome");
         }
 
         protected override string Extra(HappeningContext ctx) =>
@@ -1300,7 +1304,7 @@ namespace ColonyCouncil
             if (ctx.map != null && PlayCarry.Have(ctx.map, "meals", null) > 0) tags.Add("hot");
             if (ctx.map != null && ctx.map.mapTemperature.OutdoorTemp < -15f) tags.Add("bitter");
             var supper = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_Midwinter");
-            if (supper != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(supper) ?? false)) tags.Add("supper");
+            if (supper != null && (DilemmaTracker.For(ctx.map)?.IsTradition(supper) ?? false)) tags.Add("supper");
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
@@ -1388,7 +1392,7 @@ namespace ColonyCouncil
         {
             tags.Add(GenDate.DaysPassed < GenDate.DaysPerYear ? "first" : "again");
             var year = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_NameTheYear");
-            if (year != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(year) ?? false)) tags.Add("nameyear");
+            if (year != null && (DilemmaTracker.For(ctx.map)?.IsTradition(year) ?? false)) tags.Add("nameyear");
             if (ctx.a?.DevelopmentalStage.Child() == true) tags.Add("child");
         }
     }
@@ -1630,10 +1634,11 @@ namespace ColonyCouncil
 
         private static string Stage(float score) => score < 0f ? "" : RoomStatDefOf.Impressiveness.GetScoreStage(score)?.label ?? "";
 
-        private static bool Expected => CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Guest).Any() ?? false;
+        /// <summary>A guest this colony invited is still on the way.</summary>
+        private static bool Expected(Map map) => CouncilGameComponent.Instance?.happenings.Memos(LivingEvents.Guest, 0f, map).Any() ?? false;
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            !Expected && GuestBeds(map).Any() && Arrivals.Friendly(VarietyUtil.OnGoodTerms) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
+            !Expected(map) && GuestBeds(map).Any() && Arrivals.Friendly(VarietyUtil.OnGoodTerms) != null && Colonists(map).Any(p => !p.DevelopmentalStage.Juvenile());
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

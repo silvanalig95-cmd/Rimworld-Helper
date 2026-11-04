@@ -109,7 +109,9 @@ namespace ColonyCouncil
             OnlyOrphaned = true;
             try
             {
-                comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_Guardian);
+                // Asked at the child's own colony: each colony's council looks for one among its own.
+                foreach (var council in ColonyState.Ticking())
+                    if (council.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_Guardian)) break;
             }
             finally
             {

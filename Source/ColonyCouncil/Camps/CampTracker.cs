@@ -31,24 +31,43 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The camp on the colony's map, if there is one (one at a time, kept in the save), and how a new one is made.
-    /// Camps live on their own clock: every few seconds for hunts and the like, every hour for everything else.
+    /// What camps one colony has (stage 0, step 7b): the camp visiting its land, the neighbours settled there for good,
+    /// a war party come to help it, and the clock of camps coming (each home's own day to try, its gap since the last
+    /// camp, its diary). One per colony, kept in the camps' book (<see cref="CampTracker.homes"/>) by the council's rules
+    /// (<see cref="ColonyBook"/>): an old save's single camp and clock are the seat's.
     /// </summary>
-    public class CampTracker : GameComponent
+    public class CampHome : IExposable, IColonyEntry
     {
+        /// <summary>The colony's key (<see cref="Homes.KeyOf"/>), or none while it has no home (an old save's, not yet placed).</summary>
+        public int home = HomesMath.None;
+        /// <summary>When its home stopped being ours; -1 while it is.</summary>
+        public int lostAt = ColonyStateMath.NotLost;
+
+        public int Home
+        {
+            get => home;
+            set => home = value;
+        }
+
+        public int LostAt
+        {
+            get => lostAt;
+            set => lostAt = value;
+        }
+
+        /// <summary>The camp visiting the colony's land, one at a time.</summary>
         public Camp camp;
         /// <summary>Neighbours settled on the land for good (Holding.cs): a camp kept in a slot of its own, so camps still come and go beside it.</summary>
         public Camp holding;
-        public int nextId = 1;
         public int lastEndedTick = -9999999;
         /// <summary>Days since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
         public int openMornings;
         /// <summary>
         /// The camps' diary, for the World page and for reviewing a save: each day's outcome as "day|hour|code|detail",
-        /// newest last, at most <see cref="DiaryMax"/>; codes are the blockers (<see cref="Blocker"/>) and waiting
-        /// (a world event's question unanswered), lettergap (a question came in the last hours), open (the way was open,
-        /// the dice said not today), checks (the event's own checks said no), failed (it could not be set up, with why),
-        /// came.
+        /// newest last, at most <see cref="CampTracker.DiaryMax"/>; codes are the blockers (<see cref="CampTracker.Blocker"/>)
+        /// and waiting (a world event's question unanswered), lettergap (a question came in the last hours), open (the way
+        /// was open, the dice said not today), checks (the event's own checks said no), failed (it could not be set up,
+        /// with why), came.
         /// </summary>
         public List<string> diary = new List<string>();
         /// <summary>How often each outcome came, since <see cref="diarySince"/> (a day).</summary>
@@ -56,9 +75,13 @@ namespace ColonyCouncil
         public int diarySince = -1;
         /// <summary>When the day's try comes (CampTimer.NextTry), and how many hours a passing reason has put it off.</summary>
         public int nextTryTick = -1, tryHours;
-        /// <summary>Why the last Prepare without a list of its own found nothing (for the diary).</summary>
-        [Unsaved] public readonly List<string> lastWhy = new List<string>();
-        public const int DiaryMax = 30;
+        /// <summary>A war party on the map, come to fight the colony's attacker (WarCamp.cs), and the threat it was rolled for.</summary>
+        public WarBand warBand;
+        public int threatSince = -1;
+        public bool threatRolled;
+
+        /// <summary>The colony's home while it's ours; null while it has none.</summary>
+        public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
         /// <summary>One day's outcome into the diary.</summary>
         public void Record(int day, int hour, string code, string detail)
@@ -66,7 +89,7 @@ namespace ColonyCouncil
             if (code.NullOrEmpty()) return;
             if (diarySince < 0) diarySince = day;
             diary.Add(day + "|" + hour + "|" + code + "|" + (detail ?? "").Replace("|", "/"));
-            while (diary.Count > DiaryMax) diary.RemoveAt(0);
+            while (diary.Count > CampTracker.DiaryMax) diary.RemoveAt(0);
             diaryCounts.TryGetValue(code, out int n);
             diaryCounts[code] = n + 1;
         }
@@ -83,12 +106,137 @@ namespace ColonyCouncil
             if (away.Count > 0) line += " " + "CC_Camp_Diary_Away".Translate(string.Join(", ", away)).Resolve();
             return line;
         }
+
+        /// <summary>Saved under the names the camps' tracker always used, so an old save's are read straight into the seat's.</summary>
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
+            Scribe_Deep.Look(ref camp, "camp");
+            Scribe_Deep.Look(ref holding, "holding");
+            Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
+            Scribe_Values.Look(ref openMornings, "openMornings", 0);
+            Scribe_Collections.Look(ref diary, "diary", LookMode.Value);
+            Scribe_Collections.Look(ref diaryCounts, "diaryCounts", LookMode.Value, LookMode.Value);
+            Scribe_Values.Look(ref diarySince, "diarySince", -1);
+            Scribe_Values.Look(ref nextTryTick, "nextTryTick", -1);
+            Scribe_Values.Look(ref tryHours, "tryHours");
+            Scribe_Deep.Look(ref warBand, "warBand");
+            Scribe_Values.Look(ref threatSince, "threatSince", -1);
+            Scribe_Values.Look(ref threatRolled, "threatRolled");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (diary == null) diary = new List<string>();
+                if (diaryCounts == null) diaryCounts = new Dictionary<string, int>();
+                // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
+                if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
+                if (holding != null && (holding.kind == null || holding.map == null)) holding = null;
+                if (warBand != null && (warBand.map == null || warBand.faction == null)) warBand = null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// The camps on the colonies' land, one visiting camp, one holding and one war party per colony (each colony's
+    /// <see cref="CampHome"/>, kept in the save), and how a new one is made. Camps live on their own clock: every few
+    /// seconds for hunts and the like, every hour for everything else.
+    /// </summary>
+    public class CampTracker : GameComponent
+    {
+        /// <summary>One per colony: its camps and its clock of camps coming. An old save's are the seat's.</summary>
+        public List<CampHome> homes = new List<CampHome>();
+        /// <summary>While an old save loads: its one camp and clock, read from where they always were, for the seat.</summary>
+        [Unsaved] private CampHome oldSave;
+        public int nextId = 1;
+        /// <summary>Why the last Prepare without a list of its own found nothing (for the diary).</summary>
+        [Unsaved] public readonly List<string> lastWhy = new List<string>();
+        public const int DiaryMax = 30;
+
         /// <summary>Camps the colony remembers, which may come back (CampMemory.cs).</summary>
         public List<PastCamp> past = new List<PastCamp>();
-        /// <summary>A war party on the map, come to fight the colony's attacker (WarCamp.cs), and the threat it was rolled for.</summary>
-        public WarBand warBand;
-        public int threatSince = -1;
-        public bool threatRolled;
+
+        /// <summary>A home's camps (the seat's for a map that isn't a home), made when it first needs them.</summary>
+        public CampHome HomeOf(Map map)
+        {
+            homes ??= new List<CampHome>();
+            return ColonyBook.Entry(homes, map, () => new CampHome());
+        }
+
+        /// <summary>The camps' state of the colony whose camp, holding or war party this is (by its map).</summary>
+        public CampHome HomeWith(Camp c) => c?.map == null ? null : homes?.FirstOrDefault(h => h != null && (h.camp == c || h.holding == c)) ?? HomeOf(c.map);
+
+        /// <summary>The camp visiting this home (null for a map that isn't one, or with none there).</summary>
+        public static Camp VisitingAt(Map map)
+        {
+            var t = Instance;
+            if (t == null || map == null || !Homes.IsHome(map)) return null;
+            var c = t.HomeOf(map).camp;
+            return c != null && c.map == map ? c : null;
+        }
+
+        /// <summary>The neighbours settled on this home's land (null for a map that isn't one, or with none there).</summary>
+        public static Camp HoldingAt(Map map)
+        {
+            var t = Instance;
+            if (t == null || map == null || !Homes.IsHome(map)) return null;
+            var c = t.HomeOf(map).holding;
+            return c != null && c.map == map ? c : null;
+        }
+
+        /// <summary>The war party at this home (null for a map that isn't one, or with none there).</summary>
+        public static WarBand WarBandAt(Map map)
+        {
+            var t = Instance;
+            if (t == null || map == null || !Homes.IsHome(map)) return null;
+            return t.HomeOf(map).warBand;
+        }
+
+        /// <summary>Each colony's visiting camp, in the order the homes were founded.</summary>
+        public IEnumerable<Camp> Visiting
+        {
+            get
+            {
+                if (homes == null) yield break;
+                foreach (var h in homes)
+                    if (h?.camp != null) yield return h.camp;
+            }
+        }
+
+        /// <summary>
+        /// Homes lost (Homes.Changed): each one's camps and clock are kept a while, as the council's; the camps by a home no
+        /// longer ours are none of the colony's now, and are let be.
+        /// </summary>
+        internal void HomesLost(IReadOnlyList<int> lost)
+        {
+            ColonyBook.Lost(homes, lost, h =>
+            {
+                h.camp = null;
+                h.holding = null;
+                h.warBand = null;
+            });
+        }
+
+        /// <summary>Once a day: the camps' clocks of homes lost long enough ago are let go.</summary>
+        internal void Daily() => ColonyBook.Daily(homes, null);
+
+        /// <summary>A war party is gone from the colony it came to help.</summary>
+        public void Forget(WarBand b)
+        {
+            if (b == null || homes == null) return;
+            foreach (var h in homes)
+                if (h?.warBand == b) h.warBand = null;
+        }
+
+        /// <summary>Each colony's war party.</summary>
+        public IEnumerable<WarBand> WarBands
+        {
+            get
+            {
+                if (homes == null) yield break;
+                foreach (var h in homes)
+                    if (h?.warBand != null) yield return h.warBand;
+            }
+        }
 
         public CampTracker(Game game)
         {
@@ -100,20 +248,24 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        /// <summary>The camps on the land: the one visiting, and the neighbours settled for good.</summary>
+        /// <summary>The camps on the land: at each colony, the one visiting, then the neighbours settled for good.</summary>
         public IEnumerable<Camp> All
         {
             get
             {
-                if (camp != null) yield return camp;
-                if (holding != null) yield return holding;
+                if (homes == null) yield break;
+                foreach (var h in homes)
+                {
+                    if (h?.camp != null) yield return h.camp;
+                    if (h?.holding != null) yield return h.holding;
+                }
             }
         }
 
-        public Camp ById(int id) => camp != null && camp.id == id ? camp : holding != null && holding.id == id ? holding : null;
+        public Camp ById(int id) => All.FirstOrDefault(c => c.id == id);
 
-        /// <summary>The camp whose fire this is.</summary>
-        public Camp CampAt(IntVec3 fire) => All.FirstOrDefault(c => c.FireCell == fire);
+        /// <summary>The camp whose fire this is, on this map (each colony may have a camp of its own).</summary>
+        public Camp CampAt(IntVec3 fire, Map map) => All.FirstOrDefault(c => c.FireCell == fire && (map == null || c.map == map));
 
         /// <summary>The camp this pawn belongs to (living with the group on the map), or null.</summary>
         public static Camp CampOf(Pawn p)
@@ -138,7 +290,9 @@ namespace ColonyCouncil
             bool Fits(Camp c) => c != null && c.map == map && c.phase == CampPhase.Living && !c.Hostile;
             var own = CampOf(other);
             if (Fits(own)) return own;
-            return Fits(t.camp) ? t.camp : Fits(t.holding) ? t.holding : null;
+            var visiting = VisitingAt(map);
+            var holding = HoldingAt(map);
+            return Fits(visiting) ? visiting : Fits(holding) ? holding : null;
         }
 
         /// <summary>The camp an answer or an ask is about while it's being dealt with (a letter's answer, a button on its page), for the effects that need to know.</summary>
@@ -164,19 +318,24 @@ namespace ColonyCouncil
         public void MakeHolding(Camp c)
         {
             if (c == null) return;
-            if (camp == c)
+            var h = HomeWith(c);
+            if (h == null) return;
+            if (h.camp == c)
             {
-                camp = null;
-                lastEndedTick = Now;
+                h.camp = null;
+                h.lastEndedTick = Now;
             }
-            holding = c;
+            h.holding = c;
         }
 
         public static bool Enabled => S != null && S.worldEvents && S.camps;
 
+        /// <summary>A camp still in one of the colonies' slots (visiting or holding).</summary>
+        private bool Kept(Camp c) => homes != null && homes.Any(h => h != null && (h.camp == c || h.holding == c));
+
         public override void GameComponentTick()
         {
-            if (camp == null && holding == null) return;
+            if (homes == null || !homes.Any(h => h != null && (h.camp != null || h.holding != null))) return;
             int now = Now;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareCamp)) return;
             foreach (var c in All.ToList())
@@ -185,7 +344,7 @@ namespace ColonyCouncil
                 {
                     // Timed for Rimfolk's clock: the quarter hour, then the camp's hour (the hour's other part is CampTimer's).
                     using (PassClock.Time(Pass.RareCamp)) c.Tick250();
-                    if (Sched.Hourly(now, Sched.Camp) && (camp == c || holding == c))
+                    if (Sched.Hourly(now, Sched.Camp) && Kept(c))
                         using (PassClock.Time(Pass.Camp))
                             c.Hourly();
                 }
@@ -198,14 +357,20 @@ namespace ColonyCouncil
 
         public void Ended(Camp c)
         {
-            if (holding == c)
+            if (c == null || homes == null) return;
+            foreach (var h in homes)
             {
-                holding = null;
+                if (h == null) continue;
+                if (h.holding == c)
+                {
+                    h.holding = null;
+                    return;
+                }
+                if (h.camp != c) continue;
+                h.camp = null;
+                h.lastEndedTick = Now;
                 return;
             }
-            if (camp != c) return;
-            camp = null;
-            lastEndedTick = Now;
         }
 
         // ---------------- A new camp ----------------
@@ -224,7 +389,7 @@ namespace ColonyCouncil
                 case "here": return "a camp is here already";
                 case "nohome": return "there's no home map";
                 case "early": return "never in the first twenty days";
-                case "gap": return "the last camp left on day " + lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + a + " days after";
+                case "gap": return "the last camp left on day " + HomeOf(map).lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + a + " days after";
                 case "threat": return "there's danger on the map";
                 case "weather": return "it's " + a + " °C outside, and no camp comes below " + CampWeatherMath.ExtremeCold.ToString("0") + " or above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C";
                 case "hazard": return "no camp comes while " + a + " lasts";
@@ -238,7 +403,7 @@ namespace ColonyCouncil
         public string WhyNotForPlayer(Map map)
         {
             var (code, a, b) = Blocker(map);
-            if (code == null) return "CC_Camp_Why_Open".Translate(openMornings, Mathf.RoundToInt(1f / CampTimer.DailyChance)).Resolve();
+            if (code == null) return "CC_Camp_Why_Open".Translate(HomeOf(map).openMornings, Mathf.RoundToInt(1f / CampTimer.DailyChance)).Resolve();
             return ("CC_Camp_Why_" + code).Translate(a ?? "", b ?? "").Resolve();
         }
 
@@ -250,13 +415,15 @@ namespace ColonyCouncil
         public (string code, string a, string b) Blocker(Map map)
         {
             if (!Enabled) return ("off", null, null);
-            if (camp != null) return ("here", null, null);
+            // Each home has a camp of its own at a time, and its own gap since the last.
+            var home = HomeOf(map);
+            if (home.camp != null) return ("here", null, null);
             if (map == null || !map.IsPlayerHome) return ("nohome", null, null);
             if (GenDate.DaysPassed < 20) return ("early", (20 - GenDate.DaysPassed).ToString(), null);
             // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
             float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
-            if (Now - lastEndedTick < GenDate.TicksPerDay * gap)
-                return ("gap", gap.ToString("0"), TextUtil.DaysString(Mathf.RoundToInt(GenDate.TicksPerDay * gap) - (Now - lastEndedTick)));
+            if (CampStoryMath.InGap(Now, home.lastEndedTick, gap))
+                return ("gap", gap.ToString("0"), TextUtil.DaysString(Mathf.RoundToInt(GenDate.TicksPerDay * gap) - (Now - home.lastEndedTick)));
             if (MapFacts.ThreatOn(map)) return ("threat", null, null);
             float temp = map.mapTemperature.OutdoorTemp;
             if (CampWeatherMath.TooExtremeToCome(temp)) return ("weather", temp.ToString("0"), null);
@@ -336,7 +503,7 @@ namespace ColonyCouncil
         /// </summary>
         public Camp StartKind(Map map, CampKindDef kind, Faction f, List<string> why = null)
         {
-            if (map == null || kind == null || camp != null || !Enabled) return null;
+            if (map == null || kind == null || VisitingAt(map) != null || !Enabled) return null;
             if (!kind.FitsEra() || !kind.Possible || !kind.FitsMap(map))
             {
                 why?.Add(kind.label + ": not in this era");
@@ -488,8 +655,10 @@ namespace ColonyCouncil
         /// <summary>They walk in from the edge nearest their spot, carrying what they need.</summary>
         public Camp Start(CampSetup s)
         {
-            openMornings = 0;
-            if (s == null || camp != null) return null;
+            if (s?.map == null) return null;
+            var home = HomeOf(s.map);
+            home.openMornings = 0;
+            if (home.camp != null) return null;
             var map = s.map;
             if (!EntryNear(map, s.center, out var entry)) return null;
             foreach (var p in s.pawns)
@@ -556,7 +725,7 @@ namespace ColonyCouncil
             }
             // Mourners carry their dead in from the edge (CampDead.cs).
             c.BearDead();
-            camp = c;
+            home.camp = c;
             // What the land kinds bring with them: the spacers' wrecked craft (CampKindsLand.cs).
             c.LandStarted();
             return c;
@@ -722,33 +891,24 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Deep.Look(ref camp, "camp");
-            Scribe_Deep.Look(ref holding, "holding");
-            Scribe_Values.Look(ref nextId, "nextId", 1);
-            Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
-            Scribe_Values.Look(ref openMornings, "openMornings", 0);
-            Scribe_Collections.Look(ref diary, "diary", LookMode.Value);
-            Scribe_Collections.Look(ref diaryCounts, "diaryCounts", LookMode.Value, LookMode.Value);
-            Scribe_Values.Look(ref diarySince, "diarySince", -1);
-            Scribe_Values.Look(ref nextTryTick, "nextTryTick", -1);
-            Scribe_Values.Look(ref tryHours, "tryHours");
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            if (Scribe.mode == LoadSaveMode.Saving) homes?.RemoveAll(h => h == null);
+            Scribe_Collections.Look(ref homes, "homes", LookMode.Deep);
+            // A save from before there were camps per colony: its one camp, holding, war party and clock are the seat's.
+            if (Scribe.mode == LoadSaveMode.LoadingVars && homes == null)
             {
-                if (diary == null) diary = new List<string>();
-                if (diaryCounts == null) diaryCounts = new Dictionary<string, int>();
+                oldSave = new CampHome();
+                homes = new List<CampHome> { oldSave };
             }
+            if (oldSave != null && Scribe.mode != LoadSaveMode.Saving) oldSave.ExposeData();
+            Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Collections.Look(ref past, "past", LookMode.Deep);
-            Scribe_Deep.Look(ref warBand, "warBand");
-            Scribe_Values.Look(ref threatSince, "threatSince", -1);
-            Scribe_Values.Look(ref threatRolled, "threatRolled");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
-                if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
-                if (holding != null && (holding.kind == null || holding.map == null)) holding = null;
+                oldSave = null;
+                homes ??= new List<CampHome>();
+                homes.RemoveAll(h => h == null);
                 past ??= new List<PastCamp>();
                 past.RemoveAll(p => p == null || p.kind == null || p.faction == null);
-                if (warBand != null && (warBand.map == null || warBand.faction == null)) warBand = null;
             }
         }
     }

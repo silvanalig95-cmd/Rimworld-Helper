@@ -32,7 +32,7 @@ namespace ColonyCouncil
     /// tradition: three years running and the colony expects it, through the same moods, letters, chronicle and annals
     /// as the council's other traditions. The founding day is the founding event's to keep when Rimfolk events are on.
     /// </summary>
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         // The game's own rites and other mods' that can be held any day: Alpha Memes' tea ceremony, coffee roasting and
         // banquet, Vanilla Ideology Expanded - Memes' bonfire, trading fair, wicker man and star-gazing.
@@ -116,7 +116,7 @@ namespace ColonyCouncil
             }
         }
 
-        private static List<string> Tags(CalendarDay d, int years)
+        private static List<string> Tags(CalendarDay d, int years, Map land)
         {
             var t = new List<string> { years <= 1 ? "first" : "years", "kind:" + d.kind.ToString().ToLowerInvariant(), "way:" + d.way.ToString().ToLowerInvariant() };
             if (d.tradition) t.Add("tradition");
@@ -133,7 +133,7 @@ namespace ColonyCouncil
             // own ([faith]); the speaker's own beliefs come with them ([meme:...], [devout]).
             try
             {
-                foreach (var l in Lands.Of(Home)) t.Add("land:" + l);
+                foreach (var l in Lands.Of(land)) t.Add("land:" + l);
                 if (DecreeWork.ColonyFaith != null) t.Add("faith");
             }
             catch (Exception e)
@@ -171,8 +171,13 @@ namespace ColonyCouncil
 
         // ---------------- Coming round ----------------
 
-        private static bool FoundingEventKeepsIt() =>
-            S.worldEvents && GenDate.DaysPassed >= GenDate.DaysPerYear - 2 && DefDatabase<IncidentDef>.GetNamedSilentFail(HappeningWorker_Founding.DefName) != null;
+        /// <summary>
+        /// The founding event (Rimfolk's events, on the game's own anniversary at the seat) keeps the founding day of the
+        /// colony settled first; a colony founded later keeps its own day itself.
+        /// </summary>
+        private bool FoundingEventKeepsIt(CalendarDay d) =>
+            S.worldEvents && GenDate.DaysPassed >= GenDate.DaysPerYear - 2 && DefDatabase<IncidentDef>.GetNamedSilentFail(HappeningWorker_Founding.DefName) != null
+            && d.tick == 0 && AtSeat;
 
         private void ComeRound(CalendarDay d, int occurrence, Map map)
         {
@@ -194,7 +199,7 @@ namespace ColonyCouncil
                 return;
             }
             // (Kept another way than a feast, it's the calendar's own day again.)
-            if (d.kind == CalendarKind.Founding && d.way == DayWay.Feast && FoundingEventKeepsIt())
+            if (d.kind == CalendarKind.Founding && d.way == DayWay.Feast && FoundingEventKeepsIt(d))
             {
                 // The founding event comes today with its own letter and choices; whatever the colony does with it keeps the day.
                 foundingWaitYear = occurrence;
@@ -206,7 +211,7 @@ namespace ColonyCouncil
 
         private string Opening(CalendarDay d, Map map, Pawn keeper, Pawn other, int years)
         {
-            string line = Flavor.FromPool("Council_Cal_Letter_" + LinesKey(d), keeper, null, null, Tags(d, years).ToArray());
+            string line = Flavor.FromPool("Council_Cal_Letter_" + LinesKey(d), keeper, null, null, Tags(d, years, map).ToArray());
             return Fill(line, d, years, map, keeper, other);
         }
 
@@ -264,6 +269,7 @@ namespace ColonyCouncil
             letter.occurrence = occurrence;
             letter.ritual = ritual?.LabelCap;
             letter.keepLabel = keepLabel;
+            letter.home = Homes.KeyOf(map);
             letter.StartTimeout(ticks);
             Tell.Ask(letter, map);
         }
@@ -301,7 +307,7 @@ namespace ColonyCouncil
             if (letter == null || letter.resolved) return;
             letter.resolved = true;
             var d = Get(letter.dayId);
-            var map = Home;
+            var map = HomeMap;
             if (d == null || map == null) return;
             try
             {
@@ -336,8 +342,9 @@ namespace ColonyCouncil
             var result = CalendarMath.Keep(ref d.keptYears, ref d.tradition, ref d.breaks);
             d.timesKept++;
             d.lastKeptYear = occurrence;
-            Tradition(d, result, home, comp);
-            if (!quiet) comp?.offices.Notify_CustomKept(home);
+            Tradition(d, result, home, comp, map);
+            // The council of the colony keeping it (Offices: the keeper of days).
+            if (!quiet) (ColonyState.For(map)?.offices ?? comp?.offices)?.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
             if (!quiet) Interplay.Notify_DayKept(d, home);
             // Kept together, and an empty place at the table (Social/Talk/SharedTimes.cs).
@@ -349,8 +356,8 @@ namespace ColonyCouncil
             if (!quiet && keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve(), keeper));
             if (!told && !quiet && d.way != DayWay.Remembrance)
-                News.Post("CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(), new LookTargets(home), NewsKind.Colony, MessageTypeDefOf.PositiveEvent,
-                    byDefault ? Importance.Notable : Importance.Flavor);
+                Tell.Minor(NewsKind.Colony, byDefault ? Importance.Notable : Importance.Flavor, map, "CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(),
+                    new LookTargets(home), MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>The way a day is kept. Returns true when something the player sees already says so (the party's own letter).</summary>
@@ -694,8 +701,8 @@ namespace ColonyCouncil
                 var home = AtHome(map);
                 var keeper = home.Count > 0 ? Keeper(d, home) : null;
                 int years = YearsOf(d, d.lastYear);
-                string own = keeper != null ? Fill(Flavor.FromPool("Council_Cal_Pass_" + LinesKey(d), keeper, null, null, Tags(d, years).ToArray()), d, years, map, keeper, null) : null;
-                News.Post(own.NullOrEmpty() ? "CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve() : own, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                string own = keeper != null ? Fill(Flavor.FromPool("Council_Cal_Pass_" + LinesKey(d), keeper, null, null, Tags(d, years, map).ToArray()), d, years, map, keeper, null) : null;
+                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, own.NullOrEmpty() ? "CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve() : own, null, MessageTypeDefOf.NeutralEvent);
                 return;
             }
             using var _cause = Causes.Push("CC_Cause_Tradition".Translate(d.label).Resolve());
@@ -707,14 +714,14 @@ namespace ColonyCouncil
             }
             comp?.annals.Notify_Tradition(d.label, false);
             bool lapsed = result == CalendarMath.PassResult.Lapsed;
-            News.Post((lapsed ? "CC_Tradition_Lapsed" : "CC_Tradition_Broken").Translate(d.label).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
+            Tell.Minor(NewsKind.Colony, null, map, (lapsed ? "CC_Tradition_Lapsed" : "CC_Tradition_Broken").Translate(d.label).Resolve(), null, MessageTypeDefOf.NegativeEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, (lapsed ? "CC_Chronicle_TraditionLapsed" : "CC_Chronicle_TraditionBroken").Translate(d.label).Resolve(), null));
         }
 
         // ---------------- Traditions ----------------
 
         /// <summary>A day kept: a new tradition is announced, an old one kept is felt, as for the council's other traditions.</summary>
-        private void Tradition(CalendarDay d, CalendarMath.KeepResult result, List<Pawn> home, CouncilGameComponent comp)
+        private void Tradition(CalendarDay d, CalendarMath.KeepResult result, List<Pawn> home, CouncilGameComponent comp, Map map)
         {
             if (result == CalendarMath.KeepResult.Kept) return;
             // A remembrance kept every year is a tradition too, but its quiet hour is the mood.
@@ -730,7 +737,7 @@ namespace ColonyCouncil
                 Interplay.Notify_DayTradition(d, false);
                 return;
             }
-            Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
                 LetterDefOf.PositiveEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(d.label).Resolve(), null));
             comp?.annals.Notify_TraditionBorn(d.label);
@@ -770,11 +777,11 @@ namespace ColonyCouncil
                 // Their own anniversary is marked by the anniversaries (when that's on): the calendar adds a friend's memory of it.
                 if (!S.anniversaries)
                 {
-                    string msg = Fill(Flavor.FromPool("Council_Cal_Letter_Arrival", p, null, null, Tags(d, years).ToArray()), d, years, map, p, null);
+                    string msg = Fill(Flavor.FromPool("Council_Cal_Letter_Arrival", p, null, null, Tags(d, years, map).ToArray()), d, years, map, p, null);
                     if (!msg.NullOrEmpty()) News.Post(msg, new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                     using (Causes.Push("CC_Cause_Anniversary".Translate().Resolve())) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Anniversary);
                 }
-                if (friend != null) comp?.journals.WriteTagged(friend, "Council_Journal_Cal_Arrival", Tags(d, years).ToArray(), null, args.Concat(new[] { p.Named("OTHER") }).ToArray());
+                if (friend != null) comp?.journals.WriteTagged(friend, "Council_Journal_Cal_Arrival", Tags(d, years, map).ToArray(), null, args.Concat(new[] { p.Named("OTHER") }).ToArray());
                 if (p.MapHeld == map)
                 {
                     talkDayId = d.id;
@@ -783,10 +790,10 @@ namespace ColonyCouncil
                 }
                 return;
             }
-            string line = Fill(Flavor.FromPool("Council_Cal_Letter_Birthday", p, null, null, Tags(d, years).ToArray()), d, years, map, p, friend);
+            string line = Fill(Flavor.FromPool("Council_Cal_Letter_Birthday", p, null, null, Tags(d, years, map).ToArray()), d, years, map, p, friend);
             if (!line.NullOrEmpty()) News.Post(line, new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_Birthday, null, -1f, "CC_Cal_Cause_Birthday".Translate().Resolve());
-            var tags = Tags(d, years);
+            var tags = Tags(d, years, map);
             comp?.journals.WriteTagged(p, "Council_Journal_Cal_Birthday", tags.Concat(new[] { "self" }).ToArray(), null, args.ToArray());
             if (friend != null)
                 comp?.journals.WriteTagged(friend, "Council_Journal_Cal_Birthday", tags.Concat(new[] { "friend" }).ToArray(), null, args.Concat(new[] { p.Named("OTHER") }).ToArray());
@@ -858,7 +865,7 @@ namespace ColonyCouncil
             string pool = "Council_Journal_Cal_" + LinesKey(d);
             foreach (var w in Writers(d, home))
             {
-                var tags = Tags(d, years);
+                var tags = Tags(d, years, map);
                 var args = Args(d, years, map);
                 if (d.kind == CalendarKind.Wedding)
                 {
@@ -906,7 +913,7 @@ namespace ColonyCouncil
             var home = AtHome(map).Where(CanTalk).ToList();
             if (home.Count < 2) return false;
             Pawn a = null, b = null;
-            var tags = Tags(d, years);
+            var tags = Tags(d, years, map);
             bool personal = pool != "Council_Cal_Talk_Eve" && LinesKey(d) == d.kind.ToString();
             switch (d.kind)
             {
@@ -1026,32 +1033,48 @@ namespace ColonyCouncil
 
         // ---------------- The World page ----------------
 
-        /// <summary>The next few days on the calendar (within five days), for the World page's list of what's coming.</summary>
+        /// <summary>
+        /// The next few days on the calendars (within five days), for the World page's list of what's coming: each colony's
+        /// own (its election and its days, three at most), in the order the homes were founded, each named with more than
+        /// one colony.
+        /// </summary>
         public static List<WorldNote> Coming(int now)
         {
             var list = new List<WorldNote>();
-            var self = Instance;
-            var map = Home;
-            // Election day, while an election is under way (Offices/OfficesElection.cs): on the calendar whatever its setting.
-            var election = CouncilGameComponent.Instance?.offices?.election;
-            if (election != null && ColonyCouncilMod.Settings.offices)
+            var cals = All();
+            // No home at all: the election of the council its people carry still comes, as it always did.
+            if (cals.Count == 0) AddElection(list, CouncilGameComponent.Instance?.offices?.election, null);
+            foreach (var cal in cals) cal.ComingHere(list, now);
+            return list;
+        }
+
+        /// <summary>Election day, while one is under way (Offices/OfficesElection.cs): on the calendar whatever its setting.</summary>
+        private static void AddElection(List<WorldNote> list, Election election, ColonyCalendar cal)
+        {
+            if (election == null || !ColonyCouncilMod.Settings.offices) return;
+            int day = election.ceremony ? election.countTick : election.pollTick;
+            list.Add(new WorldNote
             {
-                int day = election.ceremony ? election.countTick : election.pollTick;
-                list.Add(new WorldNote
-                {
-                    title = (election.ceremony ? "CC_Elect_Cal_Ceremony" : "CC_Elect_Cal_Day").Translate().ToString(),
-                    text = "CC_Elect_Cal_Coming".Translate(OfficeTracker.ElectionDay(election)).Resolve(),
-                    icon = Icons.Office,
-                    color = UiKit.Gold,
-                    due = day,
-                    click = () => MainTabWindow_Council.OpenTab("Decrees")
-                });
-            }
-            if (self == null || map == null || !On) return list;
+                title = Named(cal, (election.ceremony ? "CC_Elect_Cal_Ceremony" : "CC_Elect_Cal_Day").Translate().ToString()),
+                text = "CC_Elect_Cal_Coming".Translate(OfficeTracker.ElectionDay(election)).Resolve(),
+                icon = Icons.Office,
+                color = UiKit.Gold,
+                due = day,
+                click = Open(cal, "Decrees")
+            });
+        }
+
+        /// <summary>This colony's election and its next days (three at most).</summary>
+        private void ComingHere(List<WorldNote> list, int now)
+        {
+            int start = list.Count;
+            AddElection(list, ColonyState.For(Map)?.offices?.election, this);
+            var map = HomeMap;
+            if (map == null || !On) return;
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);
             int hour = GenLocalDate.HourOfDay(map);
-            foreach (var d in self.days.Where(x => x.kind != CalendarKind.FirstSnow).OrderBy(x => CalendarMath.DaysUntil(today, x.day)))
+            foreach (var d in days.Where(x => x.kind != CalendarKind.FirstSnow).OrderBy(x => CalendarMath.DaysUntil(today, x.day)))
             {
                 int until = CalendarMath.DaysUntil(today, d.day);
                 if (until == 0 || until > 5) continue;
@@ -1059,17 +1082,35 @@ namespace ColonyCouncil
                 if (d.lastYear >= occ || (!d.byPlayer && occ <= d.sinceYear)) continue;
                 list.Add(new WorldNote
                 {
-                    title = d.label.CapitalizeFirst(),
+                    title = Named(this, d.label.CapitalizeFirst()),
                     text = "CC_Cal_World_Coming".Translate(WayLabel(d.way), DateText(d.day, map)).Resolve(),
                     tip = d.tradition ? "CC_Cal_Status_Tradition".Translate(d.timesKept).Resolve() : null,
                     icon = CalendarPanel.Icon,
                     color = UiKit.Gold,
                     due = now + until * GenDate.TicksPerDay + (9 - hour) * GenDate.TicksPerHour,
-                    click = () => MainTabWindow_Council.OpenTab("Calendar")
+                    click = Open(this, "Calendar")
                 });
-                if (list.Count >= 3) break;
+                if (list.Count - start >= 3) break;
             }
-            return list;
+        }
+
+        /// <summary>With more than one colony, the settlement's name before a line about one colony's calendar.</summary>
+        private static string Named(ColonyCalendar cal, string text)
+        {
+            var map = cal?.Map;
+            if (map == null || !ColonyState.Several) return text;
+            return "CC_Tell_At".Translate(Homes.Name(map).Named("PLACE"), text.Named("TEXT")).Resolve();
+        }
+
+        /// <summary>Opens a page of the Council tab; with more than one colony, at the colony it's about.</summary>
+        private static Action Open(ColonyCalendar cal, string page)
+        {
+            var map = cal?.Map;
+            return () =>
+            {
+                if (map != null && ColonyState.Several && Find.CurrentMap != map && Homes.IsHome(map)) Current.Game.CurrentMap = map;
+                MainTabWindow_Council.OpenTab(page);
+            };
         }
     }
 
@@ -1086,6 +1127,8 @@ namespace ColonyCouncil
         /// <summary>The faith's rite that would suit the day (Ideology), by name; null when there's none.</summary>
         public string ritual;
         public string keepLabel;
+        /// <summary>The colony whose day it is (its key, <see cref="Homes.KeyOf"/>); an older letter has none (the seat's).</summary>
+        public int home = HomesMath.None;
 
         public override bool CanDismissWithRightClick => false;
 
@@ -1111,7 +1154,8 @@ namespace ColonyCouncil
             {
                 action = () =>
                 {
-                    CalendarTracker.Instance?.Resolve(this, choice, false);
+                    // The calendar of the colony whose day it is (an older letter: the seat's).
+                    ColonyCalendar.ForLetter(this)?.Resolve(this, choice, false);
                     Find.LetterStack.RemoveLetter(this);
                 },
                 resolveTree = true
@@ -1123,7 +1167,7 @@ namespace ColonyCouncil
         public override void Removed()
         {
             base.Removed();
-            if (!resolved) CalendarTracker.Instance?.Resolve(this, KeepChoice, true);
+            if (!resolved) ColonyCalendar.ForLetter(this)?.Resolve(this, KeepChoice, true);
         }
 
         public override void ExposeData()
@@ -1134,6 +1178,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref resolved, "resolved");
             Scribe_Values.Look(ref ritual, "ritual");
             Scribe_Values.Look(ref keepLabel, "keepLabel");
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
         }
     }
 }

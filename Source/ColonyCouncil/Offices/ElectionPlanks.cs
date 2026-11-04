@@ -57,7 +57,7 @@ namespace ColonyCouncil
                     case PlankWhen.Herd:
                         return map.mapPawns.SpawnedColonyAnimals.Count >= 3;
                     case PlankWhen.Traditions:
-                        return CalendarTracker.Instance?.Traditions.Any() ?? false;
+                        return ColonyCalendar.For(map)?.Traditions.Any() ?? false;
                 }
             }
             catch (System.Exception e)

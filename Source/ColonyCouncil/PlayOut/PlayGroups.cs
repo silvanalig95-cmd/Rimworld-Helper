@@ -886,7 +886,7 @@ namespace ColonyCouncil
                 if (found != null)
                     foreach (var f in found)
                         if (f.Spawned) look.Add(f);
-                News.Post(text, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+                Tell.Minor(NewsKind.Colony, Importance.Flavor, p.map, text, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             }
             PlayWords.After(p, took);
         }
@@ -966,7 +966,7 @@ namespace ColonyCouncil
                 : "CC_Play_FellThrough".Translate(p.label.CapitalizeFirst(), why).Resolve();
             if (p.kind == PlayKind.Carry && !fetched && owed > 0)
                 text += " " + (owed < p.amount ? "CC_Play_FellThrough_CarryRest" : "CC_Play_FellThrough_Carry").Translate(owed, PlayCarry.Label(p.what, p.thing)).Resolve();
-            News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, text, null, MessageTypeDefOf.NeutralEvent);
             PlayWords.Missed(p);
         }
     }

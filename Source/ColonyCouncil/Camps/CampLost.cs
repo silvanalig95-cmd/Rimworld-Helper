@@ -192,7 +192,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.Instance?.camp;
+            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.VisitingAt(ctx?.map);
             if (c == null || !c.LostActive) return;
             string key = "CC_Impact_Lost_" + how;
             sheet.Add(ImpactKind.People, 0, (key.CanTranslate() ? key : "CC_Impact_Lost_dawn").Translate().Resolve());
@@ -204,7 +204,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.Instance?.camp;
+            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.VisitingAt(ctx?.map);
             if (c == null || !c.LostActive) return;
             var map = c.map;
             int now = Find.TickManager.TicksGame;
@@ -243,7 +243,7 @@ namespace ColonyCouncil
         public static void Reached(PlayOut p, Pawn by)
         {
             if (p == null || p.afterward != Search) return;
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.VisitingAt(p.map);
             if (c == null || !c.LostActive || c.map != p.map || !by.Position.InHorDistOf(c.lostCell, 5f)) return;
             p.afterward = null;
             c.FoundLost(by);
@@ -252,7 +252,7 @@ namespace ColonyCouncil
         /// <summary>The search ended without them: the camp's own people find them now.</summary>
         public static void Fallback(PlayOut p)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.VisitingAt(p?.map);
             if (c == null || !c.LostActive) return;
             c.LostComeHomeAt(Find.TickManager.TicksGame, false);
         }

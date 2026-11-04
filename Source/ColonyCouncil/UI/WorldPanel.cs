@@ -224,7 +224,7 @@ namespace ColonyCouncil
             // Story chains with a stage on its way (Workers_Chains2.cs).
             foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // The colony calendar's next days (Calendar/).
-            foreach (var n in CalendarTracker.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
+            foreach (var n in ColonyCalendar.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // Each colony's council meeting that has been called, with a countdown to when the chair calls everyone together.
             foreach (var council in ColonyState.Ticking())
             {

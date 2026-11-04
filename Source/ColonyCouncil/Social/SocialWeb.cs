@@ -110,24 +110,60 @@ namespace ColonyCouncil
 
         /// <summary>The circles as they stand still fit the setting (groups on or off).</summary>
         private bool CliquesCurrent => cliquesBuilt && cliquesFromGroups == GroupLife.Active;
-        /// <summary>The fight going on now: who has fought in it so far, and who it's against.</summary>
-        private List<Pawn> fighters = new List<Pawn>();
-        public Faction battleFaction;
-        [Unsaved] public Map battleMap;
-        public bool battleActive;
-        /// <summary>The fight's tally, for the colony's account of its victory: enemies fallen, who brought them down, our dead.</summary>
-        private int battleKills;
-        private int battleCountStart = -1;
-        private List<string> battleFallen = new List<string>();
-        [Unsaved] private Dictionary<Pawn, int> killsBy = new Dictionary<Pawn, int>();
+        /// <summary>While an old save loads: its one fight, read from where it always was, for the seat.</summary>
+        [Unsaved] private Battle oldBattle;
 
-        /// <summary>An enemy fell in a fight at home (Harmony hook).</summary>
-        public void Notify_EnemyFell(Pawn killer)
+        /// <summary>
+        /// The fights going on or just over, one per home (stage 0, step 7b): two fights at two homes are two fights, each
+        /// with its own fighters, foe and tally. An old save's one fight is the seat's.
+        /// </summary>
+        private List<Battle> battles = new List<Battle>();
+        /// <summary>When the colony last celebrated a victory (clean wins within a few days of it are only chronicled).</summary>
+        public int lastVictoryTick = -999999;
+
+        /// <summary>The fight at this home (going on, or its count begun), or null.</summary>
+        public Battle BattleAt(Map map)
         {
-            StartCount();
-            battleKills++;
+            if (map == null || battles == null) return null;
+            int key = Homes.KeyOf(map);
+            for (int i = 0; i < battles.Count; i++)
+            {
+                var b = battles[i];
+                if (b == null) continue;
+                // An old save's one fight: the seat's.
+                if (b.home == HomesMath.None && map == Homes.Seat) b.home = key;
+                if (b.home == key) return b;
+            }
+            return null;
+        }
+
+        private Battle BattleFor(Map map)
+        {
+            var b = BattleAt(map);
+            if (b != null || map == null) return b;
+            b = new Battle { home = Homes.KeyOf(map) };
+            battles.Add(b);
+            return b;
+        }
+
+        /// <summary>A fight is going on at this home.</summary>
+        public bool BattleOn(Map map) => BattleAt(map)?.active ?? false;
+
+        /// <summary>A fight is going on at any home.</summary>
+        public bool AnyBattle => battles != null && battles.Any(b => b != null && b.active);
+
+        /// <summary>The fight going on that began last (the only one, with one colony), or null.</summary>
+        public Battle Current => battles?.Where(b => b != null && b.active).OrderByDescending(b => b.countStart).FirstOrDefault();
+
+        /// <summary>An enemy fell in a fight at home (Harmony hook): counted in that home's fight.</summary>
+        public void Notify_EnemyFell(Pawn killer, Map map)
+        {
+            if (map == null || !map.IsPlayerHome) return;
+            var b = BattleFor(map);
+            b.StartCount();
+            b.kills++;
             if (killer != null && killer.IsColonist && killer.RaceProps.Humanlike)
-                killsBy[killer] = (killsBy.TryGetValue(killer, out int n) ? n : 0) + 1;
+                b.killsBy[killer] = (b.killsBy.TryGetValue(killer, out int n) ? n : 0) + 1;
         }
 
         /// <summary>
@@ -137,51 +173,11 @@ namespace ColonyCouncil
         public void Notify_ColonistFell(Pawn p, Map map)
         {
             if (p == null || map == null || !map.IsPlayerHome) return;
-            if (!battleActive && !MapFacts.ThreatOn(map)) return;
-            StartCount();
-            if (battleFallen.Count < 20) battleFallen.Add(p.LabelShort);
+            if (!BattleOn(map) && !MapFacts.ThreatOn(map)) return;
+            var b = BattleFor(map);
+            b.StartCount();
+            if (b.fallen.Count < 20) b.fallen.Add(p.LabelShort);
         }
-
-        /// <summary>Counts from the first blood of a fight; anything older than that fight is forgotten.</summary>
-        private void StartCount()
-        {
-            int now = Find.TickManager.TicksGame;
-            if (battleActive || (battleCountStart >= 0 && now - battleCountStart < GenDate.TicksPerHour * 3)) return;
-            ResetCount();
-            battleCountStart = now;
-        }
-
-        private void ResetCount()
-        {
-            battleKills = 0;
-            battleCountStart = -1;
-            battleKidnapped = Kidnapped();
-            battleFallen.Clear();
-            killsBy.Clear();
-        }
-        private int quietHours;
-        /// <summary>Colonists held by other peoples when the fight began: if that went up, the fight wasn't won.</summary>
-        private int battleKidnapped;
-        /// <summary>When the colony last celebrated a victory (clean wins within a few days of it are only chronicled).</summary>
-        public int lastVictoryTick = -999999;
-        /// <summary>Hours the end of a fight was held back while one of ours lay bleeding (or the enemy lingered).</summary>
-        [Unsaved] private int heldHours;
-
-        private static int Kidnapped() =>
-            Find.FactionManager?.AllFactionsListForReading.Sum(f => f.kidnapped?.KidnappedPawnsListForReading.Count ?? 0) ?? 0;
-
-        /// <summary>One of ours lies bleeding: whether they make it is part of the fight's story.</summary>
-        private static bool Bleeding() =>
-            Find.Maps.Where(m => m.IsPlayerHome).Any(m => m.mapPawns.FreeColonistsSpawned.Any(p => p.Downed && !p.Dead && p.health.hediffSet.BleedRateTotal > 0.01f));
-
-        /// <summary>The enemy is still about, though not attacking: fleeing slowly, or insects guarding their hive.</summary>
-        private static bool EnemyLingers(Faction foe) =>
-            foe != null && Find.Maps.Where(m => m.IsPlayerHome).Any(m =>
-                m.mapPawns.AllPawnsSpawned.Any(x => x.Faction == foe && !x.Dead && !x.Downed && !x.IsPrisoner && x.HostileTo(Faction.OfPlayer)));
-
-        /// <summary>A real threat came this time (a raid, a pack, an infestation...), not a scuffle with guests or a hunt gone wrong.</summary>
-        private bool WasThreat(int start) =>
-            start >= 0 && Find.Maps.Any(m => m.IsPlayerHome && m.storyState.LastThreatBigTick >= start - GenDate.TicksPerDay);
 
         /// <summary>Existing friendships and feuds are taken in quietly the first time the web runs on a save.</summary>
         private bool seeded;
@@ -549,71 +545,74 @@ namespace ColonyCouncil
         /// </summary>
         public void Hourly(CouncilGameComponent comp)
         {
-            // Fights are tracked even with the social web off: vendettas and quirks rely on them.
+            // Fights are tracked even with the social web off: vendettas and quirks rely on them. Each home's on its own.
             int now = Find.TickManager.TicksGame;
-            bool fighting = false;
-            if (!battleActive) battleFaction = null;
-            foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
+            foreach (var map in Find.Maps.Where(m => m.IsPlayerHome).ToList())
+                BattleHour(comp, map, now);
+            // A fight at a home no longer ours is over without a word.
+            battles.RemoveAll(b => b == null || (b.home != HomesMath.None && Homes.MapOf(b.home) == null));
+        }
+
+        private void BattleHour(CouncilGameComponent comp, Map map, int now)
+        {
+            var b = BattleAt(map);
+            if (b != null && !b.active) b.faction = null;
+            if (MapFacts.ThreatOn(map))
             {
-                if (!MapFacts.ThreatOn(map)) continue;
-                fighting = true;
-                battleMap = map;
+                b ??= BattleFor(map);
                 // Who it's against: the faction with the most fighters here now (none for animals and empty mech clusters).
-                bool stale = battleFaction == null || !map.mapPawns.AllPawnsSpawned.Any(x => x.Faction == battleFaction && !x.Dead && !x.Downed);
+                bool stale = b.faction == null || !map.mapPawns.AllPawnsSpawned.Any(x => x.Faction == b.faction && !x.Dead && !x.Downed);
                 if (stale)
                 {
                     var top = map.mapPawns.AllPawnsSpawned.Where(x => !x.Dead && !x.Downed && x.Faction != null && x.Faction != Faction.OfPlayer && x.Faction.HostileTo(Faction.OfPlayer) && !x.IsPrisoner)
                         .GroupBy(x => x.Faction).OrderByDescending(g => g.Count()).FirstOrDefault();
-                    battleFaction = top?.Key;
+                    b.faction = top?.Key;
                 }
                 foreach (var p in map.mapPawns.FreeColonistsSpawned)
                 {
-                    if (!Eligible(p) || fighters.Contains(p)) continue;
+                    if (!Eligible(p) || b.fighters.Contains(p)) continue;
                     var ms = p.mindState;
                     bool attacked = ms != null && now - ms.lastAttackTargetTick < GenDate.TicksPerHour * 2
                                     && ms.lastAttackedTarget.Thing is Pawn target && target.Faction != null && target.Faction.HostileTo(Faction.OfPlayer);
-                    if (p.Drafted || p.CurJobDef == JobDefOf.ManTurret || attacked) fighters.Add(p);
+                    if (p.Drafted || p.CurJobDef == JobDefOf.ManTurret || attacked) b.fighters.Add(p);
                 }
-            }
-            if (fighting)
-            {
-                if (!battleActive && (battleCountStart < 0 || now - battleCountStart > GenDate.TicksPerHour * 3))
+                if (!b.active && (b.countStart < 0 || now - b.countStart > GenDate.TicksPerHour * 3))
                 {
-                    ResetCount();
-                    battleCountStart = now;
+                    b.ResetCount();
+                    b.countStart = now;
                 }
-                battleActive = true;
-                quietHours = 0;
-                heldHours = 0;
+                b.active = true;
+                b.quietHours = 0;
+                b.heldHours = 0;
                 return;
             }
-            if (!battleActive) return;
-            if (++quietHours < 3) return;
+            if (b == null || !b.active) return;
+            if (++b.quietHours < 3) return;
             // Not over while one of ours lies bleeding or the enemy is still about (a few hours at most).
-            if (heldHours < 8 && (Bleeding() || EnemyLingers(battleFaction)))
+            if (b.heldHours < 8 && (Battle.Bleeding(map) || Battle.EnemyLingers(b.faction, map)))
             {
-                heldHours++;
+                b.heldHours++;
                 return;
             }
-            battleActive = false;
-            heldHours = 0;
-            var foe = battleFaction;
-            battleFaction = null;
-            var list = fighters.Where(Eligible).Distinct().ToList();
-            fighters.Clear();
+            b.active = false;
+            b.heldHours = 0;
+            var foe = b.faction;
+            b.faction = null;
+            var list = b.fighters.Where(Eligible).Distinct().ToList();
+            b.fighters.Clear();
             try
             {
                 // Won: a real threat, seen off (not still out there), and nobody of ours carried away.
-                if (WasThreat(battleCountStart) && Kidnapped() <= battleKidnapped && !EnemyLingers(foe))
-                    WorldReactions.Victory(comp, list, foe, battleKills, battleFallen.ToList(), new Dictionary<Pawn, int>(killsBy));
+                if (b.WasThreat(map) && Battle.Kidnapped() <= b.kidnapped && !Battle.EnemyLingers(foe, map))
+                    WorldReactions.Victory(comp, list, foe, b.kills, b.fallen.ToList(), new Dictionary<Pawn, int>(b.killsBy), map);
             }
             catch (System.Exception e)
             {
                 CouncilLog.ErrorOnce("victory", e);
             }
             // When the fight began, read before the count is reset (the quirks look for wounds since then).
-            int began = battleCountStart;
-            ResetCount();
+            int began = b.countStart;
+            b.ResetCount();
             foreach (var p in list)
             {
                 comp.quirks.Notify_Fought(p, began);
@@ -628,7 +627,8 @@ namespace ColonyCouncil
             }
             finally
             {
-                FightSides.Clear();
+                // What happened in the fight is read; another home's fight still going keeps its own.
+                if (!AnyBattle) FightSides.Clear();
             }
         }
 
@@ -876,15 +876,15 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
             Scribe_Collections.Look(ref lost, "lost", LookMode.Deep);
-            Scribe_Collections.Look(ref fighters, "fighters", LookMode.Reference);
-            Scribe_References.Look(ref battleFaction, "battleFaction");
-            Scribe_Values.Look(ref battleActive, "battleActive");
-            Scribe_Values.Look(ref battleKills, "battleKills");
-            Scribe_Values.Look(ref battleCountStart, "battleCountStart", -1);
-            Scribe_Collections.Look(ref battleFallen, "battleFallen", LookMode.Value);
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && battleFallen == null) battleFallen = new List<string>();
-            Scribe_Values.Look(ref quietHours, "quietHours");
-            Scribe_Values.Look(ref battleKidnapped, "battleKidnapped");
+            if (Scribe.mode == LoadSaveMode.Saving) battles?.RemoveAll(b => b == null || (!b.active && b.countStart < 0));
+            Scribe_Collections.Look(ref battles, "battles", LookMode.Deep);
+            // A save from before there was a fight per home: its one fight, where it always was, is the seat's.
+            if (Scribe.mode == LoadSaveMode.LoadingVars && battles == null)
+            {
+                oldBattle = new Battle();
+                battles = new List<Battle> { oldBattle };
+            }
+            if (oldBattle != null && Scribe.mode != LoadSaveMode.Saving) oldBattle.ExposeData();
             Scribe_Values.Look(ref lastVictoryTick, "lastVictoryTick", -999999);
             Scribe_Values.Look(ref seeded, "seeded");
             Scribe_Deep.Look(ref tones, "tones");
@@ -898,8 +898,9 @@ namespace ColonyCouncil
                 TiesChanged();
                 if (lost == null) lost = new List<LostBond>();
                 lost.RemoveAll(l => l == null || l.survivor == null || l.name == null);
-                if (fighters == null) fighters = new List<Pawn>();
-                fighters.RemoveAll(p => p == null);
+                oldBattle = null;
+                battles ??= new List<Battle>();
+                battles.RemoveAll(b => b == null);
                 cliques = new List<Clique>();
                 cliquesBuilt = false;
             }

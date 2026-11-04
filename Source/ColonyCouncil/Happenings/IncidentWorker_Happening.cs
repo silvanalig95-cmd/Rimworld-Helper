@@ -44,9 +44,12 @@ namespace ColonyCouncil
         public override float ChanceFactorNow(IIncidentTarget target)
         {
             float f = base.ChanceFactorNow(target);
-            if (HappeningTracker.Waiting) return 0f;
+            if (HappeningTracker.WaitingAt(target as Map)) return 0f;
             var t = CouncilGameComponent.Instance?.happenings;
             if (t != null && Find.TickManager.TicksGame - t.lastFiredTick < GenDate.TicksPerDay * 1.5f) f *= 0.3f;
+            // With more than one colony, a quarantine shuts only its own colony's gates (with one, it is in the base chance).
+            if (ColonyState.Several && S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category && Ext?.group == HappeningGroup.Visitors)
+                f *= DecreeWork.VisitorFactor(target as Map);
             return f;
         }
 

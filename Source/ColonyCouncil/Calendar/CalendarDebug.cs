@@ -7,13 +7,13 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>Dev mode: bring a calendar day round now, read the chronicle again, or let the first snow fall (Debug actions, "Rimfolk").</summary>
-    public partial class CalendarTracker
+    public partial class ColonyCalendar
     {
         [DebugAction("Rimfolk", "Calendar: a day comes round now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugComeRound()
         {
-            var self = Instance;
-            var map = Home;
+            var self = InView;
+            var map = self?.HomeMap;
             if (self == null || map == null) return;
             var options = new List<FloatMenuOption>();
             foreach (var d in self.days.OrderBy(x => x.day))
@@ -33,8 +33,8 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Calendar: read the chronicle again", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugBackfill()
         {
-            var self = Instance;
-            var map = Home;
+            var self = InView;
+            var map = self?.HomeMap;
             if (self == null || map == null) return;
             int before = self.days.Count;
             self.Backfill(map, GenLocalDate.DayOfYear(map), GenLocalDate.Year(map));
@@ -44,8 +44,8 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Calendar: the first snow comes now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugSnow()
         {
-            var self = Instance;
-            var map = Home;
+            var self = InView;
+            var map = self?.HomeMap;
             if (self == null || map == null) return;
             if (self.Get("snow") == null)
             {

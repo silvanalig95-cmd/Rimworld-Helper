@@ -109,8 +109,23 @@ namespace ColonyCouncil
         public NemesisTracker nemeses = new NemesisTracker();
         public PetTracker pets = new PetTracker();
         /// <summary>The herd's year and the wild beast that stays (Animals/HerdStory.cs, Animals/ResidentBeast.cs).</summary>
-        public HerdStory herd = new HerdStory();
-        public ResidentBeast beast = new ResidentBeast();
+        /// <summary>One per colony (stage 0, step 7b), kept by the council's rules (ColonyBook): an old save's are the seat's.</summary>
+        public List<HerdStory> herds = new List<HerdStory>();
+        public List<ResidentBeast> beasts = new List<ResidentBeast>();
+
+        /// <summary>The herd's year of the colony of this map (the seat's for a map that isn't a home).</summary>
+        public HerdStory HerdOf(Map map)
+        {
+            herds ??= new List<HerdStory>();
+            return ColonyBook.Entry(herds, map, () => new HerdStory());
+        }
+
+        /// <summary>The beast that stays on the land of the colony of this map (the seat's for a map that isn't a home).</summary>
+        public ResidentBeast BeastOf(Map map)
+        {
+            beasts ??= new List<ResidentBeast>();
+            return ColonyBook.Entry(beasts, map, () => new ResidentBeast());
+        }
         public AutonomyTracker autonomy = new AutonomyTracker();
         public HappeningTracker happenings = new HappeningTracker();
         /// <summary>Everyday pressures: the same meal, the same work, someone away, crowded rooms, half-built work.</summary>
@@ -285,8 +300,26 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref encounters, "encounters");
             Scribe_Deep.Look(ref nemeses, "nemeses");
             Scribe_Deep.Look(ref pets, "pets");
-            Scribe_Deep.Look(ref herd, "herd");
-            Scribe_Deep.Look(ref beast, "beast");
+            Scribe_Collections.Look(ref herds, "herds", LookMode.Deep);
+            Scribe_Collections.Look(ref beasts, "beasts", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                // A save from before there was one per colony: its herd's year and its beast are the seat's.
+                if (herds == null)
+                {
+                    HerdStory oldHerd = null;
+                    Scribe_Deep.Look(ref oldHerd, "herd");
+                    herds = new List<HerdStory>();
+                    if (oldHerd != null) herds.Add(oldHerd);
+                }
+                if (beasts == null)
+                {
+                    ResidentBeast oldBeast = null;
+                    Scribe_Deep.Look(ref oldBeast, "beast");
+                    beasts = new List<ResidentBeast>();
+                    if (oldBeast != null) beasts.Add(oldBeast);
+                }
+            }
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
             Scribe_Deep.Look(ref pressures, "pressures");
@@ -366,8 +399,10 @@ namespace ColonyCouncil
                 if (encounters == null) encounters = new EncounterTracker();
                 if (nemeses == null) nemeses = new NemesisTracker();
                 if (pets == null) pets = new PetTracker();
-                if (herd == null) herd = new HerdStory();
-                if (beast == null) beast = new ResidentBeast();
+                herds ??= new List<HerdStory>();
+                herds.RemoveAll(h => h == null);
+                beasts ??= new List<ResidentBeast>();
+                beasts.RemoveAll(b => b == null);
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (happenings == null) happenings = new HappeningTracker();
                 if (pressures == null) pressures = new PressureTracker();

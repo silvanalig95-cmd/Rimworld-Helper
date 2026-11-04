@@ -35,7 +35,7 @@ namespace ColonyCouncil
                     return WishWorker_Fishing.InUse(map);
                 case "quarrel":
                 {
-                    var c = CampTracker.Instance?.camp;
+                    var c = CampTracker.VisitingAt(map);
                     if (c == null || c.kind?.work != "fish" || c.map != map || !c.Settled || !c.CanTalk || c.farWater) return false;
                     return WishWorker_Fishing.HasFishingZone(map);
                 }

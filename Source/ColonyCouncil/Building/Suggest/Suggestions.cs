@@ -157,28 +157,54 @@ namespace ColonyCouncil
         public int Version { get; private set; }
         private static int Now => Find.TickManager?.TicksGame ?? 0;
 
+        // ---------------- Which colony ----------------
+
+        /// <summary>More than one colony: what is set aside and what waits is each colony's own.</summary>
+        private static bool Several => ColonyState.Several;
+
+        /// <summary>A home's key (none for no map, or a map that isn't a home).</summary>
+        private static int ColonyOf(Map map) => map != null && Homes.IsHome(map) ? Homes.KeyOf(map) : HomesMath.None;
+
         // ---------------- Not this ----------------
 
-        public bool Declined(string key)
+        /// <summary>
+        /// Set aside at the colony of <paramref name="map"/> (with more than one colony, its own "Not this"), or everywhere
+        /// (set aside with one colony, or by a page that says no home).
+        /// </summary>
+        public bool Declined(string key, Map map = null)
+        {
+            if (key.NullOrEmpty()) return false;
+            if (StillDeclined(key)) return true;
+            string own = SuggestMath.HomeKey(key, ColonyOf(map), Several);
+            return own != key && StillDeclined(own);
+        }
+
+        private bool StillDeclined(string key)
         {
             int i = declinedKeys.IndexOf(key);
             return i >= 0 && SuggestMath.StillDeclined(declinedUntil[i], Now);
         }
 
-        /// <summary>Sets a suggestion aside: for good (until brought back), or for so many days.</summary>
+        /// <summary>Sets a suggestion aside at its own home: for good (until brought back), or for so many days.</summary>
         public void Decline(Suggestion s, float days = 0f)
         {
             if (s?.key == null) return;
-            Decline(s.key, s.title, days);
+            Decline(s.key, s.title, days, s.map);
         }
 
         /// <summary>
         /// Sets aside by key, for a source whose advice isn't built as a Suggestion (an advisor card, a base finding, a
         /// piece of defense advice, a note on a line, an automation's action undone): the same store, the same Bring back.
         /// </summary>
-        public void Decline(string key, string title, float days = 0f)
+        public void Decline(string key, string title, float days = 0f, Map map = null)
         {
             if (key.NullOrEmpty()) return;
+            // With more than one colony, at the home it was set aside at (and named so on the list to bring it back).
+            if (Several && ColonyOf(map) != HomesMath.None)
+            {
+                key = SuggestMath.HomeKey(key, ColonyOf(map), true);
+                title = "CC_Tell_At".Translate(Homes.Name(map).Named("PLACE"), (title.NullOrEmpty() ? key : title).Named("TEXT")).Resolve();
+            }
             BringBack(key);
             declinedKeys.Add(key);
             declinedTitles.Add(title.NullOrEmpty() ? key : title);
@@ -215,35 +241,53 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>The keys set aside now, for a planner that gives their share to the next way.</summary>
-        public HashSet<string> DeclinedKeys()
+        /// <summary>
+        /// The keys set aside now at the colony of <paramref name="map"/> (and everywhere), as the planner builds them, for a
+        /// planner that gives their share to the next way.
+        /// </summary>
+        public HashSet<string> DeclinedKeys(Map map = null)
         {
             var set = new HashSet<string>();
             int now = Now;
+            string suffix = Several && ColonyOf(map) != HomesMath.None ? "@" + ColonyOf(map) : null;
             for (int i = 0; i < declinedKeys.Count; i++)
-                if (SuggestMath.StillDeclined(declinedUntil[i], now)) set.Add(declinedKeys[i]);
+            {
+                if (!SuggestMath.StillDeclined(declinedUntil[i], now)) continue;
+                string k = declinedKeys[i];
+                // One colony: every key, as always. More: this home's own (as the planner builds them), and those set aside everywhere.
+                if (suffix == null) set.Add(k);
+                else if (k.EndsWith(suffix)) set.Add(k.Substring(0, k.Length - suffix.Length));
+                else if (!Homes.All.Any(h => k.EndsWith("@" + Homes.KeyOf(h)))) set.Add(k);
+            }
             return set;
         }
 
         // ---------------- Doing and undoing ----------------
 
-        /// <summary>A step done whose check hasn't come yet: not suggested again meanwhile.</summary>
-        public bool Waiting(string key) => done.Any(d => d.key == key && d.state == SuggestMath.Waiting);
-
-        /// <summary>The last time this step was done it was undone again: an automation leaves it alone (the player took it back).</summary>
-        public bool UndoneLast(string key)
+        /// <summary>A step done (at this colony's home, with more than one) whose check hasn't come yet: not suggested again meanwhile.</summary>
+        public bool Waiting(string key, Map map = null)
         {
+            int colony = ColonyOf(map);
+            bool several = Several;
+            return done.Any(d => d.key == key && d.state == SuggestMath.Waiting && SuggestMath.SameHome(ColonyOf(d.map), colony, several));
+        }
+
+        /// <summary>The last time this step was done (at this colony's home) it was undone again: an automation leaves it alone (the player took it back).</summary>
+        public bool UndoneLast(string key, Map map = null)
+        {
+            int colony = ColonyOf(map);
+            bool several = Several;
             for (int i = done.Count - 1; i >= 0; i--)
-                if (done[i].key == key) return done[i].state == SuggestMath.Undone;
+                if (done[i].key == key && SuggestMath.SameHome(ColonyOf(done[i].map), colony, several)) return done[i].state == SuggestMath.Undone;
             return false;
         }
 
         /// <summary>Neither set aside nor waiting for its check: a key that may be offered (or done by an automation) now.</summary>
-        public bool Offered(string key) => !key.NullOrEmpty() && !Declined(key) && !Waiting(key);
+        public bool Offered(string key, Map map = null) => !key.NullOrEmpty() && !Declined(key, map) && !Waiting(key, map);
 
         /// <summary>What a source's suggestions are left once those set aside and those waiting for their check are taken out, the soonest first.</summary>
         public List<Suggestion> Open(IEnumerable<Suggestion> all) =>
-            all.Where(s => s?.key != null && !Declined(s.key) && !Waiting(s.key))
+            all.Where(s => s?.key != null && !Declined(s.key, s.map) && !Waiting(s.key, s.map))
                 .OrderBy(s => s, Comparer<Suggestion>.Create((a, b) => SuggestMath.Compare(a.days, a.Level, a.key, b.days, b.Level, b.key))).ToList();
 
         /// <summary>

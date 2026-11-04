@@ -42,7 +42,7 @@ namespace ColonyCouncil
             if (t == null || !cell.IsValid || hunter == null || !hunter.IsColonist || !hunter.RaceProps.Humanlike || !Fits(victim)) return;
             var map = victim.MapHeld ?? hunter.Map;
             if (map == null || !map.IsPlayerHome) return;
-            foreach (var old in t.Memos(Kind).ToList()) t.Use(old);
+            foreach (var old in t.Memos(Kind, 0f, map).ToList()) t.Use(old);
             var m = t.Remember(Kind, null, null, victim.kindDef.defName, cell.x + "," + cell.z, false, hunter, map);
             if (m != null) m.amount = map.uniqueID;
             // Now and then the young one is found a few hours later (the storyteller may still bring it while the kill is fresh).
@@ -276,7 +276,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var x = ctx?.stranger;
-            var rb = CouncilGameComponent.Instance?.beast;
+            var rb = CouncilGameComponent.Instance?.BeastOf(ctx.map);
             if (x == null || rb == null || !rb.CanTakeUp(x)) return;
             sheet.Add(ImpactKind.Other, 0, "Rimfolk_Impact_WatchBeast".Translate(x.LabelShort).Resolve(), "Rimfolk_Impact_WatchBeastBrief".Translate().Resolve());
         }
@@ -285,8 +285,9 @@ namespace ColonyCouncil
         {
             var x = ctx?.stranger;
             var comp = CouncilGameComponent.Instance;
-            if (x == null || comp?.beast == null) return;
-            comp.beast.TakeUp(comp, x);
+            var rb = comp?.BeastOf(ctx.map);
+            if (x == null || rb == null) return;
+            rb.TakeUp(comp, x);
         }
     }
 
@@ -531,7 +532,7 @@ namespace ColonyCouncil
                 }
                 if (now > v.until || x == null || x.Dead || !x.Spawned)
                 {
-                    News.Post("Rimfolk_Evt_GameOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                    Tell.Minor(NewsKind.World, null, v.map, "Rimfolk_Evt_GameOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                     return false;
                 }
                 return true;
@@ -605,7 +606,8 @@ namespace ColonyCouncil
             "Bow_Recurve", "Bow_Great", "MeleeWeapon_LongSword", "MeleeWeapon_Gladius", "Gun_BoltActionRifle", "Gun_Revolver", "Gun_PumpShotgun"
         };
 
-        private static bool Pending => CouncilGameComponent.Instance?.happenings.Memos(Kind).Any() ?? false;
+        /// <summary>A commission this colony took on is still being made.</summary>
+        private static bool Pending(Map map) => CouncilGameComponent.Instance?.happenings.Memos(Kind, 0f, map).Any() ?? false;
 
         /// <summary>A product the colony can make now: a bench of its own with the recipe, its research done, and someone good at the work.</summary>
         private static IEnumerable<(ThingDef product, RecipeDef recipe, Building_WorkTable bench, Pawn maker)> Makeable(Map map)
@@ -628,15 +630,16 @@ namespace ColonyCouncil
             }
         }
 
-        private static Faction PatronOf() =>
-            CouncilGameComponent.Instance?.happenings.Memos(Patron).Select(m => m.faction).FirstOrDefault(f => f != null && !f.defeated && !f.HostileTo(Faction.OfPlayer));
+        /// <summary>A people who were pleased with this colony's last commission.</summary>
+        private static Faction PatronOf(Map map) =>
+            CouncilGameComponent.Instance?.happenings.Memos(Patron, 0f, map).Select(m => m.faction).FirstOrDefault(f => f != null && !f.defeated && !f.HostileTo(Faction.OfPlayer));
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending && (PatronOf() ?? Arrivals.Friendly()) != null && Makeable(map).Any();
+        protected override bool CanHappen(Map map, HappeningExtension ext) => !Pending(map) && (PatronOf(map) ?? Arrivals.Friendly()) != null && Makeable(map).Any();
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             var map = ctx.map;
-            ctx.faction = PatronOf() ?? Arrivals.Friendly();
+            ctx.faction = PatronOf(map) ?? Arrivals.Friendly();
             var pick = Makeable(map).RandomElementWithFallback();
             if (ctx.faction == null || pick.product == null) return false;
             ctx.thing = pick.product;
@@ -654,7 +657,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
-            if (ctx.faction != null && PatronOf() == ctx.faction) tags.Add("patron");
+            if (ctx.faction != null && PatronOf(ctx.map) == ctx.faction) tags.Add("patron");
             if (ctx.thing != null) tags.Add(ctx.thing.IsWeapon ? "weapon" : "apparel");
         }
 
@@ -716,7 +719,7 @@ namespace ColonyCouncil
                     t.Use(m);
                     DropBill(map, m.text);
                     string off = VarietyUtil.Line(more?.cancelled, ctx);
-                    if (!off.NullOrEmpty()) News.Post(off, null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                    if (!off.NullOrEmpty()) Tell.Minor(NewsKind.World, null, map, off, null, MessageTypeDefOf.NeutralEvent);
                     continue;
                 }
                 var piece = Pieces(map, def, (QualityCategory)m.left, m.times).OrderBy(x => x.TryGetQuality(out var q) ? (int)q : 0).FirstOrDefault();
@@ -767,7 +770,7 @@ namespace ColonyCouncil
             if (fine)
             {
                 var t = comp.happenings;
-                foreach (var old in t.Memos(Patron).ToList()) t.Use(old);
+                foreach (var old in t.Memos(Patron, 0f, map).ToList()) t.Use(old);
                 t.Remember(Patron, null, ctx.faction, null, null, false, ctx.a, map);
             }
             var tags = new List<string> { fine ? "fine" : "plain" };

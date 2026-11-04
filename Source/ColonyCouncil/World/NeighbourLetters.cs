@@ -184,7 +184,8 @@ namespace ColonyCouncil
         public static Pawn DefaultWriter(Map map)
         {
             var all = Writers(map);
-            var speaker = CouncilGameComponent.Instance?.offices?.Speaker;
+            // The speaker of the colony writing.
+            var speaker = ColonyState.For(map)?.offices?.Speaker;
             if (speaker != null && all.Contains(speaker)) return speaker;
             return all.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).FirstOrDefault();
         }

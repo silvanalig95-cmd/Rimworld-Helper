@@ -83,7 +83,7 @@ namespace ColonyCouncil
         public override bool CanHave(Pawn p)
         {
             if (p.MapHeld == null || p.WorkTypeIsDisabled(WorkTypeDefOf.Handling)) return false;
-            if (AnimalFacts.Herdmaster == p) return true;
+            if (AnimalFacts.IsHerdmaster(p)) return true;
             var animals = p.skills?.GetSkill(SkillDefOf.Animals);
             var plants = p.skills?.GetSkill(SkillDefOf.Plants);
             return (animals != null && !animals.TotallyDisabled && People.Passionate(animals)) || (plants != null && People.Burning(plants) && Herd(p) > 0);

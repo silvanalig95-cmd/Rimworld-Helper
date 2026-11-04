@@ -639,10 +639,10 @@ namespace ColonyCouncil
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // Over the moment they pack up or their people turn on the colony: nobody sits on at a fire that's now an enemy's.
-            this.FailOn(() => CampTracker.Instance?.CampAt(job.targetB.Cell) is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
+            this.FailOn(() => CampTracker.Instance?.CampAt(job.targetB.Cell, pawn.Map) is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var visit = ToilMaker.MakeToil("VisitCamp");
-            visit.initAction = () => CampTracker.Instance?.CampAt(job.targetB.Cell)?.Visited(pawn);
+            visit.initAction = () => CampTracker.Instance?.CampAt(job.targetB.Cell, pawn.Map)?.Visited(pawn);
             visit.defaultCompleteMode = ToilCompleteMode.Delay;
             visit.defaultDuration = Mathf.Max(600, job.def.joyDuration);
             visit.socialMode = RandomSocialMode.SuperActive;

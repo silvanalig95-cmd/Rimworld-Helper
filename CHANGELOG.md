@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every colony its own
+
+*4 November 2026, version 0.68.0*
+
+- Each colony now keeps its own calendar: its own founding day, its own days and traditions, kept at its own home.
+- Camps come to each colony on their own, with a camp, neighbours and a war party for each, and allies answer a raid at any home.
+- Each colony's herdmaster, physician, chaplain, warden, marshal and keeper of days look after their own people.
+- Raids on two homes at once are two fights with two victories, and groups and social events stay within one home.
+- Names are given per colony: each colony has its own Healer, and a name taken over never makes rivals across colonies.
+- With more than one colony, the year's letter has a part for each, and the colony's news says which settlement.
+- "Not this", the council's automations and journey plans are each colony's own.
+- Older saves put everything under the seat, and a single colony plays as before. This completes the groundwork for the world and its people.
+
 ## Groundwork: the world's facts
 
 *4 November 2026, version 0.67.1*

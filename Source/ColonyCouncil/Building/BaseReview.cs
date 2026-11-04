@@ -144,7 +144,7 @@ namespace ColonyCouncil
             if (tracker == null) return c.findings;
             if (c.open == null || c.openFrom != c.findings || c.openVersion != tracker.Version)
             {
-                c.open = c.findings.Where(f => tracker.Offered(KeyOf(f))).ToList();
+                c.open = c.findings.Where(f => tracker.Offered(KeyOf(f), map)).ToList();
                 c.openFrom = c.findings;
                 c.openVersion = tracker.Version;
             }

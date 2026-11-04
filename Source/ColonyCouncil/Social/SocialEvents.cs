@@ -79,43 +79,43 @@ namespace ColonyCouncil
 
     public static class SocialEvents
     {
-        /// <summary>Social events still to happen today (worked out each morning, spent through the waking hours).</summary>
-        private static int pendingToday;
+        /// <summary>Social events still to happen today at each home (worked out each morning, spent through the waking hours).</summary>
+        private static readonly Dictionary<int, int> pendingToday = new Dictionary<int, int>();
 
         /// <summary>
-        /// A social event or two most days, more in bigger colonies. Worked out once a day; each one then happens at
-        /// some waking hour between two people who are near each other at the time (<see cref="Hourly"/>), so nobody
-        /// "talks" across the map.
+        /// A social event or two most days at each home, more in bigger ones. Worked out once a day, from the people at
+        /// each home; each one then happens at some waking hour between two people who are near each other at the time
+        /// (<see cref="Hourly"/>), so nobody "talks" across the map or between two colonies.
         /// </summary>
         public static void Daily(CouncilGameComponent comp)
         {
-            pendingToday = 0;
+            pendingToday.Clear();
             if (!ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
-            var map = HomeMap();
-            if (map == null) return;
-            var pawns = Available(map);
-            if (pawns.Count < 2) return;
-            float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f) * ColonyCouncilMod.Settings.socialEventFrequency;
-            pendingToday = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
+            foreach (var map in Homes.All)
+            {
+                var pawns = Available(map);
+                if (pawns.Count < 2) continue;
+                float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f) * ColonyCouncilMod.Settings.socialEventFrequency;
+                pendingToday[Homes.KeyOf(map)] = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
+            }
         }
 
-        /// <summary>Each waking hour, now and then: one of today's social events, between two people who are together.</summary>
+        /// <summary>Each waking hour, now and then, at each home: one of its social events today, between two people who are together.</summary>
         public static void Hourly(CouncilGameComponent comp)
         {
-            if (pendingToday <= 0 || !ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
-            var map = HomeMap();
-            if (map == null) return;
-            int hour = GenLocalDate.HourOfDay(map);
-            if (hour < 7 || hour > 21 || !Rand.Chance(0.3f)) return;
-            if (comp.social.battleActive || MapFacts.ThreatOn(map)) return;
-            var pawns = Available(map).Where(p => p.Awake()).ToList();
-            if (pawns.Count < 2) return;
-            if (TryOne(comp, map, pawns, true)) pendingToday--;
+            if (pendingToday.Count == 0 || !ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
+            foreach (var map in Homes.All)
+            {
+                int key = Homes.KeyOf(map);
+                if (!pendingToday.TryGetValue(key, out int left) || left <= 0) continue;
+                int hour = GenLocalDate.HourOfDay(map);
+                if (hour < 7 || hour > 21 || !Rand.Chance(0.3f)) continue;
+                if (comp.social.BattleOn(map) || MapFacts.ThreatOn(map)) continue;
+                var pawns = Available(map).Where(p => p.Awake()).ToList();
+                if (pawns.Count < 2) continue;
+                if (TryOne(comp, map, pawns, true)) pendingToday[key] = left - 1;
+            }
         }
-
-        /// <summary>Where most people are right now: a social event is between two who are there, not the colony's business.</summary>
-        private static Map HomeMap() =>
-            Homes.Busiest;
 
         private static List<Pawn> Available(Map map) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();

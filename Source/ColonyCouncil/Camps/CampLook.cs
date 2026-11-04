@@ -771,7 +771,7 @@ namespace ColonyCouncil
             leftKey = gift.key;
             SayMoment(w, "gift");
             // A day on the colony's calendar: the day they stayed and left this behind (Calendar/CalendarLived.cs).
-            CalendarTracker.Notify_CampGift(this, gift, placed, cell);
+            ColonyCalendar.Notify_CampGift(this, gift, placed, cell);
         }
 
         // ---------------- What they leave behind ----------------
@@ -791,7 +791,7 @@ namespace ColonyCouncil
                 if (!Place(g, at, Here.FirstOrDefault(), placed)) continue;
                 leftKey = g.key;
                 SayMoment(Here.Where(p => !p.Downed).RandomElementWithFallback(), "gift", 0.7f);
-                CalendarTracker.Notify_CampGift(this, g, placed, at);
+                ColonyCalendar.Notify_CampGift(this, g, placed, at);
             }
         }
 

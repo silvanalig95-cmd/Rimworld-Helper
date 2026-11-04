@@ -22,7 +22,8 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            if (map != HappeningTracker.HomeMap()) yield break;
+            // Game-wide advice, shown at each home on the ground.
+            if (!Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
             int now = Find.TickManager.TicksGame;
             foreach (var m in Missions.All.ToList())
             {
@@ -75,7 +76,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             var ws = WorldSituations.Instance;
-            if (ws == null || map != HappeningTracker.HomeMap()) yield break;
+            if (ws == null || !Homes.IsHome(map) || MapFacts.InVacuum(map)) yield break;
             var colonists = Colonists(map);
             if (colonists.Count == 0) yield break;
             foreach (var sit in ws.Running.ToList())
@@ -136,7 +137,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             if (!CampTracker.Enabled) yield break;
-            var camp = CampTracker.Instance?.camp;
+            var camp = CampTracker.VisitingAt(map);
             if (camp == null || camp.map != map) yield break;
             int now = Find.TickManager.TicksGame;
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Camp>().ToList())
@@ -254,8 +255,8 @@ namespace ColonyCouncil
             }
 
             // The keeper of days, with a day on the calendar within three days.
-            var cal = CalendarTracker.Instance;
-            if (CalendarTracker.On && cal != null)
+            var cal = ColonyCalendar.For(map);
+            if (ColonyCalendar.On && cal != null)
             {
                 int today = GenLocalDate.DayOfYear(map);
                 var day = cal.days.Where(d => d != null && d.way != DayWay.Personal && d.kind != CalendarKind.FirstSnow)
@@ -304,8 +305,9 @@ namespace ColonyCouncil
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var cal = CalendarTracker.Instance;
-            if (!CalendarTracker.On || cal == null || map != HappeningTracker.HomeMap()) yield break;
+            // At each home, from its own calendar.
+            var cal = Homes.IsHome(map) ? ColonyCalendar.For(map) : null;
+            if (!ColonyCalendar.On || cal == null || map != cal.HomeMap) yield break;
             int today = GenLocalDate.DayOfYear(map);
             foreach (var d in cal.days.ToList())
             {
@@ -326,7 +328,7 @@ namespace ColonyCouncil
                         break;
                 }
                 var s = Signal(d.tradition ? 0.3f : 0.18f, "CC_Adv_CalPrep_Title".Translate(d.label.CapitalizeFirst()).Resolve(),
-                    "CC_Adv_CalPrep_Detail".Translate(d.label, CalendarTracker.WayLabel(d.way), what).Resolve(), 0.7f);
+                    "CC_Adv_CalPrep_Detail".Translate(d.label, ColonyCalendar.WayLabel(d.way), what).Resolve(), 0.7f);
                 s.page = "Calendar";
                 s.key = "calendar-prep:" + d.id;
                 yield return s;

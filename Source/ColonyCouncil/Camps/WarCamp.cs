@@ -70,24 +70,26 @@ namespace ColonyCouncil
     {
         private static int Now => Find.TickManager.TicksGame;
 
+        /// <summary>Each home's hour (CampTimer): its own war party watched, or a threat on its own map answered.</summary>
         public static void Hourly(Map map, CampTracker tracker)
         {
             if (map == null || tracker == null) return;
-            if (tracker.warBand != null)
+            var home = tracker.HomeOf(map);
+            if (home.warBand != null)
             {
-                Watch(tracker.warBand, tracker);
+                Watch(home.warBand, tracker);
                 return;
             }
             bool threat = MapFacts.ThreatOn(map);
             if (!threat)
             {
-                tracker.threatSince = -1;
-                tracker.threatRolled = false;
+                home.threatSince = -1;
+                home.threatRolled = false;
                 return;
             }
-            if (tracker.threatSince < 0) tracker.threatSince = Now;
-            if (tracker.threatRolled || Now - tracker.threatSince < GenDate.TicksPerHour * CampStoryMath.WarAfterHours) return;
-            tracker.threatRolled = true;
+            if (home.threatSince < 0) home.threatSince = Now;
+            if (home.threatRolled || Now - home.threatSince < GenDate.TicksPerHour * CampStoryMath.WarAfterHours) return;
+            home.threatRolled = true;
             if (!CampTracker.Enabled || !CanCome(map, out var enemy, out var helper)) return;
             // An ally answers the call as an old foe of the attacker would: surely enough to be counted on.
             if (!Rand.Chance(CampStoryMath.WarChance(helper.PlayerGoodwill, Allies.IsAlly(helper) || (enemy.def.humanlikeFaction && helper.HostileTo(enemy))))) return;
@@ -166,7 +168,7 @@ namespace ColonyCouncil
         public static WarBand Start(Map map, Faction f, Faction enemy, List<Pawn> pawns)
         {
             var tracker = CampTracker.Instance;
-            if (tracker == null || tracker.warBand != null || map == null || pawns.NullOrEmpty()) return null;
+            if (tracker == null || map == null || tracker.HomeOf(map).warBand != null || pawns.NullOrEmpty()) return null;
             if (!Arrivals.TryEntryCell(map, out var entry)) return null;
             foreach (var p in pawns)
             {
@@ -185,7 +187,7 @@ namespace ColonyCouncil
                 Arrivals.SendAway(pawns);
                 return null;
             }
-            tracker.warBand = band;
+            tracker.HomeOf(map).warBand = band;
             return band;
         }
 
@@ -203,14 +205,14 @@ namespace ColonyCouncil
             b.dismissed = true;
             if (b.LordAlive) b.lord.ReceiveMemo(LordJob_WarBand.MemoLeave);
             if (b.faction != null) FactionMemory.Note(b.faction, "slighted", null, 4);
-            if (CampTracker.Instance != null) CampTracker.Instance.warBand = null;
+            CampTracker.Instance?.Forget(b);
         }
 
         private static void Watch(WarBand b, CampTracker tracker)
         {
             if (b.map == null || !Find.Maps.Contains(b.map) || !b.LordAlive || b.Here.Count == 0)
             {
-                tracker.warBand = null;
+                tracker.Forget(b);
                 return;
             }
             if (b.dismissed) return;
@@ -232,7 +234,7 @@ namespace ColonyCouncil
             var kind = DefDatabase<CampKindDef>.GetNamedSilentFail("Council_Camp_WarParty");
             // The hurt who can't walk come along in the camp's keeping, carried in spirit; those on their feet first (the first speaks for them).
             var here = b.Here.OrderBy(p => p.Downed ? 1 : 0).ToList();
-            if (kind == null || tracker.camp != null || here.Count == 0 || here.All(p => p.Downed) || CampWeather.Hazard(map) != null || CampWeatherMath.TooExtremeToCome(map.mapTemperature.OutdoorTemp)
+            if (kind == null || CampTracker.VisitingAt(map) != null || here.Count == 0 || here.All(p => p.Downed) || CampWeather.Hazard(map) != null || CampWeatherMath.TooExtremeToCome(map.mapTemperature.OutdoorTemp)
                 || !CampSite.TryFind(map, out var center))
             {
                 GoHome(b, tracker, "CC_WarCamp_Gone");
@@ -250,7 +252,7 @@ namespace ColonyCouncil
             var camp = tracker.Start(setup);
             if (camp == null)
             {
-                tracker.warBand = null;
+                tracker.Forget(b);
                 Arrivals.SendAway(here);
                 return;
             }
@@ -259,7 +261,7 @@ namespace ColonyCouncil
             string body = camp.Text("CC_WarCamp_Rest") + "\n\n" + "CC_WarCamp_Facts".Translate(b.came, b.Fell, (b.enemy?.Name ?? "").Named("ENEMY")).Resolve() + " " + camp.Text("CC_Camp_Facts_Talk");
             camp.Tell(camp.Text("CC_WarCamp_RestTitle"), body, LetterDefOf.PositiveEvent, true, camp.leader);
             if (b.LordAlive && b.lord.ownedPawns.Count > 0) b.lord.ReceiveMemo(LordJob_WarBand.MemoLeave);
-            tracker.warBand = null;
+            tracker.Forget(b);
         }
 
         private static void GoHome(WarBand b, CampTracker tracker, string key)
@@ -279,10 +281,10 @@ namespace ColonyCouncil
                 }
             }
             string text = key.Translate((b.faction?.Name ?? "").Named("FACTION"), (b.enemy?.Name ?? "").Named("ENEMY"), b.came.Named("COUNT"), b.Fell.Named("FELL")).Resolve();
-            Tell.Letter(NewsKind.World, Importance.Notable, null, "CC_WarCamp_GoneTitle".Translate((b.faction?.Name ?? "").Named("FACTION")).Resolve(), text, LetterDefOf.NeutralEvent,
+            Tell.Letter(NewsKind.World, Importance.Notable, b.map, "CC_WarCamp_GoneTitle".Translate((b.faction?.Name ?? "").Named("FACTION")).Resolve(), text, LetterDefOf.NeutralEvent,
                 new LookTargets(b.Here.Cast<Thing>()), b.faction);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
-            tracker.warBand = null;
+            tracker.Forget(b);
         }
 
         /// <summary>The fight is over with them in it: their people remember the colony owes them, and the colonists remember who stood with them.</summary>
@@ -378,7 +380,7 @@ namespace ColonyCouncil
         private List<Pawn> made;
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            CampTracker.Enabled && CampTracker.Instance != null && CampTracker.Instance.warBand == null && MapFacts.ThreatOn(map) && WarCamps.CanCome(map, out _, out _);
+            CampTracker.Enabled && CampTracker.Instance != null && CampTracker.WarBandAt(map) == null && MapFacts.ThreatOn(map) && WarCamps.CanCome(map, out _, out _);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -418,12 +420,12 @@ namespace ColonyCouncil
         public override string Unavailable(HappeningContext ctx, int option)
         {
             if (option == 0) return null;
-            return CampTracker.Instance?.warBand != null ? null : "CC_WarCamp_NotHere".Translate().ToString();
+            return CampTracker.WarBandAt(ctx.map) != null ? null : "CC_WarCamp_NotHere".Translate().ToString();
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            var band = CampTracker.Instance?.warBand;
+            var band = CampTracker.WarBandAt(ctx.map);
             if (band == null) return outcome;
             switch (option)
             {
@@ -446,7 +448,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (c == null || ctx?.a == null) return;
             int n = Math.Min(3, c.Here.Count(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()));
             if (n == 0) return;
@@ -456,7 +458,7 @@ namespace ColonyCouncil
 
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (c == null || !c.Here.Any(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff())) return "CC_CampAsk_NobodyHurt".Translate();
             if (ctx.a == null || ctx.a.WorkTagIsDisabled(WorkTags.Caring)) return "CC_CampTrouble_NoDoctor".Translate();
             return null;
@@ -464,7 +466,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
             if (c == null || ctx.a == null) return;
             var wounded = c.Here.Where(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()).OrderByDescending(p => p.health.summaryHealth.SummaryHealthPercent < 0.6f).Take(3).ToList();
             if (OutsiderTend.Send(ctx.a, wounded)) return;

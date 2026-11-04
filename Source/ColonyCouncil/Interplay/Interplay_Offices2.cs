@@ -15,15 +15,15 @@ namespace ColonyCouncil
         public const string Warden = "Council_Office_Warden";
         public const string Elder = "Council_Office_Elder";
 
-        /// <summary>The faith's certainty (from decrees and customs) goes half again as far with a chaplain at home.</summary>
-        public static float FaithFactor
+        /// <summary>
+        /// The faith's certainty (from decrees and customs) goes half again as far with a chaplain at home: the chaplain of
+        /// the colony of <paramref name="map"/> (the seat's for a map that isn't a home).
+        /// </summary>
+        public static float FaithFactor(Map map)
         {
-            get
-            {
-                if (!On) return 1f;
-                var c = Officer(Chaplain);
-                return c != null && !c.Dead && (c.MapHeld?.IsPlayerHome ?? false) ? ChaplainFaithFactor : 1f;
-            }
+            if (!On) return 1f;
+            var c = Officer(Chaplain, map);
+            return c != null && !c.Dead && (c.MapHeld?.IsPlayerHome ?? false) ? ChaplainFaithFactor : 1f;
         }
 
         public const float ChaplainFaithFactor = 1.5f;
@@ -35,7 +35,8 @@ namespace ColonyCouncil
         public static Pawn RiteLeader(CalendarDay d, List<Pawn> who)
         {
             if (!On || d == null || who == null || d.way != DayWay.Remembrance) return null;
-            var c = Officer(Chaplain);
+            // The chaplain of the colony keeping it.
+            var c = Officer(Chaplain, who.FirstOrDefault(p => p != null)?.MapHeld);
             if (c == null || !who.Contains(c) || !Able(c) || Grieving(c)) return null;
             if (Ready("chaplainrite|" + d.id, 0.5f) && Rand.Chance(0.6f))
                 Journal(c, "Council_Pool_Interplay_ChaplainRite", null, (d.label ?? "").Named("NAME"));
@@ -57,7 +58,12 @@ namespace ColonyCouncil
         /// </summary>
         private static void ChaplainDay(CouncilGameComponent comp)
         {
-            var c = Officer(Chaplain);
+            // Each colony's own chaplain, among the people at home with them.
+            foreach (var c in Officers(Chaplain)) ChaplainDay(c);
+        }
+
+        private static void ChaplainDay(Pawn c)
+        {
             if (!Able(c) || c.Map == null || !c.Map.IsPlayerHome || DecreeWork.ColonyFaith == null || !Rand.Chance(0.6f)) return;
             var people = c.Map.mapPawns.FreeColonistsSpawned.Where(p => p != c && Ours(p) && !p.DevelopmentalStage.Baby()).ToList();
             var grieving = people.Where(p => Grieving(p) && Heart.Eligible(p)).InRandomOrder().FirstOrDefault();
@@ -77,7 +83,7 @@ namespace ColonyCouncil
         private static void SitWithGrieving(Pawn c, Pawn grieving)
         {
             // together: called once the chaplain is beside them (ChaplainDay, through Together.When).
-            if (!On || Officer(Chaplain) != c || !Heart.Eligible(grieving)) return;
+            if (!On || !Holds(c, Chaplain) || !Heart.Eligible(grieving)) return;
             Ease(grieving, ChaplainComfort, StrainRelief.Friends);
             string text = Line("Council_Pool_Interplay_ChaplainComforts", c, null, grieving.Named("OTHER"));
             if (text.NullOrEmpty()) return;
@@ -89,7 +95,7 @@ namespace ColonyCouncil
         private static void WordOfFaith(Pawn c, Pawn doubter)
         {
             // together: called once the chaplain is beside them (ChaplainDay, through Together.When).
-            if (!On || Officer(Chaplain) != c || doubter.ideo == null || !DecreeWork.Believer(doubter)) return;
+            if (!On || !Holds(c, Chaplain) || doubter.ideo == null || !DecreeWork.Believer(doubter)) return;
             doubter.ideo.OffsetCertainty(ChaplainCertainty);
             string said = Line("Council_Pool_Interplay_ChaplainTends", c, null, doubter.Named("OTHER"));
             if (!said.NullOrEmpty())
@@ -115,17 +121,23 @@ namespace ColonyCouncil
         /// </summary>
         private static void WardenDay(CouncilGameComponent comp)
         {
-            var w = Officer(Warden);
+            // Each colony's own warden, with the camp and the visitors at their home.
+            foreach (var w in Officers(Warden)) WardenDay(w);
+        }
+
+        private static void WardenDay(Pawn w)
+        {
             if (!Able(w) || w.Map == null || !w.Map.IsPlayerHome) return;
-            var camp = CampTracker.Enabled ? CampTracker.Instance?.camp : null;
-            if (camp != null && camp.map == w.Map && camp.Settled && camp.CanTalk && Ready("warden|camp", 0.9f))
+            // The camp at the warden's own home.
+            var camp = CampTracker.Enabled ? CampTracker.VisitingAt(w.Map) : null;
+            if (camp != null && camp.map == w.Map && camp.Settled && camp.CanTalk && Ready("warden|camp|" + camp.id, 0.9f))
             {
                 var camper = camp.Here.Where(m => Together.Able(m)).InRandomOrder().FirstOrDefault();
                 if (camper != null)
-                    Together.When("warden|camp", w, camper, () =>
+                    Together.When("warden|camp|" + camp.id, w, camper, () =>
                     {
                         // together: the warden is at the camp, beside one of them.
-                        if (!On || Officer(Warden) != w || !camp.Settled || !camp.CanTalk) return;
+                        if (!On || !Holds(w, Warden) || !camp.Settled || !camp.CanTalk) return;
                         camp.AddTension(-WardenTension);
                         camp.Warm(w, 1);
                         string text = Line("Council_Pool_Interplay_WardenCamp", w, null, (camp.Label ?? "").Named("PLACE"));
@@ -141,7 +153,7 @@ namespace ColonyCouncil
                 Together.When("warden|guests|" + people.loadID, w, guest, () =>
                 {
                     // together: the warden is beside one of the visitors, welcoming them.
-                    if (!On || Officer(Warden) != w || people.HostileTo(Faction.OfPlayer)) return;
+                    if (!On || !Holds(w, Warden) || people.HostileTo(Faction.OfPlayer)) return;
                     people.TryAffectGoodwillWith(Faction.OfPlayer, WardenGoodwill, false, false);
                     string text = Line("Council_Pool_Interplay_WardenGuests", w, null, guest.Named("OTHER"), people.Name.Named("FACTION"));
                     if (!text.NullOrEmpty()) News.Post(text, new LookTargets(w, guest), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);

@@ -467,7 +467,7 @@ namespace ColonyCouncil
             try
             {
                 var who = Targets(ctx).Where(p => PlayOuts.OurPerson(p) && p.Spawned && p.Map == ctx.map).ToList();
-                var cal = CalendarTracker.Instance;
+                var cal = ColonyCalendar.For(ctx.map);
                 if (who.Count == 0 || cal == null) return;
                 var given = cal.RestFor(ctx.map, who, sleep);
                 if (given.Count == 0) return;

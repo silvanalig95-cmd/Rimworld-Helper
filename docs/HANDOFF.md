@@ -15,6 +15,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.68.0, stage 0 step 7b (F7b), stage 0 done: `ColonyBook` (shared per-colony rules: old record to the seat, a
+  lost home's kept 30 days, carried on), per colony: memo pick-ups and unanswered event letters, the calendar
+  (`ColonyCalendar`; `CalendarTracker` is the book; founding day per settlement), all Interplay officers, the speaker
+  in letters and talk, the annals' seats and raids, quarantine factor, the eight questions, camps (`CampHome`), encounters,
+  herd and beast, `Battle` per home, social events and groups, the year letter (a part per colony), names with a colony
+  key (founders and firstborn too), advisor keys and automation budgets, journeys (one plan per home), about 25
+  News.Post calls given their map. Left: one faith per people; vendettas, fight names in marks and pets pick the last
+  fight when two homes fight; the seat's calendar alone keeps nemeses and world events; remembered camps, the great
+  beast, chronicle, annals, wishes, trust and the heart's cooldown shared; small ODD items in the audit. Edge
+  differences: a message now with its map counts toward that home's Tell cap; an old save with no calendar whose only
+  colony was settled after day 2 takes its settlement date as founding day; "Not this" from before a second colony
+  stays at every home. `ManyHomesTests` (188).
 - 0.67.1, stage 0 step 5 (F5): `Text/Facts/` (`FactScene` Talk/Letter, `Facts.For` -> `FactSet`, providers in
   FactsWho/Place/World/Colony/Marks/Ledger/News; read-only, each in its own try/catch), `OutsiderFacts.For` a one-line
   call, `Text/Fill.cs` (`Texts.Fill`, `FillLine`, `Holes`, `Capitalize`, `WithThe`). New tags `tie:KIND[:ours|:theirs|

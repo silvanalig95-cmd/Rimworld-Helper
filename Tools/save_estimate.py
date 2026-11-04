@@ -175,6 +175,7 @@ MODEL = {
     "Standing.cs:asked": ("colonists", 15, 35, "per colonist, one per wish def asked for"),
     "Standing.cs:standings": ("colonists", 1, R, "one per colonist, the gone dropped daily"),
     "Annals.cs:present": ("colonists", 1, P, "the year in progress"),
+    "Annals.cs:threatSeen": ("fixed", 1, D, "each home's last big threat counted, one per home (one in the model); homes no longer ours dropped"),
     "Annals.cs:joined": ("yearly", 0.1, 40, "the year in progress"),
     "Annals.cs:died": ("yearly", 0.07, 40, "the year in progress"),
     "Annals.cs:gone": ("yearly", 0.05, 40, "the year in progress"),
@@ -199,10 +200,10 @@ MODEL = {
     "Calendar/CalendarDay.cs:fallen": ("fixed", 2, 40, "per day on the calendar (counted under days)"),
     "Calendar/CalendarDay.cs:knew": ("fixed", 4, 40, "per day on the calendar"),
     "Calendar/CalendarDay.cs:kin": ("fixed", 2, 40, "per day on the calendar"),
-    "Calendar/CalendarTracker.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding"),
-    "Calendar/CalendarTracker.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
-    "Calendar/CalendarTracker.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
-    "Calendar/CalendarTracker.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
+    "Calendar/ColonyCalendar.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding"),
+    "Calendar/ColonyCalendar.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
+    "Calendar/ColonyCalendar.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
+    "Calendar/ColonyCalendar.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
     "Calendar/CalendarWatch.cs:awaySince": ("colonists", 0.5, D, "the colony's people away now; the dead and those no longer ours dropped"),
     "Calendar/CalendarWatch.cs:huntKills": ("colonists", 1, D, "one per colonist, those no longer ours dropped daily"),
     "Calendar/CalendarWatch.cs:knownCrops": ("fixed", 40, 40, "one per crop the colony has grown (crop defs)"),
@@ -227,6 +228,8 @@ MODEL = {
     "Offices/Election.cs:voted": ("while", COLONISTS, P, "who has voted, while it lasts"),
     "Epithets/Epithets.cs:holders": ("defs", ("EpithetDef", 1), D, "one per title"),
     "Epithets/Epithets.cs:founders": ("fixed", 6, 40, "those here in the colony's first two days (by ThingID)"),
+    "Epithets/Epithets.cs:laterFounders": ("fixed", 0, 50, "a colony settled later: those who were its people in its first two days (none with one colony); a lost home's dropped"),
+    "Epithets/Epithets.cs:laterFirstborn": ("fixed", 0, 50, "a colony settled later: its first child (none with one colony); a lost home's dropped"),
     # Heart
     "Heart/HeartData.cs:recentBuild": ("fixed", 8, V, "per heart: one per strain source (counted under hearts)"),
     "Heart/HeartData.cs:recentRelief": ("fixed", 8, V, "per heart"),
@@ -306,7 +309,9 @@ MODEL = {
     "Camps/Camp.cs:trees": ("while", 10, P, "while the camp stays"),
     "Camps/CampStory.cs:beats": ("while", 3, V, "the beats of the stay played (ask, trouble, parting), while the camp stays"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
-    "Camps/CampTracker.cs:diary": ("fixed", 30, 40, "the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax)"),
+    "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
+                                   "below), a lost home's kept 30 days, then let go"),
+    "Camps/CampTracker.cs:diary": ("fixed", 30, 40, "the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax), one per colony"),
     "Camps/CampTracker.cs:diaryCounts": ("fixed", 18, D, "how often each outcome came, one count per kind of outcome"),
     "Camps/CampMemory.cs:people": ("fixed", 24, P, "the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp"),
     "Camps/WarCamp.cs:pawns": ("while", 7, P, "a war party's fighters, while it's on the map"),
@@ -385,6 +390,7 @@ MODEL = {
     "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),
     # The world
     # A journey planned ahead (Journeys/Journeys.cs): one plan at a time, gone when they set off or it's called off.
+    "Journeys/Journeys.cs:plans": ("fixed", 1, 200, "one plan per home at most, until it sets off (one home in the model)"),
     "Journeys/Journeys.cs:travellers": ("fixed", COLONISTS, P, "the one plan's travellers, until they set off"),
     "Journeys/Journeys.cs:animals": ("fixed", 10, P, "the animals they bring"),
     "Journeys/Journeys.cs:packing": ("fixed", 20, 130, "the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off"),
@@ -450,6 +456,13 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # The herd's year and the beast that stays, one per colony (Animals/HerdStory.cs, ResidentBeast.cs; one home in the model)
+    "CouncilGameComponent.cs:herds": ("fixed", 1, 420, "one per colony: its herd's leader and line (the line's ids have rows of their own)"),
+    "CouncilGameComponent.cs:beasts": ("fixed", 1, 380, "one per colony: the beast that stays on its land (its known ids have rows of their own)"),
+    # One calendar per colony (Calendar/CalendarTracker.cs): each calendar's rows are below, sized for one colony
+    "Calendar/CalendarTracker.cs:colonies": ("fixed", 1, 120,
+                                             "one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept "
+                                             f"{const('Lean/ColonyStateMath.cs', 'KeepLostDays', 30):.0f} days, then let go"),
     # One council per colony (ColonyState.cs): the trackers inside each have rows of their own below, sized for one colony
     "ColonyState.cs:colonies": ("fixed", 1, 160,
                                 "one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept "
@@ -606,7 +619,8 @@ MODEL = {
     "Character/ColonyTraits.cs:known": ("defs", ("ColonyTraitDef", 0.5), 40, "traits the colony grew into"),
     "Character/ColonyTraits.cs:today": ("fixed", 3, D, "today's tallies, emptied each day"),
     # Strangers
-    "Strangers/Encounters.cs:lastTick": ("defs", ("EncounterDef", 1), D, "one per encounter def"),
+    "Strangers/Encounters.cs:homes": ("fixed", 1, 80, "one per colony (EncounterHome: the day's count, the last, each kind's cooldown; one home in the model)"),
+    "Strangers/Encounters.cs:lastTick": ("defs", ("EncounterDef", 1), D, "one per encounter def, per colony"),
     "Strangers/Nemeses.cs:all": ("cap", (30 + 3, 0.05), 300, "30 that have ended"),
     "Strangers/Nuisances.cs:last": ("window", (10, COLONISTS * 0.1), D, "10 days"),
     "Strangers/Pets.cs:known": ("fixed", 30, P, "animals known: the dead get their farewell, the discarded are dropped"),
@@ -620,8 +634,9 @@ MODEL = {
     "Social/SocialWeb.cs:history": ("fixed", 10, 60, "per tie (counted under ties)"),
     "Social/SocialWeb.cs:ties": ("pairs", 0.3, 400, "ties of the dead dropped daily, of the gone faded out"),
     "Social/SocialWeb.cs:lost": ("cap", (40, 0.05), 200, "40 lost bonds"),
-    "Social/SocialWeb.cs:fighters": ("while", COLONISTS, P, "while a fight lasts"),
-    "Social/SocialWeb.cs:battleFallen": ("while", 5, 40, "while a fight lasts"),
+    "Social/SocialWeb.cs:battles": ("while", 1, 120, "one fight per home while it lasts (one home in the model); dropped when over"),
+    "Social/Battle.cs:fighters": ("while", COLONISTS, P, "while a fight lasts"),
+    "Social/Battle.cs:fallen": ("while", 5, 40, "while a fight lasts"),
     # Faith and the council (Faith/FaithCouncilTracker.cs)
     "Faith/FaithCouncilTracker.cs:faithEvenings": ("fixed", 6, D, "each faith's last evening of faith: one per faith, gone after 60 days or with the faith"),
     "Faith/FaithCouncilTracker.cs:plans": ("while", 1, R, "the evening of faith waiting to be held: one at a time, let go when its gathering is over"),

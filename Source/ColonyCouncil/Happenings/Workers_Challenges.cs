@@ -105,7 +105,7 @@ namespace ColonyCouncil
                     v.due = now + GenDate.TicksPerHour * 2;
                     return true;
                 }
-                News.Post("CC_Evt_ContestOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                Tell.Minor(NewsKind.World, null, v.map, "CC_Evt_ContestOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 return false;
             }
             string key = "contest|" + x.thingIDNumber;
@@ -118,7 +118,7 @@ namespace ColonyCouncil
             if (now > v.until + GenDate.TicksPerHour * 8)
             {
                 Together.Forget(key);
-                News.Post("CC_Evt_ContestOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                Tell.Minor(NewsKind.World, null, v.map, "CC_Evt_ContestOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 return false;
             }
             return true;

@@ -422,7 +422,8 @@ namespace ColonyCouncil
                 return false;
             }
             pending = new Invite { guest = g, objector = objector, penalty = penalty, forced = forced, objection = objection };
-            bool asked = comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_GuestInvite);
+            // Asked of the colony the guest is staying with.
+            bool asked = (DilemmaTracker.For(g.MapHeld) ?? comp.dilemmas).TryFire(true, d => d.Worker is DilemmaWorker_GuestInvite);
             pending = null;
             return !asked;
         }
@@ -684,7 +685,7 @@ namespace ColonyCouncil
                         continue;
                     }
                     DilemmaWorker_KinAsks.coming = new DilemmaWorker_KinAsks.Coming { pawn = p, kin = who, kind = kind, faction = k.faction, forced = k.forced };
-                    bool asked = comp.dilemmas.TryFire(true, d => d.Worker is DilemmaWorker_KinAsks);
+                    bool asked = (DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(true, d => d.Worker is DilemmaWorker_KinAsks);
                     DilemmaWorker_KinAsks.coming = null;
                     // Nobody to ask after all: they visit, and go home again.
                     if (!asked)
