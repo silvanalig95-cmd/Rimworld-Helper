@@ -1748,7 +1748,7 @@ over any `IColonyEntry`.
   one of the first members (joined in its own first year: `CalendarMath.FirstMember`) are read from each colony's own
   people and land. The seat's calendar keeps what is the colony's as a whole: the nemeses and the world's events. The
   founding event keeps only the founding day of the colony settled with the game; a later colony keeps its own. The
-  Calendar page shows the colony in view (with the colony header); the region window's Neighbours page, This week
+  Calendar page shows the colony in view (with the colony header); the region window's Here and away, This week
   and the HUD list each colony's coming days, named.
 - *Officers at work*: Interplay's officers are each colony's (`Interplay.Officer(def, map)`, `OfficerOf`, `Holds`,
   `Officers`): the keeper of days, the peacemaker, the steward and the chaplain of the colony where it happens; each
@@ -2281,8 +2281,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   put back), history `world:camp:found/raid/back/broken/paid/peace/burned/gaveUp` (milestones but the raid and put
   back), memory deeds `camped` (their wrong), `campBroken` and `campFailed` (the colony's wrongs to them), `paidOff`
   (a favor), `campStruck` and `burnedCamp` (good turns the colony owes; the ally's for a burning). A home lost takes its
-  camp (`ColonyBook.Lost`). Shown: the region page `RaidersCamps` (`MainTabWindow_World.Register`, order 55), the
-  panel's `PlaceSections` for its site and `HomeSections` for its home, This week's missions card.
+  camp (`ColonyBook.Lost`). Shown: the region map's Threats lens (its marks, its line to the home it raids, its List with
+  Pay; its old page name `RaidersCamps` forwards there), the place card's sections for its site and its home, This week's missions card.
 - **Towns that rise and fall** (the third release, item 2 with decisions 2, 5 and 14; `World/Region/RiseFall.cs`,
   `NewTowns.cs`, `RiseFallLedger.cs`, `RiseFallSituation.cs`, `RiseFallWords.cs`, `RiseFallEffects.cs`,
   `RiseFallPatches.cs`; rules in `RiseFallMath.cs`, Tools/Tests `RiseFallTests`; setting "Towns rise and fall"). Run on
@@ -2363,8 +2363,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   town): the memory's `postRazed` (a wrong of 30), `world:post:razed`, a news line. Taken, made a vassal or given up
   another way: its record ends quietly. History kinds of the family `world:post` (opened, warned, mended, closed,
   sacked, razed). Facts (the region's provider): `town:post` ({TOWN}, `{POSTKIND}`, `{KEEPER}`), `town:post:warned`,
-  `their:post` and `region:post` (`{POST}`, `{POSTPEOPLE}`); 14 talk pieces. Shown: the region page `TradingPosts`
-  (order 54), the panel's `Sections` for a post, This week while warned. Dev actions open, warn, sack and close one.
+  `their:post` and `region:post` (`{POST}`, `{POSTPEOPLE}`); 14 talk pieces. Shown: the region map's Trade lens
+  (its marks, its line to its town, its List; the old page name `TradingPosts` forwards there), the place card's sections for a post, This week while warned. Dev actions open, warn, sack and close one.
 - **Settlers' hamlets** (the sixth release, item 6 with decisions 9 to 11; `World/Region/HamletMath.cs` pure, `Hamlet.cs`,
   `HamletPlace.cs`, `HamletAsk.cs`, `HamletEscort.cs`, `HamletFound.cs`, `HamletLife.cs`, `HamletWords.cs`, `HamletPage.cs`,
   `HamletFacts.cs`, `HamletNotables.cs`, `HamletPatches.cs`, `HamletDebug.cs`; setting "Hamlets"; `HamletTests`). Each home's
@@ -2410,8 +2410,8 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   (release 7); once grown, the ledger keeps it as a town and the hamlet stays the colony's. Ages: `AgeFeature.Hamlet`
   (the protection by the colony's age, the hamlet's word by theirs) and `AgeFeature.Oath` (where the colony takes the
   oath, the oath by theirs). Facts: `town:hamlet` (`{HAMLETWORD}`), `town:hamlet:sworn`, `their:hamlet` and
-  `region:hamlet` (`{HAMLET}`, `{HAMLETPEOPLE}`); 14 talk pieces. Shown: the region page `Hamlets` (order 56), the panel's
-  `Sections` for a hamlet, This week while settlers wait. Dev actions: settlers ask, found it now, a hard season's ask,
+  `region:hamlet` (`{HAMLET}`, `{HAMLETPEOPLE}`); 14 talk pieces. Shown: the region map's Ours lens (the old page name `Hamlets` forwards there), the place card's
+  sections for a hamlet, This week while settlers wait. Dev actions: settlers ask, found it now, a hard season's ask,
   fealty, the harvest, the war's question.
 - **Small towns look small** (decision 4; `World/Region/SmallTownsMath.cs` pure, `SmallTowns.cs`; setting "Small towns'
   maps", with the deeper hooks). `Patch_SmallTownMap` prefixes `SymbolStack.Push(string, ResolveParams, string)` for the
@@ -2494,8 +2494,8 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
 - **No pass of its own.** `Diplomacy.Hourly` rides on the neighbours' hour (`NotableBook`, `Sched.Neighbours`): lines
   waiting for their letter, calls of theirs overdue, and once a day the look at each debt the colony owes.
 - **The colony calls one in** by a letter or a call (the purpose `LetterPurpose.Favour` in the letters' machinery,
-  `DiplomacyLetters`: what about, what is asked, their answer in `NeighbourLetters.Read`), from the Diplomacy page or
-  the town panel (which open that letter), or face to face (`OutsiderAct.AskFavour` after Invite, `DiplomacyActs`).
+  `DiplomacyLetters`: what about, what is asked, their answer in `NeighbourLetters.Read`), from the region window's Peoples or
+  the town's card (which open that letter), or face to face (`OutsiderAct.AskFavour` after Invite, `DiplomacyActs`).
   `FavourCalls.Options` lists what they can do, each greyed with why not: goods by their town's fortune and age, a word
   with a third people, a colonist they hold walked home, help toward peace. `FavourCalls.Hear` rolls their head's
   regard (`FavourMath.HonourChance`), does it (the goods with the answer's messenger or their porters, the third
@@ -2507,7 +2507,8 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   refugees: the existing missions fired for them (`MissionPeoples.Only`), kept when the mission's deed is noted, broken
   when it ends otherwise (`Missions.Finish` calls `FavourAsks.MissionEnded`); the colony's word in a dispute: a letter
   from the speaker to their head. Refused or overdue: broken, the deed `refused`, 5 goodwill.
-- **What the player sees.** The region window's Diplomacy page (order 35) and Household page (36), drawn by
+- **What the player sees.** The region window's Peoples (the owed strip, each people's ties) and Here and away (who is
+  here, who is away, the houses; UI 2, "The region in four views"; the old page names forward), drawn by
   `DiplomacyPanels` over one model built at most every two seconds (`DiplomacyModel`), its rows small pieces any page
   can draw; a click on a name goes through `DiplomacyLinks.Open`, which opens the thing's card; a town's ties in the Ties
   slot of its card;
@@ -2530,7 +2531,7 @@ window's, and the same place, so going from one to another keeps the frame):
 | Button (def) | Label | Window | Pages |
 |---|---|---|---|
 | `Council_MainButton` | council | `MainTabWindow_Council` | views Week (This week), People (modes Table, Moods, Bonds, Faiths, Houses), Council (Decrees, Ambition, Ways, Wishes, Dilemmas), Colony (Overview, Calendar, Chronicle) |
-| `Rimfolk_WorldButton` | region | `MainTabWindow_World` | Map, Neighbours, Peoples, Letters, Journeys, Events, WorldHistory, and pages other parts add |
+| `Rimfolk_WorldButton` | region | `MainTabWindow_World` | views Map (lenses Land, Stance, Fortunes, Threats, Trade, Ours; modes Map, List), Peoples (modes Peoples, Faces), HereAndAway, WorldHistory; pages other mods add under History's More |
 | `Council_DefenseButton` | defense | `MainTabWindow_Defenses` | Defenses |
 | `Council_RoomsButton` | planning | `MainTabWindow_Planning` | views Plan (modes Plan, Priorities), Base, Making, Rooms (modes Build, Rooms: List and At a glance) |
 
@@ -2541,32 +2542,27 @@ window's, and the same place, so going from one to another keeps the frame):
   `MainTabWindow_Council.OpenTab`, `OpenOrClose`, `IsPage` and `TabName` forward to it, so every older caller, mood
   hint, advisor step, This week card, panel line and page key routes through it) opens the window that has the page,
   on its view and mode; a view's name ("People") opens the mode last looked at there; "Almanac" opens the Almanac's
-  own window. Old addresses resolve (`PagesMath.Moved`, below for UI 4's): `World` is the region window's Neighbours
-  (it kept what the World page showed), `RegionMap` its Map, `History` (the old section) the Chronicle; `Defenses`
-  lives in its window. A window opens through its button's def, which works with the button hidden or put away.
+  own window. Old addresses resolve (`PagesMath.Moved`, below for UI 4's and UI 2's): `World` is the region map's Stance and
+  ties lens as a list (`Map/Stance/List`), `RegionMap` its Map, `History` (the old section) the Chronicle; `Defenses`
+  lives in its window. An address may name a region view's lens and mode after slashes (`PagesMath.TryAddress`). A window opens through its button's def, which works with the button hidden or put away.
 - **The corner** (`UI/WindowTabs.cs`): every window draws its tabs with `WindowTabs.Draw`, the game's tabs with their
   icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner back and forward
   (below, "Names that lead somewhere"), the Almanac's book (its window, lit while open) and the four windows' icons,
   the one showing lit. A click opens that window as its button would. The defense window has one tab, so its corner
   is where the others' is.
-- **The region window** opens on the region map unless something asked for a page. The map is `RegionMapView` (what
-  was `Window_RegionMap`, the same drawing, now inside the page): its picture is made when the page is first drawn and
-  let go when the window closes; where it looked is kept for the session. Its panel is the window's drawer: what is
-  picked is the place whose card is open there (kept for the session too), and with nothing picked the drawer shows
-  how to use the map and what its colours mean. The drawing went into the page rather than the region map keeping a window of its own because the
-  window was only a frame around it (its own place, size and close button): inside the region window the map sits
-  beside the pages the player asked to have with it, under one button, as the other windows are. Its other pages:
-  Neighbours (`WorldPanel`: what's coming, missions, a camp, who's out there, the towns nearby), Peoples (stance, wars
-  by the game's relations between peoples that count, world events, `FactionMemoryPanel`), Letters and calls
-  (`NeighbourLetters`, under way and lately, and whom the colony can write to), Journeys (`JourneyPanel` and the
-  colony's caravans), Events (`WorldSituationsPanel` and the chronicle's world lines) and History (the world's history
-  over `History.Of` for a people, `History.At` and `Of` for a town, all of it otherwise, newest first, at most 300,
-  filtered by a kind's family; each line in `History.Text`'s words, else its kind in words and who took part, each
-  name in it a link and its day a link to the entry's card; `UI/WorldHistoryMath.cs`, `UI/Cards/CardWords.cs`). Built
-  at most once a second or two while open; nothing while closed.
-- **Adding a region page** is one call from a `[StaticConstructorOnStartup]` class:
-  `MainTabWindow_World.Register(name, labelKey, icon, rect => Draw(rect), () => shown, order)`. The name becomes an
-  address `Pages.Open` takes; order 60 by default puts it after World events and before History.
+- **The region window** opens on the region map unless something asked for a view: four views (below, "The region
+  in four views"). The map is `RegionMapView` (what was `Window_RegionMap`, the same drawing, now inside the view): its
+  picture is made when the view is first drawn and let go when the window closes; where it looked is kept for the
+  session. Its panel is the window's drawer: what is picked is the place whose card is open there (kept for the
+  session too), and with nothing picked the drawer shows how to use the map and its lens's whole legend. The drawing
+  went into the window rather than the region map keeping a window of its own because the window was only a frame
+  around it (its own place, size and close button): inside the region window the map sits beside the views the player
+  asked to have with it, under one button, as the other windows are.
+- **Other mods' region pages**: `MainTabWindow_World.Register(name, labelKey, icon, rect => Draw(rect), () => shown,
+  order)` from a `[StaticConstructorOnStartup]` class still adds one. It is listed under History's More (in its order)
+  and drawn in the window's body with History's tab lit, until it finds its place in a view; a name that is already an
+  address is refused. Rimfolk's own parts add rows, sections, acts and lens marks instead (docs/design/interface.md,
+  "Where a new thing goes").
 - **The planning button** kept the rooms button's def name (`Council_RoomsButton`), so a bar arranged around the rooms
   button (`barPutAway`) and other mods' settings keyed by the def stay as they were; the small minimized
   `Rimfolk_PlanButton` is gone. Its settings merged once (`planningMerged`, false in a settings file from before):
@@ -2607,7 +2603,7 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
 - **Opening a card.** `Cards.Open(ThingRef)` (and overloads for a pawn, a people, a world object, a notable, a tie, a
   ref) opens it where the player is: in the drawer in sight (the council, region and planning windows', since UI 4;
   `Drawer.Active`), else in a small floating card window (`Window_Card`) with its own trail and "Open in its window"
-  (a colonist in the People table, a place on the region map, anything else in the region window's drawer on the page
+  (a colonist in the People table, a place on the region map, anything else in the region window's drawer on the view
   that lists it). `Cards.ShowOnMap` opens a place
   on the region map with its card as the panel: the "Show" buttons of the trading posts, hamlets, raiders' camps and
   journeys pages, This week's rows about places and the missions lead there now rather than to the game's world view;
@@ -2702,6 +2698,74 @@ four views in one row, the planning window's five pages four views, and the Alma
   view's name ("People", "Council", "Colony") its last mode; every other page kept its name. The mood hints, the
   advisor's steps, This week's cards, the panels, the page keys (Everyone's is People's table now) and the bottom bar
   buttons made in XML (a section "Almanac" opens the window) all go through `Pages.Open`.
+
+#### The region in four views (UI 2 of docs/design/interface.md)
+
+The second of the interface's five releases: the region window's ten pages (Map, Neighbours, Peoples, Letters and calls,
+Journeys, World events, Trading posts, Raiders' camps, Hamlets, History, and stage 2a.1's hidden Diplomacy and
+Household) are four views, each one page of its own section in `PagesMath.All` (so the region window counts as views
+in the five-views check), its own modes and lenses parts of its address. All in `UI/Region/` with the pure part in
+`UI/RegionViewsMath.cs` (tested in `Tools/Tests/RegionViewsTests.cs`, the addresses in `PagesTests`).
+
+- **Addresses** (`PagesMath.TryAddress`, `Address`, `Modes`, `Lenses`, `MaxLenses`): a view and, after slashes, a mode or
+  a lens of it: `Map/Trade/List`, `Peoples/Faces`. An old name forwards with its parts (`Neighbours` and `World`:
+  `Map/Stance/List`; `TradingPosts`: `Map/Trade/List`; `RaidersCamps`: `Map/Threats/List`; `Hamlets`:
+  `Map/Ours/List`; `Letters`, `Journeys`, `Household`: `HereAndAway`; `Diplomacy`: `Peoples`; `Events`:
+  `WorldHistory`), and parts after an old name override it. A mode an address doesn't name is the view's first; a lens
+  it doesn't name stays. `Pages.Open` passes the whole address to the window (`MainTabWindow_World.Select`, which sets
+  `RegionView`); the way back keeps the view's lens and mode as its step's mode (`Nav.Observe(w, page, mode, card)`,
+  `RegionView.Within`), and `Pages.Name` names it ("Map: Trade, as a list"). The window's button opens it on the map
+  itself, the lens as it was; nothing else of the views is saved.
+- **Map** (`MapView`, `RegionMapView`, `LensModel`): the lens bar (`UiKit.LensBar`: icon and name for each, the lit one
+  named and the rest icons where they don't all fit), Map or List (`UiKit.Modes`) and the "?" along the top; under
+  them, in Map, a line of what the lens shows, the way home and the reach, then the map. A lens (`Lens`, at most six)
+  recolours the marks drawn each frame (`RegionViewsMath.MarkTone` over each place's `PlaceFacts`: Land as the map
+  was; Stance by the people's stance, warm, cool or sour, with the town's head's regard as a ring; Fortunes by fortune
+  band, an arrow where it moved this season, a ring where a world event runs, a mark on a world event's tile; Threats
+  hostile towns, camps and a home with a threat now; Trade posts and the towns that trade; Ours homes, hamlets,
+  caravans), draws lines with `Widgets.DrawLine` (`UiKit.DashedLine`: a pact solid, a truce dashed, a favour owed
+  dotted, warm to the colony or soon from it, protection double, a grudge dotted and sour, a camp's raids in short
+  dashes, a post to its town, home to its hamlet), and has its legend in a strip at the map's foot (`UiKit.LegendStrip`)
+  and whole in the panel with nothing picked. Lines read the ledger: its live pacts, truces, favours, fealty and grudges
+  with the colony on one end (a home, its people, one of its own), and other mods' fealty views, each from home to the
+  other end's place (a town, a notable's town, a people's town nearest the home); `RegionViewsMath.TieLine` says which
+  draw. The land's picture is made once as before; the lens model is built at most once a second while the view
+  shows, from the world objects within the map's reach. The List: the lens's rows in groups (`RegionViewsMath.Group`,
+  `Key`, `Compare`: Threats camps, fights on their way, hostile towns; Trade posts, towns that trade, caravans; Ours
+  homes, hamlets and settlers on their way, caravans; Fortunes from struggling to flourishing, a town that moved before
+  its band, then ruins and towns being built; Land and Stance the towns, nearest first, Stance with the people known
+  there), each 44 high with its picture, its name as a link, its state as a chip, a second line, its distance by
+  caravan (`CardWords.DistanceShort`), its act (a camp's Pay) and "Show" (the map with it picked); a click on the row
+  opens its card in the drawer; only rows in sight are drawn; what came before (how the last camps, posts or hamlets
+  went, from the history) at the foot. With no card open the List takes the whole width.
+- **Peoples** (`PeoplesView`): Peoples mode, the owed strip (`DiplomacyPanels.Owed`), a card for each people the colony
+  can know (stance, kind, wars, the world's events about it, and where 2a.1's model has it its head, ties, what is
+  under way and its acts, `DiplomacyPanels.PeopleBody`; "Their history"; a click opens the people's card), then what
+  they remember (`FactionMemoryPanel`). Faces mode: the people known by name with Write (`LettersPage.KnownSection`),
+  then who's out there by `OutGroup` (`WorldPanel.OutThereSection`: old foes, those who left, the rest, each opening
+  its card) and the faces the colony keeps up with.
+- **Here and away** (`HereAndAwayView`): who is here from outside (2a.1's rows, and the camp on the colony's land,
+  `CampPanel`), what's coming (`WorldPanel.ComingSection`: questions waiting, debts, orders and visits due, a story's
+  next stage; the fights on their way are the Threats lens's, the calendar's days and the council's meetings This
+  week's), letters on the road (`LettersPage.UnderWaySection`), the colony's people away (2a.1's rows, the journey
+  planned, the caravans with Show), missions (`MissionPanel`) and the colony's houses.
+- **History** (`WorldHistoryPage`): the world's events running as a strip of chips at the top (a click leads to where
+  each is, or its people; the tooltip says what it means and the colony's part), the scope's chips (this colony, the
+  region, the world: `WorldHistoryMath.InScope` over the parties of each, the region the default), "Letters lately"
+  (the colony's letters and calls as rows, `LettersPage.LatelyRows`), More (other mods' pages), then the filters and
+  the rows as before, each row opening its entry's card. The scope and the letters chip are part of its filters on the
+  way back. `WorldHistoryPage.ShowFor` (a people's or a town's history) opens on the world.
+- **Components** (`UI/UiKitLenses.cs`, beside UI 4's `UI/UiKitViews.cs` whose view header with modes and "?" the
+  Peoples, Here and away and History views use): `ToneColor` (a `Hue`: warm, cool, sour, gold, soon, dim, world),
+  `KeptWidth` (a label measured once), `Modes`, `LensBar`, `LegendItem` with `LegendStrip` and `LegendList`,
+  `DashedLine`, `FilterChip`. Each takes a rect and plain data, so any window can draw it.
+- **What became of the old pages' code**: `WorldPanel` keeps what's coming and who's out there as sections (the
+  fights, calendar and meetings left it); `NeighboursPanel` is the town card's Who only; `LettersPage` is sections; the
+  posts', camps' and hamlets' pages keep their This week rows, card sections and words, and `RaidersCampPage.AskToPay`
+  is the Threats list's Pay; `DiplomacyPanels` registers no page (its old names forward). Mood hints, This week's rows,
+  the advisor, the overview and the cards' "open in its window" (`Cards.FullPage`: a person on Peoples' faces, a
+  people and a tie on Peoples, an event in History, a letter and a house on Here and away) lead to the new views.
+- **Icons**: `Away`, the six lenses (`LensLand` to `LensOurs`), `ModeMap`, `ModeList` (`Tools/make_icons.py`).
 
 ### A colonist's tabs
 
