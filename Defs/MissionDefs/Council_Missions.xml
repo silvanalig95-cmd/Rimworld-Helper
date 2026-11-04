@@ -45,6 +45,8 @@
           <li>[funeral,!lowtech] {DEAD}, mayor of {PLACE} for thirty years, died in the night at a great age. {FACTION} have been half planning this funeral for a decade: every mourner fed, and a proper grave for the one who kept the town going through the bad winters.\n\nNow the day has come and the town is short. A courier has brought the colony a list of what's missing, and a date.</li>
           <li>[wedding,lowtech] {DEAD}, the only daughter of {PLACE}'s headman, is to be married, and {FACTION} want a wedding the valley will talk about until the next one: food for every guest, drink enough for the dancing, and something fine for the couple's new house.\n\nThe headman's rider brought the colony a list, and a message to go with it: "We have the will, but not the hands."</li>
           <li>[wedding,!lowtech] {DEAD}, only daughter of the mayor of {PLACE}, is getting married, and the mayor has promised the whole region a wedding to remember. {FACTION}'s own kitchens have already said it can't be done in time.\n\nA courier brought the colony the shortfall, item by item, with a delivery date and a polite request not to mention it to the bride.</li>
+          <li>[funeral,royalhost] {DEAD} of {FACTION} has died at {PLACE}, and the Empire buries its nobility with ceremony: every mourner fed, a tomb fit for the title, and nothing done by halves.\n\nThe steward's courier brought the colony a list of what the household cannot find in time, sealed with the family's crest.</li>
+          <li>[wedding,royalhost] {DEAD} of {FACTION} is to be married at {PLACE}, and a noble wedding of the Empire must be seen to want for nothing. The household is short, and would rather the region didn't know it.\n\nA courier in livery brought the colony the list, and asked for an answer in writing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -83,6 +85,8 @@
         <done>
           <li>[delivered,funeral] {FACTION}'s carts took everything the colony had set aside, and their driver counted out {ITEM} silver before turning for home.\n\nWhen {DEAD} is buried, every family of {PLACE} will be at the graveside, and there will be food enough for all of them.</li>
           <li>[delivered,wedding] {FACTION}'s carts went home loaded to the rails with everything the colony had set aside, and {ITEM} silver stayed behind in payment. Every guest from {PLACE} at {DEAD}'s wedding will know whose food is on the tables.</li>
+          <li>[delivered,funeral,rite] {FACTION}'s carts took everything the colony had set aside, and their driver counted out {ITEM} silver. {DEAD} will be laid to rest with {RITE}, and the colony's food will feed the mourners after.</li>
+          <li>[delivered,wedding,rite] {FACTION}'s carts went home loaded with everything the colony had set aside, and {ITEM} silver stayed behind. {DEAD}'s wedding will be kept with {RITE}, and the colony's goods will be on the tables.</li>
           <li>[partial] {FACTION}'s carts came and found the list half filled. They took what there was, paid its plain worth, {ITEM} silver, and went on to the next village for the rest.</li>
         </done>
         <failTitles>

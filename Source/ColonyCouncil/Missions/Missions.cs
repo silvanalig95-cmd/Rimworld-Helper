@@ -95,6 +95,13 @@ namespace ColonyCouncil
         public int mapId = -1;
         /// <summary>Meals of the colony's that its guests have eaten (a dignitary, refugees: Hosting.cs).</summary>
         public int meals;
+        /// <summary>
+        /// An invitation's words (InviteForms.cs): who it comes from ({HOST}, by their title), the rite of the day ({RITE}:
+        /// their faith's own ritual when <see cref="riteOfFaith"/>, else how their age keeps it), the colony's titled guest
+        /// ({GUEST}), and whether the host or the one it is for holds a royal title.
+        /// </summary>
+        public string host, rite, guest;
+        public bool riteOfFaith, royalHost;
         /// <summary>What the guests went without since the day began (<see cref="Hosting.Lack"/>: food, a bed).</summary>
         public int lacks;
 
@@ -149,6 +156,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref mapId, "mapId", -1);
             Scribe_Values.Look(ref meals, "meals");
             Scribe_Values.Look(ref lacks, "lacks");
+            Scribe_Values.Look(ref host, "host");
+            Scribe_Values.Look(ref rite, "rite");
+            Scribe_Values.Look(ref guest, "guest");
+            Scribe_Values.Look(ref riteOfFaith, "riteOfFaith");
+            Scribe_Values.Look(ref royalHost, "royalHost");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (goals == null) goals = new List<MissionGoal>();
@@ -223,6 +235,9 @@ namespace ColonyCouncil
             if (ctx.a == null && map != null) ctx.a = VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             ctx.beast = m.name;
             ctx.dead = m.name;
+            ctx.host = m.host;
+            ctx.rite = m.rite;
+            ctx.guest = m.guest;
             ctx.thing = m.x?.def;
             ctx.tale = m.tale ?? GoodsText(m);
             // Someone the mission is about (a pilgrim, a lost child, a dignitary): {X} in its later lines too.
@@ -458,6 +473,8 @@ namespace ColonyCouncil
             if (!m.variant.NullOrEmpty()) tags.Add(m.variant);
             // Guests who ate at the colony's table (Hosting.cs): their letters may say so.
             if (m.meals > 0) tags.Add("ate");
+            // An invitation's rite, royal host and titled guest (InviteForms.cs).
+            InviteForms.AddTags(m, tags);
             return tags;
         }
 

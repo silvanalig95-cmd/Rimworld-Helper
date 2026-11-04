@@ -21,6 +21,9 @@ namespace ColonyCouncil
     {
         private Mission making;
 
+        /// <summary>The mission being offered, while its offer is made (before it is registered).</summary>
+        protected Mission Making => making;
+
         public MissionText More => def.GetModExtension<MissionText>();
 
         protected abstract string Kind { get; }
@@ -150,6 +153,9 @@ namespace ColonyCouncil
             ctx.tale = m.tale ?? Missions.GoodsText(m);
             ctx.dead = m.name;
             ctx.beast = m.name;
+            ctx.host = m.host;
+            ctx.rite = m.rite;
+            ctx.guest = m.guest;
         }
     }
 
@@ -193,11 +199,10 @@ namespace ColonyCouncil
             if (m.a == null) return false;
             bool funeral = Rand.Chance(0.5f);
             m.variant = funeral ? "funeral" : "wedding";
-            // Who it's for: their old head, or the bride; someone of theirs, named and never met.
-            var kind = Arrivals.PersonKind(m.faction);
-            var p = kind == null ? null : Arrivals.Make(kind, m.faction, funeral ? new FloatRange(62f, 85f) : new FloatRange(18f, 26f), funeral ? (Gender?)null : Gender.Female, null);
-            m.name = p?.LabelShort ?? "?";
-            if (p != null) Arrivals.Discard(p);
+            // Who it's for: their old head, or the bride; someone of theirs, named and never met, by the title the game
+            // shows them (the Empire's), and the rite their people keep for it (Missions/InviteForms.cs).
+            m.name = InviteForms.Named(m.faction, funeral ? new FloatRange(62f, 85f) : new FloatRange(18f, 26f), funeral ? (Gender?)null : Gender.Female, out m.royalHost);
+            m.rite = InviteForms.Rite(m.faction, map, m.variant, out m.riteOfFaith);
             bool art = CanSculpt(map);
             string wood = ThingDefOf.WoodLog.defName;
             Add(m, "meals", Scaled(map, 20f, 35f));
@@ -228,6 +233,14 @@ namespace ColonyCouncil
         {
             foreach (var g in m.goals) g.have = Missions.Count(map, g.what);
             return true;
+        }
+
+        /// <summary>How their people keep the day (the rite), before the terms.</summary>
+        protected override string Extra(HappeningContext ctx)
+        {
+            string terms = base.Extra(ctx);
+            string words = InviteForms.Lines(Missions.Of(ctx) ?? Making);
+            return words.NullOrEmpty() ? terms : terms.NullOrEmpty() ? words : words + "\n\n" + terms;
         }
 
         public override void Check(Mission m, Map map, int now)

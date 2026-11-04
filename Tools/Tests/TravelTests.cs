@@ -95,6 +95,22 @@ public static class TravelTests
         C(Near(stay, TravelMath.QuarrelChance, 1e-3f), $"a week's stay comes to {TravelMath.QuarrelChance:P0} that prospectors come to blows ({stay:P1})");
         C(TravelMath.QuarrelChance <= 0.15f, "about the game's own odds of a social fight in a week among a few people, not more");
 
+        // ---------------- Titles and rites in invitations ----------------
+
+        C(InviteMath.RiteKind("Funeral Funeral") == "funeral" && InviteMath.RiteKind("Celebration_Feast DateRitualFeast") == "feast"
+          && InviteMath.RiteKind("DanceParty") == "feast" && InviteMath.RiteKind("MarriageCeremony") == "wedding" && InviteMath.RiteKind("RoleChange") == null,
+            "what a ritual is for, from its names");
+        C(InviteMath.RiteKind("") == null && InviteMath.RiteKind(null) == null, "no names, no rite");
+        var kinds = new List<string> { null, "funeral", "feast", "wedding" };
+        C(InviteMath.Best("feast", kinds) == 2 && InviteMath.Best("midwinter", kinds) == 2, "a feast or midwinter: their feast");
+        C(InviteMath.Best("wedding", kinds) == 3 && InviteMath.Best("wedding", new List<string> { "feast" }) == 0, "a wedding: its own rite, else their feast");
+        C(InviteMath.Best("funeral", kinds) == 1 && InviteMath.Best("funeral", new List<string> { "feast" }) == -1, "a funeral: only a funeral rite");
+        C(InviteMath.Best("apprentice", kinds) == -1 && InviteMath.Best("feast", null) == -1, "no occasion, no rite");
+        C(InviteMath.Feature("feast") == AgeFeature.Feast && InviteMath.Feature("wedding") == AgeFeature.Marriage && InviteMath.Feature("funeral") == null,
+            "without a rite of their faith's, the age's form of a feast or a marriage");
+        C(InviteMath.Titled("baroness", "Ana Bell") == "Baroness Ana Bell" && InviteMath.Titled(null, "Ana Bell") == "Ana Bell" && InviteMath.Titled("knight", "") == "knight",
+            "a royal title before the name");
+
         // ---------------- The mod's side ----------------
 
         string src = Path.Combine(root, "Source", "ColonyCouncil");

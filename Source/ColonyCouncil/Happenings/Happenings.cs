@@ -130,6 +130,8 @@ namespace ColonyCouncil
         public string beast;
         /// <summary>A story told about the colony, or what a scholar studies.</summary>
         public string tale;
+        /// <summary>An invitation's host by their title, its rite, and the colony's guest by theirs ({HOST}, {RITE}, {GUEST}: Missions/InviteForms.cs).</summary>
+        public string host, rite, guest;
         public float points;
         /// <summary>Who would come to fight.</summary>
         public Faction enemy;
@@ -197,6 +199,10 @@ namespace ColonyCouncil
             args.Add((enemy?.Name ?? "").Named("ENEMY"));
             args.Add((tale ?? "").Named("TALE"));
             args.Add((placeName ?? "").Named("PLACE"));
+            // An invitation's host by their title, the rite of the day, the colony's titled guest (Missions/InviteForms.cs).
+            args.Add((host ?? "").Named("HOST"));
+            args.Add((rite ?? "").Named("RITE"));
+            args.Add((guest ?? "").Named("GUEST"));
             // The colonist their people remember by name (World/KinMemory.cs), for lines tagged [their:friend].
             args.Add(KinMemory.FriendArg(People));
             // What their people remember and the region's word on their town ({DEED}, {WRONG}, {FORTUNE}...), for the lines
@@ -219,6 +225,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dead, "dead");
             Scribe_Values.Look(ref beast, "beast");
             Scribe_Values.Look(ref tale, "tale");
+            Scribe_Values.Look(ref host, "host");
+            Scribe_Values.Look(ref rite, "rite");
+            Scribe_Values.Look(ref guest, "guest");
             Scribe_Values.Look(ref points, "points");
             Scribe_References.Look(ref enemy, "enemy");
             Scribe_References.Look(ref place, "place");
