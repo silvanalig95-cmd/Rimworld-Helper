@@ -6,6 +6,54 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- UI 3, one inbox and search (docs/design/interface.md, the third of its five releases; built beside UI 5a and merged
+  with it at 12b9521: the corner is 5a's `WindowLayoutMath.CornerWidth()`, 316, and `WindowTabs.LinksWidth` reads it).
+  DESIGN.md, "Rimfolk's windows" → "One inbox and search" has the whole of it. Pure and tested
+  (`Tools/Tests/InboxTests.cs`, about 1,500 checks): `UI/InboxMath.cs` (`InboxSection` and `Sections` in the design's order,
+  `Cap`/`Shown` (six rows, the plan two, "and 3 more" opened in place), `Count`/`Before` (the one count; with no new
+  asks it is 0.83's NeedsCount), `Order` (provider by provider, each by its rows' order, equals as found),
+  `CaravanStep`, `MissionStep`, `SettlerStep`, `JourneyStep`, `ShowsTimeLeft`, `When` (today, tomorrow, a date),
+  `InboxRegistry`), `UI/FollowMath.cs` (`Max` 12, `Toggle`, `Clean`, `FromThingId`, `TakeOldPins`), `UI/SearchMath.cs`
+  (`SearchKind`, `SearchItem`, `Fold`, `Score`, `Find` grouped best group first, six a kind, `First`). Game side:
+  `UI/Inbox.cs` (`Inbox.Register(provider)` or `Register(id, section, order, rows, needs, footer)`, `Inbox.In`,
+  `Inbox.Count` at most twice a second, `Dirty`), `UI/InboxProviders.cs` (Following: `following`, `pinned-wishes`;
+  Needs you: `wishes`, `answers`, `asks` (letters still open of the raiders' camps' terms, hamlets, the election and a
+  journey at the gate, through each letter class's new `Waiting`), `favours` (`DiplomacyPanels.WeekRows`/`WeekCount`),
+  `settlers` (`HamletPage.WeekRows`/`WeekCount`), `promises`; Coming: `calendar`, `meetings`, `fights`, `stories`,
+  `offers`, `posts` (`TradingPostPage.WeekRows`), `raiders` (`RaidersCampPage.WeekRows`, Pay while offered); How people
+  are: `strain`, `health`, `trust` (with the colony's trend as a row), `balance` (footer); the plan: `plan`, `proposed`
+  (footer); `InboxWords`: dates, today, tomorrow, the acts' words), `UI/InboxUnderWay.cs` (`letters`, `journey`,
+  `caravans`, `missions`, `hamlet-road`, `camp-price`, `plays` with what is kept on the map, `meeting`, `camp`, `guests`
+  (`GuestsWeek.AddRows`), each in steps, never a time left), `WeekModel` (the sections from the providers; `WeekRow`
+  gained `sub`, `steps`/`step`, `act`/`actRun`/`actWhy`/`actTip`, `follow`, `faction`; `WeekCard` is a section with
+  `count`, `footer`, `opened`; `NeedsCount` is `Inbox.Count`), `WeekPanel` (rows of one sentence with links, 26 or 40
+  high, the act's small button, "and 3 more"/"Show fewer" in place, kept for the session), `UiKit.StepsLine` and
+  `UiKit.CountBadge` (`UI/UiKitCards.cs`), `UI/FollowWords.cs` (each followed thing's newest change, once a second),
+  `WeekMemory.following` (saved; `IsFollowed`, `ToggleFollow`, `Followed`; `IsPinned(Pawn)`/`TogglePin(Pawn)` now
+  follow; `pinnedPawns` read from an older save only and followed), the pin on every card's head (`CardView.Head`,
+  `FollowTips`), `Hud/HudFollowing.cs` (the ninth panel, `HudIds.Following`, off at first, second column at 60%;
+  the settings' panel buttons five to a row), `UI/Search.cs` (`Search.Index` made when the field opens, `Register`,
+  `Open`, `Toggle`, the key `Council_Key_Search` in `Defs/Misc/Rimfolk_SearchKeys.xml`; `Window_Search`), the corner
+  (`WindowTabs`: search, the inbox with its count, the following list with the panel's switch), `UI/CouncilButton.cs`
+  (`MainButtonWorker_Council`, the count on the council button; `Council_MainButton`'s `workerClass`; setting
+  `inboxCountOnButton`, on at first, Interface page), icons `Inbox` and `Search`. Keys in
+  `Languages/English/Keyed/Rimfolk_Inbox.xml`; This week's keys rewritten in place (none removed). Docs: DESIGN.md,
+  README, the Almanac's start page, "the council's tabs", the advisor, meetings and play-out pages (no keyword
+  changes). Tests changed with it: `HudPanelTests` (the Following panel's size), and the trading posts', hamlets' and
+  diplomacy's checks now find their rows among the providers. textcheck reports one error, on purpose:
+  `Council_Misc.xml`'s new `workerClass` on the council button ("added outside an existing list": the check is for prose
+  passes; the DefValidator confirms the class). Not built, by the design's order or because nothing feeds them yet:
+  stage 2's offers, calls, envoys, council tasks and schemes as providers (2a.2 on), feast days in Coming, war bands on
+  the road; the inbox's rows reading the 5b tokens; previews on the search's results. To look at in game: This week with
+  each section full and empty, "and 3 more" opening in place, the acts (Answer opens the letter, Decide the Decrees
+  page, Pay the camp's confirmation, Put away the news), a letter's and a caravan's steps moving, Coming's dates
+  (today, tomorrow, a date); the count the same on the tab, the corner and the council button (and gone with the
+  setting off), on the bar both wide and minimized; the pin on a card's head (a town, a people, a debt), a thirteenth
+  refused with its message, Following's newest changes, a save from before with pinned colonists coming back followed;
+  the corner's following list and the Following panel switched on from it; the search from the corner and from its key
+  (with and without a window open), "Bonds", a town, a notable, an Almanac page, Enter and the arrows, a second click on
+  the icon shutting it, typing in it never moving the camera.
+
 - 0.85.0, UI 5a, one look: the first part (docs/design/interface.md, the fifth of its five releases, on the player's decisions 3
   and 6; built beside UI 3, which another agent builds at the same time: expect keep-both merges in `WindowTabs.cs`
   (only `Size` changed here), `CouncilSettings.cs`/`SettingsCatalog.cs` (`windowSize` after `linkPreviewDelay`, its
