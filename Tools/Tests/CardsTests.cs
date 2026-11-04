@@ -254,7 +254,7 @@ public static class CardsTests
         string catalog = Code("UI/SettingsCatalog.cs");
         C(settings.Contains("public bool linkPreviews = true;") && settings.Contains("public float linkPreviewDelay = 0.35f;")
           && catalog.Contains("Toggle(\"linkPreviews\"") && catalog.Contains("Slider(\"linkPreviewDelay\""), "previews on at first, after 0.35 seconds, both in the settings");
-        foreach (var show in new[] { "World/Region/HamletPage.cs", "World/Region/TradingPostPage.cs", "World/Region/RaidersCampPage.cs", "UI/WeekModel.cs" })
+        foreach (var show in new[] { "UI/Region/MapView.cs", "UI/Region/HereAndAwayView.cs", "UI/WeekModel.cs" })
             C(Code(show).Contains("Cards.ShowOnMap("), $"{show}: Show opens the place on the region map");
 
         // ---------------- The drawer's place ----------------
