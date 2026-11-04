@@ -83,20 +83,19 @@ public static class CouncilUiTests
         Check(colEnum.Count == CouncilLayoutMath.PeopleMin.Length, $"one width per people table column ({colEnum.Count} columns)");
         Check(colEnum.Count > 0 && colEnum[0] == "Name" && CouncilLayoutMath.PeoplePriority[0] == 0, "the name column always shows");
 
-        // ---------- The council window's pages ----------
+        // ---------- The council window's pages (the rest of Rimfolk's windows: PagesTests) ----------
         string ui = Path.Combine(root, "Source", "ColonyCouncil", "UI");
         string window = File.ReadAllText(Path.Combine(ui, "MainTabWindow_Council.cs"));
         var tabMatch = Regex.Match(window, @"private enum Tab\s*\{([^}]*)\}");
         Check(tabMatch.Success, "found the window's pages");
-        var pages = tabMatch.Groups[1].Value.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToHashSet();
-        Check(pages.Contains("Week") && pages.Contains("Everyone") && pages.Contains("Dilemmas"), "the new pages are pages");
-        // Every page is in a section's list.
-        var listed = new HashSet<string>();
-        foreach (Match m in Regex.Matches(window, @"Tab\[\] \w+Tabs = \{([^}]*)\}"))
-            foreach (var t in m.Groups[1].Value.Split(','))
-                listed.Add(t.Trim().Replace("Tab.", ""));
-        foreach (var p in pages) Check(listed.Contains(p), $"page {p} is in a section");
-        Check(Regex.IsMatch(window, @"ColonyTabs = \{ Tab\.Week,"), "This week is the Colony section's first page");
+        var councilPages = tabMatch.Groups[1].Value.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToHashSet();
+        Check(councilPages.Contains("Week") && councilPages.Contains("Everyone") && councilPages.Contains("Dilemmas"), "the new pages are pages");
+        // The window's pages are the ones PagesMath puts in it, which gives each its section.
+        var listed = PagesMath.PagesIn(RimfolkWindow.Council).ToHashSet();
+        foreach (var p in councilPages) Check(listed.Contains(p), $"page {p} is in a section");
+        foreach (var p in listed) Check(councilPages.Contains(p), $"page {p} of the council window is drawn there");
+        Check(PagesMath.PagesIn(RimfolkWindow.Council, "Colony")[0] == "Week", "This week is the Colony section's first page");
+        var pages = PagesMath.All.Select(p => p.name).ToHashSet();
 
         var keyed = new Dictionary<string, string>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
@@ -107,7 +106,7 @@ public static class CouncilUiTests
         // ---------- Mood hints: "Go to ..." leads to the page the text names ----------
         var named = new Dictionary<string, string>
         {
-            ["Wishes page"] = "Wishes", ["Decrees page"] = "Decrees", ["World page"] = "World", ["Ambition page"] = "Ambition",
+            ["Wishes page"] = "Wishes", ["Decrees page"] = "Decrees", ["Neighbours page"] = "Neighbours", ["Peoples page"] = "Peoples", ["Ambition page"] = "Ambition",
             ["Moods page"] = "Moods", ["Dilemmas page"] = "Dilemmas", ["Calendar page"] = "Calendar", ["Bonds page"] = "Bonds"
         };
         int hints = 0, linked = 0;
@@ -122,8 +121,10 @@ public static class CouncilUiTests
                 if (tab != null)
                 {
                     linked++;
-                    Check(pages.Contains(tab), $"{name}: its page {tab} is a page of the council window");
+                    Check(pages.Contains(tab), $"{name}: its page {tab} is a page of one of Rimfolk's windows, by its own name");
                 }
+                string keep = d.Element("keep")?.Value ?? "";
+                Check(!fix.Contains("World page") && !keep.Contains("World page"), $"{name}: no hint sends the player to the old World page");
                 foreach (var kv in named)
                     if (fix.Contains(kv.Key))
                         Check(tab == kv.Value, $"{name}: its text names the {kv.Key}, and its button goes there (goes to {tab ?? "nothing"})");
@@ -142,7 +143,7 @@ public static class CouncilUiTests
         var bindings = bindingsXml.Root!.Elements("KeyBindingDef").Select(e => e.Element("defName")?.Value).Where(n => n != null).ToHashSet();
         foreach (var p in keyPages)
         {
-            Check(pages.Contains(p), $"shortcut page {p} is a page");
+            Check(PagesMath.IsPage(p), $"shortcut page {p} is a page (or an old name of one)");
             Check(bindings.Contains("Council_Key_" + p), $"page {p} has a key binding");
         }
         Check(bindings.Contains("Council_Key_NextPage") && bindings.Contains("Council_Key_PreviousPage"), "next and previous page keys exist");

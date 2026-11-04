@@ -5,15 +5,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Optional keyboard shortcuts for the council's pages: the game's own key bindings (Defs/Misc/Council_KeyBindings.xml,
+    /// Optional keyboard shortcuts for Rimfolk's pages: the game's own key bindings (Defs/Misc/Council_KeyBindings.xml,
     /// under "Rimfolk" in Options → Keyboard), none of them bound until the player picks a key. A page's key opens the
-    /// council window on that page (or closes it when that page is already showing); the next and previous page keys
-    /// work while the window is open; the region map's key opens or closes its own window. Nothing happens while a
-    /// text field has the keyboard.
+    /// window that has the page on it (or closes it when that page is already showing): "World" is the region window's
+    /// Neighbours, "Defenses" the defense window. The next and previous page keys work while one of the windows is
+    /// open; the region map's key opens the region window on its map, or closes it. Nothing happens while a text field
+    /// has the keyboard.
     /// </summary>
     public static class CouncilKeys
     {
-        /// <summary>The pages with a key of their own, by the council window's page names; each key is "Council_Key_" + the name.</summary>
+        /// <summary>The pages with a key of their own, by their old page names (UI/PagesMath.cs); each key is "Council_Key_" + the name.</summary>
         public static readonly string[] Pages = { "Week", "Everyone", "Wishes", "Moods", "World", "Defenses", "Calendar", "Dilemmas", "Almanac" };
 
         private static KeyBindingDef[] keys;
@@ -62,10 +63,10 @@ namespace ColonyCouncil
                 Event.current.Use();
                 return;
             }
-            // The region map's window (UI/Window_RegionMap.cs).
+            // The region window on its map (UI/MainTabWindow_World.cs).
             if (regionMap != null && regionMap.KeyDownEvent)
             {
-                Window_RegionMap.Toggle();
+                MainTabWindow_Council.OpenOrClose("Map");
                 Event.current.Use();
             }
         }

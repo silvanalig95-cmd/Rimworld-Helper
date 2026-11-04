@@ -7,7 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The top of the council's World page: "In the world", one card per running world situation (its name, the people
+    /// The region window's World events page: "In the world", one card per running world situation (its name, the people
     /// it's about, what it means for the colony, what the colony has done, and how long it may last).
     /// </summary>
     public static class WorldSituationsPanel

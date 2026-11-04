@@ -11,23 +11,22 @@ using static ColonyCouncil.RegionMapMath;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The region map: the land around the colony in a window of its own over the colony, never the game's world view.
-    /// It moves, resizes and stays open while the game runs; its size and place, and where it was looking, are kept
-    /// for the session. The mouse wheel zooms, a drag looks around, a hover tells the land, a click picks a settlement
-    /// (or any tile) for the panel beside the map: its name, its people and how they stand with the colony, how far it
-    /// is by caravan, what Rimfolk knows of them, the sections other parts of Rimfolk add (World/NeighbourPanel.cs),
-    /// and a button to see it in the game's world view, only when asked. Opened from the council's World page or its
-    /// own key (Defs/Misc/Council_KeyBindings.xml); the picture is World/RegionMap.cs.
+    /// The region map, the first page of the region window (UI/MainTabWindow_World.cs): the land around the colony over
+    /// the colony, never the game's world view. Where it was looking is kept for the session. The mouse wheel zooms, a
+    /// drag looks around, a hover tells the land, a click picks a settlement (or any tile) for the panel beside the map:
+    /// its name, its people and how they stand with the colony, how far it is by caravan, what Rimfolk knows of them,
+    /// the sections other parts of Rimfolk add (World/NeighbourPanel.cs), and a button to see it in the game's world
+    /// view, only when asked. Its picture is World/RegionMap.cs, made when the page is first drawn and let go when the
+    /// window closes.
     /// </summary>
-    public class Window_RegionMap : Window
+    public class RegionMapView
     {
-        private const float MinW = 560f, MinH = 400f, HeaderH = 32f;
+        private const float HeaderH = 32f;
         private static readonly Color MapBack = new Color(0.07f, 0.08f, 0.09f);
         private static readonly Color LabelBack = new Color(0f, 0f, 0f, 0.6f);
         private static readonly Color MarkBack = new Color(0.06f, 0.07f, 0.08f, 0.8f);
 
-        // Kept for the session: the window's place and size, and the view of the last map shown.
-        private static Rect? lastRect;
+        // Kept for the session: the view of the last map shown.
         private static View? lastView;
         private static string lastViewFor;
 
@@ -54,90 +53,33 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        public Window_RegionMap()
+        /// <summary>
+        /// The window closed: the picture is let go (it is made again when the page is next drawn), and where the map was
+        /// looking is kept for then. What was picked stays picked if it is still on the new picture.
+        /// </summary>
+        public void Release()
         {
-            layer = WindowLayer.GameUI;
-            draggable = true;
-            resizeable = true;
-            doCloseX = true;
-            doCloseButton = false;
-            closeOnAccept = false;
-            closeOnCancel = true;
-            closeOnClickedOutside = false;
-            absorbInputAroundWindow = false;
-            preventCameraMotion = false;
-            forcePause = false;
-            onlyOneOfTypeAllowed = true;
-        }
-
-        /// <summary>Opens the region map, or brings it forward when it is open.</summary>
-        public static void Open()
-        {
-            try
-            {
-                if (Current.ProgramState != ProgramState.Playing || Find.World == null) return;
-                var open = Find.WindowStack.WindowOfType<Window_RegionMap>();
-                if (open != null) Find.WindowStack.Notify_ManuallySetFocus(open);
-                else Find.WindowStack.Add(new Window_RegionMap());
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("opening the region map", e);
-            }
-        }
-
-        /// <summary>From the key: opens the map, or closes it when it is open.</summary>
-        public static void Toggle()
-        {
-            var open = Find.WindowStack?.WindowOfType<Window_RegionMap>();
-            if (open != null) open.Close();
-            else Open();
-        }
-
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(940f, UI.screenWidth - 40f), Mathf.Min(640f, UI.screenHeight - 120f));
-
-        protected override void SetInitialSizeAndPosition()
-        {
-            if (lastRect.HasValue)
-            {
-                var r = lastRect.Value;
-                float w = Mathf.Clamp(r.width, MinW, UI.screenWidth), h = Mathf.Clamp(r.height, MinH, UI.screenHeight);
-                windowRect = new Rect(Mathf.Clamp(r.x, 0f, UI.screenWidth - w), Mathf.Clamp(r.y, 0f, UI.screenHeight - h), w, h).Rounded();
-                return;
-            }
-            base.SetInitialSizeAndPosition();
-        }
-
-        public override void PreClose()
-        {
-            base.PreClose();
-            lastRect = windowRect;
             if (map != null)
             {
                 lastView = view;
                 lastViewFor = builtFor;
             }
-        }
-
-        public override void PostClose()
-        {
-            base.PostClose();
             map?.Dispose();
             map = null;
+            builtFor = null;
+            homeCheckedAt = -100f;
+            pressed = dragging = false;
+            hoverTile = -1;
+            hoverMark = null;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        /// <summary>The map and its panel, with the reach and the way home along the top of <paramref name="inRect"/>.</summary>
+        public void Draw(Rect inRect)
         {
             if (Current.ProgramState != ProgramState.Playing || Find.World == null)
             {
-                Close(false);
+                UiKit.EmptyState(inRect, Icons.World, "CC_NoGame".Translate());
                 return;
-            }
-            // The game's own resizing allows a window smaller than the map can use.
-            if (windowRect.width < MinW || windowRect.height < MinH)
-            {
-                windowRect.width = Mathf.Max(windowRect.width, MinW);
-                windowRect.height = Mathf.Max(windowRect.height, MinH);
             }
             var font = Text.Font;
             try
@@ -168,7 +110,7 @@ namespace ColonyCouncil
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("region map window", e);
+                CouncilLog.ErrorOnce("region map page", e);
             }
             finally
             {
@@ -183,8 +125,7 @@ namespace ColonyCouncil
         private void Header(Rect r)
         {
             UiKit.Icon(new Rect(r.x, r.y + 3f, 26f, 26f), Icons.World, UiKit.Gold);
-            // The close button sits in the corner over the header.
-            float right = r.xMax - 34f;
+            float right = r.xMax;
             const float bw = 26f;
             int reach = Mathf.Clamp(S.regionMapRadius, ReachMin, ReachMax);
             var plus = new Rect(right - bw, r.y + 3f, bw, bw);
@@ -226,7 +167,7 @@ namespace ColonyCouncil
 
         // ---------------- Keeping the picture ----------------
 
-        /// <summary>Draws the picture when the window opens, and again when the reach or the home changes (checked every two seconds).</summary>
+        /// <summary>Draws the picture when the page is first drawn, and again when the reach or the home changes (checked every two seconds).</summary>
         private void Keep()
         {
             if (Time.realtimeSinceStartup - homeCheckedAt < 2f) return;
@@ -262,7 +203,8 @@ namespace ColonyCouncil
             if (sameHome) view = new View(view.cx, view.cy, view.scale);
             else if (lastView.HasValue && lastViewFor == key) view = lastView.Value;
             else view = new View(0, 0, 0);
-            if (oldPicked != null && !oldPicked.Destroyed && map.TryIndex(oldPicked.Tile, out _)) picked = oldPicked;
+            // What was picked stays picked while it is still in this game's world and on the picture.
+            if (oldPicked != null && !oldPicked.Destroyed && Find.WorldObjects.Contains(oldPicked) && map.TryIndex(oldPicked.Tile, out _)) picked = oldPicked;
         }
 
         private void Drop()
@@ -531,7 +473,7 @@ namespace ColonyCouncil
                 return;
             }
             const float buttonH = 30f;
-            // The window's resize corner is under the panel's bottom right.
+            // The button sits at the panel's foot, short of its right edge.
             var button = new Rect(inner.x, inner.yMax - buttonH - 8f, Mathf.Min(inner.width - 20f, 240f), buttonH);
             var outRect = new Rect(inner.x, inner.y, inner.width, button.y - inner.y - 8f);
             var viewRect = new Rect(0f, 0f, outRect.width - 16f, Mathf.Max(panelHeight, outRect.height));

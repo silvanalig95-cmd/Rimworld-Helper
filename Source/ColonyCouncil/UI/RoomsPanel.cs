@@ -7,16 +7,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The "rooms" button in the bottom bar: every room plan in one compact, architect-style popup, grouped
-    /// into columns. Click a room to plan it, right-click to plan it at a good spot. Rooms the advisor is
-    /// currently asking for are marked.
+    /// Planning → Rooms (what the "rooms" button showed): every room plan at a glance, architect-style, grouped into
+    /// columns. Click a room to plan it, right-click to plan it at a good spot. Rooms the advisor is currently asking for
+    /// are marked.
     /// </summary>
-    public class MainTabWindow_Rooms : MainTabWindow
+    public static class RoomsPanel
     {
         private static bool onlyAvailable = true;
-        private Vector2 scroll;
+        private static Vector2 scroll;
 
-        private const int Columns = 3;
+        private const int MaxColumns = 4;
         private const float ColW = 210f;
         private const float Gap = 10f;
         private const float RowH = 28f;
@@ -34,32 +34,16 @@ namespace ColonyCouncil
             public float Height => HeaderH + rooms.Count * RowH + 6f;
         }
 
-        protected override float Margin => 10f;
+        /// <summary>As many columns as fit the page, three to four in the usual window.</summary>
+        private static int ColumnsFor(float width) => Mathf.Clamp(Mathf.FloorToInt((width - 16f + Gap) / (ColW + Gap)), 1, MaxColumns);
 
-        public override Vector2 RequestedTabSize
+        public static void Draw(Rect inRect, Map map)
         {
-            get
+            if (map == null)
             {
-                float h = Layout(Find.CurrentMap, out _).Max();
-                return new Vector2(Columns * ColW + (Columns - 1) * Gap + Margin * 2f + 16f, Mathf.Clamp(TopH + h + BottomH + Margin * 2f, 200f, UI.screenHeight - 35f - 80f));
+                UiKit.EmptyState(inRect, Icons.Rooms, "CC_NoHomeMap".Translate());
+                return;
             }
-        }
-
-        /// <summary>Opens on the side of the screen its button is on.</summary>
-        public override MainTabWindowAnchor Anchor
-        {
-            get
-            {
-                var visible = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b.buttonVisible).OrderBy(b => b.order).ToList();
-                int i = def != null ? visible.IndexOf(def) : -1;
-                return i >= 0 && i < visible.Count / 2 ? MainTabWindowAnchor.Left : MainTabWindowAnchor.Right;
-            }
-        }
-
-        public override void DoWindowContents(Rect inRect)
-        {
-            var map = Find.CurrentMap;
-            if (map == null) return;
             UiKit.Icon(new Rect(inRect.x, inRect.y + 4f, 24f, 24f), Icons.Rooms, UiKit.Gold);
             UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f - 266f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
             Text.Font = GameFont.Small;
@@ -69,17 +53,17 @@ namespace ColonyCouncil
             var tidyRect = new Rect(inRect.xMax - 250f - 136f, inRect.y + 2f, 126f, 26f);
             if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
             TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
-            bool before = onlyAvailable;
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
-            if (before != onlyAvailable) SetInitialSizeAndPosition();
 
             // The advisor's suggestions and the group headings, worked out once a second rather than every frame.
             var suggested = UiCache.Get(map, 6101, () => SuggestedRooms(map));
-            var heights = Layout(map, out var columns);
+            int cols = ColumnsFor(inRect.width);
+            var heights = Layout(map, cols, out var columns);
             var outRect = new Rect(inRect.x, inRect.y + TopH, inRect.width, inRect.height - TopH - BottomH);
-            var viewRect = new Rect(0f, 0f, outRect.width - (heights.Max() > outRect.height ? 16f : 0f), heights.Max());
+            float tallest = heights.Length > 0 ? heights.Max() : 0f;
+            var viewRect = new Rect(0f, 0f, outRect.width - (tallest > outRect.height ? 16f : 0f), tallest);
             Widgets.BeginScrollView(outRect, ref scroll, viewRect);
-            for (int c = 0; c < Columns; c++)
+            for (int c = 0; c < columns.Length; c++)
             {
                 float x = c * (ColW + Gap);
                 float y = 0f;
@@ -203,33 +187,34 @@ namespace ColonyCouncil
         private static List<Block>[] lastColumns;
         private static float[] lastHeights;
         private static float lastAt = -999f;
-        private static int lastMapId = -1, lastSaved = -1;
+        private static int lastMapId = -1, lastSaved = -1, lastCols = -1;
         private static bool lastOnly;
 
         /// <summary>Groups packed into columns, each group going to the shortest column so far.</summary>
-        private static float[] Layout(Map map, out List<Block>[] columns)
+        private static float[] Layout(Map map, int cols, out List<Block>[] columns)
         {
             float now = Time.realtimeSinceStartup;
             int mapId = map?.uniqueID ?? -1, saved = CustomRooms.All.Count;
-            if (lastColumns != null && mapId == lastMapId && saved == lastSaved && onlyAvailable == lastOnly && now >= lastAt && now - lastAt < 1f)
+            if (lastColumns != null && mapId == lastMapId && saved == lastSaved && cols == lastCols && onlyAvailable == lastOnly && now >= lastAt && now - lastAt < 1f)
             {
                 columns = lastColumns;
                 return lastHeights;
             }
-            lastHeights = BuildLayout(map, out lastColumns);
+            lastHeights = BuildLayout(map, cols, out lastColumns);
             lastAt = now;
             lastMapId = mapId;
             lastSaved = saved;
+            lastCols = cols;
             lastOnly = onlyAvailable;
             columns = lastColumns;
             return lastHeights;
         }
 
-        private static float[] BuildLayout(Map map, out List<Block>[] columns)
+        private static float[] BuildLayout(Map map, int cols, out List<Block>[] columns)
         {
-            columns = new List<Block>[Columns];
-            for (int i = 0; i < Columns; i++) columns[i] = new List<Block>();
-            var heights = new float[Columns];
+            columns = new List<Block>[cols];
+            for (int i = 0; i < cols; i++) columns[i] = new List<Block>();
+            var heights = new float[cols];
             if (map == null) return heights;
             var blocks = RoomMenu.Entries(map, onlyAvailable)
                 .GroupBy(t => t.group)
@@ -239,7 +224,7 @@ namespace ColonyCouncil
             foreach (var b in blocks)
             {
                 int best = 0;
-                for (int i = 1; i < Columns; i++)
+                for (int i = 1; i < cols; i++)
                     if (heights[i] < heights[best] - 0.1f) best = i;
                 columns[best].Add(b);
                 heights[best] += b.Height;

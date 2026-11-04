@@ -6,48 +6,49 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>The "Council" tab: priorities, wishes, ambition, build plans and the chronicle.</summary>
+    /// <summary>
+    /// The council button's window: the colony's own life in four sections, each with its pages along the top. Council:
+    /// decrees with the offices and elections, the ambition and its meetings, the colony's ways, dilemmas, wishes and
+    /// petitions. People: the roster, everyone, bonds, faiths, moods, dreams and journals. Colony: this week, the
+    /// overview, priorities, the calendar and the chronicle. And the Almanac. Which page is in which section is
+    /// UI/PagesMath.cs; the region, defense and planning windows have the rest, one click away in the top right corner.
+    /// </summary>
     [StaticConstructorOnStartup]
-    public class MainTabWindow_Council : MainTabWindow
+    public class MainTabWindow_Council : RimfolkTabWindow
     {
-        /// <summary>Five sections, each with its own sub-tabs.</summary>
+        /// <summary>The sections, in PagesMath.CouncilSections' order.</summary>
         private enum Section
         {
-            Colony,
-            Planning,
-            People,
             Council,
-            History,
+            People,
+            Colony,
             Almanac
         }
 
+        /// <summary>The council window's pages, by their names in PagesMath.</summary>
         private enum Tab
         {
-            Week,
-            Overview,
-            Priorities,
-            Plan,
-            Base,
-            Making,
-            Moods,
-            World,
-            Build,
-            Roster,
-            Bonds,
-            Wishes,
             Decrees,
             Ambition,
             Ways,
-            Chronicle,
+            Dilemmas,
+            Wishes,
+            Roster,
+            Everyone,
+            Bonds,
+            Faiths,
+            Moods,
             Dreams,
             Journals,
-            Almanac,
+            Week,
+            Overview,
+            Priorities,
             Calendar,
-            Everyone,
-            Dilemmas,
-            Defenses,
-            Faiths
+            Chronicle,
+            Almanac
         }
+
+        public override RimfolkWindow Which => RimfolkWindow.Council;
 
         private static Tab tab = Tab.Week;
         /// <summary>A button asked for a page (OpenTab, OpenPerson...): the window opens there, not on This week.</summary>
@@ -61,61 +62,28 @@ namespace ColonyCouncil
         /// </summary>
         private static bool restored;
 
-        private static Section SectionOf(Tab t)
-        {
-            switch (t)
-            {
-                case Tab.Week:
-                case Tab.Overview:
-                case Tab.Priorities:
-                case Tab.Moods:
-                case Tab.World:
-                case Tab.Defenses: return Section.Colony;
-                case Tab.Plan:
-                case Tab.Base:
-                case Tab.Making:
-                case Tab.Build: return Section.Planning;
-                case Tab.Roster:
-                case Tab.Everyone:
-                case Tab.Bonds:
-                case Tab.Faiths:
-                case Tab.Wishes: return Section.People;
-                case Tab.Decrees:
-                case Tab.Ambition:
-                case Tab.Ways:
-                case Tab.Dilemmas: return Section.Council;
-                case Tab.Chronicle:
-                case Tab.Calendar:
-                case Tab.Dreams:
-                case Tab.Journals: return Section.History;
-                default: return Section.Almanac;
-            }
-        }
+        private static Section SectionOf(Tab t) => System.Enum.TryParse(PagesMath.SectionOf(t.ToString()), out Section s) ? s : Section.Almanac;
 
-        private static Tab[] TabsOf(Section s)
-        {
-            switch (s)
-            {
-                case Section.Colony: return ColonyTabs;
-                case Section.Planning: return PlanningTabs;
-                case Section.People: return Faiths.On ? PeopleFaithTabs : PeopleTabs;
-                case Section.Council: return CouncilTabs;
-                case Section.History: return HistoryTabs;
-                default: return AlmanacTabs;
-            }
-        }
+        private static Tab[] TabsOf(Section s) => Faiths.On ? WithFaiths[(int)s] : WithoutFaiths[(int)s];
 
-        // Each section's pages, made once (asked every frame).
-        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Defenses };
-        /// <summary>Planning and improving the base: the next steps, the base looked over, what could be made, the room plans.</summary>
-        private static readonly Tab[] PlanningTabs = { Tab.Plan, Tab.Base, Tab.Making, Tab.Build };
-        private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
-        /// <summary>With "Faith in the colony" on (Ideology): the faiths page after the bonds (UI/FaithsPanel.cs).</summary>
-        private static readonly Tab[] PeopleFaithTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Faiths, Tab.Wishes };
-        private static readonly Tab[] CouncilTabs = { Tab.Decrees, Tab.Ambition, Tab.Ways, Tab.Dilemmas };
-        private static readonly Tab[] HistoryTabs = { Tab.Chronicle, Tab.Calendar, Tab.Dreams, Tab.Journals };
-        private static readonly Tab[] AlmanacTabs = { Tab.Almanac };
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        // Each section's pages from PagesMath, made once (asked every frame); the faiths page only while "Faith in the colony" is on.
+        private static readonly Tab[][] WithFaiths = MakeTabs(true);
+        private static readonly Tab[][] WithoutFaiths = MakeTabs(false);
+
+        private static Tab[][] MakeTabs(bool faiths)
+        {
+            var sections = (Section[])System.Enum.GetValues(typeof(Section));
+            var result = new Tab[sections.Length][];
+            foreach (var s in sections)
+            {
+                var list = new List<Tab>();
+                foreach (var name in PagesMath.PagesIn(RimfolkWindow.Council, s.ToString()))
+                    if (System.Enum.TryParse(name, out Tab t) && (faiths || t != Tab.Faiths))
+                        list.Add(t);
+                result[(int)s] = list.ToArray();
+            }
+            return result;
+        }
 
         public override void PreOpen()
         {
@@ -146,6 +114,7 @@ namespace ColonyCouncil
             try
             {
                 var s = Settings;
+                // A page that went to another window (World, Defenses, the planning pages) isn't one here: the window opens as it would.
                 if (s == null || s.lastCouncilPage.NullOrEmpty() || !System.Enum.TryParse(s.lastCouncilPage, out Tab t)) return;
                 if (!asked)
                 {
@@ -183,20 +152,15 @@ namespace ColonyCouncil
             }
         }
 
-        public override Vector2 RequestedTabSize =>
-            new Vector2(Mathf.Min(1010f, UI.screenWidth - 20f), Mathf.Min(720f, UI.screenHeight - 35f - 20f));
-
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 
         private static readonly Section[] Sections = (Section[])System.Enum.GetValues(typeof(Section));
-        private const float TabIconSize = 18f;
-        private static readonly bool[] sectionHasIcon = new bool[Sections.Length];
-        /// <summary>One width per page of the widest section (the Colony section has the most).</summary>
+        /// <summary>One width per page of the widest section.</summary>
         private static readonly float[] subTabWidths = new float[System.Enum.GetValues(typeof(Tab)).Length];
         // Tab labels carry counts that take a little work to find; they're refreshed twice a second.
         private static readonly Dictionary<int, string> labels = new Dictionary<int, string>();
         private static float labelsAt = -1f;
-        private static string iconPad;
+        private readonly List<WindowTab> sectionTabs = new List<WindowTab>();
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -209,31 +173,14 @@ namespace ColonyCouncil
                 labelsAt = Time.realtimeSinceStartup;
             }
 
-            // The sections, as vanilla tabs. Where a tab has room, its label starts with blank space and the
-            // section's icon is drawn into it.
-            Text.Font = GameFont.Small;
-            var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
-            float overlap = TabDrawer.TabHoriztonalOverlap;
-            float tabW = Mathf.Min(200f, (body.width + (Sections.Length - 1) * overlap) / Sections.Length);
-            var tabs = new List<TabRecord>(Sections.Length);
-            for (int i = 0; i < Sections.Length; i++)
+            // The sections, as the game's tabs with their icons, and the other windows in the corner.
+            sectionTabs.Clear();
+            foreach (var section in Sections)
             {
-                var section = Sections[i];
-                string label = SectionText(section, comp, map);
-                sectionHasIcon[i] = SectionIcon(section) != null && Text.CalcSize(IconPad + label).x <= tabW - 24f;
-                tabs.Add(new TabRecord(sectionHasIcon[i] ? IconPad + label : label, () => OpenSection(section), current == section));
+                var s = section;
+                sectionTabs.Add(new WindowTab(SectionText(s, comp, map), SectionIcon(s), current == s, () => OpenSection(s)));
             }
-            Widgets.DrawMenuSection(body);
-            TabDrawer.DrawTabs(body, tabs, 200f);
-            for (int i = 0; i < Sections.Length; i++)
-            {
-                if (!sectionHasIcon[i]) continue;
-                // Where TabDrawer puts each tab, and where it centers the label in it.
-                var tr = new Rect(body.x + i * (tabW - overlap), body.y - TabDrawer.TabHeight + 1f, tabW, TabDrawer.TabHeight);
-                float left = tr.center.x - Text.CalcSize(tabs[i].label).x / 2f;
-                var color = Sections[i] == current ? UiKit.Gold : Mouse.IsOver(tr) ? Color.white : new Color(1f, 1f, 1f, 0.75f);
-                UiKit.Icon(new Rect(left + 1f, tr.center.y - TabIconSize / 2f, TabIconSize, TabIconSize), SectionIcon(Sections[i]), color);
-            }
+            var body = WindowTabs.Draw(inRect, sectionTabs, RimfolkWindow.Council);
             var content = body.ContractedBy(12f);
 
             // The optional next and previous page keys (Options, Keyboard, Rimfolk).
@@ -287,11 +234,6 @@ namespace ColonyCouncil
                 case Tab.Everyone: PeopleTable.Draw(content, comp); break;
                 case Tab.Dilemmas: DilemmasPanel.Draw(content, comp); break;
                 case Tab.Priorities: PrioritiesPanel.Draw(content, map); break;
-                case Tab.Plan: NextStepsPanel.Draw(content, comp, map); break;
-                case Tab.Base: BasePanel.Draw(content, map); break;
-                case Tab.Making: MakingPanel.Draw(content, map); break;
-                case Tab.Build: BuildPanel.Draw(content, map); break;
-                case Tab.Defenses: DefensePanel.Draw(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;
                 case Tab.Bonds: SocialPanel.Draw(content, comp); break;
                 case Tab.Faiths: FaithsPanel.Draw(content, comp); break;
@@ -300,7 +242,6 @@ namespace ColonyCouncil
                 case Tab.Ambition: AmbitionPanel.Draw(content, comp, map); break;
                 case Tab.Ways: WaysPanel.Draw(content, comp); break;
                 case Tab.Moods: MoodsPanel.Draw(content); break;
-                case Tab.World: WorldPanel.Draw(content, comp); break;
                 case Tab.Chronicle: ChroniclePanel.Draw(content, comp); break;
                 case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
                 case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;
@@ -359,31 +300,13 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>Blank space as wide as a tab icon, measured between two letters (a string of spaces alone may measure as nothing).</summary>
-        private static string IconPad
-        {
-            get
-            {
-                if (iconPad != null) return iconPad;
-                var old = Text.Font;
-                Text.Font = GameFont.Small;
-                float bare = Text.CalcSize("xx").x;
-                string pad = " ";
-                while (pad.Length < 12 && Text.CalcSize("x" + pad + "x").x - bare < TabIconSize + 5f) pad += " ";
-                Text.Font = old;
-                return iconPad = pad;
-            }
-        }
-
         private static Texture2D SectionIcon(Section s)
         {
             switch (s)
             {
                 case Section.Colony: return Icons.Colony;
-                case Section.Planning: return Icons.Plan ?? Icons.Rooms;
                 case Section.People: return Icons.People;
                 case Section.Council: return Icons.Council;
-                case Section.History: return Icons.History;
                 default: return Icons.Almanac;
             }
         }
@@ -397,13 +320,7 @@ namespace ColonyCouncil
                 case Tab.Dilemmas: return Icons.Dilemmas ?? Icons.Decree;
                 case Tab.Overview: return Icons.Overview;
                 case Tab.Priorities: return Icons.Priorities;
-                case Tab.Plan: return Icons.Plan ?? Icons.Week;
-                case Tab.Base: return Icons.Base ?? Icons.Rooms;
-                case Tab.Making: return Icons.Making ?? Icons.CatManagement;
                 case Tab.Moods: return Icons.Moods;
-                case Tab.World: return Icons.World;
-                case Tab.Build: return Icons.Rooms;
-                case Tab.Defenses: return Icons.Defenses ?? Icons.CatDefense;
                 case Tab.Roster: return Icons.Roster;
                 case Tab.Bonds: return Icons.Bonds;
                 case Tab.Faiths: return Icons.CatIdeology ?? Icons.People;
@@ -432,14 +349,9 @@ namespace ColonyCouncil
                     // Fights the colony knows are coming.
                     n += comp.happenings.raids.Count;
                     break;
-                case Section.Planning:
-                    n = map != null ? NextSteps.PlannedCount(map) : 0;
-                    break;
-                case Section.People:
-                    n = OpenWishCount();
-                    break;
                 case Section.Council:
-                    n = (ColonyView.Current?.decrees ?? comp.decrees).requests.Count;
+                    // Petitions to the council of the colony in view, and the colonists' wishes waiting for an answer.
+                    n = (ColonyView.Current?.decrees ?? comp.decrees).requests.Count + OpenWishCount();
                     break;
             }
             return n > 0 ? label + " (" + n + ")" : label;
@@ -453,108 +365,67 @@ namespace ColonyCouncil
                     int needs = WeekModel.NeedsCount(comp);
                     return needs > 0 ? "CC_Tab_WeekCount".Translate(needs).ToString() : "CC_Tab_Week".Translate().ToString();
                 case Tab.Wishes: return "CC_Tab_Wishes".Translate(OpenWishCount());
-                case Tab.Plan:
-                    int steps = NextSteps.PlannedCount(Find.CurrentMap);
-                    return steps > 0 ? "CC_Tab_PlanCount".Translate(steps).ToString() : "CC_Tab_Plan".Translate().ToString();
                 case Tab.Decrees:
                     // The colony in view's petitions.
                     int asked = (ColonyView.Current?.decrees ?? comp.decrees).requests.Count;
                     return asked > 0 ? "CC_Tab_DecreesAsked".Translate(asked).ToString() : "CC_Tab_Decrees".Translate().ToString();
-                case Tab.World:
-                    return comp.happenings.raids.Count > 0 ? "CC_Tab_WorldComing".Translate(comp.happenings.raids.Count).ToString() : "CC_Tab_World".Translate().ToString();
                 default: return ("CC_Tab_" + t).Translate();
             }
+        }
+
+        // ---------------- Where the window opens ----------------
+
+        /// <summary>The page the window shows (or will, opened), by name.</summary>
+        internal static string Page => tab.ToString();
+
+        /// <summary>The last page looked at in one of the window's sections (its first page before any).</summary>
+        internal static string LastIn(string section)
+        {
+            if (!System.Enum.TryParse(section, out Section s)) return null;
+            return (lastInSection.TryGetValue(s, out var t) ? t : TabsOf(s)[0]).ToString();
+        }
+
+        /// <summary>The window is to open on this page (Pages.Open opens it).</summary>
+        internal static void Select(string page)
+        {
+            if (!System.Enum.TryParse(page, out Tab t)) return;
+            restored = true;
+            // Asked while closed: it opens there rather than on This week. Asked while open: it just turns the page.
+            asked = !Pages.Showing(RimfolkWindow.Council);
+            tab = t;
+            lastInSection[SectionOf(t)] = t;
         }
 
         /// <summary>Opens the council window on a colonist's page in the People roster.</summary>
         public static void OpenPerson(Pawn p)
         {
-            restored = true;
-            asked = true;
-            tab = Tab.Roster;
-            lastInSection[Section.People] = Tab.Roster;
             PeoplePanel.Select(p);
-            var button = CouncilDefOf.Council_MainButton;
-            if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
+            Pages.Open(nameof(Tab.Roster));
         }
 
         /// <summary>
-        /// Opens the council window on a page by name ("Decrees", "Wishes", "Ways"...). The Defenses page opens in the
-        /// defense button's own window while that button is shown (UI/MainTabWindow_Defenses.cs).
+        /// Opens a page by name ("Decrees", "Wishes", "Ways", "Defenses", "World"...) in whichever of Rimfolk's windows has
+        /// it now (UI/Pages.cs): the defense window has the Defenses page, the region window the World page's neighbours.
         /// </summary>
-        public static void OpenTab(string name)
-        {
-            if (!System.Enum.TryParse(name, true, out Tab t)) return;
-            if (t == Tab.Defenses && MainTabWindow_Defenses.Shown)
-            {
-                var defense = CouncilDefOf.Council_DefenseButton;
-                if (Find.MainTabsRoot.OpenTab != defense) Find.MainTabsRoot.SetCurrentTab(defense, false);
-                return;
-            }
-            restored = true;
-            asked = true;
-            tab = t;
-            lastInSection[SectionOf(t)] = t;
-            var button = CouncilDefOf.Council_MainButton;
-            if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
-        }
+        public static void OpenTab(string name) => Pages.Open(name);
 
-        /// <summary>A page's shortcut key: opens the window on it, or closes the window when that page is already showing.</summary>
-        public static void OpenOrClose(string name)
-        {
-            if (!System.Enum.TryParse(name, true, out Tab t)) return;
-            var button = CouncilDefOf.Council_MainButton;
-            bool open = t == Tab.Defenses && MainTabWindow_Defenses.Shown
-                ? Find.MainTabsRoot.OpenTab == CouncilDefOf.Council_DefenseButton
-                : button != null && Find.MainTabsRoot.OpenTab == button && tab == t;
-            if (open)
-            {
-                Find.MainTabsRoot.EscapeCurrentTab();
-                return;
-            }
-            OpenTab(name);
-        }
+        /// <summary>A page's shortcut key: opens its window on it, or closes the window when that page is already showing.</summary>
+        public static void OpenOrClose(string name) => Pages.OpenOrClose(name);
 
         /// <summary>A section's bottom bar button: opens the window on the section's last page, or closes it when that section is showing.</summary>
-        public static void OpenOrCloseSection(string name)
-        {
-            if (!System.Enum.TryParse(name, true, out Section s)) return;
-            var button = CouncilDefOf.Council_MainButton;
-            if (button == null) return;
-            if (Find.MainTabsRoot.OpenTab == button && SectionOf(tab) == s)
-            {
-                Find.MainTabsRoot.EscapeCurrentTab();
-                return;
-            }
-            var t = lastInSection.TryGetValue(s, out var last) ? last : TabsOf(s)[0];
-            OpenTab(t.ToString());
-        }
+        public static void OpenOrCloseSection(string name) => Pages.OpenOrCloseSection(name);
 
-        /// <summary>The council window has a page by this name (for the mood hints' "Go to" buttons).</summary>
-        public static bool IsPage(string name) => !name.NullOrEmpty() && System.Enum.TryParse(name, true, out Tab t) && System.Enum.IsDefined(typeof(Tab), t);
+        /// <summary>A page of one of Rimfolk's windows has this name (for the mood hints' "Go to" buttons).</summary>
+        public static bool IsPage(string name) => Pages.IsPage(name);
 
         /// <summary>A page's plain name, for buttons that lead there.</summary>
-        public static string TabName(string name)
-        {
-            if (!System.Enum.TryParse(name, true, out Tab t)) return name;
-            switch (t)
-            {
-                case Tab.Wishes: return "CC_Mood_WishesTab".Translate();
-                case Tab.Decrees: return "CC_Tab_Decrees".Translate();
-                default: return ("CC_Tab_" + t).Translate();
-            }
-        }
+        public static string TabName(string name) => Pages.Name(name);
 
         /// <summary>Opens the council window on an almanac page.</summary>
         public static void OpenAlmanac(AlmanacArticleDef article)
         {
-            restored = true;
-            asked = true;
-            tab = Tab.Almanac;
-            lastInSection[Section.Almanac] = Tab.Almanac;
             AlmanacPanel.Show(article);
-            var button = CouncilDefOf.Council_MainButton;
-            if (Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
+            Pages.Open(nameof(Tab.Almanac));
         }
 
         private static int OpenWishCount() => CouncilGameComponent.Instance?.OpenWishes.Count() ?? 0;

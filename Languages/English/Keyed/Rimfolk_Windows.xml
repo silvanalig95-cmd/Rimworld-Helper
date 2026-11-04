@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Rimfolk's four windows (Source/ColonyCouncil/UI/WindowTabs.cs, Pages.cs, PagesMath.cs): the icons in each window's
+       top right corner that lead to the others. -->
+  <CC_Win_Tip>{WINDOW}: {WHAT}.</CC_Win_Tip>
+  <CC_Win_What_Council>the colony's own life, with the council, its people, the colony and the Almanac</CC_Win_What_Council>
+  <CC_Win_What_World>the region map and everything beyond the colony</CC_Win_What_World>
+  <CC_Win_What_Defense>the colony's defenses</CC_Win_What_Defense>
+  <CC_Win_What_Planning>planning the base and its rooms</CC_Win_What_Planning>
+
+  <CC_Settings_WorldButton>Show the "region" button in the bottom bar</CC_Settings_WorldButton>
+  <CC_Settings_WorldButton_Tip>A button next to the council's that opens the region window: the region map, the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history. Hidden, the region window is still one click away in the top right corner of Rimfolk's other windows.</CC_Settings_WorldButton_Tip>
+  <CC_SetNote_WorldButton>A Region button in the bottom bar, with the region map and everything beyond the colony.</CC_SetNote_WorldButton>
+
+  <!-- The region window's pages (UI/MainTabWindow_World.cs, UI/WorldPages.cs). -->
+  <CC_Tab_Map>Map</CC_Tab_Map>
+  <CC_Tab_Neighbours>Neighbours</CC_Tab_Neighbours>
+  <CC_Tab_NeighboursComing>Neighbours ({0})</CC_Tab_NeighboursComing>
+  <CC_Tab_Peoples>Peoples</CC_Tab_Peoples>
+  <CC_Tab_Letters>Letters and calls</CC_Tab_Letters>
+  <CC_Tab_LettersOpen>Letters and calls ({0})</CC_Tab_LettersOpen>
+  <CC_Tab_Journeys>Journeys</CC_Tab_Journeys>
+  <CC_Tab_Events>World events</CC_Tab_Events>
+  <CC_Tab_WorldHistory>History</CC_Tab_WorldHistory>
+  <!-- The planning window's last page: what the rooms button showed. -->
+  <CC_Tab_Rooms>Rooms</CC_Tab_Rooms>
+
+  <CC_Peoples_Header>The peoples of the world</CC_Peoples_Header>
+  <CC_Peoples_Sub>How each people stands with the colony, whom it is at war with, and what it remembers.</CC_Peoples_Sub>
+  <CC_Peoples_Stat>{0} peoples</CC_Peoples_Stat>
+  <CC_Peoples_Stance>Where they stand</CC_Peoples_Stance>
+  <CC_Peoples_None>The colony knows of no other people yet.</CC_Peoples_None>
+  <CC_Peoples_EveryonesFoe>At war with everyone, as their kind always is.</CC_Peoples_EveryonesFoe>
+  <CC_Peoples_Wars>At war with {FOES}.</CC_Peoples_Wars>
+  <CC_Peoples_Events>In the world: {EVENTS}.</CC_Peoples_Events>
+  <CC_Peoples_TheirHistory>Their history</CC_Peoples_TheirHistory>
+  <CC_Peoples_TheirHistoryTip>What {PEOPLE} took part in, on the History page.</CC_Peoples_TheirHistoryTip>
+
+  <CC_LettersPg_Off>Neighbours by name are switched off in the settings, and letters and calls with them.</CC_LettersPg_Off>
+  <CC_LettersPg_Header>Letters and calls</CC_LettersPg_Header>
+  <CC_LettersPg_Sub>What the colony has written or called its neighbours about, where each letter is, and whom it can write to.</CC_LettersPg_Sub>
+  <CC_LettersPg_UnderWay>Under way</CC_LettersPg_UnderWay>
+  <CC_LettersPg_NoneUnderWay>No letter or call is under way.</CC_LettersPg_NoneUnderWay>
+  <CC_LettersPg_Lately>Answered lately</CC_LettersPg_Lately>
+  <CC_LettersPg_WriteTo>Whom the colony can write to</CC_LettersPg_WriteTo>
+  <CC_LettersPg_NoOne>Nobody in the towns nearby is known to the colony by name yet.</CC_LettersPg_NoOne>
+  <CC_LettersPg_NameOf>{NAME} of {TOWN}</CC_LettersPg_NameOf>
+  <CC_LettersPg_Letter>A letter of {PURPOSE} to {NAME}, from {PAWN}</CC_LettersPg_Letter>
+  <CC_LettersPg_Call>A call to {NAME} ({PURPOSE}), from {PAWN}</CC_LettersPg_Call>
+  <CC_LettersPg_Answered>Answered {TONE}.</CC_LettersPg_Answered>
+  <CC_LettersPg_CalledOff>Called off.</CC_LettersPg_CalledOff>
+
+  <CC_JourneysPg_Header>Journeys</CC_JourneysPg_Header>
+  <CC_JourneysPg_Sub>The journey planned ahead from the colony, and its caravans out on the land.</CC_JourneysPg_Sub>
+  <CC_JourneysPg_Stat>{0} away</CC_JourneysPg_Stat>
+  <CC_JourneysPg_Off>Journeys planned ahead are switched off in the settings.</CC_JourneysPg_Off>
+  <CC_JourneysPg_Away>Out on the land</CC_JourneysPg_Away>
+  <CC_JourneysPg_NoneAway>No caravan of the colony's is out on the land.</CC_JourneysPg_NoneAway>
+  <CC_JourneysPg_People>Travelers: {0}</CC_JourneysPg_People>
+  <CC_JourneysPg_HeadingTo>on the way to {PLACE}</CC_JourneysPg_HeadingTo>
+  <CC_JourneysPg_OnTheMove>on the move</CC_JourneysPg_OnTheMove>
+  <CC_JourneysPg_Resting>resting</CC_JourneysPg_Resting>
+  <CC_JourneysPg_Show>Show on the world</CC_JourneysPg_Show>
+
+  <CC_EventsPg_Header>World events</CC_EventsPg_Header>
+  <CC_EventsPg_Sub>What's going on in the world around the colony, and what it has brought lately.</CC_EventsPg_Sub>
+  <CC_EventsPg_Stat>{0} going on</CC_EventsPg_Stat>
+  <CC_EventsPg_Off>World events are switched off in the settings.</CC_EventsPg_Off>
+
+  <CC_WHist_Header>The world's history</CC_WHist_Header>
+  <CC_WHist_Sub>What the world remembers, newest first: the peoples, the towns and the colony.</CC_WHist_Sub>
+  <CC_WHist_Stat>{0} shown</CC_WHist_Stat>
+  <CC_WHist_None>Nothing in the history matches.</CC_WHist_None>
+  <CC_WHist_Any>any</CC_WHist_Any>
+  <CC_WHist_People>People: {WHO}</CC_WHist_People>
+  <CC_WHist_Town>Town: {WHERE}</CC_WHist_Town>
+  <CC_WHist_Kind>Kind: {KIND}</CC_WHist_Kind>
+  <CC_WHist_Clear>Show all</CC_WHist_Clear>
+  <CC_WHist_AnyPeople>Any people</CC_WHist_AnyPeople>
+  <CC_WHist_AnyTown>Any town</CC_WHist_AnyTown>
+  <CC_WHist_AnyKind>Any kind</CC_WHist_AnyKind>
+  <CC_WHist_Times>({0} times)</CC_WHist_Times>
+  <CC_WHist_TimesFrom>({0} times, from {1} to {2})</CC_WHist_TimesFrom>
+  <CC_WHist_TheColony>the colony</CC_WHist_TheColony>
+  <CC_WHist_Kind_world>World events</CC_WHist_Kind_world>
+  <CC_WHist_Kind_deed>Deeds remembered</CC_WHist_Kind_deed>
+  <CC_WHist_Kind_tie>Ties between peoples</CC_WHist_Kind_tie>
+  <CC_WHist_Kind_loss>Losses</CC_WHist_Kind_loss>
+  <CC_WHist_Kind_life>Lives</CC_WHist_Kind_life>
+  <CC_WHist_Kind_secret>Secrets</CC_WHist_Kind_secret>
+  <CC_WHist_Kind_stranger>Strangers and visitors</CC_WHist_Kind_stranger>
+  <CC_WHist_Kind_bond>Bonds</CC_WHist_Kind_bond>
+  <CC_WHist_Kind_council>The council</CC_WHist_Kind_council>
+  <CC_WHist_Kind_meeting>Meetings</CC_WHist_Kind_meeting>
+  <CC_WHist_Kind_petition>Petitions</CC_WHist_Kind_petition>
+  <CC_WHist_Kind_dream>Dreams</CC_WHist_Kind_dream>
+  <CC_WHist_Kind_note>Notes</CC_WHist_Kind_note>
+  <CC_WHist_Kind_wishMade>Wishes made</CC_WHist_Kind_wishMade>
+  <CC_WHist_Kind_wishGranted>Wishes granted</CC_WHist_Kind_wishGranted>
+  <CC_WHist_Kind_wishExpired>Wishes that lapsed</CC_WHist_Kind_wishExpired>
+  <CC_WHist_Kind_wishDismissed>Wishes turned down</CC_WHist_Kind_wishDismissed>
+  <CC_WHist_Kind_ambitionChosen>Ambitions chosen</CC_WHist_Kind_ambitionChosen>
+  <CC_WHist_Kind_ambitionAchieved>Ambitions achieved</CC_WHist_Kind_ambitionAchieved>
+  <CC_WHist_Kind_ambitionFailed>Ambitions failed</CC_WHist_Kind_ambitionFailed>
+  <CC_WHist_Kind_ambitionAbandoned>Ambitions given up</CC_WHist_Kind_ambitionAbandoned>
+  <CC_WHist_Kind_personalTouch>Personal touches</CC_WHist_Kind_personalTouch>
+
+</LanguageData>

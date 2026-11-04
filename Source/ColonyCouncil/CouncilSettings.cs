@@ -372,11 +372,19 @@ namespace ColonyCouncil
         /// <summary>The materials last picked in the room planner, "room::group=>material", used again while there's enough.</summary>
         public System.Collections.Generic.List<string> planMaterials = new System.Collections.Generic.List<string>();
         public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
+        /// <summary>The old switch for the rooms button, read once into <see cref="planButton"/> (the planning button took the rooms button's place).</summary>
         public bool roomsButton = true;
-        /// <summary>A planning button in the bottom bar: the council window's Planning section (UI/PageButtons.cs).</summary>
+        /// <summary>The planning button in the bottom bar (UI/MainTabWindow_Planning.cs): the plan, the base, making, room plans and rooms.</summary>
         public bool planButton = true;
+        /// <summary>
+        /// The rooms and planning buttons became one (and the rooms and planning settings with them). False in a settings
+        /// file from before, so the two are merged once on loading it; a new player's settings start merged.
+        /// </summary>
+        public bool planningMerged = true;
         /// <summary>A "defense" button in the bottom bar, next to the council's: the Defenses page in a window of its own.</summary>
         public bool defenseButton = true;
+        /// <summary>A "region" button in the bottom bar: the Rimfolk map and everything beyond the colony (UI/MainTabWindow_World.cs).</summary>
+        public bool worldButton = true;
         /// <summary>A More button on the bottom bar, for the buttons put away (UI/BarMore.cs; a deeper game hook).</summary>
         public bool barMore = true;
         /// <summary>The bottom bar's buttons put away under More, by def name (arranged in the game).</summary>
@@ -391,7 +399,7 @@ namespace ColonyCouncil
         public bool moodDetails = false;
         /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
         public CouncilOpensOn councilOpensOn = CouncilOpensOn.LastPage;
-        /// <summary>How many tiles each way from the colony the region map shows (UI/Window_RegionMap.cs), also set in its window.</summary>
+        /// <summary>How many tiles each way from the colony the region map shows (UI/RegionMapView.cs), also set at the top of the map.</summary>
         public int regionMapRadius = 35;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
@@ -654,9 +662,17 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
             Scribe_Values.Look(ref planButton, "planButton", true);
             Scribe_Values.Look(ref defenseButton, "defenseButton", true);
+            Scribe_Values.Look(ref worldButton, "worldButton", true);
             Scribe_Values.Look(ref barMore, "barMore", true);
             Scribe_Collections.Look(ref barPutAway, "barPutAway", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) barPutAway = BarMoreMath.Clean(barPutAway);
+            Scribe_Values.Look(ref planningMerged, "planningMerged", false);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && !planningMerged)
+            {
+                // The rooms and planning buttons are one now: on the bar if either was, put away only if both were.
+                barPutAway = BarMoreMath.MergePlanning(barPutAway, roomsButton, planButton, out planButton);
+                planningMerged = true;
+            }
             Scribe_Values.Look(ref lastCouncilPage, "lastCouncilPage", "");
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
             Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);

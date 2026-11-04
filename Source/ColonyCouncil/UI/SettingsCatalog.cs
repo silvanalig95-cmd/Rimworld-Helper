@@ -135,6 +135,8 @@ namespace ColonyCouncil
             ["savedRooms"] = "the rooms the player saved from a map, managed in the room planner",
             ["planMaterials"] = "the materials last picked in the room planner",
             ["lastCouncilPage"] = "the council window's page when it was last closed",
+            ["roomsButton"] = "the old switch for the rooms button, read once into the planning button's (the row \"Show the planning button\") so older settings files load",
+            ["planningMerged"] = "whether the rooms and planning buttons' settings were made one, so it is done once (BarMoreMath.MergePlanning)",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
             ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",
@@ -464,8 +466,8 @@ namespace ColonyCouncil
             reset.covers = new[] { "slowButtonsX", "slowButtonsY" };
             Dropdown("buttonPosition", "CC_Settings_ButtonPosition", "CC_SetTip_ButtonPosition", "CC_SetNote_ButtonPosition", "CC_ButtonPos_",
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
+            Toggle("worldButton", "CC_Settings_WorldButton", "CC_SetNote_WorldButton");
             Toggle("defenseButton", "CC_Settings_DefenseButton", "CC_SetNote_DefenseButton");
-            Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
             Toggle("planButton", "CC_Settings_PlanButton", "CC_SetNote_PlanButton");
             Toggle("barMore", "CC_Settings_BarMore", "CC_SetNote_BarMore", "deepHooks");
             var arrange = Action("barArrange", "CC_Settings_BarArrange", "CC_Settings_BarArrange_Tip", "CC_SetNote_BarArrange", "barMore,deepHooks");

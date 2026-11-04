@@ -2,16 +2,18 @@
 <Defs>
 
   <!--
-    Optional keyboard shortcuts for the council window's pages (Source/ColonyCouncil/UI/CouncilKeys.cs). None has a key
-    until the player picks one in Options, Keyboard, under "Rimfolk", so they never clash with the game's own keys or
-    another mod's. A page's key opens the council window on that page, or closes it when that page is already showing;
-    the next and previous page keys step through the pages while the window is open.
+    Optional keyboard shortcuts for the pages of Rimfolk's windows (Source/ColonyCouncil/UI/CouncilKeys.cs). None has a
+    key until the player picks one in Options, Keyboard, under "Rimfolk", so they never clash with the game's own keys or
+    another mod's. A page's key opens the window that has the page on it, or closes it when that page is already
+    showing (the world key's page is the region window's Neighbours, the defenses key's the defense window); the next
+    and previous page keys step through the pages of the window that is open. The def names stay as they were, so keys
+    already picked keep working.
   -->
 
   <KeyBindingCategoryDef>
     <defName>Rimfolk</defName>
     <label>Rimfolk</label>
-    <description>Shortcuts for the pages of Rimfolk's council window. None is set until you pick a key.</description>
+    <description>Shortcuts for the pages of Rimfolk's windows. None is set until you pick a key.</description>
   </KeyBindingCategoryDef>
 
   <KeyBindingDef Name="Council_KeyBase" Abstract="True">
@@ -40,12 +42,12 @@
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_World</defName>
-    <label>council: world</label>
+    <label>region: neighbours and what's coming</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_Defenses</defName>
-    <label>council: defenses</label>
+    <label>defense: the defenses</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
@@ -63,20 +65,20 @@
     <label>council: almanac</label>
   </KeyBindingDef>
 
-  <!-- Not a page: the region map's own window (Source/ColonyCouncil/UI/Window_RegionMap.cs), opened or closed. -->
+  <!-- The region window on its map (Source/ColonyCouncil/UI/MainTabWindow_World.cs), opened or closed. -->
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_RegionMap</defName>
-    <label>region map: open or close</label>
+    <label>region: the map (open or close)</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_NextPage</defName>
-    <label>council: next page</label>
+    <label>next page</label>
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_PreviousPage</defName>
-    <label>council: previous page</label>
+    <label>previous page</label>
   </KeyBindingDef>
 
 </Defs>

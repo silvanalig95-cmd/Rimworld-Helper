@@ -9,7 +9,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The World page's "Neighbours": the towns within reach, nearest first, each with the people of it the colony knows
+    /// The region window's Neighbours page, its "Neighbours": the towns within reach, nearest first, each with the people of it the colony knows
     /// by name (head, heir, envoy, trader, and the faces it met who live there), how each regards the colony in words,
     /// which colonists they know, the last thing between them or the letter on its way, and a button to write. The same
     /// rows, shorter, are the region map's section for a town (<see cref="NeighbourPanel"/>), registered at startup.
@@ -106,7 +106,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Why no letter or call can start to them now (none of the purposes is open), or null.</summary>
-        private static string WhyNoLetter(Notable n)
+        internal static string WhyNoLetter(Notable n)
         {
             if (!NeighbourLetters.On) return "CC_Letter_Why_Off".Translate();
             string first = null;
@@ -135,9 +135,9 @@ namespace ColonyCouncil
             return d <= 1 ? "CC_Neighbours_Day".Translate().Resolve() : "CC_Neighbours_Days".Translate(d).Resolve();
         }
 
-        // ---------------- The World page ----------------
+        // ---------------- The Neighbours page ----------------
 
-        /// <summary>Draws the section at <paramref name="y"/> inside the World page's scroll view; returns the y below it.</summary>
+        /// <summary>Draws the section at <paramref name="y"/> inside the Neighbours page's scroll view; returns the y below it.</summary>
         public static float Draw(float y, float w)
         {
             if (!NotableBook.On) return y;

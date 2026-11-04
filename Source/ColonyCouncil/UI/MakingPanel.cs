@@ -8,7 +8,7 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony, then Making: planning ahead at the top (UI/AheadPanel.cs), then what the colony could make
+    /// Planning → Making: planning ahead at the top (UI/AheadPanel.cs), then what the colony could make
     /// (Building/Making.cs). What could be made now from what's in
     /// stock with no bill for it, bench by bench, each with a bill ready to set up; harvests and finds no bench here
     /// puts to its own use, and what would; benches standing without bills.

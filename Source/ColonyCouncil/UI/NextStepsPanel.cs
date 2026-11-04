@@ -8,7 +8,7 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony, then Plan: the colony's next steps (Building/NextSteps.cs). The plan first, in the player's order, each
+    /// Planning → Plan: the colony's next steps (Building/NextSteps.cs). The plan first, in the player's order, each
     /// step with what opens to do it, arrows to move it, done and let go; a line to add a step of their own (with a
     /// room plan, if it's a room); then what the council proposes, most pressing first, each to take into the plan or
     /// let go.

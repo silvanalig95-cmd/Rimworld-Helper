@@ -362,7 +362,7 @@ namespace ColonyCouncil
                 draftEditing = editing;
                 keepDraft = true;
                 Close(false);
-                Window_RegionMap.Open();
+                Pages.Open("Map");
                 Messages.Message("CC_Journey_PickHint".Translate(), MessageTypeDefOf.SilentInput, false);
             }
             bx += 228f;
@@ -975,7 +975,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Where a journey is planned from: a section on the Decrees and World pages (the plan in words, and its buttons),
+    /// Where a journey is planned from: a section on the Decrees page and the region window's Journeys page (the plan in words, and its buttons),
     /// and on the region map, "Plan a journey here" for a town (in <see cref="NeighbourPanel.Sections"/>) and for any
     /// other place (in <see cref="NeighbourPanel.PlaceSections"/>).
     /// </summary>

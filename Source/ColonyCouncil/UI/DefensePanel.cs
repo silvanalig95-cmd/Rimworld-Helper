@@ -8,7 +8,7 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → Defenses: the colony's defense read from its map. On the left, the map with the ways raiders walk in and
+    /// Defense → Defenses: the colony's defense read from its map. On the left, the map with the ways raiders walk in and
     /// the narrow places on them, where they come from, what the colony faces, who fights, what stands already, and how
     /// it's commonly done. On the right, the advice (most urgent first, what's done marked), each with its reasoning and
     /// a button that puts the plan down at the place it's about, and the defense plans to place by hand. The survey is

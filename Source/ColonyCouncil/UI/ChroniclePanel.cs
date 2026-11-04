@@ -7,7 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// History → Chronicle: everything the colony has been through, newest first, as a timeline (the day on the left,
+    /// Colony → Chronicle: everything the colony has been through, newest first, as a timeline (the day on the left,
     /// an icon for each kind of entry on the line), with filters and the yearly annals.
     /// </summary>
     public static class ChroniclePanel

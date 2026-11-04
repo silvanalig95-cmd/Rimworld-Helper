@@ -49,5 +49,29 @@ namespace ColonyCouncil
 
         /// <summary>More's place on the bar: just before the game's menu (its order less one), or at the end with no menu.</summary>
         public static int OrderFor(int? menuOrder, int lastOrder) => menuOrder.HasValue ? menuOrder.Value - 1 : lastOrder + 1;
+
+        /// <summary>The planning button: the rooms button's def, which it replaced.</summary>
+        public const string Planning = "Council_RoomsButton";
+
+        /// <summary>The small planning button there was before the rooms and planning buttons became one.</summary>
+        public const string OldPlanning = "Rimfolk_PlanButton";
+
+        /// <summary>
+        /// The rooms and planning buttons made one (once, from settings saved before): the planning button is on the bar
+        /// if either of the two was (shown by its setting and not put away), put away under More if one was shown but
+        /// both were put away, and hidden only if both were switched off. Returns the list put away, with the old small
+        /// button's name gone.
+        /// </summary>
+        public static List<string> MergePlanning(List<string> away, bool roomsShown, bool planShown, out bool show)
+        {
+            var list = Clean(away);
+            bool roomsAway = list.Contains(Planning), planAway = list.Contains(OldPlanning);
+            bool onBar = roomsShown && !roomsAway || planShown && !planAway;
+            show = roomsShown || planShown;
+            list.RemoveAll(n => n == OldPlanning);
+            if (onBar) list.RemoveAll(n => n == Planning);
+            else if (show && !list.Contains(Planning)) list.Add(Planning);
+            return list;
+        }
     }
 }

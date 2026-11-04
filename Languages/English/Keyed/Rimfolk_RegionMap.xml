@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- The region map: the land around the colony in a window of its own (Source/ColonyCouncil/UI/Window_RegionMap.cs,
+  <!-- The region map: the land around the colony, the first page of the region window (Source/ColonyCouncil/UI/RegionMapView.cs,
        Source/ColonyCouncil/World/RegionMap.cs). -->
 
-  <CC_Region_Button>Region map</CC_Region_Button>
-  <CC_Region_Button_Tip>Opens a map of the land around the colony in a window of its own, over the colony rather than in the game's world view: the settlements nearby, their people, and how far each is by caravan. The window can be moved and resized and stays open while the game runs.</CC_Region_Button_Tip>
-  <CC_Region_Button_Key>Key: {0}</CC_Region_Button_Key>
   <CC_Region_Title>Region map</CC_Region_Title>
   <CC_Region_Reach>{0} tiles each way</CC_Region_Reach>
   <CC_Region_Reach_Tip>How far the map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. Kept in Rimfolk's settings.</CC_Region_Reach_Tip>
@@ -61,7 +58,7 @@
 
   <!-- The setting (Interface page). -->
   <CC_Settings_RegionMapRadius>Region map: tiles each way</CC_Settings_RegionMapRadius>
-  <CC_Settings_RegionMapRadius_Tip>How far the region map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. The map's window has the same control at its top.</CC_Settings_RegionMapRadius_Tip>
-  <CC_SetNote_RegionMapRadius>The region map (the button on the council's World page) shows the land this many tiles each way from the colony.</CC_SetNote_RegionMapRadius>
+  <CC_Settings_RegionMapRadius_Tip>How far the region map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. The map's page has the same control at its top.</CC_Settings_RegionMapRadius_Tip>
+  <CC_SetNote_RegionMapRadius>The region map (the first page of the region button's window) shows the land this many tiles each way from the colony.</CC_SetNote_RegionMapRadius>
 
 </LanguageData>

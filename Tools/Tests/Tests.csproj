@@ -30,6 +30,8 @@
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/PagesMath.cs" Link="PagesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/WorldHistoryMath.cs" Link="WorldHistoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ShelfReserveMath.cs" Link="ShelfReserveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestCheckMath.cs" Link="GuestCheckMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/NextStepsMath.cs" Link="NextStepsMath.cs" />
