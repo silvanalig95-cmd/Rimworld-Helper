@@ -1650,7 +1650,8 @@ Core types:
 - `RoomTemplateDef`, `TemplatePlanner`, `Designator_PlanRoom`: room plans with a ghost preview,
   rotation, material choice and a spot finder.
 - `Avail`: the tech, research, material and purpose checks described above.
-- `MainTabWindow_Council`: the Priorities, Wishes, Ambition, Room plans and Chronicle tabs.
+- `MainTabWindow_Council`, `MainTabWindow_World`, `MainTabWindow_Defenses`, `MainTabWindow_Planning`: the four
+  windows (see "Rimfolk's windows").
 
 Things the game exposes that this relies on (all available to mods):
 
@@ -1747,8 +1748,8 @@ over any `IColonyEntry`.
   one of the first members (joined in its own first year: `CalendarMath.FirstMember`) are read from each colony's own
   people and land. The seat's calendar keeps what is the colony's as a whole: the nemeses and the world's events. The
   founding event keeps only the founding day of the colony settled with the game; a later colony keeps its own. The
-  Calendar page shows the colony in view (with the colony header); the World page, This week and the HUD list each
-  colony's coming days, named.
+  Calendar page shows the colony in view (with the colony header); the region window's Neighbours page, This week
+  and the HUD list each colony's coming days, named.
 - *Officers at work*: Interplay's officers are each colony's (`Interplay.Officer(def, map)`, `OfficerOf`, `Holds`,
   `Officers`): the keeper of days, the peacemaker, the steward and the chaplain of the colony where it happens; each
   colony's physician, herdmaster (`AnimalFacts.HerdmasterAt`, `IsHerdmaster`), chaplain, warden and marshal keep their
@@ -2210,6 +2211,55 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   `region:newtown` (`:theirs`, `:other`) `{NEWTOWN}` `{NEWTOWNPEOPLE}`; 40 talk pieces use them.
 - **Settings off**: a part makes nothing new and tells nothing, and keeps its records (the reach is still worked out,
   which changes no play). Neither is per tick; the daily pass loops once over the world's towns per home.
+
+### Rimfolk's windows
+
+The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.
+Four buttons, placed together after the council's by `CouncilStartup.ApplyButtonPosition` in the order of
+`Defs/Misc/Council_Misc.xml`, each a `MainTabWindow` deriving from `RimfolkTabWindow` (the same size, the council
+window's, and the same place, so going from one to another keeps the frame):
+
+| Button (def) | Label | Window | Pages |
+|---|---|---|---|
+| `Council_MainButton` | council | `MainTabWindow_Council` | sections Council (Decrees, Ambition, Ways, Dilemmas, Wishes), People (Roster, Everyone, Bonds, Faiths, Moods, Dreams, Journals), Colony (Week, Overview, Priorities, Calendar, Chronicle), Almanac |
+| `Rimfolk_WorldButton` | region | `MainTabWindow_World` | Map, Neighbours, Peoples, Letters, Journeys, Events, WorldHistory, and pages other parts add |
+| `Council_DefenseButton` | defense | `MainTabWindow_Defenses` | Defenses |
+| `Council_RoomsButton` | planning | `MainTabWindow_Planning` | Plan, Base, Making, Build, Rooms |
+
+- **One list of pages** (`UI/PagesMath.cs`, pure, tested in `Tools/Tests/PagesTests.cs`): each page's window and
+  section, in tab order. The council window builds its sections from it. A page's name is its address:
+  `Pages.Open(name)` (`UI/Pages.cs`; `MainTabWindow_Council.OpenTab`, `OpenOrClose`, `IsPage` and `TabName` forward to
+  it, so every older caller, mood hint, advisor step, This week card, panel line and page key routes through it) opens
+  the window that has the page, on it. Old addresses resolve (`PagesMath.Moved`): `World` is the region window's
+  Neighbours (it kept what the World page showed), `RegionMap` its Map, `History` (the old section) the Chronicle;
+  `Defenses` and the planning pages simply live in their windows now. A window opens through its button's def, which
+  works with the button hidden or put away.
+- **The corner** (`UI/WindowTabs.cs`): every window draws its tabs with `WindowTabs.Draw`, the game's tabs with their
+  icons (only the icon, the name on hover, where the name doesn't fit), and in the top right corner the four windows'
+  icons, the one showing lit. A click opens that window as its button would. The defense window has one tab, so its
+  corner is where the others' is.
+- **The region window** opens on the region map unless something asked for a page. The map is `RegionMapView` (what
+  was `Window_RegionMap`, the same drawing, panel and `NeighbourPanel` sections, now inside the page): its picture is
+  made when the page is first drawn and let go when the window closes; where it looked and what was picked are kept
+  for the session. The drawing went into the page rather than the region map keeping a window of its own because the
+  window was only a frame around it (its own place, size and close button): inside the region window the map sits
+  beside the pages the player asked to have with it, under one button, as the other windows are. Its other pages:
+  Neighbours (`WorldPanel`: what's coming, missions, a camp, who's out there, the towns nearby), Peoples (stance, wars
+  by the game's relations between peoples that count, world events, `FactionMemoryPanel`), Letters and calls
+  (`NeighbourLetters`, under way and lately, and whom the colony can write to), Journeys (`JourneyPanel` and the
+  colony's caravans), Events (`WorldSituationsPanel` and the chronicle's world lines) and History (the world's history
+  over `History.Of` for a people, `History.At` and `Of` for a town, all of it otherwise, newest first, at most 300,
+  filtered by a kind's family; each line in `History.Text`'s words, else its kind in words and who took part;
+  `UI/WorldHistoryMath.cs`). Built at most once a second or two while open; nothing while closed.
+- **Adding a region page** is one call from a `[StaticConstructorOnStartup]` class:
+  `MainTabWindow_World.Register(name, labelKey, icon, rect => Draw(rect), () => shown, order)`. The name becomes an
+  address `Pages.Open` takes; order 60 by default puts it after World events and before History.
+- **The planning button** kept the rooms button's def name (`Council_RoomsButton`), so a bar arranged around the rooms
+  button (`barPutAway`) and other mods' settings keyed by the def stay as they were; the small minimized
+  `Rimfolk_PlanButton` is gone. Its settings merged once (`planningMerged`, false in a settings file from before):
+  `planButton` is on if either `roomsButton` or `planButton` was, and `BarMoreMath.MergePlanning` keeps the button on
+  the bar if either button was on it, under More if both were put away.
+- **Settings**: `worldButton`, `defenseButton` and `planButton` show or hide the three buttons beside the council's.
 
 ### A colonist's tabs
 

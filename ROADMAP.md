@@ -244,6 +244,8 @@ Few buttons on the bottom bar, each with its own window and no master window. Fo
 - **Planning**, replacing the Rooms button and taking rooms in (plan, base, making, build, rooms).
 The World page leaves the council's window for the World button, and the Defenses page for the Defense button. More
 keeps the buttons put away. Built after stage 1's first release (both touch the World page and the region map).
+Built (after 0.69.0): the four windows, each with the four in its top right corner; the World button is labelled
+"region" on the bar, as the game's own "world" button is the planet view (DESIGN.md, "Rimfolk's windows").
 
  4 November 2026: 0.65.0 to 0.68.0)
 Homes (0.65.0), Rimfolk's clock (0.65.1), the world ledger (0.65.3, 0.66.3), one voice (0.66.0), one history

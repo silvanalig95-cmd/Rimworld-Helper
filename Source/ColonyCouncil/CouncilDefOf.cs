@@ -129,10 +129,12 @@ namespace ColonyCouncil
         public static HediffDef Council_Disgruntled;
 
         public static MainButtonDef Council_MainButton;
+        /// <summary>The planning button (it kept the rooms button's name, so bar arrangements and other mods' settings for it still apply).</summary>
         public static MainButtonDef Council_RoomsButton;
         public static MainButtonDef Council_DefenseButton;
         public static MainButtonDef Rimfolk_MoreButton;
-        public static MainButtonDef Rimfolk_PlanButton;
+        /// <summary>The region button: the Rimfolk map and everything beyond the colony.</summary>
+        public static MainButtonDef Rimfolk_WorldButton;
 
         static CouncilDefOf()
         {

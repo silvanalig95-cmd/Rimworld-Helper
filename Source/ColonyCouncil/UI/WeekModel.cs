@@ -563,12 +563,12 @@ namespace ColonyCouncil
                     text = r.label.NullOrEmpty() ? "CC_Week_Fight".Translate(r.faction.Name).Resolve() : r.label,
                     note = "CC_Week_In".Translate(UiKit.Duration(Mathf.Max(0, r.tick - now))).Resolve(),
                     noteColor = UiKit.Bad,
-                    tip = Tip(r.text, ClickPage("World")),
-                    click = Page("World"),
+                    tip = Tip(r.text, ClickPage("Neighbours")),
+                    click = Page("Neighbours"),
                     order = r.tick - now
                 });
             }
-            foreach (var n in StoryChains.Coming(now)) c.rows.Add(Note(n, now, "World"));
+            foreach (var n in StoryChains.Coming(now)) c.rows.Add(Note(n, now, "Neighbours"));
             return c;
         }
 
@@ -592,7 +592,7 @@ namespace ColonyCouncil
 
         private static WeekCard Missions_()
         {
-            var c = Card("CC_Week_Missions", "CC_Week_Empty_Missions", Icons.Trader, UiKit.Gold, "World");
+            var c = Card("CC_Week_Missions", "CC_Week_Empty_Missions", Icons.Trader, UiKit.Gold, "Neighbours");
             int now = Now;
             foreach (var m in Missions.All)
             {
@@ -627,8 +627,8 @@ namespace ColonyCouncil
                     text = m.title ?? m.def?.LabelCap.ToString() ?? "?",
                     note = note,
                     noteColor = left > 0 && left < GenDate.TicksPerDay * 2 ? UiKit.Bad : UiKit.Faint,
-                    tip = Tip(goods.NullOrEmpty() ? null : "CC_Missions_TipGoods".Translate(goods).Resolve(), ClickPage("World")),
-                    click = Missions.QuestOf(m) != null ? () => Missions.ShowQuest(mission) : Page("World"),
+                    tip = Tip(goods.NullOrEmpty() ? null : "CC_Missions_TipGoods".Translate(goods).Resolve(), ClickPage("Neighbours")),
+                    click = Missions.QuestOf(m) != null ? () => Missions.ShowQuest(mission) : Page("Neighbours"),
                     order = left > 0 ? left : int.MaxValue / 2
                 });
             }
@@ -644,8 +644,8 @@ namespace ColonyCouncil
                     text = AtHome(camp.map, "CC_Week_Camp".Translate(camp.kind?.LabelCap.ToString() ?? "?").Resolve()),
                     note = "CC_Week_Tension".Translate(camp.TensionWord).Resolve(),
                     noteColor = CampPanel.TensionColor(camp.tension),
-                    tip = Tip(camp.StatusLine() + "\n" + camp.TermsLine(), target.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("World")),
-                    click = target.IsValid ? Go(target) : Page("World"),
+                    tip = Tip(camp.StatusLine() + "\n" + camp.TermsLine(), target.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("Neighbours")),
+                    click = target.IsValid ? Go(target) : Page("Neighbours"),
                     order = -1
                 });
                 // What their people are coming into the colony for, or are there doing now (Camps/CampRequests.cs).
@@ -660,8 +660,8 @@ namespace ColonyCouncil
                         color = UiKit.StrangerColor,
                         text = errand,
                         note = until > 0 ? "CC_Week_In".Translate(UiKit.Duration(until)).Resolve() : "CC_Week_UnderWay".Translate().ToString(),
-                        tip = Tip(null, at.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("World")),
-                        click = at.IsValid ? Go(at) : Page("World"),
+                        tip = Tip(null, at.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("Neighbours")),
+                        click = at.IsValid ? Go(at) : Page("Neighbours"),
                         order = 0
                     });
                 }

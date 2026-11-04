@@ -7,7 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The World page's "What they remember": a card for each people that remembers the colony for something, with how
+    /// The region window's Peoples page, "What they remember": a card for each people that remembers the colony for something, with how
     /// it stands (grateful, owed, wary, holding a grudge) and the deeds it remembers best, newest first among equals.
     /// Hover a card for everything it remembers. Nothing is drawn with the colony's memory switched off.
     /// </summary>
@@ -39,7 +39,7 @@ namespace ColonyCouncil
         private static float builtAt = -1f;
         private static int builtVersion = -1;
 
-        /// <summary>Draws the section at <paramref name="y"/> (inside the World page's scroll view); returns the y below it.</summary>
+        /// <summary>Draws the section at <paramref name="y"/> (inside the Peoples page's scroll view); returns the y below it.</summary>
         public static float Draw(float y, float w)
         {
             if (!FactionMemory.On) return y;

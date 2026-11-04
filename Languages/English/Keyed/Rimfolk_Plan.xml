@@ -5,10 +5,10 @@
   <CC_Tab_PlanCount>Plan ({0})</CC_Tab_PlanCount>
   <CC_Settings_NextSteps>The colony's next steps</CC_Settings_NextSteps>
   <CC_Settings_NextSteps_Tip>A short, ordered plan the council keeps with you, on the Plan page: each hour it proposes steps from what it watches (the priorities, the defense advice, an idle research bench), you take them into the plan or let them go, add your own, and order them. A step is done when you say so, or when the need behind it has passed. The first step shows on This week and the council panel.</CC_Settings_NextSteps_Tip>
-  <CC_SetNote_NextSteps>A Plan page under Planning: the council proposes the next steps, you keep the order.</CC_SetNote_NextSteps>
-  <CC_Settings_PlanButton>A planning button in the bottom bar</CC_Settings_PlanButton>
-  <CC_Settings_PlanButton_Tip>One small button after the rooms button that opens the council window's Planning section: the plan and the ground plan, the base looked over, what you could make, and the room plans with Rearrange a room. Clicked again while it shows, it closes the window. Right-click it to put it away under More.</CC_Settings_PlanButton_Tip>
-  <CC_SetNote_PlanButton>A small button in the bottom bar for the Planning section.</CC_SetNote_PlanButton>
+  <CC_SetNote_NextSteps>A Plan page in the planning window: the council proposes the next steps, you keep the order.</CC_SetNote_NextSteps>
+  <CC_Settings_PlanButton>Show the "planning" button in the bottom bar</CC_Settings_PlanButton>
+  <CC_Settings_PlanButton_Tip>A button after the defense button that opens the planning window: the plan and the ground plan, the base looked over, what you could make, the room plans with Rearrange a room, and every room at a glance (what the rooms button showed). Right-click it to put it away under More. Hidden, the planning window is still one click away in the top right corner of Rimfolk's other windows.</CC_Settings_PlanButton_Tip>
+  <CC_SetNote_PlanButton>A Planning button in the bottom bar, with the plan, the base, making and the rooms.</CC_SetNote_PlanButton>
 
   <CC_Plan_Header>The colony's next steps</CC_Plan_Header>
   <CC_Plan_Sub>What to do next, in your order. The council proposes; you decide.</CC_Plan_Sub>

@@ -52,7 +52,7 @@
     <act>Keep the next camp sweet</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -62,7 +62,7 @@
     <act>Settle terms while they're here</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -82,7 +82,7 @@
     <act>Take on what you can finish</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -92,7 +92,7 @@
     <act>Passes soon</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Events</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -102,7 +102,7 @@
     <act>Answer the next call</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Events</councilTab>
   </ColonyCouncil.MoodHintDef>
 
 </Defs>

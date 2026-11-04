@@ -48,7 +48,7 @@ Show or hide them all with the button among the play settings at the bottom righ
       </li>
       <li>
         <heading>The council at a glance</heading>
-        <text>Only what has something to say: open wishes and whose has waited longest, petitions, promises coming due, questions waiting for an answer, the decrees in force with the days they have left, the next day on the calendar or the next meeting, and the colony's trust. Each line opens the council window on the right page; a waiting question opens its letter.</text>
+        <text>Only what has something to say: open wishes and whose has waited longest, petitions, promises coming due, questions waiting for an answer, the decrees in force with the days they have left, the next day on the calendar or the next meeting, and the colony's trust. Each line opens the right one of Rimfolk's windows on the right page; a waiting question opens its letter.</text>
       </li>
       <li>
         <heading>The alerts</heading>
@@ -134,8 +134,9 @@ The panels always stay beneath windows and the game's own readouts: a tab, the i
           <li>Click the dots for the buttons put away: click one to open it as usual, or the pin beside it to put it back on the bar. One that can't open right now (on the world map, a button that needs a map) shows greyed out, and one its mod or the game is hiding for now isn't listed.</li>
           <li>"Arrange the bottom bar", at the end of that list and in the settings (Interface), lists every button with a tick for those that stay on the bar.</li>
           <li>A button put away still opens with its key (Options, Keyboard), and the dots can have a key of their own there.</li>
+          <li>Rimfolk keeps four buttons: council, region, defense and planning. Each of their windows has the four in its top right corner, so one put away or switched off in the settings is still a click away.</li>
         </points>
-        <after>What you put away is a setting, the same in every save; a button from a mod you remove is remembered for when it comes back. It goes by each button's own say on whether it shows, so a mod's own switch for its button (Dubs Mint Menus' bills and gear buttons, Rimfolk's defense and rooms buttons) still works. It needs the deeper game hooks; with "more" switched off, every button is back on the bar.</after>
+        <after>What you put away is a setting, the same in every save; a button from a mod you remove is remembered for when it comes back. It goes by each button's own say on whether it shows, so a mod's own switch for its button (Dubs Mint Menus' bills and gear buttons, Rimfolk's region, defense and planning buttons) still works. It needs the deeper game hooks; with "more" switched off, every button is back on the bar.</after>
       </li>
     </sections>
     <keywords><li>panels</li><li>on screen</li><li>hud</li><li>overlay</li><li>mood board</li><li>hover</li><li>hover card</li><li>tooltip</li><li>vitals</li><li>raid frames</li><li>graph</li><li>trend</li><li>overview</li></keywords>

@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+  <!-- Rimfolk's four windows, one button each, placed together right after one another at startup
+       (CouncilStartup.ApplyButtonPosition) in this order. Each window has the four in its top right corner, so any of
+       them can be reached from another even with its button hidden or put away under More. -->
+
+  <!-- The colony's own life: the council, its people, the colony and the Almanac. -->
   <MainButtonDef>
     <defName>Council_MainButton</defName>
     <label>council</label>
-    <description>The colony council: what the colony needs most, what your colonists are wishing for, the ambition you are working toward, room plans, and the chronicle of it all.</description>
+    <description>The colony's own life: the council (decrees, offices and elections, the ambition and its meetings, the colony's ways, dilemmas, wishes and petitions), its people (the roster, bonds, faiths, moods, dreams and journals), the colony (this week, the overview, priorities, the calendar and the chronicle), and the Almanac.</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Council</tabWindowClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/UI/MainButton</iconPath>
   </MainButtonDef>
 
-  <!-- The colony's defenses, one click away: the Defenses page in a window of its own. Placed right after the council
-       button at startup (before the rooms button); can be hidden in the settings. -->
+  <!-- The Rimfolk map and everything beyond the colony. Labelled "region" because the game already has a "world" button
+       (the planet view). Hidden by the setting "worldButton". -->
+  <MainButtonDef>
+    <defName>Rimfolk_WorldButton</defName>
+    <label>region</label>
+    <description>The Rimfolk map and everything beyond the colony: the region map, the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history.</description>
+    <tabWindowClass>ColonyCouncil.MainTabWindow_World</tabWindowClass>
+    <order>1000</order>
+    <iconPath>ColonyCouncil/Icons/World</iconPath>
+  </MainButtonDef>
+
+  <!-- The colony's defenses: the Defenses page in a window of its own. Hidden by the setting "defenseButton". -->
   <MainButtonDef>
     <defName>Council_DefenseButton</defName>
     <label>defense</label>
@@ -21,29 +36,15 @@
     <iconPath>ColonyCouncil/Icons/Defenses</iconPath>
   </MainButtonDef>
 
-  <!-- Room plans, one click away. Placed right after the council button at startup; can be hidden in the settings. -->
+  <!-- Planning the base and its rooms. It took the rooms button's place and kept its name, so a bar arranged around the
+       rooms button, and other mods' settings for it, still apply. Hidden by the setting "planButton". -->
   <MainButtonDef>
     <defName>Council_RoomsButton</defName>
-    <label>rooms</label>
-    <description>Whole rooms planned for you: walls, door, furniture and floor in one go, adapted to what your colony can build. Pick one to open the planner.</description>
-    <tabWindowClass>ColonyCouncil.MainTabWindow_Rooms</tabWindowClass>
-    <order>1000</order>
-    <iconPath>ColonyCouncil/UI/RoomsButton</iconPath>
-  </MainButtonDef>
-
-  <!-- Planning the base, one click away: the council window's Planning section (the plan, the base looked over, what
-       could be made, the room plans). Placed right after the rooms button at startup; hidden by the setting "planButton". -->
-  <MainButtonDef>
-    <defName>Rimfolk_PlanButton</defName>
     <label>planning</label>
-    <description>Planning the base: the colony's next steps and the ground plan, the base looked over with what a click can put right, what you could make from the stock, and the room plans with Rearrange a room.</description>
-    <workerClass>ColonyCouncil.MainButtonWorker_Page</workerClass>
+    <description>Planning the base: the colony's next steps and the ground plan, the base looked over with what a click can put right, what you could make from the stock, the room plans with Rearrange a room, and every room at a glance, ready to plan.</description>
+    <tabWindowClass>ColonyCouncil.MainTabWindow_Planning</tabWindowClass>
     <order>1000</order>
-    <minimized>true</minimized>
     <iconPath>ColonyCouncil/Icons/Plan</iconPath>
-    <modExtensions>
-      <li Class="ColonyCouncil.PageButtonExtension"><section>Planning</section></li>
-    </modExtensions>
   </MainButtonDef>
 
   <!-- More: the bottom bar's buttons the player put away (UI/BarMore.cs). Placed just before the game's menu at

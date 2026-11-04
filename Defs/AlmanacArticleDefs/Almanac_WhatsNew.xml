@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.70.0</version>
+        <date>4 November 2026</date>
+        <title>Four windows</title>
+        <points>
+          <li>Rimfolk now has four buttons on the bottom bar, each with its own window: council, region, defense and planning. Each window has the four in its top right corner, so the others are always a click away.</li>
+          <li>The council window is now organized as the council, its people, the colony and the Almanac. Moods, dreams and journals are under People, the calendar and the chronicle under Colony, and wishes under Council.</li>
+          <li>The region button opens the region map, with the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history beside it.</li>
+          <li>The world's history has a page of its own, newest first, for one people, one town or one kind of event.</li>
+          <li>The planning button takes the rooms button's place, with the plan, the base, making, room plans and every room at a glance. A bar you arranged keeps its arrangement.</li>
+          <li>Old links still lead to the right place: letters, panels, mood hints and page keys open the window that has the page now.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.69.0</version>
         <date>4 November 2026</date>
         <title>The region's towns</title>

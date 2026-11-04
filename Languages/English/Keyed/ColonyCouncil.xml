@@ -896,14 +896,12 @@
   <CC_Reason_Armor>{PAWN_nameDef} fights for the colony with no real armor, and the colony could make some.</CC_Reason_Armor>
   <CC_SelfHelp_Wedding>{PAWN_nameDef} marked out a marriage spot for {PAWN_objective} and {OTHER_nameDef}. Once it's built, the wedding can happen.</CC_SelfHelp_Wedding>
 
-  <!-- Rooms button and floor picker -->
-  <CC_Rooms_Title>Room plans</CC_Rooms_Title>
+  <!-- Planning, Rooms (what the rooms button showed), and the floor picker -->
+  <CC_Rooms_Title>Every room at a glance</CC_Rooms_Title>
   <CC_Rooms_Hint>Click a room to plan it. Right-click to find it a spot, furnish a room you have built, or delete a room of your own. The number is how many sizes it comes in; highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
   <CC_Rooms_Suggested>The council suggests this: {0}</CC_Rooms_Suggested>
   <CC_Settings_DefenseButton>Show the "defense" button in the bottom bar</CC_Settings_DefenseButton>
-  <CC_Settings_DefenseButton_Tip>A button next to the council's that opens the Defenses page in a window of its own: the ways raiders walk in, the defense lines and the advice. Clicking a raid's warning on the panels and the key for the Defenses page open it too. The same page is always on the council window's Colony section.</CC_Settings_DefenseButton_Tip>
-  <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
-  <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always on the council window's Room plans page.</CC_Settings_RoomsButton_Tip>
+  <CC_Settings_DefenseButton_Tip>A button next to the council's that opens the Defenses page in a window of its own: the ways raiders walk in, the defense lines and the advice. Clicking a raid's warning on the panels and the key for the Defenses page open it too. Hidden, the defense window is still one click away in the top right corner of Rimfolk's other windows.</CC_Settings_DefenseButton_Tip>
   <CC_Settings_BarMore>A "more" button for the bottom bar's buttons you put away</CC_Settings_BarMore>
   <CC_Settings_BarMore_Tip>Three dots just before the menu button. Right-click any button on the bottom bar to put it away under it; click the dots to open one of them, or the pin beside one to put it back on the bar. A button put away still opens with its key. Off puts every button back on the bar, and they're put away again when it's on.</CC_Settings_BarMore_Tip>
   <CC_Settings_BarArrange>Arrange the bottom bar</CC_Settings_BarArrange>
@@ -1498,10 +1496,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Council window layout -->
   <CC_Section_Colony>Colony</CC_Section_Colony>
-  <CC_Section_Planning>Planning</CC_Section_Planning>
   <CC_Section_People>People</CC_Section_People>
   <CC_Section_Council>Council</CC_Section_Council>
-  <CC_Section_History>History</CC_Section_History>
   <CC_Section_Almanac>Almanac</CC_Section_Almanac>
   <CC_Tab_Roster>Roster</CC_Tab_Roster>
   <CC_Tab_Bonds>Bonds</CC_Tab_Bonds>
@@ -1564,7 +1560,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_MsgLevel_Everything>Everything</CC_MsgLevel_Everything>
   <CC_MsgLevel_Everything_Tip>A message for every dream, small social moment, quirk and confidence. Busy, but you won't miss a thing.</CC_MsgLevel_Everything_Tip>
   <CC_MsgLevel_Notable>Notable only</CC_MsgLevel_Notable>
-  <CC_MsgLevel_Notable_Tip>Messages for what changes something: bonds formed, vendettas, secrets out, names earned, dreams that mattered. The small moments are still in the journals, the Story tab and the History section.</CC_MsgLevel_Notable_Tip>
+  <CC_MsgLevel_Notable_Tip>Messages for what changes something: bonds formed, vendettas, secrets out, names earned, dreams that mattered. The small moments are still in the journals, the Story tab and the council window's chronicle.</CC_MsgLevel_Notable_Tip>
   <CC_MsgLevel_LettersOnly>Important only</CC_MsgLevel_LettersOnly>
   <CC_MsgLevel_LettersOnly_Tip>Only letters and the biggest moments (an omen coming true). Everything else is in the council window.</CC_MsgLevel_LettersOnly_Tip>
 
@@ -1967,11 +1963,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_ContestWonStakeB>It was close for a while, and then {A_nameDef} pulled ahead and beat {X_nameDef} at {2}, winning {3} silver for the colony. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
   <CC_Evt_ContestLostB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The onlookers are already arguing about how close it was.</CC_Evt_ContestLostB>
   <CC_Evt_ContestLostStakeB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The colony's {3} silver went with {X_nameDef}, and the onlookers are still arguing about how close it was.</CC_Evt_ContestLostStakeB>
-  <!-- World page, chains, victories, quests -->
-  <CC_Tab_World>World</CC_Tab_World>
-  <CC_Tab_WorldComing>World ({0})</CC_Tab_WorldComing>
-  <CC_World_Header>The world around the colony</CC_World_Header>
-  <CC_World_Intro>What's going on in the region, what's coming, who's out there with the colony on their mind, and what the world has brought lately. Fights and questions show up here as soon as the colony knows of them.</CC_World_Intro>
+  <!-- The region window's Neighbours page (the council window's World page before), chains, victories, quests -->
+  <CC_World_Header>Neighbours and what's coming</CC_World_Header>
+  <CC_World_Intro>What's coming to the colony, the missions and camps, who's out there with the colony on their mind, and the towns nearby with the people the colony knows there. Fights and questions show up here as soon as the colony knows of them. World events have a page of their own, and so do the peoples, letters and journeys.</CC_World_Intro>
   <CC_World_Coming>Coming</CC_World_Coming>
   <CC_World_AFight>A fight</CC_World_AFight>
   <CC_World_Raid>{0}: {1}, in about {2}.</CC_World_Raid>

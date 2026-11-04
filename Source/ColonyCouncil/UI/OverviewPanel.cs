@@ -74,10 +74,10 @@ namespace ColonyCouncil
                 // One line from each of the other pages, side by side.
                 float colY = y;
                 float left = Column(0f, colY, gw, m.needs, "CC_Overview_Needs".Translate(), "Priorities", Icons.Priorities, UiKit.Faint);
-                left = Column(0f, left + 8f, gw, m.coming, "CC_Overview_Coming".Translate(), "World", Icons.World, m.coming.Count > 0 ? Threat : UiKit.Faint);
+                left = Column(0f, left + 8f, gw, m.coming, "CC_Overview_Coming".Translate(), "Neighbours", Icons.World, m.coming.Count > 0 ? Threat : UiKit.Faint);
                 if (m.weather.Count > 0) left = Column(0f, left + 8f, gw, m.weather, "CC_Overview_Weather".Translate(), "Chronicle", Icons.World, UiKit.Faint);
                 // The herd's leader, the beast the colony watches, the neighbours settled for good (Animals/HerdStory.cs, ResidentBeast.cs, Camps/Holding.cs).
-                if (m.land.Count > 0) left = Column(0f, left + 8f, gw, m.land, "CC_Overview_Land".Translate(), "World", Icons.Visitor, UiKit.Faint);
+                if (m.land.Count > 0) left = Column(0f, left + 8f, gw, m.land, "CC_Overview_Land".Translate(), "Neighbours", Icons.Visitor, UiKit.Faint);
                 float right = Column(gw + 12f, colY, gw, m.character, "CC_Overview_KnownAs".Translate(), "Ways", Icons.Ways, UiKit.Faint);
                 right = Column(gw + 12f, right + 8f, gw, m.lately, "CC_Overview_Lately".Translate(), "Chronicle", Icons.Chronicle, UiKit.Faint);
                 y = Mathf.Max(left, right) + 10f;

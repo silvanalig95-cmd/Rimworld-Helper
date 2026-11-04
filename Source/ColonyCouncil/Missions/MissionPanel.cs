@@ -7,7 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The World page's "Missions" section: each mission offered or under way as a card with its terms, a bar for each
+    /// The region window's Neighbours page, its "Missions" section: each mission offered or under way as a card with its terms, a bar for each
     /// thing to deliver, how it stands, and the time left. Click a card to open its quest (or look at what it's about).
     /// Nothing is drawn when the colony has no missions.
     /// </summary>
@@ -66,7 +66,7 @@ namespace ColonyCouncil
             return cards;
         }
 
-        /// <summary>Draws the section at <paramref name="y"/> (inside the World page's scroll view); returns the y below it.</summary>
+        /// <summary>Draws the section at <paramref name="y"/> (inside the Neighbours page's scroll view); returns the y below it.</summary>
         public static float Draw(float y, float w)
         {
             var list = Cards();

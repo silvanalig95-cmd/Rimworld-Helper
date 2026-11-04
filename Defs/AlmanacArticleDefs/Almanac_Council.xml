@@ -1024,7 +1024,7 @@ A traveling doctor's shots (or a herbalist's tonic) help everyone fight off sick
         <heading>From what the colony is doing</heading>
         <text>A few events come out of what is happening at the colony that very day. After a colonist brings down a grown wild animal of a kind that has young (never a predator), the young one may stay by the kill: tame it with the game's taming, take it in at once and have the hunter bring it food, or leave it, which a kind hunter takes hard. At dusk a wild animal of a kind the colony keeps in its pens, and that lives wild on the land, may come down to the fence: tame it, let it be (the colony watches it and someone names it), or drive it off. A miner under the mountain may break into a pocket of ore: the ore is really set into the rock beside the face, and a seam runs on deeper; following it opens more of the deep rock, where insects nest.
 
-A visitor at the colony may challenge its best at the chess or poker table (or another game of the mind): the two sit down across that table, and skill and luck decide it while they play; for silver the stake changes hands, for fun the others gather in the rec room. A neighbour may commission one fine coat, bow, blade or gun the colony can make: taken, a bill goes up at the bench that counts only pieces of the quality asked, their rider comes for the first one made and pays, and a masterwork brings them back for another. The commission and its deadline show on the World page.</text>
+A visitor at the colony may challenge its best at the chess or poker table (or another game of the mind): the two sit down across that table, and skill and luck decide it while they play; for silver the stake changes hands, for fun the others gather in the rec room. A neighbour may commission one fine coat, bow, blade or gun the colony can make: taken, a bill goes up at the bench that counts only pieces of the quality asked, their rider comes for the first one made and pays, and a masterwork brings them back for another. The commission and its deadline show on the region window's Neighbours page.</text>
       </li>
       <li>
         <heading>Hail, vermin and the great beast</heading>
@@ -1036,7 +1036,7 @@ The great beast is tougher than any of its kind. It leaves in a few days, and on
         <heading>Orders, debts and waiting</heading>
         <text>A neighbor's order is collected five days after you take it. Only goods in your stockpiles and shelves count, and it's the whole amount or nothing. Some answers take days to come back, like a caravan to a far market, a cart sent to a harvest fair, a relative on the way or a guest who wrote ahead.
 
-The council window's World page shows each of these and when it's due, along with fights on their way, questions waiting for an answer, and who's out there with the colony on their mind.
+The region window's Neighbours page shows each of these and when it's due, along with fights on their way, questions waiting for an answer, and who's out there with the colony on their mind.
 
 Keep some silver in the stores. Debts, bounties, tribute and treasure maps all ask for it.</text>
       </li>
@@ -1068,7 +1068,7 @@ Many answers call on someone with the right skill or trait: a good cook, a heale
       </li>
       <li>
         <heading>Stories in stages</heading>
-        <text>A few events are the first stage of a longer story told over days or weeks: a door in the hill, a fugitive at night, a feud in a nearby town, a preacher on the road, a lost expedition, a bundle of lost letters, a stranger's seeds, a play written about the colony, an apprentice from a nearby town, a traveler with a fever. The colony's answer, and luck settled when it matters, decide which stage comes next and when. The World page shows what's coming, and each story ends in one of several ways, written into the chronicle.
+        <text>A few events are the first stage of a longer story told over days or weeks: a door in the hill, a fugitive at night, a feud in a nearby town, a preacher on the road, a lost expedition, a bundle of lost letters, a stranger's seeds, a play written about the colony, an apprentice from a nearby town, a traveler with a fever. The colony's answer, and luck settled when it matters, decide which stage comes next and when. The Neighbours page shows what's coming, and each story ends in one of several ways, written into the chronicle.
 
 The last two run over a whole season. The apprentice comes up from their town a day or two each week to learn at the bench of the colony's best crafter, makes a first piece and a journeyman's piece that are really handed over, and somewhere in the middle there is trouble (a guild that wants them, homesickness, or bad company at the market): how the colony meets it decides whether they stay, go home a journeyman, or drift away. The traveler with the fever is nursed through the night by the colony's best doctor (it counts toward the hospital's name), may come back when the fever does, and returns well, to work off the debt or stay. Later the same fever reaches their town, and they come back to ask for medicine: what the colony did at the start decides how that ends.</text>
       </li>
@@ -1139,7 +1139,7 @@ The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or strong
           <li>Pay half and ask for more time. The rest grows by about a third, and they only wait twice.</li>
           <li>Refuse, and meet the collectors.</li>
         </points>
-        <after>Unanswered, a debt counts as refused. Debts and hunts are on the World page.</after>
+        <after>Unanswered, a debt counts as refused. Debts and hunts are on the region window's Neighbours page.</after>
       </li>
       <li>
         <heading>Feuds and arrivals</heading>
@@ -1154,7 +1154,7 @@ Someone from the past, a visiting scholar or a great beast arriving "around a se
           <li>A council already formed: seats filled before anyone votes, by the eldest who can (an elder) or by whoever is best at the work. This year's election counts as held; empty seats still get their by-election.</li>
           <li>Days the colony keeps: days brought from the old home, on the calendar as traditions from the first year. Kept here two years running, they help the colony become long-memoried.</li>
           <li>A life goal from before: for whoever swore vengeance, keeps the secret, is eldest, or looks after the children.</li>
-          <li>Beholden to a people: the colony holds its land by their grant. They remember it as a debt (on the World page) and call it in as a favour some weeks later.</li>
+          <li>Beholden to a people: the colony holds its land by their grant. They remember it as a debt (on the Neighbours page) and call it in as a favour some weeks later.</li>
           <li>Children in the colony's care (Biotech): children who arrive with the colonists, with nobody else.</li>
           <li>A world event set in motion: one starts around a set day if it can, and waits for a quiet moment. Not with world events switched off.</li>
         </points>

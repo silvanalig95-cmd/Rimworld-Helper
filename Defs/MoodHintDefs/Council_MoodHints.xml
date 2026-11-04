@@ -646,7 +646,7 @@
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Strangers</article>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -830,7 +830,7 @@
     <keep>A happy event out in the world. It fades on its own.</keep>
     <article>Council_Alm_C_WorldEvents</article>
     <priority>-50</priority>
-    <councilTab>World</councilTab>
+    <councilTab>Events</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -884,7 +884,7 @@
     <act>Build up the defenses</act>
     <actionable>false</actionable>
     <signal>Council_Adv_Defense</signal>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

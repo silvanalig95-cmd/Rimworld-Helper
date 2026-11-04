@@ -244,16 +244,16 @@
     <fix>It ends when the nemesis is captured or killed, and fades 60 days after what they did. Steadfast and iron-willed colonists, and psychopaths, don't feel it.</fix>
     <act>Capture or kill the nemesis</act>
     <article>Council_Alm_C_Strangers</article>
-    <councilTab>World</councilTab>
+    <councilTab>Neighbours</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackDebt</defName>
     <thoughts><li>Council_Setback_Debt</li></thoughts>
-    <fix>A people helped the colony and haven't been paid back, and kind colonists mind. Do them a good turn: a gift, a prisoner set free, help when they ask. The World page shows what they remember.</fix>
+    <fix>A people helped the colony and haven't been paid back, and kind colonists mind. Do them a good turn: a gift, a prisoner set free, help when they ask. The region window's Peoples page shows what they remember.</fix>
     <act>Do that people a good turn</act>
     <article>Council_Alm_C_Setbacks</article>
-    <councilTab>World</councilTab>
+    <councilTab>Peoples</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

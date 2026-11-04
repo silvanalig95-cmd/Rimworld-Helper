@@ -15,6 +15,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   give each its negative side where it fits, preventable or not ("everything should be possible"); propose per
   system first. In ROADMAP.md. The right-click interactions (queued after notables and letters) include a sparring
   bout, insult or provoke, and a duel of honour where a people's ways fit.
+- 0.70.0, the interface (the player's word): four bar buttons, each its own window with the four in its corner
+  (`UI/WindowTabs.cs`): Council (`MainTabWindow_Council`: Council, People, Colony, Almanac), Region
+  (`MainTabWindow_World`, button `Rimfolk_WorldButton` labelled "region" since the game has "world": the map drawn
+  in it by `RegionMapView` (the separate map window is gone), Neighbours, Peoples, Letters and calls, Journeys, World
+  events, History; `MainTabWindow_World.Register` adds a page in one line, `WorldPages.cs`), Defense, Planning
+  (`MainTabWindow_Planning`, kept `Council_RoomsButton`'s defName; `RoomsPanel`; settings planButton/roomsButton merged
+  once). One page list and router (`PagesMath`, `Pages.Open`); old addresses forward. Settings `worldButton`,
+  `defenseButton`, `planButton`. DESIGN.md "Rimfolk's windows", `PagesTests`.
 - 0.69.0, stage 1 release 1, the region's towns (with decisions 1 and 3): `World/Ledger/LedgerRegion.cs`
   (`LedgerTown` kind, founding, founder, mother town, reason, prosperity, last move; `LedgerHouse`; `LedgerFounding`,
   6), `RegionBook`/`RegionHome` per home (`ColonyBook`), `Pass.Region` hourly at tick 107 (`Sched.HourlyOnCycle`, a

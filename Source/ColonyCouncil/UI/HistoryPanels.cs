@@ -6,7 +6,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>History → Dreams (cards with the dreamer, the kind of dream and the dream itself) and History → Journals.</summary>
+    /// <summary>People → Dreams (cards with the dreamer, the kind of dream and the dream itself) and People → Journals.</summary>
     public static class HistoryPanels
     {
         private static readonly Color Gold = new Color(1f, 0.85f, 0.5f);

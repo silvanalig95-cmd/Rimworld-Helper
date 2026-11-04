@@ -8,7 +8,7 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → Defenses, "Defense lines": one card per line the player is building up. Its name, where it lies and
+    /// Defense → Defenses, "Defense lines": one card per line the player is building up. Its name, where it lies and
     /// what it's meant to be; the ladder of steps as a row of discs (done, the one to do now, later, set aside); the
     /// step to do now with why now, how it works and the common mistakes, and buttons to plan it at the line, show it,
     /// skip it or read more; the helper's notes on the line with their own buttons; its rough strength against

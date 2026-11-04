@@ -35,10 +35,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The picture behind the region map window (UI/Window_RegionMap.cs): the tiles around the colony's home tile laid
-    /// flat (World/RegionMapMath.cs) and drawn once into a texture by their biome and hills, with rivers and roads along
-    /// their links; a lookup from each pixel to its tile for the mouse; and the world objects on those tiles, gathered
-    /// again every two seconds. It only reads the world and never touches the game's own world drawing, so mods that
+    /// The picture behind the region map (UI/RegionMapView.cs, the region window's first page): the tiles around the
+    /// colony's home tile laid flat (World/RegionMapMath.cs) and drawn once into a texture by their biome and hills, with
+    /// rivers and roads along their links; a lookup from each pixel to its tile for the mouse; and the world objects on
+    /// those tiles, gathered again every two seconds. It only reads the world and never touches the game's own world drawing, so mods that
     /// add biomes, map modes, factions or territories leave it alone (a biome it doesn't know is coloured by its name
     /// or its climate).
     /// </summary>

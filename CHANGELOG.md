@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four windows
+
+*4 November 2026, version 0.70.0*
+
+- Rimfolk now has four buttons on the bottom bar, each with its own window: council, region, defense and planning. Each window has the four in its top right corner, so the others are always a click away.
+- The council window is now organized as the council, its people, the colony and the Almanac. Moods, dreams and journals are under People, the calendar and the chronicle under Colony, and wishes under Council.
+- The region button opens the region map, with the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history beside it.
+- The world's history has a page of its own, newest first, for one people, one town or one kind of event.
+- The planning button takes the rooms button's place, with the plan, the base, making, room plans and every room at a glance. A bar you arranged keeps its arrangement.
+- Old links still lead to the right place: letters, panels, mood hints and page keys open the window that has the page now.
+
 ## The region's towns
 
 *4 November 2026, version 0.69.0*

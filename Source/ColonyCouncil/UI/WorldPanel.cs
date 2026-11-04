@@ -8,10 +8,11 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → World: what's coming (promised fights, questions waiting for an answer) as a timeline with countdowns,
-    /// who's out there with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), what the
-    /// world's peoples remember of the colony, and what the world brought lately. The button at the top opens the region
-    /// map (UI/Window_RegionMap.cs).
+    /// Region → Neighbours (the council window's World page before the region window had its own): what's coming
+    /// (promised fights, questions waiting for an answer) as a timeline, missions, a camp on the land, who's out there
+    /// with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), and the towns nearby
+    /// with their people and what they told the colony lately. What the world brought lately is on the World events
+    /// page (<see cref="Lately"/>), what the peoples remember on Peoples, journeys on Journeys.
     /// </summary>
     public static class WorldPanel
     {
@@ -38,7 +39,7 @@ namespace ColonyCouncil
 
         private class Model
         {
-            public List<Entry> coming, outThere, lately;
+            public List<Entry> coming, outThere;
             public string next;
             public int raids;
         }
@@ -55,17 +56,8 @@ namespace ColonyCouncil
             }
             var m = model;
             string stat = m.coming.Count > 0 ? "CC_UI_Stat_Coming".Translate(m.coming.Count).Resolve() : null;
-            const float mapW = 140f;
-            float top = UiKit.PageHeader(rect, Icons.World, "CC_World_Header".Translate(), "CC_UI_Sub_World".Translate(), stat, Threat, mapW + 10f,
+            float top = UiKit.PageHeader(rect, Icons.Visitor, "CC_World_Header".Translate(), "CC_UI_Sub_World".Translate(), stat, Threat, 0f,
                 "CC_World_Intro".Translate());
-            // The region map: the land around the colony in a window of its own (UI/Window_RegionMap.cs).
-            var mapButton = new Rect(rect.xMax - mapW, rect.y + 6f, mapW, 30f);
-            if (Widgets.ButtonText(mapButton, "CC_Region_Button".Translate())) Window_RegionMap.Open();
-            TooltipHandler.TipRegion(mapButton, () =>
-            {
-                string key = CouncilKeys.RegionMapKey();
-                return "CC_Region_Button_Tip".Translate() + (key == null ? "" : "\n\n" + "CC_Region_Button_Key".Translate(key).Resolve());
-            }, 0x5E61A4);
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -73,8 +65,6 @@ namespace ColonyCouncil
             {
                 float y = 0f;
                 float w = view.width;
-                // What's going on in the region (world events), above what's coming to the colony itself.
-                y = WorldSituationsPanel.Draw(0f, y, w);
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_Coming".Translate(), Icons.Raid, Threat);
                 if (m.coming.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.World, "CC_World_NothingComing".Translate(), 70f);
                 else y = Timeline(y + 4f, w, m.coming);
@@ -85,9 +75,6 @@ namespace ColonyCouncil
                 }
                 // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
                 y = MissionPanel.Draw(y, w);
-                // A journey planned ahead, or the button to plan one (UI/JourneyDialog.cs).
-                float journey = JourneyPanel.Section(0f, y + 8f, w);
-                if (journey > 0f) y += journey + 8f;
                 y += 14f;
                 // A camp on the map, if there is one: who, how long, terms, tension, and a way to talk to them.
                 y = CampPanel.Section(y, w);
@@ -99,11 +86,6 @@ namespace ColonyCouncil
                 y += 14f;
                 // The neighbours by name, and letters to them (World/NeighboursPanel.cs).
                 y = NeighboursPanel.Draw(y, w);
-                // What the world's peoples remember of the colony (World/FactionMemoryPanel.cs).
-                y = FactionMemoryPanel.Draw(y, w);
-                y += UiKit.SectionTitle(0f, y, w, "CC_World_Lately".Translate(), Icons.WorldEvent, Color.white);
-                if (m.lately.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.WorldEvent, "CC_World_NothingLately".Translate(), 60f);
-                else y = Rows(y, w, m.lately);
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally
@@ -136,7 +118,7 @@ namespace ColonyCouncil
         private static Model Build(CouncilGameComponent comp)
         {
             var t = comp.happenings;
-            var m = new Model { coming = Coming(t), outThere = OutThere(comp), lately = Lately(comp) };
+            var m = new Model { coming = Coming(t), outThere = OutThere(comp) };
             // Events come unannounced: no countdown to the next one (with the storyteller in charge of them, Rimfolk's
             // own timer doesn't run at all, so a countdown would only ever show a time long past).
             return m;
@@ -340,6 +322,26 @@ namespace ColonyCouncil
         }
 
         // ---------------- Lately ----------------
+
+        private static List<Entry> lately;
+        private static float latelyAt = -1f;
+
+        /// <summary>
+        /// "What the world brought lately" (the World events page, UI/WorldPages.cs): the chronicle's last world lines with
+        /// their dates, at <paramref name="y"/>; returns the y below.
+        /// </summary>
+        public static float Lately(float y, float w, CouncilGameComponent comp)
+        {
+            if (comp == null) return y;
+            if (lately == null || Time.realtimeSinceStartup - latelyAt > 1f)
+            {
+                lately = Lately(comp);
+                latelyAt = Time.realtimeSinceStartup;
+            }
+            y += UiKit.SectionTitle(0f, y, w, "CC_World_Lately".Translate(), Icons.WorldEvent, Color.white);
+            if (lately.Count == 0) return y + UiKit.EmptyState(0f, y, w, Icons.WorldEvent, "CC_World_NothingLately".Translate(), 60f);
+            return Rows(y, w, lately);
+        }
 
         private static List<Entry> Lately(CouncilGameComponent comp)
         {

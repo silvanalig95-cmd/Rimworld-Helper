@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The region map's arithmetic (World/RegionMap.cs, UI/Window_RegionMap.cs), free of game types so Tools/Tests can
+    /// The region map's arithmetic (World/RegionMap.cs, UI/RegionMapView.cs), free of game types so Tools/Tests can
     /// check it: the land around the colony laid flat on the plane that touches the planet at the home tile (east to
     /// the right, north up, every point at its true distance and bearing from home), which tiles fall inside the square
     /// that is drawn, filling a tile and drawing a river or road into the picture, zooming and panning the view, the

@@ -7,7 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// History → Calendar: the days that matter to this colony, soonest first, how each is kept and how close it is to
+    /// Colony → Calendar: the days that matter to this colony, soonest first, how each is kept and how close it is to
     /// a tradition; the seasonal customs from the council's dilemmas; and a button to name a day. Self-contained: the
     /// council window only calls <see cref="Draw"/>.
     /// </summary>

@@ -5,7 +5,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>Runs once after all defs are loaded: places the council and rooms buttons, merges flavor extensions.</summary>
+    /// <summary>Runs once after all defs are loaded: places Rimfolk's buttons on the bottom bar, merges flavor extensions.</summary>
     [StaticConstructorOnStartup]
     public static class CouncilStartup
     {
@@ -99,7 +99,8 @@ namespace ColonyCouncil
             var ours = CouncilDefOf.Council_MainButton;
             if (ours == null) return;
             var more = CouncilDefOf.Rimfolk_MoreButton;
-            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b != ours && b != more && b != CouncilDefOf.Rimfolk_PlanButton).OrderBy(b => b.order).ToList();
+            var rimfolk = new[] { ours, more, CouncilDefOf.Rimfolk_WorldButton, CouncilDefOf.Council_DefenseButton, CouncilDefOf.Council_RoomsButton };
+            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => !rimfolk.Contains(b)).OrderBy(b => b.order).ToList();
             if (others.Count == 0) return;
             MainButtonDef after = null;
             switch (ColonyCouncilMod.Settings.buttonPosition)
@@ -116,21 +117,21 @@ namespace ColonyCouncil
                 after = menuIndex > 0 ? others[menuIndex - 1] : others.Last();
             }
             ours.order = after.order;
-            // The defense and rooms buttons sit right after the council button (same order, defined after it, in that order).
+            // The region, defense and planning buttons sit right after the council button (same order, defined after it,
+            // in that order: Defs/Misc/Council_Misc.xml).
+            var world = CouncilDefOf.Rimfolk_WorldButton;
+            if (world != null)
+            {
+                world.order = ours.order;
+                world.buttonVisible = ColonyCouncilMod.Settings.worldButton;
+            }
             var defense = CouncilDefOf.Council_DefenseButton;
             if (defense != null)
             {
                 defense.order = ours.order;
                 defense.buttonVisible = ColonyCouncilMod.Settings.defenseButton;
             }
-            var rooms = CouncilDefOf.Council_RoomsButton;
-            if (rooms != null)
-            {
-                rooms.order = ours.order;
-                rooms.buttonVisible = ColonyCouncilMod.Settings.roomsButton;
-            }
-            // The planning section's button, after the rooms button.
-            var planning = CouncilDefOf.Rimfolk_PlanButton;
+            var planning = CouncilDefOf.Council_RoomsButton;
             if (planning != null)
             {
                 planning.order = ours.order;
