@@ -87,7 +87,6 @@
   <CC_Follow_Steady>steady</CC_Follow_Steady>
 
   <!-- The corner -->
-  <CC_Corner_Search>Search</CC_Corner_Search>
   <CC_Corner_SearchTip>Search: a colonist, a person, a place, a people, a house, a view or an Almanac page, by name.</CC_Corner_SearchTip>
   <CC_Corner_InboxTip>This week: {COUNT} things wait on you.</CC_Corner_InboxTip>
   <CC_Corner_InboxTipCalm>This week: nothing waits on you.</CC_Corner_InboxTipCalm>

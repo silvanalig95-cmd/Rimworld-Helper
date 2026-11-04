@@ -37,19 +37,14 @@ namespace ColonyCouncil
     public static class WindowTabs
     {
         private const float TabIconSize = 18f;
-        private const float LinkSize = 24f;
-        private const float LinkGap = 6f;
-        /// <summary>The search field's width where the window is wide enough; below, the search is an icon like the rest.</summary>
-        private const float SearchWide = 82f, SearchFrom = 860f;
-
-        private static float SearchWidth(float width) => width >= SearchFrom ? SearchWide : LinkSize;
+        private const float LinkSize = WindowLayoutMath.CornerIcon;
+        private const float LinkGap = WindowLayoutMath.CornerGap;
 
         /// <summary>
-        /// The corner's width in a window of this width: back and forward, the search, the inbox, following and the
-        /// Almanac's book, the four windows' icons, and the space around them.
+        /// The corner's width: back and forward, the search, the inbox, following and the Almanac's book, the four windows'
+        /// icons, and the space around them (WindowLayoutMath, whose layout test tries it on every screen).
         /// </summary>
-        public static float CornerWidth(float width) =>
-            2f * (LinkSize + LinkGap) + SearchWidth(width) + LinkGap + 3f * (LinkSize + LinkGap) + 8f + PagesMath.CornerOrder.Length * (LinkSize + LinkGap) + 8f;
+        public static float LinksWidth => WindowLayoutMath.CornerWidth(WindowLayoutMath.CornerTools, PagesMath.CornerOrder.Length);
 
         private static string iconPad;
 
@@ -77,10 +72,10 @@ namespace ColonyCouncil
             float tabH = TabDrawer.TabHeight;
             var body = new Rect(inRect.x, inRect.y + tabH, inRect.width, inRect.height - tabH);
             Widgets.DrawMenuSection(body);
-            float corner = CornerWidth(body.width);
-            var area = new Rect(body.x, body.y, Mathf.Max(120f, body.width - corner), body.height);
+            float corner = LinksWidth;
+            var area = new Rect(body.x, body.y, Mathf.Max(WindowLayoutMath.TabsMin, body.width - corner), body.height);
             if (tabs.Count > 0) Tabs(area, tabs);
-            Links(new Rect(body.xMax - corner, inRect.y, corner, tabH), current, body.width);
+            Links(new Rect(body.xMax - corner, inRect.y, corner, tabH), current);
             return body;
         }
 
@@ -150,7 +145,7 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<RimfolkWindow, string> tips = new Dictionary<RimfolkWindow, string>();
-        private static string almanacTip, searchTip, searchWord, followTip;
+        private static string almanacTip, searchTip, followTip;
         private static int inboxTipFor = -1;
         private static string inboxTip;
 
@@ -167,16 +162,15 @@ namespace ColonyCouncil
         /// what is followed, the Almanac's book (its own window, lit while open), then the four windows' icons,
         /// right-aligned in <paramref name="row"/>; the window showing is lit and does nothing.
         /// </summary>
-        public static void Links(Rect row, RimfolkWindow current, float width)
+        public static void Links(Rect row, RimfolkWindow current)
         {
             float top = row.y + (row.height - LinkSize) / 2f;
-            float ax = row.xMax - CornerWidth(width) + 4f;
+            float ax = row.xMax - LinksWidth + 4f;
             Nav.Arrows(new Rect(ax, top, LinkSize, LinkSize), new Rect(ax + LinkSize + LinkGap, top, LinkSize, LinkSize));
             ax += 2f * (LinkSize + LinkGap);
-            // The search: a field where there is room, else its icon; the index is made only when it opens.
-            float sw = SearchWidth(width);
-            SearchField(new Rect(ax, top, sw, LinkSize));
-            ax += sw + LinkGap;
+            // The search: its field opens under it, and the index is made only then.
+            SearchIcon(new Rect(ax, top, LinkSize, LinkSize));
+            ax += LinkSize + LinkGap;
             // This week, the one inbox, with the count of what waits on the player.
             InboxIcon(new Rect(ax, top, LinkSize, LinkSize));
             ax += LinkSize + LinkGap;
@@ -212,28 +206,17 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The search: a field with its icon and word where there is room, its icon alone where not; a click opens it under the field.</summary>
-        private static void SearchField(Rect r)
+        /// <summary>The search: its icon, lit while its field is open under it; a click opens the field (the index made then) or shuts it.</summary>
+        private static void SearchIcon(Rect r)
         {
-            bool over = Mouse.IsOver(r);
             bool open = Find.WindowStack?.WindowOfType<Window_Search>() != null;
             if (searchTip == null)
             {
                 string key = Search.KeyLabel();
                 searchTip = "CC_Corner_SearchTip".Translate().Resolve() + (key == null ? "" : " (" + key + ")");
-                searchWord = "CC_Corner_Search".Translate().Resolve();
             }
-            if (r.width > LinkSize + 1f)
-            {
-                Widgets.DrawBoxSolidWithOutline(r, over || open ? UiKit.CardHover : UiKit.CardFill, open ? UiKit.WithAlpha(UiKit.Gold, 0.5f) : UiKit.CardBorder, 1);
-                UiKit.Icon(new Rect(r.x + 5f, r.y + 5f, 14f, 14f), Icons.Search, open ? UiKit.Gold : over ? Color.white : UiKit.Faint);
-                UiKit.LabelFit(new Rect(r.x + 23f, r.y, r.width - 26f, r.height), searchWord, over ? Color.white : UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(r, searchTip);
-                if (!Widgets.ButtonInvisible(r, false)) return;
-                SoundDefOf.Click.PlayOneShotOnCamera();
-            }
-            else if (!UiKit.IconButton(r, Icons.Search, searchTip, true, open ? UiKit.Gold : (Color?)null)) return;
-            Search.Toggle(UI.GUIToScreenRect(r));
+            if (open) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
+            if (UiKit.IconButton(r, Icons.Search, searchTip, true, open ? UiKit.Gold : (Color?)null)) Search.Toggle(UI.GUIToScreenRect(r));
         }
 
         /// <summary>This week, the one inbox: lit while it shows, with the count of what waits on the player (the same as its tab and the council button).</summary>
