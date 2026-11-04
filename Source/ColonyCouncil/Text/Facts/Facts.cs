@@ -81,7 +81,8 @@ namespace ColonyCouncil
             },
             [FactsMath.Deeds] = (s, f) =>
             {
-                if (s.speaker != null) Deeds(f, s.speaker, s.people);
+                // An event's scene has nobody speaking: what their people remember of the colony as a whole.
+                if (s.speaker != null || s.asks == FactsMath.Event) Deeds(f, s.speaker, s.people);
             },
             [FactsMath.Marks] = (s, f) =>
             {
@@ -90,7 +91,8 @@ namespace ColonyCouncil
             [FactsMath.Ages] = AgeTags,
             [FactsMath.Ties] = Ties,
             [FactsMath.History] = Lately,
-            [FactsMath.News] = (s, f) => NewsNear(f, s.people, s.place)
+            [FactsMath.News] = (s, f) => NewsNear(f, s.people, s.place),
+            [FactsMath.Region] = Region
         };
 
         /// <summary>Whether a provider of this name exists (for the scenes' lists).</summary>

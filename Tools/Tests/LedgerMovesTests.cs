@@ -321,7 +321,7 @@ public static class LedgerMovesTests
             // A notable's own regard of the colony and a regular's bond are the ledger's: one each, far inside its room
             // for regard even if every notable lingered three times over.
             int own = NotableMath.MaxNotables + RegularMath.KeepMax + 1;
-            Check(NotableMath.MaxNotables == 34 && 3 * own <= TieRules.MaxRegard, "the notables' own regard and the regulars' bonds fit the ledger's regard three times over");
+            Check(NotableMath.MaxNotables == 42 && 3 * own <= TieRules.MaxRegard, "the notables' own regard and the regulars' bonds fit the ledger's regard three times over (two new towns' four included)");
             // The notables' regard of each colonist stays with the notable: with it the ledger could run out of room.
             int withColonists = NotableMath.MaxNotables * (1 + NotableMath.MaxRegards) + RegularMath.KeepMax + 1;
             Check(withColonists > TieRules.MaxRegard, "the notables' regard of eight colonists each would pass the ledger's three hundred: it stays a view");

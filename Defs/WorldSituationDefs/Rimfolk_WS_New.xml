@@ -17,6 +17,7 @@
     <cooldownDays>60</cooldownDays>
     <durationDays>12~16</durationDays>
     <kind>trade</kind>
+    <prosperity>6</prosperity>
     <mods><li>forti.rimmarket</li></mods>
     <seasons>
       <li>Spring</li>
@@ -198,6 +199,7 @@
     <cooldownDays>90</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>orbit</kind>
+    <prosperity>8</prosperity>
     <minTech>Industrial</minTech>
     <faction>
       <friendly>true</friendly>

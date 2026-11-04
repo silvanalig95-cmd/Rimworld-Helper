@@ -198,12 +198,15 @@ namespace ColonyCouncil
                 f.Tag("deedbest:" + good.kind, 1f);
                 if (!good.name.NullOrEmpty()) f.Value("DEEDNAME", good.name);
                 if (good.by != null && KinMemory.Ours(good.by)) f.Value("DEEDBY", good.by.LabelShort);
+                // The deed in words, for an event's lines: "They still talk of how you {DEED}."
+                f.Value("DEED", FactionMemory.Text(good));
             }
             if (bad != null)
             {
                 f.Tag("deed:bad", 1f);
                 f.Tag("wrongbest:" + bad.kind, 1f);
                 if (!bad.name.NullOrEmpty()) f.Value("WRONGNAME", bad.name);
+                f.Value("WRONG", FactionMemory.Text(bad));
             }
             if (owed != null) f.Tag("deed:owed", 1f);
             var friend = KinMemory.Friend(p, out var deed);
@@ -212,7 +215,7 @@ namespace ColonyCouncil
                 f.Tag("their:friend", 1f);
                 f.Value("FRIEND", friend.LabelShort);
             }
-            var byYou = KinMemory.DeedBy(p, c);
+            var byYou = c != null ? KinMemory.DeedBy(p, c) : null;
             if (byYou != null)
             {
                 f.Tag("byyou", 2f);

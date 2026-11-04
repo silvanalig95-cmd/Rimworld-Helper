@@ -235,6 +235,19 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>It goes ahead: the new town gets its faces (World/Region/RegionFaces.cs: its founder, its families, where its settlers came from).</summary>
+        public override void Begin(WorldSituation s)
+        {
+            base.Begin(s);
+            RegionFaces.Founded(Town(s), Founder(s), WhyFounded(s));
+        }
+
+        /// <summary>Who leads the settlers, when the event has someone (the other settlers' leader); null: the region makes one.</summary>
+        protected virtual Pawn Founder(WorldSituation s) => null;
+
+        /// <summary>Why they chose the place, when the event says (the crossroads' road); null: read from the world.</summary>
+        protected virtual string WhyFounded(WorldSituation s) => null;
+
         public static string Where(Map map, PlanetTile tile)
         {
             string dir = Direction(map, tile);

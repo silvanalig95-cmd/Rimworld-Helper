@@ -112,8 +112,10 @@ namespace ColonyCouncil
         public const int MaxNear = 4;
         /// <summary>And so many more the colony has dealt with, however far.</summary>
         public const int MaxDealt = 2;
+        /// <summary>And so many new towns in their first year (the region's new towns, World/Region/), beside the rest.</summary>
+        public const int MaxNew = 2;
         /// <summary>Towns known at most.</summary>
-        public const int MaxTowns = MaxNear + MaxDealt;
+        public const int MaxTowns = MaxNear + MaxDealt + MaxNew;
         /// <summary>Faces the colony met who went home, kept at most.</summary>
         public const int MaxAcquaintances = 10;
         /// <summary>People of each town known by name: head, heir, envoy and trader.</summary>
@@ -130,9 +132,10 @@ namespace ColonyCouncil
         /// <summary>
         /// The towns the colony counts as neighbours (indices into the lists, nearest first): the nearest
         /// <see cref="MaxNear"/> within <see cref="ReachTiles"/> (with none that near, the nearest two within twice that),
-        /// then up to <see cref="MaxDealt"/> more the colony has dealt with, however far.
+        /// then up to <see cref="MaxDealt"/> more the colony has dealt with, however far, then up to <see cref="MaxNew"/>
+        /// new towns in their first year (<paramref name="fresh"/>) not among them.
         /// </summary>
-        public static List<int> InReach(IList<float> tiles, IList<bool> dealt)
+        public static List<int> InReach(IList<float> tiles, IList<bool> dealt, IList<bool> fresh = null)
         {
             var result = new List<int>();
             int n = tiles?.Count ?? 0;
@@ -152,6 +155,14 @@ namespace ColonyCouncil
                 if (result.Contains(i) || dealt == null || i >= dealt.Count || !dealt[i]) continue;
                 result.Add(i);
                 more++;
+            }
+            int added = 0;
+            foreach (int i in order)
+            {
+                if (added >= MaxNew) break;
+                if (result.Contains(i) || fresh == null || i >= fresh.Count || !fresh[i]) continue;
+                result.Add(i);
+                added++;
             }
             return result;
         }

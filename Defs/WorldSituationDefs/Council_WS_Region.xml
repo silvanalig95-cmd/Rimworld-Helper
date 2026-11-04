@@ -23,6 +23,7 @@
       <li>PermanentSummer</li>
     </seasons>
     <kind>drought</kind>
+    <prosperity>-15</prosperity>
     <bad>true</bad>
     <faction>
       <friendly>true</friendly>
@@ -281,6 +282,7 @@
     <cooldownDays>220</cooldownDays>
     <durationDays>16~26</durationDays>
     <kind>road</kind>
+    <prosperity>10</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -519,6 +521,7 @@
     <cooldownDays>240</cooldownDays>
     <durationDays>20~30</durationDays>
     <kind>faith</kind>
+    <prosperity>4</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -715,6 +718,7 @@
     <cooldownDays>200</cooldownDays>
     <durationDays>14~22</durationDays>
     <kind>war</kind>
+    <prosperity>6</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -940,6 +944,7 @@
     <cooldownDays>180</cooldownDays>
     <durationDays>14~24</durationDays>
     <kind>sickness</kind>
+    <prosperity>-12</prosperity>
     <bad>true</bad>
     <faction>
       <friendly>true</friendly>
@@ -1147,6 +1152,7 @@
     <durationDays>12~20</durationDays>
     <minTech>Industrial</minTech>
     <kind>wreck</kind>
+    <prosperity>5</prosperity>
     <faction>
       <friendly>true</friendly>
     </faction>

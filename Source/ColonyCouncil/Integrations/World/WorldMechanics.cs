@@ -346,19 +346,29 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A people began building a settlement there (kept when it is within reach of a home).</summary>
-        public static void Founded(Faction people, PlanetTile tile)
+        /// <summary>
+        /// A people began building a settlement there (kept when it is within reach of a home), and the region gives it
+        /// faces (World/Region/RegionFaces.cs): the site's world object id and its start and due ticks when the mod has them.
+        /// </summary>
+        public static void Founded(Faction people, PlanetTile tile, int site = -1, int started = -1, int completes = -1)
         {
             if (people == null || !tile.Valid || !WorldMath.Records(InReach(tile), false)) return;
             Write(WorldMath.Founded, new List<HistoryActor> { new HistoryActor(Refs.Of(people), HistoryRole.Did) }, Refs.Of(tile), false);
+            RegionFaces.Begun(people, tile, site, started, completes);
         }
 
-        /// <summary>A settlement a people built was finished: the new town, with the tile it was built on (kept within reach of a home).</summary>
-        public static void Built(Faction people, Settlement town)
+        /// <summary>
+        /// A settlement a people built was finished: the new town, with the tile it was built on and the founder who led
+        /// its settlers when the region knows them (kept within reach of a home); the region gives it its faces.
+        /// </summary>
+        public static void Built(Faction people, Settlement town, int site = -1)
         {
             if (people == null || town == null || !WorldMath.Records(InReach(town.Tile), false)) return;
             var actors = new List<HistoryActor> { new HistoryActor(Refs.Of(people), HistoryRole.Did), new HistoryActor(Refs.Of(town.Tile), HistoryRole.About) };
+            var founder = RegionFaces.FounderAt(site, town.Tile);
+            if (!founder.IsNone) actors.Insert(1, new HistoryActor(founder, HistoryRole.Did));
             Write(WorldMath.Built, actors, Refs.Of(town), false, town.HasName ? town.Name : null);
+            RegionFaces.Built(people, town, site);
         }
 
         /// <summary>A settlement being built, attacked by the colony's people and destroyed: the colony nearest it did it.</summary>
@@ -387,6 +397,15 @@ namespace ColonyCouncil
             var actors = new List<HistoryActor> { new HistoryActor(Refs.Of(by), HistoryRole.Did), new HistoryActor(loser, HistoryRole.Against) };
             if (formerId >= 0 && formerId != town.ID) actors.Add(new HistoryActor(Ref.Town(formerId), HistoryRole.About));
             Write(WorldMath.Taken, actors, Refs.Of(town), fromUs, name ?? (town.HasName ? town.Name : null));
+            // The town starts again under its new people (World/Region/RegionFortunes.cs).
+            try
+            {
+                RegionFortunes.Taken(town, by);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world mechanics: a town taken, its fortune", e);
+            }
         }
 
         /// <summary>A town made a vassal of the colony nearest it: the colony did, its people were against, the town it was is about.</summary>

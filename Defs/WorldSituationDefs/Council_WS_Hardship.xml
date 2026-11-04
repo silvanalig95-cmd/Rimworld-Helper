@@ -15,6 +15,7 @@
     <cooldownDays>150</cooldownDays>
     <durationDays>16~26</durationDays>
     <kind>sickness</kind>
+    <prosperity>-20</prosperity>
     <bad>true</bad>
     <faction>
       <friendly>true</friendly>
@@ -348,6 +349,7 @@
     <cooldownDays>150</cooldownDays>
     <durationDays>16~24</durationDays>
     <kind>hunger</kind>
+    <prosperity>-25</prosperity>
     <bad>true</bad>
     <seasons>
       <li>Fall</li>
@@ -624,6 +626,7 @@
     <cooldownDays>100</cooldownDays>
     <durationDays>15~24</durationDays>
     <kind>weather</kind>
+    <prosperity>-10</prosperity>
     <bad>true</bad>
     <seasons>
       <li>Fall</li>
@@ -775,6 +778,7 @@
     <cooldownDays>180</cooldownDays>
     <durationDays>7~11</durationDays>
     <kind>hunger</kind>
+    <prosperity>-15</prosperity>
     <bad>true</bad>
     <seasons>
       <li>Spring</li>
@@ -935,6 +939,7 @@
     <cooldownDays>150</cooldownDays>
     <durationDays>9~14</durationDays>
     <kind>water</kind>
+    <prosperity>-15</prosperity>
     <bad>true</bad>
     <seasons>
       <li>Spring</li>

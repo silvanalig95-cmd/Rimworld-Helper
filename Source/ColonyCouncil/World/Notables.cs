@@ -490,7 +490,9 @@ namespace ColonyCouncil
             var remembering = mem != null && FactionMemory.On ? new HashSet<Faction>(mem.deeds.Where(d => d?.faction != null).Select(d => d.faction)) : new HashSet<Faction>();
             var dealt = all.Select((s, i) => notables.Any(n => n.town == s.ID && n.notes.Count > 0)
                                              || remembering.Contains(s.Faction) && nearest.TryGetValue(s.Faction, out int k) && k == i).ToList();
-            return NotableMath.InReach(tiles, dealt).Select(i => all[i]).ToList();
+            // A new town in its first year is kept beside them, with its founder as its head (World/Region/RegionFaces.cs).
+            var fresh = all.Select(s => RegionFaces.NewTown(s.ID) != null).ToList();
+            return NotableMath.InReach(tiles, dealt, fresh.Contains(true) ? fresh : null).Select(i => all[i]).ToList();
         }
 
         private void Refresh(int now)
@@ -646,11 +648,25 @@ namespace ColonyCouncil
                     else Add(f.leader, s, role, false, null, null);
                     continue;
                 }
+                // A new town's founder is its head (World/Region/RegionFaces.cs): made already, kept for the founding.
+                if (role == NotableRole.Head && !seat)
+                {
+                    var founder = RegionFaces.FounderOf(RegionFaces.NewTown(s.ID));
+                    if (founder != null && !founder.Dead && !founder.Discarded && founder.Faction == f && !founder.Spawned && !notables.Any(n => n.pawn == founder))
+                    {
+                        Add(founder, s, role, true, null, null);
+                        continue;
+                    }
+                }
                 var head = notables.FirstOrDefault(n => n.town == s.ID && n.role == NotableRole.Head && n.Alive);
                 if (role == NotableRole.Heir && head == null) continue;
-                var p = Make(f, role, head?.pawn);
+                // A new town's envoy is born to its second founding family.
+                string family = role == NotableRole.Envoy ? RegionFaces.SecondFamily(s.ID) : null;
+                var p = Make(f, role, head?.pawn, family);
                 made++;
-                if (p != null) Add(p, s, role, true, null, null);
+                if (p == null) continue;
+                Add(p, s, role, true, null, null);
+                if (family != null) RegionFaces.Joined(s.ID, p);
             }
             return made;
         }
@@ -672,8 +688,11 @@ namespace ColonyCouncil
             return n;
         }
 
-        /// <summary>Someone of their people for a role: made with their own kinds, of an age that fits it, kept in the world.</summary>
-        private static Pawn Make(Faction f, NotableRole role, Pawn head)
+        /// <summary>
+        /// Someone of their people for a role: made with their own kinds, of an age that fits it, kept in the world;
+        /// <paramref name="family"/>: born to that family (a new town's second founding family).
+        /// </summary>
+        private static Pawn Make(Faction f, NotableRole role, Pawn head, string family = null)
         {
             try
             {
@@ -692,7 +711,7 @@ namespace ColonyCouncil
                     case NotableRole.Envoy: age = new FloatRange(25f, 55f); break;
                     default: age = new FloatRange(25f, 60f); break;
                 }
-                string last = role == NotableRole.Heir && head?.Name is NameTriple tri ? tri.Last : null;
+                string last = role == NotableRole.Heir && head?.Name is NameTriple tri ? tri.Last : family;
                 var req = new PawnGenerationRequest(kind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true, canGeneratePawnRelations: false,
                     colonistRelationChanceFactor: 0f, fixedLastName: last, biologicalAgeRange: age, developmentalStages: DevelopmentalStage.Adult, dontGiveWeapon: true);
                 var p = PawnGenerator.GeneratePawn(req);
@@ -998,6 +1017,8 @@ namespace ColonyCouncil
             {
                 case NotableRole.Head:
                     if (!n.made && n.faction != null && n.pawn != null && n.faction.leader == n.pawn && !n.faction.LeaderTitle.NullOrEmpty()) return n.faction.LeaderTitle;
+                    // An Empire town's founder is called by the title the game shows for them (World/Region/RegionFaces.cs).
+                    if (n.pawn != null && Ages.IsEmpire(n.faction) && WorldMechanics.Title(n.pawn) is RoyalTitleView royal && !royal.label.NullOrEmpty()) return royal.label;
                     return ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).CanTranslate()
                         ? ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).Translate().Resolve()
                         : ("CC_Notable_Title_Head_" + era).Translate().Resolve();

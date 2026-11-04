@@ -439,8 +439,12 @@ wishPh.UnionWith(new[]
     // The colony's hospital once it has a name, and the doctor it trusts most (Facts.Hospital).
     "HOSPITAL", "DOCTOR",
     // The ties between the two sides (Facts.Ties): the party each is toward.
-    "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST"
+    "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST",
+    // The region (Facts.Region): their town's fortune and founding, a new town near the colony and its people.
+    "FORTUNE", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE"
 });
+// Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
+wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });
 // The words around them (Rimfolk_Pool_OutsiderSays): the colonist who asked the same thing before.
 wishPh.Add("ASKER");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };

@@ -351,6 +351,7 @@ namespace ColonyCouncil
                 CouncilGameComponent.Instance?.HomesLost(lost);
                 CalendarTracker.Instance?.HomesLost(lost);
                 CampTracker.Instance?.HomesLost(lost);
+                RegionBook.Instance?.HomesLost(lost);
             };
         }
     }

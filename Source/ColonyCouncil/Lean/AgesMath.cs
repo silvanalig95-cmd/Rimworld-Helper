@@ -20,7 +20,9 @@ namespace ColonyCouncil
         CouncilTasks,
         /// <summary>A house's renown.</summary>
         Renown,
-        Schemes
+        Schemes,
+        /// <summary>A new town founded: the word is how the colony hears of it (its means), the rite how their people found one (World/Region/).</summary>
+        Founding
     }
 
     /// <summary>
@@ -40,7 +42,7 @@ namespace ColonyCouncil
         public static readonly AgeFeature[] Features =
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
-            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes
+            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

@@ -37,6 +37,16 @@ namespace ColonyCouncil
             asks = FactsMath.Talk
         };
 
+        /// <summary>
+        /// One of Rimfolk's events about a people (Happenings/IncidentWorker_Happening.cs: its letter's lines): at a home,
+        /// their people and their town (the one the event names, else their nearest), nobody speaking. What their people
+        /// remember of the colony, the ties, their town lately, the region's word on it.
+        /// </summary>
+        public static FactScene Event(Map home, Faction people, Settlement town, Pawn stranger = null) => new FactScene
+        {
+            colony = home, people = people, place = town, listener = stranger, asks = FactsMath.Event
+        };
+
         /// <summary>A letter or a call to a neighbour (World/NeighbourLetters.cs), with the world's news near them when it tells some.</summary>
         public static FactScene Letter(Notable n, Pawn writer, Map home, bool news) => new FactScene
         {

@@ -18,6 +18,7 @@
     <cooldownDays>200</cooldownDays>
     <durationDays>12~18</durationDays>
     <kind>ice</kind>
+    <prosperity>5</prosperity>
     <seasons>
       <li>Winter</li>
       <li>PermanentWinter</li>

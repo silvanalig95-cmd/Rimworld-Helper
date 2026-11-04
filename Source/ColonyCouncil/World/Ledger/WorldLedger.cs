@@ -303,6 +303,7 @@ namespace ColonyCouncil
             ExposeHistory();
             ExposeKnown();
             ExposeKeeps();
+            ExposeRegion();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<Tie>();
@@ -313,6 +314,7 @@ namespace ColonyCouncil
                 int used = 0;
                 foreach (var t in ties) used = Math.Max(used, Math.Max(t.from.Number, Math.Max(t.to.Number, t.terms.about.Number)));
                 foreach (var p in persons) used = Math.Max(used, p.person.Number);
+                foreach (var h in houses) used = Math.Max(used, h.house.Number);
                 nextNumber = Math.Max(Math.Max(1, nextNumber), used + 1);
                 tidiedAt = Fresh.Never;
                 Changed();
