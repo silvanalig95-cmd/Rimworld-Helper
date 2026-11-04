@@ -172,7 +172,7 @@
     <weight>1.8</weight>
     <lines>
       <li>[them] You walked beside our carts to {TOWN}, I'd know you anywhere.</li>
-      <li>[us] It was a long road.</li>
+      <li>[us] A long road, that one.</li>
       <li>[them] The children still play at that walk, and one of them always has to be you.</li>
       <li>[us] I hope they make me taller.</li>
       <li>[them] Taller and braver, you should hear them.</li>
@@ -260,6 +260,44 @@
     <lines>
       <li>[them] Being under your protection doesn't put us under your feet.</li>
       <li>[us] Then stop standing under them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_OurWord</defName>
+    <topic>hamlet</topic>
+    <uses>chat</uses>
+    <when>town:hamlet</when>
+    <lines>
+      <li>[us,tribal] The clan's spear is over {TOWN}, for as long as we stand.</li>
+      <li>[us,medieval] {TOWN} has our protection, and we keep our word.</li>
+      <li>[us,spacer] {TOWN} is under our charter of protection, that hasn't changed.</li>
+      <li>[us] {TOWN} has our guarantee, for whatever comes.</li>
+      <li>[them] We know, and the families there sleep better for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_HardAtHome</defName>
+    <topic>hamlet</topic>
+    <uses>chat,home</uses>
+    <when>town:hamlet,situation:theirs,situation:bad</when>
+    <lines>
+      <li>[them] Our people have troubles of their own just now, so {TOWN} looks to you more than to them.</li>
+      <li>[us] We know.</li>
+      <li>[them] We try not to make a habit of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ham_Empire</defName>
+    <topic>hamlet</topic>
+    <uses>home,chat</uses>
+    <when>town:hamlet,their:empire</when>
+    <lines>
+      <li>[them] An outpost of the Empire under a colony's protection is not a thing the court is used to.</li>
+      <li>[us] And you?</li>
+      <li>[them] I am getting used to it, one season at a time.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

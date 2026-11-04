@@ -23,7 +23,7 @@
       <li>[them,their:tribal] Since you broke that camp, our hunters walk the old trails again.</li>
       <li>[them,their:hightech] Since you broke that camp, our caravans take the short road again.</li>
       <li>[them] Since your people broke that camp, our carts use that road again.</li>
-      <li>[us] It was a danger to us too.</li>
+      <li>[us] That camp was a danger to us too.</li>
       <li>[them,their:empire] The Empire keeps note of such things, and so do I.</li>
       <li>[them] Still, it was your people who went out there.</li>
     </lines>
@@ -90,6 +90,30 @@
       <li>[them] First that camp, and now raiders at your walls again, it's a hard time for you.</li>
       <li>[us] We're still standing.</li>
       <li>[them] That's what my people like about you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Raid_BrokeThorn</defName>
+    <topic>raiders</topic>
+    <uses>home,chat</uses>
+    <when>deed:brokeCamp,their:tribal</when>
+    <lines>
+      <li>[them] The elders say a camp of thieves is a thorn in the foot, and your people pulled it.</li>
+      <li>[us] It took some pulling.</li>
+      <li>[them] Thorns do, and the foot remembers who did it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Raid_BrokeCourt</defName>
+    <topic>raiders</topic>
+    <uses>chat</uses>
+    <when>deed:brokeCamp,their:empire</when>
+    <lines>
+      <li>[them] Brigands on the roads are an insult to the Empire, and your colony removed one.</li>
+      <li>[us] We removed it for our own sake.</li>
+      <li>[them] The court will not mind the reason.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -170,7 +194,7 @@
     <uses>chat</uses>
     <when>deed:campBroken</when>
     <lines>
-      <li>[them] I know your people broke our people's camp near your walls.</li>
+      <li>[them] There's no getting round it, your people broke our people's camp.</li>
       <li>[us] Then we understand each other.</li>
       <li>[them,tone:warm|tone:good] We do, and I'd rather neither side did it that way again.</li>
       <li>[them] We do, and that's about all.</li>

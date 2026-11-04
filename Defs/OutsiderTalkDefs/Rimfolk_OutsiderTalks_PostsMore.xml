@@ -267,6 +267,32 @@
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Posts_OurWay</defName>
+    <topic>post</topic>
+    <uses>chat</uses>
+    <when>town:post</when>
+    <lines>
+      <li>[us,tribal] When we go to {TOWN}, it's a trading party on foot with the hides on our backs.</li>
+      <li>[us,medieval] When we go to {TOWN}, it's a pack train and a long day of mules complaining.</li>
+      <li>[us,spacer] When we go to {TOWN}, it's a supply run, in and out.</li>
+      <li>[us] When we go to {TOWN}, it's a caravan and a long road.</li>
+      <li>[them] Long or short, it's shorter than it was before the post.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Posts_GuestRest</defName>
+    <topic>post</topic>
+    <uses>chat,know</uses>
+    <when>town:post,role:guest|role:lodger</when>
+    <lines>
+      <li>[them] A season behind the counter at {TOWN}, and I needed a few nights under another roof.</li>
+      <li>[us] Ours will do?</li>
+      <li>[them] Yours has fewer crates in it, so yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
   <!-- ================= The keeper's warning ================= -->
 
   <ColonyCouncil.OutsiderTalkDef>
@@ -431,7 +457,7 @@
     <weight>1.5</weight>
     <lines>
       <li>[them] {WRONGNAME} was opened for your people, and your people razed it.</li>
-      <li>[us] I know what we did.</li>
+      <li>[us] We did, and I won't deny it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

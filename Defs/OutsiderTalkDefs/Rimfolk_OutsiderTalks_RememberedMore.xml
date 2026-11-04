@@ -158,7 +158,7 @@
     <lines>
       <li>[them,their:tribal] The one {FOE} killed has a name at our fires, and so does {FOE}.</li>
       <li>[them] The one {FOE} killed had a family, and they know the name.</li>
-      <li>[us] It was a fight.</li>
+      <li>[us] They met in a fight.</li>
       <li>[them] I know, and that isn't what they'll remember.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
@@ -208,7 +208,7 @@
     <when>their:foe:brawled,!you:foe</when>
     <lines>
       <li>[them] {FOE} and one of ours came to blows here once, and it's still talked about at home.</li>
-      <li>[us] It was a bad day.</li>
+      <li>[us] A bad day all round.</li>
       <li>[them] For both of them, from what I hear.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
