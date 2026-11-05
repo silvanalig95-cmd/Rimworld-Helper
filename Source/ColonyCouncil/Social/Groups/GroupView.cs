@@ -105,7 +105,7 @@ namespace ColonyCouncil
             }
             var pills = new List<UiKit.PillSpec>();
             foreach (var n in g.NormDefs) pills.Add(new UiKit.PillSpec(n.label, UiKit.Info, null, n.description));
-            foreach (var h in g.Habits) pills.Add(new UiKit.PillSpec(h.label, UiKit.Good, null, h.description + "\n\n" + "CC_Group_HabitTip".Translate(g.habitsKept)));
+            foreach (var h in g.Habits) pills.Add(new UiKit.PillSpec(h.label, UiKit.Good, null, GroupHabits.HabitTip(g, h)));
             foreach (var v in g.views) pills.Add(new UiKit.PillSpec(GroupText.View(v), UiKit.Quote, null, "CC_Group_ViewTip".Translate()));
             float px = ix + 280f;
             float pw = Mathf.Max(120f, inner - 280f);

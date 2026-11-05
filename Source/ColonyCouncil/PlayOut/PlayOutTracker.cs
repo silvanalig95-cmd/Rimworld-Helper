@@ -334,7 +334,8 @@ namespace ColonyCouncil
                     key = p.music ? "CC_Play_Begin_Song" : "CC_Play_Begin_Gathering";
                     break;
             }
-            string text = key.Translate(label, where ?? "").Resolve();
+            // A group's gathering, called by its anchor (Social/Groups/GroupHabits.cs): its people gather, not the colony.
+            string text = GroupHabits.BeginText(p, where) ?? key.Translate(label, where ?? "").Resolve();
             if (p.kind == PlayKind.Feast)
             {
                 var plan = PlayOutMath.PlanFeast(meals, guests);
@@ -344,6 +345,9 @@ namespace ColonyCouncil
             }
             // A fire laid for it (PlayFire.cs): from the stores' wood, or with what the answer set aside.
             if (laidBy != null) text += " " + (p.firePaid ? "CC_Play_Fire_LaidPaid" : "CC_Play_Fire_Laid").Translate(laidBy.Named("PAWN")).Resolve();
+            // What the group is, and what its gathering does for them.
+            string does = GroupHabits.Does(p);
+            if (!does.NullOrEmpty()) text += " " + does;
             return text;
         }
 

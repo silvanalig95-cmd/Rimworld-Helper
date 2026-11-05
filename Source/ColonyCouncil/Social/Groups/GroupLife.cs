@@ -87,6 +87,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("groups: facts", e);
                 return;
             }
+            Step("groups: old names", () => RenameOld(t, facts));
             Step("groups: members", () => Members(comp, t, facts, quiet));
             Step("groups: newcomers", () => GroupNewcomers.Daily(comp, t, facts, quiet));
             foreach (var g in t.groups.ToList())
@@ -772,19 +773,24 @@ namespace ColonyCouncil
             };
             foreach (int i in cluster)
                 g.members.Add(new GroupMember { pawn = f.people[i], name = f.people[i].LabelShort, joined = now, roleSince = now });
-            // Its first roles, so the one it gathers round can give it its name.
+            // Its first roles: the one it gathers round, whose name it never takes, calls it to its habit.
             var facts = g.members.Select(m => f.Role(g, m, now / Day)).ToArray();
             var roles = GroupMath.AssignRoles(facts, g.members.Select(_ => new RoleState()).ToArray());
             for (int i = 0; i < g.members.Count; i++) g.members[i].role = roles[i].role;
             var anchor = g.Holder(GroupRole.Anchor)
                          ?? g.members.OrderByDescending(m => GroupMath.RoleScore(GroupRole.Anchor, f.Role(g, m, now / Day))).First().pawn;
-            g.name = UniqueName(t, kind, anchor, g.id);
+            g.name = UniqueName(t, f, cluster, g, out var share);
+            // A friendship group says what its name is for: "They are friends, and most of them keep the night hours."
+            if (kind.binds == GroupBinds.Friends && share != null && !share.why.NullOrEmpty()) g.why = share.why;
             t.groups.Add(g);
             t.Changed();
-            if (brokeFrom == null) g.Note((quiet ? "CC_GroupNote_Found" : "CC_GroupNote_Formed").Translate(kind.why.Named("WHY")).Resolve(), true);
+            if (brokeFrom == null) g.Note((quiet ? "CC_GroupNote_Found" : "CC_GroupNote_Formed").Translate(g.why.Named("WHY")).Resolve(), true);
             if (quiet || brokeFrom != null) return g;
-            // apart: news that a group has formed, read from the day's account of who drifted together.
-            string text = "CC_Group_Formed".Translate(g.Name.Named("GROUP"), GroupText.Members(g).Named("NAMES"), kind.why.Named("WHY")).Resolve();
+            // apart: news that a group has formed, read from the day's account of who drifted together; and what a group
+            // does, told this once (GroupHabits.Formed).
+            string text = "CC_Group_Formed".Translate(g.Name.Named("GROUP"), GroupText.Members(g).Named("NAMES"), g.why.Named("WHY")).Resolve();
+            string does = GroupHabits.Formed(g, anchor);
+            if (!does.NullOrEmpty()) text += " " + does;
             News.Post(GroupText.Sentences(text), new LookTargets(g.Pawns.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), anchor));
             foreach (var m in g.members)
@@ -795,14 +801,23 @@ namespace ColonyCouncil
             return g;
         }
 
-        /// <summary>A name from the kind that no group now (or lately) has; else "Hector's hunters"; else the kind's first with a number.</summary>
-        private static string UniqueName(GroupTracker t, GroupKindDef kind, Pawn anchor, int id)
+        /// <summary>
+        /// A name no other group now (or lately) has, never after one of its people: one of its kind's own; for a
+        /// friendship group, or once the kind's are all taken, one of what most of these of them (by index) share, their
+        /// habits or their friendship (<see cref="GroupNaming"/>, <paramref name="share"/>); else the first with a number.
+        /// </summary>
+        private static string UniqueName(GroupTracker t, GroupFacts f, IList<int> members, SocialGroup g, out GroupShareDef share)
         {
-            var taken = new HashSet<string>(t.groups.Select(g => g.Name).Concat(t.past.Skip(Mathf.Max(0, t.past.Count - 4)).Select(p => p.name)), StringComparer.OrdinalIgnoreCase);
-            var options = GroupText.NameOptions(kind, anchor).Where(n => !taken.Contains(n)).ToList();
+            share = null;
+            var kind = g.kind;
+            var taken = new HashSet<string>(t.groups.Where(x => x != g).Select(x => x.Name).Concat(t.past.Skip(Mathf.Max(0, t.past.Count - 4)).Select(p => p.name)),
+                StringComparer.OrdinalIgnoreCase);
+            int seed = g.id * 7919 + (g.members.Count > 0 ? g.members.Min(m => m.pawn?.thingIDNumber ?? 0) : 0);
+            var own = GroupText.NameOptions(kind);
+            var options = own.Where(n => !taken.Contains(n)).ToList();
             if (options.Count > 0)
             {
-                Rand.PushState(id * 7919 + (anchor?.thingIDNumber ?? 0));
+                Rand.PushState(seed);
                 try
                 {
                     return options.RandomElement();
@@ -812,18 +827,60 @@ namespace ColonyCouncil
                     Rand.PopState();
                 }
             }
-            if (anchor != null)
+            string first = own.FirstOrDefault();
+            foreach (var fit in GroupNaming.Ranked(f.Shares(members, g.Habits)))
             {
-                string named = "CC_Group_NameOf".Translate(anchor.Named("ANCHOR"), kind.label.Named("KIND")).Resolve();
-                if (!taken.Contains(named)) return named;
+                var def = DefDatabase<GroupShareDef>.GetNamedSilentFail(fit.key);
+                if (def == null) continue;
+                var names = GroupText.NameOptions(def);
+                first ??= names.FirstOrDefault();
+                string name = GroupNaming.Pick(names, taken, seed);
+                if (name == null) continue;
+                share = def;
+                return name;
             }
-            string first = GroupText.NameOptions(kind, anchor).FirstOrDefault() ?? kind.label;
+            first ??= kind?.label ?? "?";
             for (int n = 2; n < 50; n++)
             {
                 string s = first + " (" + n + ")";
                 if (!taken.Contains(s)) return s;
             }
             return first;
+        }
+
+        // ---------------- Names after one person, in older saves ----------------
+
+        /// <summary>
+        /// Older saves named a friendship group after the one it gathered round ("Stace's friends"), and any group whose
+        /// kind's own names were all taken ("Hector's hunters"). Each such group is named for what its people share instead,
+        /// once (the new name never reads as one after someone), quietly: no news, and nothing else about it changes. Called
+        /// when a game is loaded, and with each day's facts in case groups were off then.
+        /// </summary>
+        public static void RenameOld(GroupTracker t, GroupFacts f)
+        {
+            if (t == null || t.groups.Count == 0) return;
+            List<string> given = null;
+            List<SocialGroup> old = null;
+            foreach (var g in t.groups)
+            {
+                given ??= GroupText.GivenNames();
+                if (!GroupNaming.AfterSomeone(g.name, GroupText.AfterSomeonePatterns(g.kind), given)) continue;
+                (old ??= new List<SocialGroup>()).Add(g);
+            }
+            if (old == null) return;
+            if (f == null)
+            {
+                var pawns = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Distinct().ToList();
+                var web = CouncilGameComponent.Instance?.social;
+                f = new GroupFacts(pawns, web, t);
+            }
+            foreach (var g in old)
+            {
+                string name = UniqueName(t, f, Present(g, f), g, out _);
+                if (!name.NullOrEmpty()) g.name = name;
+            }
+            t.Changed();
+            CouncilGameComponent.Instance?.social?.RebuildCliques();
         }
 
         // ---------------- Left out ----------------

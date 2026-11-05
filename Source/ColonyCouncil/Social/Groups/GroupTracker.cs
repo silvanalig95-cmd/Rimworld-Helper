@@ -62,6 +62,21 @@ namespace ColonyCouncil
             workByPawn = null;
         }
 
+        /// <summary>A saved game is loaded: groups an older save named after one of their people get a name of what they share, quietly.</summary>
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            if (!GroupLife.Active) return;
+            try
+            {
+                GroupLife.RenameOld(this, null);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("groups: old names", e);
+            }
+        }
+
         /// <summary>Membership changed: the index is rebuilt on its next use.</summary>
         public void Changed() => version++;
 

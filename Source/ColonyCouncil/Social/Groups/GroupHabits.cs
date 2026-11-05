@@ -175,9 +175,10 @@ namespace ColonyCouncil
         // ---------------- Called to it ----------------
 
         /// <summary>
-        /// Once a day, with "Answers play out on the map": now and then (every week or two for a close group) the anchor
-        /// calls the group to its habit on the map, one group at a time. Those who come get the habit's memory when it's
-        /// over (the play-out holds it until then).
+        /// Once a day, with "Answers play out on the map": now and then (every week or two for a close group:
+        /// <see cref="GroupMath.MayCall"/>, cohesion "close" on its card or more) the anchor calls the group to its habit on
+        /// the map, one group at a time. Those who come get the habit's memory when it's over (the play-out holds it until
+        /// then).
         /// </summary>
         public static void Daily(GroupTracker t, GroupFacts f)
         {
@@ -193,7 +194,8 @@ namespace ColonyCouncil
             int now = Now;
             foreach (var g in t.groups.InRandomOrder().ToList())
             {
-                if (g.cohesion < 35f || now - g.lastArranged < 8 * Day || !Rand.Chance(0.2f)) continue;
+                // A close group (the card's "close" or "tight-knit"; a loose one was called too, more often than the words said).
+                if (!GroupMath.MayCall(g.cohesion, (now - g.lastArranged) / (float)Day) || !Rand.Chance(GroupMath.CallChance)) continue;
                 var habit = g.Habits.FirstOrDefault(h => h.Play != null);
                 if (habit == null) continue;
                 var anchor = g.Holder(GroupRole.Anchor) ?? g.members.OrderByDescending(m => m.attachment).FirstOrDefault()?.pawn;
@@ -257,6 +259,8 @@ namespace ColonyCouncil
                 g.todayHabits += 2;
                 foreach (var p in came) Interplay.Ease(p, 3f, StrainRelief.Gathering);
                 g.Note("CC_GroupNote_Gathered".Translate((play.label ?? "").Named("NAME"), came.Count.Named("COUNT")).Resolve());
+                // The gathering's closing words say who of them came and what it did (PlayOutTracker.GatheringEnded tells them).
+                play.outcome = "CC_GroupPlay_End".Translate((play.label ?? g.Name).CapitalizeFirst().Named("LABEL"), came.Count.Named("COUNT")).Resolve();
                 var writer = came.RandomElement();
                 GroupText.Journal(writer, "Rimfolk_Journal_Group_Gathered", g.Name.Named("GROUP"));
             }
@@ -264,6 +268,95 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("groups: gathering over", e);
             }
+        }
+
+        // ---------------- What it is, in words ----------------
+
+        /// <summary>The group whose anchor called this gathering, while it's on; else null.</summary>
+        public static SocialGroup CalledBy(PlayOut play)
+        {
+            if (play == null || !GroupLife.Active) return null;
+            var t = GroupTracker.Instance;
+            if (t == null) return null;
+            foreach (var g in t.groups)
+                if (g.playId == play.id)
+                    return g;
+            return null;
+        }
+
+        /// <summary>
+        /// A group's gathering as it begins, on the map (PlayOutTracker): who gathers where ("An evening at the fire for the
+        /// fireside circle: the fire is lit, and their anchor, Stace, gathers them by the campfire."). Null when no group
+        /// called it.
+        /// </summary>
+        public static string BeginText(PlayOut play, string where)
+        {
+            var g = CalledBy(play);
+            if (g == null) return null;
+            var anchor = g.Holder(GroupRole.Anchor);
+            // together: the one leading them to the place is the gathering's organizer, on the map; their anchor only when it's them.
+            bool leads = anchor != null && play.organizer == anchor;
+            bool fire = play.kind == PlayKind.Bonfire;
+            string label = (play.label ?? g.Name).CapitalizeFirst();
+            string text = leads
+                ? (fire ? "CC_GroupPlay_Begin_FireAnchor" : "CC_GroupPlay_Begin_Anchor").Translate(label.Named("LABEL"), anchor.Named("PAWN"), (where ?? "").Named("WHERE")).Resolve()
+                : (fire ? "CC_GroupPlay_Begin_Fire" : "CC_GroupPlay_Begin").Translate(label.Named("LABEL"), (where ?? "").Named("WHERE")).Resolve();
+            return text;
+        }
+
+        /// <summary>
+        /// Said after it, as it begins: what the group is and what the gathering does for them ("They are friends, and keep
+        /// their evenings at the fire together. Those who come feel they belong, and their strain eases a little."). Null
+        /// when no group called it.
+        /// </summary>
+        public static string Does(PlayOut play)
+        {
+            var g = CalledBy(play);
+            return g == null ? null : GroupText.Sentences("CC_GroupPlay_Does".Translate((g.why ?? "").Named("WHY")).Resolve());
+        }
+
+        /// <summary>
+        /// A group's gathering in This week's list (UI/PlayOutText.cs): its people, what the group is, and what the gathering
+        /// does and how often. Null when no group called it.
+        /// </summary>
+        public static string Tip(PlayOut play)
+        {
+            var g = CalledBy(play);
+            if (g == null) return null;
+            var anchor = g.Holder(GroupRole.Anchor);
+            string who = "CC_GroupPlay_Who".Translate(g.Name.CapitalizeFirst().Named("GROUP"), GroupText.Members(g).Named("NAMES"), (g.why ?? "").Named("WHY")).Resolve();
+            string often = anchor != null
+                ? "CC_GroupPlay_Often".Translate(anchor.Named("PAWN")).Resolve()
+                : "CC_GroupPlay_OftenNoAnchor".Translate().Resolve();
+            return GroupText.Sentences(who) + "\n" + often;
+        }
+
+        /// <summary>
+        /// What a group does, told once with its founding (GroupLife.Form): keeping its habits together gives them a sense
+        /// of belonging and eases their strain; with "Answers play out on the map", its anchor calls them all to its first
+        /// habit that can be called (as <see cref="Daily"/> does) every week or two while it's close.
+        /// </summary>
+        public static string Formed(SocialGroup g, Pawn anchor)
+        {
+            if (g == null) return null;
+            var habits = g.Habits;
+            if (habits.Count == 0) return null;
+            string text = "CC_Group_Formed_Does".Translate().Resolve();
+            var called = habits.FirstOrDefault(h => h.Play != null);
+            if (called == null || !PlayOuts.On) return text;
+            var holder = g.Holder(GroupRole.Anchor);
+            return text + " " + (holder != null
+                ? "CC_Group_Formed_Calls".Translate(holder.Named("PAWN"), called.label.Named("HABIT")).Resolve()
+                : "CC_Group_Formed_CallsNoAnchor".Translate(called.label.Named("HABIT")).Resolve());
+        }
+
+        /// <summary>A habit's pill on the group's card: what keeping it does, and whether the anchor calls them to it.</summary>
+        public static string HabitTip(SocialGroup g, GroupHabitDef h)
+        {
+            var lines = new List<string> { h.description, "", "CC_Group_HabitDoes".Translate().Resolve() };
+            if (h.Play != null && PlayOuts.On && g.Habits.FirstOrDefault(x => x.Play != null) == h) lines.Add("CC_Group_HabitCalled".Translate().Resolve());
+            lines.Add("CC_Group_HabitTip".Translate(g.habitsKept).Resolve());
+            return string.Join("\n", lines);
         }
     }
 }

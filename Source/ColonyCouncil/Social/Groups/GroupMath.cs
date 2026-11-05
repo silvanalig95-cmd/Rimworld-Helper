@@ -124,6 +124,21 @@ namespace ColonyCouncil
         /// <summary>Under this welcome a group closes ranks against a newcomer.</summary>
         public const float CloseRanksBelow = 0.15f;
         public const float Accepted = 100f;
+        /// <summary>From here a group is close (the card says "close", from 75 "tight-knit"): only then does its anchor call it to its habit.</summary>
+        public const float CloseAt = 50f;
+        /// <summary>Days at least between two of a group's gatherings, and the chance on each day after that it's called.</summary>
+        public const int CallAfterDays = 8;
+        public const float CallChance = 0.2f;
+
+        /// <summary>
+        /// Whether a group's anchor may call it to its habit today, before the day's roll (<see cref="CallChance"/>): a close
+        /// group, <see cref="CallAfterDays"/> days or more since the last time. One group at a time, so the colony isn't
+        /// called to one every other evening.
+        /// </summary>
+        public static bool MayCall(float cohesion, float daysSinceLast) => cohesion >= CloseAt && daysSinceLast >= CallAfterDays;
+
+        /// <summary>How many days, on average, between two gatherings of a close group that is free to gather: every week or two.</summary>
+        public static float DaysBetweenCalls => CallAfterDays - 1 + 1f / CallChance;
 
         public static float Clamp(float v, float lo, float hi) => v < lo ? lo : v > hi ? hi : v;
 
