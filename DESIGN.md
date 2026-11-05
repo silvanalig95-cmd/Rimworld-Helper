@@ -411,13 +411,37 @@ component of its own, so an old save just starts without it and finds its groups
   three to seven with no rift becomes a group; someone joins the group they hold to (and never one they left) and drifts
   off after days of not holding to it. Two groups each at most.
 - **Identity.** The kind is what binds most of it (`GroupKindDef`: 25, lowest order wins, friendship last); it gives a
-  name picked once, in the colony's era, and kept. Roles come from character and behaviour (`GroupMath.AssignRoles`:
+  name picked once, in the colony's era, and kept. A group is never named after one of its people (the colony is the
+  family, and its groups are of the colony, not of a person: the player's report of "Stace's friends", 5 November
+  2026). A friendship group is named for what its people share (`GroupShareDef`, `Rimfolk_GroupShares.xml`, ranked by
+  the pure `GroupNaming`): the night hours or a work more than half of them keep or do, a side of character two in
+  three have (only sides no kind is named for), else its habits in its own order with their place ("the fireside
+  circle", "the long table"), else their friendship ("the old friends"); several names per idea and era, one picked
+  by the group's id among those no group now or lately has, and its card's line says what it's named for ("They are
+  friends, and most of them keep the night hours."). A kind whose own names are all taken does the same (it was
+  "Hector's hunters"). The anchor is a role on the card, never the name. Older saves: a group whose name reads as one
+  after someone (the friends kind's old names, kept in its def only to find them, `CC_Group_NameOf`, `CC_Clique_Name`;
+  `GroupNaming.AfterSomeone`, never a name a kind or share gives) is named this way once when the game is loaded
+  (`GroupTracker.LoadedGame`, and the day's pass if groups were off then), quietly: no news, no history line, nothing
+  else changed. The older circles (social life off) take a friendship name the same way, stable while their leader
+  leads them. Roles come from character and behaviour (`GroupMath.AssignRoles`:
   one anchor, joker and peacemaker each; a change waits three days; the incumbent keeps a unique role against a near
   rival). Ways (`GroupNormDef`, at most three) come from the members' average character or tags, with hysteresis; views
   from members' stances (`Persona.Stance`, any topic key). Members drift towards both (`Persona.Nudge`, `SetStance`).
 - **Life.** Cohesion (0-100) settles towards the members' mean affinity and moves with habits kept, shared memories,
   quarrels and mends (read from `MomentTones`), losses and separation. Habits (`GroupHabitDef`) are kept when members are
-  really together doing them (hourly, `Together.Can`), or called on the map as a play-out by the anchor. Newcomers
+  really together doing them (hourly, `Together.Can`), or called on the map as a play-out by the anchor: a close group
+  only (cohesion `GroupMath.CloseAt` 50, the card's "close"; until 5 November 2026 a loose one from 35 was called too,
+  more often than the words said), `CallAfterDays` 8 days at least since the last and then 1 in 5 a day (about 12 days
+  on average, `DaysBetweenCalls`: every week or two), one group at a time, three of them at home at least, its first
+  habit with a play kind, for its own people only. The gathering says what it is where the player meets it
+  (`GroupHabits.BeginText`, `Does`, `Tip`; `Rimfolk_Groups_Gatherings.xml`): as it begins, who gathers where (their
+  anchor by name when it's them leading), the group's line and "those who come feel they belong, and their strain eases
+  a little"; in This week's list, its people and how often; at its end (`play.outcome`), how many of them came and that
+  the group is closer for it; the founding news says once what keeping habits does and whom the anchor calls to what;
+  a habit's pill on the card says what keeping it does and whether the anchor calls them to it. The label on the map
+  stays short ("an evening at the fire for the fireside circle"). The words are the same in every age; the age is in
+  the names. Newcomers
   integrate by opinion, memories, work, a sponsor and welcomes, scaled by how open the group is; a closed group gives the
   cold shoulder and the old left-out feeling. Rivalry between groups grows from feuds, opposed views and ways, and spats,
   and reaches votes, petitions and objections through `SocialWeb.Warmth`. Splits (loose and riven), merges (overlapping
