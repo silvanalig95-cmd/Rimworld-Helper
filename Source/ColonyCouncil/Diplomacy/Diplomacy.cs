@@ -42,12 +42,15 @@ namespace ColonyCouncil
             {
                 Safe("envoys", () => Envoys.Hourly(now));
                 Safe("envoys abroad", () => EnvoysAbroad.Hourly(now));
+                // Wards and hostages either way (release 2b.3).
+                Safe("wards", () => Wards.Hourly(now));
             }
             if (Sched.FirstHourOfDay(now))
             {
                 Safe("day", () => FavourAsks.Daily(now));
                 Safe("pacts' day", () => Pacts.Daily(now));
                 Safe("envoys' day", () => Envoys.Daily(now));
+                Safe("wards' day", () => Wards.Daily(now));
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }

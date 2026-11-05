@@ -554,6 +554,11 @@ namespace ColonyCouncil
                         }
                         return n > 0 ? PactWords.P("CC_Truce_Paid_Captives", n.Named("COUNT"), PactWords.People(f).Named("PEOPLE")) : null;
                     }
+                    // A hostage for the term (release 2b.3, Hostages.cs): theirs walks in to the gate, the colony's sets out for their town.
+                    case TrucePrice.TheirHostage:
+                        return Hostages.TruceTheirs(t, f, home);
+                    case TrucePrice.OurHostage:
+                        return Hostages.TruceOurs(t, f, home, silver);
                 }
             }
             catch (Exception e)

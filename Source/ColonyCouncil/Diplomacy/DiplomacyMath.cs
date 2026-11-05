@@ -35,9 +35,13 @@ namespace ColonyCouncil
         public const string Ransomed = "dip:ransomed", Exchanged = "dip:exchanged", Envoy = "dip:envoy", Feast = "dip:feast", Contest = "dip:contest",
             Wedding = "dip:wedding", Task = "dip:task", Tribute = "dip:tribute", Levy = "dip:levy", FoundOut = "dip:foundout", Renown = "dip:renown";
 
+        /// <summary>Wards and hostages (release 2b.3): a ward come or gone home, the colony's youth set out or back; a hostage given, returned, forfeit or held.</summary>
+        public const string Ward = "dip:ward", Hostage = "dip:hostage";
+
         public static readonly string[] Kinds =
         {
-            Word, Peace, Freed, Side, TruceOffer, PactOffer, Parley, Band, Arms, Ransomed, Exchanged, Envoy, Feast, Contest, Wedding, Task, Tribute, Levy, FoundOut, Renown
+            Word, Peace, Freed, Side, TruceOffer, PactOffer, Parley, Band, Arms, Ransomed, Exchanged, Envoy, Feast, Contest, Wedding, Task, Tribute, Levy, FoundOut, Renown,
+            Ward, Hostage
         };
 
         // ---------------- The deeds ----------------

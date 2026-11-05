@@ -47,7 +47,9 @@ namespace ColonyCouncil
         /// <summary>About captives (Diplomacy/Ransoms.cs, release 2a.3): one of theirs offered for ransom, or an exchange of theirs for ours.</summary>
         Ransom,
         /// <summary>Asking them to send their envoy to live at the colony for a season (Diplomacy/Envoys.cs, release 2a.3).</summary>
-        Envoy
+        Envoy,
+        /// <summary>Asking them for a ward to foster for a year, or offering them a youth of the colony's (Diplomacy/Wards.cs, release 2b.3).</summary>
+        Ward
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

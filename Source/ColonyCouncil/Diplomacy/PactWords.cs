@@ -30,7 +30,8 @@ namespace ColonyCouncil
         public static string Term(TruceTerm t) => P("CC_Truce_Term_" + t);
 
         /// <summary>The price in words: "no price", "200 silver from the colony", "their captives returned".</summary>
-        public static string Price(TrucePrice p, int silver) => P("CC_Truce_Price_" + p, silver.Named("SILVER"));
+        public static string Price(TrucePrice p, int silver) =>
+            p == TrucePrice.OurHostage ? P("CC_Truce_Price_OurHostage", Hostages.NameOf(silver).Named("NAME")) : P("CC_Truce_Price_" + p, silver.Named("SILVER"));
 
         /// <summary>How the colony calls a defence pact in, by its means: a fire on the hill, a beacon for their riders, a radio call, comms.</summary>
         public static string CallByFire(Map home) => P("CC_Pact_Fire_" + Ages.Of(home ?? Homes.Seat));

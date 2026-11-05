@@ -370,6 +370,7 @@ namespace ColonyCouncil
             Toggle("truceRaids", "CC_Settings_TruceRaids", "CC_SetNote_TruceRaids", "diplomacyPacts,deepHooks");
             Toggle("diplomacyRansom", "CC_Settings_DiplomacyRansom", "CC_SetNote_DiplomacyRansom", "factionMemory");
             Toggle("diplomacyEnvoys", "CC_Settings_DiplomacyEnvoys", "CC_SetNote_DiplomacyEnvoys", "factionMemory");
+            Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
