@@ -355,6 +355,8 @@ namespace ColonyCouncil
     {
         private List<DiplomacyHome> homes = new List<DiplomacyHome>();
         public int nextId = 1;
+        /// <summary>The colony's band of renown last told (RenownBand; RenownMath.NotRead before the first day's look), so a change is told once; the renown itself is read, never kept (Diplomacy/Renown.cs).</summary>
+        public int renownBand = RenownMath.NotRead;
 
         private static DiplomacyBook cached;
         private static Game cachedGame;
@@ -460,6 +462,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving) homes?.RemoveAll(h => h == null);
             Scribe_Collections.Look(ref homes, "homes", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Values.Look(ref renownBand, "renownBand", RenownMath.NotRead);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 homes ??= new List<DiplomacyHome>();

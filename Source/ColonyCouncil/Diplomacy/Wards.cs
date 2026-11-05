@@ -13,8 +13,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Their ward at the colony (docs/design/stage2-diplomacy.md, round b, item 7; release 2b.3; the player's decision 10;
     /// the rules in WardMath.cs), and the hour of every ward and hostage either way (the colony's own away: WardsAbroad.cs;
-    /// hostages' terms: Hostages.cs). A people at peace whose head thinks 30 or more of the colony may offer a youth of a
-    /// notable's house (a child where the game has children, else 14 to 19) to live at the colony for a year and learn a
+    /// hostages' terms: Hostages.cs). A people at peace whose head thinks 30 or more of the colony may offer a youth of their
+    /// town (a child where the game has children, else 14 to 19; never of a notable's house since 5 November 2026) to live
+    /// at the colony for a year and learn a
     /// skill it is known for, from a guardian with 10 or more in it, once a year per people and a season apart at a home;
     /// or the colony asks by letter. Agreed, the ward walks in with one of their kin to the gate and joins the colony as the
     /// game's lodger (a quest of Rimfolk's own with the game's QuestPart_ExtraFaction, their people the home people, as the
@@ -198,12 +199,16 @@ namespace ColonyCouncil
             if (h != null && h.wards.Any(w => w != null && w.kind == WardKind.Theirs)) return WardWords.P("CC_Ward_Why_OneHere");
             if (h != null && h.wards.Count >= WardMath.MaxPerHome) return WardWords.P("CC_Ward_Why_Full");
             if (KnownFor(home) == null) return WardWords.P("CC_Ward_Why_NoGuardian", WardMath.GuardianSkill.Named("SKILL"));
-            if (Kin(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
+            if (Sender(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
             return null;
         }
 
-        /// <summary>The notable of theirs whose house the ward is from: their head, heir or envoy (of the town nearest the home first), or null.</summary>
-        public static Notable Kin(Faction f, Map home, out Settlement town)
+        /// <summary>
+        /// The notable of theirs who sends the ward from their town and answers for them: their head, heir or envoy (of the
+        /// town nearest the home first), or null. Since 5 November 2026 the ward is a youth of that town, never of the
+        /// notable's house (the colony is the family, never a dynasty); the notable's regard still moves with the year.
+        /// </summary>
+        public static Notable Sender(Faction f, Map home, out Settlement town)
         {
             town = home != null ? WorldSituationWorker.NearestTown(f, home) : null;
             var book = NotableBook.Instance;
@@ -242,7 +247,7 @@ namespace ColonyCouncil
                 {
                     if (f == null || f.IsPlayer || !Diplomacy.Deals(f) || !f.HasGoodwill) continue;
                     var head = FavourCalls.HeadOf(f, home);
-                    if (head == null || Kin(f, home, out _) == null) continue;
+                    if (head == null || Sender(f, home, out _) == null) continue;
                     int last = LastOf(f);
                     if (h.wardOfferPeople == f.loadID && h.wardOfferAt > last) last = h.wardOfferAt;
                     if (!WardMath.MayOffer(Diplomacy.Hostile(f), NotableBook.Opinion(head), guardian, false, last, h.wardOfferAt, now)) continue;
@@ -257,16 +262,18 @@ namespace ColonyCouncil
         public static void Offer(DiplomacyHome h, Map home, Faction f)
         {
             var def = WardDefOf.Rimfolk_WardOffer;
-            var kin = Kin(f, home, out var town);
+            var sender = Sender(f, home, out var town);
             var skill = KnownFor(home);
-            if (def == null || h == null || kin == null || skill == null) return;
+            if (def == null || h == null || sender == null || skill == null) return;
             h.wardOfferAt = Now;
             h.wardOfferPeople = f.loadID;
             var head = FavourCalls.HeadOf(f, home);
             var form = WardWords.Form(home, f);
             string who = head != null ? NotableBook.Called(head) : WardWords.People(f);
             var guardian = Guardians(home, skill).FirstOrDefault();
-            string text = WardWords.T("CC_Ward_Offer", who.Named("WHO"), WardWords.People(f).Named("PEOPLE"), kin.Name.Named("KIN"), form.word.Named("WORD"),
+            // A youth of the sender's town (their town's name, else the nearest).
+            string youthTown = sender.townName ?? town?.Name ?? WardWords.People(f);
+            string text = WardWords.T("CC_Ward_OfferTown", who.Named("WHO"), WardWords.People(f).Named("PEOPLE"), youthTown.Named("TOWN"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), skill.label.Named("SKILL"))
                           + "\n\n" + WardWords.P(WardMath.WardAge(ChildrenHere).min < 13f ? "CC_Ward_Offer_HowChild" : "CC_Ward_Offer_How",
                               (guardian?.LabelShort ?? "?").Named("GUARDIAN"), skill.label.Named("SKILL"));
@@ -276,7 +283,7 @@ namespace ColonyCouncil
             {
                 l.people = f;
                 l.home = Homes.KeyOf(home);
-                l.notable = kin.id;
+                l.notable = sender.id;
                 l.skill = skill.defName;
             }
             Tell.Ask(letter, home);
@@ -294,29 +301,29 @@ namespace ColonyCouncil
             var form = WardWords.Form(home, f);
             if (!WardMath.SendsWhenAsked(Diplomacy.Hostile(f), regard, Rand.Value))
                 return WardWords.T("CC_Ward_Ans_No", WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD"));
-            var w = Agree(home, f, Kin(f, home, out _), skill, true, days);
+            var w = Agree(home, f, Sender(f, home, out _), skill, true, days);
             if (w == null) return WardWords.T("CC_Ward_Ans_Moot", WardWords.People(f).Named("PEOPLE"));
             yes = true;
             return WardWords.T("CC_Ward_Ans_Yes", WardWords.People(f).Named("PEOPLE"), w.pawn.Named("WARD"), form.rite.Named("RITE"), WardWords.Skill(w.skill).Named("SKILL"));
         }
 
         /// <summary>
-        /// A ward agreed (their offer accepted, or the colony's letter answered yes): a youth of the notable's house is made
-        /// (their child where the ages fit), kept in the world until they come, and due one to two days on; the ledger's Ward
+        /// A ward agreed (their offer accepted, or the colony's letter answered yes): a youth of the notable's town is made, kept
+        /// in the world until they come, and due one to two days on; the ledger's Ward
         /// tie from their people to the colony. Null when one is under way at that home already or nobody of theirs can come.
         /// </summary>
-        public static WardStay Agree(Map home, Faction f, Notable kin, string skill, bool asked, float days)
+        public static WardStay Agree(Map home, Faction f, Notable sender, string skill, bool asked, float days)
         {
             var book = DiplomacyBook.Instance;
             if (book == null || home == null || f == null) return null;
             var h = book.HomeOf(home);
             if (!WardMath.Fits(h.wards.Select(x => (x.kind, x.guarantees)).ToList(), WardKind.Theirs, -1)) return null;
-            var youth = MakeYouth(f, kin, ChildrenHere);
+            var youth = MakeYouth(f, ChildrenHere);
             if (youth == null) return null;
             var w = new WardStay
             {
                 id = book.NextId(), kind = WardKind.Theirs, stage = WardStage.Coming, pawn = youth, people = f, skill = skill ?? KnownFor(home)?.defName,
-                agreed = Now, due = Now + Mathf.RoundToInt(Mathf.Max(0.05f, days) * WardMath.DayTicks), asked = asked, notable = kin?.id ?? -1, name = youth.LabelShort
+                agreed = Now, due = Now + Mathf.RoundToInt(Mathf.Max(0.05f, days) * WardMath.DayTicks), asked = asked, notable = sender?.id ?? -1, name = youth.LabelShort
             };
             h.wards.Add(w);
             WorldLedger.Keep(youth, KeepFor.Ward);
@@ -332,32 +339,19 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A youth of their people (a child of 9 to 12 where the game has children, else 14 to 19), of the notable's house:
-        /// their child where the ages fit, else of their name. Kept in the world.
+        /// A youth of their town (a child of 9 to 12 where the game has children, else 14 to 19), with a family of their own
+        /// at home (the kin who see them to the gate and come for them carry their name), nobody's heir: since 5 November 2026
+        /// never a notable's child or of their house. Kept in the world.
         /// </summary>
-        public static Pawn MakeYouth(Faction f, Notable kin, bool child)
+        public static Pawn MakeYouth(Faction f, bool child)
         {
             try
             {
                 var kind = Arrivals.PersonKind(f);
                 if (kind == null) return null;
                 var (min, max) = WardMath.WardAge(child);
-                var parent = kin?.pawn;
-                string last = parent?.Name is NameTriple tri ? tri.Last : null;
-                var p = Arrivals.Make(kind, f, new FloatRange(min, max), null, last, child, parent);
+                var p = Arrivals.Make(kind, f, new FloatRange(min, max), null, null, child);
                 if (p == null) return null;
-                if (parent != null && !parent.Dead && parent.RaceProps?.Humanlike == true
-                    && WardMath.CanBeParent(parent.ageTracker.AgeBiologicalYearsFloat, p.ageTracker.AgeBiologicalYearsFloat))
-                {
-                    try
-                    {
-                        p.relations?.AddDirectRelation(PawnRelationDefOf.Parent, parent);
-                    }
-                    catch (Exception e)
-                    {
-                        CouncilLog.ErrorOnce("wards: the youth's parent", e);
-                    }
-                }
                 if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.KeepForever);
                 return p;
             }
@@ -485,10 +479,10 @@ namespace ColonyCouncil
                 if (!Arrivals.Spawn(w.pawn, map, entry)) return;
                 party.Add(w.pawn);
                 var kinKind = Arrivals.PersonKind(f);
-                var parent = NotableBook.Instance?.Get(w.notable)?.pawn;
                 if (kinKind != null)
                 {
-                    var k = Arrivals.Make(kinKind, f, new FloatRange(25f, 55f), null, (w.pawn.Name as NameTriple)?.Last, false, parent);
+                    // One of the youth's own family (their name, their kind), not the notable who sent them.
+                    var k = Arrivals.Make(kinKind, f, new FloatRange(25f, 55f), null, (w.pawn.Name as NameTriple)?.Last, false, w.pawn);
                     GenSpawn.Spawn(k, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
                     party.Add(k);
                 }
@@ -850,11 +844,11 @@ namespace ColonyCouncil
             var party = new List<Pawn>();
             try
             {
-                var parent = NotableBook.Instance?.Get(w.notable)?.pawn;
                 string last = (w.pawn.Name as NameTriple)?.Last;
                 for (int i = 0; i < 2; i++)
                 {
-                    var k = Arrivals.Make(kind, f, new FloatRange(20f, 60f), null, last, false, parent);
+                    // The youth's own family come for them (their name, their kind), not the notable who sent them.
+                    var k = Arrivals.Make(kind, f, new FloatRange(20f, 60f), null, last, false, w.pawn);
                     GenSpawn.Spawn(k, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
                     party.Add(k);
                 }
@@ -972,17 +966,17 @@ namespace ColonyCouncil
             {
                 int regard = WardMath.HomeRegard(r);
                 var head = FavourCalls.HeadOf(f, map);
-                var kin = NotableBook.Instance?.Get(w.notable);
+                var sender = NotableBook.Instance?.Get(w.notable);
                 string note = WardWords.P("CC_Ward_Note_Home", p.Named("WARD"), WardWords.Result(r).Named("RESULT"));
                 if (head != null)
                 {
                     head.personal += regard;
                     head.Remember(note, regard);
                 }
-                if (kin != null && kin != head && kin.Alive)
+                if (sender != null && sender != head && sender.Alive)
                 {
-                    kin.personal += regard;
-                    kin.Remember(note, regard);
+                    sender.personal += regard;
+                    sender.Remember(note, regard);
                 }
                 WorldSituationWorker.Goodwill(f, WardMath.HomeGoodwill(r), false);
                 int weight = WardMath.FosteredWeight(r);
@@ -1006,7 +1000,7 @@ namespace ColonyCouncil
             {
                 new HistoryActor(Refs.Of(p), HistoryRole.About), new HistoryActor(Diplomacy.Colony(map), HistoryRole.With), new HistoryActor(Refs.Of(f), HistoryRole.For)
             };
-            // The guardian, by name: their house's renown reads a good year as a ward fostered well (Diplomacy/Renown.cs).
+            // The guardian, by name: the colony's renown and their own name read a good year as a ward fostered well (Diplomacy/Renown.cs).
             if (w.guardian != null) yearActors.Add(new HistoryActor(Refs.Of(w.guardian), RenownMath.GuardianRole(r >= WardResult.Good)));
             Diplomacy.Write(DiplomacyMath.Ward, yearActors, Diplomacy.Colony(map),
                 WardWords.P("CC_Ward_Hist_Home_" + r, p.Named("WARD"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), r != WardResult.Fair);
@@ -1039,17 +1033,17 @@ namespace ColonyCouncil
             {
                 int regard = WardMath.DiedRegard(sheltered, byColony);
                 var head = FavourCalls.HeadOf(f, map);
-                var kin = NotableBook.Instance?.Get(w.notable);
+                var sender = NotableBook.Instance?.Get(w.notable);
                 string note = WardWords.P("CC_Ward_Note_Died", p.Named("WARD"));
                 if (head != null)
                 {
                     head.personal += regard;
                     head.Remember(note, regard);
                 }
-                if (kin != null && kin != head && kin.Alive)
+                if (sender != null && sender != head && sender.Alive)
                 {
-                    kin.personal += regard;
-                    kin.Remember(note, regard);
+                    sender.personal += regard;
+                    sender.Remember(note, regard);
                 }
                 WorldSituationWorker.Goodwill(f, WardMath.DiedGoodwill(sheltered, byColony), false);
                 FactionMemory.Note(f, "slighted", p.LabelShort, byColony ? 20 : sheltered ? 6 : 12);

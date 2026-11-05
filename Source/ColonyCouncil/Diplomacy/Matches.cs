@@ -22,15 +22,16 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Marriage alliances (docs/design/stage2-diplomacy.md, round b, item 6; release 2b.2; the player's decisions 8 and 9;
-    /// the rules in MatchMath.cs). A match between one of the colony's and one of theirs (a notable, or a member of a
-    /// notable's house made for it) comes three ways: "Speak for a match" face to face with one of theirs at the colony (two
+    /// the rules in MatchMath.cs; reshaped by the player's decision of 5 November 2026: a bond between the colony and their
+    /// people, made through one marriage). A match between one of the colony's and one of theirs (a notable, or one of a
+    /// head's town made for it) comes three ways: "Speak for a match" face to face with one of theirs at the colony (two
     /// who courted their way to lovers, or anyone who fits: MatchActs.cs), the council's letter to their notable
     /// (MatchLetters.cs; the People card lists who would fit), or their own offer (ChoiceLetter_MatchOffer, once a year at
     /// most when their head thinks 40 or more of the colony). The colonist is asked first: their own feelings say whether
     /// they are glad of it, willing, or against it, and a match they are against comes to the council with their objection
     /// before anything is agreed (MatchObjection.cs). Where the couple lives is chosen in each match: theirs comes to the
-    /// colony with their kin as the wedding's guests (Feasts.Host), joins it at the gate, and the game's own ceremony marries
-    /// them there; or their kin come to the gate for the colony's own, who walks out and leaves with them for good, and the
+    /// colony with notables of their town as the wedding's guests (Feasts.Host), joins it at the gate, and the game's own ceremony
+    /// marries them there; or theirs and one of their town come to the gate for the colony's own, who walks out and leaves with them for good, and the
     /// wedding at their town is told in their letter (MatchParty.cs). Gifts by their ways go both ways at the gate. The
     /// wedding makes the Marriage tie (from their people to the colony, about the colony's own, key "spouse:" and theirs),
     /// the deed "married", the history's "dip:wedding"; the alliance's days, ends and bad sides are MatchAlliance.cs.
@@ -223,7 +224,7 @@ namespace ColonyCouncil
             return key == null ? null : MatchWords.P("CC_Match_Why_" + key, ours.Named("PAWN"), theirs.Named("OTHER"));
         }
 
-        /// <summary>The sex a member of a notable's house would be, for this colonist (drawn to them, and they to the colonist); null when none.</summary>
+        /// <summary>The sex one of a head's town would be, for this colonist (drawn to them, and they to the colonist); null when none.</summary>
         public static Gender? GenderFor(Pawn ours)
         {
             if (ours == null) return null;
@@ -234,14 +235,14 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Why one of a notable's house can't be matched with this colonist, or null.</summary>
-        public static string WhyNotHouse(Pawn ours, Notable house)
+        /// <summary>Why one of the town a head speaks for can't be matched with this colonist, or null.</summary>
+        public static string WhyNotOfTown(Pawn ours, Notable head)
         {
             string why = ColonistWhyNot(ours);
             if (why != null) return why;
-            if (house?.pawn == null || !house.Alive || house.faction == null) return MatchWords.P("CC_Match_Why_Gone");
+            if (head?.pawn == null || !head.Alive || head.faction == null) return MatchWords.P("CC_Match_Why_Gone");
             if (GenderFor(ours) == null) return MatchWords.P("CC_Match_Why_NotDrawnHouse", ours.Named("PAWN"));
-            if (Ages.IsEmpire(house.faction) && !Titled(ours)) return MatchWords.P("CC_Match_Why_TitledHouse", ours.Named("PAWN"));
+            if (Ages.IsEmpire(head.faction) && !Titled(ours)) return MatchWords.P("CC_Match_Why_TitledHouse", ours.Named("PAWN"));
             if (EngagedElsewhere(ours, null) || !FreeToWed(ours)) return MatchWords.P("CC_Match_Why_MarriedHouse", ours.Named("PAWN"));
             return null;
         }
@@ -280,16 +281,16 @@ namespace ColonyCouncil
 
         // ================= Who would fit =================
 
-        /// <summary>One of theirs who could be matched: a notable of theirs, or one of a notable's house not yet made (the sex the colonist is drawn to).</summary>
+        /// <summary>One of theirs who could be matched: a notable of theirs, or one of a head's town not yet made (the sex the colonist is drawn to).</summary>
         public sealed class Candidate
         {
             public Pawn pawn;
             public Notable notable;
-            /// <summary>One of this notable's house, made when they agree.</summary>
-            public Notable house;
+            /// <summary>The head who speaks for one of their town, made when they agree.</summary>
+            public Notable head;
             public Gender gender;
 
-            public string Words => MatchWords.Candidate(pawn, notable, house, gender);
+            public string Words => MatchWords.Candidate(pawn, notable, head, gender);
         }
 
         /// <summary>The colony's own at a home who may be matched (a new list).</summary>
@@ -305,7 +306,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Theirs who would fit this colonist: their heirs, envoys and the faces the colony knows (never their people's
-        /// leader nor a town's head), and one of a head's house for each town the colony knows a head of.
+        /// leader nor a town's head), and one of a head's town for each town the colony knows a head of.
         /// </summary>
         public static List<Candidate> CandidatesFor(Pawn ours, Faction f, int max = 6)
         {
@@ -322,48 +323,45 @@ namespace ColonyCouncil
             foreach (var n in book.notables)
             {
                 if (list.Count >= max) break;
-                if (n == null || n.faction != f || !n.Alive || n.role != NotableRole.Head || WhyNotHouse(ours, n) != null) continue;
+                if (n == null || n.faction != f || !n.Alive || n.role != NotableRole.Head || WhyNotOfTown(ours, n) != null) continue;
                 var g = GenderFor(ours);
                 if (g == null) continue;
-                list.Add(new Candidate { house = n, gender = g.Value });
+                list.Add(new Candidate { head = n, gender = g.Value });
             }
             return list;
         }
 
         /// <summary>
-        /// One of a notable's house, made for a match: of their people's kind, the house's name, the sex the colonist is drawn to, of
-        /// an age near the colonist's, the head's child where the ages allow; kept in the world for the match (KeepFor.Spouse).
+        /// One of the town a head speaks for, made for a match: of their people's kind, a name of their own, the sex the colonist
+        /// is drawn to, of an age near the colonist's; kept in the world for the match (KeepFor.Spouse). Nobody's child or kin: the
+        /// match binds the colony and their people, never two houses (the player's decision, 5 November 2026; until then they
+        /// were made the head's child, of the head's name).
         /// </summary>
-        public static Pawn MakeKin(Notable house, Gender gender, Pawn ours)
+        public static Pawn MakeOfTown(Notable head, Gender gender, Pawn ours)
         {
-            if (house?.pawn == null || house.faction == null) return null;
+            if (head?.pawn == null || head.faction == null) return null;
             try
             {
-                var kind = house.pawn.kindDef?.RaceProps?.Humanlike == true && !house.faction.def.HasRoyalTitles ? house.pawn.kindDef : Arrivals.PersonKind(house.faction);
+                var kind = Arrivals.PersonKind(head.faction) ?? (head.pawn.kindDef?.RaceProps?.Humanlike == true && !head.faction.def.HasRoyalTitles ? head.pawn.kindDef : null);
                 if (kind == null) return null;
                 float age = ours?.ageTracker != null ? ours.ageTracker.AgeBiologicalYearsFloat : 25f;
-                float headAge = house.pawn.ageTracker?.AgeBiologicalYearsFloat ?? 50f;
-                float lo = Mathf.Max(MatchMath.MinAge, age - 5f), hi = Mathf.Max(lo + 1f, Mathf.Min(age + 5f, headAge - 16f));
-                string last = house.pawn.Name is NameTriple tri ? tri.Last : null;
-                var p = Arrivals.Make(kind, house.faction, new FloatRange(lo, hi), gender, last, false, house.pawn);
+                float lo = Mathf.Max(MatchMath.MinAge, age - 5f), hi = Mathf.Max(lo + 1f, age + 5f);
+                var p = Arrivals.Make(kind, head.faction, new FloatRange(lo, hi), gender, null, false);
                 if (p == null) return null;
                 Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.KeepForever);
-                // The head's child, when the head is old enough to be.
-                if (headAge - p.ageTracker.AgeBiologicalYearsFloat >= 16f && house.pawn.relations != null)
-                    p.relations.AddDirectRelation(PawnRelationDefOf.Parent, house.pawn);
                 WorldLedger.Keep(p, KeepFor.Spouse);
                 return p;
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("matches: one of a notable's house", e);
+                CouncilLog.ErrorOnce("matches: one of their town", e);
                 return null;
             }
         }
 
         // ================= Their answer to the colony's proposal =================
 
-        /// <summary>Their head's regard of the colony (the notable whose house it is, else their head), and their people's goodwill.</summary>
+        /// <summary>Their head's regard of the colony (the notable who speaks for the match, else their head), and their people's goodwill.</summary>
         public static int Regard(Faction f, Map home, Notable n)
         {
             var who = n ?? FavourCalls.HeadOf(f, home);
@@ -377,19 +375,19 @@ namespace ColonyCouncil
         /// They hear the colony's proposal (its letter read, or face to face): yes or no by their own reckoning. Yes, the match
         /// begins: the colonist asked first (the council's question if they are against it), else agreed. Returns their words.
         /// </summary>
-        public static string Hear(Faction f, Map home, Pawn ours, Pawn theirs, Notable n, Notable house, Gender gender, MatchHome lives, MatchWay way, float roll, out bool yes)
+        public static string Hear(Faction f, Map home, Pawn ours, Pawn theirs, Notable n, Notable head, Gender gender, MatchHome lives, MatchWay way, float roll, out bool yes)
         {
             yes = false;
             var form = MatchWords.Form(home, f);
-            string why = PeopleWhyNot(f, home) ?? (theirs != null ? WhyNotPair(ours, theirs, f) : WhyNotHouse(ours, house));
+            string why = PeopleWhyNot(f, home) ?? (theirs != null ? WhyNotPair(ours, theirs, f) : WhyNotOfTown(ours, head));
             if (why != null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), why.Named("WHY"));
             bool lovers = theirs != null && LovePartnerRelationUtility.LovePartnerRelationExists(ours, theirs);
-            int regard = Regard(f, home, house ?? n);
-            string them = theirs != null ? theirs.LabelShort : MatchWords.Candidate(null, null, house, gender);
-            // One of a renowned house is taken up more readily, up to twice (Renown.cs).
+            int regard = Regard(f, home, head ?? n);
+            string them = theirs != null ? theirs.LabelShort : MatchWords.Candidate(null, null, head, gender);
+            // One of a renowned colony is taken up more readily, up to twice (Renown.cs).
             if (!(Mathf.Clamp01(roll) < RenownMath.MatchChance(MatchMath.AcceptChance(regard, Goodwill(f), lovers, lives == MatchHome.Colony), Renown.MatchFactor(ours))))
             {
-                var who = house ?? n ?? FavourCalls.HeadOf(f, home);
+                var who = head ?? n ?? FavourCalls.HeadOf(f, home);
                 if (who != null)
                 {
                     who.personal += MatchMath.DeclinedRegard / 2f;
@@ -401,11 +399,11 @@ namespace ColonyCouncil
             bool made = false;
             if (theirs == null)
             {
-                theirs = MakeKin(house, gender, ours);
+                theirs = MakeOfTown(head, gender, ours);
                 made = true;
                 if (theirs == null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), MatchWords.P("CC_Match_Why_Gone").Named("WHY"));
             }
-            var p = Begin(home, f, ours, theirs, (house ?? n)?.id ?? -1, made, lives, way);
+            var p = Begin(home, f, ours, theirs, (head ?? n)?.id ?? -1, made, lives, way);
             if (p == null)
             {
                 if (made) LetGo(theirs);
@@ -621,7 +619,7 @@ namespace ColonyCouncil
                     int live = With(f).Count;
                     if (!MatchMath.MayOffer(NotableBook.Opinion(head), Diplomacy.Hostile(f), head.Last(LetterPurpose.Match), now, live)) continue;
                     if (!Pick(f, home, out var ours, out var cand)) continue;
-                    // One of a renowned house is sought out more readily, up to twice (Renown.cs).
+                    // One of a renowned colony is sought out more readily, up to twice (Renown.cs).
                     if (!Rand.Chance(MatchMath.OfferDaily * Renown.MatchFactor(ours))) continue;
                     Offer(f, home, head, ours, cand);
                     return;
@@ -642,14 +640,14 @@ namespace ColonyCouncil
             var lives = MatchMath.TheyPropose(cand.notable?.role == NotableRole.Heir, Rand.Value);
             var form = MatchWords.Form(home, f);
             string them = cand.Words;
-            string town = (cand.notable ?? cand.house ?? head)?.townName ?? MatchWords.People(f);
+            string town = (cand.notable ?? cand.head ?? head)?.townName ?? MatchWords.People(f);
             string text = MatchWords.T("CC_Match_Offer", NotableBook.Called(head).Named("WHO"), MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS"), them.Named("THEIRS"),
                 form.word.Named("WORD"), form.rite.Named("RITE"));
             text += "\n\n" + MatchWords.Lives(lives, ours.LabelShort, cand.pawn?.LabelShort ?? them, town).CapitalizeFirst() + ".";
             var c = ConsentOf(ours, cand.pawn, lives, out var why, out var other);
             text += " " + MatchWords.ConsentLine(ours, c, why, other);
             text += "\n\n" + MatchWords.P(Pacts.On && !Ages.IsEmpire(f) ? "CC_Match_What" : "CC_Match_WhatNoPact", MatchWords.People(f).Named("PEOPLE"));
-            var t = NotableBook.TownOf((cand.notable ?? cand.house ?? head).town);
+            var t = NotableBook.TownOf((cand.notable ?? cand.head ?? head).town);
             var letter = LetterMaker.MakeLetter(MatchWords.P("CC_Match_Offer_Label", MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS")), text, def,
                 t != null ? new LookTargets(t) : new LookTargets(ours), f);
             if (letter is ChoiceLetter_MatchOffer l)
@@ -658,7 +656,7 @@ namespace ColonyCouncil
                 l.home = Homes.KeyOf(home);
                 l.ours = ours;
                 l.theirs = cand.pawn;
-                l.notable = (cand.notable ?? cand.house)?.id ?? -1;
+                l.notable = (cand.notable ?? cand.head)?.id ?? -1;
                 l.gender = (int)cand.gender;
                 l.lives = lives;
             }
@@ -676,7 +674,7 @@ namespace ColonyCouncil
             bool made = false;
             if (theirs == null)
             {
-                theirs = MakeKin(n, (Gender)l.gender, l.ours);
+                theirs = MakeOfTown(n, (Gender)l.gender, l.ours);
                 made = true;
             }
             string why = theirs == null ? MatchWords.P("CC_Match_Why_Gone") : PeopleWhyNot(f, home) ?? WhyNotPair(l.ours, theirs, f);

@@ -7,13 +7,12 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Where marriage alliances show (docs/design/interface.md, "Where stage 2 and stage 3 go": Tie, House and Person cards;
+    /// Where marriage alliances show (docs/design/interface.md, "Where stage 2 and stage 3 go": Tie and Person cards;
     /// the council question and "Talk with..."; This week: the match proposed): the marriage's Tie card (who married whom,
-    /// where they live, held through a child, what the alliance gives) and a grudge for a spouse wronged; a notable's Person
-    /// card (a match under way, who of the colony's would fit, "Propose a match"); a House card (its members married into the
-    /// colony); the People card (marriages and matches with them, "Seek a match"); a colonist's card (promised or married
-    /// to one of theirs); the Peoples view's rows and act, Here and away (the colony's own married into their town, in-laws
-    /// among the houses), and the one inbox: their offer of a match in Needs you, the matches under way in steps, the day
+    /// where they live, what the alliance gives) and a grudge for a spouse wronged; a notable's Person
+    /// card (a match under way, who of the colony's would fit, "Propose a match"); the People card (marriages and matches with them, "Seek a match"); a colonist's card (promised or married
+    /// to one of theirs); the Peoples view's rows and act, Here and away (the colony's own married into their town, the peoples it
+    /// is bound to by marriage), and the one inbox: their offer of a match in Needs you, the matches under way in steps, the day
     /// their kin come for the colony's own in Coming (never a time left).
     /// </summary>
     [StaticConstructorOnStartup]
@@ -27,7 +26,6 @@ namespace ColonyCouncil
             CardSections.RegisterLines(CardKind.Person, CardSlot.Now, 34f, PersonLines, null, "match-person");
             CardActs.Register(CardKind.Person, r => MatchWords.P("CC_Match_Act_Propose"), r => ProposeWhyNot(ThingRefs.Notable(r)), r => Propose(ThingRefs.Notable(r)),
                 r => ThingRefs.Notable(r) is Notable n && n.faction != null && !Diplomacy.Hostile(n.faction) && Matches.On, 48f, MatchWords.P("CC_Match_Act_Propose_Tip"), "match-propose");
-            CardSections.RegisterLines(CardKind.House, CardSlot.Ties, 10f, HouseLines, "CC_Match_Card_HouseHead", "match-house");
             CardSections.RegisterLines(CardKind.People, CardSlot.Now, 46f, r => Rows(ThingRefs.Faction(r), null).Select(x => x.text).ToList(), null, "match-people");
             CardActs.Register(CardKind.People, r => MatchWords.P("CC_Match_Act_Seek"), r => SeekAct(ThingRefs.Faction(r)).why, r => SeekAct(ThingRefs.Faction(r)).run?.Invoke(),
                 r => ThingRefs.Faction(r) is Faction f && !Diplomacy.Hostile(f) && Matches.On, 42f, MatchWords.P("CC_Match_Act_Seek_Tip"), "match-seek");
@@ -96,7 +94,6 @@ namespace ColonyCouncil
                 if (t.kind != Tie.Kind.Marriage) return null;
                 list.Add(MarriageLine(t));
                 if (t.since >= 0) list.Add(MatchWords.P("CC_Match_Card_Since", FactionMemory.AgoText(t.since).Named("AGO")));
-                if (t.terms.count > 0) list.Add(MatchWords.P("CC_Match_Card_Child"));
                 if (t.Live)
                 {
                     bool empire = Ages.IsEmpire(f);
@@ -138,13 +135,13 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>The colony's own at the home who would fit this notable, or one of their house.</summary>
+        /// <summary>The colony's own at the home who would fit this notable, or one of the town this head speaks for.</summary>
         private static List<Pawn> Fits(Notable n, Map home)
         {
             var list = new List<Pawn>();
             if (n?.pawn == null || home == null) return list;
             foreach (var c in Matches.Colonists(home))
-                if (n.role == NotableRole.Head ? Matches.WhyNotHouse(c, n) == null : Matches.WhyNotPair(c, n.pawn, n.faction) == null)
+                if (n.role == NotableRole.Head ? Matches.WhyNotOfTown(c, n) == null : Matches.WhyNotPair(c, n.pawn, n.faction) == null)
                     list.Add(c);
             return list;
         }
@@ -158,32 +155,6 @@ namespace ColonyCouncil
             if (p != null) list.Add(StageLine(p));
             var t = Matches.TieOf(x);
             if (t != null) list.Add(MarriageLine(t));
-            return list;
-        }
-
-        /// <summary>A house of a town: its members married into the colony, or promised to one of the colony's.</summary>
-        private static List<string> HouseLines(ThingRef r)
-        {
-            var h = ThingRefs.House(r);
-            if (h == null || h.name.NullOrEmpty()) return null;
-            var list = new List<string>();
-            try
-            {
-                bool Of(Pawn x) => x?.Name is NameTriple tri && tri.Last == h.name && (x.Faction == h.people || KinMemory.Ours(x));
-                foreach (var t in Matches.Live())
-                {
-                    if (Matches.PeopleOf(t) != h.people) continue;
-                    var theirs = Matches.TheirsOf(t);
-                    if (Of(theirs)) list.Add(MarriageLine(t));
-                }
-                foreach (var (_, p) in Matches.All())
-                    if (p.people == h.people && Of(p.theirs))
-                        list.Add(StageLine(p));
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("matches: a house's card", e);
-            }
             return list;
         }
 
@@ -269,18 +240,16 @@ namespace ColonyCouncil
                     yield return new DipRow { text = StageLine(p), color = UiKit.Info, link = (object)p.ours ?? p.people };
         }
 
-        /// <summary>Here and away's houses: the colony's in-laws, one row a marriage.</summary>
-        public static IEnumerable<DipRow> InlawRows()
+        /// <summary>Here and away: the peoples the colony is bound to by marriage, one row a marriage (their people, never in-laws or a house).</summary>
+        public static IEnumerable<DipRow> BondRows()
         {
             foreach (var t in Matches.Live())
             {
                 var f = Matches.PeopleOf(t);
                 var theirs = Matches.TheirsOf(t);
-                string house = theirs?.Name is NameTriple tri ? tri.Last : null;
                 yield return new DipRow
                 {
-                    text = MatchWords.P(house.NullOrEmpty() ? "CC_Match_Inlaws_People" : "CC_Match_Inlaws", (house ?? "").Named("HOUSE"), LinkPeople(f).Named("PEOPLE"),
-                        LinkRef(t.terms.about).Named("OURS"), Link(theirs, null).Named("THEIRS")),
+                    text = MatchWords.P("CC_Match_Bond", LinkPeople(f).Named("PEOPLE"), LinkRef(t.terms.about).Named("OURS"), Link(theirs, null).Named("THEIRS")),
                     color = UiKit.Gold, link = t
                 };
             }

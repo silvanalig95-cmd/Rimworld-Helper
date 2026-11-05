@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The letter purpose of release 2b.2 in the existing machinery (World/NeighbourLetters.cs, through DiplomacyLetters):
     /// Match, proposing one of the colony's for one of theirs ("match:OURS:THEIRS": the notable written to, or another of
-    /// their people the colony knows) or for one of the house of the notable written to ("match:OURS:h:NOTABLE:G"), each
+    /// their people the colony knows) or for one of the town of the head written to ("match:OURS:h:NOTABLE:G", the h kept from
+    /// when it named a house), each
     /// topic with how the colonist feels about it; what is asked is where the couple would live ("home:Colony",
     /// "home:Theirs"). Their answer is by their own reckoning (Matches.Hear), and the answer's tone follows it.
     /// </summary>
@@ -28,7 +29,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What a letter to them can be about: each of the colony's at the home with the notable written to (when they fit),
-        /// with another of their town the colony knows, or with one of the notable's house when the notable heads one.
+        /// with another of their town the colony knows, or with one of their town the head speaks for.
         /// </summary>
         public static List<LetterTopic> Topics(Notable n, Map home)
         {
@@ -42,10 +43,10 @@ namespace ColonyCouncil
                     foreach (var cand in Matches.CandidatesFor(c, f, 4))
                     {
                         if (list.Count >= 8) return list;
-                        // The notable written to, another of their town, or one of their own house.
-                        bool fits = cand.notable == n || cand.house == n || cand.notable != null && cand.notable.town == n.town;
+                        // The notable written to, another of their town, or one of the town the head speaks for.
+                        bool fits = cand.notable == n || cand.head == n || cand.notable != null && cand.notable.town == n.town;
                         if (!fits) continue;
-                        string key = cand.pawn != null ? MatchMath.Topic(c.thingIDNumber, cand.pawn.thingIDNumber) : MatchMath.HouseTopic(c.thingIDNumber, cand.house.id, (int)cand.gender);
+                        string key = cand.pawn != null ? MatchMath.Topic(c.thingIDNumber, cand.pawn.thingIDNumber) : MatchMath.HouseTopic(c.thingIDNumber, cand.head.id, (int)cand.gender);
                         var consent = Matches.ConsentOf(c, cand.pawn, MatchHome.Colony, out var why, out var other);
                         list.Add(new LetterTopic
                         {
@@ -66,12 +67,12 @@ namespace ColonyCouncil
         public static List<FavourCalls.Option> Asks(string topicKey, Map home)
         {
             var list = new List<FavourCalls.Option>();
-            if (!Resolve(topicKey, home, out var ours, out var theirs, out var house, out var g)) return list;
-            string town = (theirs != null ? NotableOf(theirs) : house)?.townName ?? "?";
+            if (!Resolve(topicKey, home, out var ours, out var theirs, out var head, out var g)) return list;
+            string town = (theirs != null ? NotableOf(theirs) : head)?.townName ?? "?";
             foreach (MatchHome h in Enum.GetValues(typeof(MatchHome)))
             {
                 var consent = Matches.ConsentOf(ours, theirs, h, out var why, out var other);
-                string label = MatchWords.Lives(h, ours.LabelShort, theirs?.LabelShort ?? MatchWords.Candidate(null, null, house, g), town).CapitalizeFirst();
+                string label = MatchWords.Lives(h, ours.LabelShort, theirs?.LabelShort ?? MatchWords.Candidate(null, null, head, g), town).CapitalizeFirst();
                 list.Add(new FavourCalls.Option { code = MatchMath.AskCode(h), label = label + " (" + MatchWords.ConsentLine(ours, consent, why, other).TrimEnd('.') + ")" });
             }
             return list;
@@ -79,11 +80,11 @@ namespace ColonyCouncil
 
         private static Notable NotableOf(Pawn x) => NotableBook.Instance?.notables.FirstOrDefault(n => n != null && n.pawn == x);
 
-        /// <summary>A topic's colonist and one of theirs (or the house and the sex of one to be made).</summary>
-        public static bool Resolve(string key, Map home, out Pawn ours, out Pawn theirs, out Notable house, out Gender g)
+        /// <summary>A topic's colonist and one of theirs (or the head who speaks for one of their town, and the sex of one to be made).</summary>
+        public static bool Resolve(string key, Map home, out Pawn ours, out Pawn theirs, out Notable head, out Gender g)
         {
             ours = theirs = null;
-            house = null;
+            head = null;
             g = Gender.None;
             if (!MatchMath.ParseTopic(key, out int o, out int t, out int nId, out int gender)) return false;
             ours = home?.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.thingIDNumber == o) ?? PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.FirstOrDefault(p => p.thingIDNumber == o);
@@ -91,10 +92,10 @@ namespace ColonyCouncil
                                  ?? home?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.thingIDNumber == t);
             else
             {
-                house = NotableBook.Instance?.Get(nId);
+                head = NotableBook.Instance?.Get(nId);
                 g = (Gender)gender;
             }
-            return ours != null && (theirs != null || house != null);
+            return ours != null && (theirs != null || head != null);
         }
 
         /// <summary>
@@ -106,13 +107,13 @@ namespace ColonyCouncil
             var f = n?.faction;
             bool yes = false;
             string line;
-            if (!Resolve(l.topicKey, home, out var ours, out var theirs, out var house, out var g))
+            if (!Resolve(l.topicKey, home, out var ours, out var theirs, out var head, out var g))
                 line = MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), MatchWords.P("CC_Match_Why_Gone").Named("WHY"));
             else
             {
                 MatchMath.ParseAsk(l.help, out var lives);
                 var them = theirs != null ? NotableOf(theirs) : null;
-                line = Matches.Hear(f, home, ours, theirs, them ?? n, house, g, lives, MatchWay.Sought, Rand.Value, out yes);
+                line = Matches.Hear(f, home, ours, theirs, them ?? n, head, g, lives, MatchWay.Sought, Rand.Value, out yes);
             }
             if (!yes) tone = AnswerTone.Refusal;
             else if (tone > AnswerTone.Cool) tone = AnswerTone.Cool;
@@ -135,7 +136,7 @@ namespace ColonyCouncil
             map = Homes.MapOf(home) ?? Homes.Seat;
             if (people == null || people.defeated || Diplomacy.Hostile(people) || map == null || ours == null || ours.Dead) return false;
             if (Matches.PeopleWhyNot(people, map) != null) return false;
-            return theirs != null ? Matches.WhyNotPair(ours, theirs, people) == null : Matches.WhyNotHouse(ours, NotableBook.Instance?.Get(notable)) == null;
+            return theirs != null ? Matches.WhyNotPair(ours, theirs, people) == null : Matches.WhyNotOfTown(ours, NotableBook.Instance?.Get(notable)) == null;
         }
 
         /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>

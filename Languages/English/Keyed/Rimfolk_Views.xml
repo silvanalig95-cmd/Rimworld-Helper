@@ -24,24 +24,12 @@
   <CC_Mode_Rooms>At a glance</CC_Mode_Rooms>
   <!-- The People table and the houses, by name ("Go to People"). -->
   <CC_Tab_Table>People</CC_Tab_Table>
-  <CC_Tab_Houses>Houses</CC_Tab_Houses>
 
   <!-- The Almanac's book in every window's corner (UI/WindowTabs.cs). -->
   <CC_Win_AlmanacTip>The Almanac: how Rimfolk works, and good practice. It opens in a window of its own, which you can move and size beside what it explains.</CC_Win_AlmanacTip>
 
   <!-- The Chronicle's filter that was the Journals page. -->
   <CC_ChronicleFilter_Journals>Journals</CC_ChronicleFilter_Journals>
-
-  <!-- People, Houses (UI/HousesPanel.cs). -->
-  <CC_Houses_Header>The colony's houses</CC_Houses_Header>
-  <CC_Houses_Sub>Its families, from the ties of blood and marriage among its people, and the houses it knows of in the region.</CC_Houses_Sub>
-  <CC_Houses_Stat>Families: {0}</CC_Houses_Stat>
-  <CC_Houses_AtHome>At home</CC_Houses_AtHome>
-  <CC_Houses_NoneAtHome>No two of the colony's people are kin yet. When two are kin by blood or married, their house shows here.</CC_Houses_NoneAtHome>
-  <CC_Houses_Alone>Colonists with no kin here: {0}</CC_Houses_Alone>
-  <CC_Houses_Known>Out in the region</CC_Houses_Known>
-  <CC_Houses_KnownLine>{HOUSE}, of {TOWN}</CC_Houses_KnownLine>
-  <CC_Houses_None>No houses yet. When two of the colony's people are kin by blood or married, their house shows here, and so do the families of the towns the colony hears of.</CC_Houses_None>
 
   <!-- The People table's title and right click, and the rooms at a glance's line. -->
   <CC_Table_Title>People</CC_Table_Title>

@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The colony's renown (Source/ColonyCouncil/Diplomacy/Renown.cs; the facts in Diplomacy/FactsRenown.cs), since the
+       player's decision of 5 November 2026: the colony is the family, never a dynasty. These take the place of the house
+       renown talk (its two files went with the houses). Of the colony, when one of its people talks: colony:known (its name
+       known at least in a town nearby; the band alone with !colony:renowned), colony:renowned (across the region or wider;
+       alone with !colony:wide), colony:wide (among every people within reach), colony:infamous (known for the wrong things),
+       colony:knownfor:fighters|healers|hosts|traders|makers|faithful (said only of a name known somewhere); {KNOWNFOR} what
+       it is known for in the colony's own age's words ("good swords", "healing hands", "piety": it reads after "known
+       for"), {RENOWN} how far its name carries in the ways of the one spoken to (it reads after "is"; the Empire's people
+       by the court's: "spoken of with honor in the region's noble houses"). The bands in their ways: a town nearby is the
+       nearest camp's fire, the next town's market, the next town, the nearest settlement's channels, the nearest town's
+       nobility; the region every fire, its halls, its papers, every channel; the peoples every clan, halls far and wide,
+       every people within reach. Of the colonist talking: us:knownas (known by their own name for their deeds to the
+       people of the one spoken to: across the region or wider, or in a town nearby to the people their deed was done with
+       or for), us:knownas:KIND (what that name is for), {KNOWNAS} the name itself ("the one who broke the raiders' camp
+       that troubled the Lenlia": it reads after "as" or "you're", never at a sentence's start). A line never says which
+       deed the colony's name came from: it is read from many. By their ways where it matters. Callbacks pick up the marks
+       war, sickness, ill, leader, head, harvest, hunger, cold, trade, work, faith and situation. The format is described
+       at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Known in a town nearby, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TownTribal</defName>
+    <topic>renown</topic>
+    <when>colony:known,!colony:renowned,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A traveler at our fire spoke of your colony, and the young ones listened.</li>
+      <li>[us] What did the traveler say?</li>
+      <li>[them] That your camp is {RENOWN}, and worth a visit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TownMedieval</defName>
+    <topic>renown</topic>
+    <when>colony:known,!colony:renowned,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony came up at our market last week.</li>
+      <li>[us] For good or ill?</li>
+      <li>[them] Good, mostly, though the cheese seller had opinions.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TownIndustrial</defName>
+    <topic>renown</topic>
+    <when>colony:known,!colony:renowned,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] People back home have started asking about your settlement.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them] That it's {RENOWN}, and worth the walk.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TownSpacer</defName>
+    <topic>renown</topic>
+    <when>colony:known,!colony:renowned,their:spacer,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony turns up on our settlement's channel now and then.</li>
+      <li>[us] Is that good?</li>
+      <li>[them] It means people have noticed you, which out here is rare.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TownEmpire</defName>
+    <topic>renown</topic>
+    <when>colony:known,!colony:renowned,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is {RENOWN}, I'm told.</li>
+      <li>[us] We hadn't heard.</li>
+      <li>[them] The nobility rarely tells anyone what it thinks of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known across the region ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionTribal</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,!colony:wide,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] The elders tell of your colony at our fire, and the children ask for it again.</li>
+      <li>[us] I hope they tell it kindly.</li>
+      <li>[them] Kindly enough, and a little longer each time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionMedieval</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,!colony:wide,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] There's a song about your colony in our hall now, if you can believe it.</li>
+      <li>[us] Is it a good one?</li>
+      <li>[them] The tune's good, and most of the words are true.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionIndustrial</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,!colony:wide,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your settlement made the papers back home.</li>
+      <li>[us] Page one, I hope.</li>
+      <li>[them] Page two, but it's a good page.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionSpacer</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,!colony:wide,their:spacer,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's name comes up on every channel in the region.</li>
+      <li>[us] In a good way, I hope.</li>
+      <li>[them] In a way that makes people stop and listen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionEmpire</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,!colony:wide,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] At court one hears your colony spoken of now and then.</li>
+      <li>[us] What do they say?</li>
+      <li>[them] That it is worth knowing, which at court is high praise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_RegionHead</defName>
+    <topic>renown</topic>
+    <when>colony:renowned,role:head</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] My town would welcome any of your people at its table.</li>
+      <li>[us] That's kind of you.</li>
+      <li>[them] It's sense, a colony with a name like yours is worth having near.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known among every people within reach ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Wide</defName>
+    <topic>renown</topic>
+    <when>colony:wide</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Even people who've never seen your colony know its name.</li>
+      <li>[us] That's strange to hear.</li>
+      <li>[them] Your colony is {RENOWN}, so get used to it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_WideTribal</defName>
+    <topic>renown</topic>
+    <when>colony:wide,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Clans we have never met tell of your camp now.</li>
+      <li>[us] Then I hope they tell it true.</li>
+      <li>[them] True enough, and better every winter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_WideMedieval</defName>
+    <topic>renown</topic>
+    <when>colony:wide,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is sung of in halls I'll never see.</li>
+      <li>[us] We haven't heard the songs ourselves.</li>
+      <li>[them] Then you'll have to come and listen one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_WideHightech</defName>
+    <topic>renown</topic>
+    <when>colony:wide,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Every people within reach seems to know your colony by now.</li>
+      <li>[us] We only wanted to be left in peace.</li>
+      <li>[them] A known name keeps the peace better than walls do, most days.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_WideEmpire</defName>
+    <topic>renown</topic>
+    <when>colony:wide,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is {RENOWN}, did you know?</li>
+      <li>[us] We didn't, and I'm not sure what to make of it.</li>
+      <li>[them] Make use of it, that is what the court would do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Not yet known ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_NotYet</defName>
+    <topic>renown</topic>
+    <uses>chat,know</uses>
+    <when>!colony:known,!colony:infamous,!first</when>
+    <weight>0.4</weight>
+    <lines>
+      <li>[them] I'd not heard of your colony before I came here.</li>
+      <li>[us] We keep to ourselves, mostly.</li>
+      <li>[them] Then I'll be the first at home to tell of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_NotYetTribal</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>!colony:known,!colony:infamous,their:tribal</when>
+    <weight>0.4</weight>
+    <lines>
+      <li>[them] Among us a camp earns its name by what its people do for others.</li>
+      <li>[us] Then ours is still earning.</li>
+      <li>[them] Good, the earning is the best part.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_NotYetHightech</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>!colony:known,!colony:infamous,their:hightech</when>
+    <weight>0.4</weight>
+    <lines>
+      <li>[them] Your settlement isn't on any list I've seen.</li>
+      <li>[us] Is that bad?</li>
+      <li>[them] It's quiet, and quiet has its uses.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known for something, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Fighters</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:fighters</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's known for {KNOWNFOR} where I come from.</li>
+      <li>[us] We've had to be.</li>
+      <li>[them,their:tribal] Our young hunters want to wrestle one of you to see.</li>
+      <li>[them] Some of our young ones want to try their luck against one of you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_FightersMedieval</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:fighters,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our captain says your colony is known for {KNOWNFOR}, and he doesn't praise easily.</li>
+      <li>[us] Tell him thank you.</li>
+      <li>[them] He'd say there's nothing to thank him for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_FightersEmpire</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:fighters,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A colony known for {KNOWNFOR} might find its people welcome in the Empire's ranks.</li>
+      <li>[us] We're needed here.</li>
+      <li>[them] A pity, the Empire rewards its soldiers well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Healers</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:healers</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] They say your colony is known for {KNOWNFOR}, and people remember who healed them.</li>
+      <li>[us] We do what we can for anyone hurt.</li>
+      <li>[them] That's why they remember.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_HealersTribal</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:healers,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our healer has heard that your camp is known for {KNOWNFOR}.</li>
+      <li>[us] Maybe the two of them could trade what they know.</li>
+      <li>[them] Our healer would like that, if the elders allow it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_HealersHightech</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:healers,their:hightech</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our medics say your colony is known for {KNOWNFOR}.</li>
+      <li>[us] We've had a lot of practice, sadly.</li>
+      <li>[them] Practice is how anyone gets good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Hosts</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:hosts</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is known for {KNOWNFOR}, and I can see why.</li>
+      <li>[us] Sit down, then, there's room.</li>
+      <li>[them,their:lowtech] I'll sit, and gladly.</li>
+      <li>[them] Don't mind if I do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_HostsMedieval</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:hosts,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] On the road they say your colony is known for {KNOWNFOR}.</li>
+      <li>[us] We try to feed whoever comes.</li>
+      <li>[them] Then I'll tell them it's true, and that I ate well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Traders</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:traders</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's known for {KNOWNFOR}, I'm told.</li>
+      <li>[us] Fair, I hope you were told.</li>
+      <li>[them] Fair, and hard to get the better of.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_TradersHightech</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:traders,their:hightech</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's known for {KNOWNFOR}, it's in our trade notes.</li>
+      <li>[us] Is that good or bad for us?</li>
+      <li>[them] Good for you, bad for our margins.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Makers</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:makers</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is known for {KNOWNFOR}, and I'd like to see some of it.</li>
+      <li>[us] Look around, a fair bit of what's here is our own work.</li>
+      <li>[them] I'm looking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_MakersLowtech</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:makers,their:lowtech</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our crafters say your colony is known for {KNOWNFOR}.</li>
+      <li>[us] They're welcome to come and see how we work.</li>
+      <li>[them] They'll want to, and to trade a trick or two.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Faithful</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:faithful</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony is known for {KNOWNFOR}, even among us.</li>
+      <li>[us,samefaith] Then we pray to the same, and that's good company.</li>
+      <li>[us] We keep to what we believe, that's all.</li>
+      <li>[them] That's more than most manage.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_FaithfulRoad</defName>
+    <topic>renown</topic>
+    <when>colony:knownfor:faithful,colony:renowned</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] People of faith we meet on the road ask about your colony.</li>
+      <li>[us] They'd be welcome here.</li>
+      <li>[them] I'll tell them so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known for the wrong things ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_Infamous</defName>
+    <topic>renown</topic>
+    <when>colony:infamous,tone:cool|tone:sour</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's name isn't a good one where I come from.</li>
+      <li>[us] People say a lot of things.</li>
+      <li>[them] They say this one often.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_InfamousSour</defName>
+    <topic>renown</topic>
+    <when>colony:infamous,tone:sour</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] I'd rather not be seen talking with one of your colony.</li>
+      <li>[us] Then walk on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_InfamousPlain</defName>
+    <topic>renown</topic>
+    <when>colony:infamous,!tone:cool,!tone:sour</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony has a name for trouble, but you seem all right.</li>
+      <li>[us] Most of us are.</li>
+      <li>[them] Then maybe the name will change.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_InfamousWays</defName>
+    <topic>renown</topic>
+    <when>colony:infamous,!tone:sour</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them,their:tribal] At our fire your camp is a story told to frighten children.</li>
+      <li>[them,their:medieval] In our hall your colony's name is said low, and not kindly.</li>
+      <li>[them,their:hightech] Your settlement is {RENOWN}, you know.</li>
+      <li>[us] Then we have work to do.</li>
+      <li>[them] You do, and people will watch you do it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colonist's own name ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Plain</defName>
+    <topic>renown</topic>
+    <uses>chat,know</uses>
+    <when>us:knownas</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Wait, you're {KNOWNAS}, aren't you?</li>
+      <li>[us] That's what they call me, I suppose.</li>
+      <li>[them] Then I'll tell them at home I met you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Home</defName>
+    <topic>renown</topic>
+    <uses>chat,home</uses>
+    <when>us:knownas,!first</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] At home they speak of you as {KNOWNAS}.</li>
+      <li>[us] I didn't know anyone spoke of me at all.</li>
+      <li>[them,their:lowtech] They do, by the fire, when the young ones ask for a story.</li>
+      <li>[them] They do, more often than you'd think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Modest</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>us:knownas,tone:warm|tone:good</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] So this is {KNOWNAS}.</li>
+      <li>[us,trait:Kind] It wasn't only me, the whole colony was there.</li>
+      <li>[us] I only did what anyone here would have done.</li>
+      <li>[them] Maybe, but you're the one they name.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Fighter</defName>
+    <topic>renown</topic>
+    <when>us:knownas:fighters</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Our fighters know your name, they'd like a bout with you one day.</li>
+      <li>[us] A friendly one, I hope.</li>
+      <li>[them,their:tribal] Friendly, then a feast, as it should be.</li>
+      <li>[them] Friendly enough, they mean to learn from you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Healer</defName>
+    <topic>renown</topic>
+    <when>us:knownas:healers</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] You're the healer they talk about, aren't you?</li>
+      <li>[us] I've tended a few people, yes.</li>
+      <li>[them] More than a few, the way they tell it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Host</defName>
+    <topic>renown</topic>
+    <when>us:knownas:hosts</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Travelers say you're the one who makes guests feel at home here.</li>
+      <li>[us] Someone has to put the kettle on.</li>
+      <li>[them] Then I'm glad it's you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Trader</defName>
+    <topic>renown</topic>
+    <when>us:knownas:traders</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Our traders know your name, and they warned me about you.</li>
+      <li>[us] Warned you?</li>
+      <li>[them] That you strike a fair bargain and never a soft one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Maker</defName>
+    <topic>renown</topic>
+    <when>us:knownas:makers</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] People at home know your work before they know your face.</li>
+      <li>[us] Better that way round, my face is nothing much.</li>
+      <li>[them] Your work is, though.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Faithful</defName>
+    <topic>renown</topic>
+    <when>us:knownas:faithful</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] They say you keep the rites at your colony better than anyone.</li>
+      <li>[us] Somebody has to remember how they go.</li>
+      <li>[them] Then your colony is lucky to have you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_Empire</defName>
+    <topic>renown</topic>
+    <when>us:knownas,their:empire</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] You are spoken of at court as {KNOWNAS}.</li>
+      <li>[us] I hope that's a compliment there.</li>
+      <li>[them] At court, being spoken of at all is the compliment.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_KnownAs_ColonyToo</defName>
+    <topic>renown</topic>
+    <when>us:knownas,colony:renowned</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Your colony is {RENOWN}, and you're part of the reason.</li>
+      <li>[us] Everyone here is part of the reason.</li>
+      <li>[them] Spoken like one of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Callbacks: an earlier talk picked up ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarStill</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:still,colony:knownfor:fighters,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The fighting with {THEN} still goes on, you know.</li>
+      <li>[us] I'd hoped it was over.</li>
+      <li>[them] Some at home say a colony known for {KNOWNFOR} would end it quicker.</li>
+      <li>[us] We have our own walls to watch.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarOver</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:over,colony:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is that business with {THEN} over now?</li>
+      <li>[them] Over, and people at home have gone back to talking about other things.</li>
+      <li>[us] Such as?</li>
+      <li>[them] Your colony, for one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarOverFighters</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:over,colony:knownfor:fighters</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The war with {THEN} is over, you'll be glad to hear.</li>
+      <li>[us] I am, for all your sakes.</li>
+      <li>[them] Our young ones had hoped to fight beside a colony known for {KNOWNFOR}.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarOverWide</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:over,colony:wide</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The war with {THEN} is over at last.</li>
+      <li>[us] I'm glad to hear it.</li>
+      <li>[them] Peace gives people time to listen, and they ask for news of your colony.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_SicknessStill</defName>
+    <topic>callback</topic>
+    <when>talked:sickness,then:still,colony:knownfor:healers,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Has {THEN} let up at home?</li>
+      <li>[them] Not yet, and some there talk of walking all the way here for your colony's help.</li>
+      <li>[us] Tell them the gate is open to the sick.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_SicknessOver</defName>
+    <topic>callback</topic>
+    <when>talked:sickness,then:over,colony:knownfor:healers</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {THEN} has passed at home, I'm glad to say.</li>
+      <li>[us] That's a relief.</li>
+      <li>[them] Some said if it hadn't, they'd have come to your colony for its {KNOWNFOR}.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_IllStill</defName>
+    <topic>callback</topic>
+    <when>talked:ill,then:still,colony:knownfor:healers,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How is {THEN} doing?</li>
+      <li>[them] Holding on, and asking about your colony's healers whenever I visit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_IllOver</defName>
+    <topic>callback</topic>
+    <when>talked:ill,then:over,colony:knownfor:healers</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} on the mend?</li>
+      <li>[them] Back on their feet, I'm glad to say.</li>
+      <li>[us] Good, and if it comes back, bring them here.</li>
+      <li>[them] I would, your colony is known for {KNOWNFOR}, after all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_LeaderChanged</defName>
+    <topic>callback</topic>
+    <when>talked:leader,then:changed,colony:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {NOW} leads us now, and asked me about your colony before I left.</li>
+      <li>[us] What did you tell them?</li>
+      <li>[them] The truth, mostly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_LeaderStill</defName>
+    <topic>callback</topic>
+    <when>talked:leader,then:still,colony:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Does {THEN} still lead your people?</li>
+      <li>[them] Still, and {THEN} has heard of your colony by now.</li>
+      <li>[us] Good things, I hope.</li>
+      <li>[them] Good enough, from what I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HeadChanged</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:changed,colony:known,!colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Our town has a new head now, {NOW}.</li>
+      <li>[us] Does {NOW} know of us?</li>
+      <li>[them] Of your colony, at least, its name gets around.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HeadInfamous</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:changed,colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Our town has a new head now, {NOW}.</li>
+      <li>[us] Has {NOW} heard of us?</li>
+      <li>[them] Of your colony, yes, and not kindly, I'm afraid.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HeadStill</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:still,colony:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still at the head of your town?</li>
+      <li>[them] Still, and even {THEN} knows of your colony by now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Harvest</defName>
+    <topic>callback</topic>
+    <when>talked:harvest,colony:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How did the harvest go, in the end?</li>
+      <li>[them] Well enough, though nobody at home sets a table like your colony's.</li>
+      <li>[us] You'll have to come back and eat with us, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HungerHosts</defName>
+    <topic>callback</topic>
+    <when>talked:hunger,then:still,colony:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still going on?</li>
+      <li>[them] Still, and a colony known for {KNOWNFOR} is a good thought in lean times.</li>
+      <li>[us] Our door's open if anyone needs a meal.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HungerOver</defName>
+    <topic>callback</topic>
+    <when>talked:hunger,then:over,colony:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {THEN} is over now, I'm glad to say.</li>
+      <li>[us] That's good to hear.</li>
+      <li>[them] Now people have time to talk of other things, your colony among them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_ColdHosts</defName>
+    <topic>callback</topic>
+    <when>talked:cold,then:still,colony:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still on at home?</li>
+      <li>[them] Still, and a colony known for {KNOWNFOR} is a warm thought on cold nights.</li>
+      <li>[us] Come and warm up with us, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Trade</defName>
+    <topic>callback</topic>
+    <when>talked:trade,colony:knownfor:traders,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Did that trade you mentioned come to anything?</li>
+      <li>[them] Some, but our traders say they'd rather deal with your colony.</li>
+      <li>[us] Then send them our way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_TradeLong</defName>
+    <topic>callback</topic>
+    <when>talked:trade,colony:knownfor:traders,then:long</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] It's been a while since we spoke of trade.</li>
+      <li>[them] It has, and our traders still ask after a colony known for {KNOWNFOR}.</li>
+      <li>[us] Then send them our way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Work</defName>
+    <topic>callback</topic>
+    <when>talked:work,colony:knownfor:makers,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How's that work of yours coming along?</li>
+      <li>[them] Slowly, and I keep hearing your colony is known for {KNOWNFOR}.</li>
+      <li>[us] Come and see some of it, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WorkLong</defName>
+    <topic>callback</topic>
+    <when>talked:work,colony:knownfor:makers,then:long</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] We spoke of work last time, and I've thought of your colony's {KNOWNFOR} since.</li>
+      <li>[us] Come and see it whenever you like.</li>
+      <li>[them] I'll hold you to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Faith</defName>
+    <topic>callback</topic>
+    <when>talked:faith,colony:knownfor:faithful,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I've thought about our talk of faith, and that your colony is known for {KNOWNFOR}.</li>
+      <li>[us] Faith is easier with others beside you.</li>
+      <li>[them] It is, and I'm glad to have met some of yours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_SituationOver</defName>
+    <topic>callback</topic>
+    <when>talked:situation,then:over,colony:known</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Did {THEN} ever settle down?</li>
+      <li>[them] It did, and now people at home have time to gossip about places like yours.</li>
+      <li>[us] I'm not sure I like the sound of that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_SituationHosts</defName>
+    <topic>callback</topic>
+    <when>talked:situation,then:still,colony:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still going on at home?</li>
+      <li>[them] Still, so it's good to sit a while in a colony known for {KNOWNFOR}.</li>
+      <li>[us] Sit as long as you like.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_SituationRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:situation,then:still,colony:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still going on?</li>
+      <li>[them] Still, and some at home say a colony like yours would know what to do.</li>
+      <li>[us] I wish we did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HeadKnownAs</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:still,us:knownas,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still at the head of your town?</li>
+      <li>[them] Still, and {THEN} asked after you by name before I left.</li>
+      <li>[us] By name?</li>
+      <li>[them] As {KNOWNAS}, which is near enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Family</defName>
+    <topic>callback</topic>
+    <when>talked:family,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You asked after my family last time, so I'll ask after your colony.</li>
+      <li>[us] We're well enough, all of us.</li>
+      <li>[them] Good, people at home ask after it now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_FamilyRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:family,colony:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How is your family keeping?</li>
+      <li>[them] Well, and they'd like to hear I sat with your colony's people out here.</li>
+      <li>[us] Now you can say you have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarStillKnown</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:still,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is the fighting with {THEN} still going on?</li>
+      <li>[them] Still, and people at home wonder which side your colony would take.</li>
+      <li>[us] Our own, as long as we can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_GoodWord</defName>
+    <topic>callback</topic>
+    <when>talked:goodword,colony:known,!colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Since we spoke of that good word, people at home have asked me about your colony.</li>
+      <li>[us] And what did you tell them?</li>
+      <li>[them] That its name is a fair one, and I'd seen nothing here to change it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_RoadKnown</defName>
+    <topic>callback</topic>
+    <when>talked:road,colony:known,!colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] On the road here people asked where I was going.</li>
+      <li>[us] And when you told them?</li>
+      <li>[them] Some knew your colony by name, and wished me a good visit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_RaidInfamous</defName>
+    <topic>callback</topic>
+    <when>talked:raid,colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Since that raid we talked about, have things been quieter?</li>
+      <li>[us] A little.</li>
+      <li>[them] People at home say your colony brings trouble on itself, I'm sorry to say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HarvestKnown</defName>
+    <topic>callback</topic>
+    <when>talked:harvest,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Did the harvest come in?</li>
+      <li>[them] It did, and at the market people asked whether your colony had any to sell.</li>
+      <li>[us] Tell them to come and ask us themselves.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_FavourKnown</defName>
+    <topic>callback</topic>
+    <when>talked:favour,colony:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] About that favour we spoke of.</li>
+      <li>[us] Yes?</li>
+      <li>[them] My people would sooner owe your colony than most, given its name.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_IllKnownAs</defName>
+    <topic>callback</topic>
+    <when>talked:ill,then:over,us:knownas:healers</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {THEN} is well again, and asked me to thank the colony's healers.</li>
+      <li>[us] Tell them we're glad.</li>
+      <li>[them] They asked after you in particular.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

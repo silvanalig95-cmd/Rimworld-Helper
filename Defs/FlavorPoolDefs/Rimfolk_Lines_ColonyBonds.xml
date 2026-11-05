@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marriage alliances and wards as the colony's bonds with another people (Source/ColonyCouncil/Diplomacy/Matches.cs,
+    MatchAlliance.cs, Wards.cs), since the player's decision of 5 November 2026: the colony is the family, never a dynasty.
+    A marriage is a bond between the colony and their people made through one marriage, not two families or houses joined;
+    their gift each season comes from their town; a grudge for a spouse wronged is their people's, handed down no line; a
+    ward is a youth of their town. These take the place of the shipped lines that said otherwise (retired in
+    Source/ColonyCouncil/Lean/ShippedLines.cs); the youth's and the spouse's own families stay theirs, as everyday life.
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their words in the answer to a letter or a call of the purpose
+      "match" (warm, cordial or cool when they agree, refusal when they won't) and "ward" with askward (their youth to the
+      colony), and in a letter of any purpose while a marriage holds (tie:marriage, :ours with {SPOUSEOF} living among
+      them, :theirs with {INLAW} at the colony) or a spouse from among them was wronged (match:wronged). Help and an
+      invitation are promised only in a warm or cordial answer. By their ways only theirLowtech and theirHightech.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): matchask (us, asking face to face) and matchtalk (them), one
+      sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_ColonyBonds</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- Their answer to a match -->
+        <li>[match,warm] We hoped one of you would ask, {WRITER}. The whole town is talking about it.</li>
+        <li>[match,warm,theirHightech] Your proposal went round the settlement in an hour, {WRITER}. Yes, and gladly.</li>
+        <li>[match,cordial] Our people have talked it over, and we agree.</li>
+        <li>[match,cordial,theirHightech] We have gone over the terms, and we agree. Our good wishes to the two of them.</li>
+        <li>[match,cordial,call] Our head has given it a hearing and says yes, {WRITER}.</li>
+        <li>[match,refusal,letter] We have no wish to bind our people to your colony this way. Do not take it as an insult, though some here meant it as one.</li>
+        <li>[match,refusal,theirHightech,call] I'm sorry, {WRITER}. Our council put it to a vote, and it was no.</li>
+        <!-- While a marriage holds: their people and the colony, bound through the two -->
+        <li>[greetings,warm,tie:marriage] Our people think of yours as near neighbors now, {WRITER}, and we write back.</li>
+        <li>[greetings,cool,tie:marriage] Your letter came. All is well enough here.</li>
+        <li>[news,cordial,tie:marriage] Here is our news, from one people bound to another.</li>
+        <li>[help,warm,tie:marriage] What binds our peoples binds us to help, {WRITER}. You didn't need to ask twice.</li>
+        <li>[condolences,warm,tie:marriage] We grieve with you, {WRITER}. Our town mourns your loss too.</li>
+        <li>[warning,warm,tie:marriage] Thank you for thinking of us. We will warn you as readily, as bound peoples should.</li>
+        <li>[greetings,cordial,tie:marriage:theirs,theirLowtech] The town sends its greetings to {INLAW}, and remembers your colony each season.</li>
+        <li>[greetings,cordial,tie:marriage:ours,theirHightech] {SPOUSEOF} has become one of our town, and asks after your colony often.</li>
+        <!-- A spouse from among them wronged: their people's grudge -->
+        <li>[match:wronged,theirLowtech] Our people do not forget what was done to one of ours. Remember that.</li>
+        <li>[match:wronged,theirHightech] What your colony did to one of ours is on our people's record, and it stays there.</li>
+        <!-- Their answer to the colony asking for a ward: a youth of their town -->
+        <li>[ward,warm,askward,theirLowtech] It is an honor to be asked. A youth of our town will come to learn from yours.</li>
+        <li>[ward,warm,askward,letter] Your letter was read out in town, and the youth we chose hasn't sat still since. They will come.</li>
+        <li>[ward,cordial,askward,theirLowtech] A youth of our town will come. Teach them well and feed them well, as we would one of yours.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_ColonyBonds</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- Asking for a match face to face, and their questions -->
+        <li>[matchask,us,lowtech] Our two peoples could be bound by this, if yours are willing.</li>
+        <li>[matchask,us,!lowtech] Our colony would like to propose a marriage, and a bond between our peoples with it.</li>
+        <li>[matchtalk,them,theirLowtech] Who would speak for each people on the day?</li>
+        <li>[matchtalk,them,theirHightech] Who would sign for your colony, and who for us?</li>
+        <!-- A ward saying goodbye: the colony, not a house, remembered -->
+        <li>[wardbye,them,theirLowtech] My town will remember your colony's name.</li>
+        <li>[wardbye,them,theirHightech] I'll tell everyone at home what your colony taught me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

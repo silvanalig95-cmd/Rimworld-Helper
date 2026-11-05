@@ -11,7 +11,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The search in every window's corner and on a key (docs/design/interface.md, "Back, forward, search, following"):
-    /// it finds colonists, persons, places, peoples, houses, views and modes by name ("Bonds"), and Almanac articles,
+    /// it finds colonists, persons, places, peoples, views and modes by name (houses no more since 5 November 2026) ("Bonds"), and Almanac articles,
     /// grouped by kind; Enter takes the first. The index is made when the field is clicked (never while it is shut),
     /// filtered as the player types (SearchMath, pure). A result opens the thing's card (in the drawer of the window in
     /// sight, else the floating card), the view, or the Almanac's window. Other parts add kinds with
@@ -102,14 +102,6 @@ namespace ColonyCouncil
                     foreach (var f in Find.FactionManager.AllFactionsVisibleInViewOrder)
                         if (f != null && !f.IsPlayer && !f.defeated)
                             Thing(SearchKind.People, ThingRefs.Of(f), f.Name, f.def?.LabelCap.ToString());
-                });
-                Part("houses", () =>
-                {
-                    var houses = WorldLedger.Instance?.Houses;
-                    if (houses != null)
-                        foreach (var h in houses)
-                            if (h != null)
-                                Thing(SearchKind.House, ThingRef.From(h.house), RegionWords.HouseName(h), h.people?.Name, h.name);
                 });
             }
             Part("views", () => Views(items));

@@ -55,7 +55,8 @@ namespace ColonyCouncil
     /// The arithmetic of wards and hostages (docs/design/stage2-diplomacy.md, round b, item 7; release 2b.3; the player's
     /// decisions 9 and 10), with no game types so Tools/Tests can check it.
     /// <list type="bullet">
-    /// <item>Their ward: a youth of a notable's house (a child with Biotech, else 14 to 19) comes for a year to learn a skill
+    /// <item>Their ward: a youth of their town (a child with Biotech, else 14 to 19; never of a notable's house since 5
+    /// November 2026) comes for a year to learn a skill
     /// the colony is known for, from a guardian with 10 or more in it; offered by a people at peace once a year at most
     /// (their head's regard 30 or more), a season apart at a home, or asked for by letter. The guardian teaches them an hour
     /// a day when both are free and together (a child with Biotech learns at the game's own lessons). How they are is read
@@ -118,7 +119,7 @@ namespace ColonyCouncil
         /// <summary>The ward's age: a child of 9 to 12 where the game has children (Biotech), else a youth of 14 to 19.</summary>
         public static (float min, float max) WardAge(bool children) => children ? (9f, 12f) : (14f, 19f);
 
-        /// <summary>Their notable is old enough to be the ward's parent (14 years at least between them).</summary>
+        /// <summary>Their notable is old enough to be a hostage's parent (14 years at least between them): a hostage is still one of their notable's kin, as the ways of hostages have it.</summary>
         public static bool CanBeParent(float notableAge, float wardAge) => notableAge - wardAge >= 14f;
 
         /// <summary>

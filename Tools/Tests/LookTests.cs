@@ -27,7 +27,7 @@ public static class LookTests
     /// <summary>The council's and the planning window's pages and the defense page: drawn with the kit's acts, chips and modes.</summary>
     private static readonly string[] Pages =
     {
-        "UI/WeekPanel.cs", "UI/PeopleTable.cs", "Moods/MoodsPanel.cs", "Moods/MoodCompact.cs", "UI/SocialPanel.cs", "UI/FaithsPanel.cs", "UI/HousesPanel.cs",
+        "UI/WeekPanel.cs", "UI/PeopleTable.cs", "Moods/MoodsPanel.cs", "Moods/MoodCompact.cs", "UI/SocialPanel.cs", "UI/FaithsPanel.cs", "UI/RenownPage.cs",
         "UI/DecreePanel.cs", "UI/ElectionPanel.cs", "UI/AmbitionPanel.cs", "UI/WaysPanel.cs", "UI/WishesPanel.cs", "UI/KeptPanel.cs", "UI/DilemmasPanel.cs",
         "UI/OverviewPanel.cs", "UI/ChroniclePanel.cs", "UI/HistoryPanels.cs", "UI/NextStepsPanel.cs", "UI/AheadPanel.cs", "UI/AheadMorePanel.cs",
         "UI/BuildAheadPanel.cs", "UI/PrioritiesPanel.cs", "UI/BasePanel.cs", "UI/MakingPanel.cs", "UI/BuildPanel.cs", "UI/RoomsPanel.cs", "UI/DefensePanel.cs",

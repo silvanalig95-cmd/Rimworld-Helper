@@ -125,7 +125,7 @@ namespace ColonyCouncil
         /// <summary>
         /// The region view that lists a kind of thing, where its card opens in full (docs/design/interface.md, "Things and
         /// their cards"): a person among the faces of Peoples, a people and a tie on Peoples, an event in History, a letter
-        /// and a house on Here and away, a place on the map.
+        /// on Here and away, a place on the map (a house's name opens its town's card).
         /// </summary>
         public static string FullPage(CardKind k)
         {
@@ -545,36 +545,26 @@ namespace ColonyCouncil
 
         // ---------------- A house ----------------
 
+        /// <summary>
+        /// A family of a town's founding named somewhere (an older history line, a link kept from before): houses have no card
+        /// of their own since 5 November 2026 (the colony is the family, never a dynasty; their town is what counts), so the
+        /// name opens its town's card, where the families who founded it are told. The colony's own houses were let go as the
+        /// game loaded, so a name of one shows as gone.
+        /// </summary>
         private static void House(CardModel m)
         {
             var h = ThingRefs.House(m.thing);
-            // One of the colony's own houses (stage 2d.1): its people and seat (Diplomacy/RenownPanels.cs); its renown is a registered section.
-            if (h.ours)
+            var town = h != null && h.town >= 0 ? ThingRefs.Of(Ref.Town(h.town)) : ThingRef.None;
+            if (!town.IsNone && ThingRefs.Exists(town))
             {
-                RenownPanels.OurHouse(m, h);
-                CardWords.Story(m, h.house, Ref.None);
+                m.thing = town;
+                m.kind = CardKind.Place;
+                Place(m);
                 return;
             }
-            m.title = RegionWords.HouseName(h);
-            m.faction = h.people;
-            m.icon = Icons.People;
-            m.iconColor = h.people?.Color ?? UiKit.Faint;
-            var town = h.town >= 0 ? ThingRefs.Of(Ref.Town(h.town)) : ThingRef.None;
-            string townName = !town.IsNone && ThingRefs.Exists(town) ? Link(town) : WorldLedger.TownRecord(h.town)?.name ?? T("CC_Card_NoPeople");
-            m.subtitle = T(h.founding ? "CC_Card_FoundingHouseOf" : "CC_Card_HouseOf", townName.Named("TOWN"));
-            if (h.people != null) m.Chip(ThingRefs.Of(h.people), h.people.Name, h.people);
-            var who = m.Block(CardSlot.Who, 10f, "members", T("CC_Card_Head_Members"));
-            if (!h.head.IsNone)
-            {
-                var hr = ThingRef.From(h.head);
-                who.rows.Add(new CardRow { thing = hr, pawn = WorldLedger.PawnOf(h.head), name = Link(ThingRefs.Name(hr), hr), second = T("CC_Card_HeadOfHouse") });
-            }
-            if (h.members.Count > 0) who.Line(T("CC_Card_MembersLine", string.Join(", ", h.members).Named("MEMBERS")), UiKit.Faint);
-            who.count = h.members.Count + (h.head.IsNone ? 0 : 1);
-            if (who.Empty) m.blocks.Remove(who);
-            m.Glance(LinkTextMath.Plain(m.subtitle).CapitalizeFirst() + ".");
-            if (h.members.Count > 0) m.Glance(T("CC_Card_MembersLine", string.Join(", ", h.members).Named("MEMBERS")));
-            CardWords.Story(m, h.house, Ref.None);
+            m.gone = true;
+            m.title = h != null ? RegionWords.HouseName(h) : ThingRefs.Name(m.thing);
+            m.subtitle = T("CC_Card_Gone");
         }
 
         // ---------------- A tie ----------------

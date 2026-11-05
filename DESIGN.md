@@ -2570,7 +2570,7 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   when it ends otherwise (`Missions.Finish` calls `FavourAsks.MissionEnded`); the colony's word in a dispute: a letter
   from the speaker to their head. Refused or overdue: broken, the deed `refused`, 5 goodwill.
 - **What the player sees.** The region window's Peoples (the owed strip, each people's ties) and Here and away (who is
-  here, who is away, the houses; UI 2, "The region in four views"; the old page names forward), drawn by
+  here, who is away, the peoples bound to the colony by marriage; UI 2, "The region in four views"; the old page names forward), drawn by
   `DiplomacyPanels` over one model built at most every two seconds (`DiplomacyModel`), its rows small pieces any page
   can draw; a click on a name goes through `DiplomacyLinks.Open`, which opens the thing's card; a town's ties in the Ties
   slot of its card;
@@ -2790,7 +2790,10 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
 #### Marriage alliances
 
 Release 2b.2 (docs/design/stage2-diplomacy.md, item 6; decisions 8 and 9): `Diplomacy/`, its rules pure and tested
-(`MatchMath.cs`; `Tools/Tests/MatchTests.cs`).
+(`MatchMath.cs`; `Tools/Tests/MatchTests.cs`). Reshaped by the player's decision of 5 November 2026 (the colony is the
+family, never a dynasty): a marriage alliance is a bond between the colony and their people made through one marriage;
+no child keeps it, their people are their people (never in-laws), their gift comes from their town, and a grudge for a
+spouse wronged is their people's, handed down no line.
 
 - **The records.** A match under way is a `MatchPlan` (`MatchBook.cs`) on the home's part, `DiplomacyHome.matches`
   (`MatchMath.MaxPlans`, three); the marriage itself is the ledger's `Tie.Kind.Marriage` of origin `match`, from their
@@ -2803,9 +2806,10 @@ Release 2b.2 (docs/design/stage2-diplomacy.md, item 6; decisions 8 and 9): `Dipl
   pact"): whom of the colony's at the home and where they would live, each with how the colonist feels; their answer
   face to face (`matchask`, `matchtalk`, `matchyes`, `matchno`). The letter purpose `LetterPurpose.Match`
   (`MatchLetters.cs`, through `DiplomacyLetters`): topics `match:OURS:THEIRS` (the notable written to, another of their
-  town) or `match:OURS:h:NOTABLE:G` (a son or daughter of a head's house, made by `Matches.MakeKin` only when they
-  agree: their people's kind, the house's name, the sex the colonist is drawn to, an age near theirs, the head's child
-  where the ages allow), each with the colonist's feelings; what is asked is where they live (`home:Colony`,
+  town) or `match:OURS:h:NOTABLE:G` (one of the town that head speaks for, made by `Matches.MakeOfTown` only when they
+  agree: their people's kind, a name of their own, the sex the colonist is drawn to, an age near theirs, nobody's child
+  or kin; a son or daughter of the head's house until 5 November 2026, the h kept in the topic), each with the
+  colonist's feelings; what is asked is where they live (`home:Colony`,
   `home:Theirs`). Their offer (`Matches.Offers`, the day's look; `ChoiceLetter_MatchOffer`, `Rimfolk_MatchOffer`):
   `MatchMath.MayOffer` (their head's regard 40, a year apart by the head's `Last(LetterPurpose.Match)`, fewer than three
   marriages), one day in fifteen once it may, the colonist their head thinks best of who fits one of theirs (a titled
@@ -2849,32 +2853,43 @@ Release 2b.2 (docs/design/stage2-diplomacy.md, item 6; decisions 8 and 9): `Dipl
   or the people is the Empire.
 - **While it holds** (`MatchAlliance.cs`): their notables' regard +15 (`Matches.RegardBonus` in
   `NotableBook.Baseline`, cached by the ledger's version; Rimfolk's own ties only, never Diplomatic Marriage+'s); their
-  kin's gift once a season by their courier (`MatchMath.KinGiftValue`); their letter warning of a raiders' camp hidden two
+  town's gift once a season by their courier (`MatchMath.TownGiftValue`, the town's fortune; the words name the town,
+  `CC_Match_KinGift` rewritten in place); their letter warning of a raiders' camp hidden two
   days or more (`RaidersCamps.WarnedByKin` in `MatchWarnings.cs`, a partial of the camps: the camp found by a letter);
   the alliance's pact kept running (moved on within five days of its year's end), made again a year after the last one
   closed; their calls on the colony are the pact's.
-- **Ends and bad sides**: a spouse's death ends it unless a child of the two lives (`Matches.ChildOf`; then held, said
-  once); one of theirs dying at the colony costs their notables 3, or 15 in the open or untended (`Patch_MatchKilled`,
+- **Ends and bad sides**: a spouse's death ends it, a child of the two or not, with no grudge unless the colony was to
+  blame (`MatchMath.GrudgeAtDeath`: killed by its hand); an older save's alliance held through a child (`terms.count`,
+  set no more) ends at the day's look without a word; one of theirs dying at the colony costs their notables 3, or 15 in the open or untended (`Patch_MatchKilled`,
   with the deeper hooks, reads it before the death); the couple parted (no spouse relation) ends it, -10; theirs gone
   home of their own accord ends it with nobody at fault; a spouse wronged (`MatchMath.WrongOf`: killed by a colonist,
   executed, held as a prisoner or a slave, sold, banished) breaks it, `spouseWronged` (30), -30 with their head and
   notables, their defense pact broken without a deed, and a Grudge (origin `match`, key `spouse`, their people in its
-  count) from their head that the next head takes up (`Matches.Feuds`, `MatchMath.PassesDown`). A match broken off by the
+  count) held by their people against the colony, which their head speaks for and which is handed down no line; an older
+  save's held by their head (taken up and passed to the next head until 5 November 2026) is made their people's, quietly,
+  at the day's look (`Matches.PeoplesGrudges`). A match broken off by the
   colony (or ours never sent) is `slighted`, its word broken in reach, -12.
-- **Where it shows** (`MatchPanels`): the Tie card (who, where, since, held through a child, what it gives, the pact; a
-  grudge's holder), a Person card (a match under way, a marriage, who of the colony's would fit; "Propose a match"), a
-  House card (its members married to the colony, by name and people), the People card (rows, "Seek a match"), a
-  colonist's card, the Peoples view (`DiplomacyModel`), Here and away (the colony's own married away, on the road; in-laws
-  among the houses; their kin at the gate, `Matches.HereAs`), the inbox (`match` in Needs you, `match-under-way` in steps,
+- **Where it shows** (`MatchPanels`): the Tie card (who, where, since, what it gives, the pact; a grudge's holder), a
+  Person card (a match under way, a marriage, who of the colony's would fit; "Propose a match"), the People card (rows,
+  "Seek a match", "Write to their people"), a colonist's card, the Peoples view (`DiplomacyModel`), Here and away (the
+  colony's own married away, on the road; the peoples the colony is bound to by marriage, `MatchPanels.BondRows`, where the
+  in-laws among the houses were; the party at the gate, `Matches.HereAs`), the inbox (`match` in Needs you, `match-under-way` in steps,
   `match-coming` for their kin's day; the wedding's guests have the feast's own row). Facts (`FactsMatch.cs`):
-  `tie:marriage`, `:ours`, `:theirs`, `:you`, `match:agreed`, `match:child`, `match:wronged`, `town:lately:dip:wedding`,
-  `{INLAW}`, `{SPOUSEOF}`. Words by both ages (`AgeFeature.Marriage`), their faith's wedding with Ideology. Setting
+  `tie:marriage`, `:ours`, `:theirs`, `:you`, `match:agreed`, `match:wronged`, `town:lately:dip:wedding`, `{INLAW}`,
+  `{SPOUSEOF}` (`match:child`, held through a child, is set no more: its pieces and lines went with it, and the shipped
+  pieces and lines that make their people the colony's family or in-laws, or hand a grudge down, are retired in
+  `OutsiderTalkMath.Retired`, `RetiredLines` and `ShippedLines.Retired`, their better words in
+  `Rimfolk_OutsiderTalks_ColonyBonds.xml` and `Rimfolk_Lines_ColonyBonds.xml`). The match's word by the colony's age is a
+  match between clans, a marriage pact between two peoples, a marriage between two settlements, a partnership contract
+  between settlements (`CC_Form_Marriage_*`). Words by both ages (`AgeFeature.Marriage`), their faith's wedding with Ideology. Setting
   `diplomacyMarriage`. Dev actions in `MatchDebug.cs`. Diplomatic Marriage+ is read only: its alliance a row as the mod's.
 
 #### Wards and hostages
 
 Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Diplomacy/`, its rules pure and tested
-(`WardMath.cs`; `Tools/Tests/WardTests.cs`).
+(`WardMath.cs`; `Tools/Tests/WardTests.cs`). Reshaped by the player's decision of 5 November 2026 (the colony is the
+family, never a dynasty): their ward is a youth of their town, never of a notable's house; the colony's own youth goes in
+return as before; the parents' feelings at home stay, being personal.
 
 - **The records.** Each `DiplomacyHome` keeps its wards and hostages, either way (`WardStay`, `WardMath.MaxPerHome` = 4:
   one ward each way, one hostage each way per truce or pact), and when a ward was last offered (and by whom). The bonds
@@ -2895,16 +2910,17 @@ Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Dip
 - **Their ward** (`Wards`): once a day a people at peace whose head thinks 30 or more of the colony, while a colonist has
   10 in some skill, may offer (`WardMath.MayOffer`: a year apart per people, a season per home; one day in forty;
   `ChoiceLetter_WardOffer`); or the colony asks (`LetterPurpose.Ward`, topic `ward:ask`, the skill asked
-  `skill:Crafting`; `WardMath.SendChance` by their head's regard). Agreed, a youth of a notable's house is made
-  (`Wards.MakeYouth`: 9 to 12 with Biotech's children, else 14 to 19; their notable's child where the ages fit) and kept
-  in the world; one or two days on, they walk in with a kinsman (`LordJob_WardParty`, guests of a people at peace with
+  `skill:Crafting`; `WardMath.SendChance` by their head's regard). Agreed, a youth of their town is made
+  (`Wards.MakeYouth`: 9 to 12 with Biotech's children, else 14 to 19; a name of their own, nobody's child) and kept in
+  the world, sent by their head, heir or envoy (`Wards.Sender`, the town nearest the home first; the offer names the
+  youth's town, `CC_Ward_OfferTown`); one or two days on, they walk in with one of their own family (`LordJob_WardParty`, guests of a people at peace with
   both for a people at war) and join at the gate. A guardian is the best with the skill (`Wards.Guardians`, 10 or
   more; "Pick a guardian" on the card). Once a day, by day, the lesson waits for both to be free and together
   (`Together.When`, the ward walking over in free time): `JobDriver_WardLesson` and `JobDriver_WardTeach`, an hour at
   `WardMath.LessonXpPerTick`; a child with Biotech learns at the game's lessons instead. Each day is tallied (mood,
   hunger, new injuries); the card shows how they are (`WardMath.Mood`: homesick, settling in, happy). At the year's end
   two of their kin come to the gate and the ward walks out to them (`JobDriver_WardToKin`; at war, or if the kin can't
-  come or leave, the ward walks out alone), and the year is reckoned (`WardMath.Year`): their head's and the kin's
+  come or leave, the ward walks out alone), and the year is reckoned (`WardMath.Year`): their head's and the sending notable's
   regard, goodwill, the deed `fostered` (a fine year, 12, a debt of honour) or `slighted`, the tie kept or ended, and a
   Regard tie of the youth's toward the colony that the grown ward keeps (`Wards.Grown` when they become a notable;
   `Wards.HeirFor` lets one who had a good year stand as their town's heir at 18). Dead in the colony's care: regard by
@@ -3042,60 +3058,84 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   `fealty:levies`, `fealty:protected`, `fealty:short`, `vassal:town`, `vassal:heavy`, `vassal:levy` beside the
   ledger's `tie:fealty`. Setting `diplomacyFealty` ("Fealty and vassals"). Dev actions in `FealtyDebug.cs`.
 
-#### House renown
+#### Colony renown
 
 Release 2d.1 (docs/design/stage2-diplomacy.md, item 12; decision 17: earned and shown in words, with a "known for",
-nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools/Tests/RenownTests.cs`).
+nothing spent), built as house renown and reshaped by the player's decision of 5 November 2026: the colony is the family,
+never a dynasty, so its name among the peoples is the colony's, built from everything its people do, and each colonist
+has a name of their own for their deeds. `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools/Tests/RenownTests.cs`).
 
-- **The houses.** The colony's are its families known by name (`FamilyNames.Families()`: two or more of one last name who
-  are family): `LedgerHouse` records on the world ledger beside the towns' (`ours`, no town, `seat` the home most of it
-  lives at, `folk` the refs of its people, the living and the gone, twelve at most, `folkNames` their names beside them
-  (kept while they live, so the gone are named after the game lets them go), `lastSeen`, `band` the band last told;
-  `World/Ledger/LedgerRenown.cs`), twelve at most, made and kept by `Renown.Daily` (the diplomacy's day), kept while one
-  of it is still with the colony and let go two years after the last of them left unless a live tie names one. One of
-  it is with it while they are among the colony's free people or away at another people's town on its errand (its
-  envoy, youth or hostage, kept in the world as lent); one who took another's name on marrying is remembered by both
-  houses and is of the one whose name they carry (`RenownMath.HouseFor`). The region's are the towns' founding families
-  as before. Both are House cards (`Cards.House`, `RenownPanels.OurHouse`) and search results.
-- **Renown is read, never stored** (`Renown.Read`, kept for the in-game hour). Of the colony's: the history's events that
-  name its people (`RenownMath.SourceOf`: the champion of `dip:contest`, the one married in `dip:wedding`, a ward's
-  guardian at a good year's end and the colony's youth home in `dip:ward` (the guardian is named there since this
-  release, `RenownMath.GuardianRole`), its envoy home and its hostage home after the term (named as having done it for
-  the colony), the speaker at `dip:parley`; an older save's council tasks (`dip:task`) and secrets pressed give none),
-  what the peoples remember of them by name (`ColonistMemory.MarksOf`: a camp broken, fighting beside theirs, trade at
-  a post, settlers walked, a prisoner freed, their wounded tended; blood shed at peace, executions, harvests, hard words,
-  brawls), what they hold now (the colony's names for them by kind, years as
+- **Read, never stored** (`Renown.Read`, kept for the in-game hour). The colony's renown: every event of the history's
+  diplomacy kinds the colony is a party to (`Book.OfKind` of `RenownMath.MemberKinds`), once each, its part by the role of
+  the one of the colony's it names (`RenownMath.SourceOf`: the champion of `dip:contest`, only when the colony won it,
+  `RenownMath.OursIn`, as a guest may win; the one married in `dip:wedding`; a ward's guardian at a good year's end and the
+  colony's youth home in `dip:ward` (`RenownMath.GuardianRole`); its envoy home and its hostage home after the term, named
+  as having done it for the colony; the speaker at `dip:parley`; an older save's council tasks (`dip:task`) give none), so
+  the living and the gone count alike; what the peoples remember of any of its people by name (`ColonistMemory.AllMarks`:
+  a camp broken, fighting beside theirs, trade at a post, settlers walked, a prisoner freed, their wounded tended; blood
+  shed at peace, executions, harvests, hard words, brawls); what its living people hold now (`Renown.People`: its free
+  colonists and those away on its errand, kept in the world as lent; the colony's names for them by kind, years as
   physician or marshal, terms as speaker, the Empire's title by seniority, notables whose own regard of them is 20 or
-  more), and the colony's deeds each of its houses shares (`deed:swore`, `keptWord`, `levies`, `tie:pact:kept`;
-  `brokeTruce`, `brokePact`, `renounced`, `schemed`, `refused`, `tributeShort`, `wordBroken`). Of theirs: a founding
-  family, its head's place (a town's head, their people's leader), what the head is best at, the town's fortune, and the
-  history's events between its head and the colony. Each source has its points and cap; a deed fades (full for a year,
-  a tenth a season to three tenths). Bands: a town at 10, the region at 30, the peoples in reach at 60, infamous at -15,
-  each held until three under its start. Known for: the kind with six points or more and three tenths of the kinds'.
-- **Told.** A band moved of one of the colony's houses: `dip:renown` (a milestone, the house as its actor), `Tell.Minor`,
-  and a bubble from one of its people on its home map, awake and free, to nobody, only where its words are true
-  (`RenownMath.Bubble`): `renownup` as its name carries further, its words by the band it reached (the house's tags: a
-  town nearby is the next town's talk, never a song or the papers, which are the region's), `renowndown` as it fades from
-  the talk, with `house:wasrenowned` (`RenownMath.BubbleTag`) for a name that had been told across the region or wider
-  (only then the singers have moved on); none for a name gone bad or mending, nor for one still known, only less widely.
-  A house made starts at its band untold; the region's houses move quietly.
-- **What it does.** `Notables.OpinionOf` adds `Renown.RegardBonus` (up to 15, down to -10); a good word
-  (`OutsiderOutcomes.GoodWord`) counts up to half again; a match is accepted (`Matches.Hear`, `RenownMath.MatchChance`)
-  and offered (`Matches.Offers`) up to twice as readily; `Renown.EventFactor` in Rimfolk's own event weights and the
-  storyteller's (`Happenings.Weight`, `IncidentWorker_Happening.ChanceFactorNow`) draws `RenownMath.Events` by what a
-  house is known for (a quarter, half, three quarters more by band); the champion challenges a fighters' house's fighter
-  six times in ten (`HappeningWorker_Champion`); a feast's guests answer a house known for hosting up to three tenths more
-  readily (`Feasts.Answer`).
-- **Where it shows** (`RenownPanels.cs`): the House card's renown (how far and for what, by `RenownWords.Standing`; the
-  deeds it came from and those held against it; who knows it; what it does), its marriages, wards and feuds, its story;
-  a line on a colonist's card; People → Houses (each family's name a link to its card, its renown under it; the region's
-  houses with theirs); Here and away's houses. No acts and nothing in This week (it is earned). Facts
-  (`FactsRenown.cs`, in the ties' provider): `house:ours`, `house:known`, `house:renowned`, `house:wide`,
-  `house:infamous`, `house:knownfor:KIND`, `them:house`, `them:house:renowned`, `them:house:feud`, `{HOUSE}`,
-  `{KNOWNFOR}` (by the house's age), `{RENOWN}` (by the listener's ways; the Empire's people by the court's, whatever
-  their tech level, its own row of the bands' words: "spoken of with honor in the region's noble houses"),
-  `{THEIRHOUSE}`; bubbles get the colonist's
-  house tags (`Outsiders.Line`). Setting `diplomacyRenown` ("House renown"). Dev actions in `RenownDebug.cs`.
+  more); and its own deeds at every home (`deed:swore`, `keptWord`, `levies`, `tie:pact:kept`; `brokeTruce`, `brokePact`,
+  `renounced`, `schemed`, `refused`, `tributeShort`, `wordBroken`). Each source has its points and its cap, held for the
+  colony as a whole; a deed fades (full for a year, a tenth a season to three tenths). Bands: a town at 10, the region at
+  30, the peoples in reach at 60, infamous at -15, each held until three under its start. Known for: the kind with six
+  points or more and three tenths of the kinds'.
+- **Each colonist's own name** (`Renown.Own`, an `OwnName`, kept for the hour): the same sources from what they alone did
+  (`History.Of` their ref, the same rule for the colony's own in an event; `ColonistMemory.MarksOf` with the people who
+  keep each mark; what they hold), read with the same bands. They are known by name from a town's band (two contests won
+  make one) by the part largest among their good deeds, or among their wrongs when infamous (`RenownMath.KnownAs`; a tie
+  ordered by the source's name, so the name is the same each time), with the people it was done with or for (the event's
+  people, the people who keep the most of that mark) and what it was (a contest's kind, kept since this reshaping as the
+  `dip:contest` entry's key; the colony's name for them; the office; the Empire's title; a notable's name):
+  `RenownWords.KnownAs`, "the one who won the wrestling at the feast with the Lenlia", "the one the colony calls the
+  Healer", "the one who tended the wounded of the Kuvar", one wording a part (a name, the same each time), `_Any` where no
+  people is named. Their people know it across the region or wider; at a town's band only the people it was done with or
+  for, or anyone for a part that names no people (`RenownMath.TheyKnow`, `Renown.KnownAmong`).
+- **Told.** The colony's band, saved on the diplomacy book (`DiplomacyBook.renownBand`; `RenownMath.NotRead` until the
+  first day's look, which sets it without a word, so an older save's name, worked out from what it already holds, and a
+  new game's are never told on load); a move is `dip:renown` (a milestone, the colony as its actor), `Tell.Minor` with
+  five wordings of each kind of move (`Rimfolk_Renown_Colony.xml`), and a bubble from one of its people on the seat's map,
+  awake and free, to nobody, only where its words are true (`RenownMath.Bubble`): `renownup` as its name carries further,
+  with the colony's tags as it stands now (a town nearby is the next town's talk, never a song or the papers), `renowndown`
+  as it fades from the talk, with `colony:wasrenowned` (`RenownMath.BubbleTag`) for a name that had been told across the
+  region or wider. A colonist's own name moves quietly: it shows where it is read.
+- **What it does.** `Notables.OpinionOf` adds `Renown.RegardBonus` for any of the colony's people (up to 15, down to -10); a
+  good word (`OutsiderOutcomes.GoodWord`) counts up to half again; a match is accepted (`Matches.Hear`,
+  `RenownMath.MatchChance`) and offered (`Matches.Offers`) up to twice as readily; `Renown.EventFactor` in Rimfolk's own
+  event weights and the storyteller's (`Happenings.Weight`, `IncidentWorker_Happening.ChanceFactorNow`) draws
+  `RenownMath.Events` by what the colony is known for (a quarter, half, three quarters more by band), or by what one of its
+  people at that home is known for by name, a quarter more at most (`RenownMath.OwnFactor`; the best of the two, never
+  both); the champion challenges a colonist known by name as a fighter six times in ten (`Renown.KnownFighter`,
+  `HappeningWorker_Champion`); a feast's guests answer a colony known for hosting up to three tenths more readily
+  (`Feasts.Answer`).
+- **Where it shows** (`RenownPanels.cs`, `UI/RenownPage.cs`): People → Renown, where People → Houses was (`PagesMath.Moved`
+  sends the old address there; its "?" opens the diplomacy page): the colony's renown (how far and for what, by
+  `RenownWords.Standing`; the deeds it came from and those held against it; who knows its people; what it does), then its
+  people known by name, each a link to their card with their own name, and those not yet known; the same lines on a home's
+  card; a colonist's own name on their card ("Known as the one who ..., talked about in the next town."). No acts and
+  nothing in This week (it is earned). Facts (`FactsRenown.cs`, in the ties' provider, when one of the colony speaks or
+  writes): `colony:known`, `colony:renowned`, `colony:wide`, `colony:infamous`, `colony:knownfor:KIND`, `{KNOWNFOR}` (by
+  the colony's age), `{RENOWN}` (by the listener's ways; the Empire's people by the court's, whatever their tech level, its
+  own row of the bands' words: "spoken of with honor in the region's noble houses"); the speaker known by their own name to
+  the listener's people, `us:knownas`, `us:knownas:KIND` and `{KNOWNAS}`; bubbles get the colony's tags
+  (`Outsiders.Line`). Words: `Rimfolk_OutsiderTalks_ColonyRenown.xml` (83 pieces: the colony's name by band and their
+  ways, known for each kind, infamous, not yet known, a colonist's own name, 35 callbacks), `Rimfolk_Lines_ColonyRenown.xml`
+  (their letters by band, known-for, infamy and the writer's own name; the bubbles at every band by age; good words),
+  `Rimfolk_Renown_Colony.xml`. Setting `diplomacyRenown` ("Colony renown"). Dev actions in `RenownDebug.cs`.
+- **The houses, gone** (5 November 2026). The colony's houses (two or more of one family name, `LedgerHouse` records marked
+  ours), their House cards, People → Houses, Here and away's houses and the region's houses' renown (a town's founding
+  family, its head's place, its fortune and its ties: the sources `founding`, `head`, `leader`, `colonyTie`, `thriving`,
+  `struggling`, `skill`) went. An older save's houses of the colony's have no town and are dropped as the ledger loads
+  (`WorldLedger.ExposeRegion`); nothing reads their nodes (`ours`, `seat`, `folk`, `folkNames`, `lastSeen`, `band`). The
+  towns' founding families stay as their towns' story (the region panel names them, unlinked); a house's name in an older
+  history line opens its town's card (`Cards.House`), and one of the colony's shows as gone. The houses' tags
+  (`house:...`, `them:house...`) and `{HOUSE}`, `{THEIRHOUSE}` went with them, and so did every talk piece and line said
+  only on them (`Rimfolk_OutsiderTalks_Renown.xml`, `_RenownMore.xml`, the letters of `Rimfolk_Lines_Renown.xml` and
+  `_RenownMore.xml`, the house news and its fellows); their bubbles that say "our family" are retired
+  (`ShippedLines.Retired`), and those that name a band ask the colony's (`ShippedLines.AlsoWhen`). Family names stay as
+  everyday life (`Social/FamilyNames.cs`: the Boyds, suppers, couples taking one name), with nothing of renown or
+  diplomacy tied to them.
 
 #### Against their nature
 
@@ -3173,7 +3213,7 @@ one to another keeps the frame):
 
 | Button (def) | Label | Window | Pages |
 |---|---|---|---|
-| `Council_MainButton` | council | `MainTabWindow_Council` | views Week (This week), People (modes Table, Moods, Bonds, Faiths, Houses), Council (Decrees, Ambition, Ways, Wishes, Dilemmas), Colony (Overview, Calendar, Chronicle) |
+| `Council_MainButton` | council | `MainTabWindow_Council` | views Week (This week), People (modes Table, Moods, Bonds, Faiths, Renown), Council (Decrees, Ambition, Ways, Wishes, Dilemmas), Colony (Overview, Calendar, Chronicle) |
 | `Rimfolk_WorldButton` | region | `MainTabWindow_World` | views Map (lenses Land, Stance, Fortunes, Threats, Trade, Ours; modes Map, List), Peoples (modes Peoples, Faces), HereAndAway, WorldHistory; pages other mods add under History's More |
 | `Council_DefenseButton` | defense | `MainTabWindow_Defenses` | Defenses |
 | `Council_RoomsButton` | planning | `MainTabWindow_Planning` | views Plan (modes Plan, Priorities), Base, Making, Rooms (modes Build, Rooms: List and At a glance) |
@@ -3230,8 +3270,9 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
   no card does): Colonist (the Roster's page of them, StoryView, under the card's head), Person (a notable, a known
   face, anyone the ledger keeps: their letter on its way in steps, who of the colony knows them, what they remember),
   Place (the region map's panel: a town, a post, a hamlet, a ruin, a raiders' camp, a town being built, a bare tile,
-  a colony; with a small world view button on its head where "Show on the world" was), People, House, Tie, Event (an
-  entry of the history: its words with links, who took part), Letter (its steps, never a time left). Every card has
+  a colony; with a small world view button on its head where "Show on the world" was), People, House (since 5 November
+  2026 none of its own: a house's name opens its town's card), Tie, Event (an entry of the history: its words with links,
+  who took part), Letter (its steps, never a time left). Every card has
   the same slots in the same order: head, now, who, ties, words, story, acts. A section folds, with its count in its
   heading, its fold kept per kind of card for the session, and a section with nothing is not drawn. A card's story is
   its newest three lines of the history and a link to the whole of it on the History page. Its acts are a bar at its
@@ -3293,7 +3334,7 @@ four views in one row, the planning window's five pages four views, and the Alma
 
 - **Views and modes.** A window made of views (`PagesMath.HasViews`) has them as its tabs; a view's pages are its
   modes, at most five, a row of small buttons under the view's title (`UiKit.ModeButtons`). The council window: This
-  week; People (Table, Moods, Bonds, Faiths (shown with "Faith in the colony" on), Houses); Council (Offices and
+  week; People (Table, Moods, Bonds, Faiths (shown with "Faith in the colony" on), Renown); Council (Offices and
   decrees, Ambition, Ways, Wishes, Dilemmas); Colony (Overview, Calendar, Chronicle). The planning window: Plan (the
   plan, Priorities), Base, Making, Rooms (Build as List, Rooms as At a glance). Each window keeps the mode last
   looked at in each view for the session; the council window's page is saved in the settings as before
@@ -3320,10 +3361,9 @@ four views in one row, the planning window's five pages four views, and the Alma
   and trust always stay; `PagesTests` checks it at the screens and scales the game offers); a right click shows them
   on the map, their Mood tab, the pin. The colonist's card is the Roster's page of them (StoryView): their whole
   story with their dreams and the newest of their journal, and since UI 4 their years asleep beside their age. The
-  old Roster page (`PeoplePanel`) is gone. Houses (`UI/HousesPanel.cs`, built once a second): the colony's families,
-  found from the game's family ties among its people (blood and marriage, joined), named by the surname most share
-  or after the eldest, everyone a link to their card; then the houses the world ledger knows in the region, each a
-  link to its house card.
+  old Roster page (`PeoplePanel`) is gone. Renown (`UI/RenownPage.cs`, built once a second; Houses until 5 November
+  2026, whose address now opens it): the colony's name among the peoples and its people known by name ("Colony renown"
+  under Diplomacy, below).
 - **Colony.** The Chronicle has two more filters, what were pages: Dreams (every dream told, by dreamer and kind) and
   Journals (each colonist's journal), `UI/HistoryPanels.cs`. Its filter is part of the way back (`Nav.Filters`), and
   `Nav.SetFilter` puts it when an old address asks. A chronicle line about a colonist names them as a link to their
@@ -3394,7 +3434,7 @@ in the five-views check), its own modes and lenses parts of its address. All in 
   `CampPanel`), what's coming (`WorldPanel.ComingSection`: questions waiting, debts, orders and visits due, a story's
   next stage; the fights on their way are the Threats lens's, the calendar's days and the council's meetings This
   week's), letters on the road (`LettersPage.UnderWaySection`), the colony's people away (2a.1's rows, the journey
-  planned, the caravans with Show), missions (`MissionPanel`) and the colony's houses.
+  planned, the caravans with Show), missions (`MissionPanel`) and the peoples the colony is bound to by marriage.
 - **History** (`WorldHistoryPage`): the world's events running as a strip of chips at the top (a click leads to where
   each is, or its people; the tooltip says what it means and the colony's part), the scope's chips (this colony, the
   region, the world: `WorldHistoryMath.InScope` over the parties of each, the region the default), "Letters lately"
@@ -3533,7 +3573,7 @@ everywhere, any thing can be followed, and a search in every corner finds anyone
 - **Search** (`UI/Search.cs`, `UI/SearchMath.cs`): the magnifying glass in every corner and the key `Council_Key_Search`
   (`Defs/Misc/Rimfolk_SearchKeys.xml`, unbound) open `Window_Search` under it (never pausing, shut by Escape or a
   click outside). Its index is made when it opens, never before: the colonists, the people the notables and the ledger
-  know, the homes, every named town and the raiders' camps found, the peoples in sight, the houses, every view, mode
+  know, the homes, every named town and the raiders' camps found, the peoples in sight, every view, mode
   and lens of the four windows by its name ("Bonds", "Map: Trade"), the Almanac's articles (by title and keywords); and
   whatever `Search.Register` adds. As the player types it is filtered (names folded: any case, no accents or apostrophes,
   no link markers; scored by the whole name, its start, a word's start, every word of the query, inside a word, then
@@ -3595,7 +3635,7 @@ they read alike. It is how things read, not what they do: every page keeps its a
   the sections' counts, each bond's two names, a vendetta's avenger and people, a nemesis's victim and a secret's people
   as links made with the model; Faiths with a card's name in ink and the faith's own colour on its icon, Asks and Sways
   as sections with counts and names as links, a believer's name in link ink, other mods' buttons greyed with why not and
-  a line under them; Houses with counts and empty lines. Council: the decrees' filters and order as filter chips, the
+  a line under them; Renown with counts and empty lines. Council: the decrees' filters and order as filter chips, the
   glance and each kind as folding headings with counts, Enact greyed with the reason as its tooltip and in a line under
   it (Force below where it can be forced), who asked as a link, the offices' heading with "Call an election" on its
   right (greyed while one runs), the seats as rows with small acts and their holders as links, the election's seats the

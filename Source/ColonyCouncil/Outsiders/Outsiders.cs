@@ -534,7 +534,7 @@ namespace ColonyCouncil
                 if (x != null && PeopleOf(x) != null) tags.Add(Lowtech(x) ? "theirLowtech" : "theirHightech");
                 if (Has(p, TraitDefOf.Kind)) tags.Add("kind");
                 if (Has(p, TraitDefOf.Abrasive)) tags.Add("abrasive");
-                // The colonist's house and its name (Diplomacy/Renown.cs): house:ours, house:renowned, house:knownfor:KIND.
+                // The colony's name (Diplomacy/Renown.cs): colony:known, colony:renowned, colony:knownfor:KIND.
                 Renown.AddTags(tags, KinMemory.Ours(p) ? p : other);
                 var lines = pool.lines.For(ToneUtility.ToneFor(p));
                 string line = Flavor.PickTagged(lines.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags)

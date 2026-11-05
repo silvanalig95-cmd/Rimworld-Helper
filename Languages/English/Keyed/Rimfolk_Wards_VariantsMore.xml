@@ -9,8 +9,6 @@
        the Empire's page: those letters are carried off the map, so none of them says who brought it to the gate. -->
 
   <!-- Their offer, and their answers -->
-  <CC_Ward_Offer_4>A youth of {KIN}'s house is to be sent away for a year to learn {SKILL}, {WHO} writes, and {PEOPLE} have chosen the colony for it: {RITE}, as they put it.</CC_Ward_Offer_4>
-  <CC_Ward_Offer_5>{WHO} of {PEOPLE} asks a favor that is also a compliment. Would the colony keep a youth of {KIN}'s house for a year and teach them {SKILL}? Here it would be {WORD}.</CC_Ward_Offer_5>
   <CC_Ward_Ans_Yes_4>{WARD} is coming. {PEOPLE} agreed to send them for a year to learn {SKILL}, {RITE} by their ways, and one of their kin will walk them to the gate.</CC_Ward_Ans_Yes_4>
   <CC_Ward_Ans_No_4>Not this year, {PEOPLE} answer. They thank the colony for thinking of them.</CC_Ward_Ans_No_4>
   <CC_Ward_Ans_Moot_2>By the time the letter reached {PEOPLE}, there was nothing left to answer.</CC_Ward_Ans_Moot_2>

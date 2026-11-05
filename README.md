@@ -61,7 +61,7 @@ beside the title that opens its page of the Almanac:
 | View | Modes | What's there |
 |---|---|---|
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
-| **People** | Table · Moods · Bonds · Ideoligions · Houses | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's families and the houses it knows of in the region |
+| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's name among the peoples and its people known by name |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
 | **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
@@ -75,7 +75,7 @@ The **region** window, in four views along its top:
 |---|---|---|
 | **Map** | Land · Stance and ties · Fortunes · Threats · Trade · Ours, each as Map or List | the region map (the land around the colony and its towns, see "The region" below) read six ways: the land; each town by how its people stand with the colony, its head's regard as a ring, and a line from home for each tie (a pact, a truce, a favour owed either way, protection, a grudge); each town by its fortune, with an arrow where it moved this season and the world's events where they are; hostile towns, raiders' camps and the homes they threaten, with a camp's raids drawn to its home; trading posts and the towns that trade; the colony's homes, hamlets and caravans. Each lens has its legend at the map's foot, and its List shows what it shows, nearest first, each row opening its card beside it |
 | **Peoples** | Peoples · Faces | what is owed each way, then each people: how it stands with the colony, whom it is at war with, the world events about it, its head and its ties, and what it remembers; Faces: the people the colony knows by name with a way to write, its old foes, those who left, and the faces it keeps up with |
-| **Here and away** | | who is here from outside (a camp on the land, guests), what's coming (questions waiting, debts and visits due, a story's next stage), letters and calls on the road, who of the colony's is away (the journey planned, the caravans out on the land), missions and the colony's houses |
+| **Here and away** | | who is here from outside (a camp on the land, guests), what's coming (questions waiting, debts and visits due, a story's next stage), letters and calls on the road, who of the colony's is away (the journey planned, the caravans out on the land), missions and the peoples the colony is bound to by marriage |
 | **History** | this colony · the region · the world | the world's one history, newest first, with the world's events running in a strip at its top, the colony's letters lately, and filters for a people, a town or a kind of event |
 
 Every name in it leads to its card in the drawer at the right, and the region's old pages (Neighbours, Letters and
@@ -88,7 +88,7 @@ mode), Base, Making and Rooms (the room plans as a list, or every room at a glan
 
 Tabs and modes show a count when something there wants your attention (what waits on you, open wishes, petitions,
 the plan's steps, letters under way). Every window's corner has, beside back and forward, a **search** (a magnifying
-glass, and a key you can bind): type a name and it finds colonists, people outside, places, peoples, houses, the
+glass, and a key you can bind): type a name and it finds colonists, people outside, places, peoples, the
 windows' views ("Bonds") and the Almanac's pages, grouped by kind; Enter opens the first. Beside it, **This week's
 inbox** with the number of things waiting on you (the same number as This week's tab and, by a setting on at first, the
 council button on the bottom bar), and **what you follow**.
@@ -2740,27 +2740,29 @@ conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *
 
 **Marriage alliances.** A match between one of the colony's and one of a people at peace: "Speak for a match" with
 someone of theirs at the colony (two who courted their way to lovers speak for themselves), a letter proposing one (the
-people's card and a notable's say who of the colony's would fit, a notable or a son or daughter of a head's house), or
+people's card and a notable's say who of the colony's would fit, a notable or one of a town its head speaks for), or
 their own offer once a year from a people whose head thinks 40 or more of the colony. Who may marry is the game's own
 rule (grown, drawn to each other, not kin, free to take a spouse by their faith), and the Empire's titled nobles marry
 only the titled. The colonist is asked first: one who loves someone else here, would leave children behind or can't
 stand the one chosen is against it, and the council hears the objection before anything is settled. Where the couple
-lives is chosen each time. Theirs comes on the day with their kin as the wedding's guests, joins the colony at the gate
-and is married by the game's own ceremony while the guests watch, then the feast; or their kin come to the gate for the
-colony's own, who leaves with them for good, and the wedding at their town is told in their letter. Gifts go both ways
-at the gate. While it holds their notables think 15 better of the colony, their kin send a gift each season, they write
-when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire); a child of the
-two keeps it after a death. A spouse wronged by the colony (killed, imprisoned, enslaved, sold, banished) breaks it, with
-a grudge their next head takes up. Each shows on the Tie, House, Person and People cards, Here and away and the inbox;
+lives is chosen each time. Theirs comes on the day with notables of their town as the wedding's guests, joins the colony
+at the gate and is married by the game's own ceremony while the guests watch, then the feast; or theirs and one of their
+family come to the gate for the colony's own, who leaves with them for good, and the wedding at their town is told in
+their letter. Gifts go both ways at the gate. The marriage binds the colony and their people (never two families or
+houses): while it holds their notables think 15 better of the colony, their town sends a gift each season, they write
+when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire). It ends with the
+marriage: a spouse's death ends it, with no grudge unless the colony was to blame. A spouse wronged by the colony
+(killed, imprisoned, enslaved, sold, banished) breaks it, with their people's grudge, handed down no line. Each shows on
+the Tie, Person and People cards, Here and away (the peoples the colony is bound to by marriage) and the inbox;
 Diplomatic Marriage+'s own alliance shows as the mod's. 28 conversation pieces, 25 letter lines and 27 spoken lines speak
-of it. Setting: *Marriage alliances*.
+of it, and 10 more pieces and 26 lines of the bond between the two peoples. Setting: *Marriage alliances*.
 
-**Wards and hostages.** A friend whose head thinks well of the colony may offer a youth of a notable's house to live at
-the colony for a year (a child where the game has children), or the colony asks for one by letter: they walk in with
-their kin and stay as the game's lodger, on the colonist bar and working with everyone, and a guardian with 10 or more
+**Wards and hostages.** A friend whose head thinks well of the colony may offer a youth of their town to live at the
+colony for a year (a child where the game has children), or the colony asks for one by letter: they walk in with one of
+their family and stay as the game's lodger, on the colonist bar and working with everyone, and a guardian with 10 or more
 in the skill they came for teaches them an hour a day when both are free and together (a child learns at the game's own
 lessons). Their card says how they are (homesick, settling in, happy), what they have learned and where they sleep. At
-the year's end their kin come to the gate for them, and how they were kept (taught, fed, unhurt, content) goes home with
+the year's end their family come to the gate for them, and how they were kept (taught, fed, unhurt, content) goes home with
 them: a fine year leaves a debt of honor, the grown ward remembers it, and a ward hurt or killed in the colony's care is
 grieved, a feud if by a colonist's hand. The colony can send a youth of its own to live with another people for a year
 (to the Empire, a page in a titled household): letters every ten days, and home with their people's skill and a friend
@@ -2782,16 +2784,18 @@ dead weigh on their head), ask for help, a judgment or a camp broken, and a sour
 Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
 mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.
 
-**House renown.** Two or more of the colony's people of one family name who are family are a house of the colony, and
-the towns' founding families are the region's. A house's name is known for what its people did that the world saw:
-contests won at feasts, marriages into other peoples' houses, wards fostered well, seasons abroad, truces sworn, what the
-peoples remember of them by name, the colony's names for them, years in office, the Empire's titles, and the colony's
-oaths kept and broken. Nothing is spent: its renown is read from those deeds and ties, fading slowly, and told in words
-by the ages, known in a town, across the region or among every people within reach, for its fighters, healers, hosts,
-traders, makers or faith ("sung in the halls of the region, for good swords"). Notables think better of its people,
-good words and matches come easier, and what it is known for draws challengers, the sick, guests, pilgrims and the
-rest. Its House card has its people, its renown and the deeds behind it, its marriages, wards and feuds. 50
-conversation pieces, 24 letter lines and 20 spoken lines speak of it. Setting: *House renown*.
+**Colony renown.** The colony is the family, never a dynasty: its name among the peoples is the colony's, known for
+everything its people did that the world saw, the living and the gone: contests won at feasts, marriages with other
+peoples, wards fostered well, seasons abroad, truces sworn, what the peoples remember of them by name, the colony's names
+for them, years in office, the Empire's titles, and the colony's oaths kept and broken. Nothing is spent: its renown is
+read from those deeds and ties, fading slowly, and told in words by the ages, known in a town, across the region or among
+every people within reach, for its fighters, healers, hosts, traders, makers or faith ("sung in the halls of the
+region, for good swords"). Notables think better of its people, good words and matches come easier, and what it is known
+for draws challengers, the sick, guests, pilgrims and the rest. Each colonist has a name of their own for their deeds,
+on their card and spoken of by visitors whose people know it ("the one who won the wrestling at the feast with the
+Lenlia"); one known by name as a fighter draws the champion's challenge, a healer the sick. People → Renown has the
+colony's name and its people known by name. 83 conversation pieces, 46 letter lines and 31 spoken lines speak of it.
+Setting: *Colony renown*.
 
 **Against their nature.** Some of what diplomacy asks goes against a colonist's nature, and it weighs on their heart (its
 strain, no mood of its own): the oath of fealty on a proud speaker, a broken truce on a trusting one who struck the blow,

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's renown and the colony's bonds, since the player's decision of 5 November 2026: the colony is the family,
+       never a dynasty (Source/ColonyCouncil/Diplomacy/Renown.cs, RenownWords.cs, RenownPanels.cs, UI/RenownPage.cs;
+       Matches.cs, MatchAlliance.cs, MatchPanels.cs; Wards.cs). {COLONY} is the colony's name; {RENOWN} how far it carries in
+       the colony's own ways (read after "is"); {KNOWNFOR} what it is known for in its age's words (read after "known for").
+       Keys with numbered fellows (_2 ...) are picked at random. A colonist's own name ({KNOWNAS}) is said by the part they
+       are best known for, with the people it was done with or for ({PEOPLE}), or without one (_Any); it is a name, so it
+       has one wording, the same each time. -->
+
+  <CC_Renown_TheColony>the colony</CC_Renown_TheColony>
+
+  <!-- The colony's name moved a band: the news and the history -->
+  <CC_Renown_Colony_Up>The name of {COLONY} is {RENOWN} now.</CC_Renown_Colony_Up>
+  <CC_Renown_Colony_Up_2>Word of {COLONY} has spread: its name is {RENOWN} now.</CC_Renown_Colony_Up_2>
+  <CC_Renown_Colony_Up_3>More people speak of {COLONY} than before: its name is {RENOWN} now.</CC_Renown_Colony_Up_3>
+  <CC_Renown_Colony_Up_4>What the colony's people have done has carried its name further: {COLONY} is {RENOWN} now.</CC_Renown_Colony_Up_4>
+  <CC_Renown_Colony_Up_5>Travelers and traders carry the name of {COLONY} with them: it is {RENOWN} now.</CC_Renown_Colony_Up_5>
+  <CC_Renown_Colony_UpFor>The name of {COLONY} is {RENOWN} now, and it is known for {KNOWNFOR}.</CC_Renown_Colony_UpFor>
+  <CC_Renown_Colony_UpFor_2>{COLONY} is {RENOWN} now, and those who speak of it know it for {KNOWNFOR}.</CC_Renown_Colony_UpFor_2>
+  <CC_Renown_Colony_UpFor_3>Word of {COLONY} has spread, and with it what the colony is known for: {KNOWNFOR}. Its name is {RENOWN} now.</CC_Renown_Colony_UpFor_3>
+  <CC_Renown_Colony_UpFor_4>The name of {COLONY} carries further now: it is {RENOWN}, known for {KNOWNFOR}.</CC_Renown_Colony_UpFor_4>
+  <CC_Renown_Colony_UpFor_5>What the colony's people have done is talked of beyond its walls: {COLONY} is {RENOWN} now, for {KNOWNFOR}.</CC_Renown_Colony_UpFor_5>
+  <CC_Renown_Colony_Down>Fewer speak of {COLONY} than before: its name is {RENOWN} now.</CC_Renown_Colony_Down>
+  <CC_Renown_Colony_Down_2>The talk of {COLONY} has narrowed: its name is {RENOWN} now.</CC_Renown_Colony_Down_2>
+  <CC_Renown_Colony_Down_3>Other news has taken the place of {COLONY} in people's talk: its name is {RENOWN} now.</CC_Renown_Colony_Down_3>
+  <CC_Renown_Colony_Down_4>The name of {COLONY} carries less far than it did: it is {RENOWN} now.</CC_Renown_Colony_Down_4>
+  <CC_Renown_Colony_Down_5>What the colony was known for is older news now, and its name is {RENOWN}.</CC_Renown_Colony_Down_5>
+  <CC_Renown_Colony_Faded>The name of {COLONY} has faded from the talk outside the colony.</CC_Renown_Colony_Faded>
+  <CC_Renown_Colony_Faded_2>Nobody outside speaks of {COLONY} much any more.</CC_Renown_Colony_Faded_2>
+  <CC_Renown_Colony_Faded_3>The talk of {COLONY} outside its walls has died down.</CC_Renown_Colony_Faded_3>
+  <CC_Renown_Colony_Faded_4>Whatever was said of {COLONY} out there has been forgotten for now.</CC_Renown_Colony_Faded_4>
+  <CC_Renown_Colony_Faded_5>{COLONY} has gone quiet in the talk of the region.</CC_Renown_Colony_Faded_5>
+  <CC_Renown_Colony_Infamous>{COLONY} has a bad name now: outside the colony its people are spoken of for the wrong things.</CC_Renown_Colony_Infamous>
+  <CC_Renown_Colony_Infamous_2>The name of {COLONY} has gone bad: what is said of it outside is said of its wrongs.</CC_Renown_Colony_Infamous_2>
+  <CC_Renown_Colony_Infamous_3>People outside speak of {COLONY} now, and not kindly.</CC_Renown_Colony_Infamous_3>
+  <CC_Renown_Colony_Infamous_4>{COLONY} is known outside for the wrong things now, and its people will meet that name on the road.</CC_Renown_Colony_Infamous_4>
+  <CC_Renown_Colony_Infamous_5>What the colony has done wrong has carried further than what it did well: {COLONY} has a bad name now.</CC_Renown_Colony_Infamous_5>
+  <CC_Renown_Colony_Mended>The bad name of {COLONY} is fading from the talk outside the colony.</CC_Renown_Colony_Mended>
+  <CC_Renown_Colony_Mended_2>People outside have stopped holding the old wrongs against {COLONY}, mostly.</CC_Renown_Colony_Mended_2>
+  <CC_Renown_Colony_Mended_3>The talk of the wrongs of {COLONY} has died down.</CC_Renown_Colony_Mended_3>
+  <CC_Renown_Colony_Mended_4>The bad name of {COLONY} is older news now, and fewer repeat it.</CC_Renown_Colony_Mended_4>
+  <CC_Renown_Colony_Mended_5>Outside the colony, the wrongs {COLONY} was known for are spoken of less and less.</CC_Renown_Colony_Mended_5>
+
+  <!-- What it does, on the colony's card and People → Renown -->
+  <CC_Renown_Colony_Does>Notables think up to {REGARD} better of the colony's people for it, a good word for them counts for more, and matches with them are taken up more readily.</CC_Renown_Colony_Does>
+  <CC_Renown_Colony_DoesBad>Notables think up to {REGARD} worse of the colony's people for it.</CC_Renown_Colony_DoesBad>
+
+  <!-- A colonist's own name, by the part they are best known for -->
+  <CC_Renown_Own_Line>Known as {KNOWNAS}, {RENOWN}.</CC_Renown_Own_Line>
+  <CC_Renown_Own_LineBad>Known as {KNOWNAS}: {RENOWN}.</CC_Renown_Own_LineBad>
+  <CC_Renown_KnownAs_AContest>a contest</CC_Renown_KnownAs_AContest>
+  <CC_Renown_KnownAs_Contest_Wrestling>the wrestling</CC_Renown_KnownAs_Contest_Wrestling>
+  <CC_Renown_KnownAs_Contest_Race>the race</CC_Renown_KnownAs_Contest_Race>
+  <CC_Renown_KnownAs_Contest_Hunt>the hunt</CC_Renown_KnownAs_Contest_Hunt>
+  <CC_Renown_KnownAs_Contest_Tables>the game at the tables</CC_Renown_KnownAs_Contest_Tables>
+  <CC_Renown_KnownAs_Contest_Shooting>the shooting match</CC_Renown_KnownAs_Contest_Shooting>
+  <CC_Renown_KnownAs_contest>the one who won {CONTEST} at the feast with {PEOPLE}</CC_Renown_KnownAs_contest>
+  <CC_Renown_KnownAs_contest_Any>the one who won {CONTEST} at a feast</CC_Renown_KnownAs_contest_Any>
+  <CC_Renown_KnownAs_wedding>the one who married one of {PEOPLE}</CC_Renown_KnownAs_wedding>
+  <CC_Renown_KnownAs_wedding_Any>the one who married one of another people</CC_Renown_KnownAs_wedding_Any>
+  <CC_Renown_KnownAs_fostered>the one who fostered a youth of {PEOPLE} well</CC_Renown_KnownAs_fostered>
+  <CC_Renown_KnownAs_fostered_Any>the one who fostered a ward well</CC_Renown_KnownAs_fostered_Any>
+  <CC_Renown_KnownAs_abroad>the one who spent a year among {PEOPLE}</CC_Renown_KnownAs_abroad>
+  <CC_Renown_KnownAs_abroad_Any>the one who spent a year with another people</CC_Renown_KnownAs_abroad_Any>
+  <CC_Renown_KnownAs_envoy>the one who went to {PEOPLE} as the colony's envoy</CC_Renown_KnownAs_envoy>
+  <CC_Renown_KnownAs_envoy_Any>the one who went abroad as the colony's envoy</CC_Renown_KnownAs_envoy_Any>
+  <CC_Renown_KnownAs_hostage>the one who stood hostage among {PEOPLE} for the colony</CC_Renown_KnownAs_hostage>
+  <CC_Renown_KnownAs_hostage_Any>the one who stood hostage for the colony</CC_Renown_KnownAs_hostage_Any>
+  <CC_Renown_KnownAs_parley>the one who swore the truce with {PEOPLE}</CC_Renown_KnownAs_parley>
+  <CC_Renown_KnownAs_parley_Any>the one who swore the colony's truce</CC_Renown_KnownAs_parley_Any>
+  <CC_Renown_KnownAs_campBroken>the one who broke the raiders' camp that troubled {PEOPLE}</CC_Renown_KnownAs_campBroken>
+  <CC_Renown_KnownAs_campBroken_Any>the one who broke a raiders' camp</CC_Renown_KnownAs_campBroken_Any>
+  <CC_Renown_KnownAs_foughtBeside>the one who fought beside {PEOPLE}</CC_Renown_KnownAs_foughtBeside>
+  <CC_Renown_KnownAs_foughtBeside_Any>the one who fought beside other peoples</CC_Renown_KnownAs_foughtBeside_Any>
+  <CC_Renown_KnownAs_killedRaid>the one who brought down raiders of {PEOPLE}</CC_Renown_KnownAs_killedRaid>
+  <CC_Renown_KnownAs_killedRaid_Any>the one who brought down raiders at the colony</CC_Renown_KnownAs_killedRaid_Any>
+  <CC_Renown_KnownAs_killedField>the one who brought down fighters of {PEOPLE} in the field</CC_Renown_KnownAs_killedField>
+  <CC_Renown_KnownAs_killedField_Any>the one who brought down foes in the field</CC_Renown_KnownAs_killedField_Any>
+  <CC_Renown_KnownAs_tradedPost>the one who trades at the post of {PEOPLE}</CC_Renown_KnownAs_tradedPost>
+  <CC_Renown_KnownAs_tradedPost_Any>the one who trades at the posts</CC_Renown_KnownAs_tradedPost_Any>
+  <CC_Renown_KnownAs_walkedSettlers>the one who walked the settlers of {PEOPLE} to their new town</CC_Renown_KnownAs_walkedSettlers>
+  <CC_Renown_KnownAs_walkedSettlers_Any>the one who walked settlers to a new town</CC_Renown_KnownAs_walkedSettlers_Any>
+  <CC_Renown_KnownAs_released>the one who set a prisoner of {PEOPLE} free</CC_Renown_KnownAs_released>
+  <CC_Renown_KnownAs_released_Any>the one who set prisoners free</CC_Renown_KnownAs_released_Any>
+  <CC_Renown_KnownAs_tended>the one who tended the wounded of {PEOPLE}</CC_Renown_KnownAs_tended>
+  <CC_Renown_KnownAs_tended_Any>the one who tended other peoples' wounded</CC_Renown_KnownAs_tended_Any>
+  <CC_Renown_KnownAs_killedPeace>the one who killed one of {PEOPLE} in a time of peace</CC_Renown_KnownAs_killedPeace>
+  <CC_Renown_KnownAs_killedPeace_Any>the one who shed blood in a time of peace</CC_Renown_KnownAs_killedPeace_Any>
+  <CC_Renown_KnownAs_executed>the one who executed a prisoner of {PEOPLE}</CC_Renown_KnownAs_executed>
+  <CC_Renown_KnownAs_executed_Any>the one who executed prisoners</CC_Renown_KnownAs_executed_Any>
+  <CC_Renown_KnownAs_harvested>the one who cut open a prisoner of {PEOPLE}</CC_Renown_KnownAs_harvested>
+  <CC_Renown_KnownAs_harvested_Any>the one who cut open prisoners</CC_Renown_KnownAs_harvested_Any>
+  <CC_Renown_KnownAs_slighted>the one with hard words for {PEOPLE}</CC_Renown_KnownAs_slighted>
+  <CC_Renown_KnownAs_slighted_Any>the one with hard words for guests</CC_Renown_KnownAs_slighted_Any>
+  <CC_Renown_KnownAs_brawled>the one who brawled with {PEOPLE}</CC_Renown_KnownAs_brawled>
+  <CC_Renown_KnownAs_brawled_Any>the one who brawls with guests</CC_Renown_KnownAs_brawled_Any>
+  <CC_Renown_KnownAs_epithet>the one the colony calls {NAME}</CC_Renown_KnownAs_epithet>
+  <CC_Renown_KnownAs_office>the colony's long-serving officer</CC_Renown_KnownAs_office>
+  <CC_Renown_KnownAs_office_Council_DaysAsPhysician>the colony's physician of many seasons</CC_Renown_KnownAs_office_Council_DaysAsPhysician>
+  <CC_Renown_KnownAs_office_Council_DaysAsMarshal>the colony's marshal of many seasons</CC_Renown_KnownAs_office_Council_DaysAsMarshal>
+  <CC_Renown_KnownAs_speaker>the one who speaks for the colony</CC_Renown_KnownAs_speaker>
+  <CC_Renown_KnownAs_title>the one the Empire has named {TITLE}</CC_Renown_KnownAs_title>
+  <CC_Renown_KnownAs_regard>a friend of {NOTABLE}</CC_Renown_KnownAs_regard>
+
+  <!-- People → Renown (where People → Houses was) -->
+  <CC_Tab_Renown>Renown</CC_Tab_Renown>
+  <CC_RenownPage_Header>The colony's name</CC_RenownPage_Header>
+  <CC_RenownPage_Sub>How far the colony's name carries among the peoples and what it is known for, and its people known by name for what they did.</CC_RenownPage_Sub>
+  <CC_RenownPage_Colony>The colony</CC_RenownPage_Colony>
+  <CC_RenownPage_Named>Known by name</CC_RenownPage_Named>
+  <CC_RenownPage_NoneNamed>Nobody of the colony is known by name outside it yet. A contest won, a ward fostered well, a camp broken or a people's wounded tended, and the name comes.</CC_RenownPage_NoneNamed>
+  <CC_RenownPage_Unnamed>Not yet known by name outside the colony: {NAMES}.</CC_RenownPage_Unnamed>
+
+  <!-- Here and away: the peoples the colony is bound to by marriage -->
+  <CC_Dip_Married_Title>Bound by marriage</CC_Dip_Married_Title>
+  <CC_Dip_Married_None>No marriage binds the colony to another people yet.</CC_Dip_Married_None>
+  <CC_Match_Bond>Bound to {PEOPLE} through {OURS} and {THEIRS}</CC_Match_Bond>
+
+  <!-- A match with one of the town a head speaks for -->
+  <CC_Match_Candidate_Woman>a woman of {TOWN}</CC_Match_Candidate_Woman>
+  <CC_Match_Candidate_Man>a man of {TOWN}</CC_Match_Candidate_Man>
+
+  <!-- Their offer of a ward: a youth of their town -->
+  <CC_Ward_OfferTown>Word has come from {WHO} of {PEOPLE}. A youth of {TOWN} would come to live at the colony for a year and learn {SKILL}, which the colony is known for. They call it {RITE}; here it would be {WORD}.</CC_Ward_OfferTown>
+  <CC_Ward_OfferTown_2>{WHO} of {PEOPLE} writes that a youth of {TOWN} should learn {SKILL} away from home, and asks whether the colony will keep them a year: {RITE}, as their people put it.</CC_Ward_OfferTown_2>
+  <CC_Ward_OfferTown_3>{PEOPLE} write by {WHO}'s hand: a youth of {TOWN} is of an age to learn {SKILL}, and they would trust the colony with them for a year. They call it {RITE}; the colony would call it {WORD}.</CC_Ward_OfferTown_3>
+  <CC_Ward_OfferTown_4>A youth of {TOWN} is to be sent away for a year to learn {SKILL}, {WHO} writes, and {PEOPLE} have chosen the colony for it: {RITE}, as they put it.</CC_Ward_OfferTown_4>
+  <CC_Ward_OfferTown_5>{WHO} of {PEOPLE} asks a favor that is also a compliment. Would the colony keep a youth of {TOWN} for a year and teach them {SKILL}? Here it would be {WORD}.</CC_Ward_OfferTown_5>
+
+</LanguageData>

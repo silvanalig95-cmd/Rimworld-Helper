@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The colony's name, not a house's
+
+*5 November 2026, version 0.104.0*
+
+- The colony is the family now: houses are gone, and the colony itself has a name among the peoples, how far it carries and what it is known for, built from everything its people do. People, then Renown, shows it where the Houses page was, and the regard it earns reaches every colonist.
+- Each colonist has a name of their own for their deeds, shown on their card ("known as the one who won the wrestling at the feast with the Lenlia") and spoken of by visitors whose people know it. A known fighter draws challengers, and one known for something draws its visitors a little more.
+- A marriage alliance is a bond between the colony and their people through one marriage: it ends when the spouse dies, with a grudge only if the colony was to blame, and the seasonal gift comes from their town. "In-laws" are simply their people.
+- A ward is a youth of their town, not of a notable's house, and grudges stay between peoples or against a named colonist, never handed down a family.
+- Visitors and letters speak of the colony and its people instead of houses, in 93 new conversation pieces and over a hundred new letter and spoken lines.
+- Old saves load quietly: houses are dropped, the colony's name is worked out from its history, and an alliance held through a child ends at the next day's look.
+
 ## Banishment by the council
 
 *5 November 2026, version 0.103.0*

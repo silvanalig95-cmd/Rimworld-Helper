@@ -39,7 +39,7 @@ namespace ColonyCouncil
             {
                 var book = DiplomacyBook.Instance;
                 if (book == null) return;
-                if (Wards.KnownFor(home) == null || Wards.Kin(f, home, out _) == null)
+                if (Wards.KnownFor(home) == null || Wards.Sender(f, home, out _) == null)
                 {
                     Say("no guardian with 10 in a skill, or no notable of theirs known");
                     return;
@@ -54,7 +54,7 @@ namespace ColonyCouncil
             var home = Home;
             Menu(AtPeace().Select(f => new FloatMenuOption(f.Name, () =>
             {
-                var w = Wards.TheirsAt(home) ?? Wards.Agree(home, f, Wards.Kin(f, home, out _), Wards.KnownFor(home)?.defName, false, 0.01f);
+                var w = Wards.TheirsAt(home) ?? Wards.Agree(home, f, Wards.Sender(f, home, out _), Wards.KnownFor(home)?.defName, false, 0.01f);
                 if (w == null)
                 {
                     Say("couldn't agree a ward (one under way, or nobody of theirs to come)");

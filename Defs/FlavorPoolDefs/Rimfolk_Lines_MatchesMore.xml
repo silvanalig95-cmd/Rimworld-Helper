@@ -9,7 +9,7 @@
       purpose "match": warm, cordial or cool when they agree, refusal when they won't; and in a letter of any purpose
       (greetings, news, help: warm or cordial when it's given, condolences, warning, invitation) while a marriage holds
       (tie:marriage, :ours with {SPOUSEOF} living among them, :theirs with {INLAW} at the colony; match:child, held
-      through a child after one of the two died, when neither name is said as living), a match is agreed (match:agreed)
+      through a child after one of the two died, when neither name is said as living, set no more since 5 November 2026), a match is agreed (match:agreed)
       or a spouse from among them was wronged (match:wronged). A line written for a letter of any purpose names its
       purpose, so it is weighed with that purpose's own lines and not only when none of them fits. By their ways only
       theirLowtech and theirHightech; letter or call.
@@ -45,8 +45,6 @@
         <li>[condolences,warm,tie:marriage] We grieve with you as kin, {WRITER}. Our house mourns too.</li>
         <li>[warning,warm,tie:marriage] Thank you for thinking of us. Kin warn kin, and we will do the same for you.</li>
         <li>[invitation,warm,tie:marriage,!match:child] Of course we'll come. It's been too long since we saw the two of them.</li>
-        <li>[greetings,cordial,match:child,theirLowtech] The child of the marriage is our blood too. Tell them about us as they grow.</li>
-        <li>[greetings,warm,match:child] We think of the child often. When they are older, we would like to meet them properly.</li>
         <!-- A match agreed, the wedding to come -->
         <li>[greetings,cordial,match:agreed] The whole family is getting ready for the wedding, and arguing about who sits where.</li>
         <li>[greetings,cordial,match:agreed,theirHightech] The arrangements for the wedding are coming along. There is a list, and the list has lists.</li>

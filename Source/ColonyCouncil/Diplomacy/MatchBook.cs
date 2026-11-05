@@ -18,12 +18,12 @@ namespace ColonyCouncil
         public MatchStage stage;
         public Pawn ours, theirs;
         public Faction people;
-        /// <summary>Their notable (the one matched, or the one whose house the one matched is of), or -1.</summary>
+        /// <summary>Their notable (the one matched, or the head who spoke for one of their town), or -1.</summary>
         public int notable = -1;
         /// <summary>Their town (a settlement's id) and its name kept.</summary>
         public int town = -1;
         public string townName;
-        /// <summary>The one of theirs was made for the match (a member of a notable's house): let go if it comes to nothing.</summary>
+        /// <summary>The one of theirs was made for the match (one of a head's town): let go if it comes to nothing.</summary>
         public bool made;
         /// <summary>The council pressed it over the colonist's objection.</summary>
         public bool pressed;

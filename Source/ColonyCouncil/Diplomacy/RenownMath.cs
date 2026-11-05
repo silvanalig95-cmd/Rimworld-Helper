@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
-    /// <summary>What a house is known for, from whichever part of its renown is largest (docs/design/stage2-diplomacy.md, item 12).</summary>
+    /// <summary>What the colony (or one of its people) is known for, from whichever part of its renown is largest (docs/design/stage2-diplomacy.md, item 12).</summary>
     public enum KnownFor
     {
         None,
@@ -15,7 +15,7 @@ namespace ColonyCouncil
         Faithful
     }
 
-    /// <summary>How far a house's name carries: known for the wrong things, not yet known, in a town, the region, the peoples in reach.</summary>
+    /// <summary>How far the colony's name (or a colonist's own) carries: known for the wrong things, not yet known, in a town, the region, the peoples in reach.</summary>
     public enum RenownBand
     {
         Infamous = -1,
@@ -26,60 +26,30 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// House renown (docs/design/stage2-diplomacy.md, item 12; release 2d.1; the player's decision 17: earned and shown in
-    /// words, with a "known for", nothing spent), with no game types so Tools/Tests can check it. Renown is never stored:
-    /// it is read when asked from what the world already keeps of a house's people (the history's deeds and ties, what the
-    /// peoples remember of single colonists, the colony's names for them, their offices and titles, the notables' regard)
-    /// and, for theirs, from their place and their ties with the colony. Each part is a <see cref="Hit"/> of a
-    /// <see cref="Source"/>; a deed fades by its age (full for a year, then a tenth a season down to three tenths); the sum
-    /// is the score, its band how far the name is known, its largest kind what the house is known for. What it does: the
-    /// notables' regard of the house's people, their good words, matches, and the events the world sends a house known for
-    /// something.
+    /// The colony's renown (docs/design/stage2-diplomacy.md, item 12; built in release 2d.1 as house renown and reshaped by
+    /// the player's decision of 5 November 2026: the colony is the family, never a dynasty; decision 17: earned and shown in
+    /// words, with a "known for", nothing spent), with no game types so Tools/Tests can check it. Renown is never stored: it
+    /// is read when asked from what the world already keeps of the colony's people (the history's deeds, what the peoples
+    /// remember of single colonists, the colony's names for them, their offices and titles, the notables' regard) and of the
+    /// colony itself (its oaths, pacts and word). Each part is a <see cref="Hit"/> of a <see cref="Source"/>; a deed fades by
+    /// its age (full for a year, then a tenth a season down to three tenths); the sum is the score, its band how far the name
+    /// is known, its largest kind what the colony is known for. Each colonist's own name is read the same way from their own
+    /// deeds alone, and said by the part they are best known for (<see cref="KnownAs"/>: "the one who won the wrestling at the
+    /// feast with the Lenlia"). What it does: the notables' regard of the colony's people, their good words, matches, the
+    /// events the world sends a colony known for something and a feast's guests; one of its people known by name as a
+    /// fighter draws the champion's challenge, and one known by name for something draws its events a little.
     /// </summary>
     public static class RenownMath
     {
         public const int DayTicks = 60000;
         public const float SeasonDays = 15f, YearDays = 60f;
 
-        // ================= The colony's houses =================
-
-        /// <summary>The colony's houses kept at most (the design's twelve).</summary>
-        public const int MaxOurs = 12;
-
-        /// <summary>A house of the colony is two or more of its people of one family name (FamilyLifeMath.FamilyAtLeast).</summary>
-        public const int AtLeast = 2;
-
-        /// <summary>The members a house remembers (the living and the gone), so its renown keeps what they did: at most this many, the newest kept.</summary>
-        public const int MembersKept = 12;
-
-        /// <summary>A house with nobody left at the colony is kept two years (unless a tie still names one of its people), then let go.</summary>
-        public const float KeepDays = 2f * YearDays;
-
-        /// <summary>Kept: someone of it is still at the colony, a tie names one of its people, or it is less than two years since one was.</summary>
-        public static bool Kept(bool memberHere, bool tieNames, int lastSeen, int now) =>
-            memberHere || tieNames || lastSeen >= 0 && now - lastSeen < (long)(KeepDays * DayTicks);
-
-        /// <summary>A house's key: its family name, the same however it is written.</summary>
-        public static string Key(string familyName) => string.IsNullOrEmpty(familyName) ? null : familyName.Trim().ToLowerInvariant();
-
-        /// <summary>
-        /// Which of the houses that remember someone (by their names, oldest first) they are of now: the one of the family
-        /// name they carry (one who took another's name on marrying is remembered by both), else the newest; -1 for none.
-        /// </summary>
-        public static int HouseFor(IList<string> houseNames, string lastName)
-        {
-            if (houseNames == null || houseNames.Count == 0) return -1;
-            string key = Key(lastName);
-            if (key != null)
-                for (int i = 0; i < houseNames.Count; i++)
-                    if (Key(houseNames[i]) == key)
-                        return i;
-            return houseNames.Count - 1;
-        }
+        /// <summary>The colony's band before any day's look has read it (an older save, a new game): set at the first look without a word.</summary>
+        public const int NotRead = int.MinValue;
 
         // ================= Where renown comes from =================
 
-        /// <summary>One kind of renown: its points (a wrong's below zero), what it shows the house is good at, whether it fades with age, and the most it gives in all.</summary>
+        /// <summary>One kind of renown: its points (a wrong's below zero), what it shows the colony is good at, whether it fades with age, and the most it gives in all.</summary>
         public sealed class Source
         {
             public string key;
@@ -93,21 +63,19 @@ namespace ColonyCouncil
             new Source { key = key, points = points, known = known, fades = fades, cap = cap };
 
         /// <summary>
-        /// The kinds of renown, by key. Of a house's own people (ours): a contest won at a feast (the champion), married into a
-        /// house of theirs, a ward of theirs fostered well as its guardian, a season abroad as the colony's youth or envoy, a
-        /// term served as its hostage, a truce sworn as its speaker;
-        /// what the peoples remember of them by name (a raiders' camp broken, fighting beside theirs, trading at their post,
-        /// walking their settlers out, a prisoner of theirs set free, one of theirs tended; killed at peace, executed, cut
-        /// open, slighted, brawled with; their raiders brought down count to a fighter's name, little); the colony's names for
-        /// them (the Healer, Old Iron), a year in an office, a term as speaker, the Empire's title, notables who think well of
-        /// them. The colony's own, shared by each of its houses: an oath or a truce sworn, its word kept, levies sent, a pact
-        /// kept; a truce or a pact broken, an oath renounced, the colony's scheme, a call refused, tribute short, its word broken.
-        /// Theirs: a town's founding family, its head's house, their people's leader's, their ties with the colony, the town's
-        /// fortune, and what its head is best at.
+        /// The kinds of renown, by key. Of the colony's people: a contest won at a feast (the champion), married into another
+        /// people, a ward of theirs fostered well as its guardian, a season abroad as the colony's youth or envoy, a term
+        /// served as its hostage, a truce sworn as its speaker; what the peoples remember of them by name (a raiders' camp
+        /// broken, fighting beside theirs, trading at their post, walking their settlers out, a prisoner of theirs set free,
+        /// one of theirs tended; killed at peace, executed, cut open, slighted, brawled with; their raiders brought down count
+        /// to a fighter's name, little); the colony's names for them (the Healer, Old Iron), a year in an office, a term as
+        /// speaker, the Empire's title, notables who think well of them. The colony's own: an oath or a truce sworn, its word
+        /// kept, levies sent, a pact kept; a truce or a pact broken, an oath renounced, the colony's scheme, a call refused,
+        /// tribute short, its word broken. Each is held to its cap for the colony as a whole, and for each colonist's own name.
         /// </summary>
         public static readonly Dictionary<string, Source> Sources = new Dictionary<string, Source>
         {
-            // A house's own people, from the history.
+            // The colony's people, from the history.
             ["contest"] = S("contest", 6f, KnownFor.Fighters, true, 24f),
             ["wedding"] = S("wedding", 8f, KnownFor.None, true, 16f),
             ["fostered"] = S("fostered", 6f, KnownFor.Hosts, true, 18f),
@@ -135,7 +103,7 @@ namespace ColonyCouncil
             ["speaker"] = S("speaker", 3f, KnownFor.None, false, 9f),
             ["title"] = S("title", 1f, KnownFor.None, false, 12f),
             ["regard"] = S("regard", 2f, KnownFor.None, false, 8f),
-            // The colony's, shared by each of its houses.
+            // The colony's own.
             ["swore"] = S("swore", 2f, KnownFor.None, true, 6f),
             ["keptWord"] = S("keptWord", 2f, KnownFor.None, true, 6f),
             ["levies"] = S("levies", 3f, KnownFor.Fighters, true, 6f),
@@ -146,32 +114,24 @@ namespace ColonyCouncil
             ["schemed"] = S("schemed", -4f, KnownFor.None, true, 8f),
             ["refused"] = S("refused", -3f, KnownFor.None, true, 6f),
             ["tributeShort"] = S("tributeShort", -2f, KnownFor.None, true, 4f),
-            ["wordBroken"] = S("wordBroken", -2f, KnownFor.None, true, 4f),
-            // Theirs.
-            ["founding"] = S("founding", 12f, KnownFor.None, false, 12f),
-            ["head"] = S("head", 8f, KnownFor.None, false, 8f),
-            ["leader"] = S("leader", 16f, KnownFor.None, false, 16f),
-            ["colonyTie"] = S("colonyTie", 3f, KnownFor.None, true, 15f),
-            ["thriving"] = S("thriving", 5f, KnownFor.None, false, 5f),
-            ["struggling"] = S("struggling", -4f, KnownFor.None, false, 4f),
-            ["skill"] = S("skill", 4f, KnownFor.None, false, 4f)
+            ["wordBroken"] = S("wordBroken", -2f, KnownFor.None, true, 4f)
         };
 
-        /// <summary>The colony's deeds a people remembers (FactionMemory's kinds) that each of the colony's houses shares in.</summary>
+        /// <summary>The colony's deeds a people remembers (FactionMemory's kinds): the colony's own renown, no one colonist's.</summary>
         public static readonly string[] ColonyDeeds = { "swore", "keptWord", "levies", "brokeTruce", "brokePact", "renounced", "schemed", "refused", "tributeShort", "wordBroken" };
 
-        /// <summary>The history's kinds a house's own people's deeds are read from.</summary>
+        /// <summary>The history's kinds the colony's people's deeds are read from.</summary>
         public static readonly string[] MemberKinds =
             { DiplomacyMath.Contest, DiplomacyMath.Wedding, DiplomacyMath.Ward, DiplomacyMath.Envoy, DiplomacyMath.Hostage, DiplomacyMath.Parley };
 
         /// <summary>
-        /// The renown an event of the history gives the house of one who took part in it, by its kind and their part
-        /// (null for none): the champion (dip:contest, did it), the one married (dip:wedding, did it), a ward's guardian at
-        /// a good year's end (dip:ward, did it, the ward named: <paramref name="aboutSomeone"/>) and the colony's youth home
-        /// with what they learned (dip:ward, did it, nobody else named), its envoy home (dip:envoy, did it), its hostage home
-        /// (dip:hostage, did it for the colony: <paramref name="forColony"/>; a hostage of theirs who stayed did it for
-        /// nobody's term), the speaker at a truce sworn (dip:parley, named). An older save's council tasks (dip:task,
-        /// retired 5 November 2026) are no source.
+        /// The renown an event of the history gives one who took part in it, by its kind and their part (null for none): the
+        /// champion (dip:contest, did it), the one married (dip:wedding, did it), a ward's guardian at a good year's end
+        /// (dip:ward, did it, the ward named: <paramref name="aboutSomeone"/>) and the colony's youth home with what they
+        /// learned (dip:ward, did it, nobody else named), its envoy home (dip:envoy, did it), its hostage home (dip:hostage,
+        /// did it for the colony: <paramref name="forColony"/>; a hostage of theirs who stayed did it for nobody's term), the
+        /// speaker at a truce sworn (dip:parley, named). An older save's council tasks (dip:task, retired 5 November 2026) are
+        /// no source.
         /// </summary>
         public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty, bool forColony = true)
         {
@@ -188,6 +148,13 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The one an event names is the colony's own in it: always, but in a contest, whose winner may be a guest, only when
+        /// the colony won it (the colony did it). The colony's people are found by the events the colony is a party to, so the
+        /// gone count too: what they did is part of its name.
+        /// </summary>
+        public static bool OursIn(string kind, HistoryRole colonyRole) => kind != DiplomacyMath.Contest || colonyRole == HistoryRole.Did;
+
         /// <summary>A ward's guardian is named in the year's end as one who did it only for a good year or better (a fair one is no deed to be known by), else as one with it.</summary>
         public static HistoryRole GuardianRole(bool goodYear) => goodYear ? HistoryRole.Did : HistoryRole.With;
 
@@ -199,8 +166,8 @@ namespace ColonyCouncil
             { "campBroken", "foughtBeside", "killedRaid", "killedField", "tradedPost", "walkedSettlers", "released", "tended", "killedPeace", "executed", "harvested", "slighted", "brawled" };
 
         /// <summary>
-        /// What each of the colony's names for its people (EpithetDefs) shows the house is good at; a name not listed here
-        /// still counts, with no known-for, and a dubious one (the Kindling) not at all.
+        /// What each of the colony's names for its people (EpithetDefs) shows it is good at; a name not listed here still
+        /// counts, with no known-for, and a dubious one (the Kindling) not at all.
         /// </summary>
         public static readonly Dictionary<string, KnownFor> Epithets = new Dictionary<string, KnownFor>
         {
@@ -219,7 +186,7 @@ namespace ColonyCouncil
 
         public static KnownFor EpithetFor(string defName) => defName != null && Epithets.TryGetValue(defName, out var k) ? k : KnownFor.None;
 
-        /// <summary>A year in office, by the record the game keeps of its days (Council_DaysAsPhysician): what it shows the house is good at.</summary>
+        /// <summary>A year in office, by the record the game keeps of its days (Council_DaysAsPhysician): what it shows the colonist is good at.</summary>
         public static readonly Dictionary<string, KnownFor> Offices = new Dictionary<string, KnownFor>
         {
             ["Council_DaysAsPhysician"] = KnownFor.Healers, ["Council_DaysAsMarshal"] = KnownFor.Fighters
@@ -231,32 +198,12 @@ namespace ColonyCouncil
         /// <summary>The Empire's title as renown points (read, never given): a fiftieth of its seniority, at most twelve (a count's).</summary>
         public static float TitlePoints(int seniority) => Clamp(seniority / 50f, 0f, 12f);
 
-        /// <summary>A notable who thinks this well of one of a house's people (their own regard of them) carries the house's name to their town.</summary>
+        /// <summary>A notable who thinks this well of one of the colony's people (their own regard of them) carries the colony's name to their town.</summary>
         public const float KnownToRegard = 20f;
-
-        /// <summary>What their head is best at, by a skill's name, as what their house is known for (Social is the trader's gift here, Cooking the host's).</summary>
-        public static KnownFor SkillFor(string skill)
-        {
-            switch (skill)
-            {
-                case "Shooting":
-                case "Melee": return KnownFor.Fighters;
-                case "Medicine": return KnownFor.Healers;
-                case "Cooking": return KnownFor.Hosts;
-                case "Social": return KnownFor.Traders;
-                case "Crafting":
-                case "Construction":
-                case "Artistic": return KnownFor.Makers;
-                default: return KnownFor.None;
-            }
-        }
-
-        /// <summary>A town's fortune (RegionMath's prosperity, 0 to 100) as their house's: thriving at 70 and up, struggling under 20.</summary>
-        public static string FortuneSource(int prosperity) => prosperity >= 70 ? "thriving" : prosperity >= 0 && prosperity < 20 ? "struggling" : null;
 
         // ================= Reading it =================
 
-        /// <summary>One part of a house's renown: its source, how old it is (days; 0 for one held now), how many times, and what it shows (None: the source's own).</summary>
+        /// <summary>One part of a renown: its source, how old it is (days; 0 for one held now), how many times, and what it shows (None: the source's own).</summary>
         public struct Hit
         {
             public string key;
@@ -273,7 +220,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A house's renown as read: the score, each kind's part, and each source's, largest first.</summary>
+        /// <summary>A renown as read: the score, each kind's part, and each source's, largest first.</summary>
         public sealed class Reading
         {
             public float score;
@@ -300,9 +247,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The renown of a house from its parts: each source's points times its count and (for a deed) its fade, summed and
-        /// held within its cap either way; the score is their sum, each kind's part the positive points it showed, and the
-        /// band and known-for follow (<paramref name="previous"/>: the band last told, for the hold).
+        /// A renown from its parts: each source's points times its count and (for a deed) its fade, summed and held within its
+        /// cap either way; the score is their sum, each kind's part the positive points it showed, and the band and known-for
+        /// follow (<paramref name="previous"/>: the band last told, for the hold).
         /// </summary>
         public static Reading Read(IEnumerable<Hit> hits, RenownBand previous = RenownBand.Unknown)
         {
@@ -336,7 +283,12 @@ namespace ColonyCouncil
                     for (int i = 0; i < KindCount; i++) r.byKind[i] += arr[i] * scale;
                 }
             }
-            r.parts.Sort((a, b) => Math.Abs(b.Value).CompareTo(Math.Abs(a.Value)));
+            // Largest first; a tie by the source's name, so the order (and a colonist's own name) is the same each time.
+            r.parts.Sort((a, b) =>
+            {
+                int c = Math.Abs(b.Value).CompareTo(Math.Abs(a.Value));
+                return c != 0 ? c : string.CompareOrdinal(a.Key, b.Key);
+            });
             r.band = Band(r.score, previous);
             r.known = KnownForOf(r.byKind);
             return r;
@@ -374,11 +326,16 @@ namespace ColonyCouncil
             return b;
         }
 
-        /// <summary>The band moved from the one last told: up or down, to be told and written (dip:renown).</summary>
+        /// <summary>The colony's band as last told, from its saved number: none read yet (<see cref="NotRead"/>) reads as not yet known.</summary>
+        public static RenownBand Told(int saved) => saved == NotRead || saved < (int)RenownBand.Infamous || saved > (int)RenownBand.Peoples ? RenownBand.Unknown : (RenownBand)saved;
+
+        /// <summary>The band moved from the one last told: up or down, to be told and written (dip:renown). Never on the first look (<see cref="NotRead"/>): an older save's name or a new game's is set quietly.</summary>
         public static bool Moved(RenownBand told, RenownBand now) => told != now;
 
+        public static bool MovedFrom(int saved, RenownBand now) => saved != NotRead && Moved(Told(saved), now);
+
         /// <summary>
-        /// The word one of the house says on the map as its band moves (the moment of Rimfolk_Lines_Renown.xml), or null:
+        /// The word one of the colony says on the map as its band moves (the moment of Rimfolk_Lines_Renown.xml), or null:
         /// renownup as its name carries further (its words say strangers know it), renowndown as it fades from the talk
         /// (its words say nobody out there speaks of it); nothing for a name gone bad or mending, nor for one that is still
         /// known, only less widely, where those words would not be true.
@@ -391,21 +348,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The bubble's tag for the band a name fell from (the round d text pass): one told across the region or wider was
-        /// sung in the halls, in the papers, told at every fire, so renowndown's words may say so; one known only in a town
-        /// nearby was talked of there and no further. Null otherwise. The bubble's own house tags read the band it has now.
+        /// The bubble's tag for the band a name fell from: one told across the region or wider was sung in the halls, in the
+        /// papers, told at every fire, so renowndown's words may say so; one known only in a town nearby was talked of there
+        /// and no further. Null otherwise. The bubble's own tags read the band it has now.
         /// </summary>
         public static string BubbleTag(RenownBand was, RenownBand now) => now < was && was >= RenownBand.Region ? WasRenownedTag : null;
 
         /// <summary>A renowndown bubble's tag: the name fell from the region's band or wider.</summary>
-        public const string WasRenownedTag = "house:wasrenowned";
+        public const string WasRenownedTag = "colony:wasrenowned";
 
         // ================= Known for =================
 
-        /// <summary>A kind is what a house is known for when it has this many points or more, and this share of what all kinds showed.</summary>
+        /// <summary>A kind is what the colony (or a colonist) is known for when it has this many points or more, and this share of what all kinds showed.</summary>
         public const float KnownAt = 6f, KnownShare = 0.3f;
 
-        /// <summary>The kind with the most of a house's renown behind it (the first on a tie), when it is enough; else none.</summary>
+        /// <summary>The kind with the most of a renown behind it (the first on a tie), when it is enough; else none.</summary>
         public static KnownFor KnownForOf(float[] byKind)
         {
             if (byKind == null) return KnownFor.None;
@@ -424,24 +381,53 @@ namespace ColonyCouncil
             return at > 0 && best >= KnownAt && best >= KnownShare * all ? (KnownFor)at : KnownFor.None;
         }
 
+        // ================= A colonist's own name =================
+
+        /// <summary>
+        /// The part of a colonist's own renown they are known by: the largest of their good deeds when their name is known
+        /// somewhere (a town nearby or wider), the largest of their wrongs when it is known for the wrong things; null while
+        /// nobody outside speaks of them. The colony's own deeds are no one colonist's.
+        /// </summary>
+        public static string KnownAs(Reading r)
+        {
+            if (r == null) return null;
+            bool bad = r.band == RenownBand.Infamous;
+            if (!bad && r.band < RenownBand.Town) return null;
+            foreach (var p in r.parts)
+                if (bad ? p.Value < 0f : p.Value > 0f)
+                    return p.Key;
+            return null;
+        }
+
+        /// <summary>The parts said of a colonist with the people they were done with or for (a mark's, a deed's); the rest (the colony's names, an office, a title, a notable's regard) name no people.</summary>
+        public static bool NamesPeople(string part) => part != null && part != "epithet" && part != "office" && part != "speaker" && part != "title" && part != "regard";
+
+        /// <summary>
+        /// Whether the people of the one spoken to know a colonist's own name: one told across the region or wider is known to
+        /// every people; one known in a town nearby to the people their deed was done with or for, and, for a part that names
+        /// no people (the colony's name for them, an office), to the colony's neighbours.
+        /// </summary>
+        public static bool TheyKnow(RenownBand band, bool theirPeopleInIt, bool namesPeople) =>
+            band >= RenownBand.Region || band == RenownBand.Town && (theirPeopleInIt || !namesPeople);
+
         // ================= What it does =================
 
-        /// <summary>A notable thinks this much better of one of a renowned house's people (up to 15, at 60), or worse of an infamous one's (down to -10).</summary>
+        /// <summary>A notable thinks this much better of the colony's people for its renown (up to 15, at 60), or worse for an infamous name (down to -10).</summary>
         public static float RegardBonus(float score) => score >= 0f ? Math.Min(15f, score / 4f) : Math.Max(-10f, score / 3f);
 
-        /// <summary>A good word put in for one of a renowned house's people counts up to half again (at 60).</summary>
+        /// <summary>A good word put in for one of a renowned colony counts up to half again (at 60).</summary>
         public static float GoodWordFactor(float score) => 1f + Clamp(score / 120f, 0f, 0.5f);
 
-        /// <summary>A match with one of a renowned house's people is offered and accepted up to twice as readily (at 60).</summary>
+        /// <summary>A match with one of a renowned colony is offered and accepted up to twice as readily (at 60).</summary>
         public static float MatchFactor(float score) => 1f + Clamp(score / 60f, 0f, 1f);
 
         /// <summary>The chance of a match taken up by this factor, never certain.</summary>
         public static float MatchChance(float chance, float factor) => Clamp(chance * Math.Max(1f, factor), 0f, 0.95f);
 
         /// <summary>
-        /// The events the world sends a colony with a house known for something: challengers to fighters, the sick and the
-        /// hurt to healers, guests to hosts, a caravan's room to traders, someone who remembers its work to makers, pilgrims
-        /// to the faithful (the events' defNames).
+        /// The events the world sends a colony known for something: challengers to fighters, the sick and the hurt to healers,
+        /// guests to hosts, a caravan's room to traders, someone who remembers its work to makers, pilgrims to the faithful
+        /// (the events' defNames).
         /// </summary>
         public static readonly Dictionary<KnownFor, string[]> Events = new Dictionary<KnownFor, string[]>
         {
@@ -453,32 +439,46 @@ namespace ColonyCouncil
             [KnownFor.Faithful] = new[] { "Council_Evt_Pilgrims", "Rimfolk_Evt_RelicPilgrims" }
         };
 
-        /// <summary>How much likelier such an event is, by how far the house's name carries: a quarter in a town, half in the region, three quarters among the peoples.</summary>
+        /// <summary>How much likelier such an event is, by how far the colony's name carries: a quarter in a town, half in the region, three quarters among the peoples.</summary>
         public static float BandFactor(RenownBand b) => b >= RenownBand.Town ? 1f + 0.25f * (int)b : 1f;
 
-        /// <summary>An event's factor at a colony whose houses are known for these things this far (the best of them; 1 for an event none draws).</summary>
-        public static float EventFactor(string defName, IEnumerable<KeyValuePair<KnownFor, RenownBand>> houses)
+        /// <summary>An event's factor for names known for these things this far (the best of them; 1 for an event none draws).</summary>
+        public static float EventFactor(string defName, IEnumerable<KeyValuePair<KnownFor, RenownBand>> names)
         {
             float f = 1f;
-            if (defName == null || houses == null) return f;
-            foreach (var h in houses)
+            if (defName == null || names == null) return f;
+            foreach (var h in names)
                 if (h.Key != KnownFor.None && Events.TryGetValue(h.Key, out var evs) && Array.IndexOf(evs, defName) >= 0)
                     f = Math.Max(f, BandFactor(h.Value));
             return f;
         }
 
-        /// <summary>Guests asked to a feast accept a tenth more readily for each band of a house known for hosting (to three tenths).</summary>
+        /// <summary>
+        /// One of the colony known by name for something draws its events a little, whatever the colony's own name: a quarter
+        /// more at most (a town's band), the best of the colony's factor and theirs counting, never both.
+        /// </summary>
+        public const RenownBand OwnEventBand = RenownBand.Town;
+
+        public static float OwnFactor(string defName, IEnumerable<KnownFor> named)
+        {
+            if (defName == null || named == null) return 1f;
+            var list = new List<KeyValuePair<KnownFor, RenownBand>>();
+            foreach (var k in named) list.Add(new KeyValuePair<KnownFor, RenownBand>(k, OwnEventBand));
+            return EventFactor(defName, list);
+        }
+
+        /// <summary>Guests asked to a feast accept a tenth more readily for each band of a colony known for hosting (to three tenths).</summary>
         public static float GuestFactor(RenownBand b) => b >= RenownBand.Town ? 1f + 0.1f * (int)b : 1f;
 
-        /// <summary>The travelling champion picks a fighter of a house known for fighters (Shooting or Melee) when one is among the colony's best.</summary>
+        /// <summary>The travelling champion picks a colonist known by name for fighting (Shooting or Melee) when one is among the colony's best.</summary>
         public static bool ChallengesFighter(KnownFor k, RenownBand b) => k == KnownFor.Fighters && b >= RenownBand.Town;
 
-        /// <summary>How often the champion's challenge goes to that house's fighter, when there is one.</summary>
+        /// <summary>How often the champion's challenge goes to that colonist, when there is one.</summary>
         public const float ChallengeShare = 0.6f;
 
         // ================= Words =================
 
-        /// <summary>What a house is known for, in its own age's words ("good swords"): CC_Renown_For_Fighters_Medieval.</summary>
+        /// <summary>What the colony is known for, in its own age's words ("good swords"): CC_Renown_For_Fighters_Medieval.</summary>
         public static string ForKey(KnownFor k, WorldAge age) => "CC_Renown_For_" + k + "_" + age;
 
         /// <summary>
@@ -491,49 +491,65 @@ namespace ColonyCouncil
         /// <summary>The Empire's row of the bands' words: the court's ways (it keeps its own titles and honor).</summary>
         public const string EmpireWays = "Empire";
 
+        /// <summary>A colonist's own name by the part they are known by ("the one who won the wrestling at the feast with the Lenlia"): CC_Renown_KnownAs_contest; _Any where no people is named.</summary>
+        public static string KnownAsWords(string part, bool withPeople) => "CC_Renown_KnownAs_" + part + (withPeople || !NamesPeople(part) ? "" : "_Any");
+
         /// <summary>The kinds with words of their own (None has none).</summary>
         public static readonly KnownFor[] Kinds = { KnownFor.Fighters, KnownFor.Healers, KnownFor.Hosts, KnownFor.Traders, KnownFor.Makers, KnownFor.Faithful };
 
         /// <summary>The bands with words of their own.</summary>
         public static readonly RenownBand[] Bands = { RenownBand.Infamous, RenownBand.Town, RenownBand.Region, RenownBand.Peoples };
 
-        /// <summary>A kind's code in tags (house:knownfor:healers).</summary>
+        /// <summary>A kind's code in tags (colony:knownfor:healers).</summary>
         public static string Code(KnownFor k) => k.ToString().ToLowerInvariant();
 
         // ================= The facts =================
 
         /// <summary>
-        /// Talk and letter tags (Diplomacy/FactsRenown.cs). Of the colonist speaking (or writing): one of a house of the colony
-        /// (house:ours, {HOUSE}), its name known at least in a town (house:known), in the region or wider (house:renowned),
-        /// among the peoples in reach (house:wide), known for the wrong things (house:infamous), known for something
-        /// (house:knownfor:KIND, {KNOWNFOR} in the house's own age's words), how far it is known by the ways of the one
-        /// spoken to ({RENOWN}). Of the one spoken to: one of a house the colony knows (them:house, {THEIRHOUSE}), renowned
-        /// (them:house:renowned), holding a grudge against the colony or the speaker's house (them:house:feud).
+        /// Talk, letter and bubble tags (Diplomacy/FactsRenown.cs, Outsiders.Line). The colony's name known at least in a town
+        /// nearby (colony:known), across the region or wider (colony:renowned), among every people in reach (colony:wide), for
+        /// the wrong things (colony:infamous), and known for something (colony:knownfor:KIND; {KNOWNFOR} in the colony's own
+        /// age's words); how far, in the ways of the one spoken to ({RENOWN}). The colonist speaking known by their own name to
+        /// the people of the one spoken to (us:knownas, us:knownas:KIND; {KNOWNAS} "the one who broke the raiders' camp").
+        /// The houses' tags of release 2d.1 (house:..., them:house...) went with the houses (5 November 2026): nothing sets them.
         /// </summary>
-        public const string OursTag = "house:ours", KnownTag = "house:known", RenownedTag = "house:renowned", WideTag = "house:wide", InfamousTag = "house:infamous",
-            ForPrefix = "house:knownfor:", TheirsTag = "them:house", TheirsRenownedTag = "them:house:renowned", FeudTag = "them:house:feud";
+        public const string KnownTag = "colony:known", RenownedTag = "colony:renowned", WideTag = "colony:wide", InfamousTag = "colony:infamous",
+            ForPrefix = "colony:knownfor:", KnownAsTag = "us:knownas", KnownAsPrefix = "us:knownas:";
 
-        public const string HouseKey = "HOUSE", KnownForKey = "KNOWNFOR", RenownKey = "RENOWN", TheirHouseKey = "THEIRHOUSE";
+        public const string KnownForKey = "KNOWNFOR", RenownKey = "RENOWN", KnownAsKey = "KNOWNAS";
 
         public static string ForTag(KnownFor k) => k == KnownFor.None ? null : ForPrefix + Code(k);
 
+        public static string KnownAsTagOf(KnownFor k) => k == KnownFor.None ? null : KnownAsPrefix + Code(k);
+
         public static string[] Tags()
         {
-            var list = new List<string> { OursTag, KnownTag, RenownedTag, WideTag, InfamousTag, TheirsTag, TheirsRenownedTag, FeudTag };
+            var list = new List<string> { KnownTag, RenownedTag, WideTag, InfamousTag, KnownAsTag };
             foreach (var k in Kinds) list.Add(ForTag(k));
+            foreach (var k in Kinds) list.Add(KnownAsTagOf(k));
             return list.ToArray();
         }
 
-        /// <summary>The tags of a colonist's house as it stands (null for none of a house).</summary>
-        public static List<string> OurTags(RenownBand b, KnownFor k)
+        /// <summary>The colony's tags as its name stands (none while it is not yet known and not infamous).</summary>
+        public static List<string> ColonyTags(RenownBand b, KnownFor k)
         {
-            var list = new List<string> { OursTag };
+            var list = new List<string>();
             if (b >= RenownBand.Town) list.Add(KnownTag);
             if (b >= RenownBand.Region) list.Add(RenownedTag);
             if (b >= RenownBand.Peoples) list.Add(WideTag);
             if (b == RenownBand.Infamous) list.Add(InfamousTag);
             // A known-for is said only of a name known somewhere.
             if (k != KnownFor.None && b >= RenownBand.Town) list.Add(ForTag(k));
+            return list;
+        }
+
+        /// <summary>A colonist's own tags in talk: known by a good name to the people of the one spoken to, and for what (none for a bad name: the peoples' memory has its own words for that, you:foe).</summary>
+        public static List<string> OwnTags(Reading r, bool theyKnow)
+        {
+            var list = new List<string>();
+            if (r == null || !theyKnow || r.band < RenownBand.Town || KnownAs(r) == null) return list;
+            list.Add(KnownAsTag);
+            if (r.known != KnownFor.None) list.Add(KnownAsTagOf(r.known));
             return list;
         }
 

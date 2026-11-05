@@ -232,7 +232,7 @@
   <CC_Dip_Tie_Fealty>Fealty owed by {FROM} to {TO}.</CC_Dip_Tie_Fealty>
   <CC_Dip_Tie_Grudge>A grudge held by {FROM} against {TO}.</CC_Dip_Tie_Grudge>
 
-  <!-- Who is here, who is away, the houses: sections of the region window's Here and away -->
+  <!-- Who is here, who is away, the peoples the colony is bound to by marriage: sections of the region window's Here and away -->
   <CC_Dip_HouseHeader>Household</CC_Dip_HouseHeader>
   <CC_Dip_HouseSub>Who is here from outside, who of the colony's people is away, and the colony's families known by name.</CC_Dip_HouseSub>
   <CC_Dip_Here_Title>Here from outside</CC_Dip_Here_Title>
@@ -248,9 +248,6 @@
   <CC_Dip_Away_Caravan>{PAWN}, with {CARAVAN}</CC_Dip_Away_Caravan>
   <CC_Dip_Away_Map>{PAWN}, at {PLACE}</CC_Dip_Away_Map>
   <CC_Dip_Away_Held>{PAWN}, held by {PEOPLE}</CC_Dip_Away_Held>
-  <CC_Dip_Houses_Title>The colony's houses</CC_Dip_Houses_Title>
-  <CC_Dip_Houses_None>No family of the colony is known by name yet: two or more of its people who are family and share a last name.</CC_Dip_Houses_None>
-  <CC_Dip_House>The {HOUSE}: {MEMBERS}</CC_Dip_House>
 
   <!-- This week -->
   <CC_Dip_Week>{PEOPLE} call in a debt: {NEED}</CC_Dip_Week>

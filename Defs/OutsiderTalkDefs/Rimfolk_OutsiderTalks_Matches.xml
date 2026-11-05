@@ -4,12 +4,15 @@
   <!-- Marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs; the facts in Diplomacy/FactsMatch.cs): a marriage
        between the colony and their people (tie:marriage), one of the colony's living among them (tie:marriage:ours, the
        colony's own as {SPOUSEOF}) or one of theirs at the colony (tie:marriage:theirs, {INLAW}), the colonist speaking one
-       of the couple (tie:marriage:you); held through a child after a death (match:child); a match agreed and the wedding
+       of the couple (tie:marriage:you); a match agreed and the wedding
        to come (match:agreed); a wedding lately (town:lately:dip:wedding); a spouse from among them wronged by the colony
        (match:wronged). Kin of the spouse at the colony are "kin" (kin:you: the colonist is that family). By their ways: a
        tribe's bride gifts and shared fire, vows in the hall and a dowry in the middle ages, a wedding and papers signed
        among outlanders, a contract witnessed and filed among spacers, the Empire's titles. The format is described at the
-       top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+       top of Rimfolk_OutsiderTalks_Greetings.xml. Since the player's decision of 5 November 2026 (the colony is the family,
+       never a dynasty) a marriage is a bond between the colony and their people made through one marriage: a child keeps
+       no alliance (match:child is set no more, and its pieces went), and the pieces that call their people the colony's
+       family, a grudge handed to their heir, or their town's gift kin's work are retired (OutsiderTalkMath.Retired). -->
 
   <!-- ================= A marriage between the two peoples ================= -->
 
@@ -215,31 +218,6 @@
   </ColonyCouncil.OutsiderTalkDef>
 
   <!-- ================= Held through a child ================= -->
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_Match_Child</defName>
-    <topic>marriage</topic>
-    <when>match:child</when>
-    <weight>1.5</weight>
-    <lines>
-      <li>[them] How is the child?</li>
-      <li>[us] Growing, and asking about your people.</li>
-      <li>[them] Then we're still family, whatever else is gone.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_Match_ChildWays</defName>
-    <topic>marriage</topic>
-    <when>match:child,known</when>
-    <lines>
-      <li>[them] The child should learn our ways too, when they're older.</li>
-      <li>[them,their:tribal] Our songs, our hunting, the names of the elders.</li>
-      <li>[them,their:spacer] Our language, at least, and how we keep records.</li>
-      <li>[them] Our songs, at least, and where the family comes from.</li>
-      <li>[us] We'll see to it.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
 
   <!-- ================= A match agreed, the wedding to come ================= -->
 

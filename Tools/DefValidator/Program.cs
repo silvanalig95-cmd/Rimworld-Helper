@@ -309,7 +309,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "Almanac" },
     ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways", "Moods", "Overview", "Defenses",
-        "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory", "Rooms", "Table", "Houses" },
+        "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory", "Rooms", "Table", "Renown" },
     ["CC_Win_What_"] = new[] { "Council", "World", "Defense", "Planning" },
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "World", "Dreams", "Journals", "Losses" },
     // The council and planning windows' views and modes (UI/MainTabWindow_Council.cs, MainTabWindow_Planning.cs, Pages.cs).
@@ -491,8 +491,9 @@ wishPh.UnionWith(new[]
     "WORD",
     // Wards and hostages (Diplomacy/FactsWards.cs).
     "WARD", "HOSTAGE", "GUARDIAN",
-    // House renown (Diplomacy/FactsRenown.cs): the speaker's house, what it is known for, how far, the house of the one spoken to.
-    "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
+    // The colony's renown (Diplomacy/FactsRenown.cs): what it is known for, how far, and the speaker's own name for their
+    // deeds. The houses' HOUSE and THEIRHOUSE went with them (5 November 2026): nothing fills them.
+    "KNOWNFOR", "RENOWN", "KNOWNAS",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

@@ -260,8 +260,8 @@ public static class OutsiderTalkTests
         .Concat(WardMath.Tags)
         // Fealty and vassals (Diplomacy/FactsFealty.cs).
         .Concat(FealtyMath.Tags)
-        // House renown (Diplomacy/FactsRenown.cs).
-        .Concat(RenownMath.Tags())
+        // The colony's renown (Diplomacy/FactsRenown.cs).
+        .Concat(RenownMath.Tags()).Concat(new[] { RenownMath.WasRenownedTag })
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -291,8 +291,8 @@ public static class OutsiderTalkTests
         "INLAW", "SPOUSEOF",
         // Wards and hostages (Diplomacy/FactsWards.cs).
         "WARD", "HOSTAGE", "GUARDIAN",
-        // House renown (Diplomacy/FactsRenown.cs).
-        "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
+        // The colony's renown (Diplomacy/FactsRenown.cs); the houses' HOUSE and THEIRHOUSE went with them (5 November 2026).
+        "KNOWNFOR", "RENOWN", "KNOWNAS",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",
@@ -367,7 +367,9 @@ public static class OutsiderTalkTests
             if (holes.Contains("YOURDEEDNAME")) C(when.Contains("byyou"), $"{name}: {{YOURDEEDNAME}} with byyou");
             // A piece can be said: in a moment that has its conditions (and, for a turn written only for particular
             // moments, the first of them) and a value for every placeholder, it fits.
-            C(Sayable(p), $"{name} can be said when its conditions hold");
+            // A retired piece (OutsiderTalkMath.Retired: its words untrue since the colony became the family, 5 November
+            // 2026) is never said, by design.
+            C(p.retired ? !Sayable(p) && OutsiderTalkMath.Retired.Contains(name) : Sayable(p), p.retired ? $"{name} is retired, never said" : $"{name} can be said when its conditions hold");
         }
 
         // The library as a whole.

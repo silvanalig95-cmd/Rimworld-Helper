@@ -190,7 +190,7 @@ namespace ColonyCouncil
                 case "Moods": MoodsPanel.Draw(content); break;
                 case "Bonds": SocialPanel.Draw(content, comp); break;
                 case "Faiths": FaithsPanel.Draw(content, comp); break;
-                case "Houses": HousesPanel.Draw(content, comp); break;
+                case "Renown": RenownPage.Draw(content, comp); break;
                 case "Decrees": DecreePanel.Draw(content, comp); break;
                 case "Ambition": AmbitionPanel.Draw(content, comp, map); break;
                 case "Ways": WaysPanel.Draw(content, comp); break;
@@ -304,7 +304,7 @@ namespace ColonyCouncil
                 case "Moods": return Icons.Moods;
                 case "Bonds": return Icons.Bonds;
                 case "Faiths": return Icons.CatIdeology ?? Icons.People;
-                case "Houses": return Icons.People;
+                case "Renown": return Icons.People;
                 case "Wishes": return Icons.Wishes;
                 case "Decrees": return Icons.Decrees;
                 case "Ambition": return Icons.Ambition;

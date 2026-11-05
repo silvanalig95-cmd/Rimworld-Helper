@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.104.0</version>
+        <date>5 November 2026</date>
+        <title>The colony's name, not a house's</title>
+        <points>
+          <li>The colony is the family now: houses are gone, and the colony itself has a name among the peoples, how far it carries and what it is known for, built from everything its people do. People, then Renown, shows it where the Houses page was, and the regard it earns reaches every colonist.</li>
+          <li>Each colonist has a name of their own for their deeds, shown on their card ("known as the one who won the wrestling at the feast with the Lenlia") and spoken of by visitors whose people know it. A known fighter draws challengers, and one known for something draws its visitors a little more.</li>
+          <li>A marriage alliance is a bond between the colony and their people through one marriage: it ends when the spouse dies, with a grudge only if the colony was to blame, and the seasonal gift comes from their town. "In-laws" are simply their people.</li>
+          <li>A ward is a youth of their town, not of a notable's house, and grudges stay between peoples or against a named colonist, never handed down a family.</li>
+          <li>Visitors and letters speak of the colony and its people instead of houses, in 93 new conversation pieces and over a hundred new letter and spoken lines.</li>
+          <li>Old saves load quietly: houses are dropped, the colony's name is worked out from its history, and an alliance held through a child ends at the next day's look.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.103.0</version>
         <date>5 November 2026</date>
         <title>Banishment by the council</title>

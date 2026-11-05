@@ -44,7 +44,7 @@ public static class WardTests
         C(WardMath.SendChance(-1) == 0f && Math.Abs(WardMath.SendChance(0) - 0.3f) < 0.0001f && WardMath.SendChance(100) == 0.95f, "asked by letter: none below 0, three in ten at 0, never certain");
         C(!WardMath.SendsWhenAsked(true, 100, 0f) && WardMath.SendsWhenAsked(false, 30, 0.59f) && !WardMath.SendsWhenAsked(false, 30, 0.61f), "never by a people at war; by regard");
         C(WardMath.WardAge(true) == (9f, 12f) && WardMath.WardAge(false) == (14f, 19f), "a child of 9 to 12 where the game has children, else 14 to 19");
-        C(WardMath.CanBeParent(40f, 12f) && WardMath.CanBeParent(30f, 16f) && !WardMath.CanBeParent(28f, 16f), "their notable is their parent where the ages fit");
+        C(WardMath.CanBeParent(40f, 12f) && WardMath.CanBeParent(30f, 16f) && !WardMath.CanBeParent(28f, 16f), "a hostage is their notable's child where the ages fit (a ward is a youth of their town, nobody's child, since 5 November 2026)");
 
         // ---------------- The skill and the guardian ----------------
 
@@ -272,6 +272,8 @@ public static class WardTests
             C(names.Contains(m.Groups[1].Value), $"the def {m.Groups[1].Value} is in Rimfolk_Wards.xml");
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Wards.xml")).Root!.Elements()
             .Concat(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Wards_Variants.xml")).Root!.Elements())
+            // Their offer of a youth of their town (5 November 2026) is with the colony's bonds' words.
+            .Concat(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Renown_Colony.xml")).Root!.Elements().Where(x => x.Name.LocalName.StartsWith("CC_Ward_")))
             .ToDictionary(x => x.Name.LocalName, x => x.Value);
         void Keys(string prefix, IEnumerable<string> suffixes)
         {
@@ -325,6 +327,17 @@ public static class WardTests
         string almanac = File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Diplomacy.xml"));
         foreach (var w in new[] { "Wards.", "The colony's own youth.", "Hostages.", "children are never hostages", "page in a titled household", "sworn by word", "Wards and hostages" })
             C(almanac.Contains(w), $"the Almanac's diplomacy page says \"{w}\"");
+        // The player's decision of 5 November 2026 (the colony is the family, never a dynasty): their ward is a youth of
+        // their town, never of a notable's house; the notable who sends them answers for the year.
+        string wardsCode = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Diplomacy", "Wards.cs"));
+        string makeYouth = Regex.Match(wardsCode, @"public static Pawn MakeYouth[\s\S]{0,900}?\n        }").Value;
+        C(makeYouth.Length > 0 && !makeYouth.Contains("PawnRelationDefOf.Parent") && !makeYouth.Contains("NameTriple") && makeYouth.Contains("MakeYouth(Faction f, bool child)"),
+            "their ward made as a youth of their town: nobody's child, a name of their own");
+        C(wardsCode.Contains("public static Notable Sender(") && !wardsCode.Contains("public static Notable Kin(") && wardsCode.Contains("\"CC_Ward_OfferTown\"") && wardsCode.Contains(".Named(\"TOWN\")"),
+            "the notable who sends the ward, and their offer naming the youth's town");
+        string wardKeyed = string.Concat(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").Select(File.ReadAllText));
+        C(!wardKeyed.Contains("<CC_Ward_Offer>") && Regex.Matches(wardKeyed, @"<CC_Ward_OfferTown(_\d)?>").Count >= 4 && !Regex.IsMatch(wardKeyed, @"<CC_Ward_OfferTown[^>]*>[^<]*house"),
+            "the offer in four wordings or more, a youth of their town, never of a house");
         return n;
     }
 }

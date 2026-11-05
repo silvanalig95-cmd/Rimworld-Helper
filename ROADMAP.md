@@ -332,11 +332,11 @@ titles and honour. Forms by age (tribal / medieval / industrial / spacer):
 | Favour owed | a debt of the hearth, a gift owed back | a debt of honour | an IOU, a favour on the books | a ledger entry, credit owed |
 | Pact, truce | a blood oath, gifts exchanged, a peace at the river | a treaty under seal | a signed agreement, a trade contract | an accord by comms, a registered treaty |
 | Feast, contest | a great hunt, a gift feast, wrestling and races | a feast, a hunt, a tournament | a fair, a shooting match, races, a banquet | a gala, an exhibition match, a sim tourney |
-| Marriage alliance | a match between clans | a match between houses | a match between families or firms | a partnership contract between lines |
+| Marriage alliance | a match between clans | a marriage pact between two peoples | a marriage between two settlements | a partnership contract between settlements |
 | Ward, hostage | fostering with the other clan | a ward at their hall, hostages for a pact | an apprentice or an exchange, a guarantor | an exchange posting, a guarantor |
 | Ransom | captives traded back | ransom by messenger | ransom by radio, an exchange at a crossing | a negotiated exchange by comms |
 | Fealty, vassals | tribute to a stronger clan, protection | fealty, tribute and levies | a protectorate, a company town, a union's dues | a charter, a protectorate, a corporate accord |
-| House renown | a clan's name and totem | a house and its arms | a family name, a family firm | a lineage, a name that carries |
+| Colony renown | told at the fires, a camp's name | sung in the halls | in the papers, talked of in the next town | carried on every channel, a name that carries |
 | Schemes | whispers at the fire, a stolen totem | intrigue at court | a smear in the papers, a bribe, sabotage | a data leak, a hack, a corporate plant |
 The talk, letters and news for each feature are written per age too, from the shared facts (stage 0).
 

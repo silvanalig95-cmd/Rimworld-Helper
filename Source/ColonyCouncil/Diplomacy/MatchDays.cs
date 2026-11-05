@@ -92,8 +92,8 @@ namespace ColonyCouncil
         // ================= Theirs comes to the colony =================
 
         /// <summary>
-        /// The wedding's guests (Feasts.Host): their notables of the town the match is with (the house's own first, never the one
-        /// to be married), up to two, coming on the day set, to wait at the gate, see the wedding and sit at the evening's feast.
+        /// The wedding's guests (Feasts.Host): their notables of the town the match is with (the one who spoke for it first, never the
+        /// one to be married), up to two, coming on the day set, to wait at the gate, see the wedding and sit at the evening's feast.
         /// None free to come: the one to be married walks in alone. A feast with guests already under way at the home: tried
         /// again each hour until the day.
         /// </summary>

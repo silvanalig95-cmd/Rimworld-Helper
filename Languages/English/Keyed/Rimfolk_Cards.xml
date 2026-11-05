@@ -24,10 +24,6 @@
   <CC_Card_Slave>a slave of the colony</CC_Card_Slave>
   <CC_Card_Gone>No longer in the world.</CC_Card_Gone>
   <CC_Card_Leader>their leader</CC_Card_Leader>
-  <CC_Card_HouseOf>a family of {TOWN}</CC_Card_HouseOf>
-  <CC_Card_FoundingHouseOf>a founding family of {TOWN}</CC_Card_FoundingHouseOf>
-  <CC_Card_HeadOfHouse>head of the family</CC_Card_HeadOfHouse>
-  <CC_Card_MembersLine>Others known by name: {MEMBERS}.</CC_Card_MembersLine>
   <CC_Card_TieBetween>from {FROM} to {TO}</CC_Card_TieBetween>
   <CC_Card_TieAbout>It concerns {WHO}.</CC_Card_TieAbout>
   <CC_Card_LetterTo>A letter of {PURPOSE} to {NAME}</CC_Card_LetterTo>
@@ -71,7 +67,6 @@
   <CC_Card_Head_Remembers>What they remember of the colony</CC_Card_Head_Remembers>
   <CC_Card_Head_TheyRemember>What they remember</CC_Card_Head_TheyRemember>
   <CC_Card_Head_Theirs>Their leader and their towns</CC_Card_Head_Theirs>
-  <CC_Card_Head_Members>The family</CC_Card_Head_Members>
   <CC_Card_Head_TookPart>Who took part</CC_Card_Head_TookPart>
   <CC_Card_Head_About>What it is about</CC_Card_Head_About>
   <CC_Card_Head_Founding>How it began</CC_Card_Head_Founding>

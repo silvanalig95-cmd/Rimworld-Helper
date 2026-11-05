@@ -5,7 +5,6 @@
        told every year or every ten days don't read the same each time. The same placeholders as the first of each. -->
 
   <!-- Their offer, their answers -->
-  <CC_Ward_Offer_3>{PEOPLE} write by {WHO}'s hand: a youth of {KIN}'s house is of an age to learn {SKILL}, and they would trust the colony with them for a year. They call it {RITE}; the colony would call it {WORD}.</CC_Ward_Offer_3>
   <CC_Ward_Ans_Yes_3>{PEOPLE} will send {WARD}. They want them to learn {SKILL} from the colony, {RITE} by their ways.</CC_Ward_Ans_Yes_3>
   <CC_Ward_Ans_No_3>{PEOPLE} say no. They will think about {WORD} again in a better year.</CC_Ward_Ans_No_3>
   <CC_Ward_Ans_SendYes_3>{PEOPLE} will welcome {PAWN} at {TOWN} for a year, {RITE} by their ways, and put them to {SKILL}.</CC_Ward_Ans_SendYes_3>

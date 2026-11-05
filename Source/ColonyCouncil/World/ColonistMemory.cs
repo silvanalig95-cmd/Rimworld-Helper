@@ -321,14 +321,24 @@ namespace ColonyCouncil
             return worst;
         }
 
-        /// <summary>Every mark any people keeps of one colonist (by their ref, living or gone): for their house's renown (Diplomacy/Renown.cs). Only reads.</summary>
-        public static List<ColonistMemoryMath.Mark> MarksOf(Ref person)
+        /// <summary>Every mark any people keeps of one colonist (by their ref, living or gone), with the people who keep it: for their own name (Diplomacy/Renown.cs). Only reads.</summary>
+        public static List<(Ref people, ColonistMemoryMath.Mark mark)> MarksOf(Ref person)
         {
-            var list = new List<ColonistMemoryMath.Mark>();
+            var list = new List<(Ref, ColonistMemoryMath.Mark)>();
             if (!On || person.kind != RefKind.Person) return list;
             foreach (var t in Index.Values)
                 if (t.to == person)
-                    list.AddRange(Marks(t));
+                    foreach (var m in Marks(t))
+                        list.Add((t.from, m));
+            return list;
+        }
+
+        /// <summary>Every mark the peoples keep of any of the colony's people, living or gone (only colonists are remembered by name here): for the colony's renown (Diplomacy/Renown.cs). Only reads.</summary>
+        public static List<ColonistMemoryMath.Mark> AllMarks()
+        {
+            var list = new List<ColonistMemoryMath.Mark>();
+            if (!On) return list;
+            foreach (var t in Index.Values) list.AddRange(Marks(t));
             return list;
         }
 
