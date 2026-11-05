@@ -72,7 +72,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Another question of the council's for this home still open in the letters.</summary>
-        private static bool CouncilBusy(Map home)
+        internal static bool CouncilBusy(Map home)
         {
             foreach (var l in Find.LetterStack.LettersListForReading)
                 if (l is ChoiceLetter_Dilemma d && !d.resolved && (d.ctx?.map == null || d.ctx.map == home || !Homes.IsHome(d.ctx.map)))
@@ -102,16 +102,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Renouncing asked of the council (the act on the tie's or the people's card): its question now, or a word that another is open first.</summary>
+        /// <summary>Renouncing asked of the council (the act on the tie's or the people's card, greyed while another question is open first): its question now.</summary>
         public static bool AskRenounce(Tie t)
         {
             var home = Fealty.HomeOf(t);
             if (Fealty.RenounceWhyNot(t) != null || home == null) return false;
-            if (CouncilBusy(home))
-            {
-                Messages.Message(FealtyWords.P("CC_Fealty_Why_CouncilBusy"), MessageTypeDefOf.RejectInput, false);
-                return false;
-            }
             renouncing = t;
             try
             {

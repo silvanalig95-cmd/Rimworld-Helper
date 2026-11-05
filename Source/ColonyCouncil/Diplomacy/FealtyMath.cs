@@ -330,14 +330,16 @@ namespace ColonyCouncil
         // ================= The facts =================
 
         /// <summary>
-        /// The talk's own tags beside the ties' (tie:fealty, :ours, :theirs, :due, {FEALTYTO}): the colony's levies called or
-        /// sent this season (fealty:levies), their band come to protect it this season (fealty:protected), tribute short
-        /// and owed (fealty:short); of a vassal, heavy tribute (vassal:heavy) and their levies called this season
+        /// The talk's own tags beside the ties' (tie:fealty, :ours, :theirs, :due, {FEALTYTO}, which a land grant's fealty
+        /// sets too): the colony's oath sworn to them (fealty:oath), its levies called or sent this season (fealty:levies),
+        /// their band come to protect it this season (fealty:protected), tribute short and owed (fealty:short); a town of
+        /// theirs the colony's own vassal (vassal:town), under heavy tribute (vassal:heavy), its levies called this season
         /// (vassal:levy).
         /// </summary>
-        public const string LeviesTag = "fealty:levies", ProtectedTag = "fealty:protected", ShortTag = "fealty:short", HeavyTag = "vassal:heavy", VassalLevyTag = "vassal:levy";
+        public const string OathTag = "fealty:oath", LeviesTag = "fealty:levies", ProtectedTag = "fealty:protected", ShortTag = "fealty:short", VassalTag = "vassal:town",
+            HeavyTag = "vassal:heavy", VassalLevyTag = "vassal:levy";
 
-        public static readonly string[] Tags = { LeviesTag, ProtectedTag, ShortTag, HeavyTag, VassalLevyTag };
+        public static readonly string[] Tags = { OathTag, LeviesTag, ProtectedTag, ShortTag, VassalTag, HeavyTag, VassalLevyTag };
 
         /// <summary>A season's worth of days: what "this season" means for the tags.</summary>
         public static bool ThisSeason(int at, int now) => at >= 0 && now - at < SeasonDays * DayTicks;

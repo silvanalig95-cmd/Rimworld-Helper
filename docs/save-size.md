@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 504; modelled: 504; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** after two, **3,077 KB** after five.
+Saved collections found: 505; modelled: 505; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,452 KB** after a year, **2,908 KB** after two, **3,078 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -40,7 +40,7 @@ Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** aft
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Outsiders/OutsiderBook.cs:pairs` | OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days | fixed | 60 | 60 | 60 | 19.3 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 211 | 211 | 211 | 18.5 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 213 | 213 | 213 | 18.7 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
@@ -90,7 +90,7 @@ Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 63 | 63 | 63 | 5.6 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 64 | 64 | 64 | 5.6 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
@@ -159,8 +159,8 @@ Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** aft
 | `Happenings/Happenings.cs:raids` | until they come | cap | 3 | 5 | 5 | 2.0 |
 | `Building/Automations.cs:actions` | the last actions to undo, AutomationMath.ActionsKept | fixed | 12 | 12 | 12 | 1.9 |
 | `Diplomacy/DiplomacyBook.cs:offers` | per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone | cap | 6 | 6 | 6 | 1.9 |
-| `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 21 | 21 | 21 | 1.9 |
+| `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Building/ShelfReserves.cs:reserves` | shelves with reserved slots, per map, while the shelf stands | while | 30 | 30 | 30 | 1.8 |
@@ -198,6 +198,7 @@ Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** aft
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
+| `Diplomacy/DiplomacyBook.cs:vassals` | per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone | cap | 1 | 2 | 3 | 1.2 |
 | `World/Region/FollowUps.cs:waiting` | follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows | cap | 1 | 1 | 3 | 1.2 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
 | `Building/BuildAhead.cs:defs` | per step: the blueprints taken out of a room's kept side, one strip at most | fixed | 30 | 30 | 30 | 1.2 |

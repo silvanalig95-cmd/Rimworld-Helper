@@ -9,9 +9,9 @@ namespace ColonyCouncil
     public static partial class Facts
     {
         /// <summary>
-        /// With the scene's people: the colony sworn to them and its levies called or sent this season (fealty:levies),
-        /// their band come to protect it this season (fealty:protected), tribute owed (fealty:short); a vassal of theirs
-        /// under heavy tribute (vassal:heavy), its levies called this season (vassal:levy). Only reads.
+        /// With the scene's people: the colony sworn to them (fealty:oath), its levies called or sent this season (fealty:levies),
+        /// their band come to protect it this season (fealty:protected), tribute owed (fealty:short); a town of theirs
+        /// the colony's own vassal (vassal:town), under heavy tribute (vassal:heavy), its levies called this season (vassal:levy). Only reads.
         /// </summary>
         private static void FealtyFacts(FactScene s, FactSet f)
         {
@@ -20,6 +20,7 @@ namespace ColonyCouncil
             var t = Fealty.With(s.people);
             if (t != null)
             {
+                f.Tag(FealtyMath.OathTag, t.since >= 0 && now - t.since < 10 * FealtyMath.DayTicks ? 2f : 1f);
                 bool levies = PactMath.ParseArms(t.terms.goods, out _, out _);
                 if (!levies)
                     foreach (var e in History.Of(Refs.Of(s.people), new[] { DiplomacyMath.Levy }, now - (int)(FealtyMath.SeasonDays * FealtyMath.DayTicks)))
@@ -34,6 +35,7 @@ namespace ColonyCouncil
             foreach (var (_, v) in Vassals.All())
             {
                 if (v.people != s.people) continue;
+                f.Tag(FealtyMath.VassalTag);
                 if (v.level == TributeLevel.Heavy) f.Tag(FealtyMath.HeavyTag, 1.5f);
                 if (FealtyMath.ThisSeason(v.leviesAt, now)) f.Tag(FealtyMath.VassalLevyTag, 1.5f);
             }

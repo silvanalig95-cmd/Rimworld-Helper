@@ -79,7 +79,8 @@ namespace ColonyCouncil
 
         public static bool Owed(Tie t) => t != null && t.state == Tie.State.CalledIn && t.terms.count > 0;
 
-        public static bool FailedSeason(Tie t) => t != null && FealtyMath.Failed(t.terms.key);
+        /// <summary>They failed to protect the colony within the last season: it may leave without blame (until their band comes again, or the season is out).</summary>
+        public static bool FailedSeason(Tie t) => t != null && FealtyMath.Failed(t.terms.key) && FealtyMath.ThisSeason(Mathf.RoundToInt(t.terms.days * FealtyMath.DayTicks), Now);
 
         /// <summary>Their towns within this home's reach.</summary>
         public static int TownsInReach(Faction f, Map home)
@@ -384,6 +385,7 @@ namespace ColonyCouncil
                 t.terms.goods = PactMath.BandCode(day + hours / 24f);
                 t.terms.about = Refs.Of(enemy);
                 t.terms.days = day;
+                t.terms.key = FealtyMath.LiegeKey;
                 WorldLedger.Touch(t);
                 // apart: their word that their band is on its way, told in a message; the band walks in later, on the map.
                 Tell.Message(NewsKind.World, Importance.Important, home, FealtyWords.T("CC_Fealty_Protect_Coming", FealtyWords.People(f).Named("PEOPLE"),
@@ -653,6 +655,7 @@ namespace ColonyCouncil
             if (t == null || !t.Live || t.origin != Origin) return FealtyWords.P("CC_Fealty_Why_Gone");
             if (CallUnderWay(t)) return FealtyWords.P("CC_Fealty_Why_CallUnderWay");
             if (FealtyObjection.RenounceOpen(t.id)) return FealtyWords.P("CC_Fealty_Why_Asked");
+            if (FealtyObjection.CouncilBusy(HomeOf(t))) return FealtyWords.P("CC_Fealty_Why_CouncilBusy");
             return null;
         }
 

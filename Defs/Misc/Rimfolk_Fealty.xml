@@ -4,7 +4,7 @@
   <!-- Fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, FealtyOath.cs, Vassals.cs): their letters, which wait
        for the colony's answer, and the job that plays the oath out at the gate. -->
 
-  <!-- A people at peace offers a struggling colony its protection for its oath: accept (their lord comes to the gate), or decline. -->
+  <!-- A people at peace offers a struggling colony its protection for its oath: accept (one of theirs comes to the gate), or decline. -->
   <LetterDef>
     <defName>Rimfolk_FealtyOffer</defName>
     <letterClass>ColonyCouncil.ChoiceLetter_FealtyOffer</letterClass>
@@ -26,11 +26,11 @@
     <bounce>true</bounce>
   </LetterDef>
 
-  <!-- The colony's speaker walks out to their lord at the gate, and they swear the oath face to face. -->
+  <!-- The colony's speaker walks out to the one of theirs at the gate, and they swear the oath face to face. -->
   <JobDef>
     <defName>Rimfolk_FealtyOath</defName>
     <driverClass>ColonyCouncil.JobDriver_FealtyOath</driverClass>
-    <reportString>walking out to their lord.</reportString>
+    <reportString>walking out to swear the oath.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>

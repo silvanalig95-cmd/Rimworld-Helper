@@ -107,6 +107,9 @@ C = {
     "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
     # The council's tasks at a home (Diplomacy/TaskBook.cs, release 2c.1): one record a seat, kept a season after it ends.
     "TasksPerHome": const("Diplomacy/TaskMath.cs", "MaxPerHome", 13),
+    # The colony's own vassals at a home (Diplomacy/Vassals.cs, release 2c.2): its hamlet once sworn and the towns under its
+    # protection (FealtyMath.MaxProtected, two, and the hamlet).
+    "VassalsPerHome": const("Diplomacy/FealtyMath.cs", "MaxProtected", 2) + 1,
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -591,6 +594,10 @@ MODEL = {
     # counts; a new one every few days at most.
     "Diplomacy/DiplomacyBook.cs:tasks": ("cap", (C["TasksPerHome"], 0.2), 700,
                                          "per home: the council's tasks, one record a seat, TaskMath.MaxPerHome at most, each let go a season after it ends"),
+    # Its own vassals (Diplomacy/Vassals.cs): the hamlet once sworn and up to two towns under its protection, each about
+    # fifteen values and a reference; a protected town asks once a year at most, and one let go is dropped.
+    "Diplomacy/DiplomacyBook.cs:vassals": ("cap", (C["VassalsPerHome"], 0.02), 420,
+                                           "per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

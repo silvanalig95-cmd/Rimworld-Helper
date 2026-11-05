@@ -16,14 +16,14 @@
   <!-- The settings -->
   <CC_Settings_DiplomacyFealty>Fealty and vassals</CC_Settings_DiplomacyFealty>
   <CC_SetNote_DiplomacyFealty>The colony may swear fealty to a stronger neighbor, and keep vassals of its own.</CC_SetNote_DiplomacyFealty>
-  <CC_Settings_DiplomacyFealty_Tip>The colony may swear fealty to a people at peace with goodwill 40 or more and two towns or more within reach (never the Empire, whose titles and permits are its own), by a letter to their head, or when they offer their protection to a colony raided twice in a season with five fighters or fewer. Agreed, their lord comes to the gate, anyone who objects (one sworn to vengeance on them, the proud, a devout colonist of another faith) has their say before the council, and the colony's speaker swears by their rite. Each season their collector comes to the gate for the tribute, 150 to 600 silver's worth by the colony's wealth; short, the rest is owed, and still owed at the next season's day the oath breaks (20 goodwill). When their town within reach is attacked they call the colony's levies, two fighters by caravan within five days (refused, 10 goodwill). When a home is raided their band comes without a call, at most once a season, nine times in ten; a season in which they failed lets the colony leave without blame. Renouncing is the council's question and costs their grudge, 30 goodwill. Vassals of the colony's own: the hamlet once sworn, and up to two struggling towns (under 20 prosperity for 30 days, at war elsewhere) that ask for its protection, at most one ask a year. At harvest their carter brings produce, light, usual or heavy as the council sets it (heavy costs 3 goodwill each season); the quartermaster collects a season's dues; the council may call their levies when a home is raided (a third of the threat, once a season), and their dead weigh on their head's regard; they ask for help, for the colony's judgement in a quarrel, or for a camp near them to be broken; a head sour for a season asks to be released, and refused they break away. Faction Territories' vassals get a head who writes and asks; their tribute, purchases and points stay that mod's. Off: nothing new is sworn or asked, and the oaths standing run on.</CC_Settings_DiplomacyFealty_Tip>
+  <CC_Settings_DiplomacyFealty_Tip>The colony may swear fealty to a people at peace with goodwill 40 or more and two towns or more within reach (never the Empire, whose titles and permits are its own), by a letter to their head, or when they offer their protection to a colony raided twice in a season with five fighters or fewer. Agreed, their head (or one who speaks for them) comes to the gate, anyone who objects (one sworn to vengeance on them, the proud, a devout colonist of another faith) has their say before the council, and the colony's speaker swears by their rite. Each season their collector comes to the gate for the tribute, 150 to 600 silver's worth by the colony's wealth; short, the rest is owed, and still owed at the next season's day the oath breaks (20 goodwill). When their town within reach is attacked they call the colony's levies, two fighters by caravan within five days (refused, 10 goodwill). When a home is raided their band comes without a call, at most once a season, nine times in ten; a season in which they failed lets the colony leave without blame. Renouncing is the council's question and costs their grudge, 30 goodwill. Vassals of the colony's own: the hamlet once sworn, and up to two struggling towns (under 20 prosperity for 30 days, at war elsewhere) that ask for its protection, at most one ask a year. At harvest their carter brings produce, light, usual or heavy as the council sets it (heavy costs 3 goodwill each season); the quartermaster collects a season's dues; the council may call their levies when a home is raided (a third of the threat, once a season), and their dead weigh on their head's regard; they ask for help, for the colony's judgement in a quarrel, or for a camp near them to be broken; a head sour for a season asks to be released, and refused they break away. Faction Territories' vassals get a head who writes and asks; their tribute, purchases and points stay that mod's. Off: nothing new is sworn or asked, and the oaths standing run on.</CC_Settings_DiplomacyFealty_Tip>
 
   <!-- Why not -->
   <CC_Fealty_Why_Off>Fealty and vassals are off in the settings.</CC_Fealty_Why_Off>
   <CC_Fealty_Why_Empire>The Empire takes no oaths through the council: its titles and permits are its own fealty.</CC_Fealty_Why_Empire>
   <CC_Fealty_Why_Sworn>The colony is sworn to {PEOPLE} already.</CC_Fealty_Why_Sworn>
   <CC_Fealty_Why_Other>The colony is sworn to {PEOPLE}, and a colony holds of one liege only.</CC_Fealty_Why_Other>
-  <CC_Fealty_Why_Awaited>An oath is agreed already, and their lord is still to come.</CC_Fealty_Why_Awaited>
+  <CC_Fealty_Why_Awaited>An oath is agreed already, and the one who takes it for them is still to come.</CC_Fealty_Why_Awaited>
   <CC_Fealty_Why_Goodwill>{PEOPLE} take an oath only from neighbors they think well of (goodwill {NEED} or more).</CC_Fealty_Why_Goodwill>
   <CC_Fealty_Why_Towns>{PEOPLE} are not strong enough near here to protect the colony ({NEED} towns or more within reach).</CC_Fealty_Why_Towns>
   <CC_Fealty_Why_Gone>The oath is over.</CC_Fealty_Why_Gone>
@@ -32,18 +32,18 @@
   <CC_Fealty_Why_CallUnderWay>Their band or the colony's levies are under way; wait until they are home.</CC_Fealty_Why_CallUnderWay>
   <CC_Fealty_Why_Asked>The council is already asked about it.</CC_Fealty_Why_Asked>
   <CC_Fealty_Why_CouncilBusy>Another question is before the council first.</CC_Fealty_Why_CouncilBusy>
-  <CC_Fealty_Why_LordGone>Their lord has gone from the gate.</CC_Fealty_Why_LordGone>
+  <CC_Fealty_Why_LordGone>The one who came for the oath has gone from the gate.</CC_Fealty_Why_LordGone>
 
   <!-- Swearing: the terms, the dialog, their answer -->
   <CC_Fealty_Terms>The terms by the ways of {PEOPLE} ({RITE}): tribute each season, about {TRIBUTE} silver's worth now, carried out to their collector at the gate; when their town is attacked, {LEVY}: {COUNT} of the colony's fighters by caravan within {DAYS} days; and their band when a raid comes on the colony, at most once a season.</CC_Fealty_Terms>
   <CC_Fealty_Risks>Tribute bites in a lean season: short, it is owed, and still owed at the next season's day the oath breaks ({BROKEN} goodwill). The levies fight in someone else's war and may be hurt or killed there; refused, {REFUSED} goodwill. Their enemies stay their own business. Renouncing the oath later costs their grudge ({RENOUNCE} goodwill), unless they failed to protect the colony.</CC_Fealty_Risks>
   <CC_Fealty_Confirm>The colony would swear fealty to {PEOPLE}: {WORD}. A letter to their head asks it of them.</CC_Fealty_Confirm>
-  <CC_Fealty_Confirm_Objector_Avenger>{PAWN} swore vengeance on {PEOPLE}, and will stand up before the council when their lord comes.</CC_Fealty_Confirm_Objector_Avenger>
-  <CC_Fealty_Confirm_Objector_Proud>{PAWN} is too proud to see the colony bend the knee, and will say so before the council when their lord comes.</CC_Fealty_Confirm_Objector_Proud>
-  <CC_Fealty_Confirm_Objector_Faith>{PAWN} holds to another faith than theirs, and will object before the council when their lord comes.</CC_Fealty_Confirm_Objector_Faith>
+  <CC_Fealty_Confirm_Objector_Avenger>{PAWN} swore vengeance on {PEOPLE}, and will stand up before the council when they come to the gate.</CC_Fealty_Confirm_Objector_Avenger>
+  <CC_Fealty_Confirm_Objector_Proud>{PAWN} is too proud to see the colony bend the knee, and will say so before the council when they come to the gate.</CC_Fealty_Confirm_Objector_Proud>
+  <CC_Fealty_Confirm_Objector_Faith>{PAWN} holds to another faith than theirs, and will object before the council when they come to the gate.</CC_Fealty_Confirm_Objector_Faith>
   <CC_Fealty_Ans_Moot>{PEOPLE} write that the matter has changed since the letter was sent.</CC_Fealty_Ans_Moot>
   <CC_Fealty_Ans_No>{PEOPLE} will not take the colony's oath. They say the colony would cost them more to protect than it would bring.</CC_Fealty_Ans_No>
-  <CC_Fealty_Ans_Yes>{PEOPLE} accept the colony's oath: {WORD}. Their lord will come to the gate to take it, {RITE} as their ways have it.</CC_Fealty_Ans_Yes>
+  <CC_Fealty_Ans_Yes>{PEOPLE} accept the colony's oath: {WORD}. One of theirs will come to the gate to take it, {RITE} as their ways have it.</CC_Fealty_Ans_Yes>
   <CC_Fealty_Msg_Lapsed>Nobody came from {PEOPLE} to take the colony's oath, and the matter has lapsed.</CC_Fealty_Msg_Lapsed>
 
   <!-- Their offer of protection -->
@@ -51,7 +51,7 @@
   <CC_Fealty_Offer>{WHO} writes for {PEOPLE}: they have heard the colony was raided twice this season, and they offer it their protection for its oath. They call it {RITE}; the colony would call it {WORD}.</CC_Fealty_Offer>
   <CC_Fealty_Opt_Accept>Accept their protection</CC_Fealty_Opt_Accept>
   <CC_Fealty_Opt_Decline>Decline</CC_Fealty_Opt_Decline>
-  <CC_Fealty_Msg_Accepted>The colony accepts the protection of {PEOPLE}. Their lord will come to the gate to take its oath.</CC_Fealty_Msg_Accepted>
+  <CC_Fealty_Msg_Accepted>The colony accepts the protection of {PEOPLE}. One of theirs will come to the gate to take its oath.</CC_Fealty_Msg_Accepted>
 
   <!-- The oath at the gate -->
   <CC_Fealty_Lord_Comes>{LORD} of {PEOPLE} is coming to the gate in person to take the colony's oath: {RITE}.</CC_Fealty_Lord_Comes>
@@ -60,18 +60,18 @@
   <CC_Fealty_Report>swearing the colony's oath to {PEOPLE}.</CC_Fealty_Report>
   <CC_Fealty_Sworn_Label>Sworn to {PEOPLE}</CC_Fealty_Sworn_Label>
   <CC_Fealty_Sworn>{PAWN} swore the colony's oath to {PEOPLE} at the gate, before {LORD}: {WORD}, as the colony calls it, and {RITE} by their ways.</CC_Fealty_Sworn>
-  <CC_Fealty_Harmed_Label>{PEOPLE}'s lord harmed</CC_Fealty_Harmed_Label>
-  <CC_Fealty_Harmed>The lord of {PEOPLE} came to the gate to take the colony's oath and was attacked there. They have run for home, and there will be no oath. {PEOPLE} will remember it.</CC_Fealty_Harmed>
+  <CC_Fealty_Harmed_Label>{PEOPLE} attacked at the gate</CC_Fealty_Harmed_Label>
+  <CC_Fealty_Harmed>Those {PEOPLE} sent to take the colony's oath were attacked at its gate. They have run for home, and there will be no oath. {PEOPLE} will remember it.</CC_Fealty_Harmed>
 
   <!-- The council's questions -->
-  <CC_Impact_FealtySwear>The speaker walks out to the lord of {PEOPLE} at the gate and swears the oath</CC_Impact_FealtySwear>
+  <CC_Impact_FealtySwear>The speaker walks out to the gate and swears the oath to {PEOPLE}</CC_Impact_FealtySwear>
   <CC_Impact_FealtySwearBrief>the oath sworn at the gate</CC_Impact_FealtySwearBrief>
   <CC_Impact_FealtyTribute>Tribute each season, about {TRIBUTE} silver's worth now</CC_Impact_FealtyTribute>
   <CC_Impact_FealtyTributeBrief>tribute each season</CC_Impact_FealtyTributeBrief>
   <CC_Impact_FealtyLevies>Levies called to fight in their wars, where they may be hurt or killed</CC_Impact_FealtyLevies>
   <CC_Impact_FealtyLeviesBrief>levies in their wars</CC_Impact_FealtyLeviesBrief>
   <CC_Impact_FealtyTurnAway>{PEOPLE} feel turned away at the gate</CC_Impact_FealtyTurnAway>
-  <CC_Impact_FealtyTurnAwayBrief>their lord sent home</CC_Impact_FealtyTurnAwayBrief>
+  <CC_Impact_FealtyTurnAwayBrief>sent home from the gate</CC_Impact_FealtyTurnAwayBrief>
   <CC_Impact_FealtyRenounce>{PEOPLE} hold a grudge: {GOODWILL} goodwill, and they remember it</CC_Impact_FealtyRenounce>
   <CC_Impact_FealtyRenounceBrief>-{GOODWILL} goodwill</CC_Impact_FealtyRenounceBrief>
   <CC_Impact_FealtyRenounceClean>{PEOPLE} failed to protect the colony this season: it leaves without blame</CC_Impact_FealtyRenounceClean>
@@ -122,14 +122,14 @@
 
   <!-- The cards and the people card -->
   <CC_Fealty_Act_Swear>Swear fealty...</CC_Fealty_Act_Swear>
-  <CC_Fealty_Act_Swear_Tip>Their terms by their ways, then a letter or call to their head. Agreed, their lord comes to the gate and the colony's speaker swears the oath.</CC_Fealty_Act_Swear_Tip>
+  <CC_Fealty_Act_Swear_Tip>Their terms by their ways, then a letter or call to their head. Agreed, one of theirs comes to the gate and the colony's speaker swears the oath.</CC_Fealty_Act_Swear_Tip>
   <CC_Fealty_Act_Renounce>Renounce the oath...</CC_Fealty_Act_Renounce>
   <CC_Fealty_Act_Renounce_Tip>Asked of the council, with its cost named: their grudge, or nothing after a season they failed to protect the colony.</CC_Fealty_Act_Renounce_Tip>
   <CC_Fealty_Act_Pay>Send what is owed</CC_Fealty_Act_Pay>
   <CC_Fealty_Act_PayShort>Pay</CC_Fealty_Act_PayShort>
   <CC_Fealty_Act_Pay_Tip>Silver, or the colony's most plentiful goods, carried out to their collector at the gate.</CC_Fealty_Act_Pay_Tip>
   <CC_Fealty_Row>Sworn to {PEOPLE}: {WORD} ({RITE} by their ways)</CC_Fealty_Row>
-  <CC_Fealty_RowAwaited>An oath agreed with {PEOPLE} ({WORD}): their lord is to come to the gate</CC_Fealty_RowAwaited>
+  <CC_Fealty_RowAwaited>An oath agreed with {PEOPLE} ({WORD}): one of theirs is to come to the gate for it</CC_Fealty_RowAwaited>
   <CC_Fealty_RowTitled>{PAWN} holds the title of {TITLE}: sworn to {PEOPLE} by its own ways, its permits {PAWN_possessive} protection</CC_Fealty_RowTitled>
   <CC_Fealty_State_Owed>{OWED} silver's worth of tribute owed</CC_Fealty_State_Owed>
   <CC_Fealty_State_Band>the band of {PEOPLE} on its way</CC_Fealty_State_Band>
@@ -156,7 +156,7 @@
   <CC_Fealty_Week_Ask_Release>{TOWN} asks to be released</CC_Fealty_Week_Ask_Release>
   <CC_Fealty_Week_Ask_Protection>{TOWN} of {PEOPLE} asks for the colony's protection</CC_Fealty_Week_Ask_Protection>
   <CC_Fealty_Step_Agreed>agreed</CC_Fealty_Step_Agreed>
-  <CC_Fealty_Step_Road>their lord on the road</CC_Fealty_Step_Road>
+  <CC_Fealty_Step_Road>on the road</CC_Fealty_Step_Road>
   <CC_Fealty_Step_AtGate>at the gate</CC_Fealty_Step_AtGate>
   <CC_Fealty_Step_Sworn>sworn</CC_Fealty_Step_Sworn>
   <CC_Fealty_Step_Raided>raided</CC_Fealty_Step_Raided>
@@ -167,7 +167,7 @@
   <CC_Vassal_Level_Heavy>heavy</CC_Vassal_Level_Heavy>
   <CC_Vassal_LevelOpt_Light>Light: six tenths of their produce, and their head warms to the colony</CC_Vassal_LevelOpt_Light>
   <CC_Vassal_LevelOpt_Usual>Usual: their produce as it comes</CC_Vassal_LevelOpt_Usual>
-  <CC_Vassal_LevelOpt_Heavy>Heavy: half as much again, at {GOODWILL} goodwill each season and their head's regard</CC_Vassal_LevelOpt_Heavy>
+  <CC_Vassal_LevelOpt_Heavy>Heavy: eight fifths of their produce, at {GOODWILL} goodwill each season and their head's regard</CC_Vassal_LevelOpt_Heavy>
   <CC_Vassal_LevelCurrent>{LABEL} (as now)</CC_Vassal_LevelCurrent>
   <CC_Vassal_LevelMenu>What {TOWN} brings at harvest</CC_Vassal_LevelMenu>
 
@@ -221,7 +221,7 @@
   <CC_Task_Target_Vassal>The dues of {TOWN} ({PEOPLE})</CC_Task_Target_Vassal>
 
   <!-- Vassals: levies -->
-  <CC_Vassal_Msg_Called>The council calls the levies of {TOWN}, {MEANS}: {RITE}.</CC_Vassal_Msg_Called>
+  <CC_Vassal_Msg_Called>The council calls the levies of {TOWN} by {MEANS}: {RITE}.</CC_Vassal_Msg_Called>
   <CC_Vassal_Band_Label>The levies of {PEOPLE}</CC_Vassal_Band_Label>
   <CC_Vassal_Band>{COUNT} fighters of {PEOPLE} have walked in from the colony's vassal town to fight {ENEMY}: {WORD}.</CC_Vassal_Band>
   <CC_Vassal_Band_Late>The levies of {PEOPLE} reached the colony after the fight was over, and turned for home.</CC_Vassal_Band_Late>

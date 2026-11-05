@@ -496,3 +496,6 @@ Rimfolk_WS_SonExile [shelter/2] a refusal: the visitors at the gate go back to t
 Rimfolk_WS_SonExile [end:refused] a refusal, told
 Rimfolk_WS_SonRiders [end:fed] told after it happened (the meal was carried out in the answer)
 Rimfolk_WS_SonRiders [end:refused] a refusal, told
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Fealty.xml
+Rimfolk_DlmFealty_Swear [option 0] already real, the event's own code: the speaker walks out to the gate and swears face to face (JobDriver_FealtyOath)

@@ -140,6 +140,70 @@ public static class FealtyTests
         C(FealtyMath.Tags.Distinct().Count() == FealtyMath.Tags.Length && FealtyMath.Tags.All(t => t.StartsWith("fealty:") || t.StartsWith("vassal:")), "the tags, each once");
         C(FealtyMath.ThisSeason(0, 14 * D) && !FealtyMath.ThisSeason(0, 15 * D) && !FealtyMath.ThisSeason(-1, 0), "this season");
 
+        // ---------------- The mod's side: hooks in the shared code ----------------
+
+        var dip = Directory.GetFiles(Path.Combine(src, "Diplomacy"), "*.cs").ToDictionary(Path.GetFileName, File.ReadAllText);
+        C(dip["Diplomacy.cs"].Contains("Fealty.Hourly(now)") && dip["Diplomacy.cs"].Contains("Fealty.Daily(now)"), "the hour and the day ride on diplomacy's");
+        C(dip["FealtyPanels.cs"].Contains("CouncilTasks.DuesWhyNot = Vassals.DuesWhyNot;") && dip["FealtyPanels.cs"].Contains("CouncilTasks.DuesStep = Vassals.DuesStep;"),
+            "the quartermaster's dues switched on through 2c.1's entry points");
+        C(dip["TaskResults.cs"].Contains("case TaskKind.Dues:") && dip["TaskResults.cs"].Contains("Vassals.DuesRead("), "the dues letter read");
+        C(dip["CouncilTasks.cs"].Contains("Vassals.DuesTarget(f, home)"), "the dues aimed at the liege or a vassal's people only");
+        C(dip["CallsToArms.cs"].Contains("Fealty.LeviesRefused(") && dip["CallsToArms.cs"].Contains("Fealty.LeviesCame(") && dip["CallsToArms.cs"].Contains("WaitingOnLevies"),
+            "the levies ride on the calls to arms: the far fight, kept or refused");
+        C(dip["Pacts.cs"].Contains("string words = null, float strength = 1f") && dip["Fealty.cs"].Contains("\"fealty\", out bool wait, \"fealty\")")
+          && dip["Vassals.cs"].Contains("\"vassal\", out bool wait, \"vassal\", FealtyMath.LevyStrength"), "their band and a vassal's levies through the pacts' war band");
+        C(dip["PactsHooks.cs"].Contains("Fealty.BrokenByUs(f, how)") && dip["PactsHooks.cs"].Contains("Vassals.BrokenByUs(f, how)"), "attacking a liege or a protected town's people breaks it");
+        C(Code("Camps/WarCamp.cs").Contains("Vassals.LeviesHome(b)") && Code("Camps/WarCamp.cs").Contains("b.called == \"fealty\""), "a vassal's dead weigh on their head; a liege's dead as a pact's");
+        C(Code("World/Notables.cs").Contains("Vassals.KeepsHead(n)") && Code("World/Notables.cs").Contains("Vassals.OutpostHead(n)") && dip["FavourCalls.cs"].Contains("!Vassals.OutpostHead(n)"),
+            "a vassal's head kept while it stands, an outpost's never taken for their people's head");
+        C(Code("World/Region/HamletLife.cs").Contains("Vassals.HamletProduce(home, h,"), "the sworn hamlet's harvest by the council's level");
+        C(Code("Integrations/World/TerritoriesAdapter.cs").Contains("\"FindForVassalOutpost\"") && Code("World/VassalNotables.cs").Contains("WorldMath.Vassal"),
+            "Faction Territories read by name: an outpost's invasion, and the town it was made from");
+        C(!dip["Vassals.cs"].Contains("TrySpendPoints") && !dip["Vassals.cs"].Contains("VassalagePointsComponent") && !dip["Vassals.cs"].Contains("ExecuteVassalisation"),
+            "nothing of the mod's tribute, purchases or points is touched (decision 12)");
+        C(dip["Fealty.cs"].Contains("Ages.IsEmpire(f)") && dip["FealtyPanels.cs"].Contains("Fealty.Titled("), "no fealty to the Empire; its titled colonists shown as its own (decision 9)");
+        C(System.Text.RegularExpressions.Regex.Matches(dip["Fealty.cs"], @"TryAffectGoodwillWith").Count == 1 && dip["Fealty.cs"].Contains("private static void Goodwill(Faction f, int amount)"),
+            "goodwill moves only with the liege itself, never with its enemies (decision 11)");
+        C(Code("Text/Facts/FactsLedger.cs").Contains("FealtyFacts(s, f);"), "the facts read");
+        C(Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Rows(f, home)") && Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Acts(f, home)"), "the people card's rows and acts");
+        C(Code("UI/Region/LensModel.cs").Contains("Vassals.All()") && Code("UI/Region/LensModel.cs").Contains("WorldMechanics.OurVassals(home)"), "the Ours lens's marks and lines");
+
+        // ---------------- The save ----------------
+
+        string book = dip["DiplomacyBook.cs"];
+        C(book.Contains("Scribe_Collections.Look(ref vassals, \"vassals\", LookMode.Deep);") && book.Contains("oathPeople") && book.Contains("Fealty.HomeLost(h);"),
+            "the vassals and the oath awaited saved on a home's part, let go with the home");
+        C(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")).Contains("Diplomacy/DiplomacyBook.cs:vassals"), "the vassals' save model");
+
+        // ---------------- The defs, the words, the lines, the talk ----------------
+
+        var defs = File.ReadAllText(Path.Combine(root, "Defs", "Misc", "Rimfolk_Fealty.xml"));
+        C(defs.Contains("ColonyCouncil.ChoiceLetter_FealtyOffer") && defs.Contains("ColonyCouncil.ChoiceLetter_VassalAsk") && defs.Contains("ColonyCouncil.JobDriver_FealtyOath"), "the letters and the oath's job");
+        var dlm = XDocument.Load(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_Fealty.xml")).Root!.Elements("ColonyCouncil.DilemmaDef").ToList();
+        C(dlm.Any(d => d.Element("defName")!.Value == "Rimfolk_DlmFealty_Swear") && dlm.Any(d => d.Element("defName")!.Value == "Rimfolk_DlmFealty_Renounce"), "the council's two questions");
+        var swear = dlm.First(d => d.Element("defName")!.Value == "Rimfolk_DlmFealty_Swear").Element("texts")!.Elements("li").Select(e => e.Value).ToList();
+        foreach (var tag in new[] { "avenger", "proud", "faith" }) C(swear.Any(x => x.StartsWith("[" + tag)), $"an objector who is {tag} has words");
+        string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Fealty.xml"))
+                       + File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Fealty_Variants.xml"));
+        foreach (VassalAsk a in Enum.GetValues(typeof(VassalAsk)))
+            C(keyed.Contains("<CC_Vassal_Ask_" + a + ">") && keyed.Contains("<CC_Vassal_AskWhat_" + a + ">") && keyed.Contains("<CC_Vassal_Opt_" + a + "_1>")
+              && keyed.Contains("<CC_Fealty_Week_Ask_" + a + ">"), $"the ask {a}: its letter, what each answer does, its choices, its row");
+        foreach (TributeLevel l in Enum.GetValues(typeof(TributeLevel))) C(keyed.Contains("<CC_Vassal_Level_" + l + ">") && keyed.Contains("<CC_Vassal_LevelOpt_" + l + ">"), $"the level {l} in words");
+        C(!keyed.Contains("—") && !System.Text.RegularExpressions.Regex.IsMatch(keyed, @">[^<]*![^<]*<"), "no em dashes or exclamation marks in the words");
+        C(keyed.Contains("<CC_Fealty_Terms>") && keyed.Contains("{TRIBUTE}") && keyed.Contains("<CC_Fealty_Risks>"), "the terms and the bad sides named before the choice");
+        var lines = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_Fealty.xml")).Descendants("li").Select(e => e.Value).ToList();
+        foreach (var tone in new[] { "warm", "cordial", "cool", "refusal" }) C(lines.Any(x => x.StartsWith("[fealty," + tone)), $"their answer to the oath offered, {tone}");
+        foreach (var m in new[] { "fealtyoath", "fealtyterms", "fealtysworn" })
+        {
+            var said = lines.Where(x => x.StartsWith("[" + m + ",")).ToList();
+            C(said.Count >= 3 && said.All(x => !x.Substring(x.IndexOf(']') + 1).Trim().TrimEnd('.', '?').Contains(". ")), $"the bubbles at {m}, one sentence each");
+        }
+        string talk = File.ReadAllText(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_Fealty.xml"));
+        int pieces = XDocument.Parse(talk).Root!.Elements("ColonyCouncil.OutsiderTalkDef").Count();
+        C(pieces >= 20 && pieces <= 40, $"20 to 40 talk pieces ({pieces})");
+        foreach (var tag in FealtyMath.Tags) C(talk.Contains(tag), $"the talk speaks of {tag}");
+        C(XDocument.Parse(talk).Descendants("weight").All(w => float.Parse(w.Value, System.Globalization.CultureInfo.InvariantCulture) <= 1.2f), "the talk pieces' weights stay at 1.2 or less");
+
         return n;
     }
 }
