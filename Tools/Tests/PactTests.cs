@@ -229,7 +229,7 @@ public static class PactTests
         C(dip["TruceParley.cs"].Contains("Scribe_Values.Look(ref heard, \"heard\")"), "an avenger's objection heard stays heard across a reload");
         C(dip["PactsPanels.cs"].Contains("ChoiceLetter_TruceOffer t && t.Waiting") && dip["PactsPanels.cs"].Contains("c.WaitingOnPact"), "Needs you counts only letters that can still be answered");
         C(dip["PactCalls.cs"].Contains("PlayFire.Light") && dip["PactCalls.cs"].Contains("Building_CommsConsole"), "the call by a signal fire (the bonfire's own) or at the comms console");
-        C(dip["Pacts.cs"].Contains("WarCamps.MakeFighters(f, home)") && dip["Pacts.cs"].Contains("WarCamps.Start(home, f, enemy, pawns)"), "their band is a war band");
+        C(dip["Pacts.cs"].Contains("WarCamps.MakeFighters(f, home") && dip["Pacts.cs"].Contains("WarCamps.Start(home, f, enemy, pawns)"), "their band is a war band");
         C(Code("Text/Facts/FactsLedger.cs").Contains("PactTies(s, f, now);"), "the ties' provider speaks of pacts and truces");
         C(Code("UI/RegionViewsMath.cs").Contains("p.stance == Stance.Sour && !p.truce ? Hue.Sour : Hue.Dim") && Code("UI/Region/LensModel.cs").Contains("f.truce = home != null && Truces.KeepsAway(s.Faction, home);"),
             "the Threats lens dims a truce partner");

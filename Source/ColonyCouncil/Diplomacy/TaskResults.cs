@@ -171,12 +171,12 @@ namespace ColonyCouncil
         private static string Tend(CouncilTask t, Faction f, Notable n, Caravan c, Map home, string at)
         {
             string who = t.OfficerName;
-            int given = 0;
+            int given = 0, gift = Mathf.Clamp((int)t.progress, 0, TaskMath.Medicine);
             if (c != null)
                 foreach (var thing in CaravanInventoryUtility.AllInventoryItems(c).Where(x => x.def.IsMedicine).ToList())
                 {
-                    if (given >= TaskMath.Medicine) break;
-                    int take = Mathf.Min(thing.stackCount, TaskMath.Medicine - given);
+                    if (given >= gift) break;
+                    int take = Mathf.Min(thing.stackCount, gift - given);
                     var part = thing.SplitOff(take);
                     given += take;
                     part.Destroy();
@@ -237,12 +237,15 @@ namespace ColonyCouncil
                         CouncilTasks.End(h, t, TaskStage.Done, TaskWords.P("CC_Task_Result_Home", t.OfficerName.Named("PAWN"), p.Named("OURS")), true);
                         return true;
                     }
-                    if (!t.asked && t.letters >= TaskMath.DemandAfter && f != null && Ransoms.For(p) == null)
+                    // Their word on a price answered or let lapse, and the colonist still held: the warden writes on, and a lower price can come.
+                    if (t.asked && Ransoms.For(p) == null) t.asked = false;
+                    if (!t.asked && t.letters >= (int)t.progress + TaskMath.DemandAfter && f != null && Ransoms.For(p) == null)
                     {
                         float factor = TaskMath.PriceFactor(Skill(t.officer, SkillDefOf.Social), t.letters);
                         if (Ransoms.DemandFor(home, p, f, factor))
                         {
                             t.asked = true;
+                            t.progress = t.letters;
                             t.result = TaskWords.P("CC_Task_Result_Price", t.OfficerName.Named("PAWN"), p.Named("OURS"), TaskWords.People(f).Named("PEOPLE"));
                             Diplomacy.Dirty();
                         }

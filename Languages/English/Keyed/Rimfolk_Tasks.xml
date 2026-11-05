@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, the keeper of secrets and council tasks (Source/ColonyCouncil/Diplomacy/CouncilTasks.cs, TaskResults.cs,
+       TaskVisits.cs, TaskLetters.cs, KeeperOfSecrets.cs, SecretTies.cs, TaskPanels.cs; docs/design/stage2-diplomacy.md,
+       round c, item 8). Keys with numbered fellows (_2 ...) are picked at random (TextVariants); the fellows are in
+       Rimfolk_Tasks_Variants.xml. {WORD} is the colony's word for its officers' business by its age, {RITE} their way of
+       receiving it by theirs (Rimfolk_Ages.xml: CouncilTasks). -->
+
+  <!-- The letter purpose (never offered in the letter dialog: officers write these on their tasks) -->
+  <CC_Letter_Purpose_Task>council business</CC_Letter_Purpose_Task>
+  <CC_Letter_PurposeCap_Task>Council business</CC_Letter_PurposeCap_Task>
+
+  <!-- The settings -->
+  <CC_Settings_DiplomacyTasks>Council tasks and the keeper of secrets</CC_Settings_DiplomacyTasks>
+  <CC_SetNote_DiplomacyTasks>Officers take tasks with the neighbors: letters, patrols, visits by caravan. The keeper of secrets watches guests.</CC_SetNote_DiplomacyTasks>
+  <CC_Settings_DiplomacyTasks_Tip>Each of eight offices may take one task at a time at its home, set on the Decrees page's row for the office, on the officer's card, or from a people's card: the speaker wins a town's head over (letters every four to six days, an invitation, a visit; at a regard of 60 their people offer a pact or owe the colony a favor); the keeper of secrets learns a notable's secret (talks with their people here, a paid informer, a visit; found out one time in ten); the marshal walks the edges at dawn for a season (a raiders' camp seen sooner) or drills a defense pact partner's fighters (their band a fifth stronger for a season); the quartermaster opens a trade (letters, samples, a visit; their trade pact or their caravan); the physician takes medicine to a town with a sickness running (one visit in five brings it home); the warden of guests writes about the colony's own held elsewhere (a lower price for them) or about their kin in the colony's cells (offers sooner and higher); the chaplain keeps the faith with a head of the same faith or speaks for it to one of another; the steward prepares a feast (the guests' welcome counts half again). Visits go by caravan through the journey planner: the officer and a companion, at most one officer away from a home, each office once a season. The keeper of secrets also walks with guests after dark, and while the seat is filled the colony's secrets slip half as often. Off: nothing new is set, and an officer away still comes home.</CC_Settings_DiplomacyTasks_Tip>
+
+  <!-- A favor owed for being won over (the debt's words, {FAVOURWHY}) -->
+  <CC_Dip_For_wonOver>a friendship kept up by letter</CC_Dip_For_wonOver>
+
+  <!-- The raiders' camp seen by the marshal's patrol ("out {DOING}") -->
+  <CC_RaidCamp_Doing_Patrol>on the dawn patrol</CC_RaidCamp_Doing_Patrol>
+
+  <!-- ================= The tasks ================= -->
+
+  <CC_Task_Kind_WinOver>win them over</CC_Task_Kind_WinOver>
+  <CC_Task_Kind_Secrets>learn their secrets</CC_Task_Kind_Secrets>
+  <CC_Task_Kind_Scout>scout the land</CC_Task_Kind_Scout>
+  <CC_Task_Kind_Drill>drill the levies</CC_Task_Kind_Drill>
+  <CC_Task_Kind_Trade>open a trade</CC_Task_Kind_Trade>
+  <CC_Task_Kind_Dues>collect the dues</CC_Task_Kind_Dues>
+  <CC_Task_Kind_Tend>tend their sick</CC_Task_Kind_Tend>
+  <CC_Task_Kind_BringHome>bring ours home</CC_Task_Kind_BringHome>
+  <CC_Task_Kind_TheirKin>their kin in our cells</CC_Task_Kind_TheirKin>
+  <CC_Task_Kind_KeepFaith>keep the faith with them</CC_Task_Kind_KeepFaith>
+  <CC_Task_Kind_SpeakFaith>speak for the faith</CC_Task_Kind_SpeakFaith>
+  <CC_Task_Kind_Host>host them</CC_Task_Kind_Host>
+
+  <CC_Task_KindTip_WinOver>Letters to a town's head every few days, an invitation, a visit once a season. At a regard of 60 their people offer a pact, or owe the colony a favor.</CC_Task_KindTip_WinOver>
+  <CC_Task_KindTip_Secrets>Talks with their people when they come by, a paid informer, a visit. A secret learned can be pressed later. Found out one time in ten.</CC_Task_KindTip_Secrets>
+  <CC_Task_KindTip_Scout>A walk along the edges at dawn every other day for a season. A raiders' camp nearby is likelier to be seen early.</CC_Task_KindTip_Scout>
+  <CC_Task_KindTip_Drill>A visit to a defense pact partner to drill their fighters. Their band comes a fifth stronger for a season.</CC_Task_KindTip_Drill>
+  <CC_Task_KindTip_Trade>Letters to their trader, samples of the colony's surplus, a visit. When the trade is open, their trade pact or their caravan.</CC_Task_KindTip_Trade>
+  <CC_Task_KindTip_Dues>The colony's own vassals bring their dues on time.</CC_Task_KindTip_Dues>
+  <CC_Task_KindTip_Tend>A visit with medicine to a town where a sickness is running. One visit in five brings it home.</CC_Task_KindTip_Tend>
+  <CC_Task_KindTip_BringHome>Letters to the people holding one of the colony's. Their price for them comes lower.</CC_Task_KindTip_BringHome>
+  <CC_Task_KindTip_TheirKin>Letters to a people whose kin are in the colony's cells. Their offers come sooner and higher.</CC_Task_KindTip_TheirKin>
+  <CC_Task_KindTip_KeepFaith>Letters to a head of the colony's own faith, and a visit. Their regard rises, and the believers at home are steadied.</CC_Task_KindTip_KeepFaith>
+  <CC_Task_KindTip_SpeakFaith>Letters to a head of another faith, and a visit. Their certainty is shaken a little, never past what the game's own conversion needs.</CC_Task_KindTip_SpeakFaith>
+  <CC_Task_KindTip_Host>A letter to prepare, then the feast the council plans. The guests' welcome counts half again.</CC_Task_KindTip_Host>
+
+  <!-- Why not -->
+  <CC_Task_Why_Off>Council tasks are off in the settings.</CC_Task_Why_Off>
+  <CC_Task_Why_NoHome>Only at one of the colony's homes.</CC_Task_Why_NoHome>
+  <CC_Task_Why_NoSeat>This colony has no such seat.</CC_Task_Why_NoSeat>
+  <CC_Task_Why_Empty>The {OFFICE}'s seat is empty.</CC_Task_Why_Empty>
+  <CC_Task_Why_Busy>{PAWN} is already on a task: {KIND}.</CC_Task_Why_Busy>
+  <CC_Task_Why_Away>{PAWN} is away from home.</CC_Task_Why_Away>
+  <CC_Task_Why_Unwell>{PAWN} is in no state for it.</CC_Task_Why_Unwell>
+  <CC_Task_Why_NotYet>Comes once the colony has vassals of its own.</CC_Task_Why_NotYet>
+  <CC_Task_Why_NoTarget_WinOver>No head of a town at peace with the colony is known.</CC_Task_Why_NoTarget_WinOver>
+  <CC_Task_Why_NoTarget_Secrets>No notable of another people is known.</CC_Task_Why_NoTarget_Secrets>
+  <CC_Task_Why_NoTarget_Scout>The colony has no land to walk.</CC_Task_Why_NoTarget_Scout>
+  <CC_Task_Why_NoTarget_Drill>The colony has no defense pact to drill for.</CC_Task_Why_NoTarget_Drill>
+  <CC_Task_Why_NoTarget_Trade>No trader or head of a town at peace with the colony is known.</CC_Task_Why_NoTarget_Trade>
+  <CC_Task_Why_NoTarget_Dues>The colony has no vassals of its own.</CC_Task_Why_NoTarget_Dues>
+  <CC_Task_Why_NoTarget_Tend>No town at peace with the colony has a sickness running.</CC_Task_Why_NoTarget_Tend>
+  <CC_Task_Why_NoTarget_BringHome>Nobody of the colony's is held by another people.</CC_Task_Why_NoTarget_BringHome>
+  <CC_Task_Why_NoTarget_TheirKin>Nobody of another people is in this colony's cells.</CC_Task_Why_NoTarget_TheirKin>
+  <CC_Task_Why_NoTarget_KeepFaith>No head of a town keeps the colony's faith.</CC_Task_Why_NoTarget_KeepFaith>
+  <CC_Task_Why_NoTarget_SpeakFaith>No head of a town of another faith is known.</CC_Task_Why_NoTarget_SpeakFaith>
+  <CC_Task_Why_NoTarget_Host>No people at peace with the colony has a head to invite.</CC_Task_Why_NoTarget_Host>
+  <CC_Task_Why_Taken>Already the {OFFICE}'s task.</CC_Task_Why_Taken>
+  <CC_Task_Why_Gone>No longer there to be done.</CC_Task_Why_Gone>
+  <CC_Task_Why_War>The colony is at war with {PEOPLE}.</CC_Task_Why_War>
+  <CC_Task_Why_Won>{NAME} already holds the colony dear.</CC_Task_Why_Won>
+  <CC_Task_Why_Known>The colony already knows something about {NAME}.</CC_Task_Why_Known>
+  <CC_Task_Why_Shaken>{NAME}'s faith is as shaken as words alone can leave it.</CC_Task_Why_Shaken>
+  <CC_Task_Why_NoHead>No head of {PEOPLE} is known to invite.</CC_Task_Why_NoHead>
+  <CC_Task_Why_JourneysOff>Journeys are off in the settings.</CC_Task_Why_JourneysOff>
+  <CC_Task_Why_NoTown>Their town is gone.</CC_Task_Why_NoTown>
+  <CC_Task_Why_NoRoad>There is no way to {TOWN} from here.</CC_Task_Why_NoRoad>
+  <CC_Task_Why_OneAway>{PAWN} is already away on the council's business. One at a time from a home.</CC_Task_Why_OneAway>
+  <CC_Task_Why_Season>{PAWN} went visiting once this season already.</CC_Task_Why_Season>
+  <CC_Task_Why_Journey>A journey to {PLACE} is already planned from here.</CC_Task_Why_Journey>
+  <CC_Task_Why_Spare>The colony can't spare two people: at least three must be at home.</CC_Task_Why_Spare>
+  <CC_Task_Why_NoMedicine>The stores hold too little medicine to take any.</CC_Task_Why_NoMedicine>
+  <CC_Task_Why_NoVisit>This task has no visit.</CC_Task_Why_NoVisit>
+  <CC_Task_Why_Planned>A visit is already planned or under way.</CC_Task_Why_Planned>
+  <CC_Task_Why_LetterDialog>Only the council's officers write these, on their tasks.</CC_Task_Why_LetterDialog>
+  <CC_Task_Why_Samples>Samples are on their way already.</CC_Task_Why_Samples>
+  <CC_Task_Why_SamplesSent>Samples went to them already.</CC_Task_Why_SamplesSent>
+
+  <!-- Choosing a target and the council's question -->
+  <CC_Task_Target_Notable>{NAME} ({REGARD})</CC_Task_Target_Notable>
+  <CC_Task_Target_Sick>{TOWN}, where {SICKNESS} is running</CC_Task_Target_Sick>
+  <CC_Task_Target_Held>{PAWN}, held by {PEOPLE}</CC_Task_Target_Held>
+  <CC_Task_Target_Home>the edges of {COLONY}</CC_Task_Target_Home>
+  <CC_Task_Target_People>{PEOPLE}, whose head is {NAME}</CC_Task_Target_People>
+  <CC_Task_Menu_Title>The {OFFICE}'s task, among {WORD}</CC_Task_Menu_Title>
+  <CC_Task_Menu_Kind>{OFFICE}: {KIND}</CC_Task_Menu_Kind>
+  <CC_Task_Menu_ForPeople>A council task with {PEOPLE}</CC_Task_Menu_ForPeople>
+  <CC_Task_Menu_None>No council task fits {PEOPLE} now.</CC_Task_Menu_None>
+  <CC_Task_Confirm>Give {PAWN}, the {OFFICE}, a task among {WORD}: {KIND}, with {TARGET}?</CC_Task_Confirm>
+  <CC_Task_How_WinOver>{PAWN} writes to {NAME} every four to six days (or calls, where both sides have the means), invites {NAME} to the colony once, and may visit once a season. Each letter warms {NAME} to the colony by {PAWN}'s Social. Once {NAME} thinks {GOAL} or more of the colony, their people offer a pact, or owe the colony a favor.</CC_Task_How_WinOver>
+  <CC_Task_How_Secrets>{PAWN} talks with whoever of {NAME}'s people comes to the colony, can pay an informer at the gate, and may visit their town once a season. Each step pits {PAWN}'s Social and Intellectual against {NAME}'s. A secret learned ends the task, and the colony can press it later.</CC_Task_How_Secrets>
+  <CC_Task_How_Scout>For a season, {PAWN} walks the edges of the colony's land at dawn every other day. A raiders' camp being set up nearby is likelier to be seen before its first raid.</CC_Task_How_Scout>
+  <CC_Task_How_Drill>{PAWN} goes to {NAME} and spends a day drilling their fighters. For a season after, their band comes a fifth stronger when the pact calls them.</CC_Task_How_Drill>
+  <CC_Task_How_Trade>{PAWN} writes to {NAME} every four to six days, can send samples of the colony's surplus, and may visit once a season. Each step counts by {PAWN}'s Social and Intellectual. When the trade is open, their people offer a trade pact, or send their caravan.</CC_Task_How_Trade>
+  <CC_Task_How_Dues>{PAWN} sees that the colony's vassals bring their dues.</CC_Task_How_Dues>
+  <CC_Task_How_Tend>{PAWN} takes medicine from the stores to {NAME} and spends a day with their sick. Their people remember it, and their head thinks better of the colony.</CC_Task_How_Tend>
+  <CC_Task_How_BringHome>{PAWN} writes to the people holding {NAME}. After two letters they send word of a price for {NAME} to the gate, lower for each letter and for {PAWN}'s Social, down to half the usual.</CC_Task_How_BringHome>
+  <CC_Task_How_TheirKin>For a season, {PAWN} writes to {NAME} about their kin in the colony's cells. While {PAWN} writes, their offers for them come in half the time and a quarter higher.</CC_Task_How_TheirKin>
+  <CC_Task_How_KeepFaith>For a season, {PAWN} writes to {NAME}, who keeps the colony's faith, and may visit. Each letter warms {NAME} to the colony, and a kind answer steadies the believers at home.</CC_Task_How_KeepFaith>
+  <CC_Task_How_SpeakFaith>For a season, {PAWN} writes to {NAME} about the colony's faith, and may visit. Each letter shakes {NAME}'s certainty a little. Words alone never bring {NAME} to the colony's faith.</CC_Task_How_SpeakFaith>
+  <CC_Task_How_Host>{PAWN} writes to {NAME} to prepare a feast for their people. Once they answer kindly, the council plans the feast, and the guests' welcome counts half again.</CC_Task_How_Host>
+  <CC_Task_Confirm_Visit>A visit to their town can be planned on {PAWN}'s card once a season. {PAWN} goes by caravan with a companion, and the roads are the world's own.</CC_Task_Confirm_Visit>
+  <CC_Task_Visit_Cost>{PAWN} and {OTHER} go by caravan to {TOWN} ({DISTANCE}), stay a day and come home. The journey is planned for the next morning in the journey planner, where it can be changed or called off. Their work waits while they are away, and the roads hold what they hold: raiders, weather, sickness.</CC_Task_Visit_Cost>
+  <CC_Task_Visit_CostAlone>{PAWN} goes alone by caravan to {TOWN} ({DISTANCE}), stays a day and comes home. The journey is planned for the next morning in the journey planner, where it can be changed or called off. {PAWN}'s work waits, and the roads hold what they hold: raiders, weather, sickness.</CC_Task_Visit_CostAlone>
+  <CC_Task_Risk_Secrets>One step in ten, {PAWN} is found out: {NAME} will think less of the colony and of {PAWN}, and say so at their next meeting.</CC_Task_Risk_Secrets>
+  <CC_Task_Risk_Tend>One visit in five, the sickness comes home with them: one of the party falls ill with it on the road.</CC_Task_Risk_Tend>
+  <CC_Task_Visit_Ask>Send {PAWN} to {TOWN} on the task ({KIND})?</CC_Task_Visit_Ask>
+
+  <!-- Set, and what it came to -->
+  <CC_Task_Msg_Set>{PAWN}, the {OFFICE}, takes on a task: {KIND}, with {TARGET}.</CC_Task_Msg_Set>
+  <CC_Task_Hist_Set>{PAWN}, the {OFFICE}, took on a task: {KIND}, with {TARGET}.</CC_Task_Hist_Set>
+  <CC_Task_Result_CalledOff>The council called off {PAWN}'s task.</CC_Task_Result_CalledOff>
+  <CC_Task_Result_Officer>{PAWN}'s task ended: {PAWN} no longer holds the {OFFICE}'s seat.</CC_Task_Result_Officer>
+  <CC_Task_Result_Gone>{PAWN}'s task with {TARGET} ended: there is no one left to do it with.</CC_Task_Result_Gone>
+  <CC_Task_Result_War>{PAWN}'s task ended: the colony is at war with {PEOPLE}.</CC_Task_Result_War>
+  <CC_Task_Result_Healed>{PAWN} won't go to {TOWN} after all: the sickness there has run its course.</CC_Task_Result_Healed>
+  <CC_Task_Result_Season_Scout>{PAWN} walked the edges at dawn for a season.</CC_Task_Result_Season_Scout>
+  <CC_Task_Result_Season_KeepFaith>{PAWN} kept the faith with {TARGET} for a season.</CC_Task_Result_Season_KeepFaith>
+  <CC_Task_Result_Season_SpeakFaith>{PAWN} spoke for the faith to {TARGET} for a season.</CC_Task_Result_Season_SpeakFaith>
+  <CC_Task_Result_Season_TheirKin>{PAWN} wrote to {TARGET} about their kin for a season.</CC_Task_Result_Season_TheirKin>
+  <CC_Task_Result_GaveUp>{PAWN} gave up the task ({KIND}, with {TARGET}): it came to nothing in the end.</CC_Task_Result_GaveUp>
+  <CC_Task_Result_Visit_Drill>{PAWN} drilled the fighters of {PEOPLE} at {TOWN}. Their band comes a fifth stronger for a season.</CC_Task_Result_Visit_Drill>
+  <CC_Task_Result_Visit_Tend>{PAWN} is home from tending the sick at {TOWN}.</CC_Task_Result_Visit_Tend>
+  <CC_Task_Result_Lost>{PAWN}'s task ended: {OURS} did not live to come home.</CC_Task_Result_Lost>
+  <CC_Task_Result_Home>{OURS} is home, and {PAWN}'s letters had a part in it.</CC_Task_Result_Home>
+  <CC_Task_Result_Price>{PEOPLE} are sending word of a price for {OURS} to the gate, after {PAWN}'s letters.</CC_Task_Result_Price>
+  <CC_Task_Result_KinHome>None of {PEOPLE} are left in the colony's cells, and {PAWN}'s task is done.</CC_Task_Result_KinHome>
+  <CC_Task_Result_Feast>The feast {PAWN} prepared for {PEOPLE} is over.</CC_Task_Result_Feast>
+  <CC_Task_Result_WonPact>{PAWN} has won {NAME} over: their people offer the colony a pact.</CC_Task_Result_WonPact>
+  <CC_Task_Result_WonFavour>{PAWN} has won {NAME} over: {PEOPLE} owe the colony a favor now ({WORD}).</CC_Task_Result_WonFavour>
+  <CC_Task_Result_TradePact>{PAWN}'s trade with {PEOPLE} is open: they offer a trade pact.</CC_Task_Result_TradePact>
+  <CC_Task_Result_Caravan>{PAWN}'s trade with {PEOPLE} is open: their caravan is on its way to the colony.</CC_Task_Result_Caravan>
+  <CC_Task_Result_TradeFavour>{PAWN}'s trade with {PEOPLE} is open: they have no caravan to send, and owe the colony a favor instead.</CC_Task_Result_TradeFavour>
+  <CC_Task_TradeOffer>{WHO} writes for {PEOPLE}: after the colony's letters, they would like {KIND} with it, {RITE} as their ways ask.</CC_Task_TradeOffer>
+  <CC_Task_TradeOffer_Won>{WHO} writes for {PEOPLE}: the colony has been a good neighbor, and they offer it {KIND}, {RITE} as their ways ask.</CC_Task_TradeOffer_Won>
+  <CC_Task_Msg_Samples>{PAWN} sets aside {GOODS} as samples for {TARGET}. Their porter will come to the gate for them.</CC_Task_Msg_Samples>
+
+  <!-- Their answer to an officer's letter -->
+  <CC_Task_Topic_WinOver>news and good wishes for {TARGET}</CC_Task_Topic_WinOver>
+  <CC_Task_Topic_Trade>what the colony makes and needs, for {TARGET}</CC_Task_Topic_Trade>
+  <CC_Task_Topic_BringHome>{TARGET}, held by them</CC_Task_Topic_BringHome>
+  <CC_Task_Topic_TheirKin>their kin in the colony's cells</CC_Task_Topic_TheirKin>
+  <CC_Task_Topic_KeepFaith>the faith they share with the colony</CC_Task_Topic_KeepFaith>
+  <CC_Task_Topic_SpeakFaith>the colony's faith</CC_Task_Topic_SpeakFaith>
+  <CC_Task_Topic_Host>a feast for their people</CC_Task_Topic_Host>
+  <CC_Task_Topic_Scout>the land</CC_Task_Topic_Scout>
+  <CC_Task_Topic_Secrets>news</CC_Task_Topic_Secrets>
+  <CC_Task_Topic_Drill>their fighters</CC_Task_Topic_Drill>
+  <CC_Task_Topic_Dues>their dues</CC_Task_Topic_Dues>
+  <CC_Task_Topic_Tend>their sick</CC_Task_Topic_Tend>
+  <CC_Task_Ans_WinOver>{NAME} writes that {PAWN}'s letters are welcome, and hopes for more of them.</CC_Task_Ans_WinOver>
+  <CC_Task_Ans_Trade>{NAME} asks what else the colony has to sell, and names a few things their people would buy.</CC_Task_Ans_Trade>
+  <CC_Task_Ans_BringHome>{NAME} writes that {OURS} is alive and fed, and that a price could be talked about.</CC_Task_Ans_BringHome>
+  <CC_Task_Ans_TheirKin>{NAME} writes that their people want their kin back, and will make an offer for them.</CC_Task_Ans_TheirKin>
+  <CC_Task_Ans_KeepFaith>{NAME} writes of the faith they share with the colony, and of keeping it through hard years.</CC_Task_Ans_KeepFaith>
+  <CC_Task_Ans_SpeakFaith>{NAME} answers the colony's words about its faith at length, and less surely than before.</CC_Task_Ans_SpeakFaith>
+  <CC_Task_Ans_Host>{NAME} would be glad to come to a feast, and asks {PAWN} to name the day.</CC_Task_Ans_Host>
+  <CC_Task_Ans_Moot>{NAME} answers politely, though the business it was about is over.</CC_Task_Ans_Moot>
+
+  <!-- What their notables remember of it -->
+  <CC_Task_Note_Letter>Kept up a correspondence with {PAWN}.</CC_Task_Note_Letter>
+  <CC_Task_Note_Trade>Talked trade with {PAWN} by letter.</CC_Task_Note_Trade>
+  <CC_Task_Note_Kin>Had word of their kin from {PAWN}.</CC_Task_Note_Kin>
+  <CC_Task_Note_Faith>Wrote with {PAWN} about the faith they share.</CC_Task_Note_Faith>
+  <CC_Task_Note_Visit>{PAWN} visited them on the colony's business.</CC_Task_Note_Visit>
+  <CC_Task_Note_Drill>{PAWN} drilled their fighters for a day.</CC_Task_Note_Drill>
+  <CC_Task_Note_Tend>{PAWN} came with medicine when their people were sick.</CC_Task_Note_Tend>
+
+  <!-- The visit -->
+  <CC_Task_Visit_PlanOff>The visit to {0} was called off with the council's task.</CC_Task_Visit_PlanOff>
+  <CC_Task_Visit_CalledOff>{PAWN}'s visit was called off before {PAWN_pronoun} set out.</CC_Task_Visit_CalledOff>
+  <CC_Task_Visit_TurnedBack>{PAWN}'s visit came to nothing: the caravan never reached the town.</CC_Task_Visit_TurnedBack>
+  <CC_Task_Visit_Arrived>{PAWN} has reached {TOWN} on the council's business, and been received as their people receive such visitors: {RITE}.</CC_Task_Visit_Arrived>
+  <CC_Task_Visit_Label>{PAWN} at {TOWN}</CC_Task_Visit_Label>
+  <CC_Task_Visit_Homeward>{PAWN} has set out for home.</CC_Task_Visit_Homeward>
+  <CC_Task_Visit_Back>{PAWN} is home from {TOWN}.</CC_Task_Visit_Back>
+  <CC_Task_Visit_WinOver>{PAWN} spent a day at {TOWN} with {NAME}, who thinks the better of the colony for it.</CC_Task_Visit_WinOver>
+  <CC_Task_Visit_KeepFaith>{PAWN} spent a day at {TOWN} with {NAME}, at prayer and at table, and comes home with news to steady the believers.</CC_Task_Visit_KeepFaith>
+  <CC_Task_Visit_SpeakFaith>{PAWN} spent a day at {TOWN} speaking for the colony's faith, and {NAME} listened longer than expected.</CC_Task_Visit_SpeakFaith>
+  <CC_Task_Visit_Trade>{PAWN} spent a day at {TOWN} going over what {NAME}'s people buy and sell.</CC_Task_Visit_Trade>
+  <CC_Task_Visit_Drill>{PAWN} spent a day at {TOWN} drilling the fighters of {PEOPLE} ({LEVY}). Their band will come a fifth stronger for a season.</CC_Task_Visit_Drill>
+  <CC_Task_Visit_Tend>{PAWN} spent a day at {TOWN} with their sick, and left them {COUNT} of the colony's medicine. Their people will remember it.</CC_Task_Visit_Tend>
+  <CC_Task_Visit_TendNone>{PAWN} spent a day at {TOWN} with their sick, with no medicine to leave them. They are grateful for the care all the same.</CC_Task_Visit_TendNone>
+  <CC_Task_Visit_Caught>{PAWN} has caught the {SICKNESS} at {TOWN} and is bringing it home.</CC_Task_Visit_Caught>
+
+  <!-- Where it stands (never a time left) -->
+  <CC_Task_Row_WinOver>{PAWN} ({OFFICE}) is winning over {TARGET}.</CC_Task_Row_WinOver>
+  <CC_Task_Row_Secrets>{PAWN} ({OFFICE}) is finding out what {TARGET} would rather keep quiet.</CC_Task_Row_Secrets>
+  <CC_Task_Row_Scout>{PAWN} ({OFFICE}) walks the edges of {COLONY} at dawn.</CC_Task_Row_Scout>
+  <CC_Task_Row_Drill>{PAWN} ({OFFICE}) is to drill the fighters of {TARGET}.</CC_Task_Row_Drill>
+  <CC_Task_Row_Trade>{PAWN} ({OFFICE}) is opening a trade with {TARGET}.</CC_Task_Row_Trade>
+  <CC_Task_Row_Dues>{PAWN} ({OFFICE}) sees to the dues of {TARGET}.</CC_Task_Row_Dues>
+  <CC_Task_Row_Tend>{PAWN} ({OFFICE}) is to take medicine to {TARGET}.</CC_Task_Row_Tend>
+  <CC_Task_Row_BringHome>{PAWN} ({OFFICE}) is writing to bring {TARGET} home.</CC_Task_Row_BringHome>
+  <CC_Task_Row_TheirKin>{PAWN} ({OFFICE}) writes to {TARGET} about their kin in the colony's cells.</CC_Task_Row_TheirKin>
+  <CC_Task_Row_KeepFaith>{PAWN} ({OFFICE}) keeps the faith with {TARGET}.</CC_Task_Row_KeepFaith>
+  <CC_Task_Row_SpeakFaith>{PAWN} ({OFFICE}) speaks for the faith to {TARGET}.</CC_Task_Row_SpeakFaith>
+  <CC_Task_Row_Host>{PAWN} ({OFFICE}) is preparing a feast for {TARGET}.</CC_Task_Row_Host>
+  <CC_Task_Last_None>Nothing done yet.</CC_Task_Last_None>
+  <CC_Task_Last_Letter>Last: a letter, answered {TONE}, {AGO}.</CC_Task_Last_Letter>
+  <CC_Task_Last_Call>Last: a call, answered {TONE}, {AGO}.</CC_Task_Last_Call>
+  <CC_Task_Last_Talk>Last: a talk with one of theirs, {AGO}.</CC_Task_Last_Talk>
+  <CC_Task_Last_Informer>Last: a word from the informer, {AGO}.</CC_Task_Last_Informer>
+  <CC_Task_Last_Patrol>Last: a patrol at dawn, quiet, {AGO}.</CC_Task_Last_Patrol>
+  <CC_Task_Last_PatrolSeen>Last: a patrol at dawn that saw a raiders' camp, {AGO}.</CC_Task_Last_PatrolSeen>
+  <CC_Task_Last_Visit>Last: a visit to their town, {AGO}.</CC_Task_Last_Visit>
+  <CC_Task_Last_Guest>Last: their head as the colony's guest, {AGO}.</CC_Task_Last_Guest>
+  <CC_Task_Last_Cart>Last: samples fetched from the gate, {AGO}.</CC_Task_Last_Cart>
+  <CC_Task_Last_Feast>Last: the feast, {AGO}.</CC_Task_Last_Feast>
+  <CC_Task_Next_Planned>Next: setting out for {TOWN}, {WHEN}.</CC_Task_Next_Planned>
+  <CC_Task_Next_Gate>Next: gathering at the gate for {TOWN}.</CC_Task_Next_Gate>
+  <CC_Task_Next_Road>On the road to {TOWN}.</CC_Task_Next_Road>
+  <CC_Task_Next_There>At {TOWN} for the day.</CC_Task_Next_There>
+  <CC_Task_Next_Homeward>On the way home.</CC_Task_Next_Homeward>
+  <CC_Task_Next_Answer>Next: their answer to the letter on the road.</CC_Task_Next_Answer>
+  <CC_Task_Next_Feast>Next: the feast with them.</CC_Task_Next_Feast>
+  <CC_Task_Next_PlanFeast>Next: the feast, once the council plans it.</CC_Task_Next_PlanFeast>
+  <CC_Task_Next_Visit>Next: the visit to {TOWN}, once it is planned.</CC_Task_Next_Visit>
+  <CC_Task_Next_Informer>Next: the informer's word, once they have been paid at the gate.</CC_Task_Next_Informer>
+  <CC_Task_Next_Price>Next: their word on a price, at the gate.</CC_Task_Next_Price>
+  <CC_Task_Next_WinOver>Next: another letter to {NAME}.</CC_Task_Next_WinOver>
+  <CC_Task_Next_Secrets>Next: a word with whoever of theirs comes by.</CC_Task_Next_Secrets>
+  <CC_Task_Next_Scout>Next: the next dawn's walk.</CC_Task_Next_Scout>
+  <CC_Task_Next_Drill>Next: the visit to {TOWN}.</CC_Task_Next_Drill>
+  <CC_Task_Next_Trade>Next: another letter to {NAME}.</CC_Task_Next_Trade>
+  <CC_Task_Next_Dues>Next: their carter at the gate.</CC_Task_Next_Dues>
+  <CC_Task_Next_Tend>Next: the visit to {TOWN}.</CC_Task_Next_Tend>
+  <CC_Task_Next_BringHome>Next: another letter to {NAME}.</CC_Task_Next_BringHome>
+  <CC_Task_Next_TheirKin>Next: another letter to {NAME}.</CC_Task_Next_TheirKin>
+  <CC_Task_Next_KeepFaith>Next: another letter to {NAME}.</CC_Task_Next_KeepFaith>
+  <CC_Task_Next_SpeakFaith>Next: another letter to {NAME}.</CC_Task_Next_SpeakFaith>
+  <CC_Task_Next_Host>Next: a letter to {NAME} about the feast.</CC_Task_Next_Host>
+  <CC_Task_Step_Set>set</CC_Task_Step_Set>
+  <CC_Task_Step_Work>at work</CC_Task_Step_Work>
+  <CC_Task_Step_Away>away</CC_Task_Step_Away>
+  <CC_Task_Step_Done>done</CC_Task_Step_Done>
+  <CC_Task_Patrol_Quiet>{PAWN} walked the edges of {COLONY} at dawn and saw nothing out of place.</CC_Task_Patrol_Quiet>
+  <CC_Task_Patrol_Seen>{PAWN}'s dawn patrol saw the smoke of a raiders' camp.</CC_Task_Patrol_Seen>
+
+  <!-- The cards, the rows, This week -->
+  <CC_Task_Act_Set>Set a task...</CC_Task_Act_Set>
+  <CC_Task_Act_Set_Tip>Give this officer one of the council's tasks with a neighbor, or the colony's own land. The steps play out on the map: letters, calls, talks, patrols, a visit by caravan.</CC_Task_Act_Set_Tip>
+  <CC_Task_Act_Visit>Plan the visit</CC_Task_Act_Visit>
+  <CC_Task_Act_Visit_Tip>The officer and a companion go to their town by caravan, stay a day and come home: a journey in the journey planner for the next morning.</CC_Task_Act_Visit_Tip>
+  <CC_Task_Act_Samples>Send samples</CC_Task_Act_Samples>
+  <CC_Task_Act_Samples_Tip>A quarter of a cart of the colony's surplus, fetched from the gate by their porter: the trade comes on a good way.</CC_Task_Act_Samples_Tip>
+  <CC_Task_Act_Off>Call it off</CC_Task_Act_Off>
+  <CC_Task_Act_Off_Tip>End the task. A visit still only planned is called off; an officer on the road comes home.</CC_Task_Act_Off_Tip>
+  <CC_Task_Act_ForPeople>Council task...</CC_Task_Act_ForPeople>
+  <CC_Task_Act_ForPeople_Tip>The tasks the council's officers could take on with this people, each with the office that would.</CC_Task_Act_ForPeople_Tip>
+  <CC_Task_Act_Feast_Tip>Plan the feast with their notables as guests. The steward's preparations make their welcome count half again.</CC_Task_Act_Feast_Tip>
+  <CC_Task_Card_Last>The last task: {RESULT}</CC_Task_Card_Last>
+  <CC_Task_Office_None>No task among {WORD}.</CC_Task_Office_None>
+  <CC_Task_Away>{PAWN} ({OFFICE}), away on the council's business. {WHERE}</CC_Task_Away>
+  <CC_Task_Here_Title>The council's tasks</CC_Task_Here_Title>
+  <CC_Task_Here_None>No officer has a task now. Set one on the Decrees page's row for an office, or on an officer's card.</CC_Task_Here_None>
+  <CC_Task_Week_Visit>{PAWN}'s visit to {TARGET} waits to be planned</CC_Task_Week_Visit>
+  <CC_Task_Week_Feast>The feast {PAWN} prepared for {TARGET} waits to be planned</CC_Task_Week_Feast>
+  <CC_Task_WeekNote>A council task waits on the council's word.</CC_Task_WeekNote>
+
+  <!-- ================= The keeper of secrets ================= -->
+
+  <!-- Their notables' secrets: each follows a name ("Bram {SECRET}"). -->
+  <CC_Secret_Their_debt>owes more than the town could ever pay back</CC_Secret_Their_debt>
+  <CC_Secret_Their_bribe>takes a cut of every caravan that passes through</CC_Secret_Their_bribe>
+  <CC_Secret_Their_raiders>pays raiders to leave the town's fields alone</CC_Secret_Their_raiders>
+  <CC_Secret_Their_stash>keeps grain hidden from the town's own people in a hard year</CC_Secret_Their_stash>
+  <CC_Secret_Their_heir>knows the heir is not who the town thinks</CC_Secret_Their_heir>
+  <CC_Secret_Their_past>rode with raiders before settling down</CC_Secret_Their_past>
+  <CC_Secret_Their_sick>is sicker than anyone in the town has been told</CC_Secret_Their_sick>
+  <CC_Secret_Their_lover>meets a lover the town knows nothing about</CC_Secret_Their_lover>
+  <CC_Secret_Their_Any>has something to hide</CC_Secret_Their_Any>
+
+  <CC_Keeper_How_Talk>{PAWN} had a long talk with {OTHER} at the colony and listened more than {PAWN_pronoun} spoke.</CC_Keeper_How_Talk>
+  <CC_Keeper_How_Informer>An informer paid at the gate gave {PAWN} what {PAWN_pronoun} wanted to know about {OTHER}.</CC_Keeper_How_Informer>
+  <CC_Keeper_How_Visit>At {TOWN}, {PAWN} heard what the town says about {OTHER} when {OTHER} isn't in the room.</CC_Keeper_How_Visit>
+  <CC_Keeper_How_Overheard>Walking with the guests after dark, {PAWN} overheard {OTHER} say more than {OTHER} meant to.</CC_Keeper_How_Overheard>
+  <CC_Keeper_Learned>The colony now knows that {NAME} {SECRET}.</CC_Keeper_Learned>
+  <CC_Keeper_Learned_Use>It can be pressed: by letter from {NAME}'s card, or face to face when {NAME} comes to the colony ({PAWN}'s "Sound out"). Pressed, {NAME} may send silver to keep it quiet, or refuse and have it told.</CC_Keeper_Learned_Use>
+  <CC_Keeper_Learned_Label>A secret of {NAME}'s</CC_Keeper_Learned_Label>
+  <CC_Keeper_Nothing_Talk>{PAWN} talked with {OTHER} a good while and learned nothing worth keeping about {NAME}.</CC_Keeper_Nothing_Talk>
+  <CC_Keeper_Nothing_Informer>The informer's word was gossip {PAWN} already knew. Nothing new about {NAME}.</CC_Keeper_Nothing_Informer>
+  <CC_Keeper_Nothing_Visit>{PAWN} listened all day at their town and heard nothing about {NAME} worth carrying home.</CC_Keeper_Nothing_Visit>
+  <CC_Keeper_Caught_Talk>{OTHER} saw where {PAWN}'s questions were going, and {NAME} will hear of it. {NAME} thinks less of the colony, and of {PAWN} most of all.</CC_Keeper_Caught_Talk>
+  <CC_Keeper_Caught_Informer>{NAME} heard that someone was paying for word of {NAME}, and traced it to {PAWN}. {NAME} thinks less of the colony for it.</CC_Keeper_Caught_Informer>
+  <CC_Keeper_Caught_Visit>At their town, {NAME} caught {PAWN} asking the wrong people the wrong questions. {NAME} thinks less of the colony, and of {PAWN} most of all.</CC_Keeper_Caught_Visit>
+  <CC_Keeper_Note_Caught>Caught {PAWN} prying into their affairs.</CC_Keeper_Note_Caught>
+  <CC_Keeper_Note_Pressed>Was pressed by the colony over something they would rather keep quiet.</CC_Keeper_Note_Pressed>
+  <CC_Keeper_Note_Told>Refused the colony, and had their secret told.</CC_Keeper_Note_Told>
+  <CC_Keeper_Watch>{PAWN} kept by the guests from {PEOPLE} after dark.</CC_Keeper_Watch>
+  <CC_Keeper_Card_Known>The colony knows something about {COUNT} of the neighbors' notables.</CC_Keeper_Card_Known>
+  <CC_Keeper_Card_Guard>While this seat is filled, the colony's own secrets slip half as often.</CC_Keeper_Card_Guard>
+  <CC_Keeper_Card_Caught>{NAME} caught the colony's keeper of secrets prying.</CC_Keeper_Card_Caught>
+  <CC_Keeper_Tie_Open>The colony knows that {NAME} {SECRET} ({PAWN} learned it).</CC_Keeper_Tie_Open>
+  <CC_Keeper_Tie_CalledIn>The colony has pressed {NAME} over it: {NAME} {SECRET}. Their answer is on its way.</CC_Keeper_Tie_CalledIn>
+  <CC_Keeper_Tie_Kept>{NAME} paid to keep quiet that {NAME} {SECRET}.</CC_Keeper_Tie_Kept>
+  <CC_Keeper_Tie_Broken>{NAME} refused, and the colony told it: {NAME} {SECRET}.</CC_Keeper_Tie_Broken>
+  <CC_Keeper_Tie_Ended>Once the colony knew that {NAME} {SECRET}. It no longer matters.</CC_Keeper_Tie_Ended>
+  <CC_Keeper_Tie_Weight_1>A small thing to hide.</CC_Keeper_Tie_Weight_1>
+  <CC_Keeper_Tie_Weight_2>Enough to cost them dearly if it got out.</CC_Keeper_Tie_Weight_2>
+  <CC_Keeper_Tie_Weight_3>Enough to ruin them.</CC_Keeper_Tie_Weight_3>
+
+  <!-- The informer -->
+  <CC_Keeper_Act_Informer>Pay an informer</CC_Keeper_Act_Informer>
+  <CC_Keeper_Act_Informer_Tip>Someone who hears things comes to the gate for the colony's silver and tells the keeper what they know. A better chance than a talk, and the same chance of being found out.</CC_Keeper_Act_Informer_Tip>
+  <CC_Keeper_Msg_Informer>{PAWN} has sent word that {SILVER} silver waits at the gate for anyone with news of {NAME} ({WORD}). Someone will come for it.</CC_Keeper_Msg_Informer>
+  <CC_Keeper_Why_Informer>An informer is already coming.</CC_Keeper_Why_Informer>
+  <CC_Keeper_Why_NoInformer>Nobody can come to the gate now.</CC_Keeper_Why_NoInformer>
+  <CC_Keeper_Why_Silver>The stores hold less than {SILVER} silver.</CC_Keeper_Why_Silver>
+
+  <!-- Sounding out, and pressing what the colony knows -->
+  <CC_Keeper_Menu_Title>Sound out {OTHER}</CC_Keeper_Menu_Title>
+  <CC_Keeper_Menu_Sound>Find out what {NAME} keeps quiet</CC_Keeper_Menu_Sound>
+  <CC_Keeper_Menu_Sound_Tip>A long talk, the keeper's Social and Intellectual against the notable's. Found out one time in ten.</CC_Keeper_Menu_Sound_Tip>
+  <CC_Keeper_Menu_Press>Remind {NAME} that the colony knows: {NAME} {SECRET} ({SILVER} silver to keep it quiet)</CC_Keeper_Menu_Press>
+  <CC_Keeper_Why_NoNotable>No notable of {PEOPLE} is known to the colony.</CC_Keeper_Why_NoNotable>
+  <CC_Keeper_Why_Pressed>It has been pressed already.</CC_Keeper_Why_Pressed>
+  <CC_Keeper_Why_Here>{NAME} is here: press it face to face, with the keeper's "Sound out".</CC_Keeper_Why_Here>
+  <CC_Keeper_Why_NoLetter>No letter can go to them now.</CC_Keeper_Why_NoLetter>
+  <CC_Keeper_Act_Press>Press what we know</CC_Keeper_Act_Press>
+  <CC_Keeper_Act_Press_Tip>A letter that reminds them what the colony knows, and names a price for keeping quiet.</CC_Keeper_Act_Press_Tip>
+  <CC_Keeper_Press_Topic>something best kept between the two sides</CC_Keeper_Press_Topic>
+  <CC_Keeper_Press_Ask>Remind {NAME} that the colony knows {NAME} {SECRET}, and ask {SILVER} silver to keep it quiet? {PAWN} would put it to {NAME}.\n\n{NAME} will think less of the colony either way. If {NAME} refuses, the colony tells it, {NAME} turns against the colony for good, and {PEOPLE} remember it as a scheme of the colony's.</CC_Keeper_Press_Ask>
+  <CC_Keeper_Press_Yes>{NAME} will pay {SILVER} silver to keep it quiet that {NAME} {SECRET}, and wants nothing more to do with the colony.</CC_Keeper_Press_Yes>
+  <CC_Keeper_Press_No>{NAME} refused to pay. The colony has let it be known that {NAME} {SECRET}, and {PEOPLE} won't forget who told it.</CC_Keeper_Press_No>
+  <CC_Keeper_Ans_Moot>{NAME} has nothing to say to the colony about that now.</CC_Keeper_Ans_Moot>
+  <CC_Keeper_Hist_Kept>{NAME} paid the colony to keep a secret ({PAWN} learned it).</CC_Keeper_Hist_Kept>
+  <CC_Keeper_Hist_Told>{NAME} refused the colony, and it told what {PAWN} had learned.</CC_Keeper_Hist_Told>
+
+</LanguageData>

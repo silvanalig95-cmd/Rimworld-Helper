@@ -105,6 +105,8 @@ C = {
     "MatchPlans": const("Diplomacy/MatchMath.cs", "MaxPlans", 3),
     # Wards and hostages either way at a home at once (Diplomacy/WardMath.cs, release 2b.3).
     "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
+    # The council's tasks at a home (Diplomacy/TaskBook.cs, release 2c.1): one record a seat, kept a season after it ends.
+    "TasksPerHome": const("Diplomacy/TaskMath.cs", "MaxPerHome", 13),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -584,6 +586,11 @@ MODEL = {
     # ward's year a year, a hostage's term a season or a year); one at a time is usual.
     "Diplomacy/DiplomacyBook.cs:wards": ("cap", (C["WardsPerHome"], 1), 900,
                                          "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
+    # Its council tasks (Diplomacy/CouncilTasks.cs): one record a seat with tasks (eight offices now, TaskMath.MaxPerHome at
+    # most), each about forty values and four references, kept a season after its task ends so the office's last visit
+    # counts; a new one every few days at most.
+    "Diplomacy/DiplomacyBook.cs:tasks": ("cap", (C["TasksPerHome"], 0.2), 700,
+                                         "per home: the council's tasks, one record a seat, TaskMath.MaxPerHome at most, each let go a season after it ends"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

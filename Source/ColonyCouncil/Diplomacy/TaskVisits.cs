@@ -129,6 +129,8 @@ namespace ColonyCouncil
                     var med = MedicineDef(home);
                     int n = TaskMath.MedicineFor(Medicine(home));
                     if (med != null && n > 0) plan.packing.Add(new JourneyLine(med, n, "other") { added = true });
+                    // What is given at their town is what was packed for them, not the travellers' own medicine for the road.
+                    t.progress = med != null ? n : 0;
                 }
                 JourneyRun.Confirm(plan, true);
                 t.planId = plan.id;

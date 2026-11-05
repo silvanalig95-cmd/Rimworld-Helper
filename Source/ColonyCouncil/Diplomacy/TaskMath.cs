@@ -386,8 +386,8 @@ namespace ColonyCouncil
 
         public const string HistoryKind = "dip:task";
 
-        /// <summary>The facts' tags: a task of the colony's with their people (us:task, us:task:KIND), the officer who writes often, who visited this season.</summary>
-        public const string TaskTag = "us:task", WritesTag = "task:writes", VisitedTag = "task:visited";
+        /// <summary>The facts' tags: a task of the colony's with their people (us:task, us:task:KIND), the officer who writes often, who visited this season, and whether the officer is the one talking (task:you).</summary>
+        public const string TaskTag = "us:task", WritesTag = "task:writes", VisitedTag = "task:visited", YouTag = "task:you";
 
         public static string KindTag(TaskKind k) => TaskTag + ":" + Code(k);
 
@@ -403,6 +403,7 @@ namespace ColonyCouncil
             yield return TaskTag;
             yield return WritesTag;
             yield return VisitedTag;
+            yield return YouTag;
             foreach (var k in Kinds)
                 if (Known(k))
                     yield return KindTag(k);

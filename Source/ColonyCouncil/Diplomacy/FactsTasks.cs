@@ -10,7 +10,7 @@ namespace ColonyCouncil
         /// <summary>
         /// A task of the colony's with the scene's people that they know of (the keeper's and the marshal's patrol are
         /// never talked of): us:task and us:task:KIND, with {OFFICER} the officer and {OFFICE} the seat; task:writes when the
-        /// officer has written twice or more, task:visited when they visited this season. Of the one spoken to: they caught
+        /// officer has written twice or more, task:visited when they visited this season, task:you when the officer is the one talking. Of the one spoken to: they caught
         /// the colony's keeper at it (them:caughtkeeper, and :you when the keeper is the one talking), they were pressed over a
         /// secret (them:pressed), the keeper walked with them after dark lately (keeper:watched). Only reads.
         /// </summary>
@@ -29,6 +29,7 @@ namespace ColonyCouncil
                 f.Tag(TaskMath.KindTag(best.kind), 1.5f);
                 f.Value(TaskMath.OfficerKey, best.OfficerName);
                 f.Value(TaskMath.OfficeKey, TaskWords.Office(best.office));
+                if (s.speaker != null && best.officer == s.speaker) f.Tag(TaskMath.YouTag, 2f);
                 if (best.letters >= TaskMath.WritesOften) f.Tag(TaskMath.WritesTag, 1.5f);
                 int now = Find.TickManager?.TicksGame ?? 0;
                 if (best.visits > 0 && best.lastVisit >= 0 && now - best.lastVisit < TaskMath.SeasonDays * TaskMath.DayTicks) f.Tag(TaskMath.VisitedTag, 1.5f);

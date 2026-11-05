@@ -31,6 +31,9 @@ namespace ColonyCouncil
             CardActs.Register(CardKind.Colonist, r => TaskWords.P("CC_Keeper_Act_Informer"), r => KeeperOfSecrets.InformerWhyNot(TaskOf(Pawn(r)), HomeOf(Pawn(r))),
                 r => KeeperOfSecrets.Informer(TaskOf(Pawn(r)), HomeOf(Pawn(r))), r => TaskOf(Pawn(r)) is CouncilTask t && t.Live && t.kind == TaskKind.Secrets, 36f,
                 TaskWords.P("CC_Keeper_Act_Informer_Tip"), "task-informer");
+            CardActs.Register(CardKind.Colonist, r => TaskWords.P("CC_Task_Act_Samples"), r => CouncilTasks.SamplesWhyNot(TaskOf(Pawn(r)), HomeOf(Pawn(r))),
+                r => CouncilTasks.SendSamples(TaskOf(Pawn(r)), HomeOf(Pawn(r))), r => TaskOf(Pawn(r)) is CouncilTask t && t.Live && t.kind == TaskKind.Trade, 36f,
+                TaskWords.P("CC_Task_Act_Samples_Tip"), "task-samples");
             CardActs.Register(CardKind.Colonist, r => TaskWords.P("CC_Task_Act_Off"), r => null, r => CouncilTasks.CallOff(TaskOf(Pawn(r))), r => TaskOf(Pawn(r)) is CouncilTask t && t.Live,
                 70f, TaskWords.P("CC_Task_Act_Off_Tip"), "task-off");
             // A notable of theirs: what the colony knows of them, and pressing it by letter.

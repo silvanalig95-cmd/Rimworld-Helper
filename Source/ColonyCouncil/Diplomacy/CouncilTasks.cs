@@ -580,11 +580,7 @@ namespace ColonyCouncil
             var home = h.Map;
             if (home == null) return;
             // The visit first: it plays out to the end, whatever becomes of the task.
-            if (t.visit != VisitStage.None)
-            {
-                TaskVisits.Step(h, t, now);
-                if (!t.Live || t.visit != VisitStage.None && t.visit != VisitStage.Planned) return;
-            }
+            if (t.visit != VisitStage.None) TaskVisits.Step(h, t, now);
             if (!t.Live) return;
             if (!On)
             {
@@ -597,8 +593,11 @@ namespace ColonyCouncil
                 End(h, t, TaskStage.Off, why, true);
                 return;
             }
+            // Nothing else while the officer is away or about to set out (their letters wait for them).
+            if (t.visit != VisitStage.None) return;
             if (TaskResults.Finished(h, t, home, now)) return;
-            if (TaskMath.GivesUp(t.kind, t.started, now) && t.visit == VisitStage.None)
+            // A feast planned with them is waited for, however long its day.
+            if (TaskMath.GivesUp(t.kind, t.started, now) && !(t.kind == TaskKind.Host && t.asked))
             {
                 bool done = TaskMath.SeasonDone(t.kind, t.Steps);
                 End(h, t, done ? TaskStage.Done : TaskStage.Off,
@@ -624,10 +623,57 @@ namespace ColonyCouncil
                     if (DuesStep != null) DuesStep(t, h, now);
                     else t.nextTick = now + TaskMath.DayTicks;
                     break;
+                case TaskKind.Trade:
+                    SamplesHour(t);
+                    LetterHour(t, home, now);
+                    break;
                 default:
                     LetterHour(t, home, now);
                     break;
             }
+        }
+
+        // ================= The quartermaster's samples =================
+
+        /// <summary>The samples' cart fetched by their porter at the gate: the trade's way forward (TaskMath.CartGain).</summary>
+        private static void SamplesHour(CouncilTask t)
+        {
+            if (t.tripId < 0) return;
+            var trip = CourierTracker.Instance?.Get(t.tripId);
+            if (trip != null && trip.state != CourierState.Done) return;
+            t.tripId = -1;
+            if (trip == null || trip.taken <= 0) return;
+            t.carts++;
+            t.progress += TaskMath.CartGain;
+            t.last = TaskStep.Cart;
+            t.lastTick = Now;
+            Diplomacy.Dirty();
+        }
+
+        /// <summary>Why the quartermaster can't send samples of the colony's surplus to them now, or null.</summary>
+        public static string SamplesWhyNot(CouncilTask t, Map home)
+        {
+            if (t == null || !t.Live || t.kind != TaskKind.Trade) return TaskWords.P("CC_Task_Why_Gone");
+            if (t.tripId >= 0) return TaskWords.P("CC_Task_Why_Samples");
+            if (t.carts > 0) return TaskWords.P("CC_Task_Why_SamplesSent");
+            if (Pacts.CartGoods(home).Count == 0) return PactWords.P("CC_Pact_Why_NoSurplus");
+            if (!Couriers.CanSend(home, PeopleOf(t))) return TaskWords.P("CC_Keeper_Why_NoInformer");
+            return null;
+        }
+
+        /// <summary>Samples of the colony's surplus for their trader: their porter comes to the gate for them.</summary>
+        public static void SendSamples(CouncilTask t, Map home)
+        {
+            if (SamplesWhyNot(t, home) != null) return;
+            var (def, count) = Pacts.CartGoods(home)[0];
+            int n = TaskMath.Samples(count);
+            var trip = SendCart(home, def, n, PeopleOf(t));
+            if (trip == null) return;
+            t.tripId = trip.id;
+            // apart: the council's choice, told in a message; their porter comes to the gate some hours later.
+            Tell.Message(NewsKind.World, Importance.Notable, home, TaskWords.P("CC_Task_Msg_Samples", t.officer.Named("PAWN"), Couriers.Amount(n, null, def).Named("GOODS"),
+                (t.targetName ?? "?").Named("TARGET")), new LookTargets(t.officer), MessageTypeDefOf.NeutralEvent);
+            Diplomacy.Dirty();
         }
 
         // ================= Letters and calls =================
@@ -638,9 +684,18 @@ namespace ColonyCouncil
             if (t.letterId >= 0)
             {
                 var open = NeighbourLetters.Get(t.letterId);
+                // Their notable at the colony on the speaker's invitation: a guest received.
+                if (open != null && open.purpose == LetterPurpose.Invitation && open.stage == LetterStage.Guesting && t.last != TaskStep.Guest)
+                {
+                    t.guests++;
+                    t.last = TaskStep.Guest;
+                    t.lastTick = now;
+                    t.lastHow = -1;
+                    Diplomacy.Dirty();
+                }
                 if (open != null && open.Open)
                 {
-                    t.nextTick = now + 6 * TaskMath.HourTicks;
+                    t.nextTick = now + 2 * TaskMath.HourTicks;
                     return;
                 }
                 t.letterId = -1;
@@ -656,6 +711,20 @@ namespace ColonyCouncil
             {
                 t.nextTick = now + 12 * TaskMath.HourTicks;
                 return;
+            }
+            // The speaker invites the head once, after two letters: their visit is the invitation's own (a guest received).
+            if (t.kind == TaskKind.WinOver && t.letters >= 2 && !t.invited && NeighbourLetters.WhyNot(n, LetterPurpose.Invitation) == null)
+            {
+                var channel = NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, home) == null ? LetterChannel.Console : LetterChannel.Courier;
+                var inv = NeighbourLetters.ChannelWhyNot(n, channel, home) == null ? NeighbourLetters.Send(n, LetterPurpose.Invitation, channel, t.officer, null, null) : null;
+                if (inv != null)
+                {
+                    t.invited = true;
+                    t.letterId = inv.id;
+                    t.nextTick = now + Mathf.RoundToInt(TaskMath.NextLetterDays(Rand.Value) * TaskMath.DayTicks);
+                    Diplomacy.Dirty();
+                    return;
+                }
             }
             var l = TaskLetters.Send(n, t.officer, TaskLetters.TaskKey(t), TaskWords.Topic(t));
             if (l == null)
@@ -705,8 +774,12 @@ namespace ColonyCouncil
                 Write(t, home, t.result, true);
             }
             else
+            {
+                // Said to nobody, back from the walk: the edges were quiet (a camp seen has its own words, RaidersCamps.Found).
+                Outsiders.Say(p, "patrol", null);
                 Tell.Minor(NewsKind.Colony, Importance.Flavor, home, TaskWords.T("CC_Task_Patrol_Quiet", p.Named("PAWN"), Homes.Name(home).Named("COLONY")), new LookTargets(p),
                     MessageTypeDefOf.SilentInput);
+            }
             Diplomacy.Dirty();
         }
 

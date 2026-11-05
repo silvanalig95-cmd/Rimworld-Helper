@@ -273,7 +273,7 @@ namespace ColonyCouncil
         private static string Told(Map home, Pawn keeper, Notable n, Tie tie, string how, bool letter = true)
         {
             string what = SecretTies.What(tie);
-            string text = how + " " + TaskWords.P("CC_Keeper_Learned", n.Name.Named("NAME"), what.Named("SECRET")) + "\n\n" + TaskWords.P("CC_Keeper_Learned_Use", keeper.Named("PAWN"));
+            string text = how + " " + TaskWords.P("CC_Keeper_Learned", n.Name.Named("NAME"), what.Named("SECRET")) + "\n\n" + TaskWords.P("CC_Keeper_Learned_Use", keeper.Named("PAWN"), n.Name.Named("NAME"));
             if (letter)
                 Tell.Letter(NewsKind.World, Importance.Notable, home, TaskWords.P("CC_Keeper_Learned_Label", n.Name.Named("NAME")), text, LetterDefOf.NeutralEvent,
                     keeper.Spawned ? new LookTargets(keeper) : LookTargets.Invalid, n.faction);
@@ -368,7 +368,7 @@ namespace ColonyCouncil
                 foreach (var t in SecretTies.About(self).Where(t => t.state == Tie.State.Open))
                 {
                     var tie = t;
-                    string label = TaskWords.P("CC_Keeper_Menu_Press", SecretTies.What(tie).Named("SECRET"), KeeperMath.Hush(SecretTies.Weight(tie)).Named("SILVER"));
+                    string label = TaskWords.P("CC_Keeper_Menu_Press", self.Name.Named("NAME"), SecretTies.What(tie).Named("SECRET"), KeeperMath.Hush(SecretTies.Weight(tie)).Named("SILVER"));
                     string why = SecretTies.PressWhyNot(tie);
                     opts.Add(why != null ? new FloatMenuOption("CC_Out_Disabled".Translate(label.Named("LABEL"), why.Named("WHY")).Resolve(), null)
                         : new FloatMenuOption(label, () => Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(SecretTies.PressAsk(tie, x), () => pick(c, x, PressCode + tie.id)))));

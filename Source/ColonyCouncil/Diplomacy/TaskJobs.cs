@@ -50,7 +50,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The marshal walks the edges at dawn (the job's queue of cells, in turn), says a word, and the step is noted (CouncilTasks.Patrolled).</summary>
+    /// <summary>The marshal walks the edges at dawn (the job's queue of cells, in turn), and the step is noted (CouncilTasks.Patrolled: a word when all was quiet).</summary>
     public class JobDriver_TaskPatrol : JobDriver
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
@@ -78,11 +78,7 @@ namespace ColonyCouncil
                 yield return look;
             }
             var done = ToilMaker.MakeToil("PatrolDone");
-            done.initAction = () =>
-            {
-                Outsiders.Say(pawn, "patrol", null);
-                CouncilTasks.Patrolled(pawn);
-            };
+            done.initAction = () => CouncilTasks.Patrolled(pawn);
             done.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return done;
         }

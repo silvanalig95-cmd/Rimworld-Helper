@@ -33,7 +33,7 @@ namespace ColonyCouncil
         public int nextTick = -1;
         /// <summary>The trade's way so far (TaskMath.TradeGoal).</summary>
         public float progress;
-        public int letters, visits, talks, patrols, carts;
+        public int letters, visits, talks, patrols, carts, guests;
         /// <summary>The letter or call on the road now, the courier trip met at the gate (an informer, a cart), or -1.</summary>
         public int letterId = -1, tripId = -1;
         /// <summary>The words of what it came to, for the cards and the history.</summary>
@@ -52,12 +52,14 @@ namespace ColonyCouncil
         public int talkDay = -1;
         /// <summary>The warden's word on a price asked for at their gate; the steward's feast planned with them.</summary>
         public bool asked;
+        /// <summary>The speaker invited their head (once a task).</summary>
+        public bool invited;
 
         public bool Live => stage == TaskStage.Running;
 
         public bool Away => visit != VisitStage.None;
 
-        public int Steps => letters + visits + talks + patrols + carts;
+        public int Steps => letters + visits + talks + patrols + carts + guests;
 
         public string OfficerName => officer != null && !officer.Discarded ? officer.LabelShort : officerName ?? "?";
 
@@ -93,6 +95,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref talks, "talks");
             Scribe_Values.Look(ref patrols, "patrols");
             Scribe_Values.Look(ref carts, "carts");
+            Scribe_Values.Look(ref guests, "guests");
             Scribe_Values.Look(ref letterId, "letterId", -1);
             Scribe_Values.Look(ref tripId, "tripId", -1);
             Scribe_Values.Look(ref result, "result");
@@ -106,6 +109,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref feastId, "feastId", -1);
             Scribe_Values.Look(ref talkDay, "talkDay", -1);
             Scribe_Values.Look(ref asked, "asked");
+            Scribe_Values.Look(ref invited, "invited");
         }
     }
 }
