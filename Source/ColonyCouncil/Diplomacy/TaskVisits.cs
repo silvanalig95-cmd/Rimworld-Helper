@@ -169,6 +169,12 @@ namespace ColonyCouncil
                 t.visit = VisitStage.None;
                 return;
             }
+            // The task ended (called off, its officer's seat or its target gone) while they are on the way or there: they turn for home.
+            if (!t.Live && (t.visit == VisitStage.Road || t.visit == VisitStage.There) && p.GetCaravan() is Caravan back)
+            {
+                Homeward(h, t, back, home, false);
+                return;
+            }
             switch (t.visit)
             {
                 case VisitStage.Planned:
@@ -214,8 +220,15 @@ namespace ColonyCouncil
                         if (p.Spawned && Homes.IsHome(p.Map) || People.Kidnapped(p)) Off(h, t, home, TaskWords.P("CC_Task_Visit_TurnedBack", p.Named("PAWN")));
                         return;
                     }
-                    bool moved = town == null || town.Destroyed || Find.WorldGrid.ApproxDistanceInTiles(c.Tile, town.Tile) > 1.5f;
-                    if (moved || now - t.visitSince >= Mathf.RoundToInt(TaskMath.StayDays * TaskMath.DayTicks)) Homeward(h, t, c, home, true);
+                    // The day there done, they turn for home; moved on before it (by the player, or the town gone), the visit was cut short.
+                    if (now - t.visitSince >= Mathf.RoundToInt(TaskMath.StayDays * TaskMath.DayTicks)) Homeward(h, t, c, home, true);
+                    else if (town == null || town.Destroyed || Find.WorldGrid.ApproxDistanceInTiles(c.Tile, town.Tile) > 1.5f)
+                    {
+                        // apart: the officer is far from home; told in a message that looks at the caravan.
+                        Tell.Message(NewsKind.World, Importance.Notable, home, TaskWords.P("CC_Task_Visit_CutShort", p.Named("PAWN"), (t.townName ?? "?").Named("TOWN")),
+                            new LookTargets(c), MessageTypeDefOf.NeutralEvent);
+                        Homeward(h, t, c, home, false);
+                    }
                     return;
                 }
                 case VisitStage.Homeward:
@@ -231,8 +244,12 @@ namespace ColonyCouncil
                         if (!p.Spawned && People.Kidnapped(p)) t.visit = VisitStage.None;
                         return;
                     }
-                    if (home != null && !c.pather.Moving && !c.pather.Paused && c.Tile != home.Tile && home.Parent != null)
-                        c.pather.StartPath(home.Tile, new CaravanArrivalAction_Enter(home.Parent), true);
+                    // Sent somewhere else by the player and stopped there two days on: the council stops counting them away on its business.
+                    if (!c.pather.Moving && t.lastVisit >= 0 && now - t.lastVisit > 2 * TaskMath.DayTicks)
+                    {
+                        t.visit = VisitStage.None;
+                        Diplomacy.Dirty();
+                    }
                     return;
                 }
             }

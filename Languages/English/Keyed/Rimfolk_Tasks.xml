@@ -190,6 +190,7 @@
   <CC_Task_Visit_TurnedBack>{PAWN}'s visit came to nothing: the caravan never reached the town.</CC_Task_Visit_TurnedBack>
   <CC_Task_Visit_Arrived>{PAWN} has reached {TOWN} on the council's business, and been received as their people receive such visitors: {RITE}.</CC_Task_Visit_Arrived>
   <CC_Task_Visit_Label>{PAWN} at {TOWN}</CC_Task_Visit_Label>
+  <CC_Task_Visit_CutShort>{PAWN} left {TOWN} before the day was out, and the visit came to nothing.</CC_Task_Visit_CutShort>
   <CC_Task_Visit_Homeward>{PAWN} has set out for home.</CC_Task_Visit_Homeward>
   <CC_Task_Visit_Back>{PAWN} is home from {TOWN}.</CC_Task_Visit_Back>
   <CC_Task_Visit_WinOver>{PAWN} spent a day at {TOWN} with {NAME}, who thinks the better of the colony for it.</CC_Task_Visit_WinOver>
