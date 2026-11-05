@@ -3106,22 +3106,28 @@ when someone acts with their nature, marks for repeated acts): `Diplomacy/Nature
 - **Where each act happens.** The oath: `Fealty.Swear`, the speaker who walked out (`JobDriver_FealtyOath`). A truce, pact,
   oath or protection broken by the colony: `PactsHooks.Noted`, on whoever the game names for the deed (`MemoryHooks.Doer`:
   the blow's hand kept by `Patch_MemoryDamageBy` while the game weighs it, the captor by `Patch_MemoryCapturedBy`, the
-  seller at the trade, the first of the caravan that fell on theirs, the killer); a deed the game names nobody for (a town
-  attacked or destroyed, a harmful ability or item) touches nobody; a pact's call refused by the council's answer
-  (`CallsToArms.Refused`), the speaker who sends it. A hostage of the colony's: as they walk off the map
-  (`WardsAbroad.AtEdge`, `Nature.HostageGoes`: the hostage, timid or set in their ways, one act; their close kin among the
-  colony, warm). A youth sent away as a ward: the same moment, the parents among the colony (`Nature.WardGoes`). A match
-  pressed: `Matches.Pressed`. A challenge: the travelling champion's and the rematch's (`HappeningWorker_Champion`, the
-  challenge renown sends to a fighters' house), turned down by the council's answer (`DilemmaEffect_SendAway` with the
-  context's `contest`) on the champion, proud or hot-tempered; faced at the contest itself (`Contest`) by a timid one.
-  The envoy abroad: as they walk off the map (`EnvoysAbroad.AtEdge`). Asking more for a captive (`Ransoms.AskMore`): the
-  speaker who haggles, and the captive's own close kin among the colony. A truce sworn (`Truces.Swear`,
-  `Nature.TruceWithFoe`): each avenger of this home whose vendetta is on them (`Vendettas`). The dark scheme is listed and
-  unwired: schemes (2c.3) are not built.
+  arrester by `Patch_MemoryArrestedBy` (the game weighs an arrest as a capture as it is tried, in
+  `Pawn.CheckAcceptArrest`), the seller at the trade, the first of the caravan that fell on theirs, the killer); a deed
+  the game names nobody for (a town attacked or destroyed, a harmful ability or item) touches nobody; a pact's call
+  refused by the council's answer (`CallsToArms.Refused`), the speaker who sends it (none with no home left). Those whose
+  words say they saw or heard it (a hostage's kin, a ward's parents, the champion of a challenge turned down, the captive's
+  kin, the avenger) feel it only when there, on that map (`Nature.There`). A hostage of the colony's: as they walk off the
+  map (`WardsAbroad.AtEdge`, `Nature.HostageGoes`: the hostage, timid or set in their ways, one act; their close kin among
+  the colony there, warm, read through every relation the game knows, so a child and a brother or sister count, the game's
+  implied relations). A youth sent away as a ward: the same moment, the parents there (`Nature.WardGoes`; a page sent to the
+  Empire's titled household said as a page). A match pressed: `Matches.Pressed`, once it is agreed. A challenge: the
+  travelling champion's and the rematch's (`HappeningWorker_Champion`, the challenge renown sends to a fighters' house),
+  turned down by the council's answer (`DilemmaEffect_SendAway` with the context's `contest`, the challenger still here to
+  be sent away) on the champion, proud or hot-tempered; faced at the contest itself (`Contest`) by a timid one. The envoy
+  abroad: as they walk off the map (`EnvoysAbroad.AtEdge`). Asking more for a captive (`Ransoms.AskMore`): the speaker who
+  haggles, and the captive's own close kin among the colony there. A truce sworn (`Truces.Swear`, `Nature.TruceWithFoe`):
+  each avenger on this home's map whose vendetta is on them (`Vendettas`, as the truce's objection asks them). The dark
+  scheme is listed and unwired: schemes (2c.3) are not built.
 - **Shown.** The heart's page says it the way a pressure says its cause (`HeartView.SourceText`, `ReliefText`): "swore
   the colony's oath to the Lenlia, against her pride (+7)", the side by the game's own pronouns; while the strain is too
   low for the general advice, "A quiet evening with friends would help." (`NatureHelp`; `HelpFor` names it in the advice
-  above 30). The colony's news tells it (`Tell.Minor`, two wordings or more). The council's questions name it before an
+  above 30). The strain mood ("built up by ...") and an episode's letter name the source, "acts against their nature"
+  (`SourcesText`), since the act's words don't fit their sentence. The colony's news tells it (`Tell.Minor`, two wordings or more). The council's questions name it before an
   answer that asks it (`Nature.Impact`: the oath's speaker's pride, the avenger's vengeance, the colonist's heart for a
   match pressed, the champion's nature on the challenge's answers), and the oath's objection names a proud colonist's
   nature in two new lines ("too proud to kneel to anyone").

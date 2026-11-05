@@ -206,7 +206,7 @@ public static class NatureTests
           && nature.Contains("Felt(parent, NatureAct.WardSent, people, ward.LabelShort, page ? \"Page\" : null)"), "the hostage (and a season away, one act), their close kin, a ward's parents");
         C(Regex.IsMatch(Code("Diplomacy/EnvoysAbroad.cs"), @"Nature\.Felt\(p, NatureAct\.SeasonAway, a\.people, null, ""Envoy""\);\s*try\s*\{\s*var c = CaravanExitMapUtility"), "the envoy: as they walk off the map");
         C(Regex.IsMatch(Code("Happenings/Workers_Challenges.cs"), @"private static void Contest\([\s\S]{0,1400}Nature\.Felt\(a, NatureAct\.AcceptedChallenge"), "a challenge faced: the champion, at the contest itself");
-        C(Code("Strangers/StrangerEffects.cs").Contains("Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction") && Code("Strangers/StrangerEffects.cs").Contains("h.contest ? h.a : null"),
+        C(Code("Strangers/StrangerEffects.cs").Contains("Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction") && Code("Strangers/StrangerEffects.cs").Contains("ctx is HappeningContext h && h.contest &&"),
             "a challenge turned down: the champion, when the council sends the challenger away");
         C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive, map\)"),
             "asking more for a captive: the speaker, and the captive's close kin among the colony's");
