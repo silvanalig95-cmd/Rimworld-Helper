@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs, MatchParty.cs): their offer of a match, which waits
+       for the colony's answer, and the colony's own walking out to their kin at the gate to leave with them. -->
+
+  <!-- A people at peace offers a match between one of theirs and one of the colony's: agree (the colonist asked first), or decline. -->
+  <LetterDef>
+    <defName>Rimfolk_MatchOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_MatchOffer</letterClass>
+    <color>(205, 165, 190)</color>
+    <flashColor>(230, 190, 215)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The colony's own walks out to their kin at the gate, says farewell and goes with them. -->
+  <JobDef>
+    <defName>Rimfolk_MatchLeave</defName>
+    <driverClass>ColonyCouncil.JobDriver_MatchLeave</driverClass>
+    <reportString>walking out to TargetA, to leave with them.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

@@ -54,6 +54,12 @@ namespace ColonyCouncil
         /// </summary>
         public static event Action<GuestFeast, Map, FeastStage> StageChanged;
 
+        /// <summary>
+        /// Where the guests stand while they wait (FeastStage.Here) when the one who hosts them says (2b.2's wedding: by the
+        /// couple while the game's ceremony is under way); an invalid cell, or none set, keeps them at the gate.
+        /// </summary>
+        public static Func<GuestFeast, Map, IntVec3> HereFocus;
+
         internal static void Moved(GuestFeast p, Map map, FeastStage to)
         {
             if (p == null || p.stage == to) return;
@@ -840,7 +846,10 @@ namespace ColonyCouncil
             switch (p.stage)
             {
                 case FeastStage.Here:
-                    Focus(map, p, PlaySpots.GateCell(map, null));
+                {
+                    var spot = HereSpot(p, map);
+                    Focus(map, p, spot.IsValid ? spot : PlaySpots.GateCell(map, null), spot.IsValid ? 8f : 6f);
+                }
                     if (!Settled(p)) return;
                     Greet(p, map);
                     if (p.purpose != FeastPurpose.Feast && p.contests.Count == 0)
@@ -866,6 +875,20 @@ namespace ColonyCouncil
                 case FeastStage.Night:
                     Night(h, p, map, hour, now);
                     return;
+            }
+        }
+
+        private static IntVec3 HereSpot(GuestFeast p, Map map)
+        {
+            if (HereFocus == null) return IntVec3.Invalid;
+            try
+            {
+                return HereFocus(p, map);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("feasts: where the guests stand", e);
+                return IntVec3.Invalid;
             }
         }
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A match the colonist is against (Source/ColonyCouncil/Diplomacy/MatchObjection.cs): their people have said yes, and
+    the colonist has their say before the council first. A the colonist, X the one of theirs, B whom A loves instead (A
+    when nobody), {FACTION} their people, {LIVES} where the couple would live, {TOWN} their town. Tags, why A is against
+    it: "another" (A loves B), "children" (A would leave children behind), "dislike" (A can't stand X); "away" (A would go
+    to live at X's town), "empire" (X is of the Empire). Only from MatchObjection.Ask; never on its own schedule. Pressed
+    all the same, the match is agreed and it weighs on A; withdrawn, their people feel turned down a little.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmMatch_Against</defName>
+    <label>a match the colonist is against</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_MatchAgainst</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{FACTION} have agreed to a match between {A_nameDef} and {X_nameDef}: {LIVES}. {A_nameDef} doesn't want it, and has asked the council to hear {A_objective} out before anything is settled.</li>
+      <li>[another] {FACTION} said yes to a match between {A_nameDef} and {X_nameDef}. {A_nameDef} loves {B_nameDef}, and has asked the council not to give {A_objective} to someone else for the colony's sake.</li>
+      <li>[another,away] {FACTION} want {A_nameDef} to marry {X_nameDef} and go to live at {TOWN}. {A_nameDef} would be leaving {B_nameDef} behind, and has told the council so in plain words.</li>
+      <li>[children] {A_nameDef} would go to live at {TOWN} if the match with {X_nameDef} goes ahead, and {A_possessive} children would stay here. {A_nameDef} has asked the council not to send {A_objective} away from them.</li>
+      <li>[dislike] {A_nameDef} can't stand {X_nameDef}, and {FACTION} have just agreed to marry the two of them. {A_nameDef} has come before the council to say so before it is too late.</li>
+      <li>[dislike,empire] {X_nameDef} of {FACTION} holds a title and expects a match to match it. {A_nameDef} has met {X_objective}, didn't like {X_objective}, and wants the council to know before it says yes.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Press the match all the same</label>
+        <outcome>The council heard {A_nameDef} out and kept its word to {FACTION}: {LIVES}. {A_nameDef} said nothing more about it.</outcome>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MatchPress" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_MatchPressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Withdraw the match</label>
+        <outcome>The council sided with {A_nameDef} and sent word to {FACTION} that the match is off. They took it with a little less warmth than before.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MatchWithdraw" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_ObjectionHeard</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

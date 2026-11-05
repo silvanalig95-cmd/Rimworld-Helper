@@ -29,6 +29,11 @@ namespace ColonyCouncil
         public const string Envoy = "envoy";
         /// <summary>One of the colony's away for a term among another people, as the colony's envoy at their town (Diplomacy/EnvoysAbroad.cs).</summary>
         public const string Lent = "lent";
+        /// <summary>
+        /// A match's own (Diplomacy/Matches.cs): one of theirs made for a match and not yet come, and one of the colony's
+        /// married into their town while the marriage holds.
+        /// </summary>
+        public const string Spouse = "spouse";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -134,6 +139,8 @@ namespace ColonyCouncil
                 // A people's envoy staying the season, and the colony's own envoy away (Diplomacy/Envoys.cs, EnvoysAbroad.cs).
                 case KeepFor.Envoy: return Envoys.Holds(p);
                 case KeepFor.Lent: return EnvoysAbroad.Holds(p);
+                // A match's own: made for it and not yet come, or married into their town (Diplomacy/Matches.cs).
+                case KeepFor.Spouse: return Matches.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

@@ -195,6 +195,8 @@ namespace ColonyCouncil
         public int feastHeld = -1, feastSuggested = -1;
         /// <summary>Who of the colony's won something at a neighbour's feast, told when they are home (FeastMath.MaxTales at most).</summary>
         public List<FeastTale> tales = new List<FeastTale>();
+        /// <summary>Matches under way (Matches.cs, release 2b.2): MatchMath.MaxPlans at most, each let go at the wedding or when called off.</summary>
+        public List<MatchPlan> matches = new List<MatchPlan>();
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -214,12 +216,16 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref feastSuggested, "feastSuggested", -1);
             if (Scribe.mode == LoadSaveMode.Saving) tales?.RemoveAll(t => t == null || t.pawn == null);
             Scribe_Collections.Look(ref tales, "tales", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving) matches?.RemoveAll(m => m == null || !m.Live);
+            Scribe_Collections.Look(ref matches, "matches", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 offers ??= new List<RansomOffer>();
                 offers.RemoveAll(o => o == null);
                 tales ??= new List<FeastTale>();
                 tales.RemoveAll(t => t == null || t.pawn == null);
+                matches ??= new List<MatchPlan>();
+                matches.RemoveAll(m => m == null || !m.Live);
             }
         }
     }
@@ -295,7 +301,7 @@ namespace ColonyCouncil
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0))
                         return true;
                 return false;
             }
@@ -316,6 +322,7 @@ namespace ColonyCouncil
                         Envoys.HomeLost(h);
                         EnvoysAbroad.HomeLost(h);
                         Feasts.HomeLost(h);
+                        Matches.HomeLost(h);
                     }
                     catch (Exception e)
                     {

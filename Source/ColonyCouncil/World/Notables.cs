@@ -974,7 +974,9 @@ namespace ColonyCouncil
                 wrong = mem.Sum(f, DeedSide.Wrong);
                 owed = mem.Sum(f, DeedSide.TheirFavor, true);
             }
-            return NotableMath.Baseline(goodwill, favor, wrong, owed, Warmth(n.pawn), Hostile(n));
+            int b = NotableMath.Baseline(goodwill, favor, wrong, owed, Warmth(n.pawn), Hostile(n));
+            // A marriage alliance of the colony's with their people (Diplomacy/MatchAlliance.cs): they think better of it while it holds.
+            return Hostile(n) ? b : Math.Min(100, b + Matches.RegardBonus(f));
         }
 
         /// <summary>How they regard the colony, -100 to 100.</summary>

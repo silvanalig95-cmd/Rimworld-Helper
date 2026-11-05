@@ -32,7 +32,7 @@ namespace ColonyCouncil
 
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
-            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy;
+            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -46,6 +46,8 @@ namespace ColonyCouncil
         {
             if (!Owns(p) || n == null) return null;
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
+            // A match proposed (release 2b.2, MatchLetters.cs).
+            if (MatchLetters.Owns(p)) return MatchLetters.WhyNot(n, Home);
             if (p == LetterPurpose.Truce) return Truces.WhyNot(n.faction, Home);
             if (p == LetterPurpose.Pact)
             {
@@ -65,6 +67,7 @@ namespace ColonyCouncil
         {
             if (p == LetterPurpose.Favour) return Topics(n);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
+            if (MatchLetters.Owns(p)) return MatchLetters.Topics(n, Home);
             var list = new List<LetterTopic>();
             if (n?.faction == null) return list;
             var f = n.faction;
@@ -129,6 +132,7 @@ namespace ColonyCouncil
             if (asksFor == topicKey && Time.realtimeSinceStartup - asksAt < 0.5f) return asks;
             if (topicKey != null && topicKey.StartsWith(TrucePrefix, StringComparison.Ordinal)) asks = TruceAsks(topicKey, map);
             else if (topicKey != null && topicKey.StartsWith(PactPrefix, StringComparison.Ordinal)) asks = CartAsks(topicKey, map);
+            else if (topicKey != null && topicKey.StartsWith(MatchMath.TopicPrefix, StringComparison.Ordinal)) asks = MatchLetters.Asks(topicKey, map ?? Home);
             else
             {
                 var t = TieOf(topicKey, TiePrefix);
@@ -276,6 +280,11 @@ namespace ColonyCouncil
                 if (RansomLetters.Owns(l.purpose))
                 {
                     a.line = RansomLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
+                if (MatchLetters.Owns(l.purpose))
+                {
+                    a.line = MatchLetters.Read(l, n, l.map ?? Home, KinMemory.Ours(speaker) ? speaker : null, ref tone);
                     return a;
                 }
                 if (l.purpose == LetterPurpose.Truce || l.purpose == LetterPurpose.Pact)

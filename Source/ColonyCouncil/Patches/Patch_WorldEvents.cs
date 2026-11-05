@@ -74,6 +74,8 @@ namespace ColonyCouncil
                 VisualTouches.Wedding(firstPawn, secondPawn);
                 TalkHooks.Wedding(firstPawn, secondPawn);
                 WeddingPlans.Married(firstPawn, secondPawn);
+                // A match with another people (Diplomacy/Matches.cs): the marriage alliance.
+                Matches.Married(firstPawn, secondPawn);
             }
             catch (System.Exception e)
             {
