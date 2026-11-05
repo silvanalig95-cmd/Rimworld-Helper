@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## No council tasks, no keeper
+
+*5 November 2026, version 0.102.0*
+
+- Council tasks are gone, as the player chose: officers no longer travel to a neighbour to win over its head, open a trade, patrol, drill, take medicine, keep the faith or collect dues, and their letters, cards and lines on the Decrees page, Here and away and This week went with them.
+- The keeper of secrets is gone too, seat, election and all: nobody learns or presses a neighbour's secret any more, and the colony's own secrets slip at the rate they did before the keeper.
+- Fealty and vassals work as before without the dues task: a vassal's share is its harvest brought by carter, and the liege's collector takes the tribute at the gate, with Send what is owed for anything left owing.
+- Old saves load quietly: a seated keeper steps down, a task letter not yet read is called off, an officer already on the road comes home as from any journey, and history keeps what happened.
+
 ## Groups that say what they are
 
 *5 November 2026, version 0.101.2*

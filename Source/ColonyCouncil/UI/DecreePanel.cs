@@ -670,8 +670,6 @@ namespace ColonyCouncil
                 if (holder != null && UiKit.RowAct(new Rect(width - 105f, y + (rh - 22f) / 2f, 100f, 22f), "CC_Office_Dismiss".Translate(), null))
                     offices.Dismiss(office, comp, seatNow);
                 y += rh;
-                // The office's council task, in a line under its row with its act (Diplomacy/TaskPanels.cs).
-                if (seat == 0) y += TaskPanels.OfficeRow(office, holder, colony.Map, 30f, y, width - 30f);
             }
             return y - start;
         }

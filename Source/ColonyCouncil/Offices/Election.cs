@@ -55,7 +55,9 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
-            Scribe_Defs.Look(ref office, "office");
+            // A seat the council no longer has (the keeper of secrets, retired 5 November 2026) loads as none, quietly, and
+            // the election drops its race (Election.ExposeData).
+            CouncilScribe.LookDef(ref office, "office");
             Scribe_Values.Look(ref seat, "seat");
             Scribe_Collections.Look(ref entries, "entries", LookMode.Deep);
             Scribe_References.Look(ref endorsed, "endorsed");

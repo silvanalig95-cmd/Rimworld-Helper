@@ -16,8 +16,6 @@ namespace ColonyCouncil
         Ransom,
         /// <summary>Fealty and vassals.</summary>
         Fealty,
-        /// <summary>The council's tasks.</summary>
-        CouncilTasks,
         /// <summary>A house's renown.</summary>
         Renown,
         Schemes,
@@ -56,7 +54,7 @@ namespace ColonyCouncil
         public static readonly AgeFeature[] Features =
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
-            AgeFeature.CouncilTasks, AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath,
+            AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath,
             AgeFeature.Truce, AgeFeature.Hostage, AgeFeature.Envoy, AgeFeature.Levy
         };
 

@@ -6,6 +6,71 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.102.0, council tasks and the keeper of secrets removed (the player's decision, 5 November 2026): "drop council tasks for
+  sure" and "remove keeper of secrets", with the rule set the same day (CLAUDE.md: the colony is the family, never a
+  dynasty). Built in 0.96.0 (2c.1), reviewed in 0.97.1, worded
+  in 0.98.0 and touched by 0.99.0's fixes; now out of the game. DESIGN.md, "The keeper of secrets and council tasks
+  (dropped)", has what an older save keeps; docs/design/stage2-diplomacy.md, item 8, is marked dropped (with the build
+  order, the decisions 13 and 14, and a note in item 11 that schemes now have no keeper's help, watch or "Sound out");
+  ROADMAP's forms table loses its council tasks row (nine features, `AgeFeature.CouncilTasks` gone: not saved) and its
+  offices row says twelve; README loses the tasks' paragraph and the keeper's sentence. What went: every task of the
+  eight offices (the speaker winning over a head, the quartermaster's trade and samples and the dues, the marshal's dawn
+  patrol and drill, the physician's medicine and the flu brought home, the warden's letters about the colony's own held
+  and their kin in its cells, the chaplain's faith letters, the steward's feast and its welcome half again) with the
+  officers' visits by the journey planner, the task lines and acts on the officer's card, the Decrees page's line under
+  each seat, the people card's "Council task..." and its lines, Here and away's tasks section and the officer away, the
+  inbox's `task` and `task-under-way` (This week's rows), the dev actions (`TaskDebug.cs`), the setting `diplomacyTasks`; the keeper of secrets as a whole (its office
+  `Council_Office_SecretKeeper` with its election and planks, the hediff's edge, the slip factor: the colony's own
+  secrets slip at their base rate again in `SecretTracker.Step`, as before 0.96.0; the watch after dark with guests;
+  "Sound out" (`OutsiderAct.SoundOut` no longer in `DiplomacyActs` or the menu); learning a notable's secret by talks,
+  informer or visit; pressing it by letter or face to face ("Press what we know" and the lines on a notable's and a
+  Secret tie's card); being found out); `SecretTies.cs` whole (nothing else made or
+  read Secret ties; `Tie.Kind.Secret` stays reserved for schemes, its rules and bounds as they were). Code: `CouncilTasks`,
+  `TaskBook`, `TaskMath`, `TaskResults`, `TaskVisits`, `TaskLetters`, `TaskPanels`, `TaskWords`, `TaskJobs`, `TaskDebug`,
+  `FactsTasks`, `KeeperOfSecrets`, `KeeperMath`, `SecretTies` deleted; the hooks out of `Diplomacy` (the hour and the
+  day), `DiplomacyActs`, `DiplomacyLetters`, `DiplomacyBook`, `DiplomacyModel`, `Feasts.End`, `Ransoms` (the warden's
+  `DemandFor`, their kin sooner and dearer), `Pacts.Arrive` (the drilled band), `RaidersCamps.SpotByPatrol`,
+  `CourierTracker` (`Awaits`), `FactsLedger`, `Secrets`, `DecreePanel`, `HereAndAwayView`, `SettingsCatalog`,
+  `NeighboursPanel`, `RenownMath` (the sources `task` and `told`, `OfficerRole`: an older save's `dip:task` lines give no
+  renown, and `dip:task` is still the kind of a vassal's ask answered), `CouncilSettings`. Words: the files wholly theirs
+  (`Rimfolk_OutsiderTalks_Tasks.xml`, `_TasksMore.xml`, `Rimfolk_Lines_Tasks.xml`, `_TasksMore.xml`, `Rimfolk_Tasks.xml`,
+  `_Variants.xml`, `_VariantsMore.xml`, the office's and hediff's defs, `Defs/Misc/Rimfolk_Tasks.xml`), and elsewhere
+  the lines said only on their facts: the four talk pieces pressed face to face (`Rimfolk_OutsiderTalks_LeviesPressed.xml`),
+  the `pressmoot`, `taskmoot` and pressed-face letter lines (`Rimfolk_Lines_Overtaken.xml`), the
+  `Rimfolk_OT_Keeper_Pressed` entry of `OutsiderTalkMath.AlsoWhen` (its piece gone), the ages' `CC_Form_CouncilTasks_*`,
+  "Sound out" and its note, renown's two parts, the dues' keyed words in the fealty files; the def validator no longer
+  knows `{OFFICER}` and `{OFFICE}` as talk placeholders. The Almanac: the offices page without the keeper's seat and its
+  life (seven more offices, no task sentence), the diplomacy page without the tasks' and the keeper's paragraphs, the dues
+  in fealty and vassals, and their setting's clause; no keyword was ever theirs, so none changed. What stayed for an older
+  save (`Diplomacy/Retired.cs`): a home's `tasks`, `drillPeople`, `drillAt`, a vassal's `duesAt` and the setting are left
+  unread (Scribe passes over a node nothing reads, so no stand-in type); the keeper's seat is let go with its holder and
+  an election winner (`Offices.ExposeData`, `Gone`), its race in an election read with `CouncilScribe.LookDef` and dropped,
+  a new keeper's story about the seat (`ArcWorker_Office`) ended without a word (`ArcTracker.Retired`); the game reads
+  the keeper's hediff and the patrol's job by name, so both defs stay as stand-ins (`Defs/Misc/Rimfolk_Retired.xml`):
+  `HediffComp_Retired` takes the hediff away at the next health tick, `JobDriver_TaskPatrol` ends at its first look;
+  `LetterPurpose.Task` and `OutsiderAct.SoundOut` keep their places (a talk keeps its act by number in the job's count),
+  a letter of the council's business not yet read is called off without a word (`NotableMath.Retired`,
+  `NeighbourLetters.Step`; an answer already on its way back comes as written), a sounding out under way ends
+  (`OutsiderMath.Retired`, `JobDriver_OutsiderTalk`); the keeper's Secret ties (origin `keeper`) end at the day's look,
+  a pressed one too (called in, it had no end of its own); an officer's visit planned or on the road goes on as the
+  colony's own journey there and back; a favour won by letter keeps its words (`CC_Dip_For_wonOver`, moved to
+  `Rimfolk_Diplomacy.xml`), and so does a letter's purpose (`CC_Letter_Purpose_Task`); the history's `dip:task` lines and
+  the notables' memory lines stay as text. Fealty and vassals: nothing came only through the task but a vassal's
+  season's silver, which the design's vassals (item 10) never had: a vassal's tribute is its harvest (its carter at the
+  gate by the council's level, as before), the liege's collector takes the season's tribute at the gate in two kinds of
+  goods at most (four only with the task), and what the stores couldn't cover is paid by "Send what is owed"
+  (`Fealty.PayOwed`); the liege's head no longer warms 3 for a punctual season; the place card's "Collect their dues..."
+  and its words are gone. Tests: `TaskTests.cs` deleted, `TaskMath` and `KeeperMath` unlinked; `FealtyTests`,
+  `RenownTests`, `DiplomacyTests` (with a section for the older save's handling), `OutsiderTalkTests` (the tags and the
+  placeholders `{OFFICER}` and `{OFFICE}` gone), `OutsiderTests` and `WorldMechanicsTests` changed with it. The
+  generated talks' callbacks (`FactsTests`, floor 30 of 1,500, unchanged) read 31 (36 before): over 4,500 talks the
+  library picks up an earlier talk in 1.9% of them either way, the four task callback pieces' share small; the floor
+  is near, as before. The save model drops the tasks (`docs/save-size.md`: 506 collections). Checks: textcheck against 7e1d7d6 reports only the
+  removals (whole files, keys and lines) and the overtaken file's lines compared by position; almanaccheck against
+  7e1d7d6 reports only the numbers of the removed paragraphs (the overheard 15%, the speaker's 1 to 6 and the keeper's
+  35%), against HEAD nothing. To look at in game: an older save with a task under way, a keeper seated and a secret
+  pressed (no red log, the seat gone from the Decrees page, the hediff gone, the letter quietly off, the secrets gone from
+  the cards the next day), a liege's season's tribute short and paid by "Send what is owed", a vassal's harvest.
 - 0.101.2, groups explained and friendship groups renamed (the player's report, 5 November 2026): "there seem to be regular
   gatherings for 'stace's friends', I'm not sure what the point is and why for stace's friends specifically". The
   player approved two fixes. (1) The gathering says what it is: a group's gathering (the anchor's call, `GroupHabits`)

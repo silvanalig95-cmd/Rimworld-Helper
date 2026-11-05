@@ -146,9 +146,9 @@ public static class DiplomacyTests
         var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").Append("Ward").Append("Match").Append("Task").Append("Fealty").ToArray();
         C(Enum.GetNames(typeof(LetterPurpose)).Reverse().Take(builtPurposes.Length).Reverse().SequenceEqual(builtPurposes),
             "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3; Match in 2b.2; Task in 2c.1; Fealty in 2c.2)");
-        var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch" && a != "SoundOut").Append("SpeakMatch").Append("SoundOut").ToArray();
-        C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(builtActs.Length).Reverse().SequenceEqual(builtActs),
-            "the new acts after the old ones, in the order they were built (saved by name; OfferExchange in 2a.3, SpeakMatch in 2b.2, SoundOut in 2c.1)");
+        var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch").Append("SpeakMatch").Append("SoundOut").ToArray();
+        C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(builtActs.Length).Reverse().SequenceEqual(builtActs) && !DiplomacyMath.Acts.Contains("SoundOut"),
+            "the new acts after the old ones, in the order they were built (saved by name; OfferExchange in 2a.3, SpeakMatch in 2b.2, SoundOut in 2c.1, dropped with the keeper of secrets and kept in its place: a talk under way keeps its act by number)");
         C(DiplomacyMath.StanceKey(0, true, false) == "Hostile" && DiplomacyMath.StanceKey(10, false, true) == "Allied" && DiplomacyMath.StanceKey(80, false, false) == "Allied"
           && DiplomacyMath.StanceKey(30, false, false) == "Friendly" && DiplomacyMath.StanceKey(0, false, false) == "Peace" && DiplomacyMath.StanceKey(-10, false, false) == "Cool",
             "a people's stance in a word");
@@ -163,9 +163,29 @@ public static class DiplomacyTests
         C(TieRules.CanCallIn(Tie.Kind.Secret) && !TieRules.CanCallIn(Tie.Kind.Scheme) && TieRules.CanKeepOrBreak(Tie.Kind.Scheme) && TieRules.MaxOf(Tie.Kind.Secret) == 60,
             "a secret can be called in, a scheme kept or broken, each 60 at most");
         C(!Regex.IsMatch(string.Concat(Directory.GetFiles(Path.Combine(src, "Diplomacy"), "*.cs").Select(File.ReadAllText)), @"Tie\.Kind\.Scheme"), "nothing uses schemes yet (release 2c.3)");
-        C(Regex.IsMatch(Code("Diplomacy/SecretTies.cs"), @"WorldLedger\.AddTie\(Tie\.Kind\.Secret"), "Secret ties in use since release 2c.1 (the keeper's, SecretTies.cs)");
+        C(!Regex.IsMatch(string.Concat(Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories).Select(File.ReadAllText)), @"AddTie\(Tie\.Kind\.Secret"),
+            "nothing makes Secret ties now (the keeper of secrets made them from release 2c.1 until it was dropped, 5 November 2026)");
         string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
         C(est.Contains("const(\"World/Ledger/TieMath.cs\", \"Kinds\", 14) - 1"), "the save model's bound of all ties reads the kinds");
+
+        // ---------------- An older save of the council's tasks and the keeper of secrets (dropped, 5 November 2026) ----------------
+
+        string retired = Code("Diplomacy/Retired.cs"), retiredDefs = File.ReadAllText(Path.Combine(root, "Defs", "Misc", "Rimfolk_Retired.xml"));
+        C(!Code("Diplomacy/DiplomacyBook.cs").Contains("ref tasks") && !est.Contains("DiplomacyBook.cs:tasks"), "a home's tasks are left unread, and no longer in the save model");
+        C(retiredDefs.Contains("<defName>Rimfolk_TaskPatrol</defName>") && retiredDefs.Contains("ColonyCouncil.JobDriver_TaskPatrol")
+          && retired.Contains("class JobDriver_TaskPatrol : JobDriver") && retired.Contains("this.FailOn(() => true);"), "the marshal's patrol under way: its job read by name, ended at its first look");
+        C(retiredDefs.Contains("<defName>Council_Office_SecretKeeper</defName>") && retiredDefs.Contains("ColonyCouncil.HediffComp_Retired")
+          && retired.Contains("public override bool CompShouldRemove => true;"), "the keeper's hediff read by name, gone at the next health tick");
+        C(Code("Offices/Offices.cs").Contains("kv.Value == null || Gone(kv.Key)") && Code("Offices/Election.cs").Contains("CouncilScribe.LookDef(ref office, \"office\");")
+          && Code("Offices/Election.cs").Contains("races.RemoveAll(r => r == null || r.office == null);"), "the keeper's seat and its race in an election let go quietly");
+        C(Enum.IsDefined(typeof(LetterPurpose), "Task") && NotableMath.Retired(LetterPurpose.Task) && Enum.GetValues(typeof(LetterPurpose)).Cast<LetterPurpose>().Count(NotableMath.Retired) == 1
+          && Code("World/NeighbourLetters.cs").Contains("NotableMath.Retired(l.purpose) && l.stage != LetterStage.Answering"),
+            "a letter of the council's business kept in its place, called off before it is read");
+        C(Code("Outsiders/OutsiderJobs.cs").Contains("this.FailOn(() => OutsiderMath.Retired(Act));"), "a sounding out under way ends");
+        C(retired.Contains("t.origin == KeeperOrigin") && Code("Diplomacy/Diplomacy.cs").Contains("Retired.Daily()"), "the keeper's secrets let go at the day's look");
+        C(Code("Arcs/ArcWorkers_Lives.cs").Contains("return ArcTracker.Retired;") && Code("Arcs/ArcTracker.cs").Contains("if (broken == Retired)"),
+            "a new keeper's story about the seat ends without a word");
+        C(!Regex.IsMatch(Code("Secrets/Secrets.cs"), @"SlipFactor|Keeper"), "the colony's own secrets slip at their base rate");
 
         // ---------------- Nature ----------------
 
@@ -219,7 +239,7 @@ public static class DiplomacyTests
         C(letters.Contains("DiplomacyLetters.WhyNot(n, p)") && letters.Contains("DiplomacyLetters.Topics(n, p)") && letters.Contains("DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone)"),
             "the letters' frame: why not, what about, the answer");
         string menu = Code("Outsiders/OutsiderMenu.cs");
-        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour, OutsiderAct\.SpeakPact, OutsiderAct\.SpeakMatch, OutsiderAct\.OfferExchange, OutsiderAct\.SoundOut,[\s\S]{0,40}OutsiderAct\.Spar"),
+        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour, OutsiderAct\.SpeakPact, OutsiderAct\.SpeakMatch, OutsiderAct\.OfferExchange,[\s\S]{0,40}OutsiderAct\.Spar") && !menu.Contains("OutsiderAct.SoundOut"),
             "the new acts right after Invite, in the design's order");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");

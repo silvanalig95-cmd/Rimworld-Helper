@@ -58,7 +58,7 @@ namespace ColonyCouncil
             OutsiderAct.Chat, OutsiderAct.AskHome, OutsiderAct.Meal, OutsiderAct.Drink, OutsiderAct.Gift, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith,
             OutsiderAct.GoodWord, OutsiderAct.Letter, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite,
             // Stage 2's acts after Invite (Diplomacy/DiplomacyActs.cs): ask a favour of their people, speak of a pact, later ones as they come.
-            OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.SpeakMatch, OutsiderAct.OfferExchange, OutsiderAct.SoundOut,
+            OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.SpeakMatch, OutsiderAct.OfferExchange,
             OutsiderAct.Spar, OutsiderAct.Provoke, OutsiderAct.Duel
         };
 

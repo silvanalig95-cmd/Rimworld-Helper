@@ -211,8 +211,6 @@ namespace ColonyCouncil
         public bool diplomacyMarriage = true;
         /// <summary>Wards and hostages (stage 2, release 2b.3): a youth fostered either way for a year, hostages for a truce's or a pact's terms.</summary>
         public bool diplomacyWards = true;
-        /// <summary>The council's tasks (stage 2, release 2c.1): officers' letters, calls, talks, patrols and visits by caravan, and the keeper of secrets' duties. Off, nothing new is set, and an officer away still comes home.</summary>
-        public bool diplomacyTasks = true;
         /// <summary>Fealty and vassals (stage 2, release 2c.2): the colony sworn to a stronger neighbour, and vassals of its own. Off, nothing new is sworn or asked, and the oaths standing run on.</summary>
         public bool diplomacyFealty = true;
         /// <summary>House renown (stage 2, release 2d.1): the colony's houses and the region's known for what their people did, read from deeds and ties, nothing spent. Off, nothing is told, read or tipped, and the houses kept are kept.</summary>
@@ -605,7 +603,6 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyFeasts, "diplomacyFeasts", true);
             Scribe_Values.Look(ref diplomacyMarriage, "diplomacyMarriage", true);
             Scribe_Values.Look(ref diplomacyWards, "diplomacyWards", true);
-            Scribe_Values.Look(ref diplomacyTasks, "diplomacyTasks", true);
             Scribe_Values.Look(ref diplomacyFealty, "diplomacyFealty", true);
             Scribe_Values.Look(ref diplomacyRenown, "diplomacyRenown", true);
             Scribe_Values.Look(ref diplomacyNature, "diplomacyNature", true);

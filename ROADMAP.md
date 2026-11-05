@@ -214,7 +214,7 @@ reports come before all of it.
 | 7 | F7 many homes in the audit's order; the harm review proposed per system as each is visited | |
 | 8 | F8 adapters (Faction Territories, Factional War, Vanilla Outposts, the Empire, Diplomatic Marriage+), F9 ages | |
 | 9 to 10 | Stage 1, the region comes alive: the new towns' faces and stories, towns rising and falling, trading posts, raiders' camps, travellers to the remote, settlers under protection | its content pass, with what peoples remember (memory in more events' texts, a people's memory of single colonists, Empire titles and Ideology rites in invitations) and the world events' follow-ups (the warlord's son, the town that grew from the settlers' camp) |
-| 11 to 14 | Stage 2 in four rounds: (a) favours owed, pacts and truces, ransom, the envoy; (b) feasts and contests, marriage alliances, wards and hostages; (c) fealty and vassals, council tasks with the keeper of secrets, schemes; (d) house renown, stress against one's nature | a content pass per round, in every age's form |
+| 11 to 14 | Stage 2 in four rounds: (a) favours owed, pacts and truces, ransom, the envoy; (b) feasts and contests, marriage alliances, wards and hostages; (c) fealty and vassals, council tasks with the keeper of secrets (dropped, 5 November 2026), schemes; (d) house renown, stress against one's nature | a content pass per round, in every age's form |
 | 15 to 16 | Stage 3: many colonies in play, handing a colony over, a fresh start in the same save | its content pass |
 
 **Later (approved, not critical; when the long-term plan allows or after it).** Rooms (upgrade advice for nobles'
@@ -309,7 +309,7 @@ placeholder for the world event at a town, talk for towns given up or resettled.
 Status (5 November 2026, 0.101.0): every item below is built, reviewed and given its text pass except schemes (12,
 release 2c.3), which waits for the player's pick of the harm review's rival sabotage (3.5.1) or their go-ahead without
 it. The player's word the same day: the colony is the family, never a dynasty. Council tasks with the keeper of secrets
-(11) are dropped, house renown (13) becomes the colony's renown and each colonist's own, and marriage alliances, wards
+(11) are dropped and taken out of the game, house renown (13) becomes the colony's renown and each colonist's own, and marriage alliances, wards
 and the talk are recast around the colony; stage 3's design is to be revised the same way before it continues. The plan as first written: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
 interactions; favours owed and called in (3, release 2a.1); pacts and truces with terms that can be broken, and what
 breaking costs (4, release 2a.2); then feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
@@ -336,7 +336,6 @@ titles and honour. Forms by age (tribal / medieval / industrial / spacer):
 | Ward, hostage | fostering with the other clan | a ward at their hall, hostages for a pact | an apprentice or an exchange, a guarantor | an exchange posting, a guarantor |
 | Ransom | captives traded back | ransom by messenger | ransom by radio, an exchange at a crossing | a negotiated exchange by comms |
 | Fealty, vassals | tribute to a stronger clan, protection | fealty, tribute and levies | a protectorate, a company town, a union's dues | a charter, a protectorate, a corporate accord |
-| Council tasks | the elders' errands | the council's offices | the committee's portfolios | the board's or the directorate's remits |
 | House renown | a clan's name and totem | a house and its arms | a family name, a family firm | a lineage, a name that carries |
 | Schemes | whispers at the fire, a stolen totem | intrigue at court | a smear in the papers, a bribe, sabotage | a data leak, a hack, a corporate plant |
 The talk, letters and news for each feature are written per age too, from the shared facts (stage 0).
@@ -531,7 +530,7 @@ things stand:
 | Gossip lines | about 660 said over their heads (about 510 told, in 10 pools by how it's told; 155 answers, in 7), 57 log lines with 122 topics for 40 kinds of deed | more lines per persona and group, tribal and spacer voices |
 | Secrets | 62 (3 for scenarios only, one of them shared by the whole company; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 8 settled (blood, captives, a homecoming, laid down, laid down in peace, the blood price, an apology, passed to an heir) | vendettas against nemeses, dilemmas when an heir takes one up |
-| Council offices | 13 (15 seats; 8 open as the colony grows: a chaplain with Ideology, a warden of guests, a council of elders of three, a keeper of secrets; 8 with council tasks, 11 kinds of task) | offices for mods (a guild master with Medieval Overhaul), offices that hear petitions |
+| Council offices | 12 (14 seats; 7 open as the colony grows: a chaplain with Ideology, a warden of guests, a council of elders of three; the keeper of secrets and the council tasks dropped, 5 November 2026) | offices for mods (a guild master with Medieval Overhaul), offices that hear petitions |
 | Customs that can become traditions | 28 (27 → 28: bringing the herd home; the planting blessing became the planting day; 5 of the land, 3 of the faith, 4 children's, 3 of the herd's year) | more for the faith's memes and other mods' biomes |
 | Rimfolk scenarios | 17 (8 gentle, 9 with stakes; 13 → 17: a tribe's fire, a ship's shared secret, an orphanage with Biotech, a medieval land grant), 14 scenario parts (8 → 14) | a nomad start that moves with the seasons, a scenario for a mod's people |
 | Names (epithets) | 63 (54 → 63; 14 from Rimfolk's own records; 5 given for one deed beyond the walls; 9 from years in a seat, in the faith and in the colony, each shown in play) | names from a mod's offices and peoples, names that pass to an heir |

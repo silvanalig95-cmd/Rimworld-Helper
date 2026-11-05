@@ -59,7 +59,9 @@ namespace ColonyCouncil
             Claim,
             /// <summary>
             /// From (whoever knows it) holds a secret about to (the one it is about): leverage that can be called in (key:
-            /// what it is). Reserved for the keeper of secrets (stage 2, round c): its rules and bounds stand, nothing makes one yet.
+            /// what it is). Reserved for schemes (stage 2, round c): its rules and bounds stand, nothing makes one now. The
+            /// keeper of secrets made them from 0.96.0 until it was retired (5 November 2026); an older save's run to their
+            /// year's end as the ledger's other ties do.
             /// </summary>
             Secret,
             /// <summary>

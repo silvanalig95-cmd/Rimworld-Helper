@@ -294,6 +294,8 @@ namespace ColonyCouncil
         public override string Broken(Arc arc)
         {
             if (arc.stage >= arc.def.LastStage) return null;
+            // A seat the council no longer has (the keeper of secrets, dropped 5 November 2026): its story ends without a word.
+            if (DefDatabase<OfficeDef>.GetNamedSilentFail(arc.key) == null) return ArcTracker.Retired;
             var office = OfficeTracker.HeldBy(arc.pawn);
             return office == null || office.defName != arc.key ? "officegone" : null;
         }

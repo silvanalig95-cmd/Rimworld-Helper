@@ -30,7 +30,11 @@ namespace ColonyCouncil
         OfferExchange,
         /// <summary>Speak for a match between one of the colony's and one of theirs, face to face (Diplomacy/MatchActs.cs, release 2b.2).</summary>
         SpeakMatch,
-        /// <summary>The keeper of secrets sounds them out, or presses a secret on the one it is about (Diplomacy/KeeperOfSecrets.cs, release 2c.1).</summary>
+        /// <summary>
+        /// Obsolete: the keeper of secrets' sounding out (release 2c.1), dropped with the seat on 5 November 2026. Kept in
+        /// its place, as a talk under way keeps its act by its number (JobDriver_OutsiderTalk); never offered, and a talk an
+        /// older save holds under way ends quietly (<see cref="OutsiderMath.Retired"/>).
+        /// </summary>
         SoundOut
     }
 
@@ -102,6 +106,9 @@ namespace ColonyCouncil
     {
         public const int TicksPerHour = 2500;
         public const int TicksPerDay = 60000;
+
+        /// <summary>An act no longer offered (the keeper's sounding out): a talk an older save holds under way with it ends quietly.</summary>
+        public static bool Retired(OutsiderAct a) => a == OutsiderAct.SoundOut;
 
         // ---------------- The wait between two things done together ----------------
 

@@ -2172,11 +2172,11 @@ one place: `Lean/Ages.cs`, with its pure rules in `Lean/AgesMath.cs`.
   a people of royal titles, the Empire, which keeps its own titles and honor. Flavor's era tags (`AddEraTags`) and the
   world ledger's people view ask here, and give exactly what they gave before (`WorldMechanicsTests` checks every tech
   level against the old table).
-- **Forms.** `Ages.Form(feature, ours, theirs)` gives a feature's word and rite: the ten of ROADMAP's table (favor
-  owed, pact and truce, feast and contest, marriage alliance, ward and hostage, ransom, fealty and vassals, council
-  tasks, house renown, schemes), each with a word and a rite in each of the four ages, as keyed strings
-  (`CC_Form_<Feature>_<Age>` and `CC_Form_<Feature>_<Age>_Rite`, `Rimfolk_Ages.xml`), short noun phrases to sit in a
-  sentence.
+- **Forms.** `Ages.Form(feature, ours, theirs)` gives a feature's word and rite: the nine of ROADMAP's table (favor
+  owed, pact and truce, feast and contest, marriage alliance, ward and hostage, ransom, fealty and vassals, house
+  renown, schemes; council tasks were dropped on 5 November 2026), each with a word and a rite in each of the four
+  ages, as keyed strings (`CC_Form_<Feature>_<Age>` and `CC_Form_<Feature>_<Age>_Rite`, `Rimfolk_Ages.xml`), short noun
+  phrases to sit in a sentence.
 - **Mixed ages.** The colony's own age sets its means: the word it has for the thing and what it does it with (a debt
   of honor, an IOU; ransom by messenger or by radio; a feast in the hall or a gala). The other people's age sets the
   rite: how it is done with them by their ways (a gift owed back, oaths sworn before witnesses, an exchange at a
@@ -2906,80 +2906,29 @@ Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Dip
   `them:hostage`, `them:fostered`; `{WARD}`, `{HOSTAGE}`, `{GUARDIAN}`. Words by both ages (`AgeFeature.Ward`,
   `Hostage`; the ward's rites say the ward's side only). Setting `diplomacyWards`.
 
-#### The keeper of secrets and council tasks
+#### The keeper of secrets and council tasks (dropped)
 
-Release 2c.1 (docs/design/stage2-diplomacy.md, item 8; decisions 13 and 14): `Diplomacy/`, its rules pure and tested
-(`TaskMath.cs`, `KeeperMath.cs`; `Tools/Tests/TaskTests.cs`).
-
-- **The office.** `Council_Office_SecretKeeper` (`Defs/OfficeDefs/Rimfolk_Offices_Keeper.xml`): Social and Intellectual,
-  six voters, elected like the others, its holder's hediff `Council_Office_SecretKeeper` (social impact, negotiation).
-  The colony's edge is in code: a knower's slip in `SecretTracker.Step` is multiplied by `KeeperOfSecrets.SlipFactor`
-  (half while the owner's colony has the seat filled, offices on). Its planks reuse the election pools' `gate` and
-  `watch` lines.
-- **The records.** Each `DiplomacyHome` keeps its `tasks` (`CouncilTask`, one record per office with tasks,
-  `TaskMath.MaxPerHome` = 13), kept a season after a task ends so the office's last visit counts toward "once a season",
-  and the people the marshal last drilled (`drillPeople`, `drillAt`). A record holds the office, kind
-  (`TaskKind`: WinOver, Secrets, Scout, Drill, Trade, Dues reserved, Tend, BringHome, TheirKin, KeepFaith, SpeakFaith,
-  Host), the officer, the target (a notable, a people, a town, a colonist held), the stage, the last step
-  (`TaskStep`) with when and how, the next step's tick (never shown), the tallies, the open letter or courier trip, and
-  the visit (`VisitStage`, the journey plan's id, the companion). History `dip:task` (set as everyday, results as
-  milestones).
-- **The hour** (`CouncilTasks.Hourly`, from `Diplomacy.Hourly` while something waits; the day lets records go and
-  `SecretTies.Daily` ends secrets about the gone): the visit's step first, then why it can't go on (the officer no
-  longer the holder, the target or people gone, war for a task at peace), `TaskResults.Finished` once the last answer is
-  home, the year's or season's end (`TaskMath.GivesUp`, `SeasonDone`), then the kind's step when due: a letter
-  (`LetterHour`), the keeper's hour, the marshal's dawn patrol (`JobDriver_TaskPatrol` round four cells near the edges,
-  `CouncilTasks.Patrolled`, `RaidersCamps.SpotByPatrol` three times in five), the quartermaster's samples
-  (`Couriers.CollectOrder` through `SendCart`).
-- **Letters** (`TaskLetters`, `LetterPurpose.Task`, last in the enum and hidden from the letter dialog): written only
-  by an officer (`TaskLetters.Send` lets `DiplomacyLetters.WhyNot` pass while it sends), by call where both sides have
-  the means, else by hand; the topic is `task:ID` or `press:TIEID`; `NotableMath.WaitDays(Task)` is 3 so the four to six
-  days hold; their words are the pool's `task` lines with the kind's code (`QuoteTags`). `TaskResults.LetterRead`
-  applies the kind's step at their end: regard by `TaskMath.RegardUp` and the answer's `ToneShare` (WinOver, KeepFaith,
-  with the believers steadied on a kind answer), the trade's way (`TradeGain`), a notable of another faith shaken
-  (`TaskMath.Shaken`, never below a fifth), the steward's preparation. The speaker also invites the head once
-  (`LetterPurpose.Invitation`; their visit counted as a guest received).
-- **Results.** Won over at 60: `Pacts.Offer` for a defence pact against a common enemy, else their trade pact (the
-  pacts' own letter, `TaskResults.OfferTrade`, words of its own), else `FavoursOwed.Make(..., "wonOver")`; the trade
-  open: their trade pact, else `IncidentDefOf.TraderCaravanArrival` queued with their people in one to three days, else a
-  favour; the warden's letters: `Ransoms.DemandFor` at the price `TaskMath.PriceFactor`, again after more letters when one
-  lapses, and while the warden writes about their kin `Ransoms.Notice` halves their offer's delay and `Add` raises the
-  price a quarter (`TaskResults.KinTask`); the steward's guests: `Feasts.End` multiplies a good welcome by
-  `TaskMath.Welcome` (`TaskResults.Stewards`); the drill: `Pacts.Arrive` makes the band with
-  `WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home))`.
-- **Visits** (`TaskVisits`): a `JourneyPlan` made for the officer and a companion (`Companion`: a grown colonist at home
-  who can fight, without a seat if any), to the town and back with a day there (`TaskMath.TripDays`), the next morning
-  (`JourneyMath.DefaultHoursAhead`), packed by `JourneyPack.Packing` in two passes, the physician's medicine an added
-  `other` line; `JourneyRun.Confirm`. The plan is the colony's one plan at the home: the planner can change or call it
-  off. Planned → Road (the officer in a caravan) → There (at the town tile, a day; `TaskResults.Visited`) → Homeward
-  (`CaravanArrivalAction_Enter` home) → done on the home map. Why not (`TaskVisits.WhyNot`): journeys off, no road, one
-  away from the home already, a season since the office's last, a journey planned, fewer than three free at home. The
-  physician's day hands over the packed medicine, `KinMemory.Note(f, "tended", ...)`, their head's regard, and one visit
-  in five the game's `Flu` on one of the party.
-- **The keeper** (`KeeperOfSecrets`): the watch after dark (20 to 2, once a night a home, with guests of another people
-  in a lord: the game's `FollowClose` for 3,750 ticks; `KeeperMath.OverhearChance` at its end; `Watching(map)` for
-  release 2c.3), hard words from a notable who caught the keeper (`Together.When`, once); "Sound out" (`OutsiderAct.SoundOut`,
-  last in the enum, in the menu after "Offer an exchange", the keeper's only): sounding out (the roll about the one
-  spoken to if a notable, else their head) or reminding a notable of a secret (pressed face to face); the task's hour (a
-  talk once a day with someone of their people here through `Outsiders.StartTalk`, the informer's trip met at the gate);
-  `Step` rolls `KeeperMath.LearnChance` and `Roll` (found out a tenth).
-- **Secret ties** (`SecretTies`): `Tie.Kind.Secret` from the knower (the colony) to the notable it is about, key the
-  kind (`KeeperMath.Kinds`), number its weight, about the keeper who learned it, until a year, origin `keeper`; twenty
-  live at most (`ToLetGo`). Pressed by letter ("Press what we know" on the notable's card) or face to face: called in,
-  then kept (they pay `KeeperMath.Hush`, the silver with their answer or handed over) or broken (told: their regard
-  `ToldRegard`, their people's deed `schemed`); a letter that never went puts it back open.
-- **Where it shows** (`TaskPanels`): the officer's card (the task, last step, next step; set, plan the visit, pay an
-  informer, send samples, call it off), the office's row on the Decrees page (`TaskPanels.OfficeRow`), a notable's card
-  (what the colony knows; press it), the Secret tie's card, a people's card ("Council task..." with every task that fits
-  them, `CouncilTasks.ChooseFor`), Here and away (`DiplomacyModel.tasks`, the officer away in `away`), the inbox: `task`
-  in Needs you (a visit or a feast to plan), `task-under-way` in four steps. Facts (`FactsTasks.cs`): `us:task`,
-  `us:task:KIND` (never the keeper's or the patrol), `task:writes`, `task:visited`, `task:you`, `them:caughtkeeper`
-  (`:you`), `them:pressed`, `keeper:watched`; `{OFFICER}`, `{OFFICE}`. Words by both ages (`AgeFeature.CouncilTasks`,
-  the levy's for the drill). Setting `diplomacyTasks` (with offices).
-- **Entry points.** Release 2c.2: `TaskKind.Dues` is reserved (`TaskMath.Built` false); `CouncilTasks.DuesWhyNot` and
-  `DuesStep` switch it on (`Offered`), and `SendCart` carries goods by courier. Release 2c.3: `KeeperOfSecrets.Watching`
-  with `KeeperMath.CatchFactor`, `SecretTies.Learn(Ref knower, Ref about, ...)` for their spy's tie about a colonist,
-  `SecretTies.Of`/`About`, and pressing through the ledger's own called-in, kept and broken.
+Release 2c.1 (0.96.0, docs/design/stage2-diplomacy.md, item 8) gave eight offices a task with a neighbour and the council
+a keeper of secrets. Both were dropped by the player's decision (5 November 2026), with the rule that the colony is the
+family, never a dynasty: no office takes a task, there is no keeper's seat, and the colony's own secrets slip at their
+base rate again (`SecretTracker.Step`, as before 0.96.0). Fealty and vassals run without the quartermaster's dues (below).
+What an older save still holds (`Diplomacy/Retired.cs`):
+- **Left unread.** A home's `tasks` (`CouncilTask` records), `drillPeople` and `drillAt` on the diplomacy book, a vassal's
+  `duesAt`, the setting `diplomacyTasks`. Scribe passes over a node nothing reads, so no type is needed for them.
+- **Let go quietly.** The keeper's seat: `Offices.ExposeData` drops a holder or an election's winner whose office no
+  longer exists, and `ElectionRace` reads its office with `CouncilScribe.LookDef` (a missing def loads as none) so the
+  election drops the race. The holder's hediff and the marshal's patrol job are read by the game by name, so their defs
+  stay as stand-ins (`Defs/Misc/Rimfolk_Retired.xml`): `HediffComp_Retired` removes the hediff at its next health tick,
+  `JobDriver_TaskPatrol` ends at its first look. A letter of the council's business (`LetterPurpose.Task`, kept in its
+  place in the enum, `NotableMath.Retired`) not yet read is called off without a word (`NeighbourLetters.Step`); an
+  answer already on its way back comes as it was written. A sounding out under way (`OutsiderAct.SoundOut`, kept in its
+  place: the talk job keeps its act by number) ends at once (`OutsiderMath.Retired`, `JobDriver_OutsiderTalk`). The
+  keeper's Secret ties (origin `keeper`) end at the day's look (`Retired.Daily`), a pressed one too.
+- **Kept as it is.** An officer's visit planned or on the road goes on as the colony's own journey (the journey planner's
+  plan there and back); a favour won by letter keeps its words (`CC_Dip_For_wonOver`); the history's `dip:task` lines and
+  the notables' memory lines stay as text, and `dip:task` gives no renown. `dip:task` is still written for a vassal's ask
+  answered (`Vassals`).
+- `Tie.Kind.Secret` stays reserved for schemes (release 2c.3) with its rules and bounds; nothing makes one now.
 
 #### Fealty and vassals
 
@@ -3015,9 +2964,9 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   far fight as a pact's, kept as `Fealty.LeviesCame` (deed `levies`, `dip:levy`), refused or not sent as
   `Fealty.LeviesRefused` (10 goodwill, deed `refused`, `dip:levy`; the oath stands)); the season's tribute
   (`TributeHour`, from 9 to 16 with no threat): still owed from the last breaks the oath (20 goodwill, `tributeShort`);
-  else `CollectTribute` carries silver (or the most plentiful goods, two kinds, four with the quartermaster on it) out
+  else `CollectTribute` carries silver (or the most plentiful goods, two kinds) out
   to their collector at the gate (`DilemmaEffect_CarryOut`, their courier waiting there), the rest owed
-  (`tributeShort`, `dip:tribute`) or paid in full (`tribute`, `dip:tribute`, the head's regard 3 with the quartermaster).
+  (`tributeShort`, `dip:tribute`) or paid in full (`tribute`, `dip:tribute`).
   `Fealty.PayOwed` sends what is owed the same way ("Send what is owed" on the tie's card and This week).
 - **Renouncing** (`FealtyObjection.AskRenounce`, the question `Rimfolk_DlmFealty_Renounce`, tags clean/owed):
   `Fealty.Renounce` ends it with 30 goodwill and `renounced`, nothing within a season of a failure. Attacking the liege
@@ -3028,7 +2977,7 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
 - **Vassals of the colony's own** (`Vassals.cs`): `DiplomacyHome.vassals` (`VassalTerms`, `FealtyMath.MaxVassals` = 3):
   the hamlet once sworn (synced each day from `HamletHome`; its own tie, origin `hamlet`) and up to two protected towns
   (a Fealty tie from the town to the colony, origin `vassal`, key `protected`), each with the council's `TributeLevel`
-  and when its harvest, season, dues, levies and last ask were, its head's low regard and release. A struggling town
+  and when its harvest, season, levies and last ask were, its head's low regard and release. A struggling town
   (`FealtyMath.AsksProtection`: under 20 for 30 days by its ledger record, its people at peace and at war with another,
   not the Empire's, not a seat, hamlet or post) asks once a year a home (`protectAskAt`). Each day a vassal's season
   (heavy: 3 goodwill and 4 regard; light: 2 regard), a protected town's harvest at harvest time (`ProtectedProduce` by
@@ -3042,12 +2991,11 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   during a threat, their band at a third of the threat (`Pacts.Arrive(..., "vassal", strength 2/3)`), its dead
   weighing on their head (`Vassals.LeviesHome` from `WarCamps.Thank`, 6 a death, 20 at most). Their head's regard moves
   through `Vassals.Regard` (the notable's personal regard and a memory line, shown on the town's card as what moved it).
-- **The quartermaster's dues**: `CouncilTasks.DuesWhyNot = Vassals.DuesWhyNot`, `DuesStep = Vassals.DuesStep` (set in
-  `FealtyPanels`' static constructor); targets the liege and the peoples of the colony's vassals only, a vassal's town
-  as the task's town. With the liege: what is owed goes by `CouncilTasks.SendCart` (or carried out), and done when a
-  season's tribute came in full; with a vassal: a letter (`TaskLetters.Send`, read by `Vassals.DuesRead` from
-  `TaskResults.LetterRead`), then their carter brings `FealtyMath.Dues` silver to the gate, on time or half and
-  explained in a hard season.
+- **No dues task.** The quartermaster's dues (0.97.0 to 0.101.1) went with the council's tasks (5 November 2026). A
+  vassal pays at harvest, its carter bringing produce to the gate by the council's level; the liege's collector takes
+  the season's tribute at the gate, and what the stores couldn't cover is paid with "Send what is owed"
+  (`Fealty.PayOwed`). Nothing came only through the task but the vassals' season's silver, which the design's vassals
+  (item 10) never had: their tribute is the harvest.
 - **Faction Territories' vassals** (decision 12): views as before (`WorldMechanics.OurVassals`), with a head made or
   carried over (`NotableBook.StaffOutpost`, the history's `world:vassal` naming the town it was) while their first
   people are at peace with the colony; kept by `Notables.Look` (`Vassals.KeepsHead`), never their people's head
@@ -3055,7 +3003,7 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   invasion read by name (`Territories.InvasionAtOutpost`, `FindForVassalOutpost`). Nothing of the mod's points,
   purchases or tribute is touched.
 - **Where it shows** (`FealtyPanels.cs`): the people card's rows and acts (`DiplomacyModel.Card`), the tie's card,
-  the place card's vassal lines and acts (tribute level, levies, dues) and an outpost's lines, the inbox (Needs you:
+  the place card's vassal lines and acts (tribute level, levies) and an outpost's lines, the inbox (Needs you:
   their offer, levies called, tribute owed, a vassal's asks; Under way: the oath awaited in steps, their band, the
   colony's levies on the road, a vassal's levies; Coming: tribute expected within three days with its date), the Ours
   lens's gold marks and lines to the mod's outposts (`LensModel`). Facts (`FactsFealty.cs`): `fealty:oath`,
@@ -3081,12 +3029,10 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
   name its people (`RenownMath.SourceOf`: the champion of `dip:contest`, the one married in `dip:wedding`, a ward's
   guardian at a good year's end and the colony's youth home in `dip:ward` (the guardian is named there since this
   release, `RenownMath.GuardianRole`), its envoy home and its hostage home after the term (named as having done it for
-  the colony), the speaker at `dip:parley`, the officer of a `dip:task` come to something (a milestone; the officer is
-  one with it, not its doer, for a task failed and the keeper's secret watch, `RenownMath.OfficerRole`); a secret
-  pressed and told is a wrong of the house of the one who learned it, named in the press's history), what the peoples
-  remember of them by name (`ColonistMemory.MarksOf`: a camp
-  broken, fighting beside theirs, trade at a post, settlers walked, a prisoner freed, their wounded tended; blood shed at
-  peace, executions, harvests, hard words, brawls), what they hold now (the colony's names for them by kind, years as
+  the colony), the speaker at `dip:parley`; an older save's council tasks (`dip:task`) and secrets pressed give none),
+  what the peoples remember of them by name (`ColonistMemory.MarksOf`: a camp broken, fighting beside theirs, trade at
+  a post, settlers walked, a prisoner freed, their wounded tended; blood shed at peace, executions, harvests, hard words,
+  brawls), what they hold now (the colony's names for them by kind, years as
   physician or marshal, terms as speaker, the Empire's title by seniority, notables whose own regard of them is 20 or
   more), and the colony's deeds each of its houses shares (`deed:swore`, `keptWord`, `levies`, `tie:pact:kept`;
   `brokeTruce`, `brokePact`, `renounced`, `schemed`, `refused`, `tributeShort`, `wordBroken`). Of theirs: a founding

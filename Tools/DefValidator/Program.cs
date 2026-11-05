@@ -491,8 +491,6 @@ wishPh.UnionWith(new[]
     "WORD",
     // Wards and hostages (Diplomacy/FactsWards.cs).
     "WARD", "HOSTAGE", "GUARDIAN",
-    // The council's tasks (Diplomacy/FactsTasks.cs): the officer with a task with their people, and the seat.
-    "OFFICER", "OFFICE",
     // House renown (Diplomacy/FactsRenown.cs): the speaker's house, what it is known for, how far, the house of the one spoken to.
     "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.

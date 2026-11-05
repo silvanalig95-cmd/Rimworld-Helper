@@ -13,20 +13,15 @@ namespace ColonyCouncil
     /// liege's people card in Region → Peoples, the tie's own card with its terms and what stands (tribute owed, a failed
     /// season), the people card's acts (swear fealty, renounce it, send what is owed), the Stance lens's line to the liege
     /// (UI/Region/LensModel.cs, the ledger's own tie); vassals on their place card (as the colony's vassal: the tribute
-    /// level, their head's regard and what moved it) with its acts (set the tribute, call their levies, the quartermaster's
-    /// dues), the Ours lens's marks and lines; and the one inbox: their offer, levies called, tribute owed and a vassal's asks
-    /// in Needs you, the oath awaited, their band, the colony's levies and a vassal's levies in Under way, the tribute
-    /// expected in Coming. The quartermaster's dues are switched on here (CouncilTasks.DuesWhyNot, DuesStep).
+    /// level, their head's regard and what moved it) with its acts (set the tribute, call their levies), the Ours lens's
+    /// marks and lines; and the one inbox: their offer, levies called, tribute owed and a vassal's asks in Needs you, the
+    /// oath awaited, their band, the colony's levies and a vassal's levies in Under way, the tribute expected in Coming.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FealtyPanels
     {
         static FealtyPanels()
         {
-            // The quartermaster's dues (release 2c.1's entry points): the liege's tribute seen to and the vassals' dues.
-            CouncilTasks.DuesWhyNot = Vassals.DuesWhyNot;
-            CouncilTasks.DuesStep = Vassals.DuesStep;
-
             CardSections.RegisterLines(CardKind.Tie, CardSlot.Now, 6f, TieLines, null, "fealty-terms");
             CardActs.Register(CardKind.Tie, r => FealtyWords.P("CC_Fealty_Act_Pay"), r => Fealty.PayWhyNot(ThingRefs.Tie(r)), r => Fealty.PayOwed(ThingRefs.Tie(r)),
                 r => IsLiege(ThingRefs.Tie(r)) && Fealty.Owed(ThingRefs.Tie(r)), 18f, FealtyWords.P("CC_Fealty_Act_Pay_Tip"), "fealty-pay");
@@ -47,8 +42,6 @@ namespace ColonyCouncil
                 var v = VassalOf(r, out var m);
                 Vassals.CallLevies(v, m);
             }, r => VassalOf(r) != null, 22f, FealtyWords.P("CC_Vassal_Act_Levies_Tip"), "vassal-levies");
-            CardActs.Register(CardKind.Place, r => FealtyWords.P("CC_Vassal_Act_Dues"), r => DuesWhyNot(r), r => DuesRun(r), r => VassalOf(r) != null && CouncilTasks.On, 28f,
-                FealtyWords.P("CC_Vassal_Act_Dues_Tip"), "vassal-dues");
             Inbox.Register("fealty", InboxSection.Needs, 34f, NeedRows, NeedCount);
             Inbox.Register("fealty-under-way", InboxSection.UnderWay, 53f, UnderWayRows);
             Inbox.Register("fealty-coming", InboxSection.Coming, 26f, ComingRows);
@@ -272,21 +265,6 @@ namespace ColonyCouncil
                 opts.Add(new FloatMenuOption(level == v.level ? FealtyWords.P("CC_Vassal_LevelCurrent", label.Named("LABEL")) : label, () => Vassals.SetLevel(v, level)));
             }
             Find.WindowStack.Add(new FloatMenu(opts, FealtyWords.P("CC_Vassal_LevelMenu", Vassals.NameOf(v).Named("TOWN"))));
-        }
-
-        private static string DuesWhyNot(ThingRef r)
-        {
-            var v = VassalOf(r, out var home);
-            if (v == null) return FealtyWords.P("CC_Fealty_Why_Gone");
-            return CouncilTasks.WhyNot(home, TaskMath.Quartermaster) ?? Vassals.DuesWhyNot(v.people, home);
-        }
-
-        private static void DuesRun(ThingRef r)
-        {
-            var v = VassalOf(r, out var home);
-            if (v == null || home == null) return;
-            var c = CouncilTasks.Targets(TaskKind.Dues, home, v.people).FirstOrDefault(x => x.why == null);
-            if (c != null) CouncilTasks.ChooseFor(home, v.people);
         }
 
         // ================= The inbox =================

@@ -31,6 +31,9 @@ namespace ColonyCouncil
 
         public const int HourTicks = 2500;
         public const int MaxPast = 200;
+
+        /// <summary>A story's reason to end that says nothing: what it was about is no longer in the game (a seat the council no longer has).</summary>
+        public const string Retired = "retired";
         private const int Day = GenDate.TicksPerDay;
 
         private static ArcTracker cached;
@@ -237,6 +240,11 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("personal story check " + arc.def.defName, e);
                 broken = null;
+            }
+            if (broken == Retired)
+            {
+                Remove(arc, ArcOutcome.Fizzled);
+                return;
             }
             if (broken != null)
             {

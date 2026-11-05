@@ -84,6 +84,8 @@
   <CC_Dip_For_campStruck>a raiders' camp struck</CC_Dip_For_campStruck>
   <CC_Dip_For_burnedCamp>a raiders' camp burned</CC_Dip_For_burnedCamp>
   <CC_Dip_For_protected>protection given</CC_Dip_For_protected>
+  <!-- Made by the council's tasks, retired 5 November 2026; an older save's debts still name it until their term ends -->
+  <CC_Dip_For_wonOver>a friendship kept up by letter</CC_Dip_For_wonOver>
 
   <!-- The line in the letter that tells of the good turn (or the evening's news) -->
   <CC_Dip_Line_TheyOwe>For this, {PEOPLE} owe the colony a debt: {WORD} by its reckoning, {RITE} by theirs.</CC_Dip_Line_TheyOwe>
@@ -216,6 +218,10 @@
   <!-- Letters and calls: the new purpose -->
   <CC_Letter_Purpose_Favour>obligation</CC_Letter_Purpose_Favour>
   <CC_Letter_PurposeCap_Favour>A debt of honor</CC_Letter_PurposeCap_Favour>
+  <!-- The council's business, retired with the council's tasks (5 November 2026): never written now; an older save's
+       answer already on its way back still shows its purpose -->
+  <CC_Letter_Purpose_Task>council business</CC_Letter_Purpose_Task>
+  <CC_Letter_PurposeCap_Task>Council business</CC_Letter_PurposeCap_Task>
 
   <!-- The other ties the ledger keeps with a people, on its card -->
   <CC_Dip_Tie_Peace>{FROM} have promised to speak for the colony to {ABOUT}, should it seek terms with them.</CC_Dip_Tie_Peace>

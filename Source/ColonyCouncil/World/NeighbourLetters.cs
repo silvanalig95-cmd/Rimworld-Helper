@@ -434,7 +434,7 @@ namespace ColonyCouncil
         {
             foreach (var l in book.letters)
             {
-                if (l.stage == LetterStage.Ringing) TryAnswer(l, now);
+                if (l.stage == LetterStage.Ringing && !NotableMath.Retired(l.purpose)) TryAnswer(l, now);
                 else if ((l.stage == LetterStage.Writing || l.stage == LetterStage.Calling) && now - l.stageTick > Sched.HourTicks / 2 && !AtIt(l))
                     Back(l);
             }
@@ -449,6 +449,13 @@ namespace ColonyCouncil
             if (n == null)
             {
                 Cancel(l, "CC_Letter_Cancel_Gone");
+                return;
+            }
+            // The council's business in an older save (retired with the council's tasks): called off before it is read,
+            // quietly; an answer already on its way back comes as it was written.
+            if (NotableMath.Retired(l.purpose) && l.stage != LetterStage.Answering)
+            {
+                Cancel(l, null);
                 return;
             }
             bool needsWriter = l.stage == LetterStage.ToWrite || l.stage == LetterStage.Writing || l.stage == LetterStage.ToCall || l.stage == LetterStage.Calling;

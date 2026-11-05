@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.102.0</version>
+        <date>5 November 2026</date>
+        <title>No council tasks, no keeper</title>
+        <points>
+          <li>Council tasks are gone, as the player chose: officers no longer travel to a neighbour to win over its head, open a trade, patrol, drill, take medicine, keep the faith or collect dues, and their letters, cards and lines on the Decrees page, Here and away and This week went with them.</li>
+          <li>The keeper of secrets is gone too, seat, election and all: nobody learns or presses a neighbour's secret any more, and the colony's own secrets slip at the rate they did before the keeper.</li>
+          <li>Fealty and vassals work as before without the dues task: a vassal's share is its harvest brought by carter, and the liege's collector takes the tribute at the gate, with Send what is owed for anything left owing.</li>
+          <li>Old saves load quietly: a seated keeper steps down, a task letter not yet read is called off, an officer already on the road comes home as from any journey, and history keeps what happened.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.101.2</version>
         <date>5 November 2026</date>
         <title>Groups that say what they are</title>

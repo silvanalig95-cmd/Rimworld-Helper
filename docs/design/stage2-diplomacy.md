@@ -25,7 +25,7 @@ it; every game name used below is also in the 1.7 reference. Times are the game'
   marriage alliances from courtship, a match the council seeks or one they offer; wards fostered as the game's lodgers
   and hostages given for pacts.
 - Round c: the keeper of secrets, a new office; council tasks as letters, calls, visits by caravan and guests received,
-  with results the player sees on the panels; fealty to a stronger neighbour (tribute, levies, protection) and vassals
+  with results the player sees on the panels (both dropped, 5 November 2026); fealty to a stronger neighbour (tribute, levies, protection) and vassals
   of the colony's own (the hamlet, Faction Territories' vassals, towns taken under protection); schemes gentle and dark,
   ours and theirs, always on the map.
 - Round d: the renown of the colony's houses, known for what their members did; stress against one's nature through
@@ -500,6 +500,14 @@ household (decision 9). Hospitality: lodgers are not its guests.
 
 ### 8. The keeper of secrets and council tasks
 
+**Dropped by the player's decision, 5 November 2026** ("drop council tasks for sure", "remove keeper of secrets"; the
+rule since that day: the colony is the family, never a dynasty). Built as release 2c.1 (0.96.0) and given its text
+pass, then taken out of the game: no office takes a task, there is no keeper's seat, and the colony's own secrets slip at
+their base rate again. Fealty and vassals (items 9 and 10) run without the quartermaster's dues: a vassal's tribute is
+its harvest, the liege's is collected at the gate and what is owed sent by "Send what is owed". An older save loads
+clean (DESIGN.md, "The keeper of secrets and council tasks (dropped)"). Schemes (item 11), when built, have no keeper:
+its parts that lean on one (the keeper's help, its watch, "Sound out") need another holder or go. The design as it was:
+
 **What the player sees and does.** A new office, the keeper of secrets (Social and Intellectual; opens at six voters;
 decision 13), elected like the others; while the seat is filled the colony's own secrets slip less often. Each office
 with a task below may take one at a time, chosen on the Decrees page's row for the office or from the Diplomacy page
@@ -831,8 +839,11 @@ letters by purpose and age, news, an Almanac page).
    (ransom for a forfeit hostage).
 7. **2c.1 The keeper of secrets and council tasks** (item 8; wave 13): the office, tasks, the officers' caravans,
    Secret ties in use. Needs round a and 2b.1 (the steward's task).
-8. **2c.2 Fealty and vassals** (items 9 and 10). Needs stage 1's hamlet, 2a.2's calls and bands, and 2c.1's dues.
-9. **2c.3 Schemes** (item 11). Needs 2c.1; the harm review's rival sabotage (3.5.1) first, if the player picks it.
+   Dropped by the player's decision, 5 November 2026, and taken out of the game (item 8).
+8. **2c.2 Fealty and vassals** (items 9 and 10). Needs stage 1's hamlet, 2a.2's calls and bands, and 2c.1's dues (the
+   dues went with 2c.1).
+9. **2c.3 Schemes** (item 11). Needed 2c.1, now dropped: the keeper's watch and Secret ties' code are gone; the harm
+   review's rival sabotage (3.5.1) first, if the player picks it.
 10. **2d.1 House renown** (item 12; wave 14). Reads every deed and tie before it.
 11. **2d.2 Against their nature** (item 13): the acts of every release switched on and tuned with the balance simulator.
     Built: every act but the dark scheme (item 13, "As built").
@@ -928,11 +939,11 @@ on a proud colonist.
 12. **Faction Territories' vassals.** Faces, opinion, letters and asks from Rimfolk; tribute, purchases and points stay
     the mod's; levies and tribute of Rimfolk's own only from its own vassals? Recommended: yes.
 13. **The keeper of secrets.** Social and Intellectual, opening at six voters, its edge "the colony's secrets slip less
-    often"? Recommended: yes.
+    often"? Recommended: yes. (Dropped, 5 November 2026.)
 14. **Council tasks.** Officers travel in real caravans for their visits (away from their work, on the game's roads), at
     most one away per home; tasks for eight offices now (speaker, keeper of secrets, marshal, quartermaster, physician,
     warden, chaplain, steward), and the reeve, herdmaster and keeper of days only if a task of theirs is wanted later?
-    Recommended: yes.
+    Recommended: yes. (Dropped, 5 November 2026.)
 15. **Our dark schemes.** Spoiling their trade, theft from their packs, a quarrel provoked between two of theirs, a
     smear; never killing, poison or fire? Recommended: yes.
 16. **Their dark schemes.** A machine broken, a small theft, a provoked fight, a spy who learns a secret, a smear; about

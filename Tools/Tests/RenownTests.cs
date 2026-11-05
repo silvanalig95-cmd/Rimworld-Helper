@@ -68,26 +68,10 @@ public static class RenownTests
             "answered under fealtymoot in place of fealty, the mark reset for each answer");
         var fealtyMoot = overtaken.Where(l => l.StartsWith("[fealtymoot")).ToList();
         C(fealtyMoot.Count >= 3 && fealtyMoot.All(l => !Regex.IsMatch(l, @"^\[[^\]]*(warm|cordial|cool|curt|refusal)")), "a moot oath's words, with no tone of their own");
-        // 4. A press (and a task) overtaken by events.
-        string taskLetters = Code("Diplomacy/TaskLetters.cs"), secretTies = Code("Diplomacy/SecretTies.cs");
-        C(taskLetters.Contains("moot ? PressMootTag : PressedTag") && taskLetters.Contains("tags.Add(TaskMootTag);") && secretTies.Contains("out bool moot"),
-            "a press no longer pressed answers under pressmoot, a task over under taskmoot");
-        var pressMoot = overtaken.Where(l => l.StartsWith("[task,pressmoot")).ToList();
-        C(pressMoot.Count >= 3 && pressMoot.All(l => !Regex.IsMatch(l, @"silver|pay", RegexOptions.IgnoreCase)), "a moot press promises no silver");
-        C(overtaken.Count(l => l.StartsWith("[task,taskmoot")) >= 3, "a moot task's own words");
-        // 5. Pressed face to face.
-        C(KeeperMath.PressedKeys(true).Contains(KeeperMath.PressedKey) && KeeperMath.PressedKeys(true).Contains(KeeperMath.PressedFaceKey)
-          && KeeperMath.PressedKeys(false).Contains(KeeperMath.PressedLetterKey) && !KeeperMath.PressedKeys(false).Contains(KeeperMath.PressedFaceKey), "a press remembered, and how");
-        C(KeeperMath.PressedTagOf(KeeperMath.PressedKey) == "them:pressed" && KeeperMath.PressedTagOf(KeeperMath.PressedLetterKey) == "them:pressed:letter"
-          && KeeperMath.PressedTagOf(KeeperMath.PressedFaceKey) == "them:pressed:face", "them:pressed either way, :letter and :face for how");
-        C(Regex.IsMatch(secretTies, @"Answer\(t, n, home, false, out string line\)") && Regex.IsMatch(secretTies, @"Answer\(t, n, home, true, out string line\)"), "by letter and face to face each remembered as itself");
-        var keeperPressed = Talks("Rimfolk_OutsiderTalks_Tasks.xml").First(t => t.Element("defName")!.Value == "Rimfolk_OT_Keeper_Pressed");
-        var parsed = OutsiderTalkMath.Parse("Rimfolk_OT_Keeper_Pressed", "keeper", null, 1f, keeperPressed.Element("when")!.Value, keeperPressed.Descendants("li").Select(l => l.Value).ToList(),
-            null, null, null, new List<string>());
-        C(keeperPressed.Value.Contains("letter") && parsed.when.alts.SelectMany(a => a).Any(a => a.name == "them:pressed:letter" && !a.neg),
-            "the piece that speaks of the colony's letter is said only to one pressed by letter (OutsiderTalkMath.AlsoWhen)");
-        var faceTalk = leviesTalk.Where(t => (t.Element("when")?.Value ?? "").Contains("them:pressed:face")).ToList();
-        C(faceTalk.Count >= 3 && faceTalk.SelectMany(t => t.Descendants("li")).All(l => !l.Value.Contains("letter")), "pressed face to face: its own words, none of a letter");
+        // 4 and 5. A press and a task overtaken by events, and pressed face to face: their words and code went with the
+        // keeper of secrets and the council's tasks (the player's decision, 5 November 2026).
+        C(overtaken.All(l => !l.StartsWith("[task,")) && !File.Exists(Path.Combine(root, "Source", "ColonyCouncil", "Diplomacy", "SecretTies.cs"))
+          && leviesTalk.All(t => !(t.Element("when")?.Value ?? "").Contains("them:pressed")), "no press or task left to answer or speak of");
         // 6. The fealty talk's header.
         C(!Def("OutsiderTalkDefs/Rimfolk_OutsiderTalks_Fealty.xml").Contains("fealty:oath (new for ten days)"), "the fealty talk's header: fealty:oath holds the whole oath");
 
@@ -101,8 +85,8 @@ public static class RenownTests
             C(keyed.Contains("<CC_Renown_Part_" + kv.Key + ">"), $"the source {kv.Key} in words");
         }
         C(RenownMath.Sources.Values.Where(s => s.points < 0f).Select(s => s.key).OrderBy(x => x).SequenceEqual(
-            new[] { "brawled", "brokePact", "brokeTruce", "executed", "harvested", "killedPeace", "refused", "renounced", "schemed", "slighted", "struggling", "told", "tributeShort", "wordBroken" }.OrderBy(x => x)),
-            "the wrongs: a truce or pact broken, a secret pressed and told, blood shed at peace, prisoners executed or cut open, hard words and brawls, an oath renounced, a call refused, tribute short, a word broken, a struggling town");
+            new[] { "brawled", "brokePact", "brokeTruce", "executed", "harvested", "killedPeace", "refused", "renounced", "schemed", "slighted", "struggling", "tributeShort", "wordBroken" }.OrderBy(x => x)),
+            "the wrongs: a truce or pact broken, the colony's scheme, blood shed at peace, prisoners executed or cut open, hard words and brawls, an oath renounced, a call refused, tribute short, a word broken, a struggling town");
         foreach (var m in RenownMath.MarkKinds) C(RenownMath.SourceOfMark(m) == m, $"what the peoples remember by name: {m}");
         C(RenownMath.SourceOfMark("gaveGift") == null && RenownMath.SourceOfMark(null) == null, "other marks give nothing");
         C(RenownMath.ColonyDeeds.All(RenownMath.Sources.ContainsKey), "the colony's deeds are sources");
@@ -114,16 +98,10 @@ public static class RenownTests
         C(RenownMath.GuardianRole(true) == HistoryRole.Did && RenownMath.GuardianRole(false) == HistoryRole.With, "a guardian did it only in a good year");
         C(RenownMath.SourceOf(DiplomacyMath.Parley, HistoryRole.About, false, false, true) == "parley" && RenownMath.SourceOf(DiplomacyMath.Parley, HistoryRole.Did, false, false, true) == null,
             "the speaker named at a truce sworn");
-        C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, true, true) == "task" && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, true) == "told"
-          && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, false) == null, "a task done; a secret pressed and told a wrong, paid nobody hears of");
-        // The review: a task set, a step of it and one called off are everyday lines, nothing yet; a task failed and the keeper's watch name the officer as one with it.
-        C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, false, false) == null && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.With, false, false, true) == null,
-            "only a task come to something counts, and only for the one who did it");
-        C(RenownMath.OfficerRole(false, false) == HistoryRole.Did && RenownMath.OfficerRole(true, false) == HistoryRole.With && RenownMath.OfficerRole(false, true) == HistoryRole.With,
-            "the officer did a task done; one with a task failed or the keeper's secret watch");
-        C(Code("Diplomacy/CouncilTasks.cs").Contains("RenownMath.OfficerRole(t.stage == TaskStage.Failed, t.kind == TaskKind.Secrets)"), "the task's history names its officer so");
-        C(Regex.IsMatch(Code("Diplomacy/SecretTies.cs"), @"new HistoryActor\(n\.Person, HistoryRole\.Against\) \};\s*(//[^\n]*\n\s*)?if \(!t\.terms\.about\.IsNone\) actors\.Add\(new HistoryActor\(t\.terms\.about, HistoryRole\.Did\)\);"),
-            "a secret pressed names the one who learned it, as its line does, so a secret told is their house's wrong (it named only the colony)");
+        // The council's tasks and the keeper of secrets were dropped (5 November 2026): an older save's dip:task lines stay as
+        // text and give no renown, whoever they name.
+        C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, true, true) == null && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, true) == null
+          && !RenownMath.Sources.ContainsKey("task") && !RenownMath.Sources.ContainsKey("told"), "no renown from an older save's council tasks");
         C(RenownMath.SourceOf(DiplomacyMath.Envoy, HistoryRole.Did, false, false, true) == "envoy" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true) == "hostage"
           && RenownMath.SourceOf(DiplomacyMath.Feast, HistoryRole.Did, false, false, true) == null, "a season abroad as envoy or hostage; a feast is the colony's");
         // The review: the colony's hostage home after their term is named as having done it (it was named About, so it never counted);
