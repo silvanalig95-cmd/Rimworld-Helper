@@ -30,7 +30,7 @@
     <lines>
       <li>[them] A traveler at our fire spoke of your colony, and the young ones listened.</li>
       <li>[us] What did the traveler say?</li>
-      <li>[them] That your camp is {RENOWN}, and that it keeps its word.</li>
+      <li>[them] That your camp is {RENOWN}, and worth a visit.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -547,7 +547,7 @@
     <lines>
       <li>[them] You're the healer they talk about, aren't you?</li>
       <li>[us] I've tended a few people, yes.</li>
-      <li>[them] Some of them are back on their feet because of you.</li>
+      <li>[them] More than a few, the way they tell it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -982,9 +982,9 @@
     <when>talked:goodword,colony:known,!colony:infamous</when>
     <weight>1.2</weight>
     <lines>
-      <li>[them] I put in that good word for you, as I said I would.</li>
-      <li>[us] Thank you, did it land?</li>
-      <li>[them] Your colony's name did most of the work.</li>
+      <li>[them] Since we spoke of that good word, people at home have asked me about your colony.</li>
+      <li>[us] And what did you tell them?</li>
+      <li>[them] That its name is a fair one, and I'd seen nothing here to change it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

@@ -17,7 +17,7 @@
     <when>tie:marriage,first</when>
     <weight>0.8</weight>
     <lines>
-      <li>[them] So you're from the colony our town married into.</li>
+      <li>[them] So you're from the colony our people married into.</li>
       <li>[us] I suppose we are, since the wedding.</li>
       <li>[them,their:tribal] Then sit by me, our fire is open to your people now.</li>
       <li>[them,their:empire] A connection by marriage, yes, though not a close one.</li>
@@ -43,7 +43,7 @@
     <when>tie:marriage,!tie:marriage:you</when>
     <weight>0.8</weight>
     <lines>
-      <li>[us] Thank your town for the gifts it keeps sending.</li>
+      <li>[us] Thank your people for the gifts that keep coming each season.</li>
       <li>[them,their:tribal] It is how our camp remembers yours, each season, by the moons.</li>
       <li>[them,their:medieval] It's custom, though the town reeve grumbles about the cost.</li>
       <li>[them,their:industrial] It's expected, and it keeps the road busy.</li>

@@ -37,7 +37,7 @@
         <li>[help,warm,tie:marriage] What binds our peoples binds us to help, {WRITER}. You didn't need to ask twice.</li>
         <li>[condolences,warm,tie:marriage] We grieve with you, {WRITER}. Our town mourns your loss too.</li>
         <li>[warning,warm,tie:marriage] Thank you for thinking of us. We will warn you as readily, as bound peoples should.</li>
-        <li>[greetings,cordial,tie:marriage:theirs,theirLowtech] The town sends its greetings to {INLAW}, and its season's gift is on the road.</li>
+        <li>[greetings,cordial,tie:marriage:theirs,theirLowtech] The town sends its greetings to {INLAW}, and remembers your colony each season.</li>
         <li>[greetings,cordial,tie:marriage:ours,theirHightech] {SPOUSEOF} has become one of our town, and asks after your colony often.</li>
         <!-- A spouse from among them wronged: their people's grudge -->
         <li>[match:wronged,theirLowtech] Our people do not forget what was done to one of ours. Remember that.</li>
