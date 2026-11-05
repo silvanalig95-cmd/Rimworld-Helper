@@ -6,6 +6,10 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 5 November 2026, a play-test point after 0.90.0: the new interface (0.82.0 to 0.88.1) and stage 2 round a with its
+  review and text pass (0.81.0, 0.88.0 to 0.90.0) are in, none of it yet seen in the game. Round b (2b.1 feasts and
+  contests, 2b.2 marriage alliances, 2b.3 wards and hostages) waits for the player's word after playing. Stage 3's
+  17 decisions and the harm review's picks are still with the player.
 - 0.90.0, text pass: diplomacy round a (the content pass beside 0.81.0, 0.88.0 and 0.89.0, as docs/design/stage2-diplomacy.md, "The
   order to build it in", asks; no version of its own: its points go with the next round). Words only, in new files beside
   the round's own (the round's tests cap its own files' counts). Talk pieces, 156, each said only on facts the providers
