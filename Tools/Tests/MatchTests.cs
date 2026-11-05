@@ -188,6 +188,9 @@ public static class MatchTests
             "the wedding's letter names kin among the guests only when they came, and a pact running on only when one stands");
         C(Code("Diplomacy/MatchAlliance.cs").Contains("MatchMath.SoldAway(other, theirs.IsPrisoner, other && theirs.Faction.HostileTo(Faction.OfPlayer))"),
             "the daily look reads a spouse gone over to their captors as no sale");
+        C(matches.Contains("p.alone ? \"CC_Match_Agreed_ColonyAlone\" : \"CC_Match_Agreed_Colony\"") && matches.Contains("pact ? \"CC_Match_Agreed_Risks\" : \"CC_Match_Agreed_RisksNoPact\"")
+          && matches.Contains("!Ages.IsEmpire(f) ? \"CC_Match_What\" : \"CC_Match_WhatNoPact\"") && matches.Contains("pactBroken ? \"CC_Match_Wronged\" : \"CC_Match_WrongedNoPact\""),
+            "the agreement promises guests only when some will come, and no letter speaks of a pact that isn't there (the Empire's, pacts off)");
         C(matches.Contains("PawnRelationDefOf.Fiance") && Code("Patches/Patch_WorldEvents.cs").Contains("Matches.Married(firstPawn, secondPawn);"),
             "engaged when agreed, the alliance made where every wedding is heard");
         C(matches.Contains("Arrivals.Join(x, map, near)") && matches.Contains("c.SetFaction(p.people)") && matches.Contains("WorldLedger.Keep(c, KeepFor.Spouse)"),

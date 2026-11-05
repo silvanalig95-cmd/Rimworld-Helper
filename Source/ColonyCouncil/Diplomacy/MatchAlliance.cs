@@ -289,6 +289,7 @@ namespace ColonyCouncil
             var home = HomeOf(t);
             WorldLedger.Set(t, Tie.State.Broken);
             string name = victim?.LabelShort ?? DipWords.NameOf(t.terms.about);
+            bool pactBroken = false;
             if (f != null)
             {
                 FactionMemory.Note(f, "spouseWronged", name);
@@ -299,14 +300,16 @@ namespace ColonyCouncil
                 }
                 NotableBook.Changed();
                 var pact = Pacts.Of(f, home, PactKind.Defence);
-                if (pact != null) Pacts.End(pact, Tie.State.Broken, null);
+                pactBroken = pact != null;
+                if (pactBroken) Pacts.End(pact, Tie.State.Broken, null);
             }
             var head = FavourCalls.HeadOf(f, home);
             Grudge(head?.Person ?? Refs.Of(f), f, home, victim != null ? WorldLedger.PersonOf(victim) : t.terms.about);
             Diplomacy.Dirty();
             // apart: told in a letter; the wrong itself happened on the map.
             Tell.Letter(NewsKind.World, Importance.Important, home, MatchWords.P("CC_Match_Wronged_Label", MatchWords.People(f).Named("PEOPLE")),
-                MatchWords.T("CC_Match_Wronged", name.Named("NAME"), MatchWords.Wrong(wrong).Named("WRONG"), MatchWords.People(f).Named("PEOPLE"),
+                // The pact broken with it is said only of one that stood (never the Empire's, none with pacts off).
+                MatchWords.T(pactBroken ? "CC_Match_Wronged" : "CC_Match_WrongedNoPact", name.Named("NAME"), MatchWords.Wrong(wrong).Named("WRONG"), MatchWords.People(f).Named("PEOPLE"),
                     (head != null ? NotableBook.Called(head) : MatchWords.People(f)).Named("HEAD")), LetterDefOf.NegativeEvent, LookTargets.Invalid, f);
         }
 

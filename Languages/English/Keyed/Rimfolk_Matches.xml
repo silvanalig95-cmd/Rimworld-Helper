@@ -70,8 +70,10 @@
   <!-- Agreed -->
   <CC_Match_Agreed_Label>{OURS} and {THEIRS} promised</CC_Match_Agreed_Label>
   <CC_Match_Agreed_Colony>{OURS} and {THEIRS} of {PEOPLE} are promised to each other: {WORD}, by {RITE}. On the day, {THEIRS} walks in from {TOWN} with {THEIRS_possessive} kin as the wedding's guests, joins the colony at the gate, and is married to {OURS} here. The guests stay for the evening's feast and go home at first light.</CC_Match_Agreed_Colony>
+  <CC_Match_Agreed_ColonyAlone>{OURS} and {THEIRS} of {PEOPLE} are promised to each other: {WORD}, by {RITE}. None of {THEIRS_possessive} kin is free to come, so on the day {THEIRS} walks in from {TOWN} alone, joins the colony at the gate, and is married to {OURS} here.</CC_Match_Agreed_ColonyAlone>
   <CC_Match_Agreed_Theirs>{OURS} and {THEIRS} of {PEOPLE} are promised to each other: {WORD}, by {RITE}. On the day, {THEIRS} and one of {THEIRS_possessive} kin come to the gate for {OURS}, who walks out to them and goes to live at {TOWN} for good. The wedding is held there, and their letter will tell of it.</CC_Match_Agreed_Theirs>
   <CC_Match_Agreed_Risks>While the marriage holds, {PEOPLE} think better of the colony, answer its call as a defense pact does and call on it in turn, and their kin send a gift each season. A spouse from among them wronged by the colony (killed, imprisoned, enslaved, sold or banished) is the gravest wrong {PEOPLE} remember, and their head would hold a grudge that passes to the next.</CC_Match_Agreed_Risks>
+  <CC_Match_Agreed_RisksNoPact>While the marriage holds, {PEOPLE} think better of the colony and their kin send a gift each season. A spouse from among them wronged by the colony (killed, imprisoned, enslaved, sold or banished) is the gravest wrong {PEOPLE} remember, and their head would hold a grudge that passes to the next.</CC_Match_Agreed_RisksNoPact>
   <CC_Match_Agreed_Pressed>The council pressed it over the objection {OURS} made, and {OURS} will not forget it soon.</CC_Match_Agreed_Pressed>
   <CC_Match_Gifts>Gifts go both ways at the gate, by their ways: porters of {PEOPLE} bring {THEIRS}, and carry the colony's gift of {OURS} home with them.</CC_Match_Gifts>
   <CC_Match_Gifts_NoneOurs>Porters of {PEOPLE} bring their gift, {THEIRS}, to the gate. The colony has no silver to give in return, and {PEOPLE} noticed.</CC_Match_Gifts_NoneOurs>
@@ -80,6 +82,7 @@
   <CC_Match_Offer_Label>A match for {OURS}</CC_Match_Offer_Label>
   <CC_Match_Offer>{WHO} of {PEOPLE} writes to offer {WORD}: {THEIRS} for {OURS}, married by {RITE}.</CC_Match_Offer>
   <CC_Match_What>If it is agreed, gifts go both ways at the gate, and on the day the couple's kin come. While the marriage holds, {PEOPLE} think better of the colony, answer its call as a defense pact does and call on it in turn, and send a small gift each season. A spouse wronged by the colony is the gravest wrong they remember. A colonist against the match is heard by the council before anything is settled.</CC_Match_What>
+  <CC_Match_WhatNoPact>If it is agreed, gifts go both ways at the gate, and on the day the couple's kin come. While the marriage holds, {PEOPLE} think better of the colony and send a small gift each season. A spouse wronged by the colony is the gravest wrong they remember. A colonist against the match is heard by the council before anything is settled.</CC_Match_WhatNoPact>
   <CC_Match_Opt_Accept>Agree to the match</CC_Match_Opt_Accept>
   <CC_Match_Opt_AcceptAsk>Agree, and let the council hear {OURS}</CC_Match_Opt_AcceptAsk>
   <CC_Match_Opt_Decline>Decline, politely</CC_Match_Opt_Decline>
@@ -154,6 +157,7 @@
   <CC_Match_End_Parted>{OURS} and {THEIRS} have parted. The alliance with {PEOPLE} is over, and they think less of the colony for it.</CC_Match_End_Parted>
   <CC_Match_Wronged_Label>A spouse wronged</CC_Match_Wronged_Label>
   <CC_Match_Wronged>{NAME}, whose marriage bound the colony to {PEOPLE}, was {WRONG}. The alliance is broken, and the pact with it. It is the gravest wrong {PEOPLE} remember, and {HEAD} holds a grudge against the colony for it, one that passes to the next head.</CC_Match_Wronged>
+  <CC_Match_WrongedNoPact>{NAME}, whose marriage bound the colony to {PEOPLE}, was {WRONG}. The alliance is broken. It is the gravest wrong {PEOPLE} remember, and {HEAD} holds a grudge against the colony for it, one that passes to the next head.</CC_Match_WrongedNoPact>
   <CC_Match_Feud_Label>A feud carried down</CC_Match_Feud_Label>
   <CC_Match_Feud>{OLD} is gone, and {HEAD} has taken up the grudge {PEOPLE} hold against the colony for {NAME}. A feud like this one passes from head to head.</CC_Match_Feud>
 
