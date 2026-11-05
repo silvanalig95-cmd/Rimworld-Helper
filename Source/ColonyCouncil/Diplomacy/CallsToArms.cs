@@ -88,8 +88,9 @@ namespace ColonyCouncil
             }
             if (!Pacts.On || !Sched.FirstHourOfDay(Now) || !Tell.CanAsk) return;
             if (!Attacked(f, home, out var s, out var enemy) || !Rand.Chance(PactMath.ArmsDaily)) return;
-            // One call for each attack: not again while the same war goes on against the same town.
-            if (asked.Contains(Key(t.id, s.ID, enemy))) return;
+            // One call for each attack: not again while the same war goes on against the same town (this session's asks, and
+            // across a reload the history's call kept there against them lately).
+            if (asked.Contains(Key(t.id, s.ID, enemy)) || KeptLately(s, enemy)) return;
             asked.Add(Key(t.id, s.ID, enemy));
             t.terms.goods = PactMath.ArmsCode(s.ID, day + PactMath.SetOutDays);
             t.terms.about = Refs.Of(enemy);
@@ -101,6 +102,16 @@ namespace ColonyCouncil
         private static readonly HashSet<string> asked = new HashSet<string>();
 
         private static string Key(int tie, int town, Faction enemy) => tie + ":" + town + ":" + (enemy?.loadID ?? -1);
+
+        /// <summary>A call for this town against this enemy kept within the season (the history's dip:arms there): the same war.</summary>
+        private static bool KeptLately(Settlement town, Faction enemy)
+        {
+            var against = Refs.Of(enemy);
+            foreach (var e in History.At(Refs.Of(town), new[] { DiplomacyMath.Arms }, Now - (int)(PactMath.SeasonDays * PactMath.DayTicks)))
+                if (enemy == null || e.actors.Any(a => a.who == against && a.role == HistoryRole.Against))
+                    return true;
+            return false;
+        }
 
         /// <summary>Their letter asking the colony for fighters: send them (by caravan), or refuse.</summary>
         public static void Letter(Tie t, Faction f, Map home, Settlement town, Faction enemy, bool pact)
@@ -136,6 +147,13 @@ namespace ColonyCouncil
             if (town == null || town.Destroyed || town.Faction != f)
             {
                 Close(t, pact, null);
+                return;
+            }
+            // Their caravan joined the fight through Faction Territories' own "Join fight", taken as its arrival: the colony's
+            // people are on the town's map, and no caravan of theirs is left on the world map to be seen arriving.
+            if (OnTownMap(town))
+            {
+                Arrived(t, f, home, town, enemy, null, pact);
                 return;
             }
             var c = Answering(town);
@@ -177,13 +195,22 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>They got there: the fight begins (or, the danger past, they are thanked), and the call is kept.</summary>
+        /// <summary>Two grown colonists or more on the town's own map (only a fight there puts them on it).</summary>
+        public static bool OnTownMap(Settlement town)
+        {
+            var map = town != null && town.HasMap ? town.Map : null;
+            if (map?.mapPawns == null) return false;
+            int grown = map.mapPawns.FreeColonistsSpawned.Count(p => p != null && !p.DevelopmentalStage.Juvenile() && !p.Downed && !p.Dead);
+            return PactMath.Answers(grown, true);
+        }
+
+        /// <summary>They got there: the fight begins (or, the danger past, they are thanked), and the call is kept. No caravan: in the fight there already.</summary>
         private static void Arrived(Tie t, Faction f, Map home, Settlement town, Faction enemy, Caravan c, bool pact)
         {
             string how;
             try
             {
-                how = Fight(f, home, town, enemy, c);
+                how = c != null ? Fight(f, home, town, enemy, c) : PactWords.P("CC_Arms_JoinedInvasion", town.Name.Named("TOWN"));
             }
             catch (Exception e)
             {
@@ -197,8 +224,8 @@ namespace ColonyCouncil
             Close(t, pact, Tie.State.Kept);
             if (how == null)
                 // apart: the colony's caravan reached their town after the danger; told in a message.
-                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Arms_Late", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")), new LookTargets(c),
-                    MessageTypeDefOf.PositiveEvent);
+                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Arms_Late", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")),
+                    c != null ? new LookTargets(c) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>The call is over: a pact's call cleared (the pact goes on), a debt's kept or let go; with <paramref name="state"/> null, let go with nobody at fault.</summary>
@@ -344,6 +371,9 @@ namespace ColonyCouncil
             if (d != null && d.state == Tie.State.CalledIn && FavourMath.ParseNeed(d.terms.goods, out var n) && n == FavourNeed.Fighters) return d;
             return null;
         }
+
+        /// <summary>A pact's call still waiting for the colony's answer (the inbox's row; a debt's call is the favours' row).</summary>
+        public bool WaitingOnPact => !ArchivedOnly && Live(out bool pact) != null && pact;
 
         public override IEnumerable<DiaOption> Choices
         {

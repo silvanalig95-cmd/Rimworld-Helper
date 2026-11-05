@@ -352,9 +352,23 @@ namespace ColonyCouncil
         private static void Stay(DiplomacyHome h, EnvoyStay s, Map map, int now)
         {
             var f = s.people;
-            if (!HereOn(s.envoy, map))
+            var e = s.envoy;
+            // Downed, they left the stay's group (the game's own rule), so a death or an arrest after that never reached
+            // it (LordJob_EnvoyStay.Notify_PawnLost): seen here instead. Dead, as a death at the colony; taken prisoner, as
+            // an arrest.
+            if (e != null && e.Dead)
             {
-                // Gone from the map without the season's end (carried off, left in a hurry): the stay ends as it stands.
+                Died(h, s, map, e);
+                return;
+            }
+            if (e != null && (e.IsPrisoner || e.Faction != f))
+            {
+                End(h, s, map, true);
+                return;
+            }
+            if (e == null || e.MapHeld != map)
+            {
+                // Gone from the map without the season's end (left in a hurry): the stay ends as it stands.
                 End(h, s, map, false);
                 return;
             }
@@ -363,6 +377,8 @@ namespace ColonyCouncil
                 End(h, s, map, false);
                 return;
             }
+            // Carried (a colonist taking them to a bed after they were downed): still here; the hour waits until they're set down.
+            if (!e.Spawned) return;
             Regroup(s, map);
             Tally(s, map);
             int hurt = Injuries(s.envoy);
@@ -723,6 +739,8 @@ namespace ColonyCouncil
                 lord?.ReceiveMemo(LordJob_EnvoyStay.MemoLeave);
                 foreach (var p in Party(s).ToList())
                 {
+                    // One the colony took prisoner keeps the bed the wardens gave them.
+                    if (p.IsPrisonerOfColony) continue;
                     Hosting.GetUp(p);
                     Hosting.GiveBack(p, map);
                 }
@@ -777,6 +795,12 @@ namespace ColonyCouncil
                 if (condition == PawnLostCondition.MadePrisoner || condition == PawnLostCondition.ChangedFaction) End(h, s, map, true);
                 return;
             }
+            Died(h, s, map, p);
+        }
+
+        /// <summary>The envoy died at the colony (in the stay's group, or downed out of it before): regard by shelter, the letter, the stay over.</summary>
+        private static void Died(DiplomacyHome h, EnvoyStay s, Map map, Pawn p)
+        {
             var f = s.people;
             var room = p.Corpse?.GetRoom();
             bool sheltered = room != null && !room.PsychologicallyOutdoors;

@@ -49,6 +49,52 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   on the floor), a pact's call answered or put off, a truce ended in peace apart from other kept words, the trap apart
   from a refused debt, their ages in a letter. To look at in game: the signal fire's bubble; the envoy's letters home
   over a season.
+- 0.89.1, stage 2 round a review: fixes (the three releases 0.81.0, 0.88.0 and 0.89.0, diplomacy's base and favours, pacts and
+  truces, ransom and the envoy, read against the 1.6 game and Faction Territories' decompiled source; no version of its
+  own: its points go with the next round). Fixed, each checked in the code and the game's source: their envoy downed in
+  a fight leaves the stay's group by the game's own rule, so a death or an arrest after that never reached
+  `LordJob_EnvoyStay`: the stay ended without a letter, regard or deed, or went on with the envoy in a cell; the hour
+  now sees a dead envoy as a death at the colony (`Envoys.Died`, shared with `Lost`), a prisoner as an arrest, and an
+  envoy being carried to a bed as still here (`MapHeld`), where before an hour falling during the carry ended the stay
+  with a "leaves" letter (a prisoner keeps the bed the wardens gave them). The colony's envoy ambushed on the road was
+  put on the fight's map and the plan called off without a word; it now waits and sends the caravan on to the town once
+  it sets off again (called off back at a home or once carried off). Needs you counted every truce offer, pact offer and
+  call to arms on a pact left in the letter stack, moot or kept ones too: each letter says whether it still waits
+  (`ChoiceLetter_TruceOffer.Waiting`, `ChoiceLetter_PactOffer.Waiting`, `ChoiceLetter_CallToArms.WaitingOnPact`). With
+  Faction Territories, a caravan that took the mod's own "Join fight" to a partner's town entered the town's map at once,
+  no caravan was left to be seen arriving, and the call was taken as unanswered and the pact broken (a debt refused)
+  while its people fought there: two grown colonists on the town's map answer it now (`CallsToArms.OnTownMap`). With the
+  deeper game hooks off, the firebrands' raid came and the truce stayed sworn although their letter said it was broken:
+  Rimfolk breaks it as it sends the raid when the hook didn't. A call to arms came once per attack only by a session's
+  set, so a reload during the same war brought the letter again, and leaving it broke the pact: a call kept there against
+  the same enemy within the season (the history's `dip:arms`) counts as asked (`KeptLately`). The avenger's objection was
+  marked heard only for the session, so a reload before the oath asked the council again: kept on `LordJob_Parley.heard`.
+  One of a partner's band killed by the colony (a turret's or a mortar's stray shot in the fight the pact brought them
+  to) was the memory's "killed" and broke every pact with them: `PactMath.BreaksPact` leaves out a killing while their
+  war band is on a home, as the breaches already leave out a blow struck. Tests: `PactTests` (BreaksPact, the review's
+  fixes in the code), `RansomTests` (the envoy's hour, the ambushed envoy). Looked at and found sound: every Harmony target
+  and argument name (`FactionCanBeGroupSource`, `PostProcessSpawnedPawns`, `CreateLordJob`, the ransom demand's
+  `CanFireNowSub` and `TryExecuteWorker`; names in the 1.7 reference too), each patch with its setting off, every
+  postfix inside a try; the parley party as guests of a people at peace with both (out of the turrets' targets through
+  `AttackTargetsCache`, colonists by `GenHostility`); the messengers, runners and go-betweens of peoples at peace; the
+  saved records on an older save (the book is made empty, lists made on load), refs to pawns and peoples gone, the keep
+  reasons `envoy` and `lent` in the ledger's daily check; the colony's envoy at the town a world pawn (caravan pawns are,
+  needs frozen there); the lords' memos never sent from their own transitions where it mattered; the trap's chance the one
+  named; the firebrands, trap and band at the design's rates; the Empire's no to pacts; the settings switching each part
+  off; the inbox counts against their rows; the alert and the cards' costs. Not confirmed, left as they are: a captive
+  still downed ten hours after an accepted ransom or an exchange is let go where they lie (the game's warden won't carry
+  a downed prisoner out; in 1.6 they may crawl), and the offer is dropped a day later, so their healthy exit afterwards
+  can make a debt of honour; captives returned as a truce's price and leaving healthy make one too; a favour's fighters
+  asked by letter mostly come after the fight (the ask is checked when written, not when read); with the deeper hooks
+  off a truce people's raid that comes anyway doesn't break the truce (only the firebrands' now does); their envoy
+  notable spawned elsewhere when due (Arrive doesn't look again); a call in progress cleared by a reload (`Pacts.callers`
+  is a session's) and a renewal letter dismissed offered again after one; a call to arms' "too late" message when the
+  fight beside the town couldn't be set up for another reason; Factional War's battle bringing a truce partner may break
+  the truce by `Patch_TruceRaided` (not checked against its source); no Empire honour for a favour called in (decision
+  9's honour part isn't built). To look at in game: an envoy downed in a raid, carried to bed, then dying or recovering;
+  the colony's envoy ambushed on the road; a pact's call to arms with Faction Territories answered by "Join fight"; a
+  firebrands' raid with the deeper hooks off; a reload during a long war at a partner's town; a mortar's stray shell on a
+  called band.
 - 0.89.0, stage 2 release 2a.3, ransom and the envoy (docs/design/stage2-diplomacy.md, items 3 and 4; the player's decisions 4, 5,
   6 and 9 as recommended; built beside the interface review, merged in at 1e2d428: this release adds through the
   registration APIs only). DESIGN.md, "Diplomacy" → "Ransom and the envoy" has the whole of it. Pure and tested

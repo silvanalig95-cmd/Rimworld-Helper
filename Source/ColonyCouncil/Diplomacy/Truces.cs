@@ -586,14 +586,18 @@ namespace ColonyCouncil
             string label = PactWords.P("CC_Truce_Firebrands_Label", PactWords.People(f).Named("PEOPLE"));
             string text = PactWords.T("CC_Truce_Firebrands", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"));
             letting = f;
+            bool sent;
             try
             {
-                Raids.Send(home, f, StorytellerUtility.DefaultThreatPointsNow(home) * PactMath.FirebrandPoints, label, text);
+                sent = Raids.Send(home, f, StorytellerUtility.DefaultThreatPointsNow(home) * PactMath.FirebrandPoints, label, text);
             }
             finally
             {
                 letting = null;
             }
+            // Their raid broke it as it arrived (Patch_TruceRaided); with the deeper game hooks off nothing saw it come, and
+            // their letter has said the truce won't survive it: broken here.
+            if (sent && t.Live) BrokenByThem(t, f, home, PactWords.P("CC_Truce_By_Raid"));
         }
 
         // ================= Its end =================
