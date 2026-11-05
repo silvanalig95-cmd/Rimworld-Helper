@@ -93,9 +93,13 @@ namespace ColonyCouncil
         private static readonly ulong NoHuntMask = BeliefMath.Mask(new[] { Belief.NoHunting, Belief.NoViolence });
         private static readonly ulong NoViolenceMask = BeliefMath.Mask(new[] { Belief.NoViolence });
 
-        private static bool Able(Pawn p) =>
-            p != null && Together.Able(p) && !p.DevelopmentalStage.Baby() && PlayOuts.CanJoin(p) && !PlayOuts.NeedsPress(p) && !InContest(p)
+        /// <summary>Up to a contest now: awake and up, not drafted or in a state, nothing pressing.</summary>
+        private static bool Ready(Pawn p) =>
+            p != null && Together.Able(p) && !p.DevelopmentalStage.Baby() && PlayOuts.CanJoin(p) && !PlayOuts.NeedsPress(p)
             && (p.health?.capacities?.CapableOf(PawnCapacityDefOf.Moving) ?? false);
+
+        /// <summary>Free to be picked for one: ready, and not already in one.</summary>
+        private static bool Able(Pawn p) => Ready(p) && !InContest(p);
 
         private static bool Pregnant(Pawn p) => p?.health?.hediffSet?.hediffs?.Any(h => h.def?.defName != null && h.def.defName.StartsWith("Pregnant")) ?? false;
 
@@ -627,7 +631,7 @@ namespace ColonyCouncil
             while (r.index < r.pairs.Count)
             {
                 var (c, x) = r.pairs[r.index];
-                if (c.Spawned && x.Spawned && Able(c) && Able(x) && !c.Drafted)
+                if (c.Spawned && x.Spawned && Ready(c) && Ready(x) && !c.Drafted)
                 {
                     bool hard = FeastMath.HardBlow(Rand.Value, Feasts.MayBeHurt(c) && Feasts.MayBeHurt(x), Feasts.HarmScale);
                     r.bout = Outsiders.FeastBout(c, x, r.spot, hard);

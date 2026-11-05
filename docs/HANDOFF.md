@@ -51,7 +51,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   at the gate, sit at the evening's feast with the colony (`PlayGuests.Feast`), stay the night and go home at first
   light, their welcome counted as a feast's; `Feasts.StageChanged` (an event: plan, map, stage) says when they are at the
   gate (`FeastStage.Here`: hold the ceremony then) and gone (`FeastStage.Done`); `GuestFeast.tag` carries the wedding's
-  own key, and This week, the calendar and Here and away already speak of wedding guests (`CC_Feast_Week_Wedding`,
+  own key; a second `Host` takes pawns who aren't notables (a bride's kin made as people of the world by the caller), and
+  This week, the calendar and Here and away already speak of wedding guests (`CC_Feast_Week_Wedding`,
   `CC_Feast_Arrive_Wedding`, `CC_Feast_HereAs_Wedding`).
   Left out, and why: a sore loser's challenge on a later visit (the harm review's 2.8.1, not picked); renown for the
   champion's house (round d); Empire honor for a feast (decision 9 names only two places); the race's marker as a thing

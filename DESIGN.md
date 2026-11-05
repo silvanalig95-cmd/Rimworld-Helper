@@ -2711,8 +2711,9 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
 - **For release 2b.2's weddings** (`Feasts.Host`): guests who already agreed (a people, their notables, the purpose
   `FeastPurpose.Wedding`, a day, a caller's `tag`) come on the first fine day from it with no letters and no contests
   unless given, wait at the gate, sit at the feast in the evening, stay the night and go home at first light, their
-  welcome counted the same. `Feasts.StageChanged` tells a listener when they are at the gate (`FeastStage.Here`) and
-  when they are gone (`FeastStage.Done`).
+  welcome counted the same; a second `Host` takes pawns of their people who aren't notables (kin made by the caller).
+  `Feasts.StageChanged` tells a listener when they are at the gate (`FeastStage.Here`) and when they are gone
+  (`FeastStage.Done`).
 - **The colony's own away** (`FeastAway`): at the missions' invitation, when the colony's guests sit to the end, each
   may win one of their people's contests (`FeastMath.AwayWin` by the skill for it), told in the news once home.
 - **Where it shows** (`FeastPanels`): an Event card for each feast (its `dip:feast` entry: where it stands, the guests and

@@ -46,11 +46,23 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(760f, Mathf.Min(760f, UI.screenHeight - 60f));
 
+        /// <summary>Why each candidate or contest can't be picked, worked out with the list (every two seconds), not every frame.</summary>
+        private readonly Dictionary<int, string> guestWhy = new Dictionary<int, string>();
+        private readonly Dictionary<ContestKind, string> contestWhy = new Dictionary<ContestKind, string>();
+
         private void Build()
         {
             candidates = Feasts.Candidates(home);
+            guestWhy.Clear();
+            foreach (var n in candidates) guestWhy[n.id] = Feasts.InviteWhyNot(n, home);
+            contestWhy.Clear();
+            foreach (ContestKind k in System.Enum.GetValues(typeof(ContestKind))) contestWhy[k] = Feasts.ContestWhyNot(k, home);
             builtAt = Time.realtimeSinceStartup;
         }
+
+        private string GuestWhy(Notable n) => n != null && guestWhy.TryGetValue(n.id, out var w) ? w : Feasts.InviteWhyNot(n, home);
+
+        private string ContestWhy(ContestKind k) => contestWhy.TryGetValue(k, out var w) ? w : Feasts.ContestWhyNot(k, home);
 
         private List<Notable> Picked => candidates.Where(n => picked.Contains(n.id)).ToList();
 
@@ -63,7 +75,7 @@ namespace ColonyCouncil
             // One letter or call to each guest, and only so many under way at once.
             if (NeighbourLetters.OpenCount + picked.Count > NotableMath.MaxOpen)
                 return FeastWords.P("CC_Feast_Why_Letters", (NotableMath.MaxOpen - NeighbourLetters.OpenCount).Named("COUNT"));
-            return Picked.Select(n => Feasts.InviteWhyNot(n, home)).FirstOrDefault(w => w != null);
+            return Picked.Select(GuestWhy).FirstOrDefault(w => w != null);
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -158,7 +170,7 @@ namespace ColonyCouncil
             const float h = 44f;
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index);
-            string why = Feasts.InviteWhyNot(n, home);
+            string why = GuestWhy(n);
             bool on = picked.Contains(n.id);
             bool can = why == null && (on || picked.Count < FeastMath.MaxGuests);
             bool now = on;
@@ -185,7 +197,7 @@ namespace ColonyCouncil
             const float h = 44f;
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index);
-            string why = Feasts.ContestWhyNot(k, home);
+            string why = ContestWhy(k);
             bool on = contests.Contains(k);
             bool can = why == null && (on || contests.Count < FeastMath.MaxContests);
             bool now = on;

@@ -377,11 +377,58 @@ namespace ColonyCouncil
             return p;
         }
 
+        /// <summary>
+        /// The same for guests who aren't notables the colony knows (a bride's kin, made as people of the world by the
+        /// caller): each of their people, free to travel, out in the world (not on a map, not held), up to three; each
+        /// walks in with one or two of their people. Their welcome moves their head's regard only.
+        /// </summary>
+        public static GuestFeast Host(Map home, Faction people, List<Pawn> guests, FeastPurpose purpose, int when, string tag, List<ContestKind> contests = null, Thing prize = null)
+        {
+            var known = NotableBook.Instance?.notables;
+            var list = new List<Notable>();
+            var others = new List<Pawn>();
+            foreach (var x in (guests ?? new List<Pawn>()).Where(x => x != null && !x.Dead && !x.Spawned && x.Faction != null && !x.Faction.IsPlayer && LivingEvents.FreeToTravel(x)).Distinct())
+            {
+                var n = known?.FirstOrDefault(o => o != null && o.pawn == x);
+                if (n != null) list.Add(n);
+                else others.Add(x);
+            }
+            var p = Host(home, people, list, purpose, when, tag, contests, prize);
+            var book = DiplomacyBook.Instance;
+            if (p == null && others.Count > 0 && book != null && home != null && Homes.IsHome(home) && !Diplomacy.Hostile(people) && book.HomeOf(home).feast == null)
+            {
+                // Nobody the colony knows: the plan is made for those it doesn't.
+                p = new GuestFeast
+                {
+                    id = book.NextId(), purpose = purpose, tag = tag, stage = FeastStage.Set, created = Now,
+                    contests = (contests ?? new List<ContestKind>()).Distinct().Take(FeastMath.MaxContests).ToList(), prize = prize, prizeName = prize != null ? PlayGive.Label(prize) : null
+                };
+                book.HomeOf(home).feast = p;
+            }
+            if (p == null) return null;
+            foreach (var x in others)
+            {
+                if (p.guests.Count >= FeastMath.MaxGuests) break;
+                p.guests.Add(new FeastGuest
+                {
+                    pawn = x, name = x.LabelShort, people = x.Faction, state = GuestState.Coming, comeBy = Math.Max(when, Now), hope = HopeOf(x.Faction)
+                });
+            }
+            if (p.guests.Count == 0)
+            {
+                book.HomeOf(home).feast = null;
+                return null;
+            }
+            if (others.Count > 0) SetDay(book.Existing(home), p, home);
+            Diplomacy.Dirty();
+            return p;
+        }
+
         /// <summary>Why the player can't call this feast off now, or null: only before the guests come.</summary>
         public static string CallOffWhyNot(GuestFeast p) =>
             p == null || p.stage == FeastStage.Done ? FeastWords.P("CC_Feast_Why_Over") : p.OnMap ? FeastWords.P("CC_Feast_Why_AlreadyHere") : null;
 
-        /// <summary>The player calls it off before the guests come: those who said yes think a little less of the colony.</summary>
+        /// <summary>The player calls it off before the guests come: those who said yes think 5 less of the colony.</summary>
         public static void CallOffByColony(GuestFeast p)
         {
             Get(p?.id ?? -1, out var h);
