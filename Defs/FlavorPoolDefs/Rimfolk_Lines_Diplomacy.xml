@@ -30,7 +30,7 @@
         <li>[favour,cool,theirLowtech] It is given, and now nothing is owed between us.</li>
         <li>[favour,cool,theirHightech] Done, and the books are closed on it.</li>
         <li>[favour,refusal] We owe the colony, but we will not be held to this.</li>
-        <li>[favour,refusal,theirLowtech] The elders will not give it, whatever was owed.</li>
+        <li>[favour,refusal,theirLowtech] Our leaders will not give it, whatever was owed.</li>
         <li>[favour,refusal,theirHightech] Our council voted it down, and I can't change that.</li>
         <li>[favour,refusal,call] I'm sorry, {WRITER}, but the answer is no.</li>
       </plain>

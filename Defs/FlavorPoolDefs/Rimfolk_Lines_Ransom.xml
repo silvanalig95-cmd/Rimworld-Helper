@@ -24,24 +24,24 @@
         <!-- About captives: an offer brought sooner, or an exchange -->
         <li>[ransom,warm] Thank you for writing, {WRITER}. We want our own home, and we will send someone to your gate.</li>
         <li>[ransom,cordial] Your letter about the captives reached us. Someone of ours will come to your gate about it.</li>
-        <li>[ransom,cordial,theirLowtech] The elders have heard your words about the one you hold. Our answer will come to your gate on foot.</li>
+        <li>[ransom,cordial,theirLowtech] Our leaders have heard your words about the one you hold. You will have our answer in our own way.</li>
         <li>[ransom,cool] We have your letter. Someone will come to your gate about it, and that is all we will say here.</li>
         <li>[ransom,cool,war] You hold one of ours and write to us about it. Very well, our answer will come to your gate.</li>
         <li>[ransom,cool,war,theirHightech] Your proposal regarding the prisoners has been reviewed. Expect contact at your gate.</li>
         <li>[ransom,cool,call] Understood, {WRITER}. We'll be at your gate about it.</li>
         <li>[ransom,refusal] We will not bargain over that, {WRITER}.</li>
         <li>[ransom,refusal,war] We do not pay our enemies, and we do not trade with them either.</li>
-        <li>[ransom,refusal,theirLowtech] The elders talked late about your words, and the answer is no.</li>
+        <li>[ransom,refusal,theirLowtech] We weighed your words a long while, and the answer is no.</li>
         <li>[ransom,refusal,theirHightech] Your proposal was discussed and declined.</li>
         <li>[ransom,refusal,call] No deal, {WRITER}. Don't call about it again.</li>
         <!-- Asking for their envoy -->
         <li>[envoy,warm] We would be honored, {WRITER}. Our envoy will come and live among you for the season.</li>
-        <li>[envoy,warm,theirLowtech] The elders are glad. Our guest-friend will come and sit by your fire.</li>
+        <li>[envoy,warm,theirLowtech] We are glad of it, and our envoy will come with our good will.</li>
         <li>[envoy,cordial] Gladly, {WRITER}. Our envoy will come to you as soon as the road allows.</li>
         <li>[envoy,cordial,theirHightech] Request approved. Our envoy will travel to you with credentials in hand.</li>
         <li>[envoy,cool] Very well. Our envoy will come for the season.</li>
         <li>[envoy,refusal] We can't spare our envoy this season, {WRITER}.</li>
-        <li>[envoy,refusal,theirLowtech] Our guest-friend is needed by our own fire this season.</li>
+        <li>[envoy,refusal,theirLowtech] This season our envoy is needed among our own people.</li>
         <!-- While their envoy stays, the colony's lives among them, or a captive is held -->
         <li>[greetings,cordial,envoy:here] Thank you for writing, {WRITER}. We hear our envoy has settled in at your colony.</li>
         <li>[greetings,warm,envoy:ours] Your envoy is welcome among us, {WRITER}, and so is your letter.</li>
@@ -60,18 +60,18 @@
         <!-- At the gate: a ransom paid, a price set down, the colony's own handed back -->
         <li>[ransompay,us] Here is the silver your people asked for.</li>
         <li>[ransompay,us] It's all there, so count it if you like.</li>
-        <li>[ransompay,us,theirLowtech] Here is the silver, so carry it to your elders.</li>
+        <li>[ransompay,us,theirLowtech] Here is the silver, so carry it to those who sent you.</li>
         <li>[ransomthanks,them] Then it's done, and yours will be home soon.</li>
         <li>[ransomthanks,them] I'll carry it home tonight, and they'll keep their side.</li>
         <li>[ransomset,them] Here is the price we agreed.</li>
-        <li>[ransomset,them,theirLowtech] These goods are the price the elders agreed.</li>
+        <li>[ransomset,them,theirLowtech] This is the price our people agreed.</li>
         <li>[ransomset,them] Count it, then send our people out.</li>
         <li>[exchangegate,them] Here is yours, as we agreed, so send ours out.</li>
-        <li>[exchangegate,them,theirLowtech] One for one, as the elders said.</li>
+        <li>[exchangegate,them,theirLowtech] One for one, as our people agreed.</li>
         <!-- Offering an exchange face to face -->
         <li>[exchangeask,us] We hold one of yours, and you hold one of ours.</li>
         <li>[exchangeask,us] I'd like to talk about a trade of captives.</li>
-        <li>[exchangeask,us,theirLowtech] Would your elders trade a captive for a captive?</li>
+        <li>[exchangeask,us,theirLowtech] Would your people trade a captive for a captive?</li>
         <li>[exchangetalk,them] That isn't mine alone to decide.</li>
         <li>[exchangetalk,us] One for one, walked out at the gate at the same moment.</li>
         <li>[exchangetalk,them] And who goes first?</li>
@@ -81,7 +81,7 @@
         <li>[exchangeno,them] No, I can't agree to it.</li>
         <!-- Their envoy's letter home -->
         <li>[envoyletter,them] Take this home to the council, and keep it dry.</li>
-        <li>[envoyletter,them,theirLowtech] Carry these words to the elders by the fire.</li>
+        <li>[envoyletter,them,theirLowtech] Carry these words home to those who lead us.</li>
         <li>[envoyletter,them] Here is my letter, and tell them I'm well.</li>
       </plain>
     </lines>
