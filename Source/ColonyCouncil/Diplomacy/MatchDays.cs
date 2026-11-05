@@ -210,8 +210,10 @@ namespace ColonyCouncil
                 if (!WeddingPlans.Planned(a, b)) WeddingPlans.Plan(a, b, WeddingPlans.Quiet);
                 return;
             }
-            int hour = GenLocalDate.HourOfDay(map);
-            if (hour < MatchMath.CeremonyFrom || hour > MatchMath.CeremonyTo) return;
+            // With the wedding's guests here, not from the feast's hour on: the feast begins then, and either one begun would
+            // keep the other from starting until it fell through (the ceremony waits for the next morning instead).
+            bool guests = p.feast >= 0 && Feasts.Get(p.feast, out _) is GuestFeast g && g.OnMap;
+            if (!MatchMath.CeremonyHour(GenLocalDate.HourOfDay(map), guests)) return;
             try
             {
                 if (map.lordsStarter == null || !MarriageCeremonyUtility.AcceptableGameConditionsToStartCeremony(map) || !MarriageCeremonyUtility.FianceReadyToStartCeremony(a, b)
@@ -235,13 +237,25 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Where a wedding's guests stand (Feasts.HereFocus): by the couple while the game's ceremony is under way, else at the gate.</summary>
+        /// <summary>
+        /// Where a wedding's guests stand (Feasts.HereFocus): by the couple while the game's ceremony is under way, the party
+        /// after the vows too (the match is a marriage by then), else at the gate. The feast waits while it lasts: the game's
+        /// ceremony lets no other gathering begin, so a feast begun under it would wait and fall through.
+        /// </summary>
         internal static IntVec3 WeddingSpot(GuestFeast g, Map map)
         {
             if (g == null || g.purpose != FeastPurpose.Wedding || !MatchMath.ParseFeastTag(g.tag, out int id)) return IntVec3.Invalid;
             var p = Get(id, out _);
-            if (p == null || p.stage != MatchStage.Here || p.ours == null || !p.ours.Spawned || p.ours.Map != map || Ceremonies(map, p.ours) == null) return IntVec3.Invalid;
-            return p.ours.Position;
+            if (p != null)
+                return p.stage == MatchStage.Here && p.ours != null && p.ours.Spawned && p.ours.Map == map && Ceremonies(map, p.ours) != null ? p.ours.Position : IntVec3.Invalid;
+            // Married already: the couple's party after the vows goes on, the guests by them.
+            var people = g.guests.Select(x => x?.people).FirstOrDefault(x => x != null);
+            foreach (var t in With(people))
+            {
+                var ours = OursOf(t);
+                if (ours != null && ours.Spawned && ours.Map == map && Ceremonies(map, ours) != null) return ours.Position;
+            }
+            return IntVec3.Invalid;
         }
 
         // ================= Their kin come for the colony's own =================
@@ -454,10 +468,15 @@ namespace ColonyCouncil
                 bool pact = !Ages.IsEmpire(f) && Pacts.On && Pacts.Of(f, map, PactKind.Defence) == null && Pacts.Make(f, map, PactKind.Defence, false, null, 0) != null;
                 if (!atColony) NotableBook.Notify_Met(p.ours, "spouse", null);
                 var form = MatchWords.Form(map, f);
-                string text = MatchWords.T(atColony ? "CC_Match_Wed" : "CC_Match_WedAway", p.ours.Named("OURS"), p.theirs.Named("THEIRS"), MatchWords.People(f).Named("PEOPLE"),
-                    (p.townName ?? "?").Named("TOWN"), rite.Named("RITE"), form.word.Named("WORD"));
-                text += "\n\n" + MatchWords.P(Ages.IsEmpire(f) ? "CC_Match_Wed_WhatEmpire" : pact ? "CC_Match_Wed_What" : "CC_Match_Wed_WhatPactHad", MatchWords.People(f).Named("PEOPLE"),
-                    MatchMath.RegardBonus.Named("REGARD"));
+                // Their kin among the guests only when the wedding's guests are at the colony (one who walked in alone, or a
+                // wedding after the guests went home, was held without them).
+                bool kin = atColony && p.feast >= 0 && Feasts.Get(p.feast, out _) is GuestFeast guests && guests.OnMap;
+                string text = MatchWords.T(!atColony ? "CC_Match_WedAway" : kin ? "CC_Match_Wed" : "CC_Match_WedQuiet", p.ours.Named("OURS"), p.theirs.Named("THEIRS"),
+                    MatchWords.People(f).Named("PEOPLE"), (p.townName ?? "?").Named("TOWN"), rite.Named("RITE"), form.word.Named("WORD"));
+                // The pact running on is said only of one that stands (none with the setting off, or none to be made).
+                bool pactHad = !pact && Pacts.On && Pacts.Of(f, map, PactKind.Defence) != null;
+                text += "\n\n" + MatchWords.P(Ages.IsEmpire(f) ? "CC_Match_Wed_WhatEmpire" : pact ? "CC_Match_Wed_What" : pactHad ? "CC_Match_Wed_WhatPactHad" : "CC_Match_Wed_WhatNoPact",
+                    MatchWords.People(f).Named("PEOPLE"), MatchMath.RegardBonus.Named("REGARD"));
                 if (t == null) text += "\n\n" + MatchWords.P("CC_Match_Wed_NoRoom", MatchWords.People(f).Named("PEOPLE"));
                 // apart: the wedding told in a letter; at the colony it was held on the map by the game's own ceremony.
                 Tell.Letter(NewsKind.World, Importance.Important, map, MatchWords.P("CC_Match_Wed_Label", p.ours.Named("OURS"), p.theirs.Named("THEIRS")), text,

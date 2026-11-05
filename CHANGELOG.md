@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Weddings, checked over
+
+*5 November 2026, version 0.94.1*
+
+- Fixed: a wedding begun late in the day no longer leaves its guests without the evening's feast. The feast waits for the couple's party after the vows, and the ceremony is not begun once the feast is due.
+- Fixed: the wedding letter speaks of kin among the guests only when they came, and of a defense pact only when one stands.
+- Fixed: the agreement letter promises the wedding's guests only when some of their kin can come.
+- Fixed: no match letter promises a defense pact with the Empire, or with any people while pacts are off.
+- Fixed: a spouse carried off by raiders who in time goes over to them is no longer taken for one the colony sold.
+
 ## Marriage alliances
 
 *5 November 2026, version 0.94.0*
