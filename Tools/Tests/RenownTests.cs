@@ -341,6 +341,7 @@ public static class RenownTests
         C(Code("Flavor.cs").Contains("p.also = ShippedLines.ConditionOf(line);") && Code("Flavor.cs").Contains("!ShippedLines.Holds(p.also, context) ? -1"), "every flavour pick asks it, once per line");
         C(OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_Feud", "them:house:feud") == "them:house:feud,them:house" && OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_FeudCool", "x") == "x,them:house",
             "the feud's talk that says \"my family\" or \"my house\" only with the head of a house");
+        C(OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_NotYetTribal", "house:ours,!house:known,their:tribal").EndsWith(",!house:infamous"), "\"still earning\" a name, never of one known for its wrongs");
 
         // ================= The talk and the lines =================
 

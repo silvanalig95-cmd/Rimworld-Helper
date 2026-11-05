@@ -263,7 +263,10 @@ namespace ColonyCouncil
             // people hold one about one of the colonist's house (the round d text pass; Rimfolk_OutsiderTalks_RenownMore.xml
             // has the words for them).
             ["Rimfolk_OT_Renown_Feud"] = "them:house",
-            ["Rimfolk_OT_Renown_FeudCool"] = "them:house"
+            ["Rimfolk_OT_Renown_FeudCool"] = "them:house",
+            // "Then ours is still earning": a name not yet known, never one known for the wrong things, which its fellow
+            // Rimfolk_OT_Renown_NotYet already leaves out (the same pass).
+            ["Rimfolk_OT_Renown_NotYetTribal"] = "!house:infamous"
         };
 
         /// <summary>A piece's conditions with what <see cref="AlsoWhen"/> adds for it.</summary>

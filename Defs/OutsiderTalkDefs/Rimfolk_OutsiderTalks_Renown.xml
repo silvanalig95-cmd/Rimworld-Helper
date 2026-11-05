@@ -11,7 +11,8 @@
        "is"). Of the one spoken to: them:house (they head a house the colony knows, {THEIRHOUSE}), them:house:renowned,
        them:house:feud (they, or their people about one of the colonist's house, hold a grudge against the colony; since the
        round d text pass the two pieces that say "my family" and "my house" ask them:house too, OutsiderTalkMath.AlsoWhen,
-       and Rimfolk_OutsiderTalks_RenownMore.xml has words for one with no house). A line
+       and Rimfolk_OutsiderTalks_RenownMore.xml has words for one with no house; the tribal "still earning" a name asks
+       !house:infamous too, as its plain fellow does). A line
        never says what the house did: renown is read from many deeds, so nobody here names one. By their ways where it
        matters. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 

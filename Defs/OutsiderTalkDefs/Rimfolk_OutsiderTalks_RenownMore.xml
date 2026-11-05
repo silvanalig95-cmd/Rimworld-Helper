@@ -60,7 +60,7 @@
   <ColonyCouncil.OutsiderTalkDef>
     <defName>Rimfolk_OT_RenownMore_TownSpacer</defName>
     <topic>renown</topic>
-    <when>house:known,!house:renowned,their:spacer</when>
+    <when>house:known,!house:renowned,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[them] Your family's name has turned up on a local channel or two.</li>
@@ -122,7 +122,7 @@
   <ColonyCouncil.OutsiderTalkDef>
     <defName>Rimfolk_OT_RenownMore_RegionSpacer</defName>
     <topic>renown</topic>
-    <when>house:renowned,!house:wide,their:spacer</when>
+    <when>house:renowned,!house:wide,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[them] Your family's name is {RENOWN}, by our logs.</li>
@@ -184,7 +184,7 @@
   <ColonyCouncil.OutsiderTalkDef>
     <defName>Rimfolk_OT_RenownMore_WideSpacer</defName>
     <topic>renown</topic>
-    <when>house:wide,their:spacer</when>
+    <when>house:wide,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[them] Your family's name is {RENOWN}, a lot of signal for one family.</li>
@@ -238,7 +238,7 @@
     <defName>Rimfolk_OT_RenownMore_NotYetSpacer</defName>
     <topic>renown</topic>
     <uses>know</uses>
-    <when>house:ours,!house:known,!house:infamous,their:spacer</when>
+    <when>house:ours,!house:known,!house:infamous,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[them] Your family's name isn't in any record I've seen.</li>
@@ -340,7 +340,7 @@
   <ColonyCouncil.OutsiderTalkDef>
     <defName>Rimfolk_OT_RenownMore_FightersSpacer</defName>
     <topic>renown</topic>
-    <when>house:knownfor:fighters,their:spacer</when>
+    <when>house:knownfor:fighters,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[them] Your family is known for {KNOWNFOR}, according to people who'd know.</li>
@@ -687,7 +687,7 @@
     <defName>Rimfolk_OT_RenownMore_TheirHouseSpacer</defName>
     <topic>renown</topic>
     <uses>know,home</uses>
-    <when>them:house,their:spacer</when>
+    <when>them:house,their:spacer,!their:empire</when>
     <weight>0.6</weight>
     <lines>
       <li>[us] Does your family's name mean much where you're from?</li>
