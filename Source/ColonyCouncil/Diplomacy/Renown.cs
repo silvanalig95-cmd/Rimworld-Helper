@@ -131,8 +131,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Once a day: the colony's families known by name become its houses (twelve at most) and each takes in its people
         /// (the newest twelve kept, the gone among them first to go), its eldest as head, its seat where most of it lives; a
-        /// house with nobody left is kept while a tie names one of its people or for two years. Then each house's band, read
-        /// afresh: a change of one of the colony's is told and written.
+        /// house of fewer than two is kept while one of it is still with the colony or a tie names one of its people, then
+        /// two years. Then each house's band, read afresh: a change of one of the colony's is told and written.
         /// </summary>
         public static void Daily(int now)
         {

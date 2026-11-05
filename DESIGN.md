@@ -3039,15 +3039,22 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
 
 - **The houses.** The colony's are its families known by name (`FamilyNames.Families()`: two or more of one last name who
   are family): `LedgerHouse` records on the world ledger beside the towns' (`ours`, no town, `seat` the home most of it
-  lives at, `folk` the refs of its people, the living and the gone, twelve at most, `lastSeen`, `band` the band last
-  told; `World/Ledger/LedgerRenown.cs`), twelve at most, made and kept by `Renown.Daily` (the diplomacy's day), let go two
-  years after the last of them left unless a live tie names one. The region's are the towns' founding families as
-  before. Both are House cards (`Cards.House`, `RenownPanels.OurHouse`) and search results.
+  lives at, `folk` the refs of its people, the living and the gone, twelve at most, `folkNames` their names beside them
+  (kept while they live, so the gone are named after the game lets them go), `lastSeen`, `band` the band last told;
+  `World/Ledger/LedgerRenown.cs`), twelve at most, made and kept by `Renown.Daily` (the diplomacy's day), kept while one
+  of it is still with the colony and let go two years after the last of them left unless a live tie names one. One of
+  it is with it while they are among the colony's free people or away at another people's town on its errand (its
+  envoy, youth or hostage, kept in the world as lent); one who took another's name on marrying is remembered by both
+  houses and is of the one whose name they carry (`RenownMath.HouseFor`). The region's are the towns' founding families
+  as before. Both are House cards (`Cards.House`, `RenownPanels.OurHouse`) and search results.
 - **Renown is read, never stored** (`Renown.Read`, kept for the in-game hour). Of the colony's: the history's events that
   name its people (`RenownMath.SourceOf`: the champion of `dip:contest`, the one married in `dip:wedding`, a ward's
   guardian at a good year's end and the colony's youth home in `dip:ward` (the guardian is named there since this
-  release, `RenownMath.GuardianRole`), its envoy and hostage home, the speaker at `dip:parley`, the officer of `dip:task`;
-  a secret pressed and told is a wrong), what the peoples remember of them by name (`ColonistMemory.MarksOf`: a camp
+  release, `RenownMath.GuardianRole`), its envoy home and its hostage home after the term (named as having done it for
+  the colony), the speaker at `dip:parley`, the officer of a `dip:task` come to something (a milestone; the officer is
+  one with it, not its doer, for a task failed and the keeper's secret watch, `RenownMath.OfficerRole`); a secret
+  pressed and told is a wrong of the house of the one who learned it, named in the press's history), what the peoples
+  remember of them by name (`ColonistMemory.MarksOf`: a camp
   broken, fighting beside theirs, trade at a post, settlers walked, a prisoner freed, their wounded tended; blood shed at
   peace, executions, harvests, hard words, brawls), what they hold now (the colony's names for them by kind, years as
   physician or marshal, terms as speaker, the Empire's title by seniority, notables whose own regard of them is 20 or
@@ -3057,9 +3064,11 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
   history's events between its head and the colony. Each source has its points and cap; a deed fades (full for a year,
   a tenth a season to three tenths). Bands: a town at 10, the region at 30, the peoples in reach at 60, infamous at -15,
   each held until three under its start. Known for: the kind with six points or more and three tenths of the kinds'.
-- **Told.** A band moved of one of the colony's houses: `dip:renown` (a milestone, the house as its actor), a `renownup`
-  or `renowndown` bubble from one of its people on the map (to nobody), `Tell.Minor`. A house made starts at its band
-  untold; the region's houses move quietly.
+- **Told.** A band moved of one of the colony's houses: `dip:renown` (a milestone, the house as its actor), `Tell.Minor`,
+  and a bubble from one of its people on its home map, awake and free, to nobody, only where its words are true
+  (`RenownMath.Bubble`): `renownup` as its name carries further, `renowndown` as it fades from the talk; none for a name
+  gone bad or mending, nor for one still known, only less widely. A house made starts at its band untold; the region's
+  houses move quietly.
 - **What it does.** `Notables.OpinionOf` adds `Renown.RegardBonus` (up to 15, down to -10); a good word
   (`OutsiderOutcomes.GoodWord`) counts up to half again; a match is accepted (`Matches.Hear`, `RenownMath.MatchChance`)
   and offered (`Matches.Offers`) up to twice as readily; `Renown.EventFactor` in Rimfolk's own event weights and the
