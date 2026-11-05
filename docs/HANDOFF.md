@@ -6,6 +6,54 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.103.0, banishment by the council (the player's request, 5 November 2026): "everyone in my colony seems to hate him, and they
+  are regularly starting social fights ... the council should also be able to decide to banish a colonist ... if they
+  are not liked by anyone and only causing trouble" (Barr, save Atia). Built. Added at the merge: those glad to see them go lose the game's fresh "colonist
+  banished" memory unless they were sent out to die (`Banishment.TryLeave`, `RemoveMemoriesOfDefIf`), so Rimfolk's
+  shame (`Council_Feelings.xml`) and the dream of judgment (`Council_Dreams2.xml`), which read it, don't fire for them.
+  DESIGN.md, "Banishment by the council". The rules are
+  `Social/BanishMath.cs` (pure, `BanishTests`): the trouble over the last 30 days is the social fights they were in,
+  each counted once however often it is seen (Rimfolk's note as it starts, which knows who threw the first punch, and
+  both fighters' `HadAngeringFight`/`HadCatharticFight` memories, which the game keeps 20 days), 1 for a fight they
+  started, 0.6 for one they joined, 0.25 an insult they threw (the insulted person's `Insulted` memory), insults 1 at
+  most. The first question needs 2 fights and 1.6; the second, after the council stepped in (a word said, or the nights
+  apart) and at least 3 days on, 1.6 since with a fight; a step is remembered 60 days, "let it be" holds 20. The person:
+  grown, a free colonist of the colony at home, never a child, prisoner, slave, quest lodger or guest, never held under
+  a tie (`Wards.Of`, a ward's guardian, `Envoys.Holds`, `EnvoysAbroad.Holds`, `Matches.TieOf`/`PlanOf`, the ledger's
+  ward, hostage, envoy, lent and spouse reasons); 6 people or more at home (babies and lodgers aside); 60% of the others
+  (3 at least) at opinion -10 or below and at most one standing by them (opinion 20, or a partner or kin not at -10).
+  `Social/Banishment.cs` (`BanishTracker`, a GameComponent: `records` capped 24, `fights` noted by
+  `Patch_BanishFightNoted` on `StartSocialFight`, 35 days, 200 at most) plays it out in the council's people pass each
+  hour: the word through `Together.When` (the speaker, else the faith's leader with its own role name, else another of
+  the council, else the eldest, walks over; one sentence each, `Rimfolk_Pool_BanishWord`/`WordReply`; let go unsaid
+  after 4 days, said so in the news); a banishment told face to face the same way (whoever is with them after 2 days),
+  then they walk to their own bed's room and wait there an hour or so (`CC_Banish_Gathering`), then, when they can walk
+  out (as quitting waits), Rimfolk's moods (`Rimfolk_Banish_Glad` for opinion -20, `Grief` for friends, `GriefKin` for
+  a partner or kin, 30 days, trust -4 for both, `HadToTell`), the letter with their last words, the chronicle,
+  `PawnBanishUtility.Banish(p, true)` and a walk to the nearest edge (`exitMapOnArrival`). Questions:
+  `Rimfolk_Dilemma_Trouble` (a word, the night hours: `AnswerShiftMath.Apart`, 22 to 5 worked and 10 to 17 slept for 5
+  days, or let it be) and `Rimfolk_Dilemma_Banish` (the age's banishment: cast out from the fire, sent into exile,
+  expelled from the colony, struck off the colony's roster; a last word; the night hours; let it be, the default), both
+  timely; the second's letter carries up to three of the council by their own opinion, a partner's, kin's or friend's
+  objection by name, and their own say (`BanishContext.voices`). The answer's hints: who would grieve and who'd be glad,
+  the game's own `ColonistBanished` for everyone or `ColonistBanishedToDie` when `WouldBeLeftToDie` (none when they're
+  marked guilty), the skills the colony loses (its best hand from level 6, a good hand from 10), a council seat given
+  up, and the risks. After: one with a grudge (30%) may ride with a hostile humanlike raid at a home, 12% a raid, 15
+  days on at least, once (`Patch_BanishRaidJoin`, the raid letter names them); the existing `Council_Evt_Prodigal`
+  ([banished] text) brings one sent away to the gate asking to come home; the card says "once one of the colony, cast
+  out from the fire by the council", the world panel likewise. Setting `councilBanishment` (Council page). The game's
+  own moods on a banishment: everyone of the colony gets the same small "colonist banished" memory whatever they
+  thought of them (none for one marked guilty); only a banishment to die gives kin, friends and rivals the game's
+  death moods. Nothing of the game's is changed: Rimfolk's `Glad` sits beside it for those who couldn't stand them.
+  Barr in the save: two fights in the last three days (he started the one with MJ, 2.8 days ago; Macy started the one
+  with him, 1.9 days ago, after his insult), nothing older in anyone's memory or Rimfolk's notes; four rivalries in the
+  web (Toni, Penguin, MJ, Macy). By the memories alone MJ, Penguin, Toni, Macy and Alo think less of him and Harper and
+  Stace a little better; his looks (Alpha Genes' beauty trait at -2, through the game's own "ugly" opinion when it
+  lowers his beauty) and, if the colony's faith frowns on other faiths, his other ideoligion (Ideo_2 among Ideo_28) add
+  the game's situational opinions, which the save doesn't hold. If six of the ten others are at -10 or below, the
+  council asks the first question now: a word, never banishment. To check in the game: the word walked over and said,
+  the nights apart on the schedule tab and put back after five days, the second question's voices, the walk to the
+  room and to the edge, the game's own mood and the letter, the card and the world panel afterwards.
 - 0.102.0, council tasks and the keeper of secrets removed (the player's decision, 5 November 2026): "drop council tasks for
   sure" and "remove keeper of secrets", with the rule set the same day (CLAUDE.md: the colony is the family, never a
   dynasty). Built in 0.96.0 (2c.1), reviewed in 0.97.1, worded

@@ -452,7 +452,8 @@ namespace ColonyCouncil
                     v.town = t.ID;
                     v.townName = t.Name;
                 }
-                v.role = reg != null ? "regular" : dep != null ? "departed" : pairs.Count > 0 ? "visitor" : null;
+                // One the council sent away (Social/Banishment.cs) is "banished"; one who walked out or was sent away otherwise, "departed".
+                v.role = reg != null ? "regular" : dep != null ? (BanishTracker.Banished(dep.pawn) != null ? "banished" : "departed") : pairs.Count > 0 ? "visitor" : null;
             }
             v.trade = reg?.kind;
             v.royal = pawn != null && !pawn.Discarded ? WorldMechanics.Title(pawn) : null;

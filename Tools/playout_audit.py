@@ -82,6 +82,10 @@ PLAY = {
     "DilemmaEffect_Emancipate": "slave freed",
     "DilemmaEffect_SelfTend": "self-tend",
     "DilemmaEffect_MedCare": "best medicine",
+    # Banishment by the council (Social/Banishment.cs): the council's word said face to face, and someone sent away told
+    # face to face, gathering their things in their room and walking out by the edge.
+    "DilemmaEffect_TroubleWord": "a word face to face",
+    "DilemmaEffect_Banish": "sent away by the edge",
     # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
     # for a word or a lesson (Visitors/VisitorsMore2.cs).
     "VisitEffect_WorkHere": "visitors at it",

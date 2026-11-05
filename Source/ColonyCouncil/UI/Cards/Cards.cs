@@ -306,6 +306,7 @@ namespace ColonyCouncil
             if (!title.NullOrEmpty() && !townName.NullOrEmpty()) m.subtitle = T("CC_Card_TitleOf", title.Named("TITLE"), townName.Named("TOWN"));
             else if (!title.NullOrEmpty() && people != null) m.subtitle = T("CC_Card_TitleOfPeople", title.Named("TITLE"), people.Named("PEOPLE"));
             else if (v?.role == "departed") m.subtitle = T("CC_Card_Departed");
+            else if (v?.role == "banished") m.subtitle = T("CC_Card_Banished", (BanishTracker.Banished(m.pawn)?.word ?? BanishTracker.AgeWord()).Named("WORD"));
             else if (people != null) m.subtitle = T("CC_Card_OneOf", people.Named("PEOPLE"));
             else m.subtitle = T("CC_Card_Someone");
             // The town and the people as chips where the line above doesn't name them.

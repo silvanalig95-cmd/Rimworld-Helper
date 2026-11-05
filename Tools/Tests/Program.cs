@@ -418,6 +418,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
+        Console.WriteLine($"Checked {BanishTests.Run(root, Check)} things about banishment by the council (the trouble, a word first, banishment only if it goes on, who dislikes and who stands by, what the colony loses, every age, the player's own case).");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
         Console.WriteLine($"Checked {FaithTests.Run(root, Check)} things about faith in the colony (devout, wavering, swaying, a split colony).");
         Console.WriteLine($"Checked {FaithPeopleTests.Run(root, Check)} things about faith among the people (talks that sway, crises, views beside certainty).");

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Banishment by the council (the player's request, 5 November 2026): Social/Banishment.cs, BanishDilemmas.cs. -->
+
+  <!-- The setting (Settings, Council, Council life). -->
+  <CC_Settings_Banishment>Banishment by the council</CC_Settings_Banishment>
+  <CC_Settings_Banishment_Tip>Someone who keeps getting into fights over a month, whom most of the colony can't stand and almost nobody stands by, comes before the council. The first time, the council has a word with them face to face, keeps them to the night hours for a while, or lets it be. Only if the trouble goes on after that does a later question offer to send them away: told face to face, they gather their things and walk out by the edge of the map, through the game's own banishment. Never a child, a prisoner, a slave, a guest, or anyone held under a tie with another people, and never in a colony too small to spare anyone.</CC_Settings_Banishment_Tip>
+  <CC_SetNote_Banishment>A word first for someone who keeps fighting and whom nobody likes; banishment only if it goes on.</CC_SetNote_Banishment>
+
+  <!-- The word for it, by the colony's age (its means). -->
+  <CC_Banish_Word_tribal>cast out from the fire</CC_Banish_Word_tribal>
+  <CC_Banish_Word_medieval>sent into exile</CC_Banish_Word_medieval>
+  <CC_Banish_Word_industrial>expelled from the colony</CC_Banish_Word_industrial>
+  <CC_Banish_Word_spacer>struck off the colony's roster</CC_Banish_Word_spacer>
+  <CC_Banish_Verb_tribal>Cast {PAWN_nameDef} out from the fire</CC_Banish_Verb_tribal>
+  <CC_Banish_Verb_medieval>Send {PAWN_nameDef} into exile</CC_Banish_Verb_medieval>
+  <CC_Banish_Verb_industrial>Expel {PAWN_nameDef} from the colony</CC_Banish_Verb_industrial>
+  <CC_Banish_Verb_spacer>Strike {PAWN_nameDef} off the colony's roster</CC_Banish_Verb_spacer>
+  <CC_Banish_Eldest>eldest</CC_Banish_Eldest>
+  <CC_Banish_TitleVoice>voice on the council</CC_Banish_TitleVoice>
+
+  <!-- How many fights, in words. -->
+  <CC_Banish_Fights_1>one fight</CC_Banish_Fights_1>
+  <CC_Banish_Fights_2>two fights</CC_Banish_Fights_2>
+  <CC_Banish_Fights_3>three fights</CC_Banish_Fights_3>
+  <CC_Banish_Fights_4>four fights</CC_Banish_Fights_4>
+  <CC_Banish_Fights_5>five fights</CC_Banish_Fights_5>
+  <CC_Banish_Fights_6>six fights</CC_Banish_Fights_6>
+  <CC_Banish_Fights_Many>more fights than anyone has kept count of</CC_Banish_Fights_Many>
+  <CC_Banish_WithOthers>others of the colony</CC_Banish_WithOthers>
+
+  <!-- The second question's voices, before each quoted line. -->
+  <CC_Banish_Voice_for>{PAWN_nameDef} would see {OTHER_nameDef} go:</CC_Banish_Voice_for>
+  <CC_Banish_Voice_for_2>{PAWN_nameDef} has had enough of {OTHER_nameDef}:</CC_Banish_Voice_for_2>
+  <CC_Banish_Voice_against>{PAWN_nameDef} speaks for {OTHER_nameDef}:</CC_Banish_Voice_against>
+  <CC_Banish_Voice_against_2>{PAWN_nameDef} won't vote to send {OTHER_nameDef} away:</CC_Banish_Voice_against_2>
+  <CC_Banish_Voice_unsure>{PAWN_nameDef} hasn't made up {PAWN_possessive} mind:</CC_Banish_Voice_unsure>
+  <CC_Banish_Voice_unsure_2>{PAWN_nameDef} isn't sure what to think:</CC_Banish_Voice_unsure_2>
+  <CC_Banish_Objects>{PAWN_nameDef}, {OTHER_nameDef}'s {RELATION}, won't hear of it:</CC_Banish_Objects>
+  <CC_Banish_Objects_2>{PAWN_nameDef}, {OTHER_nameDef}'s {RELATION}, objects:</CC_Banish_Objects_2>
+  <CC_Banish_OwnSay>{OTHER_nameDef} has {OTHER_possessive} say:</CC_Banish_OwnSay>
+  <CC_Banish_OwnSay_2>And {OTHER_nameDef}, before the council:</CC_Banish_OwnSay_2>
+  <CC_Banish_Kin>family</CC_Banish_Kin>
+  <CC_Banish_Friend>friend</CC_Banish_Friend>
+
+  <!-- Why the answer can't be given. -->
+  <CC_Banish_WhyNot_Held>{0} can't be sent away now</CC_Banish_WhyNot_Held>
+  <CC_Banish_WhyNot_Small>The colony is too small to spare anyone</CC_Banish_WhyNot_Small>
+  <CC_Banish_WhyNot_Hours>{0}'s hours can't be changed now</CC_Banish_WhyNot_Hours>
+
+  <!-- A word face to face. -->
+  <CC_Banish_WordSaid>{PAWN_nameDef} took {OTHER_nameDef} aside and had a word about the fights.</CC_Banish_WordSaid>
+  <CC_Banish_WordSaid_2>{PAWN_nameDef} had a quiet word with {OTHER_nameDef}: the council won't have any more fights.</CC_Banish_WordSaid_2>
+  <CC_Banish_LastWordSaid>{PAWN_nameDef} gave {OTHER_nameDef} the council's last word about the fights, face to face.</CC_Banish_LastWordSaid>
+  <CC_Banish_LastWordSaid_2>{PAWN_nameDef} told {OTHER_nameDef} plainly that this is the council's last word about the fights.</CC_Banish_LastWordSaid_2>
+  <CC_Banish_WordMissed>{PAWN_nameDef} never found the moment for a word with {OTHER_nameDef}, and the council's word was never said.</CC_Banish_WordMissed>
+  <CC_Banish_WordMissed_2>The council's word for {OTHER_nameDef} was never said: {PAWN_nameDef} couldn't find {OTHER_objective} free.</CC_Banish_WordMissed_2>
+
+  <!-- Sent away, on the map. -->
+  <CC_Banish_Told>{PAWN_nameDef} told {OTHER_nameDef} face to face that {OTHER_pronoun} is to be {WORD}.</CC_Banish_Told>
+  <CC_Banish_Told_2>{PAWN_nameDef} has told {OTHER_nameDef} the council's decision: {OTHER_pronoun} is to be {WORD}.</CC_Banish_Told_2>
+  <CC_Banish_Gathering>{OTHER_nameDef} is going to {OTHER_possessive} room to gather {OTHER_possessive} things.</CC_Banish_Gathering>
+  <CC_Banish_Gathering_2>{OTHER_nameDef} has gone off to {OTHER_possessive} room for {OTHER_possessive} things.</CC_Banish_Gathering_2>
+  <CC_Banish_GatheringHere>{OTHER_nameDef} is gathering what {OTHER_pronoun} has.</CC_Banish_GatheringHere>
+  <CC_Banish_GatheringHere_2>{OTHER_nameDef} has no room of {OTHER_possessive} own, and gathers what {OTHER_pronoun} has where {OTHER_pronoun} stands.</CC_Banish_GatheringHere_2>
+  <CC_Banish_GoneTitle>{PAWN_nameDef} leaves the colony</CC_Banish_GoneTitle>
+  <CC_Banish_GoneTitle_2>{PAWN_nameDef} is sent away</CC_Banish_GoneTitle_2>
+  <CC_Banish_GoneText>{PAWN_nameDef} has been {WORD} by the council's word, and is walking to the edge of the map with only what {PAWN_pronoun} wears and carries.</CC_Banish_GoneText>
+  <CC_Banish_GoneText_2>By the council's word, {PAWN_nameDef} has been {WORD}, and sets off for the edge of the map with what {PAWN_pronoun} wears and carries, and nothing more.</CC_Banish_GoneText_2>
+  <CC_Banish_GoneToDie>As {PAWN_pronoun} is now, hurt, ill or with the weather against {PAWN_objective}, {PAWN_pronoun} may not live long out there, and the colony knows it.</CC_Banish_GoneToDie>
+  <CC_Banish_GoneToDie_2>The colony knows {PAWN_nameDef} may not survive out there as {PAWN_pronoun} is now.</CC_Banish_GoneToDie_2>
+  <CC_Banish_GladOf>{NAMES} won't miss {PAWN_objective}.</CC_Banish_GladOf>
+  <CC_Banish_GladOf_2>Among those glad of it: {NAMES}.</CC_Banish_GladOf_2>
+  <CC_Banish_MissedBy>{NAMES} will miss {PAWN_objective}.</CC_Banish_MissedBy>
+  <CC_Banish_MissedBy_2>It falls hardest on {NAMES}.</CC_Banish_MissedBy_2>
+  <CC_Banish_Rides>{PAWN_nameDef}, {WORD} by the council {AGO} ago, is with them.</CC_Banish_Rides>
+  <CC_Banish_Rides_2>Among them is {PAWN_nameDef}, whom the council sent away {AGO} ago.</CC_Banish_Rides_2>
+  <CC_Cause_Banished>{0} sent away by the council</CC_Cause_Banished>
+  <CC_Log_Banished>{0} sent away by the council</CC_Log_Banished>
+
+  <!-- The chronicle. -->
+  <CC_Chronicle_BanishWord>{0} had the council's word about the fights, from {1}.</CC_Chronicle_BanishWord>
+  <CC_Chronicle_Banished>{0} was {1} by the council's word.</CC_Chronicle_Banished>
+  <CC_Chronicle_BanishRode>{0}, sent away by the council, came back riding with {1}.</CC_Chronicle_BanishRode>
+
+  <!-- Their card and the world's memory of them. -->
+  <CC_Card_Banished>once one of the colony, {WORD} by the council</CC_Card_Banished>
+  <CC_World_Departed_Council>{0} was {2} by the council {1} ago, and might come back one day.</CC_World_Departed_Council>
+
+  <!-- What each answer does (hints in words, or the exact lines). -->
+  <CC_Impact_BanishWord>{0} has a word with {1} face to face, a warning the council remembers</CC_Impact_BanishWord>
+  <CC_Impact_BanishWordBrief>{0} has a word with {1}</CC_Impact_BanishWordBrief>
+  <CC_Impact_BanishWordRisk>If the trouble goes on, the council will be asked about {0} again, and sending {0} away will be one of the answers</CC_Impact_BanishWordRisk>
+  <CC_Impact_BanishWordRiskBrief>if it goes on, {0} may be sent away</CC_Impact_BanishWordRiskBrief>
+  <CC_Impact_BanishApartStep>Remembered as the council stepping in: if the trouble goes on, sending {0} away will be one of the answers</CC_Impact_BanishApartStep>
+  <CC_Impact_BanishApartStepBrief>if it goes on, {0} may be sent away</CC_Impact_BanishApartStepBrief>
+  <CC_Impact_BanishLetBe>Nobody asks the council about {0} again for a while</CC_Impact_BanishLetBe>
+  <CC_Impact_BanishLetBeBrief>{0} is left be for a while</CC_Impact_BanishLetBeBrief>
+  <CC_Impact_Banish>{1} tells {0} face to face; then {0} gathers their things and walks out by the edge of the map, {2}</CC_Impact_Banish>
+  <CC_Impact_BanishBrief>{0} is sent away</CC_Impact_BanishBrief>
+  <CC_Impact_BanishToDie>As {0} is now (hurt, ill, or into weather {0} can't live through), the game counts it as sending {0} out to die: everyone takes it harder, and those close to {0} grieve as for a death</CC_Impact_BanishToDie>
+  <CC_Impact_BanishToDieBrief>{0} may not survive it</CC_Impact_BanishToDieBrief>
+  <CC_Impact_BanishGuilty>{0} is marked guilty, so the game gives nobody a bad mood for sending {0} away</CC_Impact_BanishGuilty>
+  <CC_Impact_BanishGuiltyBrief>{0} is marked guilty</CC_Impact_BanishGuiltyBrief>
+  <CC_Impact_BanishSeat>{0} gives up the seat of {1}</CC_Impact_BanishSeat>
+  <CC_Impact_BanishSeatBrief>{0}'s seat of {1} empties</CC_Impact_BanishSeatBrief>
+  <CC_Impact_BanishBest>The colony loses its best hand at {0}</CC_Impact_BanishBest>
+  <CC_Impact_BanishBestBrief>no one as good at {0}</CC_Impact_BanishBestBrief>
+  <CC_Impact_BanishGood>The colony loses a good hand at {0}</CC_Impact_BanishGood>
+  <CC_Impact_BanishGoodBrief>a good hand at {0} lost</CC_Impact_BanishGoodBrief>
+  <CC_Impact_BanishBack>{0} may come back one day: at the gate asking to be let in, or, rarely, among raiders with a grudge</CC_Impact_BanishBack>
+  <CC_Impact_BanishBackBrief>{0} may come back one day</CC_Impact_BanishBackBrief>
+
+  <!-- The nights apart (the timetable plan "apart": Dilemmas/AnswerShiftMath.cs). -->
+  <CC_DlmV_HoursLabel_apart>the nights apart</CC_DlmV_HoursLabel_apart>
+  <CC_Impact_Hours_apart>{0}: the nights worked and the days slept through (10 to 17) for five days, awake while the others sleep</CC_Impact_Hours_apart>
+  <CC_Impact_HoursBrief_apart>{0} kept to the night hours</CC_Impact_HoursBrief_apart>
+  <CC_DlmV_Hours_apart>{0} will work the nights and sleep through the days for a while, apart from the others.</CC_DlmV_Hours_apart>
+
+</LanguageData>

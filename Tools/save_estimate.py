@@ -696,6 +696,8 @@ MODEL = {
     "Dilemmas/Dilemmas.cs:traditionBreaks": ("defs", ("DilemmaDef", 0.1), D, "per tradition"),
     "Dilemmas/Dilemmas.cs:traditions": ("defs", ("DilemmaDef", 0.1), 40, "per tradition"),
     "Dilemmas/Dilemmas.cs:lastTick": ("defs", ("DilemmaDef", 1), D, "one per dilemma def"),
+    "Social/Banishment.cs:records": ("cap", (const("Social/Banishment.cs", "MaxRecords", 24), 0.05), R, "the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords"),
+    "Social/Banishment.cs:fights": ("window", (35, 0.3), 70, "social fights noted as they start (ids and the tick), kept 35 days, at most BanishTracker.MaxFights"),
     "Dilemmas/AnswerShifts.cs:shifts": ("cap", (const("Dilemmas/AnswerShifts.cs", "MaxShifts", 40), 0.3), 160, "a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once"),
     "Decrees/Decrees.cs:useDefs": ("window", (15, 0.3), 40, "uses within the fatigue window"),
     "Decrees/Decrees.cs:useTicks": ("window", (15, 0.3), V, "with the above"),

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Banishment by the council (Social/Banishment.cs, BanishDilemmas.cs). {PAWN_...} the speaker, {OTHER_...} the one they
+    speak to or about, {WORD} the colony's word for banishment by its age ("cast out from the fire", "sent into exile",
+    "expelled from the colony", "struck off the colony's roster"). Said over a head: one sentence each.
+    Tags: last (the council's last word), warned or apart (what the council did before), and how the one in trouble takes
+    it: defiant (they threw the first punch more often than not), bitter (they're low), sorry.
+  -->
+
+  <!-- The council's word, said face to face to the one in trouble. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishWord</defName>
+    <lines>
+      <plain>
+        <li>No more fights, {OTHER_nameDef}, or the council will decide what comes next.</li>
+        <li>Everyone has had enough of the fighting, {OTHER_nameDef}, and so has the council.</li>
+        <li>The council asked me to tell you plainly that the fights stop now.</li>
+        <li>I'm not here to shout, only to say the council has seen enough fists for one month.</li>
+        <li>Keep your hands to yourself, {OTHER_nameDef}, because the council is watching.</li>
+        <li>[last] This is the last word the council will send you about the fights.</li>
+        <li>[last] One more fight, {OTHER_nameDef}, and it won't be words next time.</li>
+      </plain>
+      <warm>
+        <li>I'd rather this came from a friend than from a vote, so please, no more fights.</li>
+      </warm>
+      <blunt>
+        <li>Start one more fight and the council stops talking to you and starts talking about you.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's get through a whole week with nobody's nose bleeding, shall we?</li>
+      </cheerful>
+      <gloomy>
+        <li>I hate this part, but the council says the fighting has to stop.</li>
+      </gloomy>
+      <cold>
+        <li>The council has counted every fight, and it is out of patience.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one in trouble answers the council's word. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishWordReply</defName>
+    <lines>
+      <plain>
+        <li>I heard you, all right.</li>
+        <li>[defiant] They started it, whatever the council thinks.</li>
+        <li>[defiant] Then tell them to keep their mouths shut around me.</li>
+        <li>[sorry] I know, and I'm trying, I really am.</li>
+        <li>[sorry] It won't happen again, you have my word.</li>
+        <li>[bitter] Of course it's me you came to see, it's always me.</li>
+        <li>[bitter] Nobody here wants me around anyway, so what does it matter.</li>
+      </plain>
+      <blunt>
+        <li>[defiant] Tell the council to mind its own business.</li>
+      </blunt>
+      <gloomy>
+        <li>[bitter] I knew someone would come about it sooner or later.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Told face to face that they are sent away. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishTell</defName>
+    <lines>
+      <plain>
+        <li>The council has decided, {OTHER_nameDef}: you are to be {WORD}.</li>
+        <li>Gather your things, {OTHER_nameDef}, because the council says you are to be {WORD}.</li>
+        <li>The council voted, {OTHER_nameDef}, and you are to be {WORD} today.</li>
+        <li>You'll take what you wear and carry and go, {OTHER_nameDef}: you're {WORD}.</li>
+        <li>[warned] You were warned, {OTHER_nameDef}, and now you're to be {WORD}.</li>
+        <li>[apart] Even the nights apart didn't help, {OTHER_nameDef}, so you're to be {WORD}.</li>
+      </plain>
+      <warm>
+        <li>I wish it were otherwise, {OTHER_nameDef}, but you are to be {WORD}.</li>
+      </warm>
+      <blunt>
+        <li>That's it, {OTHER_nameDef}: you're {WORD}, and you go today.</li>
+      </blunt>
+      <gloomy>
+        <li>I'm sorry, {OTHER_nameDef}, but the council has you {WORD}.</li>
+      </gloomy>
+      <cold>
+        <li>By the council's decision you are {WORD}, effective today.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one sent away answers. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishReply</defName>
+    <lines>
+      <plain>
+        <li>Then I'll get my things.</li>
+        <li>[defiant] Fine, I'll go, and you can all enjoy the quiet.</li>
+        <li>[defiant] You'll miss me the next time the raiders come.</li>
+        <li>[sorry] I understand, and I'm sorry it came to this.</li>
+        <li>[sorry] Tell the others I'm sorry, if any of them want to hear it.</li>
+        <li>[bitter] So that's what I was worth to all of you.</li>
+        <li>[bitter] I always knew it would end with me walking out alone.</li>
+      </plain>
+      <blunt>
+        <li>[defiant] Took you long enough to say it.</li>
+      </blunt>
+      <cold>
+        <li>Understood, and I won't argue.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their last words as they set off for the edge (also in the letter). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishLast</defName>
+    <lines>
+      <plain>
+        <li>So this is how it ends here.</li>
+        <li>I'll find somewhere that wants me.</li>
+        <li>[defiant] Don't come looking for me, and I won't come looking for you.</li>
+        <li>[defiant] Good luck finding someone else to blame.</li>
+        <li>[sorry] Look after each other better than I managed to.</li>
+        <li>[sorry] I'd say goodbye properly, but I don't think anyone wants that.</li>
+        <li>[bitter] Not one of you is going to watch me go, are you.</li>
+        <li>[bitter] The road can't be worse company than this place was.</li>
+      </plain>
+      <cheerful>
+        <li>Well, the world's a big place, and it's mine now.</li>
+      </cheerful>
+      <cold>
+        <li>Goodbye, then, and I mean it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The second question's letter: a council member's view (PAWN) of the one in trouble (OTHER), by stance. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishVoice</defName>
+    <lines>
+      <plain>
+        <li>[for] We've talked and talked, and {OTHER_nameDef} keeps throwing punches.</li>
+        <li>[for] The colony is tired of walking round {OTHER_nameDef} on tiptoe.</li>
+        <li>[for] One more black eye at supper and someone will get hurt for real.</li>
+        <li>[against] We don't throw people away here, whatever they've done.</li>
+        <li>[against] {OTHER_nameDef} is one of us, and that should still count for something.</li>
+        <li>[against] Give {OTHER_nameDef} work away from the others, not the road.</li>
+        <li>[unsure] I don't know, and I don't think anyone should be sure.</li>
+        <li>[unsure] Something has to change, but I can't say it has to be this.</li>
+        <li>[unsure] Ask me after the next fight, and I'll probably know.</li>
+      </plain>
+      <blunt>
+        <li>[for] Send {OTHER_nameDef} off and let us have some peace.</li>
+      </blunt>
+      <warm>
+        <li>[against] I can't vote to send anyone out there alone.</li>
+      </warm>
+      <cold>
+        <li>[for] The colony works better without {OTHER_nameDef} in it, and the council knows it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A partner, kin or friend who stands by them (PAWN) speaks for them (OTHER). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishObject</defName>
+    <lines>
+      <plain>
+        <li>You can't do this, not to {OTHER_nameDef}.</li>
+        <li>Send {OTHER_nameDef} away and I won't forget who voted for it.</li>
+        <li>[kin] If {OTHER_nameDef} goes, you're sending away part of me too.</li>
+        <li>[kin] You don't know {OTHER_nameDef} the way I do, and you never tried.</li>
+        <li>[friend] Every one of those fights had two people in it, not one.</li>
+        <li>[friend] {OTHER_nameDef} has been a friend to me when it counted.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one in trouble has their say before the council (PAWN), about the one who speaks for it (OTHER). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BanishPlea</defName>
+    <lines>
+      <plain>
+        <li>Say what you like about me, I've done my share of the work.</li>
+        <li>[defiant] Half of those fights were started by people who couldn't keep quiet.</li>
+        <li>[defiant] Send me away if you like, but don't pretend I was the only one swinging.</li>
+        <li>[sorry] I know what I've been, and I'm asking for one more chance.</li>
+        <li>[sorry] I'll keep my head down and my hands to myself, I swear it.</li>
+        <li>[bitter] Nobody here has had a kind word for me in a month.</li>
+        <li>[bitter] You've all made up your minds about me, so why ask.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their own journal's last entry as they leave ({WORD}). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Banished</defName>
+    <lines>
+      <plain>
+        <li>The council has decided: I'm to be {WORD}. I'm writing this with my pack on my back.</li>
+        <li>Last entry here. I'm {WORD}, and this book is staying behind with everything else.</li>
+        <li>They didn't look at me when it was said. Fine. I'll look at the road instead.</li>
+        <li>I don't know where I'll sleep tonight. Somewhere without them, at least.</li>
+      </plain>
+      <warm><li>Whatever they think of me, I hope they're happy here. I mean that, mostly.</li></warm>
+      <blunt><li>They call it being {WORD}. Fine words for kicking someone out.</li></blunt>
+      <cheerful><li>New start, whether I wanted one or not. Here's hoping the next place has better company.</li></cheerful>
+      <gloomy><li>I always knew I'd end up on my own. Now it's official.</li></gloomy>
+      <cold><li>The council's decision is made. I've packed what's mine. There is nothing left to write here.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A partner or kin of one sent away ({OTHER}, {WORD}). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_BanishedKin</defName>
+    <lines>
+      <plain>
+        <li>They sent {OTHER_nameDef} away today, and nobody asked me what I thought.</li>
+        <li>{OTHER_nameDef} is gone, {WORD} by the council's word. The room feels emptier.</li>
+        <li>I keep setting a place for {OTHER_nameDef} without thinking.</li>
+        <li>The council did what it thought was right. I can't forgive it yet.</li>
+      </plain>
+      <warm><li>Wherever {OTHER_nameDef} is tonight, I hope there's a fire and someone kind beside it.</li></warm>
+      <blunt><li>They threw {OTHER_nameDef} out. I'll remember every name that voted for it.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} will land on their feet. They always do. I just wish it were here.</li></cheerful>
+      <gloomy><li>Gone. Just like that. I don't think I'll ever see {OTHER_nameDef} again.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has been sent away. I have opinions about that I won't write down.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

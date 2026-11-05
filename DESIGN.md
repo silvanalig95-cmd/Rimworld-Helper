@@ -244,6 +244,38 @@ Design rules:
 - Social events are small and frequent (about one per five colonists per day), mostly worth a few points of
   opinion; the dramatic ones are rare and go in the chronicle.
 
+### Banishment by the council (the player's request, 5 November 2026)
+
+The player's words: "everyone in my colony seems to hate him, and they are regularly starting social fights. i don't
+want this necessarily to happen immediately, but i think the council should also be able to decide to banish a
+colonist, no? if they are not liked by anyone and only causing trouble." Never a first answer: the council has a word
+first, and only if the trouble goes on does a later question offer to send them away.
+
+- **Who.** A grown colonist of the colony (never a child, a prisoner, a slave, a quest lodger, a guest, or anyone held
+  under a tie with another people: a ward, a hostage, an envoy, a spouse of a marriage alliance), in a colony big enough
+  to spare someone, who over the last month kept causing trouble and whom most of the colony dislikes with almost
+  nobody standing by them. The trouble is read from the game's own records and Rimfolk's, never made up: social fights
+  they were in (from the game's fight memories, and from Rimfolk's own note of each fight as it starts, which knows who
+  threw the first punch) and the insults they threw (the insulted person's memory of it). The thresholds are named
+  constants in `Social/BanishMath.cs` (pure, tested).
+- **First a word.** The first question about them (`Rimfolk_Dilemma_Trouble`) offers a word face to face from the
+  council's speaker (or the faith's leader), remembered as a warning; their hours turned to the night for a few days
+  (the game's own timetable) to keep them apart from the ones they fight with; or letting it be (no question about them
+  for a while after).
+- **Then, if it goes on.** After a word or the nights apart, more trouble brings a second question
+  (`Rimfolk_Dilemma_Banish`) with banishment beside the milder answers. The letter carries the council's voices, each by
+  their own opinion of the person, the objection of a spouse, kin or friend by name, and the person's own say. The
+  answer's hints name who would grieve, who would be glad, the game's heavier mood when they'd be sent out to die (hurt,
+  ill, no safe weather: the game's own check), the skills the colony loses, and the risks of their coming back.
+- **On the map.** The speaker (or whoever the answer named) walks over and tells them face to face, one sentence each;
+  they go to their room to gather their things and walk out by the map's edge, through the game's own banishment and
+  its own moods. The chronicle, the history, their card and the world's memory of them keep it by name.
+- **Every age.** The words follow the colony's tech level (cast out from the fire, sent into exile, expelled, struck off
+  the colony's roster) and the faith's own name for its leader.
+- **The bad side, at the game's rate.** Those who loved them stay hurt a while; one sent away may come back one day:
+  rarely among raiders with a grudge, or at the gate asking to be let in (the existing event, a later question).
+- **Off switch:** Settings, Council, "Banishment by the council".
+
 ## Layer 5: Rimfolk events
 
 Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas

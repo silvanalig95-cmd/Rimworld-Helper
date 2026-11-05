@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Banishment by the council (the player's request, 5 November 2026; Social/Banishment.cs, BanishDilemmas.cs). A is the
+    one who keeps causing trouble, B whoever speaks for the council (the speaker, the faith's leader, another of the
+    council, the eldest). {FIGHTS} how many fights (since the council last stepped in, for the second question), {WITH}
+    with whom, {TITLE} what B is, {WORD} the colony's word for banishment by its age, {BANISH} the answer that does it,
+    {VOICES} the council's voices, an objection and A's own say. Tags: started (A threw a first punch) or joined, insults,
+    warned or apart (what the council did before), speaker, leader, council or elder (who B is).
+    Banishment is never an answer of the first question.
+  -->
+
+  <!-- ===================== The first: a word ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_Trouble</defName>
+    <label>trouble at every turn</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Trouble</workerClass>
+    <weight>3</weight>
+    <cooldownDays>8</cooldownDays>
+    <timely>true</timely>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>[started] {A_nameDef} has been in {FIGHTS} this past month, with {WITH}, and threw the first punch at least once. Most of the colony gives {A_objective} a wide berth now, and hardly anyone takes {A_possessive} side.\n\n{B_nameDef}, the colony's {TITLE}, has brought it to the council. Nobody is asking for anything drastic yet, only what the council means to do about it.</li>
+      <li>[joined] {A_nameDef} has been in {FIGHTS} this past month, with {WITH}. Whoever swung first, most of the colony has stopped taking {A_possessive} side, and hardly anyone sits near {A_objective} at supper.\n\n{B_nameDef}, the colony's {TITLE}, wants the council to decide what to do before the next one.</li>
+      <li>[insults] Hard words, then fists: {A_nameDef} has been in {FIGHTS} this past month, with {WITH}, and has been throwing insults around besides. Most of the colony can't stand {A_objective} now, and almost nobody stands up for {A_objective}.\n\n{B_nameDef}, the colony's {TITLE}, has asked the council what it means to do.</li>
+      <li>{A_nameDef} has been in {FIGHTS} this past month, with {WITH}. The rest of the colony has had enough, and almost nobody stands by {A_objective}.\n\n{B_nameDef}, the colony's {TITLE}, has brought it to the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} has a word with {A_nameDef}, face to face</label>
+        <outcome>The council asked {B_nameDef} to have a word with {A_nameDef} about the fights, face to face, and it will remember that it did.</outcome>
+        <ways><mercy>2</mercy><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleWord" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>RivalsOfA</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep {A_nameDef} to the night hours for a while</label>
+        <outcome>{A_nameDef} works the nights for the next few days and sleeps while the others are up, on the council's word.</outcome>
+        <ways><mercy>-1</mercy><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>A</target><plan>apart</plan></li>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleStep"><kind>apart</kind></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>RivalsOfA</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it be</label>
+        <outcome>The council let it be. Nothing changes for {A_nameDef}, for now.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleStep"><kind>letbe</kind></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>RivalsOfA</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The second: if it goes on ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_Banish</defName>
+    <label>the last straw</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Banish</workerClass>
+    <weight>3</weight>
+    <cooldownDays>8</cooldownDays>
+    <timely>true</timely>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>[warned] The council's word didn't settle it. Since then {A_nameDef} has been in {FIGHTS} more, with {WITH}, and some at the table now say the colony would be better off without {A_objective}.\n\n{VOICES}</li>
+      <li>[warned,started] After the council's word, {A_nameDef} has thrown punches again: {FIGHTS} since, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put the question to the council plainly: how much longer?\n\n{VOICES}</li>
+      <li>[apart] The nights apart didn't settle it. Since then {A_nameDef} has been in {FIGHTS} more, with {WITH}, and some at the table now say the colony would be better off without {A_objective}.\n\n{VOICES}</li>
+      <li>{A_nameDef} is in trouble again: {FIGHTS} since the council last stepped in, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put it to the council once more.\n\n{VOICES}</li>
+      <li>[apart,insults] Kept to the nights for a while, {A_nameDef} found trouble anyway: {FIGHTS} since, with {WITH}, and hard words besides. {B_nameDef}, the colony's {TITLE}, wants the council to decide, once and for all.\n\n{VOICES}</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>{BANISH}</label>
+        <outcome>The council has decided: {A_nameDef} is to be {WORD}, and will be told so face to face.</outcome>
+        <ways><mercy>-6</mercy><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Banish" />
+        </effects>
+      </li>
+      <li>
+        <label>A last word from {B_nameDef}</label>
+        <outcome>The council gave {A_nameDef} one last chance, and asked {B_nameDef} to say so face to face.</outcome>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleWord"><last>true</last></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>RivalsOfA</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep {A_nameDef} to the night hours for a while</label>
+        <outcome>{A_nameDef} works the nights for the next few days and sleeps while the others are up, on the council's word.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>A</target><plan>apart</plan></li>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleStep"><kind>apart</kind></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it be</label>
+        <outcome>The council let it be again. {A_nameDef} stays, and the colony goes on as it was.</outcome>
+        <ways><mercy>2</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TroubleStep"><kind>letbe</kind></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>RivalsOfA</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

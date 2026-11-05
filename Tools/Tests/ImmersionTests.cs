@@ -52,6 +52,9 @@ public static class ImmersionTests
         "Rimfolk_Pool_OutsiderSays",
         // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
         "Rimfolk_Pool_JourneySays",
+        // Banishment by the council (Social/Banishment.cs): the council's word face to face and the answer, someone sent away
+        // told and answering, their last words as they go.
+        "Rimfolk_Pool_BanishWord", "Rimfolk_Pool_BanishWordReply", "Rimfolk_Pool_BanishTell", "Rimfolk_Pool_BanishReply", "Rimfolk_Pool_BanishLast",
         // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
         "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave",
         // Wishes promised, refused, objected to, reminded of, given up on, backed and remembered (CouncilDynamics.cs,
@@ -127,7 +130,9 @@ public static class ImmersionTests
         "Council_Journal_TookName", "Council_Journal_LastSeason",
         // Quiet troubles written down (Setbacks/Troubles.cs; a bad night's entry is the dream itself).
         "Rimfolk_Journal_Trouble_Worry", "Rimfolk_Journal_Trouble_Anniversary", "Rimfolk_Journal_Trouble_FormerLife", "Rimfolk_Journal_Trouble_Restless",
-        "Rimfolk_Journal_Trouble_Aches", "Rimfolk_Journal_Trouble_Envy"
+        "Rimfolk_Journal_Trouble_Aches", "Rimfolk_Journal_Trouble_Envy",
+        // Banishment by the council: the last entry of one sent away, and one who loved them (Social/Banishment.cs).
+        "Rimfolk_Journal_Banished", "Rimfolk_Journal_BanishedKin"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

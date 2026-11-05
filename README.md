@@ -508,6 +508,18 @@ best placed (the doctor, a forager, a tracker, the best talker), and their skill
 several openings and several ways to turn out, picked to fit the moment, and a letter doesn't repeat the text it used
 last time when another fits.
 
+**Banishment by the council.** Someone who keeps getting into fights over a month, whom most of the colony can't
+stand and almost nobody stands by, comes before the council, read from the game's own fight and insult memories and
+Rimfolk's note of who threw the first punch. The first time, banishment is never an answer: the speaker (or the
+faith's leader) has a word with them face to face, their hours go to the night for five days, or the council lets it
+be. If the trouble goes on, a later question offers to send them away in the colony's own words (cast out from the
+fire, sent into exile, expelled, struck off the roster), with the council's voices, a partner's or friend's objection
+and their own say in the letter, and hints naming who would grieve, the game's heavier mood if they'd be sent out to
+die, and the skills the colony would lose. Told face to face, they gather their things in their room and walk out by
+the edge through the game's own banishment; one sent away may come back one day, at the gate or, rarely, with raiders.
+Never a child, a slave, a guest or anyone held under a tie with another people, never in a colony of fewer than six,
+and off with "Banishment by the council" on the settings' Council page.
+
 **What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
 events, has a short line under it, and hovering it shows more, grouped by kind, with gains in green and costs in red.
 The setting **What each answer does** (Council page) chooses how. **Hints in words** (the default) never shows a

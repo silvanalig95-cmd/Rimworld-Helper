@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Banishment by the council
+
+*5 November 2026, version 0.103.0*
+
+- When a colonist keeps starting fights and most of the colony has turned against them, the council takes it up: a word face to face from the speaker, their hours turned to the night for a few days to keep them apart, or let it be. Banishment is never offered the first time.
+- If the trouble goes on after that, the council may banish them, in the colony's own words: cast out from the fire, sent into exile, expelled, struck off the roster. Council members speak by their own opinion of the person, a partner, kin or friend objects by name, and the person has their say.
+- The answer names who would grieve and who would be glad, the colony's loss of their skills, a seat given up, and whether they would be sent out to die.
+- Banished, they are told face to face, gather their things in their room and walk off the map. Those who disliked them are glad, friends and kin grieve and trust the council a little less, and one who leaves with a grudge may one day ride in with raiders, or come back to the gate asking to return.
+- A new setting, Banishment, on the Council page turns it off.
+
 ## No council tasks, no keeper
 
 *5 November 2026, version 0.102.0*
