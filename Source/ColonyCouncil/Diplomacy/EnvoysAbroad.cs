@@ -108,14 +108,14 @@ namespace ColonyCouncil
         // ================= Sending =================
 
         /// <summary>Why the colony can't send an envoy to this people from this home now (any colonist), or null.</summary>
-        public static string WhyNot(Faction f, Map home)
+        public static string WhyNot(Faction f, Map home, Settlement at = null)
         {
             if (!Envoys.On) return RansomWords.P("CC_Envoy_Why_Off");
             if (f == null || !Diplomacy.Deals(f)) return DipWords.P("CC_Dip_Why_Gone");
             if (Diplomacy.Hostile(f) || !f.HasGoodwill || f.PlayerGoodwill < 0) return RansomWords.P("CC_Envoy_Why_NotAtPeace", RansomWords.People(f).Named("PEOPLE"));
             var h = DiplomacyBook.Instance?.Existing(home);
             if (h?.abroad != null) return RansomWords.P("CC_Envoy_Why_OneAway", RansomWords.Name(h.abroad.colonist, h.abroad.name).Named("PAWN"));
-            var town = TownFor(f, home);
+            var town = at ?? TownFor(f, home);
             if (town == null) return RansomWords.P("CC_Envoy_Why_NoTown", RansomWords.People(f).Named("PEOPLE"));
             if (!Find.WorldReachability.CanReach(home.Tile, town.Tile)) return RansomWords.P("CC_Envoy_Why_NoRoad", town.Name.Named("TOWN"));
             if (home.mapPawns.FreeColonistsSpawnedCount < 2) return RansomWords.P("CC_Envoy_Why_Alone");
@@ -126,10 +126,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>The player picks who goes (a menu of those good with people), then the council's question names what it costs.</summary>
-        public static void Choose(Faction f, Map home)
+        public static void Choose(Faction f, Map home, Settlement at = null)
         {
-            if (WhyNot(f, home) != null) return;
-            var town = TownFor(f, home);
+            if (WhyNot(f, home, at) != null) return;
+            var town = at ?? TownFor(f, home);
             var opts = new List<FloatMenuOption>();
             foreach (var p in Candidates(home))
             {
@@ -154,7 +154,7 @@ namespace ColonyCouncil
         {
             var book = DiplomacyBook.Instance;
             var setOut = RansomDefOf.Rimfolk_EnvoySetOut;
-            if (book == null || setOut == null || p == null || town == null || WhyNot(f, home) != null) return false;
+            if (book == null || setOut == null || p == null || town == null || WhyNot(f, home, town) != null) return false;
             if (!RCellFinder.TryFindBestExitSpot(p, out var edge, TraverseMode.ByPawn)) return false;
             var h = book.HomeOf(home);
             h.abroad = new EnvoyAbroad { colonist = p, people = f, town = town.ID, townName = town.Name, stage = EnvoyStage.Coming, agreed = Now, name = p.LabelShort };

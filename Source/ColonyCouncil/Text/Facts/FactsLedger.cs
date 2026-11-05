@@ -82,6 +82,8 @@ namespace ColonyCouncil
             }
             // A pact or a truce with their people (Diplomacy/FactsPacts.cs): tie:pact, tie:truce, {PACTWITH}, {TRUCEWITH}.
             PactTies(s, f, now);
+            // Captives and envoys between the two (Diplomacy/FactsRansom.cs): ransom:theirs, ransom:held, them:wascaptive, envoy:here, them:envoy, envoy:ours.
+            RansomEnvoyFacts(s, f);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

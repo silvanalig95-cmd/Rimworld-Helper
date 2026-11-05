@@ -43,7 +43,11 @@ namespace ColonyCouncil
         /// <summary>Proposing a pact, of defence or of trade, to a people at peace with the colony (Diplomacy/Pacts.cs).</summary>
         Pact,
         /// <summary>Offering a truce to a people at war with the colony, its term and its price (Diplomacy/Truces.cs).</summary>
-        Truce
+        Truce,
+        /// <summary>About captives (Diplomacy/Ransoms.cs, release 2a.3): one of theirs offered for ransom, or an exchange of theirs for ours.</summary>
+        Ransom,
+        /// <summary>Asking them to send their envoy to live at the colony for a season (Diplomacy/Envoys.cs, release 2a.3).</summary>
+        Envoy
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>
