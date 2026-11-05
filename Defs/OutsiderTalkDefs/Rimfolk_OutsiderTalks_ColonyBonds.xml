@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Marriage alliances as the colony's bond with another people (Source/ColonyCouncil/Diplomacy/Matches.cs,
+       MatchAlliance.cs; the facts in Diplomacy/FactsMatch.cs), since the player's decision of 5 November 2026: the colony
+       is the family, never a dynasty. A marriage binds the colony and their people through one marriage, not two families
+       or houses; their gift each season comes from their town; it ends with the marriage; a grudge for a spouse wronged is
+       their people's, handed down no line. These take the place of the shipped pieces that said otherwise (retired in
+       OutsiderTalkMath.Retired); the spouse's own family stays theirs, as everyday life. Tags as in
+       Rimfolk_OutsiderTalks_Matches.xml: tie:marriage, :ours ({SPOUSEOF}), :theirs ({INLAW}), :you, match:wronged,
+       deed:married, colony:raid, colony:death ({DEAD}). The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_Neighbors</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,first</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] So you're from the colony our town married into.</li>
+      <li>[us] I suppose we are, since the wedding.</li>
+      <li>[them,their:tribal] Then sit by me, our fire is open to your people now.</li>
+      <li>[them,their:empire] A connection by marriage, yes, though not a close one.</li>
+      <li>[them] Then you'll forgive me for asking a lot of questions.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_Raiders</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,colony:raid</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] We heard you had raiders at your walls.</li>
+      <li>[us] We did, and we're still here.</li>
+      <li>[them] Next time, send word, our people will come for yours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_TownGift</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,!tie:marriage:you</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[us] Thank your town for the gifts it keeps sending.</li>
+      <li>[them,their:tribal] It is how our camp remembers yours, each season, by the moons.</li>
+      <li>[them,their:medieval] It's custom, though the town reeve grumbles about the cost.</li>
+      <li>[them,their:industrial] It's expected, and it keeps the road busy.</li>
+      <li>[them] It's what bound peoples do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_GrudgeHeld</defName>
+    <topic>marriage</topic>
+    <when>match:wronged,role:heir</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Our people hold the wrong against your colony, and I'll lead them one day.</li>
+      <li>[us] Is there no way to set it down?</li>
+      <li>[them] Not one I've been told of.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_Properly</defName>
+    <topic>marriage</topic>
+    <when>lovers,!tie:marriage,!match:agreed,known</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] If our people ever make a match of this, I'd want it done properly.</li>
+      <li>[us] Then I'll speak for it properly, when you're ready.</li>
+      <li>[them,their:lowtech] Not yet, the old ones need to get used to your face first.</li>
+      <li>[them] Not yet, let me tell my people first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_WhatExpected</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,!match:wronged</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[us] What do your people expect of a colony they're bound to by marriage?</li>
+      <li>[them,their:tribal] A place at the fire when we visit, and help with the hunt when we ask.</li>
+      <li>[them,their:medieval] A seat at the table, a gift at midwinter, and no arguing with the old ones.</li>
+      <li>[them,their:industrial] A letter now and then, and help when the caravan breaks down.</li>
+      <li>[them,their:empire] Correct forms of address, and attendance when it is asked for.</li>
+      <li>[them,their:spacer,!their:empire] Courtesy, and that you keep your records straight.</li>
+      <li>[them] To be remembered, mostly.</li>
+      <li>[us] We can manage that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_EmpireNoPact</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,their:empire,known</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] The Empire signs no pacts, but a titled household remembers a colony it married into.</li>
+      <li>[us] We'll try to be worth remembering.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_GriefShared</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,colony:death</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] We heard about {DEAD}, and our people grieve with yours.</li>
+      <li>[us] Thank you, it helps to hear it from a people bound to us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_OnceBound</defName>
+    <topic>marriage</topic>
+    <when>deed:married,!tie:marriage,!match:wronged,!match:agreed</when>
+    <weight>0.8</weight>
+    <lines>
+      <li>[them] Our peoples were bound once, through that marriage.</li>
+      <li>[us] We could be again, if both sides wanted it.</li>
+      <li>[them] Maybe, but not this year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Bond_EndsWithThem</defName>
+    <topic>marriage</topic>
+    <when>deed:married,!tie:marriage,!match:wronged,!match:agreed,known</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] Do your people keep a bond once the marriage that made it is over?</li>
+      <li>[them,their:lowtech] The bond was the two of them, the elders say, and it went with them.</li>
+      <li>[them,their:hightech] The terms ended with the marriage, as terms do.</li>
+      <li>[them] Not by right, but people remember who treated them well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

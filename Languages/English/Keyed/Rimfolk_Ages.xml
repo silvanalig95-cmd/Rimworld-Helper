@@ -42,11 +42,11 @@
   <!-- A marriage alliance -->
   <CC_Form_Marriage_Tribal>a match between clans</CC_Form_Marriage_Tribal>
   <CC_Form_Marriage_Tribal_Rite>bride gifts and a shared fire</CC_Form_Marriage_Tribal_Rite>
-  <CC_Form_Marriage_Medieval>a match between houses</CC_Form_Marriage_Medieval>
+  <CC_Form_Marriage_Medieval>a marriage pact between two peoples</CC_Form_Marriage_Medieval>
   <CC_Form_Marriage_Medieval_Rite>vows in the hall and a dowry</CC_Form_Marriage_Medieval_Rite>
-  <CC_Form_Marriage_Industrial>a match between families or firms</CC_Form_Marriage_Industrial>
+  <CC_Form_Marriage_Industrial>a marriage between two settlements</CC_Form_Marriage_Industrial>
   <CC_Form_Marriage_Industrial_Rite>a wedding and papers signed</CC_Form_Marriage_Industrial_Rite>
-  <CC_Form_Marriage_Spacer>a partnership contract between lines</CC_Form_Marriage_Spacer>
+  <CC_Form_Marriage_Spacer>a partnership contract between settlements</CC_Form_Marriage_Spacer>
   <CC_Form_Marriage_Spacer_Rite>a contract witnessed and filed</CC_Form_Marriage_Spacer_Rite>
 
   <!-- A ward, fostered for a year (a hostage has forms of its own, below: the ward's rite says the ward's side only) -->

@@ -100,7 +100,7 @@ namespace ColonyCouncil
                     return;
                 }
                 End(t, MatchWords.P("CC_Match_End_Death_Label", MatchWords.People(f).Named("PEOPLE")),
-                    MatchWords.T("CC_Match_End_DeathOnly", MatchWords.Name(oursDead ? ours : theirs, NameOf(t, oursDead)).Named("DEAD"), MatchWords.People(f).Named("PEOPLE")));
+                    MatchWords.T("CC_Match_End_Death", MatchWords.Name(oursDead ? ours : theirs, NameOf(t, oursDead)).Named("DEAD"), MatchWords.People(f).Named("PEOPLE")));
                 return;
             }
             else
@@ -169,7 +169,7 @@ namespace ColonyCouncil
             if (!Couriers.Deliver(home, things, f, gate)) Loot.Deliver(things, home, gate, false);
             bool away = LivesOf(t) == MatchHome.Theirs;
             // apart: their courier sets it down at the gate on the map; the message says who sent it.
-            Tell.Message(NewsKind.World, Importance.Notable, home, MatchWords.T(away ? "CC_Match_TownGift_Away" : "CC_Match_TownGift", MatchWords.Name(ours, NameOf(t, true)).Named("OURS"),
+            Tell.Message(NewsKind.World, Importance.Notable, home, MatchWords.T(away ? "CC_Match_KinGift_Away" : "CC_Match_KinGift", MatchWords.Name(ours, NameOf(t, true)).Named("OURS"),
                 MatchWords.Name(theirs, NameOf(t, false)).Named("THEIRS"), MatchWords.People(f).Named("PEOPLE"), Couriers.Describe(things).Named("GIFT"), (town?.Name ?? "?").Named("TOWN")),
                 LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }
@@ -387,7 +387,7 @@ namespace ColonyCouncil
             }
             string how = regard <= -10 ? " " + MatchWords.P(d.untended ? "CC_Match_Died_Untended" : "CC_Match_Died_Open", MatchWords.People(f).Named("PEOPLE")) : "";
             End(t, MatchWords.P("CC_Match_End_Death_Label", MatchWords.People(f).Named("PEOPLE")),
-                MatchWords.T("CC_Match_End_DeathOnly", x.Named("DEAD"), MatchWords.People(f).Named("PEOPLE")) + how);
+                MatchWords.T("CC_Match_End_Death", x.Named("DEAD"), MatchWords.People(f).Named("PEOPLE")) + how);
         }
     }
 }

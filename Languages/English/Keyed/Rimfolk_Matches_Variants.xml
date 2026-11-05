@@ -16,27 +16,25 @@
   <CC_Match_Offer_3>A letter from {WHO} of {PEOPLE}. They have had their eye on {OURS} for a while, and offer {THEIRS} in {WORD}, married by {RITE}.</CC_Match_Offer_3>
 
   <!-- Agreed -->
-  <CC_Match_Agreed_Colony_2>It is settled: {WORD} between {OURS} and {THEIRS} of {PEOPLE}, by {RITE}. On the day, {THEIRS} comes from {TOWN} with {THEIRS_possessive} kin, who will see the two married here and stay for the evening's feast; {THEIRS} joins the colony at the gate and stays for good.</CC_Match_Agreed_Colony_2>
+  <CC_Match_Agreed_Colony_2>It is settled: {WORD} between {OURS} and {THEIRS} of {PEOPLE}, by {RITE}. On the day, {THEIRS} comes from {TOWN} with notables of the town, who will see the two married here and stay for the evening's feast; {THEIRS} joins the colony at the gate and stays for good.</CC_Match_Agreed_Colony_2>
   <CC_Match_Agreed_Theirs_2>It is settled: {WORD} between {OURS} and {THEIRS} of {PEOPLE}, by {RITE}. On the day, {THEIRS} and one of {THEIRS_possessive} kin walk up to the gate to take {OURS} home with them to {TOWN}, where the two will be married. {OURS} will not live at the colony again.</CC_Match_Agreed_Theirs_2>
 
   <!-- On the map -->
-  <CC_Match_Arrive_2>{THEIRS} has come from {PEOPLE}, with {THEIRS_possessive} kin walking alongside, and has joined the colony at the gate. The wedding to {OURS} is today, while the light lasts, and the guests will stay for the feast. Their own people would hold it by {RITE}.</CC_Match_Arrive_2>
-  <CC_Match_Escort_Comes_2>Kin of {PEOPLE} are on the road to the gate: {THEIRS} and one of theirs, come from {TOWN} to take {OURS} home with them.</CC_Match_Escort_Comes_2>
+  <CC_Match_Arrive_2>{THEIRS} has come from {PEOPLE}, with the wedding's guests walking alongside, and has joined the colony at the gate. The wedding to {OURS} is today, while the light lasts, and the guests will stay for the feast. Their own people would hold it by {RITE}.</CC_Match_Arrive_2>
+  <CC_Match_Escort_Comes_2>{PEOPLE} have sent a party to the gate: {THEIRS} and one of theirs, come from {TOWN} to take {OURS} home with them.</CC_Match_Escort_Comes_2>
   <CC_Match_Leaves_2>{OURS} went out to the gate where {THEIRS} was waiting, and the two set off together for {TOWN}. {OURS} belongs to {PEOPLE} now, and the wedding will be there.</CC_Match_Leaves_2>
 
   <!-- The wedding -->
-  <CC_Match_Wed_2>{OURS} and {THEIRS} are married. Kin of {THEIRS} came all the way from {TOWN} to see it, and {PEOPLE} count the colony as family now: {WORD}.</CC_Match_Wed_2>
-  <CC_Match_WedAway_2>A letter from {TOWN}: {OURS} and {THEIRS} are married, by {RITE}. {OURS} has settled in among {PEOPLE}, and the colony is family to them now.</CC_Match_WedAway_2>
+  <CC_Match_Wed_2>{OURS} and {THEIRS} are married. Notables of {TOWN} came all the way to see {THEIRS} wed, and {PEOPLE} are bound to the colony now: {WORD}.</CC_Match_Wed_2>
+  <CC_Match_WedAway_2>A letter from {TOWN}: {OURS} and {THEIRS} are married, by {RITE}. {OURS} has settled in among {PEOPLE}, and they are bound to the colony now.</CC_Match_WedAway_2>
   <CC_Match_WedAway_3>{PEOPLE} write that the wedding at {TOWN} was held by {RITE}: {OURS} and {THEIRS} are married, and {OURS} lives among them.</CC_Match_WedAway_3>
 
   <!-- While it holds, and how it ends -->
-  <CC_Match_KinGift_2>A courier of {PEOPLE} brought {GIFT} from the kin of {THEIRS} at {TOWN}, as they do each season.</CC_Match_KinGift_2>
-  <CC_Match_KinGift_3>The family of {THEIRS} remembered the colony this season: {GIFT}, by a courier of {PEOPLE} from {TOWN}.</CC_Match_KinGift_3>
-  <CC_Match_KinGift_Away_2>A courier of {PEOPLE} brought {GIFT} from {TOWN}, sent by {OURS} and {THEIRS} for the season.</CC_Match_KinGift_Away_2>
-  <CC_Match_Child_2>{DEAD} is gone. {CHILD}, the child of the marriage, still lives, kin to both peoples, and {PEOPLE} keep the alliance for {CHILD_possessive} sake.</CC_Match_Child_2>
-  <CC_Match_End_Death_2>{DEAD} is dead, and no child of the marriage lives. The alliance with {PEOPLE} ends with {DEAD}.</CC_Match_End_Death_2>
+  <CC_Match_KinGift_2>A courier of {PEOPLE} brought {GIFT} from {TOWN}, as the town does each season since {THEIRS} married into the colony.</CC_Match_KinGift_2>
+  <CC_Match_KinGift_3>{TOWN}, where {THEIRS} came from, remembered the colony this season: {GIFT}, by a courier of {PEOPLE}.</CC_Match_KinGift_3>
+  <CC_Match_KinGift_Away_2>A courier of {PEOPLE} brought {GIFT} from {TOWN}, the town's gift for the season, with greetings from {OURS} and {THEIRS}.</CC_Match_KinGift_Away_2>
+  <CC_Match_End_Death_2>{DEAD} is dead, and the alliance with {PEOPLE}, made through the marriage, ends with {DEAD}.</CC_Match_End_Death_2>
   <CC_Match_End_Parted_2>{OURS} and {THEIRS} are no longer married. {PEOPLE} take it hard, and the alliance is over.</CC_Match_End_Parted_2>
-  <CC_Match_Wronged_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is broken, and its pact with it. {HEAD} holds a grudge for it, and so will whoever heads them next.</CC_Match_Wronged_2>
-  <CC_Match_Feud_2>{HEAD} heads them now, and keeps the grudge {OLD} held: {PEOPLE} still hold it against the colony for {NAME}.</CC_Match_Feud_2>
+  <CC_Match_Wronged_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is broken, and its pact with it. {PEOPLE} hold a grudge for it, and {HEAD} will not let it be forgotten.</CC_Match_Wronged_2>
 
 </LanguageData>
