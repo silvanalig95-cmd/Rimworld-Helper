@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More fellows of the marriage alliances' letters and news (Rimfolk_Matches.xml, Rimfolk_Matches_Variants.xml), picked
+       at random (TextVariants: CC_X, CC_X_2 ... CC_X_6, numbered on from the last that exists). Each keeps to its first's
+       placeholders. {WORD} is the colony's word for a match by its age, {RITE} their way by theirs, or their faith's own
+       wedding (Rimfolk_Ages.xml: Marriage). A line that may be given a name kept for someone gone ({THEIRS} in the escort
+       and the leaving, both names in the kin's gift, {DEAD}, {NAME}, {OLD}) uses no _pronoun or _possessive of it; {THEIRS}
+       in their offer is a phrase ("a daughter of Reeve Hallam's house"), never a sentence's first word. -->
+
+  <!-- Their offer, and their answers -->
+  <CC_Match_Offer_4>{PEOPLE} have sent a proposal by {WHO}'s hand. They offer {THEIRS} for {OURS}, and would hold it by {RITE}; the colony would call it {WORD}.</CC_Match_Offer_4>
+  <CC_Match_Ans_Yes_4>{OURS} and {THEIRS} are promised. {PEOPLE} have agreed to {WORD}, and want the wedding held by {RITE}. {LIVES}.</CC_Match_Ans_Yes_4>
+  <CC_Match_Ans_No_4>{PEOPLE} won't part with {THEIRS}, not for {OURS} and not this year.</CC_Match_Ans_No_4>
+  <CC_Match_Ans_NoNever_3>{PEOPLE} would not even weigh it. They don't think enough of the colony to give it one of their own, {OURS} or no {OURS}.</CC_Match_Ans_NoNever_3>
+  <CC_Match_Ans_Moot_2>{PEOPLE} could not answer as the letter asked. {WHY}</CC_Match_Ans_Moot_2>
+
+  <!-- Agreed -->
+  <CC_Match_Agreed_Colony_3>{OURS} and {THEIRS} of {PEOPLE} are to be married: {WORD}, by {RITE}. On the day {THEIRS} comes from {TOWN} with {THEIRS_possessive} kin, joins the colony at the gate and is married to {OURS} here, with the kin as guests at the evening's feast before they go home at first light.</CC_Match_Agreed_Colony_3>
+  <CC_Match_Agreed_Theirs_3>{OURS} is promised to {THEIRS} of {PEOPLE}: {WORD}, by {RITE}. On the day {THEIRS} comes to the gate with one of {THEIRS_possessive} kin, and {OURS} walks out to them and leaves for {TOWN}, to be married there and to live there for good.</CC_Match_Agreed_Theirs_3>
+
+  <!-- On the map -->
+  <CC_Match_Arrive_3>{THEIRS} of {PEOPLE} has come in with the wedding's guests and joined the colony at the gate. {OURS} and {THEIRS} will be married today if nothing gets in the way, and the guests will stay to eat. {PEOPLE} would have held it by {RITE}.</CC_Match_Arrive_3>
+  <CC_Match_Arrive_Alone_2>{THEIRS} of {PEOPLE} came in alone and has joined the colony. With no kin here to see it, the wedding to {OURS} will be the colony's own, on a quiet day.</CC_Match_Arrive_Alone_2>
+  <CC_Match_Arrive_Alone_3>No guests came with {THEIRS}, but {THEIRS} came all the same and has joined the colony. The colony will marry {OURS} and {THEIRS} by its own ceremony, once the day is quiet.</CC_Match_Arrive_Alone_3>
+  <CC_Match_Escort_Comes_3>New family for {OURS}: {THEIRS} and one of {PEOPLE}, come from {TOWN}, are walking up to the gate.</CC_Match_Escort_Comes_3>
+  <CC_Match_Leaves_3>{OURS} said goodbye at the gate and went with {THEIRS} toward {TOWN}. The colony has one less of its own, and {PEOPLE} one more.</CC_Match_Leaves_3>
+  <CC_Match_Leaves_4>With a last word at the gate, {OURS} left with {THEIRS} for {TOWN}. The wedding will be there, by the ways of {PEOPLE}.</CC_Match_Leaves_4>
+
+  <!-- The wedding -->
+  <CC_Match_Wed_3>The wedding is done: {OURS} and {THEIRS} are married, and the kin who came from {TOWN} saw it. {PEOPLE} and the colony are family now.</CC_Match_Wed_3>
+  <CC_Match_Wed_4>{OURS} and {THEIRS} said their vows here at the colony, with kin from {TOWN} looking on. It is {WORD} now between {PEOPLE} and the colony.</CC_Match_Wed_4>
+  <CC_Match_WedAway_4>A letter from {TOWN} with the news the colony was waiting for: {OURS} and {THEIRS} are married, by {RITE}. {PEOPLE} call the colony family now.</CC_Match_WedAway_4>
+
+  <!-- While it holds, and how it ends -->
+  <CC_Match_KinGift_4>A season's gift from the kin of {THEIRS}: {GIFT}, set down at the gate by a courier of {PEOPLE}.</CC_Match_KinGift_4>
+  <CC_Match_KinGift_5>{GIFT} came from {TOWN} this season, from the family {THEIRS} left behind there, carried by a courier of {PEOPLE}.</CC_Match_KinGift_5>
+  <CC_Match_KinGift_Away_3>{OURS} hasn't forgotten the colony: {GIFT} came from {TOWN} this season, from {OURS} and {THEIRS}, by a courier of {PEOPLE}.</CC_Match_KinGift_Away_3>
+  <CC_Match_KinGift_Away_4>A courier of {PEOPLE} set down {GIFT} at the gate, the season's gift from {OURS} and {THEIRS} at {TOWN}.</CC_Match_KinGift_Away_4>
+  <CC_Match_Child_3>{PEOPLE} grieve for {DEAD}, and keep the alliance all the same: {CHILD}, the child of the marriage, is theirs as much as the colony's.</CC_Match_Child_3>
+  <CC_Match_End_Death_3>The alliance with {PEOPLE} ends with {DEAD}. There is no child of the marriage to carry it on.</CC_Match_End_Death_3>
+  <CC_Match_End_Home_2>{THEIRS} has left the colony and gone back to {PEOPLE}. The marriage alliance ends with it, and neither side holds a grudge.</CC_Match_End_Home_2>
+  <CC_Match_End_Home_3>{THEIRS} is home among {PEOPLE} again, and the alliance that came with the marriage is over.</CC_Match_End_Home_3>
+  <CC_Match_End_Parted_3>The marriage between {OURS} and {THEIRS} is over, and the alliance with it. {PEOPLE} will think less of the colony for a while.</CC_Match_End_Parted_3>
+  <CC_Match_Wronged_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, its pact too, and {HEAD} has taken it up as a grudge to hand down.</CC_Match_Wronged_3>
+  <CC_Match_Feud_3>With {OLD} gone, the grudge over {NAME} passes to {HEAD}. {PEOPLE} have not forgiven the colony.</CC_Match_Feud_3>
+
+  <!-- In-laws who write when a raiders' camp is set against the colony (Diplomacy/MatchWarnings.cs: RaidersCamps.Found
+       with the suffix _Kin): {TOWN} their town, {DOING} their people, {WHERE} where the camp is, {PEOPLE} the raiders,
+       {KIND} the camp, {COLONY} the home. -->
+  <CC_RaidCamp_Found_Text_Kin>Word has come from the colony's in-laws at {TOWN}, of {DOING}: their people on the road have seen the fires of a camp {WHERE}. {PEOPLE} have made a {KIND} there, near enough to strike at {COLONY}, and the family wanted the colony to hear it from them first.</CC_RaidCamp_Found_Text_Kin>
+  <CC_RaidCamp_Found_Line_Kin>The colony's in-laws at {TOWN} warned of a {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_Found_Line_Kin>
+
+</LanguageData>

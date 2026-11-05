@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More fellows of the wards' and hostages' letters and news (Rimfolk_Wards.xml, Rimfolk_Wards_Variants.xml), picked at
+       random (TextVariants: CC_X, CC_X_2 ... CC_X_6, numbered on from the last that exists). Each keeps to its first's
+       placeholders. {WORD} is the colony's word by its age, {RITE} their way by theirs (Rimfolk_Ages.xml: Ward, Hostage);
+       {SKILL} the game's own word for a skill ("crafting", "plants", "artistic"), so it follows "learn" or "lessons in".
+       The colony's youth writes home every ten days of the year, by their people's age (CC_Ward_Letter_Tribal ...), or as
+       the Empire's page: those letters are carried off the map, so none of them says who brought it to the gate. -->
+
+  <!-- Their offer, and their answers -->
+  <CC_Ward_Offer_4>A youth of {KIN}'s house is to be sent away for a year to learn {SKILL}, {WHO} writes, and {PEOPLE} have chosen the colony for it: {RITE}, as they put it.</CC_Ward_Offer_4>
+  <CC_Ward_Offer_5>{WHO} of {PEOPLE} asks a favor that is also a compliment. Would the colony keep a youth of {KIN}'s house for a year and teach them {SKILL}? Here it would be {WORD}.</CC_Ward_Offer_5>
+  <CC_Ward_Ans_Yes_4>{WARD} is coming. {PEOPLE} agreed to send them for a year to learn {SKILL}, {RITE} by their ways, and one of their kin will walk them to the gate.</CC_Ward_Ans_Yes_4>
+  <CC_Ward_Ans_No_4>Not this year, {PEOPLE} answer. They thank the colony for thinking of them.</CC_Ward_Ans_No_4>
+  <CC_Ward_Ans_Moot_2>By the time the letter reached {PEOPLE}, there was nothing left to answer.</CC_Ward_Ans_Moot_2>
+  <CC_Ward_Ans_SendYes_4>{PAWN} is wanted at {TOWN}: {PEOPLE} will take them in for a year and teach them {SKILL}, {RITE} by their ways.</CC_Ward_Ans_SendYes_4>
+  <CC_Ward_Ans_SendNo_4>{PEOPLE} won't take {PAWN} this year. Their houses are full, and they would rather say so than do it badly.</CC_Ward_Ans_SendNo_4>
+  <CC_Ward_Ans_SendYesEmpire_2>A titled household at {TOWN} will take {PAWN} as its page for a year. {PEOPLE} write that the page will be taught the forms of a noble house, and expected to keep them.</CC_Ward_Ans_SendYesEmpire_2>
+  <CC_Ward_Ans_SendNoEmpire_2>{PEOPLE} regret that no household of rank can take a page from the colony this year.</CC_Ward_Ans_SendNoEmpire_2>
+
+  <!-- Their ward comes, and their year ends -->
+  <CC_Ward_Arrives_4>{WARD} of {PEOPLE} is here for the year. Their kin turned back at the gate, and {WARD} walked in alone to learn {SKILL}: {RITE} by their ways, {WORD} by the colony's.</CC_Ward_Arrives_4>
+  <CC_Ward_Home_Fine_3>{WARD} walked out to their kin at the gate and went home to {PEOPLE}. As years of {WORD} go, it could hardly have gone better.</CC_Ward_Home_Fine_3>
+  <CC_Ward_Home_Good_3>{WARD} is on the road home to {PEOPLE} with their kin, and will speak well of {WORD} with the colony.</CC_Ward_Home_Good_3>
+  <CC_Ward_Home_Fair_3>{WARD} has gone home with their kin. {PEOPLE} will hear of a year with good days and bad ones.</CC_Ward_Home_Fair_3>
+  <CC_Ward_Home_Poor_3>{WARD} went home with their kin, glad to be going, and {PEOPLE} will hear why.</CC_Ward_Home_Poor_3>
+  <CC_Ward_Died_Colony_2>{WARD} of {PEOPLE} died at the hands of one of the colony's own. Their people sent a youth to learn, and they will have a feud instead.</CC_Ward_Died_Colony_2>
+  <CC_Ward_Died_Inside_3>{WARD} of {PEOPLE} has died at the colony, under its roof. {PEOPLE} will grieve, though they will grant that the colony kept them where it kept its own.</CC_Ward_Died_Inside_3>
+  <CC_Ward_Died_Outside_3>{WARD} of {PEOPLE} has died out in the open at the colony. When {PEOPLE} ask where the colony's walls were, there won't be a good answer.</CC_Ward_Died_Outside_3>
+  <CC_Ward_End_Arrested_2>{WARD} of {PEOPLE} is a prisoner of the colony now. {PEOPLE} sent a ward, not a captive, and they count it a wrong.</CC_Ward_End_Arrested_2>
+  <CC_Ward_End_SentAway_2>{WARD} of {PEOPLE} is going home before the year is out. However it is explained, {PEOPLE} will take it as a slight.</CC_Ward_End_SentAway_2>
+  <CC_Ward_Taken_3>{WARD} of {PEOPLE} has been carried off by raiders. The colony had their family's trust, and {PEOPLE} will remember how it was kept.</CC_Ward_Taken_3>
+
+  <!-- The colony's youth abroad -->
+  <CC_Ward_There_3>{PAWN} has arrived at {TOWN}. For a year they will live among {PEOPLE} and learn {SKILL}, {RITE} by the town's ways.</CC_Ward_There_3>
+  <CC_Ward_ThereEmpire_3>{PAWN} is at {TOWN}, a page in {HEAD}'s household for the year, and has been shown where to stand.</CC_Ward_ThereEmpire_3>
+  <CC_Ward_Letter_Tribal_3>Word from {PAWN} at {TOWN}, by a runner of {PEOPLE}: they are well, they eat at {HEAD}'s fire, and their lessons in {SKILL} would surprise the colony.</CC_Ward_Letter_Tribal_3>
+  <CC_Ward_Letter_Tribal_4>{PAWN} sends word from {TOWN} with a trader of {PEOPLE}: the evenings are for stories, the days for lessons in {SKILL}, and they have not missed one.</CC_Ward_Letter_Tribal_4>
+  <CC_Ward_Letter_Tribal_5>A hunter of {PEOPLE} brought word from {PAWN}. They have learned the names of every family at {TOWN}, and {HEAD} has started calling them by a name of the clan's own.</CC_Ward_Letter_Tribal_5>
+  <CC_Ward_Letter_Medieval_3>{PAWN} writes from {TOWN}: the hall is cold at night, the master is patient, and their lessons in {SKILL} go well. {HEAD} adds a line of greeting at the bottom.</CC_Ward_Letter_Medieval_3>
+  <CC_Ward_Letter_Medieval_4>A letter in {PAWN}'s hand, carried from {TOWN} by a carter of {PEOPLE}: they went to market with {HEAD}'s steward and were not cheated once.</CC_Ward_Letter_Medieval_4>
+  <CC_Ward_Letter_Medieval_5>{PAWN} writes that the youths of {TOWN} sleep in the loft and rise with the bell, and that their master in {SKILL} has stopped shouting at them.</CC_Ward_Letter_Medieval_5>
+  <CC_Ward_Letter_Industrial_3>{PAWN} writes from {TOWN}: the hours are long, the pay is bed and board, and their teachers in {SKILL} expect a great deal.</CC_Ward_Letter_Industrial_3>
+  <CC_Ward_Letter_Industrial_4>A letter from {PAWN} at {TOWN}, with a smudge of oil on one corner: {HEAD} keeps them busy, and they have learned to fix what they break.</CC_Ward_Letter_Industrial_4>
+  <CC_Ward_Letter_Industrial_5>{PAWN} writes that {PEOPLE} work hard and argue harder, and that {HEAD} has asked twice whether the colony has more like them.</CC_Ward_Letter_Industrial_5>
+  <CC_Ward_Letter_Spacer_3>{PAWN} sends a message from {TOWN}: their days are scheduled to the minute, their lessons in {SKILL} are recorded, and {HEAD} has approved their progress.</CC_Ward_Letter_Spacer_3>
+  <CC_Ward_Letter_Spacer_4>A short message from {PAWN} at {TOWN}: the food is strange, the work is precise, and {PEOPLE} measure everything, including them.</CC_Ward_Letter_Spacer_4>
+  <CC_Ward_Letter_Spacer_5>{PAWN} writes from {TOWN} that {HEAD} has let them into the archive, and that they have read more this season than they have slept.</CC_Ward_Letter_Spacer_5>
+  <CC_Ward_Letter_Page_3>{PAWN} writes from {TOWN}: they have learned to pour without a sound and to stand behind a chair for a whole dinner. {HEAD}'s steward says they will do.</CC_Ward_Letter_Page_3>
+  <CC_Ward_Letter_Page_4>A letter from {PAWN}, page in {HEAD}'s household at {TOWN}: they carried a message to a baron today and did not drop it.</CC_Ward_Letter_Page_4>
+  <CC_Ward_Letter_Page_5>{PAWN} writes that court is all forms and titles, and that they now know which fork goes with which. The household speaks kindly of the colony.</CC_Ward_Letter_Page_5>
+  <CC_Ward_Homeward_3>The year is done. {PAWN} has said goodbye at {TOWN} and is on the road home, with food from {PEOPLE} in their pack.</CC_Ward_Homeward_3>
+  <CC_Ward_Back_3>{PAWN} is home again, a year older and full of the ways of {PEOPLE}.</CC_Ward_Back_3>
+  <CC_Ward_Back_4>{PAWN} is back at the colony after a year at {TOWN}, with stories about {PEOPLE} for anyone who'll listen.</CC_Ward_Back_4>
+  <CC_Ward_Back_Page_3>{PAWN} is back from {TOWN}, a year as a page behind them, and still bows to the cook out of habit.</CC_Ward_Back_Page_3>
+  <CC_Ward_DiedAway_2>{PAWN} will not come home. They died among {PEOPLE}, or on the road to them.</CC_Ward_DiedAway_2>
+
+  <!-- Hostages -->
+  <CC_Hostage_Arrives_3>{HOSTAGE} of {PEOPLE} walked in from the gate and will stay {WHAT}. Among {PEOPLE} it is {RITE}.</CC_Hostage_Arrives_3>
+  <CC_Hostage_Arrives_4>{PEOPLE} have kept their side of it: {HOSTAGE} is here, and stays at the colony {WHAT}, {RITE} by their ways.</CC_Hostage_Arrives_4>
+  <CC_Hostage_There_3>{HOSTAGE} is at {TOWN}, the colony's hostage among {PEOPLE} until the term is out: {RITE}.</CC_Hostage_There_3>
+  <CC_Hostage_Homeward_3>{PAWN}'s term at {TOWN} is served. {PEOPLE} have let them go, and they are on the road home.</CC_Hostage_Homeward_3>
+  <CC_Hostage_Home_Kept_3>The term is served. {HOSTAGE} is on the way home to {PEOPLE}, and the colony kept its side of the terms to the end.</CC_Hostage_Home_Kept_3>
+  <CC_Hostage_Home_Forgave_2>The colony could have kept {HOSTAGE}, and let them go. {HOSTAGE} is walking home to {PEOPLE}, whose word was broken.</CC_Hostage_Home_Forgave_2>
+  <CC_Hostage_Home_Forgave_3>{HOSTAGE} is free to go home to {PEOPLE}, though {PEOPLE} broke the terms. They will remember who let {HOSTAGE} go.</CC_Hostage_Home_Forgave_3>
+  <CC_Hostage_Home_WeBroke_2>The colony broke the terms, and there is no holding {HOSTAGE} now. They are going home to {PEOPLE}.</CC_Hostage_Home_WeBroke_2>
+  <CC_Hostage_Home_WeBroke_3>With the colony's word broken, {HOSTAGE} has no reason left to stay, and is leaving for {PEOPLE}.</CC_Hostage_Home_WeBroke_3>
+  <CC_Hostage_Forfeit_3>{PEOPLE} broke the terms, and {HOSTAGE} is still here. What happens to them now is the colony's to decide, which is what a hostage is given for.</CC_Hostage_Forfeit_3>
+  <CC_Hostage_Forfeit_4>Word has come that {PEOPLE} have broken their word. {HOSTAGE}, given to stand for that word, is forfeit to the colony.</CC_Hostage_Forfeit_4>
+  <CC_Hostage_Held_3>{PEOPLE} have taken {HOSTAGE} prisoner. The colony broke its word, and its hostage is the one who pays for it.</CC_Hostage_Held_3>
+  <CC_Hostage_Kept_3>{HOSTAGE} of {PEOPLE} sleeps in the colony's cells now. {PEOPLE} may yet offer something for them.</CC_Hostage_Kept_3>
+  <CC_Hostage_Stayed_3>{HOSTAGE} has joined the colony. {PEOPLE} broke their word while {HOSTAGE} stood for it, and {HOSTAGE} has had enough of them.</CC_Hostage_Stayed_3>
+
+</LanguageData>

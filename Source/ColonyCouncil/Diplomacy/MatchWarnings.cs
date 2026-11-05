@@ -14,7 +14,7 @@ namespace ColonyCouncil
         {
             if (home == null || c?.people == null || kin == null || c.stage != CampStage.Hidden) return;
             if (Find.WorldObjects.AnyMapParentAt(TileOf(c))) return;
-            Found(home, c, null, kin.Name, now, "Letter", town);
+            Found(home, c, null, kin.Name, now, "Kin", town);
         }
     }
 }
