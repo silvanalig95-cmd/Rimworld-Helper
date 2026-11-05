@@ -6,6 +6,62 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 2d.2, stage 2 release, against their nature (docs/design/stage2-diplomacy.md, item 13, with its "As built"; the
+  player's decision 19 as recommended: strain through the heart only, no new mood, easing when someone acts with their
+  nature, marks for repeated acts; no version of its own here: the main session writes the round). DESIGN.md,
+  "Diplomacy" → "Against their nature" has the whole of it. Pure and tested (`Tools/Tests/NatureTests.cs`, 125 checks;
+  `DiplomacyTests` and `MatchTests` moved with it): `Diplomacy/NatureMath.cs` (`SwitchedOn` true; the rules as written;
+  `Floor` 0.4, tuned from a quarter so an act just past where a side shows brings about 5 and stays on the heart's page
+  for days; `Felt`, `Pick` (two acts at once count as one, the one that weighs most), `RuleOf`, `Scale` (the "Life's ups
+  and downs" setting by `PressureMath.Factor`, read whatever the stakes since it is no mood, and `HardTimesPressure`),
+  `MayFeel` (one a day; a last act from a later tick never blocks), `CloseKin` (parent, child, sibling, spouse, fiance,
+  lover), `WardParent`, `BreakerFeels`, `MarkFamily`, `ActKey`/`SideKey`/`SideKeys`, `Wired` (all but the dark scheme)).
+  The heart: `StrainSource.Nature` and `StrainRelief.Nature` at the end of their lists, the source's cap 12
+  (`HeartMath.SourceCap`), `HeartLogic.Build` (strain from outside the hour as the hour builds it: strength setting,
+  traits, the source's cap and the day's 25; yesterday's counts don't hold back an act before the hour's new day) and
+  `HeartLogic.Relieve` (their nature's way of letting go, never more than they hold; not `Interplay.Ease`, whose cap is the
+  friends'), four values on `PawnHeart` (`natureTick`, `natureAct`, `natureEased`, `natureWhy`; no new list, so nothing for
+  the save model), the heart's page (`HeartView.SourceText`/`ReliefText`: "swore the colony's oath to the Lenlia, against
+  her pride (+7)"; `NatureHelp`: "A quiet evening with friends would help." while the strain is under the general advice;
+  `HelpFor` names it above 30). The service (`Diplomacy/Nature.cs`): `On` (switched on, the setting `diplomacyNature`
+  "Against their nature" in Diplomacy, needing the heart), `Felt` (one of the colony's with a heart; one a day; the act's
+  words by the game's own pronouns; `Tell.Minor` in the colony's news, three wordings and two eased; a mark through
+  `PersonaMarks.Give`), `Would` and `Impact` (the council's questions), `CloseKinOf`, `ParentsOf`, `HostageGoes`,
+  `WardGoes`, `TruceWithFoe`. Wired where each act happens: the oath in `Fealty.Swear` (the speaker who walked out of
+  `JobDriver_FealtyOath`); a truce, pact, oath or protection broken in `PactsHooks.Noted` on whoever the game names for the
+  deed (`MemoryHooks.Doer`, set for the length of the game's call: the blow's hand by the new `Patch_MemoryDamageBy` on
+  `Faction.Notify_MemberTookDamage`, the captor by the new `Patch_MemoryCapturedBy` on `Pawn_GuestTracker.CapturedBy`, the
+  seller (`TradeSession.playerNegotiator`), the first of a caravan that attacked theirs (the game's own look pawn), the
+  killer (`dinfo.Instigator`); `Truces`/`Pacts`/`Fealty`/`Vassals.BrokenByUs` now say whether they broke one) and a pact's
+  call refused by the council's answer in `CallsToArms.Refused` (the speaker); a hostage and a ward at
+  `WardsAbroad.AtEdge` as they walk off the map (the hostage timid or set in their ways, one act; their warm close kin; a
+  ward's warm parents); a match in `Matches.Pressed`; a challenge turned down in `DilemmaEffect_SendAway` (the happening's
+  `contest`: the travelling champion and the rematch) and faced in `HappeningWorker_Champion.Contest`; the envoy at
+  `EnvoysAbroad.AtEdge`; haggling in `Ransoms.AskMore` (the speaker, and the captive's own close kin among the colony);
+  the truce with one's foe in `Truces.Swear` (each avenger of the home, from the vendettas). The council's questions name
+  it on the answer that asks it (`FealtyObjection`: the speaker's pride; `TruceObjection`: the avenger's vengeance;
+  `MatchObjection`: the colonist's heart; the champion's and rematch's accept and decline), and the oath's objection has
+  two new `[proud]` lines ("too proud to kneel to anyone", appended so no shipped line moved). Marks
+  (`Defs/PersonaDefs/Rimfolk_PersonaMarks_Nature.xml`): `Rimfolk_Mark_Humbled` (`NatureOath`, a turning point with its
+  journal, half the time, pride -8), `Rimfolk_Mark_WordBrokenTwice` (trust -7), `Rimfolk_Mark_FacedChallengers` (nerve +6),
+  `Rimfolk_Mark_WorldSeen` (openness +6), the last three for the same act twice within a year, six times in ten. Words:
+  `Languages/English/Keyed/Rimfolk_Nature.xml` (the setting, the heart's, each act and side, the news, the questions); the
+  Almanac's diplomacy page (a paragraph and a clause in Settings, no keyword changed); README; the def validator knows the
+  new keys. The balance (`Tools/Balance -- --nature`, `NatureSim.cs`, printed; `docs/balance-report.md` unchanged since its
+  model didn't change): the heart hour by hour with the mod's caps and episode odds, the rest of life set to the report's
+  strain shares per style (2/0/0, 8/2/0, 20/8/2 per cent; the model gives 2.2/0.2/0, 7.8/2.1/0.4, 18.6/7.5/2.4), natures
+  from the vanilla traits; a colony deep in diplomacy (about 5.5 acts a year, generous) feels about 0.8 a year, each about
+  6 strain (on the heart's page some five days), 0.1 to 0.4 per cent of all strain (15th of 17 sources), episodes a
+  colonist-year 0.044 against 0.042 for an average colony, the act the main cause of none. Not wired, and why: the dark
+  scheme (schemes, 2c.3, are not built and wait for the player's harm pick; its "three in a year hardens a kind one" mark
+  is not defined); a town attacked or destroyed, and a harmful ability or item, break a truce with nobody named, since
+  the game names nobody for them; the feasts' contests (planned by the colony, nothing to refuse); no bubbles (each act
+  already shows where it happens). To look at in game: a proud speaker swearing fealty (the heart's page line and its
+  advice, the news, a mark maybe), the oath's question with a proud colonist objecting (the new lines, the speaker's
+  pride named on "swear it all the same"), a timid champion facing the travelling champion and a proud one declined (the
+  answers' sheets), a hostage given with a warm sister at home, an envoy who is set in their ways and one who is curious
+  (eased), a colonist striking one of a pact partner's people or capturing one of a truce people's (the one the game names
+  feels it), the setting off.
 - 0.99.0, stage 2 release 2d.1, house renown (docs/design/stage2-diplomacy.md, item 12; the player's decision 17 as recommended:
   earned and shown in words with a "known for", nothing spent; decision 9 for the Empire: titles read, never given; no
   version of its own here: its points go with the round). DESIGN.md, "Diplomacy" → "House renown" has the whole of it.

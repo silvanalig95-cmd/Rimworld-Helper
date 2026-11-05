@@ -2798,6 +2798,15 @@ good words and matches come easier, and what it is known for draws challengers, 
 rest. Its House card has its people, its renown and the deeds behind it, its marriages, wards and feuds. 50
 conversation pieces, 24 letter lines and 20 spoken lines speak of it. Setting: *House renown*.
 
+**Against their nature.** Some of what diplomacy asks goes against a colonist's nature, and it weighs on their heart (its
+strain, no mood of its own): the oath of fealty on a proud speaker, a broken truce on a trusting one who struck the blow,
+a hostage given on a timid one and on their warm kin, a ward sent away on warm parents, a match pressed on the one
+matched, a challenge turned down on a proud or hot-tempered champion and one faced on a timid one, a season abroad on
+someone set in their ways (and it eases the curious), haggling over a captive on a warm speaker, a truce with a people
+someone swore vengeance on on the avenger. The heart's page says what they did and what would help ("swore the colony's
+oath to the Lenlia, against her pride; a quiet evening with friends would help"), the news tells it, the council's
+questions name it first, and an oath or the same act twice in a year may leave a mark. Setting: *Against their nature*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town
