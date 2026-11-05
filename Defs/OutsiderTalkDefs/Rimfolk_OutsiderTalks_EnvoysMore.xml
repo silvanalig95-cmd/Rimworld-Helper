@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on envoys (Source/ColonyCouncil/Diplomacy/Envoys.cs, EnvoyLord.cs, EnvoysAbroad.cs; the facts in
+       Diplomacy/FactsRansom.cs), beside the envoy pieces in Rimfolk_OutsiderTalks_Ransom.xml. Their envoy stays a whole
+       season as the colony's guest and talks with colonists most days, so most of these are theirs: them:envoy (the one
+       spoken to is that envoy), at the table, through the weather and the hours, and through what happens at the colony
+       while they are there (colony:raid, colony:death, colony:birth, colony:decree, colony:election, colony:hungry,
+       colony:plenty, colony:prisoners, colony:children, colony:animals: all as the facts read them). The envoy does no
+       work, eats at the colony's table, keeps indoors in danger and writes home every five days; the Empire's envoys
+       expect a room of their own and fine meals. Then envoy:here ({ENVOY}, said by others of their people), envoy:ours
+       (the colony's envoy at their town, {OURENVOY}), and what their people remember of a stay: deed:envoyHonored (their
+       envoy went home content), deed:slighted (one of theirs went home slighted). By their ways: a guest-friend by the
+       fire, letters of credence, credentials presented, credentials sent ahead by comms. The format is described at the
+       top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Their envoy, at the table and about the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Table</defName>
+    <topic>envoy</topic>
+    <when>them:envoy</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[us] How do you find our food?</li>
+      <li>[them,their:tribal] It fills the belly, and nobody at your table eats alone.</li>
+      <li>[them,their:empire] Plain, though I have eaten worse at court and paid more for it.</li>
+      <li>[them] Plain and filling, which is what a guest should hope for.</li>
+      <li>[us] Tell {COOK}, it'll be welcome.</li>
+      <li>[us] I'll pass that on to the kitchen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Early</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,morning</when>
+    <lines>
+      <li>[them] Your people are all up before the light.</li>
+      <li>[us] The work doesn't wait for anyone.</li>
+      <li>[them,their:empire] At court nobody rises before noon who can help it.</li>
+      <li>[them] At home only the bakers keep hours like these.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Late</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,night</when>
+    <lines>
+      <li>[us] You're up late.</li>
+      <li>[them] I write my letters home at night, while it's quiet.</li>
+      <li>[us] Then I won't keep you from it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Rain</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,rain</when>
+    <lines>
+      <li>[them] Your people work straight through the rain.</li>
+      <li>[us] It's that or not eat.</li>
+      <li>[them] I'll put that in my letter, it says more than I could.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Cold</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,cold</when>
+    <lines>
+      <li>[them] Nobody at home warned me how cold it gets here.</li>
+      <li>[us,lowtech] Sit nearer the fire, nobody will mind.</li>
+      <li>[us] There are spare blankets, you only have to ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Heat</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,hot</when>
+    <lines>
+      <li>[them] This heat must be easier on people born to it.</li>
+      <li>[us] Nobody born here finds it easy.</li>
+      <li>[them] That's a comfort, in a way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Snow</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,snow,home:hot|home:desert</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] Where I come from, snow is something in children's stories.</li>
+      <li>[us] And now?</li>
+      <li>[them] Now I'll have a story of my own to bring home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Decree</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:decree</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] I'll be writing home about your council's new decree.</li>
+      <li>[us] Don't make it sound worse than it is.</li>
+      <li>[them] I'll write it the way I heard it at your table.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Election</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:election</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] My people will want to hear how your colony holds its elections.</li>
+      <li>[us] By vote, and a lot of arguing beforehand.</li>
+      <li>[them,their:tribal] Among us the elders choose, and nobody counts hands.</li>
+      <li>[them,their:empire] At court such things are settled by rank, not by a show of hands.</li>
+      <li>[them] The arguing is the part they'll want to hear about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Raid</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:raid</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] I kept indoors during the raid, as your people asked.</li>
+      <li>[us] That was the safest place for you.</li>
+      <li>[them,their:tribal] My people will hear how your colony keeps a guest-friend in a raid.</li>
+      <li>[them] I'll write home about it, all of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Mourning</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:death</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I'm sorry about {DEAD}.</li>
+      <li>[us] Thank you.</li>
+      <li>[them] I'll tell my people what {DEAD} was to you, as well as I understood it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Newborn</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:birth</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] A child born while I'm here, my people will take that as a good sign.</li>
+      <li>[us] We'll take any good sign we're given.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Followed</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:children</when>
+    <lines>
+      <li>[them] Your children follow me about as if I were a traveling show.</li>
+      <li>[us] They've never had a guest stay so long.</li>
+      <li>[them] I've started telling them stories, so I suppose I am one now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Animals</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:animals</when>
+    <lines>
+      <li>[them] I've been learning the names of your animals.</li>
+      <li>[us] All of them?</li>
+      <li>[them] Most of them, and a few of their tempers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Share</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:hungry</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] Your stores look thin, and I don't want to eat more than my share.</li>
+      <li>[us] A guest eats at our table, that's settled.</li>
+      <li>[them] Then I'll write home that your people share even when it's hard.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Storerooms</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:plenty</when>
+    <lines>
+      <li>[them] Your storerooms are fuller than I expected.</li>
+      <li>[us] We plan ahead.</li>
+      <li>[them] My people will be glad to hear it, and a few will be jealous.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Cells</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,colony:prisoners,!ransom:theirs</when>
+    <lines>
+      <li>[them] I didn't expect a guest's walk to take me past your cells.</li>
+      <li>[us] Every colony has its prisoners.</li>
+      <li>[them] And every guest writes home about them, so be ready for that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_CellsTheirs</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,ransom:theirs</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] I'm a guest at your table while one of my own people sits in your cells.</li>
+      <li>[us] It's an odd season for both of us.</li>
+      <li>[them] Odd is a kind word for it, and my people will want a better one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Missing</defName>
+    <topic>envoy</topic>
+    <when>them:envoy</when>
+    <lines>
+      <li>[them,them:married] I miss {THEIRSPOUSE} more than I thought I would.</li>
+      <li>[them,them:parent] I miss {THEIRCHILD} more than I thought I would.</li>
+      <li>[them] I miss home more than I thought I would.</li>
+      <li>[us] A season is a long time to be away.</li>
+      <li>[them] It is, but the letters help.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Chosen</defName>
+    <topic>envoy</topic>
+    <uses>chat,know</uses>
+    <when>them:envoy</when>
+    <lines>
+      <li>[us] Why did your people choose you to come here?</li>
+      <li>[them,their:tribal] I've sat by more strange fires than anyone in my camp.</li>
+      <li>[them,their:medieval] I can read, write and keep my temper, which is rarer than it sounds.</li>
+      <li>[them,their:industrial] I speak plainly and I don't get homesick, or so I told them.</li>
+      <li>[them,their:empire] My house was asked for someone of rank, and I was the one it could spare.</li>
+      <li>[them,their:spacer] My record matched the posting better than anyone else's.</li>
+      <li>[them] Someone had to come, and I was the one who said yes.</li>
+      <li>[us] We're glad it was you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Idle</defName>
+    <topic>envoy</topic>
+    <uses>chat,know</uses>
+    <when>them:envoy,!their:empire</when>
+    <lines>
+      <li>[them] Where I come from a guest is expected to help, and sitting idle feels wrong.</li>
+      <li>[us] Here a guest only has to be a guest.</li>
+      <li>[them] I'm finding that harder than any work.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Wood</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:tribal</when>
+    <lines>
+      <li>[them] At home the guest-friend sits nearest the fire, and nobody asks them to fetch wood.</li>
+      <li>[us] Nobody here will ask you to fetch wood either.</li>
+      <li>[them] I've noticed, and I'm not sure I like it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Credence</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:medieval</when>
+    <lines>
+      <li>[them] I came with letters of credence, and nobody here knew what to do with them.</li>
+      <li>[us] We read them, at least.</li>
+      <li>[them] That's more than some courts manage.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Notes</defName>
+    <topic>envoy</topic>
+    <uses>chat,know</uses>
+    <when>them:envoy,their:industrial</when>
+    <lines>
+      <li>[them] Mind if I take notes while we talk?</li>
+      <li>[us] What for?</li>
+      <li>[them] My people want to know how a place like this runs, from the people who run it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Section</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] My report home has a section on your colony's habits.</li>
+      <li>[us] Which habits?</li>
+      <li>[them] All of them, so it's a long section.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Room</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:empire</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] At court even a junior envoy keeps a room of their own.</li>
+      <li>[us] Out here a room of your own is a luxury.</li>
+      <li>[them] Then I will mention the luxury in my letters, if your colony finds me one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_FineMeal</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:empire</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I'm told your best cook is {COOK}.</li>
+      <li>[us] That's fair to say.</li>
+      <li>[them] Then a fine meal before my next letter home would not go unmentioned.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Faith</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,otherfaith</when>
+    <lines>
+      <li>[them] I've been watching how your people keep {OURFAITH}.</li>
+      <li>[us] Does it seem strange to you?</li>
+      <li>[them] Less strange than I expected, and I'll say so in my letters.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Speaker</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,us:speaker</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You're the colony's speaker, so I should be careful with you.</li>
+      <li>[us] You can be honest with me.</li>
+      <li>[them] Honest and careful aren't the same thing where I come from.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Hurt</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,them:hurt</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] How are you feeling?</li>
+      <li>[them] Better than I look, and I'll leave the worst of it out of my letter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Cool</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,tone:cool</when>
+    <lines>
+      <li>[them] I'm here because my people sent me, let's leave it at that.</li>
+      <li>[us] Then we'll try to make the season bearable.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Sour</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,tone:sour</when>
+    <lines>
+      <li>[them] Every slight I get here goes into my next letter home.</li>
+      <li>[us] Then write it fairly, and the good with it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Sorry</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,tone:warm</when>
+    <lines>
+      <li>[them] I'll be sorry to leave when the season's done.</li>
+      <li>[us] We'll be sorry to see you go.</li>
+      <li>[them] Will you write to me, when I'm home?</li>
+      <li>[us] If someone can carry it, yes.</li>
+      <li>[them] Then I'll keep an eye on the road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Others of theirs, about their envoy ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Keeping</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy</when>
+    <lines>
+      <li>[them] Is {ENVOY} keeping well?</li>
+      <li>[us] Well enough, and eating at our table every day.</li>
+      <li>[them] I'll say so at home, people there worry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_KeepingCool</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy,tone:cool</when>
+    <lines>
+      <li>[them] I hope you treat {ENVOY} better than you treat most visitors.</li>
+      <li>[us] We treat {ENVOY} as a guest, and a guest is what they are.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_ReadAloud</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy</when>
+    <lines>
+      <li>[us] Do you know {ENVOY} well?</li>
+      <li>[them] Everyone at home knows {ENVOY}, it's that kind of place.</li>
+      <li>[us] Then everyone must be reading the letters.</li>
+      <li>[them] Out loud, in the evenings, with arguments about what each line means.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colony's envoy at their town ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_OursGettingOn</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours</when>
+    <lines>
+      <li>[us] How is {OURENVOY} getting on at your town?</li>
+      <li>[them,their:tribal] They sit with the elders most evenings and ask about everything.</li>
+      <li>[them,their:medieval] They're at the hall most days, listening more than they talk.</li>
+      <li>[them,their:hightech] They've learned the town faster than some who were born there.</li>
+      <li>[them] Well, as far as I can tell.</li>
+      <li>[us] Good, we miss them here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_OursLetters</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours</when>
+    <lines>
+      <li>[them] {OURENVOY} writes home often, I've seen the letters go.</li>
+      <li>[us] They tell us what goes on at your town.</li>
+      <li>[them] I hope they leave out the gossip.</li>
+      <li>[us] They don't, which is half of why we read them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_OursFood</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours</when>
+    <lines>
+      <li>[us] Is {OURENVOY} eating well among your people?</li>
+      <li>[them,their:tribal] They eat what we eat, and they've stopped asking what it is.</li>
+      <li>[them] They eat at our tables like anyone else.</li>
+      <li>[us] Good, we only packed them enough for the road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_OursDoubt</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours,tone:cool</when>
+    <lines>
+      <li>[them] Some at home wonder what {OURENVOY} is really there for.</li>
+      <li>[us] To know your people better, nothing else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_OursFond</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours,tone:warm</when>
+    <lines>
+      <li>[them] My people have grown fond of {OURENVOY}.</li>
+      <li>[us] I'm glad to hear it.</li>
+      <li>[them] Don't be surprised if {OURENVOY} comes home with a few of our habits.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= How a stay went ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Honored</defName>
+    <topic>envoy</topic>
+    <when>deed:envoyHonored</when>
+    <lines>
+      <li>[them] The envoy we sent you came home with nothing but good to say.</li>
+      <li>[us] We tried to make them welcome.</li>
+      <li>[them,their:tribal] It worked, and the elders have heard every word of it.</li>
+      <li>[them] It worked, they've told it to anyone who'll listen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_HonoredCourt</defName>
+    <topic>envoy</topic>
+    <when>deed:envoyHonored,their:empire</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Our envoy's report on your household was read at court, and favorably.</li>
+      <li>[us] We're glad to hear it.</li>
+      <li>[them] You should be, the court is not easily pleased.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Guest_Slighted</defName>
+    <topic>envoy</topic>
+    <when>deed:slighted,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Someone of ours came home from your colony feeling slighted.</li>
+      <li>[us] That was never what we meant.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
