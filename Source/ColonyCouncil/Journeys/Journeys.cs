@@ -146,6 +146,16 @@ namespace ColonyCouncil
         [Unsaved] public readonly Dictionary<int, Job> issued = new Dictionary<int, Job>();
         [Unsaved] private HashSet<int> ids;
 
+        /// <summary>Goods a traveller is fetching off a colony stall now (Integrations/RimMarketJourney.cs): not counted twice.</summary>
+        public sealed class StallTake
+        {
+            public Pawn pawn;
+            public ThingDef def;
+            public Job job;
+        }
+
+        [Unsaved] public readonly List<StallTake> stallTaking = new List<StallTake>();
+
         public bool HasDestination => destTile >= 0;
 
         public PlanetTile DestTile => map == null || destTile < 0 ? PlanetTile.Invalid : new PlanetTile(destTile, map.Tile.Layer);
@@ -216,6 +226,7 @@ namespace ColonyCouncil
     public static class JourneyDefOf
     {
         public static JobDef Rimfolk_JourneyWait;
+        public static JobDef Rimfolk_JourneyStall;
         public static LetterDef Rimfolk_JourneyLetter;
 
         static JourneyDefOf()

@@ -155,6 +155,23 @@ namespace ColonyCouncil
         public static int Sleeps(ThingDef def) => Mathf.Max(1, def?.size.x ?? 1);
 
         /// <summary>
+        /// What lies on the colony's stalls (RimMarket), thing by thing, for the planner's amounts beside the stores: each
+        /// stall with how many it holds. Empty without RimMarket.
+        /// </summary>
+        public static Dictionary<ThingDef, List<(Thing stall, int count)>> StallHoldings(Map map)
+        {
+            try
+            {
+                return RimMarketStall.JourneyReady ? RimMarketStall.JourneyStock(map) : new Dictionary<ThingDef, List<(Thing, int)>>();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("journeys: the stalls' goods", e);
+                return new Dictionary<ThingDef, List<(Thing, int)>>();
+            }
+        }
+
+        /// <summary>
         /// The kind of line a thing makes when the player adds it: a bed caravans can use, a mod's tent, medicine, a drug,
         /// food the travellers can eat, feed only animals eat, or anything else.
         /// </summary>
@@ -719,7 +736,8 @@ namespace ColonyCouncil
             var map = plan.map;
             foreach (var line in plan.packing.Where(l => l.Taken))
             {
-                int left = line.count - going.Sum(p => Carried(p, line.def));
+                // A weapon taken up by one who had none counts as packed.
+                int left = line.count - going.Sum(p => Carried(p, line.def)) - (line.kind == "arm" ? JourneyRun.Armed(plan, going, line.def) : 0);
                 if (left <= 0) continue;
                 var things = (line.def.Minifiable ? Stored(map, ThingRequestGroup.MinifiedThing) : map.listerThings.ThingsOfDef(line.def).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer)))
                     .Where(t => Matches(t, line.def) && map.reachability.CanReach(plan.gate.IsValid ? plan.gate : Home(map), t, PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.PassDoors)))

@@ -14,6 +14,15 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!-- A traveller takes the list's goods out of a colony stall's stock (RimMarket; Integrations/RimMarketJourney.cs). -->
+  <JobDef>
+    <defName>Rimfolk_JourneyStall</defName>
+    <driverClass>ColonyCouncil.JobDriver_JourneyStall</driverClass>
+    <reportString>taking goods for the road off TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
   <LetterDef>
     <defName>Rimfolk_JourneyLetter</defName>
     <letterClass>ColonyCouncil.ChoiceLetter_Journey</letterClass>
