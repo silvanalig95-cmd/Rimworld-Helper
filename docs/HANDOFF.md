@@ -6,6 +6,69 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- house renown, checked over (the release 0.99.0, 2d.1, read against its code, every place it hooks into and the 1.6
+  game; no version of its own: its points go with the next round). Fixed, each checked in the code and the game's
+  source: one who took another's name on marrying (the game's ceremony, or the council's shared name, `FamilyNames.Take`)
+  is in both houses' `folk`, and the hour's index put them in whichever house the ledger listed last, so their renown,
+  what they hold, their card's line and Here and away's row for their family could be the old house's, and the other
+  house's card said they were no longer with the colony; the index now puts each in the house of the name they carry,
+  else the newest that remembers them (`RenownMath.HouseFor`, `Renown.Put`), and the card's gone leaves out anyone still
+  one of the colony's (`Renown.StillOurs`). One of a house away at another people's town on the colony's errand (its
+  envoy a season, its youth a year, its hostage a pact year: world pawns kept as lent) was not of it: its card said they
+  were no longer with the colony, and what they hold (names, offices, terms, a title, the notables' regard, up to fifty
+  points) left the reading, so the band could fall and be told ("fewer speak of...") while they spoke for the colony
+  abroad, and rise and be told again at their return; they are of the house while `KeepFor.Lent` holds (`Renown.Index`).
+  The band's bubble: renownup was said as a bad name mended ("strangers know our name" of a name not yet known) and
+  renowndown as a name went bad or only narrowed ("people out there have stopped talking about us" of a name cursed in
+  the region's halls, or still spoken of in the next town); `RenownMath.Bubble` says renownup only as the name carries
+  further and renowndown only as it fades from the talk (the history and the news tell the rest), and the one who says
+  it is awake and free (the day's look runs in the game's first hour, often night at home, and a sleeping colonist
+  spoke). The colony's hostage home after the term never counted: `WardsAbroad.Back` named them About where the youth
+  and the envoy home are named as having done it; now Did, and `RenownMath.SourceOf` takes a hostage's deed only when it
+  was for the colony (a hostage of theirs who stayed and joined served no term of the colony's). Every line of a council
+  task naming its officer counted as the council's business carried abroad: the task set, a visit's step, one called
+  off (three points each, the source's cap of twelve reached by one task), the keeper of secrets found out (the only
+  `TaskStage.Failed`) and a secret learned; only a task's milestone counts now (`SourceOf`), and `CouncilTasks.Write`
+  names the officer as one with a task failed or the keeper's secret watch (`RenownMath.OfficerRole`, as the guardian's
+  role: a secret learned is heard of by nobody, as one pressed and paid). A secret pressed and told never fell on the
+  keeper's house: the press's history (`SecretTies.Answer`) named only the colony and the notable; it names the one who
+  learned it now, as its line does. A house fallen to one was let go two years after it fell to one though that one
+  still lived at the colony (`Renown.Sync` passed nobody here); it is kept while one of it is with the colony, its two
+  years counted from when they go. The House card named its gone only from the ledger's person records, which last only
+  while something names them, so a colonist buried at home went unnamed and a house with only its dead listed nobody;
+  each of the colony's houses keeps its people's names beside their refs while they live (`LedgerHouse.folkNames`,
+  saved for the colony's houses only; an older save's filled in for the living at the next day; the save model). Files:
+  `Diplomacy/Renown.cs`, `RenownMath.cs`, `RenownPanels.cs`, `World/Ledger/LedgerRegion.cs`, `Diplomacy/WardsAbroad.cs`,
+  `CouncilTasks.cs`, `SecretTies.cs`, `Tools/save_estimate.py`; DESIGN.md says each. Tests: `RenownTests` (the house of a
+  name, the bubble, the hostage's and the task's sources, the officer's role, the code paths, the names and their save).
+  Looked at and found sound: the saves (the new fields' defaults, an older save's houses, refs kept as text, the towns'
+  houses with a band); the reading kept for the in-game hour (every hook reads `Renown.Read`'s hourly cache and the
+  hour's index; the House card, People → Houses and Here and away build at most once a second; nothing per frame or
+  per tick); the bands (the hold of three, infamy held to -12, a band told once: set as it is told, a new house's set
+  untold); the bounds (regard up to 15 and down to -10, a good word half again, a match accepted at most 0.95 and offered
+  at twice the day's chance, events a quarter, half and three quarters more by band, a feast's guests three tenths and at
+  most 0.95, the champion six in ten); the Empire's titles read only (`Seniority`, guarded); every age's words (bands and
+  known-for in four ages, the bubbles by the colony's age); a colonist with no family name (in no house, no line); an
+  empty house; no home (no bubble, the news without a target). Not confirmed, left as they are: a house with nobody
+  left still shares the colony's deeds and its moves are told, so the day after the last of a family died its band can
+  fall ("faded from the talk") as what they held leaves the reading, and an oath sworn later can raise it (the design
+  shares the colony's deeds with each of its houses and tells every move of one); two unrelated families of one name are
+  one house (houses are keyed by name; People → Houses shows them apart, both linking to it); their house's dealings with
+  the colony count every diplomacy and tie event between its head and the colony, a grudge their head holds and a secret
+  pressed on them included; a band shows on the cards and in talk up to a day before the day's look tells it (read by
+  the hour, told by the day); an older save's lines of a failed task and the keeper's watch still name the officer as
+  having done it (three each, capped), and its secrets pressed and hostages home stay uncounted; the first band's
+  renownup lines in the middle ages ("a song with our name in it") and the industrial age ("made the papers") are the
+  region band's words (the text pass's to look at); {RENOWN} to the Empire's people is in their tech age's words, not
+  the court's (`RenownWords.Form`, the Renown age form, is unused); `Matches.Offers` now makes its pick (each colonist's
+  candidates) every day for each town that may offer, before the day's roll (it rolled first; daily, not per tick); their
+  House card shows no marriages or wards (the ties name the colony's people and their people, the house only its head);
+  one of the colony's held by them (a hostage when the pact broke) or carried off is gone from the house, and what they
+  held leaves its reading. To look at in game: a couple of two houses where one takes the other's name (both House
+  cards, the colonist's line); a house's envoy away a season (still listed, the band holds); a house gone bad and mending
+  (no bubble, the news); the colony's hostage home (its house's "terms served as the colony's hostage"); a task set (no
+  renown) and done; a secret pressed and told (the keeper's house: "a secret pressed and told"); a house whose people
+  all died (its card names them).
 - 0.99.0, stage 2 release 2d.1, house renown (docs/design/stage2-diplomacy.md, item 12; the player's decision 17 as recommended:
   earned and shown in words with a "known for", nothing spent; decision 9 for the Empire: titles read, never given; no
   version of its own here: its points go with the round). DESIGN.md, "Diplomacy" → "House renown" has the whole of it.
