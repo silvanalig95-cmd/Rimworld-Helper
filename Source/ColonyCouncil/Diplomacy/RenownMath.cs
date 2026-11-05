@@ -171,11 +171,13 @@ namespace ColonyCouncil
         /// (null for none): the champion (dip:contest, did it), the one married (dip:wedding, did it), a ward's guardian at
         /// a good year's end (dip:ward, did it, the ward named: <paramref name="aboutSomeone"/>) and the colony's youth home
         /// with what they learned (dip:ward, did it, nobody else named), its envoy home (dip:envoy, did it), its hostage home
-        /// (dip:hostage, did it), the speaker at a truce sworn (dip:parley, named), the officer who did a task (dip:task, did
-        /// it); a secret pressed is a task against its notable (<paramref name="againstSomeone"/>): told, a milestone
-        /// (<paramref name="weighty"/>), it is the keeper's house's wrong; paid, nobody hears of it.
+        /// (dip:hostage, did it for the colony: <paramref name="forColony"/>; a hostage of theirs who stayed did it for
+        /// nobody's term), the speaker at a truce sworn (dip:parley, named), the officer who did a task (dip:task, did
+        /// it, a milestone: <paramref name="weighty"/>; a task set, a step of it or one called off is nothing yet); a secret
+        /// pressed is a task against its notable (<paramref name="againstSomeone"/>): told, a milestone, it is the keeper's
+        /// house's wrong; paid, nobody hears of it.
         /// </summary>
-        public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty)
+        public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty, bool forColony = true)
         {
             if (role == HistoryRole.About) return kind == DiplomacyMath.Parley ? "parley" : null;
             if (role != HistoryRole.Did) return null;
@@ -185,7 +187,7 @@ namespace ColonyCouncil
                 case DiplomacyMath.Wedding: return "wedding";
                 case DiplomacyMath.Ward: return aboutSomeone ? "fostered" : "abroad";
                 case DiplomacyMath.Envoy: return "envoy";
-                case DiplomacyMath.Hostage: return "hostage";
+                case DiplomacyMath.Hostage: return forColony ? "hostage" : null;
                 case DiplomacyMath.Task: return !againstSomeone ? "task" : weighty ? "told" : null;
                 default: return null;
             }

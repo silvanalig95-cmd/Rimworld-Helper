@@ -118,6 +118,12 @@ public static class RenownTests
           && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, false) == null, "a task done; a secret pressed and told a wrong, paid nobody hears of");
         C(RenownMath.SourceOf(DiplomacyMath.Envoy, HistoryRole.Did, false, false, true) == "envoy" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true) == "hostage"
           && RenownMath.SourceOf(DiplomacyMath.Feast, HistoryRole.Did, false, false, true) == null, "a season abroad as envoy or hostage; a feast is the colony's");
+        // The review: the colony's hostage home after their term is named as having done it (it was named About, so it never counted);
+        // a hostage of theirs who stayed and joined did nothing for the colony's term.
+        C(RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, false, true) == "hostage" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true, false) == null
+          && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.About, false, false, false, true) == null, "a term served for the colony, not one of theirs who stayed");
+        C(Regex.IsMatch(Code("Diplomacy/WardsAbroad.cs"), @"DiplomacyMath\.Hostage, new List<HistoryActor>\s*\{\s*new HistoryActor\(Refs\.Of\(p\), HistoryRole\.Did\), new HistoryActor\(Refs\.Of\(f\), HistoryRole\.With\), new HistoryActor\(Diplomacy\.Colony\(map\), HistoryRole\.For\)")
+          && Code("Diplomacy/Renown.cs").Contains("RenownMath.SourceOf(e.kind, role, against, about, e.Weighty, forColony)"), "the hostage home names them as having done it, for the colony");
         C(RenownMath.MemberKinds.All(k => DiplomacyMath.Kinds.Contains(k)), "the history's kinds read are diplomacy's own");
         var epithetDefs = string.Concat(Directory.GetFiles(Path.Combine(root, "Defs", "EpithetDefs"), "*.xml").Select(File.ReadAllText));
         foreach (var e in RenownMath.Epithets) C(epithetDefs.Contains("<defName>" + e.Key + "</defName>"), $"the name {e.Key} exists");

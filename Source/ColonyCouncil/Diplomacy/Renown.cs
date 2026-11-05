@@ -339,6 +339,7 @@ namespace ColonyCouncil
             int now = Now;
             var counted = new HashSet<int>();
             var alive = Living(h).ToDictionary(p => p.thingIDNumber);
+            var us = Refs.Of(Faction.OfPlayerSilentFail);
             foreach (var r in h.folk)
             {
                 // Their deeds the history keeps, each event once for the house.
@@ -348,7 +349,8 @@ namespace ColonyCouncil
                     var role = e.actors.First(a => a.who == r).role;
                     bool against = e.actors.Exists(a => a.role == HistoryRole.Against && a.who.kind == RefKind.Person);
                     bool about = e.actors.Exists(a => a.role == HistoryRole.About && a.who != r);
-                    string key = RenownMath.SourceOf(e.kind, role, against, about, e.Weighty);
+                    bool forColony = e.actors.Exists(a => a.role == HistoryRole.For && (a.who.kind == RefKind.Colony || a.who == us));
+                    string key = RenownMath.SourceOf(e.kind, role, against, about, e.Weighty, forColony);
                     if (key != null) hits.Add(new RenownMath.Hit(key, Days(e.tick), Math.Max(1, e.count)));
                 }
                 // What the peoples remember of them by name.
