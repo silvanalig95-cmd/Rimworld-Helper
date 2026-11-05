@@ -60,6 +60,9 @@ namespace ColonyCouncil
             if (why != null) return why;
             if (picked.Count == 0) return FeastWords.P("CC_Feast_Why_NoGuests");
             if (writer == null || writer.Dead || writer.MapHeld != home) return FeastWords.P("CC_Feast_Why_NoWriter");
+            // One letter or call to each guest, and only so many under way at once.
+            if (NeighbourLetters.OpenCount + picked.Count > NotableMath.MaxOpen)
+                return FeastWords.P("CC_Feast_Why_Letters", (NotableMath.MaxOpen - NeighbourLetters.OpenCount).Named("COUNT"));
             return Picked.Select(n => Feasts.InviteWhyNot(n, home)).FirstOrDefault(w => w != null);
         }
 
@@ -206,13 +209,14 @@ namespace ColonyCouncil
             var plan = Feasts.Plan(home, Picked, contests, prize, writer, out string why);
             if (plan == null)
             {
-                // direct: the answer to the player's own click, saying why it couldn't be sent.
-                Messages.Message(why ?? FeastWords.P("CC_Feast_Why_NoGuests"), MessageTypeDefOf.RejectInput, false);
+                // apart: the answer to the player's own click, saying why it couldn't be sent.
+                Tell.Message(NewsKind.World, Importance.Important, home, why ?? FeastWords.P("CC_Feast_Why_NoGuests"), LookTargets.Invalid, MessageTypeDefOf.RejectInput);
                 return;
             }
             if (plan.prize != null) plan.prize.SetForbidden(true, false);
-            // direct: the dialog's own confirmation of the invitations the player just sent.
-            Messages.Message(FeastWords.P("CC_Feast_Msg_Sent", FeastWords.Guests(plan).Named("GUESTS"), (writer?.LabelShort ?? "?").Named("PAWN")), MessageTypeDefOf.PositiveEvent, false);
+            // apart: the dialog's own confirmation of the invitations the player just sent; the writer sits down to them on the map.
+            Tell.Message(NewsKind.World, Importance.Notable, home, FeastWords.P("CC_Feast_Msg_Sent", FeastWords.Guests(plan).Named("GUESTS"), (writer?.LabelShort ?? "?").Named("PAWN")),
+                writer != null ? new LookTargets(writer) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             Close();
         }
     }

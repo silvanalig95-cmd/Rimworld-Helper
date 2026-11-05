@@ -63,6 +63,7 @@
   <CC_Feast_Why_NoneOfTheirs>The colony knows nobody of {PEOPLE} to invite.</CC_Feast_Why_NoneOfTheirs>
   <CC_Feast_Why_Over>The feast is over.</CC_Feast_Why_Over>
   <CC_Feast_Why_AlreadyHere>The guests are already here.</CC_Feast_Why_AlreadyHere>
+  <CC_Feast_Why_Letters>One letter or call goes to each guest, and only {COUNT} more can be under way now.</CC_Feast_Why_Letters>
   <CC_Feast_CWhy_Wrestling>Nobody of the colony is fit to wrestle.</CC_Feast_CWhy_Wrestling>
   <CC_Feast_CWhy_Race>Nobody of the colony is fit to run.</CC_Feast_CWhy_Race>
   <CC_Feast_CWhy_RaceGround>There's no open ground past the gate for a course.</CC_Feast_CWhy_RaceGround>
@@ -76,6 +77,7 @@
   <CC_Feast_Off_Light>the light was going</CC_Feast_Off_Light>
   <CC_Feast_Off_Rain>the weather wouldn't clear</CC_Feast_Off_Rain>
   <CC_Feast_Off_Long>it went on too long and was called</CC_Feast_Off_Long>
+  <CC_Feast_Off_Late>the evening came, and the feast with it</CC_Feast_Off_Late>
   <CC_Feast_Off_NoRing>there was no open ground for a ring</CC_Feast_Off_NoRing>
   <CC_Feast_Off_Nobody>nobody was free to take part</CC_Feast_Off_Nobody>
   <CC_Feast_Off_BrokeUp>it broke up before the end</CC_Feast_Off_BrokeUp>
@@ -273,7 +275,7 @@
   <CC_Feast_Act_Invite_Tip>Plan a feast with this notable among the guests.</CC_Feast_Act_Invite_Tip>
   <CC_Feast_Act_Plan>Plan a feast...</CC_Feast_Act_Plan>
   <CC_Feast_Act_CallOff>Call it off</CC_Feast_Act_CallOff>
-  <CC_Feast_Act_CallOff_Tip>The guests who said yes won't come, and each thinks a little less of the colony for it.</CC_Feast_Act_CallOff_Tip>
+  <CC_Feast_Act_CallOff_Tip>The guests who said yes won't come, and each thinks 5 less of the colony for it.</CC_Feast_Act_CallOff_Tip>
 
   <!-- What someone is doing -->
   <CC_Feast_Report_Line>waiting at the start of the race.</CC_Feast_Report_Line>

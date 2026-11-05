@@ -759,6 +759,12 @@ namespace ColonyCouncil
                 End(h, p, map, false);
                 return;
             }
+            // However the day went, they don't stay past a second night.
+            if (now - p.arrived > 2 * GenDate.TicksPerDay)
+            {
+                End(h, p, map, false);
+                return;
+            }
             Watch(p, map);
             Tend(p, map);
             int hour = GenLocalDate.HourOfDay(map);
@@ -905,10 +911,16 @@ namespace ColonyCouncil
                 var k = p.contests[p.contest];
                 if (p.contestStart < 0)
                 {
-                    // An outdoor contest waits for the light, fine weather and no danger; past its hour it is let go.
+                    // An outdoor contest waits for the light, fine weather and no danger; past its hour it is let go. Nothing
+                    // new begins once the feast should be under way.
                     if (FeastMath.Outdoor(k) && hour >= FeastMath.OutdoorBy)
                     {
                         Skip(p, k, FeastWords.P("CC_Feast_Off_Light"));
+                        continue;
+                    }
+                    if (hour >= FeastMath.FeastTo - 1 || hour < FeastMath.FirstLight)
+                    {
+                        Skip(p, k, FeastWords.P("CC_Feast_Off_Late"));
                         continue;
                     }
                     if (MapFacts.ThreatOn(map)) return;
@@ -985,12 +997,15 @@ namespace ColonyCouncil
             FeastContests.Stop(p);
             Moved(p, map, FeastStage.Feasting);
             bool music = p.guests.Any(g => g.state == GuestState.Here && g.hope == FeastHope.MealAndMusic);
+            // Its hours: the evening, or from now when the contests ran late.
+            int hour = GenLocalDate.HourOfDay(map);
+            int from = hour >= FeastMath.FeastFrom ? hour : FeastMath.FeastFrom, to = Math.Max(FeastMath.FeastTo, Math.Min(23, hour + 2));
             PlayOut play = null;
             try
             {
                 var eff = new DilemmaEffect_Feast
                 {
-                    label = FeastWords.Name(map), guests = PlayGuests.Feast, guestCount = 12, music = music, hours = new IntRange(FeastMath.FeastFrom, FeastMath.FeastTo), waitHours = 3f,
+                    label = FeastWords.Name(map), guests = PlayGuests.Feast, guestCount = 12, music = music, hours = new IntRange(from, to), waitHours = 3f,
                     duration = new FloatRange(2.5f, 3f)
                 };
                 play = eff.Begin(new DilemmaContext { map = map });
