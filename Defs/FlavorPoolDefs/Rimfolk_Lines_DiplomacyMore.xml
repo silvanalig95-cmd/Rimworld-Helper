@@ -9,9 +9,11 @@
       favour: warm or cordial when the debt is settled either way (their debt paid, or the colony's word given on their
         side), cool when they paid and no more, refusal when they would not;
       pact: warm or cordial when they swear it; cool when they swear it or take the colony's letter ending it; curt only
-        for a pact the colony ended; refusal when they won't swear it, or (rarely) for one ended;
+        for a pact the colony ended; refusal only when they won't swear it (an ended pact is tagged pactend and taken
+        cool or curt, so a refused offer's lines carry !pactend);
       truce: cordial or cool when they agree (a people at war is never warm), refusal when they won't; their envoy
-        comes to swear it only when a people at peace with both can vouch for them, so not every line promises one;
+        comes to swear it only when a people at peace with both can vouch for them (atgate), else it is sworn by word
+        (byword), so a line that promises an envoy at the gate carries atgate;
       ransom: warm, cordial or cool when they will bargain (an offer for one of theirs, or an exchange), refusal when not;
         a call is answered by a call, a letter at the gate;
       envoy: warm, cordial or cool when their envoy will come, refusal when not.
@@ -73,12 +75,16 @@
         <li>[pact,cool,theirLowtech] It is heard, and it will be done as your words ask.</li>
         <li>[pact,cool,theirHightech] Noted, and acted on as you requested.</li>
         <li>[pact,cool,call] Understood, {WRITER}. We'll do as you ask.</li>
-        <li>[pact,curt] Your colony ends the pact. So be it.</li>
-        <li>[pact,curt,theirLowtech] The oath is set aside, as you ask. We will remember who asked.</li>
-        <li>[pact,curt,theirHightech] Agreement ended at your request. Our records are updated.</li>
-        <li>[pact,refusal] Then there is nothing more to say about a pact this year, {WRITER}.</li>
-        <li>[pact,refusal,theirLowtech] There will be no oath between us this year.</li>
-        <li>[pact,refusal,call] I'm sorry, {WRITER}. There won't be a pact between us this year.</li>
+        <li>[pact,curt,pactend] Your colony ends the pact. So be it.</li>
+        <li>[pact,curt,theirLowtech,pactend] The oath is set aside, as you ask. We will remember who asked.</li>
+        <li>[pact,curt,theirHightech,pactend] Agreement ended at your request. Our records are updated.</li>
+        <li>[pact,cool,pactend] The pact is over, then. We part without any grudge.</li>
+        <li>[pact,cool,pactend,theirLowtech] The oath is put aside as your words ask, and no one here will speak ill of it.</li>
+        <li>[pact,cool,pactend,theirHightech] Your notice ending the agreement is received and filed.</li>
+        <li>[pact,curt,pactend,call] So that's the end of it, {WRITER}. We heard you.</li>
+        <li>[pact,refusal,!pactend] Then there is nothing more to say about a pact this year, {WRITER}.</li>
+        <li>[pact,refusal,theirLowtech,!pactend] There will be no oath between us this year.</li>
+        <li>[pact,refusal,call,!pactend] I'm sorry, {WRITER}. There won't be a pact between us this year.</li>
         <!-- While a pact holds -->
         <li>[greetings,cordial,tie:pact:defence,theirLowtech] Our watchers look your way at night now. Write when you like, and light your fire when you must.</li>
         <li>[greetings,warm,tie:pact:trade] The traders here look forward to your colony's cart more than to most caravans.</li>
@@ -91,7 +97,7 @@
         <li>[greetings,cordial,tie:pact:due] Forgive a short letter. There is a call between our peoples, and it has everyone's attention.</li>
         <li>[condolences,warm,tie:pact] Your words mean a great deal, coming from a people we are sworn to. Thank you.</li>
         <!-- A truce offered -->
-        <li>[truce,cordial,war,theirLowtech] We accept your terms, and we will send our envoy under our sign of parley if we can. See that your people keep their hands still.</li>
+        <li>[truce,cordial,war,theirLowtech,atgate] We accept your terms, and we will send our envoy under our sign of parley. See that your people keep their hands still.</li>
         <li>[truce,cordial,war,theirHightech] Terms acceptable. We'll make it official at your gate, or by word if nobody can vouch for our envoy.</li>
         <li>[truce,cordial,war] This has gone on long enough for both of us. We accept your terms.</li>
         <li>[truce,cool,war] A truce, then. We will see what your word is worth.</li>

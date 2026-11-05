@@ -7,8 +7,7 @@
        (the one spoken to was the colony's captive once and went home by a ransom or an exchange, {CAPTOR} the home that
        held them), colony:prisoners (the colony holds someone). What their people remember: deed:ransomed (a bargain over
        captives settled between the two: a ransom paid either way, or an exchange), deed:forgave (the colony let one of
-       theirs go for nothing), deed:brokeWord (their people went back on their word, a trap at an exchange among other
-       things), deed:captured, deed:prisonerDied. By their ways: a tribe trades captives back for goods, the middle ages
+       theirs go for nothing), deed:trapped (their people sprang a trap at an exchange), deed:captured, deed:prisonerDied. By their ways: a tribe trades captives back for goods, the middle ages
        pay a price in silver, outlanders meet at a crossing, spacers exchange on agreed terms; the Empire pays in silver.
        The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 
@@ -273,6 +272,31 @@
     <lines>
       <li>[them] One of my people went into your cells and never came out.</li>
       <li>[us] We didn't want that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A trap sprung at an exchange ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Trap</defName>
+    <topic>ransom</topic>
+    <when>deed:trapped</when>
+    <lines>
+      <li>[us] The last exchange with your people ended with a band at our gate.</li>
+      <li>[them] I know, and I wasn't asked about it.</li>
+      <li>[them,their:lowtech] Those who planned it were proud of it, and the rest of us were ashamed.</li>
+      <li>[them] Not everyone at home thought it was clever.</li>
+      <li>[us] Then tell them we remember who walked out to the gate that day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_TrapCool</defName>
+    <topic>ransom</topic>
+    <when>deed:trapped,tone:cool|tone:sour</when>
+    <lines>
+      <li>[us] Should we expect fighters at the gate the next time we trade captives with you?</li>
+      <li>[them] Expect what you like, you'll have it anyway.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

@@ -4,8 +4,10 @@
   <!--
     Pacts and truces (Source/ColonyCouncil/Diplomacy/). Two pools the game already draws on:
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call of the
-      new purposes "pact" (a pact proposed, or ended by the colony's letter) and "truce" (a truce offered to a people at
-      war), by how they took it: warm or cordial and cool (agreed), refusal (not); and their words in a letter of any
+      new purposes "pact" (a pact proposed, or ended by the colony's letter: pactend, taken cool or curt, never refused)
+      and "truce" (a truce offered to a people at war), by how they took it: warm or cordial and cool (agreed), refusal
+      (not); a truce agreed is sworn atgate (their envoy vouched for by a people at peace with both) or byword (nobody to
+      vouch for them), so only lines tagged atgate promise an envoy at the gate; and their words in a letter of any
       purpose while a pact or a truce holds (tie:pact, tie:pact:due, tie:truce, tie:truce:due; {PACTWITH}, {TRUCEWITH}
       their own people's name). By their ways: theirLowtech, theirHightech; war (a people at war with the colony).
     - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the truce sworn at the gate (the speaker's
@@ -20,12 +22,18 @@
     <lines>
       <plain>
         <!-- A truce offered -->
-        <li>[truce,warm,war] We are as tired of this as you are, {WRITER}. Our envoy will come to your gate to swear it.</li>
-        <li>[truce,cordial,war] Your terms are fair. We will send someone to your gate to swear them.</li>
-        <li>[truce,cool,war] We have read your terms. We will send someone to your gate to swear it, and no more than that.</li>
-        <li>[truce,cool,war,theirLowtech] Our people talked late into the night about your words. We will come to your gate under our sign of parley.</li>
-        <li>[truce,cool,war,theirHightech] Your terms are acceptable. Expect our envoy at your gate, and see that nobody on your walls gets nervous.</li>
-        <li>[truce,cool,call] Fine. We'll send someone to your gate to make it official.</li>
+        <li>[truce,warm,war,atgate] We are as tired of this as you are, {WRITER}. Our envoy will come to your gate to swear it.</li>
+        <li>[truce,cordial,war,atgate] Your terms are fair. We will send someone to your gate to swear them.</li>
+        <li>[truce,cool,war,atgate] We have read your terms. We will send someone to your gate to swear it, and no more than that.</li>
+        <li>[truce,cool,war,theirLowtech,atgate] Our people talked late into the night about your words. We will come to your gate under our sign of parley.</li>
+        <li>[truce,cool,war,theirHightech,atgate] Your terms are acceptable. Expect our envoy at your gate, and see that nobody on your walls gets nervous.</li>
+        <li>[truce,cool,call,atgate] Fine. We'll send someone to your gate to make it official.</li>
+        <!-- Agreed where nobody can vouch for an envoy of theirs: sworn by word (DiplomacyLetters.QuoteTags) -->
+        <li>[truce,cordial,war,byword] Nobody will vouch for an envoy of ours on your land, so take this letter as our word. We accept.</li>
+        <li>[truce,cool,war,byword] We accept your terms. There is no one to walk our envoy in safely, so our word will have to do.</li>
+        <li>[truce,cool,war,byword,theirLowtech] Our people swear it here, among ourselves, since nobody can bring our envoy to you.</li>
+        <li>[truce,cordial,war,byword,theirHightech] Terms accepted. With no third party to escort an envoy, consider this letter our signature.</li>
+        <li>[truce,cool,call,byword] All right, {WRITER}. Nobody can vouch for an envoy of ours, so you have our word on this call.</li>
         <li>[truce,refusal,war] You beat one band of ours and think we will beg. We will not.</li>
         <li>[truce,refusal,war,theirLowtech] We will not come to your gate under a sign of parley. Not this season.</li>
         <li>[truce,refusal,war,theirHightech] Your terms were discussed and rejected. That's all.</li>
@@ -36,10 +44,10 @@
         <li>[pact,warm,theirHightech] Consider it signed on our side. We look forward to the year.</li>
         <li>[pact,cordial] We've talked it over, and we accept, {WRITER}.</li>
         <li>[pact,cordial,call] Good to hear from you, {WRITER}. Yes, we'll do it.</li>
-        <li>[pact,cool] We'll agree to it. Let's see how the year goes.</li>
-        <li>[pact,refusal] It's too much to promise right now, {WRITER}. Ask us again another time.</li>
-        <li>[pact,refusal,theirLowtech] Those who lead us are not ready to swear to that. In time, perhaps.</li>
-        <li>[pact,refusal,theirHightech] Our council voted against it this time. It may come up again next year.</li>
+        <li>[pact,cool,!pactend] We'll agree to it. Let's see how the year goes.</li>
+        <li>[pact,refusal,!pactend] It's too much to promise right now, {WRITER}. Ask us again another time.</li>
+        <li>[pact,refusal,theirLowtech,!pactend] Those who lead us are not ready to swear to that. In time, perhaps.</li>
+        <li>[pact,refusal,theirHightech,!pactend] Our council voted against it this time. It may come up again next year.</li>
         <!-- While a pact holds -->
         <li>[greetings,warm,tie:pact] Thank you for writing, {WRITER}. Our pact is the talk of the town in a good way.</li>
         <li>[greetings,cordial,tie:pact:defence] Good to hear from you. Our people know your colony stands with us, and we with you.</li>

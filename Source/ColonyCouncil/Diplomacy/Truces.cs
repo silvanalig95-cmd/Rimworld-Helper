@@ -59,6 +59,12 @@ namespace ColonyCouncil
 
         public static bool Pending(Tie t) => t != null && PactMath.ParseTerm(t.terms?.key, out _, out bool pending) && pending;
 
+        /// <summary>
+        /// A truce with them would be sworn by word: no people at peace with both to vouch for an envoy of theirs, or no one of
+        /// theirs who could walk in (TruceParley.Send). What their answer, their offer and the rows say of how it is sworn.
+        /// </summary>
+        public static bool ByWord(Faction f) => f == null || TruceParley.Escort(f) == null || Arrivals.PersonKind(f) == null;
+
         public static TruceTerm TermOf(Tie t)
         {
             PactMath.ParseTerm(t?.terms?.key, out var term, out _);
@@ -263,7 +269,7 @@ namespace ColonyCouncil
             if (t == null) return PactWords.T("CC_Truce_Ans_Moot", PactWords.People(f).Named("PEOPLE"));
             accepted = true;
             if (promise != null) WorldLedger.Set(promise, Tie.State.Kept);
-            return PactWords.T("CC_Truce_Ans_Yes", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"), PactWords.Term(term).Named("TERM"),
+            return PactWords.T(ByWord(f) ? "CC_Truce_Ans_YesByWord" : "CC_Truce_Ans_Yes", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"), PactWords.Term(term).Named("TERM"),
                 PactWords.Price(price, silver).Named("PRICE"));
         }
 
@@ -350,7 +356,7 @@ namespace ColonyCouncil
             var form = PactWords.TruceForm(home, f);
             string who = head != null ? NotableBook.Called(head) : PactWords.People(f);
             bool call = NotableMath.Callable((int)f.def.techLevel) && NeighbourLetters.Console(home) != null;
-            string text = PactWords.T(call ? "CC_Truce_Offer_Call" : "CC_Truce_Offer", who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
+            string text = PactWords.T((call ? "CC_Truce_Offer_Call" : "CC_Truce_Offer") + (ByWord(f) ? "ByWord" : ""), who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), PactWords.Term(TruceTerm.Season).Named("TERM"), PactWords.Price(price, silver).Named("PRICE"))
                           + "\n\n" + PactWords.P("CC_Truce_Offer_How", PactWords.People(f).Named("PEOPLE"), FromPeaceLine(f).Named("PEACE"));
             var town = head != null ? NotableBook.TownOf(head.town) : WorldSituationWorker.NearestTown(f, home);

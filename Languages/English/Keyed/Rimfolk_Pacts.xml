@@ -77,16 +77,24 @@
   <CC_Truce_Ans_Yes>{PEOPLE} agree to a truce {TERM}, with {PRICE}. Their envoy will come to the colony's gate to swear it by their custom: {RITE}.</CC_Truce_Ans_Yes>
   <CC_Truce_Ans_Yes_2>{PEOPLE} will take the colony's terms: {WORD} {TERM}, with {PRICE}. An envoy of theirs is coming to the gate to swear it, {RITE} as their ways ask.</CC_Truce_Ans_Yes_2>
   <CC_Truce_Ans_Yes_3>The answer is yes. {PEOPLE} will send someone to the gate to swear {WORD} {TERM}, with {PRICE}.</CC_Truce_Ans_Yes_3>
+  <!-- Agreed where no people at peace with both can vouch for an envoy of theirs: sworn by word (Truces.ByWord) -->
+  <CC_Truce_Ans_YesByWord>{PEOPLE} agree to {WORD} {TERM}, with {PRICE}. No people at peace with both sides can vouch for an envoy of theirs, so it will be sworn by word.</CC_Truce_Ans_YesByWord>
+  <CC_Truce_Ans_YesByWord_2>The answer is yes: {WORD} {TERM}, with {PRICE}. With nobody to vouch for an envoy of theirs, {PEOPLE} give their word by letter instead.</CC_Truce_Ans_YesByWord_2>
+  <CC_Truce_Ans_YesByWord_3>{PEOPLE} take the colony's terms, {TERM} and {PRICE}. Their envoy would have no one to vouch for them on the road, so the truce is sworn by word.</CC_Truce_Ans_YesByWord_3>
 
   <!-- Their offer of a truce, after a raid of theirs was beaten -->
   <CC_Truce_Offer_Label>A truce offered: {PEOPLE}</CC_Truce_Offer_Label>
   <CC_Truce_Offer>Word has come from {WHO} of {PEOPLE}, sent under a white flag. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. If the colony agrees, their envoy will come to the gate to swear it: {RITE}.</CC_Truce_Offer>
   <CC_Truce_Offer_2>{WHO} of {PEOPLE} has sent word under a white flag. They lost more than they meant to in that raid, and they offer {WORD} {TERM}, with {PRICE}, sworn at the colony's gate by their custom: {RITE}.</CC_Truce_Offer_2>
   <CC_Truce_Offer_Call>{WHO} called the colony's console for {PEOPLE}. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. If the colony agrees, their envoy will come to the gate to swear it: {RITE}.</CC_Truce_Offer_Call>
+  <CC_Truce_OfferByWord>Word has come from {WHO} of {PEOPLE}, sent under a white flag. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. No people at peace with both could vouch for an envoy of theirs, so if the colony agrees it is sworn by word.</CC_Truce_OfferByWord>
+  <CC_Truce_OfferByWord_2>{WHO} of {PEOPLE} has sent word under a white flag. They lost more than they meant to in that raid, and they offer {WORD} {TERM}, with {PRICE}. With nobody to vouch for an envoy of theirs, their word would stand for the oath.</CC_Truce_OfferByWord_2>
+  <CC_Truce_Offer_CallByWord>{WHO} called the colony's console for {PEOPLE}. After the raid the colony beat off, they offer {WORD} {TERM}, with {PRICE}. No people at peace with both could vouch for an envoy of theirs, so if the colony agrees it is sworn by word.</CC_Truce_Offer_CallByWord>
   <CC_Truce_Offer_How>While it holds, the raids of {PEOPLE} keep away from this home, and any camp of theirs near it breaks up. {PEACE}</CC_Truce_Offer_How>
   <CC_Truce_Opt_Accept>Accept the truce</CC_Truce_Opt_Accept>
   <CC_Truce_Opt_Refuse>Refuse</CC_Truce_Opt_Refuse>
   <CC_Truce_Accepted>The colony has accepted the truce. The envoy of {PEOPLE} will come to the gate to swear it.</CC_Truce_Accepted>
+  <CC_Truce_AcceptedByWord>The colony has accepted the truce. With no people at peace with both to vouch for an envoy of {PEOPLE}, it is sworn by word.</CC_Truce_AcceptedByWord>
   <CC_Truce_Hist_Offer>{PEOPLE} offered the colony a truce.</CC_Truce_Hist_Offer>
 
   <!-- Their envoy at the gate, and the oath -->
@@ -230,6 +238,7 @@
   <CC_Truce_Row>{WORD} with {PEOPLE} {TERM}</CC_Truce_Row>
   <CC_Truce_RowPending>{WORD} with {PEOPLE} {TERM}, agreed and not yet sworn</CC_Truce_RowPending>
   <CC_Truce_RowPendingNote>Their envoy is to come to the gate to swear it: {RITE}.</CC_Truce_RowPendingNote>
+  <CC_Truce_RowPendingNoteByWord>No people at peace with both can vouch for their envoy: it is to be sworn by word.</CC_Truce_RowPendingNoteByWord>
   <CC_Truce_Card_Price>The price: {PRICE}.</CC_Truce_Card_Price>
   <CC_Pact_Row>{KIND} with {PEOPLE}: {WORD}</CC_Pact_Row>
   <CC_Pact_State_Calling>a call is being made</CC_Pact_State_Calling>
@@ -240,7 +249,7 @@
   <CC_Card_OfferedByUs>The colony offered it.</CC_Card_OfferedByUs>
   <CC_Card_OfferedByThem>{PEOPLE} offered it.</CC_Card_OfferedByThem>
   <CC_Truce_Act_Offer>Offer a truce</CC_Truce_Act_Offer>
-  <CC_Truce_Act_Offer_Tip>A letter or a call to their head with the terms: a season or a year, and a price either way. Their answer comes back, and if they agree their envoy comes to the gate to swear it.</CC_Truce_Act_Offer_Tip>
+  <CC_Truce_Act_Offer_Tip>A letter or a call to their head with the terms: a season or a year, and a price either way. Their answer comes back, and if they agree their envoy comes to the gate to swear it, or, with no people at peace with both to vouch for the envoy, it is sworn by word.</CC_Truce_Act_Offer_Tip>
   <CC_Pact_Act_Propose>Propose a pact</CC_Pact_Act_Propose>
   <CC_Pact_Act_Propose_Tip>A letter or a call to their head: a defense pact, or a trade pact with the cart the colony sends each season.</CC_Pact_Act_Propose_Tip>
   <CC_Pact_Act_End>End it by letter</CC_Pact_Act_End>
@@ -288,7 +297,7 @@
   <!-- Settings -->
   <CC_Settings_DiplomacyPacts>Pacts and truces</CC_Settings_DiplomacyPacts>
   <CC_SetNote_DiplomacyPacts>Truces with peoples at war with the colony, and defense and trade pacts with its friends.</CC_SetNote_DiplomacyPacts>
-  <CC_Settings_DiplomacyPacts_Tip>A truce can be offered to a people at war with the colony when it has beaten a raid of theirs in the last 15 days, holds one of their notables or kin, or a friend of both has spoken for peace; they offer one now and then after a raid of theirs is beaten. Agreed, their envoy comes to the gate under their sign of parley, and the colony's speaker walks out to swear it. A season or a year, with a price either way. While it holds, their raiders' camp near the colony breaks up; once per truce their firebrands may raid anyway (one in ten). At its end it is a peace if their goodwill has come to 0. A pact (with a people at goodwill 20 or more, never the Empire) runs a year and can be renewed: a defense pact brings their band when the colony calls during a threat (at most once a season, nine times in ten) and asks the colony's fighters for their town when it is attacked; a trade pact brings their caravan each season and takes a cart of the colony's surplus for silver. Attacking a partner breaks it, and every people in reach hears of it. Off: nothing new is made, and those live run out by their terms.</CC_Settings_DiplomacyPacts_Tip>
+  <CC_Settings_DiplomacyPacts_Tip>A truce can be offered to a people at war with the colony when it has beaten a raid of theirs in the last 15 days, holds one of their notables or kin, or a friend of both has spoken for peace; they offer one now and then after a raid of theirs is beaten. Agreed, their envoy comes to the gate under their sign of parley, vouched for by a people at peace with both, and the colony's speaker walks out to swear it; with no such people it is sworn by word. A season or a year, with a price either way. While it holds, their raiders' camp near the colony breaks up; once per truce their firebrands may raid anyway (one in ten). At its end it is a peace if their goodwill has come to 0. A pact (with a people at goodwill 20 or more, never the Empire) runs a year and can be renewed: a defense pact brings their band when the colony calls during a threat (at most once a season, nine times in ten) and asks the colony's fighters for their town when it is attacked; a trade pact brings their caravan each season and takes a cart of the colony's surplus for silver. Attacking a partner breaks it, and every people in reach hears of it. Off: nothing new is made, and those live run out by their terms.</CC_Settings_DiplomacyPacts_Tip>
   <CC_Settings_TruceRaids>Truces keep raids away</CC_Settings_TruceRaids>
   <CC_SetNote_TruceRaids>While a truce holds, the storyteller doesn't send that people's raids to that home.</CC_SetNote_TruceRaids>
   <CC_Settings_TruceRaids_Tip>A small hook on the game's choice of raiders: a people holding a truce with the home being raided isn't chosen. Raids whose people is set beforehand (quests, other mods) still come, and break the truce when they do. Needs the deeper game hooks. Off: a truce keeps only Rimfolk's own raids and camps away.</CC_Settings_TruceRaids_Tip>

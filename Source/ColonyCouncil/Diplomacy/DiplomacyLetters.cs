@@ -253,6 +253,34 @@ namespace ColonyCouncil
         private static int Picked = -1;
         private static string Asked;
 
+        // ================= Their own words =================
+
+        /// <summary>A pact ended by the colony's letter: their own words in the answer speak of an end, never of an offer refused.</summary>
+        public const string PactEndTag = "pactend";
+
+        /// <summary>How a truce they agree to is to be sworn: their envoy at the gate, or by word (no people at peace with both to vouch for them).</summary>
+        public const string AtGateTag = "atgate", ByWordTag = "byword";
+
+        /// <summary>
+        /// Tags for their own words in the answer (NeighbourLetters.Quote) that only this frame knows: a pact ended by the
+        /// colony's letter (<see cref="PactEndTag"/>, so a refused offer's lines are never picked for it), how a truce
+        /// they agree to is to be sworn (<see cref="AtGateTag"/> or <see cref="ByWordTag"/>, so only lines that say so
+        /// promise an envoy at the gate), and the wards' (WardLetters).
+        /// </summary>
+        public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
+        {
+            if (l == null || tags == null || !Owns(l.purpose)) return;
+            try
+            {
+                if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactEndPrefix, StringComparison.Ordinal)) tags.Add(PactEndTag);
+                if (l.purpose == LetterPurpose.Truce && n?.faction != null) tags.Add(Truces.ByWord(n.faction) ? ByWordTag : AtGateTag);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("diplomacy letters: their words' tags", e);
+            }
+        }
+
         // ================= Their answer =================
 
         /// <summary>What their answer does, and its words for their letter.</summary>
@@ -340,7 +368,10 @@ namespace ColonyCouncil
                 var t = int.TryParse(l.topicKey.Substring(PactEndPrefix.Length), out int id) ? Pacts.Get(id) : null;
                 if (t != null && t.Live) Pacts.EndByLetter(t);
                 a.line = PactWords.T("CC_Pact_Ans_Ended", PactWords.People(f).Named("PEOPLE"));
+                // Nothing was asked of them, so nothing is refused: they take the end cool or curt (their own words are
+                // picked for an end, QuoteTags' "pactend", never a refused offer's).
                 if (tone < AnswerTone.Cool) tone = AnswerTone.Cool;
+                else if (tone > AnswerTone.Curt) tone = AnswerTone.Curt;
                 return;
             }
             else
