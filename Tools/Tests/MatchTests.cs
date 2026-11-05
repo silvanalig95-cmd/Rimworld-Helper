@@ -104,6 +104,12 @@ public static class MatchTests
             "they walk in on the day, by daylight, never into danger");
         C(MatchMath.CeremonyFrom == 5 && MatchMath.CeremonyTo == 16, "the game's own hours for a wedding ceremony");
         C(MatchMath.ArriveTo <= MatchMath.CeremonyTo, "the guests are at the gate in time for the ceremony");
+        // Review of round b: the ceremony (its party before and after the vows) and the evening's feast each let no other
+        // gathering begin; begun in the same hour, one waited on the other and the feast fell through.
+        C(MatchMath.CeremonyHour(5, false) && MatchMath.CeremonyHour(16, false) && !MatchMath.CeremonyHour(4, false) && !MatchMath.CeremonyHour(17, false),
+            "the game's hours for its ceremony");
+        C(MatchMath.CeremonyHour(FeastMath.FeastFrom - 1, true) && !MatchMath.CeremonyHour(FeastMath.FeastFrom, true) && MatchMath.CeremonyHour(5, true),
+            "with the wedding's guests here, never from the feast's hour on (the next morning instead)");
         C(MatchMath.RoadDays(0.2f) == 1f && MatchMath.RoadDays(3f) == 3f, "the road to their town, a day at least, before the wedding there");
         C(MatchMath.EscortWaitHours == 10f && MatchMath.GiveUpDays > MatchMath.EscortWaitHours / 24f, "their kin wait at the gate ten hours");
 
@@ -134,6 +140,9 @@ public static class MatchTests
           && MatchMath.WrongOf(false, false, false, false, true, true) == MatchWrong.Sold && MatchMath.WrongOf(false, false, false, false, false, true) == MatchWrong.Banished,
             "imprisoned, enslaved, sold, banished: the design's wrongs");
         C(MatchMath.WrongOf(false, false, false, false, false, false) == MatchWrong.None && !MatchMath.Wronged(MatchWrong.None) && MatchMath.Wronged(MatchWrong.Sold), "nothing else is a wrong");
+        C(MatchMath.SoldAway(true, false, false) && !MatchMath.SoldAway(false, false, false) && !MatchMath.SoldAway(true, true, false),
+            "sold: another people's, not held as a prisoner");
+        C(!MatchMath.SoldAway(true, false, true), "carried off by raiders and gone over to them in the game's captivity: no wrong of the colony's");
         C(MatchMath.PassesDown(true, true) && !MatchMath.PassesDown(false, true) && !MatchMath.PassesDown(true, false), "the grudge passes to the next head once its holder is gone");
         C(MatchMath.PartedRegard < 0 && MatchMath.CalledOffRegard < MatchMath.PartedRegard && MatchMath.WrongedRegard < MatchMath.CalledOffRegard && MatchMath.DeclinedRegard < 0
           && MatchMath.DeclinedRegard > MatchMath.PartedRegard, "a match declined costs little, parting more, breaking it off more, a spouse wronged most");
@@ -172,6 +181,13 @@ public static class MatchTests
             "the wedding's guests through the feasts' own entry point, the ceremony when they are at the gate");
         C(matches.Contains("TryStartMarriageCeremony") && matches.Contains("AcceptableGameConditionsToStartCeremony") && matches.Contains("WeddingPlans.Plan(a, b, WeddingPlans.Quiet)"),
             "the game's own ceremony, when the game would hold one; else the council's wedding plan");
+        C(matches.Contains("MatchMath.CeremonyHour(GenLocalDate.HourOfDay(map), guests)"), "the ceremony begun only in its hours, before the feast's with the guests here");
+        C(Regex.IsMatch(Code("Diplomacy/MatchDays.cs"), @"Married already[\s\S]{0,300}foreach \(var t in With\(people\)\)[\s\S]{0,200}Ceremonies\(map, ours\) != null\) return ours\.Position"),
+            "the guests stay by the couple, and the feast waits, through the game's party after the vows");
+        C(matches.Contains("kin ? \"CC_Match_Wed\" : \"CC_Match_WedQuiet\"") && matches.Contains("pactHad ? \"CC_Match_Wed_WhatPactHad\" : \"CC_Match_Wed_WhatNoPact\""),
+            "the wedding's letter names kin among the guests only when they came, and a pact running on only when one stands");
+        C(Code("Diplomacy/MatchAlliance.cs").Contains("MatchMath.SoldAway(other, theirs.IsPrisoner, other && theirs.Faction.HostileTo(Faction.OfPlayer))"),
+            "the daily look reads a spouse gone over to their captors as no sale");
         C(matches.Contains("PawnRelationDefOf.Fiance") && Code("Patches/Patch_WorldEvents.cs").Contains("Matches.Married(firstPawn, secondPawn);"),
             "engaged when agreed, the alliance made where every wedding is heard");
         C(matches.Contains("Arrivals.Join(x, map, near)") && matches.Contains("c.SetFaction(p.people)") && matches.Contains("WorldLedger.Keep(c, KeepFor.Spouse)"),

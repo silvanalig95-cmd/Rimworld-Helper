@@ -106,9 +106,11 @@
   <!-- The wedding -->
   <CC_Match_Wed_Label>{OURS} and {THEIRS} married</CC_Match_Wed_Label>
   <CC_Match_Wed>{OURS} and {THEIRS} are married, here at the colony, with kin of {THEIRS} from {TOWN} among the guests. It is {WORD} now, and {PEOPLE} count the colony as family.</CC_Match_Wed>
+  <CC_Match_WedQuiet>{OURS} and {THEIRS} are married, here at the colony. It is {WORD} now, and {PEOPLE} count the colony as family.</CC_Match_WedQuiet>
   <CC_Match_WedAway>Word has come from {TOWN}: {OURS} and {THEIRS} were married there, by {RITE}. {OURS} lives among {PEOPLE} now, and they count the colony as family.</CC_Match_WedAway>
   <CC_Match_Wed_What>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. It stands as a defense pact between the two: their fighters come when the colony calls, and they will call on the colony's in turn.</CC_Match_Wed_What>
   <CC_Match_Wed_WhatPactHad>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. The colony's defense pact with them runs on for as long as the marriage holds.</CC_Match_Wed_WhatPactHad>
+  <CC_Match_Wed_WhatNoPact>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming.</CC_Match_Wed_WhatNoPact>
   <CC_Match_Wed_WhatEmpire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. The Empire makes no pacts, and this marriage is no pact either.</CC_Match_Wed_WhatEmpire>
   <CC_Match_Wed_NoRoom>The colony already has three marriages with {PEOPLE}: this one is the couple's own, and adds nothing more between the two peoples.</CC_Match_Wed_NoRoom>
   <CC_Match_Hist_Wed>{OURS} married {THEIRS} of {PEOPLE} at the colony.</CC_Match_Hist_Wed>

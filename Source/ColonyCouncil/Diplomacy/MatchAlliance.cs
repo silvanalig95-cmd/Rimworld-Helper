@@ -168,7 +168,8 @@ namespace ColonyCouncil
         {
             if (LivesOf(t) == MatchHome.Colony)
             {
-                bool sold = theirs.Faction != null && theirs.Faction != Faction.OfPlayer && theirs.Faction != f && !theirs.IsPrisoner;
+                bool other = theirs.Faction != null && theirs.Faction != Faction.OfPlayer && theirs.Faction != f;
+                bool sold = MatchMath.SoldAway(other, theirs.IsPrisoner, other && theirs.Faction.HostileTo(Faction.OfPlayer));
                 bool banished = theirs.Faction == null && !theirs.IsPrisoner;
                 return MatchMath.WrongOf(false, false, theirs.IsPrisonerOfColony, theirs.IsSlaveOfColony, sold, banished);
             }
