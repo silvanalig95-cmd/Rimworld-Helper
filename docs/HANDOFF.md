@@ -10,6 +10,48 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   review and text pass (0.81.0, 0.88.0 to 0.90.0) are in, none of it yet seen in the game. Round b (2b.1 feasts and
   contests, 2b.2 marriage alliances, 2b.3 wards and hostages) waits for the player's word after playing. Stage 3's
   17 decisions and the harm review's picks are still with the player.
+- Journey planner: who to bring and what to pack (the player's request, with a screenshot of "Plan a journey": a better
+  overview of the colonists to judge who to bring, their state, what to bring, the recommended picked for them; and,
+  the same release, RimMarket's stall goods listed and taken out of the stock for the road). DESIGN.md, "Rimfolk's
+  windows" → "The journey planner: who to bring and what to pack" has the whole of it. Pure and tested:
+  `Journeys/JourneyAdviceMath.cs` (`JourneyAim`, `JourneyDanger`, `AdviceGroup`, `AdviceWhy`, `HomeWarning`,
+  `JourneyWants`; `DangerOf`, `KeepHome`, `MostToSend`, `PartySize`, `WantsDoctor`, `FighterScore`, `BetterNot`,
+  `HomeCost`, `Score`, `HomeLeft`, `Pick`, `Best`/`IsBest`, `PickBeasts`, `MedicineFor`, `SilverFor`, `PickGoods`,
+  `TakeFrom`, `StillToAdd`; `Tools/Tests/JourneyAdviceTests.cs`, 1,700 checks). Game side: `Journeys/JourneyAdvice.cs`
+  (`Purpose` from the destination: an active mission at the town, a call to arms there, settlers waiting for the
+  hamlet's place, then the site (a raiders' camp's points, else the site's against the home's; distress signals and
+  hidden parts unknown), peace talks, the town (hostile, trading, a trading post, a trade request, a visit); each
+  colonist read and placed with chips; animals; `Items` for "Recommended for this journey"; `Apply`), the dialog
+  (`UI/JourneyDialog.cs`: the purpose strip under the title with "Pick the recommended", Who goes as rows grouped
+  Recommended, Can go, Better not with folds and counts, the animals the same, the recommended things above the list
+  with Add and Add the recommended, three meters at the foot; the window 1120 by 820 at most, the overview 45% of it),
+  the picker (`UI/JourneyPick.cs`: stall goods beside the stores, "(N on a stall)"). Weapons for the unarmed are a new
+  line kind `arm` (group "arms", after drugs): the unarmed take one up at the end of their Dress step
+  (`JourneyRun.ArmJob`, marked in `plan.done` as `ThingID:Arm:defName`, counted as packed by `JourneyRun.Armed` in
+  `JourneyPack.Missing`). RimMarket (`Integrations/RimMarketJourney.cs`, found by name, `JourneyReady`): `JourneyStock`,
+  `OnStall`, `TakeForJourney` (out of `StockOwner` into the traveller's pack, the line lowered through RimMarket's own
+  `SetOrder` as `Notify_Sold` would, a refill line kept, no takings, demand or sale); `JourneyRun.StallJob` at the end
+  of the Pack step (what the stores and packs don't cover, less what others fetch now, `plan.stallTaking`, not saved;
+  as much as they have room for, all that's left when nobody has room), `JobDriver_JourneyStall` and
+  `Rimfolk_JourneyStall` in `Defs/Misc/Rimfolk_Journeys.xml`. The advice model is built when the planner opens and at
+  most once a second while open (the press builds it at once); nothing runs while it is shut; nothing is saved but the
+  `arm` lines and their marks. Keys in `Languages/English/Keyed/Rimfolk_JourneyAdvice.xml` (and the arms group in
+  `Rimfolk_Journeys.xml`). Docs: the Almanac's journeys page (the description, the last hours' closing text, "What they
+  take" and "How long it lasts") and RimMarket's (no keyword changes), README ("Journeys planned ahead"), DESIGN.md.
+  Left out, and why: clothes to pack for the weather (the planner already changes travellers into the stores' clothes
+  before they go; what the stores can't cover is a note, and a caravan doesn't change clothes on its own); trade
+  goods from the stores besides art (what the colony needs isn't known; anything else is one click in "Add from the
+  stores"); a speed penalty for slow animals (a caravan's speed on the world map doesn't depend on its slowest
+  animal); stall goods put back on the stall when a journey is called off (they go to the stores like any pack, the
+  line stays lowered); mods' mounts beyond the game's own `CaravanRidingSpeedFactor`. To look at in game: the planner
+  at 1080p and 768p (the overview's rows, two lines of pills, the folds; the purpose strip's sentence wrapping beside
+  the button); a distress signal, a raiders' camp, a hostile town, a trading town with a trade request, peace talks, a
+  call to arms, settlers waiting, a pilgrim's escort, a harvest, an apprentice, nowhere in particular; "Pick the
+  recommended" from nothing picked and from the player's own picks (who goes replaced, items added, set numbers kept);
+  the home's only doctor or cook passed over and the line under Who goes for one's own picks; a mount and pack animals
+  by the load; the arms line taken up in the last hours and not loaded again at the gate; with RimMarket, a line taken
+  partly off a stall (the traveller walking to it, the counter and its line lowered, a refill line kept), the picker's
+  "(N on a stall)".
 - 0.90.0, text pass: diplomacy round a (the content pass beside 0.81.0, 0.88.0 and 0.89.0, as docs/design/stage2-diplomacy.md, "The
   order to build it in", asks; no version of its own: its points go with the next round). Words only, in new files beside
   the round's own (the round's tests cap its own files' counts). Talk pieces, 156, each said only on facts the providers

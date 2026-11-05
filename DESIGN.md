@@ -3115,6 +3115,57 @@ they read alike. It is how things read, not what they do: every page keeps its a
   hover card, This week and the council's pages, no bold in the keyed texts); `LayoutTests` at both window sizes as
   before.
 
+#### The journey planner: who to bring and what to pack
+
+The player's request (5 November 2026): a better overview of the colonists in "Plan a journey", so they can judge
+who to bring, in what state they are, what to take, with the recommended picked for them. The planner is a dialog
+(`UI/JourneyDialog.cs`, 1120 by 820 at most) drawn in the kit's grammar:
+
+- **What it is for** (`Journeys/JourneyAdvice.Purpose`): read from the plan's destination, the colony's own errands
+  first: an active mission at that town (`Missions.All`: a pilgrim's escort, a feast, word carried, a harvest, an
+  apprentice, with its named colonist and number), a people's call to arms there (a defence pact's `PactMath.ParseArms`,
+  a debt's Fighters need; `PactMath.MinFighters`), settlers waiting for the colony's caravan to their hamlet's place
+  (`HamletMath.MinEscort`); then the place: a site (a raiders' camp's own points, else the site's threat points
+  against the home's `StorytellerUtility.DefaultThreatPointsNow`; a distress signal or hidden parts are unknown and
+  count as some danger; a precious lump wants Mining; a downed refugee a doctor), peace talks, a town (hostile: a
+  high-danger fight; one that trades, a trading post, a trade request: trade; else a visit), anything else a place to
+  look over. Its kind and danger show as state chips under the title with one sentence, the recommendation's size and
+  what it leaves the home without, and **Pick the recommended** on the right.
+- **Who to bring** (`Journeys/JourneyAdviceMath.cs`, pure, `Tools/Tests/JourneyAdviceTests.cs`): each colonist at
+  home read into a `Person` (health, pain, walking, illness, bed rest, wounds, pregnancy; mood, break line, the heart's
+  band; Shooting, Melee, Medicine, Social, Animals, Plants, Mining; weapon, quality, violence, best sharp armor; the
+  road's weather against their comfortable range once dressed; addictions; carrying capacity; doctor, cook, grower,
+  warden by their work settings, office, a baby's only parent at home, a lover who stays). `BetterNot` gives the
+  reasons nobody else changes; `PartySize` the least and ideal number by the aim, the danger, the errand's own number
+  and `KeepHome` (two in five grown stay); `Pick` takes the errand's named one, the lead (negotiator, speaker or talker,
+  the best hands), a doctor where `WantsDoctor` (never the home's last), then the best `Score`s, passing over anyone
+  whose going would leave the home without a doctor, a cook or enough defenders while another would do (placed better
+  not for it) until the party's least number; `HomeLeft` names what a choice leaves the home without, for the
+  recommendation and for the player's own picks. `PickBeasts`: a mount per traveller (the game's
+  `CaravanRidingSpeedFactor`), pack animals for the load past 90% of the people's room.
+- **The overview** (`DrawWho`): rows in the kit's grammar under section headings that fold with their counts
+  (Recommended, Can go, Better not; the animals the same): a checkbox, the portrait and the name as links to the card
+  with their previews, the reason in a line in its group's ink, and two lines of pills (health, mind, gear, the
+  weather, needs, home; the journey's skills with the colony's best in gold). A row's click picks or leaves out; the
+  player's picks are never changed but by their own press.
+- **What to bring**: above the list, "Recommended for this journey" (`JourneyAdvice.Items`): medicine by the party and
+  the danger (`MedicineFor`), silver (`SilverFor`), a town's trade request, goods (`PickGoods`: the stalls' first,
+  then art, within 60% of the room left), weapons for the unarmed (a new line kind `arm`, group "arms": the unarmed take
+  one up at the end of their Dress step, `JourneyRun.ArmJob`, marked in `plan.done`, counted as packed by
+  `JourneyRun.Armed`), bedrolls; notes for what the stores lack. "Add" and "Add the recommended" put them on the list as
+  the player's own lines (`JourneyAdvice.Apply`).
+- **The load at a glance**: three meters at the foot (the load against the room, the caravan's
+  `TilesPerDayCalculator.ApproxTilesPerDay` with this load, the food's days against the road's), the text lines below.
+- **RimMarket's stalls** (`Integrations/RimMarketJourney.cs`, by name): `JourneyStock` lists the colony stalls'
+  counters, counted with the stores (`ToHand`), in the picker and the recommendations, the stores first
+  (`JourneyAdviceMath.TakeFrom`); in the Pack step `JourneyRun.StallJob` sends a traveller to the stall
+  (`JobDriver_JourneyStall`, `Rimfolk_JourneyStall`) to take what the stores and packs don't cover out of its
+  `StockOwner`, the sale line lowered as `Notify_Sold` would (refill lines kept) through RimMarket's own `SetOrder`, no
+  takings, demand or sale recorded. `plan.stallTaking` (not saved) keeps two from fetching the same count.
+- **Performance**: the model (`JourneyAdviceModel`) is built when the planner opens and at most once a second while it
+  is open (the press of Pick the recommended builds it at once); rows measure their pills once per width; nothing runs
+  while the planner is shut.
+
 ### A colonist's tabs
 
 A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second

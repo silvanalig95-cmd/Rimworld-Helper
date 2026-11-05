@@ -745,7 +745,8 @@ namespace ColonyCouncil
         private static void Recommend(JourneyAdviceModel m, JourneyPlan plan, Dictionary<ThingDef, (int stores, int carried)> held,
             Dictionary<ThingDef, List<(Thing stall, int count)>> stalls, ThingDef def, string kind, int more, string why)
         {
-            if (def == null || more <= 0) return;
+            // Something the player took off the list isn't put back by a recommendation.
+            if (def == null || more <= 0 || plan.packing.Any(l => l.def == def && l.removed)) return;
             int stores = Stores(held, def);
             int onStall = OnStalls(stalls, def, out string stallName);
             int listed = OnList(plan, def);

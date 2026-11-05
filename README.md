@@ -1761,6 +1761,25 @@ firing line) to where a killbox fits, the usual killbox mistakes, the field of f
 raiders pick their way (the cheapest way in, what makes a way dear, why a killbox has to stay the easiest), and
 keeping a defense up after a raid.
 
+### Journeys planned ahead
+**Plan a journey** (from the Decrees page, Here and away, or "Plan a journey here" on a place's card) chooses who goes,
+where and when: the travellers get ready together in the last hours (rested, fed, washed, dressed for the road's
+weather, packed) and set off at the hour by the game's own caravan forming. The planner reads what the journey is for
+from where it goes (a fight at a site with hostiles, a raiders' camp, a hostile town or a call to arms; trade at a town
+or trading post; talks; an escort of settlers or a pilgrim; a mission's errand) and how dangerous the place looks
+against the colony's own strength, and **Who goes** is an overview of everyone at home: their health, mood and heart,
+the skills a journey uses with the colony's best in gold, their weapon and armor, whether their clothes cover the
+weather on the way, the drugs they need, what they carry, and what the home loses while they are away (the only
+doctor or cook, a council seat, a baby's parent, a lover left behind), grouped Recommended, Can go and Better not
+with one reason each. The recommendation never leaves the home without a doctor, a cook or enough defenders while
+someone else could go, and says so when nobody could. Pack animals come by the load and mounts one per traveller;
+above the packing list, **Recommended for this journey** adds medicine by the danger, silver and goods for trade, a
+town's trade request, weapons for the unarmed (taken up before they set off) and bedrolls, each with why. **Pick the
+recommended** fills who goes, the animals and the things in one press; nothing is picked but by your click. At the
+foot, bars for the load against the room, the caravan's own speed, and the food's days against the road's. With
+RimMarket, what lies on the colony's stalls is listed beside the stores, the stores' taken first, and a traveller
+takes the rest out of the stall's stock in the last hours.
+
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages

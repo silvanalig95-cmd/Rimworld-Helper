@@ -56,7 +56,6 @@ namespace ColonyCouncil
         Able,
         // Can go
         CanGo,
-        NotNeeded,
         Unarmed,
         Child,
         Spare,

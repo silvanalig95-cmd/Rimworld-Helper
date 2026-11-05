@@ -30,7 +30,31 @@ public static class JourneyAdviceTests
         Beasts(Check);
         Bringing(Check);
         Sources(Check);
+        Keys(Check);
         return n;
+    }
+
+    // ---------------- The words ----------------
+
+    /// <summary>Every reason, warning, kind of journey and group the planner shows has its words (the keys are made from the names).</summary>
+    private static void Keys(Action<bool, string> Check)
+    {
+        string root = System.IO.Directory.GetCurrentDirectory();
+        while (root != null && !System.IO.Directory.Exists(System.IO.Path.Combine(root, "Languages", "English", "Keyed"))) root = System.IO.Path.GetDirectoryName(root);
+        Check(root != null, "found the keyed texts");
+        if (root == null) return;
+        var keys = new HashSet<string>();
+        foreach (var f in System.IO.Directory.GetFiles(System.IO.Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
+            foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(System.IO.File.ReadAllText(f), @"<(CC_[A-Za-z0-9_]+)>"))
+                keys.Add(m.Groups[1].Value);
+        foreach (AdviceWhy w in Enum.GetValues(typeof(AdviceWhy))) Check(keys.Contains("CC_JA_Why_" + w), $"the reason {w} has its words");
+        foreach (HomeWarning w in Enum.GetValues(typeof(HomeWarning))) Check(keys.Contains("CC_JA_Home_" + w), $"the warning {w} has its words");
+        foreach (JourneyAim a in Enum.GetValues(typeof(JourneyAim))) Check(keys.Contains("CC_JA_Aim_" + a), $"the journey {a} has its words");
+        foreach (AdviceGroup g in Enum.GetValues(typeof(AdviceGroup))) Check(keys.Contains("CC_JA_Group_" + g), $"the group {g} has its words");
+        foreach (JourneyDanger d in Enum.GetValues(typeof(JourneyDanger)))
+            if (d != JourneyDanger.None) Check(keys.Contains("CC_JA_Danger_" + d), $"the danger {d} has its words");
+        Check(keys.Contains("CC_JA_Danger_Unknown"), "an unknown danger has its words");
+        foreach (string g in JourneyMath.Groups) Check(keys.Contains("CC_Journey_Group_" + g) && keys.Contains("CC_Journey_Group_" + g + "_Tip"), $"the list's group {g} has its words");
     }
 
     private static Person P(int id, int shoot = 5, int melee = 5, int med = 2, int social = 4, bool armed = true, bool ranged = true, bool doctor = false, bool cook = false)
@@ -272,6 +296,8 @@ public static class JourneyAdviceTests
         Check(picked.Select(g => g.goods).Distinct().Count() == picked.Count, "each kind once");
         Check(PickGoods(goods, 0f).Count == 0, "no room: no goods");
         Check(StillToAdd(5, 3) == 2 && StillToAdd(5, 7) == 0 && StillToAdd(5, -1) == 5, "the count still to add");
+        Check(JourneyMath.GroupOf("arm") == "arms" && Array.IndexOf(JourneyMath.Groups, "arms") > Array.IndexOf(JourneyMath.Groups, "drugs"),
+            "weapons for the unarmed have a group of their own after drugs");
     }
 
     // ---------------- Stores or stall ----------------
