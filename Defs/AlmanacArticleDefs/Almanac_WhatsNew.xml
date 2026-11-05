@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.98.0</version>
+        <date>5 November 2026</date>
+        <title>Tasks, oaths and the keeper in words</title>
+        <points>
+          <li>Neighbours talk about the council's tasks and the keeper of secrets in every age: 92 new conversations covering the keeper's night watch, being found out, pressing a secret and a secret told, and each office's errand as their people see it.</li>
+          <li>Fealty and vassals get 56 new conversations: the oath in both sides' ways, the collector, tribute short, levies, their band, renouncing, and the colony's own vassals.</li>
+          <li>Their letters answer every kind of council business, the oath and the quartermaster's dues in more voices, and ordinary letters mention the tasks, the oath and the vassals.</li>
+          <li>New spoken lines: sounding someone out, pressing a secret, the keeper's night watch, the dawn patrol in any weather, the oath at the gate, and an officer back from a visit.</li>
+          <li>Every letter and message about the keeper, the tasks, fealty and vassals that had a single wording now has two or more.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.97.1</version>
         <date>5 November 2026</date>
         <title>Fealty and tasks, checked over</title>

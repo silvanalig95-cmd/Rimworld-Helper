@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, Vassals.cs; the facts in
+       Diplomacy/FactsFealty.cs), beside Rimfolk_OutsiderTalks_Fealty.xml, whose tags these keep. With someone of the people
+       the colony is sworn to: fealty:oath (the whole time it stands, never the Empire), fealty:short (tribute owed),
+       fealty:protected (their band came this season), fealty:levies (their call on the colony's levies this season: it is
+       set whether the colony sent them or refused, so a line that says they came asks deed:levies too). What their people
+       remember: deed:levies (the levies sent), deed:protected (their band came), deed:tributeShort (tribute short once),
+       deed:tribute (paid, said only beside fealty:oath, for a vassal's people remember the dues they brought by the same
+       word) and deed:renounced (the colony walked out of the oath, or turned on its liege; never a clean renouncing), said
+       with !fealty:oath. With someone of a people whose town is the colony's own vassal: vassal:town, vassal:heavy,
+       vassal:levy (its levies called this season, and they came), deed:hamletHarvest (their produce brought to the gate)
+       and deed:hamletHelped (help sent when they asked); the one spoken to may live at another town of theirs, so these
+       say "our kin"; from the colony's own hamlet once sworn, town:hamlet:sworn. The colony's own words by its age
+       (tribute to a stronger clan, fealty and tribute, a protectorate, a charter; for its vassals the clan's spear, a
+       lord's protection, a protectorate's guarantee, a charter of protection) and theirs (protection for tribute, an
+       oath of fealty and levies, a company town and a union's dues, a corporate accord). Callbacks pick up the existing
+       marks head and war. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The oath, by both sides' ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_TribalSpears</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,their:tribal</when>
+    <lines>
+      <li>[them] When our horn sounds, the elders will look for your spears among ours.</li>
+      <li>[us,tribal] They'll be there, a clan that gives its word keeps it.</li>
+      <li>[us] They'll be there, we swore to it.</li>
+      <li>[them] Good, a promise made to the elders is never forgotten.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_MedievalTithe</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,their:medieval,!fealty:short</when>
+    <lines>
+      <li>[them] Your colony pays its tithe like one of our old villages, without being chased for it.</li>
+      <li>[us] We'd rather not be chased.</li>
+      <li>[them] Aye, and our bailiff is glad of one gate there's no need to shout at.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_IndustrialUnion</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,their:industrial</when>
+    <lines>
+      <li>[them] As far as the union's concerned, your colony pays its dues like a member.</li>
+      <li>[us] Do we get a vote, then?</li>
+      <li>[them] No, but you get the protection, which is what most members want anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_SpacerAccord</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,their:spacer</when>
+    <lines>
+      <li>[them] Under the accord, your colony is listed as a protected party, second class.</li>
+      <li>[us] Who's first class?</li>
+      <li>[them] Our own settlements, and the shareholders.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_OursTribal</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,tribal</when>
+    <lines>
+      <li>[us] Our elders say a small clan that pays a strong one sleeps through the night.</li>
+      <li>[them,their:tribal] Ours say the same, from the other side of the fire.</li>
+      <li>[them] And mostly it does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_OursMedieval</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,medieval</when>
+    <lines>
+      <li>[us] Fealty sits easier on some of us than on others.</li>
+      <li>[them] It sits easiest on those who've seen a raid.</li>
+      <li>[us,colony:raid] Then it sits easy on all of us this season.</li>
+      <li>[us] Then give it time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_OursIndustrial</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,industrial</when>
+    <lines>
+      <li>[us] Being a protectorate means more paperwork than I expected.</li>
+      <li>[them] It means a lot of things, and the paperwork is the easy part.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_OursSpacer</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,spacer</when>
+    <lines>
+      <li>[us] Our charter puts us under your protection, but the raiders haven't read it.</li>
+      <li>[them,fealty:protected] Our band explained it to them this season, I'm told.</li>
+      <li>[them] That's what our band is for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The collector each season ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_CollectorFall</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,fall,!fealty:short</when>
+    <lines>
+      <li>[them] Our collector likes your gate best in the fall, when the stores are full.</li>
+      <li>[us] We like the fall too, for the same reason.</li>
+      <li>[them] Then we understand each other.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_CollectorPaid</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,deed:tribute,!fealty:short</when>
+    <lines>
+      <li>[them] Your tribute reached our collector in full again, and our head noticed.</li>
+      <li>[us] We keep our side.</li>
+      <li>[them] Not everyone who holds of us does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_Visitor</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,role:visitor|role:guest</when>
+    <lines>
+      <li>[them] At home they call this place one of ours now.</li>
+      <li>[us] One of yours, or one that holds of you?</li>
+      <li>[them] At home they don't bother with the difference.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_Envoy</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,role:envoy</when>
+    <lines>
+      <li>[them] My head sent me partly to see how the people who hold of us live.</li>
+      <li>[us] And how do we live?</li>
+      <li>[them] Better than some, and you keep your walls up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_Heir</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,role:heir</when>
+    <lines>
+      <li>[them] When I hold my people's seat, your oath will be to me.</li>
+      <li>[us] Then I hope we'll get on as well as we do now.</li>
+      <li>[them] Better, if you're wise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_SameFaith</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,samefaith</when>
+    <lines>
+      <li>[them] It's easier to hold of people who pray as you do, I think.</li>
+      <li>[us] Some of ours said as much when we swore.</li>
+      <li>[them] They were right.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_TheirWar</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,their:war</when>
+    <lines>
+      <li>[them] We're at war, so don't be surprised if our head calls on your oath.</li>
+      <li>[us] We know the terms.</li>
+      <li>[them] Knowing them and keeping them are different things.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Tribute short ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_ShortCool</defName>
+    <topic>fealty</topic>
+    <when>fealty:short,tone:cool</when>
+    <lines>
+      <li>[them] Our collector says your tribute fell short this season.</li>
+      <li>[us] It was all the stores could give.</li>
+      <li>[them] Then the stores had better fill up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_ShortWarm</defName>
+    <topic>fealty</topic>
+    <when>fealty:short,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Our head knows it was a lean season for you, and so do I.</li>
+      <li>[us] We'll make it up as soon as we can.</li>
+      <li>[them] Make it up before our collector comes again, and nobody will say a word.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_ShortHead</defName>
+    <topic>fealty</topic>
+    <when>fealty:short,role:head|role:notable</when>
+    <lines>
+      <li>[them] I'd rather speak of your tribute here than write about it.</li>
+      <li>[us] We'll send what's owed as soon as the stores allow.</li>
+      <li>[them] See that you do, I'd hate to see the oath broken over a cart of goods.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_Poor</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,poor</when>
+    <lines>
+      <li>[us] A poor colony feels every coin of its tribute.</li>
+      <li>[them] A poor colony needs our band more than a rich one.</li>
+      <li>[us] I know, and I still feel every coin.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_ShortPaid</defName>
+    <topic>fealty</topic>
+    <when>deed:tributeShort,fealty:oath,!fealty:short</when>
+    <lines>
+      <li>[them] Your colony fell short once, and paid it in the end.</li>
+      <li>[us] We did, and we'd rather not again.</li>
+      <li>[them] Our collector remembers it, all the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Levies called and answered ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_LeviesCalled</defName>
+    <topic>fealty</topic>
+    <when>fealty:levies</when>
+    <lines>
+      <li>[them] Our head called on your oath this season, as the terms allow.</li>
+      <li>[us] We read that letter twice before we answered it.</li>
+      <li>[them] Most do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_LeviesTribal</defName>
+    <topic>fealty</topic>
+    <when>deed:levies,their:tribal</when>
+    <lines>
+      <li>[them] The young warriors still talk about your spears at our fire.</li>
+      <li>[us] Ours still talk about it too.</li>
+      <li>[them] Then it was a fight worth sharing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_LeviesMedieval</defName>
+    <topic>fealty</topic>
+    <when>deed:levies,their:medieval</when>
+    <lines>
+      <li>[them] Our captain says your levies held their ground better than some of ours.</li>
+      <li>[us] Don't let your own hear you say that.</li>
+      <li>[them] They've heard it, and they're sulking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_LeviesHightech</defName>
+    <topic>fealty</topic>
+    <when>deed:levies,their:hightech</when>
+    <lines>
+      <li>[them] Your people showed up when we called and did the job, which is all we ask.</li>
+      <li>[us] Our people did more than a job.</li>
+      <li>[them] They did, and it's in the report.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_LeviesRemembered</defName>
+    <topic>fealty</topic>
+    <when>deed:levies,fealty:oath,!fealty:levies</when>
+    <lines>
+      <li>[them] Our fighters remember the ones your colony sent when we called.</li>
+      <li>[us] We remember the road there.</li>
+      <li>[them] Long, I hear, and longer coming back.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their band ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_BandRemembered</defName>
+    <topic>fealty</topic>
+    <when>deed:protected,fealty:oath,!fealty:protected</when>
+    <lines>
+      <li>[us] We haven't forgotten your band walking in when the raiders were at our walls.</li>
+      <li>[them,their:tribal] Our warriors still sing about it, badly.</li>
+      <li>[them] Nor have they, they still talk about it.</li>
+      <li>[us] Tell them they're welcome at our table.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_BandProud</defName>
+    <topic>fealty</topic>
+    <when>fealty:protected,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Our band came home from your walls proud of what they did.</li>
+      <li>[us] They should be, they stood with us.</li>
+      <li>[them] They say your people stood just as well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_BandCool</defName>
+    <topic>fealty</topic>
+    <when>fealty:protected,tone:cool</when>
+    <lines>
+      <li>[them] Our band came when you were raided, so I trust the tribute stays honest.</li>
+      <li>[us] It will.</li>
+      <li>[them] Good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_BandHightech</defName>
+    <topic>fealty</topic>
+    <when>fealty:protected,their:hightech</when>
+    <lines>
+      <li>[them] Our response team marked your raid as handled, and it was.</li>
+      <li>[us] It was, with their help.</li>
+      <li>[them] That's the service, and you pay for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The oath renounced ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedCool</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,tone:cool</when>
+    <lines>
+      <li>[them] Your colony swore to us, and then it unswore.</li>
+      <li>[us] It wasn't an easy choice.</li>
+      <li>[them] It was easy enough to make.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedSour</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,tone:sour</when>
+    <lines>
+      <li>[them] Oath-breakers shouldn't expect a welcome anywhere.</li>
+      <li>[us] We didn't come looking for one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedPlain</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,tone:plain</when>
+    <lines>
+      <li>[them] At home they still talk about the colony that walked out of its oath.</li>
+      <li>[us] We had our reasons.</li>
+      <li>[them] Everyone has reasons.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedLowtech</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,their:lowtech</when>
+    <lines>
+      <li>[them] Among our people, an oath given back is remembered longer than one kept.</li>
+      <li>[us] Then we'll be remembered a long time.</li>
+      <li>[them] You will.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedHightech</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,their:hightech</when>
+    <lines>
+      <li>[them] Your colony walked out of its contract with us, and our office kept the copy.</li>
+      <li>[us] Keep it, we have ours.</li>
+      <li>[them] Ours has notes in the margin.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_RenouncedWarm</defName>
+    <topic>fealty</topic>
+    <when>deed:renounced,!fealty:oath,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Your colony leaving the oath stung, but I don't hold it against you.</li>
+      <li>[us] That's more than I expected.</li>
+      <li>[them] Some of us remember other things about your colony too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Picked up again on a later visit ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_CB_NewHead</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:changed,fealty:oath</when>
+    <lines>
+      <li>[us] Last time you told me about {THEN}, and now I hear {NOW} leads you.</li>
+      <li>[them] {NOW} does, and will expect your tribute just as {THEN} did.</li>
+      <li>[us] It'll come, as it always has.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FealtyMore_CB_WarOver</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:over,fealty:oath,!then:recent</when>
+    <lines>
+      <li>[us] Your war with {THEN} is over, I hear.</li>
+      <li>[them] Over, and our head can stop thinking about calling on your oath for it.</li>
+      <li>[us] We'd have come.</li>
+      <li>[them] I know, and so does our head.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A town of theirs the colony's own vassal ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_HarvestCame</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,deed:hamletHarvest</when>
+    <lines>
+      <li>[them] Our kin sent their harvest up to your gate, as the terms say.</li>
+      <li>[us,vassal:heavy] It was a heavy share, I know.</li>
+      <li>[us] It came, and it was welcome.</li>
+      <li>[them,vassal:heavy] Heavy is the word they used too.</li>
+      <li>[them] They were glad to have it to send.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_FairShare</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,!vassal:heavy,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Our kin say your colony asks a fair share of their harvest, and no more.</li>
+      <li>[us] We'd rather they did well than paid much.</li>
+      <li>[them] They do well, and they say so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_HeavyCool</defName>
+    <topic>fealty</topic>
+    <when>vassal:heavy,tone:cool</when>
+    <lines>
+      <li>[them] Our kin eat less so your colony can eat more.</li>
+      <li>[us] Protection costs, on both sides.</li>
+      <li>[them] It costs one side more.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_HeavyHightech</defName>
+    <topic>fealty</topic>
+    <when>vassal:heavy,their:hightech</when>
+    <lines>
+      <li>[them] Our kin ran the numbers on your harvest share, and they don't like them.</li>
+      <li>[us] Numbers rarely please anyone.</li>
+      <li>[them] These seem to please your colony well enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_LevyCame</defName>
+    <topic>fealty</topic>
+    <when>vassal:levy</when>
+    <lines>
+      <li>[them] Our kin left their fields to fight at your walls when you called.</li>
+      <li>[us] And we were glad of every one of them.</li>
+      <li>[them,their:lowtech] Then see they go home with something to show for it.</li>
+      <li>[them] Then see they're thanked properly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_LevyCool</defName>
+    <topic>fealty</topic>
+    <when>vassal:levy,tone:cool</when>
+    <lines>
+      <li>[them] Your colony calls our kin to its fights, and they pay for it.</li>
+      <li>[us] They're paid back in protection.</li>
+      <li>[them] So you keep saying.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_HamletHeavy</defName>
+    <topic>fealty</topic>
+    <when>town:hamlet:sworn,vassal:heavy</when>
+    <lines>
+      <li>[them] The share your council takes from our harvest is a heavy one, and we feel it.</li>
+      <li>[us] I'll tell the council what you said.</li>
+      <li>[them] Tell them we're still standing, but only just.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_HamletLevy</defName>
+    <topic>fealty</topic>
+    <when>town:hamlet:sworn,vassal:levy</when>
+    <lines>
+      <li>[them] When your call came, our people picked up whatever they had and went.</li>
+      <li>[us] We were glad to see them come.</li>
+      <li>[them] We'd do it again, if it came to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_Helped</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,deed:hamletHelped</when>
+    <lines>
+      <li>[them] When our kin asked for help, your colony sent it, and they haven't forgotten.</li>
+      <li>[us] They hold of us, so we look after them.</li>
+      <li>[them] That's how it should go, and it doesn't always.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_OursTribal</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,tribal</when>
+    <lines>
+      <li>[us] The clan's spear stands over your kin, as long as we stand.</li>
+      <li>[them] They feel it, and sleep the better for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_OursMedieval</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,medieval</when>
+    <lines>
+      <li>[us] Your kin are under our protection, and we'd march out for them.</li>
+      <li>[them,vassal:levy] They marched for you this season, so it's only fair.</li>
+      <li>[them] They'd want to see it before they believed it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_OursIndustrial</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,industrial</when>
+    <lines>
+      <li>[us] Your kin's town is a protectorate of ours, with the guarantee in writing.</li>
+      <li>[them] Writing is easy, it's the guarantee they care about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_OursSpacer</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,spacer</when>
+    <lines>
+      <li>[us] Your kin are under our charter of protection, fully covered.</li>
+      <li>[them] Covered against what, exactly?</li>
+      <li>[us] Raiders, mostly, and bad seasons when we can manage it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_AskedHelp</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,tone:cool</when>
+    <lines>
+      <li>[them] Our kin asked your colony for help, and found themselves with a liege.</li>
+      <li>[us] With protection, which is what they asked for.</li>
+      <li>[them] We'll see what it costs them in the end.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_Sour</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,tone:sour</when>
+    <lines>
+      <li>[them] Lording it over our kin doesn't make your colony a lord.</li>
+      <li>[us] We never said it did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_SleepEasier</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Our kin write home that they sleep easier under your protection.</li>
+      <li>[us] That's what we hoped for.</li>
+      <li>[them,vassal:heavy] They'd sleep easier still with a lighter cart at harvest.</li>
+      <li>[them] Then you'll be glad to hear it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_TheirTribal</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,their:tribal</when>
+    <lines>
+      <li>[them] Our kin under your spear hunt where they like now, and the elders say it's good.</li>
+      <li>[us] Then they're doing well.</li>
+      <li>[them] Well enough to grumble about the share you take, so very well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_TheirMedieval</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,their:medieval</when>
+    <lines>
+      <li>[them] Those of ours who hold of you pay their dues and still keep a market day.</li>
+      <li>[us] Good, a town needs its market.</li>
+      <li>[them] Aye, and a market needs a safe road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_VassalMore_TheirHightech</defName>
+    <topic>fealty</topic>
+    <when>vassal:town,their:hightech</when>
+    <lines>
+      <li>[them] Our kin's settlement is doing better under your guarantee, the figures show it.</li>
+      <li>[us] What figures?</li>
+      <li>[them] The ones they send home to us every season.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

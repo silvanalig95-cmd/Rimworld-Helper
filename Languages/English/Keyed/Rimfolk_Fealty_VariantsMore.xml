@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More fellows of fealty's and the vassals' lines told often (Rimfolk_Fealty.xml, beside Rimfolk_Fealty_Variants.xml),
+       one picked at random (TextVariants: the numbers run on from the fellows there, to _6 at most). Each keeps its
+       original's placeholders. {WORD} and {RITE} change with both sides' ages (the oath: tribute to a stronger clan,
+       fealty and tribute, a protectorate, a charter, and their protection for tribute, an oath of fealty and levies, a
+       company town and a union's dues, a corporate accord; the levies: the clan's spears, levies, a militia, a security
+       detail; a vassal's protection: the clan's spear, a lord's protection, a protectorate's guarantee, a charter of
+       protection), so the fellows differ by age through them. A short tribute may be one the stores gave nothing to, with
+       nobody at the gate, so its fellows never say their collector came. -->
+
+  <!-- Swearing -->
+  <CC_Fealty_Ans_Moot_2>{PEOPLE} answer that things have moved on since the colony wrote, and there is nothing to swear to now.</CC_Fealty_Ans_Moot_2>
+  <CC_Fealty_Ans_Moot_3>{PEOPLE} write back briefly: the colony's letter no longer fits how matters stand.</CC_Fealty_Ans_Moot_3>
+  <CC_Fealty_Ans_No_4>{PEOPLE} will not take the colony's oath ({WORD}). Their fighters are spread thin, and they will not promise what they cannot keep.</CC_Fealty_Ans_No_4>
+  <CC_Fealty_Ans_Yes_3>{PEOPLE} agree, and the colony will hold of them: {WORD}. Someone of theirs is on the way to take its oath at the gate, {RITE} as they keep it.</CC_Fealty_Ans_Yes_3>
+  <CC_Fealty_Offer_3>{WHO} writes for {PEOPLE}: twice this season raiders came at the colony, and they would stand between it and the next. The price is its oath, {RITE} by their ways and {WORD} by the colony's.</CC_Fealty_Offer_3>
+
+  <!-- The oath at the gate -->
+  <CC_Fealty_Lord_Comes_3>{PEOPLE} have not sent someone in their place: {LORD} is on the way to the gate to hear the colony's oath in person, {RITE}.</CC_Fealty_Lord_Comes_3>
+  <CC_Fealty_Lord_Sent_3>{LORD} is walking up to the gate for {PEOPLE}, to take the colony's oath on their behalf: {RITE}.</CC_Fealty_Lord_Sent_3>
+  <CC_Fealty_Sworn_4>{PAWN} gave the colony's word at the gate and {LORD} accepted it for {PEOPLE}. It is {RITE} to them, and {WORD} to the colony.</CC_Fealty_Sworn_4>
+  <CC_Fealty_Harmed_2>Those {PEOPLE} sent for the colony's oath were set upon at its gate. They have fled for home, and there will be no oath. {PEOPLE} will not forget it.</CC_Fealty_Harmed_2>
+
+  <!-- Protection -->
+  <CC_Fealty_Protect_Coming_3>{PEOPLE} answer the raid as the oath says they will ({WORD}): their band is coming to meet {ENEMY} on the colony's land.</CC_Fealty_Protect_Coming_3>
+  <CC_Fealty_Failed_3>{ENEMY} have come, and no band of {PEOPLE} is on the way: they have none to spare this time. The oath stands ({WORD}), but for this season the colony owes them nothing if it chooses to leave.</CC_Fealty_Failed_3>
+  <CC_Fealty_Failed_Friend_2>{PEOPLE} will not raise a hand against {ENEMY}, who are their friends, though they are on the colony's land. The oath stands ({WORD}), but this season the colony may leave it without blame.</CC_Fealty_Failed_Friend_2>
+  <CC_Fealty_Band_3>Fighters of {PEOPLE} are on the colony's land, {COUNT} of them, come to keep their side of the oath ({WORD}) against {ENEMY}.</CC_Fealty_Band_3>
+  <CC_Fealty_Band_Late_3>The band of {PEOPLE} arrived to find the fight already won or lost, and went back the way it came.</CC_Fealty_Band_Late_3>
+
+  <!-- Tribute -->
+  <CC_Fealty_Paid_4>The tribute for {PEOPLE} goes out through the gate, where their collector checks it over: {GOODS}.</CC_Fealty_Paid_4>
+  <CC_Fealty_Short_3>The season's tribute for {PEOPLE} was {VALUE} silver's worth, and the stores held only {PAID} of it. {OWED} is owed. Still owed when the next season's tribute falls due, the oath is broken ({WORD}).</CC_Fealty_Short_3>
+  <CC_Fealty_BrokenTribute_3>The colony never made good the {OWED} silver's worth it owed {PEOPLE}. They count the oath broken ({WORD}) and think {GOODWILL} worse of the colony for it.</CC_Fealty_BrokenTribute_3>
+  <CC_Fealty_BrokenByUs_2>Sworn to {PEOPLE}, the colony {HOW} all the same. They hold the oath broken ({WORD}), and every people within reach will hear how the colony keeps its word.</CC_Fealty_BrokenByUs_2>
+
+  <!-- Levies -->
+  <CC_Arms_Fealty_3>{WHO} sends word for {PEOPLE}: {ENEMY} are at {TOWN}, and they call on the colony's oath for {WORD}, {RITE} as their ways have it.</CC_Arms_Fealty_3>
+
+  <!-- Renouncing -->
+  <CC_Fealty_Renounced_3>The colony has given {PEOPLE} back their oath ({WORD}). They did not ask for it back, and they count it a wrong: {GOODWILL} goodwill, and a grudge.</CC_Fealty_Renounced_3>
+  <CC_Fealty_Renounced_Clean_3>The colony has given {PEOPLE} back their oath ({WORD}). They let it face its raiders alone this season, and have no grounds to complain.</CC_Fealty_Renounced_Clean_3>
+
+  <!-- The colony's own vassals -->
+  <CC_Vassal_Taken_3>The colony has taken {TOWN} of {PEOPLE} under its protection: {WORD}. Its produce will come at harvest, its levies when called, and its troubles to the colony's gate.</CC_Vassal_Taken_3>
+  <CC_Vassal_Harvest_3>The harvest from {TOWN} has come up to the gate, the share the council set ({LEVEL}): {GOODS}.</CC_Vassal_Harvest_3>
+  <CC_Vassal_Dues_OnTime_3>{NAME} writes that the season has been fair to them: {SILVER} silver in dues, which their carter will bring to the gate.</CC_Vassal_Dues_OnTime_3>
+  <CC_Vassal_Dues_Explained_3>{NAME} writes that it has been a lean season, and that they can send half the dues for now: {SILVER} silver, with their carter.</CC_Vassal_Dues_Explained_3>
+  <CC_Vassal_Msg_Called_3>The council sends to {TOWN} by {MEANS} for its fighters: {RITE}.</CC_Vassal_Msg_Called_3>
+  <CC_Vassal_Band_3>{COUNT} fighters from the colony's vassals of {PEOPLE} have come in to meet {ENEMY}: {WORD}, as their oath asks.</CC_Vassal_Band_3>
+  <CC_Vassal_Band_Late_2>The levies of {PEOPLE} came, but the fight was done before they reached it, and they went home.</CC_Vassal_Band_Late_2>
+  <CC_Vassal_Ask_Help_3>{WHO} writes from {TOWN}: their people are struggling this season and ask the colony for {OTHER}, if it can spare it.</CC_Vassal_Ask_Help_3>
+  <CC_Vassal_Ask_Judgement_3>{WHO} of {TOWN} brings the colony a quarrel with {OTHER}: whose cattle may water where, and whose field ends at which stone. They will abide by the colony's judgment.</CC_Vassal_Ask_Judgement_3>
+  <CC_Vassal_Ask_Camp_3>{WHO} writes from {TOWN}: there are {OTHER} camped close enough to see their fires, and the town looks to the colony.</CC_Vassal_Ask_Camp_3>
+  <CC_Vassal_Ask_Defend_2>{WHO} sends word from {TOWN}: {OTHER} are upon them, and the town asks for the colony's fighters at its side.</CC_Vassal_Ask_Defend_2>
+  <CC_Vassal_Ask_Release_3>{WHO} of {TOWN} asks the colony, as politely as it can be asked, to let their people go their own way.</CC_Vassal_Ask_Release_3>
+  <CC_Vassal_Ask_Protection_3>{WHO} writes from {TOWN} of {PEOPLE}: the town is failing on its own, and would hold of the colony in return for its protection.</CC_Vassal_Ask_Protection_3>
+  <CC_Vassal_Released_3>{TOWN} goes its own way again with the colony's blessing, a town of {PEOPLE} and no one's vassal. Its head has written to say thank you.</CC_Vassal_Released_3>
+  <CC_Vassal_Released_Hamlet_2>The colony has let {TOWN} out of its oath. The hamlet keeps the colony's protection as it had it before it swore, and its head is grateful.</CC_Vassal_Released_Hamlet_2>
+  <CC_Vassal_BrokeAway_3>{TOWN} asked to go, was told no, and went anyway. The tie is broken, and {PEOPLE} think {GOODWILL} worse of the colony for holding on.</CC_Vassal_BrokeAway_3>
+  <CC_Vassal_BrokenByUs_2>The colony {HOW}, though {TOWN} of {PEOPLE} was under its protection. The protection is at an end.</CC_Vassal_BrokenByUs_2>
+
+</LanguageData>

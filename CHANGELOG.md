@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Tasks, oaths and the keeper in words
+
+*5 November 2026, version 0.98.0*
+
+- Neighbours talk about the council's tasks and the keeper of secrets in every age: 92 new conversations covering the keeper's night watch, being found out, pressing a secret and a secret told, and each office's errand as their people see it.
+- Fealty and vassals get 56 new conversations: the oath in both sides' ways, the collector, tribute short, levies, their band, renouncing, and the colony's own vassals.
+- Their letters answer every kind of council business, the oath and the quartermaster's dues in more voices, and ordinary letters mention the tasks, the oath and the vassals.
+- New spoken lines: sounding someone out, pressing a secret, the keeper's night watch, the dawn patrol in any weather, the oath at the gate, and an officer back from a visit.
+- Every letter and message about the keeper, the tasks, fealty and vassals that had a single wording now has two or more.
+
 ## Fealty and tasks, checked over
 
 *5 November 2026, version 0.97.1*

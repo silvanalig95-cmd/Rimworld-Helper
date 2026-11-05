@@ -262,7 +262,7 @@ namespace ColonyCouncil
                 }
                 default:
                 {
-                    string line = TaskWords.P("CC_Keeper_Nothing_" + step, keeper.Named("PAWN"), (with?.LabelShort ?? n.Name).Named("OTHER"), n.Name.Named("NAME"));
+                    string line = TaskWords.T("CC_Keeper_Nothing_" + step, keeper.Named("PAWN"), (with?.LabelShort ?? n.Name).Named("OTHER"), n.Name.Named("NAME"));
                     if (step != TaskStep.Visit)
                         Tell.Minor(NewsKind.World, Importance.Flavor, home, line, keeper.Spawned ? new LookTargets(keeper) : LookTargets.Invalid, MessageTypeDefOf.SilentInput);
                     return line;
