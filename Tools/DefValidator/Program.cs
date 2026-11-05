@@ -359,6 +359,17 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Envoy_Msg_Letter_"] = new[] { "Content", "Cool", "Offended" },
     ["CC_Envoy_Card_Night_"] = new[] { "Own", "Spare", "Floor" },
     ["CC_Envoy_Row_Abroad_"] = new[] { "Coming", "Staying", "There", "Leaving" },
+    // Feasts with guests (Diplomacy/Feasts.cs, FeastWords.cs, FeastContests.cs, FeastDialog.cs, FeastPanels.cs): enum names.
+    ["CC_Feast_Name_"] = new[] { "Tribal", "Medieval", "Industrial", "Spacer" },
+    ["CC_Feast_Contest_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_ContestThe_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Dlg_Contest_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Dlg_ContestTip_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Msg_Begins_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Result_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Result_None_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
+    ["CC_Feast_Hope_"] = new[] { "Hunt", "HuntOrTourney", "RaceOrMatch", "Exhibition", "MealAndMusic" },
+    ["CC_Feast_Guest_"] = new[] { "Invited", "Coming", "Declined", "Here", "Gone" },
     // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
     ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
 };
@@ -461,6 +472,8 @@ wishPh.UnionWith(new[]
     "PACTWITH", "TRUCEWITH",
     // Captives and envoys (Diplomacy/FactsRansom.cs): the home that held them, their envoy here, the colony's at their town.
     "CAPTOR", "ENVOY", "OURENVOY",
+    // Feasts with guests (Diplomacy/FactsFeast.cs): the colony's feast in its words, the champion of the day.
+    "FEAST", "CHAMPION",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

@@ -51,6 +51,7 @@ namespace ColonyCouncil
             {
                 case "welcomed":
                 case "feast":
+                case "feasted":
                 case "dignitary":
                 case "refugees":
                 case "sheltered":

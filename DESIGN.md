@@ -2647,6 +2647,84 @@ tested (`RansomMath.cs`, `EnvoyMath.cs`; `Tools/Tests/RansomTests.cs`).
   `them:envoy`, `envoy:ours` with `{OURENVOY}`. Words by both ages (`AgeFeature.Ransom`, `Envoy`). Settings
   `diplomacyRansom`, `diplomacyEnvoys`.
 
+#### Feasts with guests
+
+Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`, its rules pure and tested
+(`FeastMath.cs`; `Tools/Tests/FeastTests.cs`).
+
+- **The record.** `GuestFeast` (`FeastBook.cs`; the name `FeastPlan` is the play-outs' enum) on the home's part,
+  `DiplomacyHome.feast`, one at a time, and `lastFeast` kept for its card; `feastHeld` (one a season,
+  `FeastMath.MayPlan`), `feastSuggested`, and `tales` (the colony's own at a neighbour's feast, four at most). Each
+  `FeastGuest` keeps the notable, their pawn, people, town, letter, answer (`GuestState`), when they can come, their
+  retinue (one or two), their hope (`FeastHope`) and their welcome; each `FeastResult` a contest's winner, side and count.
+  The stages (`FeastStage`): Inviting, Set, Here, Contests, Feasting, Night, Done. The hour rides on diplomacy's (only
+  while one waits), the day's look on the guests' own group every 250 ticks (`LordToil_FeastGuests` calls
+  `Feasts.Rare`), so nothing ticks while there is no feast.
+- **Planning** (`Dialog_Feast`, `Feasts.Plan`): up to three notables (`Feasts.InviteWhyNot`: at peace, regard 0 or more,
+  `NotableMath.TravelDays` 3 or less, free to travel, a letter possible; the letters under way at once counted), up to
+  four contests (`FeastContests.WhyNot` by what the colony has), a prize from the stores (art, or a weapon or clothes of
+  good quality, set aside forbidden until the feast), the writer (the steward, else `NeighbourLetters.DefaultWriter`).
+  Each invitation is the existing `LetterPurpose.Invitation` with the topic `feast:HOME` (`FeastMath.Topic`), by
+  console where the colony and their people can call. Opened from the people card ("Hold a feast for them"), a
+  notable's ("Invite to a feast"), the Peoples view's act, the calendar's feast row (`FeastPanels.CalendarRow`, beside
+  election day) and the steward's question (`ChoiceLetter_FeastSuggest`, `FeastMath.Suggests`: a season apart, fed,
+  quiet, a notable at 20 or more within reach, one day in twenty).
+- **Their answer** (`FeastLetters.Read`, hooked in `NeighbourLetters.Read` after diplomacy's own): `FeastMath.Accepts` by
+  their regard, goodwill, the road and whether their hope is offered; yes, the tone is cordial at worst and the letter's
+  visit line says they will come (`Feasts.Answer`, `comeBy` = their answer's way back and half a day); no, cool at best.
+  Once no invitation is still open, the day is set (`FeastMath.FeastDay`: the day the last can arrive if by noon, else
+  the next), told in a letter and shown on the calendar, This week's Coming and the Event card.
+- **The day** (`Feasts.Arrive`, `LordJob_FeastGuests`): from 8 to 15 on the day or the two after, when fine
+  (`FeastMath.Fine`) and safe, each guest (the notable's own pawn) and one or two of their lighter fighters
+  (`Arrivals.Make`) walk in, a group to each people, to the gate (`PlaySpots.GateCell`), provisioned for two days;
+  a colonist near them greets them (`feastwelcome`, `feastarrive`). The group keeps about `focus` (the gate, a contest,
+  the feast's spot, a room for the night: `Feasts.Focus`), indoors in danger, and flees if the colony harms them
+  (`Trigger_PawnHarmed`; a bout's or a brawl's blow is excused by `Patch_OutsiderBoutLord`). Meals and beds by the
+  missions' hosting rules (`Hosting.Meal`, `Eat`, `Pack`, `Sleep`, `SleepRough`), Hospitality's guest beds first.
+- **The contests** (`FeastContests`, one at a time from noon; an outdoor one waits for fine weather and is let go from
+  18, nothing new from 20): wrestling, up to three bouts in a ring by the gate through the outsiders' own bout
+  (`Outsiders.FeastBout` in `FeastBouts.cs`: no asking, the hard blow decided by `FeastMath.HardBlow`, one in 25, never
+  when either may not be hurt: a child, with child, an injury in the last three days); a race, runners from a line at
+  the gate to a marker out on open ground and back (`JobDriver_FeastRun` at a sprint, one stumble in twelve); a hunt,
+  safe game marked (`PlayHunt.ChooseGame`, the calendar hunt's rules) and the game's own `JobDefOf.Hunt` for the
+  colony's hunters and the guests with bows or guns, counted by `RecordDefOf.KillsAnimals`; a game at the tables, the
+  game's own play job of each table's joy giver (sit adjacent, interaction cell, billiards, watch building) with
+  `doUntilGatheringEnded` so a guest with no recreation need plays on, won by `FeastMath.TableWin` on the play job's
+  own skill; a shooting match only at a mod's target read by name (`FeastMath.IsTarget`), five shots each
+  (`JobDriver_FeastShoot`: the weapon's own sound and flash, hits by `ShotReport`). Children run races only. The guests
+  and a few free colonists watch (`Council_PlayOutAttend`). Each result goes into a message and the history
+  (`dip:contest`); a reload during one lets it go as broken up (the run isn't saved).
+- **The feast** (`Feasts.StartFeast`): a play-out of the kind Feast (`DilemmaEffect_Feast.Begin`, guests
+  `PlayGuests.Feast`), so the colony's gathering serves everyone, the guests included, by the feast's serving rules;
+  with answers not playing out, each guest is served at the table by the hosting rules. The Empire's guests hope for
+  music: where the colony has an instrument, its best player plays (the game's `Concert` gathering, with Royalty). At the
+  end the winners speak (`feastwinner`), the champion of the day is named (`FeastMath.Champion`) and the writer carries
+  the prize to them (`JobDriver_FeastPrize`; a guest puts it in their pack). After it, one guest night in 15
+  (`FeastMath.SourNight`, more with a hot temper) turns into the outsiders' fistfight with a colonist near them
+  (`Outsiders.FeastBrawl`), only with the deeper hooks.
+- **The end** (`Feasts.End`, at first light or a day and a half on): each guest's welcome (`FeastMath.Welcome`: a meal,
+  a fine one, the hope met, the contests, the prize, a bed or the floor, a hard blow, a sour night) into their regard and
+  their head's (half), the deed `feasted` (new, Favor 8, 12 for a great welcome; counts toward a hospitable colony) or
+  `slighted` for an empty plate, `dip:feast` (a milestone) and a letter. A guest dead at the colony, arrested or hurt by
+  it ends it at once. Called off (nobody coming, the weather or danger two days past the day, the colony's own word
+  before they come: 5 regard from each who said yes).
+- **For release 2b.2's weddings** (`Feasts.Host`): guests who already agreed (a people, their notables, the purpose
+  `FeastPurpose.Wedding`, a day, a caller's `tag`) come on the first fine day from it with no letters and no contests
+  unless given, wait at the gate, sit at the feast in the evening, stay the night and go home at first light, their
+  welcome counted the same; a second `Host` takes pawns of their people who aren't notables (kin made by the caller).
+  `Feasts.StageChanged` tells a listener when they are at the gate (`FeastStage.Here`) and when they are gone
+  (`FeastStage.Done`).
+- **The colony's own away** (`FeastAway`): at the missions' invitation, when the colony's guests sit to the end, each
+  may win one of their people's contests (`FeastMath.AwayWin` by the skill for it), told in the news once home.
+- **Where it shows** (`FeastPanels`): an Event card for each feast (its `dip:feast` entry: where it stands, the guests and
+  answers, the contests, the prize, the results and the welcomes; "Call it off"), a notable's card, the people card's
+  lines and acts, the Peoples view's rows and act (`DiplomacyModel`), Here and away (`Feasts.HereAs`), the calendar's
+  row, the inbox (`feast-coming` in Coming, `feast-under-way` in Under way, in steps). Facts (`FactsFeast.cs`):
+  `feast:invited`, `feast:soon`, `feast:here`, `feast:contests`, `them:feastguest`, `feast:welcomed`, `feast:slighted`,
+  `feast:good`, `feast:poor`, `feast:theywon`, `feast:wewon`, `town:lately:dip:feast`, `{FEAST}` and `{CHAMPION}`.
+  Words by both ages (`AgeFeature.Feast`; `{FEAST}` the colony's word with "the"), their faith's feast with Ideology
+  (`InviteForms.Rite`). Setting `diplomacyFeasts`. Dev actions in `FeastDebug.cs`.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

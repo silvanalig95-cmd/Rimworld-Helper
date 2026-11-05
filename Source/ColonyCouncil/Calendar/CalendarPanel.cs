@@ -105,6 +105,8 @@ namespace ColonyCouncil
             // Election day, while an election is under way: once, not every year (Offices/OfficesElection.cs).
             y += DrawElection(0f, y, w, index);
             if (ColonyView.Current?.offices?.election != null) index++;
+            // A feast with guests, set or to plan (Diplomacy/FeastPanels.cs).
+            y += FeastPanels.CalendarRow(0f, y, w, ref index, map);
             if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
             foreach (var r in rows) y += DrawDay(r, 0f, y, w, index++);
             y += UiKit.SectionGap;

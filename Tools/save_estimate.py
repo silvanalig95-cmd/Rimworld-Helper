@@ -95,6 +95,12 @@ C = {
     "HamletRefused": const("World/Region/HamletMath.cs", "MaxRefused", 4),
     # Diplomacy's records that aren't ties (Diplomacy/DiplomacyBook.cs, release 2a.3): offers for captives at a home at once.
     "RansomOffers": const("Diplomacy/RansomMath.cs", "MaxOffers", 6),
+    # Feasts with guests (Diplomacy/FeastBook.cs, release 2b.1): guests, contests and a retinue at most; tales of the
+    # colony's own at a neighbour's feast kept a home.
+    "FeastGuests": const("Diplomacy/FeastMath.cs", "MaxGuests", 3),
+    "FeastContests": const("Diplomacy/FeastMath.cs", "MaxContests", 4),
+    "FeastRetinue": const("Diplomacy/FeastMath.cs", "MaxRetinue", 2),
+    "FeastTales": const("Diplomacy/FeastMath.cs", "MaxTales", 4),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -548,13 +554,23 @@ MODEL = {
     # Each home's part of diplomacy that isn't a tie (Diplomacy/DiplomacyBook.cs): one per colony, by the colonies' book;
     # in it their envoy's stay (one at most, about 25 values and three references) and the colony's envoy away (one at
     # most, ten values and two references), and when an envoy was last offered to it.
-    "Diplomacy/DiplomacyBook.cs:homes": ("fixed", 1, 90 + 700 + 300 + 40, "one per colony (one home in the model): their envoy's stay and the colony's envoy away "
-                                         "(one each at most), when an envoy was last offered; a lost home's kept 30 days"),
+    "Diplomacy/DiplomacyBook.cs:homes": ("fixed", 1, 90 + 700 + 300 + 40 + 2 * 600, "one per colony (one home in the model): their envoy's stay and the colony's envoy away "
+                                         "(one each at most), when an envoy was last offered, the feast with guests under way and the last one; a lost home's kept 30 days"),
     # Its offers for captives (Diplomacy/Ransoms.cs): RansomMath.MaxOffers at most, a few a season at the generous rate
     # (prisoners taken in raids, the game's demands), each a dozen values and three references, dropped once answered and
     # done or its captive is gone.
     "Diplomacy/DiplomacyBook.cs:offers": ("cap", (C["RansomOffers"], 0.1), 320,
                                           "per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone"),
+    # A home's feast with guests (Diplomacy/FeastBook.cs): the one under way and the last one, each with its guests
+    # (three at most, a dozen values and two references each), their retinues (two each), its contests (four) and how
+    # each went (four, ten values and two references); and the tales of the colony's own at a neighbour's feast (four,
+    # each let go within 30 days).
+    "Diplomacy/FeastBook.cs:guests": ("fixed", 2 * C["FeastGuests"], 420, "per home: the feast under way and the last one, FeastMath.MaxGuests guests each (counted under homes)"),
+    "Diplomacy/FeastBook.cs:retinue": ("fixed", C["FeastRetinue"], 40, "per guest: one or two who walk in with them (counted under homes)"),
+    "Diplomacy/FeastBook.cs:contests": ("fixed", C["FeastContests"], 25, "per feast: FeastMath.MaxContests at most (counted under homes)"),
+    "Diplomacy/FeastBook.cs:results": ("fixed", C["FeastContests"], 260, "per feast: how each contest went, one each (counted under homes)"),
+    "Diplomacy/DiplomacyBook.cs:tales": ("cap", (C["FeastTales"], 0.05), 160,
+                                         "per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 496; modelled: 496; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** after two, **3,061 KB** after five.
+Saved collections found: 501; modelled: 501; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,438 KB** after a year, **2,893 KB** after two, **3,063 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -147,6 +147,7 @@ Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** aft
 | `Offices/Election.cs:campaigners` | one per candidate, while it lasts | while | 20 | 20 | 20 | 2.3 |
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
+| `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered, the feast with guests under way and the last one; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
@@ -204,7 +205,6 @@ Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** aft
 | `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) and the last word given to keep away, when a town in its reach was last given up, settled again or founded by Rimfolk; a lost home's kept 30 days, its camp gone with it | fixed | 1 | 1 | 1 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
-| `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 1.1 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
@@ -252,6 +252,7 @@ Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** aft
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
+| `Diplomacy/DiplomacyBook.cs:tales` | per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days | cap | 3 | 4 | 4 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
@@ -447,6 +448,10 @@ Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** aft
 | `Defense/DefenseLine.cs:raids` | per line: the last DefenseLine.MaxRaids raids (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
 | `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 6 | 6 | 6 | (in its record) |
 | `Defense/DefenseLine.cs:span` | per line: the cells across its gap, 29 at most (counted under lines) | fixed | 14 | 14 | 14 | (in its record) |
+| `Diplomacy/FeastBook.cs:contests` | per feast: FeastMath.MaxContests at most (counted under homes) | fixed | 4 | 4 | 4 | (in its record) |
+| `Diplomacy/FeastBook.cs:guests` | per home: the feast under way and the last one, FeastMath.MaxGuests guests each (counted under homes) | fixed | 6 | 6 | 6 | (in its record) |
+| `Diplomacy/FeastBook.cs:results` | per feast: how each contest went, one each (counted under homes) | fixed | 4 | 4 | 4 | (in its record) |
+| `Diplomacy/FeastBook.cs:retinue` | per guest: one or two who walk in with them (counted under homes) | fixed | 2 | 2 | 2 | (in its record) |
 | `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |

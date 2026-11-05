@@ -233,6 +233,12 @@ namespace ColonyCouncil
                 c.underway.Add(rr);
                 c.weight += 4;
             }
+            // A feast with their notables as guests (release 2b.1).
+            foreach (var fr in FeastPanels.Rows(f, home))
+            {
+                c.underway.Add(fr);
+                c.weight += 4;
+            }
             // The acts that fit: write to their head (any purpose), each with why not.
             var write = new DipAct { label = DipWords.P("CC_Dip_Act_Write"), tip = DipWords.P("CC_Dip_Act_Write_Tip") };
             if (head == null) write.why = DipWords.P("CC_Dip_Why_NoNotable", c.name.Named("PEOPLE"));
@@ -251,6 +257,8 @@ namespace ColonyCouncil
                 c.acts.Add(RansomPanels.AskAct(f));
                 c.acts.Add(RansomPanels.SendAct(f, null));
             }
+            // Hold a feast with their notables as guests (release 2b.1), greyed with why not.
+            if (Feasts.On && !Diplomacy.Hostile(f)) c.acts.Add(FeastPanels.HoldAct(f));
             if (!Diplomacy.Hostile(f)) c.weight += 1;
             return c;
         }
@@ -339,6 +347,9 @@ namespace ColonyCouncil
             // Their envoy staying the season, or the envoy's attendant (release 2a.3).
             string envoy = Envoys.HereAs(p);
             if (envoy != null) return envoy;
+            // A guest at a feast, or one of those who came with them (release 2b.1).
+            string feast = Feasts.HereAs(p);
+            if (feast != null) return feast;
             var job = p.GetLord()?.LordJob;
             if (job is LordJob_TradeWithColony) return DipWords.P("CC_Dip_HereAs_Trading");
             if (job is LordJob_VisitColony) return DipWords.P("CC_Dip_HereAs_Visiting");
