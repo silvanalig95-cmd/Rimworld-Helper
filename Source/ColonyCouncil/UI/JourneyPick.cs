@@ -10,8 +10,8 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The journey planner's "Add from the stores" (UI/JourneyDialog.cs): everything in the colony's stores on the map
-    /// and in the travellers' packs, by kind (food, medicine, drugs, apparel, weapons, ammunition when there is any,
+    /// The journey planner's "Add from the stores" (UI/JourneyDialog.cs): everything in the colony's stores on the map,
+    /// in the travellers' packs and on the colony's RimMarket stalls (marked with the stall; the stores' are taken first), by kind (food, medicine, drugs, apparel, weapons, ammunition when there is any,
     /// tools and gear, silver and trade goods, materials, everything) and by name, with how many there are and what one
     /// weighs. A click puts one on the list (Shift 10, Ctrl 100), "All" all there is; the line's kind follows the thing
     /// (food the travellers eat, medicine, a bedroll, a tent, feed, or other, which goes with the caravan's goods). The
@@ -37,7 +37,8 @@ namespace ColonyCouncil
         private sealed class Entry
         {
             public ThingDef def;
-            public int stores, carried;
+            public int stores, carried, stall;
+            public string stallName;
             public float mass;
             public Shelf shelf;
             public string kind, label, tip;
@@ -114,6 +115,7 @@ namespace ColonyCouncil
         {
             countedAt = Time.realtimeSinceStartup;
             entries.Clear();
+            var stalls = JourneyPack.StallHoldings(plan.map);
             foreach (var kv in JourneyPack.Holdings(plan.map, plan.travellers))
             {
                 var d = kv.Key;
@@ -122,6 +124,20 @@ namespace ColonyCouncil
                     def = d, stores = kv.Value.stores, carried = kv.Value.carried, mass = JourneyPack.UnitMass(d), shelf = ShelfOf(d), kind = JourneyPack.KindFor(d),
                     label = d.LabelCap.Resolve()
                 });
+            }
+            // What lies on the colony's stalls, beside the stores' own.
+            foreach (var kv in stalls)
+            {
+                var d = kv.Key;
+                if (d == null || kv.Value.Count == 0) continue;
+                var e = entries.FirstOrDefault(x => x.def == d);
+                if (e == null)
+                {
+                    e = new Entry { def = d, mass = JourneyPack.UnitMass(d), shelf = ShelfOf(d), kind = JourneyPack.KindFor(d), label = d.LabelCap.Resolve() };
+                    entries.Add(e);
+                }
+                e.stall = kv.Value.Sum(x => x.count);
+                e.stallName = kv.Value[0].stall.LabelShortCap;
             }
             entries.Sort((a, b) => string.Compare(a.label, b.label, StringComparison.CurrentCultureIgnoreCase));
         }
@@ -198,7 +214,7 @@ namespace ColonyCouncil
         {
             UiKit.Zebra(r, index);
             Widgets.DrawHighlightIfMouseover(r);
-            int most = e.stores + e.carried;
+            int most = e.stores + e.carried + e.stall;
             var line = LineOf(e.def);
             bool listed = line != null && line.Taken;
             Widgets.ThingIcon(new Rect(r.x + 4f, r.y + 3f, 24f, 24f), e.def);
@@ -214,9 +230,10 @@ namespace ColonyCouncil
             float ew = Text.CalcSize(each).x + 6f;
             UiKit.LabelFit(new Rect(right - ew, r.y, ew, r.height), each, UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
             right -= ew + 6f;
-            string count = "×" + e.stores.ToStringCached() + (e.carried > 0 ? " " + "CC_JourneyPick_Carried".Translate(e.carried).Resolve() : "");
+            string count = "×" + e.stores.ToStringCached() + (e.carried > 0 ? " " + "CC_JourneyPick_Carried".Translate(e.carried).Resolve() : "")
+                           + (e.stall > 0 ? " " + "CC_JA_PickStall".Translate(e.stall).Resolve() : "");
             Text.Font = GameFont.Small;
-            float cw = Mathf.Min(140f, Text.CalcSize(count).x + 6f);
+            float cw = Mathf.Min(190f, Text.CalcSize(count).x + 6f);
             UiKit.LabelFit(new Rect(right - cw, r.y, cw, r.height), count, Color.white, GameFont.Small, TextAnchor.MiddleRight);
             right -= cw + 6f;
             if (listed)
@@ -260,6 +277,7 @@ namespace ColonyCouncil
                 sb.AppendLine(float.IsPositiveInfinity(rot) ? "CC_Journey_TipKeeps".Translate().Resolve() : "CC_Journey_TipRots".Translate(rot.ToString("0.#")).Resolve());
             }
             sb.AppendLine("CC_Journey_TipToHand".Translate(e.stores, e.carried).Resolve());
+            if (e.stall > 0) sb.AppendLine("CC_JA_TipStall".Translate(e.stall, e.stallName ?? "?").Resolve());
             sb.AppendLine("CC_JourneyPick_TipGroup".Translate(("CC_Journey_Group_" + JourneyMath.GroupOf(e.kind)).Translate()).Resolve());
             sb.Append("CC_JourneyPick_TipClick".Translate().Resolve());
             return sb.ToString();
@@ -271,7 +289,7 @@ namespace ColonyCouncil
         /// </summary>
         private void Add(Entry e, int step)
         {
-            int most = e.stores + e.carried;
+            int most = e.stores + e.carried + e.stall;
             var line = LineOf(e.def);
             if (line == null)
             {

@@ -430,9 +430,9 @@ namespace ColonyCouncil
         public static float PerPerson(int count, int people) => people <= 0 ? 0f : Math.Max(0, count) / (float)people;
 
         /// <summary>The list's groups in the order they are shown.</summary>
-        public static readonly string[] Groups = { "food", "medicine", "drugs", "bedding", "feed", "other" };
+        public static readonly string[] Groups = { "food", "medicine", "drugs", "arms", "bedding", "feed", "other" };
 
-        /// <summary>A line's group: food, medicine and feed by their kind, drugs, beds and tents together as bedding, anything else other.</summary>
+        /// <summary>A line's group: food, medicine and feed by their kind, drugs, weapons for the unarmed, beds and tents together as bedding, anything else other.</summary>
         public static string GroupOf(string kind)
         {
             switch (kind)
@@ -443,6 +443,8 @@ namespace ColonyCouncil
                     return kind;
                 case "drug":
                     return "drugs";
+                case "arm":
+                    return "arms";
                 case "bed":
                 case "tent":
                     return "bedding";

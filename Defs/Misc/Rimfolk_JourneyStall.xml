@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A journey's goods off a colony stall (RimMarket; Source/ColonyCouncil/Integrations/RimMarketJourney.cs): in the last
+    hours a traveller walks to the stall and takes what the stores don't hold of the list out of its stock
+    (JobDriver_JourneyStall). Rimfolk's own job: it needs nothing of RimMarket's to load, and is only given while
+    RimMarket's stalls are found.
+  -->
+  <JobDef>
+    <defName>Rimfolk_JourneyStall</defName>
+    <driverClass>ColonyCouncil.JobDriver_JourneyStall</driverClass>
+    <reportString>taking goods for the road off TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The journey planner's advice: who to bring and what to pack (Source/ColonyCouncil/Journeys/JourneyAdvice.cs, JourneyAdviceMath.cs, UI/JourneyDialog.cs). -->
+
+  <!-- What the journey is for -->
+  <CC_JA_What_Nowhere>Nowhere in particular: healthy travellers will do, with a doctor on a long road.</CC_JA_What_Nowhere>
+  <CC_JA_What_Place>{PLACE}: a place to look over. Healthy travellers will do.</CC_JA_What_Place>
+  <CC_JA_What_PeaceTalks>{PLACE}: peace talks with {PEOPLE}. The colony's best talker should speak for it.</CC_JA_What_PeaceTalks>
+  <CC_JA_What_Pilgrim>{PLACE}: the pilgrim's way home. Two grown colonists or more walk with them.</CC_JA_What_Pilgrim>
+  <CC_JA_What_Feast>{PLACE}: {PEOPLE} asked the colony to their day. {COUNT} grown colonists or more should be there, the best company first.</CC_JA_What_Feast>
+  <CC_JA_What_WordNamed>{PLACE}: word to carry in person. {PAWN} was asked to carry it.</CC_JA_What_WordNamed>
+  <CC_JA_What_Word>{PLACE}: word to carry in person. The best talker should carry it.</CC_JA_What_Word>
+  <CC_JA_What_Harvest>{PLACE}: hands for their harvest. {COUNT} grown colonists or more, the best growers first.</CC_JA_What_Harvest>
+  <CC_JA_What_Apprentice>{PLACE}: {PAWN}'s apprenticeship. {PAWN} goes; anyone else walks with them.</CC_JA_What_Apprentice>
+  <CC_JA_What_Arms>{PLACE}: {PEOPLE} called the colony to arms. {COUNT} grown colonists or more answer it, the best fighters and a doctor.</CC_JA_What_Arms>
+  <CC_JA_What_Settlers>{PLACE}: the settlers' road to their hamlet. {COUNT} grown colonists or more walk them there.</CC_JA_What_Settlers>
+  <CC_JA_What_LumpGuarded>{PLACE}: a precious lump to dig out, with hostiles near it. It wants a good miner, fighters and a doctor.</CC_JA_What_LumpGuarded>
+  <CC_JA_What_Lump>{PLACE}: a precious lump to dig out. It wants a good miner.</CC_JA_What_Lump>
+  <CC_JA_What_Camp>{PLACE}: a raiders' camp. It wants fighters and a doctor.</CC_JA_What_Camp>
+  <CC_JA_What_Distress>{PLACE}: a distress signal. Who or what waits there is unknown, so it wants fighters and a doctor.</CC_JA_What_Distress>
+  <CC_JA_What_RescueGuarded>{PLACE}: someone hurt to bring home, with hostiles near. It wants fighters and a doctor.</CC_JA_What_RescueGuarded>
+  <CC_JA_What_Unknown>{PLACE}: what waits there is unknown. It wants fighters and a doctor.</CC_JA_What_Unknown>
+  <CC_JA_What_Hostiles>{PLACE}: hostiles there. It wants fighters and a doctor.</CC_JA_What_Hostiles>
+  <CC_JA_What_Rescue>{PLACE}: someone hurt to bring home. It wants a doctor.</CC_JA_What_Rescue>
+  <CC_JA_What_HostileTown>{PLACE}: a town of {PEOPLE}, hostile to the colony. Taking it is a hard fight for the best fighters and a doctor.</CC_JA_What_HostileTown>
+  <CC_JA_What_Post>{PLACE}: a trading post of {PEOPLE}. It wants the best negotiator and room to carry goods.</CC_JA_What_Post>
+  <CC_JA_What_Trade>{PLACE}: a town of {PEOPLE} that trades. It wants the best negotiator and room to carry goods.</CC_JA_What_Trade>
+  <CC_JA_What_TradePact>A trade pact holds with {PEOPLE}.</CC_JA_What_TradePact>
+  <CC_JA_What_Request>They ask for {COUNT} {THING}.</CC_JA_What_Request>
+  <CC_JA_What_Visit>{PLACE}: a town of {PEOPLE}. A good talker makes the visit.</CC_JA_What_Visit>
+  <CC_JA_NoPeople>nobody's people</CC_JA_NoPeople>
+
+  <CC_JA_Aim_Travel>a journey</CC_JA_Aim_Travel>
+  <CC_JA_Aim_Fight>a fight</CC_JA_Aim_Fight>
+  <CC_JA_Aim_Trade>trade</CC_JA_Aim_Trade>
+  <CC_JA_Aim_Talk>talks</CC_JA_Aim_Talk>
+  <CC_JA_Aim_Escort>an escort</CC_JA_Aim_Escort>
+  <CC_JA_Aim_Errand>an errand</CC_JA_Aim_Errand>
+  <CC_JA_Aim_Tip>What the journey is for, read from where it goes. The recommendation follows it, and changes as the destination, the people or the dates change.</CC_JA_Aim_Tip>
+  <CC_JA_Danger_Low>low danger</CC_JA_Danger_Low>
+  <CC_JA_Danger_Some>some danger</CC_JA_Danger_Some>
+  <CC_JA_Danger_High>high danger</CC_JA_Danger_High>
+  <CC_JA_Danger_Unknown>danger unknown</CC_JA_Danger_Unknown>
+  <CC_JA_Danger_Tip>The strength of the hostiles there against the colony's own: under half of it is low, about as strong is some, stronger is high. It sets how many go and how much medicine they take.</CC_JA_Danger_Tip>
+
+  <CC_JA_Party>Recommended: {COUNT} of the {GROWN} grown at home (at least {MIN}).</CC_JA_Party>
+  <CC_JA_PartyOne>Recommended: {COUNT} of the {GROWN} grown at home.</CC_JA_PartyOne>
+  <CC_JA_RecLeaves>Nobody else could go instead, so: {WHAT}.</CC_JA_RecLeaves>
+  <CC_JA_PicksLeave>As picked, {0}.</CC_JA_PicksLeave>
+  <CC_JA_NobodyHome>Nobody at home to go.</CC_JA_NobodyHome>
+  <CC_JA_Home_NoDoctor>no doctor stays home</CC_JA_Home_NoDoctor>
+  <CC_JA_Home_NoCook>nobody who cooks stays home</CC_JA_Home_NoCook>
+  <CC_JA_Home_NoGrower>nobody tends the fields in the growing season</CC_JA_Home_NoGrower>
+  <CC_JA_Home_NoWarden>nobody keeps the prisoners</CC_JA_Home_NoWarden>
+  <CC_JA_Home_FewDefenders>too few stay home to defend it</CC_JA_Home_FewDefenders>
+  <CC_JA_Home_BabyAlone>a baby is left without a parent</CC_JA_Home_BabyAlone>
+  <CC_JA_Home_Empty>nobody stays home</CC_JA_Home_Empty>
+
+  <CC_JA_Pick>Pick the recommended</CC_JA_Pick>
+  <CC_JA_Pick_Tip>Who goes becomes the recommended, the animals the load wants come with them, and the recommended things go on the list. Numbers you set on the list stay as you set them, and anything can be changed after.</CC_JA_Pick_Tip>
+  <CC_JA_PickNone>Nobody at home is fit to go.</CC_JA_PickNone>
+
+  <!-- The groups and their reasons -->
+  <CC_JA_Group_Recommended>Recommended</CC_JA_Group_Recommended>
+  <CC_JA_Group_CanGo>Can go</CC_JA_Group_CanGo>
+  <CC_JA_Group_BetterNot>Better not</CC_JA_Group_BetterNot>
+  <CC_JA_Why_None>Fit for the road.</CC_JA_Why_None>
+  <CC_JA_Why_Named>Named by the errand.</CC_JA_Why_Named>
+  <CC_JA_Why_BestFighter>The best fighter at home.</CC_JA_Why_BestFighter>
+  <CC_JA_Why_Fighter>Armed and able.</CC_JA_Why_Fighter>
+  <CC_JA_Why_Doctor>The party's doctor.</CC_JA_Why_Doctor>
+  <CC_JA_Why_Negotiator>The best negotiator at home.</CC_JA_Why_Negotiator>
+  <CC_JA_Why_Speaker>The council's speaker, to speak for the colony.</CC_JA_Why_Speaker>
+  <CC_JA_Why_Talker>The best talker at home.</CC_JA_Why_Talker>
+  <CC_JA_Why_Hands>The best hands for the work.</CC_JA_Why_Hands>
+  <CC_JA_Why_Carrier>A strong back for the goods.</CC_JA_Why_Carrier>
+  <CC_JA_Why_Guard>A guard for the road.</CC_JA_Why_Guard>
+  <CC_JA_Why_Able>Fit for the road.</CC_JA_Why_Able>
+  <CC_JA_Why_CanGo>Fit for the road.</CC_JA_Why_CanGo>
+  <CC_JA_Why_Unarmed>No weapon for a fight.</CC_JA_Why_Unarmed>
+  <CC_JA_Why_Child>A child: only where there's no danger.</CC_JA_Why_Child>
+  <CC_JA_Why_Spare>Fit for the road; the party is full.</CC_JA_Why_Spare>
+  <CC_JA_Why_Downed>Down and can't walk.</CC_JA_Why_Downed>
+  <CC_JA_Why_Mental>Not in their right mind.</CC_JA_Why_Mental>
+  <CC_JA_Why_Wounds>Wounds still to be tended.</CC_JA_Why_Wounds>
+  <CC_JA_Why_InBed>In bed, recovering.</CC_JA_Why_InBed>
+  <CC_JA_Why_Sick>Ill.</CC_JA_Why_Sick>
+  <CC_JA_Why_Hurt>Badly hurt.</CC_JA_Why_Hurt>
+  <CC_JA_Why_Pain>In too much pain.</CC_JA_Why_Pain>
+  <CC_JA_Why_Slow>Can hardly walk.</CC_JA_Why_Slow>
+  <CC_JA_Why_Pregnant>With child.</CC_JA_Why_Pregnant>
+  <CC_JA_Why_ChildDanger>A child, and there is danger.</CC_JA_Why_ChildDanger>
+  <CC_JA_Why_Breaking>Near a break.</CC_JA_Why_Breaking>
+  <CC_JA_Why_NoViolence>Won't fight.</CC_JA_Why_NoViolence>
+  <CC_JA_Why_OnlyDoctor>The home's only doctor.</CC_JA_Why_OnlyDoctor>
+  <CC_JA_Why_OnlyCook>The home's only cook.</CC_JA_Why_OnlyCook>
+  <CC_JA_Why_BabyAlone>A baby's only parent at home.</CC_JA_Why_BabyAlone>
+  <CC_JA_Why_KeepHome>Needed to keep the home.</CC_JA_Why_KeepHome>
+  <CC_JA_Why_PackLoad>Carries what the people can't.</CC_JA_Why_PackLoad>
+  <CC_JA_Why_Mount>A mount: the caravan goes faster.</CC_JA_Why_Mount>
+  <CC_JA_Why_PackSpare>Not needed for this load.</CC_JA_Why_PackSpare>
+  <CC_JA_Why_Pet>Carries nothing on the road.</CC_JA_Why_Pet>
+  <CC_JA_Why_Young>Too young to carry.</CC_JA_Why_Young>
+  <CC_JA_Why_AnimalHurt>Hurt or ill.</CC_JA_Why_AnimalHurt>
+
+  <!-- A colonist's chips -->
+  <CC_JA_Now_Drafted>under arms now</CC_JA_Now_Drafted>
+  <CC_JA_Now_Busy>at a gathering now</CC_JA_Now_Busy>
+  <CC_JA_Chip_Downed>down</CC_JA_Chip_Downed>
+  <CC_JA_Chip_Mental>not in their right mind</CC_JA_Chip_Mental>
+  <CC_JA_Chip_Wounds>wounds to tend</CC_JA_Chip_Wounds>
+  <CC_JA_Chip_InBed>in bed</CC_JA_Chip_InBed>
+  <CC_JA_Chip_Sick>ill</CC_JA_Chip_Sick>
+  <CC_JA_Chip_Slow>can hardly walk</CC_JA_Chip_Slow>
+  <CC_JA_Chip_Hurt>badly hurt</CC_JA_Chip_Hurt>
+  <CC_JA_Chip_Pain>in pain</CC_JA_Chip_Pain>
+  <CC_JA_Chip_Scratched>lightly hurt</CC_JA_Chip_Scratched>
+  <CC_JA_Chip_Well>well</CC_JA_Chip_Well>
+  <CC_JA_Chip_Pregnant>with child</CC_JA_Chip_Pregnant>
+  <CC_JA_Chip_Child>a child, {AGE}</CC_JA_Chip_Child>
+  <CC_JA_Chip_NearBreak>near a break</CC_JA_Chip_NearBreak>
+  <CC_JA_Chip_NoViolence>won't fight</CC_JA_Chip_NoViolence>
+  <CC_JA_Chip_WeaponQ>{WEAPON}, {QUALITY}</CC_JA_Chip_WeaponQ>
+  <CC_JA_Chip_Unarmed>unarmed</CC_JA_Chip_Unarmed>
+  <CC_JA_Chip_Armour>armor</CC_JA_Chip_Armour>
+  <CC_JA_Chip_Cold>cold below {TEMP}</CC_JA_Chip_Cold>
+  <CC_JA_Chip_Hot>hot above {TEMP}</CC_JA_Chip_Hot>
+  <CC_JA_Chip_Addicted>needs {WHAT}</CC_JA_Chip_Addicted>
+  <CC_JA_Chip_Carries>carries {KG} kg</CC_JA_Chip_Carries>
+  <CC_JA_Chip_OnlyDoctor>only doctor</CC_JA_Chip_OnlyDoctor>
+  <CC_JA_Chip_OnlyCook>only cook</CC_JA_Chip_OnlyCook>
+  <CC_JA_Chip_OnlyGrower>only grower</CC_JA_Chip_OnlyGrower>
+  <CC_JA_Chip_OnlyWarden>only warden</CC_JA_Chip_OnlyWarden>
+  <CC_JA_Chip_Office>on the council</CC_JA_Chip_Office>
+  <CC_JA_Chip_Baby>a baby's parent</CC_JA_Chip_Baby>
+  <CC_JA_Chip_Lover>lover stays home</CC_JA_Chip_Lover>
+  <CC_JA_Skill>{SKILL} {LEVEL}</CC_JA_Skill>
+  <CC_JA_Tip_Best>The colony's best at {SKILL}.</CC_JA_Tip_Best>
+  <CC_JA_Tip_Health>Health {HEALTH}, pain {PAIN}, walking {MOVING}; injuries: {INJURIES}, parts missing: {MISSING}.</CC_JA_Tip_Health>
+  <CC_JA_Tip_Mind>Mood {MOOD} (a break below {MINOR}); their heart: {BAND}.</CC_JA_Tip_Mind>
+  <CC_JA_Tip_Armour>The best of what they wear: {SHARP} sharp armor.</CC_JA_Tip_Armour>
+  <CC_JA_Tip_ClothesGoing>The road runs from {LOW} to {HIGH}. In the clothes they will wear they are comfortable from {MIN} to {MAX}: nothing in the stores covers the rest.</CC_JA_Tip_ClothesGoing>
+  <CC_JA_Tip_ClothesHome>The road runs from {LOW} to {HIGH}. In what they wear now they are comfortable from {MIN} to {MAX}. Picked, they change into clothes from the stores where the stores have any that help.</CC_JA_Tip_ClothesHome>
+  <CC_JA_Tip_Addicted>The planner packs their drugs for the days away with the margin.</CC_JA_Tip_Addicted>
+  <CC_JA_Tip_Carries>What they can carry on the road, by the game's own reckoning.</CC_JA_Tip_Carries>
+  <CC_JA_Tip_Office>They keep their seat while away, but can't do its work from the road.</CC_JA_Tip_Office>
+  <CC_JA_Tip_Lover>Their lover stays home.</CC_JA_Tip_Lover>
+  <CC_JA_Tip_Row>{PAWN}: {REASON}</CC_JA_Tip_Row>
+
+  <!-- An animal's chips -->
+  <CC_JA_Chip_Pack>carries {KG} kg</CC_JA_Chip_Pack>
+  <CC_JA_Chip_Mount>{FASTER} faster ridden</CC_JA_Chip_Mount>
+  <CC_JA_Tip_Mount>A caravan rides faster with a mount for each traveller, by the game's own reckoning.</CC_JA_Tip_Mount>
+  <CC_JA_Chip_WithYoung>with young</CC_JA_Chip_WithYoung>
+  <CC_JA_Chip_AnimalHurt>hurt</CC_JA_Chip_AnimalHurt>
+  <CC_JA_Chip_Bonded>bonded to {PAWN}</CC_JA_Chip_Bonded>
+
+  <!-- What to bring -->
+  <CC_JA_Bring>Recommended for this journey</CC_JA_Bring>
+  <CC_JA_AddAll>Add the recommended</CC_JA_AddAll>
+  <CC_JA_AddAll_None>Nothing to add.</CC_JA_AddAll_None>
+  <CC_JA_AddAll_Tip>Puts every recommended thing on the list. Each can be taken off again.</CC_JA_AddAll_Tip>
+  <CC_JA_Add>Add</CC_JA_Add>
+  <CC_JA_Add_Tip>Put it on the list.</CC_JA_Add_Tip>
+  <CC_JA_ItemLine>{0} × {1}</CC_JA_ItemLine>
+  <CC_JA_FromStall>{0} off {1}.</CC_JA_FromStall>
+  <CC_JA_Item_MedicineDanger>For {COUNT} where there will be fighting: more come back hurt.</CC_JA_Item_MedicineDanger>
+  <CC_JA_Item_MedicineRescue>For someone hurt to bring home.</CC_JA_Item_MedicineRescue>
+  <CC_JA_Item_Medicine>For {COUNT} on a long road.</CC_JA_Item_Medicine>
+  <CC_JA_Item_Silver>To buy with at {PLACE}.</CC_JA_Item_Silver>
+  <CC_JA_Item_Request>{PLACE} asks for {COUNT} of these.</CC_JA_Item_Request>
+  <CC_JA_Item_GoodsStall>To sell at {PLACE}: set out for sale on a stall already.</CC_JA_Item_GoodsStall>
+  <CC_JA_Item_GoodsArt>To sell at {PLACE}: worth a lot for its weight.</CC_JA_Item_GoodsArt>
+  <CC_JA_Item_Arm>For {WHO}, unarmed: taken up before setting off.</CC_JA_Item_Arm>
+  <CC_JA_Item_Bedrolls>A bedroll each for the nights on the road.</CC_JA_Item_Bedrolls>
+  <CC_JA_Note_Bedrolls>No bedrolls in the stores: they sleep on the ground on the road. Bedrolls can be made now.</CC_JA_Note_Bedrolls>
+  <CC_JA_Note_Cold>Nothing in the stores keeps {PAWN} warm down to {TEMP} on the way.</CC_JA_Note_Cold>
+  <CC_JA_Note_Hot>Nothing in the stores keeps {PAWN} cool up to {TEMP} on the way.</CC_JA_Note_Hot>
+  <CC_JA_Note_DressingOff>{PAWN}'s clothes don't cover the weather on the way ({TEMP}). With "Dressed for the road" on in the settings, the planner would change them.</CC_JA_Note_DressingOff>
+  <CC_JA_Note_NoDrug>{PAWN} needs {CHEM}, and the stores have none to pack.</CC_JA_Note_NoDrug>
+
+  <!-- RimMarket's stalls -->
+  <CC_JA_OnStall>{0} more on {1}</CC_JA_OnStall>
+  <CC_JA_OffStall>{0} off {1}</CC_JA_OffStall>
+  <CC_JA_TipStall>On {1}: {0}. The stores' are taken first; a traveller takes the rest off the stall in the last hours.</CC_JA_TipStall>
+  <CC_JA_PickStall>({0} on a stall)</CC_JA_PickStall>
+
+  <!-- The load at a glance -->
+  <CC_JA_Meter_Load>Load</CC_JA_Meter_Load>
+  <CC_JA_Meter_LoadValue>{0} of {1} kg</CC_JA_Meter_LoadValue>
+  <CC_JA_Meter_Speed>Speed</CC_JA_Meter_Speed>
+  <CC_JA_Meter_SpeedValue>about {0} tiles a day</CC_JA_Meter_SpeedValue>
+  <CC_JA_Meter_SpeedNone>nobody picked</CC_JA_Meter_SpeedNone>
+  <CC_JA_Meter_Speed_Tip>The caravan's own reckoning of its speed with this load and its mounts, on the land around home. Roads, hills and the season change it on the way.</CC_JA_Meter_Speed_Tip>
+  <CC_JA_Meter_Food>Food</CC_JA_Meter_Food>
+  <CC_JA_Meter_FoodNone>nobody picked</CC_JA_Meter_FoodNone>
+  <CC_JA_Meter_FoodAll>lasts the {0} days</CC_JA_Meter_FoodAll>
+  <CC_JA_Meter_FoodValue>{0} days for {1} on the road</CC_JA_Meter_FoodValue>
+  <CC_JA_Meter_Food_Tip>How long the food on the list lasts against the days on the road. The bar is full with the margin, {0} days.</CC_JA_Meter_Food_Tip>
+
+</LanguageData>

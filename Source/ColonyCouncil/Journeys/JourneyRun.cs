@@ -254,8 +254,11 @@ namespace ColonyCouncil
                     var next = plan.clothes.TryGetValue(p, out var picks)
                         ? picks.FirstOrDefault(a => a != null && !a.Destroyed && a.Spawned && a.Wearer == null && !a.IsForbidden(p) && p.CanReserveAndReach(a, PathEndMode.ClosestTouch, Danger.Some))
                         : null;
-                    finished = next == null;
-                    return finished ? null : JobMaker.MakeJob(JobDefOf.Wear, next);
+                    if (next != null) return JobMaker.MakeJob(JobDefOf.Wear, next);
+                    // Dressed: one who has no weapon takes up one the list brings for them.
+                    var arm = ArmJob(plan, p);
+                    finished = arm == null;
+                    return arm;
                 }
                 case JourneyMath.Step.Pack:
                 {
@@ -271,8 +274,10 @@ namespace ColonyCouncil
                             job.count = Mathf.Min(want, thing.stackCount);
                             return job;
                         }
-                    finished = true;
-                    return null;
+                    // What the stores don't hold of the list, off the colony's stalls (RimMarket).
+                    var stall = StallJob(plan, p);
+                    finished = stall == null;
+                    return stall;
                 }
                 case JourneyMath.Step.Meal:
                 {
@@ -314,6 +319,80 @@ namespace ColonyCouncil
                     return JobMaker.MakeJob(JourneyDefOf.Rimfolk_JourneyWait, cell, plan.gate);
                 }
             }
+        }
+
+        // ---------------- Weapons for the unarmed, goods off a stall ----------------
+
+        private static string ArmKey(Pawn p, ThingDef def) => p.ThingID + ":Arm:" + def.defName;
+
+        /// <summary>How many of the travellers took up a weapon of this kind from the list (the list's "arm" lines count them as packed).</summary>
+        public static int Armed(JourneyPlan plan, List<Pawn> going, ThingDef def) =>
+            def == null ? 0 : going.Count(p => p != null && p.equipment?.Primary?.def == def && plan.done.Contains(ArmKey(p, def)));
+
+        /// <summary>One who has no weapon (and will use one) takes up the nearest of a weapon the list brings for the unarmed, while one is still wanted.</summary>
+        private static Job ArmJob(JourneyPlan plan, Pawn p)
+        {
+            if (p.equipment == null || p.equipment.Primary != null || p.WorkTagIsDisabled(WorkTags.Violent)) return null;
+            foreach (var line in plan.packing.Where(l => l.Taken && l.kind == "arm"))
+            {
+                if (Armed(plan, plan.travellers, line.def) >= line.count) continue;
+                var weapon = GenClosest.ClosestThing_Global_Reachable(p.Position, p.Map, p.Map.listerThings.ThingsOfDef(line.def).Where(t => t.Spawned && t.IsInAnyStorage()),
+                    PathEndMode.ClosestTouch, TraverseParms.For(p), 9999f, t => !t.IsForbidden(p) && p.CanReserve(t) && EquipmentUtility.CanEquip(t, p));
+                if (weapon == null) continue;
+                if (!plan.done.Contains(ArmKey(p, line.def))) plan.done.Add(ArmKey(p, line.def));
+                return JobMaker.MakeJob(JobDefOf.Equip, weapon);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// The next goods this traveller takes off a colony stall: of a line the stores and the travellers' packs don't
+        /// cover, less what others are fetching now, from the nearest stall that has it (JourneyAdviceMath.TakeFrom: the
+        /// stores first). As much as they have room for, or all that is left when nobody has room.
+        /// </summary>
+        private static Job StallJob(JourneyPlan plan, Pawn p)
+        {
+            var def = JourneyDefOf.Rimfolk_JourneyStall;
+            if (def == null || !RimMarketStall.JourneyReady) return null;
+            var map = plan.map;
+            var stalls = RimMarketStall.JourneyStalls(map);
+            if (stalls.Count == 0) return null;
+            plan.stallTaking.RemoveAll(t => t.pawn == null || t.pawn.CurJob != t.job);
+            foreach (var line in plan.packing.Where(l => l.Taken))
+            {
+                int fetching = plan.stallTaking.Where(t => t.def == line.def).Sum(t => t.job.count);
+                int want = line.count - plan.travellers.Sum(x => JourneyPack.Carried(x, line.def)) - (line.kind == "arm" ? Armed(plan, plan.travellers, line.def) : 0) - fetching;
+                if (want <= 0) continue;
+                var holding = stalls.Where(st => RimMarketStall.OnStall(st, line.def) > 0).OrderBy(st => st.Position.DistanceToSquared(p.Position)).ToList();
+                if (holding.Count == 0) continue;
+                var (_, fromStalls, _) = JourneyAdviceMath.TakeFrom(want, JourneyPack.InStores(map, line.def), holding.Select(st => RimMarketStall.OnStall(st, line.def)).ToList());
+                int i = Array.FindIndex(fromStalls, c => c > 0);
+                if (i < 0) continue;
+                float unit = Mathf.Max(0.001f, JourneyPack.UnitMass(line.def));
+                int room = Mathf.FloorToInt(Mathf.Max(0f, MassUtility.FreeSpace(p)) / unit);
+                int count = fromStalls[i];
+                if (room < count)
+                {
+                    bool others = plan.travellers.Any(o => o != null && o != p && o.Spawned && o.Map == map && MassUtility.FreeSpace(o) >= unit);
+                    if (room <= 0 && others) continue;
+                    if (room > 0) count = room;
+                }
+                if (!p.CanReach(holding[i], PathEndMode.Touch, Danger.Some)) continue;
+                var job = JobMaker.MakeJob(def, holding[i]);
+                job.thingDefToCarry = line.def;
+                job.count = count;
+                plan.stallTaking.Add(new JourneyPlan.StallTake { pawn = p, def = line.def, job = job });
+                return job;
+            }
+            return null;
+        }
+
+        /// <summary>A traveller took goods off a stall (JobDriver_JourneyStall): they're in their pack now, and no longer being fetched.</summary>
+        public static void TookFromStall(Pawn p, Thing stall, ThingDef def, int count)
+        {
+            foreach (var plan in JourneyBook.Plans)
+                plan.stallTaking.RemoveAll(t => t.pawn == p);
+            if (count > 0) JourneyBook.Touch();
         }
 
         /// <summary>The nearest of a line's things in the stores a traveller can pick up.</summary>

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Who to bring and what to pack
+
+*5 November 2026, version 0.91.0*
+
+- The journey planner shows everyone at home as a row: health, mood and heart, the skills a journey uses with the colony's best in gold, weapon and armor, whether their clothes cover the weather on the way, the drugs they need, what they carry, and what the home loses while they are away, grouped Recommended, Can go and Better not with the reason in a line.
+- The planner reads what a journey is for from where it goes (a fight, trade, talks, an escort, a mission's errand) and how dangerous the place looks, and recommends whom to send by it: fighters and a doctor for a fight, the best negotiator for trade, the speaker or best talker for talks, never the home's last doctor or cook while someone else could go.
+- Recommended for this journey: medicine by the danger, silver and goods for trade, a town's trade request, a weapon for each traveller who has none (taken up before they set off), bedrolls, and pack animals and mounts by the load. Pick the recommended fills who goes, the animals and the things in one press, and nothing is picked but by your click.
+- Bars at the planner's foot for the load against the room, the caravan's own speed, and the food's days against the road's.
+- With RimMarket, what lies on the colony's stalls is listed in the planner beside the stores, the stores' taken first, and a traveller takes the rest out of the stall's stock before setting off.
+
 ## What lies between peoples
 
 *5 November 2026, version 0.90.0*
