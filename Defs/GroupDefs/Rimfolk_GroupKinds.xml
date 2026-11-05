@@ -6,10 +6,12 @@
     pull together (friendship, shared work, a fight fought side by side, the night hours, faith, where they came from,
     age, being alike); the kind is what binds most of them, and it gives the group its name, picked once and kept.
     Among the kinds that fit enough of the group (minShare), the lowest order wins: the most particular reason first,
-    friendship (named after the one it gathers round) last.
+    friendship last, named for what its people share (Rimfolk_GroupShares.xml), never after one of them. A kind whose
+    own names are all taken is named for what its people share as well.
 
     names: era tags as in flavour lines ([lowtech], [!lowtech], [tribal], [medieval]); [pods] only when the colony's
-    first people came down in drop pods. {ANCHOR} is the one the group gathers round, when it formed.
+    first people came down in drop pods. The friends kind's names, with {ANCHOR} (the one the group gathered round), are
+    no longer given: they find the groups older saves named after someone, which get a name of what they share once.
     habits: what it does together (Rimfolk_GroupHabits.xml), the first one that fits first.
   -->
 
@@ -448,6 +450,7 @@
   </ColonyCouncil.GroupKindDef>
 
   <!-- ===================== Friendship ===================== -->
+  <!-- Named for what its people share (Rimfolk_GroupShares.xml): these names after its anchor are only for finding older saves. -->
 
   <ColonyCouncil.GroupKindDef>
     <defName>Rimfolk_Group_Friends</defName>

@@ -297,6 +297,15 @@ public static class GroupTests
             Check(GroupNaming.WithoutNumber("the hunters (2)") == "the hunters" && GroupNaming.WithoutNumber("the hunters (b)") == "the hunters (b)", "a taken name's number comes off");
         }
 
+        // ---------- How often the anchor calls them: every week or two, a close group ----------
+        {
+            Check(!GroupMath.MayCall(GroupMath.CloseAt - 1f, 30f) && !GroupMath.MayCall(40f, 30f), "a loose group is never called, however long it has been");
+            Check(GroupMath.MayCall(GroupMath.CloseAt, GroupMath.CallAfterDays) && !GroupMath.MayCall(90f, GroupMath.CallAfterDays - 0.1f),
+                "a close group may be called once the days since the last are up, not before");
+            Check(GroupMath.CloseAt == 50f, "close is where the card says close");
+            Check(GroupMath.DaysBetweenCalls >= 7f && GroupMath.DaysBetweenCalls <= 14f, $"every week or two on average ({GroupMath.DaysBetweenCalls:0.#} days)");
+        }
+
         // ---------- The defs ----------
         var docs = Directory.GetFiles(Path.Combine(root, "Defs", "GroupDefs"), "*.xml").Select(f => XDocument.Load(f)).ToList();
         var all = docs.SelectMany(d => d.Root!.Elements()).ToList();
@@ -324,8 +333,44 @@ public static class GroupTests
             var names = k.Element("names")?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
             Check(names.Count >= 3, $"{name}: at least three names to choose from");
             Check(names.Any(x => !x.StartsWith("[")), $"{name}: a name for any era");
-            if ((string)k.Element("binds") == "Friends") Check(names.All(x => x.Contains("{ANCHOR}")), $"{name}: named after its anchor");
+            if ((string)k.Element("binds") == "Friends") Check(names.All(x => x.Contains("{ANCHOR}")), $"{name}: its names after its anchor are only the old ones, to find older saves");
         }
+
+        // What a friendship group is named for: never after one of them.
+        var shares = all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupShareDef").ToList();
+        string Strip(string s) => s.StartsWith("[") && s.IndexOf(']') > 0 ? s.Substring(s.IndexOf(']') + 1).Trim() : s;
+        var kindNames = kinds.Where(k => (string)k.Element("binds") != "Friends").SelectMany(k => k.Element("names")!.Elements("li").Select(x => Strip(x.Value))).ToHashSet();
+        var shareNames = new List<string>();
+        var keyedText = Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements())
+            .GroupBy(e => e.Name.LocalName).ToDictionary(g => g.Key, g => g.First().Value);
+        var patterns = kinds.Where(k => (string)k.Element("binds") == "Friends").SelectMany(k => k.Element("names")!.Elements("li").Select(x => Strip(x.Value))).ToList();
+        patterns.Add(GroupNaming.AsPattern(keyedText["CC_Clique_Name"], "PAWN"));
+        foreach (var k in kinds) patterns.Add(GroupNaming.AsPattern(keyedText["CC_Group_NameOf"], "ANCHOR", (string)k.Element("label")));
+        Check(GroupNaming.AfterSomeone("Stace's friends", patterns) && GroupNaming.AfterSomeone("Hector's hunters", patterns) && GroupNaming.AfterSomeone("Ann's lot (2)", patterns),
+            "the names older saves gave after someone are all found (a friends kind's, the older circles', a kind's once its own were taken)");
+        Check(shares.Count >= 20, $"things a group may be named for ({shares.Count})");
+        foreach (var s in shares)
+        {
+            string name = (string)s.Element("defName");
+            string idea = (string)s.Element("idea");
+            var names = s.Element("names")?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
+            Check(names.Count(x => !x.StartsWith("[")) >= 3, $"{name}: three names or more for any era");
+            Check(names.Select(Strip).All(x => !x.Contains("{") && !x.Contains("'s ") && x.StartsWith("the ", StringComparison.Ordinal)), $"{name}: never after someone");
+            foreach (var n in names.Select(Strip))
+            {
+                Check(!GroupNaming.AfterSomeone(n, patterns), $"{name}: \"{n}\" never reads as a name after someone");
+                Check(!kindNames.Contains(n), $"{name}: \"{n}\" isn't a kind's own name");
+                shareNames.Add(n);
+            }
+            Check(((string)s.Element("why") ?? "").StartsWith("They are friends", StringComparison.Ordinal), $"{name}: says they are friends, and what they share");
+            if (idea == "Habit") Check(habits.Contains((string)s.Element("habit")), $"{name}: its habit exists");
+            if (idea == "Work") Check(s.Element("workTypes")?.Elements("li").Any() == true, $"{name}: names its work");
+            if (idea == "Likeness") Check(!string.IsNullOrEmpty((string)s.Element("axis")), $"{name}: names its side");
+        }
+        Check(shareNames.Count == shareNames.Distinct().Count(), "no two shares give the same name");
+        foreach (var h in habits)
+            Check(shares.Any(s => (string)s.Element("idea") == "Habit" && (string)s.Element("habit") == h), $"{h}: a group may be named for it");
+        Check(shares.Count(s => (string)s.Element("idea") == "Friends") >= 1 && shares.Any(s => (string)s.Element("idea") == "Hours"), "their friendship and the night hours name groups");
         foreach (var e in all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupNormDef"))
         {
             string c = (string)e.Element("clashes");

@@ -6,8 +6,9 @@
     with two or more of its people together right now, doing the habit's thing within its hours, keeps it (at most once
     a day): each of them gets Council_Soc_GroupHabit (company, not mood; it counts for Belonging), their strain eases a
     little, one of them says a line from the pool, and the group grows closer. With "Answers play out on the map" on,
-    the anchor of a close group now and then calls them all to a habit with a playKind: a fire laid of an evening, or a
-    gathering in the rec room.
+    the anchor of a close group (cohesion 50 or more, "close" on its card) calls them all to its first habit with a
+    playKind every week or two, one group at a time: a fire laid of an evening, or a gathering in the rec room. The
+    gathering says as it begins who gathers, what the group is and what it does for them (Rimfolk_Groups_Gatherings.xml).
 
     where: fire (at leisure within a few steps of a lit fire of the colony's), table (eating in the same room), rec (at
     leisure in a rec room), work (at the group's work, side by side), night (up in the small hours), prayer (praying or

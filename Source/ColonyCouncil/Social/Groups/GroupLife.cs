@@ -789,7 +789,7 @@ namespace ColonyCouncil
             // apart: news that a group has formed, read from the day's account of who drifted together; and what a group
             // does, told this once (GroupHabits.Formed).
             string text = "CC_Group_Formed".Translate(g.Name.Named("GROUP"), GroupText.Members(g).Named("NAMES"), g.why.Named("WHY")).Resolve();
-            string does = GroupHabits.Formed(g, anchor);
+            string does = GroupHabits.Formed(g);
             if (!does.NullOrEmpty()) text += " " + does;
             News.Post(GroupText.Sentences(text), new LookTargets(g.Pawns.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), anchor));

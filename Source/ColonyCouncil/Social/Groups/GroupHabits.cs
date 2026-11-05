@@ -12,8 +12,9 @@ namespace ColonyCouncil
     /// more of its people are together right now doing its thing: at leisure by the fire of an evening, at the same table,
     /// at games in the rec room, at the same work, up in the small hours. If they are, they keep the habit (once a day):
     /// each feels they belong (a small good memory that gives company, not mood), their strain eases a little, one of
-    /// them says something, and the group grows closer. Now and then, with "Answers play out on the map", the group's
-    /// anchor calls them all to it: a fire laid of an evening or a gathering in the rec room, on the map.
+    /// them says something, and the group grows closer. Every week or two, with "Answers play out on the map", the anchor
+    /// of a close group calls them all to it: a fire laid of an evening or a gathering in the rec room, on the map, which
+    /// says as it begins who gathers, what the group is and what it does for them.
     /// </summary>
     public static class GroupHabits
     {
@@ -336,7 +337,7 @@ namespace ColonyCouncil
         /// of belonging and eases their strain; with "Answers play out on the map", its anchor calls them all to its first
         /// habit that can be called (as <see cref="Daily"/> does) every week or two while it's close.
         /// </summary>
-        public static string Formed(SocialGroup g, Pawn anchor)
+        public static string Formed(SocialGroup g)
         {
             if (g == null) return null;
             var habits = g.Habits;
