@@ -42,12 +42,15 @@ namespace ColonyCouncil
             {
                 Safe("envoys", () => Envoys.Hourly(now));
                 Safe("envoys abroad", () => EnvoysAbroad.Hourly(now));
+                // Feasts with guests (release 2b.1): the answers, the day, the guests' stay; tales of the colony's own told at home.
+                Safe("feasts", () => Feasts.Hourly(now));
             }
             if (Sched.FirstHourOfDay(now))
             {
                 Safe("day", () => FavourAsks.Daily(now));
                 Safe("pacts' day", () => Pacts.Daily(now));
                 Safe("envoys' day", () => Envoys.Daily(now));
+                Safe("feasts' day", () => Feasts.Daily(now));
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }

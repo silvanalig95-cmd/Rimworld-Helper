@@ -205,6 +205,8 @@ namespace ColonyCouncil
         public bool diplomacyRansom = true;
         /// <summary>Envoys both ways (Diplomacy/Envoys.cs, EnvoysAbroad.cs): their envoy as the colony's guest for a season, and the colony's own at their town. Off, nothing new is agreed, and a stay under way runs its season.</summary>
         public bool diplomacyEnvoys = true;
+        /// <summary>Feasts, hunts, games and contests with guests from the peoples around (Diplomacy/Feasts.cs). Off, nothing new is planned or suggested, and a feast under way plays out.</summary>
+        public bool diplomacyFeasts = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -586,6 +588,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref truceRaids, "truceRaids", true);
             Scribe_Values.Look(ref diplomacyRansom, "diplomacyRansom", true);
             Scribe_Values.Look(ref diplomacyEnvoys, "diplomacyEnvoys", true);
+            Scribe_Values.Look(ref diplomacyFeasts, "diplomacyFeasts", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

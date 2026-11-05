@@ -190,6 +190,11 @@ namespace ColonyCouncil
         public EnvoyAbroad abroad;
         /// <summary>When an envoy was last offered to this home, and by which people (its loadID), or -1.</summary>
         public int envoyOfferAt = -1, envoyOfferPeople = -1;
+        /// <summary>Its feast with guests under way (Feasts.cs, release 2b.1), the last one (kept for its card), when the last was held, when the steward last suggested one.</summary>
+        public GuestFeast feast, lastFeast;
+        public int feastHeld = -1, feastSuggested = -1;
+        /// <summary>Who of the colony's won something at a neighbour's feast, told when they are home (FeastMath.MaxTales at most).</summary>
+        public List<FeastTale> tales = new List<FeastTale>();
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -203,10 +208,18 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref abroad, "abroad");
             Scribe_Values.Look(ref envoyOfferAt, "envoyOfferAt", -1);
             Scribe_Values.Look(ref envoyOfferPeople, "envoyOfferPeople", -1);
+            Scribe_Deep.Look(ref feast, "feast");
+            Scribe_Deep.Look(ref lastFeast, "lastFeast");
+            Scribe_Values.Look(ref feastHeld, "feastHeld", -1);
+            Scribe_Values.Look(ref feastSuggested, "feastSuggested", -1);
+            if (Scribe.mode == LoadSaveMode.Saving) tales?.RemoveAll(t => t == null || t.pawn == null);
+            Scribe_Collections.Look(ref tales, "tales", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 offers ??= new List<RansomOffer>();
                 offers.RemoveAll(o => o == null);
+                tales ??= new List<FeastTale>();
+                tales.RemoveAll(t => t == null || t.pawn == null);
             }
         }
     }
@@ -282,7 +295,7 @@ namespace ColonyCouncil
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0))
                         return true;
                 return false;
             }
@@ -302,6 +315,7 @@ namespace ColonyCouncil
                         Ransoms.HomeLost(h);
                         Envoys.HomeLost(h);
                         EnvoysAbroad.HomeLost(h);
+                        Feasts.HomeLost(h);
                     }
                     catch (Exception e)
                     {

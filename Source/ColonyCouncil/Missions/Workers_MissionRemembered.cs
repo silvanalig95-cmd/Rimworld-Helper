@@ -228,6 +228,8 @@ namespace ColonyCouncil
                         CouncilGameComponent.GiveThought(p, thought);
                 Missions.Goodwill(m, m.goodwill);
                 FactionMemory.Note(m.faction, "feast", m.place);
+                // Who of the colony's won something at their contests, told when they are home (Diplomacy/FeastLetters.cs).
+                FeastAway.Attended(m, here);
                 Missions.Finish(m, MissionState.Done, "attended", Loot.Describe(gifts), new LookTargets(here));
                 return;
             }
