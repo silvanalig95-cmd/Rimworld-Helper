@@ -226,6 +226,7 @@ namespace ColonyCouncil
                     if (!lit) return;
                     if (pawn.carryTracker?.CarriedThing != null) pawn.carryTracker.DestroyCarriedThing();
                     FleckMaker.ThrowSmoke(job.GetTarget(TargetIndex.A).Cell.ToVector3Shifted(), pawn.Map, 2.5f);
+                    Outsiders.Say(pawn, "signalfire", null);
                     PactCalls.FireLit(pawn.Map, pawn);
                 }
                 catch (Exception e)
