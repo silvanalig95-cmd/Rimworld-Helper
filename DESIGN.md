@@ -2874,6 +2874,81 @@ Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Dip
   `them:hostage`, `them:fostered`; `{WARD}`, `{HOSTAGE}`, `{GUARDIAN}`. Words by both ages (`AgeFeature.Ward`,
   `Hostage`; the ward's rites say the ward's side only). Setting `diplomacyWards`.
 
+#### The keeper of secrets and council tasks
+
+Release 2c.1 (docs/design/stage2-diplomacy.md, item 8; decisions 13 and 14): `Diplomacy/`, its rules pure and tested
+(`TaskMath.cs`, `KeeperMath.cs`; `Tools/Tests/TaskTests.cs`).
+
+- **The office.** `Council_Office_SecretKeeper` (`Defs/OfficeDefs/Rimfolk_Offices_Keeper.xml`): Social and Intellectual,
+  six voters, elected like the others, its holder's hediff `Council_Office_SecretKeeper` (social impact, negotiation).
+  The colony's edge is in code: a knower's slip in `SecretTracker.Step` is multiplied by `KeeperOfSecrets.SlipFactor`
+  (half while the owner's colony has the seat filled, offices on). Its planks reuse the election pools' `gate` and
+  `watch` lines.
+- **The records.** Each `DiplomacyHome` keeps its `tasks` (`CouncilTask`, one record per office with tasks,
+  `TaskMath.MaxPerHome` = 13), kept a season after a task ends so the office's last visit counts toward "once a season",
+  and the people the marshal last drilled (`drillPeople`, `drillAt`). A record holds the office, kind
+  (`TaskKind`: WinOver, Secrets, Scout, Drill, Trade, Dues reserved, Tend, BringHome, TheirKin, KeepFaith, SpeakFaith,
+  Host), the officer, the target (a notable, a people, a town, a colonist held), the stage, the last step
+  (`TaskStep`) with when and how, the next step's tick (never shown), the tallies, the open letter or courier trip, and
+  the visit (`VisitStage`, the journey plan's id, the companion). History `dip:task` (set as everyday, results as
+  milestones).
+- **The hour** (`CouncilTasks.Hourly`, from `Diplomacy.Hourly` while something waits; the day lets records go and
+  `SecretTies.Daily` ends secrets about the gone): the visit's step first, then why it can't go on (the officer no
+  longer the holder, the target or people gone, war for a task at peace), `TaskResults.Finished` once the last answer is
+  home, the year's or season's end (`TaskMath.GivesUp`, `SeasonDone`), then the kind's step when due: a letter
+  (`LetterHour`), the keeper's hour, the marshal's dawn patrol (`JobDriver_TaskPatrol` round four cells near the edges,
+  `CouncilTasks.Patrolled`, `RaidersCamps.SpotByPatrol` three times in five), the quartermaster's samples
+  (`Couriers.CollectOrder` through `SendCart`).
+- **Letters** (`TaskLetters`, `LetterPurpose.Task`, last in the enum and hidden from the letter dialog): written only
+  by an officer (`TaskLetters.Send` lets `DiplomacyLetters.WhyNot` pass while it sends), by call where both sides have
+  the means, else by hand; the topic is `task:ID` or `press:TIEID`; `NotableMath.WaitDays(Task)` is 3 so the four to six
+  days hold; their words are the pool's `task` lines with the kind's code (`QuoteTags`). `TaskResults.LetterRead`
+  applies the kind's step at their end: regard by `TaskMath.RegardUp` and the answer's `ToneShare` (WinOver, KeepFaith,
+  with the believers steadied on a kind answer), the trade's way (`TradeGain`), a notable of another faith shaken
+  (`TaskMath.Shaken`, never below a fifth), the steward's preparation. The speaker also invites the head once
+  (`LetterPurpose.Invitation`; their visit counted as a guest received).
+- **Results.** Won over at 60: `Pacts.Offer` for a defence pact against a common enemy, else their trade pact (the
+  pacts' own letter, `TaskResults.OfferTrade`, words of its own), else `FavoursOwed.Make(..., "wonOver")`; the trade
+  open: their trade pact, else `IncidentDefOf.TraderCaravanArrival` queued with their people in one to three days, else a
+  favour; the warden's letters: `Ransoms.DemandFor` at the price `TaskMath.PriceFactor`, again after more letters when one
+  lapses, and while the warden writes about their kin `Ransoms.Notice` halves their offer's delay and `Add` raises the
+  price a quarter (`TaskResults.KinTask`); the steward's guests: `Feasts.End` multiplies a good welcome by
+  `TaskMath.Welcome` (`TaskResults.Stewards`); the drill: `Pacts.Arrive` makes the band with
+  `WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home))`.
+- **Visits** (`TaskVisits`): a `JourneyPlan` made for the officer and a companion (`Companion`: a grown colonist at home
+  who can fight, without a seat if any), to the town and back with a day there (`TaskMath.TripDays`), the next morning
+  (`JourneyMath.DefaultHoursAhead`), packed by `JourneyPack.Packing` in two passes, the physician's medicine an added
+  `other` line; `JourneyRun.Confirm`. The plan is the colony's one plan at the home: the planner can change or call it
+  off. Planned → Road (the officer in a caravan) → There (at the town tile, a day; `TaskResults.Visited`) → Homeward
+  (`CaravanArrivalAction_Enter` home) → done on the home map. Why not (`TaskVisits.WhyNot`): journeys off, no road, one
+  away from the home already, a season since the office's last, a journey planned, fewer than three free at home. The
+  physician's day hands over the packed medicine, `KinMemory.Note(f, "tended", ...)`, their head's regard, and one visit
+  in five the game's `Flu` on one of the party.
+- **The keeper** (`KeeperOfSecrets`): the watch after dark (20 to 2, once a night a home, with guests of another people
+  in a lord: the game's `FollowClose` for 3,750 ticks; `KeeperMath.OverhearChance` at its end; `Watching(map)` for
+  release 2c.3), hard words from a notable who caught the keeper (`Together.When`, once); "Sound out" (`OutsiderAct.SoundOut`,
+  last in the enum, in the menu after "Offer an exchange", the keeper's only): sounding out (the roll about the one
+  spoken to if a notable, else their head) or reminding a notable of a secret (pressed face to face); the task's hour (a
+  talk once a day with someone of their people here through `Outsiders.StartTalk`, the informer's trip met at the gate);
+  `Step` rolls `KeeperMath.LearnChance` and `Roll` (found out a tenth).
+- **Secret ties** (`SecretTies`): `Tie.Kind.Secret` from the knower (the colony) to the notable it is about, key the
+  kind (`KeeperMath.Kinds`), number its weight, about the keeper who learned it, until a year, origin `keeper`; twenty
+  live at most (`ToLetGo`). Pressed by letter ("Press what we know" on the notable's card) or face to face: called in,
+  then kept (they pay `KeeperMath.Hush`, the silver with their answer or handed over) or broken (told: their regard
+  `ToldRegard`, their people's deed `schemed`); a letter that never went puts it back open.
+- **Where it shows** (`TaskPanels`): the officer's card (the task, last step, next step; set, plan the visit, pay an
+  informer, send samples, call it off), the office's row on the Decrees page (`TaskPanels.OfficeRow`), a notable's card
+  (what the colony knows; press it), the Secret tie's card, a people's card ("Council task..." with every task that fits
+  them, `CouncilTasks.ChooseFor`), Here and away (`DiplomacyModel.tasks`, the officer away in `away`), the inbox: `task`
+  in Needs you (a visit or a feast to plan), `task-under-way` in four steps. Facts (`FactsTasks.cs`): `us:task`,
+  `us:task:KIND` (never the keeper's or the patrol), `task:writes`, `task:visited`, `task:you`, `them:caughtkeeper`
+  (`:you`), `them:pressed`, `keeper:watched`; `{OFFICER}`, `{OFFICE}`. Words by both ages (`AgeFeature.CouncilTasks`,
+  the levy's for the drill). Setting `diplomacyTasks` (with offices).
+- **Entry points.** Release 2c.2: `TaskKind.Dues` is reserved (`TaskMath.Built` false); `CouncilTasks.DuesWhyNot` and
+  `DuesStep` switch it on (`Offered`), and `SendCart` carries goods by courier. Release 2c.3: `KeeperOfSecrets.Watching`
+  with `KeeperMath.CatchFactor`, `SecretTies.Learn(Ref knower, Ref about, ...)` for their spy's tie about a colonist,
+  `SecretTies.Of`/`About`, and pressing through the ledger's own called-in, kept and broken.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

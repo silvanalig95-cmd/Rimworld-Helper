@@ -1229,12 +1229,14 @@ wind (with PokéWorld) and the neighbours settled for good. The Almanac page "th
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
-and **steward** (standards rise more slowly). Seven more offices open as the colony grows: the **reeve** (fuller
+and **steward** (standards rise more slowly). Eight more offices open as the colony grows: the **reeve** (fuller
 harvests, from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
 together, from five), the **chaplain** (with Ideology: keeps the colony's ideoligion, from five), the **warden of guests**
 (looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
-ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
+ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). The **keeper of secrets**
+(Social and Intellectual, from six) keeps the colony's own secrets from slipping half as often, walks with guests after
+dark and can sound out someone of another people. Colonists elect them every year, voting for the skilled, the
 suited and the liked, friends and groups voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
@@ -2755,6 +2757,21 @@ grieved, a feud if by a colonist's hand. The colony can send a youth of its own 
 there. Hostages, adults only, can be a truce's price or a defense pact's term, either way; their side breaking a truce
 leaves theirs the colony's to decide about, and the colony breaking its word leaves its own in their captivity. 29
 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Setting: *Wards and hostages*.
+
+**Council tasks and the keeper of secrets.** Eight offices can each take one task with a neighbor (or on the colony's
+own land), set on the office's row of the Decrees page, on the officer's card, or from a people's card. The speaker
+wins over a town's head by letter or call, an invitation and a visit, until their people offer a pact or owe a favor;
+the quartermaster opens a trade (letters, samples, a visit: their trade pact or their caravan); the marshal walks the
+edges at dawn for a season (a raiders' camp seen sooner) or drills a pact partner's fighters (their band a fifth
+stronger); the physician takes medicine to a town where a sickness runs (one visit in five brings it home); the warden of
+guests writes to bring the colony's own home for a lower price, or about their kin in its cells; the chaplain keeps the
+faith with a head of the same faith or speaks for it to one of another; the steward prepares a feast whose guests'
+welcome counts half again. Visits are real caravans planned in the journey planner: the officer and a companion, one
+officer away from a home at a time, each office once a season. The keeper of secrets learns what a notable keeps quiet
+(talks with their people, a paid informer at the gate, a visit; found out one time in ten) and can press it: they pay
+to keep it quiet, or refuse and have it told. Each task shows its last step and the next on the cards, under the
+office's row, in Here and away and in This week, never as a time left. 28 conversation pieces, 32 letter lines and 25
+spoken lines speak of them. Setting: *Council tasks and the keeper of secrets*.
 
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then

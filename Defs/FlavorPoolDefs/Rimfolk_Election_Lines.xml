@@ -49,9 +49,6 @@
         <li>[plank:guests] Visitors should leave thinking well of us, and I'll see to that.</li>
         <li>[plank:wisdom] We keep making the same mistakes, and I'd like to stop that.</li>
         <li>[plank:young] I'd like to teach the young what I know while I still can.</li>
-        <li>[plank:loose] Somebody told the last raiders where our wall is weakest, and I mean to find out who.</li>
-        <li>[plank:quiet] Tell me something in confidence and it stays with me, I promise you that.</li>
-        <li>[plank:listen] I'd like to know what the neighbors say about us, and I know how to listen.</li>
       </plain>
       <warm>
         <li>I'd look after all of us as {OFFICE}, {OTHER_nameDef}, you included.</li>
@@ -164,9 +161,6 @@
         <li>[plank:guests] Every visitor should leave thinking well of us.</li>
         <li>[plank:wisdom] I've seen us make the same mistakes twice, and I'd spare us a third.</li>
         <li>[plank:young] Let me pass on what I know before it's lost with me.</li>
-        <li>[plank:loose] The raiders knew too much about us last time, and that won't happen again.</li>
-        <li>[plank:quiet] What you tell me in confidence stays with me, and that's all I'll promise.</li>
-        <li>[plank:listen] Our neighbors talk about us when we're not there, and I'll be the one listening.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

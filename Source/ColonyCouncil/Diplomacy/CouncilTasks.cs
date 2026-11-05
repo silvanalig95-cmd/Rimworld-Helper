@@ -721,7 +721,8 @@ namespace ColonyCouncil
                 {
                     t.invited = true;
                     t.letterId = inv.id;
-                    t.nextTick = now + Mathf.RoundToInt(TaskMath.NextLetterDays(Rand.Value) * TaskMath.DayTicks);
+                    // Looked at every two hours while it is out, so their head's visit is seen while it lasts.
+                    t.nextTick = now + 2 * TaskMath.HourTicks;
                     Diplomacy.Dirty();
                     return;
                 }

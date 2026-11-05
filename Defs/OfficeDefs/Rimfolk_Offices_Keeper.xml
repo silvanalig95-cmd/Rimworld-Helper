@@ -30,9 +30,8 @@
       <li>{PAWN_nameDef} already knew how most of the votes would go, and didn't say how.</li>
     </elected>
     <planks>
-      <li><key>loose</key><when>RecentRaid</when><text>{PAWN_nameDef} says the last raiders knew the colony's weak side too well, and wants to know who has been telling.</text></li>
-      <li><key>quiet</key><when>Always</when><text>{PAWN_nameDef} promises that what is said in confidence here stays here.</text></li>
-      <li><key>listen</key><when>Always</when><text>{PAWN_nameDef} wants to know what the neighbors say about the colony when it isn't listening.</text></li>
+      <li><key>gate</key><when>RecentRaid</when><text>{PAWN_nameDef} says the last raiders knew the colony's weak side too well, and promises to know friends at the gate from those who carry tales.</text></li>
+      <li><key>watch</key><when>Always</when><text>{PAWN_nameDef} promises a quiet watch on every guest after dark, and nothing said in confidence let slip.</text></li>
     </planks>
   </ColonyCouncil.OfficeDef>
 

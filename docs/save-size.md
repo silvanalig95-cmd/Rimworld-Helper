@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 503; modelled: 503; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,443 KB** after a year, **2,898 KB** after two, **3,068 KB** after five.
+Saved collections found: 504; modelled: 504; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,451 KB** after a year, **2,907 KB** after two, **3,077 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -64,6 +64,7 @@ Rimfolk's part of the save, roughly: **2,443 KB** after a year, **2,898 KB** aft
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
 | `World/Ledger/LedgerRegion.cs:houses` | two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record | cap | 12 | 24 | 60 | 10.0 |
+| `Diplomacy/DiplomacyBook.cs:tasks` | per home: the council's tasks, one record a seat, TaskMath.MaxPerHome at most, each let go a season after it ends | cap | 12 | 13 | 13 | 8.9 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
@@ -207,7 +208,7 @@ Rimfolk's part of the save, roughly: **2,443 KB** after a year, **2,898 KB** aft
 | `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) and the last word given to keep away, when a town in its reach was last given up, settled again or founded by Rimfolk; a lost home's kept 30 days, its camp gone with it | fixed | 1 | 1 | 1 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
-| `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
+| `Offices/Offices.cs:holders` | one per office | defs | 13 | 13 | 13 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
@@ -262,6 +263,7 @@ Rimfolk's part of the save, roughly: **2,443 KB** after a year, **2,898 KB** aft
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
+| `Offices/Offices.cs:elected` | one per office | defs | 13 | 13 | 13 | 0.5 |
 | `Visitors/VisitorsMore2.cs:deals` | a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs) | while | 2 | 2 | 2 | 0.5 |
 | `World/Region/TradingPost.cs:posts` | per home: the trading posts standing near it, TradingPostMath.MaxPerHome at most, each dropped when it closes | cap | 1 | 2 | 2 | 0.5 |
 | `Ailments/AilmentTracker.cs:announced` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
@@ -277,7 +279,6 @@ Rimfolk's part of the save, roughly: **2,443 KB** after a year, **2,898 KB** aft
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
-| `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |

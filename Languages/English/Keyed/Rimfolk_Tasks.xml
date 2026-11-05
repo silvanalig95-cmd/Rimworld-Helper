@@ -143,10 +143,12 @@
   <CC_Task_Result_KinHome>None of {PEOPLE} are left in the colony's cells, and {PAWN}'s task is done.</CC_Task_Result_KinHome>
   <CC_Task_Result_Feast>The feast {PAWN} prepared for {PEOPLE} is over.</CC_Task_Result_Feast>
   <CC_Task_Result_WonPact>{PAWN} has won {NAME} over: their people offer the colony a pact.</CC_Task_Result_WonPact>
+  <CC_Task_Result_Won>{PAWN} has won {NAME} over: {NAME} holds the colony dear now.</CC_Task_Result_Won>
   <CC_Task_Result_WonFavour>{PAWN} has won {NAME} over: {PEOPLE} owe the colony a favor now ({WORD}).</CC_Task_Result_WonFavour>
   <CC_Task_Result_TradePact>{PAWN}'s trade with {PEOPLE} is open: they offer a trade pact.</CC_Task_Result_TradePact>
   <CC_Task_Result_Caravan>{PAWN}'s trade with {PEOPLE} is open: their caravan is on its way to the colony.</CC_Task_Result_Caravan>
   <CC_Task_Result_TradeFavour>{PAWN}'s trade with {PEOPLE} is open: they have no caravan to send, and owe the colony a favor instead.</CC_Task_Result_TradeFavour>
+  <CC_Task_Result_TradeNone>{PAWN}'s trade with {PEOPLE} is open, though they have no caravan to send for now.</CC_Task_Result_TradeNone>
   <CC_Task_TradeOffer>{WHO} writes for {PEOPLE}: after the colony's letters, they would like {KIND} with it, {RITE} as their ways ask.</CC_Task_TradeOffer>
   <CC_Task_TradeOffer_Won>{WHO} writes for {PEOPLE}: the colony has been a good neighbor, and they offer it {KIND}, {RITE} as their ways ask.</CC_Task_TradeOffer_Won>
   <CC_Task_Msg_Samples>{PAWN} sets aside {GOODS} as samples for {TARGET}. Their porter will come to the gate for them.</CC_Task_Msg_Samples>

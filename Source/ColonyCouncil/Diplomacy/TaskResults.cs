@@ -305,6 +305,8 @@ namespace ColonyCouncil
                 OfferTrade(f, home, n, "CC_Task_TradeOffer_Won");
                 line = TaskWords.P("CC_Task_Result_WonPact", t.OfficerName.Named("PAWN"), n.Name.Named("NAME"));
             }
+            else if (!Diplomacy.FavoursOn)
+                line = TaskWords.P("CC_Task_Result_Won", t.OfficerName.Named("PAWN"), n.Name.Named("NAME"));
             else
             {
                 FavoursOwed.Make(f, home, true, "wonOver");
@@ -327,11 +329,12 @@ namespace ColonyCouncil
             }
             else if (f != null && SendCaravan(f, home))
                 line = TaskWords.P("CC_Task_Result_Caravan", t.OfficerName.Named("PAWN"), TaskWords.People(f).Named("PEOPLE"));
-            else
+            else if (f != null && Diplomacy.FavoursOn)
             {
-                if (f != null) FavoursOwed.Make(f, home, true, "wonOver");
+                FavoursOwed.Make(f, home, true, "wonOver");
                 line = TaskWords.P("CC_Task_Result_TradeFavour", t.OfficerName.Named("PAWN"), TaskWords.People(f).Named("PEOPLE"));
             }
+            else line = TaskWords.P("CC_Task_Result_TradeNone", t.OfficerName.Named("PAWN"), TaskWords.People(f).Named("PEOPLE"));
             CouncilTasks.End(h, t, TaskStage.Done, line, true);
         }
 

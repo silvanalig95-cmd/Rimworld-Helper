@@ -55,6 +55,9 @@ namespace ColonyCouncil
         /// <summary>A walk under way, its overhearing settled when it ends: home's id to (guest, tick).</summary>
         private static readonly Dictionary<int, (Pawn guest, int tick)> walking = new Dictionary<int, (Pawn, int)>();
 
+        /// <summary>Informers the keeper walked out to already (their trips' ids; a session's).</summary>
+        private static readonly HashSet<int> met = new HashSet<int>();
+
         private static Game game;
 
         private static void Fresh()
@@ -64,6 +67,7 @@ namespace ColonyCouncil
             watchedNight.Clear();
             walkedWith.Clear();
             walking.Clear();
+            met.Clear();
         }
 
         private static int Night(int now) => (now + 5 * TaskMath.HourTicks) / TaskMath.DayTicks;
@@ -178,6 +182,7 @@ namespace ColonyCouncil
         /// <summary>The keeper's task, an hour: a talk with whoever of their people comes by (once a day), and an informer's word once they have been paid.</summary>
         public static void TaskHour(DiplomacyHome h, CouncilTask t, Map home, int now)
         {
+            Fresh();
             t.nextTick = now + TaskMath.HourTicks;
             if (t.tripId >= 0)
             {
@@ -190,10 +195,14 @@ namespace ColonyCouncil
                     return;
                 }
                 // At the gate: the keeper walks out for a word, when free.
-                if (trip.state == CourierState.Working && trip.people.Count > 0 && CouncilTasks.Free(t.officer, home))
+                if (trip.state == CourierState.Working && trip.people.Count > 0 && !met.Contains(trip.id) && CouncilTasks.Free(t.officer, home))
                 {
                     var man = trip.people.FirstOrDefault(p => p != null && p.Spawned && p.Map == home);
-                    if (man != null && t.officer.CurJobDef != JobDefOf.Goto) Meet(t.officer, man);
+                    if (man != null)
+                    {
+                        met.Add(trip.id);
+                        Meet(t.officer, man);
+                    }
                 }
             }
             int day = now / TaskMath.DayTicks;
