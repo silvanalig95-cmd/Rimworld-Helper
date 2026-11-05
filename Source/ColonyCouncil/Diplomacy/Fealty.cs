@@ -708,14 +708,18 @@ namespace ColonyCouncil
         /// <summary>The colony attacked its liege (a deed of its against them, PactsHooks): the oath is broken, and its word broken in every ear in reach.</summary>
         public static void BrokenByUs(Faction f, string how)
         {
-            var t = With(f);
-            if (t == null) return;
-            var home = HomeOf(t);
-            WorldLedger.Set(t, Tie.State.Broken);
+            // Every home sworn to them (one liege a home, so two homes may share one): the colony's people are one people to them.
+            var oaths = f == null ? new List<Tie>() : Live().Where(x => LiegeOf(x) == f).ToList();
+            if (oaths.Count == 0) return;
+            foreach (var t in oaths)
+            {
+                var home = HomeOf(t);
+                WorldLedger.Set(t, Tie.State.Broken);
+                Tell.Letter(NewsKind.World, Importance.Important, home, FealtyWords.P("CC_Fealty_Broken_Label", FealtyWords.People(f).Named("PEOPLE")),
+                    FealtyWords.T("CC_Fealty_BrokenByUs", FealtyWords.People(f).Named("PEOPLE"), how.Named("HOW"), FealtyWords.Form(home, f).word.Named("WORD")), LetterDefOf.NegativeEvent,
+                    LookTargets.Invalid, f);
+            }
             FactionMemory.Note(f, "renounced", how);
-            Tell.Letter(NewsKind.World, Importance.Important, home, FealtyWords.P("CC_Fealty_Broken_Label", FealtyWords.People(f).Named("PEOPLE")),
-                FealtyWords.T("CC_Fealty_BrokenByUs", FealtyWords.People(f).Named("PEOPLE"), how.Named("HOW"), FealtyWords.Form(home, f).word.Named("WORD")), LetterDefOf.NegativeEvent,
-                LookTargets.Invalid, f);
             Truces.WordBroken(f);
             Diplomacy.Dirty();
         }
