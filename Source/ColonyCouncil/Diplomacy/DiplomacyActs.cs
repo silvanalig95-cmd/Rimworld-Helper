@@ -20,9 +20,9 @@ namespace ColonyCouncil
     public static class DiplomacyActs
     {
         /// <summary>The acts this release offers, in the menu's order after Invite.</summary>
-        public static readonly OutsiderAct[] Acts = { OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.OfferExchange };
+        public static readonly OutsiderAct[] Acts = { OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.SpeakMatch, OutsiderAct.OfferExchange };
 
-        public static bool Owns(OutsiderAct a) => a == OutsiderAct.AskFavour || a == OutsiderAct.SpeakPact || a == OutsiderAct.OfferExchange;
+        public static bool Owns(OutsiderAct a) => a == OutsiderAct.AskFavour || a == OutsiderAct.SpeakPact || a == OutsiderAct.OfferExchange || a == OutsiderAct.SpeakMatch;
 
         /// <summary>What the player chose for a colonist's walk over (the debt and the ask), taken when the talk ends. A session's only.</summary>
         private static readonly Dictionary<int, (int tie, string code)> chosen = new Dictionary<int, (int, string)>();
@@ -44,6 +44,8 @@ namespace ColonyCouncil
         }
 
         public static bool Shown(Pawn c, Pawn x, OutsiderAct a) =>
+            // Speak for a match (release 2b.2, MatchActs.cs): its own rules.
+            a == OutsiderAct.SpeakMatch ? MatchActs.Shown(c, x) :
             (a == OutsiderAct.OfferExchange ? Ransoms.On && Ransoms.Pairs(Outsiders.PeopleOf(x), c.MapHeld).Count > 0 : a == OutsiderAct.SpeakPact ? Pacts.On : Diplomacy.FavoursOn) && !c.DevelopmentalStage.Juvenile() && !x.DevelopmentalStage.Juvenile() && Outsiders.PeopleOf(x) != null
             && !x.IsQuestLodger();
 
@@ -51,6 +53,7 @@ namespace ColonyCouncil
         public static string WhyNot(Pawn c, Pawn x, OutsiderAct a)
         {
             var f = Outsiders.PeopleOf(x);
+            if (a == OutsiderAct.SpeakMatch) return MatchActs.WhyNot(c, x);
             if (a == OutsiderAct.SpeakPact) return Pacts.WhyNotAny(f, c.MapHeld);
             if (a == OutsiderAct.OfferExchange) return ExchangeActs.WhyNot(c, x);
             var debts = Debts(c, x);
@@ -66,6 +69,7 @@ namespace ColonyCouncil
         }
 
         public static string Label(Pawn c, Pawn x, OutsiderAct a) =>
+            a == OutsiderAct.SpeakMatch ? MatchWords.P("CC_Out_Act_SpeakMatch") :
             DipWords.P(a == OutsiderAct.OfferExchange ? "CC_Out_Act_OfferExchange" : a == OutsiderAct.SpeakPact ? "CC_Out_Act_SpeakPact" : "CC_Out_Act_AskFavour");
 
         /// <summary>The player picks what to ask, for which debt; the colonist then walks over to ask it.</summary>
@@ -81,6 +85,11 @@ namespace ColonyCouncil
             if (a == OutsiderAct.OfferExchange)
             {
                 ExchangeActs.Choose(c, x, a, (cc, xx, aa, code) => Pick(cc, xx, aa, code));
+                return;
+            }
+            if (a == OutsiderAct.SpeakMatch)
+            {
+                MatchActs.Choose(c, x, a, (cc, xx, aa, code) => Pick(cc, xx, aa, code));
                 return;
             }
             foreach (var t in Debts(c, x))
@@ -144,9 +153,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>The colonist's opening line and the moment for the words while they talk.</summary>
-        public static string Opening(OutsiderAct a) => a == OutsiderAct.OfferExchange ? "exchangeask" : a == OutsiderAct.SpeakPact ? "pactask" : "favourask";
+        public static string Opening(OutsiderAct a) =>
+            a == OutsiderAct.SpeakMatch ? "matchask" : a == OutsiderAct.OfferExchange ? "exchangeask" : a == OutsiderAct.SpeakPact ? "pactask" : "favourask";
 
-        public static string During(OutsiderAct a) => a == OutsiderAct.OfferExchange ? "exchangetalk" : a == OutsiderAct.SpeakPact ? "pacttalk" : "favourtalk";
+        public static string During(OutsiderAct a) =>
+            a == OutsiderAct.SpeakMatch ? "matchtalk" : a == OutsiderAct.OfferExchange ? "exchangetalk" : a == OutsiderAct.SpeakPact ? "pacttalk" : "favourtalk";
 
         /// <summary>The talk is over (the two face to face): their answer, at once, in a word and a message.</summary>
         public static Job Talked(Pawn c, Pawn x, OutsiderAct a)
@@ -155,6 +166,7 @@ namespace ColonyCouncil
             chosen.Remove(c.thingIDNumber);
             if (a == OutsiderAct.SpeakPact) return Pact(c, x, a, pick.code);
             if (a == OutsiderAct.OfferExchange) return ExchangeActs.Talked(c, x, a, pick.code);
+            if (a == OutsiderAct.SpeakMatch) return MatchActs.Talked(c, x, a, pick.code);
             var t = FavoursOwed.Get(pick.tie);
             if (t == null || FavourCalls.WhyNot(t) != null) return null;
             var home = c.MapHeld;

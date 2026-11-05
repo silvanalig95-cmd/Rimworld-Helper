@@ -2725,6 +2725,88 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
   Words by both ages (`AgeFeature.Feast`; `{FEAST}` the colony's word with "the"), their faith's feast with Ideology
   (`InviteForms.Rite`). Setting `diplomacyFeasts`. Dev actions in `FeastDebug.cs`.
 
+#### Marriage alliances
+
+Release 2b.2 (docs/design/stage2-diplomacy.md, item 6; decisions 8 and 9): `Diplomacy/`, its rules pure and tested
+(`MatchMath.cs`; `Tools/Tests/MatchTests.cs`).
+
+- **The records.** A match under way is a `MatchPlan` (`MatchBook.cs`) on the home's part, `DiplomacyHome.matches`
+  (`MatchMath.MaxPlans`, three); the marriage itself is the ledger's `Tie.Kind.Marriage` of origin `match`, from their
+  people to the colony, about the colony's own (`terms.about`), its key `spouse:` and their spouse's ref (the key
+  Diplomatic Marriage+'s view writes, so both read alike), where they live in `terms.goods` (`colony`, `theirs`), the
+  last kin's gift day in `terms.number`, held through a child in `terms.count`. Three marriages with a people at most
+  (the ledger's own bound between two). The stages (`MatchStage`): Asking (the council's question), Agreed, Here, Away,
+  then Wed (the tie made, the plan let go) or Off. The hour and the day ride on diplomacy's; nothing ticks otherwise.
+- **Three ways in.** "Speak for a match" (`OutsiderAct.SpeakMatch`, `MatchActs.cs`, in the menu after "Speak of a
+  pact"): whom of the colony's at the home and where they would live, each with how the colonist feels; their answer
+  face to face (`matchask`, `matchtalk`, `matchyes`, `matchno`). The letter purpose `LetterPurpose.Match`
+  (`MatchLetters.cs`, through `DiplomacyLetters`): topics `match:OURS:THEIRS` (the notable written to, another of their
+  town) or `match:OURS:h:NOTABLE:G` (a son or daughter of a head's house, made by `Matches.MakeKin` only when they
+  agree: their people's kind, the house's name, the sex the colonist is drawn to, an age near theirs, the head's child
+  where the ages allow), each with the colonist's feelings; what is asked is where they live (`home:Colony`,
+  `home:Theirs`). Their offer (`Matches.Offers`, the day's look; `ChoiceLetter_MatchOffer`, `Rimfolk_MatchOffer`):
+  `MatchMath.MayOffer` (their head's regard 40, a year apart by the head's `Last(LetterPurpose.Match)`, fewer than three
+  marriages), one day in fifteen once it may, the colonist their head thinks best of who fits one of theirs (a titled
+  one for the Empire's titled), where they live by `MatchMath.TheyPropose` (an heir stays home).
+- **Who may marry** (`Matches.WhyNotPair`, `MatchMath.WhyNot`): both grown (adult, 18), each drawn to the other's sex
+  (`RelationsUtility.AttractedToGender` both ways), not kin (the game's own romance factor of a relation), each free to
+  take one more spouse (unmarried, or with Ideology `GetHistoryEventForSpouseAndFianceCountPlusOne` willing), not
+  engaged elsewhere, never their people's leader, and the Empire's titled only to a titled colonist (decision 9).
+- **The colonist asked first** (`Matches.ConsentOf`, `MatchMath.ConsentOf`): against it while they love someone else of
+  the colony (a lover or fiancé), would leave children under 18 behind to go to them, or think -10 or less of the one
+  chosen; glad with a lover or a regard of 30; else willing. Their yes to a match the colonist is against begins it at
+  Asking: the council's question `Rimfolk_DlmMatch_Against` (`MatchObjection.cs`, A the colonist, X theirs, B whom A
+  loves, `{LIVES}`), asked when no other question is open at the home, else the hour after; pressed, the match is
+  agreed with `Rimfolk_MatchPressed` (-6 for 20 days, a mood hint), trust -3 and `Nature.Felt(MatchAgainstHeart)`;
+  withdrawn (the default), their regard -3. A colonist who comes round meanwhile is agreed without it.
+- **Their answer** (`Matches.Hear`): `MatchMath.Accepts` by their head's (or the house's) regard, never below 0, much
+  likelier for two lovers, less when theirs would move, more for an ally; no costs a little regard.
+- **Agreed** (`Matches.Agree`): the game's fiancé relation (a Lover's made Fiance; the name change rolled by the game's
+  own fiancé worker), the day their kin come (`MatchMath.LeadDays`: their road and a day), gifts both ways at the gate
+  (`Couriers.Exchange`: theirs by their ways, `Matches.GiftDef`, a tribe's jade, gold for the middle ages and the Empire,
+  else silver; the colony's silver up to the same worth, `MatchMath.GiftValue` by their town's fortune), and a letter
+  that names what the alliance gives and the wrongs it can't bear.
+- **Theirs comes to the colony** (`MatchDays.cs`): `Feasts.Host` with up to two of their notables of that town as the
+  wedding's guests (`FeastPurpose.Wedding`, tag `match:ID`); at `FeastStage.Here` (`Matches.OnStage`, subscribed in
+  `MatchHooks`) the one to be married walks in beside them and joins the colony at once (`Arrivals.Join`), the council's
+  own wedding question marked asked for the pair; the game's ceremony (`TryStartMarriageCeremony` when
+  `AcceptableGameConditionsToStartCeremony` and both are ready, 5 to 16) is tried each hour, the guests standing by the
+  couple while it runs (`Feasts.HereFocus` → `Matches.WeddingSpot`) and the feast waiting until it is over. Nobody to
+  host, or the feast let go before they came: they walk in alone on a safe hour. Not married within three days, the
+  council's own wedding plan (`WeddingPlans.Plan`, quiet); not within eight more, the match lapses.
+- **Ours goes to them**: on the day, by daylight and with ours at home, the one they marry and one of their kin walk to
+  the gate (`LordJob_MatchEscort`); the colonist walks out (`JobDriver_MatchLeave`), and their group's own tick takes
+  them along (`Matches.TakeLeave` → `Departs`: `matchfarewell`, `matchescort`, `SetFaction` to theirs, kept with the new
+  `KeepFor.Spouse`); not sent within ten hours, their kin go home and the colony's word is broken. Off the map, after
+  the road (`MatchMath.RoadDays`) the game's spouse relation is set and their letter tells of the wedding at their town;
+  the colonist becomes a face of their town (`NotableBook.Notify_Met`, "spouse"), both kept while the marriage holds.
+- **The wedding** (`Matches.Wed`, from `Patch_Married` or the hour's look): the Marriage tie (its `tie:marriage:made` a
+  milestone), the deed `married` (15), `dip:wedding` (a milestone), and a defense pact (`Pacts.Make`) unless one stands
+  or the people is the Empire.
+- **While it holds** (`MatchAlliance.cs`): their notables' regard +15 (`Matches.RegardBonus` in
+  `NotableBook.Baseline`, cached by the ledger's version; Rimfolk's own ties only, never Diplomatic Marriage+'s); their
+  kin's gift once a season by their courier (`MatchMath.KinGiftValue`); their letter warning of a raiders' camp hidden two
+  days or more (`RaidersCamps.WarnedByKin` in `MatchWarnings.cs`, a partial of the camps: the camp found by a letter);
+  the alliance's pact kept running (moved on within five days of its year's end), made again a year after the last one
+  closed; their calls on the colony are the pact's.
+- **Ends and bad sides**: a spouse's death ends it unless a child of the two lives (`Matches.ChildOf`; then held, said
+  once); one of theirs dying at the colony costs their notables 3, or 15 in the open or untended (`Patch_MatchKilled`,
+  with the deeper hooks, reads it before the death); the couple parted (no spouse relation) ends it, -10; theirs gone
+  home of their own accord ends it with nobody at fault; a spouse wronged (`MatchMath.WrongOf`: killed by a colonist,
+  executed, held as a prisoner or a slave, sold, banished) breaks it, `spouseWronged` (30), -30 with their head and
+  notables, their defense pact broken without a deed, and a Grudge (origin `match`, key `spouse`, their people in its
+  count) from their head that the next head takes up (`Matches.Feuds`, `MatchMath.PassesDown`). A match broken off by the
+  colony (or ours never sent) is `slighted`, its word broken in reach, -12.
+- **Where it shows** (`MatchPanels`): the Tie card (who, where, since, held through a child, what it gives, the pact; a
+  grudge's holder), a Person card (a match under way, a marriage, who of the colony's would fit; "Propose a match"), a
+  House card (its members married to the colony, by name and people), the People card (rows, "Seek a match"), a
+  colonist's card, the Peoples view (`DiplomacyModel`), Here and away (the colony's own married away, on the road; in-laws
+  among the houses; their kin at the gate, `Matches.HereAs`), the inbox (`match` in Needs you, `match-under-way` in steps,
+  `match-coming` for their kin's day; the wedding's guests have the feast's own row). Facts (`FactsMatch.cs`):
+  `tie:marriage`, `:ours`, `:theirs`, `:you`, `match:agreed`, `match:child`, `match:wronged`, `town:lately:dip:wedding`,
+  `{INLAW}`, `{SPOUSEOF}`. Words by both ages (`AgeFeature.Marriage`), their faith's wedding with Ideology. Setting
+  `diplomacyMarriage`. Dev actions in `MatchDebug.cs`. Diplomatic Marriage+ is read only: its alliance a row as the mod's.
+
 #### Wards and hostages
 
 Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Diplomacy/`, its rules pure and tested

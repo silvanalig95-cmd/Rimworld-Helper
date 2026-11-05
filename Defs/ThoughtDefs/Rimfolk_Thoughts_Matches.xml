@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Marriage alliances (Source/ColonyCouncil/Diplomacy/MatchObjection.cs): a match the council pressed on a colonist
+       over their objection (Rimfolk_DlmMatch_Against). Long, and rare: only when the council presses it. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_MatchPressed</defName>
+    <durationDays>20</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a match pressed on me</label>
+        <description>I told the council I didn't want this match. They made it all the same, for the colony's sake.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

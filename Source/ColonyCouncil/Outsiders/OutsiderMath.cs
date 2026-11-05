@@ -27,7 +27,9 @@ namespace ColonyCouncil
         /// <summary>Speak of a pact between their people and the colony, face to face (Diplomacy/DiplomacyActs.cs, release 2a.2).</summary>
         SpeakPact,
         /// <summary>Offer an exchange of captives, one of theirs in the colony's cells for one of the colony's they hold (Diplomacy/DiplomacyActs.cs, release 2a.3).</summary>
-        OfferExchange
+        OfferExchange,
+        /// <summary>Speak for a match between one of the colony's and one of theirs, face to face (Diplomacy/MatchActs.cs, release 2b.2).</summary>
+        SpeakMatch
     }
 
     /// <summary>How a talk went, best first.</summary>

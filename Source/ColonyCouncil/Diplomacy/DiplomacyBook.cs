@@ -281,6 +281,8 @@ namespace ColonyCouncil
         public int feastHeld = -1, feastSuggested = -1;
         /// <summary>Who of the colony's won something at a neighbour's feast, told when they are home (FeastMath.MaxTales at most).</summary>
         public List<FeastTale> tales = new List<FeastTale>();
+        /// <summary>Matches under way (Matches.cs, release 2b.2): MatchMath.MaxPlans at most, each let go at the wedding or when called off.</summary>
+        public List<MatchPlan> matches = new List<MatchPlan>();
         /// <summary>Wards and hostages either way (release 2b.3): WardMath.MaxPerHome at most, each dropped once they are home again.</summary>
         public List<WardStay> wards = new List<WardStay>();
         /// <summary>When a ward was last offered to this home, and by which people (its loadID), or -1.</summary>
@@ -304,6 +306,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref feastSuggested, "feastSuggested", -1);
             if (Scribe.mode == LoadSaveMode.Saving) tales?.RemoveAll(t => t == null || t.pawn == null);
             Scribe_Collections.Look(ref tales, "tales", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving) matches?.RemoveAll(m => m == null || !m.Live);
+            Scribe_Collections.Look(ref matches, "matches", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving) wards?.RemoveAll(w => w == null);
             Scribe_Collections.Look(ref wards, "wards", LookMode.Deep);
             Scribe_Values.Look(ref wardOfferAt, "wardOfferAt", -1);
@@ -314,6 +318,8 @@ namespace ColonyCouncil
                 offers.RemoveAll(o => o == null);
                 tales ??= new List<FeastTale>();
                 tales.RemoveAll(t => t == null || t.pawn == null);
+                matches ??= new List<MatchPlan>();
+                matches.RemoveAll(m => m == null || !m.Live);
                 wards ??= new List<WardStay>();
                 wards.RemoveAll(w => w == null);
             }
@@ -391,7 +397,7 @@ namespace ColonyCouncil
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.wards.Count > 0))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0))
                         return true;
                 return false;
             }
@@ -412,6 +418,7 @@ namespace ColonyCouncil
                         Envoys.HomeLost(h);
                         EnvoysAbroad.HomeLost(h);
                         Feasts.HomeLost(h);
+                        Matches.HomeLost(h);
                         Wards.HomeLost(h);
                     }
                     catch (Exception e)

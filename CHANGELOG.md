@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Marriage alliances
+
+*5 November 2026, version 0.94.0*
+
+- Marriage alliances: a match between one of the colony's and one of a people at peace, by "Speak for a match" face to face, a letter from a people's or a notable's card, or their own offer once a year.
+- The colonist is asked first: one who loves someone else here, would leave children behind or can't stand the one chosen is against it, and the council hears them before anything is settled.
+- Where the couple lives is chosen each time: theirs comes with their kin as the wedding's guests, joins at the gate and is married by the game's own ceremony before the evening's feast, or their kin come for the colony's own, who leaves with them for good.
+- While it holds their notables think better of the colony, their kin send a gift each season, they write when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire, whose titled nobles marry only the titled).
+- A child of the two keeps the alliance after a death; a spouse wronged by the colony breaks it, and their head's grudge passes to the next.
+
 ## Turrets where they stand
 
 *5 November 2026, version 0.93.1*

@@ -86,6 +86,8 @@ namespace ColonyCouncil
             RansomEnvoyFacts(s, f);
             // Feasts with guests (Diplomacy/FactsFeast.cs): feast:invited, feast:soon, feast:here, them:feastguest, feast:theywon, feast:wewon.
             FeastFacts(s, f);
+            // Marriage alliances (Diplomacy/FactsMatch.cs): tie:marriage, :ours, :theirs, :you, match:agreed, match:child, match:wronged.
+            MatchFacts(s, f);
             // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
             WardFacts(s, f);
         }

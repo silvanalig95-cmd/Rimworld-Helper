@@ -49,7 +49,9 @@ namespace ColonyCouncil
         /// <summary>Asking them to send their envoy to live at the colony for a season (Diplomacy/Envoys.cs, release 2a.3).</summary>
         Envoy,
         /// <summary>Asking them for a ward to foster for a year, or offering them a youth of the colony's (Diplomacy/Wards.cs, release 2b.3).</summary>
-        Ward
+        Ward,
+        /// <summary>Proposing a match between one of the colony's and one of theirs (Diplomacy/Matches.cs, release 2b.2).</summary>
+        Match
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

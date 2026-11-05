@@ -370,6 +370,10 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Feast_Result_None_"] = new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" },
     ["CC_Feast_Hope_"] = new[] { "Hunt", "HuntOrTourney", "RaceOrMatch", "Exhibition", "MealAndMusic" },
     ["CC_Feast_Guest_"] = new[] { "Invited", "Coming", "Declined", "Here", "Gone" },
+    // Marriage alliances (Diplomacy/Matches.cs, MatchWords.cs): MatchMath's reasons and the enum names.
+    ["CC_Match_Why_"] = new[] { "Young", "NotDrawn", "Kin", "Married", "Engaged", "Titled" },
+    ["CC_Match_Consent_Against_"] = new[] { "None", "Another", "Children", "Dislike" },
+    ["CC_Match_Wrong_"] = new[] { "None", "Killed", "Executed", "Imprisoned", "Enslaved", "Sold", "Banished" },
     // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
     ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
 };
@@ -474,6 +478,10 @@ wishPh.UnionWith(new[]
     "CAPTOR", "ENVOY", "OURENVOY",
     // Feasts with guests (Diplomacy/FactsFeast.cs): the colony's feast in its words, the champion of the day.
     "FEAST", "CHAMPION",
+    // Marriage alliances (Diplomacy/FactsMatch.cs): their spouse, and the colony's.
+    "INLAW", "SPOUSEOF",
+    // The council's question about a match the colonist is against (Diplomacy/MatchObjection.cs): where the couple would live.
+    "LIVES",
     // Wards and hostages (Diplomacy/FactsWards.cs).
     "WARD", "HOSTAGE", "GUARDIAN",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.

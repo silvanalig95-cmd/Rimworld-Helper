@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs, MatchActs.cs, MatchDays.cs; the facts in
+    Diplomacy/FactsMatch.cs). Two pools the game already draws on:
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of "Speak for a match" face to face (the colonist's
+      ask, matchask, us; a word each while they talk, matchtalk; their answer, matchyes and matchno, them), and of the
+      colony's own leaving with their kin at the gate (the colonist's farewell, matchfarewell, us; the kin's word to
+      them, matchescort, them). One sentence each. By their ways: theirLowtech, theirHightech; the colony's age: lowtech,
+      !lowtech.
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call of the
+      purpose "match", by how they took it: warm, cordial or cool (agreed), refusal (not); and their words in a letter of
+      any purpose while a marriage holds (tie:marriage, with {INLAW} their spouse and {SPOUSEOF} the colony's;
+      tie:marriage:ours, one of the colony's living among them; tie:marriage:theirs, one of theirs at the colony;
+      match:child, held through a child after a death), a match agreed and the wedding to come (match:agreed), or a
+      spouse from among them wronged by the colony (match:wronged).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Matches</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- Speak for a match, face to face -->
+        <li>[matchask,us] I'd like to talk about a match between your people and ours.</li>
+        <li>[matchask,us] There's someone at the colony I think you should meet properly.</li>
+        <li>[matchask,us,lowtech] Our families could be one family, if your people are willing.</li>
+        <li>[matchask,us,!lowtech] I've a proposal to make, and it isn't about trade.</li>
+        <li>[matchask,us,theirLowtech] Would your elders hear of a match with one of ours?</li>
+        <li>[matchtalk] Where would they live, though?</li>
+        <li>[matchtalk] It isn't a small thing to ask.</li>
+        <li>[matchtalk,them] My family would want to meet them first.</li>
+        <li>[matchtalk,them,theirLowtech] There are gifts to be given, and a fire to share.</li>
+        <li>[matchtalk,them,theirHightech] There would be papers to sign, of course.</li>
+        <li>[matchtalk,us] We'd treat them as one of our own.</li>
+        <li>[matchyes,them] Yes, I think my family will be glad of it.</li>
+        <li>[matchyes,them] Then it's agreed, and I'll send word home tonight.</li>
+        <li>[matchyes,them,theirLowtech] Let it be so, and let our two peoples share one fire.</li>
+        <li>[matchyes,them,theirHightech] Agreed, I'll have the terms written up on our side.</li>
+        <li>[matchno,them] No, I'm sorry, my family wouldn't hear of it.</li>
+        <li>[matchno,them] It's too soon to talk of that, ask me again some other year.</li>
+        <li>[matchno,them,theirLowtech] Our elders would not give one of us away like this.</li>
+        <li>[matchno,them,theirHightech] I'll have to decline, it doesn't suit us right now.</li>
+        <!-- Leaving with their kin at the gate -->
+        <li>[matchfarewell,us] I'm ready, let's go before I change my mind.</li>
+        <li>[matchfarewell,us] Tell them at home I'll write when I can.</li>
+        <li>[matchfarewell,us,lowtech] I've said my goodbyes at the fire, take me home with you.</li>
+        <li>[matchfarewell,us,!lowtech] Everything I own fits in one pack, so we can go.</li>
+        <li>[matchescort,them] Welcome to the family, the others are waiting for you.</li>
+        <li>[matchescort,them] It's a long road, but there's a warm house at the end of it.</li>
+        <li>[matchescort,them,theirLowtech] Walk with us now, you are one of ours from this gate on.</li>
+        <li>[matchescort,them,theirHightech] We've made room for you, and your name is on the papers already.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Matches</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- A match proposed, answered -->
+        <li>[match,warm] We hoped one of you would ask, {WRITER}. The whole house is talking about it.</li>
+        <li>[match,warm,theirLowtech] It is a good thing when two peoples share one fire. We say yes, and gladly.</li>
+        <li>[match,warm,theirHightech] Consider it agreed on our side, {WRITER}. We are delighted.</li>
+        <li>[match,cordial] We've talked it over as a family, and we agree.</li>
+        <li>[match,cordial,theirLowtech] The elders weighed it for three nights, and they say yes.</li>
+        <li>[match,cordial,call] It's a yes, {WRITER}. We'll sort out the details on our side.</li>
+        <li>[match,cool] We will agree to it, for the good of both our peoples.</li>
+        <li>[match,cool,theirHightech] We accept, on the terms as written.</li>
+        <li>[match,refusal] We thank you for the thought, {WRITER}, but no.</li>
+        <li>[match,refusal,theirLowtech] We do not give our own to strangers. Not yet.</li>
+        <li>[match,refusal,theirHightech] After some thought, we have decided against it.</li>
+        <li>[match,refusal,call] No, {WRITER}. Please don't ask again this year.</li>
+        <!-- While a marriage holds, in a letter of any purpose -->
+        <li>[tie:marriage] Give our love to {INLAW}, and tell {SPOUSEOF} we ask after them.</li>
+        <li>[tie:marriage] We are family now, {WRITER}, and family writes back.</li>
+        <li>[tie:marriage,theirLowtech] The fire here still keeps a place for {INLAW}.</li>
+        <li>[tie:marriage,theirHightech] We trust {INLAW} is settling in well with you.</li>
+        <li>[tie:marriage:ours] {SPOUSEOF} sends greetings, and says the work here is hard but the food is good.</li>
+        <li>[tie:marriage:ours,theirLowtech] {SPOUSEOF} is learning our ways, and our people have taken to {SPOUSEOF}.</li>
+        <li>[tie:marriage:theirs] Does {INLAW} eat well at your table? We ask in every letter.</li>
+        <li>[match:child] The child keeps our two peoples together, whatever else has been lost.</li>
+        <!-- A match agreed, the wedding to come -->
+        <li>[match:agreed] Everyone here is getting ready for the wedding.</li>
+        <li>[match:agreed,theirLowtech] The gifts are being made ready, and the songs learned.</li>
+        <li>[match:agreed,theirHightech] The arrangements for the wedding are well in hand.</li>
+        <!-- A spouse wronged -->
+        <li>[match:wronged] We have not forgotten what was done to one of ours who married among you.</li>
+        <li>[match:wronged,theirLowtech] The grudge passes from the old to the young here. Remember that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

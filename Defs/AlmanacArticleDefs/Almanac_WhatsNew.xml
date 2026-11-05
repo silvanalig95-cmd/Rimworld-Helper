@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.94.0</version>
+        <date>5 November 2026</date>
+        <title>Marriage alliances</title>
+        <points>
+          <li>Marriage alliances: a match between one of the colony's and one of a people at peace, by "Speak for a match" face to face, a letter from a people's or a notable's card, or their own offer once a year.</li>
+          <li>The colonist is asked first: one who loves someone else here, would leave children behind or can't stand the one chosen is against it, and the council hears them before anything is settled.</li>
+          <li>Where the couple lives is chosen each time: theirs comes with their kin as the wedding's guests, joins at the gate and is married by the game's own ceremony before the evening's feast, or their kin come for the colony's own, who leaves with them for good.</li>
+          <li>While it holds their notables think better of the colony, their kin send a gift each season, they write when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire, whose titled nobles marry only the titled).</li>
+          <li>A child of the two keeps the alliance after a death; a spouse wronged by the colony breaks it, and their head's grudge passes to the next.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.93.1</version>
         <date>5 November 2026</date>
         <title>Turrets where they stand</title>

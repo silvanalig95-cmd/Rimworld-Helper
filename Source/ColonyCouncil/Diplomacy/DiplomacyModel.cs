@@ -239,6 +239,12 @@ namespace ColonyCouncil
                 c.underway.Add(fr);
                 c.weight += 4;
             }
+            // Marriages with them and matches under way (release 2b.2), Diplomatic Marriage+'s alliance as the mod's own.
+            foreach (var mr in MatchPanels.Rows(f, home))
+            {
+                c.ties.Add(mr);
+                c.weight += 8;
+            }
             // Wards and hostages either way (release 2b.3).
             foreach (var wr in WardPanels.Rows(f, home))
             {
@@ -265,6 +271,8 @@ namespace ColonyCouncil
             }
             // Hold a feast with their notables as guests (release 2b.1), greyed with why not.
             if (Feasts.On && !Diplomacy.Hostile(f)) c.acts.Add(FeastPanels.HoldAct(f));
+            // Seek a match with one of theirs (release 2b.2), greyed with why not.
+            if (Matches.On && !Diplomacy.Hostile(f)) c.acts.Add(MatchPanels.SeekAct(f));
             // Ask for a ward of theirs, offer a youth of the colony's (release 2b.3), each greyed with why not.
             if (Wards.On && !Diplomacy.Hostile(f)) c.acts.AddRange(WardPanels.Acts(f));
             if (!Diplomacy.Hostile(f)) c.weight += 1;
@@ -333,6 +341,10 @@ namespace ColonyCouncil
             foreach (var r in RansomPanels.AwayRows())
                 if (m.away.Count < MaxRows)
                     m.away.Add(r);
+            // The colony's own married into their town, and on the road there (release 2b.2).
+            foreach (var r in MatchPanels.AwayRows())
+                if (m.away.Count < MaxRows)
+                    m.away.Add(r);
             // The colony's ward or hostage at a town of theirs, or held by them (release 2b.3).
             foreach (var r in WardPanels.AwayRows())
                 if (m.away.Count < MaxRows)
@@ -350,6 +362,8 @@ namespace ColonyCouncil
                     note = FamilyNames.ReputeLine(p), link = p, color = UiKit.Gold
                 });
             }
+            // The colony's in-laws among the peoples, one row a marriage (release 2b.2).
+            foreach (var r in MatchPanels.InlawRows()) m.houses.Add(r);
         }
 
         /// <summary>Why someone of theirs is here: a lodger, trading, visiting, staying at the camp, or just here.</summary>
@@ -365,6 +379,9 @@ namespace ColonyCouncil
             // A guest at a feast, or one of those who came with them (release 2b.1).
             string feast = Feasts.HereAs(p);
             if (feast != null) return feast;
+            // Their kin come for one of the colony's who is to marry among them (release 2b.2).
+            string match = Matches.HereAs(p);
+            if (match != null) return match;
             var job = p.GetLord()?.LordJob;
             if (job is LordJob_TradeWithColony) return DipWords.P("CC_Dip_HereAs_Trading");
             if (job is LordJob_VisitColony) return DipWords.P("CC_Dip_HereAs_Visiting");

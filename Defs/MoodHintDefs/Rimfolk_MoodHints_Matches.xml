@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Marriage alliances (Source/ColonyCouncil/Diplomacy/MatchObjection.cs). -->
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_MatchPressed</defName>
+    <thoughts>
+      <li>Rimfolk_MatchPressed</li>
+    </thoughts>
+    <fix>The council married them off over their objection. It fades with time; a good room, time with friends and a spouse they come to like all help.</fix>
+    <act>Give them time and friends</act>
+    <actionable>false</actionable>
+    <keep>Next time a colonist objects to a match, weigh it before pressing it.</keep>
+    <article>Council_Alm_C_Diplomacy</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

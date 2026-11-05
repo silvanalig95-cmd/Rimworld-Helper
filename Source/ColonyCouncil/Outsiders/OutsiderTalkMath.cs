@@ -127,7 +127,7 @@ namespace ColonyCouncil
         public static bool Asks(OutsiderAct a) =>
             a == OutsiderAct.AskHome || a == OutsiderAct.GoodWord || a == OutsiderAct.Teach || a == OutsiderAct.Bring || a == OutsiderAct.Invite
             || a == OutsiderAct.Befriend || a == OutsiderAct.Court || a == OutsiderAct.Faith || a == OutsiderAct.AskFavour || a == OutsiderAct.SpeakPact
-            || a == OutsiderAct.OfferExchange;
+            || a == OutsiderAct.OfferExchange || a == OutsiderAct.SpeakMatch;
 
         /// <summary>Asks by one colonist this close together count as in a row.</summary>
         public const float PushyHours = 6f;

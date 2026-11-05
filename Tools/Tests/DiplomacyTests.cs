@@ -141,13 +141,13 @@ public static class DiplomacyTests
             "the Diplomacy and Household pages after Letters, before Journeys");
         C(DiplomacyMath.Purposes[0] == "Favour" && DiplomacyMath.Purposes.Length == 8 && DiplomacyMath.Acts[0] == "AskFavour", "the purposes and acts in the design's order, the first built");
         // Built so far, in the order the releases built them (saved by name): Favour; Pact and Truce in 2a.2; Ransom and Envoy
-        // in 2a.3; Ward in 2b.3 (Match and Fealty wait for their releases).
-        var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").Append("Ward").ToArray();
+        // in 2a.3; Ward in 2b.3, Match in 2b.2 (merged after it; Fealty waits for its release).
+        var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").Append("Ward").Append("Match").ToArray();
         C(Enum.GetNames(typeof(LetterPurpose)).Reverse().Take(builtPurposes.Length).Reverse().SequenceEqual(builtPurposes),
-            "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3)");
-        var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch" && a != "SoundOut").ToArray();
+            "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3; Match in 2b.2)");
+        var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch" && a != "SoundOut").Append("SpeakMatch").ToArray();
         C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(builtActs.Length).Reverse().SequenceEqual(builtActs),
-            "the new acts after the old ones, in the design's order (saved by name; OfferExchange in 2a.3)");
+            "the new acts after the old ones, in the order they were built (saved by name; OfferExchange in 2a.3, SpeakMatch in 2b.2)");
         C(DiplomacyMath.StanceKey(0, true, false) == "Hostile" && DiplomacyMath.StanceKey(10, false, true) == "Allied" && DiplomacyMath.StanceKey(80, false, false) == "Allied"
           && DiplomacyMath.StanceKey(30, false, false) == "Friendly" && DiplomacyMath.StanceKey(0, false, false) == "Peace" && DiplomacyMath.StanceKey(-10, false, false) == "Cool",
             "a people's stance in a word");
@@ -218,7 +218,8 @@ public static class DiplomacyTests
         C(letters.Contains("DiplomacyLetters.WhyNot(n, p)") && letters.Contains("DiplomacyLetters.Topics(n, p)") && letters.Contains("DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone)"),
             "the letters' frame: why not, what about, the answer");
         string menu = Code("Outsiders/OutsiderMenu.cs");
-        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour, OutsiderAct\.SpeakPact, OutsiderAct\.OfferExchange,[\s\S]{0,40}OutsiderAct\.Spar"), "the new acts right after Invite");
+        C(Regex.IsMatch(menu, @"OutsiderAct\.Invite,[\s\S]{0,200}OutsiderAct\.AskFavour, OutsiderAct\.SpeakPact, OutsiderAct\.SpeakMatch, OutsiderAct\.OfferExchange,[\s\S]{0,40}OutsiderAct\.Spar"),
+            "the new acts right after Invite, in the design's order");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");
         C(!dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(") && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.Owed(y, w, dip, folds)")
