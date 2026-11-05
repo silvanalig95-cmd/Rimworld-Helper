@@ -309,7 +309,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "Almanac" },
     ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways", "Moods", "Overview", "Defenses",
-        "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory", "Rooms", "Table", "Houses" },
+        "Map", "Neighbours", "Peoples", "Letters", "Journeys", "Events", "WorldHistory", "Rooms", "Table", "Renown" },
     ["CC_Win_What_"] = new[] { "Council", "World", "Defense", "Planning" },
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "World", "Dreams", "Journals", "Losses" },
     // The council and planning windows' views and modes (UI/MainTabWindow_Council.cs, MainTabWindow_Planning.cs, Pages.cs).
