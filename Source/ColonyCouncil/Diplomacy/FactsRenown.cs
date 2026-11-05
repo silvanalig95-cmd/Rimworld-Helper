@@ -11,7 +11,7 @@ namespace ColonyCouncil
         /// Of the colonist speaking (or writing): one of a house of the colony (house:ours, {HOUSE} its name), known in a
         /// town (house:known), the region (house:renowned) or among the peoples in reach (house:wide), or for the wrong things
         /// (house:infamous); known for something (house:knownfor:KIND, {KNOWNFOR} in the house's own age's words), and how far
-        /// it is known by the ways of the one spoken to ({RENOWN}). Of the one spoken to: the head of a house of theirs the
+        /// it is known by the ways of the one spoken to ({RENOWN}; the Empire's by the court's). Of the one spoken to: the head of a house of theirs the
         /// colony knows (them:house, {THEIRHOUSE}), renowned (them:house:renowned), holding a grudge against the colony or
         /// about one of the speaker's house (them:house:feud). Only reads; nothing when renown is off.
         /// </summary>
@@ -27,7 +27,8 @@ namespace ColonyCouncil
                 f.Value(RenownMath.HouseKey, RenownWords.Name(ours));
                 string known = r.band >= RenownBand.Town ? RenownWords.For(r.known, RenownWords.AgeOf(ours)) : null;
                 if (known != null) f.Value(RenownMath.KnownForKey, known);
-                f.Value(RenownMath.RenownKey, RenownWords.Band(r.band, s.people != null ? Ages.Of(s.people) : Ages.Ours));
+                // In the ways of the one spoken to: the Empire's people by the court's, whatever their tech level.
+                f.Value(RenownMath.RenownKey, RenownWords.Band(r.band, s.people != null ? Ages.Of(s.people) : Ages.Ours, Ages.IsEmpire(s.people)));
             }
             var x = s.listener;
             var n = x != null ? Outsiders.NotableOf(x) : null;

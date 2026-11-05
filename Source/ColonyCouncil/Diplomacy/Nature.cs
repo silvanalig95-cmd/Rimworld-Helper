@@ -113,7 +113,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// "swore the colony's oath to the Lenlia, against her pride": what they did (the act's words for this role where it has
-        /// them) and the side of them it went against or suited, by the game's own pronouns.
+        /// them) and the side of them it went against or suited, by the game's own pronouns. Worded once, as the act is felt
+        /// (each part with its fellows, Rimfolk_Nature_Variants.xml), and kept on the heart for its page and the news.
         /// </summary>
         public static string Why(Pawn p, NatureAct act, float[] sides, Faction people, string other, string role, bool eased)
         {
@@ -121,9 +122,9 @@ namespace ColonyCouncil
             string actKey = NatureMath.ActKey(act, role);
             if (!actKey.CanTranslate()) actKey = NatureMath.ActKey(act);
             var pawn = p.Named("PAWN");
-            string did = DipWords.P(actKey, pawn, DipWords.People(people).Named("PEOPLE"), (other ?? "").Named("OTHER"));
-            string side = DipWords.P(NatureMath.SideKey(rule, eased), pawn);
-            return DipWords.P(eased ? "CC_Nature_WhyEased" : "CC_Nature_Why", did.Named("ACT"), side.Named("SIDE"));
+            string did = DipWords.T(actKey, pawn, DipWords.People(people).Named("PEOPLE"), (other ?? "").Named("OTHER"));
+            string side = DipWords.T(NatureMath.SideKey(rule, eased), pawn);
+            return DipWords.T(eased ? "CC_Nature_WhyEased" : "CC_Nature_Why", did.Named("ACT"), side.Named("SIDE"));
         }
 
         /// <summary>
@@ -154,7 +155,10 @@ namespace ColonyCouncil
         {
             if (sheet == null || p == null || Would(p, act) <= 0f) return;
             var args = new[] { p.Named("PAWN"), DipWords.People(people).Named("PEOPLE"), (other ?? "").Named("OTHER") };
-            sheet.Add(ImpactKind.Needs, -1, DipWords.P(key, args), DipWords.P(brief, args));
+            // One of its wordings, the same each time for this colonist and act, so the letter's answer and the Dilemmas page
+            // say it alike (Rimfolk_Nature_Variants.xml); the brief is a label and has one.
+            string line = TextVariants.VaryBy(key, Gen.HashCombineInt(p.thingIDNumber, (int)act)).Translate(args).Resolve();
+            sheet.Add(ImpactKind.Needs, -1, line, DipWords.P(brief, args));
         }
 
         /// <summary>A challenge turned down weighs on the proud and the hot-tempered: the words for the side it goes against.</summary>
@@ -224,8 +228,11 @@ namespace ColonyCouncil
             foreach (var parent in ParentsOf(ward, ward.MapHeld)) Felt(parent, NatureAct.WardSent, people, ward.LabelShort, page ? "Page" : null);
         }
 
-        /// <summary>A truce sworn with a people: each of the colony's at this home sworn to vengeance on them, there to see it, feels it, always.</summary>
-        public static void TruceWithFoe(Faction people, Map home)
+        /// <summary>
+        /// A truce sworn with a people: each of the colony's at this home sworn to vengeance on them, there, feels it, always;
+        /// sworn by word (<paramref name="byWord"/>: no envoy at the gate, nothing to see), in the words of one who heard of it.
+        /// </summary>
+        public static void TruceWithFoe(Faction people, Map home, bool byWord = false)
         {
             var comp = CouncilGameComponent.Instance;
             if (!On || people == null || comp?.vendettas?.vendettas == null) return;
@@ -234,7 +241,7 @@ namespace ColonyCouncil
             {
                 if (v == null || !v.Active || v.faction != people || v.avenger == null || !seen.Add(v.avenger)) continue;
                 if (v.avenger.DevelopmentalStage.Juvenile() || !There(v.avenger, home)) continue;
-                Felt(v.avenger, NatureAct.TruceWithFoe, people, v.victim);
+                Felt(v.avenger, NatureAct.TruceWithFoe, people, v.victim, byWord ? "Word" : null);
             }
         }
     }

@@ -348,7 +348,7 @@ var dynamic = new Dictionary<string, string[]>
     // Against their nature (Diplomacy/Nature.cs, NatureMath.ActKey and SideKey): every wired act, the roles with words of
     // their own, and every side a wired rule names.
     ["CC_Nature_Act_"] = new[] { "SworeFealty", "BrokeTruce", "GivenHostage", "KinHostage", "WardSent", "WardSent_Page", "MatchAgainstHeart", "RefusedChallenge", "AcceptedChallenge",
-        "SeasonAway", "SeasonAway_Envoy", "SeasonAway_Hostage", "HaggledForKin", "HaggledForKin_Kin", "TruceWithFoe" },
+        "SeasonAway", "SeasonAway_Envoy", "SeasonAway_Hostage", "HaggledForKin", "HaggledForKin_Kin", "TruceWithFoe", "TruceWithFoe_Word", "BrokeTruce_Call" },
     ["CC_Nature_Side_"] = new[] { "Pride_High", "Trust_High", "Nerve_Low", "Warmth_High", "Temper_High", "Openness_Low", "Openness_High", "MatchAgainstHeart", "TruceWithFoe" },
     ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc",
         "Belonging_Answers", "Purpose_Answers", "Safety_Answers", "Freedom_Answers", "Belonging_Help", "Purpose_Help", "Safety_Help", "Freedom_Help" },

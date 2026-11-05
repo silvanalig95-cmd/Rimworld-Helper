@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Fellows of the words of against their nature (Rimfolk_Nature.xml), one picked at random where they are told
+       (TextVariants): the act and the side of them it went against, worded once as the act is felt and kept on the heart
+       for its page and the news (Nature.Why); the news's lines; the council's questions, one wording kept for each
+       colonist and act so the letter's answer and the Dilemmas page say it alike (TextVariants.VaryBy). Each keeps its
+       original's placeholders and says only what the original does: the kin and the parents there as the one given or
+       sent leaves (nothing says they watched), a truce at the gate seen and one by word heard of, the speaker who sent a
+       pact call's refusal, the game's own pronouns. The round d text pass. -->
+
+  <!-- What they did, and the side of them it went against or suited -->
+  <CC_Nature_Why_2>{ACT}, which goes against {SIDE}</CC_Nature_Why_2>
+  <CC_Nature_Why_3>{ACT}, though it goes against {SIDE}</CC_Nature_Why_3>
+  <CC_Nature_WhyEased_2>{ACT}, which sits well with {SIDE}</CC_Nature_WhyEased_2>
+  <CC_Nature_WhyEased_3>{ACT}, as suits {SIDE}</CC_Nature_WhyEased_3>
+
+  <CC_Nature_Act_SworeFealty_2>gave the colony's oath to {PEOPLE} at the gate</CC_Nature_Act_SworeFealty_2>
+  <CC_Nature_Act_SworeFealty_3>swore the colony to {PEOPLE}, speaking for it at the gate</CC_Nature_Act_SworeFealty_3>
+  <CC_Nature_Act_BrokeTruce_2>had a hand in breaking the colony's word to {PEOPLE}</CC_Nature_Act_BrokeTruce_2>
+  <CC_Nature_Act_BrokeTruce_3>broke faith with {PEOPLE}, and the colony's word with it</CC_Nature_Act_BrokeTruce_3>
+  <CC_Nature_Act_BrokeTruce_Call_2>had to tell {PEOPLE} the colony would not answer their call</CC_Nature_Act_BrokeTruce_Call_2>
+  <CC_Nature_Act_BrokeTruce_Call_3>turned down {PEOPLE}'s call to arms in the colony's name</CC_Nature_Act_BrokeTruce_Call_3>
+  <CC_Nature_Act_GivenHostage_2>left for {PEOPLE} as the colony's hostage</CC_Nature_Act_GivenHostage_2>
+  <CC_Nature_Act_GivenHostage_3>was sent to {PEOPLE} as surety for the colony's word</CC_Nature_Act_GivenHostage_3>
+  <CC_Nature_Act_KinHostage_2>stayed behind as {OTHER} left for {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage_2>
+  <CC_Nature_Act_KinHostage_3>was parted from {OTHER}, given to {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage_3>
+  <CC_Nature_Act_WardSent_2>stayed behind as {OTHER} left to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent_2>
+  <CC_Nature_Act_WardSent_3>was parted from {OTHER} for a year, sent to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent_3>
+  <CC_Nature_Act_WardSent_Page_2>stayed behind as {OTHER} left to serve as a page in a titled household of {PEOPLE}</CC_Nature_Act_WardSent_Page_2>
+  <CC_Nature_Act_WardSent_Page_3>was parted from {OTHER} for a year, sent to serve as a page among the titled of {PEOPLE}</CC_Nature_Act_WardSent_Page_3>
+  <CC_Nature_Act_MatchAgainstHeart_2>was matched with {OTHER} of {PEOPLE} by the council's word</CC_Nature_Act_MatchAgainstHeart_2>
+  <CC_Nature_Act_MatchAgainstHeart_3>was promised in marriage to {OTHER} of {PEOPLE}</CC_Nature_Act_MatchAgainstHeart_3>
+  <CC_Nature_Act_RefusedChallenge_2>had to let {OTHER}'s challenge go unanswered</CC_Nature_Act_RefusedChallenge_2>
+  <CC_Nature_Act_RefusedChallenge_3>stood by as {OTHER} was sent away unanswered</CC_Nature_Act_RefusedChallenge_3>
+  <CC_Nature_Act_AcceptedChallenge_2>stood up to {OTHER}'s challenge with everyone watching</CC_Nature_Act_AcceptedChallenge_2>
+  <CC_Nature_Act_AcceptedChallenge_3>answered {OTHER}'s challenge in person</CC_Nature_Act_AcceptedChallenge_3>
+  <CC_Nature_Act_SeasonAway_2>left to spend a season among {PEOPLE}</CC_Nature_Act_SeasonAway_2>
+  <CC_Nature_Act_SeasonAway_3>set off to live among {PEOPLE} for a season</CC_Nature_Act_SeasonAway_3>
+  <CC_Nature_Act_SeasonAway_Envoy_2>left to spend a season among {PEOPLE} as the colony's envoy</CC_Nature_Act_SeasonAway_Envoy_2>
+  <CC_Nature_Act_SeasonAway_Envoy_3>set off to speak for the colony among {PEOPLE} for a season</CC_Nature_Act_SeasonAway_Envoy_3>
+  <CC_Nature_Act_SeasonAway_Hostage_2>left home to live among {PEOPLE} as the colony's hostage</CC_Nature_Act_SeasonAway_Hostage_2>
+  <CC_Nature_Act_SeasonAway_Hostage_3>set off to stay among {PEOPLE} as surety for the colony's word</CC_Nature_Act_SeasonAway_Hostage_3>
+  <CC_Nature_Act_HaggledForKin_2>pressed {PEOPLE} for more while a captive's family waited</CC_Nature_Act_HaggledForKin_2>
+  <CC_Nature_Act_HaggledForKin_3>held out for a better price from {PEOPLE} for a captive with family waiting</CC_Nature_Act_HaggledForKin_3>
+  <CC_Nature_Act_HaggledForKin_Kin_2>heard the colony ask for more before {OTHER} could go free</CC_Nature_Act_HaggledForKin_Kin_2>
+  <CC_Nature_Act_HaggledForKin_Kin_3>heard {OTHER}'s freedom bargained over at the gate</CC_Nature_Act_HaggledForKin_Kin_3>
+  <CC_Nature_Act_TruceWithFoe_2>saw the colony make its peace with {PEOPLE} at the gate</CC_Nature_Act_TruceWithFoe_2>
+  <CC_Nature_Act_TruceWithFoe_3>saw the colony's speaker swear a truce with {PEOPLE}</CC_Nature_Act_TruceWithFoe_3>
+  <CC_Nature_Act_TruceWithFoe_Word_2>heard of the truce the colony swore with {PEOPLE} by word</CC_Nature_Act_TruceWithFoe_Word_2>
+  <CC_Nature_Act_TruceWithFoe_Word_3>learned the colony had made peace with {PEOPLE} by word</CC_Nature_Act_TruceWithFoe_Word_3>
+
+  <CC_Nature_Side_Pride_High_2>{PAWN_possessive} proud nature</CC_Nature_Side_Pride_High_2>
+  <CC_Nature_Side_Trust_High_2>{PAWN_possessive} faith in a promise kept</CC_Nature_Side_Trust_High_2>
+  <CC_Nature_Side_Nerve_Low_2>{PAWN_possessive} quiet, careful nature</CC_Nature_Side_Nerve_Low_2>
+  <CC_Nature_Side_Warmth_High_2>{PAWN_possessive} soft heart</CC_Nature_Side_Warmth_High_2>
+  <CC_Nature_Side_Temper_High_2>{PAWN_possessive} quick temper</CC_Nature_Side_Temper_High_2>
+  <CC_Nature_Side_Openness_Low_2>{PAWN_possessive} love of the familiar</CC_Nature_Side_Openness_Low_2>
+  <CC_Nature_Side_Openness_High_2>{PAWN_possessive} wish to see the world</CC_Nature_Side_Openness_High_2>
+  <CC_Nature_Side_MatchAgainstHeart_2>what {PAWN_possessive} heart wanted</CC_Nature_Side_MatchAgainstHeart_2>
+  <CC_Nature_Side_TruceWithFoe_2>{PAWN_possessive} oath of vengeance on them</CC_Nature_Side_TruceWithFoe_2>
+
+  <!-- Told in the colony's news -->
+  <CC_Nature_Told_4>{PAWN_nameDef} {WHY}, and it has left {PAWN_objective} uneasy.</CC_Nature_Told_4>
+  <CC_Nature_Told_5>{PAWN_nameDef} {WHY}, and it does not sit easily with {PAWN_objective}.</CC_Nature_Told_5>
+  <CC_Nature_Told_6>{PAWN_nameDef} {WHY}, and it troubles {PAWN_objective}.</CC_Nature_Told_6>
+  <CC_Nature_Told_Eased_3>{PAWN_nameDef} {WHY}, and it eases {PAWN_objective}.</CC_Nature_Told_Eased_3>
+  <CC_Nature_Told_Eased_4>{PAWN_nameDef} {WHY}, and is glad of the chance.</CC_Nature_Told_Eased_4>
+  <CC_Nature_Told_Eased_5>{PAWN_nameDef} {WHY}, and some of the weight {PAWN_pronoun} carried has lifted.</CC_Nature_Told_Eased_5>
+
+  <!-- The council's questions -->
+  <CC_Impact_NatureFealty_2>It would be {PAWN_nameDef} who swears it at the gate, and that goes hard against {PAWN_possessive} pride.</CC_Impact_NatureFealty_2>
+  <CC_Impact_NatureFealty_3>{PAWN_nameDef} would speak the oath at the gate, and {PAWN_possessive} pride would suffer for it.</CC_Impact_NatureFealty_3>
+  <CC_Impact_NatureTruce_2>A truce with {PEOPLE} would weigh on {PAWN_nameDef}, who swore vengeance on them.</CC_Impact_NatureTruce_2>
+  <CC_Impact_NatureTruce_3>{PAWN_nameDef} has sworn vengeance on {PEOPLE}, and a truce with them would sit badly with {PAWN_objective}.</CC_Impact_NatureTruce_3>
+  <CC_Impact_NatureMatch_2>{PAWN_nameDef}'s heart is not in this match, and pressing it will weigh on {PAWN_objective}.</CC_Impact_NatureMatch_2>
+  <CC_Impact_NatureMatch_3>Pressed into this match against {PAWN_possessive} own heart, {PAWN_nameDef} would feel it.</CC_Impact_NatureMatch_3>
+  <CC_Impact_NatureRefuse_Pride_2>Turning the challenge down would wound {PAWN_nameDef}'s pride, and it will weigh on {PAWN_objective}.</CC_Impact_NatureRefuse_Pride_2>
+  <CC_Impact_NatureRefuse_Pride_3>{PAWN_nameDef}'s pride will not take a challenge sent away unanswered lightly.</CC_Impact_NatureRefuse_Pride_3>
+  <CC_Impact_NatureRefuse_Temper_2>Sending the challenger away would sit badly with {PAWN_nameDef}'s hot temper.</CC_Impact_NatureRefuse_Temper_2>
+  <CC_Impact_NatureRefuse_Temper_3>{PAWN_nameDef} is quick to anger, and a challenge left unanswered will weigh on {PAWN_objective}.</CC_Impact_NatureRefuse_Temper_3>
+  <CC_Impact_NatureAccept_2>Facing {OTHER} in front of everyone goes against {PAWN_nameDef}'s timid nature.</CC_Impact_NatureAccept_2>
+  <CC_Impact_NatureAccept_3>{PAWN_nameDef} is not one for crowds or contests, and facing {OTHER} will weigh on {PAWN_objective}.</CC_Impact_NatureAccept_3>
+
+  <!-- The marks' news (Defs/PersonaDefs/Rimfolk_PersonaMarks_Nature.xml; PersonaMarks.NewsLine): {LABEL} is the people it
+       concerned, or for a challenge the challenger; the second of the same act within a year may have been among another
+       people than the first. -->
+  <CC_Mark_News_Rimfolk_Mark_Humbled_2>{PAWN_nameDef} swore the colony's oath to {LABEL}, and some of {PAWN_possessive} pride went with it.</CC_Mark_News_Rimfolk_Mark_Humbled_2>
+  <CC_Mark_News_Rimfolk_Mark_Humbled_3>{PAWN_nameDef} carries {PAWN_possessive} pride more lightly after swearing the colony's oath to {LABEL}.</CC_Mark_News_Rimfolk_Mark_Humbled_3>
+  <CC_Mark_News_Rimfolk_Mark_WordBrokenTwice_2>A second word broken within a year, this time to {LABEL}, has left {PAWN_nameDef} warier of promises.</CC_Mark_News_Rimfolk_Mark_WordBrokenTwice_2>
+  <CC_Mark_News_Rimfolk_Mark_WordBrokenTwice_3>{PAWN_nameDef} has broken the colony's word for the second time within a year, and puts less stock in promises now.</CC_Mark_News_Rimfolk_Mark_WordBrokenTwice_3>
+  <CC_Mark_News_Rimfolk_Mark_FacedChallengers_2>Facing {LABEL}, a second challenger within a year, has made {PAWN_nameDef} bolder.</CC_Mark_News_Rimfolk_Mark_FacedChallengers_2>
+  <CC_Mark_News_Rimfolk_Mark_FacedChallengers_3>{PAWN_nameDef} stood up to a second challenger within a year, and stands straighter for it.</CC_Mark_News_Rimfolk_Mark_FacedChallengers_3>
+  <CC_Mark_News_Rimfolk_Mark_WorldSeen_2>{PAWN_nameDef} set out for {LABEL} on a second season away within a year, more curious about the world than before.</CC_Mark_News_Rimfolk_Mark_WorldSeen_2>
+  <CC_Mark_News_Rimfolk_Mark_WorldSeen_3>{PAWN_nameDef} is off to {LABEL}, a second season away within a year, and goes with fewer misgivings than the first time.</CC_Mark_News_Rimfolk_Mark_WorldSeen_3>
+
+</LanguageData>

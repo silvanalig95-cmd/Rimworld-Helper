@@ -9,9 +9,9 @@ namespace ColonyCouncil
     /// The words of house renown (Languages/English/Keyed/Rimfolk_Renown.xml): what a house is known for by its own age
     /// (the colony's for its houses, their people's for theirs: "strong spears", "good swords", "good shots", "steady
     /// soldiers"), how far its name carries by the ways of whoever speaks of it (told at the fires, sung in the halls, in
-    /// the papers, a name that carries), the house's word by the colony's age (Ages.Form, the feature Renown: a clan's name
-    /// and totem, a house and its arms, a family name and a family firm, a lineage), the deeds its name came from, and the
-    /// news when its name moves. Lines told often have numbered fellows (CC_X_2...), one picked at random.
+    /// the papers, carried on every channel; the Empire's people by the court's ways, spoken of with honor in the noble
+    /// houses), the deeds its name came from, and the news when its name moves. Lines told often have numbered fellows
+    /// (CC_X_2...), one picked at random.
     /// </summary>
     public static class RenownWords
     {
@@ -28,11 +28,12 @@ namespace ColonyCouncil
         /// <summary>What it is known for, by an age ("good swords"); null for nothing yet.</summary>
         public static string For(KnownFor k, WorldAge age) => k == KnownFor.None ? null : P(RenownMath.ForKey(k, age));
 
-        /// <summary>How far its name carries, by the ways of an age ("sung in the halls of the region").</summary>
-        public static string Band(RenownBand b, WorldAge ways) => b == RenownBand.Unknown ? P("CC_Renown_Band_Unknown") : P(RenownMath.BandKey(b, ways));
-
-        /// <summary>The colony's word for a house by its age (a house and its arms) and their way of telling of one (deeds sung in the hall).</summary>
-        public static AgeForm Form(Map home, Faction people) => Ages.Form(AgeFeature.Renown, home ?? Homes.Seat, people);
+        /// <summary>
+        /// How far its name carries, by the ways of an age ("sung in the halls of the region"), or of the Empire's court
+        /// (<paramref name="empire"/>: "spoken of with honor in the region's noble houses").
+        /// </summary>
+        public static string Band(RenownBand b, WorldAge ways, bool empire = false) =>
+            b == RenownBand.Unknown ? P("CC_Renown_Band_Unknown") : P(RenownMath.BandKey(b, ways, empire));
 
         /// <summary>A house's renown in one line by the ways of an age: "Sung in the halls of the region, for good swords."</summary>
         public static string Standing(LedgerHouse h, RenownMath.Reading r, WorldAge ways)

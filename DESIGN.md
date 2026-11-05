@@ -2048,6 +2048,12 @@ world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text
   in an existing family, listed in the talks' header and known to their tests. Facts added to a scene change no choice
   until a line names them: the tests choose 1500 generated talks with and without the new facts, and match every
   letter line as before.
+- **Shipped words found untrue.** A shipped line's text and tags stay as they are (`Tools/textcheck.py`); one found
+  untrue in a case its tags let through is put right where it is picked: a conversation piece by
+  `OutsiderTalkMath.AlsoWhen` (its name and the condition it needs besides its own), a line of a flavour pool by
+  `Lean/ShippedLines.cs` (its text as written, and the condition it needs, or retired when it is true in no case its pool
+  is drawn for), which `Flavor.Match` asks once per line and keeps with it (`LineTags.Parsed.also`). Better words for the
+  other case go in a file of their own. The tests check each is still in the defs, word for word.
 
 ### Telling the player
 
@@ -3066,9 +3072,11 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
   each held until three under its start. Known for: the kind with six points or more and three tenths of the kinds'.
 - **Told.** A band moved of one of the colony's houses: `dip:renown` (a milestone, the house as its actor), `Tell.Minor`,
   and a bubble from one of its people on its home map, awake and free, to nobody, only where its words are true
-  (`RenownMath.Bubble`): `renownup` as its name carries further, `renowndown` as it fades from the talk; none for a name
-  gone bad or mending, nor for one still known, only less widely. A house made starts at its band untold; the region's
-  houses move quietly.
+  (`RenownMath.Bubble`): `renownup` as its name carries further, its words by the band it reached (the house's tags: a
+  town nearby is the next town's talk, never a song or the papers, which are the region's), `renowndown` as it fades from
+  the talk, with `house:wasrenowned` (`RenownMath.BubbleTag`) for a name that had been told across the region or wider
+  (only then the singers have moved on); none for a name gone bad or mending, nor for one still known, only less widely.
+  A house made starts at its band untold; the region's houses move quietly.
 - **What it does.** `Notables.OpinionOf` adds `Renown.RegardBonus` (up to 15, down to -10); a good word
   (`OutsiderOutcomes.GoodWord`) counts up to half again; a match is accepted (`Matches.Hear`, `RenownMath.MatchChance`)
   and offered (`Matches.Offers`) up to twice as readily; `Renown.EventFactor` in Rimfolk's own event weights and the
@@ -3082,7 +3090,9 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
   houses with theirs); Here and away's houses. No acts and nothing in This week (it is earned). Facts
   (`FactsRenown.cs`, in the ties' provider): `house:ours`, `house:known`, `house:renowned`, `house:wide`,
   `house:infamous`, `house:knownfor:KIND`, `them:house`, `them:house:renowned`, `them:house:feud`, `{HOUSE}`,
-  `{KNOWNFOR}` (by the house's age), `{RENOWN}` (by the listener's ways), `{THEIRHOUSE}`; bubbles get the colonist's
+  `{KNOWNFOR}` (by the house's age), `{RENOWN}` (by the listener's ways; the Empire's people by the court's, whatever
+  their tech level, its own row of the bands' words: "spoken of with honor in the region's noble houses"),
+  `{THEIRHOUSE}`; bubbles get the colonist's
   house tags (`Outsiders.Line`). Setting `diplomacyRenown` ("House renown"). Dev actions in `RenownDebug.cs`.
 
 #### Against their nature
@@ -3109,9 +3119,10 @@ when someone acts with their nature, marks for repeated acts): `Diplomacy/Nature
   arrester by `Patch_MemoryArrestedBy` (the game weighs an arrest as a capture as it is tried, in
   `Pawn.CheckAcceptArrest`), the seller at the trade, the first of the caravan that fell on theirs, the killer); a deed
   the game names nobody for (a town attacked or destroyed, a harmful ability or item) touches nobody; a pact's call
-  refused by the council's answer (`CallsToArms.Refused`), the speaker who sends it (none with no home left). Those whose
-  words say they saw or heard it (a hostage's kin, a ward's parents, the champion of a challenge turned down, the captive's
-  kin, the avenger) feel it only when there, on that map (`Nature.There`). A hostage of the colony's: as they walk off the
+  refused by the council's answer (`CallsToArms.Refused`), the speaker who sends it, in the words of one who sent the
+  refusal (none with no home left). Those it touches as onlookers (a hostage's kin and a ward's parents, whose words say
+  they had to let them go, never that they watched; the champion of a challenge turned down; the captive's kin, who heard
+  it; the avenger) feel it only when there, on that map (`Nature.There`). A hostage of the colony's: as they walk off the
   map (`WardsAbroad.AtEdge`, `Nature.HostageGoes`: the hostage, timid or set in their ways, one act; their close kin among
   the colony there, warm, read through every relation the game knows, so a child and a brother or sister count, the game's
   implied relations). A youth sent away as a ward: the same moment, the parents there (`Nature.WardGoes`; a page sent to the
@@ -3121,22 +3132,29 @@ when someone acts with their nature, marks for repeated acts): `Diplomacy/Nature
   be sent away) on the champion, proud or hot-tempered; faced at the contest itself (`Contest`) by a timid one. The envoy
   abroad: as they walk off the map (`EnvoysAbroad.AtEdge`). Asking more for a captive (`Ransoms.AskMore`): the speaker who
   haggles, and the captive's own close kin among the colony there. A truce sworn (`Truces.Swear`, `Nature.TruceWithFoe`):
-  each avenger on this home's map whose vendetta is on them (`Vendettas`, as the truce's objection asks them). The dark
+  each avenger on this home's map whose vendetta is on them (`Vendettas`, as the truce's objection asks them), who saw it
+  sworn at the gate, or heard of it when it was sworn by word with no envoy there (the role `Word`). The dark
   scheme is listed and unwired: schemes (2c.3) are not built.
 - **Shown.** The heart's page says it the way a pressure says its cause (`HeartView.SourceText`, `ReliefText`): "swore
   the colony's oath to the Lenlia, against her pride (+7)", the side by the game's own pronouns; while the strain is too
   low for the general advice, "A quiet evening with friends would help." (`NatureHelp`; `HelpFor` names it in the advice
   above 30). The strain mood ("built up by ...") and an episode's letter name the source, "acts against their nature"
-  (`SourcesText`), since the act's words don't fit their sentence. The colony's news tells it (`Tell.Minor`, two wordings or more). The council's questions name it before an
+  (`SourcesText`), since the act's words don't fit their sentence. The act, the side and their frame are each worded
+  from their fellows (`Languages/English/Keyed/Rimfolk_Nature_Variants.xml`) once, as the act is felt, and kept on the
+  heart for its page and the news. The colony's news tells it (`Tell.Minor`, six wordings of a weight, five of an ease).
+  The council's questions name it before an
   answer that asks it (`Nature.Impact`: the oath's speaker's pride, the avenger's vengeance, the colonist's heart for a
-  match pressed, the champion's nature on the challenge's answers), and the oath's objection names a proud colonist's
-  nature in two new lines ("too proud to kneel to anyone").
+  match pressed, the champion's nature on the challenge's answers; three wordings, one kept for each colonist and act by
+  `TextVariants.VaryBy`, so the letter's answer and the Dilemmas page say it alike), and the oath's objection names a
+  proud colonist's nature in two new lines ("too proud to kneel to anyone").
 - **Marks** (`Defs/PersonaDefs/Rimfolk_PersonaMarks_Nature.xml`, `NatureMath.MarkFamily`, given through
   `PersonaMarks.Give`): an oath sworn by a proud one may humble them (`NatureOath`, a turning point, half the time); the
   same act against the same side twice within a year (the act before kept on the heart) may change that side: a word
   broken twice makes a trusting one warier (`NatureWordBroken`), a challenge faced twice a timid one bolder
   (`NatureNerve`), a second season away one set in their ways more open (`NatureAbroad`), each six times in ten, within
-  the persona's own limits. Three dark schemes hardening a kind one waits for the schemes.
+  the persona's own limits. Each is told in three wordings (the def's `news` and its keyed fellows
+  `CC_Mark_News_DEFNAME_2`..., `PersonaMarks.NewsLine`, which any mark may have), as it happens, so none says time has
+  passed since. Three dark schemes hardening a kind one waits for the schemes.
 - **The balance** (`Tools/Balance/NatureSim.cs`, printed): the heart hour by hour with the mod's caps and odds, the rest of
   life set to the colony-year report's strain shares per style, natures from the vanilla traits. A colony deep in
   diplomacy (about 5.5 acts a colony-year, on the generous side) has about 0.8 felt a year, each about 6 strain (on the
@@ -4162,7 +4180,8 @@ the Social tab column's own caches).
   the rows in sight, the Almanac's cards their
   "Column: value" lines with their layout.
 - *Picking a line*: every line Rimfolk says goes through Flavor, which takes each tagged line apart once
-  (`Lean/LineTags.cs`) and only compares after that; the moment's tags (trait:, skill:, weather:) are built once per def.
+  (`Lean/LineTags.cs`, with what a shipped line needs besides its tags, `Lean/ShippedLines.cs`, looked up the first time)
+  and only compares after that; the moment's tags (trait:, skill:, weather:) are built once per def.
 - *Defs by name*: looked up once and kept (`Lean/DefRef.cs`), misses too; caches keyed by defs start over each game.
 - *Harmony patches on the game's own events* (a memory gained, a meal eaten, a death, a letter, a raid, a goodwill
   change, a trade, a quest's end): run when the event happens. Only the wind guard patches a tick method

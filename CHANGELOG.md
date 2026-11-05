@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Renown and nature in words
+
+*5 November 2026, version 0.101.0*
+
+- Visitors talk about the colony's houses in 77 new conversations: a name known in the next town, across the region or among every people, what a house is known for in each people's ways, a bad name, their own houses and old feuds.
+- The Empire speaks of a house's renown in its own court words, and the colony's people have 42 new spoken lines, most for when their family's name rises or fades, beside 43 new letter lines about the houses.
+- Every act against someone's nature now has three wordings on the heart's page, and the news, the council's questions and the marks it leaves each have several.
+- Fixed: a family's name first known in a town nearby was spoken of as sung in songs or printed in the papers, and the singers moved on from a name no singer had sung.
+- Fixed: someone heading no house spoke of feuds with "our house", condolences called the loss the writer's own, and family at home "saw" a hostage or ward leave when nothing showed it.
+- Fixed: an avenger at home read that they saw a truce sworn by letter, and the speaker who only sent the council's refusal of a call was said to have broken the colony's word.
+
 ## Against their nature, checked over
 
 *5 November 2026, version 0.100.1*

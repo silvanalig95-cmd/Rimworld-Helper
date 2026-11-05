@@ -45,6 +45,10 @@ namespace ColonyCouncil
             public Alt[][] era;
             /// <summary>Whether the text talks about guns or power (worked out by Flavor the first time it's asked): -1 not yet, 0 no, 1 yes.</summary>
             public sbyte highTech = -1;
+            /// <summary>Whether <see cref="also"/> was looked up yet (by Flavor, the first time the line is matched).</summary>
+            public bool alsoLooked;
+            /// <summary>What a shipped line needs beyond its own tags (<see cref="ShippedLines"/>), or null for nothing more.</summary>
+            public Parsed also;
         }
 
         /// <summary>The tags that hold for most of a game (the same set as <see cref="Flavor.StandingTags"/>).</summary>

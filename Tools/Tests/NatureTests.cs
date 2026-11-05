@@ -161,7 +161,13 @@ public static class NatureTests
         foreach (NatureAct a in Enum.GetValues(typeof(NatureAct)))
             if (NatureMath.Wired(a))
                 C(keyed.ContainsKey(NatureMath.ActKey(a)), $"{a} has its words");
-        foreach (var role in new[] { (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin"), (NatureAct.WardSent, "Page") })
+        var roles = new[]
+        {
+            (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin"), (NatureAct.WardSent, "Page"),
+            // The round d text pass: a truce sworn by word (heard of), a pact's call refused (the speaker who sent it).
+            (NatureAct.TruceWithFoe, "Word"), (NatureAct.BrokeTruce, "Call")
+        };
+        foreach (var role in roles)
             C(keyed.ContainsKey(NatureMath.ActKey(role.Item1, role.Item2)), $"{role.Item1} has its words for the {role.Item2.ToLowerInvariant()}");
         foreach (var k in NatureMath.SideKeys()) C(keyed.ContainsKey(k), $"the side {k} has its words");
         C(keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Side_")).All(kv => kv.Value.Contains("{PAWN_possessive}") || kv.Value.Contains("{PAWN_pronoun}")),
@@ -176,6 +182,33 @@ public static class NatureTests
         C(keyed["CC_Heart_NatureHelp"].Contains("quiet evening with friends"), "what eases it, the design's own words");
         var acts = keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Act_")).Select(kv => kv.Value).ToList();
         C(acts.All(v => !Regex.IsMatch(v, @"\b(knelt|kneel|sword|radio|comms)\b")), "every age: the act's words name no age's tools (the nature is the person's)");
+
+        // The round d text pass: two wordings or more for every told line, worded once as the act is felt (the heart keeps it).
+        var fellows = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Nature_Variants.xml")).Root!.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
+        // Who and what a line names (PAWN, PEOPLE, OTHER...), whatever form of the name it takes.
+        IEnumerable<string> Holes(string s) => Regex.Matches(s, @"\{([A-Z_a-z]+)\}").Select(m => m.Groups[1].Value.Split('_')[0]).Distinct().OrderBy(x => x);
+        bool Fellows(string key, int at) => keyed.ContainsKey(key) && Enumerable.Range(2, at - 1).All(i => fellows.TryGetValue(key + "_" + i, out var f) && Holes(f).SequenceEqual(Holes(keyed[key])));
+        foreach (NatureAct a in Enum.GetValues(typeof(NatureAct)))
+            if (NatureMath.Wired(a))
+                C(Fellows(NatureMath.ActKey(a), 3), $"{a}: three wordings, each with the original's placeholders");
+        foreach (var role in roles) C(Fellows(NatureMath.ActKey(role.Item1, role.Item2), 3), $"{role.Item1} for the {role.Item2.ToLowerInvariant()}: three wordings");
+        foreach (var k in NatureMath.SideKeys()) C(Fellows(k, 2), $"the side {k}: two wordings");
+        C(Fellows("CC_Nature_Why", 3) && Fellows("CC_Nature_WhyEased", 3), "what they did and the side, three ways");
+        C(fellows.ContainsKey("CC_Nature_Told_6") && fellows.ContainsKey("CC_Nature_Told_Eased_5"), "the news: six wordings of a weight, five of an ease");
+        foreach (var k in new[] { "CC_Impact_NatureFealty", "CC_Impact_NatureTruce", "CC_Impact_NatureMatch", "CC_Impact_NatureRefuse_Pride", "CC_Impact_NatureRefuse_Temper", "CC_Impact_NatureAccept" })
+            C(Fellows(k, 3), $"the council's question {k}: three wordings");
+        foreach (var m in marks)
+        {
+            string def = m.Element("defName")!.Value, news = m.Descendants("news").First().Value;
+            C(Enumerable.Range(2, 2).All(i => fellows.TryGetValue("CC_Mark_News_" + def + "_" + i, out var f) && Holes(f).All(h => h == "PAWN" || h == "LABEL") && news.Length > 0),
+                $"the mark {def}'s news: three wordings, naming only who and what a mark names (PersonaMarks.Tell)");
+        }
+        C(!fellows.Values.Any(v => Regex.IsMatch(v, @"\b(his|her|hers|him|he|she)\b", RegexOptions.IgnoreCase) || v.Contains('—') || v.Contains('!')
+                                   || Regex.IsMatch(v, @"\b(knelt|kneel|sword|radio|comms)\b")), "the fellows guess no pronoun, have no dashes or exclamation marks, and name no age's tools");
+        C(Regex.IsMatch(nature, @"string did = DipWords\.T\(actKey,") && nature.Contains("string side = DipWords.T(NatureMath.SideKey(rule, eased), pawn);")
+          && nature.Contains("DipWords.T(eased ? \"CC_Nature_WhyEased\" : \"CC_Nature_Why\""), "the act, the side and the frame each picked among their wordings");
+        C(nature.Contains("TextVariants.VaryBy(key, Gen.HashCombineInt(p.thingIDNumber, (int)act))"), "a question's wording kept for the colonist and act, so the letter and the Dilemmas page agree");
+        C(Code("Persona/Marks.cs").Contains("NewsLine(def, x).Formatted(") && Code("Persona/Marks.cs").Contains("\"CC_Mark_News_\" + def.defName + \"_\""), "a mark's news picked among its wordings");
 
         // ================= Where each act happens =================
 
@@ -197,8 +230,8 @@ public static class NatureTests
         C(mem.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]")
           && Regex.IsMatch(mem, @"Patch_MemoryArrestedBy\s*\{\s*public static void Prefix\(Pawn arrester\)\s*\{\s*if \(MemoryHooks\.Listening\) MemoryHooks\.capturer = arrester;\s*\}\s*public static void Finalizer\(\)\s*\{\s*MemoryHooks\.capturer = null;"),
             "an arrest names the arrester as the captor, kept only while the game weighs it");
-        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered && home != null)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
-            "a pact's call refused by the council's answer: the speaker who sends it; unanswered (or no home left), nobody");
+        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered && home != null)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f, null, \"Call\")"),
+            "a pact's call refused by the council's answer: the speaker who sends it, in the words of one who sent it; unanswered (or no home left), nobody");
         string abroad = Code("Diplomacy/WardsAbroad.cs");
         C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people, w\.page\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
             "a hostage and a ward: as they walk off the map");
@@ -210,14 +243,23 @@ public static class NatureTests
             "a challenge turned down: the champion, when the council sends the challenger away");
         C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive, map\)"),
             "asking more for a captive: the speaker, and the captive's close kin among the colony's");
-        C(Code("Diplomacy/Truces.cs").Contains("Nature.TruceWithFoe(f, home);") && nature.Contains("!v.Active || v.faction != people"),
-            "a truce sworn: the avengers of this home (the vendettas)");
+        C(Code("Diplomacy/Truces.cs").Contains("Nature.TruceWithFoe(f, home, speaker == null);") && nature.Contains("!v.Active || v.faction != people")
+          && nature.Contains("Felt(v.avenger, NatureAct.TruceWithFoe, people, v.victim, byWord ? \"Word\" : null);"),
+            "a truce sworn: the avengers of this home (the vendettas); sworn by word, with nobody at the gate, in the words of one who heard of it");
         // Close kin: a child and a brother or sister are the game's implied relations, never in DirectRelations.
         C(nature.Contains("p.GetRelations(o).Any(r => NatureMath.CloseKin(r?.defName))") && !Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,400}DirectRelations"),
             "close kin read through every relation the game knows, so a child and a brother or sister count");
         // The words that say they saw or heard it: only those there on the map (Nature.There).
         var seenWords = keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Act_") && Regex.IsMatch(kv.Value, @"\b(saw|heard)\b")).Select(kv => kv.Key.Substring("CC_Nature_Act_".Length)).OrderBy(k => k).ToList();
-        C(seenWords.SequenceEqual(new[] { "HaggledForKin_Kin", "KinHostage", "RefusedChallenge", "TruceWithFoe", "WardSent", "WardSent_Page" }), "the acts whose words say they saw or heard it: " + string.Join(", ", seenWords));
+        C(seenWords.SequenceEqual(new[] { "HaggledForKin_Kin", "RefusedChallenge", "TruceWithFoe", "TruceWithFoe_Word" }), "the acts whose words say they saw or heard it: " + string.Join(", ", seenWords));
+        // The round d text pass: a hostage's kin and a ward's parents are there as the one given or sent walks off the map,
+        // which nothing shows them watching; their words say they had to let them go.
+        C(new[] { "KinHostage", "WardSent", "WardSent_Page" }.All(k => keyed["CC_Nature_Act_" + k].StartsWith("had to let {OTHER} go")
+                                                                     && !Regex.IsMatch(fellows["CC_Nature_Act_" + k + "_2"] + fellows["CC_Nature_Act_" + k + "_3"], @"\b(saw|watched|heard)\b")),
+            "a hostage's kin and a ward's parents had to let them go, never saw it");
+        C(!keyed["CC_Nature_Act_TruceWithFoe_Word"].Contains("saw") && keyed["CC_Nature_Act_TruceWithFoe_Word"].Contains("by word"), "a truce sworn by word is heard of, not seen");
+        C(!Fam(NatureMath.MarkOath).Descendants("news").First().Value.Contains("since") && !Fam(NatureMath.MarkAbroad).Descendants("news").First().Value.Contains("seems"),
+            "the marks' news, told as the act happens, says no time has passed and nothing seen among strangers yet");
         C(nature.Contains("CloseKinOf(hostage, hostage.MapHeld)") && nature.Contains("ParentsOf(ward, ward.MapHeld)") && Regex.IsMatch(nature, @"ParentsOf\([^)]*\)\s*\{[\s\S]{0,400}!There\(o, map\)")
           && Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,300}map\.mapPawns\.FreeColonistsSpawned") && nature.Contains("!There(v.avenger, home)")
           && nature.Contains("public static bool There(Pawn p, Map map) => p != null && map != null && p.Spawned && p.Map == map;"),

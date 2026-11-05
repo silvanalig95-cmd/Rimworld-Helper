@@ -30,6 +30,11 @@
   <CC_Renown_Band_Peoples_Medieval>sung in halls far and wide</CC_Renown_Band_Peoples_Medieval>
   <CC_Renown_Band_Peoples_Industrial>known to every people within reach</CC_Renown_Band_Peoples_Industrial>
   <CC_Renown_Band_Peoples_Spacer>carried to every people within reach</CC_Renown_Band_Peoples_Spacer>
+  <!-- The Empire's people, by the court's ways whatever their tech level (it keeps its own titles and honor) -->
+  <CC_Renown_Band_Infamous_Empire>spoken of without honor at court</CC_Renown_Band_Infamous_Empire>
+  <CC_Renown_Band_Town_Empire>known to the nearest town's nobility</CC_Renown_Band_Town_Empire>
+  <CC_Renown_Band_Region_Empire>spoken of with honor in the region's noble houses</CC_Renown_Band_Region_Empire>
+  <CC_Renown_Band_Peoples_Empire>honored at court and far beyond it</CC_Renown_Band_Peoples_Empire>
 
   <!-- What a house is known for, by its own age: "known for good swords" -->
   <CC_Renown_For_Fighters_Tribal>strong spears</CC_Renown_For_Fighters_Tribal>

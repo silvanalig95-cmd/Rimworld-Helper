@@ -9,7 +9,7 @@
   <!-- The setting (Diplomacy) -->
   <CC_Settings_DiplomacyNature>Against their nature</CC_Settings_DiplomacyNature>
   <CC_SetNote_DiplomacyNature>What diplomacy asks of the colony's people weighs on those it goes against, and eases those it suits.</CC_SetNote_DiplomacyNature>
-  <CC_Settings_DiplomacyNature_Tip>Some of what diplomacy asks goes against a colonist's nature, and it builds their strain (the heart's own, no mood of its own): the oath of fealty on the one who swears it, if proud; a truce or a pact broken on whoever struck the blow, took the captive or made the sale that broke it, if trusting; a hostage given on the hostage, if timid, and on their close kin, if warm; a youth sent away as a ward on the parents, if warm; a match pressed over their objection on the one matched, always; a challenge turned down on the champion, if proud or hot-tempered, and one faced on the champion, if timid; a season away as envoy or hostage on the one who goes, if set in their ways; haggling over a captive on the one who haggles, and on the captive's close kin among the colony, if warm; a truce with a people someone swore vengeance on, on the avenger, always. The further past where a side shows (30), the more: up to 12, 8 at least for what is felt whatever their nature, scaled as life's pressures are ("Life's ups and downs", and less when they are near breaking), within the heart's caps for the day. What suits them eases it instead: a season away eases the curious, up to 6. One act a day for each colonist. The heart's page says what they did and what would help; the colony's news tells it. An oath sworn may humble a proud one, and the same act against the same side twice within a year may change them (a word broken twice, a challenge faced twice, a second season away). Off: nothing new is felt, and what was felt drains as any strain does.</CC_Settings_DiplomacyNature_Tip>
+  <CC_Settings_DiplomacyNature_Tip>Some of what diplomacy asks goes against a colonist's nature, and it builds their strain (the heart's own, no mood of its own): the oath of fealty on the one who swears it, if proud; a truce or a pact broken on whoever struck the blow, took the captive or made the sale that broke it, or sent the colony's refusal when a pact partner called, if trusting; a hostage given on the hostage, if timid, and on their close kin there to see them go, if warm; a youth sent away as a ward on the parents there to see them go, if warm; a match pressed over their objection on the one matched, always; a challenge turned down on the champion, with the challenger still there, if proud or hot-tempered, and one faced on the champion, if timid; a season away as envoy or hostage on the one who goes, if set in their ways; haggling over a captive on the one who haggles, and on the captive's close kin among the colony there, if warm; a truce with a people someone swore vengeance on, on the avenger at that home, always. The further past where a side shows (30), the more: up to 12, 8 at least for what is felt whatever their nature, scaled as life's pressures are ("Life's ups and downs", and less when they are near breaking), within the heart's caps for the day. What suits them eases it instead: a season away eases the curious, up to 6. One act a day for each colonist. The heart's page says what they did and what would help; the colony's news tells it. An oath sworn may humble a proud one, and the same act against the same side twice within a year may change them (a word broken twice, a challenge faced twice, a second season away). Off: nothing new is felt, and what was felt drains as any strain does.</CC_Settings_DiplomacyNature_Tip>
 
   <!-- The heart's page -->
   <CC_Heart_Source_Nature>acts against their nature</CC_Heart_Source_Nature>
@@ -24,9 +24,9 @@
   <CC_Nature_Act_SworeFealty>swore the colony's oath to {PEOPLE}</CC_Nature_Act_SworeFealty>
   <CC_Nature_Act_BrokeTruce>broke the colony's word to {PEOPLE}</CC_Nature_Act_BrokeTruce>
   <CC_Nature_Act_GivenHostage>was given to {PEOPLE} as the colony's hostage</CC_Nature_Act_GivenHostage>
-  <CC_Nature_Act_KinHostage>saw {OTHER} given to {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage>
-  <CC_Nature_Act_WardSent>saw {OTHER} sent to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent>
-  <CC_Nature_Act_WardSent_Page>saw {OTHER} sent to serve as a page in a titled household of {PEOPLE}</CC_Nature_Act_WardSent_Page>
+  <CC_Nature_Act_KinHostage>had to let {OTHER} go to {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage>
+  <CC_Nature_Act_WardSent>had to let {OTHER} go to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent>
+  <CC_Nature_Act_WardSent_Page>had to let {OTHER} go to serve as a page in a titled household of {PEOPLE}</CC_Nature_Act_WardSent_Page>
   <CC_Nature_Act_MatchAgainstHeart>was promised to {OTHER} of {PEOPLE}</CC_Nature_Act_MatchAgainstHeart>
   <CC_Nature_Act_RefusedChallenge>saw the colony turn down {OTHER}'s challenge</CC_Nature_Act_RefusedChallenge>
   <CC_Nature_Act_AcceptedChallenge>faced {OTHER}'s challenge in front of everyone</CC_Nature_Act_AcceptedChallenge>
@@ -36,6 +36,10 @@
   <CC_Nature_Act_HaggledForKin>haggled with {PEOPLE} over a captive whose family was waiting</CC_Nature_Act_HaggledForKin>
   <CC_Nature_Act_HaggledForKin_Kin>heard the colony haggle over {OTHER}'s freedom</CC_Nature_Act_HaggledForKin_Kin>
   <CC_Nature_Act_TruceWithFoe>saw the colony swear a truce with {PEOPLE}</CC_Nature_Act_TruceWithFoe>
+  <!-- The round d text pass: a truce sworn by word, no envoy at the gate (nothing to see); a pact's call refused by the
+       council's answer, on the speaker who sent the refusal (the council broke the word, not their hand) -->
+  <CC_Nature_Act_TruceWithFoe_Word>heard the colony had sworn a truce with {PEOPLE} by word</CC_Nature_Act_TruceWithFoe_Word>
+  <CC_Nature_Act_BrokeTruce_Call>sent the colony's refusal when {PEOPLE} called on the pact</CC_Nature_Act_BrokeTruce_Call>
 
   <CC_Nature_Side_Pride_High>{PAWN_possessive} pride</CC_Nature_Side_Pride_High>
   <CC_Nature_Side_Trust_High>{PAWN_possessive} trusting nature</CC_Nature_Side_Trust_High>

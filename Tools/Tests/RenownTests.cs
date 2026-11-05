@@ -265,8 +265,16 @@ public static class RenownTests
             foreach (var b in RenownMath.Bands) C(keyed.Contains("<" + RenownMath.BandKey(b, (WorldAge)Enum.Parse(typeof(WorldAge), age)) + ">"), $"the band {b} in {age} ways");
         }
         C(keyed.Contains("<CC_Renown_Band_Unknown>"), "not yet known, in words");
+        // The round d text pass: {RENOWN} to the Empire's people in the court's ways (its own titles and honor), by the table's own row.
+        foreach (var b in RenownMath.Bands)
+            C(RenownMath.BandKey(b, WorldAge.Spacer, true) == "CC_Renown_Band_" + b + "_Empire" && keyed.Contains("<" + RenownMath.BandKey(b, WorldAge.Spacer, true) + ">"), $"the band {b} in the Empire's court's ways");
+        C(Code("Diplomacy/FactsRenown.cs").Contains("RenownWords.Band(r.band, s.people != null ? Ages.Of(s.people) : Ages.Ours, Ages.IsEmpire(s.people))")
+          && !Code("Diplomacy/RenownWords.cs").Contains("AgeFeature.Renown"), "the one spoken to of the Empire hears the court's words (the unused Renown form gone)");
+        string variantsMore = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Renown_VariantsMore.xml"));
         foreach (var k in new[] { "CC_Renown_Up", "CC_Renown_UpFor", "CC_Renown_Down", "CC_Renown_Faded", "CC_Renown_Infamous", "CC_Renown_Mended" })
-            C(keyed.Contains("<" + k + ">") && variants.Contains("<" + k + "_2>"), $"{k} with a fellow");
+            C(keyed.Contains("<" + k + ">") && variants.Contains("<" + k + "_2>") && (variants + variantsMore).Contains("<" + k + "_4>") && (variants + variantsMore).Contains("<" + k + "_5>"), $"{k} with four fellows or more");
+        C(!variants.Contains("started to speak of") && !variantsMore.Contains("started to"), "a name that carries further is not said to have been unknown before");
+        C(!variantsMore.Contains("—") && !Regex.IsMatch(variantsMore, @">[^<]*![^<]*<"), "no em dashes or exclamation marks in the fellows");
         C(!(keyed + variants).Contains("—") && !Regex.IsMatch(keyed + variants, @">[^<]*![^<]*<"), "no em dashes or exclamation marks in the words");
         C(keyed.Contains("<CC_Settings_DiplomacyRenown>") && keyed.Contains("<CC_SetNote_DiplomacyRenown>") && keyed.Contains("<CC_Settings_DiplomacyRenown_Tip>"), "the setting in words");
         var tags = RenownMath.Tags();
@@ -305,6 +313,36 @@ public static class RenownTests
         C(Regex.IsMatch(dip["Renown.cs"], @"var speaker = moment == null \? null : Living\(h\)\.FirstOrDefault\(p => p\.Spawned && p\.Map == home[^;]*!p\.Drafted && p\.Awake\(\)\)"),
             "the word said by one of the house on its home map, awake and free (never in their sleep)");
 
+        // ================= The round d text pass: words against the code =================
+
+        // The bubble knows the band a name fell from: one sung across the region, or only the next town's talk.
+        C(RenownMath.BubbleTag(RenownBand.Region, RenownBand.Unknown) == RenownMath.WasRenownedTag && RenownMath.BubbleTag(RenownBand.Peoples, RenownBand.Unknown) == RenownMath.WasRenownedTag
+          && RenownMath.BubbleTag(RenownBand.Town, RenownBand.Unknown) == null && RenownMath.BubbleTag(RenownBand.Unknown, RenownBand.Town) == null
+          && RenownMath.BubbleTag(RenownBand.Region, RenownBand.Peoples) == null, "renowndown's tag for a name that was told across the region or wider");
+        C(dip["Renown.cs"].Contains("Outsiders.Say(speaker, moment, null, null, RenownMath.BubbleTag(was, r.band))")
+          && Code("Outsiders/Outsiders.cs").Contains("if (!also.NullOrEmpty()) tags.Add(also);"), "the bubble said with it");
+        // Shipped lines that proved untrue in a case their tags let through ask for more, or are retired (Lean/ShippedLines.cs).
+        var allLis = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).SelectMany(f => XDocument.Load(f).Descendants("li").Select(e => e.Value)).ToHashSet();
+        foreach (var kv in ShippedLines.AlsoWhen)
+        {
+            C(allLis.Contains(kv.Key), $"the shipped line is still in the defs, word for word: {kv.Key}");
+            var cond = ShippedLines.ConditionOf(kv.Key);
+            C(cond?.tags != null && cond.alts.SelectMany(a => a).All(a => tags.Contains(a.name) || a.name == RenownMath.WasRenownedTag), $"its condition names tags the game sets: {kv.Value}");
+        }
+        foreach (var l in ShippedLines.Retired) C(allLis.Contains(l) && ShippedLines.ConditionOf(l) == ShippedLines.Never, $"the retired line is still in the defs, never said: {l}");
+        var song = "[renownup,us,medieval] I hear there's a song with our name in it now.";
+        C(!ShippedLines.Holds(ShippedLines.ConditionOf(song), new HashSet<string> { "renownup", "us", "medieval", "house:ours", "house:known" })
+          && ShippedLines.Holds(ShippedLines.ConditionOf(song), new HashSet<string> { "renownup", "us", "medieval", "house:ours", "house:known", "house:renowned" })
+          && ShippedLines.Holds(ShippedLines.ConditionOf("[renownup,us] Funny to think strangers know our name."), new HashSet<string>()),
+            "a song only of a name sung across the region; a line with nothing more asked always holds");
+        C(ShippedLines.AlsoWhen.Keys.Count(k => k.StartsWith("[renownup,")) >= 5 && ShippedLines.AlsoWhen.Any(kv => kv.Key.Contains("singers") && kv.Value == RenownMath.WasRenownedTag)
+          && ShippedLines.Retired.Any(l => l.StartsWith("[condolences,")) && ShippedLines.AlsoWhen.Count(kv => kv.Key.Contains("them:house:feud") && kv.Value == "them:house") == 2,
+            "the town's band never sung or in the papers, the singers only for a name once sung, condolences answered as their own loss, \"our house\" only from a house's head");
+        C(Code("Flavor.cs").Contains("p.also = ShippedLines.ConditionOf(line);") && Code("Flavor.cs").Contains("!ShippedLines.Holds(p.also, context) ? -1"), "every flavour pick asks it, once per line");
+        C(OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_Feud", "them:house:feud") == "them:house:feud,them:house" && OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_FeudCool", "x") == "x,them:house",
+            "the feud's talk that says \"my family\" or \"my house\" only with the head of a house");
+        C(OutsiderTalkMath.WhenOf("Rimfolk_OT_Renown_NotYetTribal", "house:ours,!house:known,their:tribal").EndsWith(",!house:infamous"), "\"still earning\" a name, never of one known for its wrongs");
+
         // ================= The talk and the lines =================
 
         var talk = Talks("Rimfolk_OutsiderTalks_Renown.xml");
@@ -328,6 +366,42 @@ public static class RenownTests
         C(renownLines.Count(x => x.StartsWith("[greetings,") && x.Contains("house:")) >= 10, "letters from one of a house, by their name");
         C(renownLines.Where(x => x.StartsWith("[help,") || x.StartsWith("[invitation,")).All(x => Regex.IsMatch(x, @"^\[(help|invitation),(warm|cordial)") || !Regex.IsMatch(x, @"\bwe (send|will come)\b", RegexOptions.IgnoreCase)),
             "help and invitations promised only in a granting tone");
+
+        // The round d text pass's words, beside the round's own files (whose talk stays within its fifty).
+        var more = Talks("Rimfolk_OutsiderTalks_RenownMore.xml");
+        C(more.Count >= 60, $"more talk on the houses ({more.Count})");
+        string moreText = string.Concat(more.Select(t => t.ToString()));
+        foreach (var ways in new[] { "their:tribal", "their:medieval", "their:industrial", "their:spacer", "their:empire" })
+            foreach (var band in new[] { "house:known,!house:renowned", "house:renowned,!house:wide", "house:wide" })
+                C(more.Any(t => (t.Element("when")?.Value ?? "").StartsWith(band) && (t.Element("when")?.Value ?? "").Contains(ways)), $"a name known ({band}) in the words of {ways}");
+        foreach (var k in RenownMath.Kinds)
+            C(new[] { "their:tribal", "their:medieval", "their:industrial", "their:spacer", "their:empire", "their:hightech" }.Count(w => more.Any(t => (t.Element("when")?.Value ?? "").Contains(RenownMath.ForTag(k)) && (t.Element("when")?.Value ?? "").Contains(w))) >= 2,
+                $"a house known for {k}, by more than one people's ways");
+        var moreSpoken = more.SelectMany(t => t.Descendants("li")).Select(l => Regex.Replace(l.Value, @"^\[[^\]]*\]\s*", "")).ToList();
+        C(moreSpoken.All(l => l.Length <= 90 && !Regex.IsMatch(l, @"^\{(HOUSE|KNOWNFOR|RENOWN|THEIRHOUSE)\}") && !Regex.IsMatch(l, @"[.?] \{(HOUSE|RENOWN|THEIRHOUSE)\}")),
+            "the new talk: 90 characters at most, no sentence starting with a house's name or its renown");
+        C(!Regex.IsMatch(moreText, @"your family's \{KNOWNFOR\}") || more.Where(t => t.ToString().Contains("your family's {KNOWNFOR}")).All(t => Regex.IsMatch(t.Element("when")!.Value, "house:knownfor:(fighters|healers|traders|makers)")),
+            "\"your family's\" before {KNOWNFOR} only where its words are a noun (never \"your family's a warm fire and a full pot\")");
+        C(more.Where(t => (t.Element("when")?.Value ?? "").Contains("them:house:feud") && (t.Element("when")?.Value ?? "").Contains("!them:house")).SelectMany(t => t.Descendants("li"))
+              .All(l => !Regex.IsMatch(l.Value, @"\bmy (house|family)\b", RegexOptions.IgnoreCase)) && more.Count(t => (t.Element("when")?.Value ?? "").Contains("them:house:feud,!them:house")) >= 3,
+            "a feud from one who heads no house: never \"my house\"");
+        C(more.Count(t => t.Element("topic")?.Value == "callback") >= 10, "callbacks that pick up the earlier talk with the house's name");
+        var moreLines = Lis("FlavorPoolDefs/Rimfolk_Lines_RenownMore.xml");
+        foreach (var age in new[] { "tribal", "medieval", "industrial", "spacer" })
+        {
+            C(moreLines.Any(x => x.StartsWith("[renownup,us," + age + ",!house:renowned]")) && moreLines.Any(x => x.StartsWith("[renownup,us," + age + ",house:renowned,!house:wide]"))
+              && moreLines.Any(x => x.StartsWith("[renownup,us," + age + ",house:wide]")), $"renownup in the {age} colony's words at each band");
+            C(moreLines.Any(x => x.StartsWith("[renowndown,us," + age + ",!house:wasrenowned]")) && moreLines.Any(x => x.StartsWith("[renowndown,us," + age + ",house:wasrenowned]")),
+                $"renowndown in the {age} colony's words, from the next town and from the region");
+        }
+        C(moreLines.Where(x => x.Contains("!house:renowned]") || x.Contains("!house:wasrenowned]")).All(x => !Regex.IsMatch(x, @"\b(song|sung|sing|singers|papers|region|every|well beyond|halls?)\b")),
+            "a name known only in a town nearby is never said to be sung, in the papers or across the region");
+        var moreBubbles = moreLines.Where(x => Regex.IsMatch(x, @"^\[(renownup|renowndown|wordyes),")).ToList();
+        C(moreBubbles.Count >= 30 && moreBubbles.All(x => !x.Substring(x.IndexOf(']') + 1).Trim().TrimEnd('.', '?').Contains(". ") && !x.Contains("{")), "the new bubbles: one sentence each, naming nobody");
+        C(moreLines.Count(x => !moreBubbles.Contains(x)) >= 30, "more letter lines touching a house's name");
+        C(moreLines.Where(x => x.StartsWith("[help,") || x.StartsWith("[invitation,")).All(x => Regex.IsMatch(x, @"^\[(help|invitation),(warm|cordial)") || !Regex.IsMatch(x, @"\bwe (send|will come|can send)\b", RegexOptions.IgnoreCase))
+          && !moreLines.Any(x => x.StartsWith("[help,cool")), "help and invitations promised only in a granting tone (a cool plea is quoted as a refusal)");
+        C(moreLines.Where(x => x.StartsWith("[condolences,")).All(x => !Regex.IsMatch(x, @"loss to \{HOUSE\}|your loss|your family's loss", RegexOptions.IgnoreCase)), "condolences answered as their own loss, never the writer's house's");
 
         return n;
     }

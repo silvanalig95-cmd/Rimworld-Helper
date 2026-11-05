@@ -15,6 +15,12 @@
       wordyes with house:renowned (them, the outsider promising a good word for one of a renowned house: their words for
       it; a match is spoken for by anyone, so its answer says nothing of the speaker's name). A bubble names no one but
       {NAME}, the one spoken to. One sentence each.
+    Since the round d text pass (Source/ColonyCouncil/Lean/ShippedLines.cs; better words in Rimfolk_Lines_RenownMore.xml):
+    renownup's lines that say a song, the papers, the markets, every camp's fire or "well beyond the colony" are said only
+    of a name told across the region or wider (house:renowned), as a name first known in a town nearby is talked of in the
+    next town only; the singers at renowndown only for a name that was sung so (house:wasrenowned, a bubble's tag); the two
+    letters that say "our house" in a feud only from the head of a house (them:house); and the answer to condolences that
+    called the loss the writer's house's (the loss is theirs) is no longer said.
   -->
 
   <ColonyCouncil.FlavorExtensionDef>

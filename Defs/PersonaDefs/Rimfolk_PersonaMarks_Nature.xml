@@ -24,7 +24,7 @@
         <family>NatureOath</family>
         <chance>0.5</chance>
         <lean>pride:0.3</lean>
-        <news>{PAWN_nameDef} has been quieter since swearing the colony's oath to {LABEL}.</news>
+        <news>Swearing the colony's oath to {LABEL} has humbled {PAWN_nameDef}.</news>
         <journal>
           <plain>
             <li>I swore the colony's oath to {LABEL} at the gate today. I didn't think I could. It turns out I can.</li>
@@ -84,7 +84,7 @@
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>NatureAbroad</family>
         <chance>0.6</chance>
-        <news>{PAWN_nameDef} has set out for {LABEL}, a second season away within a year, and seems more at ease among strangers.</news>
+        <news>{PAWN_nameDef} has set out for {LABEL}, a second season away within a year, and minds being among strangers less this time.</news>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>

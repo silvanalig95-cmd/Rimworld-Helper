@@ -505,19 +505,20 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A line over someone's head at a moment of a talk with an outsider (one sentence, from Rimfolk_Pool_OutsiderSays),
-        /// said to <paramref name="other"/>. {NAME} is the other's name, {TOWN} the outsider's town, {ASKER} who asked before.
+        /// said to <paramref name="other"/>. {NAME} is the other's name, {TOWN} the outsider's town, {ASKER} who asked before;
+        /// <paramref name="also"/> a tag of the moment only its caller knows (a house's name fallen from the region's band).
         /// </summary>
-        public static bool Say(Pawn p, string moment, Pawn other, Pawn asker = null)
+        public static bool Say(Pawn p, string moment, Pawn other, Pawn asker = null, string also = null)
         {
             if (p == null || !p.Spawned) return false;
-            string line = Line(p, moment, other, asker);
+            string line = Line(p, moment, other, asker, also);
             if (line.NullOrEmpty()) return false;
             // together: said only to someone standing with them (Speech.Say checks it).
             return Speech.Say(p, line, other);
         }
 
         /// <summary>The line <paramref name="p"/> would say at that moment (for a scene said in turn), or null.</summary>
-        public static string Line(Pawn p, string moment, Pawn other, Pawn asker = null)
+        public static string Line(Pawn p, string moment, Pawn other, Pawn asker = null, string also = null)
         {
             if (p == null || moment.NullOrEmpty()) return null;
             try
@@ -526,6 +527,7 @@ namespace ColonyCouncil
                 if (pool == null) return null;
                 var tags = Flavor.TagsFor(p);
                 tags.Add(moment);
+                if (!also.NullOrEmpty()) tags.Add(also);
                 // Who speaks: one of the colony's ("us") or the outsider ("them"); a line for either has neither tag.
                 tags.Add(KinMemory.Ours(p) ? "us" : "them");
                 var x = KinMemory.Ours(p) ? other : p;
