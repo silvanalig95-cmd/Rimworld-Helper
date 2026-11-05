@@ -52,7 +52,11 @@ namespace ColonyCouncil
         Ward,
         /// <summary>Proposing a match between one of the colony's and one of theirs (Diplomacy/Matches.cs, release 2b.2).</summary>
         Match,
-        /// <summary>The council's business: an officer's letter on a task, or a secret pressed (Diplomacy/TaskLetters.cs, release 2c.1; never from the dialog).</summary>
+        /// <summary>
+        /// Obsolete: the council's business, an officer's letter on a task or a secret pressed (release 2c.1), retired with
+        /// the council's tasks and the keeper of secrets on 5 November 2026. Kept so saved letters keep their place; never
+        /// written, and one an older save holds that is not yet read is called off quietly (NeighbourLetters).
+        /// </summary>
         Task,
         /// <summary>Asking to swear fealty to their people, their terms by their ways (Diplomacy/FealtyLetters.cs, release 2c.2).</summary>
         Fealty
@@ -277,6 +281,9 @@ namespace ColonyCouncil
         public static float ReplyDays(float roll) => 0.25f + Clamp01(roll);
 
         /// <summary>Days to wait before writing to the same person for the same thing again (one letter at a time to each in any case).</summary>
+        /// <summary>A purpose no longer written (LetterPurpose.Task, the council's business): never offered, and called off before it is read.</summary>
+        public static bool Retired(LetterPurpose p) => p == LetterPurpose.Task;
+
         public static float WaitDays(LetterPurpose p)
         {
             switch (p)
@@ -286,8 +293,6 @@ namespace ColonyCouncil
                 case LetterPurpose.Warning: return 3f;
                 case LetterPurpose.News: return 5f;
                 case LetterPurpose.Invitation: return 15f;
-                // An officer writes every four to six days on a task (Diplomacy/TaskMath.cs).
-                case LetterPurpose.Task: return 3f;
                 default: return 20f;
             }
         }
@@ -326,8 +331,6 @@ namespace ColonyCouncil
                 case LetterPurpose.Warning: return 12f;
                 case LetterPurpose.News: return 5f;
                 case LetterPurpose.Invitation: return 0f;
-                // The council's business between neighbours: neither a kindness nor an ask.
-                case LetterPurpose.Task: return 0f;
                 default: return troubled ? -25f : -10f;
             }
         }

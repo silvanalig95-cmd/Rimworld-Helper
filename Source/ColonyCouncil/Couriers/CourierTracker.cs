@@ -122,9 +122,7 @@ namespace ColonyCouncil
                     }
                 }
             }
-            // A trip a council task waits on (an informer paid, samples fetched: Diplomacy/CouncilTasks.cs) is kept, its
-            // tally to be read, until the task has read it (within the hour) or two days on.
-            trips.RemoveAll(t => t.state == CourierState.Done && (t.endTick < 0 || now - t.endTick > CourierMath.MaxKeepTicks || AllGone(t) && !CouncilTasks.Awaits(t.id)));
+            trips.RemoveAll(t => t.state == CourierState.Done && (t.endTick < 0 || now - t.endTick > CourierMath.MaxKeepTicks || AllGone(t)));
         }
 
         private void Step(CourierTrip t, int now)

@@ -218,14 +218,13 @@ namespace ColonyCouncil
             Say(n > 0 ? "their bands walk in within the hour (with a threat on the map), or turn back with word that the fight is over." : "no vassals at this home.");
         }
 
-        [DebugAction("Rimfolk", "Vassals: a season passed (tribute's weight, dues and asks due)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Rimfolk", "Vassals: a season passed (tribute's weight and asks due)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugSeason()
         {
             int back = (int)(FealtyMath.SeasonDays * FealtyMath.DayTicks);
             foreach (var v in Vassals.Of(Home))
             {
                 v.seasonAt -= back;
-                v.duesAt = v.duesAt >= 0 ? v.duesAt - back : -1;
                 v.askAt = v.askAt >= 0 ? v.askAt - back : -1;
                 v.leviesAt = v.leviesAt >= 0 ? v.leviesAt - back : -1;
             }

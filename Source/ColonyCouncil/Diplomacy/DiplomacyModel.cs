@@ -59,8 +59,6 @@ namespace ColonyCouncil
         public readonly List<DipRow> here = new List<DipRow>();
         public readonly List<DipRow> away = new List<DipRow>();
         public readonly List<DipRow> houses = new List<DipRow>();
-        /// <summary>The council's tasks under way (release 2c.1), for Here and away.</summary>
-        public readonly List<DipRow> tasks = new List<DipRow>();
 
         private static DiplomacyModel current;
         private static float builtAt = -1f;
@@ -362,13 +360,6 @@ namespace ColonyCouncil
             foreach (var r in WardPanels.AwayRows())
                 if (m.away.Count < MaxRows)
                     m.away.Add(r);
-            // The colony's officers away on the council's business (release 2c.1), and every task under way.
-            foreach (var r in TaskPanels.AwayRows())
-                if (m.away.Count < MaxRows)
-                    m.away.Add(r);
-            foreach (var r in TaskPanels.TaskRows())
-                if (m.tasks.Count < MaxRows)
-                    m.tasks.Add(r);
             // The colony's houses: its families known by name.
             var seen = new HashSet<string>();
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())

@@ -373,7 +373,6 @@ namespace ColonyCouncil
             Toggle("diplomacyFeasts", "CC_Settings_DiplomacyFeasts", "CC_SetNote_DiplomacyFeasts", "factionMemory");
             Toggle("diplomacyMarriage", "CC_Settings_DiplomacyMarriage", "CC_SetNote_DiplomacyMarriage", "factionMemory");
             Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
-            Toggle("diplomacyTasks", "CC_Settings_DiplomacyTasks", "CC_SetNote_DiplomacyTasks", "offices");
             Toggle("diplomacyFealty", "CC_Settings_DiplomacyFealty", "CC_SetNote_DiplomacyFealty", "factionMemory");
             Toggle("diplomacyRenown", "CC_Settings_DiplomacyRenown", "CC_SetNote_DiplomacyRenown", "factionMemory");
             Toggle("diplomacyNature", "CC_Settings_DiplomacyNature", "CC_SetNote_DiplomacyNature", "heart");

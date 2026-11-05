@@ -784,6 +784,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A seat's key whose office no longer exists.</summary>
+        private static bool Gone(string key) => DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(key)) == null;
+
         public void ExposeData()
         {
             Scribe_Collections.Look(ref holders, "holders", LookMode.Value, LookMode.Reference, ref k1, ref v1);
@@ -796,8 +799,9 @@ namespace ColonyCouncil
                 if (election != null && (election.races.Count == 0 || election.map == null)) election = null;
                 if (holders == null) holders = new Dictionary<string, Pawn>();
                 if (elected == null) elected = new Dictionary<string, Pawn>();
-                foreach (var k in holders.Where(kv => kv.Value == null).Select(kv => kv.Key).ToList()) holders.Remove(k);
-                foreach (var k in elected.Where(kv => kv.Value == null).Select(kv => kv.Key).ToList()) elected.Remove(k);
+                // A seat the council no longer has (the keeper of secrets, retired 5 November 2026) is let go quietly with its holder.
+                foreach (var k in holders.Where(kv => kv.Value == null || Gone(kv.Key)).Select(kv => kv.Key).ToList()) holders.Remove(k);
+                foreach (var k in elected.Where(kv => kv.Value == null || Gone(kv.Key)).Select(kv => kv.Key).ToList()) elected.Remove(k);
             }
         }
     }

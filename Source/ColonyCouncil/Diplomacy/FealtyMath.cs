@@ -64,7 +64,7 @@ namespace ColonyCouncil
     /// </summary>
     public static class FealtyMath
     {
-        public const int DayTicks = 60000;
+        public const int DayTicks = 60000, HourTicks = 2500;
         public const float SeasonDays = 15f, YearDays = 60f;
 
         public const string Origin = "fealty", VassalOrigin = "vassal";
@@ -155,9 +155,6 @@ namespace ColonyCouncil
 
         public static bool BreaksOath(bool owedFromLastSeason) => owedFromLastSeason;
 
-        /// <summary>The colony's quartermaster seeing to the tribute: paid on time and in full, their head thinks this much better of the colony.</summary>
-        public const float PunctualRegard = 3f;
-
         // ================= Levies =================
 
         /// <summary>When their town within reach is attacked: two fighters of the colony's, set out within five days (CallsToArms, PactMath's rule).</summary>
@@ -226,24 +223,6 @@ namespace ColonyCouncil
 
         /// <summary>Light tribute warms their head a little each season.</summary>
         public const float LightRegard = 2f;
-
-        // ---------------- The quartermaster's dues ----------------
-
-        /// <summary>
-        /// A season's dues in silver, collected by the quartermaster (once a season a vassal): 40 for a poor vassal, 100 for
-        /// one doing well, by the council's level; struggling (under 20), they pay half and explain why.
-        /// </summary>
-        public static int Dues(float prosperity, TributeLevel level)
-        {
-            float v = (40f + Clamp(prosperity, 0f, 100f) * 0.6f) * TributeFactor(level);
-            if (Explained(prosperity)) v *= 0.5f;
-            return Math.Max(10, (int)Math.Round(v / 5f) * 5);
-        }
-
-        public static bool Explained(float prosperity) => prosperity >= 0f && prosperity < StruggleProsperity;
-
-        /// <summary>The dues collected once a season from each vassal.</summary>
-        public static bool DuesDue(int lastDues, int now) => lastDues < 0 || now - lastDues >= SeasonDays * DayTicks;
 
         // ---------------- Their levies ----------------
 

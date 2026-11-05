@@ -11,8 +11,8 @@ namespace ColonyCouncil
     /// <summary>
     /// One of the colony's own vassals at a home (Vassals.cs): the hamlet once sworn, or a struggling town taken under its
     /// protection. What isn't the tie: the town and its people, the council's tribute level, and when its harvest, its
-    /// season's tribute, the quartermaster's dues, its levies and its last ask were, when its head's regard fell low, and
-    /// whether it asked to be released.
+    /// season's tribute, its levies and its last ask were, when its head's regard fell low, and whether it asked to be
+    /// released. (An older save's "duesAt", the quartermaster's dues retired with the council's tasks, is left unread.)
     /// </summary>
     public class VassalTerms : IExposable
     {
@@ -21,7 +21,7 @@ namespace ColonyCouncil
         public Faction people;
         public string name;
         public TributeLevel level = TributeLevel.Usual;
-        public int since = -1, harvestAt = -1, seasonAt = -1, duesAt = -1, leviesAt = -1, leviesDue = -1, askAt = -1, lowSince = -1, releaseAt = -1;
+        public int since = -1, harvestAt = -1, seasonAt = -1, leviesAt = -1, leviesDue = -1, askAt = -1, lowSince = -1, releaseAt = -1;
         /// <summary>Their dead in the colony's fights, all told.</summary>
         public int fell;
 
@@ -35,7 +35,6 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref since, "since", -1);
             Scribe_Values.Look(ref harvestAt, "harvestAt", -1);
             Scribe_Values.Look(ref seasonAt, "seasonAt", -1);
-            Scribe_Values.Look(ref duesAt, "duesAt", -1);
             Scribe_Values.Look(ref leviesAt, "leviesAt", -1);
             Scribe_Values.Look(ref leviesDue, "leviesDue", -1);
             Scribe_Values.Look(ref askAt, "askAt", -1);
@@ -53,10 +52,9 @@ namespace ColonyCouncil
     /// Each vassal's head is a notable who writes: a town's own head, and for the mod's outposts one Rimfolk gives them
     /// (World/VassalNotables.cs), whose regard shows with what moved it.
     /// <para>Of the colony's own: at harvest their carter brings produce to the gate, the amount set by the council (light,
-    /// usual, heavy: heavy costs their goodwill each season); the quartermaster collects a season's dues by letter, on time or
-    /// explained (CouncilTasks' Dues); when a home is raided the council may call their levies (their people's war band, a
-    /// third of the threat, once a season), whose dead weigh on their head's regard; their head, sour for a season (-20),
-    /// asks to be released, and refused they break away. Asks of any vassal (once a season): help in a hard season, the
+    /// usual, heavy: heavy costs their goodwill each season); when a home is raided the council may call their levies
+    /// (their people's war band, a third of the threat, once a season), whose dead weigh on their head's regard; their
+    /// head, sour for a season (-20), asks to be released, and refused they break away. Asks of any vassal (once a season): help in a hard season, the
     /// colony's judgement in a quarrel with a neighbour, a camp of the colony's enemies near them to be broken, and for the
     /// mod's outposts its invasion of them, joined through the mod's own arrival. The mod's vassalage points, purchases and
     /// tribute stay the mod's: Rimfolk takes no tribute or levies from them and changes nothing of theirs.</para>
@@ -611,178 +609,6 @@ namespace ColonyCouncil
             Diplomacy.Dirty();
         }
 
-        // ================= The quartermaster's dues =================
-
-        /// <summary>The quartermaster's dues task with this people at this home is under way (the liege's tribute seen to, or a vassal's dues).</summary>
-        public static bool QuartermasterOn(Map home, Faction f) =>
-            f != null && CouncilTasks.Running().Any(x => x.task.kind == TaskKind.Dues && x.task.Live && x.task.people == f && x.home?.Map == home);
-
-        /// <summary>The liege's tribute came on time and in full with the quartermaster seeing to it: their head thinks a little better of the colony.</summary>
-        public static void Punctual(Map home, Faction liege)
-        {
-            var head = FavourCalls.HeadOf(liege, home);
-            if (head == null) return;
-            head.personal += FealtyMath.PunctualRegard;
-            head.Remember(FealtyWords.P("CC_Fealty_Note_Punctual"), FealtyMath.PunctualRegard);
-        }
-
-        /// <summary>A people the quartermaster's dues can be aimed at from this home: the liege, or the people of one of its vassals.</summary>
-        public static bool DuesTarget(Faction f, Map home) => f != null && (Fealty.Liege(home) == f || Of(home).Any(v => v.people == f));
-
-        /// <summary>The vassal town of that people whose dues are due first, or null.</summary>
-        public static Settlement DuesTown(Faction f, Map home) =>
-            TownOf(Of(home).Where(v => v.people == f).OrderBy(v => FealtyMath.DuesDue(v.duesAt, Now) ? 0 : 1).FirstOrDefault());
-
-        /// <summary>
-        /// Why the quartermaster can't collect dues now (CouncilTasks.DuesWhyNot): with no people given, why none at all (no
-        /// liege and no vassal); with one, why not theirs (nothing owed and the tribute not due, collected this season).
-        /// </summary>
-        public static string DuesWhyNot(Faction f, Map home)
-        {
-            if (!On) return FealtyWords.P("CC_Fealty_Why_Off");
-            if (home == null) return TaskWords.P("CC_Task_Why_NoHome");
-            if (f == null) return Fealty.Of(home) == null && Of(home).Count == 0 ? TaskWords.P("CC_Task_Why_NoTarget_Dues") : null;
-            if (Fealty.Liege(home) == f) return null;
-            var due = Of(home).Where(v => v.people == f).ToList();
-            if (due.Count == 0) return FealtyWords.P("CC_Vassal_Why_NotVassal", FealtyWords.People(f).Named("PEOPLE"));
-            if (!due.Any(v => FealtyMath.DuesDue(v.duesAt, Now))) return FealtyWords.P("CC_Vassal_Why_DuesPaid");
-            if (!due.Any(v => HeadOf(v.town) != null)) return FealtyWords.P("CC_Vassal_Why_NoHead", NameOf(due[0]).Named("TOWN"));
-            return null;
-        }
-
-        /// <summary>
-        /// The dues task's hour (CouncilTasks.DuesStep). With the liege: what is owed goes by cart at once (their porter
-        /// fetches it at the gate; with nobody to send, it is carried out), and the season's tribute is made up of more kinds
-        /// of goods so it is paid in full; done when nothing is owed and a season's tribute came in full. With a vassal: the
-        /// quartermaster writes to their head; answered, their carter brings the season's dues to the gate (on time, or half
-        /// and explained in a hard season), and it is done.
-        /// </summary>
-        public static void DuesStep(CouncilTask t, DiplomacyHome h, int now)
-        {
-            var home = h?.Map;
-            var f = t.people;
-            t.nextTick = now + 3 * TaskMath.HourTicks;
-            if (home == null || f == null) return;
-            var liege = Fealty.Of(home);
-            if (liege != null && Fealty.LiegeOf(liege) == f)
-            {
-                LiegeDues(t, h, home, liege, now);
-                return;
-            }
-            var v = Of(home).FirstOrDefault(x => x.town == t.town) ?? Of(home).FirstOrDefault(x => x.people == f);
-            if (v == null)
-            {
-                CouncilTasks.End(h, t, TaskStage.Off, TaskWords.P("CC_Task_Result_Gone", t.OfficerName.Named("PAWN"), (t.targetName ?? "?").Named("TARGET")), true);
-                return;
-            }
-            if (t.asked)
-            {
-                Collected(t, h, home, v, now);
-                return;
-            }
-            if (t.letterId >= 0)
-            {
-                var open = NeighbourLetters.Get(t.letterId);
-                if (open != null && open.Open) return;
-                t.letterId = -1;
-            }
-            if (t.letters > 0) return;
-            var head = HeadOf(v.town);
-            if (head == null || !NeighbourLetters.On)
-            {
-                t.nextTick = now + 12 * TaskMath.HourTicks;
-                return;
-            }
-            var l = TaskLetters.Send(head, t.officer, TaskLetters.TaskKey(t), TaskWords.Topic(t));
-            if (l == null)
-            {
-                t.nextTick = now + Mathf.RoundToInt(TaskMath.RetryHours * TaskMath.HourTicks);
-                return;
-            }
-            t.letterId = l.id;
-            Diplomacy.Dirty();
-        }
-
-        /// <summary>Their answer to the quartermaster's letter (TaskResults.LetterRead): their carter will bring the dues, on time or explained.</summary>
-        public static string DuesRead(CouncilTask t, NeighbourLetter l, Notable n, ref AnswerTone tone)
-        {
-            var home = CouncilTasks.MapOf(t);
-            var v = Of(home).FirstOrDefault(x => x.town == t.town) ?? Of(home).FirstOrDefault(x => x.people == t.people);
-            if (v == null) return null;
-            var rec = WorldLedger.TownRecord(v.town);
-            float p = rec != null && rec.Seeded ? rec.prosperity : 30f;
-            t.asked = true;
-            t.progress = FealtyMath.Dues(p, v.level);
-            t.lastHow = FealtyMath.Explained(p) ? 1 : 0;
-            if (tone > AnswerTone.Cool) tone = AnswerTone.Cool;
-            t.nextTick = Now + Mathf.RoundToInt(Rand.Range(6f, 18f) * TaskMath.HourTicks);
-            return FealtyWords.T(FealtyMath.Explained(p) ? "CC_Vassal_Dues_Explained" : "CC_Vassal_Dues_OnTime", n.Name.Named("NAME"), ((int)t.progress).Named("SILVER"));
-        }
-
-        /// <summary>
-        /// Their carter brings the dues to the gate: the task done, the record's season noted. Called on the hour their answer
-        /// set (CouncilTasks.Step waits for it), after DuesStep has moved the next look on: no wait of its own here.
-        /// </summary>
-        private static void Collected(CouncilTask t, DiplomacyHome h, Map home, VassalTerms v, int now)
-        {
-            int silver = Mathf.Max(10, Mathf.RoundToInt(t.progress));
-            var gate = PlaySpots.GateCell(home, null);
-            var things = Couriers.Make(ThingDefOf.Silver, silver);
-            if (!Couriers.Deliver(home, things, v.people, gate)) Loot.Deliver(things, home, gate, false);
-            v.duesAt = now;
-            t.carts++;
-            t.last = TaskStep.Cart;
-            t.lastTick = now;
-            FactionMemory.Note(v.people, "tribute", silver.ToString());
-            Write(home, v.town, v.people, FealtyWords.P("CC_Vassal_Hist_Dues", NameOf(v).Named("TOWN"), silver.Named("SILVER")));
-            CouncilTasks.End(h, t, TaskStage.Done, FealtyWords.P(t.lastHow == 1 ? "CC_Task_Result_Dues_Explained" : "CC_Task_Result_Dues", t.OfficerName.Named("PAWN"),
-                NameOf(v).Named("TOWN"), silver.Named("SILVER")), true);
-        }
-
-        /// <summary>The liege's tribute seen to: what is owed sent by cart; done once nothing is owed and the season's tribute came in full.</summary>
-        private static void LiegeDues(CouncilTask t, DiplomacyHome h, Map home, Tie liege, int now)
-        {
-            var f = Fealty.LiegeOf(liege);
-            if (Fealty.Owed(liege))
-            {
-                var (def, count) = OwedCart(home, liege.terms.count);
-                if (def == null) return;
-                var trip = CouncilTasks.SendCart(home, def, count, f);
-                if (trip != null)
-                {
-                    // The debt is the cart's from now, as when what is owed is carried out (Fealty.PayOwed): the courier
-                    // trip is let go once their porter has left, so its tally can't be read back afterwards, and a debt
-                    // still standing would send the cart again and again (and leave "Send what is owed" open beside it).
-                    Fealty.Paid(liege, Mathf.RoundToInt(count * def.BaseMarketValue));
-                    t.carts++;
-                    t.last = TaskStep.Cart;
-                    t.lastTick = now;
-                    // apart: the council's business, told in a message; their porter comes to the gate for the cart.
-                    Tell.Message(NewsKind.World, Importance.Notable, home, FealtyWords.P("CC_Fealty_Msg_Cart", t.officer.Named("PAWN"), Couriers.Amount(count, null, def).Named("GOODS"),
-                        FealtyWords.People(f).Named("PEOPLE")), new LookTargets(t.officer), MessageTypeDefOf.NeutralEvent);
-                }
-                else if (Fealty.PayWhyNot(liege) == null) Fealty.PayOwed(liege, t.officer);
-                Diplomacy.Dirty();
-                return;
-            }
-            // Nothing owed: a season's tribute paid in full since the task was set (its next day moved on a season past it).
-            float due = liege.terms.number;
-            if (due * Day - FealtyMath.SeasonDays * Day > t.started)
-                CouncilTasks.End(h, t, TaskStage.Done, FealtyWords.P("CC_Task_Result_Tribute", t.OfficerName.Named("PAWN"), FealtyWords.People(f).Named("PEOPLE")), true);
-        }
-
-        /// <summary>A cart for what is owed: silver when the colony holds it, else its most plentiful good, worth the debt.</summary>
-        private static (ThingDef def, int count) OwedCart(Map home, int owed)
-        {
-            if (PlayCarry.Have(home, "silver", ThingDefOf.Silver) >= owed) return (ThingDefOf.Silver, owed);
-            foreach (var (def, count) in Pacts.CartGoods(home))
-            {
-                int n = Mathf.CeilToInt(owed / Mathf.Max(0.1f, def.BaseMarketValue));
-                if (PlayCarry.Have(home, def.defName, def) >= n) return (def, n);
-            }
-            return (null, 0);
-        }
-
         // ================= Levies =================
 
         /// <summary>Why the council can't call this vassal's levies now, or null.</summary>
@@ -808,7 +634,7 @@ namespace ColonyCouncil
             var t = TownOf(v);
             float tiles = t != null ? WorldSituationWorker.Distance(home, t) : 6f;
             v.leviesAt = now;
-            v.leviesDue = now + Mathf.RoundToInt(PactMath.BandHours(tiles) * TaskMath.HourTicks);
+            v.leviesDue = now + Mathf.RoundToInt(PactMath.BandHours(tiles) * FealtyMath.HourTicks);
             var form = FealtyWords.LevyForm(home, v.people);
             // apart: the council's call, sent by the colony's means; their band walks in later, on the map.
             Tell.Message(NewsKind.World, Importance.Important, home, FealtyWords.T("CC_Vassal_Msg_Called", NameOf(v).Named("TOWN"), form.rite.Named("RITE"), DipWords.Means(home).Named("MEANS")),
@@ -837,7 +663,7 @@ namespace ColonyCouncil
                         v.leviesDue = -1;
                         Diplomacy.Dirty();
                     }
-                    else v.leviesDue = now + 2 * TaskMath.HourTicks;
+                    else v.leviesDue = now + 2 * FealtyMath.HourTicks;
                 }
                 catch (Exception e)
                 {

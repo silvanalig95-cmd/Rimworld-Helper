@@ -16,13 +16,13 @@ namespace ColonyCouncil
     /// (<see cref="Read"/>, kept for the hour) from what the world keeps of a house's people, the rules in RenownMath:
     /// <list type="bullet">
     /// <item>the history's deeds that name them (a champion at a feast, a marriage into their houses, a ward fostered well,
-    /// a season abroad as youth, envoy or hostage, a truce sworn as speaker, a task done, a secret told);</item>
+    /// a season abroad as youth, envoy or hostage, a truce sworn as speaker);</item>
     /// <item>what the peoples remember of them by name (World/ColonistMemory.cs: a camp broken, fighting beside theirs,
     /// trading at their post, a prisoner freed, one of theirs tended; the wrongs);</item>
     /// <item>what they hold now: the colony's names for them (Epithets/), years in an office, terms as speaker, the
     /// Empire's titles (read, never given), notables who think well of them;</item>
     /// <item>the colony's own deeds, shared by each of its houses (an oath or a truce sworn, its word kept, levies sent, a
-    /// pact kept; a truce or a pact broken, an oath renounced, a secret told, a call refused);</item>
+    /// pact kept; a truce or a pact broken, an oath renounced, the colony's scheme, a call refused);</item>
     /// <item>for theirs: a founding family, a head's or a people's leader's house, their ties with the colony, the town's
     /// fortune, what their head is best at.</item>
     /// </list>
