@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -167,50 +168,63 @@ namespace ColonyCouncil
 
         // ---------------- Who it touches ----------------
 
-        /// <summary>The colony's own close kin of someone (NatureMath.CloseKin), alive, grown past babyhood.</summary>
-        public static List<Pawn> CloseKinOf(Pawn p)
+        /// <summary>There to see or hear an act where it happens: on that map.</summary>
+        public static bool There(Pawn p, Map map) => p != null && map != null && p.Spawned && p.Map == map;
+
+        /// <summary>
+        /// The colony's own close kin of someone (NatureMath.CloseKin) there to see it (on <paramref name="map"/>), alive, grown
+        /// past babyhood. A child and a brother or sister are the game's implied relations, never among the direct ones, so
+        /// every relation between the two is read (the game's GetRelations).
+        /// </summary>
+        public static List<Pawn> CloseKinOf(Pawn p, Map map)
         {
             var list = new List<Pawn>();
-            if (p?.relations == null) return list;
-            foreach (var r in p.relations.DirectRelations)
+            if (p?.relations == null || map?.mapPawns == null) return list;
+            try
             {
-                var o = r?.otherPawn;
-                if (o == null || o == p || list.Contains(o) || !NatureMath.CloseKin(r.def?.defName) || !Feels(o)) continue;
-                list.Add(o);
+                foreach (var o in map.mapPawns.FreeColonistsSpawned.ToList())
+                {
+                    if (o == null || o == p || list.Contains(o) || !Feels(o)) continue;
+                    if (p.GetRelations(o).Any(r => NatureMath.CloseKin(r?.defName))) list.Add(o);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("nature: close kin", e);
             }
             return list;
         }
 
-        /// <summary>The colony's own parents of a child (the child's Parent relations).</summary>
-        public static List<Pawn> ParentsOf(Pawn child)
+        /// <summary>The colony's own parents of a child (the child's Parent relations) there to see them go (on <paramref name="map"/>).</summary>
+        public static List<Pawn> ParentsOf(Pawn child, Map map)
         {
             var list = new List<Pawn>();
             if (child?.relations == null) return list;
             foreach (var r in child.relations.DirectRelations)
             {
                 var o = r?.otherPawn;
-                if (o == null || o == child || list.Contains(o) || !NatureMath.WardParent(r.def?.defName) || !Feels(o)) continue;
+                if (o == null || o == child || list.Contains(o) || !NatureMath.WardParent(r.def?.defName) || !There(o, map) || !Feels(o)) continue;
                 list.Add(o);
             }
             return list;
         }
 
-        /// <summary>A hostage of the colony's sets out: the hostage (the timid given, the closed sent away, the open eased), and their close kin if warm.</summary>
+        /// <summary>A hostage of the colony's sets out: the hostage (the timid given, the closed sent away, the open eased), and their close kin there, if warm.</summary>
         public static void HostageGoes(Pawn hostage, Faction people)
         {
             if (!On || hostage == null) return;
             Felt(hostage, new[] { NatureAct.GivenHostage, NatureAct.SeasonAway }, people, null, "Hostage");
-            foreach (var kin in CloseKinOf(hostage)) Felt(kin, NatureAct.KinHostage, people, hostage.LabelShort);
+            foreach (var kin in CloseKinOf(hostage, hostage.MapHeld)) Felt(kin, NatureAct.KinHostage, people, hostage.LabelShort);
         }
 
-        /// <summary>A youth of the colony's sets out to live with them as a ward: their parents, if warm.</summary>
-        public static void WardGoes(Pawn ward, Faction people)
+        /// <summary>A youth of the colony's sets out to live with them as a ward (with the Empire, to serve as a page): their parents there, if warm.</summary>
+        public static void WardGoes(Pawn ward, Faction people, bool page)
         {
             if (!On || ward == null) return;
-            foreach (var parent in ParentsOf(ward)) Felt(parent, NatureAct.WardSent, people, ward.LabelShort);
+            foreach (var parent in ParentsOf(ward, ward.MapHeld)) Felt(parent, NatureAct.WardSent, people, ward.LabelShort, page ? "Page" : null);
         }
 
-        /// <summary>A truce sworn with a people: each of the colony's at this home sworn to vengeance on them feels it, always.</summary>
+        /// <summary>A truce sworn with a people: each of the colony's at this home sworn to vengeance on them, there to see it, feels it, always.</summary>
         public static void TruceWithFoe(Faction people, Map home)
         {
             var comp = CouncilGameComponent.Instance;
@@ -219,7 +233,7 @@ namespace ColonyCouncil
             foreach (var v in comp.vendettas.vendettas)
             {
                 if (v == null || !v.Active || v.faction != people || v.avenger == null || !seen.Add(v.avenger)) continue;
-                if (v.avenger.DevelopmentalStage.Juvenile() || home != null && Homes.Of(v.avenger) != home) continue;
+                if (v.avenger.DevelopmentalStage.Juvenile() || !There(v.avenger, home)) continue;
                 Felt(v.avenger, NatureAct.TruceWithFoe, people, v.victim);
             }
         }

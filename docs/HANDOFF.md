@@ -6,6 +6,63 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.100.1, against their nature, checked over (the release 0.100.0, 2d.2, read against its code, every place it hooks into and the
+  1.6 game). Fixed, each checked in the code and the game's
+  source: the strain mood and an episode's letter put the act's words into their own sentence (`HeartView.SourcesText`
+  fed both), so the mood read "built up by fighting and swore the colony's oath to the Lenlia, against her pride" and
+  the letter "carrying too much for too long: ... swore the colony's oath ..."; they name the source now ("acts against
+  their nature"), and the heart's page keeps the act's words (`SourcesDetailed`). Close kin (`Nature.CloseKinOf`) were
+  read from the direct relations only, and a child and a brother or sister are the game's implied relations (its
+  `PawnRelationWorker_Child` and `_Sibling`, never in `DirectRelations`), so a hostage's children, brothers and sisters,
+  and a ransomed captive's, never felt it (only parents, a spouse, a betrothed, a lover); every relation between the two
+  is read now (the game's `GetRelations`). Those whose words say they saw or heard it ("saw Bran given to the Lenlia as
+  the colony's hostage", "saw the colony turn down Ada's challenge", "saw the colony swear a truce", "heard the colony
+  haggle over his freedom") felt it wherever they were: a parent away with a caravan or abroad as the colony's envoy or
+  hostage (a lent world pawn is still a free colonist), an avenger out on the road (`Homes.Of` named their home); now
+  only those on the map where it happens (`Nature.There`: the hostage's or the ward's, the captive's home, the truce's
+  home, as the truce's objection already asked its avenger, the challenge's). A challenge turned down weighed on the
+  champion even when the challenger had already gone (an answer given late, or by default): `DilemmaEffect_SendAway`
+  felt it before asking whether anyone was left to send away, while its sheet named it only with the challenger here;
+  now after. An arrest broke a truce or a pact with nobody named: the game weighs an arrest as a capture the moment it
+  is tried (`Pawn.CheckAcceptArrest` calls `Faction.Notify_MemberCaptured` itself, before `CapturedBy`, whose own
+  weighing then finds nothing left to break), so whoever arrested a pact partner's trader or a truce people's visitor
+  never felt it; the new `Patch_MemoryArrestedBy` (a prefix and a finalizer on `CheckAcceptArrest(Pawn arrester)`, as
+  the captor's) names them. A youth sent to serve as a page in a titled household of the Empire was "sent to live with
+  the Empire as a ward" on the parents' page and in the news; a page has its own words now (`CC_Nature_Act_WardSent_Page`,
+  the role "Page"). A match pressed was felt ("was promised to ...") before `Matches.Agree`, which stands down when the
+  home or either of the two is gone; it is felt once agreed. A call to arms refused from its letter with no home left
+  asked `TruceParley.Speaker(null)`, which throws, after the pact was broken; no speaker then. Two marks' news: "has set
+  out for the Lenlia a second time this year" when the first season was among another people, and "this year" for twice
+  within sixty days across the year's turn; now "a second season away within a year" and "a second challenger within a
+  year". Files: `Heart/HeartView.cs`, `Diplomacy/Nature.cs`, `WardsAbroad.cs`, `Ransoms.cs`, `Matches.cs`,
+  `CallsToArms.cs`, `Strangers/StrangerEffects.cs`, `World/Patch_FactionMemory.cs`,
+  `Languages/English/Keyed/Rimfolk_Nature.xml`, `Defs/PersonaDefs/Rimfolk_PersonaMarks_Nature.xml`,
+  `Tools/DefValidator/Program.cs`; DESIGN.md says each. Tests: `NatureTests` (the mood's sources, close kin by every
+  relation, the acts whose words say saw or heard and who is there for them, the arrest's captor, the page, the
+  challenge with its challenger here, the match once agreed, the call with no home, the marks' news). Looked at and found
+  sound: the patches against the 1.6 game (`Notify_MemberTookDamage(Pawn member, DamageInfo dinfo)`,
+  `CapturedBy(Faction by, Pawn byPawn)`, the parameter names exact) and 1.7 (ApiDiff); their cost where damage is dealt
+  all the time (a settings read and a cast before the game's own method, the finalizer's try; nothing allocated); the
+  doer cleared on every path (`By` restores the one before in a finally; each patch's finalizer clears on a throw; the
+  notes made inside one, the colony's own "brokeTruce", "wordBroken" and "renounced", are no breach, so nobody feels a
+  second time); never one of another people or an animal (`KinMemory.Ours` before anything, and a turret's or a trap's
+  blow names nobody); the `BrokenByUs` returns on every branch (a truce not yet sworn ends with no deed and false, each
+  still called through `|=`, so their callers do as before); the saves (the four values with their defaults, both kinds
+  at the end of their lists, the heart's lists padded on load); the setting off (`On` asked first everywhere, the
+  questions' lines too; what was felt drains as any strain does); one a day (set only by an act that moved the heart; a
+  later tick never blocks); the marks (their chance, a turning point once in its keeping, the persona's own limits, the
+  act before read from the heart's saved record, kept while one is lent abroad); each act once (the oath once a home, a
+  break once since it ends what it breaks, the walk off the map, the answer, the contest's `done`); the words by the
+  game's pronouns; the questions' people (the oath's speaker as the one sent out, the avenger asked, the colonist matched,
+  the champion). Not confirmed, left as they are: the council's question names an act's weight on someone who already
+  felt one that day (`Would` asks no day's rule; the answer may come the next day); a truce sworn by word, no envoy at
+  the gate, is still "saw the colony swear a truce" to the avenger at home; the hostage, the ward's parents and the envoy
+  feel it just before the game makes their caravan, so a throw there leaves it felt and them at the edge; the first of a
+  caravan that fell on theirs is the game's look pawn (`PawnsListForReading[0]`), whoever that is; the Almanac's page and
+  the setting's tip say "their close kin" without "there to see it" (the text pass's to look at). To look at in game: a
+  hostage given with a brother at home and a sister away with a caravan (only the brother feels it, on his page and in
+  the news); a pact partner's trader arrested (the arrester's heart page, if trusting); a challenge turned down after
+  the challenger left (nothing felt); the strain mood's tooltip with an oath on the heart ("acts against their nature").
 - 0.100.0, stage 2 release 2d.2, against their nature (docs/design/stage2-diplomacy.md, item 13, with its "As built"; the
   player's decision 19 as recommended: strain through the heart only, no new mood, easing when someone acts with their
   nature, marks for repeated acts). DESIGN.md,

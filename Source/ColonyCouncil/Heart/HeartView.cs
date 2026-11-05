@@ -115,11 +115,14 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>What built strain lately, biggest first: "losses, fighting and bad nights".</summary>
+        /// <summary>
+        /// What built strain lately, biggest first: "losses, fighting and bad nights". Names only, since the mood ("built up
+        /// by ...") and the episode's letter put them in a sentence; the act against their nature is said on the page.
+        /// </summary>
         public static string SourcesText(PawnHeart h, int n)
         {
             var top = TopSources(h, n);
-            return top.Count == 0 ? null : TextUtil.JoinAnd(top.Select(s => SourceText(h, s.source)).ToList());
+            return top.Count == 0 ? null : TextUtil.JoinAnd(top.Select(s => SourceLabel(s.source)).ToList());
         }
 
         /// <summary>The same with amounts: "losses (+18), fighting (+9)".</summary>

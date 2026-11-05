@@ -150,6 +150,8 @@ public static class NatureTests
         C(marks.All(m => Chance(m) > 0f && Chance(m) < 1f) && marks.All(m => m.Descendants("when").All(w => string.IsNullOrWhiteSpace(w.Value))),
             "rare: each has its chance; the act already asked their nature");
         C(Fam(NatureMath.MarkOath)?.Element("major")?.Value == "true" && marks.All(m => !m.Descendants("news").First().Value.Contains('!')), "an oath is a turning point; each is told");
+        C(marks.All(m => !m.Descendants("news").First().Value.Contains("this year")) && !Fam(NatureMath.MarkAbroad).Descendants("news").First().Value.Contains("{LABEL} a second time"),
+            "the news says what the rule read: twice within a year (not the calendar's), the second season away wherever the first was");
         C(nature.Contains("PersonaMarks.Give(p, family, null,") && nature.Contains("int lastAct = h.natureAct, lastTick = h.natureTick;"),
             "given through the persona's own marks, read against the act before this one");
 
@@ -159,7 +161,7 @@ public static class NatureTests
         foreach (NatureAct a in Enum.GetValues(typeof(NatureAct)))
             if (NatureMath.Wired(a))
                 C(keyed.ContainsKey(NatureMath.ActKey(a)), $"{a} has its words");
-        foreach (var role in new[] { (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin") })
+        foreach (var role in new[] { (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin"), (NatureAct.WardSent, "Page") })
             C(keyed.ContainsKey(NatureMath.ActKey(role.Item1, role.Item2)), $"{role.Item1} has its words for the {role.Item2.ToLowerInvariant()}");
         foreach (var k in NatureMath.SideKeys()) C(keyed.ContainsKey(k), $"the side {k} has its words");
         C(keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Side_")).All(kv => kv.Value.Contains("{PAWN_possessive}") || kv.Value.Contains("{PAWN_pronoun}")),
@@ -180,6 +182,8 @@ public static class NatureTests
         C(Code("Diplomacy/Fealty.cs").Contains("Nature.Felt(speaker, NatureAct.SworeFealty, f)"), "the oath: the speaker who swears it at the gate (Fealty.Swear, from the oath's job)");
         C(Regex.IsMatch(Code("Diplomacy/FealtyOath.cs"), @"Fealty\.Swear\(o\.people, pawn\.Map, pawn, l\)"), "the oath's job passes the one who walked out");
         C(Code("Diplomacy/Matches.cs").Contains("Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people"), "a match: the colonist, when the council presses it over the objection");
+        C(Regex.IsMatch(Code("Diplomacy/Matches.cs"), @"p\.pressed = true;\s*Agree\(h, p\);\s*(//[^\n]*\n\s*)*if \(p\.stage == MatchStage\.Agreed\) Nature\.Felt\(p\.ours"),
+            "and only once it is agreed (\"was promised to\" is what happened)");
         string hooks = Code("Diplomacy/PactsHooks.cs");
         C(hooks.Contains("var by = MemoryHooks.Doer;") && hooks.Contains("Nature.Felt(by, NatureAct.BrokeTruce, f)") && hooks.Contains("broke |= Truces.BrokenByUs(f, how)")
           && hooks.Contains("broke |= Pacts.BrokenByUs(f, how)") && hooks.Contains("broke |= Fealty.BrokenByUs(f, how)"), "a broken truce, pact or oath: the one the game names for the deed");
@@ -189,21 +193,41 @@ public static class NatureTests
           && mem.Contains("By(hand, () => FactionMemory.Note(f, \"killed\""), "the doer: the blow's hand, the captor, the seller, the caravan's first, the killer");
         C(mem.Contains("[HarmonyPatch(typeof(Faction), nameof(Faction.Notify_MemberTookDamage))]") && mem.Contains("[HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.CapturedBy))]")
           && Regex.IsMatch(mem, @"Patch_MemoryDamageBy[\s\S]{0,400}Finalizer\(\)\s*\{\s*MemoryHooks\.damageBy = null;"), "kept only while the game weighs the deed");
-        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
-            "a pact's call refused by the council's answer: the speaker who sends it; unanswered, nobody");
+        // An arrest is weighed as a capture in Pawn.CheckAcceptArrest, before CapturedBy (whose own weighing then breaks nothing).
+        C(mem.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]")
+          && Regex.IsMatch(mem, @"Patch_MemoryArrestedBy\s*\{\s*public static void Prefix\(Pawn arrester\)\s*\{\s*if \(MemoryHooks\.Listening\) MemoryHooks\.capturer = arrester;\s*\}\s*public static void Finalizer\(\)\s*\{\s*MemoryHooks\.capturer = null;"),
+            "an arrest names the arrester as the captor, kept only while the game weighs it");
+        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered && home != null)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
+            "a pact's call refused by the council's answer: the speaker who sends it; unanswered (or no home left), nobody");
         string abroad = Code("Diplomacy/WardsAbroad.cs");
-        C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
+        C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people, w\.page\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
             "a hostage and a ward: as they walk off the map");
         C(nature.Contains("Felt(hostage, new[] { NatureAct.GivenHostage, NatureAct.SeasonAway }, people, null, \"Hostage\")") && nature.Contains("Felt(kin, NatureAct.KinHostage, people, hostage.LabelShort)")
-          && nature.Contains("Felt(parent, NatureAct.WardSent, people, ward.LabelShort)"), "the hostage (and a season away, one act), their close kin, a ward's parents");
+          && nature.Contains("Felt(parent, NatureAct.WardSent, people, ward.LabelShort, page ? \"Page\" : null)"), "the hostage (and a season away, one act), their close kin, a ward's parents");
         C(Regex.IsMatch(Code("Diplomacy/EnvoysAbroad.cs"), @"Nature\.Felt\(p, NatureAct\.SeasonAway, a\.people, null, ""Envoy""\);\s*try\s*\{\s*var c = CaravanExitMapUtility"), "the envoy: as they walk off the map");
         C(Regex.IsMatch(Code("Happenings/Workers_Challenges.cs"), @"private static void Contest\([\s\S]{0,1400}Nature\.Felt\(a, NatureAct\.AcceptedChallenge"), "a challenge faced: the champion, at the contest itself");
-        C(Code("Strangers/StrangerEffects.cs").Contains("Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction") && Code("Strangers/StrangerEffects.cs").Contains("h.contest ? h.a : null"),
+        C(Code("Strangers/StrangerEffects.cs").Contains("Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction") && Code("Strangers/StrangerEffects.cs").Contains("ctx is HappeningContext h && h.contest &&"),
             "a challenge turned down: the champion, when the council sends the challenger away");
-        C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive\)"),
+        C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive, map\)"),
             "asking more for a captive: the speaker, and the captive's close kin among the colony's");
         C(Code("Diplomacy/Truces.cs").Contains("Nature.TruceWithFoe(f, home);") && nature.Contains("!v.Active || v.faction != people"),
             "a truce sworn: the avengers of this home (the vendettas)");
+        // Close kin: a child and a brother or sister are the game's implied relations, never in DirectRelations.
+        C(nature.Contains("p.GetRelations(o).Any(r => NatureMath.CloseKin(r?.defName))") && !Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,400}DirectRelations"),
+            "close kin read through every relation the game knows, so a child and a brother or sister count");
+        // The words that say they saw or heard it: only those there on the map (Nature.There).
+        var seenWords = keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Act_") && Regex.IsMatch(kv.Value, @"\b(saw|heard)\b")).Select(kv => kv.Key.Substring("CC_Nature_Act_".Length)).OrderBy(k => k).ToList();
+        C(seenWords.SequenceEqual(new[] { "HaggledForKin_Kin", "KinHostage", "RefusedChallenge", "TruceWithFoe", "WardSent", "WardSent_Page" }), "the acts whose words say they saw or heard it: " + string.Join(", ", seenWords));
+        C(nature.Contains("CloseKinOf(hostage, hostage.MapHeld)") && nature.Contains("ParentsOf(ward, ward.MapHeld)") && Regex.IsMatch(nature, @"ParentsOf\([^)]*\)\s*\{[\s\S]{0,400}!There\(o, map\)")
+          && Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,300}map\.mapPawns\.FreeColonistsSpawned") && nature.Contains("!There(v.avenger, home)")
+          && nature.Contains("public static bool There(Pawn p, Map map) => p != null && map != null && p.Spawned && p.Map == map;"),
+            "a hostage's kin, a ward's parents, the captive's kin and the avenger feel it only when there to see it");
+        string strangers = Code("Strangers/StrangerEffects.cs");
+        C(strangers.Contains("h.contest && Nature.There(h.a, ctx.map) ? h.a : null")
+          && Regex.IsMatch(strangers, @"x\.Faction\.IsPlayer \|\| x\.IsPrisoner\) return;\s*(//[^\n]*\n\s*)*if \(Challenge\(ctx\) is Pawn champion\) Nature\.Felt\("),
+            "a challenge turned down weighs only with the challenger still here to be sent away, as the answer's sheet says, and the champion there");
+        C(Code("Diplomacy/WardsAbroad.cs").Contains("Nature.WardGoes(p, w.people, w.page)") && keyed["CC_Nature_Act_WardSent_Page"].Contains("page"),
+            "a page sent to a titled household is said as a page, not a ward");
 
         // ================= Through the heart =================
 
@@ -219,6 +243,8 @@ public static class NatureTests
         string view = Code("Heart/HeartView.cs");
         C(view.Contains("SourceText(h, s.source)") && view.Contains("ReliefText(h, x.r)") && view.Contains("case StrainSource.Nature: return \"CC_Heart_Help_Nature\";")
           && view.Contains(": NatureHelp(h);"), "the heart's page says what they did, against what, and what would help");
+        C(Regex.IsMatch(view, @"public static string SourcesText\([^)]*\)\s*\{[^}]*SourceLabel\(s\.source\)") && !Regex.IsMatch(view, @"public static string SourcesText\([^)]*\)\s*\{[^}]*SourceText\(h,"),
+            "the mood's \"built up by\" and the episode's letter name the source, never the act's words in their sentence");
 
         // ================= The council's questions =================
 

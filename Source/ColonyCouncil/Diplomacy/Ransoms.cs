@@ -543,9 +543,9 @@ namespace ColonyCouncil
             var speaker = Negotiator(map);
             int social = speaker?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
             // Haggling over a captive whose family waits for them goes against a warm heart: the one who haggles, and the
-            // captive's own close kin among the colony's (Nature.cs).
+            // captive's own close kin among the colony's here to hear it (Nature.cs).
             Nature.Felt(speaker, NatureAct.HaggledForKin, o.people);
-            foreach (var kin in Nature.CloseKinOf(o.captive))
+            foreach (var kin in Nature.CloseKinOf(o.captive, map))
                 if (kin != speaker)
                     Nature.Felt(kin, NatureAct.HaggledForKin, o.people, RansomWords.Name(o.captive, o.captiveName), "Kin");
             if (RansomMath.MoreAgreed(social, Rand.Value))

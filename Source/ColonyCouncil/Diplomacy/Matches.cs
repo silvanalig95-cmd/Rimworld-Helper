@@ -559,8 +559,9 @@ namespace ColonyCouncil
             var p = Get(id, out var h);
             if (p == null || p.stage != MatchStage.Asking) return;
             p.pressed = true;
-            Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people, MatchWords.Name(p.theirs, p.theirsName));
             Agree(h, p);
+            // Felt once it is agreed (Agree stands down when the home or either of the two is gone).
+            if (p.stage == MatchStage.Agreed) Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people, MatchWords.Name(p.theirs, p.theirsName));
         }
 
         /// <summary>The council heard the colonist and withdrew: their people feel it a little, and one made for the match is let go.</summary>

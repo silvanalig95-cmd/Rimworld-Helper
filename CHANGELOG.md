@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Against their nature, checked over
+
+*5 November 2026, version 0.100.1*
+
+- Fixed: the strain mood and the episode letter quoted the act's whole description inside their sentence; they name it as acts against their nature now, and the heart's page keeps the details.
+- Fixed: a hostage's or a ransomed captive's children, brothers and sisters never felt it, and kin, parents, avengers and champions away with a caravan felt what happened at home.
+- Fixed: a refused challenge weighed on the champion after the challenger had already left, and a pressed match was felt before it was agreed.
+- Fixed: arresting a pact partner's trader named nobody as the one who broke the pact, and refusing a call to arms with no home left could fail partway.
+- A youth sent as a page to an Empire household has its own words, no longer called a ward, and the marks for a second season away or a second challenger say within a year.
+
 ## Against their nature
 
 *5 November 2026, version 0.100.0*

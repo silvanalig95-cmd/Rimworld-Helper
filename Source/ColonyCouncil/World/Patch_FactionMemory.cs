@@ -303,6 +303,25 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// Someone arrested: the game weighs it as taken captive the moment the arrest is tried (Pawn.CheckAcceptArrest, before
+    /// CapturedBy, whose own weighing then finds nothing left to break), so the arrester is kept as the captor while it does
+    /// (MemoryHooks.capturer). Changes nothing the game does.
+    /// </summary>
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]
+    public static class Patch_MemoryArrestedBy
+    {
+        public static void Prefix(Pawn arrester)
+        {
+            if (MemoryHooks.Listening) MemoryHooks.capturer = arrester;
+        }
+
+        public static void Finalizer()
+        {
+            MemoryHooks.capturer = null;
+        }
+    }
+
     /// <summary>Someone of a people is leaving the colony's map: remembered by name while the game works out its goodwill.</summary>
     [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_MemberExitedMap))]
     public static class Patch_MemoryExited
