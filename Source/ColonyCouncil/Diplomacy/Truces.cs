@@ -512,8 +512,9 @@ namespace ColonyCouncil
             }.Concat(KinMemory.Ours(speaker) ? new[] { new HistoryActor(Refs.Of(speaker), HistoryRole.About) } : new HistoryActor[0]).ToList(), Diplomacy.Colony(home),
                 PactWords.P("CC_Truce_Hist_Sworn", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), PactWords.Term(term).Named("TERM")), true);
             RaidersCamps.TruceSworn(home, f);
-            // Whoever at this home swore vengeance on them takes the peace to heart, always (Nature.cs).
-            Nature.TruceWithFoe(f, home);
+            // Whoever at this home swore vengeance on them takes the peace to heart, always (Nature.cs); sworn by word, with
+            // nobody at the gate, they heard of it.
+            Nature.TruceWithFoe(f, home, speaker == null);
             string text = PactWords.T(speaker != null ? "CC_Truce_Sworn" : "CC_Truce_SwornByWord", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), (speaker?.LabelShort ?? "").Named("SPEAKER"), (envoy?.LabelShort ?? "").Named("ENVOY"), PactWords.Term(term).Named("TERM"))
                           + (paid.NullOrEmpty() ? "" : "\n\n" + paid)

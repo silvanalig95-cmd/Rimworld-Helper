@@ -273,9 +273,22 @@ namespace ColonyCouncil
                 if (!raw.NullOrEmpty()) comp.journals.WriteText(p, raw.Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve());
             }
             if (x.news.NullOrEmpty() || !p.IsColonist) return;
-            string text = x.news.Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve();
+            string text = NewsLine(def, x).Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve();
             News.Post(text, new LookTargets(p), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
             if (x.chronicle) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
+        }
+
+        /// <summary>
+        /// A mark's line of news, or one of its fellows in the keyed words (CC_Mark_News_DEFNAME_2 ... _6, with the def's own
+        /// placeholders), picked at random: a mark told more than once in a game reads differently.
+        /// </summary>
+        private static string NewsLine(PersonaMarkDef def, PersonaMarkExtension x)
+        {
+            string key = "CC_Mark_News_" + def.defName + "_";
+            if (!(key + "2").CanTranslate()) return x.news;
+            var lines = new List<string> { x.news };
+            for (int i = 2; i <= 6 && (key + i).CanTranslate(); i++) lines.Add((key + i).Translate().RawText);
+            return lines.RandomElement();
         }
 
         // ---------------- Labels ----------------

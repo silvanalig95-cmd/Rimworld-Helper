@@ -7,7 +7,7 @@
        so the fellows differ by age through them. -->
 
   <CC_Renown_Up_2>Word of {HOUSE} has spread: its name is {RENOWN} now.</CC_Renown_Up_2>
-  <CC_Renown_Up_3>People outside the colony have started to speak of {HOUSE}. Its name is {RENOWN} now.</CC_Renown_Up_3>
+  <CC_Renown_Up_3>More people outside the colony speak of {HOUSE} than before. Its name is {RENOWN} now.</CC_Renown_Up_3>
 
   <CC_Renown_UpFor_2>Word of {HOUSE} has spread: its name is {RENOWN} now, for {KNOWNFOR}.</CC_Renown_UpFor_2>
   <CC_Renown_UpFor_3>Outside the colony, {HOUSE} is a name with something behind it now: {RENOWN}, for {KNOWNFOR}.</CC_Renown_UpFor_3>

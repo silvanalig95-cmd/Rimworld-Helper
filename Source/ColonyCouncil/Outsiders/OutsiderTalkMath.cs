@@ -257,7 +257,13 @@ namespace ColonyCouncil
         {
             // "I haven't forgotten your colony's letter": only to one pressed by letter, never to one pressed only face to
             // face by the keeper (the round c text pass; Rimfolk_OutsiderTalks_LeviesPressed.xml has the words for that).
-            ["Rimfolk_OT_Keeper_Pressed"] = "them:pressed:letter"
+            ["Rimfolk_OT_Keeper_Pressed"] = "them:pressed:letter",
+            // "My family hasn't forgotten", "a grudge between my house and your colony": only from the head of a house
+            // (them:house); the feud's tag is also set for one of their people with no house, who holds the grudge or whose
+            // people hold one about one of the colonist's house (the round d text pass; Rimfolk_OutsiderTalks_RenownMore.xml
+            // has the words for them).
+            ["Rimfolk_OT_Renown_Feud"] = "them:house",
+            ["Rimfolk_OT_Renown_FeudCool"] = "them:house"
         };
 
         /// <summary>A piece's conditions with what <see cref="AlsoWhen"/> adds for it.</summary>

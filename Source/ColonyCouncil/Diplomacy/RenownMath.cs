@@ -402,6 +402,16 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>
+        /// The bubble's tag for the band a name fell from (the round d text pass): one told across the region or wider was
+        /// sung in the halls, in the papers, told at every fire, so renowndown's words may say so; one known only in a town
+        /// nearby was talked of there and no further. Null otherwise. The bubble's own house tags read the band it has now.
+        /// </summary>
+        public static string BubbleTag(RenownBand was, RenownBand now) => now < was && was >= RenownBand.Region ? WasRenownedTag : null;
+
+        /// <summary>A renowndown bubble's tag: the name fell from the region's band or wider.</summary>
+        public const string WasRenownedTag = "house:wasrenowned";
+
         // ================= Known for =================
 
         /// <summary>A kind is what a house is known for when it has this many points or more, and this share of what all kinds showed.</summary>
@@ -483,8 +493,15 @@ namespace ColonyCouncil
         /// <summary>What a house is known for, in its own age's words ("good swords"): CC_Renown_For_Fighters_Medieval.</summary>
         public static string ForKey(KnownFor k, WorldAge age) => "CC_Renown_For_" + k + "_" + age;
 
-        /// <summary>How far its name carries, by the ways of the one who speaks of it ("sung in the halls of the region"): CC_Renown_Band_Region_Medieval.</summary>
-        public static string BandKey(RenownBand b, WorldAge age) => "CC_Renown_Band_" + b + "_" + age;
+        /// <summary>
+        /// How far its name carries, by the ways of the one who speaks of it ("sung in the halls of the region"):
+        /// CC_Renown_Band_Region_Medieval; the Empire's people speak of it by the court's ways, whatever their tech level
+        /// (CC_Renown_Band_Region_Empire: "spoken of with honor in the region's noble houses").
+        /// </summary>
+        public static string BandKey(RenownBand b, WorldAge age, bool empire = false) => "CC_Renown_Band_" + b + "_" + (empire ? EmpireWays : age.ToString());
+
+        /// <summary>The Empire's row of the bands' words: the court's ways (it keeps its own titles and honor).</summary>
+        public const string EmpireWays = "Empire";
 
         /// <summary>The kinds with words of their own (None has none).</summary>
         public static readonly KnownFor[] Kinds = { KnownFor.Fighters, KnownFor.Healers, KnownFor.Hosts, KnownFor.Traders, KnownFor.Makers, KnownFor.Faithful };

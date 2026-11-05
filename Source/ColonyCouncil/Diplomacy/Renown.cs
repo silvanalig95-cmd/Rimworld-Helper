@@ -301,8 +301,9 @@ namespace ColonyCouncil
             // and free, and only where the bubble's words are true (RenownMath.Bubble).
             string moment = RenownMath.Bubble(was, r.band);
             var speaker = moment == null ? null : Living(h).FirstOrDefault(p => p.Spawned && p.Map == home && !p.Dead && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake());
-            // apart: the news of a name told in the region, said by one of the house where they stand.
-            if (speaker != null) Outsiders.Say(speaker, moment, null);
+            // apart: the news of a name told in the region, said by one of the house where they stand; a name fallen from the
+            // region's band or wider may be said to have been sung (RenownMath.BubbleTag).
+            if (speaker != null) Outsiders.Say(speaker, moment, null, null, RenownMath.BubbleTag(was, r.band));
             Tell.Minor(NewsKind.Colony, Importance.Notable, home, line, speaker != null ? new LookTargets(speaker) : LookTargets.Invalid,
                 up ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Diplomacy.Dirty();

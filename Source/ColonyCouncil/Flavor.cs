@@ -260,7 +260,17 @@ namespace ColonyCouncil
         /// decide whether a line fits: they don't count, so a [lowtech] line doesn't take most of a tribal colony's picks
         /// for years the way a [winter] line takes the picks of a winter.
         /// </summary>
-        public static int Match(string line, HashSet<string> context) => LineTags.Match(LineTags.Of(line), context);
+        public static int Match(string line, HashSet<string> context)
+        {
+            var p = LineTags.Of(line);
+            // A shipped line found untrue in a case its tags let through asks for more, or is retired (ShippedLines).
+            if (p != null && !p.alsoLooked)
+            {
+                p.also = ShippedLines.ConditionOf(line);
+                p.alsoLooked = true;
+            }
+            return p?.also != null && !ShippedLines.Holds(p.also, context) ? -1 : LineTags.Match(p, context);
+        }
 
         /// <summary>
         /// Tags that hold for most of a game rather than a moment: the era, the colony's wealth and its size (and the
