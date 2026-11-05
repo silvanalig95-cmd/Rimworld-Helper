@@ -6,6 +6,63 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Stage 2 round b review: fixes (the releases 0.92.0, 0.93.0 with 0.93.1, and 0.94.0: feasts and contests with guests,
+  wards and hostages, marriage alliances, read against the 1.6 game; no version of its own: its points go with the next
+  round). Fixed, each checked in the code and the game's source: the marriage agent's doubt, a wedding late in the day
+  and the evening's feast. The game's ceremony is one lord through a party before the vows (5,000 ticks at least and
+  both at the spot), the vows (2,500) and a party after them (7,500), and while it lasts no other gathering begins
+  (`LordJob_Joinable_MarriageCeremony.AllowStartNewGatherings`); the feast's play-out waits on any such lord
+  (`MeetingAttendance.WhyNotNow` → `GatheringsUtility.AnyLordJobPreventsNewGatherings`) for its hours (to 21:00, or two
+  hours on) and three more, then falls through. `Matches.WeddingSpot` let the feast begin the moment the two were
+  married (the plan is gone once wed), so a ceremony begun from about 15:00 on left the guests with "the feast fell
+  through" and no table, against the arrival letter's word; and a ceremony tried in the 16:00 hour raced the feast begun
+  then (either one keeps the other from starting). Now the guests stay by the couple, and the feast waits, through the
+  party after the vows too (a live marriage of the guests' people whose colonist is in a game ceremony on the map), and
+  with the guests here the ceremony is begun only before the feast's hour (`MatchMath.CeremonyHour`; otherwise the next
+  morning); a feast begun late keeps its existing hours (to 23:00) and the gathering's def ignores the timetable. Settled
+  as sound: no colonist is held between two lords (a pawn has one; the game's voluntary joining moves only to a higher
+  priority, the fiancés' 100 over the guests' and gatherings' 20), the feast's guests never join the ceremony (its
+  guests are the couple's own people; theirs is `LordJob_FeastGuests`, not joinable) and leave on their own memo, and
+  neither gathering calls the other off. The wedding's letter said kin were among the guests when the one married in
+  walked in alone or the guests had gone home (`CC_Match_WedQuiet`), and that the defense pact runs on with pacts off
+  or none made (`CC_Match_Wed_WhatNoPact`). The agreement's letter promised the wedding's guests and the evening's
+  feast when none of their notables was free to come (`Host` sets `alone` before it is written:
+  `CC_Match_Agreed_ColonyAlone`); it and their offer said the alliance answers calls "as a defense pact does" for the
+  Empire (no pact, decision 9) and with pacts off (`CC_Match_Agreed_RisksNoPact`, `CC_Match_WhatNoPact`), and the wronged
+  letter said "the pact with it" where none stood (`CC_Match_WrongedNoPact`). A spouse married into the colony and
+  carried off by raiders goes over to their captors in time (the game's `KidnappedPawnsTracker`, a 30-day MTB), and the
+  alliance's daily look took that for a sale: the marriage broken, `spouseWronged`, a grudge, the pact broken and a
+  hostage given for it held; `MatchMath.SoldAway` leaves out a people at war with the colony. Tests: `MatchTests` (the
+  ceremony's hours, the sale, the code paths, the letters' keys). Words: six keyed lines in `Rimfolk_Matches.xml`, new
+  keys only (the text pass beside this review writes in new files). Looked at and found sound: the Harmony targets in
+  reach (`Pawn.Kill` for wards and spouses with `dinfo`, `MarriageCeremonyUtility.Married`); the guests' lords (never
+  of a people at war, out at the edge on a memo, fleeing only when harmed by the colony: `Trigger_PawnHarmed` wants the
+  colony's instigator, a bout's blow has none and a brawl is excused with the deeper hooks, which the sour night needs;
+  a guest downed leaves the group by the game's rule and the look sees them dead, held or gone; two days at most); the
+  kin's and the escort's parties (guests of a people at peace with both for a people at war); wards and hostages as the
+  game's lodgers (its arrest, death and leaving: `QuestPart_ExtraFaction.Notify_PawnKilled`,
+  `LeaveQuestPartUtility.MakePawnLeave`), walking out alone as the colony's lodger; the contests (every job fails or ends
+  without its run, so a reload frees them; the hunt only at wild, calm, unbonded, unvenerated game of 2.5 body size or
+  less with a low manhunter chance, never the colony's; the race's turn in bounds, open, reachable; the shooting match
+  fires nothing; the bad sides at the design's rates, never a child, the pregnant or one hurt in three days, children in
+  races only); the saves (lists made on an older save, discarded refs dropped, `ward`, `hostage`, `spouse` and `lent` in
+  the ledger's daily check, the lodger quest kept by the game); nothing kept forever but by its own rule (a forfeit
+  hostage slips away after five days, the colony's held one joins their captors in time and is let go); a ward of a
+  people turned hostile stays the year and walks out alone, the colony's youth with them comes home; a truce run out in
+  war sends both hostages home, broken by them makes theirs forfeit; the looks every 250 ticks (one in 200 a home), the
+  escort's every 60. Not confirmed, left as they are: a hostage given for a defense pact stays while the pact is renewed,
+  by letter or by a marriage with the same people (which renews its pact while it holds), "for the term" read as the
+  pact's life (the colony can end the pact by letter); the one to be married joins the colony where the guests walk in
+  (the map's edge), not at the gate the letter names; a colonist's stray shot hitting a guest in the hunt ends the feast
+  as an insult (the game's own harm trigger, as for its visitors; only bouts and brawls are excused); a party before the
+  vows long enough to carry the one after past midnight leaves the guests at the gate, without beds, until the next
+  evening's feast; with "Answers play out on the map" off, a wedding feast begun after 21:00 serves nobody; a ward or
+  spouse killed by a colonist's stray shot or in a berserk counts as at the colony's hand (a feud); a hunt broken up by
+  a reload leaves its game marked for the colony's hunters; a hostage or ward still walks in when what they were given
+  for ended in the hours before, joins and walks out again (or is forfeit at once). To look at in game: a wedding whose
+  guests come at 14:00 and a ceremony begun at 15:00 (the guests by the couple through the party after the vows, then
+  the feast at 21:00 to 22:00, first light); a wedding not begun by 16:00 (the feast that evening, the ceremony the next
+  morning and its quiet letter); a match agreed when no notable of theirs is free; a match with the Empire's titled.
 - 0.94.0, stage 2 release 2b.2, marriage alliances (docs/design/stage2-diplomacy.md, item 6; the player's decisions 8 and 9 as
   recommended: where the couple lives chosen in each match, a child keeps the alliance after a death, the Empire's titled
   marry only the titled; built beside 2b.3 and merged with 0.93.1 at 5061918, both kept). DESIGN.md, "Diplomacy" →

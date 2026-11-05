@@ -2770,8 +2770,10 @@ Release 2b.2 (docs/design/stage2-diplomacy.md, item 6; decisions 8 and 9): `Dipl
   wedding's guests (`FeastPurpose.Wedding`, tag `match:ID`); at `FeastStage.Here` (`Matches.OnStage`, subscribed in
   `MatchHooks`) the one to be married walks in beside them and joins the colony at once (`Arrivals.Join`), the council's
   own wedding question marked asked for the pair; the game's ceremony (`TryStartMarriageCeremony` when
-  `AcceptableGameConditionsToStartCeremony` and both are ready, 5 to 16) is tried each hour, the guests standing by the
-  couple while it runs (`Feasts.HereFocus` → `Matches.WeddingSpot`) and the feast waiting until it is over. Nobody to
+  `AcceptableGameConditionsToStartCeremony` and both are ready, 5 to 16, with the guests here only before the feast's
+  hour: `MatchMath.CeremonyHour`) is tried each hour, the guests standing by the couple while it runs, its party after
+  the vows too (`Feasts.HereFocus` → `Matches.WeddingSpot`), and the feast waiting until it is over: the ceremony and
+  the feast each let no other gathering begin, so begun under it the feast would wait and fall through. Nobody to
   host, or the feast let go before they came: they walk in alone on a safe hour. Not married within three days, the
   council's own wedding plan (`WeddingPlans.Plan`, quiet); not within eight more, the match lapses.
 - **Ours goes to them**: on the day, by daylight and with ours at home, the one they marry and one of their kin walk to
