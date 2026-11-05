@@ -61,7 +61,11 @@ namespace ColonyCouncil
         private static int peopleAt = int.MinValue;
         private static Game peopleGame;
 
-        /// <summary>The colony's people whose renown counts now: its free colonists, and those away at another people's town on its errand (its envoy, youth or hostage, kept in the world as lent). Found again each hour.</summary>
+        /// <summary>
+        /// The colony's people whose renown counts now: its free colonists (not a ward or a hostage of theirs living here as
+        /// a lodger: they are their people's), and those away at another people's town on its errand (its envoy, youth or
+        /// hostage, kept in the world as lent). Found again each hour.
+        /// </summary>
         public static List<Pawn> People()
         {
             int now = Now;
@@ -73,7 +77,7 @@ namespace ColonyCouncil
             try
             {
                 foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
-                    if (p != null && peopleIds.Add(p.thingIDNumber))
+                    if (p != null && !p.IsQuestLodger() && peopleIds.Add(p.thingIDNumber))
                         people.Add(p);
                 foreach (var p in Find.WorldPawns?.AllPawnsAlive.ToList() ?? new List<Pawn>())
                     if (p != null && !peopleIds.Contains(p.thingIDNumber) && KinMemory.Ours(p) && WorldLedger.KeptFor(p, KeepFor.Lent) && peopleIds.Add(p.thingIDNumber))
@@ -160,7 +164,7 @@ namespace ColonyCouncil
             // words are true (RenownMath.Bubble).
             string moment = RenownMath.Bubble(was, r.band);
             var speaker = moment == null || home == null ? null
-                : home.mapPawns.FreeColonistsSpawned.Where(p => !p.Dead && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake() && !p.DevelopmentalStage.Baby()).RandomElementWithFallback();
+                : home.mapPawns.FreeColonistsSpawned.Where(p => !p.Dead && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake() && !p.DevelopmentalStage.Baby() && Ours(p)).RandomElementWithFallback();
             // apart: the news of the colony's name told in the region, said by one of its people where they stand; a name
             // fallen from the region's band or wider may be said to have been sung (RenownMath.BubbleTag).
             if (speaker != null) Outsiders.Say(speaker, moment, null, null, RenownMath.BubbleTag(was, r.band));

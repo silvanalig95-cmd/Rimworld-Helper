@@ -53,8 +53,8 @@
   <CC_Renown_KnownAs_AContest>a contest</CC_Renown_KnownAs_AContest>
   <CC_Renown_KnownAs_contest>the one who won {CONTEST} at the feast with {PEOPLE}</CC_Renown_KnownAs_contest>
   <CC_Renown_KnownAs_contest_Any>the one who won {CONTEST} at a feast</CC_Renown_KnownAs_contest_Any>
-  <CC_Renown_KnownAs_wedding>the one who married among {PEOPLE}</CC_Renown_KnownAs_wedding>
-  <CC_Renown_KnownAs_wedding_Any>the one who married into another people</CC_Renown_KnownAs_wedding_Any>
+  <CC_Renown_KnownAs_wedding>the one who married one of {PEOPLE}</CC_Renown_KnownAs_wedding>
+  <CC_Renown_KnownAs_wedding_Any>the one who married one of another people</CC_Renown_KnownAs_wedding_Any>
   <CC_Renown_KnownAs_fostered>the one who fostered a youth of {PEOPLE} well</CC_Renown_KnownAs_fostered>
   <CC_Renown_KnownAs_fostered_Any>the one who fostered a ward well</CC_Renown_KnownAs_fostered_Any>
   <CC_Renown_KnownAs_abroad>the one who spent a year among {PEOPLE}</CC_Renown_KnownAs_abroad>

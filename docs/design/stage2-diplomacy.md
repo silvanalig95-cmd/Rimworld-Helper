@@ -451,6 +451,20 @@ carried down to their house's heir, with challenges at the gate (the harm review
 the mod's own and counts once toward the colony's renown; Rimfolk never calls its methods or adds its own help to it.
 The Empire: a titled noble marries only a titled colonist (decision 9).
 
+**As reshaped (the player's decision, 5 November 2026).** "The colony is the 'family' so to say, so mechanics should
+revolve around that": a marriage alliance is a bond between the colony and their people, made through one marriage, never
+two families or houses joined. One of theirs who is not a notable is one of the town their head speaks for, nobody's
+child or kin (`Matches.MakeOfTown`), where it was a son or daughter of the head's house. A child no longer keeps the
+alliance: it ends at a spouse's death, with no grudge unless the colony was to blame (killed by its hand). A grudge for a
+spouse wronged is their people's, which their head speaks for, handed down no line (decision 8's "a child keeps it" and the
+design's "passes to its heir" are dropped). "In-laws" are simply their people: the season's gift comes from their town,
+the raiders' camp warning from the town bound to the colony, Here and away lists the peoples the colony is bound to by
+marriage, and the wedding's guests are notables of their town (as they always were in the code). The spouse's own family
+(the one who walks in with them, their love sent in letters) stays theirs, as everyday life. The words: the match by the
+colony's age is a match between clans, a marriage pact between two peoples, a marriage between two settlements, a
+partnership contract between settlements. An older save: an alliance held through a child ends without a word, a grudge
+held by a head is made their people's quietly. DESIGN.md, "Marriage alliances", has the whole of it.
+
 ### 7. Wards and hostages
 
 **What the player sees and does.**
@@ -495,6 +509,12 @@ player's to decide; an execution, which only the player can order, is the graves
 
 **With and without other mods.** Biotech: children and lessons. The Empire: our youth may serve as a page in a titled
 household (decision 9). Hospitality: lodgers are not its guests.
+
+**As reshaped (the player's decision, 5 November 2026).** Their ward is a youth of their town, sent by their head, heir
+or envoy, never of a notable's house: nobody's child, a name of their own (`Wards.MakeYouth`); their own family walks them
+in and comes for them. The colony's own youth goes to them in return as before. The parents' feelings at home stay, being
+personal (a youth of the colony's sent away, `Nature.WardGoes`). Hostages are as they were. DESIGN.md, "Wards and
+hostages", has the whole of it.
 
 ## Round c
 
@@ -689,7 +709,7 @@ Hospitality's guests can be agents like any visitors. The harm review's 3.5.1 (a
 
 ## Round d
 
-### 12. House renown
+### 12. House renown (reshaped as the colony's renown, 5 November 2026)
 
 **What the player sees and does.** The colony's families known by name (two or more related colonists sharing a last
 name, `FamilyNames`) are houses. The Household page lists each: its members, its renown in its age's words ("a name
@@ -724,6 +744,19 @@ to the children, sung in the hall, in the papers, a name that carries (theirs).
 
 **With and without other mods.** The Empire: a title held by a member adds renown (read, never given). Diplomatic
 Marriage+: its alliance counts once. Nothing else.
+
+**As reshaped (the player's decision, 5 November 2026).** House renown becomes the colony's renown: the colony's name
+among the peoples, how far it carries and what it is known for, built from everything its people do, the living and the
+gone, and from its own oaths kept and broken. Each colonist gets a name of their own for their deeds, read the same way
+from what they alone did and said by the deed they are best known for ("the one who won the wrestling at the feast with
+the Lenlia"), on their card and in talk with a visitor whose people know it. The bands, the known-for, the sources with
+their points and fading, and the bounded effects stay, read for the colony as a whole (regard up to 15 and down to -10,
+good words, matches never certain, events, a feast's guests); a colonist known by name as a fighter draws the champion's
+challenge, and one known for something draws its events a quarter more at most. Houses, the Houses page and House cards go,
+and so do other towns' notables' houses: their town is what counts (the towns' founding families stay as their story,
+with no renown). Feuds are not handed down family lines: a grudge stays between their people and the colony, or against a
+named colonist. People → Renown is where People → Houses was. An older save's houses are dropped as it loads, and the
+colony's band is set at the first day's look without a word. DESIGN.md, "Colony renown", has the whole of it.
 
 ### 13. Stress against one's nature
 
