@@ -159,7 +159,7 @@ public static class NatureTests
         foreach (NatureAct a in Enum.GetValues(typeof(NatureAct)))
             if (NatureMath.Wired(a))
                 C(keyed.ContainsKey(NatureMath.ActKey(a)), $"{a} has its words");
-        foreach (var role in new[] { (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin") })
+        foreach (var role in new[] { (NatureAct.SeasonAway, "Envoy"), (NatureAct.SeasonAway, "Hostage"), (NatureAct.HaggledForKin, "Kin"), (NatureAct.WardSent, "Page") })
             C(keyed.ContainsKey(NatureMath.ActKey(role.Item1, role.Item2)), $"{role.Item1} has its words for the {role.Item2.ToLowerInvariant()}");
         foreach (var k in NatureMath.SideKeys()) C(keyed.ContainsKey(k), $"the side {k} has its words");
         C(keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Side_")).All(kv => kv.Value.Contains("{PAWN_possessive}") || kv.Value.Contains("{PAWN_pronoun}")),
@@ -192,18 +192,34 @@ public static class NatureTests
         C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
             "a pact's call refused by the council's answer: the speaker who sends it; unanswered, nobody");
         string abroad = Code("Diplomacy/WardsAbroad.cs");
-        C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
+        C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people, w\.page\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
             "a hostage and a ward: as they walk off the map");
         C(nature.Contains("Felt(hostage, new[] { NatureAct.GivenHostage, NatureAct.SeasonAway }, people, null, \"Hostage\")") && nature.Contains("Felt(kin, NatureAct.KinHostage, people, hostage.LabelShort)")
-          && nature.Contains("Felt(parent, NatureAct.WardSent, people, ward.LabelShort)"), "the hostage (and a season away, one act), their close kin, a ward's parents");
+          && nature.Contains("Felt(parent, NatureAct.WardSent, people, ward.LabelShort, page ? \"Page\" : null)"), "the hostage (and a season away, one act), their close kin, a ward's parents");
         C(Regex.IsMatch(Code("Diplomacy/EnvoysAbroad.cs"), @"Nature\.Felt\(p, NatureAct\.SeasonAway, a\.people, null, ""Envoy""\);\s*try\s*\{\s*var c = CaravanExitMapUtility"), "the envoy: as they walk off the map");
         C(Regex.IsMatch(Code("Happenings/Workers_Challenges.cs"), @"private static void Contest\([\s\S]{0,1400}Nature\.Felt\(a, NatureAct\.AcceptedChallenge"), "a challenge faced: the champion, at the contest itself");
         C(Code("Strangers/StrangerEffects.cs").Contains("Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction") && Code("Strangers/StrangerEffects.cs").Contains("h.contest ? h.a : null"),
             "a challenge turned down: the champion, when the council sends the challenger away");
-        C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive\)"),
+        C(Regex.IsMatch(Code("Diplomacy/Ransoms.cs"), @"public static void AskMore\([\s\S]{0,700}Nature\.Felt\(speaker, NatureAct\.HaggledForKin, o\.people\);[\s\S]{0,300}Nature\.CloseKinOf\(o\.captive, map\)"),
             "asking more for a captive: the speaker, and the captive's close kin among the colony's");
         C(Code("Diplomacy/Truces.cs").Contains("Nature.TruceWithFoe(f, home);") && nature.Contains("!v.Active || v.faction != people"),
             "a truce sworn: the avengers of this home (the vendettas)");
+        // Close kin: a child and a brother or sister are the game's implied relations, never in DirectRelations.
+        C(nature.Contains("p.GetRelations(o).Any(r => NatureMath.CloseKin(r?.defName))") && !Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,400}DirectRelations"),
+            "close kin read through every relation the game knows, so a child and a brother or sister count");
+        // The words that say they saw or heard it: only those there on the map (Nature.There).
+        var seenWords = keyed.Where(kv => kv.Key.StartsWith("CC_Nature_Act_") && Regex.IsMatch(kv.Value, @"\b(saw|heard)\b")).Select(kv => kv.Key.Substring("CC_Nature_Act_".Length)).OrderBy(k => k).ToList();
+        C(seenWords.SequenceEqual(new[] { "HaggledForKin_Kin", "KinHostage", "RefusedChallenge", "TruceWithFoe", "WardSent", "WardSent_Page" }), "the acts whose words say they saw or heard it: " + string.Join(", ", seenWords));
+        C(nature.Contains("CloseKinOf(hostage, hostage.MapHeld)") && nature.Contains("ParentsOf(ward, ward.MapHeld)") && Regex.IsMatch(nature, @"ParentsOf\([^)]*\)\s*\{[\s\S]{0,400}!There\(o, map\)")
+          && Regex.IsMatch(nature, @"CloseKinOf\([^)]*\)\s*\{[\s\S]{0,300}map\.mapPawns\.FreeColonistsSpawned") && nature.Contains("!There(v.avenger, home)")
+          && nature.Contains("public static bool There(Pawn p, Map map) => p != null && map != null && p.Spawned && p.Map == map;"),
+            "a hostage's kin, a ward's parents, the captive's kin and the avenger feel it only when there to see it");
+        string strangers = Code("Strangers/StrangerEffects.cs");
+        C(strangers.Contains("h.contest && Nature.There(h.a, ctx.map) ? h.a : null")
+          && Regex.IsMatch(strangers, @"x\.Faction\.IsPlayer \|\| x\.IsPrisoner\) return;\s*(//[^\n]*\n\s*)*if \(Challenge\(ctx\) is Pawn champion\) Nature\.Felt\("),
+            "a challenge turned down weighs only with the challenger still here to be sent away, as the answer's sheet says, and the champion there");
+        C(Code("Diplomacy/WardsAbroad.cs").Contains("Nature.WardGoes(p, w.people, w.page)") && keyed["CC_Nature_Act_WardSent_Page"].Contains("page"),
+            "a page sent to a titled household is said as a page, not a ward");
 
         // ================= Through the heart =================
 

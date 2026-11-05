@@ -26,6 +26,7 @@
   <CC_Nature_Act_GivenHostage>was given to {PEOPLE} as the colony's hostage</CC_Nature_Act_GivenHostage>
   <CC_Nature_Act_KinHostage>saw {OTHER} given to {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage>
   <CC_Nature_Act_WardSent>saw {OTHER} sent to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent>
+  <CC_Nature_Act_WardSent_Page>saw {OTHER} sent to serve as a page in a titled household of {PEOPLE}</CC_Nature_Act_WardSent_Page>
   <CC_Nature_Act_MatchAgainstHeart>was promised to {OTHER} of {PEOPLE}</CC_Nature_Act_MatchAgainstHeart>
   <CC_Nature_Act_RefusedChallenge>saw the colony turn down {OTHER}'s challenge</CC_Nature_Act_RefusedChallenge>
   <CC_Nature_Act_AcceptedChallenge>faced {OTHER}'s challenge in front of everyone</CC_Nature_Act_AcceptedChallenge>

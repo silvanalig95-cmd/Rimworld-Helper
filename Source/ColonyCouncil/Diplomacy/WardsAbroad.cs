@@ -266,7 +266,7 @@ namespace ColonyCouncil
             // As they walk off the map: a hostage given (the timid, the set in their ways; their close kin, if warm), a youth
             // sent away (their parents, if warm) take it to heart (Nature.cs).
             if (w.Hostage) Nature.HostageGoes(p, w.people);
-            else Nature.WardGoes(p, w.people);
+            else Nature.WardGoes(p, w.people, w.page);
             try
             {
                 var c = CaravanExitMapUtility.ExitMapAndCreateCaravan(new List<Pawn> { p }, Faction.OfPlayer, map.Tile, map.Tile, PlanetTile.Invalid, false);
