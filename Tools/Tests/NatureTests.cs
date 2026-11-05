@@ -189,6 +189,10 @@ public static class NatureTests
           && mem.Contains("By(hand, () => FactionMemory.Note(f, \"killed\""), "the doer: the blow's hand, the captor, the seller, the caravan's first, the killer");
         C(mem.Contains("[HarmonyPatch(typeof(Faction), nameof(Faction.Notify_MemberTookDamage))]") && mem.Contains("[HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.CapturedBy))]")
           && Regex.IsMatch(mem, @"Patch_MemoryDamageBy[\s\S]{0,400}Finalizer\(\)\s*\{\s*MemoryHooks\.damageBy = null;"), "kept only while the game weighs the deed");
+        // An arrest is weighed as a capture in Pawn.CheckAcceptArrest, before CapturedBy (whose own weighing then breaks nothing).
+        C(mem.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]")
+          && Regex.IsMatch(mem, @"Patch_MemoryArrestedBy\s*\{\s*public static void Prefix\(Pawn arrester\)\s*\{\s*if \(MemoryHooks\.Listening\) MemoryHooks\.capturer = arrester;\s*\}\s*public static void Finalizer\(\)\s*\{\s*MemoryHooks\.capturer = null;"),
+            "an arrest names the arrester as the captor, kept only while the game weighs it");
         C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
             "a pact's call refused by the council's answer: the speaker who sends it; unanswered, nobody");
         string abroad = Code("Diplomacy/WardsAbroad.cs");
