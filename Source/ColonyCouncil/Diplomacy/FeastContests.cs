@@ -125,7 +125,7 @@ namespace ColonyCouncil
                     return all.Where(p => !p.DevelopmentalStage.Juvenile() && GamePrey.CanHunt(p) && (!ours || !Beliefs.ForbidsAny(p, NoHuntMask)))
                         .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).ToList();
                 case ContestKind.Tables:
-                    return all.Where(p => (p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)) && (!ours || !p.DevelopmentalStage.Juvenile() || p.ageTracker.AgeBiologicalYears >= 10))
+                    return all.Where(p => !p.DevelopmentalStage.Juvenile() && p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         .OrderByDescending(p => TableSkill(p, table)).ToList();
                 case ContestKind.Shooting:
                     return all.Where(p => !p.DevelopmentalStage.Juvenile() && p.equipment?.Primary != null && p.equipment.Primary.def.IsRangedWeapon

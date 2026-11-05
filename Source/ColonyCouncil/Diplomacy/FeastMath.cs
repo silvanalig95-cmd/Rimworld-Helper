@@ -438,14 +438,22 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The facts: invited to a feast at the colony (feast:invited), a feast with their people coming (feast:soon), their
-        /// people's guests at the colony now (feast:here), the one spoken to came as a guest (them:feastguest), one of their
-        /// people won a contest at it (feast:theywon) or one of the colony's did (feast:wewon); {FEAST} the colony's feast in
-        /// its own words, {CHAMPION} who won the most.
+        /// people's guests at the colony now (feast:here), the one spoken to came as a guest (them:feastguest) and went home
+        /// pleased (feast:welcomed) or was left without a plate (feast:slighted), the champion of the day was one of their
+        /// people (feast:theywon) or one of the colony's (feast:wewon); the feast holds contests (feast:contests); their
+        /// people's guests went home mostly pleased (feast:good) or not (feast:poor); {FEAST} the colony's feast in its own
+        /// words, {CHAMPION} the champion of the day.
         /// </summary>
-        public const string InvitedTag = "feast:invited", SoonTag = "feast:soon", HereTag = "feast:here", GuestTag = "them:feastguest", TheyWonTag = "feast:theywon",
-            WeWonTag = "feast:wewon", FeastKey = "FEAST", ChampionKey = "CHAMPION";
+        public const string InvitedTag = "feast:invited", SoonTag = "feast:soon", HereTag = "feast:here", GuestTag = "them:feastguest", WelcomedTag = "feast:welcomed",
+            SlightedTag = "feast:slighted", TheyWonTag = "feast:theywon", WeWonTag = "feast:wewon", ContestsTag = "feast:contests", GoodTag = "feast:good",
+            PoorTag = "feast:poor", FeastKey = "FEAST", ChampionKey = "CHAMPION";
 
-        public static readonly string[] Tags = { InvitedTag, SoonTag, HereTag, GuestTag, TheyWonTag, WeWonTag };
+        public static readonly string[] Tags = { InvitedTag, SoonTag, HereTag, GuestTag, WelcomedTag, SlightedTag, TheyWonTag, WeWonTag, ContestsTag, GoodTag, PoorTag };
+
+        /// <summary>Their people's guests at a feast went home mostly pleased (none left without a plate), or mostly not.</summary>
+        public static bool WentWell(float meanWelcome, bool anyUnfed) => !anyUnfed && meanWelcome >= RememberedAt;
+
+        public static bool WentPoorly(float meanWelcome, bool anyUnfed) => anyUnfed || meanWelcome < 0f;
 
         /// <summary>Remembered this long after (days) in the talk.</summary>
         public const float TalkDays = 30f;
