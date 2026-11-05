@@ -79,8 +79,6 @@
   <CC_Form_Fealty_Spacer>a charter</CC_Form_Fealty_Spacer>
   <CC_Form_Fealty_Spacer_Rite>a corporate accord</CC_Form_Fealty_Spacer_Rite>
 
-  <!-- The council's tasks -->
-
   <!-- A house's renown -->
   <CC_Form_Renown_Tribal>a clan's name and totem</CC_Form_Renown_Tribal>
   <CC_Form_Renown_Tribal_Rite>deeds told to the children</CC_Form_Renown_Tribal_Rite>
