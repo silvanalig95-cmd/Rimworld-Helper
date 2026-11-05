@@ -112,9 +112,10 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Guests of another people on the map: visitors, traders, envoys, feast guests (not a friendly war band, not lodgers).</summary>
         private static IEnumerable<Pawn> Guests(Map home) =>
             home.mapPawns.AllPawnsSpawned.Where(p => Outsiders.IsOutsider(p) && !p.IsQuestLodger() && p.Faction != null && !p.Faction.IsPlayer && p.GetLord() != null && !p.Downed
-                                                     && !p.DevelopmentalStage.Juvenile());
+                                                     && !p.DevelopmentalStage.Juvenile() && !(p.GetLord().LordJob is LordJob_WarBand));
 
         private static void Watch(Map home, Pawn keeper, int now)
         {

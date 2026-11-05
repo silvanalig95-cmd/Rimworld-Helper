@@ -55,8 +55,7 @@ namespace ColonyCouncil
             {
                 P("CC_Task_Confirm", officer.Named("PAWN"), Office(TaskMath.OfficeOf(c.kind)).Named("OFFICE"), Kind(c.kind).Named("KIND"), c.label.Named("TARGET"),
                     Form(home, c.people).word.Named("WORD")),
-                P("CC_Task_How_" + c.kind, officer.Named("PAWN"), (c.notable?.Name ?? c.town?.Name ?? c.about?.LabelShort ?? People(c.people)).Named("NAME"),
-                    TaskMath.WinGoal.Named("GOAL"))
+                P("CC_Task_How_" + c.kind, officer.Named("PAWN"), HowName(c).Named("NAME"), TaskMath.WinGoal.Named("GOAL"))
             };
             if (TaskMath.VisitOnly(c.kind))
             {
@@ -67,6 +66,14 @@ namespace ColonyCouncil
             if (c.kind == TaskKind.Secrets) parts.Add(P("CC_Task_Risk_Secrets", officer.Named("PAWN"), (c.notable?.Name ?? "?").Named("NAME")));
             if (c.kind == TaskKind.Tend) parts.Add(P("CC_Task_Risk_Tend", officer.Named("PAWN")));
             return string.Join("\n\n", parts);
+        }
+
+        /// <summary>Who or where a task's how-to names: the town for a visit, the people for their kin, else the notable or the one held.</summary>
+        private static string HowName(TaskChoice c)
+        {
+            if (TaskMath.VisitOnly(c.kind)) return c.town?.Name ?? People(c.people);
+            if (c.kind == TaskKind.TheirKin) return People(c.people);
+            return c.notable?.Name ?? c.about?.LabelShort ?? c.town?.Name ?? People(c.people);
         }
 
         /// <summary>A visit's cost: the officer and a companion away for the road there and back and a day, their work waiting, the roads the game's own.</summary>

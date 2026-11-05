@@ -272,6 +272,14 @@ namespace ColonyCouncil
                         }
                         return false;
                     }
+                    // Called off before it was held: the feast is the council's to plan again.
+                    if (t.feastId >= 0 && h.lastFeast != null && h.lastFeast.id == t.feastId && feast == null && !h.lastFeast.held)
+                    {
+                        t.feastId = -1;
+                        t.asked = false;
+                        Diplomacy.Dirty();
+                        return false;
+                    }
                     if (t.feastId >= 0 && h.lastFeast != null && h.lastFeast.id == t.feastId && feast == null)
                     {
                         t.last = TaskStep.Feast;
