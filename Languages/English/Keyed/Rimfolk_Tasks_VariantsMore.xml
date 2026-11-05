@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More fellows of the council tasks' and the keeper of secrets' lines told often (Rimfolk_Tasks.xml, beside
+       Rimfolk_Tasks_Variants.xml), one picked at random (TextVariants: the numbers run on from the fellows there, to _6 at
+       most). Each keeps its original's placeholders; {RITE} changes with their people's age. The keeper's learned-nothing
+       lines (CC_Keeper_Nothing_*) are read with their fellows since this pass. -->
+
+  <CC_Task_Msg_Set_4>{PAWN} takes up the council's business as its {OFFICE}: {KIND}, with {TARGET}.</CC_Task_Msg_Set_4>
+
+  <CC_Task_Ans_WinOver_4>{NAME}'s answer runs longer than {PAWN}'s letter did, and ends with a question to keep the letters coming.</CC_Task_Ans_WinOver_4>
+  <CC_Task_Ans_WinOver_5>{NAME} thanks {PAWN} for the letter and answers each thing in it in turn.</CC_Task_Ans_WinOver_5>
+  <CC_Task_Ans_Trade_4>{NAME} writes that their traders have been asking about the colony's goods, and wants to know what it would take in return.</CC_Task_Ans_Trade_4>
+  <CC_Task_Ans_BringHome_3>{NAME} answers that {OURS} is unharmed, and that a price is being talked over among their people.</CC_Task_Ans_BringHome_3>
+  <CC_Task_Ans_TheirKin_3>{NAME} thanks the colony for news of their kin, and writes that the families are gathering what they can to bring them home.</CC_Task_Ans_TheirKin_3>
+  <CC_Task_Ans_KeepFaith_3>{NAME} answers with a prayer of their own copied out at the end, for the colony's believers.</CC_Task_Ans_KeepFaith_3>
+  <CC_Task_Ans_SpeakFaith_3>{NAME} writes that the colony's faith is mistaken, then fills a page with questions about it.</CC_Task_Ans_SpeakFaith_3>
+  <CC_Task_Ans_Host_3>{NAME} writes that their people have not sat at a feast away from home in a long time, and would be glad to come.</CC_Task_Ans_Host_3>
+  <CC_Task_Ans_Moot_3>{NAME} answers, though what the letter was about was settled after it was sent.</CC_Task_Ans_Moot_3>
+
+  <CC_Task_Visit_Arrived_3>{PAWN} has reached {TOWN}, where they receive the colony's officer in their own way: {RITE}.</CC_Task_Visit_Arrived_3>
+  <CC_Task_Visit_Arrived_4>At {TOWN}, {PAWN} is taken in and given a place for the day, as their people do it: {RITE}.</CC_Task_Visit_Arrived_4>
+  <CC_Task_Patrol_Quiet_4>{PAWN} has walked the edges of {COLONY} at dawn. No smoke, and no tracks that shouldn't be there.</CC_Task_Patrol_Quiet_4>
+  <CC_Task_Patrol_Quiet_5>Back from the dawn walk, {PAWN} reports the edges of {COLONY} clear.</CC_Task_Patrol_Quiet_5>
+  <CC_Task_TradeOffer_3>{WHO} writes for {PEOPLE}: the colony has shown it can be trusted with a price, and they would like {KIND}, {RITE} as their ways ask.</CC_Task_TradeOffer_3>
+  <CC_Task_TradeOffer_Won_2>{WHO} writes for {PEOPLE}: they count the colony among their friends now, and offer it {KIND}, {RITE} as their ways ask.</CC_Task_TradeOffer_Won_2>
+
+  <CC_Keeper_Watch_4>{PAWN} found the guests from {PEOPLE} still up after dark, and stayed near them a while.</CC_Keeper_Watch_4>
+  <CC_Keeper_Caught_Talk_3>{OTHER} stopped answering {PAWN}'s questions halfway through, and {NAME} will hear why. {NAME} thinks less of the colony, and of {PAWN} most of all.</CC_Keeper_Caught_Talk_3>
+  <CC_Keeper_Caught_Informer_3>{NAME} found out who was paying for word of them. It was {PAWN}, and {NAME} thinks less of the colony for it.</CC_Keeper_Caught_Informer_3>
+  <CC_Keeper_Caught_Visit_3>{PAWN} asked one question too many at their town, and it reached {NAME}. {NAME} thinks less of the colony, and of {PAWN} most of all.</CC_Keeper_Caught_Visit_3>
+  <CC_Keeper_Press_Yes_3>{NAME} will pay {SILVER} silver so that no one hears {NAME} {SECRET}, and wants nothing more to do with the colony.</CC_Keeper_Press_Yes_3>
+  <CC_Keeper_Press_No_3>{NAME} would not pay, and the colony has told it as it said it would: {NAME} {SECRET}. {PEOPLE} hold the telling against the colony.</CC_Keeper_Press_No_3>
+  <CC_Keeper_Ans_Moot_3>{NAME} answers only that there is nothing left to talk about.</CC_Keeper_Ans_Moot_3>
+
+  <CC_Keeper_Nothing_Talk_2>{PAWN} spent a long while with {OTHER} and came away knowing all about the roads and the weather, and nothing new about {NAME}.</CC_Keeper_Nothing_Talk_2>
+  <CC_Keeper_Nothing_Talk_3>{OTHER} talked freely with {PAWN}, about everything but {NAME}.</CC_Keeper_Nothing_Talk_3>
+  <CC_Keeper_Nothing_Informer_2>The informer took the silver and told {PAWN} what everyone already says about {NAME}.</CC_Keeper_Nothing_Informer_2>
+  <CC_Keeper_Nothing_Informer_3>{PAWN} paid for word of {NAME} and got a story that fell apart on the second telling.</CC_Keeper_Nothing_Informer_3>
+  <CC_Keeper_Nothing_Visit_2>{PAWN} asked careful questions all day at their town and heard nothing about {NAME} worth the road.</CC_Keeper_Nothing_Visit_2>
+  <CC_Keeper_Nothing_Visit_3>At their town, {PAWN} found the people around {NAME} loyal, or careful, and came away with nothing.</CC_Keeper_Nothing_Visit_3>
+
+</LanguageData>

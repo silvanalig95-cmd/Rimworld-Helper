@@ -195,7 +195,7 @@
     <topic>fealty</topic>
     <when>fealty:short,tone:cool</when>
     <lines>
-      <li>[them] Our collector came back from your gate with a light load.</li>
+      <li>[them] Our collector says your tribute fell short this season.</li>
       <li>[us] It was all the stores could give.</li>
       <li>[them] Then the stores had better fill up.</li>
     </lines>
