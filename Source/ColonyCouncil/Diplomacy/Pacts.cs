@@ -647,6 +647,9 @@ namespace ColonyCouncil
             return Pacts.Of(people, map, (PactKind)kind) == null;
         }
 
+        /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>
+        public bool Waiting => !ArchivedOnly && Valid(out _);
+
         public override IEnumerable<DiaOption> Choices
         {
             get
@@ -705,6 +708,9 @@ namespace ColonyCouncil
             map = Homes.MapOf(home) ?? Homes.Seat;
             return people != null && !people.defeated && Diplomacy.Hostile(people) && map != null && Truces.Of(people, map) == null && Truces.On;
         }
+
+        /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>
+        public bool Waiting => !ArchivedOnly && Valid(out _);
 
         public override IEnumerable<DiaOption> Choices
         {

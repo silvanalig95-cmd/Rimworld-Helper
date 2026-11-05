@@ -260,12 +260,15 @@ public static class RansomTests
         C(e.Contains("\"envoyHonored\", name, EnvoyMath.DeedWeight(s.score, days)") && e.Contains("FactionMemory.Note(f, \"slighted\"") && e.Contains("DiplomacyMath.Envoy"),
             "the report: envoyHonored (a debt for a very good stay) or slighted, and dip:envoy");
         C(e.Contains("EnvoyMath.DiedRegard(sheltered)"), "dead at the colony: by whether it sheltered them");
+        C(e.Contains("if (e != null && e.Dead)") && e.Contains("Died(h, s, map, e);") && e.Contains("e.IsPrisoner || e.Faction != f") && e.Contains("e.MapHeld != map"),
+            "downed out of the stay's group, then dead, taken or carried to bed: the hour sees it");
         string ab = text["EnvoysAbroad.cs"];
         C(ab.Contains("EnvoyMath.CanGo(") && ab.Contains("Dialog_MessageBox.CreateConfirmation") && ab.Contains("CC_Envoy_Ask"), "the colony's envoy: good with people, after the council's question");
         C(ab.Contains("JobDefOf.TakeInventory") && ab.Contains("CaravanExitMapUtility.ExitMapAndCreateCaravan") && ab.Contains("new CaravanArrivalAction_Enter(map.Parent)"),
             "food for the road from the stores, a caravan of their own there and back");
         C(ab.Contains("EnvoyMath.AbroadRegard(social)") && ab.Contains("FactScene.Letter(head, p, map, true)") && ab.Contains("EnvoyMath.SocialXp"),
             "their letters' real news, the notables' regard, the practice they bring home");
+        C(ab.Contains("if (p.Spawned && Homes.IsHome(p.Map) || People.Kidnapped(p)) Clear(h, a);"), "an ambush on the road doesn't call the stay off; back home or carried off does");
 
         // ---------------- Where the player acts ----------------
 

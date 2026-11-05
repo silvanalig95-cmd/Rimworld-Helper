@@ -305,6 +305,12 @@ namespace ColonyCouncil
 
         public static bool PactBreach(string deed) => deed != null && Array.IndexOf(PactBreaches, deed) >= 0;
 
+        /// <summary>
+        /// A deed of the colony's breaks its pact with them now: one of <see cref="PactBreaches"/>, but not one of theirs killed
+        /// while their war band is on the colony's land (a stray shot of the fight they share, as a blow struck is).
+        /// </summary>
+        public static bool BreaksPact(string deed, bool theirBandHere) => PactBreach(deed) && !(deed == "killed" && theirBandHere);
+
         public static bool TheirBreach(string deed) => deed != null && Array.IndexOf(TheirBreaches, deed) >= 0;
 
         // ================= The terms =================

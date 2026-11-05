@@ -104,8 +104,13 @@ namespace ColonyCouncil
         /// <summary>Those whose objection was heard for a truce (this session): the speaker may go out.</summary>
         private static readonly HashSet<int> heard = new HashSet<int>();
 
-        /// <summary>The council answered an avenger's objection to swear it all the same.</summary>
-        internal static void Allow(int tie) => heard.Add(tie);
+        /// <summary>The council answered an avenger's objection to swear it all the same (kept on their parley too, so a reload doesn't ask again).</summary>
+        internal static void Allow(int tie)
+        {
+            heard.Add(tie);
+            var t = Truces.Get(tie);
+            if (t != null && LordOf(t, Truces.HomeOf(t))?.LordJob is LordJob_Parley p) p.heard = true;
+        }
 
         /// <summary>
         /// The hour, while their envoy is on the map: at the gate, a colonist sworn to vengeance on them has their say before
@@ -116,12 +121,13 @@ namespace ColonyCouncil
             if (!(lord.LordJob is LordJob_Parley job) || job.sworn || job.arrived < 0) return;
             var envoy = Envoy(lord);
             if (envoy == null) return;
-            if (!heard.Contains(t.id))
+            if (!job.heard && !heard.Contains(t.id))
             {
                 // The council's answer still waits (asked this hour or before a reload): the speaker waits for it.
                 if (TruceObjection.Open(t.id) || TruceObjection.Ask(t, envoy, home)) return;
                 heard.Add(t.id);
             }
+            job.heard = true;
             if (home.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == PactsDefOf.Rimfolk_TruceParley && c.CurJob.targetA.Thing == envoy)) return;
             SendSpeaker(t, envoy, home);
         }
@@ -190,6 +196,8 @@ namespace ColonyCouncil
         public int arrived = -1;
         public bool sworn;
         public bool harmed;
+        /// <summary>An avenger's objection was heard (or nobody objected): the speaker may go out.</summary>
+        public bool heard;
 
         public const string MemoLeave = "ParleyLeave";
 
@@ -303,6 +311,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref arrived, "arrived", -1);
             Scribe_Values.Look(ref sworn, "sworn");
             Scribe_Values.Look(ref harmed, "harmed");
+            Scribe_Values.Look(ref heard, "heard");
         }
     }
 

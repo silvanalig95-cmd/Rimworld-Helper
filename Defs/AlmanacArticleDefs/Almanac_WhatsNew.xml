@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.89.1</version>
+        <date>5 November 2026</date>
+        <title>Diplomacy, checked over</title>
+        <points>
+          <li>Fixed: an envoy downed in a fight who then dies, is taken prisoner or is carried to a bed now gets the right ending, letter and regard.</li>
+          <li>Fixed: the colony's envoy ambushed on the road carries on to the town once the caravan sets off again.</li>
+          <li>Fixed: Needs you no longer lists a truce offer, pact offer or call to arms that can no longer be answered.</li>
+          <li>Fixed: with Faction Territories, a caravan that joins the fight at a partner's town through Join fight keeps the call instead of breaking the pact.</li>
+          <li>Fixed: the firebrands' raid breaks the truce with the deeper game hooks off too, as their letter says.</li>
+          <li>Fixed: after loading a save, a war already answered brings no second call to arms, and the council isn't asked an avenger's objection twice.</li>
+          <li>Fixed: a partner's fighter killed by a stray shot while their band fights on the colony's land no longer breaks the pact.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.89.0</version>
         <date>5 November 2026</date>
         <title>Ransom and the envoy</title>

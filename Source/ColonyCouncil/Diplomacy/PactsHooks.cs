@@ -31,7 +31,7 @@ namespace ColonyCouncil
                     Battles(d);
                     string how = FactionMemory.Text(d);
                     if (PactMath.OurBreach(d.kind) && Truces.AnyWith(f) != null) Truces.BrokenByUs(f, how);
-                    if (PactMath.PactBreach(d.kind) && Pacts.With(f).Count > 0) Pacts.BrokenByUs(f, how);
+                    if (PactMath.PactBreach(d.kind) && Pacts.With(f).Count > 0 && PactMath.BreaksPact(d.kind, BandOnAHome(f))) Pacts.BrokenByUs(f, how);
                 }
                 else if (d.side == DeedSide.TheirWrong && d.kind == "killedOurs")
                 {
@@ -43,6 +43,19 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("pacts and truces: a deed read", e);
             }
+        }
+
+        /// <summary>
+        /// Their war band is on a home of the colony's (called on the pact, or come of its own): one of theirs killed by the
+        /// colony now fell to a stray shot of the shared fight, the game's own matter of goodwill as a blow struck is
+        /// (PactMath.BreaksPact).
+        /// </summary>
+        private static bool BandOnAHome(Faction f)
+        {
+            foreach (var home in Homes.All)
+                if (CampTracker.WarBandAt(home)?.faction == f)
+                    return true;
+            return false;
         }
 
         // ================= Faction Territories' invasions =================

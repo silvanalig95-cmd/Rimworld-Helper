@@ -217,11 +217,14 @@ namespace ColonyCouncil
 
         // ================= The inbox =================
 
-        /// <summary>Their letters waiting for the colony's answer: a truce or a pact offered, a call to arms on a pact (a debt's is the favours' row).</summary>
+        /// <summary>
+        /// Their letters waiting for the colony's answer: a truce or a pact offered, a call to arms on a pact (a debt's is the
+        /// favours' row). One that can no longer be answered (made moot, or the call kept by the caravan) waits on nothing.
+        /// </summary>
         private static IEnumerable<Letter> Waiting()
         {
             foreach (var l in Find.LetterStack.LettersListForReading)
-                if (l is ChoiceLetter_TruceOffer || l is ChoiceLetter_PactOffer || l is ChoiceLetter_CallToArms c && Pacts.Get(c.tie) != null)
+                if (l is ChoiceLetter_TruceOffer t && t.Waiting || l is ChoiceLetter_PactOffer p && p.Waiting || l is ChoiceLetter_CallToArms c && c.WaitingOnPact)
                     yield return l;
         }
 

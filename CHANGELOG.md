@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Diplomacy, checked over
+
+*5 November 2026, version 0.89.1*
+
+- Fixed: an envoy downed in a fight who then dies, is taken prisoner or is carried to a bed now gets the right ending, letter and regard.
+- Fixed: the colony's envoy ambushed on the road carries on to the town once the caravan sets off again.
+- Fixed: Needs you no longer lists a truce offer, pact offer or call to arms that can no longer be answered.
+- Fixed: with Faction Territories, a caravan that joins the fight at a partner's town through Join fight keeps the call instead of breaking the pact.
+- Fixed: the firebrands' raid breaks the truce with the deeper game hooks off too, as their letter says.
+- Fixed: after loading a save, a war already answered brings no second call to arms, and the council isn't asked an avenger's objection twice.
+- Fixed: a partner's fighter killed by a stray shot while their band fights on the colony's land no longer breaks the pact.
+
 ## Ransom and the envoy
 
 *5 November 2026, version 0.89.0*
