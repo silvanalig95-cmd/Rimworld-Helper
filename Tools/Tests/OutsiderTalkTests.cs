@@ -36,7 +36,7 @@ public static class OutsiderTalkTests
         C(OutsiderTalkMath.Cost(OutsiderAct.Provoke) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Duel) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Letter) == 0f
           && OutsiderTalkMath.Cost(OutsiderAct.Chat) == 1f && OutsiderTalkMath.Cost(OutsiderAct.Gift) == 1f, "hard words, a challenge and a letter ask no patience; the rest one each");
         var asks = Enum.GetValues(typeof(OutsiderAct)).Cast<OutsiderAct>().Where(OutsiderTalkMath.Asks).ToList();
-        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour, OutsiderAct.SpeakPact }),
+        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.OfferExchange }),
             "the asks: news, a good word, a lesson, a favour, an invitation, getting to know them, courting, faith, a debt of honour called in, a pact");
         C(!OutsiderTalkMath.Asks(OutsiderAct.Gift) && !OutsiderTalkMath.Asks(OutsiderAct.Meal) && !OutsiderTalkMath.Asks(OutsiderAct.Chat), "a gift, a meal and a chat are offers, not asks");
         C(!OutsiderTalkMath.Pushy(0) && !OutsiderTalkMath.Pushy(1) && OutsiderTalkMath.Pushy(2) && OutsiderTalkMath.Pushy(5), "the third ask in a row is pushy");
@@ -250,6 +250,8 @@ public static class OutsiderTalkTests
         .Concat(Expand(PactMath.PactTag, " :ours :theirs :due :defence :trade")).Concat(Expand(PactMath.TruceTag, " :ours :theirs :due"))
         // The region (Text/Facts/FactsRegion.cs): their town's fortune and founding, a new town near.
         .Concat(FactsMath.RegionTags)
+        // Captives and envoys (Diplomacy/FactsRansom.cs).
+        .Concat(RansomMath.Tags).Concat(EnvoyMath.Tags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -271,6 +273,8 @@ public static class OutsiderTalkTests
         "THEN", "NOW", "NOBLE", "NOBLETITLE", "QUESTNOW", "PEACEA", "PEACEB", "HOSPITAL", "DOCTOR", "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "HONOURTO", "FAVOURWHY",
         // A pact or a truce with their people (Diplomacy/FactsPacts.cs).
         "PACTWITH", "TRUCEWITH",
+        // Captives and envoys (Diplomacy/FactsRansom.cs).
+        "CAPTOR", "ENVOY", "OURENVOY",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

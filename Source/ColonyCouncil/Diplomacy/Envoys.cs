@@ -660,9 +660,9 @@ namespace ColonyCouncil
                 {
                     s.bed = b;
                     Diplomacy.Dirty();
-                    // the player's own click, confirmed directly.
-                    Messages.Message(RansomWords.P("CC_Envoy_Msg_BedSet", (s.envoy?.LabelShort ?? s.envoyName ?? "?").Named("ENVOY"), b.LabelCap.Named("BED")), new LookTargets(b),
-                        MessageTypeDefOf.NeutralEvent, false);
+                    // apart: the player's choice, confirmed in a message; the envoy sleeps there from tonight on the map.
+                    Tell.Message(NewsKind.World, Importance.Notable, map, RansomWords.P("CC_Envoy_Msg_BedSet", (s.envoy?.LabelShort ?? s.envoyName ?? "?").Named("ENVOY"),
+                        b.LabelCap.Named("BED")), new LookTargets(b), MessageTypeDefOf.NeutralEvent);
                 }));
             }
             if (opts.Count == 0) opts.Add(new FloatMenuOption(RansomWords.P("CC_Envoy_Why_NoBed"), null));

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 494; modelled: 494; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** after two, **3,058 KB** after five.
+Saved collections found: 496; modelled: 496; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,436 KB** after a year, **2,891 KB** after two, **3,061 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -155,6 +155,7 @@ Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** aft
 | `Dreams/Dreams.cs:omens` | until they come | cap | 10 | 10 | 10 | 2.0 |
 | `Happenings/Happenings.cs:raids` | until they come | cap | 3 | 5 | 5 | 2.0 |
 | `Building/Automations.cs:actions` | the last actions to undo, AutomationMath.ActionsKept | fixed | 12 | 12 | 12 | 1.9 |
+| `Diplomacy/DiplomacyBook.cs:offers` | per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone | cap | 6 | 6 | 6 | 1.9 |
 | `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 21 | 21 | 21 | 1.8 |
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
@@ -203,6 +204,7 @@ Rimfolk's part of the save, roughly: **2,433 KB** after a year, **2,888 KB** aft
 | `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) and the last word given to keep away, when a town in its reach was last given up, settled again or founded by Rimfolk; a lost home's kept 30 days, its camp gone with it | fixed | 1 | 1 | 1 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
+| `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 1.1 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |

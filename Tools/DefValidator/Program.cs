@@ -348,6 +348,17 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc",
         "Belonging_Answers", "Purpose_Answers", "Safety_Answers", "Freedom_Answers", "Belonging_Help", "Purpose_Help", "Safety_Help", "Freedom_Help" },
     ["CC_Heart_NeedLevel_"] = new[] { "Lacking", "Missed", "Fair", "Met" },
+    // Ransom and the envoy (Diplomacy/Ransoms.cs, Envoys.cs, RansomPanels.cs): enum names.
+    ["CC_Ransom_Odds_"] = new[] { "None", "Small", "Real", "Serious" },
+    ["CC_Ransom_Row_Theirs_"] = new[] { "Waiting", "Coming", "AtGate", "Paying", "Returning" },
+    ["CC_Ransom_Row_Demand_"] = new[] { "Waiting", "Coming", "AtGate", "Paying", "Returning" },
+    ["CC_Ransom_Row_Exchange_"] = new[] { "Waiting", "Coming", "AtGate", "Paying", "Returning" },
+    ["CC_Envoy_Mood_"] = new[] { "Content", "Cool", "Offended" },
+    ["CC_Envoy_Leaves_"] = new[] { "Content", "Cool", "Offended" },
+    ["CC_Envoy_Hist_Left_"] = new[] { "Content", "Cool", "Offended" },
+    ["CC_Envoy_Msg_Letter_"] = new[] { "Content", "Cool", "Offended" },
+    ["CC_Envoy_Card_Night_"] = new[] { "Own", "Spare", "Floor" },
+    ["CC_Envoy_Row_Abroad_"] = new[] { "Coming", "Staying", "There", "Leaving" },
     // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
     ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
 };
@@ -448,6 +459,8 @@ wishPh.UnionWith(new[]
     "FAVOURFOR", "PROMISEDTO", "CLAIMON", "DEBTTO", "FEALTYTO", "GRUDGEAGAINST", "HONOURTO", "FAVOURWHY",
     // A pact or a truce with their people (Diplomacy/FactsPacts.cs): the people it is with.
     "PACTWITH", "TRUCEWITH",
+    // Captives and envoys (Diplomacy/FactsRansom.cs): the home that held them, their envoy here, the colony's at their town.
+    "CAPTOR", "ENVOY", "OURENVOY",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.
