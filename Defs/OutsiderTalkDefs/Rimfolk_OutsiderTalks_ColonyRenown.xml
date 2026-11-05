@@ -520,7 +520,7 @@
     <weight>0.8</weight>
     <lines>
       <li>[them] So this is {KNOWNAS}.</li>
-      <li>[us,kind] It wasn't only me, the whole colony was there.</li>
+      <li>[us,trait:Kind] It wasn't only me, the whole colony was there.</li>
       <li>[us] I only did what anyone here would have done.</li>
       <li>[them] Maybe, but you're the one they name.</li>
     </lines>
@@ -937,6 +937,102 @@
       <li>[them] Still, and {THEN} asked after you by name before I left.</li>
       <li>[us] By name?</li>
       <li>[them] As {KNOWNAS}, which is near enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_Family</defName>
+    <topic>callback</topic>
+    <when>talked:family,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] You asked after my family last time, so I'll ask after your colony.</li>
+      <li>[us] We're well enough, all of us.</li>
+      <li>[them] Good, people at home ask after it now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_FamilyRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:family,colony:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How is your family keeping?</li>
+      <li>[them] Well, and they'd like to hear I sat with your colony's people out here.</li>
+      <li>[us] Now you can say you have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_WarStillKnown</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:still,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is the fighting with {THEN} still going on?</li>
+      <li>[them] Still, and people at home wonder which side your colony would take.</li>
+      <li>[us] Our own, as long as we can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_GoodWord</defName>
+    <topic>callback</topic>
+    <when>talked:goodword,colony:known,!colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I put in that good word for you, as I said I would.</li>
+      <li>[us] Thank you, did it land?</li>
+      <li>[them] Your colony's name did most of the work.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_RoadKnown</defName>
+    <topic>callback</topic>
+    <when>talked:road,colony:known,!colony:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] On the road here people asked where I was going.</li>
+      <li>[us] And when you told them?</li>
+      <li>[them] Some knew your colony by name, and wished me a good visit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_RaidInfamous</defName>
+    <topic>callback</topic>
+    <when>talked:raid,colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Since that raid we talked about, have things been quieter?</li>
+      <li>[us] A little.</li>
+      <li>[them] People at home say your colony brings trouble on itself, I'm sorry to say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_HarvestKnown</defName>
+    <topic>callback</topic>
+    <when>talked:harvest,colony:known,!colony:infamous,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Did the harvest come in?</li>
+      <li>[them] It did, and at the market people asked whether your colony had any to sell.</li>
+      <li>[us] Tell them to come and ask us themselves.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_ColonyName_CB_FavourKnown</defName>
+    <topic>callback</topic>
+    <when>talked:favour,colony:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] About that favour we spoke of.</li>
+      <li>[us] Yes?</li>
+      <li>[them] My people would sooner owe your colony than most, given its name.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

@@ -117,20 +117,24 @@ public static class MatchTests
 
         C(MatchMath.GiftValue(0f) == 100 && MatchMath.GiftValue(100f) == 250 && MatchMath.GiftValue(50f) == 175 && MatchMath.GiftValue(500f) == 250, "gifts by their town's fortune, 100 to 250");
         C(MatchMath.GiftCount(150f, 10f) == 15 && MatchMath.GiftCount(5f, 50f) == 1 && MatchMath.GiftCount(100f, 0f) == 0, "how many make up a gift");
-        C(MatchMath.KinGiftValue(50f) == 58, "the kin's gift each season, about a third of a match's");
+        C(MatchMath.TownGiftValue(50f) == 58, "their town's gift each season, about a third of a match's");
 
         // ---------------- While it holds ----------------
 
         C(MatchMath.RegardBonus == 15, "their notables think 15 better of the colony while it holds");
-        C(!MatchMath.KinGiftDue(-1f, 0f, 14.9f) && MatchMath.KinGiftDue(-1f, 0f, 15f) && !MatchMath.KinGiftDue(20f, 0f, 34f) && MatchMath.KinGiftDue(20f, 0f, 35f),
-            "their kin's gift once a season, from the wedding");
+        C(!MatchMath.TownGiftDue(-1f, 0f, 14.9f) && MatchMath.TownGiftDue(-1f, 0f, 15f) && !MatchMath.TownGiftDue(20f, 0f, 34f) && MatchMath.TownGiftDue(20f, 0f, 35f),
+            "their town's gift once a season, from the wedding");
         C(!MatchMath.Warns(1.9f, 0f) && MatchMath.Warns(2f, 0.2f) && !MatchMath.Warns(5f, 0.3f), "a camp hidden two days or more: their letter, one day in four");
         C(!MatchMath.PactAgain(true, false, 999f) && !MatchMath.PactAgain(false, true, 999f) && !MatchMath.PactAgain(false, false, 59f) && MatchMath.PactAgain(false, false, 60f),
             "the alliance makes its pact again a year after the last closed; never with the Empire (decision 9), never two");
 
         // ---------------- Its ends and the bad sides ----------------
 
-        C(MatchMath.EndsAtDeath(false) && !MatchMath.EndsAtDeath(true), "a spouse's death ends it, unless a child of the two lives (decision 8)");
+        // The player's decision of 5 November 2026 (the colony is the family, never a dynasty): a bond between the colony and
+        // their people made through one marriage. A spouse's death ends it, a child of the two or not; a grudge only when the
+        // colony was to blame.
+        C(MatchMath.GrudgeAtDeath(MatchWrong.Killed) && MatchMath.GrudgeAtDeath(MatchWrong.Executed) && !MatchMath.GrudgeAtDeath(MatchWrong.None),
+            "a spouse's death ends the alliance, with a grudge only when the colony was to blame");
         C(MatchMath.DiedRegard(false, true, true) == 0, "a death away from the colony: nobody's fault");
         C(MatchMath.DiedRegard(true, false, false) == -3 && MatchMath.DiedRegard(true, true, false) == -15 && MatchMath.DiedRegard(true, false, true) == -15,
             "a death at the colony: a little if sheltered and tended, much in the open or untended");
@@ -143,7 +147,6 @@ public static class MatchTests
         C(MatchMath.SoldAway(true, false, false) && !MatchMath.SoldAway(false, false, false) && !MatchMath.SoldAway(true, true, false),
             "sold: another people's, not held as a prisoner");
         C(!MatchMath.SoldAway(true, false, true), "carried off by raiders and gone over to them in the game's captivity: no wrong of the colony's");
-        C(MatchMath.PassesDown(true, true) && !MatchMath.PassesDown(false, true) && !MatchMath.PassesDown(true, false), "the grudge passes to the next head once its holder is gone");
         C(MatchMath.PartedRegard < 0 && MatchMath.CalledOffRegard < MatchMath.PartedRegard && MatchMath.WrongedRegard < MatchMath.CalledOffRegard && MatchMath.DeclinedRegard < 0
           && MatchMath.DeclinedRegard > MatchMath.PartedRegard, "a match declined costs little, parting more, breaking it off more, a spouse wronged most");
         string memory = Code("World/FactionMemory.cs");
@@ -159,7 +162,7 @@ public static class MatchTests
         C(MatchMath.LivesOf(MatchMath.LivesKey(MatchHome.Theirs)) == MatchHome.Theirs && MatchMath.LivesOf(MatchMath.LivesKey(MatchHome.Colony)) == MatchHome.Colony
           && MatchMath.LivesOf(null) == MatchHome.Colony, "where they live, kept in the tie");
         C(MatchMath.ParseTopic(MatchMath.Topic(12, 34), out int o, out int t, out int nt, out int g) && o == 12 && t == 34 && nt == -1 && g == -1, "a letter's topic: a colonist and one of theirs");
-        C(MatchMath.ParseTopic(MatchMath.HouseTopic(12, 7, 2), out o, out t, out nt, out g) && o == 12 && t == -1 && nt == 7 && g == 2, "or one of a notable's house, made when they agree");
+        C(MatchMath.ParseTopic(MatchMath.HouseTopic(12, 7, 2), out o, out t, out nt, out g) && o == 12 && t == -1 && nt == 7 && g == 2, "or one of the town a head speaks for, made when they agree");
         C(!MatchMath.ParseTopic("match:x", out _, out _, out _, out _) && !MatchMath.ParseTopic("pact:defence:3", out _, out _, out _, out _), "anything else is no topic");
         foreach (MatchHome h in Enum.GetValues(typeof(MatchHome)))
             C(MatchMath.ParseAsk(MatchMath.AskCode(h), out var back) && back == h, $"where they live ({h}) asked in the letter and read back");
@@ -215,8 +218,16 @@ public static class MatchTests
         C(Code("Diplomacy/Feasts.cs").Contains("p.purpose == FeastPurpose.Wedding ? \"weddingarrive\" : \"feastarrive\"")
           && Regex.Matches(File.ReadAllText(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_FeastsMore.xml")), @"<li>\[weddingarrive,").Count >= 4,
             "a wedding's guests answer the welcome at the gate in words of their own");
-        C(matches.Contains("ChildOf(") && matches.Contains("t.terms.count = 1"), "a child of the two keeps it after a death");
-        C(matches.Contains("Tie.Kind.Grudge") && matches.Contains("MatchMath.GrudgeKey") && matches.Contains("PassesDown("), "a grudge for a spouse wronged, carried down to the next head");
+        string alliance = Code("Diplomacy/MatchAlliance.cs");
+        C(!alliance.Contains("ChildOf(") && !matches.Contains("t.terms.count = 1") && Regex.IsMatch(alliance, @"if \(t\.terms\.count > 0\)\s*\{\s*End\(t, null, null\);"),
+            "no child keeps the alliance after a death; an older save's held through one ends without a word");
+        C(matches.Contains("Tie.Kind.Grudge") && matches.Contains("MatchMath.GrudgeKey") && alliance.Contains("Grudge(Refs.Of(f), f, home,") && !alliance.Contains("PassesDown(")
+          && !alliance.Contains("head?.Person ?? Refs.Of(f)"), "a grudge for a spouse wronged is their people's, handed down no line");
+        C(Regex.IsMatch(alliance, @"if \(t\.from\.kind == RefKind\.People\) continue;\s*t\.from = Refs\.Of\(f\);\s*WorldLedger\.Touch\(t\);"),
+            "an older save's grudge held by their head is made their people's, quietly");
+        string makeOfTown = Regex.Match(matches, @"public static Pawn MakeOfTown[\s\S]{0,1200}?\n        }").Value;
+        C(makeOfTown.Length > 0 && !makeOfTown.Contains("PawnRelationDefOf.Parent") && !makeOfTown.Contains("NameTriple"),
+            "one of a head's town made for a match: nobody's child, a name of their own, never of the head's house");
         C(Regex.IsMatch(Code("Diplomacy/MatchHooks.cs"), @"\[HarmonyPatch\(typeof\(Pawn\), nameof\(Pawn\.Kill\)\)\]\s*public static class Patch_MatchKilled") && Code("Diplomacy/MatchHooks.cs").Contains("RimfolkPatches.On"),
             "a death by the colony's hand heard as it happens, with the deeper hooks");
         C(Code("Diplomacy/Diplomacy.cs").Contains("Matches.Hourly(now)") && Code("Diplomacy/Diplomacy.cs").Contains("Matches.Daily(now)"), "the hour and the day ride on diplomacy's");
@@ -227,11 +238,11 @@ public static class MatchTests
             "the letter purpose and the face-to-face act in the frames");
         C(Code("Text/Facts/FactsLedger.cs").Contains("MatchFacts(s, f);"), "the facts ask the marriages'");
         C(Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.Rows(f, home)") && Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.SeekAct(f)")
-          && Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.AwayRows()") && Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.InlawRows()")
-          && Code("Diplomacy/DiplomacyModel.cs").Contains("Matches.HereAs(p)"), "the Peoples view's rows and act, Here and away, the in-laws among the houses");
+          && Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.AwayRows()") && Code("Diplomacy/DiplomacyModel.cs").Contains("MatchPanels.BondRows()")
+          && Code("Diplomacy/DiplomacyModel.cs").Contains("Matches.HereAs(p)"), "the Peoples view's rows and act, Here and away, the peoples bound to the colony by marriage");
         string panels = Code("Diplomacy/MatchPanels.cs");
-        C(panels.Contains("CardKind.Tie") && panels.Contains("CardKind.House") && panels.Contains("CardKind.Person") && panels.Contains("Inbox.Register(\"match\", InboxSection.Needs"),
-            "the Tie, House and Person cards; the match proposed in Needs you");
+        C(panels.Contains("CardKind.Tie") && !panels.Contains("CardKind.House") && panels.Contains("CardKind.Person") && panels.Contains("Inbox.Register(\"match\", InboxSection.Needs"),
+            "the Tie and Person cards (no House card since 5 November 2026); the match proposed in Needs you");
         string told = string.Concat(Directory.GetFiles(Path.Combine(src, "Diplomacy"), "Match*.cs").Where(f => !f.EndsWith("MatchDebug.cs")).Select(File.ReadAllText));
         C(!Regex.IsMatch(told, @"Messages\.Message\(|Find\.LetterStack\.ReceiveLetter\("), "everything told through Tell (the dev actions' notes aside)");
         string settings = Code("CouncilSettings.cs");
@@ -274,7 +285,7 @@ public static class MatchTests
             "words by their ways");
         var talks = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_Matches.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
         C(talks.Count >= 20 && talks.Count <= 40 && talks.All(x => x.Element("topic")?.Value == "marriage"), $"talk pieces about marriages ({talks.Count})");
-        foreach (var tag in new[] { MatchMath.Tag, MatchMath.OursTag, MatchMath.TheirsTag, MatchMath.YouTag, MatchMath.AgreedTag, MatchMath.ChildTag, MatchMath.WrongedTag })
+        foreach (var tag in new[] { MatchMath.Tag, MatchMath.OursTag, MatchMath.TheirsTag, MatchMath.YouTag, MatchMath.AgreedTag, MatchMath.WrongedTag })
             C(talks.Any(x => (x.Element("when")?.Value ?? "").Split(',').Contains(tag)), $"something is said on {tag}");
         C(talks.Any(x => x.ToString().Contains("their:tribal")) && talks.Any(x => x.ToString().Contains("their:spacer")) && talks.Any(x => x.ToString().Contains("their:empire")),
             "talk by their ways, the Empire's own");
@@ -284,6 +295,26 @@ public static class MatchTests
         foreach (var d in new[] { "Rimfolk_MatchOffer", "Rimfolk_MatchLeave" })
             C(defs.Contains("<defName>" + d + "</defName>") && Code("Diplomacy/Matches.cs").Contains(" " + d + ";"), $"{d} is defined and in MatchDefOf");
         C(File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Diplomacy.xml")).Contains("marriage alliance"), "the Almanac's diplomacy page tells of it");
+        // The player's decision of 5 November 2026: no talk or letter says match:child (it is set no more), and the pieces
+        // and lines that make their people the colony's in-laws or family, or hand a grudge down, are retired.
+        var allTalk = Directory.GetFiles(Path.Combine(root, "Defs", "OutsiderTalkDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.OutsiderTalkDef")).ToList();
+        C(allTalk.All(x => !(x.Element("when")?.Value ?? "").Split(',').Contains(MatchMath.ChildTag)) && !File.ReadAllText(Path.Combine(src, "Diplomacy", "FactsMatch.cs")).Contains("MatchMath.ChildTag"),
+            "match:child is set no more, and nothing asks it");
+        var names = allTalk.Select(x => x.Element("defName")?.Value).ToHashSet();
+        C(OutsiderTalkMath.Retired.All(names.Contains) && OutsiderTalkMath.Retired.Contains("Rimfolk_OT_Match_WrongedHeir") && OutsiderTalkMath.Retired.Contains("Rimfolk_OT_MatchMore_InLaws"),
+            "the retired pieces are still in the defs (the grudge handed to the heir, the in-laws)");
+        var allLines = Directory.GetFiles(Path.Combine(root, "Defs", "OutsiderTalkDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Descendants("li").Select(l => l.Value)).ToHashSet();
+        C(OutsiderTalkMath.RetiredLines.All(allLines.Contains), "the retired talk lines are still in the defs, word for word");
+        var errs = new List<string>();
+        var heir = OutsiderTalkMath.Parse("Rimfolk_OT_Match_WrongedHeir", "marriage", null, 1f, "match:wronged", new[] { "[them] a", "[us] b" }, null, null, null, errs);
+        C(heir.retired, "a retired piece is parsed as retired, so it never fits");
+        var bonds = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_ColonyBonds.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        C(bonds.Count >= 8 && bonds.SelectMany(x => x.Descendants("li")).All(l => !Regex.IsMatch(l.Value, @"\b(in-laws?|house|kin)\b", RegexOptions.IgnoreCase)),
+            "the bonds' own talk: their people and their town, never in-laws, a house or kin");
+        var bondLines = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_ColonyBonds.xml")).Descendants("li").Select(l => l.Value).ToList();
+        C(bondLines.Count >= 20 && bondLines.All(l => !Regex.IsMatch(l, @"\b(in-laws?|house|kin|family)\b", RegexOptions.IgnoreCase)), "the bonds' own letters and words, never in-laws, a house, kin or family");
+        string keyedMatches = string.Concat(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "Rimfolk_Match*.xml").Select(File.ReadAllText));
+        C(!Regex.IsMatch(keyedMatches, @"in-laws|count the colony as family|passes to the next|kin send|<CC_Match_Child"), "the keyed words: no in-laws, no family, no grudge handed down, the gift from their town");
         return n;
     }
 }

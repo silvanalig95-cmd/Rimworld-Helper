@@ -491,8 +491,9 @@ wishPh.UnionWith(new[]
     "WORD",
     // Wards and hostages (Diplomacy/FactsWards.cs).
     "WARD", "HOSTAGE", "GUARDIAN",
-    // House renown (Diplomacy/FactsRenown.cs): the speaker's house, what it is known for, how far, the house of the one spoken to.
-    "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
+    // The colony's renown (Diplomacy/FactsRenown.cs): what it is known for, how far, and the speaker's own name for their
+    // deeds. The houses' HOUSE and THEIRHOUSE went with them (5 November 2026): nothing fills them.
+    "KNOWNFOR", "RENOWN", "KNOWNAS",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.
