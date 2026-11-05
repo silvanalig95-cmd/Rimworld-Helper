@@ -253,8 +253,41 @@ public static class GroupTests
             Check(GroupMath.Conform(0f, 0.6f, 0.02f) == 0.02f && GroupMath.Conform(0.59f, 0.6f, 0.02f) == 0.6f, "conformity is a small step, never past the view");
         }
 
+        // ---------- Names: what they share, never one of them ----------
+        {
+            ShareFit Fit(string key, ShareIdea idea, float fit = 0f, int order = 0) => new ShareFit { key = key, idea = idea, fit = fit, order = order };
+            var ranked = GroupNaming.Ranked(new[]
+            {
+                Fit("friends", ShareIdea.Friends), Fit("table", ShareIdea.Habit, order: 1), Fit("fire", ShareIdea.Habit, order: 0),
+                Fit("night", ShareIdea.Hours, 0.5f), Fit("fields", ShareIdea.Work, 0.75f), Fit("merry", ShareIdea.Likeness, 0.6f)
+            }).Select(s => s.key).ToList();
+            Check(string.Join(",", ranked) == "fields,night,fire,table,friends",
+                $"what most of them share comes first (the more of them, the sooner), then their habits in order, then friendship alone ({string.Join(",", ranked)})");
+            Check(!GroupNaming.Holds(Fit("night", ShareIdea.Hours, 0.4f)) && GroupNaming.Holds(Fit("night", ShareIdea.Hours, 0.5f)), "the night hours name a group when half of them keep them");
+            Check(!GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, 0.6f)) && GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, 0.7f)), "a side of character, when two in three have it");
+            var tie = GroupNaming.Ranked(new[] { Fit("merry", ShareIdea.Likeness, 0.75f), Fit("fields", ShareIdea.Work, 0.75f), Fit("night", ShareIdea.Hours, 0.75f) }).Select(s => s.key).ToList();
+            Check(string.Join(",", tie) == "night,fields,merry", $"on a tie, the hours before work before character ({string.Join(",", tie)})");
+            Check(GroupNaming.Ranked(new[] { Fit("friends", ShareIdea.Friends) }).Count == 1 && GroupNaming.Ranked(null).Count == 0, "friendship alone always holds");
+
+            var options = new List<string> { "the fireside circle", "the hearth circle", "the fire-sitters" };
+            string a = GroupNaming.Pick(options, new List<string>(), 7);
+            Check(a != null && a == GroupNaming.Pick(options, new List<string>(), 7), "a name is picked the same way for the same group");
+            string b = GroupNaming.Pick(options, new List<string> { a.ToUpperInvariant() }, 7);
+            Check(b != null && b != a, "never a name another group has, whatever its case");
+            Check(GroupNaming.Pick(options, options, 3) == null, "none when every name is taken");
+            Check(GroupNaming.Pick(options, null, -5) != null, "a negative seed still picks");
+
+            var old = new[] { "{ANCHOR}'s lot", "{ANCHOR}'s crowd", "{ANCHOR}'s circle", "{ANCHOR}'s friends", "{ANCHOR}'s table", "{ANCHOR}'s hunters" };
+            Check(GroupNaming.AfterSomeone("Stace's friends", old) && GroupNaming.AfterSomeone("Hector's lot (2)", old) && GroupNaming.AfterSomeone("Ann Marie's hunters", old),
+                "the old names after one person are found, with a number or a two-word name");
+            Check(!GroupNaming.AfterSomeone("the fireside circle", old) && !GroupNaming.AfterSomeone("'s friends", old) && !GroupNaming.AfterSomeone("the jokers' corner", old),
+                "names of what they share are not");
+            Check(!GroupNaming.AfterSomeone("the hunters", new[] { "the hunters" }), "a pattern with nobody in it never matches");
+            Check(GroupNaming.WithoutNumber("the hunters (2)") == "the hunters" && GroupNaming.WithoutNumber("the hunters (b)") == "the hunters (b)", "a taken name's number comes off");
+        }
+
         // ---------- The defs ----------
-        var docs = Directory.GetFiles(Path.Combine(root, "Defs", "GroupDefs"), "*.xml").Select(f => XDocument.Load(f)).ToList();
+        var docs =Directory.GetFiles(Path.Combine(root, "Defs", "GroupDefs"), "*.xml").Select(f => XDocument.Load(f)).ToList();
         var all = docs.SelectMany(d => d.Root!.Elements()).ToList();
         var habits = all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupHabitDef").Select(e => (string)e.Element("defName")).ToHashSet();
         var norms = all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupNormDef").Select(e => (string)e.Element("defName")).ToHashSet();
