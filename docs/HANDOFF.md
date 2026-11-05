@@ -6,6 +6,87 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- text pass: diplomacy round d (the content pass beside 0.99.0 and 0.100.0, house renown and against their nature, after the
+  0.99.1 and 0.100.1 reviews; no version of its own: its points go with the next round). First the words against the
+  code, each case checked in the code and fixed where it was wrong; a shipped line's text and tags stay (textcheck against
+  the start commit clean), so a shipped line found untrue in a case its tags let through now asks for more where it is
+  picked: a conversation piece by `OutsiderTalkMath.AlsoWhen` (as round c's), a flavour pool's line by the new
+  `Lean/ShippedLines.cs` (pure: its text as written and the condition it needs, or retired; `Flavor.Match` asks it once
+  per line and keeps it on `LineTags.Parsed.also`), the better words in new files. Fixed: (1) renownup's "a song with our
+  name in it" (medieval), "made the papers" (industrial), "a nod in the markets", "the other camps ... at their fires" and
+  "known well beyond the colony" were said as a name first reached a town nearby, whose words are the next town's market,
+  the next town, the nearest camp's fire: they ask `house:renowned` now, and the town's band has lines of its own by age;
+  (2) renowndown's "The singers have found someone else to sing about" was said of a name only ever talked of in the next
+  town: the bubble carries `house:wasrenowned` for a name fallen from the region's band or wider (`RenownMath.BubbleTag`,
+  passed by `Renown.Told` through `Outsiders.Say`'s new `also`), and the singers ask it; (3) {RENOWN} to the Empire's
+  people was in their tech age's words ("carried on every channel in the region"): the bands' table has the Empire's row
+  (`CC_Renown_Band_*_Empire`: "known to the nearest town's nobility", "spoken of with honor in the region's noble
+  houses", "honored at court and far beyond it", "spoken of without honor at court"; `RenownMath.BandKey`'s `empire`,
+  `FactsRenown` by `Ages.IsEmpire`), and the unused `RenownWords.Form` is gone; (4) their answer to the colony's
+  condolences from one of a renowned house said "A loss to {HOUSE} is felt here too", where the loss is theirs (the
+  letter's topic): retired, its better words beside; (5) "My family hasn't forgotten", "a grudge between my house and your
+  colony" (two talk pieces) and "our house" (two letter lines) were said by any of them with the feud's tag, which is set
+  too for one who heads no house (their people's grudge about one of the colonist's house): only with `them:house` now,
+  and words for one with none ("my people", "us"); (6) the tribal "Then ours is still earning" (a name not yet known) was
+  said of a house known for its wrongs: `!house:infamous`, as its plain fellow; (7) `CC_Renown_Up_3` "have started to
+  speak of" was told for a name already known moving to a wider band: rewritten ("More people ... than before"); (8) a
+  hostage's close kin and a ward's parents "saw" them given or sent as they walk off the map, which nothing shows them
+  watching: "had to let Bran go to the Lenlia as the colony's hostage" (rewritten in place, the page's too); (9) a truce
+  sworn by word with no envoy at the gate read "saw the colony swear a truce" for the avenger at home: `Truces.Swear`
+  passes it (`Nature.TruceWithFoe`'s `byWord`, the role `Word`: "heard the colony had sworn a truce with the Lenlia by
+  word"); (10) a pact's call refused by the council's answer read "broke the colony's word" for the speaker who only sent
+  the refusal: the role `Call` ("sent the colony's refusal when the Lenlia called on the pact"); (11) two marks' news,
+  told as the act happens: "has been quieter since swearing" (no time has passed) and "seems more at ease among
+  strangers" (they have just walked off the map), rewritten in place; (12) the setting's tooltip and the Almanac's page
+  said "their close kin" (the parents, the captive's kin, the avenger) without "there": now "there to see them go",
+  "there", "at that home"; the tooltip names the speaker who sent a pact call's refusal and the challenger still there,
+  the Almanac's renown says the bubble only as a name carries further or fades and the Empire's court words. Then
+  variety, every line said only on facts the providers set (FactsRenown, the ties, FactsColony's deeds), each checked in
+  code. Talk, 77 pieces (`Rimfolk_OutsiderTalks_RenownMore.xml`; the round's own file keeps its fifty): a name known in a
+  town nearby 5, across the region 5, among every people 5, each by their ways (tribes, the middle ages, industrial,
+  spacers, the Empire's court, the spacer pieces never to the Empire), not yet known 4, by who they are 4 (a trader, their
+  envoy, a first meeting, a titled colonist to the Empire), known for each of the six by two to four peoples' ways 21,
+  known for beside what their people remember (deed:feasted, tended, traded, levies) 4, known for its wrongs by their
+  ways 4, their house (by their ways, both families, a colonist of no house, a renowned house) 7, feuds 5 (three from one
+  who heads no house, never "my house"), callbacks on hunger, cold, ill, leader, head, trade, work, faith, family,
+  situation and war 13; "your family's {KNOWNFOR}" only for the kinds whose words are nouns there. Letters, 43
+  (`Rimfolk_Lines_RenownMore.xml`, their words): greetings by band and ways, known-for, infamy, to a house's head and in a
+  feud 28, news 3, warnings 3, condolences as their own loss 3, help 3 and invitations 3 (promised only in a granting
+  tone). Bubbles, 42: renownup 27 (the town's band, the region's and the peoples' in each age's words, by known-for, kind),
+  renowndown 12 (from the next town's talk and from the region's, in each age's words), wordyes 3. Keyed, 91: against their
+  nature 75 (`Rimfolk_Nature_Variants.xml`: every act and role three wordings 34, the sides 9, the frame 4, the news six
+  wordings of a weight and five of an ease 6, the council's questions three each 12, the marks' news three each 8; the two
+  new roles in `Rimfolk_Nature.xml`), house renown 16 (`Rimfolk_Renown_VariantsMore.xml`, each news line five or six
+  wordings 12; the Empire's four bands). Code for the words: the act, side and frame read with `T` and kept on the heart as
+  before (`Nature.Why`), a question's line by `TextVariants.VaryBy` (new: one wording kept per colonist and act, so the
+  letter's answer and the Dilemmas page agree), a mark's news among its keyed fellows (`PersonaMarks.NewsLine`,
+  `CC_Mark_News_DEFNAME_2`..., for any mark), the def validator knows the two roles. Files: `Lean/ShippedLines.cs`,
+  `Lean/LineTags.cs`, `Flavor.cs`, `Outsiders/Outsiders.cs`, `Outsiders/OutsiderTalkMath.cs`, `Diplomacy/RenownMath.cs`,
+  `RenownWords.cs`, `FactsRenown.cs`, `Renown.cs`, `Nature.cs`, `Truces.cs`, `CallsToArms.cs`, `Text/TextVariants.cs`,
+  `Persona/Marks.cs`, `Tools/DefValidator/Program.cs`, the word files above, `Rimfolk_Nature.xml`, `Rimfolk_Renown.xml`,
+  `Rimfolk_Renown_Variants.xml`, `Rimfolk_PersonaMarks_Nature.xml`, the Almanac's diplomacy page; DESIGN.md says each
+  changed rule (and "Shipped words found untrue" under Facts). Tests: `RenownTests` (the court's row, the bubble's tag,
+  every shipped line still in the defs word for word with a known condition, the feud and "still earning", the new talk
+  by band and ways, the bubbles by band and age, no song for the town's band, the letters' granting tones, condolences
+  as their loss), `NatureTests` (every act, role, side, frame, question and mark's news in two wordings or more with the
+  original's placeholders, no guessed pronoun, the kin had to let them go, a truce by word heard of, a pact's call
+  refused, the marks' news as it happens). Not confirmed, left as they are: the feud's tag cannot tell a grudge the one
+  spoken to holds from their people's about one of the colonist's house, so with `them:house` "my house" is said for
+  both; the shipped `Rimfolk_OT_Renown_Spacer` ("comes up on our channels") is still said to the Empire's people (they are
+  of the spacer age) beside their court piece, its words true of them; `Rimfolk_OT_Renown_Town` ("heard of {HOUSE} back
+  home") is said by a visitor from any town, though the band is a town nearby (the new medieval one asks `town:near`);
+  `ToneLines.Pick`'s last fallback (any line when none fits) could give a retired line, but both pools fixed here are
+  picked only through `PickTagged`; "in front of everyone" and "with everyone watching" for a challenge faced, the
+  contest's crowd not seen in game; the marks' "seems less afraid" and "seems to trust words less", told as the act
+  happens, kept as a mark's change is told elsewhere. Still thin, and facts that would help: the feud's holder as a tag
+  (`them:house:feud:own`); letters of stage 2's purposes (a match, a ward, an envoy, a pact, a truce) with a house's name,
+  whose tones mean different outcomes by purpose (to read each before writing); which town knows a name at the town's
+  band. To look at in game: a house's name reaching a town nearby in a medieval colony (the bubble names the next town's
+  market, never a song) and fading again (no singers); talk with a visitor of the Empire about a renowned house (the
+  court's words for {RENOWN}); a feud's visitor who heads no house; a hostage given with a warm brother at home (the heart's
+  page: "had to let Bran go"); a truce sworn by word with an avenger at home; a pact's call refused; a proud speaker's
+  oath and its mark's news; the council's oath question twice for the same speaker (the same wording in the letter and on
+  the Dilemmas page).
 - 0.100.1, against their nature, checked over (the release 0.100.0, 2d.2, read against its code, every place it hooks into and the
   1.6 game). Fixed, each checked in the code and the game's
   source: the strain mood and an episode's letter put the act's words into their own sentence (`HeartView.SourcesText`
