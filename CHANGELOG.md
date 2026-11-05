@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fealty and tasks, checked over
+
+*5 November 2026, version 0.97.1*
+
+- Fixed: the quartermaster's cart for tribute owed counts as soon as it is sent; it no longer goes out again and again while the debt stands, and Send what is owed no longer pays it twice.
+- Fixed: a vassal's carter now brings the dues the quartermaster asked for.
+- Fixed: an informer the keeper pays now gives the keeper a chance at their secret, and samples their trader fetches move the trade on.
+- Fixed: a vassal whose people have turned on the colony no longer sends its levies, and the speaker no longer walks out to the liege's lord at the gate while a raid is on.
+- Fixed: attacking the liege breaks the oath of every home sworn to them.
+- A hostage given for a defense pact now goes home at the end of each pact year, even when the pact is renewed; their renewal letter may ask for a new one.
+
 ## Fealty and vassals
 
 *5 November 2026, version 0.97.0*

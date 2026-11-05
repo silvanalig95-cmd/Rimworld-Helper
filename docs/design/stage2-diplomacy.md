@@ -465,7 +465,8 @@ The Empire: a titled noble marries only a titled colonist (decision 9).
 - *Our ward with them*: a youth of the colony goes to learn what their people are good at, away for a year, writes
   home, and comes back with the skill and a friend there.
 - *Hostages*, given for a pact or a truce (adults only): theirs lives at the colony as a lodger for the term, ours at
-  their town. At the end both go home. If their side breaks the terms, their hostage is the colony's to decide about:
+  their town. At the end both go home (a pact's at the end of each pact year, even when the pact is renewed; a renewal
+  may ask for a new hostage as its own term). If their side breaks the terms, their hostage is the colony's to decide about:
   send them home anyway (`forgave`), arrest them (the game's own arrest makes them a prisoner, and ransom applies), or
   take them in if they would join. If the colony breaks them, ours is held by their people (decision 10).
 

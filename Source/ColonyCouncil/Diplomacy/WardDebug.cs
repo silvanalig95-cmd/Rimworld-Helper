@@ -226,5 +226,22 @@ namespace ColonyCouncil
             else Pacts.End(t, Tie.State.Ended, null);
             Say("the " + t.kind.ToString().ToLowerInvariant() + " ended; the hostages go home within the hour");
         }
+
+        [DebugAction("Rimfolk", "Hostages: the pact's year out now (their renewal)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugPactYear()
+        {
+            var h = DiplomacyBook.Instance?.Existing(Home);
+            var w = h?.wards.FirstOrDefault(x => x != null && x.Hostage && (x.stage == WardStage.Here || WardsAbroad.There(x)) && Pacts.Get(x.guarantees)?.Live == true);
+            var t = Pacts.Get(w?.guarantees ?? -1);
+            if (w == null || t == null)
+            {
+                Say("no hostage under a live pact");
+                return;
+            }
+            w.until = Now;
+            t.terms.number = Now / (float)PactMath.DayTicks;
+            WorldLedger.Touch(t);
+            Say("the pact's year is out; " + w.name + " goes home and their renewal comes within the hour");
+        }
     }
 }

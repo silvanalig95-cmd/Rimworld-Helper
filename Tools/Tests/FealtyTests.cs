@@ -168,6 +168,19 @@ public static class FealtyTests
         C(Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Rows(f, home)") && Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Acts(f, home)"), "the people card's rows and acts");
         C(Code("UI/Region/LensModel.cs").Contains("Vassals.All()") && Code("UI/Region/LensModel.cs").Contains("WorldMechanics.OurVassals(home)"), "the Ours lens's marks and lines");
 
+        // ---------------- The round c review's fixes ----------------
+
+        string vassals = dip["Vassals.cs"];
+        C(vassals.Contains("Fealty.Paid(liege, Mathf.RoundToInt(count * def.BaseMarketValue));") && !vassals.Contains("trip.taken * trip.def.BaseMarketValue"),
+            "the quartermaster's cart for what is owed clears the debt when it is sent, as \"Send what is owed\" does (its trip is gone once the porter left)");
+        C(vassals.Contains("if (v.people == null || Diplomacy.Hostile(v.people)) return DipWords.P(\"CC_Dip_Why_War\"")
+          && vassals.Contains("if (v.people == null || v.people.defeated || Diplomacy.Hostile(v.people))"),
+            "no levies called from, or walking in for, a vassal whose people turned on the colony since");
+        C(dip["Fealty.cs"].Contains("Live().Where(x => LiegeOf(x) == f).ToList()"), "the colony's word broken breaks every home's oath to them");
+        C(vassals.Contains("t.nextTick = now + 3 * TaskMath.HourTicks;") && !vassals.Contains("if (now < t.nextTick) return;"),
+            "a vassal's carter brings the dues on the hour their answer set (the hour's own move of the next look no longer holds it back for ever)");
+        C(Code("Diplomacy/FealtyOath.cs").Contains("if (MapFacts.ThreatOn(home)) return;\n            SendSpeaker(f, x, home);"), "nobody is sent out to their lord at the gate while a raid is on");
+
         // ---------------- The save ----------------
 
         string book = dip["DiplomacyBook.cs"];
