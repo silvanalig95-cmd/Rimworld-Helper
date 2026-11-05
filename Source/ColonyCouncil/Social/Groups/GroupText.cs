@@ -15,8 +15,8 @@ namespace ColonyCouncil
         /// <summary>"the joker"; "one of them" for no role.</summary>
         public static string Role(GroupRole r) => ("CC_GroupRole_" + r).Translate().ToString();
 
-        /// <summary>What a role means, for tooltips.</summary>
-        public static string RoleTip(GroupRole r) => ("CC_GroupRoleTip_" + r).Translate().ToString();
+        /// <summary>What a role means, for tooltips (the anchor's in words of its own: a group is never named after them).</summary>
+        public static string RoleTip(GroupRole r) => (r == GroupRole.Anchor ? "CC_GroupRoleTip_AnchorCalls" : "CC_GroupRoleTip_" + r).Translate().ToString();
 
         public static Color RoleColor(GroupRole r)
         {
@@ -61,7 +61,7 @@ namespace ColonyCouncil
         }
 
         public static string Cohesion(float c) =>
-            (c >= 75f ? "CC_Group_Cohesion_Tight" : c >= 50f ? "CC_Group_Cohesion_Close" : c >= GroupMath.SplitBelow ? "CC_Group_Cohesion_Loose" : "CC_Group_Cohesion_Fraying").Translate().ToString();
+            (c >= 75f ? "CC_Group_Cohesion_Tight" : c >= GroupMath.CloseAt ? "CC_Group_Cohesion_Close" : c >= GroupMath.SplitBelow ? "CC_Group_Cohesion_Loose" : "CC_Group_Cohesion_Fraying").Translate().ToString();
 
         public static string Rivalry(float r) => (r >= 65f ? "CC_Group_Rivalry_Bad" : r >= GroupMath.RivalryShows ? "CC_Group_Rivalry_Some" : "CC_Group_Rivalry_Little").Translate().ToString();
 
@@ -70,25 +70,84 @@ namespace ColonyCouncil
 
         public static string Members(SocialGroup g) => TextUtil.JoinAnd(g.Pawns.Select(p => p.LabelShort).ToList());
 
-        /// <summary>The names a kind may give a new group, in the colony's era, with the one it gathers round put in.</summary>
-        public static List<string> NameOptions(GroupKindDef kind, Pawn anchor)
+        /// <summary>
+        /// The names a kind may give a new group, in the colony's era. A friends kind's are the old ones after its anchor
+        /// (for older saves only): none.
+        /// </summary>
+        public static List<string> NameOptions(GroupKindDef kind) => Fitting(kind?.binds == GroupBinds.Friends ? null : kind?.names);
+
+        /// <summary>The names a share may give a group, in the colony's era.</summary>
+        public static List<string> NameOptions(GroupShareDef share) => Fitting(share?.names);
+
+        private static List<string> Fitting(List<string> names)
         {
             var list = new List<string>();
-            if (kind?.names == null) return list;
+            if (names == null) return list;
             bool pods = ArrivedByPods();
-            foreach (var raw in kind.names)
+            foreach (var raw in names)
             {
                 if (raw.NullOrEmpty() || !Flavor.TechFits(raw)) continue;
                 string text = Flavor.Strip(raw, out var tags);
                 if (tags != null && tags.Contains("pods") && !pods) continue;
                 if (tags != null && tags.Contains("!pods") && pods) continue;
-                if (text.Contains("{ANCHOR}"))
-                {
-                    if (anchor == null) continue;
-                    text = Texts.Fill(text, ("ANCHOR", anchor.LabelShort));
-                }
+                // Never after one of them (the old names of a friends kind are for finding older saves).
+                if (text.Contains(GroupNaming.Someone)) continue;
                 list.Add(text);
             }
+            return list;
+        }
+
+        /// <summary>
+        /// A name for one of the older circles (with "Personalities and social life" off: friends round the best-connected
+        /// of them, worked out each day), never after one of them: one of the friendship names no other circle has, the
+        /// same for the same <paramref name="seed"/> (their leader's), else the first with a number.
+        /// </summary>
+        public static string CircleName(int seed, ICollection<string> taken)
+        {
+            var options = new List<string>();
+            foreach (var s in GroupShareDef.All)
+                if (s.idea == ShareIdea.Friends)
+                    options.AddRange(NameOptions(s));
+            string name = GroupNaming.Pick(options, taken, seed);
+            if (name != null) return name;
+            string first = options.FirstOrDefault() ?? "CC_Social_Cliques".Translate().ToString().ToLowerInvariant();
+            for (int n = 2; n < 50; n++)
+            {
+                string s = first + " (" + n + ")";
+                if (taken == null || !taken.Contains(s)) return s;
+            }
+            return first;
+        }
+
+        /// <summary>
+        /// How names after one person were made in older saves, as patterns (<see cref="GroupNaming.AfterSomeone"/>): a
+        /// friends kind's ("{ANCHOR}'s lot"), the older circles' ("Stace's friends"), and any kind's once its own names were
+        /// all taken ("Hector's hunters", with <paramref name="kind"/>'s label; every kind's when it's gone).
+        /// </summary>
+        public static List<string> AfterSomeonePatterns(GroupKindDef kind)
+        {
+            var list = new List<string>();
+            foreach (var k in GroupKindDef.All)
+                if (k.binds == GroupBinds.Friends && k.names != null)
+                    list.AddRange(k.names.Select(n => Flavor.Strip(n, out _)));
+            list.Add(GroupNaming.AsPattern("CC_Clique_Name".Translate().RawText, "PAWN"));
+            string nameOf = "CC_Group_NameOf".Translate().RawText;
+            foreach (var k in kind != null ? new List<GroupKindDef> { kind } : GroupKindDef.All)
+                if (!k.label.NullOrEmpty())
+                    list.Add(GroupNaming.AsPattern(nameOf, "ANCHOR", k.label));
+            return list;
+        }
+
+        /// <summary>Every name a kind or a share gives (era tags off): nobody's, whatever they look like.</summary>
+        public static List<string> GivenNames()
+        {
+            var list = new List<string>();
+            foreach (var k in GroupKindDef.All)
+                if (k.binds != GroupBinds.Friends && k.names != null)
+                    list.AddRange(k.names.Select(n => Flavor.Strip(n, out _)));
+            foreach (var s in GroupShareDef.All)
+                if (s.names != null)
+                    list.AddRange(s.names.Select(n => Flavor.Strip(n, out _)));
             return list;
         }
 

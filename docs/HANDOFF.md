@@ -6,6 +6,60 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.101.2, groups explained and friendship groups renamed (the player's report, 5 November 2026): "there seem to be regular
+  gatherings for 'stace's friends', I'm not sure what the point is and why for stace's friends specifically". The
+  player approved two fixes. (1) The gathering says what it is: a group's gathering (the anchor's call, `GroupHabits`)
+  began as "An evening at the fire for Stace's friends: the fire is lit, and the colony gathers by the fire.", though
+  only the group's people are invited; now its own words (`GroupHabits.BeginText`, `Does`;
+  `Rimfolk_Groups_Gatherings.xml`): "An evening at the fire for the fireside circle: the fire is lit, and their anchor,
+  Stace, gathers them by the fire. They are friends, and keep their evenings at the fire together. Those who come feel
+  they belong, and their strain eases a little." (the anchor named only when they lead it on the map). This week's
+  row adds its people and "Every week or two, while the group is close, their anchor, Stace, calls them all together
+  like this: ..." (`GroupHabits.Tip` in `PlayOutText.Body`); its end says "... is over: 4 of them came, and the group is
+  closer for it." (`play.outcome`, as the faith evenings do); the founding news adds once what keeping habits does and
+  whom the anchor calls to what (`GroupHabits.Formed`); a habit's pill on the card says what keeping it does and
+  whether the anchor calls them to it (`HabitTip`); the anchor's tip is `CC_GroupRoleTip_AnchorCalls` (the shipped
+  one said "the group often bears their name"). The label on the map stays short ("{HABIT} for {GROUP}"). The words
+  are the same in every age; the age shows in the names. (2) Friendship groups are named for what they share, never
+  after one of them: `GroupShareDef` (`Rimfolk_GroupShares.xml`, 29: nine habits with their place, the night hours,
+  ten works, eight sides of character no kind is named for, friendship; 3 to 8 names each, by era) ranked by the pure
+  `GroupNaming` (the wip-groups branch's start, kept and finished: "most of them" is more than half for hours and
+  work, two in three for a side; a name a kind or share gives is nobody's, so the medieval hunters' "the huntsmen's
+  table" is never taken for a name after someone). Examples: tribal "the fire circle", "the shared pot", "the
+  moon-watchers", "the spear circle"; medieval "the hearth circle", "the bench end", "the fellowship", "the reading
+  circle"; industrial "the fire-pit crowd", "the mess corner", "the graveyard shift", "the rifle circle"; spacer as
+  industrial and "the galley table"; any age "the fireside circle", "the long table", "the night birds", "the harvest
+  circle", "the calm circle", "the old friends". A friendship group's card line is its share's ("They are friends, and
+  most of them keep the night hours."). A kind whose own names are all taken is named the same way (it was "Hector's
+  hunters", `CC_Group_NameOf`). Older saves: a group whose name reads as one after someone (the friends kind's old
+  names, kept in the def only to find them; `CC_Group_NameOf`; `CC_Clique_Name`) is renamed once on load
+  (`GroupTracker.LoadedGame`, and the day's pass if groups were off then: `GroupLife.RenameOld`), quietly: no news, no
+  history line, its why, roles, history and everything else unchanged (past groups, journals and memories keep the
+  name they had). The older circles (social life off, rebuilt daily) take a friendship name the same way
+  (`GroupText.CircleName`, stable while their leader leads them). (3) The frequency: the code called a group at
+  cohesion 35, which the card calls "loose" (25 to 49), where the Almanac, the defs and the code's own comment said a
+  close group; now `GroupMath.MayCall` asks the card's "close" (`CloseAt` 50) and otherwise nothing changed: 8 days at
+  least between two of a group's gatherings, then 1 in 5 a day (about 12 days on average, `DaysBetweenCalls`), one
+  group at a time, three of them at home. A new group starts at 52 or more (its pull 0.42 or more; the other side of a
+  split may start lower), so mostly it is a group that has loosened that is no longer called. "Regular gatherings for Stace's friends" is the design: a friendship group's first habit with a play
+  kind is always the fire. Files: `Social/Groups/GroupNaming.cs`, `GroupDefs.cs`, `GroupFacts.cs` (`Shares`,
+  `DoesWork`), `GroupLife.cs` (`UniqueName`, `RenameOld`), `GroupHabits.cs`, `GroupMath.cs`, `GroupText.cs`,
+  `GroupTracker.cs`, `GroupView.cs`, `Social/SocialWeb.cs`, `PlayOut/PlayOutTracker.cs`, `UI/PlayOutText.cs`,
+  `Defs/GroupDefs/Rimfolk_GroupShares.xml` (new), the kinds' and habits' comments,
+  `Languages/English/Keyed/Rimfolk_Groups_Gatherings.xml` (new), the Almanac's "Groups", "Roles in a group" and social
+  life pages (no keyword changed), DESIGN.md "Groups". Tests: `GroupTests` (ranking and thresholds, a pick kept and
+  never another group's, the old names found with a number or two words and a kind's own name not, keyed names as
+  patterns, a close group called every week or two and a loose one never, every share's names for any era, none after
+  someone or a kind's own, no two shares alike, every habit can name a group). Settled at the merge: the why
+  ("They are friends... their strain eases a little.") is said as a gathering begins only at a group's first two
+  (`SocialGroup.gatherings`, counted where the anchor calls it, `GroupHabits.ExplainedGatherings`; an old save's groups
+  start at 0, so the player sees it twice more), and This week's tooltip and the card keep it always; a group named for
+  a habit is named for the one its anchor calls it to (`GroupFacts.Shares` puts the first habit that plays out first),
+  so "an evening at the fire for the long table" can't be told. "talking late
+  for the late talkers" can't happen (a friendship group is always called to the fire), but a healers' group called to
+  talk late reads "Talking late for the healers" as before. To look at in game: the player's save (Stace's friends
+  renamed on load, the card and This week), a group's gathering as it begins and ends, a new friendship group's
+  founding news, a medieval and a tribal colony's names.
 - 0.101.1, the player's report that the turret mood still reached everyone (save Atia, 5 November): the colony's faith
   (Ideo_28, "Astro-Genetics") holds Genetic Rim's `GR_AutonomousWeapons_Scorned` (issue `AutonomousWeapons`), whose mood
   `GR_HasAutomatedTurrets_Scorned` uses the game's `ThoughtWorker_Precept_HasAutomatedTurrets` (Genetic Rim's

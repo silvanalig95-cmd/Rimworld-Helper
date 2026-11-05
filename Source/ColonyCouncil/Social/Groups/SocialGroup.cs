@@ -100,6 +100,8 @@ namespace ColonyCouncil
         public int habitDay = -1;
         public int habitsKept;
         public int lastArranged = -999999;
+        /// <summary>How many times its anchor has called it to a gathering on the map: the first ones say what the gathering is for.</summary>
+        public int gatherings;
         /// <summary>The gathering the anchor called (a PlayOut's id) while it's on, else -1.</summary>
         public int playId = -1;
         /// <summary>Its founding was told (a quiet one, found in an old save, isn't).</summary>
@@ -206,6 +208,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref habitDay, "habitDay", -1);
             Scribe_Values.Look(ref habitsKept, "habitsKept");
             Scribe_Values.Look(ref lastArranged, "lastArranged", -999999);
+            Scribe_Values.Look(ref gatherings, "gatherings");
             Scribe_Values.Look(ref playId, "playId", -1);
             Scribe_Values.Look(ref announced, "announced");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

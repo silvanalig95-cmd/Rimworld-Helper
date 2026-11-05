@@ -9,7 +9,7 @@ namespace ColonyCouncil
     /// <summary>What holds a group together, and so what it's called.</summary>
     public enum GroupBinds
     {
-        /// <summary>Strong friendships (named after the one it gathers round: "Hector's lot").</summary>
+        /// <summary>Strong friendships (named for what they share: "the fireside circle", <see cref="GroupShareDef"/>).</summary>
         Friends,
         /// <summary>The same work (<see cref="GroupKindDef.workTypes"/>).</summary>
         Work,
@@ -51,8 +51,10 @@ namespace ColonyCouncil
         /// <summary>The share of its members the binding must fit.</summary>
         public float minShare = 0.6f;
         /// <summary>
-        /// What it may be called: "the hunters", "[lowtech] the spear-carriers", "{ANCHOR}'s lot". Era tags pick among
-        /// them as in flavour lines; one is picked when it forms, and kept.
+        /// What it may be called: "the hunters", "[lowtech] the spear-carriers". Era tags pick among them as in flavour
+        /// lines; one is picked when it forms, and kept. A friends kind's names are the old ones after its anchor
+        /// ("{ANCHOR}'s lot"), no longer given: they find such names in older saves, which get a name of what the group
+        /// shares instead (<see cref="GroupShareDef"/>).
         /// </summary>
         [MustTranslate] public List<string> names;
         /// <summary>What holds it together, as the card says it: "They go out after game together."</summary>
@@ -101,8 +103,63 @@ namespace ColonyCouncil
             if (binds == GroupBinds.Work && workTypes.NullOrEmpty()) yield return "a work group needs workTypes";
             if (binds == GroupBinds.Likeness && (axis.NullOrEmpty() || !Enum.TryParse(axis, out PersonaAxis _))) yield return "a likeness group needs an axis (Warmth, Humour...)";
             if (binds == GroupBinds.Origin && origin.NullOrEmpty()) yield return "an origin group needs an origin (a backstory spawn category)";
-            if (binds == GroupBinds.Friends && !names.NullOrEmpty() && !names.All(n => n.Contains("{ANCHOR}"))) yield return "a friends group is named after its anchor: every name needs {ANCHOR}";
+            if (binds == GroupBinds.Friends && !names.NullOrEmpty() && !names.All(n => n.Contains("{ANCHOR}"))) yield return "a friends kind's names are the old ones after its anchor, kept to find them in older saves: every name needs {ANCHOR}";
             if (!tag.NullOrEmpty() && tag.IndexOfAny(new[] { ',', '|', '[', ']', '!', ' ' }) >= 0) yield return "tag must be one word";
+        }
+    }
+
+    /// <summary>
+    /// Something a friendship group may be named for (<see cref="GroupNaming"/>): the night hours most of them keep, the
+    /// work most of them do, a side of character most of them have, a habit of theirs and its place, or only their
+    /// friendship. Its names are in the colony's era as the kinds' are; one is picked when the group forms and kept.
+    /// Defs/GroupDefs/Rimfolk_GroupShares.xml.
+    /// </summary>
+    public class GroupShareDef : Def
+    {
+        public ShareIdea idea = ShareIdea.Friends;
+        /// <summary>Habit: the habit (a GroupHabitDef name), when the group keeps it.</summary>
+        public string habit;
+        /// <summary>Work: the work types (defNames); any of them counts.</summary>
+        public List<string> workTypes;
+        /// <summary>Likeness: the side of character (a PersonaAxis name), at least <see cref="atLeast"/> (at most minus that with <see cref="low"/>).</summary>
+        public string axis;
+        public float atLeast = 30f;
+        public bool low;
+        /// <summary>What it may be called: "the fireside circle", "[lowtech] the hearth circle". Never after one of them.</summary>
+        [MustTranslate] public List<string> names;
+        /// <summary>What it is, as the card says it of a group named for it: "They are friends, and most of them keep the night hours."</summary>
+        [MustTranslate] public string why;
+
+        [Unsaved] private PersonaAxis? axisParsed;
+        [Unsaved] private bool axisLooked;
+        [Unsaved] private List<WorkTypeDef> works;
+
+        public PersonaAxis? Axis
+        {
+            get
+            {
+                if (!axisLooked)
+                {
+                    axisLooked = true;
+                    axisParsed = !axis.NullOrEmpty() && Enum.TryParse(axis, out PersonaAxis a) ? a : (PersonaAxis?)null;
+                }
+                return axisParsed;
+            }
+        }
+
+        public List<WorkTypeDef> Works => works ??= (workTypes ?? new List<string>()).Select(n => DefDatabase<WorkTypeDef>.GetNamedSilentFail(n)).Where(w => w != null).ToList();
+
+        public static List<GroupShareDef> All => DefDatabase<GroupShareDef>.AllDefsListForReading;
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (names.NullOrEmpty()) yield return "a share with no names";
+            if (why.NullOrEmpty()) yield return "no 'why' text";
+            if (!names.NullOrEmpty() && names.Any(n => n.Contains("{") || n.Contains("'s "))) yield return "a share's names are never after someone ({...}, 's)";
+            if (idea == ShareIdea.Habit && habit.NullOrEmpty()) yield return "a habit share needs a habit";
+            if (idea == ShareIdea.Work && workTypes.NullOrEmpty()) yield return "a work share needs workTypes";
+            if (idea == ShareIdea.Likeness && (axis.NullOrEmpty() || !Enum.TryParse(axis, out PersonaAxis _))) yield return "a likeness share needs an axis (Warmth, Humour...)";
         }
     }
 

@@ -222,17 +222,7 @@ namespace ColonyCouncil
         {
             switch (kind.binds)
             {
-                case GroupBinds.Work:
-                {
-                    float share = 0f;
-                    var log = logs[i];
-                    foreach (var w in kind.Works)
-                    {
-                        if (log != null && log.Total >= 6f) share += log.Share(w.defName);
-                        else if (trades[i].Contains(w.defName)) share += 0.5f;
-                    }
-                    return share >= 0.25f;
-                }
+                case GroupBinds.Work: return DoesWork(kind.Works, i);
                 case GroupBinds.NightShift: return night[i];
                 case GroupBinds.Battle:
                 {
@@ -277,12 +267,72 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A quarter of their days or more go to this work (what they've been seen doing, or their trades while there's little to go on).</summary>
+        private bool DoesWork(List<WorkTypeDef> works, int i)
+        {
+            float share = 0f;
+            var log = logs[i];
+            foreach (var w in works)
+            {
+                if (log != null && log.Total >= 6f) share += log.Share(w.defName);
+                else if (trades[i].Contains(w.defName)) share += 0.5f;
+            }
+            return share >= 0.25f;
+        }
+
+        /// <summary>
+        /// What these of them (by index) share, for a name (<see cref="GroupNaming"/>): how many keep the night hours, do
+        /// each kind of work and have each side of character, as the kinds count them; the group's habits, in its own order;
+        /// their friendship. Those away aren't counted.
+        /// </summary>
+        public List<ShareFit> Shares(IList<int> members, List<GroupHabitDef> habits)
+        {
+            var list = new List<ShareFit>();
+            var all = GroupShareDef.All;
+            int n = members.Count;
+            for (int k = 0; k < all.Count; k++)
+            {
+                var s = all[k];
+                var fit = new ShareFit { key = s.defName, idea = s.idea, order = k };
+                switch (s.idea)
+                {
+                    case ShareIdea.Hours:
+                        fit.fit = GroupNaming.Fit(members.Count(i => night[i]), n);
+                        break;
+                    case ShareIdea.Work:
+                        if (s.Works.Count == 0) continue;
+                        fit.fit = GroupNaming.Fit(members.Count(i => DoesWork(s.Works, i)), n);
+                        break;
+                    case ShareIdea.Likeness:
+                    {
+                        var axis = s.Axis;
+                        if (axis == null) continue;
+                        int a = (int)axis.Value;
+                        fit.fit = GroupNaming.Fit(members.Count(i => s.low ? values[i][a] <= -s.atLeast : values[i][a] >= s.atLeast), n);
+                        break;
+                    }
+                    case ShareIdea.Habit:
+                    {
+                        int at = habits?.FindIndex(h => h.defName == s.habit) ?? -1;
+                        if (at < 0) continue;
+                        // The habit its anchor calls them to on the map (the first that plays out, GroupHabits) comes first,
+                        // so a group named for a habit gathers at it: never "an evening at the fire for the long table".
+                        int called = habits.FindIndex(h => h.Play != null);
+                        fit.order = at == called ? -1 : at;
+                        break;
+                    }
+                }
+                list.Add(fit);
+            }
+            return list;
+        }
+
         private Ideo MainIdeo(IList<int> members) =>
             members.Select(m => ideo[m]).Where(x => x != null).GroupBy(x => x).OrderByDescending(g => g.Count()).FirstOrDefault()?.Key;
 
         /// <summary>
         /// The kind of group a set of people make: among the kinds that fit enough of them, the most particular (lowest
-        /// order), then the one that fits most of them. Friends (named after the anchor) when nothing else does.
+        /// order), then the one that fits most of them. Friends (named for what they share) when nothing else does.
         /// </summary>
         public GroupKindDef KindFor(IList<int> members, out float share)
         {

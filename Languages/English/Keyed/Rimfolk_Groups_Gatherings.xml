@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== What a group is, and what its gathering does (Source/ColonyCouncil/Social/Groups/GroupHabits.cs) ===================== -->
+
+  <!-- A group's gathering, called by its anchor, as it begins on the map ({LABEL}: "An evening at the fire for the fireside circle"; {WHERE}: "by the fire") -->
+  <CC_GroupPlay_Begin_FireAnchor>{LABEL}: the fire is lit, and their anchor, {PAWN_nameDef}, gathers them {WHERE}.</CC_GroupPlay_Begin_FireAnchor>
+  <CC_GroupPlay_Begin_Anchor>{LABEL}: their anchor, {PAWN_nameDef}, gathers them {WHERE}.</CC_GroupPlay_Begin_Anchor>
+  <CC_GroupPlay_Begin_Fire>{LABEL}: the fire is lit, and they gather {WHERE}.</CC_GroupPlay_Begin_Fire>
+  <CC_GroupPlay_Begin>{LABEL}: they gather {WHERE}.</CC_GroupPlay_Begin>
+  <!-- Said after it: {WHY} is what the group is, as its card says it ("They are friends, and keep their evenings at the fire together.") -->
+  <CC_GroupPlay_Does>{WHY} Those who come feel they belong, and their strain eases a little.</CC_GroupPlay_Does>
+  <!-- Its closing words, when two or more of them came -->
+  <CC_GroupPlay_End>{LABEL} is over: {COUNT} of them came, and the group is closer for it.</CC_GroupPlay_End>
+
+  <!-- In This week's gatherings and plans: who they are, what it does, how often -->
+  <CC_GroupPlay_Who>{GROUP}: {NAMES}. {WHY}</CC_GroupPlay_Who>
+  <CC_GroupPlay_Often>Every week or two, while the group is close, their anchor, {PAWN_nameDef}, calls them all together like this: those who come feel they belong, their strain eases a little, and the group grows closer.</CC_GroupPlay_Often>
+  <CC_GroupPlay_OftenNoAnchor>Every week or two, while the group is close, one of them calls them all together like this: those who come feel they belong, their strain eases a little, and the group grows closer.</CC_GroupPlay_OftenNoAnchor>
+
+  <!-- Told once, with a group's founding (after "A new group: ... {WHY}"); {HABIT}: "an evening at the fire" -->
+  <CC_Group_Formed_Does>Keeping their habits together gives them a sense of belonging and eases their strain a little.</CC_Group_Formed_Does>
+  <CC_Group_Formed_Calls>Every week or two, while the group is close, {PAWN_nameDef}, its anchor, calls them all to {HABIT}.</CC_Group_Formed_Calls>
+  <CC_Group_Formed_CallsNoAnchor>Every week or two, while the group is close, one of them calls them all to {HABIT}.</CC_Group_Formed_CallsNoAnchor>
+
+  <!-- A habit's pill on the group's card -->
+  <CC_Group_HabitDoes>When two or more of them are together doing it, they keep it, once a day at most: they feel they belong, their strain eases a little, and the group grows closer.</CC_Group_HabitDoes>
+  <CC_Group_HabitCalled>Every week or two, while the group is close, its anchor calls them all to it on the map.</CC_Group_HabitCalled>
+
+  <!-- The anchor's part (replaces CC_GroupRoleTip_Anchor, which said the group often bears their name) -->
+  <CC_GroupRoleTip_AnchorCalls>The one the group gathers round: warm, sure of themselves, good with people, with the most friends among them. They call the others together to the group's habit. The group is named for what its people share, never after them.</CC_GroupRoleTip_AnchorCalls>
+
+</LanguageData>

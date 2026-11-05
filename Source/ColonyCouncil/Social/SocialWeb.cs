@@ -846,7 +846,9 @@ namespace ColonyCouncil
                 group.AddRange(strong.Where(t => t.Involves(leader) && free.Contains(t.Other(leader))).OrderByDescending(t => t.strength).Select(t => t.Other(leader)).Take(5));
                 foreach (var p in group) free.Remove(p);
                 if (group.Count < 3) continue;
-                cliques.Add(new Clique { name = "CC_Clique_Name".Translate(leader.Named("PAWN")).Resolve(), members = group });
+                // Named for their friendship, never after the one at its middle; the same name while they lead it.
+                var taken = cliques.Select(c => c.name).ToList();
+                cliques.Add(new Clique { name = GroupText.CircleName(leader.thingIDNumber, taken), members = group });
             }
         }
 

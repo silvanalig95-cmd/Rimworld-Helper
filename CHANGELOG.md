@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Groups that say what they are
+
+*5 November 2026, version 0.101.2*
+
+- A group's gathering now says what it is: who they are, that their anchor calls them together every week or two while the group is close, and that it gives belonging and eases their strain a little. The first two gatherings say it as they begin; This week's tooltip and the group's card always do.
+- Friendship groups are named for what their people share, by the colony's age: the fireside circle, the night birds, the spear circle, the graveyard shift. Groups named after one person, such as "Stace's friends", take such a name once when the game loads.
+- Fixed: a group was called to its gathering while the card already called it loose; it now waits until the group is close, as the Almanac says, and the begin message no longer says the whole colony gathers.
+
 ## Turrets where they stand, again
 
 *5 November 2026, version 0.101.1*

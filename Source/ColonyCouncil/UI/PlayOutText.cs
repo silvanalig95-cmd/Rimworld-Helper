@@ -87,7 +87,12 @@ namespace ColonyCouncil
                 case PlayKind.Lesson:
                     return p.visitor != null && p.other != null ? "CC_Week_PlayVisit".Translate(p.visitor.LabelShort, p.other.LabelShort).Resolve() : null;
                 default:
-                    return "CC_Week_PlayGathering".Translate(p.invited.Count + (p.organizer != null && !p.invited.Contains(p.organizer) ? 1 : 0)).Resolve();
+                {
+                    string s = "CC_Week_PlayGathering".Translate(p.invited.Count + (p.organizer != null && !p.invited.Contains(p.organizer) ? 1 : 0)).Resolve();
+                    // A group's gathering, called by its anchor: who they are, what it does for them, how often.
+                    string group = GroupHabits.Tip(p);
+                    return group.NullOrEmpty() ? s : s + "\n" + group;
+                }
             }
         }
     }
