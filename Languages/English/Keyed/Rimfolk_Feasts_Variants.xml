@@ -36,10 +36,10 @@
 
   <!-- The steward's suggestion -->
   <CC_Feast_Suggest_3>{PAWN}, the steward, has looked over the stores and the land and found both in good order: a season for {FEAST} with guests. {NAME} of {PEOPLE} might come, if asked.</CC_Feast_Suggest_3>
-  <CC_Feast_Suggest_4>Guests, {PAWN} suggests: the colony can afford {FEAST} this season, and {NAME} of {PEOPLE} thinks well enough of it to come.</CC_Feast_Suggest_4>
+  <CC_Feast_Suggest_4>{PAWN} thinks the colony can afford {FEAST} with guests this season, and that {NAME} of {PEOPLE} thinks well enough of it to come.</CC_Feast_Suggest_4>
 
   <!-- The colony's own, home from a neighbour's feast -->
-  <CC_Feast_Away_Won_3>{PAWN} came home from the feast in {PLACE} with a win to tell: first in {CONTEST}, against the best {PEOPLE} had.</CC_Feast_Away_Won_3>
+  <CC_Feast_Away_Won_3>{PAWN} came home from the feast in {PLACE} having come first in {CONTEST}, against the best {PEOPLE} had.</CC_Feast_Away_Won_3>
   <CC_Feast_Away_Won_4>Ask {PAWN} about the feast in {PLACE} and you'll hear about {CONTEST}, which {PAWN_pronoun} won against the best of {PEOPLE}.</CC_Feast_Away_Won_4>
 
 </LanguageData>

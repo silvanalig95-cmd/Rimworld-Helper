@@ -138,7 +138,7 @@
     <topic>marriage</topic>
     <when>town:lately:dip:wedding,!tone:cool,!tone:sour</when>
     <lines>
-      <li>[them] Everyone at home has an opinion about the wedding, and most of them are kind.</li>
+      <li>[them] The whole family has an opinion about the wedding, and most of them are kind.</li>
       <li>[us] And the rest?</li>
       <li>[them] The rest are my uncle's, and he has opinions about everything.</li>
     </lines>
@@ -190,7 +190,7 @@
     <when>tie:marriage:theirs,kin:you,!match:child</when>
     <weight>1.6</weight>
     <lines>
-      <li>[them] Everyone at home sends their love, and a list of things you forgot to take.</li>
+      <li>[them] Home sends its love, and a list of things you forgot to take.</li>
       <li>[us] Tell them I'm well, and that I eat better here than I did at home.</li>
       <li>[them] I'll tell them the first half.</li>
     </lines>

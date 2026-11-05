@@ -5,8 +5,10 @@
     Feasts, hunts, games and contests with guests (Source/ColonyCouncil/Diplomacy/Feasts.cs, FeastContests.cs; the
     facts in Diplomacy/FactsFeast.cs). Two pools the game already draws on:
     - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the day, one sentence each. At the gate, the
-      colony's greeting (feastwelcome, us) and the guest's (feastarrive, them); the race's start (feastrungo), a stumble
-      at the turn (feastrunstumble), first home and beaten (feastrunwin, feastrunlose); the best hunter back (feasthuntwin);
+      colony's greeting (feastwelcome, us: a wedding's guests hear it too) and the guest's (feastarrive, them; a wedding's
+      guests, the kin of the one who marries in and joins the colony at the gate as they come, say weddingarrive, in
+      Rimfolk_Lines_FeastsMore.xml); the race's start (feastrungo), a stumble at the turn (feastrunstumble), first home
+      and beaten (feastrunwin, feastrunlose); the best hunter back (feasthuntwin);
       a game won and lost at the tables (feasttablewin, feasttablelose); a shooter's five shots, good, fair or poor
       (feastshootgood, feastshootfair, feastshootpoor); a winner said aloud at the feast's end (feastwinner); the prize
       handed over and taken (feastprize, us; feastprizethanks); a guest's hard words before a fistfight (feastsour, them).

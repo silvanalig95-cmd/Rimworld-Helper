@@ -6,6 +6,55 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Text pass: diplomacy round b (the content pass beside 0.92.0, 0.93.0 and 0.94.0, after the 0.94.1 review and merged
+  with it; no version of its own: its points go with the next round). Words in new files beside the round's own (its
+  tests cap the round's talk files at 40), each said only on facts the providers set (FactsFeast, FactsWards,
+  FactsMatch, FactsColony's deeds, FactsWho's kin) and, in letters, only the ties and the history (a letter asks no
+  deeds). Talk pieces, 127: feasts 40 (`Rimfolk_OutsiderTalks_FeastsMore.xml`: the day by the hour and the weather, the
+  retinue, seats and prayers, the Empire's music and a titled host, a guest hurt, a cool cup and a sour word; before the
+  day; after it by how it went and who won, an empty plate, a quiet feast without contests; deed:feasted, deed:feast
+  (theirs attended), deed:absent), wards 36 (`Rimfolk_OutsiderTalks_WardsMore.xml`: lessons and mistakes, homesick,
+  settling and happy, a child ward's own, the colony's hunger, plenty, a birth, a wedding, rain, winter; their people
+  about theirs; the colony's youth by their ways and the Empire's page; the grown ward back as heir, head, or cool),
+  hostages 17 (`Rimfolk_OutsiderTalks_HostagesMore.xml`: theirs at work, watched, asked about walking home, at night,
+  in a raid, the defence pact they stand for, friends at the term's end, forfeit by tone; their people about theirs and
+  the colony's, held for a price; the custom by their ways), marriages 34 (`Rimfolk_OutsiderTalks_MatchesMore.xml`:
+  lovers and sweethearts, ages, the Empire's court; a match agreed by their ways, naming nobody; the wedding lately;
+  in-laws, kin:you, one of the couple; the pact called, the Empire's household, a raiders' camp watched, a raid, a
+  death; held through a child; the grudge, its ways, a head who holds it; a marriage over). Letters
+  (`Rimfolk_Lines_FeastsMore.xml`, `_WardsMore.xml`, `_MatchesMore.xml`): 91 of their words, answers by the tones each
+  can take (feast 10, ward 16 with the page, match 8) and letters of any purpose while the thing stands (feast 17, ward 11,
+  hostage 9, marriage 20; the marriage ones name their purpose, as the round's own `[tie:marriage]` lines don't, so
+  those are said only when no line of the purpose fits). Bubbles, 84: feasts 46 (the welcome, the guest's answer, the
+  race, the hunt, the tables, the shooting, toasts as the champion is named, the prize, a sour night; and 7 for the
+  new moment `weddingarrive`), wards 17, hostages 5 (the colony's hostage as the terms are sworn), marriages 16 (Speak
+  for a match, written to hold whether the colonist speaks for themselves or another: the one spoken to is always the
+  one matched; the farewell at the gate). Keyed fellows,
+  111 (`Rimfolk_Feasts_Variants.xml` 23, `Rimfolk_Wards_VariantsMore.xml` 56 with 14 for hostages and three more
+  letters home for each age and the page, `Rimfolk_Matches_VariantsMore.xml` 32, three of them for 0.94.1's
+  `CC_Match_WedQuiet`, `_Agreed_ColonyAlone`, `_WrongedNoPact`): every letter and message of the round read with `T` now
+  has two wordings at least. Variants are picked at random, so they differ by age only through {WORD}, {RITE}, {FEAST}
+  and the keys the code builds by age (the letters home). Code, two lines: a wedding's guests answer the welcome at the
+  gate with their own moment (`Feasts.Greet`: `weddingarrive`, where they said a feast's "our best runners"; named
+  outside FeastTests' `feast*` moments, whose lines it looks for only in the round's own file, where textcheck lets no
+  new tag in; `MatchTests` checks the moment and its lines); the in-laws' letter about a raiders' camp has its own words
+  (`MatchWarnings.cs`: the suffix `Kin`, so `CC_RaidCamp_Found_Text_Kin` and its history line; `MatchTests` pins the new
+  literal, where it pinned "Letter", and the key). Fixed in passing:
+  `[feastwelcome,us,!lowtech]` promised contests that afternoon, also at weddings and contest-less feasts;
+  `CC_Match_End_Death_2` said nobody was to blame, before the untended or open death is added to it; hostage fellows
+  avoid {WORD}, which is "a hostage for the pact" in the middle ages even for a truce.
+  Still thin, and facts that would help: whether the colonist speaking is the ward's guardian (`us:guardian`), one of a
+  match agreed (`us:matched`, `them:matched`: the agreed match's talk names nobody), or the colony's own who married
+  away visiting as one of theirs (`them:spouseof`); the wedding's guests on the day (`match:today`: the wedding feast
+  sets no feast tags, so its talk is match:agreed's); a feast under way by stage (the contests, the feast, the night) and
+  whether the one spoken to is a guest at it (only role:notable tells the invited from their retinue); the ward's days
+  here or their year nearly over, and their skill by name (no {SKILL} in talk); the colonist the council pressed into a
+  match (`us:pressed`); a hostage's term by what it guarantees (truce or pact) in talk. Told with one wording because the
+  code reads them with `P`: the contests' start (`CC_Feast_Msg_Begins_*`), the ward and the hostage on the way
+  (`CC_Ward_Msg_Comes`, `CC_Hostage_Msg_Comes`), their kin coming for the ward (`CC_Ward_Msg_KinCome`), the colony's
+  youth home or setting out, the pacts' paragraphs in the match letters (with and without a pact). The in-laws' camp
+  letter is read with `Translate`, so it has one wording of its own. To look at in game: the wedding guests' word at the
+  gate; the in-laws' camp letter; a ward's letters home over a year in each age.
 - 0.94.1, stage 2 round b review: fixes (the releases 0.92.0, 0.93.0 with 0.93.1, and 0.94.0: feasts and contests with guests,
   wards and hostages, marriage alliances, read against the 1.6 game; no version of its own: its points go with the next
   round). Fixed, each checked in the code and the game's source: the marriage agent's doubt, a wedding late in the day

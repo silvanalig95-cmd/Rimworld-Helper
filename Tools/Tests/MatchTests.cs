@@ -209,7 +209,12 @@ public static class MatchTests
             "the alliance stands as one defense pact, kept running while it holds; never with the Empire");
         C(Code("World/Notables.cs").Contains("Matches.RegardBonus(f)") && matches.Contains("foreach (var t in Live())") && !Regex.IsMatch(Code("Diplomacy/MatchAlliance.cs"), @"RegardBonus[\s\S]{0,400}Views\(\)"),
             "their notables think better of the colony through Rimfolk's own marriages, never Diplomatic Marriage+'s");
-        C(Code("Diplomacy/MatchWarnings.cs").Contains("Found(home, c, null, kin.Name, now, \"Letter\", town)"), "in-laws write when a raiders' camp is set against the colony");
+        C(Code("Diplomacy/MatchWarnings.cs").Contains("Found(home, c, null, kin.Name, now, \"Kin\", town)")
+          && File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Matches_VariantsMore.xml")).Contains("<CC_RaidCamp_Found_Text_Kin>"),
+            "in-laws write when a raiders' camp is set against the colony, in words of their own");
+        C(Code("Diplomacy/Feasts.cs").Contains("p.purpose == FeastPurpose.Wedding ? \"weddingarrive\" : \"feastarrive\"")
+          && Regex.Matches(File.ReadAllText(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_FeastsMore.xml")), @"<li>\[weddingarrive,").Count >= 4,
+            "a wedding's guests answer the welcome at the gate in words of their own");
         C(matches.Contains("ChildOf(") && matches.Contains("t.terms.count = 1"), "a child of the two keeps it after a death");
         C(matches.Contains("Tie.Kind.Grudge") && matches.Contains("MatchMath.GrudgeKey") && matches.Contains("PassesDown("), "a grudge for a spouse wronged, carried down to the next head");
         C(Regex.IsMatch(Code("Diplomacy/MatchHooks.cs"), @"\[HarmonyPatch\(typeof\(Pawn\), nameof\(Pawn\.Kill\)\)\]\s*public static class Patch_MatchKilled") && Code("Diplomacy/MatchHooks.cs").Contains("RimfolkPatches.On"),

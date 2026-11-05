@@ -6,8 +6,8 @@
     beside Rimfolk_Lines_Feasts.xml, whose tags these keep. Two pools the game already draws on:
     - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the day, one sentence each. At the gate the
       colony's greeting (feastwelcome, us: said to a wedding's guests too, so it names no contest) and the guest's answer
-      (feastarrive, them, at a feast; feastwedding, them, a wedding's guests: the kin of the one who marries in, who joins
-      the colony at the gate as they come); the race (feastrungo, feastrunstumble, feastrunwin, feastrunlose); the best
+      (feastarrive, them, at a feast; weddingarrive, them, a wedding's guests: the kin of the one who marries in, who
+      joins the colony at the gate as they come); the race (feastrungo, feastrunstumble, feastrunwin, feastrunlose); the best
       hunter (feasthuntwin); the tables (feasttablewin, feasttablelose); the shooting match (feastshootgood, feastshootfair,
       feastshootpoor); each winner's word as the champion is named at the feast (feastwinner: a toast); the prize handed
       over and taken (feastprize, us; feastprizethanks); a guest's hard words before a fistfight (feastsour, them). Lines
@@ -38,13 +38,13 @@
         <li>[feastarrive,them,kind] Thank you for asking us, it means more than you'd think.</li>
         <li>[feastarrive,them,abrasive] Well, we're here, so where's this feast of yours?</li>
         <!-- A wedding's guests at the gate -->
-        <li>[feastwedding,them] We've come to see one of ours married, and we're glad of the road for once.</li>
-        <li>[feastwedding,them] So this is where they'll live, it looks a good place to grow old in.</li>
-        <li>[feastwedding,them,theirLowtech] We come as kin to a wedding, with our people's blessing on it.</li>
-        <li>[feastwedding,them,theirHightech] We're here for the wedding, is there anything we should know?</li>
-        <li>[feastwedding,them,kind] Look after the one we're giving you, they're dear to us.</li>
-        <li>[feastwedding,them,abrasive] I hope your people are worth the walk, and the one we're losing to you.</li>
-        <li>[feastwedding,them,old] I've walked to a good many weddings, and this road was the longest.</li>
+        <li>[weddingarrive,them] We've come to see one of ours married, and we're glad of the road for once.</li>
+        <li>[weddingarrive,them] So this is where they'll live, it looks a good place to grow old in.</li>
+        <li>[weddingarrive,them,theirLowtech] We come as kin to a wedding, with our people's blessing on it.</li>
+        <li>[weddingarrive,them,theirHightech] We're here for the wedding, is there anything we should know?</li>
+        <li>[weddingarrive,them,kind] Look after the one we're giving you, they're dear to us.</li>
+        <li>[weddingarrive,them,abrasive] I hope your people are worth the walk, and the one we're losing to you.</li>
+        <li>[weddingarrive,them,old] I've walked to a good many weddings, and this road was the longest.</li>
         <!-- The race -->
         <li>[feastrungo] Ready, steady, and off with you.</li>
         <li>[feastrungo] Out to the marker and home again, go.</li>
