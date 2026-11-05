@@ -183,7 +183,11 @@ namespace ColonyCouncil
             foreach (var h in WorldLedger.OurHouses())
             {
                 if (seen.Contains(h)) continue;
-                if (!RenownMath.Kept(false, TieNames(h), h.lastSeen, now)) WorldLedger.DropOurHouse(h);
+                // Fewer than two of it now, but one still with the colony (the last of the family, one away on its errand):
+                // kept, and its two years counted from when the last of it goes.
+                bool here = Living(h).Count > 0;
+                if (here) h.lastSeen = now;
+                if (!RenownMath.Kept(here, TieNames(h), h.lastSeen, now)) WorldLedger.DropOurHouse(h);
             }
         }
 

@@ -242,6 +242,8 @@ public static class RenownTests
             "the index puts each in the house of their name, and the card's gone leaves out anyone still with the colony");
         C(Regex.IsMatch(renownCode, @"KinMemory\.Ours\(p\) && WorldLedger\.KeptFor\(p, KeepFor\.Lent\)\) Put\(p, kv\.Value\)"),
             "one away at another people's town on the colony's errand (envoy, youth, hostage) is still of the house: not gone, what they hold still counts");
+        C(Regex.IsMatch(renownCode, @"bool here = Living\(h\)\.Count > 0;\s*if \(here\) h\.lastSeen = now;\s*if \(!RenownMath\.Kept\(here, TieNames\(h\), h\.lastSeen, now\)\)"),
+            "a house fallen to one is kept while that one is still with the colony, and two years from when they go (it was let go two years after it fell to one)");
         string region = Code("World/Ledger/LedgerRegion.cs");
         C(region.Contains("Scribe_Values.Look(ref ours, \"ours\")") && region.Contains("Scribe_Collections.Look(ref folkText, \"folk\"") && region.Contains("Scribe_Values.Look(ref band, \"band\")")
           && region.Contains("h.town < 0 && !h.ours"), "the colony's houses saved beside the towns', kept on load without a town");
