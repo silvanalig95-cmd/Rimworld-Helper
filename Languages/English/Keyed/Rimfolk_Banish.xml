@@ -18,6 +18,7 @@
   <CC_Banish_Verb_industrial>Expel {PAWN_nameDef} from the colony</CC_Banish_Verb_industrial>
   <CC_Banish_Verb_spacer>Strike {PAWN_nameDef} off the colony's roster</CC_Banish_Verb_spacer>
   <CC_Banish_Eldest>eldest</CC_Banish_Eldest>
+  <CC_Banish_TitleVoice>voice on the council</CC_Banish_TitleVoice>
 
   <!-- How many fights, in words. -->
   <CC_Banish_Fights_1>one fight</CC_Banish_Fights_1>

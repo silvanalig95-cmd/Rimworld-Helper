@@ -71,7 +71,7 @@ namespace ColonyCouncil
             int from = Ask == BanishMath.Ask.Banish && r != null && r.stepTick >= 0 ? r.stepTick : BanishMath.WindowFrom(now);
             var c = new BanishContext
             {
-                def = def, map = map, a = a, b = b, title = title, word = BanishTracker.AgeWord(), verb = BanishTracker.AgeVerb(a),
+                def = def, map = map, a = a, b = b, title = title.NullOrEmpty() ? "CC_Banish_TitleVoice".Translate().Resolve() : title, word = BanishTracker.AgeWord(), verb = BanishTracker.AgeVerb(a),
                 fights = Count(trouble.fights), with = With(t.FoughtWith(a, colony, from)), step = r?.step,
                 started = trouble.started, insults = trouble.insults, toDie = PawnBanishUtility.WouldBeLeftToDie(a, a.Tile), guilty = a.guilt?.IsGuilty ?? false
             };

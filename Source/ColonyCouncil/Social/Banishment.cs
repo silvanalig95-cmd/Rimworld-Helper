@@ -647,7 +647,8 @@ namespace ColonyCouncil
         {
             // together: fired by Together with the two face to face.
             var p = r.pawn;
-            if (p == null || r.stage != BanishStage.ToTell || by == null) return;
+            // Never told by a child: whoever is with them must be grown (the hour after asks again).
+            if (p == null || r.stage != BanishStage.ToTell || by == null || !by.DevelopmentalStage.Adult()) return;
             r.teller = by;
             var colony = ColonyAt(p.Map);
             var t = TroubleOf(p, colony, BanishMath.WindowFrom(Now));
