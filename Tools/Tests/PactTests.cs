@@ -158,6 +158,10 @@ public static class PactTests
         C(PactMath.PactBreaches.All(PactMath.OurBreach) && !PactMath.PactBreach("attacked") && !PactMath.PactBreach("fell") && PactMath.PactBreach("townAttacked"),
             "a pact breaks on a real wrong, not a stray blow");
         C(!PactMath.OurBreach("traded") && !PactMath.OurBreach("refused") && !PactMath.TheirBreach("aid"), "good turns and refusals are no breach");
+        C(PactMath.BreaksPact("killed", false) && !PactMath.BreaksPact("killed", true), "one of theirs killed breaks it, but not while their band fights on the colony's land (a stray shot)");
+        C(PactMath.PactBreaches.Where(k => k != "killed").All(k => PactMath.BreaksPact(k, true) && PactMath.BreaksPact(k, false)) && !PactMath.BreaksPact("attacked", false),
+            "every other wrong breaks it whether their band is there or not, and a blow struck never");
+        C(Code("Diplomacy/PactsHooks.cs").Contains("PactMath.BreaksPact(d.kind, BandOnAHome(f))"), "the hook asks whether their band is on a home");
 
         // ---------------- The terms ----------------
 
@@ -219,6 +223,11 @@ public static class PactTests
         C(terr.Contains("public static bool InvasionAt(Settlement town, out Faction attacker)") && terr.Contains("public static bool JoinFight(Caravan c, Settlement town)")
           && terr.Contains("ArrivalAction_JoinFight"), "Faction Territories' invasions are calls, joined through the mod's own arrival");
         C(dip["CallsToArms.cs"].Contains("CaravanIncidentUtility.SetupCaravanAttackMap"), "the fight away is on the game's caravan battle map (decision 3)");
+        C(dip["CallsToArms.cs"].Contains("if (OnTownMap(town))") && dip["CallsToArms.cs"].Contains("|| KeptLately(s, enemy)"),
+            "a call answered on the town's own map (Faction Territories' Join fight) is kept, and a war answered isn't asked of again after a reload");
+        C(dip["Truces.cs"].Contains("if (sent && t.Live) BrokenByThem("), "their firebrands' raid breaks it with the deeper hooks off too");
+        C(dip["TruceParley.cs"].Contains("Scribe_Values.Look(ref heard, \"heard\")"), "an avenger's objection heard stays heard across a reload");
+        C(dip["PactsPanels.cs"].Contains("ChoiceLetter_TruceOffer t && t.Waiting") && dip["PactsPanels.cs"].Contains("c.WaitingOnPact"), "Needs you counts only letters that can still be answered");
         C(dip["PactCalls.cs"].Contains("PlayFire.Light") && dip["PactCalls.cs"].Contains("Building_CommsConsole"), "the call by a signal fire (the bonfire's own) or at the comms console");
         C(dip["Pacts.cs"].Contains("WarCamps.MakeFighters(f, home)") && dip["Pacts.cs"].Contains("WarCamps.Start(home, f, enemy, pawns)"), "their band is a war band");
         C(Code("Text/Facts/FactsLedger.cs").Contains("PactTies(s, f, now);"), "the ties' provider speaks of pacts and truces");
