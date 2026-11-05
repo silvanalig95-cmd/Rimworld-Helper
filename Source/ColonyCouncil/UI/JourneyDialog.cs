@@ -7,11 +7,14 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Planning a journey (Journeys/): who goes (colonists, and the animals to bring), where (a town or a place picked on
+    /// Planning a journey (Journeys/): what it is for and who to bring (Journeys/JourneyAdvice.cs: each colonist and animal
+    /// at home in a row of the kit's chips, grouped recommended, can go and better not with one reason each, and "Pick the
+    /// recommended" for the people, the animals and the things to bring in one press), who goes (colonists, and the animals to bring), where (a town or a place picked on
     /// the region map, or nowhere in particular for a chosen length), when (an hour on a day, the next dawn by default),
     /// how long on the road (the game's caravan estimate there, or there and back, or a chosen length), the weather on
     /// the way, the packing list to see and change, what each traveller changes into, and how each one's last night is
@@ -53,12 +56,20 @@ namespace ColonyCouncil
         private readonly Dictionary<string, string> countText = new Dictionary<string, string>();
         private string countEditing;
 
+        /// <summary>What lies on the colony's stalls (RimMarket), counted with the stores.</summary>
+        private Dictionary<ThingDef, List<(Thing stall, int count)>> stallHeld = new Dictionary<ThingDef, List<(Thing, int)>>();
+        /// <summary>The advice: built when the planner opens, then at most once a second while it is open.</summary>
+        private JourneyAdviceModel advice;
+        private float adviceAt = -10f;
+        /// <summary>The overview's sections folded this session.</summary>
+        private static readonly Folds WhoFolds = new Folds();
+
         private static readonly Color Accent = UiKit.Heading;
         private const int HourTicks = GenDate.TicksPerHour;
         private const string CountControl = "CC_JourneyCount_";
         private static readonly Regex Digits = new Regex("^[0-9]*$");
 
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(1000f, UI.screenWidth - 40f), Mathf.Min(760f, UI.screenHeight - 40f));
+        public override Vector2 InitialSize => new Vector2(Mathf.Min(1120f, UI.screenWidth - 40f), Mathf.Min(820f, UI.screenHeight - 40f));
 
         private Dialog_JourneyPlan(JourneyPlan plan, bool editing)
         {
@@ -253,22 +264,26 @@ namespace ColonyCouncil
             if (countEditing != null && GUI.GetNameOfFocusedControl() != CountControl + countEditing) CommitCount();
             if (dirty && Time.realtimeSinceStartup - computedAt > 0.3f) Compute();
             else if (Time.realtimeSinceStartup - heldAt > 2f) Count();
+            if (Time.realtimeSinceStartup - adviceAt > 1f) BuildAdvice();
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), (editing ? "CC_Journey_TitleEdit" : "CC_Journey_Title").Translate());
             Text.Font = GameFont.Small;
-            float top = inRect.y + 40f;
+            float top = inRect.y + 38f;
             const float bottomH = 44f;
-            leftW = Mathf.Clamp(inRect.width * 0.32f, 180f, 320f);
+            leftW = Mathf.Clamp(inRect.width * 0.45f, 280f, 500f);
             try
             {
+                // What the journey is for and the recommendation, under the title.
+                top += DrawPurpose(new Rect(inRect.x, top, inRect.width, 60f)) + 6f;
                 // What the food lasts and the load, always in sight above the buttons; the rest scrolls.
                 var totals = Totals();
-                float totalsH = totalsHeight = TotalsHeight(totals, inRect.width);
+                float totalsH = totalsHeight = TotalsHeight(totals, inRect.width) + MetersHeight;
                 var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH - totalsH);
                 var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
                 DrawWho(left);
                 DrawDetails(right);
-                DrawTotals(new Rect(inRect.x, left.yMax, inRect.width, totalsH), totals);
+                DrawMeters(new Rect(inRect.x, left.yMax + 4f, inRect.width, UiKit.MeterHeight));
+                DrawTotals(new Rect(inRect.x, left.yMax + MetersHeight, inRect.width, totalsH - MetersHeight), totals);
                 DrawBottom(new Rect(inRect.x, inRect.yMax - bottomH + 8f, inRect.width, bottomH - 8f));
             }
             catch (Exception e)
@@ -283,42 +298,149 @@ namespace ColonyCouncil
             }
         }
 
+        private static readonly AdviceGroup[] Groups = { AdviceGroup.Recommended, AdviceGroup.CanGo, AdviceGroup.BetterNot };
+
+        /// <summary>
+        /// Who goes, as an overview: each colonist at home in a row (portrait and name leading to their card, the reason of
+        /// their group, their chips: health, mind, gear, the weather on the way, needs on the road, what the home loses, the
+        /// journey's skills with the colony's best marked), grouped recommended, can go and better not; then the animals the
+        /// same way. A click on a row picks them or leaves them out; nothing is picked but by the player.
+        /// </summary>
         private void DrawWho(Rect rect)
         {
-            var map = plan.map;
-            var people = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).OrderBy(p => p.LabelShort).ToList();
-            var beasts = map.mapPawns.SpawnedColonyAnimals.Where(a => !a.Dead && a.RaceProps.Animal).OrderByDescending(a => a.RaceProps.packAnimal).ThenBy(a => a.LabelShort).ToList();
             var view = new Rect(0f, 0f, rect.width - 16f, Mathf.Max(leftH, rect.height));
             Widgets.BeginScrollView(rect, ref leftScroll, view);
             float y = 0f, w = view.width;
             y += UiKit.SectionTitle(0f, y, w, "CC_Journey_Who".Translate(), Icons.People, Accent, plan.travellers.Count.ToString()) + 2f;
-            foreach (var p in people) y += PawnRow(p, y, w, plan.travellers, false);
+            var a = advice;
+            if (a != null && a.picked.Count > 0 && plan.travellers.Count > 0)
+                y += UiKit.Paragraph(4f, y, w - 8f, "CC_JA_PicksLeave".Translate(JourneyAdvice.Warnings(a.picked)).Resolve(), UiKit.Soon, GameFont.Tiny) + 4f;
+            if (a == null || a.people.Count == 0)
+            {
+                UiKit.EmptyLine(new Rect(4f, y, w - 8f, 28f), "CC_JA_NobodyHome".Translate());
+                y += 34f;
+            }
+            else
+            {
+                int index = 0;
+                foreach (var g in Groups)
+                {
+                    int count = a.people.Count(r => r.group == g);
+                    if (count == 0) continue;
+                    y += UiKit.SectionHeading(0f, y, w, ("CC_JA_Group_" + g).Translate(), count, WhoFolds, "people" + g, out bool open);
+                    if (!open) continue;
+                    foreach (var row in a.people)
+                        if (row.group == g)
+                            y += PersonRow(row, y, w, index++);
+                    y += 6f;
+                }
+            }
             y += 10f;
             y += UiKit.SectionTitle(0f, y, w, "CC_Journey_Beasts".Translate(), null, Accent, plan.animals.Count.ToString()) + 2f;
-            if (beasts.Count == 0) y += UiKit.Paragraph(4f, y, w - 4f, "CC_Journey_NoBeasts".Translate(), UiKit.Faint, GameFont.Tiny) + 4f;
-            foreach (var a in beasts) y += PawnRow(a, y, w, plan.animals, true);
+            if (a == null || a.beasts.Count == 0) y += UiKit.Paragraph(4f, y, w - 4f, "CC_Journey_NoBeasts".Translate(), UiKit.Faint, GameFont.Tiny) + 4f;
+            else
+            {
+                int index = 0;
+                foreach (var g in Groups)
+                {
+                    int count = a.beasts.Count(r => r.group == g);
+                    if (count == 0) continue;
+                    y += UiKit.SectionHeading(0f, y, w, ("CC_JA_Group_" + g).Translate(), count, WhoFolds, "beasts" + g, out bool open);
+                    if (!open) continue;
+                    foreach (var row in a.beasts)
+                        if (row.group == g)
+                            y += BeastRow(row, y, w, index++);
+                    y += 6f;
+                }
+            }
             leftH = y + 10f;
             Widgets.EndScrollView();
         }
 
-        private float PawnRow(Pawn p, float y, float w, List<Pawn> list, bool animal)
+        /// <summary>The colour of a group's reason: the recommended well, the rest quiet, better not soon.</summary>
+        private static Color GroupColor(AdviceGroup g) => g == AdviceGroup.Recommended ? UiKit.Warm : g == AdviceGroup.BetterNot ? UiKit.Soon : UiKit.Faint;
+
+        private const float RowTop = 40f;
+
+        /// <summary>A colonist's row's height for a width: the name and reason, then the chips and the skills as they wrap.</summary>
+        private static float PersonRowHeight(JourneyPersonRow row, float w)
         {
-            const float h = 30f;
-            var row = new Rect(0f, y, w, h);
-            bool on = list.Contains(p);
-            if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
-            bool now = on;
-            Widgets.CheckboxDraw(row.x + 2f, row.y + 3f, on, false);
-            UiKit.Portrait(new Rect(row.x + 30f, row.y + 2f, 26f, 26f), p, on ? UiKit.Gold : UiKit.Dim);
-            string why = JourneyRun.NotReady(p, plan.map, animal);
-            string note = why != null ? (why + "_Short").Translate().ToString() : animal && p.RaceProps.packAnimal ? "CC_Journey_PackAnimal".Translate().ToString() : null;
-            UiKit.LabelFit(new Rect(row.x + 62f, row.y, w - 62f, note != null ? 18f : h), p.LabelShortCap, on ? Color.white : UiKit.Faint);
-            if (note != null) UiKit.LabelFit(new Rect(row.x + 62f, row.y + 15f, w - 62f, 15f), note, why != null ? UiKit.Warn : UiKit.Dim, GameFont.Tiny);
-            if (Widgets.ButtonInvisible(row)) now = !on;
-            if (now != on)
+            if (Mathf.Abs(row.heightFor - w) < 0.5f && row.height > 0f) return row.height;
+            float cw = Mathf.Max(60f, w - 76f);
+            float h = RowTop + UiKit.Pills(0f, 0f, cw, row.state, false) + 3f + UiKit.Pills(0f, 0f, cw, row.skills, false) + 6f;
+            row.heightFor = w;
+            row.height = Mathf.Max(UiKit.RowPortrait + 6f, h);
+            return row.height;
+        }
+
+        private float PersonRow(JourneyPersonRow row, float y, float w, int index)
+        {
+            var p = row.pawn;
+            if (p == null || p.Destroyed) return 0f;
+            float h = PersonRowHeight(row, w);
+            var r = new Rect(0f, y, w, h);
+            bool on = plan.travellers.Contains(p);
+            UiKit.Zebra(r, index);
+            if (on) Widgets.DrawBoxSolid(r, UiKit.Wash(UiKit.Gold));
+            if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
+            Widgets.CheckboxDraw(r.x + 2f, r.y + 8f, on, false);
+            // The portrait and the name lead to their card.
+            var face = new Rect(r.x + 30f, r.y + 4f, 34f, 34f);
+            var who = ThingRefs.Of(p);
+            UiKit.Portrait(face, p, on ? UiKit.Gold : UiKit.TrustRing(p));
+            if (!who.IsNone && Mouse.IsOver(face)) Previews.Hover(who, face);
+            bool took = false;
+            if (!who.IsNone && Widgets.ButtonInvisible(face, false))
             {
-                if (now) list.Add(p);
-                else list.Remove(p);
+                Cards.Click();
+                Cards.Open(who);
+                took = true;
+            }
+            float x = face.xMax + 8f;
+            float nowW = row.now.NullOrEmpty() ? 0f : Mathf.Min(UiKit.KeptWidth(row.now, GameFont.Tiny) + 6f, (w - x) * 0.4f);
+            float nameW = UiKit.NameLink(new Rect(x, r.y + 2f, Mathf.Max(0f, w - x - nowW - 8f), 22f), p.LabelShortCap, who);
+            if (nowW > 0f) UiKit.LabelFit(new Rect(w - nowW - 4f, r.y + 2f, nowW, 22f), row.now, UiKit.Cool, GameFont.Tiny, TextAnchor.MiddleRight);
+            var nameHit = new Rect(x, r.y + 2f, nameW, 22f);
+            var why = new Rect(x, r.y + 21f, Mathf.Max(0f, w - x - 4f), 17f);
+            UiKit.LabelFit(why, row.reason, GroupColor(row.group), GameFont.Tiny);
+            if (!row.tip.NullOrEmpty() && Mouse.IsOver(why)) TooltipHandler.TipRegion(why, row.tip);
+            float cw = Mathf.Max(60f, w - x - 4f);
+            float cy = r.y + RowTop;
+            cy += UiKit.Pills(x, cy, cw, row.state) + 3f;
+            UiKit.Pills(x, cy, cw, row.skills);
+            // The rest of the row picks them or leaves them out.
+            if (!took && !Mouse.IsOver(nameHit) && Widgets.ButtonInvisible(r, false))
+            {
+                if (on) plan.travellers.Remove(p);
+                else plan.travellers.Add(p);
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                dirty = true;
+            }
+            return h + 2f;
+        }
+
+        private float BeastRow(JourneyBeastRow row, float y, float w, int index)
+        {
+            var a = row.pawn;
+            if (a == null || a.Destroyed) return 0f;
+            float x = 30f + 34f + 8f;
+            float cw = Mathf.Max(60f, w - x - 4f);
+            float h = Mathf.Max(UiKit.RowPortrait, 40f + (row.chips.Count > 0 ? UiKit.Pills(0f, 0f, cw, row.chips, false) + 4f : 0f));
+            var r = new Rect(0f, y, w, h);
+            bool on = plan.animals.Contains(a);
+            UiKit.Zebra(r, index);
+            if (on) Widgets.DrawBoxSolid(r, UiKit.Wash(UiKit.Gold));
+            if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
+            Widgets.CheckboxDraw(r.x + 2f, r.y + 8f, on, false);
+            UiKit.Portrait(new Rect(r.x + 30f, r.y + 4f, 34f, 34f), a, on ? UiKit.Gold : UiKit.Dim);
+            UiKit.LabelFit(new Rect(x, r.y + 2f, Mathf.Max(0f, w - x - 4f), 22f), a.LabelShortCap + ", " + a.KindLabel, on ? UiKit.Ink : UiKit.Faint);
+            UiKit.LabelFit(new Rect(x, r.y + 21f, Mathf.Max(0f, w - x - 4f), 17f), row.reason, GroupColor(row.group), GameFont.Tiny);
+            if (row.chips.Count > 0) UiKit.Pills(x, r.y + 40f, cw, row.chips);
+            if (Widgets.ButtonInvisible(r, false))
+            {
+                if (on) plan.animals.Remove(a);
+                else plan.animals.Add(a);
+                SoundDefOf.Click.PlayOneShotOnCamera();
                 dirty = true;
             }
             return h + 2f;
@@ -469,6 +591,7 @@ namespace ColonyCouncil
         {
             heldAt = Time.realtimeSinceStartup;
             held = JourneyPack.Holdings(plan.map, plan.travellers);
+            stallHeld = JourneyPack.StallHoldings(plan.map);
             try
             {
                 roadNotes = RoadFood.PlanNotes(plan.travellers, plan.packing.Where(l => l.Taken && l.kind == "food").Select(l => l.def).ToList());
@@ -482,10 +605,20 @@ namespace ColonyCouncil
 
         private (int stores, int carried) Held(ThingDef def) => def != null && held.TryGetValue(def, out var h) ? h : default;
 
+        /// <summary>How many lie on the colony's stalls (RimMarket), and the first stall's name.</summary>
+        private int OnStall(ThingDef def, out string stall)
+        {
+            stall = null;
+            if (def == null || !stallHeld.TryGetValue(def, out var list) || list.Count == 0) return 0;
+            stall = list[0].stall.LabelShortCap;
+            return list.Sum(x => x.count);
+        }
+
+        /// <summary>What there is to take: the stores, the travellers' packs and the colony's stalls.</summary>
         private int ToHand(ThingDef def)
         {
             var h = Held(def);
-            return h.stores + h.carried;
+            return h.stores + h.carried + OnStall(def, out _);
         }
 
         private static string Key(JourneyLine l) => l.kind + "/" + l.def.defName;
@@ -534,6 +667,7 @@ namespace ColonyCouncil
                 heldAt = -10f;
             }
             y += 32f;
+            y = Recommended(y, w);
             if (!plan.packing.Any(l => !l.removed))
                 y += UiKit.Paragraph(4f, y, w - 8f, plan.travellers.Count == 0 ? "CC_Journey_PackNobody".Translate() : "CC_Journey_PackNothing".Translate(), UiKit.Faint) + 4f;
             int i = 0;
@@ -717,6 +851,13 @@ namespace ColonyCouncil
             else if (line.kind == "feed" && nutrition > 0f && FeedEat > 0f) parts.Add("CC_Journey_LineDays".Translate(D(nutrition / FeedEat)).Resolve());
             parts.Add(Kg(line.count * JourneyPack.UnitMass(line.def)));
             parts.Add("CC_Journey_InStores".Translate(toHand).Resolve());
+            int onStall = OnStall(line.def, out string stall);
+            if (onStall > 0)
+            {
+                var h = Held(line.def);
+                int off = JourneyAdviceMath.TakeFrom(line.count, h.stores + h.carried, new[] { onStall }).stalls[0];
+                parts.Add(off > 0 ? "CC_JA_OffStall".Translate(off, stall).Resolve() : "CC_JA_OnStall".Translate(onStall, stall).Resolve());
+            }
             warn = line.count > toHand;
             float rot = JourneyPack.RotDays(line.def);
             if ((line.kind == "food" || line.kind == "feed") && rot < plan.days)
@@ -747,6 +888,8 @@ namespace ColonyCouncil
             }
             var h = Held(line.def);
             sb.AppendLine("CC_Journey_TipToHand".Translate(h.stores, h.carried).Resolve());
+            int onStall = OnStall(line.def, out string stall);
+            if (onStall > 0) sb.AppendLine("CC_JA_TipStall".Translate(onStall, stall).Resolve());
             sb.Append((JourneyPack.OwnPack(line.kind) ? "CC_Journey_TipOwnPack" : "CC_Journey_TipGate").Translate().Resolve());
             return sb.ToString();
         }
@@ -853,17 +996,178 @@ namespace ColonyCouncil
                     list.Add(("CC_Journey_FeedLasts".Translate(D(lasts), D(need)).Resolve() + " " + verdict, CoverColor(cover), tip));
                 }
             }
-            // The load against the room.
+            // The load against the room: the meter above; a word only when it's too much.
             if (people.Count > 0 || rows.Count > 0)
             {
-                float load = JourneyMath.LoadToTake(rows);
-                float room = people.Concat(plan.animals.Where(a => a != null && a.RaceProps.packAnimal)).Sum(p => Mathf.Max(0f, MassUtility.FreeSpace(p)));
-                string text = "CC_Journey_Load".Translate(load.ToString("0"), room.ToString("0")).Resolve();
-                if (load > room) text += " " + "CC_Journey_LoadOver".Translate((load - room).ToString("0")).Resolve();
-                list.Add((text, load > room ? UiKit.Bad : UiKit.Faint, "CC_Journey_LoadTip".Translate().Resolve()));
+                var (load, room) = LoadAndRoom(rows);
+                if (load > room) list.Add(("CC_Journey_LoadOver".Translate((load - room).ToString("0")).Resolve(), UiKit.Bad, "CC_Journey_LoadTip".Translate().Resolve()));
             }
             return list;
         }
+
+        // ---------------- The advice ----------------
+
+        /// <summary>The weight still to take up and the room for it on the travellers and their pack animals.</summary>
+        private (float load, float room) LoadAndRoom(List<JourneyMath.PackRow> rows)
+        {
+            float load = JourneyMath.LoadToTake(rows);
+            float room = plan.travellers.Where(p => p != null && !p.Dead).Concat(plan.animals.Where(a => a != null && !a.Dead && a.RaceProps.packAnimal))
+                .Sum(p => Mathf.Max(0f, MassUtility.FreeSpace(p)));
+            return (load, room);
+        }
+
+        /// <summary>The advice worked out again: when the planner opens, then at most once a second (and at once after the player's own press).</summary>
+        private void BuildAdvice()
+        {
+            adviceAt = Time.realtimeSinceStartup;
+            try
+            {
+                var (load, room) = LoadAndRoom(plan.packing.Where(l => l.Taken).Select(RowOf).ToList());
+                advice = JourneyAdvice.Build(plan, route, held, stallHeld, clothes, load, room);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("journey planner: the advice", e);
+            }
+        }
+
+        /// <summary>
+        /// The player's press on "Pick the recommended": who goes becomes the recommended, then the animals the load
+        /// recommends with them, then the recommended things go on the list. The player's own numbers on the list stay.
+        /// </summary>
+        private void PickRecommended()
+        {
+            CommitCount();
+            if (advice == null) return;
+            plan.travellers.Clear();
+            plan.travellers.AddRange(advice.recommendedPeople.Where(p => p != null && !p.Destroyed));
+            Compute();
+            BuildAdvice();
+            if (advice == null) return;
+            plan.animals.Clear();
+            plan.animals.AddRange(advice.recommendedBeasts.Where(a => a != null && !a.Destroyed));
+            Compute();
+            BuildAdvice();
+            if (advice == null) return;
+            foreach (var rec in advice.items.ToList()) JourneyAdvice.Apply(plan, rec);
+            advice.items.Clear();
+            dirty = true;
+            SoundDefOf.Tick_High.PlayOneShotOnCamera();
+        }
+
+        /// <summary>
+        /// What the journey is for, under the title: its kind and danger as chips, the sentence saying what the place is
+        /// and what it wants, the recommendation's size and what it leaves the home without; "Pick the recommended" on the
+        /// right. Returns the height used.
+        /// </summary>
+        private float DrawPurpose(Rect r)
+        {
+            var a = advice;
+            if (a?.purpose == null) return 0f;
+            const float bw = 220f;
+            var button = new Rect(r.xMax - bw, r.y, bw, 30f);
+            string whyNot = a.recommendedPeople.Count == 0 ? "CC_JA_PickNone".Translate().ToString() : null;
+            if (UiKit.ActButton(button, "CC_JA_Pick".Translate(), whyNot, "CC_JA_Pick_Tip".Translate())) PickRecommended();
+            float x = r.x;
+            float right = button.x - 10f;
+            x += UiKit.StateChip(x, r.y + 4f, a.aimWord, UiKit.Gold, 200f, "CC_JA_Aim_Tip".Translate()) + 6f;
+            if (a.dangerWord != null) x += UiKit.StateChip(x, r.y + 4f, a.dangerWord, a.dangerColor, 220f, "CC_JA_Danger_Tip".Translate()) + 6f;
+            float lineW = Mathf.Max(80f, right - x);
+            Text.Font = GameFont.Small;
+            float h = Mathf.Max(28f, Text.CalcHeight(a.purpose.what, lineW));
+            UiKit.Paragraph(x, r.y + 2f, lineW, a.purpose.what, UiKit.Ink);
+            float y = r.y + h + 2f;
+            string party = a.partyLine + (a.recLeaves.NullOrEmpty() ? "" : " " + a.recLeaves);
+            float ph = UiKit.Paragraph(r.x, y, right - r.x, party, a.recLeaves.NullOrEmpty() ? UiKit.Faint : UiKit.Soon, GameFont.Tiny);
+            y += Mathf.Max(16f, ph) + 2f;
+            UiKit.Divider(r.x, y + 2f, r.width);
+            return y + 4f - r.y;
+        }
+
+        /// <summary>
+        /// The things to bring besides the planner's own list: each with how many more, why, and where it comes from (a
+        /// stall's goods said so, the stores first); "Add" puts one on the list, "Add the recommended" all; then the notes
+        /// that need something the stores can't give.
+        /// </summary>
+        private float Recommended(float y, float w)
+        {
+            var a = advice;
+            if (a == null || plan.travellers.Count == 0 || (a.items.Count == 0 && a.notes.Count == 0)) return y;
+            y += UiKit.SectionHeading(0f, y, w, "CC_JA_Bring".Translate(), a.items.Count, null, null, out _, "CC_JA_AddAll".Translate(),
+                a.items.Count == 0 ? "CC_JA_AddAll_None".Translate().ToString() : null, out bool all, "CC_JA_AddAll_Tip".Translate());
+            if (all)
+            {
+                CommitCount();
+                foreach (var rec in a.items.ToList()) JourneyAdvice.Apply(plan, rec);
+                a.items.Clear();
+                dirty = true;
+                SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                return y;
+            }
+            int i = 0;
+            foreach (var rec in a.items.ToList())
+            {
+                var r = new Rect(0f, y, w, UiKit.RowPortrait);
+                UiKit.Zebra(r, i++);
+                Widgets.ThingIcon(new Rect(4f, y + 7f, 26f, 26f), rec.def);
+                string add = "CC_JA_Add".Translate();
+                float aw = UiKit.RowActWidth(add);
+                string label = "CC_JA_ItemLine".Translate(rec.count, rec.def.LabelCap).Resolve();
+                UiKit.LabelFit(new Rect(36f, y + 2f, Mathf.Max(0f, w - 44f - aw), 20f), label, UiKit.Ink);
+                string why = rec.why;
+                if (rec.fromStall > 0) why += " " + "CC_JA_FromStall".Translate(rec.fromStall, rec.stallName ?? "?").Resolve();
+                var whyRect = new Rect(36f, y + 21f, Mathf.Max(0f, w - 44f - aw), 17f);
+                UiKit.LabelFit(whyRect, why, UiKit.Faint, GameFont.Tiny);
+                if (UiKit.RowAct(new Rect(w - aw - 2f, y + 9f, aw, 22f), add, null, "CC_JA_Add_Tip".Translate()))
+                {
+                    CommitCount();
+                    JourneyAdvice.Apply(plan, rec);
+                    a.items.Remove(rec);
+                    dirty = true;
+                }
+                y += UiKit.RowPortrait + 2f;
+            }
+            foreach (var note in a.notes) y += UiKit.Paragraph(4f, y + 2f, w - 8f, note, UiKit.Soon, GameFont.Tiny) + 3f;
+            return y + 8f;
+        }
+
+        // ---------------- The load at a glance ----------------
+
+        private const float MetersHeight = UiKit.MeterHeight + 8f;
+
+        /// <summary>
+        /// The foot's meters, always in sight: the load against the room (red when over), the caravan's own speed with it,
+        /// and the food's days against the road's with the margin.
+        /// </summary>
+        private void DrawMeters(Rect r)
+        {
+            var rows = plan.packing.Where(l => l.Taken).Select(RowOf).ToList();
+            var (load, room) = LoadAndRoom(rows);
+            float gap = 16f;
+            float cw = (r.width - gap * 2f) / 3f;
+            // The load.
+            float fill = room > 0f ? load / room : load > 0f ? 1f : 0f;
+            var loadColor = load > room ? UiKit.Danger : fill > JourneyAdviceMath.LoadMargin ? UiKit.Soon : UiKit.Warm;
+            UiKit.Meter(new Rect(r.x, r.y, cw, r.height), fill, loadColor, "CC_JA_Meter_Load".Translate(),
+                "CC_JA_Meter_LoadValue".Translate(load.ToString("0"), room.ToString("0")).Resolve(), null, "CC_Journey_LoadTip".Translate());
+            // The speed.
+            float speed = advice?.tilesPerDay ?? 0f;
+            string pace = speed > 0f ? "CC_JA_Meter_SpeedValue".Translate(speed.ToString("0.#")).Resolve() : "CC_JA_Meter_SpeedNone".Translate().Resolve();
+            UiKit.Meter(new Rect(r.x + cw + gap, r.y, cw, r.height), speed > 0f ? Mathf.Clamp01(speed / 30f) : 0f, load > room ? UiKit.Danger : UiKit.Cool,
+                "CC_JA_Meter_Speed".Translate(), pace, null, "CC_JA_Meter_Speed_Tip".Translate());
+            // The food against the road.
+            float food = JourneyMath.Sum(rows, "food").nutrition;
+            float lasts = JourneyMath.Lasts(food, eatPerDay);
+            float margin = JourneyMath.MarginDays(plan.days);
+            bool any = plan.travellers.Count > 0;
+            var cover = JourneyMath.Covers(lasts, plan.days);
+            string days = !any ? "CC_JA_Meter_FoodNone".Translate().Resolve()
+                : float.IsPositiveInfinity(lasts) ? "CC_JA_Meter_FoodAll".Translate(D(plan.days)).Resolve()
+                : "CC_JA_Meter_FoodValue".Translate(D(lasts), D(plan.days)).Resolve();
+            UiKit.Meter(new Rect(r.x + (cw + gap) * 2f, r.y, cw, r.height), any && margin > 0f ? Mathf.Clamp01(lasts / margin) : 0f, any ? CoverColor(cover) : UiKit.Faint,
+                "CC_JA_Meter_Food".Translate(), days, null, "CC_JA_Meter_Food_Tip".Translate(D(margin)).Resolve());
+        }
+
 
         private static float TotalsHeight(List<(string text, Color color, string tip)> totals, float width)
         {

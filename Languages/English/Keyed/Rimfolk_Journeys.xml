@@ -109,6 +109,8 @@
   <CC_Journey_Group_medicine_Tip>Medicine for the road, shared out among the travellers to carry.</CC_Journey_Group_medicine_Tip>
   <CC_Journey_Group_drugs>Drugs for addictions</CC_Journey_Group_drugs>
   <CC_Journey_Group_drugs_Tip>Drugs for the travellers' addictions and chemical dependencies, enough for the days away with the margin. They go with the caravan's goods, loaded at the gate, and on the road the caravan gives a dose when one is due.</CC_Journey_Group_drugs_Tip>
+  <CC_Journey_Group_arms>Weapons for the unarmed</CC_Journey_Group_arms>
+  <CC_Journey_Group_arms_Tip>Weapons from the stores for travellers who have none: in the last hours each of them takes one up. Any left over go with the caravan's goods.</CC_Journey_Group_arms_Tip>
   <CC_Journey_Group_bedding>Bedding</CC_Journey_Group_bedding>
   <CC_Journey_Group_bedding_Tip>Bedrolls (a double counts for two) and any mod's tents for nights on the road, carried by the travellers in turn.</CC_Journey_Group_bedding_Tip>
   <CC_Journey_Group_feed>Feed for the animals</CC_Journey_Group_feed>
