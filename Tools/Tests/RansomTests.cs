@@ -172,9 +172,169 @@ public static class RansomTests
         return n;
     }
 
-    /// <summary>The mod's side: filled in as the game side is built.</summary>
-    private static int ModSide(string root, string src, Func<string, string> Code, Action<bool, string> C)
+    /// <summary>
+    /// The mod's side, read from the source: the parts where the design puts them, pure rules, Tell only, the game's
+    /// demand hooked where it is and with its own fee, the trap from the gate's side, the records in DiplomacyBook with
+    /// their keep reasons, the letters' and the right-click frames, the inbox counted, the facts, the defs, the words.
+    /// </summary>
+    private static int ModSide(string root, string src, Func<string, string> Code, Action<bool, string> C0)
     {
-        return 0;
+        int n = 0;
+        void C(bool ok, string what)
+        {
+            n++;
+            C0(ok, what);
+        }
+
+        string dipDir = Path.Combine(src, "Diplomacy");
+        var mine = new[] { "Ransoms.cs", "RansomParty.cs", "RansomHooks.cs", "RansomLetters.cs", "RansomPanels.cs", "RansomWords.cs", "RansomDebug.cs", "Envoys.cs",
+            "EnvoyLord.cs", "EnvoysAbroad.cs", "DiplomacyBook.cs", "FactsRansom.cs" };
+        foreach (var f in mine) C(File.Exists(Path.Combine(dipDir, f)), $"Diplomacy/{f} is there");
+        var text = mine.Where(f => File.Exists(Path.Combine(dipDir, f))).ToDictionary(f => f, f => File.ReadAllText(Path.Combine(dipDir, f)));
+        string all = string.Concat(text.Values);
+        foreach (var f in new[] { "RansomMath.cs", "EnvoyMath.cs" })
+            C(!Regex.IsMatch(Code("Diplomacy/" + f), @"using (Verse|RimWorld|UnityEngine)"), $"{f} is pure");
+        foreach (var (f, t) in text.Where(kv => !kv.Key.EndsWith("Debug.cs")))
+            C(!t.Contains("Messages.Message(") && !t.Contains("Find.LetterStack.ReceiveLetter(") && !t.Contains("MoteMaker.ThrowText"), $"{f} tells the player only through Tell and speaks only through Speech");
+        C(!Regex.IsMatch(all, @"GameComponentTick|override void Tick\("), "nothing per tick: the hour and the day ride on diplomacy's");
+        string hub = Code("Diplomacy/Diplomacy.cs");
+        C(hub.Contains("Ransoms.Hourly(now)") && hub.Contains("Envoys.Hourly(now)") && hub.Contains("EnvoysAbroad.Hourly(now)") && hub.Contains("Envoys.Daily(now)")
+          && hub.Contains("DiplomacyBook.Instance?.AnyWaiting"), "in diplomacy's hour and day; the envoys' hour only while something waits");
+
+        // ---------------- The records ----------------
+
+        string book = text["DiplomacyBook.cs"];
+        C(book.Contains("class DiplomacyHome : IExposable, IColonyEntry") && book.Contains("ColonyBook.Entry(homes, map, () => new DiplomacyHome())")
+          && book.Contains("ColonyBook.Lost(homes, lost, null)") && book.Contains("ColonyBook.Daily(homes, null)"), "each home's part kept by the colonies' book");
+        C(Code("ColonyState.cs").Contains("DiplomacyBook.Instance?.HomesLost(lost);") && hub.Contains("DiplomacyBook.Instance?.Daily()"), "homes lost and the day's upkeep");
+        C(text["Ransoms.cs"].Contains("h.offers.Count >= RansomMath.MaxOffers"), "six offers a home at most");
+        string keep = Code("World/Ledger/LedgerKeep.cs");
+        C(keep.Contains("public const string Envoy = \"envoy\";") && keep.Contains("public const string Lent = \"lent\";") && keep.Contains("case KeepFor.Envoy: return Envoys.Holds(p);")
+          && keep.Contains("case KeepFor.Lent: return EnvoysAbroad.Holds(p);"), "kept with KeepFor.Envoy and KeepFor.Lent, each checked daily");
+        C(text["Envoys.cs"].Contains("WorldLedger.Keep(n.pawn, KeepFor.Envoy)") && text["EnvoysAbroad.cs"].Contains("WorldLedger.Keep(p, KeepFor.Lent)"), "and given those reasons");
+        string save = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
+        C(save.Contains("\"Diplomacy/DiplomacyBook.cs:homes\"") && save.Contains("\"Diplomacy/DiplomacyBook.cs:offers\"") && save.Contains("\"MaxOffers\""),
+            "the save model knows both lists, the offers' cap read from the source");
+
+        // ---------------- Ransom ----------------
+
+        string r = text["Ransoms.cs"];
+        C(r.Contains("RansomMath.SteadyRoll(p.thingIDNumber, f.loadID)") && r.Contains("RansomMath.DelayDays(Rand.Value)"), "wanted back by the steady roll, two to six days on");
+        C(r.Contains("Arrivals.PersonKind(f) != null ? f : null") && r.Contains("TruceParley.Escort(f)"), "their own messenger at peace, a go-between of a people at peace with both at war");
+        C(r.Contains("PrisonerInteractionModeDefOf.Release") && r.Contains("GenGuest.PrisonerRelease(c)"), "the captive walks out by the game's own release (the door opened if nobody walks them)");
+        C(r.Contains("FactionMemory.Note(f, \"ransomed\"") && r.Contains("FactionMemory.Note(f, \"forgave\"") && r.Contains("DiplomacyMath.Ransomed") && r.Contains("DiplomacyMath.Exchanged"),
+            "the deeds and the history: ransomed, forgave, dip:ransomed, dip:exchanged");
+        C(Code("Diplomacy/FavoursOwed.cs").Contains("Ransoms.PaidFor(d.faction, d.name)"), "a captive paid for leaves no debt of honour");
+        C(r.Contains("WorldLedger.AddTie(Tie.Kind.Grudge") && r.Contains("RansomMath.GrudgeKey") && r.Contains("RansomMath.Origin") && r.Contains("RansomMath.Grudge(o.refusals)"),
+            "refused three times: the existing Grudge tie, key ransomRefused");
+        C(r.Contains("RansomMath.MoreAgreed(social, Rand.Value)") && r.Contains("RansomMath.Raised(o.price)"), "asking for more by the speaker's Social");
+        string hooks = text["RansomHooks.cs"];
+        C(hooks.Contains("[HarmonyPatch(typeof(IncidentWorker_RansomDemand), \"CanFireNowSub\")]") && hooks.Contains("[HarmonyPatch(typeof(IncidentWorker_RansomDemand), \"TryExecuteWorker\")]"),
+            "the game's own demand: its rate, hooked where it fires");
+        C(Regex.Matches(hooks, @"CommsConsoleUtility\.PlayerHasPoweredCommsConsole\(map\)").Count == 2 && Regex.Matches(hooks, @"RimfolkPatches\.On").Count == 2
+          && Regex.Matches(hooks, @"Ransoms\.On").Count == 2, "only without a powered comms console, with the deeper hooks and the setting");
+        C(r.Contains("RansomMath.Fee(p.MarketValue, Rand.Value)") && r.Contains("l.StartTimeout(RansomMath.AnswerTicks)"), "the game's fee and its day to answer");
+        C(r.Contains("ChoiceLetter_RansomDemand d && d.kidnapped != null"), "never one the game's own letter already asks about");
+        C(r.Contains("f.kidnapped.RemoveKidnappedPawn(p)") && r.Contains("TradeUtility.SpawnDropPod(at, map, p)") && r.Contains("(int)f.def.techLevel < (int)TechLevel.Industrial"),
+            "home as the game returns them: from the edge, or by pod from a people of the machine ages");
+        C(text["RansomParty.cs"].Contains("class JobDriver_RansomPay") && text["RansomParty.cs"].Contains("Ransoms.Paid(Errand?.offer ?? -1, pawn, n)"),
+            "the speaker carries the silver out and hands it over face to face");
+        C(r.Contains("Raids.Send(map, f, StorytellerUtility.DefaultThreatPointsNow(map) * RansomMath.TrapPoints") && r.Contains("EdgeNear(map, gate)")
+          && r.Contains("if (!Diplomacy.Hostile(f)) return;"), "the trap: hostile peoples only, a band at 0.35 from the gate's side");
+        C(r.Contains("CC_Ransom_Trap_Named") && Code("Diplomacy/RansomPanels.cs").Contains("CC_Ransom_Card_Trap"), "its chance named in the letter and on the captive's card before the choice");
+        string party = text["RansomParty.cs"];
+        C(party.Contains("Trigger_Custom(s => s.type == TriggerSignalType.Tick && done)") && !Regex.IsMatch(Regex.Match(r, @"public static void Arrived\(LordJob_Messenger job\)[\s\S]*?\n        }\n").Value, @"ReceiveMemo"),
+            "their messenger leaves by a flag set at the gate, never a memo sent from inside the lord's own transition");
+
+        // ---------------- The envoy ----------------
+
+        string e = text["Envoys.cs"];
+        C(e.Contains("EnvoyMath.MayOffer(") && e.Contains("EnvoyMath.OffersToday(Rand.Value)") && e.Contains("Tell.CanAsk"), "their offer by the rules, when a question may come");
+        C(e.Contains("Hosting.Provision(p, EnvoyMath.StayDays)") && e.Contains("Hosting.Meal(p, envoy)") && e.Contains("Hosting.Sleep(p, bed)") && e.Contains("Hosting.SleepRough(p)")
+          && e.Contains("Hosting.GiveBack(p, map)"), "the missions' hosting rules: meals, beds, the floor, the bed given back");
+        C(text["EnvoyLord.cs"].Contains("RansomDefOf.Rimfolk_EnvoyIndoors") && text["EnvoyLord.cs"].Contains("StoryDanger.High"), "indoors in danger");
+        C(e.Contains("EnvoyMath.Talks(w - s.warmth)") && e.Contains("EnvoyMath.Gift") && e.Contains("EnvoyMath.SatIn") && e.Contains("EnvoyMath.Hurt(sheltered)")
+          && e.Contains("EnvoyMath.Night(n, Empire(s), alone)"), "the stay scored from what happens on the map");
+        C(e.Contains("AmbitionTracker.MeetingOn(map)") && e.Contains("RansomDefOf.Rimfolk_EnvoySitIn"), "a seat at a council meeting in session");
+        C(e.Contains("EnvoyMath.LetterDue(DaysStayed(s), s.letters)") && e.Contains("RansomDefOf.Rimfolk_EnvoyLetter"), "a runner at the gate for each letter home");
+        C(e.Contains("\"envoyHonored\", name, EnvoyMath.DeedWeight(s.score, days)") && e.Contains("FactionMemory.Note(f, \"slighted\"") && e.Contains("DiplomacyMath.Envoy"),
+            "the report: envoyHonored (a debt for a very good stay) or slighted, and dip:envoy");
+        C(e.Contains("EnvoyMath.DiedRegard(sheltered)"), "dead at the colony: by whether it sheltered them");
+        string ab = text["EnvoysAbroad.cs"];
+        C(ab.Contains("EnvoyMath.CanGo(") && ab.Contains("Dialog_MessageBox.CreateConfirmation") && ab.Contains("CC_Envoy_Ask"), "the colony's envoy: good with people, after the council's question");
+        C(ab.Contains("JobDefOf.TakeInventory") && ab.Contains("CaravanExitMapUtility.ExitMapAndCreateCaravan") && ab.Contains("new CaravanArrivalAction_Enter(map.Parent)"),
+            "food for the road from the stores, a caravan of their own there and back");
+        C(ab.Contains("EnvoyMath.AbroadRegard(social)") && ab.Contains("FactScene.Letter(head, p, map, true)") && ab.Contains("EnvoyMath.SocialXp"),
+            "their letters' real news, the notables' regard, the practice they bring home");
+
+        // ---------------- Where the player acts ----------------
+
+        string letters = Code("Diplomacy/DiplomacyLetters.cs");
+        C(letters.Contains("LetterPurpose.Ransom") && letters.Contains("LetterPurpose.Envoy") && letters.Contains("RansomLetters.Read(l, n, l.map ?? Home, ref tone)"),
+            "the letters' new purposes in the existing frame");
+        string acts = Code("Diplomacy/DiplomacyActs.cs");
+        C(acts.Contains("OutsiderAct.OfferExchange") && acts.Contains("ExchangeActs.Talked(c, x, a, pick.code)") && acts.Contains("\"exchangeask\""), "\"Offer an exchange\" face to face");
+        string panels = text["RansomPanels.cs"];
+        C(panels.Contains("Inbox.Register(\"ransom\", InboxSection.Needs, 33f, NeedRows, NeedCount)") && panels.Contains("Inbox.Register(\"envoy\", InboxSection.Needs, 34f, EnvoyNeedRows, EnvoyNeedCount)")
+          && panels.Contains("Inbox.Register(\"ransom-under-way\", InboxSection.UnderWay") && panels.Contains("Inbox.Register(\"envoy-under-way\", InboxSection.UnderWay"),
+            "the inbox: Needs you counted through Inbox.Count, Under way in steps");
+        C(!Regex.IsMatch(panels, @"TicksToDays|ToStringTicksToPeriod|days left|hours left"), "never a time left");
+        C(panels.Contains("CardSections.RegisterLines(CardKind.Colonist") && panels.Contains("CardSections.RegisterLines(CardKind.Person") && panels.Contains("CardKind.People")
+          && panels.Contains("CardSections.TownLines(") && panels.Contains("CardKind.Tie"), "the captive's, the envoy's, the people's, the town's and the tie's cards");
+        string model = Code("Diplomacy/DiplomacyModel.cs");
+        C(model.Contains("RansomPanels.Rows(f, home)") && model.Contains("RansomPanels.AwayRows()") && model.Contains("Envoys.HereAs(p)"), "Peoples' rows and Here and away");
+        C(Code("Text/Facts/FactsLedger.cs").Contains("RansomEnvoyFacts(s, f);"), "the facts read with the ties");
+        string settings = Code("CouncilSettings.cs");
+        string catalog = Code("UI/SettingsCatalog.cs");
+        C(settings.Contains("public bool diplomacyRansom = true;") && settings.Contains("public bool diplomacyEnvoys = true;") && catalog.Contains("Toggle(\"diplomacyRansom\"")
+          && catalog.Contains("Toggle(\"diplomacyEnvoys\""), "the settings Ransom and Envoys in the section Diplomacy, on by default");
+
+        // ---------------- The defs and the words ----------------
+
+        var defs = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_Ransom.xml"));
+        var names = defs.Root!.Elements().Select(x => x.Element("defName")?.Value).ToHashSet();
+        foreach (Match m in Regex.Matches(r.Substring(r.IndexOf("class RansomDefOf", StringComparison.Ordinal)), @"public static \w+ (Rimfolk_\w+);"))
+            C(names.Contains(m.Groups[1].Value), $"the def {m.Groups[1].Value} is in Rimfolk_Ransom.xml");
+        foreach (var d in defs.Root.Elements().Select(x => x.Element("driverClass")?.Value ?? x.Element("letterClass")?.Value).Where(x => x != null))
+            C(all.Contains("class " + d.Replace("ColonyCouncil.", "") + " "), $"{d} exists");
+        var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Ransom.xml")).Root!.Elements().ToDictionary(x => x.Name.LocalName, x => x.Value);
+        void Keys(string prefix, IEnumerable<string> suffixes)
+        {
+            foreach (var s in suffixes) C(keyed.ContainsKey(prefix + s), $"{prefix}{s} exists");
+        }
+        Keys("CC_Ransom_Odds_", Enum.GetNames(typeof(TrapOdds)));
+        foreach (var kind in new[] { "Theirs", "Demand", "Exchange" }) Keys("CC_Ransom_Row_" + kind + "_", Enum.GetNames(typeof(RansomStage)));
+        Keys("CC_Envoy_Mood_", Enum.GetNames(typeof(EnvoyMood)));
+        Keys("CC_Envoy_Leaves_", Enum.GetNames(typeof(EnvoyMood)));
+        Keys("CC_Envoy_Hist_Left_", Enum.GetNames(typeof(EnvoyMood)));
+        Keys("CC_Envoy_Msg_Letter_", Enum.GetNames(typeof(EnvoyMood)));
+        Keys("CC_Envoy_Card_Night_", Enum.GetNames(typeof(EnvoyNight)));
+        Keys("CC_Envoy_Row_Abroad_", Enum.GetNames(typeof(EnvoyStage)));
+        foreach (var (k, v) in keyed)
+        {
+            C(!v.Contains('!') && !v.Contains('—'), $"{k}: no exclamation marks or em dashes");
+            C(!Regex.IsMatch(v, @"\b(in|within) \d+ (days|hours)\b|\bdays left\b|\bhours left\b"), $"{k}: no countdown");
+        }
+        C(keyed.Keys.Count(k => Regex.IsMatch(k, @"_\d$")) >= 20, "lines told often have fellows to vary them");
+        // Bubbles: each moment the code says has lines in the pool.
+        var lines = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_Ransom.xml")).Descendants("li").Select(x => x.Value).ToList();
+        foreach (var moment in new[] { "ransompay", "ransomthanks", "ransomset", "exchangegate", "exchangeask", "exchangetalk", "exchangeyes", "exchangeno", "envoyletter" })
+        {
+            C(all.Contains("\"" + moment + "\"") || acts.Contains("\"" + moment + "\""), $"the code says '{moment}'");
+            C(lines.Count(l => l.StartsWith("[" + moment + ",")) >= 2, $"two or more bubbles for '{moment}'");
+        }
+        foreach (var p in new[] { "ransom", "envoy" })
+            foreach (var tone in new[] { "warm", "cordial", "cool", "refusal" })
+                C(lines.Any(l => l.StartsWith("[" + p + "," + tone)), $"their answer to a letter of {p}, {tone}");
+        var talks = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_Ransom.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        C(talks.Count >= 15, $"conversation pieces about captives and envoys ({talks.Count})");
+        string talkText = string.Join("\n", talks.Select(x => x.ToString()));
+        foreach (var tag in RansomMath.Tags.Concat(EnvoyMath.Tags)) C(talkText.Contains(tag), $"the talk speaks of {tag}");
+        foreach (var ph in new[] { "{CAPTOR}", "{ENVOY}", "{OURENVOY}" }) C(talkText.Contains(ph), $"the talk names {ph}");
+        string almanac = File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Diplomacy.xml"));
+        foreach (var h in new[] { "Ransom for their own", "Ransom for the colony's own", "Exchanges and the trap", "Their envoy for a season", "The colony's own envoy" })
+            C(almanac.Contains("<heading>" + h + "</heading>"), $"the Almanac's diplomacy page has \"{h}\"");
+        C(text["RansomDebug.cs"].Contains("[DebugAction(\"Rimfolk\", \"Ransom: ") && text["RansomDebug.cs"].Contains("[DebugAction(\"Rimfolk\", \"Envoy: "), "dev actions for each part");
+        return n;
     }
 }
