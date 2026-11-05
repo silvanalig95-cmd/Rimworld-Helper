@@ -34,7 +34,7 @@
     <weight>1.5</weight>
     <lines>
       <li>[them] How is {INLAW} getting on with you?</li>
-      <li>[us] Settling in, I'd say, a little more each week.</li>
+      <li>[us] Settling in, I'd say, more each week.</li>
       <li>[us,tone:warm] Well, and nobody would send {INLAW} back now.</li>
       <li>[them] Good, we worry, the way families do.</li>
     </lines>
@@ -118,7 +118,7 @@
       <li>[them] People at home still talk about the wedding.</li>
       <li>[us] Good things, I hope.</li>
       <li>[them,tone:warm] All good, and some of it is even true.</li>
-      <li>[them] Mostly good, a little about the food.</li>
+      <li>[them] Mostly good, and some of it about the food.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

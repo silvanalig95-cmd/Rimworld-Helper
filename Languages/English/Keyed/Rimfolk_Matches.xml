@@ -120,7 +120,6 @@
   <CC_Match_Off_War>The colony and {PEOPLE} are at war, and the match between {OURS} and {THEIRS} is off.</CC_Match_Off_War>
   <CC_Match_Off_Broken>{OURS} and {THEIRS} are no longer promised to each other, and the match is off.</CC_Match_Off_Broken>
   <CC_Match_Off_NeverCame>{THEIRS} never came, and the match with {OURS} has lapsed.</CC_Match_Off_NeverCame>
-  <CC_Match_Off_CouldNotCome>{THEIRS} couldn't come to the colony after all, and the match with {OURS} is off.</CC_Match_Off_CouldNotCome>
   <CC_Match_Off_NoWedding>{OURS} and {THEIRS} were never married, and their people no longer count it a match. {THEIRS} stays at the colony all the same.</CC_Match_Off_NoWedding>
   <CC_Match_Off_NotHome>{OURS} was never at home when kin of {PEOPLE} could come, and the match has lapsed.</CC_Match_Off_NotHome>
   <CC_Match_Off_KinGone>The kin of {PEOPLE} who came for {OURS} are gone, and the match is off.</CC_Match_Off_KinGone>
@@ -150,7 +149,7 @@
   <CC_Match_End_Home_Label>A spouse gone home</CC_Match_End_Home_Label>
   <CC_Match_End_Home>{THEIRS} has gone back to {PEOPLE}, and the marriage alliance is over, with nobody to blame.</CC_Match_End_Home>
   <CC_Match_End_Parted_Label>A marriage ended</CC_Match_End_Parted_Label>
-  <CC_Match_End_Parted>{OURS} and {THEIRS} have parted. The alliance with {PEOPLE} is over, and they think a little less of the colony for it.</CC_Match_End_Parted>
+  <CC_Match_End_Parted>{OURS} and {THEIRS} have parted. The alliance with {PEOPLE} is over, and they think less of the colony for it.</CC_Match_End_Parted>
   <CC_Match_Wronged_Label>A spouse wronged</CC_Match_Wronged_Label>
   <CC_Match_Wronged>{NAME}, whose marriage bound the colony to {PEOPLE}, was {WRONG}. The alliance is broken, and the pact with it. It is the gravest wrong {PEOPLE} remember, and {HEAD} holds a grudge against the colony for it, one that passes to the next head.</CC_Match_Wronged>
   <CC_Match_Feud_Label>A feud carried down</CC_Match_Feud_Label>

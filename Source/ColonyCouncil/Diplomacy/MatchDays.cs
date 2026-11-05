@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -79,7 +80,11 @@ namespace ColonyCouncil
                     else EscortHour(h, p, map, now);
                     return;
                 case MatchStage.Away:
-                    if (!p.ours.Spawned && now - p.left >= MatchMath.RoadDays(TravelDays(p, map)) * MatchMath.DayTicks) WedAway(h, p, map);
+                    if (p.ours.Spawned) return;
+                    // Off the map with their kin: both kept in the world for the wedding there.
+                    WorldLedger.Keep(p.ours, KeepFor.Spouse);
+                    WorldLedger.Keep(p.theirs, KeepFor.Spouse);
+                    if (now - p.left >= MatchMath.RoadDays(TravelDays(p, map)) * MatchMath.DayTicks) WedAway(h, p, map);
                     return;
             }
         }
@@ -147,7 +152,8 @@ namespace ColonyCouncil
             if (stage == FeastStage.Here)
             {
                 var near = g.AllGuests.FirstOrDefault(x => x != null && x.Spawned && x.Map == map);
-                Arrive(h, p, map, near?.Position);
+                // Not free to come with them (on the road elsewhere, held): they come by themselves once they can.
+                if (!Arrive(h, p, map, near?.Position)) p.alone = true;
             }
             else if (stage == FeastStage.Done)
             {
@@ -156,16 +162,23 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The one to be married walks in (with the guests, or alone from the edge) and joins the colony there and then.</summary>
-        private static void Arrive(DiplomacyHome h, MatchPlan p, Map map, IntVec3? near)
+        /// <summary>Free to come to the colony now: here already, or out in the world (not with a caravan, not held, not carried off).</summary>
+        private static bool CanCome(Pawn x, Map map) =>
+            x != null && !x.Dead && !x.IsPrisoner && (x.Spawned ? x.Map == map : Find.WorldPawns.Contains(x) && x.GetCaravan() == null && !People.Kidnapped(x));
+
+        /// <summary>
+        /// The one to be married walks in (with the guests, or alone from the edge) and joins the colony there and then.
+        /// False when they can't come now (they come by themselves later, or the match lapses).
+        /// </summary>
+        private static bool Arrive(DiplomacyHome h, MatchPlan p, Map map, IntVec3? near)
         {
             var x = p.theirs;
-            if (x.Spawned && x.Map != map || x.IsPrisoner || !Arrivals.Join(x, map, near))
-            {
-                Off(h, p, MatchWords.P("CC_Match_Off_CouldNotCome", x.Named("THEIRS"), p.ours.Named("OURS")), false);
-                return;
-            }
+            if (!CanCome(x, map) || !Arrivals.Join(x, map, near)) return false;
             WorldLedger.Release(x, KeepFor.Spouse);
+            // The council's own question about how to hold a wedding isn't asked of this one: it is held today.
+            var comp = CouncilGameComponent.Instance;
+            string key = WishWorker_ShareBed.PairKey(p.ours, x);
+            if (comp?.weddingAsked != null && !comp.weddingAsked.Contains(key)) comp.weddingAsked.Add(key);
             p.stage = MatchStage.Here;
             p.arrived = Now;
             string rite = MatchWords.Rite(p.people, map);
@@ -174,6 +187,7 @@ namespace ColonyCouncil
                 MatchWords.T(p.alone || p.feast < 0 ? "CC_Match_Arrive_Alone" : "CC_Match_Arrive", x.Named("THEIRS"), p.ours.Named("OURS"),
                     MatchWords.People(p.people).Named("PEOPLE"), rite.Named("RITE")), LetterDefOf.PositiveEvent, new LookTargets(x), p.people);
             Diplomacy.Dirty();
+            return true;
         }
 
         /// <summary>
@@ -328,6 +342,24 @@ namespace ColonyCouncil
             SendOut(p, l);
         }
 
+        /// <summary>The colony's own at the gate, face to face with their kin, ready to go (this session's; a reload sends them out again).</summary>
+        private static readonly Dictionary<int, Pawn> leaving = new Dictionary<int, Pawn>();
+
+        internal static void ReadyToLeave(Pawn c, Pawn x)
+        {
+            if (c != null && x != null) leaving[c.thingIDNumber] = x;
+        }
+
+        /// <summary>Their kin's group, on its tick: the colony's own who is ready goes with them.</summary>
+        internal static void TakeLeave(LordJob_MatchEscort j)
+        {
+            var p = Get(j.plan, out _);
+            if (p?.ours == null || !leaving.TryGetValue(p.ours.thingIDNumber, out var x)) return;
+            leaving.Remove(p.ours.thingIDNumber);
+            if (x == null || !x.Spawned || x.GetLord()?.LordJob != j || !p.ours.Spawned || p.ours.Downed || !p.ours.Position.InHorDistOf(x.Position, 4f)) return;
+            Departs(p.ours, x);
+        }
+
         /// <summary>
         /// The colony's own has walked out to their kin (the end of Rimfolk_MatchLeave, face to face): a word of farewell,
         /// they become one of their people and leave with them for good; the wedding at their town comes once they are there.
@@ -351,6 +383,7 @@ namespace ColonyCouncil
                 p.stage = MatchStage.Away;
                 p.left = Now;
                 WorldLedger.Keep(c, KeepFor.Spouse);
+                WorldLedger.Keep(p.theirs, KeepFor.Spouse);
                 // apart: told as they leave; they walk out of the map with their kin.
                 Tell.Letter(NewsKind.World, Importance.Important, map, MatchWords.P("CC_Match_Leaves_Label", c.Named("OURS")),
                     MatchWords.T("CC_Match_Leaves", c.Named("OURS"), MatchWords.Name(p.theirs, p.theirsName).Named("THEIRS"), MatchWords.People(p.people).Named("PEOPLE"),

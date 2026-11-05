@@ -849,15 +849,16 @@ namespace ColonyCouncil
                 {
                     var spot = HereSpot(p, map);
                     Focus(map, p, spot.IsValid ? spot : PlaySpots.GateCell(map, null), spot.IsValid ? 8f : 6f);
-                }
                     if (!Settled(p)) return;
                     Greet(p, map);
                     if (p.purpose != FeastPurpose.Feast && p.contests.Count == 0)
                     {
-                        // A wedding's guests wait for it at the gate; its own code holds the ceremony, the feast comes in the evening.
-                        if (hour >= FeastMath.FeastFrom) StartFeast(h, p, map);
+                        // A wedding's guests wait for it at the gate; its own code holds the ceremony (the guests by the
+                        // couple meanwhile), and the feast comes in the evening once it is over.
+                        if (hour >= FeastMath.FeastFrom && !spot.IsValid) StartFeast(h, p, map);
                         return;
                     }
+                }
                     if (hour >= FeastMath.ContestsFrom && now - p.arrived >= GenDate.TicksPerHour)
                     {
                         p.contest = 0;

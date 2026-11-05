@@ -148,14 +148,14 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The ledger keeps them in the world for a match (KeepFor.Spouse): one of theirs made for a match and not yet come,
-        /// or one of the colony's married into their town while the marriage holds.
+        /// or one of the colony's married into their town and their spouse there, while the marriage holds.
         /// </summary>
         public static bool Holds(Pawn x)
         {
             if (x == null || x.Dead) return false;
             if (PlanOf(x) != null) return true;
             var t = TieOf(x);
-            return t != null && LivesOf(t) == MatchHome.Theirs && OursOf(t) == x;
+            return t != null && LivesOf(t) == MatchHome.Theirs && (OursOf(t) == x || TheirsOf(t) == x);
         }
 
         // ================= Who may marry =================
@@ -405,7 +405,11 @@ namespace ColonyCouncil
                 if (theirs == null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), MatchWords.P("CC_Match_Why_Gone").Named("WHY"));
             }
             var p = Begin(home, f, ours, theirs, (house ?? n)?.id ?? -1, made, lives, way);
-            if (p == null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), MatchWords.P("CC_Match_Why_Busy").Named("WHY"));
+            if (p == null)
+            {
+                if (made) LetGo(theirs);
+                return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), MatchWords.P("CC_Match_Why_Busy").Named("WHY"));
+            }
             yes = true;
             string town = p.townName ?? MatchWords.People(f);
             string line = MatchWords.T("CC_Match_Ans_Yes", MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS"), theirs.Named("THEIRS"), form.word.Named("WORD"),
@@ -434,7 +438,8 @@ namespace ColonyCouncil
                 townName = town?.Name ?? n?.townName, oursName = ours.LabelShort, theirsName = theirs.LabelShort, stage = MatchStage.Asking
             };
             h.matches.Add(p);
-            if (theirs.Faction != Faction.OfPlayer && !theirs.Spawned) WorldLedger.Keep(theirs, KeepFor.Spouse);
+            // Kept in the world for the match, here now or not (one of theirs visiting goes home with their group meanwhile).
+            if (theirs.Faction != Faction.OfPlayer) WorldLedger.Keep(theirs, KeepFor.Spouse);
             var c = ConsentOf(ours, theirs, lives, out _, out _);
             if (c == Consent.Unwilling) MatchObjection.Ask(h, p);
             else Agree(h, p);

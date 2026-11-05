@@ -76,6 +76,20 @@ namespace ColonyCouncil
             return graph;
         }
 
+        public override void LordJobTick()
+        {
+            base.LordJobTick();
+            if (arrived < 0 || done || Find.TickManager.TicksGame % 60 != 0) return;
+            try
+            {
+                Matches.TakeLeave(this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("matches: leaving with their kin", e);
+            }
+        }
+
         private void Arrived()
         {
             if (arrived >= 0) return;
@@ -101,7 +115,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The colony's own walks out to their kin at the gate (target A: the one they marry, or their kin) and, once face to
-    /// face, says farewell and goes with them (Matches.Departs).
+    /// face, is ready to go with them: their kin's group takes them along on its next tick (Matches.TakeLeave, then
+    /// Matches.Departs), so the change of people never happens inside this job.
     /// </summary>
     public class JobDriver_MatchLeave : JobDriver
     {
@@ -120,7 +135,7 @@ namespace ColonyCouncil
             farewell.defaultDuration = 300;
             yield return farewell;
             var go = ToilMaker.MakeToil("MatchGo");
-            go.initAction = () => Matches.Departs(pawn, Them);
+            go.initAction = () => Matches.ReadyToLeave(pawn, Them);
             go.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return go;
         }

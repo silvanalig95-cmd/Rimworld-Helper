@@ -7,7 +7,7 @@
     when nobody), {FACTION} their people, {LIVES} where the couple would live, {TOWN} their town. Tags, why A is against
     it: "another" (A loves B), "children" (A would leave children behind), "dislike" (A can't stand X); "away" (A would go
     to live at X's town), "empire" (X is of the Empire). Only from MatchObjection.Ask; never on its own schedule. Pressed
-    all the same, the match is agreed and it weighs on A; withdrawn, their people feel turned down a little.
+    all the same, the match is agreed and it weighs on A; withdrawn, their people feel turned down.
   -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmMatch_Against</defName>
@@ -37,7 +37,7 @@
       </li>
       <li>
         <label>Withdraw the match</label>
-        <outcome>The council sided with {A_nameDef} and sent word to {FACTION} that the match is off. They took it with a little less warmth than before.</outcome>
+        <outcome>The council sided with {A_nameDef} and sent word to {FACTION} that the match is off. They took it coolly.</outcome>
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_MatchWithdraw" />

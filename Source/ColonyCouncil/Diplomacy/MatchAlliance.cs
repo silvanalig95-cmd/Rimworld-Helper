@@ -146,6 +146,11 @@ namespace ColonyCouncil
                     return;
                 }
             }
+            // The two living at their town kept in the world while it holds (the ledger's reason Spouse).
+            if (LivesOf(t) == MatchHome.Theirs)
+                foreach (var x in new[] { ours, theirs })
+                    if (x != null && !x.Dead && !x.Spawned && !WorldLedger.KeptFor(x, KeepFor.Spouse))
+                        WorldLedger.Keep(x, KeepFor.Spouse);
             if (home == null || Diplomacy.Hostile(f)) return;
             float day = now / (float)MatchMath.DayTicks;
             if (On && MatchMath.KinGiftDue(t.terms.number, t.since / (float)MatchMath.DayTicks, day)) KinGift(t, f, home, ours, theirs, day);
