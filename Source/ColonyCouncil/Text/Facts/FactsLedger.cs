@@ -88,6 +88,8 @@ namespace ColonyCouncil
             FeastFacts(s, f);
             // Marriage alliances (Diplomacy/FactsMatch.cs): tie:marriage, :ours, :theirs, :you, match:agreed, match:child, match:wronged.
             MatchFacts(s, f);
+            // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
+            WardFacts(s, f);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

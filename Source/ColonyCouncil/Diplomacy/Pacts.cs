@@ -730,7 +730,7 @@ namespace ColonyCouncil
                         Truces.MakePending(people, map, TruceTerm.Season, (TrucePrice)price, silver, false, null,
                             Rand.Range(PactMath.EnvoyHoursMin, PactMath.EnvoyHoursMax) / 24f);
                         // apart: the colony's answer to their letter; their envoy comes to the gate later.
-                        Tell.Message(NewsKind.World, Importance.Notable, map, PactWords.P("CC_Truce_Accepted", PactWords.People(people).Named("PEOPLE")), LookTargets.Invalid,
+                        Tell.Message(NewsKind.World, Importance.Notable, map, PactWords.P(Truces.ByWord(people) ? "CC_Truce_AcceptedByWord" : "CC_Truce_Accepted", PactWords.People(people).Named("PEOPLE")), LookTargets.Invalid,
                             MessageTypeDefOf.PositiveEvent);
                     },
                     resolveTree = true

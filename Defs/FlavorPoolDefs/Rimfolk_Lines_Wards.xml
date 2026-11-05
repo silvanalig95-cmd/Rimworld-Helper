@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wards and hostages (Source/ColonyCouncil/Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs, WardLetters.cs). Two pools
+    the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
+      "ward": askward (the colony asked for a youth of theirs: warm, cordial or cool when they send one, refusal when
+      not), send (the colony offered a youth of its own: warm, cordial or cool when they take them in, refusal when not;
+      page when the Empire takes one into a titled household); and their words in a letter of any purpose while a ward
+      or hostage is with either side (tie:ward:theirs, tie:ward:ours with {WARD}, tie:hostage:theirs, tie:hostage:ours,
+      tie:hostage:due with {HOSTAGE}). By their ways only theirLowtech (tribes, the middle ages and the Empire's court)
+      and theirHightech: a theirLowtech line must read true for all three.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles at each moment the code names: wardlesson (the
+      guardian, us, teaching), wardlearn (the ward, them, asking), wardmeet (the ward meeting their guardian), wardkin
+      (their kin at the gate, to the ward), wardbye (the ward to their guardian at the year's end), hostagego (the
+      colony's hostage, us, as the terms are sworn, said to nobody). A ward or hostage of theirs is the colony's lodger,
+      so they speak as "them". One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Wards</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The colony asked for a youth of theirs to foster -->
+        <li>[ward,warm,askward] We have a youth who has talked of nothing else since your letter came, {WRITER}. They will come.</li>
+        <li>[ward,warm,askward,theirLowtech] It is an honor to be asked. One of our house will come to learn from yours.</li>
+        <li>[ward,cordial,askward] Yes. Keep them busy and keep them fed, and send them home a little wiser.</li>
+        <li>[ward,cordial,askward,theirHightech] Approved. We've picked someone keen, and their family has signed off on it.</li>
+        <li>[ward,cordial,askward,call] Good to hear from you, {WRITER}. We'll send someone, and they're already packing.</li>
+        <li>[ward,cool,askward] Very well. Treat them as you would your own, and we will hear how you did.</li>
+        <li>[ward,refusal,askward] No family here will part with a child for a year, not this year.</li>
+        <li>[ward,refusal,askward,theirLowtech] The families have talked it over and none will send a youth so far.</li>
+        <li>[ward,refusal,askward,call] I'm sorry, {WRITER}. Nobody here is ready to send a youth away just now.</li>
+        <!-- The colony offered a youth of its own -->
+        <li>[ward,warm,send] Send them, {WRITER}. We will look after them as if they were born here.</li>
+        <li>[ward,cordial,send,theirLowtech] Your youth will have a place at our table and work to learn.</li>
+        <li>[ward,cordial,send,theirHightech] Accepted. We've found them a bunk and a teacher.</li>
+        <li>[ward,cool,send] They may come, and they will work like anyone else here.</li>
+        <li>[ward,refusal,send] We have no room for another youth this year, and it would not be fair to them.</li>
+        <li>[ward,refusal,send,call] Not this year, {WRITER}. We couldn't do right by them.</li>
+        <li>[ward,cordial,send,page] A titled household will take your youth as its page, and see that they are trained properly.</li>
+        <li>[ward,refusal,send,page] No household of rank has a place for a page from your colony this year.</li>
+        <!-- While a ward of theirs lives at the colony, or the colony's with them -->
+        <li>[greetings,warm,tie:ward:theirs] Thank you for your letter, and for keeping {WARD}. Their family reads every word that reaches us.</li>
+        <li>[greetings,cordial,tie:ward:theirs] We hear {WARD} is learning, which is all we hoped for.</li>
+        <li>[greetings,cool,tie:ward:theirs] We have your letter. We would rather have word of {WARD}, if you write again.</li>
+        <li>[help,refusal,tie:ward:theirs] You already keep one of ours. That is help enough between us for now.</li>
+        <li>[greetings,warm,tie:ward:ours] {WARD} is well and working hard. You would be proud.</li>
+        <li>[greetings,cordial,tie:ward:ours,theirLowtech] {WARD} has a place at our table and keeps it well.</li>
+        <li>[news,cordial,tie:ward:ours] Here is our news. {WARD} is part of it now, and they will tell you the rest.</li>
+        <!-- While a hostage is held either way -->
+        <li>[greetings,cool,tie:hostage:theirs] We read your letter. Keep {HOSTAGE} well, and the terms will keep themselves.</li>
+        <li>[greetings,cordial,tie:hostage:ours] {HOSTAGE} is well and kept as the terms say. You can stop worrying.</li>
+        <li>[help,refusal,tie:hostage:theirs] One of ours lives under your roof already. Do not ask us for more.</li>
+        <li>[greetings,curt,tie:hostage:due,tie:hostage:ours] You broke your word, and we hold {HOSTAGE}. There is nothing else to write about.</li>
+        <li>[greetings,cool,tie:hostage:due,tie:hostage:theirs] We know what was done, and we know you hold {HOSTAGE}. Do what you will.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Wards</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- The day's lesson: the guardian teaching, the ward asking -->
+        <li>[wardlesson,us] Watch my hands, then do it after me.</li>
+        <li>[wardlesson,us] Slower, you'll get it right before you get it fast.</li>
+        <li>[wardlesson,us] That's it, keep going.</li>
+        <li>[wardlesson,us,kind] Good, you're better at this than I was at your age.</li>
+        <li>[wardlesson,us,abrasive] No, again, and pay attention this time.</li>
+        <li>[wardlearn,them] Why do you do it that way and not the other?</li>
+        <li>[wardlearn,them] Can I try it on my own now?</li>
+        <li>[wardlearn,them,theirLowtech] We do it differently at home, but I think yours is better.</li>
+        <li>[wardlearn,them,theirHightech] Is there a reason for that step, or is it just habit?</li>
+        <!-- The ward meets their guardian, and says goodbye a year later -->
+        <li>[wardmeet,them] They told me you're the one teaching me.</li>
+        <li>[wardmeet,them] I'm told I'm to learn from you.</li>
+        <li>[wardbye,them] Thank you for the year, and for your patience.</li>
+        <li>[wardbye,them] I'll tell them at home who taught me.</li>
+        <li>[wardbye,them,theirLowtech] My house will remember your name.</li>
+        <!-- Their kin at the gate, come to take the ward home -->
+        <li>[wardkin,them] Look at you, a year older and taller with it.</li>
+        <li>[wardkin,them] Come on, everyone at home is waiting for you.</li>
+        <li>[wardkin,them,theirLowtech] Your family has kept your place at the table.</li>
+        <!-- The colony's hostage, as the terms are sworn -->
+        <li>[hostagego,us] I'll go, if it keeps the peace.</li>
+        <li>[hostagego,us] Somebody has to, so it may as well be me.</li>
+        <li>[hostagego,us,kind] Don't worry about me, I'll be back when the term is out.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

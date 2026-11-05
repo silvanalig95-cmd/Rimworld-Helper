@@ -482,6 +482,8 @@ wishPh.UnionWith(new[]
     "INLAW", "SPOUSEOF",
     // The council's question about a match the colonist is against (Diplomacy/MatchObjection.cs): where the couple would live.
     "LIVES",
+    // Wards and hostages (Diplomacy/FactsWards.cs).
+    "WARD", "HOSTAGE", "GUARDIAN",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

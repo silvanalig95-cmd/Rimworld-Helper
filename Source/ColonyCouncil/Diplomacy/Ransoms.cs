@@ -726,7 +726,7 @@ namespace ColonyCouncil
             string label = RansomWords.P("CC_Ransom_Trap_Label", RansomWords.People(f).Named("PEOPLE"));
             string text = RansomWords.T("CC_Ransom_Trap", RansomWords.People(f).Named("PEOPLE"), RansomWords.Name(o.captive, o.captiveName).Named("CAPTIVE"));
             if (Raids.Send(map, f, StorytellerUtility.DefaultThreatPointsNow(map) * RansomMath.TrapPoints, label, text, null, from))
-                FactionMemory.Note(f, "brokeWord", RansomWords.P("CC_Ransom_Deed_Trap"));
+                FactionMemory.Note(f, "trapped", RansomWords.P("CC_Ransom_Deed_Trap"));
         }
 
         /// <summary>The cell on the map's edge nearest the gate that reaches the colony (the trap comes from the gate's side).</summary>

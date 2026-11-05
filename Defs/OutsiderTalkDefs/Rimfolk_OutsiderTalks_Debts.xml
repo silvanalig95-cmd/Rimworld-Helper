@@ -8,8 +8,8 @@
        tie:honour:due (called in, its answer still to come), {HONOURTO} the one owed and {FAVOURWHY} what it was for ("a
        prisoner freed", "relief sent": never at the start of a sentence). How it ended is what their people remember:
        deed:keptWord (the colony kept its word: answered their call, sent its fighters, kept a truce to a peace),
-       deed:refused (it turned their call away), deed:brokeWord (they went back on their word: refused the colony's call,
-       or sprang a trap at an exchange), deed:aid (their fighters came when the colony called), deed:protected (some of
+       deed:refused (it turned their call away), deed:brokeWord (they went back on their word: refused the colony's call;
+       a trap at an exchange is deed:trapped, its own), deed:aid (their fighters came when the colony called), deed:protected (some of
        their fighters died beside the colony's under a pact). The format is described at the top of
        Rimfolk_OutsiderTalks_Greetings.xml. -->
 

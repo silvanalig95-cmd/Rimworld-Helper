@@ -46,6 +46,8 @@ namespace ColonyCouncil
                 Safe("feasts", () => Feasts.Hourly(now));
                 // Marriage alliances (release 2b.2): matches under way, from the agreement to the wedding.
                 Safe("matches", () => Matches.Hourly(now));
+                // Wards and hostages either way (release 2b.3).
+                Safe("wards", () => Wards.Hourly(now));
             }
             if (Sched.FirstHourOfDay(now))
             {
@@ -54,6 +56,7 @@ namespace ColonyCouncil
                 Safe("envoys' day", () => Envoys.Daily(now));
                 Safe("feasts' day", () => Feasts.Daily(now));
                 Safe("matches' day", () => Matches.Daily(now));
+                Safe("wards' day", () => Wards.Daily(now));
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }

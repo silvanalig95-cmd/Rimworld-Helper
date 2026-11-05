@@ -161,6 +161,92 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// A ward or a hostage, either way (Wards.cs, WardsAbroad.cs, Hostages.cs; docs/design/stage2-diplomacy.md, item 7):
+    /// their youth or hostage living at the colony as the game's lodger (its quest), or one of the colony's living at their
+    /// town as a lent colonist. Its tie (Ward or Hostage) is the ledger's; this keeps what isn't a tie: who and where, the
+    /// guardian and the skill, the year's tally, the letters. Kept on its home's part until they are home again.
+    /// </summary>
+    public class WardStay : IExposable
+    {
+        public int id;
+        public WardKind kind;
+        public WardStage stage;
+        public Pawn pawn;
+        public Faction people;
+        /// <summary>Its Ward or Hostage tie in the ledger, and (a hostage) the truce or pact it guarantees.</summary>
+        public int tie = -1, guarantees = -1;
+        /// <summary>Their ward's teacher, and the skill (def name) taught there or learned with them.</summary>
+        public Pawn guardian;
+        public string skill;
+        /// <summary>Ours away: their town's world object ID and name.</summary>
+        public int town = -1;
+        public string townName;
+        public int agreed = -1, due = -1, since = -1, until = -1;
+        /// <summary>Theirs: the game's quest that makes them a lodger.</summary>
+        public int quest = -1;
+        /// <summary>The year's tally: lessons given (and the day of the last), the skill's practice at the start, the days tallied, hungry, their mood summed, injuries seen and new ones.</summary>
+        public int lessons, lessonDay = -1, dayTallied = -1, days, hungryDays, injuries, hurt;
+        public float xpAtStart = -1f, moodSum;
+        public int letters;
+        /// <summary>The notable of theirs they are kin to (their parent), or -1.</summary>
+        public int notable = -1;
+        /// <summary>Ours with the Empire: a page in a titled household (regard only).</summary>
+        public bool page;
+        /// <summary>The colony asked for it by letter (else they offered, or it came with the terms).</summary>
+        public bool asked;
+        /// <summary>Theirs going home: their kin can't come or left without them, so they walk out alone.</summary>
+        public bool alone;
+        /// <summary>Ours: told to set out (fetching food for the road, walking to the edge).</summary>
+        public bool ready;
+        public string name;
+
+        public bool Theirs => WardMath.IsTheirs(kind);
+
+        public bool Hostage => WardMath.IsHostage(kind);
+
+        public void ExposeData()
+        {
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                if (pawn != null && pawn.Discarded) pawn = null;
+                if (guardian != null && guardian.Discarded) guardian = null;
+            }
+            Scribe_Values.Look(ref id, "id");
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref stage, "stage");
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_References.Look(ref people, "people");
+            Scribe_Values.Look(ref tie, "tie", -1);
+            Scribe_Values.Look(ref guarantees, "guarantees", -1);
+            Scribe_References.Look(ref guardian, "guardian");
+            Scribe_Values.Look(ref skill, "skill");
+            Scribe_Values.Look(ref town, "town", -1);
+            Scribe_Values.Look(ref townName, "townName");
+            Scribe_Values.Look(ref agreed, "agreed", -1);
+            Scribe_Values.Look(ref due, "due", -1);
+            Scribe_Values.Look(ref since, "since", -1);
+            Scribe_Values.Look(ref until, "until", -1);
+            Scribe_Values.Look(ref quest, "quest", -1);
+            Scribe_Values.Look(ref lessons, "lessons");
+            Scribe_Values.Look(ref lessonDay, "lessonDay", -1);
+            Scribe_Values.Look(ref dayTallied, "dayTallied", -1);
+            Scribe_Values.Look(ref days, "days");
+            Scribe_Values.Look(ref hungryDays, "hungryDays");
+            Scribe_Values.Look(ref injuries, "injuries");
+            Scribe_Values.Look(ref hurt, "hurt");
+            Scribe_Values.Look(ref xpAtStart, "xpAtStart", -1f);
+            Scribe_Values.Look(ref moodSum, "moodSum");
+            Scribe_Values.Look(ref letters, "letters");
+            Scribe_Values.Look(ref notable, "notable", -1);
+            Scribe_Values.Look(ref page, "page");
+            Scribe_Values.Look(ref asked, "asked");
+            Scribe_Values.Look(ref alone, "alone");
+            Scribe_Values.Look(ref ready, "ready");
+            Scribe_Values.Look(ref name, "name");
+        }
+    }
+
+    /// <summary>
     /// One home's part of diplomacy that isn't a tie (docs/design/stage2-diplomacy.md, "Shared rules"), kept by the
     /// council's rules for a colony's books (ColonyBook): its offers for captives (six at most), their envoy staying there
     /// and the colony's own envoy away (one each), and when an envoy was last offered to it.
@@ -197,6 +283,10 @@ namespace ColonyCouncil
         public List<FeastTale> tales = new List<FeastTale>();
         /// <summary>Matches under way (Matches.cs, release 2b.2): MatchMath.MaxPlans at most, each let go at the wedding or when called off.</summary>
         public List<MatchPlan> matches = new List<MatchPlan>();
+        /// <summary>Wards and hostages either way (release 2b.3): WardMath.MaxPerHome at most, each dropped once they are home again.</summary>
+        public List<WardStay> wards = new List<WardStay>();
+        /// <summary>When a ward was last offered to this home, and by which people (its loadID), or -1.</summary>
+        public int wardOfferAt = -1, wardOfferPeople = -1;
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -218,6 +308,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref tales, "tales", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving) matches?.RemoveAll(m => m == null || !m.Live);
             Scribe_Collections.Look(ref matches, "matches", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving) wards?.RemoveAll(w => w == null);
+            Scribe_Collections.Look(ref wards, "wards", LookMode.Deep);
+            Scribe_Values.Look(ref wardOfferAt, "wardOfferAt", -1);
+            Scribe_Values.Look(ref wardOfferPeople, "wardOfferPeople", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 offers ??= new List<RansomOffer>();
@@ -226,6 +320,8 @@ namespace ColonyCouncil
                 tales.RemoveAll(t => t == null || t.pawn == null);
                 matches ??= new List<MatchPlan>();
                 matches.RemoveAll(m => m == null || !m.Live);
+                wards ??= new List<WardStay>();
+                wards.RemoveAll(w => w == null);
             }
         }
     }
@@ -294,14 +390,14 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>Something waits at some home: an offer, an envoy either way.</summary>
+        /// <summary>Something waits at some home: an offer, an envoy either way, a ward or a hostage.</summary>
         public bool AnyWaiting
         {
             get
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0))
                         return true;
                 return false;
             }
@@ -323,6 +419,7 @@ namespace ColonyCouncil
                         EnvoysAbroad.HomeLost(h);
                         Feasts.HomeLost(h);
                         Matches.HomeLost(h);
+                        Wards.HomeLost(h);
                     }
                     catch (Exception e)
                     {

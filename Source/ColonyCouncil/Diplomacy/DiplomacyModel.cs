@@ -245,6 +245,12 @@ namespace ColonyCouncil
                 c.ties.Add(mr);
                 c.weight += 8;
             }
+            // Wards and hostages either way (release 2b.3).
+            foreach (var wr in WardPanels.Rows(f, home))
+            {
+                c.underway.Add(wr);
+                c.weight += 4;
+            }
             // The acts that fit: write to their head (any purpose), each with why not.
             var write = new DipAct { label = DipWords.P("CC_Dip_Act_Write"), tip = DipWords.P("CC_Dip_Act_Write_Tip") };
             if (head == null) write.why = DipWords.P("CC_Dip_Why_NoNotable", c.name.Named("PEOPLE"));
@@ -267,6 +273,8 @@ namespace ColonyCouncil
             if (Feasts.On && !Diplomacy.Hostile(f)) c.acts.Add(FeastPanels.HoldAct(f));
             // Seek a match with one of theirs (release 2b.2), greyed with why not.
             if (Matches.On && !Diplomacy.Hostile(f)) c.acts.Add(MatchPanels.SeekAct(f));
+            // Ask for a ward of theirs, offer a youth of the colony's (release 2b.3), each greyed with why not.
+            if (Wards.On && !Diplomacy.Hostile(f)) c.acts.AddRange(WardPanels.Acts(f));
             if (!Diplomacy.Hostile(f)) c.weight += 1;
             return c;
         }
@@ -337,6 +345,10 @@ namespace ColonyCouncil
             foreach (var r in MatchPanels.AwayRows())
                 if (m.away.Count < MaxRows)
                     m.away.Add(r);
+            // The colony's ward or hostage at a town of theirs, or held by them (release 2b.3).
+            foreach (var r in WardPanels.AwayRows())
+                if (m.away.Count < MaxRows)
+                    m.away.Add(r);
             // The colony's houses: its families known by name.
             var seen = new HashSet<string>();
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
@@ -357,6 +369,9 @@ namespace ColonyCouncil
         /// <summary>Why someone of theirs is here: a lodger, trading, visiting, staying at the camp, or just here.</summary>
         private static string WhyHere(Pawn p)
         {
+            // Their ward for a year or their hostage for a term (release 2b.3): lodgers of the colony's own quest.
+            string ward = Wards.HereAs(p);
+            if (ward != null) return ward;
             if (p.IsQuestLodger()) return DipWords.P("CC_Dip_HereAs_Lodger");
             // Their envoy staying the season, or the envoy's attendant (release 2a.3).
             string envoy = Envoys.HereAs(p);
@@ -401,6 +416,7 @@ namespace ColonyCouncil
             if (f == null) return list;
             var home = Home;
             list.AddRange(PactsPanels.Rows(f, home));
+            list.AddRange(WardPanels.TownRows(s));
             foreach (var t in FavoursOwed.OwedBy(f).Concat(FavoursOwed.OwedTo(f)))
             {
                 if (FavoursOwed.IsPersonal(t) && FavoursOwed.NotableOf(t)?.town != s.ID) continue;

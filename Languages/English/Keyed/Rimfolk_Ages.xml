@@ -49,15 +49,15 @@
   <CC_Form_Marriage_Spacer>a partnership contract between lines</CC_Form_Marriage_Spacer>
   <CC_Form_Marriage_Spacer_Rite>a contract witnessed and filed</CC_Form_Marriage_Spacer_Rite>
 
-  <!-- A ward or a hostage -->
+  <!-- A ward, fostered for a year (a hostage has forms of its own, below: the ward's rite says the ward's side only) -->
   <CC_Form_Ward_Tribal>fostering with the other clan</CC_Form_Ward_Tribal>
   <CC_Form_Ward_Tribal_Rite>a child raised among them</CC_Form_Ward_Tribal_Rite>
   <CC_Form_Ward_Medieval>a ward at their hall</CC_Form_Ward_Medieval>
-  <CC_Form_Ward_Medieval_Rite>hostages given for a pact</CC_Form_Ward_Medieval_Rite>
+  <CC_Form_Ward_Medieval_Rite>a youth in their household</CC_Form_Ward_Medieval_Rite>
   <CC_Form_Ward_Industrial>an apprentice exchange</CC_Form_Ward_Industrial>
-  <CC_Form_Ward_Industrial_Rite>a guarantor sent to them</CC_Form_Ward_Industrial_Rite>
+  <CC_Form_Ward_Industrial_Rite>an apprenticeship under contract</CC_Form_Ward_Industrial_Rite>
   <CC_Form_Ward_Spacer>an exchange posting</CC_Form_Ward_Spacer>
-  <CC_Form_Ward_Spacer_Rite>a guarantor held to the terms</CC_Form_Ward_Spacer_Rite>
+  <CC_Form_Ward_Spacer_Rite>a posting on agreed terms</CC_Form_Ward_Spacer_Rite>
 
   <!-- Ransom -->
   <CC_Form_Ransom_Tribal>captives traded back</CC_Form_Ransom_Tribal>

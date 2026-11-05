@@ -1004,6 +1004,8 @@ namespace ColonyCouncil
             if (l.help == "food") tags.Add("food");
             if (l.help == "medicine") tags.Add("medicine");
             if (facts != null) tags.UnionWith(facts.tags);
+            // What only stage 2's purposes know: a pact ended, how a truce is to be sworn (Diplomacy/DiplomacyLetters.cs).
+            DiplomacyLetters.QuoteTags(l, n, tags);
             var lines = pool.lines.For(Tone.Plain);
             string line = Flavor.PickTagged(lines.Where(x => LineTags.Of(x).tags?.Contains(l.purpose.ToString().ToLowerInvariant()) ?? false), tags)
                           ?? Flavor.PickTagged(lines, tags);

@@ -372,6 +372,7 @@ namespace ColonyCouncil
             Toggle("diplomacyEnvoys", "CC_Settings_DiplomacyEnvoys", "CC_SetNote_DiplomacyEnvoys", "factionMemory");
             Toggle("diplomacyFeasts", "CC_Settings_DiplomacyFeasts", "CC_SetNote_DiplomacyFeasts", "factionMemory");
             Toggle("diplomacyMarriage", "CC_Settings_DiplomacyMarriage", "CC_SetNote_DiplomacyMarriage", "factionMemory");
+            Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
@@ -472,6 +473,7 @@ namespace ColonyCouncil
             Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks");
             Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks");
             Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks");
+            Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
             Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks");
             Toggle("smokeBeforeWork", "CC_Settings_SmokeBeforeWork", "CC_SetNote_SmokeBeforeWork", "deepHooks");
             Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");

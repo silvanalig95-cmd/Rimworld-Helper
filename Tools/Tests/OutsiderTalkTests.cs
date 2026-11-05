@@ -256,6 +256,8 @@ public static class OutsiderTalkTests
         .Concat(FeastMath.Tags)
         // Marriage alliances (Diplomacy/FactsMatch.cs).
         .Concat(MatchMath.Tags)
+        // Wards and hostages (Diplomacy/FactsWards.cs).
+        .Concat(WardMath.Tags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -283,6 +285,8 @@ public static class OutsiderTalkTests
         "FEAST", "CHAMPION",
         // Marriage alliances (Diplomacy/FactsMatch.cs).
         "INLAW", "SPOUSEOF",
+        // Wards and hostages (Diplomacy/FactsWards.cs).
+        "WARD", "HOSTAGE", "GUARDIAN",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

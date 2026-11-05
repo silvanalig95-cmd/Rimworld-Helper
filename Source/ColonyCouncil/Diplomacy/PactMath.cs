@@ -19,7 +19,10 @@ namespace ColonyCouncil
         Year
     }
 
-    /// <summary>The price of a truce, either way: none, the colony's silver carried out, their silver brought, or their captives returned.</summary>
+    /// <summary>
+    /// The price of a truce, either way: none, the colony's silver carried out, their silver brought, their captives
+    /// returned, or a hostage for its term (release 2b.3: theirs, or one of the colony's, its id in the terms' count).
+    /// </summary>
     public enum TrucePrice
     {
         None,
@@ -28,7 +31,11 @@ namespace ColonyCouncil
         /// <summary>They pay: silver their envoy brings and sets down.</summary>
         Theirs,
         /// <summary>The colony returns the captives of theirs it holds: the wardens walk them out by the game's own release.</summary>
-        Captives
+        Captives,
+        /// <summary>One of their notable's kin lives at the colony for the term (Hostages.cs).</summary>
+        TheirHostage,
+        /// <summary>One of the colony's lives at their town for the term (Hostages.cs).</summary>
+        OurHostage
     }
 
     /// <summary>Why a truce can be offered to a people at war with the colony now.</summary>
@@ -119,6 +126,8 @@ namespace ColonyCouncil
                 case TrucePrice.Ours: s += PaidScore; break;
                 case TrucePrice.Captives: s += CaptivesScore; break;
                 case TrucePrice.Theirs: s += TheyPayScore; break;
+                case TrucePrice.TheirHostage: s += WardMath.TheirHostageScore; break;
+                case TrucePrice.OurHostage: s += WardMath.OurHostageScore; break;
             }
             return s;
         }

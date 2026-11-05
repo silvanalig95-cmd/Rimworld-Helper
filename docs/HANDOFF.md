@@ -6,6 +6,94 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 0.93.1, two of the player's reports: (1) an ideology mod's precept "has automated turrets: scorned"
+  (`GR_HasAutomatedTurrets_Scorned` in the player's save) gave its mood to everyone because a hacked terminal in a
+  hatch's pocket map handed the colony that map's ancient armored turret; `Integrations/TurretFaith.cs` finds every
+  precept whose own or issue defName says Turret, patches its situational thought's worker (`ShouldHaveThought` or
+  `CurrentStateInternal`, found at start) with a postfix that drops the mood when the pawn's map has no automated
+  turret of the colony's (`Building_Turret` without `CompMannable`, cached per map per 250 ticks); setting
+  `faithTurretsHere` (deeper hooks). (2) Babies carried the decrees' and offices' colony-wide hediffs: `Decrees.SyncHediffs`
+  and `Offices.SyncHediffs` skip `DevelopmentalStage.Baby()`. Also answered (no change): a baby lying awake in a crib
+  is the game's own rule (babies sleep only involuntarily, never while starving); hers was hungry and crying.
+- 0.93.0, stage 2 release 2b.3, wards and hostages (docs/design/stage2-diplomacy.md, item 7, and item 2's hostage for a truce's
+  price; the player's decisions 9 and 10 as recommended; built beside 2b.1, feasts and contests, by another agent, and
+  merged with it at 0.92.0 (0d6cedc): both sides kept in `DiplomacyBook.cs` (`DiplomacyHome`'s feast and wards, the wait
+  on either), `Diplomacy.cs` (the hour and day), `DiplomacyModel.cs`, `FactsLedger.cs`, the settings, the tests'
+  registries, the save model, the DefValidator's placeholders, README, DESIGN.md and the Almanac page; 2b.2, marriage
+  alliances, is built from 0.92.0 by another agent, so expect the same small merges there). DESIGN.md, "Diplomacy" → "Wards and
+  hostages" has the whole of it. First, round a's three words-versus-map mismatches (the 0.90.0 entry below): a pact
+  ended by the colony's letter is answered under its own tag (`DiplomacyLetters.QuoteTags` swaps `pact` for `pactend`,
+  and the tone stays cool or curt), so a refused offer's `[pact,refusal]` lines never fit; the trap at an exchange is its
+  own deed, `trapped` (TheirWrong, 12; words, two talk pieces in `Rimfolk_OutsiderTalks_Trap.xml`), so
+  `Rimfolk_OT_Honour_BrokeWord` and its memory words ("refused the colony ... though they owed it") are said only of a
+  debt refused; a truce agreed where no people at peace with both can vouch for their envoy (`Truces.ByWord`) is answered
+  under `trucebyword` (lines in `Rimfolk_Lines_PactEnds.xml`; a refusal keeps the truce's own), and the keyed answer,
+  their offer, the accepted message and the pending row have ByWord fellows that promise no envoy at the gate. No old
+  line's tags changed: the new words are under their own tags in new files (textcheck against the branch's start is
+  clean). Pure and tested: `Diplomacy/WardMath.cs` (`WardKind`, `WardStage`, `WardMood`, `WardResult`; their offer,
+  asking, the ward's age and kin, `KnownFor`, the lesson's day and pace, `Mood`, `Fed`, `Year` and what it does, a death
+  in the colony's care and the feud, the colony's youth by age and their people's skills, letters, the page, hostages'
+  age and scores, `PactRoll`, `EndOf`, `WouldJoin`, the records' bounds `Fits`, the letters' codes, the facts' tags;
+  `Tools/Tests/WardTests.cs`, 1,327 checks, the three fixes among them). Game side, all in `Diplomacy/`: `Wards.cs`
+  (records, guardians and the skill known for, why not, their offer (`ChoiceLetter_WardOffer`), `HearAsk`, `Agree` with
+  `MakeYouth`, the hour for every record, arriving with a kinsman (`LordJob_WardParty`) and joining at the gate, the
+  lodger quest (`StartQuest`: `Rimfolk_LodgerQuest` with the game's `QuestPart_ExtraFaction`, home faction their people,
+  added before `QuestManager.Add`, accepted from the start), the day's tally, the lesson (`Together.When`), the year's
+  end with their kin (`JobDriver_WardToKin`) or alone (`JobDriver_WardLeave`, out at the edge as the colony's lodger),
+  `Reckon`, `Died`/`Taken`/`Wronged`, picking a guardian, sending home early, `Grown` and `HeirFor` for the grown ward
+  (a Regard tie of theirs toward the colony, origin `ward`, key `fostered`), `Clear`, `HomeLost`, `HereAs`),
+  `WardsAbroad.cs` (the colony's youth or hostage away: the youths, why not, `HearSend`, `Agree`, getting ready with road
+  food, `JobDriver_WardSetOut`, the caravan, at the town, letters by age or as a page, home with the skill, a friend and
+  `taught`, `Recall`), `Hostages.cs` (who could go, the letter's options, given for a truce (`Truces.Pay`) or a defence
+  pact (`DiplomacyLetters.PactAnswer`), `MakeHostage`, the term read from its tie, forfeit (`ChoiceLetter_HostageForfeit`:
+  home anyway, arrest by a warden, ask to stay, or they slip away), returned, held (`KidnappedPawnsTracker.Kidnap`)),
+  `WardLord.cs` (the party lord, the jobs, both letters, `Patch_WardKilled` on `Pawn.Kill` for a death at a colonist's
+  hand, `WardDefOf`), `WardLetters.cs` (`LetterPurpose.Ward`: `ward:ask`, `ward:send`), `WardPanels.cs` (cards: the
+  colonist's for a ward or hostage of theirs (lodgers are the colony's) and for the colony's own away, a guardian's, a
+  grown ward's Person card, the people card's acts, a town's lines, the Ward and Hostage tie cards; Peoples' rows; Here
+  and away; the inbox `ward` in Needs you and `ward-under-way`), `WardWords.cs`, `FactsWards.cs` (`tie:ward`,
+  `tie:hostage`, `them:ward` with how they are, `them:hostage`, `them:fostered`; `{WARD}`, `{HOSTAGE}`, `{GUARDIAN}`),
+  `WardDebug.cs` (dev actions: their offer, their ward arriving now, today's lesson, the year's end, a youth of ours to
+  them, ours at their town, a letter from ours, ours home, a hostage for a live truce or pact, their side breaking the
+  terms, the colony breaking its word, the term over). Shared, small: `WardStay` and `DiplomacyHome.wards` (four at most,
+  `wardOfferAt`, `wardOfferPeople`) in `DiplomacyBook.cs`, `LetterPurpose.Ward` (the letter dialog 26 taller),
+  `TrucePrice.TheirHostage`/`OurHostage` and their scores (`PactMath`), `PactWords.Price` naming the colony's hostage,
+  `DiplomacyLetters` (owns Ward, the truce's and a defence pact's hostage asks, `QuoteTags`), `DiplomacyModel` (rows, acts,
+  Here and away, `WhyHere`), `DiplomacyMath` (`dip:ward`, `dip:hostage`), `KeepFor.Ward`/`Hostage` (and `Lent` for the
+  colony's ward or hostage away) with their daily checks, `Notables.Add` (`Wards.Grown`) and the heir's making
+  (`Wards.HeirFor`), `FactsLedger` (one call), the setting `diplomacyWards` (section Diplomacy), the ward's rites in
+  `Rimfolk_Ages.xml` now the ward's side only (a youth in their household, an apprenticeship under contract, a posting on
+  agreed terms). Defs: `Defs/Misc/Rimfolk_Wards.xml` (the lodger quest, two letters, five jobs). Content: 29 talk pieces
+  (`Rimfolk_OutsiderTalks_Wards.xml`: with their ward, by how they are, the time of day, a raid, a death, their ways, a
+  child ward; others of theirs asking after them; the colony's youth and page with them; one fostered here once; their
+  hostage and others asking after one, forfeit and held, returned), 29 letter lines and 20 bubbles
+  (`Rimfolk_Lines_Wards.xml`: their answers to asking and offering by tone, the Empire's page; letters of any purpose
+  while a ward or hostage is with either side; the lesson, the guardian met and left, their kin at the gate, the colony's
+  hostage as the terms are sworn), keyed words with fellows (`Rimfolk_Wards.xml`, `Rimfolk_Wards_Variants.xml`, 37
+  fellows), the Almanac's diplomacy page extended inside its own elements (the description's three new paragraphs, the
+  truces' price and sworn by word, breaking them, the settings; no keyword changes, no new sections, so textcheck stays
+  clean), README ("Wards and hostages"), DESIGN.md, the save model for `wards`. Tests changed with it: `DiplomacyTests`
+  (the letters' purposes in the order built, Ward after Envoy), `RansomTests` (the lent check widened),
+  `OutsiderTalkTests` (the tags and placeholders); the DefValidator knows `WARD`, `HOSTAGE`, `GUARDIAN`. The lodger
+  assumption held, with two conditions found in the game's code: the extra-faction part must be in the quest before
+  `QuestManager.Add` (its cached list of extra-faction parts is filled there and on load), and the quest must be under
+  way (`QuestUtility.GetExtraFactionsFromQuestParts` reads only ongoing quests). Left out, and why: hostages for a trade
+  pact (its letter's one ask is the cart) and in their own offers of truces and pacts; their hostage at a truce sworn by
+  word (with nobody to vouch for them on the road the price lapses, and the letter says so); the colony's youth's
+  objection before the council and a hostage's (the letter is the colony's decision; the hostage says a line as the terms
+  are sworn); a forfeit hostage's own ransom offer at once (once arrested they are their people's prisoner, and the
+  ransom offers of 2a.3 come by their own rules); a ward who becomes a notable other than as their town's heir (the heads
+  are the game's leaders); homesickness as a thought of its own (it is their own mood, read as a word: no new mood). To
+  look at in game: their offer and the colony's ask; the ward and their kinsman walking to the gate, the ward joining
+  (on the colonist bar, in the Quests tab as a lodger, home faction their people), the guardian's lesson an hour by day
+  and the ward walking over to find them, a child with Biotech at the game's lessons, the card's lines; the year's end
+  (`Wards: their ward's year over now`): two kin at the gate, the ward walking out to them and leaving with them, the
+  letter; the ward downed in a raid and dying under a roof and in the open; the colony's youth setting out, at the town,
+  their letters, home with the skill and a friend; the Empire's page; a truce with a hostage either way (theirs walking in
+  some hours after the oath as guests of a people at peace with both, ours setting out), the term's end, their side
+  breaking it (the letter's three answers, the warden's arrest, a hostage who would stay), the colony breaking it (ours
+  held, then the game's ransom demand or their messenger's); a defence pact with a hostage either way; the letter dialog
+  at 768p with the new purpose.
 - 5 November 2026, a play-test point after 0.90.0: the new interface (0.82.0 to 0.88.1) and stage 2 round a with its
   review and text pass (0.81.0, 0.88.0 to 0.90.0) are in, none of it yet seen in the game. Round b (2b.1 feasts and
   contests, 2b.2 marriage alliances, 2b.3 wards and hostages) waits for the player's word after playing. Stage 3's

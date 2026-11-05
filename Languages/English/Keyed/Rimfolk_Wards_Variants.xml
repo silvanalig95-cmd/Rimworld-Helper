@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Fellows of the wards' and hostages' letters and news (Rimfolk_Wards.xml), picked at random (TextVariants), so lines
+       told every year or every ten days don't read the same each time. The same placeholders as the first of each. -->
+
+  <!-- Their offer, their answers -->
+  <CC_Ward_Offer_3>{PEOPLE} write by {WHO}'s hand: a youth of {KIN}'s house is of an age to learn {SKILL}, and they would trust the colony with them for a year. They call it {RITE}; the colony would call it {WORD}.</CC_Ward_Offer_3>
+  <CC_Ward_Ans_Yes_3>{PEOPLE} will send {WARD}. They want them to learn {SKILL} from the colony, {RITE} by their ways.</CC_Ward_Ans_Yes_3>
+  <CC_Ward_Ans_No_3>{PEOPLE} say no. They will think about {WORD} again in a better year.</CC_Ward_Ans_No_3>
+  <CC_Ward_Ans_SendYes_3>{PEOPLE} will welcome {PAWN} at {TOWN} for a year, {RITE} by their ways, and put them to {SKILL}.</CC_Ward_Ans_SendYes_3>
+  <CC_Ward_Ans_SendNo_3>{PEOPLE} answer that {PAWN} would be better off at home this year. There is no {WORD} for now.</CC_Ward_Ans_SendNo_3>
+
+  <!-- Their ward comes, and goes home -->
+  <CC_Ward_Arrives_3>{WARD} of {PEOPLE} walked in through the gate with their kin and stayed when the kin turned back: a year here, {WORD}, to learn {SKILL}. Their people call it {RITE}.</CC_Ward_Arrives_3>
+  <CC_Ward_Home_Fine_2>{WARD} has gone home with their kin. It was a fine year, and {PEOPLE} will be told so at every table.</CC_Ward_Home_Fine_2>
+  <CC_Ward_Home_Good_2>{WARD} has gone home with their kin, and they will speak well of the colony to {PEOPLE}.</CC_Ward_Home_Good_2>
+  <CC_Ward_Home_Fair_2>{WARD} has gone home with their kin. Some of the year was good and some of it wasn't, and {PEOPLE} will hear both.</CC_Ward_Home_Fair_2>
+  <CC_Ward_Home_Poor_2>{WARD} has gone home, and the year they will describe to {PEOPLE} is not one the colony would want told.</CC_Ward_Home_Poor_2>
+  <CC_Ward_Died_Inside_2>{WARD} of {PEOPLE} is dead. They died under the colony's roof, and their people know it was kept as safe as anyone, but they sent a youth to learn and have lost them.</CC_Ward_Died_Inside_2>
+  <CC_Ward_Died_Outside_2>{WARD} of {PEOPLE} is dead, caught out in the open at the colony. Their people will ask why the colony didn't keep them inside.</CC_Ward_Died_Outside_2>
+  <CC_Ward_Taken_2>{WARD} of {PEOPLE} has been carried off from the colony. Their people will want to know how it happened.</CC_Ward_Taken_2>
+
+  <!-- The colony's youth abroad -->
+  <CC_Ward_There_2>{PAWN} is at {TOWN}, living among {PEOPLE} for a year. They are to learn {SKILL}: {RITE}, as {PEOPLE} put it.</CC_Ward_There_2>
+  <CC_Ward_ThereEmpire_2>{PAWN} has been received at {TOWN} into {HEAD}'s household, as a page for a year.</CC_Ward_ThereEmpire_2>
+  <CC_Ward_Letter_Tribal_2>Word from {PAWN} at {TOWN}, carried by a hunter of {PEOPLE}: they have learned more {SKILL} this season than in all the years before, and {HEAD} lets them sit at the elders' fire.</CC_Ward_Letter_Tribal_2>
+  <CC_Ward_Letter_Medieval_2>{PAWN} writes from {TOWN} in a careful hand: the master who teaches them {SKILL} is strict, the bread is good, and {HEAD} asked after the colony at the last feast.</CC_Ward_Letter_Medieval_2>
+  <CC_Ward_Letter_Industrial_2>A letter from {PAWN} at {TOWN}: {PEOPLE} keep them busy with {SKILL} from morning until supper, and {HEAD} says they work as hard as anyone there.</CC_Ward_Letter_Industrial_2>
+  <CC_Ward_Letter_Spacer_2>{PAWN} sends a message from {TOWN}: the {SKILL} they are learning with {PEOPLE} would take years to pick up at home, and {HEAD} has been generous with time.</CC_Ward_Letter_Spacer_2>
+  <CC_Ward_Letter_Page_2>{PAWN} writes from {TOWN}: there are rules for where to stand, when to speak and how to pour, and they are learning them one by one. {HEAD} has not had to correct them in days.</CC_Ward_Letter_Page_2>
+  <CC_Ward_Homeward_2>{PAWN} has said goodbye at {TOWN}. {PEOPLE} saw them off with food for the road, and they are on their way home.</CC_Ward_Homeward_2>
+  <CC_Ward_Back_2>{PAWN} is back from {TOWN} after a year among {PEOPLE}.</CC_Ward_Back_2>
+  <CC_Ward_Back_Page_2>{PAWN} is home from {TOWN}, a year in a titled household behind them. {PEOPLE} remember the colony kindly for the page it sent.</CC_Ward_Back_Page_2>
+
+  <!-- Hostages -->
+  <CC_Hostage_Arrives_2>At the gate, {HOSTAGE} of {PEOPLE} parted from their people and came in to stay {WHAT}: {RITE} by their ways, {WORD} by the colony's.</CC_Hostage_Arrives_2>
+  <CC_Hostage_There_2>{HOSTAGE} is at {TOWN} now, kept among {PEOPLE} for the term: {RITE}.</CC_Hostage_There_2>
+  <CC_Hostage_Homeward_2>{PEOPLE} have let {PAWN} go from {TOWN}, the term over, with food for the road. They are on their way home.</CC_Hostage_Homeward_2>
+  <CC_Hostage_Home_Kept_2>{HOSTAGE} is free to go home to {PEOPLE}, the term over. The colony kept its side of {WORD}, and {PEOPLE} will remember it.</CC_Hostage_Home_Kept_2>
+  <CC_Hostage_Forfeit_2>{PEOPLE} have gone back on the word {HOSTAGE} stood surety for. {HOSTAGE} knows what that means as well as anyone: {WORD} is forfeit, and the colony decides what happens now.</CC_Hostage_Forfeit_2>
+  <CC_Hostage_Held_2>The colony's word is broken, and {PEOPLE} hold {HOSTAGE} now, not as a hostage but as a prisoner.</CC_Hostage_Held_2>
+  <CC_Hostage_Kept_2>{HOSTAGE} of {PEOPLE} is in the colony's cells now. If their people want them back, they will have to offer something.</CC_Hostage_Kept_2>
+  <CC_Hostage_Stayed_2>{HOSTAGE} will stay. {PEOPLE} broke their word with {HOSTAGE} at the colony, and {HOSTAGE} has decided where they belong.</CC_Hostage_Stayed_2>
+
+</LanguageData>

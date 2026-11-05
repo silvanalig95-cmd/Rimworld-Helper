@@ -209,6 +209,8 @@ namespace ColonyCouncil
         public bool diplomacyFeasts = true;
         /// <summary>Marriage alliances (Diplomacy/Matches.cs): matches between the colony's people and theirs, the wedding, the alliance. Off, nothing new is matched, a match agreed goes ahead, and a marriage holds.</summary>
         public bool diplomacyMarriage = true;
+        /// <summary>Wards and hostages (stage 2, release 2b.3): a youth fostered either way for a year, hostages for a truce's or a pact's terms.</summary>
+        public bool diplomacyWards = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -359,6 +361,8 @@ namespace ColonyCouncil
         public bool magicNeedRules = true;
         /// <summary>With Faction Territories and Vassalage: its messages about new settlements far away go to the colony news; nearby ones stay messages (Integrations/TerritoryNews.cs).</summary>
         public bool territoryNewsQuiet = true;
+        /// <summary>A faith's precept against automated turrets gives its mood only on a map where the colony has one (Integrations/TurretFaith.cs).</summary>
+        public bool faithTurretsHere = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/BeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
         /// <summary>With Alpha Skills: a colonist with a stoned passion sometimes smokes a joint before work that trains it (Integrations/BeforeWork.cs).</summary>
@@ -592,6 +596,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyEnvoys, "diplomacyEnvoys", true);
             Scribe_Values.Look(ref diplomacyFeasts, "diplomacyFeasts", true);
             Scribe_Values.Look(ref diplomacyMarriage, "diplomacyMarriage", true);
+            Scribe_Values.Look(ref diplomacyWards, "diplomacyWards", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);
@@ -684,6 +689,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref magicGolemRepair, "magicGolemRepair", true);
             Scribe_Values.Look(ref magicNeedRules, "magicNeedRules", true);
             Scribe_Values.Look(ref territoryNewsQuiet, "territoryNewsQuiet", true);
+            Scribe_Values.Look(ref faithTurretsHere, "faithTurretsHere", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
             Scribe_Values.Look(ref smokeBeforeWork, "smokeBeforeWork", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);

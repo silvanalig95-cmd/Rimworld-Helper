@@ -5,6 +5,24 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Turrets where they stand
+
+*5 November 2026, version 0.93.1*
+
+- A faith that scorns automated turrets now minds only the turrets where its people are: a turret handed over by a hacked terminal in a hatch's dungeon, or one at another home, no longer sours everyone at home. A new setting, on at first, can turn this back.
+- Fixed: babies no longer carry the council's colony-wide effects (militia drills, mourning, a steady marshal, a good physician) in their health.
+
+## Wards and hostages
+
+*5 November 2026, version 0.93.0*
+
+- Wards: a people at peace may send a youth of a notable's house to live at the colony for a year, or the colony asks by letter; they join as the game's lodger, a guardian teaches them an hour a day, and how they were kept goes home with them when their kin come to the gate.
+- The colony can send a youth of its own to live with another people for a year, writing home every ten days and coming back with that people's skill and a friend there; with the Empire, a page in a titled household.
+- Hostages, adults only, can be a truce's price or a defense pact's term either way: if their side breaks a truce, their hostage is the colony's to decide about, and if the colony breaks its word, its own is held in the game's own captivity.
+- Fixed: a pact the colony ends by letter is no longer answered with words meant for a refused offer.
+- Fixed: a trap sprung at an exchange of captives is remembered as its own deed, not as a debt refused.
+- Fixed: a truce sworn by word, with no people to vouch for their envoy, no longer promises an envoy at the gate.
+
 ## Feasts and contests with guests
 
 *5 November 2026, version 0.92.0*

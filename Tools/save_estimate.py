@@ -103,6 +103,8 @@ C = {
     "FeastTales": const("Diplomacy/FeastMath.cs", "MaxTales", 4),
     # Matches under way at a home (Diplomacy/MatchBook.cs, release 2b.2); the marriages themselves are ledger ties.
     "MatchPlans": const("Diplomacy/MatchMath.cs", "MaxPlans", 3),
+    # Wards and hostages either way at a home at once (Diplomacy/WardMath.cs, release 2b.3).
+    "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -577,6 +579,11 @@ MODEL = {
     # references, let go at the wedding (a few days on) or when called off; one at a time is usual, a year or so apart.
     "Diplomacy/DiplomacyBook.cs:matches": ("cap", (C["MatchPlans"], 0.1), 520,
                                            "per home: matches under way, MatchMath.MaxPlans at most, each let go at the wedding or when called off"),
+    # Its wards and hostages (Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs): a ward each way and a hostage each way,
+    # WardMath.MaxPerHome at most, each about thirty values and four references, dropped once they are home again (a
+    # ward's year a year, a hostage's term a season or a year); one at a time is usual.
+    "Diplomacy/DiplomacyBook.cs:wards": ("cap", (C["WardsPerHome"], 1), 900,
+                                         "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),
