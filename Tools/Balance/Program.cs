@@ -2,6 +2,8 @@
 //   dotnet run -c Release --project Tools/Balance -- [repo root] [--runs N] [--out report.md] [--json summary.json] [--before summary.json]
 // How bonds come about over two years (SocialSim.cs, printed, nothing written):
 //   dotnet run -c Release --project Tools/Balance -- --social [--runs N] [--seed S]
+// How much acts against their nature add to the heart's strain over a colony-year (NatureSim.cs, printed, nothing written):
+//   dotnet run -c Release --project Tools/Balance -- --nature [--runs N] [--seed S]
 
 using System.Globalization;
 using System.Text.Json;
@@ -13,6 +15,11 @@ CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 if (args.Contains("--social"))
 {
     SocialSim.Run(args);
+    return;
+}
+if (args.Contains("--nature"))
+{
+    NatureSim.Run(args);
     return;
 }
 

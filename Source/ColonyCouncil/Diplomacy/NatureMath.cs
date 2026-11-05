@@ -76,8 +76,8 @@ namespace ColonyCouncil
         /// <summary>What an act always brings to whoever it concerns, whatever their nature.</summary>
         public const float AlwaysStrain = 8f;
 
-        /// <summary>Just past the threshold an act still brings this share of the most it can (3 of 12).</summary>
-        public const float Floor = 0.25f;
+        /// <summary>Just past the threshold an act still brings this share of the most it can (about 5 of 12: tuned with the balance simulator, Tools/Balance --nature, so it shows on the heart's page for days).</summary>
+        public const float Floor = 0.4f;
 
         /// <summary>One act a day per colonist at most.</summary>
         public const int PerDay = 1;
