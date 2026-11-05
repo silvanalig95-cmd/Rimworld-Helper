@@ -55,14 +55,14 @@ namespace ColonyCouncil
         /// <summary>Every page, window by window and view by view, in the order of their tabs and modes.</summary>
         public static readonly Page[] All =
         {
-            // The council window: This week; People (table, moods, bonds, ideoligions, houses); Council (offices and
+            // The council window: This week; People (table, moods, bonds, ideoligions, renown); Council (offices and
             // decrees, ambition, ways, wishes, dilemmas); Colony (overview, calendar, chronicle).
             new Page("Week", RimfolkWindow.Council, "Week"),
             new Page("Table", RimfolkWindow.Council, "People"),
             new Page("Moods", RimfolkWindow.Council, "People"),
             new Page("Bonds", RimfolkWindow.Council, "People"),
             new Page("Faiths", RimfolkWindow.Council, "People"),
-            new Page("Houses", RimfolkWindow.Council, "People"),
+            new Page("Renown", RimfolkWindow.Council, "People"),
             new Page("Decrees", RimfolkWindow.Council, "Council"),
             new Page("Ambition", RimfolkWindow.Council, "Council"),
             new Page("Ways", RimfolkWindow.Council, "Council"),
@@ -118,7 +118,9 @@ namespace ColonyCouncil
             ["Everyone"] = "Table",
             ["Dreams"] = "Chronicle",
             ["Journals"] = "Chronicle",
-            ["Offices"] = "Decrees"
+            ["Offices"] = "Decrees",
+            // People → Houses went with the houses (5 November 2026): the colony's renown is where it was.
+            ["Houses"] = "Renown"
         };
 
         /// <summary>An old address that is a page's filter now: the filter it opens the page with (Pages.Open sets it).</summary>
@@ -144,7 +146,7 @@ namespace ColonyCouncil
             ["Moods"] = "Council_Alm_C_Moods",
             ["Bonds"] = "Council_Alm_C_Social",
             ["Faiths"] = "Council_Alm_C_FaithCouncil",
-            ["Houses"] = "Council_Alm_C_Family",
+            ["Renown"] = "Council_Alm_C_Diplomacy",
             ["Decrees"] = "Council_Alm_C_Decrees",
             ["Ambition"] = "Council_Alm_C_Meetings",
             ["Ways"] = "Council_Alm_C_Ways",

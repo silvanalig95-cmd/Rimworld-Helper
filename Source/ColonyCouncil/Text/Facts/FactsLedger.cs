@@ -86,13 +86,13 @@ namespace ColonyCouncil
             RansomEnvoyFacts(s, f);
             // Feasts with guests (Diplomacy/FactsFeast.cs): feast:invited, feast:soon, feast:here, them:feastguest, feast:theywon, feast:wewon.
             FeastFacts(s, f);
-            // Marriage alliances (Diplomacy/FactsMatch.cs): tie:marriage, :ours, :theirs, :you, match:agreed, match:child, match:wronged.
+            // Marriage alliances (Diplomacy/FactsMatch.cs): tie:marriage, :ours, :theirs, :you, match:agreed, match:wronged.
             MatchFacts(s, f);
             // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
             WardFacts(s, f);
             // Fealty and vassals (Diplomacy/FactsFealty.cs): fealty:levies, fealty:protected, fealty:short, vassal:heavy, vassal:levy.
             FealtyFacts(s, f);
-            // House renown (Diplomacy/FactsRenown.cs): house:ours, house:renowned, house:knownfor:KIND, them:house, them:house:feud, {HOUSE}, {KNOWNFOR}, {RENOWN}.
+            // The colony's renown (Diplomacy/FactsRenown.cs): colony:known, colony:renowned, colony:knownfor:KIND, us:knownas, {KNOWNFOR}, {RENOWN}, {KNOWNAS}.
             RenownFacts(s, f);
         }
 

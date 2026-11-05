@@ -512,7 +512,7 @@ namespace ColonyCouncil
             int regard = NotableBook.Opinion(n);
             int goodwill = n.faction != null && n.faction.HasGoodwill ? n.faction.PlayerGoodwill : 0;
             bool hope = FeastMath.Offered(g.hope, p.contests, HasInstrument(home));
-            // A colony with a house known for hosting is answered a little more readily (Renown.cs, up to three tenths more).
+            // A colony known for hosting is answered a little more readily (Renown.cs, up to three tenths more).
             yes = !Diplomacy.Hostile(n.faction) && n.Alive && LivingEvents.FreeToTravel(n.pawn) && regard >= FeastMath.MinRegard
                   && Rand.Value < Mathf.Min(0.95f, FeastMath.AcceptChance(regard, goodwill, hope, TravelDays(n, home)) * Renown.GuestFactor(home));
             if (!yes)
@@ -1078,7 +1078,8 @@ namespace ColonyCouncil
             actors.Add(new HistoryActor(Diplomacy.Colony(map), r.ours ? HistoryRole.Did : HistoryRole.With));
             foreach (var f in p.guests.Where(g => g.state != GuestState.Declined && g.people != null).Select(g => g.people).Distinct())
                 actors.Add(new HistoryActor(Refs.Of(f), r.people == f ? HistoryRole.Did : HistoryRole.With));
-            Diplomacy.Write(DiplomacyMath.Contest, actors, Diplomacy.Colony(map), FeastWords.Result(r));
+            // The contest's kind as its key: a champion's own name says what they won (Diplomacy/Renown.cs).
+            Diplomacy.Write(DiplomacyMath.Contest, actors, Diplomacy.Colony(map), FeastWords.Result(r), false, r.kind.ToString());
             // apart: the contest's end told in a message; the winner's cheer is said on the map.
             Tell.Message(NewsKind.World, Importance.Notable, map, FeastWords.Result(r), r.winner != null && r.winner.Spawned ? new LookTargets(r.winner) : LookTargets.Invalid,
                 r.ours ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);

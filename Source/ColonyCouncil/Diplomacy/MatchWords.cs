@@ -5,7 +5,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The words of marriage alliances (Languages/English/Keyed/Rimfolk_Matches.xml): a match by both sides' ages (the
-    /// colony's word by its own age: a match between clans, houses, families or firms, a partnership contract between lines;
+    /// colony's word by its own age: a match between clans, a marriage pact between two peoples, a marriage between two
+    /// settlements, a partnership contract between settlements;
     /// their way by theirs: bride gifts and a shared fire, vows in the hall and a dowry, a wedding and papers signed, a
     /// contract witnessed and filed: Ages.Form, the feature Marriage), their faith's own wedding where Ideology gives them one
     /// (InviteForms.Rite), where the couple lives, the colonist's consent, how the colony wronged a spouse. Lines told often
@@ -48,15 +49,15 @@ namespace ColonyCouncil
         /// <summary>How the colony wronged a spouse, in a phrase ("killed by a colonist's hand").</summary>
         public static string Wrong(MatchWrong w) => P("CC_Match_Wrong_" + w);
 
-        /// <summary>One of theirs for a letter's topic: "Bram, heir of Tallbrook", or "a daughter of Reeve Hallam's house".</summary>
-        public static string Candidate(Pawn theirs, Notable n, Notable house, Gender g)
+        /// <summary>One of theirs for a letter's topic: "Bram, heir of Tallbrook", or one of the town a head speaks for, "a woman of Tallbrook".</summary>
+        public static string Candidate(Pawn theirs, Notable n, Notable head, Gender g)
         {
             if (theirs != null)
             {
                 string title = n != null ? NotableBook.TitleOf(n) : null;
                 return title.NullOrEmpty() ? theirs.LabelShort : P("CC_Match_Candidate_Notable", theirs.Named("THEIRS"), title.Named("TITLE"), (n.townName ?? "?").Named("TOWN"));
             }
-            return P(g == Gender.Female ? "CC_Match_Candidate_Daughter" : "CC_Match_Candidate_Son", NotableBook.Called(house).Named("HEAD"));
+            return P(g == Gender.Female ? "CC_Match_Candidate_Woman" : "CC_Match_Candidate_Man", (head?.townName ?? People(head?.faction)).Named("TOWN"));
         }
     }
 }

@@ -103,14 +103,6 @@ namespace ColonyCouncil
                         if (f != null && !f.IsPlayer && !f.defeated)
                             Thing(SearchKind.People, ThingRefs.Of(f), f.Name, f.def?.LabelCap.ToString());
                 });
-                Part("houses", () =>
-                {
-                    var houses = WorldLedger.Instance?.Houses;
-                    if (houses != null)
-                        foreach (var h in houses)
-                            if (h != null)
-                                Thing(SearchKind.House, ThingRef.From(h.house), RegionWords.HouseName(h), h.people?.Name, h.name);
-                });
             }
             Part("views", () => Views(items));
             Part("articles", () =>

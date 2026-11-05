@@ -29,20 +29,9 @@ namespace ColonyCouncil
         public bool kin;
         public int since = -1;
 
-        // ---------------- The colony's own (stage 2, release 2d.1: house renown, Diplomacy/Renown.cs) ----------------
-
-        /// <summary>One of the colony's houses: its family of two or more of one name among the colony's people; no town.</summary>
-        public bool ours;
-        /// <summary>Its seat: the home most of it lives at (Homes.KeyOf), or -1.</summary>
-        public int seat = -1;
-        /// <summary>Its people as refs, the living and the gone (RenownMath.MembersKept at most), whose deeds its renown is read from.</summary>
-        public List<Ref> folk = new List<Ref>();
-        /// <summary>Their names beside them, in the same order ("" for one not yet named), so the gone are named after the game lets them go.</summary>
-        public List<string> folkNames = new List<string>();
-        /// <summary>Last day someone of it was at the colony (-1: not yet).</summary>
-        public int lastSeen = -1;
-        /// <summary>The band of renown last told (RenownBand), so a change is told once; the renown itself is read, never kept.</summary>
-        public int band;
+        // The colony's own houses (release 2d.1, house renown) went with the houses (5 November 2026: the colony is the family,
+        // never a dynasty). An older save's are records here with no town (and the nodes ours, seat, folk, folkNames,
+        // lastSeen, band): nothing reads those nodes, and WorldLedger.ExposeRegion drops a house without a town as it loads.
 
         public void ExposeData()
         {
@@ -55,28 +44,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref founding, "founding");
             Scribe_Values.Look(ref kin, "kin");
             Scribe_Values.Look(ref since, "since", -1);
-            Scribe_Values.Look(ref ours, "ours");
-            Scribe_Values.Look(ref seat, "seat", -1);
-            var folkText = Scribe.mode == LoadSaveMode.Saving ? folk?.ConvertAll(r => r.ToString()) : null;
-            Scribe_Collections.Look(ref folkText, "folk", LookMode.Value);
-            if (ours) Scribe_Collections.Look(ref folkNames, "folkNames", LookMode.Value);
-            Scribe_Values.Look(ref lastSeen, "lastSeen", -1);
-            Scribe_Values.Look(ref band, "band");
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-                folk = folkText?.ConvertAll(Ref.Parse) ?? new List<Ref>();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 members ??= new List<string>();
                 members.RemoveAll(m => m.NullOrEmpty());
-                folk ??= new List<Ref>();
-                folkNames ??= new List<string>();
-                // An unreadable ref goes with its name (an older save's house has no names yet: Renown fills them in).
-                for (int i = folk.Count - 1; i >= 0; i--)
-                    if (folk[i].IsNone)
-                    {
-                        folk.RemoveAt(i);
-                        if (i < folkNames.Count) folkNames.RemoveAt(i);
-                    }
             }
         }
     }
@@ -305,8 +276,9 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 houses ??= new List<LedgerHouse>();
-                // A town's house without its town is gone; the colony's own have none (Diplomacy/Renown.cs).
-                houses.RemoveAll(h => h == null || h.house.IsNone || h.town < 0 && !h.ours);
+                // A town's house without its town is gone, and so is an older save's house of the colony's own (it had none):
+                // the houses of release 2d.1 went on 5 November 2026, quietly.
+                houses.RemoveAll(h => h == null || h.house.IsNone || h.town < 0);
                 foundings ??= new List<LedgerFounding>();
                 foundings.RemoveAll(f => f == null || f.site < 0);
                 townIndex = null;

@@ -10,10 +10,9 @@ namespace ColonyCouncil
     /// Where marriage alliances show (docs/design/interface.md, "Where stage 2 and stage 3 go": Tie, House and Person cards;
     /// the council question and "Talk with..."; This week: the match proposed): the marriage's Tie card (who married whom,
     /// where they live, held through a child, what the alliance gives) and a grudge for a spouse wronged; a notable's Person
-    /// card (a match under way, who of the colony's would fit, "Propose a match"); a House card (its members married into the
-    /// colony); the People card (marriages and matches with them, "Seek a match"); a colonist's card (promised or married
-    /// to one of theirs); the Peoples view's rows and act, Here and away (the colony's own married into their town, in-laws
-    /// among the houses), and the one inbox: their offer of a match in Needs you, the matches under way in steps, the day
+    /// card (a match under way, who of the colony's would fit, "Propose a match"); the People card (marriages and matches with them, "Seek a match"); a colonist's card (promised or married
+    /// to one of theirs); the Peoples view's rows and act, Here and away (the colony's own married into their town, the peoples it
+    /// is bound to by marriage), and the one inbox: their offer of a match in Needs you, the matches under way in steps, the day
     /// their kin come for the colony's own in Coming (never a time left).
     /// </summary>
     [StaticConstructorOnStartup]
@@ -27,7 +26,6 @@ namespace ColonyCouncil
             CardSections.RegisterLines(CardKind.Person, CardSlot.Now, 34f, PersonLines, null, "match-person");
             CardActs.Register(CardKind.Person, r => MatchWords.P("CC_Match_Act_Propose"), r => ProposeWhyNot(ThingRefs.Notable(r)), r => Propose(ThingRefs.Notable(r)),
                 r => ThingRefs.Notable(r) is Notable n && n.faction != null && !Diplomacy.Hostile(n.faction) && Matches.On, 48f, MatchWords.P("CC_Match_Act_Propose_Tip"), "match-propose");
-            CardSections.RegisterLines(CardKind.House, CardSlot.Ties, 10f, HouseLines, "CC_Match_Card_HouseHead", "match-house");
             CardSections.RegisterLines(CardKind.People, CardSlot.Now, 46f, r => Rows(ThingRefs.Faction(r), null).Select(x => x.text).ToList(), null, "match-people");
             CardActs.Register(CardKind.People, r => MatchWords.P("CC_Match_Act_Seek"), r => SeekAct(ThingRefs.Faction(r)).why, r => SeekAct(ThingRefs.Faction(r)).run?.Invoke(),
                 r => ThingRefs.Faction(r) is Faction f && !Diplomacy.Hostile(f) && Matches.On, 42f, MatchWords.P("CC_Match_Act_Seek_Tip"), "match-seek");
@@ -144,7 +142,7 @@ namespace ColonyCouncil
             var list = new List<Pawn>();
             if (n?.pawn == null || home == null) return list;
             foreach (var c in Matches.Colonists(home))
-                if (n.role == NotableRole.Head ? Matches.WhyNotHouse(c, n) == null : Matches.WhyNotPair(c, n.pawn, n.faction) == null)
+                if (n.role == NotableRole.Head ? Matches.WhyNotOfTown(c, n) == null : Matches.WhyNotPair(c, n.pawn, n.faction) == null)
                     list.Add(c);
             return list;
         }

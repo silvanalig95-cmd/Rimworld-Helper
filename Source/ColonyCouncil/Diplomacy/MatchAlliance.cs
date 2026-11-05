@@ -41,7 +41,7 @@ namespace ColonyCouncil
 
         // ================= The day =================
 
-        /// <summary>The day (Diplomacy.Hourly's first hour): their offers; each marriage's day; grudges for a spouse wronged passed down.</summary>
+        /// <summary>The day (Diplomacy.Hourly's first hour): their offers; each marriage's day; an older save's grudges made their people's.</summary>
         public static void Daily(int now)
         {
             try
@@ -65,35 +65,19 @@ namespace ColonyCouncil
             }
             try
             {
-                Feuds();
+                PeoplesGrudges();
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("matches: a feud carried down", e);
+                CouncilLog.ErrorOnce("matches: an older save's grudge", e);
             }
-        }
-
-        /// <summary>A child of the two, living (the game's own parent relation), or null.</summary>
-        public static Pawn ChildOf(Pawn a, Pawn b)
-        {
-            if (a?.relations == null || b == null) return null;
-            try
-            {
-                foreach (var c in a.relations.Children)
-                    if (c != null && !c.Dead && !c.Discarded && (c.GetMother() == b || c.GetFather() == b || c.relations.DirectRelationExists(PawnRelationDefOf.Parent, b)))
-                        return c;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("matches: a child of the marriage", e);
-            }
-            return null;
         }
 
         /// <summary>
-        /// One marriage's day: a spouse's death (held through a living child, else ended), a wrong done to the one living at
-        /// the colony or the colony's own held by it, the couple parted; while at peace, their kin's gift once a season, their
-        /// letter about a raiders' camp set against the home, and the alliance's defence pact kept.
+        /// One marriage's day: a spouse's death (the alliance ends with them: it is a bond between the colony and their people
+        /// made through one marriage, and a child of the two keeps none since 5 November 2026), a wrong done to the one living
+        /// at the colony or the colony's own held by it, the couple parted; while at peace, their town's gift once a season,
+        /// their letter about a raiders' camp set against the home, and the alliance's defence pact kept.
         /// </summary>
         private static void Alliance(Tie t, int now)
         {
@@ -109,22 +93,15 @@ namespace ColonyCouncil
             bool oursDead = ours == null || ours.Dead, theirsDead = theirs == null || theirs.Dead;
             if (oursDead || theirsDead)
             {
-                var child = ChildOf(ours ?? theirs, ours != null ? theirs : ours);
-                if (child == null)
+                // An older save's alliance held through a child (terms.count) ends without a word: its death was told then.
+                if (t.terms.count > 0)
                 {
-                    End(t, MatchWords.P("CC_Match_End_Death_Label", MatchWords.People(f).Named("PEOPLE")),
-                        MatchWords.T("CC_Match_End_Death", MatchWords.Name(oursDead ? ours : theirs, NameOf(t, oursDead)).Named("DEAD"), MatchWords.People(f).Named("PEOPLE")));
+                    End(t, null, null);
                     return;
                 }
-                if (t.terms.count == 0)
-                {
-                    t.terms.count = 1;
-                    WorldLedger.Touch(t);
-                    // apart: told in a letter; the alliance goes on as it was.
-                    Tell.Letter(NewsKind.World, Importance.Notable, home, MatchWords.P("CC_Match_Child_Label", MatchWords.People(f).Named("PEOPLE")),
-                        MatchWords.T("CC_Match_Child", child.Named("CHILD"), MatchWords.Name(oursDead ? ours : theirs, NameOf(t, oursDead)).Named("DEAD"),
-                            MatchWords.People(f).Named("PEOPLE")), LetterDefOf.NeutralEvent, new LookTargets(child), f);
-                }
+                End(t, MatchWords.P("CC_Match_End_Death_Label", MatchWords.People(f).Named("PEOPLE")),
+                    MatchWords.T("CC_Match_End_DeathOnly", MatchWords.Name(oursDead ? ours : theirs, NameOf(t, oursDead)).Named("DEAD"), MatchWords.People(f).Named("PEOPLE")));
+                return;
             }
             else
             {
@@ -153,7 +130,7 @@ namespace ColonyCouncil
                         WorldLedger.Keep(x, KeepFor.Spouse);
             if (home == null || Diplomacy.Hostile(f)) return;
             float day = now / (float)MatchMath.DayTicks;
-            if (On && MatchMath.KinGiftDue(t.terms.number, t.since / (float)MatchMath.DayTicks, day)) KinGift(t, f, home, ours, theirs, day);
+            if (On && MatchMath.TownGiftDue(t.terms.number, t.since / (float)MatchMath.DayTicks, day)) TownGift(t, f, home, ours, theirs, day);
             if (On) Warn(f, home, now);
             KeepPact(f, home, day);
         }
@@ -179,20 +156,20 @@ namespace ColonyCouncil
         /// <summary>Theirs, married into the colony, gone back to their own people of their own accord (not the colony's doing).</summary>
         private static bool Departed(Tie t, Pawn ours, Pawn theirs, Faction f) => LivesOf(t) == MatchHome.Colony && theirs.Faction == f && !theirs.IsPrisoner;
 
-        /// <summary>Their kin's small gift once a season, by their ways, carried in by their courier.</summary>
-        private static void KinGift(Tie t, Faction f, Map home, Pawn ours, Pawn theirs, float day)
+        /// <summary>Their town's small gift once a season, by their ways, carried in by their courier.</summary>
+        private static void TownGift(Tie t, Faction f, Map home, Pawn ours, Pawn theirs, float day)
         {
             t.terms.number = day;
             WorldLedger.Touch(t);
             var town = WorldSituationWorker.NearestTown(f, home);
-            int value = MatchMath.KinGiftValue(Fortune(town?.ID ?? -1));
+            int value = MatchMath.TownGiftValue(Fortune(town?.ID ?? -1));
             var def = GiftDef(f);
             var things = Couriers.Make(def, MatchMath.GiftCount(value, def.BaseMarketValue));
             var gate = PlaySpots.GateCell(home, null);
             if (!Couriers.Deliver(home, things, f, gate)) Loot.Deliver(things, home, gate, false);
             bool away = LivesOf(t) == MatchHome.Theirs;
             // apart: their courier sets it down at the gate on the map; the message says who sent it.
-            Tell.Message(NewsKind.World, Importance.Notable, home, MatchWords.T(away ? "CC_Match_KinGift_Away" : "CC_Match_KinGift", MatchWords.Name(ours, NameOf(t, true)).Named("OURS"),
+            Tell.Message(NewsKind.World, Importance.Notable, home, MatchWords.T(away ? "CC_Match_TownGift_Away" : "CC_Match_TownGift", MatchWords.Name(ours, NameOf(t, true)).Named("OURS"),
                 MatchWords.Name(theirs, NameOf(t, false)).Named("THEIRS"), MatchWords.People(f).Named("PEOPLE"), Couriers.Describe(things).Named("GIFT"), (town?.Name ?? "?").Named("TOWN")),
                 LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }
@@ -239,7 +216,7 @@ namespace ColonyCouncil
 
         // ================= How it ends =================
 
-        /// <summary>Ended with nobody at fault (a death with no child, their people gone, theirs gone home): told when there is a letter to send.</summary>
+        /// <summary>Ended with nobody at fault (a death not at the colony's hand, their people gone, theirs gone home): told when there is a letter to send.</summary>
         private static void End(Tie t, string label, string text)
         {
             if (t == null || !t.Live) return;
@@ -280,7 +257,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The colony wronged a spouse from among them: the marriage broken, "spouseWronged" in their memory, their notables'
-        /// regard, the alliance's pact broken, and a grudge their head holds against the colony (passed to the next head).
+        /// regard, the alliance's pact broken, and their people's grudge against the colony (theirs, never one family's: it is
+        /// handed down no line).
         /// </summary>
         private static void Wronged(Tie t, MatchWrong wrong, Pawn victim)
         {
@@ -304,7 +282,7 @@ namespace ColonyCouncil
                 if (pactBroken) Pacts.End(pact, Tie.State.Broken, null);
             }
             var head = FavourCalls.HeadOf(f, home);
-            Grudge(head?.Person ?? Refs.Of(f), f, home, victim != null ? WorldLedger.PersonOf(victim) : t.terms.about);
+            Grudge(Refs.Of(f), f, home, victim != null ? WorldLedger.PersonOf(victim) : t.terms.about);
             Diplomacy.Dirty();
             // apart: told in a letter; the wrong itself happened on the map.
             Tell.Letter(NewsKind.World, Importance.Important, home, MatchWords.P("CC_Match_Wronged_Label", MatchWords.People(f).Named("PEOPLE")),
@@ -313,7 +291,7 @@ namespace ColonyCouncil
                     (head != null ? NotableBook.Called(head) : MatchWords.People(f)).Named("HEAD")), LetterDefOf.NegativeEvent, LookTargets.Invalid, f);
         }
 
-        /// <summary>A grudge for a spouse wronged, held by <paramref name="holder"/> against the colony (key "spouse", about the spouse; their people in its count).</summary>
+        /// <summary>A grudge for a spouse wronged, held by <paramref name="holder"/> (their people) against the colony (key "spouse", about the spouse; their people in its count).</summary>
         private static Tie Grudge(Ref holder, Faction f, Map home, Ref about)
         {
             if (holder.IsNone || f == null) return null;
@@ -331,10 +309,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The feud carried down: a grudge whose holder is gone (dead, no longer a notable of theirs) passes to their people's
-        /// head the colony knows now, who takes it up (their regard, and the letter that says so).
+        /// Grudges for a spouse wronged are their people's against the colony , handed down no line. An older
+        /// save's held by one of their notables (their head took it up, and it passed to the next) is made their people's,
+        /// quietly, as the day looks; one whose people are gone ends.
         /// </summary>
-        private static void Feuds()
+        private static void PeoplesGrudges()
         {
             foreach (var t in Grudges())
             {
@@ -345,20 +324,8 @@ namespace ColonyCouncil
                     continue;
                 }
                 if (t.from.kind == RefKind.People) continue;
-                var holder = Refs.Pawn(t.from);
-                bool gone = holder == null || holder.Dead || !(NotableBook.Instance?.notables.Any(n => n != null && n.pawn == holder && n.faction == f) ?? false);
-                var home = Diplomacy.HomeOf(t.to);
-                var next = FavourCalls.HeadOf(f, home);
-                if (!MatchMath.PassesDown(gone, next != null && next.pawn != holder)) continue;
-                WorldLedger.Set(t, Tie.State.Ended);
-                if (Grudge(next.Person, f, home, t.terms.about) == null) continue;
-                next.personal += MatchMath.WrongedRegard / 2f;
-                next.Remember(MatchWords.P("CC_Match_Note_Feud", DipWords.NameOf(t.terms.about).Named("NAME")), MatchMath.WrongedRegard / 2f);
-                NotableBook.Changed();
-                // apart: told in a letter; the feud is their people's memory.
-                Tell.Letter(NewsKind.World, Importance.Notable, home, MatchWords.P("CC_Match_Feud_Label", MatchWords.People(f).Named("PEOPLE")),
-                    MatchWords.T("CC_Match_Feud", NotableBook.Called(next).Named("HEAD"), DipWords.NameOf(t.from).Named("OLD"), DipWords.NameOf(t.terms.about).Named("NAME"),
-                        MatchWords.People(f).Named("PEOPLE")), LetterDefOf.NegativeEvent, LookTargets.Invalid, f);
+                t.from = Refs.Of(f);
+                WorldLedger.Touch(t);
             }
         }
 
@@ -379,8 +346,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// One of a marriage (or a match under way) died: by the colony's hand, a wrong; else the alliance holds through a
-        /// child of the two or ends, their regard moved by how the colony kept one of theirs who died at its home.
+        /// One of a marriage (or a match under way) died: by the colony's hand, a wrong (their people's grudge); else the
+        /// alliance ends with no grudge, their regard moved by how the colony kept one of theirs who died at its home.
         /// </summary>
         public static void Died(Pawn x, MatchDeath d)
         {
@@ -418,20 +385,9 @@ namespace ColonyCouncil
                 }
                 NotableBook.Changed();
             }
-            var other = theirs ? OursOf(t) : TheirsOf(t);
-            var child = ChildOf(x, other);
             string how = regard <= -10 ? " " + MatchWords.P(d.untended ? "CC_Match_Died_Untended" : "CC_Match_Died_Open", MatchWords.People(f).Named("PEOPLE")) : "";
-            if (child != null)
-            {
-                t.terms.count = 1;
-                WorldLedger.Touch(t);
-                // apart: told in a letter; the alliance goes on through their child.
-                Tell.Letter(NewsKind.World, Importance.Notable, home, MatchWords.P("CC_Match_Child_Label", MatchWords.People(f).Named("PEOPLE")),
-                    MatchWords.T("CC_Match_Child", child.Named("CHILD"), x.Named("DEAD"), MatchWords.People(f).Named("PEOPLE")) + how, LetterDefOf.NeutralEvent, new LookTargets(child), f);
-                return;
-            }
             End(t, MatchWords.P("CC_Match_End_Death_Label", MatchWords.People(f).Named("PEOPLE")),
-                MatchWords.T("CC_Match_End_Death", x.Named("DEAD"), MatchWords.People(f).Named("PEOPLE")) + how);
+                MatchWords.T("CC_Match_End_DeathOnly", x.Named("DEAD"), MatchWords.People(f).Named("PEOPLE")) + how);
         }
     }
 }

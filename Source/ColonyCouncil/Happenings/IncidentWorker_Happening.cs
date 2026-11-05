@@ -55,7 +55,7 @@ namespace ColonyCouncil
                 f *= TravelLand.VisitorFactor(target as Map);
             // A town struggling in this home's reach asks for help more often (World/Region/RiseFallEffects.cs).
             if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= RiseFallEffects.EventFactor(def, target as Map);
-            // A house known for something draws the world's events of its kind (Diplomacy/Renown.cs).
+            // A colony (or one of its people by name) known for something draws the world's events of its kind (Diplomacy/Renown.cs).
             if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= Renown.EventFactor(def, target as Map);
             return f;
         }

@@ -995,7 +995,7 @@ namespace ColonyCouncil
             // What their people remember of the colonist by name (World/ColonistMemory.cs): the good as strong as a deed, the wrongs held against them.
             ColonistMemory.Regard(n.faction, p, out float good, out float bad);
             float personal = (n.RegardOf(p, false)?.personal ?? 0f) - ColonistMemoryMath.Regard(bad);
-            // Their house's name (Diplomacy/Renown.cs): up to 15 better of a renowned house's people, worse of an infamous one's.
+            // The colony's name (Diplomacy/Renown.cs): up to 15 better of a renowned colony's people, worse of an infamous one's.
             personal += Renown.RegardBonus(p);
             return NotableMath.OfColonist(Opinion(n), Mathf.Max(deed?.Strength ?? 0f, good), personal);
         }

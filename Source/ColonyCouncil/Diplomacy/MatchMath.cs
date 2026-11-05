@@ -74,15 +74,17 @@ namespace ColonyCouncil
     /// <summary>
     /// The arithmetic of marriage alliances (docs/design/stage2-diplomacy.md, round b, item 6; release 2b.2; the player's
     /// decisions 8 and 9), with no game types so Tools/Tests can check it. A match between one of the colony's and one of
-    /// theirs (a notable, or a member of a notable's house made for it): who may marry by the game's own answers (of age,
+    /// theirs (a notable, or one of a head's town made for it): who may marry by the game's own answers (of age,
     /// drawn to each other's sex both ways, not kin, the faith's rule on spouses, not engaged elsewhere, and the Empire's
     /// titled nobles only to the titled); the colonist's consent by their own feelings (glad, willing, or against it, and
     /// why); their answer to the colony's proposal by their head's regard; their own offer once a year at most at a regard of
     /// 40; where the couple lives, chosen in each match; the wedding day by the road; gifts by their ways both ways at the
-    /// gate. While it holds their notables think 15 better of the colony, their kin send a small gift once a season, they
+    /// gate. While it holds their notables think 15 better of the colony, their town sends a small gift once a season, they
     /// write when a raiders' camp is set against the colony's home, and the alliance stands as a defence pact (one, not two,
-    /// and never with the Empire). It ends at a spouse's death with no child of the two living; it is broken when the
-    /// colony wrongs the spouse, with a grudge their house's next head takes up; it ends when the couple part.
+    /// and never with the Empire). It is a bond between the colony and their people made through one marriage (the player's
+    /// decision, 5 November 2026: the colony is the family, never a dynasty): it ends at a spouse's death, with no grudge
+    /// unless the colony was to blame; it is broken when the colony wrongs the spouse, with their people's grudge, handed
+    /// down no line; it ends when the couple part.
     /// </summary>
     public static class MatchMath
     {
@@ -267,13 +269,13 @@ namespace ColonyCouncil
         /// <summary>Their notables think this much better of the colony while a marriage of Rimfolk's with them holds (never Diplomatic Marriage+'s).</summary>
         public const int RegardBonus = 15;
 
-        /// <summary>Their kin send a small gift once a season.</summary>
-        public const float KinGiftDays = 15f;
+        /// <summary>Their town sends a small gift once a season.</summary>
+        public const float TownGiftDays = 15f;
 
-        public static bool KinGiftDue(float lastDay, float sinceDay, float day) => day - (lastDay >= 0f ? lastDay : sinceDay) >= KinGiftDays;
+        public static bool TownGiftDue(float lastDay, float sinceDay, float day) => day - (lastDay >= 0f ? lastDay : sinceDay) >= TownGiftDays;
 
-        /// <summary>The kin's small gift: about a third of a match's.</summary>
-        public static int KinGiftValue(float fortune) => GiftValue(fortune) / 3;
+        /// <summary>Their town's small gift: about a third of a match's, by the town's fortune.</summary>
+        public static int TownGiftValue(float fortune) => GiftValue(fortune) / 3;
 
         /// <summary>A raiders' camp set against the colony's home, hidden this many days or more: their letter warns of it, this chance a day.</summary>
         public const float WarnAfterDays = 2f, WarnDaily = 0.25f;
@@ -290,8 +292,11 @@ namespace ColonyCouncil
 
         // ---------------- Its ends, and the bad sides ----------------
 
-        /// <summary>A spouse's death ends it, unless a child of the two lives: then it holds through the child.</summary>
-        public static bool EndsAtDeath(bool childLiving) => !childLiving;
+        /// <summary>
+        /// A spouse's death ends it, a child of the two or not (a bond between the colony and their people through one
+        /// marriage, handed down no line), with a grudge only when the colony was to blame (a wrong: killed by its hand).
+        /// </summary>
+        public static bool GrudgeAtDeath(MatchWrong w) => Wronged(w);
 
         /// <summary>
         /// What their notables think of a spouse's death at the colony: little if the colony sheltered and tended them, much if
@@ -336,14 +341,11 @@ namespace ColonyCouncil
         /// </summary>
         public static bool SoldAway(bool anotherPeople, bool prisoner, bool atWarWithColony) => anotherPeople && !prisoner && !atWarWithColony;
 
-        /// <summary>The grudge for a spouse wronged passes to their house's next head when the one who holds it is gone.</summary>
-        public static bool PassesDown(bool holderGone, bool nextKnown) => holderGone && nextKnown;
-
         // ---------------- Codes ----------------
 
         /// <summary>
         /// A letter's topic: "match:OURS:THEIRS" (a colonist and one of theirs, by pawn id), or "match:OURS:h:NOTABLE:G" (one of
-        /// a notable's house, made when they agree: G 1 male, 2 female).
+        /// the town the head NOTABLE speaks for, made when they agree: G 1 male, 2 female; the h is from when it named a house).
         /// </summary>
         public const string TopicPrefix = "match:";
 
@@ -386,8 +388,10 @@ namespace ColonyCouncil
         /// <summary>
         /// The facts: a marriage holds between the colony and their people (tie:marriage), one of the colony's living among
         /// them (tie:marriage:ours) or one of theirs at the colony (tie:marriage:theirs), the one spoken to is the spouse or
-        /// their kin (tie:marriage:you); a match agreed and the wedding to come (match:agreed); held through a child after a
-        /// death (match:child); a spouse wronged by the colony (match:wronged); {INLAW} their spouse, {SPOUSEOF} the colony's.
+        /// their kin (tie:marriage:you); a match agreed and the wedding to come (match:agreed); a spouse wronged by the colony
+        /// (match:wronged); {INLAW} their spouse, {SPOUSEOF} the colony's. match:child (held through a child after a death) is
+        /// set no more since 5 November 2026, when a child stopped keeping the alliance; it stays known for the shipped lines
+        /// that ask it is not.
         /// </summary>
         public const string Tag = "tie:marriage", OursTag = "tie:marriage:ours", TheirsTag = "tie:marriage:theirs", YouTag = "tie:marriage:you", AgreedTag = "match:agreed",
             ChildTag = "match:child", WrongedTag = "match:wronged", InlawKey = "INLAW", SpouseOfKey = "SPOUSEOF";

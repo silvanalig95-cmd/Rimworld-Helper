@@ -78,7 +78,7 @@ namespace ColonyCouncil
                 // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
                 y = MissionPanel.Draw(y, w);
                 y += 10f;
-                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Houses_Title"), dip.houses, DipWords.P("CC_Dip_Houses_None"), folds, "houses");
+                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Married_Title"), dip.houses, DipWords.P("CC_Dip_Married_None"), folds, "houses");
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally

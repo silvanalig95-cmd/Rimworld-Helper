@@ -58,7 +58,7 @@ public static class PagesTests
         C(PagesMath.CouncilSections.SequenceEqual(new[] { "Week", "People", "Council", "Colony" }) && Same(PagesMath.ViewsOf(RimfolkWindow.Council), "Week", "People", "Council", "Colony"),
             "the council window: This week, People, Council, Colony, in that order, one row of tabs");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Week"), "Week"), "This week is one view without modes");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "People"), "Table", "Moods", "Bonds", "Faiths", "Houses"), "People: table, moods, bonds, ideoligions, houses");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "People"), "Table", "Moods", "Bonds", "Faiths", "Renown"), "People: table, moods, bonds, ideoligions, renown");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Council"), "Decrees", "Ambition", "Ways", "Wishes", "Dilemmas"),
             "Council: offices and decrees, ambition, ways, wishes, dilemmas");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Colony"), "Overview", "Calendar", "Chronicle"), "Colony: overview, calendar, chronicle");

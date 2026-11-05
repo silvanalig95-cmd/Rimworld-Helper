@@ -1006,7 +1006,7 @@ namespace ColonyCouncil
             {
                 new HistoryActor(Refs.Of(p), HistoryRole.About), new HistoryActor(Diplomacy.Colony(map), HistoryRole.With), new HistoryActor(Refs.Of(f), HistoryRole.For)
             };
-            // The guardian, by name: their house's renown reads a good year as a ward fostered well (Diplomacy/Renown.cs).
+            // The guardian, by name: the colony's renown and their own name read a good year as a ward fostered well (Diplomacy/Renown.cs).
             if (w.guardian != null) yearActors.Add(new HistoryActor(Refs.Of(w.guardian), RenownMath.GuardianRole(r >= WardResult.Good)));
             Diplomacy.Write(DiplomacyMath.Ward, yearActors, Diplomacy.Colony(map),
                 WardWords.P("CC_Ward_Hist_Home_" + r, p.Named("WARD"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), r != WardResult.Fair);

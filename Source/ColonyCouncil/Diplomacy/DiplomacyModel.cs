@@ -48,8 +48,8 @@ namespace ColonyCouncil
     /// What the Diplomacy and Household pages and the town panel's section show, gathered in one place and built at most once
     /// every two seconds while something reads it (DiplomacyMath.Stale), sooner when the ledger, the memory, the notables or
     /// the history move: the strip of what is owed each way; a card for each people within the region map's reach or with a
-    /// tie to the colony; who is here from outside and who of the colony's is away; the colony's houses (its families known
-    /// by name). The pieces (DipRow, DipAct, DipPeople) are drawn by DiplomacyPanels and can be drawn anywhere else.
+    /// tie to the colony; who is here from outside and who of the colony's is away; the peoples it is bound to by marriage
+    /// (<see cref="houses"/>, so named before 5 November 2026, when the colony's houses went). The pieces (DipRow, DipAct, DipPeople) are drawn by DiplomacyPanels and can be drawn anywhere else.
     /// </summary>
     public sealed class DiplomacyModel
     {
@@ -58,6 +58,7 @@ namespace ColonyCouncil
         public readonly List<DipPeople> peoples = new List<DipPeople>();
         public readonly List<DipRow> here = new List<DipRow>();
         public readonly List<DipRow> away = new List<DipRow>();
+        /// <summary>The peoples the colony is bound to by marriage, one row a marriage (the field's name is from when it listed houses).</summary>
         public readonly List<DipRow> houses = new List<DipRow>();
 
         private static DiplomacyModel current;
@@ -360,25 +361,9 @@ namespace ColonyCouncil
             foreach (var r in WardPanels.AwayRows())
                 if (m.away.Count < MaxRows)
                     m.away.Add(r);
-            // The colony's houses: its families known by name.
-            var seen = new HashSet<string>();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
-            {
-                string plural = FamilyNames.Plural(p);
-                if (plural.NullOrEmpty() || !seen.Add(plural)) continue;
-                var members = FamilyNames.Members(p);
-                // Kept as a house (release 2d.1): its renown beside what the colony says of it, and its card.
-                var kept = Renown.HouseOf(p);
-                string renown = kept != null ? RenownPanels.ListLine(kept) : null;
-                string repute = FamilyNames.ReputeLine(p);
-                m.houses.Add(new DipRow
-                {
-                    text = DipWords.P("CC_Dip_House", plural.Named("HOUSE"), string.Join(", ", members.Select(x => x.LabelShort)).Named("MEMBERS")),
-                    note = renown.NullOrEmpty() ? repute : repute.NullOrEmpty() ? renown : renown + " " + repute, link = kept != null ? (object)kept.house : p, color = UiKit.Gold
-                });
-            }
-            // The colony's in-laws among the peoples, one row a marriage (release 2b.2).
-            foreach (var r in MatchPanels.InlawRows()) m.houses.Add(r);
+            // The colony bound to other peoples by marriage, one row a marriage (release 2b.2; the colony's houses and its
+            // in-laws went with the houses, 5 November 2026: the colony is the family, never a dynasty).
+            foreach (var r in MatchPanels.BondRows()) m.houses.Add(r);
         }
 
         /// <summary>Why someone of theirs is here: a lodger, trading, visiting, staying at the camp, or just here.</summary>

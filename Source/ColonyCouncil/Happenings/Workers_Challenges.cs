@@ -37,9 +37,9 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            // Challengers come to a house known for fighters: its fighter, when among the colony's best, is the one challenged more often than not (Diplomacy/Renown.cs).
+            // Challengers come to one known by name as a fighter: when among the colony's best, they are the one challenged more often than not (Diplomacy/Renown.cs).
             var all = Champions(ctx.map).ToList();
-            var fighters = all.Where(c => (c.s == SkillDefOf.Shooting || c.s == SkillDefOf.Melee) && Renown.FightersHouse(c.p)).ToList();
+            var fighters = all.Where(c => (c.s == SkillDefOf.Shooting || c.s == SkillDefOf.Melee) && Renown.KnownFighter(c.p)).ToList();
             var pick = (fighters.Count > 0 && Rand.Chance(RenownMath.ChallengeShare) ? fighters : all).RandomElementWithFallback();
             if (pick.p == null) return false;
             ctx.a = pick.p;

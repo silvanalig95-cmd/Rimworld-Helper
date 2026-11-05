@@ -99,10 +99,10 @@ namespace ColonyCouncil
         /// Something of diplomacy that isn't a tie, into the history (its family "dip"): its kind, who took part (the one it
         /// is mostly of first), where, and its finished line. A milestone when it touches the colony's standing.
         /// </summary>
-        public static HistoryEntry Write(string kind, List<HistoryActor> actors, Ref place, string line, bool milestone = false)
+        public static HistoryEntry Write(string kind, List<HistoryActor> actors, Ref place, string line, bool milestone = false, string key = null)
         {
             if (kind == null || !kind.StartsWith(DiplomacyMath.Family + ":", StringComparison.Ordinal)) return null;
-            return History.Add(kind, actors, place, milestone ? HistoryMath.Milestone : HistoryMath.Everyday, line);
+            return History.Add(kind, actors, place, milestone ? HistoryMath.Milestone : HistoryMath.Everyday, line, key);
         }
 
         /// <summary>The colony as a party: the home given, else the seat (or the player's people between homes).</summary>

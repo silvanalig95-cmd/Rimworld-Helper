@@ -68,8 +68,8 @@ namespace ColonyCouncil
                             var h = lives;
                             opts.Add(new FloatMenuOption(c.LabelShort + " + " + LinkTextMath.Plain(cand.Words) + " (" + f.Name + ", " + lives + ")", () =>
                             {
-                                var theirs = x.pawn ?? Matches.MakeKin(x.house, x.gender, ours);
-                                var p = Matches.Begin(home, people, ours, theirs, (x.notable ?? x.house)?.id ?? -1, x.pawn == null, h, MatchWay.Sought);
+                                var theirs = x.pawn ?? Matches.MakeOfTown(x.head, x.gender, ours);
+                                var p = Matches.Begin(home, people, ours, theirs, (x.notable ?? x.head)?.id ?? -1, x.pawn == null, h, MatchWay.Sought);
                                 Say(p == null ? "couldn't begin one." : "begun: " + p.stage + (p.stage == MatchStage.Asking ? " (the council's question)" : ""));
                             }));
                             if (opts.Count >= 30) break;

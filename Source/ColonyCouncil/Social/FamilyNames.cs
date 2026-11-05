@@ -85,7 +85,7 @@ namespace ColonyCouncil
         /// <summary>The colony's people of their known family, them included (empty when there is none).</summary>
         public static List<Pawn> Members(Pawn p) => Of(p)?.members.ToList() ?? new List<Pawn>();
 
-        /// <summary>The colony's families known by name, each its last name and its people (the houses of Diplomacy/Renown.cs).</summary>
+        /// <summary>The colony's families known by name, each its last name and its people (flavour only: no renown or diplomacy is tied to them since 5 November 2026).</summary>
         public static List<(string last, List<Pawn> members)> Families()
         {
             var list = new List<(string, List<Pawn>)>();

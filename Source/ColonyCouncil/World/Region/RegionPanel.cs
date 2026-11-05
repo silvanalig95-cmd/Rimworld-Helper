@@ -77,7 +77,8 @@ namespace ColonyCouncil
             {
                 var named = houses.Select(h =>
                 {
-                    string name = links ? Link(RegionWords.HouseName(h), h.house) : RegionWords.HouseName(h);
+                    // A family's name, no link: houses have no card since 5 November 2026 (their town is what counts).
+                    string name = RegionWords.HouseName(h);
                     return h.members.Count == 0
                         ? name
                         : "CC_Region_Panel_Members".Translate(name.Named("HOUSE"), string.Join(", ", h.members).Named("MEMBERS")).Resolve();
