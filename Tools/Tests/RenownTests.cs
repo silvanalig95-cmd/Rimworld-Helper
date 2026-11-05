@@ -209,6 +209,14 @@ public static class RenownTests
         C(RenownMath.Kept(true, false, -1, 0) && RenownMath.Kept(false, true, 0, 999 * RenownMath.DayTicks) && RenownMath.Kept(false, false, 0, 119 * RenownMath.DayTicks)
           && !RenownMath.Kept(false, false, 0, 120 * RenownMath.DayTicks) && !RenownMath.Kept(false, false, -1, 0), "kept while one lives here or a tie names them, then two years");
         C(RenownMath.Key(" Coor ") == "coor" && RenownMath.Key("COOR") == RenownMath.Key("coor") && RenownMath.Key(null) == null, "a house by its name");
+        // The review: one who took another's name on marrying is remembered by both houses, and is of the one whose name they carry.
+        C(RenownMath.HouseFor(new[] { "Jones", "Smith" }, "Jones") == 0 && RenownMath.HouseFor(new[] { "Smith", "Jones" }, " jones") == 1,
+            "of the house of the name they carry, whichever was made first");
+        C(RenownMath.HouseFor(new[] { "Smith", "Jones" }, "Brown") == 1 && RenownMath.HouseFor(new[] { "Smith" }, null) == 0 && RenownMath.HouseFor(new string[0], "Smith") == -1,
+            "else the newest that remembers them; none for none");
+        string renownCode = Code("Diplomacy/Renown.cs");
+        C(renownCode.Contains("RenownMath.HouseFor(") && Code("Diplomacy/RenownPanels.cs").Contains("h.folk.Where(r => !Renown.StillOurs(r))"),
+            "the index puts each in the house of their name, and the card's gone leaves out anyone still with the colony");
         string region = Code("World/Ledger/LedgerRegion.cs");
         C(region.Contains("Scribe_Values.Look(ref ours, \"ours\")") && region.Contains("Scribe_Collections.Look(ref folkText, \"folk\"") && region.Contains("Scribe_Values.Look(ref band, \"band\")")
           && region.Contains("h.town < 0 && !h.ours"), "the colony's houses saved beside the towns', kept on load without a town");

@@ -62,6 +62,21 @@ namespace ColonyCouncil
         /// <summary>A house's key: its family name, the same however it is written.</summary>
         public static string Key(string familyName) => string.IsNullOrEmpty(familyName) ? null : familyName.Trim().ToLowerInvariant();
 
+        /// <summary>
+        /// Which of the houses that remember someone (by their names, oldest first) they are of now: the one of the family
+        /// name they carry (one who took another's name on marrying is remembered by both), else the newest; -1 for none.
+        /// </summary>
+        public static int HouseFor(IList<string> houseNames, string lastName)
+        {
+            if (houseNames == null || houseNames.Count == 0) return -1;
+            string key = Key(lastName);
+            if (key != null)
+                for (int i = 0; i < houseNames.Count; i++)
+                    if (Key(houseNames[i]) == key)
+                        return i;
+            return houseNames.Count - 1;
+        }
+
         // ================= Where renown comes from =================
 
         /// <summary>One kind of renown: its points (a wrong's below zero), what it shows the house is good at, whether it fades with age, and the most it gives in all.</summary>
@@ -364,6 +379,19 @@ namespace ColonyCouncil
 
         /// <summary>The band moved from the one last told: up or down, to be told and written (dip:renown).</summary>
         public static bool Moved(RenownBand told, RenownBand now) => told != now;
+
+        /// <summary>
+        /// The word one of the house says on the map as its band moves (the moment of Rimfolk_Lines_Renown.xml), or null:
+        /// renownup as its name carries further (its words say strangers know it), renowndown as it fades from the talk
+        /// (its words say nobody out there speaks of it); nothing for a name gone bad or mending, nor for one that is still
+        /// known, only less widely, where those words would not be true.
+        /// </summary>
+        public static string Bubble(RenownBand was, RenownBand now)
+        {
+            if (now > was && now >= RenownBand.Town) return "renownup";
+            if (now < was && now == RenownBand.Unknown) return "renowndown";
+            return null;
+        }
 
         // ================= Known for =================
 

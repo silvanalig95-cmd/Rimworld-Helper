@@ -62,20 +62,39 @@ namespace ColonyCouncil
             byPawn.Clear();
             var ours = WorldLedger.OurHouses();
             if (ours.Count == 0) return;
-            var of = new Dictionary<int, LedgerHouse>();
+            // Each person with every house that remembers them: one who took another's name on marrying is in both.
+            var of = new Dictionary<int, List<LedgerHouse>>();
             foreach (var h in ours)
                 foreach (var r in h.folk)
                     if (r.kind == RefKind.Person)
-                        of[r.id] = h;
+                    {
+                        if (!of.TryGetValue(r.id, out var hs)) of[r.id] = hs = new List<LedgerHouse>();
+                        if (!hs.Contains(h)) hs.Add(h);
+                    }
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
-            {
-                if (p == null || !of.TryGetValue(p.thingIDNumber, out var h)) continue;
-                if (!living.TryGetValue(h.house.id, out var list)) living[h.house.id] = list = new List<Pawn>();
-                list.Add(p);
-                byPawn[p.thingIDNumber] = h;
-            }
+                if (p != null && of.TryGetValue(p.thingIDNumber, out var hs))
+                    Put(p, hs);
             foreach (var list in living.Values)
                 list.Sort((a, b) => (b.ageTracker?.AgeBiologicalTicks ?? 0L).CompareTo(a.ageTracker?.AgeBiologicalTicks ?? 0L));
+        }
+
+        /// <summary>One of the colony's people into the house they are of now: the one of the name they carry, else the newest that remembers them.</summary>
+        private static void Put(Pawn p, List<LedgerHouse> houses)
+        {
+            int i = RenownMath.HouseFor(houses.Select(x => x.name).ToList(), FamilyNames.Last(p));
+            if (i < 0) return;
+            var h = houses[i];
+            if (!living.TryGetValue(h.house.id, out var list)) living[h.house.id] = list = new List<Pawn>();
+            list.Add(p);
+            byPawn[p.thingIDNumber] = h;
+        }
+
+        /// <summary>Someone a house remembers who is still one of the colony's, of this house or another (not among its gone).</summary>
+        public static bool StillOurs(Ref r)
+        {
+            if (r.kind != RefKind.Person || WorldLedger.Instance == null) return false;
+            Index();
+            return byPawn.ContainsKey(r.id);
         }
 
         /// <summary>The colony's house a colonist is of, or null.</summary>
