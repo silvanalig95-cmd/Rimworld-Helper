@@ -19,6 +19,8 @@ namespace ColonyCouncil
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            // Ended at its first look, wherever the save left it (the walk to a leg's cell, a look about).
+            this.FailOn(() => true);
             for (int i = 0; i < OldToils; i++)
             {
                 var t = ToilMaker.MakeToil("Retired");

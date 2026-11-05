@@ -188,7 +188,9 @@ public static class OutsiderTests
         foreach (Match m in Regex.Matches(code, @"Why\(""([A-Za-z]+)""")) keys.Add("CC_Out_Why_" + m.Groups[1].Value);
         foreach (Match m in Regex.Matches(code, @"Note\(OutsiderAct\.([A-Za-z]+)")) keys.Add("CC_Out_Note_" + m.Groups[1].Value);
         foreach (Match m in Regex.Matches(code, @"Note\(act,")) foreach (var a in new[] { "Meal", "Drink" }) keys.Add("CC_Out_Note_" + a);
-        foreach (var a in acts.Where(a => a != OutsiderAct.GoodWord && a != OutsiderAct.Teach)) keys.Add("CC_Out_Act_" + a);
+        foreach (var a in acts.Where(a => a != OutsiderAct.GoodWord && a != OutsiderAct.Teach && !OutsiderMath.Retired(a))) keys.Add("CC_Out_Act_" + a);
+        C(acts.Where(OutsiderMath.Retired).SequenceEqual(new[] { OutsiderAct.SoundOut }) && acts.Last() == OutsiderAct.SoundOut,
+            "the keeper's sounding out kept in its place, never offered (dropped 5 November 2026)");
         foreach (var t in tones)
         {
             keys.Add("CC_Out_ToneWord_" + t);

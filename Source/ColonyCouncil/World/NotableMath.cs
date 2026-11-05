@@ -280,10 +280,10 @@ namespace ColonyCouncil
         /// <summary>How long they take over their answer once the letter is read (a quarter of a day to a day and a quarter).</summary>
         public static float ReplyDays(float roll) => 0.25f + Clamp01(roll);
 
-        /// <summary>Days to wait before writing to the same person for the same thing again (one letter at a time to each in any case).</summary>
         /// <summary>A purpose no longer written (LetterPurpose.Task, the council's business): never offered, and called off before it is read.</summary>
         public static bool Retired(LetterPurpose p) => p == LetterPurpose.Task;
 
+        /// <summary>Days to wait before writing to the same person for the same thing again (one letter at a time to each in any case).</summary>
         public static float WaitDays(LetterPurpose p)
         {
             switch (p)

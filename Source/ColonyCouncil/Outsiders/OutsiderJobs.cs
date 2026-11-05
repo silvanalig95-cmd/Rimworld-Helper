@@ -49,6 +49,8 @@ namespace ColonyCouncil
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
+            // A talk an older save holds under way with an act no longer offered (the keeper's sounding out) ends quietly.
+            this.FailOn(() => OutsiderMath.Retired(Act));
             this.FailOn(() => pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
             this.FailOn(() => !ending && !Outsiders.IsOutsider(Other));
             this.FailOn(() => met && !ending && !Outsiders.Holding(Other, pawn));
