@@ -150,6 +150,8 @@ public static class NatureTests
         C(marks.All(m => Chance(m) > 0f && Chance(m) < 1f) && marks.All(m => m.Descendants("when").All(w => string.IsNullOrWhiteSpace(w.Value))),
             "rare: each has its chance; the act already asked their nature");
         C(Fam(NatureMath.MarkOath)?.Element("major")?.Value == "true" && marks.All(m => !m.Descendants("news").First().Value.Contains('!')), "an oath is a turning point; each is told");
+        C(marks.All(m => !m.Descendants("news").First().Value.Contains("this year")) && !Fam(NatureMath.MarkAbroad).Descendants("news").First().Value.Contains("{LABEL} a second time"),
+            "the news says what the rule read: twice within a year (not the calendar's), the second season away wherever the first was");
         C(nature.Contains("PersonaMarks.Give(p, family, null,") && nature.Contains("int lastAct = h.natureAct, lastTick = h.natureTick;"),
             "given through the persona's own marks, read against the act before this one");
 

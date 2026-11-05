@@ -68,7 +68,7 @@
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>NatureNerve</family>
         <chance>0.6</chance>
-        <news>{PAWN_nameDef} has faced a second challenger this year, and seems less afraid of the next one.</news>
+        <news>{PAWN_nameDef} has faced a second challenger within a year, and seems less afraid of the next one.</news>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>
@@ -84,7 +84,7 @@
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>NatureAbroad</family>
         <chance>0.6</chance>
-        <news>{PAWN_nameDef} has set out for {LABEL} a second time this year, and seems more at ease among strangers.</news>
+        <news>{PAWN_nameDef} has set out for {LABEL}, a second season away within a year, and seems more at ease among strangers.</news>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>
