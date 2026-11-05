@@ -242,6 +242,7 @@ namespace ColonyCouncil
             Section("CC_Settings_CouncilLife");
             Toggle("enableDilemmas", "CC_Settings_Dilemmas", "CC_SetNote_Dilemmas");
             Slider("daysBetweenDilemmas", "CC_Settings_DaysBetweenDilemmas", "CC_SetNote_DaysBetweenDilemmas", 3f, 30f, 1f, "0", "enableDilemmas");
+            Toggle("councilBanishment", "CC_Settings_Banishment", "CC_SetNote_Banishment", "enableDilemmas");
             Choice("impactShows", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Hints", "Exact", "Off" });
             Toggle("decreeRequests", "CC_Settings_DecreeRequests", "CC_SetNote_DecreeRequests");
             Toggle("colonyCharacter", "CC_Settings_Character", "CC_SetNote_Character");

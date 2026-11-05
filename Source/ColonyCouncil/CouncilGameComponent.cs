@@ -568,6 +568,8 @@ namespace ColonyCouncil
             Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
+            // Banishment by the council: a word said face to face, someone sent away told, gathering their things, walking out (Social/Banishment.cs).
+            Safe("banishment", () => BanishTracker.Hourly(this));
             // An election under way: the campaign, the hustings, polling day and the count (Offices/OfficesElection.cs).
             foreach (var c in ColonyState.Ticking())
                 if (c.offices.election != null) Safe("election", () => c.offices.ElectionHourly(this));

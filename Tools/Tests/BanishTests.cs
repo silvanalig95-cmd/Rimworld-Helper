@@ -82,7 +82,7 @@ public static class BanishTests
         C(BanishMath.Disliked(10, 7, 1), "seven of ten dislike them, one stands by them");
         C(!BanishMath.Disliked(10, 7, 2), "two stand by them: not almost nobody");
         C(!BanishMath.Disliked(10, 5, 0), "half the colony isn't most of it");
-        C(!BanishMath.Disliked(3, 3, 0), "never fewer than three who dislike them");
+        C(!BanishMath.Disliked(3, 2, 0) && BanishMath.Disliked(4, 3, 0), "never fewer than three who dislike them");
         C(!BanishMath.Disliked(0, 0, 0), "nobody else: nobody to dislike them");
         C(BanishMath.Dislikes(-10) && !BanishMath.Dislikes(-9), "dislike from -10");
         C(BanishMath.StandsBy(20, false) && !BanishMath.StandsBy(19, false), "a friend stands by them");
