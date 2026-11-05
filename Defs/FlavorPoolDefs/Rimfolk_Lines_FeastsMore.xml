@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for feasts with guests (Source/ColonyCouncil/Diplomacy/Feasts.cs, FeastContests.cs, FeastLetters.cs),
+    beside Rimfolk_Lines_Feasts.xml, whose tags these keep. Two pools the game already draws on:
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the day, one sentence each. At the gate the
+      colony's greeting (feastwelcome, us: said to a wedding's guests too, so it names no contest) and the guest's answer
+      (feastarrive, them, at a feast; feastwedding, them, a wedding's guests: the kin of the one who marries in, who joins
+      the colony at the gate as they come); the race (feastrungo, feastrunstumble, feastrunwin, feastrunlose); the best
+      hunter (feasthuntwin); the tables (feasttablewin, feasttablelose); the shooting match (feastshootgood, feastshootfair,
+      feastshootpoor); each winner's word as the champion is named at the feast (feastwinner: a toast); the prize handed
+      over and taken (feastprize, us; feastprizethanks); a guest's hard words before a fistfight (feastsour, them). Lines
+      for either side have neither us nor them; kind and abrasive are the speaker's own traits, old, teen and child their
+      age; by their ways theirLowtech or theirHightech; the colony's age lowtech, !lowtech, tribal.
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their words in the answer to an invitation to the colony's
+      feast (invitation, feast:invited): warm or cordial when they come, cool, curt or refusal when they don't; and in a
+      letter of any purpose (greetings, news, help: warm or cordial when it's given, condolences, warning, invitation)
+      while their guests are due (feast:soon) or after a feast their people came to (them:feastguest, feast:welcomed,
+      feast:slighted, feast:good, feast:poor, feast:theywon, feast:wewon, town:lately:dip:feast; {FEAST}, {CHAMPION}).
+      A letter's facts are the ties and the history only, so what their people remember (deed:) is never asked here.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_FeastsMore</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- At the gate -->
+        <li>[feastwelcome,us] Come in and rest your legs, it's a long day yet.</li>
+        <li>[feastwelcome,us,kind] You must be tired, come and sit before anything else.</li>
+        <li>[feastwelcome,us,abrasive] You're here, good, now try not to get underfoot.</li>
+        <li>[feastwelcome,us,!lowtech] Welcome, wipe your boots, and don't mind the noise.</li>
+        <li>[feastwelcome,us,theirHightech] Welcome, we'll find you somewhere to sit while you wait.</li>
+        <li>[feastarrive,them] We'd have come sooner, but the road had other ideas.</li>
+        <li>[feastarrive,them,theirLowtech] Our people send their greetings, and our best send their boasts.</li>
+        <li>[feastarrive,them,theirHightech] Good to be here, the road was better than the maps said.</li>
+        <li>[feastarrive,them,kind] Thank you for asking us, it means more than you'd think.</li>
+        <li>[feastarrive,them,abrasive] Well, we're here, so where's this feast of yours?</li>
+        <!-- A wedding's guests at the gate -->
+        <li>[feastwedding,them] We've come to see one of ours married, and we're glad of the road for once.</li>
+        <li>[feastwedding,them] So this is where they'll live, it looks a good place to grow old in.</li>
+        <li>[feastwedding,them,theirLowtech] We come as kin to a wedding, with our people's blessing on it.</li>
+        <li>[feastwedding,them,theirHightech] We're here for the wedding, is there anything we should know?</li>
+        <li>[feastwedding,them,kind] Look after the one we're giving you, they're dear to us.</li>
+        <li>[feastwedding,them,abrasive] I hope your people are worth the walk, and the one we're losing to you.</li>
+        <li>[feastwedding,them,old] I've walked to a good many weddings, and this road was the longest.</li>
+        <!-- The race -->
+        <li>[feastrungo] Ready, steady, and off with you.</li>
+        <li>[feastrungo] Out to the marker and home again, go.</li>
+        <li>[feastrunstumble] That stone wasn't there a moment ago.</li>
+        <li>[feastrunstumble,abrasive] Who left that lying there?</li>
+        <li>[feastrunwin,kind] Well run, all of you, it was closer than it looked.</li>
+        <li>[feastrunwin,teen] I told them I was the fastest.</li>
+        <li>[feastrunlose] My legs gave up halfway back.</li>
+        <li>[feastrunlose,old] I was winning races before you were born.</li>
+        <!-- The hunt -->
+        <li>[feasthuntwin] Clean kills, all of them, and nothing wasted.</li>
+        <li>[feasthuntwin,them,theirHightech] Good hunting ground, you're lucky to have it so close.</li>
+        <li>[feasthuntwin,us,tribal] The spirits gave us a good hunt for our guests.</li>
+        <!-- The tables -->
+        <li>[feasttablewin] Good game, I nearly lost my nerve in the middle.</li>
+        <li>[feasttablewin,them,theirLowtech] We play this at home on long nights, so it wasn't quite fair.</li>
+        <li>[feasttablelose,abrasive] Luck, nothing else, and you know it.</li>
+        <li>[feasttablelose,kind] You earned that, and I'll want a rematch.</li>
+        <!-- The shooting match -->
+        <li>[feastshootgood] Steady hands today, I'll take it.</li>
+        <li>[feastshootfair] Not my best, not my worst.</li>
+        <li>[feastshootpoor] My eyes aren't what they were.</li>
+        <!-- At the feast, as the champion is named: a toast -->
+        <li>[feastwinner] Here's to our hosts, and to everyone who lost with good grace.</li>
+        <li>[feastwinner,them,theirLowtech] Drink, all of you, to the colony and its table.</li>
+        <li>[feastwinner,us,!lowtech] To our guests, may they go home happy and come back hungry.</li>
+        <li>[feastwinner,kind] To everyone who took part, win or lose.</li>
+        <li>[feastwinner,teen] I'm going to remember today for the rest of my life.</li>
+        <!-- The prize -->
+        <li>[feastprize,us] You've earned this, take it with our thanks.</li>
+        <li>[feastprize,us,theirHightech] Here's the prize, and it's yours to keep.</li>
+        <li>[feastprizethanks,them,theirLowtech] My people will hang this where everyone can see it.</li>
+        <li>[feastprizethanks,us] I'll put it somewhere I can see it every day.</li>
+        <!-- The night gone sour -->
+        <li>[feastsour,them] Laugh at me once more and we'll settle it outside.</li>
+        <li>[feastsour,them,theirHightech] I've had about enough of your mouth for one night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_FeastsMore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- An invitation to the colony's feast, answered -->
+        <li>[invitation,warm,feast:invited,letter] Your letter was read out twice, the second time because the children asked. We will come to {FEAST}.</li>
+        <li>[invitation,warm,feast:invited,call] Of course we'll come, {WRITER}. We were hoping you'd call.</li>
+        <li>[invitation,cordial,feast:invited] A feast is a feast, {WRITER}, and we don't turn one down. Expect us at {FEAST}.</li>
+        <li>[invitation,cordial,feast:invited,theirLowtech] We will come to {FEAST} as guests should, hungry and in good time.</li>
+        <li>[invitation,cordial,feast:invited,theirHightech] We'll be there for {FEAST}. If there's a dress code, tell us now and not at the gate.</li>
+        <li>[invitation,cool,feast:invited,letter] Our thanks for the invitation to {FEAST}. The road is long this season, and we will stay at home.</li>
+        <li>[invitation,cool,feast:invited,call] Kind of you to call, {WRITER}. We'll have to miss {FEAST} this time.</li>
+        <li>[invitation,curt,feast:invited,theirHightech] No. We have other commitments.</li>
+        <li>[invitation,refusal,feast:invited,theirLowtech] Our people do not sit at the table of strangers.</li>
+        <li>[invitation,refusal,feast:invited,call] I won't be coming to {FEAST}, {WRITER}, and I'd rather not say why.</li>
+        <!-- While their guests are due -->
+        <li>[greetings,warm,feast:soon] Our guests for {FEAST} have packed their best clothes already, and keep unpacking them to check.</li>
+        <li>[greetings,cordial,feast:soon,theirLowtech] Those who will go to {FEAST} have been chosen, and the rest of us are already jealous.</li>
+        <li>[condolences,warm,feast:soon] We grieve with you, {WRITER}. If {FEAST} goes ahead, our people will come gladly, and if it doesn't, we understand.</li>
+        <li>[warning,cordial,feast:soon] Thank you for the warning. Our guests for {FEAST} will keep their eyes open on the road.</li>
+        <li>[help,cordial,feast:soon] We can help, and we will see you at {FEAST} besides.</li>
+        <!-- After a feast their people came to -->
+        <li>[greetings,warm,town:lately:dip:feast,theirLowtech] Those who went to {FEAST} came home with full bellies and more stories than we have evenings for.</li>
+        <li>[greetings,cordial,feast:good] Our people speak well of {FEAST}, {WRITER}, and they are not easy to please.</li>
+        <li>[greetings,cool,feast:poor] We heard how {FEAST} went. We expected better of your colony.</li>
+        <li>[greetings,cool,feast:poor,theirHightech] Those who came back from {FEAST} had little good to report.</li>
+        <li>[help,warm,them:feastguest,feast:welcomed,theirLowtech] You fed us well at {FEAST}. Now let us return it.</li>
+        <li>[news,cordial,them:feastguest] Here is our news, and our thanks again for {FEAST}. I still think of your table.</li>
+        <li>[greetings,cordial,feast:theywon,theirLowtech] {CHAMPION} has told the story of {FEAST} at every meal since, and we are all learning it by heart.</li>
+        <li>[greetings,cool,feast:theywon] {CHAMPION} won at {FEAST}, as you know. Some here say your people let it happen.</li>
+        <li>[greetings,warm,feast:wewon] We have forgiven {CHAMPION} for {FEAST}, {WRITER}. Our best has not, and trains every morning.</li>
+        <li>[invitation,cordial,town:lately:dip:feast,theirLowtech] After {FEAST} we owe your colony a seat at our own table. We will come, and you must come to us after.</li>
+        <li>[condolences,warm,town:lately:dip:feast] We sat at your table so lately, and now this. We grieve with you.</li>
+        <li>[greetings,cool,them:feastguest,feast:slighted,theirHightech] I was your guest at {FEAST} and went home hungry. I mention it so you know it was noticed.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -910,7 +910,7 @@ namespace ColonyCouncil
                 var c = map.mapPawns.FreeColonistsSpawned.Where(o => Together.Able(o) && !o.DevelopmentalStage.Baby() && SocialLog.Near(o, x)).OrderBy(o => o.Position.DistanceToSquared(x.Position))
                     .FirstOrDefault();
                 if (c != null) Outsiders.Say(c, "feastwelcome", x);
-                Outsiders.Say(x, "feastarrive", c);
+                Outsiders.Say(x, p.purpose == FeastPurpose.Wedding ? "feastwedding" : "feastarrive", c);
             }
         }
 

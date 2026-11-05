@@ -27,7 +27,7 @@
         <li>[feastwelcome,us] Welcome, come in, there's a seat for you at the table tonight.</li>
         <li>[feastwelcome,us] You found us, good, the others are waiting by the gate.</li>
         <li>[feastwelcome,us,lowtech] Welcome, and leave the road's dust at the gate.</li>
-        <li>[feastwelcome,us,!lowtech] Glad you made it, the contests start this afternoon.</li>
+        <li>[feastwelcome,us,!lowtech] Glad you made it, the others have been watching the road for you.</li>
         <li>[feastwelcome,us,theirLowtech] Be welcome, you and those who walk with you.</li>
         <li>[feastarrive,them] We came as soon as the road let us.</li>
         <li>[feastarrive,them] So this is your colony, smaller than I pictured and better kept.</li>
