@@ -240,9 +240,9 @@ namespace ColonyCouncil
             string why = ColonistWhyNot(ours);
             if (why != null) return why;
             if (house?.pawn == null || !house.Alive || house.faction == null) return MatchWords.P("CC_Match_Why_Gone");
-            if (GenderFor(ours) == null) return MatchWords.P("CC_Match_Why_NotDrawn", ours.Named("PAWN"), "?".Named("OTHER"));
+            if (GenderFor(ours) == null) return MatchWords.P("CC_Match_Why_NotDrawnHouse", ours.Named("PAWN"));
             if (Ages.IsEmpire(house.faction) && !Titled(ours)) return MatchWords.P("CC_Match_Why_TitledHouse", ours.Named("PAWN"));
-            if (EngagedElsewhere(ours, null) || !FreeToWed(ours)) return MatchWords.P("CC_Match_Why_Married", ours.Named("PAWN"), "?".Named("OTHER"));
+            if (EngagedElsewhere(ours, null) || !FreeToWed(ours)) return MatchWords.P("CC_Match_Why_MarriedHouse", ours.Named("PAWN"));
             return null;
         }
 

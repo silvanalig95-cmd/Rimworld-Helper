@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs, MatchDays.cs, MatchAlliance.cs,
+       MatchLetters.cs, MatchActs.cs, MatchObjection.cs, MatchPanels.cs; docs/design/stage2-diplomacy.md, round b, item 6).
+       Keys with numbered fellows (_2 ...) are picked at random (Rimfolk_Matches_Variants.xml). {WORD} is the colony's word
+       for a match by its age, {RITE} their way by theirs, or their faith's own wedding (Rimfolk_Ages.xml: Marriage).
+       {OURS} is the colony's own, {THEIRS} theirs; a line that may be given a name kept for someone gone uses no
+       _pronoun or _possessive of it. -->
+
+  <!-- The letter purpose and the right-click act -->
+  <CC_Letter_Purpose_Match>a match</CC_Letter_Purpose_Match>
+  <CC_Letter_PurposeCap_Match>Proposing a match</CC_Letter_PurposeCap_Match>
+  <CC_Match_Menu_Title>Whom to match with {OTHER}, and where they would live</CC_Match_Menu_Title>
+  <CC_Match_Note_Yes>a match agreed</CC_Match_Note_Yes>
+  <CC_Match_Note_No>a match turned down</CC_Match_Note_No>
+
+  <!-- The setting -->
+  <CC_Settings_DiplomacyMarriage>Marriage alliances</CC_Settings_DiplomacyMarriage>
+  <CC_SetNote_DiplomacyMarriage>Matches between the colony's people and theirs, the wedding with their kin, and the alliance that follows.</CC_SetNote_DiplomacyMarriage>
+  <CC_Settings_DiplomacyMarriage_Tip>A match between one of the colony's and one of a people at peace: "Speak for a match" face to face with one of theirs at the colony (two lovers speak for themselves), a letter to their notable (the people's card lists who would fit), or their own offer, once a year at most when their head thinks 40 or more of the colony. Who may marry is the game's own rule: grown, drawn to each other, not kin, free to take a spouse by their faith, and the Empire's titled nobles only to a titled colonist. The colonist is asked first: a match they are against comes before the council with their objection. Where the couple lives is chosen each time: theirs comes to live at the colony with their kin as the wedding's guests, or the colonist goes to live at their town for good. While the marriage holds, their notables think 15 better of the colony, their kin send a gift each season, they write when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire); a child of the two keeps it after a death. A spouse wronged by the colony (killed, imprisoned, enslaved, sold or banished) is the gravest wrong their people remember, with a grudge that passes from head to head. Off: nothing new is matched or offered, a match agreed goes ahead, and a marriage holds.</CC_Settings_DiplomacyMarriage_Tip>
+
+  <!-- Who may be matched, and why not -->
+  <CC_Match_Why_Off>Marriage alliances are off in the settings.</CC_Match_Why_Off>
+  <CC_Match_Why_NotOurs>Only a free grown colonist of this home can be matched.</CC_Match_Why_NotOurs>
+  <CC_Match_Why_Young_Ours>{PAWN} is too young to be matched.</CC_Match_Why_Young_Ours>
+  <CC_Match_Why_InMatch>{PAWN} is already promised in a match.</CC_Match_Why_InMatch>
+  <CC_Match_Why_Gone>The one to be matched is no longer there to marry.</CC_Match_Why_Gone>
+  <CC_Match_Why_Leader>{PAWN} leads their people and won't leave them to marry.</CC_Match_Why_Leader>
+  <CC_Match_Why_Young>One of the two is too young to marry.</CC_Match_Why_Young>
+  <CC_Match_Why_NotDrawn>{PAWN} and {OTHER} aren't drawn to each other.</CC_Match_Why_NotDrawn>
+  <CC_Match_Why_NotDrawnHouse>{PAWN} isn't drawn to anyone who could be matched.</CC_Match_Why_NotDrawnHouse>
+  <CC_Match_Why_Kin>{PAWN} and {OTHER} are kin.</CC_Match_Why_Kin>
+  <CC_Match_Why_Married>One of the two is married, and their faith allows only one spouse.</CC_Match_Why_Married>
+  <CC_Match_Why_MarriedHouse>{PAWN} is married or promised already.</CC_Match_Why_MarriedHouse>
+  <CC_Match_Why_Engaged>One of the two is promised to someone else.</CC_Match_Why_Engaged>
+  <CC_Match_Why_Titled>{OTHER} holds a title of the Empire and marries only someone who holds one too.</CC_Match_Why_Titled>
+  <CC_Match_Why_TitledHouse>The Empire's houses marry their own only to the titled, and {PAWN} holds no title.</CC_Match_Why_TitledHouse>
+  <CC_Match_Why_Enough>The colony has three marriages with {PEOPLE} already, all it can hold.</CC_Match_Why_Enough>
+  <CC_Match_Why_Busy>Three matches are under way at this home already.</CC_Match_Why_Busy>
+  <CC_Match_Why_NoneFits>Nobody of {PEOPLE} the colony knows would fit anyone at this home.</CC_Match_Why_NoneFits>
+  <CC_Match_Why_NoneFitsThem>Nobody at this home would fit {OTHER}.</CC_Match_Why_NoneFitsThem>
+  <CC_Match_Why_Over>That match is no longer under way.</CC_Match_Why_Over>
+  <CC_Match_Why_AlreadyHere>Their kin are here already.</CC_Match_Why_AlreadyHere>
+
+  <!-- The colonist asked first -->
+  <CC_Match_Consent_Glad>{PAWN} is glad of it.</CC_Match_Consent_Glad>
+  <CC_Match_Consent_Willing>{PAWN} is willing.</CC_Match_Consent_Willing>
+  <CC_Match_Consent_Against_None>{PAWN} is against it.</CC_Match_Consent_Against_None>
+  <CC_Match_Consent_Against_Another>{PAWN} is against it, and loves {OTHER}.</CC_Match_Consent_Against_Another>
+  <CC_Match_Consent_Against_Children>{PAWN} is against it, and won't leave {PAWN_possessive} children behind.</CC_Match_Consent_Against_Children>
+  <CC_Match_Consent_Against_Dislike>{PAWN} is against it, and can't stand {OTHER}.</CC_Match_Consent_Against_Dislike>
+
+  <!-- Who of theirs, and where they would live -->
+  <CC_Match_Candidate_Notable>{THEIRS}, {TITLE} of {TOWN}</CC_Match_Candidate_Notable>
+  <CC_Match_Candidate_Daughter>a daughter of {HEAD}'s house</CC_Match_Candidate_Daughter>
+  <CC_Match_Candidate_Son>a son of {HEAD}'s house</CC_Match_Candidate_Son>
+  <CC_Match_Topic>{OURS} and {THEIRS}</CC_Match_Topic>
+  <CC_Match_Lives_Colony>{THEIRS} comes to live at the colony with {OURS}</CC_Match_Lives_Colony>
+  <CC_Match_Lives_Theirs>{OURS} goes to live with {THEIRS} at {TOWN} and leaves the colony for good</CC_Match_Lives_Theirs>
+  <CC_Match_Couple>{OURS} and {THEIRS}</CC_Match_Couple>
+
+  <!-- Their answer to the colony's proposal -->
+  <CC_Match_Ans_Moot>{PEOPLE} can't take it up as things stand. {WHY}</CC_Match_Ans_Moot>
+  <CC_Match_Ans_No>{PEOPLE} have weighed {WORD} with {OURS} and said no. They are not ready to give {THEIRS} away.</CC_Match_Ans_No>
+  <CC_Match_Ans_NoNever>{PEOPLE} don't think well enough of the colony to give one of theirs to it, and said no to {WORD} with {OURS} without weighing it.</CC_Match_Ans_NoNever>
+  <CC_Match_Ans_Yes>{PEOPLE} have agreed to {WORD}: {OURS} and {THEIRS} are promised to each other, to be married by {RITE}. {LIVES}.</CC_Match_Ans_Yes>
+  <CC_Match_Ans_ButAgainst>{OURS} is against it, and the council will hear {OURS_objective} out before anything is settled.</CC_Match_Ans_ButAgainst>
+
+  <!-- Agreed -->
+  <CC_Match_Agreed_Label>{OURS} and {THEIRS} promised</CC_Match_Agreed_Label>
+  <CC_Match_Agreed_Colony>{OURS} and {THEIRS} of {PEOPLE} are promised to each other: {WORD}, by {RITE}. On the day, {THEIRS} walks in from {TOWN} with {THEIRS_possessive} kin as the wedding's guests, joins the colony at the gate, and is married to {OURS} here. The guests stay for the evening's feast and go home at first light.</CC_Match_Agreed_Colony>
+  <CC_Match_Agreed_Theirs>{OURS} and {THEIRS} of {PEOPLE} are promised to each other: {WORD}, by {RITE}. On the day, {THEIRS} and one of {THEIRS_possessive} kin come to the gate for {OURS}, who walks out to them and goes to live at {TOWN} for good. The wedding is held there, and their letter will tell of it.</CC_Match_Agreed_Theirs>
+  <CC_Match_Agreed_Risks>While the marriage holds, {PEOPLE} think better of the colony, answer its call as a defense pact does and call on it in turn, and their kin send a gift each season. A spouse from among them wronged by the colony (killed, imprisoned, enslaved, sold or banished) is the gravest wrong {PEOPLE} remember, and their head would hold a grudge that passes to the next.</CC_Match_Agreed_Risks>
+  <CC_Match_Agreed_Pressed>The council pressed it over the objection {OURS} made, and {OURS} will not forget it soon.</CC_Match_Agreed_Pressed>
+  <CC_Match_Gifts>Gifts go both ways at the gate, by their ways: porters of {PEOPLE} bring {THEIRS}, and carry the colony's gift of {OURS} home with them.</CC_Match_Gifts>
+  <CC_Match_Gifts_NoneOurs>Porters of {PEOPLE} bring their gift, {THEIRS}, to the gate. The colony has no silver to give in return, and {PEOPLE} noticed.</CC_Match_Gifts_NoneOurs>
+
+  <!-- Their offer -->
+  <CC_Match_Offer_Label>A match for {OURS}</CC_Match_Offer_Label>
+  <CC_Match_Offer>{WHO} of {PEOPLE} writes to offer {WORD}: {THEIRS} for {OURS}, married by {RITE}.</CC_Match_Offer>
+  <CC_Match_What>If it is agreed, gifts go both ways at the gate, and on the day the couple's kin come. While the marriage holds, {PEOPLE} think better of the colony, answer its call as a defense pact does and call on it in turn, and send a small gift each season. A spouse wronged by the colony is the gravest wrong they remember. A colonist against the match is heard by the council before anything is settled.</CC_Match_What>
+  <CC_Match_Opt_Accept>Agree to the match</CC_Match_Opt_Accept>
+  <CC_Match_Opt_AcceptAsk>Agree, and let the council hear {OURS}</CC_Match_Opt_AcceptAsk>
+  <CC_Match_Opt_Decline>Decline, politely</CC_Match_Opt_Decline>
+  <CC_Match_Msg_Moot>The match {PEOPLE} offered can't go ahead now. {WHY}</CC_Match_Msg_Moot>
+
+  <!-- The council's question -->
+  <CC_Impact_MatchPress>{OURS} is promised to {THEIRS} all the same, and it weighs on {OURS} for a long while.</CC_Impact_MatchPress>
+  <CC_Impact_MatchPressBrief>the match goes ahead</CC_Impact_MatchPressBrief>
+  <CC_Impact_MatchWithdraw>Word goes to {PEOPLE} that the match is off, and they feel turned down.</CC_Impact_MatchWithdraw>
+  <CC_Impact_MatchWithdrawBrief>no match</CC_Impact_MatchWithdrawBrief>
+
+  <!-- Theirs comes to the colony -->
+  <CC_Match_Arrive_Label>{THEIRS} has come</CC_Match_Arrive_Label>
+  <CC_Match_Arrive>{THEIRS} of {PEOPLE} has walked in with {THEIRS_possessive} kin and joined the colony at the gate. The two will be married today, before the evening, if nothing gets in the way; the guests will watch, and sit at the colony's table tonight. At home, {PEOPLE} would hold it by {RITE}.</CC_Match_Arrive>
+  <CC_Match_Arrive_Alone>{THEIRS} of {PEOPLE} has walked in alone and joined the colony. {THEIRS} and {OURS} will be married here by the colony's own ceremony, on a quiet day.</CC_Match_Arrive_Alone>
+
+  <!-- Their kin come for the colony's own -->
+  <CC_Match_Escort_Comes>{THEIRS} and one of {PEOPLE} have come from {TOWN} for {OURS}, and are walking up to the gate.</CC_Match_Escort_Comes>
+  <CC_Match_Leaves_Label>{OURS} has left</CC_Match_Leaves_Label>
+  <CC_Match_Leaves>{OURS} walked out to {THEIRS} at the gate, said {OURS_possessive} goodbyes, and left with them for {TOWN}. {OURS} is one of {PEOPLE} now, and will be married there.</CC_Match_Leaves>
+  <CC_Match_HereAs_Spouse>come for {OURS}, to marry</CC_Match_HereAs_Spouse>
+  <CC_Match_HereAs_Kin>come for {OURS}, kin of the one {OURS} marries</CC_Match_HereAs_Kin>
+
+  <!-- The wedding -->
+  <CC_Match_Wed_Label>{OURS} and {THEIRS} married</CC_Match_Wed_Label>
+  <CC_Match_Wed>{OURS} and {THEIRS} are married, here at the colony, with kin of {THEIRS} from {TOWN} among the guests. It is {WORD} now, and {PEOPLE} count the colony as family.</CC_Match_Wed>
+  <CC_Match_WedAway>Word has come from {TOWN}: {OURS} and {THEIRS} were married there, by {RITE}. {OURS} lives among {PEOPLE} now, and they count the colony as family.</CC_Match_WedAway>
+  <CC_Match_Wed_What>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. It stands as a defense pact between the two: their fighters come when the colony calls, and they will call on the colony's in turn.</CC_Match_Wed_What>
+  <CC_Match_Wed_WhatPactHad>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. The colony's defense pact with them runs on for as long as the marriage holds.</CC_Match_Wed_WhatPactHad>
+  <CC_Match_Wed_WhatEmpire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a small gift each season, and they write when trouble is coming. The Empire makes no pacts, and this marriage is no pact either.</CC_Match_Wed_WhatEmpire>
+  <CC_Match_Wed_NoRoom>The colony already has three marriages with {PEOPLE}: this one is the couple's own, and adds nothing more between the two peoples.</CC_Match_Wed_NoRoom>
+  <CC_Match_Hist_Wed>{OURS} married {THEIRS} of {PEOPLE} at the colony.</CC_Match_Hist_Wed>
+  <CC_Match_Hist_WedAway>{OURS} married {THEIRS} at {TOWN} and went to live among {PEOPLE}.</CC_Match_Hist_WedAway>
+  <CC_Match_PactAgain>The marriage with {PEOPLE} stands as a defense pact again, a year after the last one closed.</CC_Match_PactAgain>
+
+  <!-- Called off -->
+  <CC_Match_Off_Died>The match between {OURS} and {THEIRS} has come to nothing: {NAME} is dead.</CC_Match_Off_Died>
+  <CC_Match_Off_War>The colony and {PEOPLE} are at war, and the match between {OURS} and {THEIRS} is off.</CC_Match_Off_War>
+  <CC_Match_Off_Broken>{OURS} and {THEIRS} are no longer promised to each other, and the match is off.</CC_Match_Off_Broken>
+  <CC_Match_Off_NeverCame>{THEIRS} never came, and the match with {OURS} has lapsed.</CC_Match_Off_NeverCame>
+  <CC_Match_Off_CouldNotCome>{THEIRS} couldn't come to the colony after all, and the match with {OURS} is off.</CC_Match_Off_CouldNotCome>
+  <CC_Match_Off_NoWedding>{OURS} and {THEIRS} were never married, and their people no longer count it a match. {THEIRS} stays at the colony all the same.</CC_Match_Off_NoWedding>
+  <CC_Match_Off_NotHome>{OURS} was never at home when kin of {PEOPLE} could come, and the match has lapsed.</CC_Match_Off_NotHome>
+  <CC_Match_Off_KinGone>The kin of {PEOPLE} who came for {OURS} are gone, and the match is off.</CC_Match_Off_KinGone>
+  <CC_Match_Off_NotSent>{OURS} never walked out to the kin of {PEOPLE} at the gate. They have gone home without {OURS_objective}, and take it as the colony's word broken.</CC_Match_Off_NotSent>
+  <CC_Match_Off_ByColony>The colony has called off the match between {OURS} and {THEIRS}. {PEOPLE} take it as the colony's word broken.</CC_Match_Off_ByColony>
+  <CC_Match_Off_Wronged>{NAME}, promised to one of the colony's, was {WRONG}. {PEOPLE} will not forget it.</CC_Match_Off_Wronged>
+  <CC_Match_Off_Feast>the match it was for is off</CC_Match_Off_Feast>
+
+  <!-- How the colony wronged a spouse -->
+  <CC_Match_Wrong_None>wronged by the colony</CC_Match_Wrong_None>
+  <CC_Match_Wrong_Killed>killed by a colonist's hand</CC_Match_Wrong_Killed>
+  <CC_Match_Wrong_Executed>executed by the colony</CC_Match_Wrong_Executed>
+  <CC_Match_Wrong_Imprisoned>taken prisoner by the colony</CC_Match_Wrong_Imprisoned>
+  <CC_Match_Wrong_Enslaved>made a slave of the colony</CC_Match_Wrong_Enslaved>
+  <CC_Match_Wrong_Sold>sold away by the colony</CC_Match_Wrong_Sold>
+  <CC_Match_Wrong_Banished>sent away by the colony</CC_Match_Wrong_Banished>
+
+  <!-- While it holds, and how it ends -->
+  <CC_Match_KinGift>The kin of {THEIRS} at {TOWN} sent {GIFT} for the season, carried in by a courier of {PEOPLE}.</CC_Match_KinGift>
+  <CC_Match_KinGift_Away>{OURS} and {THEIRS} sent {GIFT} from {TOWN} for the season, carried in by a courier of {PEOPLE}.</CC_Match_KinGift_Away>
+  <CC_Match_Child_Label>The alliance holds</CC_Match_Child_Label>
+  <CC_Match_Child>{DEAD} is gone, but {CHILD}, a child of the marriage, lives: kin to the colony and to {PEOPLE} both, and the alliance holds through {CHILD_objective}.</CC_Match_Child>
+  <CC_Match_Died_Open>{PEOPLE} have heard that one of theirs died in the open at the colony, and they won't forget it soon.</CC_Match_Died_Open>
+  <CC_Match_Died_Untended>{PEOPLE} have heard that one of theirs died untended at the colony, and they won't forget it soon.</CC_Match_Died_Untended>
+  <CC_Match_End_Death_Label>An alliance ends</CC_Match_End_Death_Label>
+  <CC_Match_End_Death>With {DEAD} gone and no child of the marriage living, the alliance with {PEOPLE} is over. Their kin grieve, and the gifts stop.</CC_Match_End_Death>
+  <CC_Match_End_Home_Label>A spouse gone home</CC_Match_End_Home_Label>
+  <CC_Match_End_Home>{THEIRS} has gone back to {PEOPLE}, and the marriage alliance is over, with nobody to blame.</CC_Match_End_Home>
+  <CC_Match_End_Parted_Label>A marriage ended</CC_Match_End_Parted_Label>
+  <CC_Match_End_Parted>{OURS} and {THEIRS} have parted. The alliance with {PEOPLE} is over, and they think a little less of the colony for it.</CC_Match_End_Parted>
+  <CC_Match_Wronged_Label>A spouse wronged</CC_Match_Wronged_Label>
+  <CC_Match_Wronged>{NAME}, whose marriage bound the colony to {PEOPLE}, was {WRONG}. The alliance is broken, and the pact with it. It is the gravest wrong {PEOPLE} remember, and {HEAD} holds a grudge against the colony for it, one that passes to the next head.</CC_Match_Wronged>
+  <CC_Match_Feud_Label>A feud carried down</CC_Match_Feud_Label>
+  <CC_Match_Feud>{OLD} is gone, and {HEAD} has taken up the grudge {PEOPLE} hold against the colony for {NAME}. A feud like this one passes from head to head.</CC_Match_Feud>
+
+  <!-- What their notables remember -->
+  <CC_Match_Note_TheyDeclined>Turned down a match with {PAWN}.</CC_Match_Note_TheyDeclined>
+  <CC_Match_Note_WeDeclined>Offered a match for {PAWN}, and the colony declined.</CC_Match_Note_WeDeclined>
+  <CC_Match_Note_Withdrawn>Agreed to a match for {PAWN}, and the colony withdrew it.</CC_Match_Note_Withdrawn>
+  <CC_Match_Note_CalledOff>A match with {PAWN} broken off by the colony.</CC_Match_Note_CalledOff>
+  <CC_Match_Note_Parted>{OURS} and {THEIRS} parted.</CC_Match_Note_Parted>
+  <CC_Match_Note_Died>{NAME} died at the colony, sheltered and tended.</CC_Match_Note_Died>
+  <CC_Match_Note_DiedOpen>{NAME} died at the colony, in the open or untended.</CC_Match_Note_DiedOpen>
+  <CC_Match_Note_Wronged>{NAME}, married to the colony's, was {WRONG}.</CC_Match_Note_Wronged>
+  <CC_Match_Note_Feud>Took up the grudge for {NAME}.</CC_Match_Note_Feud>
+  <CC_Notable_Note_Met_spouse>Came to live among them from {BY}, married to one of theirs.</CC_Notable_Note_Met_spouse>
+  <CC_Notable_KnowsFor_spouse>who married among them</CC_Notable_KnowsFor_spouse>
+
+  <!-- Where a match stands (never a time left) -->
+  <CC_Match_Stage_Asking>{PEOPLE} said yes to {OURS} and {THEIRS}; the council has yet to hear {OURS}, who is against it.</CC_Match_Stage_Asking>
+  <CC_Match_Stage_Agreed_Colony>{OURS} and {THEIRS} are promised; {THEIRS} comes with guests of {PEOPLE} on the day.</CC_Match_Stage_Agreed_Colony>
+  <CC_Match_Stage_Agreed_Theirs>{OURS} and {THEIRS} are promised; kin of {PEOPLE} come for {OURS} on the day.</CC_Match_Stage_Agreed_Theirs>
+  <CC_Match_Stage_Here_Colony>{THEIRS} has joined the colony; the wedding with {OURS} is to come.</CC_Match_Stage_Here_Colony>
+  <CC_Match_Stage_Here_Theirs>Kin of {PEOPLE} wait at the gate for {OURS}.</CC_Match_Stage_Here_Theirs>
+  <CC_Match_Stage_Away>{OURS} is on the road to {TOWN} with {THEIRS}, to be married there.</CC_Match_Stage_Away>
+  <CC_Match_Step_Agreed>promised</CC_Match_Step_Agreed>
+  <CC_Match_Step_Coming>here</CC_Match_Step_Coming>
+  <CC_Match_Step_Fetched>at the gate</CC_Match_Step_Fetched>
+  <CC_Match_Step_Road>on the road</CC_Match_Step_Road>
+  <CC_Match_Step_Wedding>the wedding</CC_Match_Step_Wedding>
+
+  <!-- The pages, the cards and the inbox -->
+  <CC_Match_Line_Colony>{OURS} and {THEIRS} of {PEOPLE}, married, living at the colony</CC_Match_Line_Colony>
+  <CC_Match_Line_Theirs>{OURS} and {THEIRS} of {PEOPLE}, married, living among them</CC_Match_Line_Theirs>
+  <CC_Match_Line_Mod>{OURS}, married into {PEOPLE} (the alliance of Diplomatic Marriage+)</CC_Match_Line_Mod>
+  <CC_Match_Inlaws>In-laws: the {HOUSE} family of {PEOPLE}, through {OURS} and {THEIRS}</CC_Match_Inlaws>
+  <CC_Match_Inlaws_People>In-laws among {PEOPLE}, through {OURS} and {THEIRS}</CC_Match_Inlaws_People>
+  <CC_Match_Card_HouseHead>Marriages</CC_Match_Card_HouseHead>
+  <CC_Match_Card_Since>Married {AGO}.</CC_Match_Card_Since>
+  <CC_Match_Card_Child>One of the two has died; the alliance holds through their child.</CC_Match_Card_Child>
+  <CC_Match_Card_What>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a gift each season, and they write when trouble is coming.</CC_Match_Card_What>
+  <CC_Match_Card_What_Empire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their kin send a gift each season, and they write when trouble is coming. It is no pact: the Empire makes none.</CC_Match_Card_What_Empire>
+  <CC_Match_Card_Pact>It stands as a defense pact with {PEOPLE}, renewed while the marriage holds.</CC_Match_Card_Pact>
+  <CC_Match_Card_NoPact>No defense pact with {PEOPLE} now; the marriage makes one again a year after the last one closed.</CC_Match_Card_NoPact>
+  <CC_Match_Card_Grudge>{HOLDER} of {PEOPLE} holds it against the colony for {NAME}, a spouse from among them that it wronged. When {HOLDER} is gone, the next head takes it up.</CC_Match_Card_Grudge>
+  <CC_Match_Card_Fits>Could be matched with {NAMES}.</CC_Match_Card_Fits>
+  <CC_Match_Act_Write>Write to the in-laws</CC_Match_Act_Write>
+  <CC_Match_Act_Write_Tip>A letter or a call to their head, for any purpose.</CC_Match_Act_Write_Tip>
+  <CC_Match_Act_Propose>Propose a match</CC_Match_Act_Propose>
+  <CC_Match_Act_Propose_Tip>A letter proposing a match between one of the colony's and this person, or one of their house; each choice says how the colonist feels about it, and what is asked is where the couple would live.</CC_Match_Act_Propose_Tip>
+  <CC_Match_Act_Seek>Seek a match</CC_Match_Act_Seek>
+  <CC_Match_Act_Seek_Tip>A letter to their head proposing a match: who of theirs would fit whom of the colony's, and where the couple would live.</CC_Match_Act_Seek_Tip>
+  <CC_Match_Week_Offer>{PEOPLE} offer a match for {OURS}</CC_Match_Week_Offer>
+  <CC_Match_WeekNote>Their letter waits for the colony's answer.</CC_Match_WeekNote>
+  <CC_Match_Week_Kin>Kin of {PEOPLE} come for {OURS}</CC_Match_Week_Kin>
+
+</LanguageData>

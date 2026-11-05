@@ -70,7 +70,7 @@ namespace ColonyCouncil
     public class MatchContext : DilemmaContext
     {
         public int plan = -1;
-        public string lives, town, why;
+        public string lives, town, reason;
 
         protected override void AddArgs(List<NamedArgument> args)
         {
@@ -85,7 +85,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref plan, "plan", -1);
             Scribe_Values.Look(ref lives, "lives");
             Scribe_Values.Look(ref town, "town");
-            Scribe_Values.Look(ref why, "why");
+            Scribe_Values.Look(ref reason, "reason");
         }
     }
 
@@ -104,7 +104,7 @@ namespace ColonyCouncil
             Matches.ConsentOf(p.ours, p.theirs, p.lives, out var why, out var other);
             ctx = new MatchContext
             {
-                def = def, map = map, a = p.ours, b = other ?? p.ours, stranger = p.theirs, faction = p.people, plan = p.id, why = why.ToString().ToLowerInvariant(),
+                def = def, map = map, a = p.ours, b = other ?? p.ours, stranger = p.theirs, faction = p.people, plan = p.id, reason = why.ToString().ToLowerInvariant(),
                 town = p.townName ?? MatchWords.People(p.people), lives = MatchWords.Lives(p.lives, p.ours.LabelShort, p.theirs.LabelShort, p.townName)
             };
             return true;
@@ -113,7 +113,7 @@ namespace ColonyCouncil
         public override void AddTags(DilemmaContext ctx, HashSet<string> tags)
         {
             if (!(ctx is MatchContext c)) return;
-            if (!c.why.NullOrEmpty()) tags.Add(c.why);
+            if (!c.reason.NullOrEmpty() && c.reason != "none") tags.Add(c.reason);
             var p = Matches.Get(c.plan, out _);
             if (p != null && p.lives == MatchHome.Theirs) tags.Add("away");
             if (Ages.IsEmpire(c.faction)) tags.Add("empire");

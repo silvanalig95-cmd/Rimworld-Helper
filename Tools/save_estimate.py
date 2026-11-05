@@ -101,6 +101,8 @@ C = {
     "FeastContests": const("Diplomacy/FeastMath.cs", "MaxContests", 4),
     "FeastRetinue": const("Diplomacy/FeastMath.cs", "MaxRetinue", 2),
     "FeastTales": const("Diplomacy/FeastMath.cs", "MaxTales", 4),
+    # Matches under way at a home (Diplomacy/MatchBook.cs, release 2b.2); the marriages themselves are ledger ties.
+    "MatchPlans": const("Diplomacy/MatchMath.cs", "MaxPlans", 3),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -571,6 +573,10 @@ MODEL = {
     "Diplomacy/FeastBook.cs:results": ("fixed", C["FeastContests"], 260, "per feast: how each contest went, one each (counted under homes)"),
     "Diplomacy/DiplomacyBook.cs:tales": ("cap", (C["FeastTales"], 0.05), 160,
                                          "per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days"),
+    # Its matches under way (Diplomacy/Matches.cs): MatchMath.MaxPlans at most, each about twenty values and three
+    # references, let go at the wedding (a few days on) or when called off; one at a time is usual, a year or so apart.
+    "Diplomacy/DiplomacyBook.cs:matches": ("cap", (C["MatchPlans"], 0.1), 520,
+                                           "per home: matches under way, MatchMath.MaxPlans at most, each let go at the wedding or when called off"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),
