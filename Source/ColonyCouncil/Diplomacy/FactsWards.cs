@@ -33,7 +33,11 @@ namespace ColonyCouncil
                 foreach (var tag in WardMath.TagsOf(ward.kind, ward.stage)) f.Tag(tag);
                 f.Value(WardMath.WardKey, ward.pawn.LabelShort);
                 if (ward.Theirs && ward.guardian != null && !ward.guardian.Dead) f.Value(WardMath.GuardianKey, ward.guardian.LabelShort);
-                if (s.listener != null && s.listener == ward.pawn) f.Tag(WardMath.ThemWardTag, 2f);
+                if (s.listener != null && s.listener == ward.pawn)
+                {
+                    f.Tag(WardMath.ThemWardTag, 2f);
+                    f.Tag(WardMath.MoodTag(Wards.Mood(ward)), 2f);
+                }
             }
             if (hostage != null)
             {

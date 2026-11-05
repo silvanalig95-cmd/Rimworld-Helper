@@ -79,6 +79,9 @@ namespace ColonyCouncil
 
         public const string WardOrigin = "ward", HostageOrigin = "hostage";
 
+        /// <summary>The key of a fostered ward's Regard tie toward the colony: they remember the year while they live.</summary>
+        public const string FosteredKey = "fostered";
+
         /// <summary>At most this many records at a home: a ward each way and a hostage each way.</summary>
         public const int MaxPerHome = 4;
 
@@ -423,8 +426,11 @@ namespace ColonyCouncil
         public static readonly string[] Tags =
         {
             WardTag, WardTag + ":theirs", WardTag + ":ours", HostageTag, HostageTag + ":theirs", HostageTag + ":ours", HostageTag + ":due", ThemWardTag, ThemHostageTag,
-            FosteredTag
+            FosteredTag, MoodTag(WardMood.Homesick), MoodTag(WardMood.Settling), MoodTag(WardMood.Happy)
         };
+
+        /// <summary>How their ward spoken to is: them:ward:homesick, them:ward:settling, them:ward:happy.</summary>
+        public static string MoodTag(WardMood m) => ThemWardTag + ":" + m.ToString().ToLowerInvariant();
 
         /// <summary>The facts' tags of a ward or hostage: its kind's tag, which side it is of, and (a hostage) whether it is forfeit or held.</summary>
         public static IEnumerable<string> TagsOf(WardKind kind, WardStage stage)

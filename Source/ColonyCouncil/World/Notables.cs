@@ -664,10 +664,12 @@ namespace ColonyCouncil
                 if (role == NotableRole.Heir && head == null) continue;
                 // A new town's envoy is born to its second founding family.
                 string family = role == NotableRole.Envoy ? RegionFaces.SecondFamily(s.ID) : null;
-                var p = Make(f, role, head?.pawn, family);
+                // A ward fostered at the colony and grown now may stand as their town's heir (Diplomacy/Wards.cs).
+                var grown = role == NotableRole.Heir ? Wards.HeirFor(s) : null;
+                var p = grown ?? Make(f, role, head?.pawn, family);
                 made++;
                 if (p == null) continue;
-                Add(p, s, role, true, null, null);
+                Add(p, s, role, grown == null, null, null);
                 if (family != null) RegionFaces.Joined(s.ID, p);
             }
             return made;
@@ -682,6 +684,8 @@ namespace ColonyCouncil
             };
             n.SetPerson(p);
             notables.Add(n);
+            // One fostered at the colony as a youth remembers the year (Diplomacy/Wards.cs).
+            Wards.Grown(n);
             if (s != null) WorldLedger.NoteTown(s.ID, s.Name, s.Faction);
             // Kept in the world while they're a notable; the game told now unless it keeps them already (made with
             // KeepForever, a people's leader) or they're on a map.

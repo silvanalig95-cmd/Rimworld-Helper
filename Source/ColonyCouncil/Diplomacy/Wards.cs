@@ -91,27 +91,33 @@ namespace ColonyCouncil
         public static WardStay GuardedBy(Pawn guardian) => All().Select(x => x.ward).FirstOrDefault(w => w.kind == WardKind.Theirs && w.guardian == guardian && w.stage == WardStage.Here);
 
         /// <summary>
-        /// KeepFor.Ward still holds: a ward of theirs agreed and not yet come (in the world), or one fostered at the colony
-        /// and gone home while the ledger still remembers their tie.
+        /// KeepFor.Ward still holds: a ward of theirs agreed and not yet come (in the world), or one fostered at the colony and
+        /// gone home, who remembers it while they live (their Regard tie toward the colony).
         /// </summary>
         public static bool Holds(Pawn p)
         {
-            if (p == null) return false;
+            if (p == null || p.Dead) return false;
             var w = Of(p);
             if (w != null && w.kind == WardKind.Theirs) return true;
             return Fostered(p) != null;
         }
 
-        /// <summary>The ward tie of one fostered at the colony and gone home (kept, its result in number), or null.</summary>
+        /// <summary>
+        /// One fostered at the colony and gone home: their Regard tie toward the colony (origin "ward", key "fostered"), the
+        /// regard the grown ward keeps in its number and how the year went in its count; or null.
+        /// </summary>
         public static Tie Fostered(Pawn p)
         {
             if (p == null) return null;
             var r = Refs.Of(p);
-            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Ward))
-                if (t != null && t.origin == WardMath.WardOrigin && t.terms.about == r && t.from.kind == RefKind.People && !t.Live)
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard))
+                if (t != null && t.Live && t.origin == WardMath.WardOrigin && t.from == r && t.terms?.key == WardMath.FosteredKey)
                     return t;
             return null;
         }
+
+        /// <summary>How the year went for one fostered here, from their Regard tie.</summary>
+        public static WardResult ResultOf(Tie fostered) => (WardResult)Mathf.Clamp(fostered?.terms?.count ?? 0, 0, 3);
 
         public static Lord LordOf(WardStay w, Map map)
         {
@@ -237,7 +243,9 @@ namespace ColonyCouncil
                     if (f == null || f.IsPlayer || !Diplomacy.Deals(f) || !f.HasGoodwill) continue;
                     var head = FavourCalls.HeadOf(f, home);
                     if (head == null || Kin(f, home, out _) == null) continue;
-                    if (!WardMath.MayOffer(Diplomacy.Hostile(f), NotableBook.Opinion(head), guardian, false, LastOf(f), h.wardOfferAt, now)) continue;
+                    int last = LastOf(f);
+                    if (h.wardOfferPeople == f.loadID && h.wardOfferAt > last) last = h.wardOfferAt;
+                    if (!WardMath.MayOffer(Diplomacy.Hostile(f), NotableBook.Opinion(head), guardian, false, last, h.wardOfferAt, now)) continue;
                     if (!WardMath.OffersToday(Rand.Value)) continue;
                     Offer(h, home, f);
                     return;
@@ -253,11 +261,12 @@ namespace ColonyCouncil
             var skill = KnownFor(home);
             if (def == null || h == null || kin == null || skill == null) return;
             h.wardOfferAt = Now;
+            h.wardOfferPeople = f.loadID;
             var head = FavourCalls.HeadOf(f, home);
             var form = WardWords.Form(home, f);
             string who = head != null ? NotableBook.Called(head) : WardWords.People(f);
             var guardian = Guardians(home, skill).FirstOrDefault();
-            string text = WardWords.T("CC_Ward_Offer", who.Named("WHO"), WardWords.People(f).Named("PEOPLE"), NotableBook.Called(kin).Named("KIN"), form.word.Named("WORD"),
+            string text = WardWords.T("CC_Ward_Offer", who.Named("WHO"), WardWords.People(f).Named("PEOPLE"), kin.Name.Named("KIN"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), skill.label.Named("SKILL"))
                           + "\n\n" + WardWords.P(WardMath.WardAge(ChildrenHere).min < 13f ? "CC_Ward_Offer_HowChild" : "CC_Ward_Offer_How",
                               (guardian?.LabelShort ?? "?").Named("GUARDIAN"), skill.label.Named("SKILL"));
@@ -899,7 +908,7 @@ namespace ColonyCouncil
                 Hostages.SlippedAway(h, w, map);
                 return;
             }
-            Home(h, w, map, () => p.ExitMap(false, Rot4.Invalid));
+            Home(h, w, map, () => p.ExitMap(false, CellRect.WholeMap(p.Map).GetClosestEdge(p.Position)));
         }
 
         /// <summary>Not on the home's map when the year ended: their people take them home from wherever they are.</summary>
@@ -920,7 +929,12 @@ namespace ColonyCouncil
             {
                 var q = QuestOf(w);
                 bool edge = then != null && p.Spawned && p.CurJobDef == WardDefOf.Rimfolk_WardLeave;
-                if (!edge && q != null) LeaveQuestPartUtility.MakePawnLeave(p, q);
+                if (!edge)
+                {
+                    if (q != null) LeaveQuestPartUtility.MakePawnLeave(p, q);
+                    // No quest to say whose they are (a save that lost it): theirs again all the same.
+                    if (p.Faction == Faction.OfPlayer && f != null && !f.defeated) p.SetFaction(f);
+                }
                 then?.Invoke();
                 // Out at the edge as the colony's lodger: theirs again in the world.
                 if (p.Faction == Faction.OfPlayer && !p.Spawned && f != null && !f.defeated) p.SetFaction(f);
@@ -977,6 +991,10 @@ namespace ColonyCouncil
                 WorldLedger.Touch(t);
                 WorldLedger.Set(t, r >= WardResult.Good ? Tie.State.Kept : Tie.State.Ended);
             }
+            // The ward remembers the year while they live: a regard of theirs toward the colony (Grown, HeirFor, them:fostered).
+            if (!p.Dead)
+                WorldLedger.AddTie(Tie.Kind.Regard, Refs.Of(p), Diplomacy.Colony(map), new TieTerms { key = WardMath.FosteredKey, number = WardMath.GrownRegard(r), count = (int)r },
+                    Tie.Never, WardMath.WardOrigin);
             var form = WardWords.Form(map, f);
             Diplomacy.Write(DiplomacyMath.Ward, new List<HistoryActor>
             {
@@ -1152,25 +1170,39 @@ namespace ColonyCouncil
         /// </summary>
         public static void Grown(Notable n)
         {
-            var t = Fostered(n?.pawn);
-            if (t == null) return;
-            int regard = WardMath.GrownRegard((WardResult)Mathf.Clamp((int)t.terms.number, 0, 3));
-            n.personal += regard;
-            n.Remember(WardWords.P("CC_Ward_Note_Grown"), regard);
+            try
+            {
+                var t = Fostered(n?.pawn);
+                if (t == null) return;
+                int regard = WardMath.GrownRegard(ResultOf(t));
+                n.personal += regard;
+                n.Remember(WardWords.P("CC_Ward_Note_Grown"), regard);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("wards: the grown ward", e);
+            }
         }
 
         /// <summary>A town of theirs in want of an heir: a ward fostered at the colony, grown now (18), of that town's people, and in the world.</summary>
         public static Pawn HeirFor(Settlement s)
         {
-            if (s?.Faction == null) return null;
-            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Ward))
+            if (s?.Faction == null || WorldLedger.Instance == null) return null;
+            try
             {
-                if (t == null || t.origin != WardMath.WardOrigin || t.Live || t.state != Tie.State.Kept || Refs.Faction(t.from) != s.Faction) continue;
-                var p = Refs.Pawn(t.terms.about);
-                if (p == null || p.Dead || p.Discarded || p.Spawned || p.Faction != s.Faction || p.ageTracker.AgeBiologicalYearsFloat < WardMath.HeirAge) continue;
-                if (NotableBook.Instance?.notables.Any(n => n != null && n.pawn == p) ?? true) continue;
-                if (!WorldSituationWorker.FreeInWorld(p)) continue;
-                return p;
+                foreach (var t in WorldLedger.OwnTies(Tie.Kind.Regard).ToList())
+                {
+                    if (t == null || !t.Live || t.origin != WardMath.WardOrigin || t.terms?.key != WardMath.FosteredKey || ResultOf(t) < WardResult.Good) continue;
+                    var p = Refs.Pawn(t.from);
+                    if (p == null || p.Dead || p.Discarded || p.Spawned || p.Faction != s.Faction || p.ageTracker.AgeBiologicalYearsFloat < WardMath.HeirAge) continue;
+                    if (NotableBook.Instance?.notables.Any(n => n != null && n.pawn == p) ?? true) continue;
+                    if (!WorldSituationWorker.FreeInWorld(p)) continue;
+                    return p;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("wards: a grown ward as heir", e);
             }
             return null;
         }
@@ -1191,7 +1223,7 @@ namespace ColonyCouncil
             {
                 WorldLedger.Release(p, KeepFor.Hostage);
                 WorldLedger.Release(p, KeepFor.Lent);
-                if (fostered && !p.Dead && w.Theirs) WorldLedger.Keep(p, KeepFor.Ward, !p.Spawned);
+                if (fostered && !p.Dead && w.Theirs) WorldLedger.Keep(p, KeepFor.Ward);
                 else if (WorldLedger.Release(p, KeepFor.Ward) && !p.Spawned && !p.Dead && w.Theirs && w.stage == WardStage.Coming) Arrivals.Discard(p);
             }
             Diplomacy.Dirty();

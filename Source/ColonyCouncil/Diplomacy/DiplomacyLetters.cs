@@ -263,25 +263,39 @@ namespace ColonyCouncil
 
         // ================= Their own words =================
 
-        /// <summary>A pact ended by the colony's letter: their own words in the answer speak of an end, never of an offer refused.</summary>
+        /// <summary>
+        /// A pact ended by the colony's letter: their own words in the answer are picked as this purpose's, not "pact", so
+        /// they speak of an end and never of an offer refused (Rimfolk_Lines_PactEnds.xml).
+        /// </summary>
         public const string PactEndTag = "pactend";
 
-        /// <summary>How a truce they agree to is to be sworn: their envoy at the gate, or by word (no people at peace with both to vouch for them).</summary>
-        public const string AtGateTag = "atgate", ByWordTag = "byword";
+        /// <summary>
+        /// A truce they agree to that is sworn by word (no people at peace with both to vouch for their envoy): their own
+        /// words are picked as this purpose's, not "truce", whose lines promise their envoy at the gate (Rimfolk_Lines_PactEnds.xml).
+        /// </summary>
+        public const string TruceByWordTag = "trucebyword";
 
         /// <summary>
         /// Tags for their own words in the answer (NeighbourLetters.Quote) that only this frame knows: a pact ended by the
-        /// colony's letter (<see cref="PactEndTag"/>, so a refused offer's lines are never picked for it), how a truce
-        /// they agree to is to be sworn (<see cref="AtGateTag"/> or <see cref="ByWordTag"/>, so only lines that say so
-        /// promise an envoy at the gate), and the wards' (WardLetters).
+        /// colony's letter is answered as <see cref="PactEndTag"/>, a truce agreed and sworn by word as
+        /// <see cref="TruceByWordTag"/> (each in place of its purpose's own tag, so no line meant for the other case can
+        /// fit), and the wards' (WardLetters).
         /// </summary>
         public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
         {
             if (l == null || tags == null || !Owns(l.purpose)) return;
             try
             {
-                if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactEndPrefix, StringComparison.Ordinal)) tags.Add(PactEndTag);
-                if (l.purpose == LetterPurpose.Truce && n?.faction != null) tags.Add(Truces.ByWord(n.faction) ? ByWordTag : AtGateTag);
+                if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactEndPrefix, StringComparison.Ordinal))
+                {
+                    tags.Remove("pact");
+                    tags.Add(PactEndTag);
+                }
+                if (l.purpose == LetterPurpose.Truce && n?.faction != null && !tags.Contains("refusal") && Truces.ByWord(n.faction))
+                {
+                    tags.Remove("truce");
+                    tags.Add(TruceByWordTag);
+                }
                 WardLetters.QuoteTags(l, n, tags);
             }
             catch (Exception e)

@@ -169,7 +169,7 @@ namespace ColonyCouncil
                 if (guarding != null) list.Add(WardWords.P("CC_Ward_Card_Guarding", Link(guarding.pawn, guarding.name).Named("WARD"), WardWords.Skill(guarding.skill).Named("SKILL")));
                 var fostered = Wards.Fostered(p);
                 if (fostered != null && w == null)
-                    list.Add(WardWords.P("CC_Ward_Card_Fostered", WardWords.Result((WardResult)UnityEngine.Mathf.Clamp((int)fostered.terms.number, 0, 3)).Named("RESULT")));
+                    list.Add(WardWords.P("CC_Ward_Card_Fostered", WardWords.Result(Wards.ResultOf(fostered)).Named("RESULT")));
             }
             catch (Exception e)
             {

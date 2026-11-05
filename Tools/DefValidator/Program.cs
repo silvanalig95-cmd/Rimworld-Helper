@@ -461,6 +461,8 @@ wishPh.UnionWith(new[]
     "PACTWITH", "TRUCEWITH",
     // Captives and envoys (Diplomacy/FactsRansom.cs): the home that held them, their envoy here, the colony's at their town.
     "CAPTOR", "ENVOY", "OURENVOY",
+    // Wards and hostages (Diplomacy/FactsWards.cs).
+    "WARD", "HOSTAGE", "GUARDIAN",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

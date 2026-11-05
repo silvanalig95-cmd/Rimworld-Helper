@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A trap sprung at an exchange of captives (Source/ColonyCouncil/Diplomacy/Ransoms.cs): their people remember it as
+       its own deed, deed:trapped, apart from a debt of honor refused (deed:brokeWord), so what is said of one is never
+       said of the other. Beside the pieces about captives in Rimfolk_OutsiderTalks_Captives.xml. The format is
+       described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Trap</defName>
+    <topic>ransom</topic>
+    <when>deed:trapped</when>
+    <lines>
+      <li>[us] The last exchange with your people ended with a band at our gate.</li>
+      <li>[them] I know, and I wasn't asked about it.</li>
+      <li>[them,their:lowtech] Those who planned it were proud of it, and the rest of us were ashamed.</li>
+      <li>[them] Not everyone at home thought it was clever.</li>
+      <li>[us] Then tell them we remember who walked out to the gate that day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_TrapCool</defName>
+    <topic>ransom</topic>
+    <when>deed:trapped,tone:cool|tone:sour</when>
+    <lines>
+      <li>[us] Should we expect fighters at the gate the next time we trade captives with you?</li>
+      <li>[them] Expect what you like, you'll have it anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

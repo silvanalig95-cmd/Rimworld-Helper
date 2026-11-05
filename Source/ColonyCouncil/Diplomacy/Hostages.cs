@@ -321,7 +321,7 @@ namespace ColonyCouncil
             var f = w.people;
             try
             {
-                if (p.Spawned) p.ExitMap(false, Rot4.Invalid);
+                if (p.Spawned) p.ExitMap(false, CellRect.WholeMap(p.Map).GetClosestEdge(p.Position));
                 if (p.Faction == Faction.OfPlayer && f != null && !f.defeated) p.SetFaction(f);
             }
             catch (Exception e)

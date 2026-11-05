@@ -95,6 +95,8 @@ C = {
     "HamletRefused": const("World/Region/HamletMath.cs", "MaxRefused", 4),
     # Diplomacy's records that aren't ties (Diplomacy/DiplomacyBook.cs, release 2a.3): offers for captives at a home at once.
     "RansomOffers": const("Diplomacy/RansomMath.cs", "MaxOffers", 6),
+    # Wards and hostages either way at a home at once (Diplomacy/WardMath.cs, release 2b.3).
+    "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -555,6 +557,11 @@ MODEL = {
     # done or its captive is gone.
     "Diplomacy/DiplomacyBook.cs:offers": ("cap", (C["RansomOffers"], 0.1), 320,
                                           "per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone"),
+    # Its wards and hostages (Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs): a ward each way and a hostage each way,
+    # WardMath.MaxPerHome at most, each about thirty values and four references, dropped once they are home again (a
+    # ward's year a year, a hostage's term a season or a year); one at a time is usual.
+    "Diplomacy/DiplomacyBook.cs:wards": ("cap", (C["WardsPerHome"], 1), 900,
+                                         "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

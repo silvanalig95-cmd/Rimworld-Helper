@@ -252,6 +252,8 @@ public static class OutsiderTalkTests
         .Concat(FactsMath.RegionTags)
         // Captives and envoys (Diplomacy/FactsRansom.cs).
         .Concat(RansomMath.Tags).Concat(EnvoyMath.Tags)
+        // Wards and hostages (Diplomacy/FactsWards.cs).
+        .Concat(WardMath.Tags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -275,6 +277,8 @@ public static class OutsiderTalkTests
         "PACTWITH", "TRUCEWITH",
         // Captives and envoys (Diplomacy/FactsRansom.cs).
         "CAPTOR", "ENVOY", "OURENVOY",
+        // Wards and hostages (Diplomacy/FactsWards.cs).
+        "WARD", "HOSTAGE", "GUARDIAN",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

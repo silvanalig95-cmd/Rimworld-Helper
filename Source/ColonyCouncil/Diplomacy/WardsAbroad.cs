@@ -361,7 +361,7 @@ namespace ColonyCouncil
             var head = Head(town);
             Tell.Letter(NewsKind.World, Importance.Notable, map, WardWords.P("CC_Ward_There_Label", p.Named("PAWN"), town.Name.Named("TOWN")),
                 w.page
-                    ? WardWords.T("CC_Ward_ThereEmpire", p.Named("PAWN"), town.Name.Named("TOWN"), (head != null ? NotableBook.Called(head) : WardWords.People(f)).Named("HEAD"))
+                    ? WardWords.T("CC_Ward_ThereEmpire", p.Named("PAWN"), town.Name.Named("TOWN"), (head != null ? head.Name : WardWords.People(f)).Named("HEAD"))
                     : WardWords.T("CC_Ward_There", p.Named("PAWN"), town.Name.Named("TOWN"), WardWords.People(f).Named("PEOPLE"), form.rite.Named("RITE"), WardWords.Skill(w.skill).Named("SKILL")),
                 LetterDefOf.PositiveEvent, new LookTargets(town), f);
         }
@@ -386,7 +386,7 @@ namespace ColonyCouncil
             string key = w.page ? "CC_Ward_Letter_Page" : "CC_Ward_Letter_" + Ages.Of(w.people);
             Tell.Letter(NewsKind.World, Importance.Flavor, map, WardWords.P("CC_Ward_Letter_Label", p.Named("PAWN"), town.Name.Named("TOWN")),
                 WardWords.T(key, p.Named("PAWN"), town.Name.Named("TOWN"), WardWords.People(w.people).Named("PEOPLE"), WardWords.Skill(w.skill).Named("SKILL"),
-                    (head != null ? NotableBook.Called(head) : WardWords.People(w.people)).Named("HEAD")),
+                    (head != null ? head.Name : WardWords.People(w.people)).Named("HEAD")),
                 LetterDefOf.NeutralEvent, new LookTargets(town), w.people);
             Diplomacy.Dirty();
         }

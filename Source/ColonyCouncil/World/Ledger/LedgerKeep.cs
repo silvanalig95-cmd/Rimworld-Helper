@@ -137,8 +137,8 @@ namespace ColonyCouncil
                 case KeepFor.Hamlet: return Hamlets.Holds(p);
                 // A people's envoy staying the season, and the colony's own envoy away (Diplomacy/Envoys.cs, EnvoysAbroad.cs).
                 case KeepFor.Envoy: return Envoys.Holds(p);
-                // The colony's own away as its envoy, its ward or its hostage (Diplomacy/WardsAbroad.cs); wards and hostages of theirs (Wards.cs).
                 case KeepFor.Lent: return EnvoysAbroad.Holds(p) || WardsAbroad.Holds(p);
+                // Wards and hostages of theirs, not yet come, and a ward fostered and gone home (Diplomacy/Wards.cs, Hostages.cs).
                 case KeepFor.Ward: return Wards.Holds(p);
                 case KeepFor.Hostage: return Hostages.Holds(p);
             }

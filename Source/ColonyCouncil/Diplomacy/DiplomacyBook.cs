@@ -278,8 +278,8 @@ namespace ColonyCouncil
         public int envoyOfferAt = -1, envoyOfferPeople = -1;
         /// <summary>Wards and hostages either way (release 2b.3): WardMath.MaxPerHome at most, each dropped once they are home again.</summary>
         public List<WardStay> wards = new List<WardStay>();
-        /// <summary>When a ward was last offered to this home, or -1.</summary>
-        public int wardOfferAt = -1;
+        /// <summary>When a ward was last offered to this home, and by which people (its loadID), or -1.</summary>
+        public int wardOfferAt = -1, wardOfferPeople = -1;
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -296,6 +296,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving) wards?.RemoveAll(w => w == null);
             Scribe_Collections.Look(ref wards, "wards", LookMode.Deep);
             Scribe_Values.Look(ref wardOfferAt, "wardOfferAt", -1);
+            Scribe_Values.Look(ref wardOfferPeople, "wardOfferPeople", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 offers ??= new List<RansomOffer>();
