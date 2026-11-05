@@ -553,13 +553,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The council pressed it over the colonist's objection: agreed, and it weighs on them (the council's thought; their nature, once round d switches it on).</summary>
+        /// <summary>The council pressed it over the colonist's objection: agreed, and it weighs on them (the council's thought, and their heart: Nature.cs).</summary>
         public static void Pressed(int id)
         {
             var p = Get(id, out var h);
             if (p == null || p.stage != MatchStage.Asking) return;
             p.pressed = true;
-            Nature.Felt(p.ours, NatureAct.MatchAgainstHeart);
+            Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people, MatchWords.Name(p.theirs, p.theirsName));
             Agree(h, p);
         }
 

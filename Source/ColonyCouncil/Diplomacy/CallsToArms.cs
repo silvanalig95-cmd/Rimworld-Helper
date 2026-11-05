@@ -268,7 +268,10 @@ namespace ColonyCouncil
             }
             t.terms.goods = null;
             WorldLedger.Touch(t);
-            Pacts.BrokenByUs(f, PactWords.P(unanswered ? "CC_Arms_By_Unanswered" : "CC_Arms_By_Refused"));
+            // Refused by the council's answer: the speaker who sends the refusal broke the colony's word, and takes it to heart if
+            // trusting (Nature.cs); a call left unanswered was nobody's act.
+            if (Pacts.BrokenByUs(f, PactWords.P(unanswered ? "CC_Arms_By_Unanswered" : "CC_Arms_By_Refused")) && !unanswered)
+                Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f);
         }
 
         /// <summary>A debt of the colony's called in for fighters: watched the same way (FavourAsks.Hourly leaves it to this).</summary>

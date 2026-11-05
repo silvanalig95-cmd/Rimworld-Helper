@@ -512,6 +512,8 @@ namespace ColonyCouncil
             }.Concat(KinMemory.Ours(speaker) ? new[] { new HistoryActor(Refs.Of(speaker), HistoryRole.About) } : new HistoryActor[0]).ToList(), Diplomacy.Colony(home),
                 PactWords.P("CC_Truce_Hist_Sworn", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), PactWords.Term(term).Named("TERM")), true);
             RaidersCamps.TruceSworn(home, f);
+            // Whoever at this home swore vengeance on them takes the peace to heart, always (Nature.cs).
+            Nature.TruceWithFoe(f, home);
             string text = PactWords.T(speaker != null ? "CC_Truce_Sworn" : "CC_Truce_SwornByWord", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), (speaker?.LabelShort ?? "").Named("SPEAKER"), (envoy?.LabelShort ?? "").Named("ENVOY"), PactWords.Term(term).Named("TERM"))
                           + (paid.NullOrEmpty() ? "" : "\n\n" + paid)
@@ -684,9 +686,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The colony broke it (a deed of its against them, noted by the memory): every live truce with them broken, the deed
-        /// "brokeTruce", and its word broken in the ears of every people at peace with a town in reach ("wordBroken").
+        /// "brokeTruce", and its word broken in the ears of every people at peace with a town in reach ("wordBroken"). True
+        /// when a sworn truce was broken.
         /// </summary>
-        public static void BrokenByUs(Faction f, string how)
+        public static bool BrokenByUs(Faction f, string how)
         {
             bool any = false;
             foreach (var t in Live().Where(x => PeopleOf(x) == f).ToList())
@@ -707,9 +710,10 @@ namespace ColonyCouncil
             }
             Dirty();
             Diplomacy.Dirty();
-            if (!any) return;
+            if (!any) return false;
             FactionMemory.Note(f, "brokeTruce", how);
             WordBroken(f);
+            return true;
         }
 
         /// <summary>Every people at peace with a town in reach hears the colony broke its word (the deed "wordBroken").</summary>

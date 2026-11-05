@@ -911,12 +911,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>The colony attacked a people whose town is under its protection (PactsHooks): that protection is broken.</summary>
-        public static void BrokenByUs(Faction f, string how)
+        public static bool BrokenByUs(Faction f, string how)
         {
-            if (f == null) return;
+            if (f == null) return false;
+            bool any = false;
             foreach (var (home, v) in All().ToList())
             {
                 if (v.people != f || v.kind != VassalKind.Protected) continue;
+                any = true;
                 var tie = TieOf(v, home);
                 if (tie != null && tie.Live) WorldLedger.Set(tie, Tie.State.Broken);
                 DiplomacyBook.Instance?.HomeOf(home)?.vassals.Remove(v);
@@ -924,6 +926,7 @@ namespace ColonyCouncil
                     FealtyWords.T("CC_Vassal_BrokenByUs", NameOf(v).Named("TOWN"), FealtyWords.People(f).Named("PEOPLE"), how.Named("HOW")), LetterDefOf.NegativeEvent, LookTargets.Invalid, f);
                 Diplomacy.Dirty();
             }
+            return any;
         }
 
         // ================= Helpers =================

@@ -175,6 +175,8 @@ namespace ColonyCouncil
             sheet.Play(FealtyWords.P("CC_Impact_FealtySwear", FealtyWords.People(ctx.faction).Named("PEOPLE")), FealtyWords.P("CC_Impact_FealtySwearBrief"));
             sheet.Add(ImpactKind.Goods, -1, FealtyWords.P("CC_Impact_FealtyTribute", Fealty.TributeValue(ctx.map).Named("TRIBUTE")), FealtyWords.P("CC_Impact_FealtyTributeBrief"));
             sheet.Add(ImpactKind.Health, -1, FealtyWords.P("CC_Impact_FealtyLevies"), FealtyWords.P("CC_Impact_FealtyLeviesBrief"));
+            // The speaker would swear it at the gate: against their pride, if proud (Nature.cs).
+            Nature.Impact(sheet, TruceParley.Speaker(ctx.map), NatureAct.SworeFealty, "CC_Impact_NatureFealty", "CC_Impact_NatureFealtyBrief", ctx.faction);
         }
 
         public override string Unavailable(DilemmaContext ctx) => FealtyOath.LordOf(ctx?.map) == null ? FealtyWords.P("CC_Fealty_Why_LordGone") : null;

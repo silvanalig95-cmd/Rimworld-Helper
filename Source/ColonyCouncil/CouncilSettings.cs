@@ -217,6 +217,8 @@ namespace ColonyCouncil
         public bool diplomacyFealty = true;
         /// <summary>House renown (stage 2, release 2d.1): the colony's houses and the region's known for what their people did, read from deeds and ties, nothing spent. Off, nothing is told, read or tipped, and the houses kept are kept.</summary>
         public bool diplomacyRenown = true;
+        /// <summary>Against their nature (stage 2, release 2d.2): an act of diplomacy against a colonist's nature builds their strain through the heart, one with it eases them, and repeated acts may leave a mark. Off, nothing new is felt, and what was felt drains as any strain does.</summary>
+        public bool diplomacyNature = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -606,6 +608,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyTasks, "diplomacyTasks", true);
             Scribe_Values.Look(ref diplomacyFealty, "diplomacyFealty", true);
             Scribe_Values.Look(ref diplomacyRenown, "diplomacyRenown", true);
+            Scribe_Values.Look(ref diplomacyNature, "diplomacyNature", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

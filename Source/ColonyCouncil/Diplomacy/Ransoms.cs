@@ -542,6 +542,12 @@ namespace ColonyCouncil
             if (o == null || map == null || o.stage != RansomStage.AtGate) return;
             var speaker = Negotiator(map);
             int social = speaker?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
+            // Haggling over a captive whose family waits for them goes against a warm heart: the one who haggles, and the
+            // captive's own close kin among the colony's (Nature.cs).
+            Nature.Felt(speaker, NatureAct.HaggledForKin, o.people);
+            foreach (var kin in Nature.CloseKinOf(o.captive))
+                if (kin != speaker)
+                    Nature.Felt(kin, NatureAct.HaggledForKin, o.people, RansomWords.Name(o.captive, o.captiveName), "Kin");
             if (RansomMath.MoreAgreed(social, Rand.Value))
             {
                 int more = RansomMath.Raised(o.price);

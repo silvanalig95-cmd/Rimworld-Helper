@@ -236,10 +236,10 @@ namespace ColonyCouncil
             if (t == null) return null;
             var form = FealtyWords.Form(home, f);
             FactionMemory.Note(f, "swore", form.word);
-            // The one who swore it remembers bending the knee, if proud (the nature service: round d switches it on).
+            // The one who swore it at the gate takes it to heart, if proud (Nature.cs: the heart's strain, and maybe a mark).
             try
             {
-                if (speaker != null) Nature.Felt(speaker, NatureAct.SworeFealty);
+                if (speaker != null) Nature.Felt(speaker, NatureAct.SworeFealty, f);
             }
             catch (Exception e)
             {
@@ -706,11 +706,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>The colony attacked its liege (a deed of its against them, PactsHooks): the oath is broken, and its word broken in every ear in reach.</summary>
-        public static void BrokenByUs(Faction f, string how)
+        public static bool BrokenByUs(Faction f, string how)
         {
             // Every home sworn to them (one liege a home, so two homes may share one): the colony's people are one people to them.
             var oaths = f == null ? new List<Tie>() : Live().Where(x => LiegeOf(x) == f).ToList();
-            if (oaths.Count == 0) return;
+            if (oaths.Count == 0) return false;
             foreach (var t in oaths)
             {
                 var home = HomeOf(t);
@@ -722,6 +722,7 @@ namespace ColonyCouncil
             FactionMemory.Note(f, "renounced", how);
             Truces.WordBroken(f);
             Diplomacy.Dirty();
+            return true;
         }
 
         /// <summary>A home lost: its oath awaited is let go (the tie ends in the ledger's own upkeep with the home).</summary>

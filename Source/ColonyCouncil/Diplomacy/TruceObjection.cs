@@ -120,6 +120,8 @@ namespace ColonyCouncil
         {
             if (!(ctx is TruceContext c) || c.faction == null) return;
             sheet.Play(PactWords.P("CC_Impact_TruceSwear", PactWords.People(c.faction).Named("PEOPLE")), PactWords.P("CC_Impact_TruceSwearBrief"));
+            // The avenger: a truce with the people they swore vengeance on goes against it, always (Nature.cs).
+            Nature.Impact(sheet, c.a, NatureAct.TruceWithFoe, "CC_Impact_NatureTruce", "CC_Impact_NatureTruceBrief", c.faction);
         }
 
         public override string Unavailable(DilemmaContext ctx)

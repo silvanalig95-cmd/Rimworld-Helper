@@ -343,8 +343,13 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
     // Feelings and strain (Heart/): enum names.
     ["CC_Heart_Band_"] = new[] { "Steady", "Strained", "Worn", "Breaking", "Steady_Desc", "Strained_Desc", "Worn_Desc", "Breaking_Desc" },
-    ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair", "Unmet" },
-    ["CC_Heart_Relief_"] = new[] { "Quiet", "Sleep", "Recreation", "Gathering", "Friends", "Catharsis", "Episode", "Council" },
+    ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair", "Unmet", "Nature" },
+    ["CC_Heart_Relief_"] = new[] { "Quiet", "Sleep", "Recreation", "Gathering", "Friends", "Catharsis", "Episode", "Council", "Nature" },
+    // Against their nature (Diplomacy/Nature.cs, NatureMath.ActKey and SideKey): every wired act, the roles with words of
+    // their own, and every side a wired rule names.
+    ["CC_Nature_Act_"] = new[] { "SworeFealty", "BrokeTruce", "GivenHostage", "KinHostage", "WardSent", "MatchAgainstHeart", "RefusedChallenge", "AcceptedChallenge",
+        "SeasonAway", "SeasonAway_Envoy", "SeasonAway_Hostage", "HaggledForKin", "HaggledForKin_Kin", "TruceWithFoe" },
+    ["CC_Nature_Side_"] = new[] { "Pride_High", "Trust_High", "Nerve_Low", "Warmth_High", "Temper_High", "Openness_Low", "Openness_High", "MatchAgainstHeart", "TruceWithFoe" },
     ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc",
         "Belonging_Answers", "Purpose_Answers", "Safety_Answers", "Freedom_Answers", "Belonging_Help", "Purpose_Help", "Safety_Help", "Freedom_Help" },
     ["CC_Heart_NeedLevel_"] = new[] { "Lacking", "Missed", "Fair", "Met" },

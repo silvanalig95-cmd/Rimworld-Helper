@@ -20,6 +20,33 @@ namespace ColonyCouncil
         /// <summary>Someone of a people leaving the colony's map right now (their name, for a release or a wounded guest sent home).</summary>
         internal static Pawn exiting;
 
+        /// <summary>
+        /// The colonist whose act the game is reporting right now, when it names one: the hand that struck one of theirs
+        /// (<see cref="damageBy"/>, while the game weighs the blow), the one who took a captive (<see cref="capturer"/>), the
+        /// seller at the trade, the first of a caravan that fell on theirs, the killer. Read by the breaches as the deed is
+        /// noted (PactsHooks.Noted): the one who broke a truce or a pact takes it to heart (Diplomacy/Nature.cs). Set only for
+        /// the length of the game's own call, never saved.
+        /// </summary>
+        internal static Pawn doer, damageBy, capturer;
+
+        /// <summary>The colonist named for the deed being noted now, or null.</summary>
+        public static Pawn Doer => doer;
+
+        /// <summary>A deed noted with the colonist who did it named for its length.</summary>
+        private static FactionDeed By(Pawn who, Func<FactionDeed> note)
+        {
+            var was = doer;
+            doer = who;
+            try
+            {
+                return note();
+            }
+            finally
+            {
+                doer = was;
+            }
+        }
+
         /// <summary>The people and the colony in a goodwill change, whichever way round the game wrote it.</summary>
         private static Faction Other(Faction a, Faction b) => a != null && a.IsPlayer ? b : b != null && b.IsPlayer ? a : null;
 
@@ -78,19 +105,20 @@ namespace ColonyCouncil
                 case "UsedHarmfulItem":
                 {
                     var p = look.HasValue && look.Value.HasThing ? look.Value.Thing as Pawn : null;
-                    if (Trader(p)) FactionMemory.Note(f, "robbed");
-                    else FactionMemory.Note(f, "attacked", name);
+                    if (Trader(p)) By(damageBy, () => FactionMemory.Note(f, "robbed"));
+                    else By(damageBy, () => FactionMemory.Note(f, "attacked", name));
                     break;
                 }
                 case "AttackedCaravan":
-                    FactionMemory.Note(f, "caravanRaided");
+                    // The game names the first of the colony's caravan as the one who fell on theirs (IncidentWorker_CaravanMeeting).
+                    By(LookPawn(look), () => FactionMemory.Note(f, "caravanRaided"));
                     break;
                 case "MemberCaptured":
-                    FactionMemory.Note(f, "captured", name);
+                    By(capturer, () => FactionMemory.Note(f, "captured", name));
                     break;
                 case "MemberSold":
                 case "SoldSlave":
-                    FactionMemory.Note(f, "sold", name);
+                    By(TradeSession.Active ? TradeSession.playerNegotiator : null, () => FactionMemory.Note(f, "sold", name));
                     break;
                 case "AttackedSettlement":
                 case "PlayerRaidedSomeone":
@@ -137,9 +165,11 @@ namespace ColonyCouncil
             // Killed while the colony was turning on them (their traders robbed, their camp attacked): one killing, not a raid beaten off.
             bool turnedOn = mem != null && mem.SinceLast(f, DeedSide.Wrong) < GenDate.TicksPerDay
                             && mem.Best(f, DeedSide.Wrong, 0f, 0f, false, d => d.kind == "robbed" || d.kind == "attacked" || d.kind == "campHarmed") != null;
-            if (!before.hostile || turnedOn) FactionMemory.Note(f, "killed", member.LabelShort);
-            else if (map != null && map.IsPlayerHome) FactionMemory.Note(f, "fell", member.LabelShort);
-            else FactionMemory.Note(f, "slain", member.LabelShort);
+            // The hand that struck the blow, named for the deed.
+            var hand = dinfo?.Instigator as Pawn;
+            if (!before.hostile || turnedOn) By(hand, () => FactionMemory.Note(f, "killed", member.LabelShort));
+            else if (map != null && map.IsPlayerHome) By(hand, () => FactionMemory.Note(f, "fell", member.LabelShort));
+            else By(hand, () => FactionMemory.Note(f, "slain", member.LabelShort));
         }
 
         /// <summary>What was true just before a death (afterwards the game may have changed it).</summary>
@@ -237,6 +267,39 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("faction memory goodwill hook", e);
             }
+        }
+    }
+
+    /// <summary>
+    /// One of a people took a blow: the hand that struck it is kept while the game weighs it (its goodwill for an attacked
+    /// member), so a truce or a pact broken by it names who broke it (MemoryHooks.damageBy). Changes nothing the game does.
+    /// </summary>
+    [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_MemberTookDamage))]
+    public static class Patch_MemoryDamageBy
+    {
+        public static void Prefix(DamageInfo dinfo)
+        {
+            if (MemoryHooks.Listening) MemoryHooks.damageBy = dinfo.Instigator as Pawn;
+        }
+
+        public static void Finalizer()
+        {
+            MemoryHooks.damageBy = null;
+        }
+    }
+
+    /// <summary>Someone taken captive: the one who carried them off is kept while the game weighs it (MemoryHooks.capturer). Changes nothing the game does.</summary>
+    [HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.CapturedBy))]
+    public static class Patch_MemoryCapturedBy
+    {
+        public static void Prefix(Pawn byPawn)
+        {
+            if (MemoryHooks.Listening) MemoryHooks.capturer = byPawn;
+        }
+
+        public static void Finalizer()
+        {
+            MemoryHooks.capturer = null;
         }
     }
 

@@ -127,6 +127,8 @@ namespace ColonyCouncil
         {
             if (!(ctx is MatchContext c) || c.a == null) return;
             sheet.Play(MatchWords.P("CC_Impact_MatchPress", c.a.Named("OURS"), (c.stranger?.LabelShort ?? "?").Named("THEIRS")), MatchWords.P("CC_Impact_MatchPressBrief"));
+            // Pressed, it goes against their heart (Nature.cs).
+            Nature.Impact(sheet, c.a, NatureAct.MatchAgainstHeart, "CC_Impact_NatureMatch", "CC_Impact_NatureMatchBrief", c.faction);
         }
 
         public override string Unavailable(DilemmaContext ctx)
