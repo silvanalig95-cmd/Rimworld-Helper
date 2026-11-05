@@ -363,6 +363,7 @@ namespace ColonyCouncil
                 End(h, s, map, false);
                 return;
             }
+            Regroup(s, map);
             Tally(s, map);
             int hurt = Injuries(s.envoy);
             if (hurt > s.injuries)
@@ -377,6 +378,31 @@ namespace ColonyCouncil
             Tend(s, map);
             SitIn(s, map);
             Letters(h, s, map, now);
+        }
+
+        /// <summary>One of them up again after being downed or out of their mind, with no group: back to the stay's (or a new one at the common rooms).</summary>
+        private static void Regroup(EnvoyStay s, Map map)
+        {
+            var lost = Party(s).Where(p => HereOn(p, map) && !p.Downed && !p.InMentalState && p.GetLord() == null && !p.IsPrisoner && p.Faction == s.people).ToList();
+            if (lost.Count == 0) return;
+            try
+            {
+                var lord = LordOf(map, s);
+                if (lord != null)
+                {
+                    foreach (var p in lost)
+                        if (lord.CanAddPawn(p))
+                            lord.AddPawn(p);
+                    return;
+                }
+                var spot = Visitors.IndoorsCell(map, lost);
+                if (!spot.IsValid) spot = DropCellFinder.TradeDropSpot(map);
+                LordMaker.MakeNewLord(s.people, new LordJob_EnvoyStay(Homes.KeyOf(map), spot), map, lost);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("envoys: back to the stay", e);
+            }
         }
 
         /// <summary>The day just ended, tallied once the day turns: meals, their talks with the colonists, gifts.</summary>
@@ -746,7 +772,9 @@ namespace ColonyCouncil
             if (s == null || map == null || p != s.envoy || s.stage != EnvoyStage.Staying) return;
             if (!p.Dead)
             {
-                End(h, s, map, condition == PawnLostCondition.MadePrisoner || condition == PawnLostCondition.ChangedFaction);
+                // Taken by the colony (arrested, made one of its own): the stay ends as an insult. Downed, or out of their
+                // mind a while: they rejoin the stay once up again (Regroup).
+                if (condition == PawnLostCondition.MadePrisoner || condition == PawnLostCondition.ChangedFaction) End(h, s, map, true);
                 return;
             }
             var f = s.people;

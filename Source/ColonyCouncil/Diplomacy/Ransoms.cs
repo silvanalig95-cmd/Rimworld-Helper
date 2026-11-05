@@ -178,6 +178,8 @@ namespace ColonyCouncil
                 h ??= book.HomeOf(map);
                 if (h.offers.Count >= RansomMath.MaxOffers) return;
                 if (h.offers.Any(o => o.captive == p) || !Wanted(p, f, false)) continue;
+                // Nobody could carry their word (at war, no people at peace with both, no call): they don't try.
+                if (Bearer(f) == null && !ByCall(f, map)) continue;
                 Add(book, h, RansomKind.Theirs, p, null, f, now + Mathf.RoundToInt(RansomMath.DelayDays(Rand.Value) * RansomMath.DayTicks));
             }
         }
@@ -229,7 +231,7 @@ namespace ColonyCouncil
                     }
                     if (now - o.due > RansomMath.GiveUpDays * RansomMath.DayTicks)
                     {
-                        Drop(h, o, RansomWords.P("CC_Ransom_Msg_NoWord", RansomWords.People(o.people).Named("PEOPLE")));
+                        Drop(h, o, o.asked ? RansomWords.P("CC_Ransom_Msg_NoWord", RansomWords.People(o.people).Named("PEOPLE")) : null);
                         return;
                     }
                     if (MapFacts.ThreatOn(map)) return;
@@ -269,7 +271,8 @@ namespace ColonyCouncil
                 case RansomKind.Demand:
                     return o.stage == RansomStage.Returning || ours;
                 default:
-                    return o.stage == RansomStage.Paying || theirs && ours;
+                    // Once their party walks in, the colony's own walks beside them (no longer theirs to hold).
+                    return o.stage == RansomStage.Paying || theirs && (ours || o.stage != RansomStage.Waiting);
             }
         }
 
@@ -627,7 +630,12 @@ namespace ColonyCouncil
         /// <summary>Paid for, or exchanged: once the captive is walked out the offer is done; nobody walked them out in ten hours, the door is opened for them.</summary>
         private static void Paying(DiplomacyHome h, RansomOffer o, Map map, int now)
         {
-            if (o.kind == RansomKind.Demand) return;
+            if (o.kind == RansomKind.Demand)
+            {
+                // The silver never reached them (the speaker called away, their messenger gone): they take it from the stores.
+                if (now > o.answerBy || LordOf(o, map) == null) Paid(o.id, null, 0);
+                return;
+            }
             var c = o.captive;
             bool out_ = c == null || c.Dead || !c.Spawned || c.Map != map || c.guest == null || c.guest.Released || !c.IsPrisonerOfColony;
             if (!out_ && now > o.answerBy)
@@ -825,6 +833,7 @@ namespace ColonyCouncil
             var map = h?.Map;
             if (o == null || map == null || PayWhyNot(id) != null) return;
             o.stage = RansomStage.Paying;
+            o.answerBy = Now + 6 * RansomMath.HourTicks;
             Diplomacy.Dirty();
             var m = Messenger(LordOf(o, map));
             var carrier = Negotiator(map);
@@ -859,7 +868,7 @@ namespace ColonyCouncil
         {
             var o = Get(id, out var h);
             var map = h?.Map;
-            if (o == null || map == null || o.kind != RansomKind.Demand) return;
+            if (o == null || map == null || o.kind != RansomKind.Demand || o.stage != RansomStage.Paying) return;
             int rest = Mathf.Max(0, o.price - handed);
             if (rest > 0) PlayCarry.Take(map, "silver", ThingDefOf.Silver, rest);
             var lord = LordOf(o, map);
@@ -874,6 +883,13 @@ namespace ColonyCouncil
             // apart: told as their messenger turns for home with the silver; the colonist comes back later on the map.
             Tell.Message(NewsKind.World, Importance.Important, map, RansomWords.P("CC_Ransom_Msg_Paid", o.price.Named("SILVER"), RansomWords.People(o.people).Named("PEOPLE"),
                 RansomWords.Name(o.ours, o.oursName).Named("OURS")), m != null ? new LookTargets(m) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
+        }
+
+        /// <summary>Their messenger still waits for the colony's silver (a demand agreed, not yet paid).</summary>
+        public static bool AwaitsSilver(int id)
+        {
+            var o = Get(id, out _);
+            return o != null && o.kind == RansomKind.Demand && o.stage == RansomStage.Paying;
         }
 
         /// <summary>Refused: their messenger goes home (the game's own refusal: nothing more).</summary>

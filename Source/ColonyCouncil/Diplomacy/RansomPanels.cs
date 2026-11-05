@@ -73,6 +73,12 @@ namespace ColonyCouncil
 
         // ================= Where an offer stands, in words =================
 
+        /// <summary>
+        /// The colony knows of it: their word has come (or is on the road), the colony asked, or they asked before. An offer
+        /// of theirs still to come unasked isn't shown: the colony learns of it when their messenger appears.
+        /// </summary>
+        public static bool Known(RansomOffer o) => o != null && (o.kind != RansomKind.Theirs || o.stage != RansomStage.Waiting || o.asked || o.refusals > 0);
+
         /// <summary>An offer in a sentence: who, for what, and where it stands (never a time left).</summary>
         public static string OfferLine(RansomOffer o)
         {
@@ -115,7 +121,7 @@ namespace ColonyCouncil
             try
             {
                 foreach (var (h, o) in Ransoms.All())
-                    if (o.people == f && (home == null || h.Map == home))
+                    if (o.people == f && Known(o) && (home == null || h.Map == home))
                         list.Add(new DipRow { text = OfferLine(o), color = UiKit.Gold, link = (object)o.captive ?? o.ours, act = OfferRowAct(o) });
                 foreach (var (h, s) in Envoys.All())
                     if (s.people == f && (home == null || h.Map == home))
@@ -156,7 +162,7 @@ namespace ColonyCouncil
             try
             {
                 var o = Ransoms.For(p);
-                if (o != null) list.Add(OfferLine(o));
+                if (o != null && Known(o)) list.Add(OfferLine(o));
                 if (p.IsPrisonerOfColony && o == null && Ransoms.Grudge(p.Faction) != null)
                     list.Add(RansomWords.P("CC_Ransom_Card_Grudge", LinkPeople(p.Faction).Named("PEOPLE")));
                 if (o == null && p.IsPrisonerOfColony && Diplomacy.Hostile(p.Faction) && Ransoms.Deals(p.Faction))
@@ -502,7 +508,7 @@ namespace ColonyCouncil
                 foreach (var (h, o) in Ransoms.All())
                 {
                     if (o.stage == RansomStage.AtGate) continue;
-                    if (o.kind == RansomKind.Theirs && o.stage == RansomStage.Waiting && !o.asked) continue;
+                    if (!Known(o)) continue;
                     string[] steps;
                     int step;
                     switch (o.kind)

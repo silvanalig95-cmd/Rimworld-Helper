@@ -192,13 +192,13 @@ namespace ColonyCouncil
                 {
                     int n = 0;
                     var carried = pawn.carryTracker?.CarriedThing;
-                    if (carried != null && carried.def == ThingDefOf.Silver)
+                    if (carried != null && carried.def == ThingDefOf.Silver && Ransoms.AwaitsSilver(Errand?.offer ?? -1))
                     {
                         // The silver goes into their hands, and home with them.
                         n = carried.stackCount;
                         pawn.carryTracker.DestroyCarriedThing();
+                        handed = true;
                     }
-                    handed = true;
                     Ransoms.Paid(Errand?.offer ?? -1, pawn, n);
                 }
                 catch (Exception e)

@@ -87,13 +87,26 @@ namespace ColonyCouncil
             home == null || town == null ? 2f : 0.5f + Find.WorldGrid.ApproxDistanceInTiles(home.Tile, town.Tile) * 0.4f;
 
         /// <summary>Food in the stores that keeps on the road (no rot, fit for people, no drug): the most nourishing kind first.</summary>
-        private static List<Thing> RoadFood(Map map, Pawn p)
+        private static List<Thing> RoadFood(Map map, Pawn p, bool reach = true)
         {
             return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)
                 .Where(t => t.Spawned && t.def.IsNutritionGivingIngestible && t.def.ingestible.HumanEdible && !t.def.IsDrug && t.TryGetComp<CompRottable>() == null
                             && !t.IsForbidden(p) && t.IsInAnyStorage() && !FoodUtility.IsHumanlikeCorpseOrHumanlikeMeatOrIngredient(t) && FoodUtility.WillEat(p, t, p)
-                            && p.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some))
+                            && (!reach || p.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)))
                 .OrderByDescending(t => (int)t.def.ingestible.preferability).ThenBy(t => t.Position.DistanceToSquared(p.Position)).ToList();
+        }
+
+        private static readonly Dictionary<int, (float at, bool ok)> foodOk = new Dictionary<int, (float, bool)>();
+
+        /// <summary>Enough food that keeps in the stores for the road to the town (looked at most every five seconds a home and town, for the cards' why not).</summary>
+        private static bool FoodFor(Map home, Pawn p, Settlement town)
+        {
+            int key = unchecked(home.uniqueID * 7919 + town.ID);
+            float now = UnityEngine.Time.realtimeSinceStartup;
+            if (foodOk.TryGetValue(key, out var was) && now - was.at < 5f && now >= was.at) return was.ok;
+            bool ok = Have(RoadFood(home, p, false), p) >= Want(p, RoadDays(home, town));
+            foodOk[key] = (now, ok);
+            return ok;
         }
 
         /// <summary>The nutrition the road there takes at a full appetite.</summary>
@@ -121,7 +134,7 @@ namespace ColonyCouncil
             if (home.mapPawns.FreeColonistsSpawnedCount < 2) return RansomWords.P("CC_Envoy_Why_Alone");
             var who = Candidates(home);
             if (who.Count == 0) return RansomWords.P("CC_Envoy_Why_NoOne", EnvoyMath.MinSocial.Named("SOCIAL"));
-            if (Have(RoadFood(home, who[0]), who[0]) < Want(who[0], RoadDays(home, town))) return RansomWords.P("CC_Envoy_Why_NoFood", town.Name.Named("TOWN"));
+            if (!FoodFor(home, who[0], town)) return RansomWords.P("CC_Envoy_Why_NoFood", town.Name.Named("TOWN"));
             return null;
         }
 
