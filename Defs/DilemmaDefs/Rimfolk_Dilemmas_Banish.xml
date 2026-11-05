@@ -51,7 +51,7 @@
       </li>
       <li>
         <label>Let it be</label>
-        <outcome>The council let it be. {A_nameDef} carries on as before, and so, for now, does everyone else.</outcome>
+        <outcome>The council let it be. Nothing changes for {A_nameDef}, for now.</outcome>
         <ways><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_TroubleStep"><kind>letbe</kind></li>

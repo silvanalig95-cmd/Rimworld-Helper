@@ -237,7 +237,10 @@ namespace ColonyCouncil
             foreach (var d in t.departed.Where(d => d.pawn != null && !d.pawn.Dead).OrderByDescending(d => d.tick))
                 list.Add(new Entry
                 {
-                    text = (d.quit ? "CC_World_Departed_Quit" : "CC_World_Departed_Banished").Translate(d.name, TextUtil.DaysString(now - d.tick)).Resolve(),
+                    // One the council sent away is remembered so, with the colony's word for it (Social/Banishment.cs).
+                    text = !d.quit && BanishTracker.Banished(d.pawn) is BanishRecord br
+                        ? "CC_World_Departed_Council".Translate(d.name, TextUtil.DaysString(now - d.tick), br.word ?? BanishTracker.AgeWord()).Resolve()
+                        : (d.quit ? "CC_World_Departed_Quit" : "CC_World_Departed_Banished").Translate(d.name, TextUtil.DaysString(now - d.tick)).Resolve(),
                     icon = Icons.Visitor,
                     color = UiKit.Faint,
                     group = OutGroup.Left,

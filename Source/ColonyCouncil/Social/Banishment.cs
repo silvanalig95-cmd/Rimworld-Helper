@@ -521,6 +521,7 @@ namespace ColonyCouncil
 
         private void Hour(BanishRecord r)
         {
+            // apart: the council's hour; a word never said is told in the news, and what happens between two waits for Together.
             var p = r.pawn;
             int now = Now;
             if (p == null || p.Discarded || p.Dead)

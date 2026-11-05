@@ -83,7 +83,7 @@
   <CC_Chronicle_BanishRode>{0}, sent away by the council, came back riding with {1}.</CC_Chronicle_BanishRode>
 
   <!-- Their card and the world's memory of them. -->
-  <CC_Card_Banished>once one of the colony, {0} by the council</CC_Card_Banished>
+  <CC_Card_Banished>once one of the colony, {WORD} by the council</CC_Card_Banished>
   <CC_World_Departed_Council>{0} was {2} by the council {1} ago, and might come back one day.</CC_World_Departed_Council>
 
   <!-- What each answer does (hints in words, or the exact lines). -->

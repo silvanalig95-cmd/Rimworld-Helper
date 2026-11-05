@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 507; modelled: 507; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** after two, **3,081 KB** after five.
+Saved collections found: 509; modelled: 509; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,454 KB** after a year, **2,912 KB** after two, **3,087 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -39,8 +39,8 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Strangers/Encounters.cs:lastTick` | one per encounter def, per colony | defs | 225 | 225 | 225 | 19.8 |
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Outsiders/OutsiderBook.cs:pairs` | OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days | fixed | 60 | 60 | 60 | 19.3 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 215 | 215 | 215 | 18.9 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 213 | 213 | 213 | 18.7 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
@@ -90,7 +90,7 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 64 | 64 | 64 | 5.6 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 64 | 64 | 64 | 5.7 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
@@ -104,6 +104,7 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
+| `Social/Banishment.cs:records` | the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords | cap | 3 | 6 | 15 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
 | `CouncilGameComponent.cs:everWished` | one per wish def | defs | 121 | 121 | 121 | 4.1 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
@@ -157,9 +158,9 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Building/Suggest/Suggestions.cs:declinedUntil` | with the above: until when | fixed | 80 | 80 | 80 | 2.0 |
 | `Dreams/Dreams.cs:omens` | until they come | cap | 10 | 10 | 10 | 2.0 |
 | `Happenings/Happenings.cs:raids` | until they come | cap | 3 | 5 | 5 | 2.0 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 22 | 22 | 22 | 1.9 |
 | `Building/Automations.cs:actions` | the last actions to undo, AutomationMath.ActionsKept | fixed | 12 | 12 | 12 | 1.9 |
 | `Diplomacy/DiplomacyBook.cs:offers` | per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone | cap | 6 | 6 | 6 | 1.9 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 21 | 21 | 21 | 1.9 |
 | `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
@@ -229,8 +230,8 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Camps/CampCarry.cs:carries` | what they are bringing over by hand (herbs, milk, a gift, goods bought), one per bearer, gone once set down | while | 3 | 3 | 3 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
+| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 22 | 22 | 22 | 0.8 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
-| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 21 | 21 | 21 | 0.8 |
 | `Ambitions/Ambitions.cs:voterPawns` | while the letter waits | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:attendees` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:voters` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
@@ -250,6 +251,7 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Building/BuildAhead.cs:rots` | with the above: which way they faced | fixed | 30 | 30 | 30 | 0.7 |
 | `Building/Suggest/SameRules.cs:markedCells` | per step: the orders it gave on cells rather than things (rare) | fixed | 30 | 30 | 30 | 0.7 |
 | `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
+| `Social/Banishment.cs:fights` | social fights noted as they start (ids and the tick), kept 35 days, at most BanishTracker.MaxFights | window | 10 | 10 | 10 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
