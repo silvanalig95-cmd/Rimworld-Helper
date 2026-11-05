@@ -9,9 +9,10 @@ using ColonyCouncil;
 /// Stage 2's diplomacy, release 2c.2, fealty to a stronger neighbour and vassals of the colony's own
 /// (docs/design/stage2-diplomacy.md, items 9 and 10; Diplomacy/FealtyMath.cs; the player's decisions 9, 11 and 12): who may
 /// swear and to whom, their answer and their offer, who objects, tribute by wealth and the owed and broken clock, levies,
-/// protection, renouncing at a cost; struggling towns taken under protection, tribute by the council's level, the
-/// quartermaster's dues, a vassal's levies, asks and release; the facts' tags; and the mod's side: the hooks in the shared
-/// code, the save, the words, the lines, the talk pieces.
+/// protection, renouncing at a cost; struggling towns taken under protection, tribute by the council's level, a vassal's
+/// levies, asks and release; the facts' tags; and the mod's side: the hooks in the shared code, the save, the words, the
+/// lines, the talk pieces. (The quartermaster's dues went with the council's tasks, 5 November 2026: a vassal's share
+/// comes at harvest, the liege's tribute by their collector at the gate.)
 /// </summary>
 public static class FealtyTests
 {
@@ -101,19 +102,13 @@ public static class FealtyTests
         C(!FealtyMath.AsksProtection(15f, 0, 40 * D, false, true, false, 2, -1) && !FealtyMath.AsksProtection(15f, 0, 40 * D, false, true, false, 0, 0)
           && FealtyMath.AsksProtection(15f, 0, 80 * D, false, true, false, 1, 10 * D), "two at most, once a year a home");
 
-        // ---------------- Vassals: tribute and dues ----------------
+        // ---------------- Vassals: tribute ----------------
 
         C(FealtyMath.Produce(50, TributeLevel.Light) == 30 && FealtyMath.Produce(50, TributeLevel.Usual) == 50 && FealtyMath.Produce(50, TributeLevel.Heavy) == 80,
             "light, usual and heavy at harvest");
         C(FealtyMath.Produce(0, TributeLevel.Light) >= 1, "always something");
         C(FealtyMath.ProtectedProduce(0f) == 20 && FealtyMath.ProtectedProduce(100f) == 50, "a protected town's produce by its fortune");
         C(FealtyMath.HeavyGoodwill == 3 && FealtyMath.HeavyRegard > 0f && FealtyMath.LightRegard > 0f, "heavy costs goodwill and regard each season, light warms");
-        C(FealtyMath.Dues(50f, TributeLevel.Usual) == 70 && FealtyMath.Dues(100f, TributeLevel.Usual) == 100 && FealtyMath.Dues(10f, TributeLevel.Usual) == 25,
-            "the season's dues by fortune, half and explained when struggling");
-        C(FealtyMath.Dues(50f, TributeLevel.Heavy) > FealtyMath.Dues(50f, TributeLevel.Usual) && FealtyMath.Dues(50f, TributeLevel.Light) < FealtyMath.Dues(50f, TributeLevel.Usual),
-            "by the council's level");
-        C(FealtyMath.Explained(19f) && !FealtyMath.Explained(20f) && !FealtyMath.Explained(-1f), "explained under 20");
-        C(FealtyMath.DuesDue(-1, 0) && !FealtyMath.DuesDue(0, 14 * D) && FealtyMath.DuesDue(0, 15 * D), "once a season a vassal");
 
         // ---------------- Vassals: levies, asks, release ----------------
 
@@ -144,10 +139,9 @@ public static class FealtyTests
 
         var dip = Directory.GetFiles(Path.Combine(src, "Diplomacy"), "*.cs").ToDictionary(Path.GetFileName, File.ReadAllText);
         C(dip["Diplomacy.cs"].Contains("Fealty.Hourly(now)") && dip["Diplomacy.cs"].Contains("Fealty.Daily(now)"), "the hour and the day ride on diplomacy's");
-        C(dip["FealtyPanels.cs"].Contains("CouncilTasks.DuesWhyNot = Vassals.DuesWhyNot;") && dip["FealtyPanels.cs"].Contains("CouncilTasks.DuesStep = Vassals.DuesStep;"),
-            "the quartermaster's dues switched on through 2c.1's entry points");
-        C(dip["TaskResults.cs"].Contains("case TaskKind.Dues:") && dip["TaskResults.cs"].Contains("Vassals.DuesRead("), "the dues letter read");
-        C(dip["CouncilTasks.cs"].Contains("Vassals.DuesTarget(f, home)"), "the dues aimed at the liege or a vassal's people only");
+        C(!dip.ContainsKey("CouncilTasks.cs") && !dip.Values.Any(c => c.Contains("CouncilTasks.") || c.Contains("TaskKind.")) && !dip["Vassals.cs"].Contains("ref duesAt")
+          && dip["Fealty.cs"].Contains("CollectTribute(home, f, value, 2, out int paid)") && dip["Vassals.cs"].Contains("FealtyMath.Produce(FealtyMath.ProtectedProduce("),
+            "no dues task (the council's tasks dropped, 5 November 2026): the liege's tribute by their collector at the gate, a vassal's share at harvest");
         C(dip["CallsToArms.cs"].Contains("Fealty.LeviesRefused(") && dip["CallsToArms.cs"].Contains("Fealty.LeviesCame(") && dip["CallsToArms.cs"].Contains("WaitingOnLevies"),
             "the levies ride on the calls to arms: the far fight, kept or refused");
         C(dip["Pacts.cs"].Contains("string words = null, float strength = 1f") && dip["Fealty.cs"].Contains("\"fealty\", out bool wait, \"fealty\")")
@@ -171,14 +165,10 @@ public static class FealtyTests
         // ---------------- The round c review's fixes ----------------
 
         string vassals = dip["Vassals.cs"];
-        C(vassals.Contains("Fealty.Paid(liege, Mathf.RoundToInt(count * def.BaseMarketValue));") && !vassals.Contains("trip.taken * trip.def.BaseMarketValue"),
-            "the quartermaster's cart for what is owed clears the debt when it is sent, as \"Send what is owed\" does (its trip is gone once the porter left)");
         C(vassals.Contains("if (v.people == null || Diplomacy.Hostile(v.people)) return DipWords.P(\"CC_Dip_Why_War\"")
           && vassals.Contains("if (v.people == null || v.people.defeated || Diplomacy.Hostile(v.people))"),
             "no levies called from, or walking in for, a vassal whose people turned on the colony since");
         C(dip["Fealty.cs"].Contains("Live().Where(x => LiegeOf(x) == f).ToList()"), "the colony's word broken breaks every home's oath to them");
-        C(vassals.Contains("t.nextTick = now + 3 * TaskMath.HourTicks;") && !vassals.Contains("if (now < t.nextTick) return;"),
-            "a vassal's carter brings the dues on the hour their answer set (the hour's own move of the next look no longer holds it back for ever)");
         C(Code("Diplomacy/FealtyOath.cs").Contains("if (MapFacts.ThreatOn(home)) return;\n            SendSpeaker(f, x, home);"), "nobody is sent out to their lord at the gate while a raid is on");
 
         // ---------------- The save ----------------

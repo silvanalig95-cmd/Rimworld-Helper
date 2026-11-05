@@ -102,8 +102,6 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FeastMath.cs" Link="FeastMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/MatchMath.cs" Link="MatchMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/WardMath.cs" Link="WardMath.cs" />
-    <Compile Include="../../Source/ColonyCouncil/Diplomacy/TaskMath.cs" Link="TaskMath.cs" />
-    <Compile Include="../../Source/ColonyCouncil/Diplomacy/KeeperMath.cs" Link="KeeperMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FealtyMath.cs" Link="FealtyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/RenownMath.cs" Link="RenownMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/SmallTownsMath.cs" Link="SmallTownsMath.cs" />
