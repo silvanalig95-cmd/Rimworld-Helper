@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.90.0</version>
+        <date>5 November 2026</date>
+        <title>What lies between peoples</title>
+        <points>
+          <li>Visitors have about 150 new things to say about debts of honor, pacts, truces, captives and envoys, each in their own people's way: an envoy at your table through the rain, a raid and a funeral, a former captive back as a guest, a band that buried its own after your fight.</li>
+          <li>Neighbours answer letters about debts, pacts, truces, ransom and envoys in many more words, by how they took it and by their ways, and letters of any kind now mention a debt, pact, truce, captive or envoy that stands between you.</li>
+          <li>The letters and news of diplomacy have more than a hundred new wordings: debts called in, truces offered, sworn and broken, a band on its way, the ransom at the gate, the envoy's arrival, letters home and leaving.</li>
+          <li>Whoever lights a signal fire for a defense pact says something as it catches, and peoples of the middle ages and the Empire no longer talk like a tribe's elders in letters and at the gate.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.89.1</version>
         <date>5 November 2026</date>
         <title>Diplomacy, checked over</title>

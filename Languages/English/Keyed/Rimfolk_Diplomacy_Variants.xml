@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More wordings of the letters and news of debts of honor, pacts, truces and calls to arms (Source/ColonyCouncil/
+       Diplomacy/), the numbered fellows of keys in Rimfolk_Diplomacy.xml and Rimfolk_Pacts.xml: TextVariants picks one of
+       CC_X, CC_X_2 ... CC_X_6 at random, so each continues its key's numbering and uses only the values its call passes.
+       {WORD} is the colony's word by its own age and {RITE} the other people's way by theirs (Rimfolk_Ages.xml): both
+       lowercase, never at the start of a sentence. -->
+
+  <!-- The debt's line in the letter that tells the good turn, or the evening's news -->
+  <CC_Dip_Line_TheyOwe_5>Among {PEOPLE}, {WHY} now counts as {RITE}, and the colony may call it in when it needs to.</CC_Dip_Line_TheyOwe_5>
+  <CC_Dip_Line_TheyOwe_6>{PEOPLE} will not let {WHY} go unpaid. The colony may count it {WORD}, owed to it until it asks.</CC_Dip_Line_TheyOwe_6>
+  <CC_Dip_Line_WeOwe_4>{PEOPLE} will remember {WHY}, and one day they will ask for something back: {WORD}, as the colony would put it.</CC_Dip_Line_WeOwe_4>
+  <CC_Dip_Line_WeOwe_5>For {WHY}, the colony now owes {PEOPLE}. Among them that is {RITE}, and it is not forgotten.</CC_Dip_Line_WeOwe_5>
+  <CC_Dip_Line_Personal_4>{NAME} counts {WHY} a debt to {PAWN} in person, and means to repay it.</CC_Dip_Line_Personal_4>
+  <CC_Dip_Line_Personal_5>{PAWN} is owed a favor by {NOTABLE} now, for {WHY}.</CC_Dip_Line_Personal_5>
+  <CC_Dip_Line_TheyCall_3>This is the debt for {WHY}, called in. Among {PEOPLE} it is {RITE}, and refusing it would be remembered.</CC_Dip_Line_TheyCall_3>
+  <CC_Dip_Line_TheyCall_4>They do not ask as strangers: the colony owes them for {WHY}, {WORD} by its own reckoning.</CC_Dip_Line_TheyCall_4>
+
+  <!-- Their call on a debt the colony owes them -->
+  <CC_Dip_AskLabel_3>{PEOPLE} ask the colony to repay them</CC_Dip_AskLabel_3>
+  <CC_Dip_AskIntro_4>{WHO} writes for {PEOPLE}. They have not forgotten {WHY}, and now they are the ones in need. By their ways it is {RITE}, and they call it in.</CC_Dip_AskIntro_4>
+  <CC_Dip_AskIntro_5>The letter from {WHO} is short and to the point. {PEOPLE} call in what the colony owes them for {WHY}, {WORD} by its own reckoning.</CC_Dip_AskIntro_5>
+  <CC_Dip_AskIntro_Call_3>{WHO} is on the comms console for {PEOPLE}, and gets to it quickly: the colony owes them for {WHY}, and they need it repaid.</CC_Dip_AskIntro_Call_3>
+  <CC_Dip_AskNeed_Medicine_3>Sickness has reached {TOWN}, and their own medicine is running out. They ask for {GOODS}, carried out to their messenger at the colony's gate.</CC_Dip_AskNeed_Medicine_3>
+  <CC_Dip_AskNeed_Medicine_4>{TOWN} has more sick than its healers can treat. They ask for {GOODS}, carried out to their messenger at the gate.</CC_Dip_AskNeed_Medicine_4>
+  <CC_Dip_AskNeed_Food_3>At {TOWN} they are eating what they meant to plant. They ask for {GOODS}, carried out to their messenger at the colony's gate.</CC_Dip_AskNeed_Food_3>
+  <CC_Dip_AskNeed_Food_4>{TOWN} is going hungry. They ask for {GOODS} to see them through, carried out to their messenger at the gate.</CC_Dip_AskNeed_Food_4>
+  <CC_Dip_AskNeed_Feud_2>Blood has been spilled between {PEOPLE} and {OTHER}. {PEOPLE} ask the colony to say which side it stands on, and they hope it is theirs.</CC_Dip_AskNeed_Feud_2>
+  <CC_Dip_AskNeed_Feud_3>{PEOPLE} are feuding with {OTHER}, and they want the colony's word on their side of it.</CC_Dip_AskNeed_Feud_3>
+  <CC_Dip_AskNeed_Seat_2>The seat at {TOWN} has more than one claimant. {PEOPLE} back one of them, and ask the colony to speak for that one too.</CC_Dip_AskNeed_Seat_2>
+  <CC_Dip_Msg_Refused_3>The colony turned {PEOPLE} away when they called in {WORD}. The debt is broken, and they will not forget it.</CC_Dip_Msg_Refused_3>
+  <CC_Dip_Msg_Unanswered_3>{PEOPLE} waited for an answer about {WORD}, and none came. They count the debt broken.</CC_Dip_Msg_Unanswered_3>
+
+  <!-- Their answer when the colony calls a debt in -->
+  <CC_Dip_Ans_Honoured_4>Their answer is yes: {PEOPLE} pay what they owe, and the colony's ask is granted.</CC_Dip_Ans_Honoured_4>
+  <CC_Dip_Ans_Honoured_5>{PEOPLE} keep their word. What the colony asked for, {ASK}, is granted.</CC_Dip_Ans_Honoured_5>
+  <CC_Dip_Ans_Refused_4>{PEOPLE} will not grant it. They owed the colony and chose not to pay, and that will be remembered.</CC_Dip_Ans_Refused_4>
+  <CC_Dip_Ans_Refused_5>{PEOPLE} answer that what they owe does not stretch to {ASK}.</CC_Dip_Ans_Refused_5>
+  <CC_Dip_Ans_NotNow_2>{PEOPLE} are willing, but there is no way to see to it now. The debt stands, and can be called in again.</CC_Dip_Ans_NotNow_2>
+  <CC_Dip_Ans_Side_3>{NAME} writes back with thanks. The colony has spoken for {PEOPLE}, and the old debt between them is settled.</CC_Dip_Ans_Side_3>
+  <CC_Dip_Ans_Moot_3>The debt was already settled, or gone, by the time they read it.</CC_Dip_Ans_Moot_3>
+  <CC_Dip_WordLetter_4>{FRIEND} spoke up for the colony among {PEOPLE}, and {PEOPLE} write to say they listened.</CC_Dip_WordLetter_4>
+
+  <!-- Their answer to a truce offered -->
+  <CC_Truce_Ans_No_4>{PEOPLE} answer that there is nothing to swear. The war goes on.</CC_Truce_Ans_No_4>
+  <CC_Truce_Ans_Yes_4>{PEOPLE} accept: {WORD} {TERM}, with {PRICE}. By their ways it will be {RITE}.</CC_Truce_Ans_Yes_4>
+  <CC_Truce_Ans_Yes_5>The terms suit {PEOPLE}. They agree to {WORD} {TERM}, with {PRICE}, sworn in their own way: {RITE}.</CC_Truce_Ans_Yes_5>
+
+  <!-- Their offer of a truce, after a raid of theirs was beaten -->
+  <CC_Truce_Offer_3>{WHO} of {PEOPLE} sends word that they have had enough. They offer {WORD} {TERM}, with {PRICE}, sworn by their custom: {RITE}.</CC_Truce_Offer_3>
+  <CC_Truce_Offer_4>After the raid that failed, {PEOPLE} want terms. {WHO} offers {WORD} {TERM}, with {PRICE}, and their custom for swearing it is {RITE}.</CC_Truce_Offer_4>
+  <CC_Truce_Offer_Call_2>{WHO} of {PEOPLE} is on the console, asking for terms after the raid the colony beat off: {WORD} {TERM}, with {PRICE}. Their custom for swearing it is {RITE}.</CC_Truce_Offer_Call_2>
+
+  <!-- Their envoy at the gate, and the oath -->
+  <CC_Truce_Envoy_Comes_3>An envoy of {PEOPLE} is walking in toward the gate, with {ESCORT} vouching for them. They come to swear the truce: {RITE}.</CC_Truce_Envoy_Comes_3>
+  <CC_Truce_Sworn_4>It is sworn. {SPEAKER} and {ENVOY} of {PEOPLE} stood face to face at the gate and agreed to {WORD} {TERM}.</CC_Truce_Sworn_4>
+  <CC_Truce_Sworn_5>{ENVOY} of {PEOPLE} swore it by their custom, {RITE}, and {SPEAKER} swore it back for the colony: {WORD} {TERM}.</CC_Truce_Sworn_5>
+  <CC_Truce_SwornByWord_2>With no people at peace with both to escort their envoy, {PEOPLE} sent their oath by word instead. It holds the same: {WORD} {TERM}.</CC_Truce_SwornByWord_2>
+  <CC_Truce_ParleyHarmed_2>The envoy of {PEOPLE} came under their sign of parley ({RITE}) and was struck by the colony's people. The envoy has fled, there will be no truce, and every people in reach will hear of it.</CC_Truce_ParleyHarmed_2>
+
+  <!-- Its end -->
+  <CC_Truce_End_Peace_3>The truce with {PEOPLE} ran its whole course unbroken, and it ends as a peace. {PEACE}</CC_Truce_End_Peace_3>
+  <CC_Truce_End_Peace_4>{PEOPLE} and the colony kept {WORD} to the end, and they are at peace now. {PEACE}</CC_Truce_End_Peace_4>
+  <CC_Truce_End_RanOut_3>The truce with {PEOPLE} is over. It held, but it never turned into a peace, and their raiders may come again. {PEACE}</CC_Truce_End_RanOut_3>
+
+  <!-- Their firebrands, and a truce broken -->
+  <CC_Truce_Firebrands_3>Not every band of {PEOPLE} answers to the ones who swore {WORD}. One of them is coming at the colony, and the truce will not outlast it.</CC_Truce_Firebrands_3>
+  <CC_Truce_Firebrands_4>A band of {PEOPLE} who never accepted {WORD} is on its way to the colony. When it arrives, the truce is broken.</CC_Truce_Firebrands_4>
+  <CC_Truce_BrokenByThem_3>The truce with {PEOPLE} is over: {HOW}. They broke {WORD}, and the colony will not forget who did.</CC_Truce_BrokenByThem_3>
+  <CC_Truce_BrokenByThem_4>{PEOPLE} went back on {WORD}: {HOW}. Their raids may come again.</CC_Truce_BrokenByThem_4>
+  <CC_Truce_BrokenByUs_2>Every people in reach will hear that the colony broke {WORD} with {PEOPLE}: {HOW}.</CC_Truce_BrokenByUs_2>
+  <CC_Truce_BrokenByUs_3>{PEOPLE} will say the colony broke the truce first, and they will be right: {HOW}.</CC_Truce_BrokenByUs_3>
+
+  <!-- Their answer to a pact proposed, or ended -->
+  <CC_Pact_Ans_No_3>{PEOPLE} are not ready for {KIND} with the colony. They say so kindly, and leave the door open.</CC_Pact_Ans_No_3>
+  <CC_Pact_Ans_No_4>{PEOPLE} decided against {KIND} this year. By their ways it would have been {RITE}, and they are not ready to swear it.</CC_Pact_Ans_No_4>
+  <CC_Pact_Ans_Yes_4>{PEOPLE} agree to {KIND} for a year. They will swear it by their ways, {RITE}, and the colony counts it {WORD}.</CC_Pact_Ans_Yes_4>
+  <CC_Pact_Ans_Yes_5>Yes from {PEOPLE}: {KIND}, for a year. To them it is {RITE}, and to the colony {WORD}.</CC_Pact_Ans_Yes_5>
+  <CC_Pact_Ans_Ended_2>{PEOPLE} accept that the pact is over. There is no ill will in their answer, only regret.</CC_Pact_Ans_Ended_2>
+
+  <!-- Their offer of a pact, or to renew one -->
+  <CC_Pact_Offer_3>{WHO} of {PEOPLE} writes about {ENEMY}, who are at war with both of them. They offer the colony {KIND} for a year: {RITE}, as their ways ask.</CC_Pact_Offer_3>
+  <CC_Pact_Offer_4>Two peoples with one enemy, {WHO} writes, should not stand alone. {PEOPLE} offer the colony {KIND} for a year, with {ENEMY} in mind.</CC_Pact_Offer_4>
+  <CC_Pact_Renew_3>A year of {KIND} with {PEOPLE} has gone by. {WHO} asks whether the colony will swear it again for another year, {RITE} as before.</CC_Pact_Renew_3>
+
+  <!-- Calling a defense pact in, and their band -->
+  <CC_Pact_Decline_2>{ENEMY} are friends of {PEOPLE}, and {PEOPLE} will not raise a hand against them. They set {WORD} aside with no blame on either side.</CC_Pact_Decline_2>
+  <CC_Pact_PutOff_3>After {MEANS}, {PEOPLE} send back their regrets: their fighters are away, and nobody is coming this time.</CC_Pact_PutOff_3>
+  <CC_Pact_PutOff_4>{PEOPLE} answered {MEANS} with an apology. Their band is out on another errand, and the colony is on its own this time.</CC_Pact_PutOff_4>
+  <CC_Pact_Coming_3>{PEOPLE} answered {MEANS}. Their band is gathering, and will walk in some hours from now.</CC_Pact_Coming_3>
+  <CC_Pact_Coming_4>{PEOPLE} keep the pact. In answer to {MEANS}, their fighters are on the road to the colony.</CC_Pact_Coming_4>
+  <CC_Pact_Band_3>The band of {PEOPLE} is here, {COUNT} of them, and they have come to fight {ENEMY}.</CC_Pact_Band_3>
+  <CC_Pact_Band_4>{COUNT} fighters of {PEOPLE} walk onto the colony's land and go looking for {ENEMY}, as the pact asks.</CC_Pact_Band_4>
+  <CC_Pact_Band_Late_3>The band of {PEOPLE} came and found nothing left to fight. They turned for home, and nobody blames them for the road.</CC_Pact_Band_Late_3>
+
+  <!-- A trade pact's season -->
+  <CC_Pact_Season_3>As the season turns, a trader caravan of {PEOPLE} sets out for the colony, as the trade pact provides.</CC_Pact_Season_3>
+  <CC_Pact_Season_NoCaravan_2>{PEOPLE} have no caravan to send this season. The trade pact stands all the same.</CC_Pact_Season_NoCaravan_2>
+
+  <!-- A pact broken by the colony -->
+  <CC_Pact_BrokenByUs_2>The colony broke faith with {PEOPLE}: {HOW}. The pact is over, and every people in reach will hear why.</CC_Pact_BrokenByUs_2>
+
+  <!-- Their call to arms -->
+  <CC_Arms_Pact_3>{WHO} of {PEOPLE} writes in haste. {ENEMY} have come against {TOWN}, and they call on the pact for the colony's fighters: {RITE}, as they put it.</CC_Arms_Pact_3>
+  <CC_Arms_Favour_2>{ENEMY} have come against {TOWN}, and {PEOPLE} call in what the colony owes them: its fighters, {RITE} by their ways.</CC_Arms_Favour_2>
+  <CC_Arms_Favour_3>{WHO} writes for {PEOPLE} with {ENEMY} at {TOWN}. The colony owes them, and they ask for fighters.</CC_Arms_Favour_3>
+  <CC_Arms_Fight_3>The colony's people reach {TOWN} with {ENEMY} still there. {ALLIES} of {PEOPLE} come out to fight beside them.</CC_Arms_Fight_3>
+
+</LanguageData>

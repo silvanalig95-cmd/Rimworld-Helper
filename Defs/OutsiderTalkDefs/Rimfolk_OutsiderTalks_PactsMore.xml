@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on pacts (Source/ColonyCouncil/Diplomacy/Pacts.cs, PactCalls.cs, CallsToArms.cs; the facts in
+       Diplomacy/FactsPacts.cs), beside Rimfolk_OutsiderTalks_Pacts.xml: a defense pact or a trade pact with their people.
+       As facts: tie:pact (more current when new), :ours or :theirs (who offered it), :due (a call under way either way:
+       their band on the road to the colony, or the colony's fighters asked for at their town), tie:pact:defence or
+       tie:pact:trade, {PACTWITH} their people. What their people remember of it: deed:swore (sworn), deed:protected (some
+       of their band died beside the colony's), deed:aid (their fighters came to the colony's help), deed:keptWord (the
+       colony kept its word: its fighters went to their town, the pact was kept another year), deed:sidedWith (the colony
+       took their side when it came to it), deed:brokePact. A pact is made with a people who share an enemy with the
+       colony, so war:ourfoe ({WAR} at war with both) often holds beside it. A pre-industrial colony calls by a fire its
+       neighbors' watchers can see (lowtech, the colony's own era). By their ways: gifts exchanged among tribes, oaths
+       before witnesses in the middle ages, a contract among outlanders, a registered treaty among spacers; the Empire
+       makes no pacts. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= What a pact is, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Means</defName>
+    <topic>pact</topic>
+    <uses>chat,know</uses>
+    <when>tie:pact</when>
+    <lines>
+      <li>[us] What does a pact mean to your people?</li>
+      <li>[them,their:tribal] That your fire is ours to defend, and ours is yours.</li>
+      <li>[them,their:medieval] That your enemies are ours, as long as the oath holds.</li>
+      <li>[them,their:industrial] That we come when you send for us, and you come when we do.</li>
+      <li>[them,their:spacer] A mutual obligation, logged on both sides and binding on both.</li>
+      <li>[them] That neither of us faces trouble alone.</li>
+      <li>[us] It means much the same to us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_ShareMeat</defName>
+    <topic>pact</topic>
+    <when>tie:pact,their:tribal</when>
+    <lines>
+      <li>[them] Among my people, those bound by an oath share meat after a hunt.</li>
+      <li>[us] We'd share ours with you.</li>
+      <li>[them] Then you understand it better than most outsiders do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Witnesses</defName>
+    <topic>pact</topic>
+    <when>tie:pact,their:medieval</when>
+    <lines>
+      <li>[them] Half the town turned out to witness our side of the oath.</li>
+      <li>[us] Half the town?</li>
+      <li>[them] There was ale afterward, which helped.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Pinned</defName>
+    <topic>pact</topic>
+    <when>tie:pact,their:industrial</when>
+    <lines>
+      <li>[them] Our copy of the agreement is pinned up in the quartermaster's office.</li>
+      <li>[us] Next to what?</li>
+      <li>[them] Next to the list of people who owe us money, so it's in good company.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Filed</defName>
+    <topic>pact</topic>
+    <when>tie:pact,their:spacer</when>
+    <lines>
+      <li>[them] Your colony is filed under allies in our records now.</li>
+      <li>[us] Is that a long list?</li>
+      <li>[them] Shorter than I'd like, so try to stay on it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A defense pact ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_CallSooner</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,colony:raid</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I heard raiders came at your colony.</li>
+      <li>[us] They did.</li>
+      <li>[them,lowtech] Next time light your fire early, and we'll come if we can.</li>
+      <li>[them] Next time send for us early, and we'll come if we can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_TheirFoe</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,colony:raid:theirfoe</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] The raiders who came at you are no friends of ours either.</li>
+      <li>[us] Then next time we'll both be glad of the pact.</li>
+      <li>[them] We're glad of it already.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Watch</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,their:hightech</when>
+    <lines>
+      <li>[them] We keep a watch on your direction now, for smoke or a call.</li>
+      <li>[us] Would you know it from a cooking fire?</li>
+      <li>[them] A cooking fire doesn't burn by the gate in the middle of a fight.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_CommonFoe</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,war:ourfoe</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {WAR} are at war with both of us, which is half of why we swore.</li>
+      <li>[us] And the other half?</li>
+      <li>[them,likesus] My people like yours, mostly.</li>
+      <li>[them] The other half is that your colony fights well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_WouldYou</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,tone:warm</when>
+    <lines>
+      <li>[us] If it came to it, would you really come out for us?</li>
+      <li>[them] I would, and I'd bring my cousins with me.</li>
+      <li>[us] I hope it never comes to it.</li>
+      <li>[them] So do I, but it's good to know where we stand.</li>
+      <li>[us] It is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Elsewhere</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,their:war</when>
+    <lines>
+      <li>[us] Your people are at war with {WAR}, will that keep your fighters busy?</li>
+      <li>[them] Some of the time, I won't lie to you.</li>
+      <li>[them] If you call and nobody comes, it won't be because we forgot the pact.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_OurTurn</defName>
+    <topic>pact</topic>
+    <when>tie:pact:defence,!tie:pact:due</when>
+    <lines>
+      <li>[them] If {TOWN} is ever attacked, my people will write to your colony first.</li>
+      <li>[us] And we'll send who we can.</li>
+      <li>[them] Two of yours on the road would be answer enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_CallUnderWay</defName>
+    <topic>pact</topic>
+    <when>tie:pact:due</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] I'd sooner be at home, with a call between our peoples under way.</li>
+      <li>[us] Why?</li>
+      <li>[them] Because that's where the news comes first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their band came, and fell ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Buried</defName>
+    <topic>pact</topic>
+    <when>deed:protected</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] We buried some of ours after the fight at your colony.</li>
+      <li>[us] They died for us, and we know it.</li>
+      <li>[them] They died for the pact, which to their families is the same thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_BuriedSour</defName>
+    <topic>pact</topic>
+    <when>deed:protected,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Some of my people would still be alive if your colony fought its own fights.</li>
+      <li>[us] They came because we'd have come for them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_BandTalk</defName>
+    <topic>pact</topic>
+    <when>deed:aid|deed:protected,tie:pact</when>
+    <lines>
+      <li>[them] Our fighters came home from your colony talking about your people.</li>
+      <li>[us] Good things, I hope.</li>
+      <li>[them] Good things, and that they'd go again if they were called.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_SideBySide</defName>
+    <topic>pact</topic>
+    <when>deed:sidedWith,tie:pact</when>
+    <lines>
+      <li>[them] When it came to taking sides, your colony took ours.</li>
+      <li>[us] We had a pact.</li>
+      <li>[them] Plenty of people have pacts, fewer remember them when it counts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_YourFighters</defName>
+    <topic>pact</topic>
+    <when>deed:keptWord,tie:pact</when>
+    <lines>
+      <li>[them] My people know your colony keeps what it promises.</li>
+      <li>[us] We try to.</li>
+      <li>[them,their:tribal] Then the oath between us is a good one, and the elders say so.</li>
+      <li>[them] That's why my people would keep the pact another year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A trade pact ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Cart</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade</when>
+    <lines>
+      <li>[us] Is the cart we send each season what your people want?</li>
+      <li>[them,trait:Greedy] They'd take twice as much and pay half, if you offered.</li>
+      <li>[them] They'd take more of it, if you had it to spare.</li>
+      <li>[us] We'll see what the stores can stand.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_FirstStop</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade,role:trader</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] Because of the pact, my caravan comes your way each season.</li>
+      <li>[us] We'll try to make it worth the walk.</li>
+      <li>[them] Have the good stuff out early and it will be.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_SharedOut</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade,their:lowtech</when>
+    <lines>
+      <li>[them] At home the goods from your colony are shared out the night they arrive.</li>
+      <li>[us] Who gets the most?</li>
+      <li>[them,their:tribal] Whoever carried them, that's only fair.</li>
+      <li>[them] Whoever paid for them, and then whoever shouts loudest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Contract</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade,their:hightech</when>
+    <lines>
+      <li>[them] The contract's been good for both of us so far.</li>
+      <li>[us] What would make it better?</li>
+      <li>[them,their:spacer] Predictable quantities, and fewer surprises in the crates.</li>
+      <li>[them] A bigger cart, if I'm asked, but nobody asks me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_TradeCool</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade,tone:cool</when>
+    <lines>
+      <li>[them] The trade pact suits my people well enough.</li>
+      <li>[us] Only well enough?</li>
+      <li>[them] Your surplus could be better, if you want it straight.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Hungry</defName>
+    <topic>pact</topic>
+    <when>tie:pact:trade,colony:hungry</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Your stores look thin for a people sending out a cart each season.</li>
+      <li>[us] If the stores are short, the cart doesn't go.</li>
+      <li>[them] My people will understand that, better than a cart you can't spare.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Who offered it, and how it sits ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_YouCameAsking</defName>
+    <topic>pact</topic>
+    <when>tie:pact:ours,their:lowtech</when>
+    <lines>
+      <li>[them] Your colony came asking for an oath, and the old ones liked that.</li>
+      <li>[us] Why?</li>
+      <li>[them] Because asking is how it's done, and outsiders usually don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_WorthIt</defName>
+    <topic>pact</topic>
+    <when>tie:pact:theirs</when>
+    <lines>
+      <li>[them] My people offered your colony the pact, so I'd like to hear it's been worth it.</li>
+      <li>[us] It has been.</li>
+      <li>[them] Then I'll say so at home, they'll want to know.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_AnotherYear</defName>
+    <topic>pact</topic>
+    <when>tie:pact,tone:cool</when>
+    <lines>
+      <li>[them] My people will want to know if your colony means to keep the pact another year.</li>
+      <li>[us] We do, if yours do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_DontLike</defName>
+    <topic>pact</topic>
+    <when>tie:pact,tone:sour</when>
+    <lines>
+      <li>[them] Pact or no pact, I don't have to like you.</li>
+      <li>[us] No, you only have to come when we call.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Named</defName>
+    <topic>pact</topic>
+    <when>tie:pact,likesus</when>
+    <lines>
+      <li>[us] Everyone here knows we have friends in {PACTWITH}.</li>
+      <li>[them] And at home everyone knows we have friends here.</li>
+      <li>[us] Then that's two places the pact is doing some good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A pact the colony broke ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_Broke</defName>
+    <topic>pact</topic>
+    <when>deed:brokePact</when>
+    <lines>
+      <li>[them] Your colony broke a pact with my people once.</li>
+      <li>[us] We know what it cost us.</li>
+      <li>[them] It cost us more.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Pact2_BrokeAgain</defName>
+    <topic>pact</topic>
+    <when>deed:brokePact,!tone:cool,!tone:sour</when>
+    <lines>
+      <li>[us] Would your people ever swear a pact with us again?</li>
+      <li>[them,their:tribal] Not while the ones who remember the last one still sit at the fire.</li>
+      <li>[them] Not soon, and not on the same terms.</li>
+      <li>[us] That's fair.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

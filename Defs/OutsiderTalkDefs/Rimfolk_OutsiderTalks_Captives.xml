@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on captives and ransom (Source/ColonyCouncil/Diplomacy/Ransoms.cs, RansomParty.cs; the facts in
+       Diplomacy/FactsRansom.cs), beside the captive pieces in Rimfolk_OutsiderTalks_Ransom.xml. As facts: ransom:theirs
+       (one of their people in the colony's cells), ransom:held (their people hold one of the colony's), them:wascaptive
+       (the one spoken to was the colony's captive once and went home by a ransom or an exchange, {CAPTOR} the home that
+       held them), colony:prisoners (the colony holds someone). What their people remember: deed:ransomed (a bargain over
+       captives settled between the two: a ransom paid either way, or an exchange), deed:forgave (the colony let one of
+       theirs go for nothing), deed:brokeWord (their people went back on their word, a trap at an exchange among other
+       things), deed:captured, deed:prisonerDied. By their ways: a tribe trades captives back for goods, the middle ages
+       pay a price in silver, outlanders meet at a crossing, spacers exchange on agreed terms; the Empire pays in silver.
+       The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= One of theirs in the colony's cells ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Eating</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs</when>
+    <lines>
+      <li>[them] Is the one of ours in your cells eating?</li>
+      <li>[us] The same as we do.</li>
+      <li>[them,their:tribal] Then tell them their people haven't forgotten them.</li>
+      <li>[them] Then I can tell their family that much, at least.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Goods</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,their:tribal</when>
+    <lines>
+      <li>[them] Among my people a captive is traded back for goods, never for silver.</li>
+      <li>[us] Then your people should say what goods.</li>
+      <li>[them] They will, when the elders are ready.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Purse</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,their:medieval</when>
+    <lines>
+      <li>[them] My lord will pay for the one you hold, if your price is honest.</li>
+      <li>[us] It's your people who name the price, not us.</li>
+      <li>[them] Then I hope they name an honest one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Channel</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,their:hightech</when>
+    <lines>
+      <li>[them] My people will make an offer for the one you're holding, through the proper channels.</li>
+      <li>[us] We'll be listening.</li>
+      <li>[them,their:spacer] Good, and do keep a record of their condition.</li>
+      <li>[them] Good, and try not to let the price go up while we wait.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Locked</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,tone:cool</when>
+    <lines>
+      <li>[them] You've got one of ours behind a locked door.</li>
+      <li>[us] And they'll be fed while they're there.</li>
+      <li>[them] Fed isn't free.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Civil</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,tone:sour</when>
+    <lines>
+      <li>[them] It's hard to be friendly with one of mine in your cells.</li>
+      <li>[us] Then don't be friendly, just be civil.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_NotOurs</defName>
+    <topic>ransom</topic>
+    <when>colony:prisoners,!ransom:theirs</when>
+    <lines>
+      <li>[them] I hear your colony keeps prisoners.</li>
+      <li>[us] A few, and they're fed.</li>
+      <li>[them] Anyone my people would want back?</li>
+      <li>[us] Not that I know of.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Ways</defName>
+    <topic>ransom</topic>
+    <uses>chat,know</uses>
+    <when>colony:prisoners|ransom:held|them:wascaptive</when>
+    <lines>
+      <li>[us] What do your people do when one of their own is taken?</li>
+      <li>[them,their:tribal] We trade goods for them, or we go and take them back.</li>
+      <li>[them,their:medieval] We send a messenger with a purse and hope the price is honest.</li>
+      <li>[them,their:industrial] We get on the radio and start haggling.</li>
+      <li>[them,their:empire] The Empire pays in silver, and remembers who set the price.</li>
+      <li>[them,their:spacer] We open negotiations and keep a record of every offer made.</li>
+      <li>[them] We pay if we can, and we remember who held them.</li>
+      <li>[us] We'd do much the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= One of the colony's in their hands ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_WantHome</defName>
+    <topic>ransom</topic>
+    <when>ransom:held</when>
+    <lines>
+      <li>[us] Your people are holding one of ours, and I want them home.</li>
+      <li>[them] I'd want the same, in your place.</li>
+      <li>[them,their:tribal] I'll carry your words to the elders myself.</li>
+      <li>[them] I'll say so at home, though it isn't mine to decide.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Trade</defName>
+    <topic>ransom</topic>
+    <when>ransom:held,ransom:theirs</when>
+    <weight>1.5</weight>
+    <lines>
+      <li>[them] You hold one of ours, and we hold one of yours.</li>
+      <li>[us] Then there's a trade to be made.</li>
+      <li>[them,their:lowtech] One for one at the gate is the old way, and a good one.</li>
+      <li>[them] There may be, if both sides are sensible about it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_FairPrice</defName>
+    <topic>ransom</topic>
+    <when>ransom:held,their:hightech</when>
+    <lines>
+      <li>[them] My people will want silver for the one of yours they hold, I expect.</li>
+      <li>[us] We'll pay what's fair.</li>
+      <li>[them] Fair is a big word in that kind of bargain.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_HeldEmpire</defName>
+    <topic>ransom</topic>
+    <when>ransom:held,their:empire</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The one of yours we hold is held with honor, as the court requires.</li>
+      <li>[us] We only want them back.</li>
+      <li>[them] Then your colony knows how such things are settled.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_HeldCool</defName>
+    <topic>ransom</topic>
+    <when>ransom:held,tone:cool|tone:sour</when>
+    <lines>
+      <li>[us] One of ours is still in your people's hands.</li>
+      <li>[them] Then you'd better be civil to me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Once a captive at the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_FrontGate</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive</when>
+    <lines>
+      <li>[us] You've seen the inside of our cells at {CAPTOR}, I hear.</li>
+      <li>[them] I have, and I prefer this side of the gate.</li>
+      <li>[us] So do we, for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Bargained</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive</when>
+    <lines>
+      <li>[them] My people bargained to have me back from {CAPTOR}.</li>
+      <li>[us] And here you are.</li>
+      <li>[them,their:tribal] Worth whatever they gave for me, I keep telling them.</li>
+      <li>[them] Walking in by the gate I walked out of, which still feels strange.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_NoGrudge</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,!tone:cool,!tone:sour</when>
+    <lines>
+      <li>[them] I don't hold my time at {CAPTOR} against your people.</li>
+      <li>[us] That's generous.</li>
+      <li>[them] You fed me and let me go home, and plenty wouldn't have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_DontSmile</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,tone:cool</when>
+    <lines>
+      <li>[them] I spent days in your cells at {CAPTOR}, so forgive me if I don't smile.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Children</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,them:parent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] My children still ask me what it was like at {CAPTOR}.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them] That the walls were thick, the food was plain, and I came home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Warden</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,tone:warm</when>
+    <lines>
+      <li>[them] Your warden walked me out of {CAPTOR} as if I were a guest leaving.</li>
+      <li>[us] By then you nearly were.</li>
+      <li>[them] That's how I tell it at home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Bargains settled, and one not ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_Settled</defName>
+    <topic>ransom</topic>
+    <when>deed:ransomed</when>
+    <lines>
+      <li>[them] The last bargain over captives between our peoples was settled fairly, I'm told.</li>
+      <li>[us] It was.</li>
+      <li>[them,their:tribal] Then the goods and the captive both went where they should.</li>
+      <li>[them] Then there's no bad blood over it, as far as I'm concerned.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_ForNothing</defName>
+    <topic>ransom</topic>
+    <when>deed:forgave</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your colony let one of ours walk home and asked nothing for it.</li>
+      <li>[us] Keeping them wasn't doing anyone any good.</li>
+      <li>[them,their:lowtech] Among us a gift like that is answered, sooner or later.</li>
+      <li>[them] My people are still working out what to make of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Captive_DiedHeld</defName>
+    <topic>ransom</topic>
+    <when>deed:prisonerDied,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] One of my people went into your cells and never came out.</li>
+      <li>[us] We didn't want that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What lies between peoples
+
+*5 November 2026, version 0.90.0*
+
+- Visitors have about 150 new things to say about debts of honor, pacts, truces, captives and envoys, each in their own people's way: an envoy at your table through the rain, a raid and a funeral, a former captive back as a guest, a band that buried its own after your fight.
+- Neighbours answer letters about debts, pacts, truces, ransom and envoys in many more words, by how they took it and by their ways, and letters of any kind now mention a debt, pact, truce, captive or envoy that stands between you.
+- The letters and news of diplomacy have more than a hundred new wordings: debts called in, truces offered, sworn and broken, a band on its way, the ransom at the gate, the envoy's arrival, letters home and leaving.
+- Whoever lights a signal fire for a defense pact says something as it catches, and peoples of the middle ages and the Empire no longer talk like a tribe's elders in letters and at the gate.
+
 ## Diplomacy, checked over
 
 *5 November 2026, version 0.89.1*

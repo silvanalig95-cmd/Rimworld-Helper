@@ -675,7 +675,7 @@ namespace ColonyCouncil
             }
             Diplomacy.Dirty();
             // apart: news of the letter home, told in the evening's news; it was handed over at the gate on the map.
-            Tell.Minor(NewsKind.World, Importance.Flavor, map, RansomWords.P("CC_Envoy_Msg_Letter_" + mood, envoy.Named("ENVOY"), RansomWords.People(s.people).Named("PEOPLE")),
+            Tell.Minor(NewsKind.World, Importance.Flavor, map, RansomWords.T("CC_Envoy_Msg_Letter_" + mood, envoy.Named("ENVOY"), RansomWords.People(s.people).Named("PEOPLE")),
                 new LookTargets(envoy));
         }
 

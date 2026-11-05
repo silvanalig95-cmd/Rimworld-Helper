@@ -114,10 +114,10 @@
   <!-- Its end -->
   <CC_Truce_End_Peace_Label>Peace with {PEOPLE}</CC_Truce_End_Peace_Label>
   <CC_Truce_End_Peace>The truce with {PEOPLE} held to its end, and it ends as a peace. {PEACE}</CC_Truce_End_Peace>
-  <CC_Truce_End_Peace_2>{WORD} with {PEOPLE} is over, and nobody is at war anymore. {PEACE}</CC_Truce_End_Peace_2>
+  <CC_Truce_End_Peace_2>With {PEOPLE}, {WORD} has run its course, and nobody is at war anymore. {PEACE}</CC_Truce_End_Peace_2>
   <CC_Truce_End_RanOut_Label>The truce with {PEOPLE} ran out</CC_Truce_End_RanOut_Label>
   <CC_Truce_End_RanOut>The truce with {PEOPLE} has run its course. They are still at war with the colony, and their raids may come again. {PEACE}</CC_Truce_End_RanOut>
-  <CC_Truce_End_RanOut_2>{WORD} with {PEOPLE} is over. Nothing came of it beyond the quiet it bought, and their raiders are free to come again. {PEACE}</CC_Truce_End_RanOut_2>
+  <CC_Truce_End_RanOut_2>With {PEOPLE}, {WORD} is over. Nothing came of it beyond the quiet it bought, and their raiders are free to come again. {PEACE}</CC_Truce_End_RanOut_2>
 
   <!-- Their firebrands, and a truce broken -->
   <CC_Truce_Firebrands_Label>Firebrands of {PEOPLE}</CC_Truce_Firebrands_Label>
@@ -154,7 +154,7 @@
   <CC_Pact_Opt_Renew>Keep it another year</CC_Pact_Opt_Renew>
   <CC_Pact_Opt_LetEnd>Let it end</CC_Pact_Opt_LetEnd>
   <CC_Pact_Made>The colony and {PEOPLE} have sworn {KIND} for a year: {WORD}.</CC_Pact_Made>
-  <CC_Pact_Renewed>{KIND} with {PEOPLE} will hold another year.</CC_Pact_Renewed>
+  <CC_Pact_Renewed>{PEOPLE} and the colony will keep {KIND} another year.</CC_Pact_Renewed>
   <CC_Pact_Hist_Offer>{PEOPLE} offered the colony {KIND}.</CC_Pact_Hist_Offer>
   <CC_Pact_Msg_Over>The year of {KIND} with {PEOPLE} is over, and it ends without ill will.</CC_Pact_Msg_Over>
   <CC_Pact_Msg_War>{PEOPLE} are at war with the colony now, and the pact with them is over.</CC_Pact_Msg_War>
@@ -195,7 +195,7 @@
 
   <!-- A pact broken by the colony -->
   <CC_Pact_BrokenByUs_Label>The colony broke its pact</CC_Pact_BrokenByUs_Label>
-  <CC_Pact_BrokenByUs>{KIND} with {PEOPLE} is broken by the colony: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Pact_BrokenByUs>
+  <CC_Pact_BrokenByUs>{PEOPLE} have lost {KIND} with the colony, and by the colony's own doing: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Pact_BrokenByUs>
 
   <!-- Their call to arms -->
   <CC_Arms_Label>{PEOPLE} ask for fighters</CC_Arms_Label>

@@ -6,6 +6,53 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 0.90.0, text pass: diplomacy round a (the content pass beside 0.81.0, 0.88.0 and 0.89.0, as docs/design/stage2-diplomacy.md, "The
+  order to build it in", asks; no version of its own: its points go with the next round). Words only, in new files beside
+  the round's own (the round's tests cap its own files' counts). Talk pieces, 156, each said only on facts the providers
+  set (FactsLedger, FactsPacts, FactsRansom, the deeds in FactsColony): debts of honor 37
+  (`Rimfolk_OutsiderTalks_Debts.xml`: owed each way by their ways, in person, called in either way, kept, refused, gone
+  back on, their fighters come and fallen), truces 22 (`Rimfolk_OutsiderTalks_Truces.xml`: a guest of theirs while one
+  holds, by their ways, its end near, sworn and kept, broken by them or by the colony, the colony's word broken as a third
+  people heard it), pacts 31 (`Rimfolk_OutsiderTalks_PactsMore.xml`: what a pact means by their ways, the defense pact and
+  its call by fire or console, their band and their dead, the trade pact's cart and caravan, who offered it, one broken),
+  captives 22 (`Rimfolk_OutsiderTalks_Captives.xml`: one of theirs held, one of the colony's held, an exchange to be made,
+  a former captive back as a guest, a bargain settled, one let go for nothing), envoys 44
+  (`Rimfolk_OutsiderTalks_EnvoysMore.xml`: theirs at the table and through the weather, a raid, a death, a birth, a
+  decree, an election, hunger, plenty, the cells; by their ways and the Empire's room and fine meals; others of theirs
+  asking after them; the colony's envoy at their town; how a stay went), warm, cool and sour among them. Letters and
+  bubbles (`Defs/FlavorPoolDefs/Rimfolk_Lines_DiplomacyMore.xml`): 101 of their answers (favour 16, pact 15, truce 9,
+  ransom 10, envoy 9, each by the tones its answer can really take, which the file's header lists; letters of any
+  purpose while a debt 14, a pact 10, a truce 6, a captive 6 or an envoy 6 stands) and 68 bubbles (each ask face to
+  face, the parley, the ransom at the gate, the exchange's handover said to the colony's own, the envoy's runner, the
+  signal fire). Keyed variants, 119 (`Rimfolk_Diplomacy_Variants.xml` 72, `Rimfolk_Ransom_Variants.xml` 47): the good
+  turn's debt line, calling in and their answers, their calls and needs, truce offers, answers, the envoy at the gate,
+  the oath, its ends and breaches, pact offers, answers and renewals, the call and the band, a trade season, calls to
+  arms, ransom offers, the grudge, the trap, the game's demand, exchanges, the envoy's offer, answers, arrival, letters
+  home, end and death, the colony's envoy at the town, its letters and the road home. Code, two lines: the one who lights
+  a signal fire says a line as it catches (`JobDriver_SignalFire`: `Outsiders.Say(pawn, "signalfire", null)`), and the
+  envoy's letter-home news is picked with `RansomWords.T` so its variants show (`Envoys.cs`). Fixed in passing: four
+  keyed lines opened a sentence on a lowercase value ("a ceasefire with...": `CC_Truce_End_Peace_2`,
+  `CC_Truce_End_RanOut_2`, `CC_Pact_Renewed`, `CC_Pact_BrokenByUs`); 17 older lines of the round tagged theirLowtech
+  spoke as a tribe ("the elders", "green branches", "by the fire"), though that tag is also every people of the middle
+  ages and the Empire, in letters and bubbles alike: they now speak of their leaders and a sign of parley
+  (`Rimfolk_Lines_Pacts.xml` 7, `Rimfolk_Lines_Ransom.xml` 9, `Rimfolk_Lines_Diplomacy.xml` 1, tags kept). README's
+  three counts. Still thin: nobody at war with
+  the colony talks with it, so tie:truce is said only by one of theirs who visits once their goodwill has come round, and
+  truce talk leans on what is remembered after; a letter's facts ask no ages (`FactsMath.Letter`: ties and history), so
+  their ways in a letter (and a bubble's) are only theirLowtech and theirHightech, and a theirLowtech line must suit a
+  tribe, a town of the middle ages and the Empire alike; nothing is said when the warden walks a captive out (the game's own
+  release job) or when a band walks in under a pact, and the envoy's table talk is the talk pieces with them:envoy; texts
+  told often with one wording because the code reads them with `P`: the ransom messenger's messages (`CC_Ransom_Msg_*`),
+  the call to arms' outcomes (`CC_Arms_Late`, `CC_Arms_NotOurs`, `CC_Arms_Fought`), a pact made (`CC_Pact_Made`), the
+  colony's envoy home (`CC_Envoy_Msg_Back`); `Rimfolk_OT_Honour_BrokeWord` says their people refused the colony's call,
+  but deed:brokeWord is also the trap at an exchange. Facts that would help: the envoy's stay as a tag (its mood, a night
+  on the floor), a pact's call answered or put off, a truce ended in peace apart from other kept words, the trap apart
+  from a refused debt, their ages in a letter. To look at in game: the signal fire's bubble; the envoy's letters home
+  over a season.
+  Words that disagree with the code, found by the pass, for the next review: a pact ended by the colony's own letter
+  can be answered with `[pact,refusal]` lines meant for a refused offer (`PactAnswer` only raises the tone to Cool);
+  `Rimfolk_OT_Honour_BrokeWord` says their people refused the colony's call, but the trap at an exchange leaves the
+  same memory; older truce lines promise an envoy at the gate where a truce is sworn by word (no people to vouch).
 - 0.89.1, stage 2 round a review: fixes (the three releases 0.81.0, 0.88.0 and 0.89.0, diplomacy's base and favours, pacts and
   truces, ransom and the envoy, read against the 1.6 game and Faction Territories' decompiled source; no version of its
   own: its points go with the next round). Fixed, each checked in the code and the game's source: their envoy downed in

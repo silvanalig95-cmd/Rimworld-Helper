@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More wordings of the letters and news of ransom and the envoy (Source/ColonyCouncil/Diplomacy/Ransoms.cs,
+       Envoys.cs, EnvoysAbroad.cs), the numbered fellows of keys in Rimfolk_Ransom.xml: TextVariants picks one of CC_X,
+       CC_X_2 ... CC_X_6 at random, so each continues its key's numbering and uses only the values its call passes. {WORD}
+       is the colony's word by its own age and {RITE} the other people's way by theirs (Rimfolk_Ages.xml: Ransom, Envoy):
+       both lowercase, never at the start of a sentence. -->
+
+  <!-- Their offer for one of theirs in the colony's cells -->
+  <CC_Ransom_Offer_4>{WHO} has come to the colony's gate for {PEOPLE}. They want {CAPTIVE} home, and they offer {PRICE}: {RITE}.</CC_Ransom_Offer_4>
+  <CC_Ransom_Offer_5>There is a messenger at the gate, {WHO} of {PEOPLE}. The offer is {PRICE} for {CAPTIVE}, {RITE} as their ways have it.</CC_Ransom_Offer_5>
+  <CC_Ransom_Offer_GoBetween_3>{PEOPLE} and the colony are at war, so their offer comes by way of {WHO} of {ESCORT}: {PRICE} for {CAPTIVE}.</CC_Ransom_Offer_GoBetween_3>
+  <CC_Ransom_Offer_Call_3>The comms console lights up with an offer from {PEOPLE}: {PRICE} for {CAPTIVE}, {WORD} as the colony would call it.</CC_Ransom_Offer_Call_3>
+  <CC_Ransom_Grudge_3>{PEOPLE} asked for {CAPTIVE} {COUNT} times and were turned down each time. They have stopped asking, and they hold it against the colony.</CC_Ransom_Grudge_3>
+
+  <!-- The trap -->
+  <CC_Ransom_Trap_3>The exchange is a trap. While {CAPTIVE} is being walked out, fighters of {PEOPLE} are closing on the gate from the edge of the colony's land.</CC_Ransom_Trap_3>
+  <CC_Ransom_Trap_4>{PEOPLE} never meant to bargain. A band of theirs is coming in toward the gate as {CAPTIVE} is walked out to them.</CC_Ransom_Trap_4>
+
+  <!-- The game's demand for one of the colony's, by messenger -->
+  <CC_Ransom_Demand_3>{WHO} of {PEOPLE} is waiting at the colony's gate. {OURS} is alive and in their hands, and their price is {SILVER} silver.</CC_Ransom_Demand_3>
+  <CC_Ransom_Demand_4>A messenger of {PEOPLE}, {WHO}, has come to the gate with a demand: {SILVER} silver, and {OURS} comes home, {RITE} as their ways have it.</CC_Ransom_Demand_4>
+  <CC_Ransom_Demand_GoBetween_2>{PEOPLE} hold {OURS}, and they have sent their demand by way of {WHO} of {ESCORT}: {SILVER} silver.</CC_Ransom_Demand_GoBetween_2>
+
+  <!-- An exchange -->
+  <CC_Ransom_Ans_ExchangeNo_3>{PEOPLE} turn the exchange down. They will keep {OURS}, and the colony may keep {THEIRS}.</CC_Ransom_Ans_ExchangeNo_3>
+  <CC_Ransom_Ans_ExchangeYes_3>{PEOPLE} will make the exchange, {RITE} by their ways. Their party will walk {OURS} to the colony's gate, and {THEIRS} goes back with them.</CC_Ransom_Ans_ExchangeYes_3>
+  <CC_Ransom_Ans_ExchangeYes_4>One for one, {OURS} for {THEIRS}: {PEOPLE} agree, and their party will bring {OURS} to the gate.</CC_Ransom_Ans_ExchangeYes_4>
+  <CC_Ransom_Exchanged_3>{OURS} walks in through the colony's gate, free. A warden is walking {THEIRS} out to the party of {PEOPLE}, and the exchange is done.</CC_Ransom_Exchanged_3>
+  <CC_Ransom_Exchanged_4>The exchange is made at the gate, {RITE} as {PEOPLE} would have it. {OURS} is home, and {THEIRS} is going home.</CC_Ransom_Exchanged_4>
+
+  <!-- The colony's letter about a captive, and their answers -->
+  <CC_Ransom_Ans_Yes_3>{PEOPLE} will bargain for {CAPTIVE}. Their offer is on its way, {RITE} by their ways.</CC_Ransom_Ans_Yes_3>
+  <CC_Ransom_Ans_No_3>{PEOPLE} answer that {CAPTIVE} is the colony's problem now, not theirs.</CC_Ransom_Ans_No_3>
+  <CC_Ransom_Ans_Moot_2>{PEOPLE} answer, but by then there is nothing left to bargain over.</CC_Ransom_Ans_Moot_2>
+
+  <!-- Their envoy: the offer, asking, the answers -->
+  <CC_Envoy_Offer_4>{PEOPLE} would like to know the colony better. {WHO} writes that {ENVOY} could come and live among its people for a season, {RITE} as their ways have it.</CC_Envoy_Offer_4>
+  <CC_Envoy_Offer_5>A letter from {WHO} of {PEOPLE} proposes {WORD}: {ENVOY}, sent to stay at the colony as its guest until the season turns.</CC_Envoy_Offer_5>
+  <CC_Envoy_Ans_Yes_3>{PEOPLE} agree. {ENVOY} will come to the colony for the season, {RITE} by their ways.</CC_Envoy_Ans_Yes_3>
+  <CC_Envoy_Ans_Yes_4>{ENVOY} is to come. {PEOPLE} write that the colony should expect their envoy, with an attendant, before long.</CC_Envoy_Ans_Yes_4>
+  <CC_Envoy_Ans_No_3>{PEOPLE} answer kindly, but {ENVOY} has duties at home this season and can't be spared.</CC_Envoy_Ans_No_3>
+  <CC_Envoy_Ans_Moot_2>{PEOPLE} answer that the time is wrong, and no envoy of theirs can come now.</CC_Envoy_Ans_Moot_2>
+
+  <!-- Their envoy's stay -->
+  <CC_Envoy_Arrives_3>{ENVOY} of {PEOPLE} has come to stay the season, with an attendant at their side. By their people's ways it is {RITE}.</CC_Envoy_Arrives_3>
+  <CC_Envoy_Arrives_4>An envoy is walking in: {ENVOY} of {PEOPLE}, here to live among the colony's people for a season as {WORD}.</CC_Envoy_Arrives_4>
+  <CC_Envoy_Arrives_5>{ENVOY} has arrived from {PEOPLE}, with an attendant. The colony has a guest at its table for the season.</CC_Envoy_Arrives_5>
+  <CC_Envoy_Msg_Letter_Content_2>{ENVOY}'s letter home went off with a runner of {PEOPLE}. It has more praise in it than complaint.</CC_Envoy_Msg_Letter_Content_2>
+  <CC_Envoy_Msg_Letter_Content_3>A runner of {PEOPLE} is carrying {ENVOY}'s letter home, and the colony comes off well in it.</CC_Envoy_Msg_Letter_Content_3>
+  <CC_Envoy_Msg_Letter_Cool_2>{ENVOY} sent a letter home with a runner of {PEOPLE}. It finds the colony adequate, and not much more.</CC_Envoy_Msg_Letter_Cool_2>
+  <CC_Envoy_Msg_Letter_Cool_3>A runner of {PEOPLE} took {ENVOY}'s letter home. It is polite, as far as anyone here can tell.</CC_Envoy_Msg_Letter_Cool_3>
+  <CC_Envoy_Msg_Letter_Offended_2>{ENVOY}'s letter home is a long one, and it went off with a runner of {PEOPLE}. The colony can guess what fills it.</CC_Envoy_Msg_Letter_Offended_2>
+  <CC_Envoy_Msg_Letter_Offended_3>A runner of {PEOPLE} is carrying {ENVOY}'s complaints home, sealed.</CC_Envoy_Msg_Letter_Offended_3>
+
+  <!-- The end of their stay -->
+  <CC_Envoy_Leaves_Content_3>The season is done, and {ENVOY} is walking home to {PEOPLE}. Their report will be a warm one, and their head will think better of the colony for it.</CC_Envoy_Leaves_Content_3>
+  <CC_Envoy_Leaves_Content_4>{ENVOY} leaves content. {PEOPLE} will hear that the colony kept its guest well.</CC_Envoy_Leaves_Content_4>
+  <CC_Envoy_Leaves_Cool_3>{ENVOY} is going home to {PEOPLE} after a season that was neither warm nor cold. The report will be polite, and short.</CC_Envoy_Leaves_Cool_3>
+  <CC_Envoy_Leaves_Offended_3>{ENVOY} is going home to {PEOPLE} with complaints, and they will be heard. Their head will think less of the colony.</CC_Envoy_Leaves_Offended_3>
+  <CC_Envoy_Leaves_Offended_4>{ENVOY} is going home offended, and {PEOPLE} will hear exactly why from the report.</CC_Envoy_Leaves_Offended_4>
+  <CC_Envoy_Leaves_SeenOff_2>{ENVOY} has been sent home from the colony before the season's end. {PEOPLE} will count it a slight.</CC_Envoy_Leaves_SeenOff_2>
+  <CC_Envoy_Died_Inside_2>{ENVOY} of {PEOPLE} died at the colony, in its care and under its roof. Their people will grieve, but they will not say the colony left their envoy unprotected.</CC_Envoy_Died_Inside_2>
+  <CC_Envoy_Died_Outside_2>{ENVOY} of {PEOPLE} died out in the open at the colony. Their people will want to know why their envoy was not sheltered, and they will think much less of the colony.</CC_Envoy_Died_Outside_2>
+
+  <!-- The colony's own envoy -->
+  <CC_Envoy_There_3>{PAWN} is at {TOWN} now, and {PEOPLE} have received the colony's envoy by their ways: {RITE}.</CC_Envoy_There_3>
+  <CC_Envoy_There_4>{PAWN} reached {TOWN} and was given a place among {PEOPLE} for the season. Letters will follow.</CC_Envoy_There_4>
+  <CC_Envoy_Letter_3>A letter from {PAWN} at {TOWN}. The people who matter there are warming to the colony, {PAWN} writes, and this is what is going on:</CC_Envoy_Letter_3>
+  <CC_Envoy_Letter_4>{PAWN} writes home from {TOWN}, where {PEOPLE} think better of the colony for having {PAWN} among them. What {PAWN} hears there:</CC_Envoy_Letter_4>
+  <CC_Envoy_Homeward_3>{PAWN} has said goodbye to {TOWN} and is on the road home, with food for the way from {PEOPLE}.</CC_Envoy_Homeward_3>
+  <CC_Envoy_Homeward_4>The season at {TOWN} is done. {PEOPLE} saw {PAWN} off with food for the road, and {PAWN} is on the way home.</CC_Envoy_Homeward_4>
+
+</LanguageData>

@@ -2658,7 +2658,7 @@ hold sent home, or their help toward peace; their head's regard decides whether 
 colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof
 for their homeless, the colony's word in a feud; refused or left unanswered, they remember it. A town's card on the
 region map shows its debts, and the map's Stance and ties lens draws each as a dotted line from home; the region
-window's Peoples has what is owed each way, and its Here and away who is here from outside and who is away. 14 conversation pieces speak of it. Setting: *Favors owed and called in*. The Almanac
+window's Peoples has what is owed each way, and its Here and away who is here from outside and who is away. 51 conversation pieces, 45 letter lines and 30 spoken lines speak of it. Setting: *Favors owed and called in*. The Almanac
 has a page, *diplomacy*.
 
 **Pacts and truces.** After the colony beats a raid, holds one of their notables or kin, or a friend of both speaks
@@ -2673,7 +2673,7 @@ comms console or a signal fire by the gate, and their band walks in some hours l
 attacked, the colony's fighters go there by caravan and fight on the game's caravan battle map (or in Faction
 Territories' invasion). A trade pact brings their caravan each season and takes a cart of the colony's surplus for
 silver. Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
-card, the inbox and the map's lenses. 14 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Settings: *Pacts and
+card, the inbox and the map's lenses. 67 conversation pieces, 69 letter lines and 48 spoken lines speak of them. Settings: *Pacts and
 truces*, *Truces keep raids away*.
 
 **Ransom.** Some days after one of a people is taken prisoner, if their people want them back, their messenger comes to
@@ -2692,8 +2692,8 @@ floor), talks with its people, sits in at a council meeting and writes home ever
 their card (content, cool, offended) and travels home with them: their head's regard, a debt of honor for a very good
 stay, a slight for a poor one or for seeing them off early. The colony can send a colonist good with people to live at
 their town for a season: their letters bring the town's news, its notables think better of the colony, and they come
-home with a parting gift when their hosts think well of it. Each shows on the cards, Here and away and the inbox. 16
-conversation pieces, 24 letter lines and 23 spoken lines speak of captives and envoys. Setting: *Envoys*.
+home with a parting gift when their hosts think well of it. Each shows on the cards, Here and away and the inbox. 82
+conversation pieces, 55 letter lines and 49 spoken lines speak of captives and envoys. Setting: *Envoys*.
 
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
