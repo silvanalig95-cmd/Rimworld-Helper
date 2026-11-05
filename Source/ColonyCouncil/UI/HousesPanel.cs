@@ -17,6 +17,9 @@ namespace ColonyCouncil
         private sealed class Family
         {
             public string name;
+            /// <summary>Its house's card and its renown in words, once the colony keeps it as a house (Diplomacy/Renown.cs).</summary>
+            public ThingRef house;
+            public string renown;
             public readonly List<Pawn> members = new List<Pawn>();
             public readonly List<ThingRef> refs = new List<ThingRef>();
             public readonly List<string> labels = new List<string>();
@@ -100,7 +103,9 @@ namespace ColonyCouncil
         private static float DrawFamily(Family f, float x, float y, float w, float sight)
         {
             // The height first (chips wrap), then the card only when in sight.
-            float cx = x + 10f, cy = y + 30f;
+            // Its renown, a line under the name, when the colony keeps it as a house.
+            float top = f.renown.NullOrEmpty() ? 30f : 50f;
+            float cx = x + 10f, cy = y + top;
             for (int i = 0; i < f.members.Count; i++)
             {
                 float cw = UiKit.ThingChipWidth(f.labels[i], w - 20f);
@@ -114,9 +119,12 @@ namespace ColonyCouncil
             float h = cy + UiKit.ChipHeight + 10f - y;
             if (y + h < scroll.y || y > scroll.y + sight) return h;
             UiKit.Card(new Rect(x, y, w, h), UiKit.WithAlpha(UiKit.Gold, 0.5f), false, false);
-            UiKit.LabelFit(new Rect(x + UiKit.CardInset, y + 4f, w - 2f * UiKit.CardInset, 24f), f.name, UiKit.Heading);
+            if (f.house.IsNone) UiKit.LabelFit(new Rect(x + UiKit.CardInset, y + 4f, w - 2f * UiKit.CardInset, 24f), f.name, UiKit.Heading);
+            else LinkText.Line(new Rect(x + UiKit.CardInset, y + 4f, w - 2f * UiKit.CardInset, 24f), ThingRefs.Link(f.name, f.house), UiKit.Heading);
+            if (!f.renown.NullOrEmpty())
+                UiKit.LabelFit(new Rect(x + UiKit.CardInset, y + 28f, w - 2f * UiKit.CardInset, 20f), f.renown, UiKit.Faint, GameFont.Tiny);
             cx = x + 10f;
-            cy = y + 30f;
+            cy = y + top;
             for (int i = 0; i < f.members.Count; i++)
             {
                 float cw = UiKit.ThingChipWidth(f.labels[i], w - 20f);
@@ -180,18 +188,28 @@ namespace ColonyCouncil
                     f.refs.Add(ThingRefs.Of(p));
                     f.labels.Add(p.LabelShort + (p.ageTracker != null ? ", " + p.ageTracker.AgeBiologicalYears : ""));
                 }
+                // Kept as a house of the colony's (two or more of one name): its card and its renown (Diplomacy/Renown.cs).
+                var kept = surname != null ? RenownPanels.OursNamed(surname) : null;
+                if (kept != null)
+                {
+                    f.house = ThingRefs.Of(kept.house);
+                    f.renown = RenownPanels.ListLine(kept);
+                }
                 m.families.Add(f);
             }
             m.families.Sort((a, b) => b.members.Count != a.members.Count ? b.members.Count.CompareTo(a.members.Count) : string.Compare(a.name, b.name, System.StringComparison.Ordinal));
             // The houses out in the region, town by town.
             var houses = WorldLedger.Instance?.Houses;
             if (houses != null)
-                foreach (var h in houses.Where(h => h != null && !h.house.IsNone).OrderBy(h => WorldLedger.TownRecord(h.town)?.name ?? "").ThenBy(h => h.name).Take(60))
+                foreach (var h in houses.Where(h => h != null && !h.house.IsNone && !h.ours).OrderBy(h => WorldLedger.TownRecord(h.town)?.name ?? "").ThenBy(h => h.name).Take(60))
                 {
                     var town = ThingRefs.Of(Ref.Town(h.town));
                     string townName = !town.IsNone && ThingRefs.Exists(town) ? ThingRefs.Link(town) : WorldLedger.TownRecord(h.town)?.name;
                     string house = ThingRefs.Link(RegionWords.HouseName(h).CapitalizeFirst(), ThingRefs.Of(h.house));
-                    m.known.Add(townName.NullOrEmpty() ? house : "CC_Houses_KnownLine".Translate(house.Named("HOUSE"), townName.Named("TOWN")).Resolve());
+                    string line = townName.NullOrEmpty() ? house : "CC_Houses_KnownLine".Translate(house.Named("HOUSE"), townName.Named("TOWN")).Resolve();
+                    // Its renown, after it (Diplomacy/Renown.cs).
+                    string renown = RenownPanels.ListLine(h);
+                    m.known.Add(renown.NullOrEmpty() ? line : "CC_Renown_KnownLine".Translate(line.Named("LINE"), renown.Named("RENOWN")).Resolve());
                 }
             m.stat = m.families.Count > 0 ? "CC_Houses_Stat".Translate(m.families.Count).Resolve() : null;
             return m;

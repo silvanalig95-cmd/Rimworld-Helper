@@ -262,6 +262,8 @@ public static class OutsiderTalkTests
         .Concat(TaskMath.Tags()).Concat(KeeperMath.Tags)
         // Fealty and vassals (Diplomacy/FactsFealty.cs).
         .Concat(FealtyMath.Tags)
+        // House renown (Diplomacy/FactsRenown.cs).
+        .Concat(RenownMath.Tags())
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -293,6 +295,8 @@ public static class OutsiderTalkTests
         "WARD", "HOSTAGE", "GUARDIAN",
         // The council's tasks (Diplomacy/FactsTasks.cs).
         "OFFICER", "OFFICE",
+        // House renown (Diplomacy/FactsRenown.cs).
+        "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

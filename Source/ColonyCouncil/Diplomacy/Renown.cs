@@ -217,6 +217,21 @@ namespace ColonyCouncil
             if (h.ours) Told(h, told, r);
         }
 
+        /// <summary>Dev: one of the colony's houses told a band up or down from where it stands now (the same words, history and bubble as the day's look).</summary>
+        public static void TellStep(LedgerHouse h, bool up)
+        {
+            if (h == null || !h.ours) return;
+            Dirty();
+            var r = Compute(h, (RenownBand)h.band);
+            var was = r.band;
+            int to = (int)was + (up ? 1 : -1);
+            if (to > (int)RenownBand.Peoples || to < (int)RenownBand.Infamous) return;
+            r.band = (RenownBand)to;
+            h.band = to;
+            WorldLedger.TownChanged();
+            Told(h, was, r);
+        }
+
         /// <summary>One of the colony's houses moved a band: into the history (dip:renown, a milestone), a word from one of its people on the map, and the news.</summary>
         private static void Told(LedgerHouse h, RenownBand was, RenownMath.Reading r)
         {

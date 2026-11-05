@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, house renown (Source/ColonyCouncil/Diplomacy/Renown.cs, RenownWords.cs, RenownPanels.cs, FactsRenown.cs;
+       docs/design/stage2-diplomacy.md, round d, item 12). What a house is known for is said in its own age's words
+       ({KNOWNFOR}: the colony's for its houses, their people's for theirs); how far its name carries in the ways of whoever
+       speaks of it ({RENOWN}); keys with numbered fellows (_2 ...) are picked at random, the fellows in
+       Rimfolk_Renown_Variants.xml. -->
+
+  <!-- The settings -->
+  <CC_Settings_DiplomacyRenown>House renown</CC_Settings_DiplomacyRenown>
+  <CC_SetNote_DiplomacyRenown>The colony's houses and the region's are known for what their people did.</CC_SetNote_DiplomacyRenown>
+  <CC_Settings_DiplomacyRenown_Tip>Two or more of the colony's people of one family name who are family to each other are a house (twelve at most); the towns' founding families are the region's. A house's renown is read from what its people did that the world saw: contests won at feasts, marriages into other peoples' houses, wards fostered well, seasons abroad as the colony's youth, envoy or hostage, truces sworn as its speaker, the council's business carried abroad; what the peoples remember of them by name (a raiders' camp broken, fighting beside their fighters, trade at their posts, prisoners freed, their wounded tended, and the wrongs); the colony's names for them, years in office and the Empire's titles; notables who think well of them; and the colony's own oaths kept and broken, which each of its houses shares. A deed counts in full for a year, then a tenth less each season down to three tenths. At 10 its name is known in a town nearby, at 30 across the region, at 60 among every people within reach; at -15 it is known for the wrong things. What most of it came from is what it is known for: fighters, healers, hosts, traders, makers or the faithful. Nothing is spent. Notables think up to 15 better of a renowned house's people (up to 10 worse of an infamous one's), good words for them count up to half again, matches with them are offered and accepted up to twice as readily, and what a house is known for draws the world's events of that kind: challengers to fighters, the sick and the hurt to healers, guests to hosts, the far market to traders, work remembered to makers, pilgrims to the faithful, up to three quarters more often; a feast's guests answer a house known for hosting up to three tenths more readily. Off: nothing is told, read or tipped, and the houses kept are kept.</CC_Settings_DiplomacyRenown_Tip>
+
+  <!-- How far a house's name carries, by the ways of whoever speaks of it -->
+  <CC_Renown_Band_Unknown>not yet known beyond the colony</CC_Renown_Band_Unknown>
+  <CC_Renown_Band_Infamous_Tribal>spat on at the fires around</CC_Renown_Band_Infamous_Tribal>
+  <CC_Renown_Band_Infamous_Medieval>cursed in the halls of the region</CC_Renown_Band_Infamous_Medieval>
+  <CC_Renown_Band_Infamous_Industrial>a byword in the region's papers</CC_Renown_Band_Infamous_Industrial>
+  <CC_Renown_Band_Infamous_Spacer>flagged on every channel in the region</CC_Renown_Band_Infamous_Spacer>
+  <CC_Renown_Band_Town_Tribal>told of at the nearest camp's fire</CC_Renown_Band_Town_Tribal>
+  <CC_Renown_Band_Town_Medieval>spoken of in the next town's market</CC_Renown_Band_Town_Medieval>
+  <CC_Renown_Band_Town_Industrial>talked about in the next town</CC_Renown_Band_Town_Industrial>
+  <CC_Renown_Band_Town_Spacer>known on the nearest settlement's channels</CC_Renown_Band_Town_Spacer>
+  <CC_Renown_Band_Region_Tribal>told of at every fire in the region</CC_Renown_Band_Region_Tribal>
+  <CC_Renown_Band_Region_Medieval>sung in the halls of the region</CC_Renown_Band_Region_Medieval>
+  <CC_Renown_Band_Region_Industrial>in the region's papers</CC_Renown_Band_Region_Industrial>
+  <CC_Renown_Band_Region_Spacer>carried on every channel in the region</CC_Renown_Band_Region_Spacer>
+  <CC_Renown_Band_Peoples_Tribal>told of by every clan within reach</CC_Renown_Band_Peoples_Tribal>
+  <CC_Renown_Band_Peoples_Medieval>sung in halls far and wide</CC_Renown_Band_Peoples_Medieval>
+  <CC_Renown_Band_Peoples_Industrial>known to every people within reach</CC_Renown_Band_Peoples_Industrial>
+  <CC_Renown_Band_Peoples_Spacer>carried to every people within reach</CC_Renown_Band_Peoples_Spacer>
+
+  <!-- What a house is known for, by its own age: "known for good swords" -->
+  <CC_Renown_For_Fighters_Tribal>strong spears</CC_Renown_For_Fighters_Tribal>
+  <CC_Renown_For_Fighters_Medieval>good swords</CC_Renown_For_Fighters_Medieval>
+  <CC_Renown_For_Fighters_Industrial>good shots</CC_Renown_For_Fighters_Industrial>
+  <CC_Renown_For_Fighters_Spacer>steady soldiers</CC_Renown_For_Fighters_Spacer>
+  <CC_Renown_For_Healers_Tribal>healing hands</CC_Renown_For_Healers_Tribal>
+  <CC_Renown_For_Healers_Medieval>skilled healers</CC_Renown_For_Healers_Medieval>
+  <CC_Renown_For_Healers_Industrial>good doctors</CC_Renown_For_Healers_Industrial>
+  <CC_Renown_For_Healers_Spacer>fine medics</CC_Renown_For_Healers_Spacer>
+  <CC_Renown_For_Hosts_Tribal>a warm fire and a full pot</CC_Renown_For_Hosts_Tribal>
+  <CC_Renown_For_Hosts_Medieval>a generous table</CC_Renown_For_Hosts_Medieval>
+  <CC_Renown_For_Hosts_Industrial>good hospitality</CC_Renown_For_Hosts_Industrial>
+  <CC_Renown_For_Hosts_Spacer>gracious hosting</CC_Renown_For_Hosts_Spacer>
+  <CC_Renown_For_Traders_Tribal>fair trades</CC_Renown_For_Traders_Tribal>
+  <CC_Renown_For_Traders_Medieval>honest dealing</CC_Renown_For_Traders_Medieval>
+  <CC_Renown_For_Traders_Industrial>sharp trading</CC_Renown_For_Traders_Industrial>
+  <CC_Renown_For_Traders_Spacer>sound contracts</CC_Renown_For_Traders_Spacer>
+  <CC_Renown_For_Makers_Tribal>good craft</CC_Renown_For_Makers_Tribal>
+  <CC_Renown_For_Makers_Medieval>fine work</CC_Renown_For_Makers_Medieval>
+  <CC_Renown_For_Makers_Industrial>solid workmanship</CC_Renown_For_Makers_Industrial>
+  <CC_Renown_For_Makers_Spacer>clean engineering</CC_Renown_For_Makers_Spacer>
+  <CC_Renown_For_Faithful_Tribal>keeping the old rites</CC_Renown_For_Faithful_Tribal>
+  <CC_Renown_For_Faithful_Medieval>piety</CC_Renown_For_Faithful_Medieval>
+  <CC_Renown_For_Faithful_Industrial>steady faith</CC_Renown_For_Faithful_Industrial>
+  <CC_Renown_For_Faithful_Spacer>devotion</CC_Renown_For_Faithful_Spacer>
+
+  <!-- A house's renown in a line -->
+  <CC_Renown_Line>{RENOWN}.</CC_Renown_Line>
+  <CC_Renown_LineFor>{RENOWN}, for {KNOWNFOR}.</CC_Renown_LineFor>
+
+  <!-- A band moved: the news, the history and the house's story -->
+  <CC_Renown_Up>{HOUSE}'s name is {RENOWN} now.</CC_Renown_Up>
+  <CC_Renown_UpFor>{HOUSE}'s name is {RENOWN} now, and it is known for {KNOWNFOR}.</CC_Renown_UpFor>
+  <CC_Renown_Down>Fewer speak of {HOUSE} than before: its name is {RENOWN} now.</CC_Renown_Down>
+  <CC_Renown_Faded>{HOUSE}'s name has faded from the talk outside the colony.</CC_Renown_Faded>
+  <CC_Renown_Infamous>{HOUSE} has a bad name now: outside the colony its people are spoken of for the wrong things.</CC_Renown_Infamous>
+  <CC_Renown_Mended>{HOUSE}'s bad name is fading from the talk outside the colony.</CC_Renown_Mended>
+
+  <!-- The deeds a house's name came from -->
+  <CC_Renown_Part_contest>contests won at feasts</CC_Renown_Part_contest>
+  <CC_Renown_Part_wedding>marriages into other peoples' houses</CC_Renown_Part_wedding>
+  <CC_Renown_Part_fostered>wards fostered well</CC_Renown_Part_fostered>
+  <CC_Renown_Part_abroad>its youth fostered abroad</CC_Renown_Part_abroad>
+  <CC_Renown_Part_envoy>seasons as the colony's envoy</CC_Renown_Part_envoy>
+  <CC_Renown_Part_hostage>terms served as the colony's hostage</CC_Renown_Part_hostage>
+  <CC_Renown_Part_parley>truces sworn as the colony's speaker</CC_Renown_Part_parley>
+  <CC_Renown_Part_task>the council's business carried abroad</CC_Renown_Part_task>
+  <CC_Renown_Part_told>a secret pressed and told</CC_Renown_Part_told>
+  <CC_Renown_Part_campBroken>raiders' camps broken</CC_Renown_Part_campBroken>
+  <CC_Renown_Part_foughtBeside>fighting beside other peoples' fighters</CC_Renown_Part_foughtBeside>
+  <CC_Renown_Part_killedRaid>raiders brought down</CC_Renown_Part_killedRaid>
+  <CC_Renown_Part_killedField>foes brought down in the field</CC_Renown_Part_killedField>
+  <CC_Renown_Part_tradedPost>trade at the posts</CC_Renown_Part_tradedPost>
+  <CC_Renown_Part_walkedSettlers>settlers walked safely to a new town</CC_Renown_Part_walkedSettlers>
+  <CC_Renown_Part_released>prisoners set free</CC_Renown_Part_released>
+  <CC_Renown_Part_tended>other peoples' wounded tended</CC_Renown_Part_tended>
+  <CC_Renown_Part_killedPeace>blood shed at peace</CC_Renown_Part_killedPeace>
+  <CC_Renown_Part_executed>prisoners executed</CC_Renown_Part_executed>
+  <CC_Renown_Part_harvested>prisoners cut open</CC_Renown_Part_harvested>
+  <CC_Renown_Part_slighted>hard words to guests</CC_Renown_Part_slighted>
+  <CC_Renown_Part_brawled>brawls with guests</CC_Renown_Part_brawled>
+  <CC_Renown_Part_epithet>the colony's names for its people</CC_Renown_Part_epithet>
+  <CC_Renown_Part_office>years in office</CC_Renown_Part_office>
+  <CC_Renown_Part_speaker>terms as the colony's speaker</CC_Renown_Part_speaker>
+  <CC_Renown_Part_title>titles of the Empire</CC_Renown_Part_title>
+  <CC_Renown_Part_regard>notables who think well of its people</CC_Renown_Part_regard>
+  <CC_Renown_Part_swore>oaths sworn by the colony</CC_Renown_Part_swore>
+  <CC_Renown_Part_keptWord>the colony's word kept</CC_Renown_Part_keptWord>
+  <CC_Renown_Part_levies>levies sent when called</CC_Renown_Part_levies>
+  <CC_Renown_Part_pactKept>pacts kept</CC_Renown_Part_pactKept>
+  <CC_Renown_Part_brokeTruce>truces broken by the colony</CC_Renown_Part_brokeTruce>
+  <CC_Renown_Part_brokePact>pacts broken by the colony</CC_Renown_Part_brokePact>
+  <CC_Renown_Part_renounced>an oath renounced</CC_Renown_Part_renounced>
+  <CC_Renown_Part_schemed>secrets the colony told</CC_Renown_Part_schemed>
+  <CC_Renown_Part_refused>calls the colony refused</CC_Renown_Part_refused>
+  <CC_Renown_Part_tributeShort>tribute paid short</CC_Renown_Part_tributeShort>
+  <CC_Renown_Part_wordBroken>the colony's word broken</CC_Renown_Part_wordBroken>
+  <CC_Renown_Part_founding>a founding family of its town</CC_Renown_Part_founding>
+  <CC_Renown_Part_head>the head of its town</CC_Renown_Part_head>
+  <CC_Renown_Part_leader>its people's leader</CC_Renown_Part_leader>
+  <CC_Renown_Part_colonyTie>its dealings with the colony</CC_Renown_Part_colonyTie>
+  <CC_Renown_Part_thriving>a thriving town</CC_Renown_Part_thriving>
+  <CC_Renown_Part_struggling>a struggling town</CC_Renown_Part_struggling>
+  <CC_Renown_Part_skill>what its head is best at</CC_Renown_Part_skill>
+
+  <!-- The House card -->
+  <CC_Renown_Card_Head>Renown</CC_Renown_Card_Head>
+  <CC_Renown_Card_Ties>Marriages, wards and feuds</CC_Renown_Card_Ties>
+  <CC_Renown_Card_HouseOf>a house of {COLONY}</CC_Renown_Card_HouseOf>
+  <CC_Renown_Card_Eldest>the eldest</CC_Renown_Card_Eldest>
+  <CC_Renown_Card_Age>age {AGE}</CC_Renown_Card_Age>
+  <CC_Renown_Card_Gone>No longer with the colony: {NAMES}.</CC_Renown_Card_Gone>
+  <CC_Renown_Card_PeopleLine>Its people: {NAMES}.</CC_Renown_Card_PeopleLine>
+  <CC_Renown_Card_Off>House renown is off in the settings.</CC_Renown_Card_Off>
+  <CC_Renown_Card_From>Its name comes from {PARTS}.</CC_Renown_Card_From>
+  <CC_Renown_Card_Against>Held against it: {PARTS}.</CC_Renown_Card_Against>
+  <CC_Renown_Card_KnownTo>Known to {NOTABLES}.</CC_Renown_Card_KnownTo>
+  <CC_Renown_Card_Does>Notables think up to {REGARD} better of its people for it, a good word for them counts for more, and matches with them are taken up more readily.</CC_Renown_Card_Does>
+  <CC_Renown_Card_DoesBad>Notables think up to {REGARD} worse of its people for it.</CC_Renown_Card_DoesBad>
+  <CC_Renown_Card_Feud>{HOLDER} holds a grudge over {ABOUT}</CC_Renown_Card_Feud>
+
+  <!-- Elsewhere: a colonist's card, People → Houses -->
+  <CC_Renown_Colonist>One of {HOUSE}. {STANDING}</CC_Renown_Colonist>
+  <CC_Renown_KnownLine>{LINE}. {RENOWN}</CC_Renown_KnownLine>
+
+</LanguageData>

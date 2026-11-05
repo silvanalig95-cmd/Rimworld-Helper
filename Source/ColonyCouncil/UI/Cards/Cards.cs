@@ -547,6 +547,13 @@ namespace ColonyCouncil
         private static void House(CardModel m)
         {
             var h = ThingRefs.House(m.thing);
+            // One of the colony's own houses (stage 2d.1): its people and seat (Diplomacy/RenownPanels.cs); its renown is a registered section.
+            if (h.ours)
+            {
+                RenownPanels.OurHouse(m, h);
+                CardWords.Story(m, h.house, Ref.None);
+                return;
+            }
             m.title = RegionWords.HouseName(h);
             m.faction = h.people;
             m.icon = Icons.People;
