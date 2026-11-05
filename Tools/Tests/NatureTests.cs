@@ -182,6 +182,8 @@ public static class NatureTests
         C(Code("Diplomacy/Fealty.cs").Contains("Nature.Felt(speaker, NatureAct.SworeFealty, f)"), "the oath: the speaker who swears it at the gate (Fealty.Swear, from the oath's job)");
         C(Regex.IsMatch(Code("Diplomacy/FealtyOath.cs"), @"Fealty\.Swear\(o\.people, pawn\.Map, pawn, l\)"), "the oath's job passes the one who walked out");
         C(Code("Diplomacy/Matches.cs").Contains("Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people"), "a match: the colonist, when the council presses it over the objection");
+        C(Regex.IsMatch(Code("Diplomacy/Matches.cs"), @"p\.pressed = true;\s*Agree\(h, p\);\s*(//[^\n]*\n\s*)*if \(p\.stage == MatchStage\.Agreed\) Nature\.Felt\(p\.ours"),
+            "and only once it is agreed (\"was promised to\" is what happened)");
         string hooks = Code("Diplomacy/PactsHooks.cs");
         C(hooks.Contains("var by = MemoryHooks.Doer;") && hooks.Contains("Nature.Felt(by, NatureAct.BrokeTruce, f)") && hooks.Contains("broke |= Truces.BrokenByUs(f, how)")
           && hooks.Contains("broke |= Pacts.BrokenByUs(f, how)") && hooks.Contains("broke |= Fealty.BrokenByUs(f, how)"), "a broken truce, pact or oath: the one the game names for the deed");
