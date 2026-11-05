@@ -298,6 +298,9 @@ namespace ColonyCouncil
             // Theirs: a debt of theirs refused when the colony called it in, a truce they broke, a scheme of theirs found
             // out, and their protection given.
             ["brokeWord"] = K(DeedSide.TheirWrong, 12),
+            // A trap sprung at an exchange of captives (Diplomacy/Ransoms.cs): their word broken at the gate, its own deed
+            // so what is said of a debt refused is never said of it.
+            ["trapped"] = K(DeedSide.TheirWrong, 12),
             ["truceBroken"] = K(DeedSide.TheirWrong, 20),
             ["schemedUs"] = K(DeedSide.TheirWrong, 12),
             ["protected"] = K(DeedSide.TheirFavor, 10)

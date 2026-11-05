@@ -32,7 +32,7 @@ namespace ColonyCouncil
 
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
-            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy;
+            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || WardLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -46,6 +46,7 @@ namespace ColonyCouncil
         {
             if (!Owns(p) || n == null) return null;
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
+            if (WardLetters.Owns(p)) return WardLetters.WhyNot(n, Home);
             if (p == LetterPurpose.Truce) return Truces.WhyNot(n.faction, Home);
             if (p == LetterPurpose.Pact)
             {
@@ -65,6 +66,7 @@ namespace ColonyCouncil
         {
             if (p == LetterPurpose.Favour) return Topics(n);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
+            if (WardLetters.Owns(p)) return WardLetters.Topics(n, Home);
             var list = new List<LetterTopic>();
             if (n?.faction == null) return list;
             var f = n.faction;
@@ -129,6 +131,7 @@ namespace ColonyCouncil
             if (asksFor == topicKey && Time.realtimeSinceStartup - asksAt < 0.5f) return asks;
             if (topicKey != null && topicKey.StartsWith(TrucePrefix, StringComparison.Ordinal)) asks = TruceAsks(topicKey, map);
             else if (topicKey != null && topicKey.StartsWith(PactPrefix, StringComparison.Ordinal)) asks = CartAsks(topicKey, map);
+            else if (topicKey == WardMath.AskTopic || topicKey == WardMath.SendTopic) asks = WardLetters.Asks(topicKey, map ?? Home);
             else
             {
                 var t = TieOf(topicKey, TiePrefix);
@@ -149,6 +152,9 @@ namespace ColonyCouncil
             int captives = Truces.Captives(f, map).Count;
             foreach (TrucePrice price in Enum.GetValues(typeof(TrucePrice)))
             {
+                // A hostage either way (release 2b.3): theirs, or one of the colony's by name (Hostages.cs).
+                if (price == TrucePrice.TheirHostage) list.AddRange(Hostages.TruceOptions(f, map, PricePrefix));
+                if (price == TrucePrice.TheirHostage || price == TrucePrice.OurHostage) continue;
                 int amount = price == TrucePrice.Ours || price == TrucePrice.Theirs ? silver : price == TrucePrice.Captives ? captives : 0;
                 string why = null;
                 if (price == TrucePrice.Ours && PlayCarry.Have(map, "silver", ThingDefOf.Silver) < silver)
@@ -159,11 +165,13 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>A trade pact's cart, from the colony's surplus; nothing to ask in a defence pact.</summary>
+        /// <summary>A trade pact's cart, from the colony's surplus; a defence pact's hostages, either way (release 2b.3).</summary>
         private static List<FavourCalls.Option> CartAsks(string topicKey, Map map)
         {
             var list = new List<FavourCalls.Option>();
-            if (!ParseTopic(topicKey, PactPrefix, out string what, out _) || what != PactMath.Trade) return list;
+            if (!ParseTopic(topicKey, PactPrefix, out string what, out var pf)) return list;
+            if (what == PactMath.Defence) return Hostages.PactOptions(pf, map ?? Home);
+            if (what != PactMath.Trade) return list;
             foreach (var (def, count) in Pacts.CartGoods(map ?? Home))
                 list.Add(new FavourCalls.Option { code = CartPrefix + def.defName + ":" + count, label = PactWords.P("CC_Pact_CartOption", Couriers.Amount(count, null, def).Named("GOODS")) });
             return list;
@@ -253,6 +261,49 @@ namespace ColonyCouncil
         private static int Picked = -1;
         private static string Asked;
 
+        // ================= Their own words =================
+
+        /// <summary>
+        /// A pact ended by the colony's letter: their own words in the answer are picked as this purpose's, not "pact", so
+        /// they speak of an end and never of an offer refused (Rimfolk_Lines_PactEnds.xml).
+        /// </summary>
+        public const string PactEndTag = "pactend";
+
+        /// <summary>
+        /// A truce they agree to that is sworn by word (no people at peace with both to vouch for their envoy): their own
+        /// words are picked as this purpose's, not "truce", whose lines promise their envoy at the gate (Rimfolk_Lines_PactEnds.xml).
+        /// </summary>
+        public const string TruceByWordTag = "trucebyword";
+
+        /// <summary>
+        /// Tags for their own words in the answer (NeighbourLetters.Quote) that only this frame knows: a pact ended by the
+        /// colony's letter is answered as <see cref="PactEndTag"/>, a truce agreed and sworn by word as
+        /// <see cref="TruceByWordTag"/> (each in place of its purpose's own tag, so no line meant for the other case can
+        /// fit), and the wards' (WardLetters).
+        /// </summary>
+        public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
+        {
+            if (l == null || tags == null || !Owns(l.purpose)) return;
+            try
+            {
+                if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactEndPrefix, StringComparison.Ordinal))
+                {
+                    tags.Remove("pact");
+                    tags.Add(PactEndTag);
+                }
+                if (l.purpose == LetterPurpose.Truce && n?.faction != null && !tags.Contains("refusal") && Truces.ByWord(n.faction))
+                {
+                    tags.Remove("truce");
+                    tags.Add(TruceByWordTag);
+                }
+                WardLetters.QuoteTags(l, n, tags);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("diplomacy letters: their words' tags", e);
+            }
+        }
+
         // ================= Their answer =================
 
         /// <summary>What their answer does, and its words for their letter.</summary>
@@ -273,6 +324,11 @@ namespace ColonyCouncil
             var a = new Answer();
             try
             {
+                if (WardLetters.Owns(l.purpose))
+                {
+                    a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
                 if (RansomLetters.Owns(l.purpose))
                 {
                     a.line = RansomLetters.Read(l, n, l.map ?? Home, ref tone);
@@ -340,7 +396,10 @@ namespace ColonyCouncil
                 var t = int.TryParse(l.topicKey.Substring(PactEndPrefix.Length), out int id) ? Pacts.Get(id) : null;
                 if (t != null && t.Live) Pacts.EndByLetter(t);
                 a.line = PactWords.T("CC_Pact_Ans_Ended", PactWords.People(f).Named("PEOPLE"));
+                // Nothing was asked of them, so nothing is refused: they take the end cool or curt (their own words are
+                // picked for an end, QuoteTags' "pactend", never a refused offer's).
                 if (tone < AnswerTone.Cool) tone = AnswerTone.Cool;
+                else if (tone > AnswerTone.Curt) tone = AnswerTone.Curt;
                 return;
             }
             else
@@ -358,7 +417,16 @@ namespace ColonyCouncil
                     cart = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
                     count = c;
                 }
-                a.line = Pacts.Hear(f, home, k, cart, count, Rand.Value, out yes);
+                // A hostage either way among a defence pact's terms (Hostages.cs): theirs makes it harder for them to agree, the colony's easier.
+                float roll = Rand.Value;
+                bool hostage = WardMath.ParseHostage(l.help, out bool ours, out _);
+                if (hostage) roll = WardMath.PactRoll(roll, ours ? WardMath.OurHostageScore : WardMath.TheirHostageScore);
+                a.line = Pacts.Hear(f, home, k, cart, count, roll, out yes);
+                if (yes && hostage)
+                {
+                    string given = Hostages.ForPact(f, home, k, l.help);
+                    if (!given.NullOrEmpty()) a.line += " " + given;
+                }
             }
             if (!yes) tone = AnswerTone.Refusal;
             else if (tone > AnswerTone.Cool) tone = AnswerTone.Cool;

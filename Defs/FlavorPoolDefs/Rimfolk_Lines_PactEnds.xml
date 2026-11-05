@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Their own words in two answers of round a that had none of their own (Source/ColonyCouncil/Diplomacy/
+    DiplomacyLetters.cs, QuoteTags), in the pool Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml):
+    - pactend: the colony's letter ending a pact without blame. Nothing was asked of them, so nothing is refused: they
+      take it cool or curt. The answer is picked under this tag instead of "pact", so a refused offer's lines never fit.
+    - trucebyword: a truce they agree to that is sworn by word, because no people at peace with both can vouch for their
+      envoy on the colony's land. Picked under this tag instead of "truce", whose lines promise their envoy at the gate;
+      cordial or cool (a people at war is never warm). A refusal keeps the truce's own lines.
+    By their ways only theirLowtech (tribes, the middle ages and the Empire's court) and theirHightech; call for a call.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PactEnds</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- A pact ended by the colony's letter -->
+        <li>[pactend,cool] The pact is over, then. We part without any grudge.</li>
+        <li>[pactend,cool,theirLowtech] The oath is put aside as your words ask, and no one here will speak ill of it.</li>
+        <li>[pactend,cool,theirHightech] Your notice ending the agreement is received and filed.</li>
+        <li>[pactend,cool,letter] We have your letter, and we will do as it asks.</li>
+        <li>[pactend,cool,call] Understood, {WRITER}. We'll consider the pact ended.</li>
+        <li>[pactend,curt] Your colony ends the pact. So be it.</li>
+        <li>[pactend,curt,theirLowtech] The oath is set aside, as you ask. We will remember who asked.</li>
+        <li>[pactend,curt,theirHightech] Agreement ended at your request. Our records are updated.</li>
+        <li>[pactend,curt,call] So that's the end of it, {WRITER}. We heard you.</li>
+        <!-- A truce agreed, sworn by word -->
+        <li>[trucebyword,cordial,war] Nobody will vouch for an envoy of ours on your land, so take this letter as our word. We accept.</li>
+        <li>[trucebyword,cordial,war,theirHightech] Terms accepted. With no third party to escort an envoy, consider this letter our signature.</li>
+        <li>[trucebyword,cool,war] We accept your terms. There is no one to walk our envoy in safely, so our word will have to do.</li>
+        <li>[trucebyword,cool,war,theirLowtech] Our people swear it here among ourselves, since nobody can bring our envoy to you.</li>
+        <li>[trucebyword,cool,war,letter] We read your terms twice before we agreed to them. Our word is in this letter, and nowhere else.</li>
+        <li>[trucebyword,cool,call] All right, {WRITER}. Nobody can vouch for an envoy of ours, so you have our word on this call.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

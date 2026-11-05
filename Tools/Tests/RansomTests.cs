@@ -210,7 +210,7 @@ public static class RansomTests
         C(text["Ransoms.cs"].Contains("h.offers.Count >= RansomMath.MaxOffers"), "six offers a home at most");
         string keep = Code("World/Ledger/LedgerKeep.cs");
         C(keep.Contains("public const string Envoy = \"envoy\";") && keep.Contains("public const string Lent = \"lent\";") && keep.Contains("case KeepFor.Envoy: return Envoys.Holds(p);")
-          && keep.Contains("case KeepFor.Lent: return EnvoysAbroad.Holds(p);"), "kept with KeepFor.Envoy and KeepFor.Lent, each checked daily");
+          && keep.Contains("case KeepFor.Lent: return EnvoysAbroad.Holds(p)"), "kept with KeepFor.Envoy and KeepFor.Lent (the colony's ward or hostage away too, release 2b.3), each checked daily");
         C(text["Envoys.cs"].Contains("WorldLedger.Keep(n.pawn, KeepFor.Envoy)") && text["EnvoysAbroad.cs"].Contains("WorldLedger.Keep(p, KeepFor.Lent)"), "and given those reasons");
         string save = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
         C(save.Contains("\"Diplomacy/DiplomacyBook.cs:homes\"") && save.Contains("\"Diplomacy/DiplomacyBook.cs:offers\"") && save.Contains("\"MaxOffers\""),

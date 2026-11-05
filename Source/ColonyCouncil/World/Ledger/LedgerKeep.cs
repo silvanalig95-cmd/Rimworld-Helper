@@ -29,6 +29,10 @@ namespace ColonyCouncil
         public const string Envoy = "envoy";
         /// <summary>One of the colony's away for a term among another people, as the colony's envoy at their town (Diplomacy/EnvoysAbroad.cs).</summary>
         public const string Lent = "lent";
+        /// <summary>A ward of theirs agreed and not yet come, or fostered and gone home while the colony remembers them (Diplomacy/Wards.cs).</summary>
+        public const string Ward = "ward";
+        /// <summary>A hostage of theirs agreed and not yet come to the colony (Diplomacy/Hostages.cs).</summary>
+        public const string Hostage = "hostage";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -133,7 +137,10 @@ namespace ColonyCouncil
                 case KeepFor.Hamlet: return Hamlets.Holds(p);
                 // A people's envoy staying the season, and the colony's own envoy away (Diplomacy/Envoys.cs, EnvoysAbroad.cs).
                 case KeepFor.Envoy: return Envoys.Holds(p);
-                case KeepFor.Lent: return EnvoysAbroad.Holds(p);
+                case KeepFor.Lent: return EnvoysAbroad.Holds(p) || WardsAbroad.Holds(p);
+                // Wards and hostages of theirs, not yet come, and a ward fostered and gone home (Diplomacy/Wards.cs, Hostages.cs).
+                case KeepFor.Ward: return Wards.Holds(p);
+                case KeepFor.Hostage: return Hostages.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

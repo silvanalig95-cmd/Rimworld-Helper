@@ -2726,6 +2726,19 @@ regard, and their people remember it; an empty plate is a slight. A bout's blow 
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
 conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*.
 
+**Wards and hostages.** A friend whose head thinks well of the colony may offer a youth of a notable's house to live at
+the colony for a year (a child where the game has children), or the colony asks for one by letter: they walk in with
+their kin and stay as the game's lodger, on the colonist bar and working with everyone, and a guardian with 10 or more
+in the skill they came for teaches them an hour a day when both are free and together (a child learns at the game's own
+lessons). Their card says how they are (homesick, settling in, happy), what they have learned and where they sleep. At
+the year's end their kin come to the gate for them, and how they were kept (taught, fed, unhurt, content) goes home with
+them: a fine year leaves a debt of honor, the grown ward remembers it, and a ward hurt or killed in the colony's care is
+grieved, a feud if by a colonist's hand. The colony can send a youth of its own to live with another people for a year
+(to the Empire, a page in a titled household): letters every ten days, and home with their people's skill and a friend
+there. Hostages, adults only, can be a truce's price or a defense pact's term, either way; their side breaking a truce
+leaves theirs the colony's to decide about, and the colony breaking its word leaves its own in their captivity. 29
+conversation pieces, 29 letter lines and 20 spoken lines speak of them. Setting: *Wards and hostages*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town

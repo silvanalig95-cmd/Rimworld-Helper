@@ -67,7 +67,7 @@ namespace ColonyCouncil
             string text = PactWords.P(Truces.Pending(t) ? "CC_Truce_RowPending" : "CC_Truce_Row", form.word.Named("WORD"), PactWords.People(f).Named("PEOPLE"),
                 PactWords.Term(Truces.TermOf(t)).Named("TERM"));
             string note = Truces.Pending(t)
-                ? PactWords.P("CC_Truce_RowPendingNote", form.rite.Named("RITE"))
+                ? PactWords.P(Truces.ByWord(f) ? "CC_Truce_RowPendingNoteByWord" : "CC_Truce_RowPendingNote", form.rite.Named("RITE"))
                 : PactWords.Since(t.since) + "; " + Truces.FromPeaceLine(f);
             return new DipRow { text = text, note = note, color = UiKit.Cool, link = t, tip = PactWords.Price(Truces.PriceOf(t), t.terms.count).CapitalizeFirst() };
         }

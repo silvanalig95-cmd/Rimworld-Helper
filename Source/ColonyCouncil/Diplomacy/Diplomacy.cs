@@ -44,6 +44,8 @@ namespace ColonyCouncil
                 Safe("envoys abroad", () => EnvoysAbroad.Hourly(now));
                 // Feasts with guests (release 2b.1): the answers, the day, the guests' stay; tales of the colony's own told at home.
                 Safe("feasts", () => Feasts.Hourly(now));
+                // Wards and hostages either way (release 2b.3).
+                Safe("wards", () => Wards.Hourly(now));
             }
             if (Sched.FirstHourOfDay(now))
             {
@@ -51,6 +53,7 @@ namespace ColonyCouncil
                 Safe("pacts' day", () => Pacts.Daily(now));
                 Safe("envoys' day", () => Envoys.Daily(now));
                 Safe("feasts' day", () => Feasts.Daily(now));
+                Safe("wards' day", () => Wards.Daily(now));
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }

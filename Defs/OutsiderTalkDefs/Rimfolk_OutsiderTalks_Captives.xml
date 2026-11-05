@@ -7,8 +7,8 @@
        (the one spoken to was the colony's captive once and went home by a ransom or an exchange, {CAPTOR} the home that
        held them), colony:prisoners (the colony holds someone). What their people remember: deed:ransomed (a bargain over
        captives settled between the two: a ransom paid either way, or an exchange), deed:forgave (the colony let one of
-       theirs go for nothing), deed:brokeWord (their people went back on their word, a trap at an exchange among other
-       things), deed:captured, deed:prisonerDied. By their ways: a tribe trades captives back for goods, the middle ages
+       theirs go for nothing), deed:trapped (their people sprang a trap at an exchange: the pieces in
+       Rimfolk_OutsiderTalks_Trap.xml), deed:captured, deed:prisonerDied. By their ways: a tribe trades captives back for goods, the middle ages
        pay a price in silver, outlanders meet at a crossing, spacers exchange on agreed terms; the Empire pays in silver.
        The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 

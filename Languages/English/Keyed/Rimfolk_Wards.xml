@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, wards and hostages (Source/ColonyCouncil/Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs, WardPanels.cs;
+       docs/design/stage2-diplomacy.md, round b, item 7). Keys with numbered fellows (_2 ...) are picked at random
+       (TextVariants); more fellows are in Rimfolk_Wards_Variants.xml. {WORD} is the colony's word by its age, {RITE} their
+       way by theirs (Rimfolk_Ages.xml: Ward, Hostage). -->
+
+  <!-- The letter purpose -->
+  <CC_Letter_Purpose_Ward>a ward</CC_Letter_Purpose_Ward>
+  <CC_Letter_PurposeCap_Ward>Wards and fostering</CC_Letter_PurposeCap_Ward>
+
+  <!-- The settings -->
+  <CC_Settings_DiplomacyWards>Wards and hostages</CC_Settings_DiplomacyWards>
+  <CC_SetNote_DiplomacyWards>A youth fostered for a year either way, and hostages given for a truce's or a pact's terms.</CC_SetNote_DiplomacyWards>
+  <CC_Settings_DiplomacyWards_Tip>A people at peace whose head thinks 30 or more of the colony may offer a youth of a notable's house (a child where the game has children, else 14 to 19) to live at the colony for a year and learn a skill it is known for, at most once a year; or the colony asks by letter. The ward lives as the game's lodger, on the colonist bar and working with the colony, and their guardian (a colonist with 10 or more in the skill) teaches them an hour a day when both are free and together; a child with Biotech learns at the game's own lessons instead. At the year's end their kin come to the gate for them, and how they were kept (taught, fed, unhurt, content) moves their people: a year kept well leaves a debt of honor, and the grown ward still thinks well of the colony. The colony may offer a youth of its own to live with another people for a year; they write home every ten days and come back with what that people are good at and a friend there (with the Empire, a page in a titled household, for regard only). Hostages, adults only, may be given for a truce or a defense pact either way: theirs lives at the colony for the term, the colony's at their town. Their side breaking the terms leaves theirs the colony's to decide about; the colony breaking them leaves its own held by their people, in the game's own captivity. Off: nothing new is agreed, and those under way run their term.</CC_Settings_DiplomacyWards_Tip>
+
+  <!-- A truce's price -->
+  <CC_Truce_Price_TheirHostage>a hostage from them for the term</CC_Truce_Price_TheirHostage>
+  <CC_Truce_Price_OurHostage>{NAME} as the colony's hostage for the term</CC_Truce_Price_OurHostage>
+
+  <!-- Words for the cards and rows -->
+  <CC_Ward_Mood_Homesick>homesick</CC_Ward_Mood_Homesick>
+  <CC_Ward_Mood_Settling>settling in</CC_Ward_Mood_Settling>
+  <CC_Ward_Mood_Happy>happy</CC_Ward_Mood_Happy>
+  <CC_Ward_Result_Poor>a poor year</CC_Ward_Result_Poor>
+  <CC_Ward_Result_Fair>a fair year</CC_Ward_Result_Fair>
+  <CC_Ward_Result_Good>a good year</CC_Ward_Result_Good>
+  <CC_Ward_Result_Fine>a fine year</CC_Ward_Result_Fine>
+  <CC_Ward_Skill_Any>a trade of the colony's</CC_Ward_Skill_Any>
+  <CC_Ward_Page>a page in a titled household</CC_Ward_Page>
+  <CC_Ward_Since>since {AGO}</CC_Ward_Since>
+  <CC_Hostage_Someone>one of the colony's</CC_Hostage_Someone>
+  <CC_Hostage_ForTruce>for the truce's terms</CC_Hostage_ForTruce>
+  <CC_Hostage_ForPact>for the pact's terms</CC_Hostage_ForPact>
+
+  <!-- Why not -->
+  <CC_Ward_Why_Off>Wards and hostages are switched off in the settings.</CC_Ward_Why_Off>
+  <CC_Ward_Why_War>{PEOPLE} are at war with the colony.</CC_Ward_Why_War>
+  <CC_Ward_Why_NotAtPeace>{PEOPLE} would have to be at peace with the colony.</CC_Ward_Why_NotAtPeace>
+  <CC_Ward_Why_OneHere>A ward is already living at this home.</CC_Ward_Why_OneHere>
+  <CC_Ward_Why_OneAway>A youth of this home is already living with another people.</CC_Ward_Why_OneAway>
+  <CC_Ward_Why_Full>This home already has four wards and hostages either way.</CC_Ward_Why_Full>
+  <CC_Ward_Why_NoGuardian>Nobody at this home has {SKILL} or more in a skill to be a ward's guardian.</CC_Ward_Why_NoGuardian>
+  <CC_Ward_Why_NoKin>The colony doesn't know the head, heir or envoy of {PEOPLE}, whose house a ward would come from.</CC_Ward_Why_NoKin>
+  <CC_Ward_Why_NoYouth>Nobody at this home is between 14 and 19 and free to go.</CC_Ward_Why_NoYouth>
+  <CC_Ward_Why_NoYouthChild>Nobody at this home is between 10 and 19 and free to go.</CC_Ward_Why_NoYouthChild>
+  <CC_Ward_Why_YouthAway>They aren't at this home just now.</CC_Ward_Why_YouthAway>
+  <CC_Ward_Why_YouthBusy>{PAWN} can't go just now.</CC_Ward_Why_YouthBusy>
+  <CC_Ward_Why_NotHere>Only while the ward is living at the colony.</CC_Ward_Why_NotHere>
+  <CC_Ward_Why_NotThere>Only while they are living at the town.</CC_Ward_Why_NotThere>
+  <CC_Ward_Why_GameLessons>{WARD} learns at the colony's lessons, as children do.</CC_Ward_Why_GameLessons>
+  <CC_Hostage_Why_NoEscort>No people at peace with both sides could vouch for a hostage of {PEOPLE} on the road.</CC_Hostage_Why_NoEscort>
+  <CC_Hostage_Why_NoAdult>Nobody at this home is grown and free to go as a hostage. Children are never hostages.</CC_Hostage_Why_NoAdult>
+  <CC_Hostage_Why_NotHere>Only while the hostage is here.</CC_Hostage_Why_NotHere>
+  <CC_Hostage_Why_NoWarden>Nobody who can do a warden's work can reach them.</CC_Hostage_Why_NoWarden>
+  <CC_Hostage_Why_NoBed>There is no free bed for a prisoner.</CC_Hostage_Why_NoBed>
+  <CC_Hostage_Why_WontStay>{HOSTAGE} would rather go home.</CC_Hostage_Why_WontStay>
+
+  <!-- Their offer of a ward -->
+  <CC_Ward_Offer_Label>A ward offered: {PEOPLE}</CC_Ward_Offer_Label>
+  <CC_Ward_Offer>Word has come from {WHO} of {PEOPLE}. A youth of {KIN}'s house would come to live at the colony for a year and learn {SKILL}, which the colony is known for. They call it {RITE}; here it would be {WORD}.</CC_Ward_Offer>
+  <CC_Ward_Offer_2>{WHO} of {PEOPLE} writes that {KIN}'s house has a youth who should learn {SKILL} away from home, and asks whether the colony will keep them a year: {RITE}, as their people put it.</CC_Ward_Offer_2>
+  <CC_Ward_Offer_How>The ward would live at the colony as its lodger, on the colonist bar, working with the colony, and {GUARDIAN} would teach them {SKILL} an hour a day. At the year's end their kin come for them, and how they were kept travels home with them: taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_How>
+  <CC_Ward_Offer_HowChild>The ward, a child, would live at the colony as its lodger, on the colonist bar, and learn {SKILL} at the colony's lessons, where {GUARDIAN} and others can teach. At the year's end their kin come for them, and how they were kept travels home with them: taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_HowChild>
+  <CC_Ward_Opt_Accept>Take the ward in</CC_Ward_Opt_Accept>
+  <CC_Ward_Opt_Decline>Decline with thanks</CC_Ward_Opt_Decline>
+  <CC_Ward_Msg_Accepted>The colony has agreed to take {WARD} of {PEOPLE} for a year. They will come to the gate with their kin.</CC_Ward_Msg_Accepted>
+
+  <!-- Asking, offering: the letter's topics and asks, their answer -->
+  <CC_Ward_Topic_Ask>Ask for a youth of theirs to foster: {WORD}</CC_Ward_Topic_Ask>
+  <CC_Ward_Topic_Send>Offer a youth of the colony's to live with them: {WORD}</CC_Ward_Topic_Send>
+  <CC_Ward_Topic_SendPage>Offer a youth of the colony's as a page in a titled household</CC_Ward_Topic_SendPage>
+  <CC_Ward_AskSkill>to learn {SKILL} from {GUARDIAN}</CC_Ward_AskSkill>
+  <CC_Ward_AskYouth>{PAWN}, {AGE}</CC_Ward_AskYouth>
+  <CC_Ward_Ans_Moot>{PEOPLE} had nothing to answer: things had changed by the time it reached them.</CC_Ward_Ans_Moot>
+  <CC_Ward_Ans_Yes>{PEOPLE} will send {WARD} to the colony for a year to learn {SKILL}: {RITE}, by their ways. They come to the gate with their kin.</CC_Ward_Ans_Yes>
+  <CC_Ward_Ans_Yes_2>The answer is yes. {WARD} of {PEOPLE} will come to learn {SKILL} for a year, with one of their kin to see them to the gate.</CC_Ward_Ans_Yes_2>
+  <CC_Ward_Ans_No>{PEOPLE} would rather keep their youths at home this year. There will be no {WORD} for now.</CC_Ward_Ans_No>
+  <CC_Ward_Ans_No_2>{PEOPLE} thank the colony and send back no. Their families aren't ready to part with anyone for a year.</CC_Ward_Ans_No_2>
+  <CC_Ward_Ans_SendYes>{PEOPLE} will take {PAWN} in for a year, {RITE} as their ways have it, to learn {SKILL} at {TOWN}. {PAWN} can set out as soon as the answer is back.</CC_Ward_Ans_SendYes>
+  <CC_Ward_Ans_SendYes_2>The answer from {PEOPLE} is yes: {PAWN} may come to {TOWN} for a year and learn {SKILL} among them.</CC_Ward_Ans_SendYes_2>
+  <CC_Ward_Ans_SendNo>{PEOPLE} can't take {PAWN} in this year. There is no room in their houses for {WORD}.</CC_Ward_Ans_SendNo>
+  <CC_Ward_Ans_SendNo_2>{PEOPLE} write back politely that it isn't a good year to take in a youth from outside.</CC_Ward_Ans_SendNo_2>
+  <CC_Ward_Ans_SendYesEmpire>{PEOPLE} accept {PAWN} as a page in a titled household at {TOWN} for a year. The page will learn the ways of a noble house and serve at its table.</CC_Ward_Ans_SendYesEmpire>
+  <CC_Ward_Ans_SendNoEmpire>{PEOPLE} decline. No titled household at their court has a place for a page from the colony this year.</CC_Ward_Ans_SendNoEmpire>
+
+  <!-- Their ward on the way, and at the gate -->
+  <CC_Ward_Msg_Comes>{WARD} of {PEOPLE} is walking in toward the gate with one of their kin, to live at the colony for a year: {WORD}.</CC_Ward_Msg_Comes>
+  <CC_Ward_Msg_NotComing>{WARD} of {PEOPLE} won't be coming to the colony after all.</CC_Ward_Msg_NotComing>
+  <CC_Ward_Msg_Harmed>The colony's people hurt {WARD}'s kin at the gate. {PEOPLE} have taken {WARD} home again.</CC_Ward_Msg_Harmed>
+  <CC_Ward_Arrives_Label>A ward: {WARD}</CC_Ward_Arrives_Label>
+  <CC_Ward_Arrives>{WARD} of {PEOPLE} has come to live at the colony for a year, {WORD} as the colony would say: {RITE}, by their own ways. Their kin saw them to the gate and went home. They are to learn {SKILL}.</CC_Ward_Arrives>
+  <CC_Ward_Arrives_2>At the gate, {WARD} said goodbye to their kin and walked in to stay. {PEOPLE} have sent them for a year to learn {SKILL}: {RITE}.</CC_Ward_Arrives_2>
+  <CC_Ward_Arrives_Guardian>{GUARDIAN} is their guardian, and will teach {WARD} {SKILL} an hour a day, when both are free and together.</CC_Ward_Arrives_Guardian>
+  <CC_Ward_Arrives_GuardianChild>{WARD} is still a child and will learn at the colony's lessons. {GUARDIAN} is their guardian, with the most {SKILL} at this home.</CC_Ward_Arrives_GuardianChild>
+  <CC_Ward_Arrives_NoGuardian>Nobody at this home has enough {SKILL} to teach {WARD} just now. Pick a guardian on their card when someone does.</CC_Ward_Arrives_NoGuardian>
+  <CC_Ward_Arrives_How>{WARD} lives at the colony as its lodger: on the colonist bar, working with everyone else, and in need of a bed of their own. How they are kept goes home with them at the year's end.</CC_Ward_Arrives_How>
+  <CC_Ward_Quest_Title>{WARD}: {WORD}</CC_Ward_Quest_Title>
+  <CC_Ward_Quest_Text>{WARD} of {PEOPLE} lives at the colony for a year to learn {SKILL}: {RITE}. Their people are their home people, as with any lodger. At the year's end their kin come to the gate for them.</CC_Ward_Quest_Text>
+
+  <!-- Their ward's year -->
+  <CC_Ward_HereAs>living here for a year, {WORD}; {MOOD}</CC_Ward_HereAs>
+  <CC_Ward_Msg_NoGuardian>{WARD} has nobody to teach them now. Pick a guardian on their card.</CC_Ward_Msg_NoGuardian>
+  <CC_Ward_Msg_GuardianSet>{GUARDIAN} will be {WARD}'s guardian from now on.</CC_Ward_Msg_GuardianSet>
+  <CC_Ward_Guardian_Title>A guardian for {WARD}</CC_Ward_Guardian_Title>
+  <CC_Ward_Guardian_Pick>{PAWN} ({SKILL} {LEVEL})</CC_Ward_Guardian_Pick>
+  <CC_Ward_Msg_HurtInside>{WARD} was hurt at the colony. {PEOPLE} will hear of it, though the colony kept them under its roof.</CC_Ward_Msg_HurtInside>
+  <CC_Ward_Msg_HurtOutside>{WARD} was hurt out in the open. {PEOPLE} will hear that the colony left them there.</CC_Ward_Msg_HurtOutside>
+  <CC_Ward_Report_Lesson>learning {SKILL} from {OTHER}.</CC_Ward_Report_Lesson>
+  <CC_Ward_Report_Teach>teaching {OTHER}.</CC_Ward_Report_Teach>
+  <CC_Ward_Report_ToKin>walking out to their kin at the gate.</CC_Ward_Report_ToKin>
+  <CC_Ward_Report_Leave>walking home.</CC_Ward_Report_Leave>
+  <CC_Ward_Report_SetOut>setting out for another people's town.</CC_Ward_Report_SetOut>
+
+  <!-- The year's end -->
+  <CC_Ward_Msg_KinCome>Kin of {WARD} are walking in toward the gate from {PEOPLE}, to take them home now the year is over.</CC_Ward_Msg_KinCome>
+  <CC_Ward_Home_Label>Home: {WARD}</CC_Ward_Home_Label>
+  <CC_Ward_Home_Fine>{WARD} has gone home to {PEOPLE} after a fine year at the colony. Their people will hear nothing but good of {WORD} with the colony.</CC_Ward_Home_Fine>
+  <CC_Ward_Home_Good>{WARD} has gone home to {PEOPLE} after a good year at the colony.</CC_Ward_Home_Good>
+  <CC_Ward_Home_Fair>{WARD} has gone home to {PEOPLE}. The year at the colony was fair, no more, and that is how they will tell it.</CC_Ward_Home_Fair>
+  <CC_Ward_Home_Poor>{WARD} has gone home to {PEOPLE} after a poor year at the colony, and their family won't be quick to forget it.</CC_Ward_Home_Poor>
+  <CC_Ward_Home_Held>What {WARD} will tell them: {WHAT}.</CC_Ward_Home_Held>
+  <CC_Ward_Home_Taught>taught {SKILL} most days</CC_Ward_Home_Taught>
+  <CC_Ward_Home_Fed>well fed</CC_Ward_Home_Fed>
+  <CC_Ward_Home_Unhurt>never hurt</CC_Ward_Home_Unhurt>
+  <CC_Ward_Home_Content>content</CC_Ward_Home_Content>
+  <CC_Ward_Home_Learned>{WARD} goes home with {SKILL} at {LEVEL}.</CC_Ward_Home_Learned>
+  <CC_Ward_Home_Favour>{PEOPLE} owe the colony a debt of honor for it.</CC_Ward_Home_Favour>
+  <CC_Ward_Note_Home>{WARD} came home from a year at the colony: {RESULT}</CC_Ward_Note_Home>
+  <CC_Ward_Note_Grown>was fostered at the colony as a youth, and remembers it</CC_Ward_Note_Grown>
+
+  <!-- Hurt, killed, taken, wronged -->
+  <CC_Ward_Died_Label>A ward dead: {WARD}</CC_Ward_Died_Label>
+  <CC_Ward_Died_Inside>{WARD} of {PEOPLE} has died at the colony. They were under its roof when it happened, and their people will say so, but they will grieve all the same.</CC_Ward_Died_Inside>
+  <CC_Ward_Died_Outside>{WARD} of {PEOPLE} has died at the colony, out in the open. Their people sent them to be kept safe, and they will remember that the colony didn't.</CC_Ward_Died_Outside>
+  <CC_Ward_Died_Colony>{WARD} of {PEOPLE} was killed at the colony by one of its own. Their people will not let this go: they hold it against the colony as a feud.</CC_Ward_Died_Colony>
+  <CC_Ward_Note_Died>{WARD} died while in the colony's care</CC_Ward_Note_Died>
+  <CC_Ward_Taken_Label>A ward carried off: {WARD}</CC_Ward_Taken_Label>
+  <CC_Ward_Taken>Raiders have carried {WARD} of {PEOPLE} off from the colony. Their people trusted the colony to keep them.</CC_Ward_Taken>
+  <CC_Ward_Note_Taken>{WARD} was carried off from the colony by raiders</CC_Ward_Note_Taken>
+  <CC_Ward_Wronged_Label>A ward wronged: {WARD}</CC_Ward_Wronged_Label>
+  <CC_Ward_End_Arrested>The colony has taken {WARD} of {PEOPLE} prisoner. Whatever the reason, their people sent them as a ward, and they see it as a wrong.</CC_Ward_End_Arrested>
+  <CC_Ward_End_SentAway>{WARD} of {PEOPLE} is no longer the colony's to keep, sent away before the year was out. Their people take it as a slight.</CC_Ward_End_SentAway>
+  <CC_Ward_Note_Wronged>{WARD} was turned out or taken prisoner while the colony's ward</CC_Ward_Note_Wronged>
+
+  <!-- The colony's youth with them -->
+  <CC_Ward_Msg_SettingOut>{PAWN} is getting ready to set out for {TOWN}, to live a year among {PEOPLE}.</CC_Ward_Msg_SettingOut>
+  <CC_Ward_Msg_SettingOutPage>{PAWN} is getting ready to set out for {TOWN}, to serve a year as a page in a titled household of {PEOPLE}.</CC_Ward_Msg_SettingOutPage>
+  <CC_Ward_Msg_SetOut>{PAWN} has set out for {TOWN}.</CC_Ward_Msg_SetOut>
+  <CC_Ward_Msg_Stayed>{PAWN} didn't leave after all, and the plan with {PEOPLE} is off.</CC_Ward_Msg_Stayed>
+  <CC_Ward_Msg_NotGoing>{PAWN} won't be going to {PEOPLE} after all.</CC_Ward_Msg_NotGoing>
+  <CC_Ward_There_Label>{PAWN} at {TOWN}</CC_Ward_There_Label>
+  <CC_Ward_There>{PAWN} has reached {TOWN} and will live among {PEOPLE} for a year to learn {SKILL}: {RITE}, by their ways.</CC_Ward_There>
+  <CC_Ward_ThereEmpire>{PAWN} has reached {TOWN} and joined the household of {HEAD} as a page, for a year.</CC_Ward_ThereEmpire>
+  <CC_Ward_Letter_Label>From {PAWN} at {TOWN}</CC_Ward_Letter_Label>
+  <CC_Ward_Letter_Tribal>{PAWN} sends word from {TOWN} with a trader of {PEOPLE}: they are out with the herders most days, learning {SKILL} the way it is done there, and they eat at {HEAD}'s fire.</CC_Ward_Letter_Tribal>
+  <CC_Ward_Letter_Medieval>A letter from {PAWN} at {TOWN}, sealed by {HEAD}'s steward: they are learning {SKILL} under a master of {PEOPLE}, and they sleep in the hall with the other youths.</CC_Ward_Letter_Medieval>
+  <CC_Ward_Letter_Industrial>{PAWN} writes from {TOWN}: they are learning {SKILL} with {PEOPLE}, the work is long, and {HEAD} has them to dinner on rest days.</CC_Ward_Letter_Industrial>
+  <CC_Ward_Letter_Spacer>A message from {PAWN} at {TOWN}: they are studying {SKILL} with {PEOPLE}, the facilities are better than anything at home, and {HEAD} asks after the colony.</CC_Ward_Letter_Spacer>
+  <CC_Ward_Letter_Page>A letter from {PAWN} at {TOWN}: as a page in {HEAD}'s household they carry dishes, run messages and stand very still at audiences. The household speaks well of the colony.</CC_Ward_Letter_Page>
+  <CC_Ward_Note_Ours>{PAWN} of the colony is living among them, and wrote home well of them</CC_Ward_Note_Ours>
+  <CC_Ward_Homeward_Label>{PAWN} homeward</CC_Ward_Homeward_Label>
+  <CC_Ward_Homeward>{PAWN}'s year at {TOWN} is over. {PEOPLE} gave them food for the road, and they have set out for home.</CC_Ward_Homeward>
+  <CC_Ward_Back_Label>Home again: {PAWN}</CC_Ward_Back_Label>
+  <CC_Ward_Back>{PAWN} is home from a year among {PEOPLE} at {TOWN}.</CC_Ward_Back>
+  <CC_Ward_Back_Page>{PAWN} is home from a year as a page at {TOWN}. {PEOPLE} think the better of the colony for it.</CC_Ward_Back_Page>
+  <CC_Ward_Back_Learned>They come back with {SKILL} at {AFTER}, where it was {BEFORE} when they left.</CC_Ward_Back_Learned>
+  <CC_Ward_Back_Friend>{PAWN} made a friend there: {FRIEND}.</CC_Ward_Back_Friend>
+  <CC_Ward_Note_Friend>befriended {PAWN} of the colony while they lived among them</CC_Ward_Note_Friend>
+  <CC_Ward_DiedAway_Label>Died away from home: {PAWN}</CC_Ward_DiedAway_Label>
+  <CC_Ward_DiedAway>{PAWN} has died away from home, among {PEOPLE} or on the road there.</CC_Ward_DiedAway>
+
+  <!-- Hostages: given, at the colony, at their town -->
+  <CC_Hostage_OptionTheirs>a hostage from them for the term</CC_Hostage_OptionTheirs>
+  <CC_Hostage_OptionOurs>one of the colony's as a hostage</CC_Hostage_OptionOurs>
+  <CC_Hostage_OptionOursNamed>{PAWN} as the colony's hostage for the term</CC_Hostage_OptionOursNamed>
+  <CC_Hostage_OptionNone>no hostages</CC_Hostage_OptionNone>
+  <CC_Hostage_Given_Theirs>{HOSTAGE}, one of their kin, will be brought to the gate to live at the colony for the term: {WORD} on the colony's side, {RITE} on theirs.</CC_Hostage_Given_Theirs>
+  <CC_Hostage_Given_Ours>{HOSTAGE} will go to {TOWN} and live among {PEOPLE} for the term, as {WORD}.</CC_Hostage_Given_Ours>
+  <CC_Hostage_Lapsed_Theirs>No hostage of {PEOPLE} could be brought, so the terms stand without one.</CC_Hostage_Lapsed_Theirs>
+  <CC_Hostage_Lapsed_Ours>The one the colony named could not go to {PEOPLE}, so the terms stand without a hostage.</CC_Hostage_Lapsed_Ours>
+  <CC_Hostage_Msg_Comes>{HOSTAGE} of {PEOPLE} is walking in toward the gate with one of their people, to stay at the colony for the term: {WORD}.</CC_Hostage_Msg_Comes>
+  <CC_Hostage_Msg_NoEscort>No people at peace with both sides could vouch for {WARD} of {PEOPLE} on the road, so no hostage came.</CC_Hostage_Msg_NoEscort>
+  <CC_Hostage_Arrives_Label>A hostage: {HOSTAGE}</CC_Hostage_Arrives_Label>
+  <CC_Hostage_Arrives>{HOSTAGE} of {PEOPLE} has come to the gate and stays at the colony {WHAT}: {WORD}, as the colony calls it, {RITE} by their ways.</CC_Hostage_Arrives>
+  <CC_Hostage_Arrives_How>{HOSTAGE} lives at the colony as its lodger for the term. When it ends they go home. If {PEOPLE} break the terms, {HOSTAGE} is the colony's to decide about.</CC_Hostage_Arrives_How>
+  <CC_Hostage_Quest_Title>{HOSTAGE}: {WORD}</CC_Hostage_Quest_Title>
+  <CC_Hostage_Quest_Text>{HOSTAGE} of {PEOPLE} lives at the colony for the term of their people's word: {RITE}. Their people are their home people, as with any lodger.</CC_Hostage_Quest_Text>
+  <CC_Hostage_HereAs>here as {WORD} for the term</CC_Hostage_HereAs>
+  <CC_Hostage_HereAs_Forfeit>a hostage whose people broke their word</CC_Hostage_HereAs_Forfeit>
+  <CC_Hostage_Msg_SettingOut>{PAWN} is getting ready to set out for {TOWN}, to live among {PEOPLE} as the colony's hostage for the term.</CC_Hostage_Msg_SettingOut>
+  <CC_Hostage_There_Label>{HOSTAGE} at {TOWN}</CC_Hostage_There_Label>
+  <CC_Hostage_There>{HOSTAGE} has reached {TOWN} and will live among {PEOPLE} for the term: {RITE}, by their ways.</CC_Hostage_There>
+  <CC_Hostage_Homeward>The term is over. {PEOPLE} have let {PAWN} go from {TOWN} with food for the road, and they have set out for home.</CC_Hostage_Homeward>
+  <CC_Hostage_Msg_Back>{HOSTAGE} is home from {TOWN}, the term served.</CC_Hostage_Msg_Back>
+
+  <!-- Hostages: the term's end -->
+  <CC_Hostage_Home_Kept>The term is over, and {HOSTAGE} is walking home to {PEOPLE}. They will remember that the colony kept its side of {WORD}.</CC_Hostage_Home_Kept>
+  <CC_Hostage_Home_Forgave>{HOSTAGE} is walking home to {PEOPLE}. Their people broke their word, and the colony let {HOSTAGE} go anyway.</CC_Hostage_Home_Forgave>
+  <CC_Hostage_Home_WeBroke>The colony broke its word, and {HOSTAGE} is going home to {PEOPLE} at once.</CC_Hostage_Home_WeBroke>
+  <CC_Hostage_Msg_SlippedAway>{HOSTAGE} has slipped away home to {PEOPLE} while the colony was deciding what to do with them.</CC_Hostage_Msg_SlippedAway>
+
+  <!-- Hostages: forfeit -->
+  <CC_Hostage_Forfeit_Label>A hostage forfeit: {HOSTAGE}</CC_Hostage_Forfeit_Label>
+  <CC_Hostage_Forfeit>{PEOPLE} have broken the word {HOSTAGE} was given for. By the old rule of {WORD}, {HOSTAGE} is now the colony's to decide about.</CC_Hostage_Forfeit>
+  <CC_Hostage_Forfeit_How>The colony can send {HOSTAGE} home anyway, and {PEOPLE} will remember the mercy; keep them, and the warden will arrest them as any prisoner is arrested, after which {PEOPLE} may offer a ransom; or ask them to stay, if they would want to. Left alone, {HOSTAGE} will slip away home on their own.</CC_Hostage_Forfeit_How>
+  <CC_Hostage_Opt_Home>Send them home anyway</CC_Hostage_Opt_Home>
+  <CC_Hostage_Opt_Arrest>Keep them as a prisoner</CC_Hostage_Opt_Arrest>
+  <CC_Hostage_Opt_Stay>Ask them to stay with the colony</CC_Hostage_Opt_Stay>
+  <CC_Hostage_Msg_SentHome>{HOSTAGE} is free to go home.</CC_Hostage_Msg_SentHome>
+  <CC_Hostage_Msg_Arrest>{WARDEN} goes to arrest {HOSTAGE}.</CC_Hostage_Msg_Arrest>
+  <CC_Hostage_Kept_Label>A hostage kept: {HOSTAGE}</CC_Hostage_Kept_Label>
+  <CC_Hostage_Kept>{HOSTAGE} of {PEOPLE} is the colony's prisoner now. Their people may yet offer something to have them back.</CC_Hostage_Kept>
+  <CC_Hostage_Stayed_Label>A hostage stays: {HOSTAGE}</CC_Hostage_Stayed_Label>
+  <CC_Hostage_Stayed>{HOSTAGE} has chosen to stay with the colony rather than go back to {PEOPLE}, who broke their word with {HOSTAGE} in the colony's keeping.</CC_Hostage_Stayed>
+
+  <!-- Hostages: the colony's own, held -->
+  <CC_Hostage_Held_Label>A hostage held: {HOSTAGE}</CC_Hostage_Held_Label>
+  <CC_Hostage_Held>The colony broke its word to {PEOPLE}, and {HOSTAGE}, its hostage among them, is their prisoner now.</CC_Hostage_Held>
+  <CC_Hostage_Held_How>{HOSTAGE} is held as anyone carried off is held: their people may ask a ransom, they could be rescued, and in time they may come to belong among {PEOPLE}.</CC_Hostage_Held_How>
+
+  <!-- History -->
+  <CC_Ward_Hist_Agreed>{PEOPLE} agreed to send {WARD} to the colony for a year: {WORD}.</CC_Ward_Hist_Agreed>
+  <CC_Ward_Hist_Came>{WARD} of {PEOPLE} came to live at the colony for a year: {WORD}.</CC_Ward_Hist_Came>
+  <CC_Ward_Hist_Home_Fine>{WARD} went home to {PEOPLE} after a fine year at the colony: {WORD}.</CC_Ward_Hist_Home_Fine>
+  <CC_Ward_Hist_Home_Good>{WARD} went home to {PEOPLE} after a good year at the colony: {WORD}.</CC_Ward_Hist_Home_Good>
+  <CC_Ward_Hist_Home_Fair>{WARD} went home to {PEOPLE} after a year at the colony: {WORD}.</CC_Ward_Hist_Home_Fair>
+  <CC_Ward_Hist_Home_Poor>{WARD} went home to {PEOPLE} after a poor year at the colony: {WORD}.</CC_Ward_Hist_Home_Poor>
+  <CC_Ward_Hist_Died>{WARD} of {PEOPLE} died in the colony's care.</CC_Ward_Hist_Died>
+  <CC_Ward_Hist_Went>{PAWN} went to live at {TOWN} for a year: {WORD}.</CC_Ward_Hist_Went>
+  <CC_Ward_Hist_WentPage>{PAWN} went to serve as a page at {TOWN} for a year.</CC_Ward_Hist_WentPage>
+  <CC_Ward_Hist_Back>{PAWN} came home from a year at {TOWN}: {WORD}.</CC_Ward_Hist_Back>
+  <CC_Ward_Hist_BackPage>{PAWN} came home from a year as a page at {TOWN}.</CC_Ward_Hist_BackPage>
+  <CC_Hostage_Hist_Came>{HOSTAGE} of {PEOPLE} came to the colony as {WORD}.</CC_Hostage_Hist_Came>
+  <CC_Hostage_Hist_GivenOurs>{HOSTAGE} was given to {PEOPLE} as {WORD}.</CC_Hostage_Hist_GivenOurs>
+  <CC_Hostage_Hist_Home>{HOSTAGE} went home to {PEOPLE}, the term of {WORD} over.</CC_Hostage_Hist_Home>
+  <CC_Hostage_Hist_Back>{HOSTAGE} came home from {PEOPLE}, the term served.</CC_Hostage_Hist_Back>
+  <CC_Hostage_Hist_Kept>The colony kept {HOSTAGE} of {PEOPLE} as a prisoner after their people broke their word.</CC_Hostage_Hist_Kept>
+  <CC_Hostage_Hist_Stayed>{HOSTAGE} of {PEOPLE} stayed with the colony after their people broke their word.</CC_Hostage_Hist_Stayed>
+  <CC_Hostage_Hist_Held>{PEOPLE} took {HOSTAGE} prisoner after the colony broke its word.</CC_Hostage_Hist_Held>
+
+  <!-- The cards and rows -->
+  <CC_Ward_Row_Coming>{WARD} of {PEOPLE}, {WHAT}, on the way to the colony</CC_Ward_Row_Coming>
+  <CC_Ward_Row_Here>{WARD} of {PEOPLE}, {WHAT}, learning {SKILL}; {MOOD}</CC_Ward_Row_Here>
+  <CC_Ward_Row_Going>{WARD} of {PEOPLE}, {WHAT}, going home</CC_Ward_Row_Going>
+  <CC_Ward_Row_Ours_Coming>{PAWN}, {WHAT} with {PEOPLE}, getting ready to set out for {TOWN}</CC_Ward_Row_Ours_Coming>
+  <CC_Ward_Row_Ours_Road>{PAWN}, {WHAT} with {PEOPLE}, on the road to {TOWN}</CC_Ward_Row_Ours_Road>
+  <CC_Ward_Row_Ours_There>{PAWN}, {WHAT} with {PEOPLE}, living at {TOWN}</CC_Ward_Row_Ours_There>
+  <CC_Ward_Row_Ours_Going>{PAWN}, {WHAT} with {PEOPLE}, on the road home from {TOWN}</CC_Ward_Row_Ours_Going>
+  <CC_Hostage_Row_Coming>{HOSTAGE} of {PEOPLE}, {WHAT}, on the way to the colony</CC_Hostage_Row_Coming>
+  <CC_Hostage_Row_Here>{HOSTAGE} of {PEOPLE}, {WHAT}, staying for the term</CC_Hostage_Row_Here>
+  <CC_Hostage_Row_Going>{HOSTAGE} of {PEOPLE}, {WHAT}, going home</CC_Hostage_Row_Going>
+  <CC_Hostage_Row_Forfeit>{HOSTAGE} of {PEOPLE}, {WHAT}, forfeit: the colony's to decide about</CC_Hostage_Row_Forfeit>
+  <CC_Hostage_Row_Held>{PAWN}, {WHAT} with {PEOPLE}, held prisoner by them since the colony broke its word</CC_Hostage_Row_Held>
+  <CC_Ward_Card_Guardian>Guardian: {GUARDIAN}, teaching {SKILL}</CC_Ward_Card_Guardian>
+  <CC_Ward_Card_NoGuardian>No guardian yet to teach them {SKILL}</CC_Ward_Card_NoGuardian>
+  <CC_Ward_Card_GameLessons>Learns {SKILL} and the rest at the colony's lessons, as a child</CC_Ward_Card_GameLessons>
+  <CC_Ward_Card_Lessons>{COUNT} lessons in {DAYS} days here</CC_Ward_Card_Lessons>
+  <CC_Ward_Card_Level>{SKILL} is {LEVEL} now</CC_Ward_Card_Level>
+  <CC_Ward_Card_Bed>Sleeps in: {BED}</CC_Ward_Card_Bed>
+  <CC_Ward_Card_NoBed>{WARD} has no bed of their own yet</CC_Ward_Card_NoBed>
+  <CC_Ward_Card_Hungry>Went hungry on {COUNT} days</CC_Ward_Card_Hungry>
+  <CC_Ward_Card_Hurt>Hurt {COUNT} times while here</CC_Ward_Card_Hurt>
+  <CC_Ward_Card_Letters>{COUNT} letters home so far</CC_Ward_Card_Letters>
+  <CC_Ward_Card_Page>Serves as a page in a titled household: regard only, no trade learned</CC_Ward_Card_Page>
+  <CC_Ward_Card_Guarding>Guardian of {WARD}, teaching them {SKILL}</CC_Ward_Card_Guarding>
+  <CC_Ward_Card_Fostered>Was fostered at the colony as a youth: {RESULT}</CC_Ward_Card_Fostered>
+  <CC_Hostage_Card_ForTruce>Given for the truce with {PEOPLE}</CC_Hostage_Card_ForTruce>
+  <CC_Hostage_Card_ForPact>Given for the pact with {PEOPLE}</CC_Hostage_Card_ForPact>
+  <CC_Hostage_Card_Forfeit>{PEOPLE} broke their word: the colony decides what becomes of them</CC_Hostage_Card_Forfeit>
+  <CC_Ward_Tie_Theirs>{WARD}, a ward of {FROM}, living with {TO} to learn {SKILL}</CC_Ward_Tie_Theirs>
+  <CC_Ward_Tie_Ours>{WARD}, a youth of {FROM}, living with {TO} to learn {SKILL}</CC_Ward_Tie_Ours>
+  <CC_Ward_Tie_Result>It ended as {RESULT}.</CC_Ward_Tie_Result>
+  <CC_Hostage_Tie>{HOSTAGE}, given by {FROM} to {TO} {WHAT}</CC_Hostage_Tie>
+
+  <!-- The acts -->
+  <CC_Ward_Act_Ask>Ask for a ward</CC_Ward_Act_Ask>
+  <CC_Ward_Act_Ask_Tip>A letter or a call to their head, asking for a youth of theirs to live at the colony for a year and learn a skill from a guardian here.</CC_Ward_Act_Ask_Tip>
+  <CC_Ward_Act_Send>Offer a youth</CC_Ward_Act_Send>
+  <CC_Ward_Act_SendPage>Offer a page</CC_Ward_Act_SendPage>
+  <CC_Ward_Act_Send_Tip>A letter or a call to their head, offering a youth of the colony's to live among them for a year. The youth is away from the colony's work all year and comes back with what their people are good at.</CC_Ward_Act_Send_Tip>
+  <CC_Ward_Act_Guardian>Pick a guardian</CC_Ward_Act_Guardian>
+  <CC_Ward_Act_GuardianShort>Pick</CC_Ward_Act_GuardianShort>
+  <CC_Ward_Act_Guardian_Tip>Who teaches the ward: someone of the colony's with 10 or more in the skill they came to learn.</CC_Ward_Act_Guardian_Tip>
+  <CC_Ward_Act_SendHome>Send home early</CC_Ward_Act_SendHome>
+  <CC_Ward_Act_SendHome_Tip>Their kin are sent for before the year is out. Their people take it as a slight.</CC_Ward_Act_SendHome_Tip>
+  <CC_Ward_Act_Recall>Call home</CC_Ward_Act_Recall>
+  <CC_Ward_Act_Recall_Tip>They come home before the year is out, with less learned.</CC_Ward_Act_Recall_Tip>
+  <CC_Ward_Act_Answer>Decide</CC_Ward_Act_Answer>
+  <CC_Ward_Act_Answer_Tip>The letter about this hostage, waiting for the colony's answer.</CC_Ward_Act_Answer_Tip>
+
+  <!-- This week -->
+  <CC_Ward_Week_Offer>{PEOPLE} offer a youth of theirs to foster for a year</CC_Ward_Week_Offer>
+  <CC_Hostage_Week_Forfeit>{HOSTAGE} of {PEOPLE} is forfeit: their people broke their word</CC_Hostage_Week_Forfeit>
+  <CC_Ward_WeekNote>Their letter waits for the colony's answer.</CC_Ward_WeekNote>
+  <CC_Ward_Week_Guardian>{WARD} has nobody to teach them {SKILL}</CC_Ward_Week_Guardian>
+  <CC_Ward_Week_GuardianNote>A guardian with 10 or more in the skill teaches them an hour a day.</CC_Ward_Week_GuardianNote>
+  <CC_Ward_Step_Agreed>agreed</CC_Ward_Step_Agreed>
+  <CC_Ward_Step_Here>living here</CC_Ward_Step_Here>
+  <CC_Ward_Step_Home>going home</CC_Ward_Step_Home>
+  <CC_Ward_Step_SettingOut>getting ready</CC_Ward_Step_SettingOut>
+  <CC_Ward_Step_Road>on the road</CC_Ward_Step_Road>
+  <CC_Ward_Step_There>living there</CC_Ward_Step_There>
+  <CC_Ward_Step_HomeRoad>on the road home</CC_Ward_Step_HomeRoad>
+  <CC_Hostage_Step_Given>given</CC_Hostage_Step_Given>
+  <CC_Hostage_Step_Held>for the term</CC_Hostage_Step_Held>
+  <CC_Hostage_Step_Home>going home</CC_Hostage_Step_Home>
+
+</LanguageData>

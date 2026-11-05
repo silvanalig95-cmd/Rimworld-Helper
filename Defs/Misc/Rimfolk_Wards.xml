@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Wards and hostages (Source/ColonyCouncil/Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs, WardLord.cs): the quest
+       that makes a ward or hostage of theirs the game's lodger, their letters, which wait for the colony's answer, and the
+       jobs that play them out on the map. -->
+
+  <!-- The quest a ward or hostage of theirs lives at the colony under, as the game's lodger: it has no steps of its own
+       (Rimfolk adds the game's QuestPart_ExtraFaction, their people the home people, and ends it when they go home). -->
+  <QuestScriptDef>
+    <defName>Rimfolk_LodgerQuest</defName>
+    <root Class="QuestNode_Sequence">
+      <nodes />
+    </root>
+    <autoAccept>true</autoAccept>
+    <sendAvailableLetter>false</sendAvailableLetter>
+    <endOnColonyMove>false</endOnColonyMove>
+  </QuestScriptDef>
+
+  <!-- A people at peace offers a youth of theirs to live at the colony for a year. -->
+  <LetterDef>
+    <defName>Rimfolk_WardOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_WardOffer</letterClass>
+    <color>(165, 190, 150)</color>
+    <flashColor>(190, 215, 175)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- Their side broke the terms their hostage was given for: the hostage is the colony's to decide about. -->
+  <LetterDef>
+    <defName>Rimfolk_HostageForfeit</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_HostageForfeit</letterClass>
+    <color>(210, 150, 110)</color>
+    <flashColor>(235, 175, 135)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The ward walks over to their guardian and learns from them for an hour. -->
+  <JobDef>
+    <defName>Rimfolk_WardLesson</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardLesson</driverClass>
+    <reportString>learning from a guardian.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The guardian stands with the ward and teaches them. -->
+  <JobDef>
+    <defName>Rimfolk_WardTeach</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardTeach</driverClass>
+    <reportString>teaching a ward.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The ward walks out to their kin at the gate and goes home with them. -->
+  <JobDef>
+    <defName>Rimfolk_WardToKin</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardToKin</driverClass>
+    <reportString>walking out to their kin at the gate.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- A ward or hostage of theirs walks out to the edge of the colony's land and goes home. -->
+  <JobDef>
+    <defName>Rimfolk_WardLeave</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardLeave</driverClass>
+    <reportString>walking home.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The colony's own ward or hostage walks to the map's edge and sets out for their town. -->
+  <JobDef>
+    <defName>Rimfolk_WardSetOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardSetOut</driverClass>
+    <reportString>setting out for another people's town.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

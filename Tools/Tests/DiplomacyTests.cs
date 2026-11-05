@@ -140,10 +140,11 @@ public static class DiplomacyTests
         C(DiplomacyMath.DiplomacyOrder > 30f && DiplomacyMath.DiplomacyOrder < DiplomacyMath.HouseholdOrder && DiplomacyMath.HouseholdOrder < 40f,
             "the Diplomacy and Household pages after Letters, before Journeys");
         C(DiplomacyMath.Purposes[0] == "Favour" && DiplomacyMath.Purposes.Length == 8 && DiplomacyMath.Acts[0] == "AskFavour", "the purposes and acts in the design's order, the first built");
-        // Built so far, in the design's order: Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3 (Match and Ward wait for round b).
-        var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").ToArray();
+        // Built so far, in the order the releases built them (saved by name): Favour; Pact and Truce in 2a.2; Ransom and Envoy
+        // in 2a.3; Ward in 2b.3 (Match and Fealty wait for their releases).
+        var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").Append("Ward").ToArray();
         C(Enum.GetNames(typeof(LetterPurpose)).Reverse().Take(builtPurposes.Length).Reverse().SequenceEqual(builtPurposes),
-            "the letters' new purposes after the old ones, in the design's order (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3)");
+            "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3)");
         var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch" && a != "SoundOut").ToArray();
         C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(builtActs.Length).Reverse().SequenceEqual(builtActs),
             "the new acts after the old ones, in the design's order (saved by name; OfferExchange in 2a.3)");

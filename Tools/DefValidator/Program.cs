@@ -474,6 +474,8 @@ wishPh.UnionWith(new[]
     "CAPTOR", "ENVOY", "OURENVOY",
     // Feasts with guests (Diplomacy/FactsFeast.cs): the colony's feast in its words, the champion of the day.
     "FEAST", "CHAMPION",
+    // Wards and hostages (Diplomacy/FactsWards.cs).
+    "WARD", "HOSTAGE", "GUARDIAN",
     // The region (Facts.Region): their town's fortune and what moved it, its founding, a new town near the colony and its people.
     "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE",
     // Trading posts near the colony (World/Region/TradingPostFacts.cs): a post, its kind, its people, its keeper.

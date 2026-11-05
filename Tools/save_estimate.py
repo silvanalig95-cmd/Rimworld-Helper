@@ -101,6 +101,8 @@ C = {
     "FeastContests": const("Diplomacy/FeastMath.cs", "MaxContests", 4),
     "FeastRetinue": const("Diplomacy/FeastMath.cs", "MaxRetinue", 2),
     "FeastTales": const("Diplomacy/FeastMath.cs", "MaxTales", 4),
+    # Wards and hostages either way at a home at once (Diplomacy/WardMath.cs, release 2b.3).
+    "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -571,6 +573,11 @@ MODEL = {
     "Diplomacy/FeastBook.cs:results": ("fixed", C["FeastContests"], 260, "per feast: how each contest went, one each (counted under homes)"),
     "Diplomacy/DiplomacyBook.cs:tales": ("cap", (C["FeastTales"], 0.05), 160,
                                          "per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days"),
+    # Its wards and hostages (Diplomacy/Wards.cs, WardsAbroad.cs, Hostages.cs): a ward each way and a hostage each way,
+    # WardMath.MaxPerHome at most, each about thirty values and four references, dropped once they are home again (a
+    # ward's year a year, a hostage's term a season or a year); one at a time is usual.
+    "Diplomacy/DiplomacyBook.cs:wards": ("cap", (C["WardsPerHome"], 1), 900,
+                                         "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

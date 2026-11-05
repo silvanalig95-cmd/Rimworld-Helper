@@ -8,10 +8,11 @@
       tones each purpose's answer can take (DiplomacyLetters.Read, RansomLetters.Read):
       favour: warm or cordial when the debt is settled either way (their debt paid, or the colony's word given on their
         side), cool when they paid and no more, refusal when they would not;
-      pact: warm or cordial when they swear it; cool when they swear it or take the colony's letter ending it; curt only
-        for a pact the colony ended; refusal when they won't swear it, or (rarely) for one ended;
-      truce: cordial or cool when they agree (a people at war is never warm), refusal when they won't; their envoy
-        comes to swear it only when a people at peace with both can vouch for them, so not every line promises one;
+      pact: warm or cordial when they swear it, cool when they swear it, refusal when they won't; a pact the colony ended
+        by letter is answered under its own tag, pactend (Rimfolk_Lines_PactEnds.xml), so the curt lines here are unused;
+      truce: cordial or cool when they agree (a people at war is never warm), refusal when they won't; agreed and sworn
+        by word (no people at peace with both to vouch for their envoy), it is answered under its own tag, trucebyword
+        (Rimfolk_Lines_PactEnds.xml), so a truce line here may promise their envoy at the gate;
       ransom: warm, cordial or cool when they will bargain (an offer for one of theirs, or an exchange), refusal when not;
         a call is answered by a call, a letter at the gate;
       envoy: warm, cordial or cool when their envoy will come, refusal when not.

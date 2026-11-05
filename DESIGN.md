@@ -2612,7 +2612,7 @@ tested (`RansomMath.cs`, `EnvoyMath.cs`; `Tools/Tests/RansomTests.cs`).
 - **The trap** (decision 5): with a hostile people only, on an exchange at the gate (a captive paid for, or exchanged),
   `RansomMath.TrapChance` is the peace talks' disaster weight 0.05 times the game's own curve for the negotiator's
   ability (4 with none, 1 at 100%, 0.4 at 150%); sprung, `Raids.Send` at 0.35 of the threat points from the map edge
-  nearest the gate, and their deed `brokeWord`. Every letter that can bring it names the chance in words before the
+  nearest the gate, and their deed `trapped` (its own since 2b.3, apart from a debt refused, `brokeWord`). Every letter that can bring it names the chance in words before the
   choice (`RansomWords.Odds`), and so does the captive's card.
 - **Their envoy** (`Envoys`): once a day a people at peace (goodwill 30), whose envoy notable is free, may offer them
   (`EnvoyMath.MayOffer`: a year apart per people, a season apart per home, one stay per home; one day in thirty),
@@ -2724,6 +2724,71 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
   `feast:good`, `feast:poor`, `feast:theywon`, `feast:wewon`, `town:lately:dip:feast`, `{FEAST}` and `{CHAMPION}`.
   Words by both ages (`AgeFeature.Feast`; `{FEAST}` the colony's word with "the"), their faith's feast with Ideology
   (`InviteForms.Rite`). Setting `diplomacyFeasts`. Dev actions in `FeastDebug.cs`.
+
+#### Wards and hostages
+
+Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Diplomacy/`, its rules pure and tested
+(`WardMath.cs`; `Tools/Tests/WardTests.cs`).
+
+- **The records.** Each `DiplomacyHome` keeps its wards and hostages, either way (`WardStay`, `WardMath.MaxPerHome` = 4:
+  one ward each way, one hostage each way per truce or pact), and when a ward was last offered (and by whom). The bonds
+  are the ledger's own ties: a Ward tie from whoever sent the youth to whoever keeps them (origin `ward`, key the skill,
+  about the youth), a Hostage tie from whoever gave them to whoever holds them (origin `hostage`, about the hostage, its
+  count the truce or pact it guarantees; called in when that is broken). Their ends are reached in diplomacy's hour, not
+  the ledger's until. Keep reasons `KeepFor.Ward` (their ward agreed and not yet come; a ward fostered and gone home,
+  while their Regard tie lives) and `KeepFor.Hostage` (their hostage agreed and not yet come); the colony's own away is
+  `KeepFor.Lent`, as its envoy is. History `dip:ward` and `dip:hostage` beside the ties' own `tie:ward:*`, `tie:hostage:*`.
+- **The game's lodger** (`Wards.StartQuest`): a quest of Rimfolk's own (`Rimfolk_LodgerQuest`, in the Quests tab) with
+  the game's `QuestPart_ExtraFaction` (`ExtraFactionType.HomeFaction`, their people), added before `QuestManager.Add`
+  (whose list of extra-faction parts is filled there and on load) and accepted from the start (`SetInitiallyAccepted`),
+  as the refugee hosting quest does with its own part: `IsQuestLodger` holds, `HomeFaction` is their people, the game's
+  arrest, banishment and death rules for lodgers apply. No part of Rimfolk's own is in it; the terms are the record's.
+  The youth joins at the gate by `Arrivals.Join` and leaves by the game's own `LeaveQuestPartUtility.MakePawnLeave`, or,
+  walking out alone (`JobDriver_WardLeave`), as the colony's lodger to the edge and out (`ExitMap`, their people's again
+  as a world pawn), so a hostage of a people at war is never shot on the way.
+- **Their ward** (`Wards`): once a day a people at peace whose head thinks 30 or more of the colony, while a colonist has
+  10 in some skill, may offer (`WardMath.MayOffer`: a year apart per people, a season per home; one day in forty;
+  `ChoiceLetter_WardOffer`); or the colony asks (`LetterPurpose.Ward`, topic `ward:ask`, the skill asked
+  `skill:Crafting`; `WardMath.SendChance` by their head's regard). Agreed, a youth of a notable's house is made
+  (`Wards.MakeYouth`: 9 to 12 with Biotech's children, else 14 to 19; their notable's child where the ages fit) and kept
+  in the world; one or two days on, they walk in with a kinsman (`LordJob_WardParty`, guests of a people at peace with
+  both for a people at war) and join at the gate. A guardian is the best with the skill (`Wards.Guardians`, 10 or
+  more; "Pick a guardian" on the card). Once a day, by day, the lesson waits for both to be free and together
+  (`Together.When`, the ward walking over in free time): `JobDriver_WardLesson` and `JobDriver_WardTeach`, an hour at
+  `WardMath.LessonXpPerTick`; a child with Biotech learns at the game's lessons instead. Each day is tallied (mood,
+  hunger, new injuries); the card shows how they are (`WardMath.Mood`: homesick, settling in, happy). At the year's end
+  two of their kin come to the gate and the ward walks out to them (`JobDriver_WardToKin`; at war, or if the kin can't
+  come or leave, the ward walks out alone), and the year is reckoned (`WardMath.Year`): their head's and the kin's
+  regard, goodwill, the deed `fostered` (a fine year, 12, a debt of honour) or `slighted`, the tie kept or ended, and a
+  Regard tie of the youth's toward the colony that the grown ward keeps (`Wards.Grown` when they become a notable;
+  `Wards.HeirFor` lets one who had a good year stand as their town's heir at 18). Dead in the colony's care: regard by
+  whether it sheltered them; at a colonist's hand (`Patch_WardKilled`, with the deeper hooks) a feud, a Grudge tie
+  (key `ward`). Carried off, arrested or sent away: a slight.
+- **The colony's youth** (`WardsAbroad`): offered by letter (topic `ward:send`, the youth `youth:ID`; 14 to 19, 10 to
+  19 with children); taken in, they take food that keeps from the stores, walk to the edge (`JobDriver_WardSetOut`) and
+  go by caravan to their nearest town, kept there as lent; a letter every ten days by their people's age (the town's
+  notables' regard up); home after a year with `WardMath.AbroadXp` in their people's skill (`WardMath.TheirSkills` by
+  age), a friend among the notables, and their people's deed `taught`. The Empire takes them as a page in a titled
+  household: regard only. "Call home" brings them back sooner.
+- **Hostages** (`Hostages`): a truce's price (`TrucePrice.TheirHostage`, `OurHostage` with the colonist's id in the
+  terms' count) or a defence pact's term (the letter's ask `hostage:Theirs`, `hostage:Ours:ID`; the pact's roll moved
+  by `WardMath.PactRoll`), adults only (`WardMath.MayBeHostage`, 18). Theirs, one of their notable's kin, comes some hours
+  after the oath or the pact (at war only where `TruceParley.Escort` finds someone to vouch); the colony's sets out as
+  its youth does. The hour reads the term from the tie it guarantees (`WardMath.EndOf`): over, both go home (their
+  hostage walks out, `hostageReturned`); their side broke the truce, theirs is forfeit (`ChoiceLetter_HostageForfeit`:
+  home anyway, `forgave`; kept, a warden's `JobDefOf.Arrest` and then their people's prisoner, ransom applying; asked to
+  stay, if `WardMath.WouldJoin`; unanswered five days, they slip away) and the colony's comes home; the colony broke it,
+  theirs goes home at once and the colony's is held (`KidnappedPawnsTracker.Kidnap`: the game's captivity, its ransom
+  demand, rescues, and joining them in time).
+- **What the player sees** (`WardPanels`): the colonist's card of a ward or hostage of theirs (the year so far, the
+  guardian, lessons, the skill's level, the bed, hunger and hurts; "Pick a guardian", "Send home early"; "Decide" on a
+  forfeit hostage) and of the colony's own away ("Call home"), a guardian's card, a grown ward's Person card, the people
+  card ("Ask for a ward", "Offer a youth" or "Offer a page"), a town's card, the Ward and Hostage tie cards; Peoples'
+  rows, Here and away (`Wards.HereAs`, `WardPanels.AwayRows`); the inbox: `ward` in Needs you (their offer, a forfeit
+  hostage, a ward without a guardian), `ward-under-way` in steps. Facts (`FactsWards.cs`): `tie:ward` (`:theirs`,
+  `:ours`), `tie:hostage` (`:theirs`, `:ours`, `:due`), `them:ward` with `them:ward:homesick`, `:settling`, `:happy`,
+  `them:hostage`, `them:fostered`; `{WARD}`, `{HOSTAGE}`, `{GUARDIAN}`. Words by both ages (`AgeFeature.Ward`,
+  `Hostage`; the ward's rites say the ward's side only). Setting `diplomacyWards`.
 
 ### Rimfolk's windows
 

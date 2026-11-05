@@ -4,8 +4,10 @@
   <!--
     Pacts and truces (Source/ColonyCouncil/Diplomacy/). Two pools the game already draws on:
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call of the
-      new purposes "pact" (a pact proposed, or ended by the colony's letter) and "truce" (a truce offered to a people at
-      war), by how they took it: warm or cordial and cool (agreed), refusal (not); and their words in a letter of any
+      new purposes "pact" (a pact proposed) and "truce" (a truce offered to a people at war, its envoy sworn at the gate),
+      by how they took it: warm or cordial and cool (agreed), refusal (not); a pact ended by the colony's letter and a
+      truce agreed but sworn by word have their own words under their own tags (Rimfolk_Lines_PactEnds.xml), so these
+      lines may promise an envoy at the gate and speak of an offer; and their words in a letter of any
       purpose while a pact or a truce holds (tie:pact, tie:pact:due, tie:truce, tie:truce:due; {PACTWITH}, {TRUCEWITH}
       their own people's name). By their ways: theirLowtech, theirHightech; war (a people at war with the colony).
     - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the truce sworn at the gate (the speaker's
