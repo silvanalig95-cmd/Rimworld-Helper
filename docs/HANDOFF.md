@@ -6,6 +6,59 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- text pass: diplomacy round c (the content pass beside 0.96.0 and 0.97.0, after the 0.97.1 review and merged with it; no
+  version of its own: its points go with the next round). Words in new files beside the round's own (its tests cap the
+  round's talk files at 40), each said only on facts the providers set (FactsTasks, FactsFealty, the ties, FactsColony's
+  deeds, the hamlets'), and in letters only the ties (a letter asks no deeds). Talk pieces, 148: the keeper and the tasks
+  92 (`Rimfolk_OutsiderTalks_TasksMore.xml`: the keeper's watch after dark 10, found out 9, pressed 6, a secret of
+  theirs told 6 (deed:schemed, wrongbest:schemed with {WRONGNAME}, never to the one told of); the speaker's letters 9, the
+  quartermaster's trade 7, the marshal's drill 5, the physician's medicine 4, the warden of guests 6, the chaplain 8, the
+  steward's feast 5, the quartermaster's dues 3, any task by the colony's own words (the elders' errands, the council's
+  offices, the committee's portfolios, the board's remits), theirs and the tone 10, callbacks on the war, hunger, ill and
+  faith marks 4; a `task:you` alternative wherever the officer is spoken of, so the officer is never told about
+  themselves), fealty and vassals 56 (`Rimfolk_OutsiderTalks_FealtyMore.xml`: the oath by both sides' ages and who is
+  spoken to 14, the collector 2, tribute short 4, levies 5, their band 4, renouncing 6 (deed:renounced, never a clean
+  one), callbacks on the head and war marks 2; the colony's own vassals 19: the harvest come, the share heavy or fair,
+  their levies, help sent, the hamlet sworn, the colony's protection by its age and theirs by theirs). No new marks.
+  Letters (`Rimfolk_Lines_TasksMore.xml`, `Rimfolk_Lines_FealtyMore.xml`): 95 of their words, answers to each kind of
+  officer's letter by the tones it can take with a refusal for each (winover 9, trade 7, bringhome 5, theirkin 4,
+  keepfaith 4, speakfaith 4, host 5, the quartermaster's dues 7 (new: warm, cordial or cool, true on time or halved),
+  pressed 4), the oath offered 8, letters of any purpose while a task runs 13, to one who caught the keeper or was pressed
+  3, while sworn 15 (help and invitations promised only in a granting tone), while a town of theirs is the colony's 7.
+  Bubbles, 70: soundask 7, soundtalk 8, pressyes 4, pressno 4, keepercaught 4, keeperwatch 6, patrol by the weather 7,
+  fealtyoath by the colony's age 7, fealtyterms 6, fealtysworn 6, and 11 for the new moment `taskhome` (an officer home
+  from a visit, said to nobody as they come back onto the map; the visit may have been cut short, so it never says how it
+  went). Keyed fellows, 67 (`Rimfolk_Tasks_VariantsMore.xml` 29, `Rimfolk_Fealty_VariantsMore.xml` 38): every letter and
+  message of the two releases read with `T` has two wordings at least (the eight that had one: `CC_Fealty_Ans_Moot`,
+  `_Failed_Friend`, `_BrokenByUs`, `_Harmed`, `CC_Vassal_Ask_Defend`, `_Released_Hamlet`, `_BrokenByUs`, `_Band_Late`),
+  the seasonal ones three or four, and they differ by age through {WORD} and {RITE} (`CC_Arms_Fealty`'s {WORD} is the
+  levies' word, not the oath's). Code, two lines: `TaskVisits.Back` says the `taskhome` bubble (`Outsiders.Say` to
+  nobody), and the keeper's learned-nothing line is read with `T` (`KeeperOfSecrets.Step`), with two fellows each. A
+  short tribute can come with nobody at the gate (the review), so none of the new words says their collector came.
+  Still thin, and facts that would help: `fealty:levies` is set for a call refused as well as one answered (the history's
+  `dip:levy` is written for both), so the new lines that say the levies came ask `deed:levies`, and a tag for each
+  (`fealty:levies:sent`, `:refused`) would let talk thank or reproach; their band failing to come this season
+  (`fealty:failed`, `Fealty.FailedSeason`); a vassal's town by name and whether the one spoken to lives there
+  (`{VASSALTOWN}`, `vassal:here`: the talk says "our kin"), a light share, an ask open or answered, a release given or
+  refused (nothing is noted after it); whether a pressed notable paid or refused (`them:pressed` covers both); whether
+  the one spoken to is the task's own target (`task:here`: the target may be another town's head, so no line names
+  {HEAD}); samples sent; the drill and the medicine after the visit (a visit-only task ends at home, so `task:visited`
+  for them holds only on the road back). No hook says the officer setting out (the journey's own `leave` line), the
+  collector or a vassal's carter at the gate (couriers carry no purpose tag: `CourierWords.Say` reads goods and
+  bring/take only), or the levies leaving (the caravan is the player's own). Told with one wording because the code
+  reads them with `P`: the visit's day letters (`CC_Task_Visit_WinOver` and the others, `_Homeward`, `_Back`,
+  `_CutShort`, `_CalledOff`, `_TurnedBack`), the samples' message, the tasks' results, the keeper's how-learned and
+  learned lines, the informer's message, the learned-nothing line after "Sound out" (its own site, still `P`), the
+  fealty messages (`CC_Fealty_Msg_*`, `_Speaker_Goes`), `CC_Vassal_Msg_War`, the dues' and tribute's results.
+  Words that disagree with the code, found by the pass, for the next review: `Rimfolk_OT_Fealty_Levies` and two
+  `fealty:levies` letter lines in `Rimfolk_Lines_Fealty.xml` say the levies came, also after a refusal (above);
+  `[help,cool,fealty:oath]` promises help a cool answer never sends; an oath letter overtaken by events is answered in
+  the refusal's tone, so a `[fealty,refusal]` line ("We have enough to protect") is quoted with it; a press answered moot
+  is curt with the `pressed` tag, so "You will have your silver" is quoted with no silver coming; `Rimfolk_OT_Keeper_Pressed`
+  and the round's pressed lines speak of the colony's letter, though a secret can be pressed face to face; the round's
+  talk header says `fealty:oath` is new for ten days, where it holds the whole oath (only its heat is higher then). To
+  look at in game: an officer home from a visit (the bubble at the map's edge), the keeper's learned-nothing messages
+  over a season, the new talk with a liege's visitor, a vassal's trader, one who caught the keeper.
 - 0.97.1, stage 2 round c review: fixes (the releases 0.96.0 and 0.97.0, the keeper of secrets and council tasks, fealty and
   vassals, read against the 1.6 game and Faction Territories' source; no version of its own: its points go with the next
   round). Fixed, each checked in the code and the source: the courier tracker lets a trip go in the pass its people leave
