@@ -211,6 +211,8 @@ namespace ColonyCouncil
             var map = h?.Map;
             var town = TownOf(a);
             if (a == null || map == null || town == null || !p.Spawned) return;
+            // A season away as they walk off the map: against the settled ways of one set in them, and the curious glad of it (Nature.cs).
+            Nature.Felt(p, NatureAct.SeasonAway, a.people, null, "Envoy");
             try
             {
                 var c = CaravanExitMapUtility.ExitMapAndCreateCaravan(new List<Pawn> { p }, Faction.OfPlayer, map.Tile, map.Tile, PlanetTile.Invalid, false);

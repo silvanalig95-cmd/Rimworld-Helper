@@ -39,6 +39,18 @@ namespace ColonyCouncil
 
         public static string ReliefLabel(StrainRelief r) => ("CC_Heart_Relief_" + r).Translate();
 
+        /// <summary>
+        /// A source as this heart's page says it: for an act against their nature, what they did and the side of them it went
+        /// against ("swore the colony's oath to the Lenlia, against her pride"), the way a pressure says its cause; else the
+        /// source's own words.
+        /// </summary>
+        public static string SourceText(PawnHeart h, StrainSource s) =>
+            s == StrainSource.Nature && h != null && !h.natureEased && !h.natureWhy.NullOrEmpty() ? h.natureWhy : SourceLabel(s);
+
+        /// <summary>A kind of relief as this heart's page says it: for an act with their nature, what they did and the side of them it suited.</summary>
+        public static string ReliefText(PawnHeart h, StrainRelief r) =>
+            r == StrainRelief.Nature && h != null && h.natureEased && !h.natureWhy.NullOrEmpty() ? h.natureWhy : ReliefLabel(r);
+
         public static string NeedLabel(HeartNeed n) => ("CC_Heart_Need_" + n).Translate();
 
         public static string IntensityWord(float intensity) =>
@@ -107,14 +119,14 @@ namespace ColonyCouncil
         public static string SourcesText(PawnHeart h, int n)
         {
             var top = TopSources(h, n);
-            return top.Count == 0 ? null : TextUtil.JoinAnd(top.Select(s => SourceLabel(s.source)).ToList());
+            return top.Count == 0 ? null : TextUtil.JoinAnd(top.Select(s => SourceText(h, s.source)).ToList());
         }
 
         /// <summary>The same with amounts: "losses (+18), fighting (+9)".</summary>
         public static string SourcesDetailed(PawnHeart h, int n)
         {
             var top = TopSources(h, n);
-            return top.Count == 0 ? null : string.Join(", ", top.Select(s => SourceLabel(s.source) + " (+" + s.amount.ToString("0") + ")"));
+            return top.Count == 0 ? null : string.Join(", ", top.Select(s => SourceText(h, s.source) + " (+" + s.amount.ToString("0") + ")"));
         }
 
         public static List<(StrainSource source, float amount)> TopSources(PawnHeart h, int n)
@@ -135,7 +147,7 @@ namespace ColonyCouncil
                 if (h.recentRelief[i] >= 1f) list.Add(((StrainRelief)i, h.recentRelief[i]));
             if (list.Count == 0) return null;
             list.Sort((a, b) => b.amount.CompareTo(a.amount));
-            return string.Join(", ", list.Take(n).Select(x => ReliefLabel(x.r) + " (-" + x.amount.ToString("0") + ")"));
+            return string.Join(", ", list.Take(n).Select(x => ReliefText(h, x.r) + " (-" + x.amount.ToString("0") + ")"));
         }
 
         private static string HelpFor(StrainSource s)
@@ -158,6 +170,7 @@ namespace ColonyCouncil
                 case StrainSource.Dread: return "CC_Heart_Help_Prepare";
                 case StrainSource.Despair: return "CC_Heart_Help_Friends";
                 case StrainSource.Unmet: return "CC_Heart_Help_Needs";
+                case StrainSource.Nature: return "CC_Heart_Help_Nature";
                 default: return "CC_Heart_Help_Sleep";
             }
         }
@@ -181,6 +194,19 @@ namespace ColonyCouncil
             if (rest != null && decrees != null && h.strain >= 30f && !decrees.IsActive(rest) && decrees.CannotEnact(rest) == null)
                 keys.Insert(Mathf.Min(2, keys.Count), "CC_Heart_Help_RestDecree");
             return TextUtil.JoinAnd(keys.Take(n).Select(k => k == "CC_Heart_Help_Needs" && unmet != null ? unmet : k.Translate().ToString()).ToList());
+        }
+
+        /// <summary>
+        /// What eases an act against their nature, said beside it the way a pressure says what helps, while the strain is too
+        /// low for the general advice: null unless such an act is among what built it lately.
+        /// </summary>
+        public static string NatureHelp(PawnHeart h)
+        {
+            if (h == null || h.natureEased || h.natureWhy.NullOrEmpty()) return null;
+            foreach (var (source, _) in TopSources(h, 3))
+                if (source == StrainSource.Nature)
+                    return "CC_Heart_NatureHelp".Translate();
+            return null;
         }
 
         /// <summary>"For 2 days", "for 5 hours", "since just now".</summary>
@@ -370,6 +396,7 @@ namespace ColonyCouncil
                 string help = HelpText(p, h, 3);
                 if (!help.NullOrEmpty()) sb.Append("\n\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve());
             }
+            else if (NatureHelp(h) is string nature) sb.Append("\n\n").Append(nature);
             sb.Append("\n\n").Append("CC_Heart_StrainExplain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
             return sb.ToString();
         }
@@ -498,7 +525,7 @@ namespace ColonyCouncil
             m.bandDesc = BandDesc(h.Band);
             string built = SourcesDetailed(h, 3);
             m.built = built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve();
-            m.help = h.strain >= 30f ? "CC_Heart_WouldHelp".Translate(HelpText(p, h, 3)).Resolve() : null;
+            m.help = h.strain >= 30f ? "CC_Heart_WouldHelp".Translate(HelpText(p, h, 3)).Resolve() : NatureHelp(h);
             foreach (var f in h.feelings)
             {
                 string label = f.def.Label.CapitalizeFirst() + "  ·  " + SinceText(f.since);

@@ -169,7 +169,7 @@ public static class DiplomacyTests
 
         // ---------------- Nature ----------------
 
-        C(!NatureMath.SwitchedOn, "the nature service is written, with no effect until round d");
+        C(NatureMath.SwitchedOn, "the nature service is written, and switched on in round d (release 2d.2; NatureTests)");
         foreach (NatureAct a in Enum.GetValues(typeof(NatureAct))) C(NatureMath.Rules.Any(r => r.act == a), $"{a} goes against someone's nature");
         var none = new float[PersonaMath.Axes];
         C(NatureMath.Strain(NatureAct.SworeFealty, none) == 0f && NatureMath.Relief(NatureAct.SworeFealty, none) == 0f, "an ordinary person feels nothing of most acts");
@@ -192,7 +192,6 @@ public static class DiplomacyTests
         closed[(int)PersonaAxis.Openness] = -60f;
         C(NatureMath.Strain(NatureAct.SeasonAway, closed) > 0f && NatureMath.Relief(NatureAct.SeasonAway, open) > 0f, "a season away weighs on the closed and eases the open");
         C(NatureMath.MayFeel(-1, 0) && !NatureMath.MayFeel(0, D - 1) && NatureMath.MayFeel(0, D), "one act a day per colonist");
-        C(!Code("Diplomacy/Nature.cs").Contains("HeartLogic") && !Code("Diplomacy/Nature.cs").Contains("Interplay.Ease"), "nothing is felt yet");
 
         // ---------------- The mod's side ----------------
 

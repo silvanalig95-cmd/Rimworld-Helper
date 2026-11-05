@@ -2517,8 +2517,8 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   a debt of honour speaks as `tie:honour` (`:ours`, `:theirs`, `:you`, `:due`, `{HONOURTO}`, `{FAVOURWHY}`), apart from
   `tie:favour`, so the bring-next-time talk never takes one for the other. History: the family `dip:` for what isn't a
   tie (`dip:word`, `dip:peace`, `dip:freed`, `dip:side`; the later releases' kinds named in `DiplomacyMath.Kinds`).
-- **The nature service** (`Nature.Felt`, `NatureMath`): every act of item 13 listed with its sides and worked out, no
-  effect until round d.
+- **The nature service** (`Nature.Felt`, `NatureMath`): every act of item 13 listed with its sides and worked out,
+  switched on in release 2d.2 (below, "Against their nature").
 - **Settings**: the section Diplomacy, `diplomacyFavours`.
 
 #### Pacts and truces
@@ -2975,8 +2975,8 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   (`TruceObjection.Avenger`), pride 30 or more, a devout colonist of another faith with Ideology) has the council's
   question first (`Rimfolk_DlmFealty_Swear`, tags avenger/proud/faith/pet); then the speaker
   (`TruceParley.Speaker`) walks out (`JobDriver_FealtyOath`: the bubbles `fealtyoath`, `fealtyterms`, `fealtysworn`)
-  and `Fealty.Swear` makes the tie, notes `swore`, calls the nature service (`Nature.Felt`, no effect yet) and tells
-  the terms.
+  and `Fealty.Swear` makes the tie, notes `swore`, calls the nature service (`Nature.Felt`: the speaker's pride, since
+  release 2d.2) and tells the terms.
 - **The hour** (`Fealty.Hourly`, from `Diplomacy.Hourly`): oaths awaited; for each oath, gone or at war ends it; their
   band on its way walks in through `Pacts.Arrive(..., "fealty", words "fealty")` and notes `protected`; protection
   (`ProtectionHour`): a home raided by a people (not the liege) with no band on the map, once a season
@@ -3084,6 +3084,58 @@ nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools
   `house:infamous`, `house:knownfor:KIND`, `them:house`, `them:house:renowned`, `them:house:feud`, `{HOUSE}`,
   `{KNOWNFOR}` (by the house's age), `{RENOWN}` (by the listener's ways), `{THEIRHOUSE}`; bubbles get the colonist's
   house tags (`Outsiders.Line`). Setting `diplomacyRenown` ("House renown"). Dev actions in `RenownDebug.cs`.
+
+#### Against their nature
+
+Release 2d.2 (docs/design/stage2-diplomacy.md, item 13; decision 19: strain through the heart only, no new mood, easing
+when someone acts with their nature, marks for repeated acts): `Diplomacy/Nature.cs`, its rules pure and tested
+(`NatureMath.cs`; `Tools/Tests/NatureTests.cs`), tuned with the balance simulator (`Tools/Balance -- --nature`).
+
+- **What an act brings.** `NatureMath.Rules`: each act, the side of a person it goes against (`PersonaAxis`, the end, from
+  30 where a side shows). Past it, strain up to 12 by how far (`Floor`: about 5 just past it); an act against two sides
+  counts the worse; a match pressed and a truce with one's foe weigh on anyone (8, more for the warm or proud). The other
+  end of a side it eases (`easesOther`: the curious by a season away, the cold by a dark scheme) gets relief up to 6.
+  Two acts at once (a hostage given is a season away too) count as one, the one that weighs most (`Pick`).
+- **Through the heart.** `StrainSource.Nature` and `StrainRelief.Nature`, each at the end of its list (saved by
+  position). Strain through `HeartLogic.Build` as the hour builds (the strength setting, traits, the source's cap of 12
+  and the day's 25), scaled first as the pressures' bad side is (`NatureMath.Scale`: `PressureMath.Factor` of "Life's ups
+  and downs", read whatever the stakes since it is no mood, and `HardTimesPressure` of `Pressures.Hard`); relief through
+  `HeartLogic.Relieve` (their way of letting go, never more than they hold; `Interplay.Ease` counts every kind but
+  gatherings against the friends' cap, so it is not used). One act a day per colonist: the heart keeps the last
+  (`natureTick`, `natureAct`, `natureEased`, `natureWhy`, values, not a list).
+- **Where each act happens.** The oath: `Fealty.Swear`, the speaker who walked out (`JobDriver_FealtyOath`). A truce, pact,
+  oath or protection broken by the colony: `PactsHooks.Noted`, on whoever the game names for the deed (`MemoryHooks.Doer`:
+  the blow's hand kept by `Patch_MemoryDamageBy` while the game weighs it, the captor by `Patch_MemoryCapturedBy`, the
+  seller at the trade, the first of the caravan that fell on theirs, the killer); a deed the game names nobody for (a town
+  attacked or destroyed, a harmful ability or item) touches nobody; a pact's call refused by the council's answer
+  (`CallsToArms.Refused`), the speaker who sends it. A hostage of the colony's: as they walk off the map
+  (`WardsAbroad.AtEdge`, `Nature.HostageGoes`: the hostage, timid or set in their ways, one act; their close kin among the
+  colony, warm). A youth sent away as a ward: the same moment, the parents among the colony (`Nature.WardGoes`). A match
+  pressed: `Matches.Pressed`. A challenge: the travelling champion's and the rematch's (`HappeningWorker_Champion`, the
+  challenge renown sends to a fighters' house), turned down by the council's answer (`DilemmaEffect_SendAway` with the
+  context's `contest`) on the champion, proud or hot-tempered; faced at the contest itself (`Contest`) by a timid one.
+  The envoy abroad: as they walk off the map (`EnvoysAbroad.AtEdge`). Asking more for a captive (`Ransoms.AskMore`): the
+  speaker who haggles, and the captive's own close kin among the colony. A truce sworn (`Truces.Swear`,
+  `Nature.TruceWithFoe`): each avenger of this home whose vendetta is on them (`Vendettas`). The dark scheme is listed and
+  unwired: schemes (2c.3) are not built.
+- **Shown.** The heart's page says it the way a pressure says its cause (`HeartView.SourceText`, `ReliefText`): "swore
+  the colony's oath to the Lenlia, against her pride (+7)", the side by the game's own pronouns; while the strain is too
+  low for the general advice, "A quiet evening with friends would help." (`NatureHelp`; `HelpFor` names it in the advice
+  above 30). The colony's news tells it (`Tell.Minor`, two wordings or more). The council's questions name it before an
+  answer that asks it (`Nature.Impact`: the oath's speaker's pride, the avenger's vengeance, the colonist's heart for a
+  match pressed, the champion's nature on the challenge's answers), and the oath's objection names a proud colonist's
+  nature in two new lines ("too proud to kneel to anyone").
+- **Marks** (`Defs/PersonaDefs/Rimfolk_PersonaMarks_Nature.xml`, `NatureMath.MarkFamily`, given through
+  `PersonaMarks.Give`): an oath sworn by a proud one may humble them (`NatureOath`, a turning point, half the time); the
+  same act against the same side twice within a year (the act before kept on the heart) may change that side: a word
+  broken twice makes a trusting one warier (`NatureWordBroken`), a challenge faced twice a timid one bolder
+  (`NatureNerve`), a second season away one set in their ways more open (`NatureAbroad`), each six times in ten, within
+  the persona's own limits. Three dark schemes hardening a kind one waits for the schemes.
+- **The balance** (`Tools/Balance/NatureSim.cs`, printed): the heart hour by hour with the mod's caps and odds, the rest of
+  life set to the colony-year report's strain shares per style, natures from the vanilla traits. A colony deep in
+  diplomacy (about 5.5 acts a colony-year, on the generous side) has about 0.8 felt a year, each about 6 strain (on the
+  heart's page about five days), 0.1 to 0.4 per cent of all strain built (15th of 17 sources), the main cause of no
+  episode in the runs. Setting `diplomacyNature` ("Against their nature", Diplomacy, needs the heart).
 
 ### Rimfolk's windows
 

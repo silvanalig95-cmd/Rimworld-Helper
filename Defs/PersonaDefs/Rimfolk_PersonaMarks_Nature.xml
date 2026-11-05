@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks left by acts against someone's nature (Source/ColonyCouncil/Diplomacy/Nature.cs, NatureMath.MarkFamily; release
+    2d.2). Given only to someone the act went against (the side it names is theirs already, so the marks ask nothing
+    more of their nature): an oath of fealty sworn by a proud one may humble them; the same act against the same side
+    twice within a year (the last act kept on their heart) may change that side: a word broken twice makes a trusting
+    one warier, a challenge faced twice makes a timid one bolder, a second season away makes one set in their ways more
+    open. {LABEL} is the people it concerned (or the challenger). Rare: each has its chance and the persona's own limits.
+  -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Humbled</defName>
+    <label>humbled by an oath</label>
+    <shifts><pride>-8</pride><warmth>2</warmth></shifts>
+    <lastingShare>0.4</lastingShare>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has carried {PAWN_possessive} pride more lightly since swearing the colony's oath to {LABEL}.</shaped>
+    <defaultLabel>a stronger people</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NatureOath</family>
+        <chance>0.5</chance>
+        <lean>pride:0.3</lean>
+        <news>{PAWN_nameDef} has been quieter since swearing the colony's oath to {LABEL}.</news>
+        <journal>
+          <plain>
+            <li>I swore the colony's oath to {LABEL} at the gate today. I didn't think I could. It turns out I can.</li>
+            <li>The oath to {LABEL} is sworn, and I was the one who swore it. I keep going over the words in my head.</li>
+            <li>I always said I'd answer to nobody. Today I swore the colony to {LABEL}, and the sky stayed where it was.</li>
+          </plain>
+          <warm><li>I swore the oath to {LABEL} so the others would be safe. That's worth more than my pride, I think.</li></warm>
+          <blunt><li>Swore the oath to {LABEL}. Didn't like it. Did it anyway.</li></blunt>
+          <cheerful><li>I swore the colony's oath to {LABEL} today and nobody laughed. I may survive this after all.</li></cheerful>
+          <gloomy><li>I answer to {LABEL} now. That's who I am, someone who answers to others.</li></gloomy>
+          <cold><li>The oath to {LABEL} was the sensible choice. My pride will have to be sensible too.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_WordBrokenTwice</defName>
+    <label>broke the colony's word twice</label>
+    <shifts><trust>-7</trust></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has trusted promises less since breaking the colony's word to {LABEL}, the second time in a year.</shaped>
+    <defaultLabel>a people at peace</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NatureWordBroken</family>
+        <chance>0.6</chance>
+        <news>{PAWN_nameDef} has broken the colony's word twice in a year now, and seems to trust words less for it.</news>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FacedChallengers</defName>
+    <label>faced challengers</label>
+    <shifts><nerve>6</nerve><pride>2</pride></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has stood a little straighter since facing {LABEL}, the second challenger in a year.</shaped>
+    <defaultLabel>a challenger</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NatureNerve</family>
+        <chance>0.6</chance>
+        <news>{PAWN_nameDef} has faced a second challenger this year, and seems less afraid of the next one.</news>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_WorldSeen</defName>
+    <label>a second season abroad</label>
+    <shifts><openness>6</openness></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has been more curious about the world since a second season away among {LABEL}.</shaped>
+    <defaultLabel>another people</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NatureAbroad</family>
+        <chance>0.6</chance>
+        <news>{PAWN_nameDef} has set out for {LABEL} a second time this year, and seems more at ease among strangers.</news>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

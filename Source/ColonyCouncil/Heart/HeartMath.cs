@@ -30,7 +30,9 @@ namespace ColonyCouncil
         Dread,
         Despair,
         /// <summary>A need of the heart badly lacking for days (HeartNeedMath).</summary>
-        Unmet
+        Unmet,
+        /// <summary>Something done, or made to do, against their nature (Diplomacy/Nature.cs, NatureMath): one act a day.</summary>
+        Nature
     }
 
     /// <summary>What drains strain. Saved by position in lists, so new kinds go at the end.</summary>
@@ -43,7 +45,9 @@ namespace ColonyCouncil
         Friends,
         Catharsis,
         Episode,
-        Council
+        Council,
+        /// <summary>Something done with their nature that eases them (Diplomacy/Nature.cs: the open sent abroad for a season).</summary>
+        Nature
     }
 
     /// <summary>The traits that change how strain builds and drains, as flags so the math needs no game types.</summary>
@@ -171,6 +175,8 @@ namespace ColonyCouncil
                 case StrainSource.Dread: return 2f;
                 case StrainSource.Despair: return 2f;
                 case StrainSource.Unmet: return 3f;
+                // One act a day, up to NatureMath.MaxStrain.
+                case StrainSource.Nature: return 12f;
                 default: return 3f;
             }
         }

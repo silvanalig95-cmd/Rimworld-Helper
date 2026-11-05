@@ -200,7 +200,7 @@ public static class MatchTests
         C(matches.Contains("MatchObjection.Ask(h, p)") && Code("Diplomacy/MatchObjection.cs").Contains("d.Worker is DilemmaWorker_MatchAgainst"),
             "a match the colonist is against comes before the council first");
         C(Code("Diplomacy/MatchObjection.cs").Contains("Matches.ConsentOf(p.ours, p.theirs, p.lives, out _, out _) != Consent.Unwilling"), "a colonist who comes round is agreed without the question");
-        C(matches.Contains("Nature.Felt(p.ours, NatureAct.MatchAgainstHeart)"), "a match pressed goes against the colonist's nature (felt once round d switches it on)");
+        C(matches.Contains("Nature.Felt(p.ours, NatureAct.MatchAgainstHeart, p.people"), "a match pressed goes against the colonist's nature (felt since release 2d.2, NatureTests)");
         string dlm = File.ReadAllText(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_Match.xml"));
         C(dlm.Contains("DilemmaEffect_MatchPress") && dlm.Contains("DilemmaEffect_MatchWithdraw") && dlm.Contains("Rimfolk_MatchPressed") && dlm.Contains("<defaultOption>1</defaultOption>"),
             "the council's question: press it (the colonist's thought) or withdraw it, withdrawn when nobody answers");

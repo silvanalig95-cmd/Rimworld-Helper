@@ -71,7 +71,12 @@ namespace ColonyCouncil
             var x = ctx == null ? null : Whom(ctx, ofGroup);
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
             sheet.Add(ImpactKind.People, 0, "CC_Impact_SendAway".Translate(x.LabelShort).Resolve(), "CC_Impact_SendAwayBrief".Translate(x.LabelShort).Resolve());
+            // A challenger turned away: the colony's champion, if proud or hot-tempered, takes it to heart (Diplomacy/Nature.cs).
+            if (Challenge(ctx) is Pawn champion) Nature.ImpactRefused(sheet, champion);
         }
+
+        /// <summary>The colony's champion when the one sent away came with a challenge (a travelling champion, a rematch), else null.</summary>
+        private Pawn Challenge(DilemmaContext ctx) => !ofGroup && ctx is HappeningContext h && h.contest ? h.a : null;
 
         /// <summary>Walked back to the road: they set off when the answer's visit to them starts, the visitor beside them.</summary>
         public bool walked;
@@ -92,6 +97,8 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var x = Whom(ctx, ofGroup);
+            // A challenge turned down: the champion who would have faced it takes it to heart, if proud or hot-tempered (Diplomacy/Nature.cs).
+            if (Challenge(ctx) is Pawn champion) Nature.Felt(champion, NatureAct.RefusedChallenge, ctx.faction, ctx.stranger?.LabelShort);
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
             // With a visit to them the answer set going, they go when it's over, or (walked back to the road) set off when it
             // starts with the visitor beside them (PlayOut/PlayDepart.cs).

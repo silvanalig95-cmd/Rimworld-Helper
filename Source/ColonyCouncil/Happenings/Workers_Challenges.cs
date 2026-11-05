@@ -142,6 +142,8 @@ namespace ColonyCouncil
             string what = ctx.SkillText;
             var ext = v.Ext;
             using var _cause = Causes.Push("CC_Cause_Challenge".Translate(what).Resolve());
+            // Facing a challenger in front of everyone goes against a timid champion's nature (Diplomacy/Nature.cs).
+            Nature.Felt(a, NatureAct.AcceptedChallenge, x.Faction, x.LabelShort);
             Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
             Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
             if (won)
@@ -187,6 +189,8 @@ namespace ColonyCouncil
             if (ctx?.a == null || ctx.stranger == null) return;
             sheet.Play("CC_Impact_Contest".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort, ctx.skill?.label ?? "").Resolve(), "CC_Impact_ContestBrief".Translate().Resolve());
             if (stake && ctx.count > 0) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_Stake".Translate(ctx.count).Resolve(), "CC_Impact_StakeBrief".Translate(ctx.count).Resolve(), "stake");
+            // A timid champion: facing the challenger goes against their nature (Diplomacy/Nature.cs).
+            Nature.Impact(sheet, ctx.a, NatureAct.AcceptedChallenge, "CC_Impact_NatureAccept", "CC_Impact_NatureAcceptBrief", ctx.faction, ctx.stranger.LabelShort);
         }
 
         public bool stake;

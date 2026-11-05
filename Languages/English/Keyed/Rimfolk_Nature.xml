@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Against their nature (Source/ColonyCouncil/Diplomacy/Nature.cs, NatureMath.cs; release 2d.2): what an act of
+       diplomacy does to someone it goes against, through the heart's own strain. The heart's page says what they did and
+       the side of them it went against or suited ({ACT}, against {SIDE}), by the game's own pronouns. The same in every
+       age: the nature is the person's. -->
+
+  <!-- The setting (Diplomacy) -->
+  <CC_Settings_DiplomacyNature>Against their nature</CC_Settings_DiplomacyNature>
+  <CC_SetNote_DiplomacyNature>What diplomacy asks of the colony's people weighs on those it goes against, and eases those it suits.</CC_SetNote_DiplomacyNature>
+  <CC_Settings_DiplomacyNature_Tip>Some of what diplomacy asks goes against a colonist's nature, and it builds their strain (the heart's own, no mood of its own): the oath of fealty on the one who swears it, if proud; a truce or a pact broken on whoever struck the blow, took the captive or made the sale that broke it, if trusting; a hostage given on the hostage, if timid, and on their close kin, if warm; a youth sent away as a ward on the parents, if warm; a match pressed over their objection on the one matched, always; a challenge turned down on the champion, if proud or hot-tempered, and one faced on the champion, if timid; a season away as envoy or hostage on the one who goes, if set in their ways; haggling over a captive on the one who haggles, and on the captive's close kin among the colony, if warm; a truce with a people someone swore vengeance on, on the avenger, always. The further past where a side shows (30), the more: up to 12, 8 at least for what is felt whatever their nature, scaled as life's pressures are ("Life's ups and downs", and less when they are near breaking), within the heart's caps for the day. What suits them eases it instead: a season away eases the curious, up to 6. One act a day for each colonist. The heart's page says what they did and what would help; the colony's news tells it. An oath sworn may humble a proud one, and the same act against the same side twice within a year may change them (a word broken twice, a challenge faced twice, a second season away). Off: nothing new is felt, and what was felt drains as any strain does.</CC_Settings_DiplomacyNature_Tip>
+
+  <!-- The heart's page -->
+  <CC_Heart_Source_Nature>acts against their nature</CC_Heart_Source_Nature>
+  <CC_Heart_Relief_Nature>acts that suit their nature</CC_Heart_Relief_Nature>
+  <CC_Heart_Help_Nature>a quiet evening with friends</CC_Heart_Help_Nature>
+  <CC_Heart_NatureHelp>A quiet evening with friends would help.</CC_Heart_NatureHelp>
+
+  <!-- What they did, and the side of them it went against or suited -->
+  <CC_Nature_Why>{ACT}, against {SIDE}</CC_Nature_Why>
+  <CC_Nature_WhyEased>{ACT}, which suits {SIDE}</CC_Nature_WhyEased>
+
+  <CC_Nature_Act_SworeFealty>swore the colony's oath to {PEOPLE}</CC_Nature_Act_SworeFealty>
+  <CC_Nature_Act_BrokeTruce>broke the colony's word to {PEOPLE}</CC_Nature_Act_BrokeTruce>
+  <CC_Nature_Act_GivenHostage>was given to {PEOPLE} as the colony's hostage</CC_Nature_Act_GivenHostage>
+  <CC_Nature_Act_KinHostage>saw {OTHER} given to {PEOPLE} as the colony's hostage</CC_Nature_Act_KinHostage>
+  <CC_Nature_Act_WardSent>saw {OTHER} sent to live with {PEOPLE} as a ward</CC_Nature_Act_WardSent>
+  <CC_Nature_Act_MatchAgainstHeart>was promised to {OTHER} of {PEOPLE}</CC_Nature_Act_MatchAgainstHeart>
+  <CC_Nature_Act_RefusedChallenge>saw the colony turn down {OTHER}'s challenge</CC_Nature_Act_RefusedChallenge>
+  <CC_Nature_Act_AcceptedChallenge>faced {OTHER}'s challenge in front of everyone</CC_Nature_Act_AcceptedChallenge>
+  <CC_Nature_Act_SeasonAway>set out to stay a while among {PEOPLE}</CC_Nature_Act_SeasonAway>
+  <CC_Nature_Act_SeasonAway_Envoy>set out as the colony's envoy to {PEOPLE}</CC_Nature_Act_SeasonAway_Envoy>
+  <CC_Nature_Act_SeasonAway_Hostage>set out to live among {PEOPLE} as the colony's hostage</CC_Nature_Act_SeasonAway_Hostage>
+  <CC_Nature_Act_HaggledForKin>haggled with {PEOPLE} over a captive whose family was waiting</CC_Nature_Act_HaggledForKin>
+  <CC_Nature_Act_HaggledForKin_Kin>heard the colony haggle over {OTHER}'s freedom</CC_Nature_Act_HaggledForKin_Kin>
+  <CC_Nature_Act_TruceWithFoe>saw the colony swear a truce with {PEOPLE}</CC_Nature_Act_TruceWithFoe>
+
+  <CC_Nature_Side_Pride_High>{PAWN_possessive} pride</CC_Nature_Side_Pride_High>
+  <CC_Nature_Side_Trust_High>{PAWN_possessive} trusting nature</CC_Nature_Side_Trust_High>
+  <CC_Nature_Side_Nerve_Low>{PAWN_possessive} timid nature</CC_Nature_Side_Nerve_Low>
+  <CC_Nature_Side_Warmth_High>{PAWN_possessive} warm heart</CC_Nature_Side_Warmth_High>
+  <CC_Nature_Side_Temper_High>{PAWN_possessive} hot temper</CC_Nature_Side_Temper_High>
+  <CC_Nature_Side_Openness_Low>{PAWN_possessive} settled ways</CC_Nature_Side_Openness_Low>
+  <CC_Nature_Side_Openness_High>{PAWN_possessive} restless curiosity</CC_Nature_Side_Openness_High>
+  <CC_Nature_Side_MatchAgainstHeart>{PAWN_possessive} own heart</CC_Nature_Side_MatchAgainstHeart>
+  <CC_Nature_Side_TruceWithFoe>the vengeance {PAWN_pronoun} swore on them</CC_Nature_Side_TruceWithFoe>
+
+  <!-- Told in the colony's news (fellows: CC_X_2...) -->
+  <CC_Nature_Told>{PAWN_nameDef} {WHY}, and it weighs on {PAWN_objective}.</CC_Nature_Told>
+  <CC_Nature_Told_2>It sits badly with {PAWN_nameDef}: {PAWN_pronoun} {WHY}.</CC_Nature_Told_2>
+  <CC_Nature_Told_3>{PAWN_nameDef} {WHY}. It will stay with {PAWN_objective} for a while.</CC_Nature_Told_3>
+  <CC_Nature_Told_Eased>{PAWN_nameDef} {WHY}, and it does {PAWN_objective} good.</CC_Nature_Told_Eased>
+  <CC_Nature_Told_Eased_2>{PAWN_nameDef} {WHY}, and seems lighter for it.</CC_Nature_Told_Eased_2>
+
+  <!-- The council's questions: what an answer would ask of someone's nature -->
+  <CC_Impact_NatureFealty>{PAWN_nameDef} would swear it at the gate, and it goes against {PAWN_possessive} pride.</CC_Impact_NatureFealty>
+  <CC_Impact_NatureFealtyBrief>Against {PAWN_nameDef}'s pride</CC_Impact_NatureFealtyBrief>
+  <CC_Impact_NatureTruce>{PAWN_nameDef} swore vengeance on {PEOPLE}, and a truce with them goes against everything {PAWN_pronoun} swore.</CC_Impact_NatureTruce>
+  <CC_Impact_NatureTruceBrief>Weighs on {PAWN_nameDef}</CC_Impact_NatureTruceBrief>
+  <CC_Impact_NatureMatch>The match goes against {PAWN_nameDef}'s own heart, and it will weigh on {PAWN_objective}.</CC_Impact_NatureMatch>
+  <CC_Impact_NatureMatchBrief>Against {PAWN_nameDef}'s heart</CC_Impact_NatureMatchBrief>
+  <CC_Impact_NatureRefuse_Pride>{PAWN_nameDef} is too proud to see a challenge turned down, and it will weigh on {PAWN_objective}.</CC_Impact_NatureRefuse_Pride>
+  <CC_Impact_NatureRefuse_Temper>{PAWN_nameDef} has too hot a temper to let a challenge go unanswered, and it will weigh on {PAWN_objective}.</CC_Impact_NatureRefuse_Temper>
+  <CC_Impact_NatureRefuseBrief>Weighs on {PAWN_nameDef}</CC_Impact_NatureRefuseBrief>
+  <CC_Impact_NatureAccept>{PAWN_nameDef} is timid, and facing {OTHER} in front of everyone will weigh on {PAWN_objective}.</CC_Impact_NatureAccept>
+  <CC_Impact_NatureAcceptBrief>Weighs on {PAWN_nameDef}</CC_Impact_NatureAcceptBrief>
+
+</LanguageData>

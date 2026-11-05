@@ -756,6 +756,35 @@ picked).
 **With and without other mods.** Traits from Vanilla Traits Expanded and other mods count through the
 `PersonaNatureDef`s that already read them.
 
+**As built (release 2d.2).** Where it differs from the above (DESIGN.md, "Against their nature", has the whole of it):
+- Relief goes through `HeartLogic.Relieve` with the nature's own one-a-day cap, not `Interplay.Ease`, which counts every
+  kind but gatherings against the friends' cap. Strain goes through `HeartLogic.Build`, the hour's own building (the
+  strength setting, traits, the source's cap of 12 and the day's 25); `HeartLogic.Change` applies no caps.
+- The scaling reads the "Life's ups and downs" setting itself (`PressureMath.Factor`), not `Pressures.LifeFactor`, which
+  is 0 when Rimfolk changes no moods: the strain is no mood. Hard times as the pressures (`HardTimesPressure`).
+- Tuned with the balance simulator (`Tools/Balance -- --nature`): just past where a side shows an act brings 0.4 of its
+  most (about 5, where the service had a quarter, 3), so it shows on the heart's page for days; the rest as written.
+- Breaking a truce or a pact: "whoever carries it out" is whoever the game names for the deed that broke it (the blow's
+  hand, the captor, the seller, the first of the caravan that attacked theirs, the killer); a town attacked or destroyed
+  and a harmful ability or item name nobody, so nobody feels those. A pact's call refused by the council's answer weighs
+  on the speaker who sends the refusal. Breaking the oath of fealty and a protected town's tie count too.
+- Haggling: the speaker who asks more for a captive whose family waits (as written), and the captive's own close kin
+  among the colony, if warm.
+- Refusing and accepting a challenge: the travelling champion's and the rematch's (the challenge renown sends to a
+  fighters' house), turned down by the council's answer, faced at the contest itself. The feasts' contests are planned
+  by the colony and have no challenge to refuse or accept.
+- A hostage given is a season away too: one act a day, the one that weighs most. Hostages, wards and envoys feel it as
+  they walk off the map.
+- A truce with one's foe reads the vendettas (`Secrets/Vendettas.cs`): each avenger of the home whose vendetta is open.
+- Marks: an oath may humble a proud one (half the time); the same act against the same side twice within a year may
+  change that side (a word broken twice, a challenge faced twice, a second season away). The dark scheme stays unwired
+  and its mark undefined until schemes (2c.3) are built.
+- Saved: four values on each heart (the last act's tick, kind, whether it eased, its words); no new list.
+- Shown: the heart's page names the act and the side, the news tells it (two wordings or more), the council's questions
+  name it before an answer that asks it (the oath, the truce with one's foe, a match pressed, a challenge), and the
+  oath's objection has two lines that name a proud colonist's nature. No bubbles: the acts already show on the map where
+  they happen (the oath at the gate, the hostage, ward and envoy walking out, the contest).
+
 ## Forms by age
 
 The colony's word (its means) / their rite (their ways), as keyed strings beside the ten that exist
@@ -806,6 +835,7 @@ letters by purpose and age, news, an Almanac page).
 9. **2c.3 Schemes** (item 11). Needs 2c.1; the harm review's rival sabotage (3.5.1) first, if the player picks it.
 10. **2d.1 House renown** (item 12; wave 14). Reads every deed and tie before it.
 11. **2d.2 Against their nature** (item 13): the acts of every release switched on and tuned with the balance simulator.
+    Built: every act but the dark scheme (item 13, "As built").
 
 ## Performance
 

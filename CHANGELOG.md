@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Against their nature
+
+*5 November 2026, version 0.100.0*
+
+- What diplomacy asks of the colony's people can go against their nature: a proud speaker swearing the oath, a trusting colonist whose blow or sale breaks a truce, a timid hostage or champion, warm parents sending a youth away as a ward, a match pressed over someone's objection, a truce with the people someone swore vengeance on.
+- It weighs on them through the heart's own strain, never a new mood, at most one act a day. The heart's page says what they did, which side of them it went against and what would help, and the colony's news tells it.
+- What suits someone eases them instead: a curious envoy or hostage setting off for a season away is eased by it, where a settled one is strained.
+- The council's questions say who would mind on the answer that asks it, and the oath's objections can say someone is too proud to kneel to anyone.
+- Repeated acts can change a person: an oath may humble a proud one, and a word broken twice, a challenge faced twice or a second season away within a year may leave its mark.
+- A new setting, Against their nature, turns it off with the other diplomacy parts.
+
 ## House renown, checked over
 
 *5 November 2026, version 0.99.1*

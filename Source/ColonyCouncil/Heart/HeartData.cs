@@ -118,6 +118,15 @@ namespace ColonyCouncil
         /// about three days, it adds a little strain.
         /// </summary>
         public List<float> needLack = new List<float>();
+        /// <summary>
+        /// The last act against (or with) their nature they felt (Diplomacy/Nature.cs): when (-1: none; one a day), which
+        /// (NatureAct), whether it eased them, and its words for the heart's page ("swore the colony's oath to the Lenlia,
+        /// against her pride"). Values, not a list: the heart's record gains four fields.
+        /// </summary>
+        public int natureTick = -1;
+        public int natureAct = -1;
+        public bool natureEased;
+        public string natureWhy;
 
         // ---------------- Worked out each hour, not saved ----------------
 
@@ -228,6 +237,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref feelingSinceKeys, "feelingSinceKeys", LookMode.Value);
             Scribe_Collections.Look(ref feelingSinceTicks, "feelingSinceTicks", LookMode.Value);
             Scribe_Collections.Look(ref needLack, "needLack", LookMode.Value);
+            Scribe_Values.Look(ref natureTick, "natureTick", -1);
+            Scribe_Values.Look(ref natureAct, "natureAct", -1);
+            Scribe_Values.Look(ref natureEased, "natureEased");
+            Scribe_Values.Look(ref natureWhy, "natureWhy");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // Saves from before the needs could wear on anyone have none: nobody has been lacking anything yet.

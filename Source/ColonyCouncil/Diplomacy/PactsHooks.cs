@@ -30,14 +30,20 @@ namespace ColonyCouncil
                 {
                     Battles(d);
                     string how = FactionMemory.Text(d);
-                    if (PactMath.OurBreach(d.kind) && Truces.AnyWith(f) != null) Truces.BrokenByUs(f, how);
-                    if (PactMath.PactBreach(d.kind) && Pacts.With(f).Count > 0 && PactMath.BreaksPact(d.kind, BandOnAHome(f))) Pacts.BrokenByUs(f, how);
+                    // The colonist the game names for the deed (the hand that struck, the captor, the seller), read now: the
+                    // letters below may note deeds of their own.
+                    var by = MemoryHooks.Doer;
+                    bool broke = false;
+                    if (PactMath.OurBreach(d.kind) && Truces.AnyWith(f) != null) broke |= Truces.BrokenByUs(f, how);
+                    if (PactMath.PactBreach(d.kind) && Pacts.With(f).Count > 0 && PactMath.BreaksPact(d.kind, BandOnAHome(f))) broke |= Pacts.BrokenByUs(f, how);
                     // The colony's liege, and a people whose town is under its protection (Fealty.cs, Vassals.cs): attacking them breaks the oath.
                     if (PactMath.PactBreach(d.kind) && PactMath.BreaksPact(d.kind, BandOnAHome(f)))
                     {
-                        if (Fealty.With(f) != null) Fealty.BrokenByUs(f, how);
-                        Vassals.BrokenByUs(f, how);
+                        if (Fealty.With(f) != null) broke |= Fealty.BrokenByUs(f, how);
+                        broke |= Vassals.BrokenByUs(f, how);
                     }
+                    // Whoever carried it out takes the colony's word broken to heart, if trusting (Nature.cs).
+                    if (broke && NatureMath.BreakerFeels(by != null, KinMemory.Ours(by))) Nature.Felt(by, NatureAct.BrokeTruce, f);
                 }
                 else if (d.side == DeedSide.TheirWrong && d.kind == "killedOurs")
                 {

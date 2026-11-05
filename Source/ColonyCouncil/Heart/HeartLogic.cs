@@ -560,6 +560,52 @@ namespace ColonyCouncil
             return mood != 0f ? mood : RewardInstead.Felt(m.def);
         }
 
+        /// <summary>
+        /// Strain from one source added from outside the hour (an act against someone's nature, Diplomacy/Nature.cs), as the
+        /// hour's own building is: the strength setting, their traits, that source's daily cap and the day's cap for
+        /// everything (HeartMath.Add), on the record by its source. On a day the hour hasn't reached yet, yesterday's counts
+        /// don't hold it back. Returns what was added.
+        /// </summary>
+        public static float Build(Pawn p, StrainSource source, float raw)
+        {
+            var h = Heart.Of(p);
+            if (h == null || raw <= 0f) return 0f;
+            h.EnsureLists();
+            int i = (int)source;
+            bool today = h.day == Find.TickManager.TicksGame / GenDate.TicksPerDay;
+            float sourceToday = today ? h.today[i] : 0f, totalToday = today ? h.todayTotal : 0f;
+            float speed = Mathf.Clamp(S.strainSpeed, 0.5f, 1.5f);
+            float added = HeartMath.Add(raw, speed, HeartMath.TraitFactor(source, Heart.TraitsOf(p)), ref sourceToday, HeartMath.SourceCap(source), ref totalToday,
+                HeartMath.DailyCap);
+            if (added <= 0f) return 0f;
+            if (today)
+            {
+                h.today[i] = sourceToday;
+                h.todayTotal = totalToday;
+            }
+            float before = h.strain;
+            h.strain = HeartMath.Clamp(h.strain + added);
+            float moved = h.strain - before;
+            h.recentBuild[i] += moved;
+            HeartView.Refresh(p, h);
+            return moved;
+        }
+
+        /// <summary>
+        /// Strain eased from outside the hour by something with its own cap (an act with someone's nature, one a day): their
+        /// nature's way of letting go (HeartMath.ReliefTraitFactor), never more than the strain they have, on the record by
+        /// its kind. Returns what was eased.
+        /// </summary>
+        public static float Relieve(Pawn p, float amount, StrainRelief kind)
+        {
+            var h = Heart.Of(p);
+            if (h == null || amount <= 0f || h.strain <= 0f) return 0f;
+            float eased = Mathf.Min(amount * HeartMath.ReliefTraitFactor(Heart.TraitsOf(p)), h.strain);
+            if (eased <= 0f) return 0f;
+            Change(p, -eased, kind);
+            return eased;
+        }
+
         /// <summary>Strain changed from outside (a dilemma, an episode ending): kept within bounds and on the record.</summary>
         public static void Change(Pawn p, float amount, StrainRelief reliefKind = StrainRelief.Council, StrainSource buildSource = StrainSource.Council)
         {

@@ -610,11 +610,11 @@ namespace ColonyCouncil
 
         // ================= Broken =================
 
-        /// <summary>The colony broke it (a deed of its against them): every pact with them broken, "brokePact", and its word broken in every ear in reach.</summary>
-        public static void BrokenByUs(Faction f, string how)
+        /// <summary>The colony broke it (a deed of its against them): every pact with them broken, "brokePact", and its word broken in every ear in reach. True when one was.</summary>
+        public static bool BrokenByUs(Faction f, string how)
         {
             var pacts = With(f);
-            if (pacts.Count == 0) return;
+            if (pacts.Count == 0) return false;
             foreach (var t in pacts)
             {
                 WorldLedger.Set(t, Tie.State.Broken);
@@ -626,6 +626,7 @@ namespace ColonyCouncil
             Diplomacy.Dirty();
             FactionMemory.Note(f, "brokePact", how);
             Truces.WordBroken(f);
+            return true;
         }
 
         /// <summary>The colony ends a pact by its letter, without blame: ended, and their people remember it was done openly.</summary>

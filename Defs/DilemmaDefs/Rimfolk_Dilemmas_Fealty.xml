@@ -6,8 +6,9 @@
     never on their own schedule.
     - Rimfolk_DlmFealty_Swear: one of theirs stands at the gate to take the colony's oath, and A objects first. X the one at the gate,
       {FACTION} their people, {WORD} the oath in the colony's age. Tags, why A objects: "avenger" (A swore vengeance on
-      them; "pet" when it was for an animal), "proud" (A won't see the colony bend the knee), "faith" (A is devout in
-      another faith than theirs). Sworn all the same, A takes it hard; sent home, their people feel turned away.
+      them; "pet" when it was for an animal), "proud" (A won't see the colony bend the knee: their nature, named), "faith"
+      (A is devout in another faith than theirs). Sworn all the same, A takes it hard, and the speaker who swears it at the
+      gate takes it to heart if proud (Diplomacy/Nature.cs, named on the answer); sent home, their people feel turned away.
     - Rimfolk_DlmFealty_Renounce: the council is asked to renounce the colony's oath. A the speaker, {FACTION} the liege,
       {WORD} the oath. Tags: "clean" (they failed to protect the colony this season: no blame), "owed" (tribute still owed).
   -->
@@ -24,6 +25,8 @@
       <li>[proud] {X_nameDef} of {FACTION} is at the gate to take the colony's oath ({WORD}). {A_nameDef} says the colony built itself with its own hands and owes nobody a knee.</li>
       <li>[proud] {A_nameDef} stood up before the council as {X_nameDef} of {FACTION} waited at the gate: the colony would be paying for its own walls twice, {A_pronoun} says, once in work and once in tribute.</li>
       <li>[faith] {X_nameDef} of {FACTION} waits at the gate, and {A_nameDef} has asked the council not to swear the colony to a people of another faith.</li>
+      <li>[proud] {A_nameDef} is too proud to kneel to anyone, and says the colony should be too. {X_nameDef} of {FACTION} waits at the gate for its oath ({WORD}).</li>
+      <li>[proud] {X_nameDef} of {FACTION} is at the gate for the colony's oath ({WORD}), and {A_nameDef} has never answered to anyone in {A_possessive} life. {A_nameDef} asks the council not to start now.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
