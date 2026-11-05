@@ -232,6 +232,16 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>A people among these at war with this one (their guests would fight at the colony), or null.</summary>
+        public static Faction FeudWith(Faction f, IEnumerable<Faction> others)
+        {
+            if (f == null || others == null) return null;
+            foreach (var o in others)
+                if (o != null && o != f && f.HostileTo(o))
+                    return o;
+            return null;
+        }
+
         /// <summary>The notables the colony might invite (of peoples it deals with and not at war), the best regard first.</summary>
         public static List<Notable> Candidates(Map home, Faction only = null)
         {
@@ -294,7 +304,13 @@ namespace ColonyCouncil
             why = PlanWhyNot(home);
             if (why != null) return null;
             var book = DiplomacyBook.Instance;
-            invited = (invited ?? new List<Notable>()).Where(n => InviteWhyNot(n, home) == null).Distinct().Take(FeastMath.MaxGuests).ToList();
+            invited = (invited ?? new List<Notable>()).Where(n => InviteWhyNot(n, home) == null).Distinct().ToList();
+            // Guests of two peoples at war with each other would fight at the gate: the later ones stay home.
+            var peaceable = new List<Notable>();
+            foreach (var n in invited)
+                if (peaceable.Count < FeastMath.MaxGuests && FeudWith(n.faction, peaceable.Select(o => o.faction)) == null)
+                    peaceable.Add(n);
+            invited = peaceable;
             if (invited.Count == 0)
             {
                 why = FeastWords.P("CC_Feast_Why_NoGuests");
@@ -365,7 +381,8 @@ namespace ColonyCouncil
                 prize = prize, prizeName = prize != null ? PlayGive.Label(prize) : null
             };
             foreach (var n in (guests ?? new List<Notable>()).Where(n => n?.pawn != null && n.Alive).Distinct().Take(FeastMath.MaxGuests))
-                p.guests.Add(new FeastGuest
+                if (FeudWith(n.faction ?? people, p.guests.Select(g => g.people)) == null)
+                    p.guests.Add(new FeastGuest
                 {
                     notable = n.id, pawn = n.pawn, name = n.Name, people = n.faction ?? people, town = n.town, state = GuestState.Coming, comeBy = Math.Max(when, Now),
                     hope = HopeOf(n.faction ?? people)
@@ -409,6 +426,7 @@ namespace ColonyCouncil
             foreach (var x in others)
             {
                 if (p.guests.Count >= FeastMath.MaxGuests) break;
+                if (FeudWith(x.Faction, p.guests.Select(g => g.people)) != null) continue;
                 p.guests.Add(new FeastGuest
                 {
                     pawn = x, name = x.LabelShort, people = x.Faction, state = GuestState.Coming, comeBy = Math.Max(when, Now), hope = HopeOf(x.Faction)
@@ -594,7 +612,7 @@ namespace ColonyCouncil
             Tell.Letter(NewsKind.World, Importance.Notable, map, FeastWords.P("CC_Feast_Set_Label", FeastWords.Name(map).Named("FEAST")),
                 FeastWords.T("CC_Feast_Set", FeastWords.Name(map).Named("FEAST"), FeastWords.Guests(p, true).Named("GUESTS"), FeastWords.Peoples(p, true).Named("PEOPLES"),
                     DateText(map, p.day).Named("DATE"))
-                + "\n\n" + Declined(p) + FeastWords.P("CC_Feast_Set_How", FeastWords.Contests(p.contests).Named("CONTESTS")),
+                + "\n\n" + Declined(p) + FeastWords.P(p.contests.Count > 0 ? "CC_Feast_Set_How" : "CC_Feast_Set_HowNone", FeastWords.Contests(p.contests).Named("CONTESTS")),
                 LetterDefOf.PositiveEvent, LookTargets.Invalid);
         }
 

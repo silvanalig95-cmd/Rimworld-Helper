@@ -63,6 +63,7 @@
   <CC_Feast_Why_NoneOfTheirs>The colony knows nobody of {PEOPLE} to invite.</CC_Feast_Why_NoneOfTheirs>
   <CC_Feast_Why_Over>The feast is over.</CC_Feast_Why_Over>
   <CC_Feast_Why_AlreadyHere>The guests are already here.</CC_Feast_Why_AlreadyHere>
+  <CC_Feast_Why_Feud>{PEOPLE} are at war with {OTHER}, whose guest is already invited: they would fight at the colony.</CC_Feast_Why_Feud>
   <CC_Feast_Why_Letters>One letter or call goes to each guest, and only {COUNT} more can be under way now.</CC_Feast_Why_Letters>
   <CC_Feast_CWhy_Wrestling>Nobody of the colony is fit to wrestle.</CC_Feast_CWhy_Wrestling>
   <CC_Feast_CWhy_Race>Nobody of the colony is fit to run.</CC_Feast_CWhy_Race>
@@ -116,6 +117,8 @@
   <CC_Feast_Set_3>The invitations to {FEAST} have been answered: {GUESTS} of {PEOPLES} will come on {DATE}, or the first fine day after.</CC_Feast_Set_3>
   <CC_Feast_Set_Declined>{NAMES} won't be coming.</CC_Feast_Set_Declined>
   <CC_Feast_Set_How>Each will walk in with one or two of their people and wait by the gate. The afternoon holds {CONTESTS}; the feast is in the evening. They stay the night in the colony's beds, or on the floor if there are none to spare, and go home at first light.</CC_Feast_Set_How>
+
+  <CC_Feast_Set_HowNone>Each will walk in with one or two of their people and wait by the gate. The feast is in the evening. They stay the night in the colony's beds, or on the floor if there are none to spare, and go home at first light.</CC_Feast_Set_HowNone>
 
   <!-- The guests arrive -->
   <CC_Feast_Arrive_Label>Guests for {FEAST}</CC_Feast_Arrive_Label>

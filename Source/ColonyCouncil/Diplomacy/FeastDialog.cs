@@ -172,6 +172,8 @@ namespace ColonyCouncil
             UiKit.Zebra(r, index);
             string why = GuestWhy(n);
             bool on = picked.Contains(n.id);
+            if (why == null && !on && Feasts.FeudWith(n.faction, Picked.Select(o => o.faction)) is Faction feud)
+                why = FeastWords.P("CC_Feast_Why_Feud", FeastWords.People(n.faction).Named("PEOPLE"), FeastWords.People(feud).Named("OTHER"));
             bool can = why == null && (on || picked.Count < FeastMath.MaxGuests);
             bool now = on;
             Widgets.Checkbox(new Vector2(x + 4f, y + 10f), ref now, 24f, !can && !on);
