@@ -194,6 +194,8 @@ namespace ColonyCouncil
             while (n.done.Count > 12) n.done.RemoveAt(0);
             var learner = Learner(t);
             var actors = new List<HistoryActor> { new HistoryActor(t.from, HistoryRole.Did), new HistoryActor(n.Person, HistoryRole.Against) };
+            // The one who learned it, as its line names them: a secret told is their house's wrong (Diplomacy/Renown.cs; paid, nobody hears of it).
+            if (!t.terms.about.IsNone) actors.Add(new HistoryActor(t.terms.about, HistoryRole.Did));
             if (answer == PressAnswer.Complied)
             {
                 WorldLedger.Set(t, Tie.State.Kept);

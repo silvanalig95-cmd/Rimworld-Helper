@@ -122,6 +122,8 @@ public static class RenownTests
         C(RenownMath.OfficerRole(false, false) == HistoryRole.Did && RenownMath.OfficerRole(true, false) == HistoryRole.With && RenownMath.OfficerRole(false, true) == HistoryRole.With,
             "the officer did a task done; one with a task failed or the keeper's secret watch");
         C(Code("Diplomacy/CouncilTasks.cs").Contains("RenownMath.OfficerRole(t.stage == TaskStage.Failed, t.kind == TaskKind.Secrets)"), "the task's history names its officer so");
+        C(Regex.IsMatch(Code("Diplomacy/SecretTies.cs"), @"new HistoryActor\(n\.Person, HistoryRole\.Against\) \};\s*(//[^\n]*\n\s*)?if \(!t\.terms\.about\.IsNone\) actors\.Add\(new HistoryActor\(t\.terms\.about, HistoryRole\.Did\)\);"),
+            "a secret pressed names the one who learned it, as its line does, so a secret told is their house's wrong (it named only the colony)");
         C(RenownMath.SourceOf(DiplomacyMath.Envoy, HistoryRole.Did, false, false, true) == "envoy" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true) == "hostage"
           && RenownMath.SourceOf(DiplomacyMath.Feast, HistoryRole.Did, false, false, true) == null, "a season abroad as envoy or hostage; a feast is the colony's");
         // The review: the colony's hostage home after their term is named as having done it (it was named About, so it never counted);
