@@ -533,6 +533,8 @@ MODEL = {
     # each with the people ever of it as refs (RenownMath.MembersKept): their renown is read from deeds and ties, never kept.
     "World/Ledger/LedgerRegion.cs:folkText": ("fixed", const("Diplomacy/RenownMath.cs", "MembersKept", 12) / 2, 12,
                                               "per house of the colony's: its people as refs, the living and the gone, RenownMath.MembersKept at most (counted under houses)"),
+    "World/Ledger/LedgerRegion.cs:folkNames": ("fixed", const("Diplomacy/RenownMath.cs", "MembersKept", 12) / 2, 14,
+                                               "per house of the colony's: their names beside the refs, so the gone are named after the game lets them go (counted under houses)"),
     "World/Ledger/LedgerRegion.cs:foundings": ("cap", (C["RegionFoundings"], 0.1), 260,
                                                "towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone"),
     # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book. Inside it, its

@@ -62,6 +62,21 @@ namespace ColonyCouncil
         /// <summary>A house's key: its family name, the same however it is written.</summary>
         public static string Key(string familyName) => string.IsNullOrEmpty(familyName) ? null : familyName.Trim().ToLowerInvariant();
 
+        /// <summary>
+        /// Which of the houses that remember someone (by their names, oldest first) they are of now: the one of the family
+        /// name they carry (one who took another's name on marrying is remembered by both), else the newest; -1 for none.
+        /// </summary>
+        public static int HouseFor(IList<string> houseNames, string lastName)
+        {
+            if (houseNames == null || houseNames.Count == 0) return -1;
+            string key = Key(lastName);
+            if (key != null)
+                for (int i = 0; i < houseNames.Count; i++)
+                    if (Key(houseNames[i]) == key)
+                        return i;
+            return houseNames.Count - 1;
+        }
+
         // ================= Where renown comes from =================
 
         /// <summary>One kind of renown: its points (a wrong's below zero), what it shows the house is good at, whether it fades with age, and the most it gives in all.</summary>
@@ -156,11 +171,13 @@ namespace ColonyCouncil
         /// (null for none): the champion (dip:contest, did it), the one married (dip:wedding, did it), a ward's guardian at
         /// a good year's end (dip:ward, did it, the ward named: <paramref name="aboutSomeone"/>) and the colony's youth home
         /// with what they learned (dip:ward, did it, nobody else named), its envoy home (dip:envoy, did it), its hostage home
-        /// (dip:hostage, did it), the speaker at a truce sworn (dip:parley, named), the officer who did a task (dip:task, did
-        /// it); a secret pressed is a task against its notable (<paramref name="againstSomeone"/>): told, a milestone
-        /// (<paramref name="weighty"/>), it is the keeper's house's wrong; paid, nobody hears of it.
+        /// (dip:hostage, did it for the colony: <paramref name="forColony"/>; a hostage of theirs who stayed did it for
+        /// nobody's term), the speaker at a truce sworn (dip:parley, named), the officer who did a task (dip:task, did
+        /// it, a milestone: <paramref name="weighty"/>; a task set, a step of it or one called off is nothing yet); a secret
+        /// pressed is a task against its notable (<paramref name="againstSomeone"/>): told, a milestone, it is the keeper's
+        /// house's wrong; paid, nobody hears of it.
         /// </summary>
-        public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty)
+        public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty, bool forColony = true)
         {
             if (role == HistoryRole.About) return kind == DiplomacyMath.Parley ? "parley" : null;
             if (role != HistoryRole.Did) return null;
@@ -170,14 +187,21 @@ namespace ColonyCouncil
                 case DiplomacyMath.Wedding: return "wedding";
                 case DiplomacyMath.Ward: return aboutSomeone ? "fostered" : "abroad";
                 case DiplomacyMath.Envoy: return "envoy";
-                case DiplomacyMath.Hostage: return "hostage";
-                case DiplomacyMath.Task: return !againstSomeone ? "task" : weighty ? "told" : null;
+                case DiplomacyMath.Hostage: return forColony ? "hostage" : null;
+                case DiplomacyMath.Task: return !weighty ? null : againstSomeone ? "told" : "task";
                 default: return null;
             }
         }
 
         /// <summary>A ward's guardian is named in the year's end as one who did it only for a good year or better (a fair one is no deed to be known by), else as one with it.</summary>
         public static HistoryRole GuardianRole(bool goodYear) => goodYear ? HistoryRole.Did : HistoryRole.With;
+
+        /// <summary>
+        /// A council task's officer is named in its history as one who did it, except for a task failed (the keeper found
+        /// out: no deed to be known by) and the keeper's secret watch (a secret learned is heard of by nobody, as a secret
+        /// pressed and paid), where they are one with it.
+        /// </summary>
+        public static HistoryRole OfficerRole(bool failed, bool secretWatch) => failed || secretWatch ? HistoryRole.With : HistoryRole.Did;
 
         /// <summary>What the peoples remember of a colonist by name (a mark's kind, ColonistMemoryMath), as renown: a source, or null for one that isn't.</summary>
         public static string SourceOfMark(string markKind) => markKind != null && Sources.ContainsKey(markKind) && Array.IndexOf(MarkKinds, markKind) >= 0 ? markKind : null;
@@ -364,6 +388,19 @@ namespace ColonyCouncil
 
         /// <summary>The band moved from the one last told: up or down, to be told and written (dip:renown).</summary>
         public static bool Moved(RenownBand told, RenownBand now) => told != now;
+
+        /// <summary>
+        /// The word one of the house says on the map as its band moves (the moment of Rimfolk_Lines_Renown.xml), or null:
+        /// renownup as its name carries further (its words say strangers know it), renowndown as it fades from the talk
+        /// (its words say nobody out there speaks of it); nothing for a name gone bad or mending, nor for one that is still
+        /// known, only less widely, where those words would not be true.
+        /// </summary>
+        public static string Bubble(RenownBand was, RenownBand now)
+        {
+            if (now > was && now >= RenownBand.Town) return "renownup";
+            if (now < was && now == RenownBand.Unknown) return "renowndown";
+            return null;
+        }
 
         // ================= Known for =================
 

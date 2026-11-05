@@ -50,7 +50,15 @@ namespace ColonyCouncil
                     second = i == 0 ? P("CC_Renown_Card_Eldest") : p.ageTracker != null ? P("CC_Renown_Card_Age", p.ageTracker.AgeBiologicalYears.Named("AGE")) : null
                 });
             }
-            var gone = h.folk.Where(r => !living.Any(p => Refs.Of(p) == r)).Select(DipWords.NameOf).Where(n => !n.NullOrEmpty() && n != "?").Distinct().ToList();
+            // The gone: neither of it nor of another of the colony's houses now (one who took another's name on marrying is
+            // still here), by the name the house kept of them (the ledger's, for a house kept before it kept names).
+            var gone = new List<string>();
+            for (int i = 0; i < h.folk.Count; i++)
+            {
+                if (Renown.StillOurs(h.folk[i])) continue;
+                string name = i < h.folkNames.Count && !h.folkNames[i].NullOrEmpty() ? h.folkNames[i] : DipWords.NameOf(h.folk[i]);
+                if (!name.NullOrEmpty() && name != "?" && !gone.Contains(name)) gone.Add(name);
+            }
             if (gone.Count > 0) who.Line(P("CC_Renown_Card_Gone", gone.ToCommaList(true).Named("NAMES")), UiKit.Faint);
             who.count = living.Count;
             if (who.Empty) m.blocks.Remove(who);

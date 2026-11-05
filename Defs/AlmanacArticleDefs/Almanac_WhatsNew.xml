@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.99.1</version>
+        <date>5 November 2026</date>
+        <title>House renown, checked over</title>
+        <points>
+          <li>Fixed: someone who took a spouse's name on marrying could count for the wrong house, and the other house's card listed them as gone.</li>
+          <li>Fixed: an envoy, a youth or a hostage away on the colony's errand dropped out of their house while abroad, and the house's name could fall and rise again around their trip.</li>
+          <li>Fixed: the spoken line when a house's name changes only comes when it is true, from someone awake and free, and the colony's own hostage coming home now counts for their house.</li>
+          <li>Fixed: only a council task that came to something counts for its officer's house, a secret pressed and told now costs the keeper's house, and a house down to one member is kept while that one lives at the colony.</li>
+          <li>House cards name the colony's dead and departed again, even long after they are gone.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.99.0</version>
         <date>5 November 2026</date>
         <title>House renown</title>

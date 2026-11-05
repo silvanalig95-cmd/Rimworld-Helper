@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 506; modelled: 506; growing without end: 0.
+Saved collections found: 507; modelled: 507; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** after two, **3,081 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -507,6 +507,7 @@ Rimfolk's part of the save, roughly: **2,453 KB** after a year, **2,910 KB** aft
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/History.cs:values` | per event: a deed's name, when it has one (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
+| `World/Ledger/LedgerRegion.cs:folkNames` | per house of the colony's: their names beside the refs, so the gone are named after the game lets them go (counted under houses) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:folkText` | per house of the colony's: its people as refs, the living and the gone, RenownMath.MembersKept at most (counted under houses) | fixed | 6 | 6 | 6 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |

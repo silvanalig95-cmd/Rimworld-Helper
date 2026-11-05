@@ -37,6 +37,8 @@ namespace ColonyCouncil
         public int seat = -1;
         /// <summary>Its people as refs, the living and the gone (RenownMath.MembersKept at most), whose deeds its renown is read from.</summary>
         public List<Ref> folk = new List<Ref>();
+        /// <summary>Their names beside them, in the same order ("" for one not yet named), so the gone are named after the game lets them go.</summary>
+        public List<string> folkNames = new List<string>();
         /// <summary>Last day someone of it was at the colony (-1: not yet).</summary>
         public int lastSeen = -1;
         /// <summary>The band of renown last told (RenownBand), so a change is told once; the renown itself is read, never kept.</summary>
@@ -57,6 +59,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref seat, "seat", -1);
             var folkText = Scribe.mode == LoadSaveMode.Saving ? folk?.ConvertAll(r => r.ToString()) : null;
             Scribe_Collections.Look(ref folkText, "folk", LookMode.Value);
+            if (ours) Scribe_Collections.Look(ref folkNames, "folkNames", LookMode.Value);
             Scribe_Values.Look(ref lastSeen, "lastSeen", -1);
             Scribe_Values.Look(ref band, "band");
             if (Scribe.mode == LoadSaveMode.LoadingVars)
@@ -66,7 +69,14 @@ namespace ColonyCouncil
                 members ??= new List<string>();
                 members.RemoveAll(m => m.NullOrEmpty());
                 folk ??= new List<Ref>();
-                folk.RemoveAll(r => r.IsNone);
+                folkNames ??= new List<string>();
+                // An unreadable ref goes with its name (an older save's house has no names yet: Renown fills them in).
+                for (int i = folk.Count - 1; i >= 0; i--)
+                    if (folk[i].IsNone)
+                    {
+                        folk.RemoveAt(i);
+                        if (i < folkNames.Count) folkNames.RemoveAt(i);
+                    }
             }
         }
     }

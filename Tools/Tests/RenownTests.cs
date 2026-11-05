@@ -116,8 +116,22 @@ public static class RenownTests
             "the speaker named at a truce sworn");
         C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, true, true) == "task" && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, true) == "told"
           && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, false) == null, "a task done; a secret pressed and told a wrong, paid nobody hears of");
+        // The review: a task set, a step of it and one called off are everyday lines, nothing yet; a task failed and the keeper's watch name the officer as one with it.
+        C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, false, false) == null && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.With, false, false, true) == null,
+            "only a task come to something counts, and only for the one who did it");
+        C(RenownMath.OfficerRole(false, false) == HistoryRole.Did && RenownMath.OfficerRole(true, false) == HistoryRole.With && RenownMath.OfficerRole(false, true) == HistoryRole.With,
+            "the officer did a task done; one with a task failed or the keeper's secret watch");
+        C(Code("Diplomacy/CouncilTasks.cs").Contains("RenownMath.OfficerRole(t.stage == TaskStage.Failed, t.kind == TaskKind.Secrets)"), "the task's history names its officer so");
+        C(Regex.IsMatch(Code("Diplomacy/SecretTies.cs"), @"new HistoryActor\(n\.Person, HistoryRole\.Against\) \};\s*(//[^\n]*\n\s*)?if \(!t\.terms\.about\.IsNone\) actors\.Add\(new HistoryActor\(t\.terms\.about, HistoryRole\.Did\)\);"),
+            "a secret pressed names the one who learned it, as its line does, so a secret told is their house's wrong (it named only the colony)");
         C(RenownMath.SourceOf(DiplomacyMath.Envoy, HistoryRole.Did, false, false, true) == "envoy" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true) == "hostage"
           && RenownMath.SourceOf(DiplomacyMath.Feast, HistoryRole.Did, false, false, true) == null, "a season abroad as envoy or hostage; a feast is the colony's");
+        // The review: the colony's hostage home after their term is named as having done it (it was named About, so it never counted);
+        // a hostage of theirs who stayed and joined did nothing for the colony's term.
+        C(RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, false, true) == "hostage" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true, false) == null
+          && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.About, false, false, false, true) == null, "a term served for the colony, not one of theirs who stayed");
+        C(Regex.IsMatch(Code("Diplomacy/WardsAbroad.cs"), @"DiplomacyMath\.Hostage, new List<HistoryActor>\s*\{\s*new HistoryActor\(Refs\.Of\(p\), HistoryRole\.Did\), new HistoryActor\(Refs\.Of\(f\), HistoryRole\.With\), new HistoryActor\(Diplomacy\.Colony\(map\), HistoryRole\.For\)")
+          && Code("Diplomacy/Renown.cs").Contains("RenownMath.SourceOf(e.kind, role, against, about, e.Weighty, forColony)"), "the hostage home names them as having done it, for the colony");
         C(RenownMath.MemberKinds.All(k => DiplomacyMath.Kinds.Contains(k)), "the history's kinds read are diplomacy's own");
         var epithetDefs = string.Concat(Directory.GetFiles(Path.Combine(root, "Defs", "EpithetDefs"), "*.xml").Select(File.ReadAllText));
         foreach (var e in RenownMath.Epithets) C(epithetDefs.Contains("<defName>" + e.Key + "</defName>"), $"the name {e.Key} exists");
@@ -162,6 +176,15 @@ public static class RenownTests
         C(RenownMath.Band(-13f, RenownBand.Infamous) == RenownBand.Infamous && RenownMath.Band(-11f, RenownBand.Infamous) == RenownBand.Unknown && RenownMath.Band(-20f, RenownBand.Town) == RenownBand.Infamous,
             "infamy holds to -12, and comes at once");
         C(RenownMath.Moved(RenownBand.Town, RenownBand.Region) && !RenownMath.Moved(RenownBand.Town, RenownBand.Town), "a move is a change of band");
+        // The review: the bubble only where its words are true ("strangers know our name", "people out there have stopped talking about us").
+        C(RenownMath.Bubble(RenownBand.Unknown, RenownBand.Town) == "renownup" && RenownMath.Bubble(RenownBand.Region, RenownBand.Peoples) == "renownup"
+          && RenownMath.Bubble(RenownBand.Infamous, RenownBand.Town) == "renownup", "renownup as the name carries further");
+        C(RenownMath.Bubble(RenownBand.Town, RenownBand.Unknown) == "renowndown" && RenownMath.Bubble(RenownBand.Region, RenownBand.Unknown) == "renowndown",
+            "renowndown as it fades from the talk");
+        C(RenownMath.Bubble(RenownBand.Infamous, RenownBand.Unknown) == null && RenownMath.Bubble(RenownBand.Town, RenownBand.Infamous) == null
+          && RenownMath.Bubble(RenownBand.Unknown, RenownBand.Infamous) == null && RenownMath.Bubble(RenownBand.Region, RenownBand.Town) == null
+          && RenownMath.Bubble(RenownBand.Peoples, RenownBand.Region) == null && RenownMath.Bubble(RenownBand.Town, RenownBand.Town) == null,
+            "no bubble for a name gone bad or mending, nor for one still known, only less widely");
 
         // ================= Known for =================
 
@@ -209,6 +232,25 @@ public static class RenownTests
         C(RenownMath.Kept(true, false, -1, 0) && RenownMath.Kept(false, true, 0, 999 * RenownMath.DayTicks) && RenownMath.Kept(false, false, 0, 119 * RenownMath.DayTicks)
           && !RenownMath.Kept(false, false, 0, 120 * RenownMath.DayTicks) && !RenownMath.Kept(false, false, -1, 0), "kept while one lives here or a tie names them, then two years");
         C(RenownMath.Key(" Coor ") == "coor" && RenownMath.Key("COOR") == RenownMath.Key("coor") && RenownMath.Key(null) == null, "a house by its name");
+        // The review: one who took another's name on marrying is remembered by both houses, and is of the one whose name they carry.
+        C(RenownMath.HouseFor(new[] { "Jones", "Smith" }, "Jones") == 0 && RenownMath.HouseFor(new[] { "Smith", "Jones" }, " jones") == 1,
+            "of the house of the name they carry, whichever was made first");
+        C(RenownMath.HouseFor(new[] { "Smith", "Jones" }, "Brown") == 1 && RenownMath.HouseFor(new[] { "Smith" }, null) == 0 && RenownMath.HouseFor(new string[0], "Smith") == -1,
+            "else the newest that remembers them; none for none");
+        string renownCode = Code("Diplomacy/Renown.cs");
+        string renownPanels = Code("Diplomacy/RenownPanels.cs");
+        C(renownCode.Contains("RenownMath.HouseFor(") && renownPanels.Contains("if (Renown.StillOurs(h.folk[i])) continue;"),
+            "the index puts each in the house of their name, and the card's gone leaves out anyone still with the colony");
+        // The review: the ledger keeps a person's name only while something names them, so a colonist buried at home went unnamed.
+        string regionCode = Code("World/Ledger/LedgerRegion.cs");
+        C(regionCode.Contains("Scribe_Collections.Look(ref folkNames, \"folkNames\", LookMode.Value)") && renownCode.Contains("h.folkNames[at] = p.LabelShort")
+          && renownCode.Contains("h.folk.RemoveAt(i);\n                h.folkNames.RemoveAt(i);") && renownPanels.Contains("h.folkNames[i] : DipWords.NameOf(h.folk[i])"),
+            "each one's name kept beside their ref while they live, so the House card names its gone (a house with only its dead listed nobody)");
+        C(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")).Contains("World/Ledger/LedgerRegion.cs:folkNames"), "the save model has their names");
+        C(Regex.IsMatch(renownCode, @"KinMemory\.Ours\(p\) && WorldLedger\.KeptFor\(p, KeepFor\.Lent\)\) Put\(p, kv\.Value\)"),
+            "one away at another people's town on the colony's errand (envoy, youth, hostage) is still of the house: not gone, what they hold still counts");
+        C(Regex.IsMatch(renownCode, @"bool here = Living\(h\)\.Count > 0;\s*if \(here\) h\.lastSeen = now;\s*if \(!RenownMath\.Kept\(here, TieNames\(h\), h\.lastSeen, now\)\)"),
+            "a house fallen to one is kept while that one is still with the colony, and two years from when they go (it was let go two years after it fell to one)");
         string region = Code("World/Ledger/LedgerRegion.cs");
         C(region.Contains("Scribe_Values.Look(ref ours, \"ours\")") && region.Contains("Scribe_Collections.Look(ref folkText, \"folk\"") && region.Contains("Scribe_Values.Look(ref band, \"band\")")
           && region.Contains("h.town < 0 && !h.ours"), "the colony's houses saved beside the towns', kept on load without a town");
@@ -258,7 +300,10 @@ public static class RenownTests
         C(Code("UI/Cards/Cards.cs").Contains("RenownPanels.OurHouse(m, h);") && Code("UI/HousesPanel.cs").Contains("RenownPanels.ListLine(") && Code("UI/HousesPanel.cs").Contains("!h.ours"),
             "the House card of one of the colony's, People → Houses with renown, the region's list without the colony's own");
         C(Code("CouncilSettings.cs").Contains("public bool diplomacyRenown = true;") && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"diplomacyRenown\""), "the setting, in the Diplomacy section");
-        C(dip["Renown.cs"].Contains("\"renownup\"") && dip["Renown.cs"].Contains("\"renowndown\"") && dip["Renown.cs"].Contains("Diplomacy.Write(DiplomacyMath.Renown"), "a band moved: its word on the map, into the history");
+        C(dip["RenownMath.cs"].Contains("\"renownup\"") && dip["RenownMath.cs"].Contains("\"renowndown\"") && dip["Renown.cs"].Contains("RenownMath.Bubble(was, r.band)")
+          && dip["Renown.cs"].Contains("Diplomacy.Write(DiplomacyMath.Renown"), "a band moved: its word on the map, into the history");
+        C(Regex.IsMatch(dip["Renown.cs"], @"var speaker = moment == null \? null : Living\(h\)\.FirstOrDefault\(p => p\.Spawned && p\.Map == home[^;]*!p\.Drafted && p\.Awake\(\)\)"),
+            "the word said by one of the house on its home map, awake and free (never in their sleep)");
 
         // ================= The talk and the lines =================
 

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## House renown, checked over
+
+*5 November 2026, version 0.99.1*
+
+- Fixed: someone who took a spouse's name on marrying could count for the wrong house, and the other house's card listed them as gone.
+- Fixed: an envoy, a youth or a hostage away on the colony's errand dropped out of their house while abroad, and the house's name could fall and rise again around their trip.
+- Fixed: the spoken line when a house's name changes only comes when it is true, from someone awake and free, and the colony's own hostage coming home now counts for their house.
+- Fixed: only a council task that came to something counts for its officer's house, a secret pressed and told now costs the keeper's house, and a house down to one member is kept while that one lives at the colony.
+- House cards name the colony's dead and departed again, even long after they are gone.
+
 ## House renown
 
 *5 November 2026, version 0.99.0*

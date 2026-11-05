@@ -432,9 +432,10 @@ namespace ColonyCouncil
             if (w.Hostage)
             {
                 if (t != null && t.Live) WorldLedger.Set(t, Tie.State.Kept);
+                // The hostage served the term for the colony (as its youth and its envoy home): their house's renown reads it (Diplomacy/Renown.cs).
                 Diplomacy.Write(DiplomacyMath.Hostage, new List<HistoryActor>
                 {
-                    new HistoryActor(Refs.Of(p), HistoryRole.About), new HistoryActor(Refs.Of(f), HistoryRole.With), new HistoryActor(Diplomacy.Colony(map), HistoryRole.For)
+                    new HistoryActor(Refs.Of(p), HistoryRole.Did), new HistoryActor(Refs.Of(f), HistoryRole.With), new HistoryActor(Diplomacy.Colony(map), HistoryRole.For)
                 }, Diplomacy.Colony(map), WardWords.P("CC_Hostage_Hist_Back", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE")));
                 // apart: the hostage is home on the map; the message looks at them.
                 Tell.Message(NewsKind.World, Importance.Notable, map, WardWords.P("CC_Hostage_Msg_Back", p.Named("HOSTAGE"), (w.townName ?? "?").Named("TOWN")), new LookTargets(p),

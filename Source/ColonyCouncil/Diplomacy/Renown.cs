@@ -51,7 +51,7 @@ namespace ColonyCouncil
 
         private static readonly List<Pawn> None = new List<Pawn>();
 
-        /// <summary>Who of the colony's free people belongs to which of its houses, found again each hour (or when the houses change).</summary>
+        /// <summary>Who of the colony's free people (and of its own away on its errand) belongs to which of its houses, found again each hour (or when the houses change).</summary>
         private static void Index()
         {
             int now = Now;
@@ -62,20 +62,47 @@ namespace ColonyCouncil
             byPawn.Clear();
             var ours = WorldLedger.OurHouses();
             if (ours.Count == 0) return;
-            var of = new Dictionary<int, LedgerHouse>();
+            // Each person with every house that remembers them: one who took another's name on marrying is in both.
+            var of = new Dictionary<int, List<LedgerHouse>>();
             foreach (var h in ours)
                 foreach (var r in h.folk)
                     if (r.kind == RefKind.Person)
-                        of[r.id] = h;
+                    {
+                        if (!of.TryGetValue(r.id, out var hs)) of[r.id] = hs = new List<LedgerHouse>();
+                        if (!hs.Contains(h)) hs.Add(h);
+                    }
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
+                if (p != null && of.TryGetValue(p.thingIDNumber, out var hs))
+                    Put(p, hs);
+            // One of them away at another people's town on the colony's errand (its envoy, its youth or its hostage, kept in
+            // the world for it): still of the house, what they hold still counts, and they are not among its gone.
+            foreach (var kv in of)
             {
-                if (p == null || !of.TryGetValue(p.thingIDNumber, out var h)) continue;
-                if (!living.TryGetValue(h.house.id, out var list)) living[h.house.id] = list = new List<Pawn>();
-                list.Add(p);
-                byPawn[p.thingIDNumber] = h;
+                if (byPawn.ContainsKey(kv.Key)) continue;
+                var p = WorldLedger.PawnOf(Ref.Person(kv.Key));
+                if (KinMemory.Ours(p) && WorldLedger.KeptFor(p, KeepFor.Lent)) Put(p, kv.Value);
             }
             foreach (var list in living.Values)
                 list.Sort((a, b) => (b.ageTracker?.AgeBiologicalTicks ?? 0L).CompareTo(a.ageTracker?.AgeBiologicalTicks ?? 0L));
+        }
+
+        /// <summary>One of the colony's people into the house they are of now: the one of the name they carry, else the newest that remembers them.</summary>
+        private static void Put(Pawn p, List<LedgerHouse> houses)
+        {
+            int i = RenownMath.HouseFor(houses.Select(x => x.name).ToList(), FamilyNames.Last(p));
+            if (i < 0) return;
+            var h = houses[i];
+            if (!living.TryGetValue(h.house.id, out var list)) living[h.house.id] = list = new List<Pawn>();
+            list.Add(p);
+            byPawn[p.thingIDNumber] = h;
+        }
+
+        /// <summary>Someone a house remembers who is still one of the colony's, of this house or another (not among its gone).</summary>
+        public static bool StillOurs(Ref r)
+        {
+            if (r.kind != RefKind.Person || WorldLedger.Instance == null) return false;
+            Index();
+            return byPawn.ContainsKey(r.id);
         }
 
         /// <summary>The colony's house a colonist is of, or null.</summary>
@@ -104,8 +131,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Once a day: the colony's families known by name become its houses (twelve at most) and each takes in its people
         /// (the newest twelve kept, the gone among them first to go), its eldest as head, its seat where most of it lives; a
-        /// house with nobody left is kept while a tie names one of its people or for two years. Then each house's band, read
-        /// afresh: a change of one of the colony's is told and written.
+        /// house of fewer than two is kept while one of it is still with the colony or a tie names one of its people, then
+        /// two years. Then each house's band, read afresh: a change of one of the colony's is told and written.
         /// </summary>
         public static void Daily(int now)
         {
@@ -156,7 +183,11 @@ namespace ColonyCouncil
             foreach (var h in WorldLedger.OurHouses())
             {
                 if (seen.Contains(h)) continue;
-                if (!RenownMath.Kept(false, TieNames(h), h.lastSeen, now)) WorldLedger.DropOurHouse(h);
+                // Fewer than two of it now, but one still with the colony (the last of the family, one away on its errand):
+                // kept, and its two years counted from when the last of it goes.
+                bool here = Living(h).Count > 0;
+                if (here) h.lastSeen = now;
+                if (!RenownMath.Kept(here, TieNames(h), h.lastSeen, now)) WorldLedger.DropOurHouse(h);
             }
         }
 
@@ -178,11 +209,21 @@ namespace ColonyCouncil
             var headWas = h.head;
             string membersWas = string.Join("|", h.members);
             bool added = false;
+            // Each one's name beside their ref, kept while they live, so the gone are named after the game lets them go (an
+            // older save's house has none yet).
+            while (h.folkNames.Count < h.folk.Count) h.folkNames.Add("");
+            if (h.folkNames.Count > h.folk.Count) h.folkNames.RemoveRange(h.folk.Count, h.folkNames.Count - h.folk.Count);
             foreach (var p in members)
             {
                 var r = Refs.Of(p);
-                if (h.folk.Contains(r)) continue;
+                int at = h.folk.IndexOf(r);
+                if (at >= 0)
+                {
+                    h.folkNames[at] = p.LabelShort ?? "";
+                    continue;
+                }
                 h.folk.Add(r);
+                h.folkNames.Add(p.LabelShort ?? "");
                 added = true;
             }
             // The newest twelve: the gone go first, then the earliest taken in.
@@ -190,7 +231,9 @@ namespace ColonyCouncil
             while (h.folk.Count > RenownMath.MembersKept)
             {
                 int i = h.folk.FindIndex(r => !here.Contains(r));
-                h.folk.RemoveAt(i >= 0 ? i : 0);
+                if (i < 0) i = 0;
+                h.folk.RemoveAt(i);
+                h.folkNames.RemoveAt(i);
             }
             h.head = Refs.Of(members[0]);
             h.members.Clear();
@@ -254,10 +297,12 @@ namespace ColonyCouncil
             foreach (var p in Living(h)) actors.Add(new HistoryActor(Refs.Of(p), HistoryRole.With));
             actors.Add(new HistoryActor(Diplomacy.Colony(home), HistoryRole.For));
             Diplomacy.Write(DiplomacyMath.Renown, actors, Diplomacy.Colony(home), line, true);
-            // One of them hears of it on the map and says so, to nobody (an officer home from a visit does the same).
-            var speaker = Living(h).FirstOrDefault(p => p.Spawned && !p.Downed && !p.InMentalState && p.Map == home);
+            // One of them hears of it on the map and says so, to nobody (an officer home from a visit does the same): awake
+            // and free, and only where the bubble's words are true (RenownMath.Bubble).
+            string moment = RenownMath.Bubble(was, r.band);
+            var speaker = moment == null ? null : Living(h).FirstOrDefault(p => p.Spawned && p.Map == home && !p.Dead && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake());
             // apart: the news of a name told in the region, said by one of the house where they stand.
-            if (speaker != null) Outsiders.Say(speaker, up ? "renownup" : "renowndown", null);
+            if (speaker != null) Outsiders.Say(speaker, moment, null);
             Tell.Minor(NewsKind.Colony, Importance.Notable, home, line, speaker != null ? new LookTargets(speaker) : LookTargets.Invalid,
                 up ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Diplomacy.Dirty();
@@ -310,6 +355,7 @@ namespace ColonyCouncil
             int now = Now;
             var counted = new HashSet<int>();
             var alive = Living(h).ToDictionary(p => p.thingIDNumber);
+            var us = Refs.Of(Faction.OfPlayerSilentFail);
             foreach (var r in h.folk)
             {
                 // Their deeds the history keeps, each event once for the house.
@@ -319,7 +365,8 @@ namespace ColonyCouncil
                     var role = e.actors.First(a => a.who == r).role;
                     bool against = e.actors.Exists(a => a.role == HistoryRole.Against && a.who.kind == RefKind.Person);
                     bool about = e.actors.Exists(a => a.role == HistoryRole.About && a.who != r);
-                    string key = RenownMath.SourceOf(e.kind, role, against, about, e.Weighty);
+                    bool forColony = e.actors.Exists(a => a.role == HistoryRole.For && (a.who.kind == RefKind.Colony || a.who == us));
+                    string key = RenownMath.SourceOf(e.kind, role, against, about, e.Weighty, forColony);
                     if (key != null) hits.Add(new RenownMath.Hit(key, Days(e.tick), Math.Max(1, e.count)));
                 }
                 // What the peoples remember of them by name.
