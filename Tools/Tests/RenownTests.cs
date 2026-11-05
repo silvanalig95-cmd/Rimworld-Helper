@@ -162,6 +162,15 @@ public static class RenownTests
         C(RenownMath.Band(-13f, RenownBand.Infamous) == RenownBand.Infamous && RenownMath.Band(-11f, RenownBand.Infamous) == RenownBand.Unknown && RenownMath.Band(-20f, RenownBand.Town) == RenownBand.Infamous,
             "infamy holds to -12, and comes at once");
         C(RenownMath.Moved(RenownBand.Town, RenownBand.Region) && !RenownMath.Moved(RenownBand.Town, RenownBand.Town), "a move is a change of band");
+        // The review: the bubble only where its words are true ("strangers know our name", "people out there have stopped talking about us").
+        C(RenownMath.Bubble(RenownBand.Unknown, RenownBand.Town) == "renownup" && RenownMath.Bubble(RenownBand.Region, RenownBand.Peoples) == "renownup"
+          && RenownMath.Bubble(RenownBand.Infamous, RenownBand.Town) == "renownup", "renownup as the name carries further");
+        C(RenownMath.Bubble(RenownBand.Town, RenownBand.Unknown) == "renowndown" && RenownMath.Bubble(RenownBand.Region, RenownBand.Unknown) == "renowndown",
+            "renowndown as it fades from the talk");
+        C(RenownMath.Bubble(RenownBand.Infamous, RenownBand.Unknown) == null && RenownMath.Bubble(RenownBand.Town, RenownBand.Infamous) == null
+          && RenownMath.Bubble(RenownBand.Unknown, RenownBand.Infamous) == null && RenownMath.Bubble(RenownBand.Region, RenownBand.Town) == null
+          && RenownMath.Bubble(RenownBand.Peoples, RenownBand.Region) == null && RenownMath.Bubble(RenownBand.Town, RenownBand.Town) == null,
+            "no bubble for a name gone bad or mending, nor for one still known, only less widely");
 
         // ================= Known for =================
 
@@ -268,7 +277,10 @@ public static class RenownTests
         C(Code("UI/Cards/Cards.cs").Contains("RenownPanels.OurHouse(m, h);") && Code("UI/HousesPanel.cs").Contains("RenownPanels.ListLine(") && Code("UI/HousesPanel.cs").Contains("!h.ours"),
             "the House card of one of the colony's, People → Houses with renown, the region's list without the colony's own");
         C(Code("CouncilSettings.cs").Contains("public bool diplomacyRenown = true;") && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"diplomacyRenown\""), "the setting, in the Diplomacy section");
-        C(dip["Renown.cs"].Contains("\"renownup\"") && dip["Renown.cs"].Contains("\"renowndown\"") && dip["Renown.cs"].Contains("Diplomacy.Write(DiplomacyMath.Renown"), "a band moved: its word on the map, into the history");
+        C(dip["RenownMath.cs"].Contains("\"renownup\"") && dip["RenownMath.cs"].Contains("\"renowndown\"") && dip["Renown.cs"].Contains("RenownMath.Bubble(was, r.band)")
+          && dip["Renown.cs"].Contains("Diplomacy.Write(DiplomacyMath.Renown"), "a band moved: its word on the map, into the history");
+        C(Regex.IsMatch(dip["Renown.cs"], @"var speaker = moment == null \? null : Living\(h\)\.FirstOrDefault\(p => p\.Spawned && p\.Map == home[^;]*!p\.Drafted && p\.Awake\(\)\)"),
+            "the word said by one of the house on its home map, awake and free (never in their sleep)");
 
         // ================= The talk and the lines =================
 

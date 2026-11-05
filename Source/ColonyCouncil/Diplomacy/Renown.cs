@@ -281,10 +281,12 @@ namespace ColonyCouncil
             foreach (var p in Living(h)) actors.Add(new HistoryActor(Refs.Of(p), HistoryRole.With));
             actors.Add(new HistoryActor(Diplomacy.Colony(home), HistoryRole.For));
             Diplomacy.Write(DiplomacyMath.Renown, actors, Diplomacy.Colony(home), line, true);
-            // One of them hears of it on the map and says so, to nobody (an officer home from a visit does the same).
-            var speaker = Living(h).FirstOrDefault(p => p.Spawned && !p.Downed && !p.InMentalState && p.Map == home);
+            // One of them hears of it on the map and says so, to nobody (an officer home from a visit does the same): awake
+            // and free, and only where the bubble's words are true (RenownMath.Bubble).
+            string moment = RenownMath.Bubble(was, r.band);
+            var speaker = moment == null ? null : Living(h).FirstOrDefault(p => p.Spawned && p.Map == home && !p.Dead && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake());
             // apart: the news of a name told in the region, said by one of the house where they stand.
-            if (speaker != null) Outsiders.Say(speaker, up ? "renownup" : "renowndown", null);
+            if (speaker != null) Outsiders.Say(speaker, moment, null);
             Tell.Minor(NewsKind.Colony, Importance.Notable, home, line, speaker != null ? new LookTargets(speaker) : LookTargets.Invalid,
                 up ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Diplomacy.Dirty();
