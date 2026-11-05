@@ -33,7 +33,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   `SetOrder` as `Notify_Sold` would, a refill line kept, no takings, demand or sale); `JourneyRun.StallJob` at the end
   of the Pack step (what the stores and packs don't cover, less what others fetch now, `plan.stallTaking`, not saved;
   as much as they have room for, all that's left when nobody has room), `JobDriver_JourneyStall` and
-  `Rimfolk_JourneyStall` in `Defs/Misc/Rimfolk_Journeys.xml`. The advice model is built when the planner opens and at
+  `Rimfolk_JourneyStall` in `Defs/Misc/Rimfolk_JourneyStall.xml`. The advice model is built when the planner opens and at
   most once a second while open (the press builds it at once); nothing runs while it is shut; nothing is saved but the
   `arm` lines and their marks. Keys in `Languages/English/Keyed/Rimfolk_JourneyAdvice.xml` (and the arms group in
   `Rimfolk_Journeys.xml`). Docs: the Almanac's journeys page (the description, the last hours' closing text, "What they
