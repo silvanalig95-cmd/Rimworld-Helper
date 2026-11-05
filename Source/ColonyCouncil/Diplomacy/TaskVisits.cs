@@ -309,6 +309,7 @@ namespace ColonyCouncil
         {
             t.visit = VisitStage.None;
             // apart: the officer is home on the map; the message looks at them.
+            Outsiders.Say(t.officer, "taskhome", null);
             Tell.Message(NewsKind.Colony, Importance.Notable, home, TaskWords.P("CC_Task_Visit_Back", t.officer.Named("PAWN"), (t.townName ?? CouncilTasks.TownOf(t, home)?.Name ?? "?").Named("TOWN")),
                 new LookTargets(t.officer), MessageTypeDefOf.PositiveEvent);
             if (t.Live && TaskMath.VisitOnly(t.kind) && t.visits > 0)
