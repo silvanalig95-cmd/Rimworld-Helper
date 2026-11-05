@@ -391,7 +391,7 @@ namespace ColonyCouncil
             var map = job.lord?.Map;
             if (o == null || map == null)
             {
-                job.lord?.ReceiveMemo(LordJob_Messenger.MemoLeave);
+                job.done = true;
                 return;
             }
             var m = Messenger(job.lord);
@@ -403,7 +403,7 @@ namespace ColonyCouncil
                         if (o.stage == RansomStage.Paying)
                         {
                             SetDown(o, map, m);
-                            job.lord.ReceiveMemo(LordJob_Messenger.MemoLeave);
+                            job.done = true;
                             return;
                         }
                         o.stage = RansomStage.AtGate;
@@ -417,6 +417,7 @@ namespace ColonyCouncil
                         break;
                     case RansomKind.Exchange:
                         Exchange(h, o, map, m);
+                        job.done = true;
                         break;
                 }
             }
@@ -1040,7 +1041,6 @@ namespace ColonyCouncil
                 RansomWords.T("CC_Ransom_Exchanged", RansomWords.Name(o.ours, o.oursName).Named("OURS"), RansomWords.Name(o.captive, o.captiveName).Named("THEIRS"),
                     RansomWords.People(f).Named("PEOPLE"), form.rite.Named("RITE")), LetterDefOf.PositiveEvent, o.ours != null && o.ours.Spawned ? new LookTargets(o.ours) : LookTargets.Invalid, f);
             Trap(o, map);
-            m?.GetLord()?.ReceiveMemo(LordJob_Messenger.MemoLeave);
         }
 
         // ================= The colony's letter about a captive =================

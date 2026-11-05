@@ -131,6 +131,8 @@ namespace ColonyCouncil
                 bool ours = d.side == DeedSide.Favor;
                 if (!ours && d.side != DeedSide.TheirFavor) return;
                 if (!FavourMath.Earns(d.kind, ours, d.weight)) return;
+                // A captive paid for or exchanged leaving healthy earns no debt of honour (Diplomacy/Ransoms.cs).
+                if (ours && d.kind == "released" && Ransoms.PaidFor(d.faction, d.name)) return;
                 var people = Refs.Of(d.faction);
                 var colony = ColonyOf(ours ? d.by : null);
                 if (people.IsNone || colony.IsNone) return;
