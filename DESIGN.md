@@ -2859,7 +2859,9 @@ Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Dip
   by `WardMath.PactRoll`), adults only (`WardMath.MayBeHostage`, 18). Theirs, one of their notable's kin, comes some hours
   after the oath or the pact (at war only where `TruceParley.Escort` finds someone to vouch); the colony's sets out as
   its youth does. The hour reads the term from the tie it guarantees (`WardMath.EndOf`): over, both go home (their
-  hostage walks out, `hostageReturned`); their side broke the truce, theirs is forfeit (`ChoiceLetter_HostageForfeit`:
+  hostage walks out, `hostageReturned`), and a defence pact's hostage goes home at the end of the pact year they were
+  given for (`WardStay.until`, noted at the giving), even when the pact is renewed by their letter or by a marriage
+  alliance; their renewal letter may ask for a new hostage either way as a term of the next year; their side broke the truce, theirs is forfeit (`ChoiceLetter_HostageForfeit`:
   home anyway, `forgave`; kept, a warden's `JobDefOf.Arrest` and then their people's prisoner, ransom applying; asked to
   stay, if `WardMath.WouldJoin`; unanswered five days, they slip away) and the colony's comes home; the colony broke it,
   theirs goes home at once and the colony's is held (`KidnappedPawnsTracker.Kidnap`: the game's captivity, its ransom

@@ -6,6 +6,60 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Stage 2 round c review: fixes (the releases 0.96.0 and 0.97.0, the keeper of secrets and council tasks, fealty and
+  vassals, read against the 1.6 game and Faction Territories' source; no version of its own: its points go with the next
+  round). Fixed, each checked in the code and the source: the courier tracker lets a trip go in the pass its people leave
+  the map (`CourierTracker`: done and all gone), so the three new readers of a finished trip's tally found nothing. The
+  quartermaster's cart for what is owed to the liege was never counted: the debt stood, the cart went again every three
+  hours while the stores lasted, "Send what is owed" stayed open beside it (paid twice), and the oath broke at the next
+  season's day though paid; the cart now clears the debt when it is sent, as `Fealty.PayOwed` does when the goods are
+  carried out (`Vassals.LiegeDues`). An informer paid never gave the keeper's roll (the silver gone, nothing learned, and
+  payable again), and samples fetched never moved the trade; the tracker keeps a finished trip a live task waits on
+  (`CouncilTasks.Awaits`) until it is read, or two days on, and the samples are looked at every hour. A vassal's dues never
+  came: `Vassals.DuesStep` moves the next look on three hours before `Collected` checked it, so after their answer ("their
+  carter will bring it") the task ran on a year with nobody at the gate. A vassal's levies could be called, and walk in,
+  after their people turned on the colony and before the day's look ended the protection, a band of a people at war
+  spawned as the colony's help (`LeviesWhyNot`, `Vassals.Hourly`). With the liege's lord at the gate the speaker was sent
+  out every hour even while a raid was on, and drafting the speaker only sent the next best talker; they now wait it out
+  (the lord waits up to 32 hours, as before). Two homes sworn to the same people: attacking them broke only the first
+  home's oath (`Fealty.BrokenByUs`). Settled, the round b review's open point, by the default the main session chose (the
+  player was asked and hasn't answered): a hostage given for a defense pact goes home at the end of each pact year, even
+  when the pact is renewed, by their letter or by a marriage alliance (which renews it five days before its end); the
+  pact year they were given for is noted at the giving (`WardStay.until`, kept through joining and arriving; a hostage
+  given before this takes the pact's year as it stands at the first look), `Hostages.EndOf` reads it
+  (`WardMath.EndOf(..., yearOver)`, `WardMath.YearOver`, `YearEndTick`), and the term is kept (`hostageReturned`, the
+  tie kept). Their renewal letter says so when the pact had a hostage (`CC_Pact_Renew_Hostage`) and may take a new hostage
+  either way as a term of the next year (`CC_Pact_Opt_RenewHostage`, one option for each of `Hostages.PactOptions`, greyed
+  with why not; their offer stands, so no roll as in the colony's own letter); a hostage whose term is served no longer
+  stands for the pact in `Hostages.Fits`, while the four records a home stay the bound. A marriage's renewal asks nothing
+  (it has no letter). DESIGN.md, the design (item 7) and the Almanac's hostage sentence say so; the dev action "Hostages:
+  the pact's year out now (their renewal)". Tests: `WardTests` (the year's end, served records, the code paths, the
+  words), `FealtyTests` and `TaskTests` (the fixes' code paths). Words: two keyed lines in `Rimfolk_Pacts.xml`. Looked at
+  and found sound: no new Harmony targets; Faction Territories read by name as its source has it
+  (`Utility.FindForVassalOutpost(FactionTerritories_VassalOutpost)` returning an `Invasion` with `resolved` and
+  `attackerFactionLoadId`), its outposts world objects and not settlements, so their heads have no town and are kept by
+  `Vassals.KeepsHead` while the outpost stands, then let go by the notables' own rule; nothing of its points, purchases or
+  tribute touched; the retinue's lord (the game's `TravelArrived` memo, a defend point at the gate, home on the memo or 32
+  hours, fleeing only when the colony harms them, gone in the hour their people turn hostile); the liege's band and the
+  vassals' levies through `Pacts.Arrive` (one war band at a time, late after the fight); the liege's levies through the
+  calls to arms (kept, or refused at 10 goodwill with the oath standing); the Empire never offered fealty nor taken under
+  protection; tribute in silver first, else goods the stores hold, never more than they hold when it is collected; the
+  saves (tasks and vassals made on an older save, gone towns, peoples and officers let go by the day's sync and the task's
+  hour; no new keep reasons: an outpost's head is a notable); an officer's visit (one away a home with a planned visit
+  counted, the planner's own departure, turned back, carried off, waiting on an ambush's map, cut short, the road home,
+  a companion never an officer on a task); the keeper's walks and talks only when free; the hours' costs (the mod's
+  holdings and the levies alert read once a 250-tick stretch). Not confirmed, left as they are: "Send what is owed" in
+  the hours after a short collection counts goods the first errands are still to carry (the errand takes what is left,
+  the debt cleared on paper); a struggling town's 30 days are the ledger's days under 15 (`RegionMath.Low`), not under 20;
+  the raids that make a colony struggling are every home's, not the one's; with two homes, one home's keeper can press a
+  secret another home learned; the truce parley (round a) sends its speaker during a raid as the oath did; the short
+  tribute's letter says their collector came when the stores gave nothing (no errand, so nobody walked to the gate); a
+  colonist named the colony's hostage can be picked as a visit's companion the same day; the keeper's night is counted by
+  the game's clock and after dark by the home's, so far east or west one night can hold two watches. To look at in game:
+  the quartermaster's dues with tribute owed (one cart, the debt cleared, "Send what is owed" greyed), a vassal's dues
+  (their carter at the gate some hours after their answer), an informer paid (the roll after they leave), samples sent
+  (the trade's way moving), their lord at the gate during a raid (the speaker waits), a pact hostage at the year's end
+  (the dev action: they go home, their renewal letter with the hostage options).
 - 0.97.0, stage 2 release 2c.2, fealty and vassals (docs/design/stage2-diplomacy.md, items 9 and 10; the player's decisions 9, 11
   and 12 as recommended; built on 0.96.0; no version of its own here: its points go with the round). DESIGN.md,
   "Diplomacy" → "Fealty and vassals" has the whole of it. Pure and tested (`Tools/Tests/FealtyTests.cs`, 110 checks):
