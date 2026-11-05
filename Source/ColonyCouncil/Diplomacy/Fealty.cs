@@ -567,7 +567,7 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>What is owed sent now: carried out to their collector at the gate (or by the quartermaster's cart); the oath stands clear again.</summary>
+        /// <summary>What is owed sent now: carried out to their collector at the gate; the oath stands clear again.</summary>
         public static bool PayOwed(Tie t, Pawn by = null)
         {
             if (PayWhyNot(t) != null) return false;

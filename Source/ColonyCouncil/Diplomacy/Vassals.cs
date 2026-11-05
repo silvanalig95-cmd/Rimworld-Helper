@@ -54,10 +54,12 @@ namespace ColonyCouncil
     /// <para>Of the colony's own: at harvest their carter brings produce to the gate, the amount set by the council (light,
     /// usual, heavy: heavy costs their goodwill each season); when a home is raided the council may call their levies
     /// (their people's war band, a third of the threat, once a season), whose dead weigh on their head's regard; their
-    /// head, sour for a season (-20), asks to be released, and refused they break away. Asks of any vassal (once a season): help in a hard season, the
-    /// colony's judgement in a quarrel with a neighbour, a camp of the colony's enemies near them to be broken, and for the
-    /// mod's outposts its invasion of them, joined through the mod's own arrival. The mod's vassalage points, purchases and
-    /// tribute stay the mod's: Rimfolk takes no tribute or levies from them and changes nothing of theirs.</para>
+    /// head, sour for a season (-20), asks to be released, and refused they break away. Asks of any vassal (once a
+    /// season): help in a hard season, the colony's judgement in a quarrel with a neighbour, a camp of the colony's enemies
+    /// near them to be broken, and for the mod's outposts its invasion of them, joined through the mod's own arrival. The
+    /// mod's vassalage points, purchases and tribute stay the mod's: Rimfolk takes no tribute or levies from them and
+    /// changes nothing of theirs. (The quartermaster's season's dues went with the council's tasks, 5 November 2026: a
+    /// vassal's tribute is its harvest.)</para>
     /// </summary>
     public static class Vassals
     {
