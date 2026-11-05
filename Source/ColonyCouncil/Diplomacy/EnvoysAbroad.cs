@@ -441,6 +441,15 @@ namespace ColonyCouncil
             Home(h, a, TownOf(a), h.Map);
         }
 
+        /// <summary>The home they went from is no longer the colony's: at the town, their hosts see them off as a caravan of the colony's (to be sent where the player wishes).</summary>
+        internal static void HomeLost(DiplomacyHome h)
+        {
+            var a = h?.abroad;
+            if (a == null) return;
+            if (a.stage == EnvoyStage.There && a.colonist != null && !a.colonist.Dead) Home(h, a, TownOf(a), null);
+            Clear(h, a);
+        }
+
         private static void Clear(DiplomacyHome h, EnvoyAbroad a)
         {
             if (h == null) return;

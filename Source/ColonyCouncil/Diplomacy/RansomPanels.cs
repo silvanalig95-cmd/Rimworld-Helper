@@ -316,7 +316,7 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(new Dialog_NeighbourLetter(n, LetterPurpose.Ransom, RansomMath.ExchangeTopic(open[0].ours.thingIDNumber, open[0].theirs.thingIDNumber)));
                     return;
                 }
-                Find.WindowStack.Add(new FloatMenu(open.Select(x => new FloatMenuOption(RansomWords.P("CC_Ransom_TopicExchange", x.ours.Named("OURS"), x.theirs.Named("THEIRS")),
+                Find.WindowStack.Add(new FloatMenu(open.Select(x => new FloatMenuOption(RansomWords.Exchange(x.ours, x.theirs, home),
                     () => Find.WindowStack.Add(new Dialog_NeighbourLetter(n, LetterPurpose.Ransom, RansomMath.ExchangeTopic(x.ours.thingIDNumber, x.theirs.thingIDNumber))))).ToList()));
             };
             return a;

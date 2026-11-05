@@ -33,6 +33,14 @@ namespace ColonyCouncil
         /// <summary>The trap's chance in words, with the one who speaks for the colony.</summary>
         public static string Odds(float chance) => P("CC_Ransom_Odds_" + RansomMath.Odds(chance));
 
+        /// <summary>"Ada for Bram", with the trap's chance named when their people are at war with the colony (before the choice that brings it).</summary>
+        public static string Exchange(Pawn ours, Pawn theirs, Map home)
+        {
+            string label = P("CC_Ransom_TopicExchange", ours.Named("OURS"), theirs.Named("THEIRS"));
+            var f = theirs?.Faction;
+            return Diplomacy.Hostile(f) ? P("CC_Ransom_TopicExchangeTrap", label.Named("LABEL"), Odds(Ransoms.TrapChance(f, home)).Named("ODDS")) : label;
+        }
+
         /// <summary>How their envoy's stay goes, in a word.</summary>
         public static string Mood(EnvoyMood m) => P("CC_Envoy_Mood_" + m);
 

@@ -6,6 +6,76 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Stage 2 release 2a.3, ransom and the envoy (docs/design/stage2-diplomacy.md, items 3 and 4; the player's decisions 4, 5,
+  6 and 9 as recommended; built beside the interface review, merged in at 1e2d428: this release adds through the
+  registration APIs only). DESIGN.md, "Diplomacy" → "Ransom and the envoy" has the whole of it. Pure and tested
+  (`Tools/Tests/RansomTests.cs`, 757 checks): `Diplomacy/RansomMath.cs` (`RansomKind`, `RansomStage`, `TrapOdds`; two to
+  six days, who is wanted back by a steady roll (`SteadyRoll`, so nothing is saved for those not wanted), `Price`, goods
+  for a tribe, `MoreChance`/`Raised`, three refusals a grudge, `AgainDays`, the game's `Fee` and day, `ReturnHours`,
+  `ExchangeChance`, `NegotiationFactor` (the peace talks' curve), `TrapChance` 5% times it, `TrapPoints` 0.35, the topics
+  `ransom:ID` and `exchange:OURS:THEIRS`, the tags), `Diplomacy/EnvoyMath.cs` (`EnvoyNight`, `EnvoyMood`, `EnvoyStage`;
+  `MayOffer` (goodwill 30, a year per people, a season per home, one stay per home), `SendChance`, the day and night
+  scores, `Talks`, `Hurt`, `Mood` by the score a day, the letter's and the end's regard, `LeavesFavour`/`DeedWeight`,
+  `DiedRegard`, `LetterDue` every five days; the colony's envoy: `CanGo` (Social 6), `AbroadRegard`, `SocialXp`,
+  `PartingGift`, `RoadDays`). Game side, all in `Diplomacy/`: `DiplomacyBook.cs` (the first records that aren't ties:
+  `DiplomacyHome` per colony by `ColonyBook`, `RansomOffer` six a home, `EnvoyStay`, `EnvoyAbroad`; homes lost through
+  `ColonyStateListener`, the day's upkeep in diplomacy's day), `Ransoms.cs` (offers noticed hourly, their word by a call,
+  their messenger or a go-between of a people at peace with both (`Bearer`, `TruceParley.Escort`); `ChoiceLetter_RansomOffer`:
+  accept (the game's release, the price set down or by pod, `ransomed`, `dip:ransomed`), ask for more, free (`forgave`),
+  keep (a Grudge tie of origin `ransom`, key `ransomRefused`, at the third); `PaidFor` keeps a paid captive's
+  `released` from making a debt of honour (`FavoursOwed.Noted`); the game's demand by messenger (`Demand`,
+  `ChoiceLetter_RansomByHand`, the speaker's `JobDriver_RansomPay`, the colonist home from the edge or by pod; the silver
+  from the stores when it never reached them); exchanges (`HearExchange`, their party with the colony's own walking
+  beside them, `dip:exchanged`); the trap (`Raids.Send` from the edge nearest the gate, `brokeWord`; `forceTrap` for the
+  dev action); `RansomDefOf`), `RansomParty.cs` (`LordJob_Messenger`: to the gate, wait, home, run if hurt; its errand
+  done by a flag set at its arrival (`done`, `Trigger_Custom`), never a memo from inside its own transition;
+  `JobDriver_RansomPay`), `RansomHooks.cs` (`Patch_RansomByHand_CanFire`, `Patch_RansomByHand_Execute` on the game's
+  `IncidentWorker_RansomDemand`, only without a powered console), `RansomLetters.cs` (`LetterPurpose.Ransom` and
+  `Envoy` for `DiplomacyLetters`; `ExchangeActs` for "Offer an exchange..."), `Envoys.cs` (their offer
+  (`ChoiceLetter_EnvoyOffer`), asking by letter, `Agree`, the arrival with an attendant and food for the season, the
+  hour's tally, the missions' hosting rules for meals and beds, `Regroup` after being downed, a seat at a council meeting
+  in session, the runner every five days, `End` (regard, `envoyHonored` or `slighted`, `dip:envoy`), `Lost` (dead:
+  sheltered or not), `Harmed` (they flee), `ChooseBed`, `SeeOff`, `HereAs`), `EnvoyLord.cs` (`LordJob_EnvoyStay`,
+  `LordToil_EnvoyStay` with `Rimfolk_EnvoyStay` and `Rimfolk_EnvoyIndoors`, `JobDriver_EnvoyLetter`, `JobDriver_EnvoySitIn`),
+  `EnvoysAbroad.cs` (who can go, the council's question, food from the stores (`TakeInventory`), `JobDriver_EnvoySetOut`
+  to the edge and a caravan of their own, kept at the town with `KeepFor.Lent`, letters with the town's real news
+  (`Facts.For(FactScene.Letter(...)).news`), the notables' regard, provisions and a parting gift for the road home,
+  `Recall`, `HomeLost`), `RansomPanels.cs` (cards: Colonist (the captive, the held colonist, the envoy away), Person
+  (their envoy), People, Place (a town), Tie (the grudge); acts with why not; the inbox `ransom` and `envoy` in Needs you
+  with their counts (through `Inbox.Count`), `ransom-under-way` and `envoy-under-way` in steps; `Known` hides an offer the
+  colony hasn't heard of yet; rows for `DiplomacyModel`), `RansomWords.cs` (forms by age, the trap's odds, an exchange
+  labelled with its odds where it can bring one), `FactsRansom.cs` (`ransom:theirs`, `ransom:held`, `them:wascaptive`
+  `{CAPTOR}`, `envoy:here` `{ENVOY}`, `them:envoy`, `envoy:ours` `{OURENVOY}`), `RansomDebug.cs` (dev actions: their offer
+  for a prisoner now, the game's demand now, an exchange due now, the next exchange a trap, their envoy's offer, their
+  envoy arriving now, a letter home due, the stay's end, ours at their town now, a letter from ours, ours home now).
+  Shared, small: `LetterPurpose.Ransom`/`Envoy` and `OutsiderAct.OfferExchange` at the ends of their enums (the menu
+  after SpeakPact, an ask in `OutsiderTalkMath.Asks`), `DiplomacyLetters` and `DiplomacyActs` delegating to the above,
+  `DiplomacyModel` (Peoples' rows and acts, Here and away: `WhyHere`, `AwayRows`), `FavoursOwed.Noted` (`PaidFor`),
+  `KeepFor.Envoy`/`Lent` with their daily checks, `ColonyState.cs` (homes lost), `FactsLedger` (one call), settings
+  `diplomacyRansom`, `diplomacyEnvoys` (section Diplomacy). Defs: `Defs/Misc/Rimfolk_Ransom.xml` (three letters, four
+  jobs, two duties). Content: 16 talk pieces (`Rimfolk_OutsiderTalks_Ransom.xml`), 24 letter lines and 23 spoken lines
+  (`Rimfolk_Lines_Ransom.xml`), keyed words with variants (`Rimfolk_Ransom.xml`), the Almanac's diplomacy page extended
+  (five sections after "Breaking them", no keyword changes), README, DESIGN.md, the save models for `homes` and
+  `offers`. Tests changed with it: `DiplomacyTests` (the built purposes and acts at the ends of their enums,
+  `DiplomacyBook.cs` the one Diplomacy file that saves, the menu's order), `OutsiderTalkTests` (the ask, the tags, the
+  placeholders); the DefValidator knows `CAPTOR`, `ENVOY`, `OURENVOY` and the new dynamic keys. textcheck against the
+  branch's base reports `Almanac_WhatsNew.xml`'s index shifts from the merged 0.88.1 round and the diplomacy page's five
+  new sections as "added outside an existing list" (the page was extended on purpose). Left out: the Empire's
+  envoy as one of its titled kinds (their envoy is the notable the colony knows; the Empire's expectations of a room and
+  fine meals are scored and said, not their letters home), "Offer for ransom" as a gizmo on the prisoner (it is the
+  captive card's act and a letter, as the interface design places it), the envoy spying (round c), a forfeit hostage's
+  ransom (2b.3). To look at in game: a prisoner's people's messenger walking to the gate (and a go-between of a third
+  people for a people at war), their letter, accept with the warden walking the captive out and the price set down,
+  ask for more, let go, keep (again within a season, the grudge at the third); a call by console and their pod; the
+  game's demand without a console by messenger, the speaker carrying the silver out, the colonist walking in hours later
+  (a pod from a people of the machine ages); an exchange by letter and face to face, their party with the colony's own,
+  the release at the gate; the trap from the gate's side (the dev action); their envoy's offer and arrival, the bed set
+  aside from their card, meals at the table, a night in a spare bed and on the floor, indoors in a raid, a council
+  meeting sat in, the runner at the gate every five days, the end's letter by mood, seeing them off, an envoy downed and
+  getting up again; the colony's envoy picked, taking pemmican, walking to the edge and setting out, the caravan at the
+  town, the letters with the town's news, the road home and the parting gift; each on the cards, Here and away, the
+  inbox and the Peoples view.
+
 - 0.88.1, interface review: fixes (the six interface releases 0.82.0 to 0.87.0, and 2a.2's inbox rows, card rows and acts, read
   against the 1.6 game; no version of its own: its points go with the next round). Fixed, each checked in the code and the
   game's source: Enter in the search (`Window_Search`) closed the window whose corner opened it and took nothing (the game

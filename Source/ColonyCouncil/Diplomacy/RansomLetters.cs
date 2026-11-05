@@ -55,7 +55,7 @@ namespace ColonyCouncil
                         list.Add(new LetterTopic
                         {
                             key = RansomMath.ExchangeTopic(ours.thingIDNumber, theirs.thingIDNumber),
-                            text = RansomWords.P("CC_Ransom_TopicExchange", ours.Named("OURS"), theirs.Named("THEIRS"))
+                            text = RansomWords.Exchange(ours, theirs, home)
                         });
             }
             catch (Exception e)
@@ -123,7 +123,7 @@ namespace ColonyCouncil
             var home = c.MapHeld;
             foreach (var (ours, theirs) in Ransoms.Pairs(Outsiders.PeopleOf(x), home))
             {
-                string label = RansomWords.P("CC_Ransom_TopicExchange", ours.Named("OURS"), theirs.Named("THEIRS"));
+                string label = RansomWords.Exchange(ours, theirs, home);
                 string why = Ransoms.ExchangeWhyNot(ours, theirs, home);
                 if (why != null)
                 {

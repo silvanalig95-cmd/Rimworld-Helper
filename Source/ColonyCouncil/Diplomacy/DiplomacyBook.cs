@@ -301,6 +301,7 @@ namespace ColonyCouncil
                     {
                         Ransoms.HomeLost(h);
                         Envoys.HomeLost(h);
+                        EnvoysAbroad.HomeLost(h);
                     }
                     catch (Exception e)
                     {

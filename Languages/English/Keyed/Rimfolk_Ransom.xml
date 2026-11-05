@@ -107,6 +107,7 @@
   <!-- The colony's letter about a captive, and their answers -->
   <CC_Ransom_Topic>An offer for {CAPTIVE}</CC_Ransom_Topic>
   <CC_Ransom_TopicExchange>{OURS} for {THEIRS}</CC_Ransom_TopicExchange>
+  <CC_Ransom_TopicExchangeTrap>{LABEL} (at war: a trap at the gate is {ODDS})</CC_Ransom_TopicExchangeTrap>
   <CC_Ransom_Ans_Yes>{PEOPLE} want {CAPTIVE} back. Their messenger will come to the gate with an offer: {RITE}.</CC_Ransom_Ans_Yes>
   <CC_Ransom_Ans_Yes_2>Their answer is yes: {PEOPLE} will make an offer for {CAPTIVE}, and their messenger will bring it to the gate.</CC_Ransom_Ans_Yes_2>
   <CC_Ransom_Ans_No>{PEOPLE} will not pay for {CAPTIVE}.</CC_Ransom_Ans_No>

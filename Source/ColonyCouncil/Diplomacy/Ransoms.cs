@@ -241,6 +241,13 @@ namespace ColonyCouncil
                     // Their messenger is gone from the map without reaching the gate (turned back, hurt): they try again another day.
                     if (LordOf(o, map) == null)
                     {
+                        // An exchange whose party turned back after the colony's own walked in with them: the colony keeps its side.
+                        if (o.kind == RansomKind.Exchange && o.ours != null && o.ours.Spawned)
+                        {
+                            Exchange(h, o, map, null);
+                            Diplomacy.Dirty();
+                            return;
+                        }
                         o.stage = RansomStage.Waiting;
                         o.due = now + RansomMath.DayTicks;
                         Diplomacy.Dirty();
@@ -1016,6 +1023,7 @@ namespace ColonyCouncil
             try
             {
                 if (p == null || p.Dead || f?.kidnapped == null) return false;
+                if (p.Spawned) return true;
                 f.kidnapped.RemoveKidnappedPawn(p);
                 if (Find.WorldPawns.Contains(p)) Find.WorldPawns.RemovePawn(p);
                 GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
