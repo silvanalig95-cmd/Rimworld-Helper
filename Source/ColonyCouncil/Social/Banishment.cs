@@ -258,11 +258,12 @@ namespace ColonyCouncil
         public BanishMath.Trouble TroubleOf(Pawn p, IEnumerable<Pawn> colony, int from) =>
             BanishMath.Of(Sightings(p, colony), Insults(p, colony), from);
 
-        /// <summary>Who they fought since <paramref name="from"/>, by name, the most recent first.</summary>
+        /// <summary>Who they fought since <paramref name="from"/>, by name, the most recent first (those of the colony home or away).</summary>
         public List<Pawn> FoughtWith(Pawn p, List<Pawn> colony, int from)
         {
             var ids = BanishMath.Merge(Sightings(p, colony)).Where(f => f.tick >= from).OrderByDescending(f => f.tick).Select(f => f.other).Distinct().ToList();
-            return ids.Select(i => colony.FirstOrDefault(o => o.thingIDNumber == i)).Where(o => o != null).ToList();
+            var known = colony.Concat(PawnsFinder.AllMaps_FreeColonists).ToList();
+            return ids.Select(i => known.FirstOrDefault(o => o.thingIDNumber == i)).Where(o => o != null).ToList();
         }
 
         // ================= Who =================

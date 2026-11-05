@@ -27,6 +27,7 @@
   <CC_Banish_Fights_5>five fights</CC_Banish_Fights_5>
   <CC_Banish_Fights_6>six fights</CC_Banish_Fights_6>
   <CC_Banish_Fights_Many>more fights than anyone has kept count of</CC_Banish_Fights_Many>
+  <CC_Banish_WithOthers>others of the colony</CC_Banish_WithOthers>
 
   <!-- The second question's voices, before each quoted line. -->
   <CC_Banish_Voice_for>{PAWN_nameDef} would see {OTHER_nameDef} go:</CC_Banish_Voice_for>

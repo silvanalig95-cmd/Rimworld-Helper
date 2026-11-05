@@ -72,7 +72,7 @@ namespace ColonyCouncil
             var c = new BanishContext
             {
                 def = def, map = map, a = a, b = b, title = title, word = BanishTracker.AgeWord(), verb = BanishTracker.AgeVerb(a),
-                fights = Count(trouble.fights), with = BanishTracker.Names(t.FoughtWith(a, colony, from)), step = r?.step,
+                fights = Count(trouble.fights), with = With(t.FoughtWith(a, colony, from)), step = r?.step,
                 started = trouble.started, insults = trouble.insults, toDie = PawnBanishUtility.WouldBeLeftToDie(a, a.Tile), guilty = a.guilt?.IsGuilty ?? false
             };
             if (Ask == BanishMath.Ask.Banish) c.voices = Voices(c, colony, trouble);
@@ -80,6 +80,9 @@ namespace ColonyCouncil
             ctx = c;
             return true;
         }
+
+        /// <summary>Who they fought, by name, or "others of the colony" when none of them is one of the colony now.</summary>
+        private static string With(List<Pawn> who) => who.Count > 0 ? BanishTracker.Names(who) : "CC_Banish_WithOthers".Translate().Resolve();
 
         /// <summary>"two fights", "three fights", "several fights".</summary>
         private static string Count(int n) => (n >= 1 && n <= 6 ? "CC_Banish_Fights_" + n : "CC_Banish_Fights_Many").Translate().Resolve();

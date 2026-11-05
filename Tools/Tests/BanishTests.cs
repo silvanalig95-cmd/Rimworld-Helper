@@ -133,6 +133,87 @@ public static class BanishTests
         C(barrTrouble.fights == 2 && barrTrouble.started == 1, "Barr: two fights, one of them his (" + barrTrouble.fights + ", " + barrTrouble.started + ")");
         C(BanishMath.Due(barrNow, -1, -1, barrTrouble, none) == BanishMath.Ask.Word, "Barr: the council would have a word first, never banishment yet");
 
+        // ================= The mod's side =================
+
+        string src = Path.Combine(root, "Source", "ColonyCouncil");
+        string Code(string rel) => File.ReadAllText(Path.Combine(src, rel));
+        var keyed = new Dictionary<string, string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
+            foreach (var el in XDocument.Load(file).Root!.Elements())
+                keyed[el.Name.LocalName] = el.Value;
+        string tracker = Code("Social/Banishment.cs");
+        string answers = Code("Social/BanishDilemmas.cs");
+
+        // Every age has its word and its answer.
+        foreach (var age in BanishMath.AgeTags)
+        {
+            C(keyed.ContainsKey(BanishMath.WordKey(age)) && keyed.ContainsKey(BanishMath.VerbKey(age)), $"the {age} age has its word and its answer");
+            C(keyed.TryGetValue(BanishMath.VerbKey(age), out var verb) && verb.Contains("{PAWN_nameDef}"), $"the {age} answer names them");
+        }
+        // Every told line in two wordings or more, each with the same placeholders.
+        var told = new[]
+        {
+            "CC_Banish_WordSaid", "CC_Banish_LastWordSaid", "CC_Banish_WordMissed", "CC_Banish_Told", "CC_Banish_Gathering", "CC_Banish_GatheringHere",
+            "CC_Banish_GoneTitle", "CC_Banish_GoneText", "CC_Banish_GoneToDie", "CC_Banish_GladOf", "CC_Banish_MissedBy", "CC_Banish_Rides",
+            "CC_Banish_Voice_for", "CC_Banish_Voice_against", "CC_Banish_Voice_unsure", "CC_Banish_Objects", "CC_Banish_OwnSay"
+        };
+        IEnumerable<string> Holes(string s) => System.Text.RegularExpressions.Regex.Matches(s, @"\{([A-Z]+)(_[a-zA-Z]+)?\}").Select(m => m.Groups[1].Value).Distinct().OrderBy(x => x);
+        foreach (var k in told)
+        {
+            C(keyed.ContainsKey(k) && keyed.ContainsKey(k + "_2"), $"{k}: two wordings or more");
+            if (keyed.ContainsKey(k) && keyed.ContainsKey(k + "_2"))
+                C(!Holes(keyed[k + "_2"]).Except(Holes(keyed[k])).Any(), $"{k}: its other wording names nothing the first isn't given");
+            C(tracker.Contains("\"" + k + "\"") || answers.Contains("\"" + k + "\"") || answers.Contains("\"CC_Banish_Voice_\" + stance"), $"{k} is told by the code");
+        }
+        C(!keyed.Where(kv => kv.Key.StartsWith("CC_Banish_") || kv.Key.StartsWith("CC_Impact_Banish")).Any(kv => kv.Value.Contains('—') || kv.Value.Contains('!')), "no em dashes or exclamation marks");
+        C(new[] { "CC_Settings_Banishment", "CC_Settings_Banishment_Tip", "CC_SetNote_Banishment", "CC_Card_Banished", "CC_World_Departed_Council" }.All(keyed.ContainsKey), "the setting's, the card's and the world panel's words");
+        C(Code("CouncilSettings.cs").Contains("public bool councilBanishment = true;") && Code("CouncilSettings.cs").Contains("Scribe_Values.Look(ref councilBanishment, \"councilBanishment\", true);")
+          && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"councilBanishment\""), "the setting, saved and on the Council page");
+
+        // The questions: a word first, banishment only in the second.
+        var dilemmas = XDocument.Load(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_Banish.xml")).Root!.Elements("ColonyCouncil.DilemmaDef").ToList();
+        var first = dilemmas.FirstOrDefault(d => d.Element("defName")?.Value == "Rimfolk_Dilemma_Trouble");
+        var second = dilemmas.FirstOrDefault(d => d.Element("defName")?.Value == "Rimfolk_Dilemma_Banish");
+        C(first != null && second != null, "both questions are there");
+        if (first != null && second != null)
+        {
+            string Classes(XElement d) => string.Join(" ", d.Descendants("li").Select(li => (string)li.Attribute("Class") ?? ""));
+            C(!Classes(first).Contains("DilemmaEffect_Banish"), "the first question never offers banishment");
+            C(Classes(first).Contains("DilemmaEffect_TroubleWord") && Classes(first).Contains("DilemmaEffect_Hours") && Classes(first).Contains("DilemmaEffect_TroubleStep"),
+                "the first offers a word, the night hours and let it be");
+            C(Classes(second).Contains("DilemmaEffect_Banish") && Classes(second).Contains("DilemmaEffect_TroubleWord"), "the second offers banishment beside the milder answers");
+            foreach (var d in new[] { first, second })
+            {
+                var options = d.Element("options")!.Elements("li").ToList();
+                int def = int.Parse(d.Element("defaultOption")!.Value);
+                C(!string.Join(" ", options[def].Descendants("li").Select(li => (string)li.Attribute("Class") ?? "")).Contains("DilemmaEffect_Banish"), $"{d.Element("defName")!.Value}: never banishment when nobody answers");
+                C(options[def].Descendants("li").Any(li => li.Element("kind")?.Value == "letbe"), $"{d.Element("defName")!.Value}: unanswered, the council lets it be");
+                C(d.Element("timely")?.Value == "true", $"{d.Element("defName")!.Value}: asked in its moment");
+            }
+        }
+
+        // On the map: face to face through Together, the game's own banishment with its own moods, the walk to the edge.
+        C(tracker.Contains("Together.When(key, by, p, () => SayWord(r, by)") && tracker.Contains("Together.When(key, by, p, () => Told(r, by)"), "the word and the news are said face to face");
+        C(tracker.Contains("Speech.Say(by, Line(\"Rimfolk_Pool_BanishWord\"") && tracker.Contains("Speech.Say(p, Line(\"Rimfolk_Pool_BanishReply\""), "one sentence each, through Speech.Say");
+        C(tracker.Contains("PawnBanishUtility.Banish(p, true)") && tracker.Contains("exitMapOnArrival = true"), "the game's own banishment and its moods, then the walk out by the edge");
+        C(tracker.Contains("ownership?.OwnedBed") && tracker.Contains("JobDefOf.Wait"), "they gather their things in their own room");
+        C(tracker.Contains("Wards.Of(p) != null") && tracker.Contains("Matches.TieOf(p) != null") && tracker.Contains("Envoys.Holds(p)"), "never anyone held under a tie with another people");
+        C(tracker.Contains("!p.DevelopmentalStage.Adult()") && tracker.Contains("p.IsSlave") && tracker.Contains("p.IsQuestLodger()"), "never a child, a slave or a lodger");
+        C(Code("CouncilGameComponent.cs").Contains("BanishTracker.Hourly(this)"), "played out once an hour, in the council's people pass");
+        C(Code("Social/BanishPatches.cs").Contains("nameof(Pawn_InteractionsTracker.StartSocialFight)"), "each fight noted as it starts, with who threw the first punch");
+        C(answers.Contains("ThoughtDefOf.ColonistBanishedToDie") && answers.Contains("WouldBeLeftToDie"), "the hints name the game's heavier mood when they'd be sent out to die");
+        C(Code("UI/Cards/Cards.cs").Contains("\"banished\"") && Code("UI/WorldPanel.cs").Contains("CC_World_Departed_Council"), "their card and the world's memory of them");
+
+        // The lines said over a head are among the spoken pools (ImmersionTests checks each is one sentence).
+        string immersion = File.ReadAllText(Path.Combine(root, "Tools", "Tests", "ImmersionTests.cs"));
+        foreach (var pool in new[] { "Rimfolk_Pool_BanishWord", "Rimfolk_Pool_BanishWordReply", "Rimfolk_Pool_BanishTell", "Rimfolk_Pool_BanishReply", "Rimfolk_Pool_BanishLast" })
+            C(immersion.Contains("\"" + pool + "\""), $"{pool} is checked as spoken");
+
+        // The docs and the Almanac.
+        C(File.ReadAllText(Path.Combine(root, "DESIGN.md")).Contains("### Banishment by the council"), "DESIGN.md has it");
+        C(File.ReadAllText(Path.Combine(root, "docs", "HANDOFF.md")).Contains("- banishment by the council (the player's request, 5 November 2026)"), "the handoff has it");
+        C(File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Council.xml")).Contains("<heading>Someone who keeps causing trouble</heading>"), "the Almanac's dilemmas page has a part on it");
+
         return n;
     }
 }

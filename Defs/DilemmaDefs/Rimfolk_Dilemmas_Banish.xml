@@ -81,7 +81,7 @@
     <options>
       <li>
         <label>{BANISH}</label>
-        <outcome>The council has decided: {A_nameDef} is to be {WORD}. {B_nameDef} will tell {A_objective} face to face.</outcome>
+        <outcome>The council has decided: {A_nameDef} is to be {WORD}, and will be told so face to face.</outcome>
         <ways><mercy>-6</mercy><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Banish" />
