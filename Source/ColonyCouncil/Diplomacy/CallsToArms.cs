@@ -88,8 +88,9 @@ namespace ColonyCouncil
             }
             if (!Pacts.On || !Sched.FirstHourOfDay(Now) || !Tell.CanAsk) return;
             if (!Attacked(f, home, out var s, out var enemy) || !Rand.Chance(PactMath.ArmsDaily)) return;
-            // One call for each attack: not again while the same war goes on against the same town.
-            if (asked.Contains(Key(t.id, s.ID, enemy))) return;
+            // One call for each attack: not again while the same war goes on against the same town (this session's asks, and
+            // across a reload the history's call kept there against them lately).
+            if (asked.Contains(Key(t.id, s.ID, enemy)) || KeptLately(s, enemy)) return;
             asked.Add(Key(t.id, s.ID, enemy));
             t.terms.goods = PactMath.ArmsCode(s.ID, day + PactMath.SetOutDays);
             t.terms.about = Refs.Of(enemy);
@@ -101,6 +102,16 @@ namespace ColonyCouncil
         private static readonly HashSet<string> asked = new HashSet<string>();
 
         private static string Key(int tie, int town, Faction enemy) => tie + ":" + town + ":" + (enemy?.loadID ?? -1);
+
+        /// <summary>A call for this town against this enemy kept within the season (the history's dip:arms there): the same war.</summary>
+        private static bool KeptLately(Settlement town, Faction enemy)
+        {
+            var against = Refs.Of(enemy);
+            foreach (var e in History.At(Refs.Of(town), new[] { DiplomacyMath.Arms }, Now - (int)(PactMath.SeasonDays * PactMath.DayTicks)))
+                if (enemy == null || e.actors.Any(a => a.who == against && a.role == HistoryRole.Against))
+                    return true;
+            return false;
+        }
 
         /// <summary>Their letter asking the colony for fighters: send them (by caravan), or refuse.</summary>
         public static void Letter(Tie t, Faction f, Map home, Settlement town, Faction enemy, bool pact)
