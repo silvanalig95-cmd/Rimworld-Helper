@@ -106,6 +106,8 @@ namespace ColonyCouncil
                 job.heard = true;
             }
             if (home.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == FealtyDefOf.Rimfolk_FealtyOath && c.CurJob.targetA.Thing == x)) return;
+            // A raid on the land: nobody is sent out to the gate (the speaker drafted, the next best talker would be); they wait it out.
+            if (MapFacts.ThreatOn(home)) return;
             SendSpeaker(f, x, home);
         }
 

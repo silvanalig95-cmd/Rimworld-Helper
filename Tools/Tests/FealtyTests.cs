@@ -179,6 +179,7 @@ public static class FealtyTests
         C(dip["Fealty.cs"].Contains("Live().Where(x => LiegeOf(x) == f).ToList()"), "the colony's word broken breaks every home's oath to them");
         C(vassals.Contains("t.nextTick = now + 3 * TaskMath.HourTicks;") && !vassals.Contains("if (now < t.nextTick) return;"),
             "a vassal's carter brings the dues on the hour their answer set (the hour's own move of the next look no longer holds it back for ever)");
+        C(Code("Diplomacy/FealtyOath.cs").Contains("if (MapFacts.ThreatOn(home)) return;\n            SendSpeaker(f, x, home);"), "nobody is sent out to their lord at the gate while a raid is on");
 
         // ---------------- The save ----------------
 
