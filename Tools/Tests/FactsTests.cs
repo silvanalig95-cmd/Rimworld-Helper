@@ -506,9 +506,6 @@ public static class FactsTests
         }
         C(same == talks, $"over {talks} generated talks the new facts change no piece, mark, line or news heard ({same} the same{(firstDiff == "" ? "" : "; " + firstDiff)})");
         C(rollsSame == talks, $"and roll the dice as often ({rollsSame} of {talks})");
-        // Callbacks compared: one talk in sixty at least. It was one in fifty until the council's tasks went (5 November 2026)
-        // with four of the library's callback pieces: over 4,500 talks the library picked up an earlier talk in 1.9% of them
-        // before (36 of these 1,500), 1.7% after (29), so the floor of one in fifty had held by these seeds only.
-        C(chosen >= talks / 2 && callbacks >= talks / 60, $"the generated talks say something most of the time ({chosen} of {talks}, {callbacks} callbacks)");
+        C(chosen >= talks / 2 && callbacks >= talks / 50, $"the generated talks say something most of the time ({chosen} of {talks}, {callbacks} callbacks)");
     }
 }

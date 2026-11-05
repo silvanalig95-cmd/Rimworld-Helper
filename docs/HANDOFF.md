@@ -61,12 +61,11 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   goods at most (four only with the task), and what the stores couldn't cover is paid by "Send what is owed"
   (`Fealty.PayOwed`); the liege's head no longer warms 3 for a punctual season; the place card's "Collect their dues..."
   and its words are gone. Tests: `TaskTests.cs` deleted, `TaskMath` and `KeeperMath` unlinked; `FealtyTests`,
-  `RenownTests`, `DiplomacyTests` (with a section for the older save's handling), `OutsiderTalkTests`, `OutsiderTests`
-  and `WorldMechanicsTests` changed with it. One judgment call to look at: the generated talks' callbacks
-  (`FactsTests`) fell from 36 to 29 of 1,500 with the four task callback pieces and their tags gone; over 4,500 talks the
-  library picks up an earlier talk in 1.9% of them before and 1.7% after, so the floor of one in fifty had held by the
-  seeds only; it is one in sixty now, with the reason beside it (adding callback pieces instead would be new words). The
-  save model drops the tasks (`docs/save-size.md`: 506 collections). Checks: textcheck against 7e1d7d6 reports only the
+  `RenownTests`, `DiplomacyTests` (with a section for the older save's handling), `OutsiderTalkTests` (the tags and the
+  placeholders `{OFFICER}` and `{OFFICE}` gone), `OutsiderTests` and `WorldMechanicsTests` changed with it. The
+  generated talks' callbacks (`FactsTests`, floor 30 of 1,500, unchanged) read 31 (36 before): over 4,500 talks the
+  library picks up an earlier talk in 1.9% of them either way, the four task callback pieces' share small; the floor
+  is near, as before. The save model drops the tasks (`docs/save-size.md`: 506 collections). Checks: textcheck against 7e1d7d6 reports only the
   removals (whole files, keys and lines) and the overtaken file's lines compared by position; almanaccheck against
   7e1d7d6 reports only the numbers of the removed paragraphs (the overheard 15%, the speaker's 1 to 6 and the keeper's
   35%), against HEAD nothing. To look at in game: an older save with a task under way, a keeper seated and a secret
