@@ -35,6 +35,8 @@ namespace ColonyCouncil
             Safe("calls", () => FavourAsks.Hourly(now));
             Safe("truces", () => Truces.Hourly(now));
             Safe("pacts", () => Pacts.Hourly(now));
+            // Fealty and vassals (release 2c.2): an oath awaited, the liege's tribute, protection and levies; vassals' levies.
+            Safe("fealty", () => Fealty.Hourly(now));
             Safe("calls to arms", () => CallsToArms.FavourHour(now / (float)PactMath.DayTicks));
             // Ransom and the envoy (release 2a.3): offers for captives either way, their envoy's stay, the colony's envoy away.
             Safe("ransom", () => Ransoms.Hourly(now));
@@ -57,6 +59,7 @@ namespace ColonyCouncil
             {
                 Safe("day", () => FavourAsks.Daily(now));
                 Safe("pacts' day", () => Pacts.Daily(now));
+                Safe("fealty's day", () => Fealty.Daily(now));
                 Safe("envoys' day", () => Envoys.Daily(now));
                 Safe("feasts' day", () => Feasts.Daily(now));
                 Safe("matches' day", () => Matches.Daily(now));

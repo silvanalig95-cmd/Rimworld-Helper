@@ -538,7 +538,8 @@ namespace ColonyCouncil
         private void Look(Notable n, HashSet<int> towns, int now)
         {
             var town = TownOf(n.town);
-            bool inReach = n.role == NotableRole.Acquaintance || towns.Contains(n.town);
+            // A vassal's head stays while the vassal stands, wherever it lies (Diplomacy/Vassals.cs).
+            bool inReach = n.role == NotableRole.Acquaintance || towns.Contains(n.town) || Vassals.KeepsHead(n);
             // The seat's head is their people's own leader: whoever the game has made leader now.
             if (n.role == NotableRole.Head && !n.made && town != null && n.faction != null && n.faction.leader != n.pawn)
             {
@@ -590,7 +591,7 @@ namespace ColonyCouncil
             }
             // Out of reach (the town gone, the colony moved, the people fallen out of the world): let go, unless something
             // passed between them in the last season.
-            if (!inReach || town == null && n.role != NotableRole.Acquaintance)
+            if (!inReach || town == null && n.role != NotableRole.Acquaintance && !Vassals.OutpostHead(n))
             {
                 bool recent = n.notes.Any(x => now - x.tick < GenDate.TicksPerDay * 60);
                 if (!recent) Drop(n);

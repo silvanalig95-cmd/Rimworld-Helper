@@ -298,6 +298,42 @@ namespace ColonyCouncil
             }
         }
 
+        private static MethodInfo findForOutpost;
+        private static bool lookedOutpost;
+
+        /// <summary>
+        /// The mod's invasion of one of the colony's vassal outposts under way, with its attacker
+        /// (<c>FactionTerritories.Invasions.Utility.FindForVassalOutpost</c>, read by name): the vassal's ask that the colony
+        /// join the fight (Diplomacy/Vassals.cs), which it does through the mod's own "Join fight" on the outpost.
+        /// </summary>
+        public static bool InvasionAtOutpost(WorldObject outpost, out Faction attacker)
+        {
+            attacker = null;
+            if (outpost == null || outpost.Destroyed || !Active) return false;
+            try
+            {
+                Look();
+                if (!lookedOutpost)
+                {
+                    lookedOutpost = true;
+                    var util = GenTypes.GetTypeInAnyAssembly(InvasionsUtility);
+                    findForOutpost = util == null || vassal == null ? null : AccessTools.Method(util, "FindForVassalOutpost", new[] { vassal });
+                    if (findForOutpost != null && (invasion == null || !invasion.IsAssignableFrom(findForOutpost.ReturnType))) findForOutpost = null;
+                }
+                if (findForOutpost == null || vassal == null || !vassal.IsInstanceOfType(outpost)) return false;
+                var inv = findForOutpost.Invoke(null, new object[] { outpost });
+                if (!(inv is WorldObject wo) || wo.Destroyed) return false;
+                if (invResolved != null && (bool)invResolved.GetValue(inv)) return false;
+                attacker = FactionOf(Int(invAttacker, inv));
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world mechanics: an outpost's invasion read", e);
+                return false;
+            }
+        }
+
         /// <summary>
         /// The colony's caravan at a town the mod's invasion is fighting over joins that fight through the mod's own arrival
         /// (its "Join fight"). False without the mod, or with no such fight there now.

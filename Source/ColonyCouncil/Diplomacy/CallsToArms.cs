@@ -86,7 +86,9 @@ namespace ColonyCouncil
                 Watch(t, f, home, town, Refs.Faction(t.terms.about), due, day, true);
                 return;
             }
-            if (!Pacts.On || !Sched.FirstHourOfDay(Now) || !Tell.CanAsk) return;
+            // A liege's call on the colony's levies (Fealty.cs) rides on the same hour, by the setting of its own.
+            bool on = t.kind == Tie.Kind.Fealty ? Fealty.On : Pacts.On;
+            if (!on || !Sched.FirstHourOfDay(Now) || !Tell.CanAsk) return;
             if (!Attacked(f, home, out var s, out var enemy) || !Rand.Chance(PactMath.ArmsDaily)) return;
             // One call for each attack: not again while the same war goes on against the same town (this session's asks, and
             // across a reload the history's call kept there against them lately).
@@ -107,7 +109,7 @@ namespace ColonyCouncil
         private static bool KeptLately(Settlement town, Faction enemy)
         {
             var against = Refs.Of(enemy);
-            foreach (var e in History.At(Refs.Of(town), new[] { DiplomacyMath.Arms }, Now - (int)(PactMath.SeasonDays * PactMath.DayTicks)))
+            foreach (var e in History.At(Refs.Of(town), new[] { DiplomacyMath.Arms, DiplomacyMath.Levy }, Now - (int)(PactMath.SeasonDays * PactMath.DayTicks)))
                 if (enemy == null || e.actors.Any(a => a.who == against && a.role == HistoryRole.Against))
                     return true;
             return false;
@@ -120,12 +122,16 @@ namespace ColonyCouncil
             if (def == null || t == null || f == null || town == null) return;
             var head = FavourCalls.HeadOf(f, home);
             string who = head != null ? NotableBook.Called(head) : PactWords.People(f);
-            var form = pact ? PactWords.PactForm(home, f) : DipWords.Form(home, f);
-            string text = PactWords.T(pact ? "CC_Arms_Pact" : "CC_Arms_Favour", who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN"),
+            // A liege calling the colony's levies (Fealty.cs): its own words, the levies' forms by both ages.
+            bool fealty = t.kind == Tie.Kind.Fealty;
+            var form = fealty ? FealtyWords.LevyForm(home, f) : pact ? PactWords.PactForm(home, f) : DipWords.Form(home, f);
+            string text = PactWords.T(fealty ? "CC_Arms_Fealty" : pact ? "CC_Arms_Pact" : "CC_Arms_Favour", who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN"),
                               PactWords.People(enemy).Named("ENEMY"), form.word.Named("WORD"), form.rite.Named("RITE"))
                           + "\n\n" + PactWords.P("CC_Arms_How", town.Name.Named("TOWN"), PactMath.MinFighters.Named("COUNT"), CardWords.DistanceShort(town.Tile).Named("DISTANCE"))
-                          + "\n\n" + PactWords.P(pact ? "CC_Arms_Refuse_Pact" : "CC_Arms_Refuse_Favour", PactWords.People(f).Named("PEOPLE"));
-            var letter = LetterMaker.MakeLetter(PactWords.P("CC_Arms_Label", PactWords.People(f).Named("PEOPLE")), text, def, new LookTargets(town), f);
+                          + "\n\n" + PactWords.P(fealty ? "CC_Arms_Refuse_Fealty" : pact ? "CC_Arms_Refuse_Pact" : "CC_Arms_Refuse_Favour", PactWords.People(f).Named("PEOPLE"),
+                              FealtyMath.LeviesRefusedGoodwill.Named("GOODWILL"));
+            var letter = LetterMaker.MakeLetter(PactWords.P(fealty ? "CC_Arms_Label_Fealty" : "CC_Arms_Label", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), text, def,
+                new LookTargets(town), f);
             if (letter is ChoiceLetter_CallToArms l)
             {
                 l.tie = t.id;
@@ -217,10 +223,15 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("calls to arms: the fight", e);
                 how = null;
             }
-            var actors = new List<HistoryActor> { new HistoryActor(Diplomacy.Colony(home), HistoryRole.Did), new HistoryActor(Refs.Of(f), HistoryRole.For) };
-            if (enemy != null) actors.Add(new HistoryActor(Refs.Of(enemy), HistoryRole.Against));
-            Diplomacy.Write(DiplomacyMath.Arms, actors, Refs.Of(town), PactWords.P("CC_Arms_Hist", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")), true);
-            FactionMemory.Note(f, "keptWord", PactWords.P("CC_Arms_Deed", town.Name.Named("TOWN")));
+            // A liege's levies come (Fealty.cs): the deed "levies" and the history's dip:levy.
+            if (t.kind == Tie.Kind.Fealty) Fealty.LeviesCame(t, f, home, town, enemy);
+            else
+            {
+                var actors = new List<HistoryActor> { new HistoryActor(Diplomacy.Colony(home), HistoryRole.Did), new HistoryActor(Refs.Of(f), HistoryRole.For) };
+                if (enemy != null) actors.Add(new HistoryActor(Refs.Of(enemy), HistoryRole.Against));
+                Diplomacy.Write(DiplomacyMath.Arms, actors, Refs.Of(town), PactWords.P("CC_Arms_Hist", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")), true);
+                FactionMemory.Note(f, "keptWord", PactWords.P("CC_Arms_Deed", town.Name.Named("TOWN")));
+            }
             Close(t, pact, Tie.State.Kept);
             if (how == null)
                 // apart: the colony's caravan reached their town after the danger; told in a message.
@@ -247,6 +258,12 @@ namespace ColonyCouncil
             if (!pact)
             {
                 FavourAsks.Refuse(t, unanswered);
+                return;
+            }
+            // A liege's call refused: their grudge, and the oath stands (Fealty.cs).
+            if (t.kind == Tie.Kind.Fealty)
+            {
+                Fealty.LeviesRefused(t, f, home, unanswered);
                 return;
             }
             t.terms.goods = null;
@@ -361,7 +378,7 @@ namespace ColonyCouncil
         private Tie Live(out bool pact)
         {
             pact = false;
-            var p = Pacts.Get(tie);
+            var p = Pacts.Get(tie) ?? Fealty.Get(tie);
             if (p != null && p.Live && PactMath.ParseArms(p.terms.goods, out int id, out _) && id == town)
             {
                 pact = true;
@@ -373,7 +390,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>A pact's call still waiting for the colony's answer (the inbox's row; a debt's call is the favours' row).</summary>
-        public bool WaitingOnPact => !ArchivedOnly && Live(out bool pact) != null && pact;
+        public bool WaitingOnPact => !ArchivedOnly && Live(out bool pact) is Tie t && pact && t.kind == Tie.Kind.Pact;
+
+        /// <summary>A liege's call on the colony's levies still waiting for the colony's answer (Fealty's row).</summary>
+        public bool WaitingOnLevies => !ArchivedOnly && Live(out bool pact) is Tie t && pact && t.kind == Tie.Kind.Fealty;
 
         public override IEnumerable<DiaOption> Choices
         {
@@ -406,7 +426,7 @@ namespace ColonyCouncil
                         Find.LetterStack.RemoveLetter(this);
                         var x = Live(out bool pact);
                         if (x == null) return;
-                        var f = pact ? Pacts.PeopleOf(x) : Refs.Faction(x.to);
+                        var f = pact ? x.kind == Tie.Kind.Fealty ? Fealty.LiegeOf(x) : Pacts.PeopleOf(x) : Refs.Faction(x.to);
                         CallsToArms.Refused(x, f, map, false, pact);
                     },
                     resolveTree = true

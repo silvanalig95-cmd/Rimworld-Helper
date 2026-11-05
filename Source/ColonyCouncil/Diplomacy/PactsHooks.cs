@@ -32,6 +32,12 @@ namespace ColonyCouncil
                     string how = FactionMemory.Text(d);
                     if (PactMath.OurBreach(d.kind) && Truces.AnyWith(f) != null) Truces.BrokenByUs(f, how);
                     if (PactMath.PactBreach(d.kind) && Pacts.With(f).Count > 0 && PactMath.BreaksPact(d.kind, BandOnAHome(f))) Pacts.BrokenByUs(f, how);
+                    // The colony's liege, and a people whose town is under its protection (Fealty.cs, Vassals.cs): attacking them breaks the oath.
+                    if (PactMath.PactBreach(d.kind) && PactMath.BreaksPact(d.kind, BandOnAHome(f)))
+                    {
+                        if (Fealty.With(f) != null) Fealty.BrokenByUs(f, how);
+                        Vassals.BrokenByUs(f, how);
+                    }
                 }
                 else if (d.side == DeedSide.TheirWrong && d.kind == "killedOurs")
                 {

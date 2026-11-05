@@ -234,7 +234,7 @@ namespace ColonyCouncil
             var book = NotableBook.Instance;
             if (f == null || book == null) return null;
             var town = home != null ? WorldSituationWorker.NearestTown(f, home) : null;
-            return book.notables.Where(n => n != null && n.faction == f && n.role == NotableRole.Head && n.Alive)
+            return book.notables.Where(n => n != null && n.faction == f && n.role == NotableRole.Head && n.Alive && !Vassals.OutpostHead(n))
                 .OrderBy(n => town != null && n.town == town.ID ? 0 : 1).FirstOrDefault();
         }
 

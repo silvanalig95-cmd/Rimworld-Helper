@@ -53,7 +53,9 @@ namespace ColonyCouncil
         /// <summary>Proposing a match between one of the colony's and one of theirs (Diplomacy/Matches.cs, release 2b.2).</summary>
         Match,
         /// <summary>The council's business: an officer's letter on a task, or a secret pressed (Diplomacy/TaskLetters.cs, release 2c.1; never from the dialog).</summary>
-        Task
+        Task,
+        /// <summary>Asking to swear fealty to their people, their terms by their ways (Diplomacy/FealtyLetters.cs, release 2c.2).</summary>
+        Fealty
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

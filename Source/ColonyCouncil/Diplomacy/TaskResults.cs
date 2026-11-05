@@ -68,6 +68,9 @@ namespace ColonyCouncil
                     if (gain > 0f) Regard(n, officer, 1f, TaskWords.P("CC_Task_Note_Trade", who.Named("PAWN")));
                     return gain > 0f ? TaskWords.T("CC_Task_Ans_Trade", name.Named("NAME"), who.Named("PAWN")) : null;
                 }
+                // The quartermaster's dues of a vassal (release 2c.2, Vassals.cs): their carter will bring them, on time or explained.
+                case TaskKind.Dues:
+                    return Vassals.DuesRead(t, l, n, ref tone);
                 case TaskKind.BringHome:
                     return share > 0f ? TaskWords.T("CC_Task_Ans_BringHome", name.Named("NAME"), (t.about?.LabelShort ?? t.targetName ?? "?").Named("OURS")) : null;
                 case TaskKind.TheirKin:
