@@ -69,7 +69,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   days (the calls to arms), how long they stay being the far fight's; a vassal's "help in hard times" as a letter with
   goods carried to the gate, not the help missions (their missions are the neighbours', not a vassal's); a Faction
   Territories outpost whose first people are at war with the colony gets no head (it would be a hostile notable: silent
-  letters, a sour regard) and says so on its card; a vassal's judgement names the neighbouring town without a quarrel of
+  letters, a sour regard) and says so on its card; a vassal's judgment names the neighbouring town without a quarrel of
   the world's own (there is none to read); renouncing by letter (a council question, its word sent with the answer);
   the quartermaster's dues of Faction Territories' vassals (decision 12). To look at in game: "Swear fealty..." on a
   people's card (the terms and who will object in the dialog, the letter), their answer, their head (or one of theirs)

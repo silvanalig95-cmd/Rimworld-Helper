@@ -421,7 +421,8 @@ namespace ColonyCouncil
             if (day < due) return true;
             if (Pacts.Arrive(f, home, Refs.Faction(t.terms.about), "fealty", out bool wait, "fealty") || !wait)
             {
-                if (!wait) FactionMemory.Note(f, "protected", FealtyWords.People(Refs.Faction(t.terms.about)));
+                // Walked in to fight (not turned back with the fight over): their people remember they protected the colony.
+                if (!wait && CampTracker.WarBandAt(home)?.faction == f) FactionMemory.Note(f, "protected", FealtyWords.People(Refs.Faction(t.terms.about)));
                 t.terms.goods = null;
                 t.terms.about = Ref.None;
                 WorldLedger.Touch(t);

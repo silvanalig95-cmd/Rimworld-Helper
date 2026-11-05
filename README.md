@@ -2783,7 +2783,7 @@ oath breaks); their letter calls the colony's levies when their town is attacked
 nine times in ten; renouncing costs their grudge, unless they failed the colony that season. The colony's own vassals
 are its hamlet once sworn and up to two struggling towns that ask for its protection: they bring produce at harvest as
 the council sets it (heavy costs their goodwill), pay a season's dues to the quartermaster, send levies when called (their
-dead weigh on their head), ask for help, a judgement or a camp broken, and a sour head asks to be released. Faction
+dead weigh on their head), ask for help, a judgment or a camp broken, and a sour head asks to be released. Faction
 Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
 mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.
 

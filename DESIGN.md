@@ -3002,7 +3002,7 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   (heavy: 3 goodwill and 4 regard; light: 2 regard), a protected town's harvest at harvest time (`ProtectedProduce` by
   level; the hamlet's own harvest through `Vassals.HamletProduce` in `HamletLife`), its head's low regard and one ask a
   season (`FealtyMath.AskOf`: release, a hostile site within 8 tiles, a hard season, a neighbouring town of another
-  people at peace) as `ChoiceLetter_VassalAsk` (help carried out to the gate; a judgement moving the neighbour's
+  people at peace) as `ChoiceLetter_VassalAsk` (help carried out to the gate; a judgment moving the neighbour's
   goodwill 5; a camp or an outpost's invasion promised as a Promise tie of origin `vassal`, kept when the site is gone or
   the colony's people are at the outpost, broken at its day in the terms; release: released (the hamlet back to
   standing under protection, `Hamlets.ReleaseOath`) or broken away (15 goodwill; the hamlet's record ended without its
