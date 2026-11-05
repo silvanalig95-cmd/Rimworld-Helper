@@ -188,13 +188,20 @@ namespace ColonyCouncil
                 case DiplomacyMath.Ward: return aboutSomeone ? "fostered" : "abroad";
                 case DiplomacyMath.Envoy: return "envoy";
                 case DiplomacyMath.Hostage: return forColony ? "hostage" : null;
-                case DiplomacyMath.Task: return !againstSomeone ? "task" : weighty ? "told" : null;
+                case DiplomacyMath.Task: return !weighty ? null : againstSomeone ? "told" : "task";
                 default: return null;
             }
         }
 
         /// <summary>A ward's guardian is named in the year's end as one who did it only for a good year or better (a fair one is no deed to be known by), else as one with it.</summary>
         public static HistoryRole GuardianRole(bool goodYear) => goodYear ? HistoryRole.Did : HistoryRole.With;
+
+        /// <summary>
+        /// A council task's officer is named in its history as one who did it, except for a task failed (the keeper found
+        /// out: no deed to be known by) and the keeper's secret watch (a secret learned is heard of by nobody, as a secret
+        /// pressed and paid), where they are one with it.
+        /// </summary>
+        public static HistoryRole OfficerRole(bool failed, bool secretWatch) => failed || secretWatch ? HistoryRole.With : HistoryRole.Did;
 
         /// <summary>What the peoples remember of a colonist by name (a mark's kind, ColonistMemoryMath), as renown: a source, or null for one that isn't.</summary>
         public static string SourceOfMark(string markKind) => markKind != null && Sources.ContainsKey(markKind) && Array.IndexOf(MarkKinds, markKind) >= 0 ? markKind : null;

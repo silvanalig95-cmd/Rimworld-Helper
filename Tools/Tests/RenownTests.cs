@@ -116,6 +116,12 @@ public static class RenownTests
             "the speaker named at a truce sworn");
         C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, true, true) == "task" && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, true) == "told"
           && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, true, false, false) == null, "a task done; a secret pressed and told a wrong, paid nobody hears of");
+        // The review: a task set, a step of it and one called off are everyday lines, nothing yet; a task failed and the keeper's watch name the officer as one with it.
+        C(RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.Did, false, false, false) == null && RenownMath.SourceOf(DiplomacyMath.Task, HistoryRole.With, false, false, true) == null,
+            "only a task come to something counts, and only for the one who did it");
+        C(RenownMath.OfficerRole(false, false) == HistoryRole.Did && RenownMath.OfficerRole(true, false) == HistoryRole.With && RenownMath.OfficerRole(false, true) == HistoryRole.With,
+            "the officer did a task done; one with a task failed or the keeper's secret watch");
+        C(Code("Diplomacy/CouncilTasks.cs").Contains("RenownMath.OfficerRole(t.stage == TaskStage.Failed, t.kind == TaskKind.Secrets)"), "the task's history names its officer so");
         C(RenownMath.SourceOf(DiplomacyMath.Envoy, HistoryRole.Did, false, false, true) == "envoy" && RenownMath.SourceOf(DiplomacyMath.Hostage, HistoryRole.Did, false, false, true) == "hostage"
           && RenownMath.SourceOf(DiplomacyMath.Feast, HistoryRole.Did, false, false, true) == null, "a season abroad as envoy or hostage; a feast is the colony's");
         // The review: the colony's hostage home after their term is named as having done it (it was named About, so it never counted);

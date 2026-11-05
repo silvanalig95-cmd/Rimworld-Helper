@@ -543,7 +543,8 @@ namespace ColonyCouncil
         {
             if (t == null || line.NullOrEmpty()) return;
             var actors = new List<HistoryActor>();
-            if (t.officer != null) actors.Add(new HistoryActor(WorldLedger.PersonOf(t.officer), HistoryRole.Did));
+            // The officer did it, but for a task failed and the keeper's secret watch: their house's renown reads only what the world saw done (Diplomacy/Renown.cs).
+            if (t.officer != null) actors.Add(new HistoryActor(WorldLedger.PersonOf(t.officer), RenownMath.OfficerRole(t.stage == TaskStage.Failed, t.kind == TaskKind.Secrets)));
             actors.Add(new HistoryActor(Diplomacy.Colony(home), HistoryRole.For));
             var n = NotableOf(t);
             if (n != null) actors.Add(new HistoryActor(n.Person, HistoryRole.With));
