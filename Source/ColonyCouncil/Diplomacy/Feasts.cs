@@ -529,7 +529,7 @@ namespace ColonyCouncil
             if (open) return;
             if (!p.guests.Any(g => g.state == GuestState.Coming))
             {
-                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_Nobody"), true);
+                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_NoGuests"), true);
                 return;
             }
             SetDay(h, p, map);
@@ -568,7 +568,7 @@ namespace ColonyCouncil
                     g.state = GuestState.Declined;
             if (!p.guests.Any(g => g.state == GuestState.Coming))
             {
-                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_Nobody"), true);
+                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_NoGuests"), true);
                 return;
             }
             if (FeastMath.ArriveNow(today, p.day, hour, Fine(map), MapFacts.ThreatOn(map)))
@@ -649,7 +649,7 @@ namespace ColonyCouncil
             }
             if (!p.guests.Any(g => g.state == GuestState.Here))
             {
-                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_Nobody"), true);
+                CallOff(h, p, map, FeastWords.P("CC_Feast_Off_NoGuests"), true);
                 return;
             }
             p.arrived = Now;
@@ -1268,13 +1268,13 @@ namespace ColonyCouncil
         /// <summary>The welcome's main reason in a few words: what pleased or slighted them most.</summary>
         private static string Why(FeastGuest g, bool hopeMet)
         {
-            if (!g.ate) return FeastWords.P("CC_Feast_Why_Unfed");
-            if (g.sour) return FeastWords.P("CC_Feast_Why_Sour");
-            if (g.prize) return FeastWords.P("CC_Feast_Why_Prize");
-            if (hopeMet) return FeastWords.P("CC_Feast_Why_Hope", FeastWords.Hope(g.hope).Named("HOPE"));
-            if (Empire(g) && !g.fine) return FeastWords.P("CC_Feast_Why_PlainMeal");
-            if (g.floor && !g.bed) return FeastWords.P("CC_Feast_Why_Floor");
-            return FeastWords.P("CC_Feast_Why_Table");
+            if (!g.ate) return FeastWords.P("CC_Feast_For_Unfed");
+            if (g.sour) return FeastWords.P("CC_Feast_For_Sour");
+            if (g.prize) return FeastWords.P("CC_Feast_For_Prize");
+            if (hopeMet) return FeastWords.P("CC_Feast_For_Hope", FeastWords.Hope(g.hope).Named("HOPE"));
+            if (Empire(g) && !g.fine) return FeastWords.P("CC_Feast_For_PlainMeal");
+            if (g.floor && !g.bed) return FeastWords.P("CC_Feast_For_Floor");
+            return FeastWords.P("CC_Feast_For_Table");
         }
 
         /// <summary>The guests get up and walk home; beds go back to the colony.</summary>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feasts, hunts, games and contests with guests (Source/ColonyCouncil/Diplomacy/Feasts.cs, FeastContests.cs,
+       FeastLord.cs): the steward's suggestion, which waits for the council's answer, the jobs that play the contests and
+       the prize out on the map, and the duties of the guests' day. -->
+
+  <!-- The steward suggests a feast with guests. -->
+  <LetterDef>
+    <defName>Rimfolk_FeastSuggest</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_FeastSuggest</letterClass>
+    <color>(205, 180, 120)</color>
+    <flashColor>(230, 205, 145)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- A runner in the feast's race: to the line, out to the marker and back at a sprint. -->
+  <JobDef>
+    <defName>Rimfolk_FeastRun</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastRun</driverClass>
+    <reportString>running in the race.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- A shooter at the feast's match: five shots at the target from the line. -->
+  <JobDef>
+    <defName>Rimfolk_FeastShoot</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastShoot</driverClass>
+    <reportString>shooting at the target.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The prize carried from the stores to the champion of the day. -->
+  <JobDef>
+    <defName>Rimfolk_FeastPrize</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastPrize</driverClass>
+    <reportString>carrying the prize to the champion.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The guests' day: about the place it takes them (the gate, a contest, the feast's table, a room for the night),
+       resting when very tired (their meals and beds are seen to by the feast's look, by the missions' hosting rules). -->
+  <DutyDef>
+    <defName>Rimfolk_FeastGuest</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_GetRest">
+          <minCategory>VeryTired</minCategory>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- In danger: they keep to a room indoors. -->
+  <DutyDef>
+    <defName>Rimfolk_FeastIndoors</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>4</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetRest">
+              <minCategory>VeryTired</minCategory>
+            </li>
+            <li Class="JobGiver_WanderNearDutyLocation">
+              <wanderRadius>2</wanderRadius>
+            </li>
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>
