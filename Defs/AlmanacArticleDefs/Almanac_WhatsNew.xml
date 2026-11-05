@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.94.1</version>
+        <date>5 November 2026</date>
+        <title>Weddings, checked over</title>
+        <points>
+          <li>Fixed: a wedding begun late in the day no longer leaves its guests without the evening's feast. The feast waits for the couple's party after the vows, and the ceremony is not begun once the feast is due.</li>
+          <li>Fixed: the wedding letter speaks of kin among the guests only when they came, and of a defense pact only when one stands.</li>
+          <li>Fixed: the agreement letter promises the wedding's guests only when some of their kin can come.</li>
+          <li>Fixed: no match letter promises a defense pact with the Empire, or with any people while pacts are off.</li>
+          <li>Fixed: a spouse carried off by raiders who in time goes over to them is no longer taken for one the colony sold.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.94.0</version>
         <date>5 November 2026</date>
         <title>Marriage alliances</title>

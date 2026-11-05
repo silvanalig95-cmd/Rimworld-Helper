@@ -471,10 +471,14 @@ namespace ColonyCouncil
             string gifts = Gifts(p, map);
             if (p.lives == MatchHome.Colony) Host(h, p, map);
             var form = MatchWords.Form(map, p.people);
-            string text = MatchWords.T(p.lives == MatchHome.Colony ? "CC_Match_Agreed_Colony" : "CC_Match_Agreed_Theirs", p.ours.Named("OURS"), p.theirs.Named("THEIRS"),
-                MatchWords.People(p.people).Named("PEOPLE"), (p.townName ?? MatchWords.People(p.people)).Named("TOWN"), form.word.Named("WORD"), form.rite.Named("RITE"));
+            // Nobody of theirs free to come as the wedding's guests (Host): the letter says the one to be married walks in alone.
+            string key = p.lives != MatchHome.Colony ? "CC_Match_Agreed_Theirs" : p.alone ? "CC_Match_Agreed_ColonyAlone" : "CC_Match_Agreed_Colony";
+            string text = MatchWords.T(key, p.ours.Named("OURS"), p.theirs.Named("THEIRS"), MatchWords.People(p.people).Named("PEOPLE"),
+                (p.townName ?? MatchWords.People(p.people)).Named("TOWN"), form.word.Named("WORD"), form.rite.Named("RITE"));
             if (!gifts.NullOrEmpty()) text += "\n\n" + gifts;
-            text += "\n\n" + MatchWords.P("CC_Match_Agreed_Risks", MatchWords.People(p.people).Named("PEOPLE"));
+            // The alliance answers calls as a defense pact only where it makes one (never the Empire's, none with pacts off).
+            bool pact = Pacts.On && !Ages.IsEmpire(p.people);
+            text += "\n\n" + MatchWords.P(pact ? "CC_Match_Agreed_Risks" : "CC_Match_Agreed_RisksNoPact", MatchWords.People(p.people).Named("PEOPLE"));
             if (p.pressed) text += "\n\n" + MatchWords.P("CC_Match_Agreed_Pressed", p.ours.Named("OURS"));
             // apart: the agreement told in a letter; their kin walk in on the map on the day.
             Tell.Letter(NewsKind.World, Importance.Important, map, MatchWords.P("CC_Match_Agreed_Label", p.ours.Named("OURS"), p.theirs.Named("THEIRS")), text,
@@ -641,7 +645,7 @@ namespace ColonyCouncil
             text += "\n\n" + MatchWords.Lives(lives, ours.LabelShort, cand.pawn?.LabelShort ?? them, town).CapitalizeFirst() + ".";
             var c = ConsentOf(ours, cand.pawn, lives, out var why, out var other);
             text += " " + MatchWords.ConsentLine(ours, c, why, other);
-            text += "\n\n" + MatchWords.P("CC_Match_What", MatchWords.People(f).Named("PEOPLE"));
+            text += "\n\n" + MatchWords.P(Pacts.On && !Ages.IsEmpire(f) ? "CC_Match_What" : "CC_Match_WhatNoPact", MatchWords.People(f).Named("PEOPLE"));
             var t = NotableBook.TownOf((cand.notable ?? cand.house ?? head).town);
             var letter = LetterMaker.MakeLetter(MatchWords.P("CC_Match_Offer_Label", MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS")), text, def,
                 t != null ? new LookTargets(t) : new LookTargets(ours), f);

@@ -231,6 +231,14 @@ namespace ColonyCouncil
         /// <summary>The game holds a wedding ceremony up to this hour.</summary>
         public const int CeremonyFrom = 5, CeremonyTo = 16;
 
+        /// <summary>
+        /// The game's ceremony may be begun this hour: in the game's hours, and with the wedding's guests at the colony only
+        /// before the evening's feast is due (FeastMath.FeastFrom). The ceremony (its party before the vows and after them)
+        /// and the feast each let no other gathering begin while they last, so begun in the same hour one waits on the other
+        /// until it falls through.
+        /// </summary>
+        public static bool CeremonyHour(int hour, bool guestsHere) => hour >= CeremonyFrom && hour <= CeremonyTo && !(guestsHere && hour >= FeastMath.FeastFrom);
+
         /// <summary>Their kin coming for the colony's own walk in now: the day has come, in their hours, and it is safe.</summary>
         public static bool ArriveNow(int now, int due, int hour, bool danger) => now >= due && hour >= ArriveFrom && hour < ArriveTo && !danger;
 
@@ -320,6 +328,13 @@ namespace ColonyCouncil
             if (banished) return MatchWrong.Banished;
             return MatchWrong.None;
         }
+
+        /// <summary>
+        /// Sold away, as the daily look reads it: no longer the colony's but another people's (not their own, not held as a
+        /// prisoner), and not a people at war with the colony. One carried off by raiders goes over to their captors in time
+        /// (the game's own captivity): no deed of the colony's.
+        /// </summary>
+        public static bool SoldAway(bool anotherPeople, bool prisoner, bool atWarWithColony) => anotherPeople && !prisoner && !atWarWithColony;
 
         /// <summary>The grudge for a spouse wronged passes to their house's next head when the one who holds it is gone.</summary>
         public static bool PassesDown(bool holderGone, bool nextKnown) => holderGone && nextKnown;
