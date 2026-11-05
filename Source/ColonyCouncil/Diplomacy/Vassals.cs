@@ -719,10 +719,12 @@ namespace ColonyCouncil
             return FealtyWords.T(FealtyMath.Explained(p) ? "CC_Vassal_Dues_Explained" : "CC_Vassal_Dues_OnTime", n.Name.Named("NAME"), ((int)t.progress).Named("SILVER"));
         }
 
-        /// <summary>Their carter brings the dues to the gate: the task done, the record's season noted.</summary>
+        /// <summary>
+        /// Their carter brings the dues to the gate: the task done, the record's season noted. Called on the hour their answer
+        /// set (CouncilTasks.Step waits for it), after DuesStep has moved the next look on: no wait of its own here.
+        /// </summary>
         private static void Collected(CouncilTask t, DiplomacyHome h, Map home, VassalTerms v, int now)
         {
-            if (now < t.nextTick) return;
             int silver = Mathf.Max(10, Mathf.RoundToInt(t.progress));
             var gate = PlaySpots.GateCell(home, null);
             var things = Couriers.Make(ThingDefOf.Silver, silver);
@@ -741,31 +743,25 @@ namespace ColonyCouncil
         private static void LiegeDues(CouncilTask t, DiplomacyHome h, Map home, Tie liege, int now)
         {
             var f = Fealty.LiegeOf(liege);
-            if (t.tripId >= 0)
-            {
-                var trip = CourierTracker.Instance?.Get(t.tripId);
-                if (trip != null && trip.state != CourierState.Done) return;
-                t.tripId = -1;
-                int worth = trip != null && trip.def != null ? Mathf.RoundToInt(trip.taken * trip.def.BaseMarketValue) : 0;
-                if (worth > 0)
-                {
-                    Fealty.Paid(liege, worth);
-                    t.carts++;
-                    t.last = TaskStep.Cart;
-                    t.lastTick = now;
-                }
-            }
             if (Fealty.Owed(liege))
             {
                 var (def, count) = OwedCart(home, liege.terms.count);
                 if (def == null) return;
                 var trip = CouncilTasks.SendCart(home, def, count, f);
-                if (trip != null) t.tripId = trip.id;
-                else if (Fealty.PayWhyNot(liege) == null) Fealty.PayOwed(liege, t.officer);
                 if (trip != null)
+                {
+                    // The debt is the cart's from now, as when what is owed is carried out (Fealty.PayOwed): the courier
+                    // trip is let go once their porter has left, so its tally can't be read back afterwards, and a debt
+                    // still standing would send the cart again and again (and leave "Send what is owed" open beside it).
+                    Fealty.Paid(liege, Mathf.RoundToInt(count * def.BaseMarketValue));
+                    t.carts++;
+                    t.last = TaskStep.Cart;
+                    t.lastTick = now;
                     // apart: the council's business, told in a message; their porter comes to the gate for the cart.
                     Tell.Message(NewsKind.World, Importance.Notable, home, FealtyWords.P("CC_Fealty_Msg_Cart", t.officer.Named("PAWN"), Couriers.Amount(count, null, def).Named("GOODS"),
                         FealtyWords.People(f).Named("PEOPLE")), new LookTargets(t.officer), MessageTypeDefOf.NeutralEvent);
+                }
+                else if (Fealty.PayWhyNot(liege) == null) Fealty.PayOwed(liege, t.officer);
                 Diplomacy.Dirty();
                 return;
             }
@@ -794,6 +790,8 @@ namespace ColonyCouncil
         {
             if (!On) return FealtyWords.P("CC_Fealty_Why_Off");
             if (v == null || TownOf(v) == null) return FealtyWords.P("CC_Fealty_Why_Gone");
+            // Their people turned on the colony (the day's look ends the protection): no band of theirs is called in.
+            if (v.people == null || Diplomacy.Hostile(v.people)) return DipWords.P("CC_Dip_Why_War", FealtyWords.People(v.people).Named("PEOPLE"));
             if (home == null || !MapFacts.ThreatOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
             if (v.leviesDue >= 0) return FealtyWords.P("CC_Vassal_Why_LeviesComing", NameOf(v).Named("TOWN"));
             if (!FealtyMath.MayCallLevies(v.leviesAt, Now)) return FealtyWords.P("CC_Vassal_Why_LeviesSeason", NameOf(v).Named("TOWN"));
@@ -827,6 +825,13 @@ namespace ColonyCouncil
                 if (v.leviesDue < 0 || now < v.leviesDue) continue;
                 try
                 {
+                    // Their people at war with the colony since the call: their band would walk in as enemies; it doesn't come.
+                    if (v.people == null || v.people.defeated || Diplomacy.Hostile(v.people))
+                    {
+                        v.leviesDue = -1;
+                        Diplomacy.Dirty();
+                        continue;
+                    }
                     if (Pacts.Arrive(v.people, home, WarCamps.Attacker(home), "vassal", out bool wait, "vassal", FealtyMath.LevyStrength) || !wait)
                     {
                         v.leviesDue = -1;

@@ -345,9 +345,20 @@ namespace ColonyCouncil
             WeBroke
         }
 
-        /// <summary>The end of a hostage's term from its tie: live, closed by its term, or broken (by which side).</summary>
-        public static HostageEnd EndOf(bool live, bool broken, bool brokenByThem) =>
-            live ? HostageEnd.Holds : !broken ? HostageEnd.Home : brokenByThem ? HostageEnd.TheyBroke : HostageEnd.WeBroke;
+        /// <summary>
+        /// The end of a hostage's term from its tie: live, closed by its term, or broken (by which side). A defence pact's
+        /// hostage is given for the pact's year: once it is out (<paramref name="yearOver"/>) they go home with the term
+        /// kept, even when the pact runs on renewed (by their letter, or by a marriage alliance); a renewal may ask for a new
+        /// hostage as its own term.
+        /// </summary>
+        public static HostageEnd EndOf(bool live, bool broken, bool brokenByThem, bool yearOver = false) =>
+            live ? yearOver ? HostageEnd.Home : HostageEnd.Holds : !broken ? HostageEnd.Home : brokenByThem ? HostageEnd.TheyBroke : HostageEnd.WeBroke;
+
+        /// <summary>A defence pact's hostage: the pact year they were given for (its last tick, WardStay.until) is out.</summary>
+        public static bool YearOver(int termEnd, int now) => termEnd >= 0 && now >= termEnd;
+
+        /// <summary>The tick a pact's year ends, from its terms' day (PactMath: the number of a pact is the day its year is out).</summary>
+        public static int YearEndTick(float pactDay) => pactDay <= 0f ? -1 : (int)Math.Round(pactDay * DayTicks);
 
         /// <summary>A forfeit hostage of theirs would stay with the colony: content (mood 0.5 or more) after ten days here.</summary>
         public static bool WouldJoin(float mood, float days) => mood >= 0.5f && days >= SettleDays;

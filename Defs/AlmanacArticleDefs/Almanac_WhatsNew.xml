@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.97.1</version>
+        <date>5 November 2026</date>
+        <title>Fealty and tasks, checked over</title>
+        <points>
+          <li>Fixed: the quartermaster's cart for tribute owed counts as soon as it is sent; it no longer goes out again and again while the debt stands, and Send what is owed no longer pays it twice.</li>
+          <li>Fixed: a vassal's carter now brings the dues the quartermaster asked for.</li>
+          <li>Fixed: an informer the keeper pays now gives the keeper a chance at their secret, and samples their trader fetches move the trade on.</li>
+          <li>Fixed: a vassal whose people have turned on the colony no longer sends its levies, and the speaker no longer walks out to the liege's lord at the gate while a raid is on.</li>
+          <li>Fixed: attacking the liege breaks the oath of every home sworn to them.</li>
+          <li>A hostage given for a defense pact now goes home at the end of each pact year, even when the pact is renewed; their renewal letter may ask for a new one.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.97.0</version>
         <date>5 November 2026</date>
         <title>Fealty and vassals</title>

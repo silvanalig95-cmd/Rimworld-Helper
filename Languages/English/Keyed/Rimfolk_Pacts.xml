@@ -161,6 +161,8 @@
   <CC_Pact_Opt_Refuse>Decline</CC_Pact_Opt_Refuse>
   <CC_Pact_Opt_Renew>Keep it another year</CC_Pact_Opt_Renew>
   <CC_Pact_Opt_LetEnd>Let it end</CC_Pact_Opt_LetEnd>
+  <CC_Pact_Opt_RenewHostage>Keep it another year, with {TERM}</CC_Pact_Opt_RenewHostage>
+  <CC_Pact_Renew_Hostage>The hostage given for this year goes home with it, as the terms said. Another year can have a hostage of its own, from {PEOPLE} or from the colony.</CC_Pact_Renew_Hostage>
   <CC_Pact_Made>The colony and {PEOPLE} have sworn {KIND} for a year: {WORD}.</CC_Pact_Made>
   <CC_Pact_Renewed>{PEOPLE} and the colony will keep {KIND} another year.</CC_Pact_Renewed>
   <CC_Pact_Hist_Offer>{PEOPLE} offered the colony {KIND}.</CC_Pact_Hist_Offer>

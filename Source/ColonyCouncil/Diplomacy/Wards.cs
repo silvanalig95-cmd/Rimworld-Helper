@@ -534,7 +534,8 @@ namespace ColonyCouncil
             if (job != null) job.done = true;
             w.stage = WardStage.Here;
             w.since = Now;
-            w.until = w.Hostage ? -1 : Now + Mathf.RoundToInt(WardMath.YearDays * WardMath.DayTicks);
+            // A hostage keeps the term noted at the giving (a pact's year: Hostages.EndOf); a ward stays a year from now.
+            w.until = w.Hostage ? w.until : Now + Mathf.RoundToInt(WardMath.YearDays * WardMath.DayTicks);
             w.injuries = Injuries(p);
             var skill = SkillOf(w);
             w.xpAtStart = skill != null ? p.skills?.GetSkill(skill)?.XpTotalEarned ?? 0f : 0f;

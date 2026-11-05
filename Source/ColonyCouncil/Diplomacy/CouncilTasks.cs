@@ -109,6 +109,18 @@ namespace ColonyCouncil
         public static CouncilTask Away(Map home, CouncilTask except = null) =>
             DiplomacyBook.Instance?.Existing(home)?.tasks.FirstOrDefault(t => t != null && t != except && t.Away);
 
+        /// <summary>A live task waits on this courier trip's tally (an informer paid, samples fetched): the tracker keeps the trip until it is read.</summary>
+        public static bool Awaits(int tripId)
+        {
+            var book = DiplomacyBook.Instance;
+            if (book == null || tripId < 0) return false;
+            foreach (var h in book.Live())
+                foreach (var t in h.tasks)
+                    if (t != null && t.tripId == tripId && t.Live)
+                        return true;
+            return false;
+        }
+
         /// <summary>Who holds an office at this home now.</summary>
         public static Pawn HolderAt(Map home, string office) => S != null && S.offices ? ColonyState.For(home)?.offices?.HolderOf(office) : null;
 
@@ -618,6 +630,8 @@ namespace ColonyCouncil
                         : TaskWords.P("CC_Task_Result_GaveUp", t.OfficerName.Named("PAWN"), TaskWords.Kind(t.kind).Named("KIND"), (t.targetName ?? "?").Named("TARGET")), true);
                 return;
             }
+            // The samples' cart looked at every hour, not only when the next letter is due days on (its trip is kept for it until then).
+            if (t.kind == TaskKind.Trade) SamplesHour(t);
             if (now < t.nextTick) return;
             switch (t.kind)
             {
@@ -637,7 +651,6 @@ namespace ColonyCouncil
                     else t.nextTick = now + TaskMath.DayTicks;
                     break;
                 case TaskKind.Trade:
-                    SamplesHour(t);
                     LetterHour(t, home, now);
                     break;
                 default:

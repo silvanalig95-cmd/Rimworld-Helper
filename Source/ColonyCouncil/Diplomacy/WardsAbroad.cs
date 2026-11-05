@@ -341,7 +341,8 @@ namespace ColonyCouncil
             if (!c.PawnsListForReading.Any(x => x != null && x.IsColonist)) c.Destroy();
             WorldLedger.Keep(p, KeepFor.Lent);
             w.since = Now;
-            w.until = w.Hostage ? -1 : Now + Mathf.RoundToInt(WardMath.YearDays * WardMath.DayTicks);
+            // A hostage keeps the term noted at the giving (a pact's year: Hostages.EndOf); a ward stays a year from now.
+            w.until = w.Hostage ? w.until : Now + Mathf.RoundToInt(WardMath.YearDays * WardMath.DayTicks);
             var map = h.Map;
             var f = w.people;
             Diplomacy.Dirty();
