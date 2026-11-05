@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a friendship group is named for (Source/ColonyCouncil/Social/Groups/GroupDefs.cs, GroupShareDef; GroupNaming.cs
+    ranks them). A group bound by friendship alone is never named after one of its people: it takes its name from what
+    most of them share, the more of them the sooner (Hours: more than half keep the night hours; Work: more than half do
+    that work; Likeness: two in three have that side), else from a habit of theirs and its place in the group's own order,
+    else from their friendship. Among a share's names that fit the colony's era and no group now (or lately) has, one is
+    picked for the group and kept. A group of any other kind whose own names are all taken is named the same way.
+
+    names: era tags as in flavour lines ([lowtech], [!lowtech], [tribal], [medieval], [industrial], [spacer]); never a
+    person's name, nor "'s" (that is how names after someone read, and older saves are found by it).
+    why: what the card says the group is, for a friendship group named for this share.
+  -->
+
+  <!-- ===================== Their habit and its place ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Fire</defName>
+    <label>the fire</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Fire</habit>
+    <names>
+      <li>the fireside circle</li>
+      <li>the fire-sitters</li>
+      <li>the ember crowd</li>
+      <li>the evening fire</li>
+      <li>[lowtech] the hearth circle</li>
+      <li>[tribal] the fire circle</li>
+      <li>[!lowtech] the fire-pit crowd</li>
+    </names>
+    <why>They are friends, and keep their evenings at the fire together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Table</defName>
+    <label>the table</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Table</habit>
+    <names>
+      <li>the long table</li>
+      <li>the corner table</li>
+      <li>the supper crowd</li>
+      <li>the table end</li>
+      <li>[medieval] the bench end</li>
+      <li>[tribal] the shared pot</li>
+      <li>[!lowtech] the mess corner</li>
+      <li>[spacer] the galley table</li>
+    </names>
+    <why>They are friends, and eat together when they can.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Games</defName>
+    <label>games</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Games</habit>
+    <names>
+      <li>the game-night crowd</li>
+      <li>the rule-arguers</li>
+      <li>the sore losers</li>
+      <li>[lowtech] the dice circle</li>
+      <li>[!lowtech] the card table</li>
+    </names>
+    <why>They are friends, and play whatever the rec room holds of an evening.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_SideBySide</defName>
+    <label>working side by side</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Work</habit>
+    <names>
+      <li>the steady hands</li>
+      <li>the side-by-side crew</li>
+      <li>the same-shift friends</li>
+    </names>
+    <why>They are friends, and like to work within earshot of each other.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_HuntTogether</defName>
+    <label>a hunt together</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Hunt</habit>
+    <names>
+      <li>the hunting friends</li>
+      <li>the early trackers</li>
+      <li>the long-walk hunters</li>
+    </names>
+    <why>They are friends, and go out after game together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_SmallHours</defName>
+    <label>the small hours</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Night</habit>
+    <names>
+      <li>the sleepless circle</li>
+      <li>the small-hours talkers</li>
+      <li>the dark-hours company</li>
+    </names>
+    <why>They are friends, and keep each other company through the small hours.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Prayer</defName>
+    <label>prayers</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Prayer</habit>
+    <names>
+      <li>the prayer circle</li>
+      <li>the quiet bench</li>
+      <li>the kneelers</li>
+    </names>
+    <why>They are friends, and pray side by side.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Talk</defName>
+    <label>talking late</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Talk</habit>
+    <names>
+      <li>the late talkers</li>
+      <li>the talkers' corner</li>
+      <li>the after-supper crowd</li>
+      <li>the last ones up</li>
+      <li>[lowtech] the tale-tellers</li>
+    </names>
+    <why>They are friends, and sit up talking of an evening.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Walk</defName>
+    <label>a walk at dusk</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Walk</habit>
+    <names>
+      <li>the dusk walkers</li>
+      <li>the evening walkers</li>
+      <li>the long way round</li>
+    </names>
+    <why>They are friends, and walk out together at dusk.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== Their hours ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_NightHours</defName>
+    <label>the night hours</label>
+    <idea>Hours</idea>
+    <names>
+      <li>the night owls</li>
+      <li>the late lamps</li>
+      <li>the moonlight crowd</li>
+      <li>[lowtech] the candle-burners</li>
+      <li>[tribal] the moon-watchers</li>
+      <li>[!lowtech] the graveyard shift</li>
+    </names>
+    <why>They are friends, and most of them keep the night hours.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== Their work ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Hunting</defName>
+    <label>hunting</label>
+    <idea>Work</idea>
+    <workTypes><li>Hunting</li></workTypes>
+    <names>
+      <li>the hunting circle</li>
+      <li>the trackers' circle</li>
+      <li>the game-callers</li>
+      <li>[lowtech] the spear circle</li>
+      <li>[!lowtech] the rifle circle</li>
+    </names>
+    <why>They are friends, and most of them hunt.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Cooking</defName>
+    <label>cooking</label>
+    <idea>Work</idea>
+    <workTypes><li>Cooking</li></workTypes>
+    <names>
+      <li>the kitchen circle</li>
+      <li>the pot-stirrers</li>
+      <li>the ladle crowd</li>
+      <li>[lowtech] the cook-fire circle</li>
+      <li>[!lowtech] the stove crowd</li>
+    </names>
+    <why>They are friends, and most of them work in the kitchen.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Fields</defName>
+    <label>the fields</label>
+    <idea>Work</idea>
+    <workTypes><li>Growing</li><li>PlantCutting</li></workTypes>
+    <names>
+      <li>the harvest circle</li>
+      <li>the furrow friends</li>
+      <li>the green circle</li>
+      <li>[tribal] the seed circle</li>
+    </names>
+    <why>They are friends, and most of them work the fields.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Benches</defName>
+    <label>the benches</label>
+    <idea>Work</idea>
+    <workTypes><li>Crafting</li><li>Smithing</li><li>Tailoring</li></workTypes>
+    <names>
+      <li>the bench circle</li>
+      <li>the workbench friends</li>
+      <li>the sawdust crowd</li>
+      <li>[lowtech] the anvil circle</li>
+      <li>[!lowtech] the shop crowd</li>
+    </names>
+    <why>They are friends, and most of them work at the benches.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Building</defName>
+    <label>building</label>
+    <idea>Work</idea>
+    <workTypes><li>Construction</li></workTypes>
+    <names>
+      <li>the scaffold friends</li>
+      <li>the mortar crowd</li>
+      <li>the wall circle</li>
+    </names>
+    <why>They are friends, and most of them put up the colony's walls.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Rock</defName>
+    <label>the rock</label>
+    <idea>Work</idea>
+    <workTypes><li>Mining</li></workTypes>
+    <names>
+      <li>the tunnel friends</li>
+      <li>the dust crowd</li>
+      <li>the deep circle</li>
+    </names>
+    <why>They are friends, and most of them dig the rock.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Sickroom</defName>
+    <label>the sickroom</label>
+    <idea>Work</idea>
+    <workTypes><li>Doctor</li></workTypes>
+    <names>
+      <li>the sickroom circle</li>
+      <li>the bedside friends</li>
+      <li>the night nurses</li>
+      <li>[lowtech] the herb circle</li>
+    </names>
+    <why>They are friends, and most of them tend the sick.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Study</defName>
+    <label>study</label>
+    <idea>Work</idea>
+    <workTypes><li>Research</li></workTypes>
+    <names>
+      <li>the study circle</li>
+      <li>the thinkers' table</li>
+      <li>the puzzlers</li>
+      <li>[lowtech] the reading circle</li>
+      <li>[!lowtech] the lab circle</li>
+    </names>
+    <why>They are friends, and most of them do the colony's research.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Animals</defName>
+    <label>the animals</label>
+    <idea>Work</idea>
+    <workTypes><li>Handling</li></workTypes>
+    <names>
+      <li>the barn circle</li>
+      <li>the paddock friends</li>
+      <li>the feed-bucket crowd</li>
+    </names>
+    <why>They are friends, and most of them tend the animals.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Art</defName>
+    <label>art</label>
+    <idea>Work</idea>
+    <workTypes><li>Art</li></workTypes>
+    <names>
+      <li>the sketching circle</li>
+      <li>the carvers' circle</li>
+      <li>the idle dreamers</li>
+    </names>
+    <why>They are friends, and most of them make art.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== Being alike (sides no kind of group is named for) ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_BrightSide</defName>
+    <label>the bright side</label>
+    <idea>Likeness</idea>
+    <axis>Outlook</axis>
+    <atLeast>30</atLeast>
+    <names>
+      <li>the sunny table</li>
+      <li>the bright-siders</li>
+      <li>the cheerful circle</li>
+    </names>
+    <why>They are friends, and most of them look on the bright side.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_ShortFuses</defName>
+    <label>short fuses</label>
+    <idea>Likeness</idea>
+    <axis>Temper</axis>
+    <atLeast>30</atLeast>
+    <names>
+      <li>the hot heads</li>
+      <li>the short fuses</li>
+      <li>the loud table</li>
+    </names>
+    <why>They are friends, and most of them are quick to anger.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Calm</defName>
+    <label>calm</label>
+    <idea>Likeness</idea>
+    <axis>Temper</axis>
+    <atLeast>30</atLeast>
+    <low>true</low>
+    <names>
+      <li>the calm circle</li>
+      <li>the steady heads</li>
+      <li>the easy company</li>
+    </names>
+    <why>They are friends, and most of them are slow to anger.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Proud</defName>
+    <label>pride</label>
+    <idea>Likeness</idea>
+    <axis>Pride</axis>
+    <atLeast>30</atLeast>
+    <names>
+      <li>the proud table</li>
+      <li>the peacocks</li>
+      <li>the high chins</li>
+    </names>
+    <why>They are friends, and most of them think well of themselves.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Wary</defName>
+    <label>wariness</label>
+    <idea>Likeness</idea>
+    <axis>Trust</axis>
+    <atLeast>30</atLeast>
+    <low>true</low>
+    <names>
+      <li>the wary circle</li>
+      <li>the watchful ones</li>
+      <li>the closed table</li>
+    </names>
+    <why>They are friends, and most of them are wary of everyone else.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Trusting</defName>
+    <label>trust</label>
+    <idea>Likeness</idea>
+    <axis>Trust</axis>
+    <atLeast>30</atLeast>
+    <names>
+      <li>the open door</li>
+      <li>the trusting circle</li>
+      <li>the easy hearts</li>
+    </names>
+    <why>They are friends, and most of them trust easily.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_SetInWays</defName>
+    <label>old habits</label>
+    <idea>Likeness</idea>
+    <axis>Openness</axis>
+    <atLeast>30</atLeast>
+    <low>true</low>
+    <names>
+      <li>the creatures of habit</li>
+      <li>the same-old circle</li>
+      <li>the settled ones</li>
+    </names>
+    <why>They are friends, and most of them are set in their ways.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Serious</defName>
+    <label>seriousness</label>
+    <idea>Likeness</idea>
+    <axis>Humour</axis>
+    <atLeast>30</atLeast>
+    <low>true</low>
+    <names>
+      <li>the straight faces</li>
+      <li>the serious table</li>
+      <li>the sober circle</li>
+    </names>
+    <why>They are friends, and most of them take life seriously.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== Only their friendship ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Friendship</defName>
+    <label>friendship</label>
+    <idea>Friends</idea>
+    <names>
+      <li>the old friends</li>
+      <li>the close friends</li>
+      <li>the inner circle</li>
+      <li>the usual company</li>
+      <li>the regulars</li>
+      <li>the good company</li>
+      <li>[medieval] the fellowship</li>
+      <li>[tribal] the close ones</li>
+    </names>
+    <why>They are friends, and that is what holds them together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+</Defs>

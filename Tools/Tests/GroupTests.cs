@@ -259,12 +259,16 @@ public static class GroupTests
             var ranked = GroupNaming.Ranked(new[]
             {
                 Fit("friends", ShareIdea.Friends), Fit("table", ShareIdea.Habit, order: 1), Fit("fire", ShareIdea.Habit, order: 0),
-                Fit("night", ShareIdea.Hours, 0.5f), Fit("fields", ShareIdea.Work, 0.75f), Fit("merry", ShareIdea.Likeness, 0.6f)
+                Fit("night", ShareIdea.Hours, 0.6f), Fit("fields", ShareIdea.Work, 0.75f), Fit("merry", ShareIdea.Likeness, 0.6f)
             }).Select(s => s.key).ToList();
             Check(string.Join(",", ranked) == "fields,night,fire,table,friends",
                 $"what most of them share comes first (the more of them, the sooner), then their habits in order, then friendship alone ({string.Join(",", ranked)})");
-            Check(!GroupNaming.Holds(Fit("night", ShareIdea.Hours, 0.4f)) && GroupNaming.Holds(Fit("night", ShareIdea.Hours, 0.5f)), "the night hours name a group when half of them keep them");
-            Check(!GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, 0.6f)) && GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, 0.7f)), "a side of character, when two in three have it");
+            Check(!GroupNaming.Holds(Fit("night", ShareIdea.Hours, GroupNaming.Fit(2, 4))) && GroupNaming.Holds(Fit("night", ShareIdea.Hours, GroupNaming.Fit(3, 5)))
+                  && GroupNaming.Holds(Fit("fields", ShareIdea.Work, GroupNaming.Fit(2, 3))) && !GroupNaming.Holds(Fit("fields", ShareIdea.Work, GroupNaming.Fit(3, 6))),
+                "the night hours or a work name a group when more than half of them keep or do it (\"most of them\"), not half");
+            Check(!GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, GroupNaming.Fit(3, 5))) && GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, GroupNaming.Fit(2, 3)))
+                  && GroupNaming.Holds(Fit("merry", ShareIdea.Likeness, GroupNaming.Fit(4, 6))), "a side of character, when two in three have it");
+            Check(GroupNaming.Fit(1, 0) == 0f, "nobody there shares nothing");
             var tie = GroupNaming.Ranked(new[] { Fit("merry", ShareIdea.Likeness, 0.75f), Fit("fields", ShareIdea.Work, 0.75f), Fit("night", ShareIdea.Hours, 0.75f) }).Select(s => s.key).ToList();
             Check(string.Join(",", tie) == "night,fields,merry", $"on a tie, the hours before work before character ({string.Join(",", tie)})");
             Check(GroupNaming.Ranked(new[] { Fit("friends", ShareIdea.Friends) }).Count == 1 && GroupNaming.Ranked(null).Count == 0, "friendship alone always holds");
@@ -283,11 +287,18 @@ public static class GroupTests
             Check(!GroupNaming.AfterSomeone("the fireside circle", old) && !GroupNaming.AfterSomeone("'s friends", old) && !GroupNaming.AfterSomeone("the jokers' corner", old),
                 "names of what they share are not");
             Check(!GroupNaming.AfterSomeone("the hunters", new[] { "the hunters" }), "a pattern with nobody in it never matches");
+            Check(GroupNaming.AfterSomeone("the huntsmen's table", old) && !GroupNaming.AfterSomeone("the huntsmen's table", old, new[] { "The Huntsmen's Table" })
+                  && !GroupNaming.AfterSomeone("the huntsmen's table (2)", old, new[] { "the huntsmen's table" }),
+                "a name a kind gives is nobody's, even when it reads like one (the medieval hunters' table)");
+            Check(GroupNaming.AsPattern("{ANCHOR_nameDef}'s {KIND}", "ANCHOR", "hunters") == "{ANCHOR}'s hunters"
+                  && GroupNaming.AsPattern("{PAWN_nameDef}'s friends", "PAWN") == "{ANCHOR}'s friends"
+                  && GroupNaming.AsPattern("{0} and {PAWN}", "PAWN") == "{0} and {ANCHOR}" && GroupNaming.AsPattern("{KIND} of {OTHER}", "PAWN") == "{KIND} of {OTHER}",
+                "a keyed name after someone becomes a pattern: their placeholder in any form, and the kind");
             Check(GroupNaming.WithoutNumber("the hunters (2)") == "the hunters" && GroupNaming.WithoutNumber("the hunters (b)") == "the hunters (b)", "a taken name's number comes off");
         }
 
         // ---------- The defs ----------
-        var docs =Directory.GetFiles(Path.Combine(root, "Defs", "GroupDefs"), "*.xml").Select(f => XDocument.Load(f)).ToList();
+        var docs = Directory.GetFiles(Path.Combine(root, "Defs", "GroupDefs"), "*.xml").Select(f => XDocument.Load(f)).ToList();
         var all = docs.SelectMany(d => d.Root!.Elements()).ToList();
         var habits = all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupHabitDef").Select(e => (string)e.Element("defName")).ToHashSet();
         var norms = all.Where(e => e.Name.LocalName == "ColonyCouncil.GroupNormDef").Select(e => (string)e.Element("defName")).ToHashSet();
