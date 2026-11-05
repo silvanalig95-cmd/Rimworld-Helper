@@ -34,7 +34,7 @@
   <CC_Match_KinGift_3>The family of {THEIRS} remembered the colony this season: {GIFT}, by a courier of {PEOPLE} from {TOWN}.</CC_Match_KinGift_3>
   <CC_Match_KinGift_Away_2>A courier of {PEOPLE} brought {GIFT} from {TOWN}, sent by {OURS} and {THEIRS} for the season.</CC_Match_KinGift_Away_2>
   <CC_Match_Child_2>{DEAD} is gone. {CHILD}, the child of the marriage, still lives, kin to both peoples, and {PEOPLE} keep the alliance for {CHILD_possessive} sake.</CC_Match_Child_2>
-  <CC_Match_End_Death_2>{DEAD} is dead, and no child of the marriage lives. The alliance with {PEOPLE} ends with {DEAD}, and nobody is to blame for it.</CC_Match_End_Death_2>
+  <CC_Match_End_Death_2>{DEAD} is dead, and no child of the marriage lives. The alliance with {PEOPLE} ends with {DEAD}.</CC_Match_End_Death_2>
   <CC_Match_End_Parted_2>{OURS} and {THEIRS} are no longer married. {PEOPLE} take it hard, and the alliance is over.</CC_Match_End_Parted_2>
   <CC_Match_Wronged_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is broken, and its pact with it. {HEAD} holds a grudge for it, and so will whoever heads them next.</CC_Match_Wronged_2>
   <CC_Match_Feud_2>{HEAD} heads them now, and keeps the grudge {OLD} held: {PEOPLE} still hold it against the colony for {NAME}.</CC_Match_Feud_2>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- More fellows of the feasts' letters and news (Rimfolk_Feasts.xml), picked at random (TextVariants: CC_X, CC_X_2 ...
+       CC_X_6, numbered on from the last that exists), so a feast held each season doesn't read the same each time. Each
+       keeps to its first's placeholders. {FEAST} is the colony's feast by its age, with "the" (the gift feast, the feast in
+       the hall, the banquet, the gala), so it never opens a sentence; {HOPE} what their people hope for ("a hunt", "a fine
+       meal and music"); {CONTEST} a contest in a word ("a race", "wrestling"). -->
+
+  <!-- Their answer to the invitation -->
+  <CC_Feast_Ans_Yes_4>{NAME} sends back a yes, and a warning that their people eat a great deal. Expect them for {FEAST}.</CC_Feast_Ans_Yes_4>
+  <CC_Feast_Ans_YesHope_3>{NAME} will come to {FEAST}. That there will be {HOPE} settled it.</CC_Feast_Ans_YesHope_3>
+  <CC_Feast_Ans_YesHope_4>For {FEAST} with {HOPE}, {NAME} would walk twice as far, and will come.</CC_Feast_Ans_YesHope_4>
+  <CC_Feast_Ans_No_4>{NAME} can't come to {FEAST}. The answer is polite, and short.</CC_Feast_Ans_No_4>
+  <CC_Feast_Ans_Moot_3>Things at the colony moved on before the answer came, and the letter about {FEAST} is answered with thanks and nothing more.</CC_Feast_Ans_Moot_3>
+
+  <!-- The day set, and the guests at the gate -->
+  <CC_Feast_Set_4>Every answer is back, and {GUESTS} of {PEOPLES} are coming to {FEAST}. Expect them on {DATE}, or on the first fine day after it.</CC_Feast_Set_4>
+  <CC_Feast_Arrive_4>The road has brought them: {GUESTS} of {PEOPLES}, here for {FEAST}, each with one or two of their own. They are making their way to the gate.</CC_Feast_Arrive_4>
+  <CC_Feast_Arrive_Wedding_2>Kin and friends of the one who marries in have come for the wedding: {GUESTS} of {PEOPLES}, walking up to the gate with those who came with them.</CC_Feast_Arrive_Wedding_2>
+  <CC_Feast_Arrive_Wedding_3>Wedding guests at the gate: {GUESTS} of {PEOPLES}, each with one or two of their people. They will wait there until the ceremony, and sit at the colony's table after it.</CC_Feast_Arrive_Wedding_3>
+
+  <!-- The champion -->
+  <CC_Feast_Champion_Ours_3>{CHAMPION} won the most today, and the colony's own is named champion of {FEAST}.</CC_Feast_Champion_Ours_3>
+  <CC_Feast_Champion_Ours_4>Of everyone at {FEAST}, {CHAMPION} won the most, and the honor of the day stays at home.</CC_Feast_Champion_Ours_4>
+  <CC_Feast_Champion_Guest_3>{CHAMPION} of {PEOPLE} won the most today and is named champion of {FEAST}. The guests will have a story for the road home.</CC_Feast_Champion_Guest_3>
+  <CC_Feast_Champion_Guest_4>The honor of the day goes home with the guests: {CHAMPION} of {PEOPLE} is named champion of {FEAST}.</CC_Feast_Champion_Guest_4>
+
+  <!-- The night, and first light -->
+  <CC_Feast_Msg_Sour_4>{GUEST} has had enough of {PAWN}, or of the drink, and the two are trading blows after the feast.</CC_Feast_Msg_Sour_4>
+  <CC_Feast_End_3>{GUESTS} left at first light, the road home ahead of them and {FEAST} behind.</CC_Feast_End_3>
+  <CC_Feast_End_4>The guests are gone, out through the gate at first light: {GUESTS}, home from {FEAST}.</CC_Feast_End_4>
+  <CC_Feast_End_Insulted_2>{GUESTS} did not wait for first light. They left {FEAST} offended, and their people will hear why.</CC_Feast_End_Insulted_2>
+  <CC_Feast_End_Insulted_3>Offended at how they were kept, {GUESTS} have walked out of {FEAST} early.</CC_Feast_End_Insulted_3>
+  <CC_Feast_Died_2>{NAME} of {PEOPLE} came as a guest to {FEAST} and has died at the colony. The other guests are going home, and {PEOPLE} will want to know how it happened.</CC_Feast_Died_2>
+
+  <!-- The steward's suggestion -->
+  <CC_Feast_Suggest_3>{PAWN}, the steward, has looked over the stores and the land and found both in good order: a season for {FEAST} with guests. {NAME} of {PEOPLE} might come, if asked.</CC_Feast_Suggest_3>
+  <CC_Feast_Suggest_4>{PAWN} thinks the colony can afford {FEAST} with guests this season, and that {NAME} of {PEOPLE} thinks well enough of it to come.</CC_Feast_Suggest_4>
+
+  <!-- The colony's own, home from a neighbour's feast -->
+  <CC_Feast_Away_Won_3>{PAWN} came home from the feast in {PLACE} having come first in {CONTEST}, against the best {PEOPLE} had.</CC_Feast_Away_Won_3>
+  <CC_Feast_Away_Won_4>Ask {PAWN} about the feast in {PLACE} and you'll hear about {CONTEST}, which {PAWN_pronoun} won against the best of {PEOPLE}.</CC_Feast_Away_Won_4>
+
+</LanguageData>

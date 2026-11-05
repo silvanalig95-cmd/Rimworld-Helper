@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on hostages (Source/ColonyCouncil/Diplomacy/Hostages.cs; the facts in Diplomacy/FactsWards.cs), beside the hostage
+       pieces in Rimfolk_OutsiderTalks_Wards.xml. Hostages are grown, given for a truce's or a defence pact's term. Theirs
+       lives at the colony as its lodger and works with it (them:hostage); forfeit when their people broke their word
+       (tie:hostage:due with tie:hostage:theirs), the colony's to decide about until it does. The colony's own lives at
+       their town (tie:hostage:ours, {HOSTAGE}), held as a prisoner when the colony broke its own word (tie:hostage:due with
+       tie:hostage:ours). What their people remember: deed:hostageReturned. By their ways: one of the chief's kin given,
+       hostages exchanged before witnesses, a guarantor held to the contract or to the terms. The format is described at
+       the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Their hostage at the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Work</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,!tie:hostage:due</when>
+    <lines>
+      <li>[us] You work as hard as any of us, and you don't have to.</li>
+      <li>[them,their:empire] At court I would never lift a thing, but the term passes faster this way.</li>
+      <li>[them] It passes the term faster than sitting.</li>
+      <li>[us] Well, we're glad of the hands.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Watched</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,!tie:hostage:due,tone:cool</when>
+    <lines>
+      <li>[them] Some of your people watch me as if I'll run.</li>
+      <li>[us] They'll stop, given time.</li>
+      <li>[them] Let them watch, I gave my word.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Running</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,!tie:hostage:due,known</when>
+    <lines>
+      <li>[us] Do you ever think of just walking home?</li>
+      <li>[them,their:tribal] Never, it would shame the chief who gave me.</li>
+      <li>[them,their:medieval] My name was spoken before witnesses, I'd sooner lose a hand.</li>
+      <li>[them,their:hightech] I signed my name to the terms, and I read them first.</li>
+      <li>[them] No, I won't be the one who breaks my people's word.</li>
+      <li>[us] I didn't think so, but I had to ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Nights</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,night</when>
+    <lines>
+      <li>[them] The nights are the long part of a term.</li>
+      <li>[us] Come and sit up with us, someone's always awake.</li>
+      <li>[them] I might, if your people don't mind a hostage in the room.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Raid</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,colony:raid</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] When the fighting started, I didn't know whether to stand with you or keep away.</li>
+      <li>[us,trait:Brawler] Stand with us, next time, you've eaten our bread.</li>
+      <li>[us] Keep away, next time, your people would never forgive us if you fell.</li>
+      <li>[them] I'll remember that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Pact</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,tie:pact:defence,!tie:hostage:due</when>
+    <lines>
+      <li>[us] Would your people really come if we called on the pact?</li>
+      <li>[them] They gave me so you'd believe they would.</li>
+      <li>[us] That's a hard way to make a promise.</li>
+      <li>[them,their:lowtech] It's the oldest way there is.</li>
+      <li>[them] It's the one that gets believed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Friends</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,!tie:hostage:due,friends|close</when>
+    <lines>
+      <li>[them] When the term is out, I think I'll miss some of you.</li>
+      <li>[us] Then come back, and not as a hostage.</li>
+      <li>[them] A hostage who visits by choice, now that would be a story.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_ForfeitMe</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,tie:hostage:due</when>
+    <weight>1.6</weight>
+    <lines>
+      <li>[them] My people broke their word, and I'm the one standing here.</li>
+      <li>[us] It isn't your doing.</li>
+      <li>[them,their:lowtech] It's my neck all the same, that's what a hostage is for.</li>
+      <li>[them] It's my neck all the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_ForfeitFair</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,tie:hostage:due,tone:warm</when>
+    <lines>
+      <li>[them] Whatever your council decides, you've treated me fairly.</li>
+      <li>[us] I hope the council does the same.</li>
+      <li>[them] So do I, and I won't hold it against you if it doesn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_ForfeitSour</defName>
+    <topic>hostage</topic>
+    <when>them:hostage,tie:hostage:due,tone:sour</when>
+    <lines>
+      <li>[them] Go on, then, lock me up and be done with it.</li>
+      <li>[us] That's not mine to decide.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Others of their people, about the hostages ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_DoesTheyWork</defName>
+    <topic>hostage</topic>
+    <when>tie:hostage:theirs,!them:hostage,!tie:hostage:due</when>
+    <lines>
+      <li>[them] Does {HOSTAGE} work here, or sit about?</li>
+      <li>[us] Works, the same as anyone.</li>
+      <li>[them,their:empire] Then the colony has taught {HOSTAGE} more humility than the court ever did.</li>
+      <li>[them] Good, idle hands make long days.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_OursBed</defName>
+    <topic>hostage</topic>
+    <uses>chat,home</uses>
+    <when>tie:hostage:ours,!tie:hostage:due</when>
+    <lines>
+      <li>[us] Does {HOSTAGE} at least have a decent bed?</li>
+      <li>[them,their:tribal] A place at the fire, the same as any of us.</li>
+      <li>[them,their:hightech] A room, and a door that locks from the inside.</li>
+      <li>[them] A bed and a roof, and people who leave them be.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_OursLiked</defName>
+    <topic>hostage</topic>
+    <when>tie:hostage:ours,!tie:hostage:due,tone:warm</when>
+    <lines>
+      <li>[them] {HOSTAGE} has made friends among us, you know.</li>
+      <li>[us] That sounds like {HOSTAGE}.</li>
+      <li>[them] We'll be sorry to send them back when the term is out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_HeldCool</defName>
+    <topic>hostage</topic>
+    <when>tie:hostage:due,tie:hostage:ours,tone:cool</when>
+    <lines>
+      <li>[us] Is {HOSTAGE} being treated decently?</li>
+      <li>[them] Better than your colony treated its word.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_HeldPrice</defName>
+    <topic>hostage</topic>
+    <when>tie:hostage:due,tie:hostage:ours,!tone:sour</when>
+    <lines>
+      <li>[them] Your colony can still have {HOSTAGE} back, if it makes it worth our while.</li>
+      <li>[us] Then we'll find what it's worth.</li>
+      <li>[them] Sooner is better, for {HOSTAGE}'s sake.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_LessWorry</defName>
+    <topic>hostage</topic>
+    <when>deed:hostageReturned,tie:hostage:theirs,!them:hostage,!tie:hostage:due</when>
+    <lines>
+      <li>[them] The last one of ours you kept came home well, so we worry less about {HOSTAGE}.</li>
+      <li>[us] We'll send {HOSTAGE} home the same way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageMore_Custom</defName>
+    <topic>hostage</topic>
+    <uses>chat,home</uses>
+    <when>tie:hostage</when>
+    <lines>
+      <li>[us] Do your people often give hostages?</li>
+      <li>[them,their:tribal] When two clans make peace, one of the chief's kin goes to live at the other's fire.</li>
+      <li>[them,their:medieval] Hostages are exchanged before witnesses, and the priest writes the names down.</li>
+      <li>[them,their:industrial] We'd call it a guarantor, and there's a clause in the contract for it.</li>
+      <li>[them,their:empire] Hostages of rank are an old custom at court, and an honorable one.</li>
+      <li>[them,their:spacer,!their:empire] A guarantor is posted, and both sides log the terms.</li>
+      <li>[them] Only when the word alone isn't trusted.</li>
+      <li>[us] So, often enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

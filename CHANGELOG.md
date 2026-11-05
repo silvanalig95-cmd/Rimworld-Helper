@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests, wards and in-laws
+
+*5 November 2026, version 0.95.0*
+
+- Guests, wards, hostages and in-laws have far more to say: 127 new conversations in every age, from the feast's weather and seating to a forfeit hostage's last word and a grudge handed down.
+- Neighbours write about the feast they came to, the ward you keep, the hostage they hold and the marriage between you, and they answer invitations, wards and matches in more of their own words.
+- A wedding's guests greet the colony at the gate as kin come to a wedding, and in-laws who spot a raiders' camp write to the colony as family.
+- Letters told often have more wordings: the feast day, the champion, a ward's letters home in each age, a hostage forfeit, the kin's gift each season, a broken alliance.
+
 ## Weddings, checked over
 
 *5 November 2026, version 0.94.1*

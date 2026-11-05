@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.95.0</version>
+        <date>5 November 2026</date>
+        <title>Guests, wards and in-laws</title>
+        <points>
+          <li>Guests, wards, hostages and in-laws have far more to say: 127 new conversations in every age, from the feast's weather and seating to a forfeit hostage's last word and a grudge handed down.</li>
+          <li>Neighbours write about the feast they came to, the ward you keep, the hostage they hold and the marriage between you, and they answer invitations, wards and matches in more of their own words.</li>
+          <li>A wedding's guests greet the colony at the gate as kin come to a wedding, and in-laws who spot a raiders' camp write to the colony as family.</li>
+          <li>Letters told often have more wordings: the feast day, the champion, a ward's letters home in each age, a hostage forfeit, the kin's gift each season, a broken alliance.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.94.1</version>
         <date>5 November 2026</date>
         <title>Weddings, checked over</title>

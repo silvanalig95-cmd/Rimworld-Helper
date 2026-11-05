@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on wards (Source/ColonyCouncil/Diplomacy/Wards.cs, WardsAbroad.cs; the facts in Diplomacy/FactsWards.cs), beside
+       Rimfolk_OutsiderTalks_Wards.xml, whose tags these keep. Their ward lives at the colony a year as its lodger, works
+       with everyone and learns a skill from a guardian an hour a day, so most of these are with them: them:ward, with how
+       they are (them:ward:homesick, them:ward:settling, them:ward:happy: from their mood and their days here, happy only
+       once they have settled), them:young for a child ward (a child is only given pieces asking for it), through what
+       happens at the colony while they are there. The colonist speaking may be their guardian, which no fact says, so
+       these leave {GUARDIAN} to the pieces of their people. Then others of their people about them (tie:ward:theirs,
+       {WARD}); the colony's youth living with them (tie:ward:ours, {WARD}; with the Empire a page in a titled household);
+       and the grown ward who comes back (them:fostered, a year that may have gone well or badly). The format is described
+       at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Their ward at the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Lessons</defName>
+    <topic>ward</topic>
+    <when>them:ward</when>
+    <lines>
+      <li>[us] How are the lessons going?</li>
+      <li>[them,their:spacer] At home I'd learn this from a manual, here I learn it from a person.</li>
+      <li>[them,their:tribal] My hands are slow, but they are starting to remember.</li>
+      <li>[them] Slower than I'd like, but I can feel it sticking.</li>
+      <li>[us] Keep at it, it comes on its own one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Mistakes</defName>
+    <topic>ward</topic>
+    <when>them:ward,!them:young</when>
+    <lines>
+      <li>[them] Is it normal to get things wrong this often when you're learning?</li>
+      <li>[us,trait:Kind] Of course, and the mistakes are where most of the learning is.</li>
+      <li>[us] All of us here ruined something while we learned our trade.</li>
+      <li>[them] Then I'm learning a great deal.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_WhatFor</defName>
+    <topic>ward</topic>
+    <uses>chat,know</uses>
+    <when>them:ward,!them:young</when>
+    <lines>
+      <li>[us] Why did your family send you here, of all places?</li>
+      <li>[them,their:empire] To learn a trade, which at court is thought very eccentric.</li>
+      <li>[them,their:tribal] So I would know how other people live, before I have to speak for ours.</li>
+      <li>[them] To learn what they couldn't teach me at home.</li>
+      <li>[us] And what do you want to learn?</li>
+      <li>[them] How to be useful, I think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_FarAway</defName>
+    <topic>ward</topic>
+    <when>them:ward:homesick,!them:young</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] You've gone quiet these last few days.</li>
+      <li>[them,their:tribal] I keep hearing my mother's voice calling us in at dusk.</li>
+      <li>[them,their:medieval] I keep thinking of the bells at home on a market day.</li>
+      <li>[them,their:hightech] I keep reaching for things that are back in my room at home.</li>
+      <li>[them] I keep thinking I hear my family in the next room.</li>
+      <li>[us] Come and work with me this afternoon, the time goes faster.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_WantHome</defName>
+    <topic>ward</topic>
+    <when>them:ward:homesick,them:young</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I want to go home.</li>
+      <li>[us] I know, it's a long time to be away.</li>
+      <li>[them] Will they remember me?</li>
+      <li>[us] Every one of them, and they'll ask you a hundred questions.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Names</defName>
+    <topic>ward</topic>
+    <when>them:ward:settling</when>
+    <lines>
+      <li>[them] I know everyone's name now, and who snores.</li>
+      <li>[us] Then you know more than some who've been here for years.</li>
+      <li>[them] I had a lot of nights to listen.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Busy</defName>
+    <topic>ward</topic>
+    <when>them:ward:settling,day</when>
+    <lines>
+      <li>[us] You're up and working before anyone has to tell you now.</li>
+      <li>[them] I'd rather be busy than sit thinking about home.</li>
+      <li>[us] That's how most of us got through our first season.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_YearEnds</defName>
+    <topic>ward</topic>
+    <when>them:ward:happy,!them:young</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] I don't want the year to end.</li>
+      <li>[us] Then come back and see us when you're grown.</li>
+      <li>[them,their:empire] My family would never allow it, but I shall try.</li>
+      <li>[them] I'd like that, if my family lets me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Forever</defName>
+    <topic>ward</topic>
+    <when>them:ward:happy,them:young</when>
+    <lines>
+      <li>[them] Can I stay here forever?</li>
+      <li>[us] Your family would miss you too much.</li>
+      <li>[them] They could come here too.</li>
+      <li>[us] Ask them that when they come for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Sad</defName>
+    <topic>ward</topic>
+    <when>them:ward,them:young</when>
+    <lines>
+      <li>[them] What do you do when you're sad?</li>
+      <li>[us] Find something to do with my hands, usually.</li>
+      <li>[them] Can I do it with you?</li>
+      <li>[us] Of course you can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Older</defName>
+    <topic>ward</topic>
+    <when>them:ward,them:young,!them:ward:homesick</when>
+    <lines>
+      <li>[them] I'm better at lessons here than I was at home.</li>
+      <li>[us] Maybe you're older now.</li>
+      <li>[them] I'm much older.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Lean</defName>
+    <topic>ward</topic>
+    <when>them:ward,colony:hungry,!them:young</when>
+    <lines>
+      <li>[them] Is it always this lean here?</li>
+      <li>[us] Not always, it's been a hard few weeks.</li>
+      <li>[them] I won't complain, then, my family warned me it might be hard.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Plenty</defName>
+    <topic>ward</topic>
+    <when>them:ward,colony:plenty</when>
+    <lines>
+      <li>[them] I've never eaten as well as I have this month.</li>
+      <li>[us] Then you came to us in a good year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Baby</defName>
+    <topic>ward</topic>
+    <when>them:ward,colony:birth</when>
+    <lines>
+      <li>[them] Is it always this loud with a new baby?</li>
+      <li>[us] {BORN} has good lungs, that's for certain.</li>
+      <li>[them] I'll sleep with my head under the blanket, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Wedding</defName>
+    <topic>ward</topic>
+    <when>them:ward,colony:wedding</when>
+    <lines>
+      <li>[them] I'd never seen a wedding outside my own people before.</li>
+      <li>[us] Was it so different?</li>
+      <li>[them,their:tribal] There was no shared fire, but the two of them looked just as happy.</li>
+      <li>[them] Less than I thought, the food and the crying were the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Rain</defName>
+    <topic>ward</topic>
+    <when>them:ward,rain</when>
+    <lines>
+      <li>[them] At home we'd stay in on a day like this.</li>
+      <li>[us] Here the rain doesn't get a say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Winter</defName>
+    <topic>ward</topic>
+    <when>them:ward,winter,cold</when>
+    <lines>
+      <li>[them] Winter's colder here than at home, or maybe I just notice it more.</li>
+      <li>[us] Away from home, everything's colder.</li>
+      <li>[them] That's what my grandmother said before I left.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Kind</defName>
+    <topic>ward</topic>
+    <when>them:ward,tone:warm</when>
+    <lines>
+      <li>[them] Your people have been kinder to me than I expected.</li>
+      <li>[us] What did you expect?</li>
+      <li>[them,their:lowtech] My uncles told stories about outsiders, and none of them were kind.</li>
+      <li>[them] Hard work and cold beds, mostly.</li>
+      <li>[us] Well, the work is hard.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Cool</defName>
+    <topic>ward</topic>
+    <when>them:ward,tone:cool</when>
+    <lines>
+      <li>[them] I didn't ask to be sent here, you know.</li>
+      <li>[us] Most of us didn't ask to be here either.</li>
+      <li>[them] That doesn't make it better.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Others of their people, about their ward ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_LookIn</defName>
+    <topic>ward</topic>
+    <when>tie:ward:theirs,!them:ward</when>
+    <lines>
+      <li>[them] I promised {WARD}'s family I'd look in on them while I was here.</li>
+      <li>[us] Go and find them, they'll be glad of a face from home.</li>
+      <li>[them] I'll need to, or I'll never hear the end of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Worked</defName>
+    <topic>ward</topic>
+    <when>tie:ward:theirs,!them:ward,tone:cool</when>
+    <lines>
+      <li>[them] We hear you work {WARD} like a hired hand.</li>
+      <li>[us] We work {WARD} like one of our own.</li>
+      <li>[them] That's what worries us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_RaidWorry</defName>
+    <topic>ward</topic>
+    <when>tie:ward:theirs,!them:ward,colony:raid</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We heard about the raid, and the first thing anyone asked about was {WARD}.</li>
+      <li>[us] We keep {WARD} as safe as we keep our own.</li>
+      <li>[them] That's all a family can ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Proud</defName>
+    <topic>ward</topic>
+    <when>tie:ward:theirs,!them:ward,tone:warm</when>
+    <lines>
+      <li>[them] {WARD}'s family talks about little else since the year began.</li>
+      <li>[us] {WARD} will have plenty to tell them.</li>
+      <li>[them,their:lowtech] Then the evenings at home will be long ones.</li>
+      <li>[them] Good, they're running out of things to guess at.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_TheirWays</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward</when>
+    <lines>
+      <li>[us] Do your people often send their young ones away to learn?</li>
+      <li>[them,their:tribal] A child raised among another clan comes home with two families.</li>
+      <li>[them,their:medieval] A youth of a good house serves in another, it's how alliances are made.</li>
+      <li>[them,their:industrial] An apprenticeship under contract, and the contract runs a year.</li>
+      <li>[them,their:spacer,!their:empire] A posting on agreed terms, with a report at the end of it.</li>
+      <li>[them,their:empire] A page in a titled household learns more than any tutor can teach.</li>
+      <li>[them] Now and then, when there's a family we trust to take them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The colony's youth with them, and the Empire's page ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursElders</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward:ours,their:tribal</when>
+    <lines>
+      <li>[them] {WARD} sits with the elders some nights and asks them about the old days.</li>
+      <li>[us] That sounds like {WARD}.</li>
+      <li>[them] The elders like being asked, it doesn't happen often.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursMarket</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward:ours,their:medieval</when>
+    <lines>
+      <li>[them] {WARD} haggles at our market better than I do now.</li>
+      <li>[us] They didn't learn that from us.</li>
+      <li>[them] Then they learned it from our fishwives, and that's worse.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursNotes</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward:ours,their:industrial</when>
+    <lines>
+      <li>[them] {WARD} keeps a notebook of everything they're shown.</li>
+      <li>[us] Good, they'll need it when they're home.</li>
+      <li>[them] It's nearly full, and the year's not out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursMachines</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward:ours,their:spacer,!their:empire</when>
+    <lines>
+      <li>[them] {WARD} has asked to see every machine in our town.</li>
+      <li>[us] Did you let them?</li>
+      <li>[them] Most of them, under supervision.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursHome</defName>
+    <topic>ward</topic>
+    <when>tie:ward:ours,!their:empire</when>
+    <lines>
+      <li>[us] Does {WARD} talk about home?</li>
+      <li>[them] Every evening, and about your cook in particular.</li>
+      <li>[us] Tell them the cook asks after them too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_OursQuestions</defName>
+    <topic>ward</topic>
+    <when>tie:ward:ours,tone:cool</when>
+    <lines>
+      <li>[them] {WARD} works hard, I'll give them that.</li>
+      <li>[us] And?</li>
+      <li>[them] And asks too many questions about our business.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_PageBows</defName>
+    <topic>ward</topic>
+    <when>tie:ward:ours,their:empire</when>
+    <lines>
+      <li>[them] Your page still bows too low, which the household finds charming.</li>
+      <li>[us] Better too low than not at all.</li>
+      <li>[them] At court, that depends entirely on whom one bows to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_PageDay</defName>
+    <topic>ward</topic>
+    <uses>chat,home</uses>
+    <when>tie:ward:ours,their:empire</when>
+    <lines>
+      <li>[us] What does a page do all day?</li>
+      <li>[them] Carries things and keeps quiet, which is harder than it sounds.</li>
+      <li>[us] {WARD}, keeping quiet, I'd like to see that.</li>
+      <li>[them] It took a season, but the household is very patient.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The grown ward, back (them:fostered) ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_WhoTaughtMe</defName>
+    <topic>ward</topic>
+    <when>them:fostered,known</when>
+    <lines>
+      <li>[them] Is anyone still here from the year I spent with you?</li>
+      <li>[us] Ask around, someone will remember you.</li>
+      <li>[them] I'd like to thank whoever taught me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_WhenILead</defName>
+    <topic>ward</topic>
+    <when>them:fostered,role:heir</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them,their:lowtech] When I lead my people, your colony will have a seat at our table.</li>
+      <li>[them] When I lead my people, I won't forget the year I spent here.</li>
+      <li>[us] We'll hold you to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_Council</defName>
+    <topic>ward</topic>
+    <when>them:fostered,role:head</when>
+    <lines>
+      <li>[them] I watched your council argue all year and still get things done.</li>
+      <li>[us] Mostly argue, some days.</li>
+      <li>[them] I lead my own people now, and I think of it more than you'd guess.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_WardMore_NotFondly</defName>
+    <topic>ward</topic>
+    <when>them:fostered,tone:cool</when>
+    <lines>
+      <li>[them] I remember my year here, and not all of it fondly.</li>
+      <li>[us] I'm sorry for the parts that weren't good.</li>
+      <li>[them] So am I.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

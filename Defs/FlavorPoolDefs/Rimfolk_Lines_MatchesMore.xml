@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs, MatchLetters.cs, MatchDays.cs; the
+    facts in Diplomacy/FactsMatch.cs), beside Rimfolk_Lines_Matches.xml, whose tags these keep. Two pools the game
+    already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their words in the answer to a letter or a call of the
+      purpose "match": warm, cordial or cool when they agree, refusal when they won't; and in a letter of any purpose
+      (greetings, news, help: warm or cordial when it's given, condolences, warning, invitation) while a marriage holds
+      (tie:marriage, :ours with {SPOUSEOF} living among them, :theirs with {INLAW} at the colony; match:child, held
+      through a child after one of the two died, when neither name is said as living), a match is agreed (match:agreed)
+      or a spouse from among them was wronged (match:wronged). A line written for a letter of any purpose names its
+      purpose, so it is weighed with that purpose's own lines and not only when none of them fits. By their ways only
+      theirLowtech and theirHightech; letter or call.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): "Speak for a match" face to face (matchask, us; matchtalk;
+      matchyes and matchno, them): the one spoken to is always the one to be matched, and the colonist speaking may be
+      the other or speak for them, so these lines hold either way; the colony's own leaving with their kin at the gate
+      (matchfarewell, us; matchescort, them: the one they marry or one of their kin). One sentence each; kind and
+      abrasive are the speaker's own traits, lowmood their mood.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_MatchesMore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- A match proposed, answered -->
+        <li>[match,warm,letter] Your letter was read at our table, and the yeses started before the end of it.</li>
+        <li>[match,warm,call] We'd have said yes before you finished asking, {WRITER}. Welcome to the family.</li>
+        <li>[match,cordial,theirHightech] We have gone over the terms with the family, and we agree. Our good wishes to the two of them.</li>
+        <li>[match,cordial,theirLowtech] The old ones asked their questions and got their answers. We say yes.</li>
+        <li>[match,cool,theirLowtech] We agree, for what it will bring both our peoples. Love can come after.</li>
+        <li>[match,cool,letter] Yes. See that the terms are kept, and that ours is treated well among you.</li>
+        <li>[match,refusal,letter] We have no wish to tie our family to your colony. Do not take it as an insult, though some here meant it as one.</li>
+        <li>[match,refusal,theirHightech,call] I'm sorry, {WRITER}. The family put it to a vote, and it was no.</li>
+        <!-- While a marriage holds -->
+        <li>[greetings,warm,tie:marriage:theirs,!match:child] Give {INLAW} our love, and tell them their old bed is still made up at home.</li>
+        <li>[greetings,warm,tie:marriage:ours,!match:child] {SPOUSEOF} is well, and asks after everyone at your colony by name.</li>
+        <li>[greetings,cordial,tie:marriage:theirs,!match:child,theirLowtech] We trust {INLAW} keeps our ways among you, and learns yours.</li>
+        <li>[greetings,cordial,tie:marriage:ours,!match:child,theirHightech] {SPOUSEOF} has settled in well, and sends greetings and a list of things they forgot to pack.</li>
+        <li>[greetings,cool,tie:marriage] Your letter came. The family is well.</li>
+        <li>[news,cordial,tie:marriage] Here is our news, from one side of the family to the other.</li>
+        <li>[help,warm,tie:marriage] Family helps family, {WRITER}. You didn't need to ask twice.</li>
+        <li>[condolences,warm,tie:marriage] We grieve with you as kin, {WRITER}. Our house mourns too.</li>
+        <li>[warning,warm,tie:marriage] Thank you for thinking of us. Kin warn kin, and we will do the same for you.</li>
+        <li>[invitation,warm,tie:marriage,!match:child] Of course we'll come. It's been too long since we saw the two of them.</li>
+        <li>[greetings,cordial,match:child,theirLowtech] The child of the marriage is our blood too. Tell them about us as they grow.</li>
+        <li>[greetings,warm,match:child] We think of the child often. When they are older, we would like to meet them properly.</li>
+        <!-- A match agreed, the wedding to come -->
+        <li>[greetings,cordial,match:agreed] The whole family is getting ready for the wedding, and arguing about who sits where.</li>
+        <li>[greetings,cordial,match:agreed,theirHightech] The arrangements for the wedding are coming along. There is a list, and the list has lists.</li>
+        <li>[news,cordial,match:agreed] Here is our news, though the wedding is all anyone here talks about.</li>
+        <!-- A spouse wronged -->
+        <li>[greetings,curt,match:wronged] We have your letter. We have not forgotten what your colony did.</li>
+        <li>[help,refusal,match:wronged,theirLowtech] You ask us for help, after what was done to one of ours? No.</li>
+        <li>[condolences,cool,match:wronged] We read of your loss. We have had one too, at your colony's hands.</li>
+        <!-- After the wedding -->
+        <li>[greetings,cordial,town:lately:dip:wedding] The wedding is still the talk of the town here.</li>
+        <li>[greetings,warm,town:lately:dip:wedding,theirLowtech] The songs from the wedding are still being sung here at night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_MatchesMore</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- Speak for a match, face to face -->
+        <li>[matchask,us,kind] I hope you'll hear me out, this matters a great deal to me.</li>
+        <li>[matchask,us,!lowtech] Our colony would like to propose a marriage between our families.</li>
+        <li>[matchtalk,them,theirLowtech] Who would stand for each family on the day?</li>
+        <li>[matchtalk,them,theirHightech] Who would draw up the terms, your side or mine?</li>
+        <li>[matchtalk,us] You'd be family to all of us, not only to one.</li>
+        <li>[matchtalk] It would tie our two peoples together for good.</li>
+        <li>[matchyes,them,kind] Yes, and I'm happier about it than I'll admit to my family.</li>
+        <li>[matchyes,them] My people will want a wedding worth the walk, then.</li>
+        <li>[matchno,them,abrasive] No, and don't ask me again.</li>
+        <li>[matchno,them,kind] I'm sorry, it's nothing you've done, it's what my family wants.</li>
+        <!-- Leaving with their kin at the gate -->
+        <li>[matchfarewell,us,kind] Look after each other while I'm gone, all of you.</li>
+        <li>[matchfarewell,us,lowmood] I didn't think leaving would be this hard.</li>
+        <li>[matchfarewell,us] Don't let them turn my bed into a storeroom.</li>
+        <li>[matchescort,them,theirLowtech] The family has kept a place for you at the table.</li>
+        <li>[matchescort,them,kind] Take your time with the goodbyes, we'll wait.</li>
+        <li>[matchescort,them] Come on, everyone at home wants to meet you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

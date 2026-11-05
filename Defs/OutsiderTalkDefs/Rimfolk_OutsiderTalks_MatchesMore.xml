@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on marriage alliances (Source/ColonyCouncil/Diplomacy/Matches.cs, MatchAlliance.cs; the facts in
+       Diplomacy/FactsMatch.cs), beside Rimfolk_OutsiderTalks_Matches.xml, whose tags these keep. A marriage between the two
+       peoples (tie:marriage): the colony's own living among them (tie:marriage:ours, {SPOUSEOF}) or theirs at the colony
+       (tie:marriage:theirs, {INLAW}, a colonist now); the colonist speaking one of the couple (tie:marriage:you), so a line
+       that names the couple to a third person says !tie:marriage:you. Held through a child after one of the two died
+       (match:child: either name may then be the dead one's, so a line that has them alive says !match:child). A match
+       agreed and the wedding to come (match:agreed): no fact says whether the colonist or the one spoken to is one of the
+       two, so those lines name nobody. A wedding lately (town:lately:dip:wedding). A spouse from among them wronged, the
+       grudge held (match:wronged), and what their people remember: deed:married, after the marriage is over too. The
+       format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Talk of a match, with no tie yet ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_Properly</defName>
+    <topic>marriage</topic>
+    <when>lovers,!tie:marriage,!match:agreed,known</when>
+    <lines>
+      <li>[them] If our families ever make a match of this, I'd want it done properly.</li>
+      <li>[us] Then I'll speak for it properly, when you're ready.</li>
+      <li>[them,their:lowtech] Not yet, the old ones need to get used to your face first.</li>
+      <li>[them] Not yet, let me tell my people first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_Reasons</defName>
+    <topic>marriage</topic>
+    <when>sweethearts,!tie:marriage,!match:agreed</when>
+    <lines>
+      <li>[them] My family keeps asking why I find so many reasons to visit your colony.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them] That your cook is very good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_WhatAge</defName>
+    <topic>marriage</topic>
+    <uses>chat,home</uses>
+    <when>!tie:marriage,!match:agreed,known</when>
+    <lines>
+      <li>[us] How old are your people when they marry?</li>
+      <li>[them,their:tribal] Old enough that the elders say so, and they are in no hurry.</li>
+      <li>[them,their:medieval] Young, if the house has land, and later if it hasn't.</li>
+      <li>[them,their:hightech] Whenever the paperwork's done, which is never quick.</li>
+      <li>[them] Whenever they find the right one, or give up looking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_CourtMatch</defName>
+    <topic>marriage</topic>
+    <when>!tie:marriage,!match:agreed,their:empire,us:noble,known,!us:married</when>
+    <lines>
+      <li>[them] A titled colonist could make a fine match at court, you know.</li>
+      <li>[us] I'm not looking.</li>
+      <li>[them] At court, the best matches are made by people who weren't looking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A match agreed, the wedding to come ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedFirst</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,!tie:marriage,!deed:married,tone:warm</when>
+    <lines>
+      <li>[them] Our people haven't married outside our own in a long time.</li>
+      <li>[us] Then we'll try to do it justice.</li>
+      <li>[them,their:lowtech] Do that, and the old ones will talk of it for years.</li>
+      <li>[them] Do that, and they'll be telling the story for years.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedDoubts</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,tone:cool</when>
+    <lines>
+      <li>[them] Not everyone at home is pleased about this match.</li>
+      <li>[us] Not everyone here is, either.</li>
+      <li>[them] Then it should suit both sides.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedTerms</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,their:hightech,!their:empire</when>
+    <lines>
+      <li>[them] Our side read the terms twice and found nothing to argue about.</li>
+      <li>[us] Is that rare?</li>
+      <li>[them] Very, and it's making the lawyers nervous.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedDress</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,their:empire</when>
+    <lines>
+      <li>[them] The household is choosing what to wear, which may take longer than the match did.</li>
+      <li>[us] Tell them there's no need to dress up for us.</li>
+      <li>[them] There is always a need, and they would never forgive me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedSongs</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,their:tribal</when>
+    <lines>
+      <li>[them] The old ones are arguing over which songs belong at a wedding with outsiders.</li>
+      <li>[us] Is there a right answer?</li>
+      <li>[them] There will be, once one of them wins.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AgreedDowry</defName>
+    <topic>marriage</topic>
+    <when>match:agreed,their:medieval</when>
+    <lines>
+      <li>[them] At home they're counting out the dowry again, in case they got it wrong.</li>
+      <li>[us] Did they?</li>
+      <li>[them] No, but the counting is half the pleasure.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The wedding lately ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_Opinions</defName>
+    <topic>marriage</topic>
+    <when>town:lately:dip:wedding,!tone:cool,!tone:sour</when>
+    <lines>
+      <li>[them] The whole family has an opinion about the wedding, and most of them are kind.</li>
+      <li>[us] And the rest?</li>
+      <li>[them] The rest are my uncle's, and he has opinions about everything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_FoundFeet</defName>
+    <topic>marriage</topic>
+    <uses>chat,home</uses>
+    <when>town:lately:dip:wedding,tie:marriage:ours,!match:child</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] Has {SPOUSEOF} found their feet among you yet?</li>
+      <li>[them,their:tribal] {SPOUSEOF} sleeps at our fire now, and the dogs have stopped barking at them.</li>
+      <li>[them,their:medieval] {SPOUSEOF} got lost in our market twice, and asked the way like a local the third time.</li>
+      <li>[them] Nearly, there's a lot of family to learn the names of.</li>
+      <li>[us] Give them time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_TakenTo</defName>
+    <topic>marriage</topic>
+    <when>town:lately:dip:wedding,tie:marriage:theirs,!tie:marriage:you,!match:child</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] How has {INLAW} taken to your colony, now the wedding's behind them?</li>
+      <li>[us] Better than we hoped, and we hoped a lot.</li>
+      <li>[them] Good, the house is quiet without {INLAW}.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= In-laws ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_NewsFromHome</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:theirs,kin,!kin:you,!match:child</when>
+    <lines>
+      <li>[them] I've brought news from home for {INLAW}, if you know where they are.</li>
+      <li>[us] Around somewhere, ask anyone, they'll point you.</li>
+      <li>[them] Then I'll go looking, it's mostly gossip anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_FamilyLove</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:theirs,kin:you,!match:child</when>
+    <weight>1.6</weight>
+    <lines>
+      <li>[them] Home sends its love, and a list of things you forgot to take.</li>
+      <li>[us] Tell them I'm well, and that I eat better here than I did at home.</li>
+      <li>[them] I'll tell them the first half.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_ComeVisit</defName>
+    <topic>marriage</topic>
+    <uses>chat,home</uses>
+    <when>tie:marriage:ours,!match:child</when>
+    <lines>
+      <li>[us] Does {SPOUSEOF} ever talk about coming back to visit?</li>
+      <li>[them,their:tribal] At every full moon, and then the hunting starts and the moon is forgotten.</li>
+      <li>[them] Often, but there's always work, and the road is long.</li>
+      <li>[us] Tell them the gate here is always open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_TheHours</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:ours,!match:child,their:hightech</when>
+    <lines>
+      <li>[them] {SPOUSEOF} works with the rest of us now, and doesn't complain about the hours.</li>
+      <li>[us] Then they've changed since they left us.</li>
+      <li>[them] Marriage will do that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_PullsWeight</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:theirs,!tie:marriage:you,!match:child,known</when>
+    <lines>
+      <li>[them] Is {INLAW} pulling their weight here?</li>
+      <li>[us] More than, and complaining less than most.</li>
+      <li>[them] Then your colony has done what we never could.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_InLaws</defName>
+    <topic>marriage</topic>
+    <uses>chat,home</uses>
+    <when>tie:marriage,!match:wronged</when>
+    <lines>
+      <li>[us] What do your people expect of in-laws?</li>
+      <li>[them,their:tribal] A place at the fire when we visit, and help with the hunt when we ask.</li>
+      <li>[them,their:medieval] A seat at the table, a gift at midwinter, and no arguing with the old ones.</li>
+      <li>[them,their:industrial] A letter now and then, and help when the caravan breaks down.</li>
+      <li>[them,their:empire] Correct forms of address, and attendance when it is asked for.</li>
+      <li>[them,their:spacer,!their:empire] Courtesy, and that you keep your records straight.</li>
+      <li>[them] To be remembered, mostly.</li>
+      <li>[us] We can manage that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= One of the couple ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_Happy</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:you,tone:warm,!match:child</when>
+    <lines>
+      <li>[them] Are you happy, married into all this?</li>
+      <li>[us,us:spousehere] Ask me again when {OURSPOUSE} stops stealing the blankets.</li>
+      <li>[us] I am, most days, and the other days are my own fault.</li>
+      <li>[them] Spoken like someone properly married.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_NotAsked</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:you,tone:cool</when>
+    <lines>
+      <li>[them] Not everyone at home was glad of your match.</li>
+      <li>[us] They weren't asked.</li>
+      <li>[them] That's what they're unhappy about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The alliance holding ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_WhenCalled</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,tie:pact:defence,known</when>
+    <lines>
+      <li>[them] My people will come when you call, the marriage says so.</li>
+      <li>[us] I hope we never need to.</li>
+      <li>[them,their:lowtech] Kin don't wait to be asked twice.</li>
+      <li>[them] So do I, but they'll come all the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_NoPact</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,their:empire,known</when>
+    <lines>
+      <li>[them] The Empire signs no pacts, but a household never forgets its in-laws.</li>
+      <li>[us] We'll try to be worth remembering.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_CampWatch</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,region:camp,!match:wronged</when>
+    <lines>
+      <li>[them] Our people have been watching that {RAIDCAMP} for you, as kin should.</li>
+      <li>[us] Then tell us if it moves.</li>
+      <li>[them] You'll hear before anyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_RaidAsked</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage:theirs,colony:raid,!tie:marriage:you,!match:child</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We heard about the raid, and the first thing anyone at home asked was after {INLAW}.</li>
+      <li>[us] I'll tell {INLAW} you were worried.</li>
+      <li>[them] Do, it'll mean more coming from you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_GriefShared</defName>
+    <topic>marriage</topic>
+    <when>tie:marriage,colony:death</when>
+    <lines>
+      <li>[them] We heard about {DEAD}, and our people grieve with yours.</li>
+      <li>[us] Thank you, it helps to hear it from family.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Held through a child ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_AtAGrave</defName>
+    <topic>marriage</topic>
+    <when>match:child,known</when>
+    <lines>
+      <li>[them] It's a hard thing, a marriage ending at a grave.</li>
+      <li>[us] It hasn't ended, not while the child lives.</li>
+      <li>[them] That's what our head says too, and it's why we still come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_ChildClan</defName>
+    <topic>marriage</topic>
+    <when>match:child,their:tribal</when>
+    <lines>
+      <li>[them] The child has our blood, so the elders count them among the clan.</li>
+      <li>[us] Then they have two homes to grow up in.</li>
+      <li>[them] And two sets of elders telling them what to do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_ChildRolls</defName>
+    <topic>marriage</topic>
+    <when>match:child,their:empire</when>
+    <lines>
+      <li>[them] The household has entered the child in its rolls, title or no title.</li>
+      <li>[us] Does that mean something?</li>
+      <li>[them] At court it means a great deal, and out here, I suspect, very little.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_ChildSeason</defName>
+    <topic>marriage</topic>
+    <when>match:child,tone:warm</when>
+    <lines>
+      <li>[them] When the child is older, send them to us for a season.</li>
+      <li>[us] We might, if they want to go.</li>
+      <li>[them] They'll want to, once they hear how we spoil our young.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A spouse wronged, the grudge, an alliance over ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_TheNerve</defName>
+    <topic>marriage</topic>
+    <when>match:wronged,tone:sour</when>
+    <lines>
+      <li>[them] You have some nerve, talking to me.</li>
+      <li>[us] Somebody from this colony has to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_HeadGrudge</defName>
+    <topic>marriage</topic>
+    <when>match:wronged,role:head</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I hold this grudge for my people, and I'll hand it on if I have to.</li>
+      <li>[us] Is there nothing that would end it?</li>
+      <li>[them] Nothing your colony has offered.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_HowSettled</defName>
+    <topic>marriage</topic>
+    <uses>chat,home</uses>
+    <when>match:wronged</when>
+    <lines>
+      <li>[us] How do your people settle a wrong like this?</li>
+      <li>[them,their:tribal] Blood for blood, the old ones say, though the young aren't so sure.</li>
+      <li>[them,their:medieval] In the old days with a blood price, but our head hasn't named one, and won't.</li>
+      <li>[them,their:industrial] In a court, if there were one, and there isn't.</li>
+      <li>[them,their:spacer,!their:empire] There is no procedure for it, which is the problem.</li>
+      <li>[them] We don't settle it, we carry it.</li>
+      <li>[us] Then I hope we find a way, one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_MatchMore_OnceFamily</defName>
+    <topic>marriage</topic>
+    <when>deed:married,!tie:marriage,!match:wronged,!match:agreed</when>
+    <lines>
+      <li>[them] We were family once, through that marriage.</li>
+      <li>[us] We could be again, if both sides wanted it.</li>
+      <li>[them] Maybe, but not this year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

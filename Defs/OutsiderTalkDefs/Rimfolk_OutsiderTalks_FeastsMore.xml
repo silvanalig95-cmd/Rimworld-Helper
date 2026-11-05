@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on feasts with guests (Source/ColonyCouncil/Diplomacy/Feasts.cs; the facts in Diplomacy/FactsFeast.cs), beside
+       Rimfolk_OutsiderTalks_Feasts.xml, whose tags these keep. On the day (feast:here) the one spoken to is most likely an
+       invited notable (role:notable) or one of the one or two who walked in with them; the guests wait by the gate, the
+       contests (feast:contests) run in the afternoon, the feast is in the evening, they stay the night and go home at first
+       light, so a day line has the feast still to come and an evening or night line is said around it. Before the day:
+       feast:soon, feast:invited. After: town:lately:dip:feast, them:feastguest with feast:welcomed or feast:slighted,
+       feast:good, feast:poor, feast:theywon, feast:wewon, {FEAST} and {CHAMPION} (a name; it may be the colonist's own, so
+       no line asks who it is). Longer after, what their people remember: deed:feasted (a feast the colony held for them
+       that went well), deed:feast (the colony's people came to theirs), deed:absent (invited to theirs, and didn't come).
+       {FEAST} comes with "the", so no line opens on it. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The day itself (feast:here) ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Returning</defName>
+    <topic>feast</topic>
+    <when>feast:here,returning,!role:trader</when>
+    <lines>
+      <li>[them] I've been here before, but never as a guest at your table.</li>
+      <li>[us] Then tonight you'll see the place at its best.</li>
+      <li>[them,their:tribal] Then I will eat like a guest and boast like one.</li>
+      <li>[them] Then I'll try to behave like a guest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Retinue</defName>
+    <topic>feast</topic>
+    <uses>chat,know</uses>
+    <when>feast:here,!role:notable,!role:trader</when>
+    <lines>
+      <li>[us] You walked in with the guests, didn't you?</li>
+      <li>[them,their:tribal] Where I come from, a guest never walks to a feast alone.</li>
+      <li>[them,their:empire] I attend the guest of honor, and I eat when they have eaten.</li>
+      <li>[them,their:industrial] Somebody had to carry the bags, and I drew the short straw.</li>
+      <li>[them] Someone had to keep them company on the road, and I didn't argue.</li>
+      <li>[us] Well, you're as welcome here as they are.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Afternoon</defName>
+    <topic>feast</topic>
+    <when>feast:here,feast:contests,day</when>
+    <lines>
+      <li>[them] I'm told the contests start this afternoon.</li>
+      <li>[us] They do, and you'll get a fair field.</li>
+      <li>[them,their:spacer] Is there a written set of rules I could look over first?</li>
+      <li>[them,their:medieval] Then I'll find someone to hold my cloak.</li>
+      <li>[them] Then I'll save my strength until then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Rain</defName>
+    <topic>feast</topic>
+    <when>feast:here,rain</when>
+    <lines>
+      <li>[them] Rain, on the feast day of all days.</li>
+      <li>[us] It may clear yet.</li>
+      <li>[them,their:tribal] Our elders would say the sky wants a seat at the feast.</li>
+      <li>[them] If it doesn't, I'll eat just as well wet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Snow</defName>
+    <topic>feast</topic>
+    <when>feast:here,snow</when>
+    <lines>
+      <li>[them] Snow for the feast, then, and a cold walk home in it.</li>
+      <li>[us] Leave your boots inside the door, they'll be dry by supper.</li>
+      <li>[them] That's the best thing anyone's said to me all day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Hot</defName>
+    <topic>feast</topic>
+    <when>feast:here,hot,!night</when>
+    <lines>
+      <li>[them] Hot day for a feast.</li>
+      <li>[us] The evening will be cooler, and that's when we eat.</li>
+      <li>[them] Then I'll save my appetite for the cool of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Seats</defName>
+    <topic>feast</topic>
+    <when>feast:here,evening</when>
+    <lines>
+      <li>[us] Sit wherever you like tonight, we don't keep places here.</li>
+      <li>[them,their:empire] I would rather be shown my place, if it's all the same to you.</li>
+      <li>[them,their:tribal] Then I sit where the meat is closest.</li>
+      <li>[them] Then I'll sit near the cook and take my chances.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Late</defName>
+    <topic>feast</topic>
+    <when>feast:here,night</when>
+    <lines>
+      <li>[them] Your people stay up late on a feast night.</li>
+      <li>[us] We don't often get the chance.</li>
+      <li>[them,their:medieval] At home the hall would be snoring by now.</li>
+      <li>[them] I'll be up at first light all the same, the road is long.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Prayers</defName>
+    <topic>feast</topic>
+    <when>feast:here,evening,otherfaith</when>
+    <lines>
+      <li>[them] Will there be prayers before the meal?</li>
+      <li>[us] Each says their own, if they want to.</li>
+      <li>[them] Then I'll say mine under my breath and not keep anyone waiting.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_SameFaith</defName>
+    <topic>feast</topic>
+    <when>feast:here,samefaith</when>
+    <lines>
+      <li>[them] It's good to sit down to a feast with people who share our faith.</li>
+      <li>[us] Then we'll give thanks together tonight.</li>
+      <li>[them] Gladly, and in the same words for once.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Music</defName>
+    <topic>feast</topic>
+    <when>feast:here,their:empire,evening|night</when>
+    <lines>
+      <li>[them] At court, no evening is complete without music.</li>
+      <li>[us] We'll do what we can with what we have.</li>
+      <li>[them] That is all a guest of sense would ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_TitledHost</defName>
+    <topic>feast</topic>
+    <when>feast:here,their:empire,us:noble</when>
+    <lines>
+      <li>[them] A titled host, out here, I shall tell them that at court.</li>
+      <li>[us] Tell them the food was good, they'll care more about that.</li>
+      <li>[them] You don't know the court.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Watching</defName>
+    <topic>feast</topic>
+    <when>feast:here,feast:contests,them:old</when>
+    <lines>
+      <li>[us] Will you be taking part, or watching?</li>
+      <li>[them] Watching, and telling the young ones what they're doing wrong.</li>
+      <li>[us] That's a contest of its own.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Sore</defName>
+    <topic>feast</topic>
+    <when>feast:here,them:hurt</when>
+    <lines>
+      <li>[us] That looks sore.</li>
+      <li>[them] It is, but I'm not going home early for it.</li>
+      <li>[us,colony:doctor] Let {DOCTOR} look at it before you set out tomorrow.</li>
+      <li>[us] Tell someone if it gets worse in the night.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_HeavyCup</defName>
+    <topic>feast</topic>
+    <when>feast:here,tone:cool,evening|night</when>
+    <lines>
+      <li>[them] Your people pour a heavy cup.</li>
+      <li>[us] You don't have to finish it.</li>
+      <li>[them] I'll finish it, and I'll remember who poured it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Laughed</defName>
+    <topic>feast</topic>
+    <when>feast:here,tone:sour</when>
+    <lines>
+      <li>[them] I didn't walk all this way to be laughed at.</li>
+      <li>[us] Then sit with someone else.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_ToTheCook</defName>
+    <topic>feast</topic>
+    <when>feast:here,tone:warm,evening|night</when>
+    <lines>
+      <li>[them] I'll remember this table when I'm home.</li>
+      <li>[us] Remember the cook, that's who did the work.</li>
+      <li>[them,their:medieval] Then the cook gets a toast, and so does the hall.</li>
+      <li>[them] Then here's to the cook.</li>
+      <li>[us,us:best:Cooking] That's me, and I'll take it.</li>
+      <li>[us] I'll tell them you said so.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Before the day (feast:soon, feast:invited) ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_WhoComes</defName>
+    <topic>feast</topic>
+    <uses>chat,home</uses>
+    <when>feast:soon</when>
+    <lines>
+      <li>[us] Do you know who's coming from your people?</li>
+      <li>[them,their:empire] Whoever holds the right rank for it, which settles the arguing.</li>
+      <li>[them] Whoever could be spared, and whoever argued loudest.</li>
+      <li>[us] We'll set enough places, whoever it is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Practice</defName>
+    <topic>feast</topic>
+    <when>feast:soon,feast:contests</when>
+    <lines>
+      <li>[them,their:tribal] Our young hunters have run every morning since your word came.</li>
+      <li>[them,their:industrial] Ours have been timing each other on the road with a pocket watch.</li>
+      <li>[them] Our people have been practicing for your contests.</li>
+      <li>[us] Ours too, though they'd never admit it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_SoonWeather</defName>
+    <topic>feast</topic>
+    <when>feast:soon,rain|snow|storm</when>
+    <lines>
+      <li>[them] I hope the weather's kinder on your feast day.</li>
+      <li>[us] If it isn't, we wait for the first fine one.</li>
+      <li>[them] Then our people will wait with you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_InvitedCourt</defName>
+    <topic>feast</topic>
+    <when>feast:invited,their:empire</when>
+    <lines>
+      <li>[them] Your invitation was well written, for a frontier house.</li>
+      <li>[us] Then you'll come?</li>
+      <li>[them] I shall answer properly, in writing, as it should be done.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_InvitedElders</defName>
+    <topic>feast</topic>
+    <when>feast:invited,their:tribal</when>
+    <lines>
+      <li>[them] Your messenger brought word of {FEAST}, and the elders are talking it over.</li>
+      <li>[us] Tell them we'd be honored.</li>
+      <li>[them] I'll tell them, and they'll take their time all the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= After (them:feastguest, town:lately:dip:feast) ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_WentPoorly</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:poor,!feast:slighted</when>
+    <lines>
+      <li>[us] I don't think {FEAST} went the way we hoped.</li>
+      <li>[them] No, and our people noticed.</li>
+      <li>[us] We'll do better by you, if you'll give us the chance.</li>
+      <li>[them] Maybe.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_SawItWon</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:theywon</when>
+    <lines>
+      <li>[them] I was there when {CHAMPION} won, and I've told it a dozen times since.</li>
+      <li>[us] Has it grown in the telling?</li>
+      <li>[them] Only the part about how big the crowd was.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_BeatFairly</defName>
+    <topic>feast</topic>
+    <when>feast:wewon,tone:warm</when>
+    <lines>
+      <li>[them] {CHAMPION} beat us fairly, I'll say that for your people.</li>
+      <li>[us] And yours made {CHAMPION} work hard for it.</li>
+      <li>[them] We did, and we'll do it again next time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_LostAtHome</defName>
+    <topic>feast</topic>
+    <when>feast:theywon,tone:cool</when>
+    <lines>
+      <li>[them] You lost to {CHAMPION} at your own feast.</li>
+      <li>[us] We did, and we'll live.</li>
+      <li>[them] So you will.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Rematch</defName>
+    <topic>feast</topic>
+    <when>feast:wewon,!tone:sour</when>
+    <lines>
+      <li>[them,trait:Brawler] Next time I want a go at {CHAMPION} myself, no rules.</li>
+      <li>[them] Next time I want a go at {CHAMPION} myself.</li>
+      <li>[us] {CHAMPION} will be glad of the practice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_HeardChampion</defName>
+    <topic>feast</topic>
+    <when>town:lately:dip:feast,feast:wewon,!them:feastguest</when>
+    <lines>
+      <li>[them] To hear our people tell it, {CHAMPION} could beat anyone in the region.</li>
+      <li>[us] {CHAMPION} would be glad to hear that.</li>
+      <li>[them] Don't pass it on, it'll go to their head.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Cheering</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:welcomed,feast:contests</when>
+    <lines>
+      <li>[us] You were at {FEAST}, weren't you?</li>
+      <li>[them] I was, and I went home with a full belly and no voice left from cheering.</li>
+      <li>[us] Then you'll have to come back and lose it again.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_QuietOne</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:welcomed,!feast:contests</when>
+    <lines>
+      <li>[them] Your feast was a quiet one, and I liked it that way.</li>
+      <li>[us] No contests, just food and talk.</li>
+      <li>[them,old] At my age that's the better kind.</li>
+      <li>[them] The talk was the best part of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_EmptyPlate</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:slighted,tone:cool</when>
+    <lines>
+      <li>[them] I still remember sitting at your table with nothing in front of me.</li>
+      <li>[us] So do we, and we're sorry for it.</li>
+      <li>[them] Sorry doesn't fill a plate.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_EmptyPlateSour</defName>
+    <topic>feast</topic>
+    <when>them:feastguest,feast:slighted,tone:sour</when>
+    <lines>
+      <li>[them] You invited me to watch your people eat.</li>
+      <li>[us] That's not how it was meant.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_ElderTalk</defName>
+    <topic>feast</topic>
+    <uses>chat,home</uses>
+    <when>town:lately:dip:feast,feast:good,their:tribal</when>
+    <lines>
+      <li>[them] The elders still speak of {FEAST} in the evenings.</li>
+      <li>[us] I'm glad it's remembered.</li>
+      <li>[them] They say it was a feast the way the old ones held them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_Market</defName>
+    <topic>feast</topic>
+    <uses>chat,home</uses>
+    <when>town:lately:dip:feast,feast:good,their:medieval</when>
+    <lines>
+      <li>[them] At our market they still talk about {FEAST}, and your cook.</li>
+      <li>[us] Our cook will be impossible to live with if I tell them.</li>
+      <li>[them] Then wait until we've gone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_GoodName</defName>
+    <topic>feast</topic>
+    <when>town:lately:dip:feast,feast:good,their:hightech</when>
+    <lines>
+      <li>[them] Word of {FEAST} has done your name more good than a season of trade.</li>
+      <li>[us] We'd rather have both.</li>
+      <li>[them] Then keep holding them, and keep trading.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_HeardPoorly</defName>
+    <topic>feast</topic>
+    <when>town:lately:dip:feast,feast:poor,!them:feastguest</when>
+    <lines>
+      <li>[them] What we heard of {FEAST} wasn't all good.</li>
+      <li>[us] Some of it was our fault, I'll grant that.</li>
+      <li>[them] Granting it is a start.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_NextYear</defName>
+    <topic>feast</topic>
+    <when>town:lately:dip:feast,known,!feast:poor</when>
+    <lines>
+      <li>[them] Will you hold another one next year?</li>
+      <li>[us] If the harvest allows it.</li>
+      <li>[them,their:spacer] Then I'd like to reserve a seat now.</li>
+      <li>[them] Then I hope the harvest is a good one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Remembered longer (deed:feasted, deed:feast, deed:absent) ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_StillRemembered</defName>
+    <topic>feast</topic>
+    <when>deed:feasted,!town:lately:dip:feast</when>
+    <lines>
+      <li>[them] Our people still remember the feast your colony held for them.</li>
+      <li>[us] It was a good night, I remember it too.</li>
+      <li>[them,their:lowtech] A table like that is talked of for a generation.</li>
+      <li>[them] It still comes up whenever your colony's name does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_CameToOurs</defName>
+    <topic>feast</topic>
+    <uses>chat,home</uses>
+    <when>deed:feast</when>
+    <lines>
+      <li>[them] Your people came to our feast when we asked, and that was remembered.</li>
+      <li>[us] We'd go again.</li>
+      <li>[them,their:tribal] Then come for the next great hunt, and bring a spear.</li>
+      <li>[them,their:medieval] Then come for the next tournament, and bring your best arm.</li>
+      <li>[them,their:industrial] Then come to the next fair, and bring something worth selling.</li>
+      <li>[them] Then you'll be asked again.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_FeastMore_EmptyPlaces</defName>
+    <topic>feast</topic>
+    <when>deed:absent,!tone:warm</when>
+    <lines>
+      <li>[them] We set places for your people at our feast, and they stayed empty.</li>
+      <li>[us] I'm sorry, we couldn't get there.</li>
+      <li>[them] Next time, send word if you can't come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
