@@ -268,11 +268,13 @@ namespace ColonyCouncil
                     return;
                 case EnvoyStage.Staying:
                 {
-                    // On the road there: at the town (or beside it, stopped), they stay; turned for home by the player, the plan is off.
+                    // On the road there: at the town (or beside it, stopped), they stay; turned for home by the player (back on a
+                    // home's map), or carried off, the plan is off. On the map of a fight on the road (the game's ambush), they
+                    // wait: once their caravan sets off again, it goes on to the town.
                     var c = p.GetCaravan();
                     if (c == null)
                     {
-                        if (p.Spawned) Clear(h, a);
+                        if (p.Spawned && Homes.IsHome(p.Map) || People.Kidnapped(p)) Clear(h, a);
                         return;
                     }
                     if (town == null || town.Destroyed || town.Faction != a.people || Diplomacy.Hostile(a.people))
