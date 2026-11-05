@@ -219,6 +219,8 @@ public static class NatureTests
         string view = Code("Heart/HeartView.cs");
         C(view.Contains("SourceText(h, s.source)") && view.Contains("ReliefText(h, x.r)") && view.Contains("case StrainSource.Nature: return \"CC_Heart_Help_Nature\";")
           && view.Contains(": NatureHelp(h);"), "the heart's page says what they did, against what, and what would help");
+        C(Regex.IsMatch(view, @"public static string SourcesText\([^)]*\)\s*\{[^}]*SourceLabel\(s\.source\)") && !Regex.IsMatch(view, @"public static string SourcesText\([^)]*\)\s*\{[^}]*SourceText\(h,"),
+            "the mood's \"built up by\" and the episode's letter name the source, never the act's words in their sentence");
 
         // ================= The council's questions =================
 
