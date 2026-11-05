@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.93.1</version>
+        <date>5 November 2026</date>
+        <title>Turrets where they stand</title>
+        <points>
+          <li>A faith that scorns automated turrets now minds only the turrets where its people are: a turret handed over by a hacked terminal in a hatch's dungeon, or one at another home, no longer sours everyone at home. A new setting, on at first, can turn this back.</li>
+          <li>Fixed: babies no longer carry the council's colony-wide effects (militia drills, mourning, a steady marshal, a good physician) in their health.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.93.0</version>
         <date>5 November 2026</date>
         <title>Wards and hostages</title>

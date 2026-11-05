@@ -6,6 +6,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 0.93.1, two of the player's reports: (1) an ideology mod's precept "has automated turrets: scorned"
+  (`GR_HasAutomatedTurrets_Scorned` in the player's save) gave its mood to everyone because a hacked terminal in a
+  hatch's pocket map handed the colony that map's ancient armored turret; `Integrations/TurretFaith.cs` finds every
+  precept whose own or issue defName says Turret, patches its situational thought's worker (`ShouldHaveThought` or
+  `CurrentStateInternal`, found at start) with a postfix that drops the mood when the pawn's map has no automated
+  turret of the colony's (`Building_Turret` without `CompMannable`, cached per map per 250 ticks); setting
+  `faithTurretsHere` (deeper hooks). (2) Babies carried the decrees' and offices' colony-wide hediffs: `Decrees.SyncHediffs`
+  and `Offices.SyncHediffs` skip `DevelopmentalStage.Baby()`. Also answered (no change): a baby lying awake in a crib
+  is the game's own rule (babies sleep only involuntarily, never while starving); hers was hungry and crying.
 - 0.93.0, stage 2 release 2b.3, wards and hostages (docs/design/stage2-diplomacy.md, item 7, and item 2's hostage for a truce's
   price; the player's decisions 9 and 10 as recommended; built beside 2b.1, feasts and contests, by another agent, and
   merged with it at 0.92.0 (0d6cedc): both sides kept in `DiplomacyBook.cs` (`DiplomacyHome`'s feast and wards, the wait

@@ -472,6 +472,7 @@ namespace ColonyCouncil
             Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks");
             Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks");
             Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks");
+            Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
             Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks");
             Toggle("smokeBeforeWork", "CC_Settings_SmokeBeforeWork", "CC_SetNote_SmokeBeforeWork", "deepHooks");
             Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");

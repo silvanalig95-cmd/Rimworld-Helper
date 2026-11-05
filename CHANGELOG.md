@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Turrets where they stand
+
+*5 November 2026, version 0.93.1*
+
+- A faith that scorns automated turrets now minds only the turrets where its people are: a turret handed over by a hacked terminal in a hatch's dungeon, or one at another home, no longer sours everyone at home. A new setting, on at first, can turn this back.
+- Fixed: babies no longer carry the council's colony-wide effects (militia drills, mourning, a steady marshal, a good physician) in their health.
+
 ## Wards and hostages
 
 *5 November 2026, version 0.93.0*

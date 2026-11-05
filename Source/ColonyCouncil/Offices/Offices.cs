@@ -775,7 +775,8 @@ namespace ColonyCouncil
                     foreach (var p in colonists)
                     {
                         var h = p.health?.hediffSet?.GetFirstHediffOfDef(office.colonyHediff);
-                        bool on = seated.Count > 0 && !p.IsQuestLodger();
+                        // A good marshal or physician steadies the grown and the children, not a baby in a crib.
+                        bool on = seated.Count > 0 && !p.IsQuestLodger() && !p.DevelopmentalStage.Baby();
                         if (on && h == null) p.health.AddHediff(HediffMaker.MakeHediff(office.colonyHediff, p));
                         else if (!on && h != null) p.health.RemoveHediff(h);
                     }

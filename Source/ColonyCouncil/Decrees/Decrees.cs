@@ -860,7 +860,8 @@ namespace ColonyCouncil
                     var set = p.health?.hediffSet;
                     if (set == null) continue;
                     var existing = set.GetFirstHediffOfDef(h);
-                    bool applies = on && !p.IsQuestLodger();
+                    // A baby has no part in a decree's drills, rations or mourning: nothing shows in their health.
+                    bool applies = on && !p.IsQuestLodger() && !p.DevelopmentalStage.Baby();
                     if (applies && existing == null) p.health.AddHediff(HediffMaker.MakeHediff(h, p));
                     else if (!applies && existing != null) p.health.RemoveHediff(existing);
                 }

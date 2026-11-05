@@ -359,6 +359,8 @@ namespace ColonyCouncil
         public bool magicNeedRules = true;
         /// <summary>With Faction Territories and Vassalage: its messages about new settlements far away go to the colony news; nearby ones stay messages (Integrations/TerritoryNews.cs).</summary>
         public bool territoryNewsQuiet = true;
+        /// <summary>A faith's precept against automated turrets gives its mood only on a map where the colony has one (Integrations/TurretFaith.cs).</summary>
+        public bool faithTurretsHere = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/BeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
         /// <summary>With Alpha Skills: a colonist with a stoned passion sometimes smokes a joint before work that trains it (Integrations/BeforeWork.cs).</summary>
@@ -684,6 +686,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref magicGolemRepair, "magicGolemRepair", true);
             Scribe_Values.Look(ref magicNeedRules, "magicNeedRules", true);
             Scribe_Values.Look(ref territoryNewsQuiet, "territoryNewsQuiet", true);
+            Scribe_Values.Look(ref faithTurretsHere, "faithTurretsHere", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
             Scribe_Values.Look(ref smokeBeforeWork, "smokeBeforeWork", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
