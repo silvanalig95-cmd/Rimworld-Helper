@@ -51,6 +51,11 @@
   <CC_Renown_Own_Line>Known as {KNOWNAS}, {RENOWN}.</CC_Renown_Own_Line>
   <CC_Renown_Own_LineBad>Known as {KNOWNAS}: {RENOWN}.</CC_Renown_Own_LineBad>
   <CC_Renown_KnownAs_AContest>a contest</CC_Renown_KnownAs_AContest>
+  <CC_Renown_KnownAs_Contest_Wrestling>the wrestling</CC_Renown_KnownAs_Contest_Wrestling>
+  <CC_Renown_KnownAs_Contest_Race>the race</CC_Renown_KnownAs_Contest_Race>
+  <CC_Renown_KnownAs_Contest_Hunt>the hunt</CC_Renown_KnownAs_Contest_Hunt>
+  <CC_Renown_KnownAs_Contest_Tables>the game at the tables</CC_Renown_KnownAs_Contest_Tables>
+  <CC_Renown_KnownAs_Contest_Shooting>the shooting match</CC_Renown_KnownAs_Contest_Shooting>
   <CC_Renown_KnownAs_contest>the one who won {CONTEST} at the feast with {PEOPLE}</CC_Renown_KnownAs_contest>
   <CC_Renown_KnownAs_contest_Any>the one who won {CONTEST} at a feast</CC_Renown_KnownAs_contest_Any>
   <CC_Renown_KnownAs_wedding>the one who married one of {PEOPLE}</CC_Renown_KnownAs_wedding>

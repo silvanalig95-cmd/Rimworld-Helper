@@ -212,6 +212,7 @@ public static class RenownTests
             }
         }
         foreach (var o in RenownMath.Offices.Keys) C(colonyKeyed.Contains("<CC_Renown_KnownAs_office_" + o + ">"), $"the office {o} in a colonist's name");
+        foreach (ContestKind k in Enum.GetValues(typeof(ContestKind))) C(colonyKeyed.Contains("<CC_Renown_KnownAs_Contest_" + k + ">the "), $"what a champion won, {k}, as their name says it");
         C(Regex.Matches(colonyKeyed, @"<CC_Renown_KnownAs_\w+>the one ").Count >= 30 && !Regex.IsMatch(colonyKeyed, @"<CC_Renown_KnownAs_\w+>[^<]*\b(house|family|heir)\b"),
             "a colonist's own name: \"the one who ...\", of what they did, never of a house");
 

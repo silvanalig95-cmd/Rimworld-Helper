@@ -65,7 +65,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   the middle ages, the machine age, spacers and the Empire's court, known for each kind, infamous, not yet known, 13 on a
   colonist's own name, 35 callbacks), `Rimfolk_Lines_ColonyRenown.xml` (46 letter lines, 31 bubbles at every band and age,
   good words), `Rimfolk_OutsiderTalks_ColonyBonds.xml` (10 pieces) and `Rimfolk_Lines_ColonyBonds.xml` (26 lines) for the
-  bond between the peoples, `Rimfolk_Renown_Colony.xml` (100 keys: the news, the names, the page, the bonds' rows, the
+  bond between the peoples, `Rimfolk_Renown_Colony.xml` (105 keys: the news, the names, the page, the bonds' rows, the
   ward's offer). In place: the settings' notes and tips ("Colony renown"; the stale "council's business carried abroad"
   gone from its tip), the match and wedding letters, the Almanac's diplomacy page (the renown paragraph is "Colony renown",
   marriages and wards reworded, no keyword or number lost) and its guide's People, then Renown. The generated talks'

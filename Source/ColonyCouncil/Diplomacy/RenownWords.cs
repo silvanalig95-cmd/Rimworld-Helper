@@ -92,8 +92,9 @@ namespace ColonyCouncil
             switch (o.part)
             {
                 case "contest":
-                    string contest = System.Enum.TryParse(o.detail ?? "", out ContestKind k) ? FeastWords.ContestThe(k) : null;
-                    args.Add((contest.NullOrEmpty() ? P("CC_Renown_KnownAs_AContest") : contest.UncapitalizeFirst()).Named("CONTEST"));
+                    // What they won, as a name says it ("the wrestling"); an older save's contest kept no kind: "a contest".
+                    string contestKey = System.Enum.TryParse(o.detail ?? "", out ContestKind k) ? "CC_Renown_KnownAs_Contest_" + k : null;
+                    args.Add((contestKey != null && contestKey.CanTranslate() ? P(contestKey) : P("CC_Renown_KnownAs_AContest")).Named("CONTEST"));
                     break;
                 case "epithet":
                     args.Add((o.detail ?? "?").Named("NAME"));
