@@ -105,8 +105,6 @@ C = {
     "MatchPlans": const("Diplomacy/MatchMath.cs", "MaxPlans", 3),
     # Wards and hostages either way at a home at once (Diplomacy/WardMath.cs, release 2b.3).
     "WardsPerHome": const("Diplomacy/WardMath.cs", "MaxPerHome", 4),
-    # The council's tasks at a home (Diplomacy/TaskBook.cs, release 2c.1): one record a seat, kept a season after it ends.
-    "TasksPerHome": const("Diplomacy/TaskMath.cs", "MaxPerHome", 13),
     # The colony's own vassals at a home (Diplomacy/Vassals.cs, release 2c.2): its hamlet once sworn and the towns under its
     # protection (FealtyMath.MaxProtected, two, and the hamlet).
     "VassalsPerHome": const("Diplomacy/FealtyMath.cs", "MaxProtected", 2) + 1,
@@ -596,11 +594,6 @@ MODEL = {
     # ward's year a year, a hostage's term a season or a year); one at a time is usual.
     "Diplomacy/DiplomacyBook.cs:wards": ("cap", (C["WardsPerHome"], 1), 900,
                                          "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
-    # Its council tasks (Diplomacy/CouncilTasks.cs): one record a seat with tasks (eight offices now, TaskMath.MaxPerHome at
-    # most), each about forty values and four references, kept a season after its task ends so the office's last visit
-    # counts; a new one every few days at most.
-    "Diplomacy/DiplomacyBook.cs:tasks": ("cap", (C["TasksPerHome"], 0.2), 700,
-                                         "per home: the council's tasks, one record a seat, TaskMath.MaxPerHome at most, each let go a season after it ends"),
     # Its own vassals (Diplomacy/Vassals.cs): the hamlet once sworn and up to two towns under its protection, each about
     # fifteen values and a reference; a protected town asks once a year at most, and one let go is dropped.
     "Diplomacy/DiplomacyBook.cs:vassals": ("cap", (C["VassalsPerHome"], 0.02), 420,
