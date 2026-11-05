@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More on house renown (Source/ColonyCouncil/Diplomacy/Renown.cs; the facts in Diplomacy/FactsRenown.cs), beside
+       Rimfolk_OutsiderTalks_Renown.xml, whose tags these keep. Of the colonist talking: house:ours, house:known (its name
+       known at least in a town nearby; the band alone, with !house:renowned), house:renowned (across the region or wider;
+       alone with !house:wide), house:wide (among every people within reach), house:infamous, house:knownfor:KIND (said
+       only of a name known somewhere); {HOUSE} its name (never at a sentence's start), {KNOWNFOR} in the colony's own
+       age's words (it reads after "known for", and after "your family's" only for fighters, healers, traders and makers,
+       whose words are nouns there), {RENOWN} how far it carries in the ways of the one spoken to, read after "is" (the
+       Empire's people by the court's: "spoken of with honor in the region's noble houses"). The bands in their ways: a
+       town nearby is the nearest camp's fire, the next town's market, the next town, the nearest settlement's channels,
+       the nearest town's nobility; the region every fire, its halls, its papers, every channel, its noble houses; the
+       peoples every clan, halls far and wide, every people within reach, honor at court and far beyond it. Of the one
+       spoken to: them:house (they head a house the colony knows, {THEIRHOUSE}), them:house:renowned, them:house:feud (a
+       grudge they hold, or their people hold about one of the colonist's house: with !them:house it is "my people", never
+       "my house"). What their people remember, beside a house's known-for: deed:feasted (their notable welcomed at the
+       colony's feast), deed:tended, deed:traded, deed:levies; never that the house did it, as renown is read from many
+       deeds. Callbacks pick up the marks hunger, cold, ill, leader, head, trade, work, faith, family and situation. The
+       round d text pass. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Known in a town nearby, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TownTribal</defName>
+    <topic>renown</topic>
+    <when>house:known,!house:renowned,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A traveler at our fire spoke the name of {HOUSE}.</li>
+      <li>[us] Only a traveler?</li>
+      <li>[them] Among us, that is how a name begins its walk.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TownMedieval</defName>
+    <topic>renown</topic>
+    <when>house:known,!house:renowned,their:medieval,town:near</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Folk at our market have started saying the name of {HOUSE}.</li>
+      <li>[us] Kindly, I hope.</li>
+      <li>[them] Kindly enough, though they still say it quietly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TownIndustrial</defName>
+    <topic>renown</topic>
+    <when>house:known,!house:renowned,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name has come up in town once or twice.</li>
+      <li>[us] Good or bad?</li>
+      <li>[them] Curious, mostly, people want to know who you are.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TownSpacer</defName>
+    <topic>renown</topic>
+    <when>house:known,!house:renowned,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name has turned up on a local channel or two.</li>
+      <li>[us] Saying what?</li>
+      <li>[them] Not much yet, just enough to be noticed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TownEmpire</defName>
+    <topic>renown</topic>
+    <when>house:known,!house:renowned,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, I am told.</li>
+      <li>[us] Is that good?</li>
+      <li>[them] It is a beginning, and at court beginnings are everything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Across the region, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_RegionTribal</defName>
+    <topic>renown</topic>
+    <when>house:renowned,!house:wide,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Every fire in the region knows the name of {HOUSE} now.</li>
+      <li>[us] That's more fires than I've ever sat at.</li>
+      <li>[them] A name goes where it is carried, and yours is carried well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_RegionMedieval</defName>
+    <topic>renown</topic>
+    <when>house:renowned,!house:wide,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, as our reeve tells it.</li>
+      <li>[us] The reeve keeps track of such things?</li>
+      <li>[them] The reeve keeps track of everything, it's the job.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_RegionIndustrial</defName>
+    <topic>renown</topic>
+    <when>house:renowned,!house:wide,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Folks across the region know {HOUSE} by now, I'd say.</li>
+      <li>[us] For good, I hope.</li>
+      <li>[them] For good, and that's rarer than you'd think out here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_RegionSpacer</defName>
+    <topic>renown</topic>
+    <when>house:renowned,!house:wide,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, by our logs.</li>
+      <li>[us] You keep logs on us?</li>
+      <li>[them] We keep logs on everyone, and yours read well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_RegionEmpire</defName>
+    <topic>renown</topic>
+    <when>house:renowned,!house:wide,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, no small thing so far from court.</li>
+      <li>[us] We never sought it.</li>
+      <li>[them] Honor sought is worth less than honor earned.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Among every people in reach, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_WideTribal</defName>
+    <topic>renown</topic>
+    <when>house:wide,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Even clans we have never met tell of {HOUSE}.</li>
+      <li>[us] I've never met them either.</li>
+      <li>[them] Your name has, and it was welcome there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_WideMedieval</defName>
+    <topic>renown</topic>
+    <when>house:wide,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Minstrels from far towns sing of {HOUSE} now.</li>
+      <li>[us] Do they get the names right?</li>
+      <li>[them] The names, aye, the rest grows with each telling.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_WideIndustrial</defName>
+    <topic>renown</topic>
+    <when>house:wide,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, from what I hear on the road.</li>
+      <li>[us] That's a lot of road.</li>
+      <li>[them] And a lot of people talking.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_WideSpacer</defName>
+    <topic>renown</topic>
+    <when>house:wide,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, a lot of signal for one family.</li>
+      <li>[us] We don't send any of it.</li>
+      <li>[them] Others do, and what they send is good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_WideEmpire</defName>
+    <topic>renown</topic>
+    <when>house:wide,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, rare for a family with no seat at court.</li>
+      <li>[us,us:noble] My title came from the Empire, but the name was made out here.</li>
+      <li>[us] We made it out here, not at court.</li>
+      <li>[them] Then you have earned your honor twice over.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Not yet known, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_NotYetMedieval</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>house:ours,!house:known,!house:infamous,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] I don't know {HOUSE}, but every great house started small.</li>
+      <li>[us] We're not a great house.</li>
+      <li>[them] Nor were they, once.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_NotYetIndustrial</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>house:ours,!house:known,!house:infamous,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name doesn't ring a bell, I'm afraid.</li>
+      <li>[us] We're new at this.</li>
+      <li>[them] Do good work and folks will learn it soon enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_NotYetSpacer</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>house:ours,!house:known,!house:infamous,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name isn't in any record I've seen.</li>
+      <li>[us] Then we'll have to give the records something to say.</li>
+      <li>[them] Records fill up fast, given reason.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_NotYetEmpire</defName>
+    <topic>renown</topic>
+    <uses>know</uses>
+    <when>house:ours,!house:known,!house:infamous,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Forgive me, but {HOUSE} means nothing at court.</li>
+      <li>[us] We never asked it to.</li>
+      <li>[them] Spoken like a family that might yet make it mean something.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= By who they are ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_Trader</defName>
+    <topic>renown</topic>
+    <when>house:known,role:trader</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Traders talk, and your family's name comes up on the road.</li>
+      <li>[us] Good for business, I hope.</li>
+      <li>[them] Good for yours, at least.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_Envoy</defName>
+    <topic>renown</topic>
+    <when>house:renowned,role:envoy</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Before I came here, I was told your family's name is {RENOWN}.</li>
+      <li>[us] And now that you're here?</li>
+      <li>[them] I'd say the telling was fair.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FirstMeeting</defName>
+    <topic>renown</topic>
+    <uses>chat,know</uses>
+    <when>house:known,first</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] So you're one of {HOUSE}, I've heard the name.</li>
+      <li>[us] Only good things, I hope.</li>
+      <li>[them] Good enough that I wanted to say hello.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_NobleEmpire</defName>
+    <topic>renown</topic>
+    <when>house:renowned,their:empire,us:noble</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A titled one of a family whose name is {RENOWN}, that is rare.</li>
+      <li>[us] The title was given, the name was earned.</li>
+      <li>[them] Both are honor, and you carry both well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known for, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FightersTribal</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:fighters,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our hunters say your family is known for {KNOWNFOR}.</li>
+      <li>[us] We've had to defend ourselves.</li>
+      <li>[them] Then the spirits made you strong for a reason.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FightersIndustrial</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:fighters,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Folks on the road say your family's known for {KNOWNFOR}.</li>
+      <li>[us] We'd rather not need to be.</li>
+      <li>[them] Nobody would, but it keeps the bandits thinking twice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FightersSpacer</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:fighters,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family is known for {KNOWNFOR}, according to people who'd know.</li>
+      <li>[us] Who's that?</li>
+      <li>[them] Mercenaries, mostly, and they don't praise lightly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HealersMedieval</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:healers,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our herb-wife says your family is known for {KNOWNFOR}.</li>
+      <li>[us] We tend whoever needs it.</li>
+      <li>[them] Aye, and she'd like to trade remedies with you one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HealersHightech</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:healers,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our medics say your family's known for {KNOWNFOR}.</li>
+      <li>[us] Good to hear it from people who'd know.</li>
+      <li>[them] They'd know, and they don't say it of many.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HealersEmpire</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:healers,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A family known for {KNOWNFOR} does honor to its name, title or no.</li>
+      <li>[us] We tend the sick because they need it.</li>
+      <li>[them] Which is the most honorable reason there is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HostsTribal</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:hosts,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family is known for {KNOWNFOR}, and a guest remembers that.</li>
+      <li>[us,lowtech] There's always room at our fire.</li>
+      <li>[us] There's always room for a guest here.</li>
+      <li>[them] Then I will sit, and gladly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HostsMedieval</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:hosts,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Travelers on the high road say your family is known for {KNOWNFOR}.</li>
+      <li>[us] We like a full table.</li>
+      <li>[them] So do travelers, which is why they talk.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HostsHightech</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:hosts,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family has a reputation for {KNOWNFOR}, I've heard.</li>
+      <li>[us] Then let us live up to it.</li>
+      <li>[them] You already are.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HostsEmpire</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:hosts,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family is known for {KNOWNFOR}, which at court is a kind of honor.</li>
+      <li>[us] Out here it's just how we live.</li>
+      <li>[them] Then you live honorably without trying.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TradersTribal</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:traders,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our traders say your family is known for {KNOWNFOR}.</li>
+      <li>[us] We try to give a fair exchange.</li>
+      <li>[them] That is why they speak of you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TradersMedieval</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:traders,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Merchants at our market say your family is known for {KNOWNFOR}.</li>
+      <li>[us] And what do they say about our prices?</li>
+      <li>[them] That they're fair, which is the most a merchant will admit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TradersEmpire</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:traders,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Even the Empire's factors say your family is known for {KNOWNFOR}.</li>
+      <li>[us] Trade is trade, whoever it's with.</li>
+      <li>[them] Spoken like a family that keeps its contracts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_MakersTribal</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:makers,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our crafters say your family is known for {KNOWNFOR}.</li>
+      <li>[us] Hands are for making things.</li>
+      <li>[them] And yours make them well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_MakersMedieval</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:makers,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] The guild in our town has heard your family is known for {KNOWNFOR}.</li>
+      <li>[us] Do they want to compete?</li>
+      <li>[them] They want to see it, and maybe learn a thing or two.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_MakersHightech</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:makers,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family has a name for {KNOWNFOR}, I'm told.</li>
+      <li>[us] We like things that last.</li>
+      <li>[them] So do the people who buy them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_MakersEmpire</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:makers,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A family known for {KNOWNFOR} would find patrons at court.</li>
+      <li>[us] We make things for our own use, mostly.</li>
+      <li>[them] The best work usually starts that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FaithfulTribal</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:faithful,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our elders say your family is known for {KNOWNFOR}.</li>
+      <li>[us] We hold to what we believe.</li>
+      <li>[them] The spirits notice those who hold on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FaithfulMedieval</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:faithful,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Even our priest has heard your family is known for {KNOWNFOR}.</li>
+      <li>[us,samefaith] Then your priest and I pray alike.</li>
+      <li>[us] We keep our faith, that's all.</li>
+      <li>[them] It's more than most do, the priest would say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FaithfulHightech</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:faithful,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family is known for {KNOWNFOR}, which is rare these days.</li>
+      <li>[us] Faith keeps us steady.</li>
+      <li>[them] Out here, steady is worth a lot.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FaithfulEmpire</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:faithful,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] A family known for {KNOWNFOR} is respected at court, whatever its faith.</li>
+      <li>[us] We don't keep it for respect.</li>
+      <li>[them] Which is exactly why it earns some.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known for, beside what their people remember of the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HostsFeasted</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:hosts,deed:feasted</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] People at home still talk of your colony's feast.</li>
+      <li>[us] It was a good day.</li>
+      <li>[them] And they say your family is known for {KNOWNFOR}, which fits.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_HealersTended</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:healers,deed:tended</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] We remember that your colony tended our wounded.</li>
+      <li>[us] We'd do it again.</li>
+      <li>[them] I believe it, your family is known for {KNOWNFOR}, after all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TradersTraded</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:traders,deed:traded</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Our traders still speak well of dealing with your colony.</li>
+      <li>[us] We try to be fair.</li>
+      <li>[them] Your family especially, known for {KNOWNFOR} as it is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FightersLevies</defName>
+    <topic>renown</topic>
+    <when>house:knownfor:fighters,deed:levies</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your colony's fighters came when we called.</li>
+      <li>[us] A promise is a promise.</li>
+      <li>[them] And a family known for {KNOWNFOR} keeps it, I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Known for the wrong things, by their ways ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_InfamousTribal</defName>
+    <topic>renown</topic>
+    <when>house:infamous,their:tribal</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] The elders frown when the name of {HOUSE} is spoken.</li>
+      <li>[us] The elders don't know us.</li>
+      <li>[them] They know what is told, and that is enough for them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_InfamousMedieval</defName>
+    <topic>renown</topic>
+    <when>house:infamous,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, I'm sorry to say.</li>
+      <li>[us] Names can change.</li>
+      <li>[them] Aye, but it takes longer than it took to spoil them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_InfamousHightech</defName>
+    <topic>renown</topic>
+    <when>house:infamous,their:hightech,!their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, just so you know.</li>
+      <li>[us] I didn't know.</li>
+      <li>[them] Now you do, and what you do with it is up to you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_InfamousEmpire</defName>
+    <topic>renown</topic>
+    <when>house:infamous,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] Your family's name is {RENOWN}, I regret to say.</li>
+      <li>[us] Then it's lucky we're not at court.</li>
+      <li>[them] Honor lost is slow to return, wherever one stands.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their house, by their ways and who is asking ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirHouseIndustrial</defName>
+    <topic>renown</topic>
+    <uses>know,home</uses>
+    <when>them:house,their:industrial</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] What does your family's name count for in your town?</li>
+      <li>[them] Enough that people expect things of whoever carries it.</li>
+      <li>[us] And what do they expect of you?</li>
+      <li>[them] That I keep it up, mostly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirHouseSpacer</defName>
+    <topic>renown</topic>
+    <uses>know,home</uses>
+    <when>them:house,their:spacer</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] Does your family's name mean much where you're from?</li>
+      <li>[them] Enough that I'm careful what I put it to.</li>
+      <li>[us] That sounds like a lot to live up to.</li>
+      <li>[them] It is, and that is the point of a name.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirHouseEmpire</defName>
+    <topic>renown</topic>
+    <uses>know,home</uses>
+    <when>them:house,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] What does it mean to head a house in the Empire?</li>
+      <li>[them] It means one's honor is never one's own alone.</li>
+      <li>[us] That sounds heavy.</li>
+      <li>[them] It is, and it is worth carrying.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirHouseBoth</defName>
+    <topic>renown</topic>
+    <when>them:house,house:ours</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] You're one of {HOUSE}, I'm told, and I head {THEIRHOUSE}.</li>
+      <li>[us] Two families, then.</li>
+      <li>[them] Two families who would do well to know each other.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirHouseStranger</defName>
+    <topic>renown</topic>
+    <uses>chat,know</uses>
+    <when>them:house,!house:ours</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] I head {THEIRHOUSE}, for what that's worth to a stranger.</li>
+      <li>[us] My own family name isn't one anyone knows.</li>
+      <li>[them] Every family's name was unknown once, mine too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirRenownedEmpire</defName>
+    <topic>renown</topic>
+    <when>them:house:renowned,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] Even out here, people speak of {THEIRHOUSE} with respect.</li>
+      <li>[them] Honor travels further than any of us do.</li>
+      <li>[us] Then yours has traveled well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_TheirRenownedLowtech</defName>
+    <topic>renown</topic>
+    <when>them:house:renowned,their:lowtech</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[us] We've heard the name of {THEIRHOUSE}, even at our colony.</li>
+      <li>[them,their:tribal] Then the telling has walked far, and I must live up to it.</li>
+      <li>[them] Then the tale has traveled far, and I must live up to it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Feuds ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FeudPeople</defName>
+    <topic>renown</topic>
+    <when>them:house:feud,!them:house</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] There's a grudge between us and your colony that hasn't been settled.</li>
+      <li>[us] Then let's not add to it today.</li>
+      <li>[them] Fair enough, today.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FeudPeopleLowtech</defName>
+    <topic>renown</topic>
+    <when>them:house:feud,!them:house,their:lowtech</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] My people keep count of what your colony owes them, and the count is open.</li>
+      <li>[us] Is it your count or theirs?</li>
+      <li>[them] Theirs, and mine while I am one of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FeudPeopleCool</defName>
+    <topic>renown</topic>
+    <when>them:house:feud,!them:house,tone:cool|tone:sour</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] I'll talk, but my people haven't forgotten what lies between us.</li>
+      <li>[us] Nor have we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FeudHouseMedieval</defName>
+    <topic>renown</topic>
+    <when>them:house:feud,them:house,their:medieval</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] My house has not forgotten its grudge against your colony.</li>
+      <li>[us] We haven't forgotten it either.</li>
+      <li>[them] Then we'll speak plainly, and no more than we must.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_FeudHouseEmpire</defName>
+    <topic>renown</topic>
+    <when>them:house:feud,them:house,their:empire</when>
+    <weight>0.6</weight>
+    <lines>
+      <li>[them] My house's honor is not yet satisfied where your colony is concerned.</li>
+      <li>[us] What would satisfy it?</li>
+      <li>[them] That is not a question for a conversation in passing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Callbacks ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_HungerHosts</defName>
+    <topic>callback</topic>
+    <when>talked:hunger,then:still,house:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still going on?</li>
+      <li>[them] Still, and a family known for {KNOWNFOR} is a good thought in lean times.</li>
+      <li>[us] Our door's open if anyone needs a meal.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_HungerOver</defName>
+    <topic>callback</topic>
+    <when>talked:hunger,then:over,house:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {THEN} is over now, I'm glad to say.</li>
+      <li>[us] That's good to hear.</li>
+      <li>[them] Now people have time to talk of other things, your family among them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_ColdHosts</defName>
+    <topic>callback</topic>
+    <when>talked:cold,then:still,house:knownfor:hosts,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still on at home?</li>
+      <li>[them] Still, and a family known for {KNOWNFOR} is a warm thought on cold nights.</li>
+      <li>[us] Come and warm up with us, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_IllHealers</defName>
+    <topic>callback</topic>
+    <when>talked:ill,then:over,house:knownfor:healers</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} on the mend?</li>
+      <li>[them] Back on their feet, I'm glad to say.</li>
+      <li>[us] Good, and if it comes back, bring them here.</li>
+      <li>[them] I would, your family is known for {KNOWNFOR}, after all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_LeaderRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:leader,then:still,house:renowned,!house:wide,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Does {THEN} still lead your people?</li>
+      <li>[them] Still, and {THEN} has heard of {HOUSE} by now.</li>
+      <li>[us] Good things, I hope.</li>
+      <li>[them] Good enough, from what I hear.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_HeadInfamous</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:changed,house:infamous</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Our town has a new head now, {NOW}.</li>
+      <li>[us] Has {NOW} heard of us?</li>
+      <li>[them] Of {HOUSE}, yes, and not kindly, I'm afraid.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_TradeLong</defName>
+    <topic>callback</topic>
+    <when>talked:trade,house:knownfor:traders,then:long</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] It's been a while since we spoke of trade.</li>
+      <li>[them] It has, and our traders still ask after a family known for {KNOWNFOR}.</li>
+      <li>[us] Then send them our way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_WorkMakers</defName>
+    <topic>callback</topic>
+    <when>talked:work,house:knownfor:makers,then:long</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] We spoke of work last time, and I've thought of your family's {KNOWNFOR} since.</li>
+      <li>[us] Come and see it whenever you like.</li>
+      <li>[them] I'll hold you to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_FaithFaithful</defName>
+    <topic>callback</topic>
+    <when>talked:faith,house:knownfor:faithful,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I've thought about our talk of faith, and that your family is known for {KNOWNFOR}.</li>
+      <li>[us] Faith is easier with others beside you.</li>
+      <li>[them] It is, and I'm glad to have met yours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_FamilyRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:family,house:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How is your family keeping?</li>
+      <li>[them] Well, and they'd like to hear I met one of {HOUSE} out here.</li>
+      <li>[us] Now you can say you have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_SituationRenowned</defName>
+    <topic>callback</topic>
+    <when>talked:situation,then:still,house:renowned,!then:recent</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] Is {THEN} still going on?</li>
+      <li>[them] Still, and some at home say a family like yours would know what to do.</li>
+      <li>[us] I wish we did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_WarOverWide</defName>
+    <topic>callback</topic>
+    <when>talked:war,then:over,house:wide</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] The war with {THEN} is over at last.</li>
+      <li>[us] I'm glad to hear it.</li>
+      <li>[them] Peace gives people time to listen, and they ask for news of your family.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_RenownMore_CB_HeadChangedKnown</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:changed,house:known,!house:renowned</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {NOW} heads our town now, in place of {THEN}.</li>
+      <li>[us] Does {NOW} know of us?</li>
+      <li>[them] A little, your family's name has started to get around.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
