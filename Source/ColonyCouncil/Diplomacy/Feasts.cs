@@ -1322,6 +1322,8 @@ namespace ColonyCouncil
                 if (g.pawn == null || g.pawn.Dead) continue;
                 bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && p.music : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
                 g.welcome = insulted ? -15f : FeastMath.Welcome(g.ate, g.fine, hopeMet, contests, g.prize, g.bed, g.floor, g.hurt, g.sour, Empire(g));
+                // The steward prepared it for their people (a council task, release 2c.1): a good welcome counts half again.
+                g.welcome = TaskMath.Welcome(g.welcome, TaskResults.Stewards(map, g.people));
                 var n = NotableBook.Instance?.Get(g.notable);
                 if (n != null)
                 {

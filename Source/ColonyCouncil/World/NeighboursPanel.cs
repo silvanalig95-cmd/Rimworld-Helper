@@ -356,6 +356,8 @@ namespace ColonyCouncil
             y += 24f;
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
             {
+                // The council's business is written by its officers, never from here (Diplomacy/TaskLetters.cs).
+                if (TaskLetters.Hidden(p)) continue;
                 string why = whyNot.TryGetValue(p, out var w) ? w : null;
                 var row = new Rect(inRect.x + 10f, y, 220f, 24f);
                 if (Widgets.RadioButtonLabeled(row, ("CC_Letter_PurposeCap_" + p).Translate(), purpose == p, why != null) && why == null)

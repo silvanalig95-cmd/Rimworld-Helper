@@ -90,6 +90,8 @@ namespace ColonyCouncil
             MatchFacts(s, f);
             // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
             WardFacts(s, f);
+            // The council's tasks and the keeper of secrets (Diplomacy/FactsTasks.cs): us:task, us:task:KIND, task:writes, task:visited, them:caughtkeeper, them:pressed, keeper:watched.
+            TaskFacts(s, f);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

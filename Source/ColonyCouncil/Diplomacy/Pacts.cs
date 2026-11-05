@@ -505,7 +505,7 @@ namespace ColonyCouncil
                 return false;
             }
             enemy ??= WarCamps.Attacker(home);
-            var pawns = WarCamps.MakeFighters(f, home);
+            var pawns = WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home));
             var band = pawns.Count > 0 ? WarCamps.Start(home, f, enemy, pawns) : null;
             if (band == null)
             {

@@ -51,7 +51,9 @@ namespace ColonyCouncil
         /// <summary>Asking them for a ward to foster for a year, or offering them a youth of the colony's (Diplomacy/Wards.cs, release 2b.3).</summary>
         Ward,
         /// <summary>Proposing a match between one of the colony's and one of theirs (Diplomacy/Matches.cs, release 2b.2).</summary>
-        Match
+        Match,
+        /// <summary>The council's business: an officer's letter on a task, or a secret pressed (Diplomacy/TaskLetters.cs, release 2c.1; never from the dialog).</summary>
+        Task
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>
@@ -282,6 +284,8 @@ namespace ColonyCouncil
                 case LetterPurpose.Warning: return 3f;
                 case LetterPurpose.News: return 5f;
                 case LetterPurpose.Invitation: return 15f;
+                // An officer writes every four to six days on a task (Diplomacy/TaskMath.cs).
+                case LetterPurpose.Task: return 3f;
                 default: return 20f;
             }
         }
@@ -320,6 +324,8 @@ namespace ColonyCouncil
                 case LetterPurpose.Warning: return 12f;
                 case LetterPurpose.News: return 5f;
                 case LetterPurpose.Invitation: return 0f;
+                // The council's business between neighbours: neither a kindness nor an ask.
+                case LetterPurpose.Task: return 0f;
                 default: return troubled ? -25f : -10f;
             }
         }

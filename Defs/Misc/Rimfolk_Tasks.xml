@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The council's tasks (stage 2, release 2c.1; Source/ColonyCouncil/Diplomacy/CouncilTasks.cs). The marshal's patrol of
+    the colony's edges at dawn. The other steps use what is there: letters and calls (World/NeighbourLetters.cs, the
+    purpose Task), the outsiders' talk (the keeper's "Sound out"), the game's own follow (the keeper's walk with guests
+    after dark), the journey planner (an officer's visit by caravan) and the couriers (an informer at the gate).
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_TaskPatrol</defName>
+    <driverClass>ColonyCouncil.JobDriver_TaskPatrol</driverClass>
+    <reportString>walking the edges at dawn.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

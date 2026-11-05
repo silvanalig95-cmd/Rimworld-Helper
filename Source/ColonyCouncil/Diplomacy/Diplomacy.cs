@@ -48,7 +48,11 @@ namespace ColonyCouncil
                 Safe("matches", () => Matches.Hourly(now));
                 // Wards and hostages either way (release 2b.3).
                 Safe("wards", () => Wards.Hourly(now));
+                // The council's tasks (release 2c.1): letters, talks, patrols, visits by caravan.
+                Safe("tasks", () => CouncilTasks.Hourly(now));
             }
+            // The keeper of secrets' watch after dark (release 2c.1): with or without a task.
+            Safe("keeper", () => KeeperOfSecrets.Hourly(now));
             if (Sched.FirstHourOfDay(now))
             {
                 Safe("day", () => FavourAsks.Daily(now));
@@ -57,6 +61,8 @@ namespace ColonyCouncil
                 Safe("feasts' day", () => Feasts.Daily(now));
                 Safe("matches' day", () => Matches.Daily(now));
                 Safe("wards' day", () => Wards.Daily(now));
+                Safe("tasks' day", () => CouncilTasks.Daily(now));
+                Safe("secrets' day", () => SecretTies.Daily(now));
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }

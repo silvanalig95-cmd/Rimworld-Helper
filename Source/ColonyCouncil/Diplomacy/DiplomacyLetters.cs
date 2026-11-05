@@ -32,7 +32,8 @@ namespace ColonyCouncil
 
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
-            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p);
+            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p)
+            || TaskLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -45,6 +46,8 @@ namespace ColonyCouncil
         public static string WhyNot(Notable n, LetterPurpose p)
         {
             if (!Owns(p) || n == null) return null;
+            // The council's business (release 2c.1, TaskLetters.cs): only an officer's own letter.
+            if (TaskLetters.Owns(p)) return TaskLetters.WhyNot(n);
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
             // A match proposed (release 2b.2, MatchLetters.cs).
             if (MatchLetters.Owns(p)) return MatchLetters.WhyNot(n, Home);
@@ -67,6 +70,7 @@ namespace ColonyCouncil
         public static List<LetterTopic> Topics(Notable n, LetterPurpose p)
         {
             if (p == LetterPurpose.Favour) return Topics(n);
+            if (TaskLetters.Owns(p)) return TaskLetters.Topics(n);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
             if (MatchLetters.Owns(p)) return MatchLetters.Topics(n, Home);
             if (WardLetters.Owns(p)) return WardLetters.Topics(n, Home);
@@ -301,6 +305,7 @@ namespace ColonyCouncil
                     tags.Add(TruceByWordTag);
                 }
                 WardLetters.QuoteTags(l, n, tags);
+                TaskLetters.QuoteTags(l, n, tags);
             }
             catch (Exception e)
             {
@@ -328,6 +333,12 @@ namespace ColonyCouncil
             var a = new Answer();
             try
             {
+                // The council's business (release 2c.1): a task's step, or a secret pressed and their answer.
+                if (TaskLetters.Owns(l.purpose))
+                {
+                    a.line = TaskLetters.Read(l, n, speaker, ref tone, a.things);
+                    return a;
+                }
                 if (WardLetters.Owns(l.purpose))
                 {
                     a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);

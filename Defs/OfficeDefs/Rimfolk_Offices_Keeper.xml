@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The keeper of secrets (stage 2, release 2c.1; docs/design/stage2-diplomacy.md, item 8; the player's decision 13): a
+    seat of Social and Intellectual that opens at six voters, elected like the others. While it is filled the colony's own
+    secrets slip half as often (Source/ColonyCouncil/Secrets/Secrets.cs reads it). Its duties and its task are in
+    Source/ColonyCouncil/Diplomacy/KeeperOfSecrets.cs; the holder's edge is Defs/HediffDefs/Rimfolk_Hediffs_Keeper.xml.
+  -->
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_SecretKeeper</defName>
+    <label>keeper of secrets</label>
+    <description>Keeps what the colony knows and what it would rather others didn't: hears what visitors let slip, keeps an eye on guests after dark, and holds the colony's own confidences close.</description>
+    <order>13</order>
+    <minColonists>6</minColonists>
+    <skills><li>Social</li><li>Intellectual</li></skills>
+    <badTraits><li>Abrasive</li></badTraits>
+    <hediff>Council_Office_SecretKeeper</hediff>
+    <duties>
+      <li>While the seat is filled, the colony's own secrets slip half as often.</li>
+      <li>After dark, with guests of another people on the colony's land, walks with them a while, and now and then overhears something about one of their notables.</li>
+      <li>Can sound out someone of another people face to face, and remind a notable of what the colony knows about them.</li>
+      <li>On the council's task, learns a chosen notable's secret through their people's visits, a paid informer or a visit to their town. Found out one time in ten.</li>
+      <li>Opens once the colony has six people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} said very little after the count, which several people took as a good sign.</li>
+      <li>{PAWN_nameDef} has started a small notebook and keeps it in an inside pocket.</li>
+      <li>{PAWN_nameDef} already knew how most of the votes would go, and didn't say how.</li>
+    </elected>
+    <planks>
+      <li><key>guests</key><when>RecentRaid</when><text>{PAWN_nameDef} says the last raiders knew the colony's weak side too well, and wants to know who has been telling.</text></li>
+      <li><key>quiet</key><when>Always</when><text>{PAWN_nameDef} promises that what is said in confidence here stays here.</text></li>
+      <li><key>neighbours</key><when>Always</when><text>{PAWN_nameDef} wants to know what the neighbors say about the colony when it isn't listening.</text></li>
+    </planks>
+  </ColonyCouncil.OfficeDef>
+
+</Defs>
