@@ -41,8 +41,8 @@
         <li>[greetings,cool,fealty:oath,!fealty:short] We have your letter. Your tribute speaks louder than your words, and so far it has spoken well.</li>
         <li>[greetings,cordial,fealty:oath,fealty:levies] Our call on your oath was heard this season, and our head remembers how it was answered.</li>
         <li>[greetings,warm,fealty:oath,fealty:protected,theirLowtech] Our band is home from your walls with stories of your people. They say you hold a line like our own.</li>
-        <li>[news,cordial,fealty:oath] Here is our news. As one who holds of us now, your colony should know how things stand with us.</li>
-        <li>[news,cool,fealty:oath,fealty:short] Here is our news. We would rather have had your tribute than your questions.</li>
+        <li>[news,cordial,fealty:oath] As one who holds of us now, your colony should know how things stand with us. So, our news.</li>
+        <li>[news,cool,fealty:oath,fealty:short] You ask for our news, and we would rather have had your tribute. Here it is all the same.</li>
         <li>[help,warm,fealty:oath] What we send is for those who hold of us, and gladly given. Use it well.</li>
         <li>[help,cordial,fealty:oath,theirLowtech] We do not let those who hold of us go hungry. Take this, and keep your oath.</li>
         <li>[help,refusal,fealty:oath] You hold of us for protection, not for a pantry. We cannot spare it.</li>
@@ -53,13 +53,13 @@
         <li>[condolences,warm,fealty:oath] Your dead are mourned here as our own would be. You hold of us, and your grief is ours.</li>
 
         <!-- While a town of theirs is the colony's own vassal -->
-        <li>[greetings,warm,vassal:town] Our kin under your protection send their greetings with ours. They speak well of your colony.</li>
+        <li>[greetings,warm,vassal:town] Our kin at the town you protect send greetings with ours. They speak well of your colony.</li>
         <li>[greetings,cordial,vassal:town,theirHightech] Our relatives under your protection report that things are stable. Thank you for that.</li>
-        <li>[greetings,cool,vassal:town,vassal:heavy,theirLowtech] Our kin under your protection grow thinner each harvest. We hope your colony enjoys the bread.</li>
-        <li>[news,cordial,vassal:town,vassal:levy] Here is our news. Our kin fought at your walls when you called, and their families are proud of them.</li>
-        <li>[help,warm,vassal:town] Take this, and think of our kin under your protection when you use it.</li>
+        <li>[greetings,cool,vassal:town,vassal:heavy,theirLowtech] Each harvest your colony takes, our kin grow thinner. We hope you enjoy the bread.</li>
+        <li>[news,cordial,vassal:town,vassal:levy] Our kin fought at your walls when you called, and their families are proud of them. That is the best of our news.</li>
+        <li>[help,warm,vassal:town] Take this, and think of our kin in your keeping when you use it.</li>
         <li>[help,refusal,vassal:town,vassal:heavy] You take a heavy share of our kin's harvest, and now ask us for more? No.</li>
-        <li>[condolences,cordial,vassal:town] Our kin under your protection grieve with you, and so do we.</li>
+        <li>[condolences,cordial,vassal:town] Our people grieve with you, and so do our kin who hold of you.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

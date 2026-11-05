@@ -776,8 +776,8 @@
     <topic>faith</topic>
     <when>us:task:keepfaith,samefaith</when>
     <lines>
-      <li>[them,task:you] Your letters are read at our rites now, beside our own words.</li>
-      <li>[them] Your {OFFICE}'s letters are read at our rites now, beside our own words.</li>
+      <li>[them,task:you] At our rites now, we read your letters beside our own words.</li>
+      <li>[them] At our rites now, we read your {OFFICE}'s letters beside our own words.</li>
       <li>[us] It's good to pray for the same things.</li>
       <li>[them,their:tribal] The elders say two fires praying the same way give one light.</li>
       <li>[them] It is, and good to know someone else does.</li>
@@ -1019,7 +1019,7 @@
     <topic>task</topic>
     <when>us:task,their:medieval,!task:you</when>
     <lines>
-      <li>[them] Your {OFFICE}'s letters are received in our hall as an envoy would be.</li>
+      <li>[them] In our hall, a letter from your {OFFICE} is received the way an envoy would be.</li>
       <li>[us] {OFFICER} will be glad to hear it.</li>
       <li>[them] They're read standing, which is more than most get.</li>
     </lines>

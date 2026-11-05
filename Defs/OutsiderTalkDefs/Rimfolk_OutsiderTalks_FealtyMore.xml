@@ -636,7 +636,7 @@
     <topic>fealty</topic>
     <when>vassal:town,their:medieval</when>
     <lines>
-      <li>[them] Our kin under your protection pay their dues and still keep a market day.</li>
+      <li>[them] Those of ours who hold of you pay their dues and still keep a market day.</li>
       <li>[us] Good, a town needs its market.</li>
       <li>[them] Aye, and a market needs a safe road.</li>
     </lines>
