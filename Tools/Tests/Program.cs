@@ -491,6 +491,7 @@ Console.WriteLine($"Checked {RegularTests.Run(Check)} things about visitors who 
 Console.WriteLine($"Checked {RivalTests.Run(Check)} things about the other settlers' year.");
 Console.WriteLine($"Checked {RegionMapTests.Run(Check)} things about the region map (the land laid flat at its true distance and bearing, tiles without gaps, zoom and pan, colours, standings).");
 Console.WriteLine($"Checked {JourneyTests.Run(Check)} things about journeys planned ahead (the default dawn, the night before shifted, the last hours, the packing list, travel food, how long the food and feed last, the list's groups and counts, clothes for the road, the way out).");
+Console.WriteLine($"Checked {JourneyAdviceTests.Run(Check)} things about who to bring on a journey and what to pack (the danger, the party's size, each colonist's place and reason, the home left behind, pack animals and mounts, medicine, silver and trade goods, the stores or the stall).");
 Console.WriteLine($"Checked {RoadPostTests.Run(Check)} things about the wardens' post as a trading stop.");
 Console.WriteLine($"Checked {HerdStoryTests.Run(Check)} things about the herd's year and the beast that stays.");
 Console.WriteLine($"Checked {MovingOnTests.Run(Check)} things about the price of keeping someone who asked to move on.");
