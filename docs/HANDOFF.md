@@ -6,6 +6,12 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 5 November 2026, a play-test point after 0.101.0: stage 2 is built, reviewed and given its text pass except 2c.3
+  schemes (round d: 0.99.0 house renown, 0.99.1 its review, 0.100.0 against their nature, 0.100.1 its review, 0.101.0
+  the round's text pass), none of round c or d yet seen in the game. Nothing new is built until the player has played
+  and given word. Waiting with the player: the harm review's picks (3.5.1 rival sabotage gates schemes), stage 3's 17
+  decisions, and the Move the Patient mod's folder for the medical triage they asked for (best bed first, lighter
+  patients moved out by the mod's transfer). Whether 0.100.0 should have been 1.0 is the player's call (asked).
 - 0.101.0, text pass: diplomacy round d (the content pass beside 0.99.0 and 0.100.0, house renown and against their nature, after the
   0.99.1 and 0.100.1 reviews). First the words against the
   code, each case checked in the code and fixed where it was wrong; a shipped line's text and tags stay (textcheck against
