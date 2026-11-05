@@ -62,7 +62,7 @@ namespace ColonyCouncil
         {
             if (!On) return WardWords.P("CC_Ward_Why_Off");
             if (Diplomacy.Hostile(f) && Truces.ByWord(f)) return WardWords.P("CC_Hostage_Why_NoEscort", WardWords.People(f).Named("PEOPLE"));
-            if (Wards.Kin(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
+            if (Wards.Sender(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
             return Room(home, WardKind.TheirHostage) ? null : WardWords.P("CC_Ward_Why_Full");
         }
 
@@ -164,7 +164,7 @@ namespace ColonyCouncil
             var book = DiplomacyBook.Instance;
             if (book == null || guaranteed == null || f == null || home == null || TheirWhyNot(f, home) != null || !Fits(home, WardKind.TheirHostage, guaranteed))
                 return WardWords.P("CC_Hostage_Lapsed_Theirs", WardWords.People(f).Named("PEOPLE"));
-            var kin = Wards.Kin(f, home, out _);
+            var kin = Wards.Sender(f, home, out _);
             var p = MakeHostage(f, kin);
             if (p == null) return WardWords.P("CC_Hostage_Lapsed_Theirs", WardWords.People(f).Named("PEOPLE"));
             var h = book.HomeOf(home);
