@@ -360,6 +360,13 @@ namespace ColonyCouncil
         /// <summary>Help is given (or an invitation taken up) on a warm or cordial answer from a people at peace.</summary>
         public static bool Grants(LetterInput x, AnswerTone t) => !x.hostile && (t == AnswerTone.Warm || t == AnswerTone.Cordial);
 
+        /// <summary>
+        /// The tone their words to a plea for help are picked by: the answer's own when the help comes with it (warm or
+        /// cordial), the refusal's when it doesn't, so a line that promises help is never quoted with nothing sent.
+        /// </summary>
+        public static AnswerTone HelpQuoteTone(AnswerTone t, bool helpSent) =>
+            t == AnswerTone.Silence ? t : helpSent ? (t == AnswerTone.Warm ? AnswerTone.Warm : AnswerTone.Cordial) : AnswerTone.Refusal;
+
         /// <summary>How much better (or worse) they think of the colony for it; the writer gets half again of it.</summary>
         public static float OpinionShift(AnswerTone t, LetterPurpose p, float channelFactor, bool lately)
         {

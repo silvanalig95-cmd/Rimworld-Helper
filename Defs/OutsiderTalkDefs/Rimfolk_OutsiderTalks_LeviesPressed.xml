@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Two cases the round c words said wrong, found by its text pass and put right in the code (Source/ColonyCouncil/
+       Diplomacy/FactsFealty.cs, FactsTasks.cs, SecretTies.cs; Outsiders/OutsiderTalkMath.cs, AlsoWhen):
+       - their call on the colony's levies refused, or nobody set out in time: fealty:levies:refused (fealty:levies and
+         fealty:levies:sent are said only when the levies came to their town this season, as the older lines say);
+       - pressed over a secret face to face by the keeper's "Sound out": them:pressed:face (them:pressed holds either way,
+         them:pressed:letter only for the colony's letter, which Rimfolk_OT_Keeper_Pressed speaks of and asks in code).
+       The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= Their call on the levies refused ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_LeviesRefused</defName>
+    <topic>fealty</topic>
+    <when>fealty:oath,fealty:levies:refused</when>
+    <lines>
+      <li>[them] Our head called on your oath this season, and nobody from your colony came.</li>
+      <li>[us] We couldn't spare them, not then.</li>
+      <li>[them] Our head remembers it, all the same.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_LeviesRefusedTribal</defName>
+    <topic>fealty</topic>
+    <when>fealty:levies:refused,their:tribal</when>
+    <lines>
+      <li>[them] The horn sounded for your spears this season, and none came.</li>
+      <li>[us] We had our own fires to keep.</li>
+      <li>[them] The elders will remember whose fires mattered to you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_LeviesRefusedMedieval</defName>
+    <topic>fealty</topic>
+    <when>fealty:levies:refused,their:medieval</when>
+    <lines>
+      <li>[them] Our captain kept a place in the line for your levies this season.</li>
+      <li>[us] I know, and it stayed empty.</li>
+      <li>[them] He hasn't stopped talking about it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_LeviesRefusedHightech</defName>
+    <topic>fealty</topic>
+    <when>fealty:levies:refused,their:hightech</when>
+    <lines>
+      <li>[them] Your people didn't show when we called this season, and it's in the report.</li>
+      <li>[us] I'd like to read that report.</li>
+      <li>[them] No, you wouldn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Pressed face to face ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PressedFace</defName>
+    <topic>keeper</topic>
+    <when>them:pressed:face,tone:cool|tone:sour</when>
+    <lines>
+      <li>[them] Your keeper named a price for my silence to my face, and I haven't forgotten it.</li>
+      <li>[us] It was the council's business, not the keeper's alone.</li>
+      <li>[them] It was the keeper's mouth that said it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PressedFaceSour</defName>
+    <topic>keeper</topic>
+    <when>them:pressed:face,tone:sour</when>
+    <lines>
+      <li>[them] I keep my voice down around your keeper these days.</li>
+      <li>[us] That might be wise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PressedFaceTribal</defName>
+    <topic>keeper</topic>
+    <when>them:pressed:face,their:tribal</when>
+    <lines>
+      <li>[them] Where I come from, a price for silence is asked in the dark, not across a fire.</li>
+      <li>[us] It was asked plainly, at least.</li>
+      <li>[them] Plainly isn't the same as rightly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PressedFaceHead</defName>
+    <topic>keeper</topic>
+    <when>them:pressed:face,role:head|role:notable</when>
+    <lines>
+      <li>[them] I'll sit where I can see your keeper, if it's all the same to you.</li>
+      <li>[us] Sit wherever you like.</li>
+      <li>[them] Then I'll sit there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

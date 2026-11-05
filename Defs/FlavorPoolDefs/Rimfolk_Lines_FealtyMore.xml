@@ -7,9 +7,9 @@
     the game already draws on:
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
       "fealty" (warm, cordial or cool when they accept and someone of theirs comes to the gate, refusal when they won't;
-      a letter overtaken by events is answered as a refusal too, so a refusal never says why in more than general
-      terms). In a letter of any purpose while the colony is sworn to them (fealty:oath, fealty:short and tie:fealty:due
-      when tribute is owed, fealty:levies when they called on the colony's levies this season, sent or refused,
+      a letter overtaken by events is answered under fealtymoot instead, Rimfolk_Lines_Overtaken.xml). In a letter of any purpose while the colony is sworn to them (fealty:oath, fealty:short and tie:fealty:due
+      when tribute is owed, fealty:levies when the colony's levies came to their call this season (a refusal is
+      fealty:levies:refused),
       fealty:protected when their band came this season), or while a town of theirs is the colony's own vassal
       (vassal:town, vassal:heavy, vassal:levy). Help and an invitation are granted only when the answer is warm or
       cordial, so a cool or worse line there never promises them. Their head is never "their lord" here: a theirLowtech

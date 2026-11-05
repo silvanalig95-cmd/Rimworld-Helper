@@ -247,12 +247,29 @@ namespace ColonyCouncil
         /// one after another for the same speaker are choices for one turn), its conditions and what it leaves. The
         /// problems found go into <paramref name="errors"/> (a piece with any is still made, for the tests to report).
         /// </summary>
+        /// <summary>
+        /// What a piece needs beyond its own conditions, by its name: pieces whose words proved untrue in a case their
+        /// conditions let through, found after they shipped. A shipped piece's text and conditions stay as they are
+        /// (Tools/textcheck.py), so the condition that makes it true is added here, and better words for the other case go
+        /// in a file of their own.
+        /// </summary>
+        public static readonly Dictionary<string, string> AlsoWhen = new Dictionary<string, string>
+        {
+            // "I haven't forgotten your colony's letter": only to one pressed by letter, never to one pressed only face to
+            // face by the keeper (the round c text pass; Rimfolk_OutsiderTalks_LeviesPressed.xml has the words for that).
+            ["Rimfolk_OT_Keeper_Pressed"] = "them:pressed:letter"
+        };
+
+        /// <summary>A piece's conditions with what <see cref="AlsoWhen"/> adds for it.</summary>
+        public static string WhenOf(string name, string when) =>
+            name != null && AlsoWhen.TryGetValue(name, out var also) ? (string.IsNullOrEmpty(when) ? also : when + "," + also) : when;
+
         public static TalkPiece Parse(string name, string topic, string uses, float weight, string when, IList<string> lines, string heard, string mark, string about,
             List<string> errors)
         {
             var p = new TalkPiece { name = name, topic = topic ?? "", weight = weight > 0f ? weight : 1f, heard = string.IsNullOrEmpty(heard) ? null : heard.Trim() };
             p.uses = string.IsNullOrEmpty(uses) ? new[] { "chat" } : Split(uses);
-            p.when = LineTags.Parse("[" + (when ?? "") + "] x");
+            p.when = LineTags.Parse("[" + (WhenOf(name, when) ?? "") + "] x");
             p.mark = string.IsNullOrEmpty(mark) ? null : mark.Trim();
             p.about = string.IsNullOrEmpty(about) ? null : about.Trim();
             p.heardHoles = Texts.Holes(p.heard);

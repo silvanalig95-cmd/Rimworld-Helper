@@ -331,15 +331,26 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The talk's own tags beside the ties' (tie:fealty, :ours, :theirs, :due, {FEALTYTO}, which a land grant's fealty
-        /// sets too): the colony's oath sworn to them (fealty:oath), its levies called or sent this season (fealty:levies),
-        /// their band come to protect it this season (fealty:protected), tribute short and owed (fealty:short); a town of
-        /// theirs the colony's own vassal (vassal:town), under heavy tribute (vassal:heavy), its levies called this season
-        /// (vassal:levy).
+        /// sets too): the colony's oath sworn to them (fealty:oath), its levies sent to their call this season
+        /// (fealty:levies, and fealty:levies:sent beside it: the older lines' tag says they came, so it is set only when they
+        /// did), refused or never set out (fealty:levies:refused), their band come to protect it this season
+        /// (fealty:protected), tribute short and owed (fealty:short); a town of theirs the colony's own vassal (vassal:town),
+        /// under heavy tribute (vassal:heavy), its levies called this season (vassal:levy).
         /// </summary>
         public const string OathTag = "fealty:oath", LeviesTag = "fealty:levies", ProtectedTag = "fealty:protected", ShortTag = "fealty:short", VassalTag = "vassal:town",
-            HeavyTag = "vassal:heavy", VassalLevyTag = "vassal:levy";
+            HeavyTag = "vassal:heavy", VassalLevyTag = "vassal:levy", LeviesSentTag = "fealty:levies:sent", LeviesRefusedTag = "fealty:levies:refused";
 
-        public static readonly string[] Tags = { OathTag, LeviesTag, ProtectedTag, ShortTag, VassalTag, HeavyTag, VassalLevyTag };
+        public static readonly string[] Tags = { OathTag, LeviesTag, ProtectedTag, ShortTag, VassalTag, HeavyTag, VassalLevyTag, LeviesSentTag, LeviesRefusedTag };
+
+        /// <summary>
+        /// What became of their calls on the colony's levies this season, as the history keeps each (dip:levy): their people
+        /// For it when the levies came to their town, Against it when the colony refused or nobody set out in time.
+        /// </summary>
+        public static void LevyOutcome(bool theirsFor, bool theirsAgainst, ref bool sent, ref bool refused)
+        {
+            if (theirsFor) sent = true;
+            if (theirsAgainst) refused = true;
+        }
 
         /// <summary>A season's worth of days: what "this season" means for the tags.</summary>
         public static bool ThisSeason(int at, int now) => at >= 0 && now - at < SeasonDays * DayTicks;

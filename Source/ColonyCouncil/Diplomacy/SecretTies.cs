@@ -138,16 +138,22 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Their answer to a letter that pressed it (TaskLetters.Read): given in, the silver comes with their answer; refused, the colony tells it.</summary>
-        internal static string PressRead(int id, Notable n, Map home, ref AnswerTone tone, List<Thing> things)
+        /// <summary>
+        /// Their answer to a letter that pressed it (TaskLetters.Read): given in, the silver comes with their answer; refused,
+        /// the colony tells it. No longer pressed by the time they read it (answered face to face, or let go): curt, and
+        /// <paramref name="moot"/> so their words are picked as a moot answer's (no silver promised).
+        /// </summary>
+        internal static string PressRead(int id, Notable n, Map home, ref AnswerTone tone, List<Thing> things, out bool moot)
         {
+            moot = false;
             var t = WorldLedger.Get(id);
             if (t == null || t.kind != Tie.Kind.Secret || t.state != Tie.State.CalledIn)
             {
+                moot = true;
                 tone = AnswerTone.Curt;
                 return TaskWords.T("CC_Keeper_Ans_Moot", n.Name.Named("NAME"));
             }
-            var answer = Answer(t, n, home, out string line);
+            var answer = Answer(t, n, home, false, out string line);
             if (answer == PressAnswer.Complied)
             {
                 things.AddRange(Couriers.Make(ThingDefOf.Silver, KeeperMath.Hush(Weight(t))));
@@ -164,7 +170,7 @@ namespace ColonyCouncil
             var n = NotableOf(t);
             if (n == null) return;
             WorldLedger.Set(t, Tie.State.CalledIn);
-            var answer = Answer(t, n, home, out string line);
+            var answer = Answer(t, n, home, true, out string line);
             // together: asked and answered face to face, at the end of the talk that brought them together.
             Outsiders.Say(x, answer == PressAnswer.Complied ? "pressyes" : "pressno", keeper);
             if (answer == PressAnswer.Complied && home != null) Couriers.PaySilver(home, x.Position, KeeperMath.Hush(Weight(t)), n.faction, x);
@@ -173,15 +179,18 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Their answer, by how much it weighs, their regard and their nature: given in (kept), or refused (broken) and the
-        /// colony tells it; either way they think less of the colony, and remember being pressed.
+        /// colony tells it; either way they think less of the colony, and remember being pressed, and how: by letter, or face
+        /// to face (<paramref name="face"/>), for their talk (them:pressed, and them:pressed:letter or them:pressed:face).
         /// </summary>
-        private static PressAnswer Answer(Tie t, Notable n, Map home, out string line)
+        private static PressAnswer Answer(Tie t, Notable n, Map home, bool face, out string line)
         {
             int opinion = NotableBook.Opinion(n);
             var answer = KeeperMath.Answer(Weight(t), opinion, NotableBook.Warmth(n.pawn), Rand.Value);
             string what = What(t);
             n.personal += KeeperMath.PressedRegard;
-            if (!n.done.Contains(KeeperMath.PressedKey)) n.done.Add(KeeperMath.PressedKey);
+            foreach (var key in KeeperMath.PressedKeys(face))
+                if (!n.done.Contains(key))
+                    n.done.Add(key);
             while (n.done.Count > 12) n.done.RemoveAt(0);
             var learner = Learner(t);
             var actors = new List<HistoryActor> { new HistoryActor(t.from, HistoryRole.Did), new HistoryActor(n.Person, HistoryRole.Against) };

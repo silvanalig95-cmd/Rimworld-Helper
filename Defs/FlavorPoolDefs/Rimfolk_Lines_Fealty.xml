@@ -7,8 +7,8 @@
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
       "fealty" (the colony asking to swear fealty to them): warm, cordial or cool when they accept (their lord comes to
       the gate), refusal when they don't. And their words in a letter of any purpose while the colony is sworn to them
-      (fealty:oath, with tie:fealty:due or fealty:short when tribute is owed, fealty:levies when its levies were called
-      this season, fealty:protected when their band came this season), or while a town of theirs is the colony's own
+      (fealty:oath, with tie:fealty:due or fealty:short when tribute is owed, fealty:levies when its levies came to their
+      call this season, fealty:protected when their band came this season), or while a town of theirs is the colony's own
       vassal (vassal:town, with vassal:heavy and vassal:levy). By their ways only theirLowtech (tribes, the middle ages
       and the Empire's court, though the Empire takes no oath) and theirHightech: a theirLowtech line must read true for
       tribes and the middle ages.

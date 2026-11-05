@@ -20,6 +20,14 @@ namespace ColonyCouncil
         /// <summary>Their words in the answer: "task" (the purpose) and the kind's code; "pressed" for a secret pressed.</summary>
         public const string PressedTag = "pressed";
 
+        /// <summary>
+        /// An answer overtaken by events (DiplomacyLetters.Moot): a task over before they read its letter answered under
+        /// "taskmoot" in place of its kind's code, a secret no longer pressed (answered already, or let go) under "pressmoot"
+        /// in place of "pressed", so no line promising silver or answering the task's business is quoted with it
+        /// (Rimfolk_Lines_Overtaken.xml).
+        /// </summary>
+        public const string TaskMootTag = "taskmoot", PressMootTag = "pressmoot";
+
         public static bool Owns(LetterPurpose p) => p == LetterPurpose.Task;
 
         /// <summary>Never offered in the letter dialog: officers write these on their own.</summary>
@@ -66,18 +74,27 @@ namespace ColonyCouncil
         private static int Id(string key, string prefix) =>
             key != null && key.StartsWith(prefix, StringComparison.Ordinal) && int.TryParse(key.Substring(prefix.Length), out int id) ? id : -1;
 
-        /// <summary>Tags for their words in the answer (DiplomacyLetters.QuoteTags): the task's kind, or a secret pressed and how they took it.</summary>
+        /// <summary>
+        /// Tags for their words in the answer (DiplomacyLetters.QuoteTags): the task's kind, or a secret pressed and how they
+        /// took it; a letter overtaken by events by its moot tag instead (TaskMootTag, PressMootTag).
+        /// </summary>
         public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
         {
             if (l == null || tags == null || !Owns(l.purpose)) return;
+            bool moot = DiplomacyLetters.IsMoot(l);
             int task = Id(l.topicKey, TaskPrefix);
             if (task >= 0)
             {
+                if (moot)
+                {
+                    tags.Add(TaskMootTag);
+                    return;
+                }
                 var t = CouncilTasks.Get(task, out _);
                 if (t != null) tags.Add(TaskMath.Code(t.kind));
                 return;
             }
-            if (Id(l.topicKey, PressPrefix) >= 0) tags.Add(PressedTag);
+            if (Id(l.topicKey, PressPrefix) >= 0) tags.Add(moot ? PressMootTag : PressedTag);
         }
 
         /// <summary>They have read it (or heard the call): the task's step, or the secret pressed and their answer. The answer's words, its tone set.</summary>
@@ -89,11 +106,20 @@ namespace ColonyCouncil
                 if (task >= 0)
                 {
                     var t = CouncilTasks.Get(task, out _);
-                    if (t == null || !t.Live) return TaskWords.T("CC_Task_Ans_Moot", n.Name.Named("NAME"));
+                    if (t == null || !t.Live)
+                    {
+                        DiplomacyLetters.Moot(l);
+                        return TaskWords.T("CC_Task_Ans_Moot", n.Name.Named("NAME"));
+                    }
                     return TaskResults.LetterRead(t, l, n, ref tone);
                 }
                 int press = Id(l.topicKey, PressPrefix);
-                if (press >= 0) return SecretTies.PressRead(press, n, l.map, ref tone, things);
+                if (press >= 0)
+                {
+                    string line = SecretTies.PressRead(press, n, l.map, ref tone, things, out bool moot);
+                    if (moot) DiplomacyLetters.Moot(l);
+                    return line;
+                }
             }
             catch (Exception e)
             {

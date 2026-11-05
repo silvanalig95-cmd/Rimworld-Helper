@@ -7,7 +7,9 @@
        :theirkin, :keepfaith, :speakfaith, :host, :drill, :tend; {OFFICER} the officer, {OFFICE} the seat; task:you when
        the officer is the one talking; task:writes when the officer has written twice or more; task:visited when the
        officer visited their town this season. Of the one spoken to: them:caughtkeeper (they caught the colony's keeper
-       prying; :you when the keeper is the one talking), them:pressed (the colony pressed them over a secret),
+       prying; :you when the keeper is the one talking), them:pressed (the colony pressed them over a secret; how in
+       them:pressed:letter and them:pressed:face, and Rimfolk_OT_Keeper_Pressed, which speaks of the letter, asks the
+       first in code: OutsiderTalkMath.AlsoWhen),
        keeper:watched (the keeper walked with them after dark lately). By their ways where it matters. The format is
        described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 
