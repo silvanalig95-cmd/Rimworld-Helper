@@ -76,12 +76,20 @@ namespace ColonyCouncil
             return Room(home, WardKind.OurHostage) ? null : WardWords.P("CC_Ward_Why_Full");
         }
 
-        /// <summary>Room at the home for one more hostage of this kind for this truce or pact (one each way per tie, four records in all).</summary>
+        /// <summary>
+        /// Room at the home for one more hostage of this kind for this truce or pact (one each way per tie, four records in
+        /// all). One whose term is over (going home, or a pact's year out) no longer stands for the tie: a renewed pact may
+        /// have a new hostage of its own while the last walks home.
+        /// </summary>
         private static bool Fits(Map home, WardKind kind, Tie guaranteed)
         {
             var h = DiplomacyBook.Instance?.Existing(home);
-            return h == null || WardMath.Fits(h.wards.Select(x => (x.kind, x.guarantees)).ToList(), kind, guaranteed?.id ?? -2);
+            return h == null || WardMath.Fits(h.wards.Select(x => (x.kind, Served(x) ? -3 : x.guarantees)).ToList(), kind, guaranteed?.id ?? -2);
         }
+
+        /// <summary>A hostage whose term is over: walking (or riding) home, or here or there with the pact's year out.</summary>
+        private static bool Served(WardStay w) =>
+            w != null && w.Hostage && (w.stage == WardStage.Going || (w.stage == WardStage.Here || w.stage == WardStage.Away) && EndOf(w) == WardMath.HostageEnd.Home);
 
         /// <summary>Room at the home for one more record of this kind, whatever it guarantees (for the letters' why not).</summary>
         private static bool Room(Map home, WardKind kind)
@@ -163,7 +171,7 @@ namespace ColonyCouncil
             var w = new WardStay
             {
                 id = book.NextId(), kind = WardKind.TheirHostage, stage = WardStage.Coming, pawn = p, people = f, guarantees = guaranteed.id, agreed = Now,
-                due = Now + Mathf.RoundToInt(Rand.Range(3f, 8f) * GenDate.TicksPerHour), notable = kin?.id ?? -1, name = p.LabelShort
+                due = Now + Mathf.RoundToInt(Rand.Range(3f, 8f) * GenDate.TicksPerHour), notable = kin?.id ?? -1, name = p.LabelShort, until = TermEndOf(guaranteed)
             };
             h.wards.Add(w);
             WorldLedger.Keep(p, KeepFor.Hostage);
@@ -187,7 +195,7 @@ namespace ColonyCouncil
             var w = new WardStay
             {
                 id = book.NextId(), kind = WardKind.OurHostage, stage = WardStage.Coming, pawn = p, people = f, guarantees = guaranteed.id, agreed = Now, due = Now,
-                town = town.ID, townName = town.Name, name = p.LabelShort
+                town = town.ID, townName = town.Name, name = p.LabelShort, until = TermEndOf(guaranteed)
             };
             h.wards.Add(w);
             var tie = WorldLedger.AddTie(Tie.Kind.Hostage, Diplomacy.Colony(home), Refs.Of(f), new TieTerms { about = Refs.Of(p), key = what, count = guaranteed.id }, Tie.Never,
@@ -257,13 +265,34 @@ namespace ColonyCouncil
 
         // ================= The term =================
 
-        /// <summary>How the term stands, from the truce or pact the hostage was given for (WardMath.EndOf).</summary>
+        /// <summary>
+        /// How the term stands, from the truce or pact the hostage was given for (WardMath.EndOf): a defence pact's hostage
+        /// goes home at the end of the pact year they were given for, even when the pact is renewed.
+        /// </summary>
         public static WardMath.HostageEnd EndOf(WardStay w)
         {
             var g = WorldLedger.Get(w?.guarantees ?? -1);
             if (g == null) return WardMath.HostageEnd.Home;
             bool brokenByThem = g.kind == Tie.Kind.Truce && g.terms?.goods == Truces.BrokenByThemKey;
-            return WardMath.EndOf(g.Live, g.state == Tie.State.Broken, brokenByThem);
+            bool yearOver = g.kind == Tie.Kind.Pact && g.Live && WardMath.YearOver(TermEnd(w, g), Now);
+            return WardMath.EndOf(g.Live, g.state == Tie.State.Broken, brokenByThem, yearOver);
+        }
+
+        /// <summary>A pact's hostage's term: the end of the pact's year as it stands when they are given; none for a truce (its own term is the truce's).</summary>
+        private static int TermEndOf(Tie guaranteed) => guaranteed?.kind == Tie.Kind.Pact ? WardMath.YearEndTick(guaranteed.terms?.number ?? 0f) : -1;
+
+        /// <summary>
+        /// A pact's hostage's term's end (WardStay.until), noted at the giving; a hostage given before the rule takes the
+        /// pact's year as it stands at the first look, and keeps it however the pact is renewed after.
+        /// </summary>
+        private static int TermEnd(WardStay w, Tie pact)
+        {
+            if (w.until < 0)
+            {
+                w.until = TermEndOf(pact);
+                if (w.until >= 0) Diplomacy.Dirty();
+            }
+            return w.until;
         }
 
         /// <summary>

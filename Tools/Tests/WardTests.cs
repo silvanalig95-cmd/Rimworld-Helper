@@ -115,6 +115,19 @@ public static class WardTests
         C(WardMath.EndOf(true, false, false) == WardMath.HostageEnd.Holds && WardMath.EndOf(false, false, false) == WardMath.HostageEnd.Home
           && WardMath.EndOf(false, true, true) == WardMath.HostageEnd.TheyBroke && WardMath.EndOf(false, true, false) == WardMath.HostageEnd.WeBroke,
             "the term's end from its tie: holds, home, broken by them, broken by the colony");
+        // A defence pact's hostage goes home at the end of each pact year, even when the pact is renewed (by letter or by a
+        // marriage alliance); a renewal may ask for a new hostage as its own term (stage 2 round c review, the default chosen).
+        C(WardMath.EndOf(true, false, false, true) == WardMath.HostageEnd.Home && WardMath.EndOf(true, false, false, false) == WardMath.HostageEnd.Holds
+          && WardMath.EndOf(false, true, false, true) == WardMath.HostageEnd.WeBroke && WardMath.EndOf(false, true, true, true) == WardMath.HostageEnd.TheyBroke,
+            "a pact's hostage goes home with the term kept once the pact year they were given for is out, the pact renewed or not; a broken one stays broken");
+        C(!WardMath.YearOver(-1, 999 * D) && !WardMath.YearOver(30 * D, 30 * D - 1) && WardMath.YearOver(30 * D, 30 * D) && WardMath.YearOver(30 * D, 95 * D),
+            "the pact year is out at its last tick, and stays out after a renewal moves the pact's own day on");
+        C(WardMath.YearEndTick(10.5f) == 10 * D + D / 2 && WardMath.YearEndTick(0f) == -1 && WardMath.YearEndTick(PactMath.PactDays + 3f) == (int)((PactMath.PactDays + 3f) * D),
+            "the year's end from the pact's day, as the pact keeps it");
+        C(!WardMath.Fits(new List<(WardKind, int)> { (WardKind.TheirHostage, 7) }, WardKind.TheirHostage, 7)
+          && WardMath.Fits(new List<(WardKind, int)> { (WardKind.TheirHostage, -3) }, WardKind.TheirHostage, 7)
+          && !WardMath.Fits(new List<(WardKind, int)> { (WardKind.TheirHostage, -3), (WardKind.OurHostage, -3), (WardKind.Theirs, -1), (WardKind.Ours, -1) }, WardKind.TheirHostage, 7),
+            "one whose term is served no longer stands for the pact (a renewal's new one may come), and still counts toward the four");
         C(WardMath.WouldJoin(0.6f, 12f) && !WardMath.WouldJoin(0.4f, 30f) && !WardMath.WouldJoin(0.9f, 5f), "a forfeit hostage would stay only content and settled");
         C(WardMath.ForfeitDays == 5f && WardMath.ReturnedWeight(40f) > WardMath.ReturnedWeight(10f), "unanswered, they slip away; returned, remembered by how long kept");
 
@@ -222,6 +235,14 @@ public static class WardTests
         C(Code("Diplomacy/Truces.cs").Contains("case TrucePrice.TheirHostage:") && Code("Diplomacy/Truces.cs").Contains("case TrucePrice.OurHostage:")
           && dipLetters.Contains("Hostages.TruceOptions(f, map, PricePrefix)") && dipLetters.Contains("Hostages.PactOptions(pf, map ?? Home)") && dipLetters.Contains("Hostages.ForPact(f, home, k, l.help)"),
             "hostages as a truce's price and a defense pact's term");
+        string pacts = Code("Diplomacy/Pacts.cs");
+        C(Regex.Matches(hostages, @"until = TermEndOf\(guaranteed\)").Count == 2 && hostages.Contains("WardMath.YearOver(TermEnd(w, g), Now)")
+          && hostages.Contains("Served(x) ? -3 : x.guarantees") && dip["Wards.cs"].Contains("w.until = w.Hostage ? w.until :") && dip["WardsAbroad.cs"].Contains("w.until = w.Hostage ? w.until :"),
+            "a pact's hostage's term is the pact year noted at the giving, kept through joining and arriving, and a served one makes way");
+        C(pacts.Contains("Hostages.PactOptions(people, m)") && pacts.Contains("Pacts.Accept(people, mm, (PactKind)kind, renew);") && pacts.Contains("Hostages.ForPact(people, mm, (PactKind)kind, code)")
+          && pacts.Contains("CC_Pact_Opt_RenewHostage") && pacts.Contains("Hostages.For(renew).Count > 0"),
+            "their renewal letter may take a new hostage as a term of the next year, and says the last goes home");
+        foreach (var k in new[] { "CC_Pact_Opt_RenewHostage", "CC_Pact_Renew_Hostage" }) C(keyedAll.Contains("<" + k + ">"), $"{k} has its words");
         string hub = Code("Diplomacy/Diplomacy.cs");
         C(hub.Contains("Wards.Hourly(now)") && hub.Contains("Wards.Daily(now)"), "in diplomacy's hour and day");
         C(dipLetters.Contains("WardLetters.Owns(p)") && dipLetters.Contains("WardLetters.Read(l, n, l.map ?? Home, ref tone)"), "the letter purpose Ward in the existing frame");

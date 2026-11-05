@@ -719,10 +719,12 @@ namespace ColonyCouncil
             return FealtyWords.T(FealtyMath.Explained(p) ? "CC_Vassal_Dues_Explained" : "CC_Vassal_Dues_OnTime", n.Name.Named("NAME"), ((int)t.progress).Named("SILVER"));
         }
 
-        /// <summary>Their carter brings the dues to the gate: the task done, the record's season noted.</summary>
+        /// <summary>
+        /// Their carter brings the dues to the gate: the task done, the record's season noted. Called on the hour their answer
+        /// set (CouncilTasks.Step waits for it), after DuesStep has moved the next look on: no wait of its own here.
+        /// </summary>
         private static void Collected(CouncilTask t, DiplomacyHome h, Map home, VassalTerms v, int now)
         {
-            if (now < t.nextTick) return;
             int silver = Mathf.Max(10, Mathf.RoundToInt(t.progress));
             var gate = PlaySpots.GateCell(home, null);
             var things = Couriers.Make(ThingDefOf.Silver, silver);

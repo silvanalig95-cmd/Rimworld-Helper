@@ -214,6 +214,10 @@ public static class TaskTests
         C(ransoms.Contains("public static bool DemandFor(Map map, Pawn p, Faction f, float factor)") && ransoms.Contains("TaskResults.KinTask(f, map) ? TaskMath.KinSooner")
           && ransoms.Contains("o.price * TaskMath.KinHigher"), "the warden's lower price, their kin's offers sooner and higher");
         C(Code("World/Region/RaidersCamp.cs").Contains("public static bool SpotByPatrol(Map home, Pawn spotter)"), "the patrol sees a hidden camp");
+        // The round c review: a courier trip is let go in the pass its people leave the map, so a task reading its tally keeps it till then.
+        C(Code("Couriers/CourierTracker.cs").Contains("AllGone(t) && !CouncilTasks.Awaits(t.id)") && Code("Diplomacy/CouncilTasks.cs").Contains("public static bool Awaits(int tripId)")
+          && Code("Diplomacy/CouncilTasks.cs").Contains("if (t.kind == TaskKind.Trade) SamplesHour(t);\n            if (now < t.nextTick) return;"),
+            "an informer paid and samples fetched are read from their trip, kept for the task, and the samples looked at hourly");
         C(Code("UI/DecreePanel.cs").Contains("TaskPanels.OfficeRow(office, holder, colony.Map"), "Council → Offices: each seat's task under its row");
         C(Code("UI/Region/HereAndAwayView.cs").Contains("dip.tasks") && Code("Diplomacy/DiplomacyModel.cs").Contains("TaskPanels.AwayRows()"), "Here and away: the tasks and the officer away");
         C(dip["TaskPanels.cs"].Contains("Inbox.Register(\"task\", InboxSection.Needs") && dip["TaskPanels.cs"].Contains("Inbox.Register(\"task-under-way\", InboxSection.UnderWay")

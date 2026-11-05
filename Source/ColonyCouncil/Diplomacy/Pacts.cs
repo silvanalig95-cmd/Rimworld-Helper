@@ -240,6 +240,8 @@ namespace ColonyCouncil
                 : PactWords.T("CC_Pact_Offer", who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"), PactWords.Kind(k).Named("KIND"),
                     PactWords.People(enemy).Named("ENEMY"));
             text += "\n\n" + PactWords.P("CC_Pact_What_" + k, PactWords.People(f).Named("PEOPLE"));
+            // A hostage given for the year goes home with it (Hostages.EndOf), renewed or not; the renewal may ask for a new one.
+            if (renew != null && k == PactKind.Defence && Hostages.For(renew).Count > 0) text += "\n\n" + PactWords.P("CC_Pact_Renew_Hostage", PactWords.People(f).Named("PEOPLE"));
             var town = head != null ? NotableBook.TownOf(head.town) : WorldSituationWorker.NearestTown(f, home);
             var letter = LetterMaker.MakeLetter(PactWords.P(renew != null ? "CC_Pact_Renew_Label" : "CC_Pact_Offer_Label", PactWords.People(f).Named("PEOPLE")), text, def,
                 town != null ? new LookTargets(town) : LookTargets.Invalid, f);
@@ -674,6 +676,29 @@ namespace ColonyCouncil
                     },
                     resolveTree = true
                 };
+                // A defence pact renewed may take a new hostage as a term of its own (the last one goes home with the year: Hostages.EndOf).
+                if (renew >= 0 && (PactKind)kind == PactKind.Defence && Hostages.On)
+                    foreach (var o in Hostages.PactOptions(people, m))
+                    {
+                        if (!WardMath.ParseHostage(o.code, out _, out _)) continue;
+                        string code = o.code;
+                        var opt = new DiaOption(PactWords.P("CC_Pact_Opt_RenewHostage", o.label.Named("TERM")))
+                        {
+                            action = () =>
+                            {
+                                Find.LetterStack.RemoveLetter(this);
+                                if (!Valid(out var mm)) return;
+                                Pacts.Accept(people, mm, (PactKind)kind, renew);
+                                string given = Hostages.ForPact(people, mm, (PactKind)kind, code);
+                                if (!given.NullOrEmpty())
+                                    // apart: the colony's answer to their letter, told in a message; the hostage comes or goes on the map.
+                                    Tell.Message(NewsKind.World, Importance.Notable, mm, given, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                            },
+                            resolveTree = true
+                        };
+                        if (o.why != null) opt.Disable(o.why);
+                        yield return opt;
+                    }
                 yield return new DiaOption(PactWords.P(renew >= 0 ? "CC_Pact_Opt_LetEnd" : "CC_Pact_Opt_Refuse"))
                 {
                     action = () =>
