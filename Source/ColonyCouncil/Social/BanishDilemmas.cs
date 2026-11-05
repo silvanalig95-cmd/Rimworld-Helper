@@ -193,6 +193,15 @@ namespace ColonyCouncil
 
         public override bool ChanceEach => false;
 
+        /// <summary>Their nights apart need the answers to play out on the map (the timetable is changed there), and hours not already changed.</summary>
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (kind != "apart" || ctx?.a == null) return null;
+            if (!PlayOuts.On || (AnswerShifts.Instance?.Shifted(ctx.a) ?? false) || ctx.a.timetable == null)
+                return "CC_Banish_WhyNot_Hours".Translate(ctx.a.LabelShort).Resolve();
+            return null;
+        }
+
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             if (ctx?.a == null) return;

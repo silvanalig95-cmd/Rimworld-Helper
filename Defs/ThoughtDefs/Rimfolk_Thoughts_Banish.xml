@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Banishment by the council (Social/Banishment.cs). The game gives its own moods for a banishment (everyone's "colonist
+    banished", heavier when they're sent out to die); these are Rimfolk's beside them: the word itself, the one who had to
+    tell them, those glad to see them go, and those who loved them, who stay hurt a while.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Banish_Warned</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>a word from the council</label>
+        <description>I was taken aside about the fights. The council is watching me now.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+        <baseOpinionOffset>-6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Banish_HadToTell</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>had to tell them</label>
+        <description>I was the one who told them they had to go. I won't forget their face.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Banish_Glad</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>glad they're gone</label>
+        <description>The council sent away someone I couldn't stand. I won't pretend to be sorry.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Banish_Grief</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>a friend sent away</label>
+        <description>The council banished my friend. Whatever they say about the fights, I knew another side of them.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Banish_GriefKin</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>sent away by the council</label>
+        <description>The council banished someone I love. I keep thinking of them out there, alone.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -515,6 +515,9 @@ wishPh.Add("ASKER");
 wishPh.Add("SEEK");
 // Invitations (Missions/InviteForms.cs): the host by their title, the rite of the day, the colony's titled guest.
 wishPh.UnionWith(new[] { "HOST", "RITE", "GUEST" });
+// Banishment by the council (Social/BanishDilemmas.cs): how many fights and with whom, the council's voices, the answer
+// that sends them away by the colony's age.
+wishPh.UnionWith(new[] { "FIGHTS", "WITH", "VOICES", "BANISH" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

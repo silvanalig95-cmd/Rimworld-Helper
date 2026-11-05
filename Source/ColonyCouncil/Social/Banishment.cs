@@ -532,9 +532,12 @@ namespace ColonyCouncil
             // One sent away who is one of the colony again (let in at the gate): it's over.
             if (r.banishedTick >= 0 && !r.cameBack && p.Faction == Faction.OfPlayer)
             {
+                // Home again on the colony's word: the slate is clean, and a while's grace before anyone asks again.
                 r.cameBack = true;
-                r.stepTick = now;
-                r.step = "back";
+                r.stepTick = -1;
+                r.step = null;
+                r.stage = BanishStage.None;
+                r.letBeUntil = now + (int)(BanishMath.LetBeDays * GenDate.TicksPerDay);
                 return;
             }
             if (r.wordAsked >= 0)
@@ -647,7 +650,7 @@ namespace ColonyCouncil
             var colony = ColonyAt(p.Map);
             var t = TroubleOf(p, colony, BanishMath.WindowFrom(Now));
             string mood = BanishMath.Say(t.started, t.joined, p.needs?.mood?.CurLevelPercentage ?? 0.5f);
-            Speech.Say(by, Line("Rimfolk_Pool_BanishTell", by, p, Tags()), p);
+            Speech.Say(by, Line("Rimfolk_Pool_BanishTell", by, p, Tags(r.step == "apart" ? "apart" : r.step != null ? "warned" : null)), p);
             Speech.Say(p, Line("Rimfolk_Pool_BanishReply", p, by, Tags(mood)), by);
             r.stage = BanishStage.Gathering;
             r.stageTick = Now;
