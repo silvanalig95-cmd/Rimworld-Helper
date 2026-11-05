@@ -138,6 +138,13 @@ namespace ColonyCouncil
                 Close(t, pact, null);
                 return;
             }
+            // Their caravan joined the fight through Faction Territories' own "Join fight", taken as its arrival: the colony's
+            // people are on the town's map, and no caravan of theirs is left on the world map to be seen arriving.
+            if (OnTownMap(town))
+            {
+                Arrived(t, f, home, town, enemy, null, pact);
+                return;
+            }
             var c = Answering(town);
             if (c != null)
             {
@@ -177,13 +184,22 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>They got there: the fight begins (or, the danger past, they are thanked), and the call is kept.</summary>
+        /// <summary>Two grown colonists or more on the town's own map (only a fight there puts them on it).</summary>
+        public static bool OnTownMap(Settlement town)
+        {
+            var map = town != null && town.HasMap ? town.Map : null;
+            if (map?.mapPawns == null) return false;
+            int grown = map.mapPawns.FreeColonistsSpawned.Count(p => p != null && !p.DevelopmentalStage.Juvenile() && !p.Downed && !p.Dead);
+            return PactMath.Answers(grown, true);
+        }
+
+        /// <summary>They got there: the fight begins (or, the danger past, they are thanked), and the call is kept. No caravan: in the fight there already.</summary>
         private static void Arrived(Tie t, Faction f, Map home, Settlement town, Faction enemy, Caravan c, bool pact)
         {
             string how;
             try
             {
-                how = Fight(f, home, town, enemy, c);
+                how = c != null ? Fight(f, home, town, enemy, c) : PactWords.P("CC_Arms_JoinedInvasion", town.Name.Named("TOWN"));
             }
             catch (Exception e)
             {
@@ -197,8 +213,8 @@ namespace ColonyCouncil
             Close(t, pact, Tie.State.Kept);
             if (how == null)
                 // apart: the colony's caravan reached their town after the danger; told in a message.
-                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Arms_Late", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")), new LookTargets(c),
-                    MessageTypeDefOf.PositiveEvent);
+                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Arms_Late", PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN")),
+                    c != null ? new LookTargets(c) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>The call is over: a pact's call cleared (the pact goes on), a debt's kept or let go; with <paramref name="state"/> null, let go with nobody at fault.</summary>
