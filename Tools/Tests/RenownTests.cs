@@ -272,7 +272,7 @@ public static class RenownTests
           && !Code("Diplomacy/RenownWords.cs").Contains("AgeFeature.Renown"), "the one spoken to of the Empire hears the court's words (the unused Renown form gone)");
         string variantsMore = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Renown_VariantsMore.xml"));
         foreach (var k in new[] { "CC_Renown_Up", "CC_Renown_UpFor", "CC_Renown_Down", "CC_Renown_Faded", "CC_Renown_Infamous", "CC_Renown_Mended" })
-            C(keyed.Contains("<" + k + ">") && variants.Contains("<" + k + "_2>") && variantsMore.Contains("<" + k + "_4>") && variantsMore.Contains("<" + k + "_5>"), $"{k} with four fellows or more");
+            C(keyed.Contains("<" + k + ">") && variants.Contains("<" + k + "_2>") && (variants + variantsMore).Contains("<" + k + "_4>") && (variants + variantsMore).Contains("<" + k + "_5>"), $"{k} with four fellows or more");
         C(!variants.Contains("started to speak of") && !variantsMore.Contains("started to"), "a name that carries further is not said to have been unknown before");
         C(!variantsMore.Contains("—") && !Regex.IsMatch(variantsMore, @">[^<]*![^<]*<"), "no em dashes or exclamation marks in the fellows");
         C(!(keyed + variants).Contains("—") && !Regex.IsMatch(keyed + variants, @">[^<]*![^<]*<"), "no em dashes or exclamation marks in the words");
