@@ -105,7 +105,8 @@ namespace ColonyCouncil
                 string text = DipWords.T(eased ? "CC_Nature_Told_Eased" : "CC_Nature_Told", p.Named("PAWN"), why.Named("WHY"));
                 Tell.Minor(NewsKind.People, Importance.Notable, p.MapHeld, text, new LookTargets(p), eased ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             }
-            Mark(p, act, !eased, lastAct, lastTick, now, people?.Name ?? other);
+            // The mark names the people it concerned, or for a challenge the challenger.
+            Mark(p, act, !eased, lastAct, lastTick, now, act == NatureAct.AcceptedChallenge ? other ?? people?.Name : people?.Name ?? other);
             return applied;
         }
 

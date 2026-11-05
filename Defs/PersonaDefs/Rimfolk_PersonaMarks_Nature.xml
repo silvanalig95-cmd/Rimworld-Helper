@@ -84,7 +84,7 @@
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>NatureAbroad</family>
         <chance>0.6</chance>
-        <news>{PAWN_nameDef} has set out for {LABEL} a second time this year, and complains less about strange food.</news>
+        <news>{PAWN_nameDef} has set out for {LABEL} a second time this year, and seems more at ease among strangers.</news>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>

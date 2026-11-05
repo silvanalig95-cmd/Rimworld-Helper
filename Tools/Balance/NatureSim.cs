@@ -85,14 +85,13 @@ namespace Balance
             public float strain, todayTotal;
             public float[] recent = new float[HeartMath.SourceCount], today = new float[HeartMath.SourceCount];
             public int lastEpisode = -999999, natureTick = -1, kin = -1, spellUntil = -1;
-            public float lowMoodHours;
             public float natureBuilt;
         }
 
         private sealed class Tally
         {
             public int runs, colonists, episodes, episodesNatureTop, episodesWithNatureRecent, acts, felt, eased, feltBy, speakerRuns;
-            public float natureBuilt, natureEased, maxAct, speakerNature, speakerAll, mostOne;
+            public float natureBuilt, natureEased, maxAct, speakerNature, mostOne;
             public readonly float[] built = new float[HeartMath.SourceCount];
             public readonly float[] bandHours = new float[4];
             public float hours;
