@@ -12,8 +12,8 @@ namespace ColonyCouncil
     /// new deeds (FactionMemory.Kinds); words come by both sides' ages (Ages.Form: favor, truce, hostage, envoy, levy); the
     /// player is told through Tell; the region window has its Diplomacy and Household pages (DiplomacyPanels.cs), the
     /// region map's town panel a section, the right-click menu a frame for new acts (DiplomacyActs.cs) and the letters one
-    /// for new purposes (DiplomacyLetters.cs). Favours need nothing saved beyond their ties, so there is no
-    /// DiplomacyHome yet: the first record that isn't a tie (an envoy's stay, an offer for a captive) brings it.
+    /// for new purposes (DiplomacyLetters.cs). What isn't a tie (an offer for a captive, an envoy's stay either way:
+    /// release 2a.3) is each home's part, DiplomacyHome, in DiplomacyBook.
     /// <para>No pass of its own: its hour and day ride on the neighbours' (NotableBook, <see cref="Sched.Neighbours"/>),
     /// whose letters and notables it is built on, and do nothing while nothing waits.</para>
     /// </summary>
@@ -36,10 +36,19 @@ namespace ColonyCouncil
             Safe("truces", () => Truces.Hourly(now));
             Safe("pacts", () => Pacts.Hourly(now));
             Safe("calls to arms", () => CallsToArms.FavourHour(now / (float)PactMath.DayTicks));
+            // Ransom and the envoy (release 2a.3): offers for captives either way, their envoy's stay, the colony's envoy away.
+            Safe("ransom", () => Ransoms.Hourly(now));
+            if (DiplomacyBook.Instance?.AnyWaiting ?? false)
+            {
+                Safe("envoys", () => Envoys.Hourly(now));
+                Safe("envoys abroad", () => EnvoysAbroad.Hourly(now));
+            }
             if (Sched.FirstHourOfDay(now))
             {
                 Safe("day", () => FavourAsks.Daily(now));
                 Safe("pacts' day", () => Pacts.Daily(now));
+                Safe("envoys' day", () => Envoys.Daily(now));
+                Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());
             }
         }
 

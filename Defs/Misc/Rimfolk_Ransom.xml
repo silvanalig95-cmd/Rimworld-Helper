@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Ransom and the envoy (Source/ColonyCouncil/Diplomacy/Ransoms.cs, Envoys.cs, EnvoysAbroad.cs): their letters, which
+       wait for the colony's answer, the jobs that play them out on the map, and the duties of their envoy's stay. -->
+
+  <!-- Their messenger at the gate (or their call) with an offer for one of theirs in the colony's cells. -->
+  <LetterDef>
+    <defName>Rimfolk_RansomOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_RansomOffer</letterClass>
+    <color>(200, 175, 120)</color>
+    <flashColor>(225, 200, 145)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The game's ransom demand for one of the colony's, brought to the gate by their messenger where there is no comms console. -->
+  <LetterDef>
+    <defName>Rimfolk_RansomByHand</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_RansomByHand</letterClass>
+    <color>(210, 150, 110)</color>
+    <flashColor>(235, 175, 135)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- A people at peace offers to send their envoy to live at the colony for a season. -->
+  <LetterDef>
+    <defName>Rimfolk_EnvoyOffer</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_EnvoyOffer</letterClass>
+    <color>(150, 190, 175)</color>
+    <flashColor>(175, 215, 200)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The colony's speaker carries the silver of their demand out to their messenger at the gate. -->
+  <JobDef>
+    <defName>Rimfolk_RansomPay</defName>
+    <driverClass>ColonyCouncil.JobDriver_RansomPay</driverClass>
+    <reportString>carrying the ransom out to the gate.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Their envoy walks out to their runner at the gate and hands over a letter home. -->
+  <JobDef>
+    <defName>Rimfolk_EnvoyLetter</defName>
+    <driverClass>ColonyCouncil.JobDriver_EnvoyLetter</driverClass>
+    <reportString>handing a letter home to a runner.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Their envoy sits in at the council's meeting. -->
+  <JobDef>
+    <defName>Rimfolk_EnvoySitIn</defName>
+    <driverClass>ColonyCouncil.JobDriver_EnvoySitIn</driverClass>
+    <reportString>sitting in at the council's meeting.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The colony's envoy walks to the map's edge and sets out for their town. -->
+  <JobDef>
+    <defName>Rimfolk_EnvoySetOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_EnvoySetOut</driverClass>
+    <reportString>setting out as the colony's envoy.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Their envoy's stay by day: about the colony's common rooms, resting when very tired (their meals and beds are
+       seen to by Envoys' hour, by the missions' hosting rules). -->
+  <DutyDef>
+    <defName>Rimfolk_EnvoyStay</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_GetRest">
+          <minCategory>VeryTired</minCategory>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>10</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- In danger: they keep to a room indoors. -->
+  <DutyDef>
+    <defName>Rimfolk_EnvoyIndoors</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>4</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetRest">
+              <minCategory>VeryTired</minCategory>
+            </li>
+            <li Class="JobGiver_WanderNearDutyLocation">
+              <wanderRadius>2</wanderRadius>
+            </li>
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>

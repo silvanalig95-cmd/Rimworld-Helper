@@ -2,7 +2,8 @@
 <Defs>
 
   <!-- The Almanac page on diplomacy (Source/ColonyCouncil/Diplomacy/; docs/design/stage2-diplomacy.md): its base, favors
-       owed and called in (the rules in FavourMath.cs), and pacts and truces (the rules in PactMath.cs). -->
+       owed and called in (the rules in FavourMath.cs), pacts and truces (the rules in PactMath.cs), and ransom and the
+       envoy (RansomMath.cs, EnvoyMath.cs). -->
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_Diplomacy</defName>
@@ -73,6 +74,47 @@ When the colony does a people a good turn of size 10 or more in their memory, th
       <li>
         <heading>Breaking them</heading>
         <text>The colony breaks a truce or a pact by attacking that people, their caravans, visitors or towns, or by refusing a call; it may end a pact by letter without blame. Broken by the colony, each people at peace with a town in reach hears that it broke its word. With Factional War, a battle on the colony's land names a pact or truce partner among the two sides: fighting beside a pact partner keeps the pact, and harm done to a truce partner's fighters breaks the truce.</text>
+      </li>
+      <li>
+        <heading>Ransom for their own</heading>
+        <text>Two to six days after one of a people is taken prisoner, their messenger may walk to the colony's gate with an offer for them: always for their leader, a notable or a notable's kin, and for anyone else six times in ten from a people at peace and three in ten from one at war with the colony. A people at war sends a go-between of a people at peace with both; with a working comms console and a people who use one, the offer comes as a call. The price is half to the whole of the captive's market value, half again for a notable and twice for their leader, in silver, or in goods from a tribe. "Offer for ransom" on the captive's card writes to their head first, and brings their offer sooner if they want the captive back. Accept, and a warden walks the captive out by the gate while their messenger sets the price down (after a call, their pod brings it). Ask for more, and the colony's speaker bargains: a quarter more, likelier the better their Social, or the messenger walks away. Let the captive go for nothing, and their people owe the colony a debt of honor for it. Keep them, and they may ask once more within a season; refused three times, they hold a grudge and stop asking. A captive paid for leaves no debt of honor, though the game's own goodwill for a captive who leaves healthy stands.</text>
+        <table>
+          <li>Age | The colony's word | Their way</li>
+          <li>Tribal | captives traded back | an exchange of captives for goods</li>
+          <li>Medieval | ransom by messenger | a price paid in silver</li>
+          <li>Industrial | ransom by radio | an exchange at a crossing</li>
+          <li>Spacer | a negotiated exchange by comms | an exchange on agreed terms</li>
+        </table>
+      </li>
+      <li>
+        <heading>Ransom for the colony's own</heading>
+        <text>When another people carries one of the colony's off, the game's own ransom demand comes now and then, at the game's rate, asking 1.2 to 2.2 times the colonist's market value with a day to answer. With a powered comms console it comes as the game's call, as always. Without one, their messenger (or a go-between) brings the same demand to the gate. Paid, the colony's speaker carries the silver out to them, and some hours later the colonist walks in from the edge of the colony's land, or comes by drop pod from a people of the machine ages. A colonist held long may join their captors, as the game has it.</text>
+      </li>
+      <li>
+        <heading>Exchanges and the trap</heading>
+        <text>When a people holds one of the colony's and the colony holds one of theirs, "Offer an exchange" (the captive's card, their people's card, a letter, or face to face with one of theirs at the colony) puts it to them. They agree by who is worth more to them, a notable or their kin counting for more, and their head's regard. Agreed, their party walks the colony's own to the gate, and a warden walks theirs out there. With a people at war with the colony, an exchange at the gate can be a trap: at the game's peace talks' disaster rate, 5%, times the game's own factor for the negotiator's ability (four times with none, 0.4 at its best), a band of theirs at 0.35 of the threat points falls on the gate from its side as the captive walks out. The letter names that chance before the choice, and never with a people at peace.</text>
+        <table>
+          <li>The speaker's negotiation ability | Chance of a trap</li>
+          <li>none | 20%</li>
+          <li>100% | 5%</li>
+          <li>150% or more | 2%</li>
+        </table>
+      </li>
+      <li>
+        <heading>Their envoy for a season</heading>
+        <text>A people at peace with goodwill 30 or more, whose envoy the colony knows, may offer to send them to live at the colony for a season, at most once a year per people and a season apart at each home, one envoy at a time at a home; the colony may also ask by letter ("Ask for their envoy"). Their envoy comes with an attendant and does no work. They keep about the colony's common rooms by day and indoors in danger, eat at its table (fine meals first), sleep in a bed set aside for them ("Set aside a bed" on their card), else a spare bed or the floor, talk with its people, sit in at a council meeting that falls during the stay, and hand a letter home to their runner at the gate every five days. How the stay goes shows on their card as content, cool or offended, from each day's meals, each night's bed, how their talks with the colonists went, gifts and the meeting; an envoy of the Empire expects a room of their own and fine meals. At the season's end their report moves their head's regard of the colony: up 12 when content, a little when cool, down 10 when offended (and seeing them off early is a slight). A very good stay leaves their people owing the colony a debt of honor. Hurt while here costs a little regard if the colony sheltered them and a lot in the open; hurt by the colony, they leave at once.</text>
+        <table>
+          <li>Age | The colony's word | Their way</li>
+          <li>Tribal | a guest-friend by the fire | a guest-gift and a seat by the fire</li>
+          <li>Medieval | an envoy at court | letters of credence</li>
+          <li>Industrial | a consul | credentials presented</li>
+          <li>Spacer | a liaison | credentials sent ahead by comms</li>
+        </table>
+        <after>While their envoy is here, pacts, favors and exchanges can be spoken of face to face, with no letter.</after>
+      </li>
+      <li>
+        <heading>The colony's own envoy</heading>
+        <text>"Send an envoy" on a people's card or one of their towns sends a colonist good with people (Social 6 or more) to live at their town for a season. The council's question says what it costs: their work is lost until they come home, and the road there and back is the world's own. They take food that keeps from the stores, walk to the edge and set out as a caravan of their own. At the town, every five days their letter brings the town's news and its notables think better of the colony, more the better the envoy's Social. At the season's end their hosts give them food for the road, their head a parting gift when they think well of the colony, and they come home better with people. "Call home" on their card brings them back sooner. The settings "Ransom" and "Envoys" in the section "Diplomacy" switch these parts off; what is under way plays out.</text>
       </li>
     </sections>
     <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>

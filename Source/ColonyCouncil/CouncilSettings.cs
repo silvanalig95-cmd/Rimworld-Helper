@@ -201,6 +201,10 @@ namespace ColonyCouncil
         public bool diplomacyPacts = true;
         /// <summary>While a truce holds, the storyteller doesn't choose that people to raid that home (a hook on the game's choice of raiders; with the deeper hooks).</summary>
         public bool truceRaids = true;
+        /// <summary>Ransom both ways (Diplomacy/Ransoms.cs): their offers for their own in the colony's cells, the game's demand by messenger without a comms console, exchanges at the gate. Off, nothing new comes, and what is under way plays out.</summary>
+        public bool diplomacyRansom = true;
+        /// <summary>Envoys both ways (Diplomacy/Envoys.cs, EnvoysAbroad.cs): their envoy as the colony's guest for a season, and the colony's own at their town. Off, nothing new is agreed, and a stay under way runs its season.</summary>
+        public bool diplomacyEnvoys = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -580,6 +584,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyFavours, "diplomacyFavours", true);
             Scribe_Values.Look(ref diplomacyPacts, "diplomacyPacts", true);
             Scribe_Values.Look(ref truceRaids, "truceRaids", true);
+            Scribe_Values.Look(ref diplomacyRansom, "diplomacyRansom", true);
+            Scribe_Values.Look(ref diplomacyEnvoys, "diplomacyEnvoys", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

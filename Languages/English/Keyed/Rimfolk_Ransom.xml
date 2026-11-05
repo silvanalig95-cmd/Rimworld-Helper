@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, ransom and the envoy (Source/ColonyCouncil/Diplomacy/Ransoms.cs, Envoys.cs, EnvoysAbroad.cs;
+       docs/design/stage2-diplomacy.md, round a, items 3 and 4). Keys with numbered fellows (_2 ...) are picked at random
+       (TextVariants). {WORD} is the colony's word by its age, {RITE} their way by theirs (Rimfolk_Ages.xml: Ransom, Envoy). -->
+
+  <!-- The letter purposes -->
+  <CC_Letter_Purpose_Ransom>ransom</CC_Letter_Purpose_Ransom>
+  <CC_Letter_PurposeCap_Ransom>Captives and ransom</CC_Letter_PurposeCap_Ransom>
+  <CC_Letter_Purpose_Envoy>an envoy</CC_Letter_Purpose_Envoy>
+  <CC_Letter_PurposeCap_Envoy>Asking for their envoy</CC_Letter_PurposeCap_Envoy>
+
+  <!-- The settings -->
+  <CC_Settings_DiplomacyRansom>Ransom</CC_Settings_DiplomacyRansom>
+  <CC_SetNote_DiplomacyRansom>Offers for captives both ways, the game's ransom demand by messenger without a comms console, exchanges at the gate.</CC_SetNote_DiplomacyRansom>
+  <CC_Settings_DiplomacyRansom_Tip>Two to six days after one of a people is taken prisoner, if their people want them back (their leader, a notable or a notable's kin always; anyone else six times in ten from a people at peace, three in ten from a hostile one), their messenger comes to the gate, or a go-between of a people at peace with both, or their call at the comms console, with an offer of half to the whole of the captive's market value (half again for a notable, twice for their leader). Accept, ask for more, let them go for nothing, or keep them; refused three times, a grudge. Without a powered comms console, the game's own ransom demand for one of the colony's comes by their messenger at the game's rate and fee. Offer an exchange of theirs for one of the colony's they hold, and both walk at once at the gate. With a hostile people an exchange can be a trap: five times in a hundred, from twice to twenty times with the negotiator's ability, a band of theirs falls on the gate. Off: nothing new comes, and what is under way plays out.</CC_Settings_DiplomacyRansom_Tip>
+  <CC_Settings_DiplomacyEnvoys>Envoys</CC_Settings_DiplomacyEnvoys>
+  <CC_SetNote_DiplomacyEnvoys>Their envoy as the colony's guest for a season, and the colony's own envoy at their town.</CC_SetNote_DiplomacyEnvoys>
+  <CC_Settings_DiplomacyEnvoys_Tip>A people at peace (goodwill 30 or more) whose envoy the colony knows may offer to send them for a season, at most once a year, one at a time at each home; or the colony asks by letter. Their envoy and an attendant stay as guests who do no work: they eat at the colony's table, sleep in a bed set aside for them, talk with its people, sit in at a council meeting, and send a letter home every five days. How the stay goes travels home with them: kept well, their head thinks better of the colony and may owe it a debt of honor; kept poorly, they feel slighted. The colony may send a colonist good with people (Social 6 or more) to live at their town for a season: their work is lost until they come home, their letters bring the town's news, and its notables come to think better of the colony. Off: nothing new is agreed, and a stay under way runs its season.</CC_Settings_DiplomacyEnvoys_Tip>
+
+  <!-- Their price and the odds of a trap, in words -->
+  <CC_Ransom_Silver>{SILVER} silver</CC_Ransom_Silver>
+  <CC_Ransom_TheSpeaker>the colony's speaker</CC_Ransom_TheSpeaker>
+  <CC_Ransom_Odds_None>no chance of it</CC_Ransom_Odds_None>
+  <CC_Ransom_Odds_Small>a small chance</CC_Ransom_Odds_Small>
+  <CC_Ransom_Odds_Real>a real chance</CC_Ransom_Odds_Real>
+  <CC_Ransom_Odds_Serious>a serious chance</CC_Ransom_Odds_Serious>
+
+  <!-- Their messenger on the way -->
+  <CC_Ransom_Msg_Comes>A messenger of {PEOPLE} is walking in toward the gate with word about one of theirs in the colony's cells.</CC_Ransom_Msg_Comes>
+  <CC_Ransom_Msg_GoBetween>A go-between of {ESCORT} is walking in toward the gate with word from {PEOPLE}, who are at war with the colony, about one of theirs in its cells.</CC_Ransom_Msg_GoBetween>
+  <CC_Ransom_Msg_DemandComes>A messenger is walking in toward the gate with word from {PEOPLE} about one of the colony's they hold.</CC_Ransom_Msg_DemandComes>
+  <CC_Ransom_Msg_ExchangeComes>A party of {PEOPLE} is walking in toward the gate with {OURS}, for the exchange.</CC_Ransom_Msg_ExchangeComes>
+  <CC_Ransom_Msg_NoWord>Nobody could carry word from {PEOPLE} about their captive, and they have stopped trying for now.</CC_Ransom_Msg_NoWord>
+  <CC_Ransom_Msg_Gone>{NAME} is no longer there to bargain over, and the messenger of {PEOPLE} has turned for home.</CC_Ransom_Msg_Gone>
+  <CC_Ransom_Msg_Harmed>The messenger with word from {PEOPLE} was hurt by the colony and has fled. Whatever they came to offer is off.</CC_Ransom_Msg_Harmed>
+
+  <!-- Their offer for one of theirs in the colony's cells -->
+  <CC_Ransom_Offer_Label>An offer for {CAPTIVE}</CC_Ransom_Offer_Label>
+  <CC_Ransom_Offer>{WHO}, a messenger of {PEOPLE}, has come to the colony's gate about {CAPTIVE}. They offer {PRICE} to have {CAPTIVE} back, {RITE} as their ways have it.</CC_Ransom_Offer>
+  <CC_Ransom_Offer_2>{PEOPLE} want {CAPTIVE} back. Their messenger, {WHO}, is waiting at the gate with an offer of {PRICE}: {RITE}.</CC_Ransom_Offer_2>
+  <CC_Ransom_Offer_3>{WHO} of {PEOPLE} is standing at the colony's gate. {PEOPLE} will pay {PRICE} to have {CAPTIVE} walked out to them.</CC_Ransom_Offer_3>
+  <CC_Ransom_Offer_GoBetween>{WHO} of {ESCORT} has come to the gate as a go-between for {PEOPLE}, who are at war with the colony. {PEOPLE} offer {PRICE} for {CAPTIVE}: {RITE}.</CC_Ransom_Offer_GoBetween>
+  <CC_Ransom_Offer_GoBetween_2>{PEOPLE} can't send one of their own to the colony's gate, so {WHO} of {ESCORT} has come for them. Their offer for {CAPTIVE} is {PRICE}.</CC_Ransom_Offer_GoBetween_2>
+  <CC_Ransom_Offer_Call>{PEOPLE} called on the comms console about {CAPTIVE}. They offer {PRICE} to have {CAPTIVE} back: {WORD}.</CC_Ransom_Offer_Call>
+  <CC_Ransom_Offer_Call_2>A call came in from {PEOPLE}. They know the colony holds {CAPTIVE}, and they offer {PRICE} for {CAPTIVE}'s release.</CC_Ransom_Offer_Call_2>
+  <CC_Ransom_Offer_How>Accept, and a warden walks {CAPTIVE} out by the gate while their messenger sets the price down there. Ask for more, and {SPEAKER} bargains with them: a quarter more, or they walk away. Let {CAPTIVE} go for nothing, and {PEOPLE} will owe the colony for it. Keep {CAPTIVE}, and their messenger goes home; they may ask once more within a season.</CC_Ransom_Offer_How>
+  <CC_Ransom_Offer_HowCall>Accept, and a warden walks {CAPTIVE} out by the gate while their pod brings the price to where traders leave their goods. Ask for more, and {SPEAKER} bargains with them: a quarter more, or they hang up. Let {CAPTIVE} go for nothing, and {PEOPLE} will owe the colony for it. Keep {CAPTIVE}, and they may call once more within a season.</CC_Ransom_Offer_HowCall>
+  <CC_Ransom_Offer_Again>The colony has refused them {COUNT} times already. At {MAX} they will take it as an insult and hold a grudge.</CC_Ransom_Offer_Again>
+  <CC_Ransom_Trap_Named>{PEOPLE} are at war with the colony. An exchange at the gate could be a trap, with a band of theirs waiting nearby: {ODDS}, with {SPEAKER} speaking for the colony.</CC_Ransom_Trap_Named>
+  <CC_Ransom_Opt_Accept>Accept {PRICE}</CC_Ransom_Opt_Accept>
+  <CC_Ransom_Opt_More>Ask for more</CC_Ransom_Opt_More>
+  <CC_Ransom_Opt_Free>Let them go for nothing</CC_Ransom_Opt_Free>
+  <CC_Ransom_Opt_Keep>Keep them</CC_Ransom_Opt_Keep>
+  <CC_Ransom_Paid_Gate>Their messenger is setting {PRICE} down at the gate.</CC_Ransom_Paid_Gate>
+  <CC_Ransom_Paid_Pod>Their pod with {PRICE} is coming down where traders leave their goods.</CC_Ransom_Paid_Pod>
+  <CC_Ransom_Msg_Accepted>The colony accepts the offer of {PEOPLE}, and a warden will walk {CAPTIVE} out by the gate. {HOW}</CC_Ransom_Msg_Accepted>
+  <CC_Ransom_Msg_MoreYes>{SPEAKER} talked {PEOPLE} up to {PRICE}.</CC_Ransom_Msg_MoreYes>
+  <CC_Ransom_Msg_MoreNo>{SPEAKER} asked {PEOPLE} for more, and their messenger walked away. They may ask once more within a season.</CC_Ransom_Msg_MoreNo>
+  <CC_Ransom_Msg_Freed>The colony lets {CAPTIVE} go home to {PEOPLE} for nothing. A warden will walk {CAPTIVE} out, and {PEOPLE} will owe the colony for it.</CC_Ransom_Msg_Freed>
+  <CC_Ransom_Msg_Kept>The colony keeps {CAPTIVE}, and the messenger of {PEOPLE} is going home. They may ask once more within a season.</CC_Ransom_Msg_Kept>
+  <CC_Ransom_Msg_Unanswered>Nobody answered the offer of {PEOPLE}, and their messenger has gone home. They may ask once more within a season.</CC_Ransom_Msg_Unanswered>
+  <CC_Ransom_Hist_Paid>{PEOPLE} paid {PRICE} to have {CAPTIVE} back ({WORD}).</CC_Ransom_Hist_Paid>
+  <CC_Ransom_Hist_Freed>The colony let {CAPTIVE} go home to {PEOPLE} for nothing.</CC_Ransom_Hist_Freed>
+  <CC_Ransom_Grudge_Label>{PEOPLE} hold a grudge</CC_Ransom_Grudge_Label>
+  <CC_Ransom_Grudge>The colony has turned {PEOPLE} down {COUNT} times over {CAPTIVE}. They will not ask again, and they hold it against the colony.</CC_Ransom_Grudge>
+  <CC_Ransom_Grudge_2>{COUNT} offers for {CAPTIVE}, and {COUNT} refusals. {PEOPLE} have stopped asking, and they won't forget how they were answered.</CC_Ransom_Grudge_2>
+
+  <!-- The trap -->
+  <CC_Ransom_Trap_Label>A trap at the gate</CC_Ransom_Trap_Label>
+  <CC_Ransom_Trap>It was a trap. As {CAPTIVE} is walked out, a band of {PEOPLE} is coming at the colony's gate from the edge of its land.</CC_Ransom_Trap>
+  <CC_Ransom_Trap_2>The exchange was cover for an attack. A band of {PEOPLE} that waited out of sight is coming in toward the gate as {CAPTIVE} is walked out.</CC_Ransom_Trap_2>
+  <CC_Ransom_Deed_Trap>a trap at the gate</CC_Ransom_Deed_Trap>
+
+  <!-- The game's demand for one of the colony's, by messenger -->
+  <CC_Ransom_Demand_Label>Ransom for {OURS}</CC_Ransom_Demand_Label>
+  <CC_Ransom_Demand>{WHO}, a messenger of {PEOPLE}, has come to the colony's gate. {PEOPLE} hold {OURS}, and they want {SILVER} silver to let {OURS} go: {RITE}.</CC_Ransom_Demand>
+  <CC_Ransom_Demand_2>{PEOPLE} have sent {WHO} to the gate with their price for {OURS}: {SILVER} silver.</CC_Ransom_Demand_2>
+  <CC_Ransom_Demand_GoBetween>{WHO} of {ESCORT} has come to the gate as a go-between for {PEOPLE}. {PEOPLE} hold {OURS}, and they ask {SILVER} silver to let {OURS} go.</CC_Ransom_Demand_GoBetween>
+  <CC_Ransom_Demand_How>Pay, and the colony's speaker carries the silver out to the messenger; {OURS} will be set down at the edge of the colony's land some hours later and walk in. Refuse, and the messenger goes home.</CC_Ransom_Demand_How>
+  <CC_Ransom_Demand_HowPod>Pay, and the colony's speaker carries the silver out to the messenger; {OURS} will come home by drop pod some hours later. Refuse, and the messenger goes home.</CC_Ransom_Demand_HowPod>
+  <CC_Ransom_Opt_Pay>Pay {SILVER} silver</CC_Ransom_Opt_Pay>
+  <CC_Ransom_Opt_Refuse>Refuse</CC_Ransom_Opt_Refuse>
+  <CC_Ransom_Report_Pay>carrying the ransom out to the gate.</CC_Ransom_Report_Pay>
+  <CC_Ransom_Msg_Paying>{PAWN} is carrying the ransom out to the messenger of {PEOPLE}.</CC_Ransom_Msg_Paying>
+  <CC_Ransom_Msg_Paid>{PEOPLE} have their {SILVER} silver. {OURS} will be back some hours from now.</CC_Ransom_Msg_Paid>
+  <CC_Ransom_Msg_DemandRefused>The colony refused the demand of {PEOPLE}, and their messenger has gone home.</CC_Ransom_Msg_DemandRefused>
+  <CC_Ransom_Msg_DemandLapsed>Nobody answered the demand of {PEOPLE} for {OURS}, and their messenger has gone home.</CC_Ransom_Msg_DemandLapsed>
+  <CC_Ransom_Hist_Ours>{OURS} came home after the colony paid {PEOPLE} {SILVER} silver ({WORD}).</CC_Ransom_Hist_Ours>
+  <CC_Ransom_Msg_Home>{OURS} is back, walking in from the edge of the colony's land.</CC_Ransom_Msg_Home>
+  <CC_Ransom_Msg_HomePod>{OURS} is back: {PEOPLE} sent {OURS} home by drop pod.</CC_Ransom_Msg_HomePod>
+
+  <!-- An exchange -->
+  <CC_Ransom_Ans_ExchangeNo>{PEOPLE} won't give up {OURS} for {THEIRS}.</CC_Ransom_Ans_ExchangeNo>
+  <CC_Ransom_Ans_ExchangeNo_2>{PEOPLE} answer that {THEIRS} isn't worth {OURS} to them.</CC_Ransom_Ans_ExchangeNo_2>
+  <CC_Ransom_Ans_ExchangeYes>{PEOPLE} agree: {OURS} for {THEIRS}. Their party will bring {OURS} to the colony's gate, where a warden is to walk {THEIRS} out to them: {RITE}.</CC_Ransom_Ans_ExchangeYes>
+  <CC_Ransom_Ans_ExchangeYes_2>It's agreed with {PEOPLE}. They will walk {OURS} to the colony's gate, and {THEIRS} goes home with them.</CC_Ransom_Ans_ExchangeYes_2>
+  <CC_Ransom_Exchanged_Label>{OURS} is home</CC_Ransom_Exchanged_Label>
+  <CC_Ransom_Exchanged>The party of {PEOPLE} has brought {OURS} to the gate, and a warden is walking {THEIRS} out to them: {RITE}.</CC_Ransom_Exchanged>
+  <CC_Ransom_Exchanged_2>At the gate, {PEOPLE} handed {OURS} back to the colony. A warden is walking {THEIRS} out to go home with them.</CC_Ransom_Exchanged_2>
+  <CC_Ransom_Hist_Exchanged>{OURS} came home and {THEIRS} went back to {PEOPLE}, exchanged at the gate ({WORD}).</CC_Ransom_Hist_Exchanged>
+  <CC_Ransom_Note_Yes>agreed to an exchange of captives</CC_Ransom_Note_Yes>
+  <CC_Ransom_Note_No>turned down an exchange of captives</CC_Ransom_Note_No>
+  <CC_Ransom_Menu_Title>Offer {OTHER} an exchange</CC_Ransom_Menu_Title>
+
+  <!-- The colony's letter about a captive, and their answers -->
+  <CC_Ransom_Topic>An offer for {CAPTIVE}</CC_Ransom_Topic>
+  <CC_Ransom_TopicExchange>{OURS} for {THEIRS}</CC_Ransom_TopicExchange>
+  <CC_Ransom_TopicExchangeTrap>{LABEL} (at war: a trap at the gate is {ODDS})</CC_Ransom_TopicExchangeTrap>
+  <CC_Ransom_Ans_Yes>{PEOPLE} want {CAPTIVE} back. Their messenger will come to the gate with an offer: {RITE}.</CC_Ransom_Ans_Yes>
+  <CC_Ransom_Ans_Yes_2>Their answer is yes: {PEOPLE} will make an offer for {CAPTIVE}, and their messenger will bring it to the gate.</CC_Ransom_Ans_Yes_2>
+  <CC_Ransom_Ans_No>{PEOPLE} will not pay for {CAPTIVE}.</CC_Ransom_Ans_No>
+  <CC_Ransom_Ans_No_2>{PEOPLE} answer that the colony may keep {CAPTIVE}: they won't buy back someone who let themselves be taken.</CC_Ransom_Ans_No_2>
+  <CC_Ransom_Ans_Moot>{PEOPLE} answer that there is nothing left to talk about.</CC_Ransom_Ans_Moot>
+
+  <!-- Why not -->
+  <CC_Ransom_Why_Off>Ransom is switched off in the settings.</CC_Ransom_Why_Off>
+  <CC_Ransom_Why_Gone>The offer is no longer open.</CC_Ransom_Why_Gone>
+  <CC_Ransom_Why_Never>{PEOPLE} don't bargain over captives.</CC_Ransom_Why_Never>
+  <CC_Ransom_Why_Nothing>The colony holds none of {PEOPLE} to bargain over.</CC_Ransom_Why_Nothing>
+  <CC_Ransom_Why_NotHeld>{PEOPLE} no longer hold {OURS}.</CC_Ransom_Why_NotHeld>
+  <CC_Ransom_Why_UnderWay>Something is already under way about them.</CC_Ransom_Why_UnderWay>
+  <CC_Ransom_Why_NoBearer>Nobody can carry word between the colony and {PEOPLE}: no people is at peace with both.</CC_Ransom_Why_NoBearer>
+  <CC_Ransom_Why_TooMany>Six offers for captives are open at this home already.</CC_Ransom_Why_TooMany>
+  <CC_Ransom_Why_NoSilver>The colony doesn't have {SILVER} silver.</CC_Ransom_Why_NoSilver>
+
+  <!-- The cards and acts -->
+  <CC_Ransom_Act_Answer>Answer their offer</CC_Ransom_Act_Answer>
+  <CC_Ransom_Act_Answer_Tip>Open their letter about this captive.</CC_Ransom_Act_Answer_Tip>
+  <CC_Ransom_Act_Offer>Offer for ransom</CC_Ransom_Act_Offer>
+  <CC_Ransom_Act_Offer_Tip>Write to their head (or call) that the colony will hear an offer for this captive. If their people want them back, their messenger comes sooner.</CC_Ransom_Act_Offer_Tip>
+  <CC_Ransom_Act_Exchange>Offer an exchange</CC_Ransom_Act_Exchange>
+  <CC_Ransom_Act_Exchange_Tip>Write to their head offering one of theirs in the colony's cells for one of the colony's they hold. If they agree, both walk at once at the gate.</CC_Ransom_Act_Exchange_Tip>
+  <CC_Ransom_Card_Grudge>{PEOPLE} hold a grudge for offers the colony refused, and make none now.</CC_Ransom_Card_Grudge>
+  <CC_Ransom_Card_Trap>{PEOPLE} are at war with the colony: an exchange at the gate could be a trap ({ODDS}).</CC_Ransom_Card_Trap>
+  <CC_Ransom_Card_GrudgeTie>{PEOPLE} hold a grudge: the colony turned down their offers for {CAPTIVE} {COUNT} times.</CC_Ransom_Card_GrudgeTie>
+  <CC_Ransom_Row_Theirs_Waiting>{PEOPLE} want {CAPTIVE} back; their word is still to come.</CC_Ransom_Row_Theirs_Waiting>
+  <CC_Ransom_Row_Theirs_Coming>A messenger of {PEOPLE} is on the way about {CAPTIVE}.</CC_Ransom_Row_Theirs_Coming>
+  <CC_Ransom_Row_Theirs_AtGate>{PEOPLE} offer {PRICE} for {CAPTIVE}, waiting for the colony's answer.</CC_Ransom_Row_Theirs_AtGate>
+  <CC_Ransom_Row_Theirs_Paying>{CAPTIVE} is being walked out to {PEOPLE} for {PRICE}.</CC_Ransom_Row_Theirs_Paying>
+  <CC_Ransom_Row_Theirs_Returning>{CAPTIVE} is going home to {PEOPLE}.</CC_Ransom_Row_Theirs_Returning>
+  <CC_Ransom_Row_Demand_Waiting>{PEOPLE} hold {OURS}; their demand is still to come.</CC_Ransom_Row_Demand_Waiting>
+  <CC_Ransom_Row_Demand_Coming>A messenger of {PEOPLE} is on the way about {OURS}.</CC_Ransom_Row_Demand_Coming>
+  <CC_Ransom_Row_Demand_AtGate>{PEOPLE} ask {SILVER} silver for {OURS}, waiting for the colony's answer.</CC_Ransom_Row_Demand_AtGate>
+  <CC_Ransom_Row_Demand_Paying>The colony's silver is going out to {PEOPLE} for {OURS}.</CC_Ransom_Row_Demand_Paying>
+  <CC_Ransom_Row_Demand_Returning>{OURS} is on the way home from {PEOPLE}.</CC_Ransom_Row_Demand_Returning>
+  <CC_Ransom_Row_Exchange_Waiting>{OURS} for {THEIRS}: agreed with {PEOPLE}, their party still to set out.</CC_Ransom_Row_Exchange_Waiting>
+  <CC_Ransom_Row_Exchange_Coming>{OURS} for {THEIRS}: the party of {PEOPLE} is on the way to the gate.</CC_Ransom_Row_Exchange_Coming>
+  <CC_Ransom_Row_Exchange_AtGate>{OURS} for {THEIRS}: the party of {PEOPLE} is at the gate.</CC_Ransom_Row_Exchange_AtGate>
+  <CC_Ransom_Row_Exchange_Paying>{OURS} for {THEIRS}: exchanged with {PEOPLE} at the gate.</CC_Ransom_Row_Exchange_Paying>
+  <CC_Ransom_Row_Exchange_Returning>{OURS} for {THEIRS}: exchanged with {PEOPLE} at the gate.</CC_Ransom_Row_Exchange_Returning>
+
+  <!-- The inbox -->
+  <CC_Ransom_Week_Offer>An offer from {PEOPLE} for {NAME}</CC_Ransom_Week_Offer>
+  <CC_Ransom_Week_Demand>{PEOPLE} ask a ransom for {NAME}</CC_Ransom_Week_Demand>
+  <CC_Ransom_WeekNote>waiting for your answer</CC_Ransom_WeekNote>
+  <CC_Ransom_Step_Asked>wanted back</CC_Ransom_Step_Asked>
+  <CC_Ransom_Step_Road>on the road</CC_Ransom_Step_Road>
+  <CC_Ransom_Step_Paid>paid</CC_Ransom_Step_Paid>
+  <CC_Ransom_Step_Agreed>agreed</CC_Ransom_Step_Agreed>
+  <CC_Ransom_Step_Exchanged>exchanged</CC_Ransom_Step_Exchanged>
+  <CC_Ransom_Step_Messenger>messenger on the road</CC_Ransom_Step_Messenger>
+  <CC_Ransom_Step_Home>home</CC_Ransom_Step_Home>
+
+  <!-- Their envoy: the offer, asking, the answers -->
+  <CC_Envoy_Offer_Label>An envoy from {PEOPLE}</CC_Envoy_Offer_Label>
+  <CC_Envoy_Offer>{WHO} of {PEOPLE} writes that they would like to send {ENVOY} to live at the colony for a season as its guest: {RITE}.</CC_Envoy_Offer>
+  <CC_Envoy_Offer_2>{PEOPLE} offer to send {ENVOY} to the colony for a season, {RITE} as their ways have it. The letter comes from {WHO}, and it is warm.</CC_Envoy_Offer_2>
+  <CC_Envoy_Offer_3>{WHO} asks whether the colony would host {ENVOY} of {PEOPLE} for a season: {WORD}, to their way of thinking {RITE}.</CC_Envoy_Offer_3>
+  <CC_Envoy_Offer_How>{ENVOY} would come with an attendant, eat at the colony's table, sleep in a bed set aside for them, walk about by day and talk with its people, and do no work. How the stay goes travels home with them: kept well, their people will think better of the colony; kept poorly, they will feel slighted. While {ENVOY} is here, pacts and favors can be spoken of face to face.</CC_Envoy_Offer_How>
+  <CC_Envoy_Offer_HowEmpire>{ENVOY} would come with an attendant, eat at the colony's table, sleep in a bed set aside for them, walk about by day and talk with its people, and do no work. As one of the Empire's own, {ENVOY} expects a room of their own and fine meals. How the stay goes travels home with them: kept well, their people will think better of the colony; kept poorly, they will feel slighted.</CC_Envoy_Offer_HowEmpire>
+  <CC_Envoy_Opt_Accept>Welcome them</CC_Envoy_Opt_Accept>
+  <CC_Envoy_Opt_Decline>Decline</CC_Envoy_Opt_Decline>
+  <CC_Envoy_Msg_Accepted>The colony will welcome {ENVOY} of {PEOPLE} for a season. They are getting ready to come.</CC_Envoy_Msg_Accepted>
+  <CC_Envoy_Msg_NotComing>The envoy of {PEOPLE} won't be coming after all.</CC_Envoy_Msg_NotComing>
+  <CC_Envoy_Topic>Ask them to send {ENVOY} for a season</CC_Envoy_Topic>
+  <CC_Envoy_Ans_Yes>{PEOPLE} will send {ENVOY} to live at the colony for a season: {RITE}.</CC_Envoy_Ans_Yes>
+  <CC_Envoy_Ans_Yes_2>Their answer is warm: {ENVOY} will come to the colony for a season, {RITE} as is their way.</CC_Envoy_Ans_Yes_2>
+  <CC_Envoy_Ans_No>{PEOPLE} can't spare {ENVOY} this season.</CC_Envoy_Ans_No>
+  <CC_Envoy_Ans_No_2>Not this season, they answer: {ENVOY} is needed at home.</CC_Envoy_Ans_No_2>
+  <CC_Envoy_Ans_Moot>{PEOPLE} answer that it can't be arranged just now.</CC_Envoy_Ans_Moot>
+
+  <!-- Their envoy's stay -->
+  <CC_Envoy_Arrives_Label>{ENVOY} has arrived</CC_Envoy_Arrives_Label>
+  <CC_Envoy_Arrives>{ENVOY} of {PEOPLE} is walking in with an attendant to stay the season as the colony's guest: {RITE}.</CC_Envoy_Arrives>
+  <CC_Envoy_Arrives_2>The envoy of {PEOPLE} is coming in. {ENVOY} walks with an attendant, here to live at the colony for a season ({WORD}).</CC_Envoy_Arrives_2>
+  <CC_Envoy_Arrives_How>Set a bed aside for {ENVOY} from their card, or they will take a spare one, or the floor. They eat at the colony's table, keep about its common rooms by day and indoors in danger, and do no work.</CC_Envoy_Arrives_How>
+  <CC_Envoy_Arrives_HowEmpire>Set a bed aside for {ENVOY} from their card, or they will take a spare one, or the floor; as one of the Empire's own, they expect a room of their own and fine meals. They eat at the colony's table, keep about its common rooms by day and indoors in danger, and do no work.</CC_Envoy_Arrives_HowEmpire>
+  <CC_Envoy_Hist_Came>{ENVOY} of {PEOPLE} came to stay the season at the colony ({WORD}).</CC_Envoy_Hist_Came>
+  <CC_Envoy_Msg_HurtInside>{ENVOY} was hurt while sheltering at the colony. Their people will hear of it, though the colony did what it could.</CC_Envoy_Msg_HurtInside>
+  <CC_Envoy_Msg_HurtOutside>{ENVOY} was hurt out in the open at the colony. Their people will hear of it.</CC_Envoy_Msg_HurtOutside>
+  <CC_Envoy_Msg_SitIn>{ENVOY} is sitting in at the council's meeting.</CC_Envoy_Msg_SitIn>
+  <CC_Envoy_Note_Letter>{ENVOY} wrote home from the colony, {MOOD}.</CC_Envoy_Note_Letter>
+  <CC_Envoy_Msg_Letter_Content>{ENVOY} handed a letter home to a runner of {PEOPLE}, and by all accounts it speaks well of the colony.</CC_Envoy_Msg_Letter_Content>
+  <CC_Envoy_Msg_Letter_Cool>{ENVOY} handed a letter home to a runner of {PEOPLE}.</CC_Envoy_Msg_Letter_Cool>
+  <CC_Envoy_Msg_Letter_Offended>{ENVOY} handed a letter home to a runner of {PEOPLE}. From the look on their face, it has complaints in it.</CC_Envoy_Msg_Letter_Offended>
+  <CC_Envoy_Report_Letter>handing a letter home to a runner.</CC_Envoy_Report_Letter>
+  <CC_Envoy_Report_SitIn>sitting in at the council's meeting.</CC_Envoy_Report_SitIn>
+  <CC_Envoy_Mood_Content>content</CC_Envoy_Mood_Content>
+  <CC_Envoy_Mood_Cool>cool</CC_Envoy_Mood_Cool>
+  <CC_Envoy_Mood_Offended>offended</CC_Envoy_Mood_Offended>
+  <CC_Envoy_HereAs>staying the season as the colony's guest ({WORD}), {MOOD}</CC_Envoy_HereAs>
+  <CC_Envoy_HereAs_Attendant>attending {ENVOY}</CC_Envoy_HereAs_Attendant>
+
+  <!-- A bed set aside -->
+  <CC_Envoy_Bed_Title>A bed for {ENVOY}</CC_Envoy_Bed_Title>
+  <CC_Envoy_Bed_Alone>{BED} ({ROOM}, a room of its own)</CC_Envoy_Bed_Alone>
+  <CC_Envoy_Bed_Shared>{BED} ({ROOM})</CC_Envoy_Bed_Shared>
+  <CC_Envoy_Msg_BedSet>{BED} is set aside for {ENVOY}.</CC_Envoy_Msg_BedSet>
+
+  <!-- The end of their stay -->
+  <CC_Envoy_Leaves_Label>{ENVOY} goes home</CC_Envoy_Leaves_Label>
+  <CC_Envoy_Leaves_Content>{ENVOY}'s season at the colony is over, and they are walking home to {PEOPLE} content. Their report will raise the colony in their head's regard.</CC_Envoy_Leaves_Content>
+  <CC_Envoy_Leaves_Content_2>{ENVOY} is going home to {PEOPLE} with good things to say about the colony: fed well, housed well, and listened to.</CC_Envoy_Leaves_Content_2>
+  <CC_Envoy_Leaves_Cool>{ENVOY}'s season at the colony is over. They go home to {PEOPLE} with little to complain of and little to praise.</CC_Envoy_Leaves_Cool>
+  <CC_Envoy_Leaves_Cool_2>{ENVOY} is walking home to {PEOPLE}. The stay was neither good nor bad, and their report will say about that much.</CC_Envoy_Leaves_Cool_2>
+  <CC_Envoy_Leaves_Offended>{ENVOY}'s season at the colony is over. They go home to {PEOPLE} offended, and their report will cost the colony in their head's regard.</CC_Envoy_Leaves_Offended>
+  <CC_Envoy_Leaves_Offended_2>{ENVOY} is leaving with a list of grievances for {PEOPLE}, and the colony will hear about it from their head.</CC_Envoy_Leaves_Offended_2>
+  <CC_Envoy_Leaves_SeenOff>The colony has sent {ENVOY} home before the season was out. {PEOPLE} will take it as a slight.</CC_Envoy_Leaves_SeenOff>
+  <CC_Envoy_Hist_Left_Content>{ENVOY} of {PEOPLE} went home from the colony content ({WORD}).</CC_Envoy_Hist_Left_Content>
+  <CC_Envoy_Hist_Left_Cool>{ENVOY} of {PEOPLE} went home from the colony after a season ({WORD}).</CC_Envoy_Hist_Left_Cool>
+  <CC_Envoy_Hist_Left_Offended>{ENVOY} of {PEOPLE} went home from the colony offended ({WORD}).</CC_Envoy_Hist_Left_Offended>
+  <CC_Envoy_Note_End>{ENVOY} came home from the colony {MOOD}.</CC_Envoy_Note_End>
+  <CC_Envoy_Note_Stayed>Stayed a season at the colony and came home {MOOD}.</CC_Envoy_Note_Stayed>
+  <CC_Envoy_Died_Label>{ENVOY} is dead</CC_Envoy_Died_Label>
+  <CC_Envoy_Died_Inside>{ENVOY}, the envoy of {PEOPLE}, died at the colony. The colony sheltered them as best it could, and their people will see that, but they are grieving.</CC_Envoy_Died_Inside>
+  <CC_Envoy_Died_Outside>{ENVOY}, the envoy of {PEOPLE}, died out in the open at the colony. Their people will ask why their envoy was left there, and think much less of the colony for it.</CC_Envoy_Died_Outside>
+  <CC_Envoy_Note_Died>{ENVOY} died at the colony.</CC_Envoy_Note_Died>
+  <CC_Envoy_Hist_Died>{ENVOY} of {PEOPLE} died while staying at the colony.</CC_Envoy_Hist_Died>
+
+  <!-- Their envoy on the cards and in the inbox -->
+  <CC_Envoy_Card_Attendant>Attending {ENVOY}, the envoy staying at the colony.</CC_Envoy_Card_Attendant>
+  <CC_Envoy_Card_Bed>Sleeps in a bed set aside for them: {BED}.</CC_Envoy_Card_Bed>
+  <CC_Envoy_Card_NoBed>No bed is set aside for them.</CC_Envoy_Card_NoBed>
+  <CC_Envoy_Card_Night_Own>Last night they slept in their own bed.</CC_Envoy_Card_Night_Own>
+  <CC_Envoy_Card_Night_Spare>Last night they slept in a spare bed.</CC_Envoy_Card_Night_Spare>
+  <CC_Envoy_Card_Night_Floor>Last night they slept on the floor.</CC_Envoy_Card_Night_Floor>
+  <CC_Envoy_Card_Letters>Letters home so far: {COUNT}.</CC_Envoy_Card_Letters>
+  <CC_Envoy_Card_Empire>As one of the Empire's own, they expect a room of their own and fine meals.</CC_Envoy_Card_Empire>
+  <CC_Envoy_Row_Coming>{ENVOY} of {PEOPLE} is coming to stay the season.</CC_Envoy_Row_Coming>
+  <CC_Envoy_Row_Staying>{ENVOY} of {PEOPLE} is staying the season, {MOOD}.</CC_Envoy_Row_Staying>
+  <CC_Envoy_SinceHere>Arrived {AGO}.</CC_Envoy_SinceHere>
+  <CC_Envoy_SinceAway>Arrived {AGO}.</CC_Envoy_SinceAway>
+  <CC_Envoy_Week_Offer>{PEOPLE} offer to send their envoy for a season</CC_Envoy_Week_Offer>
+  <CC_Envoy_Week_Bed>{ENVOY} has no bed of their own</CC_Envoy_Week_Bed>
+  <CC_Envoy_Step_Agreed>agreed</CC_Envoy_Step_Agreed>
+  <CC_Envoy_Step_Staying>staying</CC_Envoy_Step_Staying>
+  <CC_Envoy_Step_Home>gone home</CC_Envoy_Step_Home>
+  <CC_Envoy_Step_SettingOut>setting out</CC_Envoy_Step_SettingOut>
+  <CC_Envoy_Step_Road>on the road</CC_Envoy_Step_Road>
+  <CC_Envoy_Step_There>at their town</CC_Envoy_Step_There>
+  <CC_Envoy_Step_HomeRoad>coming home</CC_Envoy_Step_HomeRoad>
+  <CC_Envoy_Act_Bed>Set aside a bed</CC_Envoy_Act_Bed>
+  <CC_Envoy_Act_BedShort>Choose</CC_Envoy_Act_BedShort>
+  <CC_Envoy_Act_Bed_Tip>Choose the bed the envoy sleeps in while they stay. A bed of their own counts for more than a spare one; the Empire's envoys want it in a room of its own.</CC_Envoy_Act_Bed_Tip>
+  <CC_Envoy_Act_SeeOff>See them off</CC_Envoy_Act_SeeOff>
+  <CC_Envoy_Act_SeeOff_Tip>Send the envoy home before the season is out. Their people will take it as a slight.</CC_Envoy_Act_SeeOff_Tip>
+  <CC_Envoy_Act_Ask>Ask for their envoy</CC_Envoy_Act_Ask>
+  <CC_Envoy_Act_Ask_Tip>Write to their head (or call) asking them to send their envoy to live at the colony for a season.</CC_Envoy_Act_Ask_Tip>
+
+  <!-- Why not, for their envoy -->
+  <CC_Envoy_Why_Off>Envoys are switched off in the settings.</CC_Envoy_Why_Off>
+  <CC_Envoy_Why_Goodwill>{PEOPLE} send envoys only to their friends (goodwill {GOODWILL} or more).</CC_Envoy_Why_Goodwill>
+  <CC_Envoy_Why_OneHere>An envoy of {PEOPLE} is already staying at this home, or on the way.</CC_Envoy_Why_OneHere>
+  <CC_Envoy_Why_NoEnvoy>The colony knows no envoy of {PEOPLE} who is free to come.</CC_Envoy_Why_NoEnvoy>
+  <CC_Envoy_Why_NotHere>Their envoy isn't staying at the colony now.</CC_Envoy_Why_NotHere>
+  <CC_Envoy_Why_NoBed>The colony has no free bed for them.</CC_Envoy_Why_NoBed>
+
+  <!-- The colony's own envoy -->
+  <CC_Envoy_Act_Send>Send an envoy</CC_Envoy_Act_Send>
+  <CC_Envoy_Act_Send_Tip>Send a colonist good with people (Social 6 or more) to live at their town for a season. Their work is lost to the colony until they come home.</CC_Envoy_Act_Send_Tip>
+  <CC_Envoy_Act_Recall>Call home</CC_Envoy_Act_Recall>
+  <CC_Envoy_Act_Recall_Tip>Call the colony's envoy home before the season is out.</CC_Envoy_Act_Recall_Tip>
+  <CC_Envoy_Pick>{PAWN} (Social {SOCIAL})</CC_Envoy_Pick>
+  <CC_Envoy_Pick_Title>Who goes to {TOWN}?</CC_Envoy_Pick_Title>
+  <CC_Envoy_Ask>Send {PAWN} to live at {TOWN} among {PEOPLE} for a season, as the colony's envoy ({WORD})?\n\n{PAWN} takes food that keeps from the stores and sets out alone, {DISTANCE}. Their work is lost to the colony until they come home, and the road there and back is the world's own, with whatever it holds. While {PAWN} is there, their letters bring the town's news, and its notables come to think better of the colony.</CC_Envoy_Ask>
+  <CC_Envoy_Msg_SettingOut>{PAWN} is getting ready to set out for {TOWN} as the colony's envoy.</CC_Envoy_Msg_SettingOut>
+  <CC_Envoy_Msg_SetOut>{PAWN} has set out for {TOWN}.</CC_Envoy_Msg_SetOut>
+  <CC_Envoy_Msg_Stayed>{PAWN} didn't set out as the colony's envoy after all.</CC_Envoy_Msg_Stayed>
+  <CC_Envoy_Report_SetOut>setting out as the colony's envoy.</CC_Envoy_Report_SetOut>
+  <CC_Envoy_Hist_Went>{PAWN} went to live at {TOWN} as the colony's envoy ({WORD}).</CC_Envoy_Hist_Went>
+  <CC_Envoy_There_Label>{PAWN} reached {TOWN}</CC_Envoy_There_Label>
+  <CC_Envoy_There>{PAWN} has reached {TOWN} and been received as the colony's envoy: {RITE}. Letters will come home with the town's news.</CC_Envoy_There>
+  <CC_Envoy_There_2>{PEOPLE} have taken {PAWN} in at {TOWN}, {RITE} as their ways have it. {PAWN} will write home with what goes on there.</CC_Envoy_There_2>
+  <CC_Envoy_Note_Ours>{PAWN} lived among them as the colony's envoy.</CC_Envoy_Note_Ours>
+  <CC_Envoy_Letter_Label>A letter from {PAWN}</CC_Envoy_Letter_Label>
+  <CC_Envoy_Letter>A letter has come from {PAWN} at {TOWN}. The people who matter there are getting to know the colony through {PAWN}, and think better of it for that. {PAWN} writes:</CC_Envoy_Letter>
+  <CC_Envoy_Letter_2>{PAWN} writes from {TOWN}. {PEOPLE} treat {PAWN} well, and the town's notables have warmed to the colony a little more. The news there:</CC_Envoy_Letter_2>
+  <CC_Envoy_Letter_Quiet>Nothing much is happening at {TOWN}.</CC_Envoy_Letter_Quiet>
+  <CC_Envoy_Homeward_Label>{PAWN} is coming home</CC_Envoy_Homeward_Label>
+  <CC_Envoy_Homeward>{PAWN}'s season at {TOWN} is over, and {PAWN} has set out for home with food for the road from their hosts.</CC_Envoy_Homeward>
+  <CC_Envoy_Homeward_2>{PEOPLE} have seen {PAWN} off from {TOWN} with food for the road, and {PAWN} is on the way home.</CC_Envoy_Homeward_2>
+  <CC_Envoy_Homeward_Gift>{PAWN} carries a parting gift from their head: {GIFT}.</CC_Envoy_Homeward_Gift>
+  <CC_Envoy_Hist_Back>{PAWN} came home from a season at {TOWN} as the colony's envoy ({WORD}).</CC_Envoy_Hist_Back>
+  <CC_Envoy_Msg_Back>{PAWN} is home from {TOWN}, better with people for the season there.</CC_Envoy_Msg_Back>
+  <CC_Envoy_Row_Abroad_Coming>{PAWN} is getting ready to set out for {TOWN}.</CC_Envoy_Row_Abroad_Coming>
+  <CC_Envoy_Row_Abroad_Staying>{PAWN} is on the road to {TOWN}.</CC_Envoy_Row_Abroad_Staying>
+  <CC_Envoy_Row_Abroad_There>{PAWN} is living at {TOWN} as the colony's envoy.</CC_Envoy_Row_Abroad_There>
+  <CC_Envoy_Row_Abroad_Leaving>{PAWN} is on the road home from {TOWN}.</CC_Envoy_Row_Abroad_Leaving>
+
+  <!-- Why not, for the colony's own envoy -->
+  <CC_Envoy_Why_NotAtPeace>The colony sends envoys only to a people at peace with it.</CC_Envoy_Why_NotAtPeace>
+  <CC_Envoy_Why_OneAway>{PAWN} is already away as this home's envoy.</CC_Envoy_Why_OneAway>
+  <CC_Envoy_Why_NoTown>{PEOPLE} have no town the colony knows of.</CC_Envoy_Why_NoTown>
+  <CC_Envoy_Why_NoRoad>There is no way over land to {TOWN}.</CC_Envoy_Why_NoRoad>
+  <CC_Envoy_Why_Alone>The colony can't spare anyone: there would be nobody left at home.</CC_Envoy_Why_Alone>
+  <CC_Envoy_Why_NoOne>Nobody at home is good enough with people (Social {SOCIAL} or more) and free to go.</CC_Envoy_Why_NoOne>
+  <CC_Envoy_Why_NoFood>The stores don't hold enough food that keeps (pemmican, packaged meals) for the road to {TOWN}.</CC_Envoy_Why_NoFood>
+  <CC_Envoy_Why_NotThere>They aren't living at a town as the colony's envoy now.</CC_Envoy_Why_NotThere>
+
+</LanguageData>

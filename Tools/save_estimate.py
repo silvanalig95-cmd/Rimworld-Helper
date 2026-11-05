@@ -93,6 +93,8 @@ C = {
     # A home's hamlet (World/Region/HamletMath.cs): the settlers on their way, and its refusals kept.
     "HamletSettlers": const("World/Region/HamletMath.cs", "MaxSettlers", 8),
     "HamletRefused": const("World/Region/HamletMath.cs", "MaxRefused", 4),
+    # Diplomacy's records that aren't ties (Diplomacy/DiplomacyBook.cs, release 2a.3): offers for captives at a home at once.
+    "RansomOffers": const("Diplomacy/RansomMath.cs", "MaxOffers", 6),
     "NotableFaces": const("World/NotableMath.cs", "MaxAcquaintances", 10),
     "NotableMemory": const("World/NotableMath.cs", "MaxMemory", 8),
     "NotableRegards": const("World/NotableMath.cs", "MaxRegards", 8),
@@ -543,6 +545,16 @@ MODEL = {
                                        "per home: the colonists who walked its hamlet's settlers out, HamletMath.MaxSettlers at most"),
     "World/Region/Hamlet.cs:refused": ("cap", (C["HamletRefused"], 0.05), 12,
                                        "per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year"),
+    # Each home's part of diplomacy that isn't a tie (Diplomacy/DiplomacyBook.cs): one per colony, by the colonies' book;
+    # in it their envoy's stay (one at most, about 25 values and three references) and the colony's envoy away (one at
+    # most, ten values and two references), and when an envoy was last offered to it.
+    "Diplomacy/DiplomacyBook.cs:homes": ("fixed", 1, 90 + 700 + 300 + 40, "one per colony (one home in the model): their envoy's stay and the colony's envoy away "
+                                         "(one each at most), when an envoy was last offered; a lost home's kept 30 days"),
+    # Its offers for captives (Diplomacy/Ransoms.cs): RansomMath.MaxOffers at most, a few a season at the generous rate
+    # (prisoners taken in raids, the game's demands), each a dozen values and three references, dropped once answered and
+    # done or its captive is gone.
+    "Diplomacy/DiplomacyBook.cs:offers": ("cap", (C["RansomOffers"], 0.1), 320,
+                                          "per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),

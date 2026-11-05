@@ -13,8 +13,9 @@ namespace ColonyCouncil
     /// what it can be about and what is asked, and what their answer does; NeighbourLetters asks it for the purposes it
     /// owns. Favour (a debt of honour called in, or the colony's word on their side when they called one in); Pact (a defence
     /// or a trade pact proposed, or one ended by the colony's letter without blame) and Truce (offered to a people at war,
-    /// its term and price) in release 2a.2; Match, Ward, Ransom, Envoy and Fealty come with their releases
-    /// (DiplomacyMath.Purposes).
+    /// its term and price) in release 2a.2; Ransom (one of theirs offered for ransom, an exchange of theirs for ours) and
+    /// Envoy (asking for their envoy) in release 2a.3, their own rules in RansomLetters; Match, Ward and Fealty come with
+    /// their releases (DiplomacyMath.Purposes).
     /// <para>The letter keeps what it is about in its topic ("tie:12" a debt of theirs, "side:15" the colony's word on a
     /// call of theirs, "pact:trade:7" a pact proposed to people 7, "pactend:9" pact 9 ended, "truce:year:7" a truce offered)
     /// and what is asked in its help field (FavourMath.AskCode; a truce's price "price:Ours:200"; a trade pact's cart
@@ -30,7 +31,8 @@ namespace ColonyCouncil
         public static string SideKey(Tie t) => SidePrefix + t.id;
 
         /// <summary>A purpose this frame answers for.</summary>
-        public static bool Owns(LetterPurpose p) => p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce;
+        public static bool Owns(LetterPurpose p) =>
+            p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy;
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -43,6 +45,7 @@ namespace ColonyCouncil
         public static string WhyNot(Notable n, LetterPurpose p)
         {
             if (!Owns(p) || n == null) return null;
+            if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
             if (p == LetterPurpose.Truce) return Truces.WhyNot(n.faction, Home);
             if (p == LetterPurpose.Pact)
             {
@@ -61,6 +64,7 @@ namespace ColonyCouncil
         public static List<LetterTopic> Topics(Notable n, LetterPurpose p)
         {
             if (p == LetterPurpose.Favour) return Topics(n);
+            if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
             var list = new List<LetterTopic>();
             if (n?.faction == null) return list;
             var f = n.faction;
@@ -269,6 +273,11 @@ namespace ColonyCouncil
             var a = new Answer();
             try
             {
+                if (RansomLetters.Owns(l.purpose))
+                {
+                    a.line = RansomLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
                 if (l.purpose == LetterPurpose.Truce || l.purpose == LetterPurpose.Pact)
                 {
                     PactAnswer(l, n, ref tone, a);

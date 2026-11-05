@@ -25,6 +25,10 @@ namespace ColonyCouncil
         public const string Founding = "founding";
         /// <summary>Settlers on their way to found a hamlet under the colony's protection (World/Region/Hamlet.cs).</summary>
         public const string Hamlet = "hamlet";
+        /// <summary>A people's envoy staying the season at a home of the colony's, and their attendant (Diplomacy/Envoys.cs).</summary>
+        public const string Envoy = "envoy";
+        /// <summary>One of the colony's away for a term among another people, as the colony's envoy at their town (Diplomacy/EnvoysAbroad.cs).</summary>
+        public const string Lent = "lent";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -127,6 +131,9 @@ namespace ColonyCouncil
                 case FollowUps.KeepReason: return FollowUps.Holds(p);
                 // Settlers on their way to found a hamlet (World/Region/Hamlet.cs).
                 case KeepFor.Hamlet: return Hamlets.Holds(p);
+                // A people's envoy staying the season, and the colony's own envoy away (Diplomacy/Envoys.cs, EnvoysAbroad.cs).
+                case KeepFor.Envoy: return Envoys.Holds(p);
+                case KeepFor.Lent: return EnvoysAbroad.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

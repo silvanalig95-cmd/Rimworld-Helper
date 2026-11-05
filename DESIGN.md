@@ -2488,9 +2488,9 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   (`goods`: `FavourMath.AskCode` or `NeedCode`) and, for a call of theirs, the day it is due (`days`). Help toward peace
   is a Promise tie (key `peace`, 20 in its number, a year) that 2a.2's truce answer reads. `TieRules.Kinds` is 14: Secret
   and Scheme are reserved (rules and bounds, nothing makes one), and all ties are bounded at 1,080.
-- **Nothing else saved.** No `DiplomacyHome` yet: favours need nothing beyond their ties (the last call of a people is
-  the history's `tie:favour:calledIn`); the first record that isn't a tie (an envoy's stay, an offer for a captive)
-  brings it, kept by the `ColonyBook` rules. Their letter (`ChoiceLetter_FavourAsk`) saves which tie and need it is.
+- **Nothing else saved.** Favours need nothing beyond their ties (the last call of a people is the history's
+  `tie:favour:calledIn`); the first records that aren't ties (an envoy's stay, an offer for a captive) came with
+  release 2a.3, in `DiplomacyHome` kept by the `ColonyBook` rules (below, "Ransom and the envoy"). Their letter (`ChoiceLetter_FavourAsk`) saves which tie and need it is.
 - **No pass of its own.** `Diplomacy.Hourly` rides on the neighbours' hour (`NotableBook`, `Sched.Neighbours`): lines
   waiting for their letter, calls of theirs overdue, and once a day the look at each debt the colony owes.
 - **The colony calls one in** by a letter or a call (the purpose `LetterPurpose.Favour` in the letters' machinery,
@@ -2574,6 +2574,78 @@ its rules pure and tested (`PactMath.cs`; `Tools/Tests/PactTests.cs`).
   truce broken), the Stance lens' lines and the Threats lens dimming a truce partner. Facts: `tie:pact`, `tie:truce`
   (`:ours`, `:theirs`, `:due`; a pact's `:defence`, `:trade`), `{PACTWITH}`, `{TRUCEWITH}` (`Facts.PactTies`). Words by
   both ages (`AgeFeature.Pact`, `Truce`), the call by the colony's means. Settings `diplomacyPacts`, `truceRaids`.
+
+#### Ransom and the envoy
+
+Release 2a.3 (docs/design/stage2-diplomacy.md, items 3 and 4; decisions 4, 5 and 6): `Diplomacy/`, its rules pure and
+tested (`RansomMath.cs`, `EnvoyMath.cs`; `Tools/Tests/RansomTests.cs`).
+
+- **The first records that aren't ties.** `DiplomacyBook` (a game component, nothing per tick) keeps one `DiplomacyHome`
+  per colony by the `ColonyBook` rules: its offers for captives (`RansomOffer`, `RansomMath.MaxOffers` = 6, each
+  dropped once done or its captive gone), their envoy's stay (`EnvoyStay`, one) and the colony's envoy away
+  (`EnvoyAbroad`, one), and when an envoy was last offered to it. A grudge of refusals is a Grudge tie of origin
+  `ransom` (key `ransomRefused`, 120 days). Keep reasons `KeepFor.Envoy` (their envoy and attendant while here) and
+  `KeepFor.Lent` (the colony's envoy at their town). Both ride on diplomacy's hour and day; the envoys' hour runs only
+  while something waits (`DiplomacyBook.AnyWaiting`).
+- **Their offer for one of theirs** (`Ransoms`): `Notice` looks at each home's prisoners hourly; whether their people
+  want one back is a steady roll (`RansomMath.SteadyRoll` of the captive and the people, so nothing is saved for those
+  not wanted): a leader, a notable or a notable's kin always, else 0.6 at peace and 0.3 at war. Due two to six days on,
+  their word comes when the land is quiet: by a call (`Ransoms.ByCall`: a working console, a people who call), else a
+  messenger of theirs, or a go-between of a people at peace with both for a people at war (`Ransoms.Bearer`,
+  `TruceParley.Escort`), walking to the gate (`LordJob_Messenger`), whose arrival brings `ChoiceLetter_RansomOffer`.
+  Accept (`Ransoms.Accept`: the game's release, the price set down by the messenger or brought by pod after a call, the
+  deed `ransomed`, `dip:ransomed`); ask for more (`RansomMath.MoreChance` by the negotiator's Social: a quarter more, or
+  a refusal); free them (`forgave`, which makes their debt of honour); keep them (once more within a season; the third
+  refusal a grudge and `slighted`). `Ransoms.PaidFor` keeps a captive paid for or exchanged from becoming a debt of
+  honour when the game's `released` goodwill comes (`FavoursOwed.Noted`). The colony writes first with the purpose
+  `LetterPurpose.Ransom` (topic `ransom:ID`; `RansomLetters`), and the captive card's "Offer for ransom" opens it.
+- **The game's demand without a console** (decision 4; `RansomHooks.cs`): `Patch_RansomByHand_CanFire` lets the game's
+  own `IncidentWorker_RansomDemand` fire at a home with no powered console when a colonist is held by a people who can
+  send word, and `Patch_RansomByHand_Execute` turns it into Rimfolk's messenger at the gate (`Ransoms.Demand`: the same
+  fee range, `ChoiceLetter_RansomByHand` with the game's day). Paid, the speaker carries the silver out
+  (`JobDriver_RansomPay`), and three to six hours later the colonist walks in from the edge (or by drop pod from a
+  people of the machine ages), as the game's own letter returns them. With a console the game's letter is untouched.
+- **An exchange** (`Ransoms.HearExchange`, `RansomMath.ExchangeChance`): offered by letter (topic `exchange:OURS:THEIRS`),
+  from the captive's, the held colonist's or the people card, or face to face (`OutsiderAct.OfferExchange`,
+  `ExchangeActs`); agreed, their party walks in with the colony's own beside them (spawned free and walked to the gate),
+  and at the gate the warden walks theirs out (`dip:exchanged`).
+- **The trap** (decision 5): with a hostile people only, on an exchange at the gate (a captive paid for, or exchanged),
+  `RansomMath.TrapChance` is the peace talks' disaster weight 0.05 times the game's own curve for the negotiator's
+  ability (4 with none, 1 at 100%, 0.4 at 150%); sprung, `Raids.Send` at 0.35 of the threat points from the map edge
+  nearest the gate, and their deed `brokeWord`. Every letter that can bring it names the chance in words before the
+  choice (`RansomWords.Odds`), and so does the captive's card.
+- **Their envoy** (`Envoys`): once a day a people at peace (goodwill 30), whose envoy notable is free, may offer them
+  (`EnvoyMath.MayOffer`: a year apart per people, a season apart per home, one stay per home; one day in thirty),
+  `ChoiceLetter_EnvoyOffer`; or the colony asks (`LetterPurpose.Envoy`, `EnvoyMath.SendChance` by their head's
+  regard). The notable's own pawn and an attendant (a light fighter of theirs) walk in with food enough for the season
+  (`Hosting.Provision`) and stay as `LordJob_EnvoyStay` guests (`LordToil_EnvoyStay`: `Rimfolk_EnvoyStay` about the
+  common rooms by day, `Rimfolk_EnvoyIndoors` in danger; their doors open). The hour feeds and beds them by the
+  missions' hosting rules (`Hosting.Meal`, `Eat`, `Sleep`, `SleepRough`, `GetUp`), in the bed the player set aside
+  (`Envoys.ChooseBed`) or a spare one or the floor, tallies each day (`EnvoyMath.Day`, `Night`, `Talks` from the
+  outsiders' own pair warmth, gifts from their visit, `SatIn` at a council meeting in session, `Hurt` sheltered or in
+  the open) and reads the mood by the score a day (`EnvoyMath.Mood`). Every five days their runner comes to the gate
+  (`LordJob_Messenger` with the home's key) and the envoy walks out with their letter (`JobDriver_EnvoyLetter`), which
+  moves their head's regard a little. At the end (`Envoys.End`): their head's regard by the mood, `envoyHonored` (12,
+  a debt of honour, for a very good stay) or `slighted`, `dip:envoy`; seen off early, a slight; dead at the colony, a
+  little or a lot of regard by whether it sheltered them; hurt by the colony, they flee.
+- **The colony's envoy** (`EnvoysAbroad`): a colonist with Social 6 or more, picked from the people or town card,
+  after the council's question; they take food that keeps from the stores (`JobDefOf.TakeInventory`), walk to the edge
+  (`JobDriver_EnvoySetOut`) and leave as a caravan of their own (`CaravanExitMapUtility.ExitMapAndCreateCaravan`, then
+  `StartPath` to the town); at the town they leave the caravan and are kept in the world (`KeepFor.Lent`); every five
+  days a letter with the town's news (`Facts.For(FactScene.Letter(...)).news`) and its notables' regard up by
+  `EnvoyMath.AbroadRegard`; at the season's end their hosts provision them, a head who thinks well of the colony gives
+  a parting gift (about 200 silver's worth), and a caravan of theirs takes them home (`CaravanArrivalAction_Enter`),
+  where they learn the peace talks' 6,000 Social.
+- **What the player sees** (`RansomPanels`): the captive's card and the held colonist's (an offer in a sentence, the
+  trap's odds, "Offer for ransom", "Offer an exchange", "Answer their offer", "Call home"); their envoy's Person card
+  (the stay, the bed, last night, letters; "Set aside a bed", "See them off"); the people card and a town's card
+  ("Ask for their envoy", "Send an envoy", what is under way), the Peoples view's rows and acts (`DiplomacyModel`),
+  Here and away (their envoy here in `WhyHere`, the colony's envoy away in `AwayRows`), the grudge's tie card; the
+  inbox: `ransom` and `envoy` in Needs you (an offer for a captive, a demand, their envoy's offer, a bed for their
+  envoy; counted through `Inbox.Count`), `ransom-under-way` and `envoy-under-way` in Under way, in steps. Facts
+  (`FactsRansom.cs`): `ransom:theirs`, `ransom:held`, `them:wascaptive` with `{CAPTOR}`, `envoy:here` with `{ENVOY}`,
+  `them:envoy`, `envoy:ours` with `{OURENVOY}`. Words by both ages (`AgeFeature.Ransom`, `Envoy`). Settings
+  `diplomacyRansom`, `diplomacyEnvoys`.
 
 ### Rimfolk's windows
 

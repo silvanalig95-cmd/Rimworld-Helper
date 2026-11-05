@@ -227,6 +227,12 @@ namespace ColonyCouncil
                     c.underway.Add(new DipRow { text = status, link = n, color = UiKit.Faint });
                     c.weight += 2;
                 }
+            // Offers for captives either way, their envoy's stay, the colony's envoy at their town (release 2a.3).
+            foreach (var rr in RansomPanels.Rows(f, home))
+            {
+                c.underway.Add(rr);
+                c.weight += 4;
+            }
             // The acts that fit: write to their head (any purpose), each with why not.
             var write = new DipAct { label = DipWords.P("CC_Dip_Act_Write"), tip = DipWords.P("CC_Dip_Act_Write_Tip") };
             if (head == null) write.why = DipWords.P("CC_Dip_Why_NoNotable", c.name.Named("PEOPLE"));
@@ -239,6 +245,12 @@ namespace ColonyCouncil
             c.acts.Add(write);
             // Offer a truce, propose a pact, call a defence pact in (release 2a.2), each greyed with why not.
             c.acts.AddRange(PactsPanels.Acts(f, home));
+            // Ask for their envoy, send the colony's own (release 2a.3), each greyed with why not.
+            if (Envoys.On && !Diplomacy.Hostile(f))
+            {
+                c.acts.Add(RansomPanels.AskAct(f));
+                c.acts.Add(RansomPanels.SendAct(f, null));
+            }
             if (!Diplomacy.Hostile(f)) c.weight += 1;
             return c;
         }
@@ -301,6 +313,10 @@ namespace ColonyCouncil
                 foreach (var p in FavourCalls.Held(f))
                     if (m.away.Count < MaxRows)
                         m.away.Add(new DipRow { text = DipWords.P("CC_Dip_Away_Held", p.Named("PAWN"), DipWords.People(f).Named("PEOPLE")), link = f, color = UiKit.Warn });
+            // The colony's envoy at a town of theirs (release 2a.3).
+            foreach (var r in RansomPanels.AwayRows())
+                if (m.away.Count < MaxRows)
+                    m.away.Add(r);
             // The colony's houses: its families known by name.
             var seen = new HashSet<string>();
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
@@ -320,6 +336,9 @@ namespace ColonyCouncil
         private static string WhyHere(Pawn p)
         {
             if (p.IsQuestLodger()) return DipWords.P("CC_Dip_HereAs_Lodger");
+            // Their envoy staying the season, or the envoy's attendant (release 2a.3).
+            string envoy = Envoys.HereAs(p);
+            if (envoy != null) return envoy;
             var job = p.GetLord()?.LordJob;
             if (job is LordJob_TradeWithColony) return DipWords.P("CC_Dip_HereAs_Trading");
             if (job is LordJob_VisitColony) return DipWords.P("CC_Dip_HereAs_Visiting");

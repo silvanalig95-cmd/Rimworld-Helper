@@ -352,6 +352,7 @@ namespace ColonyCouncil
                 CalendarTracker.Instance?.HomesLost(lost);
                 CampTracker.Instance?.HomesLost(lost);
                 RegionBook.Instance?.HomesLost(lost);
+                DiplomacyBook.Instance?.HomesLost(lost);
             };
         }
     }

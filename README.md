@@ -2676,6 +2676,25 @@ silver. Attacking a partner breaks it, and the peoples in reach hear of it. Each
 card, the inbox and the map's lenses. 14 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Settings: *Pacts and
 truces*, *Truces keep raids away*.
 
+**Ransom.** Some days after one of a people is taken prisoner, if their people want them back, their messenger comes to
+the colony's gate (a go-between of a people at peace with both when they are at war with the colony, or a call at the
+comms console) with an offer by their ways: accept and a warden walks the captive out while they set the price down,
+ask for more, let them go for nothing (and they owe the colony for it), or keep them; refused three times, they hold a
+grudge. Without a powered comms console, the game's own ransom demand for one of the colony's comes by their messenger
+at the game's rate and fee: paid, the speaker carries the silver out and the colonist walks in from the edge some hours
+later. The colony can offer an exchange of theirs for one of its own, and both walk at once at the gate. With a people
+at war an exchange can be a trap, at the game's peace talks' disaster rate by the negotiator, a band of theirs falling
+on the gate; the letter names the chance first. Setting: *Ransom*.
+
+**Envoys.** A friend's envoy may come to live at the colony for a season, or the colony asks for one: a guest with an
+attendant who does no work, eats at the colony's table, sleeps in the bed set aside for them (or a spare one, or the
+floor), talks with its people, sits in at a council meeting and writes home every five days. How the stay goes shows on
+their card (content, cool, offended) and travels home with them: their head's regard, a debt of honor for a very good
+stay, a slight for a poor one or for seeing them off early. The colony can send a colonist good with people to live at
+their town for a season: their letters bring the town's news, its notables think better of the colony, and they come
+home with a parting gift when their hosts think well of it. Each shows on the cards, Here and away and the inbox. 16
+conversation pieces, 24 letter lines and 23 spoken lines speak of captives and envoys. Setting: *Envoys*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town

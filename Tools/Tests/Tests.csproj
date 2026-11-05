@@ -97,6 +97,8 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FavourMath.cs" Link="FavourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/PactMath.cs" Link="PactMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/NatureMath.cs" Link="NatureMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/RansomMath.cs" Link="RansomMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/EnvoyMath.cs" Link="EnvoyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/SmallTownsMath.cs" Link="SmallTownsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/ColonistMemoryMath.cs" Link="ColonistMemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/InviteMath.cs" Link="InviteMath.cs" />

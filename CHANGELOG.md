@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ransom and the envoy
+
+*5 November 2026, version 0.89.0*
+
+- Ransom: some days after one of a people is taken prisoner, their messenger (a go-between when they are at war, or a call at the comms console) may come to the gate with an offer. Accept, ask for more, let them go for nothing, or keep them; refused three times, they hold a grudge.
+- Without a powered comms console, the game's own ransom demand for one of the colony's comes by their messenger at the game's rate and fee. Paid, the speaker carries the silver out, and the colonist walks home some hours later.
+- Exchanges: offer one of theirs for one of the colony's by letter, from the cards or face to face, and both walk at once at the gate. With a people at war an exchange can be a trap, at the game's peace talks' rate by the negotiator, and the letter names the chance first.
+- Their envoy for a season: a guest who eats at the colony's table, sleeps in a bed set aside, talks with its people, sits in at a council meeting and writes home every five days; how the stay goes travels home with them.
+- The colony's own envoy: a colonist good with people lives at their town for a season, sends its news every five days, and comes home better with people, with a parting gift when their hosts think well of the colony.
+- Captives and envoys show on the cards, in Here and away and in the inbox, with 16 conversation pieces, 24 letter lines and 23 spoken lines. The settings Ransom and Envoys are in the Diplomacy section, and the Almanac's diplomacy page has five new sections.
+
 ## The new windows, checked over
 
 *4 November 2026, version 0.88.1*

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Captives and envoys (Source/ColonyCouncil/Diplomacy/Ransoms.cs, Envoys.cs, EnvoysAbroad.cs; the facts in
+       Diplomacy/FactsRansom.cs): one of theirs in the colony's cells (ransom:theirs), one of the colony's they hold
+       (ransom:held), the one spoken to was once the colony's captive (them:wascaptive, {CAPTOR} the home that held them),
+       their envoy staying the season at the colony (envoy:here, {ENVOY}), the one spoken to being that envoy (them:envoy),
+       and the colony's envoy living at their town (envoy:ours, {OURENVOY}). By their ways: a guest-friend by
+       the fire among tribes, letters of credence in the middle ages, credentials among outlanders and spacers, the
+       court's own manners for the Empire. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Settling</defName>
+    <topic>envoy</topic>
+    <when>them:envoy</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] Are you settling in all right?</li>
+      <li>[them,their:tribal] Your fire is warm and your people are kind to a guest.</li>
+      <li>[them,their:empire] It is not the court, but your household is courteous.</li>
+      <li>[them] Well enough, thank you, and it's quieter than home.</li>
+      <li>[us] Tell one of us if you need anything.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Questions</defName>
+    <topic>envoy</topic>
+    <uses>chat,know</uses>
+    <when>them:envoy</when>
+    <lines>
+      <li>[them] Your people ask me a great many questions about home.</li>
+      <li>[us] We don't get many visitors who stay a whole season.</li>
+      <li>[them] I don't mind, it's half of what I'm here for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_WritingHome</defName>
+    <topic>envoy</topic>
+    <when>them:envoy</when>
+    <lines>
+      <li>[us] What do you write home about us?</li>
+      <li>[them] The truth, mostly: what you eat and how you speak to each other.</li>
+      <li>[us] Be kind about the cooking.</li>
+      <li>[them] I'll be honest about it, which may be the same thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Post</defName>
+    <topic>envoy</topic>
+    <uses>know</uses>
+    <when>them:envoy</when>
+    <lines>
+      <li>[us] What is your work at home, when you're not living with strangers?</li>
+      <li>[them,their:tribal] I carry words between the elders and the other fires.</li>
+      <li>[them,their:medieval] I carry the reeve's letters and stand for our town abroad.</li>
+      <li>[them,their:industrial] I go where the council sends me and keep careful notes.</li>
+      <li>[them,their:spacer] I represent my people's interests and file reports on what I find.</li>
+      <li>[them] I speak for my people wherever they send me.</li>
+      <li>[us] And this season you speak for them here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Rank</defName>
+    <topic>envoy</topic>
+    <when>them:envoy,their:empire</when>
+    <lines>
+      <li>[us] Is our household what you expected?</li>
+      <li>[them] At court a guest of my rank keeps a room of their own and a fine table.</li>
+      <li>[us] We'll see what we can do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Here</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy</when>
+    <lines>
+      <li>[them] I hear {ENVOY} is staying with you this season.</li>
+      <li>[us] {ENVOY} is, and eats at our table.</li>
+      <li>[them] Then I can tell them at home that {ENVOY} is fed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_HereFire</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy,their:tribal</when>
+    <lines>
+      <li>[them] The elders say our guest-friend sits by your fire this season.</li>
+      <li>[us] {ENVOY} is welcome at it.</li>
+      <li>[them] That is a good thing to carry home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_HereCourt</defName>
+    <topic>envoy</topic>
+    <when>envoy:here,!them:envoy,their:empire</when>
+    <lines>
+      <li>[them] {ENVOY} is to write to the court about your household.</li>
+      <li>[us] Then we'll keep the good plates out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_Ours</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours</when>
+    <lines>
+      <li>[them] Your {OURENVOY} is the talk of our town.</li>
+      <li>[us] Good talk, I hope.</li>
+      <li>[them] Mostly, though {OURENVOY} asks a great many questions.</li>
+      <li>[us] That's what we sent them for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Envoy_OursCredence</defName>
+    <topic>envoy</topic>
+    <when>envoy:ours,their:medieval</when>
+    <lines>
+      <li>[them] {OURENVOY} came to our hall with letters of credence, all very proper.</li>
+      <li>[us] We wanted it done the way your people do it.</li>
+      <li>[them] It was noticed.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_Theirs</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs</when>
+    <lines>
+      <li>[them] One of ours is in your cells, I hear.</li>
+      <li>[us] They are, and they're fed and kept warm.</li>
+      <li>[them,their:lowtech] My people would like them back by their own fire.</li>
+      <li>[them] My people would like them back.</li>
+      <li>[us] Then your people can make us an offer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_TheirsWar</defName>
+    <topic>ransom</topic>
+    <when>ransom:theirs,their:war</when>
+    <lines>
+      <li>[them] You hold one of ours, and I'm still standing here talking to you.</li>
+      <li>[us] We can talk about that too, if your people want to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_Held</defName>
+    <topic>ransom</topic>
+    <when>ransom:held</when>
+    <lines>
+      <li>[us] Your people hold one of ours.</li>
+      <li>[them] I know, and I'm not the one who decides it.</li>
+      <li>[us] Then tell whoever does that we want them back.</li>
+      <li>[them] I'll tell them, for what it's worth.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_WasCaptive</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive</when>
+    <lines>
+      <li>[them] I remember the inside of your cells at {CAPTOR}.</li>
+      <li>[us] I hope you remember the day you walked out too.</li>
+      <li>[them] I do, which is why I'm talking to you at all.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_WasCaptiveWarm</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,tone:warm</when>
+    <lines>
+      <li>[them] When I was held at {CAPTOR}, your people fed me better than I expected.</li>
+      <li>[us] We try to.</li>
+      <li>[them] I told them so at home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Ransom_WasCaptiveSour</defName>
+    <topic>ransom</topic>
+    <when>them:wascaptive,tone:sour</when>
+    <lines>
+      <li>[them] I haven't forgotten the cells at {CAPTOR}.</li>
+      <li>[us] Neither have we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
