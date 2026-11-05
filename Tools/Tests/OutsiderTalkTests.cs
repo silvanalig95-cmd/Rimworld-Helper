@@ -291,8 +291,6 @@ public static class OutsiderTalkTests
         "INLAW", "SPOUSEOF",
         // Wards and hostages (Diplomacy/FactsWards.cs).
         "WARD", "HOSTAGE", "GUARDIAN",
-        // The council's tasks (Diplomacy/FactsTasks.cs).
-        "OFFICER", "OFFICE",
         // House renown (Diplomacy/FactsRenown.cs).
         "HOUSE", "KNOWNFOR", "RENOWN", "THEIRHOUSE",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
