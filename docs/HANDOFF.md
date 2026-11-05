@@ -6,6 +6,61 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- Stage 2 release 2b.2, marriage alliances (docs/design/stage2-diplomacy.md, item 6; the player's decisions 8 and 9 as
+  recommended: where the couple lives chosen in each match, a child keeps the alliance after a death, the Empire's titled
+  marry only the titled; built beside 2b.3 and merged with 0.93.1 at 5061918, both kept). DESIGN.md, "Diplomacy" →
+  "Marriage alliances" has the whole of it. Pure and tested (`Tools/Tests/MatchTests.cs`, 308 checks):
+  `Diplomacy/MatchMath.cs` (`MatchWay`, `MatchHome`, `MatchStage`, `Consent`, `ConsentWhy`, `MatchWrong`; `WhyNot` by the
+  game's answers, `EmpireFits`, `ConsentOf`, `AcceptChance`/`Accepts`, `MayOffer` (regard 40, a year, three a people),
+  `TheyPropose`, `LeadDays`, `ArriveNow`, `RoadDays`, `GiftValue`/`GiftCount`, `RegardBonus` 15, `KinGiftDue`, `Warns`,
+  `PactAgain`, `EndsAtDeath`, `DiedRegard`, `WrongOf`, `PassesDown`, the regards, the topic, ask and feast-tag codes,
+  the facts' tags). Game side, all in `Diplomacy/`: `MatchBook.cs` (`MatchPlan`), `Matches.cs` (reading, who may
+  marry, the colonist asked first, candidates (heirs, envoys, faces the colony knows, a son or daughter of a head's
+  house made by `MakeKin` when they agree), `Hear`, `Begin`, `Agree` (fiancé, gifts both ways by `Couriers.Exchange`,
+  the day), `Pressed`/`Withdrawn`, their offer (`Offers`, `Pick`, `Offer`, `Accept`, `Decline`), `Off`, `HereAs`,
+  `MatchDefOf`), `MatchDays.cs` (the hour: hosting the wedding's guests through `Feasts.Host`, `OnStage`, the one to be
+  married joining at the gate, the game's ceremony 5 to 16 with the guests by the couple (`WeddingSpot`), the council's
+  wedding plan after three days; their kin for the colony's own (`SendEscort`, `EscortArrived`, `TakeLeave`/`Departs`),
+  the wedding at their town; `Married`, `Wed`), `MatchAlliance.cs` (`RegardBonus`, the day: a death and a child,
+  wrongs, theirs gone home, parted, the kin's gift, the camp warning, the pact kept and made again; `Wronged` with the
+  grudge, `Feuds`; `Concerns`/`Dying`/`Died` for the kill hook), `MatchParty.cs` (`LordJob_MatchEscort`,
+  `JobDriver_MatchLeave`), `MatchHooks.cs` (the feasts' event and focus; `Patch_MatchKilled` with the deeper hooks),
+  `MatchObjection.cs` (`Rimfolk_DlmMatch_Against` in `Defs/DilemmaDefs/Rimfolk_Dilemmas_Match.xml`: `MatchContext`,
+  `DilemmaWorker_MatchAgainst`, `DilemmaEffect_MatchPress`, `DilemmaEffect_MatchWithdraw`), `MatchLetters.cs`
+  (`LetterPurpose.Match`; `ChoiceLetter_MatchOffer`), `MatchActs.cs` ("Speak for a match"), `MatchPanels.cs` (Tie, Person,
+  House, People and Colonist cards; rows, `SeekAct`, `AwayRows`, `InlawRows`; the inbox `match`, `match-under-way`,
+  `match-coming`), `MatchWords.cs`, `MatchWarnings.cs` (`RaidersCamps.WarnedByKin`, a partial of the camps),
+  `FactsMatch.cs`, `MatchDebug.cs` (dev actions: their offer now, a match agreed now, their kin due now, the wedding at
+  their town now, each marriage's day, a spouse wronged). Shared, small: `LetterPurpose.Match` (after Ward) and
+  `OutsiderAct.SpeakMatch` at the ends of their enums (in the menu after "Speak of a pact"), `OutsiderTalkMath.Asks`,
+  `DiplomacyActs`/`DiplomacyLetters` delegating, `DiplomacyBook` (`matches`, `AnyWaiting`, homes lost), `Diplomacy.Hourly`
+  (the hour and the day), `DiplomacyModel` (rows, act, away, in-laws, `WhyHere`), `KeepFor.Spouse` and its daily check,
+  `NotableBook.Baseline` (+15 while it holds, not while at war), `Patch_Married` (one line), `Feasts` (`HereFocus`: the
+  guests stand by the couple, and the feast waits while the ceremony runs), `FactsLedger` (one call), setting
+  `diplomacyMarriage` (section Diplomacy). Defs: `Defs/Misc/Rimfolk_Matches.xml` (the offer's letter, the leaving job),
+  `Rimfolk_MatchPressed` (-6, 20 days; rare: only when the council presses a match) with its mood hint. Content: 28 talk
+  pieces (`Rimfolk_OutsiderTalks_Matches.xml`), 25 letter lines and 27 spoken lines (`Rimfolk_Lines_Matches.xml`),
+  keyed words (`Rimfolk_Matches.xml`) with 24 fellows (`Rimfolk_Matches_Variants.xml`), the Almanac's diplomacy page
+  (two paragraphs in its description and a clause in Settings; no keyword changes), README ("Marriage alliances"),
+  DESIGN.md, the save model (`matches`). Tests changed with it: `DiplomacyTests` (the purposes and acts in the order
+  built, the menu), `OutsiderTalkTests` (the ask, the tags, the placeholders); the DefValidator knows `INLAW`,
+  `SPOUSEOF`, `LIVES` and the new dynamic keys.
+  Left out, and why: challenges at the gate in a feud carried down (the harm review's 2.9.1 and 2.9.2, not picked); a
+  marriage counted toward the colony's renown, Diplomatic Marriage+'s once (round d); a spouse's house as the tie's
+  side (round d: the tie runs from their people, the grudge from their head); the in-laws visiting in person each season
+  (their gift comes by their courier); the heart's belonging for a spouse among strangers (the game's own moods carry
+  it); with the deeper hooks off, a death by the colony's hand is seen as a death, not a wrong (prison, slavery, sale and
+  banishment are still seen by the day's look); the Empire's honor (decision 9 names two other places). To look at in
+  game: "Speak for a match" with a lover of the outsiders' courting and with a notable at the colony (the menu's
+  feelings, their answer, the agreement's letter and the gifts at the gate); a letter from a people's card ("Seek a
+  match") and a notable's ("Propose a match"), a house's son or daughter made on their yes; their offer by letter;
+  a colonist against it before the council, pressed and withdrawn; the wedding's guests at the gate, the spouse joining,
+  the ceremony with the guests by the couple and the feast after it; a ceremony that can't start (danger), and the
+  council's own plan after three days; their kin at the gate for the colony's own, the walk out, the farewell, leaving,
+  and the letter from their town some days on; the kin's gift a season later, a raiders' camp found by their letter, the
+  pact on the people card and called by fire or console; a spouse's death with and without a child; a divorce; a spouse
+  arrested (the grudge's letter, the pact broken), and the grudge passing when their head dies; the Tie, House, Person,
+  People and Colonist cards, Here and away, the inbox and the Peoples view; Diplomatic Marriage+'s alliance as a row.
 - 0.93.1, two of the player's reports: (1) an ideology mod's precept "has automated turrets: scorned"
   (`GR_HasAutomatedTurrets_Scorned` in the player's save) gave its mood to everyone because a hacked terminal in a
   hatch's pocket map handed the colony that map's ancient armored turret; `Integrations/TurretFaith.cs` finds every

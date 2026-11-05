@@ -2726,6 +2726,23 @@ regard, and their people remember it; an empty plate is a slight. A bout's blow 
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
 conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*.
 
+**Marriage alliances.** A match between one of the colony's and one of a people at peace: "Speak for a match" with
+someone of theirs at the colony (two who courted their way to lovers speak for themselves), a letter proposing one (the
+people's card and a notable's say who of the colony's would fit, a notable or a son or daughter of a head's house), or
+their own offer once a year from a people whose head thinks 40 or more of the colony. Who may marry is the game's own
+rule (grown, drawn to each other, not kin, free to take a spouse by their faith), and the Empire's titled nobles marry
+only the titled. The colonist is asked first: one who loves someone else here, would leave children behind or can't
+stand the one chosen is against it, and the council hears the objection before anything is settled. Where the couple
+lives is chosen each time. Theirs comes on the day with their kin as the wedding's guests, joins the colony at the gate
+and is married by the game's own ceremony while the guests watch, then the feast; or their kin come to the gate for the
+colony's own, who leaves with them for good, and the wedding at their town is told in their letter. Gifts go both ways
+at the gate. While it holds their notables think 15 better of the colony, their kin send a gift each season, they write
+when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire); a child of the
+two keeps it after a death. A spouse wronged by the colony (killed, imprisoned, enslaved, sold, banished) breaks it, with
+a grudge their next head takes up. Each shows on the Tie, House, Person and People cards, Here and away and the inbox;
+Diplomatic Marriage+'s own alliance shows as the mod's. 28 conversation pieces, 25 letter lines and 27 spoken lines speak
+of it. Setting: *Marriage alliances*.
+
 **Wards and hostages.** A friend whose head thinks well of the colony may offer a youth of a notable's house to live at
 the colony for a year (a child where the game has children), or the colony asks for one by letter: they walk in with
 their kin and stay as the game's lodger, on the colonist bar and working with everyone, and a guardian with 10 or more
