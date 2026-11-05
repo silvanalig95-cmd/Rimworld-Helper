@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, FealtyLetters.cs, FealtyOath.cs,
+    Vassals.cs; the facts in Diplomacy/FactsFealty.cs), beside Rimfolk_Lines_Fealty.xml, whose tags these keep. Two pools
+    the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
+      "fealty" (warm, cordial or cool when they accept and someone of theirs comes to the gate, refusal when they won't;
+      a letter overtaken by events is answered as a refusal too, so a refusal never says why in more than general
+      terms). In a letter of any purpose while the colony is sworn to them (fealty:oath, fealty:short and tie:fealty:due
+      when tribute is owed, fealty:levies when they called on the colony's levies this season, sent or refused,
+      fealty:protected when their band came this season), or while a town of theirs is the colony's own vassal
+      (vassal:town, vassal:heavy, vassal:levy). Help and an invitation are granted only when the answer is warm or
+      cordial, so a cool or worse line there never promises them. Their head is never "their lord" here: a theirLowtech
+      line must read true for a tribe and for the middle ages (the Empire takes no oath and keeps no vassals).
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the oath at the gate: fealtyoath (the colony's speaker, us,
+      greeting the one who came to take it), fealtyterms (them, the terms halfway), fealtysworn (them, as it is sworn).
+      The colony's era (tribal, medieval, industrial, spacer) gives the speaker's own words for it; theirLowtech and
+      theirHightech are their people's; kind, abrasive, lowmood and highmood the speaker's own. One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_FealtyMore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- Their answer to the colony asking to swear fealty -->
+        <li>[fealty,warm,letter] Your letter was read before our head, and every voice in the room was for it. Make ready for us at your gate.</li>
+        <li>[fealty,warm,call] Yes, and gladly, {WRITER}. Someone of ours will be at your gate to hear the oath.</li>
+        <li>[fealty,cordial,theirHightech] Your request is approved. Expect someone at your gate to settle the terms in person.</li>
+        <li>[fealty,cordial,letter,theirLowtech] We will take your oath. Keep your gate open for the one we send, and your word ready.</li>
+        <li>[fealty,cool,call] All right, we'll take it. Pay on time and we'll have no quarrel, {WRITER}.</li>
+        <li>[fealty,cool,letter] We accept your oath. See that the tribute is never late, and that your fighters come when called.</li>
+        <li>[fealty,refusal,letter,theirLowtech] Our head will not take your oath now. We cannot spare the fighters to keep our side of it.</li>
+        <li>[fealty,refusal,letter,theirHightech] After review, we cannot extend protection to your settlement at this time.</li>
+
+        <!-- While the colony is sworn to them -->
+        <li>[greetings,warm,fealty:oath,theirLowtech] Those who hold of us are always welcome to write. Our head asks that your colony keeps its walls strong.</li>
+        <li>[greetings,cordial,fealty:oath,theirHightech] Thanks for the update. Your standing with us remains good.</li>
+        <li>[greetings,cool,fealty:oath,!fealty:short] We have your letter. Your tribute speaks louder than your words, and so far it has spoken well.</li>
+        <li>[greetings,cordial,fealty:oath,fealty:levies] Our call on your oath was heard this season, and our head remembers how it was answered.</li>
+        <li>[greetings,warm,fealty:oath,fealty:protected,theirLowtech] Our band is home from your walls with stories of your people. They say you hold a line like our own.</li>
+        <li>[news,cordial,fealty:oath] Here is our news. As one who holds of us now, your colony should know how things stand with us.</li>
+        <li>[news,cool,fealty:oath,fealty:short] Here is our news. We would rather have had your tribute than your questions.</li>
+        <li>[help,warm,fealty:oath] What we send is for those who hold of us, and gladly given. Use it well.</li>
+        <li>[help,cordial,fealty:oath,theirLowtech] We do not let those who hold of us go hungry. Take this, and keep your oath.</li>
+        <li>[help,refusal,fealty:oath] You hold of us for protection, not for a pantry. We cannot spare it.</li>
+        <li>[help,refusal,fealty:oath,fealty:short] You still owe us tribute, and now you ask for help? Pay what you owe first.</li>
+        <li>[warning,cordial,fealty:oath] Thank you for the warning. If it reaches your walls, our band will come if it can.</li>
+        <li>[invitation,warm,fealty:oath] We will come, and gladly. It is good for those who hold of us to see our faces.</li>
+        <li>[invitation,cool,fealty:oath] We will see your colony when our collector does. That will have to do.</li>
+        <li>[condolences,warm,fealty:oath] Your dead are mourned here as our own would be. You hold of us, and your grief is ours.</li>
+
+        <!-- While a town of theirs is the colony's own vassal -->
+        <li>[greetings,warm,vassal:town] Our kin under your protection send their greetings with ours. They speak well of your colony.</li>
+        <li>[greetings,cordial,vassal:town,theirHightech] Our relatives under your protection report that things are stable. Thank you for that.</li>
+        <li>[greetings,cool,vassal:town,vassal:heavy,theirLowtech] Our kin under your protection grow thinner each harvest. We hope your colony enjoys the bread.</li>
+        <li>[news,cordial,vassal:town,vassal:levy] Here is our news. Our kin fought at your walls when you called, and their families are proud of them.</li>
+        <li>[help,warm,vassal:town] Take this, and think of our kin under your protection when you use it.</li>
+        <li>[help,refusal,vassal:town,vassal:heavy] You take a heavy share of our kin's harvest, and now ask us for more? No.</li>
+        <li>[condolences,cordial,vassal:town] Our kin under your protection grieve with you, and so do we.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_FealtyMore</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- The colony's speaker meeting the one who takes the oath -->
+        <li>[fealtyoath,us,tribal] Our clan meets you at the gate with open hands and an honest oath.</li>
+        <li>[fealtyoath,us,medieval] The colony is ready to swear fealty before you and these witnesses.</li>
+        <li>[fealtyoath,us,industrial] We've read the terms, and the colony is ready to sign on.</li>
+        <li>[fealtyoath,us,spacer] The colony accepts the charter's terms, and I'm here to say so in person.</li>
+        <li>[fealtyoath,us,kind] Thank you for coming all this way to hear us.</li>
+        <li>[fealtyoath,us,rain] Forgive the weather, we'd have had it fine for you if we could.</li>
+        <li>[fealtyoath,us,lowmood] Let's get it done, then.</li>
+        <!-- Their terms -->
+        <li>[fealtyterms,them,theirLowtech] Tribute when the season turns, fighters when we call, and our band at your walls.</li>
+        <li>[fealtyterms,them,theirHightech] Seasonal dues, two of your people on call, and our response team when you're hit.</li>
+        <li>[fealtyterms,them] You pay each season and come when we call, and we come when you're raided.</li>
+        <li>[fealtyterms,them,abrasive] Pay on time, come when called, and don't make me regret this.</li>
+        <li>[fealtyterms,them,kind] We ask what we must and no more, and we keep our word.</li>
+        <li>[fealtyterms,them,winter] Winter or not, the tribute comes each season, and so do we when you need us.</li>
+        <!-- The oath sworn -->
+        <li>[fealtysworn,them] It's done, and your gate is under our protection from today.</li>
+        <li>[fealtysworn,them,theirLowtech] It is sworn before witnesses, and my people will know it by nightfall.</li>
+        <li>[fealtysworn,them,theirHightech] Terms agreed and witnessed, and you're under our protection now.</li>
+        <li>[fealtysworn,them,abrasive] Sworn, and I'll hold you to every word of it.</li>
+        <li>[fealtysworn,them,highmood] Sworn, and a good day for both our peoples.</li>
+        <li>[fealtysworn,them,rain] Sworn in the rain, which my people say makes an oath hold faster.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
