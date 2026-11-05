@@ -217,6 +217,8 @@ public static class RenownTests
         string renownCode = Code("Diplomacy/Renown.cs");
         C(renownCode.Contains("RenownMath.HouseFor(") && Code("Diplomacy/RenownPanels.cs").Contains("h.folk.Where(r => !Renown.StillOurs(r))"),
             "the index puts each in the house of their name, and the card's gone leaves out anyone still with the colony");
+        C(Regex.IsMatch(renownCode, @"KinMemory\.Ours\(p\) && WorldLedger\.KeptFor\(p, KeepFor\.Lent\)\) Put\(p, kv\.Value\)"),
+            "one away at another people's town on the colony's errand (envoy, youth, hostage) is still of the house: not gone, what they hold still counts");
         string region = Code("World/Ledger/LedgerRegion.cs");
         C(region.Contains("Scribe_Values.Look(ref ours, \"ours\")") && region.Contains("Scribe_Collections.Look(ref folkText, \"folk\"") && region.Contains("Scribe_Values.Look(ref band, \"band\")")
           && region.Contains("h.town < 0 && !h.ours"), "the colony's houses saved beside the towns', kept on load without a town");

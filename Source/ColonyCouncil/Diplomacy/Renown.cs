@@ -51,7 +51,7 @@ namespace ColonyCouncil
 
         private static readonly List<Pawn> None = new List<Pawn>();
 
-        /// <summary>Who of the colony's free people belongs to which of its houses, found again each hour (or when the houses change).</summary>
+        /// <summary>Who of the colony's free people (and of its own away on its errand) belongs to which of its houses, found again each hour (or when the houses change).</summary>
         private static void Index()
         {
             int now = Now;
@@ -74,6 +74,14 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 if (p != null && of.TryGetValue(p.thingIDNumber, out var hs))
                     Put(p, hs);
+            // One of them away at another people's town on the colony's errand (its envoy, its youth or its hostage, kept in
+            // the world for it): still of the house, what they hold still counts, and they are not among its gone.
+            foreach (var kv in of)
+            {
+                if (byPawn.ContainsKey(kv.Key)) continue;
+                var p = WorldLedger.PawnOf(Ref.Person(kv.Key));
+                if (KinMemory.Ours(p) && WorldLedger.KeptFor(p, KeepFor.Lent)) Put(p, kv.Value);
+            }
             foreach (var list in living.Values)
                 list.Sort((a, b) => (b.ageTracker?.AgeBiologicalTicks ?? 0L).CompareTo(a.ageTracker?.AgeBiologicalTicks ?? 0L));
         }
