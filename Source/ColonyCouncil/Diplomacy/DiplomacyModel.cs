@@ -218,6 +218,8 @@ namespace ColonyCouncil
                 if (t == null || !t.Live || t.kind == Tie.Kind.Regard || t.kind == Tie.Kind.Favour && t.origin == FavourMath.Origin) continue;
                 if (t.kind == Tie.Kind.Pact && t.origin == Pacts.Origin || t.kind == Tie.Kind.Truce && t.origin == Truces.Origin) continue;
                 if (t.kind == Tie.Kind.Fealty && (t.origin == Fealty.Origin || t.origin == FealtyMath.VassalOrigin)) continue;
+                // The hamlet once sworn is the colony's vassal, shown as one (FealtyPanels).
+                if (t.kind == Tie.Kind.Fealty && t.from.kind == RefKind.Town && Vassals.At(t.from.id, out _) != null) continue;
                 string line = TieLine(t);
                 if (line.NullOrEmpty()) continue;
                 c.ties.Add(new DipRow { text = line, note = t.since >= 0 ? DipWords.Since(t.since) : null, color = UiKit.Info, link = f });

@@ -118,6 +118,7 @@
   <CC_Fealty_Renounced>The council has renounced the colony's oath to {PEOPLE} ({WORD}), and sent them word. They take it as a wrong done them: {GOODWILL} goodwill, and a grudge.</CC_Fealty_Renounced>
   <CC_Fealty_Renounced_Clean>The council has renounced the colony's oath to {PEOPLE} ({WORD}). They failed to protect it this season, and can say nothing against it.</CC_Fealty_Renounced_Clean>
   <CC_Fealty_Msg_Gone>{PEOPLE} are gone from the world, and the colony's oath to them is over.</CC_Fealty_Msg_Gone>
+  <CC_War_Liege>{PEOPLE}, to whom the colony is sworn, are fighting {OTHER} on its land. Whoever the colony sends into the fight beside them stands with its liege.</CC_War_Liege>
   <CC_Fealty_Msg_War>{PEOPLE} are at war with the colony now, and its oath to them is over.</CC_Fealty_Msg_War>
 
   <!-- The cards and the people card -->

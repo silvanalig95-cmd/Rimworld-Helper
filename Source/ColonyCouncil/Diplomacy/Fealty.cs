@@ -225,8 +225,14 @@ namespace ColonyCouncil
             var h = DiplomacyBook.Instance?.HomeOf(home);
             if (h != null) ClearOath(h);
             if (Of(home) != null) return null;
+            // A scenario's grant of land from them (ScenPart_CouncilBeholden) is sworn anew: the oath takes its place.
+            var colony = Diplomacy.Colony(home);
+            var people = Refs.Of(f);
+            foreach (var old in WorldLedger.OwnTies(Tie.Kind.Fealty).ToList())
+                if (old != null && old.Live && old.origin == ScenPart_CouncilBeholden.Origin && old.from == colony && old.to == people)
+                    WorldLedger.Set(old, Tie.State.Ended);
             var terms = new TieTerms { key = FealtyMath.LiegeKey, number = Day + FealtyMath.SeasonDays };
-            var t = WorldLedger.AddTie(Tie.Kind.Fealty, Diplomacy.Colony(home), Refs.Of(f), terms, Tie.Never, Origin);
+            var t = WorldLedger.AddTie(Tie.Kind.Fealty, colony, people, terms, Tie.Never, Origin);
             if (t == null) return null;
             var form = FealtyWords.Form(home, f);
             FactionMemory.Note(f, "swore", form.word);
@@ -347,7 +353,12 @@ namespace ColonyCouncil
                         continue;
                     }
                     if (BandHour(t, f, home, day)) continue;
-                    if (!PactMath.ParseArms(t.terms.goods, out _, out _)) ProtectionHour(t, f, home, day);
+                    if (!PactMath.ParseArms(t.terms.goods, out _, out _))
+                    {
+                        ProtectionHour(t, f, home, day);
+                        // Their band set out this hour: nothing else on the oath until it is home.
+                        if (PactMath.ParseBand(t.terms.goods, out _)) continue;
+                    }
                     CallsToArms.PactHour(t, f, home, day);
                     if (t.Live) TributeHour(t, f, home, day);
                 }

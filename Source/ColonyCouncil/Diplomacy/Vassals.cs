@@ -539,14 +539,15 @@ namespace ColonyCouncil
 
         public const string CampKey = "vassal:camp", DefendKey = "vassal:defend";
 
-        /// <summary>The colony's word to break a camp near them or to fight beside them: a Promise tie to their head, for a season (an invasion: five days).</summary>
+        /// <summary>The colony's word to break a camp near them or to fight beside them: a Promise tie to their head, for a season (an invasion: five days), its day in the terms.</summary>
         private static void Promise(Map home, int town, Faction people, VassalAsk ask, int target)
         {
             var head = HeadOf(town);
             var to = head != null ? head.Person : Refs.Of(people);
             float days = ask == VassalAsk.Defend ? FealtyMath.LevyDays : FealtyMath.CampPromiseDays;
-            WorldLedger.AddTie(Tie.Kind.Promise, Diplomacy.Colony(home), to, new TieTerms { key = ask == VassalAsk.Defend ? DefendKey : CampKey, count = target, about = Ref.Town(town) },
-                Now + Mathf.RoundToInt(days * Day), FealtyMath.VassalOrigin);
+            // Its day in the terms (not the ledger's until, which would end it quietly): kept, or broken at its day.
+            WorldLedger.AddTie(Tie.Kind.Promise, Diplomacy.Colony(home), to,
+                new TieTerms { key = ask == VassalAsk.Defend ? DefendKey : CampKey, count = target, about = Ref.Town(town), days = Now / (float)Day + days }, Tie.Never, FealtyMath.VassalOrigin);
         }
 
         /// <summary>Promises kept or broken: the camp gone; the colony's people at their outpost while the fight is on, or the fight over with it still the colony's.</summary>
@@ -573,7 +574,7 @@ namespace ColonyCouncil
                         Regard(town, t.terms.key == CampKey ? FealtyMath.CampKeptRegard : FealtyMath.DefendRegard, FealtyWords.P(t.terms.key == CampKey ? "CC_Vassal_Note_CampBroken" : "CC_Vassal_Note_Defended"));
                     }
                     else if (over) WorldLedger.Set(t, Tie.State.Ended);
-                    else if (t.until >= 0 && now >= t.until)
+                    else if (t.terms.days > 0f && now >= t.terms.days * Day)
                     {
                         WorldLedger.Set(t, Tie.State.Broken);
                         Regard(town, FealtyMath.CampBrokenRegard, FealtyWords.P(t.terms.key == CampKey ? "CC_Vassal_Note_CampLeft" : "CC_Vassal_Note_NotCome"));

@@ -114,6 +114,8 @@ namespace ColonyCouncil
                 string key = null;
                 if (Pacts.Of(us, home, PactKind.Defence) != null || Pacts.Of(us, home, PactKind.Trade) != null) key = "CC_War_Pact";
                 else if (Truces.SwornOf(us, home) != null) key = "CC_War_Truce";
+                // The colony's liege (Fealty.cs): whoever the colony sends into the fight beside them is with them.
+                else if (Fealty.Liege(home) == us) key = "CC_War_Liege";
                 if (key == null) continue;
                 // apart: what the battle on the colony's land means for its pact or truce, told as it begins.
                 Tell.Message(NewsKind.World, Importance.Important, home, PactWords.P(key, PactWords.People(us).Named("PEOPLE"), PactWords.People(them).Named("OTHER")),
@@ -132,7 +134,7 @@ namespace ColonyCouncil
             {
                 if (x.sided || Now - x.at > GenDate.TicksPerDay * 2) continue;
                 var partner = d.faction == x.a ? x.b : d.faction == x.b ? x.a : null;
-                if (partner == null || Pacts.With(partner).Count == 0) continue;
+                if (partner == null || Pacts.With(partner).Count == 0 && Fealty.With(partner) == null) continue;
                 x.sided = true;
                 KinMemory.Note(partner, "sidedWith", null, PactWords.P("CC_War_Sided", PactWords.People(d.faction).Named("OTHER")));
                 // apart: what their people make of the colony's part in the battle, told in a message.
