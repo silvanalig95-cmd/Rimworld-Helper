@@ -2,90 +2,23 @@
 <Defs>
 
   <!--
-    More on house renown (Source/ColonyCouncil/Diplomacy/Renown.cs, FactsRenown.cs), beside Rimfolk_Lines_Renown.xml,
-    whose tags these keep. The round d text pass. Two pools the game already draws on:
-    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in answer to a letter from one of a house of
-      the colony (the writer: house:ours, house:known, house:renowned, house:wide, house:infamous, house:knownfor:KIND;
-      {HOUSE}, {KNOWNFOR} read after "known for" or "a name for", {RENOWN} in their ways read after "is", the Empire's by
-      the court's), or to the head of a house of theirs (them:house, them:house:renowned), or one who holds a grudge, or
-      whose people hold one about one of the writer's house (them:house:feud: "our house" only with them:house). Help and
-      an invitation are granted only in a warm or cordial answer (a cool plea for help is quoted in the refusal's words),
-      so only those promise them. Condolences and warnings are the colony's words about their loss or their danger, never
-      the writer's. By their ways theirLowtech (tribes, the middle ages and the Empire's court) and theirHightech.
-    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): renownup and renowndown, said by one of the house as its name
-      moves, to nobody, by the colony's age, with the house's tags as they are now: a name first known in a town nearby
-      (house:known, !house:renowned) is talked of at the nearest camp's fire, the next town's market, the next town, the
-      nearest settlement's channels; across the region (house:renowned, !house:wide) at every fire, in its halls, its
-      papers, on every channel; among every people in reach (house:wide) further still. renowndown is said as a name fades
-      from the talk: house:wasrenowned (RenownMath.BubbleTag) for one that was told across the region or wider, else it
-      was only the next town's talk. wordyes: an outsider promising a good word for one of a known house. One sentence each,
-      naming nobody.
+    More bubbles of the colony's renown (Source/ColonyCouncil/Diplomacy/Renown.cs), beside Rimfolk_Lines_Renown.xml, from the
+    round d text pass. Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): renownup and renowndown, said by one of the colony
+    as its name moves, to nobody, by the colony's age. A name first known in a town nearby is talked of at the nearest
+    camp's fire, the next town's market, the next town, the nearest settlement's channels (these lines are said at that
+    band alone, !colony:renowned, Source/ColonyCouncil/Lean/ShippedLines.cs); renowndown's town words only for a name that
+    was only the next town's talk (!colony:wasrenowned). Their region's and peoples' words, by what the colony is known
+    for, the letters and the good words went with the houses (5 November 2026); the colony's own are in
+    Rimfolk_Lines_ColonyRenown.xml, and the lines here that say "our family" are no longer said. One sentence each,
+    naming nobody.
   -->
-
-  <ColonyCouncil.FlavorExtensionDef>
-    <defName>Rimfolk_Lines_NeighbourWrites_RenownMore</defName>
-    <pool>Rimfolk_Pool_NeighbourWrites</pool>
-    <lines>
-      <plain>
-        <!-- Greetings from one of a house, by how far its name carries -->
-        <li>[greetings,warm,house:known,!house:renowned] We have heard a little of your family, {WRITER}, and all of it good.</li>
-        <li>[greetings,cordial,house:known,!house:renowned,theirLowtech] Your family's name has reached us, {WRITER}. We are glad to put a hand to it.</li>
-        <li>[greetings,cordial,house:known,!house:renowned,theirHightech] Your family's name is {RENOWN}, we hear. Good to have a letter to go with it.</li>
-        <li>[greetings,warm,house:renowned,theirHightech] A letter from one of {HOUSE} is always welcome here.</li>
-        <li>[greetings,warm,house:renowned,theirLowtech] Your family's name is {RENOWN}, {WRITER}, and your letter is read with care.</li>
-        <li>[greetings,cordial,house:wide,theirLowtech] Your family's name is {RENOWN}, {WRITER}. We are glad of your letter.</li>
-        <li>[greetings,cordial,house:wide,theirHightech] Your family's name is {RENOWN}, so your letter was read first.</li>
-        <li>[greetings,cool,house:known] We know your family's name. We will see whether you live up to it.</li>
-        <li>[greetings,curt,house:renowned] Your family's name is known here. That earns you an answer, no more.</li>
-        <!-- Greetings from one of a house known for something -->
-        <li>[greetings,warm,house:knownfor:hosts] Your family is known for {KNOWNFOR}, {WRITER}, and we hope to see it for ourselves one day.</li>
-        <li>[greetings,warm,house:knownfor:healers,theirLowtech] Your family is known for {KNOWNFOR}, {WRITER}. Our sick speak of it with hope.</li>
-        <li>[greetings,cordial,house:knownfor:healers,theirHightech] Your family's known for {KNOWNFOR}, {WRITER}. Our medics would like to compare notes some time.</li>
-        <li>[greetings,cordial,house:knownfor:fighters,theirHightech] Your family's known for {KNOWNFOR}, {WRITER}. Good neighbors to have.</li>
-        <li>[greetings,cordial,house:knownfor:traders,theirLowtech] Your family is known for {KNOWNFOR}, and our traders would gladly deal with it.</li>
-        <li>[greetings,cordial,house:knownfor:makers,theirHightech] Your family has a name for {KNOWNFOR}. Our buyers would like to know more.</li>
-        <li>[greetings,cordial,house:knownfor:makers,theirLowtech] Your family is known for {KNOWNFOR}, {WRITER}. Our crafters would like to see it.</li>
-        <li>[greetings,cordial,house:knownfor:faithful,theirHightech] Your family is known for {KNOWNFOR}, {WRITER}. We respect that, whatever we believe.</li>
-        <li>[greetings,cordial,house:knownfor:hosts,theirHightech] Your family has a name for {KNOWNFOR}, and your letter reads like it.</li>
-        <!-- From one of a house known for the wrong things -->
-        <li>[greetings,cool,house:infamous,theirLowtech] We have your letter. Your family's name is {RENOWN}, and we will be careful.</li>
-        <li>[greetings,curt,house:infamous,theirHightech] Your letter came. Your family's name is {RENOWN}, so keep it brief.</li>
-        <li>[greetings,cordial,house:infamous] We have heard what is said of {HOUSE}. Your letter says something better, and we will remember it.</li>
-        <!-- Answers that go with the name -->
-        <li>[news,warm,house:known] Here is our news, {WRITER}, and know that your family's name is {RENOWN}.</li>
-        <li>[news,cordial,house:knownfor:traders] Here is our news. Our traders will want to hear yours, from a family known for {KNOWNFOR}.</li>
-        <li>[warning,warm,house:renowned] A warning from one of {HOUSE} we take to heart. Thank you.</li>
-        <li>[warning,cordial,house:known] We have your warning, and your family's name gives it weight.</li>
-        <li>[warning,cool,house:infamous] We have your warning. From one of {HOUSE}, we will look into it ourselves.</li>
-        <li>[condolences,warm,house:renowned] Your letter means more coming from one of {HOUSE}. Thank you for thinking of us.</li>
-        <li>[condolences,cordial,house:known] Thank you for your words, {WRITER}. Your family's name is known here, and now so is its kindness.</li>
-        <li>[condolences,cool,house:infamous] We have your letter. Kind words from one of {HOUSE} were not what we expected.</li>
-        <li>[help,cordial,house:known] We can send {HELP}. Your family's name is known to us, and that counts for something.</li>
-        <li>[help,warm,house:wide] For a family whose name is {RENOWN}, {HELP} is the least we can send.</li>
-        <li>[help,refusal,house:renowned] Your family's name is known here, but we cannot spare {HELP} now.</li>
-        <li>[invitation,cordial,house:known] We would like to meet the family behind the name. We will come.</li>
-        <li>[invitation,warm,house:knownfor:hosts] A family known for {KNOWNFOR} has asked us to visit. We will come, and hungry.</li>
-        <li>[invitation,cool,house:known] We have your invitation. Your family's name is known here, but we will not travel now.</li>
-        <!-- To the head of a house of theirs -->
-        <li>[greetings,warm,them:house] Our house is glad of your letter, {WRITER}.</li>
-        <li>[greetings,cordial,them:house,theirHightech] The family thanks you for writing. We keep our letters, and we will keep yours.</li>
-        <li>[greetings,cordial,them:house:renowned,theirHightech] Our family's name is well known here, and it is good to see your colony's on a letter.</li>
-        <li>[news,cordial,them:house] Here is our news, as our house hears it.</li>
-        <!-- A feud: from one who heads no house, or their people's grudge -->
-        <li>[greetings,cool,them:house:feud,!them:house] We have your letter. What lies between us and your colony is not settled by one.</li>
-        <li>[greetings,curt,them:house:feud,!them:house,theirLowtech] We have not forgotten what lies between us. Say what you came to say.</li>
-        <li>[greetings,curt,them:house:feud,!them:house,theirHightech] There is still a grudge against your colony here. Keep it short.</li>
-        <li>[greetings,cool,them:house:feud,them:house,theirHightech] My family still holds your colony to account. Your letter is noted.</li>
-      </plain>
-    </lines>
-  </ColonyCouncil.FlavorExtensionDef>
 
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Rimfolk_Lines_OutsiderSays_RenownMore</defName>
     <pool>Rimfolk_Pool_OutsiderSays</pool>
     <lines>
       <plain>
-        <!-- One of the house, as its name is first known in a town nearby -->
+        <!-- One of the colony, as its name is first known in a town nearby -->
         <li>[renownup,us,!house:renowned] Seems the next town has heard of our family.</li>
         <li>[renownup,us,!house:renowned] Our name's going around nearby, apparently.</li>
         <li>[renownup,us,tribal,!house:renowned] The nearest camp tells of our family at its fire now.</li>
@@ -96,45 +29,17 @@
         <li>[renownup,us,industrial,!house:renowned] Our family name gets mentioned in the next town now.</li>
         <li>[renownup,us,spacer,!house:renowned] Our family name turned up on the nearest settlement's channel.</li>
         <li>[renownup,us,spacer,!house:renowned] The nearest settlement has our family name in its feeds now.</li>
-        <!-- Across the region -->
-        <li>[renownup,us,house:renowned,!house:wide] The whole region knows our family's name now.</li>
-        <li>[renownup,us,tribal,house:renowned,!house:wide] Every fire in the region tells of our family now, they say.</li>
-        <li>[renownup,us,medieval,house:renowned,!house:wide] Our family's name is sung in halls I've never set foot in.</li>
-        <li>[renownup,us,industrial,house:renowned,!house:wide] Our family's in the region's papers, apparently.</li>
-        <li>[renownup,us,spacer,house:renowned,!house:wide] Every channel in the region carries our family name now.</li>
-        <!-- Among every people in reach -->
-        <li>[renownup,us,house:wide] Strangers from every people around know our name now.</li>
-        <li>[renownup,us,tribal,house:wide] Clans we have never met tell of our family now.</li>
-        <li>[renownup,us,medieval,house:wide] They sing of our family in halls far and wide, I'm told.</li>
-        <li>[renownup,us,industrial,house:wide] Every people around seems to know our family's name now.</li>
-        <li>[renownup,us,spacer,house:wide] Our family name is out past every relay in reach.</li>
-        <!-- By what the house is known for -->
-        <li>[renownup,us,house:knownfor:healers] If we're known for our healing now, I hope the hurt know where to find us.</li>
-        <li>[renownup,us,house:knownfor:fighters] I'd rather be known for something besides fighting, but I'll take it.</li>
-        <li>[renownup,us,house:knownfor:hosts] Good, maybe more guests will come knocking.</li>
-        <li>[renownup,us,house:knownfor:traders] Being known for our trading is good for business.</li>
-        <li>[renownup,us,house:knownfor:makers] People know our family for its work, and the work is what matters.</li>
-        <li>[renownup,us,house:knownfor:faithful] I hope our faith is what they remember us by.</li>
+        <!-- Either way -->
         <li>[renownup,us,kind] Let's give them good reasons to keep saying our name.</li>
-        <!-- One of the house, as its name fades from the next town's talk -->
+        <!-- One of the colony, as its name fades from the next town's talk -->
         <li>[renowndown,us,!house:wasrenowned] The next town has stopped talking about us, it seems.</li>
         <li>[renowndown,us,tribal,!house:wasrenowned] The nearest camp tells other stories at its fire now.</li>
         <li>[renowndown,us,medieval,!house:wasrenowned] Nobody at the next town's market speaks of us now.</li>
         <li>[renowndown,us,industrial,!house:wasrenowned] The next town's found something else to talk about.</li>
         <li>[renowndown,us,spacer,!house:wasrenowned] Our name's gone quiet on the nearest settlement's channels.</li>
-        <!-- As it fades from the region's talk, or wider -->
-        <li>[renowndown,us,house:wasrenowned] For a while the whole region knew our name, and now nobody does.</li>
-        <li>[renowndown,us,tribal,house:wasrenowned] The fires of the region have forgotten our name for now.</li>
-        <li>[renowndown,us,medieval,house:wasrenowned] The halls sing of other families now.</li>
-        <li>[renowndown,us,industrial,house:wasrenowned] The papers have no more use for our family.</li>
-        <li>[renowndown,us,spacer,house:wasrenowned] The region's channels have moved on from us.</li>
         <!-- Either way -->
         <li>[renowndown,us] We'll just have to give them something new to talk about.</li>
         <li>[renowndown,us,kind] Quiet suits us well enough.</li>
-        <!-- An outsider promising a good word for one of a known house -->
-        <li>[wordyes,them,house:known,!house:renowned] I've heard your family's name, so my word will land on good ground.</li>
-        <li>[wordyes,them,house:wide] Your family's name will do most of the work, I'll only add mine.</li>
-        <li>[wordyes,them,house:renowned,theirLowtech] Gladly, a word for a good name is easily given.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

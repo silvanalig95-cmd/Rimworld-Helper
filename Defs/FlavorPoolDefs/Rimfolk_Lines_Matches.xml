@@ -13,7 +13,7 @@
       purpose "match", by how they took it: warm, cordial or cool (agreed), refusal (not); and their words in a letter of
       any purpose while a marriage holds (tie:marriage, with {INLAW} their spouse and {SPOUSEOF} the colony's;
       tie:marriage:ours, one of the colony's living among them; tie:marriage:theirs, one of theirs at the colony;
-      match:child, held through a child after a death), a match agreed and the wedding to come (match:agreed), or a
+      match:child, held through a child after a death, set no more since 5 November 2026), a match agreed and the wedding to come (match:agreed), or a
       spouse from among them wronged by the colony (match:wronged).
   -->
 
@@ -81,7 +81,6 @@
         <li>[tie:marriage:ours] {SPOUSEOF} sends greetings, and says the work here is hard but the food is good.</li>
         <li>[tie:marriage:ours,theirLowtech] {SPOUSEOF} is learning our ways, and our people have taken to {SPOUSEOF}.</li>
         <li>[tie:marriage:theirs] Does {INLAW} eat well at your table? We ask in every letter.</li>
-        <li>[match:child] The child keeps our two peoples together, whatever else has been lost.</li>
         <!-- A match agreed, the wedding to come -->
         <li>[match:agreed] Everyone here is getting ready for the wedding.</li>
         <li>[match:agreed,theirLowtech] The gifts are being made ready, and the songs learned.</li>

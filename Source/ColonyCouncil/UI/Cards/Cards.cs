@@ -125,7 +125,7 @@ namespace ColonyCouncil
         /// <summary>
         /// The region view that lists a kind of thing, where its card opens in full (docs/design/interface.md, "Things and
         /// their cards"): a person among the faces of Peoples, a people and a tie on Peoples, an event in History, a letter
-        /// and a house on Here and away, a place on the map.
+        /// on Here and away, a place on the map (a house's name opens its town's card).
         /// </summary>
         public static string FullPage(CardKind k)
         {

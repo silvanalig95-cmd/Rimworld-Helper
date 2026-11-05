@@ -41,6 +41,8 @@ namespace ColonyCouncil
         public bool toned;
         /// <summary>Written for a child (them:young or us:young asked for).</summary>
         public bool forYoungThem, forYoungUs;
+        /// <summary>A shipped piece true in no case it is drawn for (<see cref="OutsiderTalkMath.Retired"/>): never said again.</summary>
+        public bool retired;
 
         public bool For(string use)
         {
@@ -255,15 +257,33 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly Dictionary<string, string> AlsoWhen = new Dictionary<string, string>
         {
-            // "My family hasn't forgotten", "a grudge between my house and your colony": only from the head of a house
-            // (them:house); the feud's tag is also set for one of their people with no house, who holds the grudge or whose
-            // people hold one about one of the colonist's house (the round d text pass; Rimfolk_OutsiderTalks_RenownMore.xml
-            // has the words for them).
-            ["Rimfolk_OT_Renown_Feud"] = "them:house",
-            ["Rimfolk_OT_Renown_FeudCool"] = "them:house",
-            // "Then ours is still earning": a name not yet known, never one known for the wrong things, which its fellow
-            // Rimfolk_OT_Renown_NotYet already leaves out (the same pass).
-            ["Rimfolk_OT_Renown_NotYetTribal"] = "!house:infamous"
+            // (The round d text pass's three entries for the house renown talk went with its files, 5 November 2026.)
+        };
+
+        /// <summary>
+        /// Shipped pieces true in no case they are drawn for, by name: never said again (their text stays, as textcheck
+        /// keeps it). Since the player's decision of 5 November 2026 (the colony is the family, never a dynasty) a marriage
+        /// is a bond between the colony and their people, not two families joined: the pieces that call their people the
+        /// colony's family or in-laws, a grudge handed down to their heir, and their gift sent by kin as kin do, are
+        /// retired; better words are in Rimfolk_OutsiderTalks_ColonyBonds.xml.
+        /// </summary>
+        public static readonly HashSet<string> Retired = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "Rimfolk_OT_Match_Family", "Rimfolk_OT_Match_Raiders", "Rimfolk_OT_Match_Gifts", "Rimfolk_OT_Match_WrongedHeir", "Rimfolk_OT_MatchMore_Properly",
+            "Rimfolk_OT_MatchMore_InLaws", "Rimfolk_OT_MatchMore_NoPact", "Rimfolk_OT_MatchMore_GriefShared", "Rimfolk_OT_MatchMore_OnceFamily"
+        };
+
+        /// <summary>
+        /// Shipped lines of a piece (one of a turn's choices, tags and all) true in no case they are drawn for: never said,
+        /// the turn's other choices still are. The same decision: a family that outlasts any contract, a house that
+        /// remembers, a youth of a good house sent to make an alliance.
+        /// </summary>
+        public static readonly HashSet<string> RetiredLines = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "[them,their:tribal] And a family can't, which is why the elders like it.",
+            "[them,their:spacer] Contracts lapse, families mostly don't.",
+            "[them,their:lowtech] It is the kind of thing a house remembers for a long time.",
+            "[them,their:medieval] A youth of a good house serves in another, it's how alliances are made."
         };
 
         /// <summary>A piece's conditions with what <see cref="AlsoWhen"/> adds for it.</summary>
@@ -274,6 +294,7 @@ namespace ColonyCouncil
             List<string> errors)
         {
             var p = new TalkPiece { name = name, topic = topic ?? "", weight = weight > 0f ? weight : 1f, heard = string.IsNullOrEmpty(heard) ? null : heard.Trim() };
+            p.retired = name != null && Retired.Contains(name);
             p.uses = string.IsNullOrEmpty(uses) ? new[] { "chat" } : Split(uses);
             p.when = LineTags.Parse("[" + (WhenOf(name, when) ?? "") + "] x");
             p.mark = string.IsNullOrEmpty(mark) ? null : mark.Trim();
@@ -292,7 +313,7 @@ namespace ColonyCouncil
             if (lines != null)
                 foreach (var raw in lines)
                 {
-                    if (string.IsNullOrWhiteSpace(raw)) continue;
+                    if (string.IsNullOrWhiteSpace(raw) || RetiredLines.Contains(raw.Trim())) continue;
                     var parsed = LineTags.Parse(raw.Trim());
                     bool hasUs = false, hasThem = false;
                     var rest = new List<string>();
@@ -382,7 +403,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Fits(TalkPiece p, FactSet f, MarkFacts m, string use, int maxLines, bool toneOnly, Func<TalkLine, bool> lineOk = null)
         {
-            if (p == null || f == null || p.turns.Count < MinTurns || p.turns.Count > Math.Min(MaxTurns, maxLines)) return false;
+            if (p == null || f == null || p.retired || p.turns.Count < MinTurns || p.turns.Count > Math.Min(MaxTurns, maxLines)) return false;
             if (use != null && !p.For(use)) return false;
             if (p.callback != (m != null)) return false;
             if (toneOnly && !p.toned) return false;

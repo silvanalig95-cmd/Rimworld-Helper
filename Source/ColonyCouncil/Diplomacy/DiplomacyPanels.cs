@@ -12,8 +12,8 @@ namespace ColonyCouncil
     /// Diplomacy's panels, each a static Draw over the one model (DiplomacyModel), its rows small pieces that can be drawn
     /// anywhere: what is owed each way (the owed strip at the top of Region → Peoples), a people's diplomacy (stance, head,
     /// ties in their age's words, what is under way, the acts that fit, each greyed with why not; in each people's card on
-    /// Peoples), who is here from outside, who of the colony's is away and the colony's houses (sections of Region → Here
-    /// and away), a town's ties and calling one in (the Ties slot of the town's card, UI/Cards/), and This week's line for a
+    /// Peoples), who is here from outside, who of the colony's is away and the peoples it is bound to by marriage (sections of
+    /// Region → Here and away), a town's ties and calling one in (the Ties slot of the town's card, UI/Cards/), and This week's line for a
     /// call of theirs waiting on the colony (never with a timer). Their old page names (Diplomacy, Household) forward to
     /// those views (UI/PagesMath.cs). A name in a row opens its card through DiplomacyLinks.
     /// </summary>

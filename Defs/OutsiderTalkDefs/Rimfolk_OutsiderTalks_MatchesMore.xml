@@ -6,7 +6,8 @@
        peoples (tie:marriage): the colony's own living among them (tie:marriage:ours, {SPOUSEOF}) or theirs at the colony
        (tie:marriage:theirs, {INLAW}, a colonist now); the colonist speaking one of the couple (tie:marriage:you), so a line
        that names the couple to a third person says !tie:marriage:you. Held through a child after one of the two died
-       (match:child: either name may then be the dead one's, so a line that has them alive says !match:child). A match
+       (match:child: either name may then be the dead one's, so a line that has them alive says !match:child; set no more
+       since 5 November 2026, when a child stopped keeping the alliance, and its pieces went). A match
        agreed and the wedding to come (match:agreed): no fact says whether the colonist or the one spoken to is one of the
        two, so those lines name nobody. A wedding lately (town:lately:dip:wedding). A spouse from among them wronged, the
        grudge held (match:wronged), and what their people remember: deed:married, after the marriage is over too. The
@@ -331,50 +332,6 @@
   </ColonyCouncil.OutsiderTalkDef>
 
   <!-- ================= Held through a child ================= -->
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_MatchMore_AtAGrave</defName>
-    <topic>marriage</topic>
-    <when>match:child,known</when>
-    <lines>
-      <li>[them] It's a hard thing, a marriage ending at a grave.</li>
-      <li>[us] It hasn't ended, not while the child lives.</li>
-      <li>[them] That's what our head says too, and it's why we still come.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_MatchMore_ChildClan</defName>
-    <topic>marriage</topic>
-    <when>match:child,their:tribal</when>
-    <lines>
-      <li>[them] The child has our blood, so the elders count them among the clan.</li>
-      <li>[us] Then they have two homes to grow up in.</li>
-      <li>[them] And two sets of elders telling them what to do.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_MatchMore_ChildRolls</defName>
-    <topic>marriage</topic>
-    <when>match:child,their:empire</when>
-    <lines>
-      <li>[them] The household has entered the child in its rolls, title or no title.</li>
-      <li>[us] Does that mean something?</li>
-      <li>[them] At court it means a great deal, and out here, I suspect, very little.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
-
-  <ColonyCouncil.OutsiderTalkDef>
-    <defName>Rimfolk_OT_MatchMore_ChildSeason</defName>
-    <topic>marriage</topic>
-    <when>match:child,tone:warm</when>
-    <lines>
-      <li>[them] When the child is older, send them to us for a season.</li>
-      <li>[us] We might, if they want to go.</li>
-      <li>[them] They'll want to, once they hear how we spoil our young.</li>
-    </lines>
-  </ColonyCouncil.OutsiderTalkDef>
 
   <!-- ================= A spouse wronged, the grudge, an alliance over ================= -->
 

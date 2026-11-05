@@ -213,7 +213,7 @@ namespace ColonyCouncil
         public bool diplomacyWards = true;
         /// <summary>Fealty and vassals (stage 2, release 2c.2): the colony sworn to a stronger neighbour, and vassals of its own. Off, nothing new is sworn or asked, and the oaths standing run on.</summary>
         public bool diplomacyFealty = true;
-        /// <summary>House renown (stage 2, release 2d.1): the colony's houses and the region's known for what their people did, read from deeds and ties, nothing spent. Off, nothing is told, read or tipped, and the houses kept are kept.</summary>
+        /// <summary>Colony renown (stage 2, release 2d.1, reshaped 5 November 2026): the colony's name among the peoples, and each colonist's own, known for what its people did, read from deeds and ties, nothing spent. Off, nothing is told, read or tipped.</summary>
         public bool diplomacyRenown = true;
         /// <summary>Against their nature (stage 2, release 2d.2): an act of diplomacy against a colonist's nature builds their strain through the heart, one with it eases them, and repeated acts may leave a mark. Off, nothing new is felt, and what was felt drains as any strain does.</summary>
         public bool diplomacyNature = true;

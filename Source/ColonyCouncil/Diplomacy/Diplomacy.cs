@@ -60,7 +60,7 @@ namespace ColonyCouncil
                 Safe("feasts' day", () => Feasts.Daily(now));
                 Safe("matches' day", () => Matches.Daily(now));
                 Safe("wards' day", () => Wards.Daily(now));
-                // House renown (release 2d.1): the colony's houses kept, and a band moved told.
+                // The colony's renown (release 2d.1, reshaped 5 November 2026): a band moved told.
                 Safe("renown's day", () => Renown.Daily(now));
                 // The secrets the keeper learned that an older save still holds, let go (Retired.cs).
                 Safe("retired", () => Retired.Daily());
