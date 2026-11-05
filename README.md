@@ -2773,6 +2773,20 @@ to keep it quiet, or refuse and have it told. Each task shows its last step and 
 office's row, in Here and away and in This week, never as a time left. 28 conversation pieces, 32 letter lines and 25
 spoken lines speak of them. Setting: *Council tasks and the keeper of secrets*.
 
+**Fealty and vassals.** The colony can swear fealty to a stronger neighbor at peace (goodwill 40 or more, two towns
+within reach, never the Empire, whose titles and permits are its own), by letter, or when a people offers its protection
+to a colony raided twice in a season with few fighters. Someone of theirs comes to the gate, anyone who objects (an
+avenger, the proud, a devout colonist of another faith) is heard by the council, and the speaker swears by their rite:
+tribute to a stronger clan, fealty and tribute, a protectorate or a charter. Each season their collector takes the
+tribute at the gate (150 to 600 silver's worth by the colony's wealth; short, it is owed, and still owed a season on the
+oath breaks); their letter calls the colony's levies when their town is attacked; their band comes when a home is raided,
+nine times in ten; renouncing costs their grudge, unless they failed the colony that season. The colony's own vassals
+are its hamlet once sworn and up to two struggling towns that ask for its protection: they bring produce at harvest as
+the council sets it (heavy costs their goodwill), pay a season's dues to the quartermaster, send levies when called (their
+dead weigh on their head), ask for help, a judgment or a camp broken, and a sour head asks to be released. Faction
+Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
+mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town

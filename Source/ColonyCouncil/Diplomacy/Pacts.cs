@@ -484,19 +484,23 @@ namespace ColonyCouncil
         /// <summary>
         /// Their band is due at a home: they walk in from an edge and hunt the enemy (Camps/WarCamp.cs), or, with the fight
         /// already over, they turn back with a word. False with <paramref name="wait"/> while another band of fighters is on the
-        /// map (they wait some hours for it).
+        /// map (they wait some hours for it). <paramref name="words"/>: "fealty" for a liege's band or "vassal" for a vassal's
+        /// levies (their own letters and history lines, Fealty.cs and Vassals.cs); <paramref name="strength"/>: how strong
+        /// the band comes against the usual half of the threat (a vassal's levies, a third of it).
         /// </summary>
-        public static bool Arrive(Faction f, Map home, Faction enemy, string called, out bool wait)
+        public static bool Arrive(Faction f, Map home, Faction enemy, string called, out bool wait, string words = null, float strength = 1f)
         {
             wait = false;
             if (f == null || home == null) return false;
-            var form = PactWords.PactForm(home, f);
+            var form = words == "fealty" ? FealtyWords.Form(home, f) : words == "vassal" ? FealtyWords.LevyForm(home, f) : PactWords.PactForm(home, f);
+            string keys = words == "fealty" ? "CC_Fealty_Band" : words == "vassal" ? "CC_Vassal_Band" : "CC_Pact_Band";
+            string hist = words == "fealty" ? "CC_Fealty_Hist_Band" : words == "vassal" ? "CC_Vassal_Hist_Band" : "CC_Pact_Hist_Band";
             if (!MapFacts.ThreatOn(home))
             {
                 // apart: their band reached the colony's land after the fight; told in a message.
-                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.T("CC_Pact_Band_Late", PactWords.People(f).Named("PEOPLE")), LookTargets.Invalid,
+                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.T(keys + "_Late", PactWords.People(f).Named("PEOPLE")), LookTargets.Invalid,
                     MessageTypeDefOf.NeutralEvent);
-                Write(f, home, enemy, "CC_Pact_Hist_BandLate");
+                Write(f, home, enemy, hist + "Late");
                 return true;
             }
             if (CampTracker.WarBandAt(home) != null)
@@ -505,7 +509,7 @@ namespace ColonyCouncil
                 return false;
             }
             enemy ??= WarCamps.Attacker(home);
-            var pawns = WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home));
+            var pawns = WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home) * strength);
             var band = pawns.Count > 0 ? WarCamps.Start(home, f, enemy, pawns) : null;
             if (band == null)
             {
@@ -514,9 +518,9 @@ namespace ColonyCouncil
                 return false;
             }
             band.called = called;
-            Write(f, home, enemy, "CC_Pact_Hist_Band");
-            Tell.Letter(NewsKind.World, Importance.Important, home, PactWords.P("CC_Pact_Band_Label", PactWords.People(f).Named("PEOPLE")),
-                PactWords.T("CC_Pact_Band", PactWords.People(f).Named("PEOPLE"), PactWords.People(enemy).Named("ENEMY"), pawns.Count.Named("COUNT"), form.word.Named("WORD")),
+            Write(f, home, enemy, hist);
+            Tell.Letter(NewsKind.World, Importance.Important, home, PactWords.P(keys + "_Label", PactWords.People(f).Named("PEOPLE")),
+                PactWords.T(keys, PactWords.People(f).Named("PEOPLE"), PactWords.People(enemy).Named("ENEMY"), pawns.Count.Named("COUNT"), form.word.Named("WORD")),
                 LetterDefOf.PositiveEvent, new LookTargets(pawns.Cast<Thing>()), f);
             return true;
         }

@@ -92,6 +92,8 @@ namespace ColonyCouncil
             WardFacts(s, f);
             // The council's tasks and the keeper of secrets (Diplomacy/FactsTasks.cs): us:task, us:task:KIND, task:writes, task:visited, them:caughtkeeper, them:pressed, keeper:watched.
             TaskFacts(s, f);
+            // Fealty and vassals (Diplomacy/FactsFealty.cs): fealty:levies, fealty:protected, fealty:short, vassal:heavy, vassal:levy.
+            FealtyFacts(s, f);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

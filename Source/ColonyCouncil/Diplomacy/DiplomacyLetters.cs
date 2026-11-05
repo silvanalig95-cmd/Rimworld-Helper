@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
             p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p)
-            || TaskLetters.Owns(p);
+            || TaskLetters.Owns(p) || FealtyLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -48,6 +48,8 @@ namespace ColonyCouncil
             if (!Owns(p) || n == null) return null;
             // The council's business (release 2c.1, TaskLetters.cs): only an officer's own letter.
             if (TaskLetters.Owns(p)) return TaskLetters.WhyNot(n);
+            // Fealty sworn to their people (release 2c.2, FealtyLetters.cs).
+            if (FealtyLetters.Owns(p)) return FealtyLetters.WhyNot(n, Home);
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
             // A match proposed (release 2b.2, MatchLetters.cs).
             if (MatchLetters.Owns(p)) return MatchLetters.WhyNot(n, Home);
@@ -71,6 +73,7 @@ namespace ColonyCouncil
         {
             if (p == LetterPurpose.Favour) return Topics(n);
             if (TaskLetters.Owns(p)) return TaskLetters.Topics(n);
+            if (FealtyLetters.Owns(p)) return FealtyLetters.Topics(n, Home);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
             if (MatchLetters.Owns(p)) return MatchLetters.Topics(n, Home);
             if (WardLetters.Owns(p)) return WardLetters.Topics(n, Home);
@@ -342,6 +345,12 @@ namespace ColonyCouncil
                 if (WardLetters.Owns(l.purpose))
                 {
                     a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
+                // Fealty (release 2c.2): their answer to the colony's oath offered, and their lord's coming.
+                if (FealtyLetters.Owns(l.purpose))
+                {
+                    a.line = FealtyLetters.Read(l, n, l.map ?? Home, ref tone);
                     return a;
                 }
                 if (RansomLetters.Owns(l.purpose))

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Fellows of fealty's and the vassals' lines told often (Rimfolk_Fealty.xml), one picked at random (TextVariants). Each
+       keeps its original's placeholders. {WORD} and {RITE} change with both sides' ages, so the fellows differ by age
+       through them. -->
+
+  <CC_Fealty_Ans_Yes_2>{PEOPLE} will take the colony's oath ({WORD}). Someone of theirs is coming to the gate for it: {RITE}, by their ways.</CC_Fealty_Ans_Yes_2>
+  <CC_Fealty_Ans_No_2>{PEOPLE} answer that they will not take the colony under their protection. They have their own borders to hold.</CC_Fealty_Ans_No_2>
+  <CC_Fealty_Ans_No_3>{PEOPLE} turn the colony's oath down. They do not think it would be worth the trouble to them.</CC_Fealty_Ans_No_3>
+
+  <CC_Fealty_Offer_2>{WHO} writes for {PEOPLE}: a colony raided twice in one season needs a stronger friend, and they offer to be that friend for its oath. They call it {RITE}; the colony would call it {WORD}.</CC_Fealty_Offer_2>
+
+  <CC_Fealty_Lord_Comes_2>{LORD} has come from {PEOPLE} to hear the colony's oath at the gate: {RITE}.</CC_Fealty_Lord_Comes_2>
+  <CC_Fealty_Lord_Sent_2>{PEOPLE} have sent {LORD} to the gate to take the colony's oath: {RITE}.</CC_Fealty_Lord_Sent_2>
+
+  <CC_Fealty_Sworn_2>At the gate {PAWN} gave the colony's oath to {PEOPLE}, and {LORD} took it: {WORD} to the colony, {RITE} to them.</CC_Fealty_Sworn_2>
+  <CC_Fealty_Sworn_3>The oath is sworn. {PAWN} spoke for the colony and {LORD} for {PEOPLE}: {WORD}, by the colony's reckoning, {RITE} by theirs.</CC_Fealty_Sworn_3>
+
+  <CC_Fealty_Protect_Coming_2>{ENEMY} are on the colony's land, and {PEOPLE} have heard: their band is on its way, as the oath promises ({WORD}).</CC_Fealty_Protect_Coming_2>
+
+  <CC_Fealty_Failed_2>{PEOPLE} could not answer this time: no band of theirs will come against {ENEMY}. The oath stands ({WORD}), but this season the colony may leave it without blame.</CC_Fealty_Failed_2>
+
+  <CC_Fealty_Band_2>The band of {PEOPLE} has come to keep their side of the oath ({WORD}). {COUNT} of them are on the colony's land, making for {ENEMY}.</CC_Fealty_Band_2>
+  <CC_Fealty_Band_Late_2>Fighters of {PEOPLE} came over the hill after the fight was over. They saw the colony was safe and went home.</CC_Fealty_Band_Late_2>
+
+  <CC_Fealty_Paid_2>Their collector came to the gate, and the colony's tribute for {PEOPLE} went out to them: {GOODS}.</CC_Fealty_Paid_2>
+  <CC_Fealty_Paid_3>The season turns, and the tribute for {PEOPLE} is carried out to their collector: {GOODS}.</CC_Fealty_Paid_3>
+
+  <CC_Fealty_Short_2>{PEOPLE} asked {VALUE} silver's worth for the season, and the colony could give {PAID}. It owes them {OWED}. Unpaid when their collector comes again, the oath is broken ({WORD}).</CC_Fealty_Short_2>
+
+  <CC_Fealty_BrokenTribute_2>{PEOPLE} waited a season for the {OWED} silver's worth the colony owed them, and it never came. They hold the oath broken ({WORD}), think {GOODWILL} worse of the colony, and will remember it.</CC_Fealty_BrokenTribute_2>
+
+  <CC_Fealty_Renounced_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They will remember it as a wrong done them, {GOODWILL} goodwill and a grudge.</CC_Fealty_Renounced_2>
+  <CC_Fealty_Renounced_Clean_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They left it to its raiders this season, and have nothing to say against it.</CC_Fealty_Renounced_Clean_2>
+
+  <CC_Arms_Fealty_2>{ENEMY} are at {TOWN}, and {WHO} of {PEOPLE} calls on the colony's oath: {RITE}.</CC_Arms_Fealty_2>
+
+  <CC_Vassal_Harvest_2>A cart has come up from {TOWN} with the colony's share of the harvest ({LEVEL}): {GOODS}.</CC_Vassal_Harvest_2>
+  <CC_Vassal_Taken_2>{TOWN} of {PEOPLE} is the colony's to protect from today: {WORD}. It will send produce at harvest, and look to the colony when times are hard.</CC_Vassal_Taken_2>
+  <CC_Vassal_Dues_OnTime_2>{NAME} writes back that the dues are ready: {SILVER} silver, coming to the gate with their carter.</CC_Vassal_Dues_OnTime_2>
+  <CC_Vassal_Dues_Explained_2>{NAME} writes that their stores are low this season, and sends half the dues, {SILVER} silver, with their carter.</CC_Vassal_Dues_Explained_2>
+  <CC_Vassal_Msg_Called_2>Word goes to {TOWN} by {MEANS}: the colony calls its levies, {RITE}.</CC_Vassal_Msg_Called_2>
+  <CC_Vassal_Band_2>The levies of {PEOPLE} have answered the colony's call: {COUNT} of them, making for {ENEMY} ({WORD}).</CC_Vassal_Band_2>
+  <CC_Vassal_Ask_Help_2>{WHO} of {TOWN} writes that their stores will not last the season, and asks the colony for {OTHER}.</CC_Vassal_Ask_Help_2>
+  <CC_Vassal_Ask_Judgement_2>{WHO} of {TOWN} writes about their neighbors at {OTHER}: a dispute over water and a field, and they want the colony to settle it.</CC_Vassal_Ask_Judgement_2>
+  <CC_Vassal_Ask_Camp_2>{WHO} of {TOWN} writes that {OTHER} are camped near them, and asks what the colony means to do about it.</CC_Vassal_Ask_Camp_2>
+  <CC_Vassal_Ask_Release_2>{WHO} of {TOWN} writes plainly: their people want to be free of the colony, and ask it to let them go.</CC_Vassal_Ask_Release_2>
+  <CC_Vassal_Ask_Protection_2>{WHO} of {TOWN} writes that the town can't hold on alone, and asks the colony to take it under its protection.</CC_Vassal_Ask_Protection_2>
+  <CC_Vassal_Released_2>{TOWN} is free of the colony's protection, as it asked. It goes on as a town of {PEOPLE}, and its head is grateful.</CC_Vassal_Released_2>
+  <CC_Vassal_BrokeAway_2>{TOWN} asked to be released, was refused, and has gone its own way regardless. The tie is broken, and {PEOPLE} think {GOODWILL} worse of the colony.</CC_Vassal_BrokeAway_2>
+
+</LanguageData>

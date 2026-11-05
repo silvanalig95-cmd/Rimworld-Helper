@@ -196,7 +196,8 @@ public static class TaskTests
         string hub = Code("Diplomacy/Diplomacy.cs");
         C(hub.Contains("CouncilTasks.Hourly(now)") && hub.Contains("KeeperOfSecrets.Hourly(now)") && hub.Contains("CouncilTasks.Daily(now)") && hub.Contains("SecretTies.Daily(now)"),
             "the hour and the day ride on diplomacy's");
-        C(Code("World/NotableMath.cs").Contains("Task\n    }") || Regex.IsMatch(Code("World/NotableMath.cs"), @"Match,\s*///[^\n]*\n\s*Task\s*\}"), "the letter purpose Task, last");
+        // Fealty (release 2c.2) comes after it.
+        C(Regex.IsMatch(Code("World/NotableMath.cs"), @"Match,\s*///[^\n]*\n\s*Task,\s*///[^\n]*\n\s*Fealty\s*\}"), "the letter purpose Task after Match, Fealty after it");
         C(Code("World/NeighboursPanel.cs").Contains("if (TaskLetters.Hidden(p)) continue;"), "never offered in the letter dialog");
         string letters = Code("Diplomacy/DiplomacyLetters.cs");
         C(letters.Contains("TaskLetters.Owns(p)") && letters.Contains("TaskLetters.Read(l, n, speaker, ref tone, a.things)") && letters.Contains("TaskLetters.QuoteTags(l, n, tags);"),
@@ -207,7 +208,7 @@ public static class TaskTests
             "visits by a real caravan through the journey planner, home again by the caravan's own road");
         C(dip["TaskVisits.cs"].Contains("JourneyBook.PlanAt(home)") && dip["TaskVisits.cs"].Contains("CouncilTasks.Away(home, self)"), "one plan a home, one officer away");
         C(Code("Diplomacy/Feasts.cs").Contains("TaskMath.Welcome(g.welcome, TaskResults.Stewards(map, g.people))"), "the steward's guests' welcome");
-        C(Code("Diplomacy/Pacts.cs").Contains("WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home))") && Code("Camps/WarCamp.cs").Contains("float strength = 1f"),
+        C(Code("Diplomacy/Pacts.cs").Contains("WarCamps.MakeFighters(f, home, TaskResults.LevyStrength(f, home)") && Code("Camps/WarCamp.cs").Contains("float strength = 1f"),
             "the drilled band a fifth stronger");
         string ransoms = Code("Diplomacy/Ransoms.cs");
         C(ransoms.Contains("public static bool DemandFor(Map map, Pawn p, Faction f, float factor)") && ransoms.Contains("TaskResults.KinTask(f, map) ? TaskMath.KinSooner")

@@ -199,6 +199,12 @@ namespace ColonyCouncil
                 c.ties.Add(pr);
                 c.weight += 12;
             }
+            // Fealty to them or theirs to the colony (release 2c.2), the Empire's titled colonists as its own (decision 9).
+            foreach (var fr in FealtyPanels.Rows(f, home))
+            {
+                c.ties.Add(fr);
+                c.weight += 12;
+            }
             // Debts of honour, either way, and the notables' personal ones.
             foreach (var t in FavoursOwed.OwedBy(f).Concat(FavoursOwed.OwedTo(f)))
             {
@@ -211,6 +217,9 @@ namespace ColonyCouncil
             {
                 if (t == null || !t.Live || t.kind == Tie.Kind.Regard || t.kind == Tie.Kind.Favour && t.origin == FavourMath.Origin) continue;
                 if (t.kind == Tie.Kind.Pact && t.origin == Pacts.Origin || t.kind == Tie.Kind.Truce && t.origin == Truces.Origin) continue;
+                if (t.kind == Tie.Kind.Fealty && (t.origin == Fealty.Origin || t.origin == FealtyMath.VassalOrigin)) continue;
+                // The hamlet once sworn is the colony's vassal, shown as one (FealtyPanels).
+                if (t.kind == Tie.Kind.Fealty && t.from.kind == RefKind.Town && Vassals.At(t.from.id, out _) != null) continue;
                 string line = TieLine(t);
                 if (line.NullOrEmpty()) continue;
                 c.ties.Add(new DipRow { text = line, note = t.since >= 0 ? DipWords.Since(t.since) : null, color = UiKit.Info, link = f });
@@ -265,6 +274,8 @@ namespace ColonyCouncil
             c.acts.Add(write);
             // Offer a truce, propose a pact, call a defence pact in (release 2a.2), each greyed with why not.
             c.acts.AddRange(PactsPanels.Acts(f, home));
+            // Swear fealty to them, or renounce it (release 2c.2), greyed with why not.
+            c.acts.AddRange(FealtyPanels.Acts(f, home));
             // Ask for their envoy, send the colony's own (release 2a.3), each greyed with why not.
             if (Envoys.On && !Diplomacy.Hostile(f))
             {

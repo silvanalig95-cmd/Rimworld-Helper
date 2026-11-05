@@ -301,10 +301,23 @@ namespace ColonyCouncil
                         if (WorldSituationWorker.NearestTown(f, home) == null) continue;
                         break;
                     case TaskKind.Dues:
-                        if (DuesWhyNot == null) continue;
+                        // Release 2c.2 (Vassals.cs): the liege (its tribute seen to) and the peoples of the colony's own vassals.
+                        if (DuesWhyNot == null || !Vassals.DuesTarget(f, home)) continue;
                         break;
                 }
                 var head = FavourCalls.HeadOf(f, home);
+                if (k == TaskKind.Dues)
+                {
+                    var vt = Vassals.DuesTown(f, home);
+                    bool liege = Fealty.Liege(home) == f;
+                    list.Add(new TaskChoice
+                    {
+                        kind = k, people = f, town = liege ? WorldSituationWorker.NearestTown(f, home) : vt ?? WorldSituationWorker.NearestTown(f, home),
+                        label = liege || vt == null ? TaskWords.P("CC_Task_Target_Liege", TaskWords.People(f).Named("PEOPLE"))
+                            : TaskWords.P("CC_Task_Target_Vassal", vt.Name.Named("TOWN"), TaskWords.People(f).Named("PEOPLE"))
+                    });
+                    continue;
+                }
                 list.Add(new TaskChoice
                 {
                     kind = k, people = f, notable = k == TaskKind.Host ? head : null, town = WorldSituationWorker.NearestTown(f, home),

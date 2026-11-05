@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, FealtyLetters.cs, FealtyOath.cs, Vassals.cs; the facts in
+    Diplomacy/FactsFealty.cs). Two pools the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
+      "fealty" (the colony asking to swear fealty to them): warm, cordial or cool when they accept (their lord comes to
+      the gate), refusal when they don't. And their words in a letter of any purpose while the colony is sworn to them
+      (fealty:oath, with tie:fealty:due or fealty:short when tribute is owed, fealty:levies when its levies were called
+      this season, fealty:protected when their band came this season), or while a town of theirs is the colony's own
+      vassal (vassal:town, with vassal:heavy and vassal:levy). By their ways only theirLowtech (tribes, the middle ages
+      and the Empire's court, though the Empire takes no oath) and theirHightech: a theirLowtech line must read true for
+      tribes and the middle ages.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles of the oath at the gate: fealtyoath (the colony's
+      speaker, us, greeting their lord as they meet), fealtyterms (their lord, them, giving the terms halfway), fealtysworn
+      (their lord, them, as the oath is sworn). One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Fealty</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- Their answer to the colony asking to swear fealty -->
+        <li>[fealty,warm] We have long hoped you would ask. One of ours will come to your gate for the oath, and your people will not regret it.</li>
+        <li>[fealty,warm,theirLowtech] It is a good thing, a small people under a strong roof. We will come to your gate to hear your oath.</li>
+        <li>[fealty,warm,theirHightech] Approved, and gladly. Expect our representative at your gate to formalize it.</li>
+        <li>[fealty,cordial] We accept. We will come to your gate for the oath, and then we will speak of what each side owes.</li>
+        <li>[fealty,cordial,call] Yes, we'll take it. Someone will be at your gate soon to hear the oath.</li>
+        <li>[fealty,cordial,theirLowtech] Your oath will be heard before witnesses, as is right. Make ready for us.</li>
+        <li>[fealty,cool] Very well. You will pay your share each season and send your fighters when we call, and we will see you are not overrun.</li>
+        <li>[fealty,cool,theirHightech] Terms accepted. Tribute on schedule, personnel on request, protection as available.</li>
+        <li>[fealty,cool,theirLowtech] We will take your oath. Do not make us regret the trouble of protecting you.</li>
+        <li>[fealty,refusal] We have enough to protect as it is. Look to your own walls.</li>
+        <li>[fealty,refusal,theirLowtech] We will not take an oath from people we barely know.</li>
+        <li>[fealty,refusal,theirHightech] Declined. Your settlement would cost more to defend than it would return.</li>
+        <li>[fealty,refusal,call] No. We're stretched thin already, and I won't promise what we can't deliver.</li>
+
+        <!-- While the colony is sworn to them -->
+        <li>[greetings,warm,fealty:oath] It is good to hear from those under our protection. Write whenever you have need of us.</li>
+        <li>[greetings,cordial,fealty:oath] Our head asks after your harvest and your walls, as for all who hold of us.</li>
+        <li>[greetings,cordial,fealty:oath,theirLowtech] Our collector says your gate is always open to him. That is how it should be.</li>
+        <li>[greetings,cordial,fealty:oath,theirHightech] Your account with us is in good order. We appreciate the correspondence.</li>
+        <li>[greetings,cool,fealty:oath,fealty:short] We have your letter. We would rather have the tribute you still owe us.</li>
+        <li>[greetings,curt,fealty:oath,tie:fealty:due] Your letter came. Your tribute did not.</li>
+        <li>[news,cordial,fealty:oath,fealty:protected] Our fighters came back from your land with stories. They say your people fought well beside them.</li>
+        <li>[news,cordial,fealty:oath,fealty:levies] Our people speak well of the fighters you sent us. That is the kind of oath we value.</li>
+        <li>[greetings,warm,fealty:oath,fealty:levies] Your levies stood with ours when we called them. We will not forget it.</li>
+        <li>[help,cool,fealty:oath] You hold of us, so we will help where we can. Do not make a habit of asking.</li>
+
+        <!-- While a town of theirs is the colony's own vassal -->
+        <li>[greetings,cordial,vassal:town] Our people at the town under your protection write home that they are treated fairly.</li>
+        <li>[greetings,cool,vassal:town,vassal:heavy] Our kin at the town you protect write that your share of their harvest is heavy.</li>
+        <li>[news,cordial,vassal:town,vassal:levy] Our kin under your protection sent their fighters when you called. We hope you remember that.</li>
+        <li>[greetings,cool,vassal:town,theirLowtech] Our kin hold of you now, by their own choice. Treat them as we would.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Fealty</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- The colony's speaker meeting their lord at the gate -->
+        <li>[fealtyoath,us] Welcome to our gate, we have been expecting you.</li>
+        <li>[fealtyoath,us] The colony is ready to swear, if your terms are what we were told.</li>
+        <li>[fealtyoath,us,theirLowtech] I have come to give the colony's oath, before you and before witnesses.</li>
+        <li>[fealtyoath,us,theirHightech] Let's go over the terms once more and then make it official.</li>
+        <li>[fealtyoath,us,abrasive] Say your terms and I'll say the oath.</li>
+        <!-- Their lord giving the terms -->
+        <li>[fealtyterms,them] Tribute each season, your fighters when we call, and our band when raiders come.</li>
+        <li>[fealtyterms,them] You pay your share at the season's turn, and you stand with us when we ask.</li>
+        <li>[fealtyterms,them,theirLowtech] Swear to send your spears when my horn sounds, and my spears will come to yours.</li>
+        <li>[fealtyterms,them,theirLowtech] A share of your harvest each season, and your oath on my people's name.</li>
+        <li>[fealtyterms,them,theirHightech] Quarterly payments, personnel on request, and our response team when you need it.</li>
+        <li>[fealtyterms,them] Keep the tribute honest and we'll keep the raiders off your walls.</li>
+        <!-- The oath sworn -->
+        <li>[fealtysworn,them] Then it is sworn, and you are ours to protect.</li>
+        <li>[fealtysworn,them] Sworn, and my people will hear of it tonight.</li>
+        <li>[fealtysworn,them,theirLowtech] Your oath is heard, and my people will hold you to it.</li>
+        <li>[fealtysworn,them,theirHightech] Done, it's on record now.</li>
+        <li>[fealtysworn,them,kind] Sworn, and I hope this serves us both well.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

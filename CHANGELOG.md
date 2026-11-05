@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fealty and vassals
+
+*5 November 2026, version 0.97.0*
+
+- The colony can swear fealty to a stronger neighbour at peace: someone of theirs comes to the gate, anyone who objects has their say before the council, and the speaker swears by their rite, in each age's form.
+- A liege takes tribute at the gate each season, 150 to 600 silver's worth by the colony's wealth; short, it is owed, and still owed a season on, the oath breaks.
+- A liege's band comes when a home is raided, nine times in ten, and its letter calls the colony's levies when its town is attacked; renouncing costs their grudge unless they failed the colony that season.
+- The hamlet once sworn and up to two struggling towns that ask for protection are the colony's vassals: produce at harvest as the council sets it, levies when called, and asks for help, a judgment or a camp broken.
+- The quartermaster's collect the dues task is open: a vassal's season of dues by letter and carter, or the colony's tribute to its liege seen paid in full.
+- Faction Territories' vassals get a head of their first people who writes, thinks of the colony and asks for help, including against the mod's invasions; their tribute, purchases and points stay that mod's.
+- 31 conversation pieces, 27 letter lines and 16 spoken lines speak of fealty and vassals.
+
 ## The keeper of secrets and council tasks
 
 *5 November 2026, version 0.96.0*

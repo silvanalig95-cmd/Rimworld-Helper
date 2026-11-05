@@ -2949,6 +2949,87 @@ Release 2c.1 (docs/design/stage2-diplomacy.md, item 8; decisions 13 and 14): `Di
   with `KeeperMath.CatchFactor`, `SecretTies.Learn(Ref knower, Ref about, ...)` for their spy's tie about a colonist,
   `SecretTies.Of`/`About`, and pressing through the ledger's own called-in, kept and broken.
 
+#### Fealty and vassals
+
+Release 2c.2 (docs/design/stage2-diplomacy.md, items 9 and 10; decisions 9, 11 and 12): `Diplomacy/`, its rules pure and
+tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
+
+- **The liege.** A Fealty tie from the colony (`Diplomacy.Colony(home)`) to the people, origin `fealty`: key `liege`
+  (`liege:failed` after a season they failed to protect it, read with its day as `Fealty.FailedSeason`), number the day
+  the next tribute is due, count the silver still owed (the tie called in while it is), days the day their band last
+  came (or failed), goods a call under way (PactMath's `band:` and `arms:` codes), about the enemy of that call. One
+  liege a home. A scenario's grant of land from the same people (`ScenPart_CouncilBeholden`, origin `granted`) ends
+  when the colony swears anew. Tie history `tie:fealty:made` (a milestone) and the rest by the ledger.
+- **Swearing.** `Fealty.SwearWhyNot`: at peace, not the Empire, goodwill 40, two towns in reach, no liege, no oath
+  awaited. "Swear fealty..." (`FealtyPanels.SwearAct`) shows their terms by their ways (`FealtyWords.Terms`), the bad
+  sides (`Risks`) and who will object, then opens the letter dialog with the purpose `LetterPurpose.Fealty` (after Task
+  in the enum; `FealtyLetters`, topic `fealty:swear:ID`). Their answer (`Fealty.Hear`, `FealtyMath.Accepts`) sets the
+  oath awaited on the home's part (`DiplomacyHome.oathPeople`, `oathDue`, `oathAt`, `oathOffered`). Their offer
+  (`Fealty.Daily`): a home raided twice in the last season (the memory's `raided` deeds) with five fighters or fewer, a
+  quarter of the days, once a year a home (`fealtyOfferAt`): `ChoiceLetter_FealtyOffer`.
+- **The oath at the gate** (`FealtyOath.cs`): by day with no threat, their head when free to travel (else one of their
+  people) and a guard walk in (`LordJob_FealtyOath`: to the gate, wait 20 hours and 12 more, leave on a memo; harmed,
+  they run, the deed `attacked`). Each hour at the gate an objector (`FealtyObjection.Objector`: an avenger
+  (`TruceObjection.Avenger`), pride 30 or more, a devout colonist of another faith with Ideology) has the council's
+  question first (`Rimfolk_DlmFealty_Swear`, tags avenger/proud/faith/pet); then the speaker
+  (`TruceParley.Speaker`) walks out (`JobDriver_FealtyOath`: the bubbles `fealtyoath`, `fealtyterms`, `fealtysworn`)
+  and `Fealty.Swear` makes the tie, notes `swore`, calls the nature service (`Nature.Felt`, no effect yet) and tells
+  the terms.
+- **The hour** (`Fealty.Hourly`, from `Diplomacy.Hourly`): oaths awaited; for each oath, gone or at war ends it; their
+  band on its way walks in through `Pacts.Arrive(..., "fealty", words "fealty")` and notes `protected`; protection
+  (`ProtectionHour`): a home raided by a people (not the liege) with no band on the map, once a season
+  (`FealtyMath.MayProtect`), one roll a raid and day: their band (`Protects`: nine in ten, never against their friends)
+  or a failed season told; the levies (`CallsToArms.PactHour` with the tie: its letter's words `CC_Arms_Fealty`, the
+  far fight as a pact's, kept as `Fealty.LeviesCame` (deed `levies`, `dip:levy`), refused or not sent as
+  `Fealty.LeviesRefused` (10 goodwill, deed `refused`, `dip:levy`; the oath stands)); the season's tribute
+  (`TributeHour`, from 9 to 16 with no threat): still owed from the last breaks the oath (20 goodwill, `tributeShort`);
+  else `CollectTribute` carries silver (or the most plentiful goods, two kinds, four with the quartermaster on it) out
+  to their collector at the gate (`DilemmaEffect_CarryOut`, their courier waiting there), the rest owed
+  (`tributeShort`, `dip:tribute`) or paid in full (`tribute`, `dip:tribute`, the head's regard 3 with the quartermaster).
+  `Fealty.PayOwed` sends what is owed the same way ("Send what is owed" on the tie's card and This week).
+- **Renouncing** (`FealtyObjection.AskRenounce`, the question `Rimfolk_DlmFealty_Renounce`, tags clean/owed):
+  `Fealty.Renounce` ends it with 30 goodwill and `renounced`, nothing within a season of a failure. Attacking the liege
+  (PactsHooks: a pact breach) breaks it (`renounced`, the word broken in every ear). Goodwill moves only with the liege
+  (decision 11). The Empire takes no oath (decision 9); its titled colonists show on its card as sworn to it
+  (`Fealty.Titled`, `WorldMechanics.Title`). [SR] Factional War's battles on a home name the liege among the sides
+  (`PactsHooks.BattleBegan`, `CC_War_Liege`), and fighting its enemy there is siding with it (`sidedWith`).
+- **Vassals of the colony's own** (`Vassals.cs`): `DiplomacyHome.vassals` (`VassalTerms`, `FealtyMath.MaxVassals` = 3):
+  the hamlet once sworn (synced each day from `HamletHome`; its own tie, origin `hamlet`) and up to two protected towns
+  (a Fealty tie from the town to the colony, origin `vassal`, key `protected`), each with the council's `TributeLevel`
+  and when its harvest, season, dues, levies and last ask were, its head's low regard and release. A struggling town
+  (`FealtyMath.AsksProtection`: under 20 for 30 days by its ledger record, its people at peace and at war with another,
+  not the Empire's, not a seat, hamlet or post) asks once a year a home (`protectAskAt`). Each day a vassal's season
+  (heavy: 3 goodwill and 4 regard; light: 2 regard), a protected town's harvest at harvest time (`ProtectedProduce` by
+  level; the hamlet's own harvest through `Vassals.HamletProduce` in `HamletLife`), its head's low regard and one ask a
+  season (`FealtyMath.AskOf`: release, a hostile site within 8 tiles, a hard season, a neighbouring town of another
+  people at peace) as `ChoiceLetter_VassalAsk` (help carried out to the gate; a judgment moving the neighbour's
+  goodwill 5; a camp or an outpost's invasion promised as a Promise tie of origin `vassal`, kept when the site is gone or
+  the colony's people are at the outpost, broken at its day in the terms; release: released (the hamlet back to
+  standing under protection, `Hamlets.ReleaseOath`) or broken away (15 goodwill; the hamlet's record ended without its
+  own letter, `Hamlets.BreakAway`)). Levies: "Call their levies" (the place card, `Alert_VassalLevies`) once a season
+  during a threat, their band at a third of the threat (`Pacts.Arrive(..., "vassal", strength 2/3)`), its dead
+  weighing on their head (`Vassals.LeviesHome` from `WarCamps.Thank`, 6 a death, 20 at most). Their head's regard moves
+  through `Vassals.Regard` (the notable's personal regard and a memory line, shown on the town's card as what moved it).
+- **The quartermaster's dues**: `CouncilTasks.DuesWhyNot = Vassals.DuesWhyNot`, `DuesStep = Vassals.DuesStep` (set in
+  `FealtyPanels`' static constructor); targets the liege and the peoples of the colony's vassals only, a vassal's town
+  as the task's town. With the liege: what is owed goes by `CouncilTasks.SendCart` (or carried out), and done when a
+  season's tribute came in full; with a vassal: a letter (`TaskLetters.Send`, read by `Vassals.DuesRead` from
+  `TaskResults.LetterRead`), then their carter brings `FealtyMath.Dues` silver to the gate, on time or half and
+  explained in a hard season.
+- **Faction Territories' vassals** (decision 12): views as before (`WorldMechanics.OurVassals`), with a head made or
+  carried over (`NotableBook.StaffOutpost`, the history's `world:vassal` naming the town it was) while their first
+  people are at peace with the colony; kept by `Notables.Look` (`Vassals.KeepsHead`), never their people's head
+  (`FavourCalls.HeadOf` skips `Vassals.OutpostHead`); their last ask on the head (`Last(LetterPurpose.Fealty)`); an
+  invasion read by name (`Territories.InvasionAtOutpost`, `FindForVassalOutpost`). Nothing of the mod's points,
+  purchases or tribute is touched.
+- **Where it shows** (`FealtyPanels.cs`): the people card's rows and acts (`DiplomacyModel.Card`), the tie's card,
+  the place card's vassal lines and acts (tribute level, levies, dues) and an outpost's lines, the inbox (Needs you:
+  their offer, levies called, tribute owed, a vassal's asks; Under way: the oath awaited in steps, their band, the
+  colony's levies on the road, a vassal's levies; Coming: tribute expected within three days with its date), the Ours
+  lens's gold marks and lines to the mod's outposts (`LensModel`). Facts (`FactsFealty.cs`): `fealty:oath`,
+  `fealty:levies`, `fealty:protected`, `fealty:short`, `vassal:town`, `vassal:heavy`, `vassal:levy` beside the
+  ledger's `tie:fealty`. Setting `diplomacyFealty` ("Fealty and vassals"). Dev actions in `FealtyDebug.cs`.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

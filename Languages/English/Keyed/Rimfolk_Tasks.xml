@@ -42,7 +42,7 @@
   <CC_Task_KindTip_Scout>A walk along the edges at dawn every other day for a season. A raiders' camp nearby is likelier to be seen early.</CC_Task_KindTip_Scout>
   <CC_Task_KindTip_Drill>A visit to a defense pact partner to drill their fighters. Their band comes a fifth stronger for a season.</CC_Task_KindTip_Drill>
   <CC_Task_KindTip_Trade>Letters to their trader, samples of the colony's surplus, a visit. When the trade is open, their trade pact or their caravan.</CC_Task_KindTip_Trade>
-  <CC_Task_KindTip_Dues>The colony's own vassals bring their dues on time.</CC_Task_KindTip_Dues>
+  <CC_Task_KindTip_Dues>The colony's tribute goes to its liege in full and what is owed by cart, and its own vassals bring a season's dues to the gate, on time or explained.</CC_Task_KindTip_Dues>
   <CC_Task_KindTip_Tend>A visit with medicine to a town where a sickness is running. One visit in five brings it home.</CC_Task_KindTip_Tend>
   <CC_Task_KindTip_BringHome>Letters to the people holding one of the colony's. Their price for them comes lower.</CC_Task_KindTip_BringHome>
   <CC_Task_KindTip_TheirKin>Letters to a people whose kin are in the colony's cells. Their offers come sooner and higher.</CC_Task_KindTip_TheirKin>
@@ -64,7 +64,7 @@
   <CC_Task_Why_NoTarget_Scout>The colony has no land to walk.</CC_Task_Why_NoTarget_Scout>
   <CC_Task_Why_NoTarget_Drill>The colony has no defense pact to drill for.</CC_Task_Why_NoTarget_Drill>
   <CC_Task_Why_NoTarget_Trade>No trader or head of a town at peace with the colony is known.</CC_Task_Why_NoTarget_Trade>
-  <CC_Task_Why_NoTarget_Dues>The colony has no vassals of its own.</CC_Task_Why_NoTarget_Dues>
+  <CC_Task_Why_NoTarget_Dues>The colony has no liege and no vassals of its own.</CC_Task_Why_NoTarget_Dues>
   <CC_Task_Why_NoTarget_Tend>No town at peace with the colony has a sickness running.</CC_Task_Why_NoTarget_Tend>
   <CC_Task_Why_NoTarget_BringHome>Nobody of the colony's is held by another people.</CC_Task_Why_NoTarget_BringHome>
   <CC_Task_Why_NoTarget_TheirKin>Nobody of another people is in this colony's cells.</CC_Task_Why_NoTarget_TheirKin>
@@ -108,7 +108,7 @@
   <CC_Task_How_Scout>For a season, {PAWN} walks the edges of the colony's land at dawn every other day. A raiders' camp being set up nearby is likelier to be seen before its first raid.</CC_Task_How_Scout>
   <CC_Task_How_Drill>{PAWN} goes to {NAME} and spends a day drilling their fighters. For a season after, their band comes a fifth stronger when the pact calls them.</CC_Task_How_Drill>
   <CC_Task_How_Trade>{PAWN} writes to {NAME} every four to six days, can send samples of the colony's surplus, and may visit once a season. Each step counts by {PAWN}'s Social and Intellectual. When the trade is open, their people offer a trade pact, or send their caravan.</CC_Task_How_Trade>
-  <CC_Task_How_Dues>{PAWN} sees that the colony's vassals bring their dues.</CC_Task_How_Dues>
+  <CC_Task_How_Dues>{PAWN} sees to the dues: the colony's tribute to its liege, or a vassal's to the colony.</CC_Task_How_Dues>
   <CC_Task_How_Tend>{PAWN} takes medicine from the stores to {NAME} and spends a day with their sick. Their people remember it, and their head thinks better of the colony.</CC_Task_How_Tend>
   <CC_Task_How_BringHome>{PAWN} writes to the people holding {NAME}. After two letters they send word of a price for {NAME} to the gate, lower for each letter and for {PAWN}'s Social, down to half the usual.</CC_Task_How_BringHome>
   <CC_Task_How_TheirKin>For a season, {PAWN} writes to {NAME} about their kin in the colony's cells. While {PAWN} writes, their offers for them come in half the time and a quarter higher.</CC_Task_How_TheirKin>
@@ -242,7 +242,7 @@
   <CC_Task_Next_Scout>Next: the next dawn's walk.</CC_Task_Next_Scout>
   <CC_Task_Next_Drill>Next: the visit to {TOWN}.</CC_Task_Next_Drill>
   <CC_Task_Next_Trade>Next: another letter to {NAME}.</CC_Task_Next_Trade>
-  <CC_Task_Next_Dues>Next: their carter at the gate.</CC_Task_Next_Dues>
+  <CC_Task_Next_Dues>Next: a cart at the gate.</CC_Task_Next_Dues>
   <CC_Task_Next_Tend>Next: the visit to {TOWN}.</CC_Task_Next_Tend>
   <CC_Task_Next_BringHome>Next: another letter to {NAME}.</CC_Task_Next_BringHome>
   <CC_Task_Next_TheirKin>Next: another letter to {NAME}.</CC_Task_Next_TheirKin>

@@ -260,6 +260,8 @@ public static class OutsiderTalkTests
         .Concat(WardMath.Tags)
         // The council's tasks and the keeper of secrets (Diplomacy/FactsTasks.cs).
         .Concat(TaskMath.Tags()).Concat(KeeperMath.Tags)
+        // Fealty and vassals (Diplomacy/FactsFealty.cs).
+        .Concat(FealtyMath.Tags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);

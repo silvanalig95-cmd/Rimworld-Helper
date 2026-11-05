@@ -291,6 +291,15 @@ namespace ColonyCouncil
         public List<CouncilTask> tasks = new List<CouncilTask>();
         /// <summary>The people whose fighters the marshal drilled last (its loadID), and when: their band is stronger for a season (TaskMath.LevyFactor).</summary>
         public int drillPeople = -1, drillAt = -1;
+        /// <summary>
+        /// Fealty (Fealty.cs, release 2c.2): the oath agreed with a people and their lord's retinue to come to the gate (their
+        /// loadID, when they are due, when it was agreed, and whether they offered it), when a people last offered the colony
+        /// its protection, and when a struggling town last asked for the colony's (once a year each).
+        /// </summary>
+        public int oathPeople = -1, oathDue = -1, oathAt = -1, fealtyOfferAt = -1, protectAskAt = -1;
+        public bool oathOffered;
+        /// <summary>The colony's own vassals (Vassals.cs): its hamlet once sworn and the towns under its protection, FealtyMath.MaxVassals at most.</summary>
+        public List<VassalTerms> vassals = new List<VassalTerms>();
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -320,6 +329,14 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref tasks, "tasks", LookMode.Deep);
             Scribe_Values.Look(ref drillPeople, "drillPeople", -1);
             Scribe_Values.Look(ref drillAt, "drillAt", -1);
+            Scribe_Values.Look(ref oathPeople, "oathPeople", -1);
+            Scribe_Values.Look(ref oathDue, "oathDue", -1);
+            Scribe_Values.Look(ref oathAt, "oathAt", -1);
+            Scribe_Values.Look(ref oathOffered, "oathOffered");
+            Scribe_Values.Look(ref fealtyOfferAt, "fealtyOfferAt", -1);
+            Scribe_Values.Look(ref protectAskAt, "protectAskAt", -1);
+            if (Scribe.mode == LoadSaveMode.Saving) vassals?.RemoveAll(v => v == null || v.town < 0);
+            Scribe_Collections.Look(ref vassals, "vassals", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 tasks ??= new List<CouncilTask>();
@@ -332,6 +349,8 @@ namespace ColonyCouncil
                 matches.RemoveAll(m => m == null || !m.Live);
                 wards ??= new List<WardStay>();
                 wards.RemoveAll(w => w == null);
+                vassals ??= new List<VassalTerms>();
+                vassals.RemoveAll(v => v == null || v.town < 0);
             }
         }
     }
@@ -400,14 +419,15 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>Something waits at some home: an offer, an envoy either way, a ward or a hostage, a council task.</summary>
+        /// <summary>Something waits at some home: an offer, an envoy either way, a ward or a hostage, a council task, an oath of fealty awaited.</summary>
         public bool AnyWaiting
         {
             get
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0 || h.tasks.Count > 0))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0 || h.tasks.Count > 0
+                                  || h.oathPeople >= 0))
                         return true;
                 return false;
             }
@@ -431,6 +451,7 @@ namespace ColonyCouncil
                         Matches.HomeLost(h);
                         Wards.HomeLost(h);
                         CouncilTasks.HomeLost(h);
+                        Fealty.HomeLost(h);
                     }
                     catch (Exception e)
                     {

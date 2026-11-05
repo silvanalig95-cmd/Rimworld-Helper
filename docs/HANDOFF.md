@@ -6,6 +6,82 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 0.97.0, stage 2 release 2c.2, fealty and vassals (docs/design/stage2-diplomacy.md, items 9 and 10; the player's decisions 9, 11
+  and 12 as recommended; built on 0.96.0; no version of its own here: its points go with the round). DESIGN.md,
+  "Diplomacy" → "Fealty and vassals" has the whole of it. Pure and tested (`Tools/Tests/FealtyTests.cs`, 110 checks):
+  `Diplomacy/FealtyMath.cs` (`TributeLevel`, `VassalKind`, `VassalAsk` (Help, Judgement, Camp, Defend, Release,
+  Protection), `FealtyObjector`; who may swear (goodwill 40, two towns in reach, never the Empire, one liege), their
+  answer (half the time at a mean of 40 between goodwill and their head's regard), their offer (raided twice in a season
+  with five fighters or fewer, once a year a home), the objector's order (an avenger, pride 30, a devout one of another
+  faith), tribute by wealth (150 at 15,000 to 600 at 150,000, in tens), the owed and broken clock (20 goodwill), levies
+  (PactMath's two fighters within five days; refused 10 goodwill), protection (once a season, nine in ten, never against
+  their friends), renouncing (30, nothing after a failed season); protected towns (under 20 for 30 days, at peace with the
+  colony and at war elsewhere, two a home, one ask a year), produce by level (six tenths, as it comes, eight fifths),
+  heavy's season (3 goodwill, 4 regard), light's (2 regard), a protected town's produce, the quartermaster's dues (40 to
+  100 by fortune and level, half and explained under 20), a vassal's levies (a third of the threat, once a season, 6
+  regard a death to 20), one ask a season and which (`AskOf`), the camp's distance (8 tiles), each answer's regard, release
+  (-20 for a season; refused, 15 goodwill), the facts' tags). Game side, all in `Diplomacy/` unless named: `Fealty.cs`
+  (the liege's tie, origin `fealty`, key `liege` or `liege:failed`, number the next tribute's day, count the silver owed
+  with the tie called in, days the band's last day, goods PactMath's `band:` and `arms:` codes; `SwearWhyNot`, `Hear`,
+  `Agreed` and the oath awaited on `DiplomacyHome` (`oathPeople`, `oathDue`, `oathAt`, `oathOffered`, `fealtyOfferAt`,
+  `protectAskAt`), `Swear` (a scenario's grant from the same people ends), their offer (`ChoiceLetter_FealtyOffer`), the
+  hour: protection, their band through `Pacts.Arrive(..., "fealty", words "fealty")`, the levies through
+  `CallsToArms.PactHour`, tribute carried out to their collector (`CollectTribute`, `DilemmaEffect_CarryOut`), owed, paid
+  (`PayOwed`, `Paid`), broken; levies came or refused; `Renounce`; `BrokenByUs` from `PactsHooks`; `Titled` for the
+  Empire's own), `FealtyOath.cs` (`LordJob_FealtyOath`, `JobDriver_FealtyOath`, their head or one of their people and a
+  guard at the gate, the speaker), `FealtyObjection.cs` (the objector, `Rimfolk_DlmFealty_Swear` and
+  `Rimfolk_DlmFealty_Renounce` with their workers, context and effects), `FealtyLetters.cs` (`LetterPurpose.Fealty`,
+  last in the enum, topic `fealty:swear:ID`), `Vassals.cs` (`VassalTerms` on `DiplomacyHome.vassals`, three a home: the
+  hamlet once sworn, synced daily, and protected towns with their own tie, origin `vassal`, key `protected`; the day, the
+  harvest, struggling towns' asks and `Take`, the mod's outposts' faces and asks, `ChoiceLetter_VassalAsk` and `Answer`,
+  promises as Promise ties of origin `vassal` with their day in the terms, the tribute level, the quartermaster's dues
+  (`DuesWhyNot`, `DuesStep`, `DuesRead`, `QuartermasterOn`, `Punctual`, `DuesTarget`, `DuesTown`), levies (`LeviesWhyNot`,
+  `CallLevies`, the hour, `LeviesHome`), `Release`, `BreakAway`, `BrokenByUs`, `Regard`), `FealtyPanels.cs` (the dues'
+  hooks set, the tie's, people's and place cards' lines and acts, the inbox `fealty`, `fealty-under-way`,
+  `fealty-coming`, `Alert_VassalLevies`), `FealtyWords.cs`, `FactsFealty.cs`, `FealtyDebug.cs` (dev actions: their
+  offer, an oath agreed with their lord due now, sworn at once, the tribute due, owed and due, their call on the levies,
+  protection looked for, renouncing asked; a town's ask for protection, a town taken at once, an ask of each kind, a
+  protected town's harvest, levies due, a season passed), `World/VassalNotables.cs` (`StaffVassal`, `StaffOutpost`),
+  `World/Region/HamletVassal.cs` (`ReleaseOath`, `BreakAway`). Shared, small: `Pacts.Arrive` (words and strength),
+  `CallsToArms` (a liege's call: its words, kept, refused, `WaitingOnLevies`, `KeptLately` reads `dip:levy` too),
+  `PactsHooks` (breaches of a liege's or protected town's people; Factional War names the liege, `CC_War_Liege`, and a
+  liege's enemy fought is `sidedWith`), `WarCamps.Thank` (a vassal's dead through `Vassals.LeviesHome`; a liege's fallen
+  as a pact's), `Notables.Look` (a vassal's head kept), `FavourCalls.HeadOf` (an outpost's head never a people's head),
+  `HamletLife.Harvest` (`Vassals.HamletProduce`), `TaskResults.LetterRead` and `CouncilTasks.PeopleTargets` (Dues),
+  `TerritoriesAdapter` (`InvasionAtOutpost` by `FindForVassalOutpost`), `DiplomacyModel.Card` (rows and acts; the sworn
+  hamlet's tie not twice), `LensModel` (Ours: vassals in gold, lines to the mod's outposts), `DiplomacyBook`, `Diplomacy`
+  (the hour and the day), `FactsLedger`, `DiplomacyLetters`, `NotableMath` (`LetterPurpose.Fealty`), the setting
+  `diplomacyFealty`. Defs: `Defs/Misc/Rimfolk_Fealty.xml` (two letters, the oath's job), `Defs/DilemmaDefs/
+  Rimfolk_Dilemmas_Fealty.xml`. Content: 31 talk pieces (`Rimfolk_OutsiderTalks_Fealty.xml`, three of them callbacks to
+  the war, raid and harvest marks; weights 1.2 or less, no new marks: new marks with nothing to pick them up pushed the
+  generated talks' callbacks under their floor), 27 letter lines and 16 bubbles (`Rimfolk_Lines_Fealty.xml`), keyed words
+  (`Rimfolk_Fealty.xml`) with 32 fellows (`Rimfolk_Fealty_Variants.xml`); the Almanac's diplomacy page (two paragraphs
+  in its description, a clause in Settings; no keyword changes, no new sections); README, DESIGN.md, the save model
+  (`vassals`), the play-out skip for the oath's question (the speaker's walk is its own job). Tests changed with it:
+  `DiplomacyTests` (Fealty after Task in the purposes), `TaskTests` (the purposes' order, the band's strength),
+  `OutsiderTalkTests` (the tags); the DefValidator knows `WORD` in a dilemma. Words: "their lord" is said only through
+  {LORD} (the one who came); every other line says their head or one of theirs, so a tribe's chief reads true.
+  Entry points for 2c.3 (schemes): `Fealty.Of(home)`, `Vassals.All()`, `Vassals.Regard(town, shift, why)` for a scheme's
+  effect on a vassal's head, `FealtyObjection.CouncilBusy`. For 2d.1 (renown): the deeds `swore`, `levies`, `tribute`,
+  `tributeShort`, `renounced`, `protected`, and `dip:tribute`, `dip:levy`.
+  Left out, and why: their tribute by their ways in kind (a tribe taking furs, a company taking silver): silver first,
+  else the colony's most plentiful goods, for every people; "levies for up to five days" read as set out within five
+  days (the calls to arms), how long they stay being the far fight's; a vassal's "help in hard times" as a letter with
+  goods carried to the gate, not the help missions (their missions are the neighbours', not a vassal's); a Faction
+  Territories outpost whose first people are at war with the colony gets no head (it would be a hostile notable: silent
+  letters, a sour regard) and says so on its card; a vassal's judgment names the neighbouring town without a quarrel of
+  the world's own (there is none to read); renouncing by letter (a council question, its word sent with the answer);
+  the quartermaster's dues of Faction Territories' vassals (decision 12). To look at in game: "Swear fealty..." on a
+  people's card (the terms and who will object in the dialog, the letter), their answer, their head (or one of theirs)
+  and a guard walking to the gate by day, an objection before the council, the speaker's walk and the three bubbles, the
+  sworn letter; their offer after two raids; a season's collection (silver, or goods carried out by the gate's errand,
+  their courier taking it with "goods come and go" on), short and owed, "Send what is owed", the oath broken a season on;
+  a raid with their band walking in, and a failed season; their call on the levies and the caravan's far fight; renouncing
+  clean and costly; the Empire's card with a titled colonist; a hamlet sworn (the tribute level on its card, a heavier
+  harvest), a struggling town's ask and the town under protection (its head named at once), a vassal's ask of each kind,
+  "Call their levies" and the alert during a raid, their dead on their head's card, a release asked and refused; the
+  quartermaster's dues with a vassal (the letter, the carter) and with the liege (the cart); with Faction Territories,
+  an outpost's head, its card and an invasion's ask; the Ours and Stance lenses; This week's rows at 768p.
 - 0.96.0, stage 2 release 2c.1, the keeper of secrets and council tasks (docs/design/stage2-diplomacy.md, item 8; the player's decisions
   13 and 14 as recommended, 9 for the Empire; built on 0.95.0, merged in before the work began). DESIGN.md, "Diplomacy" →
   "The keeper of secrets and council tasks" has the whole of it. Pure and tested (`Tools/Tests/TaskTests.cs`):

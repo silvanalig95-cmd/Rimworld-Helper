@@ -298,9 +298,12 @@ namespace ColonyCouncil
             try
             {
                 // Called in on a pact or a debt: that was the bargain, and only their fallen leave the colony owing them in turn.
-                if (b.called != null)
+                if (b.called == "vassal")
+                    // A vassal's levies (Diplomacy/Vassals.cs): their dead weigh on their head's regard instead.
+                    Vassals.LeviesHome(b);
+                else if (b.called != null)
                 {
-                    if (b.Fell > 0) FactionMemory.Note(b.faction, b.called == "pact" ? "protected" : "aid", b.enemy?.Name, 16);
+                    if (b.Fell > 0) FactionMemory.Note(b.faction, b.called == "pact" || b.called == "fealty" ? "protected" : "aid", b.enemy?.Name, 16);
                 }
                 else if (!b.holdBack) FactionMemory.Note(b.faction, "aid", b.enemy?.Name, b.Fell > 0 ? 16 : 12);
                 foreach (var c in IncidentWorker_Happening.Colonists(b.map)) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_StoodWithUs);

@@ -98,7 +98,8 @@ namespace ColonyCouncil
             h.harvestAt = now;
             var def = new[] { "RawPotatoes", "RawCorn", "RawRice" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null);
             if (def == null) return;
-            int n = HamletMath.Produce(prosperity);
+            // Sworn, the council sets how much it brings (Diplomacy/Vassals.cs: light, usual, heavy).
+            int n = Vassals.HamletProduce(home, h, HamletMath.Produce(prosperity));
             var gate = PlaySpots.GateCell(home, null);
             var things = Couriers.Make(def, n);
             bool carried = Couriers.Deliver(home, things, h.people, gate);
