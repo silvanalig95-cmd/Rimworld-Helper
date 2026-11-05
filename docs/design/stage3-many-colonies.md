@@ -1,5 +1,11 @@
 # Stage 3: many colonies, one world (design, 4 November 2026)
 
+> **To revise before building (the player's word, 5 November 2026):** the colony is the family, never a dynasty. Before
+> stage 3 continues, go through this design and the 17 decisions again and recast what leans on families and lines:
+> a town's Heir (the next head by office or standing, not blood), the kin town and "a colonist with family there",
+> notables' houses, anything inherited down a family. A colonist's own ties (spouse, children, friends) in the moving-on
+> wishes stay: they are personal. Then put the revised decisions to the player again.
+
 The plan is ROADMAP.md, "The world and its people": stage 3, approved by the player, who said they really like starting
 a new colony or base on the same world map so the world keeps developing, and playing different colonies within it:
 expanding the colony, leaving it behind, or starting a whole new scenario or colony in the same world. Approved: many

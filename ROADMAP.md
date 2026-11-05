@@ -308,7 +308,9 @@ placeholder for the world event at a town, talk for towns given up or resettled.
 ### Stage 2: diplomacy (the Crusader Kings ideas, every one of the brainstorm's fourteen)
 Status (5 November 2026, 0.101.0): every item below is built, reviewed and given its text pass except schemes (12,
 release 2c.3), which waits for the player's pick of the harm review's rival sabotage (3.5.1) or their go-ahead without
-it. The plan as first written: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
+it. The player's word the same day: the colony is the family, never a dynasty. Council tasks with the keeper of secrets
+(11) are dropped, house renown (13) becomes the colony's renown and each colonist's own, and marriage alliances, wards
+and the talk are recast around the colony; stage 3's design is to be revised the same way before it continues. The plan as first written: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
 interactions; favours owed and called in (3, release 2a.1); pacts and truces with terms that can be broken, and what
 breaking costs (4, release 2a.2); then feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
 wards and hostages (7); ransom (8); swearing fealty to a stronger neighbour (9) and vassals of one's own, with Faction
