@@ -153,6 +153,12 @@ namespace ColonyCouncil
                 }
             }
             if (lens == Lens.Fortunes) EventTiles(m);
+            // The colony's vassals in its own colour under Ours (Diplomacy/Vassals.cs): protected towns, the hamlet sworn, Faction Territories' outposts.
+            if (lens == Lens.Ours)
+            {
+                foreach (var (_, v) in Vassals.All()) m.colours[v.town] = UiKit.ToneColor(Hue.Gold);
+                foreach (var o in WorldMechanics.OurVassals()) m.colours[o.id] = UiKit.ToneColor(Hue.Gold);
+            }
             if (lens == Lens.Stance) HeadRings(m);
             Lines(m, home);
             Legend(m);
@@ -337,6 +343,10 @@ namespace ColonyCouncil
                     if (town != null) Add(h0?.Parent, town, LineKind.Holding);
                 }
             if (m.lens == Lens.Stance || m.lens == Lens.Threats || m.lens == Lens.Ours) TieLines(m, home, homeObj, Add);
+            // Faction Territories' vassal outposts of this home: their fealty is the mod's, drawn from home to each under Ours.
+            if (m.lens == Lens.Ours)
+                foreach (var o in WorldMechanics.OurVassals(home))
+                    Add(homeObj, o.thing, LineKind.Fealty);
             if (m.lens == Lens.Threats)
                 foreach (var (h1, camp) in RaidersCamps.Known())
                     Add(RaidersCamps.SiteOf(camp), h1?.Parent, LineKind.Raids);

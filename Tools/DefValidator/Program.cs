@@ -482,6 +482,8 @@ wishPh.UnionWith(new[]
     "INLAW", "SPOUSEOF",
     // The council's question about a match the colonist is against (Diplomacy/MatchObjection.cs): where the couple would live.
     "LIVES",
+    // The council's questions about fealty (Diplomacy/FealtyObjection.cs): the oath in the colony's age.
+    "WORD",
     // Wards and hostages (Diplomacy/FactsWards.cs).
     "WARD", "HOSTAGE", "GUARDIAN",
     // The council's tasks (Diplomacy/FactsTasks.cs): the officer with a task with their people, and the seat.

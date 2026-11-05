@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Fealty's questions for the council (Source/ColonyCouncil/Diplomacy/FealtyObjection.cs). Only from FealtyObjection;
+    never on their own schedule.
+    - Rimfolk_DlmFealty_Swear: their lord stands at the gate to take the colony's oath, and A objects first. X their lord,
+      {FACTION} their people, {WORD} the oath in the colony's age. Tags, why A objects: "avenger" (A swore vengeance on
+      them; "pet" when it was for an animal), "proud" (A won't see the colony bend the knee), "faith" (A is devout in
+      another faith than theirs). Sworn all the same, A takes it hard; sent home, their people feel turned away.
+    - Rimfolk_DlmFealty_Renounce: the council is asked to renounce the colony's oath. A the speaker, {FACTION} the liege,
+      {WORD} the oath. Tags: "clean" (they failed to protect the colony this season: no blame), "owed" (tribute still owed).
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmFealty_Swear</defName>
+    <label>an oath at the gate</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FealtySwear</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} waits at the gate to take the colony's oath ({WORD}), and {A_nameDef} has asked the council to hear {A_objective} out before anyone walks out there.</li>
+      <li>[avenger] {X_nameDef} of {FACTION} waits at the gate to take the colony's oath. {A_nameDef} swore vengeance on {FACTION}, and says the colony can't kneel to the people it swore to make pay.</li>
+      <li>[avenger,pet] {A_nameDef} has not forgotten what {FACTION} did to {A_possessive} animal, and now their lord {X_nameDef} waits at the gate for the colony's oath. {A_nameDef} has come before the council about it.</li>
+      <li>[proud] {X_nameDef} of {FACTION} is at the gate to take the colony's oath ({WORD}). {A_nameDef} says the colony built itself with its own hands and owes nobody a knee.</li>
+      <li>[proud] {A_nameDef} stood up before the council as {X_nameDef} of {FACTION} waited at the gate: the colony would be paying for its own walls twice, {A_pronoun} says, once in work and once in tribute.</li>
+      <li>[faith] {X_nameDef} of {FACTION} waits at the gate, and {A_nameDef} has asked the council not to swear the colony to a people of another faith.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Swear the oath all the same</label>
+        <outcome>The council heard {A_nameDef} out and sent the speaker to the gate all the same. {A_nameDef} watched from the wall.</outcome>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FealtySwear" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send their lord home</label>
+        <outcome>The council sided with {A_nameDef}. {X_nameDef} was told at the gate there would be no oath, and turned for home.</outcome>
+        <ways><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FealtyTurnAway" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_ObjectionHeard</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmFealty_Renounce</defName>
+    <label>renouncing the oath</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FealtyRenounce</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>The council is asked whether to renounce the colony's oath to {FACTION} ({WORD}). {A_nameDef} lays it out: no more tribute and no more levies, but no band of theirs when raiders come, and {FACTION} will take it as a wrong done them.</li>
+      <li>[clean] The council is asked whether to renounce the colony's oath to {FACTION} ({WORD}). They failed to protect the colony this season, and {A_nameDef} says it can leave now without anyone calling it a betrayal.</li>
+      <li>[owed] The colony still owes {FACTION} tribute, and the council is asked whether to renounce its oath to them ({WORD}) rather than pay. {A_nameDef} warns that they will remember both.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Renounce the oath</label>
+        <outcome>The council renounced the colony's oath to {FACTION}, and word went to them.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FealtyRenounce" />
+        </effects>
+      </li>
+      <li>
+        <label>Keep the oath</label>
+        <outcome>The council kept the colony's oath to {FACTION}.</outcome>
+        <ways><tradition>1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>
