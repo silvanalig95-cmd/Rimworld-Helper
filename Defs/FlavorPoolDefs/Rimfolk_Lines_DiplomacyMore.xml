@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for diplomacy's round a (Source/ColonyCouncil/Diplomacy/), beside Rimfolk_Lines_Diplomacy.xml,
+    Rimfolk_Lines_Pacts.xml and Rimfolk_Lines_Ransom.xml, whose tags these keep. Two pools the game already draws on:
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter or a call. The
+      tones each purpose's answer can take (DiplomacyLetters.Read, RansomLetters.Read):
+      favour: warm or cordial when the debt is settled either way (their debt paid, or the colony's word given on their
+        side), cool when they paid and no more, refusal when they would not;
+      pact: warm or cordial when they swear it; cool when they swear it or take the colony's letter ending it; curt only
+        for a pact the colony ended; refusal when they won't swear it, or (rarely) for one ended;
+      truce: cordial or cool when they agree (a people at war is never warm), refusal when they won't; their envoy
+        comes to swear it only when a people at peace with both can vouch for them, so not every line promises one;
+      ransom: warm, cordial or cool when they will bargain (an offer for one of theirs, or an exchange), refusal when not;
+        a call is answered by a call, a letter at the gate;
+      envoy: warm, cordial or cool when their envoy will come, refusal when not.
+      In letters of any purpose, the ties and what each side holds: tie:honour (:ours, :theirs, :you, :due, with
+      {FAVOURWHY}), tie:pact (:defence, :trade, :due), tie:truce (:ours, :due), envoy:here, envoy:ours, ransom:theirs,
+      ransom:held. By their ways only theirLowtech (tribes, the middle ages and the Empire's court) and theirHightech:
+      a theirLowtech line must read true for all three.
+    - Rimfolk_Pool_OutsiderSays (Rimfolk_Outsiders.xml): the bubbles at each moment the code names (favourask,
+      favourtalk, favouryes, favourno; pactask, pacttalk, pactyes, pactno; parley, parleyterms, parleysworn; ransompay,
+      ransomthanks, ransomset; exchangegate, said to the colony's own as they are handed back; exchangeask, exchangetalk,
+      exchangeyes, exchangeno; envoyletter, to their runner) and the colonist who lays and lights a signal fire for a
+      defense pact (signalfire, said to nobody). One sentence each; kind and abrasive are the speaker's own traits.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_DiplomacyMore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- A debt called in, or the colony's word given on their side -->
+        <li>[favour,warm] Tell your people the account between us is clear, {WRITER}, and that we were glad to clear it.</li>
+        <li>[favour,warm,theirLowtech] What passed between our peoples is even now. We would gladly start owing each other again.</li>
+        <li>[favour,warm,theirHightech] Settled in full. If your colony needs a hand again, write to me directly.</li>
+        <li>[favour,warm,call] I'm glad you called about it rather than letting it sit, {WRITER}. It's settled.</li>
+        <li>[favour,cordial] It is done. Between your colony and mine, nothing is owed either way.</li>
+        <li>[favour,cordial,theirLowtech] It is done by our custom, and before witnesses. Nothing is owed either way.</li>
+        <li>[favour,cordial,theirHightech] Consider this the receipt, {WRITER}. Nothing is owed either way.</li>
+        <li>[favour,cool] You have what you asked for. We are even now.</li>
+        <li>[favour,cool,theirLowtech] It is paid. Do not ask us for more on the strength of it.</li>
+        <li>[favour,cool,theirHightech] Debt cleared. Please don't write to us about it again.</li>
+        <li>[favour,cool,call] There, it's done. I hope your colony is satisfied.</li>
+        <li>[favour,refusal] We know what we owe. We will not pay it this way, and that is our answer.</li>
+        <li>[favour,refusal,theirLowtech] Our people will not be told what to give, {WRITER}, debt or no debt.</li>
+        <li>[favour,refusal,theirHightech] Not this, and not now. Most of our council is sorry about it.</li>
+        <li>[favour,refusal,letter] I wrote three answers to your letter and burned two. This is the one my people agreed on, and it is no.</li>
+        <li>[favour,refusal,call] I know we owe you. The answer is still no, and I'd rather you heard it from me.</li>
+        <!-- A debt of honor, in letters of any purpose -->
+        <li>[greetings,warm,tie:honour:theirs,!tie:honour:you] We have not forgotten what we owe your colony, {WRITER}. Ask when you need it, and ask plainly.</li>
+        <li>[greetings,cordial,tie:honour:theirs,!tie:honour:you] Thank you for writing. What we owe your colony for {FAVOURWHY} is still remembered here.</li>
+        <li>[greetings,warm,tie:honour:you] You are owed a favor among us, {WRITER}, and I hope you will not be shy about it.</li>
+        <li>[greetings,cool,tie:honour:theirs] We read your letter. If it is about what we owe, write plainly next time.</li>
+        <li>[greetings,cordial,tie:honour:ours] It is good to hear from you. What your colony owes us can wait for a harder season.</li>
+        <li>[greetings,cool,tie:honour:ours] Your letter came, and with it the thought of what your colony owes us, as always.</li>
+        <li>[greetings,cordial,tie:honour:due,tie:honour:theirs] Your colony has called in what we owe. It is being talked over here, and you will have our answer.</li>
+        <li>[greetings,cool,tie:honour:due,tie:honour:ours] We called in what your colony owes us and we are still waiting. This letter does not change that.</li>
+        <li>[news,cordial,tie:honour:ours] Here is our news. None of it is a call on your debt, so read it at ease.</li>
+        <li>[help,refusal,tie:honour:ours] You already owe us for {FAVOURWHY}, and now you ask for {HELP}? Settle one before you ask for another.</li>
+        <li>[help,warm,tie:honour:theirs] This is not the debt we owe you, {WRITER}, only {HELP} between friends. The debt still stands.</li>
+        <li>[warning,cordial,tie:honour:ours] A warning is a kindness. It does not settle what your colony owes us, but it will be remembered.</li>
+        <li>[invitation,warm,tie:honour:theirs] We owe your colony more than a visit, but I will come all the same.</li>
+        <li>[condolences,warm,tie:honour:theirs] We owe your colony already, and now we owe it this kindness too. Thank you for writing.</li>
+        <!-- A pact proposed, or ended by the colony's letter -->
+        <li>[pact,warm] Yes, {WRITER}, and gladly. Tell your people they have friends here now.</li>
+        <li>[pact,warm,theirLowtech] We will swear it as our people swear, before witnesses, and hold to it the year round.</li>
+        <li>[pact,warm,letter] Your letter was read aloud to our people, and nobody spoke against it. We accept.</li>
+        <li>[pact,cordial,theirHightech] We've read the terms and we accept. Our copy will be signed today.</li>
+        <li>[pact,cordial,call] Good to hear you on the line, {WRITER}. You have our yes.</li>
+        <li>[pact,cool,letter] We have your letter, and we will do as it asks.</li>
+        <li>[pact,cool,theirLowtech] It is heard, and it will be done as your words ask.</li>
+        <li>[pact,cool,theirHightech] Noted, and acted on as you requested.</li>
+        <li>[pact,cool,call] Understood, {WRITER}. We'll do as you ask.</li>
+        <li>[pact,curt] Your colony ends the pact. So be it.</li>
+        <li>[pact,curt,theirLowtech] The oath is set aside, as you ask. We will remember who asked.</li>
+        <li>[pact,curt,theirHightech] Agreement ended at your request. Our records are updated.</li>
+        <li>[pact,refusal] Then there is nothing more to say about a pact this year, {WRITER}.</li>
+        <li>[pact,refusal,theirLowtech] There will be no oath between us this year.</li>
+        <li>[pact,refusal,call] I'm sorry, {WRITER}. There won't be a pact between us this year.</li>
+        <!-- While a pact holds -->
+        <li>[greetings,cordial,tie:pact:defence,theirLowtech] Our watchers look your way at night now. Write when you like, and light your fire when you must.</li>
+        <li>[greetings,warm,tie:pact:trade] The traders here look forward to your colony's cart more than to most caravans.</li>
+        <li>[news,cordial,tie:pact] Here is our news, and since we stand together, I have left nothing out.</li>
+        <li>[help,warm,tie:pact] Friends under a pact should not have to ask twice. We send {HELP}.</li>
+        <li>[help,refusal,tie:pact] It pains me, with the pact between us, but we cannot spare {HELP} just now.</li>
+        <li>[warning,warm,tie:pact:defence] Thank you. If it comes to a fight at our walls, we know whom to call.</li>
+        <li>[invitation,warm,tie:pact] I will come, and bring news of how the year has gone for us.</li>
+        <li>[greetings,cool,tie:pact] We have your letter. The pact holds, which is the main thing between us.</li>
+        <li>[greetings,cordial,tie:pact:due] Forgive a short letter. There is a call between our peoples, and it has everyone's attention.</li>
+        <li>[condolences,warm,tie:pact] Your words mean a great deal, coming from a people we are sworn to. Thank you.</li>
+        <!-- A truce offered -->
+        <li>[truce,cordial,war,theirLowtech] We accept your terms, and we will send our envoy under our sign of parley if we can. See that your people keep their hands still.</li>
+        <li>[truce,cordial,war,theirHightech] Terms acceptable. We'll make it official at your gate, or by word if nobody can vouch for our envoy.</li>
+        <li>[truce,cordial,war] This has gone on long enough for both of us. We accept your terms.</li>
+        <li>[truce,cool,war] A truce, then. We will see what your word is worth.</li>
+        <li>[truce,cool,war,letter] We read your terms twice before we agreed to them. Do not make us regret it.</li>
+        <li>[truce,refusal,war] Ask again when you have something we want.</li>
+        <li>[truce,refusal,war,theirLowtech] Our fighters would not forgive us for it. No truce.</li>
+        <li>[truce,refusal,war,theirHightech] No. We aren't finished with your colony yet.</li>
+        <li>[truce,refusal,war,call] You've said your piece. The answer is no, and this call is over.</li>
+        <!-- While a truce holds -->
+        <li>[greetings,cool,tie:truce:ours] Your colony asked for this truce, and we are keeping it. That is as far as our goodwill goes.</li>
+        <li>[greetings,cordial,tie:truce] The truce holds on our side. I hope your people can say the same.</li>
+        <li>[warning,cordial,tie:truce] A warning from the people we were at war with. Strange times, and thank you.</li>
+        <li>[help,refusal,tie:truce] A truce is not a friendship. We will not send {HELP}.</li>
+        <li>[condolences,cool,tie:truce] We read your words about our dead. Under the truce we can accept them, and we do.</li>
+        <li>[greetings,cordial,tie:truce:due] The truce is nearly over. I hope it ends as a peace, and I will say so to anyone here who asks.</li>
+        <!-- About captives: an offer brought sooner, or an exchange -->
+        <li>[ransom,warm] We are glad to settle this, {WRITER}, and you will hear from us soon.</li>
+        <li>[ransom,cordial,theirLowtech] We will settle it by our custom. You will hear from us before long.</li>
+        <li>[ransom,cordial,theirHightech] Your proposal works for us. Expect to hear from us shortly.</li>
+        <li>[ransom,cordial,call] Thanks for calling, {WRITER}. You'll hear from us about it.</li>
+        <li>[ransom,cool,letter] Fine. We'll settle this, but not in letters.</li>
+        <li>[ransom,cool,war,theirLowtech] We do not love your colony, but we want our own back. Watch your gate.</li>
+        <li>[ransom,refusal,war,theirHightech] We don't negotiate with your colony, not over prisoners and not over anything.</li>
+        <li>[ransom,refusal,letter] Your letter was read and set aside. We will not bargain over this one.</li>
+        <li>[ransom,refusal,theirLowtech] The one you hold shamed us by being taken. We will not bargain for them.</li>
+        <li>[ransom,refusal,call] No, {WRITER}. We're not bargaining over prisoners today.</li>
+        <!-- While a captive is held either way -->
+        <li>[greetings,cordial,ransom:theirs] Thank you for writing. Please see that the one of ours you hold is kept warm.</li>
+        <li>[greetings,curt,ransom:theirs] You hold one of ours and send us letters. Send them home instead.</li>
+        <li>[greetings,cordial,ransom:held] We know you are thinking of the one of yours we hold. Your letter says so between the lines.</li>
+        <li>[news,cool,ransom:held] Our news, since you ask. You will notice we say nothing of the one of yours we hold.</li>
+        <li>[help,refusal,ransom:held] We hold one of yours, and you ask us for {HELP}? Settle that first.</li>
+        <li>[condolences,cordial,ransom:theirs] Your sympathy is kind. Kinder still would be the one of ours in your cells, walked home.</li>
+        <!-- Asking for their envoy -->
+        <li>[envoy,warm,theirLowtech] Our envoy will come to you, and will sit at your table as our custom asks.</li>
+        <li>[envoy,warm,theirHightech] Approved, {WRITER}. Our envoy is already asking what to pack.</li>
+        <li>[envoy,cordial] Our envoy will come for the season. A bed of their own would be a kindness, if you have one.</li>
+        <li>[envoy,cordial,theirLowtech] Our envoy will come, with an attendant, as is proper.</li>
+        <li>[envoy,cool] Very well, our envoy will come. We will be reading their letters closely.</li>
+        <li>[envoy,cool,theirHightech] Approved. Our envoy will report on everything, so keep that in mind.</li>
+        <li>[envoy,refusal] We need our envoy at home this season. Ask us again another time.</li>
+        <li>[envoy,refusal,theirHightech] Request declined. Our envoy is needed elsewhere this season.</li>
+        <li>[envoy,refusal,call] Not this season, {WRITER}. Our envoy can't be spared.</li>
+        <!-- While their envoy stays, or the colony's lives among them -->
+        <li>[greetings,cordial,envoy:here] Our envoy's letters reach us, and we read every one. Yours is welcome beside them.</li>
+        <li>[greetings,cool,envoy:here] We have your letter, and our envoy's letters too. We will see whether they agree.</li>
+        <li>[greetings,warm,envoy:ours] Your envoy is good company, {WRITER}, and so is your letter.</li>
+        <li>[news,cordial,envoy:ours] Your envoy will have written some of this home already. Here is our side of it.</li>
+        <li>[help,cordial,envoy:ours] With your envoy living among us, it would be strange to refuse. We send {HELP}.</li>
+        <li>[invitation,cordial,envoy:ours] I will come, and I will bring word of your envoy with me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_DiplomacyMore</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- Asking a favor of their people face to face -->
+        <li>[favourask,us] We helped your people once, and now we need something back.</li>
+        <li>[favourask,us,theirLowtech] By your own ways, a debt like yours is paid when it's asked for.</li>
+        <li>[favourask,us,abrasive] Your people owe us, and I'm here to collect.</li>
+        <li>[favourask,us,kind] I hate to ask, but your people owe us, and we need it.</li>
+        <li>[favourtalk,them] What is it your colony needs most?</li>
+        <li>[favourtalk,them,theirLowtech] A debt between peoples is no small thing to call in.</li>
+        <li>[favourtalk,us] We wouldn't ask over something small.</li>
+        <li>[favourtalk,us] Whatever you can do will be remembered.</li>
+        <li>[favouryes,them] Then it's settled, and gladly.</li>
+        <li>[favouryes,them,kind] Of course, I'd have offered if you hadn't asked.</li>
+        <li>[favouryes,them,theirLowtech] It will be done, as our ways ask.</li>
+        <li>[favourno,them,abrasive] You ask too much, debt or no debt.</li>
+        <li>[favourno,them,theirLowtech] My people would never agree to that, whatever we owe.</li>
+        <li>[favourno,them] I can't promise that, and I won't pretend I can.</li>
+        <!-- Speaking of a pact face to face -->
+        <li>[pactask,us] We'd like your people to stand with ours for a year.</li>
+        <li>[pactask,us,theirHightech] I'd like to propose an agreement between our peoples.</li>
+        <li>[pactask,us,theirLowtech] Would your people swear an oath with ours, before witnesses?</li>
+        <li>[pacttalk,them] A year is a long time to promise for.</li>
+        <li>[pacttalk,them] And if we're called away the day you need us?</li>
+        <li>[pacttalk,us] We'd come when you called, and expect the same.</li>
+        <li>[pactyes,them] Then a year it is, and may we both get through it.</li>
+        <li>[pactyes,them,theirHightech] Agreed, and I'll have it written up at home.</li>
+        <li>[pactno,them] Not this year, I'm afraid.</li>
+        <li>[pactno,them,abrasive] You haven't earned that from us yet.</li>
+        <!-- The truce sworn at the gate -->
+        <li>[parley,us] Speak your terms, and I'll speak ours.</li>
+        <li>[parley,us] Nobody here will raise a hand to you today.</li>
+        <li>[parley,us,theirHightech] Let's get this witnessed and done.</li>
+        <li>[parley,us,abrasive] Say what you came to say.</li>
+        <li>[parleyterms,them] No raids from our side while it holds, that's the heart of it.</li>
+        <li>[parleyterms,them,theirLowtech] My people swear it the old way, and so must you.</li>
+        <li>[parleyterms,them,theirHightech] Our side's terms, exactly as agreed.</li>
+        <li>[parleyterms,them] Keep your side, and we'll keep ours.</li>
+        <li>[parleysworn,them] It's sworn, and may neither of us regret it.</li>
+        <li>[parleysworn,them,theirLowtech] Sworn before witnesses, as it should be.</li>
+        <li>[parleysworn,them] Done, and nobody bled for it.</li>
+        <!-- At the gate: a ransom paid, a price set down, the colony's own handed back -->
+        <li>[ransompay,us] This is everything you asked for, so count it in front of me.</li>
+        <li>[ransompay,us,abrasive] Take it, and bring them back unhurt.</li>
+        <li>[ransompay,us,kind] Here, and tell them we're waiting for them at home.</li>
+        <li>[ransompay,us,theirLowtech] Here is the price, and our word that it's all there.</li>
+        <li>[ransomthanks,them] Good, yours will be on the road home soon.</li>
+        <li>[ransomthanks,them,theirHightech] Payment received, and we'll release them as agreed.</li>
+        <li>[ransomthanks,them,theirLowtech] It is paid, and our word holds.</li>
+        <li>[ransomset,them] Here's our price, set down as promised.</li>
+        <li>[ransomset,them,theirHightech] Payment's here, so release our person.</li>
+        <li>[ransomset,them,abrasive] It's all there, so don't keep us waiting.</li>
+        <li>[exchangegate,them] Go on, your people are waiting for you.</li>
+        <li>[exchangegate,them] You're free, so walk on to your own.</li>
+        <li>[exchangegate,them,theirLowtech] Go home, the bargain is kept.</li>
+        <li>[exchangegate,them,abrasive] Off you go, and don't get caught again.</li>
+        <!-- Offering an exchange face to face -->
+        <li>[exchangeask,us] We'd trade one of yours for one of ours, at our gate.</li>
+        <li>[exchangeask,us,theirHightech] I'd like to propose a straight exchange of prisoners.</li>
+        <li>[exchangetalk,them] Is ours being treated well?</li>
+        <li>[exchangetalk,us] Fed and kept warm, as we'd hope ours are.</li>
+        <li>[exchangeyes,them] Agreed, one for one at your gate.</li>
+        <li>[exchangeyes,them,kind] Done, and I'll be glad to see ours home.</li>
+        <li>[exchangeno,them] Not for that one.</li>
+        <li>[exchangeno,them,theirHightech] The trade doesn't balance for us, I'm sorry.</li>
+        <!-- Their envoy's letter home -->
+        <li>[envoyletter,them] Mind the seal, and don't read it on the road.</li>
+        <li>[envoyletter,them,theirLowtech] Carry it straight home, and tell them I'm fed.</li>
+        <li>[envoyletter,them,theirHightech] Straight to the council, and ask them for a reply.</li>
+        <li>[envoyletter,them] Tell my family I'm well, and give them this one first.</li>
+        <!-- A signal fire lit by the gate for a defense pact -->
+        <li>[signalfire,us] That should be seen from a long way off.</li>
+        <li>[signalfire,us] Come on, catch.</li>
+        <li>[signalfire,us,night] They'll see this one a long way off in the dark.</li>
+        <li>[signalfire,us,rain|snow] Burn, curse the weather, burn.</li>
+        <li>[signalfire,us] Now we wait, and hope someone's watching.</li>
+        <li>[signalfire,us,abrasive] If they can't see this, they aren't looking.</li>
+        <li>[signalfire,us,lowtech] Let their watchers see it from the hills.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
