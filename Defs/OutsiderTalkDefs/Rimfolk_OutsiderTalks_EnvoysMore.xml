@@ -359,7 +359,7 @@
     <lines>
       <li>[them] You're the colony's speaker, so I should be careful with you.</li>
       <li>[us] You can be honest with me.</li>
-      <li>[them] Honest and careful aren't the same thing where I come from.</li>
+      <li>[them] Among my people, honest and careful aren't the same thing.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

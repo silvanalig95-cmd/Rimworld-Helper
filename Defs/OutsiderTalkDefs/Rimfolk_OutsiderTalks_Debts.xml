@@ -82,7 +82,7 @@
     <lines>
       <li>[them] Your colony's entry is still flagged open in our records.</li>
       <li>[us] Does that bother anyone?</li>
-      <li>[them] Open entries bother everyone where I come from, so ask when you're ready.</li>
+      <li>[them] Open entries bother all of us, so ask when you're ready.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -162,7 +162,7 @@
       <li>[them] I'd rather owe your colony than any people I know.</li>
       <li>[us] That's a strange kind of compliment.</li>
       <li>[them,their:lowtech] Among my people it is the best kind, it means we trust you to ask fairly.</li>
-      <li>[them] Where I come from it's a good one, it means we trust you to ask fairly.</li>
+      <li>[them] It's a good one at home, it means we trust you to ask fairly.</li>
       <li>[us] Then we'll try to deserve it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>

@@ -154,7 +154,7 @@
   <CC_Pact_Opt_Renew>Keep it another year</CC_Pact_Opt_Renew>
   <CC_Pact_Opt_LetEnd>Let it end</CC_Pact_Opt_LetEnd>
   <CC_Pact_Made>The colony and {PEOPLE} have sworn {KIND} for a year: {WORD}.</CC_Pact_Made>
-  <CC_Pact_Renewed>The colony and {PEOPLE} will keep {KIND} another year.</CC_Pact_Renewed>
+  <CC_Pact_Renewed>{PEOPLE} and the colony will keep {KIND} another year.</CC_Pact_Renewed>
   <CC_Pact_Hist_Offer>{PEOPLE} offered the colony {KIND}.</CC_Pact_Hist_Offer>
   <CC_Pact_Msg_Over>The year of {KIND} with {PEOPLE} is over, and it ends without ill will.</CC_Pact_Msg_Over>
   <CC_Pact_Msg_War>{PEOPLE} are at war with the colony now, and the pact with them is over.</CC_Pact_Msg_War>
@@ -195,7 +195,7 @@
 
   <!-- A pact broken by the colony -->
   <CC_Pact_BrokenByUs_Label>The colony broke its pact</CC_Pact_BrokenByUs_Label>
-  <CC_Pact_BrokenByUs>The colony has broken {KIND} with {PEOPLE}: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Pact_BrokenByUs>
+  <CC_Pact_BrokenByUs>{PEOPLE} have lost {KIND} with the colony, and by the colony's own doing: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Pact_BrokenByUs>
 
   <!-- Their call to arms -->
   <CC_Arms_Label>{PEOPLE} ask for fighters</CC_Arms_Label>
