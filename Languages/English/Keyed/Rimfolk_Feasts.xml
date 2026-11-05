@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Stage 2, feasts, hunts, games and contests with guests (Source/ColonyCouncil/Diplomacy/Feasts.cs, FeastContests.cs,
+       FeastPanels.cs, FeastDialog.cs; docs/design/stage2-diplomacy.md, round b, item 5). Keys with numbered fellows
+       (_2 ...) are picked at random (TextVariants). {FEAST} is the colony's feast in its own words, with "the" (by its
+       age: the gift feast, the feast in the hall, the banquet, the gala); {RITE} how their people keep a feast (their
+       faith's own with Ideology, else their age's way, Rimfolk_Ages.xml: Feast). -->
+
+  <!-- The settings -->
+  <CC_Settings_DiplomacyFeasts>Feasts with guests</CC_Settings_DiplomacyFeasts>
+  <CC_SetNote_DiplomacyFeasts>Feasts, hunts, games and contests with guests from the peoples around, once a season at a home.</CC_SetNote_DiplomacyFeasts>
+  <CC_Settings_DiplomacyFeasts_Tip>From a people's card, the calendar or at the steward's suggestion, invite up to three notables of peoples at peace who live within three days' travel and think well enough of the colony (regard 0 or more), by letter or call. Each answers by their regard, the road and whether what their people hope for is offered: a hunt for a tribe, a hunt or wrestling in the middle ages, a race or a shooting match for an industrial people, wrestling or a game at the tables for spacers, a fine meal and music for the Empire. On the first fine day after the last of them can arrive, they walk in with one or two of their people and wait by the gate. Up to four contests are held on the map in the afternoon (wrestling by the sparring rules, a race, a hunt, a game at the colony's tables, and a shooting match only where a mod gives targets), the feast is the colony's gathering with the guests at its table, the champion of the day gets the prize, and the guests stay the night and go home at first light. A good welcome raises their regard and their people remember it; an empty plate is a slight. A wrestling bout's blow goes in hard about one time in 25; a guest's night after the feast turns into a fistfight about one guest night in 15. Off: nothing new is planned or suggested, and a feast under way plays out.</CC_Settings_DiplomacyFeasts_Tip>
+
+  <!-- The colony's feast in its own words, with "the" ({FEAST}) -->
+  <CC_Feast_Name_Tribal>the gift feast</CC_Feast_Name_Tribal>
+  <CC_Feast_Name_Medieval>the feast in the hall</CC_Feast_Name_Medieval>
+  <CC_Feast_Name_Industrial>the banquet</CC_Feast_Name_Industrial>
+  <CC_Feast_Name_Spacer>the gala</CC_Feast_Name_Spacer>
+
+  <!-- The contests -->
+  <CC_Feast_Contest_Wrestling>wrestling</CC_Feast_Contest_Wrestling>
+  <CC_Feast_Contest_Race>a race</CC_Feast_Contest_Race>
+  <CC_Feast_Contest_Hunt>a hunt</CC_Feast_Contest_Hunt>
+  <CC_Feast_Contest_Tables>a game at the tables</CC_Feast_Contest_Tables>
+  <CC_Feast_Contest_Shooting>a shooting match</CC_Feast_Contest_Shooting>
+  <CC_Feast_ContestThe_Wrestling>Wrestling</CC_Feast_ContestThe_Wrestling>
+  <CC_Feast_ContestThe_Race>The race</CC_Feast_ContestThe_Race>
+  <CC_Feast_ContestThe_Hunt>The hunt</CC_Feast_ContestThe_Hunt>
+  <CC_Feast_ContestThe_Tables>The game at the tables</CC_Feast_ContestThe_Tables>
+  <CC_Feast_ContestThe_Shooting>The shooting match</CC_Feast_ContestThe_Shooting>
+  <CC_Feast_NoContests>no contests</CC_Feast_NoContests>
+  <CC_Feast_NoGuests>nobody</CC_Feast_NoGuests>
+  <CC_Feast_WhoOf>{NAME} of {PEOPLE}</CC_Feast_WhoOf>
+
+  <!-- What each people hopes for at the colony's feast -->
+  <CC_Feast_Hope_Hunt>a hunt</CC_Feast_Hope_Hunt>
+  <CC_Feast_Hope_HuntOrTourney>a hunt or a bout of wrestling</CC_Feast_Hope_HuntOrTourney>
+  <CC_Feast_Hope_RaceOrMatch>a race or a shooting match</CC_Feast_Hope_RaceOrMatch>
+  <CC_Feast_Hope_Exhibition>a wrestling bout or a game at the tables</CC_Feast_Hope_Exhibition>
+  <CC_Feast_Hope_MealAndMusic>a fine meal and music</CC_Feast_Hope_MealAndMusic>
+
+  <!-- A guest's answer, in a word -->
+  <CC_Feast_Guest_Invited>answer awaited</CC_Feast_Guest_Invited>
+  <CC_Feast_Guest_Coming>coming</CC_Feast_Guest_Coming>
+  <CC_Feast_Guest_Declined>not coming</CC_Feast_Guest_Declined>
+  <CC_Feast_Guest_Here>here</CC_Feast_Guest_Here>
+  <CC_Feast_Guest_Gone>gone home</CC_Feast_Guest_Gone>
+
+  <!-- Why it can't be done -->
+  <CC_Feast_Why_Off>Feasts with guests are off in the settings.</CC_Feast_Why_Off>
+  <CC_Feast_Why_NoHome>Only a home of the colony's can hold a feast with guests.</CC_Feast_Why_NoHome>
+  <CC_Feast_Why_Vacuum>Nobody can walk in to a feast here.</CC_Feast_Why_Vacuum>
+  <CC_Feast_Why_UnderWay>A feast with guests is already planned at this home.</CC_Feast_Why_UnderWay>
+  <CC_Feast_Why_Season>The last feast with guests here was less than a season ago.</CC_Feast_Why_Season>
+  <CC_Feast_Why_War>{PEOPLE} are at war with the colony.</CC_Feast_Why_War>
+  <CC_Feast_Why_Regard>{NAME} doesn't think well enough of the colony to come.</CC_Feast_Why_Regard>
+  <CC_Feast_Why_Far>{NAME} lives more than three days away.</CC_Feast_Why_Far>
+  <CC_Feast_Why_NotFree>{NAME} can't travel just now.</CC_Feast_Why_NotFree>
+  <CC_Feast_Why_Invited>{NAME} is already invited to a feast.</CC_Feast_Why_Invited>
+  <CC_Feast_Why_NoGuests>Pick at least one guest who can be invited.</CC_Feast_Why_NoGuests>
+  <CC_Feast_Why_NoWriter>Nobody at this home can write the invitations.</CC_Feast_Why_NoWriter>
+  <CC_Feast_Why_NoneOfTheirs>The colony knows nobody of {PEOPLE} to invite.</CC_Feast_Why_NoneOfTheirs>
+  <CC_Feast_Why_Over>The feast is over.</CC_Feast_Why_Over>
+  <CC_Feast_Why_AlreadyHere>The guests are already here.</CC_Feast_Why_AlreadyHere>
+  <CC_Feast_Why_Feud>{PEOPLE} are at war with {OTHER}, whose guest is already invited: they would fight at the colony.</CC_Feast_Why_Feud>
+  <CC_Feast_Why_Letters>One letter or call goes to each guest, and only {COUNT} more can be under way now.</CC_Feast_Why_Letters>
+  <CC_Feast_CWhy_Wrestling>Nobody of the colony is fit to wrestle.</CC_Feast_CWhy_Wrestling>
+  <CC_Feast_CWhy_Race>Nobody of the colony is fit to run.</CC_Feast_CWhy_Race>
+  <CC_Feast_CWhy_RaceGround>There's no open ground past the gate for a course.</CC_Feast_CWhy_RaceGround>
+  <CC_Feast_CWhy_Hunters>The colony has no hunter with a bow or a gun.</CC_Feast_CWhy_Hunters>
+  <CC_Feast_CWhy_Game>There's too little safe game on the colony's land.</CC_Feast_CWhy_Game>
+  <CC_Feast_CWhy_Tables>The colony has no game tables (chess, poker, billiards, horseshoes, hoopstone).</CC_Feast_CWhy_Tables>
+  <CC_Feast_CWhy_Targets>The colony has no shooting target (a mod adds them).</CC_Feast_CWhy_Targets>
+  <CC_Feast_CWhy_Guns>Nobody of the colony has a bow or a gun to shoot with.</CC_Feast_CWhy_Guns>
+
+  <!-- Why a contest didn't happen, or the feast was called off ({WHY}) -->
+  <CC_Feast_Off_Light>the light was going</CC_Feast_Off_Light>
+  <CC_Feast_Off_Rain>the weather wouldn't clear</CC_Feast_Off_Rain>
+  <CC_Feast_Off_Long>it went on too long and was called</CC_Feast_Off_Long>
+  <CC_Feast_Off_Late>the evening came, and the feast with it</CC_Feast_Off_Late>
+  <CC_Feast_Off_NoRing>there was no open ground for a ring</CC_Feast_Off_NoRing>
+  <CC_Feast_Off_Nobody>nobody was free to take part</CC_Feast_Off_Nobody>
+  <CC_Feast_Off_BrokeUp>it broke up before the end</CC_Feast_Off_BrokeUp>
+  <CC_Feast_Off_NoGuests>none of the guests can come</CC_Feast_Off_NoGuests>
+  <CC_Feast_Off_ByColony>the colony called it off</CC_Feast_Off_ByColony>
+  <CC_Feast_Off_Danger>danger kept the guests away</CC_Feast_Off_Danger>
+  <CC_Feast_Off_Weather>the weather kept the guests away</CC_Feast_Off_Weather>
+
+  <!-- What pleased or slighted a guest most ({WHY}) -->
+  <CC_Feast_For_Unfed>nobody brought them a plate at the feast</CC_Feast_For_Unfed>
+  <CC_Feast_For_Sour>the night ended in a fight</CC_Feast_For_Sour>
+  <CC_Feast_For_Prize>they went home with the prize</CC_Feast_For_Prize>
+  <CC_Feast_For_Hope>the colony offered {HOPE}</CC_Feast_For_Hope>
+  <CC_Feast_For_PlainMeal>the meal was plain for a guest of their rank</CC_Feast_For_PlainMeal>
+  <CC_Feast_For_Floor>they slept on the floor</CC_Feast_For_Floor>
+  <CC_Feast_For_Table>they had a seat at the colony's table</CC_Feast_For_Table>
+
+  <!-- The invitation and their answer -->
+  <CC_Feast_Topic>Invited to {FEAST}</CC_Feast_Topic>
+  <CC_Feast_Ans_Yes>{NAME} will come to {FEAST}, with one or two of their people.</CC_Feast_Ans_Yes>
+  <CC_Feast_Ans_Yes_2>{NAME} accepts, and will walk over for {FEAST} as soon as the road allows.</CC_Feast_Ans_Yes_2>
+  <CC_Feast_Ans_Yes_3>{NAME} will be there for {FEAST}.</CC_Feast_Ans_Yes_3>
+  <CC_Feast_Ans_YesHope>{NAME} will come to {FEAST}, and is glad there will be {HOPE}.</CC_Feast_Ans_YesHope>
+  <CC_Feast_Ans_YesHope_2>{NAME} accepts, and says {HOPE} at the colony is worth the walk.</CC_Feast_Ans_YesHope_2>
+  <CC_Feast_Ans_No>{NAME} won't be coming to {FEAST}.</CC_Feast_Ans_No>
+  <CC_Feast_Ans_No_2>{NAME} sends regrets: there's no coming to {FEAST} this time.</CC_Feast_Ans_No_2>
+  <CC_Feast_Ans_No_3>{NAME} thanks the colony for the invitation, and stays at home.</CC_Feast_Ans_No_3>
+  <CC_Feast_Ans_TheirRite>At home their people keep their feasts as {RITE}.</CC_Feast_Ans_TheirRite>
+  <CC_Feast_Ans_Moot>The colony's plans for {FEAST} have changed, and the letter is answered with thanks only.</CC_Feast_Ans_Moot>
+  <CC_Feast_Ans_Moot_2>By the time the letter came, the colony's plans for {FEAST} had changed.</CC_Feast_Ans_Moot_2>
+
+  <!-- The day set -->
+  <CC_Feast_Set_Label>A feast day set</CC_Feast_Set_Label>
+  <CC_Feast_Set>The answers are in. {GUESTS} of {PEOPLES} will come to {FEAST} on {DATE}, or on the first fine day after it.</CC_Feast_Set>
+  <CC_Feast_Set_2>{GUESTS} of {PEOPLES} said yes to {FEAST}. They are expected on {DATE}, weather allowing.</CC_Feast_Set_2>
+  <CC_Feast_Set_3>The invitations to {FEAST} have been answered: {GUESTS} of {PEOPLES} will come on {DATE}, or the first fine day after.</CC_Feast_Set_3>
+  <CC_Feast_Set_Declined>{NAMES} won't be coming.</CC_Feast_Set_Declined>
+  <CC_Feast_Set_How>Each will walk in with one or two of their people and wait by the gate. The afternoon holds {CONTESTS}; the feast is in the evening. They stay the night in the colony's beds, or on the floor if there are none to spare, and go home at first light.</CC_Feast_Set_How>
+
+  <CC_Feast_Set_HowNone>Each will walk in with one or two of their people and wait by the gate. The feast is in the evening. They stay the night in the colony's beds, or on the floor if there are none to spare, and go home at first light.</CC_Feast_Set_HowNone>
+
+  <!-- The guests arrive -->
+  <CC_Feast_Arrive_Label>Guests for {FEAST}</CC_Feast_Arrive_Label>
+  <CC_Feast_Arrive>Guests for {FEAST} have come: {GUESTS} of {PEOPLES}, each with one or two of their people. They are walking up to the gate to wait there.</CC_Feast_Arrive>
+  <CC_Feast_Arrive_2>The guests are here: {GUESTS} of {PEOPLES}, come for {FEAST}. They are walking to the gate with those who came with them.</CC_Feast_Arrive_2>
+  <CC_Feast_Arrive_3>In from the road for {FEAST}: {GUESTS} of {PEOPLES}, with those who came with them, making for the gate.</CC_Feast_Arrive_3>
+  <CC_Feast_Arrive_Wedding>Guests for the wedding have come: {GUESTS} of {PEOPLES}, each with one or two of their people. They are walking up to the gate to wait there.</CC_Feast_Arrive_Wedding>
+  <CC_Feast_Arrive_How>The contests begin in the afternoon: {CONTESTS}. The feast follows in the evening, and the guests stay the night.</CC_Feast_Arrive_How>
+  <CC_Feast_Arrive_HowNone>The feast is in the evening, and the guests stay the night.</CC_Feast_Arrive_HowNone>
+  <CC_Feast_Arrive_Rite>At home, {PEOPLE} keep their feasts as {RITE}.</CC_Feast_Arrive_Rite>
+  <CC_Feast_Arrive_Hope>{NAME} hopes for {HOPE}.</CC_Feast_Arrive_Hope>
+
+  <!-- The contests begin -->
+  <CC_Feast_Msg_Begins_Wrestling>The wrestling begins in a ring by the gate: bouts between the colony's people and the guests, {COUNT} wrestlers in all.</CC_Feast_Msg_Begins_Wrestling>
+  <CC_Feast_Msg_Begins_Race>The race begins at the gate: {COUNT} runners out to the marker and back.</CC_Feast_Msg_Begins_Race>
+  <CC_Feast_Msg_Begins_Hunt>The hunt begins: {COUNT} hunters of the colony and its guests go after game marked on the colony's land.</CC_Feast_Msg_Begins_Hunt>
+  <CC_Feast_Msg_Begins_Tables>The games at the tables begin, the colony's players against the guests.</CC_Feast_Msg_Begins_Tables>
+  <CC_Feast_Msg_Begins_Shooting>The shooting match begins: {COUNT} shooters, five shots each at the target.</CC_Feast_Msg_Begins_Shooting>
+
+  <!-- How each went -->
+  <CC_Feast_Result_Wrestling>{WINNER} won the wrestling, among {ENTRANTS} wrestlers.</CC_Feast_Result_Wrestling>
+  <CC_Feast_Result_Race>{WINNER} won the race, back first of {ENTRANTS} runners.</CC_Feast_Result_Race>
+  <CC_Feast_Result_Hunt>{WINNER} won the hunt, bringing down the most game.</CC_Feast_Result_Hunt>
+  <CC_Feast_Result_Tables>{WINNER} won the games at the {WHAT}.</CC_Feast_Result_Tables>
+  <CC_Feast_Result_Shooting>{WINNER} won the shooting match, hitting the {WHAT} most often.</CC_Feast_Result_Shooting>
+  <CC_Feast_Result_None_Wrestling>The wrestling ended with no winner.</CC_Feast_Result_None_Wrestling>
+  <CC_Feast_Result_None_Race>Nobody finished the race.</CC_Feast_Result_None_Race>
+  <CC_Feast_Result_None_Hunt>The hunters brought nothing down.</CC_Feast_Result_None_Hunt>
+  <CC_Feast_Result_None_Tables>The games at the tables ended even.</CC_Feast_Result_None_Tables>
+  <CC_Feast_Result_None_Shooting>Nobody hit the target in the shooting match.</CC_Feast_Result_None_Shooting>
+  <CC_Feast_Result_Off>{CONTEST} didn't happen: {WHY}.</CC_Feast_Result_Off>
+
+  <!-- The champion and the prize -->
+  <CC_Feast_Champion_Ours>As {FEAST} draws to an end, {CHAMPION} is named the champion of the day.</CC_Feast_Champion_Ours>
+  <CC_Feast_Champion_Ours_2>{CHAMPION} won the most today, and is named champion as {FEAST} ends.</CC_Feast_Champion_Ours_2>
+  <CC_Feast_Champion_Guest>As {FEAST} draws to an end, {CHAMPION} of {PEOPLE} is named the champion of the day.</CC_Feast_Champion_Guest>
+  <CC_Feast_Champion_Guest_2>The guests carry the day: {CHAMPION} of {PEOPLE} won the most, and is named champion as {FEAST} ends.</CC_Feast_Champion_Guest_2>
+  <CC_Feast_Champion_Prize>{PAWN} carries the prize, {PRIZE}, over to {CHAMPION}.</CC_Feast_Champion_Prize>
+  <CC_Feast_Champion_PrizeGone>The prize set aside for the day, {PRIZE}, is no longer in the stores.</CC_Feast_Champion_PrizeGone>
+
+  <!-- The night -->
+  <CC_Feast_Msg_Sour>After the feast, words between {GUEST} and {PAWN} turned into a fistfight.</CC_Feast_Msg_Sour>
+  <CC_Feast_Msg_Sour_2>Too much drink and a sore loss: {GUEST} and {PAWN} have come to blows after the feast.</CC_Feast_Msg_Sour_2>
+  <CC_Feast_Msg_Sour_3>The evening has turned sour. {GUEST} and {PAWN} are fighting.</CC_Feast_Msg_Sour_3>
+
+  <!-- The end -->
+  <CC_Feast_End_Label>The guests go home</CC_Feast_End_Label>
+  <CC_Feast_End>{GUESTS} set out for home at first light after {FEAST}.</CC_Feast_End>
+  <CC_Feast_End_2>First light, and the guests are on their way home from {FEAST}: {GUESTS}.</CC_Feast_End_2>
+  <CC_Feast_End_Insulted>The guests have left {FEAST} at once, offended by how they were treated: {GUESTS}.</CC_Feast_End_Insulted>
+  <CC_Feast_End_Glad>{NAME} went home pleased: {WHY}.</CC_Feast_End_Glad>
+  <CC_Feast_End_Fair>{NAME} went home content enough: {WHY}.</CC_Feast_End_Fair>
+  <CC_Feast_End_Poor>{NAME} went home unhappy: {WHY}.</CC_Feast_End_Poor>
+  <CC_Feast_Died_Label>{NAME} died at the colony</CC_Feast_Died_Label>
+  <CC_Feast_Died>{NAME} of {PEOPLE}, a guest at {FEAST}, has died at the colony. The other guests are leaving, and their people will remember how it happened.</CC_Feast_Died>
+  <CC_Feast_Msg_CalledOff>The plans for {FEAST} are called off: {WHY}.</CC_Feast_Msg_CalledOff>
+
+  <!-- What a notable remembers -->
+  <CC_Feast_Note_Good>Came to the colony's feast and was well received.</CC_Feast_Note_Good>
+  <CC_Feast_Note_Poor>Came to the colony's feast and was poorly received.</CC_Feast_Note_Poor>
+  <CC_Feast_Note_Head>{NAME} was the colony's guest at its feast.</CC_Feast_Note_Head>
+  <CC_Feast_Note_Died>{NAME} died while a guest at the colony's feast.</CC_Feast_Note_Died>
+  <CC_Feast_Note_CalledOff>Was invited to the colony's feast, then told it was off.</CC_Feast_Note_CalledOff>
+  <CC_Memory_Deed_feasted>held a feast for their people</CC_Memory_Deed_feasted>
+  <CC_Memory_Deed_feasted_Name>held a feast with {NAME} as its guest</CC_Memory_Deed_feasted_Name>
+
+  <!-- The history -->
+  <CC_Feast_Hist_Invited>The colony invited {GUESTS} of {PEOPLES} to {FEAST}.</CC_Feast_Hist_Invited>
+  <CC_Feast_Hist_Held>The colony held {FEAST} with {GUESTS} as its guests.</CC_Feast_Hist_Held>
+  <CC_Feast_Hist_HeldChampion>The colony held {FEAST} with {GUESTS} as its guests; {CHAMPION} was champion of the day.</CC_Feast_Hist_HeldChampion>
+
+  <!-- The steward's suggestion -->
+  <CC_Feast_Suggest_Label>The steward suggests a feast</CC_Feast_Suggest_Label>
+  <CC_Feast_Suggest>{PAWN}, the colony's steward, says the stores are full enough and the land quiet enough for {FEAST} with guests. {NAME} of {PEOPLE} thinks well of the colony, and might come.</CC_Feast_Suggest>
+  <CC_Feast_Suggest_2>The steward, {PAWN}, puts it to the council: with food to spare and nothing at the gate, why not invite guests to {FEAST}? {NAME} of {PEOPLE} would likely say yes.</CC_Feast_Suggest_2>
+  <CC_Feast_Suggest_How>Plan it to pick up to {GUESTS} guests, up to {CONTESTS} contests and a prize; the invitations go out by letter or call.</CC_Feast_Suggest_How>
+  <CC_Feast_Opt_Plan>Plan it</CC_Feast_Opt_Plan>
+  <CC_Feast_Opt_NotNow>Not now</CC_Feast_Opt_NotNow>
+
+  <!-- The plan -->
+  <CC_Feast_Dlg_Title>{FEAST} with guests</CC_Feast_Dlg_Title>
+  <CC_Feast_Dlg_Intro>Invite up to {GUESTS} notables of peoples at peace who live within three days' travel and think well enough of the colony. The invitations go out by letter or call; once every answer is in, the day is the first fine one after the last of them can arrive. Up to {CONTESTS} contests are held that afternoon, the feast in the evening, and the guests stay the night.</CC_Feast_Dlg_Intro>
+  <CC_Feast_Dlg_Guests>Guests</CC_Feast_Dlg_Guests>
+  <CC_Feast_Dlg_NoCandidates>The colony knows no notable of a people at peace with it.</CC_Feast_Dlg_NoCandidates>
+  <CC_Feast_Dlg_GuestNote>Thinks {REGARD} of the colony, {DAYS} days away; hopes for {HOPE}.</CC_Feast_Dlg_GuestNote>
+  <CC_Feast_Dlg_GuestTip>{NAME} is likelier to come when {HOPE} is among the contests.</CC_Feast_Dlg_GuestTip>
+  <CC_Feast_Dlg_Contests>Contests</CC_Feast_Dlg_Contests>
+  <CC_Feast_Dlg_Hoped>(hoped for)</CC_Feast_Dlg_Hoped>
+  <CC_Feast_Dlg_Contest_Wrestling>Bouts between the colony's people and the guests by the sparring rules. A blow goes in hard about one time in 25.</CC_Feast_Dlg_Contest_Wrestling>
+  <CC_Feast_Dlg_Contest_Race>From the gate to a marker and back at a run. Children may run too.</CC_Feast_Dlg_Contest_Race>
+  <CC_Feast_Dlg_Contest_Hunt>The colony's hunters and the guests hunt safe game on the colony's land. A beast may turn on its hunter now and then.</CC_Feast_Dlg_Contest_Hunt>
+  <CC_Feast_Dlg_Contest_Tables>Games at the colony's tables, the colony's players against the guests.</CC_Feast_Dlg_Contest_Tables>
+  <CC_Feast_Dlg_Contest_Shooting>Five shots each at the colony's target.</CC_Feast_Dlg_Contest_Shooting>
+  <CC_Feast_Dlg_ContestTip_Wrestling>Up to three bouts in a ring by the gate, each between one of the colony's grown people and a guest: eight swings each, or until one yields to the pain. One blow in a bout goes in harder than meant about one time in 25 (a cracked rib, a bloody nose gone bad), never on someone hurt in the last three days or with child.</CC_Feast_Dlg_ContestTip_Wrestling>
+  <CC_Feast_Dlg_ContestTip_Race>The runners line up at the gate, run out to a marker on open ground and back, and the first home wins. A runner may stumble at the turn and lose a moment.</CC_Feast_Dlg_ContestTip_Race>
+  <CC_Feast_Dlg_ContestTip_Hunt>Game nothing likely to turn is marked for hunting, one beast more than there are hunters; the most kills wins. As in any hunt, a beast may turn on its hunter now and then.</CC_Feast_Dlg_ContestTip_Hunt>
+  <CC_Feast_Dlg_ContestTip_Tables>Up to two games, played as the game's own recreation; the winner by the game's own skill for it, and some luck.</CC_Feast_Dlg_ContestTip_Tables>
+  <CC_Feast_Dlg_ContestTip_Shooting>Each shooter takes five shots from a line ten paces or so from the target; the most hits wins.</CC_Feast_Dlg_ContestTip_Shooting>
+  <CC_Feast_Dlg_Prize>The prize</CC_Feast_Dlg_Prize>
+  <CC_Feast_Dlg_NoPrize>No prize</CC_Feast_Dlg_NoPrize>
+  <CC_Feast_Dlg_PrizeIs>{PRIZE} ({VALUE} silver)</CC_Feast_Dlg_PrizeIs>
+  <CC_Feast_Dlg_PrizeNote>Set aside from the stores until the feast, then carried to the champion of the day. A guest who wins takes it home; a guest given the prize thinks much better of the colony.</CC_Feast_Dlg_PrizeNote>
+  <CC_Feast_Dlg_Feast>The feast</CC_Feast_Dlg_Feast>
+  <CC_Feast_Dlg_Meals>The stores hold {MEALS} cooked meals; about {WANTED} are wanted ({COLONISTS} of the colony's, {GUESTS} guests and those who come with them).</CC_Feast_Dlg_Meals>
+  <CC_Feast_Dlg_MealsShort>A guest who isn't served a meal at the feast feels slighted, and their people remember it.</CC_Feast_Dlg_MealsShort>
+  <CC_Feast_Dlg_Empire>Guests of the Empire expect a fine meal and music: the colony has an instrument, and its best player will play for them.</CC_Feast_Dlg_Empire>
+  <CC_Feast_Dlg_EmpireNoMusic>Guests of the Empire expect a fine meal and music, and the colony has no instrument to play for them.</CC_Feast_Dlg_EmpireNoMusic>
+  <CC_Feast_Dlg_Night>The guests stay the night in the colony's beds (guest beds first), or on the floor if there are none to spare. Now and then a guest's night ends in a fistfight with one of the colony's.</CC_Feast_Dlg_Night>
+  <CC_Feast_Dlg_Writer>Invitations written by {PAWN}</CC_Feast_Dlg_Writer>
+  <CC_Feast_Dlg_Send>Send the invitations</CC_Feast_Dlg_Send>
+  <CC_Feast_Dlg_SendTip>A letter to each guest (or a call, with a comms console and a people who can take one), written when the writer has a moment.</CC_Feast_Dlg_SendTip>
+  <CC_Feast_Msg_Sent>{PAWN} will write the invitations to {GUESTS}.</CC_Feast_Msg_Sent>
+
+  <!-- Where it stands -->
+  <CC_Feast_Stage_Inviting>Invitations to {FEAST} sent; answers awaited.</CC_Feast_Stage_Inviting>
+  <CC_Feast_Stage_Set>The guests come to {FEAST} on {DATE}.</CC_Feast_Stage_Set>
+  <CC_Feast_Stage_Here>The guests for {FEAST} are at the gate.</CC_Feast_Stage_Here>
+  <CC_Feast_Stage_Contests>The contests before {FEAST}: {CONTEST} now.</CC_Feast_Stage_Contests>
+  <CC_Feast_Stage_Feasting>The colony and its guests sit down to {FEAST}.</CC_Feast_Stage_Feasting>
+  <CC_Feast_Stage_Night>The guests stay the night after {FEAST}.</CC_Feast_Stage_Night>
+  <CC_Feast_Stage_Done>The guests went home after {FEAST}.</CC_Feast_Stage_Done>
+  <CC_Feast_Stage_Off>The plans for {FEAST} were called off: {WHY}.</CC_Feast_Stage_Off>
+  <CC_Feast_Step_Invited>Invited</CC_Feast_Step_Invited>
+  <CC_Feast_Step_Here>Here</CC_Feast_Step_Here>
+  <CC_Feast_Step_Feast>The feast</CC_Feast_Step_Feast>
+  <CC_Feast_Step_Night>The night</CC_Feast_Step_Night>
+  <CC_Feast_Week_Day>A feast day: guests for {FEAST} ({GUESTS})</CC_Feast_Week_Day>
+  <CC_Feast_Week_Wedding>Guests for the wedding: {GUESTS}</CC_Feast_Week_Wedding>
+  <CC_Feast_Row>Invited to {FEAST}: {GUESTS}</CC_Feast_Row>
+
+  <!-- The cards -->
+  <CC_Feast_Card_Guest>{NAME} of {PEOPLE}: {ANSWER} (hopes for {HOPE})</CC_Feast_Card_Guest>
+  <CC_Feast_Card_Contests>Contests: {CONTESTS}.</CC_Feast_Card_Contests>
+  <CC_Feast_Card_Prize>The prize: {PRIZE}.</CC_Feast_Card_Prize>
+  <CC_Feast_Card_PrizeGiven>The prize, {PRIZE}, went to {CHAMPION}.</CC_Feast_Card_PrizeGiven>
+  <CC_Feast_Card_Writer>Invitations written by {PAWN}.</CC_Feast_Card_Writer>
+  <CC_Feast_Card_Results>How the contests went</CC_Feast_Card_Results>
+  <CC_Feast_Card_Champion>Champion of the day: {CHAMPION}.</CC_Feast_Card_Champion>
+  <CC_Feast_Card_Welcome_Glad>{NAME} went home pleased.</CC_Feast_Card_Welcome_Glad>
+  <CC_Feast_Card_Welcome_Fair>{NAME} went home content enough.</CC_Feast_Card_Welcome_Fair>
+  <CC_Feast_Card_Welcome_Poor>{NAME} went home unhappy.</CC_Feast_Card_Welcome_Poor>
+  <CC_Feast_Card_GuestOf>Invited to {FEAST}: {ANSWER}.</CC_Feast_Card_GuestOf>
+  <CC_Feast_Card_Retinue>Came with {NAME} to {FEAST}.</CC_Feast_Card_Retinue>
+  <CC_Feast_HereAs>a guest at {FEAST}</CC_Feast_HereAs>
+  <CC_Feast_HereAs_Wedding>a guest at the wedding</CC_Feast_HereAs_Wedding>
+  <CC_Feast_HereAs_Retinue>with {NAME}, a guest at {FEAST}</CC_Feast_HereAs_Retinue>
+  <CC_Feast_Cal_NoDate>Answers awaited</CC_Feast_Cal_NoDate>
+  <CC_Feast_Cal_Name>{FEAST} with guests of {PEOPLES}</CC_Feast_Cal_Name>
+  <CC_Feast_Cal_Any>Any season</CC_Feast_Cal_Any>
+  <CC_Feast_Cal_Plan>{FEAST} with guests</CC_Feast_Cal_Plan>
+  <CC_Feast_Cal_PlanNote>Once a season: guests from the peoples around, contests and a feast.</CC_Feast_Cal_PlanNote>
+
+  <!-- The acts -->
+  <CC_Feast_Act_Hold>Hold a feast for them...</CC_Feast_Act_Hold>
+  <CC_Feast_Act_Hold_Tip>Plan a feast with guests: whom to invite, which contests, a prize.</CC_Feast_Act_Hold_Tip>
+  <CC_Feast_Act_Invite>Invite to a feast...</CC_Feast_Act_Invite>
+  <CC_Feast_Act_Invite_Tip>Plan a feast with this notable among the guests.</CC_Feast_Act_Invite_Tip>
+  <CC_Feast_Act_Plan>Plan a feast...</CC_Feast_Act_Plan>
+  <CC_Feast_Act_CallOff>Call it off</CC_Feast_Act_CallOff>
+  <CC_Feast_Act_CallOff_Tip>The guests who said yes won't come, and each thinks 5 less of the colony for it.</CC_Feast_Act_CallOff_Tip>
+
+  <!-- What someone is doing -->
+  <CC_Feast_Report_Line>waiting at the start of the race.</CC_Feast_Report_Line>
+  <CC_Feast_Report_Running>running in the race.</CC_Feast_Report_Running>
+  <CC_Feast_Report_Shooting>shooting at the {TARGET}.</CC_Feast_Report_Shooting>
+  <CC_Feast_Report_Prize>carrying the prize to {CHAMPION}.</CC_Feast_Report_Prize>
+
+  <!-- The colony's own at a neighbour's feast -->
+  <CC_Feast_Away_Won>{PAWN} is home with a story from the feast in {PLACE}: {PAWN_pronoun} came first in {CONTEST} there, against the best of {PEOPLE}.</CC_Feast_Away_Won>
+  <CC_Feast_Away_Won_2>Back from the feast in {PLACE}, {PAWN} tells anyone who'll listen how {PAWN_pronoun} came first in {CONTEST} there.</CC_Feast_Away_Won_2>
+
+</LanguageData>

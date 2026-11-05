@@ -806,6 +806,8 @@ namespace ColonyCouncil
             var tone = NotableMath.Answer(x, Rand.Value, Rand.Value);
             // Stage 2's purposes (Diplomacy/DiplomacyLetters.cs): what they do about it, which colours the answer's tone.
             var dip = DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone);
+            // An invitation to a feast with guests (Diplomacy/FeastLetters.cs): their answer to it, which sets the tone.
+            string feast = FeastLetters.Read(l, n, speaker ?? l.writer, ref tone);
             // A call never walked the road: how far they are still sets when a guest or raiders could come.
             if (l.backDays <= 0f) l.backDays = NotableMath.TravelDays(Tiles(n, l.map), TechOf(n.faction));
             l.tone = tone;
@@ -840,7 +842,7 @@ namespace ColonyCouncil
             else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
                 things.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
             string visit = null;
-            if (l.purpose == LetterPurpose.Invitation && granted) visit = PlanVisit(l, n, now);
+            if (l.purpose == LetterPurpose.Invitation && granted) visit = feast ?? PlanVisit(l, n, now);
             // A people at war may answer with a threat, and keep it.
             string threat = null;
             if (tone != AnswerTone.Silence && Raids.CanRaid(n.faction) && IncidentWorker_Happening.FightsPossible && l.map != null
@@ -893,7 +895,7 @@ namespace ColonyCouncil
                 }
             }
             else SendNow(l, title, text, def, chronicle, things);
-            if (visit == null)
+            if (visit == null || feast != null)
             {
                 l.stage = l.channel == LetterChannel.Courier && l.tripId >= 0 ? LetterStage.Answering : LetterStage.Done;
             }

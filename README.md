@@ -2714,6 +2714,18 @@ their town for a season: their letters bring the town's news, its notables think
 home with a parting gift when their hosts think well of it. Each shows on the cards, Here and away and the inbox. 82
 conversation pieces, 55 letter lines and 49 spoken lines speak of captives and envoys. Setting: *Envoys*.
 
+**Feasts with guests.** Once a season the colony can hold a feast with guests, from a people's card, the calendar or at
+the steward's suggestion: up to three notables of peoples at peace within three days' travel, invited by letter or
+call, each answering by their regard and whether what their people hope for is offered (a hunt for a tribe, a race or a
+shooting match for an industrial people, a fine meal and music for the Empire). On the first fine day after the last of
+them can come, they walk in with one or two of their people and wait by the gate; up to four contests are held on the
+map (wrestling by the sparring rules, a race to a marker and back, a hunt of the colony's game, a game at its tables,
+and a shooting match where a mod gives targets), the feast is the colony's gathering with the guests at its table, the
+champion of the day gets the prize, and the guests stay the night and go home at first light. Their welcome moves their
+regard, and their people remember it; an empty plate is a slight. A bout's blow goes in hard now and then, and a guest's
+night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
+conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*.
+
 **Wards and hostages.** A friend whose head thinks well of the colony may offer a youth of a notable's house to live at
 the colony for a year (a child where the game has children), or the colony asks for one by letter: they walk in with
 their kin and stay as the game's lodger, on the colonist bar and working with everyone, and a guardian with 10 or more

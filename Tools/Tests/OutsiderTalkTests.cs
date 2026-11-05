@@ -252,6 +252,8 @@ public static class OutsiderTalkTests
         .Concat(FactsMath.RegionTags)
         // Captives and envoys (Diplomacy/FactsRansom.cs).
         .Concat(RansomMath.Tags).Concat(EnvoyMath.Tags)
+        // Feasts with guests (Diplomacy/FactsFeast.cs).
+        .Concat(FeastMath.Tags)
         // Wards and hostages (Diplomacy/FactsWards.cs).
         .Concat(WardMath.Tags)
         .ToHashSet();
@@ -277,6 +279,8 @@ public static class OutsiderTalkTests
         "PACTWITH", "TRUCEWITH",
         // Captives and envoys (Diplomacy/FactsRansom.cs).
         "CAPTOR", "ENVOY", "OURENVOY",
+        // Feasts with guests (Diplomacy/FactsFeast.cs).
+        "FEAST", "CHAMPION",
         // Wards and hostages (Diplomacy/FactsWards.cs).
         "WARD", "HOSTAGE", "GUARDIAN",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",

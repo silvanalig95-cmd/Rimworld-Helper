@@ -19,6 +19,9 @@ namespace ColonyCouncil
     {
         public const string Stranger = "stranger", Camp = "camp", Kin = "kin", Visits = "visitors";
 
+        /// <summary>The guests of a feast with guests at the colony (Diplomacy/Feasts.cs): each guest and those who came with them.</summary>
+        public const string Feast = "feast";
+
         /// <summary>Who comes, now the gathering is starting.</summary>
         public static List<Pawn> Resolve(PlayOut p, Map map)
         {
@@ -52,6 +55,9 @@ namespace ColonyCouncil
                     list = list.Take(cap).ToList();
                     break;
                 }
+                case Feast:
+                    list.AddRange(Feasts.GuestsAt(map).Where(o => Able(o, map)).Take(cap));
+                    break;
                 case Kin:
                 {
                     if (!Able(x, map)) break;

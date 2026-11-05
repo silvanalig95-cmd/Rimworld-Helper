@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Feasts and contests with guests
+
+*5 November 2026, version 0.92.0*
+
+- Feasts with guests: once a season, invite up to three notables of peoples at peace by letter or call, from a people's card, the calendar or the steward's suggestion; each answers by their regard and whether their people's hopes are offered.
+- On the day the guests walk in with one or two of their people and wait by the gate, and up to four contests are held on the map: wrestling, a race, a hunt, a game at the colony's tables, and a shooting match where a mod gives targets.
+- The feast is the colony's gathering with the guests at its table; the champion of the day is named and the prize is carried to them, and the guests stay the night and go home at first light.
+- Their welcome moves their regard and their people's memory: a meal, a fine one for the Empire, what they hoped for, the prize, a bed; an empty plate is a slight.
+- The risks are named before the choice: a wrestling blow goes in hard about one time in 25, a hunted beast may turn, and about one guest night in 15 ends in a fistfight.
+- Each feast has its Event card, a row on the calendar, a feast day in This week and its guests in Here and away; 27 conversation pieces, 24 letter lines and 47 spoken lines speak of it.
+- The colony's own at a neighbour's feast tell what they won when they come home.
+
 ## Who to bring and what to pack
 
 *5 November 2026, version 0.91.0*

@@ -196,6 +196,8 @@ namespace ColonyCouncil
             ["mediated"] = K(DeedSide.Favor, 8),
             ["madePeace"] = K(DeedSide.Favor, 8),
             ["welcomed"] = K(DeedSide.Favor, 5),
+            // A feast with guests at the colony (Diplomacy/Feasts.cs): their notable well welcomed, at its table and its contests.
+            ["feasted"] = K(DeedSide.Favor, 8, 10f, 20),
             ["favorDone"] = K(DeedSide.Favor, 6),
             ["forgave"] = K(DeedSide.Favor, 10),
             // The world beyond the walls: missions, world events and camps.

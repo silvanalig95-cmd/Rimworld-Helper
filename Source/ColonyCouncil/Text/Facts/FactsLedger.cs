@@ -84,6 +84,8 @@ namespace ColonyCouncil
             PactTies(s, f, now);
             // Captives and envoys between the two (Diplomacy/FactsRansom.cs): ransom:theirs, ransom:held, them:wascaptive, envoy:here, them:envoy, envoy:ours.
             RansomEnvoyFacts(s, f);
+            // Feasts with guests (Diplomacy/FactsFeast.cs): feast:invited, feast:soon, feast:here, them:feastguest, feast:theywon, feast:wewon.
+            FeastFacts(s, f);
             // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
             WardFacts(s, f);
         }
