@@ -193,8 +193,8 @@ public static class NatureTests
         C(mem.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]")
           && Regex.IsMatch(mem, @"Patch_MemoryArrestedBy\s*\{\s*public static void Prefix\(Pawn arrester\)\s*\{\s*if \(MemoryHooks\.Listening\) MemoryHooks\.capturer = arrester;\s*\}\s*public static void Finalizer\(\)\s*\{\s*MemoryHooks\.capturer = null;"),
             "an arrest names the arrester as the captor, kept only while the game weighs it");
-        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
-            "a pact's call refused by the council's answer: the speaker who sends it; unanswered, nobody");
+        C(Code("Diplomacy/CallsToArms.cs").Contains("&& !unanswered && home != null)") && Code("Diplomacy/CallsToArms.cs").Contains("Nature.Felt(TruceParley.Speaker(home), NatureAct.BrokeTruce, f)"),
+            "a pact's call refused by the council's answer: the speaker who sends it; unanswered (or no home left), nobody");
         string abroad = Code("Diplomacy/WardsAbroad.cs");
         C(Regex.IsMatch(abroad, @"if \(w\.Hostage\) Nature\.HostageGoes\(p, w\.people\);\s*else Nature\.WardGoes\(p, w\.people, w\.page\);\s*try\s*\{\s*var c = CaravanExitMapUtility"),
             "a hostage and a ward: as they walk off the map");
