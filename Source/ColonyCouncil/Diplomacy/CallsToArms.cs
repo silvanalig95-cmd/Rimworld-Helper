@@ -345,6 +345,9 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>A pact's call still waiting for the colony's answer (the inbox's row; a debt's call is the favours' row).</summary>
+        public bool WaitingOnPact => !ArchivedOnly && Live(out bool pact) != null && pact;
+
         public override IEnumerable<DiaOption> Choices
         {
             get
