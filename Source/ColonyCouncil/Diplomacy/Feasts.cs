@@ -512,7 +512,9 @@ namespace ColonyCouncil
             int regard = NotableBook.Opinion(n);
             int goodwill = n.faction != null && n.faction.HasGoodwill ? n.faction.PlayerGoodwill : 0;
             bool hope = FeastMath.Offered(g.hope, p.contests, HasInstrument(home));
-            yes = !Diplomacy.Hostile(n.faction) && n.Alive && LivingEvents.FreeToTravel(n.pawn) && FeastMath.Accepts(regard, goodwill, hope, TravelDays(n, home), Rand.Value);
+            // A colony with a house known for hosting is answered a little more readily (Renown.cs, up to three tenths more).
+            yes = !Diplomacy.Hostile(n.faction) && n.Alive && LivingEvents.FreeToTravel(n.pawn) && regard >= FeastMath.MinRegard
+                  && Rand.Value < Mathf.Min(0.95f, FeastMath.AcceptChance(regard, goodwill, hope, TravelDays(n, home)) * Renown.GuestFactor(home));
             if (!yes)
             {
                 g.state = GuestState.Declined;

@@ -386,7 +386,8 @@ namespace ColonyCouncil
             bool lovers = theirs != null && LovePartnerRelationUtility.LovePartnerRelationExists(ours, theirs);
             int regard = Regard(f, home, house ?? n);
             string them = theirs != null ? theirs.LabelShort : MatchWords.Candidate(null, null, house, gender);
-            if (!MatchMath.Accepts(regard, Goodwill(f), lovers, lives == MatchHome.Colony, roll))
+            // One of a renowned house is taken up more readily, up to twice (Renown.cs).
+            if (!(Mathf.Clamp01(roll) < RenownMath.MatchChance(MatchMath.AcceptChance(regard, Goodwill(f), lovers, lives == MatchHome.Colony), Renown.MatchFactor(ours))))
             {
                 var who = house ?? n ?? FavourCalls.HeadOf(f, home);
                 if (who != null)
@@ -618,8 +619,9 @@ namespace ColonyCouncil
                     if (head == null || PeopleWhyNot(f, home) != null) continue;
                     int live = With(f).Count;
                     if (!MatchMath.MayOffer(NotableBook.Opinion(head), Diplomacy.Hostile(f), head.Last(LetterPurpose.Match), now, live)) continue;
-                    if (!Rand.Chance(MatchMath.OfferDaily)) continue;
                     if (!Pick(f, home, out var ours, out var cand)) continue;
+                    // One of a renowned house is sought out more readily, up to twice (Renown.cs).
+                    if (!Rand.Chance(MatchMath.OfferDaily * Renown.MatchFactor(ours))) continue;
                     Offer(f, home, head, ours, cand);
                     return;
                 }

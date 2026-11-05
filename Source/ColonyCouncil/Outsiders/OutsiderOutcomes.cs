@@ -168,6 +168,8 @@ namespace ColonyCouncil
             }
             var book = Book;
             float shift = OutsiderMath.GoodWordShift(ofColony, ofColonist, c.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 4) * (tone == TalkTone.Warm ? 1.25f : 1f);
+            // A good word for one of a renowned house counts up to half again (Diplomacy/Renown.cs).
+            shift *= Renown.GoodWordFactor(c);
             if (book != null) GoodWords.Promise(x, c, to, shift);
             Say(x, "wordyes", c);
             // together: promised face to face.

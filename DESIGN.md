@@ -3032,6 +3032,50 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   `fealty:levies`, `fealty:protected`, `fealty:short`, `vassal:town`, `vassal:heavy`, `vassal:levy` beside the
   ledger's `tie:fealty`. Setting `diplomacyFealty` ("Fealty and vassals"). Dev actions in `FealtyDebug.cs`.
 
+#### House renown
+
+Release 2d.1 (docs/design/stage2-diplomacy.md, item 12; decision 17: earned and shown in words, with a "known for",
+nothing spent): `Diplomacy/`, its rules pure and tested (`RenownMath.cs`; `Tools/Tests/RenownTests.cs`).
+
+- **The houses.** The colony's are its families known by name (`FamilyNames.Families()`: two or more of one last name who
+  are family): `LedgerHouse` records on the world ledger beside the towns' (`ours`, no town, `seat` the home most of it
+  lives at, `folk` the refs of its people, the living and the gone, twelve at most, `lastSeen`, `band` the band last
+  told; `World/Ledger/LedgerRenown.cs`), twelve at most, made and kept by `Renown.Daily` (the diplomacy's day), let go two
+  years after the last of them left unless a live tie names one. The region's are the towns' founding families as
+  before. Both are House cards (`Cards.House`, `RenownPanels.OurHouse`) and search results.
+- **Renown is read, never stored** (`Renown.Read`, kept for the in-game hour). Of the colony's: the history's events that
+  name its people (`RenownMath.SourceOf`: the champion of `dip:contest`, the one married in `dip:wedding`, a ward's
+  guardian at a good year's end and the colony's youth home in `dip:ward` (the guardian is named there since this
+  release, `RenownMath.GuardianRole`), its envoy and hostage home, the speaker at `dip:parley`, the officer of `dip:task`;
+  a secret pressed and told is a wrong), what the peoples remember of them by name (`ColonistMemory.MarksOf`: a camp
+  broken, fighting beside theirs, trade at a post, settlers walked, a prisoner freed, their wounded tended; blood shed at
+  peace, executions, harvests, hard words, brawls), what they hold now (the colony's names for them by kind, years as
+  physician or marshal, terms as speaker, the Empire's title by seniority, notables whose own regard of them is 20 or
+  more), and the colony's deeds each of its houses shares (`deed:swore`, `keptWord`, `levies`, `tie:pact:kept`;
+  `brokeTruce`, `brokePact`, `renounced`, `schemed`, `refused`, `tributeShort`, `wordBroken`). Of theirs: a founding
+  family, its head's place (a town's head, their people's leader), what the head is best at, the town's fortune, and the
+  history's events between its head and the colony. Each source has its points and cap; a deed fades (full for a year,
+  a tenth a season to three tenths). Bands: a town at 10, the region at 30, the peoples in reach at 60, infamous at -15,
+  each held until three under its start. Known for: the kind with six points or more and three tenths of the kinds'.
+- **Told.** A band moved of one of the colony's houses: `dip:renown` (a milestone, the house as its actor), a `renownup`
+  or `renowndown` bubble from one of its people on the map (to nobody), `Tell.Minor`. A house made starts at its band
+  untold; the region's houses move quietly.
+- **What it does.** `Notables.OpinionOf` adds `Renown.RegardBonus` (up to 15, down to -10); a good word
+  (`OutsiderOutcomes.GoodWord`) counts up to half again; a match is accepted (`Matches.Hear`, `RenownMath.MatchChance`)
+  and offered (`Matches.Offers`) up to twice as readily; `Renown.EventFactor` in Rimfolk's own event weights and the
+  storyteller's (`Happenings.Weight`, `IncidentWorker_Happening.ChanceFactorNow`) draws `RenownMath.Events` by what a
+  house is known for (a quarter, half, three quarters more by band); the champion challenges a fighters' house's fighter
+  six times in ten (`HappeningWorker_Champion`); a feast's guests answer a house known for hosting up to three tenths more
+  readily (`Feasts.Answer`).
+- **Where it shows** (`RenownPanels.cs`): the House card's renown (how far and for what, by `RenownWords.Standing`; the
+  deeds it came from and those held against it; who knows it; what it does), its marriages, wards and feuds, its story;
+  a line on a colonist's card; People → Houses (each family's name a link to its card, its renown under it; the region's
+  houses with theirs); Here and away's houses. No acts and nothing in This week (it is earned). Facts
+  (`FactsRenown.cs`, in the ties' provider): `house:ours`, `house:known`, `house:renowned`, `house:wide`,
+  `house:infamous`, `house:knownfor:KIND`, `them:house`, `them:house:renowned`, `them:house:feud`, `{HOUSE}`,
+  `{KNOWNFOR}` (by the house's age), `{RENOWN}` (by the listener's ways), `{THEIRHOUSE}`; bubbles get the colonist's
+  house tags (`Outsiders.Line`). Setting `diplomacyRenown` ("House renown"). Dev actions in `RenownDebug.cs`.
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

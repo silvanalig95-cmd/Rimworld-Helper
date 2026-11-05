@@ -214,7 +214,9 @@ public static class FealtyTests
         string talk = File.ReadAllText(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_Fealty.xml"));
         int pieces = XDocument.Parse(talk).Root!.Elements("ColonyCouncil.OutsiderTalkDef").Count();
         C(pieces >= 20 && pieces <= 40, $"20 to 40 talk pieces ({pieces})");
-        foreach (var tag in FealtyMath.Tags) C(talk.Contains(tag), $"the talk speaks of {tag}");
+        // The levies' outcome tags came with the round c review (2d.1), their words in a file of their own.
+        string talkAll = talk + File.ReadAllText(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_LeviesPressed.xml"));
+        foreach (var tag in FealtyMath.Tags) C(talkAll.Contains(tag), $"the talk speaks of {tag}");
         C(XDocument.Parse(talk).Descendants("weight").All(w => float.Parse(w.Value, System.Globalization.CultureInfo.InvariantCulture) <= 1.2f), "the talk pieces' weights stay at 1.2 or less");
 
         return n;

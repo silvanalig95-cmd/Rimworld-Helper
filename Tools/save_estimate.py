@@ -525,9 +525,14 @@ MODEL = {
                                                   "the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding"),
     # The region's records on the ledger (World/Ledger/LedgerRegion.cs): the founding families of the new towns in detail
     # (a new town within reach every ten days or so, two houses each), and the towns being built within reach.
-    "World/Ledger/LedgerRegion.cs:houses": ("cap", (C["RegionTowns"] * C["RegionHouses"], 0.2), 170,
-                                            "two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record"),
+    "World/Ledger/LedgerRegion.cs:houses": ("cap", (C["RegionTowns"] * C["RegionHouses"] + const("Diplomacy/RenownMath.cs", "MaxOurs", 12), 0.2), 220,
+                                            "two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record; and the colony's own "
+                                            "houses, RenownMath.MaxOurs at most, each let go two years after its last member left"),
     "World/Ledger/LedgerRegion.cs:members": ("fixed", 4, 25, "per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses)"),
+    # The colony's own houses (Diplomacy/Renown.cs, release 2d.1) are records in the same list, twelve at most (RenownMath.MaxOurs),
+    # each with the people ever of it as refs (RenownMath.MembersKept): their renown is read from deeds and ties, never kept.
+    "World/Ledger/LedgerRegion.cs:folkText": ("fixed", const("Diplomacy/RenownMath.cs", "MembersKept", 12) / 2, 12,
+                                              "per house of the colony's: its people as refs, the living and the gone, RenownMath.MembersKept at most (counted under houses)"),
     "World/Ledger/LedgerRegion.cs:foundings": ("cap", (C["RegionFoundings"], 0.1), 260,
                                                "towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone"),
     # Each home's part of the region (World/Region/RegionBook.cs): one per colony, by the colonies' book. Inside it, its

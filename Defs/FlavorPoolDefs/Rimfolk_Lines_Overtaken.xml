@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Their own words in answers that had to borrow another case's, found by the round c text pass and put right in the
+    code (Source/ColonyCouncil/Diplomacy/DiplomacyLetters.cs, Moot and QuoteTags; FealtyLetters.cs, TaskLetters.cs,
+    SecretTies.cs; World/NeighbourLetters.cs, Quote), in the pool Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml).
+    A letter overtaken by events before they read it is answered under its purpose's moot tag, in place of the tag its
+    other lines are picked by, so no acceptance, refusal or promise is quoted with it:
+    - fealtymoot: an oath offered when it can no longer be sworn to them (in place of "fealty"; the answer is cool, it
+      changes little);
+    - pressmoot: a secret the keeper's letter pressed that is no longer pressed when they read it (answered face to face
+      meanwhile, or let go; in place of "pressed"; curt, and no silver comes);
+    - taskmoot: an officer's letter whose task was over before they read it (in place of the task's kind; any tone).
+    These lines carry no tone tag, as the tone is set by the case. A plea for help is answered by whether the help comes
+    with the answer (NotableMath.HelpQuoteTone): sent, by its tone (warm or cordial); not sent, in the refusal's words,
+    so the one cool line that promised help is never said; its words are here as a cordial line. Their ways by
+    theirLowtech (tribes, the middle ages and the Empire's court) and theirHightech; call for a call.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Overtaken</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- An oath offered, overtaken by events -->
+        <li>[fealtymoot] Things have changed since you wrote, and there is no oath for us to take from you now.</li>
+        <li>[fealtymoot,theirLowtech] Matters changed before your words reached our head. There is nothing to swear to now.</li>
+        <li>[fealtymoot,theirHightech] Given how things stand now, your request no longer applies. We consider it closed.</li>
+        <li>[fealtymoot,letter] Your letter came after its moment had passed. Write again if there is cause.</li>
+        <li>[fealtymoot,call] That isn't something we can settle now, {WRITER}. Things have moved on since you asked.</li>
+        <!-- A secret pressed by letter, no longer pressed when they read it -->
+        <li>[task,pressmoot] That matter is closed between us. We will not answer it again.</li>
+        <li>[task,pressmoot,theirLowtech] What was between us on that is finished. Do not raise it again.</li>
+        <li>[task,pressmoot,theirHightech] This matter is already closed on our side. No further reply will be sent.</li>
+        <li>[task,pressmoot,call] That's done with, {WRITER}. I won't go over it again.</li>
+        <!-- An officer's letter whose task was over before it was read -->
+        <li>[task,taskmoot] Your letter reached us after the business it was about had passed. We answer it all the same.</li>
+        <li>[task,taskmoot,theirLowtech] Your words came after their reason was gone, but they were heard.</li>
+        <li>[task,taskmoot,theirHightech] Received, though the matter it concerns appears to be concluded.</li>
+        <li>[task,taskmoot,call] Sounds like that business wrapped up before we spoke, {WRITER}.</li>
+        <!-- A plea for help to those the colony holds of, answered with help (the cool line that promised it never sent it) -->
+        <li>[help,cordial,fealty:oath] You hold of us, so we help where we can. Do not make a habit of asking.</li>
+        <!-- While the colony is sworn to them: their call on its levies refused this season -->
+        <li>[greetings,cool,fealty:oath,fealty:levies:refused] We called on your oath this season and your levies never came. Our head has not forgotten it.</li>
+        <li>[greetings,curt,fealty:oath,fealty:levies:refused,theirLowtech] Your spears stayed home when we called them. Write to us when they are ready to keep your oath.</li>
+        <li>[news,cool,fealty:oath,fealty:levies:refused,theirHightech] Here is our news. You would know more of it firsthand if your people had come when we called.</li>
+        <!-- To one the keeper pressed over a secret face to face -->
+        <li>[greetings,curt,them:pressed:face] Your letter came. After what your keeper asked of me to my face, I have little to say to it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

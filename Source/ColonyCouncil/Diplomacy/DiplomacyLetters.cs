@@ -287,16 +287,41 @@ namespace ColonyCouncil
         public const string TruceByWordTag = "trucebyword";
 
         /// <summary>
+        /// An oath offered by letter and overtaken by events before they read it (Fealty.SwearWhyNot, or their people no
+        /// longer the letter's): answered under this tag in place of "fealty", so neither an acceptance's nor a refusal's
+        /// words are quoted with it (Rimfolk_Lines_Overtaken.xml).
+        /// </summary>
+        public const string FealtyMootTag = "fealtymoot";
+
+        /// <summary>
+        /// The letter whose answer is being read right now was overtaken by events (its purpose's reader said so, through
+        /// <see cref="Moot"/>): its words are picked under the purpose's own moot tag. Set and read within one answer
+        /// (NeighbourLetters.Read writes the letter in the same call), so nothing is saved.
+        /// </summary>
+        private static int mootLetter = -1;
+
+        /// <summary>The answer being read is to a letter overtaken by events (its matter settled or changed since it was sent).</summary>
+        public static void Moot(NeighbourLetter l) => mootLetter = l?.id ?? -1;
+
+        public static bool IsMoot(NeighbourLetter l) => l != null && mootLetter >= 0 && l.id == mootLetter;
+
+        /// <summary>
         /// Tags for their own words in the answer (NeighbourLetters.Quote) that only this frame knows: a pact ended by the
         /// colony's letter is answered as <see cref="PactEndTag"/>, a truce agreed and sworn by word as
-        /// <see cref="TruceByWordTag"/> (each in place of its purpose's own tag, so no line meant for the other case can
-        /// fit), and the wards' (WardLetters).
+        /// <see cref="TruceByWordTag"/>, an oath overtaken by events as <see cref="FealtyMootTag"/> (each in place of its
+        /// purpose's own tag, so no line meant for the other case can fit), and the wards' and the tasks' (WardLetters,
+        /// TaskLetters).
         /// </summary>
         public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
         {
             if (l == null || tags == null || !Owns(l.purpose)) return;
             try
             {
+                if (l.purpose == LetterPurpose.Fealty && IsMoot(l))
+                {
+                    tags.Remove("fealty");
+                    tags.Add(FealtyMootTag);
+                }
                 if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactEndPrefix, StringComparison.Ordinal))
                 {
                     tags.Remove("pact");
@@ -334,6 +359,8 @@ namespace ColonyCouncil
         {
             if (l == null || !Owns(l.purpose)) return null;
             var a = new Answer();
+            // Not overtaken by events unless this answer's reader says so (Moot).
+            mootLetter = -1;
             try
             {
                 // The council's business (release 2c.1): a task's step, or a secret pressed and their answer.

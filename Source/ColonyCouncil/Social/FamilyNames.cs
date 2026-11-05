@@ -85,6 +85,17 @@ namespace ColonyCouncil
         /// <summary>The colony's people of their known family, them included (empty when there is none).</summary>
         public static List<Pawn> Members(Pawn p) => Of(p)?.members.ToList() ?? new List<Pawn>();
 
+        /// <summary>The colony's families known by name, each its last name and its people (the houses of Diplomacy/Renown.cs).</summary>
+        public static List<(string last, List<Pawn> members)> Families()
+        {
+            var list = new List<(string, List<Pawn>)>();
+            if (Current.Game == null) return list;
+            Build();
+            foreach (var k in byPawn.Values.Distinct())
+                list.Add((k.last, k.members.ToList()));
+            return list;
+        }
+
         /// <summary>The two are of the same known family.</summary>
         public static bool Same(Pawn a, Pawn b)
         {

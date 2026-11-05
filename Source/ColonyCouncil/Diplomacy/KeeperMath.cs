@@ -144,18 +144,31 @@ namespace ColonyCouncil
         /// <summary>Their people remember a secret told as the colony's scheme (the deed schemed).</summary>
         public const string ToldDeed = "schemed";
 
-        /// <summary>The notable's memory keeps that they were pressed, for their talk (them:pressed).</summary>
-        public const string PressedKey = "task:pressed";
+        /// <summary>
+        /// The notable's memory keeps that they were pressed, for their talk (them:pressed), and how: by the colony's letter
+        /// (them:pressed:letter) or face to face by the keeper's "Sound out" (them:pressed:face). A save from before keeps only
+        /// that they were.
+        /// </summary>
+        public const string PressedKey = "task:pressed", PressedLetterKey = "task:pressedletter", PressedFaceKey = "task:pressedface";
 
         // ---------------- Facts ----------------
 
         /// <summary>
         /// Talk tags: the one spoken to caught the colony's keeper at it (them:caughtkeeper; :you when it is the keeper
-        /// talking), was pressed by the colony (them:pressed), or was walked with after dark lately (keeper:watched).
+        /// talking), was pressed by the colony (them:pressed, either way), by its letter (them:pressed:letter) or face to face
+        /// (them:pressed:face), or was walked with after dark lately (keeper:watched).
         /// </summary>
-        public const string CaughtTag = "them:caughtkeeper", CaughtYouTag = "them:caughtkeeper:you", PressedTag = "them:pressed", WatchedTag = "keeper:watched";
+        public const string CaughtTag = "them:caughtkeeper", CaughtYouTag = "them:caughtkeeper:you", PressedTag = "them:pressed", WatchedTag = "keeper:watched",
+            PressedLetterTag = "them:pressed:letter", PressedFaceTag = "them:pressed:face";
 
-        public static readonly string[] Tags = { CaughtTag, CaughtYouTag, PressedTag, WatchedTag };
+        public static readonly string[] Tags = { CaughtTag, CaughtYouTag, PressedTag, WatchedTag, PressedLetterTag, PressedFaceTag };
+
+        /// <summary>What the notable's memory keeps of a press: that they were, and how.</summary>
+        public static string[] PressedKeys(bool face) => new[] { PressedKey, face ? PressedFaceKey : PressedLetterKey };
+
+        /// <summary>The talk's tag for a key of the notable's memory about a press (null for any other).</summary>
+        public static string PressedTagOf(string doneKey) =>
+            doneKey == PressedKey ? PressedTag : doneKey == PressedLetterKey ? PressedLetterTag : doneKey == PressedFaceKey ? PressedFaceTag : null;
 
         /// <summary>A walk after dark is "lately" for two days.</summary>
         public const int WatchedDays = 2;

@@ -376,10 +376,14 @@ namespace ColonyCouncil
                 string plural = FamilyNames.Plural(p);
                 if (plural.NullOrEmpty() || !seen.Add(plural)) continue;
                 var members = FamilyNames.Members(p);
+                // Kept as a house (release 2d.1): its renown beside what the colony says of it, and its card.
+                var kept = Renown.HouseOf(p);
+                string renown = kept != null ? RenownPanels.ListLine(kept) : null;
+                string repute = FamilyNames.ReputeLine(p);
                 m.houses.Add(new DipRow
                 {
                     text = DipWords.P("CC_Dip_House", plural.Named("HOUSE"), string.Join(", ", members.Select(x => x.LabelShort)).Named("MEMBERS")),
-                    note = FamilyNames.ReputeLine(p), link = p, color = UiKit.Gold
+                    note = renown.NullOrEmpty() ? repute : repute.NullOrEmpty() ? renown : renown + " " + repute, link = kept != null ? (object)kept.house : p, color = UiKit.Gold
                 });
             }
             // The colony's in-laws among the peoples, one row a marriage (release 2b.2).

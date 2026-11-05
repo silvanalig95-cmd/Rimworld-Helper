@@ -1002,10 +1002,14 @@ namespace ColonyCouncil
                 WorldLedger.AddTie(Tie.Kind.Regard, Refs.Of(p), Diplomacy.Colony(map), new TieTerms { key = WardMath.FosteredKey, number = WardMath.GrownRegard(r), count = (int)r },
                     Tie.Never, WardMath.WardOrigin);
             var form = WardWords.Form(map, f);
-            Diplomacy.Write(DiplomacyMath.Ward, new List<HistoryActor>
+            var yearActors = new List<HistoryActor>
             {
                 new HistoryActor(Refs.Of(p), HistoryRole.About), new HistoryActor(Diplomacy.Colony(map), HistoryRole.With), new HistoryActor(Refs.Of(f), HistoryRole.For)
-            }, Diplomacy.Colony(map), WardWords.P("CC_Ward_Hist_Home_" + r, p.Named("WARD"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), r != WardResult.Fair);
+            };
+            // The guardian, by name: their house's renown reads a good year as a ward fostered well (Diplomacy/Renown.cs).
+            if (w.guardian != null) yearActors.Add(new HistoryActor(Refs.Of(w.guardian), RenownMath.GuardianRole(r >= WardResult.Good)));
+            Diplomacy.Write(DiplomacyMath.Ward, yearActors, Diplomacy.Colony(map),
+                WardWords.P("CC_Ward_Hist_Home_" + r, p.Named("WARD"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), r != WardResult.Fair);
             var parts = new List<string> { WardWords.T("CC_Ward_Home_" + r, p.Named("WARD"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")) };
             var held = new List<string>();
             if (lessons * 2 >= w.days && w.days > 0) held.Add(WardWords.P("CC_Ward_Home_Taught", WardWords.Skill(w.skill).Named("SKILL")));

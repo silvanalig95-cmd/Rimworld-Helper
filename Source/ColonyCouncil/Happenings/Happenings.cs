@@ -770,6 +770,8 @@ namespace ColonyCouncil
             w *= DrawnFactor(ext);
             // A town struggling in this home's reach asks for help more often (World/Region/RiseFallEffects.cs).
             w *= RiseFallEffects.EventFactor(d, map);
+            // A house known for something draws the world's events of its kind (Diplomacy/Renown.cs).
+            w *= Renown.EventFactor(d, map);
             return Mathf.Max(0.001f, w);
         }
 

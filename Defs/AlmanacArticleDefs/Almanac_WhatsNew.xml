@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.99.0</version>
+        <date>5 November 2026</date>
+        <title>House renown</title>
+        <points>
+          <li>The colony's families are houses now, known for what their people did: champions at feasts, marriages, wards fostered, seasons abroad, and what the peoples remember of them. Nothing is spent, and old deeds fade slowly.</li>
+          <li>How far a house's name carries is told in each age's words, from the next town's market to every people within reach, along with what it is known for: fighters, healers, hosts, traders, makers or the faithful. People, then Houses, and each House card show it with the deeds behind it.</li>
+          <li>Notables think better of a renowned house's people, their good words and matches come easier, and what the house is known for draws its own visitors: challengers, the sick, guests, pilgrims.</li>
+          <li>Visitors and letters speak of the colony's houses by name, in 50 conversation pieces, 24 letter lines and 20 spoken lines.</li>
+          <li>Fixed: talk and letters said the colony's levies came after a refused call, could promise help that was never sent, and answered an oath letter overtaken by events as a refusal.</li>
+          <li>Fixed: a pressed secret or council task overtaken by events promised silver or answered finished business, and a notable pressed face to face spoke of the colony's letter.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.98.0</version>
         <date>5 November 2026</date>
         <title>Tasks, oaths and the keeper in words</title>

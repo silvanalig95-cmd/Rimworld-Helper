@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## House renown
+
+*5 November 2026, version 0.99.0*
+
+- The colony's families are houses now, known for what their people did: champions at feasts, marriages, wards fostered, seasons abroad, and what the peoples remember of them. Nothing is spent, and old deeds fade slowly.
+- How far a house's name carries is told in each age's words, from the next town's market to every people within reach, along with what it is known for: fighters, healers, hosts, traders, makers or the faithful. People, then Houses, and each House card show it with the deeds behind it.
+- Notables think better of a renowned house's people, their good words and matches come easier, and what the house is known for draws its own visitors: challengers, the sick, guests, pilgrims.
+- Visitors and letters speak of the colony's houses by name, in 50 conversation pieces, 24 letter lines and 20 spoken lines.
+- Fixed: talk and letters said the colony's levies came after a refused call, could promise help that was never sent, and answered an oath letter overtaken by events as a refusal.
+- Fixed: a pressed secret or council task overtaken by events promised silver or answered finished business, and a notable pressed face to face spoke of the colony's letter.
+
 ## Tasks, oaths and the keeper in words
 
 *5 November 2026, version 0.98.0*

@@ -12,7 +12,8 @@ namespace ColonyCouncil
         /// never talked of): us:task and us:task:KIND, with {OFFICER} the officer and {OFFICE} the seat; task:writes when the
         /// officer has written twice or more, task:visited when they visited this season, task:you when the officer is the one talking. Of the one spoken to: they caught
         /// the colony's keeper at it (them:caughtkeeper, and :you when the keeper is the one talking), they were pressed over a
-        /// secret (them:pressed), the keeper walked with them after dark lately (keeper:watched). Only reads.
+        /// secret (them:pressed), by letter (them:pressed:letter) or face to face (them:pressed:face), the keeper walked with
+        /// them after dark lately (keeper:watched). Only reads.
         /// </summary>
         private static void TaskFacts(FactScene s, FactSet f)
         {
@@ -44,7 +45,10 @@ namespace ColonyCouncil
                     f.Tag(KeeperMath.CaughtTag, 2f);
                     if (s.speaker != null && KeeperOfSecrets.Is(s.speaker)) f.Tag(KeeperMath.CaughtYouTag, 2f);
                 }
-                if (n.done.Contains(KeeperMath.PressedKey)) f.Tag(KeeperMath.PressedTag, 2f);
+                // Pressed at all, and how: by letter or face to face, each its own tag, as their words differ (the colony's letter, the keeper at the gate).
+                foreach (var key in new[] { KeeperMath.PressedKey, KeeperMath.PressedLetterKey, KeeperMath.PressedFaceKey })
+                    if (n.done.Contains(key))
+                        f.Tag(KeeperMath.PressedTagOf(key), 2f);
             }
             if (KeeperOfSecrets.WalkedWith(x)) f.Tag(KeeperMath.WatchedTag, 1.5f);
         }

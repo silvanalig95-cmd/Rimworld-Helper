@@ -2,9 +2,10 @@
 <Defs>
 
   <!-- Fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, Vassals.cs; the facts in Diplomacy/FactsFealty.cs).
-       With someone of a people the colony is sworn to: fealty:oath (new for ten days), fealty:short when tribute is owed,
-       fealty:levies when the colony's levies were called or sent this season, fealty:protected when their band came this
-       season. With someone of a people whose town is the colony's own vassal (its hamlet sworn, a town under its
+       With someone of a people the colony is sworn to: fealty:oath (the whole time the oath stands, weighed higher for
+       its first ten days), fealty:short when tribute is owed, fealty:levies when the colony's levies came to their call
+       this season (never for a call refused or still open: fealty:levies:refused is a refusal's,
+       Rimfolk_OutsiderTalks_LeviesPressed.xml), fealty:protected when their band came this season. With someone of a people whose town is the colony's own vassal (its hamlet sworn, a town under its
        protection): vassal:town, vassal:heavy when the council takes a heavy share, vassal:levy when its levies were called
        this season. With someone of the colony's own hamlet once sworn, the hamlets' town:hamlet:sworn. By their ways where it matters. The format is
        described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->

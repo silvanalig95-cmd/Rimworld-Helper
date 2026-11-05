@@ -29,6 +29,19 @@ namespace ColonyCouncil
         public bool kin;
         public int since = -1;
 
+        // ---------------- The colony's own (stage 2, release 2d.1: house renown, Diplomacy/Renown.cs) ----------------
+
+        /// <summary>One of the colony's houses: its family of two or more of one name among the colony's people; no town.</summary>
+        public bool ours;
+        /// <summary>Its seat: the home most of it lives at (Homes.KeyOf), or -1.</summary>
+        public int seat = -1;
+        /// <summary>Its people as refs, the living and the gone (RenownMath.MembersKept at most), whose deeds its renown is read from.</summary>
+        public List<Ref> folk = new List<Ref>();
+        /// <summary>Last day someone of it was at the colony (-1: not yet).</summary>
+        public int lastSeen = -1;
+        /// <summary>The band of renown last told (RenownBand), so a change is told once; the renown itself is read, never kept.</summary>
+        public int band;
+
         public void ExposeData()
         {
             Refs.Look(ref house, "ref");
@@ -40,10 +53,20 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref founding, "founding");
             Scribe_Values.Look(ref kin, "kin");
             Scribe_Values.Look(ref since, "since", -1);
+            Scribe_Values.Look(ref ours, "ours");
+            Scribe_Values.Look(ref seat, "seat", -1);
+            var folkText = Scribe.mode == LoadSaveMode.Saving ? folk?.ConvertAll(r => r.ToString()) : null;
+            Scribe_Collections.Look(ref folkText, "folk", LookMode.Value);
+            Scribe_Values.Look(ref lastSeen, "lastSeen", -1);
+            Scribe_Values.Look(ref band, "band");
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+                folk = folkText?.ConvertAll(Ref.Parse) ?? new List<Ref>();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 members ??= new List<string>();
                 members.RemoveAll(m => m.NullOrEmpty());
+                folk ??= new List<Ref>();
+                folk.RemoveAll(r => r.IsNone);
             }
         }
     }
@@ -272,7 +295,8 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 houses ??= new List<LedgerHouse>();
-                houses.RemoveAll(h => h == null || h.house.IsNone || h.town < 0);
+                // A town's house without its town is gone; the colony's own have none (Diplomacy/Renown.cs).
+                houses.RemoveAll(h => h == null || h.house.IsNone || h.town < 0 && !h.ours);
                 foundings ??= new List<LedgerFounding>();
                 foundings.RemoveAll(f => f == null || f.site < 0);
                 townIndex = null;

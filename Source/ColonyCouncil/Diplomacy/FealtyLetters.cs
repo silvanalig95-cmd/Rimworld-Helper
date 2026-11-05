@@ -41,20 +41,27 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>They have read it (or heard the call): their answer, and the answer's tone follows it (no is a refusal; yes, never worse than cool).</summary>
+        /// <summary>
+        /// They have read it (or heard the call): their answer, and the answer's tone follows it (no is a refusal; yes, never
+        /// worse than cool). Overtaken by events (the oath can't be sworn to them now, or the letter isn't theirs), nothing is
+        /// asked or refused: it changes little (cool), and their words are a moot answer's (DiplomacyLetters.FealtyMootTag),
+        /// never a refusal's.
+        /// </summary>
         public static string Read(NeighbourLetter l, Notable n, Map home, ref AnswerTone tone)
         {
             var f = n?.faction;
             bool yes = false;
             string line;
             int id = l.topicKey != null && l.topicKey.StartsWith(SwearPrefix, StringComparison.Ordinal) && int.TryParse(l.topicKey.Substring(SwearPrefix.Length), out int x) ? x : -1;
-            if (f == null || id != f.loadID) line = FealtyWords.T("CC_Fealty_Ans_Moot", FealtyWords.People(f).Named("PEOPLE"));
-            else
+            if (f == null || id != f.loadID || Fealty.SwearWhyNot(f, home) != null)
             {
-                // Their lord comes after the answer's way back (a call: some hours).
-                float days = l.channel == LetterChannel.Console ? Rand.Range(FealtyMath.OathHoursMin, FealtyMath.OathHoursMax) / 24f : l.backDays + 0.5f;
-                line = Fealty.Hear(f, home, days, Rand.Value, out yes);
+                DiplomacyLetters.Moot(l);
+                tone = AnswerTone.Cool;
+                return FealtyWords.T("CC_Fealty_Ans_Moot", FealtyWords.People(f).Named("PEOPLE"));
             }
+            // Their lord comes after the answer's way back (a call: some hours).
+            float days = l.channel == LetterChannel.Console ? Rand.Range(FealtyMath.OathHoursMin, FealtyMath.OathHoursMax) / 24f : l.backDays + 0.5f;
+            line = Fealty.Hear(f, home, days, Rand.Value, out yes);
             if (!yes) tone = AnswerTone.Refusal;
             else if (tone > AnswerTone.Cool) tone = AnswerTone.Cool;
             return line;

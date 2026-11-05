@@ -215,6 +215,8 @@ namespace ColonyCouncil
         public bool diplomacyTasks = true;
         /// <summary>Fealty and vassals (stage 2, release 2c.2): the colony sworn to a stronger neighbour, and vassals of its own. Off, nothing new is sworn or asked, and the oaths standing run on.</summary>
         public bool diplomacyFealty = true;
+        /// <summary>House renown (stage 2, release 2d.1): the colony's houses and the region's known for what their people did, read from deeds and ties, nothing spent. Off, nothing is told, read or tipped, and the houses kept are kept.</summary>
+        public bool diplomacyRenown = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -603,6 +605,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyWards, "diplomacyWards", true);
             Scribe_Values.Look(ref diplomacyTasks, "diplomacyTasks", true);
             Scribe_Values.Look(ref diplomacyFealty, "diplomacyFealty", true);
+            Scribe_Values.Look(ref diplomacyRenown, "diplomacyRenown", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

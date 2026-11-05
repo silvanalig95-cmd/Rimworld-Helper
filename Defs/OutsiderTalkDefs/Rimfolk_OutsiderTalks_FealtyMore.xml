@@ -4,8 +4,8 @@
   <!-- More on fealty and vassals (Source/ColonyCouncil/Diplomacy/Fealty.cs, Vassals.cs; the facts in
        Diplomacy/FactsFealty.cs), beside Rimfolk_OutsiderTalks_Fealty.xml, whose tags these keep. With someone of the people
        the colony is sworn to: fealty:oath (the whole time it stands, never the Empire), fealty:short (tribute owed),
-       fealty:protected (their band came this season), fealty:levies (their call on the colony's levies this season: it is
-       set whether the colony sent them or refused, so a line that says they came asks deed:levies too). What their people
+       fealty:protected (their band came this season), fealty:levies (the colony's levies came to their call this season;
+       since the round c review it is never set for a call refused or still open, which is fealty:levies:refused's). What their people
        remember: deed:levies (the levies sent), deed:protected (their band came), deed:tributeShort (tribute short once),
        deed:tribute (paid, said only beside fealty:oath, for a vassal's people remember the dues they brought by the same
        word) and deed:renounced (the colony walked out of the oath, or turned on its liege; never a clean renouncing), said

@@ -321,6 +321,17 @@ namespace ColonyCouncil
             return worst;
         }
 
+        /// <summary>Every mark any people keeps of one colonist (by their ref, living or gone): for their house's renown (Diplomacy/Renown.cs). Only reads.</summary>
+        public static List<ColonistMemoryMath.Mark> MarksOf(Ref person)
+        {
+            var list = new List<ColonistMemoryMath.Mark>();
+            if (!On || person.kind != RefKind.Person) return list;
+            foreach (var t in Index.Values)
+                if (t.to == person)
+                    list.AddRange(Marks(t));
+            return list;
+        }
+
         /// <summary>What one of their notables makes of the colonist from it (ColonistMemoryMath.Regard), split into the good part and the wrongs.</summary>
         public static void Regard(Faction f, Pawn p, out float good, out float bad)
         {

@@ -7,7 +7,9 @@
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to a letter of the purpose
       "task" (an officer's letter on a task), tagged by the task's kind: winover (the speaker's), trade (the
       quartermaster's), bringhome and theirkin (the warden of guests'), keepfaith and speakfaith (the chaplain's), host
-      (the steward's); and pressed (the keeper's letter pressing a secret: curt when they pay, refusal when they don't).
+      (the steward's); and pressed (the keeper's letter pressing a secret: curt when they pay, refusal when they don't; a letter that
+      finds the secret no longer pressed is answered under pressmoot instead, and a task over before its letter is read
+      under taskmoot, Rimfolk_Lines_Overtaken.xml).
       Each by the tones its answer can really take (a task letter's step does nothing on a refusal or silence). And their
       words in a letter of any purpose while an officer has a task with them (us:task with task:writes when the officer
       has written twice or more, {OFFICER} the officer). By their ways only theirLowtech (tribes, the middle ages and the

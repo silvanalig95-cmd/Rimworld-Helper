@@ -971,7 +971,8 @@ namespace ColonyCouncil
             // What is true between the colony and them, for their words and their news (the facts service, Text/Facts/).
             bool news = l.purpose == LetterPurpose.News && tone != AnswerTone.Refusal;
             var facts = Facts.For(FactScene.Letter(n, speaker ?? l.writer, l.map, news));
-            string quote = Quote(l, n, tone, speaker, facts);
+            // Help is in their words only when it comes with the answer (World/NotableMath.cs, Grants): what they send is what the letter says.
+            string quote = Quote(l, n, tone, speaker, facts, l.purpose == LetterPurpose.Help && things.Count > 0);
             if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
             if (news) parts.Add(News(n, tone, facts));
             if (l.purpose == LetterPurpose.Help)
@@ -991,13 +992,15 @@ namespace ColonyCouncil
         /// Their own words: a line that fits what it was for, how they took it, their people's ways and the way it went,
         /// and (for lines written for them) the ties between the two sides and what happened at their town or to them
         /// lately (<paramref name="facts"/>: tie:KIND, town:lately..., with {FAVOURFOR} and the like). A line that names
-        /// none of those is chosen as it always was.
+        /// none of those is chosen as it always was. Help asked for is answered by the answer really given: with the help
+        /// sent, by its tone; without it, in the refusal's words, whatever the tone (<paramref name="helpSent"/>).
         /// </summary>
-        private static string Quote(NeighbourLetter l, Notable n, AnswerTone tone, Pawn speaker, FactSet facts)
+        private static string Quote(NeighbourLetter l, Notable n, AnswerTone tone, Pawn speaker, FactSet facts, bool helpSent = false)
         {
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(WritePool);
             if (pool == null) return null;
-            var tags = new HashSet<string> { l.purpose.ToString().ToLowerInvariant(), tone.ToString().ToLowerInvariant() };
+            var said = l.purpose == LetterPurpose.Help ? NotableMath.HelpQuoteTone(tone, helpSent) : tone;
+            var tags = new HashSet<string> { l.purpose.ToString().ToLowerInvariant(), said.ToString().ToLowerInvariant() };
             tags.Add(Traditional(n.faction) ? "theirLowtech" : "theirHightech");
             tags.Add(l.channel == LetterChannel.Console ? "call" : "letter");
             if (l.hostile) tags.Add("war");

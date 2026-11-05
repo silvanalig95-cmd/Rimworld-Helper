@@ -2787,6 +2787,17 @@ dead weigh on their head), ask for help, a judgment or a camp broken, and a sour
 Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
 mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.
 
+**House renown.** Two or more of the colony's people of one family name who are family are a house of the colony, and
+the towns' founding families are the region's. A house's name is known for what its people did that the world saw:
+contests won at feasts, marriages into other peoples' houses, wards fostered well, seasons abroad, truces sworn, what the
+peoples remember of them by name, the colony's names for them, years in office, the Empire's titles, and the colony's
+oaths kept and broken. Nothing is spent: its renown is read from those deeds and ties, fading slowly, and told in words
+by the ages, known in a town, across the region or among every people within reach, for its fighters, healers, hosts,
+traders, makers or faith ("sung in the halls of the region, for good swords"). Notables think better of its people,
+good words and matches come easier, and what it is known for draws challengers, the sick, guests, pilgrims and the
+rest. Its House card has its people, its renown and the deeds behind it, its marriages, wards and feuds. 50
+conversation pieces, 24 letter lines and 20 spoken lines speak of it. Setting: *House renown*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town
