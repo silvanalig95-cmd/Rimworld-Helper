@@ -1229,16 +1229,14 @@ wind (with PokéWorld) and the neighbours settled for good. The Almanac page "th
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
-and **steward** (standards rise more slowly). Eight more offices open as the colony grows: the **reeve** (fuller
+and **steward** (standards rise more slowly). Seven more offices open as the colony grows: the **reeve** (fuller
 harvests, from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
 together, from five), the **chaplain** (with Ideology: keeps the colony's ideoligion, from five), the **warden of guests**
 (looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
-ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). The **keeper of secrets**
-(Social and Intellectual, from six) keeps the colony's own secrets from slipping half as often, walks with guests after
-dark and can sound out someone of another people. Colonists elect them every year, voting for the skilled, the
-suited and the liked, friends and groups voting together, and the election letter has a word about each new
-holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect
+them every year, voting for the skilled, the suited and the liked, friends and groups voting together, and the
+election letter has a word about each new holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 
@@ -2758,21 +2756,6 @@ there. Hostages, adults only, can be a truce's price or a defense pact's term, e
 leaves theirs the colony's to decide about, and the colony breaking its word leaves its own in their captivity. 29
 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Setting: *Wards and hostages*.
 
-**Council tasks and the keeper of secrets.** Eight offices can each take one task with a neighbor (or on the colony's
-own land), set on the office's row of the Decrees page, on the officer's card, or from a people's card. The speaker
-wins over a town's head by letter or call, an invitation and a visit, until their people offer a pact or owe a favor;
-the quartermaster opens a trade (letters, samples, a visit: their trade pact or their caravan); the marshal walks the
-edges at dawn for a season (a raiders' camp seen sooner) or drills a pact partner's fighters (their band a fifth
-stronger); the physician takes medicine to a town where a sickness runs (one visit in five brings it home); the warden of
-guests writes to bring the colony's own home for a lower price, or about their kin in its cells; the chaplain keeps the
-faith with a head of the same faith or speaks for it to one of another; the steward prepares a feast whose guests'
-welcome counts half again. Visits are real caravans planned in the journey planner: the officer and a companion, one
-officer away from a home at a time, each office once a season. The keeper of secrets learns what a notable keeps quiet
-(talks with their people, a paid informer at the gate, a visit; found out one time in ten) and can press it: they pay
-to keep it quiet, or refuse and have it told. Each task shows its last step and the next on the cards, under the
-office's row, in Here and away and in This week, never as a time left. 28 conversation pieces, 32 letter lines and 25
-spoken lines speak of them. Setting: *Council tasks and the keeper of secrets*.
-
 **Fealty and vassals.** The colony can swear fealty to a stronger neighbor at peace (goodwill 40 or more, two towns
 within reach, never the Empire, whose titles and permits are its own), by letter, or when a people offers its protection
 to a colony raided twice in a season with few fighters. Someone of theirs comes to the gate, anyone who objects (an
@@ -2782,7 +2765,7 @@ tribute at the gate (150 to 600 silver's worth by the colony's wealth; short, it
 oath breaks); their letter calls the colony's levies when their town is attacked; their band comes when a home is raided,
 nine times in ten; renouncing costs their grudge, unless they failed the colony that season. The colony's own vassals
 are its hamlet once sworn and up to two struggling towns that ask for its protection: they bring produce at harvest as
-the council sets it (heavy costs their goodwill), pay a season's dues to the quartermaster, send levies when called (their
+the council sets it (heavy costs their goodwill), send levies when called (their
 dead weigh on their head), ask for help, a judgment or a camp broken, and a sour head asks to be released. Faction
 Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
 mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.

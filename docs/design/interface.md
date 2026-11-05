@@ -333,7 +333,7 @@ Features add to it with `Inbox.Register(provider)`, the twelve cards of `WeekMod
 | Feasts and contests | Event | Calendar, Here and away (guests) | the calendar day, the council question | a feast day coming |
 | Marriage alliances | Tie, House, Person | Person and House cards | council question, "Talk with..." | the match proposed |
 | Wards and hostages | Tie, Person | Here and away | Person card | a decision on a ward or hostage |
-| Keeper of secrets, council tasks | Colonist, Event | Council → Offices; Here and away (tasks) | the task's acts | a step that needs the player; tasks under way |
+| Keeper of secrets, council tasks (dropped, 5 November 2026) | Colonist, Event | Council → Offices; Here and away (tasks) | the task's acts | a step that needs the player; tasks under way |
 | Fealty | Tie | Stance lens (a line to the liege), People card | People card acts, council question | tribute expected, levies called |
 | Vassals of our own | Place, Tie | Ours lens | Place card acts | a vassal's asks |
 | Schemes | Tie, Event | Here and away (ours; found out against us) | Person card acts | a scheme found out |
