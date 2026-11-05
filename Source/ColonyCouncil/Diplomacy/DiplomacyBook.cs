@@ -287,6 +287,10 @@ namespace ColonyCouncil
         public List<WardStay> wards = new List<WardStay>();
         /// <summary>When a ward was last offered to this home, and by which people (its loadID), or -1.</summary>
         public int wardOfferAt = -1, wardOfferPeople = -1;
+        /// <summary>The council's tasks at this home (CouncilTasks.cs, release 2c.1): one record per office with tasks, TaskMath.MaxPerHome at most.</summary>
+        public List<CouncilTask> tasks = new List<CouncilTask>();
+        /// <summary>The people whose fighters the marshal drilled last (its loadID), and when: their band is stronger for a season (TaskMath.LevyFactor).</summary>
+        public int drillPeople = -1, drillAt = -1;
 
         public Map Map => home == HomesMath.None ? null : Homes.MapOf(home);
 
@@ -312,8 +316,14 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref wards, "wards", LookMode.Deep);
             Scribe_Values.Look(ref wardOfferAt, "wardOfferAt", -1);
             Scribe_Values.Look(ref wardOfferPeople, "wardOfferPeople", -1);
+            if (Scribe.mode == LoadSaveMode.Saving) tasks?.RemoveAll(t => t == null || t.office == null);
+            Scribe_Collections.Look(ref tasks, "tasks", LookMode.Deep);
+            Scribe_Values.Look(ref drillPeople, "drillPeople", -1);
+            Scribe_Values.Look(ref drillAt, "drillAt", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                tasks ??= new List<CouncilTask>();
+                tasks.RemoveAll(t => t == null || t.office == null);
                 offers ??= new List<RansomOffer>();
                 offers.RemoveAll(o => o == null);
                 tales ??= new List<FeastTale>();
@@ -390,14 +400,14 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>Something waits at some home: an offer, an envoy either way, a ward or a hostage.</summary>
+        /// <summary>Something waits at some home: an offer, an envoy either way, a ward or a hostage, a council task.</summary>
         public bool AnyWaiting
         {
             get
             {
                 if (homes == null) return false;
                 foreach (var h in homes)
-                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0))
+                    if (h != null && (h.offers.Count > 0 || h.envoy != null || h.abroad != null || h.feast != null || h.tales.Count > 0 || h.matches.Count > 0 || h.wards.Count > 0 || h.tasks.Count > 0))
                         return true;
                 return false;
             }
@@ -420,6 +430,7 @@ namespace ColonyCouncil
                         Feasts.HomeLost(h);
                         Matches.HomeLost(h);
                         Wards.HomeLost(h);
+                        CouncilTasks.HomeLost(h);
                     }
                     catch (Exception e)
                     {

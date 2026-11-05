@@ -75,6 +75,9 @@ namespace ColonyCouncil
                 y = LettersPage.UnderWaySection(y, w, folds);
                 // Who of the colony's is away: people away, the journey planned, the caravans out on the land.
                 y = AwaySection(y, w);
+                // The council's tasks under way, each with its last step and the next (Diplomacy/TaskPanels.cs).
+                if (dip != null && (dip.tasks.Count > 0 || CouncilTasks.On))
+                    y = DiplomacyPanels.Section(y, w, TaskWords.P("CC_Task_Here_Title"), dip.tasks, TaskWords.P("CC_Task_Here_None"), folds, "tasks");
                 // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
                 y = MissionPanel.Draw(y, w);
                 y += 10f;

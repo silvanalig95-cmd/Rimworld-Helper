@@ -142,9 +142,10 @@ namespace ColonyCouncil
         private static bool CanSendFighters(Faction f) => f?.def?.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat);
 
         /// <summary>Fighters of theirs, as their people fight (the game's own war bands), about half as strong as the threat.</summary>
-        public static List<Pawn> MakeFighters(Faction f, Map map)
+        public static List<Pawn> MakeFighters(Faction f, Map map, float strength = 1f)
         {
-            float threat = StorytellerUtility.DefaultThreatPointsNow(map);
+            // A band drilled by the colony's marshal comes a fifth stronger (a council task, Diplomacy/TaskResults.cs).
+            float threat = StorytellerUtility.DefaultThreatPointsNow(map) * strength;
             int max = CampStoryMath.Fighters(threat);
             var parms = new PawnGroupMakerParms { groupKind = PawnGroupKindDefOf.Combat, faction = f, points = CampStoryMath.WarPoints(threat), tile = map.Tile };
             var list = new List<Pawn>();

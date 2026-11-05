@@ -36,8 +36,8 @@ public static class OutsiderTalkTests
         C(OutsiderTalkMath.Cost(OutsiderAct.Provoke) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Duel) == 0f && OutsiderTalkMath.Cost(OutsiderAct.Letter) == 0f
           && OutsiderTalkMath.Cost(OutsiderAct.Chat) == 1f && OutsiderTalkMath.Cost(OutsiderAct.Gift) == 1f, "hard words, a challenge and a letter ask no patience; the rest one each");
         var asks = Enum.GetValues(typeof(OutsiderAct)).Cast<OutsiderAct>().Where(OutsiderTalkMath.Asks).ToList();
-        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.OfferExchange, OutsiderAct.SpeakMatch }),
-            "the asks: news, a good word, a lesson, a favour, an invitation, getting to know them, courting, faith, a debt of honour called in, a pact, an exchange, a match");
+        C(asks.SequenceEqual(new[] { OutsiderAct.AskHome, OutsiderAct.GoodWord, OutsiderAct.Teach, OutsiderAct.Bring, OutsiderAct.Invite, OutsiderAct.Befriend, OutsiderAct.Court, OutsiderAct.Faith, OutsiderAct.AskFavour, OutsiderAct.SpeakPact, OutsiderAct.OfferExchange, OutsiderAct.SpeakMatch, OutsiderAct.SoundOut }),
+            "the asks: news, a good word, a lesson, a favour, an invitation, getting to know them, courting, faith, a debt of honour called in, a pact, an exchange, a match, a sounding out");
         C(!OutsiderTalkMath.Asks(OutsiderAct.Gift) && !OutsiderTalkMath.Asks(OutsiderAct.Meal) && !OutsiderTalkMath.Asks(OutsiderAct.Chat), "a gift, a meal and a chat are offers, not asks");
         C(!OutsiderTalkMath.Pushy(0) && !OutsiderTalkMath.Pushy(1) && OutsiderTalkMath.Pushy(2) && OutsiderTalkMath.Pushy(5), "the third ask in a row is pushy");
         C(OutsiderTalkMath.PushyWarmth < 0f && OutsiderTalkMath.PushyRegard < 0f && OutsiderTalkMath.PushyRegard > -5f, "pushy costs a little regard, not much");
@@ -258,6 +258,8 @@ public static class OutsiderTalkTests
         .Concat(MatchMath.Tags)
         // Wards and hostages (Diplomacy/FactsWards.cs).
         .Concat(WardMath.Tags)
+        // The council's tasks and the keeper of secrets (Diplomacy/FactsTasks.cs).
+        .Concat(TaskMath.Tags()).Concat(KeeperMath.Tags)
         .ToHashSet();
 
     private static IEnumerable<string> Expand(string prefix, string words) => words.Split(' ').Select(w => prefix + w);
@@ -287,6 +289,8 @@ public static class OutsiderTalkTests
         "INLAW", "SPOUSEOF",
         // Wards and hostages (Diplomacy/FactsWards.cs).
         "WARD", "HOSTAGE", "GUARDIAN",
+        // The council's tasks (Diplomacy/FactsTasks.cs).
+        "OFFICER", "OFFICE",
         "GRUDGEAGAINST", "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER",
         // The colonist their people hold something against (World/ColonistMemory.cs).
         "FOE",

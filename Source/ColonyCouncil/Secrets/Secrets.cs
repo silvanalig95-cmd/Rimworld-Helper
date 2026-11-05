@@ -249,6 +249,8 @@ namespace ColonyCouncil
                 var traits = k.story?.traits;
                 if (traits != null && traits.HasTrait(TraitDefOf.Abrasive)) chance *= 2f;
                 if (traits != null && traits.HasTrait(TraitDefOf.Kind)) chance *= 0.4f;
+                // The colony's keeper of secrets guards its own: half as often while the seat is filled (Diplomacy/KeeperOfSecrets.cs).
+                chance *= KeeperOfSecrets.SlipFactor(owner);
                 if (Rand.Chance(chance))
                 {
                     SayInCompany(comp, s, k);

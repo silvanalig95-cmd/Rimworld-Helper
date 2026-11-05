@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The keeper of secrets and council tasks
+
+*5 November 2026, version 0.96.0*
+
+- A new council seat, the keeper of secrets (Social and Intellectual, from six voters): while it is filled the colony's own secrets slip half as often, and the keeper walks with guests after dark.
+- Eight officers can take a task with a neighbour: the speaker wins over a town's head, the quartermaster opens a trade, the marshal patrols at dawn or drills a pact partner's fighters, the physician takes medicine to a sick town, the warden brings the colony's own home for less, the chaplain keeps or speaks for the faith, the steward prepares a feast.
+- Officers visit by real caravan, planned in the journey planner: the officer and a companion, one away from a home at a time, each office once a season.
+- The keeper can learn what a notable keeps quiet through talks, a paid informer or a visit, and the colony can press it: they pay to keep it quiet, or refuse and have it told. One step in ten the keeper is found out, and the notable says so.
+- Every task shows its last step and the next on the officer's card, under its seat on the Decrees page, in Here and away and in This week, never as a time left.
+
 ## Guests, wards and in-laws
 
 *5 November 2026, version 0.95.0*

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The keeper of secrets (Defs/OfficeDefs/Rimfolk_Offices_Keeper.xml): the holder's edge. The colony's (its secrets slip half as often) is in code. -->
+
+  <HediffDef>
+    <defName>Council_Office_SecretKeeper</defName>
+    <label>keeper of secrets</label>
+    <description>Holds the keeper of secrets' seat: keeps the colony's confidences, and listens well.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.05</SocialImpact><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

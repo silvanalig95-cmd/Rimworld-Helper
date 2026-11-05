@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.96.0</version>
+        <date>5 November 2026</date>
+        <title>The keeper of secrets and council tasks</title>
+        <points>
+          <li>A new council seat, the keeper of secrets (Social and Intellectual, from six voters): while it is filled the colony's own secrets slip half as often, and the keeper walks with guests after dark.</li>
+          <li>Eight officers can take a task with a neighbour: the speaker wins over a town's head, the quartermaster opens a trade, the marshal patrols at dawn or drills a pact partner's fighters, the physician takes medicine to a sick town, the warden brings the colony's own home for less, the chaplain keeps or speaks for the faith, the steward prepares a feast.</li>
+          <li>Officers visit by real caravan, planned in the journey planner: the officer and a companion, one away from a home at a time, each office once a season.</li>
+          <li>The keeper can learn what a notable keeps quiet through talks, a paid informer or a visit, and the colony can press it: they pay to keep it quiet, or refuse and have it told. One step in ten the keeper is found out, and the notable says so.</li>
+          <li>Every task shows its last step and the next on the officer's card, under its seat on the Decrees page, in Here and away and in This week, never as a time left.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.95.0</version>
         <date>5 November 2026</date>
         <title>Guests, wards and in-laws</title>

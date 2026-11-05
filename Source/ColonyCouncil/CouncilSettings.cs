@@ -211,6 +211,8 @@ namespace ColonyCouncil
         public bool diplomacyMarriage = true;
         /// <summary>Wards and hostages (stage 2, release 2b.3): a youth fostered either way for a year, hostages for a truce's or a pact's terms.</summary>
         public bool diplomacyWards = true;
+        /// <summary>The council's tasks (stage 2, release 2c.1): officers' letters, calls, talks, patrols and visits by caravan, and the keeper of secrets' duties. Off, nothing new is set, and an officer away still comes home.</summary>
+        public bool diplomacyTasks = true;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -597,6 +599,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyFeasts, "diplomacyFeasts", true);
             Scribe_Values.Look(ref diplomacyMarriage, "diplomacyMarriage", true);
             Scribe_Values.Look(ref diplomacyWards, "diplomacyWards", true);
+            Scribe_Values.Look(ref diplomacyTasks, "diplomacyTasks", true);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The council's tasks and the keeper of secrets (Source/ColonyCouncil/Diplomacy/CouncilTasks.cs, KeeperOfSecrets.cs;
+       the facts in Diplomacy/FactsTasks.cs). While an officer of the colony has a task with their people that they know
+       of (never the keeper's, never the marshal's patrol): us:task, with its kind us:task:winover, :trade, :bringhome,
+       :theirkin, :keepfaith, :speakfaith, :host, :drill, :tend; {OFFICER} the officer, {OFFICE} the seat; task:you when
+       the officer is the one talking; task:writes when the officer has written twice or more; task:visited when the
+       officer visited their town this season. Of the one spoken to: them:caughtkeeper (they caught the colony's keeper
+       prying; :you when the keeper is the one talking), them:pressed (the colony pressed them over a secret),
+       keeper:watched (the keeper walked with them after dark lately). By their ways where it matters. The format is
+       described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= The speaker winning them over ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Letters</defName>
+    <topic>task</topic>
+    <when>us:task:winover,task:writes</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,task:you] You write a good letter, and often.</li>
+      <li>[them,!task:you] {OFFICER} writes to us so often that we know the messenger by name.</li>
+      <li>[us,task:you] I like to think someone reads them.</li>
+      <li>[us,!task:you] {OFFICER} enjoys it more than we do the chores, I think.</li>
+      <li>[them] They're read, all of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_HeadMood</defName>
+    <topic>task</topic>
+    <when>us:task:winover,town:head</when>
+    <mark>head</mark>
+    <about>HEAD</about>
+    <lines>
+      <li>[us] How does your head find us these days?</li>
+      <li>[them,their:tribal] The elders speak of your camp more kindly than they did.</li>
+      <li>[them,their:empire] Your name is mentioned at court without a frown now, which is something.</li>
+      <li>[them] Better than last year, I'd say.</li>
+      <li>[us] Good, we mean to keep it that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Visited</defName>
+    <topic>task</topic>
+    <when>task:visited</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them,task:you] You came to see us not long ago, didn't you?</li>
+      <li>[them,!task:you] {OFFICER} came to see us not long ago, and people still talk about it.</li>
+      <li>[us,task:you] I was, and I ate better there than I do here.</li>
+      <li>[us,!task:you] {OFFICER} came back with more stories than luggage.</li>
+      <li>[them] Come again, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The quartermaster's trade ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Trade</defName>
+    <topic>task</topic>
+    <when>us:task:trade</when>
+    <weight>1.2</weight>
+    <mark>trade</mark>
+    <lines>
+      <li>[them] Your {OFFICE} keeps asking our traders what we're short of.</li>
+      <li>[us] {OFFICER} counts everything, it's a habit.</li>
+      <li>[them,their:tribal] Our hunters say your goods are good, which they don't say often.</li>
+      <li>[them] If the prices are fair, our caravans could stop here more often.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_TradeShort</defName>
+    <topic>task</topic>
+    <when>us:task:trade</when>
+    <mark>trade</mark>
+    <lines>
+      <li>[us] What would sell well where you come from, do you think?</li>
+      <li>[them,their:spacer] Anything that still works after a season in the dust.</li>
+      <li>[them] Anything you can spare that we can't make ourselves.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The warden of guests ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_TheirKin</defName>
+    <topic>task</topic>
+    <when>us:task:theirkin</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your {OFFICE} wrote to us about our people in your cells.</li>
+      <li>[us] They're fed and kept warm, whatever else you've heard.</li>
+      <li>[them] Their families want them home.</li>
+      <li>[us] Then make an offer, and we'll hear it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_BringHome</defName>
+    <topic>task</topic>
+    <when>us:task:bringhome</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] You know we want our own back.</li>
+      <li>[them] Your {OFFICE} has made that very clear in writing.</li>
+      <li>[us] Then you know we're willing to talk about a price.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The chaplain ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_SameFaith</defName>
+    <topic>faith</topic>
+    <when>us:task:keepfaith</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your {OFFICE} writes to our head about the faith, I'm told.</li>
+      <li>[us] It's good to have neighbors who pray the same way.</li>
+      <li>[them,their:lowtech] We said your names at the last rite, as you say ours.</li>
+      <li>[them] It is, these days especially.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_OtherFaith</defName>
+    <topic>faith</topic>
+    <when>us:task:speakfaith</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your {OFFICE} has been writing to our head about your faith.</li>
+      <li>[us] {OFFICER} believes it, and believes in saying so.</li>
+      <li>[them] Our head reads every letter, and argues with half of them out loud.</li>
+      <li>[us] That's more than most do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_OtherFaithPushy</defName>
+    <topic>faith</topic>
+    <when>us:task:speakfaith,!task:you</when>
+    <lines>
+      <li>[them] Does {OFFICER} ever write about anything but faith?</li>
+      <li>[us] Not often, no.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The steward's feast ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Host</defName>
+    <topic>task</topic>
+    <when>us:task:host</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I hear there's to be a feast, and our people are asked.</li>
+      <li>[us,task:you] There is, and I mean it to be a good one.</li>
+      <li>[us,!task:you] {OFFICER} is already worrying about the seating.</li>
+      <li>[them,their:tribal] We will bring meat, as guests should.</li>
+      <li>[them] We'll come hungry, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The marshal's drill, the physician's visit ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Drill</defName>
+    <topic>task</topic>
+    <when>us:task:drill</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your {OFFICE} means to come and drill our fighters, I hear.</li>
+      <li>[us] {OFFICER} drills ours until they drop, so be warned.</li>
+      <li>[them,their:tribal] Our hunters will want to see if your ways are better than ours.</li>
+      <li>[them] Good, some of ours could use it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Tend</defName>
+    <topic>task</topic>
+    <when>us:task:tend,situation:theirs,situation:sickness</when>
+    <weight>1.2</weight>
+    <mark>sickness</mark>
+    <about>SITUATION</about>
+    <lines>
+      <li>[them] They say your {OFFICE} will come to our sick with medicine.</li>
+      <li>[us] {OFFICER} wants to, if the road allows it.</li>
+      <li>[them] Tell {OFFICER} to come soon, there are a lot of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The keeper of secrets ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_CaughtYou</defName>
+    <topic>keeper</topic>
+    <when>them:caughtkeeper:you,tone:cool|tone:sour</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I know what you were asking about, last time.</li>
+      <li>[us] I ask a lot of people a lot of things.</li>
+      <li>[them] Not about me, not again.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_Caught</defName>
+    <topic>keeper</topic>
+    <when>them:caughtkeeper,!them:caughtkeeper:you,tone:cool|tone:sour</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Your keeper of secrets should mind their own business.</li>
+      <li>[us] I'll pass that on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_CaughtWary</defName>
+    <topic>keeper</topic>
+    <when>them:caughtkeeper</when>
+    <lines>
+      <li>[us] You seem careful with what you say around here.</li>
+      <li>[them,their:empire] At court we learn to be, and here it seems the same.</li>
+      <li>[them] I've learned to be, in this colony.</li>
+      <li>[us] Fair enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_Pressed</defName>
+    <topic>keeper</topic>
+    <when>them:pressed,tone:cool|tone:sour</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I haven't forgotten your colony's letter.</li>
+      <li>[us] Nobody asked you to.</li>
+      <li>[them] Remember that I haven't, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_PressedSour</defName>
+    <topic>keeper</topic>
+    <when>them:pressed,tone:sour</when>
+    <lines>
+      <li>[them] Neighbors who deal in other people's shame are no neighbors.</li>
+      <li>[us] You had a choice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_Watched</defName>
+    <topic>keeper</topic>
+    <when>keeper:watched</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Someone of yours walked behind us half the night.</li>
+      <li>[us] Just making sure you had what you needed.</li>
+      <li>[them,their:empire] At court that is called a spy, and not politely.</li>
+      <li>[them] Is that what it was?</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Keeper_WatchedWarm</defName>
+    <topic>keeper</topic>
+    <when>keeper:watched,tone:warm|tone:good</when>
+    <lines>
+      <li>[them] Your people keep late hours: someone sat up with us till the fire burned low.</li>
+      <li>[us] We don't get guests every night, so we make the most of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Picked up again on a later visit ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_CB_Trade</defName>
+    <topic>callback</topic>
+    <when>talked:trade,us:task:trade,!then:recent</when>
+    <lines>
+      <li>[them] Last time we talked trade, and now your {OFFICE} writes to us about it.</li>
+      <li>[us] We took you at your word.</li>
+      <li>[them] Good, so did we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_CB_Sickness</defName>
+    <topic>callback</topic>
+    <when>talked:sickness,then:still,us:task:tend</when>
+    <lines>
+      <li>[them] {THEN} is still with us, you know.</li>
+      <li>[us] That's why our {OFFICE} means to come with medicine.</li>
+      <li>[them] Then we'll be watching the road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_CB_Head</defName>
+    <topic>callback</topic>
+    <when>talked:head,then:still,us:task:winover,!then:recent</when>
+    <lines>
+      <li>[us] You told me about {THEN} last time, does {THEN} read our letters?</li>
+      <li>[them] Every one, and out loud at supper.</li>
+      <li>[us] Then we'll keep them short.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Any task they know of ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Busy</defName>
+    <topic>task</topic>
+    <when>us:task,!task:you</when>
+    <lines>
+      <li>[them] Your {OFFICE} keeps busy, from what we hear at {TOWN}.</li>
+      <li>[us] {OFFICER} wouldn't know what to do otherwise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_You</defName>
+    <topic>task</topic>
+    <when>us:task,task:you</when>
+    <lines>
+      <li>[them] You're the {OFFICE}, aren't you?</li>
+      <li>[us] For my sins, yes.</li>
+      <li>[them,their:lowtech] Then you are the one we deal with, and I'll tell them I met you.</li>
+      <li>[them] Then I'll know who to complain to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_Ages</defName>
+    <topic>task</topic>
+    <when>us:task,their:tribal</when>
+    <lines>
+      <li>[them] Your elders send their errands to ours more often than the moons turn.</li>
+      <li>[us] We have a lot to say to each other, it seems.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_AgesEmpire</defName>
+    <topic>task</topic>
+    <when>us:task,their:empire</when>
+    <lines>
+      <li>[them] Your {OFFICE} has a good hand for letters, for someone without a title.</li>
+      <li>[us] I'll tell {OFFICER} you said so, the first part anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Task_AgesHigh</defName>
+    <topic>task</topic>
+    <when>us:task,their:spacer</when>
+    <lines>
+      <li>[them] Your {OFFICE}'s messages arrive on schedule, which is more than ours manage.</li>
+      <li>[us] {OFFICER} likes a schedule.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

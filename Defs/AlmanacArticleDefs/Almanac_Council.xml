@@ -371,9 +371,9 @@ Others are given once, for one deed, and stay with their holder: the builder len
     <label>offices and elections</label>
     <category>Council</category>
     <order>7</order>
-    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days, herdmaster, chaplain, warden of guests and a council of elders.</summary>
+    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days, herdmaster, chaplain, warden of guests, a council of elders and a keeper of secrets.</summary>
     <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
-    <description>The council has five seats from the start, and more that open as the colony grows: seven more offices, one of them (the council of elders) with three seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
+    <description>The council has five seats from the start, and more that open as the colony grows: eight more offices, one of them (the council of elders) with three seats. Each gives its holder a bonus and helps the whole colony in some way. Eight of them can also take a task with the colony's neighbors, or on its own land (see the diplomacy page). Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
     <sections>
       <li>
         <heading>The seats</heading>
@@ -391,6 +391,7 @@ Others are given once, for one deed, and stay with their holder: the builder len
           <li>Chaplain (5 voters, Ideology) | Keeps the colony's ideoligion: its decrees and customs strengthen certainty half again as much, and the chaplain is persuasive and steady. Only with Ideology and an ideoligion of the colony's own; those of the ideoligion count for a candidate, those of another against.</li>
           <li>Warden of guests (5 voters) | Looks after visitors and the strangers camped on the colony's land; negotiates better and talks easily with strangers.</li>
           <li>Elder (10 voters, three seats) | The council of elders. While any elder sits, the whole colony keeps a slightly steadier head. Age counts for a candidate.</li>
+          <li>Keeper of secrets (6 voters) | Social and Intellectual. While the seat is filled, the colony's own secrets slip half as often. The keeper listens well and negotiates a little better, can sound out someone of another people face to face, and walks with the guests after dark.</li>
         </table>
         <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder. The three elders' seats are elected one after another; the Decrees page lists each.</after>
       </li>
@@ -429,6 +430,7 @@ The council can back one candidate for a seat (it counts on the ballots of those
           <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the ideoligion (6% surer); leads the calendar's remembrances.</li>
           <li>Warden of guests | Spends an hour a day at the fire of any camp on the colony's land (its tension eases by 4, and the campers come to know the warden), and sees visitors welcomed: their people's goodwill rises by 2, once every few days for each people.</li>
           <li>Elders | Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow a little closer.</li>
+          <li>Keeper of secrets | Once a night, with guests of another people on the colony's land, walks with them for about an hour and a half, and now and then (15%) overhears something about a notable of theirs.</li>
         </table>
       </li>
     </sections>

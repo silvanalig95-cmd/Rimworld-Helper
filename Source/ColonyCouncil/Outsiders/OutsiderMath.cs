@@ -29,7 +29,9 @@ namespace ColonyCouncil
         /// <summary>Offer an exchange of captives, one of theirs in the colony's cells for one of the colony's they hold (Diplomacy/DiplomacyActs.cs, release 2a.3).</summary>
         OfferExchange,
         /// <summary>Speak for a match between one of the colony's and one of theirs, face to face (Diplomacy/MatchActs.cs, release 2b.2).</summary>
-        SpeakMatch
+        SpeakMatch,
+        /// <summary>The keeper of secrets sounds them out, or presses a secret on the one it is about (Diplomacy/KeeperOfSecrets.cs, release 2c.1).</summary>
+        SoundOut
     }
 
     /// <summary>How a talk went, best first.</summary>

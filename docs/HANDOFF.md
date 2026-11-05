@@ -6,6 +6,76 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (4 November 2026)
 
+- 0.96.0, stage 2 release 2c.1, the keeper of secrets and council tasks (docs/design/stage2-diplomacy.md, item 8; the player's decisions
+  13 and 14 as recommended, 9 for the Empire; built on 0.95.0, merged in before the work began). DESIGN.md, "Diplomacy" →
+  "The keeper of secrets and council tasks" has the whole of it. Pure and tested (`Tools/Tests/TaskTests.cs`):
+  `Diplomacy/TaskMath.cs` (`TaskKind` (WinOver, Secrets, Scout, Drill, Trade, Dues reserved, Tend, BringHome, TheirKin,
+  KeepFaith, SpeakFaith, Host), `TaskStage`, `TaskStep`, `VisitStage`, `TaskTarget`, `SecretRoll`; the eight offices and
+  their kinds, targets, who writes and who visits, one away a home and a visit a season, the letters' four to six days,
+  giving up after a year or a season, `RegardUp`, `ToneShare`, the win at 60 and its result, `TradeGain` and its result,
+  the patrol at dawn and `SpotChance`, `LevyFactor` 1.2 for a season, the physician's medicine and `SickBackChance` 0.2,
+  `PriceFactor`, `KinSooner`/`KinHigher`, `Shaken`, `Welcome` 1.5, This week's steps, the facts' tags) and
+  `Diplomacy/KeeperMath.cs` (`SlipFactor` 0.5, `CatchFactor` 2, the watch after dark, `LearnChance`, `Roll` (found out a
+  tenth), their secrets' kinds and weights, twenty live a year, `ComplyChance`, `Hush`, the regards, the tags). Game
+  side, all in `Diplomacy/`: `TaskBook.cs` (`CouncilTask`), `CouncilTasks.cs` (reading, why not, targets, the choosers
+  (an office's kinds, a people's tasks), the council's question, `Set`, `CallOff`, `End`, the hour (visit, why it can't
+  go on, `Finished`, the year's and season's ends, the kind's step), letters (`LetterHour`, the speaker's invitation),
+  the marshal's patrol, the quartermaster's samples, `Free`, `SendCart`, `HomeLost`; the 2c.2 hooks `DuesWhyNot`,
+  `DuesStep`), `TaskResults.cs` (each kind's letter read, a visit's day, `Finished`, won over (`Pacts.Offer`, a trade
+  pact in the pacts' own letter with its own words, a favour), the trade open (a trade pact, their trader's caravan
+  queued, a favour), the physician's day with the game's flu one visit in five; `Stewards`, `KinTask`, `LevyStrength`
+  read by Feasts, Ransoms and Pacts), `TaskVisits.cs` (the journey plan for the officer and a companion, its steps
+  Planned → Road → There → Homeward, why not), `TaskLetters.cs` (`LetterPurpose.Task`, hidden from the dialog; `Send`,
+  their words' tags, `Read`), `KeeperOfSecrets.cs` (the guard, the watch after dark with the game's `FollowClose`,
+  overhearing, hard words owed, the task's hour (a talk once a day, the informer at the gate), `Step`'s roll, "Sound out"),
+  `SecretTies.cs` (`Learn`, reading, pressing by letter and face to face, the answer, the day), `TaskJobs.cs`
+  (`JobDriver_TaskPatrol`, `TaskDefOf`), `TaskPanels.cs` (the officer's, notable's, Secret tie's and people's cards, the
+  Offices row, Here and away, the inbox `task` and `task-under-way`), `TaskWords.cs`, `FactsTasks.cs`, `TaskDebug.cs`
+  (dev actions: a task set now, every task's next step, a task's end, the caravan at the town, the day there over, a
+  secret learned, the keeper found out, the watch, a pressed secret answered, the patrol). Shared, small: `NotableMath`
+  (`LetterPurpose.Task` last, `WaitDays(Task)` 3, `PurposeBase(Task)` 0), `OutsiderAct.SoundOut` last (the menu after
+  "Offer an exchange", an ask), `DiplomacyActs` and `DiplomacyLetters` delegating (`DiplomacyActs.Chose` for the keeper's
+  own talks), `NeighboursPanel` (the dialog skips Task), `DiplomacyBook` (`tasks`, `drillPeople`/`drillAt`, `AnyWaiting`,
+  homes lost), `Diplomacy.Hourly` (the tasks' hour, the keeper's hour, both days), `DiplomacyModel` (`tasks`, the officer
+  away), `HereAndAwayView` (the tasks' section), `DecreePanel` (one line under each seat), `Secrets.cs` (the slip factor),
+  `Feasts.End` (the welcome), `Ransoms` (`DemandFor`; their kin's offers), `Pacts.Arrive` and `WarCamps.MakeFighters`
+  (the band's strength), `RaidersCamps.SpotByPatrol`, `FactsLedger` (one call), setting `diplomacyTasks` (with offices).
+  Defs: `Defs/OfficeDefs/Rimfolk_Offices_Keeper.xml` (its planks reuse the pools' `gate` and `watch`),
+  `Defs/HediffDefs/Rimfolk_Hediffs_Keeper.xml`, `Defs/Misc/Rimfolk_Tasks.xml` (the patrol job). Content: 28 talk pieces
+  (`Rimfolk_OutsiderTalks_Tasks.xml`, three of them callbacks to the existing trade, sickness and head marks), 32 letter
+  lines and 25 bubbles (`Rimfolk_Lines_Tasks.xml`), keyed words (`Rimfolk_Tasks.xml`) with 24 fellows
+  (`Rimfolk_Tasks_Variants.xml`); the act's words beside the others in `Rimfolk_Outsiders.xml`; the Almanac's offices
+  page (the seats' table and the colony's life, a clause in the description) and diplomacy page (two paragraphs in its
+  description, a clause in Settings; no keyword changes, no new sections); README, DESIGN.md, ROADMAP's offices row, the
+  save model (`tasks`). Tests changed with it: `DiplomacyTests` (the purposes and acts in the order built, Secret ties
+  in use, schemes not yet), `OutsiderTalkTests` (the ask, the tags, the placeholders), `PactTests` (the band's call); the
+  DefValidator knows `OFFICER`, `OFFICE`. The talk pieces' weights stay at 1.2 or less: more weight pushed the generated
+  talks' callbacks (FactsTests) under their floor.
+  Entry points for 2c.2 (fealty and vassals): `TaskKind.Dues` is in the enum and the quartermaster's kinds but not offered
+  until `CouncilTasks.DuesWhyNot` (why a vassal can't pay now, null when it can) and `CouncilTasks.DuesStep` (the hour of
+  a dues task: the carter, the goods, what came of it) are set; `CouncilTasks.SendCart` carries goods to a people by
+  courier; the record's `asked`, `progress`, `tripId` and `carts` are free for it; the words `CC_Task_*_Dues` exist. For
+  2c.3 (schemes): `KeeperOfSecrets.Watching(map)` (the keeper walking with guests tonight) with `KeeperMath.CatchFactor`;
+  `SecretTies.Learn(Ref knower, Ref about, kind, by)` makes their spy's Secret tie about a colonist (any knower), `Of` and
+  `About` read them, and pressing is the ledger's called in → kept or broken (`SecretTies.Answer` is the colony's side;
+  theirs needs its own demand); `KeeperMath.Kinds` are theirs (a colonist's secrets are `SecretDef`s, for a spy to learn).
+  Left out, and why: the speaker's "speak for us" in a dispute world event (its mediation stage already puts the colony's
+  best talker between the families: the speaker would be the same person most of the time); the marshal's "strangers
+  seen" on patrol (nothing on the map to see that the game doesn't show already); the quartermaster's goods ordered for
+  their next caravan (their caravan sent instead: an order would need the player to pick goods with no window for it);
+  the warden's lower price for an exchange (their price for ransom only; an exchange is weighed by worth and regard, and
+  the warden's letters raise their head's regard); the chaplain's notables' certainty shown anywhere but their answer
+  (the game keeps it on a world pawn); "guests received" for tasks but the speaker's; a visit's officer and companion
+  chosen by the player beforehand (the journey planner changes who goes). To look at in game: setting a task from an
+  office's row, an officer's card and a people's card (the council's question with its risks); the speaker's letters and
+  call and the head's answers (their words, the regard on the town panel and the memory line), the invitation and the
+  head's visit, the offer at 60; the quartermaster's samples fetched at the gate and their caravan; the marshal's dawn
+  patrol round the edges and a hidden camp seen; a visit planned for the next morning (the planner showing it, the
+  night before, packing, the gate), the caravan at the town for a day, the letter of the day, home again; the physician's
+  medicine handed over and the flu brought home; the warden's price at the gate; the steward's feast with the welcome;
+  the keeper's watch after dark, "Sound out" with a visitor and with a notable whose secret the colony knows, the informer,
+  a secret pressed by letter (paid, or refused and told), found out and the hard words at the next visit; the Decrees
+  page's rows at 768p with eight lines under the seats.
 - 0.95.0, text pass: diplomacy round b (the content pass beside 0.92.0, 0.93.0 and 0.94.0, after the 0.94.1 review and merged
   with it; no version of its own: its points go with the next round). Words in new files beside the round's own (its
   tests cap the round's talk files at 40), each said only on facts the providers set (FactsFeast, FactsWards,
