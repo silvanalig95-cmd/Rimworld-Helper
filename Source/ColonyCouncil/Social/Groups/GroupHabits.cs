@@ -287,7 +287,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A group's gathering as it begins, on the map (PlayOutTracker): who gathers where ("An evening at the fire for the
-        /// fireside circle: the fire is lit, and their anchor, Stace, gathers them by the campfire."). Null when no group
+        /// fireside circle: the fire is lit, and their anchor, Stace, gathers them by the fire."). Null when no group
         /// called it.
         /// </summary>
         public static string BeginText(PlayOut play, string where)

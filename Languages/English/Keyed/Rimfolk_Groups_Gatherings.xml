@@ -3,7 +3,7 @@
 
   <!-- ===================== What a group is, and what its gathering does (Source/ColonyCouncil/Social/Groups/GroupHabits.cs) ===================== -->
 
-  <!-- A group's gathering, called by its anchor, as it begins on the map ({LABEL}: "An evening at the fire for the fireside circle"; {WHERE}: "by the campfire") -->
+  <!-- A group's gathering, called by its anchor, as it begins on the map ({LABEL}: "An evening at the fire for the fireside circle"; {WHERE}: "by the fire") -->
   <CC_GroupPlay_Begin_FireAnchor>{LABEL}: the fire is lit, and their anchor, {PAWN_nameDef}, gathers them {WHERE}.</CC_GroupPlay_Begin_FireAnchor>
   <CC_GroupPlay_Begin_Anchor>{LABEL}: their anchor, {PAWN_nameDef}, gathers them {WHERE}.</CC_GroupPlay_Begin_Anchor>
   <CC_GroupPlay_Begin_Fire>{LABEL}: the fire is lit, and they gather {WHERE}.</CC_GroupPlay_Begin_Fire>
