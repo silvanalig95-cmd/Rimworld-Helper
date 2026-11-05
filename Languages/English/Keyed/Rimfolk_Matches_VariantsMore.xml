@@ -6,7 +6,12 @@
        placeholders. {WORD} is the colony's word for a match by its age, {RITE} their way by theirs, or their faith's own
        wedding (Rimfolk_Ages.xml: Marriage). A line that may be given a name kept for someone gone ({THEIRS} in the escort
        and the leaving, both names in the kin's gift, {DEAD}, {NAME}, {OLD}) uses no _pronoun or _possessive of it; {THEIRS}
-       in their offer is a phrase ("a daughter of Reeve Hallam's house"), never a sentence's first word. -->
+       in their offer is a phrase ("a daughter of Reeve Hallam's house"), never a sentence's first word. Since 0.94.1 some
+       keys have a fellow for when there is less to tell, and each word stays with its own: CC_Match_Agreed_Colony and
+       CC_Match_Wed are told only with the wedding's guests coming or here (CC_Match_Agreed_ColonyAlone and
+       CC_Match_WedQuiet without them), CC_Match_Wronged only when a pact broke with it (CC_Match_WrongedNoPact). The
+       pacts' own paragraphs (CC_Match_What, CC_Match_Agreed_Risks, CC_Match_Wed_What and their NoPact fellows) are read
+       as they are, so they have no fellows. -->
 
   <!-- Their offer, and their answers -->
   <CC_Match_Offer_4>{PEOPLE} have sent a proposal by {WHO}'s hand. They offer {THEIRS} for {OURS}, and would hold it by {RITE}; the colony would call it {WORD}.</CC_Match_Offer_4>
@@ -17,6 +22,7 @@
 
   <!-- Agreed -->
   <CC_Match_Agreed_Colony_3>{OURS} and {THEIRS} of {PEOPLE} are to be married: {WORD}, by {RITE}. On the day {THEIRS} comes from {TOWN} with {THEIRS_possessive} kin, joins the colony at the gate and is married to {OURS} here, with the kin as guests at the evening's feast before they go home at first light.</CC_Match_Agreed_Colony_3>
+  <CC_Match_Agreed_ColonyAlone_2>{OURS} and {THEIRS} of {PEOPLE} are to be married: {WORD}, by {RITE}. None of the kin can make the journey, so on the day {THEIRS} walks in from {TOWN} alone, joins the colony at the gate and is married to {OURS} here.</CC_Match_Agreed_ColonyAlone_2>
   <CC_Match_Agreed_Theirs_3>{OURS} is promised to {THEIRS} of {PEOPLE}: {WORD}, by {RITE}. On the day {THEIRS} comes to the gate with one of {THEIRS_possessive} kin, and {OURS} walks out to them and leaves for {TOWN}, to be married there and to live there for good.</CC_Match_Agreed_Theirs_3>
 
   <!-- On the map -->
@@ -30,6 +36,8 @@
   <!-- The wedding -->
   <CC_Match_Wed_3>The wedding is done: {OURS} and {THEIRS} are married, and the kin who came from {TOWN} saw it. {PEOPLE} and the colony are family now.</CC_Match_Wed_3>
   <CC_Match_Wed_4>{OURS} and {THEIRS} said their vows here at the colony, with kin from {TOWN} looking on. It is {WORD} now between {PEOPLE} and the colony.</CC_Match_Wed_4>
+  <CC_Match_WedQuiet_2>{OURS} and {THEIRS} said their vows here at the colony, with none of the kin from {TOWN} to see it. {PEOPLE} count the colony as family all the same.</CC_Match_WedQuiet_2>
+  <CC_Match_WedQuiet_3>A quiet wedding at the colony: {OURS} and {THEIRS} are married. {PEOPLE} would have held it by {RITE}, and it is {WORD} all the same.</CC_Match_WedQuiet_3>
   <CC_Match_WedAway_4>A letter from {TOWN} with the news the colony was waiting for: {OURS} and {THEIRS} are married, by {RITE}. {PEOPLE} call the colony family now.</CC_Match_WedAway_4>
 
   <!-- While it holds, and how it ends -->
@@ -43,6 +51,8 @@
   <CC_Match_End_Home_3>{THEIRS} is home among {PEOPLE} again, and the alliance that came with the marriage is over.</CC_Match_End_Home_3>
   <CC_Match_End_Parted_3>The marriage between {OURS} and {THEIRS} is over, and the alliance with it. {PEOPLE} will think less of the colony for a while.</CC_Match_End_Parted_3>
   <CC_Match_Wronged_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, its pact too, and {HEAD} has taken it up as a grudge to hand down.</CC_Match_Wronged_3>
+  <CC_Match_WrongedNoPact_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is over, and {HEAD} holds a grudge for it, as will whoever heads them next.</CC_Match_WrongedNoPact_2>
+  <CC_Match_WrongedNoPact_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, and {HEAD} has taken it up as a grudge to hand down.</CC_Match_WrongedNoPact_3>
   <CC_Match_Feud_3>With {OLD} gone, the grudge over {NAME} passes to {HEAD}. {PEOPLE} have not forgiven the colony.</CC_Match_Feud_3>
 
   <!-- In-laws who write when a raiders' camp is set against the colony (Diplomacy/MatchWarnings.cs: RaidersCamps.Found
