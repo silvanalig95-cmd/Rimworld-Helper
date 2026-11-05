@@ -10,13 +10,13 @@
     <order>9</order>
     <summary>The colony's groups: how they form and get their names, what they do together, their ways, newcomers, quarrels between them, and how they split, merge and end.</summary>
     <tip>Put the new one on the same shift as the hunters and give it a week. They'll be telling each other the same bad jokes by then.</tip>
-    <description>With "Personalities and social life" and the social web on, colonists drift into groups: the hunters, the night shift, the old hands, the kitchen crowd, the faithful, Hector's lot. A group grows out of something real, keeps the name it was given when it formed, and has a life of its own: its people settle into parts (see "Roles in a group"), it grows closer or looser, it takes up ways of its own, it keeps habits together, it takes newcomers in or shuts them out, it falls out with other groups, and it can split, merge or come to an end. Every group has a card on the council's Bonds page with its people, its ways, its quarrels and its history, and each colonist's character page says which groups they're in and what part they play.</description>
+    <description>With "Personalities and social life" and the social web on, colonists drift into groups: the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the fireside circle. A group grows out of something real, keeps the name it was given when it formed, and has a life of its own: its people settle into parts (see "Roles in a group"), it grows closer or looser, it takes up ways of its own, it keeps habits together, it takes newcomers in or shuts them out, it falls out with other groups, and it can split, merge or come to an end. Every group has a card on the council's Bonds page with its people, its ways, its quarrels and its history, and each colonist's character page says which groups they're in and what part they play.</description>
     <sections>
       <li>
         <heading>How a group forms</heading>
         <text>Once a day, with the social web's day, the colony looks at who pulls towards whom. Friendship counts most and a rivalry pushes hardest; work shared (what they're actually seen doing, the same workshop, field or kitchen), a fight fought side by side, keeping the night hours, being alike in character, the same ideoligion held hard, having come to the colony together or from the same kind of life, and being among the colony's young or old each pull a little. Three to seven people who all pull together well enough, with no rift between any two of them, become a group. A colonist belongs to at most two.
 
-A group is named for what binds most of it, picked once and kept, in the colony's era: a band of hunters may be "the spear-carriers" in a tribe. When nothing in particular binds them but friendship, it's named after the one it gathers round. Groups already there in an old save are found quietly on its first day; after that a founding, a split, a merge and an end are each told once, in the news, the chronicle and the journals of those in it.</text>
+A group is named for what binds most of it, picked once and kept, in the colony's era: a band of hunters may be "the spear-carriers" in a tribe. When nothing in particular binds them but friendship, it's named for what they share, never after one of them: the night hours more than half of them keep ("the night birds"), the work more than half of them do ("the harvest circle"), a side of character two in three of them have ("the calm circle"), else a habit of theirs and its place ("the fireside circle", "the long table"), else their friendship ("the old friends"); the one it gathers round is its anchor, a part they play, not its name. Each idea has several names, so no two groups share one. A group an older save named after someone ("Stace's friends", "Hector's hunters") gets a name of this kind once, quietly, the next time the game is loaded; nothing else about it changes. Groups already there in an old save are found quietly on its first day; after that a founding, a split, a merge and an end are each told once, in the news, the chronicle and the journals of those in it, and a founding says what the group's habits do for its people.</text>
         <table>
           <li>What binds them | What they may be called</li>
           <li>The night hours | the night shift, the night owls</li>
@@ -27,7 +27,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
           <li>The same life before (where it sets them apart) | the tribe-born, the offworlders</li>
           <li>Age (where it sets them apart) | the old hands, the young ones</li>
           <li>Character | the merry lot, the grumblers, the curious ones, the bold ones, the gentle ones</li>
-          <li>Friendship | Hector's lot, Hector's crowd</li>
+          <li>Friendship (named for what most of them share, never after one of them) | the night birds, the harvest circle, the fireside circle, the long table, the old friends</li>
         </table>
       </li>
       <li>
@@ -36,7 +36,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
       </li>
       <li>
         <heading>Habits</heading>
-        <text>Each group has something it does together: an evening at the fire, a shared table, a game night in the rec room, working side by side, a hunt, the small hours, prayers, talking late, a walk at dusk. When two or more of its people are together doing it, they keep the habit, once a day at most: each feels they belong (a small moment that counts for the heart's Belonging and gives a little recreation rather than mood), their strain eases a little, one of them says something, and the group grows closer. With "Answers play out on the map" on, the anchor of a close group calls them all to it every week or two: a fire laid of an evening or a gathering, on the map.</text>
+        <text>Each group has something it does together: an evening at the fire, a shared table, a game night in the rec room, working side by side, a hunt, the small hours, prayers, talking late, a walk at dusk. When two or more of its people are together doing it, they keep the habit, once a day at most: each feels they belong (a small moment that counts for the heart's Belonging and gives a little recreation rather than mood), their strain eases a little, one of them says something, and the group grows closer. With "Answers play out on the map" on, the anchor of a close group (cohesion 50 or more, "close" or "tight-knit" on its card) calls them all to it every week or two, one group at a time: a fire laid of an evening or a gathering, on the map, for the group's people only. As it begins it says who gathers, what the group is and what the gathering does for them; those who come feel they belong, and when two or more of them came their strain eases a little and the group grows closer. A habit's tooltip on the group's card says the same.</text>
       </li>
       <li>
         <heading>Ways and views</heading>
@@ -78,7 +78,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
         <heading>The parts</heading>
         <table>
           <li>Part | Who | What they do</li>
-          <li>The anchor | Warm, sure of themselves, good with people, friends with most of the group | The one it gathers round: a friends group is named after them, they look in on anyone who has gone low, and they call the group to its habit on the map.</li>
+          <li>The anchor | Warm, sure of themselves, good with people, friends with most of the group | The one it gathers round, never the one it's named after: they look in on anyone who has gone low, and they call the group to its habit on the map every week or two while it's close.</li>
           <li>The joker | Makes the jokes | Speaks most at the habit, and when one of the group is low, gets a laugh out of them (a little recreation, and they think better of the joker).</li>
           <li>The peacemaker | Warm and slow to anger; quarrels mended count | When two of the group quarrel and the peacemaker is there, they step in now and then: the quarrel is over in half the time, and it counts as one mended.</li>
           <li>The firebrand | Quick-tempered and proud | Stirs the group up against a group it's at odds with, which makes it worse.</li>
