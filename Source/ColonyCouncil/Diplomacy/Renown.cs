@@ -128,6 +128,7 @@ namespace ColonyCouncil
         private static void Sync(int now)
         {
             var seen = new HashSet<LedgerHouse>();
+            var made = new List<LedgerHouse>();
             foreach (var group in FamilyNames.Families().GroupBy(f => RenownMath.Key(f.last)))
             {
                 if (group.Key == null) continue;
@@ -135,18 +136,22 @@ namespace ColonyCouncil
                 if (members.Count < RenownMath.AtLeast) continue;
                 string name = group.First().last;
                 var h = WorldLedger.OurHouse(group.Key);
-                bool made = false;
                 if (h == null)
                 {
                     if (WorldLedger.OurHouses().Count >= RenownMath.MaxOurs) MakeRoom(now);
                     h = WorldLedger.AddOurHouse(name, Homes.KeyOf(SeatOf(members)));
                     if (h == null) continue;
-                    made = true;
+                    made.Add(h);
                 }
                 seen.Add(h);
                 Take(h, members, now);
-                // A house made today starts at the band it already has, untold: its name was known before the colony kept count.
-                if (made) h.band = (int)Compute(h, RenownBand.Unknown).band;
+            }
+            // A house made today starts at the band it already has, untold (its name was known before the colony kept
+            // count), read once its people are found.
+            if (made.Count > 0)
+            {
+                Dirty();
+                foreach (var h in made) h.band = (int)Compute(h, RenownBand.Unknown).band;
             }
             foreach (var h in WorldLedger.OurHouses())
             {
@@ -169,10 +174,16 @@ namespace ColonyCouncil
         private static void Take(LedgerHouse h, List<Pawn> members, int now)
         {
             members.Sort((a, b) => (b.ageTracker?.AgeBiologicalTicks ?? 0L).CompareTo(a.ageTracker?.AgeBiologicalTicks ?? 0L));
+            int folkWas = h.folk.Count, seatWas = h.seat;
+            var headWas = h.head;
+            string membersWas = string.Join("|", h.members);
+            bool added = false;
             foreach (var p in members)
             {
                 var r = Refs.Of(p);
-                if (!h.folk.Contains(r)) h.folk.Add(r);
+                if (h.folk.Contains(r)) continue;
+                h.folk.Add(r);
+                added = true;
             }
             // The newest twelve: the gone go first, then the earliest taken in.
             var here = new HashSet<Ref>(members.Select(Refs.Of));
@@ -187,7 +198,8 @@ namespace ColonyCouncil
             var seat = SeatOf(members);
             if (seat != null) h.seat = Homes.KeyOf(seat);
             h.lastSeen = now;
-            WorldLedger.TownChanged();
+            // The views are built again only when what they show changed (its people, head or seat), not every day.
+            if (added || h.folk.Count != folkWas || h.seat != seatWas || h.head != headWas || string.Join("|", h.members) != membersWas) WorldLedger.TownChanged();
         }
 
         /// <summary>A live tie of the ledger names one of the house's people (a marriage, a ward, a grudge about them).</summary>

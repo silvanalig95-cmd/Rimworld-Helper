@@ -4,8 +4,87 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
-## State (4 November 2026)
+## State (5 November 2026)
 
+- Stage 2 release 2d.1, house renown (docs/design/stage2-diplomacy.md, item 12; the player's decision 17 as recommended:
+  earned and shown in words with a "known for", nothing spent; decision 9 for the Empire: titles read, never given; no
+  version of its own here: its points go with the round). DESIGN.md, "Diplomacy" → "House renown" has the whole of it.
+  First, the round c text pass's six words-versus-code mismatches (the 0.98.0 entry below), each fixed in the code with
+  the corrected words under new tags in new files (`Rimfolk_OutsiderTalks_LeviesPressed.xml`, `Rimfolk_Lines_Overtaken.xml`;
+  no shipped line's tags changed, textcheck against the start commit clean): (1) the levies' history now says how a call
+  ended (their people For it when the levies came, Against when refused), and `FactsFealty` sets `fealty:levies` (whose
+  older talk and letter lines say they came) and `fealty:levies:sent` only when they came, `fealty:levies:refused` when
+  refused; a call still open says neither (`FealtyMath.LevyOutcome`); (2) a plea for help is quoted by what really comes
+  with the answer (`NotableMath.HelpQuoteTone`, `NeighbourLetters.Quote`'s `helpSent`): with help, in its tone; without, in
+  the refusal's words, so `[help,cool,fealty:oath]` is never said (help is never sent on a cool answer; its words are back
+  as a cordial line); (3) an oath letter overtaken by events (`Fealty.SwearWhyNot`, or not their people) is answered cool
+  (it changes little, where it was a refusal costing regard) under `fealtymoot` in place of `fealty`
+  (`DiplomacyLetters.Moot`/`IsMoot`, a mark set while the answer is read, nothing saved; `FealtyMootTag`); (4) a press no
+  longer pressed when read answers under `pressmoot` in place of `pressed` (`SecretTies.PressRead`'s `moot`), and, the same
+  case found in passing, a task over before its letter is read under `taskmoot` in place of its kind's code
+  (`TaskLetters.TaskMootTag`, `PressMootTag`); (5) a notable's memory keeps how they were pressed
+  (`KeeperMath.PressedKeys`: `task:pressed` and `task:pressedletter` or `task:pressedface`), the facts give `them:pressed`
+  either way with `them:pressed:letter` or `them:pressed:face`, and `Rimfolk_OT_Keeper_Pressed` ("your colony's letter")
+  asks `them:pressed:letter` through a new code table for shipped pieces found false in a case (`OutsiderTalkMath.AlsoWhen`,
+  applied in `Parse`, so the tests see it); `them:pressed` stays both ways, as `!them:pressed` guards the pieces that name
+  the one whose secret was told (a save from before keeps only `task:pressed`: their letter piece then stays unsaid); (6)
+  the fealty talk header (fealty:oath holds the whole oath, its weight higher for ten days); the headers of the fealty and
+  tasks files say what the tags mean now. New words: 8 talk pieces (a refusal by their ways, pressed face to face), 18
+  letter lines (fealtymoot, pressmoot, taskmoot, the cordial help line, a refusal of the levies, one pressed face to face).
+  Then the release. Pure and tested (`Tools/Tests/RenownTests.cs`, with the six fixes): `Diplomacy/RenownMath.cs`
+  (`KnownFor` (Fighters, Healers, Hosts, Traders, Makers, Faithful), `RenownBand` (Infamous, Unknown, Town, Region,
+  Peoples); the sources with points, kind, fading and cap; `SourceOf` from the history's kind and role, `SourceOfMark`,
+  `Epithets`, `Offices`, `TitlePoints`, `SkillFor`, `FortuneSource`; `Fade` (full a year, a tenth a season to three
+  tenths); `Read`; bands at 10, 30, 60 and -15 with a hold of 3; `KnownForOf` (six points and three tenths); `RegardBonus`
+  (up to 15, down to -10), `GoodWordFactor` (half again), `MatchFactor`/`MatchChance` (twice, never certain), `Events` and
+  `EventFactor` (a quarter, half, three quarters more by band), `GuestFactor`, `ChallengesFighter`/`ChallengeShare` (six in
+  ten); the houses' rules (twelve, two or more, twelve people remembered, kept two years); the words' keys; the facts'
+  tags). Game side: `Renown.cs` (the colony's houses from `FamilyNames.Families()` as `LedgerHouse` records with `ours`,
+  `seat`, `folk` (refs, saved as text), `lastSeen`, `band`, made and kept by the day (`Diplomacy`'s day), a new house's band
+  set untold; the reading, kept for the in-game hour: of ours, the history's `dip:contest`, `dip:wedding`, `dip:ward`
+  (the guardian is named in a ward's year's end since now, `Wards.Reckon`), `dip:envoy`, `dip:hostage`, `dip:parley`,
+  `dip:task` by each person's role, the peoples' marks by name (`ColonistMemory.MarksOf`), the colony's names for them,
+  years as physician or marshal, terms as speaker, the Empire's titles, notables whose own regard is 20 or more, and the
+  colony's deeds shared (`deed:swore`, `keptWord`, `levies`, `tie:pact:kept`; `brokeTruce`, `brokePact`, `renounced`,
+  `schemed`, `refused`, `tributeShort`, `wordBroken`); of theirs, founding, a head's or leader's house, the head's best
+  skill, the town's fortune, the history between its head and the colony; a band moved of ours: `dip:renown` (the house its
+  actor, a milestone), a `renownup`/`renowndown` bubble by one of it on the map to nobody, `Tell.Minor`; theirs move
+  quietly; what it does: `RegardBonus`, `GoodWordFactor`, `MatchFactor`, `EventFactor`, `GuestFactor`, `FightersHouse`,
+  `AddTags` for bubbles, `Feuds`), `RenownWords.cs`, `RenownPanels.cs` (the House card of one of the colony's: its people as
+  rows, the gone by name, its colony; every House card's renown section (how far and for what, the deeds it came from and
+  those held against it, who knows it, what it does) and ties (marriages, wards, feuds); a colonist card's line; the lists'
+  line), `FactsRenown.cs` (in the ties' provider: `house:ours`, `:known`, `:renowned`, `:wide`, `:infamous`,
+  `house:knownfor:KIND`, `them:house`, `them:house:renowned`, `them:house:feud`; `{HOUSE}`, `{KNOWNFOR}` by the house's age,
+  `{RENOWN}` by the ways of the one spoken to, `{THEIRHOUSE}`), `RenownDebug.cs` (dev actions: the day's look now, every
+  house's renown to the log, a band told a step up or down, a contest won for someone of a house),
+  `World/Ledger/LedgerRenown.cs`. Shared, small: `LedgerHouse` (the fields; a town-less house of ours kept on load),
+  `Cards.House` (ours to `RenownPanels.OurHouse`), `HousesPanel` (each family's name a link to its house, its renown under
+  it; the region's houses with theirs, the colony's own left out there), `DiplomacyModel` (Here and away's houses link to
+  the house, renown beside the repute), `Notables.OpinionOf`, `OutsiderOutcomes.GoodWord`, `Matches.Hear` and `Offers`
+  (the roll now after the pick), `Feasts.Answer`, `Happenings.Weight`, `IncidentWorker_Happening.ChanceFactorNow`,
+  `HappeningWorker_Champion.Cast`, `Outsiders.Line`, `FactsLedger.Ties`, `FamilyNames.Families`, `ColonistMemory.MarksOf`,
+  the setting `diplomacyRenown` ("House renown", Diplomacy). Content: 50 talk pieces (`Rimfolk_OutsiderTalks_Renown.xml`:
+  a name known by their ways and the Empire's court, in a town, among every people; known for each of the six; infamous by
+  tone; not yet known; their house, its totem and arms; a feud; 16 callbacks on the war, sickness, ill, leader, head,
+  harvest, trade, work, family and situation marks, weight 1.2; the rest 0.6), 24 letter lines and 20 bubbles
+  (`Rimfolk_Lines_Renown.xml`: by tone and purpose, help and invitations promised only when granting; renownup by the
+  colony's age, renowndown, wordyes for a renowned house), keyed words with fellows (`Rimfolk_Renown.xml`,
+  `Rimfolk_Renown_Variants.xml`); the Almanac's diplomacy page (a paragraph in its description, a clause in Settings; no
+  keyword changes); README, DESIGN.md, the save model (`folkText`, houses with twelve more). Tests changed with it:
+  `OutsiderTalkTests` (the tags and placeholders), `FealtyTests` (the levies' tags spoken of in either file), the
+  DefValidator knows `HOUSE`, `KNOWNFOR`, `RENOWN`, `THEIRHOUSE`. The generated talks' callbacks (FactsTests, floor 30 of
+  1,500) move with every new tag the simulation draws: the renown file's callbacks bring them back over it.
+  Left out, and why: feuds' amends (a gift, an apology letter, a marriage between the houses ending a grudge) and their end
+  after two generations: new acts and a new letter purpose, to be proposed first; renown from a raid's leader brought down
+  and a duel won (no record of either names the colonist; the peoples' marks and the colony's names, the Defender and the
+  rest, carry fighters' renown instead); a band moved of the region's houses told or written (eighty houses would crowd
+  the history's milestones); Diplomatic Marriage+'s alliance counted once (its alliance is a view without a person to name);
+  the matchyes bubble for a renowned house (the colonist who speaks for a match may speak for another). To look at in
+  game: a family of two kept as a house (People → Houses: its name a link, its renown under it; the House card), the
+  dev action "Renown: a contest won at a feast, for..." and then "the day's look now" (the history line, the bubble, the
+  news), a notable's regard of a renowned house's member, the champion's challenge to a fighters' house, talk with a
+  visitor that names the house and what it is known for, a letter from one of a renowned house, an oath letter overtaken
+  by events (cool, fealtymoot), a refused levies call's talk, a notable pressed face to face.
 - 0.98.0, text pass: diplomacy round c (the content pass beside 0.96.0 and 0.97.0, after the 0.97.1 review and merged with it; no
   version of its own: its points go with the next round). Words in new files beside the round's own (its tests cap the
   round's talk files at 40), each said only on facts the providers set (FactsTasks, FactsFealty, the ties, FactsColony's
