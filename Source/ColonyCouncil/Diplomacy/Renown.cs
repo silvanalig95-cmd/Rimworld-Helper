@@ -209,11 +209,21 @@ namespace ColonyCouncil
             var headWas = h.head;
             string membersWas = string.Join("|", h.members);
             bool added = false;
+            // Each one's name beside their ref, kept while they live, so the gone are named after the game lets them go (an
+            // older save's house has none yet).
+            while (h.folkNames.Count < h.folk.Count) h.folkNames.Add("");
+            if (h.folkNames.Count > h.folk.Count) h.folkNames.RemoveRange(h.folk.Count, h.folkNames.Count - h.folk.Count);
             foreach (var p in members)
             {
                 var r = Refs.Of(p);
-                if (h.folk.Contains(r)) continue;
+                int at = h.folk.IndexOf(r);
+                if (at >= 0)
+                {
+                    h.folkNames[at] = p.LabelShort ?? "";
+                    continue;
+                }
                 h.folk.Add(r);
+                h.folkNames.Add(p.LabelShort ?? "");
                 added = true;
             }
             // The newest twelve: the gone go first, then the earliest taken in.
@@ -221,7 +231,9 @@ namespace ColonyCouncil
             while (h.folk.Count > RenownMath.MembersKept)
             {
                 int i = h.folk.FindIndex(r => !here.Contains(r));
-                h.folk.RemoveAt(i >= 0 ? i : 0);
+                if (i < 0) i = 0;
+                h.folk.RemoveAt(i);
+                h.folkNames.RemoveAt(i);
             }
             h.head = Refs.Of(members[0]);
             h.members.Clear();

@@ -238,8 +238,15 @@ public static class RenownTests
         C(RenownMath.HouseFor(new[] { "Smith", "Jones" }, "Brown") == 1 && RenownMath.HouseFor(new[] { "Smith" }, null) == 0 && RenownMath.HouseFor(new string[0], "Smith") == -1,
             "else the newest that remembers them; none for none");
         string renownCode = Code("Diplomacy/Renown.cs");
-        C(renownCode.Contains("RenownMath.HouseFor(") && Code("Diplomacy/RenownPanels.cs").Contains("h.folk.Where(r => !Renown.StillOurs(r))"),
+        string renownPanels = Code("Diplomacy/RenownPanels.cs");
+        C(renownCode.Contains("RenownMath.HouseFor(") && renownPanels.Contains("if (Renown.StillOurs(h.folk[i])) continue;"),
             "the index puts each in the house of their name, and the card's gone leaves out anyone still with the colony");
+        // The review: the ledger keeps a person's name only while something names them, so a colonist buried at home went unnamed.
+        string regionCode = Code("World/Ledger/LedgerRegion.cs");
+        C(regionCode.Contains("Scribe_Collections.Look(ref folkNames, \"folkNames\", LookMode.Value)") && renownCode.Contains("h.folkNames[at] = p.LabelShort")
+          && renownCode.Contains("h.folk.RemoveAt(i);\n                h.folkNames.RemoveAt(i);") && renownPanels.Contains("h.folkNames[i] : DipWords.NameOf(h.folk[i])"),
+            "each one's name kept beside their ref while they live, so the House card names its gone (a house with only its dead listed nobody)");
+        C(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")).Contains("World/Ledger/LedgerRegion.cs:folkNames"), "the save model has their names");
         C(Regex.IsMatch(renownCode, @"KinMemory\.Ours\(p\) && WorldLedger\.KeptFor\(p, KeepFor\.Lent\)\) Put\(p, kv\.Value\)"),
             "one away at another people's town on the colony's errand (envoy, youth, hostage) is still of the house: not gone, what they hold still counts");
         C(Regex.IsMatch(renownCode, @"bool here = Living\(h\)\.Count > 0;\s*if \(here\) h\.lastSeen = now;\s*if \(!RenownMath\.Kept\(here, TieNames\(h\), h\.lastSeen, now\)\)"),
