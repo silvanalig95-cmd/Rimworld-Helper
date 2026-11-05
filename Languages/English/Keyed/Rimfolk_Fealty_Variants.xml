@@ -38,8 +38,6 @@
 
   <CC_Vassal_Harvest_2>A cart has come up from {TOWN} with the colony's share of the harvest ({LEVEL}): {GOODS}.</CC_Vassal_Harvest_2>
   <CC_Vassal_Taken_2>{TOWN} of {PEOPLE} is the colony's to protect from today: {WORD}. It will send produce at harvest, and look to the colony when times are hard.</CC_Vassal_Taken_2>
-  <CC_Vassal_Dues_OnTime_2>{NAME} writes back that the dues are ready: {SILVER} silver, coming to the gate with their carter.</CC_Vassal_Dues_OnTime_2>
-  <CC_Vassal_Dues_Explained_2>{NAME} writes that their stores are low this season, and sends half the dues, {SILVER} silver, with their carter.</CC_Vassal_Dues_Explained_2>
   <CC_Vassal_Msg_Called_2>Word goes to {TOWN} by {MEANS}: the colony calls its levies, {RITE}.</CC_Vassal_Msg_Called_2>
   <CC_Vassal_Band_2>The levies of {PEOPLE} have answered the colony's call: {COUNT} of them, making for {ENEMY} ({WORD}).</CC_Vassal_Band_2>
   <CC_Vassal_Ask_Help_2>{WHO} of {TOWN} writes that their stores will not last the season, and asks the colony for {OTHER}.</CC_Vassal_Ask_Help_2>

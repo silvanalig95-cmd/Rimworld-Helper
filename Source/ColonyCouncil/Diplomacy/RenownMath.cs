@@ -95,13 +95,13 @@ namespace ColonyCouncil
         /// <summary>
         /// The kinds of renown, by key. Of a house's own people (ours): a contest won at a feast (the champion), married into a
         /// house of theirs, a ward of theirs fostered well as its guardian, a season abroad as the colony's youth or envoy, a
-        /// term served as its hostage, a truce sworn as its speaker, a task of the council's done, a secret pressed and told;
+        /// term served as its hostage, a truce sworn as its speaker;
         /// what the peoples remember of them by name (a raiders' camp broken, fighting beside theirs, trading at their post,
         /// walking their settlers out, a prisoner of theirs set free, one of theirs tended; killed at peace, executed, cut
         /// open, slighted, brawled with; their raiders brought down count to a fighter's name, little); the colony's names for
         /// them (the Healer, Old Iron), a year in an office, a term as speaker, the Empire's title, notables who think well of
         /// them. The colony's own, shared by each of its houses: an oath or a truce sworn, its word kept, levies sent, a pact
-        /// kept; a truce or a pact broken, an oath renounced, a secret told, a call refused, tribute short, its word broken.
+        /// kept; a truce or a pact broken, an oath renounced, the colony's scheme, a call refused, tribute short, its word broken.
         /// Theirs: a town's founding family, its head's house, their people's leader's, their ties with the colony, the town's
         /// fortune, and what its head is best at.
         /// </summary>
@@ -115,8 +115,6 @@ namespace ColonyCouncil
             ["envoy"] = S("envoy", 5f, KnownFor.Hosts, true, 10f),
             ["hostage"] = S("hostage", 3f, KnownFor.None, true, 6f),
             ["parley"] = S("parley", 4f, KnownFor.None, true, 8f),
-            ["task"] = S("task", 3f, KnownFor.None, true, 12f),
-            ["told"] = S("told", -6f, KnownFor.None, true, 18f),
             // What the peoples remember of them by name (World/ColonistMemory.cs, World/KinMemory.cs).
             ["campBroken"] = S("campBroken", 6f, KnownFor.Fighters, true, 18f),
             ["foughtBeside"] = S("foughtBeside", 4f, KnownFor.Fighters, true, 12f),
@@ -164,7 +162,7 @@ namespace ColonyCouncil
 
         /// <summary>The history's kinds a house's own people's deeds are read from.</summary>
         public static readonly string[] MemberKinds =
-            { DiplomacyMath.Contest, DiplomacyMath.Wedding, DiplomacyMath.Ward, DiplomacyMath.Envoy, DiplomacyMath.Hostage, DiplomacyMath.Parley, DiplomacyMath.Task };
+            { DiplomacyMath.Contest, DiplomacyMath.Wedding, DiplomacyMath.Ward, DiplomacyMath.Envoy, DiplomacyMath.Hostage, DiplomacyMath.Parley };
 
         /// <summary>
         /// The renown an event of the history gives the house of one who took part in it, by its kind and their part
@@ -172,10 +170,8 @@ namespace ColonyCouncil
         /// a good year's end (dip:ward, did it, the ward named: <paramref name="aboutSomeone"/>) and the colony's youth home
         /// with what they learned (dip:ward, did it, nobody else named), its envoy home (dip:envoy, did it), its hostage home
         /// (dip:hostage, did it for the colony: <paramref name="forColony"/>; a hostage of theirs who stayed did it for
-        /// nobody's term), the speaker at a truce sworn (dip:parley, named), the officer who did a task (dip:task, did
-        /// it, a milestone: <paramref name="weighty"/>; a task set, a step of it or one called off is nothing yet); a secret
-        /// pressed is a task against its notable (<paramref name="againstSomeone"/>): told, a milestone, it is the keeper's
-        /// house's wrong; paid, nobody hears of it.
+        /// nobody's term), the speaker at a truce sworn (dip:parley, named). An older save's council tasks (dip:task,
+        /// retired 5 November 2026) are no source.
         /// </summary>
         public static string SourceOf(string kind, HistoryRole role, bool againstSomeone, bool aboutSomeone, bool weighty, bool forColony = true)
         {
@@ -188,20 +184,12 @@ namespace ColonyCouncil
                 case DiplomacyMath.Ward: return aboutSomeone ? "fostered" : "abroad";
                 case DiplomacyMath.Envoy: return "envoy";
                 case DiplomacyMath.Hostage: return forColony ? "hostage" : null;
-                case DiplomacyMath.Task: return !weighty ? null : againstSomeone ? "told" : "task";
                 default: return null;
             }
         }
 
         /// <summary>A ward's guardian is named in the year's end as one who did it only for a good year or better (a fair one is no deed to be known by), else as one with it.</summary>
         public static HistoryRole GuardianRole(bool goodYear) => goodYear ? HistoryRole.Did : HistoryRole.With;
-
-        /// <summary>
-        /// A council task's officer is named in its history as one who did it, except for a task failed (the keeper found
-        /// out: no deed to be known by) and the keeper's secret watch (a secret learned is heard of by nobody, as a secret
-        /// pressed and paid), where they are one with it.
-        /// </summary>
-        public static HistoryRole OfficerRole(bool failed, bool secretWatch) => failed || secretWatch ? HistoryRole.With : HistoryRole.Did;
 
         /// <summary>What the peoples remember of a colonist by name (a mark's kind, ColonistMemoryMath), as renown: a source, or null for one that isn't.</summary>
         public static string SourceOfMark(string markKind) => markKind != null && Sources.ContainsKey(markKind) && Array.IndexOf(MarkKinds, markKind) >= 0 ? markKind : null;

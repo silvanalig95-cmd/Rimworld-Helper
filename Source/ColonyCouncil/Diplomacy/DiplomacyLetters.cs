@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
             p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p)
-            || TaskLetters.Owns(p) || FealtyLetters.Owns(p);
+            || FealtyLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -46,8 +46,6 @@ namespace ColonyCouncil
         public static string WhyNot(Notable n, LetterPurpose p)
         {
             if (!Owns(p) || n == null) return null;
-            // The council's business (release 2c.1, TaskLetters.cs): only an officer's own letter.
-            if (TaskLetters.Owns(p)) return TaskLetters.WhyNot(n);
             // Fealty sworn to their people (release 2c.2, FealtyLetters.cs).
             if (FealtyLetters.Owns(p)) return FealtyLetters.WhyNot(n, Home);
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
@@ -72,7 +70,6 @@ namespace ColonyCouncil
         public static List<LetterTopic> Topics(Notable n, LetterPurpose p)
         {
             if (p == LetterPurpose.Favour) return Topics(n);
-            if (TaskLetters.Owns(p)) return TaskLetters.Topics(n);
             if (FealtyLetters.Owns(p)) return FealtyLetters.Topics(n, Home);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
             if (MatchLetters.Owns(p)) return MatchLetters.Topics(n, Home);
@@ -309,8 +306,7 @@ namespace ColonyCouncil
         /// Tags for their own words in the answer (NeighbourLetters.Quote) that only this frame knows: a pact ended by the
         /// colony's letter is answered as <see cref="PactEndTag"/>, a truce agreed and sworn by word as
         /// <see cref="TruceByWordTag"/>, an oath overtaken by events as <see cref="FealtyMootTag"/> (each in place of its
-        /// purpose's own tag, so no line meant for the other case can fit), and the wards' and the tasks' (WardLetters,
-        /// TaskLetters).
+        /// purpose's own tag, so no line meant for the other case can fit), and the wards' (WardLetters).
         /// </summary>
         public static void QuoteTags(NeighbourLetter l, Notable n, HashSet<string> tags)
         {
@@ -333,7 +329,6 @@ namespace ColonyCouncil
                     tags.Add(TruceByWordTag);
                 }
                 WardLetters.QuoteTags(l, n, tags);
-                TaskLetters.QuoteTags(l, n, tags);
             }
             catch (Exception e)
             {
@@ -363,12 +358,6 @@ namespace ColonyCouncil
             mootLetter = -1;
             try
             {
-                // The council's business (release 2c.1): a task's step, or a secret pressed and their answer.
-                if (TaskLetters.Owns(l.purpose))
-                {
-                    a.line = TaskLetters.Read(l, n, speaker, ref tone, a.things);
-                    return a;
-                }
                 if (WardLetters.Owns(l.purpose))
                 {
                     a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);

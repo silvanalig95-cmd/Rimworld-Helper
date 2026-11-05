@@ -16,7 +16,7 @@
   <!-- The settings -->
   <CC_Settings_DiplomacyFealty>Fealty and vassals</CC_Settings_DiplomacyFealty>
   <CC_SetNote_DiplomacyFealty>The colony may swear fealty to a stronger neighbor, and keep vassals of its own.</CC_SetNote_DiplomacyFealty>
-  <CC_Settings_DiplomacyFealty_Tip>The colony may swear fealty to a people at peace with goodwill 40 or more and two towns or more within reach (never the Empire, whose titles and permits are its own), by a letter to their head, or when they offer their protection to a colony raided twice in a season with five fighters or fewer. Agreed, their head (or one who speaks for them) comes to the gate, anyone who objects (one sworn to vengeance on them, the proud, a devout colonist of another faith) has their say before the council, and the colony's speaker swears by their rite. Each season their collector comes to the gate for the tribute, 150 to 600 silver's worth by the colony's wealth; short, the rest is owed, and still owed at the next season's day the oath breaks (20 goodwill). When their town within reach is attacked they call the colony's levies, two fighters by caravan within five days (refused, 10 goodwill). When a home is raided their band comes without a call, at most once a season, nine times in ten; a season in which they failed lets the colony leave without blame. Renouncing is the council's question and costs their grudge, 30 goodwill. Vassals of the colony's own: the hamlet once sworn, and up to two struggling towns (under 20 prosperity for 30 days, at war elsewhere) that ask for its protection, at most one ask a year. At harvest their carter brings produce, light, usual or heavy as the council sets it (heavy costs 3 goodwill each season); the quartermaster collects a season's dues; the council may call their levies when a home is raided (a third of the threat, once a season), and their dead weigh on their head's regard; they ask for help, for the colony's judgment in a quarrel, or for a camp near them to be broken; a head sour for a season asks to be released, and refused they break away. Faction Territories' vassals get a head who writes and asks; their tribute, purchases and points stay that mod's. Off: nothing new is sworn or asked, and the oaths standing run on.</CC_Settings_DiplomacyFealty_Tip>
+  <CC_Settings_DiplomacyFealty_Tip>The colony may swear fealty to a people at peace with goodwill 40 or more and two towns or more within reach (never the Empire, whose titles and permits are its own), by a letter to their head, or when they offer their protection to a colony raided twice in a season with five fighters or fewer. Agreed, their head (or one who speaks for them) comes to the gate, anyone who objects (one sworn to vengeance on them, the proud, a devout colonist of another faith) has their say before the council, and the colony's speaker swears by their rite. Each season their collector comes to the gate for the tribute, 150 to 600 silver's worth by the colony's wealth; short, the rest is owed, and still owed at the next season's day the oath breaks (20 goodwill). When their town within reach is attacked they call the colony's levies, two fighters by caravan within five days (refused, 10 goodwill). When a home is raided their band comes without a call, at most once a season, nine times in ten; a season in which they failed lets the colony leave without blame. Renouncing is the council's question and costs their grudge, 30 goodwill. Vassals of the colony's own: the hamlet once sworn, and up to two struggling towns (under 20 prosperity for 30 days, at war elsewhere) that ask for its protection, at most one ask a year. At harvest their carter brings produce, light, usual or heavy as the council sets it (heavy costs 3 goodwill each season); the council may call their levies when a home is raided (a third of the threat, once a season), and their dead weigh on their head's regard; they ask for help, for the colony's judgment in a quarrel, or for a camp near them to be broken; a head sour for a season asks to be released, and refused they break away. Faction Territories' vassals get a head who writes and asks; their tribute, purchases and points stay that mod's. Off: nothing new is sworn or asked, and the oaths standing run on.</CC_Settings_DiplomacyFealty_Tip>
 
   <!-- Why not -->
   <CC_Fealty_Why_Off>Fealty and vassals are off in the settings.</CC_Fealty_Why_Off>
@@ -98,8 +98,6 @@
   <CC_Fealty_Msg_PaidOwed>What the colony owed {PEOPLE} goes out to the gate for their collector: {GOODS}. The tribute is clear.</CC_Fealty_Msg_PaidOwed>
   <CC_Fealty_Msg_PaidPart>Part of what the colony owes {PEOPLE} goes out to the gate: {GOODS}. Still owed: {OWED} silver's worth.</CC_Fealty_Msg_PaidPart>
   <CC_Fealty_Hist_PaidOwed>The colony paid {PEOPLE} the tribute it owed.</CC_Fealty_Hist_PaidOwed>
-  <CC_Fealty_Msg_Cart>{PAWN} sends what the colony owes {PEOPLE}: {GOODS}, for their porter at the gate.</CC_Fealty_Msg_Cart>
-  <CC_Fealty_Note_Punctual>The colony's tribute came on time and in full.</CC_Fealty_Note_Punctual>
   <CC_Fealty_Broken_Label>The oath to {PEOPLE} is broken</CC_Fealty_Broken_Label>
   <CC_Fealty_BrokenTribute>A season has passed and the colony still owes {PEOPLE} {OWED} silver's worth of tribute. They hold the oath broken ({WORD}), think {GOODWILL} worse of the colony, and will remember the tribute it never paid.</CC_Fealty_BrokenTribute>
   <CC_Fealty_BrokenByUs>The colony turned on its own liege: {HOW}. {PEOPLE} hold the oath broken ({WORD}), and every people in reach will hear of it.</CC_Fealty_BrokenByUs>
@@ -188,18 +186,13 @@
   <CC_Vassal_Act_Level_Tip>How much they bring at harvest: light, usual, or heavy (which costs their goodwill each season).</CC_Vassal_Act_Level_Tip>
   <CC_Vassal_Act_Levies>Call their levies</CC_Vassal_Act_Levies>
   <CC_Vassal_Act_Levies_Tip>While a threat is on the colony: their people's band walks in some hours later, a third of the threat, once a season at most. Their dead weigh on their head's regard.</CC_Vassal_Act_Levies_Tip>
-  <CC_Vassal_Act_Dues>Collect their dues...</CC_Vassal_Act_Dues>
-  <CC_Vassal_Act_Dues_Tip>The quartermaster writes to their head for the season's dues; their carter brings them to the gate, on time, or half and explained in a hard season.</CC_Vassal_Act_Dues_Tip>
 
   <!-- Vassals: why not -->
-  <CC_Vassal_Why_NotVassal>None of the colony's vassals is of {PEOPLE}.</CC_Vassal_Why_NotVassal>
-  <CC_Vassal_Why_DuesPaid>Their dues were collected this season.</CC_Vassal_Why_DuesPaid>
-  <CC_Vassal_Why_NoHead>Nobody at {TOWN} is known to write to.</CC_Vassal_Why_NoHead>
   <CC_Vassal_Why_LeviesComing>The levies of {TOWN} are on their way already.</CC_Vassal_Why_LeviesComing>
   <CC_Vassal_Why_LeviesSeason>The levies of {TOWN} were called this season already.</CC_Vassal_Why_LeviesSeason>
   <CC_Vassal_Why_NoFighters>{TOWN} has no fighters to send.</CC_Vassal_Why_NoFighters>
 
-  <!-- Vassals: taken under protection, harvest, dues -->
+  <!-- Vassals: taken under protection, harvest -->
   <CC_Vassal_Taken_Label>{TOWN} under the colony's protection</CC_Vassal_Taken_Label>
   <CC_Vassal_Taken>{TOWN}, a town of {PEOPLE}, is under the colony's protection from today: {WORD}. It will bring produce at harvest, may be asked for its levies, and will look to the colony in hard times.</CC_Vassal_Taken>
   <CC_Vassal_Hist_Taken>The colony took {TOWN} under its protection: {WORD}.</CC_Vassal_Hist_Taken>
@@ -212,14 +205,6 @@
   <CC_Vassal_Note_Light>The colony asks little of the harvest.</CC_Vassal_Note_Light>
   <CC_Vassal_Note_Lighter>The council lightened the tribute: {LEVEL} now.</CC_Vassal_Note_Lighter>
   <CC_Vassal_Note_Heavier>The council raised the tribute: {LEVEL} now.</CC_Vassal_Note_Heavier>
-  <CC_Vassal_Dues_OnTime>{NAME} answers that the season's dues, {SILVER} silver, will come to the gate with their carter.</CC_Vassal_Dues_OnTime>
-  <CC_Vassal_Dues_Explained>{NAME} writes that the season has been hard there: half the dues, {SILVER} silver, will come to the gate with their carter, and the rest when they can.</CC_Vassal_Dues_Explained>
-  <CC_Vassal_Hist_Dues>{TOWN} brought its season's dues to the colony: {SILVER} silver.</CC_Vassal_Hist_Dues>
-  <CC_Task_Result_Dues>{PAWN} saw to the season's dues of {TOWN}: {SILVER} silver at the gate.</CC_Task_Result_Dues>
-  <CC_Task_Result_Dues_Explained>{PAWN} saw to the season's dues of {TOWN}: {SILVER} silver at the gate, half, as their head explained.</CC_Task_Result_Dues_Explained>
-  <CC_Task_Result_Tribute>{PAWN} saw the season's tribute to {PEOPLE} paid in full.</CC_Task_Result_Tribute>
-  <CC_Task_Target_Liege>The tribute to {PEOPLE}</CC_Task_Target_Liege>
-  <CC_Task_Target_Vassal>The dues of {TOWN} ({PEOPLE})</CC_Task_Target_Vassal>
 
   <!-- Vassals: levies -->
   <CC_Vassal_Msg_Called>The council calls the levies of {TOWN} by {MEANS}: {RITE}.</CC_Vassal_Msg_Called>

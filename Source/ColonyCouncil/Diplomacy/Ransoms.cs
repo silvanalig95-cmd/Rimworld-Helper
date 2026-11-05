@@ -180,8 +180,7 @@ namespace ColonyCouncil
                 if (h.offers.Any(o => o.captive == p) || !Wanted(p, f, false)) continue;
                 // Nobody could carry their word (at war, no people at peace with both, no call): they don't try.
                 if (Bearer(f) == null && !ByCall(f, map)) continue;
-                // The warden writing to them about their kin (a council task, release 2c.1): their offer comes in half the time.
-                float delay = RansomMath.DelayDays(Rand.Value) * (TaskResults.KinTask(f, map) ? TaskMath.KinSooner : 1f);
+                float delay = RansomMath.DelayDays(Rand.Value);
                 Add(book, h, RansomKind.Theirs, p, null, f, now + Mathf.RoundToInt(delay * RansomMath.DayTicks));
             }
         }
@@ -197,8 +196,6 @@ namespace ColonyCouncil
             {
                 bool notable = Notable(captive, f, out bool leader, out _);
                 o.price = RansomMath.Price(captive.MarketValue, leader, notable, Rand.Value);
-                // ...and a quarter higher (the warden's council task).
-                if (TaskResults.KinTask(f, h.Map)) o.price = Mathf.RoundToInt(o.price * TaskMath.KinHigher);
                 if (RansomMath.InGoods((int)f.def.techLevel)) o.goods = TribeGoods(Rand.Value)?.defName;
             }
             h.offers.Add(o);
@@ -797,34 +794,6 @@ namespace ColonyCouncil
             if (h.offers.Count >= RansomMath.MaxOffers) return false;
             var o = Add(book, h, RansomKind.Demand, null, p, f, Now);
             o.price = RansomMath.Fee(p.MarketValue, Rand.Value);
-            if (!Arrivals.TryEntryCell(map, out _))
-            {
-                h.offers.Remove(o);
-                return false;
-            }
-            Come(h, o, map);
-            if (o.stage != RansomStage.Coming)
-            {
-                h.offers.Remove(o);
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// The warden's letters (a council task, release 2c.1, Diplomacy/TaskResults.cs): their word on a price for one of the
-        /// colony's they hold comes to the gate as the game's demand does, the price lowered by the warden's work
-        /// (<paramref name="factor"/>). False: an offer for them is open already, or nobody can carry their word.
-        /// </summary>
-        public static bool DemandFor(Map map, Pawn p, Faction f, float factor)
-        {
-            var book = DiplomacyBook.Instance;
-            if (book == null || map == null || p == null || f == null || For(p) != null || Bearer(f) == null) return false;
-            var h = book.HomeOf(map);
-            if (h.offers.Count >= RansomMath.MaxOffers) return false;
-            var o = Add(book, h, RansomKind.Demand, null, p, f, Now);
-            o.price = Mathf.Max(10, Mathf.RoundToInt(RansomMath.Fee(p.MarketValue, Rand.Value) * factor));
-            o.asked = true;
             if (!Arrivals.TryEntryCell(map, out _))
             {
                 h.offers.Remove(o);

@@ -699,25 +699,6 @@ namespace ColonyCouncil
             Found(home, c, spotter, doing, now);
         }
 
-        /// <summary>
-        /// The marshal's patrol of the colony's edges at dawn (a council task, Diplomacy/CouncilTasks.cs): a camp near this
-        /// home not yet seen is seen now, the patrol's walker the one who saw it. True when one was.
-        /// </summary>
-        public static bool SpotByPatrol(Map home, Pawn spotter)
-        {
-            var rh = Of(home);
-            var c = rh?.camp;
-            if (!On || c == null || c.stage != CampStage.Hidden || spotter == null) return false;
-            if (Find.WorldObjects.AnyMapParentAt(TileOf(c)))
-            {
-                var t = FindTile(home);
-                if (!t.Valid) return false;
-                c.tile = Refs.Of(t);
-            }
-            Found(home, c, spotter, "CC_RaidCamp_Doing_Patrol".Translate().Resolve(), Now);
-            return c.stage == CampStage.Found;
-        }
-
         private static Pawn Spotter(Map home, bool anyOutdoors, out string doing)
         {
             doing = null;

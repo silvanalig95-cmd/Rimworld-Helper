@@ -70,7 +70,7 @@ namespace ColonyCouncil
         public static readonly string[] Purposes = { "Favour", "Pact", "Truce", "Match", "Ward", "Ransom", "Envoy", "Fealty" };
 
         /// <summary>The right-click acts stage 2 adds after Invite, in its order; the first two are offered (AskFavour in 2a.1, SpeakPact in 2a.2).</summary>
-        public static readonly string[] Acts = { "AskFavour", "SpeakPact", "SpeakMatch", "OfferExchange", "SoundOut" };
+        public static readonly string[] Acts = { "AskFavour", "SpeakPact", "SpeakMatch", "OfferExchange" };
 
         // ---------------- A people's stance ----------------
 

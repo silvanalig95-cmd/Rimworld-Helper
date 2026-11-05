@@ -90,8 +90,6 @@ namespace ColonyCouncil
             MatchFacts(s, f);
             // Wards and hostages either way (Diplomacy/FactsWards.cs): tie:ward, tie:hostage, them:ward, them:hostage, them:fostered.
             WardFacts(s, f);
-            // The council's tasks and the keeper of secrets (Diplomacy/FactsTasks.cs): us:task, us:task:KIND, task:writes, task:visited, them:caughtkeeper, them:pressed, keeper:watched.
-            TaskFacts(s, f);
             // Fealty and vassals (Diplomacy/FactsFealty.cs): fealty:levies, fealty:protected, fealty:short, vassal:heavy, vassal:levy.
             FealtyFacts(s, f);
             // House renown (Diplomacy/FactsRenown.cs): house:ours, house:renowned, house:knownfor:KIND, them:house, them:house:feud, {HOUSE}, {KNOWNFOR}, {RENOWN}.

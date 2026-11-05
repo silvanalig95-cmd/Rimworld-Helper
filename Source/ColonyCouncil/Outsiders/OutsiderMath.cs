@@ -30,7 +30,10 @@ namespace ColonyCouncil
         OfferExchange,
         /// <summary>Speak for a match between one of the colony's and one of theirs, face to face (Diplomacy/MatchActs.cs, release 2b.2).</summary>
         SpeakMatch,
-        /// <summary>The keeper of secrets sounds them out, or presses a secret on the one it is about (Diplomacy/KeeperOfSecrets.cs, release 2c.1).</summary>
+        /// <summary>
+        /// Obsolete: the keeper of secrets' sounding out (release 2c.1), retired with the seat on 5 November 2026. Kept so a
+        /// talk saved under way keeps its place among the acts; never offered, and its end does nothing.
+        /// </summary>
         SoundOut
     }
 

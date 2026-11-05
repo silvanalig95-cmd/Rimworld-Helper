@@ -46,8 +46,6 @@
   <!-- The colony's own vassals -->
   <CC_Vassal_Taken_3>The colony has taken {TOWN} of {PEOPLE} under its protection: {WORD}. Its produce will come at harvest, its levies when called, and its troubles to the colony's gate.</CC_Vassal_Taken_3>
   <CC_Vassal_Harvest_3>The harvest from {TOWN} has come up to the gate, the share the council set ({LEVEL}): {GOODS}.</CC_Vassal_Harvest_3>
-  <CC_Vassal_Dues_OnTime_3>{NAME} writes that the season has been fair to them: {SILVER} silver in dues, which their carter will bring to the gate.</CC_Vassal_Dues_OnTime_3>
-  <CC_Vassal_Dues_Explained_3>{NAME} writes that it has been a lean season, and that they can send half the dues for now: {SILVER} silver, with their carter.</CC_Vassal_Dues_Explained_3>
   <CC_Vassal_Msg_Called_3>The council sends to {TOWN} by {MEANS} for its fighters: {RITE}.</CC_Vassal_Msg_Called_3>
   <CC_Vassal_Band_3>{COUNT} fighters from the colony's vassals of {PEOPLE} have come in to meet {ENEMY}: {WORD}, as their oath asks.</CC_Vassal_Band_3>
   <CC_Vassal_Band_Late_2>The levies of {PEOPLE} came, but the fight was done before they reached it, and they went home.</CC_Vassal_Band_Late_2>

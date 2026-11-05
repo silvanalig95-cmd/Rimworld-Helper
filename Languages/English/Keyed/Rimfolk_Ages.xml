@@ -80,14 +80,6 @@
   <CC_Form_Fealty_Spacer_Rite>a corporate accord</CC_Form_Fealty_Spacer_Rite>
 
   <!-- The council's tasks -->
-  <CC_Form_CouncilTasks_Tribal>the elders' errands</CC_Form_CouncilTasks_Tribal>
-  <CC_Form_CouncilTasks_Tribal_Rite>a word carried to their elders</CC_Form_CouncilTasks_Tribal_Rite>
-  <CC_Form_CouncilTasks_Medieval>the council's offices</CC_Form_CouncilTasks_Medieval>
-  <CC_Form_CouncilTasks_Medieval_Rite>an envoy received at court</CC_Form_CouncilTasks_Medieval_Rite>
-  <CC_Form_CouncilTasks_Industrial>the committee's portfolios</CC_Form_CouncilTasks_Industrial>
-  <CC_Form_CouncilTasks_Industrial_Rite>a delegate at their committee</CC_Form_CouncilTasks_Industrial_Rite>
-  <CC_Form_CouncilTasks_Spacer>the board's remits</CC_Form_CouncilTasks_Spacer>
-  <CC_Form_CouncilTasks_Spacer_Rite>a liaison to their directorate</CC_Form_CouncilTasks_Spacer_Rite>
 
   <!-- A house's renown -->
   <CC_Form_Renown_Tribal>a clan's name and totem</CC_Form_Renown_Tribal>

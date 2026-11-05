@@ -455,8 +455,7 @@ namespace ColonyCouncil
             }
             int value = TributeValue(home);
             t.terms.number = day + FealtyMath.SeasonDays;
-            bool punctual = Vassals.QuartermasterOn(home, f);
-            string carried = CollectTribute(home, f, value, punctual ? 4 : 2, out int paid);
+            string carried = CollectTribute(home, f, value, 2, out int paid);
             int owed = FealtyMath.Owed(value, paid);
             var actors = new List<HistoryActor> { new HistoryActor(Diplomacy.Colony(home), HistoryRole.Did), new HistoryActor(Refs.Of(f), HistoryRole.For) };
             if (owed > 0)
@@ -475,7 +474,6 @@ namespace ColonyCouncil
                 WorldLedger.Touch(t);
                 FactionMemory.Note(f, "tribute", value.ToString());
                 Diplomacy.Write(DiplomacyMath.Tribute, actors, Diplomacy.Colony(home), FealtyWords.P("CC_Fealty_Hist_Paid", FealtyWords.People(f).Named("PEOPLE"), value.Named("VALUE")));
-                if (punctual) Vassals.Punctual(home, f);
                 Tell.Minor(NewsKind.World, Importance.Notable, home, FealtyWords.T("CC_Fealty_Paid", FealtyWords.People(f).Named("PEOPLE"), carried.Named("GOODS"), form.word.Named("WORD")),
                     LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             }

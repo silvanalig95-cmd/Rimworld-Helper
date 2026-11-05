@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Retired with the council's tasks and the keeper of secrets (the player's decision, 5 November 2026). An older save can
+    hold the marshal's dawn patrol under way and a keeper's seat with its hediff; the game reads both by name, so they stay
+    here, ended at once and quietly (Source/ColonyCouncil/Diplomacy/Retired.cs). Nothing makes either any more.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_TaskPatrol</defName>
+    <driverClass>ColonyCouncil.JobDriver_TaskPatrol</driverClass>
+    <reportString>walking the edges.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <HediffDef>
+    <defName>Council_Office_SecretKeeper</defName>
+    <label>keeper of secrets</label>
+    <description>A seat the council no longer has.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li>
+        <compClass>ColonyCouncil.HediffComp_Retired</compClass>
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>
