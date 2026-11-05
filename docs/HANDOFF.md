@@ -10,6 +10,63 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   review and text pass (0.81.0, 0.88.0 to 0.90.0) are in, none of it yet seen in the game. Round b (2b.1 feasts and
   contests, 2b.2 marriage alliances, 2b.3 wards and hostages) waits for the player's word after playing. Stage 3's
   17 decisions and the harm review's picks are still with the player.
+- stage 2 release 2b.1, feasts and contests (docs/design/stage2-diplomacy.md, item 5; the player's decisions 7 and 9 as
+  recommended; built beside 2b.3, wards and hostages, which another agent builds at the same time: expect small merges
+  where both add to `DiplomacyHome`, `Diplomacy.Hourly`, `DiplomacyModel` (rows, acts, `WhyHere`), the settings'
+  Diplomacy section and the Almanac's diplomacy page). DESIGN.md, "Diplomacy" → "Feasts with guests" has the whole of
+  it. Pure and tested (`Tools/Tests/FeastTests.cs`, 288 checks): `Diplomacy/FeastMath.cs` (`ContestKind`,
+  `FeastPurpose`, `FeastStage`, `GuestState`, `FeastHope`; one a season (`MayPlan`), who may be invited (`MayInvite`:
+  at peace, regard 0, three days' travel), `AcceptChance`/`Accepts`, `ComeDays`, `FeastDay`, `Fine`, `ArriveNow`,
+  `GiveUp`, `Leave`, hopes by age (`Hope`, `Answers`, `Offered`), the contests' scoring (`BoutChampion`, `RaceWinner`,
+  `HuntWinner`, `TableChance`, `ShootingWinner`, `Champion`, `HuntGame`, `IsTarget` by name), the bad sides
+  (`HardBlow` 1/25 under `MayBeHurt`: never a child, with child, or hurt in three days; `SourNight` 1/15 by temper,
+  never a child), `Welcome`, `DeedWeight`, `HeadShare`, `Suggests`, `MealsWanted`, `AwayWin`, the topic `feast:HOME`, the
+  facts' tags). Game side, all in `Diplomacy/`: `FeastBook.cs` (`GuestFeast`, `FeastGuest`, `FeastResult`,
+  `FeastTale`; the play-outs already own the name `FeastPlan`), `Feasts.cs` (the hub: planning and why not, the
+  invitations through `NeighbourLetters.Send`, their answer, the day, the arrival with a retinue to the gate, the day's
+  look from the guests' group, the hosting rules, the contests in turn, the feast as a play-out of the kind Feast, the
+  champion and the prize, the sour night, first light and the welcome, lost, hurt, insulted, called off, the steward's
+  suggestion `ChoiceLetter_FeastSuggest`, `Host` and `StageChanged` for 2b.2, `FeastDefOf`), `FeastLord.cs`
+  (`LordJob_FeastGuests`, `LordToil_FeastGuests`, `JobDriver_FeastRun`, `JobDriver_FeastShoot`, `JobDriver_FeastPrize`),
+  `FeastContests.cs` (the five contests, who takes part, where, their steps and results, the watchers; not saved),
+  `FeastBouts.cs` (`Outsiders.FeastBout` and `FeastBrawl` in the outsiders' own partial class), `FeastLetters.cs`
+  (`FeastLetters.Read`; `FeastAway`, the colony's own at a neighbour's feast), `FeastDialog.cs` (`Dialog_Feast`),
+  `FeastPanels.cs` (the Event card, a notable's card, the people card, the calendar's row, the Peoples view's rows and
+  act, the inbox's `feast-coming` and `feast-under-way`), `FeastWords.cs`, `FactsFeast.cs`, `FeastDebug.cs` (dev
+  actions: a feast set for today with a people's notables, the guests now, the contests now, a contest ended, the feast
+  now, first light, the steward's suggestion, a tale from away). Shared, small: `DiplomacyHome` (`feast`, `lastFeast`,
+  `feastHeld`, `feastSuggested`, `tales`; `AnyWaiting`; homes lost), `Diplomacy.Hourly` (the hour and the day),
+  `NeighbourLetters.Read` (three lines: the feast's answer sets the tone and the visit line), `PlayGuests` (`Feast`),
+  `DiplomacyModel` (rows, the act, `WhyHere`), `CalendarPanel` (the row), `FactsLedger` (one call), `FactionMemory`
+  (the deed `feasted`, Favor 8), `ColonyTraitMath.Hosting` (`feasted`), `Workers_MissionRemembered` (one call:
+  `FeastAway.Attended`), setting `diplomacyFeasts` (section Diplomacy). Defs: `Defs/Misc/Rimfolk_Feasts.xml` (the
+  steward's letter, three jobs, two duties). Content: 27 talk pieces (`Rimfolk_OutsiderTalks_Feasts.xml`), 24 letter
+  lines and 47 spoken lines (`Rimfolk_Lines_Feasts.xml`), keyed words with 17 variants (`Rimfolk_Feasts.xml`), the
+  Almanac's diplomacy page (two paragraphs in its description and a line in Settings: new sections there trip textcheck;
+  no keyword changes), README ("Feasts with guests"), DESIGN.md, the save models (`guests`, `retinue`, `contests`,
+  `results`, `tales`). Tests changed with it: `OutsiderTalkTests` (the tags and placeholders); the DefValidator knows
+  `FEAST`, `CHAMPION` and the new dynamic keys.
+  The entry point for 2b.2's weddings: `Feasts.Host(home, people, notables, FeastPurpose.Wedding, whenTick, tag)`
+  brings guests who already agreed on the first fine day from that tick (no letters, no contests unless given), to wait
+  at the gate, sit at the evening's feast with the colony (`PlayGuests.Feast`), stay the night and go home at first
+  light, their welcome counted as a feast's; `Feasts.StageChanged` (an event: plan, map, stage) says when they are at the
+  gate (`FeastStage.Here`: hold the ceremony then) and gone (`FeastStage.Done`); `GuestFeast.tag` carries the wedding's
+  own key, and This week, the calendar and Here and away already speak of wedding guests (`CC_Feast_Week_Wedding`,
+  `CC_Feast_Arrive_Wedding`, `CC_Feast_HereAs_Wedding`).
+  Left out, and why: a sore loser's challenge on a later visit (the harm review's 2.8.1, not picked); renown for the
+  champion's house (round d); Empire honor for a feast (decision 9 names only two places); the race's marker as a thing
+  on the map (runners go to a cell; a flag would need a building of Rimfolk's own); the Empire's concert without
+  Royalty (the feast's notes over heads stand in); the "Hurts from everyday life" scale (`Feasts.HarmScale` is 1 until
+  the harm review's setting is built). The feast's contests run in the afternoon and the feast in the evening (the
+  design's order reads the other way; the light and the hunt want the day). To look at in game: the plan from a people's
+  card, the calendar row and the steward's letter (guests greyed with why not, contests with their risks, the prize, the
+  meals line); the invitations as letters and calls and their answers; the day set on the calendar and in This week;
+  the guests at the gate and the greeting; each contest (a bout in the ring with watchers, the runners at the line, the
+  sprint and a stumble, the hunt and its kills, two games at the tables with a guest who has no recreation need, a
+  shooting match with Misc. Training's target), the feast with the guests served, the Empire's guests and a concert,
+  the prize carried to a guest and to a colonist, a night in Hospitality's guest beds and on the floor, a sour night with
+  the deeper hooks, first light and the letter; a raid during the day, rain at noon, a guest dying, "Call it off"; a
+  neighbour's invitation attended and the tale told at home; 2b.2 calling `Feasts.Host`.
 - 0.91.0, journey planner: who to bring and what to pack (the player's request, with a screenshot of "Plan a journey": a better
   overview of the colonists to judge who to bring, their state, what to bring, the recommended picked for them; and,
   the same release, RimMarket's stall goods listed and taken out of the stock for the road). DESIGN.md, "Rimfolk's

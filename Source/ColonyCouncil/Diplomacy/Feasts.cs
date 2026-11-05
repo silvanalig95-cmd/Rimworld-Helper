@@ -717,8 +717,12 @@ namespace ColonyCouncil
             int now = Now;
             if (lookGame != Current.Game)
             {
+                // A game loaded: what this session saw of another game's feasts is let go.
                 lookGame = Current.Game;
                 lastLook.Clear();
+                greeted.Clear();
+                concerts.Clear();
+                sour.Clear();
             }
             if (!fromHour && lastLook.TryGetValue(homeKey, out int last) && now - last < 200) return;
             lastLook[homeKey] = now;
