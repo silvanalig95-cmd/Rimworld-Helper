@@ -321,7 +321,8 @@ namespace ColonyCouncil
             var f = w.people;
             try
             {
-                if (p.Spawned) p.ExitMap(false, CellRect.WholeMap(p.Map).GetClosestEdge(p.Position));
+                // Out at the edge on their own walk (JobDriver_WardLeave): gone from the map; anyone who fled goes their own way.
+                if (p.Spawned && p.CurJobDef == WardDefOf.Rimfolk_WardLeave) p.ExitMap(false, CellRect.WholeMap(p.Map).GetClosestEdge(p.Position));
                 if (p.Faction == Faction.OfPlayer && f != null && !f.defeated) p.SetFaction(f);
             }
             catch (Exception e)

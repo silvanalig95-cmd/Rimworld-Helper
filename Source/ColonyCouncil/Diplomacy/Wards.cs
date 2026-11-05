@@ -668,7 +668,9 @@ namespace ColonyCouncil
             }
             if (p.Faction != Faction.OfPlayer)
             {
-                Wronged(h, w, map, "CC_Ward_End_SentAway");
+                // A forfeit hostage gone (fled, or out at the edge): slipped away; anyone else sent away before the term was out.
+                if (w.Hostage && w.stage == WardStage.Forfeit) Hostages.SlippedAway(h, w, map);
+                else Wronged(h, w, map, "CC_Ward_End_SentAway");
                 return false;
             }
             return true;
@@ -938,6 +940,9 @@ namespace ColonyCouncil
                 then?.Invoke();
                 // Out at the edge as the colony's lodger: theirs again in the world.
                 if (p.Faction == Faction.OfPlayer && !p.Spawned && f != null && !f.defeated) p.SetFaction(f);
+                // Theirs again on a map with nobody to walk out with (on another map when the year ended): they walk out alone.
+                if (p.Spawned && p.Faction != Faction.OfPlayer && !p.Downed && p.GetLord() == null)
+                    LordMaker.MakeNewLord(p.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), p.Map, new List<Pawn> { p });
             }
             catch (Exception e)
             {
