@@ -9,12 +9,14 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A faith that scorns automated turrets (an ideology mod's precept, such as "Has automated turrets: scorned") gives
-    /// its mood to everyone while the colony owns a turret anywhere: on another home, or in a hatch's dungeon below the
-    /// home, where a hacked terminal hands the colony the ancient turrets of that small map. The player's word: the mood
-    /// should come only where a turret stands. So the precepts about turrets are found by name when the game starts, and
-    /// their situational mood holds only for someone on a map where the colony has an automated turret (one nobody has to
-    /// man; a mortar doesn't count). It never gives the mood where the precept wouldn't; it only takes it away elsewhere.
+    /// A faith that scorns automated turrets (an ideology mod's precept, such as Genetic Rim's "autonomous weapons:
+    /// scorned") gives its mood to everyone while the colony owns a turret anywhere: on another home, or in a hatch's
+    /// dungeon below the home, where a hacked terminal hands the colony the ancient turrets of that small map, which the
+    /// game keeps loaded once entered. The player's word: the mood should come only where a turret stands. So the moods
+    /// the game's own check gives (ThoughtWorker_Precept_HasAutomatedTurrets, whatever precept carries it), and those of
+    /// precepts whose name says turrets, hold only for one of the colony's people on a map where the colony has what that
+    /// check counts: an automated turret (one nobody has to man; a mortar doesn't count) or, with Biotech, one of its
+    /// mechanoids. It never gives the mood where the precept wouldn't; it only takes it away elsewhere.
     /// </summary>
     public static class TurretFaith
     {
@@ -22,16 +24,22 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<int, (int tick, bool has)> cache = new Dictionary<int, (int, bool)>();
 
-        /// <summary>The situational moods of every precept about turrets (its issue or its own name says turrets).</summary>
+        /// <summary>
+        /// The moods about turrets: every thought the game's own turret check gives (Genetic Rim's precept is named for
+        /// autonomous weapons, not turrets, and uses it), and the situational moods of precepts whose issue, own name or
+        /// thought says turrets (a mod's own check).
+        /// </summary>
         public static List<ThoughtDef> Thoughts()
         {
             var list = new List<ThoughtDef>();
+            foreach (var t in DefDatabase<ThoughtDef>.AllDefsListForReading)
+                if (t?.workerClass != null && typeof(ThoughtWorker_Precept_HasAutomatedTurrets).IsAssignableFrom(t.workerClass) && !list.Contains(t))
+                    list.Add(t);
             foreach (var p in DefDatabase<PreceptDef>.AllDefsListForReading)
             {
-                if (!About(p)) continue;
-                if (p.comps == null) continue;
+                if (p?.comps == null) continue;
                 foreach (var c in p.comps)
-                    if (c is PreceptComp_SituationalThought s && s.thought != null && !list.Contains(s.thought))
+                    if (c is PreceptComp_SituationalThought s && s.thought != null && (About(p) || Has(s.thought.defName)) && !list.Contains(s.thought))
                         list.Add(s.thought);
             }
             return list;
@@ -42,7 +50,10 @@ namespace ColonyCouncil
 
         private static bool Has(string name) => name != null && name.IndexOf("Turret", StringComparison.OrdinalIgnoreCase) >= 0;
 
-        /// <summary>The colony has an automated turret on this map (checked at most once a 250-tick stretch per map).</summary>
+        /// <summary>
+        /// The colony has on this map what the game's turret check counts (checked at most once a 250-tick stretch per map):
+        /// an automated turret (a turret building nobody has to man), or, with Biotech, a mechanoid it controls.
+        /// </summary>
         public static bool TurretOn(Map map)
         {
             if (map == null) return false;
@@ -50,19 +61,26 @@ namespace ColonyCouncil
             if (cache.TryGetValue(map.uniqueID, out var c) && now - c.tick < 250 && now >= c.tick) return c.has;
             bool has = false;
             foreach (var b in map.listerBuildings.allBuildingsColonist)
-                if (b is Building_Turret && b.TryGetComp<CompMannable>() == null)
+                if (b?.def?.building != null && b.def.building.IsTurret && !b.def.HasComp(typeof(CompMannable)))
                 {
                     has = true;
                     break;
                 }
+            if (!has && ModsConfig.BiotechActive)
+                foreach (var m in map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer))
+                    if (m.IsColonyMechPlayerControlled)
+                    {
+                        has = true;
+                        break;
+                    }
             cache[map.uniqueID] = (now, has);
             return has;
         }
     }
 
     /// <summary>
-    /// The turret precepts' moods hold only on a map with one of the colony's automated turrets
-    /// (Integrations/TurretFaith.cs). The methods are the precepts' own thought workers, found when the game starts.
+    /// The turret precepts' moods hold only on a map with one of the colony's automated turrets or mechanoids
+    /// (Integrations/TurretFaith.cs). The methods are the moods' own thought workers, found once the defs have loaded.
     /// </summary>
     [HarmonyPatch]
     public static class Patch_TurretFaith
@@ -100,7 +118,8 @@ namespace ColonyCouncil
             try
             {
                 var p = __args != null && __args.Length > 0 ? __args[0] as Pawn : null;
-                if (p == null) return;
+                // The colony's people only: the game weighs another people's against their own turrets, left as it is.
+                if (p == null || p.Faction != Faction.OfPlayer) return;
                 if (!TurretFaith.TurretOn(p.MapHeld)) __result = ThoughtState.Inactive;
             }
             catch (Exception e)

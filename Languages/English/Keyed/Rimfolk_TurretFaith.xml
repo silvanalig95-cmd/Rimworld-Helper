@@ -3,7 +3,7 @@
 
   <!-- A faith's precept against automated turrets, only where a turret stands (Source/ColonyCouncil/Integrations/TurretFaith.cs). -->
   <CC_Settings_FaithTurretsHere>A faith against turrets minds only the turrets where they are</CC_Settings_FaithTurretsHere>
-  <CC_Settings_FaithTurretsHere_Tip>With an ideology that scorns automated turrets: the game gives its mood to everyone while the colony owns such a turret anywhere, on another home or in a hatch's dungeon below the home whose turrets a hacked terminal handed over. With this on, the mood comes only to someone on a map where the colony has an automated turret. A turret someone has to man, such as a mortar, doesn't count. Needs the deeper game hooks.</CC_Settings_FaithTurretsHere_Tip>
+  <CC_Settings_FaithTurretsHere_Tip>With an ideology that scorns automated turrets or autonomous weapons: the game gives its mood to everyone while the colony owns such a turret anywhere, on another home or in a hatch's dungeon below the home whose turrets a hacked terminal handed over (the game keeps that dungeon's map once entered). With this on, the mood comes only to the colony's people on a map where the colony has an automated turret, or one of its mechanoids, which the game counts too. A turret someone has to man, such as a mortar, doesn't count. Needs the deeper game hooks.</CC_Settings_FaithTurretsHere_Tip>
   <CC_SetNote_FaithTurretsHere>A faith against turrets minds only the map where the turrets stand.</CC_SetNote_FaithTurretsHere>
 
 </LanguageData>

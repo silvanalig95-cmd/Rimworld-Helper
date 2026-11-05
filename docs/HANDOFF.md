@@ -6,6 +6,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.101.1, the player's report that the turret mood still reached everyone (save Atia, 5 November): the colony's faith
+  (Ideo_28, "Astro-Genetics") holds Genetic Rim's `GR_AutonomousWeapons_Scorned` (issue `AutonomousWeapons`), whose mood
+  `GR_HasAutomatedTurrets_Scorned` uses the game's `ThoughtWorker_Precept_HasAutomatedTurrets` (Genetic Rim's
+  `1.7/Mods/Ideology/Defs/PreceptDefs/Precepts_AutonomousWeapons.xml`). 0.93.1 found the moods by the precept's or issue's
+  name holding "Turret", so it found none, `Patch_TurretFaith.Prepare` stood down and nothing was patched. Now
+  `TurretFaith.Thoughts` takes every ThoughtDef whose worker is (or derives from) the game's turret check, plus the
+  situational moods of precepts whose name, issue or thought says turrets. `TurretOn` counts what the game's check counts
+  (a turret building by `building.IsTurret` without `CompMannable`, and with Biotech a colony mech it controls), and the
+  postfix touches only the colony's own people (the game weighs another people's by their own faction). The hatch's
+  pocket map (`AncientStockpile`, uniqueID 1) holds the hacked `Turret_AncientArmoredTurret` of the colony; the game
+  keeps a pocket map loaded once entered (`MapPortal`), and `ColonistBar.CheckRecacheEntries` gives every loaded map a
+  group, an empty one a placeholder: the empty group in the player's bar is the game's own, not colonists left behind.
 - 5 November 2026, a play-test point after 0.101.0: stage 2 is built, reviewed and given its text pass except 2c.3
   schemes (round d: 0.99.0 house renown, 0.99.1 its review, 0.100.0 against their nature, 0.100.1 its review, 0.101.0
   the round's text pass), none of round c or d yet seen in the game. Nothing new is built until the player has played

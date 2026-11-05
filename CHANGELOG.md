@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Turrets where they stand, again
+
+*5 November 2026, version 0.101.1*
+
+- Fixed: a faith that scorns autonomous weapons (Genetic Rim's precept) still gave its turret mood to everyone while a hacked turret stood in a hatch's dungeon, because its name never says turrets. Every mood that comes from the game's own turret check is now kept to the map with the turret.
+- The colony's mechanoids count as the game counts them: the mood stays with whoever shares a map with one, and visitors of other peoples are left to the game.
+
 ## Renown and nature in words
 
 *5 November 2026, version 0.101.0*

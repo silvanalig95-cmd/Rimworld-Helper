@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.101.1</version>
+        <date>5 November 2026</date>
+        <title>Turrets where they stand, again</title>
+        <points>
+          <li>Fixed: a faith that scorns autonomous weapons (Genetic Rim's precept) still gave its turret mood to everyone while a hacked turret stood in a hatch's dungeon, because its name never says turrets. Every mood that comes from the game's own turret check is now kept to the map with the turret.</li>
+          <li>The colony's mechanoids count as the game counts them: the mood stays with whoever shares a map with one, and visitors of other peoples are left to the game.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.101.0</version>
         <date>5 November 2026</date>
         <title>Renown and nature in words</title>
