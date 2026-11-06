@@ -49,13 +49,21 @@ namespace ColonyCouncil
             var annals = comp.annals;
             var author = annals.Author(comp, out bool keeps);
             var sb = new StringBuilder();
+            // A part's heading is written with its first paragraph, so a part with nothing to say has none.
+            string heading = null;
             void Para(string s)
             {
                 if (s.NullOrEmpty()) return;
+                if (heading != null)
+                {
+                    if (sb.Length > 0) sb.Append("\n\n");
+                    sb.Append(heading);
+                    heading = null;
+                }
                 if (sb.Length > 0) sb.Append("\n\n");
                 sb.Append(s);
             }
-            void Part(string key) => Para(key.Translate().Resolve().Colorize(ColoredText.TipSectionTitleColor));
+            void Part(string key) => heading = key.Translate().Resolve().Colorize(ColoredText.TipSectionTitleColor);
             string ord = HerdStory.Ordinal(year);
             if (author == null) Para("CC_YearOne_OpeningNobody".Translate(ord.Named("ORD")).Resolve());
             else if (annals.Partial(sinceTick))
@@ -114,12 +122,9 @@ namespace ColonyCouncil
             }
 
             // The founding: who has been here since the first days, the dead, the colony's name, its customs.
-            string founding = HappeningWorker_Founding.YearFacts(map);
-            if (!founding.NullOrEmpty())
-            {
-                Part("CC_YearOne_PartFounding");
-                Para(founding);
-            }
+            Part("CC_YearOne_PartFounding");
+            Para(HappeningWorker_Founding.YearFacts(map));
+            heading = null;
             Para(annals.LastWord(author));
 
             string text = sb.ToString();
