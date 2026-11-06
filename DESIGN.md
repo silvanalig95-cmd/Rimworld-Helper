@@ -1463,8 +1463,9 @@ every age.
 
 Under long hours (any work), a harvest push (`hurtsAt` Field) or a building season (`hurtsAt` Heavy), each with `hurts`
 TiredHands, the hourly look counts the hours each colonist is found at the work the decree drives (`HarmMath.WorkOf`: the
-stove and the forge, the bench, building and mining, hauling, the field). The sixth hour in a day, a long day, has one
-roll, at that work: one in 150 (`TiredHandsChance`, the everyday work ailments' rate), twice below 30% rest, once more for
+stove and the forge, the bench, building and mining, hauling, the field). From the sixth hour in a day, a long day, the first
+hour they're found right at it (carrying the load, or standing at the bench, the stove, the wall or the plants rather
+than walking to them, so the slip shows where the words put it) has one roll: one in 150 (`TiredHandsChance`, the everyday work ailments' rate), twice below 30% rest, once more for
 a second work decree driving it, half for the tough, half in a spacer colony. A slip is one of the game's wounds of 3 to 6
 (5 to 8 in a spacer colony) by the work and the colony's means (`HarmMath.WorkSlip`): a cut at the bench, a crushed hand
 at an industrial colony's machine, a fabricator's burn; a burn at the stove, fire pit or forge; a crushed foot under a
@@ -1478,8 +1479,8 @@ was kept.
 ### Working through it (3.2.1, ailments and health stories)
 
 With the everyday ailments on, a strained back or a sprained ankle that is untended and out of bed counts its hours of
-heavy work (hauling, building, mining) each day. At the fourth hour in a day, one roll for that ailment (once each, in
-session memory): one in ten. Not while the rest-when-ill decree holds. A strained back tears: `Council_Ail_TornBack`
+heavy work (hauling, building, mining) each day. From the fourth hour in a day, the first hour they're found right at it
+has one roll for that ailment (once each, in session memory): one in ten. Not while the rest-when-ill decree holds. A strained back tears: `Council_Ail_TornBack`
 (Rimfolk's own ailment, in the strain's place; 3 to 5 weeks, sharper pain, half the carrying, half as long in bed,
 tending helps; its own mood in place of the strain's, a hint with the strains). A sprained ankle gives: a fall, a bruise
 of 3 to 5 on the leg, or a crack of 2 to 4 on its bone one time in three; the sprain stays. Either way the load drops,

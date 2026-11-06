@@ -124,13 +124,25 @@ namespace ColonyCouncil
         private static void Hour(Pawn p, int day)
         {
             var work = WorkNow(p);
-            TiredHands(p, work, day);
-            Through(p, work == WorkHurtKind.Heavy || work == WorkHurtKind.Load, day);
+            bool at = AtIt(p, work);
+            TiredHands(p, work, at, day);
+            Through(p, work == WorkHurtKind.Heavy || work == WorkHurtKind.Load, at, day);
+        }
+
+        /// <summary>
+        /// Right at the work this moment, so a slip shows where the words say it happened: carrying the load, or standing at
+        /// the bench, the stove, the wall, the rock or the plants rather than walking to them.
+        /// </summary>
+        private static bool AtIt(Pawn p, WorkHurtKind work)
+        {
+            if (work == WorkHurtKind.None) return false;
+            if (work == WorkHurtKind.Load) return p.carryTracker?.CarriedThing != null;
+            return !(p.pather?.Moving ?? false);
         }
 
         // ================= Tired hands =================
 
-        private static void TiredHands(Pawn p, WorkHurtKind work, int day)
+        private static void TiredHands(Pawn p, WorkHurtKind work, bool at, int day)
         {
             if (work == WorkHurtKind.None) return;
             var decrees = DecreeTracker.Of(p);
@@ -146,7 +158,8 @@ namespace ColonyCouncil
             if (driving == 0) return;
             var d = DayOf(days, p, day);
             d.hours += 1f;
-            if (d.hours < HarmMath.LongDayHours || d.rolled) return;
+            // The long day's one roll waits for an hour they're found right at it.
+            if (d.hours < HarmMath.LongDayHours || d.rolled || !at) return;
             d.rolled = true;
             bool lowRest = (p.needs?.rest?.CurLevel ?? 1f) < HarmMath.LowRest;
             bool spacer = Ages.Ours == WorldAge.Spacer;
@@ -178,7 +191,7 @@ namespace ColonyCouncil
 
         // ================= Working through it =================
 
-        private static void Through(Pawn p, bool heavyNow, int day)
+        private static void Through(Pawn p, bool heavyNow, bool at, int day)
         {
             if (strainedBack == null && sprainedAnkle == null) return;
             if (!AilmentTracker.On) return;
@@ -192,7 +205,7 @@ namespace ColonyCouncil
                 bool inBed = p.InBed();
                 var t = DayOf(through, h.loadID, day);
                 if (heavyNow && !tended && !inBed) t.hours += 1f;
-                if (!HarmMath.WorkedThrough(t.hours, tended, inBed) || !heavyNow || !throughRolled.Add(h.loadID)) continue;
+                if (!HarmMath.WorkedThrough(t.hours, tended, inBed) || !heavyNow || !at || !throughRolled.Add(h.loadID)) continue;
                 found = h;
                 break;
             }

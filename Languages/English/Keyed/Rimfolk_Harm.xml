@@ -30,8 +30,8 @@
 
   <CC_Harm_Slip_Bench>Worn out by the {DECREE}, {PAWN_nameDef} slipped at the bench and hurt {PAWN_possessive} {PART}.</CC_Harm_Slip_Bench>
   <CC_Harm_Slip_Bench_2>{PAWN_nameDef}'s tired hands slipped at the bench after a long day of the {DECREE}: a wound to the {PART}.</CC_Harm_Slip_Bench_2>
-  <CC_Harm_Slip_Hot>Worn out by the {DECREE}, {PAWN_nameDef} burned {PAWN_possessive} {PART} at the heat.</CC_Harm_Slip_Hot>
-  <CC_Harm_Slip_Hot_2>A long day of the {DECREE} and a moment's carelessness at the fire: {PAWN_nameDef} burned {PAWN_possessive} {PART}.</CC_Harm_Slip_Hot_2>
+  <CC_Harm_Slip_Hot>Worn out by the {DECREE}, {PAWN_nameDef} burned {PAWN_possessive} {PART} at {PAWN_possessive} work.</CC_Harm_Slip_Hot>
+  <CC_Harm_Slip_Hot_2>A long day of the {DECREE} and a moment's carelessness: {PAWN_nameDef} burned {PAWN_possessive} {PART}.</CC_Harm_Slip_Hot_2>
   <CC_Harm_Slip_Heavy>Too tired to step clear on a long day of the {DECREE}, {PAWN_nameDef} was caught: a crush to the {PART}.</CC_Harm_Slip_Heavy>
   <CC_Harm_Slip_Heavy_2>Something heavy came down on {PAWN_nameDef}'s {PART} near the end of a long day of the {DECREE}.</CC_Harm_Slip_Heavy_2>
   <CC_Harm_Slip_Load>Worn out by the {DECREE}, {PAWN_nameDef} dropped a load on {PAWN_possessive} {PART}.</CC_Harm_Slip_Load>
@@ -42,10 +42,10 @@
   <!-- ===================== Working through it ===================== -->
 
   <CC_Harm_TornBack>{PAWN_nameDef} worked on through a strained back, and it has torn.</CC_Harm_TornBack>
-  <CC_Harm_TornBack_2>{PAWN_nameDef}'s strained back gave under one more load: it's torn now, and it will take weeks.</CC_Harm_TornBack_2>
-  <CC_Harm_AnkleFall>{PAWN_nameDef}'s sprained ankle gave under a load, and {PAWN_pronoun} fell hard on {PAWN_possessive} {PART}.</CC_Harm_AnkleFall>
-  <CC_Harm_AnkleFall_2>Working on a bad ankle, {PAWN_nameDef} went down with a load and bruised {PAWN_possessive} {PART}.</CC_Harm_AnkleFall_2>
-  <CC_Harm_AnkleCrack>{PAWN_nameDef}'s sprained ankle gave under a load, and the fall cracked {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack>
-  <CC_Harm_AnkleCrack_2>Working on a bad ankle, {PAWN_nameDef} went down hard with a load: a crack in {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack_2>
+  <CC_Harm_TornBack_2>{PAWN_nameDef}'s strained back gave at the heavy work once too often: it's torn now, and it will take weeks.</CC_Harm_TornBack_2>
+  <CC_Harm_AnkleFall>{PAWN_nameDef}'s sprained ankle gave at the heavy work, and {PAWN_pronoun} went down hard on {PAWN_possessive} {PART}.</CC_Harm_AnkleFall>
+  <CC_Harm_AnkleFall_2>Working on a bad ankle, {PAWN_nameDef} went down hard and bruised {PAWN_possessive} {PART}.</CC_Harm_AnkleFall_2>
+  <CC_Harm_AnkleCrack>{PAWN_nameDef}'s sprained ankle gave at the heavy work, and the fall cracked {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack>
+  <CC_Harm_AnkleCrack_2>Working on a bad ankle, {PAWN_nameDef} went down hard: a crack in {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack_2>
 
 </LanguageData>

@@ -45,15 +45,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   is declared in every age now (its `eras` gone, its description and a spacer and an industrial line for it, the
   Almanac's two "not for a spacer colony" gone). (1.2.2) Tired hands, `Harm/WorkHurts.cs`: hours found at the work a
   `TiredHands` decree drives (`HarmMath.WorkOf`: the stove and forge, the bench, building and mining, hauling, the
-  field; long hours any, a harvest push the field, a building season the building); the sixth in a day has one roll
-  there, one in 150, twice below 30% rest, once more for a second work decree, half for the tough, half in a spacer
+  field; long hours any, a harvest push the field, a building season the building); from the sixth in a day, the first
+  hour found right at it (`WorkHurts.AtIt`: carrying the load, or standing at the work, not walking to it) has one roll, one in 150, twice below 30% rest, once more for a second work decree, half for the tough, half in a spacer
   colony; a wound of 3 to 6 (5 to 8 spacer) by `HarmMath.WorkSlip` (a cut at the bench, a crushed hand at an industrial
   machine, a fabricator's burn, a burn at the heat, a crushed foot, a dropped load, a sickle's cut), the job ended, a
   load dropped, `Rimfolk_Pool_WorkSlip`, `CC_Harm_Slip_<work>` (two wordings each). The review's "one or two per decree
   in a colony of ten" was a miscount against its own anchor; the anchored rate was kept (about a third of a slip per
   five-day decree in a colony of ten, rested; twice with nobody sleeping enough), and said so in the review and DESIGN.md.
   (3.2.1) Working through it, the same file, with the everyday ailments on: a strained back or a sprained ankle,
-  untended and out of bed, counts its heavy hours each day; the fourth has one roll for it (once each, session memory):
+  untended and out of bed, counts its heavy hours each day; from the fourth, the first hour right at it has one roll for it (once each, session memory):
   one in ten, never while the rest-when-ill decree holds. A back tears (`Council_Ail_TornBack`, `Rimfolk_Hediffs_Harm.xml`:
   a new everyday ailment with no causes, 3 to 5 weeks, sharper pain, half the carrying; its mood in place of the strain's,
   `Council_Ail_TornBack_Mood`, hinted with the strains; ROADMAP's count 56); an ankle gives (a bruise of 3 to 5 on the leg,
