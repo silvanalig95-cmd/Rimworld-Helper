@@ -87,12 +87,16 @@ namespace ColonyCouncil
                 if (book.DrilledToday(map, day)) continue;
                 if (PlayOuts.WhyNotNow(map, false) != null) continue;
                 bool muster = def.hurts == DecreeHurt.Muster;
-                book.Drilled(map, day);
-                if (muster && !HarmMath.MusterEvening(day)) continue;
+                if (muster && !HarmMath.MusterEvening(day))
+                {
+                    book.Drilled(map, day);
+                    continue;
+                }
+                // Bad weather, or nobody free yet: the next hour of the evening tries again.
                 if (!JoyUtility.EnjoyableOutsideNow(map)) continue;
                 try
                 {
-                    Call(map, d, def, muster);
+                    if (Call(map, d, muster) > 0) book.Drilled(map, day);
                 }
                 catch (Exception e)
                 {
@@ -107,25 +111,30 @@ namespace ColonyCouncil
             && PlayOuts.CanJoin(p) && PlayOuts.Interruptible(p) && !PlayOuts.NeedsPress(p) && p.GetLord() == null && Of(p) == null
             && !(p.skills?.GetSkill(SkillDefOf.Melee)?.TotallyDisabled ?? true);
 
-        private static void Call(Map map, DecreeTracker d, DecreeDef def, bool muster)
+        /// <summary>The evening's pairs called to their places; how many bouts began.</summary>
+        private static int Call(Map map, DecreeTracker d, bool muster)
         {
             var fighters = map.mapPawns.FreeColonistsSpawned.Where(p => CanDrill(p, d)).InRandomOrder().ToList();
             int pairs = HarmMath.DrillPairs(fighters.Count, muster);
-            if (pairs == 0) return;
+            if (pairs == 0) return 0;
             var center = PlaySpots.OpenCell(map, fighters[0]);
-            if (!center.IsValid) return;
+            if (!center.IsValid) return 0;
             bool marshal = (ColonyState.For(map)?.offices?.DrillFactor ?? 1f) > 1f;
             var taken = new List<IntVec3>();
             Pawn first = null;
+            int started = 0;
             for (int i = 0; i < pairs; i++)
             {
                 var a = fighters[2 * i];
                 var b = fighters[2 * i + 1];
                 if (!Places(map, center, a, b, taken, out var ra, out var rb)) continue;
-                if (Begin(map, a, b, ra, rb, marshal, muster)) first ??= a;
+                if (!Begin(map, a, b, ra, rb, marshal, muster)) continue;
+                started++;
+                first ??= a;
             }
             // apart: the call goes out to everyone drilling; the pairs meet at their places.
             if (first != null) Say(first, "Rimfolk_Pool_DrillCall");
+            return started;
         }
 
         /// <summary>Two places side by side in the open near the yard, clear of the other pairs.</summary>
@@ -260,7 +269,9 @@ namespace ColonyCouncil
             var a = bout.a;
             var b = bout.b;
             // together: the pair finish side by side at their bout.
-            if (a != null && b != null && Together.Can(a, b)) Say(Rand.Chance(0.5f) ? a : b, "Rimfolk_Pool_DrillEnd", Rand.Chance(0.5f) ? b : a);
+            if (a == null || b == null || !Together.Can(a, b)) return;
+            var speaker = Rand.Chance(0.5f) ? a : b;
+            Say(speaker, "Rimfolk_Pool_DrillEnd", bout.Other(speaker));
         }
 
         private static readonly Color SayColor = new Color(0.95f, 0.85f, 0.7f);
