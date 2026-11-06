@@ -70,8 +70,8 @@ namespace ColonyCouncil
         /// <summary>The lead a challenger needs on a name with this margin.</summary>
         public static float Lead(float margin) => Math.Max(margin, ClearLead);
 
-        /// <summary>The challenger's count is clearly ahead of the holder's.</summary>
-        public static bool Ahead(float challenger, float holder, float margin) => challenger > holder && challenger >= holder * Lead(margin);
+        /// <summary>The challenger's count is clearly ahead of the holder's (exactly a fifth ahead counts: 12 against 10).</summary>
+        public static bool Ahead(float challenger, float holder, float margin) => challenger > holder && challenger >= holder * Lead(margin) - 0.001f;
 
         /// <summary>Over the week the challenger did more of the work than the holder. Nothing done is never outdoing.</summary>
         public static bool Outdid(float challengerGain, float holderGain) => challengerGain > 0f && challengerGain > Math.Max(0f, holderGain);

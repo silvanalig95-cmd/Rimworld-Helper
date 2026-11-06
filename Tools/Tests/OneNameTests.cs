@@ -4,9 +4,11 @@ using ColonyCouncil;
 
 /// <summary>
 /// Phase 4 of the review, part 1, one name (the player's decision 6 of 6 November 2026): a colonist's one slow "known as"
-/// (NameMath: a name held a good while, passing only to one who clearly outdoes the holder over a season, never back and
-/// forth; the one name of those they hold; its line) and the colony's one "known for" (ColonyNameMath: one list of what it
-/// is called, the name as a key, what changed, one sentence), with an older save's names held and nothing told on load.
+/// (NameMath: a name held a good while, passing to one who clearly surpasses the holder over a week, never back and forth;
+/// the one name of those they hold; its line) and the colony's one "known for" (ColonyNameMath: one list of what it is
+/// called, the name as a key, what changed, one sentence), with an older save's names held and nothing told on load. The
+/// name's timings as the player retuned them the same day ("titles should be able to change if someone surpasses the
+/// current owner"): calmer than before, not frozen.
 /// </summary>
 public static class OneNameTests
 {
@@ -30,53 +32,54 @@ public static class OneNameTests
 
         // ================= A name holds =================
 
-        C(NameMath.Lead(1.15f) == NameMath.ClearLead && NameMath.Lead(1.5f) == 1.5f, "clearly ahead is a quarter at least, more where a name asks for it");
-        C(!NameMath.Ahead(110f, 100f, 1.15f) && !NameMath.Ahead(124f, 100f, 1.15f) && NameMath.Ahead(125f, 100f, 1.15f), "fifteen in a hundred ahead is no longer enough");
+        C(NameMath.HoldDays == 20 && NameMath.ChallengeDays == 7 && NameMath.ClearLead == 1.2f && NameMath.ReturnDays == 30,
+            "a name holds 20 days, then passes to one a fifth ahead every day of a week, and a lost name can't come back for 30 days");
+        C(NameMath.Lead(1.15f) == NameMath.ClearLead && NameMath.Lead(1.5f) == 1.5f, "clearly ahead is a fifth at least, more where a name asks for it");
+        C(!NameMath.Ahead(110f, 100f, 1.15f) && !NameMath.Ahead(119f, 100f, 1.15f) && NameMath.Ahead(120f, 100f, 1.15f) && NameMath.Ahead(12f, 10f, 1.15f)
+          && !NameMath.Ahead(11.9f, 10f, 1.15f), "fifteen in a hundred ahead is not enough, exactly a fifth is");
         C(!NameMath.Ahead(0f, 0f, 1.15f) && NameMath.Ahead(1f, 0f, 1.15f), "ahead of a holder at nothing by anything at all");
 
-        // Given now: nobody can take it for two seasons.
+        // Given now: nobody can take it for its hold.
         var h = NameMath.Given(100 * Day, null);
         C(h.since == 100 * Day && h.lastHolder == null && h.challenger == null, "a name given is held from now");
         for (int d = 101; d < 100 + NameMath.HoldDays; d++)
             C(NameMath.Look(h, d * Day, "A", 100f, "B", 1000f, 1.15f) == NameMove.Keep && h.challenger == null, $"day {d - 100} of the hold: kept, however far ahead the other is");
-        // The hold over: a challenge begins, and must stand a whole season.
+        // The hold over: a challenge begins, and must stand a week.
         int start = (100 + NameMath.HoldDays) * Day;
         C(NameMath.Look(h, start, "A", 100f, "B", 200f, 1.15f) == NameMove.Keep && h.challenger == "B" && h.challengeFrom == start && h.challengerAt == 200f && h.holderAt == 100f,
             "clearly ahead after the hold: a challenge begins, with both counts");
-        C(NameMath.Look(h, start + 14 * Day, "A", 101f, "B", 240f, 1.15f) == NameMove.Keep && h.challenger == "B", "fourteen days of it: still the holder's");
-        C(NameMath.Look(h, start + NameMath.ChallengeDays * Day, "A", 101f, "B", 240f, 1.15f) == NameMove.Pass, "a season clearly ahead, doing far more of the work: it passes");
+        C(NameMath.Look(h, start + 6 * Day, "A", 101f, "B", 240f, 1.15f) == NameMove.Keep && h.challenger == "B", "six days of it: still the holder's");
+        C(NameMath.Look(h, start + NameMath.ChallengeDays * Day, "A", 101f, "B", 240f, 1.15f) == NameMove.Pass, "a week clearly ahead, doing more of the work: it passes");
 
-        // The holder still at the work keeps it, and the season starts again.
+        // The holder still at the work as much keeps it, and the week starts again.
         h = NameMath.Given(0, null);
-        NameMath.Look(h, 40 * Day, "A", 100f, "B", 130f, 1.15f);
-        var kept = NameMath.Look(h, 55 * Day, "A", 120f, "B", 155f, 1.15f);
-        C(kept == NameMove.Keep && h.challengeFrom == 55 * Day && h.challengerAt == 155f && h.holderAt == 120f,
-            "ahead all season but the holder did nearly as much (25 against 20): kept, a new season to show it");
-        C(NameMath.Look(h, 70 * Day, "A", 121f, "B", 190f, 1.15f) == NameMove.Pass, "the next season the holder stopped and the other kept on: it passes");
+        NameMath.Look(h, 30 * Day, "A", 100f, "B", 130f, 1.15f);
+        var kept = NameMath.Look(h, 37 * Day, "A", 120f, "B", 150f, 1.15f);
+        C(kept == NameMove.Keep && h.challengeFrom == 37 * Day && h.challengerAt == 150f && h.holderAt == 120f,
+            "ahead all week but the holder did as much (20 against 20): kept, a new week to show it");
+        C(NameMath.Look(h, 44 * Day, "A", 121f, "B", 170f, 1.15f) == NameMove.Pass, "the next week the holder stopped and the other kept on: it passes");
 
         // Falling back under the lead ends the challenge.
         h = NameMath.Given(0, null);
-        NameMath.Look(h, 40 * Day, "A", 100f, "B", 130f, 1.15f);
-        NameMath.Look(h, 45 * Day, "A", 110f, "B", 130f, 1.15f);
+        NameMath.Look(h, 30 * Day, "A", 100f, "B", 130f, 1.15f);
+        NameMath.Look(h, 33 * Day, "A", 110f, "B", 130f, 1.15f);
         C(h.challenger == null, "a day not clearly ahead ends the challenge");
-        NameMath.Look(h, 46 * Day, "A", 110f, "B", 140f, 1.15f);
-        C(h.challenger == "B" && h.challengeFrom == 46 * Day, "and a new one starts from that day");
-        // Another overtakes the challenger: their own season.
-        NameMath.Look(h, 50 * Day, "A", 110f, "C", 150f, 1.15f);
-        C(h.challenger == "C" && h.challengeFrom == 50 * Day, "a new challenger starts their own season");
+        NameMath.Look(h, 34 * Day, "A", 110f, "B", 140f, 1.15f);
+        C(h.challenger == "B" && h.challengeFrom == 34 * Day, "and a new one starts from that day");
+        // Another overtakes the challenger: their own week.
+        NameMath.Look(h, 36 * Day, "A", 110f, "C", 150f, 1.15f);
+        C(h.challenger == "C" && h.challengeFrom == 36 * Day, "a new challenger starts their own week");
 
-        // Twice ahead: more of the work is enough.
-        C(NameMath.Outdid(15f, 10f, false) && !NameMath.Outdid(14f, 10f, false) && NameMath.Outdid(11f, 10f, true) && !NameMath.Outdid(10f, 10f, true),
-            "half again as much of the work, or more of it when twice ahead on the count");
-        C(!NameMath.Outdid(0f, 0f, true) && NameMath.Outdid(1f, 0f, false), "doing nothing is never outdoing; any work against a holder who stopped is");
+        C(NameMath.Outdid(11f, 10f) && !NameMath.Outdid(10f, 10f) && !NameMath.Outdid(9f, 10f), "more of the work than the holder over the week; as much is not outdoing");
+        C(!NameMath.Outdid(0f, 0f) && NameMath.Outdid(1f, 0f) && NameMath.Outdid(1f, -3f), "doing nothing is never outdoing; any work against a holder who stopped is");
 
-        // The one who lost it can't take it back for a year.
+        // The one who lost it can't take it back for a month.
         h = NameMath.Given(100 * Day, "A");
         C(h.lastHolder == "A" && h.lostAt == 100 * Day, "who had it before is kept");
-        NameMath.Look(h, 131 * Day, "B", 100f, "A", 500f, 1.15f);
-        C(h.challenger == null, "the one who lost it is no challenger within the year");
-        NameMath.Look(h, 160 * Day, "B", 100f, "A", 500f, 1.15f);
-        C(h.challenger == "A", "a year on, they may earn it back like anyone");
+        NameMath.Look(h, 121 * Day, "B", 100f, "A", 500f, 1.15f);
+        C(h.challenger == null, "the one who lost it is no challenger within the month, its hold over or not");
+        NameMath.Look(h, 130 * Day, "B", 100f, "A", 500f, 1.15f);
+        C(h.challenger == "A", "30 days on, they may earn it back like anyone");
 
         // Nobody ahead, or the holder is the best: nothing happens.
         h = NameMath.Given(0, null);
@@ -105,11 +108,12 @@ public static class OneNameTests
             }
             return moves;
         }
-        int MovesNew(Func<int, (float a, float b)> counts, int days)
+        // The days the name moved, under the rule, with Harper given it on day 46.
+        List<int> MovesNew(Func<int, (float a, float b)> counts, int days)
         {
             string holder = "Harper";
             var hold = NameMath.Given(46 * Day, null);
-            int moves = 0;
+            var moves = new List<int>();
             for (int d = 47; d <= days; d++)
             {
                 var (a, b) = counts(d);
@@ -120,30 +124,58 @@ public static class OneNameTests
                 {
                     hold = NameMath.Given(d * Day, holder);
                     holder = other;
-                    moves++;
+                    moves.Add(d);
                 }
             }
             return moves;
         }
-        // Each takes a turn at the sickbeds for a season while the other mostly works elsewhere: wounds tended since day 46,
-        // when Harper was first called the Healer (40 to Alo's 30).
-        (float, float) Turns(int d)
+        // The most moves in any 60 days.
+        int Within60(List<int> moves) => moves.Count == 0 ? 0 : moves.Max(m => moves.Count(x => x >= m && x < m + 60));
+        // Each takes a turn at the sickbeds (3 wounds a day) while the other mostly works elsewhere (0.3): wounds tended since
+        // day 46, when Harper was first called the Healer (40 to Alo's 30), turns of a season by default, Harper's first.
+        Func<int, (float, float)> TurnsOf(int turn, int phase, float a0, float b0)
         {
-            float a = 40f, b = 30f;
-            for (int i = 47; i <= d; i++)
+            var at = new (float, float)[500];
+            float a = a0, b = b0;
+            for (int i = 0; i < at.Length; i++)
             {
-                bool harpers = (i / 15) % 2 == 0;
-                a += harpers ? 3f : 0.3f;
-                b += harpers ? 0.3f : 3f;
+                if (i >= 47)
+                {
+                    bool harpers = ((i + phase) / turn) % 2 == 0;
+                    a += harpers ? 3f : 0.3f;
+                    b += harpers ? 0.3f : 3f;
+                }
+                at[i] = (a, b);
             }
-            return (a, b);
+            return d => at[d];
         }
-        int oldMoves = MovesOld(Turns, 128), newMoves = MovesNew(Turns, 128);
+        var turns = TurnsOf(15, 0, 40f, 30f);
+        int oldMoves = MovesOld(turns, 128), newMoves = MovesNew(turns, 128).Count;
         C(oldMoves >= 3, $"the old margin passes the name back and forth between two doctors who take turns ({oldMoves} moves)");
-        C(newMoves == 0, $"the new rule keeps it with its holder while both still do the work ({newMoves} moves)");
+        C(newMoves == 0, $"the rule keeps it with its holder while both share the work ({newMoves} moves in 80 days)");
+        // Turns of five days to a month, either first, from even counts or one ahead, over a year: about once in 60 days at most.
+        int most = 0, all = 0, runs = 0;
+        foreach (int turn in new[] { 5, 7, 10, 15, 20, 30 })
+            for (int phase = 0; phase < turn; phase++)
+                foreach (var (a0, b0) in new[] { (40f, 30f), (30f, 40f), (40f, 40f), (10f, 8f), (100f, 80f) })
+                {
+                    var moved = MovesNew(TurnsOf(turn, phase, a0, b0), 46 + 360);
+                    most = Math.Max(most, Within60(moved));
+                    all += moved.Count;
+                    runs++;
+                }
+        Console.WriteLine($"  names: two doctors sharing the work in turns of 5 to 30 days, over a year: {all / (float)runs:0.00} moves a year on average, at most {most} in any 60 days");
+        C(most <= 1, $"two who share the work evenly never pass the name more than once in 60 days ({most})");
+        // One who clearly surpasses the holder takes it within about two weeks of the hold's end (day 66).
+        int holdEnds = 46 + NameMath.HoldDays;
+        var takesOver = MovesNew(d => (40f + 0.3f * (d - 46), 30f + 3f * (d - 46)), 200);
+        var twiceAsMuch = MovesNew(d => (40f + 1f * (d - 46), 30f + 2f * (d - 46)), 200);
+        Console.WriteLine($"  names: Alo takes over the sickbeds, the name moves {takesOver.FirstOrDefault() - holdEnds} days after Harper's hold ends; both at it, Alo twice as much, {twiceAsMuch.FirstOrDefault() - holdEnds} days after");
+        C(takesOver.Count == 1 && takesOver[0] - holdEnds <= 7 + 1, $"Alo takes over the sickbeds: the name is his a week after Harper's hold ends (day {takesOver.FirstOrDefault()}), and stays");
+        C(twiceAsMuch.Count == 1 && twiceAsMuch[0] - holdEnds <= 14, $"both at it, Alo doing twice as much: his within two weeks of the hold's end (day {twiceAsMuch.FirstOrDefault()})");
         // One doctor who stops: the other earns it, once.
         (float, float) Stops(int d) => (60f + Math.Min(d, 60) * 1f, 40f + d * 1.6f);
-        int stopMoves = MovesNew(Stops, 300);
+        int stopMoves = MovesNew(Stops, 300).Count;
         C(stopMoves == 1, $"a holder who stops doing the work loses it to the one who keeps on, once in five years ({stopMoves})");
 
         // ================= Saving =================

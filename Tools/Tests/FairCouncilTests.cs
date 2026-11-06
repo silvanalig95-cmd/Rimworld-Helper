@@ -131,81 +131,169 @@ public static class FairCouncilTests
             "once per goal, and never a goal taken up for someone who died");
         Check(GoalMath.SparkPull("battle") < GoalMath.SparkPull("loss") && GoalMath.SparkPull("battle") < GoalMath.SparkPull("thought:AttendedWedding")
               && GoalMath.SparkPull(null) == 1f, "a fight pulls less than the rest of life");
+        Check(GoalMath.SparkPull("battle") == 0.7f, "a fight pulls 0.7 (it was 0.4: the player's word of 6 November 2026, \"not 0\")");
         Check(GoalMath.Shared(0) == 1f && GoalMath.Shared(1) == 0.5f && GoalMath.Shared(2) < 0.34f, "a goal others hold weighs less");
-        Check(GoalMath.Foremost(new[] { 0, 3, 1, 3 }) == 1 && GoalMath.Foremost(new[] { 0, 0 }) == -1 && GoalMath.Foremost(new int[0]) == -1,
-            "one person a fight: whoever brought down the most, nobody when nobody did");
+        Check(GoalMath.FightMaySpark("battle", 0) && !GoalMath.FightMaySpark("battle", 1) && GoalMath.FightMaySpark("loss", 2) && GoalMath.FightMaySpark(null, 1),
+            "a fight sparks no goal someone else at home took up after a fight and is still at; any other spark may");
 
-        // A colony of twelve over the save's 88 days, a raid every ten days and the rest of life between: the old rules
-        // and the new, same luck. Fighting goals were 25 of 38; one colonist changed four times in 25 days.
-        var (oldBattle, oldAll, oldChanges) = Simulate(false);
-        var (newBattle, newAll, newChanges) = Simulate(true);
-        Check(oldBattle * 5 >= oldAll * 2, $"the old rules fill the colony with fighting goals ({oldBattle} of {oldAll})");
-        Console.WriteLine($"  life goals over 88 days, twelve people: fighting goals {oldBattle} of {oldAll} before, {newBattle} of {newAll} now; changes of heart within 25 days, the most for one: {oldChanges} before, {newChanges} now");
-        Check(newBattle * 4 <= newAll, $"the new rules: fighting goals a quarter of the goals chosen or fewer ({newBattle} of {newAll}, before {oldBattle} of {oldAll})");
-        Check(oldChanges >= 2 && newChanges <= 1, $"changes of heart in any 25 days, the most for one colonist: before {oldChanges}, now {newChanges}");
+        // Those who fought hardest: the three who brought down the most, anyone downed in it, whoever carried someone out.
+        var none = new bool[6];
+        Check(GoalMath.Hardest(new[] { 0, 3, 1, 3, 2, 1 }, none, none).SequenceEqual(new[] { 1, 3, 4 }), "the three who brought down the most, in their order");
+        Check(GoalMath.Hardest(new[] { 1, 1, 1, 1, 0, 0 }, none, none).SequenceEqual(new[] { 0, 1, 2 }), "of equals, the first noted");
+        Check(GoalMath.Hardest(new[] { 0, 0, 0, 0, 0, 0 }, none, none).Count == 0 && GoalMath.Hardest(new int[0], null, null).Count == 0,
+            "nobody for bringing down nobody");
+        Check(GoalMath.Hardest(new[] { 2, 0, 0, 1, 0, 0 }, new[] { false, false, true, false, false, false }, new[] { false, false, false, false, false, true })
+              .SequenceEqual(new[] { 0, 2, 3, 5 }), "and anyone downed in it, and whoever carried someone out, though they brought down nobody");
+        Check(GoalMath.Hardest(new[] { 4, 3, 2, 1, 0, 0 }, new[] { true, false, false, false, false, false }, none).SequenceEqual(new[] { 0, 1, 2 }),
+            "one downed among the three counts once");
+
+        // A colony of twelve over the save's 88 days, fighting as often as the save's: the rules before 0.112.0, 0.112.0's
+        // (one fighter, pulling 0.4) and now, the same luck for each, fifty runs. Before 0.112.0 fighting goals were 23 of
+        // the save's 47 (25 of its first 38), and one colonist changed hers four times in 25 days; 0.112.0's left none.
+        const int runs = 50;
+        var before = SimulateMany(GoalRules.Before, true, runs);
+        var one = SimulateMany(GoalRules.OneFighter, true, runs);
+        var now = SimulateMany(GoalRules.Now, true, runs);
+        var fresh = SimulateMany(GoalRules.Now, false, runs);
+        string Share(GoalRun r) => $"{r.battle} of {r.all} ({100f * r.battle / Math.Max(1, r.all):0}%)";
+        Console.WriteLine($"  life goals, twelve people, 88 days, a fight every six days, {runs} runs: from fights {Share(before)} before 0.112.0, {Share(one)} on 0.112.0's rule, "
+                          + $"{Share(now)} now; a fresh colony now {Share(fresh)}; changes of heart {before.changes / (float)runs:0.0} a run before, {now.changes / (float)runs:0.0} now");
+        Check(before.battle * 5 >= before.all * 2, $"the rules before 0.112.0 fill the colony with fighting goals ({Share(before)})");
+        Check(one.battle * 20 <= one.all, $"0.112.0's rule left next to none from fights ({Share(one)})");
+        Check(now.battle * 6 >= now.all && now.battle * 4 <= now.all + now.all / 5,
+            $"now about a fifth to a quarter of goals come from fights in a colony under way ({Share(now)})");
+        Check(fresh.battle > 0 && fresh.battle * 4 <= fresh.all, $"a fresh colony's first goals mostly come before its first fight ({Share(fresh)})");
+        Check(now.sameAfterAFight <= 1 && now.heldAfterAFight <= 1 && before.heldAfterAFight >= 3,
+            $"one fighting goal is never chosen by several at once (now at most {now.heldAfterAFight} holding one from a fight, before {before.heldAfterAFight})");
+        Check(before.mostChanges >= 2 && now.mostChanges <= 1 && now.changes * 2 <= runs * 3,
+            $"changes of heart stay rare: in any 25 days at most {now.mostChanges} for one colonist (before {before.mostChanges}), {now.changes} in {runs} runs (before {before.changes})");
 
         string src = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Social", "SocialWeb.cs"));
-        Check(src.Contains("GoalMath.Foremost(") && src.Contains("if (p == foremost) comp.aspirations.Notify_Event(p, \"battle\");"), "a fight's spark goes to the one who did most");
+        Check(src.Contains("GoalMath.Hardest(") && src.Contains("foreach (var p in hardest) comp.aspirations.Notify_Event(p, \"battle\");")
+              && src.Contains("comp.aspirations.HappenedSince(p, \"downed\", since)") && src.Contains("FightSides.Carried(p)"),
+            "a fight's spark goes to those who fought hardest, the downed and those who carried someone out read before the fight is cleared");
+        Check(src.IndexOf("HardestIn(comp, b, list, began, map)", StringComparison.Ordinal) < src.IndexOf("if (!AnyBattle) FightSides.Clear();", StringComparison.Ordinal),
+            "who carried whom is read before it is cleared");
         string asp = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Aspirations", "Aspirations.cs"));
-        Check(asp.Contains("GoalMath.MayChangeHeart(") && asp.Contains("b.turned = true;") && asp.Contains("GoalMath.Shared("), "the tracker follows these rules");
+        Check(asp.Contains("GoalMath.MayChangeHeart(") && asp.Contains("b.turned = true;") && asp.Contains("GoalMath.Shared(") && asp.Contains("GoalMath.FightMaySpark(spark, othersAfterAFight)")
+              && asp.Contains("if (a.spark == \"battle\") afterAFight[a.def]"), "the tracker follows these rules");
+    }
+
+    /// <summary>The rules a model of the colony's life goals runs on: before 0.112.0, 0.112.0's, and now.</summary>
+    private enum GoalRules
+    {
+        Before,
+        OneFighter,
+        Now
+    }
+
+    /// <summary>What a model of the colony's life goals counted, over one run or several.</summary>
+    private struct GoalRun
+    {
+        /// <summary>Goals chosen after a fight, and all goals chosen.</summary>
+        public int battle, all;
+        /// <summary>Changes of heart, and the most one colonist had within 25 days.</summary>
+        public int changes, mostChanges;
+        /// <summary>The most who took up one goal after the same fight, and the most holding one goal from fights at once.</summary>
+        public int sameAfterAFight, heldAfterAFight;
+    }
+
+    private static GoalRun SimulateMany(GoalRules rules, bool underway, int runs)
+    {
+        var sum = new GoalRun();
+        for (int seed = 0; seed < runs; seed++)
+        {
+            var r = Simulate(rules, underway, seed);
+            sum.battle += r.battle;
+            sum.all += r.all;
+            sum.changes += r.changes;
+            sum.mostChanges = Math.Max(sum.mostChanges, r.mostChanges);
+            sum.sameAfterAFight = Math.Max(sum.sameAfterAFight, r.sameAfterAFight);
+            sum.heldAfterAFight = Math.Max(sum.heldAfterAFight, r.heldAfterAFight);
+        }
+        return sum;
     }
 
     /// <summary>
-    /// Twelve people, 88 days: a raid every ten days (nine fight, one is downed), a death every 40 (three grieve), and a
-    /// small good thing now and then for anyone (a wedding, a fine meal). Twelve goals: four for fights, four for the rest
-    /// of life, four for a loss or a brush with death. Returns the goals chosen after a fight, all goals chosen, and the
-    /// most changes of heart one person had within 25 days.
+    /// Twelve people, 88 days, fighting as often as the player's save (21 fights in its 128 days, so one every six days):
+    /// nine fight, each bringing down none to two, one is downed and another carries them out; a death every 40 days
+    /// (three grieve); and the rest of life's sparks now and then (a wedding, a fine meal, left out: one in ten days for
+    /// each, which with these rules before 0.112.0 gives the save's share, half the goals from fights and a third from the
+    /// rest of life). A spark is looked at four days. A goal is reached in 15 to 90 days, then 20 days pass before the next
+    /// (TryChoose). Twelve goals: four for fights, four for the rest of life, four for a loss or a brush with death. A colony
+    /// under way (each of the twelve holding a goal part done, as on the save) or a fresh one (nobody holding one yet).
     /// </summary>
-    private static (int battle, int all, int changes) Simulate(bool now)
+    private static GoalRun Simulate(GoalRules rules, bool underway, int seed)
     {
-        var rng = new Random(7);
-        const int people = 12, days = 88;
+        var rng = new Random(seed);
+        const int people = 12, days = 88, fightEvery = 6, fighters = 9;
+        bool before = rules == GoalRules.Before;
         // Goal kinds: 0-3 fights (spark battle), 4-7 the rest of life (spark life), 8-11 big things (spark loss/downed).
         string SparkOf(int g) => g < 4 ? "battle" : g < 8 ? "life" : "loss";
+        float Pull(string spark) => before || spark == null ? 1f : rules == GoalRules.OneFighter && spark == "battle" ? 0.4f : GoalMath.SparkPull(spark);
         var goal = new int[people];
+        var why = new string[people];
         var started = new int[people];
+        var length = new int[people];
+        var doneAt = new int[people];
         var turned = new bool[people];
         var lastEvent = new Dictionary<(int, string), int>();
         var changesAt = new List<int>[people];
         for (int i = 0; i < people; i++)
         {
             goal[i] = -1;
+            doneAt[i] = -999;
             changesAt[i] = new List<int>();
+            if (!underway) continue;
+            length[i] = rng.Next(15, 91);
+            started[i] = -rng.Next(0, length[i]);
+            goal[i] = rng.Next(0, 12);
         }
-        int battleGoals = 0, allGoals = 0;
+        var run = new GoalRun();
+        var afterFight = new Dictionary<(int fight, int goal), int>();
+        int lastFight = -1;
         for (int day = 1; day <= days; day++)
         {
-            if (day % 10 == 0)
+            if (day % fightEvery == 0)
             {
-                var kills = Enumerable.Range(0, 9).Select(_ => rng.Next(0, 3)).ToList();
-                int top = GoalMath.Foremost(kills);
-                for (int i = 0; i < 9; i++)
-                    if (!now || i == top) lastEvent[(i, "battle")] = day;
-                lastEvent[(rng.Next(0, 9), "loss")] = day;
+                var kills = Enumerable.Range(0, fighters).Select(_ => rng.Next(0, 3)).ToList();
+                int down = rng.Next(0, fighters), carrier = (down + 1 + rng.Next(0, fighters - 1)) % fighters;
+                var downed = Enumerable.Range(0, fighters).Select(i => i == down).ToList();
+                var carried = Enumerable.Range(0, fighters).Select(i => i == carrier).ToList();
+                IEnumerable<int> sparked = rules switch
+                {
+                    GoalRules.Before => Enumerable.Range(0, fighters),
+                    // 0.112.0: only the one who brought down the most, the first of equals.
+                    GoalRules.OneFighter => kills.Max() > 0 ? new[] { kills.IndexOf(kills.Max()) } : new int[0],
+                    _ => GoalMath.Hardest(kills, downed, carried)
+                };
+                foreach (int i in sparked) lastEvent[(i, "battle")] = day;
+                lastEvent[(down, "loss")] = day;
+                lastFight = day;
             }
             if (day % 40 == 0)
                 for (int k = 0; k < 3; k++) lastEvent[(rng.Next(0, people), "loss")] = day;
             for (int i = 0; i < people; i++)
             {
-                if (rng.NextDouble() < 0.08) lastEvent[(i, "life")] = day;
-                bool Recent(string s) => lastEvent.TryGetValue((i, s), out int d) && day - d <= 4;
-                var options = Enumerable.Range(0, 12).Where(g => g != goal[i]).Select(g => (g, spark: Recent(SparkOf(g)) ? SparkOf(g) : null)).ToList();
-                float Weight((int g, string spark) o)
+                if (rng.NextDouble() < 0.1) lastEvent[(i, "life")] = day;
+                bool Recent(string s) => lastEvent.TryGetValue((i, s), out int d) && day - d < 4;
+                // Others at home holding a goal, and holding it after a fight.
+                int Held(int g) => Enumerable.Range(0, people).Count(j => j != i && goal[j] == g);
+                int HeldAfterAFight(int g) => Enumerable.Range(0, people).Count(j => j != i && goal[j] == g && why[j] == "battle");
+                bool May(int g) => before || rules == GoalRules.OneFighter || GoalMath.FightMaySpark(SparkOf(g), HeldAfterAFight(g));
+                var options = Enumerable.Range(0, 12).Where(g => g != goal[i]).Select(g => (g, spark: Recent(SparkOf(g)) && May(g) ? SparkOf(g) : null)).ToList();
+                float Weight((int g, string spark) o, bool own)
                 {
-                    float w = 1f;
-                    if (now)
-                    {
-                        w *= GoalMath.SparkPull(o.spark == "battle" ? "battle" : o.spark);
-                        w *= GoalMath.Shared(goal.Count(x => x == o.g));
-                    }
-                    return w;
+                    float w = before ? 1f : Pull(o.spark) * GoalMath.Shared(Held(o.g));
+                    // In their own time, a goal sparked lately is six times likelier (times its pull).
+                    return own && o.spark != null ? w * 6f * Pull(o.spark) : w;
                 }
-                (int g, string spark) Pick(List<(int g, string spark)> from)
+                (int g, string spark) Pick(List<(int g, string spark)> from, bool own)
                 {
-                    float total = from.Sum(Weight), r = (float)rng.NextDouble() * total;
+                    float total = from.Sum(o => Weight(o, own)), r = (float)rng.NextDouble() * total;
                     foreach (var o in from)
                     {
-                        r -= Weight(o);
+                        r -= Weight(o, own);
                         if (r <= 0f) return o;
                     }
                     return from[from.Count - 1];
@@ -213,32 +301,51 @@ public static class FairCouncilTests
                 void Begin((int g, string spark) o)
                 {
                     goal[i] = o.g;
+                    why[i] = o.spark;
                     started[i] = day;
-                    allGoals++;
-                    if (o.spark == "battle") battleGoals++;
+                    length[i] = rng.Next(15, 91);
+                    run.all++;
+                    if (o.spark != "battle") return;
+                    run.battle++;
+                    var key = (lastFight, o.g);
+                    afterFight[key] = (afterFight.TryGetValue(key, out int n) ? n : 0) + 1;
+                    run.sameAfterAFight = Math.Max(run.sameAfterAFight, afterFight[key]);
+                    run.heldAfterAFight = Math.Max(run.heldAfterAFight, 1 + HeldAfterAFight(o.g));
                 }
-                var sparked = options.Where(o => o.spark != null).ToList();
+                var sparkedNow = options.Where(o => o.spark != null).ToList();
                 if (goal[i] < 0)
                 {
-                    float chance = now ? GoalMath.SparkedChooseChance * (sparked.Count == 0 ? 0f : sparked.Max(o => GoalMath.SparkPull(o.spark))) : 0.6f;
-                    if (sparked.Count > 0 && rng.NextDouble() < chance) Begin(Pick(sparked));
-                    else if (rng.NextDouble() < 0.2) Begin(Pick(options));
+                    if (day - doneAt[i] < 20) continue;
+                    float chance = (before ? 0.6f : GoalMath.SparkedChooseChance) * (sparkedNow.Count == 0 ? 0f : sparkedNow.Max(o => Pull(o.spark)));
+                    if (sparkedNow.Count > 0 && rng.NextDouble() < chance) Begin(Pick(sparkedNow, false));
+                    else if (rng.NextDouble() < 0.2) Begin(Pick(options, true));
                     continue;
                 }
-                float held = day - started[i], progress = held / 120f;
-                bool may = now ? sparked.Any(o => GoalMath.MayChangeHeart(held, progress, false, turned[i], o.spark)) : held >= 10 && progress < 0.35f && sparked.Count > 0;
-                if (!may || rng.NextDouble() >= (now ? GoalMath.ChangeChance : 0.25)) continue;
-                var pick = Pick(now ? sparked.Where(o => GoalMath.Big(o.spark)).ToList() : sparked);
-                Begin(pick);
-                turned[i] = now;
+                int held = day - started[i];
+                if (held >= length[i])
+                {
+                    goal[i] = -1;
+                    why[i] = null;
+                    doneAt[i] = day;
+                    turned[i] = false;
+                    continue;
+                }
+                float progress = held / (float)length[i];
+                // Before 0.112.0 any spark changed a goal ten days old; now only a big one, once, after twenty days.
+                var from = before
+                    ? (held >= 10 && progress < 0.35f ? sparkedNow : new List<(int g, string spark)>())
+                    : sparkedNow.Where(o => GoalMath.MayChangeHeart(held, progress, false, turned[i], o.spark)).ToList();
+                if (from.Count == 0 || rng.NextDouble() >= (before ? 0.25 : GoalMath.ChangeChance)) continue;
+                Begin(Pick(from, false));
+                turned[i] = !before;
                 changesAt[i].Add(day);
+                run.changes++;
             }
         }
-        int most = 0;
         foreach (var c in changesAt)
             for (int k = 0; k < c.Count; k++)
-                most = Math.Max(most, c.Count(d => d >= c[k] && d < c[k] + 25));
-        return (battleGoals, allGoals, most);
+                run.mostChanges = Math.Max(run.mostChanges, c.Count(d => d >= c[k] && d < c[k] + 25));
+        return run;
     }
 
     // ---------------- Decision 9: elections on a record ----------------
