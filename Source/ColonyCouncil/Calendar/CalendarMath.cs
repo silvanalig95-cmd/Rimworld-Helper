@@ -8,8 +8,9 @@ namespace ColonyCouncil
     /// <summary>
     /// The colony calendar's arithmetic, free of game types so the tests can cover it (Tools/Tests): where a day falls in
     /// the sixty-day year and when it is due, how much each kind of day means to the colony, which day makes way when the
-    /// calendar is full, how a day kept year after year grows into a tradition (and how one let pass lapses), and how to
-    /// read a chronicle line from an older save back into its parts.
+    /// calendar is full, how a day kept year after year grows into a tradition (and how one let pass lapses), the
+    /// council's customs on the calendar (one tradition rule for days and customs alike), and how to read a chronicle line
+    /// from an older save back into its parts.
     /// </summary>
     public static class CalendarMath
     {
@@ -232,6 +233,57 @@ namespace ColonyCouncil
 
         /// <summary>Years still to keep before the day becomes a tradition (0 once it is one).</summary>
         public static int YearsToTradition(int keptYears, bool tradition) => tradition ? 0 : Math.Max(1, TraditionAfter - Math.Max(keptYears, 0));
+
+        // ---------------- Customs on the calendar ----------------
+
+        /// <summary>How much a custom on the calendar means, for the order of days that fall together.</summary>
+        public const float CustomWeight = 30f;
+
+        /// <summary>A custom's day that finds no weather or nobody for it on its date may still come this many days after.</summary>
+        public const int CustomGraceDays = 5;
+
+        /// <summary>
+        /// A custom's day is due: its date, or within its grace days after (a swim waits for a warm day), and its question
+        /// hasn't come round for that year yet. <paramref name="occurrence"/> is the year it fell in.
+        /// </summary>
+        public static bool CustomDue(int today, int year, int day, int lastYear, out int occurrence)
+        {
+            occurrence = LastOccurrence(today, year, day);
+            return DaysSince(today, day) <= CustomGraceDays && lastYear < occurrence;
+        }
+
+        /// <summary>The day after a custom's grace days ran out: its year is spent, with no blame.</summary>
+        public static bool CustomMissed(int today, int day) => DaysSince(today, day) == CustomGraceDays + 1;
+
+        /// <summary>
+        /// A custom kept: a step toward a tradition, once a year (one that comes with its occasion, a victory feast, may come
+        /// twice in a year, and the second keeping is no second year). Kept again the same year, a tradition is still felt.
+        /// </summary>
+        public static KeepResult KeepInYear(ref int keptYears, ref bool tradition, ref int breaks, ref int lastKeptYear, int year)
+        {
+            if (lastKeptYear >= year)
+            {
+                breaks = 0;
+                return tradition ? KeepResult.KeptTradition : KeepResult.Kept;
+            }
+            lastKeptYear = year;
+            return Keep(ref keptYears, ref tradition, ref breaks);
+        }
+
+        /// <summary>A custom let pass leaves the calendar (it is a question again) unless it is a tradition broken only once.</summary>
+        public static bool OffCalendar(PassResult r) => r != PassResult.Broken;
+
+        /// <summary>
+        /// A custom an older save counted (the times its answer was chosen, a tradition or not, traditions broken in a row)
+        /// as it goes on the calendar: a tradition stays one; one counted under the old two-year rule keeps its count and
+        /// needs the rest of the three years.
+        /// </summary>
+        public static void CarryCustom(int count, bool wasTradition, int breaks, out int keptYears, out bool tradition, out int breaksNow)
+        {
+            keptYears = Math.Max(0, count);
+            tradition = wasTradition;
+            breaksNow = wasTradition ? Math.Max(0, Math.Min(breaks, LapseAfter - 1)) : 0;
+        }
 
         // ---------------- Reading old chronicle lines ----------------
 

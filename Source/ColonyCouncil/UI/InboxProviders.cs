@@ -133,9 +133,10 @@ namespace ColonyCouncil
                 foreach (var r in council.decrees.requests)
                     if (r?.def != null && r.pawn != null)
                         petitions++;
+            // A shared want's petition of several counts once, as its row (its first want).
             if (S.enableWishes)
                 foreach (var w in comp.wishes)
-                    if (w.state == WishState.Open && w.pawn != null)
+                    if (w.state == WishState.Open && w.pawn != null && comp.LeadsPetition(w))
                         wishes++;
             return petitions + wishes;
         }
@@ -148,7 +149,8 @@ namespace ColonyCouncil
             if (S.enableWishes)
                 foreach (var w in comp.OpenWishes)
                 {
-                    if (w.pawn == null) continue;
+                    // A petition of several is one row, its first want (Wishes/Petitions.cs).
+                    if (w.pawn == null || !comp.LeadsPetition(w)) continue;
                     var row = WishRow(w);
                     row.pinned = memory != null && memory.IsPinned(w);
                     rows.Add(row);
@@ -180,7 +182,10 @@ namespace ColonyCouncil
         {
             int left = w.TicksLeft;
             int total = Mathf.Max(1, w.expiresTick - w.createdTick);
-            string text = w.ForSomeoneElse && w.Beneficiary != null
+            var comp = Comp;
+            string text = comp != null && comp.IsPetition(w)
+                ? "CC_Petition_Week".Translate(comp.PetitionNames(w).Named("NAMES"), w.LabelInline.Named("WISH")).Resolve()
+                : w.ForSomeoneElse && w.Beneficiary != null
                 ? "CC_Week_WishFor".Translate(WeekModel.Name(w.pawn), w.Label, WeekModel.Name(w.Beneficiary)).Resolve()
                 : "CC_Week_Wish".Translate(WeekModel.Name(w.pawn), w.Label).Resolve();
             if (w.coSigners.Count > 0) text += " " + "CC_Week_WishBacked".Translate(w.coSigners.Count).Resolve();
@@ -191,9 +196,16 @@ namespace ColonyCouncil
             if (w.expiresTick > 0) lines.Add("CC_Inbox_Lapses".Translate(InboxWords.Date(w.expiresTick).Named("DATE")).Resolve());
             var open = WeekModel.Page("Wishes");
             float share = left / (float)total;
+            // A petition's other names: the row is theirs too (the bar's badge on each of them reads it).
+            List<Pawn> others = null;
+            if (comp != null && comp.IsPetition(w))
+                foreach (var o in comp.PetitionOf(w))
+                    if (o != w && o.pawn != null && o.pawn != w.pawn)
+                        (others ??= new List<Pawn>()).Add(o.pawn);
             return new WeekRow
             {
                 pawn = w.pawn,
+                others = others,
                 text = text,
                 sub = (w.promised ? "CC_Inbox_Sub_WishPromised" : "CC_Inbox_Sub_Wish").Translate(InboxWords.Date(w.createdTick).Named("DATE")).Resolve(),
                 subColor = share < 0.25f ? UiKit.Bad : share < 0.5f ? UiKit.Warn : UiKit.Faint,

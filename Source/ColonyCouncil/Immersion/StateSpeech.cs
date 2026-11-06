@@ -226,7 +226,7 @@ namespace ColonyCouncil
             CalendarDay best = null;
             foreach (var d in cal.days)
             {
-                if (d == null || d.kind == CalendarKind.FirstSnow || CalendarMath.DaysUntil(today, d.day) != 1 || d.lastYear >= tomorrowYear) continue;
+                if (d == null || !d.Dated || CalendarMath.DaysUntil(today, d.day) != 1 || d.lastYear >= tomorrowYear) continue;
                 if (!d.byPlayer && tomorrowYear <= d.sinceYear) continue;
                 if (best == null || d.Standing > best.Standing) best = d;
             }

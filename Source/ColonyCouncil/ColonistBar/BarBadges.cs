@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RimWorld;
 using RimWorld.Planet;
@@ -309,6 +310,8 @@ namespace ColonyCouncil
                     for (int i = 0; i < waiting.Count; i++)
                     {
                         var w = waiting[i].about as Wish;
+                        // In a petition of several the row is its first want's: theirs is their own want in it.
+                        if (w != null && w.pawn != p) w = comp.PetitionOf(w).FirstOrDefault(x => x.pawn == p);
                         if (w == null || w.state != WishState.Open || w.pawn != p || w.def == null) continue;
                         float elapsed = w.Elapsed;
                         int level = BarBadgeMath.WishLevel(elapsed, s.barWishPatience, w.stage);

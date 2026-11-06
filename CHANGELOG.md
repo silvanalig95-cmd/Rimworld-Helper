@@ -5,6 +5,34 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One festive year
+
+*6 November 2026, version 0.115.0*
+
+- Every custom the colony keeps lives on the calendar now: a seasonal custom comes round on the day it was first kept, a custom tied to a moment (the planting day, the victory feast, telling the bees) comes with its occasion, and the calendar shows when each next comes and how many years it has been kept.
+- One rule makes a tradition: a day or a custom kept three years running. A custom let pass before then starts over and leaves the calendar; breaking a tradition costs as before, and breaking it twice in a row ends it.
+- A season that holds a custom's day asks no other custom, and a custom with its own date never comes as an ordinary council question.
+- Every feast is laid the same way, whatever its reason: an answer, a calendar day, guests, a wedding. A while in, the host raises a cup and the table raises theirs, with words for the day, the guests or the couple.
+- Old saves bring their counted customs onto the calendar; a custom already a tradition stays one, and one counted under the old two-year rule needs its third year.
+
+## Letters that arrive, petitions that gather
+
+*6 November 2026, version 0.114.0*
+
+- Letters to notables travel by the colony's own means: a runner, a rider, a courier or a shuttle courier, in days rather than up to twelve a leg. A letter that took 26 days to answer in the save now comes back in under a week by courier. The letters page says how a letter travels, never when it will arrive.
+- Every answer brings something: a warm greeting carries a small gift, a kind or cool one news of their town, a warning heeded warmly becomes a debt of honour, and every answer says how far their regard moved ("civil before, friendly now").
+- A refusal or a curt answer now says why: war, their regard, hard times, asked too lately or too much.
+- When several colonists want the same thing it comes to the council as one petition with all their names: one card, one deadline, one answer for all, granted to each as it is met on the map and told once.
+- Fixed: a feast declined by letter said only that they won't be coming, instead of their own words.
+
+## Three good bands
+
+*6 November 2026, version 0.113.1*
+
+- The heart's good side has three bands that each lift the mood, as first approved: steady (+2), in good heart (+3) and in high spirits (+5). Below steady it is nothing to speak of yet.
+- Steady gives only its mood; in good heart and in high spirits keep their brighter dreams and quicker recovery from strain, and high spirits its inspirations and kind words. Steady shows on the meter, the card and the inspector like the others.
+- In the simulator a well-run colony's Rimfolk mood rises a little (about +6.0 to +6.5) while the whole colony's mood and every strained or neglected colony stay as they were.
+
 ## In good heart
 
 *6 November 2026, version 0.113.0*

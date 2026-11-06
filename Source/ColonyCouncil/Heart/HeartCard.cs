@@ -5,9 +5,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The heart's good side on the colonist's card (UI/Cards, the Now slot): one line while they're in good heart or in
-    /// high spirits, with what filled it ("In good heart: friends close by and a purpose."), and the last release while
-    /// it's recent. Nothing while steady, on strain's side, or with the good side off.
+    /// The heart's good side on the colonist's card (UI/Cards, the Now slot): one line while they're steady, in good heart
+    /// or in high spirits, with what filled it ("In good heart: friends close by and a purpose."), and the last release
+    /// while it's recent. Nothing with nothing yet, on strain's side, or with the good side off.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class HeartCard

@@ -150,6 +150,38 @@ Same wish, different voice:
 **Petitions:** when several pawns want the same thing (e.g. 3 want a rec room), the wishes
 merge into one bigger request with a bigger, shared reward.
 
+### Shared wants as one petition (the player's decision 11, 6 November 2026)
+
+In the player's save "proper armor" was wished six times by six fighters in 45 days and given up five times, three of
+them asked within a day of each other: six letters, five lapses, each a separate disappointment. A wish many back for
+one thing (a rec room, a sick bay: `WishDef.allowPetition`) was already one wish with co-signers; a want each has for
+themselves was not. Now (`Wishes/Petitions.cs`, a partial of the component; pure rules in `Wishes/PetitionMath.cs`,
+tested in `LettersPetitionsTests`):
+
+- **Joining.** A new want (`CreateWish`, every path: the roll, a trigger, a dream, envy) that someone else in the same
+  colony already waits for joins theirs instead of being a wish of its own (`ShareWith`, `PetitionMath.Join`): the same
+  def, subject key and thing, both a want of the asker's own (not `allowPetition`, not spoken for someone else); a
+  petition under way first (the most names), then the oldest. Each want stays its own `Wish` underneath (each fighter's
+  armor is checked on them), linked by `Wish.petition` (the first want's id, saved, -1 alone) and kept out of the
+  letters: a message names everyone ("Harper wants proper armor too: Stace, Dukialgac and Harper now ask the council
+  for it together"), the line is said over their head, the joiners' bond warms a little, and the chronicle has one line.
+- **One deadline, one count, one voice.** Joining moves the whole petition's deadline two days on (`PetitionMath.Deadline`,
+  never past a fresh wish's full time, never sooner than it stood) and shares its promise and stage. It counts once
+  toward the open wishes' cap (`OpenWishCount`, `LeadsPetition`), shows once on the Wishes page (its header names them
+  all, a pill "A petition of 3"), in the inbox and on the on-screen panel, and only its oldest open want reminds and
+  makes the last call.
+- **Answered together.** Promise, Refuse and Not now answer every open want in it (`ForPetition`: the others quietly
+  first, then the first, told once with every name); a promise moves the one deadline on as for one wish.
+- **Met one by one, the letter at the last.** Each want is granted as it is met on the map, with its own mood, trust,
+  motivation and watch (`Grant`); while others still wait its thanks come as a news line naming who still waits
+  (`MetInPetition`), and the names met go on the others (`Wish.petitionMet`, saved); the last one met brings the letter,
+  naming everyone, and one chronicle line.
+- **Lapsing together.** At the shared deadline the first to lapse tells it once with every name (`LapseTogether`,
+  `CC_Petition_LapsedTitle`); the others' own lapses keep their trust, mood and journal, quietly.
+- **Older saves.** Wishes already open stay on their own (`petition` -1); a new want of the same joins the oldest. The
+  save's armor (days 82 to 128) would have come to the council as three: Toni and Alo's, the three fighters' of day 103,
+  Shigeko's; five given up as two petitions let lapse (the tests replay it).
+
 ### Stakes setting
 
 | Mode | Fulfilled | Ignored, refused, broken promises |
@@ -480,8 +512,9 @@ stat part contribute nothing and the hooks return 1.
   `HeartMath`, covered by the tests.
 - **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
 - **The good side** is strain's other side, never both at once (see "The heart's good side" below): it fills slowly
-  while strain is at nothing, hardship spends it first, and its bands (in good heart, in high spirits) give a second
-  situational thought of the same kind (+2/+3), brighter dreams and a quicker recovery, never work speed.
+  while strain is at nothing, hardship spends it first, and its bands (steady, in good heart, in high spirits) give a
+  second situational thought of the same kind (+2/+3/+5), the upper two brighter dreams and a quicker recovery, never
+  work speed.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
   tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
@@ -602,14 +635,18 @@ strain, right? If they have positive impacts over an extended period"): one hear
   (`StrainRelief.Joys` beyond the strain they have: 1.2), and the comforts of home (the pile of every small good mood,
   the game's fine rooms and meals among them: 0.4 a day, the smallest cap and share, so a rich colony doesn't simply
   buy it). The day's joys cap counts what a joy eased or filled. It fades slowly (about 3% a day, `GoodFadePerHour`).
-- **The bands** (the player's names): steady below 45, in good heart from 45, in high spirits from 65. A small good
-  mood, +2 and +3 (`Council_Heart_GoodSide`, a situational thought reading the band like strain's, nothing stored in
-  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`);
-  brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and 0.7, `Heart.DreamFactor`); a quicker
-  recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how high the good side stood lately
-  (`goodLately`, halving in about three days), so someone in good heart before a hard spell gets over it sooner. No
-  work speed. Proposed at about +2, +3 and +5; measured, +2 and +3 with the bands from 45 and 65 keep a well-run
-  colony on its target (see "Balance targets").
+- **The bands** (the player's names), as the player approved them (6 November 2026, "As I approved": three bands that
+  each give a mood): steady from 20 (`SteadyAt`), in good heart from 45, in high spirits from 65; below 20 nothing to
+  speak of yet (`GoodBand.None`, no mood, the meter says "nothing yet"). A small good mood each, +2, +3 and +5
+  (`Council_Heart_GoodSide`, one stage a band, a situational thought reading the band like strain's, nothing stored in
+  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`). In
+  good heart and in high spirits also brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and
+  0.7, `Heart.DreamFactor`) and a quicker recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how
+  high the good side stood lately (`goodLately`, halving in about three days), so someone in good heart before a hard
+  spell gets over it sooner; steady gives only its mood. No work speed. Shipped first (0.113.0) as two bands, +2 and
+  +3, steady giving nothing, to keep a well-run colony on its target; the player chose the stronger reward as first
+  approved, knowing Rimfolk's good moods at a high point rise with it (see "Balance targets"). The band is never saved
+  (read from the value), so an older save's colonist above 20 is steady at once.
 - **The release**, the mirror of strain's day off (`GoodRelease`): in high spirits, about once in four days held there
   (`ReleasePerHour`), at most once in 10 days for each colonist and once a day in the colony (`lastReleaseTick`,
   `HeartTracker.lastColonyReleaseTick`), only when it's safe, at home, awake, an adult free colonist, not drafted,
@@ -625,11 +662,12 @@ strain, right? If they have positive impacts over an extended period"): one hear
   weren't built: the game has no honest way to show either on the map.
 - **Words** in every age: the heart's page (the Mood tab's Heart section) has a second meter, "Good heart", with what
   filled it ("friends close by (+6), a purpose (+4)") and what spent it ("fighting (-6)"), a line while strain holds,
-  and the last release; the inspector line and RimHUD read the good band while it shows ("Heart: in good heart ·
+  and the last release; the inspector line and RimHUD read the good band from steady ("Heart: in good heart ·
   proud"); the strain meter's tooltip names the other side; the colonist's card (the Now slot) says the band and what
-  filled it; the council's Moods page counts who is in good heart and in high spirits; the band mood's tooltip says
-  what filled it. Keys in `Rimfolk_GoodHeart.xml`; the Almanac page "the heart's good side" (`Almanac_GoodHeart.xml`),
-  the heart's page with its bands in the table.
+  filled it; the council's Moods page counts who is steady, in good heart and in high spirits; the band mood's tooltip
+  says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
+  file's band words, explanation and count left unused); the Almanac page "the heart's good side"
+  (`Almanac_GoodHeart.xml`), the heart's page with its bands in the table.
 - **The setting** "The heart's good side" (`heartGoodSide`, on), on the Heart & health page beside the heart's own.
   Off (or the heart off): nothing fills it, what there was is gone at the next hour, the bands give nothing, hardship
   builds strain as before. Dev mode: fill it by 20, and overflow now.
@@ -1115,7 +1153,7 @@ gives those taking part come once it's over (PlayOut/).
   last 30 results (who took part, a note), which the dilemmas page shows as how it went (`DilemmaLog`), and This week
   lists every plan waiting or under way (`WeekModel`, `PlayOutText`); `DecreeDef.onEnact` (a feast day at noon, a festival's first evening, a rest day) and
   `AmbitionDef.achievedEffects` (the great feast eaten, the first barrel, a games night) run through `PlayOuts.Run`;
-  the calendar's feast, games and remembrance days start theirs directly. `PlayOutTracker` (a game component of its
+  the calendar's games and remembrance days start theirs directly, and every feast goes through the one feast engine (`PlayFeast`, the festive year below). `PlayOutTracker` (a game component of its
   own) keeps the plans; `PlayOutMath` holds the pure numbers the tests check.
 
 ### The audit
@@ -1625,8 +1663,10 @@ tested in `StageTests` and run by `Tools/Balance --scenes`):
   hours), they say a word over the meal, the day's good memory comes to those at home (to those who knew them, for a
   remembrance), and the evening's news says it was kept at supper. Before that moment nothing is given.
 - **One seasonal custom a season** (a dilemma with seasons that can become a tradition, `Dilemmas.IsSeasonalCustom`;
-  `StageColony.customSeason`, a season being fifteen days of the year). A tradition still comes round when its time
-  does, and counts as the season's.
+  `StageColony.customSeason`, a season being fifteen days of the year). A season that holds a custom's day on the
+  calendar is asked no other (the festive year, below); a tradition still comes round when its time does, and counts as
+  the season's. Whether a custom should also stay two days clear of other gatherings was put to the player, who said no
+  (6 November 2026): there is no such rule.
 - **A life goal's toast is raised at the next gathering**, not on an evening of its own (`Stage.Cup`): the one who thinks
   best of them has a cup to raise there, the two are asked to it, its first message says so, and a while in the cups go
   up with the toast's words; their moods come when it's over. With no gathering within two days, it is raised at supper
@@ -1652,6 +1692,78 @@ calendar days 42%, a group's evenings 32%, family suppers 34%, customs 88% (the 
 player's game asked about seven in sixty days, of which four a year stay), toasts none (raised at the next gathering),
 elections' three gatherings 60%; meetings, decrees, answers, weddings and faith all of them. Well run 2.8 a week,
 neglectful 2.7.
+
+## One festive year (the player's decision 7, 6 November 2026)
+
+The reviews found two festival calendars with two rules for a tradition: the calendar's days (kept three years
+running, `CalendarMath`) and the council's seasonal customs (the midsummer fire, the swim, the harvest dance, the
+longest night's supper: a council question, a tradition once its answer was chosen twice, `DilemmaDef.traditionAfter`),
+on two pages, nothing keeping a custom from landing beside a calendar day; and feasts set going five ways and cooked
+two. The player chose one rule, three years running. Built as one festive year (phase 5 of the review):
+
+- **Customs on the calendar** (`Calendar/CalendarCustoms.cs`, a part of `ColonyCalendar`). A custom (a dilemma with a
+  `traditionOption`) goes on the colony calendar the first time the colony keeps it (`AddCustom`, from
+  `DilemmaTracker.Tradition`): a day of `CalendarKind.Custom` and `DayWay.Custom`, its question named by `about`, its
+  name the custom's (`traditionLabel`). A seasonal custom keeps the date it was kept on: each year its question comes
+  round on that day (`AskCustoms` in the calendar's hour, through `DilemmaTracker.AskCustom`, the council's own letter
+  with its own answers), or within five days when its weather or someone to ask for it isn't there
+  (`CalendarMath.CustomDue`, `CustomGraceDays`: a swim waits for a warm day); past those its year is spent with no blame
+  ("came and went this year", `MarkCustomMissed`). A custom asked in its moment (the planting day as the fields open,
+  the herd brought home, the victory feast, telling the bees) is on the calendar "with its occasion" (`CalendarDay.moment`,
+  not `Dated`) and comes as it always did. Customs never make way for a day the colony writes down (`Fixed`, not `Auto`)
+  and don't count toward its twelve.
+- **One season, one custom.** A dated custom on the calendar is never asked as one of the council's ordinary questions
+  (`BringsCustom`), and a season that holds a custom's day is asked no other seasonal custom (`CustomSeasonHeld`, the
+  fifteen days of `StageMath.SeasonOf`); asked, the custom's day marks the season's custom as any custom does
+  (`Stage.CustomAsked`). With the calendar off, customs are asked in their season as before.
+- **One tradition rule** (`CalendarMath`, for days and customs alike). Kept three years running (`TraditionAfter`), a
+  day or a custom is a tradition. A custom steps once a year (`KeepInYear`: one that comes with its occasion may come
+  twice, and the second keeping is no second year); let pass before it is a tradition, its years start again and it
+  leaves the calendar, a question again in its season (`Pass`, `OffCalendar`, `LetCustomGo`, a line in the news); a
+  tradition let pass costs as it always did ("a tradition broken" for everyone but the ascetic, -2 trust each) and
+  lapses the second time in a row, leaving the calendar. The tags a custom's lines read ([again], [years],
+  [tradition], [missed], `CustomYearsMath`) come from its day. The answer's sheet says "Toward a tradition: chosen 1 of
+  the 3 times it takes", and for a custom on the calendar not yet a tradition, that another answer takes it off.
+- **What reads a custom.** `DilemmaTracker.IsTradition`, `TraditionCount`, `Traditions` and `AddCustomTags` read the
+  calendar (`CustomDay`); the forced traditions of the council's hour skip those the calendar brings on their day. The
+  calendar's traditions (`ColonyCalendar.Traditions`) now hold the customs too, for the founding letter, the keeper of
+  days' promise and the colony's ways. The Calendar page shows each custom among the days, soonest first: its date
+  (or "with its occasion"), when it next comes, a "custom" pill, its years kept or its tradition, and where it came from
+  ("A custom the council first kept in 5502... Kept by answering 'Make a day of the planting'."); its way and date can't
+  be changed, and taking it off loses its years (kept again, it comes back). The page's separate "Seasonal customs" list
+  is gone. The days that come with an occasion are left out of what counts dates (This week's coming days, the advisor's
+  day tomorrow, talk of tomorrow, an ambition's days ahead: `CalendarDay.Dated`).
+- **Older saves** (`DilemmaTracker.MoveCustoms`, once, the first hour; `customsMoved`, saved): every custom the
+  council counted goes on the calendar, dated the last time it was asked (that year spent), with
+  `CalendarMath.CarryCustom`: a custom already a tradition stays one (its break, if any, kept); one counted under the
+  old two-year rule keeps its count and needs the third year. The tracker's own lists are emptied.
+- **One feast engine** (`PlayOut/PlayFeast.cs`). Every feast is set going by `PlayFeast.Stage(FeastOrder)`, the only
+  place a play-out of the kind Feast is made: an answer's (`DilemmaEffect_Feast.Create`, with the answer's own way of
+  naming who comes), a calendar day kept with a feast (`CalendarKeeping.FeastDay`, the keeper of days as host, the
+  grieving sitting it out, "a feast day" held for those who sit down), a feast with guests from the neighbours and the
+  steward's suggestion (`Feasts.StartFeast`, guests "feast"), a planned wedding's feast and a family's supper. On the map
+  it is one gathering: at the table unless told otherwise, the raw food an answer spent cooked first (`PlayCook`), a meal
+  from the stores served to each who sits down (`LordJob_PlayOut.Serve`), the guests at their places (`PlayGuests`), and
+  a while in the host raises a cup and the table and its guests raise theirs (`GatheringTouches`, `PlayOut.toast` and
+  `toastLine`, saved), with the reason's words ("To the harvest, and to everyone here to keep it.", "To our guests, and
+  the road that brought them here.", the wedding's "To Alo and Penguin, and many years.", else a toast's own line); a
+  family's supper raises none. The reason's moods come when it's over to those who were there. What differs by the
+  reason stays with its caller: the contests, the champion and the guests' welcome (`Feasts`), the day's letter and
+  tradition, the answer's outcome, and what happens when no feast can be set going (the game's party and a better
+  supper for a day, the guests served by the hosting rules).
+
+Tests: `FestiveYearTests` (a custom's day and grace days, a step once a year, three years running, off the calendar,
+an older save's counts, and in the source one rule and one feast engine), `CustomYearsTests` (the custom's lines can
+come true under the one rule). Dev menu: "Calendar: a day comes round now..." asks a custom's question.
+
+Measured (`Tools/Balance --scenes`, 800 colony-years each way of playing, a colony of ten; the model now holds the two
+seasonal customs a settled colony keeps by its third year, `Rates.SceneKeptCustoms`, which before came as the council's
+traditions did, the first hour of their season, and now come on their day): gatherings and outings staged as their own
+scene a year, floor evenings included, well run 24.3 before and 24.3 after, average 23.8 and 23.8, neglectful 23.7 and
+23.6 (2.8 a week); every gathering before the pace 42.6, 38.7 and 35.9 before, 42.2, 38.1 and 35.7 after. Customs asked
+3.9, 3.2 and 2.3 a year before (a tradition and the season's own question could fall in one season), 3.0, 2.4 and 1.7
+after, nine in ten of them their own scene. Without the kept customs (the model before this phase) the colony staged
+24.2, 23.6 and 22.9.
 
 ## Goods and people that come and go on the map
 
@@ -2065,6 +2177,15 @@ off. Measured (6 colonists, 120 runs, the code just before it and the same seeds
   of the good side a point of hardship, 3% a day of fading, 4 a day in all. Left: Rimfolk's good moods at a high point,
   well run, P99 +17.5 to +17.6 and +12 or more 16% to 18%; +1 and +2 lifted the second just as much (any lasting good
   mood held a third of the time does), so the moods stayed where a colonist feels them.
+- The bands as the player approved them (6 November 2026, "As I approved"): steady from 20 with +2, in good heart +3,
+  in high spirits +5, nothing else changed. Measured against the two bands on the same seeds (6 colonists, 120 runs):
+  Rimfolk's mood well run +6.0 to +6.4, now just over its target (12 colonists +5.0 to +5.7), average +2.5 to +2.6,
+  neglected -7.2 as before (the good side never reaches 20 there); the band mood well run +0.7 to +2.0 before good
+  things growing ordinary take back their part; the whole mood 69%, 64% and 39% as before. Well run, a colonist is
+  steady about 48% of the time, in good heart 28% and in high spirits 3%; average, steady 2%. Rimfolk's good moods at a
+  high point, well run, P99 +17.6 to +17.9 and +12 or more 18% to 21% (at 480 runs +6.0 to +6.5, P99 +17.7 to +18.1,
+  22%): the rise the first pass tuned away, which the player chose knowing it. Strain, the day off and time under the
+  minor-break line unchanged.
 
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than
@@ -3314,6 +3435,42 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   reason (`Patch_ColonistMemoryTrade`), so the option is greyed out and a caravan's negotiator is someone else. No raid
   of its own.
 
+### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
+
+In the player's save Stace wrote three letters to notables in 18 days; each leg took 12 to 14 days (the towns are over
+fifty tiles off, and a leg went at the other people's walking pace, twelve days at most), and the one answer was "Your
+letter came. We are well enough, thank you." and "It changed little between the colony and Blash", 26 days after it was
+written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`; wired in `World/NeighbourLetters.cs`):
+
+- **By the colony's means.** A letter goes by the colony's age (`Ages.Ours`, `LetterMath.MeansOf`): runners (tribal), a
+  rider (medieval), a courier (industrial), a courier by shuttle (spacer); a call on the comms console is at once. Each
+  leg is half a day plus 0.09, 0.06, 0.04 or 0.015 days a tile, at most six, five, four or two days (`LegDays`); the
+  answer comes back the same way (`backDays`), and the courier tracker still brings it to the gate by a messenger of
+  theirs (`Couriers.MailAnswer`). Before (by the other people's age) and after (by the colony's), a leg at 10, 25, 50 and 80 tiles: tribal 4.4, 10.4, 12, 12
+  days before, 1.4, 2.8, 5, 6 now; medieval 3.7, 8.7, 12, 12 before, 1.1, 2, 3.5, 5 now; industrial 2.6, 5.9, 11.4, 12
+  before, 0.9, 1.5, 2.5, 3.7 now; spacer 1.6, 3.4, 6.4, 10 before, 0.65, 0.9, 1.25, 1.7 now. The save's letter: 12 days a
+  leg before, under three by courier. A letter carried home by one of their people at the colony goes at their means;
+  a call's "how far they are" (when a guest or raiders could come) at theirs too. Letters already on the road keep the
+  day they were given (`due`, `backDays` saved). The letters page says by which means it is on the road, never when.
+- **What an answer brings** (`LetterMath.Brings`), for the purposes whose answer was words only: greetings answered
+  warmly bring a token gift (50 to 100 silver's worth by the colony's wealth, `Loot.Make`) in the messenger's pack,
+  kindly or coolly how their town is faring (`RegionFortunes.Line`, else a piece of news near them, else that the roads
+  are quiet); condolences taken warmly or kindly are remembered by their people (the "mourned" deed, as before, now
+  said); a warning heeded kindly or coolly is remembered ("warned"), heeded warmly it is a debt of honour (the deed at
+  weight 10, `LetterMath.HeededWarmly`, made when the answer reaches the colony: `NeighbourLetter.owed`, saved, then
+  `Owed`, through `FavoursOwed.Quietly` so the answer's own words tell it once), where debts of honour are kept
+  (`CanOwe`; else remembered). News, help, a visit and stage 2's purposes (a favour, a pact, a truce, a ransom, an envoy,
+  a ward, a match, an oath, a feast) bring what they always did.
+- **Regard in words.** The answer's last line says how far it moved them, from their regard before and after
+  (`LetterMath.Move`: into another band, "civil before, friendly now"; a good deal, a shade, nothing, a shade less;
+  `CC_LetterRegard_*`), the writer named on a warm answer, and their people's goodwill when it rose. It replaces the
+  old tone line (`CC_Letter_Outcome_*`, kept for answers already written).
+- **A refusal with a reason.** A curt answer or a refusal says why (`LetterMath.Why`: the heaviest of what counted
+  against it in `NotableMath.Score`: a people at war first, then their regard of the colony or the writer, the writer's
+  words, their nature, hard times on business, the same asked lately, a call, a great deal asked, else a bad day), and
+  so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
+  match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):
@@ -3536,7 +3693,7 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
   (`JobDriver_FeastShoot`: the weapon's own sound and flash, hits by `ShotReport`). Children run races only. The guests
   and a few free colonists watch (`Council_PlayOutAttend`). Each result goes into a message and the history
   (`dip:contest`); a reload during one lets it go as broken up (the run isn't saved).
-- **The feast** (`Feasts.StartFeast`): a play-out of the kind Feast (`DilemmaEffect_Feast.Begin`, guests
+- **The feast** (`Feasts.StartFeast`): a play-out of the kind Feast through the one feast engine (`DilemmaEffect_Feast.Begin` with `FeastWhy.Guests`, a cup raised to the guests; guests
   `PlayGuests.Feast`), so the colony's gathering serves everyone, the guests included, by the feast's serving rules;
   with answers not playing out, each guest is served at the table by the hosting rules. The Empire's guests hope for
   music: where the colony has an instrument, its best player plays (the game's `Concert` gathering, with Royalty). At the

@@ -125,6 +125,9 @@ namespace ColonyCouncil
         /// <summary>Where the letter is, in words (never a countdown).</summary>
         public static string StatusWords(NeighbourLetter l, Notable n)
         {
+            // On the road, or its answer on the way back, by the colony's means (a runner, a rider, a courier, a courier by shuttle).
+            if (l.channel == LetterChannel.Courier && l.bearer == null && l.bearerName.NullOrEmpty() && (l.stage == LetterStage.Travelling || l.stage == LetterStage.Answering && l.tripId >= 0))
+                return ("CC_LetterRoad_Status_" + l.stage + "_" + NeighbourLetters.Means).Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME")).Resolve();
             string key = "CC_Letter_Status_" + l.stage;
             return key.CanTranslate() ? key.Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME")).Resolve() : null;
         }

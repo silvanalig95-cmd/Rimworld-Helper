@@ -169,8 +169,8 @@ namespace Balance
         public int episodes;
         /// <summary>Hours in each band of strain, all colonists, in the measured year; strain built and eased by what, per colonist.</summary>
         public readonly double[] bandHours = new double[4];
-        /// <summary>Hours in each band of the good side (steady, in good heart, in high spirits), and its releases (inspirations, kind words).</summary>
-        public readonly double[] goodBandHours = new double[3];
+        /// <summary>Hours in each band of the good side (nothing yet, steady, in good heart, in high spirits: GoodBand), and its releases (inspirations, kind words).</summary>
+        public readonly double[] goodBandHours = new double[4];
         public readonly int[] releases = new int[2];
         private int lastColonyRelease = -999999, heartRaidHour = -1;
         /// <summary>Hours with strain at nothing (when the good side can fill).</summary>
@@ -637,7 +637,7 @@ namespace Balance
                 part = "strain";
                 c.strain = (int)HeartMath.BandFor(c.heart.strain);
                 if (set.B("heart") && c.strain > 0) Add(defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f);
-                // The heart's good side: in good heart, in high spirits (a situational mood like strain's).
+                // The heart's good side: steady, in good heart, in high spirits, a stage each (a situational mood like strain's).
                 part = "the good side";
                 int goodBand = c.heart.goodOn ? (int)HeartMath.GoodBandFor(c.heart.good) : 0;
                 if (goodBand > 0) Add(defs.T("Council_Heart_GoodSide")?.Stage(goodBand - 1) ?? 0f);
@@ -1248,6 +1248,7 @@ namespace Balance
                 nextThreat = hour + (int)(Exp(Rates.BigThreatDays) * 24) + 24;
             }
             if (dilemmaPending > hour) return;
+            if (scenes != null && KeptCustom()) return;
             if (nextDilemma < 0) nextDilemma = hour + DilemmaInterval();
             // The aftermath of a raid brings its own questions.
             if (hour - lastThreat > 6 && hour - lastThreat < 36 && hour - lastDilemma > Code.DilemmaGapDays * 24 && Chance(Code.DilemmaRaidChance))
@@ -1279,7 +1280,7 @@ namespace Balance
         private bool FireDilemma(Func<OutcomeDef, bool> only, string system)
         {
             if (!GapOpen) return false;
-            var pool = defs.dilemmas.Where(d => only(d) && Fits(d)).ToList();
+            var pool = defs.dilemmas.Where(d => only(d) && Fits(d) && !CustomOnCalendar(d)).ToList();
             foreach (var d in pool.OrderByDescending(d => d.weight * rng.NextDouble() * (d.seasons == null && d.withinDaysOfThreat <= 0f ? 1 : 3)))
             {
                 if (!Chance(Rates.WorkerCasts * d.gate)) continue;
@@ -1919,6 +1920,59 @@ namespace Balance
             int families = (int)(people.Count * Rates.SceneSupperFamilies) + (Chance(people.Count * Rates.SceneSupperFamilies % 1f) ? 1 : 0);
             for (int i = 0; i < families; i++) supperLast.Add(-rng.Next(10) * 24);
             campNextFrom = (int)(rng.NextDouble() * SceneConstants.CampGapDays * 24);
+            // The seasonal customs the colony keeps by its third year (Rates.SceneKeptCustoms), each in a season of its own,
+            // on the day it was first kept.
+            foreach (int q in Enumerable.Range(0, 4).OrderBy(_ => rng.Next()).ToList())
+            {
+                if (keptCustoms.Count >= Rates.SceneKeptCustoms) break;
+                string season = new[] { "Spring", "Summer", "Fall", "Winter" }[q];
+                var pool = defs.dilemmas.Where(d => d.tradition >= 0f && d.seasons != null && d.seasons.Contains(season) && d.gate > 0f && d.minColonists <= people.Count)
+                    .Where(d => keptCustoms.All(k => k.def != d)).ToList();
+                var kept = Weighted(pool, d => d.weight * d.gate);
+                if (kept != null) keptCustoms.Add((kept, q * 15 + rng.Next(15)));
+            }
+        }
+
+        /// <summary>--scenes: the seasonal customs the colony keeps, each with the day of the year it falls on.</summary>
+        private readonly List<(OutcomeDef def, int day)> keptCustoms = new List<(OutcomeDef, int)>();
+
+        /// <summary>
+        /// --scenes: a seasonal custom the council isn't asked at random: a kept one comes on its day, and none other comes in
+        /// a season that holds a kept custom's day (DilemmaTracker.TryFire).
+        /// </summary>
+        private bool CustomOnCalendar(OutcomeDef d)
+        {
+            if (scenes == null || d.seasons == null || d.seasons.Count == 0 || d.tradition < 0f) return false;
+            return keptCustoms.Any(k => k.def == d || k.day / 15 == Quadrum);
+        }
+
+        /// <summary>When each kept custom last came round.</summary>
+        private readonly Dictionary<string, int> keptLast = new Dictionary<string, int>();
+
+        /// <summary>
+        /// --scenes: a custom the colony keeps is a day on its calendar (the festive year, Calendar/CalendarCustoms.cs): its
+        /// question comes on that day, or within its grace days (CalendarMath.CustomGraceDays) when its weather or someone to
+        /// ask for it isn't there (the cast's chance each hour), in the daytime, once a year, while no question waits.
+        /// </summary>
+        private bool KeptCustom()
+        {
+            if (HourOfDay < 9 || HourOfDay > 20) return false;
+            foreach (var (def, day) in keptCustoms)
+            {
+                if (CalendarMath.DaysSince(Day % YearDays, day) > CalendarMath.CustomGraceDays) continue;
+                if (keptLast.TryGetValue(def.name, out int last) && hour - last < 30 * 24) continue;
+                if (!def.seasons.Contains(Season) || !Chance(Rates.WorkerCasts * def.gate)) continue;
+                keptLast[def.name] = hour;
+                defLast[def.name] = hour;
+                lastDilemma = hour;
+                dilemmaPending = hour + AnswerDelay(2f);
+                Send("dilemmas", Channel.Decision);
+                Count("dilemmas");
+                var (a, b) = Cast();
+                Apply(def, Answer(def), a, b, "dilemmas");
+                return true;
+            }
+            return false;
         }
 
         /// <summary>Once a day: groups call their people, the election, weddings, family suppers, birthdays, decrees, camps.</summary>

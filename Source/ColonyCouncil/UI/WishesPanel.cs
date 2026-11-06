@@ -51,7 +51,8 @@ namespace ColonyCouncil
                 return;
             }
             // Not cached: a wish answered with a click must leave the list at once.
-            var open = comp.OpenWishes.OrderBy(w => w.TicksLeft).ToList();
+            // A petition of several shows once, as its first want (Wishes/Petitions.cs).
+            var open = comp.OpenWishes.Where(comp.LeadsPetition).OrderBy(w => w.TicksLeft).ToList();
             string stat = "CC_UI_Stat_Open".Translate(open.Count).Resolve();
             float top = UiKit.PageHeader(rect, Icons.Wishes, "CC_Wishes_Header".Translate(), ("CC_Stakes_Short_" + Settings.stakes).Translate(), stat, null, 220f);
 
@@ -124,7 +125,11 @@ namespace ColonyCouncil
             float now = Time.realtimeSinceStartup;
             if (layouts.TryGetValue(w, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 1f) return l;
             l = new Layout { width = width, at = now };
-            l.header = w.ForSomeoneElse
+            // A petition: everyone who asks, by name (Wishes/Petitions.cs).
+            var asking = comp.PetitionPeople(w);
+            bool petition = asking.Count > 1;
+            l.header = petition ? "CC_Petition_Header".Translate(comp.PetitionNames(w).Named("NAMES"), w.LabelInline.Named("WISH")).Resolve()
+                : w.ForSomeoneElse
                 ? "CC_WishHeaderForOther".Translate(w.pawn.LabelShort, w.Beneficiary.LabelShort, w.Label).Resolve()
                 : "CC_WishHeader".Translate(w.pawn.LabelShort, w.Label).Resolve();
             l.quote = (w.scene.NullOrEmpty() ? "" : w.scene + "\n") + "\"" + w.quote + "\"";
@@ -142,6 +147,9 @@ namespace ColonyCouncil
             if (w.coSigners.Count > 0)
                 l.pills.Add(new UiKit.PillSpec("CC_UI_Pill_Petition".Translate(w.coSigners.Count), UiKit.Info, Icons.People,
                     "CC_Petition".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList()))));
+            if (petition)
+                l.pills.Add(new UiKit.PillSpec("CC_Petition_Pill".Translate(asking.Count.Named("COUNT")).Resolve(), UiKit.Info, Icons.People,
+                    "CC_Petition_PillTip".Translate(comp.PetitionNames(w).Named("NAMES")).Resolve()));
 
             l.progress = SafeProgress(w);
             l.progressText = SafeProgressText(w);
@@ -157,7 +165,7 @@ namespace ColonyCouncil
             l.template = SuggestedTemplate(w);
             l.canBuild = w.thingDef != null && w.thingDef.BuildableByPlayer && Avail.CanBuild(w.thingDef, Find.CurrentMap);
             l.buttons = 2 + (l.template != null ? 1 : 0) + (l.canBuild ? 1 : 0) + (w.promised ? 0 : 1);
-            l.headerShown = PaneLinks.Mark(l.header, w.ForSomeoneElse ? new[] { w.pawn, w.Beneficiary } : new[] { w.pawn });
+            l.headerShown = PaneLinks.Mark(l.header, petition ? asking.ToArray() : w.ForSomeoneElse ? new[] { w.pawn, w.Beneficiary } : new[] { w.pawn });
 
             float textW = TextWidth(w, width);
             Text.Font = GameFont.Small;
@@ -286,7 +294,9 @@ namespace ColonyCouncil
             }
             float half = (bw - 2f) / 2f;
             if (UiKit.ActButton(new Rect(bx, by, half, ButtonH), "CC_Refuse".Translate(), null, "CC_Refuse_Tip".Translate()))
-                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve(), () => comp.Refuse(w), true));
+                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation((comp.IsPetition(w)
+                    ? "CC_Petition_RefuseConfirm".Translate(comp.PetitionNames(w).Named("NAMES"), w.LabelInline.Named("WISH"))
+                    : "CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH"))).Resolve(), () => comp.Refuse(w), true));
             if (UiKit.ActButton(new Rect(bx + half + 2f, by, half, ButtonH), "CC_NotNow".Translate(), null, "CC_NotNow_Tip".Translate())) comp.Dismiss(w);
         }
 

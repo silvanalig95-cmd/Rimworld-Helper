@@ -235,6 +235,14 @@ small hot room of the colony's own, where people sit on cold days and talk.
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**Asked together.** When a colonist wants something for themselves that someone else is already waiting for
+(proper armor, a roomier bedroom), they join that request rather than ask on their own: the council hears one
+petition with all their names ("Stace, Dukialgac and Harper want proper armor"), with one deadline (two days later
+for each name), counted once among the open wishes and brought up again once. Promising, refusing or setting it aside
+answers them all; if it lapses, it's told once. Each still gets their own on the map, says thanks as it comes, and the
+letter comes with the last one, naming everyone. In the player's save, six wishes for armor in 45 days would have come
+to the council as three.
+
 **Beliefs and diets.** Nobody asks for what their ideoligion or their own nature forbids, read from the game's Ideology,
 Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under an ideoligion that
 keeps lovin for the married (an engaged couple asks for the wedding instead), no smokehouse or hunt for a vegetarian,
@@ -575,7 +583,7 @@ them since: whatever you set by hand stays as you set it.
 dilemmas and 185 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
-the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
+the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook; a while in, its host raises a cup and the table raises theirs. Every feast is held this one way, an answer's, a calendar day's or one with guests from the neighbours. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
 at its head, the listeners in the chairs round it), a friend sits with someone who is ill, a
 colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
@@ -1301,9 +1309,13 @@ calendar's remembrances; the warden of guests spends an hour at the camp's fire 
 welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
 
 ### Traditions
-Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
-on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Thirty-four customs can become traditions, among them the **planting day** (asked
+Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
+and it goes on the colony calendar: its question comes round on that day each year (or within a few days, when its
+weather isn't there), or with its occasion for a custom asked in its moment. Keep it **three years running**, by the
+same rule as the calendar's own days, and it becomes a tradition: keeping it pleases everyone, breaking it disappoints
+them, and twice in a row it lapses. Let it pass before then and it leaves the calendar, a question again in its
+season. A season that holds a custom's day is asked no other. An older save's customs go on the calendar as they stood:
+a tradition stays one, one kept once needs two more years. Thirty-four customs can become traditions, among them the **planting day** (asked
 when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
@@ -1334,13 +1346,15 @@ and days that come from what the colony lived through: **the day a camp stayed a
 walking out to it, until the gift is gone), **the end of a world event the colony took part in** (a supper for a hungry
 year, a walk to the gate for a war or a plague), the **holy days of its own ideoligion** (its rites held on a date, with
 Ideology; the letter offers the rite itself) and **the day one of its people came home from captivity**. Up
-to a dozen of the most meaningful. On the **Calendar**
+to a dozen of the most meaningful, and besides them the council's **customs** the colony keeps (Traditions, above), so
+the year's festive days are all in one place, each with what it is and when it next comes. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
 day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day**, a **walk out** or, with Ideology, an **ideoligion evening**
 for one of the colony's ideoligions, rename any day, or change how it's kept. What people say
 about a day knows the land and the ideoligion: founding day in the desert is a jar of sand from where the first tent stood.
 
-When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
+When a day comes round, a letter asks whether to keep it this year (a custom comes as its own question): a **feast**
+is a meal from the stores at the table, with a cup raised to the day,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
 friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
@@ -1352,9 +1366,9 @@ journals, talk about it in the social log, and mention it the evening before; Th
 up. Days that fall within three days of each other come round as one, in one letter, kept together with one
 gathering; a day that comes within two days of another gathering is kept **at supper** instead (a better meal for
 everyone and a word said over it, or for a remembrance a word for them from those who knew them). All the moods are
-small and share the budget of good moods. Kept **three years running**, a day becomes a
-**tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
-pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
+small and share the budget of good moods. Kept **three years running**, a day or a custom becomes a
+**tradition** (one rule for both), with a letter, moods, the chronicle and the annals, and letting it pass then
+disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
 keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
 
@@ -2674,6 +2688,15 @@ colonists a people at most, fading over the years. Their notables think better o
 and letters name them, and their traders won't trade with a colonist they hold a death against: the trade option says
 why, and a caravan at their town sends someone else to do the talking. No raid comes of it.
 
+**Letters to the neighbours arrive in days.** A letter to someone the colony knows by name goes by the colony's own
+means in its age: runners for a tribe, a rider for a medieval colony, a courier for an industrial one, a courier by
+shuttle for spacers (a call on a comms console is at once). A town ten tiles off hears within a day or so, one fifty
+off in two to five days, where a leg once took up to twelve. Every answer says in words how far it moved them ("civil
+before, friendly now"), and a curt answer or a refusal says why (their regard, the writer, hard times, a great deal
+asked). Each brings something: greetings answered warmly a token gift in the messenger's pack, kindly how their town is
+faring; condolences taken to heart are remembered by their people; a warning heeded warmly becomes a debt of honour
+the colony can call in; help, a visit, news, a pact or a truce as before. Letters already on the road keep their day.
+
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
@@ -2797,7 +2820,8 @@ call, each answering by their regard and whether what their people hope for is o
 shooting match for an industrial people, a fine meal and music for the Empire). On the first fine day after the last of
 them can come, they walk in with one or two of their people and wait by the gate; up to four contests are held on the
 map (wrestling by the sparring rules, a race to a marker and back, a hunt of the colony's game, a game at its tables,
-and a shooting match where a mod gives targets), the feast is the colony's gathering with the guests at its table, the
+and a shooting match where a mod gives targets), the feast is the colony's gathering with the guests at its table (the
+same feast as any other: the meal from the stores, and its host raises a cup to the guests), the
 champion of the day gets the prize, and the guests stay the night and go home at first light. Their welcome moves their
 regard, and their people remember it; an empty plate is a slight. A bout's blow goes in hard now and then, and a guest's
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
@@ -3157,19 +3181,20 @@ for each point of strain it would have built, and it fades slowly (about 3% a da
 
 | Good side | Band | What it does |
 |---|---|---|
-| 0 to 44 | steady | nothing |
-| 45 to 64 | in good heart | +2 mood, brighter dreams, strain drains 15% faster |
-| 65 to 100 | in high spirits | +3 mood, brighter dreams still, strain drains 30% faster, and now and then something good comes of it |
+| 0 to 19 | nothing yet | nothing |
+| 20 to 44 | steady | +2 mood |
+| 45 to 64 | in good heart | +3 mood, brighter dreams, strain drains 15% faster |
+| 65 to 100 | in high spirits | +5 mood, brighter dreams still, strain drains 30% faster, and now and then something good comes of it |
 
 **When it overflows.** In high spirits and safe, now and then (about once in four days held there, at most once in 10
 days for each colonist and once a day in the colony), one of the game's own inspirations comes, picked by the game by
 their passions and its own rules; or they go and find someone close, the one under the most strain first, say a kind
 word face to face, and the other has a small joy of it. No work speed. The Heart section shows it as a second meter,
-"Good heart", with what filled it and what spent it; the inspector line reads "Heart: in good heart" while it shows,
+"Good heart", with what filled it and what spent it; the inspector line reads "Heart: in good heart" from steady on,
 and the colonist's card says what filled it. Its setting is beside the heart's own; off, nothing fills it and the bands
-give nothing. A save from before starts at nothing. In the balance simulator a well-run colony's people are in good
-heart about 28% of the time and in high spirits 3%; an average colony's rarely get there, but the good side still
-takes their knocks (strained 8% to 6% of the time).
+give nothing. A save from before starts at nothing. In the balance simulator a well-run colony's people are steady
+about 48% of the time, in good heart 28% and in high spirits 3%; an average colony's rarely get there (steady 2%), but
+the good side still takes their knocks (strained 8% to 6% of the time).
 
 **Feelings.** Each colonist has one or two feelings that stand out, out of twenty-six: grief, fear, dread (worry about
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they
@@ -3417,7 +3442,8 @@ The colony gathers about twice a week, not four or five times. What you choose a
 that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own doings (a
 group's evening at the fire, a family supper, a child's birthday toast, a camp's show) come only when the last seven
 days hold fewer than two gatherings and none in the last day and a half; one waits up to three days for room, and is
-then let go without a word. One seasonal custom is asked a season; a life goal's toast is raised at the next gathering;
+then let go without a word. One seasonal custom is asked a season (none other in a season that holds a custom's day on
+the calendar); a life goal's toast is raised at the next gathering;
 the election's candidates speak at the count, before the votes are read. A plan that never comes about gives nobody
 its moods, and says why. Ten days never pass without a gathering: from the seventh the colony's own come at once, and
 from the eighth, if nothing is on the way, the colony keeps an evening together. The number is the setting

@@ -276,10 +276,31 @@ namespace ColonyCouncil
         /// <summary>A letter about the good turn that came within this long of it carries the line.</summary>
         private const int LetterTicks = 2 * 2500;
 
+        /// <summary>While set, a debt made is not told on its own: the caller's own words say it.</summary>
+        private static bool quiet;
+
+        /// <summary>
+        /// Notes a deed whose debt is told in the caller's own words (a letter's answer that says they owe the colony,
+        /// World/NeighbourLetters.cs): the debt is made as always, only not told a second time.
+        /// </summary>
+        public static void Quietly(Action note)
+        {
+            bool was = quiet;
+            quiet = true;
+            try
+            {
+                note?.Invoke();
+            }
+            finally
+            {
+                quiet = was;
+            }
+        }
+
         /// <summary>The line goes into the letter that tells the good turn (one about their people, in the last hours), else the evening's news.</summary>
         private static void Say(Faction f, Map home, string line)
         {
-            if (line.NullOrEmpty()) return;
+            if (line.NullOrEmpty() || quiet) return;
             if (waitingGame != Current.Game)
             {
                 waitingGame = Current.Game;

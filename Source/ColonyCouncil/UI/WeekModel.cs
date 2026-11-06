@@ -46,6 +46,8 @@ namespace ColonyCouncil
         /// the on-screen council panel and the colonist bar's badges (UI/Inbox.cs, <see cref="Inbox.Waiting"/>).
         /// </summary>
         public object about;
+        /// <summary>Others it is about besides its pawn: a petition's other names, each of whom it waits on too.</summary>
+        public List<Pawn> others;
         /// <summary>How pressing it is on the on-screen panels' scale (Hud/HudRank.cs); 0 is merely waiting.</summary>
         public float rank;
         /// <summary>The on-screen council panel's part it shows under (InboxMath.PanelParts); null: its provider's.</summary>

@@ -23,6 +23,7 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Linked/Sched.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TellMath.cs" Link="Linked/TellMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/StageMath.cs" Link="Linked/StageMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="Linked/CalendarMath.cs" />
     <!-- How bonds come about (SocialSim.cs, with &#45;&#45;social). -->
     <Compile Include="../../Source/ColonyCouncil/Social/BondsMath.cs" Link="Linked/BondsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="Linked/ChemistryMath.cs" />

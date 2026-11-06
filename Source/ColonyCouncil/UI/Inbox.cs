@@ -57,10 +57,19 @@ namespace ColonyCouncil
             foreach (var part in parts)
             foreach (var r in part.rows)
             {
-                if (!r.waits || r.pawn == null) continue;
-                if (!byPawn.TryGetValue(r.pawn, out var list)) byPawn[r.pawn] = list = new List<WeekRow>();
-                list.Add(r);
+                if (!r.waits) continue;
+                Add(r.pawn, r);
+                if (r.others != null)
+                    foreach (var o in r.others)
+                        Add(o, r);
             }
+        }
+
+        private void Add(Pawn p, WeekRow r)
+        {
+            if (p == null) return;
+            if (!byPawn.TryGetValue(p, out var list)) byPawn[p] = list = new List<WeekRow>();
+            if (!list.Contains(r)) list.Add(r);
         }
     }
 

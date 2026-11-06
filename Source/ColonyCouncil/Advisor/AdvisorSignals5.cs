@@ -259,7 +259,7 @@ namespace ColonyCouncil
             if (ColonyCalendar.On && cal != null)
             {
                 int today = GenLocalDate.DayOfYear(map);
-                var day = cal.days.Where(d => d != null && d.way != DayWay.Personal && d.kind != CalendarKind.FirstSnow)
+                var day = cal.days.Where(d => d != null && d.way != DayWay.Personal && d.Dated)
                     .Select(d => (d, until: CalendarMath.DaysUntil(today, d.day))).Where(x => x.until >= 1 && x.until <= 3).OrderBy(x => x.until).FirstOrDefault();
                 if (day.d != null)
                 {
@@ -311,7 +311,7 @@ namespace ColonyCouncil
             int today = GenLocalDate.DayOfYear(map);
             foreach (var d in cal.days.ToList())
             {
-                if (d == null || d.way == DayWay.Personal || d.kind == CalendarKind.FirstSnow || CalendarMath.DaysUntil(today, d.day) != 1) continue;
+                if (d == null || d.way == DayWay.Personal || !d.Dated || CalendarMath.DaysUntil(today, d.day) != 1) continue;
                 string lacks = Lacks(map, d);
                 if (lacks == null) continue;
                 string what;

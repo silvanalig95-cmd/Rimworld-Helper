@@ -67,6 +67,15 @@ namespace ColonyCouncil
         /// <summary>Someone who spoke up against this wish (an ascetic against luxury, a rival, the jealous).</summary>
         public Pawn objector;
         /// <summary>
+        /// The petition this want is part of: the number of its first want, or -1 on its own (Wishes/Petitions.cs). Several
+        /// colonists wanting the same thing for themselves come to the council as one petition, one deadline, one answer.
+        /// </summary>
+        public int petition = -1;
+        /// <summary>Those of its petition whose own want was answered on the map before this one, named when the last is.</summary>
+        public List<Pawn> petitionMet = new List<Pawn>();
+        /// <summary>Told already with the rest of its petition (a lapse, a refusal, a promise): not told again on its own (not saved).</summary>
+        [Unsaved] public bool toldWithPetition;
+        /// <summary>
         /// The thing it was about came from a mod that has since been removed: the wish is let go quietly on load,
         /// with no penalty (not saved).
         /// </summary>
@@ -152,10 +161,15 @@ namespace ColonyCouncil
             Scribe_References.Look(ref envied, "envied");
             Scribe_Values.Look(ref selfHelped, "selfHelped");
             Scribe_References.Look(ref objector, "objector");
+            // A wish from an older save is on its own (-1); one of the same want voiced now may join it.
+            Scribe_Values.Look(ref petition, "petition", -1);
+            Scribe_Collections.Look(ref petitionMet, "petitionMet", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (coSigners == null) coSigners = new List<Pawn>();
                 coSigners.RemoveAll(p => p == null);
+                if (petitionMet == null) petitionMet = new List<Pawn>();
+                petitionMet.RemoveAll(p => p == null);
             }
         }
     }

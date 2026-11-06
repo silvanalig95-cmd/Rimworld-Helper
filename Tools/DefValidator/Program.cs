@@ -343,6 +343,8 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
     // Feelings and strain (Heart/): enum names.
     ["CC_Heart_Band_"] = new[] { "Steady", "Strained", "Worn", "Breaking", "Steady_Desc", "Strained_Desc", "Worn_Desc", "Breaking_Desc" },
+    // The heart's good side (Heart/GoodHeart.cs, GoodBand): the bands as the player approved them, nothing yet below steady.
+    ["CC_GoodSide_Band_"] = new[] { "None", "Steady", "GoodHeart", "HighSpirits", "None_Desc", "Steady_Desc", "GoodHeart_Desc", "HighSpirits_Desc" },
     ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair", "Unmet", "Nature" },
     ["CC_Heart_Relief_"] = new[] { "Quiet", "Sleep", "Recreation", "Gathering", "Friends", "Catharsis", "Episode", "Council", "Nature" },
     // Against their nature (Diplomacy/Nature.cs, NatureMath.ActKey and SideKey): every wired act, the roles with words of

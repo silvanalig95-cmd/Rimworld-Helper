@@ -403,6 +403,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
         Console.WriteLine($"Checked {FairCouncilTests.Run(root, Check)} things about a fairer council (seats named by the age, elections on a record, life goals that last, decrees and groups that mean distinct things).");
+        Console.WriteLine($"Checked {LettersPetitionsTests.Run(root, Check)} things about letters that arrive in days and bring something, and shared wants as one petition.");
         Console.WriteLine($"Checked {FellThroughTests.Run(root, Check)} things about answers that fell through in the player's save (the shearing, the sowing, the reasons told).");
         Console.WriteLine($"Checked {SaveWordsTests.Run(root, Check)} things about the words the player's save showed untrue (counts, sparks, wishes, the chronicle, the year's letter, the officers).");
         Console.WriteLine($"Checked {BanishTests.Run(root, Check)} things about banishment by the council (the trouble, a word first, banishment only if it goes on, who dislikes and who stands by, what the colony loses, every age, the player's own case).");
@@ -433,6 +434,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {PassClockTests.Run(root, Check)} things about Rimfolk's clock (hours and days by game ticks, the worst run, the table, every pass timed).");
         Console.WriteLine($"Checked {TellTests.Run(root, Check)} things about the teller (the colony's day, a busy day, the same thing once, the evening, kinds by folder, what stays direct).");
         Console.WriteLine($"Checked {StageTests.Run(root, Check)} things about the colony's pace (the week's room, the wait, the floor, calendar days together, one custom a season, toasts at the next gathering).");
+        Console.WriteLine($"Checked {FestiveYearTests.Run(root, Check)} things about one festive year (customs on the calendar, one tradition rule, an older save's counts, one feast engine).");
         Console.WriteLine($"Checked {HistoryTests.Run(root, Check)} things about the world's history (kinds, indexes, a run in a day, folding by season, bounds, the chronicle as its view, an older save's list taken in once, places of world events).");
         Console.WriteLine($"Checked {OneRecordTests.Run(root, Check)} things about one record (the chronicle as the history's view, every question's answer and what came of it, the year told once, less noise).");
         Console.WriteLine($"Checked {OneNameTests.Run(root, Check)} things about one name (a colonist's one slow \"known as\", never back and forth; the colony's one \"known for\", its card and one sentence when it changes; an older save's names held, nothing told on load).");

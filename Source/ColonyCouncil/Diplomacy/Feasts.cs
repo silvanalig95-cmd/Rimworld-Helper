@@ -1099,9 +1099,10 @@ namespace ColonyCouncil
             PlayOut play = null;
             try
             {
+                // The one feast engine (PlayOut/PlayFeast.cs): the table, the meal, the guests at it and a cup raised to them.
                 var eff = new DilemmaEffect_Feast
                 {
-                    label = FeastWords.Name(map), guests = PlayGuests.Feast, guestCount = 12, music = music, hours = new IntRange(from, to), waitHours = 3f,
+                    why = FeastWhy.Guests, label = FeastWords.Name(map), guests = PlayGuests.Feast, guestCount = 12, music = music, hours = new IntRange(from, to), waitHours = 3f,
                     duration = new FloatRange(2.5f, 3f)
                 };
                 play = eff.Begin(new DilemmaContext { map = map });

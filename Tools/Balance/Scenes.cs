@@ -7,6 +7,8 @@
 // gather people, personal stories' stages) is added here, at the rates of the code where they can be read
 // (SceneConstants) and of Rates.Scene* where they can't. An ordinary run is unchanged: nothing that stages a scene draws a
 // number unless --scenes set the colony's list.
+// The year holds the two seasonal customs a settled colony keeps (Rates.SceneKeptCustoms), days on its calendar whose
+// questions come on their day (Sim.KeptCustom, the festive year); no other custom is asked in their seasons.
 // Known gap: the simulator casts every dilemma at a flat share (Rates.WorkerCasts), so the seasonal customs, which the game
 // asks whenever the others' own checks fail, come about a third as often as in a played game (the player's: seven in 60
 // days, the model's: two or three a year). BALANCE_SCENES_DEBUG=1 lists the seasonal dilemmas with the gate the model gives them.

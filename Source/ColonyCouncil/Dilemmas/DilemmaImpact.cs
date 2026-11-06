@@ -386,7 +386,7 @@ namespace ColonyCouncil
                     int had = tracker.TraditionCount(def);
                     lines.Add(new ImpactLine
                     {
-                        kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionToward".Translate(name, had + 1, def.traditionAfter).Resolve(),
+                        kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionToward".Translate(name, had + 1, CalendarMath.TraditionAfter).Resolve(),
                         hint = "CC_ImpactHint_TraditionToward".Translate(name).Resolve(), hintFull = "CC_ImpactHint_TraditionTowardFull".Translate(name).Resolve()
                     });
                 }
@@ -397,6 +397,9 @@ namespace ColonyCouncil
                     kind = ImpactKind.Other, sign = -1, text = "CC_Impact_TraditionBroken".Translate(name).Resolve(), brief = "CC_Impact_TraditionBrokenBrief".Translate(name).Resolve(),
                     hintFull = "CC_ImpactHint_TraditionBroken".Translate(name).Resolve()
                 });
+            else if (tracker.CustomDay(def) != null)
+                // Kept before, not yet a tradition: let pass, it leaves the calendar and its years start again (Calendar/CalendarCustoms.cs).
+                lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = -1, text = "CC_Fest_Impact_OffCalendar".Translate(name.Named("CUSTOM")).Resolve() });
         }
 
         // ---------------- Words ----------------

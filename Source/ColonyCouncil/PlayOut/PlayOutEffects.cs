@@ -56,7 +56,7 @@ namespace ColonyCouncil
         public PlayOut Begin(DilemmaContext ctx) => Create(ctx);
 
         /// <summary>Sets it going: the plan, or null when nothing was set going (the setting off, its chance not met, nobody to do it).</summary>
-        protected PlayOut Create(DilemmaContext ctx)
+        protected virtual PlayOut Create(DilemmaContext ctx)
         {
             if (!PlayOuts.On || ctx?.map == null) return null;
             if (chance < 1f && !Rand.Chance(chance)) return null;
@@ -189,13 +189,33 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A shared meal: the gathering is at the dining table unless <see cref="DilemmaEffect_Gathering.spots"/> says
-    /// otherwise, and everyone who comes is sent to eat a cooked meal from the stores, the finest first (the food is
-    /// really eaten). Raw food the answer spends on it is cooked into meals for it beforehand (PlayCook.cs). Not enough meals for everyone: the first to the table eat; none at all: it's a party, and the
-    /// message says so.
+    /// A shared meal, set going by the one feast engine (PlayFeast.cs): the gathering is at the dining table unless
+    /// <see cref="DilemmaEffect_Gathering.spots"/> says otherwise, and everyone who comes is sent to eat a cooked meal from
+    /// the stores, the finest first (the food is really eaten). Raw food the answer spends on it is cooked into meals for it
+    /// beforehand (PlayCook.cs). Not enough meals for everyone: the first to the table eat; none at all: it's a party, and
+    /// the message says so. A while in, the host raises a cup (<see cref="toast"/>, with <see cref="toastLine"/>).
     /// </summary>
     public class DilemmaEffect_Feast : DilemmaEffect_Gathering
     {
+        /// <summary>Why it's held (an answer unless set from code: a feast with guests, a wedding's, a family's supper).</summary>
+        public FeastWhy why = FeastWhy.Answer;
+        /// <summary>The host raises a cup a while in; set from code, what they say with it (else the reason's words, else a toast's).</summary>
+        public bool toast = true;
+        public string toastLine;
+
+        /// <summary>Through the one feast engine, with the answer's own way of naming who comes and where.</summary>
+        protected override PlayOut Create(DilemmaContext ctx)
+        {
+            if (!PlayOuts.On || ctx?.map == null) return null;
+            if (chance < 1f && !Rand.Chance(chance)) return null;
+            var order = new FeastOrder
+            {
+                why = why, map = ctx.map, label = !label.NullOrEmpty() ? ctx.Format(label) : DefaultLabel(ctx), hours = hours, waitHours = waitHours,
+                duration = duration, routine = routine, toast = toast, toastLine = toastLine
+            };
+            return PlayFeast.Stage(order, p => Fill(p, ctx));
+        }
+
         protected override void Costs(DilemmaContext ctx, ImpactSheet sheet, List<Pawn> who)
         {
             // Everyone who comes is sent to eat a cooked meal from the stores; raw food the answer spends is cooked for it first.

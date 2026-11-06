@@ -397,7 +397,7 @@ namespace ColonyCouncil
         /// <summary>Opens the Almanac's own window on a page (the old way to the Almanac, from every caller).</summary>
         public static void OpenAlmanac(AlmanacArticleDef article) => Window_Almanac.Open(article);
 
-        private static int OpenWishCount() => CouncilGameComponent.Instance?.OpenWishes.Count() ?? 0;
+        private static int OpenWishCount() => CouncilGameComponent.Instance is CouncilGameComponent c ? c.OpenWishes.Count(c.LeadsPetition) : 0;
 
         // ---------------- Shared helpers ----------------
 

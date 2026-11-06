@@ -46,7 +46,12 @@ namespace ColonyCouncil
         /// <summary>A holiday of the colony's own faith: one of its rites held on a date (Ideology).</summary>
         FaithDay,
         /// <summary>The day one of the colony's people came home from captivity.</summary>
-        Rescue
+        Rescue,
+        /// <summary>
+        /// One of the council's customs the colony kept (a midsummer bonfire, the harvest dance, the planting day): its
+        /// question comes on the day it was first kept, or with its occasion (Calendar/CalendarCustoms.cs).
+        /// </summary>
+        Custom
     }
 
     /// <summary>How the colony keeps a day.</summary>
@@ -69,7 +74,9 @@ namespace ColonyCouncil
         /// <summary>An evening of faith for the faith the day names (its subject), with Ideology (Faith/FaithEvenings.cs).</summary>
         Faith,
         /// <summary>The colony walks out together to what the day remembers: a camp's gift, a grave, the fields, the gate (Calendar/CalendarLived.cs).</summary>
-        Walk
+        Walk,
+        /// <summary>A custom's own way: its question comes, and the council's answer keeps it or lets it pass (Calendar/CalendarCustoms.cs).</summary>
+        Custom
     }
 
     /// <summary>
@@ -125,14 +132,28 @@ namespace ColonyCouncil
         public bool tradition;
         public int breaks;
         public int lastKeptYear = -99999;
+        /// <summary>A custom that comes with its occasion (the fields opening, a victory), not on a date.</summary>
+        public bool moment;
 
         public bool Personal => way == DayWay.Personal;
 
-        /// <summary>Days the colony writes down by itself (not the founding day, not the player's own).</summary>
-        public bool Auto => !byPlayer && kind != CalendarKind.Founding;
+        /// <summary>One of the council's customs: <see cref="about"/> names its question (a dilemma's defName).</summary>
+        public bool Custom => kind == CalendarKind.Custom;
 
-        /// <summary>The founding day, the player's own days and traditions never make way for a new day.</summary>
-        public bool Fixed => byPlayer || kind == CalendarKind.Founding || tradition;
+        /// <summary>A custom's question (its dilemma), or null.</summary>
+        public DilemmaDef CustomDef => kind == CalendarKind.Custom && !about.NullOrEmpty() ? DefDatabase<DilemmaDef>.GetNamedSilentFail(about) : null;
+
+        /// <summary>It comes on a date: not the first snow, and not a custom that comes with its occasion.</summary>
+        public bool Dated => kind != CalendarKind.FirstSnow && !moment;
+
+        /// <summary>
+        /// Days the colony writes down by itself (not the founding day, not the player's own, not a custom: the council
+        /// chose that one, and it never makes way for a day the colony wrote down).
+        /// </summary>
+        public bool Auto => !byPlayer && kind != CalendarKind.Founding && kind != CalendarKind.Custom;
+
+        /// <summary>The founding day, the player's own days, customs and traditions never make way for a new day.</summary>
+        public bool Fixed => byPlayer || kind == CalendarKind.Founding || kind == CalendarKind.Custom || tradition;
 
         public float Standing => CalendarMath.Standing(weight, tradition, keptYears);
 
@@ -166,6 +187,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref about, "about");
             Scribe_Collections.Look(ref things, "things", LookMode.Value);
             Scribe_Values.Look(ref place, "place", IntVec3.Invalid);
+            Scribe_Values.Look(ref moment, "moment");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<string>();

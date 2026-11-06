@@ -96,7 +96,7 @@ public static class InboxTests
         C(hud.Contains("var waiting = Inbox.Waiting;") && hud.Contains("InboxMath.PanelPart(r.part, p.provider.part)") && !hud.Contains("LetterStack") && !hud.Contains("comp.wishes")
           && !hud.Contains("kept?.watches") && !hud.Contains("decrees).requests"),
             "the council panel reads what waits from Needs you, never the letters, wishes, petitions or promises itself");
-        C(Regex.Matches(badges, @"Inbox\.Waiting\.Of\(p\)").Count == 2 && !badges.Contains("comp.wishes") && !badges.Contains("kept.watches"),
+        C(Regex.Matches(badges, @"Inbox\.Waiting\.Of\(p\)").Count == 2 && !badges.Contains("comp.wishes") && badges.Contains("comp.PetitionOf(w).FirstOrDefault(x => x.pawn == p)") && !badges.Contains("kept.watches"),
             "the bar's wish and promise badges read the colonist's rows of Needs you");
         C(Code("Hud/HudAlerts.cs").Contains("HudCouncil.PartWishes") && Code("Hud/HudCouncil.cs").Contains("PartAsks"), "the game's alerts stay the game's; the panel's wishes still hide its wishes alert");
         string own = Code("UI/InboxProviders.cs");
@@ -106,8 +106,8 @@ public static class InboxTests
             "rows say what they are about (a wish, a petition, a letter, a promise), petitions their own kind, the news row waits on nothing");
         C(Regex.IsMatch(own, @"private static bool AtRisk\(GrantWatch w, int now\)[\s\S]*?KeptMath\.AmendsDays") && Regex.Matches(own, @"AtRisk\(w, now\)").Count == 2,
             "a promise taken back past making amends no longer waits, in the count and the rows alike");
-        C(Regex.IsMatch(own, @"r\?\.def != null && r\.pawn != null\)\s*petitions\+\+") && own.Contains("w.state == WishState.Open && w.pawn != null"),
-            "wishes and petitions counted as their rows list them");
+        C(Regex.IsMatch(own, @"r\?\.def != null && r\.pawn != null\)\s*petitions\+\+") && own.Contains("w.state == WishState.Open && w.pawn != null && comp.LeadsPetition(w)") && own.Contains("others = others,"),
+            "wishes and petitions counted as their rows list them, a petition of several once, its other names reading the row too");
         C(Code("UI/Inbox.cs").Contains("public static InboxWaiting Waiting") && Code("UI/Inbox.cs").Contains("now - waitingAt < 1f"), "what waits read at most once a second");
         string providers = Code("UI/InboxProviders.cs");
         string model = Code("UI/WeekModel.cs");

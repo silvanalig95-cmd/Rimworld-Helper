@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Phase 6 of the review, part 1: letters to the neighbours that arrive in days by the colony's means, and answers that
+       bring something (Source/ColonyCouncil/World/LetterMath.cs, NeighbourLetters.cs, NeighboursPanel.cs). -->
+
+  <!-- Where a letter is, by the colony's means (no countdowns) -->
+  <CC_LetterRoad_Status_Travelling_Runner>{PAWN}'s letter went off with their messenger and is carried on by runners.</CC_LetterRoad_Status_Travelling_Runner>
+  <CC_LetterRoad_Status_Travelling_Rider>{PAWN}'s letter went off with their messenger and is carried on by rider.</CC_LetterRoad_Status_Travelling_Rider>
+  <CC_LetterRoad_Status_Travelling_Courier>{PAWN}'s letter went off with their messenger and is carried on by courier.</CC_LetterRoad_Status_Travelling_Courier>
+  <CC_LetterRoad_Status_Travelling_Shuttle>{PAWN}'s letter went off with their messenger and is carried on by shuttle courier.</CC_LetterRoad_Status_Travelling_Shuttle>
+  <CC_LetterRoad_Status_Answering_Runner>Their answer to {PAWN} is coming back by runners, and a messenger will bring it to the gate.</CC_LetterRoad_Status_Answering_Runner>
+  <CC_LetterRoad_Status_Answering_Rider>Their answer to {PAWN} is coming back by rider, and a messenger will bring it to the gate.</CC_LetterRoad_Status_Answering_Rider>
+  <CC_LetterRoad_Status_Answering_Courier>Their answer to {PAWN} is coming back by courier, and a messenger will bring it to the gate.</CC_LetterRoad_Status_Answering_Courier>
+  <CC_LetterRoad_Status_Answering_Shuttle>Their answer to {PAWN} is coming back by shuttle courier, and a messenger will bring it to the gate.</CC_LetterRoad_Status_Answering_Shuttle>
+
+  <!-- What an answer brings beside its words -->
+  <CC_LetterBring_Town>{NAME} tells how {TOWN} is faring: {FORTUNE}.</CC_LetterBring_Town>
+  <CC_LetterBring_TownNews>{NAME} passes on what is said near them: {NEWS}</CC_LetterBring_TownNews>
+  <CC_LetterBring_TownQuiet>{NAME} has nothing new to tell: the roads near them are quiet.</CC_LetterBring_TownQuiet>
+  <CC_LetterBring_Mourned>{PEOPLE} will remember that the colony mourned with them.</CC_LetterBring_Mourned>
+  <CC_LetterBring_Heeded>{PEOPLE} take the warning to heart, and will remember who sent it.</CC_LetterBring_Heeded>
+  <CC_LetterBring_Owed>{PEOPLE} count the warning as {WORD} they owe the colony, and {PAWN} for writing it. The colony can call it in by letter.</CC_LetterBring_Owed>
+  <CC_LetterBring_Goodwill>Their people's goodwill toward the colony rises for it.</CC_LetterBring_Goodwill>
+  <CC_LetterBring_GoodwillMarked>Their people's goodwill toward the colony rises markedly for it.</CC_LetterBring_GoodwillMarked>
+
+  <!-- Why it went badly -->
+  <CC_LetterWhy_War>Their people are at war with the colony, and the answer shows it.</CC_LetterWhy_War>
+  <CC_LetterWhy_Regard>{NAME} is no more than {LEVEL} toward the colony, and it takes more than that.</CC_LetterWhy_Regard>
+  <CC_LetterWhy_Writer>{NAME} has no liking for {WRITER}, who wrote it.</CC_LetterWhy_Writer>
+  <CC_LetterWhy_Words>{WRITER}'s words did not come out well on the page.</CC_LetterWhy_Words>
+  <CC_LetterWhy_Nature>{NAME} is not a warm sort, and it shows in the answer.</CC_LetterWhy_Nature>
+  <CC_LetterWhy_HardTimes>Hard times at {TOWN} leave them little to spare.</CC_LetterWhy_HardTimes>
+  <CC_LetterWhy_Lately>The colony asked {NAME} the same thing only lately.</CC_LetterWhy_Lately>
+  <CC_LetterWhy_ByCall>A call counts for less with {NAME} than a letter in a hand would have.</CC_LetterWhy_ByCall>
+  <CC_LetterWhy_Asked>It was a great deal to ask of them.</CC_LetterWhy_Asked>
+  <CC_LetterWhy_Luck>It came to {TOWN} on a bad day.</CC_LetterWhy_Luck>
+  <CC_LetterWhy_NoTraveller>{NAME} can't leave {TOWN}, and nobody there is free to come in {NAME}'s place.</CC_LetterWhy_NoTraveller>
+
+  <!-- How far it moved their regard of the colony -->
+  <CC_LetterRegard_Level_0>devoted to it</CC_LetterRegard_Level_0>
+  <CC_LetterRegard_Level_1>warm</CC_LetterRegard_Level_1>
+  <CC_LetterRegard_Level_2>friendly</CC_LetterRegard_Level_2>
+  <CC_LetterRegard_Level_3>civil</CC_LetterRegard_Level_3>
+  <CC_LetterRegard_Level_4>cool</CC_LetterRegard_Level_4>
+  <CC_LetterRegard_Level_5>wary</CC_LetterRegard_Level_5>
+  <CC_LetterRegard_Level_6>hostile</CC_LetterRegard_Level_6>
+  <CC_LetterRegard_UpBand>{NAME} thinks better of the colony for it: {OLD} before, {NOW} now.</CC_LetterRegard_UpBand>
+  <CC_LetterRegard_Up>{NAME} thinks a good deal better of the colony for it, and is still {NOW}.</CC_LetterRegard_Up>
+  <CC_LetterRegard_Little>{NAME} thinks a shade better of the colony for it, and is still {NOW}.</CC_LetterRegard_Little>
+  <CC_LetterRegard_Same>Nothing moved between the colony and {NAME}, who is still {NOW}.</CC_LetterRegard_Same>
+  <CC_LetterRegard_Down>{NAME} thinks a shade less of the colony for it, and is still {NOW}.</CC_LetterRegard_Down>
+  <CC_LetterRegard_DownBand>{NAME} thinks less of the colony for it: {OLD} before, {NOW} now.</CC_LetterRegard_DownBand>
+  <CC_LetterRegard_Writer>Of {PAWN}, who wrote, {NAME} thinks better still.</CC_LetterRegard_Writer>
+
+</LanguageData>

@@ -69,6 +69,7 @@ namespace ColonyCouncil
         /// </summary>
         private void Waiting(int now)
         {
+            // A petition of several is one row of Needs you, its first want (Wishes/Petitions.cs), so it counts once here too.
             var waiting = Inbox.Waiting;
             var rows = new List<WeekRow>();
             var ranks = new List<float>();

@@ -44,7 +44,7 @@ public static class CustomYearsTests
         // The states a custom can be in: kept so often, a tradition only once kept often enough, let go last time or not.
         List<HashSet<string>> States(XElement d)
         {
-            int after = int.TryParse((string?)d.Element("traditionAfter"), out int a) ? a : 2;
+            int after = CalendarMath.TraditionAfter;
             var states = new List<HashSet<string>>();
             for (int kept = 0; kept <= 8; kept++)
                 foreach (var t in new[] { false, true })

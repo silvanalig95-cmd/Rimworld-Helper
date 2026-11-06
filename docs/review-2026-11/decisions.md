@@ -43,3 +43,9 @@ a run of small joys; fine rooms and meals only a little); hardship spends it bef
 ease strain before building it; bands (steady, in good heart, in high spirits) give a small good mood (about +2, +3,
 +5), brighter dreams and a quicker recovery; when high and safe, now and then one of the game's own inspirations by
 their passions or a generous act for someone close. No work-speed bonus. Built right after phase 3, balanced with it.
+
+## Two more answers (6 November 2026)
+
+- The good side's bands as first approved: steady +2, in good heart +3, in high spirits +5 (0.113.0 had shipped
+  nothing / +2 / +3 to hold the high end of mood down; the player chose the stronger reward).
+- A seasonal custom keeps only the one-a-season rule; it does not also wait two days clear of other gatherings.

@@ -58,7 +58,9 @@ C = {
     "SituationsActive": const("World/WorldSituations.cs", "MaxActive", 2),
     "LuckyPast": const("Quirks/LuckyItems.cs", "MaxPast", 40),
     "TrailDays": const("UI/WeekMemory.cs", "TrailDays", 8),
-    "Calendar": 12 + 8 + 6,
+    # 12 the colony's, 8 the player's, 6 traditions and the founding, and the council's customs once kept (one a season, and
+    # about six that come with their occasion: Calendar/CalendarCustoms.cs)
+    "Calendar": 12 + 8 + 6 + 4 + 6,
     "DefenseRaids": const("Defense/DefenseLine.cs", "MaxRaids", 5),
     "DefensePlans": const("Defense/DefenseLine.cs", "MaxPlans", 24),
     "SpanSide": const("Defense/DefenseMath.cs", "MaxSpanSide", 14),
@@ -233,7 +235,7 @@ MODEL = {
     "Calendar/CalendarDay.cs:fallen": ("fixed", 2, 40, "per day on the calendar (counted under days)"),
     "Calendar/CalendarDay.cs:knew": ("fixed", 4, 40, "per day on the calendar"),
     "Calendar/CalendarDay.cs:kin": ("fixed", 2, 40, "per day on the calendar"),
-    "Calendar/ColonyCalendar.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding"),
+    "Calendar/ColonyCalendar.cs:days": ("cap", (C["Calendar"], 0.2), 600, "12 the colony's, 8 the player's, traditions and the founding, the customs kept"),
     "Calendar/ColonyCalendar.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
     "Calendar/ColonyCalendar.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
     "Calendar/ColonyCalendar.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
@@ -373,6 +375,7 @@ MODEL = {
     "Wishes/Kept.cs:cells": ("fixed", 4, 30, "per watch"),
     "Wishes/Kept.cs:watches": ("window", (15, 0.5), 400, "granted wishes still watched (grace days)"),
     "Wishes/Wish.cs:coSigners": ("fixed", 2, P, "per open wish (counted under wishes)"),
+    "Wishes/Wish.cs:petitionMet": ("fixed", 2, P, "per open want in a petition: those of it met before (counted under wishes)"),
     # Aspirations (life goals)
     "Aspirations/Aspirations.cs:all": ("known", 1, 350, "goals of the dead and departed end; finished ones of the dead kept 3 years"),
     "Aspirations/Aspirations.cs:counters": ("known", 3, D, "counters of known pawns"),
@@ -704,7 +707,7 @@ MODEL = {
     "Building/CustomRooms.cs:pieces": ("settings", 30, 120, "per saved room, in the mod's settings file"),
     "Building/PersonalTouches.cs:pending": ("cap", (10, 0.2), 200, "until built or dropped"),
     # Dilemmas and decrees
-    "Dilemmas/Dilemmas.cs:traditionCount": ("defs", ("DilemmaDef", 0.3), D, "per tradition"),
+    "Dilemmas/Dilemmas.cs:traditionCount": ("defs", ("DilemmaDef", 0.3), D, "per tradition, an older save's until its customs go on the calendar (the first hour)"),
     "Dilemmas/Dilemmas.cs:traditionBreaks": ("defs", ("DilemmaDef", 0.1), D, "per tradition"),
     "Dilemmas/Dilemmas.cs:traditions": ("defs", ("DilemmaDef", 0.1), 40, "per tradition"),
     "Dilemmas/Dilemmas.cs:lastTick": ("defs", ("DilemmaDef", 1), D, "one per dilemma def"),

@@ -110,8 +110,9 @@ namespace ColonyCouncil
                 {
                     new DilemmaEffect_Feast
                     {
-                        target = DilemmaTarget.Colony, hours = new IntRange(0, 23), waitHours = 8f, duration = new FloatRange(2f, 3f),
-                        label = "CC_Wed_FeastLabel".Translate(x.Named("A"), y.Named("B")).Resolve()
+                        why = FeastWhy.Wedding, target = DilemmaTarget.Colony, hours = new IntRange(0, 23), waitHours = 8f, duration = new FloatRange(2f, 3f),
+                        label = "CC_Wed_FeastLabel".Translate(x.Named("A"), y.Named("B")).Resolve(),
+                        toastLine = "CC_Wed_Toast_1".Translate(x.Named("A"), y.Named("B")).Resolve()
                     }.Begin(new DilemmaContext { map = map, a = x, b = y });
                 }
                 else if (w.style == Quiet)

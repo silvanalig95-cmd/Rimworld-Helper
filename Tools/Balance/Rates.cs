@@ -188,6 +188,12 @@ namespace Balance
         /// </summary>
         public const float SceneGroupsPerColonist = 0.2f, SceneGroupClose = 0.75f;
 
+        /// <summary>
+        /// The seasonal customs a settled colony keeps by its third year: the player's game asked one about every eight days,
+        /// one a season since the colony's pace, and a council keeps about half of them; each comes round once a year.
+        /// </summary>
+        public const int SceneKeptCustoms = 2;
+
         /// <summary>Families of three or more living at home (parents and a grown or growing child, or kin), per colonist.</summary>
         public const float SceneSupperFamilies = 0.04f;
 
