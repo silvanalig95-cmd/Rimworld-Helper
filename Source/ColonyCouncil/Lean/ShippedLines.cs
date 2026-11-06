@@ -100,7 +100,19 @@ namespace ColonyCouncil
             // another year. Better words are in Rimfolk_Arcs_MoreWords.xml.
             "[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could get past the wall in {PAWN_possessive} art.",
             "{PAWN_nameDef} has put {PAWN_possessive} training aside, with the wall still standing.",
-            "I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year."
+            "I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year.",
+            // The herd's journal (Rimfolk_Pools_HerdStory.xml), left by the 0.106.1 pass: the first born's lines are written
+            // as the letter comes, and the keeper's visit to the newborn is staged later that day (HerdStory.SpringCalf), so
+            // "I stood by it", "I held my breath until it stood" and "Went to look" told it before it happened. Words that
+            // look forward to it are in Rimfolk_Pools_HerdStory_Kinds.xml and Rimfolk_Pools_Animals_Kinds.xml.
+            "Spring's first: {PET_nameDef}, a young {KIND}, on its legs within the hour. I stood by it like it was the first ever born.",
+            "{PET_nameDef}, the first of spring. I held my breath until it stood, and then I laughed out loud.",
+            "First young of the spring. {PET_nameDef}. Healthy. Went to look, as if I'd never seen one.",
+            // Words at a grave (Council_Eulogies.xml) said of anyone, a newcomer of two days or a child as much as an old hand:
+            // they hauled the stone for most of the walls, they stayed through the raids and the hungry seasons. Their fellows
+            // for one two years or more with the colony ([longtime]) are in Rimfolk_Lines_Eulogies_More.xml.
+            "{OTHER_nameDef} hauled the stone for most of these walls. We'll keep them standing.",
+            "{OTHER_nameDef} stayed through the raids and the hungry seasons, and never talked about leaving."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;

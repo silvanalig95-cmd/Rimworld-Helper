@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for the colony's animals by their kind (the text pass of 6 November 2026), building on the herd's words
+    by the body (Rimfolk_Pools_HerdStory_Kinds.xml, HerdStoryMath.BodyOf): [body:beast] for hide and four legs,
+    [body:bird] for feathers, [body:other] for anything else, an insect, a snake, a turtle or another mod's creature, so
+    those lines name nothing a body may not have. What colonists say to an animal at work with it and to one at their
+    heels (Animals/AnimalLife.cs: the body is told to both now), one sentence each; and the herd's journal: its leader
+    ([first], [line] of the old leader's blood, [new]), the old leader's last season (the keeper sits with it at the pens
+    that evening, PlayOut/), its death, and spring's first born ([hatched] or [born]; the keeper goes down to see it later
+    in the day, so the words look forward to it).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_SayToAnimal_Kinds</defName>
+    <pool>Council_Pool_SayToAnimal</pool>
+    <lines>
+      <plain>
+        <li>[body:bird] Hold still, feathers, I'm nearly done.</li>
+        <li>[body:bird] Don't peck, I'm on your side.</li>
+        <li>[body:bird] Look at you, all fluffed up and cross.</li>
+        <li>[body:bird,job:feed] Plenty here, no need to peck at each other.</li>
+        <li>[body:bird,job:tend] Let me see that wing, gently now.</li>
+        <li>[body:bird,job:tame] Come on, little bird, I've got seed.</li>
+        <li>[body:bird,job:train] Again, and this time stay on the perch.</li>
+        <li>[body:bird,job:rope] In you go, and stop flapping at me.</li>
+        <li>[body:bird,young] You're all fluff and no feathers yet.</li>
+        <li>[body:bird,oldanimal] Ragged old thing, you've earned your quiet corner.</li>
+        <li>[body:bird,winter] Feathers puffed up against the cold, I don't blame you.</li>
+        <li>[body:other] I never know what you're thinking, and I suspect you don't either.</li>
+        <li>[body:other] You're a strange sort of creature, but you're ours.</li>
+        <li>[body:other] Easy, I'm not going to hurt you.</li>
+        <li>[body:other,job:feed] Here you are, eat up, whatever you like best.</li>
+        <li>[body:other,job:tend] Hold still for me, nearly done.</li>
+        <li>[body:other,job:tame] Slowly, you and me, no sudden moves.</li>
+        <li>[body:other,job:train] I've no idea if this is sinking in, but let's go again.</li>
+        <li>[body:other,young] You're very small for something so strange.</li>
+        <li>[body:other,winter] You don't like the cold any more than I do, do you?</li>
+      </plain>
+      <warm>
+        <li>[body:bird] There's my good bird.</li>
+        <li>[body:other] You're a funny little thing, and I'm fond of you.</li>
+      </warm>
+      <blunt>
+        <li>[body:bird] Stop pecking.</li>
+        <li>[body:other] Stay.</li>
+      </blunt>
+      <cheerful>
+        <li>[body:bird] Who's the prettiest bird in the colony, then?</li>
+        <li>[body:other] Nobody else here has a friend quite like you.</li>
+      </cheerful>
+      <gloomy>
+        <li>[body:bird] Even the birds look tired today.</li>
+        <li>[body:other] I don't understand you, but then I don't understand most things.</li>
+      </gloomy>
+      <cold>
+        <li>[body:bird] Wings in, please.</li>
+        <li>[body:other] Remain where you are.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_AnimalFollows_Kinds</defName>
+    <pool>Council_Pool_AnimalFollows</pool>
+    <lines>
+      <plain>
+        <li>[body:bird] Hopping after me again, are you?</li>
+        <li>[body:bird] Mind my feet, little one.</li>
+        <li>[body:bird] You'd follow me to the ends of the colony, wouldn't you?</li>
+        <li>[body:other] Still behind me, are you, {PET_nameDef}?</li>
+        <li>[body:other] You're a slow shadow, but a faithful one.</li>
+        <li>[body:other] Come along, then, at your own pace.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The herd ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_Leader_Kinds</defName>
+    <pool>Council_Journal_Herd_Leader</pool>
+    <lines>
+      <plain>
+        <li>[first] We've given the herd's leader a name: {PET_nameDef}. It was leading them long before we noticed.</li>
+        <li>[first,body:beast] {PET_nameDef} goes first to the water and the rest follow. The herd's leader, then, and named for it today.</li>
+        <li>[first,body:bird] Where {PET_nameDef} scratches, the others scratch. The flock has a leader, and now it has a name.</li>
+        <li>[first,body:other] The others keep close to {PET_nameDef}. I can't say how they decided, but they have, and so have we.</li>
+        <li>[line] {PET_nameDef} leads now, of the old leader's blood. The herd took to it as if they'd known all along.</li>
+        <li>[line,body:bird] {PET_nameDef}, the old leader's own, leads the flock now. Same strut, same temper.</li>
+        <li>[new] A new leader for the herd, {PET_nameDef}, and none of the old leader's blood in it. A fresh start.</li>
+        <li>[new,body:beast] {PET_nameDef} leads the herd now. The others will get used to it, and so will I.</li>
+      </plain>
+      <gloomy><li>A new leader for the herd. They move on quicker than we do.</li></gloomy>
+      <cold><li>{PET_nameDef} leads the herd now. I'll note which ones follow it closest.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Say_Herd_Leader_Kinds</defName>
+    <pool>Council_Pool_Herd_SayLeader</pool>
+    <lines>
+      <plain>
+        <li>[body:bird] You're in charge of this lot now, feathers.</li>
+        <li>[body:bird,line] Just like the old leader, you strut the same.</li>
+        <li>[body:other] They follow you, so I suppose I'd better listen too.</li>
+        <li>[body:other,new] New leader, new ways, I expect.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_LastSeason_Kinds</defName>
+    <pool>Council_Journal_Herd_LastSeason</pool>
+    <lines>
+      <plain>
+        <li>[body:beast] {PET_nameDef} lies down more than it stands now. I'll sit with it at the pens this evening.</li>
+        <li>[body:beast] {PET_nameDef}'s step has gone short and it's last to the trough now. The old leader's last season, I think.</li>
+        <li>[body:bird] {PET_nameDef} hardly leaves the roost now. I'll sit with it a while this evening.</li>
+        <li>[body:bird] {PET_nameDef}'s feathers have thinned and its call has gone hoarse. Not long now, I think.</li>
+        <li>[body:other] {PET_nameDef} hardly moves now. I'll sit with it this evening.</li>
+        <li>[body:other] {PET_nameDef} is slower every day. I don't know its kind's years, but I know this look.</li>
+      </plain>
+      <blunt><li>{PET_nameDef}'s old. Sitting with it tonight. Might not be many more.</li></blunt>
+      <cheerful><li>{PET_nameDef} is old and slow and still the boss of the lot. I'll sit with the old thing this evening.</li></cheerful>
+      <cold><li>{PET_nameDef} is near the end of its years. I'll see to it this evening, and look at who follows it after.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_Gone_Kinds</defName>
+    <pool>Council_Journal_Herd_Gone</pool>
+    <lines>
+      <plain>
+        <li>[body:beast] {PET_nameDef} is gone. The pens look wrong without it, and I keep counting heads.</li>
+        <li>[body:bird] {PET_nameDef} is gone. I keep listening for its call over the others'.</li>
+        <li>[body:other] {PET_nameDef} is gone. Whatever passes for grief in its kind, I've enough for all of them.</li>
+        <li>The herd's leader is dead. {PET_nameDef}. Whoever leads them next, it won't be quite the same herd.</li>
+      </plain>
+      <cheerful><li>Goodbye, {PET_nameDef}. You led them well and bossed us all. The pens will be dull for a while.</li></cheerful>
+      <gloomy><li>{PET_nameDef} is gone. I knew it was coming, and it didn't help.</li></gloomy>
+      <cold><li>{PET_nameDef} has died. The herd will settle on a new leader within days.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_Spring_More</defName>
+    <pool>Council_Journal_Herd_SpringCalf</pool>
+    <lines>
+      <plain>
+        <li>[born] {PET_nameDef}, born today to {OTHER_nameDef}, the first of the year. I mean to go down and see it the moment I'm free.</li>
+        <li>[hatched] The first egg of the year has hatched: {PET_nameDef}, {OTHER_nameDef}'s. I'll go and look at it when the work lets me.</li>
+        <li>[born,body:beast] {OTHER_nameDef} has a young one at her side, {PET_nameDef}, the first of the year. I'll be at the pens before the day's out.</li>
+      </plain>
+      <warm><li>The first of the year, {PET_nameDef}. I'll go down to the pens later and sit with the pair of them a while.</li></warm>
+      <blunt><li>First young of the year. {PET_nameDef}. Going to look later.</li></blunt>
+      <gloomy><li>The first of the year, {PET_nameDef}. Something new and alive. I'll go and see it, for the good of my heart.</li></gloomy>
+      <cold><li>The first young of the year in the herd: {PET_nameDef}. I'll look it over later today.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
