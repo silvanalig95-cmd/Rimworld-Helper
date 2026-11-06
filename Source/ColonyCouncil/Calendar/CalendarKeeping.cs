@@ -181,6 +181,8 @@ namespace ColonyCouncil
 
         private void ComeRound(CalendarDay d, int occurrence, Map map)
         {
+            // A custom comes as the council's question (CalendarCustoms.cs), never with the calendar's own letter.
+            if (d.Custom) return;
             d.lastYear = occurrence;
             if (d.kind == CalendarKind.FirstSnow) snowPendingTick = -1;
             var home = AtHome(map);

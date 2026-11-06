@@ -23,6 +23,15 @@ namespace ColonyCouncil
                 {
                     int year = GenLocalDate.Year(map);
                     day.lastYear = year - 1;
+                    // A custom comes as its question (CalendarCustoms.cs), when it can be asked now.
+                    if (day.Custom)
+                    {
+                        bool asked = day.CustomDef != null && (DilemmaTracker.For(map)?.AskCustom(day.CustomDef) ?? false);
+                        if (asked) day.lastYear = year;
+                        Messages.Message("Calendar: " + day.label + (asked ? " is asked now." : " can't be asked now (its season, its weather, nobody to ask for it, or a question waiting)."),
+                            MessageTypeDefOf.SilentInput, false);
+                        return;
+                    }
                     self.ComeRound(day, year, map);
                 }));
             }

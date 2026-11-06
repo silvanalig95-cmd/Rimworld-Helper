@@ -3,8 +3,9 @@
 
   <!--
     Seasonal customs: dilemmas with an answer the colony can make its own, like the midsummer bonfire and harvest home
-    (Council_Dilemmas_Seasons.xml). Choose the custom two years running and it becomes a tradition, which then comes
-    round every year in its season. ColonyCouncil.DilemmaWorker_Custom reads a CustomConditions extension for anything
+    (Council_Dilemmas_Seasons.xml). Choose the custom and it goes on the colony calendar, its question coming round on
+    that day each year (Calendar/CalendarCustoms.cs); chosen three years running it becomes a tradition.
+    ColonyCouncil.DilemmaWorker_Custom reads a CustomConditions extension for anything
     beyond the season: the weather outside (minTemp, maxTemp), open water on the map, the colony's own graves, enough
     raw food (foodFactor times thingCount). More openings and outcomes, among them lines for a custom kept year after year
     ([again], [years], [tradition], [missed]), are in Council_Dilemmas_Customs_Variants.xml.
