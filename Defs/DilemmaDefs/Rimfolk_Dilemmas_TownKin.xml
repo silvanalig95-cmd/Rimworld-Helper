@@ -16,9 +16,9 @@
     <weight>0.5</weight>
     <cooldownDays>60</cooldownDays>
     <texts>
-      <li>[spouse] {A_nameDef}'s {RELATION} {RELATIVE} stayed at {TOWN} when it was handed over, and the two have lived apart since. {A_nameDef} has asked the council to let {A_objective} go and live there with {RELATIVE}.</li>
-      <li>[child] {A_nameDef}'s {RELATION} {RELATIVE} is growing up at {TOWN}, among {FACTION}, without {A_objective}. {A_nameDef} has asked the council whether to go and live there.</li>
-      <li>[friend] {RELATIVE}, {A_nameDef}'s close friend, stayed at {TOWN} when it was handed over. {A_nameDef} has asked the council to let {A_objective} go and live there too.</li>
+      <li>[spouse] {A_nameDef}'s {RELATION} {RELATIVE} lives at {TOWN}, the town the colony was, and the two live apart. {A_nameDef} has asked the council to let {A_objective} go and live there with {RELATIVE}.</li>
+      <li>[child] {A_nameDef}'s {RELATION} {RELATIVE} lives at {TOWN}, the town the colony was, among {FACTION}. {A_nameDef} has asked the council whether to go and live there too.</li>
+      <li>[friend] {RELATIVE}, {A_nameDef}'s close friend, lives at {TOWN}, the town the colony was. {A_nameDef} has asked the council to let {A_objective} go and live there too.</li>
       <li>{A_nameDef} has asked the council to let {A_objective} go and live at {TOWN}, the town the colony was, where {RELATIVE} lives now among {FACTION}.</li>
     </texts>
     <defaultOption>1</defaultOption>

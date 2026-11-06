@@ -402,8 +402,10 @@ namespace ColonyCouncil
             History.Add(FoundingMath.Family + ":townBeaten", actors, Ref.Town(rec.key), HistoryMath.Milestone,
                 "CC_TownAfter_HistoryBeaten".Translate(townName.Named("TOWN"), (people?.Name ?? "?").Named("PEOPLE")).Resolve());
             string others = wronged.Count > 1 ? " " + "CC_TownAfter_BeatenFaith".Translate(TextUtil.JoinAnd(wronged.Skip(1).Select(f => f.Name).ToList()).Named("PEOPLES")).Resolve() : "";
+            // A people with no town left (the game's own defeat) has nobody left to remember it but the ledger's grudge.
+            string beaten = people != null && people.defeated ? "CC_TownAfter_BeatenTextLast" : "CC_TownAfter_BeatenText";
             Tell.Letter(NewsKind.World, Importance.Important, seat, "CC_TownAfter_BeatenLabel".Translate(townName.Named("TOWN")).Resolve(),
-                "CC_TownAfter_BeatenText".Translate(townName.Named("TOWN"), (people?.Name ?? "?").Named("PEOPLE")).Resolve() + others, LetterDefOf.NegativeEvent,
+                beaten.Translate(townName.Named("TOWN"), (people?.Name ?? "?").Named("PEOPLE")).Resolve() + others, LetterDefOf.NegativeEvent,
                 ruin != null ? new LookTargets(ruin) : LookTargets.Invalid);
             LensModel.Dirty();
             Cards.Dirty();

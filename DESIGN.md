@@ -3138,10 +3138,100 @@ the towns the colony was the world ledger (`World/Ledger/LedgerFormers.cs`). Its
   which colony it was, when it was handed over, how many of the colony's people live there and the bond.
 - **Setting.** "Handing over" in Many colonies. Off, nothing new is offered; a hand-over under way goes on, and the
   bond and the heads keep to their records.
-- **Seams for release 2b** (marked `// release 2b`): the kept layout and the town's map made from it, the town's
-  letters, trade, days, homecomings and moving there, and taking it back peacefully or by force (which ends the bond).
-  With one colony and nothing handed over nothing runs: no plan, no record, nothing saved (each new list is written only
-  when it holds something).
+- **Release 2b** (below, "The town afterwards") filled the seams 2a left: the layout kept in `Make` before the place
+  is its people's, the town's letters, trade, days, homecomings and moving there, and taking it back peacefully or by
+  force (which ends the bond). With one colony and nothing handed over nothing runs: no plan, no record, nothing saved
+  (each new list is written only when it holds something).
+
+#### The town afterwards (stage 3, release 2b)
+
+What a town the colony was does once handed over (docs/design/stage3-many-colonies.md, section 2, "What it does
+afterwards", "Taking it back", "Keeping the layout"; the player's decisions 7A and 10A of 6 November 2026; release 5's
+raid, hard times and turning against the colony, Faction Territories' pace and 11B are not here). Pure rules in
+`Colonies/TownAfterMath.cs` (`LayoutMath`, `FormerMath`; `Tools/Tests/TownAfterTests.cs`, prefix "town after: "); the
+game's side in `Colonies/TownLayout.cs` (kept and placed), `TownsAfter.cs` (its life, the hour and the day, the card),
+`TownTakeBack.cs` (asking for it back, taking it back, by force), `TownAfterPatches.cs` (the game's hooks),
+`TownAfterFacts.cs` (the facts), `Missions/TownDayMission.cs` (its days) and `Social/MovingOnTown.cs` (moving there);
+the records on `LedgerFormer` (World/Ledger/LedgerFormers.cs). No schedule slot: the region's hour (`RegionBook.Hourly`,
+`TownsAfter.Hourly`) and day (`TownsAfter.Daily`), only while a town the colony was is on record.
+- **The layout kept (7A).** In the hand-over's long event, before the place is its people's (`TownLayouts.Capture`):
+  over the home area's bounds and 6 cells around (`LayoutMath.Rect`, the colony's buildings' bounds when there is no
+  home area), every building of the colony's (`listerBuildings.allBuildingsColonist`, not a frame, not the land's rock)
+  at its origin by a number into a table of "def|stuff" names and its rotation (14 and 2 bits of a ushort), edifices
+  in one grid and what lies under or on them (conduits, lamps) in another; the floors laid (layerable, or a smoothed
+  floor) and the foundations (bridges, substructure) by number; a built roof and where natural rock is gone (mined out,
+  or never there) as flags; the beds of those who stay and who sleeps in each. Saved the way the game saves its grids
+  (`DataExposeUtility.LookByteArray`: two bytes a cell, deflated), with the table and the beds (`LedgerLayout`). Past
+  64 KB (base64 of the deflated grids, measured with the game's own `CompressUtility`), the roofs go, then the floors,
+  then the lesser buildings; past that nothing is kept. Items, plants, filth and art's tales are not kept. A made-up
+  80 by 80 base of 18 rooms takes about 3 KB, one over most of a 275 map about 14 KB (the tests); a real base, with
+  more kinds of things, more.
+- **The town's map from it.** When the game makes the map of a town the colony was, still its people's, with a layout
+  kept (an attack, a fight there): `Patch_TownLayoutSettlement`, a guarded prefix on `GenStep_Scatterer.Generate` for a
+  `GenStep_Settlement` (the game's, and the Vanilla Expanded Framework's KCSG step, which derives from it and which
+  Vanilla Base Generation Expanded gives the game's tribal and outlander peoples and so ours), places the layout
+  instead of the game's base, for that map only; `Patch_TownLayoutPower` stands the game's power step down for it.
+  Placing (`TownLayouts.Place`): the rock gone is cleared (its hewn ground left), the foundations set, the floors, the
+  edifices and what lies under them spawned through the game's own `Sketch` (with its placement rules, wiping plants and
+  chunks, forcing the ground under a building where it must), the built roofs set; a def or stuff the game no longer has
+  is left out. Then its people (`AtHome`): its notables free in the world at home (their own beds where the layout knows
+  them, else a roofed cell), and the game's own settlement group of that people (`PawnGroupKindDefOf.Settlement`, the
+  points the game gives a town less what the notables bring), all under `LordJob_DefendBase` at its middle. On a map of
+  another size the layout keeps its place, moved in to fit. Without Rimfolk, deep hooks off, or a town handed over
+  before 2b, the game builds its own base.
+- **Letters.** Its head (the people's leader) writes at most a season apart, the first some days after the hand-over,
+  then about one day in ten (`FormerMath.LetterDue`): an intro by the town's means (a runner, a rider, a courier, comms;
+  by the age it had at the hand-over), a line of `Rimfolk_Pool_TownLetter` by the town's fortune, the age, whether the
+  head was one of the colony's own, the years since and someone of its former people asking after their own in the
+  colony, with the facts service's tags, and the town's fortune in words.
+- **Trade.** The game's own caravans; when a trader caravan of theirs comes, its Trader notable (free at home) is the one
+  who trades (`Patch_TownTrader`, a prefix on `PawnGroupKindWorker_Trader.GenerateTrader` for Rimfolk's peoples only),
+  no longer the caravan's trader once home.
+- **Its days.** It keeps the colony's founding day and the day of the hand-over (`FormerMath.DayComing`: whichever comes
+  first, the founding day after the first season, the hand-over day after a year, a year apart), and invites the colony
+  to one a few days before it, by the invitation missions: `Rimfolk_Mission_TownDay` (`HappeningWorker_MissionTownDay`,
+  the invitation's own journey, stay, gift and memory, base chance 0, fired for that town's people alone with
+  `MissionPeoples.Only`).
+- **Homecomings.** A former colonist, never the head, free at home, whose spouse or child (or a close friend: 40 regard
+  both ways) is in the colony, or whose town is struggling, may ask to come home: never in the town's first season,
+  once a season from each town at most, a day's chance by the best reason (kin 5%, a friend 3%, hard times 4%), each
+  person asked about once, through `Tell.Ask` (`ChoiceLetter_Founding` ask 6). Welcomed, they walk in from the edge on
+  the town's side as colonists (`Arrivals.Join`), no longer the town's or its notable, the one they came home to goes to
+  meet them (`Together.When`, `Rimfolk_Pool_TownHomecoming`, the social log), the milestone `colony:homecoming`.
+- **Moving there.** A moving-on question of its own (`Rimfolk_DlmMove_Town`, `DilemmaWorker_TownKin`): a colonist with a
+  spouse, child or close friend among those who stayed, at a town at peace with the colony, never one of the last four
+  grown-ups. Going, they are seen to the gate, join the town's people (`DilemmaEffect_LeaveForGood`) and count as one of
+  its former colonists (`DilemmaEffect_JoinTown`); kept, they are held back as the other moving-on questions hold them.
+- **Asking for it back.** A letter purpose of the neighbour letters' own, `TakeBack` (`TownLetters`, through
+  `DiplomacyLetters`), offered only in a letter to the head of a town the colony was, at peace, once a year, while the
+  game's colony limit allows one more home (5B raising it by one): "Ask for it back" on the town's card opens it. Their
+  answer (`FormerMath.TakeBackChance`): 0.15, plus their regard (0.3 a hundred) and their goodwill (0.25 a hundred), plus
+  or minus up to 0.3 by the town's fortune (struggling readier), less 0.1 a year (five at most) and 0.35 for how much it
+  has grown (its fortune over the seed, a quarter a town of its own), between 0.02 and 0.9; a no says the heaviest
+  reason (`TakeBackWhy`); their own words are the letters' pool's (`takeback`). A yes reaches the colony with the answer:
+  a letter (ask 5) and the card's "Take it back", for a year.
+- **Taken back** (`TownTakeBack.Make`, a long event): the limit raised if needed; the people's leader stepped aside, the
+  people made temporary when it has no other town; the settlement the colony's, its look cleared; its map made the
+  game's way for a home at the size the colony was, the layout placed (unfogged); its former colonists free at home
+  walk out of their rooms as colonists (their beds, `Arrivals.Join`), and up to three of its other people choose to
+  come (`FormerMath.Joiners` by their best regard of the colony's people, kin among them and hard times); a people that
+  keeps other towns leads on, else it is defeated and the game lets it go; the town's notables let go, the colony's
+  record standing again, the milestone `colony:takenBack`, a letter. Records that would point at a people let go
+  (the former's, the ledger town's, the faction memory's) drop it when saved.
+- **By force** (10A): attacked, its map is the layout with its people defending it; beaten, the game's destroyed
+  settlement keeps the map (`TownTakeBack.Watch` in the region's hour: `FormerMath.Became`); the bond ends, its people
+  remember `townTaken` (45; when it keeps another town, else the game counts it defeated) and every people of the same
+  faith `townTakenFaith` (20), each with the ledger's grudge (origin `townTaken`), a letter and the history; settled with the game's Settle button, the milestone
+  `colony:takenBack`.
+- **Facts.** `town:former` (their town was the colony), `them:former` (the one spoken to was one of the colony's own),
+  `{OLDCOLONY}`, `{YEARSSINCE}`, through the region's provider; talk that remembers the colony's days
+  (`Rimfolk_OutsiderTalks_TownAfter.xml`).
+- **Ages.** The head's letters come by the town's means; taking it back is `AgeFeature.Back` (two fires one again, the
+  charter returned and the oaths renewed, a merger signed, the charter dissolved).
+- **Setting.** "The town's life" in Many colonies (`townLife`): off, no letter, trader, invitation, homecoming or move
+  there; the kept layout and taking it back go on.
+- **Dev tools.** Debug actions "Town after: ..." (`Colonies/TownAfterDebug.cs`): the head's letter, a homecoming asked,
+  its day's invitation, their yes to the colony's letter, the question about moving there, and the kept layout's size.
 
 ### The world ledger
 

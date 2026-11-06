@@ -46,7 +46,7 @@
     <lines>
       <li>[them] I think about you every day out at {TOWN}, you know.</li>
       <li>[us] I think about you too.</li>
-      <li>[them] Staying was right for the town, and still it was hard to watch you go.</li>
+      <li>[them] Living in two places is hard, however right it was for the town.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

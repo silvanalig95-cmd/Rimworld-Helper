@@ -66,6 +66,7 @@
   <!-- Taken by force -->
   <CC_TownAfter_BeatenLabel>{TOWN} taken by force</CC_TownAfter_BeatenLabel>
   <CC_TownAfter_BeatenText>The colony took {TOWN} by force from {PEOPLE}, the people it handed it over to. The bond between them is over, and {PEOPLE} will remember it as a heavy wrong.</CC_TownAfter_BeatenText>
+  <CC_TownAfter_BeatenTextLast>The colony took {TOWN} by force from {PEOPLE}, the people it handed it over to, and they have no town left. The bond between them is over.</CC_TownAfter_BeatenTextLast>
   <CC_TownAfter_BeatenFaith>So will {PEOPLES}, who keep the same faith.</CC_TownAfter_BeatenFaith>
   <CC_TownAfter_HistoryBeaten>The colony took {TOWN} by force from {PEOPLE}.</CC_TownAfter_HistoryBeaten>
   <CC_TownAfter_HistoryForce>{TOWN} was settled again by the colony, taken from {PEOPLE} by force.</CC_TownAfter_HistoryForce>
@@ -87,7 +88,7 @@
 
   <!-- Homecomings -->
   <CC_TownAfter_HomeLabel>{PAWN_nameDef} asks to come home</CC_TownAfter_HomeLabel>
-  <CC_TownAfter_HomeText>{PAWN_nameDef}, who stayed at {TOWN} when the colony handed it over, has sent word asking to come home to the colony.</CC_TownAfter_HomeText>
+  <CC_TownAfter_HomeText>{PAWN_nameDef}, one of the colony's own who lives at {TOWN} now, has sent word asking to come home to the colony.</CC_TownAfter_HomeText>
   <CC_TownAfter_HomeWhy_Kin>{PAWN_possessive} {RELATION} {KIN} lives in the colony, and {PAWN_pronoun} would live there too.</CC_TownAfter_HomeWhy_Kin>
   <CC_TownAfter_HomeWhy_Friend>{KIN}, a close friend of {PAWN_possessive}, lives in the colony.</CC_TownAfter_HomeWhy_Friend>
   <CC_TownAfter_HomeWhy_Hard>Times are hard at {TOWN}, and {PAWN_pronoun} would rather be among the colony's people.</CC_TownAfter_HomeWhy_Hard>

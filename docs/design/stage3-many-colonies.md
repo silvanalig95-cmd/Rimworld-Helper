@@ -14,6 +14,11 @@
 > **Release 2a, handing a colony over, is built** (6 November 2026): section 2 but what the town does afterwards, taking
 > it back and keeping the layout (release 2b). See "The order to build it in", item 2, for what differs.
 
+> **Release 2b, the town afterwards, is built** (6 November 2026): the kept layout and the town's map made from it (7A),
+> its letters, trade, days, homecomings and moving there, and taking it back by letter and by force (10A). See "The
+> order to build it in", item 2, for what differs. The raid on the town, hard times, turning against the colony,
+> Faction Territories' pace and 11B stay with release 5.
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
@@ -612,6 +617,45 @@ colonies at once after. Each release plays as before with its settings off and o
      the founding waits inside the hand-over and sets out when the ceremony is over. "Found a new colony with them" in
      the hand-over window opens the place picker with the third choice set.
    - *This week* doesn't list a hand-over (as release 1's founding); the colony's card says where it stands.
+
+   **Built (release 2b, 6 November 2026; `Source/ColonyCouncil/Colonies/TownAfterMath.cs`, `TownLayout.cs`,
+   `TownsAfter.cs`, `TownTakeBack.cs`, `TownAfterPatches.cs`, `TownAfterFacts.cs`, `Missions/TownDayMission.cs`,
+   `Social/MovingOnTown.cs`; DESIGN.md "The town afterwards").** The kept layout and the town's map from it (7A), its
+   letters, trade, days, homecomings and moving there, and taking it back by letter and by force (10A). What differs from
+   section 2:
+   - *The layout*: two buildings a cell at most (the edifice, and what lies under or on it: a conduit, a lamp), each at
+     its origin; "the rock that is gone" is every cell of the area with no natural rock at the hand-over, so a map whose
+     ground came out otherwise (another landing on the same place turned its seed) still has the colony's open ground.
+     Past 64 KB, after the roofs and the floors the lesser buildings go, then nothing is kept. A made-up mid-game base
+     takes about 3 KB (an 80 by 80 home area) to 14 KB (most of a 275 map) in the tests, less than the design's 10 to
+     40; a real base's size is to be seen in the game (a dev-mode log line gives it at the hand-over).
+   - *Base generation*: one guarded prefix covers the game's step and the Vanilla Expanded Framework's (its KCSG
+     GenStep_Settlement derives from the game's, and Vanilla Base Generation Expanded gives it to the game's tribal and
+     outlander peoples, ours among them), so no mod's own step is patched; the game's power step also stands down for
+     that map.
+   - *Its people on the town's map*: its notables at home (their own beds), and the game's settlement group with the
+     points the game gives a town less what the notables bring; its other former colonists stay in the world. Taken back
+     by its people's word, every former colonist free at home comes.
+   - *Letters*: written by the people's leader, as letters that come (an intro by the town's means), not carried to the
+     gate by a messenger as the colony's own answers are.
+   - *Trade*: the Trader notable is the one who trades in a caravan of theirs, in place of a stranger the game makes.
+   - *Its days*: a mission of its own on the invitation's worker (`Rimfolk_Mission_TownDay`, base chance 0), a few days
+     before the day; the founding day from the first season after the hand-over, the hand-over's from its first year.
+   - *Homecomings*: a close friend is 40 regard both ways; each former colonist is asked about once; the one they came
+     home to meets them face to face (the welcome plays out).
+   - *Moving there*: a moving-on question of its own (`Rimfolk_DlmMove_Town`); going, they count among the town's former
+     colonists.
+   - *Asking for it back*: a letter purpose of the neighbour letters' own (`TakeBack`), to the town's head only, at peace,
+     once a year and while the colony limit allows one more home. A yes is taken up by the player (the letter or the
+     town's card) and lapses after a year; the same settlement becomes the colony's (its key the colony's, the colony's
+     record standing again), its map at the size the colony was. The people's leader steps aside; with no other town the
+     people is made temporary and defeated, and Rimfolk's records drop it when saved.
+   - *By force*: noticed in the region's hour (the game's destroyed settlement at its place); its people remember the
+     wrong only when they keep another town (else the game counts them defeated and only the ledger's grudge stays); the
+     history has `colony:townBeaten` for the beating and `colony:takenBack` once it is settled.
+   - *Ages*: coming back is a feature of its own (`AgeFeature.Back`, the forms table's "Coming back" row).
+   - *Setting*: one, "The town's life" (letters, trade, days, homecomings, moving there); the kept layout and taking it
+     back are always on with handing over.
 3. **A scenario's start** (section 1's scenario parts): any scenario's people, limits, kit, arrival and animals, and
    Rimfolk's own parts, for the new colony alone. Needs 1.
 4. **Many colonies in play** (section 3's rest): merging councils, the pages following the colony in view, notables

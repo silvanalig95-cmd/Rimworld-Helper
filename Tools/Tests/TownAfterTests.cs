@@ -248,6 +248,137 @@ public static class TownAfterTests
     {
         string root = Root();
         C(root != null, "the repository found");
+        if (root == null) return;
+        string Code(string rel) => File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", rel));
+
+        // ---------------- The game's base generation, stood down for the town's map only ----------------
+
+        string patches = Code("Colonies/TownAfterPatches.cs");
+        C(patches.Contains("[HarmonyPatch(typeof(GenStep_Scatterer), nameof(GenStep_Scatterer.Generate))]") && patches.Contains("__instance is GenStep_Settlement")
+          && patches.Contains("TownLayouts.PlaceTown(map)"), "a guarded prefix on the game's settlement step (and the framework's, a step of the same kind): the layout placed instead, for that map only");
+        C(patches.Contains("[HarmonyPatch(typeof(GenStep_Power), nameof(GenStep_Power.Generate))]") && patches.Contains("TownLayouts.Placed(map)"),
+            "the game's power step stands down for a town made from the layout");
+        C(patches.Contains("[HarmonyPatch(typeof(PawnGroupKindWorker_Trader), \"GenerateTrader\")]") && patches.Contains("HandOverPeoples.IsOurs(parms.faction)")
+          && patches.Contains("TownsAfter.TraderFor("), "a trader caravan of theirs: its Trader, a face the colony knows, is the one who trades");
+        C(patches.Contains("RimfolkPatches.On"), "the deeper game hooks' setting holds for all three");
+        string layout = Code("Colonies/TownLayout.cs");
+        C(layout.Contains("new Sketch()") && layout.Contains(".Spawn(map, IntVec3.Zero, faction"), "the layout placed the way the game places its own structures (Sketch)");
+        C(layout.Contains("DefDatabase<ThingDef>.GetNamedSilentFail(def)") && layout.Contains("DefDatabase<TerrainDef>.GetNamedSilentFail(tdef)"), "a def the game no longer has is left out");
+        C(layout.Contains("DataExposeUtility.LookByteArray(ref things, \"things\")") && layout.Contains("LayoutMath.Fit(g, CompressUtility.Compress)"),
+            "saved as the game saves its own grids (bytes, deflated), fitted under the cap with the game's own deflate");
+        C(layout.Contains("new LordJob_DefendBase(f, rect.CenterCell, 25000)") && layout.Contains("PawnGroupKindDefOf.Settlement") && layout.Contains("HomeCell(map, rec.layout, rect, p)"),
+            "its people: the game's settlement group under its defend-the-town lord, the notables at home in their own beds");
+        C(layout.Contains("b.Faction == Faction.OfPlayer") && layout.Contains("d.building.isNaturalRock") && layout.Contains("b is Frame"),
+            "only the colony's own buildings kept: not the land's rock, not a frame");
+        C(!layout.Contains("listerThings.AllThings"), "items, plants and filth are never kept");
+        string ho = Code("Colonies/HandOvers.cs");
+        int capture = ho.IndexOf("TownLayouts.Capture(home, free)", StringComparison.Ordinal), made = ho.IndexOf("people = HandOverPeoples.Make(", StringComparison.Ordinal);
+        C(capture > 0 && made > capture, "the layout kept in the hand-over's long event, before the place is its people's and the map closes");
+        string formers = Code("World/Ledger/LedgerFormers.cs");
+        C(formers.Contains("Scribe_Deep.Look(ref layout, \"layout\")") && formers.Contains("!Find.FactionManager.AllFactionsListForReading.Contains(people)) people = null"),
+            "the layout on the town's record; a people the game let go leaves no reference behind");
+
+        // ---------------- Taking it back ----------------
+
+        string back = Code("Colonies/TownTakeBack.cs");
+        C(back.Contains("FormerMath.TakeBackChance(") && back.Contains("FormerMath.TakeBackWhy("), "the head's answer by the rule, and a no says why");
+        C(back.Contains("FoundingMath.LimitFor(Prefs.MaxNumberOfPlayerSettlements, Foundings.Counted())") && back.Contains("Prefs.MaxNumberOfPlayerSettlements = limit"),
+            "the game's colony limit applies, raised by one at most (release 1's 5B)");
+        C(back.Contains("s.SetFaction(Faction.OfPlayer)") && back.Contains("GetOrGenerateMapUtility.GetOrGenerateMap(s.Tile, size, null)") && back.Contains("TownLayouts.Place(map, rec.layout, Faction.OfPlayer, true)"),
+            "taken back: the settlement the colony's, its map made the game's way for a home, the layout placed");
+        C(back.Contains("Arrivals.Join(p, map, cell)") && back.Contains("formers.Concat(joiners)") && back.Contains("FormerMath.Joiners("),
+            "its former colonists walk out of their rooms as colonists, and up to three of its other people who choose to");
+        C(back.Contains("people.temporary = true") && back.Contains("people.leader = null"), "the people with no town left made temporary so the game lets it go, no stranger made to lead it");
+        C(back.Contains("FoundingMath.KindTakenBack") && back.Contains("WorldLedger.ReopenColony(rec.key)"), "the milestone colony:takenBack, the colony's record standing again");
+        C(back.Contains("FactionMemory.Note(people, FormerMath.DeedTaken") && back.Contains("FormerMath.DeedTakenFaith") && back.Contains("Tie.Kind.Grudge"),
+            "taken by force: a heavy wrong for its people and every people of the same faith, in the memory and the ledger's grudges");
+        C(back.Contains("is DestroyedSettlement") && back.Contains("TownEnd.Settled"), "beaten when the game's destroyed settlement stands in its place; settled again with the game's own button");
+        string memory = Code("World/FactionMemory.cs");
+        C(memory.Contains("[\"townTaken\"] = K(DeedSide.Wrong, 45)") && memory.Contains("[\"townTakenFaith\"] = K(DeedSide.Wrong, 20)"), "the deeds, as heavy as the rule says");
+        C(Code("World/NotableMath.cs").Contains("        TakeBack\n    }") && Code("Diplomacy/DiplomacyLetters.cs").Contains("TownLetters.Owns(p)"),
+            "asking for it back: a letter purpose of the neighbour letters' own, after the others");
+        C(Code("World/NeighboursPanel.cs").Contains("TownLetters.Owns(p) && !TownLetters.Shows(to)"), "offered only in a letter to the head of a town the colony was");
+
+        // ---------------- Its life, and no schedule slot ----------------
+
+        string region = Code("World/Region/RegionBook.cs");
+        C(region.Contains("TownsAfter.Hourly(now)") && region.Contains("TownsAfter.Daily(now)") && region.Contains("WorldLedger.Formers.Count > 0"),
+            "no schedule slot: the region's hour and day, only while a town the colony was is on record");
+        string life = Code("Colonies/TownsAfter.cs");
+        C(life.Contains("FormerMath.LetterDue(") && life.Contains("Rimfolk_Pool_TownLetter") && life.Contains("Facts.For(FactScene.Event("), "the head's letters, by the rule and the facts");
+        C(life.Contains("FormerMath.HomecomingDue(") && life.Contains("FoundingLetters.AskHomecoming(") && life.Contains("EdgeToward(home, rec.Town)") && life.Contains("Together.When("),
+            "a homecoming asked by Tell.Ask, walked in from the town's side, welcomed face to face");
+        C(life.Contains("TownDayMission.Invite(rec, day, home)") && life.Contains("FormerMath.DayComing("), "its days: an invitation a year at most, by the invitation missions");
+        C(Code("Colonies/FoundingLetters.cs").Contains("Tell.Ask(l, TownsAfter.HomeFor(kin))") && Code("Colonies/FoundingLetters.cs").Contains("Tell.Ask(l, Homes.Seat)"), "its questions through Tell.Ask");
+        string settings = Code("CouncilSettings.cs");
+        C(settings.Contains("public bool townLife = true;") && settings.Contains("Scribe_Values.Look(ref townLife, \"townLife\", true);")
+          && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"townLife\""), "one setting, The town's life, in Many colonies");
+        C(Code("Social/MovingOnTown.cs").Contains("FormerMath.KinThere(spouse, child, friend)") && Code("Social/MovingOnTown.cs").Contains("MovingOn.Spare(map)"),
+            "moving there: a moving-on question of its own, never one of the last four grown-ups");
+
+        // ---------------- The facts ----------------
+
+        C(new[] { "town:former", "them:former" }.All(FactsMath.RegionTags.Contains) && new[] { "OLDCOLONY", "YEARSSINCE" }.All(FactsMath.RegionValues.Contains),
+            "the facts' tags and placeholders for a town the colony was");
+        C(Code("Text/Facts/FactsRegion.cs").Contains("FormerTags(s, f);"), "the region's provider reads them");
+        var talk = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_TownAfter.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        C(talk.Count >= 6, $"talk that remembers the colony's days ({talk.Count} pieces)");
+        C(talk.All(t => Regex.IsMatch(t.Element("when")?.Value ?? "", @"\b(town:former|them:former)")), "each said only of a town the colony was");
+        foreach (var tag in new[] { "town:former", "them:former" })
+            C(talk.Any(t => (t.Element("when")?.Value ?? "").Split(',').Contains(tag)), "a piece for " + tag);
+
+        // ---------------- The words ----------------
+
+        var keyedDoc = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_TownAfter.xml")).Root!;
+        var keyed = keyedDoc.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
+        C(keyed.Values.All(v => !v.Contains("—") && !v.Contains("!")), "no em dashes and no exclamation marks");
+        C(keyed.Values.All(v => !Regex.IsMatch(v, @"\{DAYS\}|\bin \d+ (days?|hours?)\b|\bdays? (left|more)\b")), "no countdowns");
+        foreach (var why in new[] { "Regard", "Goodwill", "Thriving", "Years", "Grown", "Own" })
+            C(keyed.ContainsKey("CC_TownAfter_No_" + why), "a no's reason in words: " + why);
+        foreach (var age in new[] { "Tribal", "Medieval", "Industrial", "Spacer" })
+            C(keyed.ContainsKey("CC_TownAfter_LetterIntro_" + age), "the head's letter comes by the " + age.ToLowerInvariant() + " age's own means");
+        var ages = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Ages.xml")).Root!.Elements().Select(e => e.Name.LocalName).ToHashSet();
+        C(new[] { "Tribal", "Medieval", "Industrial", "Spacer" }.All(a => ages.Contains("CC_Form_Back_" + a) && ages.Contains("CC_Form_Back_" + a + "_Rite")), "coming back takes every age's form");
+        var allKeyed = string.Concat(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").Select(File.ReadAllText));
+        C(allKeyed.Contains("<CC_Memory_Deed_townTaken>") && allKeyed.Contains("<CC_Memory_Deed_townTakenFaith>") && allKeyed.Contains("<CC_Letter_PurposeCap_TakeBack>"),
+            "the deeds' and the letter purpose's words");
+        var pools = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_TownAfter.xml")).Root!.Elements().ToList();
+        List<string> Lines(string name) => pools.FirstOrDefault(p => p.Element("defName")?.Value == name)?.Descendants("li").Select(li => li.Value).ToList() ?? new List<string>();
+        var home = Lines("Rimfolk_Pool_TownHomecoming");
+        C(home.Any(l => l.StartsWith("[welcome]")) && home.Any(l => l.StartsWith("[back]")), "the welcome: one welcomes, one is back");
+        foreach (var line in home)
+        {
+            string body = line.Substring(line.IndexOf(']') + 1).Trim();
+            C(OneSentence(body) && body.Length <= 90 && !body.Contains("!"), $"a homecoming's bubble is one short sentence: '{body}'");
+        }
+        var letter = Lines("Rimfolk_Pool_TownLetter");
+        C(new[] { "former", "new", "asks", "struggling", "poor", "steady", "thriving", "flourishing", "tribal", "medieval", "industrial", "spacer" }
+              .All(t => letter.Any(l => l.StartsWith("[") && l.Substring(1, l.IndexOf(']') - 1).Split(',').Contains(t))),
+            "the head's letters: the colony's days by its age, a head of the town's own, its fortune, someone asking after their own");
+        C(letter.Where(l => l.Contains("{ASKER}")).All(l => l.StartsWith("[asks")), "{ASKER} only when someone asks");
+        var answers = Lines("Rimfolk_Lines_NeighbourWrites_TakeBack");
+        C(new[] { "warm", "cordial", "cool", "refusal" }.All(t => answers.Any(l => l.StartsWith("[takeback," + t))), "their own words for each answer");
+        var mission = XDocument.Load(Path.Combine(root, "Defs", "MissionDefs", "Rimfolk_Missions_TownDay.xml")).Root!.Elements("IncidentDef").Single();
+        string missionText = mission.ToString();
+        C(mission.Element("baseChance")?.Value == "0" && mission.Element("workerClass")?.Value == "ColonyCouncil.HappeningWorker_MissionTownDay",
+            "the town's day never drawn by the storyteller: only the town sends it");
+        C(missionText.Contains("[founding]") && missionText.Contains("[handover]") && !Regex.IsMatch(missionText, @"(ends|is) in \{DAYS\}"), "both days in words, no countdown");
+        var dilemma = XDocument.Load(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_TownKin.xml")).Root!.ToString();
+        C(dilemma.Contains("ColonyCouncil.DilemmaWorker_TownKin") && dilemma.Contains("DilemmaEffect_Procession") && dilemma.Contains("<joinFaction>true</joinFaction>")
+          && dilemma.Contains("ColonyCouncil.DilemmaEffect_JoinTown"), "going: seen to the gate, one of the town's people from then on");
+        foreach (var tie in new[] { "[spouse]", "[child]", "[friend]" }) C(dilemma.Contains(tie), "the question for a " + tie.Trim('[', ']'));
+        var almanac = XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_TownAfter.xml")).Root!.Elements().First();
+        C(almanac.Element("label")?.Value == "the town afterwards" && !almanac.ToString().Contains("—"), "the Almanac page, a page of its own");
+        string saves = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
+        C(saves.Contains("Colonies/TownLayout.cs:table") && saves.Contains("Colonies/TownLayout.cs:sleepers"), "the kept layout has its model in the save estimate");
+    }
+
+    private static bool OneSentence(string s)
+    {
+        for (int i = 12; i < s.Length - 1; i++)
+            if (s[i] == '.' || s[i] == '!' || s[i] == '?')
+                return false;
+        return true;
     }
 
     private static string Root()

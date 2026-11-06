@@ -121,7 +121,7 @@ namespace ColonyCouncil
         /// the years since and what is true between the two (the facts service: their town, the region, the ties), and
         /// someone of its former people asking after their own in the colony.
         /// </summary>
-        private static void Letter(LedgerFormer rec, int now)
+        internal static void Letter(LedgerFormer rec, int now)
         {
             var head = rec.people.leader;
             var n = TownLetters.HeadOf(rec);
@@ -206,9 +206,9 @@ namespace ColonyCouncil
         /// reason (their spouse or child in the colony, a close friend, their town struggling), never the head, asks by
         /// Tell.Ask; each asks about once.
         /// </summary>
-        private static void Homecomings(LedgerFormer rec, int now)
+        internal static bool Homecomings(LedgerFormer rec, int now, bool force = false)
         {
-            if (!Tell.CanAsk || Homes.Seat == null) return;
+            if (!Tell.CanAsk && !force || Homes.Seat == null) return false;
             bool hard = Struggling(rec);
             var head = rec.people.leader;
             Pawn best = null, bestKin = null;
@@ -225,13 +225,14 @@ namespace ColonyCouncil
                     bestClose = close;
                 }
             }
-            if (best == null) return;
+            if (best == null) return false;
             float chance = FormerMath.HomecomingChance(bestClose, bestKin != null && !bestClose, hard);
-            if (!FormerMath.HomecomingDue(rec.handedAt, rec.lastHomecoming, now, chance, Rand.Value)) return;
+            if (!force && !FormerMath.HomecomingDue(rec.handedAt, rec.lastHomecoming, now, chance, Rand.Value)) return false;
             rec.lastHomecoming = now;
             MovingOn.MarkAsked(MovingOn.Key("home", best));
             WorldLedger.FormerChanged();
             FoundingLetters.AskHomecoming(rec, best, bestKin, bestClose, hard);
+            return true;
         }
 
         /// <summary>The home they come back to: where the one they came home to lives, else the seat.</summary>

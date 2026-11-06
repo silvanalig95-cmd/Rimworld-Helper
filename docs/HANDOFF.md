@@ -6,6 +6,79 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- stage 3 release 2b: the town afterwards (6 November 2026). The player's decisions 7A and 10A; `docs/design/
+  stage3-many-colonies.md`, section 2's "What it does afterwards", "Taking it back" and "Keeping the layout", now marked
+  built with what differs (item 2); DESIGN.md "The town afterwards" (under "A town of our own"); an Almanac page of its
+  own (`Almanac_TownAfter.xml`, "the town afterwards"; 2a's page a prose change); README a section. No round of its own:
+  About.xml, What's new and CHANGELOG untouched. Pure rules in `Colonies/TownAfterMath.cs` (`LayoutMath`, `FormerMath`;
+  `TownAfterTests`, prefix "town after: "). Built in `Source/ColonyCouncil/Colonies/` (`TownLayout.cs`, `TownsAfter.cs`,
+  `TownTakeBack.cs`, `TownAfterPatches.cs`, `TownAfterFacts.cs`), `Missions/TownDayMission.cs`, `Social/MovingOnTown.cs`:
+  - The kept layout (7A): `TownLayouts.Capture` inside `HandOvers.Make` before the place is its people's: over the home
+    area's bounds and 6 cells, each building of the colony's at its origin (an edifice grid and an under-or-on grid, a
+    ushort a cell: 14 bits into a table of "def|stuff", 2 of rotation), the floors and foundations, built roofs and
+    where natural rock is gone (flags), the beds of those who stay. Saved on `LedgerFormer.layout` (`LedgerLayout`) the
+    game's way (`DataExposeUtility.LookByteArray`, deflated); fitted under 64 KB with the game's `CompressUtility`
+    (roofs, then floors, then the under grid, else nothing). A dev-mode log line gives each layout's size at the
+    hand-over; the tests' made-up bases take 3 KB (80 by 80, 18 rooms) and 14 KB (most of a 275 map).
+  - The town's map: `Patch_TownLayoutSettlement`, a prefix on `GenStep_Scatterer.Generate` guarded to a
+    `GenStep_Settlement` (the game's and KCSG's, which derives from it; VBGE gives KCSG's to TribeBase and
+    OutlanderFactionBase, so to our peoples) on the map of a town the colony was with a layout: `TownLayouts.Place`
+    (rock gone cleared, foundations set, floors, edifices and the under grid through `Sketch`, roofs) and `AtHome` (the
+    town's notables free in the world in their own beds, the game's Settlement group less their points, under
+    `LordJob_DefendBase`); `Patch_TownLayoutPower` stands `GenStep_Power` down for the same map. Deep hooks off, no
+    layout (a 2a save), or without Rimfolk: the game's own base.
+  - Its life (setting "The town's life", `townLife`, Many colonies), in the region's day (`TownsAfter.Daily`): the
+    head's letter (a season apart at least, `Rimfolk_Pool_TownLetter`, an intro by the town's means by age); the
+    Trader notable as the caravan's trader (`Patch_TownTrader`, a prefix on `PawnGroupKindWorker_Trader.GenerateTrader`
+    for our peoples); its days (`Rimfolk_Mission_TownDay` on the invitation's worker, base chance 0, the founding day or
+    the hand-over's, a year apart); homecomings (`ChoiceLetter_Founding` ask 6, walked in from the town's side, welcomed
+    face to face, `colony:homecoming`); moving there (`Rimfolk_DlmMove_Town`, `DilemmaEffect_JoinTown`).
+  - Taking it back: by letter, a new letter purpose `TakeBack` (`TownLetters`, through `DiplomacyLetters`; offered only
+    to the head of a town the colony was; `LetterPurpose` gained it at the end, `DiplomacyTests` knows), the answer by
+    `FormerMath.TakeBackChance`, a no's reason by `TakeBackWhy`; a yes reaches the colony (ask 5, and the town card's
+    "Take it back"), lapsing after a year. `TownTakeBack.Make` (a long event): the limit (5B), the leader stepped aside,
+    temporary and defeated with no other town, the same settlement the colony's, `GetOrGenerateMap` at the colony's
+    size, the layout, formers and up to three joiners `Arrivals.Join`ed at their beds, `colony:takenBack`, the colony's
+    record reopened (`WorldLedger.ReopenColony`), the town's notables dropped (`NotableBook.TownGoneOver`). By force:
+    `TownTakeBack.Watch` in the region's hour (`TownsAfter.Hourly`): a `DestroyedSettlement` of the people at the town's
+    tile (`LedgerFormer.tile`) is beaten (bond ended, `townTaken` 45 and `townTakenFaith` 20 in the faction memory, a
+    grudge tie each, `colony:townBeaten`), a player home there after is settled (`colony:takenBack`).
+  - Facts `town:former`, `them:former`, `{OLDCOLONY}`, `{YEARSSINCE}` (the region's provider); seven talk pieces;
+    `AgeFeature.Back` (22 features now, `WorldMechanicsTests`); the DefValidator knows the two placeholders (rebuilt).
+    Saves: a people the game let go is dropped from `LedgerFormer`, `LedgerTown` and the faction memory's deeds when
+    saved.
+  - Dev tools: Debug actions, Rimfolk, "Town after: ..." (`Colonies/TownAfterDebug.cs`), each for a town chosen from a
+    menu: the head's letter now, a homecoming asked now, its day's invitation now (founding or hand-over), their yes to
+    taking it back now (the letter within the hour), the question about moving there now (at the home in view), the kept
+    layout (its cells, buildings, defs, size, what was let go).
+  - Try in the game with dev tools (none of it could be run here; a second home needs the colony limit):
+    1. Hand a colony over (2a's steps) with dev mode on: the log line "[Rimfolk] Kept the layout of X: WxH cells, N
+       defs, about K KB"; the hand-over window's new line under "What stays"; "Town after: the kept layout".
+    2. Attack the town with a caravan (dev: make its people hostile first, or just attack): the map is the colony as
+       left (walls, doors, furniture, floors, roofs, conduits; rock mined then is still gone; no items), its notables in
+       their old beds, the game's defenders of that people; no vanilla or VBGE base on top; no extra generators.
+    3. Beat it: the letter "X taken by force", the bond's line on its card gone, the faction memory and the Ties page
+       show the grudge; settle it with the game's Settle button: the history's milestone.
+    4. A fresh town (a new hand-over): "Ask for it back" from its card (or the letter window to its head; nobody else's
+       letter window shows the purpose), or "Town after: their yes to taking it back now"; when the answer comes, the
+       letter "X agrees", Take X back: the map at the colony's size, the layout, the formers walking out of
+       their rooms as colonists, maybe joiners, the people gone from the factions tab at the next tick (with no other
+       town), the colony card back, the limit raised by one if needed.
+    5. Its life: "Town after: the head's letter now" (the intro by the age, a line by its fortune, maybe someone asking
+       after their own); a trader caravan of the people (the game's own debug incident, Trader caravan arrival, with the
+       people chosen): its trader is the town's Trader notable; "its day's invitation now": the invitation in the Quests
+       tab, a caravan of two there for the day; "a homecoming asked now" for a former colonist whose spouse, child or
+       close friend is in the colony (Welcome: they walk in from the town's side, the one they came home to goes to meet
+       them and they speak); the council's question about moving there ("the question about moving there now").
+    6. Save and load at each step: the log for "Could not resolve reference" (a people let go), and a 2a save with a
+       town and no layout (the game's base, the rest works).
+  - Riskiest: the settlement step's prefix (every settlement map passes one type check; a layout placed during map
+    generation, then the game's later steps, ruins and plants, on top of it); `Sketch` with wipe on a regenerated map
+    (fog, interaction cells, affordances; anything refused is simply missing); spawning world pawns into the defend lord
+    during map generation; the trader prefix (a notable pawn reused as a caravan's trader, its `wantsToTradeWithColony`
+    reset in the day); the take-back's faction made temporary and defeated mid-game with its world pawns' faction set
+    to none by the game, and the leader stepped aside; detecting a beating by what stands at the tile.
+
 - 0.127.0, stage 3 release 2a: handing a colony over (6 November 2026). The player's decisions 2A, 6B, 8A and 9A;
   `docs/design/stage3-many-colonies.md`, section 2 without what the town does afterwards, taking it back and keeping the
   layout (release 2b), now marked built with what differs (item 2); DESIGN.md "A town of our own" under Many homes; an
