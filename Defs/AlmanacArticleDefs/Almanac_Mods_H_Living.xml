@@ -3,8 +3,9 @@
 
   <!--
     Almanac: mods of the current modlist that Rimfolk works with in the colony's everyday life and that had no page yet:
-    Alpha Props: Parks and Gardens (its garden room theme), and the mods that change people in the middle of a game
-    (Big & Small, Character Editor, Pawn Editor). Each article shows only when one of its mods is active.
+    Alpha Props: Parks and Gardens (its garden room theme), the mods that change people in the middle of a game
+    (Big & Small, Character Editor, Pawn Editor), and Move the Patient (medical triage, Integrations/MedicalTriage.cs).
+    Each article shows only when one of its mods is active.
   -->
 
   <!-- ===================== Alpha Props: Parks and Gardens ===================== -->
@@ -84,6 +85,62 @@
       <li>edit</li>
     </keywords>
     <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Move the Patient: medical triage ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_H_MoveThePatient</defName>
+    <label>Move the Patient</label>
+    <category>Mods</category>
+    <order>802</order>
+    <mods><li>konstantynopolitaneczka.movethepatient</li></mods>
+    <summary>Bed priorities, surgery beds and "Transfer to bed", and with Rimfolk the best bed for whoever needs it most</summary>
+    <tip>The worst hurt get the best bed. Someone lighter is carried over to make room.</tip>
+    <description>Move the Patient gives every medical bed a priority (Low, Normal, High, Critical), lets a medical bed be marked as a surgery bed, and adds "Transfer to bed" to anyone downed or in bed: the nearest colonist who can carries them to the bed you click. On its own it keeps a reservation scheme: each patient gets the lowest-priority bed that still fits how badly they are hurt, so the higher beds stay free for worse cases, and a surgery bed is never given to anyone but a patient waiting for an operation while another medical bed is free. It carries someone waiting for an operation to a free surgery bed by itself.</description>
+    <sections>
+      <li>
+        <heading>The mod's severity</heading>
+        <text>The mod judges each patient the same four ways as the beds. Critical: bleeding fast or near death from blood loss, very low health, a life-threatening condition, or downed and unconscious. High: bleeding, low health, or wounds not yet tended. Normal: somewhat hurt. Low: the rest. A tended patient usually drops to Normal or Low.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk: best bed first</heading>
+        <text>A patient going to a medical bed takes the best free one they may use: the one you ranked highest with the mod's priority, then the one the game treats best in (the bed's tend quality and immunity gain, the room's infection chance, so a clean room counts), then the nearest. Only beds the game and the mod would allow them: not forbidden, of their kind (a prisoner's bed for a prisoner), reachable, no more dangerous than the bed the game chose. A surgery bed is open to anyone while nobody waiting for an operation could use it; someone waiting for theirs keeps the surgery bed the mod gives them. Someone already lying in a medical bed stays there: the moves below do the rest.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk: making room</heading>
+        <text>When someone worse off by the mod's severity arrives, or someone waiting for an operation while an ordinary patient lies in the surgery bed, and no equally good bed is free, the nearest awake colonist who does doctoring carries the lighter case to the best other free medical bed with the mod's own "Transfer to bed", saying why as they set off. The bed is kept for the one worse off, and once the lighter case lies in their new bed, the one worse off is brought in: by the usual rescue, by a transfer from a lesser bed or the floor, or on their own feet. The colony news tells it, the bed says who it is kept for, and the patient moved says why.</text>
+        <points>
+          <li>never someone being operated on or tended, in a mental state or in labour;</li>
+          <li>never into a bed of the other kind, and never when no other medical bed is free;</li>
+          <li>one move at a time on a map, and nobody carried twice within four hours;</li>
+          <li>an ordinary patient is never moved out for an equal, only for someone worse off.</li>
+        </points>
+      </li>
+      <li>
+        <heading>A hospital bed at High, marked for surgery</heading>
+        <text>With two plain beds at Normal beside it. The mod alone sends every ordinary patient to the plain beds while one is free, so the hospital bed stands empty. With Rimfolk the injured go to the hospital bed first. A newcomer worse off, open wounds against someone already tended, or downed and unconscious, has the patient in it carried to a plain bed if one is free, then takes their place; anyone waiting for an operation has an ordinary patient carried out of it the same way. With both plain beds taken, nobody is moved.
+
+Without the surgery mark it is the same by severity alone: someone waiting for an operation then has no claim of their own on the hospital bed and takes it like anyone else, by how badly they are hurt.</text>
+      </li>
+      <li>
+        <heading>The setting</heading>
+        <text>"Best bed first, and room made for the worse off" on the Heart and health page, on by default, with the deeper game hooks. With the mod's priority system off, every bed counts as Normal and the game's medical quality decides; with the mod set to choose by distance, Rimfolk leaves the beds to it.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>move the patient</li>
+      <li>transfer to bed</li>
+      <li>bed priority</li>
+      <li>surgery bed</li>
+      <li>triage</li>
+      <li>best bed</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
       <li>Council_Alm_Mods_Compatibility</li>
     </seeAlso>
   </ColonyCouncil.AlmanacArticleDef>

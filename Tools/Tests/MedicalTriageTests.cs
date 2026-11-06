@@ -60,7 +60,8 @@ public static class MedicalTriageTests
         C(MedicalTriageMath.Outranks(Normal, false, Low, false, false), "Normal over Low");
         C(!MedicalTriageMath.Outranks(High, false, High, false, false), "never the same: nobody is carried out for an equal");
         C(!MedicalTriageMath.Outranks(Normal, false, High, false, false), "never the lighter over the worse");
-        C(!MedicalTriageMath.Outranks(High, true, Normal, false, false), "an operation claims only a surgery bed: elsewhere by severity, like anyone");
+        C(!MedicalTriageMath.Outranks(Normal, true, Normal, false, false) && MedicalTriageMath.Outranks(High, true, Normal, false, false),
+            "an operation claims only a surgery bed: elsewhere by severity, like anyone");
         C(MedicalTriageMath.Outranks(Low, true, Critical, false, true), "an operation claims the surgery bed from an ordinary patient, however serious");
         C(!MedicalTriageMath.Outranks(Critical, false, Low, true, true), "nobody takes the surgery bed from one waiting for their operation");
         C(!MedicalTriageMath.Outranks(Critical, true, Low, true, true), "not even another operation");

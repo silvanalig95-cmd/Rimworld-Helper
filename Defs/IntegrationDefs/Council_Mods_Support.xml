@@ -373,6 +373,15 @@
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_MoveThePatient</defName>
+    <label>Move the Patient</label>
+    <order>28</order>
+    <code>true</code>
+    <packageIds><li>konstantynopolitaneczka.movethepatient</li></packageIds>
+    <what>Patients take the best free medical bed (its priority, then the game's medical quality), and a lighter case is carried to another bed with its "Transfer to bed" for someone worse off or for an operation in the surgery bed.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
     <defName>Council_Support_ReGrowth</defName>
     <label>ReGrowth</label>
     <order>35</order>
