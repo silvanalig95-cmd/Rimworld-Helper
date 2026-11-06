@@ -9,7 +9,7 @@
 
   <!-- The record a candidate runs on, after what they promise in the election's letter. -->
   <CC_Record_InSeat>In the seat, {PAWN_nameDef} has {MEASURED}.</CC_Record_InSeat>
-  <CC_Record_ForColony>{PAWN_nameDef} runs on {PAWN_possessive} work for the colony: {PAWN_pronoun} has {MEASURED}.</CC_Record_ForColony>
+  <CC_Record_ForColony>{PAWN_nameDef} runs on {PAWN_possessive} work: {PAWN_pronoun} has {MEASURED} in all.</CC_Record_ForColony>
   <CC_Record_Name>{PAWN_nameDef} runs as the one the colony calls {NAME}.</CC_Record_Name>
   <CC_Record_Goal>{PAWN_nameDef} runs as the one who {DEED}.</CC_Record_Goal>
 

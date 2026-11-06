@@ -786,6 +786,8 @@ namespace ColonyCouncil
         public void DailyRequests(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
+            // A petition for a decree no longer listed (the other form of its idea now: the famine over) is let go quietly.
+            requests.RemoveAll(r => r?.def != null && !r.repeal && !IsActive(r.def) && DecreeMath.OtherForm(r.def.defName) != null && r.def.Hidden);
             foreach (var r in requests.Where(r => r.def == null || r.pawn == null || r.pawn.Dead || now - r.tick > RequestDays * GenDate.TicksPerDay).ToList())
             {
                 requests.Remove(r);

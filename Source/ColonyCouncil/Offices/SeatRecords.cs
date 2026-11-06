@@ -123,8 +123,9 @@ namespace ColonyCouncil
             var promise = History.Of(who, new[] { RecordMath.KindPromise }, now - GenDate.TicksPerDay * 75)
                 .FirstOrDefault(e => RecordMath.Get(e.values, RecordMath.OfficeAt) == office.defName && RecordMath.SeatOf(e.values) == seat);
             if (promise == null) return null;
+            // Judged after it was made (the results judge the last promise before the winner's new one goes in, the same tick).
             bool judged = History.Of(who, new[] { RecordMath.KindKept, RecordMath.KindBroken }, promise.tick)
-                .Any(e => RecordMath.Get(e.values, RecordMath.OfficeAt) == office.defName && RecordMath.SeatOf(e.values) == seat);
+                .Any(e => e.id > promise.id && RecordMath.Get(e.values, RecordMath.OfficeAt) == office.defName && RecordMath.SeatOf(e.values) == seat);
             return judged ? null : promise;
         }
 
