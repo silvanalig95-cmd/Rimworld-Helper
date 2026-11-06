@@ -17,7 +17,7 @@
     <children>true</children>
     <afterHurt>true</afterHurt>
     <withinDays>4</withinDays>
-    <chance>0.06</chance>
+    <chance>0.02</chance>
     <days>90</days>
     <gained>
       <plain>
@@ -46,7 +46,7 @@
     <onlyFromPractice>true</onlyFromPractice>
     <practiceHours>30</practiceHours>
     <withinDays>5</withinDays>
-    <chance>0.012</chance>
+    <chance>0.006</chance>
     <days>150</days>
     <passes>true</passes>
     <condition>WorkingAt</condition>
@@ -74,7 +74,7 @@
     <defName>Rimfolk_Quirk_BootsByTheFire</defName>
     <label>dries their boots by every fire</label>
     <whileIll><li>Council_Ail_TrenchFoot</li></whileIll>
-    <chance>0.1</chance>
+    <chance>0.03</chance>
     <days>150</days>
     <condition>NearFire</condition>
     <thought>Rimfolk_Quirk_BootsByTheFire</thought>
@@ -101,7 +101,7 @@
     <label>boils everything they drink</label>
     <afterThoughts><li>Council_Ail_Survived</li></afterThoughts>
     <withinDays>4</withinDays>
-    <chance>0.12</chance>
+    <chance>0.08</chance>
     <days>200</days>
     <passes>true</passes>
     <gained>
@@ -128,7 +128,7 @@
     <children>true</children>
     <afterThoughts><li>Rimfolk_FirstNight</li></afterThoughts>
     <withinDays>4</withinDays>
-    <chance>0.15</chance>
+    <chance>0.12</chance>
     <days>300</days>
     <passes>true</passes>
     <condition>NearFire</condition>
@@ -157,7 +157,7 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <afterThoughts><li>Rimfolk_Parted</li><li>Rimfolk_Uprooted</li></afterThoughts>
     <withinDays>5</withinDays>
-    <chance>0.1</chance>
+    <chance>0.08</chance>
     <days>60</days>
     <condition>LateNight</condition>
     <thought>Rimfolk_Quirk_LooksBack</thought>
@@ -184,7 +184,7 @@
     <children>true</children>
     <afterThoughts><li>Council_Soc_EveningAtTheCamp</li><li>Council_Moment_CampStories</li><li>Council_Granted_CampEvening</li></afterThoughts>
     <withinDays>3</withinDays>
-    <chance>0.06</chance>
+    <chance>0.03</chance>
     <days>200</days>
     <passes>true</passes>
     <condition>Outdoors</condition>
@@ -211,7 +211,7 @@
     <defName>Rimfolk_Quirk_IndoorsByDusk</defName>
     <label>indoors by dusk</label>
     <whileIll><li>Council_Ail_SandflyFever</li></whileIll>
-    <chance>0.12</chance>
+    <chance>0.08</chance>
     <days>90</days>
     <condition>NightSky</condition>
     <thought>Rimfolk_Quirk_IndoorsByDusk</thought>

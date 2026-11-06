@@ -73,10 +73,5 @@ namespace ColonyCouncil
 
         /// <summary>The ways are clear once nine in ten of their cells are clear.</summary>
         public static bool SnowCleared(int stillDeep, int all) => all > 0 && stillDeep * 10 <= all;
-
-        /// <summary>A hole in a room's roof: one to twelve open cells, a room of four cells at least, and three quarters of it still roofed.</summary>
-        public const int MostHoles = 12;
-
-        public static bool RoofHoleWorth(int open, int roomCells) => open >= 1 && open <= MostHoles && roomCells >= 4 && open * 4 < roomCells;
     }
 }

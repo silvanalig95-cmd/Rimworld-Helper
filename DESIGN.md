@@ -937,6 +937,57 @@ game's records, a share of time from record snapshots every ten days, calm days,
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
 
+### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
+
+The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:
+new content in the existing frameworks, nothing that asks more often. Pure rules in `Lives/PeopleFourMath.cs` and
+`GoalMath` (`PeopleFourTests`); the defs in the People4 files of `Defs/AspirationDefs`, `WishDefs`, `QuirkDefs`,
+`EpithetDefs`, `DeedDefs`, with `Defs/Misc/Rimfolk_Records_People4.xml`.
+
+- **Two sparks for life goals** (`Aspirations/AspirationWorkers_People4.cs`, `GoalSparks`): `hurt`, a hurt from everyday
+  life lately (a danger, a work hurt, an ailment: the harm service's book, `Harm.DaysSince`), and `war`, a war among the
+  neighbours running now (a bad world event of the war kind). A war is a spark of fighting (`GoalMath.FightSpark`): it
+  pulls 0.6 like a foe and is held to the one-at-a-time rule, so a war never sets two on one fighting goal. Neither is
+  big enough to change a goal held. No new goal is sparked by a fight.
+- **Twelve life goals**: a nurse's hands (Medicine to 8 for anyone; an illness pulled through, a hurt, a loss), sure on
+  their feet again (thirty days without another hurt or fall for someone hurt in the last ten, the clock starting again
+  at each: `AspirationWorker_SureFooted`), keep the colony mended (forty repairs, builders), a trader's name (six deals,
+  the sociable), a friend of the road (five evenings at camps' fires), a good neighbor (two calls answered; a war, a good
+  turn on the road), keep the colony's days (two kept; a new colony's first night, the founding day, a loss), a
+  peacemaker (three quarrels mended; a fight of their own, a loss), lead the rites (three, Ideology), see the new colony
+  grow (its own people to eight, two more at least: `AspirationWorker_HomeGrows`), the journey to the other colony (stand
+  on another of the colony's homes, someone close living there: `AspirationWorker_Visit`), ready for what comes (Shooting
+  to 8 for anyone who can fight, while the neighbours are at war). Goals on Rimfolk's own records come only while their
+  feature is on (`AspirationWorker_FeatureRecord`, its `counter` naming it). Each takes the age's form in its lines (the
+  old ones' leaves and roots, the village's bone-setter, the medicine stores, the scan; the bow, the crossbow, the rifle).
+- **Seven wishes**: cloth put by for mending (80 textiles of any kind, crafters, fall and winter), steel put by (150,
+  builders and crafters), spare parts for the machines (6 components, industrial and spacer), milk for the little one
+  (20 milk or baby food, parents of a baby), shelves for the stores (two), and two with workers of their own that play
+  out when promised (`Wishes/WishWorkers_People4.cs`): the trees by the walls felled (three grown trees or more in the
+  home area beside the colony's walls or doors, marked for the game's cutting; never for one whose faith minds it) and
+  the snow cleared from the doors (deep snow on twelve cells or more within two steps of the doors, put in the game's
+  snow clearing area). No triggers: they take a share of the colony's wish roll, which comes as often as ever.
+- **Eight quirks**, two new triggers on `QuirkDef`: `afterHurt` (a hurt from everyday life within its days, once up
+  again) and `whileIll` (ill with one of the named hediffs). Watches every step (a hurt), taps the roof before digging
+  (a hurt, miners only, +1 at the face), dries their boots by every fire (trench foot, +1 by a fire), boils everything
+  they drink (a serious illness pulled through), keeps an ember of the first fire (a new colony's first night, +1 by a
+  fire), looks back down the road (a parting or being sent away, -1 late at night), sings a song from the strangers'
+  fire (a camp's evening, +1 outdoors), indoors by dusk (sandfly fever, -2 outside after dark). Each shows over a head
+  when it fits (`HabitBubbles`, the `Rimfolk_Pool_Bubble` pools). Small chances in rare moments: they press less than a
+  tenth of what a fight already brings, under the cap of two.
+- **Eight names and six deeds.** A deed can count a record of its own (`DeedDef.record`, one more each time, merged or
+  not), and six do: people carried out of a fight (the Shield, from 3), night watches (Night-Watch, 4), contests won (the
+  Champion, 4), masterworks (Master-Hand, 3), rounds of the sick (the Lamp, 4), kindnesses to strangers (Open-Hand, 4).
+  Students taught to stand alone count where a mentorship ends (the Teacher, 2), votes lost already did (the Hopeful,
+  4, dubious, the Unbeaten's other side). The words are ones every age has. They follow the one-name rules unchanged
+  (NameMath: twenty days held, a clear surpasser over a week). New deeds met where the game notices them: letting the
+  prisoners out, a binge on the colony's drugs, a body dug up, running off into the wild (the game's own breaks), a
+  wedding and a proposal turned down (the memories the other is left with).
+- **Rates** (`PeopleFourTests`'s model of the real pool of grown-ups' goals, twelve colonists over four years of sixty
+  days, the tracker's rules and the same seeds before and after): goals started 0.94 a colonist-year before and 0.96
+  after, from fights 8.4% and 6.4%, at most one on a fighting goal from fights or a war at once. The wish roll and its
+  pace are untouched (`Tools/Balance` before and after in the handoff).
+
 ### Ideoligions in the colony: the people
 With Ideology, the game's ideoligions and how firmly colonists hold them (the game's certainty, 0..1) come into their
 life (`Faith/`; the arithmetic in `FaithMath.cs` and `FaithPeopleMath.cs`, checked by `Tools/Tests/FaithTests.cs` and

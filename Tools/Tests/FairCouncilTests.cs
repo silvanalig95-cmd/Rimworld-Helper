@@ -176,7 +176,7 @@ public static class FairCouncilTests
             "who carried whom is read before it is cleared");
         string asp = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Aspirations", "Aspirations.cs"));
         Check(asp.Contains("GoalMath.MayChangeHeart(") && asp.Contains("b.turned = true;") && asp.Contains("GoalMath.Shared(") && asp.Contains("GoalMath.FightMaySpark(spark, othersAfterAFight)")
-              && asp.Contains("if (a.spark == \"battle\") afterAFight[a.def]"), "the tracker follows these rules");
+              && asp.Contains("if (GoalMath.FightSpark(a.spark)) afterAFight[a.def]"), "the tracker follows these rules (a fight's spark, or a war's, People4)");
     }
 
     /// <summary>The rules a model of the colony's life goals runs on: before 0.112.0, 0.112.0's, and now.</summary>
