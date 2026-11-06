@@ -107,7 +107,7 @@ public static class NeighboursFourTests
             C(texts.Any(t => !Regex.IsMatch(t, @"^\[[^\]]*their:(tribal|medieval|industrial|spacer|lowtech|hightech)"))
               || texts.Any(t => t.Contains("their:lowtech") || t.Contains("their:tribal")) && texts.Any(t => t.Contains("their:hightech") || t.Contains("their:industrial")),
                 $"{name}: an opening for every people's age");
-            C(texts.Any(t => t.StartsWith("[their:empire]")) || worker == "HappeningWorker_MissionLost", $"{name}: the Empire asks in its own titles and honour");
+            C(texts.Any(t => Regex.IsMatch(t, @"^\[[^\]]*their:empire")) || worker == "HappeningWorker_MissionLost", $"{name}: the Empire asks in its own titles and honour");
             if (hosted.Contains(worker)) C(texts.Any(t => t.StartsWith("[host]") && t.Contains("{HOST}")), $"{name}: a request in the name of the town's head, as the region knows them");
             var options = ext.Element("options")!.Elements("li").ToList();
             C(options.Count == 2, $"{name}: taken on or declined");

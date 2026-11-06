@@ -32,12 +32,12 @@
           <li>[fire] A burned street at {PLACE}</li>
         </titles>
         <texts>
-          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name: the storm left half the town under open rafters, and {PLACE} asks the colony for two of its builders for a few days, with pay.</li>
+          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name to ask the colony for two of its builders for a few days, with pay: the town has the timber to build again, and not the hands.</li>
           <li>[storm,their:lowtech] A rider from {PLACE} says the storm two nights ago took the thatch off half the town and brought a barn down on its own cattle. {FACTION} have timber enough, but not the hands who know how to raise a roof truss that stays up.\n\nCould the colony lend two of its builders for a few days? {A_nameDef}'s name came up.</li>
           <li>[storm,their:hightech] {FACTION}'s letter from {PLACE} is short. The windstorm took the roofs off the school and the clinic, and the town's own builders are working on the houses. They are asking the colony for two people who can frame and roof, for a day or two, and they will pay for it.</li>
           <li>[fire,their:lowtech] Fire went down a row of houses at {PLACE} in the dry spell, and {FACTION} have cleared the ash and stacked new timber. What they lack is builders. They ask for two of the colony's, for a few days at the walls, and they will pay in silver and in goods of their own making.</li>
           <li>[fire,their:hightech] Half of a street at {PLACE} burned out last week, and {FACTION} have the materials and the money to put it back. What they don't have is people who can build. Two of the colony's builders for a day or two would let them start before the weather turns.</li>
-          <li>[their:empire] A herald of the Empire at {PLACE} presents the compliments of the town's knight and asks a service: two builders of the colony to help raise the hall the storm broke, for a day and a half. The Empire pays its builders, the herald says, and remembers its friends.</li>
+          <li>[their:empire] A herald of the Empire at {PLACE} presents the compliments of the town's knight and asks a service: two builders of the colony to help raise the hall that came down, for a day and a half. The Empire pays its builders, the herald says, and remembers its friends.</li>
           <li>[their:friend] "Send {FRIEND_nameDef} if you can," the letter from {PLACE} ends, after the part about the roofs. {FACTION} need two builders for a few days, and they trust the colony's.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -128,7 +128,7 @@
           <li>Sickness at {PLACE}</li>
         </titles>
         <texts>
-          <li>[host] A letter from {HOST} at {PLACE}, in a hurried hand: a fever is going through the town, their own healer is down with it, and {HOST} asks the colony to lend its healer for two days.</li>
+          <li>[host] A letter from {HOST} at {PLACE}, in a hurried hand: a sickness is going through the town, their own healer is down with it, and {HOST} asks the colony to lend its healer for two days.</li>
           <li>[fever,their:tribal] A runner from {PLACE} squats at the gate to get breath. A fever is going through the longhouses of {FACTION}, and their own healer is lying in one of them. They ask for the colony's healer, {A_nameDef} or another, for two days at the bedsides.</li>
           <li>[fever,their:medieval] {FACTION}'s rider from {PLACE} carries a letter sealed in a hurry. The sweating fever came up the river, their leech is dead of it, and the sick are lying in the church. Would the colony lend its physician for two days?</li>
           <li>[fever,their:industrial] {FACTION}'s doctor at {PLACE} is the one in bed this time, and the flu that put him there is filling the clinic. Their letter asks the colony for someone who can doctor, for two days, and promises to pay.</li>
@@ -329,7 +329,7 @@
           <li>[truce,their:medieval] {FACTION} will seal a truce at {PLACE} with the men of the next valley, and the custom is that a stranger of good name sets a mark beside the seals. They ask the colony for its best speaker, for half a day.</li>
           <li>[truce,their:hightech] {FACTION} and a rival town are signing a ceasefire at {PLACE}, and both want a neutral signature on it that neither side can call bought. Their letter asks the colony for someone respected, for half a day.</li>
           <li>[boundary] Two villages of {FACTION} have quarrelled over a stream for three generations, and they have finally agreed where the line runs. They want a witness from outside to walk it with them at {PLACE} and say so, for half a day.</li>
-          <li>[their:empire] A truce will be sworn at {PLACE} before the Empire's herald between the town's knight and a neighbouring lord. Custom asks a witness of no house, and the herald asks the colony for one of good name, for half a day, with the Empire's thanks.</li>
+          <li>[truce,their:empire] A truce will be sworn at {PLACE} before the Empire's herald between the town's knight and a neighbouring lord. Custom asks a witness of no house, and the herald asks the colony for one of good name, for half a day, with the Empire's thanks.</li>
           <li>[their:friend] "Bring {FRIEND_nameDef}," {FACTION}'s letter asks. "Both sides know {FRIEND_objective}." They need a witness at {PLACE} for half a day.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -423,7 +423,7 @@
           <li>[harvest] {FACTION}'s smith at {PLACE} broke an arm, and the harvest is close with half the sickles blunt and three scythes cracked. They ask the colony for someone who can work metal for a day at their forge, and they will pay.</li>
           <li>[plough] The ground at {PLACE} is ready for the plough, and {FACTION}'s ploughshares are not: bent, cracked and rusted through the winter. They ask the colony for a smith for a day at their forge before the sowing slips past.</li>
           <li>[machines] The pumps and the old tractor at {PLACE} have both broken in the same week, and {FACTION}'s mechanic has gone to the city for parts that won't come. They ask the colony for someone handy with tools for a day.</li>
-          <li>[their:empire] The steward of {PLACE} writes on the knight's behalf. The town's armourer is away with the levy, and the harvest tools need seeing to before the reaping. Would the colony lend its smith for a day? The Empire pays fairly.</li>
+          <li>[their:empire] The steward of {PLACE} writes on the knight's behalf. The town's armourer is away with the levy, and the tools and the pumps need seeing to. Would the colony lend its smith for a day? The Empire pays fairly.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

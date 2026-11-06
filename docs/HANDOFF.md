@@ -6,6 +6,89 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new neighbours' requests and visitors (the player's request, 6 November 2026): "do another big content update to existing
+  mechanics"; this part the neighbours and the people who come to the colony (other agents' parts are other systems). New
+  content in the frameworks that were there (missions, data events, letter variants); no round of its own, About.xml,
+  the What's new page and CHANGELOG untouched. Pure rules in `Missions/NeighboursFourMath.cs` (`NeighboursFourTests`,
+  358 checks), workers in `Missions/Workers_MissionNeighbours4.cs`; DESIGN.md "Neighbours' requests and callers at the
+  gate". Each piece, what plays out, every age's form, weight and spacing:
+  - One draw for every mission (`MissionPool.Factor`, `NeighboursFourMath.MissionPoolWeight` 6.8, the thirteen kinds'
+    base chance before this round): each mission's base chance is scaled so the missions together weigh 6.8 in the
+    storyteller's draw and Rimfolk's own (two lines in `Happenings/Happenings.cs`; the balance model the same,
+    `Tools/Balance/Code.cs`, `Sim.cs`). With the fourteen new (5.0) every mission comes at 0.58 of its old weight.
+  - Hands lent to a neighbour's town (`HappeningWorker_MissionHands`, data `MissionHands`): the harvest hands' way for any
+    skill; the colony's caravan with one or two of its people good at it at the asking people's nearest town (3 days at
+    most), staying `hours`; the whole stay pays the silver into the packs, a gift of things of the colony's era (`Loot`),
+    the skill's experience and a zero-mood memory with a little recreation; half the stay half the silver; none, goodwill
+    and "absent". Remembered as `lentHands` (new deed, a debt of honour where kept). Forms by the asking people's age
+    (`their:tribal` to `their:spacer`, `their:lowtech`/`their:hightech`, now in every mission's tags) and the Empire's own
+    (knight, steward, herald). Builders after a storm or a fire (`Rimfolk_Mission_Builders`, Construction 5, two, 36 h,
+    weight 0.4, 60 days), a healer for their sickhouse (`_Healer`, Medicine 6 and doctoring, one, 48 h, 0.4, 75), a
+    teacher for their young (`_Teacher`, Intellectual 7, one, 36 h, 0.3, 90), a witness at a truce or a boundary
+    (`_Witness`, Social 6, one, 12 h, 0.3, 75), a smith before the harvest or the sowing, a mechanic for a hightech town's
+    pumps (`_Smith`, Crafting 6, one, 24 h, 0.3, 60).
+  - A store kept (`Rimfolk_Mission_KeepStore`, `HappeningWorker_MissionKeep`, 0.4, 75 days): their carts bring grain
+    (corn, else rice), timber, steel or cloth to the gate (`Couriers.Deliver`) and come back after 12 to 18 days for as
+    much (`Couriers.CollectGoals`), paying a quarter of its worth; what the stores hold then counts, the colony's own the
+    same as theirs (the terms say so). Short: the rest paid in silver at its plain worth, which their carts take; without
+    the silver they take what there is (goodwill -8, "a promise broken").
+  - A young beast raised (`Rimfolk_Mission_RaiseBeast`, `HappeningWorker_MissionBeast`, 0.4, 90 days): a foal (lowtech
+    peoples), a calf, a kid or a pup that suits the weather. Their drover walks it in with them (`Arrivals.Visit`) and
+    hands it over at the gate (`SetFaction`), then goes; after 12 to 18 days their drover comes for it and pays (the
+    runaway's `HandBack`, `Couriers.Fetch`): all of it kept well (malnutrition under 0.2, nothing sick, no wound
+    untended), half kept poorly; bonded to one of the colony's it stays; dead or lost, goodwill and the memory.
+  - Someone of theirs lost on the land (`HappeningWorker_MissionLost`, the lost child's worker with ages, finder, deed,
+    memory, search days and pay as virtual hooks in `Workers_MissionRoad.cs`): an old one who wandered off
+    (`Rimfolk_Mission_LostElder`, 66 to 86) and a hunter overdue (`_LostHunter`, 20 to 55), each 0.3, 90 days; found by
+    whoever comes within six steps in sight, then their kin come and pay; remembered as `foundLost` (new deed).
+  - A traveller seen home (`Rimfolk_Mission_EscortTraveller`, `HappeningWorker_MissionEscortWho`, the pilgrim escort with
+    ages, variant, set-off line and pay as hooks): a trader with a season's silver, a healer, a scholar (28 to 62), 0.3,
+    75 days.
+  - Goods, data only in the delivery framework: the timber and stone of a wall against bandits (`Rimfolk_Mission_Defences`:
+    a palisade, a wall, a watchtower with steel and components for an industrial colony), fodder for their herds
+    (`_Fodder`: hay and kibble in fall and winter, hay in a dry summer), stores for a long road (`_RoadStores`: pilgrims,
+    a trek, an expedition with survival packs and medicine), seed after a blight or a flood (`_SeedGrain`: corn, rice,
+    potatoes in spring and summer); each 0.4, 60 days.
+  - In the town head's name: the hands, the store, the beast and every delivery (the old two as well) name the town's
+    head by their title when the region's ledger knows them (`InviteForms.Host`; `{HOST}`, tag `host`), the Empire's
+    title for the Empire. No line of the new missions counts the days (the Quests tab shows the time; the test checks
+    for `{DAYS}`); their endings say what is happening as it happens (their carts coming, their drover on the road).
+  - Callers at the gate, data events (`Defs/IncidentDefs/Rimfolk_Events_Neighbours4.xml`, `HappeningWorker_Setting`, a
+    people within an age of the colony's, a form for each age): a herb-gatherer (`Rimfolk_Evt_HerbGatherer`: a lesson in
+    Plants at their side for the colony's grower, or three herbal medicine bought; spring to fall, 0.8, 40 days), drovers
+    on the road to a fair (`_Drovers`: a young farm beast bought, handed over beside them, or a meal carried out to each;
+    0.8, 40), a seed-seller (`_SeedSeller`: a patch sown by the best grower, or a young tree planted at the field's edge;
+    spring and summer, a field needed, 0.7, 45), a neighbour's patrol after bandits (`_WatchPatrol`: fed, its leader
+    drilling the best shot in Shooting, or two medicine sold; 0.7, 45), a traveller on the wrong road
+    (`_LostTraveller`: a meal and the roads gone over at the table, something for the road, or the way pointed; 0.8,
+    35), a petitioner with a grievance against their own head (`_Petitioner`: heard out at the table, or a meal; 0.7,
+    45), a brewer's cart (`_Brewer`: twelve beer bought, or a Cooking lesson by the cart; 0.7, 45). Silence sends them on;
+    nothing gathers the colony; nobody is hurt.
+  - More ways to tell the callers that had one reading (`Rimfolk_Events_Neighbours4_Variants.xml`): the barber, the
+    animal doctor, the undertakers, a captive's kin and the art collector, new openings by season, age and what they find,
+    and an ending for each answer.
+  - Rates, from `Tools/Balance` (200 runs a setup, before on 922aabc, after on this tree): 6 colonists, average play, events a year 6.1 and 5.8 (well
+    run 6.1 and 6.0, neglectful 6.0 and 6.0), missions 0.23 and 0.19 (well run 0.19 and 0.26, neglectful 0.18 and 0.15),
+    world events 1.1 and 1.1, questions a day 0.50 and 0.49 (12 colonists 0.53 and 0.53); averaged over all 24 setups
+    events 6.06 and 6.03, missions 0.197 and 0.189, questions a day 0.499 and 0.498, letters 0.426 and 0.424: the
+    differences scatter both ways. Events can't rise (Rimfolk's share of the storyteller's draw is capped) and missions
+    don't (the one draw). `--scenes` (10 colonists, 200 runs): well run 23.9 of 43.7 staged a year as built (2.8
+    gatherings and outings a week) and 24.5 of 43.9 (2.9), average 23.4 of 39.6 (2.8) and 23.5 of 39.9 (2.8), neglectful
+    23.6 of 38.0 (2.8) and 23.4 of 37.8 (2.7); events offering a gathering 1.4 and 1.3 a year (no new answer gathers the
+    colony). The play-out audit: 729 answers of 191 dilemmas and 207 events, stories and world events (719 and 200
+    before), 0 candidates.
+  - Shared code changed outside the new files: `Happenings/Happenings.cs` (the pool factor, two lines),
+    `Missions/Missions.cs` (the people's age tags), `Missions/InviteForms.cs` (tag `host`), `Missions/Workers_Missions.cs`
+    (`HandBack` with an outcome), `Missions/Workers_MissionRoad.cs` (virtual hooks, behaviour unchanged),
+    `Missions/Workers_MissionDelivery.cs` (the host), `World/FactionMemory.cs` and `Diplomacy/FavourMath.cs` (two deeds),
+    `Tools/Balance/Code.cs` and `Sim.cs` (the pool), README, the Almanac's council and callers pages (texts only).
+  - Left: new purposes for the colony's letters to notables need the letters machinery's code (each purpose is code in
+    `NeighbourLetters`/`NotableMath`); this round brings the notables in as the town's head named in requests, and
+    petitions in person at the gate. `docs/balance-report.md` not regenerated (four agents at once: the merge).
+  - Needs a look in the game: a beast and its drover walking in together to the gate (the visit lord with an animal in
+    it) and the handover; their carts bringing a store and coming back for it, and the silver made good; the colony's
+    caravan waiting at a town for the hands (the Quests tab's progress); the lost elder followed back; the patrol's drill
+    and the herb-gatherer's lesson (a colonist at a visitor's side outside the gate).
 - 0.120.0, new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
   world events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay
   variety"; this part the council's questions, Rimfolk's events and dangers on the map (illnesses, world events and camps

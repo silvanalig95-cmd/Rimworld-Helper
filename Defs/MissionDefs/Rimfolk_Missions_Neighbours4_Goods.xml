@@ -30,12 +30,12 @@
           <li>[tower] A watchtower for {PLACE}</li>
         </titles>
         <texts>
-          <li>[host] {HOST} of {PLACE} writes that the town will be walled before the bandits come back, and encloses a list of what the work needs from the colony by a set day, at a good price.</li>
+          <li>[host] {HOST} of {PLACE} writes that the town means to raise its defences before the bandits come back, and encloses a list of what the work needs from the colony by a set day, at a good price.</li>
           <li>[palisade] Bandits burned two farms outside {PLACE} last month, and {FACTION} mean to put a stockade round the town before they come back. {DEAD}, who leads their watch, has sent the colony a list of what the work needs, by a set day, at a good price.</li>
           <li>[wall,their:lowtech] {FACTION} are walling {PLACE} after a summer of raids on the road, stone where they can and timber where they can't. {DEAD}, the master of the work, asks the colony for what they are short of, by a set day, and will pay well over its worth.</li>
           <li>[wall,their:hightech] After the second raid this year, {FACTION} voted to put a proper wall round {PLACE}. {DEAD}, their quartermaster, has sent the colony an order for materials by a set day, with a fair price for all of it.</li>
           <li>[tower] {FACTION} want a watchtower on the ridge above {PLACE}, high enough to see raiders coming a day off. {DEAD}, who is building it, has sent the colony a list of what it needs, and a good price.</li>
-          <li>[their:empire] The knight of {PLACE} writes under the Empire's seal: the town's walls must be raised against the bandits on the roads before the season turns, and the colony's help is asked. {DEAD}, the knight's steward, encloses the list and a price fitting the Empire's dignity.</li>
+          <li>[their:empire] The knight of {PLACE} writes under the Empire's seal: the town's defences must be raised against the bandits on the roads before the season turns, and the colony's help is asked. {DEAD}, the knight's steward, encloses the list and a price fitting the Empire's dignity.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -367,7 +367,7 @@
           <li>[blight,their:lowtech] The blight took {FACTION}'s fields at {PLACE} in the autumn and got into the seed store over the winter. {DEAD}, who keeps the granary, opened the sacks this week and found them black. Without new seed there is no harvest this year. A rider has brought the colony the list and a good price.</li>
           <li>[blight,their:hightech] {FACTION}'s seed stock at {PLACE} is blighted through, {DEAD}, their agronomist, writes, and the supplier in the city has none to sell. They ask the colony for seed of its own crops, by a set day, at a fair price.</li>
           <li>[drowned] The river came over the fields at {PLACE} just after the sowing and stood there a week. {FACTION} have to sow everything again, and the seed they had is in the mud. {DEAD} asks the colony for new seed, by a set day, and will pay well.</li>
-          <li>[their:empire] The steward of {PLACE} writes on the knight's behalf: the Empire's fields at {PLACE} must be sown again after a blight, and the colony's grain is asked for. {DEAD} encloses the list, under the Empire's seal, with a fair price.</li>
+          <li>[their:empire] The steward of {PLACE} writes on the knight's behalf: the Empire's fields at {PLACE} must be sown again this season, and the colony's grain is asked for. {DEAD} encloses the list, under the Empire's seal, with a fair price.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
