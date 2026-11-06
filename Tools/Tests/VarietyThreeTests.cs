@@ -54,7 +54,7 @@ public static class VarietyThreeTests
         // ================= The world events =================
 
         const string wsA = "Defs/WorldSituationDefs/Rimfolk_WS_Variety3.xml", wsB = "Defs/WorldSituationDefs/Rimfolk_WS_Variety3_Roads.xml";
-        var events = new[] { (wsA, "Rimfolk_WS_NeighboursWar"), (wsA, "Rimfolk_WS_ColdYear"), (wsA, "Rimfolk_WS_GreatWork"),
+        var events = new[] { (wsA, "Rimfolk_WS_NeighborsWar"), (wsA, "Rimfolk_WS_ColdYear"), (wsA, "Rimfolk_WS_GreatWork"),
             (wsB, "Rimfolk_WS_DryLaw"), (wsB, "Rimfolk_WS_GreatCaravan"), (wsB, "Rimfolk_WS_Trek") };
         foreach (var (file, name) in events)
         {
@@ -82,7 +82,7 @@ public static class VarietyThreeTests
                 C(b.Element("effects")?.ToString().Contains("VisitEffect_AtGate") == true || b.Element("options")!.Elements("li").Any(o => o.ToString().Contains("WorldEffect_Harvest")),
                     $"{name}/{(string)b.Element("key")}: who asks is at the gate, or the answer is on the colony's own fields");
         }
-        var war = Def(wsA, "ColonyCouncil.WorldSituationDef", "Rimfolk_WS_NeighboursWar");
+        var war = Def(wsA, "ColonyCouncil.WorldSituationDef", "Rimfolk_WS_NeighborsWar");
         C((string)war?.Element("second")?.Element("hostileToFirst") == "true" && (string)war?.Element("second")?.Element("friendly") == "true" && (string)war?.Element("faction")?.Element("friendly") == "true",
             "the war is between two of the colony's neighbours already at war in the game, both at peace with the colony");
         var warEnds = war?.Element("endings")?.Elements("li").ToList() ?? new List<XElement>();

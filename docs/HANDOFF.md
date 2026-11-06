@@ -12,7 +12,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   version of its own (its points go with the next round). The player's examples that were there already (a bandit lord's
   tolls, a great fair, a migration of beasts, a holy year, a cold winter) were left; the cold year is a summer that
   never came. Each, what it is, how it reaches the colony, how it ends, how often:
-  - A war between neighbors (`Rimfolk_WS_NeighboursWar`, data): two neighbors already at war in the game, both at peace
+  - A war between neighbors (`Rimfolk_WS_NeighborsWar`, data): two neighbors already at war in the game, both at peace
     with the colony (never with Factional War); caravans and visitors 0.8. Their quartermaster's cart at the gate for
     food (half again or given), the other's armourer for steel (twice, `WorldEffect_Sell` to the visitor), a rider
     asking leave for a column (an armed band by the road, `holdBeat` then a message), two of the other side's fighters
