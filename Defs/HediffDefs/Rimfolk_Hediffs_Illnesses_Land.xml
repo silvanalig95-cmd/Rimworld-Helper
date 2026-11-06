@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Serious illnesses of the land and the work (the player's request of 6 November 2026), the same kind as
+    Council_Hediffs_Illnesses.xml: rare, behind the serious illnesses' setting, one kind in the colony at a time and none
+    within 30 days of the last, each from something on the map the hourly look finds (Ailments/AilmentChecks.cs): black
+    bane (anthrax) from butchering an animal that rotted or died sick, desert fever (valley fever) from digging the dry
+    soil of an arid land, bird fever (psittacosis) from sweeping out a closed coop. Each is the game's immunity race with
+    a hidden incubation, fatal untreated and beaten by steady tending, modern medicine counting as it would against the
+    real disease (Tools/Tests checks each). They are Rimfolk-made hurts, so each goes through the harm service's cap
+    (never children, none in a sickbed), and each leans with the storyteller's disease setting as the catching clock
+    does (AilmentCauseMath.DiseaseLean: none with the game's diseases off).
+  -->
+
+  <HediffDef Name="Rimfolk_IllnessByAgeBase" ParentName="Council_IllnessBase" Abstract="True">
+    <hediffClass>ColonyCouncil.Hediff_Ailment</hediffClass>
+  </HediffDef>
+
+  <!-- ===================== Black bane ===================== -->
+
+  <HediffDef ParentName="Rimfolk_IllnessByAgeBase">
+    <defName>Council_Ail_BlackBane</defName>
+    <label>anthrax</label>
+    <description>Black bane, or anthrax: spores from an animal that was sick when it died, or that had begun to rot, get in through a nick in the skin while it is butchered. A day to a week later a sore with a black heart rises on the hand or arm, with swelling and fever; left alone it spreads to the blood and can kill. Steady tending beats it, and modern medicine (an antibiotic) does far more than herbs. It never passes from one person to another. Burning or burying animals found dead or rotting, and keeping rotten bodies off the butcher's bill, keep it away. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>BlackBane</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] black bane</li>
+          <li>[industrial|spacer] anthrax</li>
+        </names>
+        <causes><li><trigger>BadCarcass</trigger><hours>1</hours><chance>0.04</chance></li></causes>
+        <childFactor>0</childFactor>
+        <cooldownDays>120</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has {ILLNESS}. A sore with a black heart has risen on {PAWN_possessive} hand where the skin was nicked at the butcher's block: the carcass {PAWN_pronoun} cut up had rotted, or the animal was sick when it died.\n\nUntreated, it spreads to the blood and can kill within a week. With steady tending most recover, and modern medicine works far better than herbs against it. It doesn't pass from one person to another.</letterText>
+        <notes>
+          <li>Tend it often and keep the hand still and clean. Nobody else can catch it from them. Burn whatever was left of that carcass.</li>
+          <li>[lowtech] A clean dressing on the sore, never cut it open, broth and willow bark for the fever. And burn the carcass, hide and all.</li>
+          <li>[!lowtech] Antibiotics, and early: industrial medicine is the thing here. Burn the carcass and keep rotten bodies off the butcher's bill.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.7</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.14</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.12</immunityPerDaySick>
+        <treatedImmunityPerDay>0.1</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.2</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>1~6</incubationDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>a black sore</label>
+        <painOffset>0.05</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>swelling and fever</label>
+        <restFallFactor>1.2</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.12</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>in the blood</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.18</offset></li>
+          <li><capacity>BloodFiltration</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>poisoned blood</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.35</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.2</offset></li>
+          <li><capacity>BloodFiltration</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Desert fever ===================== -->
+
+  <HediffDef ParentName="Rimfolk_IllnessByAgeBase">
+    <defName>Council_Ail_ValleyFever</defName>
+    <label>valley fever</label>
+    <description>Desert fever, or valley fever: a fungus that lives in the dry soil of deserts and scrubland, breathed in as dust when the ground is dug. Three hours or more in a day of building, mining in the open, sowing or clearing in an arid land, with no rain falling, can bring it on. One to three weeks later come a cough, a fever, aching joints and a rash on the legs. It is slow: most throw it off over some weeks, but untreated it can spread through the body and kill. Steady tending sees them through, and modern medicine (an antifungal) does more than herbs. It never passes from one person to another. Digging after rain, and turns at the digging, keep it away. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>ValleyFever</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] desert fever</li>
+          <li>[industrial|spacer] valley fever</li>
+        </names>
+        <causes><li><trigger>DesertDust</trigger><hours>3</hours><chance>0.004</chance></li></causes>
+        <childFactor>0</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>120</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.6~0.8</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.4</chance><severity>0.3~0.5</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has {ILLNESS}. Weeks of digging the dry ground put the dust of it in {PAWN_possessive} lungs, and now there's a cough, a fever, aching joints and a red rash on the shins.\n\nIt's slow. Untreated, it can spread through the body over a couple of weeks and kill. With steady tending most throw it off, and modern medicine works better than herbs. It doesn't pass from one person to another.</letterText>
+        <notes>
+          <li>Bed, steady tending and patience: this one takes its time. Nobody catches it from them, so they needn't sleep apart.</li>
+          <li>[lowtech] Steam for the cough, broth and rest, and the fever watched day and night. Dig after rain from now on.</li>
+          <li>[!lowtech] An antifungal course, and industrial medicine does it better than herbs. Dig after rain, and share out the digging.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.06</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.08</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.06</immunityPerDaySick>
+        <treatedImmunityPerDay>0.05</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.12</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>7~20</incubationDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>cough and fever</label>
+        <painOffset>0.04</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>aching joints</label>
+        <restFallFactor>1.2</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>spreading</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.2</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>through the body</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.3</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.25</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Bird fever ===================== -->
+
+  <HediffDef ParentName="Rimfolk_IllnessByAgeBase">
+    <defName>Council_Ail_BirdFever</defName>
+    <label>bird fever</label>
+    <description>Bird fever (psittacosis): a lung fever from the dust of birds' dried droppings, breathed in while sweeping out a closed coop or barn where chickens, ducks, geese or turkeys are kept. An hour or more of that in a day can bring it on, the old more easily. One to two weeks later come a fever, a splitting headache and a dry cough that turns to pneumonia; untreated it can kill. Steady tending beats it, and modern medicine (an antibiotic) does far more than herbs. It doesn't pass from one person to another. Birds kept in an open pen rather than a closed coop, and turns at the sweeping, keep it away. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>BirdFever</key>
+        <capped>true</capped>
+        <causes><li><trigger>BirdBarn</trigger><hours>1</hours><chance>0.0025</chance></li></causes>
+        <childFactor>0</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>120</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.4</chance><severity>0.3~0.5</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has {ILLNESS}. The dust of the birds' droppings, swept up in their closed coop, has gone to {PAWN_possessive} lungs: a high fever, a splitting headache and a dry cough.\n\nUntreated, it turns to pneumonia and can kill within a week. With bed rest and steady tending most recover, and modern medicine works far better than herbs. It doesn't pass from one person to another.</letterText>
+        <notes>
+          <li>Bed rest and tending as often as we can, the head propped up for the cough. Nobody catches it from them.</li>
+          <li>[lowtech] Steam and honey for the cough, cool cloths for the fever. The birds want an open pen, not that closed coop.</li>
+          <li>[!lowtech] Antibiotics early, so industrial medicine if we have it. Next time, pen the birds outside, or share out the sweeping.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.7</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.13</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.11</immunityPerDaySick>
+        <treatedImmunityPerDay>0.1</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.2</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>5~14</incubationDays>
+        <coldFactor>1.1</coldFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>fever and headache</label>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>dry cough</label>
+        <restFallFactor>1.2</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.12</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.12</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>pneumonia</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.2</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>failing lungs</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.3</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.4</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Everyday ailments of the land, the work and the age (the player's request of 6 November 2026), the same kind as
+    Council_Hediffs_Ailments.xml: mild, never lethal, each from something on the map that the hourly look finds
+    (Ailments/AilmentChecks.cs, the pure rules in AilmentCauseMath.cs), and each with a plain way to prevent it. They
+    are Rimfolk-made hurts, so each goes through the harm service's shared cap (<capped>: one in three days, none in a
+    sickbed, none for babies; <hurt>Mild</hurt> ones are the only ones children get) and is told as harm is, at once,
+    with a line over their head. Where a colony of another age would call it something else, <names> holds its name in
+    each age (Hediff_Ailment shows it in the health tab). So that the colony is not sick more overall, the catching
+    clock was lengthened to make room for them (Tools/Balance, DESIGN.md "Balance targets").
+  -->
+
+  <HediffDef Name="Rimfolk_AilmentByAgeBase" ParentName="Council_AilmentBase" Abstract="True">
+    <hediffClass>ColonyCouncil.Hediff_Ailment</hediffClass>
+  </HediffDef>
+
+  <!-- ===================== Water and land ===================== -->
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_SwimmersItch</defName>
+    <label>swimmer's itch</label>
+    <description>Pond itch, or swimmer's itch: small red bumps that itch fiercely, from the larvae of a water birds' parasite that lives in the snails of still water. They burrow a little way into the skin and die there, so it never passes from one person to another. An hour's swim in a lake, a pond or a marsh can bring it on, children more easily; a river's running water and the sea don't. It fades in two to four days, sooner with a soothing wash from a doctor. Swimming in the river instead, and towelling off at once, prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SwimmersItch</key>
+        <capped>true</capped>
+        <hurt>Mild</hurt>
+        <names>
+          <li>[tribal|medieval] pond itch</li>
+          <li>[industrial|spacer] swimmer's itch</li>
+        </names>
+        <causes><li><trigger>StillSwim</trigger><hours>1</hours><chance>0.04</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>12</cooldownDays>
+        <startSeverity>0.3~0.45</startSeverity>
+        <gotText>{PAWN_nameDef} came out of the water covered in itchy red bumps.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} swam in the still water again and came out itching again.</li>
+          <li>[tribal|medieval] {PAWN_nameDef} has the pond itch after a swim in the still water.</li>
+          <li>[industrial|spacer] {PAWN_nameDef} has swimmer's itch after a swim in the lake.</li>
+          <li>[child] {PAWN_nameDef} splashed in the shallows all afternoon and came out itching all over.</li>
+        </gotTexts>
+        <notes>
+          <li>It only itches; nobody catches it from them. Swim in the river next time, and dry off straight away.</li>
+          <li>[lowtech] A cool wash with oatmeal or crushed plantain, and no scratching. The river is safer than the pond.</li>
+          <li>[!lowtech] A cold compress and an anti-itch cream. Swim where the water moves, and towel off at once.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.12</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy bumps</label>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>itching all over</label>
+        <painOffset>0.02</painOffset>
+        <restFallFactor>1.05</restFallFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_TrenchFoot</defName>
+    <label>trench foot</label>
+    <description>Marsh foot, or trench foot: cold, swollen, numb feet that burn as they warm, from hours with the feet in cold water, marsh or mud. Four hours or more in a day outdoors on wet ground below 10 °C can bring it on (a body made for the cold stands more). Dried, warmed and kept up, the feet heal in one to two weeks, sooner in bed, and a doctor's dry wrappings help. A bridge or a path over the wet ground, and shorter shifts on it, prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>TrenchFoot</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] marsh foot</li>
+          <li>[industrial|spacer] trench foot</li>
+        </names>
+        <causes><li><trigger>ColdWetFeet</trigger><hours>4</hours><chance>0.015</chance></li></causes>
+        <childFactor>0</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>15</cooldownDays>
+        <startSeverity>0.35~0.55</startSeverity>
+        <gotText>{PAWN_nameDef}'s feet have gone numb and swollen from the cold wet ground.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s feet have gone bad again from standing in the cold water.</li>
+          <li>[tribal|medieval] {PAWN_nameDef} has marsh foot from a long day with cold wet feet.</li>
+          <li>[industrial|spacer] {PAWN_nameDef} has trench foot from a long day on the wet ground in the cold.</li>
+          <li>[winter] Hours in the icy water have left {PAWN_nameDef}'s feet numb and swollen.</li>
+        </gotTexts>
+        <notes>
+          <li>Feet dry, warm and up for a week or two, and nobody on that wet ground for long until there's a path over it.</li>
+          <li>[lowtech] Dry straw in the boots, the feet rubbed with grease and kept by the fire, and a plank path over the mud.</li>
+          <li>[!lowtech] Dry socks twice a day, feet raised, no tight boots. Lay duckboards over the wet ground.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.04</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>cold, numb feet</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>swollen feet</label>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.12</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_SandflyFever</defName>
+    <label>sandfly fever</label>
+    <description>Three-day fever, or sandfly fever: a sudden high fever, a headache and aching eyes, from the bites of tiny sandflies that come out at dusk in deserts and dry scrubland. Two hours or more in a day out of doors there from dusk to before dawn, while it's 20 °C or more, can bring it on. It runs its course in about three days, whatever is done, and never passes from one person to another; bed rest makes it easier to bear. Staying indoors after sundown prevents it, and once had, it seldom comes again for a while.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SandflyFever</key>
+        <capped>true</capped>
+        <hurt>Mild</hurt>
+        <names>
+          <li>[tribal|medieval] three-day fever</li>
+          <li>[industrial|spacer] sandfly fever</li>
+        </names>
+        <causes><li><trigger>Sandflies</trigger><hours>2</hours><chance>0.03</chance></li></causes>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.55~0.65</startSeverity>
+        <gotText>A sudden fever has {PAWN_nameDef} shivering after the evening out in the dry land.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} was out after dusk again, and the sandflies have given {PAWN_objective} the fever again.</li>
+          <li>[tribal|medieval] {PAWN_nameDef} has the three-day fever from the little flies that bite at dusk.</li>
+          <li>[industrial|spacer] {PAWN_nameDef} has sandfly fever from an evening out in the scrub.</li>
+          <li>[night] {PAWN_nameDef} came in from the dark with a fever coming on and bites on both ankles.</li>
+        </gotTexts>
+        <notes>
+          <li>Three days and it's over, whatever we do. Rest, water, and nobody out after sundown.</li>
+          <li>[lowtech] A dark corner, a wet cloth on the brow and plenty to drink. Doors shut at dusk.</li>
+          <li>[!lowtech] Something for the fever and the headache, fluids, and screens on the doors. Indoors after dark.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>aching eyes</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>high fever</label>
+        <painOffset>0.05</painOffset>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.12</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_JungleRot</defName>
+    <label>jungle rot</label>
+    <description>Jungle rot: a festering sore that eats into the skin around a wound left open in the wet heat. A cut, scratch, stab or bite left untended for six hours in a swamp, jungle or rainforest, while it's 25 °C or more outside, can turn to it. Untreated it takes two weeks or more to close; clean dressings cut that to a few days, modern medicine (an antibiotic) more than herbs. Tending wounds within a few hours prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>JungleRot</key>
+        <capped>true</capped>
+        <causes><li><trigger>WetHeatWound</trigger><chance>0.08</chance></li></causes>
+        <childFactor>0</childFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.4~0.6</startSeverity>
+        <gotText>{PAWN_nameDef}'s wound has gone bad in the wet heat: jungle rot.</gotText>
+        <gotTexts>
+          <li>[again] Another open wound, another week in the heat, and {PAWN_nameDef} has jungle rot again.</li>
+          <li>[hot] The heat and the damp got into {PAWN_nameDef}'s wound before anyone dressed it, and it's festering.</li>
+        </gotTexts>
+        <notes>
+          <li>Clean it, dress it, and dress it again tomorrow. Next time, every cut gets seen to the same day.</li>
+          <li>[lowtech] Boiled water, honey on the sore and a clean linen dressing, changed every day.</li>
+          <li>[!lowtech] Clean it out, an antibiotic ointment and fresh dressings daily. Industrial medicine makes short work of it.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.2</industrial>
+        <ultra>1.4</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.035</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>festering</label>
+        <painOffset>0.05</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>an open ulcer</label>
+        <painOffset>0.1</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Work and game ===================== -->
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_HuntersFever</defName>
+    <label>rabbit fever</label>
+    <description>Hunter's fever, or rabbit fever: a fever with a sore where the skin was nicked and swollen glands under the arm, caught from the blood of small wild game (hares, squirrels, rats and the like) while skinning and butchering it. Two hours or more of that in a day can bring it on; tame animals and big game don't carry it. It runs about a week; tending shortens it, and modern medicine (an antibiotic) far more than herbs. It never passes from one person to another. A skilled butcher nicks fewer fingers.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>HuntersFever</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] hunter's fever</li>
+          <li>[industrial|spacer] rabbit fever</li>
+        </names>
+        <causes><li><trigger>SmallGame</trigger><hours>2</hours><chance>0.012</chance></li></causes>
+        <skill>Cooking</skill>
+        <childFactor>0</childFactor>
+        <cooldownDays>20</cooldownDays>
+        <startSeverity>0.4~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} has a fever and a sore on the hand from butchering small game.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} nicked a finger on the small game again, and the fever's back.</li>
+          <li>[tribal|medieval] {PAWN_nameDef} has the hunter's fever, from the blood of the hares at the butcher's block.</li>
+          <li>[industrial|spacer] {PAWN_nameDef} has rabbit fever, from a nick while butchering small game.</li>
+        </gotTexts>
+        <notes>
+          <li>Rest, and the sore kept clean and dressed. Nobody catches it from them.</li>
+          <li>[lowtech] Willow bark for the fever, a hot poultice on the glands, and a clean cloth on the hand.</li>
+          <li>[!lowtech] An antibiotic course clears it in a few days, so industrial medicine is worth it here.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+        <bedFactor>1.2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>fever and a sore</label>
+        <painOffset>0.05</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>swollen glands</label>
+        <painOffset>0.08</painOffset>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_FoundersAgue</defName>
+    <label>metal fume fever</label>
+    <description>Founder's ague, or metal fume fever: chills, a fever, aching muscles and a taste of metal, from breathing the fumes of hot metal. Four hours or more in a day of smithing or smelting in a closed room of 60 cells or fewer bring it on. It comes on some hours later and is gone in a day or two, sooner in bed. A big or open smithy lets the fumes go, and turns at the forge prevent it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>FoundersAgue</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] founder's ague</li>
+          <li>[industrial|spacer] metal fume fever</li>
+        </names>
+        <causes><li><trigger>MetalFumes</trigger><hours>4</hours><chance>0.025</chance></li></causes>
+        <childFactor>0</childFactor>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.35~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} came away from the forge shivering, with a taste of metal in the mouth.</gotText>
+        <gotTexts>
+          <li>[again] The fumes at the forge have given {PAWN_nameDef} the shivers again.</li>
+          <li>[tribal|medieval] {PAWN_nameDef} has the founder's ague after a long day at the forge in that small smithy.</li>
+          <li>[industrial|spacer] {PAWN_nameDef} has metal fume fever after a long shift at the smelter in that small room.</li>
+        </gotTexts>
+        <notes>
+          <li>A day or two in bed and it's gone. Then a bigger smithy, or the door kept open, and turns at the forge.</li>
+          <li>[lowtech] Milk and broth, warm blankets for the chills, and the smithy's doors thrown open next time.</li>
+          <li>[!lowtech] Fluids and rest. Move the smelter to a bigger room or give it a vent, and share the shifts.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.3</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>a taste of metal</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>chills and fever</label>
+        <painOffset>0.03</painOffset>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Limbs and mechanites ===================== -->
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_StumpSores</defName>
+    <label>stump sores</label>
+    <description>Stump sores: raw, chafed skin where a peg leg, a wooden foot or hand, or a simple prosthetic meets the stump, after eight hours or more in a day of walking, hauling, building or bench work on it. It heals in three to six days, much sooner with the limb off in bed, and a padded dressing helps. A bionic or archotech limb never rubs. A lighter day after a long one prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>StumpSores</key>
+        <capped>true</capped>
+        <hurt>Mild</hurt>
+        <causes><li><trigger>OldLimb</trigger><hours>8</hours><chance>0.03</chance></li></causes>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.3~0.45</startSeverity>
+        <gotText>{PAWN_nameDef}'s stump is rubbed raw from a long day on the old limb.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s stump has rubbed raw again after another long day.</li>
+          <li>[lowtech] {PAWN_nameDef}'s stump is chafed raw where the wood rubs it.</li>
+          <li>[!lowtech] {PAWN_nameDef}'s stump is chafed raw where the prosthetic's socket rubs.</li>
+        </gotTexts>
+        <notes>
+          <li>The limb off and the stump up for a night or two, a soft pad in the socket, and a lighter day after a long one.</li>
+          <li>[lowtech] Wool padding in the cup, goose grease on the skin, and the peg left off overnight.</li>
+          <li>[!lowtech] A clean dressing, a silicone liner in the socket, and the prosthetic off at night.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.06</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.08</severityPerDay>
+        <bedFactor>1.8</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>chafed stump</label>
+        <painOffset>0.04</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>raw stump</label>
+        <painOffset>0.08</painOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
+    <defName>Council_Ail_MechaniteFever</defName>
+    <label>mechanite fever</label>
+    <description>Mechanite fever: a day or two of fever and aching joints while new mechanites settle, the body fighting the swarm before it learns to live with it. A part or implant of the spacer age put in (a bionic or archotech limb, an implant), or a first dose of luciferium, can bring it on within three days, once they're up and about again. It passes in one to three days, sooner in bed, and tending eases it. The surgeon's skill makes no difference: it's the mechanites, not the cut.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>MechaniteFever</key>
+        <capped>true</capped>
+        <names>
+          <li>[tribal|medieval] machine fever</li>
+          <li>[industrial|spacer] mechanite fever</li>
+        </names>
+        <causes>
+          <li>
+            <trigger>Mechanites</trigger>
+            <chance>0.25</chance>
+            <after>
+              <li>LuciferiumAddiction</li>
+            </after>
+          </li>
+        </causes>
+        <childFactor>0</childFactor>
+        <cooldownDays>3</cooldownDays>
+        <startSeverity>0.4~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} has a fever as the new mechanites settle in.</gotText>
+        <gotTexts>
+          <li>[again] The new mechanites have given {PAWN_nameDef} the fever again, as the last ones did.</li>
+          <li>[tribal|medieval] The little machines in {PAWN_nameDef}'s new part have brought on a fever.</li>
+          <li>[spacer] {PAWN_nameDef} is running a fever while the new part's mechanites bind.</li>
+        </gotTexts>
+        <notes>
+          <li>It's the body getting used to them. A day or two in bed, water, and it settles.</li>
+          <li>[lowtech] We don't know these machines, but the fever is a fever: rest, cool cloths and broth.</li>
+          <li>[!lowtech] Rest and fluids while the swarm binds. Nothing to do about the mechanites themselves; they settle.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.25</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>fever</label>
+        <painOffset>0.04</painOffset>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.06</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>aching joints</label>
+        <painOffset>0.06</painOffset>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>
