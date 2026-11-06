@@ -12,14 +12,14 @@
 
   <!-- What Pokémon sound like (Integrations/PokeWorldSounds.cs), the other mods' page. -->
   <CC_Settings_PokemonSounds>Pokémon sound like</CC_Settings_PokemonSounds>
-  <CC_Settings_PokemonSounds_Tip>The cries PokéWorld gives its Pokémon, or the calls of the game's own animals. Each species borrows the voice of the nearest animal of the game or another mod: the same body plan, the nearest size. It also takes that animal's pace between calls, so a field of them is no louder than a field of animals.</CC_Settings_PokemonSounds_Tip>
+  <CC_Settings_PokemonSounds_Tip>The cries PokéWorld gives its Pokémon, or the calls of the game's own animals. Each species borrows the voice of one of the base game's animals, picked by its body, its types and its size: insects click, birds cluck or quack, bats squeak, big beasts growl or roar, and the stones, balls, gases and fish take a tortoise's voice. It never calls more often than PokéWorld had it.</CC_Settings_PokemonSounds_Tip>
   <CC_PokemonSounds_Creatures>Animals</CC_PokemonSounds_Creatures>
-  <CC_PokemonSounds_Creatures_Tip>Each species calls with the voice and pace of the nearest animal of the game or another mod.</CC_PokemonSounds_Creatures_Tip>
+  <CC_PokemonSounds_Creatures_Tip>Each species calls with the voice of a base-game animal picked by its body, types and size, never more often than before.</CC_PokemonSounds_Creatures_Tip>
   <CC_PokemonSounds_Rarer>Their own, rarer</CC_PokemonSounds_Rarer>
   <CC_PokemonSounds_Rarer_Tip>PokéWorld's own cries, a third as often.</CC_PokemonSounds_Rarer_Tip>
   <CC_PokemonSounds_Own>Their own</CC_PokemonSounds_Own>
   <CC_PokemonSounds_Own_Tip>PokéWorld's own cries, as often as the mod has them.</CC_PokemonSounds_Own_Tip>
-  <CC_SetNote_PokemonSounds_Creatures>Each species calls like the nearest animal by body plan and size, as often as that animal does.</CC_SetNote_PokemonSounds_Creatures>
+  <CC_SetNote_PokemonSounds_Creatures>Each species calls like a base-game animal of its body, types and size, never more often than PokéWorld had it.</CC_SetNote_PokemonSounds_Creatures>
   <CC_SetNote_PokemonSounds_Rarer>Their own cries, with three times as long between calls.</CC_SetNote_PokemonSounds_Rarer>
   <CC_SetNote_PokemonSounds_Own>As PokéWorld has them.</CC_SetNote_PokemonSounds_Own>
 

@@ -11,9 +11,10 @@ namespace ColonyCouncil
     /// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026: "i love the pokeworld mod, but the
     /// constant pokemon screetches not ... replace them with other creature sounds from the base game or mods"). The
     /// setting "Pokémon sound like" (<see cref="CouncilSettings.pokemonSounds"/>, the other mods' page):
-    /// - <see cref="PokemonSounds.Creatures"/> (the default): each species borrows the calls of the nearest animal of the
-    ///   game or another mod (the same body plan and flesh, the nearest size: <see cref="PokeWorldSoundsMath.Distance"/>), its
-    ///   idle call, its angry call, its cries when wounded and dying, its attack sound, and that animal's pace between calls.
+    /// - <see cref="PokemonSounds.Creatures"/> (the default): each species borrows the calls of one of the base game's
+    ///   animals, picked by its body plan's family, its types and its size (<see cref="PokeWorldSoundsMath.Voice"/>; the
+    ///   nearest animal of the same family and size when that one is missing): its idle call, its angry call, its cries
+    ///   when wounded and dying and its attack sound. The pace between calls is the slower of PokéWorld's and the animal's.
     /// - <see cref="PokemonSounds.Rarer"/>: their own cries, a third as often.
     /// - <see cref="PokemonSounds.Own"/>: as PokéWorld has them.
     /// The game plays an animal's calls from its race's life stages (Pawn_CallTracker, LifeStageUtility), so this changes
@@ -69,7 +70,7 @@ namespace ColonyCouncil
                     int given = 0;
                     foreach (var d in PokeWorldLink.AllSpecies)
                     {
-                        var m = Match(d, animals);
+                        var m = VoiceOf(d, animals);
                         if (m == null) continue;
                         Keep(d);
                         Borrow(d, m);
@@ -104,15 +105,29 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>The nearest animal: the same body plan and flesh, the nearest size; ties go to the def name, so it's the same each time.</summary>
-        private static ThingDef Match(ThingDef pokemon, List<ThingDef> animals)
+        /// <summary>
+        /// The animal a species sounds like: the base-game animal the rule names for its body, types and size, else the
+        /// nearest animal of the same family and size.
+        /// </summary>
+        private static ThingDef VoiceOf(ThingDef pokemon, List<ThingDef> animals)
         {
             var r = pokemon.race;
+            string named = PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon));
+            var voice = named != null ? DefDatabase<ThingDef>.GetNamedSilentFail(named) : null;
+            return voice != null && animals.Contains(voice) ? voice : Nearest(pokemon, animals);
+        }
+
+        /// <summary>The nearest animal: the same body family and flesh, the nearest size; ties go to the def name, so it's the same each time.</summary>
+        private static ThingDef Nearest(ThingDef pokemon, List<ThingDef> animals)
+        {
+            var r = pokemon.race;
+            var family = PokeWorldSoundsMath.FamilyOf(r.body?.defName);
             ThingDef best = null;
             float bestDistance = float.MaxValue;
             foreach (var a in animals)
             {
-                float d = PokeWorldSoundsMath.Distance(a.race.body == r.body, a.race.FleshType == r.FleshType, r.baseBodySize, a.race.baseBodySize);
+                float d = PokeWorldSoundsMath.Distance(PokeWorldSoundsMath.FamilyOf(a.race.body?.defName) == family, a.race.FleshType == r.FleshType, r.baseBodySize,
+                    a.race.baseBodySize);
                 if (d < bestDistance - 0.0001f || Math.Abs(d - bestDistance) <= 0.0001f && best != null && string.CompareOrdinal(a.defName, best.defName) < 0)
                 {
                     best = a;
@@ -152,9 +167,12 @@ namespace ColonyCouncil
                 copies.Add(copy);
             }
             r.lifeStageAges = copies;
-            r.soundCallIntervalRange = animal.race.soundCallIntervalRange;
-            r.soundCallIntervalFriendlyFactor = animal.race.soundCallIntervalFriendlyFactor;
-            r.soundCallIntervalAggressiveFactor = animal.race.soundCallIntervalAggressiveFactor;
+            // Never more often than PokéWorld had it (its 3,000 to 6,000 ticks are already longer than most animals').
+            var was = originals[d];
+            var pace = PokeWorldSoundsMath.Slower(was.interval.min, was.interval.max, animal.race.soundCallIntervalRange.min, animal.race.soundCallIntervalRange.max);
+            r.soundCallIntervalRange = new IntRange(pace.min, pace.max);
+            r.soundCallIntervalFriendlyFactor = PokeWorldSoundsMath.SlowerFactor(was.friendly, animal.race.soundCallIntervalFriendlyFactor);
+            r.soundCallIntervalAggressiveFactor = PokeWorldSoundsMath.SlowerFactor(was.aggressive, animal.race.soundCallIntervalAggressiveFactor);
             matches[d] = animal;
         }
 

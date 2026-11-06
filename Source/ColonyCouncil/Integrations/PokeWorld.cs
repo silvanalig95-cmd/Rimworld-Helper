@@ -49,6 +49,8 @@ namespace ColonyCouncil
             public bool rare;
             /// <summary>PokéWorld's own rarity, 1 (common) to 10 (legendary); 0 when unread.</summary>
             public int rarity;
+            /// <summary>Its types by def name (Grass, Poison...), for what it sounds like (PokeWorldSounds); empty when unread.</summary>
+            public List<string> types = new List<string>();
         }
 
         private static readonly Dictionary<ThingDef, Species> species = new Dictionary<ThingDef, Species>();
@@ -87,7 +89,11 @@ namespace ColonyCouncil
                 foreach (var c in d.comps)
                 {
                     if (c?.compClass == null || !NamedIn(c.compClass, "CompPokemon")) continue;
-                    species[d] = new Species { generation = ReadInt(c, "generation"), rarity = ReadInt(c, "rarity"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil") };
+                    species[d] = new Species
+                    {
+                        generation = ReadInt(c, "generation"), rarity = ReadInt(c, "rarity"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil"),
+                        types = ReadNames(c, "types")
+                    };
                     if (first == null)
                     {
                         first = d;
@@ -176,6 +182,27 @@ namespace ColonyCouncil
                 return 0;
             }
         }
+
+        /// <summary>A list field of defs (or anything) as names: a def's defName, else its text. Empty when unread.</summary>
+        private static List<string> ReadNames(object props, string field)
+        {
+            var names = new List<string>();
+            try
+            {
+                var f = props.GetType().GetField(field, BindingFlags.Public | BindingFlags.Instance);
+                if (f?.GetValue(props) is IEnumerable list)
+                    foreach (var x in list)
+                        if (x != null) names.Add(x is Def def ? def.defName : x.ToString());
+            }
+            catch
+            {
+                // Unreadable: no types, and the sound is picked by body and size alone.
+            }
+            return names;
+        }
+
+        /// <summary>A Pokémon's types by name (Grass, Poison...): empty for anything else or when unread.</summary>
+        public static List<string> TypesOf(ThingDef race) => Active && race != null && species.TryGetValue(race, out var sp) ? sp.types : new List<string>();
 
         private static bool HasAttribute(object props, string attribute)
         {

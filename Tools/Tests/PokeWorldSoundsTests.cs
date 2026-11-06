@@ -3,8 +3,9 @@ using System.IO;
 using ColonyCouncil;
 
 /// <summary>
-/// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026): the nearest animal's voice by body plan,
-/// flesh and size, life stages matched first to first and last to last, the rarer pace, and the setting wired in.
+/// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026): a base-game animal's voice by body family,
+/// types and size, checked on PokéWorld's own species, life stages matched first to first and last to last, never more often
+/// than PokéWorld had it, the rarer pace, and the setting wired in.
 /// </summary>
 public static class PokeWorldSoundsTests
 {
@@ -17,15 +18,53 @@ public static class PokeWorldSoundsTests
             check(ok, "pokemon sounds: " + what);
         }
 
-        // The nearest animal: the body plan counts most, then the flesh, then how many times bigger.
+        // The nearest animal, when the named one is missing: the body family counts most, then the flesh, then how many times bigger.
         float same = PokeWorldSoundsMath.Distance(true, true, 1f, 1f);
         C(same == 0f, "the same body, flesh and size is no distance");
         C(PokeWorldSoundsMath.Distance(true, true, 0.3f, 0.3f * (float)Math.E) > 0.99f && PokeWorldSoundsMath.Distance(true, true, 0.3f, 0.3f * (float)Math.E) < 1.01f,
             "a size e times bigger counts one");
-        C(PokeWorldSoundsMath.Distance(true, true, 1f, 4f) < PokeWorldSoundsMath.Distance(false, true, 1f, 1f), "the same body four times the size beats another body the same size");
-        C(PokeWorldSoundsMath.Distance(true, false, 1f, 1f) < PokeWorldSoundsMath.Distance(false, true, 1f, 1f), "another flesh counts less than another body");
+        C(PokeWorldSoundsMath.Distance(true, true, 1f, 4f) < PokeWorldSoundsMath.Distance(false, true, 1f, 1f), "the same family four times the size beats another family the same size");
+        C(PokeWorldSoundsMath.Distance(true, false, 1f, 1f) < PokeWorldSoundsMath.Distance(false, true, 1f, 1f), "another flesh counts less than another family");
         C(PokeWorldSoundsMath.Distance(true, true, 1f, 2f) == PokeWorldSoundsMath.Distance(true, true, 2f, 1f), "bigger or smaller, the same distance");
         C(!float.IsInfinity(PokeWorldSoundsMath.Distance(true, true, 0f, 1f)) && !float.IsNaN(PokeWorldSoundsMath.Distance(true, true, 0f, 0f)), "a size of nothing stays sane");
+
+        // The body families, PokéWorld's and the game's.
+        C(PokeWorldSoundsMath.FamilyOf("PW_WingedPokemonWithBeak") == BodyFamily.Bird && PokeWorldSoundsMath.FamilyOf("Bird") == BodyFamily.Bird, "birds");
+        C(PokeWorldSoundsMath.FamilyOf("PW_WingedPokemonWithJaw") == BodyFamily.WingedBeast, "winged ones with a jaw");
+        C(PokeWorldSoundsMath.FamilyOf("PW_InsectPokemonWithWingsAndLegs") == BodyFamily.Insect && PokeWorldSoundsMath.FamilyOf("BeetleLike") == BodyFamily.Insect, "insects, winged or not");
+        C(PokeWorldSoundsMath.FamilyOf("PW_QuadrupedPokemonWithHoovesAndTail") == BodyFamily.Hooved && PokeWorldSoundsMath.FamilyOf("QuadrupedAnimalWithHooves") == BodyFamily.Hooved, "hooved");
+        C(PokeWorldSoundsMath.FamilyOf("PW_QuadrupedPokemonWithPaws") == BodyFamily.Paws && PokeWorldSoundsMath.FamilyOf("QuadrupedAnimalWithPawsAndTail") == BodyFamily.Paws, "pawed");
+        C(PokeWorldSoundsMath.FamilyOf("PW_BipedPokemonWithTail") == BodyFamily.Biped && PokeWorldSoundsMath.FamilyOf("Monkey") == BodyFamily.Biped, "two-legged");
+        C(PokeWorldSoundsMath.FamilyOf("PW_HeadPokemonWithArms") == BodyFamily.Head && PokeWorldSoundsMath.FamilyOf("PW_MultipleBodiedPokemon3Head") == BodyFamily.Head, "heads");
+        C(PokeWorldSoundsMath.FamilyOf("PW_SnakePokemon") == BodyFamily.Snake && PokeWorldSoundsMath.FamilyOf("PW_FishPokemonWithPectoralCaudalDorsalFins") == BodyFamily.Fish
+          && PokeWorldSoundsMath.FamilyOf("PW_TentaclePokemonWithShell") == BodyFamily.Tentacle && PokeWorldSoundsMath.FamilyOf(null) == BodyFamily.Other, "snakes, fish, tentacles");
+
+        // The voice, on PokéWorld's own species (body, size and types from its files).
+        string V(string body, float size, params string[] types) => PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(body), size, types);
+        C(V("PW_QuadrupedPokemonWithPaws", 0.25f, "Electric") == "Squirrel", "Pikachu squeaks like a squirrel");
+        C(V("PW_BipedPokemonWithTail", 0.37f, "Fire") == "Iguana", "Charmander hisses like an iguana");
+        C(V("PW_BipedPokemonWithTail", 1.06f, "Fire", "Flying") == "Warg", "Charizard growls like a warg");
+        C(V("PW_WingedPokemonWithBeak", 0.19f, "Normal", "Flying") == "Chicken", "Pidgey clucks");
+        C(V("PW_WingedPokemonWithJaw", 0.5f, "Poison", "Flying") == "Rat", "Zubat squeaks like a rat");
+        C(V("PW_HeadPokemonWithArms", 0.25f, "Rock", "Ground") == "Tortoise" && V("PW_HeadPokemon", 0.31f, "Electric") == "Tortoise", "Geodude and Voltorb take the tortoise's voice");
+        C(V("PW_SnakePokemon", 5.5f, "Rock", "Ground") == "Megasloth" && V("PW_SnakePokemon", 4.38f, "Dragon", "Flying") == "Thrumbo" && V("PW_SnakePokemon", 0.62f, "Poison") == "Cobra",
+            "Onix rumbles, Rayquaza roars, Ekans hisses");
+        C(V("PW_FishPokemonWithPectoralCaudalDorsalFins", 0.56f, "Water") == "Tortoise" && V("PW_FishPokemonWithPectoralCaudalDorsalFins", 9.06f, "Water") == "Elephant",
+            "Magikarp takes the tortoise's voice, Wailord lows like an elephant");
+        C(V("PW_QuadrupedPokemonWithHoovesAndTail", 0.87f, "Normal") == "Muffalo" && V("PW_QuadrupedPokemonWithHoovesAndTail", 0.62f, "Fire") == "Deer", "Tauros lows, Ponyta calls like a deer");
+        C(V("PW_QuadrupedPokemonWithPaws", 1.19f, "Fire") == "Warg" && V("PW_QuadrupedPokemonWithPaws", 0.44f, "Fire") == "Fox_Red", "Arcanine growls, Growlithe yips");
+        C(V("PW_BipedPokemon", 1.31f, "Normal") == "Bear_Grizzly" && V("PW_BipedPokemonWithTail", 1.25f, "Psychic") == "Cougar", "Snorlax growls like a bear, Mewtwo like a cougar");
+        C(V("PW_InsectPokemonWith6Legs", 0.19f, "Bug") == "Megascarab" && V("PW_InsectPokemonWithWingsAndLegs", 0.94f, "Bug", "Flying") == "Spelopede", "Caterpie and Scyther click like insects");
+        C(V("PW_BipedPokemonWithTail", 0.5f, "Water") == "Duck" && V("PW_QuadrupedPokemonWithPaws", 0.44f, "Grass", "Poison") == "Capybara", "Psyduck quacks, Bulbasaur grunts");
+        C(V("PW_HeadPokemonWithLegs", 0.25f, "Fire") == "Chicken", "Torchic cheeps");
+        foreach (BodyFamily f in Enum.GetValues(typeof(BodyFamily)))
+            foreach (var size in new[] { 0.1f, 0.4f, 0.8f, 1.2f, 2f, 5f })
+                C(!string.IsNullOrEmpty(PokeWorldSoundsMath.Voice(f, size, new string[0])), $"{f} at {size}: always some animal");
+
+        // Never more often than PokéWorld had it.
+        C(PokeWorldSoundsMath.Slower(3000, 6000, 2000, 4000) == (3000, 6000) && PokeWorldSoundsMath.Slower(3000, 6000, 4000, 8000) == (4000, 8000),
+            "the slower pace of the two");
+        C(PokeWorldSoundsMath.SlowerFactor(0.25f, 1f) == 1f, "and the slower of the angry and tamed factors");
 
         // Life stages: first to first, last to last, one stage takes the grown one.
         C(PokeWorldSoundsMath.StageFor(0, 1, 3) == 2, "one stage of its own borrows the animal's grown one");
@@ -50,6 +89,8 @@ public static class PokeWorldSoundsTests
             "PokéWorld is found by its Pokémon, and a change is applied at once");
         C(mod.Contains("PokeWorldSounds.Apply();"), "applied again when the settings window closes");
         C(code.Contains("r.Dryad") && code.Contains("r.IsMechanoid") && code.Contains("PokeWorldLink.IsPokemon(d)"), "never a mechanoid, a dryad or another Pokémon's voice");
+        C(code.Contains("PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon))")
+          && code.Contains("PokeWorldSoundsMath.Slower(was.interval.min"), "the game uses the same rule, and the slower pace");
         C(code.Contains("r.lifeStageAges = kv.Value.stages;") && code.Contains("(LifeStageAge)Clone.Invoke(own[i], null)"),
             "each species gets copies of its life stages, and the originals come back");
         string keys = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Integrations_PokeWorld.xml"));

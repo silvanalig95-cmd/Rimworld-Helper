@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pokémon voices by body, type and size
+
+*6 November 2026, version 0.126.1*
+
+- With PokéWorld, each species now borrows the voice of one of the base game's animals picked by its body, its types and its size: Pikachu squeaks like a squirrel, Charmander hisses like an iguana, Zubat squeaks like a rat, Onix rumbles like a megasloth and Wailord lows like an elephant.
+- Pokémon never call more often than PokéWorld had them. The first version took the animal's own pace, which was quicker than PokéWorld's.
+
 ## Choose another landing site
 
 *6 November 2026, version 0.126.0*

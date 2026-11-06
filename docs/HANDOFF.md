@@ -6,6 +6,20 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.126.1, Pokémon voices by body, type and size (the player's request, 6 November 2026: "can you do a full list of
+  each pokemon and then the best matching sound?", with PokéWorld's files uploaded: PokéWorld Updated [1.6] [ALPHA],
+  `themoonitself.PokeWorld`, workshop 3540803945, 898 species). What its files showed: every species uses PokéWorld's own
+  body defs (`PW_BipedPokemonWithTail` and 23 more), so 0.125.0's "same body plan" never matched a game animal, and every
+  species calls at 3,000 to 6,000 ticks, slower than the game's default 2,000 to 4,000, so taking the animal's pace made
+  them call more often. Now (`PokeWorldSoundsMath`): `FamilyOf` reads a body def's family by its name (bird, winged
+  beast, insect, snake, fish, tentacle, hooved, paws, biped, head; the game's bodies read the same way), and `Voice`
+  names one base-game animal by family, types (read from the comp's `types` by `PokeWorldLink.TypesOf`) and size bands
+  (0.3, 0.6, 1.0, 1.6, 3.5): 31 animals in all, Monkey 162, Tortoise 153 (heads of the quiet types, fish, tentacles),
+  Squirrel 79, Iguana 45... The named animal is used when it is in the game, else the nearest of the same family and size
+  (`Distance` by family now). The pace is the slower of PokéWorld's and the animal's (`Slower`, `SlowerFactor`). The
+  full list was made from PokéWorld's files with the same C# rule and published for the player as the page "Pokémon
+  Voices" (artifact Pe2wN6JrPRdsGK6UCUN91V); change a pairing in `Voice` and the tests' samples (Pikachu squirrel,
+  Charmander iguana, Zubat rat, Onix megasloth, Wailord elephant...).
 - 0.126.0, choose another landing site (the player's request, 6 November 2026): "after I create a character ... and load into it
   and have created everything, but I don't like the map ... reselect another map, without losing everything else". No
   round of its own: About.xml, What's new and CHANGELOG untouched. Pure rules in `Colonies/LandingMath.cs`

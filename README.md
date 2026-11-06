@@ -2208,9 +2208,9 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   two or three of a friendly people with their Pokémon at their heels: they trade, teach training to whoever asks, and
   put on a friendly contest with the colony's best Pokémon as a show at their fire (the higher level likelier to win,
   never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. What
-  Pokémon **sound like** is a setting: by default each species calls with the voice of the nearest animal of the game
-  or another mod (the same body plan, the nearest size) and as often as it does; or their own cries a third as often;
-  or as PokéWorld has them. Rimfolk only reads the mod (by name, quietly skipping what a version lacks). Five Almanac
+  Pokémon **sound like** is a setting: by default each species calls with the voice of a base-game animal picked by
+  its body, types and size (insects click, birds cluck or quack, bats squeak, big beasts roar, the stones, gases and fish
+  take a tortoise's voice), never more often than PokéWorld had it; or their own cries a third as often; or as PokéWorld has them. Rimfolk only reads the mod (by name, quietly skipping what a version lacks). Five Almanac
   pages explain it.
 - **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
 

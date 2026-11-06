@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.126.1</version>
+        <date>6 November 2026</date>
+        <title>Pokémon voices by body, type and size</title>
+        <points>
+          <li>With PokéWorld, each species now borrows the voice of one of the base game's animals picked by its body, its types and its size: Pikachu squeaks like a squirrel, Charmander hisses like an iguana, Zubat squeaks like a rat, Onix rumbles like a megasloth and Wailord lows like an elephant.</li>
+          <li>Pokémon never call more often than PokéWorld had them. The first version took the animal's own pace, which was quicker than PokéWorld's.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.126.0</version>
         <date>6 November 2026</date>
         <title>Choose another landing site</title>
