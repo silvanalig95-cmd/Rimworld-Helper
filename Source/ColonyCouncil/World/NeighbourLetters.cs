@@ -881,6 +881,8 @@ namespace ColonyCouncil
                 visit = feast ?? PlanVisit(l, n, now);
                 noTraveller = visit == null;
             }
+            // A feast declined says so in their own words (Feasts.Answer's no), not the plain "won't be coming".
+            else if (feast != null) visit = feast;
             // How far it moved them, in words, and why when it went badly (World/LetterMath.cs).
             var said = new Said
             {
