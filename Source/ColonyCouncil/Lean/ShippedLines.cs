@@ -93,7 +93,14 @@ namespace ColonyCouncil
             // letter came, before the keeper had gone. Words by the animal's kind are in Rimfolk_Pools_HerdStory_Kinds.xml.
             "The first calf of spring, {PET_nameDef}, born this morning to {OTHER_nameDef}. I went down to the pens to look and got no work done before noon.",
             "First calf of the year and it's a beauty, {PET_nameDef}! I stood at the pens grinning like a fool.",
-            "I sat with {PET_nameDef} at the pens tonight. Gray at the muzzle, slow to rise. A good leader, and not much longer, I think."
+            "I sat with {PET_nameDef} at the pens tonight. Gray at the muzzle, slow to rise. A good leader, and not much longer, I think.",
+            // The long discipline (Council_Arcs_Mods_Magic.xml), found in the player's save (6 November 2026): the teacher's
+            // death read as the cause of the wall ("Dukialgac died before Barr could get past the wall"), and the art taken
+            // away (its reason now [taken], as its own line was tagged) was told as practice let slide, the wall waiting for
+            // another year. Better words are in Rimfolk_Arcs_MoreWords.xml.
+            "[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could get past the wall in {PAWN_possessive} art.",
+            "{PAWN_nameDef} has put {PAWN_possessive} training aside, with the wall still standing.",
+            "I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;

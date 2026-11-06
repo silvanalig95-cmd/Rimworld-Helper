@@ -52,8 +52,11 @@ namespace ColonyCouncil
             return friend == null ? null : new ArcCandidate { other = friend, tag = "friend" };
         }
 
-        /// <summary>The class gone (a magic that was taken away): there's nothing left to work at.</summary>
-        public override string Broken(Arc arc) => ClassLevel(arc.pawn, out _) < 0 ? "lost" : null;
+        /// <summary>
+        /// The class gone (a magic that was taken away): there's nothing left to work at. Told by the lines tagged [taken]
+        /// (it was "lost", which no line was tagged for, so the art taken away read as practice let slide).
+        /// </summary>
+        public override string Broken(Arc arc) => ClassLevel(arc.pawn, out _) < 0 ? "taken" : null;
 
         /// <summary>
         /// A level gained since the stage began. The stage's starting level is kept in <see cref="Arc.baseRecord"/> (unused
