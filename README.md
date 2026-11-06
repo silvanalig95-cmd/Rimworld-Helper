@@ -3577,7 +3577,8 @@ The pages:
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
   hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
-  sparring, insults, duels, their chatter); then the tools: journeys, the weather (weather that changes like weather,
+  sparring, insults, duels, their chatter); then the tools: journeys, many colonies (fresh starts, and newcomers for
+  them), the weather (weather that changes like weather,
   its pull on the temperature, the forecast, rain washing the yard), personal touches, **material counts in build
   menus** and build priorities on blueprints, reserved slots on shelves and drinks and smokes kept out of the freezer,
   taking cover with a drag, what the room planner does by default (plan the furniture, cut plants, mine rock, replace
