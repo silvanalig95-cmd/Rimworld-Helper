@@ -169,7 +169,7 @@ namespace ColonyCouncil
         /// <summary>Triage may act now: the mod is here and as expected, the setting and the deeper hooks are on, the mod isn't set to the nearest bed.</summary>
         public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.medicalTriage ?? true) && Ready && Mod.found && !Mod.byDistance;
 
-        private static int Now => Find.TickManager?.TicksGame ?? 0;
+        private static int Now => Current.Game?.tickManager?.TicksGame ?? 0;
 
         /// <summary>The mod's severity for a patient: 1 Low to 4 Critical.</summary>
         private static int Severity(Pawn p)
@@ -373,13 +373,13 @@ namespace ColonyCouncil
         /// </summary>
         public static Building_Bed BestFirst(Pawn sleeper, Pawn traveler, Building_Bed chosen, bool social, bool allowNoCare, bool ignoreReservations, GuestStatus? guest)
         {
-            if (choosing || sleeper == null || chosen == null || !chosen.Medical || !On) return chosen;
-            if (selectorBusy()) return chosen;
-            var map = sleeper.MapHeld;
-            if (map == null || chosen.Map != map || !Ours(sleeper) || PrefersSlabBed(sleeper)) return chosen;
+            if (choosing || sleeper == null || chosen == null || !chosen.Medical) return chosen;
             choosing = true;
             try
             {
+                if (!On || selectorBusy()) return chosen;
+                var map = sleeper.MapHeld;
+                if (map == null || chosen.Map != map || !Ours(sleeper) || PrefersSlabBed(sleeper)) return chosen;
                 Fresh();
                 bool operation = WaitsForOperation(sleeper);
                 if (operation && SurgeryBed(chosen)) return chosen;
