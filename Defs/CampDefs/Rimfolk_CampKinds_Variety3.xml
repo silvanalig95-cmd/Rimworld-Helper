@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Five camp kinds (the player's request, 6 November 2026: "new additional dilemmas, events, world events, camps..."),
+       ColonyCouncil.CampKindDef as in Council_CampKinds.xml, each with what its land must have (Camps/CampKindsLand3.cs):
+       stonecutters come for rock chunks lying clear of the colony and dress them into the game's own blocks, sold to the
+       colony at its gate; shearers come to a colony with a woolly flock and offer to shear it in its pens for one fleece
+       in ten; beast-catchers come for a wild herd and rope one or two of it to lead away, for sale to the colony; a traveling
+       teacher comes to a colony with children, for lessons at the camp; the wounded of a war (any land) come with the
+       game's own wounds, oftener while a war runs, and ask for medicine. Each in the form of its own people's age; none
+       leaves a gift that marks the calendar. -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampCut</defName>
+    <reportString>dressing TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><effecterNamed>Mine</effecterNamed><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampDressStone</defName>
+    <reportString>squaring a block at the bench.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><effecterNamed>Mine</effecterNamed></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampShearFlock</defName>
+    <reportString>shearing TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><holdTarget>true</holdTarget><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampCatch</defName>
+    <reportString>roping TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>900</ticks><holdTarget>true</holdTarget><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampTeach</defName>
+    <reportString>going over a lesson by the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1600</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Stonecutters ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Stonecutters</defName>
+    <label>stonecutters</label>
+    <arrives>7~12</arrives>
+    <minTech>Neolithic</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.5</weight>
+    <needs>stone</needs>
+    <work>cut</work>
+    <people>3~5</people>
+    <days>4~8</days>
+    <ages>18~60</ages>
+    <task>Rimfolk_CampDressStone</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.35</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>scrap</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.12</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>build</li>
+      <li>rebuild</li>
+      <li>fire</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Stonecutters come</li>
+      <li>[their:tribal] Stone-shapers come</li>
+      <li>[their:medieval] Masons on the land</li>
+      <li>[their:industrial] A quarry crew</li>
+    </titles>
+    <texts>
+      <li>Stonecutters of {FACTION} have come with chisels, mallets and a pack beast, for the loose rock lying on the colony's land. {X_nameDef} told {A_nameDef} they dress stone for the towns of the region, and asked to camp {PLACE} a few days and work the rock there, keeping to their side.</li>
+      <li>[their:tribal] Stone-shapers of {FACTION} have come down with hammer-stones and a beast to carry, for the broken rock on the colony's land. {X_nameDef} told {A_nameDef} their people raise their houses of it, and asked to camp {PLACE} and shape what they can carry.</li>
+      <li>[their:medieval] Masons of {FACTION} have come up the track with their mallets, their chisels and a pack beast. {X_nameDef}, their master, asked {A_nameDef} for leave to camp {PLACE} a few days and dress the loose stone lying there into blocks.</li>
+      <li>[their:industrial] A quarry crew of {FACTION} has come with hand tools and a pack beast for the loose rock on the colony's land. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and cut it into blocks for a few days. Building stone is wanted down the road.</li>
+      <li>[ws:build] Stonecutters of {FACTION} have come for the loose rock on the colony's land, with {SITUATION} wanting every block the region can cut. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and work it for a few days.</li>
+    </texts>
+    <settled>
+      <li>The stonecutters' camp {PLACE} is up: a fire, a bench for the work, and a windbreak of logs.</li>
+      <li>The stonecutters from {FACTION} have made camp {PLACE}. The pack beast is tethered, and their tools are laid out on the bench.</li>
+      <li>At the stonecutters' camp {PLACE}, a bench stands ready by the fire with the mallets laid along it.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the stonecutters {PLACE}, says {X_pronoun} would rather build walls that stay where they are, and asks whether the colony could use someone who knows stone.</li>
+      <li>{X_nameDef} of the stonecutters asked {A_nameDef} whether there might be a place at the colony for a pair of hands that can square a block.</li>
+    </joinTexts>
+    <farewell>
+      <li>The stonecutters from {FACTION} have loaded their stone onto the pack beast and gone on.</li>
+      <li>The stonecutters' camp {PLACE} is packed, and the crew are on their way with the beast under its load of stone.</li>
+      <li>{X_nameDef} and the stonecutters have set off, the bench broken down and the chips of their work left where they fell.</li>
+      <li>[back] The stonecutters who came before have packed up again, and {X_nameDef} says they will be back when the rock lies thick.</li>
+    </farewell>
+    <lines>
+      <li>Find the grain first.</li>
+      <li>Tap it, listen to it.</li>
+      <li>That one splits clean.</li>
+      <li>Square it on the bench.</li>
+      <li>Mind your fingers.</li>
+      <li>Stack them flat.</li>
+      <li>Good stone, this.</li>
+      <li>Another before dark.</li>
+      <li>[their:tribal] The rock remembers the fire that made it.</li>
+      <li>[their:medieval] A true block lasts a hundred years.</li>
+      <li>[their:industrial] Three more and that's a cartload.</li>
+      <li>[rain] Wet stone cuts slow.</li>
+    </lines>
+    <momentLines>
+      <li>[cut] This one's sound.</li>
+      <li>[cut] Stand back from the chips.</li>
+      <li>[cut] There's a good block in here.</li>
+      <li>[carry] Heavy, this lot.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[scrap] {X_nameDef} set out {COUNT} {THING} from the stonecutters' work at the edge of their camp, for the colony.</li>
+      <li>[scrap] The stonecutters left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} said it was for the use of the land.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy a load of their dressed stone ({THING})</label>
+        <tip>One of the stonecutters carries the biggest pile of what they have dressed so far to the colony's gate, and the colony pays its worth there.</tip>
+        <price>stone</price>
+        <needs>theirStone</needs>
+        <once>false</once>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} looked over the stack and sent one of the crew off with a load for the colony's gate.</li>
+          <li>The stonecutters will carry a load of their stone to the colony's gate today, and {X_nameDef} says every block is true.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampStoneSale" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn the stonecutter's craft</label>
+        <tip>{A_nameDef} works a few hours at the stonecutters' bench, learning where a block wants to split. Practice at crafting.</tip>
+        <skill>Crafting</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is at the stonecutters' bench today, learning from {X_nameDef} how to read the grain of a stone.</li>
+          <li>{X_nameDef} has put a mallet in {A_nameDef}'s hand and a block in front of {A_objective}, and is showing {A_objective} where to strike.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>nearrock</key>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <label>Let them work the rock nearest the colony</label>
+        <refuseLabel>Keep them to their side</refuseLabel>
+        <needs>nearStone</needs>
+        <tension>-6</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} came up from the stonecutters' camp {PLACE} at the end of the day. The best of the loose rock lies on the colony's side, {X_pronoun} says, outside its home ground, and the crew would work that next if the colony allows it. The ground would be cleared, and the stone would be theirs.</li>
+          <li>[their:medieval] The master of the masons asked {A_nameDef}, very civilly, whether the crew might dress the rock lying nearest the colony, outside its walls. The colony would have the ground clear of it; the stone, by custom, is the mason's.</li>
+        </askTexts>
+        <tip>The crew works the chunks lying nearest the colony first, outside its home area, and takes them away as blocks. The ground is cleared; the stone is theirs.</tip>
+        <outcomes>
+          <li>{X_nameDef} thanked the colony, and the stonecutters will start on the rock nearest it tomorrow.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded and went back to the camp. The crew will keep to the rock on their own side.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampClearNear" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Shearers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Shearers</defName>
+    <label>shearers</label>
+    <arrives>7~13</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.6</weight>
+    <needs>fleece</needs>
+    <work>shear</work>
+    <people>3~5</people>
+    <days>3~5</days>
+    <ages>16~55</ages>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <situationKinds>
+      <li>weather</li>
+      <li>drove</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>2</count></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+      <li><follow>true</follow><named>true</named><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count></li>
+    </animals>
+    <titles>
+      <li>Shearers come</li>
+      <li>[their:tribal] Wool-pullers come</li>
+      <li>[their:medieval] A shearing gang</li>
+      <li>[their:industrial] A shearing crew</li>
+      <li>[their:spacer] Contract shearers</li>
+    </titles>
+    <texts>
+      <li>Shearers of {FACTION} have come along the road with their blades, a pack beast and a dog. They go from farm to farm in the shearing season, {X_nameDef} told {A_nameDef}, and they have heard the colony keeps a flock. They asked to camp {PLACE} a few days.</li>
+      <li>[their:tribal] Wool-pullers of {FACTION} have come with their combs and a dog, following the flocks as their people do every year. {X_nameDef} told {A_nameDef} they would pull the colony's wool for a share of it, and asked to camp {PLACE}.</li>
+      <li>[their:medieval] A shearing gang of {FACTION} has come up the track, blades on their belts and a dog at their heels. {X_nameDef}, their captain, asked {A_nameDef} for leave to camp {PLACE}, and said they would take the colony's fleeces off for the usual share.</li>
+      <li>[their:industrial] A shearing crew of {FACTION} has turned up with hand-clippers, a pack beast and a dog. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and do the colony's flock while they're passing.</li>
+      <li>[their:spacer] A contract shearing crew of {FACTION} has walked in with power clippers in their packs and a dog. {X_nameDef} asked {A_nameDef} whether the colony's flock wanted doing, and whether they might camp {PLACE} while they did it.</li>
+    </texts>
+    <settled>
+      <li>The shearers' camp {PLACE} is up: a fire, their bedrolls, and the blades laid out to be honed.</li>
+      <li>The shearers from {FACTION} have made camp {PLACE}. Their dog has already found the warmest spot by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the shearers {PLACE}, says {X_pronoun} is tired of a different flock every week, and asks whether the colony needs someone who knows beasts.</li>
+      <li>{X_nameDef} of the shearers asked {A_nameDef} whether the colony could use a steady pair of hands with its animals.</li>
+    </joinTexts>
+    <farewell>
+      <li>The shearers from {FACTION} have packed their blades and gone on to the next farm, the dog trotting ahead.</li>
+      <li>The shearers' camp {PLACE} is packed, and the crew are on their way with their share of the wool.</li>
+      <li>{X_nameDef} and the shearers have set off, and the colony's flock is a good deal lighter for their stay.</li>
+    </farewell>
+    <lines>
+      <li>Hold her still.</li>
+      <li>Long strokes, close to the skin.</li>
+      <li>Keep the fleece in one piece.</li>
+      <li>Hone the blade again.</li>
+      <li>Easy, easy.</li>
+      <li>Good wool on this flock.</li>
+      <li>Roll it skin side in.</li>
+      <li>[their:tribal] The beasts know a gentle hand.</li>
+      <li>[their:medieval] A clean fleece sells twice.</li>
+      <li>[their:industrial] Twenty a day if they stand nice.</li>
+      <li>[their:spacer] Charge the clippers before we start.</li>
+      <li>[ws:weather] Wool will be dear this winter.</li>
+    </lines>
+    <momentLines>
+      <li>[shear] There, out of your coat.</li>
+      <li>[shear] Next one.</li>
+      <li>[shear] Steady, nearly done.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the shearers at their fire and heard about every farm between here and the hills, and which ones pay.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>shear</key>
+        <theyAsk>true</theyAsk>
+        <needs>notShearing</needs>
+        <label>Let them shear the flock for one fleece in ten</label>
+        <refuseLabel>The colony shears its own</refuseLabel>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} came up to the colony's pens with a blade in hand and looked over the flock. The wool is ready on most of them, {X_pronoun} says, and the shearers would take it off for one fleece in ten, the rest left where it falls for the colony.</li>
+          <li>[their:tribal] {X_nameDef} of the wool-pullers looked at the colony's beasts the way a cook looks at a market. They would pull every coat that is ready, {X_pronoun} told {A_nameDef}, for one fleece in ten, as their people always have.</li>
+        </askTexts>
+        <tip>The shearers go into the colony's pens by day and shear every beast whose wool is half grown or more, as the game shears. The wool is left there for the colony's haulers, but one fleece in ten goes in their packs. With nothing left to shear, they go.</tip>
+        <outcomes>
+          <li>{X_nameDef} shook hands on it, and the shearers will start in the colony's pens in the morning.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} shrugged, said the colony knows its own flock, and went back to the camp to pack.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampShearFlock" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn shearing from them</label>
+        <tip>{A_nameDef} spends a few hours at the shearers' side. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is with the shearers today, learning from {X_nameDef} how to hold a beast so it stands for the blade.</li>
+          <li>{X_nameDef} is showing {A_nameDef} how to take a fleece off in one piece.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <minDays>1</minDays>
+        <label>Send a hot supper over to the shearers</label>
+        <tip>A colonist carries hot meals over to the shearers' camp, one for each of them.</tip>
+        <tension>-5</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <outcomes>
+          <li>{A_nameDef} is carrying hot meals down to the shearers' camp, and {X_nameDef} says the crew will remember the colony at the next farm.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the shearers</label><what>meals</what><count>4</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Beast-catchers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Catchers</defName>
+    <label>beast-catchers</label>
+    <arrives>6~11</arrives>
+    <minTech>Neolithic</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.5</weight>
+    <needs>wildHerd</needs>
+    <work>catch</work>
+    <people>3~4</people>
+    <days>4~7</days>
+    <ages>18~50</ages>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.35</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>herds</li>
+      <li>drove</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Horse</li><li>Donkey</li><li>Dromedary</li></kinds><count>1~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Beast-catchers come</li>
+      <li>[their:tribal] Beast-callers come</li>
+      <li>[their:medieval] Horse-catchers on the land</li>
+      <li>[their:industrial] Wranglers come</li>
+    </titles>
+    <texts>
+      <li>Beast-catchers of {FACTION} have come with ropes and a pack beast, after the wild herd on the colony's land. {X_nameDef} told {A_nameDef} they catch and gentle wild beasts for the region's farms, and asked to camp {PLACE} a few days and rope a couple of the herd.</li>
+      <li>[their:tribal] Beast-callers of {FACTION} have come down from the hills with plaited ropes, following the wild herd. {X_nameDef} told {A_nameDef} their people have always called a few out of the herd in this season, and asked to camp {PLACE} while they do.</li>
+      <li>[their:medieval] Horse-catchers of {FACTION} have come with halters and long ropes, and a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of the wild herd grazing on the colony's land.</li>
+      <li>[their:industrial] Wranglers of {FACTION} have ridden in with ropes and halters for the wild herd on the colony's land. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and rope a couple of them for the farms down the road.</li>
+      <li>[ws:herds] With the great herds moving, beast-catchers of {FACTION} have come for the wild beasts on the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of them.</li>
+    </texts>
+    <settled>
+      <li>The beast-catchers' camp {PLACE} is up: a fire, a windbreak, and ropes coiled ready by the picket.</li>
+      <li>The beast-catchers from {FACTION} have made camp {PLACE}, and one of them is already watching the herd from the rise.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the beast-catchers {PLACE}, says {X_pronoun} would rather keep beasts than catch them, and asks whether the colony needs a handler.</li>
+      <li>{X_nameDef} of the beast-catchers asked {A_nameDef} whether there might be a place at the colony for someone who can gentle anything with four legs.</li>
+    </joinTexts>
+    <farewell>
+      <li>The beast-catchers from {FACTION} have gone on, leading what they caught on long ropes behind the pack beast.</li>
+      <li>The beast-catchers' camp {PLACE} is packed, and the crew are on their way with the beasts they gentled.</li>
+      <li>{X_nameDef} and the beast-catchers have set off, the newest of their beasts still pulling at its rope.</li>
+    </farewell>
+    <lines>
+      <li>Slow, let it see you.</li>
+      <li>Don't look it in the eye.</li>
+      <li>Loop's ready.</li>
+      <li>That one's the herd's leader.</li>
+      <li>Downwind of them, always.</li>
+      <li>She'll gentle in a week.</li>
+      <li>Not that one, it's lame.</li>
+      <li>[their:tribal] Call it softly, it will come.</li>
+      <li>[their:medieval] A good halter is half the work.</li>
+      <li>[their:industrial] That one'll fetch a fair price.</li>
+      <li>[morning] They graze best in the early light.</li>
+    </lines>
+    <momentLines>
+      <li>[catch] Easy now.</li>
+      <li>[catch] Hold the rope, don't pull.</li>
+      <li>[catch] There, she's ours.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the beast-catchers at their fire and heard where the wild herds go in winter, and which of them can be tamed.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy a beast they caught ({THING})</label>
+        <tip>One of the beasts the catchers roped becomes the colony's where it stands, gentled enough to be led. The colony pays four fifths of its worth.</tip>
+        <price>caught</price>
+        <needs>caught</needs>
+        <once>false</once>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} took the silver and handed the rope over. The beast is the colony's now.</li>
+          <li>{X_nameDef} counted the silver twice and gave the colony the rope, with a word about its temper.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn the catcher's way with beasts</label>
+        <tip>{A_nameDef} spends a few hours at the catchers' side. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is out with the beast-catchers today, learning from {X_nameDef} how to come up on a wild beast without it running.</li>
+          <li>{X_nameDef} has taken {A_nameDef} out to watch the herd and learn which of them would take a halter.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>feed</key>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <needs>caught</needs>
+        <label>Send them food for the beasts they caught</label>
+        <refuseLabel>They can graze</refuseLabel>
+        <tension>-5</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the beast-catchers' camp to ask whether the colony could spare some feed. The beasts they roped won't graze on a rope yet, and a hungry beast never gentles.</li>
+          <li>[their:tribal] {X_nameDef} of the beast-callers asked {A_nameDef} for a little of the colony's grain or hay for the beasts they have called out of the herd. A fed beast trusts the hand, {X_pronoun} says.</li>
+        </askTexts>
+        <tip>A colonist carries some of the colony's raw food over to the catchers' camp for their beasts.</tip>
+        <outcomes>
+          <li>{A_nameDef} is carrying food down to the beast-catchers' camp, and {X_nameDef} has gone back to tell the crew.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the beasts would learn to graze on a rope, and went back to the camp.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the catchers' beasts</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A traveling teacher ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Teacher</defName>
+    <label>traveling teacher</label>
+    <arrives>9~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.5</weight>
+    <needs>children</needs>
+    <people>2~3</people>
+    <days>3~5</days>
+    <ages>16~65</ages>
+    <task>Rimfolk_CampTeach</task>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>A traveling teacher</li>
+      <li>[their:tribal] A story-keeper comes</li>
+      <li>[their:medieval] A hedge-school master</li>
+      <li>[their:industrial] A traveling schoolteacher</li>
+      <li>[their:spacer] A traveling tutor</li>
+    </titles>
+    <texts>
+      <li>A teacher of {FACTION} has come along the road with a pack beast and a pupil or two, going from settlement to settlement where there are children to teach. {X_nameDef} told {A_nameDef} {X_pronoun} had heard the colony has young ones, and asked to camp {PLACE} a few days.</li>
+      <li>[their:tribal] A story-keeper of {FACTION} has come with apprentices, carrying the old tellings and the counting of days from village to village. {X_nameDef} told {A_nameDef} the colony's children should hear them too, and asked to camp {PLACE}.</li>
+      <li>[their:medieval] A hedge-school master of {FACTION} has come up the track with two pupils and a donkey loaded with slates. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said a few days of letters and numbers never harmed a child.</li>
+      <li>[their:industrial] A traveling schoolteacher of {FACTION} has turned up with a pupil-teacher and a pack beast full of primers. {X_nameDef} asked {A_nameDef} whether the colony's children had a teacher, and whether {X_pronoun} might camp {PLACE} a few days.</li>
+      <li>[their:spacer] A traveling tutor of {FACTION} has walked in with teaching slates and a pack beast. {X_nameDef} asked {A_nameDef} whether the colony's children were learning, and whether {X_pronoun} might camp {PLACE} for a few days.</li>
+    </texts>
+    <settled>
+      <li>The teacher's camp {PLACE} is up: a fire, a few bedrolls, and slates leaning against the packs.</li>
+      <li>The teacher from {FACTION} has made camp {PLACE}, and the pupils are already going over their letters by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the teacher's pupil, asked {A_nameDef} whether the colony could use someone who can read and figure, and who would stay in one place.</li>
+      <li>{X_nameDef} of the teacher's camp says {X_pronoun} is tired of the road, and asks whether there might be a place at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>The teacher from {FACTION} has packed the slates onto the pack beast and gone on to the next settlement with the pupils.</li>
+      <li>The teacher's camp {PLACE} is packed, and {X_nameDef} is on the road again with the pupils trailing behind.</li>
+      <li>[back] The teacher who came before has packed up again, and {X_nameDef} says the colony's children have come on since last time.</li>
+    </farewell>
+    <lines>
+      <li>Again, from the beginning.</li>
+      <li>Slowly, and say it aloud.</li>
+      <li>Show me your working.</li>
+      <li>Good, now the next one.</li>
+      <li>Wipe your slate.</li>
+      <li>Who remembers yesterday's?</li>
+      <li>[their:tribal] The old ones told it this way.</li>
+      <li>[their:medieval] A clean hand and a clear head.</li>
+      <li>[their:industrial] Page twelve, everyone.</li>
+      <li>[their:spacer] Charge the slates before tomorrow.</li>
+      <li>[evening] That's enough for today.</li>
+    </lines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the teacher at the fire and heard about every school between here and the coast, and the children in them.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>lesson</key>
+        <label>A lesson at the camp for the colony's children ({COUNT} silver)</label>
+        <tip>Up to three of the colony's children go over to the teacher's camp for a morning's lesson. Practice in intellectual work. The silver is the teacher's fee.</tip>
+        <silver>30</silver>
+        <needs>children</needs>
+        <once>false</once>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>{X_nameDef} took the fee and said the colony's children are welcome at the fire for their lesson.</li>
+          <li>The colony's children are going over to the teacher's camp for a lesson, and {X_nameDef} has a slate ready for each.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampChildrenLesson" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} sit in on the teacher's lessons</label>
+        <tip>{A_nameDef} spends a few hours at the teacher's side. Practice in intellectual work.</tip>
+        <skill>Intellectual</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is at the teacher's fire today, going over figures and letters with {X_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <label>Send a supper over to the teacher's camp</label>
+        <refuseLabel>They have their own fire</refuseLabel>
+        <tension>-5</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the teacher's camp at the end of the day. The pupils have been on hard bread since the last settlement, {X_pronoun} says, and a hot supper from the colony's kitchen would set them up for tomorrow's lessons.</li>
+        </askTexts>
+        <tip>A colonist carries three hot meals over to the teacher's camp.</tip>
+        <outcomes>
+          <li>{A_nameDef} is carrying three hot meals down to the teacher's camp, and {X_nameDef} has gone back to tell the pupils.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded and went back to the camp, where the pupils had another night of hard bread.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a supper for the teacher's camp</label><what>meals</what><count>3</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== The wounded of a war ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Wounded</defName>
+    <label>wounded fighters</label>
+    <arrives>10~18</arrives>
+    <weight>0.15</weight>
+    <people>3~5</people>
+    <days>3~6</days>
+    <ages>18~45</ages>
+    <wounded>2~3</wounded>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Medicine</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>war</li>
+    </situationKinds>
+    <situationWeight>5</situationWeight>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <titles>
+      <li>Wounded fighters</li>
+      <li>[ws:war] Wounded from {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>Fighters of {FACTION} have come to the colony's land on foot, some of them limping and bandaged, after a fight with raiders in the hills. {X_nameDef} told {A_nameDef} they are going home, and asked to camp {PLACE} a few days until the worst of them can walk on.</li>
+      <li>[ws:war] Fighters of {FACTION} have come off the road from {SITUATION}, some limping and bandaged. {X_nameDef} told {A_nameDef} they are going home with their wounded, and asked to camp {PLACE} a few days until the worst can walk further.</li>
+      <li>[their:lowtech] Warriors of {FACTION} have come out of the hills with their wounded leaning on their shoulders. {X_nameDef} asked {A_nameDef} whether they might rest by the colony's land {PLACE} for a few days before they go on.</li>
+      <li>[their:hightech] A section of {FACTION}'s fighters has come in on foot with their wounded, field dressings on arms and legs. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before they push on home.</li>
+    </texts>
+    <settled>
+      <li>The fighters' camp {PLACE} is up: a fire, bedrolls in a row, and a windbreak of logs.</li>
+      <li>The fighters of {FACTION} have made camp {PLACE}, and the ones who can walk are seeing to the ones who can't.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the fighters' camp {PLACE} says {X_pronoun} has had enough of fighting other people's wars, and asks whether the colony would take {X_objective} in.</li>
+      <li>{X_nameDef}, one of the fighters, asked {A_nameDef} quietly whether there might be a place at the colony for someone who would rather not go back.</li>
+    </joinTexts>
+    <farewell>
+      <li>The fighters of {FACTION} have packed up their camp and gone on toward home, walking better than when they came.</li>
+      <li>The fighters' camp {PLACE} is packed, and {X_nameDef} is leading them off with the slowest at the front.</li>
+      <li>{X_nameDef} and the fighters have set off for home, and {X_pronoun} says {FACTION} will hear how the colony treated them.</li>
+    </farewell>
+    <lines>
+      <li>Keep that arm still.</li>
+      <li>We're nearly home.</li>
+      <li>Change the dressing at dusk.</li>
+      <li>Sit down before you fall down.</li>
+      <li>I'm fine, see to him.</li>
+      <li>Nobody stands watch alone.</li>
+      <li>[ws:war] It wasn't our fight to start.</li>
+      <li>[their:lowtech] My spear arm will mend.</li>
+      <li>[their:hightech] Count the rounds again.</li>
+      <li>[night] Wake me for my watch.</li>
+    </lines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the fighters at their fire and heard how the fighting went, from people who were in it.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their wounded</label>
+        <tip>The colony's doctor goes over to their camp and tends whoever of them is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHealed</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the fighters' camp with a bag of bandages to see to their wounded one by one.</li>
+          <li>{A_nameDef} will spend an hour at the fighters' camp {PLACE}, and {X_nameDef} says {FACTION} will hear of it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <label>Send a hot supper over to the fighters</label>
+        <tip>A colonist carries hot meals over to the fighters' camp.</tip>
+        <tension>-5</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <outcomes>
+          <li>{A_nameDef} is carrying hot meals down to the fighters' camp, and the ones who can stand have come to meet {A_objective}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the fighters</label><what>meals</what><count>4</count><to>Camp</to></li>
+        </effects>
+      </li>
+      <li>
+        <key>medicine</key>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <needs>theirWounded</needs>
+        <label>Send them medicine for their wounded</label>
+        <refuseLabel>The colony needs its own</refuseLabel>
+        <tension>-8</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the fighters' camp {PLACE}. Their dressings are the ones they put on in the field, and they have nothing left to change them with. They ask whether the colony could spare three doses of medicine.</li>
+          <li>[their:lowtech] {X_nameDef} of the warriors' camp asked {A_nameDef} for something to bind their wounds with, and herbs to keep them clean. They have used everything they carried.</li>
+        </askTexts>
+        <tip>A colonist carries three doses of the colony's medicine over to the fighters' camp.</tip>
+        <outcomes>
+          <li>{A_nameDef} is carrying three doses of medicine down to the fighters' camp, and {X_nameDef} has gone back ahead to tell them.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they understood, and went back to the camp to make do.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for the fighters</label><what>medicine</what><count>3</count><to>Camp</to><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

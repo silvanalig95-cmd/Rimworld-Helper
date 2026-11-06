@@ -300,7 +300,8 @@ namespace ColonyCouncil
             var g = GroupOf(a);
             int hour = GenLocalDate.HourOfDay(map);
             bool night = hour >= 21 || hour < 6;
-            var home = g == null || g.follow ? FireCell : Spot(g.at);
+            // A beast the beast-catchers roped is kept at their picket with their own (CampKindsLand3.cs).
+            var home = g == null || g.follow ? (IsCaught(a) ? Picket : FireCell) : Spot(g.at);
             var rest = a.needs?.rest;
             if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f))) return LieDown(a, home);
             // Walked to the colony's water with the drovers, or strayed into its fields (CampRequests.cs): they mill about there.
@@ -465,13 +466,15 @@ namespace ColonyCouncil
         /// </summary>
         public Pawn HandOverBeast()
         {
-            var a = herd.Where(x => x != null && !x.Dead && x.Spawned && !x.Downed && x.Map == map && GroupOf(x)?.follow != true)
+            // One the beast-catchers roped goes first, the cheapest of them (the one their ask names); else the youngest.
+            var a = CaughtToSell() ?? herd.Where(x => x != null && !x.Dead && x.Spawned && !x.Downed && x.Map == map && GroupOf(x)?.follow != true)
                 .OrderBy(x => x.ageTracker?.AgeBiologicalYearsFloat ?? 0f).FirstOrDefault();
             if (a == null) return null;
             try
             {
                 a.GetLord()?.RemovePawn(a);
                 herd.Remove(a);
+                caught.Remove(a);
                 a.SetFaction(Faction.OfPlayer);
                 return a;
             }

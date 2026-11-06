@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with the travelers of the camp kinds of 6 November 2026 (Defs/CampDefs/Rimfolk_CampKinds_Variety3.xml), by the
+    kind of camp they travel with (them:camp:KIND, World/Region/RegionNearFacts.cs). The format is described at the top
+    of Rimfolk_OutsiderTalks_Greetings.xml.
+  -->
+
+  <!-- ================= Stonecutters ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Stonecutters_Build</defName>
+    <topic>camp</topic>
+    <when>them:camp:Stonecutters</when>
+    <lines>
+      <li>[us] What will your stone build?</li>
+      <li>[them,their:tribal] Houses for the cold moons, and a hearth for each.</li>
+      <li>[them] Somebody's wall, somebody's hearth, a bridge if the price is right.</li>
+      <li>[us] Nothing for yourselves?</li>
+      <li>[them] A stonecutter's house is always the last one finished.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Stonecutters_Rain</defName>
+    <topic>camp</topic>
+    <when>them:camp:Stonecutters,rain</when>
+    <lines>
+      <li>[them] Wet stone fights the chisel.</li>
+      <li>[us] Will you stop for the rain?</li>
+      <li>[them] Only when it fights back harder than I do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Shearers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Shearers_Count</defName>
+    <topic>camp</topic>
+    <when>them:camp:Shearers</when>
+    <lines>
+      <li>[us] How many beasts have you shorn this year?</li>
+      <li>[them] Enough that I count them in my sleep.</li>
+      <li>[us] Does it get easier?</li>
+      <li>[them] The beasts don't, but the hands do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Shearers_Calm</defName>
+    <topic>camp</topic>
+    <when>them:camp:Shearers,colony:animals</when>
+    <lines>
+      <li>[them] Good wool grows on a calm beast.</li>
+      <li>[us] Ours are calm enough.</li>
+      <li>[them] They'll be calmer still out of those heavy coats.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Beast-catchers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Catchers_Gentle</defName>
+    <topic>camp</topic>
+    <when>them:camp:Catchers</when>
+    <lines>
+      <li>[us] What happens to the ones you catch?</li>
+      <li>[them] We gentle them and sell them to farms that want a beast that knows the land.</li>
+      <li>[us] Do they ever go back to the wild?</li>
+      <li>[them] The clever ones try.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Catchers_Mothers</defName>
+    <topic>camp</topic>
+    <when>them:camp:Catchers,their:lowtech</when>
+    <lines>
+      <li>[them,their:tribal] We call a few out of the herd, and we never take the mothers.</li>
+      <li>[them] We take a few from the herd, and never the mothers.</li>
+      <li>[us] Why not the mothers?</li>
+      <li>[them] Then there would be no herd next year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A traveling teacher ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Teacher_What</defName>
+    <topic>camp</topic>
+    <when>them:camp:Teacher</when>
+    <lines>
+      <li>[us] What do you teach them?</li>
+      <li>[them,their:tribal] The old tellings, and how to count the moons.</li>
+      <li>[them,their:spacer] Reading, figures, and how to check what a machine tells you.</li>
+      <li>[them] Letters, numbers, and how to ask a good question.</li>
+      <li>[us] Which is the hardest?</li>
+      <li>[them] The question, every time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Teacher_Road</defName>
+    <topic>camp</topic>
+    <when>them:camp:Teacher,evening</when>
+    <lines>
+      <li>[them] Every settlement has a child who asks the one question I can't answer.</li>
+      <li>[us] What do you tell them?</li>
+      <li>[them] That I'll know by the next time I come.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Wounded fighters ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Wounded_Healing</defName>
+    <topic>camp</topic>
+    <when>them:camp:Wounded,them:hurt</when>
+    <lines>
+      <li>[us] How is the wound?</li>
+      <li>[them] Healing, slower than I'd like.</li>
+      <li>[us] Rest here as long as you need.</li>
+      <li>[them] A few more days, then home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Wounded_Fight</defName>
+    <topic>camp</topic>
+    <when>them:camp:Wounded</when>
+    <lines>
+      <li>[us] Was it a hard fight?</li>
+      <li>[them] Every fight is hard when you're in it.</li>
+      <li>[us] Will you go back to it?</li>
+      <li>[them] Not if I can help it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Wounded_Doctor</defName>
+    <topic>camp</topic>
+    <when>them:camp:Wounded,them:hurt,us:doctor</when>
+    <lines>
+      <li>[them] You're the one who knows medicine here?</li>
+      <li>[us] I am, how is it holding up?</li>
+      <li>[them] Clean, at least, which is more than I hoped for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

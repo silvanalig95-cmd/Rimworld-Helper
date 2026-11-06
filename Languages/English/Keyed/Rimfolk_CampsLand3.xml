@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The camp kinds of 6 November 2026 (Source/ColonyCouncil/Camps/CampKindsLand3.cs): stonecutters, shearers,
+       beast-catchers, a traveling teacher. -->
+
+  <!-- ===================== The arrival letter ===================== -->
+  <CC_CampLand_Facts_cut>They will dress the loose rock near their camp into blocks, chunk by chunk, and stack the blocks at their camp.</CC_CampLand_Facts_cut>
+  <CC_CampLand_Facts_shear>They shear flocks for a living: taken on, they shear the colony's beasts in its pens by day, for one fleece in ten.</CC_CampLand_Facts_shear>
+  <CC_CampLand_Facts_catch>They will rope one or two of the wild herd near their camp, keep them by their picket and lead them away when they go.</CC_CampLand_Facts_catch>
+
+  <!-- ===================== Their work ===================== -->
+  <CC_CampLand_Caught>{X_nameDef} of the {NAME} has roped a {THING} out of the wild herd, and it is theirs now, kept by their picket.</CC_CampLand_Caught>
+  <CC_CampLand_LessonLabel>a lesson at the {NAME}'s camp</CC_CampLand_LessonLabel>
+
+  <!-- ===================== Why an ask can't be made ===================== -->
+  <CC_CampLand_StoneGoing>One of them is already bringing a load of their stone over.</CC_CampLand_StoneGoing>
+  <CC_CampLand_NoStone>They haven't dressed enough stone yet to sell a load.</CC_CampLand_NoStone>
+  <CC_CampLand_NoChunks>There's no loose rock left outside the home area for them to work.</CC_CampLand_NoChunks>
+  <CC_CampLand_Shearing>They're already at work in the colony's pens.</CC_CampLand_Shearing>
+  <CC_CampLand_NoFleece>The colony's flock has too little wool on it to be worth their blades.</CC_CampLand_NoFleece>
+  <CC_CampLand_NoCaught>They haven't caught a beast they could sell.</CC_CampLand_NoCaught>
+
+  <!-- ===================== {THING} in an ask's label ===================== -->
+  <CC_CampLand_NoStoneWord>none dressed yet</CC_CampLand_NoStoneWord>
+  <CC_CampLand_NoCaughtWord>none caught yet</CC_CampLand_NoCaughtWord>
+  <CC_CampLand_CaughtOffer>{1} for {2} silver</CC_CampLand_CaughtOffer>
+
+  <!-- ===================== What happened ===================== -->
+  <CC_CampLand_StoneSold>{X_nameDef} set down {COUNT} {THING} from the stonecutters' work by the colony's gate, and {SILVER} silver for it is going over to their camp.</CC_CampLand_StoneSold>
+  <CC_CampLand_StoneSoldShort>{X_nameDef} set down {COUNT} {THING} by the colony's gate. It came to {PRICE} silver, but the colony had only {SILVER} left to send over, and the {NAME} took it badly.</CC_CampLand_StoneSoldShort>
+  <CC_CampLand_StoneSoldUnpaid>{X_nameDef} set down {COUNT} {THING} by the colony's gate, but the colony had no silver left for the {PRICE} it came to, and the {NAME} took it badly.</CC_CampLand_StoneSoldUnpaid>
+
+  <!-- ===================== What an answer does ===================== -->
+  <CC_Impact_StoneSale>One of the {0} carries a load of their dressed stone to the colony's gate, and the colony pays for it there</CC_Impact_StoneSale>
+  <CC_Impact_StoneSaleBrief>stone bought</CC_Impact_StoneSaleBrief>
+  <CC_Impact_ClearNear_cut>The {0} work the loose rock nearest the colony first, outside its home area; the stone stays theirs</CC_Impact_ClearNear_cut>
+  <CC_Impact_ClearNearBrief_cut>the near rock cleared</CC_Impact_ClearNearBrief_cut>
+  <CC_Impact_ShearFlock>The {0} shear the colony's beasts in its pens by day ({1} with wool ready now), and leave the wool for its haulers</CC_Impact_ShearFlock>
+  <CC_Impact_ShearFlockBrief>the flock shorn</CC_Impact_ShearFlockBrief>
+  <CC_Impact_ShearShare>One fleece in ten goes in their packs</CC_Impact_ShearShare>
+  <CC_Impact_ShearShareBrief>a fleece in ten</CC_Impact_ShearShareBrief>
+  <CC_Impact_ChildrenLesson>{0} go over to the {1}'s camp for a lesson ({2} practice)</CC_Impact_ChildrenLesson>
+  <CC_Impact_ChildrenLessonBrief>the children's lesson</CC_Impact_ChildrenLessonBrief>
+
+</LanguageData>

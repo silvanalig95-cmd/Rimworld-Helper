@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New world events and camps
+
+*6 November 2026, version 0.118.0*
+
+- A war between two neighbours at peace with you: their envoys come to the gate for food, steel, medicine or leave to march by the road, and the side you supply usually wins and prospers.
+- A year without a summer brings the game's cold snaps three times as often. You can bring crops in early, let a neighbour's flock graze your far meadow, and sell or give food.
+- A neighbour's great work wants timber, your builder's teaching and medicine after a fall, and with your help it stands with your colony's name on a stone.
+- A ban on drink at a neighbour's town: thirsty young people and a smuggler pay well for beer, the wardens sometimes find out, and the ban falls or holds by what got in.
+- A great caravan rests on your meadow and can be told the safe road past the bandits, and households on the move water their herds, rest by your wall and may leave two young ones with you.
+- Five new camps: stonecutters who cut the rock chunks near your colony into blocks, shearers who offer to shear your flock, beast-catchers who rope a wild herd, a travelling teacher with a lesson for your children, and wounded fighters asking for medicine, more often in a war.
+- How a world event ends now changes the towns' prosperity straight away.
+
 ## A fresh start
 
 *6 November 2026, version 0.117.0*

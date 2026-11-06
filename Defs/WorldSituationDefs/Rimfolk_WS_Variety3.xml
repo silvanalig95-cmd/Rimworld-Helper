@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events across the region (the player's request, 6 November 2026: "new additional dilemmas, events, world
+       events, camps... for further gameplay variety"), told from data with the default worker: a war between two
+       neighbors, a year without a summer, a great work raised at a neighbor's town. Each pulls both ways and ends by
+       what happened: the side the colony supplied wins the war three times in four (its towns better off, the other's
+       worse, WorldEffect_Fortune); the cold year's harvest is brought in early or lost; the great work is finished with
+       the colony's timber and its name on a stone, finished without it, or left half built. -->
+
+  <!-- ===================== A war between neighbors ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_NeighborsWar</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a war between neighbors</label>
+    <weight>0.6</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>14~22</durationDays>
+    <kind>war</kind>
+    <prosperity>-8</prosperity>
+    <prosperityOther>-8</prosperityOther>
+    <bad>true</bad>
+    <notWithMods>
+      <li>sr.modrimworld.factionalwarcontinued</li>
+      <li>sr.modrimworld.factionalwar</li>
+    </notWithMods>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <hostileToFirst>true</hostileToFirst>
+    </second>
+    <names>
+      <li>the border war</li>
+      <li>the war over the fords</li>
+      <li>the war of the north road</li>
+      <li>[theirLowtech] the war of the two rivers</li>
+      <li>[theirLowtech] the quarrel of the high pastures</li>
+      <li>[theirHightech] the boundary war</li>
+    </names>
+    <titles>
+      <li>War between neighbors</li>
+      <li>{FACTION} and {ENEMY} at war</li>
+    </titles>
+    <texts>
+      <li>{FACTION} and {ENEMY} have gone to war over the border by {PLACE}. It began as {NAME}, an old quarrel over a line on a map, and this season both peoples have called up their fighters for it.\n\nNeither of them is at war with the colony. Both will want what the colony has: food for their fighters, steel for their arms, a way across its land.</li>
+      <li>[theirLowtech] The clans of {FACTION} have taken up their spears against {ENEMY}. Herds have been driven off on both sides of the border by {PLACE}, and a granary has burned. They call it {NAME}, and the old people say it will not end before the season does.\n\nThe colony is at peace with both, and both know it has full stores.</li>
+      <li>[theirHightech] {FACTION} have sent armed trucks to the border by {PLACE}, and {ENEMY} have dug in on the other side of it. {NAME} has closed the road between them and emptied the markets on both sides.\n\nThe colony is at peace with both peoples. Both will come asking.</li>
+      <li>[theirEmpire] {FACTION} have called their knights to arms against {ENEMY} for an insult to the {TITLE}'s honor, and the levies are gathering at {PLACE}. In the Empire's way of things it is {NAME}, a matter of honor to be settled in the field.\n\nThe colony has no part in it, and both sides will be glad of its stores.</li>
+      <li>[enemyEmpire] {ENEMY} have answered {FACTION}'s raids on the border with their knights, and there is fighting by {PLACE}. {FACTION} call it {NAME}. The Empire calls it a lesson in honor.\n\nThe colony is at peace with both, and both will want something of it.</li>
+    </texts>
+    <summaries>
+      <li>Caravans and visitors come less often while the roads are unsafe. Both sides will want the colony's food and steel; whichever it supplies is likelier to win, and the other will not forget it. When it ends, the winner's towns do better and the loser's worse.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <li><incident>VisitorGroup</incident><factor>0.8</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>food</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>40~80</count>
+        <titles>
+          <li>{FACTION} want food for their fighters</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s quartermaster is at the gate with a cart and a purse. Their fighters at {PLACE} are eating faster than their farms can feed them, and they want {COUNT} portions of food, any kind, at half again what it's worth.\n\n{ENEMY} will hear who fed {FACTION}'s fighters.</li>
+          <li>[theirLowtech] A cart of {FACTION} has come up to the gate, and the driver says the warriors at {PLACE} are hungry. {FACTION} will pay half again for {COUNT} portions of food, or take it as a gift and remember the colony for it.\n\n{ENEMY} would remember it too.</li>
+          <li>[theirHightech] {FACTION}'s supply officer has driven up with an empty truck bed. The front at {PLACE} needs {COUNT} portions of food, and {FACTION} will pay half again what it's worth.\n\nWhoever feeds one side of {NAME} is no friend of the other.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} food at half again its worth</label>
+            <outcome>The food is carried out to the gate and loaded, and the quartermaster pays and turns the cart back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}'s fighters</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount><who>Enemy</who></li>
+            </effects>
+            <flags><li>suppliedFaction</li></flags>
+            <help>1</help>
+            <deed>sold food to {FACTION}'s fighters in {NAME}</deed>
+          </li>
+          <li>
+            <label>Give it to them</label>
+            <outcome>The food is carried out to the gate and loaded. The quartermaster takes it without a word about the purse, and {ENEMY} will hear of it within the week.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}'s fighters</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+            <flags><li>suppliedFaction</li></flags>
+            <help>2</help>
+            <deed>fed {FACTION}'s fighters in {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep out of it</label>
+            <outcome>The quartermaster is told the colony is not feeding either side, and goes back to {PLACE} with the cart empty.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>steel</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smith</what><enemy>true</enemy><gender>Male</gender><ages>30~60</ages><pack>true</pack></li>
+        </effects>
+        <day>3~7</day>
+        <count>30~60</count>
+        <titles>
+          <li>{ENEMY} want steel</li>
+        </titles>
+        <texts>
+          <li>An armourer of {ENEMY} has come to the gate with a pack beast and a purse. {ENEMY}'s fighters are short of blades and the iron to mend them, and he will pay twice the worth of {COUNT} steel.\n\nIt would arm the other side of {NAME}, and {FACTION} would know it.</li>
+          <li>[enemyHightech] A buyer of {ENEMY} is at the gate looking for {COUNT} steel for their workshops, at twice its worth. Nobody pretends it is for ploughs.\n\n{FACTION} would take it badly.</li>
+          <li>[enemyLowtech] {ENEMY}'s smith has walked up with a pack beast and a heavy purse. Their warriors need spear-heads and the iron for them, {COUNT} of it, and he will pay twice what it's worth.\n\n{FACTION} would hear of it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} steel at twice its worth</label>
+            <outcome>The steel goes onto the pack beast at the gate, the armourer counts out the price, and he goes off the way he came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>2</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
+            </effects>
+            <flags><li>suppliedEnemy</li></flags>
+            <deed>sold steel to {ENEMY} in {NAME}</deed>
+          </li>
+          <li>
+            <label>Not for a war</label>
+            <outcome>The armourer is told the colony's steel is not for {NAME}, and goes back the way he came with his purse full.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>column</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
+        <day>5~9</day>
+        <titles>
+          <li>A way across the colony's land</li>
+        </titles>
+        <texts>
+          <li>A rider of {FACTION} is at the gate. A column of their fighters wants to cross the colony's land by day, the shortest way to {ENEMY}'s side of the border, and {FACTION} ask the colony's leave.\n\nThey would keep to the road. {ENEMY} would see it as the colony opening its gate to them.</li>
+          <li>[theirLowtech] A runner of {FACTION} has come to say their warriors would cross the colony's land by the road, if the colony allows it, on their way to {ENEMY}'s side of the hills.\n\n{ENEMY} would not thank the colony for the road.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them cross by the road</label>
+            <outcome>The rider thanks the colony and goes back to the column. They will come along the road by day and keep going.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>band</what><count>4~6</count><armed>true</armed><spot>Road</spot><onward>true</onward><hourFrom>7</hourFrom><hourTo>18</hourTo><delay>1~3</delay><holdBeat>crossed</holdBeat></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount><who>Enemy</who></li>
+            </effects>
+            <flags><li>suppliedFaction</li><li>letThrough</li></flags>
+            <help>1</help>
+            <deed>let {FACTION}'s fighters cross its land in {NAME}</deed>
+            <next>crossed</next>
+            <nextDays>0.5~1</nextDays>
+          </li>
+          <li>
+            <label>They go round</label>
+            <outcome>The rider is told the colony's land is not a road to {NAME}, and goes back to tell the column to take the long way round.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>crossed</key>
+        <called>true</called>
+        <message>true</message>
+        <texts>
+          <li>{FACTION}'s column has crossed the colony's land by the road and gone on toward {ENEMY}'s side of the border.</li>
+          <li>[theirLowtech] {FACTION}'s warriors have gone by on the road with their spears and their shields, and are out of sight toward {ENEMY}'s hills.</li>
+        </texts>
+      </li>
+      <li>
+        <key>worn</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><enemy>true</enemy><count>2</count><ages>18~40</ages></li>
+        </effects>
+        <day>9~13</day>
+        <chance>0.7</chance>
+        <count>3~4</count>
+        <titles>
+          <li>Two of {ENEMY}'s fighters</li>
+        </titles>
+        <texts>
+          <li>Two fighters of {ENEMY} have come to the gate on foot, worn out and a long way from their own lines. Their comrades' wounded are lying up in the hills beyond {PLACE} with nothing to dress them, and they ask for a little medicine to take back, and a night by the colony's wall before they go.\n\n{FACTION} would rather the colony gave {ENEMY} nothing.</li>
+          <li>[enemyLowtech] Two young warriors of {ENEMY} are at the gate, footsore and quiet. They have friends lying hurt in a cave in the hills, and ask for something to bind their wounds, and to sleep one night by the wall.\n\n{FACTION} would not like it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Medicine, and a night by the wall</label>
+            <outcome>{COUNT} doses of medicine are carried out to them at the gate, and they bed down by the wall for the night, to go back at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for {ENEMY}'s wounded</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><enemy>true</enemy><about>none</about></li>
+            </effects>
+            <deed>sheltered two of {ENEMY}'s fighters in {NAME}</deed>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Medicine for their wounded, then send them on</label>
+            <outcome>{COUNT} doses of medicine are carried out to them at the gate, and they set off back toward the hills with it at once.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for {ENEMY}'s wounded</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-1</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The two of them are told the colony is keeping out of {NAME}. They turn away from the gate without arguing.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>smoke</key>
+        <day>10~15</day>
+        <message>true</message>
+        <texts>
+          <li>Word on the road: the fighters of {FACTION} and {ENEMY} met in the field by {PLACE}, and both sides are counting their dead.</li>
+          <li>[theirLowtech] A herder passing on the road says a granary of {FACTION} burned by {PLACE} last night, and three of {ENEMY}'s villages the night before.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>factionWon</key>
+        <requires><li>suppliedFaction</li></requires>
+        <forbids><li>suppliedEnemy</li></forbids>
+        <chance>0.75</chance>
+        <titles>
+          <li>{FACTION} win {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. {ENEMY} have pulled back from the border by {PLACE} and given up the ground it began over, and {FACTION}'s fighters are going home.\n\n{FACTION} say the colony's help counted. {ENEMY} say the same, in other words.</li>
+          <li>[theirEmpire] {ENEMY} have yielded the field at {PLACE}, and the {TITLE}'s honor is satisfied. {FACTION}'s knights are going home with their banners, and the colony's name has been spoken among the Empire's friends.</li>
+        </texts>
+        <chronicle>{FACTION} won {NAME} against {ENEMY}; the colony had supplied them.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount><who>Enemy</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-6</amount><enemy>true</enemy></li>
+        </effects>
+      </li>
+      <li>
+        <key>enemyWon</key>
+        <requires><li>suppliedEnemy</li></requires>
+        <forbids><li>suppliedFaction</li></forbids>
+        <chance>0.75</chance>
+        <titles>
+          <li>{ENEMY} win {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over, and {ENEMY} have the better of it: {FACTION} have pulled back from the border by {PLACE} and given up the ground it began over.\n\n{ENEMY} remember whose steel was in their blades. {FACTION} remember it too.</li>
+          <li>[enemyEmpire] {FACTION} have yielded the field at {PLACE} to the Empire's knights, and the Empire's honor is satisfied. {ENEMY} remember whose steel was in their blades.</li>
+        </texts>
+        <chronicle>{ENEMY} won {NAME} against {FACTION}; the colony had sold them steel.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><who>Enemy</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount><enemy>true</enemy></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>both</key>
+        <requires><li>suppliedFaction</li><li>suppliedEnemy</li></requires>
+        <titles>
+          <li>{NAME} wears out</li>
+        </titles>
+        <texts>
+          <li>{NAME} has worn itself out without a winner. Both sides have gone home from the border by {PLACE}, poorer than they set out, and both know the colony sold to the other.\n\nNeither will say so to the colony's face.</li>
+        </texts>
+        <chronicle>{NAME} ended without a winner; both sides know the colony sold to the other.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount><who>Both</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-3</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-3</amount><enemy>true</enemy></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} wears out</li>
+        </titles>
+        <texts>
+          <li>{NAME} has worn itself out. Neither side won the ground by {PLACE}, both have lost more than it was worth, and the fighters of {FACTION} and {ENEMY} have gone home for the season.\n\nThe road between them is open again, for now.</li>
+          <li>[helped] {NAME} has worn itself out without a winner, though {FACTION} came closer than they would have without the colony. The fighters of both peoples have gone home for the season.</li>
+        </texts>
+        <chronicle>{NAME} between {FACTION} and {ENEMY} wore itself out.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A year without a summer ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_ColdYear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a year without a summer</label>
+    <weight>0.5</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>15~22</durationDays>
+    <kind>weather</kind>
+    <prosperity>-8</prosperity>
+    <bad>true</bad>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>A year without a summer</li>
+      <li>The cold year</li>
+    </titles>
+    <texts>
+      <li>Summer has not come. There was frost at {PLACE} again this week, in the season for haymaking, and {FACTION}'s crops are standing yellow and short in the fields.\n\nThe old people of every town in the region are saying they have never seen a year like it.</li>
+      <li>[theirLowtech] The sun has gone pale this year, and the elders of {FACTION} say a mountain burned somewhere far off and its smoke is in the high air. Whatever the cause, there is frost at {PLACE} in the season of long days, and their barley has stopped growing.\n\nThe whole region is in for a hungry winter.</li>
+      <li>[theirHightech] {FACTION}'s growers at {PLACE} have given up on half their fields: night frosts in the middle of the growing season, week after week. The almanacs blame ash in the high air from an eruption beyond the horizon.\n\nFood will be dear across the region by fall.</li>
+    </texts>
+    <summaries>
+      <li>Cold snaps come far more often while it lasts, heat waves hardly at all, and growing spells rarely. The region's harvest is poor: {FACTION} will want food, their herders may bring their flocks down early, and what ripens in the colony's own fields may be better brought in early.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>ColdSnap</incident><factor>3</factor></li>
+      <li><incident>HeatWave</incident><factor>0.2</factor></li>
+      <li><rimfolk>Council_Evt_GrowingSpell</rimfolk><factor>0.4</factor></li>
+      <li><rimfolk>Council_Evt_WarmSpell</rimfolk><factor>0.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>early</key>
+        <day>2~6</day>
+        <titles>
+          <li>Frost on the way</li>
+        </titles>
+        <texts>
+          <li>The frosts that have taken {FACTION}'s barley at {PLACE} come over the hills a little further every night. Whatever is ripe in the colony's fields now could be brought in early, before the next one, for a smaller crop than it would have been.\n\nOr the colony could wait, and trust the weather.</li>
+          <li>[theirLowtech] A herder of {FACTION} going by says the frost took {PLACE}'s fields in one night. The colony's own crops are nearly ripe: bringing them in now would save what there is.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Bring in what is ripe</label>
+            <outcome>Everything ripe in the colony's fields is marked for the growers to cut, before the frost reaches it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Harvest"><minGrowth>0.75</minGrowth></li>
+            </effects>
+            <flags><li>early</li></flags>
+          </li>
+          <li>
+            <label>Trust the weather</label>
+            <outcome>The fields are left to ripen. The colony will see what the nights bring.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>flock</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>herders</what><gender>Female</gender></li>
+        </effects>
+        <day>4~9</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{FACTION}'s flock comes down early</li>
+        </titles>
+        <texts>
+          <li>A herder of {FACTION} is at the gate. Snow has come back to the high pastures above {PLACE} in the middle of summer, and their flock has had to come down months early. She asks to graze the colony's far meadow for a night on the way, and offer {COUNT} silver for it.\n\nThe beasts would eat the grass there to the ground.</li>
+          <li>[theirLowtech] A herder of {FACTION} has come down from the snow with a flock that should be on the summer grass for months yet. She asks for a night's grazing on the colony's far meadow, and will pay {COUNT} silver, or owe it as a kindness.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them graze, as neighbors</label>
+            <outcome>The herder goes back for the flock. They will come onto the far meadow toward evening, graze there the night and go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>6~9</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>1~3</delay><onward>true</onward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>grazed {FACTION}'s flock in the cold year</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let them graze, for {COUNT} silver</label>
+            <outcome>The herder pays the silver at the gate and goes back for the flock. They will be on the far meadow by evening, and gone at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>6~9</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>1~3</delay><onward>true</onward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>grazed {FACTION}'s flock for a fee in the cold year</deed>
+          </li>
+          <li>
+            <label>The meadow is the colony's</label>
+            <outcome>The herder nods and goes back to find the flock somewhere else to spend the night.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>buyers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
+        <day>8~14</day>
+        <count>40~80</count>
+        <titles>
+          <li>{FACTION} buying against the winter</li>
+        </titles>
+        <texts>
+          <li>A cart of {FACTION} is at the gate. {PLACE}'s harvest has come to a third of what it should be, and they are buying food against the winter now, while anyone will still sell: {COUNT} portions, any kind, at half again what it's worth.\n\nThe colony's own winter may be a long one.</li>
+          <li>[theirHightech] {FACTION}'s buyer has driven up from {PLACE} with an empty truck bed. With the region's harvest gone, they want {COUNT} portions of food at half again its worth, and they are not the only town buying.\n\nWhat the colony sells now it won't have in the winter.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} food at half again its worth</label>
+            <outcome>The food is carried out to the gate and loaded, and the driver pays and goes back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold food to {PLACE} in the cold year</deed>
+          </li>
+          <li>
+            <label>Give it for their winter</label>
+            <outcome>The food is carried out to the gate and loaded. The driver takes it without being able to say much, and {FACTION} will hear of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>gave food to {PLACE} in the cold year</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Keep it against the winter</label>
+            <outcome>The driver goes back to {PLACE} with the cart empty. The colony's stores stay as they are.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The cold year turns</li>
+        </titles>
+        <texts>
+          <li>The frosts have stopped at last, and a late, thin warmth has come to the region. {FACTION} at {PLACE} will be short this winter, but less short than they feared, and they say the colony is part of the reason.</li>
+        </texts>
+        <chronicle>The year without a summer ended; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The cold year turns</li>
+        </titles>
+        <texts>
+          <li>The frosts have stopped, and the region has what warmth is left of the year. {FACTION} at {PLACE} are counting what the cold left them, and it isn't much.</li>
+          <li>[early] The frosts have stopped. The colony brought its crop in before they came, smaller than it might have been; {FACTION} at {PLACE} lost most of theirs.</li>
+        </texts>
+        <chronicle>The year without a summer ended.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A great work ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GreatWork</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a great work</label>
+    <weight>0.6</weight>
+    <earliestDay>35</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>16~24</durationDays>
+    <kind>build</kind>
+    <prosperity>4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirLowtech] the great longhouse</li>
+      <li>[theirLowtech] the ring of standing stones</li>
+      <li>[theirLowtech] the stone bridge</li>
+      <li>[theirLowtech] the new hall</li>
+      <li>[theirLowtech] the town wall</li>
+      <li>[theirHightech] the dam on the river</li>
+      <li>[theirHightech] the new mill</li>
+      <li>[theirHightech] the iron bridge</li>
+      <li>[theirHightech] the landing field</li>
+      <li>[theirHightech] the signal tower</li>
+    </names>
+    <titles>
+      <li>A great work at {PLACE}</li>
+      <li>{FACTION} raise {NAME}</li>
+    </titles>
+    <texts>
+      <li>{FACTION} have begun {NAME} at {PLACE}, the biggest thing anyone in the region has tried to build in a lifetime. Every hand in the town is on it, and their master builder has sent word round the region for timber and skill.\n\nIf it stands, {PLACE} will be the better for it for a hundred years. If the timber runs short, it will stand half built.</li>
+      <li>[theirLowtech] The people of {FACTION} have sworn to raise {NAME} at {PLACE} before the season turns. The whole town is cutting and hauling, and their builders are asking every neighbor for timber.\n\nIt will be talked about for generations, one way or the other.</li>
+      <li>[theirHightech] {FACTION} have broken ground on {NAME} at {PLACE}. Their engineers have the plans and the hands; what they lack is timber for the forms and scaffolding, and people who know how to raise a thing that size.\n\nIt will bring trade to {PLACE} for years, if it is finished.</li>
+      <li>[theirEmpire] By the {TITLE}'s order, {FACTION} are raising {NAME} at {PLACE}, and the honor of the town that finishes it on time is spoken of in every hall. Their master builder is asking the region for timber.\n\nThe Empire does not forget a neighbor who helped it keep its word.</li>
+    </texts>
+    <summaries>
+      <li>More travelers pass on the road while it is built. {FACTION} will want the colony's timber, and their master builder may ask for a word from its best builder. With the colony's help it will be finished; without it, it may stand half built.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TravelerGroup</incident><factor>1.4</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>timber</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
+        <day>1~5</day>
+        <count>80~140</count>
+        <titles>
+          <li>Timber for {NAME}</li>
+        </titles>
+        <texts>
+          <li>A cart of {FACTION} is at the gate. {NAME} at {PLACE} is eating timber faster than their woods can give it, and their master builder asks the colony for {COUNT} wood, at half again what it's worth.\n\nIt would go into the scaffolding and the beams, and {FACTION} would remember where it came from.</li>
+          <li>[theirLowtech] A driver of {FACTION} has brought an empty cart and a message from their master builder: {NAME} needs {COUNT} logs before the next moon, and {FACTION} will pay half again for them, or remember the colony's name if it gives them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} wood at half again its worth</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart, and the driver pays and goes back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {NAME}</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.8</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>timber</li></flags>
+            <help>1</help>
+            <deed>sold timber for {NAME} at {PLACE}</deed>
+          </li>
+          <li>
+            <label>Give it for {NAME}</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart. The driver says the master builder will want to know the colony's name, and goes back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {NAME}</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+            </effects>
+            <flags><li>timber</li></flags>
+            <help>2</help>
+            <deed>gave timber for {NAME} at {PLACE}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>The colony needs its wood</label>
+            <outcome>The driver goes back to {PLACE} with the cart empty. {FACTION} will find the timber somewhere, or not.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>builder</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>foreman</what><ages>35~65</ages></li>
+        </effects>
+        <day>5~10</day>
+        <skill>Construction</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>{FACTION}'s master builder</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s master builder has come to the gate on the way back from the quarries. {NAME} has a problem in it the builder can't see past, and word is that the colony's {A_nameDef} knows how such things are raised.\n\nThe master builder asks for a few hours of {A_nameDef}'s time in the evening, and a corner by the wall for the night.</li>
+          <li>[theirLowtech] The one who leads the building of {NAME} has come to the gate to ask for {A_nameDef}. The beams of the great roof will not sit the way they should, and the colony's builder could show why, they have been told.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} shows their master builder how</label>
+            <outcome>{A_nameDef} will go out to the master builder at the gate in the evening with a stick to draw in the dirt, and talk it through. The master builder sleeps by the wall and goes back at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>X</student><skill>Construction</skill><hours>16~20</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>taught</li></flags>
+            <help>2</help>
+            <deed>{A_nameDef} showed {FACTION}'s master builder how to raise {NAME}</deed>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>The master builder is told the colony can't spare {A_nameDef}, and goes back to {PLACE} to work it out alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>hands</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>3~5</count><pack>true</pack><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>7~12</day>
+        <message>true</message>
+        <texts>
+          <li>Laborers of {FACTION} are on the road past the colony with their tools and a pack beast, bound for the work on {NAME} at {PLACE}.</li>
+          <li>[theirLowtech] Men and women of {FACTION} with axes and coils of rope are on the road past the colony, going to raise {NAME} at {PLACE}.</li>
+        </texts>
+      </li>
+      <li>
+        <key>fall</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><ages>14~25</ages></li>
+        </effects>
+        <day>10~15</day>
+        <chance>0.5</chance>
+        <count>3~5</count>
+        <titles>
+          <li>A fall at {NAME}</li>
+        </titles>
+        <texts>
+          <li>A runner of {FACTION} is at the gate, out of breath. A scaffold came down at {NAME} this morning, and four of the builders are hurt. Their healer has used everything she had; {FACTION} ask whether the colony could send {COUNT} doses of medicine back with the runner.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} medicine</label>
+            <outcome>{COUNT} doses of medicine are carried out to the runner at the gate, who sets off back to {PLACE} at once.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for the builders of {NAME}</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent medicine to the builders of {NAME}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The colony has none to spare</label>
+            <outcome>The runner is told the colony can't spare its medicine, and goes back to {PLACE} with nothing.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>named</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} stands</li>
+        </titles>
+        <texts>
+          <li>{NAME} stands finished at {PLACE}, and {FACTION} say it is the finest thing in the region. The colony's name is cut into one of its stones, among the names of those who helped raise it.\n\nTraders are already coming to see it.</li>
+          <li>[theirEmpire] {NAME} stands finished at {PLACE}, on the day the {TITLE} set for it, and the Empire's honor is kept. The colony is named among those who helped, in the Empire's own records.</li>
+        </texts>
+        <chronicle>{NAME} was finished at {PLACE}, with the colony's name on a stone.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>finished</key>
+        <chance>0.6</chance>
+        <titles>
+          <li>{NAME} stands</li>
+        </titles>
+        <texts>
+          <li>{NAME} stands finished at {PLACE}. {FACTION} found their timber in the end, late and dear, and the town is proud of it.</li>
+          <li>[helped] {NAME} stands finished at {PLACE}. {FACTION} found the rest of what they needed in the end, and they remember that some of it came from the colony.</li>
+        </texts>
+        <chronicle>{NAME} was finished at {PLACE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>halfBuilt</key>
+        <titles>
+          <li>{NAME} left half built</li>
+        </titles>
+        <texts>
+          <li>The work on {NAME} at {PLACE} has stopped. The timber ran out before the roof was on, and {FACTION}'s laborers have gone home. It stands half built over the town, and the people of {PLACE} have stopped looking at it.</li>
+          <li>[theirLowtech] The building of {NAME} has stopped with half of it standing. {FACTION} say the season beat them; the elders say it was the timber. Either way, it stands over {PLACE} unfinished.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} was left half built.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-6</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

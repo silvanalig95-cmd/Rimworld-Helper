@@ -347,6 +347,7 @@ MODEL = {
     "Camps/Camp.cs:prey": ("while", 6, P, "while the camp stays"),
     "Camps/Camp.cs:kills": ("while", 20, P, "while the camp stays (a stay is days, not years)"),
     "Camps/Camp.cs:trees": ("while", 10, P, "while the camp stays"),
+    "Camps/CampKindsLand3.cs:caught": ("while", 2, P, "the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays"),
     "Camps/CampStory.cs:beats": ("while", 3, V, "the beats of the stay played (ask, trouble, parting), while the camp stays"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "

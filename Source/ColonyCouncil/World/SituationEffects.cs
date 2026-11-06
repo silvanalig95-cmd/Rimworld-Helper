@@ -730,4 +730,31 @@ namespace ColonyCouncil
             s.AddNum("owed", Mathf.Max(10, Mathf.RoundToInt(v / 10f) * 10));
         }
     }
+
+    /// <summary>
+    /// How it ended moves a people's fortunes at once (World/Region/RegionFortunes.cs): <see cref="amount"/> points of
+    /// prosperity at the world event's own town ({PLACE}) and half at the people's other towns in detail, with the world
+    /// event named as the cause: a war won or lost, a great work finished or left half built, a caravan robbed on the
+    /// road. With <see cref="enemy"/>, the second people's towns ({ENEMY}), all at half. Told by the ending's words.
+    /// </summary>
+    public class WorldEffect_Fortune : WorldEffect
+    {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // An ending's move, told in the ending's own words; nothing for an answer's sheet.
+        }
+
+        public float amount;
+        public bool enemy;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var s = SituationEffectUtil.Of(ctx);
+            if (s == null || !Gate(ctx)) return;
+            var people = enemy ? s.ctx.enemy : s.ctx.faction;
+            if (people == null) return;
+            int at = !enemy && s.place.kind == RefKind.Town ? s.place.id : -1;
+            RegionFortunes.Move(people, at, amount, Texts.WithThe(s.ctx.name, s.def.label));
+        }
+    }
 }
