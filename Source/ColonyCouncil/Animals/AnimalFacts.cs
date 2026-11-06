@@ -52,6 +52,19 @@ namespace ColonyCouncil
         /// <summary>What the animal is ("muffalo", "Eevee"): its kind's label.</summary>
         public static string KindLabel(Pawn a) => a?.kindDef?.label ?? a?.def?.label ?? "?";
 
+        /// <summary>What its body is written as (HerdStoryMath.BodyOf): a beast, a bird, anything else.</summary>
+        public static HerdStoryMath.HerdBody Body(Pawn a) => HerdStoryMath.BodyOf(a?.RaceProps?.body?.defName, a?.RaceProps?.Insect ?? false);
+
+        /// <summary>What the young of its kind are called ("chick", "calf"), or null (HerdStoryMath.YoungWord).</summary>
+        public static string YoungWord(Pawn a)
+        {
+            var stages = a?.kindDef?.lifeStages;
+            return HerdStoryMath.YoungWord(stages != null && stages.Count > 0 ? stages[0]?.label : null, a?.kindDef?.label);
+        }
+
+        /// <summary>Its kind hatches from eggs (an egg layer).</summary>
+        public static bool Hatches(Pawn a) => a?.def != null && a.def.HasComp(typeof(CompEggLayer));
+
         // ---------------- The herd ----------------
 
         private static bool CompNamed(Pawn a, Type t) => a?.AllComps != null && a.AllComps.Any(c => c != null && t.IsInstanceOfType(c));
@@ -59,6 +72,12 @@ namespace ColonyCouncil
         public static bool Milkable(Pawn a) => CompNamed(a, typeof(CompMilkable));
 
         public static bool Shearable(Pawn a) => CompNamed(a, typeof(CompShearable));
+
+        /// <summary>Its coat is nearly full: a shearing would find work (AnimalMath.ReadyToGather).</summary>
+        public static bool ReadyToShear(Pawn a) => a?.TryGetComp<CompShearable>() is { } c && AnimalMath.ReadyToGather(c.Fullness);
+
+        /// <summary>Its milk is nearly full: a milking would find work (AnimalMath.ReadyToGather).</summary>
+        public static bool ReadyToMilk(Pawn a) => a?.TryGetComp<CompMilkable>() is { } c && AnimalMath.ReadyToGather(c.Fullness);
 
         public static bool LaysEggs(Pawn a) => CompNamed(a, typeof(CompEggLayer));
 

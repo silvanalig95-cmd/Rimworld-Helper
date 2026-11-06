@@ -143,6 +143,24 @@ public static class ElectionTests
         Check(ElectionMath.Winner(new[] { 6, 5 }, new[] { 1f, 9f }) == 0, "the most votes win over ability");
         Check(ElectionMath.Winner(new int[0], new float[0]) == -1, "nobody, no winner");
 
+        // ---------- Every seat counted and told (the player's save, 6 November 2026) ----------
+        // Barr held keeper of days, a seat nobody else could stand for, and stood unopposed for quartermaster: counted out
+        // as a holder of a seat not voted on, nobody won quartermaster and the results left it out.
+        var outRun = ElectionMath.OutOfRunning(new[] { 7, 8 }, new HashSet<int> { 7, 3 });
+        Check(!outRun.Contains(7) && outRun.Contains(8), "a holder of a seat not voted on who stands in the election is counted; one who doesn't stand is out");
+        Check(ElectionMath.OutOfRunning(new[] { 8 }, null).Contains(8) && ElectionMath.OutOfRunning<int>(null, new HashSet<int>()).Count == 0, "with nobody standing, every holder of a seat not voted on is out");
+        Check(ElectionMath.UnvotedSeat(false, true, false) == ElectionMath.Unvoted.Kept, "an open seat nobody stood for keeps its holder, and the results say so");
+        Check(ElectionMath.UnvotedSeat(false, true, true) == ElectionMath.Unvoted.Moved && ElectionMath.UnvotedSeat(true, true, true) == ElectionMath.Unvoted.Moved,
+            "a holder voted into another seat leaves theirs empty, and the results say so");
+        Check(ElectionMath.UnvotedSeat(false, false, false) == ElectionMath.Unvoted.Empty && ElectionMath.UnvotedSeat(true, false, false) == ElectionMath.Unvoted.Empty,
+            "an empty seat nobody stood for is told as empty");
+        Check(ElectionMath.UnvotedSeat(true, true, false) == ElectionMath.Unvoted.Unsaid, "a filled seat at a by-election wasn't up: nothing said");
+        {
+            string count = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Offices", "OfficesElection.cs"));
+            string finish = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Offices", "Offices.cs"));
+            Check(count.Contains("ElectionMath.OutOfRunning(") && finish.Contains("ElectionMath.UnvotedSeat("), "the count and the results use these rules");
+        }
+
         // ---------- The defs ----------
         var defs = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).Select(f => XDocument.Load(f).Root!).ToList();
         var offices = defs.SelectMany(d => d.Elements("ColonyCouncil.OfficeDef")).ToList();

@@ -521,9 +521,10 @@ namespace ColonyCouncil
                 v[(int)PersonaAxis.Humour], v[(int)PersonaAxis.Outlook], c.outcome, first);
             bool hasSubject = c.subject != null && !c.subject.name.NullOrEmpty();
             bool hasLabel = c.memory != null && !c.memory.label.NullOrEmpty();
-            var (raw, pool) = PickLine(specific, generic, tone, tags, hasSubject, hasLabel);
+            var (raw, pool) = PickLine(specific, generic, tone, tags, hasSubject, hasLabel, Flavor.Memory.SaidBy(speaker.thingIDNumber));
             if (raw == null) return null;
             Flavor.Memory.Remember(pool, raw, pool.lines.AllLines().Count());
+            Flavor.Memory.RememberSaid(speaker.thingIDNumber, raw);
             // A fight is said aloud without its date ("remember the raid?"); the page and the log keep the full name.
             string label = FightNames.Spoken(c.memory?.label ?? "");
             string subject = FightNames.Spoken(c.subject?.name ?? "");
@@ -532,14 +533,21 @@ namespace ColonyCouncil
             return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), subject.Named("SUBJECT"), label.Named("LABEL"), topic.Named("TOPIC")).Resolve().CapitalizeFirst();
         }
 
-        private static (string line, TalkLinesDef pool) PickLine(List<TalkLinesDef> specific, List<TalkLinesDef> generic, Tone tone, HashSet<string> tags, bool hasSubject, bool hasLabel)
+        /// <summary>
+        /// A line for this turn: not one the pool gave out lately nor one the speaker said lately (<paramref name="said"/>,
+        /// LineMemory's speaker part) while another fits, then not one the speaker said, then any.
+        /// </summary>
+        private static (string line, TalkLinesDef pool) PickLine(List<TalkLinesDef> specific, List<TalkLinesDef> generic, Tone tone, HashSet<string> tags, bool hasSubject, bool hasLabel,
+            HashSet<string> said = null)
         {
             var cands = new List<(string line, float w, TalkLinesDef pool)>();
-            void From(List<TalkLinesDef> pools, bool own, bool plainToo, bool avoidRecent, float factor)
+            // 0: neither the pool's nor the speaker's recent lines; 1: not the speaker's; 2: anything.
+            int pass = 0;
+            void From(List<TalkLinesDef> pools, bool own, bool plainToo, float factor)
             {
                 foreach (var d in pools)
                 {
-                    var recent = avoidRecent ? Flavor.Memory.Recent(d) : null;
+                    var recent = pass == 0 ? Flavor.Memory.Recent(d) : null;
                     void Add(List<string> list, float f)
                     {
                         if (list == null) return;
@@ -552,6 +560,7 @@ namespace ColonyCouncil
                             if (!hasSubject && text.Contains("{SUBJECT")) continue;
                             if (!hasLabel && text.Contains("{LABEL")) continue;
                             if (recent != null && recent.Contains(text)) continue;
+                            if (pass < 2 && said != null && said.Contains(text)) continue;
                             cands.Add((text, (m == 0 ? 1f : 2.5f + 1.5f * m) * f * factor, d));
                         }
                     }
@@ -562,16 +571,17 @@ namespace ColonyCouncil
                             Add(d.lines.For(t), 0.5f);
                 }
             }
-            foreach (bool avoid in new[] { true, false })
+            for (pass = 0; pass <= 2; pass++)
             {
+                if (pass == 1 && said == null) continue;
                 cands.Clear();
-                From(specific, true, true, avoid, 2f);
-                From(generic, true, true, avoid, 1f);
+                From(specific, true, true, 2f);
+                From(generic, true, true, 1f);
                 if (cands.Count == 0)
                 {
                     // Nothing in their voice or plain: any voice, rather than silence.
-                    From(specific, false, false, avoid, 2f);
-                    From(generic, false, false, avoid, 1f);
+                    From(specific, false, false, 2f);
+                    From(generic, false, false, 1f);
                 }
                 if (cands.Count > 0) break;
             }

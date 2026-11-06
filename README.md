@@ -1249,7 +1249,8 @@ together, from five), the **chaplain** (with Ideology: keeps the colony's ideoli
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
 ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect
 them every year, voting for the skilled, the suited and the liked, friends and groups voting together, and the
-election letter has a word about each new holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+election letter names every seat: each new holder with a word on what they mean to do, a holder who keeps a seat
+nobody stood for, and the seats left empty. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 

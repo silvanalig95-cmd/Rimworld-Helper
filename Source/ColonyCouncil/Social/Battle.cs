@@ -60,8 +60,15 @@ namespace ColonyCouncil
         public static bool EnemyLingers(Faction foe, Map map) =>
             foe != null && map != null && map.mapPawns.AllPawnsSpawned.Any(x => x.Faction == foe && !x.Dead && !x.Downed && !x.IsPrisoner && x.HostileTo(Faction.OfPlayer));
 
-        /// <summary>A real threat came to this home this time (a raid, a pack, an infestation...), not a scuffle with guests or a hunt gone wrong.</summary>
-        public bool WasThreat(Map map) => countStart >= 0 && map != null && map.storyState.LastThreatBigTick >= countStart - GenDate.TicksPerDay;
+        /// <summary>When Rimfolk last sent a raid of its own here (Raids.Send), told to the storyteller or not: -1 for none.</summary>
+        public int raidSent = -1;
+
+        /// <summary>
+        /// A real threat came to this home this time (a raid, a pack, an infestation...), not a scuffle with guests or a hunt
+        /// gone wrong: the storyteller's big threat, or a raid Rimfolk sent itself (a raiders' camp's, which the storyteller
+        /// isn't told of; BondsMath.WasThreat).
+        /// </summary>
+        public bool WasThreat(Map map) => map != null && BondsMath.WasThreat(countStart, map.storyState.LastThreatBigTick, raidSent, GenDate.TicksPerDay);
 
         public void ExposeData()
         {
@@ -74,6 +81,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref fallen, "battleFallen", LookMode.Value);
             Scribe_Values.Look(ref quietHours, "quietHours");
             Scribe_Values.Look(ref kidnapped, "battleKidnapped");
+            Scribe_Values.Look(ref raidSent, "battleRaidSent", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 fighters ??= new List<Pawn>();

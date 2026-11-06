@@ -544,7 +544,7 @@ namespace ColonyCouncil
         private static string Line(ToneLines lines, Quirk q)
         {
             if (lines == null || !lines.Any || q.pawn == null || q.pawn.Dead) return null;
-            string raw = lines.Pick(ToneUtility.ToneFor(q.pawn), Flavor.TagsFor(q.pawn));
+            string raw = lines.Pick(ToneUtility.ToneFor(q.pawn), Flavor.TagsFor(q.pawn), q.pawn);
             return raw.NullOrEmpty() ? null : raw.Formatted(q.pawn.Named("PAWN"), (q.item?.label ?? "").Named("ITEM")).Resolve();
         }
 

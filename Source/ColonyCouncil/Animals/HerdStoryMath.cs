@@ -34,6 +34,39 @@ namespace ColonyCouncil
         /// <summary>Generations worth telling of: the second and every one after it, the first time each is reached.</summary>
         public static bool GenerationNews(int generation, int toldUpTo) => generation >= 2 && generation > toldUpTo;
 
+        // ---------------- Words by the animal's kind ----------------
+
+        /// <summary>What an animal's body is written as: a beast (hide, four legs), a bird, or anything else (a snake, a turtle, an insect).</summary>
+        public enum HerdBody { Beast, Bird, Other }
+
+        /// <summary>
+        /// The body an animal's words are written for, by its body's def: a bird's ("Bird"), a beast's (the four-legged
+        /// "Quadruped..." bodies and the monkey's), anything else, and an insect always so. The herd's letters said "the first
+        /// calf of spring" for a chick and "gray at the muzzle" for an old chicken (the player's save, 6 November 2026).
+        /// </summary>
+        public static HerdBody BodyOf(string bodyDefName, bool insect)
+        {
+            if (insect || string.IsNullOrEmpty(bodyDefName)) return HerdBody.Other;
+            if (bodyDefName.IndexOf("Bird", StringComparison.OrdinalIgnoreCase) >= 0) return HerdBody.Bird;
+            if (bodyDefName.IndexOf("Quadruped", StringComparison.OrdinalIgnoreCase) >= 0 || bodyDefName.IndexOf("Monkey", StringComparison.OrdinalIgnoreCase) >= 0)
+                return HerdBody.Beast;
+            return HerdBody.Other;
+        }
+
+        /// <summary>The tag a body gives the herd's journal lines: body:beast, body:bird, body:other.</summary>
+        public static string BodyTag(HerdBody body) => "body:" + body.ToString().ToLowerInvariant();
+
+        /// <summary>
+        /// What its young are called ("chick", "calf"): the label of its kind's first life stage, unless it has none or it is
+        /// only the kind's own name again. Null then, and the words say "the first born".
+        /// </summary>
+        public static string YoungWord(string firstStageLabel, string kindLabel)
+        {
+            if (string.IsNullOrWhiteSpace(firstStageLabel)) return null;
+            string w = firstStageLabel.Trim();
+            return string.Equals(w, kindLabel?.Trim(), StringComparison.OrdinalIgnoreCase) ? null : w;
+        }
+
         /// <summary>The first calf of a spring is a moment once a year, in spring.</summary>
         public static bool SpringCalf(bool spring, int year, int markedYear) => spring && year != markedYear;
 

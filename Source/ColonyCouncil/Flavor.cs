@@ -278,8 +278,34 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HashSet<string> StandingTags = LineTags.Standing;
 
-        /// <summary>The lines each pool gave out lately (see <see cref="LineMemory"/>).</summary>
+        /// <summary>The lines each pool gave out lately, and each speaker's own (see <see cref="LineMemory"/>).</summary>
         public static readonly LineMemory Memory = new LineMemory();
+
+        /// <summary>
+        /// The lines of this pool (as picked, tags removed) the speaker shouldn't say again yet: those they were given lately
+        /// (this session) and those still in their journal (read from the journal, so a load forgets none). Null for none.
+        /// </summary>
+        public static HashSet<string> OwnLines(object pool, IEnumerable<string> lines, Pawn speaker)
+        {
+            if (speaker == null || pool == null) return null;
+            var said = Memory.SaidBy(speaker.thingIDNumber);
+            HashSet<string> wrote = null;
+            var j = CouncilGameComponent.Instance?.journals?.For(speaker);
+            if (j != null && j.entries.Count > 0)
+            {
+                int stamp;
+                unchecked
+                {
+                    stamp = j.entries.Count * 397 ^ j.entries[j.entries.Count - 1].tick;
+                }
+                wrote = Memory.WrittenBy(pool, speaker.thingIDNumber, stamp, () => lines.Select(l => Strip(l)), () => j.entries.Select(e => e.text).ToList());
+            }
+            if (said == null) return wrote;
+            if (wrote == null) return said;
+            var both = new HashSet<string>(said);
+            both.UnionWith(wrote);
+            return both;
+        }
 
         /// <summary>
         /// Words that don't belong in a colony that has never seen gunpowder or electricity. Words that are only
@@ -474,7 +500,7 @@ namespace ColonyCouncil
             if (pool == null) return null;
             var tags = TagsFor(p, w);
             if (extraTags != null) foreach (var t in extraTags) if (!t.NullOrEmpty()) tags.Add(t);
-            return pool.lines.Pick(tone ?? ToneUtility.ToneFor(p), tags);
+            return pool.lines.Pick(tone ?? ToneUtility.ToneFor(p), tags, p);
         }
     }
 

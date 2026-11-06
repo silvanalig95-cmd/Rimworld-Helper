@@ -316,7 +316,7 @@ namespace ColonyCouncil
         {
             switch (p.kind)
             {
-                case PlayKind.WorkParty: return (p.tally > 0 ? "CC_Play_Why_CutShort" : "CC_Play_Why_NoWork").Translate();
+                case PlayKind.WorkParty: return (p.tally > 0 ? "CC_Play_Why_CutShort" : PlayWork.NoWorkWhy(p)).Translate();
                 case PlayKind.Hunt: return "CC_Play_Why_GotAway".Translate();
                 default: return "CC_Play_Why_CutShort".Translate();
             }

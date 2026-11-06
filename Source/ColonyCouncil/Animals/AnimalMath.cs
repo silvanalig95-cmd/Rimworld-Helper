@@ -21,6 +21,15 @@ namespace ColonyCouncil
 
         public static bool IsOld(float ageYears, float lifeExpectancy) => LifeShare(ageYears, lifeExpectancy) >= OldShare;
 
+        /// <summary>A coat or an udder this full is ready for the day's shearing or milking: the game's own job for it comes at full.</summary>
+        public const float ReadyShare = 0.9f;
+
+        /// <summary>
+        /// Ready for a shearing or a milking the next day brings (the herd's customs, HerdConditions): nearly full. The shearing
+        /// day was asked with the sheep's wool half grown, and its work party found nothing to shear (the player's save).
+        /// </summary>
+        public static bool ReadyToGather(float fullness) => fullness >= ReadyShare;
+
         // ---------------- The herd ----------------
 
         /// <summary>The herd a keeper sets their heart on: at least <paramref name="least"/> head, and always a few more than now.</summary>

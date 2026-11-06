@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What sparked a life goal, in words (Aspirations/Aspirations.cs, SparkText): one for each memory a goal can be sparked
+       by (an AspirationDef's sparks, thought:DEFNAME). It quoted the memory's label before (after "ate fine meal"). A
+       memory with no words here is "after what happened". -->
+  <CC_Asp_Spark_thought_Council_LostElection>after losing an election</CC_Asp_Spark_thought_Council_LostElection>
+  <CC_Asp_Spark_thought_Council_Soc_LeftOut>after being left out</CC_Asp_Spark_thought_Council_Soc_LeftOut>
+  <CC_Asp_Spark_thought_AttendedWedding>after a wedding</CC_Asp_Spark_thought_AttendedWedding>
+  <CC_Asp_Spark_thought_Council_LostOffice>after losing a seat on the council</CC_Asp_Spark_thought_Council_LostOffice>
+  <CC_Asp_Spark_thought_Council_GratefulStudent>after being taught well</CC_Asp_Spark_thought_Council_GratefulStudent>
+  <CC_Asp_Spark_thought_Council_Granted_Travel>after seeing something of the world</CC_Asp_Spark_thought_Council_Granted_Travel>
+  <CC_Asp_Spark_thought_Council_DecidedWithoutMe>after an idea was turned down unheard</CC_Asp_Spark_thought_Council_DecidedWithoutMe>
+  <CC_Asp_Spark_thought_SleptOutside>after a night sleeping out</CC_Asp_Spark_thought_SleptOutside>
+  <CC_Asp_Spark_thought_SleptInBarracks>after nights in the barracks</CC_Asp_Spark_thought_SleptInBarracks>
+  <CC_Asp_Spark_thought_ObservedLayingRottingCorpse>after seeing a body left to rot</CC_Asp_Spark_thought_ObservedLayingRottingCorpse>
+  <CC_Asp_Spark_thought_ObservedLayingCorpse>after seeing a body left lying</CC_Asp_Spark_thought_ObservedLayingCorpse>
+  <CC_Asp_Spark_thought_Council_Moment_TalkedMagic>after a talk about magic</CC_Asp_Spark_thought_Council_Moment_TalkedMagic>
+  <CC_Asp_Spark_thought_Council_Moment_ComparedWorkings>after comparing workings with another mage</CC_Asp_Spark_thought_Council_Moment_ComparedWorkings>
+  <CC_Asp_Spark_thought_Council_Moment_ComparedForms>after going through fighting forms with someone</CC_Asp_Spark_thought_Council_Moment_ComparedForms>
+  <CC_Asp_Spark_thought_Council_HeardAtMeeting>after having a say at the council</CC_Asp_Spark_thought_Council_HeardAtMeeting>
+  <CC_Asp_Spark_thought_Council_Health_LostPatient>after losing a patient</CC_Asp_Spark_thought_Council_Health_LostPatient>
+  <CC_Asp_Spark_thought_Council_Health_DeliveredBaby>after delivering a baby</CC_Asp_Spark_thought_Council_Health_DeliveredBaby>
+  <CC_Asp_Spark_thought_Council_Granted_ToolCabinet>after getting a place for every tool</CC_Asp_Spark_thought_Council_Granted_ToolCabinet>
+  <CC_Asp_Spark_thought_Council_Granted_SeatsForAll>after a supper with a seat for everyone</CC_Asp_Spark_thought_Council_Granted_SeatsForAll>
+  <CC_Asp_Spark_thought_Council_Granted_ChildLessons>after lessons from a grown-up</CC_Asp_Spark_thought_Council_Granted_ChildLessons>
+  <CC_Asp_Spark_thought_Council_Granted_CampEvening>after an evening at the strangers' fire</CC_Asp_Spark_thought_Council_Granted_CampEvening>
+  <CC_Asp_Spark_thought_Council_Ail_PulledThrough>after pulling a patient through</CC_Asp_Spark_thought_Council_Ail_PulledThrough>
+  <CC_Asp_Spark_thought_AteRawFood>after eating raw food</CC_Asp_Spark_thought_AteRawFood>
+  <CC_Asp_Spark_thought_AteLavishMeal>after a lavish meal</CC_Asp_Spark_thought_AteLavishMeal>
+  <CC_Asp_Spark_thought_AteFineMeal>after a fine meal</CC_Asp_Spark_thought_AteFineMeal>
+
+</LanguageData>

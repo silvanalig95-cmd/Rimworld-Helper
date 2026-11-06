@@ -764,7 +764,7 @@ namespace ColonyCouncil
             if (comp == null) return;
             if (def.journal != null && def.journal.Any)
             {
-                string raw = def.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p));
+                string raw = def.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p), p);
                 if (!raw.NullOrEmpty()) comp.journals.WriteText(p, raw.Formatted(p.Named("PAWN"), traitArg).Resolve());
             }
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, news, p));

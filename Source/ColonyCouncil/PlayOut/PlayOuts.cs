@@ -822,8 +822,10 @@ namespace ColonyCouncil
                 return "CC_Play_Why_Danger".Translate();
             if (!gathering) return null;
             // The council meeting's own rules for when people can sit down together: no other gathering on, not half
-            // the colony under arms, nobody bleeding.
-            return MeetingAttendance.WhyNotNow(map) != null ? "CC_Play_Why_Gathering".Translate().Resolve() : null;
+            // the colony under arms, nobody bleeding. Each said as it was: "something else had everyone's attention" was
+            // said for all of them (PlayOutMath.GatherWhyKey).
+            int bar = (int)MeetingAttendance.Bar(map);
+            return bar == 0 ? null : PlayOutMath.GatherWhyKey(bar).Translate().Resolve();
         }
 
         /// <summary>The pawn for one of a dilemma's or an event's people.</summary>

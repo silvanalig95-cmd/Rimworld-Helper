@@ -283,7 +283,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_ShareBed</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>to share a bed with {OTHER_nameDef}</label>
+    <label>a bed shared with {OTHER_nameDef}</label>
     <description>Partners who sleep apart would like a bed for two.</description>
     <workerClass>ColonyCouncil.WishWorker_ShareBed</workerClass>
     <lasting>true</lasting>

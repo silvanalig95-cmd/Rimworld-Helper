@@ -195,6 +195,8 @@ namespace ColonyCouncil
             LensModel.Dirty();
             SocialColumn.Reset();
             Bonds.ResetCaches();
+            // What each speaker said lately was the last game's people's (a speaker's journal is read again from this game).
+            Flavor.Memory.ForgetSpeakers();
             FightSides.Clear();
             CultureView.Reset();
             UiCache.Clear();
@@ -960,7 +962,7 @@ namespace ColonyCouncil
             w.reason = w.Format(c.reason);
             var tags = Flavor.TagsFor(requester, w);
             var lines = w.ForSomeoneElse && def.requestForOther.Any ? def.requestForOther : def.request;
-            w.quote = w.Format(lines.Pick(w.tone, tags));
+            w.quote = w.Format(lines.Pick(w.tone, tags, requester));
             if (envied != null)
             {
                 string envyLine = Flavor.FromPool("Council_Pool_MeToo", requester, w, w.tone);
@@ -995,7 +997,7 @@ namespace ColonyCouncil
 
             Speak(w.pawn, w.quote, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.WishMade,
-                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.Label, w.reason ?? "").Resolve(), w.pawn));
+                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.LabelInline, w.reason ?? "").Resolve(), w.pawn));
         }
 
         public string DescribeForLetter(Wish w)
@@ -1117,7 +1119,7 @@ namespace ColonyCouncil
                 new LookTargets(p), MessageTypeDefOf.NeutralEvent);
             Speak(p, speech, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.Petition,
-                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), p));
+                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.LabelInline).Resolve(), p));
         }
 
         // ================= Effects =================

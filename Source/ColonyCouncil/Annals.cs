@@ -184,7 +184,7 @@ namespace ColonyCouncil
             if (quit.Count > 0) Para("CC_Annals_Quit".Translate(TextUtil.JoinAnd(quit)).Resolve());
 
             // Danger and fortune
-            Para(raids == 0 ? "CC_Annals_NoRaids".Translate().Resolve() : "CC_Annals_Raids".Translate(raids).Resolve());
+            Para(raids == 0 ? "CC_Annals_NoRaids".Translate().Resolve() : Texts.CountKey("CC_Annals_Raids", raids).Translate(raids).Resolve());
             float wealth = Wealth();
             if (startWealth > 0f)
             {
@@ -197,7 +197,7 @@ namespace ColonyCouncil
             var entries = comp.chronicle.Where(e => e.tick >= yearStartTick).ToList();
             int granted = entries.Count(e => e.kind == ChronicleKind.WishGranted);
             int lapsed = entries.Count(e => e.kind == ChronicleKind.WishExpired);
-            if (granted + lapsed > 0) Para("CC_Annals_Wishes".Translate(granted, lapsed).Resolve());
+            if (granted + lapsed > 0) Para(Texts.CountKey("CC_Annals_Wishes", granted).Translate(granted, lapsed).Resolve());
             int achieved = entries.Count(e => e.kind == ChronicleKind.AmbitionAchieved);
             int failed = entries.Count(e => e.kind == ChronicleKind.AmbitionFailed || e.kind == ChronicleKind.AmbitionAbandoned);
             if (achieved + failed > 0) Para("CC_Annals_Ambitions".Translate(achieved, failed).Resolve());
@@ -206,7 +206,7 @@ namespace ColonyCouncil
                 var named = decrees.GroupBy(d => d).Select(g => g.Count() > 1 ? "CC_Annals_Times".Translate(g.Key, g.Count()).ToString() : g.Key).ToList();
                 Para("CC_Annals_Decrees".Translate(TextUtil.JoinAnd(named)).Resolve());
             }
-            if (dilemmas > 0) Para("CC_Annals_Dilemmas".Translate(dilemmas).Resolve());
+            if (dilemmas > 0) Para(Texts.CountKey("CC_Annals_Dilemmas", dilemmas).Translate(dilemmas).Resolve());
             if (traditionsBorn.Count > 0) Para("CC_Annals_TraditionsBorn".Translate(TextUtil.JoinAnd(traditionsBorn.Distinct().ToList())).Resolve());
             if (traditionsKept.Count > 0) Para("CC_Annals_TraditionsKept".Translate(TextUtil.JoinAnd(traditionsKept.Distinct().ToList())).Resolve());
             if (tiesFormed.Count > 0) Para("CC_Annals_Ties".Translate(TextUtil.JoinAnd(tiesFormed.Distinct().Take(8).ToList())).Resolve());

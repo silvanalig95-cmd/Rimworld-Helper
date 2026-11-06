@@ -262,7 +262,7 @@ namespace ColonyCouncil
             if (PlayFire.Waits(p, organizer, able)) return;
             if (!PlaySpots.TryFind(p, organizer, out var spot, out var where))
             {
-                p.waitReason = "CC_Play_Why_Place".Translate();
+                p.waitReason = PlayOutMath.PlaceWhyKey(PlaySpots.KeptByWeather(p, null)).Translate();
                 return;
             }
             // Those the place would hurt stay away (the sun on a skin that burns, the water a thalassophobe can't bear, a
@@ -445,7 +445,7 @@ namespace ColonyCouncil
                         }
                     if (!c.IsValid)
                     {
-                        p.waitReason = "CC_Play_Why_Place".Translate();
+                        p.waitReason = PlayOutMath.PlaceWhyKey(PlaySpots.KeptByWeather(p, new[] { p.to }.Concat(p.spots ?? new List<PlaySpot>()))).Translate();
                         return;
                     }
                     target = c;

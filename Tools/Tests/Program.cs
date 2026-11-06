@@ -370,6 +370,41 @@ for (int r = 0; r < 4; r++)
     Check(memory.Recent(pool).Count == 1 && !memory.IsRecent(pool, "line 2"), "a line picked again pushes out the others");
     memory.Clear();
     Check(memory.Recent(pool) == null, "cleared");
+
+    // Each speaker's own (the player's save, 6 November 2026: 24 of 630 journal lines were the writer's own again).
+    for (int i = 0; i < LineMemory.SpeakerWindow + 1; i++) memory.RememberSaid(7, "said " + i);
+    Check(memory.SaidBy(7) is { } s7 && !s7.Contains("said 0") && s7.Contains("said 1") && s7.Count == LineMemory.SpeakerWindow, "a speaker keeps out their last twenty lines, from any pool");
+    Check(memory.SaidBy(8) == null, "speakers keep their own memory");
+    string tinted = "With <color=#D09B61FF>Alo</color> on it, I'll be up in no time!";
+    Check(LineMemory.Wrote("With {OTHER_nameDef} on it, I'll be up in no time!", tinted), "a pool's line is found in the journal with its name filled in and coloured");
+    Check(LineMemory.Wrote("{OTHER_nameDef} fixed me. Good doctor.", "<color=#D09B61FF>Alo</color> fixed me. Good doctor."), "a line that begins with a name");
+    Check(LineMemory.Wrote("It's going to be fine! Grumpy, but fine.", "it's going to be fine! Grumpy, but fine."), "a line with no names, case aside");
+    Check(LineMemory.Wrote("I'm the {OFFICE}! Practiced my serious face in the washbasin tonight.", "I'm the speaker! Practiced my serious face in the washbasin tonight."),
+        "a line with a word filled in mid-sentence");
+    Check(!LineMemory.Wrote("With {OTHER_nameDef} on it, I'll be up in no time!", "With Alo on it, I'll be up in no time! Or so I hoped."), "the line's last words must end what was written");
+    Check(!LineMemory.Wrote("It's going to be fine! Grumpy, but fine.", "It's going to be fine! Grumpy, but fine. Mostly."), "a line with no names is the whole entry");
+    Check(!LineMemory.Wrote("{PAWN_nameDef} smiled.", "Alo smiled."), "a line with too few words of its own is never matched");
+    Check(LineMemory.Plain("<color=#FF0000>Red</color> and <b>bold</b>") == "Red and bold" && LineMemory.Plain("a < b") == "a < b", "rich text is passed over, other angle brackets kept");
+    var lits = LineMemory.Literals("[x]{A} met {B} at [place].", out bool openStart, out bool openEnd);
+    Check(openStart && !openEnd && lits.SequenceEqual(new[] { " met ", " at ", "." }), "a line's own words between its placeholders");
+    var pool2 = new object();
+    var journal = new List<string> { tinted, "Something else entirely happened today." };
+    int asked = 0;
+    IEnumerable<string> PoolLines()
+    {
+        asked++;
+        return new[] { "With {OTHER_nameDef} on it, I'll be up in no time!", "A fresh line that nobody has written yet, surely." };
+    }
+    var wrote = memory.WrittenBy(pool2, 7, 1, PoolLines, () => journal);
+    Check(wrote != null && wrote.Count == 1 && wrote.Contains("With {OTHER_nameDef} on it, I'll be up in no time!"), "the pool's lines still in the speaker's journal are kept out");
+    memory.WrittenBy(pool2, 7, 1, PoolLines, () => journal);
+    Check(asked == 1, "worked out again only when the journal changes");
+    Check(memory.WrittenBy(pool2, 7, 2, PoolLines, () => new List<string>()) == null && asked == 1, "an empty journal keeps nothing out");
+    Check(LineMemory.Repeats(journal, tinted) && !LineMemory.Repeats(journal, "A new day.") && !LineMemory.Repeats(null, tinted), "the very same words are never written twice while the journal holds them");
+    Check(!LineMemory.ToneDrawsAlone(1) && !LineMemory.ToneDrawsAlone(2) && LineMemory.ToneDrawsAlone(3), "a tone of one or two lines draws together with the plain lines");
+    memory.Remember(pool, "line 9", 9);
+    memory.ForgetSpeakers();
+    Check(memory.SaidBy(7) == null && memory.IsRecent(pool, "line 9"), "another game forgets the speakers, not the pools");
 }
 
 // Every room template and size, in every turn, mirrored and not.
@@ -418,6 +453,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
+        Console.WriteLine($"Checked {FellThroughTests.Run(root, Check)} things about answers that fell through in the player's save (the shearing, the sowing, the reasons told).");
+        Console.WriteLine($"Checked {SaveWordsTests.Run(root, Check)} things about the words the player's save showed untrue (counts, sparks, wishes, the chronicle, the year's letter, the officers).");
         Console.WriteLine($"Checked {BanishTests.Run(root, Check)} things about banishment by the council (the trouble, a word first, banishment only if it goes on, who dislikes and who stands by, what the colony loses, every age, the player's own case).");
         Console.WriteLine($"Checked {ScribeTests.Run(root, Check)} things about saving and loading (a collection loaded into a local and read after loading comes back empty).");
         Console.WriteLine($"Checked {VendettaTests.Run(root, Check)} things about a vendetta passed on at its avenger's death (whoever was closest, by how close they really were, never blood kin first; noted at the death; the words).");

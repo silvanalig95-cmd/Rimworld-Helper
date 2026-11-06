@@ -19,6 +19,19 @@ public static class BondsTests
             check(ok, "bonds: " + what);
         }
 
+        // ---------- A fight at home came with a real threat (the player's save: a raiders' camp's raid on day 124) ----------
+        const int Day = 60000;
+        Check(BondsMath.WasThreat(124 * Day, 124 * Day - 100, -1, Day), "the storyteller's raid makes the fight a real one");
+        Check(BondsMath.WasThreat(124 * Day + 500, 114 * Day, 124 * Day, Day), "a raid Rimfolk sent without telling the storyteller makes it a real one too");
+        Check(!BondsMath.WasThreat(124 * Day, 114 * Day, -1, Day), "no threat for ten days: a scuffle, not a victory");
+        Check(!BondsMath.WasThreat(124 * Day, 114 * Day, 120 * Day, Day), "an old raid of Rimfolk's doesn't count for a new fight");
+        Check(!BondsMath.WasThreat(-1, 124 * Day, 124 * Day, Day), "no fight counted, no victory");
+        {
+            string send = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Happenings", "HappeningHelpers.cs"));
+            int at = send.IndexOf("Notify_RaidSent(map)", StringComparison.Ordinal), told = send.IndexOf("if (ok && tellStoryteller)", StringComparison.Ordinal);
+            Check(at > 0 && told > at, "every raid Rimfolk sends is noted for the fight, before and apart from telling the storyteller");
+        }
+
         // ---------- How two get on ----------
         Check(Near(BondsMath.Affinity(0.5f, 0, 0, 0, 0, 0, 0), 0.5f), "with nothing else known, how two get on is the game's compatibility");
         Check(BondsMath.Affinity(0f, 0, 0, 0, 0, 1, 0) > 0f && BondsMath.Affinity(0f, 0, 0, 0, 0, 0, 1) < 0f, "a kind soul gets on with most people, an abrasive one with few");

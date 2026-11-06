@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The herd's journal lines by the animal's kind (Animals/HerdStory.cs): the first born of spring, hatched or born
+       ([hatched], [born]), and the old leader's last season by its body ([body:beast], [body:bird], [body:other]). They
+       stand in for the shipped lines that called a chick a calf and gave an old chicken a gray muzzle
+       (Lean/ShippedLines.cs, Retired). Written as the letter comes, before the keeper has gone down to the pens. -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_SpringKinds</defName>
+    <pool>Council_Journal_Herd_SpringCalf</pool>
+    <lines>
+      <plain>
+        <li>The first of the year born to the herd: {PET_nameDef}, to {OTHER_nameDef}. I'm going down to the pens to look, and the work can wait.</li>
+        <li>[hatched] {PET_nameDef} hatched today, the first of the year in the herd. I'm going down to see it before the work takes me.</li>
+      </plain>
+      <cheerful>
+        <li>The first of the year born to the herd, and it's a beauty, {PET_nameDef}! I'm off to the pens to grin at it like a fool.</li>
+        <li>[hatched] {PET_nameDef} is out of the egg, the first of the year! I'm off to the pens to see it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Herd_LastSeasonKinds</defName>
+    <pool>Council_Journal_Herd_LastSeason</pool>
+    <lines>
+      <plain>
+        <li>[body:beast] {PET_nameDef} is gray at the muzzle and slow to rise now. A good leader, and not much longer, I think.</li>
+        <li>[body:bird] {PET_nameDef} is ragged in the feather and slow off the roost now. A good leader, and not much longer, I think.</li>
+        <li>[body:other] {PET_nameDef} is slow in everything now. A good leader, and not much longer, I think.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+</Defs>

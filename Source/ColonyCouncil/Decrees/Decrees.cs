@@ -761,7 +761,7 @@ namespace ColonyCouncil
                 if (against * 2 < pawns.Count) continue;
                 var hater = pawns.Where(p => a.def.ReactionOf(p) == DecreeReaction.Hate).RandomElementWithFallback();
                 if (hater == null) continue;
-                string gripe = a.def.oppose.Pick(ToneUtility.ToneFor(hater), Flavor.TagsFor(hater));
+                string gripe = a.def.oppose.Pick(ToneUtility.ToneFor(hater), Flavor.TagsFor(hater), hater);
                 gripe = gripe.NullOrEmpty() ? null : gripe.Formatted(hater.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = a.def, pawn = hater, tick = now, line = gripe, repeal = true });
                 lastRequestTick = now;
@@ -777,7 +777,7 @@ namespace ColonyCouncil
                 var asker = pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Love).RandomElementWithFallback()
                             ?? pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Like).RandomElementWithFallback();
                 if (asker == null) continue;
-                string line = def.support.Pick(ToneUtility.ToneFor(asker), Flavor.TagsFor(asker));
+                string line = def.support.Pick(ToneUtility.ToneFor(asker), Flavor.TagsFor(asker), asker);
                 line = line.NullOrEmpty() ? null : line.Formatted(asker.Named("PAWN")).Resolve();
                 requests.Add(new DecreeRequest { def = def, pawn = asker, tick = now, line = line });
                 lastRequestTick = now;

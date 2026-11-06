@@ -19,9 +19,9 @@
       <li>The speaker is more persuasive (social impact and negotiation).</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} cleared {PAWN_possessive} throat at supper and the room went quiet, which surprised everyone, {PAWN_nameDef} most of all.</li>
+      <li>{PAWN_nameDef} plans to clear {PAWN_possessive} throat at the next supper and see whether the room goes quiet, which would surprise {PAWN_nameDef} most of all.</li>
       <li>{PAWN_nameDef} promises short meetings. Nobody believes it.</li>
-      <li>{PAWN_nameDef} has already been asked to settle three arguments, and settled two of them.</li>
+      <li>{PAWN_nameDef} expects to be asked to settle three arguments by the end of the week, and hopes to settle two of them.</li>
     </elected>
     <planks>
       <li><key>trust</key><when>LowTrust</when><text>{PAWN_nameDef} says the council has stopped listening, and promises meetings where everyone gets a word in.</text></li>
@@ -47,8 +47,8 @@
       <li>The marshal fights better and holds steady under fire.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} walked the wall before dark and moved two of the sandbags a hand's width to the left.</li>
-      <li>{PAWN_nameDef} has announced a drill for tomorrow at dawn, to general groaning.</li>
+      <li>{PAWN_nameDef} says the first thing {PAWN_pronoun} will do is walk the wall and move two of the sandbags a hand's width to the left.</li>
+      <li>{PAWN_nameDef} talks of drills at dawn, to general groaning.</li>
       <li>{PAWN_nameDef} wants to know where everyone sleeps, in case.</li>
     </elected>
     <planks>
@@ -71,8 +71,8 @@
       <li>The quartermaster gets better prices from traders.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} counted the stores that same evening, twice, and frowned both times.</li>
-      <li>{PAWN_nameDef} has started a ledger, and the cook is already in it.</li>
+      <li>{PAWN_nameDef} means to count the stores twice over, and expects to frown both times.</li>
+      <li>{PAWN_nameDef} wants a ledger of the stores, and says the cook will be the first name in it.</li>
       <li>{PAWN_nameDef} says the next trader is going to regret coming.</li>
     </elected>
     <planks>
@@ -96,8 +96,8 @@
       <li>The physician tends wounds and operates more skillfully.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} washed {PAWN_possessive} hands, looked around the infirmary, and started making a list.</li>
-      <li>{PAWN_nameDef} asked everyone how they were sleeping, and wrote the answers down.</li>
+      <li>{PAWN_nameDef} plans to wash {PAWN_possessive} hands, look over the sickbeds and make a list of what they lack.</li>
+      <li>{PAWN_nameDef} intends to ask everyone how they are sleeping, and write the answers down.</li>
       <li>{PAWN_nameDef} says the first rule is clean hands, and the second rule is also clean hands.</li>
     </elected>
     <planks>
@@ -120,9 +120,9 @@
       <li>The steward gets more out of recreation.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} has already asked what everyone would like for the next feast.</li>
+      <li>{PAWN_nameDef} wants to know what everyone would like for the next feast.</li>
       <li>{PAWN_nameDef} says a colony that never celebrates forgets why it bothers, and means to fix that.</li>
-      <li>{PAWN_nameDef} lit a lamp in the common room and left it burning, as a start.</li>
+      <li>{PAWN_nameDef} says a lamp should be left burning in the common room of an evening, as a start.</li>
     </elected>
     <planks>
       <li><key>spirits</key><when>LowMood</when><text>{PAWN_nameDef} says spirits are low, and promises more evenings worth staying up for.</text></li>

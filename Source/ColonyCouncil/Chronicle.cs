@@ -59,7 +59,8 @@ namespace ColonyCouncil
         {
             tick = Find.TickManager.TicksGame;
             this.kind = kind;
-            this.text = text;
+            // A line of the chronicle is a sentence: a label that leads it ("the harvest dance became a tradition") is capitalized.
+            this.text = text.CapitalizeFirst();
             pawnId = pawn?.ThingID;
             about = pawn;
         }

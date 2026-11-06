@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What the save showed
+
+*6 November 2026, version 0.106.1*
+
+- Fixed: an election could leave a seat out of its count when a candidate already held a seat nobody else could stand for, so a seat won unopposed went unfilled and a by-election followed. The results letter now names every open seat and what became of it.
+- Fixed: raids sent by a raiders' camp never counted as fights won, so they left no victory, marks, deeds or calendar day.
+- Fixed: shearing day was asked just after the sheep were shorn, a planting day found "nothing that needed doing" beside fields still waiting for seed, and a gathering called off for a fight or the weather now says so instead of a vaguer reason.
+- People no longer repeat their own words: each keeps out their own recent lines, a journal never takes the same words twice, and a mood with only one or two lines draws from the wider pool.
+- Words true to the map: a chick is not a calf, an elected officer's lines say what they mean to do instead of what never happened, a life goal's spark is said in words, and the chronicle reads as sentences without "(s)" or "ended in over", telling a conversion once.
+
 ## Hurts from everyday life
 
 *6 November 2026, version 0.106.0*

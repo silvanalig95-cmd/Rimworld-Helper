@@ -120,14 +120,28 @@ namespace ColonyCouncil
         /// <summary>Why the council can't sit down right now (danger, another gathering, half the colony under arms), or null.</summary>
         public static string WhyNotNow(Map map)
         {
-            if (map.dangerWatcher.DangerRating != StoryDanger.None || !GatheringsUtility.AcceptableGameConditionsToContinueGathering(map))
-                return "CC_MeetWait_Danger".Translate();
-            if (GatheringsUtility.AnyLordJobPreventsNewGatherings(map)) return "CC_MeetWait_Gathering".Translate();
+            switch (Bar(map))
+            {
+                case GatherBar.Danger: return "CC_MeetWait_Danger".Translate();
+                case GatherBar.Gathering: return "CC_MeetWait_Gathering".Translate();
+                case GatherBar.Drafted: return "CC_MeetWait_Drafted".Translate();
+                case GatherBar.Bleeding: return "CC_MeetWait_Bleeding".Translate();
+                default: return null;
+            }
+        }
+
+        /// <summary>What keeps people from sitting down together right now (<see cref="WhyNotNow"/>), as a kind each caller words its own way.</summary>
+        public enum GatherBar { None, Danger, Gathering, Drafted, Bleeding }
+
+        public static GatherBar Bar(Map map)
+        {
+            if (map.dangerWatcher.DangerRating != StoryDanger.None || !GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return GatherBar.Danger;
+            if (GatheringsUtility.AnyLordJobPreventsNewGatherings(map)) return GatherBar.Gathering;
             var free = map.mapPawns.FreeColonistsSpawned;
             int drafted = free.Count(p => p.Drafted);
-            if (free.Count > 0 && drafted * 2 >= free.Count) return "CC_MeetWait_Drafted".Translate();
-            if (free.Any(p => !p.Dead && p.health?.hediffSet != null && p.health.hediffSet.BleedRateTotal > 0f)) return "CC_MeetWait_Bleeding".Translate();
-            return null;
+            if (free.Count > 0 && drafted * 2 >= free.Count) return GatherBar.Drafted;
+            if (free.Any(p => !p.Dead && p.health?.hediffSet != null && p.health.hediffSet.BleedRateTotal > 0f)) return GatherBar.Bleeding;
+            return GatherBar.None;
         }
 
         /// <summary>Someone who could call the meeting to order right now.</summary>

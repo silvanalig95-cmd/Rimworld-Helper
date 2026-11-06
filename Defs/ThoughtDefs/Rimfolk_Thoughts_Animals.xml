@@ -247,7 +247,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Herd_FirstSpringCalf</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the first calf of spring</label><description>The first of the year born to the herd, all legs and surprise. I'll go down and look when the work allows.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the first born of spring</label><description>The first of the year born to the herd, new to everything. I'll go down and look when the work allows.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Contentment</li></feelings><weight>0.3</weight></li></modExtensions>
   </ThoughtDef>
 

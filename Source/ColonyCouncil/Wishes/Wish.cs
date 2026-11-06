@@ -93,6 +93,12 @@ namespace ColonyCouncil
 
         public string Label => Format(def.label, def.label).CapitalizeFirst();
 
+        /// <summary>
+        /// The label as it reads inside a sentence ("Shigeko wished for proper armor"): as written, not capitalized (a name in
+        /// it keeps its capital). <see cref="Label"/> leads a title or follows a colon.
+        /// </summary>
+        public string LabelInline => Format(def.label, def.label);
+
         public string Format(string template) => Format(template, null);
 
         /// <summary>

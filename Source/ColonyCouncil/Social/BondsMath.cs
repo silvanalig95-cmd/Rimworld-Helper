@@ -20,6 +20,17 @@ namespace ColonyCouncil
     /// </summary>
     public static class BondsMath
     {
+        // ---------------- A fight at home ----------------
+
+        /// <summary>
+        /// The fight that began at <paramref name="countStart"/> came with a real threat: the storyteller's last big threat,
+        /// or a raid Rimfolk sent itself (<paramref name="raidSent"/>, -1 for none), from a day before it on. A raiders' camp's
+        /// raid isn't told to the storyteller, so its fights were never won (no victory, no marks, no deeds: the player's
+        /// save, a raid on day 124 and the marks' last fight on day 114).
+        /// </summary>
+        public static bool WasThreat(int countStart, int lastThreatBig, int raidSent, int ticksPerDay) =>
+            countStart >= 0 && Math.Max(lastThreatBig, raidSent) >= countStart - ticksPerDay;
+
         // ---------------- How two get on ----------------
 
         /// <summary>Faith: the same faith draws two together a little; different faiths more so apart (Ideology). 1 same, -1 different, 0 not known.</summary>

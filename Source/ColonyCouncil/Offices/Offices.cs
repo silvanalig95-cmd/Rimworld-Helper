@@ -372,10 +372,13 @@ namespace ColonyCouncil
         {
             public List<Pawn> voters;
             public Pawn ruler;
+            public bool byElection;
             public List<OfficeDef> open;
             public readonly HashSet<Pawn> taken = new HashSet<Pawn>();
             public readonly HashSet<Pawn> winners = new HashSet<Pawn>();
             public readonly HashSet<string> filled = new HashSet<string>();
+            /// <summary>The office each winner was voted into, for the seats they leave (Finish).</summary>
+            public readonly Dictionary<Pawn, OfficeDef> won = new Dictionary<Pawn, OfficeDef>();
             // Someone voted out of one seat may win another seat later in the same count (the next seat on the elders'
             // bench, or a different office): who lost their place, and who lost the vote, is only known once every seat
             // is filled. <stood>: they stood for that seat again, so they wanted to keep it.
@@ -418,13 +421,15 @@ namespace ColonyCouncil
             var ballots = ruler != null ? new List<Pawn> { ruler } : voters;
             lastElectionYear = year;
             lastElectionTick = Find.TickManager.TicksGame;
-            var round = new SeatingRound { voters = voters, ruler = ruler, open = Offices.Where(o => o.OpenFor(voters.Count)).ToList() };
+            var round = new SeatingRound { voters = voters, ruler = ruler, byElection = byElection, open = Offices.Where(o => o.OpenFor(voters.Count)).ToList() };
             // A seat a colony this size doesn't need yet stays as it is.
             foreach (var office in Offices.Where(o => !o.OpenFor(voters.Count)))
                 foreach (var h in HoldersOf(office)) round.taken.Add(h);
             var text = new StringBuilder();
-            text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
-                : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
+            // A by-election with more than one seat to fill says seats.
+            string many = byElection && round.open.Sum(o => Enumerable.Range(0, o.Seats).Count(s => HolderOf(o, s) == null)) > 1 ? "Many" : "";
+            text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" + many : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
+                : (byElection ? "CC_Election_ByText" + many : "CC_Election_Text").Translate(year).Resolve());
             if (byElection)
                 foreach (var office in round.open)
                     foreach (var h in HoldersOf(office)) round.taken.Add(h);
@@ -473,6 +478,7 @@ namespace ColonyCouncil
             elected[key] = winner;
             round.taken.Add(winner);
             round.winners.Add(winner);
+            round.won[winner] = office;
             round.filled.Add(key);
             text.Append("\n\n").Append(line);
             var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
@@ -510,17 +516,47 @@ namespace ColonyCouncil
         private void Finish(CouncilGameComponent comp, SeatingRound round, string title, string text, LookTargets look)
         {
             // A seat nobody could be voted into this time (more seats than people, or none left who can do its work)
-            // keeps its holder, unless they were just voted into another one: nobody holds two.
+            // keeps its holder, unless they were just voted into another one: nobody holds two. The letter says so
+            // for every such seat, so each open seat is accounted for (ElectionMath.UnvotedSeat).
+            var seatLines = new List<string>();
+            var empty = new List<(OfficeDef office, int n)>();
             foreach (var office in round.open)
+            {
+                int emptyHere = 0;
                 for (int seat = 0; seat < office.Seats; seat++)
                 {
                     string key = Key(office, seat);
                     if (round.filled.Contains(key)) continue;
                     var holder = HolderOf(office, seat);
-                    if (holder == null || !round.winners.Contains(holder)) continue;
+                    bool left = holder != null && round.winners.Contains(holder);
+                    switch (ElectionMath.UnvotedSeat(round.byElection, holder != null, left))
+                    {
+                        case ElectionMath.Unvoted.Kept when round.ruler == null:
+                            seatLines.Add("CC_Elect_SeatKept".Translate(SeatLabel(office, seat), holder.Named("PAWN")).Resolve());
+                            break;
+                        case ElectionMath.Unvoted.Moved:
+                            var to = round.won.TryGetValue(holder, out var o) ? o : null;
+                            if (to != null) seatLines.Add("CC_Elect_SeatMoved".Translate(SeatLabel(office, seat), holder.Named("PAWN"), to.label.Named("OFFICE")).Resolve());
+                            break;
+                        case ElectionMath.Unvoted.Empty:
+                            emptyHere++;
+                            break;
+                    }
+                    if (!left) continue;
                     holders.Remove(key);
                     elected.Remove(key);
                 }
+                if (emptyHere > 0) empty.Add((office, emptyHere));
+            }
+            if (round.ruler == null && empty.Count > 0)
+            {
+                var names = empty.Select(x => x.office.Seats > 1
+                    ? "CC_Elect_BenchSeats".Translate(Number(x.n).Named("COUNT"), Find.ActiveLanguageWorker.Pluralize(x.office.label).Named("OFFICES")).Resolve()
+                    : x.office.label).ToList();
+                bool one = empty.Count == 1 && empty[0].n == 1;
+                seatLines.Add((one ? "CC_Elect_SeatEmpty" : "CC_Elect_SeatsEmpty").Translate(TextUtil.JoinAnd(names).Named("SEATS")).Resolve());
+            }
+            if (seatLines.Count > 0) text += "\n\n" + string.Join("\n\n", seatLines);
             // Who lost a seat and who lost a vote, now that every seat is filled (each once). Someone voted onto
             // another seat hasn't lost their place on the council: nothing, or a small "moved" if they stood to keep
             // the old one; someone who minds losing a vote but won a different seat only wanted that one a little more.

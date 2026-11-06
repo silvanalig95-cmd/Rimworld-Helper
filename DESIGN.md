@@ -185,8 +185,19 @@ passions, grief, recent raids, repeats, promises, petitions and triggers. Wish l
 from tagged scene pools. Tags that hold for most of a game (the era, the colony's wealth and size) only decide whether a
 line fits; they don't make it win, or a single `[lowtech]` line would take most of a tribal colony's picks for years.
 Each pool also remembers the lines it gave out lately (a third of its lines, up to twelve) and passes over them while
-another line fits, so a line doesn't come round again soon. `Tools/variety_report.py` ranks pools by how often their
-lines come round.
+another line fits, so a line doesn't come round again soon. Each speaker has a memory of their own too (`LineMemory`,
+the player's save of 6 November 2026: 24 of 630 journal lines were a writer's own earlier line, half within ten days):
+their last twenty lines from any pool, and every line of the pool still in their journal, read back from the journal
+itself (`LineMemory.Wrote`: the line's own words in order, anything where it names someone, a name's colour passed
+over), so a load forgets nothing and nothing new is saved. A pick passes over the pool's recent lines and the speaker's
+own, then the speaker's own alone (better a line someone else said lately), then takes any (`ToneLines.Pick` with its
+speaker, `Flavor.FromPool`, the conversations' `PickLine`). A journal never takes the very same words twice while it
+still holds the first (`JournalTracker.WriteText`, for lines with one wording and a thought's own words). A speaker's
+tone draws on its own lines alone only with three or more; a tone of one or two is drawn together with the plain lines
+(`LineMemory.ToneDrawsAlone`), so a one-line cheerful voice isn't every cheerful colonist's words every time.
+`Tools/variety_report.py` ranks pools by how often their lines come round, and with "own", "again" and "left" how often
+one person, the unlucky one of ten, would say their own line again within a year, with no memory and with the speaker's
+(`--by-speaker` ranks by it; some journal pools' draws are read from the save).
 
 ### Example letter
 
@@ -218,6 +229,20 @@ open wishes. Each one is "pitched" by the pawn who cares most about it:
 You pick one (or none). It shows as a checklist with progress. Completing it gives a
 colony-wide mood boost ("We built this together") and the proposer gets a bigger one.
 The pitch is the hook: it gives the plan a *face* and a story beat.
+
+### Elections: every seat accounted for
+
+An election's candidates are chosen seat by seat (the seats few can fill first, a likely winner out of the running for
+the next, nobody on more than two lists), so an open seat can end with nobody standing for it while its holder stands
+for another. Its holder keeps it unless voted into the other seat, and then it stands empty for a by-election. At the
+count, someone holding a seat that isn't voted on is out of the running only if they don't stand in this election
+(`ElectionMath.OutOfRunning`): counting them out left the seat they stood for, unopposed, with nobody to win it (the
+player's save: Barr, keeper of days, unopposed for quartermaster, was never seated, and the seat went to a by-election
+four days later). The results name every open seat (`ElectionMath.UnvotedSeat`, `Offices.Finish`): a holder who keeps a
+seat nobody stood for, a seat left empty because its holder won another, and the seats nobody stood for in one line; at a
+by-election only the empty seats were up. A by-election for more than one seat says seats. Each new holder's line in the
+results (`OfficeDef.elected`) says what they mean to do, not something done nobody saw ("says the first thing she will do
+is walk out to the gate"), since the results come as the votes are counted.
 
 ---
 
@@ -439,6 +464,10 @@ and news for turning points.
   one-line calls where the colony already notices things: a fight won and a breakdown (WorldReactions), the downed
   during a fight (quirks' hourly look), elections and the speaker's death (Offices), bonds lost (SocialWeb), vengeance
   sworn, the sick pulled through, fine work, and a daily look in the council's day for the slow ones.
+- **A fight won** is one with a real threat (`Battle.WasThreat`, `BondsMath.WasThreat`): the storyteller's big threat, or
+  a raid Rimfolk sent itself (`Raids.Send` notes it on the home's fight, `Battle.raidSent`, saved), told to the
+  storyteller or not. A raiders' camp's raid isn't told to the storyteller, so its fights were never won before: no
+  victory, no marks, no deeds, no calendar day (the player's save: the marks' last fight day 114, the camp's raid day 124).
 - **Nature picks, then scales.** The first mark of a family whose condition fits is given; the same raid hardens one
   colonist and shakes another. Nothing is random but a few small kindnesses (2 in 5 leave a mark).
 - **Rare enough to read.** `MarksMath.Blocked`: one small mark per three days, a turning point never twice within its
@@ -749,7 +778,11 @@ gives those taking part come once it's over (PlayOut/).
   so the game's parties, rituals, weddings and the council meeting can always take their people: each member gets a
   job of their own, and the tracker's 250-tick step looks after the group. A **work party** runs the game's own work
   givers (found by class: filth, hauling, repair, blueprints and frames, the dead, snow, sowing, harvest, plants to
-  cut), only for real work in the home area or near the answer's spot, nearest first; each job is followed by a small
+  cut), only for real work in the home area or near the answer's spot, nearest first: the forty nearest that could hold
+  the work at all (a cell without its crop for the sowing, a ripe plant for the harvest, an animal ready for the shears or
+  the pail: `PlayWork.MayNeed`), asked the game's own question; only the forty nearest cells were asked before, so a
+  field sown near the spot hid those still waiting for seed (the planting day's first row in the player's save). A sowing
+  whose fields were sown already says so (`CC_Play_Why_Sown`); each job is followed by a small
   queued marker job (`Council_PlayOutWorkNext`) that hands out the next one, so the vanilla job runs unchanged and
   the party ends when the time is up or the work runs out. A **walk together** gathers (a gather spot, else the open
   middle of the colony), walks out to a grave, the gate, the fields, the water or far out, stands a ring round the
@@ -773,7 +806,16 @@ gives those taking part come once it's over (PlayOut/).
   (`PlaySpots.GraveNamed`, falling back to the visit's `orTo`, which for a grave may be a long walk out), a supper for
   the three people of a story of three (`_Gathering.third`), lessons and songs with a visitor, a bowl carried out only
   when the stores have it (`_CarryOut.ifHave`). Work parties shear and milk (`WorkTask.Tend`: the game's
-  `WorkGiver_Shear` and `WorkGiver_Milk`, counted done when the animal is no longer full). What an answer says now
+  `WorkGiver_Shear` and `WorkGiver_Milk`, counted done when the animal is no longer full); a custom of the herd's year
+  that shears or milks is asked only with an animal nearly full (`HerdConditions`, `AnimalMath.ReadyToGather`, nine
+  tenths: the shearing day came a day after the sheep were shorn, and its party found nothing to shear).
+- **Why one didn't happen, said as it was.** "Something else had everyone's attention" stood for every bar to a gathering;
+  now it is said for another gathering, and a fight, half the colony under arms and someone bleeding have their own
+  words (`MeetingAttendance.Bar`, `PlayOutMath.GatherWhyKey`). A place in the open the weather kept them from is the
+  weather, not "nowhere to hold it" (`PlaySpots.KeptByWeather`, `PlayOutMath.PlaceWhyKey`). Of the save's last 30
+  answers to play out, 9 didn't: the shearing and the first row (above), two kept from a place, two by something else,
+  an organizer never free, the fire still being laid when the time ran out, nobody free; the last three are waits that
+  ran out. What an answer says now
   exists is made by `OnMapThings.cs` (pure part `OnMapMath`): `_Made` (the first of a list of things this game has
   and the colony's era allows, its quality from the maker's skill, art signed by them, a book theirs, minified; carried
   over by hand by the giver (below), or set in a corner of the one's bedroom with `inRoom`, else set down beside the
@@ -2246,6 +2288,18 @@ world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text
   `Lean/ShippedLines.cs` (its text as written, and the condition it needs, or retired when it is true in no case its pool
   is drawn for), which `Flavor.Match` asks once per line and keeps with it (`LineTags.Parsed.also`). Better words for the
   other case go in a file of their own. The tests check each is still in the defs, word for word.
+- **Words by the animal's kind.** The herd's letters and journal lines take the young's word from the kind's first life
+  stage ("the first chick of spring", `HerdStoryMath.YoungWord`; "spring's first born" for a kind with none), hatched or
+  born by whether its kind lays eggs, and old age and the leader's ways from its body (`HerdStoryMath.BodyOf`: a beast,
+  gray at the muzzle; a bird, ragged in the feather; anything else, slow in everything); the journal's tag is
+  `body:beast`, `body:bird` or `body:other`, and `hatched` or `born`.
+- **Story text in words.** A count in the chronicle, the annals and the year's letter is said in words for one and for
+  many (`Texts.CountKey`: "marked a year", "marked 2 years"), not "(s)"; a life goal's spark is said in words for each
+  memory that can spark one (`CC_Asp_Spark_thought_DEFNAME`), never the memory's label quoted; a wish in the middle of a
+  line is not capitalized (`Wish.LabelInline`), and every wish is a thing to wish for; a chronicle line begins with a
+  capital whatever label leads it (`ChronicleEntry`), and is a sentence, not a letter's label ("Known as Walled"); a
+  conversion the faith told isn't told again by the mark it leaves (`Faiths.ToldConversion`); a world event's end in the
+  year's letter is its ending's word or "is over", never the ending's key.
 
 ### Telling the player
 

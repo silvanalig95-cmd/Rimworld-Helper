@@ -345,6 +345,14 @@ namespace ColonyCouncil
         /// <summary>Good weather for being out (a fire is lit whatever the weather: that's half the point of it).</summary>
         private static bool Outside(Map map, PlayOut p) => p.kind == PlayKind.Bonfire || JoyUtility.EnjoyableOutsideNow(map);
 
+        /// <summary>A place in the open is among <paramref name="spots"/> (the open air, the water, the fields) and the weather keeps everyone in now.</summary>
+        public static bool KeptByWeather(PlayOut p, IEnumerable<PlaySpot> spots)
+        {
+            if (p?.map == null || Outside(p.map, p)) return false;
+            var list = spots ?? (p.spots.NullOrEmpty() ? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors } : p.spots);
+            return list.Any(s => s == PlaySpot.Outdoors || s == PlaySpot.Water || s == PlaySpot.Fields);
+        }
+
         /// <summary>
         /// The open air where the colony gathers: the best outdoor place of the home ground (a terrace, seats out in the
         /// open, a party spot, something good to look at; not by the machinery or on a stockpile: PlayYard.cs), else the

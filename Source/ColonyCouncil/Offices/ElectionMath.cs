@@ -309,6 +309,46 @@ namespace ColonyCouncil
             return best;
         }
 
+        /// <summary>
+        /// Out of the running at the count: whoever holds a seat this election doesn't vote on (a seat the colony is too
+        /// small for yet, a filled seat at a by-election, an open seat nobody else could stand for), unless they stand in
+        /// it. One who holds an open seat nobody stood for and runs for another may win it, and the old seat is let go
+        /// once every seat is filled (Offices.Finish), as in the instant vote. Counting them out left the seat they stood
+        /// for unopposed with nobody to win it, and out of the results (the player's save, 6 November 2026).
+        /// </summary>
+        public static HashSet<T> OutOfRunning<T>(IEnumerable<T> holdingSeatsNotVoted, ICollection<T> standing)
+        {
+            var set = new HashSet<T>();
+            if (holdingSeatsNotVoted == null) return set;
+            foreach (var p in holdingSeatsNotVoted)
+                if (p != null && (standing == null || !standing.Contains(p))) set.Add(p);
+            return set;
+        }
+
+        /// <summary>What the results say of an open seat nobody was voted into.</summary>
+        public enum Unvoted
+        {
+            /// <summary>Not up this time (a filled seat at a by-election): nothing.</summary>
+            Unsaid,
+            /// <summary>Its holder keeps it, with nobody standing for it.</summary>
+            Kept,
+            /// <summary>Its holder won another seat in this count, so it stands empty now.</summary>
+            Moved,
+            /// <summary>Nobody held it and nobody stood: it stays empty.</summary>
+            Empty
+        }
+
+        /// <summary>
+        /// An open seat nobody was voted into, in the results: every seat is accounted for (the 5502 letter named 7 of 11),
+        /// but at a by-election only the empty seats were up.
+        /// </summary>
+        public static Unvoted UnvotedSeat(bool byElection, bool held, bool holderWonAnother)
+        {
+            if (!held) return Unvoted.Empty;
+            if (holderWonAnother) return Unvoted.Moved;
+            return byElection ? Unvoted.Unsaid : Unvoted.Kept;
+        }
+
         /// <summary>The whole count reads about this many calls, however many seats it has.</summary>
         public const int CallBudget = 30;
 

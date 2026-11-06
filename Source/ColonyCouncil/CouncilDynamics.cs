@@ -62,7 +62,7 @@ namespace ColonyCouncil
             Messages.Message("CC_PromisedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechGood);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
             string act = null;
             try
             {
@@ -97,10 +97,10 @@ namespace ColonyCouncil
             }
             string line = PoolLine("Council_Pool_Refused", w.pawn, w, "CC_RefusedFallback");
             // direct: the answer to the player's click on "Refuse".
-            Messages.Message("CC_RefusedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+            Messages.Message("CC_RefusedMessage".Translate(w.pawn.Named("PAWN"), w.LabelInline.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechSour);
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, "CC_Chronicle_Refused".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, "CC_Chronicle_Refused".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
             Safe("objection", () => ResolveObjection(w, false));
             w.state = WishState.Refused;
             wishes.Remove(w);
@@ -115,7 +115,7 @@ namespace ColonyCouncil
                 foreach (var p in w.Supporters) standings.Change(p, -2f * Gentleness(p), "CC_Log_SetAside".Translate(w.Label));
             }
             AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed,
-                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 2f);
             w.state = WishState.Dismissed;
             wishes.Remove(w);
@@ -171,10 +171,10 @@ namespace ColonyCouncil
             if (line.NullOrEmpty()) line = Flavor.FromPool("Council_Pool_Objection", best, w, ToneUtility.ToneFor(best));
             line = line?.Formatted(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.other ?? w.Beneficiary).Named("ABOUT")).Resolve();
             if (line.NullOrEmpty()) return;
-            News.Post("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+            News.Post("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.LabelInline.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
                 new LookTargets(best), NewsKind.Colony, MessageTypeDefOf.SilentInput);
             Speak(best, line, SpeechSour);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), best));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.LabelInline).Resolve(), best));
         }
 
         private void ResolveObjection(Wish w, bool granted)
@@ -216,10 +216,10 @@ namespace ColonyCouncil
         private void Remind(Wish w)
         {
             var tags = Flavor.TagsFor(w.pawn, w);
-            string line = w.def.reminder.Any ? w.def.reminder.Pick(ToneUtility.ToneFor(w.pawn), tags) : null;
+            string line = w.def.reminder.Any ? w.def.reminder.Pick(ToneUtility.ToneFor(w.pawn), tags, w.pawn) : null;
             line = line != null ? w.Format(line) : PoolLine("Council_Pool_Reminder", w.pawn, w);
             if (line.NullOrEmpty()) return;
-            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_ReminderMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_ReminderMessage".Translate(w.pawn.Named("PAWN"), w.LabelInline.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
                 new LookTargets(w.pawn), MessageTypeDefOf.SilentInput);
             Speak(w.pawn, line, SpeechWish);
         }
@@ -250,13 +250,13 @@ namespace ColonyCouncil
                     Tell.Letter(NewsKind.Colony, Importance.Notable, null, "CC_SelfHelpTitle".Translate(w.pawn.Named("PAWN")).Resolve(),
                         w.Format(what.CanTranslate() ? what.Translate().ToString() : what) + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NeutralEvent, w.Worker.LookAt(w));
                     Speak(w.pawn, line, SpeechWish);
-                    AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_SelfHelp".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+                    AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_SelfHelp".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
                     return;
                 }
             }
             string call = PoolLine("Council_Pool_LastCall", w.pawn, w);
             if (call.NullOrEmpty()) return;
-            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_LastCallMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH"), TextUtil.DaysString(w.TicksLeft).Named("TIME")).Resolve()
+            Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_LastCallMessage".Translate(w.pawn.Named("PAWN"), w.LabelInline.Named("WISH"), TextUtil.DaysString(w.TicksLeft).Named("TIME")).Resolve()
                              + " \"" + TextUtil.ShortSpeech(call, 140) + "\"",
                 new LookTargets(w.pawn), MessageTypeDefOf.CautionInput);
             Speak(w.pawn, call, SpeechSour);
@@ -319,7 +319,7 @@ namespace ColonyCouncil
 
             Tone tone = ToneUtility.ToneFor(who);
             var tags = Flavor.TagsFor(who, w);
-            string thanks = w.Format(w.def.thanks.Pick(tone, tags));
+            string thanks = w.Format(w.def.thanks.Pick(tone, tags, who));
             if (thanks.NullOrEmpty()) thanks = "CC_ThanksFallback".Translate();
             string title = "CC_WishGrantedTitle".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve();
             string scene = Scene("Council_Pool_Scene_Thanks", who, w);
@@ -490,7 +490,7 @@ namespace ColonyCouncil
             }
 
             if (passedOver > 0)
-                AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_PassedOver".Translate(passedOver, who.LabelShort, w.Label).Resolve(), who));
+                AddChronicle(new ChronicleEntry(ChronicleKind.Petition, Texts.CountKey("CC_Chronicle_PassedOver", passedOver).Translate(passedOver, who.LabelShort, w.LabelInline).Resolve(), who));
 
             // The envious one's own colony: its share of the wishes and its decrees.
             var enviousColony = envious != null ? ColonyState.Of(envious) : null;
@@ -558,7 +558,7 @@ namespace ColonyCouncil
 
             Tone tone = ToneUtility.ToneFor(w.pawn);
             var tags = Flavor.TagsFor(w.pawn, w);
-            string line = w.Format(w.def.expired.Pick(tone, tags));
+            string line = w.Format(w.def.expired.Pick(tone, tags, w.pawn));
             if (w.promised)
             {
                 // The wish's own words for a promise broken (its [promised] lines) first, then the colony's general ones.
@@ -573,7 +573,7 @@ namespace ColonyCouncil
                 new LookTargets(w.pawn), NewsKind.Colony, w.promised && pen > 0f ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent);
             if (w.pawn.Spawned) Speak(w.pawn, line, w.promised ? SpeechSour : SpeechGrey);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
-                (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+                (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
             journals.Write(w.pawn, w.promised ? "Council_Journal_PromiseBroken" : "Council_Journal_Lapsed", w);
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
             w.state = WishState.Expired;
@@ -594,7 +594,7 @@ namespace ColonyCouncil
             var state = (p.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false)
                 ? DefDatabase<MentalStateDef>.GetNamedSilentFail("InsultingSpree") ?? MentalStateDefOf.Wander_Sad
                 : MentalStateDefOf.Wander_Sad;
-            string reason = w != null ? "CC_MentalReason".Translate(w.Label.Named("WISH")).Resolve() : "CC_MentalReasonGeneral".Translate().Resolve();
+            string reason = w != null ? "CC_MentalReason".Translate(w.LabelInline.Named("WISH")).Resolve() : "CC_MentalReasonGeneral".Translate().Resolve();
             bool started;
             using (WorldReactions.OwnBreak()) started = p.mindState?.mentalStateHandler?.TryStartMentalState(state, reason, false, false, true) == true;
             if (started)
@@ -864,7 +864,7 @@ namespace ColonyCouncil
             var fan = lovers.RandomElementWithFallback();
             if (fan != null)
             {
-                string line = def.support.Pick(ToneUtility.ToneFor(fan), Flavor.TagsFor(fan));
+                string line = def.support.Pick(ToneUtility.ToneFor(fan), Flavor.TagsFor(fan), fan);
                 if (!line.NullOrEmpty())
                 {
                     line = line.Formatted(fan.Named("PAWN")).Resolve();
@@ -876,7 +876,7 @@ namespace ColonyCouncil
             var critic = haters.FirstOrDefault();
             if (critic != null)
             {
-                string line = def.oppose.Pick(ToneUtility.ToneFor(critic), Flavor.TagsFor(critic));
+                string line = def.oppose.Pick(ToneUtility.ToneFor(critic), Flavor.TagsFor(critic), critic);
                 if (!line.NullOrEmpty())
                 {
                     line = line.Formatted(critic.Named("PAWN")).Resolve();
@@ -953,13 +953,13 @@ namespace ColonyCouncil
                     new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent);
                 Speak(p, line, SpeechGood);
                 GiveThought(p, CouncilDefOf.Council_Anniversary);
-                standings.Change(p, 3f, "CC_Log_Anniversary".Translate(years));
+                standings.Change(p, 3f, Texts.CountKey("CC_Log_Anniversary", years).Translate(years));
                 foreach (var friend in p.MapHeld.mapPawns.FreeColonistsSpawned)
                 {
                     if (friend == p || friend.relations == null || friend.relations.OpinionOf(p) < 20) continue;
                     GiveThought(friend, CouncilDefOf.Council_FriendAnniversary, p);
                 }
-                AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Anniversary".Translate(p.LabelShort, years).Resolve(), p));
+                AddChronicle(new ChronicleEntry(ChronicleKind.Life, Texts.CountKey("CC_Chronicle_Anniversary", years).Translate(p.LabelShort, years).Resolve(), p));
                 journals.Write(p, "Council_Journal_Anniversary", null, years.Named("YEARS"));
             }
         }

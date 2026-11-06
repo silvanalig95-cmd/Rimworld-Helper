@@ -87,7 +87,13 @@ namespace ColonyCouncil
             // or a family debt (Rimfolk_Pools_VendettaEnds.xml); a relative who takes it up, kin and close besides, has
             // words of their own in Rimfolk_Lines_VendettaCloseness.xml.
             "[kin] With {OTHER_nameDef} gone, {PAWN_nameDef} has taken up the family's oath, and the debt for {LOST} is still {FACTION}'s to pay.",
-            "[kin] It's a family debt now: {FACTION}, {LOST}, and {OTHER_nameDef}. I'll see it paid."
+            "[kin] It's a family debt now: {FACTION}, {LOST}, and {OTHER_nameDef}. I'll see it paid.",
+            // The herd's journal (Rimfolk_Pools_HerdStory.xml), found in the player's save (6 November 2026): a chick called
+            // the first calf of spring, an old chicken gray at the muzzle, and a sitting at the pens "tonight" written as the
+            // letter came, before the keeper had gone. Words by the animal's kind are in Rimfolk_Pools_HerdStory_Kinds.xml.
+            "The first calf of spring, {PET_nameDef}, born this morning to {OTHER_nameDef}. I went down to the pens to look and got no work done before noon.",
+            "First calf of the year and it's a beauty, {PET_nameDef}! I stood at the pens grinning like a fool.",
+            "I sat with {PET_nameDef} at the pens tonight. Gray at the muzzle, slow to rise. A good leader, and not much longer, I think."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;

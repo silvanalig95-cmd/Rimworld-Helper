@@ -171,12 +171,12 @@ namespace ColonyCouncil
             {
                 if (inherited) return "CC_Asp_Spark_Inherited".Translate(sparkName ?? "?").Resolve();
                 if (spark.NullOrEmpty()) return null;
-                // A memory that sparked it: say which ("after \"idea turned down\""), not just "after what happened".
+                // A memory that sparked it, in words ("after a fine meal", Rimfolk_Aspirations_Sparks.xml), not the memory's
+                // label quoted; one with no words of its own is "after what happened".
                 if (spark.StartsWith("thought:"))
                 {
-                    var td = DefDatabase<ThoughtDef>.GetNamedSilentFail(spark.Substring(8));
-                    string what = td?.stages?.FirstOrDefault(st => st != null && !st.label.NullOrEmpty())?.label ?? td?.label;
-                    if (!what.NullOrEmpty() && what.IndexOf('{') < 0) return "CC_Asp_Spark_thoughtNamed".Translate(what.UncapitalizeFirst()).Resolve();
+                    string words = "CC_Asp_Spark_thought_" + spark.Substring(8);
+                    if (words.CanTranslate()) return words.Translate().Resolve();
                 }
                 string key = "CC_Asp_Spark_" + (spark.StartsWith("thought:") ? "thought" : spark);
                 return key.CanTranslate() ? key.Translate(sparkName ?? "").Resolve() : null;
@@ -721,7 +721,7 @@ namespace ColonyCouncil
             if (lines == null || !lines.Any) return null;
             var tags = Flavor.TagsFor(p);
             if (extraTags != null) foreach (var t in extraTags) tags.Add(t);
-            string raw = lines.Pick(ToneUtility.ToneFor(p), tags);
+            string raw = lines.Pick(ToneUtility.ToneFor(p), tags, p);
             return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
         }
 

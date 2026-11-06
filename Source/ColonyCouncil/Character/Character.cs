@@ -215,7 +215,8 @@ namespace ColonyCouncil
                     string label = (Math.Abs(now) == 2 ? "CC_Ways_RenownedLabel" : "CC_Ways_KnownLabel").Translate(pole.CapitalizeFirst());
                     string text = (Math.Abs(now) == 2 ? "CC_Ways_Renowned" : "CC_Ways_Known").Translate(pole) + "\n\n" + ("CC_Ways_Meaning_" + w + (now > 0 ? "_Pos" : "_Neg")).Translate();
                     Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.NeutralEvent);
-                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, label, null));
+                    // The chronicle has a sentence, not the letter's label ("Known as Generous" stood as a line).
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, (Math.Abs(now) == 2 ? "CC_Ways_RenownedChronicle" : "CC_Ways_KnownChronicle").Translate(pole).Resolve(), null));
                 }
                 else
                 {

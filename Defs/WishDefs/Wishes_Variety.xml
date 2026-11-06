@@ -870,7 +870,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Travel</defName>
-    <label>to see something of the world</label>
+    <label>a trip out into the world</label>
     <description>After half a year inside the same walls, this colonist wants to go out with a caravan and see somewhere else.</description>
     <workerClass>ColonyCouncil.WishWorker_Travel</workerClass>
     <forbiddenBy><li>NoTravel</li></forbiddenBy>

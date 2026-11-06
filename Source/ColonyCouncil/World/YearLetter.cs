@@ -89,7 +89,7 @@ namespace ColonyCouncil
             var ended = WorldSituations.Instance?.history?.Where(r => r != null && r.endTick >= sinceTick).ToList() ?? new List<SituationRecord>();
             if (ended.Count > 0)
             {
-                var bits = ended.Take(6).Select(r => "CC_Year_WorldOne".Translate(r.Called.Named("EVENT"), EndingWord(r.ending).Named("ENDING")).Resolve()).ToList();
+                var bits = ended.Take(6).Select(r => WorldOne(r)).ToList();
                 Para("CC_Year_World".Translate(TextUtil.JoinAnd(bits).Named("LIST")).Resolve());
             }
             var ally = Allies.Of();
@@ -100,7 +100,7 @@ namespace ColonyCouncil
             if (lines.Count > 0)
             {
                 var picked = lines.Count <= 5 ? lines : Spread(lines, 5);
-                Para("CC_Year_Chronicle".Translate(lines.Count.Named("N")).Resolve() + "\n" + string.Join("\n", picked.Select(e => "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1).ToString() + ": " + e.text)));
+                Para("CC_Year_ChronicleSome".Translate().Resolve() + "\n" + string.Join("\n", picked.Select(e => "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1).ToString() + ": " + e.text)));
             }
             Para("CC_Year_Close".Translate().Resolve());
 
@@ -126,7 +126,7 @@ namespace ColonyCouncil
                         ? "CC_Year_HerdLeaderLine".Translate(leader.Named("PET"), HerdStory.Ordinal(hs.generation).Named("ORD"), hs.lineName.Named("LINE")).Resolve()
                         : "CC_Year_HerdLeader".Translate(leader.Named("PET")).Resolve()
                     : "CC_Year_HerdNoLeader".Translate().Resolve();
-                Para("CC_Year_Herd".Translate(herd.Count.Named("COUNT"), born.Named("BORN"), lead.Named("LEAD")).Resolve());
+                Para((born == 0 ? "CC_Year_HerdNoneBorn" : "CC_Year_Herd").Translate(herd.Count.Named("COUNT"), born.Named("BORN"), lead.Named("LEAD")).Resolve());
                 if (leads && hs.leaderSince >= sinceTick && hs.leaders > 1) Para("CC_Year_HerdNewLeader".Translate(leader.Named("PET")).Resolve());
                 if (leads && hs.lastSeasonTick >= 0) Para("CC_Year_HerdOld".Translate(leader.Named("PET")).Resolve());
             }
@@ -138,7 +138,7 @@ namespace ColonyCouncil
                 string stanceKey = "CC_Beast_Stance_" + rb.stance;
                 string stance = (stanceKey.CanTranslate() ? stanceKey : "CC_Beast_Stance_watched").Translate();
                 Para((rb.namedTick >= sinceTick ? "CC_Year_BeastNew" : "CC_Year_BeastStill").Translate(rb.animal.Named("PET"), AnimalFacts.KindLabel(rb.animal).Named("KIND"), stance.Named("STANCE")).Resolve());
-                if (rb.stolen > 0) Para("CC_Year_BeastStole".Translate(rb.animal.Named("PET"), rb.stolen.Named("N")).Resolve());
+                if (rb.stolen > 0) Para(Texts.CountKey("CC_Year_BeastStole", rb.stolen).Translate(rb.animal.Named("PET"), rb.stolen.Named("N")).Resolve());
             }
 
             // The neighbours settled for good, and the road.
@@ -147,7 +147,7 @@ namespace ColonyCouncil
             {
                 Para((holding.settledTick >= sinceTick ? "CC_Year_HoldingNew" : "CC_Year_Holding").Translate(holding.HoldingName.Named("NAME"), (holding.faction?.Name ?? "").Named("FACTION"),
                     holding.Here.Count.Named("COUNT"), TextUtil.DaysString(Mathf.Max(GenDate.TicksPerHour, now - Mathf.Max(0, holding.settledTick))).Named("DAYS")).Resolve());
-                if (holding.roadLoads > 0) Para("CC_Year_Road".Translate(holding.roadLoads.Named("N")).Resolve());
+                if (holding.roadLoads > 0) Para(Texts.CountKey("CC_Year_Road", holding.roadLoads).Translate(holding.roadLoads.Named("N")).Resolve());
             }
         }
 
@@ -159,12 +159,15 @@ namespace ColonyCouncil
             return picked;
         }
 
-        /// <summary>A world event's ending as a word: its own text where there is one, else the ending's key.</summary>
-        private static string EndingWord(string key)
+        /// <summary>
+        /// A world event that ended this year: "ended in" its ending's own word where it has one (CC_WS_Ending_KEY), else
+        /// that it is over. The ending's key itself is never a word ("A silver rush ended in over", the player's save).
+        /// </summary>
+        private static string WorldOne(SituationRecord r)
         {
-            if (key.NullOrEmpty()) return "CC_Year_EndingUnknown".Translate();
-            string k = "CC_WS_Ending_" + key;
-            return k.CanTranslate() ? k.Translate().ToString() : key;
+            string k = r.ending.NullOrEmpty() ? null : "CC_WS_Ending_" + r.ending;
+            if (k != null && k.CanTranslate()) return "CC_Year_WorldOne".Translate(r.Called.Named("EVENT"), k.Translate().Named("ENDING")).Resolve();
+            return "CC_Year_WorldOver".Translate(r.Called.Named("EVENT")).Resolve();
         }
     }
 }

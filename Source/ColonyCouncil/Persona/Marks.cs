@@ -269,10 +269,13 @@ namespace ColonyCouncil
             if (x.journal != null && x.journal.Any && !comp.journals.WroteWithin(p)
                 && (other == null || MarkDefs.StoryOf(def) != "Loss" || comp.journals.FirstOnLoss(p, other)))
             {
-                string raw = x.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p));
+                string raw = x.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p), p);
                 if (!raw.NullOrEmpty()) comp.journals.WriteText(p, raw.Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve());
             }
             if (x.news.NullOrEmpty() || !p.IsColonist) return;
+            // A new faith taken up through Rimfolk was told by the faith itself (Faiths.Converted): one happening, one line
+            // in the news and the chronicle (the save had fourteen lines for seven conversions); the journal line stays.
+            if (MarkDefs.FamilyOf(def) == "Converted" && Faiths.ToldConversion(p)) return;
             string text = NewsLine(def, x).Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve();
             News.Post(text, new LookTargets(p), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
             if (x.chronicle) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));

@@ -73,13 +73,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A line in this tone that fits the moment (see <see cref="Flavor"/> for tags), falling back to plain
-        /// lines and then to any line at all. Tags are stripped from the result.
+        /// lines and then to any line at all. Tags are stripped from the result. With a <paramref name="speaker"/>, never
+        /// one they said lately or still have in their journal while another fits (<see cref="Flavor.OwnLines"/>).
         /// </summary>
-        public string Pick(Tone tone, HashSet<string> context = null)
+        public string Pick(Tone tone, HashSet<string> context = null, Pawn speaker = null)
         {
-            // Not a line this bundle gave out lately, while another one fits (Flavor.Memory).
+            // Not a line this bundle gave out lately, nor one the speaker said or wrote, while another one fits (Flavor.Memory).
             var recent = Flavor.Memory.Recent(this);
-            string line = recent != null ? PickOnce(tone, context, recent) : null;
+            var own = Flavor.OwnLines(this, AllLines(), speaker);
+            string line = recent != null || own != null ? PickOnce(tone, context, Both(recent, own)) : null;
+            // Better a line the pool gave someone else lately than one the speaker said themselves.
+            if (line == null && own != null && recent != null) line = PickOnce(tone, context, own);
             if (line == null) line = PickOnce(tone, context, null);
             // Nothing fits the tags: better an untagged-looking line than silence.
             if (line == null)
@@ -88,13 +92,30 @@ namespace ColonyCouncil
                 if (all.Count == 0) all = AllLines().ToList();
                 if (all.Count > 0) line = Flavor.Strip(all.RandomElement());
             }
-            if (line != null) Flavor.Memory.Remember(this, line, AllLines().Count());
+            if (line != null)
+            {
+                Flavor.Memory.Remember(this, line, AllLines().Count());
+                if (speaker != null) Flavor.Memory.RememberSaid(speaker.thingIDNumber, line);
+            }
             return line;
+        }
+
+        private static HashSet<string> Both(HashSet<string> a, HashSet<string> b)
+        {
+            if (a == null) return b;
+            if (b == null) return a;
+            var both = new HashSet<string>(a);
+            both.UnionWith(b);
+            return both;
         }
 
         private string PickOnce(Tone tone, HashSet<string> context, HashSet<string> avoid)
         {
             var list = For(tone);
+            // A tone of fewer than three lines is drawn together with the plain ones (LineMemory.ToneDrawsAlone): one line
+            // of its own would be every such speaker's words every time.
+            bool alone = tone == Tone.Plain || LineMemory.ToneDrawsAlone(list?.Count ?? 0);
+            if (!alone && list != null && list.Count > 0 && plain != null && plain.Count > 0) list = list.Concat(plain).ToList();
             string line = null;
             // Lines written for this exact moment (a trigger, the weather, a trait) win, in the speaker's own voice first.
             if (context != null && Rand.Chance(0.85f))
@@ -103,7 +124,7 @@ namespace ColonyCouncil
                 if (line == null && Rand.Chance(0.75f)) line = Flavor.PickTagged(plain, context, avoid);
                 if (line != null) return line;
             }
-            if (list != null && list.Count > 0 && (tone == Tone.Plain || Rand.Chance(0.8f)))
+            if (list != null && list.Count > 0 && (tone == Tone.Plain || !alone || Rand.Chance(0.8f)))
                 line = Flavor.Pick(list, context, avoid);
             if (line == null && plain != null && plain.Count > 0) line = Flavor.Pick(plain, context, avoid);
             if (line == null) line = Flavor.Pick(AllLines(), context, avoid);

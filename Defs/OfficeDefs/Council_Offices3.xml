@@ -29,8 +29,8 @@
       <li>Only with Ideology, for a colony with an ideoligion of its own. Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} spent the evening at the altar, and came back looking younger.</li>
-      <li>{PAWN_nameDef} has already asked after everyone who lost someone this year, by name.</li>
+      <li>{PAWN_nameDef} means to spend an evening at prayer, and hopes to come back from it looking younger.</li>
+      <li>{PAWN_nameDef} intends to ask after everyone who lost someone this year, by name.</li>
       <li>{PAWN_nameDef} says the faith is a lamp, not a whip, and means to keep it that way.</li>
     </elected>
     <planks>
@@ -56,8 +56,8 @@
       <li>Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} went straight out to the gate to see who was there. Nobody was, but {PAWN_nameDef} waited a while anyway.</li>
-      <li>{PAWN_nameDef} has swept out a corner for guests to sit, and put a pot of water on.</li>
+      <li>{PAWN_nameDef} says the first thing {PAWN_pronoun} will do is walk out to the gate to see who is there, and wait a while if nobody is.</li>
+      <li>{PAWN_nameDef} wants a corner swept out for guests to sit in, with a pot of water always on.</li>
       <li>{PAWN_nameDef} says a stranger is only a stranger until supper.</li>
     </elected>
     <planks>
@@ -86,9 +86,9 @@
       <li>Opens once the colony has ten people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} said only that it was about time somebody asked.</li>
-      <li>{PAWN_nameDef} has already told the young ones the story about the winter of the wolves. Twice.</li>
-      <li>{PAWN_nameDef} took the seat by the fire, which everyone agrees was always {PAWN_possessive} seat anyway.</li>
+      <li>{PAWN_nameDef} says only that it was about time somebody asked.</li>
+      <li>{PAWN_nameDef} has a story about the winter of the wolves for the young ones, and means to tell it twice.</li>
+      <li>{PAWN_nameDef} will take the seat by the fire, which everyone agrees was always {PAWN_possessive} seat anyway.</li>
     </elected>
     <planks>
       <li><key>wisdom</key><when>Always</when><text>{PAWN_nameDef} says the colony has made the same mistakes twice, and would like to spare it a third time.</text></li>

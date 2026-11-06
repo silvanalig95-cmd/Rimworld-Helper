@@ -435,7 +435,7 @@ namespace ColonyCouncil
                 {
                     def = p.def,
                     proposer = p.proposer,
-                    line = (p.def.pitch.Pick(ToneUtility.ToneFor(p.proposer), Flavor.TagsFor(p.proposer)) ?? p.def.LabelCap.ToString()).Formatted(p.proposer.Named("PAWN")).Resolve()
+                    line = (p.def.pitch.Pick(ToneUtility.ToneFor(p.proposer), Flavor.TagsFor(p.proposer), p.proposer) ?? p.def.LabelCap.ToString()).Formatted(p.proposer.Named("PAWN")).Resolve()
                 }).ToList()
             };
             // Only one colonist to speak, or no way to gather: the council "meets" in passing and the letter comes at once.
@@ -1016,7 +1016,7 @@ namespace ColonyCouncil
                 var insp = h?.GetRandomAvailableInspirationDef();
                 if (insp != null && !h.Inspired) h.TryStartInspiration(insp, "CC_Ambition_Inspired".Translate(a.proposer.Named("PAWN")).Resolve());
             }
-            string line = a.proposer != null ? (a.def.achieved.Pick(ToneUtility.ToneFor(a.proposer)) ?? "").Formatted(a.proposer.Named("PAWN")).Resolve() : "";
+            string line = a.proposer != null ? (a.def.achieved.Pick(ToneUtility.ToneFor(a.proposer), null, a.proposer) ?? "").Formatted(a.proposer.Named("PAWN")).Resolve() : "";
             string text = "CC_Ambition_AchievedText".Translate(a.def.label, ((Find.TickManager.TicksGame - a.startTick) / (float)GenDate.TicksPerDay).ToString("0.#")).Resolve();
             if (!line.NullOrEmpty()) text = "\"" + line + "\"\n\n" + text;
             Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
