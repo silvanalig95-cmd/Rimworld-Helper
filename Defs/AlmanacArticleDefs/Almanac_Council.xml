@@ -342,11 +342,15 @@ What each colonist is served fits what they believe and eat. It's only what thei
     <order>6</order>
     <summary>How the colony remembers its people and its years.</summary>
     <tip>Write the year down before people start remembering it differently.</tip>
-    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. On each anniversary of the landing, the colony's best reader or talker writes the year down in one letter, and the chronicle keeps everything since the first day.</description>
+    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling), and keeps it a good while: it passes only to someone who clearly outdoes them over a season. Each colonist is known by one name. Each year since a colonist joined is marked. On each anniversary of the landing, the colony's best reader or talker writes the year down in one letter, and the chronicle keeps everything since the first day.</description>
     <sections>
       <li>
         <heading>Earning a name</heading>
-        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, sowing, repairs, meals, animals tamed, prisoners recruited and talked to, research, crafting, fires fought, patients pulled through, babies delivered, and less flattering ones like messes cleaned, things torn down, times on the operating table, times on fire or mental breaks. A name moves to someone else only when they're clearly ahead, by about 15%.
+        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, sowing, repairs, meals, animals tamed, prisoners recruited and talked to, research, crafting, fires fought, patients pulled through, babies delivered, and less flattering ones like messes cleaned, things torn down, times on the operating table, times on fire or mental breaks.
+
+A name, once earned, holds. Nobody can take it for two seasons (30 days); after that it passes only to someone who stays clearly ahead on the count (a quarter more at least) every day of a whole season (15 days) and, over that season, does half again as much of the work as the holder. A holder still at the work keeps it, and the season starts again; the one who lost a name can't take it back for a year, so a name never goes back and forth between two doctors. The second may earn a name of their own for other work (Goodhands, for patients pulled through). Losing the name they were known by, a colonist writes it once in their journal.
+
+A colonist may hold several names, but is known by one: a proud name before a dubious one, then the one held longest. It stands under their name on their card, in the Story tab and the tables, and in their death letter. The card says it in one line with what the peoples beyond the walls know them for and how far it carries ("Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."), with the other names and what the others say of them (brave, kind, a gossip) under it. The chronicle has a line when a name becomes the one someone is known by; a second name is the news and their journal. People → Renown lists everyone by their one name.
 
 Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).</text>
       </li>
@@ -905,7 +909,7 @@ Rimfolk reads the land from the biome's name and the map tile (hills, mountains,
     <order>14</order>
     <summary>How the council's choices add up to a reputation: merciful or harsh, generous or thrifty, and more.</summary>
     <tip>Turn away enough beggars and word gets around.</tip>
-    <description>Every answer to a dilemma, every decree and many granted wishes say something about who the colony is. Lean far enough one way and word spreads: the colony becomes known as merciful, thrifty, hard-working or guarded, and later renowned for it. Colonists are proud of ways that suit their nature and chafe at ways that don't. The "Our ways" page in the council window shows where the colony stands, who is proud, who chafes, and what shaped it.</description>
+    <description>Every answer to a dilemma, every decree and many granted wishes say something about who the colony is. Lean far enough one way and word spreads: the colony becomes known as merciful, thrifty, hard-working or guarded, and later renowned for it. Colonists are proud of ways that suit their nature and chafe at ways that don't. The "Our ways" page in the council window opens on the colony's one name (what it is known for and how far its name carries), then shows where the colony stands, who is proud, who chafes, and what shaped it.</description>
     <sections>
       <li>
         <heading>The five ways</heading>
@@ -923,7 +927,11 @@ Rimfolk reads the land from the biome's name and the map tile (hills, mountains,
         <heading>Earning and losing a name</heading>
         <text>Each way runs from -100 to 100. The colony is known for a way at 25 and renowned at 60, and loses the name a little below that. An answer given by default, when the council didn't decide in time, counts half.
 
-Old deeds slowly fade, so a colony can change its name: about half of a way is forgotten in a year, and the further the colony already leans, the less each new deed adds. To change it on purpose, choose the other way for a while.</text>
+Old deeds slowly fade, so a colony can change its name: about half of a way is forgotten in a year, and the further the colony already leans, the less each new deed adds. To change it on purpose, choose the other way for a while.
+
+The colony has one name. Four things say what it is known for: its ways, what its work has made it (below), its renown among the peoples (how far its name carries and for what) and what each people remembers of it. They read as one card, at the top of "Our ways" and on the colony's card in the region window: what people call the colony (its ways and what its work made it, in one list, what travelers say far and wide first) and how far its name carries, in one sentence ("People call the colony traditional, generous and walled; beyond its walls it is known for good doctors, its name talked about in the next town."); then what it comes from (the deeds behind its renown, the council's latest choices behind its ways) and what is held against it; a line for each people that remembers it, with how they stand and what they remember best; the notables who know its people; and what its name does. The Overview and the Culture tab say it the same way.
+
+When the name changes (a way or a work name gained or lost, a way known far and wide, something new it is known for beyond its walls), the chronicle has one sentence for it. A move of how far its name carries is renown's own line, with what it is known for. The letters and the news still say what each one means.</text>
       </li>
       <li>
         <heading>With the neighbors</heading>
