@@ -427,6 +427,32 @@ namespace ColonyCouncil
             return Math.Max(TakeBackLeast, Math.Min(TakeBackMost, p));
         }
 
+        /// <summary>
+        /// Why the head said no, as the key of its words (CC_TownAfter_Why_*): the heaviest of what weighed against it,
+        /// their regard of the colony, their people's goodwill, a town doing well, the years it has stood on its own, how
+        /// much it has grown; else that they would keep what they have built.
+        /// </summary>
+        public static string TakeBackWhy(int regard, int goodwill, float prosperity, float years, float grown)
+        {
+            var against = new List<(string key, float weight)>
+            {
+                ("Regard", -0.30f * Clamp(regard, -100, 100) / 100f),
+                ("Goodwill", -0.25f * Clamp(goodwill, -100, 100) / 100f),
+                ("Thriving", prosperity >= 0f ? -0.30f * (50f - Math.Max(0f, Math.Min(100f, prosperity))) / 50f : 0f),
+                ("Years", 0.10f * Math.Max(0f, Math.Min(5f, years))),
+                ("Grown", 0.35f * Math.Max(0f, Math.Min(1f, grown)))
+            };
+            string best = "Own";
+            float most = 0.05f;
+            foreach (var (key, weight) in against)
+                if (weight > most)
+                {
+                    best = key;
+                    most = weight;
+                }
+            return best;
+        }
+
         /// <summary>Up to this many of the town's other people choose to come with it.</summary>
         public const int MaxJoiners = 3;
 

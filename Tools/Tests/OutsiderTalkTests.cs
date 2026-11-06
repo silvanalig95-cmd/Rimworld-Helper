@@ -301,7 +301,9 @@ public static class OutsiderTalkTests
         // A hamlet under the colony's protection (World/Region/HamletFacts.cs).
         "HAMLET", "HAMLETWORD", "HAMLETPEOPLE",
         // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs).
-        "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION"
+        "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION",
+        // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over.
+        "OLDCOLONY", "YEARSSINCE"
     };
 
     private static int Library(string root, Action<bool, string> C0)

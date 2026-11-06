@@ -23,6 +23,8 @@ namespace ColonyCouncil
             Posts(s, f);
             // The colony's hamlet (World/Region/HamletFacts.cs).
             HamletTags(s, f);
+            // A town the colony was (Colonies/TownAfterFacts.cs).
+            FormerTags(s, f);
             // A raiders' camp or a ruin near the colony, what brought a traveller, their town on old walls, a town of theirs
             // given up lately, a world event at their town (World/Region/RegionNearFacts.cs).
             Near(s, f);

@@ -173,6 +173,9 @@ public static class TownAfterTests
             "never sure either way");
         C(FormerMath.Grown(40f, 70f, 0) > FormerMath.Grown(40f, 45f, 0) && FormerMath.Grown(40f, 30f, 1) == 0.25f && FormerMath.Grown(-1f, 80f, 0) == 0f,
             "how much it has grown: its fortune over what it started with, and towns of its own");
+        C(FormerMath.TakeBackWhy(-60, 80, 50f, 0f, 0f) == "Regard" && FormerMath.TakeBackWhy(50, 80, 90f, 0f, 0f) == "Thriving"
+          && FormerMath.TakeBackWhy(50, 80, 50f, 4f, 0f) == "Years" && FormerMath.TakeBackWhy(50, 80, 50f, 0f, 0.9f) == "Grown" && FormerMath.TakeBackWhy(60, 90, 40f, 0f, 0f) == "Own",
+            "a no says why: the heaviest of what weighed against it, else that they would keep what they built");
         var who = FormerMath.Joiners(new List<float> { 10f, 60f, 30f, 90f, 40f, 25f });
         C(who.SequenceEqual(new[] { 3, 1, 4 }) && FormerMath.MaxJoiners == 3, "up to three of its other people choose to come, the most willing first");
         C(FormerMath.Joiners(new List<float> { 0f, 24f }).Count == 0, "none below the line");

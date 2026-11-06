@@ -106,6 +106,20 @@ namespace ColonyCouncil
             Changed();
         }
 
+        /// <summary>
+        /// A colony's record stands again: a town the colony was, taken back by its people's word, is the same settlement
+        /// under the same key (Colonies/TownTakeBack.cs).
+        /// </summary>
+        public static void ReopenColony(int key)
+        {
+            var r = ColonyRecord(key);
+            if (r == null || r.Standing) return;
+            r.end = ColonyEnd.None;
+            r.endedAt = -1;
+            r.left = -1;
+            Changed();
+        }
+
         private void FoldColonies()
         {
             int i;

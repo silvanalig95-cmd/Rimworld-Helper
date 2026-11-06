@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The town a colony was, after the hand-over (Source/ColonyCouncil/Colonies/TownsAfter.cs, TownTakeBack.cs).
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml), extended here: their own words in the answer to a letter of
+      the purpose "takeback" (the colony asking for the town back): warm, cordial or cool when they agree (the town may be
+      the colony's home again from the day the answer reaches it), refusal when they won't. By their ways only
+      theirLowtech and theirHightech; call for an answer by comms.
+    - Rimfolk_Pool_TownLetter: its head's letter to the colony, in the voice of someone who was the colony's speaker or,
+      later, of a head who knows the colony from the town's own memory. Tags: the town's fortune (struggling poor steady
+      thriving flourishing), the age the colony had at the hand-over (tribal medieval industrial spacer), former (the head
+      was one of the colony's own) or new (a head of the town's own), years (a year or more since), asks (one of the
+      town's former people asks after someone of theirs in the colony: {ASKER} asks after {KIN}). Placeholders: {HEAD},
+      {TOWN}, {OLDCOLONY} (the colony it was), {YEARSSINCE} ("two years"), {COLONY} (the colony's seat now), {PEOPLE}.
+      Each line is what the head writes; it says nothing the game doesn't hold.
+    - Rimfolk_Pool_TownHomecoming: the bubbles when one of the town's former people comes home and the one they came
+      home to meets them, face to face: welcome (the colonist), back (the one come home). One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_TakeBack</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <li>[takeback,warm] We talked it over at the long table, the way you taught us, and the answer is yes. Come home.</li>
+        <li>[takeback,warm,theirLowtech] The fire was yours before it was ours. Come and sit at it again.</li>
+        <li>[takeback,warm,theirHightech] Approved by everyone who voted. The place is yours again whenever you are ready.</li>
+        <li>[takeback,cordial] We have thought about it, and we agree. The place was yours first, and it can be yours again.</li>
+        <li>[takeback,cordial,call] Yes. Come and take it over; we will open the gates.</li>
+        <li>[takeback,cordial,theirLowtech] The elders say it is right. What was handed on can be handed back.</li>
+        <li>[takeback,cool] Very well. It has been hard going on our own, and we will not pretend otherwise.</li>
+        <li>[takeback,cool,theirHightech] Agreed. Running the place alone costs more than we have.</li>
+        <li>[takeback,refusal] No. You handed it to us, and we have made it ours.</li>
+        <li>[takeback,refusal,theirLowtech] A gift given is not taken back. The fire stays with us.</li>
+        <li>[takeback,refusal,theirHightech] Declined. The town runs itself now, and its people want it that way.</li>
+        <li>[takeback,refusal,call] I'm sorry, but no. People here are proud of what they've built.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TownLetter</defName>
+    <lines>
+      <plain>
+        <!-- The colony's days remembered, by a head who was one of the colony's own -->
+        <li>[former] We still hold our meetings at the long table in the evening, the way we did when this was {OLDCOLONY}.</li>
+        <li>[former] Some days I still catch myself thinking of {TOWN} as {OLDCOLONY}, and of all of you as down the hall.</li>
+        <li>[former] The rooms here still go by the names they had in the colony's days, and nobody has thought to change them.</li>
+        <li>[former,years] It has been {YEARSSINCE} since we stood together and handed {OLDCOLONY} over. It does not feel that long.</li>
+        <li>[former,tribal] We keep the old fire as you kept it, and the young ones ask for the stories of when we were all one band.</li>
+        <li>[former,medieval] The charter you left us hangs in the hall, and we read it out on the day it was given.</li>
+        <li>[former,industrial] The town charter is framed by the door of the meeting room, and nobody has let the dust settle on it.</li>
+        <li>[former,spacer] The administration runs on the old colony's systems still, patched where they wore through.</li>
+        <!-- A head of the town's own, who knows the colony from the town's memory -->
+        <li>[new] The older ones here talk about {OLDCOLONY} as if it were yesterday. I hope we do it credit.</li>
+        <li>[new,years] It is {YEARSSINCE} since {OLDCOLONY} became {TOWN}, and the people here still speak of you as kin of the place.</li>
+        <!-- The town's own news, by its fortune -->
+        <li>[struggling] I will not pretend it is easy here. Times are hard, and some nights the hall is very quiet.</li>
+        <li>[struggling] We are getting by, just, and I think of the colony's stores more often than I would like to admit.</li>
+        <li>[poor] It has been a lean season, but nobody has gone hungry yet.</li>
+        <li>[steady] Things are steady here. The fields are in, the roofs hold, and the quarrels are small ones.</li>
+        <li>[thriving] {TOWN} is doing well. There are new faces at the table, and we have had to build on.</li>
+        <li>[flourishing] I never thought I would write this, but {TOWN} is doing better than {OLDCOLONY} ever did. You would hardly know the place.</li>
+        <!-- Someone of the town's former people asking after their own in the colony -->
+        <li>[asks] {ASKER} asks after {KIN} every time a letter goes out, so: how is {KIN}?</li>
+        <li>[asks] {ASKER} sends {KIN} their love, and wants to hear how {KIN} is getting on.</li>
+        <li>[asks,former] {ASKER} made me promise to write that {KIN} is missed here, more than {KIN} knows.</li>
+        <!-- Any head, any time -->
+        <li>Write when you can. Letters from {COLONY} are read out at supper, every word of them.</li>
+        <li>If your caravans come this way, the gates of {TOWN} are open to them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TownHomecoming</defName>
+    <lines>
+      <plain>
+        <li>[welcome] You came home.</li>
+        <li>[welcome] I hoped you would come back.</li>
+        <li>[welcome] There is a place at the table for you.</li>
+        <li>[welcome] Look at you, back where you belong.</li>
+        <li>[welcome] I kept asking every traveler about you.</li>
+        <li>[welcome] Welcome home, it has not been the same without you.</li>
+        <li>[back] I missed this place more than I knew.</li>
+        <li>[back] It is good to be home.</li>
+        <li>[back] I kept thinking about you all, every day.</li>
+        <li>[back] The road back felt shorter than the road away.</li>
+        <li>[back] They send their love from the town.</li>
+        <li>[back] I am staying this time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

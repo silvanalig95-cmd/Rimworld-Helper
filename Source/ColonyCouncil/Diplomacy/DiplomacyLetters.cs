@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
             p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p)
-            || FealtyLetters.Owns(p);
+            || FealtyLetters.Owns(p) || TownLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -48,6 +48,8 @@ namespace ColonyCouncil
             if (!Owns(p) || n == null) return null;
             // Fealty sworn to their people (release 2c.2, FealtyLetters.cs).
             if (FealtyLetters.Owns(p)) return FealtyLetters.WhyNot(n, Home);
+            // A town the colony was asked for back (stage 3 release 2b, Colonies/TownTakeBack.cs).
+            if (TownLetters.Owns(p)) return TownLetters.WhyNot(n, Home);
             if (RansomLetters.Owns(p)) return RansomLetters.WhyNot(n, p, Home);
             // A match proposed (release 2b.2, MatchLetters.cs).
             if (MatchLetters.Owns(p)) return MatchLetters.WhyNot(n, Home);
@@ -71,6 +73,7 @@ namespace ColonyCouncil
         {
             if (p == LetterPurpose.Favour) return Topics(n);
             if (FealtyLetters.Owns(p)) return FealtyLetters.Topics(n, Home);
+            if (TownLetters.Owns(p)) return TownLetters.Topics(n);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
             if (MatchLetters.Owns(p)) return MatchLetters.Topics(n, Home);
             if (WardLetters.Owns(p)) return WardLetters.Topics(n, Home);
@@ -361,6 +364,12 @@ namespace ColonyCouncil
                 if (WardLetters.Owns(l.purpose))
                 {
                     a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
+                // A town the colony was asked for back (stage 3 release 2b): their yes or no.
+                if (TownLetters.Owns(l.purpose))
+                {
+                    a.line = TownLetters.Read(l, n, ref tone);
                     return a;
                 }
                 // Fealty (release 2c.2): their answer to the colony's oath offered, and their lord's coming.

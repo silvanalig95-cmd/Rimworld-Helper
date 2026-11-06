@@ -221,5 +221,14 @@
   <CC_Form_HandOver_Industrial_Rite>the old flag lowered</CC_Form_HandOver_Industrial_Rite>
   <CC_Form_HandOver_Spacer>the codes handed over</CC_Form_HandOver_Spacer>
   <CC_Form_HandOver_Spacer_Rite>a charter registered</CC_Form_HandOver_Spacer_Rite>
+  <!-- Coming back (stage 3, Colonies/TownTakeBack.cs): a town the colony was, its home again by its people's word; the word is the colony's, the rite the town's way of it. -->
+  <CC_Form_Back_Tribal>two fires one again</CC_Form_Back_Tribal>
+  <CC_Form_Back_Tribal_Rite>the old fire carried back to the colony's</CC_Form_Back_Tribal_Rite>
+  <CC_Form_Back_Medieval>the charter returned and the oaths renewed</CC_Form_Back_Medieval>
+  <CC_Form_Back_Medieval_Rite>the old charter read again in the hall</CC_Form_Back_Medieval_Rite>
+  <CC_Form_Back_Industrial>a merger signed</CC_Form_Back_Industrial>
+  <CC_Form_Back_Industrial_Rite>the township's flag taken down</CC_Form_Back_Industrial_Rite>
+  <CC_Form_Back_Spacer>the charter dissolved</CC_Form_Back_Spacer>
+  <CC_Form_Back_Spacer_Rite>the registries merged</CC_Form_Back_Spacer_Rite>
 
 </LanguageData>

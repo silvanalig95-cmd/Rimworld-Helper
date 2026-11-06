@@ -843,7 +843,8 @@ namespace ColonyCouncil
             var rec = new LedgerFormer
             {
                 key = s.ID, people = people, colonyName = colonyName, age = plan.age, founded = founded, handedAt = now, terms = plan.terms, second = second,
-                formers = free.ToList(), wentTo = plan.where == HandOverWhere.Home ? plan.toHome : HomesMath.None, layout = layout, seed = HandOverMath.Seed(wealth, heads)
+                formers = free.ToList(), wentTo = plan.where == HandOverWhere.Home ? plan.toHome : HomesMath.None, layout = layout, seed = HandOverMath.Seed(wealth, heads),
+                tile = s.Tile.tileId
             };
             WorldLedger.AddFormer(rec);
             foreach (var p in free) WorldLedger.Keep(p, KeepFor.Former, false);
@@ -1042,7 +1043,7 @@ namespace ColonyCouncil
             foreach (var r in WorldLedger.Formers)
             {
                 if (r == null || r.bondEnded || r.people == null) continue;
-                if (!HandOverMath.BondEnds(r.people.HostileTo(Faction.OfPlayer), false)) continue;
+                if (!HandOverMath.BondEnds(r.people.HostileTo(Faction.OfPlayer), r.end == TownEnd.Beaten)) continue;
                 r.bondEnded = true;
                 r.bondEndedAt = now;
                 WorldLedger.FormerChanged();

@@ -43,6 +43,23 @@ namespace ColonyCouncil
             Changed();
         }
 
+        /// <summary>A town the colony was is the colony's own again (taken back by its people's word): its notables are let go, its former people colonists again.</summary>
+        public void TownGoneOver(int town)
+        {
+            if (town < 0) return;
+            foreach (var n in notables.Where(n => n != null && n.town == town).ToList()) Drop(n);
+            NoteTowns();
+            Changed();
+        }
+
+        /// <summary>One of a town the colony was's former people came home: no longer one of its notables (the place is filled from its former people first).</summary>
+        public void LetGoOf(Pawn p)
+        {
+            if (p == null) return;
+            foreach (var n in notables.Where(n => n != null && n.pawn == p && HandOvers.IsFormerTown(n.town)).ToList()) Drop(n);
+            Changed();
+        }
+
         /// <summary>Someone is one of the neighbours by name already.</summary>
         public bool IsNotable(Pawn p) => p != null && notables.Any(n => n != null && n.pawn == p);
 

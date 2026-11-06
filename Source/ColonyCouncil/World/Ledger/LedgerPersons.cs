@@ -86,6 +86,8 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
+            // A people the game let go (a town the colony was, taken back): no reference left that can't be found on load.
+            if (Scribe.mode == LoadSaveMode.Saving && people != null && Find.FactionManager != null && !Find.FactionManager.AllFactionsListForReading.Contains(people)) people = null;
             Scribe_Values.Look(ref id, "id", -1);
             Scribe_Values.Look(ref name, "name");
             Scribe_References.Look(ref people, "people");

@@ -33,6 +33,38 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// A trader caravan of a town the colony was (Colonies/TownsAfter.cs): its Trader, a face the colony knows, is the one
+    /// who trades, in place of a stranger the game would make for it (a prefix on the trader group's own making of its
+    /// trader, for these peoples only, while the Trader is free at home in the world). The rest of the caravan, its goods,
+    /// carriers and guards are the game's own.
+    /// </summary>
+    [HarmonyPatch(typeof(PawnGroupKindWorker_Trader), "GenerateTrader")]
+    public static class Patch_TownTrader
+    {
+        public static bool Prefix(PawnGroupMakerParms parms, TraderKindDef traderKind, ref Pawn __result)
+        {
+            if (!RimfolkPatches.On || parms?.faction == null || parms.inhabitants || traderKind == null || !HandOverPeoples.IsOurs(parms.faction)) return true;
+            try
+            {
+                var p = TownsAfter.TraderFor(parms.faction);
+                if (p?.mindState == null) return true;
+                p.mindState.wantsToTradeWithColony = true;
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(p, true);
+                if (p.trader == null) return true;
+                p.trader.traderKind = traderKind;
+                parms.points -= p.kindDef?.combatPower ?? 0f;
+                __result = p;
+                return false;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("town after: the town's trader", e);
+                return true;
+            }
+        }
+    }
+
     /// <summary>The game's power step (the settlement's generators and conduits) stands down for a town made from the colony's layout, whose own power lines are kept.</summary>
     [HarmonyPatch(typeof(GenStep_Power), nameof(GenStep_Power.Generate))]
     public static class Patch_TownLayoutPower

@@ -42,6 +42,8 @@ namespace ColonyCouncil
         /// <summary>The bond in goodwill is over (a war between them, or a taking by force), and when.</summary>
         public bool bondEnded;
         public int bondEndedAt = -1;
+        /// <summary>The town's tile (its id on the surface), to know what stands there once its settlement is gone.</summary>
+        public int tile = -1;
         /// <summary>The colony as it was left (Colonies/TownLayout.cs), placed when the town's map is made; null when none was kept.</summary>
         public LedgerLayout layout;
         /// <summary>The town's fortune at the hand-over: how much it has grown since weighs on the colony's letter asking it back.</summary>
@@ -105,6 +107,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref wentTo, "wentTo", HomesMath.None);
             Scribe_Values.Look(ref bondEnded, "bondEnded");
             Scribe_Values.Look(ref bondEndedAt, "bondEndedAt", -1);
+            Scribe_Values.Look(ref tile, "tile", -1);
             Scribe_Deep.Look(ref layout, "layout");
             Scribe_Values.Look(ref seed, "seed", -1f);
             Scribe_Values.Look(ref lastLetter, "lastLetter", -1);

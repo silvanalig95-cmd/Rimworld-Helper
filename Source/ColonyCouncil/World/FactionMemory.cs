@@ -230,6 +230,10 @@ namespace ColonyCouncil
             ["slain"] = K(DeedSide.Wrong, 4, 2f, 30),
             ["townAttacked"] = K(DeedSide.Wrong, 25, 3f),
             ["townDestroyed"] = K(DeedSide.Wrong, 45),
+            // A town the colony was, handed over and then taken back by force (Colonies/TownTakeBack.cs): a heavy wrong
+            // to its people, and to every people of the same faith.
+            ["townTaken"] = K(DeedSide.Wrong, 45),
+            ["townTakenFaith"] = K(DeedSide.Wrong, 20),
             ["polluted"] = K(DeedSide.Wrong, 6, 15f, 20),
             ["questFailed"] = K(DeedSide.Wrong, 8),
             ["missionFailed"] = K(DeedSide.Wrong, 6),
@@ -561,7 +565,8 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            if (Scribe.mode == LoadSaveMode.Saving) deeds.RemoveAll(d => d == null || d.faction == null);
+            // A people the game let go (a temporary one, removed) leaves nothing behind that can't be found on load.
+            if (Scribe.mode == LoadSaveMode.Saving) deeds.RemoveAll(d => d == null || d.faction == null || Find.FactionManager != null && !Find.FactionManager.AllFactionsListForReading.Contains(d.faction));
             Scribe_Collections.Look(ref deeds, "deeds", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref situationsRead, "situationsRead", -1);

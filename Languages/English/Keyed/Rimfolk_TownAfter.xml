@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The town a colony was, after the hand-over (Source/ColonyCouncil/Colonies/TownsAfter.cs, TownTakeBack.cs,
+    TownLayout.cs; docs/design/stage3-many-colonies.md, section 2, release 2b): the town's map as the colony was left, its
+    head's letters, its days, homecomings, asking for it back by letter and taking it back, and taking it by force. No
+    countdowns: the letters and asks say what is so, never how long is left.
+  -->
+
+  <!-- Settings: Many colonies -->
+  <CC_Settings_TownLife>The town's life</CC_Settings_TownLife>
+  <CC_Settings_TownLife_Tip>A town the colony was, once handed over: its head writes to the colony now and then (a season apart at least), with news of the town and the colony's days remembered; when a trader caravan of theirs comes, the town's trader comes as the one who trades; it keeps the colony's founding day and the day of the hand-over and invites the colony to one of them a year at most; and one of its former people may ask to come home (never the head; once a season from each town at most), when their spouse, child or close friend is in the colony or their town is in hard times. A colonist with a spouse, child or close friend in the town may ask the council to go and live there. Off: none of this comes; the kept layout, asking for it back and taking it back by force go on as always.</CC_Settings_TownLife_Tip>
+  <CC_SetNote_TownLife>A town the colony was writes, sends its trader, invites the colony to its days and lets its people come home.</CC_SetNote_TownLife>
+
+  <!-- The letter purpose (World/NeighbourLetters.cs): to the head of a town the colony was only -->
+  <CC_Letter_Purpose_TakeBack>asking for the town back</CC_Letter_Purpose_TakeBack>
+  <CC_Letter_PurposeCap_TakeBack>Asking for the town back</CC_Letter_PurposeCap_TakeBack>
+  <CC_TownAfter_Topic>Asking for {TOWN} back, to be the colony's home again</CC_TownAfter_Topic>
+
+  <!-- Why it can't be asked or taken now -->
+  <CC_TownAfter_Why_Off>Handing over is off in the settings.</CC_TownAfter_Why_Off>
+  <CC_TownAfter_Why_NotHead>Only the head of a town the colony was, still its people's, can be asked for it back.</CC_TownAfter_Why_NotHead>
+  <CC_TownAfter_Why_NoHead>The colony knows nobody who heads the town now to write to.</CC_TownAfter_Why_NoHead>
+  <CC_TownAfter_Why_War>{PEOPLE} are at war with the colony, and would not hear of it.</CC_TownAfter_Why_War>
+  <CC_TownAfter_Why_Agreed>{TOWN} has agreed already: take it back from its card or their letter.</CC_TownAfter_Why_Agreed>
+  <CC_TownAfter_Why_Lately>The colony asked for {TOWN} back within the year; a second letter so soon would not be taken well.</CC_TownAfter_Why_Lately>
+  <CC_TownAfter_Why_Limit>The game allows {COUNT} colonies, and the colony has that many already (Options, Gameplay).</CC_TownAfter_Why_Limit>
+  <CC_TownAfter_Why_NotAgreed>Their head has not agreed to it, or their answer has not reached the colony yet.</CC_TownAfter_Why_NotAgreed>
+
+  <!-- Their answer (the letter's own lines; their own words are the letters' pool's, takeback: Rimfolk_Lines_TownAfter.xml) -->
+  <CC_TownAfter_Ans_Moot>{NAME} writes that there is nothing to answer now: things have changed between the town and the colony since the letter was written.</CC_TownAfter_Ans_Moot>
+  <CC_TownAfter_Ans_Yes>{NAME} and the people of {TOWN} agree: {TOWN} may be the colony's home again, as {COLONY} was. Its gates are open to the colony from the day this answer reaches it.</CC_TownAfter_Ans_Yes>
+  <CC_TownAfter_Ans_No>{NAME} and the people of {TOWN} will not give it up.</CC_TownAfter_Ans_No>
+  <CC_TownAfter_No_Regard>{NAME} does not think well enough of the colony to put the town in its hands.</CC_TownAfter_No_Regard>
+  <CC_TownAfter_No_Goodwill>Their people do not trust the colony enough for that.</CC_TownAfter_No_Goodwill>
+  <CC_TownAfter_No_Thriving>{TOWN} is doing well on its own, and its people see no need.</CC_TownAfter_No_Thriving>
+  <CC_TownAfter_No_Years>{TOWN} has stood on its own for {YEARS} years, and its people are used to it.</CC_TownAfter_No_Years>
+  <CC_TownAfter_No_Grown>{TOWN} has grown since the colony left it, and its people would keep what they have built.</CC_TownAfter_No_Grown>
+  <CC_TownAfter_No_Own>Its people would rather keep the town their own.</CC_TownAfter_No_Own>
+
+  <!-- Their yes has reached the colony: the question -->
+  <CC_TownAfter_AskBackLabel>{TOWN} agrees</CC_TownAfter_AskBackLabel>
+  <CC_TownAfter_AskBackText>{HEAD} and {PEOPLE} agree: {TOWN} may be the colony's home again, {FORM}. Taken back, the settlement is the colony's and its map is made as the colony left it, and a few of its other people may choose to come with it.</CC_TownAfter_AskBackText>
+  <CC_TownAfter_AskBackFormers>Its former colonists there come back as colonists: {NAMES}.</CC_TownAfter_AskBackFormers>
+  <CC_TownAfter_AskBackLast>It is the last town of {PEOPLE}: with it gone, they are no longer a people of their own.</CC_TownAfter_AskBackLast>
+  <CC_TownAfter_AskBackWhen>Take it back now, or later from the town's card.</CC_TownAfter_AskBackWhen>
+  <CC_TownAfter_AskBackNoLayout>Rimfolk kept no layout of {TOWN} (it was handed over before the layout was kept), so its map is made the game's way.</CC_TownAfter_AskBackNoLayout>
+  <CC_TownAfter_Choice_Take>Take {TOWN} back</CC_TownAfter_Choice_Take>
+  <CC_TownAfter_Long>Taking the town back...</CC_TownAfter_Long>
+  <CC_TownAfter_YesLapsed>{TOWN} no longer waits for the colony: a year has passed since its people agreed.</CC_TownAfter_YesLapsed>
+
+  <!-- Taken back by their word -->
+  <CC_TownAfter_BackLabel>{TOWN} is the colony's again</CC_TownAfter_BackLabel>
+  <CC_TownAfter_BackText>{TOWN} is the colony's home again: {FORM}, by the word of {HEAD} and {PEOPLE}.</CC_TownAfter_BackText>
+  <CC_TownAfter_BackFormers>The colony's former people walk out of their rooms as colonists: {NAMES}.</CC_TownAfter_BackFormers>
+  <CC_TownAfter_BackJoiners>{NAMES} of {PEOPLE} chose to come with it.</CC_TownAfter_BackJoiners>
+  <CC_TownAfter_BackLayout>The place is as the colony left it: its buildings, floors and roofs, without the stores, the fields' crops or the filth of the years between.</CC_TownAfter_BackLayout>
+  <CC_TownAfter_BackNoLayout>Rimfolk kept no layout of {TOWN}, so its map is the game's own.</CC_TownAfter_BackNoLayout>
+  <CC_TownAfter_BackPeopleGone>{PEOPLE} have no town left, and are no longer a people of their own.</CC_TownAfter_BackPeopleGone>
+  <CC_TownAfter_HistoryBack>{TOWN} was taken back by the colony, by the word of {PEOPLE}.</CC_TownAfter_HistoryBack>
+
+  <!-- Taken by force -->
+  <CC_TownAfter_BeatenLabel>{TOWN} taken by force</CC_TownAfter_BeatenLabel>
+  <CC_TownAfter_BeatenText>The colony took {TOWN} by force from {PEOPLE}, the people it handed it over to. The bond between them is over, and {PEOPLE} will remember it as a heavy wrong.</CC_TownAfter_BeatenText>
+  <CC_TownAfter_BeatenFaith>So will {PEOPLES}, who keep the same faith.</CC_TownAfter_BeatenFaith>
+  <CC_TownAfter_HistoryBeaten>The colony took {TOWN} by force from {PEOPLE}.</CC_TownAfter_HistoryBeaten>
+  <CC_TownAfter_HistoryForce>{TOWN} was settled again by the colony, taken from {PEOPLE} by force.</CC_TownAfter_HistoryForce>
+  <CC_TownAfter_SettledLine>{TOWN} is a home of the colony again, where {COLONY} once stood.</CC_TownAfter_SettledLine>
+
+  <!-- The head's letters: the intro by their age (a runner, a rider, a courier, a message by comms) -->
+  <CC_TownAfter_LetterLabel>A letter from {HEAD} of {TOWN}</CC_TownAfter_LetterLabel>
+  <CC_TownAfter_LetterIntro_Tribal>A runner from {TOWN} brought word from {HEAD}, {TITLE} of the hearth there, spoken to the runner and carried by heart:</CC_TownAfter_LetterIntro_Tribal>
+  <CC_TownAfter_LetterIntro_Medieval>A rider from {TOWN} brought a letter from {HEAD}, {TITLE} of the town, sealed with the old charter's seal:</CC_TownAfter_LetterIntro_Medieval>
+  <CC_TownAfter_LetterIntro_Industrial>A courier from {TOWN} brought a letter from {HEAD}, {TITLE} of the township:</CC_TownAfter_LetterIntro_Industrial>
+  <CC_TownAfter_LetterIntro_Spacer>A message came in from {TOWN} over comms, from {HEAD}, {TITLE} of the colony there:</CC_TownAfter_LetterIntro_Spacer>
+  <CC_TownAfter_LetterFortune>As for {TOWN} itself: {FORTUNE}.</CC_TownAfter_LetterFortune>
+  <CC_TownAfter_Since_Less>less than a year</CC_TownAfter_Since_Less>
+  <CC_TownAfter_Since_One>a year</CC_TownAfter_Since_One>
+  <CC_TownAfter_Since_Many>{YEARS} years</CC_TownAfter_Since_Many>
+
+  <!-- Moving there (Social/MovingOnTown.cs): what a close friend is to them, for the question's {RELATION} -->
+  <CC_TownAfter_CloseFriend>close friend</CC_TownAfter_CloseFriend>
+
+  <!-- Homecomings -->
+  <CC_TownAfter_HomeLabel>{PAWN_nameDef} asks to come home</CC_TownAfter_HomeLabel>
+  <CC_TownAfter_HomeText>{PAWN_nameDef}, who stayed at {TOWN} when the colony handed it over, has sent word asking to come home to the colony.</CC_TownAfter_HomeText>
+  <CC_TownAfter_HomeWhy_Kin>{PAWN_possessive} {RELATION} {KIN} lives in the colony, and {PAWN_pronoun} would live there too.</CC_TownAfter_HomeWhy_Kin>
+  <CC_TownAfter_HomeWhy_Friend>{KIN}, a close friend of {PAWN_possessive}, lives in the colony.</CC_TownAfter_HomeWhy_Friend>
+  <CC_TownAfter_HomeWhy_Hard>Times are hard at {TOWN}, and {PAWN_pronoun} would rather be among the colony's people.</CC_TownAfter_HomeWhy_Hard>
+  <CC_TownAfter_HomeAsk>Welcomed, {PAWN_nameDef} walks in from the side of the map that faces the town, as one of the colony's own again.</CC_TownAfter_HomeAsk>
+  <CC_TownAfter_Choice_Welcome>Welcome {PAWN_nameDef} home</CC_TownAfter_Choice_Welcome>
+  <CC_TownAfter_Choice_NotNow>Not now</CC_TownAfter_Choice_NotNow>
+  <CC_TownAfter_HomeGone>{PAWN} is no longer free to come.</CC_TownAfter_HomeGone>
+  <CC_TownAfter_HomeNoHome>The colony has no home on the ground to come to.</CC_TownAfter_HomeNoHome>
+  <CC_TownAfter_HomeCame>{PAWN} has come home from {TOWN}.</CC_TownAfter_HomeCame>
+  <CC_TownAfter_HomeHistory>{PAWN} came home from {TOWN} to {HOME}.</CC_TownAfter_HomeHistory>
+  <CC_TownAfter_HomeLog>{PAWN} welcomed {OTHER} home from {TOWN}.</CC_TownAfter_HomeLog>
+
+  <!-- The town's card -->
+  <CC_TownAfter_CardLayout>Its map, when made, is {COLONY} as the colony left it.</CC_TownAfter_CardLayout>
+  <CC_TownAfter_CardAgreed>Its people have agreed that {TOWN} may be the colony's home again.</CC_TownAfter_CardAgreed>
+  <CC_TownAfter_ActAsk>Ask for it back</CC_TownAfter_ActAsk>
+  <CC_TownAfter_ActAskTip>A letter to the town's head asking for it back, to be the colony's home again. Their answer weighs the head's regard of the colony, their people's goodwill, the town's fortune (a struggling town is readier), the years since and how much it has grown. Once a year at most.</CC_TownAfter_ActAskTip>
+  <CC_TownAfter_ActTake>Take it back</CC_TownAfter_ActTake>
+  <CC_TownAfter_ActTakeTip>Its people agreed: the settlement is the colony's again, its map made as the colony left it, its former colonists colonists again.</CC_TownAfter_ActTakeTip>
+
+  <!-- The faction memory's deeds (World/FactionMemory.cs) -->
+  <CC_Memory_Deed_townTaken>took back by force the town the colony gave them</CC_Memory_Deed_townTaken>
+  <CC_Memory_Deed_townTaken_Name>took {NAME} back by force</CC_Memory_Deed_townTaken_Name>
+  <CC_Memory_Deed_townTakenFaith>took by force a town of their faith that the colony once gave away</CC_Memory_Deed_townTakenFaith>
+  <CC_Memory_Deed_townTakenFaith_Name>took {NAME} by force from those of their faith</CC_Memory_Deed_townTakenFaith_Name>
+
+</LanguageData>

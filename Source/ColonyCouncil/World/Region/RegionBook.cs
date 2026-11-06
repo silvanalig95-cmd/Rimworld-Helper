@@ -187,6 +187,8 @@ namespace ColonyCouncil
             if (Hamlets.AnyOnTheRoad()) Safe("hamlets, the hour", () => Hamlets.Hourly(this, now));
             // A colony being handed over: its meeting, its day, its ceremony, and the town made once those who go have left (Colonies/HandOvers.cs).
             if (HandOvers.Any) Safe("hand-overs, the hour", () => HandOvers.Hourly(now));
+            // The towns the colony was: what became of them (taken by force, settled again), and their yes to the colony's letter (Colonies/TownsAfter.cs).
+            if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, the hour", () => TownsAfter.Hourly(now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -203,6 +205,8 @@ namespace ColonyCouncil
             Safe("hamlets", () => Hamlets.Daily(this, now));
             // The towns the colony was: a war ends the bond in goodwill (Colonies/HandOvers.cs).
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was", () => HandOvers.Daily(now));
+            // Their life: the head's letters, homecomings, their days, the trader (Colonies/TownsAfter.cs).
+            if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, their life", () => TownsAfter.Daily(now));
             ColonyBook.Daily(homes, null);
         }
 

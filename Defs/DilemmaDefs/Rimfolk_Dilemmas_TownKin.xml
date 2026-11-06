@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moving there (Source/ColonyCouncil/Social/MovingOnTown.cs; stage 3, release 2b): a moving-on question of its own
+    (Rimfolk_Dilemmas_MovingOn.xml has the others and their rules). A: the colonist. {RELATIVE}: their spouse ("spouse"),
+    their child ("child") or a close friend ("friend") among those who stayed at {TOWN}, a town the colony was, now of
+    {FACTION}; {RELATION}: what they are to A. Going, A joins {FACTION} as one of the town's former colonists, after the
+    colony sees them to the gate. Kept, it costs trust and a longing, as the other moving-on questions do.
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmMove_Town</defName>
+    <label>a home at the old town</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_TownKin</workerClass>
+    <weight>0.5</weight>
+    <cooldownDays>60</cooldownDays>
+    <texts>
+      <li>[spouse] {A_nameDef}'s {RELATION} {RELATIVE} stayed at {TOWN} when it was handed over, and the two have lived apart since. {A_nameDef} has asked the council to let {A_objective} go and live there with {RELATIVE}.</li>
+      <li>[child] {A_nameDef}'s {RELATION} {RELATIVE} is growing up at {TOWN}, among {FACTION}, without {A_objective}. {A_nameDef} has asked the council whether to go and live there.</li>
+      <li>[friend] {RELATIVE}, {A_nameDef}'s close friend, stayed at {TOWN} when it was handed over. {A_nameDef} has asked the council to let {A_objective} go and live there too.</li>
+      <li>{A_nameDef} has asked the council to let {A_objective} go and live at {TOWN}, the town the colony was, where {RELATIVE} lives now among {FACTION}.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} go to {RELATIVE} at {TOWN}</label>
+        <outcome>The colony saw {A_nameDef} to the gate with a full pack, and {A_nameDef} set off for {TOWN}, to {RELATIVE}, one of {FACTION} now.</outcome>
+        <ways><mercy>1</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Leave_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood"><joinFaction>true</joinFaction></li>
+          <li Class="ColonyCouncil.DilemmaEffect_JoinTown" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask {A_nameDef} to stay</label>
+        <outcome>The council asked {A_nameDef} to stay, and {A_nameDef} said yes, trusting the council a little less for it. That night {A_nameDef} wrote a long letter to {RELATIVE} at {TOWN}.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>family</kind><trust>8</trust></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>
