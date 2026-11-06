@@ -30,7 +30,7 @@
   <CC_Good_LastRelease>Lately it overflowed: {WHAT}, {WHEN}.</CC_Good_LastRelease>
   <CC_Good_Ago>{0} ago</CC_Good_Ago>
   <CC_Good_JustNow>just now</CC_Good_JustNow>
-  <CC_Good_Explain>The heart's good side is the other side of strain, and never both at once. It fills slowly while strain is at nothing, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). A hard knock spends it, half a point for each point of strain it would have built, before any strain builds, and it fades slowly. In good heart from 40 (+2 mood), in high spirits from 60 (+3 mood), with brighter dreams and a quicker recovery from strain.</CC_Good_Explain>
+  <CC_Good_Explain>The heart's good side is the other side of strain, and never both at once. It fills slowly while strain is at nothing, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). A hard knock spends it, half a point for each point of strain it would have built, before any strain builds, and it fades slowly. In good heart from 45 (+2 mood), in high spirits from 65 (+3 mood), with brighter dreams and a quicker recovery from strain.</CC_Good_Explain>
   <CC_Good_InStrainTip>The other side of the heart: {BAND} ({VALUE}). Hardship spends it before strain builds; good things ease strain before they fill it.</CC_Good_InStrainTip>
   <CC_Good_Inspect>Heart: {0}</CC_Good_Inspect>
   <CC_Good_InspectFeelings>Heart: {0} · {1}</CC_Good_InspectFeelings>

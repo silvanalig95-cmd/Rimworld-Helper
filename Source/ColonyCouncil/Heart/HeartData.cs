@@ -137,7 +137,7 @@ namespace ColonyCouncil
 
         // ---------------- The good side (Heart/GoodHeart.cs) ----------------
 
-        /// <summary>The heart's good side (0 to 100): in good heart from 40, in high spirits from 60. Never with strain at once.</summary>
+        /// <summary>The heart's good side (0 to 100): in good heart from 45, in high spirits from 65. Never with strain at once.</summary>
         public float good;
         /// <summary>What filled it already today, by source (GoodSource) and in all, for its daily caps.</summary>
         public List<float> goodToday = new List<float>();

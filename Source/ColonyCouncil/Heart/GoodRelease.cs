@@ -9,7 +9,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The heart's good side overflowing, the mirror of strain's day off (Episodes): in high spirits and safe, now and then
-    /// (about once in six days held there, once in twelve days for each colonist and once a day in the colony) something
+    /// (about once in four days held there, once in ten days for each colonist and once a day in the colony) something
     /// good comes of it, shown on the map with the game's own tools. Either one of the game's inspirations, picked by the
     /// game by their passions and its own rules (InspirationHandler.GetRandomAvailableInspirationDef and
     /// TryStartInspiration, with its own letter), or a kind word for someone close: they walk over in their free time

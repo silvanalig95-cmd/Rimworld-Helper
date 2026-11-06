@@ -1262,11 +1262,11 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
         <heading>In good heart and in high spirits</heading>
         <table>
           <li>Good side | Band | What it does</li>
-          <li>0 to 39 | Steady | Nothing</li>
-          <li>40 to 59 | In good heart | +2 mood, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
-          <li>60 to 100 | In high spirits | +3 mood, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
+          <li>0 to 44 | Steady | Nothing</li>
+          <li>45 to 64 | In good heart | +2 mood, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
+          <li>65 to 100 | In high spirits | +3 mood, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
         </table>
-        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. Now and then (about once in six days held in high spirits, at most once in 12 days for each colonist and once a day in the colony), only when it's safe and they're at home, awake and not at a gathering, the good side overflows: one of the game's own inspirations, which the game picks by their passions and by its own rules, with its own letter (12 off the good side); or they go and find someone close (a partner, kin or a friend, the one under the most strain first), say a kind word face to face, and the other has a small joy of it (6 off the good side).
+        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. Now and then (about once in four days held in high spirits, at most once in 10 days for each colonist and once a day in the colony), only when it's safe and they're at home, awake and not at a gathering, the good side overflows: one of the game's own inspirations, which the game picks by their passions and by its own rules, with its own letter (12 off the good side); or they go and find someone close (a partner, kin or a friend, the one under the most strain first), say a kind word face to face, and the other has a small joy of it (6 off the good side).
 
 The Mood tab's Heart section shows it as a second meter, Good heart, with what filled it and what spent it; the inspector line reads like "Heart: in good heart · proud" while it shows; the colonist's card says what filled it. Its setting is on the Heart &amp; health page, beside the heart's own; turned off, nothing fills it and the bands give nothing.</after>
       </li>

@@ -160,6 +160,8 @@ namespace Balance
         /// <summary>The heart's life for this play style, and its own draws (so the rest of the year draws as it always did).</summary>
         private readonly HeartLife heartLife;
         private readonly Random heartRng;
+        /// <summary>The heart's good side's own draws (HeartSim.cs), so the rest of the heart draws the same with it on or off.</summary>
+        private readonly Random goodRng;
         private int lastColonyEpisode = -999999;
         private bool partyToday;
         public int episodes;
@@ -183,6 +185,7 @@ namespace Balance
             rng = new Random(seed);
             heartLife = HeartState.For(style.key);
             heartRng = new Random(seed ^ 0x5eed);
+            goodRng = new Random(seed ^ 0x600d);
             for (int i = 0; i < n; i++)
             {
                 var c = new Colonist
@@ -196,6 +199,7 @@ namespace Balance
                 };
                 // The heart's good side (Heart/GoodHeart.cs), with its setting.
                 c.heart.goodOn = set.B("heart") && set.B("heartGoodSide");
+                c.heart.goodRng = goodRng;
                 people.Add(c);
             }
             foreach (var c in people)
@@ -754,7 +758,7 @@ namespace Balance
                 if (c.heart.Hour(heartLife, heartRng, Day, HourOfDay, partyToday, hour, ref lastColonyEpisode, set.B("heartEpisodes")) && Measuring) episodes++;
                 // The good side's release: in high spirits and safe (no fight this hour), now and then.
                 bool safe = heartRaidHour < 0 || HourOfDay < heartRaidHour || HourOfDay > heartRaidHour + 3;
-                int released = c.heart.Release(heartRng, hour * 2500, safe && Awake, ref lastColonyRelease);
+                int released = c.heart.Release(goodRng, hour * 2500, safe && Awake, ref lastColonyRelease);
                 if (released == 2) KindWord(c);
                 if (released > 0 && Measuring) releases[released - 1]++;
                 if (Measuring)

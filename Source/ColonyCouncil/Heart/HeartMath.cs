@@ -320,7 +320,7 @@ namespace ColonyCouncil
         public static readonly int GoodSourceCount = Enum.GetValues(typeof(GoodSource)).Length;
 
         /// <summary>From here a colonist is in good heart, and from <see cref="HighSpiritsAt"/> in high spirits.</summary>
-        public const float GoodHeartAt = 40f, HighSpiritsAt = 60f;
+        public const float GoodHeartAt = 45f, HighSpiritsAt = 65f;
 
         public static GoodBand GoodBandFor(float good)
         {
@@ -475,12 +475,12 @@ namespace ColonyCouncil
 
         /// <summary>
         /// In high spirits and safe, now and then something good comes of it (one of the game's inspirations by their
-        /// passions, or a kind word for someone close): the chance an hour, about once in six days held there.
+        /// passions, or a kind word for someone close): the chance an hour, about once in four days held there.
         /// </summary>
-        public const float ReleasePerHour = 1f / (24f * 6f);
+        public const float ReleasePerHour = 1f / (24f * 4f);
 
         /// <summary>Once in so many days for each colonist, and once a day in the colony.</summary>
-        public const int ReleasePawnDays = 12, ReleaseColonyDays = 1;
+        public const int ReleasePawnDays = 10, ReleaseColonyDays = 1;
 
         /// <summary>What the release spends of the good side: an inspiration more, a kind word less.</summary>
         public const float InspirationSpends = 12f, KindWordSpends = 6f;

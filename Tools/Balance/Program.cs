@@ -100,6 +100,10 @@ foreach (var style in Rates.Styles)
 var asMoods = new Dictionary<string, string>(defaults) { ["smallMomentsOff"] = "true" };
 foreach (var style in Rates.Styles)
     results.Add(Runner.Run(defs, new Settings(asMoods), style, 6, runs, "letdowns and joys as moods"));
+// Without the heart's good side (its setting off): what it changes. On the default's seeds (an empty label: the seed counts its length).
+var noGood = new Dictionary<string, string>(defaults) { ["heartGoodSide"] = "false" };
+foreach (var style in Rates.Styles)
+    results.Add(Runner.Run(defs, new Settings(noGood), style, 6, runs, ""));
 
 Dictionary<string, Summary> before = null;
 if (beforePath != null && File.Exists(beforePath))

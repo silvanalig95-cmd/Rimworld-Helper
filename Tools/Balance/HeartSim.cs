@@ -70,6 +70,8 @@ namespace Balance
         /// <summary>What filled the good side and what spent it, by what it was, for the report; the releases a year.</summary>
         public readonly Dictionary<string, double> filled = new Dictionary<string, double>(), spent = new Dictionary<string, double>();
         public int lastRelease = -999999, inspirations, kindWords;
+        /// <summary>The good side's own draws (the colony's), so the heart's life draws the same with it on or off.</summary>
+        public Random goodRng;
         public readonly float[] today = new float[HeartMath.SourceCount];
         public readonly float[] recent = new float[HeartMath.SourceCount];
         public int spellUntil = -1, lastEpisode = -999999;
@@ -87,7 +89,7 @@ namespace Balance
             day.Clear();
             bool Chance(float p) => rng.NextDouble() < p;
             float Range(float a, float b) => a + (float)rng.NextDouble() * (b - a);
-            if (goodOn) GoodDay(life, rng);
+            if (goodOn) GoodDay(life, goodRng ?? rng);
             if (raid && Chance(0.8f))
             {
                 for (int h = 0; h < 3; h++) day.Add((raidHour + h, StrainSource.Combat, 4f));
@@ -147,11 +149,17 @@ namespace Balance
         {
             float a = SmallMomentMath.WithinJoyCap(goodOn ? amount : Math.Min(amount, strain), todayJoys);
             if (a <= 0f) return 0f;
-            todayJoys += a;
             float e = Math.Min(a, strain);
             strain = HeartMath.Clamp(strain - e);
             if (what != null && e > 0f) eased[what] = eased.GetValueOrDefault(what) + e;
-            if (goodOn && a > e) Fill(comforts ? GoodSource.Comforts : GoodSource.Joys, a - e, comforts ? "the game's comforts" : "small joys");
+            // The day's cap for joys counts what eased strain and what filled the good side, not what neither could take.
+            float used = e;
+            if (goodOn && a > e)
+            {
+                var s = comforts ? GoodSource.Comforts : GoodSource.Joys;
+                used += Fill(s, a - e, comforts ? "the game's comforts" : "small joys") / HeartMath.GoodShare(s);
+            }
+            todayJoys += Math.Min(a, used);
             return e;
         }
 

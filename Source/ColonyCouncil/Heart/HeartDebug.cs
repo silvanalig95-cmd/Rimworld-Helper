@@ -4,7 +4,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>Dev mode (Debug actions, "Rimfolk"): push a colonist's strain around and try the day off, to test the heart.</summary>
+    /// <summary>Dev mode (Debug actions, "Rimfolk"): push a colonist's strain and good side around, and try the day off and the good side's overflowing, to test the heart.</summary>
     public static class HeartDebug
     {
         [DebugAction("Rimfolk", "Heart: add 20 strain", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
@@ -41,6 +41,30 @@ namespace ColonyCouncil
                 return;
             }
             Episodes.Start(p, h, now);
+        }
+
+        [DebugAction("Rimfolk", "Heart: fill the good side by 20", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void MoreGood(Pawn p)
+        {
+            var h = GoodHeart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            h.strain = 0f;
+            h.good = HeartMath.Clamp(h.good + 20f);
+            HeartView.Refresh(p, h);
+            Messages.Message(p.LabelShort + ": the good side " + h.good.ToString("0") + " (" + GoodHeart.BandLabel(GoodHeart.Band(h)) + ")", p, MessageTypeDefOf.NeutralEvent, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: the good side overflows now (if allowed)", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void ReleaseNow(Pawn p)
+        {
+            var h = GoodHeart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            if (h.good < HeartMath.HighSpiritsAt) h.good = HeartMath.HighSpiritsAt;
+            h.strain = 0f;
+            int now = Find.TickManager.TicksGame;
+            string blocked = GoodRelease.Blocked(p, h, HeartMapContext.For(p.MapHeld, now), now);
+            if (blocked != null || !GoodRelease.Start(p, h, now))
+                Messages.Message("Nothing comes of it for " + p.LabelShort + ": " + (blocked ?? "no one close and no inspiration the game allows") + ".", p, MessageTypeDefOf.RejectInput, false);
         }
 
         private static void Change(Pawn p, float amount)
