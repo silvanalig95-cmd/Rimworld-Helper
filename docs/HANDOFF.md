@@ -24,7 +24,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   record of days kept (`Council_DaysKept`), which the keeper of days' seat work ("kept 3 days"), the Daykeeper's name
   and the promises judged by days kept read ("the colony's traditions kept properly": on the save, its traditions are
   customs, the harvest dance and the midwinter supper); now the keeper of days at home, else the one the question was
-  about, has it, as a calendar day's keeper does (`DilemmaTracker.Tradition`, with the calendar on). Checked and sound:
+  about, else a grown colonist of the colony's own, has it, as a calendar day's keeper does (`DilemmaTracker.Tradition`,
+  with the calendar on). Checked and sound:
   every path to the chronicle goes through `Tell.Chronicle` into the history once (answers through `Answers.Record`,
   the election's promises and verdicts into the holder's history only), no letter or message of these releases goes
   around the teller (the petitions' Promise and Refuse, the dev menu and the seat appointed are answers to a click); the
