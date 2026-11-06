@@ -2,7 +2,7 @@
 <Defs>
 
   <!-- World events on the region's roads (the player's request, 6 November 2026, with Rimfolk_WS_Variety3.xml): a ban on
-       drink at a neighbour's town, a great caravan crossing the region, a people's households on the move to their
+       drink at a neighbor's town, a great caravan crossing the region, a people's households on the move to their
        kin's town. Told from data with the default worker. The ban holds or falls by what the colony sold and said; the
        caravan reaches its town or is robbed in the hills by whether the colony warned it; the households reach their
        kin's town well or worn out by whether the colony saw them through, and the towns' fortunes move with each
@@ -36,7 +36,7 @@
       <li>{FACTION} have forbidden drink at {PLACE}: no brewing, no selling, no cup at the table. It came after a wedding feast ended in a killing, and {NAME} was passed the next morning.\n\nHalf the town agrees with it. The other half is already looking for someone who sells.</li>
       <li>[theirLowtech] The elders of {FACTION} have broken the brewing jars at {PLACE} and forbidden the fermented drink, after two families came to blows over a feast. {NAME} holds for as long as the elders say it holds.\n\nThe young people of {PLACE} are not happy about it.</li>
       <li>[theirHightech] {FACTION}'s council has closed every bar and brewhouse at {PLACE} under {NAME}, after a season of fights and a fire. Their wardens are watching the roads for carts with bottles in them.\n\nThe town is thirsty, and the colony is on the road.</li>
-      <li>[theirEmpire] By the {TITLE}'s edict, drink is forbidden at {PLACE} until the town has answered for a drunken insult to a noble at court. The Empire calls it {NAME}, a matter of honour; the townspeople call it something else.\n\nThirsty people look for someone who sells.</li>
+      <li>[theirEmpire] By the {TITLE}'s edict, drink is forbidden at {PLACE} until the town has answered for a drunken insult to a noble at court. The Empire calls it {NAME}, a matter of honor; the townspeople call it something else.\n\nThirsty people look for someone who sells.</li>
     </texts>
     <summaries>
       <li>Visitors come by more often. People of {PLACE} will want to buy the colony's beer dear, and a smuggler may too; {FACTION}'s wardens will want the colony to keep their law. If enough drink gets in, the ban will not hold; if the colony keeps it, {FACTION} will remember.</li>
@@ -146,7 +146,7 @@
           <li>{FACTION}'s warden at the gate</li>
         </titles>
         <texts>
-          <li>A warden of {FACTION} has come to the gate. {NAME} is hard enough to keep at {PLACE} without drink coming in from outside, and {FACTION} ask the colony, as a neighbour, not to sell to anyone from the town until it is lifted.</li>
+          <li>A warden of {FACTION} has come to the gate. {NAME} is hard enough to keep at {PLACE} without drink coming in from outside, and {FACTION} ask the colony, as a neighbor, not to sell to anyone from the town until it is lifted.</li>
           <li>[sold] A warden of {FACTION} is at the gate, and knows the colony has sold beer to people of {PLACE}. The warden doesn't say so outright. {FACTION} ask the colony to sell no more to anyone from the town until {NAME} is lifted.</li>
           <li>[smuggled] A warden of {FACTION} is at the gate. Beer has been getting into {PLACE} in a cart with a false bottom, and the warden looks at the colony's brewery while saying it. {FACTION} ask the colony to keep their law.</li>
         </texts>
@@ -464,7 +464,7 @@
       <li>[theirHightech] {FACTION} are moving the households of their dry eastern farms to {PLACE}, in trucks where they have them and on foot where they don't. {NAME} runs past the colony for the next two weeks.\n\nMost of them carry everything they own.</li>
     </texts>
     <summaries>
-      <li>Travellers pass far more often. Their households go by on the road, their herders may ask for water, the slow ones may ask to rest, and some of the young may ask to stay. If they reach {PLACE} well, the town grows by them; worn out, it has more mouths than it can feed.</li>
+      <li>Travelers pass far more often. Their households go by on the road, their herders may ask for water, the slow ones may ask to rest, and some of the young may ask to stay. If they reach {PLACE} well, the town grows by them; worn out, it has more mouths than it can feed.</li>
     </summaries>
     <modifiers>
       <li><incident>TravelerGroup</incident><factor>1.6</factor></li>

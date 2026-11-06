@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Talk with the travellers of the camp kinds of 6 November 2026 (Defs/CampDefs/Rimfolk_CampKinds_Variety3.xml), by the
+    Talk with the travelers of the camp kinds of 6 November 2026 (Defs/CampDefs/Rimfolk_CampKinds_Variety3.xml), by the
     kind of camp they travel with (them:camp:KIND, World/Region/RegionNearFacts.cs). The format is described at the top
     of Rimfolk_OutsiderTalks_Greetings.xml.
   -->
@@ -84,7 +84,7 @@
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
-  <!-- ================= A travelling teacher ================= -->
+  <!-- ================= A traveling teacher ================= -->
 
   <ColonyCouncil.OutsiderTalkDef>
     <defName>Rimfolk_OT_CampFolk_Teacher_What</defName>

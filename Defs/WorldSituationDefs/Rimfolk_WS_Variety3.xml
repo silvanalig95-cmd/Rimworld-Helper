@@ -3,17 +3,17 @@
 
   <!-- World events across the region (the player's request, 6 November 2026: "new additional dilemmas, events, world
        events, camps... for further gameplay variety"), told from data with the default worker: a war between two
-       neighbours, a year without a summer, a great work raised at a neighbour's town. Each pulls both ways and ends by
+       neighbors, a year without a summer, a great work raised at a neighbor's town. Each pulls both ways and ends by
        what happened: the side the colony supplied wins the war three times in four (its towns better off, the other's
        worse, WorldEffect_Fortune); the cold year's harvest is brought in early or lost; the great work is finished with
        the colony's timber and its name on a stone, finished without it, or left half built. -->
 
-  <!-- ===================== A war between neighbours ===================== -->
+  <!-- ===================== A war between neighbors ===================== -->
 
   <ColonyCouncil.WorldSituationDef>
-    <defName>Rimfolk_WS_NeighboursWar</defName>
+    <defName>Rimfolk_WS_NeighborsWar</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a war between neighbours</label>
+    <label>a war between neighbors</label>
     <weight>0.6</weight>
     <earliestDay>40</earliestDay>
     <cooldownDays>200</cooldownDays>
@@ -42,15 +42,15 @@
       <li>[theirHightech] the boundary war</li>
     </names>
     <titles>
-      <li>War between neighbours</li>
+      <li>War between neighbors</li>
       <li>{FACTION} and {ENEMY} at war</li>
     </titles>
     <texts>
       <li>{FACTION} and {ENEMY} have gone to war over the border by {PLACE}. It began as {NAME}, an old quarrel over a line on a map, and this season both peoples have called up their fighters for it.\n\nNeither of them is at war with the colony. Both will want what the colony has: food for their fighters, steel for their arms, a way across its land.</li>
       <li>[theirLowtech] The clans of {FACTION} have taken up their spears against {ENEMY}. Herds have been driven off on both sides of the border by {PLACE}, and a granary has burned. They call it {NAME}, and the old people say it will not end before the season does.\n\nThe colony is at peace with both, and both know it has full stores.</li>
       <li>[theirHightech] {FACTION} have sent armed trucks to the border by {PLACE}, and {ENEMY} have dug in on the other side of it. {NAME} has closed the road between them and emptied the markets on both sides.\n\nThe colony is at peace with both peoples. Both will come asking.</li>
-      <li>[theirEmpire] {FACTION} have called their knights to arms against {ENEMY} for an insult to the {TITLE}'s honour, and the levies are gathering at {PLACE}. In the Empire's way of things it is {NAME}, a matter of honour to be settled in the field.\n\nThe colony has no part in it, and both sides will be glad of its stores.</li>
-      <li>[enemyEmpire] {ENEMY} have answered {FACTION}'s raids on the border with their knights, and there is fighting by {PLACE}. {FACTION} call it {NAME}. The Empire calls it a lesson in honour.\n\nThe colony is at peace with both, and both will want something of it.</li>
+      <li>[theirEmpire] {FACTION} have called their knights to arms against {ENEMY} for an insult to the {TITLE}'s honor, and the levies are gathering at {PLACE}. In the Empire's way of things it is {NAME}, a matter of honor to be settled in the field.\n\nThe colony has no part in it, and both sides will be glad of its stores.</li>
+      <li>[enemyEmpire] {ENEMY} have answered {FACTION}'s raids on the border with their knights, and there is fighting by {PLACE}. {FACTION} call it {NAME}. The Empire calls it a lesson in honor.\n\nThe colony is at peace with both, and both will want something of it.</li>
     </texts>
     <summaries>
       <li>Caravans and visitors come less often while the roads are unsafe. Both sides will want the colony's food and steel; whichever it supplies is likelier to win, and the other will not forget it. When it ends, the winner's towns do better and the loser's worse.</li>
@@ -262,7 +262,7 @@
         </titles>
         <texts>
           <li>{NAME} is over. {ENEMY} have pulled back from the border by {PLACE} and given up the ground it began over, and {FACTION}'s fighters are going home.\n\n{FACTION} say the colony's help counted. {ENEMY} say the same, in other words.</li>
-          <li>[theirEmpire] {ENEMY} have yielded the field at {PLACE}, and the {TITLE}'s honour is satisfied. {FACTION}'s knights are going home with their banners, and the colony's name has been spoken among the Empire's friends.</li>
+          <li>[theirEmpire] {ENEMY} have yielded the field at {PLACE}, and the {TITLE}'s honor is satisfied. {FACTION}'s knights are going home with their banners, and the colony's name has been spoken among the Empire's friends.</li>
         </texts>
         <chronicle>{FACTION} won {NAME} against {ENEMY}; the colony had supplied them.</chronicle>
         <effects>
@@ -282,7 +282,7 @@
         </titles>
         <texts>
           <li>{NAME} is over, and {ENEMY} have the better of it: {FACTION} have pulled back from the border by {PLACE} and given up the ground it began over.\n\n{ENEMY} remember whose steel was in their blades. {FACTION} remember it too.</li>
-          <li>[enemyEmpire] {FACTION} have yielded the field at {PLACE} to the Empire's knights, and the Empire's honour is satisfied. {ENEMY} remember whose steel was in their blades.</li>
+          <li>[enemyEmpire] {FACTION} have yielded the field at {PLACE} to the Empire's knights, and the Empire's honor is satisfied. {ENEMY} remember whose steel was in their blades.</li>
         </texts>
         <chronicle>{ENEMY} won {NAME} against {FACTION}; the colony had sold them steel.</chronicle>
         <effects>
@@ -405,7 +405,7 @@
         <defaultOption>2</defaultOption>
         <options>
           <li>
-            <label>Let them graze, as neighbours</label>
+            <label>Let them graze, as neighbors</label>
             <outcome>The herder goes back for the flock. They will come onto the far meadow this evening, graze there the night and go on at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>6~9</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>1~3</delay><onward>true</onward></li>
@@ -541,12 +541,12 @@
     </titles>
     <texts>
       <li>{FACTION} have begun {NAME} at {PLACE}, the biggest thing anyone in the region has tried to build in a lifetime. Every hand in the town is on it, and their master builder has sent word round the region for timber and skill.\n\nIf it stands, {PLACE} will be the better for it for a hundred years. If the timber runs short, it will stand half built.</li>
-      <li>[theirLowtech] The people of {FACTION} have sworn to raise {NAME} at {PLACE} before the season turns. The whole town is cutting and hauling, and their builders are asking every neighbour for timber.\n\nIt will be talked about for generations, one way or the other.</li>
+      <li>[theirLowtech] The people of {FACTION} have sworn to raise {NAME} at {PLACE} before the season turns. The whole town is cutting and hauling, and their builders are asking every neighbor for timber.\n\nIt will be talked about for generations, one way or the other.</li>
       <li>[theirHightech] {FACTION} have broken ground on {NAME} at {PLACE}. Their engineers have the plans and the hands; what they lack is timber for the forms and scaffolding, and people who know how to raise a thing that size.\n\nIt will bring trade to {PLACE} for years, if it is finished.</li>
-      <li>[theirEmpire] By the {TITLE}'s order, {FACTION} are raising {NAME} at {PLACE}, and the honour of the town that finishes it on time is spoken of in every hall. Their master builder is asking the region for timber.\n\nThe Empire does not forget a neighbour who helped it keep its word.</li>
+      <li>[theirEmpire] By the {TITLE}'s order, {FACTION} are raising {NAME} at {PLACE}, and the honor of the town that finishes it on time is spoken of in every hall. Their master builder is asking the region for timber.\n\nThe Empire does not forget a neighbor who helped it keep its word.</li>
     </texts>
     <summaries>
-      <li>More travellers pass on the road while it is built. {FACTION} will want the colony's timber, and their master builder may ask for a word from its best builder. With the colony's help it will be finished; without it, it may stand half built.</li>
+      <li>More travelers pass on the road while it is built. {FACTION} will want the colony's timber, and their master builder may ask for a word from its best builder. With the colony's help it will be finished; without it, it may stand half built.</li>
     </summaries>
     <modifiers>
       <li><incident>TravelerGroup</incident><factor>1.4</factor></li>
@@ -641,7 +641,7 @@
         <day>7~12</day>
         <message>true</message>
         <texts>
-          <li>Labourers of {FACTION} are on the road past the colony with their tools and a pack beast, bound for the work on {NAME} at {PLACE}.</li>
+          <li>Laborers of {FACTION} are on the road past the colony with their tools and a pack beast, bound for the work on {NAME} at {PLACE}.</li>
           <li>[theirLowtech] Men and women of {FACTION} with axes and coils of rope are on the road past the colony, going to raise {NAME} at {PLACE}.</li>
         </texts>
       </li>
@@ -689,13 +689,13 @@
         </titles>
         <texts>
           <li>{NAME} stands finished at {PLACE}, and {FACTION} say it is the finest thing in the region. The colony's name is cut into one of its stones, among the names of those who helped raise it.\n\nTraders are already coming to see it.</li>
-          <li>[theirEmpire] {NAME} stands finished at {PLACE}, on the day the {TITLE} set for it, and the Empire's honour is kept. The colony is named among those who helped, in the Empire's own records.</li>
+          <li>[theirEmpire] {NAME} stands finished at {PLACE}, on the day the {TITLE} set for it, and the Empire's honor is kept. The colony is named among those who helped, in the Empire's own records.</li>
         </texts>
         <chronicle>{NAME} was finished at {PLACE}, with the colony's name on a stone.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount></li>
-          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbors</thought></li>
         </effects>
       </li>
       <li>
@@ -719,7 +719,7 @@
           <li>{NAME} left half built</li>
         </titles>
         <texts>
-          <li>The work on {NAME} at {PLACE} has stopped. The timber ran out before the roof was on, and {FACTION}'s labourers have gone home. It stands half built over the town, and the people of {PLACE} have stopped looking at it.</li>
+          <li>The work on {NAME} at {PLACE} has stopped. The timber ran out before the roof was on, and {FACTION}'s laborers have gone home. It stands half built over the town, and the people of {PLACE} have stopped looking at it.</li>
           <li>[theirLowtech] The building of {NAME} has stopped with half of it standing. {FACTION} say the season beat them; the elders say it was the timber. Either way, it stands over {PLACE} unfinished.</li>
         </texts>
         <chronicle>{NAME} at {PLACE} was left half built.</chronicle>

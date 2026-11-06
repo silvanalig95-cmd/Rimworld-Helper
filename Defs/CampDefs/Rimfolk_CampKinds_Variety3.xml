@@ -5,7 +5,7 @@
        ColonyCouncil.CampKindDef as in Council_CampKinds.xml, each with what its land must have (Camps/CampKindsLand3.cs):
        stonecutters come for rock chunks lying clear of the colony and dress them into the game's own blocks, sold to the
        colony at its gate; shearers come to a colony with a woolly flock and offer to shear it in its pens for one fleece
-       in ten; beast-catchers come for a wild herd and rope one or two of it to lead away, for sale to the colony; a travelling
+       in ten; beast-catchers come for a wild herd and rope one or two of it to lead away, for sale to the colony; a traveling
        teacher comes to a colony with children, for lessons at the camp; the wounded of a war (any land) come with the
        game's own wounds, oftener while a war runs, and ask for medicine. Each in the form of its own people's age; none
        leaves a gift that marks the calendar. -->
@@ -504,11 +504,11 @@
     </asks>
   </ColonyCouncil.CampKindDef>
 
-  <!-- ===================== A travelling teacher ===================== -->
+  <!-- ===================== A traveling teacher ===================== -->
 
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_Teacher</defName>
-    <label>travelling teacher</label>
+    <label>traveling teacher</label>
     <arrives>9~15</arrives>
     <minTech>Neolithic</minTech>
     <weight>0.5</weight>
@@ -539,18 +539,18 @@
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
     <titles>
-      <li>A travelling teacher</li>
+      <li>A traveling teacher</li>
       <li>[their:tribal] A story-keeper comes</li>
       <li>[their:medieval] A hedge-school master</li>
-      <li>[their:industrial] A travelling schoolteacher</li>
-      <li>[their:spacer] A travelling tutor</li>
+      <li>[their:industrial] A traveling schoolteacher</li>
+      <li>[their:spacer] A traveling tutor</li>
     </titles>
     <texts>
       <li>A teacher of {FACTION} has come along the road with a pack beast and a pupil or two, going from settlement to settlement where there are children to teach. {X_nameDef} told {A_nameDef} {X_pronoun} had heard the colony has young ones, and asked to camp {PLACE} a few days.</li>
       <li>[their:tribal] A story-keeper of {FACTION} has come with apprentices, carrying the old tellings and the counting of days from village to village. {X_nameDef} told {A_nameDef} the colony's children should hear them too, and asked to camp {PLACE}.</li>
       <li>[their:medieval] A hedge-school master of {FACTION} has come up the track with two pupils and a donkey loaded with slates. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said a few days of letters and numbers never harmed a child.</li>
-      <li>[their:industrial] A travelling schoolteacher of {FACTION} has turned up with a pupil-teacher and a pack beast full of primers. {X_nameDef} asked {A_nameDef} whether the colony's children had a teacher, and whether {X_pronoun} might camp {PLACE} a few days.</li>
-      <li>[their:spacer] A travelling tutor of {FACTION} has walked in with teaching slates and a pack beast. {X_nameDef} asked {A_nameDef} whether the colony's children were learning, and whether {X_pronoun} might camp {PLACE} for a few days.</li>
+      <li>[their:industrial] A traveling schoolteacher of {FACTION} has turned up with a pupil-teacher and a pack beast full of primers. {X_nameDef} asked {A_nameDef} whether the colony's children had a teacher, and whether {X_pronoun} might camp {PLACE} a few days.</li>
+      <li>[their:spacer] A traveling tutor of {FACTION} has walked in with teaching slates and a pack beast. {X_nameDef} asked {A_nameDef} whether the colony's children were learning, and whether {X_pronoun} might camp {PLACE} for a few days.</li>
     </texts>
     <settled>
       <li>The teacher's camp {PLACE} is up: a fire, a few bedrolls, and slates leaning against the packs.</li>
@@ -755,7 +755,7 @@
         <warm>1</warm>
         <deed>aid</deed>
         <askTexts>
-          <li>{X_nameDef} came up from the fighters' camp {PLACE}. Their dressings are the ones they put on in the field, and they have nothing left to change them with. {X_pronoun} asks whether the colony could spare three doses of medicine.</li>
+          <li>{X_nameDef} came up from the fighters' camp {PLACE}. Their dressings are the ones they put on in the field, and they have nothing left to change them with. They ask whether the colony could spare three doses of medicine.</li>
           <li>[their:lowtech] {X_nameDef} of the warriors' camp asked {A_nameDef} for something to bind their wounds with, and herbs to keep them clean. They have used everything they carried.</li>
         </askTexts>
         <tip>A colonist carries three doses of the colony's medicine over to the fighters' camp.</tip>

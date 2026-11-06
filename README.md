@@ -2394,7 +2394,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   pens for one fleece in ten, the rest left where it falls for the colony's haulers (turned down, they go on to the next
   farm). **Beast-catchers** (of tribal to industrial peoples) come for a wild herd that could be tamed, rope one or two
   of it and keep them by their picket: buy one at four fifths of its worth, learn their way with beasts, or send feed
-  when they ask. A **travelling teacher** (a story-keeper, a hedge-school master, a schoolteacher or a tutor, by their
+  when they ask. A **traveling teacher** (a story-keeper, a hedge-school master, a schoolteacher or a tutor, by their
   people's age) comes to a colony with children (Biotech): a lesson at their camp for up to three of them, a colonist
   sitting in, a supper for the pupils. **Wounded fighters** come with the game's own wounds, a cut bandaged on the road
   and a fresh bruise, most often while a war runs in the region: send the colony's doctor, medicine or a hot supper.
@@ -2614,16 +2614,16 @@ the colony half.
   caravan, fires on the shore at the thaw), a **moot of the peoples** (send a speaker, put up the delegates, and vote
   on two neighbors' pastures, or propose they share them and risk the hall's laughter), and an **old thrumbo** wandering
   the hills (let the horn hunters through for a share or turn them away, see it at dawn, take a turn at its watch).
-- **Across the region:** a **war between two neighbours** at war with each other, both at peace with the colony (food
+- **Across the region:** a **war between two neighbors** at war with each other, both at peace with the colony (food
   for one side, steel for the other, the road for a column or the long way round, medicine and a night by the wall for
   two of the other side's fighters; the side the colony supplied wins three times in four, its towns better off and the
   loser's worse, and selling to both leaves both cool), a **year without a summer** in spring and summer (the game's
-  cold snaps far likelier; bring the ripe crops in early, graze a neighbour's flock come down from the snow, food sold
-  or given against the winter), a **great work** raised at a neighbour's town (timber sold or given, the colony's best
+  cold snaps far likelier; bring the ripe crops in early, graze a neighbor's flock come down from the snow, food sold
+  or given against the winter), a **great work** raised at a neighbor's town (timber sold or given, the colony's best
   builder showing their master builder how at the gate, medicine after a fall; with the colony's help it stands with
-  the colony's name on a stone, without it it may be left half built), a **ban on drink** at a neighbour's town (beer
+  the colony's name on a stone, without it it may be left half built), a **ban on drink** at a neighbor's town (beer
   sold dear to its thirsty young people or a smuggler, and the wardens may find out; the smuggler reported, or a promise
-  to keep their law; it falls if enough beer gets in), a **great caravan** crossing to a neighbour's town (a night on
+  to keep their law; it falls if enough beer gets in), a **great caravan** crossing to a neighbor's town (a night on
   the far meadow for its lead train, the hill road past the bandits told to its rider; warned, it arrives safe, else it
   may be robbed in the hills), and **households on the move** to their kin's town (water for their herds, two nights by
   the wall for an old man too slow for the road, two young ones who would rather stay with the colony). How each ends

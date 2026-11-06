@@ -3154,7 +3154,11 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   peoples that count), and the world events' moves: `WorldSituationDef.prosperity` (32 events), in full at the event's
   town and half at its people's other towns in detail, a fifth on each of its first five days (the event keeps how many
   shares it gave, `regionDays`, so a day is never given twice), and `prosperityOther` for the second people of a war
-  of words, a feud or an embargo, at half. Bands: struggling under 20, poor, steady, thriving, flourishing from 80, in
+  of words, a feud, an embargo or a war between neighbours, at half. How a world event ends can move them too, at once
+  (`WorldEffect_Fortune` in an ending, `RegionFortunes.Move`: in full at the event's town, half at its people's other
+  towns, all at half for the second people, the event named as the cause): a war between neighbours won or lost, a
+  great work finished or left half built, a great caravan arrived or robbed, a ban on drink that fell or held,
+  households on the move come through or come in worn out, a cold year eased. Bands: struggling under 20, poor, steady, thriving, flourishing from 80, in
   their age's word where it has one. The last cause is named in the town's panel for 60 days when it fits how the town
   stands. In what it sells (decision 3, `RegionStock`, setting "Fortunes in the trade stock", with the deeper hooks): a
   postfix on the game's `Settlement_TraderTracker.RegenerateStock`, last of all patches, brings a struggling town's
