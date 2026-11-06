@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Names that pass, fights that spark goals
+
+*6 November 2026, version 0.116.2*
+
+- A name passes again to whoever clearly surpasses its holder: after the holder's 20 days, someone a fifth ahead at that work every day for a week, doing more of it than the holder, takes it. Two colonists sharing the work evenly still don't trade it back and forth, and a lost name can come back after 30 days.
+- Fights spark life goals again, in about a fifth of them: the three who brought down the most, anyone downed in the fight, and whoever carried someone out may take one, and a fight pulls harder than before.
+- Never two colonists on the same fighting goal at once, and changes of heart stay rare.
+
 ## The new pieces, checked together
 
 *6 November 2026, version 0.116.1*

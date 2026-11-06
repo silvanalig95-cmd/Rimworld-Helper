@@ -8,13 +8,13 @@ namespace ColonyCouncil
     /// <summary>
     /// A name the colony gives someone for what they keep doing: the Healer, the Deadeye, the Kindling.
     /// Goes to whoever has the highest count of a record, once it's past a threshold, and moves slowly: only to someone who
-    /// clearly outdoes the holder over a season, after the holder has had it a good while (<see cref="NameMath"/>).
+    /// clearly surpasses the holder over a week, after the holder has had it a good while (<see cref="NameMath"/>).
     /// </summary>
     public class EpithetDef : Def
     {
         public RecordDef record;
         public float threshold = 10f;
-        /// <summary>How far ahead a challenger must be on the count to take the name: at least NameMath.ClearLead, a quarter.</summary>
+        /// <summary>How far ahead a challenger must be on the count to take the name: at least NameMath.ClearLead, a fifth.</summary>
         public float margin = 1.15f;
         /// <summary>Earning this one is a mixed blessing (the Kindling): no pride, just a name.</summary>
         public bool dubious;
@@ -221,7 +221,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The name goes to someone in a colony (with one colony, kept under the name alone, as always), held from now, with
-        /// who had it before (<paramref name="previous"/>: they can't take it back for a year).
+        /// who had it before (<paramref name="previous"/>: they can't take it back for a month).
         /// </summary>
         private void Write(string defName, int colony, Pawn p, Pawn previous = null)
         {
@@ -420,8 +420,8 @@ namespace ColonyCouncil
                 var best = pawns.Where(def.Allows).OrderByDescending(p => p.records.GetValue(def.record)).FirstOrDefault();
                 if (best == null) continue;
                 float value = best.records.GetValue(def.record);
-                // A name held holds: it passes only to someone who clearly outdoes the holder over a season, after the holder
-                // has had it a good while (NameMath.Look; the season's counts are kept in its hold).
+                // A name held holds: it passes only to someone who clearly surpasses the holder over a week, after the holder
+                // has had it a good while (NameMath.Look; the week's counts are kept in its hold).
                 if (holder != null && holder.records != null)
                 {
                     var hold = HoldOf(KeyOf(def.defName, colony), def, holder);

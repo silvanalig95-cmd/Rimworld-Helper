@@ -1021,9 +1021,11 @@ ideoligion forbids books, pets, travel or love sets their heart on them. 85 in a
 life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
 makes a warrior, a brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child,
 a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal
-can make them want the same. A fight makes a warrior of the one who brought down the most in it, nobody else, and a
-goal someone at home already holds is less likely. A goal holds: nothing changes it for twenty days, then only a brush
-with death or a loss, and only once. When someone dies before reaching theirs, the
+can make them want the same. A fight can make a warrior of those who fought hardest in it (the three who brought down
+the most, anyone downed in it, whoever carried someone out), about one goal in five in a colony that fights every week
+or so; a goal someone at home already holds is less likely, and nobody takes up a fighting goal after a fight while
+someone else at home who took it up after a fight is still at it. A goal holds: nothing changes it for twenty days,
+then only a brush with death or a loss, and only once. When someone dies before reaching theirs, the
 person who loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why.
 Achieving one is a big moment: a letter, a long good mood, trust, friends who are glad for them, and something that
 stays: a cup raised to them at the colony's next gathering (or at supper, if none comes within two days), an inspiration that fits the goal, a mark on the skill it was about (it
@@ -1875,9 +1877,11 @@ the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
 and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old Doc or the Celebrant by name, the
-founding day's letter names the last of the founders. 63 names in all. A name holds: nobody can take it for two
-seasons, and after that it passes only to someone who stays clearly ahead a whole season and does half again as much of
-the work as the holder, never back to the one who lost it within a year (who writes it once in their journal). Each
+founding day's letter names the last of the founders. 63 names in all. A name holds: nobody can take it for 20 days,
+and after that it passes to someone who stays a fifth ahead on the count every day of a week and does more of that work
+than the holder in it, never back to the one who lost it within 30 days (who writes it once in their journal). Two who
+share the work don't pass a name more than about once in 60 days; one who clearly surpasses the holder has it within a
+couple of weeks of the holder's 20 days. Each
 colonist is known by one name, the proud one held longest: it stands under their name on their card, in the tabs and
 tables and in their death letter, and their card says it in one line with what the peoples beyond the walls know them
 for ("Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."),

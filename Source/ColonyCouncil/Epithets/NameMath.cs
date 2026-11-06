@@ -42,52 +42,39 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The rules of one slow name (phase 4 of the review, the player's decision 6 of 6 November 2026: one "known as" per
-    /// colonist, the colony's name for them its short form). A name, once earned, holds: nobody can take it for
-    /// <see cref="HoldDays"/>. After that it passes only to someone who clearly outdoes the holder over time: ahead on the
-    /// count by a quarter at least (<see cref="Lead"/>) every day of a whole season (<see cref="ChallengeDays"/>), and over
-    /// that season doing half again as much of the work as the holder (<see cref="Outdid"/>), or twice the holder's count
-    /// and more of the work. A holder still at the work keeps it, and the season starts again. The one who lost a name
-    /// can't take it back for a year (<see cref="ReturnDays"/>), so it never goes back and forth. And a colonist is known by
-    /// one name (<see cref="Chief"/>): of the names they hold, a proud one before a dubious one, then the one held longest.
+    /// colonist, the colony's name for them its short form), retuned on the player's word of the same day ("titles should
+    /// be able to change if someone surpasses the current owner"): calmer than before, not frozen. A name, once earned,
+    /// holds: nobody can take it for <see cref="HoldDays"/>. After that it passes to someone who clearly surpasses the
+    /// holder: ahead on the count by a fifth at least (<see cref="Lead"/>) every day of a week (<see cref="ChallengeDays"/>),
+    /// and over that week doing more of the work than the holder (<see cref="Outdid"/>). A holder still at the work as much
+    /// keeps it, and the week starts again. The one who lost a name can't take it back for a month
+    /// (<see cref="ReturnDays"/>), so it never goes back and forth. And a colonist is known by one name
+    /// (<see cref="Chief"/>): of the names they hold, a proud one before a dubious one, then the one held longest.
     /// </summary>
     public static class NameMath
     {
         public const int DayTicks = 60000;
 
-        /// <summary>A name holds this many days (two seasons) before anyone can take it.</summary>
-        public const int HoldDays = 30;
+        /// <summary>A name holds this many days before anyone can take it (it was 30).</summary>
+        public const int HoldDays = 20;
 
-        /// <summary>A challenger must stay clearly ahead this many days (a season), every day of it.</summary>
-        public const int ChallengeDays = 15;
+        /// <summary>A challenger must stay clearly ahead this many days, a week, every day of it (it was a season, 15).</summary>
+        public const int ChallengeDays = 7;
 
-        /// <summary>Clearly ahead: a quarter more on the count at least (a name's own margin when it asks for more).</summary>
-        public const float ClearLead = 1.25f;
+        /// <summary>Clearly ahead: a fifth more on the count at least (a name's own margin when it asks for more; it was a quarter).</summary>
+        public const float ClearLead = 1.2f;
 
-        /// <summary>Clearly outdone over the season: half again as much of the work as the holder did.</summary>
-        public const float OutdoShare = 1.5f;
-
-        /// <summary>Far ahead: twice the holder's count; then doing more of the work over the season is enough.</summary>
-        public const float FarAhead = 2f;
-
-        /// <summary>The one who lost a name can't take it back for a year.</summary>
-        public const int ReturnDays = 60;
+        /// <summary>The one who lost a name can't take it back for a month, 30 days (it was a year).</summary>
+        public const int ReturnDays = 30;
 
         /// <summary>The lead a challenger needs on a name with this margin.</summary>
         public static float Lead(float margin) => Math.Max(margin, ClearLead);
 
-        /// <summary>The challenger's count is clearly ahead of the holder's.</summary>
-        public static bool Ahead(float challenger, float holder, float margin) => challenger > holder && challenger >= holder * Lead(margin);
+        /// <summary>The challenger's count is clearly ahead of the holder's (exactly a fifth ahead counts: 12 against 10).</summary>
+        public static bool Ahead(float challenger, float holder, float margin) => challenger > holder && challenger >= holder * Lead(margin) - 0.001f;
 
-        /// <summary>
-        /// Over the season the challenger did half again as much of the work as the holder, or, twice ahead on the count,
-        /// more of it. Nothing done is never outdoing.
-        /// </summary>
-        public static bool Outdid(float challengerGain, float holderGain, bool farAhead)
-        {
-            if (challengerGain <= 0f) return false;
-            float held = Math.Max(0f, holderGain);
-            return challengerGain >= held * OutdoShare || farAhead && challengerGain > held;
-        }
+        /// <summary>Over the week the challenger did more of the work than the holder. Nothing done is never outdoing.</summary>
+        public static bool Outdid(float challengerGain, float holderGain) => challengerGain > 0f && challengerGain > Math.Max(0f, holderGain);
 
         /// <summary>
         /// A day's look at a name with a holder: whether it passes to <paramref name="bestId"/> (the one with the highest count
@@ -111,8 +98,8 @@ namespace ColonyCouncil
                 return NameMove.Keep;
             }
             if (now - h.challengeFrom < ChallengeDays * DayTicks) return NameMove.Keep;
-            if (Outdid(bestCount - h.challengerAt, holderCount - h.holderAt, bestCount >= holderCount * FarAhead)) return NameMove.Pass;
-            // The holder kept at the work: another season to show it.
+            if (Outdid(bestCount - h.challengerAt, holderCount - h.holderAt)) return NameMove.Pass;
+            // The holder kept at the work as much: another week to show it.
             Begin(h, bestId, now, bestCount, holderCount);
             return NameMove.Keep;
         }

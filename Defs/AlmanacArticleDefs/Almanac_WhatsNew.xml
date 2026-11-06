@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.116.2</version>
+        <date>6 November 2026</date>
+        <title>Names that pass, fights that spark goals</title>
+        <points>
+          <li>A name passes again to whoever clearly surpasses its holder: after the holder's 20 days, someone a fifth ahead at that work every day for a week, doing more of it than the holder, takes it. Two colonists sharing the work evenly still don't trade it back and forth, and a lost name can come back after 30 days.</li>
+          <li>Fights spark life goals again, in about a fifth of them: the three who brought down the most, anyone downed in the fight, and whoever carried someone out may take one, and a fight pulls harder than before.</li>
+          <li>Never two colonists on the same fighting goal at once, and changes of heart stay rare.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.116.1</version>
         <date>6 November 2026</date>
         <title>The new pieces, checked together</title>

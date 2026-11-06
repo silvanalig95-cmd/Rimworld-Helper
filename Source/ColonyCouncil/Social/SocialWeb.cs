@@ -619,16 +619,12 @@ namespace ColonyCouncil
             }
             // When the fight began, read before the count is reset (the quirks look for wounds since then).
             int began = b.countStart;
-            // A fight sparks a fighting life goal in one person at most: whoever brought down the most (GoalMath.Foremost).
-            // A raid every ten days was a spark for everyone who fought, every time.
-            int most = GoalMath.Foremost(list.Select(p => b.killsBy.TryGetValue(p, out int k) ? k : 0).ToList());
-            var foremost = most >= 0 ? list[most] : null;
+            // A fight sparks a fighting life goal in those who fought hardest in it (GoalMath.Hardest), read before the count
+            // is reset. A raid every ten days was a spark for everyone who fought, every time, and then for one alone.
+            var hardest = HardestIn(comp, b, list, began, map);
             b.ResetCount();
-            foreach (var p in list)
-            {
-                comp.quirks.Notify_Fought(p, began);
-                if (p == foremost) comp.aspirations.Notify_Event(p, "battle");
-            }
+            foreach (var p in list) comp.quirks.Notify_Fought(p, began);
+            foreach (var p in hardest) comp.aspirations.Notify_Event(p, "battle");
             TalkHooks.Battle(list, foe);
             try
             {
@@ -641,6 +637,23 @@ namespace ColonyCouncil
                 // What happened in the fight is read; another home's fight still going keeps its own.
                 if (!AnyBattle) FightSides.Clear();
             }
+        }
+
+        /// <summary>
+        /// Those who fought hardest in a fight at this home, who may take a fighting life goal from it (GoalMath.Hardest): of
+        /// its fighters, the three who brought down the most and anyone downed in it since it began, and anyone of ours there
+        /// who carried someone out of it (FightSides, still read: it is cleared after the comradeship).
+        /// </summary>
+        private static List<Pawn> HardestIn(CouncilGameComponent comp, Battle b, List<Pawn> fighters, int began, Map map)
+        {
+            var people = new List<Pawn>(fighters);
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                if (Eligible(p) && !people.Contains(p) && FightSides.Carried(p)) people.Add(p);
+            int since = began >= 0 ? began : Find.TickManager.TicksGame - GenDate.TicksPerDay;
+            var picked = GoalMath.Hardest(people.Select(p => b.killsBy.TryGetValue(p, out int k) ? k : 0).ToList(),
+                people.Select(p => fighters.Contains(p) && comp.aspirations.HappenedSince(p, "downed", since)).ToList(),
+                people.Select(FightSides.Carried).ToList());
+            return picked.Select(i => people[i]).ToList();
         }
 
         /// <summary>
