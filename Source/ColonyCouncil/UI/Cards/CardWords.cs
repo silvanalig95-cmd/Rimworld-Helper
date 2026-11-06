@@ -16,10 +16,12 @@ namespace ColonyCouncil
     {
         private static string T(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
 
-        /// <summary>"a favour owed", "a pact", "a grudge": a tie by its kind.</summary>
+        /// <summary>"a favour owed", "a pact", "a grudge": a tie by its kind; fealty as a pact of its own kind (decision 14).</summary>
         public static string TieName(Tie t)
         {
             if (t == null) return "";
+            if (t.kind == Tie.Kind.Fealty)
+                return T(t.origin == FealtyMath.VassalOrigin || t.from.kind == RefKind.Town ? "CC_Card_TieKind_ProtectionPact" : "CC_Card_TieKind_FealtyPact");
             string key = "CC_Card_TieKind_" + t.kind;
             return key.CanTranslate() ? T(key) : WorldHistoryMath.Words(t.kind.ToString()).CapitalizeFirst();
         }

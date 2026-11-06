@@ -16,6 +16,9 @@ namespace ColonyCouncil
     /// level, their head's regard and what moved it) with its acts (set the tribute, call their levies), the Ours lens's
     /// marks and lines; and the one inbox: their offer, levies called, tribute owed and a vassal's asks in Needs you, the
     /// oath awaited, their band, the colony's levies and a vassal's levies in Under way, the tribute expected in Coming.
+    /// Since the review's decision 14 (6 November 2026) they show as pacts of their own kind: "a pact of fealty" with a
+    /// liege and "a pact of protection" with a vassal, among the pacts and truces on a people's card and in Needs you, the
+    /// tie's card named so, and their switch under the pacts' in the settings. The mechanics are as they were.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FealtyPanels
@@ -42,7 +45,8 @@ namespace ColonyCouncil
                 var v = VassalOf(r, out var m);
                 Vassals.CallLevies(v, m);
             }, r => VassalOf(r) != null, 22f, FealtyWords.P("CC_Vassal_Act_Levies_Tip"), "vassal-levies");
-            Inbox.Register("fealty", InboxSection.Needs, 34f, NeedRows, NeedCount);
+            // Right after the pacts' own (32): fealty is a pact of its own kind (decision 14).
+            Inbox.Register("fealty", InboxSection.Needs, 32.5f, NeedRows, NeedCount);
             Inbox.Register("fealty-under-way", InboxSection.UnderWay, 53f, UnderWayRows);
             Inbox.Register("fealty-coming", InboxSection.Coming, 26f, ComingRows);
         }
@@ -72,7 +76,7 @@ namespace ColonyCouncil
                     list.Add(LiegeRow(t));
             var awaited = Fealty.Awaited(home ?? Home);
             if (awaited == f)
-                list.Add(new DipRow { text = FealtyWords.P("CC_Fealty_RowAwaited", FealtyWords.Form(home, f).word.Named("WORD"), FealtyWords.People(f).Named("PEOPLE")), color = UiKit.Cool, link = f });
+                list.Add(new DipRow { text = FealtyWords.P("CC_Fealty_RowAwaitedPact", FealtyWords.Form(home, f).word.Named("WORD"), FealtyWords.People(f).Named("PEOPLE")), color = UiKit.Cool, link = f });
             // Their vassals of the colony's: protected towns and the hamlet sworn.
             foreach (var (m, v) in Vassals.All())
                 if (v.people == f && (home == null || m == home))
@@ -92,7 +96,7 @@ namespace ColonyCouncil
             var form = FealtyWords.Form(home, f);
             var row = new DipRow
             {
-                text = FealtyWords.P("CC_Fealty_Row", form.word.Named("WORD"), FealtyWords.People(f).Named("PEOPLE"), form.rite.Named("RITE")), note = State(t), color = UiKit.Gold, link = t,
+                text = FealtyWords.P("CC_Fealty_RowPact", form.word.Named("WORD"), FealtyWords.People(f).Named("PEOPLE"), form.rite.Named("RITE")), note = State(t), color = UiKit.Gold, link = t,
                 tip = FealtyWords.Terms(f, home)
             };
             if (Fealty.Owed(t))
@@ -110,7 +114,7 @@ namespace ColonyCouncil
             int regard = Vassals.Regard(v.town);
             return new DipRow
             {
-                text = FealtyWords.P(v.kind == VassalKind.Hamlet ? "CC_Vassal_RowHamlet" : "CC_Vassal_Row", Vassals.NameOf(v).Named("TOWN"), form.word.Named("WORD")),
+                text = FealtyWords.P(v.kind == VassalKind.Hamlet ? "CC_Vassal_RowPactHamlet" : "CC_Vassal_RowPact", Vassals.NameOf(v).Named("TOWN"), form.word.Named("WORD")),
                 note = FealtyWords.P("CC_Vassal_RowNote", FealtyWords.Level(v.level).Named("LEVEL"), NotableBook.RegardWords(regard).Named("REGARD")), color = UiKit.Gold,
                 link = Vassals.TownOf(v)
             };
