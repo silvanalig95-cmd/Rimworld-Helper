@@ -392,7 +392,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
         Console.WriteLine($"Checked {CallerTests.Run(root, Check)} things about visitors who come to do something (prices, cuts, their jobs and lines).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
-        Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about a good life grown ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
+        Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about good things growing ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
+        Console.WriteLine($"Checked {SmallMomentTests.Run(root, Check)} things about small letdowns and joys (the moment, what moves to the heart, every small mood's pile).");
         Console.WriteLine($"Checked {YardTests.Run(Check)} things about where the colony gathers out of doors (terraces and seats, not the machinery).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");

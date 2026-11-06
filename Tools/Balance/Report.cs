@@ -26,16 +26,17 @@ namespace Balance
             sb.AppendLine("`dotnet run -c Release --project Tools/Balance -- . --before Tools/Balance/before.json`). It plays a settled colony through one");
             sb.AppendLine($"60-day year ({Colony.WarmupDays} days of warm-up first, so standards and trust have settled) {runs} times for each case, without the game:");
             sb.AppendLine("the moods, wishes, dilemmas, events and ailments come from the def XML, the rates from the code (read from the source");
-            sb.AppendLine("where it can, see the last section), and the mood rules from the mod's own `GoodTimesMath`, `GoodLifeMath`,");
-            sb.AppendLine("`PressureMath`, `SetbackMath`, `AilmentMath` and `ArcMath`, compiled in as they are. What it can't know (how often the storyteller");
+            sb.AppendLine("where it can, see the last section), and the mood rules from the mod's own `GoodLifeMath`, `SmallMomentMath`, `HeartMath`,");
+            sb.AppendLine("`PressureMath`, `SetbackMath`, `AilmentMath` and `ArcMath`, compiled in as they are. Each colonist's heart is played hour by");
+            sb.AppendLine("hour (`HeartSim.cs`). What it can't know (how often the storyteller");
             sb.AppendLine("sends visitors, how a player plays) is in `Tools/Balance/Rates.cs`, one documented table. Treat the numbers as");
             sb.AppendLine("a model's: good for comparing settings and changes, not a promise about one game.");
             sb.AppendLine();
             sb.AppendLine("**Rimfolk's mood** below is everything Rimfolk adds to a colonist's mood, per colonist, averaged over the year:");
-            sb.AppendLine("its good memories (after the shared budget and fading sooner in good times), its bad memories (setbacks, a lapsed");
-            sb.AppendLine("wish, frictions, a nightmare, a quiet trouble), and its steady moods (trust, the colony's ways, everyday pressures,");
-            sb.AppendLine("ailments, a wish still waiting, strain, and what being used to the good life takes back of all the good moods,");
-            sb.AppendLine("the game's included). The game's own moods aren't in it.");
+            sb.AppendLine("its good memories (small joys as their short moments), its bad memories (small letdowns as their short moments: setbacks,");
+            sb.AppendLine("frictions, nuisances, quiet troubles, the pressures' and lasting setbacks' moments; a lapsed wish, a nightmare), and its");
+            sb.AppendLine("steady moods (trust, the colony's ways, ailments, strain, and what good things growing ordinary takes off Rimfolk's own");
+            sb.AppendLine("good moods). The game's own moods aren't in it; what growing ordinary takes off them is in \"The colony's mood\" below.");
             sb.AppendLine();
 
             // ---------------- Targets ----------------
@@ -64,15 +65,27 @@ namespace Balance
                 sb.AppendLine($"| Questions within 12 hours of another, average | few | {P(a2.clustered)} | {P(b2.clustered)} |" + Before("default|avg|6", x => P(x.clustered)));
                 sb.AppendLine($"| Time with an everyday ailment, average | 10-15% | {P(a2.illShare)} | {P(b2.illShare)} |" + Before("default|avg|6", x => P(x.illShare)));
                 sb.AppendLine($"| Time with an everyday ailment, well run | under 10-15% | {P(a.illShare)} | {P(b.illShare)} |" + Before("default|well|6", x => P(x.illShare)));
+                foreach (var st in Rates.Styles)
+                {
+                    var x6 = R("default", st.key, 6).summary;
+                    var x12 = R("default", st.key, 12).summary;
+                    sb.AppendLine($"| The colony's whole mood, {st.name} (for reference) | as before | {P(x6.mood)} | {P(x12.mood)} |" + Before("default|" + st.key + "|6", x => P(x.mood)));
+                }
+                var n6 = R("default", "neglect", 6).summary;
+                var n12 = R("default", "neglect", 12).summary;
+                var m6 = R("letdowns and joys as moods", "neglect", 6).summary;
+                sb.AppendLine($"| Time under the minor-break line, neglectful (letdowns as moods: {P(m6.underMinor)}) | no more than before | {P(n6.underMinor)} | {P(n12.underMinor)} |" + (before != null ? " - |" : ""));
+                sb.AppendLine($"| The heart's day off a colonist-year, neglectful (letdowns as moods: {m6.episodesPerYear:0.00}) | under one | {n6.episodesPerYear:0.00} | {n12.episodesPerYear:0.00} |" + (before != null ? " - |" : ""));
             }
             sb.AppendLine();
 
             // ---------------- Before and after ----------------
             if (before != null)
             {
-                sb.AppendLine("## Before and after the balance pass");
+                sb.AppendLine("## Before and after phase 3 (one heart)");
                 sb.AppendLine();
-                sb.AppendLine("The same simulator on the code and defs as they were before the pass, and as they are now (default settings).");
+                sb.AppendLine("The simulator on the code and defs as they were before phase 3 of the review (four rules softening good moods, small");
+                sb.AppendLine("letdowns as moods of their own, strain as a fixed share per play style), and as they are now (default settings).");
                 sb.AppendLine();
                 sb.AppendLine("| | 6 before | 6 after | 12 before | 12 after |");
                 sb.AppendLine("|---|---|---|---|---|");
@@ -110,9 +123,9 @@ namespace Balance
             // ---------------- Mood ----------------
             sb.AppendLine("## Rimfolk's mood per colonist");
             sb.AppendLine();
-            sb.AppendLine("Good memories are what they count for after the shared budget (the two biggest in full, then 60%, 45%, 35%, 25%)");
-            sb.AppendLine("and fading sooner above 75% mood; \"raw\" is the same memories without the budget. Steady moods are trust, the");
-            sb.AppendLine("colony's ways, pressures, ailments, waiting and strain. P10 and P90: a hard and a good moment for one colonist.");
+            sb.AppendLine("Good memories are as given (small joys as their moments); \"raw\" is the same. Steady moods are trust, the colony's");
+            sb.AppendLine("ways, ailments and strain, and what good things growing ordinary takes off Rimfolk's good moods. P10 and P90: a hard");
+            sb.AppendLine("and a good moment for one colonist.");
             sb.AppendLine();
             sb.AppendLine("| Case | Good memories (raw) | Bad memories | Steady good | Steady bad | **Net** | P10 / P90 | Good moods on the mind | Mood | Standards |");
             sb.AppendLine("|---|---|---|---|---|---|---|---|---|---|");
@@ -132,8 +145,7 @@ namespace Balance
                 sb.AppendLine($"| {r.style.name} | " + string.Join(" | ", Enumerable.Range(0, Runner.Bins).Select(b => $"{N(s.netSeries[b])} ({N(s.goodSeries[b])} / {N(s.badSeries[b])})")) + " |");
             }
             sb.AppendLine();
-            sb.AppendLine("Where it comes from (6 colonists): what each source adds to a colonist's mood on average. Good memories are");
-            sb.AppendLine("shown as they count after the budget.");
+            sb.AppendLine("Where it comes from (6 colonists): what each source adds to a colonist's mood on average.");
             sb.AppendLine();
             var six = results.Where(r => r.preset == null && r.colonists == 6).ToList();
             var partKeys = six.SelectMany(r => r.summary.parts.Keys).Distinct()
@@ -155,6 +167,40 @@ namespace Balance
                 var nr = results.FirstOrDefault(x => x.preset == "without growing ordinary" && x.style == r.style);
                 if (nr == null) continue;
                 sb.AppendLine($"| {r.style.name} | {N(r.summary.net)} | {N(nr.summary.net)} | {N(r.summary.good)} | {N(nr.summary.good)} |");
+            }
+            sb.AppendLine();
+
+            // ---------------- The heart ----------------
+            sb.AppendLine("## The heart");
+            sb.AppendLine();
+            sb.AppendLine("Each colonist's strain, played hour by hour (`HeartSim.cs`): the life of each play style (fights, losses, bad nights,");
+            sb.AppendLine("hunger, low spirits, decrees; sleep, quiet hours, recreation, gatherings and talks), set so that it alone gives the");
+            sb.AppendLine("shares the report always assumed, and on top what small letdowns and joys bring (`SmallMomentMath`): what Rimfolk's");
+            sb.AppendLine("own weigh beyond their moment, and the pile of every small mood on a colonist's mind, the game's (a share of its moods,");
+            sb.AppendLine("`Rates.GameSmallBad`, `GameSmallGood`) and Rimfolk's. \"As moods\" is the same with letdowns and joys as moods of their");
+            sb.AppendLine("own and nothing to the heart (as before phase 3). Strain built and eased is per colonist over the 60-day year.");
+            sb.AppendLine();
+            sb.AppendLine("| Case | Strained / worn / near breaking | Day off a year | Built | of it: life / Rimfolk's letdowns / small moods (the game's) / (Rimfolk's) | The game's small moods' share | Eased by small joys (the game's / Rimfolk's) |");
+            sb.AppendLine("|---|---|---|---|---|---|---|");
+            foreach (var r in results.Where(r => r.preset == null || r.preset == "letdowns and joys as moods"))
+            {
+                var s = r.summary;
+                double built = s.strainBy.Values.Sum(), game = s.strainBy.GetValueOrDefault("small moods: the game's");
+                double joysGame = s.reliefBy.GetValueOrDefault("small moods: the game's"), joysRim = s.reliefBy.GetValueOrDefault("small moods: Rimfolk's") + s.reliefBy.GetValueOrDefault("Rimfolk's joys");
+                string name = $"{r.colonists} colonists, {r.style.name}" + (r.preset != null ? ", as moods" : "");
+                sb.AppendLine($"| {name} | {P(s.strained)} / {P(s.worn)} / {P(s.breaking)} | {s.episodesPerYear:0.00} | {built:0} | {s.strainBy.GetValueOrDefault("life"):0} / {s.strainBy.GetValueOrDefault("Rimfolk's letdowns"):0} / {game:0} / {s.strainBy.GetValueOrDefault("small moods: Rimfolk's"):0} | {P(built > 0 ? game / built : 0)} | {joysGame:0} / {joysRim:0} |");
+            }
+            sb.AppendLine();
+            sb.AppendLine("The colony's mood: the whole of it, the game's moods included, and what good things growing ordinary takes off the");
+            sb.AppendLine("game's own good moods (it comes off every good mood by how ordinary each is: the game's comforts mostly).");
+            sb.AppendLine();
+            sb.AppendLine("| Case | Whole mood (P10 / P90) | Under the minor-break line | Taken off the game's good moods | Taken off Rimfolk's |");
+            sb.AppendLine("|---|---|---|---|---|");
+            foreach (var r in results.Where(r => r.preset == null || r.preset == "letdowns and joys as moods" || r.preset == "without growing ordinary"))
+            {
+                var s = r.summary;
+                string name = $"{r.colonists} colonists, {r.style.name}" + (r.preset != null ? ", " + r.preset : "");
+                sb.AppendLine($"| {name} | {P(s.mood)} ({P(s.moodP10)} / {P(s.moodP90)}) | {P(s.underMinor)} | {N(-s.gameOrdinary)} | {N(s.parts.GetValueOrDefault("good things grown ordinary"))} |");
             }
             sb.AppendLine();
 
@@ -289,18 +335,19 @@ namespace Balance
             sb.AppendLine("| A varied table | " + string.Join(" | ", Rates.Styles.Select(s => P(s.variedTable))) + " |");
             sb.AppendLine("| The same meal again (stage 1 / 2 / 3) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.sameMeal[1])} / {P(s.sameMeal[2])} / {P(s.sameMeal[3])}")) + " |");
             sb.AppendLine("| The same work again (stage 1 / 2 / 3) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.sameWork[1])} / {P(s.sameWork[2])} / {P(s.sameWork[3])}")) + " |");
-            sb.AppendLine("| Strained (-3 / -5 / -8) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.strain[0])} / {P(s.strain[1])} / {P(s.strain[2])}")) + " |");
+            sb.AppendLine("| Strained (-3 / -5 / -8) from life alone (the heart's life is set to it) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.strain[0])} / {P(s.strain[1])} / {P(s.strain[2])}")) + " |");
             sb.AppendLine("| The colony's ways (-4 / -2 / +2 / +4) | " + string.Join(" | ", Rates.Styles.Select(s => string.Join(" / ", s.ways.Select(w => P(w))))) + " |");
             sb.AppendLine();
             sb.AppendLine("Not modelled: quirks, heirlooms and the colony's trait pride (small steady moods either way), decrees' own moods");
             sb.AppendLine("(the player's choice), secrets, vendettas and nemeses' moods (rare), the base game's moods themselves (a fixed");
-            sb.AppendLine("good and bad per play style, under the standards' share), battles from events, and other mods' content.");
+            sb.AppendLine("good and bad per play style, of which a share counts as small for the heart), battles from events, the heart's trait");
+            sb.AppendLine("factors and its feelings (fear, grief, despair: in the life), and other mods' content.");
             sb.AppendLine("The links between systems (`Interplay/`: strain eased, bonds, wishes made likelier by a run of setbacks, stories");
             sb.AppendLine("moved on) give no mood of their own and aren't modelled; the social events, encounters and dreams they brought");
             sb.AppendLine("are read from the defs like any other.");
             sb.AppendLine();
-            sb.AppendLine("The \"before\" column is the same simulator on the code and defs as they were before the balance pass (the");
-            sb.AppendLine("presets' rows always use the presets as they are now).");
+            sb.AppendLine("The \"before\" column is the simulator on the code and defs as they were before phase 3 of the review (6 November");
+            sb.AppendLine("2026), with strain as a fixed share per play style; the presets' rows always use the presets as they are now.");
             return sb.ToString();
         }
     }

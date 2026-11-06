@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// Used to the good life and the quiet troubles (Moods/GoodLifeMath.cs, Defs/ThoughtDefs/Rimfolk_Thoughts_GoodLife.xml):
+/// Good things grow ordinary (the one rule) and the quiet troubles (Moods/GoodLifeMath.cs, Defs/ThoughtDefs/Rimfolk_Thoughts_GoodLife.xml):
 /// the take-back never makes more good moods worse and never touches bad ones, its line moves with standards, a richly
 /// comfortable colonist settles below the top of the bar, the troubles' chance rises with content days and stays
 /// capped, and every trouble is a moderate "Life's ups and downs" memory with a hint and words of its own.
@@ -24,9 +24,13 @@ public static class GoodLifeTests
         }
 
         // ---------- The line moves with standards ----------
-        C(GoodLifeMath.LineFor(0) == 45f && GoodLifeMath.LineFor(1) == 40f && GoodLifeMath.LineFor(2) == 35f && GoodLifeMath.LineFor(3) == 30f,
-            "the line: 45 modest, 40 comfortable, 35 particular, 30 spoiled");
-        C(GoodLifeMath.LineFor(-2) == 45f && GoodLifeMath.LineFor(9) == 30f, "levels out of range stay at the ends");
+        // A colony used to the good life asks more (the one rule since phase 3 of the review): the line falls ten points a level.
+        C(GoodLifeMath.LineFor(0) == 45f && GoodLifeMath.LineFor(1) == 35f && GoodLifeMath.LineFor(2) == 25f && GoodLifeMath.LineFor(3) == 15f,
+            "the line: 45 modest, 35 comfortable, 25 particular, 15 spoiled");
+        C(GoodLifeMath.LineFor(-2) == 45f && GoodLifeMath.LineFor(9) == 15f, "levels out of range stay at the ends");
+        // The one setting from the four before it: on if any was.
+        C(GoodLifeMath.MergedSetting(true, true, true, true) && GoodLifeMath.MergedSetting(false, false, false, true) && GoodLifeMath.MergedSetting(true, false, false, false)
+          && !GoodLifeMath.MergedSetting(false, false, false, false), "the merged setting: on if any of the four was, off only if all were");
         C(GoodLifeMath.Level(0f) == 0 && GoodLifeMath.Level(0.24f) == 0 && GoodLifeMath.Level(0.25f) == 1 && GoodLifeMath.Level(0.5f) == 2
           && GoodLifeMath.Level(0.75f) == 3 && GoodLifeMath.Level(1f) == 3 && GoodLifeMath.Level(float.NaN) == 0, "levels as Standards.LevelFor has them");
         for (float s = 0f; s < 1f; s += 0.01f)
@@ -112,8 +116,8 @@ public static class GoodLifeTests
             C(s3.All(x => Math.Abs(x - GoodLifeMath.Share(100f, 25f)) < 0.001f), "equally ordinary: each at the common share");
         }
 
-        // ---------- The take-back ----------
-        float spoiled = GoodLifeMath.LineFor(3);
+        // ---------- The take-back (its shape, at a line of 30) ----------
+        float spoiled = 30f;
         C(GoodLifeMath.TakeBack(30f, spoiled) == 0f && GoodLifeMath.TakeBack(10f, spoiled) == 0f, "nothing at or below the line");
         C(GoodLifeMath.TakeBack(-20f, spoiled) == 0f && GoodLifeMath.TakeBack(0f, spoiled) == 0f, "no good moods: nothing (bad moods are never touched)");
         C(GoodLifeMath.TakeBack(float.NaN, spoiled) == 0f, "an unknown sum takes nothing");
@@ -154,6 +158,10 @@ public static class GoodLifeTests
         C(m80 >= 0.75f && m80 <= 0.9f, $"+80 with -10, spoiled: between 75% and 90% ({m80:P1}), not pinned at the top");
         C(m100 < 0.95f, $"+100 with -10, spoiled: still under 95% ({m100:P1})");
         C(GoodLifeMath.Mood(80f, -10f, GoodLifeMath.LineFor(0)) < 1f, "+80 with -10, modest: under the top too");
+        // Spoiled now (a line of 15): a well-run colony's +50 of good moods with -10 of small worries sits near 70%, not at 90%.
+        float s50 = GoodLifeMath.Mood(50f, -10f, GoodLifeMath.LineFor(3));
+        C(Math.Abs(s50 - 0.6875f) < 0.001f, $"+50 with -10, spoiled: about 69% ({s50:P1})");
+        C(GoodLifeMath.Mood(100f, -10f, GoodLifeMath.LineFor(3)) < 0.85f && GoodLifeMath.Mood(100f, -10f, GoodLifeMath.LineFor(3)) > s50, "+100, spoiled: still more, well under the top");
 
         // ---------- The troubles' chance ----------
         C(GoodLifeMath.TroubleChance(0) == 0f && GoodLifeMath.TroubleChance(2) == 0f, "nothing in the first days of contentment");

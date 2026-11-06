@@ -56,8 +56,15 @@ var results = new List<Result>();
 bool quick = Environment.GetEnvironmentVariable("BALANCE_QUICK") == "1";
 if (quick)
 {
+    // BALANCE_PRESET=demanding (or lightTouch, storyRich): that preset instead of the default and the moments off.
+    string quickPreset = Environment.GetEnvironmentVariable("BALANCE_PRESET");
     foreach (var style in Rates.Styles)
     {
+        if (quickPreset != null)
+        {
+            results.Add(Runner.Run(defs, new Settings(defaults, quickPreset), style, 6, runs, quickPreset));
+            continue;
+        }
         results.Add(Runner.Run(defs, new Settings(defaults), style, 6, runs, null));
         results.Add(Runner.Run(defs, new Settings(new Dictionary<string, string>(defaults) { ["smallMomentsOff"] = "true" }), style, 6, runs, "letdowns and joys as moods"));
     }

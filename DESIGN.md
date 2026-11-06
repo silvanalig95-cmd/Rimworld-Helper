@@ -405,7 +405,7 @@ systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With t
 stat part contribute nothing and the hooks return 1.
 
 - **Strain** (0 to 100) is a slow reservoir. Each colonist is looked at once an hour, a tenth of the colony at a time.
-  Sources build it with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
+  Sources build it (18, small letdowns among them: see "One heart" below) with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
   they're new (a renewed memory, like a second cold night, counts again). Drains are slow and steady (sleep, quiet hours,
   recreation) with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
   relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
@@ -422,6 +422,67 @@ stat part contribute nothing and the hooks return 1.
 - **The heart's needs** (belonging, purpose, safety, freedom) are computed each hour, never saved, and give no mood:
   they show what a life is missing and point wishes and life goals toward it.
 - **Removal.** No hediffs and no stored thoughts. The only trace is a colonist in the middle of an episode.
+
+### One heart: small letdowns, small joys and good things growing ordinary
+
+Phase 3 of the review (`docs/review-2026-11/`), the player's decisions of 6 November 2026: small letdowns wear on the
+heart ("the letdowns also make sense as mood impact, no? But I like strain too though!"), the good side the same way
+("the positive mood buffs should also be adjusted accordingly and balanced"), every small mood by the same rule whoever
+made it ("then we might also have to look at non-rimfolk moods, right"), and one rule for good things growing ordinary.
+The game's mood stays the one number for breaks (the safety rule above): nothing here changes a mood the game or another
+mod made.
+
+- **Small letdowns** (`Moods/SmallMoments.cs`, `SmallMomentMath`). Rimfolk's five kinds (everyday pressures, setbacks,
+  quiet troubles, nuisances, frictions: a `SetbackExtension`, a `Thought_Pressure`, `Thought_Setback` or
+  `Thought_Trouble`, or a `Council_Friction_` or `Council_Nuisance_` name) are each felt as a short, small mood at the
+  moment they happen: three points at most, half a day at most. What they would have weighed beyond that moment (their
+  size times their days, less the moment's) goes to the heart as strain (`StrainSource.Letdowns`, at the end of the
+  list, saved by position), 0.6 a mood-day, within the heart's caps (1.5 a day for the source, at 100% strength, their
+  traits counted), so a run of them wears while one passes. The memory that brought it goes on without a mood (its
+  `moodPowerFactor` 0) for what else it does: a friction's opinion of the other, what dilemmas, arcs, speech and
+  journals look for. The hook is the one every memory passes (`Patch_GoodTimesFade`'s prefix); the heart leaves such a
+  memory to its moment (`SmallMoments.Converted`).
+- **A lasting one** (the same meal again, days of the same work, someone away, a crowded room, half-built work, a wish
+  still waiting, a decree dragging on, a sick friend...) gives no mood of its own any more: a moment when it begins,
+  gets worse or holds another day, and strain each hour while it holds at the same rate (its size a day). What the hour
+  last saw is kept on the heart unsaved; after a load, what holds already brings no moment until it changes.
+- **Small joys**, the mirror: Rimfolk's small good moments (its good memories that no council answer gave, a moment,
+  a talk, a kindness, scaled as they're felt, of five points and two days at most as written; a varied table) are each a
+  short, small mood at the moment, and what they'd weigh beyond eases strain (`StrainRelief.Joys`, at the end of its
+  list), 0.6 a mood-day, within a day's cap of 3. Council rewards, life goals reached and dreams stay moods of their own.
+- **One row a side.** Each moment is a `Thought_SmallMoment` of one of two defs (`Rimfolk_SmallLetdowns`,
+  `Rimfolk_SmallJoys`) carrying its own size, time, words and cause; the game groups them by def, so the Mood tab and
+  the game's Needs tab show "Small letdowns x3" and "Small joys x2", added up as they are, and the row's tooltip says
+  what each one was ("My idea turned down: -2. The council chose the well.") and that the rest goes to the heart. What
+  helps is the fixes of the letdowns behind the row (`SmallMoments.Advice`), else its own hint. Each one still feeds the
+  feelings its own memory fed, at the moment's size; a lasting one at its full size while it holds.
+- **Every small mood, anyone's.** Each hour the heart adds up every small mood on a colonist's mind, the game's and
+  other mods' too, by size and length, not by name (`SmallMomentMath.IsSmall`: six points or less, three days or less
+  or lasting): past 8 points of small bad moods each point builds 0.02 strain an hour, past 12 of small good ones each
+  eases 0.02, through the same source and relief and their caps. The heavy kinds that have strain sources of their own
+  are left to those, so nothing counts twice: the memories the heart counts by its own rules (losses, bad nights, the
+  council's hard choices, gatherings, talks), hunger, rest and recreation, pain, the dark, the heart's own strain mood,
+  and the moods that feed a feeling that wears (fear, grief, dread, despair). The moods themselves stay as the game and
+  the mods made them; only Rimfolk's own became smaller, and only Rimfolk's share a row.
+- **The heart's page** names what wore on them and what eased them: "small letdowns (the same meal and my idea turned
+  down)", "small joys (a laugh with Ana)" (`PawnHeart.letdownsWhy`, `joysWhy`, saved words like `natureWhy`), and
+  "fewer of the small things that keep going wrong" as what would help.
+- **Good things grow ordinary** (`Moods/GoodLife.cs`, `GoodLifeMath`), one rule in place of four (standards shrinking the
+  council's rewards by up to half and the game's comforts to 90, 80 and 70% on their first 10 points; good memories
+  fading up to half sooner from 75% mood; good moods adding up slowly, the third to fifth at 60, 45 and 35% and a quarter
+  after; used to the good life). The sum of every good mood on their mind counts in full up to a line their standards
+  set, 45 for the modest, then 35, 25 and 15 for the spoiled (a colony used to the good life asks more); of what's above
+  it, half of the first 20 points and three quarters of the rest no longer lift them, taken off the good moods by how
+  ordinary each is: a fresh joy counts nearly in full and drifts down with its age, an everyday comfort (a lasting mood,
+  a kind had often lately) shrinks most, a life goal reached never. One line in a good mood's tooltip says it ("Grown
+  ordinary: counts as +3 of +5, part of everyday life now."), one line under the Mood tab gives the sum. One setting,
+  "Good things grow ordinary" (`goodGrowsOrdinary`); an older settings file sets it on if any of the four was
+  (`GoodLifeMath.MergedSetting`, `ordinaryMerged`). Standards stay (they set the line, sting letdowns up to 40% more and
+  make wishes come sooner); rewards are given at the reward strength alone.
+- **Off.** With the heart off, the deeper game hooks off or "Advisor only", small letdowns and joys are moods of their
+  own as before. Older saves: memories given before keep their moods and run out as they were; a lasting one turns to
+  moments at the next hour; the heart's lists grow by a source and a relief (padded with nothing); shortened memories
+  from the old fading rule keep their time.
 
 ## Layer 8: Social life
 
@@ -4460,8 +4521,9 @@ the Social tab column's own caches).
   the ways move (or 250 ticks, `Lean/Fresh.cs`).
 - *The social tie mood* (asked for every pair of colonists): one dictionary lookup in an index rebuilt only when ties
   change.
-- *Mood totals*: Rimfolk's memories scale themselves (SmallJoys ranks one colonist's good memories once per tick), and
-  the postfix on `ThoughtHandler.MoodOffsetOfGroup` applies the standards factor, cached per colonist and tick. A
+- *Mood totals*: Rimfolk's memories scale themselves (a small moment carries its own size), and the postfix on
+  `ThoughtHandler.MoodOffsetOfGroup` applies good things growing ordinary, a share per kind worked out at most every
+  250 ticks per colonist (`GoodLife.Refresh`). A
   decree's mood finds its decree in a map built once.
 - *Global work speed* (StatPart_HeartStrain): one dictionary lookup.
 - *Conversation weights*: each Rimfolk interaction is weighed every time two colonists talk; def-name endings, a

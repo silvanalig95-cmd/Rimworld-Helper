@@ -665,15 +665,16 @@ namespace ColonyCouncil
                 V("daysBetweenWorldSituations", "30")
             });
 
-            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 15% more,
-            // rewards at 80%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
+            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 85% more,
+            // rewards at 70%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
             // colony about breaks even (0 to +2), an average one feels it (-3 to -6), a neglected one is in real trouble
             // (-15 to -20). (Downsides were a quarter more and rewards 75%: an average colony sat near -5, a well-run one
-            // below nothing.)
+            // below nothing. Then 15% more and 80% until phase 3 of the review, when the small letdowns' weight moved to the
+            // heart and the four softening rules became one: the preset pressed a step less hard, so 85% more and 70%.)
             var hard = NewPreset("demanding", "CC_SetPreset_Demanding");
             hard.values.AddRange(new[]
             {
-                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.15"), V("rewardFactor", "0.8"),
+                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.85"), V("rewardFactor", "0.7"),
                 V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
                 V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("goodGrowsOrdinary", "true"),
                 V("quietTroubles", "true"), V("heart", "true"),
