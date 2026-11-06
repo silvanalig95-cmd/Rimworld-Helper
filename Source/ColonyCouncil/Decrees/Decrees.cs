@@ -715,7 +715,7 @@ namespace ColonyCouncil
                 DecreeWork.Ended(this, old);
                 comp.kept?.Notify_DecreeEnded(old, false);
             }
-            requests.RemoveAll(r => r?.def != null && DecreeMath.OtherForm(r.def.defName) != null && DecreeWork.FormNow(r.def, ground) != r.def.defName);
+            requests.RemoveAll(r => r?.def != null && !r.repeal && !IsActive(r.def) && DecreeMath.OtherForm(r.def.defName) != null && DecreeWork.FormNow(r.def, ground) != r.def.defName);
             SyncHediffs();
         }
 
