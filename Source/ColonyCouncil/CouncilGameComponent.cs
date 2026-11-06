@@ -9,8 +9,8 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The heart of the mod: owns open wishes, the chronicle, the ambition tracker and personal touches,
-    /// and runs everything once per in-game hour.
+    /// The heart of the mod: owns open wishes, the ambition tracker and personal touches, tells the chronicle (kept by the
+    /// one history), and runs everything once per in-game hour.
     /// </summary>
     public partial class CouncilGameComponent : GameComponent
     {
@@ -62,6 +62,10 @@ namespace ColonyCouncil
         }
 
         public List<Wish> wishes = new List<Wish>();
+        /// <summary>
+        /// An older save's chronicle, read on load and taken into the history (World/Ledger/History.cs, where every line
+        /// already was or is now); never saved again. The chronicle shown is the history's view (<see cref="Chronicle"/>).
+        /// </summary>
         public List<ChronicleEntry> chronicle = new List<ChronicleEntry>();
         /// <summary>Pregnancies already told to the family (their hediff's load id; Social/FamilyLife.cs).</summary>
         public List<int> expectingTold = new List<int>();
@@ -156,7 +160,6 @@ namespace ColonyCouncil
         private List<string> tmpKeys;
         private List<int> tmpValues;
 
-        public const int MaxChronicle = Caps.Chronicle;
         private const int HourTicks = 2500;
 
         private static CouncilGameComponent cachedInstance;
@@ -277,7 +280,7 @@ namespace ColonyCouncil
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.Saving) PruneCooldowns();
             Scribe_Collections.Look(ref wishes, "wishes", LookMode.Deep);
-            Scribe_Collections.Look(ref chronicle, "chronicle", LookMode.Deep);
+            if (Scribe.mode != LoadSaveMode.Saving) Scribe_Collections.Look(ref chronicle, "chronicle", LookMode.Deep);
             Scribe_Collections.Look(ref expectingTold, "expectingTold", LookMode.Value);
             Scribe_Collections.Look(ref guardianAsked, "guardianAsked", LookMode.Value);
             Scribe_Collections.Look(ref sharedNameAsked, "sharedNameAsked", LookMode.Value);
@@ -381,7 +384,6 @@ namespace ColonyCouncil
                 nextSteps ??= new List<NextStep>();
                 nextSteps.RemoveAll(s => s == null || s.key.NullOrEmpty());
                 chronicle.RemoveAll(e => e == null);
-                if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
                 if (recentWishDefs == null || recentWishTicks == null || recentWishDefs.Count != recentWishTicks.Count)
                 {
@@ -664,15 +666,11 @@ namespace ColonyCouncil
             return null;
         }
 
-        public void AddChronicle(ChronicleEntry entry)
-        {
-            chronicle.Add(entry);
-            // Full: the newest always stay; of the older lines the everyday ones go first, so the colony's milestones
-            // (its losses, ambitions, life events) are still there years later.
-            if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
-            // The same line in the world's history, which keeps it by rules of its own (World/Ledger/History.cs).
-            History.FromChronicle(entry);
-        }
+        /// <summary>
+        /// A line told for the chronicle: written into the world's one history, which keeps it by its own rules
+        /// (World/Ledger/History.cs); the chronicle shown is the history's view of the colony (<see cref="Chronicle"/>).
+        /// </summary>
+        public void AddChronicle(ChronicleEntry entry) => History.FromChronicle(entry);
 
         // ================= Eligibility =================
 

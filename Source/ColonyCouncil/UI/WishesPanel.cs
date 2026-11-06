@@ -86,9 +86,9 @@ namespace ColonyCouncil
             y += UiKit.SectionGap - UiKit.CardGap;
             y += UiKit.SectionTitle(0f, y, width, "CC_Wishes_Recent".Translate(), Icons.Chronicle);
             int shown = 0;
-            for (int i = comp.chronicle.Count - 1; i >= 0 && shown < 12; i--)
+            foreach (var e in Chronicle.Lines)
             {
-                var e = comp.chronicle[i];
+                if (shown >= 12) break;
                 if (e.kind != ChronicleKind.WishGranted && e.kind != ChronicleKind.WishExpired && e.kind != ChronicleKind.WishDismissed && e.kind != ChronicleKind.Petition) continue;
                 y += HistoryRow(e, y, width, shown);
                 shown++;
@@ -331,7 +331,7 @@ namespace ColonyCouncil
 
         // ---------------- What came of earlier wishes ----------------
 
-        private static float HistoryRow(ChronicleEntry e, float y, float width, int i)
+        private static float HistoryRow(ChronicleLine e, float y, float width, int i)
         {
             const float dateW = 64f;
             Text.Font = GameFont.Small;

@@ -194,23 +194,20 @@ namespace ColonyCouncil
         /// <summary>
         /// The faith told this person's change of faith itself (Converted: its chronicle line about them, naming the faith they
         /// hold now) in the last two days, so the mark it leaves isn't told again (PersonaMarks.Tell). Read from the
-        /// chronicle, so a load between the two forgets nothing.
+        /// history, where the chronicle's lines are kept, so a load between the two forgets nothing.
         /// </summary>
         public static bool ToldConversion(Pawn p)
         {
-            var comp = CouncilGameComponent.Instance;
             var ideo = Of(p);
-            if (comp?.chronicle == null || p == null || ideo == null || ideo.name.NullOrEmpty()) return false;
+            if (p == null || ideo == null || ideo.name.NullOrEmpty()) return false;
             int now = Find.TickManager.TicksGame;
-            for (int i = comp.chronicle.Count - 1; i >= 0; i--)
-            {
-                var e = comp.chronicle[i];
-                if (e == null) continue;
-                if (now - e.tick > GenDate.TicksPerDay * 2) break;
-                if (e.kind == ChronicleKind.Life && e.pawnId == p.ThingID && e.text != null && e.text.Contains(ideo.name)) return true;
-            }
+            foreach (var e in History.Of(Refs.Of(p), LifeKind, now - GenDate.TicksPerDay * 2))
+                if (e.line != null && e.line.Contains(ideo.name))
+                    return true;
             return false;
         }
+
+        private static readonly string[] LifeKind = { "life" };
 
         // ---------------- Tags ----------------
 

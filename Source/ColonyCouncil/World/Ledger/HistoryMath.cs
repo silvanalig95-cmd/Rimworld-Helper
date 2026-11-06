@@ -380,15 +380,18 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The chronicle's lines (an older save's, on its first load): each one not here already (the same tick and words,
-        /// as many times as it is here) comes in. Returns how many came in.
+        /// An older save's chronicle list, taken in on load: each line not here already comes in. Here already: the same
+        /// tick and words (as many times as it is here), or a season's summary of its kind and of the one it is of whose
+        /// days hold it (the line was folded into it, and counts there). Returns how many came in.
         /// </summary>
         public int TakeChronicle(IEnumerable<HistoryEntry> lines)
         {
             if (lines == null) return 0;
             var have = new Dictionary<string, int>();
+            List<HistoryEntry> summaries = null;
             foreach (var e in events)
             {
+                if (e.folded) (summaries ??= new List<HistoryEntry>()).Add(e);
                 if (e.line == null) continue;
                 string k = e.tick + "|" + e.line;
                 have[k] = (have.TryGetValue(k, out int c) ? c : 0) + 1;
@@ -403,10 +406,16 @@ namespace ColonyCouncil
                     have[k] = c - 1;
                     continue;
                 }
+                if (summaries != null && summaries.Exists(s => Holds(s, e))) continue;
                 if (Add(e) != null) n++;
             }
             return n;
         }
+
+        /// <summary>A season's summary that a small line was folded into: of its kind, of the one it is of, its days around the line's.</summary>
+        public static bool Holds(HistoryEntry summary, HistoryEntry line) =>
+            summary != null && line != null && summary.folded && !line.Weighty && summary.kind == line.kind && summary.FoldActor == line.FoldActor
+            && line.tick >= summary.first && line.tick <= summary.tick;
 
         /// <summary>
         /// Gives someone already in an event another part (a battle's winner, known only after it was written): true when

@@ -964,7 +964,9 @@ namespace ColonyCouncil
                 var eulogy = Pattern("CC_Eulogy_Text", false);
                 var dilemma = Pattern("CC_Chronicle_Dilemma", true);
                 string harvestHome = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_HarvestHome")?.label;
-                foreach (var e in comp.chronicle.ToList())
+                // What the chronicle remembers (the history's view of the colony), oldest first.
+                var lines = Chronicle.Lines.Where(l => !l.Summary).Reverse().ToList();
+                foreach (var e in lines)
                 {
                     if (e?.text == null) continue;
                     try
@@ -975,7 +977,8 @@ namespace ColonyCouncil
                             {
                                 var parts = CalendarMath.Parse(wedding, e.text);
                                 if (parts == null || parts.Count < 2) break;
-                                Pawn a = e.pawnId != null && known.TryGetValue(e.pawnId, out var pa) ? pa : ByName(known, parts[0]);
+                                Pawn a = !e.about.IsNone ? known.Values.FirstOrDefault(p => Refs.Of(p) == e.about) : null;
+                                a ??= ByName(known, parts[0]);
                                 Pawn b = a?.relations?.GetFirstDirectRelationPawn(PawnRelationDefOf.Spouse) ?? ByName(known, a?.LabelShort == parts[0] ? parts[1] : parts[0]);
                                 if (a != null && b != null && !a.Dead && !b.Dead && (Ours(a) || Ours(b))) AddWedding(map, a, b, e.tick, false);
                                 break;
@@ -1006,8 +1009,9 @@ namespace ColonyCouncil
                             case ChronicleKind.Council:
                             {
                                 if (harvestHome.NullOrEmpty() || Get("harvest") != null) break;
-                                var parts = CalendarMath.Parse(dilemma, e.text);
-                                if (parts != null && parts.Count >= 1 && parts[0] == harvestHome) AddHarvest(map, e.tick, today, year, false);
+                                // The harvest home answered: an answer's record names its question; an older line, in its words.
+                                var parts = e.Answer ? new List<string> { AnswerMath.Get(e.entry.values, AnswerMath.Question) } : CalendarMath.Parse(dilemma, e.text);
+                                if (parts != null && parts.Count >= 1 && string.Equals(parts[0], harvestHome, StringComparison.OrdinalIgnoreCase)) AddHarvest(map, e.tick, today, year, false);
                                 break;
                             }
                         }

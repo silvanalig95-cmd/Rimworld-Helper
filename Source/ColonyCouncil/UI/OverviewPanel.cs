@@ -371,7 +371,7 @@ namespace ColonyCouncil
         }
 
         private static List<string> Lately(CouncilGameComponent comp) =>
-            comp.chronicle.AsEnumerable().Reverse().Take(4).Select(e => "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1).ToString() + ": " + ChroniclePanel.TextOf(e, comp)).ToList();
+            Chronicle.Lines.Take(4).Select(e => "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1).ToString() + ": " + ChroniclePanel.TextOf(e, comp)).ToList();
 
         /// <summary>A small card of lines under a section heading, the names in them links; clicking it opens the page it summarizes.</summary>
         private static float Column(float x, float y, float w, List<string> lines, string header, string tab, Texture2D icon, Color headerColor)
