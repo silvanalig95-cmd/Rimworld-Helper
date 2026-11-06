@@ -119,6 +119,15 @@ namespace ColonyCouncil
 
         private static IEnumerable<ModPeopleDef> Defs => DefDatabase<ModPeopleDef>.AllDefsListForReading;
 
+        /// <summary>A tag that names only personal traits ("trait:VTE_Rebel|trait:VTE_Wanderlust"): their nature, which character reads.</summary>
+        public static bool OnlyTraits(string who)
+        {
+            if (who.NullOrEmpty()) return false;
+            foreach (var part in who.Split('|'))
+                if (!part.Trim().StartsWith("trait:")) return false;
+            return true;
+        }
+
         private static void Build()
         {
             if (decreesFirst != null) return;
@@ -143,7 +152,9 @@ namespace ColonyCouncil
                         if (!offices.TryGetValue(o.office, out var list)) offices[o.office] = list = new List<OfficeLeaning>();
                         list.Add(o);
                     }
-                if (def.character != null) character.AddRange(def.character.Where(c => !c.who.NullOrEmpty() && c.affinity != null));
+                // A personal trait's leaning comes through character now (its PersonaNatureDef sets their sides, and the ways
+                // read the sides: Character.Affinity); only a kind, a class or a belief adds its own.
+                if (def.character != null) character.AddRange(def.character.Where(c => !c.who.NullOrEmpty() && c.affinity != null && !OnlyTraits(c.who)));
                 if (def.needs != null)
                     foreach (var n in def.needs.Where(n => n.need != null && n.wishes != null))
                         foreach (var w in n.wishes.Where(w => w != null))

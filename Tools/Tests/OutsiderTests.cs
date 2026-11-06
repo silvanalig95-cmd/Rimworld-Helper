@@ -123,7 +123,11 @@ public static class OutsiderTests
 
         // ---------------- Temper and bouts ----------------
 
-        C(OutsiderMath.Temper(true, true, true, true, false, false) == 4 && OutsiderMath.Temper(false, false, false, false, true, true) == -2, "temper from -2 to 4");
+        // A fighting temper is read from character (PersonaMath.FightTemper): the hot-headed and bold up, the warm and timid down.
+        float[] Sides(float warmth, float nerve, float temper) { var v = new float[PersonaMath.Axes]; v[(int)PersonaAxis.Warmth] = warmth; v[(int)PersonaAxis.Nerve] = nerve; v[(int)PersonaAxis.Temper] = temper; return v; }
+        C(PersonaMath.FightTemper(Sides(0f, 0f, 0f)) == 0 && PersonaMath.FightTemper(Sides(10f, -12f, 12f)) == 0, "a plain stranger, small leans: no temper");
+        C(PersonaMath.FightTemper(Sides(-20f, 25f, 35f)) == 1 && PersonaMath.FightTemper(Sides(50f, 0f, -15f)) == -1 && PersonaMath.FightTemper(Sides(0f, -40f, 0f)) == -1, "bloodlust up, kind and wimp down");
+        C(PersonaMath.FightTemper(Sides(-100f, 100f, 100f)) == 4 && PersonaMath.FightTemper(Sides(100f, -100f, -100f)) == -2, "temper from -2 to 4");
         C(OutsiderMath.SparAcceptChance(4, 20, 0) == 0.95f && OutsiderMath.SparAcceptChance(-2, 0, 20) == 0.05f && OutsiderMath.SparAcceptChance(2, 8, 8) > OutsiderMath.SparAcceptChance(0, 8, 8),
             "a fighting temper takes up a bout more readily, within 5% and 95%");
         C(OutsiderMath.HitChance(1f, 0f) == 0.95f && OutsiderMath.HitChance(0f, 1f) == 0.15f && OutsiderMath.HitChance(0.8f, 0.2f) > OutsiderMath.HitChance(0.6f, 0.2f), "a swing lands 15% to 95%");
