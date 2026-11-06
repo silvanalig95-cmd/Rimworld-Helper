@@ -6,6 +6,49 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- names that pass, and fights that spark goals (the player's feedback, 6 November 2026, on 0.110.0 and 0.112.0: "titles
+  should be able to change if someone surpasses the current owner. also some lifegoals should be sparked by fights, no?
+  not 0."). Not released: no round, About.xml untouched. Both rules overshot; the aim was calmer, not frozen. (1) Names
+  (`Epithets/NameMath.cs`): a name holds 20 days (`HoldDays`, was 30), then passes to the best other who is a fifth
+  ahead on the count (`ClearLead` 1.2, was 1.25; exactly a fifth counts, `Ahead` allows the float's whisker) every day
+  of a week (`ChallengeDays` 7, was 15) and over that week did more of the work than the holder (`Outdid`; it was half
+  again as much, or more when twice ahead: `OutdoShare` and `FarAhead` are gone); a holder still at the work as much
+  keeps it and the week starts again; the one who lost it can't take it back for 30 days (`ReturnDays`, was 60). A
+  condition broken still loses a name at once, the chronicle says a change once, the journal a loss once, and the
+  "known by one name" rules are untouched. Measured (`OneNameTests`, 0.110.0's model of the save's two doctors, Harper
+  given the Healer on day 46 at 40 wounds tended to Alo's 30): taking turns a season each, never in 80 days (the old 15%
+  three times); turns of 5 to 30 days, either first, five starting counts, over a year: 0.28 moves a year and never more
+  than one in any 60 days (turns of 45 days can pass it twice in 60, each a real lead; so can the work going to one or
+  the other in random runs of a week or two, in about one year in twelve); Alo taking over the sickbeds (3 a day to
+  Harper's 0.3) has it 7 days after Harper's 20 (day 73), both at it with Alo doing twice as much 10 days after; a
+  holder who stops loses it once in five years. (2) Life goals (`Aspirations/GoalMath.cs`): a fight sparks those who
+  fought hardest in it (`Hardest`: the three who brought down the most, `FightTop`, the first noted of equals; any of
+  its fighters downed since it began, from the goals' own "downed" event, `AspirationTracker.HappenedSince`; anyone of
+  ours at that home who carried someone out, `FightSides.Carried`; read in `SocialWeb.HardestIn` before the count is
+  reset and the fight's sides cleared); a fight pulls 0.7 (`SparkPull`, was 0.4); a goal others at home hold still
+  weighs half; and a fight never sparks a goal someone else at home took up after a fight and is still at
+  (`FightMaySpark`, from the held goals' `spark`), so one fighting goal is never chosen by several at once. Changes of
+  heart are as they were (a brush with death or a loss, after 20 days, under a third done, once). Measured
+  (`FairCouncilTests`, the model rebuilt: twelve colonists over 88 days fighting as often as the save, whose tales hold
+  21 major threats in 128 days, so a fight every six days with nine fighting, one downed and another carrying them out;
+  goals reached in 15 to 90 days and 20 days before the next; the rest of life's sparks set so the rules before 0.112.0
+  give the save's own split, half from fights and a third from the rest of life; a colony under way, fifty runs): goals
+  from fights 53% before 0.112.0 (the save's own 23 of 47), 3% on 0.112.0's rule, 19% now (a fresh colony's first 88
+  days 11%: its first goals come before its first fight); at most one holding a goal from a fight at once (six before),
+  never two taking up one goal after the same fight; changes of heart 0.3 a run (16.5 before), never two for one
+  colonist in 25 days. Without the never-after-a-fight rule the share is about the same (20%), but up to three held one
+  fighting goal from fights at once and two took up the same one after one fight. Old saves: names held stay with
+  their holders, held from their history line or first look under the new timings (the save's Alo the Healer since day
+  113: held to day 133, so the earliest the Healer can move is day 140, and only to one a fifth ahead of Alo that whole
+  week and doing more at the sickbeds in it); goals held stay, a goal taken up after a battle counting for the new
+  rule. Tests: `OneNameTests` (the timings, the week, outdoing, the month's bar, the doctors in turns, the clear
+  surpasser), `FairCouncilTests` (the pull, `Hardest`, `FightMaySpark`, the rebuilt model on three rule sets, the code
+  paths). Docs: DESIGN.md ("One name", "Life goals that last", the links table), README (names, life goals), the
+  Almanac's names and life goals pages (their numbers kept: "15 wounds tended against the holder's 12", 30 days for a
+  lost name), the names setting's tooltip. To check in game: the next name moved (not
+  before its 20 days and a week; the card's line, the chronicle's one line); a raid's end with the three who brought
+  down the most, one downed and one who carried someone out (a goal chosen "after a battle" within a few days by one of
+  them with no goal), and two of them free after the same fight never on the same fighting goal.
 - 0.116.1, the review's phases, checked over together (6 November 2026, the review recommended in the entry below: how the
   parallel phases 0.106.1 to 0.116.0 meet, read against each other, the player's save Atia at day 128 taken through each
   release's load path in order, and `Tools/perf_audit.py` run on the tree at 0.106.1 and now). Not released: no round,
