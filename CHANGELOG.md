@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Letters that arrive, petitions that gather
+
+*6 November 2026, version 0.114.0*
+
+- Letters to notables travel by the colony's own means: a runner, a rider, a courier or a shuttle courier, in days rather than up to twelve a leg. A letter that took 26 days to answer in the save now comes back in under a week by courier. The letters page says how a letter travels, never when it will arrive.
+- Every answer brings something: a warm greeting carries a small gift, a kind or cool one news of their town, a warning heeded warmly becomes a debt of honour, and every answer says how far their regard moved ("civil before, friendly now").
+- A refusal or a curt answer now says why: war, their regard, hard times, asked too lately or too much.
+- When several colonists want the same thing it comes to the council as one petition with all their names: one card, one deadline, one answer for all, granted to each as it is met on the map and told once.
+- Fixed: a feast declined by letter said only that they won't be coming, instead of their own words.
+
 ## Three good bands
 
 *6 November 2026, version 0.113.1*

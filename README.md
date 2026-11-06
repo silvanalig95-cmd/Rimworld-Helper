@@ -235,6 +235,14 @@ small hot room of the colony's own, where people sit on cold days and talk.
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**Asked together.** When a colonist wants something for themselves that someone else is already waiting for
+(proper armor, a roomier bedroom), they join that request rather than ask on their own: the council hears one
+petition with all their names ("Stace, Dukialgac and Harper want proper armor"), with one deadline (two days later
+for each name), counted once among the open wishes and brought up again once. Promising, refusing or setting it aside
+answers them all; if it lapses, it's told once. Each still gets their own on the map, says thanks as it comes, and the
+letter comes with the last one, naming everyone. In the player's save, six wishes for armor in 45 days would have come
+to the council as three.
+
 **Beliefs and diets.** Nobody asks for what their ideoligion or their own nature forbids, read from the game's Ideology,
 Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under an ideoligion that
 keeps lovin for the married (an engaged couple asks for the wedding instead), no smokehouse or hunt for a vegetarian,
@@ -2673,6 +2681,15 @@ executed or cut open one of their people held prisoner, or threw hard words at o
 colonists a people at most, fading over the years. Their notables think better or worse of that colonist, their talk
 and letters name them, and their traders won't trade with a colonist they hold a death against: the trade option says
 why, and a caravan at their town sends someone else to do the talking. No raid comes of it.
+
+**Letters to the neighbours arrive in days.** A letter to someone the colony knows by name goes by the colony's own
+means in its age: runners for a tribe, a rider for a medieval colony, a courier for an industrial one, a courier by
+shuttle for spacers (a call on a comms console is at once). A town ten tiles off hears within a day or so, one fifty
+off in two to five days, where a leg once took up to twelve. Every answer says in words how far it moved them ("civil
+before, friendly now"), and a curt answer or a refusal says why (their regard, the writer, hard times, a great deal
+asked). Each brings something: greetings answered warmly a token gift in the messenger's pack, kindly how their town is
+faring; condolences taken to heart are remembered by their people; a warning heeded warmly becomes a debt of honour
+the colony can call in; help, a visit, news, a pact or a truce as before. Letters already on the road keep their day.
 
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,

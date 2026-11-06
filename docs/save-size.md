@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 520; modelled: 520; growing without end: 0.
+Saved collections found: 521; modelled: 521; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** after two, **3,004 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -520,6 +520,7 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
+| `Wishes/Wish.cs:petitionMet` | per open want in a petition: those of it met before (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/History.cs:values` | per event: a deed's name, or an answer's six values, when it has them (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |

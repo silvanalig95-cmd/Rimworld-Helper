@@ -143,7 +143,8 @@ namespace ColonyCouncil
             if (S.enableWishes)
                 foreach (var w in comp.OpenWishes)
                 {
-                    if (w.pawn == null) continue;
+                    // A petition of several is one row, its first want (Wishes/Petitions.cs).
+                    if (w.pawn == null || !comp.LeadsPetition(w)) continue;
                     var row = WishRow(w);
                     row.pinned = memory != null && memory.IsPinned(w);
                     rows.Add(row);
@@ -173,7 +174,10 @@ namespace ColonyCouncil
         {
             int left = w.TicksLeft;
             int total = Mathf.Max(1, w.expiresTick - w.createdTick);
-            string text = w.ForSomeoneElse && w.Beneficiary != null
+            var comp = Comp;
+            string text = comp != null && comp.IsPetition(w)
+                ? "CC_Petition_Week".Translate(comp.PetitionNames(w).Named("NAMES"), w.LabelInline.Named("WISH")).Resolve()
+                : w.ForSomeoneElse && w.Beneficiary != null
                 ? "CC_Week_WishFor".Translate(WeekModel.Name(w.pawn), w.Label, WeekModel.Name(w.Beneficiary)).Resolve()
                 : "CC_Week_Wish".Translate(WeekModel.Name(w.pawn), w.Label).Resolve();
             if (w.coSigners.Count > 0) text += " " + "CC_Week_WishBacked".Translate(w.coSigners.Count).Resolve();
