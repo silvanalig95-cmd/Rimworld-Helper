@@ -192,7 +192,7 @@ namespace ColonyCouncil
                 UiKit.Badge(new Rect(RailX - 10f, y + 3f, 20f, 20f), Icons.For(e.kind), color);
                 LinkText.Draw(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), TextOf(e, comp), color == UiKit.Faint ? UiKit.Faint : UiKit.Ink);
                 // An answer's whole record (the question, the answer, the follow-up, how it went) on hover.
-                if (e.Answer) TooltipHandler.TipRegion(row, Chronicle.AnswerTip(e.entry));
+                if (e.Tip.Length > 0) TooltipHandler.TipRegion(row, e.Tip);
                 GUI.color = UiKit.Ink;
                 y += h;
             }

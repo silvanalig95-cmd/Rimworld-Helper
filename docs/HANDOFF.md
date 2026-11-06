@@ -6,6 +6,65 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 1 of the review: one record (the player's decision 3 of 6 November 2026: "the chronicle becomes the colony's
+  view of the history, every question records how it went, and the year is told once"). Not released: no round in
+  Almanac_WhatsNew.xml, About.xml untouched. (1) The chronicle is the history's view. The save at day 128 showed the
+  council window's chronicle (a list of its own, 300 lines) back to day 41 only while the region's history still had
+  day 1, the same lines kept twice (64 KB and 111 KB). Now `AddChronicle` writes the history and nothing else (the one
+  call every one of the 72 files that tell the chronicle already used); Colony → Chronicle reads the history
+  (`Chronicle.Lines`, built again when it changes): every line told for it, every answer, and the colony's own
+  milestones written elsewhere with words (a brigands' hold found, a pact); never a deed, a tie or a far town's news.
+  Which and how is `ChronicleMath` (pure): the chronicle's twenty kinds, a situation's `world:began`/`ended` (the
+  region's other `world:` kinds stay its own), an answer under its question's kind. The history's own keeping applies:
+  the last sixty days line for line, older seasons' small lines as one each in words of their own ("Harper made 5
+  wishes. (Day 12 to Day 26)", `CC_ChronFold_*`), milestones as told. On the save's history the view holds 394 lines
+  from day 3 (32 before day 41), against the old list's 300 from day 41, and adds the brigands' hold Macy saw. Every
+  reader moved: the overview's lately, the Wishes and Ambition pages' earlier lines, the annals, the year's letter, the
+  calendar's backfill (an answer's record found by its question), the storyteller's tale, the travellers' reason to
+  visit, the faith's "told already" (`History.Of`), the clock window and the self check. `Caps.Chronicle` is gone.
+  Save handling: the old list is read on load and never written (`CouncilGameComponent.chronicle`, like the guest kin);
+  at every load the ledger takes it into the history (`HistoryBook.TakeChronicle`) and lets it go: a line comes in
+  unless the history has it (the same tick and words, as often as it is there, or a season's summary of its kind and
+  person whose days hold it, `HistoryBook.Holds`, so nothing is counted twice); no error is logged; `chronicleRead` is no
+  longer saved. On the player's save every line of the list is in the history already, so nothing comes in and the next
+  save is 64 KB smaller. (2) Every question records how it went (`Dilemmas/Answers.cs`, pure `AnswerMath.cs`): the 23
+  question letters (the review counted 21: dilemma, event, world event, camp, calendar day, meeting, election,
+  brigands' hold, hamlet, journey, and the 13 of diplomacy) write an `answer:<source>` event: the question, the answer,
+  the follow-up's first sentence, how it went, a word on it, and whether nobody answered; its line is the chronicle's
+  ("{QUESTION}: the council chose "{ANSWER}"", one wording for dilemmas and events; a meeting's choice and a kept day
+  keep their own lines, which become the answer's). What the answer set going on the map is watched (`AnswerWatch` in
+  `WeekMemory`, the dilemma log's way: every 250 ticks while one is): it took place (with the play-out's note), never
+  came about, or the gamble went wrong, and the chronicle line says so ("It took place."; hover for the whole record).
+  Small answers (an event that was never chronicled, letting the vote run, waiting an hour at the gate, letting a day
+  pass) are kept but not chronicled. The letters' options are wrapped (`Answers.Recorded`, `RecordedAll`; the stock
+  close and put-off pass), the rest call `Answers.Record` where they resolve; backing a candidate or calling a seat off
+  is recorded where it's done (the letter or the Decrees page). Council → Dilemmas lists every answer, the dilemmas
+  from their own log (unchanged, with what each answer was to do) and the rest from the history, by day, with the same
+  filters. The old "chose" chronicle lines are gone (the record is the line). (3) The year is told once
+  (`World/YearLetter.cs`, `YearLetterMath`): one letter on the landing's anniversary, the founding day, written by the
+  annalist: the people (the annals' figures, `AnnalsTracker.PeoplePart`, now counted from one landing day to the next),
+  the land and the world (the year letter's part), the founding (`HappeningWorker_Founding.YearFacts`: here since the
+  first days, the dead, the colony's name, its customs), the author's last word. The annals no longer write at the
+  calendar's new year; the founding event keeps only who keeps the day tonight (the last of the first, the Founder, the
+  first child grown); one chronicle line; the Chronicle's header has "The second year" (an older save's "Annals of 5501"
+  stay, `AnnalsEntry.landYear`). A year counted from part of the way through (an older save whose annals ran by the
+  calendar, the mod added midway) says since when. (4) Less noise: a fight's comradeship told only when something
+  changed (new comrades, who carried whom out; the roster after every raid is gone, `SocialWeb.Comrades`); an election
+  one line with every seat and everyone seated in its history (`Offices.ChronicleSeats`); the same years marked on the
+  same day one line; a day kept from its letter one line, and the founding event's answer the founding day's. Keys in
+  `Rimfolk_OneRecord.xml`. Save estimate: 2,447 / 2,904 / 3,079 KB after one, two, five years before, 2,377 / 2,818 /
+  2,992 after (the list gone, the history a little fuller with answers). Tests: `OneRecordTests` (new: what the
+  chronicle shows, the season's words, a season and more reaching day 1 with every line counted, every letter's
+  source, the values, what came of it, the year's day and parts, the founding lines shared out with none twice, the
+  noise), `HistoryTests` (the view over five years, nothing the old list showed lost, an older list taken in where the
+  history already folded). Docs: DESIGN.md ("One history": the chronicle is its view, an older save, the answers' log,
+  the year told once, less noise; the save table), README (the year's letter, the Chronicle), the Almanac's names and
+  annals page and the dilemmas page. Left: "daily numbers renamed" (`comp.history`, the overview's graphs) from the
+  holistic review's phase 1; the office templates and "4.1 days" in journals (the systems review's record list). To
+  check in game: the Chronicle on the player's save (day 3 at the bottom, older seasons summed, the brigands' hold);
+  a dilemma and an event answered (one line each, "It took place." once the feast is held); a pact or truce answered
+  (on the Dilemmas page and in the chronicle); an election (one line); a raid with a rescue (one line, only then); the
+  next founding day (one letter in three parts, the founding event's letter without the year, one chronicle line).
 - 6 November 2026, the player's decisions on the review: all seventeen as recommended, with one nuance on the
   letdowns (both a short mood at the moment and strain for the grind): `docs/review-2026-11/decisions.md`. The
   reports are beside it (`staged-scenes.md`, `systems.md`, `whole.md`). Phases 1 (one record) and 3 (one heart) run

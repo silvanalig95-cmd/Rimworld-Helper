@@ -87,6 +87,11 @@ namespace ColonyCouncil
         /// <summary>A question's answer (the answers' log).</summary>
         public bool Answer => HistoryKinds.Matches(entry.kind, AnswerMath.Family);
 
+        private string tip;
+
+        /// <summary>An answer's whole record for its tooltip, made once (a changed answer is a new line); empty for anything else.</summary>
+        public string Tip => tip ??= Answer && !Summary ? Chronicle.AnswerTip(entry) ?? "" : "";
+
         /// <summary>The colonist it is about is this one.</summary>
         public bool IsAbout(Pawn p) => p != null && about == Refs.Of(p);
     }
