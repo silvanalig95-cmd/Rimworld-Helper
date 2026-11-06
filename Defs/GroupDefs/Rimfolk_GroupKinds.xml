@@ -29,7 +29,7 @@
       <li>the lamp-lighters</li>
     </names>
     <why>They keep the night hours while the rest sleep.</why>
-    <habits><li>Rimfolk_Habit_Night</li><li>Rimfolk_Habit_Table</li></habits>
+    <habits><li>Rimfolk_Habit_Night</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Stars</li></habits>
     <tag>nightshift</tag>
     <order>5</order>
   </ColonyCouncil.GroupKindDef>
@@ -153,7 +153,7 @@
       <li>[lowtech] the bone-setters</li>
     </names>
     <why>They have sat up with the sick together.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Table</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Sickbed</li></habits>
     <tag>healers</tag>
     <order>16</order>
   </ColonyCouncil.GroupKindDef>
@@ -171,7 +171,7 @@
       <li>[!lowtech] the lab crowd</li>
     </names>
     <why>They puzzle over the same problems.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Reading</li></habits>
     <tag>scholars</tag>
     <order>17</order>
   </ColonyCouncil.GroupKindDef>
@@ -204,7 +204,7 @@
       <li>the dreamers at the bench</li>
     </names>
     <why>They work at their art side by side, and judge each other's.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Music</li></habits>
     <tag>artists</tag>
     <order>19</order>
   </ColonyCouncil.GroupKindDef>
@@ -225,7 +225,7 @@
       <li>[!lowtech] the firing line</li>
     </names>
     <why>They have fought side by side.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Sickbed</li></habits>
     <norms><li>Rimfolk_Norm_Brave</li></norms>
     <tag>comrades</tag>
     <order>20</order>
@@ -299,7 +299,7 @@
       <li>the fire-born</li>
     </names>
     <why>They grew up in the tribes, and it shows.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Walk</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Stars</li></habits>
     <tag>tribeborn</tag>
     <order>34</order>
   </ColonyCouncil.GroupKindDef>
@@ -316,7 +316,7 @@
       <li>the star folk</li>
     </names>
     <why>They came from other worlds, and remember them.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Stars</li></habits>
     <tag>offworlders</tag>
     <order>35</order>
   </ColonyCouncil.GroupKindDef>
@@ -335,7 +335,7 @@
       <li>the old guard</li>
     </names>
     <why>They have the most years behind them.</why>
-    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li></habits>
+    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Reading</li></habits>
     <tag>elders</tag>
     <order>40</order>
   </ColonyCouncil.GroupKindDef>
@@ -351,7 +351,7 @@
       <li>the young crowd</li>
     </names>
     <why>They are the colony's young.</why>
-    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Walk</li></habits>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Music</li></habits>
     <tag>young</tag>
     <order>41</order>
   </ColonyCouncil.GroupKindDef>
@@ -371,7 +371,7 @@
       <li>the jokers' corner</li>
     </names>
     <why>They all love a laugh.</why>
-    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Fire</li></habits>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Music</li></habits>
     <tag>merry</tag>
     <order>60</order>
   </ColonyCouncil.GroupKindDef>
@@ -408,7 +408,7 @@
       <li>the wanderers</li>
     </names>
     <why>They are all forever after something new.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Stars</li></habits>
     <tag>curious</tag>
     <order>62</order>
   </ColonyCouncil.GroupKindDef>
@@ -444,7 +444,7 @@
       <li>the kind table</li>
     </names>
     <why>They are all big-hearted, and look out for each other.</why>
-    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li></habits>
     <tag>gentle</tag>
     <order>64</order>
   </ColonyCouncil.GroupKindDef>
@@ -465,7 +465,7 @@
       <li>{ANCHOR}'s table</li>
     </names>
     <why>They are friends, and gather round one of them.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li></habits>
     <tag>friends</tag>
     <order>90</order>
   </ColonyCouncil.GroupKindDef>

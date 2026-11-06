@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about the sick and the hurt (Source/ColonyCouncil/Social/Talk/TopicWorker_Health.cs): put the sick to bed and
+    nurse them whatever the work, or work through it and keep the beds for the dying. Tags as in Rimfolk_Talk_Lines_Fight.xml,
+    and for the sick:
+      [ill] the speaker is ill; [wounded] the speaker is hurt and still healing (and not ill); [otherill], [otherwounded]
+      the one they talk to; [serious] someone here has something that can kill; [subjectserious] the one talked of has
+      it; [doctor] the speaker doctors best here
+    {SUBJECT}: the sick or hurt one talked of, by name, when it isn't one of the two. Every age: [lowtech] lines speak of
+    herbs and the fire, [!lowtech] of the medicine shelf; one sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Open</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for,subject] Someone should make sure {SUBJECT} stays in bed this time.</li>
+        <li>[for,subject] I looked in on {SUBJECT}, and they're in no state to work.</li>
+        <li>[for] The sick should be in bed, not dragging themselves round the fields.</li>
+        <li>[for] A day in bed now saves a week of it later.</li>
+        <li>[for,serious] This one can kill, and we're treating it like a cold.</li>
+        <li>[for,subjectserious] {SUBJECT} could die of this if we're careless.</li>
+        <li>[for,ill] I should be in bed, and I know it.</li>
+        <li>[for,wounded] This hurt won't heal if I keep pulling at it.</li>
+        <li>[for,doctor] My patients keep getting up the moment I turn my back.</li>
+        <li>[for,lowtech] Rest and broth by the fire, that's what the sick need.</li>
+        <li>[for,!lowtech] Rest, fluids and the medicine shelf, that's what the sick need.</li>
+        <li>[against] Lie down for every sniffle and nothing would ever get done.</li>
+        <li>[against,subject] {SUBJECT} is well enough to grumble, so they're well enough to work.</li>
+        <li>[against] The beds are for the badly hurt, not for anyone with a cough.</li>
+        <li>[against,ill] I'm not lying down for this, there's too much to do.</li>
+        <li>[against,wounded] It's a scratch, I've had worse and kept working.</li>
+        <li>[against] I worked through worse than this when I was young.</li>
+        <li>[against,lowtech] Our herbs are too few to waste on every cough.</li>
+        <li>[against,!lowtech] We can't spend the good medicine on every cough.</li>
+        <li>[mixed,subject] How is {SUBJECT} doing, have you heard?</li>
+        <li>[mixed] There's always someone ill in this place, have you noticed?</li>
+        <li>[mixed,serious] I don't like how this sickness is spreading.</li>
+        <li>[mixed] I can never tell who's really ill and who's just tired.</li>
+      </plain>
+      <warm>
+        <li>[for,subject] I took {SUBJECT} some water and sat with them a while.</li>
+        <li>[for] Nobody should be sick and alone in this place.</li>
+        <li>[against] I worry about them, but the work has to go on somehow.</li>
+        <li>[mixed,subject] I hope {SUBJECT} is up and about again soon.</li>
+      </warm>
+      <blunt>
+        <li>[for] Sick people in bed, it's simple.</li>
+        <li>[against] Work through it, everyone does.</li>
+        <li>[against,ill] I'm fine, stop asking.</li>
+        <li>[mixed] Who's down now?</li>
+      </blunt>
+      <cheerful>
+        <li>[for,ill] I'm going to enjoy every minute of being looked after.</li>
+        <li>[for] A warm bed and a bowl of soup cures most things, I say.</li>
+        <li>[against,wounded] Look at this, I'll have a scar to brag about.</li>
+        <li>[mixed] At least nobody's sick of my cooking yet.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for,serious] It'll be one of us next, mark me.</li>
+        <li>[against] Lie down out here and you might not get up again.</li>
+        <li>[mixed,ill] I feel like something the dog left.</li>
+        <li>[mixed] Someone's always ill, and someday it'll be the bad kind.</li>
+      </gloomy>
+      <cold>
+        <li>[for] A sick worker who rests is back sooner, that's arithmetic.</li>
+        <li>[against] Every one of them in bed is a pair of hands we don't have.</li>
+        <li>[against,subject] {SUBJECT} has been in bed longer than the wound needs.</li>
+        <li>[mixed,doctor] I've counted the medicine, and we'll manage, barely.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Reply</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Bed and rest, and the work can wait.</li>
+        <li>[agree,for,subject] I'll make sure {SUBJECT} stays put.</li>
+        <li>[agree,for,otherill] Then go and lie down, and I'll cover your work.</li>
+        <li>[agree,against] Most of it you just work through, I've always said so.</li>
+        <li>[agree,against,otherwounded] You've had worse, I've seen it.</li>
+        <li>[agree,mixed] It's hard to know, I'll grant you.</li>
+        <li>[agree,serious] We should keep the sick apart from the rest, then.</li>
+        <li>[debate,for] Rest, yes, but not for a week over a cough.</li>
+        <li>[debate,against] Work, maybe, but not with a fever.</li>
+        <li>[debate,doctor] You'd let the healer decide, if you had any sense.</li>
+        <li>[debate] It depends on what they've got.</li>
+        <li>[argue,for] And who does their work, you?</li>
+        <li>[argue,against] Say that when it's you burning up in bed.</li>
+        <li>[argue,otherill] You're ill, and you're too stubborn to see it.</li>
+        <li>[argue] You'd have the sick dig their own graves, would you.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'll look in on them later.</li>
+        <li>[agree,otherill] Please lie down, for my sake.</li>
+        <li>[debate,against] I know you're worried about the work, but they come first.</li>
+        <li>[argue] I don't want to quarrel about sick people.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Right.</li>
+        <li>[debate] Depends.</li>
+        <li>[argue,for] Then you do their share.</li>
+        <li>[argue,against] Go to bed yourself, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] I'll bring the soup, you bring the stories.</li>
+        <li>[agree,otherwounded] You'll heal faster if you stop showing it off.</li>
+        <li>[debate] Let's ask the patient, they'll want the bed.</li>
+        <li>[argue] Fine, the next time you sneeze, you're working.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,serious] We'll be lucky if it stops at one.</li>
+        <li>[debate] Bed or no bed, it does what it wants.</li>
+        <li>[argue] Nobody listens until somebody dies.</li>
+        <li>[agree] They looked bad, I'll say that.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Agreed.</li>
+        <li>[debate] It's a question of how long they're down.</li>
+        <li>[argue,for] Sentiment won't bring the harvest in.</li>
+        <li>[argue,against] A dead worker does even less work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Close</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Let's hope they're up again soon.</li>
+        <li>[agree,for] I'll keep the work off them for a few days.</li>
+        <li>[agree,against] I'll get them back on light work tomorrow.</li>
+        <li>[agree,serious] Wash your hands, both of us.</li>
+        <li>[debate] We'll see how they are in the morning.</li>
+        <li>[debate,doctor] I'll look at them again tonight and decide.</li>
+        <li>[argue] Have it your way, then.</li>
+        <li>[argue,otherill] Lie down before you fall down.</li>
+      </plain>
+      <warm>
+        <li>[agree] Look after yourself too, mind.</li>
+        <li>[debate] Let's both look in on them later.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Done talking.</li>
+        <li>[debate] We'll see.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Soup for everyone, then.</li>
+        <li>[argue] I'll save you a bed for when you catch it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Here's hoping it's not one of us next.</li>
+        <li>[argue] You'll see I was right.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] The healer can decide.</li>
+        <li>[argue] My view stands.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Last</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate] I'll ask the healer what they think.</li>
+        <li>[debate,for] A day's rest never killed anyone.</li>
+        <li>[debate,against] A day's work never killed anyone either.</li>
+        <li>[argue] You'll want that bed yourself one day.</li>
+        <li>[argue,for] Wait till it's you, then tell me about working through it.</li>
+        <li>[argue,against] The fields don't care who's poorly.</li>
+      </plain>
+      <warm>
+        <li>[debate] I just want them well, that's all.</li>
+        <li>[argue] Please don't push them.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Fine.</li>
+        <li>[debate] Still think they should rest.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] I'll bring them a game to keep them in bed.</li>
+        <li>[argue] I'm telling the healer you said that.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] It'll go how it goes.</li>
+        <li>[argue,serious] Don't say I didn't warn you.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] We'll know by what happens.</li>
+        <li>[argue] I won't discuss it further.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Tease</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherill] You'll do anything to get out of the washing up, won't you, {OTHER}.</li>
+        <li>[otherwounded] Walked into a wall again, {OTHER}?</li>
+        <li>[otherfor] You'd put the whole colony to bed for a sneeze, {OTHER}.</li>
+        <li>[otheragainst] You'd work with one leg off and call it a sprain, {OTHER}.</li>
+        <li>[otherill] Your nose is the color of a ripe berry, {OTHER}.</li>
+      </plain>
+      <cheerful>
+        <li>[otherwounded] I'll carve you a little medal for that hurt, {OTHER}.</li>
+        <li>[otherill] Shall I fluff your pillow for you, {OTHER}?</li>
+        <li>[otherfor] You'd tuck in the cattle if they coughed, {OTHER}.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

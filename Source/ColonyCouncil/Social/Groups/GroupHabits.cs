@@ -99,10 +99,20 @@ namespace ColonyCouncil
                 }
                 case "outdoors":
                     return Leisure(p) && (p.GetRoom()?.PsychologicallyOutdoors ?? true);
+                case "read":
+                    return job?.def != null && job.def.defName == "Reading";
+                case "sickbed":
+                    // Laid up (awake, in bed, ill or hurt and still healing), or sitting with one of them who is.
+                    return job?.def == JobDefOf.VisitSickPawn || (p.InBed() && LifeChecks.Healing(p));
+                case "music":
+                    return Playing(p) || (Leisure(p) && p.Map.mapPawns.FreeColonistsSpawned.Any(o => o != p && Playing(o) && Together.Hears(p, o, 9f)));
                 default:
                     return Leisure(p);
             }
         }
+
+        /// <summary>Playing an instrument (Royalty's harp, harpsichord or piano, and any mod's that uses the game's job).</summary>
+        private static bool Playing(Pawn p) => p?.CurJob?.def != null && p.CurJob.def.defName == "Play_MusicalInstrument";
 
         /// <summary>
         /// The biggest knot of them who are really together (each within talking range of another: Together.Can; at a

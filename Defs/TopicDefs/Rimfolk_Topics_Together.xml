@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The sick and the hurt (Source/ColonyCouncil/Social/Talk/TopicWorker_Health.cs): comes up only while someone of the
+    colony on the map is ill (Rimfolk's ailments and illnesses, the game's own diseases) or hurt and still healing, more
+    while something that can kill is going round, and is about them when they aren't one of the two talking. A view:
+    put the sick to bed and nurse them whatever the work (for), or work through it and keep the beds for the dying
+    (against). Its lines: Defs/FlavorPoolDefs/Rimfolk_Talk_Lines_Health.xml.
+  -->
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Health</defName>
+    <label>the sick and the hurt</label>
+    <about>the sick and the hurt</about>
+    <workerClass>ColonyCouncil.TopicWorker_Health</workerClass>
+    <interaction>Rimfolk_Talk_Health</interaction>
+    <viewFor>wants the sick put to bed and nursed, whatever the work</viewFor>
+    <viewAgainst>says you work through it and keep the beds for the dying</viewAgainst>
+    <relevance>0.7</relevance>
+    <hotDays>2</hotDays>
+    <seed><warmth>35</warmth><trust>15</trust><nerve>-15</nerve><pride>-15</pride></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.2</lean></li>
+      <li><trait>Tough</trait><lean>-0.25</lean></li>
+      <li><trait>Wimp</trait><lean>0.25</lean></li>
+      <li><trait>Industriousness</trait><degree>2</degree><lean>-0.25</lean></li>
+      <li><trait>Industriousness</trait><degree>1</degree><lean>-0.1</lean></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><lean>0.15</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.25</lean></li>
+      <li><trait>Masochist</trait><lean>-0.2</lean></li>
+      <li><skill>Medicine</skill><lean>0.15</lean></li>
+      <li><meme>Collectivist</meme><lean>0.05</lean></li>
+    </leans>
+    <interest><warmth>30</warmth><nerve>-15</nerve></interest>
+  </ColonyCouncil.TopicDef>
+
+</Defs>
