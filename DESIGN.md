@@ -1760,9 +1760,35 @@ the time in an average colony, 11.7% in a well-run one and 36.5% in a neglected 
 
 Measured the same way: average 13.9%, well run 9.3%, neglected 30.5%. Rimfolk's mood moved by a few tenths at most.
 
+**One heart** (November 2026, phase 3 of the review; see "One heart" under Layer 7). Small letdowns became short
+moments with their weight on the heart, small joys the mirror, every small mood counts toward the heart by one rule,
+and one rule for good things growing ordinary took the place of four. The simulator now plays each colonist's heart
+hour by hour (`HeartSim.cs`: the life of each play style, set so that life alone gives the shares it always assumed),
+adds what the moments and the pile bring (the game's small moods as a share of its moods, `Rates.GameSmallBad` and
+`GameSmallGood`), and splits what growing ordinary takes between the game's good moods and Rimfolk's by how ordinary
+each is. Measured (6 colonists, 120 runs; before is the code before the phase, with strain a fixed share):
+- Rimfolk's mood: well run +2.3 to +5.6, average +0.3 to +2.5, neglected -9.1 to -7.2 (12 colonists +4.6, +1.8,
+  -6.5), all on target now (well run was under it before). The colony's whole mood: 69%, 64% and 39% (before 69%,
+  62% and 37%).
+- The letdowns' side (pressures with the varied table, setbacks, quiet troubles, nuisances, frictions) took -1.8, -3.8
+  and -6.4 off Rimfolk's mood (well run, average, neglected) as moods; as moments -0.4, -1.4 and -2.4, and strain's own
+  mood went from -0.1, -0.3 and -1.2 to -0.0, -0.4 and -2.4. The joys' side: the good moments' moods +0.6, +1.0, +1.0
+  before, +0.7, +0.7, +0.6 as moments; Rimfolk's good memories +4.5, +5.4, +3.7 before (after the budget and fading),
+  +8.8, +6.0, +3.5 now as given; growing ordinary takes -4.8, -0.5 and 0 off Rimfolk's good moods (-1.25, 0, 0 before
+  for used to the good life alone) and about 13, 2 and 0 points off the game's own good moods.
+- The heart: strained, worn and near breaking 1/0/0%, 8/2/0% and 30/17/8% of the time (the same model with letdowns as
+  moods: 2/0/0%, 9/2/0% and 23/11/4%); the day off 0, 0.05 and 0.74 a colonist-year (as moods 0, 0.05 and 0.40). Time
+  under the minor-break line, neglected: 34% (as moods 42%): fewer breaks, more days off. The game's own small moods
+  bring 1%, 6% and 6% of all strain built.
+- Tuned to get there: the letdowns' cap 1.5 a day and the joys' 3, the pile from 8 and 12 points at 0.02 an hour a
+  point, a lasting letdown felt once a day, 0.6 strain or relief a mood-day, and the line 45, 35, 25 and 15. Left a
+  little over: Rimfolk's good moods at a high point, well run, P99 +17.3 (before +15.4) and +12 or more 16% of the time
+  (before 10%), with the whole mood no higher (P90 74%, as before).
+
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
-fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
-about 0, -4 and -18. Each preset's tooltip says so.
+fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than
+every two days (+5.9, +3.0, -6.6); Demanding about 0, -4 and -18 (+1.7, -3.0, -14.7, with downsides 85% more and rewards
+at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so.
 
 ## Building help: how far should the mod build things itself?
 

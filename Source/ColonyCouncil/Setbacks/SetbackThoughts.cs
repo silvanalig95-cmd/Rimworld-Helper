@@ -13,7 +13,7 @@ namespace ColonyCouncil
     {
         /// <summary>
         /// Its mood as felt, before it became small letdowns: the heart reads this while it holds (Moods/SmallMoments.cs),
-        /// a short moment when it begins, gets worse or holds two days more, and the rest as strain.
+        /// a short moment when it begins, gets worse or holds another day, and the rest as strain.
         /// </summary>
         public float Felt() => Setbacks.Felt(pawn, def, base.MoodOffset());
 

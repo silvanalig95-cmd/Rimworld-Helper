@@ -6,6 +6,79 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 3 of the review: one heart (the player's decisions 4 and 5 of 6 November 2026, with their words on the day:
+  "the letdowns also make sense as mood impact, no? But I like strain too though!", "the positive mood buffs should also
+  be adjusted accordingly and balanced, not that only the negative ones get adjusted" and "then we might also have to
+  look at non-rimfolk moods, right"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. DESIGN.md
+  "One heart" under Layer 7, the character section's "one reading of who someone is", and "Balance targets" (the pass
+  and its numbers); `docs/balance-report.md` regenerated against the code before the phase (`Tools/Balance/before.json`).
+  (1) Small letdowns: Rimfolk's five kinds (pressures, setbacks, quiet troubles, nuisances, frictions; told apart by
+  class, `SetbackExtension` or name, `SmallMoments.LetdownKind`) are each a short, small mood at the moment they happen
+  (`SmallMomentMath`: 3 points and half a day at most), and what they would weigh beyond it wears on the heart
+  (`StrainSource.Letdowns`, the end of the enum, 0.6 a mood-day, 1.5 a day at most at 100%, their traits counted). It
+  happens in the hook every memory passes (`Patch_GoodTimesFade`'s prefix, `SmallMoments.Take`): a moment
+  (`Thought_SmallMoment`, saved with its words, size, cause and who it was about) is given, and the memory goes on with
+  `moodPowerFactor` 0 for what else it does (a friction's opinion, what dilemmas, arcs, speech and journals look for);
+  the heart's memory rules skip it (`SmallMoments.Converted`). A lasting one (a `Thought_Pressure`, a `Thought_Setback`)
+  gives no mood: a moment when it begins, gets worse or holds another day, and strain every hour it holds
+  (`SmallMoments.Hour` from `HeartLogic.Strain`; what the hour last saw is unsaved, and the first look after a load gives
+  no moment). (2) Small joys, the mirror: Rimfolk's good memories no council answer gave (unscaled), of 5 points and 2
+  days at most as written, not a life goal or a dream, and the varied table; relief through `StrainRelief.Joys` (the end
+  of its enum), 3 a day at most (`PawnHeart.todayJoys`, saved). (3) One row a side: two defs, `Rimfolk_SmallLetdowns`
+  and `Rimfolk_SmallJoys` (`Rimfolk_Thoughts_SmallMoments.xml`, stacking 1, so the row adds up), on the Mood tab and the
+  game's Needs tab; the row's tooltip lists each one (`SmallMoments.Describe`), its "why" says what they were, its advice
+  is the fixes of the letdowns behind it (`SmallMoments.Advice`, `MoodInsight.Advice`), else its own hint
+  (`Rimfolk_MoodHints_SmallMoments.xml`). Feelings read each moment's own memory at the moment's size and a lasting one at
+  its full size while it holds (`Feelings.Feed`); a quiet trouble's moment passes sooner in company too. (4) Every small
+  mood, anyone's: each hour the heart adds up the small moods on a colonist's mind, the game's and other mods' too, by
+  size and length (6 points, 3 days, or lasting: `SmallMomentMath.IsSmall`), past 8 points of bad ones 0.02 strain an
+  hour a point and past 12 of good ones 0.02 relief, through the same source and relief and their caps; the heavy kinds
+  with sources of their own are left out (`SmallMoments.Heavy`: the heart's memory rules, hunger, rest, recreation, pain,
+  the dark, its own strain mood, moods that feed a feeling that wears, `Feelings.FeedsWearingFeeling`). The game's and the
+  mods' moods are never changed and keep their own rows. The heart's page names what wore on them and eased them
+  (`PawnHeart.letdownsWhy`, `joysWhy`, saved words like `natureWhy`; `HeartView.SourceText`, `ReliefText`, the help line
+  `CC_Heart_Help_Letdowns`). (5) Good things grow ordinary, one rule in place of four (`Moods/GoodLife.cs`, which
+  `GoodTimes.cs`, `SmallJoys.cs` and `GoodTimesMath.cs` were folded into and removed): no standards cut on rewards or the
+  game's comforts (`Standards.PenaltyFactor` for letdowns alone; `CouncilGameComponent.GiveThought`, `DilemmaImpact`),
+  no fading sooner, no budget; the line 45, 35, 25 and 15 by standards (`GoodLifeMath.LineStep` 10, was 5), the spread by
+  how ordinary each is as before. One line in a good mood's tooltip (`GoodLife.Note`, `CC_Ordinary_Note`), one sum under
+  the Mood tab (`GoodLife.Readout`). (6) Character as the one nature: the colony's ways read the eight sides
+  (`PersonaMath.WayLean` in `CharacterTracker.Affinity`), so who minds an answer follows character and its marks; what the
+  ways' table read and character didn't is in `Rimfolk_PersonaWays.xml` (the industrious, a bloodthirsty temper, the
+  workaholic); a mod's personal trait leans the ways only through character where a nature def reads it
+  (`ModPeople.OnlyTraits`); the outsiders' fighting temper reads character too (`PersonaMath.FightTemper`, replacing
+  `OutsiderMath.Temper`). (7) Settings: one toggle, "Good things grow ordinary" (`goodGrowsOrdinary`), merged quietly
+  from the four (`smallJoysDiminish`, `standardsCoverComforts`, `goodTimesFade`, `usedToGoodLife`): on if any of them
+  was on, off only if all four were (`GoodLifeMath.MergedSetting`, done once, `ordinaryMerged`); the old keys' words stay
+  in the language files unused. The Demanding preset presses a step harder (downsides 85% more, rewards 70%, were 15%
+  and 80%). Old saves: letdowns and joys given before keep their moods and run out as they were; lasting ones become
+  moments at the next hour; the heart's lists grow by a source and a relief; memories shortened by the old fading keep
+  their time (`MoodInsight.MoodTicks`). With the heart off, the deeper game hooks off or Advisor only, every letdown and
+  joy is a mood of its own as before. (8) Balance (`Tools/Balance`): it now plays each colonist's heart hour by hour
+  (`HeartSim.cs`, NatureSim's calibrated life, shared), with the moments, the lasting ones, the pile (the game's small
+  share in `Rates.GameSmallBad`, `GameSmallGood`) and the one rule split between the game's moods and Rimfolk's; a
+  comparison case with letdowns and joys as moods, `BALANCE_QUICK=1` (and `BALANCE_PRESET`) for tuning. Default, 6
+  colonists, before and after: Rimfolk's mood well run +2.3 to +5.6, average +0.3 to +2.5, neglected -9.1 to -7.2
+  (targets +3 to +6, 0 to +3, -4 to -10); the whole mood 69/62/37% to 69/64/39%; strained, worn, near breaking 1/0/0,
+  8/2/0 and 30/17/8% (as moods on the same model 2/0/0, 9/2/0, 23/11/4); the day off 0, 0.05 and 0.74 a colonist-year
+  (as moods 0.40 neglected); under the minor-break line, neglected, 34% (as moods 42%); the game's small moods 1, 6 and
+  6% of the strain built. Over: Rimfolk's good moods' P99, well run, +17.3 (was +15.4). Files: `Moods/SmallMoments.cs`,
+  `SmallMomentMath.cs`, `GoodLife.cs`, `GoodLifeMath.cs`, `MoodInsight.cs`, `ITab_Pawn_Mood.cs`, `Milestone.cs`,
+  `RewardInstead.cs`; `Heart/HeartMath.cs`, `HeartLogic.cs`, `HeartData.cs`, `HeartView.cs`, `Feelings.cs`;
+  `Pressures/PressureThoughts.cs`, `Pressures.cs`; `Setbacks/SetbackThoughts.cs`, `Setbacks.cs`, `Troubles.cs`,
+  `SetbackCouncil.cs`; `Patches/Patch_GoodTimes.cs`; `Causes.cs`, `Standards.cs`, `Standing.cs`, `CouncilSettings.cs`,
+  `UI/SettingsCatalog.cs`, `CouncilGameComponent.cs`, `Dilemmas/DilemmaImpact.cs`, `Dreams/Dreams.cs`,
+  `Character/Character.cs`, `ColonyTraits.cs`, `Integrations/ModPeople.cs`, `Outsiders/Outsiders.cs`, `OutsiderMath.cs`,
+  `Persona/PersonaMath.cs`; defs `Rimfolk_Thoughts_SmallMoments.xml`, `Rimfolk_MoodHints_SmallMoments.xml`,
+  `Rimfolk_PersonaWays.xml`, `Almanac_OneHeart.xml` (two pages: small letdowns and small joys, good things grow
+  ordinary); keys `Rimfolk_OneHeart.xml`; the standards, heart, pressures, setbacks and ways pages rewritten (the old
+  rules kept as "until November 2026"). Tests: `SmallMomentTests` (new), `GoodLifeTests` (the line, the merged setting),
+  `PersonaTests` (the ways from character), `OutsiderTests` (the fighting temper), `NatureTests` and `ThoughtClassTests`
+  (the new kinds and class). Found and left: a lasting letdown's first moment after a load waits for it to change or a
+  day to pass; Rimfolk's good moods at a high point are a little higher than before though the whole mood isn't; feelings
+  now see a converted letdown at its moment's size, so frustration from setbacks is a little milder. To look at in game:
+  the two rows and their tooltips (and the game's Needs tab), a run of the same meal on the heart's page, a well-run
+  colony's good moods each saying "grown ordinary", and the colony's ways' mood after a mark moves someone.
 - 6 November 2026, the player's decisions on the review: all seventeen as recommended, with one nuance on the
   letdowns (both a short mood at the moment and strain for the grind): `docs/review-2026-11/decisions.md`. The
   reports are beside it (`staged-scenes.md`, `systems.md`, `whole.md`). Phases 1 (one record) and 3 (one heart) run

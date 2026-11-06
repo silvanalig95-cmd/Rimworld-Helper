@@ -14,7 +14,7 @@ namespace ColonyCouncil
     {
         /// <summary>
         /// Its mood as felt, before it became small letdowns and joys: the heart reads this while it holds
-        /// (Moods/SmallMoments.cs), a short moment when it begins, gets worse or holds two days more, and the rest as strain
+        /// (Moods/SmallMoments.cs), a short moment when it begins, gets worse or holds another day, and the rest as strain
         /// (the same meal again) or relief (a varied table).
         /// </summary>
         public float Felt()

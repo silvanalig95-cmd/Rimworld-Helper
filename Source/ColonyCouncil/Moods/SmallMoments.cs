@@ -90,8 +90,8 @@ namespace ColonyCouncil
     /// half a day), all of a side in one row of the Mood tab. What each would have weighed beyond its moment goes to the
     /// heart: strain for a letdown (StrainSource.Letdowns), relief for a joy (StrainRelief.Joys), within the heart's caps,
     /// so a run of them wears or eases the heart while a single one passes. A lasting one (the same meal again, a wish
-    /// still waiting, a varied table) gives no mood of its own any more: a moment when it begins, gets worse or holds two
-    /// days more, and strain or relief each hour while it holds.
+    /// still waiting, a varied table) gives no mood of its own any more: a moment when it begins, gets worse or holds
+    /// another day, and strain or relief each hour while it holds.
     /// <para>
     /// Every small mood on a colonist's mind counts toward the heart by the same rule, whoever made it: the game's and
     /// other mods' too, by size and length (SmallMomentMath.IsSmall), when they pile up past a few points. Their moods
@@ -351,7 +351,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The hour's part (HeartLogic.Strain): each lasting letdown or joy wears or eases the heart while it holds and comes
-        /// back as a moment when it begins, gets worse or holds two days more; then every small mood on their mind, anyone's,
+        /// back as a moment when it begins, gets worse or holds another day; then every small mood on their mind, anyone's,
         /// once they pile up. Strain goes through <paramref name="build"/>; the relief is returned.
         /// </summary>
         public static float Hour(Pawn p, PawnHeart h, List<Thought> moodGroups, float hours, int now, Func<StrainSource, float, string, float> build)

@@ -99,16 +99,17 @@ Where it comes from (6 colonists): what each source adds to a colonist's mood on
 | trust | +2.67 | +0.40 | -2.13 |
 | strain | -0.03 | -0.37 | -2.38 |
 | wishes | +2.13 | +0.97 | +0.25 |
-| world events (bad) | -0.47 | -1.07 | -1.94 |
 | meetings | +1.93 | +1.34 | +0.36 |
 | life and honours | +1.31 | +1.06 | +0.82 |
+| pressures (bad) | -0.20 | -0.68 | -1.24 |
 | ailments | -0.16 | -0.32 | -0.96 |
 | the colony's ways | +0.91 | +0.23 | -0.38 |
 | wishes (bad) | -0.31 | -0.53 | -0.82 |
 | moments | +0.71 | +0.65 | +0.59 |
+| setbacks (lasting) (bad) | -0.27 | -0.38 | -0.70 |
 | life goals | +0.62 | +0.46 | +0.28 |
 | dilemmas | +0.59 | +0.39 | +0.17 |
-| world events | +0.57 | +0.24 | +0.05 |
+| pressures | +0.55 | +0.20 | +0.02 |
 | setbacks (bad) | -0.23 | -0.32 | -0.54 |
 | social events | +0.51 | +0.50 | +0.51 |
 | frictions (bad) | -0.45 | -0.49 | -0.41 |
