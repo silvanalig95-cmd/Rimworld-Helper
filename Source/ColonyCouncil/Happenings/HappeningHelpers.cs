@@ -241,6 +241,18 @@ namespace ColonyCouncil
             {
                 sending--;
             }
+            // The colony's account of the fight counts it as a real one, whether the storyteller is told or not (Battle.WasThreat).
+            if (ok)
+            {
+                try
+                {
+                    CouncilGameComponent.Instance?.social?.Notify_RaidSent(map);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("event raid noted", e);
+                }
+            }
             // The storyteller should know a big fight just happened, so it doesn't send its own right on top of it.
             if (ok && tellStoryteller)
             {

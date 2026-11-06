@@ -146,6 +146,13 @@ namespace ColonyCouncil
             return b;
         }
 
+        /// <summary>Rimfolk sent a raid to this home itself (Raids.Send): the fight it brings is a real one (Battle.WasThreat).</summary>
+        public void Notify_RaidSent(Map map)
+        {
+            if (map == null || !map.IsPlayerHome) return;
+            BattleFor(map).raidSent = Find.TickManager.TicksGame;
+        }
+
         /// <summary>A fight is going on at this home.</summary>
         public bool BattleOn(Map map) => BattleAt(map)?.active ?? false;
 
