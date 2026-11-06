@@ -105,7 +105,7 @@
         <li>{OTHER_nameDef} came in, sat down, and told me everything I'd missed. Most of it was gossip.</li>
         <li>{OTHER_nameDef} looked in on me today. Just a while, but the day felt shorter after.</li>
         <li>[convalescing] {OTHER_nameDef} came to see me and said I looked better. I've decided to believe it.</li>
-        <li>[night] {OTHER_nameDef} sat with me in the dark when I couldn't sleep. Neither of us said much.</li>
+        <li>{OTHER_nameDef} sat with me a while. Neither of us said much, and it was enough.</li>
       </plain>
       <warm><li>{OTHER_nameDef} came to sit with me. There's a kindness in sitting that words don't have.</li></warm>
       <blunt><li>{OTHER_nameDef} sat with me. Didn't fuss. Liked that.</li></blunt>
