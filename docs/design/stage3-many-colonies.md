@@ -366,7 +366,7 @@ among those who stay. The window then sets the day.
 - **Peacefully, the colony asks** (a letter to the head): the answer weighs the head's regard, goodwill, the town's
   fortune (a struggling town is readier), the years since and how much it has grown. Yes: the settlement becomes the
   player's again, its map is made from the kept layout (the game's player-base map, then the layout), its former
-  colonists walk out of their houses as colonists, and up to three of its other people choose to join; the people,
+  colonists walk out of their rooms as colonists, and up to three of its other people choose to join; the people,
   with no town left, is made temporary so the game lets it go (it stays a people if it has other towns). Told as a
   milestone `colony:takenBack`; the game's max-settlements limit applies.
 - **Peacefully, the town asks** (with the town's life, release 5): after a long struggle or under a war it can't win,
@@ -516,7 +516,7 @@ go. What merges, once the newcomers have lived a day at the new home:
 names per home in a `ColonyBook` (under 2 KB a home). Nothing per tick.
 **Tests.** Pure rules beside `ColonyStateMath`: the seat (ground only, once a season, what reads it), the merge
 (traditions' union and strengths, the early election, names' keys), the character's split (an old save's single
-character to the seat; a daughter colony's half). `ManyHomesTests`: with one colony every answer as before.
+character to the seat; a founded colony's half). `ManyHomesTests`: with one colony every answer as before.
 
 ## The order to build it in
 
@@ -613,10 +613,11 @@ In the order the releases need them.
    [colony]" (+30 while a former colonist heads the town, +15 after, gone with a war or a taking by force), the game's
    drift and same faith doing the rest. *No:* the game's own drift alone, so the town cools toward the colony like any
    people. Recommended: yes.
-9. **What the town owes the colony.** *Free or a pact:* a free town owing nothing, or a defence or trade pact if the
-   player picks one in the window (a year, renewed by letter); fealty only later, by stage 2's own rule (a struggling
-   town may ask the colony's protection), and Faction Territories' vassal outpost not used. *The colony's vassal from
-   the first day:* its harvest at the gate and its levies, a town that never chose it. Recommended: free or a pact.
+9. **What the town owes the colony.** Is the town bound to the colony by more than goodwill? *Free or a pact:* a free
+   town owing nothing, or a defence or trade pact if the player picks one in the window (a year, renewed by letter);
+   fealty only later, by stage 2's own rule (a struggling town may ask the colony's protection), and Faction
+   Territories' vassal outpost not used. *The colony's vassal from the first day:* its harvest at the gate and its
+   levies, a town that never chose it. Recommended: free or a pact.
 10. **Taking back by force.** Can the colony take its old town back by force? *As the game allows:* attack, beat,
     settle; the bond ends, and the town's people and every people of their faith remember a heavy wrong. *Never:*
     only peacefully. Recommended: as the game allows.
@@ -631,17 +632,19 @@ In the order the releases need them.
     traditions join at half strength, an election within the season when they are a third of the grown-ups, names
     looked at again with no rival from a merge, the old founding day a remembrance day, a welcome meal. *7a's rules
     alone:* a moving officer steps down and they join the council, nothing else. Recommended: as designed.
-13. **Each colony its own character.** *Per colony:* each colony earns its own place and work names and its own five
-    ways (a daughter colony starts with half its mother's, newcomers fresh). *One for the game, as now.* Recommended:
-    per colony.
-14. **The region near every home.** *Every home:* the nearest two towns of each further home get notables (eight more
-    people a home) and world events are placed near any home by its people. *The seat only, as now:* a far colony's
-    neighbours have no faces until it is the seat. Recommended: every home.
+13. **Each colony its own character.** Does each colony earn a character of its own? *Per colony:* its own place and
+    work names and its own five ways (a colony founded from another starts with half of the other's, newcomers fresh).
+    *One for the game, as now.* Recommended: per colony.
+14. **The region near every home.** Do the region's faces and events come to every home? *Every home:* the nearest two
+    towns of each further home get notables (eight more people a home) and world events are placed near any home by
+    its people. *The seat only, as now:* a far colony's neighbours have no faces until it is the seat. Recommended:
+    every home.
 
 **The town's life (release 5)**
 
-15. **The town's growth with Faction Territories.** *Rimfolk's pace:* new towns only from a flourishing town, one at
-    most each 90 days. *The mod's pace:* about one each 30 days, as for every people. Recommended: Rimfolk's pace.
+15. **The town's growth with Faction Territories.** How fast does the town found towns of its own? *Rimfolk's pace:*
+    only while it flourishes, one at most each 90 days. *The mod's pace:* about one each 30 days, as for every people.
+    Recommended: Rimfolk's pace.
 
 Beyond the plan, proposed for the content pass and built only if picked: a wedding in a town the colony was between
 two former colonists, with the colony invited; old hands and newcomers as a question for the council in a merged
