@@ -26,11 +26,25 @@ meant for ranking, not as exact numbers.
 A pool is flagged thin when it is seen about daily (50+ draws a year) with fewer than 15 lines in a speaker's reach,
 or about weekly (8+) with fewer than 8, or with its picks piled onto two or three lines (eff under 3).
 
-Usage: python3 Tools/variety_report.py [--top N] [--filter REGEX] [--all] [--csv]
+One person, over a stretch: the numbers above are for the colony as a whole, and a pool can look varied there while one
+colonist, always in the same voice and with the same traits, keeps drawing the same line (the player's save, 6 November
+2026: 24 of 630 journal lines were the writer's own earlier line, half within ten days). For each pool a few dozen made-up
+people (their traits, skills, era, age and voice kept, their moments varied) draw their share of its draws over a stretch
+of a year, each the unlucky one of ten: "own" is the effective lines one person draws from (the tenth percentile),
+"again" the share of a person's lines in the year that repeat one they already said in it as picked with no memory (the
+ninetieth percentile), and "left" the same once the game's own memory of what each speaker said (LineMemory's speaker
+part: their last 20 lines, and their journal) has kept out what it can: a repeat is left only when every line that fits
+the moment is one they already said. A pool is flagged "repeats" when a person draws from it about once a year or more
+and the unlucky one says one of their own lines again more than one time in ten (left 10% or more): too few lines fit
+one person's moments for the memory to keep them apart. Some journal pools' draws are read from the player's save
+(FREQ, "the save"): the hand estimates had them as rare, and that is where the repeats were.
+
+Usage: python3 Tools/variety_report.py [--top N] [--filter REGEX] [--all] [--csv] [--by-speaker]
   --top N       rows to print (default 60)
   --filter RE   only pools whose name matches
   --all         include rarely drawn pools (under 2 draws a year) in the ranking
   --csv         machine-readable output
+  --by-speaker  rank by how often one person says their own line again in a stretch ("left", then "again")
 """
 import functools
 import glob
@@ -144,10 +158,16 @@ def add(acc, d, p):
             acc[k] = acc.get(k, 0) + v * p
 
 
+MIN_OWN_TONE = 3  # LineMemory.MinOwnTone: a tone of fewer lines is drawn together with the plain ones
+
+
 def dist_tone(pool, tone, ctx):
     """ToneLines.Pick, as probabilities."""
     lst, plain = pool.get(tone, []), pool.get("plain", [])
     alls = [l for t in TONES for l in pool.get(t, [])]
+    alone = tone == "plain" or len(lst) >= MIN_OWN_TONE
+    if not alone and lst and plain:
+        lst = lst + plain
     acc = {}
     rest = 1.0
     tagged = dist_tagged(lst, ctx)
@@ -159,8 +179,8 @@ def dist_tone(pool, tone, ctx):
         if tp:
             add(acc, tp, 0.85 * 0.75)
             rest -= 0.85 * 0.75
-    # The fallback: own list (always for plain, 80% for the others), then plain, then anything.
-    use_own = 1.0 if tone == "plain" else 0.8
+    # The fallback: own list (always for plain or a tone drawn with plain, 80% for the others), then plain, then anything.
+    use_own = 1.0 if tone == "plain" or not alone else 0.8
     own = dist_pick(lst, ctx) if lst else None
     fb_plain = dist_pick(plain, ctx) if plain else None
     fb_all = dist_pick(alls, ctx)
@@ -659,6 +679,19 @@ FREQ = [
     (r"^Council_Pool_(MeToo|CoSign)$", 10, "envy and co-signing on wishes"),
     (r"^Council_Pool_(Promised|Refused|PassedOver|SelfHelp|BrokenPromise|Bitter)$", 6, "answers to wishes"),
     (r"^Council_Journal_(Granted)$", 14, "journal: a wish granted"),
+    # Read from the player's save (Atia, day 128: 630 journal lines over 85 days, 12 colonists, scaled to eight), where
+    # these came far more often than "rare" and where the repeats were.
+    (r"^Council_Journal_Elected$", 11, "journal: elected (the save)"),
+    (r"^Council_Journal_Ail_Start$", 10, "journal: an ailment begins (the save)"),
+    (r"^Council_Journal_GoalChanged$", 9, "journal: a new life goal (the save)"),
+    (r"^Council_Journal_TieFormed_Comrades$", 8.5, "journal: comrades after a fight (the save)"),
+    (r"^Council_Journal_Epithet$", 6, "journal: a name earned (the save)"),
+    (r"^Council_Journal_TieFormed_Friends$", 5.7, "journal: a friendship (the save)"),
+    (r"^Council_Journal_PM_BestFriend$", 4.7, "journal: a best friend (the save)"),
+    (r"^Council_Journal_Health_", 4.3, "journal: tended, convalescing (the save)"),
+    (r"^Council_Journal_Anniversary$", 3.8, "journal: a year in the colony (the save)"),
+    (r"^Council_Journal_(WeddingGuest|Homecoming)$", 3.3, "journal: a wedding, home again (the save)"),
+    (r"^Council_Journal_(Setback_Homesick|Ail_Better|LostOffice)$", 2.9, "journal: homesick, better, a seat lost (the save)"),
     (r"^Council_Journal_(Lapsed|Refused|PromiseKept|PromiseBroken)$", 6, "journal: a wish answered"),
     (r"^Council_Journal_SelfHelp$", 3, "journal: helped themselves"),
     (r"^Council_Journal_(Arrival|Begin)$", 4, "journal: first entry"),
@@ -836,9 +869,111 @@ def variety(p, samples, rng):
     return sum(effs) / len(effs), effs[len(effs) // 10], sum(reach) / len(reach)
 
 
+# ---------------------------------------------------------------- one person, over a stretch
+
+STRETCH_DAYS = YEAR_DAYS
+SPEAKER_WINDOW = 20  # LineMemory.SpeakerWindow
+PERSON_PREFIXES = ("trait:", "skill:")
+PERSON_TAGS = ERA_TAGS | {"poor", "rich", "midwealth", "small", "large", "child", "teen", "old", "trusting", "doubtful", "bitter"}
+
+
+def is_person_tag(t):
+    """What stays with someone from one moment to the next: traits, skills, their colony's era and wealth, their age."""
+    return t.startswith(PERSON_PREFIXES) or t in PERSON_TAGS
+
+
+def moment_dist(p, pool, tone, ctx):
+    """The pick for this speaker and moment, as probabilities (the same as variety())."""
+    if p.kind == "toned" and p.name.startswith("Rimfolk_TL_"):
+        return dist_talk(pool, tone, ctx)
+    if p.kind == "toned":
+        return dist_tone(pool, tone, ctx)
+    if getattr(p, "dtype", "") == "NuisanceDef":
+        return dist_pick(p.lines, ctx)
+    fit = [l for l in p.lines if l and era_fits(l, ctx)] or p.lines
+    tf = [l for l in fit if tech_fits(l, ctx)] or fit
+    return {l: 1.0 / len(tf) for l in tf} if tf else {}
+
+
+def fits_any(p, pool, ctx):
+    """Every line the game could still reach at this moment once the speaker's own are kept out (any voice)."""
+    if p.kind != "toned":
+        return None
+    out = set()
+    for t in TONES:
+        for l in pool.get(t, []):
+            if l and tech_fits(l, ctx) and match(l, ctx) >= 0:
+                out.add(l)
+    return out
+
+
+def per_speaker(p, rng, persons=24, moments=10, stretches=3):
+    """For one person over a stretch, the unlucky one: (the tenth percentile of the effective lines one person draws
+    from, the ninetieth percentile of the share of a person's lines in the stretch that repeat one of their own with no
+    memory, the same with the game's speaker memory, draws per person in the stretch)."""
+    n = (p.draws or 0) / COLONISTS * STRETCH_DAYS / YEAR_DAYS
+    if p.kind == "grammar":
+        return None
+    pool = {t: [l for l in p.tones.get(t, []) if l] for t in TONES} if p.kind == "toned" else None
+    effs, again, left = [], [], []
+    for i in range(persons):
+        base, tone = SPEAKERS[(i * 7) % len(SPEAKERS)]
+        person = {t for t in base if is_person_tag(t)}
+        dists, reach = [], []
+        for _ in range(moments):
+            other, _tone = SPEAKERS[rng.randrange(len(SPEAKERS))]
+            ctx = person | {t for t in other if not is_person_tag(t)}
+            for tag, chance in p.extra:
+                if rng.random() < chance:
+                    ctx.add(rng.choice(tag.split("|")))
+            d = moment_dist(p, pool, tone, ctx)
+            if d:
+                dists.append(d)
+                reach.append(fits_any(p, pool, ctx))
+        if not dists:
+            continue
+        mean = defaultdict(float)
+        for d in dists:
+            for k, v in d.items():
+                mean[k] += v / len(dists)
+        effs.append(effective(mean))
+        # With no memory: the lines said again among n draws from the person's mean pick.
+        if n > 0:
+            distinct = sum(1.0 - (1.0 - v) ** n for v in mean.values())
+            again.append(max(0.0, n - distinct) / n)
+        # With the speaker's memory: a repeat only when everything that fits the moment was said in the stretch. Only
+        # toned lines (ToneLines.Pick, the conversations) have it; plain lists keep only the pool's own.
+        rep_n = drawn = 0
+        for _ in range(stretches):
+            k = int(n) + (1 if rng.random() < n - int(n) else 0)
+            said = []
+            for _ in range(k):
+                j = rng.randrange(len(dists))
+                d, fits = dists[j], reach[j]
+                kept = set(said[-SPEAKER_WINDOW:]) if p.kind == "toned" else set()
+                free = {l: v for l, v in d.items() if l not in kept}
+                if not free and fits:
+                    free = {l: 1.0 for l in fits if l not in kept}
+                line = wpick(rng, list((free or d).items()))
+                if line in said:
+                    rep_n += 1
+                said.append(line)
+                drawn += 1
+        left.append(rep_n / drawn if drawn else 0.0)
+    if not effs:
+        return None
+    effs.sort()
+    again.sort()
+    left.sort()
+
+    def worst(xs):
+        return xs[min(len(xs) - 1, (len(xs) * 9) // 10)] if xs else 0.0
+    return effs[len(effs) // 10], worst(again), worst(left), n
+
+
 def main():
     args = sys.argv[1:]
-    top, rx, show_all, csv = 60, None, False, False
+    top, rx, show_all, csv, by_speaker = 60, None, False, False, False
     i = 0
     while i < len(args):
         if args[i] == "--top":
@@ -851,6 +986,8 @@ def main():
             show_all = True
         elif args[i] == "--csv":
             csv = True
+        elif args[i] == "--by-speaker":
+            by_speaker = True
         i += 1
     pools = parse_defs(".")
     make_speakers()
@@ -876,21 +1013,47 @@ def main():
     rows.sort(key=lambda r: -r[0])
     if not show_all:
         rows = [r for r in rows if r[5] >= 2]
+    # One person over a stretch, for the pools shown (made-up people of their own, so the colony's numbers stay as they were).
+    srng = random.Random(11)
+    own = {}
+    for r in rows:
+        own[r[1].name] = per_speaker(r[1], srng)
+
+    def own_cols(p):
+        x = own.get(p.name)
+        return x if x else (0.0, 0.0, 0.0, 0.0)
+
+    def repeats(p):
+        o, again, left, n = own_cols(p)
+        return n >= 0.9 and left >= 0.1
+    if by_speaker:
+        rows.sort(key=lambda r: (-own_cols(r[1])[2], -own_cols(r[1])[1]))
     if csv:
-        print("pool,kind,file,lines,detail,effective,eff10,reach,draws_per_year,seen_per_line_per_year,basis")
+        print("pool,kind,file,lines,detail,effective,eff10,reach,draws_per_year,seen_per_line_per_year,own,again,left,per_person_per_stretch,basis")
         for per_line, p, eff, eff10, reach, draws, tones in rows:
-            print(f"{p.name},{p.kind},{p.file},{p.count()},{tones},{eff:.1f},{eff10:.1f},{reach:.1f},{draws:.1f},{per_line:.2f},\"{p.basis}\"")
+            o, again, left, n = own_cols(p)
+            print(f"{p.name},{p.kind},{p.file},{p.count()},{tones},{eff:.1f},{eff10:.1f},{reach:.1f},{draws:.1f},{per_line:.2f},"
+                  f"{o:.1f},{again:.3f},{left:.3f},{n:.2f},\"{p.basis}\"")
         return
     print(f"{len(pools)} pools, {sum(p.count() for p in pools.values())} lines. A year is {YEAR_DAYS} days, {COLONISTS} colonists.")
     print("seen/line = draws a year / effective lines: how many times a year a typical line comes round again.")
-    print("toned detail = lines per tone (plain/warm/blunt/cheerful/gloomy/cold); grammar detail = root shapes + sub-rule lines.\n")
-    print(f"{'seen/line':>9} {'draws/yr':>8} {'eff':>5} {'eff10':>5} {'reach':>5} {'lines':>5}  {'pool':52} detail")
+    print("toned detail = lines per tone (plain/warm/blunt/cheerful/gloomy/cold); grammar detail = root shapes + sub-rule lines.")
+    print(f"one person over {STRETCH_DAYS} days, the unlucky one of ten: own = effective lines for one person; again = share of their")
+    print("lines that repeat one of their own with no memory; left = the same with the game's speaker memory; n = their draws.\n")
+    print(f"{'seen/line':>9} {'draws/yr':>8} {'eff':>5} {'eff10':>5} {'reach':>5} {'lines':>5} {'own':>5} {'again':>5} {'left':>5} {'n':>5}  {'pool':52} detail")
     for per_line, p, eff, eff10, reach, draws, tones in rows[:top]:
         # Seen about daily (50+ a year) wants 15 or more lines within a speaker's reach, about weekly (8+) wants 8 or
         # more, and either wants picks that aren't piled onto one or two lines.
         flag = " <- thin" if (draws >= 50 and reach < 15) or (draws >= 8 and (reach < 8 or eff < 3)) else ""
+        if repeats(p):
+            flag += " <- repeats"
+        o, again, left, n = own_cols(p)
         name = p.name.replace(".logRulesInitiator.rulesStrings", "").replace(".rulePack.rulesStrings", "")
-        print(f"{per_line:9.2f} {draws:8.1f} {eff:5.1f} {eff10:5.1f} {reach:5.1f} {p.count():5d}  {name[:52]:52} {tones}{flag}")
+        print(f"{per_line:9.2f} {draws:8.1f} {eff:5.1f} {eff10:5.1f} {reach:5.1f} {p.count():5d} {o:5.1f} {again * 100:4.0f}% {left * 100:4.0f}% {n:5.1f}"
+              f"  {name[:52]:52} {tones}{flag}")
+    flagged = [r for r in rows if repeats(r[1])]
+    print(f"\n{len(flagged)} of {len(rows)} pools leave the unlucky person saying their own line again more than one time in ten"
+          f" within {STRETCH_DAYS} days.")
 
 
 if __name__ == "__main__":
