@@ -6,6 +6,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 6 November 2026, the player's stage 3 decisions: 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B
+  (recorded at the top of `docs/design/stage3-many-colonies.md` with how the four not as recommended are built).
+  Release 1 (a fresh start) building first; harm parts 2 and 3 and schemes wait.
 - 0.116.1, the review's phases, checked over together (6 November 2026, the review recommended in the entry below: how the
   parallel phases 0.106.1 to 0.116.0 meet, read against each other, the player's save Atia at day 128 taken through each
   release's load path in order, and `Tools/perf_audit.py` run on the tree at 0.106.1 and now). Not released: no round,

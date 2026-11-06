@@ -1,5 +1,14 @@
 # Stage 3: many colonies, one world (design, 4 November 2026)
 
+> **The player's decisions (6 November 2026):** 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B (the
+> decisions as numbered in this revision). Not as recommended, and how they are built: 5B, Rimfolk raises the game's
+> colony limit, a preference shared by every save, so only by one when a colony is founded (never past the game's five)
+> and said in the founding window; 6B, the handed-over town becomes one of Rimfolk's own peoples for its age, and the
+> hand-over window says that a save holding one then needs Rimfolk; 11B, former colonists' fate follows the town's
+> fortune, kept to the harm rule (CLAUDE.md): a death comes only from a real hardship of the town (a raid on it, a
+> famine or plague in the region), never a hidden roll, and is told by letter, naming them and what happened; 15B, the
+> town grows at Faction Territories' own pace (about one new town every 30 days).
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
