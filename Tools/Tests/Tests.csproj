@@ -210,5 +210,6 @@
     <Compile Include="../../Source/ColonyCouncil/Missions/NeighboursFourMath.cs" Link="NeighboursFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherFourMath.cs" Link="TogetherFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Colonies/LandingMath.cs" Link="LandingMath.cs" />
   </ItemGroup>
 </Project>

@@ -511,6 +511,12 @@ MODEL = {
     "Colonies/HomesFounding.cs:keptAgainst": ("while", 4, P, "per founding: those kept against their wish (counted under foundings)"),
     "Colonies/HomesFounding.cs:asks": ("while", 6, 120, "those sent or kept against their wish who may ask once to move, for the season after a founding "
                                        f"(FoundingMath.AskMoveToDays, {const('Colonies/FoundingMath.cs', 'AskMoveToDays', 15):.0f} days)"),
+    # Another landing site (Colonies/LandingRecord.cs, on the council's component): the record of the start, written only
+    # while the offer is open (LandingMath.OfferDays after a landing), so a save past a new game's first days writes none.
+    "Colonies/LandingRecord.cs:kit": ("while", 60, 160, "the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), "
+                                      "a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; "
+                                      f"only for the first {const('Colonies/LandingMath.cs', 'OfferDays', 3):.0f} days"),
+    "Colonies/LandingRecord.cs:conditions": ("while", 2, V, "the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open"),
     # The record of every colony on the world ledger (World/Ledger/LedgerColonies.cs): written once a second colony is founded.
     "World/Ledger/LedgerColonies.cs:colonyRecords": ("cap", (const("Colonies/FoundingMath.cs", "MaxRecords", 24), 0.01), 180,
                                                      "one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold "

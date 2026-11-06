@@ -66,7 +66,7 @@ namespace ColonyCouncil
         /// <summary>The pieces used up (their stack gone, or none of it the kit's any more) are let go.</summary>
         public void Prune()
         {
-            kit.RemoveAll(p => p == null || p.def == null || p.Kit <= 0);
+            if (kit.RemoveAll(p => p == null || p.def == null || p.Kit <= 0) > 0) LandingKit.Resync(this);
         }
 
         public void ExposeData()
@@ -130,6 +130,12 @@ namespace ColonyCouncil
             foreach (var p in record.kit)
                 if (p?.thing != null && !byThing.ContainsKey(p.thing))
                     byThing[p.thing] = p;
+        }
+
+        /// <summary>The record's pieces were let go of (used up): the look-up follows, if it is this record's.</summary>
+        public static void Resync(LandingRecord record)
+        {
+            if (record != null && record == live) Track(record);
         }
 
         private static LandingPiece PieceOf(Thing t) => t != null && byThing.TryGetValue(t, out var p) ? p : null;

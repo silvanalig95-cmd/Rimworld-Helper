@@ -573,6 +573,8 @@ namespace ColonyCouncil
             Safe("homes", Homes.Hourly);
             // A fresh start under way: a caravan at the place asked to settle, the new colony noticed, what comes after (Colonies/Foundings.cs).
             Safe("foundings", Foundings.Hourly);
+            // The record of the start let go once its first days are over (Colonies/Landing.cs).
+            Safe("landing", () => Landing.Expire(this));
             Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));

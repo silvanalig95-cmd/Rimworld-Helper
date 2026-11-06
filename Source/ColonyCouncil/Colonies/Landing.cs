@@ -679,6 +679,7 @@ namespace ColonyCouncil
                 NoGameOver();
                 Forget();
                 string name = settlement.HasName ? settlement.Name : settlement.LabelCap;
+                // direct: the answer to the player's own click (the window's "Land there"), told whatever the messages setting.
                 LongEventHandler.ExecuteWhenFinished(() => Messages.Message("CC_Landing_Stranded".Translate(name.Named("NAME")).Resolve(), caravan, MessageTypeDefOf.NegativeEvent, false));
             }
             catch (Exception e)
