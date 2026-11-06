@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.104.2</version>
+        <date>6 November 2026</date>
+        <title>Vendettas and hostages by the colony's ways</title>
+        <points>
+          <li>A vendetta left open by a colonist's death now passes to whoever was closest to them, partner, friend or relative alike, not to blood relatives first; if nobody was close enough, it ends with them. A kind colonist needs to be closer still to take it up, a bloodthirsty one less.</li>
+          <li>Fixed: the closeness that should pass a vendetta on was forgotten the same day the colonist died, so it never counted; who takes it up is now noted at the death.</li>
+          <li>A hostage given by another people is one of their traders or seasoned fighters, of their own name, no longer always a notable's relative, and their letters, card and talk say which.</li>
+          <li>A forfeit hostage the colony keeps is no longer always wanted back: their people ask as for anyone of theirs, more often at peace than at war.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.104.1</version>
         <date>6 November 2026</date>
         <title>Room for a camp</title>

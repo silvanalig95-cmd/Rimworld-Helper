@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A vendetta left open at its avenger's death passes to whoever was closest to them (Source/ColonyCouncil/Secrets/
+    VendettaMath.cs; the player's decision of 6 November 2026: the colony is the family, never a dynasty), a partner, a
+    friend or a relative by blood, by how close they really were. The [kin] lines of Rimfolk_Pools_VendettaEnds.xml that
+    made it the family's oath or a family debt are retired (Lean/ShippedLines.cs); these are said instead when the one who
+    takes it up is a relative by blood: kin, and close besides, never kin first. Heir lines: {PAWN_...} the one who takes
+    it up, {OTHER_...} the one who swore it first and died, {LOST}, {FACTION}. Journals: written by the one who takes it up.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Closeness_Pool_VendettaHeir</defName>
+    <pool>Council_Pool_VendettaHeir</pool>
+    <lines>
+      <plain>
+        <li>[kin] {OTHER_nameDef} and {PAWN_nameDef} were kin, and close with it. {PAWN_nameDef} has taken up {OTHER_nameDef}'s oath against {FACTION} for {LOST}.</li>
+        <li>[kin] {PAWN_nameDef} has taken up the oath {OTHER_nameDef} swore against {FACTION} for {LOST}. They were family, and friends as well.</li>
+      </plain>
+      <blunt>
+        <li>[kin] {OTHER_nameDef} was {PAWN_nameDef}'s own blood and one of {PAWN_possessive} closest, and {PAWN_nameDef} has taken up the oath against {FACTION} for {LOST}.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Closeness_Journal_VendettaHeir</defName>
+    <pool>Council_Journal_VendettaHeir</pool>
+    <lines>
+      <plain>
+        <li>[kin] {OTHER_nameDef} wasn't only family to me. I'll carry the oath against {FACTION} for {LOST}.</li>
+        <li>[kin] People will say I took it up because we were kin. I took it up because I miss {OTHER_objective}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

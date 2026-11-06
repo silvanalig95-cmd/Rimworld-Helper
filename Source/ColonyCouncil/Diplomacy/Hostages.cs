@@ -13,8 +13,10 @@ namespace ColonyCouncil
     /// Hostages for a truce's or a pact's terms (docs/design/stage2-diplomacy.md, round b, item 7, and item 2's "a hostage
     /// from round b"; release 2b.3; the player's decision 10; the rules in WardMath.cs). Adults only: children are never
     /// hostages. Asked as a truce's price (the letter's "a hostage from them", "a hostage from the colony: Ada") or a defence
-    /// pact's term, either way: theirs, one of their notable's kin, walks in to the gate once the truce is sworn or the pact
-    /// made (a people at war with the colony only where a people at peace with both can vouch for them) and lives at the
+    /// pact's term, either way: theirs, one of standing among their people (one of their traders or seasoned fighters, made
+    /// with their own kinds; never by kinship since the player's decision of 6 November 2026), walks in to the gate once the
+    /// truce is sworn or the pact made (a people at war with the colony only where a people at peace with both can vouch for
+    /// them) and lives at the
     /// colony as the game's lodger for the term (the quest of Wards.cs); the colony's sets out for their town by caravan and
     /// lives there, a lent colonist (WardsAbroad.cs). At the term's end both go home: theirs walks out, and their people
     /// remember the colony returned them (the deed "hostageReturned"). Their side breaking a truce makes theirs the colony's
@@ -62,7 +64,7 @@ namespace ColonyCouncil
         {
             if (!On) return WardWords.P("CC_Ward_Why_Off");
             if (Diplomacy.Hostile(f) && Truces.ByWord(f)) return WardWords.P("CC_Hostage_Why_NoEscort", WardWords.People(f).Named("PEOPLE"));
-            if (Wards.Sender(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
+            if (Wards.Sender(f, home, out _) == null) return WardWords.P("CC_Hostage_Why_NoSender", WardWords.People(f).Named("PEOPLE"));
             return Room(home, WardKind.TheirHostage) ? null : WardWords.P("CC_Ward_Why_Full");
         }
 
@@ -144,7 +146,7 @@ namespace ColonyCouncil
 
         // ================= Given =================
 
-        /// <summary>The truce sworn with a hostage of theirs as its price (Truces.Pay): one of their kin walks in to the gate some hours on. Its words for the letter.</summary>
+        /// <summary>The truce sworn with a hostage of theirs as its price (Truces.Pay): one of standing among them walks in to the gate some hours on. Its words for the letter.</summary>
         public static string TruceTheirs(Tie truce, Faction f, Map home) => Theirs(truce, f, home, "truce");
 
         /// <summary>The truce sworn with one of the colony's as its price: they set out for the town. Its words for the letter.</summary>
@@ -164,14 +166,16 @@ namespace ColonyCouncil
             var book = DiplomacyBook.Instance;
             if (book == null || guaranteed == null || f == null || home == null || TheirWhyNot(f, home) != null || !Fits(home, WardKind.TheirHostage, guaranteed))
                 return WardWords.P("CC_Hostage_Lapsed_Theirs", WardWords.People(f).Named("PEOPLE"));
-            var kin = Wards.Sender(f, home, out _);
-            var p = MakeHostage(f, kin);
+            // The notable who sends them and answers for them; the hostage is one of standing among their people, never their kin.
+            var sender = Wards.Sender(f, home, out _);
+            var p = MakeHostage(f, out var standing);
             if (p == null) return WardWords.P("CC_Hostage_Lapsed_Theirs", WardWords.People(f).Named("PEOPLE"));
             var h = book.HomeOf(home);
             var w = new WardStay
             {
                 id = book.NextId(), kind = WardKind.TheirHostage, stage = WardStage.Coming, pawn = p, people = f, guarantees = guaranteed.id, agreed = Now,
-                due = Now + Mathf.RoundToInt(Rand.Range(3f, 8f) * GenDate.TicksPerHour), notable = kin?.id ?? -1, name = p.LabelShort, until = TermEndOf(guaranteed)
+                due = Now + Mathf.RoundToInt(Rand.Range(3f, 8f) * GenDate.TicksPerHour), notable = sender?.id ?? -1, name = p.LabelShort, until = TermEndOf(guaranteed),
+                standing = standing
             };
             h.wards.Add(w);
             WorldLedger.Keep(p, KeepFor.Hostage);
@@ -180,7 +184,10 @@ namespace ColonyCouncil
             if (tie != null) w.tie = tie.id;
             Diplomacy.Dirty();
             var form = WardWords.HostageForm(home, f);
-            return WardWords.P("CC_Hostage_Given_Theirs", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"));
+            string who = WardWords.Standing(standing, WardWords.People(f));
+            return who != null
+                ? WardWords.P("CC_Hostage_Given_TheirsStanding", p.Named("HOSTAGE"), who.Named("STANDING"), form.word.Named("WORD"), form.rite.Named("RITE"))
+                : WardWords.P("CC_Hostage_Given_Theirs", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"));
         }
 
         private static string Ours(Tie guaranteed, Faction f, Map home, int colonist, string what)
@@ -212,29 +219,76 @@ namespace ColonyCouncil
             return WardWords.P("CC_Hostage_Given_Ours", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN"), form.word.Named("WORD"));
         }
 
-        /// <summary>One of their notable's kin, grown (18 to 40): their child where the ages fit, else of their name. Kept in the world until they come.</summary>
-        public static Pawn MakeHostage(Faction f, Notable kin)
+        // ---------------- One of standing among them ----------------
+
+        /// <summary>The game's groups of this kind their people bring (their caravans, their war bands).</summary>
+        private static IEnumerable<PawnGroupMaker> Groups(Faction f, PawnGroupKindDef kind) =>
+            f?.def?.pawnGroupMakers == null || kind == null ? Enumerable.Empty<PawnGroupMaker>() : f.def.pawnGroupMakers.Where(g => g != null && g.kindDef == kind);
+
+        /// <summary>
+        /// A kind a hostage of standing can be made as: a person, grown at the ages they are made (WardMath.StandingAge),
+        /// never a leader's own kind or one that asks a royal title.
+        /// </summary>
+        private static bool Fits(PawnKindDef k)
         {
+            if (k?.RaceProps?.Humanlike != true || k.factionLeader || k.titleRequired != null || k.minTitleRequired != null || k.titleSelectOne?.Count > 0) return false;
+            if (k.pawnGroupDevelopmentStage.HasValue && !k.pawnGroupDevelopmentStage.Value.Has(DevelopmentalStage.Adult)) return false;
+            var (min, max) = WardMath.StandingAge;
+            return k.maxGenerationAge >= min && k.minGenerationAge <= max;
+        }
+
+        /// <summary>Their traders: the kinds of trader their caravans bring.</summary>
+        public static List<PawnKindDef> TraderKinds(Faction f) =>
+            Groups(f, PawnGroupKindDefOf.Trader).Where(g => g.traders != null).SelectMany(g => g.traders).Select(o => o?.kind).Where(k => Fits(k) && k.trader)
+                .Distinct().ToList();
+
+        /// <summary>Their seasoned fighters: the stronger half of the kinds their war bands bring (WardMath.Seasoned), never a trader.</summary>
+        public static List<PawnKindDef> FighterKinds(Faction f)
+        {
+            var kinds = Groups(f, PawnGroupKindDefOf.Combat).Where(g => g.options != null).SelectMany(g => g.options).Select(o => o?.kind)
+                .Where(k => Fits(k) && !k.trader).Distinct().ToList();
+            var powers = kinds.Select(k => k.combatPower).ToList();
+            return kinds.Where(k => WardMath.Seasoned(k.combatPower, powers)).ToList();
+        }
+
+        /// <summary>
+        /// Their hostage: anyone of standing among their people, never by kinship (the player's decision, 6 November 2026;
+        /// until then one of their notable's kin, their child where the ages fit). One of their traders or of their seasoned
+        /// fighters, whichever their people have (a roll where they have both), made with that kind by the game's own
+        /// generation, grown (WardMath.StandingAge), a name of their own; one of their people where they have neither, or
+        /// where the kind can't be made. Kept in the world until they come.
+        /// </summary>
+        public static Pawn MakeHostage(Faction f, out HostageStanding standing)
+        {
+            standing = HostageStanding.OneOfThem;
             try
             {
-                var kind = Arrivals.PersonKind(f);
-                if (kind == null) return null;
-                var parent = kin?.pawn;
-                string last = parent?.Name is NameTriple tri ? tri.Last : null;
-                var p = Arrivals.Make(kind, f, new FloatRange(WardMath.HostageAge, 40f), null, last, false, parent);
-                if (p == null) return null;
-                if (parent != null && !parent.Dead && parent.RaceProps?.Humanlike == true
-                    && WardMath.CanBeParent(parent.ageTracker.AgeBiologicalYearsFloat, p.ageTracker.AgeBiologicalYearsFloat))
+                var traders = TraderKinds(f);
+                var fighters = FighterKinds(f);
+                standing = WardMath.Standing(traders.Count > 0, fighters.Count > 0, Rand.Value);
+                var (min, max) = WardMath.StandingAge;
+                var age = new FloatRange(min, max);
+                Pawn p = null;
+                if (standing == HostageStanding.Trader || standing == HostageStanding.Fighter)
                 {
+                    var kind = (standing == HostageStanding.Trader ? traders : fighters).RandomElement();
                     try
                     {
-                        p.relations?.AddDirectRelation(PawnRelationDefOf.Parent, parent);
+                        p = Arrivals.Make(kind, f, age, null, null, false);
                     }
                     catch (Exception e)
                     {
-                        CouncilLog.ErrorOnce("hostages: their kin", e);
+                        CouncilLog.ErrorOnce("hostages: one of standing, " + kind?.defName, e);
                     }
                 }
+                if (p == null)
+                {
+                    standing = HostageStanding.OneOfThem;
+                    var kind = Arrivals.PersonKind(f);
+                    if (kind == null) return null;
+                    p = Arrivals.Make(kind, f, age, null, null, false);
+                }
+                if (p == null) return null;
                 if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.KeepForever);
                 return p;
             }
@@ -257,9 +311,12 @@ namespace ColonyCouncil
             {
                 new HistoryActor(Refs.Of(f), HistoryRole.Did), new HistoryActor(Refs.Of(p), HistoryRole.About), new HistoryActor(Diplomacy.Colony(map), HistoryRole.For)
             }, Diplomacy.Colony(map), WardWords.P("CC_Hostage_Hist_Came", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), true);
+            // What they are among their people, where they were given as one of standing (none for one given before).
+            string who = WardWords.Standing(w.standing, WardWords.People(f));
+            string standing = who != null ? WardWords.P("CC_Hostage_Arrives_Standing", p.Named("HOSTAGE"), who.Named("STANDING")) + " " : "";
             Tell.Letter(NewsKind.World, Importance.Notable, map, WardWords.P("CC_Hostage_Arrives_Label", p.Named("HOSTAGE")),
                 WardWords.T("CC_Hostage_Arrives", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"), what.Named("WHAT"))
-                + "\n\n" + WardWords.P("CC_Hostage_Arrives_How", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE")),
+                + "\n\n" + standing + WardWords.P("CC_Hostage_Arrives_How", p.Named("HOSTAGE"), WardWords.People(f).Named("PEOPLE")),
                 LetterDefOf.NeutralEvent, new LookTargets(p), f);
         }
 

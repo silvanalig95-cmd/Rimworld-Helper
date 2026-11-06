@@ -834,7 +834,7 @@ The colony's word (its means) / their rite (their ways), as keyed strings beside
 | Feature | Tribal | Medieval | Industrial | Spacer and beyond |
 |---|---|---|---|---|
 | Truce | a peace at the river / green branches carried between camps | a truce under a flag / a truce sworn on the hilt | a ceasefire / terms signed at a crossing | a ceasefire by comms / terms logged and witnessed |
-| Hostage | a pledge of the clan's blood / one of the chief's kin given | a hostage for the pact / hostages exchanged before witnesses | a guarantor / a guarantor held to the contract | a guarantor posted / a guarantor held to the terms |
+| Hostage | a pledge of the clan / one of the clan given to another fire | a hostage for the pact / hostages exchanged before witnesses | a guarantor / a guarantor held to the contract | a guarantor posted / a guarantor held to the terms |
 | Envoy | a guest-friend by the fire / a guest-gift and a seat by the fire | an envoy at court / letters of credence | a consul / credentials presented | a liaison / credentials sent ahead by comms |
 | Levy | the clan's spears / warriors at the chief's call | levies / men at arms raised | a militia / volunteers mustered | a security detail / contractors deployed |
 

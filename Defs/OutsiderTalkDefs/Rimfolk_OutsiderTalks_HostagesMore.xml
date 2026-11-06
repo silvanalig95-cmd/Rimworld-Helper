@@ -6,7 +6,7 @@
        lives at the colony as its lodger and works with it (them:hostage); forfeit when their people broke their word
        (tie:hostage:due with tie:hostage:theirs), the colony's to decide about until it does. The colony's own lives at
        their town (tie:hostage:ours, {HOSTAGE}), held as a prisoner when the colony broke its own word (tie:hostage:due with
-       tie:hostage:ours). What their people remember: deed:hostageReturned. By their ways: one of the chief's kin given,
+       tie:hostage:ours). What their people remember: deed:hostageReturned. By their ways: one of the clan given to another fire,
        hostages exchanged before witnesses, a guarantor held to the contract or to the terms. The format is described at
        the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
 

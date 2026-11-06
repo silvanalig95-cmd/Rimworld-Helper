@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Their hostage is anyone of standing among their people, never by kinship (the player's decision, 6 November 2026;
+       Source/ColonyCouncil/Diplomacy/Hostages.cs, MakeHostage; WardMath.HostageStanding): one of their traders (the kind
+       their caravans bring) or of their seasoned fighters (the stronger half of their war bands' kinds), whichever their
+       people have. Until then a hostage was one of their notable's kin. {PEOPLE} is their people's name. -->
+
+  <!-- What they are among their people, in the letters and on their card -->
+  <CC_Hostage_Standing_Trader>one of the traders of {PEOPLE}</CC_Hostage_Standing_Trader>
+  <CC_Hostage_Standing_Fighter>one of the seasoned fighters of {PEOPLE}</CC_Hostage_Standing_Fighter>
+
+  <!-- The terms sworn: the answer's words; and the letter as they come in at the gate -->
+  <CC_Hostage_Given_TheirsStanding>{HOSTAGE}, {STANDING}, will be brought to the gate to live at the colony for the term: {WORD} on the colony's side, {RITE} on theirs.</CC_Hostage_Given_TheirsStanding>
+  <CC_Hostage_Arrives_Standing>{HOSTAGE} is {STANDING}, given as one of standing among them.</CC_Hostage_Arrives_Standing>
+
+  <!-- Why they can't give one now: nobody the colony knows to send them and answer for them -->
+  <CC_Hostage_Why_NoSender>The colony doesn't know the head, heir or envoy of {PEOPLE}, who would send a hostage and answer for them.</CC_Hostage_Why_NoSender>
+
+</LanguageData>

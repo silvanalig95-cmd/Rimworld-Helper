@@ -32,7 +32,7 @@ namespace ColonyCouncil
         Theirs,
         /// <summary>The colony returns the captives of theirs it holds: the wardens walk them out by the game's own release.</summary>
         Captives,
-        /// <summary>One of their notable's kin lives at the colony for the term (Hostages.cs).</summary>
+        /// <summary>One of standing among their people (a trader or a seasoned fighter of theirs) lives at the colony for the term (Hostages.cs).</summary>
         TheirHostage,
         /// <summary>One of the colony's lives at their town for the term (Hostages.cs).</summary>
         OurHostage

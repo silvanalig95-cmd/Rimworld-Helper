@@ -156,6 +156,9 @@ namespace ColonyCouncil
                     string since = Since(w);
                     if (since != null) list.Add(since);
                     if (w.kind == WardKind.Theirs && w.stage == WardStage.Here) TheirWardLines(w, list);
+                    // What their hostage is among their people (one given before 6 November 2026 has no line).
+                    string standing = w.kind == WardKind.TheirHostage ? WardWords.Standing(w.standing, LinkPeople(w.people)) : null;
+                    if (standing != null) list.Add(standing.CapitalizeFirst());
                     if (w.kind == WardKind.TheirHostage && w.stage == WardStage.Here)
                     {
                         var g = WorldLedger.Get(w.guarantees);

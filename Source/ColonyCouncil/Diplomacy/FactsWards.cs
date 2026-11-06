@@ -10,7 +10,8 @@ namespace ColonyCouncil
         /// Wards and hostages between the colony and the scene's people (theirs at the colony before the colony's with them,
         /// where both are): tie:ward (:theirs, :ours) with {WARD} and, for theirs, {GUARDIAN} their teacher; tie:hostage
         /// (:theirs, :ours, :due forfeit or held) with {HOSTAGE}; them:ward and them:hostage when the one spoken to is that ward
-        /// or hostage (a lodger is one of the outsiders the colonists talk with); them:fostered when the one spoken to was the
+        /// or hostage (a lodger is one of the outsiders the colonists talk with), with them:hostage:trader or :fighter for what
+        /// their hostage is among their people; them:fostered when the one spoken to was the
         /// colony's ward once and went home. Only reads.
         /// </summary>
         private static void WardFacts(FactScene s, FactSet f)
@@ -43,7 +44,13 @@ namespace ColonyCouncil
             {
                 foreach (var tag in WardMath.TagsOf(hostage.kind, hostage.stage)) f.Tag(tag);
                 f.Value(WardMath.HostageKey, hostage.pawn.LabelShort);
-                if (s.listener != null && s.listener == hostage.pawn) f.Tag(WardMath.ThemHostageTag, 2f);
+                if (s.listener != null && s.listener == hostage.pawn)
+                {
+                    f.Tag(WardMath.ThemHostageTag, 2f);
+                    // What they are among their people: one of their traders or seasoned fighters (none for one given before).
+                    var standing = WardMath.StandingTag(hostage.standing);
+                    if (standing != null) f.Tag(standing, 2f);
+                }
             }
             if (s.listener != null && Wards.Fostered(s.listener) != null) f.Tag(WardMath.FosteredTag);
         }

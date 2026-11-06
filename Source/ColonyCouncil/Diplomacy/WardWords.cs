@@ -20,8 +20,15 @@ namespace ColonyCouncil
         /// <summary>A ward's word by the colony's age (an apprentice exchange) and their way by theirs (a youth in their household).</summary>
         public static AgeForm Form(Map home, Faction f) => Ages.Form(AgeFeature.Ward, home ?? Homes.Seat, f);
 
-        /// <summary>A hostage's word by the colony's age (a guarantor) and their way by theirs (one of the chief's kin given).</summary>
+        /// <summary>A hostage's word by the colony's age (a guarantor) and their way by theirs (one of the clan given to another fire).</summary>
         public static AgeForm HostageForm(Map home, Faction f) => Ages.Form(AgeFeature.Hostage, home ?? Homes.Seat, f);
+
+        /// <summary>
+        /// What their hostage is among their people, for the letters and the card ("one of the traders of the Lenlia"); null
+        /// for one given before the rule of 6 November 2026, or one of their people only (said as "of the Lenlia").
+        /// </summary>
+        public static string Standing(HostageStanding s, string people) =>
+            s == HostageStanding.Trader || s == HostageStanding.Fighter ? P("CC_Hostage_Standing_" + s, people.Named("PEOPLE")) : null;
 
         /// <summary>How their ward is: homesick, settling in, happy.</summary>
         public static string Mood(WardMood m) => P("CC_Ward_Mood_" + m);

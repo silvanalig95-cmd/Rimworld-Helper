@@ -10,7 +10,7 @@ namespace ColonyCouncil
     /// <summary>
     /// The newer ways a vendetta ends (see <see cref="VendettaTracker"/>): the people who did it send the blood price
     /// (a ransom paid for the life, or for the one carried off), or come to say they are sorry once there's peace; and
-    /// a vendetta left open by someone who died passes to an heir, their kin or a close friend, who takes it up. The
+    /// a vendetta left open by someone who died passes to whoever was closest to them, who takes it up (VendettaMath). The
     /// first two are Rimfolk events (Defs/IncidentDefs/Rimfolk_Events_VendettaEnds.xml); the heir is the tracker's own.
     /// </summary>
     public static class VendettaEnds
@@ -26,41 +26,75 @@ namespace ColonyCouncil
 
         private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Juvenile();
 
-        // ---------------- Passed to an heir ----------------
+        // ---------------- Passed on ----------------
 
         /// <summary>
-        /// Who takes up a dead avenger's vendetta: their blood kin first, then a partner, then the closest friend (opinion
-        /// 60 or more, or a strong tie), never someone already sworn on the same people.
+        /// What a colonist is to the dead, as the game and Rimfolk know it now: their opinion, the social web's bonds, a
+        /// partner or a relative by blood, and their nature (VendettaMath.Bond).
+        /// </summary>
+        private static VendettaMath.Bond BondOf(CouncilGameComponent comp, Pawn p, Pawn dead)
+        {
+            var rels = p.GetRelations(dead).ToList();
+            var traits = p.story?.traits;
+            return new VendettaMath.Bond(p.relations.OpinionOf(dead), comp?.social?.Warmth(p, dead) ?? 0f,
+                rels.Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance), rels.Any(r => r.familyByBloodRelation),
+                traits != null && traits.HasTrait(TraitDefOf.Kind), traits != null && traits.HasTrait(TraitDefOf.Bloodlust));
+        }
+
+        /// <summary>Who could take up a dead avenger's vendetta at all: a grown colonist with an inner life, never one already sworn on the same people.</summary>
+        private static List<Pawn> Candidates(VendettaTracker t, Vendetta v) =>
+            PawnsFinder.AllMaps_FreeColonists.Where(p => p != v.avenger && Eligible(p) && p.relations != null
+                                                         && !t.vendettas.Any(x => x.avenger == p && x.faction == v.faction && x.Active)).ToList();
+
+        /// <summary>
+        /// Who takes up a dead avenger's vendetta: whoever was closest to them, a partner, a friend or a relative, by how
+        /// close they really were (VendettaMath.Heir: the game's opinion, the social web's bonds, a partner or a relative by
+        /// blood as one part among them, the kind less readily, the bloodthirsty more), never someone already sworn on the
+        /// same people. Since the player's decision of 6 November 2026; until then blood kin came first.
         /// </summary>
         public static Pawn Heir(CouncilGameComponent comp, VendettaTracker t, Vendetta v)
         {
-            var dead = v.avenger;
+            var dead = v?.avenger;
             if (dead == null) return null;
-            Pawn best = null;
-            float bestScore = 0f;
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+            var candidates = Candidates(t, v);
+            int i = VendettaMath.Heir(candidates.Select(p => BondOf(comp, p, dead)).ToList());
+            return i >= 0 ? candidates[i] : null;
+        }
+
+        /// <summary>
+        /// At the death (the tracker's hour, before the day's look lets the social web's bonds with the dead go): who was
+        /// closest of those who could take up each vendetta they leave open, kept for the day's look to pass it on.
+        /// </summary>
+        public static void NoteHeir(CouncilGameComponent comp, VendettaTracker t, Pawn dead)
+        {
+            if (comp == null || t == null || dead == null) return;
+            foreach (var v in t.vendettas.Where(v => v.avenger == dead && !v.settled && v.faction != null).ToList())
             {
-                if (p == dead || !Eligible(p) || p.relations == null) continue;
-                if (t.vendettas.Any(x => x.avenger == p && x.faction == v.faction && x.Active)) continue;
-                var rels = p.GetRelations(dead).ToList();
-                float score = 0f;
-                if (rels.Any(r => r.familyByBloodRelation)) score = 300f;
-                else if (rels.Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance)) score = 250f;
-                else if (comp.social.ties.Any(x => x.announced && x.Between(p, dead) && x.kind != TieKind.Rivals && x.strength >= 40f)) score = 150f;
-                else if (p.relations.OpinionOf(dead) >= 60) score = 100f;
-                if (score <= 0f) continue;
-                // The kind are less likely to take up blood; the bloodthirsty more.
-                var traits = p.story?.traits;
-                if (traits != null && traits.HasTrait(TraitDefOf.Kind)) score *= 0.5f;
-                if (traits != null && traits.HasTrait(TraitDefOf.Bloodlust)) score *= 1.5f;
-                score += p.relations.OpinionOf(dead);
-                if (score > bestScore)
+                try
                 {
-                    best = p;
-                    bestScore = score;
+                    v.heirId = Heir(comp, t, v)?.thingIDNumber ?? VendettaMath.Nobody;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("vendetta heir noted", e);
                 }
             }
-            return best;
+        }
+
+        /// <summary>
+        /// The heir for the day's look: the one noted at the death while they still could take it up; nobody when nobody was
+        /// close enough then; worked out from what is known now for an older save, or when the one noted can't (gone, or sworn
+        /// on that people since).
+        /// </summary>
+        private static Pawn HeirNow(CouncilGameComponent comp, VendettaTracker t, Vendetta v)
+        {
+            if (v.heirId == VendettaMath.Nobody) return null;
+            if (v.heirId > 0)
+            {
+                var noted = Candidates(t, v).FirstOrDefault(p => p.thingIDNumber == v.heirId);
+                if (noted != null) return noted;
+            }
+            return Heir(comp, t, v);
         }
 
         /// <summary>Open vendettas whose avenger has died, against a people still at war with the colony: passed on, or let go.</summary>
@@ -74,16 +108,15 @@ namespace ColonyCouncil
                     v.settled = true;
                     v.how = "heir";
                     if (!v.faction.HostileTo(Faction.OfPlayer) || Vendetta.KillRecord(v.faction) == null) continue;
-                    var heir = Heir(comp, t, v);
+                    var heir = HeirNow(comp, t, v);
                     if (heir == null) continue;
                     t.vendettas.Add(new Vendetta
                     {
                         avenger = heir, faction = v.faction, victim = v.victim, victimId = v.victimId, kidnapped = v.kidnapped, pet = v.pet,
                         tick = Now, heirOf = v.avenger.LabelShort
                     });
-                    var tags = new List<string>();
-                    var rels = heir.GetRelations(v.avenger).ToList();
-                    tags.Add(rels.Any(r => r.familyByBloodRelation) ? "kin" : rels.Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance) ? "partner" : "friend");
+                    // The words say what they were to the dead: a partner, a relative by blood, or a friend.
+                    var tags = new List<string> { VendettaMath.Tag(BondOf(comp, heir, v.avenger)) };
                     if (v.pet) tags.Add("pet");
                     if (v.kidnapped) tags.Add("taken");
                     string line = Flavor.FromPool(HeirPool, heir, null, null, tags.ToArray());

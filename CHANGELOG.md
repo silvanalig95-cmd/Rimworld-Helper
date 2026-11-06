@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Vendettas and hostages by the colony's ways
+
+*6 November 2026, version 0.104.2*
+
+- A vendetta left open by a colonist's death now passes to whoever was closest to them, partner, friend or relative alike, not to blood relatives first; if nobody was close enough, it ends with them. A kind colonist needs to be closer still to take it up, a bloodthirsty one less.
+- Fixed: the closeness that should pass a vendetta on was forgotten the same day the colonist died, so it never counted; who takes it up is now noted at the death.
+- A hostage given by another people is one of their traders or seasoned fighters, of their own name, no longer always a notable's relative, and their letters, card and talk say which.
+- A forfeit hostage the colony keeps is no longer always wanted back: their people ask as for anyone of theirs, more often at peace than at war.
+
 ## Room for a camp
 
 *6 November 2026, version 0.104.1*
