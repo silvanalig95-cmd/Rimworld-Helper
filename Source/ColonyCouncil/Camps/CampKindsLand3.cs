@@ -344,18 +344,32 @@ namespace ColonyCouncil
 
         // ---------------- A wild herd ----------------
 
+        [Unsaved] private List<Pawn> herdCache;
+        [Unsaved] private int herdTick = -999999;
+
+        /// <summary>The wild herds' beasts within reach of their camp, looked for again every hour.</summary>
+        private List<Pawn> HerdNear()
+        {
+            if (herdCache == null || Now - herdTick >= GenDate.TicksPerHour)
+            {
+                herdCache = CampLand.WildHerds(map).SelectMany(g => g).Where(a => a.Position.InHorDistOf(center, CampLand.ClearRadius)).ToList();
+                herdTick = Now;
+            }
+            herdCache.RemoveAll(a => !CampLand.Catchable(a));
+            return herdCache;
+        }
+
         private Job CatchJob(Pawn p)
         {
             if (caught.Count(a => a != null && !a.Dead) >= CampLandMath.MaxCaught || workToday >= 1 || !Rand.Chance(0.35f) || Now < landNextSearch
                 || p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) || p == leader && Here.Count > 2)
                 return null;
-            foreach (var g in CampLand.WildHerds(map))
-                foreach (var a in g.Where(x => x.Position.InHorDistOf(center, CampLand.ClearRadius) && MayWork(x.Position)).OrderBy(x => x.Position.DistanceToSquared(p.Position)).Take(6))
-                {
-                    if (Targeted(a) || !p.CanReserveAndReach(a, PathEndMode.Touch, Danger.Some)) continue;
-                    SayMoment(p, "catch", 0.4f);
-                    return JobMaker.MakeJob(CampLandDefOf.Rimfolk_CampCatch, a);
-                }
+            foreach (var a in HerdNear().Where(x => MayWork(x.Position)).OrderBy(x => x.Position.DistanceToSquared(p.Position)).Take(6))
+            {
+                if (Targeted(a) || !p.CanReserveAndReach(a, PathEndMode.Touch, Danger.Some)) continue;
+                SayMoment(p, "catch", 0.4f);
+                return JobMaker.MakeJob(CampLandDefOf.Rimfolk_CampCatch, a);
+            }
             landNextSearch = Now + GenDate.TicksPerHour * 2;
             return null;
         }
