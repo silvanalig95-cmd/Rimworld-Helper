@@ -931,6 +931,9 @@ namespace ColonyCouncil
         private void Anniversaries()
         {
             using var _cause = Causes.Push("CC_Cause_Anniversary".Translate().Resolve());
+            // Who marked how many years this hour: one line of the chronicle for those who marked the same (the first
+            // colonists all mark theirs on one day).
+            var marked = new List<(Pawn p, int years)>();
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
                 if (p.records == null || p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;
@@ -959,8 +962,15 @@ namespace ColonyCouncil
                     if (friend == p || friend.relations == null || friend.relations.OpinionOf(p) < 20) continue;
                     GiveThought(friend, CouncilDefOf.Council_FriendAnniversary, p);
                 }
-                AddChronicle(new ChronicleEntry(ChronicleKind.Life, Texts.CountKey("CC_Chronicle_Anniversary", years).Translate(p.LabelShort, years).Resolve(), p));
+                marked.Add((p, years));
                 journals.Write(p, "Council_Journal_Anniversary", null, years.Named("YEARS"));
+            }
+            foreach (var g in marked.GroupBy(m => m.years))
+            {
+                var who = g.Select(m => m.p).ToList();
+                string line = Texts.CountKey("CC_Chronicle_Anniversary", g.Key).Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList()), g.Key).Resolve();
+                using (History.About("life", Refs.Colony(Homes.Of(who[0]) ?? Homes.Seat), who.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.About)).ToList()))
+                    AddChronicle(new ChronicleEntry(ChronicleKind.Life, line, who[0]));
             }
         }
     }

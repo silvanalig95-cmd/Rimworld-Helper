@@ -685,13 +685,19 @@ namespace ColonyCouncil
                 }
         }
 
-        /// <summary>The fight's comradeship for each pair (with how much it adds), one message for everyone who gained some.</summary>
+        /// <summary>
+        /// The fight's comradeship for each pair (with how much it adds). Told only when something changed: the pairs who
+        /// count each other comrades for the first time, and who carried whom out of the fight, in one message and one
+        /// line of the chronicle. Comradeship that only grew is felt, not told again after every raid (the battle's own line
+        /// names it).
+        /// </summary>
         private void Comrades(CouncilGameComponent comp, List<Pawn> people, List<(Pawn x, Pawn y, float bond, int deeds)> pairs)
         {
             // apart: the fight's outcome, told after it.
             if (pairs.Count == 0) return;
             var formed = new List<Pawn>();
-            var bonded = new List<Pawn>();
+            var newPairs = new List<(Pawn a, Pawn b)>();
+            var carried = new List<(Pawn helper, Pawn helped)>();
             foreach (var (x, y, bond, deeds) in pairs)
             {
                 bool was = Get(x, y, TieKind.Comrades)?.announced ?? false;
@@ -700,19 +706,31 @@ namespace ColonyCouncil
                     : "CC_TieNote_Battle".Translate().Resolve();
                 var t = Bump(x, y, TieKind.Comrades, bond, note, true);
                 if (t == null) continue;
-                if (!bonded.Contains(x)) bonded.Add(x);
-                if (!bonded.Contains(y)) bonded.Add(y);
                 if (!was && t.announced)
                 {
                     if (!formed.Contains(x)) formed.Add(x);
                     if (!formed.Contains(y)) formed.Add(y);
+                    newPairs.Add(people.IndexOf(x) <= people.IndexOf(y) ? (x, y) : (y, x));
                 }
             }
-            if (bonded.Count < 2) return;
-            bonded = people.Where(bonded.Contains).ToList();
-            string text = "CC_Tie_Battle".Translate(TextUtil.JoinAnd(bonded.Select(p => p.LabelShort).ToList())).Resolve();
-            Notify.Message(text, new LookTargets(bonded), MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, bonded[0]));
+            // Who carried whom out of the fight, as the deeds have it.
+            if (Bonds.DeedsOn)
+                foreach (var helped in people)
+                foreach (var helper in people)
+                    if (helper != helped && (FightSides.Deeds(helper, helped) & BondsMath.DeedRescued) != 0)
+                        carried.Add((helper, helped));
+            var parts = new List<string>();
+            if (newPairs.Count == 1) parts.Add("CC_Tie_BattleNew".Translate(newPairs[0].a.Named("A"), newPairs[0].b.Named("B")).Resolve());
+            else if (newPairs.Count > 1)
+                parts.Add("CC_Tie_BattleNewMany".Translate(string.Join("; ", newPairs.Select(n => "CC_Tie_BattlePair".Translate(n.a.Named("A"), n.b.Named("B")).Resolve())).Named("PAIRS")).Resolve());
+            foreach (var (helper, helped) in carried.Take(3)) parts.Add("CC_Tie_BattleCarried".Translate(helper.Named("A"), helped.Named("B")).Resolve());
+            if (parts.Count == 0) return;
+            var named = people.Where(p => formed.Contains(p) || carried.Any(c => c.helper == p || c.helped == p)).ToList();
+            string text = string.Join(" ", parts);
+            Notify.Message(text, new LookTargets(named), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            using (History.About("bond", Refs.Colony(Homes.Of(named[0]) ?? Homes.Seat), named.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.About)).ToList()))
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, named[0]));
+            var bonded = named;
             // Those who stood next to someone new for the first time write about one of them.
             foreach (var p in formed)
             {

@@ -58,4 +58,14 @@
   <CC_YearOne_PartFounding>Since the founding</CC_YearOne_PartFounding>
   <CC_YearOne_Chronicle>{PAWN_nameDef} wrote down the colony's {ORD} year.</CC_YearOne_Chronicle>
   <CC_YearOne_Button>The {ORD} year</CC_YearOne_Button>
+
+  <!-- Less noise in the record: a fight's comrades told only when something changed, an election in one line. -->
+  <CC_Tie_BattleNew>{A_nameDef} and {B_nameDef} fought side by side, and now count each other comrades.</CC_Tie_BattleNew>
+  <CC_Tie_BattleNewMany>Fighting side by side made new comrades: {PAIRS}.</CC_Tie_BattleNewMany>
+  <CC_Tie_BattlePair>{A_nameDef} and {B_nameDef}</CC_Tie_BattlePair>
+  <CC_Tie_BattleCarried>{A_nameDef} carried {B_nameDef} out of the fight.</CC_Tie_BattleCarried>
+  <CC_Chronicle_SeatAs>{PAWN} as {OFFICE}</CC_Chronicle_SeatAs>
+  <CC_Chronicle_ElectedAll>The colony elected its council: {SEATS}.</CC_Chronicle_ElectedAll>
+  <CC_Chronicle_ElectedBy>A by-election seated {SEATS}.</CC_Chronicle_ElectedBy>
+  <CC_PM_Chronicle_NamedAll>{RULER} named the council: {SEATS}.</CC_PM_Chronicle_NamedAll>
 </LanguageData>
