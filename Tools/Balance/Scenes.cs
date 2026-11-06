@@ -5,7 +5,11 @@
 // The answers, the calendar, the council's meetings, evenings of faith and life goals are the simulator's own (Sim.cs);
 // what it doesn't otherwise model (groups calling their people, elections, weddings, family suppers, camps, decrees that
 // gather people, personal stories' stages) is added here, at the rates of the code where they can be read
-// (SceneConstants) and of Rates.Scene* where they can't.
+// (SceneConstants) and of Rates.Scene* where they can't. An ordinary run is unchanged: nothing that stages a scene draws a
+// number unless --scenes set the colony's list.
+// Known gap: the simulator casts every dilemma at a flat share (Rates.WorkerCasts), so the seasonal customs, which the game
+// asks whenever the others' own checks fail, come about a third as often as in a played game (the player's: seven in 60
+// days, the model's: two or three a year). BALANCE_SCENES_DEBUG=1 lists the seasonal dilemmas with the gate the model gives them.
 
 using System.Globalization;
 
