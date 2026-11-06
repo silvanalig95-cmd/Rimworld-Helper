@@ -150,6 +150,8 @@ namespace ColonyCouncil
             if (m.faction == null || town == null) return false;
             m.variant = way?.tag;
             m.place = town.Name;
+            // In the name of the town's head, by their title, when the region's ledger knows them ({HOST}, [host]).
+            m.host = InviteForms.Host(town, out m.royalHost);
             m.a = Colonists(map).Where(Hand).OrderByDescending(p => p.skills.GetSkill(h.skill).Level).FirstOrDefault();
             if (m.a == null) return false;
             m.target = h.hands;
@@ -299,6 +301,7 @@ namespace ColonyCouncil
             var d = way.Def;
             m.variant = way.tag;
             m.place = LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
+            m.host = InviteForms.Host(MissionPeoples.Town(m.faction, map), out m.royalHost);
             m.a = Interplay.MissionHead(map) ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;
             int n = VarietyUtil.Round(Mathf.Max(10, Mathf.RoundToInt(way.count.RandomInRange)));
@@ -487,6 +490,7 @@ namespace ColonyCouncil
             m.name = name;
             m.variant = way.tag;
             m.place = LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
+            m.host = InviteForms.Host(MissionPeoples.Town(m.faction, map), out m.royalHost);
             m.a = Keeper(map);
             m.days = b.days.RandomInRange;
             m.wait = Rand.Range(0.3f, 0.6f);

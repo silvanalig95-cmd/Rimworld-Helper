@@ -32,6 +32,7 @@
           <li>[fire] A burned street at {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name: the storm left half the town under open rafters, and {PLACE} asks the colony for two of its builders for a few days, with pay.</li>
           <li>[storm,their:lowtech] A rider from {PLACE} says the storm two nights ago took the thatch off half the town and brought a barn down on its own cattle. {FACTION} have timber enough, but not the hands who know how to raise a roof truss that stays up.\n\nCould the colony lend two of its builders for a few days? {A_nameDef}'s name came up.</li>
           <li>[storm,their:hightech] {FACTION}'s letter from {PLACE} is short. The windstorm took the roofs off the school and the clinic, and the town's own builders are working on the houses. They are asking the colony for two people who can frame and roof, for a day or two, and they will pay for it.</li>
           <li>[fire,their:lowtech] Fire went down a row of houses at {PLACE} in the dry spell, and {FACTION} have cleared the ash and stacked new timber. What they lack is builders. They ask for two of the colony's, for a few days at the walls, and they will pay in silver and in goods of their own making.</li>
@@ -127,6 +128,7 @@
           <li>Sickness at {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] A letter from {HOST} at {PLACE}, in a hurried hand: a fever is going through the town, their own healer is down with it, and {HOST} asks the colony to lend its healer for two days.</li>
           <li>[fever,their:tribal] A runner from {PLACE} squats at the gate to get breath. A fever is going through the longhouses of {FACTION}, and their own healer is lying in one of them. They ask for the colony's healer, {A_nameDef} or another, for two days at the bedsides.</li>
           <li>[fever,their:medieval] {FACTION}'s rider from {PLACE} carries a letter sealed in a hurry. The sweating fever came up the river, their leech is dead of it, and the sick are lying in the church. Would the colony lend its physician for two days?</li>
           <li>[fever,their:industrial] {FACTION}'s doctor at {PLACE} is the one in bed this time, and the flu that put him there is filling the clinic. Their letter asks the colony for someone who can doctor, for two days, and promises to pay.</li>
@@ -232,6 +234,7 @@
           <li>Lessons at {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} asks, on behalf of {FACTION}'s young, for a learned one of the colony's to teach a day and a half at the town.</li>
           <li>[their:tribal] {FACTION}'s old teller of {PLACE} died in the winter, and nobody else knows the counting-knots and the long tellings well enough to pass them on. They ask the colony for someone learned to sit with their young for a day and a half, and to teach what they can.</li>
           <li>[their:medieval] {FACTION} have built a school at {PLACE} and have no master for it until the spring. Their letter asks for a learned one of the colony's to teach letters and sums to the children for a day and a half, so the year isn't wasted.</li>
           <li>[their:industrial] The schoolteacher at {PLACE} took a job in the city, and {FACTION} have a room of children and a shelf of books and nobody to put them together. Could the colony lend someone learned for a day and a half to start them off?</li>
@@ -321,6 +324,7 @@
           <li>[boundary] A boundary at {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} writes that {FACTION} will make peace with an old rival at the town, and asks the colony to send someone of good name to stand witness for half a day.</li>
           <li>[truce,their:tribal] {FACTION} and a band they have fought with over the grazing will make peace at {PLACE}, by the fire, with a spear broken between them. Both sides want a witness who belongs to neither. {FACTION} ask the colony for {A_nameDef}, or another with a good tongue, for half a day.</li>
           <li>[truce,their:medieval] {FACTION} will seal a truce at {PLACE} with the men of the next valley, and the custom is that a stranger of good name sets a mark beside the seals. They ask the colony for its best speaker, for half a day.</li>
           <li>[truce,their:hightech] {FACTION} and a rival town are signing a ceasefire at {PLACE}, and both want a neutral signature on it that neither side can call bought. Their letter asks the colony for someone respected, for half a day.</li>
@@ -415,6 +419,7 @@
           <li>Broken tools at {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} writes that the town's tools are past mending by its own hands this season, and asks the colony for a smith for a day at their forge.</li>
           <li>[harvest] {FACTION}'s smith at {PLACE} broke an arm, and the harvest is close with half the sickles blunt and three scythes cracked. They ask the colony for someone who can work metal for a day at their forge, and they will pay.</li>
           <li>[plough] The ground at {PLACE} is ready for the plough, and {FACTION}'s ploughshares are not: bent, cracked and rusted through the winter. They ask the colony for a smith for a day at their forge before the sowing slips past.</li>
           <li>[machines] The pumps and the old tractor at {PLACE} have both broken in the same week, and {FACTION}'s mechanic has gone to the city for parts that won't come. They ask the colony for someone handy with tools for a day.</li>
@@ -524,6 +529,7 @@
           <li>[timber] {FACTION}'s timber</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} asks the colony, in {FACTION}'s name, to keep a store of theirs dry and safe in its own stockpiles for a season, for a fee.</li>
           <li>[grain] {FACTION}'s granary at {PLACE} has a cracked wall and rats in the cracks, and they won't have it rebuilt before the season turns. They ask the colony to keep part of their grain dry in its own stores until they can fetch it, and they will pay for the keeping.</li>
           <li>[timber] {FACTION} have felled more timber at {PLACE} than their yard will hold, and it needs to season under cover. Could the colony keep a stack of it in its stores for a season? Their carts would bring it and fetch it, and they'd pay for the room.</li>
           <li>[iron,their:hightech] {FACTION}'s depot at {PLACE} has been broken into twice this month, and they want their steel somewhere the thieves don't know about. They ask the colony to keep a load of it for a season, for a fee.</li>
@@ -609,6 +615,7 @@
           <li>A young {THING} from {PLACE}</li>
         </titles>
         <texts>
+          <li>[host] {HOST} of {PLACE} writes to ask the colony to raise {BEAST}, a young {THING} of the town's, through the season, and promises its keep.</li>
           <li>[foal] {FACTION}'s best mare at {PLACE} died foaling, and the foal, {BEAST}, is too much for their stable this season. Their drover asks if the colony will raise {BEAST} until it is strong enough to come home, and the town will pay for its keep.</li>
           <li>[calf] {FACTION} have a young {THING} at {PLACE} named {BEAST}, the last of a good line, and nothing left to feed it on through the season after the blight took the hay. They ask the colony to raise it for them and send it home well, and they'll pay.</li>
           <li>[kid] A sickness is going through {FACTION}'s flock at {PLACE}, and they want their best young {THING}, {BEAST}, kept well away from it. Will the colony keep {BEAST} for a season? Their drover will bring it and fetch it.</li>

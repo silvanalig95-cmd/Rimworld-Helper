@@ -15,6 +15,8 @@ namespace Balance
         public static float DilemmaStartDay, DilemmaRaidChance, DilemmaGapDays;
         // Events (Happenings/Happenings.cs)
         public static float EventMaxShare, EventSameGroup;
+        /// <summary>What every mission offer weighs together in the events' draw (each mission's base chance scaled to it).</summary>
+        public static float MissionPoolWeight;
         // Encounters (Strangers/Encounters.cs)
         public static readonly Dictionary<string, float> EncounterHourly = new Dictionary<string, float>();
         public static readonly Dictionary<string, float> StrangerDilemmaHourly = new Dictionary<string, float>();
@@ -61,6 +63,7 @@ namespace Balance
 
             EventMaxShare = s.Num("Rimfolk's most of the storyteller's Misc pool", "Happenings/Happenings.cs", @"IncidentCategoryDefOf\.ThreatSmall \? [\d.]+f : ([\d.]+)f", 0.5f);
             EventSameGroup = s.Num("the same kind of event twice running", "Happenings/Happenings.cs", @"ext\.group == t\.lastGroup\) f \*= ([\d.]+)f", 0.5f);
+            MissionPoolWeight = s.Num("what every mission offer weighs together in the events' draw", "Missions/NeighboursFourMath.cs", @"public const float MissionPoolWeight = ([\d.]+)f;", 6.8f);
 
             const string enc = "Strangers/Encounters.cs";
             foreach (var (kind, fb, dfb) in new[] { ("Visitor", 0.1f, 0.03f), ("Trader", 0.1f, 0.03f), ("Lodger", 0.05f, 0.02f), ("Prisoner", 0.03f, 0.004f), ("Fallen", 0.25f, 0.08f), ("Pet", 0.02f, 0.002f), ("Wild", 0.015f, 0.003f) })

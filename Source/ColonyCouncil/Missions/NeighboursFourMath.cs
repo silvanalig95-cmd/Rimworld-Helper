@@ -44,7 +44,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Silver for a share of the pay, rounded to tens, ten at least.</summary>
-        public static int SharePay(int reward, float share) => Math.Max(10, (int)Math.Round(reward * share / 10f) * 10);
+        public static int SharePay(int reward, float share) => Math.Max(10, (int)Math.Round(reward * share / 10f, MidpointRounding.AwayFromZero) * 10);
 
         /// <summary>Days the colony has, once it agrees: the road there and back, the stay, and three days to get ready.</summary>
         public static float HandsDays(float travelDays, int hours) => (float)Math.Ceiling(travelDays * 2f + hours / 24f + 3f);
