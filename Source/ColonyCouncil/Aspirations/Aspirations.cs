@@ -519,17 +519,23 @@ namespace ColonyCouncil
         private bool Recent(Pawn p, string key, float days) =>
             events.TryGetValue(p.ThingID + "|" + key, out int t) && Find.TickManager.TicksGame - t < days * GenDate.TicksPerDay;
 
+        /// <summary>Something that might give them a goal (battle, downed...) last happened to them at or after this tick.</summary>
+        public bool HappenedSince(Pawn p, string key, int tick) =>
+            p != null && key != null && events.TryGetValue(p.ThingID + "|" + key, out int t) && t >= tick;
+
         /// <summary>
         /// The spark of this goal that has happened to them lately, or null: a big one first (a brush with death, a loss),
-        /// then the one that pulls most (GoalMath), then the first in the goal's list.
+        /// then the one that pulls most (GoalMath), then the first in the goal's list. A fight sparks no goal someone else at
+        /// home took up after a fight and is still at (<paramref name="othersAfterAFight"/>, GoalMath.FightMaySpark).
         /// </summary>
-        private string Sparked(AspirationDef d, Pawn p)
+        private string Sparked(AspirationDef d, Pawn p, int othersAfterAFight)
         {
             if (d.sparks.NullOrEmpty()) return null;
             string best = null;
             float bestPull = 0f;
             foreach (var spark in d.sparks)
             {
+                if (!GoalMath.FightMaySpark(spark, othersAfterAFight)) continue;
                 bool now;
                 if (spark.StartsWith("thought:"))
                 {
@@ -619,7 +625,7 @@ namespace ColonyCouncil
             var options = Options(p);
             if (options.Count == 0) return;
             // Something just happened that points somewhere: they're likely to decide now, the likelier the stronger it
-            // pulls (a fight less than the rest of life, GoalMath.SparkPull). Otherwise, in their own time.
+            // pulls (a fight a little less than the rest of life, GoalMath.SparkPull). Otherwise, in their own time.
             var sparked = options.Where(o => o.spark != null).ToList();
             if (sparked.Count > 0 && Rand.Chance(GoalMath.SparkedChooseChance * sparked.Max(o => GoalMath.SparkPull(o.spark))))
             {
@@ -636,18 +642,23 @@ namespace ColonyCouncil
         {
             var done = new HashSet<AspirationDef>(Fulfilled(p).Select(x => x.def));
             var result = new List<(AspirationDef, string, float)>();
-            // The goals others of their colony hold now: one already held weighs less (GoalMath.Shared), so five people
-            // don't all set out to bring down ten mechanoids.
+            // The goals others of their colony hold now: one already held weighs less (GoalMath.Shared), and one taken up
+            // after a fight is sparked by no other fight while they're at it (GoalMath.FightMaySpark), so five people don't
+            // all set out to bring down ten mechanoids.
             var home = ColonyState.Of(p);
             var held = new Dictionary<AspirationDef, int>();
+            var afterAFight = new Dictionary<AspirationDef, int>();
             foreach (var a in all)
                 if (!a.done && a.def != null && a.pawn != p && a.pawn != null && !a.pawn.Dead && ColonyState.Of(a.pawn) == home)
+                {
                     held[a.def] = (held.TryGetValue(a.def, out int n) ? n : 0) + 1;
+                    if (a.spark == "battle") afterAFight[a.def] = (afterAFight.TryGetValue(a.def, out int f) ? f : 0) + 1;
+                }
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
                 if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || d.AgainstBeliefsOf(p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
-                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
+                result.Add((d, Sparked(d, p, afterAFight.TryGetValue(d, out int fought) ? fought : 0), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
                                               * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)
                                               * GoalMath.Shared(held.TryGetValue(d, out int others) ? others : 0)));
             }

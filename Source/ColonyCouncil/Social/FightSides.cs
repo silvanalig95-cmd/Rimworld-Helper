@@ -88,6 +88,16 @@ namespace ColonyCouncil
         public static int Deeds(Pawn helper, Pawn helped) =>
             helper == null || helped == null ? 0 : deeds.TryGetValue(DeedKey(helper, helped), out int d) ? d : 0;
 
+        /// <summary>They carried someone of ours out of this fight (a life goal's spark, GoalMath.Hardest).</summary>
+        public static bool Carried(Pawn helper)
+        {
+            if (helper == null) return false;
+            foreach (var kv in deeds)
+                if ((int)(kv.Key >> 32) == helper.thingIDNumber && (kv.Value & BondsMath.DeedRescued) != 0)
+                    return true;
+            return false;
+        }
+
         /// <summary>The fight is over and read: the next one starts afresh.</summary>
         public static void Clear()
         {
