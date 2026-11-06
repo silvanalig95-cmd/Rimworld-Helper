@@ -1,5 +1,8 @@
 // The colony-year balance simulator (see Balance.csproj for how to run it, and docs/balance-report.md for what it says).
 //   dotnet run -c Release --project Tools/Balance -- [repo root] [--runs N] [--out report.md] [--json summary.json] [--before summary.json]
+// For tuning, the default with six colonists and the same with small letdowns and joys as moods, printed, nothing written
+// (BALANCE_PRESET=demanding, lightTouch or storyRich for that preset instead):
+//   BALANCE_QUICK=1 dotnet run -c Release --project Tools/Balance -- . --runs 40
 // How bonds come about over two years (SocialSim.cs, printed, nothing written):
 //   dotnet run -c Release --project Tools/Balance -- --social [--runs N] [--seed S]
 // How much acts against their nature add to the heart's strain over a colony-year (NatureSim.cs, printed, nothing written):
