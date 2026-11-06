@@ -48,7 +48,6 @@ def const(rel, name, fallback):
 
 
 C = {
-    "Chronicle": const("Lean/Caps.cs", "Chronicle", 300),
     "DepartedJournals": const("Lean/Caps.cs", "DepartedJournals", 30),
     "AnnalsYears": const("Lean/Caps.cs", "AnnalsYears", 40),
     "BestFriendPairs": const("Lean/Caps.cs", "BestFriendPairs", 200),
@@ -178,7 +177,7 @@ MODEL = {
     "Lives/LifeNew.cs:read": ("fixed", 600, 60, "books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead)"),
     "Building/RoomRearranger.cs:orders": ("fixed", 30, 120, "per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs)"),
     "CouncilGameComponent.cs:oldGuestKin": ("fixed", 0, 220, "an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again"),
-    "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
+    "CouncilGameComponent.cs:chronicle": ("fixed", 0, 350, "an older save's chronicle, read on load and taken into the history (the chronicle is its view); never saved again"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
     "CouncilGameComponent.cs:lastAtHome": ("colonists", 1, D, "colonists still ours"),
     "CouncilGameComponent.cs:cooldowns": ("window", (20, 3), D, "dropped once over"),
@@ -377,6 +376,9 @@ MODEL = {
     # The council window's memory and the news
     "UI/DilemmaLog.cs:plays": ("fixed", 4, V, "per dilemma record (counted under dilemmas)"),
     "UI/DilemmaLog.cs:started": ("fixed", 2, V, "per dilemma record"),
+    "UI/WeekMemory.cs:answers": ("fixed", 4, 160, "answers of every kind whose play-outs are still watched, each only for the days they take (Answers.MaxWatched 40 at most)"),
+    "Dilemmas/Answers.cs:plays": ("fixed", 2, V, "per answer watched (counted under answers)"),
+    "Dilemmas/Answers.cs:started": ("fixed", 1, V, "per answer watched"),
     "UI/News.cs:waiting": ("cap", (C["NewsWaiting"], 10), 200, "the evening's news, 40 at most, sent each evening"),
     "UI/News.cs:items": ("cap", (C["NewsWaiting"], 10), 200, "per news letter; the game's archive keeps 200 letters"),
     "UI/WeekMemory.cs:pinnedPawns": ("fixed", 0, 40, "colonists pinned before following: read from an older save only, then followed; never written"),
@@ -506,12 +508,14 @@ MODEL = {
     # views); modelled at a generous pace for when favours, words, grudges, debts and guest kin move in, and stage 2.
     "World/Ledger/WorldLedger.cs:ties": ("cap", (C["LedgerTies"], 1), 260,
                                          "ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days"),
-    # The world's one history: every chronicle line (8 a day, as the chronicle's model) and the deeds the peoples
-    # remember (a run within a day is one), with their words; summaries of old seasons are smaller. Other mods' world
-    # events (Integrations/World/) add a few a season: only those near a home or touching the colony.
-    "World/Ledger/History.cs:events": ("cap", (C["HistoryEvents"], 11), 300,
+    # The world's one history, the colony's one record (the chronicle is its view): every chronicle line (8 a day, as
+    # the chronicle's old model) and the deeds the peoples remember (a run within a day is one), with their words, and
+    # every question's answer (about one a day at most, each with its question, answer, follow-up and how it went: the
+    # bigger events); summaries of old seasons are smaller. Other mods' world events (Integrations/World/) add a few a
+    # season: only those near a home or touching the colony.
+    "World/Ledger/History.cs:events": ("cap", (C["HistoryEvents"], 12), 320,
                                        "HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first"),
-    "World/Ledger/History.cs:values": ("fixed", 1, 40, "per event: a deed's name, when it has one (counted under events)"),
+    "World/Ledger/History.cs:values": ("fixed", 1, 40, "per event: a deed's name, or an answer's six values, when it has them (counted under events)"),
     # Persons: every notable, anyone a tie names (the parties to favours, words, claims, regard; a pawn reference and a
     # name), and anyone kept in the world (memos 24, the departed 6, regulars 5, past camps' people, stories, situations).
     "World/Ledger/LedgerPersons.cs:persons": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"] + 2 * (C["OutsiderFavours"] + C["OutsiderWords"]) + 10
