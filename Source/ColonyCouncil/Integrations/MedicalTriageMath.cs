@@ -15,7 +15,7 @@ namespace ColonyCouncil
         /// <summary>Move the Patient's MedicalPriority, for a bed's priority and a patient's severity alike.</summary>
         public const int Low = 1, Normal = 2, High = 3, Critical = 4;
 
-        /// <summary>Two beds this close in quality are equally good: the nearer one wins.</summary>
+        /// <summary>Beds within one step of this much quality are equally good: the nearer one wins.</summary>
         public const float SameQuality = 0.005f;
 
         /// <summary>Someone moved by triage isn't moved again for this long (four hours), so nobody is carried back and forth.</summary>
@@ -56,8 +56,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A is a better bed than B, distance aside: a higher priority, or the same and better quality.</summary>
-        public static bool Better(Rank a, Rank b) => a.priority != b.priority ? a.priority > b.priority : a.quality > b.quality + SameQuality;
+        /// <summary>Quality in steps of <see cref="SameQuality"/>: two beds in the same step are equally good.</summary>
+        public static int Step(float quality) => (int)System.Math.Round(quality / SameQuality);
+
+        /// <summary>A is a better bed than B, distance aside: a higher priority, or the same and a better step of quality.</summary>
+        public static bool Better(Rank a, Rank b) => a.priority != b.priority ? a.priority > b.priority : Step(a.quality) > Step(b.quality);
 
         /// <summary>Neither is better than the other: equally good beds.</summary>
         public static bool Same(Rank a, Rank b) => !Better(a, b) && !Better(b, a);

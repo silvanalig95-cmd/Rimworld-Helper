@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Medical triage with Move the Patient: best bed first, and room made for someone worse off
+       (Source/ColonyCouncil/Integrations/MedicalTriage.cs). -->
+  <CC_Settings_MedicalTriage>Best bed first, and room made for the worse off (Move the Patient)</CC_Settings_MedicalTriage>
+  <CC_Settings_MedicalTriage_Tip>With Move the Patient: the mod keeps its High and Critical beds free for worse cases and gives a surgery bed only to someone waiting for an operation, so a hurt colonist often lies in a lesser bed while the best one stands empty. With this on, a patient going to a medical bed takes the best free one they may use: the one you ranked highest with the mod's priority, then the one the game treats best in (the bed's tending and immunity, the room's cleanliness), then the nearest. A surgery bed counts for anyone while nobody waiting for an operation could use it. When someone worse off (the mod's own severity: Critical, High, Normal, Low) or someone waiting for an operation needs a better bed than any free one, the nearest colonist who does doctoring carries the lighter case to the best other free medical bed with the mod's "Transfer to bed", and the one worse off is brought in. Never someone being operated on or tended, in a mental state or in labour, never into a bed of the other kind, never when no other medical bed is free, and nobody twice within four hours. Off with the mod set to the nearest bed. Needs the deeper game hooks.</CC_Settings_MedicalTriage_Tip>
+  <CC_SetNote_MedicalTriage>With Move the Patient, patients take the best free medical bed, and a lighter case is carried to another bed for someone worse off.</CC_SetNote_MedicalTriage>
+
+  <!-- The news, once the lighter case lies in their new bed, by the colony's age. WHERE is the age's word for the room
+       they were carried to when it is a hospital ("in the infirmary"), or nothing. -->
+  <CC_Triage_Moved_Tribal>{CARRIER_nameDef} carried {LIGHTER_nameDef} to another sleeping place{WHERE}, so the healer's best one, the {BED}, is free for {WORSE_nameDef}, who is hurt worse.</CC_Triage_Moved_Tribal>
+  <CC_Triage_Moved_Tribal_2>The worst hurt lie in the best place: {CARRIER_nameDef} carried {LIGHTER_nameDef} out of the {BED} to another one{WHERE}, to make room for {WORSE_nameDef}.</CC_Triage_Moved_Tribal_2>
+  <CC_Triage_Moved_Medieval>{CARRIER_nameDef} carried {LIGHTER_nameDef} to another bed{WHERE}, so the best sickbed, the {BED}, is free for {WORSE_nameDef}, who is worse off.</CC_Triage_Moved_Medieval>
+  <CC_Triage_Moved_Medieval_2>The gravest case has the best sickbed: {CARRIER_nameDef} carried {LIGHTER_nameDef} from the {BED} to another bed{WHERE} to make room for {WORSE_nameDef}.</CC_Triage_Moved_Medieval_2>
+  <CC_Triage_Moved_Industrial>{CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE} to free the {BED} for {WORSE_nameDef}, who is worse off.</CC_Triage_Moved_Industrial>
+  <CC_Triage_Moved_Industrial_2>Triage: {CARRIER_nameDef} moved {LIGHTER_nameDef} out of the {BED} into another bed{WHERE}, and the {BED} is kept for {WORSE_nameDef}, the more serious case.</CC_Triage_Moved_Industrial_2>
+  <CC_Triage_Moved_Spacer>{CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE}, so the {BED} is free for {WORSE_nameDef}, the more urgent case.</CC_Triage_Moved_Spacer>
+  <CC_Triage_Moved_Spacer_2>By triage the {BED} goes to {WORSE_nameDef}, who is worse off: {CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE}.</CC_Triage_Moved_Spacer_2>
+
+  <!-- The same for an operation: the surgery bed freed for someone waiting for theirs. -->
+  <CC_Triage_MovedOp_Tribal>{CARRIER_nameDef} carried {LIGHTER_nameDef} to another sleeping place{WHERE}, so the healer's place for cutting, the {BED}, is free for {WORSE_nameDef}.</CC_Triage_MovedOp_Tribal>
+  <CC_Triage_MovedOp_Tribal_2>The cutting is done in the healer's place: {CARRIER_nameDef} carried {LIGHTER_nameDef} out of the {BED} to another one{WHERE}, to make room for {WORSE_nameDef}.</CC_Triage_MovedOp_Tribal_2>
+  <CC_Triage_MovedOp_Medieval>{CARRIER_nameDef} carried {LIGHTER_nameDef} to another bed{WHERE}, so the {BED} the surgeon works at is free for {WORSE_nameDef}.</CC_Triage_MovedOp_Medieval>
+  <CC_Triage_MovedOp_Medieval_2>The surgeon's bed is wanted: {CARRIER_nameDef} carried {LIGHTER_nameDef} from the {BED} to another bed{WHERE} for {WORSE_nameDef}'s operation.</CC_Triage_MovedOp_Medieval_2>
+  <CC_Triage_MovedOp_Industrial>{CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE} to free the surgery bed, the {BED}, for {WORSE_nameDef}'s operation.</CC_Triage_MovedOp_Industrial>
+  <CC_Triage_MovedOp_Industrial_2>The surgery bed is needed: {CARRIER_nameDef} moved {LIGHTER_nameDef} out of the {BED} into another bed{WHERE}, and it is kept for {WORSE_nameDef}'s operation.</CC_Triage_MovedOp_Industrial_2>
+  <CC_Triage_MovedOp_Spacer>{CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE}, so the surgery bed, the {BED}, is free for {WORSE_nameDef}'s procedure.</CC_Triage_MovedOp_Spacer>
+  <CC_Triage_MovedOp_Spacer_2>Surgery takes the {BED}: {CARRIER_nameDef} moved {LIGHTER_nameDef} to another bed{WHERE} for {WORSE_nameDef}'s operation.</CC_Triage_MovedOp_Spacer_2>
+
+  <!-- The colony's word for the room the lighter case was carried to, when it is a hospital. -->
+  <CC_Triage_Ward_Tribal>in the healer's hut</CC_Triage_Ward_Tribal>
+  <CC_Triage_Ward_Medieval>in the infirmary</CC_Triage_Ward_Medieval>
+  <CC_Triage_Ward_Industrial>on the ward</CC_Triage_Ward_Industrial>
+  <CC_Triage_Ward_Spacer>in the sickbay</CC_Triage_Ward_Spacer>
+
+  <!-- Inspect lines: the bed kept while it is freed, the patient moved (for six hours). -->
+  <CC_Triage_Kept>Kept for {WORSE_nameDef}, who is worse off.</CC_Triage_Kept>
+  <CC_Triage_KeptOp>Kept for {WORSE_nameDef}'s operation.</CC_Triage_KeptOp>
+  <CC_Triage_MadeRoom>Moved to another bed to make room for {WORSE_nameDef}, who was worse off.</CC_Triage_MadeRoom>
+  <CC_Triage_MadeRoomOp>Moved to another bed to make room for {WORSE_nameDef}'s operation.</CC_Triage_MadeRoomOp>
+
+</LanguageData>

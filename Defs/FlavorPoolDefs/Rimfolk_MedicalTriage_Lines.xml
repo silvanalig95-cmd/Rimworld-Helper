@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A colonist setting off to carry a lighter case to another bed, so OTHER, who is worse off, can have the better one
+       (Source/ColonyCouncil/Integrations/MedicalTriage.cs, with Move the Patient). Said as they set off; tagged by the
+       colony's age. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TriageRoom</defName>
+    <lines>
+      <plain>
+        <li>Making room for {OTHER_nameDef}, who is worse off.</li>
+        <li>{OTHER_nameDef} needs the best bed more, so I'll move someone over.</li>
+        <li>The worst hurt get the best bed, and that's {OTHER_nameDef} now.</li>
+        <li>I'll carry one over to another bed so {OTHER_nameDef} can have the good one.</li>
+        <li>[tribal] The healer's best place is for {OTHER_nameDef} now, who is hurt worse.</li>
+        <li>[tribal] {OTHER_nameDef} bleeds worse, so the best sleeping place is theirs.</li>
+        <li>[medieval] The best sickbed goes to {OTHER_nameDef}, who is hurt worse.</li>
+        <li>[medieval] The gravest case lies nearest the healer, and that's {OTHER_nameDef}.</li>
+        <li>[industrial] Clearing the best bed for {OTHER_nameDef}, the more serious case.</li>
+        <li>[industrial] {OTHER_nameDef} is worse off, so the other patient moves down a bed.</li>
+        <li>[spacer] Triage puts {OTHER_nameDef} in the best bed, so I'm moving the other patient.</li>
+        <li>[spacer] {OTHER_nameDef} is the urgent case, freeing the best bed now.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} needs looking after most, so the best bed is for them.</li></warm>
+      <blunt><li>{OTHER_nameDef} is worse, so {OTHER_nameDef} gets the best bed.</li></blunt>
+      <cheerful><li>Everyone gets a bed, and {OTHER_nameDef} gets the best one.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is in a bad way, the best bed has to go to them.</li></gloomy>
+      <cold><li>Worst case gets the best bed, and that is {OTHER_nameDef}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The same, to free the surgery bed for OTHER's operation. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TriageSurgery</defName>
+    <lines>
+      <plain>
+        <li>Making room for {OTHER_nameDef}, who is to be treated in that bed.</li>
+        <li>That bed is wanted for {OTHER_nameDef}'s treatment, so I'll move someone over.</li>
+        <li>[tribal] The cutting is done in the healer's place, and it's {OTHER_nameDef}'s turn.</li>
+        <li>[tribal] {OTHER_nameDef} must be cut, so the healer's place has to be free.</li>
+        <li>[medieval] The surgeon wants {OTHER_nameDef} in the best bed for the cutting.</li>
+        <li>[medieval] Clearing the surgeon's bed for {OTHER_nameDef}.</li>
+        <li>[industrial] Clearing the operating bed for {OTHER_nameDef}'s surgery.</li>
+        <li>[industrial] {OTHER_nameDef} has an operation coming, so that bed has to be free.</li>
+        <li>[spacer] Prepping the surgery bed for {OTHER_nameDef}, moving the other patient out.</li>
+        <li>[spacer] The surgery bed is scheduled for {OTHER_nameDef}, freeing it now.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} needs that bed for the treatment, I'll move the other one gently.</li></warm>
+      <blunt><li>That bed is for {OTHER_nameDef}'s treatment, the other one moves.</li></blunt>
+      <cheerful><li>A fresh bed for one, and the treatment bed for {OTHER_nameDef}.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} has to go under, so that bed has to be free.</li></gloomy>
+      <cold><li>The treatment bed is for {OTHER_nameDef}, so it gets cleared.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

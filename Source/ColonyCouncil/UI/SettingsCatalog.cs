@@ -325,6 +325,7 @@ namespace ColonyCouncil
             Section("CC_SetSec_Recovery");
             Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
             Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
+            Toggle("medicalTriage", "CC_Settings_MedicalTriage", "CC_SetNote_MedicalTriage", "deepHooks");
 
             // Events and world: strangers, Rimfolk's events and camps, the region's world events, the calendar.
             Page(SettingsPage.Events);

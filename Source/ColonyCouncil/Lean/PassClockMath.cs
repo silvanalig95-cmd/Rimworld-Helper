@@ -49,6 +49,9 @@ namespace ColonyCouncil
 
         // Every 250 ticks, only while something waits, in the same order.
         RareRearrange,
+        RareTriage,
+        /// <summary>Medical triage's hour, on the tick of its own 250-tick pass (Sched.RareTriage).</summary>
+        Triage,
         RareCouriers,
         RareOutsiderTalk,
         RarePlayOut,
@@ -143,6 +146,8 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareDefenseLines, "CC_Clock_Pass_RareDefenseLines", nameof(Sched.RareDefenseLines), R, Sched.RareDefenseLines),
 
             new PassInfo(Pass.RareRearrange, "CC_Clock_Pass_RareRearrange", nameof(Sched.RareRearrange), R, Sched.RareRearrange, true),
+            new PassInfo(Pass.RareTriage, "CC_Clock_Pass_RareTriage", nameof(Sched.RareTriage), R, Sched.RareTriage, true),
+            new PassInfo(Pass.Triage, "CC_Clock_Pass_Triage", nameof(Sched.RareTriage), H, Sched.RareTriage),
             new PassInfo(Pass.RareCouriers, "CC_Clock_Pass_RareCouriers", nameof(Sched.RareCouriers), R, Sched.RareCouriers, true),
             new PassInfo(Pass.RareOutsiderTalk, "CC_Clock_Pass_RareOutsiderTalk", nameof(Sched.RareOutsiderTalk), R, Sched.RareOutsiderTalk, true),
             new PassInfo(Pass.RarePlayOut, "CC_Clock_Pass_RarePlayOut", nameof(Sched.RarePlayOut), R, Sched.RarePlayOut, true),

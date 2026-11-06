@@ -385,6 +385,8 @@ namespace ColonyCouncil
         public bool guestStories = true;
         /// <summary>Hospitality's guest tab says whether a guest can be recruited, how, and what it takes (Integrations/GuestCheck.cs).</summary>
         public bool guestCheck = true;
+        /// <summary>With Move the Patient: patients take the best free medical bed, and a lighter case is moved to another bed for someone worse off (Integrations/MedicalTriage.cs).</summary>
+        public bool medicalTriage = true;
         /// <summary>The colony's next steps: a plan the council proposes to and keeps with the player (Building/NextSteps.cs).</summary>
         public bool nextSteps = true;
 
@@ -709,6 +711,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestWill, "guestWill", true);
             Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
+            Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);

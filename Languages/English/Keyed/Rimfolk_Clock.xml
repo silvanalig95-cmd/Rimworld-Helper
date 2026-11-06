@@ -82,6 +82,8 @@
 
   <!-- Every 250 ticks, only while something waits: -->
   <CC_Clock_Pass_RareRearrange>A room's furniture moves</CC_Clock_Pass_RareRearrange>
+  <CC_Clock_Pass_RareTriage>Medical triage: someone moved for a patient worse off (Move the Patient)</CC_Clock_Pass_RareTriage>
+  <CC_Clock_Pass_Triage>Medical triage: the hour's look at the medical beds (Move the Patient)</CC_Clock_Pass_Triage>
   <CC_Clock_Pass_RareCouriers>Courier trips</CC_Clock_Pass_RareCouriers>
   <CC_Clock_Pass_RareOutsiderTalk>Colonists starting a talk with an outsider</CC_Clock_Pass_RareOutsiderTalk>
   <CC_Clock_Pass_RarePlayOut>Answers playing out on the map</CC_Clock_Pass_RarePlayOut>

@@ -46,6 +46,9 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines2",
         // A drink raised or a joint lit before work for Alpha Skills' drunken and stoned passions (Integrations/BeforeWork.cs).
         "Rimfolk_Pool_DrinkBeforeWork", "Rimfolk_Pool_SmokeBeforeWork",
+        // A colonist setting off to carry a lighter case to another bed for someone worse off, or for an operation
+        // (Integrations/MedicalTriage.cs, with Move the Patient).
+        "Rimfolk_Pool_TriageRoom", "Rimfolk_Pool_TriageSurgery",
         // Writing to a neighbour, handing the letter over, and calls on the comms console (World/NeighbourLetters.cs).
         "Rimfolk_Pool_NeighbourSays",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
