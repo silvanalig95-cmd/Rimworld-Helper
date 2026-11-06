@@ -575,7 +575,7 @@ them since: whatever you set by hand stays as you set it.
 dilemmas and 185 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
-the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
+the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook; a while in, its host raises a cup and the table raises theirs. Every feast is held this one way, an answer's, a calendar day's or one with guests from the neighbours. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
 at its head, the listeners in the chairs round it), a friend sits with someone who is ill, a
 colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
@@ -1301,9 +1301,13 @@ calendar's remembrances; the warden of guests spends an hour at the camp's fire 
 welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
 
 ### Traditions
-Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
-on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Thirty-four customs can become traditions, among them the **planting day** (asked
+Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
+and it goes on the colony calendar: its question comes round on that day each year (or within a few days, when its
+weather isn't there), or with its occasion for a custom asked in its moment. Keep it **three years running**, by the
+same rule as the calendar's own days, and it becomes a tradition: keeping it pleases everyone, breaking it disappoints
+them, and twice in a row it lapses. Let it pass before then and it leaves the calendar, a question again in its
+season. A season that holds a custom's day is asked no other. An older save's customs go on the calendar as they stood:
+a tradition stays one, one kept once needs two more years. Thirty-four customs can become traditions, among them the **planting day** (asked
 when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
@@ -1334,13 +1338,15 @@ and days that come from what the colony lived through: **the day a camp stayed a
 walking out to it, until the gift is gone), **the end of a world event the colony took part in** (a supper for a hungry
 year, a walk to the gate for a war or a plague), the **holy days of its own ideoligion** (its rites held on a date, with
 Ideology; the letter offers the rite itself) and **the day one of its people came home from captivity**. Up
-to a dozen of the most meaningful. On the **Calendar**
+to a dozen of the most meaningful, and besides them the council's **customs** the colony keeps (Traditions, above), so
+the year's festive days are all in one place, each with what it is and when it next comes. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
 day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day**, a **walk out** or, with Ideology, an **ideoligion evening**
 for one of the colony's ideoligions, rename any day, or change how it's kept. What people say
 about a day knows the land and the ideoligion: founding day in the desert is a jar of sand from where the first tent stood.
 
-When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
+When a day comes round, a letter asks whether to keep it this year (a custom comes as its own question): a **feast**
+is a meal from the stores at the table, with a cup raised to the day,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
 friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
@@ -1352,9 +1358,9 @@ journals, talk about it in the social log, and mention it the evening before; Th
 up. Days that fall within three days of each other come round as one, in one letter, kept together with one
 gathering; a day that comes within two days of another gathering is kept **at supper** instead (a better meal for
 everyone and a word said over it, or for a remembrance a word for them from those who knew them). All the moods are
-small and share the budget of good moods. Kept **three years running**, a day becomes a
-**tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
-pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
+small and share the budget of good moods. Kept **three years running**, a day or a custom becomes a
+**tradition** (one rule for both), with a letter, moods, the chronicle and the annals, and letting it pass then
+disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
 keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
 
@@ -2797,7 +2803,8 @@ call, each answering by their regard and whether what their people hope for is o
 shooting match for an industrial people, a fine meal and music for the Empire). On the first fine day after the last of
 them can come, they walk in with one or two of their people and wait by the gate; up to four contests are held on the
 map (wrestling by the sparring rules, a race to a marker and back, a hunt of the colony's game, a game at its tables,
-and a shooting match where a mod gives targets), the feast is the colony's gathering with the guests at its table, the
+and a shooting match where a mod gives targets), the feast is the colony's gathering with the guests at its table (the
+same feast as any other: the meal from the stores, and its host raises a cup to the guests), the
 champion of the day gets the prize, and the guests stay the night and go home at first light. Their welcome moves their
 regard, and their people remember it; an empty plate is a slight. A bout's blow goes in hard now and then, and a guest's
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
@@ -3393,7 +3400,8 @@ The colony gathers about twice a week, not four or five times. What you choose a
 that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own doings (a
 group's evening at the fire, a family supper, a child's birthday toast, a camp's show) come only when the last seven
 days hold fewer than two gatherings and none in the last day and a half; one waits up to three days for room, and is
-then let go without a word. One seasonal custom is asked a season; a life goal's toast is raised at the next gathering;
+then let go without a word. One seasonal custom is asked a season (none other in a season that holds a custom's day on
+the calendar); a life goal's toast is raised at the next gathering;
 the election's candidates speak at the count, before the votes are read. A plan that never comes about gives nobody
 its moods, and says why. Ten days never pass without a gathering: from the seventh the colony's own come at once, and
 from the eighth, if nothing is on the way, the colony keeps an evening together. The number is the setting
