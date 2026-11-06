@@ -42,6 +42,7 @@ public static class HandOverTests
         C(HandOverMath.WaitsFor(0, 0, true, 3, false) == "Founding", "nobody goes from here: the new colony of the same act stands first");
         C(HandOverMath.WaitsFor(0, 0, false, 2, false) == "FewStay", "fewer than three grown-ups left on the map: it waits");
         C(HandOverMath.WaitsFor(0, 0, false, 3, true) == "Engine", "the gravship's engine still there: it waits");
+        C(HandOverMath.WaitsFor(0, 0, false, 3, false, false) == "NobodyElse", "those who went all lost: it waits rather than end the game");
 
         // ---------------- The head and the head's second ----------------
 
@@ -171,7 +172,7 @@ public static class HandOverTests
               && keyed["CC_HandOver_PeopleName_" + age].Contains("{PLACE}"), age + ": what changes hands, the second's title and the people's name");
         }
         foreach (var k in new[] { "NotSettlement", "Fight", "Banishment", "FewStay", "NobodyElse", "Anchor" }) C(keyed.ContainsKey("CC_HandOver_No_" + k), "the check's words: " + k);
-        foreach (var k in new[] { "Going", "Lodgers", "Founding", "FewStay", "Engine" }) C(keyed.ContainsKey("CC_HandOver_Wait_" + k), "what it waits for, in words: " + k);
+        foreach (var k in new[] { "Going", "Lodgers", "Founding", "FewStay", "Engine", "NobodyElse" }) C(keyed.ContainsKey("CC_HandOver_Wait_" + k), "what it waits for, in words: " + k);
         foreach (var k in new[] { "Free", "Defence", "Trade" })
             C(keyed.ContainsKey("CC_HandOver_Terms_" + k) && keyed.ContainsKey("CC_HandOver_TermsLine_" + k) && keyed.ContainsKey("CC_HandOver_Terms_Made_" + k), "the terms: " + k);
         var mine = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_HandOver.xml")).Root!.Elements().ToList();
@@ -220,7 +221,7 @@ public static class HandOverTests
         C(ho.Contains("// release 2b") || ho.Contains("release 2b:"), "what is left for release 2b is marked");
         C(patches.Contains("typeof(Faction), nameof(Faction.TryGenerateNewLeader)") && patches.Contains("HandOverPeoples.IsOurs(__instance)"),
             "the second leads through the game's own succession, for these peoples only");
-        C(patches.Contains("typeof(Settlement), nameof(Settlement.GetGizmos)") && patches.Contains("\"AbandonMap\""), "the world button beside the game's Abandon, and the gravship's takeoff");
+        C(patches.Contains("typeof(Settlement), nameof(Settlement.GetGizmos)") && patches.Contains("nameof(GravshipUtility.AbandonMap)"), "the world button beside the game's Abandon, and the gravship's takeoff");
         C(Code("World/Region/RegionBook.cs").Contains("HandOvers.Hourly(now)") && Code("World/Region/RegionBook.cs").Contains("HandOvers.Daily(now)"),
             "no schedule slot of its own: the region's hour and day");
         C(Code("PlayOut/OnMapPlays.cs").Contains("HandOvers.PlayOver("), "the meeting and the ceremony end through the play-outs' own afterward");

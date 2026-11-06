@@ -642,7 +642,7 @@ namespace ColonyCouncil
             var founding = plan.foundingId >= 0 ? Foundings.Of(plan.foundingId) : null;
             bool toStand = plan.where == HandOverWhere.Founding && plan.going.Count == 0 && (plan.founding != null || founding != null && founding.stage == FoundingStage.Going);
             int grown = StayingNow(plan, home).Count(p => p.RaceProps.Humanlike && p.DevelopmentalStage.Adult());
-            string key = HandOverMath.WaitsFor(goingHere.Count, lodgers.Count, toStand, grown, Engine(home));
+            string key = HandOverMath.WaitsFor(goingHere.Count, lodgers.Count, toStand, grown, Engine(home), AnyoneElsewhere(home));
             if (key == null)
             {
                 plan.waitTold = "made";
@@ -659,6 +659,16 @@ namespace ColonyCouncil
         }
 
         // ================= The town is made =================
+
+        /// <summary>A free colonist of the player's anywhere but this map (another home, a caravan, pods), or the gravship in flight.</summary>
+        private static bool AnyoneElsewhere(Map home)
+        {
+            if (Find.CurrentGravship != null) return true;
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+                if (p != null && p.MapHeld != home)
+                    return true;
+            return false;
+        }
 
         /// <summary>Colonists of another home here now (a visit): they go home before the town is made, not stay with it.</summary>
         private static List<Pawn> Visitors(HandOverPlan plan, Map home) =>
@@ -721,6 +731,7 @@ namespace ColonyCouncil
             }
             int key = plan.home;
             string colonyName = Homes.Name(home);
+            Faction people = null;
             try
             {
                 var stayingHumans = StayingNow(plan, home);
@@ -735,7 +746,7 @@ namespace ColonyCouncil
                 int heads = free.Count + plan.going.Count(p => p != null && !p.Dead);
                 var founder = FounderOf(home, free, head);
                 // The people.
-                var people = HandOverPeoples.Make(def, plan.peopleName.NullOrEmpty() ? DefaultName(plan.age, colonyName) : plan.peopleName, Faction.OfPlayer.ideos?.PrimaryIdeo);
+                people = HandOverPeoples.Make(def, plan.peopleName.NullOrEmpty() ? DefaultName(plan.age, colonyName) : plan.peopleName, Faction.OfPlayer.ideos?.PrimaryIdeo);
                 if (people == null) return false;
                 // A home a gravship landed on stays one whatever its settlement's people: closed Rimfolk's way.
                 home.wasSpawnedViaGravShipLanding = false;
@@ -797,7 +808,14 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("hand-over: making the town", e);
-                return false;
+                // Once the people stands, never a second one for the same plan: the hand-over ends where it got to.
+                if (people != null)
+                {
+                    h.handOvers.Remove(plan);
+                    Homes.Clear();
+                    Find.GameEnder.CheckOrUpdateGameOver();
+                }
+                return people != null;
             }
         }
 

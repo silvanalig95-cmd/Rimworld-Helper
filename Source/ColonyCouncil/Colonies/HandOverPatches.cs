@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
@@ -79,15 +78,9 @@ namespace ColonyCouncil
     /// those who stay are on the ground, the town is made instead of the game's abandon (Colonies/HandOvers.cs), for that
     /// map only; otherwise the game abandons it as always.
     /// </summary>
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(GravshipUtility), nameof(GravshipUtility.AbandonMap))]
     public static class Patch_HandOverGravship
     {
-        public static bool Prepare() => Target() != null;
-
-        public static MethodBase TargetMethod() => Target();
-
-        private static MethodBase Target() => AccessTools.Method(typeof(GravshipUtility), "AbandonMap", new[] { typeof(Map) });
-
         public static bool Prefix(Map map)
         {
             try

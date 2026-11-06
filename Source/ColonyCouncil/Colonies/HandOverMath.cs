@@ -112,15 +112,17 @@ namespace ColonyCouncil
         /// What the town still waits for once the ceremony is over, as the key of its words (CC_HandOver_Wait_*), or null
         /// when it can be made: those who go still on the map, a guest of the colony's still there (they go with those who
         /// go), the new colony of the same act not yet standing when nobody goes from here, fewer than three grown-ups left
-        /// on the map, or the gravship's engine still there (the town can't keep it).
+        /// on the map, the gravship's engine still there (the town can't keep it), or nobody of the player's left anywhere
+        /// else (those who went all lost: the game would end).
         /// </summary>
-        public static string WaitsFor(int goingOnMap, int lodgersOnMap, bool foundingToStand, int grownOnMap, bool engineOnMap)
+        public static string WaitsFor(int goingOnMap, int lodgersOnMap, bool foundingToStand, int grownOnMap, bool engineOnMap, bool playersElsewhere = true)
         {
             if (goingOnMap > 0) return "Going";
             if (lodgersOnMap > 0) return "Lodgers";
             if (foundingToStand) return "Founding";
             if (grownOnMap < MinGrownStay) return "FewStay";
             if (engineOnMap) return "Engine";
+            if (!playersElsewhere) return "NobodyElse";
             return null;
         }
 
