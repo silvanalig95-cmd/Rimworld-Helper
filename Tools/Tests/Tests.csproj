@@ -130,6 +130,7 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/Fresh.cs" Link="Fresh.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/HomesMath.cs" Link="HomesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/ColonyStateMath.cs" Link="ColonyStateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Colonies/FoundingMath.cs" Link="FoundingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Epithets/EpithetMath.cs" Link="EpithetMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Epithets/NameMath.cs" Link="NameMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Character/ColonyNameMath.cs" Link="ColonyNameMath.cs" />

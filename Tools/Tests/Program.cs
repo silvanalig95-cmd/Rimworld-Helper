@@ -370,6 +370,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
         int instead = RewardInsteadTests.Run(root, Check, out int converted, out int small);
         Console.WriteLine($"Checked {instead} things about the {converted} of {small} small good moments that give something other than mood.");
+        Console.WriteLine($"Checked {FoundingTests.Run(root, Check)} things about a fresh start in the same world (each one's wish, who goes, the newcomers' price, the seat once a season, the colony limit raised by one, the kit, the colonies' record).");
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
         Console.WriteLine($"Checked {VisitorWorkTests.Run(root, Check)} things about visitors doing what their letters say (work, roofs, the wall).");
         Console.WriteLine($"Checked {VisitorActsTests.Run(root, Check)} things about visitors and the colony's things (the instrument, fair game, the dead they carry, guest beds).");
