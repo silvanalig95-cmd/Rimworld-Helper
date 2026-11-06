@@ -2205,7 +2205,7 @@ one place: `Lean/Ages.cs`, with its pure rules in `Lean/AgesMath.cs`.
   world ledger's people view ask here, and give exactly what they gave before (`WorldMechanicsTests` checks every tech
   level against the old table).
 - **Forms.** `Ages.Form(feature, ours, theirs)` gives a feature's word and rite: the nine of ROADMAP's table (favor
-  owed, pact and truce, feast and contest, marriage alliance, ward and hostage, ransom, fealty and vassals, house
+  owed, pact and truce, feast and contest, marriage alliance, ward and hostage, ransom, fealty and vassals, colony
   renown, schemes; council tasks were dropped on 5 November 2026), each with a word and a rite in each of the four
   ages, as keyed strings (`CC_Form_<Feature>_<Age>` and `CC_Form_<Feature>_<Age>_Rite`, `Rimfolk_Ages.xml`), short noun
   phrases to sit in a sentence.
