@@ -136,9 +136,10 @@ public static class GoodHeartTests
         C(Regex.IsMatch(logic, @"public static float Build\(Pawn p, StrainSource source, float raw, string why = null\)[\s\S]{0,1200}added = GoodHeart\.Spend\(h, source, added\);"),
             "so does hardship from outside the hour");
         C(logic.Contains("if (amount > 0f) amount = GoodHeart.Spend(h, buildSource, amount);"), "and strain added by an answer");
-        C(Regex.IsMatch(logic, @"float eased = Mathf\.Min\(left, amount\);[\s\S]{0,300}GoodHeart\.Overflow\(h, \(GoodSource\)i, amount - eased, now\)"),
+        C(Regex.IsMatch(logic, @"float eased = Mathf\.Min\(left, amount\);[\s\S]{0,700}h\.strain = 0f;\s*GoodHeart\.Overflow\(h, \(GoodSource\)i, amount - eased, now\)"),
             "good things ease strain first, and what is beyond fills the good side");
-        C(logic.Contains("if (joys > eased) GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now);"), "a small joy from outside the hour the same way");
+        C(logic.Contains("if (joys > eased) used += GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now) / HeartMath.GoodShare(GoodSource.Joys);")
+          && logic.Contains("JoysWithinCap(h, Mathf.Min(joys, used), why);"), "a small joy from outside the hour the same way, its cap counting what it eased or filled");
         C(Regex.IsMatch(goodCode, @"public static float Fill\([^)]*\)\s*\{\s*if \(!On \|\| h == null \|\| amount <= 0f \|\| h\.strain > 0f\) return 0f;"), "it fills only while strain is at nothing");
         C(goodCode.Contains("public static bool On => Heart.On && (S?.heartGoodSide ?? true);"), "with the heart and its own setting");
         C(Regex.IsMatch(goodCode, @"if \(!On\)\s*\{\s*if \(h\.good > 0f \|\| h\.goodLately > 0f\) Clear\(h\);"), "off: nothing builds, and what there was is gone");

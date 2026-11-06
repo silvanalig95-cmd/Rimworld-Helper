@@ -323,7 +323,10 @@ namespace ColonyCouncil
                 relief += eased;
                 var kind = ReliefOf((GoodSource)i);
                 h.recentRelief[(int)kind] += eased;
-                if (amount > eased) GoodHeart.Overflow(h, (GoodSource)i, amount - eased, now);
+                if (amount <= eased) continue;
+                // Strain is at nothing now: what is beyond fills the good side.
+                h.strain = 0f;
+                GoodHeart.Overflow(h, (GoodSource)i, amount - eased, now);
             }
 
             h.lastHourBuild = built;
@@ -692,12 +695,15 @@ namespace ColonyCouncil
             if (h.day != now / GenDate.TicksPerDay) h.todayJoys = 0f;
             float a = amount * HeartMath.ReliefTraitFactor(Heart.TraitsOf(p));
             if (!good) a = Mathf.Min(a, h.strain);
-            float joys = JoysWithinCap(h, a, why);
+            float joys = SmallMomentMath.WithinJoyCap(a, h.todayJoys);
             if (joys <= 0f) return 0f;
             float eased = Mathf.Min(joys, h.strain);
             h.strain = HeartMath.Clamp(h.strain - eased);
             h.recentRelief[(int)StrainRelief.Joys] += eased;
-            if (joys > eased) GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now);
+            // The day's cap for joys counts what eased strain and what filled the good side, not what neither could take.
+            float used = eased;
+            if (joys > eased) used += GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now) / HeartMath.GoodShare(GoodSource.Joys);
+            JoysWithinCap(h, Mathf.Min(joys, used), why);
             HeartView.Refresh(p, h);
             return eased;
         }
