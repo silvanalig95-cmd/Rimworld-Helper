@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 517; modelled: 517; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** after two, **3,003 KB** after five.
+Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** after two, **3,009 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -33,6 +33,7 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** aft
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
+| `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
 | `World/Ledger/LedgerPersons.cs:townRecords` | the towns in detail within the region map's reach (RegionMath.MaxTownsPerHome a home, one home here), the towns the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding | fixed | 54 | 54 | 54 | 20.0 |
 | `Aspirations/Aspirations.cs:counters` | counters of known pawns | known | 165 | 180 | 225 | 19.8 |
 | `Strangers/Encounters.cs:lastTick` | one per encounter def, per colony | defs | 225 | 225 | 225 | 19.8 |
@@ -45,7 +46,6 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** aft
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `Offices/Election.cs:canvassed` | three visits a day for three days a candidate, while it lasts | while | 180 | 180 | 180 | 15.8 |
 | `Offices/Election.cs:heard` | who heard each candidate at the hustings, while it lasts | while | 400 | 400 | 400 | 15.6 |
-| `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `Social/Bonds.cs:pairs` | one short line per pair of colonists who met, pairs not both among the colony's people for 60 days dropped daily | pairs | 209 | 209 | 209 | 14.3 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -89,7 +89,7 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 66 | 66 | 66 | 5.8 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 66 | 66 | 66 | 5.8 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |

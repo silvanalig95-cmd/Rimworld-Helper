@@ -1052,7 +1052,7 @@ gives those taking part come once it's over (PlayOut/).
   last 30 results (who took part, a note), which the dilemmas page shows as how it went (`DilemmaLog`), and This week
   lists every plan waiting or under way (`WeekModel`, `PlayOutText`); `DecreeDef.onEnact` (a feast day at noon, a festival's first evening, a rest day) and
   `AmbitionDef.achievedEffects` (the great feast eaten, the first barrel, a games night) run through `PlayOuts.Run`;
-  the calendar's feast, games and remembrance days start theirs directly. `PlayOutTracker` (a game component of its
+  the calendar's games and remembrance days start theirs directly, and every feast goes through the one feast engine (`PlayFeast`, the festive year below). `PlayOutTracker` (a game component of its
   own) keeps the plans; `PlayOutMath` holds the pure numbers the tests check.
 
 ### The audit
@@ -1562,8 +1562,10 @@ tested in `StageTests` and run by `Tools/Balance --scenes`):
   hours), they say a word over the meal, the day's good memory comes to those at home (to those who knew them, for a
   remembrance), and the evening's news says it was kept at supper. Before that moment nothing is given.
 - **One seasonal custom a season** (a dilemma with seasons that can become a tradition, `Dilemmas.IsSeasonalCustom`;
-  `StageColony.customSeason`, a season being fifteen days of the year). A tradition still comes round when its time
-  does, and counts as the season's.
+  `StageColony.customSeason`, a season being fifteen days of the year). A season that holds a custom's day on the
+  calendar is asked no other (the festive year, below); a tradition still comes round when its time does, and counts as
+  the season's. Whether a custom should also stay two days clear of other gatherings was put to the player, who said no
+  (6 November 2026): there is no such rule.
 - **A life goal's toast is raised at the next gathering**, not on an evening of its own (`Stage.Cup`): the one who thinks
   best of them has a cup to raise there, the two are asked to it, its first message says so, and a while in the cups go
   up with the toast's words; their moods come when it's over. With no gathering within two days, it is raised at supper
@@ -1589,6 +1591,73 @@ calendar days 42%, a group's evenings 32%, family suppers 34%, customs 88% (the 
 player's game asked about seven in sixty days, of which four a year stay), toasts none (raised at the next gathering),
 elections' three gatherings 60%; meetings, decrees, answers, weddings and faith all of them. Well run 2.8 a week,
 neglectful 2.7.
+
+## One festive year (the player's decision 7, 6 November 2026)
+
+The reviews found two festival calendars with two rules for a tradition: the calendar's days (kept three years
+running, `CalendarMath`) and the council's seasonal customs (the midsummer fire, the swim, the harvest dance, the
+longest night's supper: a council question, a tradition once its answer was chosen twice, `DilemmaDef.traditionAfter`),
+on two pages, nothing keeping a custom from landing beside a calendar day; and feasts set going five ways and cooked
+two. The player chose one rule, three years running. Built as one festive year (phase 5 of the review):
+
+- **Customs on the calendar** (`Calendar/CalendarCustoms.cs`, a part of `ColonyCalendar`). A custom (a dilemma with a
+  `traditionOption`) goes on the colony calendar the first time the colony keeps it (`AddCustom`, from
+  `DilemmaTracker.Tradition`): a day of `CalendarKind.Custom` and `DayWay.Custom`, its question named by `about`, its
+  name the custom's (`traditionLabel`). A seasonal custom keeps the date it was kept on: each year its question comes
+  round on that day (`AskCustoms` in the calendar's hour, through `DilemmaTracker.AskCustom`, the council's own letter
+  with its own answers), or within five days when its weather or someone to ask for it isn't there
+  (`CalendarMath.CustomDue`, `CustomGraceDays`: a swim waits for a warm day); past those its year is spent with no blame
+  ("came and went this year", `MarkCustomMissed`). A custom asked in its moment (the planting day as the fields open,
+  the herd brought home, the victory feast, telling the bees) is on the calendar "with its occasion" (`CalendarDay.moment`,
+  not `Dated`) and comes as it always did. Customs never make way for a day the colony writes down (`Fixed`, not `Auto`)
+  and don't count toward its twelve.
+- **One season, one custom.** A dated custom on the calendar is never asked as one of the council's ordinary questions
+  (`BringsCustom`), and a season that holds a custom's day is asked no other seasonal custom (`CustomSeasonHeld`, the
+  fifteen days of `StageMath.SeasonOf`); asked, the custom's day marks the season's custom as any custom does
+  (`Stage.CustomAsked`). With the calendar off, customs are asked in their season as before.
+- **One tradition rule** (`CalendarMath`, for days and customs alike). Kept three years running (`TraditionAfter`), a
+  day or a custom is a tradition. A custom steps once a year (`KeepInYear`: one that comes with its occasion may come
+  twice, and the second keeping is no second year); let pass before it is a tradition, its years start again and it
+  leaves the calendar, a question again in its season (`Pass`, `OffCalendar`, `LetCustomGo`, a line in the news); a
+  tradition let pass costs as it always did ("a tradition broken" for everyone but the ascetic, -2 trust each) and
+  lapses the second time in a row, leaving the calendar. The tags a custom's lines read ([again], [years],
+  [tradition], [missed], `CustomYearsMath`) come from its day. The answer's sheet says "Toward a tradition: chosen 1 of
+  the 3 times it takes", and for a custom on the calendar not yet a tradition, that another answer takes it off.
+- **What reads a custom.** `DilemmaTracker.IsTradition`, `TraditionCount`, `Traditions` and `AddCustomTags` read the
+  calendar (`CustomDay`); the forced traditions of the council's hour skip those the calendar brings on their day. The
+  calendar's traditions (`ColonyCalendar.Traditions`) now hold the customs too, for the founding letter, the keeper of
+  days' promise and the colony's ways. The Calendar page shows each custom among the days, soonest first: its date
+  (or "with its occasion"), when it next comes, a "custom" pill, its years kept or its tradition, and where it came from
+  ("A custom the council first kept in 5502... Kept by answering 'Make a day of the planting'."); its way and date can't
+  be changed, and taking it off loses its years (kept again, it comes back). The page's separate "Seasonal customs" list
+  is gone. The days that come with an occasion are left out of what counts dates (This week's coming days, the advisor's
+  day tomorrow, talk of tomorrow, an ambition's days ahead: `CalendarDay.Dated`).
+- **Older saves** (`DilemmaTracker.MoveCustoms`, once, the first hour; `customsMoved`, saved): every custom the
+  council counted goes on the calendar, dated the last time it was asked (that year spent), with
+  `CalendarMath.CarryCustom`: a custom already a tradition stays one (its break, if any, kept); one counted under the
+  old two-year rule keeps its count and needs the third year. The tracker's own lists are emptied.
+- **One feast engine** (`PlayOut/PlayFeast.cs`). Every feast is set going by `PlayFeast.Stage(FeastOrder)`, the only
+  place a play-out of the kind Feast is made: an answer's (`DilemmaEffect_Feast.Create`, with the answer's own way of
+  naming who comes), a calendar day kept with a feast (`CalendarKeeping.FeastDay`, the keeper of days as host, the
+  grieving sitting it out, "a feast day" held for those who sit down), a feast with guests from the neighbours and the
+  steward's suggestion (`Feasts.StartFeast`, guests "feast"), a planned wedding's feast and a family's supper. On the map
+  it is one gathering: at the table unless told otherwise, the raw food an answer spent cooked first (`PlayCook`), a meal
+  from the stores served to each who sits down (`LordJob_PlayOut.Serve`), the guests at their places (`PlayGuests`), and
+  a while in the host raises a cup and the table and its guests raise theirs (`GatheringTouches`, `PlayOut.toast` and
+  `toastLine`, saved), with the reason's words ("To the harvest, and to everyone here to keep it.", "To our guests, and
+  the road that brought them here.", the wedding's "To Alo and Penguin, and many years.", else a toast's own line); a
+  family's supper raises none. The reason's moods come when it's over to those who were there. What differs by the
+  reason stays with its caller: the contests, the champion and the guests' welcome (`Feasts`), the day's letter and
+  tradition, the answer's outcome, and what happens when no feast can be set going (the game's party and a better
+  supper for a day, the guests served by the hosting rules).
+
+Tests: `FestiveYearTests` (a custom's day and grace days, a step once a year, three years running, off the calendar,
+an older save's counts, and in the source one rule and one feast engine), `CustomYearsTests` (the custom's lines can
+come true under the one rule). Dev menu: "Calendar: a day comes round now..." asks a custom's question.
+
+Measured (`Tools/Balance --scenes`, which now holds the two seasonal customs a settled colony keeps by its third year,
+`Rates.SceneKeptCustoms`; before, they came as the council's traditions did, the first hour of their season):
+see the HANDOFF entry for the numbers; the festive gatherings a year did not rise.
 
 ## Goods and people that come and go on the map
 
@@ -3455,7 +3524,7 @@ Release 2b.1 (docs/design/stage2-diplomacy.md, item 5; decision 7): `Diplomacy/`
   (`JobDriver_FeastShoot`: the weapon's own sound and flash, hits by `ShotReport`). Children run races only. The guests
   and a few free colonists watch (`Council_PlayOutAttend`). Each result goes into a message and the history
   (`dip:contest`); a reload during one lets it go as broken up (the run isn't saved).
-- **The feast** (`Feasts.StartFeast`): a play-out of the kind Feast (`DilemmaEffect_Feast.Begin`, guests
+- **The feast** (`Feasts.StartFeast`): a play-out of the kind Feast through the one feast engine (`DilemmaEffect_Feast.Begin` with `FeastWhy.Guests`, a cup raised to the guests; guests
   `PlayGuests.Feast`), so the colony's gathering serves everyone, the guests included, by the feast's serving rules;
   with answers not playing out, each guest is served at the table by the hosting rules. The Empire's guests hope for
   music: where the colony has an instrument, its best player plays (the game's `Concert` gathering, with Royalty). At the
