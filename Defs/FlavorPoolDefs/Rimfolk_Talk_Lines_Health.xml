@@ -220,12 +220,254 @@
         <li>[otherfor] You'd put the whole colony to bed for a sneeze, {OTHER}.</li>
         <li>[otheragainst] You'd work with one leg off and call it a sprain, {OTHER}.</li>
         <li>[otherill] Your nose is the color of a ripe berry, {OTHER}.</li>
+        <li>[otherfor] Every time someone sneezes, {OTHER}, you go and warm a blanket.</li>
+        <li>[otheragainst] You'd call a broken leg a stiff knee, {OTHER}.</li>
+        <li>[otherfor] I've never seen anyone fluff a pillow as hard as you, {OTHER}.</li>
+        <li>[otheragainst] If you had a fever, {OTHER}, you'd only work faster to warm up.</li>
       </plain>
       <cheerful>
         <li>[otherwounded] I'll carve you a little medal for that hurt, {OTHER}.</li>
         <li>[otherill] Shall I fluff your pillow for you, {OTHER}?</li>
         <li>[otherfor] You'd tuck in the cattle if they coughed, {OTHER}.</li>
+        <li>[otheragainst] You'd stitch your own arm back on and finish the shift, {OTHER}.</li>
+        <li>[otherwounded] Does it hurt only when you work, {OTHER}, or only when someone's looking?</li>
       </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== More of the same, so a talk on it doesn't come round to the same words ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Open_More</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Sickness spreads faster when the sick keep working beside the well.</li>
+        <li>[for] Whoever's ill should have the warmest bed, not the hardest job.</li>
+        <li>[for] I'd rather lose a day's work than lose a person.</li>
+        <li>[for] A hurt left to itself goes bad, and then it's a week, not a day.</li>
+        <li>[for] We should keep a bed made up for the next one who falls ill.</li>
+        <li>[for,subject] I'd keep {SUBJECT} off the heavy work for a while yet.</li>
+        <li>[for,subject] {SUBJECT} keeps saying they're fine, and they keep going grey.</li>
+        <li>[for,serious] If this spreads, we'll wish we'd put them to bed sooner.</li>
+        <li>[for,otherill] You should be lying down, not standing here talking to me.</li>
+        <li>[for,otherwounded] Sit down before that hurt opens up again.</li>
+        <li>[for,lowtech] A warm stone at their feet and something hot to drink, that's what they need.</li>
+        <li>[for,!lowtech] Someone should check the medicine and make sure there's enough for them.</li>
+        <li>[against] Half of being ill is lying about thinking about being ill.</li>
+        <li>[against] We're short of hands as it is, without everyone with a sniffle in bed.</li>
+        <li>[against] A bit of work takes your mind off feeling poorly.</li>
+        <li>[against] If every bruise got a bed, we'd have nobody in the fields.</li>
+        <li>[against] Lying abed too long, you lose your strength faster than you get it back.</li>
+        <li>[against,subject] {SUBJECT} can do light work, at least, sitting down.</li>
+        <li>[against,otherill] You'll feel better on your feet than staring at the roof.</li>
+        <li>[against,otherwounded] You've still got one good arm, haven't you?</li>
+        <li>[against,serious] Only the bad cases should be in the beds, or we'll run out.</li>
+        <li>[mixed] It's hard to know when to push and when to rest.</li>
+        <li>[mixed] Somebody coughed all night again, did you hear?</li>
+        <li>[mixed,subject] I can't tell if {SUBJECT} is getting better or just quieter.</li>
+        <li>[mixed,doctor] I've done what I can for them, the rest is time.</li>
+        <li>[mixed,ill] I don't know if I should be working or lying down.</li>
+      </plain>
+      <warm>
+        <li>[for] Being ill is miserable enough without being told off for it.</li>
+        <li>[for,subject] I left a cup of water by {SUBJECT}'s bed, in case they wake.</li>
+        <li>[against] Sitting alone in bed is worse for some people than working through it.</li>
+        <li>[mixed] I hate seeing anyone here poorly.</li>
+      </warm>
+      <blunt>
+        <li>[for] Bed rest, no arguments.</li>
+        <li>[against] It's a cold, not a funeral.</li>
+        <li>[mixed] Who's coughing now?</li>
+        <li>[against,ill] I'm working, so stop looking at me like that.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I'll be head nurse, I've got the voice for it.</li>
+        <li>[against] Nothing cures a cold like a good hard day's work, my old aunt said.</li>
+        <li>[mixed] At least the sick don't have to do the dishes.</li>
+        <li>[for,wounded] Look at this dressing, it's a work of art.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for] One bad fever and that's it, out here.</li>
+        <li>[against] We can't afford to coddle anyone, not this year.</li>
+        <li>[mixed] I keep waiting for it to be me next.</li>
+        <li>[for,subjectserious] I don't like the look of {SUBJECT} at all.</li>
+      </gloomy>
+      <cold>
+        <li>[for] A rested worker is a working worker, sooner.</li>
+        <li>[against] Illness doesn't excuse the work, it delays it.</li>
+        <li>[mixed] The sickroom is full more often than I'd like.</li>
+        <li>[against,subject] {SUBJECT} has recovered enough to be useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Reply_More</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I've been thinking the same thing.</li>
+        <li>[agree] You're right, and I'll say so if anyone asks.</li>
+        <li>[agree,for] A day in bed is cheaper than a week.</li>
+        <li>[agree,for] I'll take their share of the work, gladly.</li>
+        <li>[agree,for,subject] I'll sit with {SUBJECT} after supper.</li>
+        <li>[agree,against] There's work that can be done lying down, even.</li>
+        <li>[agree,against] Better busy than brooding, I always say.</li>
+        <li>[agree,against,subject] I'll find {SUBJECT} something light to do.</li>
+        <li>[agree,serious] We'll all need to be careful, then.</li>
+        <li>[agree,otherwounded] Then go and get that seen to.</li>
+        <li>[debate] Some need rest and some need something to do.</li>
+        <li>[debate] Ask how they feel, that's the first thing.</li>
+        <li>[debate,for] Rest, yes, but someone should check they're not just hiding.</li>
+        <li>[debate,against] Light work, fine, but nothing heavy for a few days.</li>
+        <li>[debate,subject] {SUBJECT} knows best how bad it is, surely.</li>
+        <li>[debate,serious] With that going round, I'd rather be careful than quick.</li>
+        <li>[debate,doctor] Leave that to me, it's what I'm for.</li>
+        <li>[argue] That's easy to say when it's not you.</li>
+        <li>[argue] You'd say that about anyone but yourself.</li>
+        <li>[argue,for] And who brings the harvest in while they lie there?</li>
+        <li>[argue,for] Coddle them and they'll never be up again.</li>
+        <li>[argue,against] Work them sick and you'll have two in bed instead of one.</li>
+        <li>[argue,against] You'd send a dying man to haul stone.</li>
+        <li>[argue,otherwounded] Look at you, you can barely lift that cup.</li>
+        <li>[argue,ill] I'm the one who's ill, and I'll decide.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'll make them something warm to eat.</li>
+        <li>[agree,against] I only want them to feel useful, that's all.</li>
+        <li>[debate] Let's just look after them, whichever way.</li>
+        <li>[argue,for] Please don't make them work, they look awful.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Bed it is.</li>
+        <li>[agree,against] Back to work, then.</li>
+        <li>[debate] Ask the healer.</li>
+        <li>[argue] No.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] And I'll read to them in my best voices.</li>
+        <li>[agree,against] Work's the best medicine, after soup.</li>
+        <li>[debate] Let's split the difference, half a day in bed.</li>
+        <li>[argue,against] Fine, but when you catch it, you're on the roof.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,for] Better they rest than we bury them.</li>
+        <li>[agree,against] Work or bed, the sickness does as it likes.</li>
+        <li>[debate] We'll lose someone to this one day, whatever we do.</li>
+        <li>[argue,for] Then we'll see who's right at the graveside.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Rest shortens the recovery, so it pays.</li>
+        <li>[agree,against] Idle hands cost us, ill or not.</li>
+        <li>[debate] It's a matter of how many days each way.</li>
+        <li>[argue] Your sentiment is noted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Reply_Voices</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] That's how I see it too.</li>
+        <li>[agree] I'll tell the others, then.</li>
+        <li>[agree] Nobody wants it to get worse, at least.</li>
+        <li>[agree,mixed] It's hard to call, you're right about that.</li>
+        <li>[agree,subject] {SUBJECT} would say the same, if you asked.</li>
+        <li>[agree,doctor] I'll look in on them again before dark.</li>
+        <li>[debate] There's something in that, but not all of it.</li>
+        <li>[debate] Maybe, though it depends how bad it gets.</li>
+        <li>[debate] I'd want to see them myself before I said.</li>
+        <li>[debate,mixed] Neither of us knows, really.</li>
+        <li>[debate,otherill] You'd know better than me, you've got it.</li>
+        <li>[argue] That's not what I meant at all.</li>
+        <li>[argue] You weren't there when they were at their worst.</li>
+        <li>[argue] I don't need telling how to look after people.</li>
+        <li>[argue,mixed] Make up your mind, then.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm glad someone's thinking of them.</li>
+        <li>[agree] Let's both look in later.</li>
+        <li>[debate] I just don't want anyone to suffer for it.</li>
+        <li>[debate] We all want them well, that's the main thing.</li>
+        <li>[argue] I'm sorry, I'm worried, that's all.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Yes.</li>
+        <li>[agree] Fair.</li>
+        <li>[debate] Maybe.</li>
+        <li>[argue] Wrong.</li>
+        <li>[argue] Leave it.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Then that's settled, and I'm in charge of the soup.</li>
+        <li>[agree] They'll be up before we know it.</li>
+        <li>[debate] Ask me again after supper, I think better full.</li>
+        <li>[debate] We could ask the patient, they love giving orders.</li>
+        <li>[argue] You'd argue with a fever if it let you.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] It's always something, isn't it.</li>
+        <li>[agree] I'd just like one month with nobody ill.</li>
+        <li>[debate] It won't make much difference either way.</li>
+        <li>[debate] We'll find out, one way or the other.</li>
+        <li>[argue] You'll be sorry if it goes badly.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Reasonable.</li>
+        <li>[agree] That's the efficient course.</li>
+        <li>[debate] The healer's view should settle it.</li>
+        <li>[debate] There are costs both ways.</li>
+        <li>[argue] That isn't a serious argument.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Close_More</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I'll keep an eye on them tonight.</li>
+        <li>[agree,for] Bed, broth and quiet, then.</li>
+        <li>[agree,against] Light work tomorrow, and see how they go.</li>
+        <li>[agree,subject] I'll tell {SUBJECT} we were asking after them.</li>
+        <li>[debate] Let's see how they are by supper.</li>
+        <li>[debate,serious] Let's keep our distance till it's passed, all the same.</li>
+        <li>[argue] Do what you like, I'm looking after them.</li>
+        <li>[argue,for] I'll carry their share, and you can watch.</li>
+        <li>[argue,against] Fine, let them lie there.</li>
+      </plain>
+      <warm>
+        <li>[agree] Here's to everyone well again soon.</li>
+        <li>[debate,otherill] And you take care of yourself too.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Right, done.</li>
+        <li>[argue] Suit yourself.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] I'll make the soup, nobody else is allowed.</li>
+        <li>[debate] We'll have them up and dancing in a week.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Let's hope it stops there.</li>
+        <li>[debate] We'll see who's still standing next week.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Settled, then.</li>
+        <li>[debate] We'll review it tomorrow.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 

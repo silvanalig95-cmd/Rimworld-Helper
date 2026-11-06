@@ -4,8 +4,8 @@
   <!--
     What the new moments of life together leave between two colonists (Defs/SocialEventDefs/Rimfolk_SocialEvents_Together.xml):
     mostly a few points of opinion and something small instead of mood (RewardInstead: belonging, a little recreation or
-    rest); the sore ones a point or two of mood, as the other social events' are; four warm ones a few points, as a word
-    when it mattered has always been.
+    rest); the sore ones a point or two of mood, as the other social events' are; two warm ones two points (a teacher's praise, a quiet word
+    after a loss), so the new moments lift nobody's mood more than the old ones did.
   -->
 
   <!-- ===================== After a fight ===================== -->
@@ -37,7 +37,8 @@
     <durationDays>5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>paid back</label><description>I carried them out of a bad day once. They haven't forgotten it, and today they made sure I knew.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>paid back</label><description>I carried them out of a bad day once. They haven't forgotten it, and today they made sure I knew.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -46,7 +47,8 @@
     <durationDays>4</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>took the weight off my bad side</label><description>My old injury was playing up, and they took the heavy end without making a thing of it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>7</baseOpinionOffset></li></stages>
+    <stages><li><label>took the weight off my bad side</label><description>My old injury was playing up, and they took the heavy end without making a thing of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>7</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><rest>0.05</rest></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== At the same work ===================== -->
@@ -75,10 +77,10 @@
   <ThoughtDef>
     <defName>Rimfolk_SocT_TeacherPraised</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>5</durationDays>
+    <durationDays>4</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my teacher's praise</label><description>I showed my teacher what I'd made. They looked at it a long time, and then they said it was good.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>my teacher's praise</label><description>I showed my teacher what I'd made. They looked at it a long time, and then they said it was good.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -105,10 +107,10 @@
   <ThoughtDef>
     <defName>Rimfolk_SocT_QuietWord</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>5</durationDays>
+    <durationDays>4</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a quiet word after the loss</label><description>They didn't say much about the one we lost, only enough to let me know they were thinking of them too.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>a quiet word after the loss</label><description>They didn't say much about the one we lost, only enough to let me know they were thinking of them too.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
