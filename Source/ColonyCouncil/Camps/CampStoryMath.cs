@@ -131,6 +131,9 @@ namespace ColonyCouncil
         /// <summary>The parting word comes within the last day of a stay of two days or more.</summary>
         public static bool PartingDue(float daysHere, float stayDays) => stayDays >= 2f && daysHere >= stayDays - 1f && daysHere < stayDays;
 
+        /// <summary>The parting word is said at dusk (17 to 21), as its letter tells it; the stay's last day always holds those hours.</summary>
+        public static bool PartingHour(int hour) => hour >= 17 && hour <= 21;
+
         /// <summary>Meals for the road: two a head.</summary>
         public static int Provisions(int people) => Math.Max(2, people * 2);
 

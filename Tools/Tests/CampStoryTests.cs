@@ -47,6 +47,8 @@ public static class CampStoryTests
         C(!CampStoryMath.TroubleDue(3.6f, 4f), "and not in the last half day");
         C(!CampStoryMath.PartingDue(2f, 4f) && CampStoryMath.PartingDue(3.2f, 4f) && !CampStoryMath.PartingDue(4.1f, 4f), "the parting word comes in the last day, before they go");
         C(!CampStoryMath.PartingDue(1f, 1.5f), "a camp of a night and a day says no parting word");
+        C(CampStoryMath.PartingHour(17) && CampStoryMath.PartingHour(21) && !CampStoryMath.PartingHour(16) && !CampStoryMath.PartingHour(22) && !CampStoryMath.PartingHour(3),
+            "the parting word comes at dusk, as its letter says (the last day always holds those hours)");
         C(CampStoryMath.Provisions(4) == 8 && CampStoryMath.Provisions(1) == 2, "provisions are two meals a head");
 
         // ---------------- Neighbours for good ----------------
