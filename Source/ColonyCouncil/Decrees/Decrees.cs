@@ -158,6 +158,11 @@ namespace ColonyCouncil
         public List<SkillDef> practiceSkills;
         public float practiceXpPerHour;
         public bool practiceNeedsViolence;
+        /// <summary>
+        /// What it can bring on the body while it holds (Harm/): the drills' evening bouts, the militia's muster, a work
+        /// injury on a long day. Named on its card and in its letter (Harm.DecreeLine).
+        /// </summary>
+        public DecreeHurt hurts;
         /// <summary>Only when someone in the colony is grieving (a day of mourning).</summary>
         public bool needsGrief;
         /// <summary>Fraction of grief memories' duration that passes each day the decree holds.</summary>

@@ -117,8 +117,7 @@
     <defName>Council_Decree_Militia</defName>
     <kind>order</kind>
     <label>militia drills</label>
-    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour with spear and bow most evenings, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. Gentler than the drills decree, and less resented: only the kind and wimps mind it much.</description>
-    <eras><li>tribal</li><li>medieval</li><li>industrial</li></eras>
+    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour of drill most evenings, with whatever weapons the colony keeps, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. Gentler than the drills decree, and less resented: only the kind and wimps mind it much.</description>
     <requestWhen><li>RecentThreat</li><li>Newcomer</li></requestWhen>
     <order>22</order>
     <strainPerDay>0.5</strainPerDay>
@@ -131,6 +130,7 @@
     <practiceSkills><li>Shooting</li><li>Melee</li></practiceSkills>
     <practiceXpPerHour>12</practiceXpPerHour>
     <practiceNeedsViolence>true</practiceNeedsViolence>
+    <hurts>Muster</hurts>
     <reactions>
       <li><nonViolent>true</nonViolent><reaction>Neutral</reaction></li>
       <li><beliefs><li>NoViolence</li></beliefs><reaction>Dislike</reaction></li>
@@ -151,6 +151,8 @@
         <li>Not a war camp. Just an hour in the evenings, so everyone knows which end of the spear to hold.</li>
         <li>[tribal] Every hunter of my people was a warrior when the camp needed one. We should be the same.</li>
         <li>[medieval] The village muster, on the green, every evening. It's how ordinary folk held off the bandits.</li>
+        <li>[industrial] An hour at the range and the bayonet drill after, like any town's home guard.</li>
+        <li>[spacer] Stun batons and training rounds for an hour an evening, so nobody freezes when it counts.</li>
         <li>[newcomer] We've new faces who've never held a weapon. A few evenings of drill would fix that.</li>
       </plain>
       <blunt><li>An hour a day. Nobody dies of an hour a day.</li></blunt>

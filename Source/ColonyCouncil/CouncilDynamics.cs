@@ -859,6 +859,8 @@ namespace ColonyCouncil
             var text = new System.Text.StringBuilder();
             text.Append("CC_Decree_EnactedText".Translate(def.label, TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))).Resolve());
             if (def.effects.Count > 0) text.Append("\n\n").Append(string.Join("\n", def.effects.Select(e => "  - " + e)));
+            string hurtLine = Harm.DecreeLine(def);
+            if (hurtLine != null) text.Append(def.effects.Count > 0 ? "\n" : "\n\n").Append("  - ").Append(hurtLine);
             var fan = lovers.RandomElementWithFallback();
             if (fan != null)
             {
