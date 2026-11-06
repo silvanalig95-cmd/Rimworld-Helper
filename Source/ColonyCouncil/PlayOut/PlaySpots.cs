@@ -406,13 +406,7 @@ namespace ColonyCouncil
             float bestDist = float.MaxValue;
             foreach (var t in map.listerBuildings.allBuildingsColonist)
             {
-                // A campfire still being built is a frame, not a fire.
-                if (t == null || !t.Spawned || t is Frame) continue;
-                string n = t.def.defName;
-                if (n.IndexOf("Campfire", System.StringComparison.OrdinalIgnoreCase) < 0 && n.IndexOf("Bonfire", System.StringComparison.OrdinalIgnoreCase) < 0
-                    && n.IndexOf("FirePit", System.StringComparison.OrdinalIgnoreCase) < 0) continue;
-                var fuel = t.TryGetComp<CompRefuelable>();
-                if (fuel != null && !fuel.HasFuel) continue;
+                if (!LitFire(t)) continue;
                 float d = near != null ? t.Position.DistanceToSquared(near.Position) : 0f;
                 if (d < bestDist)
                 {
@@ -421,6 +415,27 @@ namespace ColonyCouncil
                 }
             }
             return best;
+        }
+
+        /// <summary>A campfire, bonfire or fire pit standing and burning (a campfire still being built is a frame, not a fire).</summary>
+        private static bool LitFire(Thing t)
+        {
+            if (t == null || !t.Spawned || t is Frame) return false;
+            string n = t.def.defName;
+            if (n.IndexOf("Campfire", System.StringComparison.OrdinalIgnoreCase) < 0 && n.IndexOf("Bonfire", System.StringComparison.OrdinalIgnoreCase) < 0
+                && n.IndexOf("FirePit", System.StringComparison.OrdinalIgnoreCase) < 0) return false;
+            var fuel = t.TryGetComp<CompRefuelable>();
+            return fuel == null || fuel.HasFuel;
+        }
+
+        /// <summary>A lit fire of the colony's within <paramref name="radius"/> of a gathering's spot: its words may speak of the fire.</summary>
+        public static bool FireNear(Map map, IntVec3 spot, float radius = 6f)
+        {
+            if (map == null || !spot.IsValid) return false;
+            foreach (var t in map.listerBuildings.allBuildingsColonist)
+                if (LitFire(t) && t.Position.InHorDistOf(spot, radius))
+                    return true;
+            return false;
         }
 
         /// <summary>The gathering is over: the fire laid for it burns down to ash.</summary>

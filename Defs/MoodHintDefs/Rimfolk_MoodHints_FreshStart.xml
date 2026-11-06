@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A fresh start in the same world (Source/ColonyCouncil/Colonies/Foundings.cs). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_Uprooted</defName>
+    <thoughts><li>Rimfolk_Uprooted</li></thoughts>
+    <fix>They were sent to a new colony, or kept at the old one, against their wish. It fades after a season. With both colonies standing they may ask once to move to the one they wanted; letting them go ends the reason for it.</fix>
+    <act>Let it fade, or move them</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_FreshStart</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_Parted</defName>
+    <thoughts><li>Rimfolk_Parted</li></thoughts>
+    <fix>Someone close to them lives at the other colony now. It fades after a season.</fix>
+    <act>Let it fade</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_FreshStart</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_FirstNight</defName>
+    <thoughts><li>Rimfolk_FirstNight</li></thoughts>
+    <fix>The new colony's first night, all of the founders together.</fix>
+    <act>Nothing to do</act>
+    <actionable>false</actionable>
+    <keep>They started a new home together. It stays with them a few days.</keep>
+    <article>Council_Alm_C_FreshStart</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

@@ -104,7 +104,7 @@ namespace ColonyCouncil
         private static JourneyPlan Clone(JourneyPlan p) =>
             new JourneyPlan
             {
-                id = p.id, map = p.map, travellers = p.travellers.ToList(), animals = p.animals.ToList(), destTile = p.destTile, destObject = p.destObject,
+                id = p.id, map = p.map, founding = p.founding, travellers = p.travellers.ToList(), animals = p.animals.ToList(), destTile = p.destTile, destObject = p.destObject,
                 destName = p.destName, startTile = p.startTile, departAbs = p.departAbs, andBack = p.andBack, days = p.days, daysChosen = p.daysChosen, low = p.low,
                 high = p.high, packing = p.packing.Select(l => l.Copy()).ToList()
             };

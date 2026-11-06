@@ -305,9 +305,21 @@ namespace ColonyCouncil
                 ? talker : GatheringTouches.Speaker(kind, here);
             string line = null;
             if (!lines.NullOrEmpty() && Rand.Chance(0.5f)) line = lines.RandomElement();
-            if (line.NullOrEmpty() && !pool.NullOrEmpty()) line = Flavor.FromPool(pool, speaker);
+            if (line.NullOrEmpty() && !pool.NullOrEmpty()) line = Flavor.FromPool(pool, speaker, null, null, Tags(speaker));
             // together: said at the gathering itself, by someone standing in its area with the others.
             if (!line.NullOrEmpty()) Speech.Say(speaker, line, null, SpeechColor);
+        }
+
+        /// <summary>
+        /// The moment's tags for a line said here: [fire] only with a fire burning at the spot (the words say what the map
+        /// shows), [speaker] for whoever leads it.
+        /// </summary>
+        private string[] Tags(Pawn speaker)
+        {
+            var tags = new List<string>(2);
+            if (laidFire != null && laidFire.Spawned || PlaySpots.FireNear(Map, spot)) tags.Add("fire");
+            if (speaker != null && speaker == organizer) tags.Add("speaker");
+            return tags.ToArray();
         }
 
         public override string GetReport(Pawn pawn) => words ? "CC_Play_Report_Words".Translate() : ("CC_Play_Report_" + kind).Translate();

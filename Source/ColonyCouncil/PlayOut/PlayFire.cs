@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// wood out from the stores to the place in the open the colony's gatherings choose now (PlayYard.cs), lays a campfire there (the game's own)
     /// and lights it, and the gathering is held round it once it burns. When the gathering is over, the fire laid for it
     /// burns down to ash (LordJob_PlayOut.laidFire). With the wood already paid for by the answer, they lay it with what
-    /// they find there. With no wood in the stores, or nowhere in the open to lay it, there is no fire, and the answer's
+    /// they find there. With no wood in the stores (or loose near the colony's middle), or nowhere in the open to lay it, there is no fire, and the answer's
     /// other places are tried, as before.
     /// </summary>
     public static class PlayFire
@@ -124,15 +124,25 @@ namespace ColonyCouncil
             x != null && x.Spawned && x.Map == map && !x.DevelopmentalStage.Juvenile() && x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
             && !Beliefs.Forbids(x, Belief.Indoors);
 
-        /// <summary>Wood from the colony's stores, the stack nearest the one who carries it, or null with too little anywhere.</summary>
+        /// <summary>
+        /// Wood from the colony's stores, the stack nearest the one who carries it, or null with too little anywhere. Wood
+        /// lying loose near the colony's middle counts too: on a colony's first day (a founding, Colonies/Foundings.cs)
+        /// what the caravan brought lies where it was set down, with no stockpile or home area yet.
+        /// </summary>
         private static Thing Wood(Map map, Pawn by)
         {
             var def = ThingDefOf.WoodLog;
-            if (def == null || map.resourceCounter.GetCount(def) < Cost) return null;
-            return map.listerThings.ThingsOfDef(def)
-                .Where(t => t.Spawned && !t.IsForbidden(by) && (t.IsInAnyStorage() || map.areaManager.Home[t.Position]) && by.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some))
-                .OrderByDescending(t => t.stackCount >= Cost).ThenBy(t => t.Position.DistanceToSquared(by.Position)).FirstOrDefault();
+            if (def == null) return null;
+            var center = TemplatePlanner.ColonyCenter(map);
+            bool Ours(Thing t) => t.IsInAnyStorage() || map.areaManager.Home[t.Position] || center.IsValid && t.Position.InHorDistOf(center, LooseRadius);
+            var stacks = map.listerThings.ThingsOfDef(def)
+                .Where(t => t.Spawned && !t.IsForbidden(by) && Ours(t) && by.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)).ToList();
+            if (stacks.Sum(t => t.stackCount) < Cost) return null;
+            return stacks.OrderByDescending(t => t.stackCount >= Cost).ThenBy(t => t.Position.DistanceToSquared(by.Position)).FirstOrDefault();
         }
+
+        /// <summary>How far from the colony's middle loose wood is still the colony's.</summary>
+        private const float LooseRadius = 20f;
 
         /// <summary>
         /// Open ground where a campfire can go, with room to stand round it: at the place in the open the colony's

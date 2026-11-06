@@ -501,6 +501,19 @@ MODEL = {
     # Homes (Lean/Homes.cs)
     "Lean/Homes.cs:ties": ("colonists", 1, 140, "one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly"),
     "Lean/Homes.cs:known": ("fixed", 1, V, "the homes at the last hourly look (their settlements' ids), one per home"),
+    # A fresh start in the same world (Colonies/HomesFounding.cs, on the homes' component): written only while one is under
+    # way or has something still to come, so a save of one colony writes none of it.
+    "Colonies/HomesFounding.cs:foundings": ("while", 1, 520, "a fresh start under way, one at a time, let go once its colony stands and what comes after is done "
+                                            "(the newcomers chosen or their call let go after 10 days, the first night, the old colony abandoned)"),
+    "Colonies/HomesFounding.cs:party": ("while", 8, P, "per founding: who goes from the colony (counted under foundings)"),
+    "Colonies/HomesFounding.cs:sentAgainst": ("while", 4, P, "per founding: those sent against their wish (counted under foundings)"),
+    "Colonies/HomesFounding.cs:keptAgainst": ("while", 4, P, "per founding: those kept against their wish (counted under foundings)"),
+    "Colonies/HomesFounding.cs:asks": ("while", 6, 120, "those sent or kept against their wish who may ask once to move, for the season after a founding "
+                                       f"(FoundingMath.AskMoveToDays, {const('Colonies/FoundingMath.cs', 'AskMoveToDays', 15):.0f} days)"),
+    # The record of every colony on the world ledger (World/Ledger/LedgerColonies.cs): written once a second colony is founded.
+    "World/Ledger/LedgerColonies.cs:colonyRecords": ("cap", (const("Colonies/FoundingMath.cs", "MaxRecords", 24), 0.01), 180,
+                                                     "one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold "
+                                                     "into the history); none in a save of one colony"),
     # The herd's year and the beast that stays, one per colony (Animals/HerdStory.cs, ResidentBeast.cs; one home in the model)
     "CouncilGameComponent.cs:herds": ("fixed", 1, 420, "one per colony: its herd's leader and line (the line's ids have rows of their own)"),
     "CouncilGameComponent.cs:beasts": ("fixed", 1, 380, "one per colony: the beast that stays on its land (its known ids have rows of their own)"),

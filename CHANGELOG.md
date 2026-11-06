@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A fresh start
+
+*6 November 2026, version 0.117.0*
+
+- Found a new colony from a colony's card: pick a place on the world map, with what Rimfolk knows of it beside the cursor, then choose who goes, who stays, whether newcomers join and whether the old colony is kept or abandoned.
+- Every grown-up shows whether they want to go, want to stay or are torn, and why. Anyone sent or kept against their wish feels uprooted for a season, and close bonds split between two colonies feel parted.
+- The party travels by caravan with a planned kit for the road and first shelter, or by the colony's own pods, shuttle or gravship. When they arrive a letter asks to settle, and the founders gather on their first night, round a fire when there is wood for one.
+- Newcomers are made in a window like the one the game offers after a game over. They are free when the old colony is abandoned; with it kept they come at most once a year, and the old colony pays their passage.
+- When a founding needs it, Rimfolk raises the game's colony limit by one, never past five, and says so in the window. It lowers it again when the old colony is abandoned or the founding is called off.
+- Make this the seat moves where your colony as a whole is run from, at most once a season. Letters to the world, the world's days and the neighbours with faces follow it, and the old seat's people trust the council a little less.
+- The region map's Ours view lists every home with its people, speaker, mood and strain, and with more than one colony every window names the colony in view.
+
 ## Names that pass, fights that spark goals
 
 *6 November 2026, version 0.116.2*

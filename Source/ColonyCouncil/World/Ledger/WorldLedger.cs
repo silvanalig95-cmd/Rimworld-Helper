@@ -304,6 +304,8 @@ namespace ColonyCouncil
             ExposeKnown();
             ExposeKeeps();
             ExposeRegion();
+            // Every colony ever founded, once there is more than one (LedgerColonies.cs).
+            ExposeColonies();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<Tie>();

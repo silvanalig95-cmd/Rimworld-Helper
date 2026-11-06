@@ -9,6 +9,8 @@
 > famine or plague in the region), never a hidden roll, and is told by letter, naming them and what happened; 15B, the
 > town grows at Faction Territories' own pace (about one new town every 30 days).
 
+> **Release 1, a fresh start, is built** (6 November 2026): see "The order to build it in", item 1, for what differs.
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
@@ -539,6 +541,31 @@ colonies at once after. Each release plays as before with its settings off and o
    the settling question and the first night, `LedgerColony` and the `colony:` kinds, the names founders carry, the old
    colony kept or abandoned; the seat's button and what moves (3a); the colonies on the Ours lens with their cards and
    acts, and the colony chip (3c). Needs only 7b.
+
+   **Built (release 1, 6 November 2026; `Source/ColonyCouncil/Colonies/`, DESIGN.md "A fresh start").** As above, with
+   the decisions 1A, 2A, 3A, 4A and 5B. What differs from this section and from section 1:
+   - *Who goes* is the home's free people, grown-ups and children; animals go through the journey planner (pack animals
+     and mounts added there); prisoners and slaves aren't in the list, and with the old colony abandoned they are the
+     game's to settle as its Abandon does. A wish's reasons are the ties above but a faith's relic or shrine.
+   - *Newcomers* are made with the game's window when the colony stands (a letter asks), or at once when nobody goes
+     from the colony; with a party they are not made in the founding window. They walk in from the edge with their
+     possessions; a medieval group's cart and pack animal, and newcomers by pods or shuttle, are left for the content
+     pass. Their faith is the one the game gives the player's people (no choice of another).
+   - *The means*: caravan by the journey planner, the colony's own pods or shuttle where it has a launcher, the
+     gravship; Vehicle Framework's vehicles and the Empire's shuttle permit are not offered (a vehicle caravan formed by
+     the player and stopped at the place is asked "Settle here?" as any caravan is). The kit is fitted to 90% of the
+     party's room (fewer days of food first, then less of the materials).
+   - *The old colony abandoned* waits for anyone of the party still on its map and says so once; the player's own
+     Abandon is always there. Its council goes with its people to the new home.
+   - *The game's limit* (5B) is raised as the founding starts, and set back by one once the old colony is abandoned or
+     the founding is called off, while it is still what Rimfolk set.
+   - *The records*: `LedgerColony` is written only once a second colony is founded (a save of one colony keeps none);
+     the history kinds `colony:founded`, `colony:seat`, `colony:abandoned` are written (the others are named for
+     releases 2 and 4); the parting day is a calendar kind of its own (`Parting`), kept as a remembrance. No first
+     meeting is called by the founders: the new council keeps 7a's own rhythm. The year letter already had a part per
+     colony; This week doesn't list a founding planned (its journey shows as any journey does).
+   - *The Ours lens*: a home's next day is named by its date (no countdown); a colony of the past opens a card from its
+     record. Tests: `Tools/Tests/FoundingTests.cs` (the pure rules and the game's calls) beside `ManyHomesTests`.
 2. **Handing a colony over** (section 2): the window, the meeting's vote, the ceremony, the new people (def choice,
    its heads, the bond), the town and its notables, the kept layout and its placing, letters, trade and its days,
    homecomings and moving there, taking it back peacefully and by force; the gravship case; the old colony handed over

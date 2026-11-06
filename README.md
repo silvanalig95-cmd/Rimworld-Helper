@@ -1850,6 +1850,28 @@ foot, bars for the load against the room, the caravan's own speed, and the food'
 RimMarket, what lies on the colony's stalls is listed beside the stores, the stores' taken first, and a traveller
 takes the rest out of the stall's stock in the last hours.
 
+### A fresh start in the same world
+**Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
+what Rimfolk knows of the tile under the cursor: whose land it is, the towns near it and how their peoples stand with
+the colony, how remote it would be, the days by caravan from each home, and the game's own checks. The founding window
+then asks who goes from that home, each grown-up's wish shown with why (their own going or staying, friends and
+rivals, being at odds with most here, a council seat, a room of their own, their age): your choice, but anyone sent or
+kept against their wish feels **uprooted** for a season and may ask later to move, and close bonds split between the
+two colonies feel **parted**. **Newcomers** come too if you like, made with the game's own window for new people:
+free when the old colony is abandoned at the same time, else at most once a year with their passage paid from the
+stores (named before you choose). The old colony is **kept** as a second home or **abandoned** once those who go have
+left. The party goes by the journey planner's caravan (food for the road and fifteen days, and the first shelter's
+materials by the colony's means), or by the colony's own pods, shuttle or gravship; when their caravan reaches the
+place, **Settle here?** runs the game's own Settle. The new colony has its own council and calendar, a first night at
+a fire, a milestone in the history and a place on the record of every colony; the old one keeps the parting day. When
+the new colony would pass the game's colony limit (Options, Gameplay), Rimfolk raises it by one for you and says so
+(never past five, and set back once the old colony is abandoned). **Make this the seat** on a colony's card (at most
+once a season) moves where the colony as a whole is run from, and the world's attention with it; the old seat's
+people trust the council a little less. The Ours lens lists every colony however far, with its people, speaker,
+mood and strain, and the colonies of the past; with more than one colony, every view's header names the colony in view
+in a chip that goes to another. Settings: Many colonies (Fresh starts, Newcomers). Handing a colony over to a people
+of its own comes next.
+
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages
@@ -3559,7 +3581,8 @@ The pages:
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
   hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
-  sparring, insults, duels, their chatter); then the tools: journeys, the weather (weather that changes like weather,
+  sparring, insults, duels, their chatter); then the tools: journeys, many colonies (fresh starts, and newcomers for
+  them), the weather (weather that changes like weather,
   its pull on the temperature, the forecast, rain washing the yard), personal touches, **material counts in build
   menus** and build priorities on blueprints, reserved slots on shelves and drinks and smokes kept out of the freezer,
   taking cover with a drag, what the room planner does by default (plan the furniture, cut plants, mine rock, replace

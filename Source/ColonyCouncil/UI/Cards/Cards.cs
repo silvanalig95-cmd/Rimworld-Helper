@@ -395,6 +395,16 @@ namespace ColonyCouncil
                 m.iconColor = UiKit.Faint;
                 m.subtitle = T("CC_Card_TileSub");
             }
+            else if (wo == null && r.kind == ThingKind.Colony && WorldLedger.ColonyRecord(r.id) is LedgerColony past)
+            {
+                // A colony of the past: what the ledger's record of every colony kept of it (Colonies/ColonyCards.cs).
+                m.title = past.name ?? ThingRefs.Name(r);
+                m.gone = true;
+                m.icon = Icons.Colony;
+                m.iconColor = UiKit.Faint;
+                m.subtitle = ColonyCards.PastLine(past);
+                if (past.tile >= 0) m.tile = tile = new PlanetTile(past.tile);
+            }
             else if (wo == null)
             {
                 // A town gone from the world: what the ledger kept of it.

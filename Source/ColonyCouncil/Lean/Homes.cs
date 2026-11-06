@@ -35,9 +35,9 @@ namespace ColonyCouncil
     /// this keeps (each colonist's last home, the stored seat, the homes at the last look) is saved here, and looked
     /// after in the council's hour (<see cref="Hourly"/>).
     /// </summary>
-    public class Homes : GameComponent
+    public partial class Homes : GameComponent
     {
-        /// <summary>The seat the player chose (a settlement's id), or none: then the first home founded.</summary>
+        /// <summary>The seat the player chose (a settlement's id, Colonies/ColonySeat.cs), or none: then the first home founded.</summary>
         public int seat = HomesMath.None;
         /// <summary>One per colonist who has been on a home: the last home they lived on.</summary>
         private List<HomeTie> ties = new List<HomeTie>();
@@ -190,7 +190,7 @@ namespace ColonyCouncil
         /// </summary>
         public static Map Seat => MapOf(SeatKey);
 
-        /// <summary>Stores the seat (no button yet); null or a map that isn't a home goes back to the first founded.</summary>
+        /// <summary>Stores the seat ("Make this the seat" on a colony's card, Colonies/ColonySeat.cs); null or a map that isn't a home goes back to the first founded.</summary>
         public static void SetSeat(Map map)
         {
             var h = Instance;
@@ -428,6 +428,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
             Scribe_Collections.Look(ref known, "known", LookMode.Value);
             Scribe_Values.Look(ref looked, "looked");
+            // A fresh start under way, the seat's last move and the newcomers' last passage (Colonies/HomesFounding.cs).
+            ExposeFounding();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<HomeTie>();

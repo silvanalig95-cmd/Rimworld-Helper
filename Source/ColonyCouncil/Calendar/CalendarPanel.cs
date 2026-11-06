@@ -67,6 +67,7 @@ namespace ColonyCouncil
                 case CalendarKind.FaithDay: return Icons.CatIdeology;
                 case CalendarKind.Rescue: return Icons.Heart;
                 case CalendarKind.Custom: return Icons.Ways;
+                case CalendarKind.Parting: return Icons.Colony;
                 default: return Icon ?? Icons.Chronicle;
             }
         }
@@ -283,6 +284,7 @@ namespace ColonyCouncil
                     string answer = ColonyCalendar.KeepingAnswer(d.CustomDef);
                     return answer == null ? origin : origin + " " + "CC_Fest_Origin_Answer".Translate(answer.Named("ANSWER")).Resolve();
                 }
+                case CalendarKind.Parting: return ColonyCalendar.PartingOrigin(d);
                 default: return "CC_Cal_Origin_Holiday".Translate(d.sinceYear).Resolve();
             }
         }

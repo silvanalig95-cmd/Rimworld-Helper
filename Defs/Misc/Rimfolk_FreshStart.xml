@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A fresh start in the same world (Source/ColonyCouncil/Colonies/): its questions, in one letter kind
+    (ChoiceLetter_Founding): "Settle here?" when the founding party's caravan reaches the place, the newcomers to choose
+    once the colony stands, and someone sent or kept against their wish asking to move.
+  -->
+  <LetterDef>
+    <defName>Rimfolk_FoundingLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Founding</letterClass>
+    <color>(205, 190, 140)</color>
+    <flashColor>(230, 215, 165)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

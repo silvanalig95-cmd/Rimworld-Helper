@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 521; modelled: 521; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** after two, **3,010 KB** after five.
+Saved collections found: 527; modelled: 527; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,390 KB** after a year, **2,831 KB** after two, **3,012 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -254,6 +254,7 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `Social/Banishment.cs:fights` | social fights noted as they start (ids and the tick), kept 35 days, at most BanishTracker.MaxFights | window | 10 | 10 | 10 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
+| `Colonies/HomesFounding.cs:asks` | those sent or kept against their wish who may ask once to move, for the season after a founding (FoundingMath.AskMoveToDays, 15 days) | while | 6 | 6 | 6 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
@@ -268,6 +269,8 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
+| `World/Ledger/LedgerColonies.cs:colonyRecords` | one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold into the history); none in a save of one colony | cap | 1 | 1 | 3 | 0.5 |
+| `Colonies/HomesFounding.cs:foundings` | a fresh start under way, one at a time, let go once its colony stands and what comes after is done (the newcomers chosen or their call let go after 10 days, the first night, the old colony abandoned) | while | 1 | 1 | 1 | 0.5 |
 | `Visitors/VisitorsMore2.cs:deals` | a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs) | while | 2 | 2 | 2 | 0.5 |
 | `World/Region/TradingPost.cs:posts` | per home: the trading posts standing near it, TradingPostMath.MaxPerHome at most, each dropped when it closes | cap | 1 | 2 | 2 | 0.5 |
 | `Ailments/AilmentTracker.cs:announced` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
@@ -454,6 +457,9 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `Building/Suggest/SuggestUndos.cs:cells` | per step (counted under done): the cells a field step added or moved, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Suggest/SuggestUndos.cs:targets` | per step (counted under done): their old counts | fixed | 3 | 3 | 3 | (in its record) |
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
+| `Colonies/HomesFounding.cs:keptAgainst` | per founding: those kept against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
+| `Colonies/HomesFounding.cs:party` | per founding: who goes from the colony (counted under foundings) | while | 8 | 8 | 8 | (in its record) |
+| `Colonies/HomesFounding.cs:sentAgainst` | per founding: those sent against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |

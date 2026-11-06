@@ -47,7 +47,8 @@ namespace ColonyCouncil
         /// <summary>Which line pools speak for a day: its own kind's, or, for the player's days and a day kept another way, the way's.</summary>
         public static string LinesKey(CalendarDay d)
         {
-            if (d.kind == CalendarKind.Holiday) return d.way.ToString();
+            // A parting day is kept as its way is (a remembrance), in the way's own words.
+            if (d.kind == CalendarKind.Holiday || d.kind == CalendarKind.Parting) return d.way.ToString();
             if (d.way == DayWay.Personal || d.way == DefaultWayOf(d)) return d.kind.ToString();
             return d.way.ToString();
         }

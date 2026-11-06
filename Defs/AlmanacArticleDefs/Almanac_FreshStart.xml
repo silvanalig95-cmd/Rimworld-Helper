@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on founding a new colony in the same world (Source/ColonyCouncil/Colonies/: FoundingMath.cs,
+       Foundings.cs, FoundingWindow.cs, NewcomersWindow.cs, ColonySeat.cs, ColonyCards.cs; docs/design/stage3-many-colonies.md, release 1). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_FreshStart</defName>
+    <label>a fresh start</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Found a new colony in the same world: a place picked on the world map, a party from one of your homes, newcomers or both, and the old colony kept as a second home or abandoned. The world, its peoples and the colony's history go on.</summary>
+    <tip>Keep the old colony and make the new one the seat, and the world's attention follows you there.</tip>
+    <description>"Found a new colony" is an act on a colony's card (the region window, the map's Ours lens, a home's row). It opens the game's world map: pick a place, and beside the cursor Rimfolk says what it knows of the tile under it: whose land it is (with Faction Territories), the towns within 12 tiles and how their peoples stand with the colony, how remote it would be (the region's own rule: close to its neighbors, a little out of the way, rather remote, remote, far from everyone), the days by caravan from each home, and the game's own checks (a place a colony can stand, and the goodwill a town nearby would lose each season). One founding at a time.
+
+The founding window then asks who goes from that home. Every one of its people is listed; children follow their parents unless you move them. Each grown-up shows a wish, worked out from their own ties: their own (a partner, a child or a parent) going or staying pull hardest, then being at odds with most here (the fights the council counts), close friends and rivals, a seat on the council, a room of their own, old age (reasons to stay) and youth (a reason to go). It reads "wants to go", "wants to stay" or "torn", with the reasons on hover. Who goes is your choice and nobody refuses, but anyone sent or kept against their wish feels uprooted for a season (-4, 15 days), and with the old colony kept may ask once, between the third day and the end of that season, to move to the colony they wanted: let them go (a journey plan takes them there) or ask them to stay (2 trust). Close bonds split between the two colonies (a partner, a parent or child, a sibling, a friend of 60 or more) feel parted for a season (-3 each, 15 days, the three closest at most).</description>
+    <sections>
+      <li>
+        <heading>How they go</heading>
+        <points>
+          <li>By caravan, every age: the journey planner's own plan, one way to the place, with food for the road and fifteen days more, and the founding kit by the colony's means from what the stores hold: for a tribe or a medieval colony 150 wood and 25 more for each of the party; for industry and beyond 100 steel and 25 more each, 4 components and one more each, and 60 wood; and medicine, one for every two. Open it from the Journeys section to change anything, as with any journey. The farewell at the gate is a parting's.</li>
+          <li>By the colony's own pods or shuttle (where it has a launcher at that home): load them and send them to the place the game's way.</li>
+          <li>By the gravship (Odyssey, with its engine at that home): fly it there; the colony stands where it lands. Without a grav anchor left behind, the game abandons the old colony at takeoff.</li>
+          <li>When a caravan of theirs stands at the place, or within two tiles of it, a letter asks "Settle here?": it is the game's own Settle, with its warning near another people's town. The game's own Settle button works just the same.</li>
+          <li>Nobody from the colony: the newcomers alone found it. The settlement and its map are made the game's way and they walk in.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Newcomers</heading>
+        <text>A founding may call newcomers, by the colony's age: word sent along the trade paths, a call for settlers at the markets, an advertisement by radio, a colonization call by comms. They are made with the game's own window for new people, the one it offers after a game over: 1 to 6 of them, each randomized on the character card, with Biotech's xenotype and life stage options, health, relations, possessions and the skills summary. With nobody going from the colony the window opens at once; else a letter asks who they are once the colony stands, and they walk in from the edge of the land with what they brought. Closed with the X, nobody is made, and the game's start data is cleared however it closes. Unanswered, the call is let go after 10 days.</text>
+        <points>
+          <li>Free when the old colony is abandoned at the same time: a true fresh start, as the game's new wanderers are free.</li>
+          <li>With the old colony kept, at most once a year, and the colony pays their passage from the old colony's stores: silver and food worth about what each one brings, at least 150 silver's worth each, up to half of it in food (the plainest first). It is named at the foot of the window before you confirm, and the window holds back when the stores can't pay.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The old colony</heading>
+        <points>
+          <li>Kept, as a second home: its people go on as they were, with their own council, calendar and names. Its calendar gains the parting day, the day its people set out, kept as a remembrance; like any day it may become a tradition.</li>
+          <li>Kept, and the new colony made the seat once it stands (the seat's own rule below).</li>
+          <li>Abandoned, once the new colony stands and those who go have left: the game's own Abandon, and the place becomes the game's ruin. Anyone still there is lost to the colony, as the game's Abandon does, and the window names them before you choose; someone of the party who never left holds it back until they do, and you're told once. The council goes with its people to the new home, and the old colony's founding day stays on the new calendar as a remembrance.</li>
+        </points>
+        <after>The game allows 1 colony by default (Options, Gameplay, up to 5). When the new colony would pass it, Rimfolk raises it by one for you as the founding starts, never past five, and the founding window says so: the setting is the game's own, shared by every save, and you can lower it again in the game's Options. With the old colony abandoned, Rimfolk sets it back by one once the old colony is gone, unless you changed it meanwhile; a founding called off sets it back too. Two colonies cost about twice the map time.</after>
+      </li>
+      <li>
+        <heading>The new colony</heading>
+        <text>When it stands: a letter, a milestone in the history (founded by whom, from which colony), and a record of every colony on the world ledger (24 at most: founded when and from where, how it ended and what it left). It has its own council from the first day, its own calendar from its founding day, and its own founders and firstborn. On its first evening the founders gather at a fire (laid from wood they brought or found near where they settled; with no wood, they gather without one), the speaker-to-be speaks (a seat holder among them, else the eldest), and each feels the new hearth (+4, 4 days). The road, the storyteller's threats at a small new colony and a first winter without walls are the game's own.</text>
+      </li>
+      <li>
+        <heading>The seat</heading>
+        <text>"Make this the seat" is on a colony's card with more than one: a home on the ground (a home in orbit can't be one), at most once a season. The seat is where the colony as a whole is run from, by its age's word: the elders' fire, the council's hall, the town hall, the administration. What moves with it: the events and letters about no home of their own, the speaker who signs letters to the world, the calendar's world days and nemeses from then on (the old seat keeps those it had), the region's faces and world events, which are anchored at the seat for now, and the region map's default. What doesn't: each colony's own council, calendar and names, and the game's founders and firstborn. The old seat's people trust the council a little less (3 trust each, not a mood), and the history keeps it as a milestone.</text>
+      </li>
+      <li>
+        <heading>Seeing every colony</heading>
+        <points>
+          <li>The region map's Ours lens lists every home however far, each with its grown-ups and children, its speaker, mood and strain, and its card's lines on hover (wealth, its next day, a threat now, founded when and from where); a founding on its way; and the colonies of the past, founded and ended how, each opening its card.</li>
+          <li>A colony's card has the acts: go there (the map in view changes), make this the seat, found a new colony, and, with a founding under way, plan the party's journey, choose the newcomers, or call it off.</li>
+          <li>With more than one colony, every view's header names the colony in view in a chip; a click goes to another, and the pages with it.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Settings</heading>
+        <text>Many colonies, on the What's on page: Fresh starts, and Newcomers under it. Off, nothing new is offered, and a founding already under way goes on as planned.</text>
+      </li>
+    </sections>
+    <keywords><li>fresh start</li><li>new colony</li><li>found a colony</li><li>second colony</li><li>many colonies</li><li>seat</li><li>newcomers</li><li>abandon</li><li>colony limit</li><li>uprooted</li><li>parted</li></keywords>
+    <seeAlso><li>Council_Alm_C_Journeys</li><li>Council_Alm_C_Region</li><li>Council_Alm_C_Offices</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

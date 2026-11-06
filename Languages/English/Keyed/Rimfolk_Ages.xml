@@ -182,4 +182,34 @@
   <CC_Form_Levy_Spacer>a security detail</CC_Form_Levy_Spacer>
   <CC_Form_Levy_Spacer_Rite>contractors deployed</CC_Form_Levy_Spacer_Rite>
 
+  <!-- The seat, where the colony as a whole is run from (stage 3, Colonies/ColonySeat.cs) -->
+  <CC_Form_Seat_Tribal>the elders' fire</CC_Form_Seat_Tribal>
+  <CC_Form_Seat_Tribal_Rite>embers carried to the new hearth</CC_Form_Seat_Tribal_Rite>
+  <CC_Form_Seat_Medieval>the council's hall</CC_Form_Seat_Medieval>
+  <CC_Form_Seat_Medieval_Rite>the council's chest carried to the new hall</CC_Form_Seat_Medieval_Rite>
+  <CC_Form_Seat_Industrial>the town hall</CC_Form_Seat_Industrial>
+  <CC_Form_Seat_Industrial_Rite>the records moved by truck</CC_Form_Seat_Industrial_Rite>
+  <CC_Form_Seat_Spacer>the administration</CC_Form_Seat_Spacer>
+  <CC_Form_Seat_Spacer_Rite>the archive transferred by uplink</CC_Form_Seat_Spacer_Rite>
+
+  <!-- A founding party (stage 3, Colonies/Foundings.cs) -->
+  <CC_Form_Party_Tribal>a band to make a new hearth</CC_Form_Party_Tribal>
+  <CC_Form_Party_Tribal_Rite>a hearth lit from the old fire</CC_Form_Party_Tribal_Rite>
+  <CC_Form_Party_Medieval>settlers with a charter and carts</CC_Form_Party_Medieval>
+  <CC_Form_Party_Medieval_Rite>a charter read at the boundary stone</CC_Form_Party_Medieval_Rite>
+  <CC_Form_Party_Industrial>a settlement company</CC_Form_Party_Industrial>
+  <CC_Form_Party_Industrial_Rite>a flag raised over the first stakes</CC_Form_Party_Industrial_Rite>
+  <CC_Form_Party_Spacer>a colony mission</CC_Form_Party_Spacer>
+  <CC_Form_Party_Spacer_Rite>a claim beacon set down</CC_Form_Party_Spacer_Rite>
+
+  <!-- A call for newcomers (stage 3, Colonies/Foundings.cs) -->
+  <CC_Form_Call_Tribal>word sent along the trade paths</CC_Form_Call_Tribal>
+  <CC_Form_Call_Tribal_Rite>wanderers come to the fire</CC_Form_Call_Tribal_Rite>
+  <CC_Form_Call_Medieval>a call for settlers at the markets</CC_Form_Call_Medieval>
+  <CC_Form_Call_Medieval_Rite>settlers come with their bundles</CC_Form_Call_Medieval_Rite>
+  <CC_Form_Call_Industrial>an advertisement by radio</CC_Form_Call_Industrial>
+  <CC_Form_Call_Industrial_Rite>settlers off the road with their papers</CC_Form_Call_Industrial_Rite>
+  <CC_Form_Call_Spacer>a colonization call by comms</CC_Form_Call_Spacer>
+  <CC_Form_Call_Spacer_Rite>colonists down with their manifests</CC_Form_Call_Spacer_Rite>
+
 </LanguageData>

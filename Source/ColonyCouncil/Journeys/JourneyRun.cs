@@ -414,11 +414,14 @@ namespace ColonyCouncil
             Say(p, "gate");
         }
 
+        /// <summary>A founding party leaving for good: its own words (Colonies/Foundings.cs).</summary>
+        public const string FoundingPool = "Rimfolk_Pool_FoundingSays";
+
         /// <summary>One person's line for a moment of the journey, over their own head (Rimfolk_Pool_JourneySays).</summary>
-        private static void Say(Pawn p, string moment)
+        private static void Say(Pawn p, string moment, string pool = Pool)
         {
             if (p == null || !Speech.On) return;
-            string line = Flavor.FromPool(Pool, p, null, null, moment);
+            string line = Flavor.FromPool(pool, p, null, null, moment);
             Speech.Say(p, line);
         }
 
@@ -594,20 +597,22 @@ namespace ColonyCouncil
             if (!leftBehind.NullOrEmpty()) text += " " + "CC_Journey_Without".Translate(TextUtil.JoinAnd(leftBehind.Select(p => p.LabelShort).ToList())).Resolve();
             if (shortOf.Count > 0) text += " " + "CC_Journey_ShortOf".Translate(TextUtil.JoinAnd(shortOf)).Resolve();
             Notify.Message(text, new LookTargets(going), MessageTypeDefOf.PositiveEvent, Importance.Important);
-            SeeOff(map, going, plan.gate);
+            // A founding party leaves for good: its words and its farewell are a parting's (Colonies/Foundings.cs).
+            SeeOff(map, going, plan.gate, plan.founding >= 0);
         }
 
         /// <summary>A word from one of the travellers, and those at home nearest the gate see them off.</summary>
-        private static void SeeOff(Map map, List<Pawn> going, IntVec3 gate)
+        private static void SeeOff(Map map, List<Pawn> going, IntVec3 gate, bool founding)
         {
             if (!Speech.On) return;
             try
             {
                 var traveller = going.Where(p => p.Spawned && p.RaceProps.Humanlike && p.Awake()).RandomElementWithFallback();
-                if (traveller != null) Say(traveller, "leave");
+                string pool = founding ? FoundingPool : Pool;
+                if (traveller != null) Say(traveller, "leave", pool);
                 var home = map.mapPawns.FreeColonistsSpawned.Where(p => !going.Contains(p) && PlayOuts.OurPerson(p) && p.Awake() && !p.Downed && !p.Drafted && !p.InMentalState)
                     .OrderBy(p => gate.IsValid ? p.Position.DistanceToSquared(gate) : 0).Take(4).InRandomOrder().Take(2);
-                foreach (var p in home) Say(p, "seeoff");
+                foreach (var p in home) Say(p, "seeoff", pool);
             }
             catch (Exception e)
             {
