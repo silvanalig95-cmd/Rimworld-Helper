@@ -69,6 +69,9 @@ namespace ColonyCouncil
             if (e == null) return false;
             if (Told(e)) return true;
             if (e.line == null || !e.Weighty || ours == null) return false;
+            // A seat's promise and how it was kept are the holder's record, not the colony's story: the election's one line
+            // tells the seats (Offices/RecordMath.cs).
+            if (HistoryKinds.Family(e.kind) == RecordMath.Family) return false;
             if (!e.place.IsNone && ours(e.place)) return true;
             if (e.actors != null)
                 foreach (var a in e.actors)

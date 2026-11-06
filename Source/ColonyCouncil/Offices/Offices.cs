@@ -740,7 +740,7 @@ namespace ColonyCouncil
         /// How much this voter wants this candidate in this office, without the luck of the day (the poll reads this):
         /// skill, liking, friendship and rivalry, a vote for oneself, what the colony's names and taken-back promises say,
         /// and, while an election plays out, what the campaign did (<see cref="Election"/>: visits, the hustings, the
-        /// council's endorsement).
+        /// council's endorsement) and the holder's record (their promise judged, their work in the seat: Offices/SeatRecords.cs).
         /// </summary>
         internal static float Leaning(OfficeDef office, Pawn voter, Pawn candidate)
         {
@@ -755,7 +755,8 @@ namespace ColonyCouncil
                 s += vain ? 6f : 1.5f;
             }
             // A promise taken back counts against those in office; the names the colony gave count for them (Interplay/).
-            return s + Interplay.VoteLean(voter, candidate) + Reputations.VoteLean(voter, candidate) + CampaignLean(office, voter, candidate);
+            return s + Interplay.VoteLean(voter, candidate) + Reputations.VoteLean(voter, candidate) + CampaignLean(office, voter, candidate)
+                   + RecordLean(office, voter, candidate);
         }
 
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>

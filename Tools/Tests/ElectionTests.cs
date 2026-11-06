@@ -182,7 +182,23 @@ public static class ElectionTests
                 Check(!text.Contains('!') && !text.Contains('—'), $"{name}: plank {key} has no exclamation mark or em dash");
             }
         }
+        // The office words' planks (Rimfolk_OfficeWords.xml) join their offices at startup: the same rules, and each always fits.
+        foreach (var w in defs.SelectMany(d => d.Elements("ColonyCouncil.OfficeWordsDef")))
+        {
+            string name = w.Element("office")?.Value ?? "?";
+            foreach (var p in w.Element("planks")?.Elements("li") ?? Enumerable.Empty<XElement>())
+            {
+                string key = p.Element("key")?.Value ?? "", when = p.Element("when")?.Value ?? "Always", text = p.Element("text")?.Value ?? "";
+                Check(keys.Add(key), $"{name}: the added plank {key} is a key of its own");
+                Check(key.Length > 0 && whens.Contains(when), $"{name}: added plank {key} has a key and a known moment ({when})");
+                Check(text.StartsWith("{PAWN_nameDef}") && text.EndsWith(".") && text.IndexOf(". ", StringComparison.Ordinal) < 0, $"{name}: added plank {key} is one sentence about the candidate");
+                Check(!text.Contains('!') && !text.Contains('—'), $"{name}: added plank {key} has no exclamation mark or em dash");
+            }
+        }
         var pools = defs.SelectMany(d => d.Elements("ColonyCouncil.FlavorPoolDef")).ToDictionary(p => p.Element("defName")!.Value, p => p.Descendants("li").Select(li => li.Value).ToList());
+        // Lines added to a pool from a file of their own (FlavorExtensionDef) count as the pool's.
+        foreach (var x in defs.SelectMany(d => d.Elements("ColonyCouncil.FlavorExtensionDef")).Where(x => x.Element("pool") != null))
+            if (pools.TryGetValue(x.Element("pool")!.Value, out var into)) into.AddRange(x.Descendants("li").Select(li => li.Value));
         foreach (var pool in new[] { "Rimfolk_Pool_ElectionCanvass", "Rimfolk_Pool_HustingsGood" })
             foreach (var key in keys)
                 Check(pools.TryGetValue(pool, out var l) && l.Any(x => x.Contains("[plank:" + key + "]")), $"{pool} has a line for the plank {key}");

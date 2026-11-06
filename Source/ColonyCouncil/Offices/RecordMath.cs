@@ -134,8 +134,9 @@ namespace ColonyCouncil
                     if (after >= before - 0.01f) return PromiseVerdict.Kept;
                     return after < before - 0.1f ? PromiseVerdict.Broken : PromiseVerdict.None;
                 case PromiseTest.Work:
-                    // The reading is the seat's work count: some of it in the term is kept, none at all broken.
-                    return after > before ? PromiseVerdict.Kept : PromiseVerdict.Broken;
+                    // The reading is the seat's work count: some of it in the term is kept. None at all says nothing: no
+                    // trader may have come, nobody may have been hurt.
+                    return after > before ? PromiseVerdict.Kept : PromiseVerdict.None;
                 default:
                     return PromiseVerdict.None;
             }

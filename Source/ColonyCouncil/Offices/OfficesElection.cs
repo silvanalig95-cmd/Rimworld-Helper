@@ -134,6 +134,8 @@ namespace ColonyCouncil
                 if (holder != null && order.Contains(holder) && !chosen.Contains(holder)) chosen[chosen.Count - 1] = holder;
                 var planks = ElectionPlanks.Deal(office, chosen.Count, map, comp);
                 var race = new ElectionRace { office = office, seat = seat };
+                // The yearly election judges the holder's promise from the last one (Offices/SeatRecords.cs).
+                if (!byElection) JudgeRace(race);
                 for (int i = 0; i < chosen.Count; i++)
                 {
                     var plank = i < planks.Count ? planks[i] : null;
@@ -141,7 +143,8 @@ namespace ColonyCouncil
                     {
                         pawn = chosen[i],
                         plank = plank?.key,
-                        platform = plank?.text.NullOrEmpty() == false ? plank.text.Formatted(chosen[i].Named("PAWN")).Resolve() : null
+                        platform = plank?.text.NullOrEmpty() == false ? plank.text.Formatted(chosen[i].Named("PAWN")).Resolve() : null,
+                        record = RecordOf(office, seat, chosen[i])
                     });
                     lists[chosen[i]] = (lists.TryGetValue(chosen[i], out int n) ? n : 0) + 1;
                 }
@@ -217,6 +220,8 @@ namespace ColonyCouncil
                 string head = !e.byElection ? "CC_Elect_CeremonyText" : e.races.Count > 1 ? "CC_Elect_CeremonyByTextMany" : "CC_Elect_CeremonyByText";
                 text.Append(Phrase(e, head, ChairName(e, e.chair ?? Chair(e, e.map)).Named("CHAIR")));
                 text.Append("\n\n").Append("CC_Elect_Standing".Translate(UnopposedList(unopposed)).Resolve());
+                var judged = unopposed.Select(VerdictLine).Where(x => x != null).ToList();
+                if (judged.Count > 0) text.Append(" ").Append(string.Join(" ", judged));
             }
             else
             {
@@ -224,10 +229,15 @@ namespace ColonyCouncil
                 foreach (var r in e.races.Where(r => r.Contested))
                 {
                     text.Append("\n\n").Append(SeatName(r)).Append(": ");
-                    text.Append(string.Join(" ", r.entries.Select(en => en.platform.NullOrEmpty()
-                        ? "CC_Elect_NoPlatform".Translate(en.pawn.Named("PAWN")).Resolve() : en.platform)));
+                    // What each runs on: the promise, and the record behind them; then the last promise, judged.
+                    text.Append(string.Join(" ", r.entries.Select(en => (en.platform.NullOrEmpty()
+                        ? "CC_Elect_NoPlatform".Translate(en.pawn.Named("PAWN")).Resolve() : en.platform) + (en.record.NullOrEmpty() ? "" : " " + en.record))));
+                    string judged = VerdictLine(r);
+                    if (judged != null) text.Append(" ").Append(judged);
                 }
                 if (unopposed.Count > 0) text.Append("\n\n").Append("CC_Elect_Unopposed".Translate(UnopposedList(unopposed)).Resolve());
+                var unopposedJudged = unopposed.Select(VerdictLine).Where(x => x != null).ToList();
+                if (unopposedJudged.Count > 0) text.Append(" ").Append(string.Join(" ", unopposedJudged));
                 text.Append("\n\n").Append("CC_Elect_AnnounceHand".Translate().Resolve());
             }
             string title = (e.ceremony ? "CC_Elect_CeremonyTitle" : e.byElection ? "CC_Elect_AnnounceByTitle" : "CC_Elect_AnnounceTitle").Translate(e.year).Resolve();
@@ -593,6 +603,11 @@ namespace ColonyCouncil
             c.skills?.Learn(SkillDefOf.Social, 60f);
         }
 
+        /// <summary>A line about a holder's judged promise: {PROMISE}, {EVIDENCE} (the holder's own words when they say it), {OTHER} the holder.</summary>
+        private static string Promised(string line, Pawn speaker, Pawn holder, ElectionRace race) =>
+            line.Formatted(speaker.Named("PAWN"), holder.Named("OTHER"), (race.promise ?? "").Named("PROMISE"),
+                ((speaker == holder ? race.evidenceMine : race.evidence) ?? "").Named("EVIDENCE"), race.office.Name.Named("OFFICE")).Resolve();
+
         private static string Fill(string line, Pawn speaker, Pawn other, OfficeDef office, string count = null) =>
             line.Formatted(speaker.Named("PAWN"), (other ?? speaker).Named("OTHER"), (office?.Name ?? "").Named("OFFICE"), (count ?? "").Named("COUNT")).Resolve();
 
@@ -763,6 +778,18 @@ namespace ColonyCouncil
             pollCache.Clear();
             var race = MainRace(e, c);
             var entry = race?.EntryOf(c);
+            // A holder whose promise was kept runs on it (Offices/SeatRecords.cs).
+            var held = e.races.FirstOrDefault(r => r.holder == c && r.verdict == PromiseVerdict.Kept && !r.evidenceMine.NullOrEmpty());
+            if (held != null && !ElectionMath.Poor(rec.showing))
+            {
+                string kept = Flavor.FromPool("Rimfolk_Pool_HustingsKept", c);
+                if (!kept.NullOrEmpty())
+                {
+                    Speech.Say(c, Promised(kept, c, c, held).CapitalizeFirst(), null, SpeechColor);
+                    if (ElectionMath.Good(rec.showing)) c.skills?.Learn(SkillDefOf.Social, 150f);
+                    return;
+                }
+            }
             string pool = ElectionMath.Poor(rec.showing) ? "Rimfolk_Pool_HustingsPoor" : "Rimfolk_Pool_HustingsGood";
             string line = Flavor.FromPool(pool, c, null, null, entry?.plank.NullOrEmpty() == false ? "plank:" + entry.plank : null);
             if (!line.NullOrEmpty()) Speech.Say(c, Fill(line, c, null, race?.office), null, SpeechColor);
@@ -792,6 +819,18 @@ namespace ColonyCouncil
             if (listeners.Count == 0) return;
             var fans = Supporters(race, rec.pawn).Where(listeners.Contains).ToList();
             var others = listeners.Where(p => !fans.Contains(p) && !race.Candidates.Contains(p)).ToList();
+            // A holder's broken promise is thrown back at them by someone who doesn't back them (Offices/SeatRecords.cs).
+            var broken = e.races.FirstOrDefault(r => r.holder == rec.pawn && r.verdict == PromiseVerdict.Broken && !r.evidence.NullOrEmpty());
+            var heckler = broken != null ? others.RandomElementWithFallback() : null;
+            if (heckler != null)
+            {
+                string back = Flavor.FromPool("Rimfolk_Pool_HustingsBroken", heckler);
+                if (!back.NullOrEmpty())
+                {
+                    Speech.Say(heckler, Promised(back, heckler, rec.pawn, broken).CapitalizeFirst(), rec.pawn, SpeechColor);
+                    return;
+                }
+            }
             bool cheer = ElectionMath.Good(rec.showing) || (!ElectionMath.Poor(rec.showing) && Rand.Chance(0.6f));
             Pawn who = cheer ? fans.RandomElementWithFallback() ?? (ElectionMath.Good(rec.showing) ? listeners.RandomElement() : null)
                 : others.RandomElementWithFallback();
@@ -1187,7 +1226,13 @@ namespace ColonyCouncil
                     : sc.hands ? "CC_Elect_LineHands".Translate(SeatName(sc.race), sc.winner.Named("PAWN"), sc.ranked[0].Value, sc.counted).Resolve()
                     : "CC_Election_Line".Translate(SeatName(sc.race), sc.winner.Named("PAWN"), sc.ranked[0].Value, sc.counted).Resolve();
                 if (sc.moved) line += " " + "CC_Elect_Moved".Translate().Resolve();
+                // The last holder's promise, judged when the election was called, is said with the seat's result and kept in
+                // their history; the winner's own promise goes into theirs, for the next election (Offices/SeatRecords.cs).
                 Settle(comp, round, sc.race.office, sc.race.seat, sc.ranked, line, text);
+                string judged = VerdictLine(sc.race);
+                if (judged != null) text.Append(" ").Append(judged);
+                Judged(sc.race);
+                Promised(sc.race.office, sc.race.seat, sc.winner, sc.race.EntryOf(sc.winner)?.plank);
                 seated.Add(sc.winner);
             }
             countCache = null;

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Elections on a record (Offices/SeatRecords.cs): at the hustings a holder whose promise was kept says so, and someone
+    in the crowd throws a broken one back at them. One sentence each. {PROMISE} is what was promised at the last
+    election; {EVIDENCE} what the map showed of it since, a clause after "and" (in the holder's own words for their own
+    work); {OTHER} the holder, in the crowd's lines.
+  -->
+
+  <!-- A holder at the hustings, on a promise kept. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsKept</defName>
+    <lines>
+      <plain>
+        <li>Last time I promised {PROMISE}, and {EVIDENCE}, so judge me on that.</li>
+        <li>I promised you {PROMISE}, and {EVIDENCE}, which is all I ask you to remember.</li>
+        <li>You heard me promise {PROMISE}, and {EVIDENCE}, so you know my word holds.</li>
+      </plain>
+      <warm>
+        <li>I promised you {PROMISE}, and {EVIDENCE}, and I'd like to go on doing it.</li>
+      </warm>
+      <blunt>
+        <li>I promised {PROMISE}, and {EVIDENCE}, so there's my answer to anyone who asks.</li>
+      </blunt>
+      <cheerful>
+        <li>Remember when I promised {PROMISE}, and {EVIDENCE}, so here I am again.</li>
+      </cheerful>
+      <gloomy>
+        <li>I promised {PROMISE}, and against the odds {EVIDENCE}.</li>
+      </gloomy>
+      <cold>
+        <li>The promise was {PROMISE}, and {EVIDENCE}, which is the record.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone in the crowd, on a holder's promise broken (never anything that starts a fight). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsBroken</defName>
+    <lines>
+      <plain>
+        <li>You promised {PROMISE} last time, {OTHER_nameDef}, and {EVIDENCE}.</li>
+        <li>You stood here and promised {PROMISE}, {OTHER_nameDef}, and {EVIDENCE}.</li>
+        <li>Last time it was {PROMISE}, and {EVIDENCE}, so why believe you now?</li>
+      </plain>
+      <blunt>
+        <li>You promised {PROMISE}, and {EVIDENCE}, so sit down.</li>
+      </blunt>
+      <gloomy>
+        <li>You promised {PROMISE}, and {EVIDENCE}, as I knew it would.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

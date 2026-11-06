@@ -18,8 +18,98 @@ public static class FairCouncilTests
         }
 
         var defs = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).Select(f => XDocument.Load(f).Root!).ToList();
+        var keyed = Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements())
+            .GroupBy(e => e.Name.LocalName).ToDictionary(g => g.Key, g => g.First().Value);
         Names(defs, Check);
+        Records(root, defs, keyed, Check);
         return cases;
+    }
+
+    // ---------------- Decision 9: elections on a record ----------------
+
+    private static void Records(string root, List<XElement> defs, Dictionary<string, string> keyed, Action<bool, string> Check)
+    {
+        // Judging a promise: from what the map showed then and shows now.
+        Check(RecordMath.Judge(PromiseTest.Lost, 3, 3, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Lost, 3, 5, 50) == PromiseVerdict.Broken,
+            "a proper watch: nobody lost since is kept, two lost is broken");
+        Check(RecordMath.Judge(PromiseTest.Lost, 3, 5, 6) == PromiseVerdict.None, "a promise made days ago isn't judged yet");
+        Check(RecordMath.Judge(PromiseTest.Food, 2, 9, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Food, 6, 2, 50) == PromiseVerdict.Broken
+              && RecordMath.Judge(PromiseTest.Food, 6, 4, 50) == PromiseVerdict.None, "meals put by: the stores held, ran low, or nothing clear");
+        Check(RecordMath.Judge(PromiseTest.Trust, 10, 9.5f, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Trust, 10, 6, 50) == PromiseVerdict.Broken
+              && RecordMath.Judge(PromiseTest.Trust, 10, 8, 50) == PromiseVerdict.None, "trust held, fell, or barely moved");
+        Check(RecordMath.Judge(PromiseTest.Quarrels, 2, 2, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Quarrels, 2, 3, 50) == PromiseVerdict.Broken, "quarrels");
+        Check(RecordMath.Judge(PromiseTest.Sickbeds, 0, 2, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Sickbeds, 0, 0, 50) == PromiseVerdict.Broken, "a proper place for the sick");
+        Check(RecordMath.Judge(PromiseTest.Work, 10, 33, 50) == PromiseVerdict.Kept && RecordMath.Judge(PromiseTest.Work, 10, 10, 50) == PromiseVerdict.None,
+            "the seat's work: some is kept, none says nothing (no trader may have come)");
+        Check(RecordMath.Judge(PromiseTest.None, 0, 0, 50) == PromiseVerdict.None, "words only are never judged");
+        Check(RecordMath.Lean(PromiseVerdict.Kept) > 0f && RecordMath.Lean(PromiseVerdict.Broken) < 0f && RecordMath.Lean(PromiseVerdict.None) == 0f, "a kept promise helps, a broken one costs");
+        Check(RecordMath.Lean(PromiseVerdict.Kept) < ElectionMath.VoteNoise && -RecordMath.Lean(PromiseVerdict.Broken) < ElectionMath.VoteNoise,
+            "within the luck of the day: a record weighs, it doesn't decide alone");
+        Check(RecordMath.EvidenceKey(PromiseTest.Lost, PromiseVerdict.Broken) == "CC_Promise_Broken_Lost" && RecordMath.EvidenceKey(PromiseTest.Food, PromiseVerdict.None) == null, "the evidence's words");
+        Check(RecordMath.EvidenceCount(PromiseTest.Lost, 3, 5) == 2 && RecordMath.EvidenceCount(PromiseTest.Food, 3, 5) == 0, "the evidence counts the lost and the work");
+
+        // The values kept in the history, back again.
+        var v = RecordMath.Values("Council_Office_Marshal", 0, "watch", PromiseTest.Lost, 4f, 17f, "a proper watch at night");
+        Check(RecordMath.Get(v, RecordMath.OfficeAt) == "Council_Office_Marshal" && RecordMath.TestOf(v) == PromiseTest.Lost && RecordMath.Number(v, RecordMath.ReadingAt) == 4f
+              && RecordMath.Number(v, RecordMath.WorkAt) == 17f && RecordMath.Get(v, RecordMath.PromiseAt) == "a proper watch at night" && RecordMath.SeatOf(v) == 0, "a promise's values read back");
+        Check(RecordMath.TestOf(new List<string>()) == PromiseTest.None && RecordMath.Get(null, 2) == null, "no values, nothing judged");
+
+        // The record a candidate runs on.
+        Check(RecordMath.Record(true, 23, 140, true, true) == RecordMath.RecordKind.InSeat, "the holder runs on their work in the seat");
+        Check(RecordMath.Record(true, 0, 140, true, true) == RecordMath.RecordKind.ForColony && RecordMath.Record(false, 23, 140, false, false) == RecordMath.RecordKind.ForColony,
+            "else on the seat's kind of work for the colony");
+        Check(RecordMath.Record(false, -1, 3, true, true) == RecordMath.RecordKind.Name && RecordMath.Record(false, -1, 3, false, true) == RecordMath.RecordKind.Goal
+              && RecordMath.Record(false, -1, 3, false, false) == RecordMath.RecordKind.None, "else a name the colony gave them, a life goal reached, or nothing");
+        Check(RecordMath.WorkLeanOf(true, 5) > 0f && RecordMath.WorkLeanOf(false, 5) == 0f && RecordMath.WorkLeanOf(true, 0) == 0f, "work in the seat helps its holder");
+
+        // A seat's promise and its judgement are the holder's record, never the chronicle's.
+        var promise = new HistoryEntry { kind = RecordMath.KindPromise, line = "Alo took the seat of doctor on a promise.", weight = HistoryMath.Milestone,
+            actors = new List<HistoryActor> { new HistoryActor(Ref.Person(5), HistoryRole.About) } };
+        Check(!ChronicleMath.Shows(promise, r => true), "a promise isn't in the chronicle");
+        Check(!ChronicleMath.Shows(new HistoryEntry { kind = RecordMath.KindBroken, line = "x", weight = HistoryMath.Milestone }, r => true), "nor a promise judged");
+
+        // The defs: every promise a seat can run on says what it promises, and how it's judged has its words.
+        var words = defs.SelectMany(d => d.Elements("ColonyCouncil.OfficeWordsDef")).ToList();
+        int planks = 0;
+        foreach (var o in defs.SelectMany(d => d.Elements("ColonyCouncil.OfficeDef")))
+        {
+            string name = o.Element("defName")!.Value;
+            var w = words.First(x => (string?)x.Element("office") == name);
+            var own = o.Element("planks")?.Elements("li").Select(p => p.Element("key")!.Value).ToList() ?? new List<string>();
+            var promised = w.Element("promises")?.Elements("li").ToDictionary(p => p.Element("key")!.Value) ?? new Dictionary<string, XElement>();
+            foreach (var k in own) Check(promised.ContainsKey(k), $"{name}: its own plank {k} says what it promises");
+            var added = w.Element("planks")?.Elements("li").ToList() ?? new List<XElement>();
+            var all = promised.Values.Concat(added).ToList();
+            planks += own.Count + added.Count;
+            int always = o.Element("planks")!.Elements("li").Count(p => (p.Element("when")?.Value ?? "Always") == "Always")
+                         + added.Count(p => (p.Element("when")?.Value ?? "Always") == "Always");
+            Check(always >= 3, $"{name}: three promises or more always fit, so three candidates never make the same one ({always})");
+            foreach (var p in all)
+            {
+                string pr = p.Element("promise")?.Value ?? "", test = p.Element("test")?.Value ?? "None";
+                Check(pr.Length > 0 && pr == pr.TrimEnd('.') && char.IsLower(pr[0]) && !pr.Contains('!'), $"{name}: \"{pr}\" reads after \"promised\"");
+                Check(Enum.TryParse<PromiseTest>(test, out var t), $"{name}: the test {test} is known");
+                if (t == PromiseTest.None) continue;
+                Check(keyed.ContainsKey("CC_Promise_Kept_" + test), $"{name}: a kept {test} has its words");
+                if (t != PromiseTest.Work) Check(keyed.ContainsKey("CC_Promise_Broken_" + test), $"{name}: a broken {test} has its words");
+                if (t == PromiseTest.Work) Check(w.Element("measure") != null, $"{name}: a promise judged by the seat's work needs the seat's measure");
+            }
+        }
+        Check(planks >= 50, $"more promises to run on ({planks}, from 30)");
+        foreach (var k in keyed.Keys.Where(k => k.StartsWith("CC_Promise_") && (k.Contains("_Kept_") || k.Contains("_Broken_"))))
+            Check(!keyed[k].EndsWith(".") && (char.IsLower(keyed[k][0]) || keyed[k].StartsWith("{COUNT}") || keyed[k].StartsWith("I ")), $"{k}: a clause after \"and\"");
+        var pools = defs.SelectMany(d => d.Elements("ColonyCouncil.FlavorPoolDef")).ToDictionary(p => p.Element("defName")!.Value, p => p.Descendants("li").Select(li => li.Value).ToList());
+        foreach (var pool in new[] { "Rimfolk_Pool_HustingsKept", "Rimfolk_Pool_HustingsBroken" })
+        {
+            Check(pools.TryGetValue(pool, out var lines) && lines.Count >= 4, $"{pool} has lines");
+            foreach (var l in lines ?? new List<string>())
+                Check(l.Contains("{PROMISE}") && l.Contains("{EVIDENCE}") && l.IndexOf(". ", StringComparison.Ordinal) < 0 && !l.Contains('!'), $"{pool}: one sentence that says the promise and what came of it: {l}");
+        }
+        string src = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Offices", "Offices.cs"));
+        Check(src.Contains("+ RecordLean(office, voter, candidate)"), "the record enters the vote as one term");
+        string run = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Offices", "OfficesElection.cs"));
+        Check(run.Contains("if (!byElection) JudgeRace(race);") && run.Contains("Judged(sc.race);") && run.Contains("Promised(sc.race.office"),
+            "the yearly election judges the last promise, the results tell it and keep the new one");
     }
 
     // ---------------- Decision 10: office names by the colony's age ----------------
