@@ -6,8 +6,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
-- new illnesses and ailments (the player's request, 6 November 2026: "drop some new additional ... illnesses/ailments
-  (can also be some artificial ones) ... for further gameplay variety"). Not released: no round, About.xml untouched.
+- new illnesses and ailments (the player's request, 6 November 2026)
+  ("drop some new additional ... illnesses/ailments (can also be some artificial ones) ... for further gameplay
+  variety"). Not released: no round, About.xml untouched.
   Eight everyday ailments and three serious illnesses, each from something the hourly look finds on the map
   (`AilmentChecks.Sample`, whose counted causes are the bits of a long now; the pure rules in
   `Ailments/AilmentCauseMath.cs`), each the game's own hediff with stages and tending, the serious ones its immunity race
