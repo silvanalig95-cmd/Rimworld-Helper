@@ -541,13 +541,15 @@ namespace ColonyCouncil
                     tags.Add("their:" + Ages.Tag(Ages.Of(people)));
                     if (Ages.IsEmpire(people)) tags.Add("their:empire");
                 }
-                // How well the two know each other: never talked (first), met before (met), known (familiar enough).
+                // How well the two know each other: never talked (first), met before (met), on a visit since the last
+                // (returning), known (familiar enough).
                 var c = KinMemory.Ours(p) ? p : other;
                 var pair = c != null && x != null ? Book?.Pair(c, x, false) : null;
                 if (pair == null || pair.talks == 0 && pair.lastTick < 0) tags.Add("first");
                 else
                 {
                     tags.Add("met");
+                    if (pair.lastTick >= 0 && OutsiderMath.NewVisit(pair.lastTick, Now)) tags.Add("returning");
                     if (pair.fam >= 30f) tags.Add("known");
                 }
                 if (Has(p, TraitDefOf.Kind)) tags.Add("kind");

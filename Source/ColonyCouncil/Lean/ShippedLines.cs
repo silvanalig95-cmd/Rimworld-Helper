@@ -40,6 +40,8 @@ namespace ColonyCouncil
             // anyone, however often the two had talked: the two that say they never met only to one never talked with.
             ["[greet,us] Welcome to the colony, I'm glad to finally meet you."] = "first",
             ["[greet,us] I don't think we've talked yet, have we?"] = "first",
+            // Getting to know them said "I'm glad you came back" to one met for the first time: only on a visit since the last.
+            ["[befriend,us] I'm glad you came back, I hoped you would."] = "returning",
             // A meal shared at the table praised whatever was on the plate, paste too: only for one that isn't awful
             // (Outsiders' meal tags the plate, fare:awful...).
             ["[mealtalk] This is good, who made it?"] = "!fare:awful",
