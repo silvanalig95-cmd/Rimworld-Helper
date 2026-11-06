@@ -276,6 +276,29 @@ first, and only if the trouble goes on does a later question offer to send them 
   rarely among raiders with a grudge, or at the gate asking to be let in (the existing event, a later question).
 - **Off switch:** Settings, Council, "Banishment by the council".
 
+### A vendetta passed on (the player's decision, 6 November 2026)
+
+When raiders kill or carry off someone, those who loved them swear a vendetta on that people (`Secrets/Vendettas.cs`).
+An avenger who dies with it still open, while the war with the killers goes on, leaves it to whoever was closest to them,
+a partner, a friend or a relative, by how close they really were: never to blood kin first, as it was until this day
+(the colony is the family, never a dynasty).
+
+- **How close** (`Secrets/VendettaMath.cs`, pure, `VendettaTests`): the game's opinion of the dead (which carries the
+  game's own weight for a relation and what passed between them), the social web's warmth between the two (friends'
+  strength, comrades' and a mentorship's, less a rivalry's), and a partner (40) or a relative by blood (20) as one part
+  among them, added. Close enough at 60, as an opinion of 60 alone; the kind need twice that, the bloodthirsty two
+  thirds. The closest of those who would takes it up; nobody close enough, it ends with them.
+- **Who may, as before**: a grown colonist with an inner life, never a child or a lodger, never one already sworn on the
+  same people, and only while the colony is at war with the killers.
+- **Noted at the death**: the day's look lets the social web's bonds with the dead go before the vendettas pass on, so
+  the closest is noted in the tracker's hour as the death is seen (`VendettaEnds.NoteHeir`, after those who swear for the
+  dead; `Vendetta.heirId`), and passed on at the day's look if they still can; otherwise, and for an older save, worked
+  out from what is known then. Until this, the web's strong tie never counted.
+- **The words** follow who takes it: the told line's tag is what they were to the dead (`partner`, `kin`, `friend`); the
+  two lines that made it the family's oath or a family debt are retired (`ShippedLines.Retired`), and a relative who was
+  close has words of their own (`Rimfolk_Lines_VendettaCloseness.xml`). A dead colonist's life goal taken up by someone
+  close (`Aspirations.cs`) is as it was.
+
 ## Layer 5: Rimfolk events
 
 Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas
@@ -2889,7 +2912,9 @@ spouse wronged is their people's, handed down no line.
 Release 2b.3 (docs/design/stage2-diplomacy.md, item 7; decisions 9 and 10): `Diplomacy/`, its rules pure and tested
 (`WardMath.cs`; `Tools/Tests/WardTests.cs`). Reshaped by the player's decision of 5 November 2026 (the colony is the
 family, never a dynasty): their ward is a youth of their town, never of a notable's house; the colony's own youth goes in
-return as before; the parents' feelings at home stay, being personal.
+return as before; the parents' feelings at home stay, being personal. And by the decision of 6 November 2026: their
+hostage is anyone of standing among their people, never by kinship (until then one of their notable's kin, their child
+where the ages fit).
 
 - **The records.** Each `DiplomacyHome` keeps its wards and hostages, either way (`WardStay`, `WardMath.MaxPerHome` = 4:
   one ward each way, one hostage each way per truce or pact), and when a ward was last offered (and by whom). The bonds
@@ -2934,7 +2959,16 @@ return as before; the parents' feelings at home stay, being personal.
   household: regard only. "Call home" brings them back sooner.
 - **Hostages** (`Hostages`): a truce's price (`TrucePrice.TheirHostage`, `OurHostage` with the colonist's id in the
   terms' count) or a defence pact's term (the letter's ask `hostage:Theirs`, `hostage:Ours:ID`; the pact's roll moved
-  by `WardMath.PactRoll`), adults only (`WardMath.MayBeHostage`, 18). Theirs, one of their notable's kin, comes some hours
+  by `WardMath.PactRoll`), adults only (`WardMath.MayBeHostage`, 18). Theirs is one of standing among their people
+  (`Hostages.MakeHostage`): one of their traders (the kinds their caravans bring, `TraderKinds`) or of their seasoned
+  fighters (the stronger half by the game's combat power of the kinds their war bands bring, `FighterKinds`,
+  `WardMath.Seasoned`), never a leader's own kind or one that asks a royal title, whichever their people have and by a
+  roll where they have both (`WardMath.Standing`); one of their people where they have neither. Made by the game's own
+  generation with that kind, 20 to 50 (`WardMath.StandingAge`), a name of their own and nobody's child; sent and answered
+  for by their head, heir or envoy (`Wards.Sender`, the record's `notable`; with nobody the colony knows,
+  `CC_Hostage_Why_NoSender`). The record keeps what they are (`WardStay.standing`; `Unknown` for a hostage given before,
+  who stays as they were), and the terms' answer (`CC_Hostage_Given_TheirsStanding`), the letter at the gate
+  (`CC_Hostage_Arrives_Standing`), their card and the talk (`them:hostage:trader`, `:fighter`) say it. They come some hours
   after the oath or the pact (at war only where `TruceParley.Escort` finds someone to vouch); the colony's sets out as
   its youth does. The hour reads the term from the tie it guarantees (`WardMath.EndOf`): over, both go home (their
   hostage walks out, `hostageReturned`), and a defence pact's hostage goes home at the end of the pact year they were

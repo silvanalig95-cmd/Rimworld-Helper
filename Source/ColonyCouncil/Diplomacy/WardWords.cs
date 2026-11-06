@@ -20,7 +20,7 @@ namespace ColonyCouncil
         /// <summary>A ward's word by the colony's age (an apprentice exchange) and their way by theirs (a youth in their household).</summary>
         public static AgeForm Form(Map home, Faction f) => Ages.Form(AgeFeature.Ward, home ?? Homes.Seat, f);
 
-        /// <summary>A hostage's word by the colony's age (a guarantor) and their way by theirs (one of the clan given to the other's fire).</summary>
+        /// <summary>A hostage's word by the colony's age (a guarantor) and their way by theirs (one of the clan given to another fire).</summary>
         public static AgeForm HostageForm(Map home, Faction f) => Ages.Form(AgeFeature.Hostage, home ?? Homes.Seat, f);
 
         /// <summary>

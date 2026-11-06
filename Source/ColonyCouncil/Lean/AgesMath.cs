@@ -29,7 +29,7 @@ namespace ColonyCouncil
         Oath,
         /// <summary>A truce: the word is the colony's (a ceasefire by comms), the rite how their people make one (green branches carried between camps). Stage 2.</summary>
         Truce,
-        /// <summary>A hostage given for a pact: the word is the colony's (a guarantor), the rite theirs (one of the chief's kin given). Stage 2.</summary>
+        /// <summary>A hostage given for a pact: the word is the colony's (a guarantor), the rite theirs (one of the clan given to another fire). Stage 2.</summary>
         Hostage,
         /// <summary>An envoy who lives with the other side for a season: the word is the colony's (a consul), the rite how theirs come (letters of credence). Stage 2.</summary>
         Envoy,

@@ -290,6 +290,8 @@ public static class WardTests
             .Concat(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Wards_Variants.xml")).Root!.Elements())
             // Their offer of a youth of their town (5 November 2026) is with the colony's bonds' words.
             .Concat(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Renown_Colony.xml")).Root!.Elements().Where(x => x.Name.LocalName.StartsWith("CC_Ward_")))
+            // Their hostage, one of standing among their people (6 November 2026), has words of its own.
+            .Concat(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Hostages_Standing.xml")).Root!.Elements())
             .ToDictionary(x => x.Name.LocalName, x => x.Value);
         void Keys(string prefix, IEnumerable<string> suffixes)
         {
