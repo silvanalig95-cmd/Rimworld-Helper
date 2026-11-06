@@ -14,8 +14,8 @@ namespace ColonyCouncil
         /// <summary>The soft line for a modest colonist: good moods up to this many points count in full.</summary>
         public const float LineModest = 45f;
 
-        /// <summary>How much lower the line is at each step of standards: 40 comfortable, 35 particular, 30 spoiled.</summary>
-        public const float LineStep = 5f;
+        /// <summary>How much lower the line is at each step of standards: 35 comfortable, 25 particular, 15 spoiled.</summary>
+        public const float LineStep = 10f;
 
         /// <summary>The soft line for a spoiled colonist.</summary>
         public const float LineSpoiled = LineModest - 3f * LineStep;

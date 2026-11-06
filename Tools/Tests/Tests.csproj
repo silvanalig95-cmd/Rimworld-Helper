@@ -26,6 +26,7 @@
     <Compile Include="../../Source/ColonyCouncil/Health/BodyMath.cs" Link="BodyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/LineMemory.cs" Link="LineMemory.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="GoodLifeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />

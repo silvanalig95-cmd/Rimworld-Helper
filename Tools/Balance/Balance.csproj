@@ -13,6 +13,7 @@
   <ItemGroup>
     <!-- The mod's own arithmetic, shared as it is (no game types): the same numbers the game uses. -->
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="Linked/GoodLifeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="Linked/SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="Linked/AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="Linked/ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="Linked/PressureMath.cs" />

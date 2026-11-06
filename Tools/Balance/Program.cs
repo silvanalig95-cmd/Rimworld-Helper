@@ -52,6 +52,25 @@ Code.Read(src);
 var defaults = src.SettingDefaults();
 
 var results = new List<Result>();
+// BALANCE_QUICK=1: only the default settings with six colonists, and the moments off, for tuning (no report written).
+bool quick = Environment.GetEnvironmentVariable("BALANCE_QUICK") == "1";
+if (quick)
+{
+    foreach (var style in Rates.Styles)
+    {
+        results.Add(Runner.Run(defs, new Settings(defaults), style, 6, runs, null));
+        results.Add(Runner.Run(defs, new Settings(new Dictionary<string, string>(defaults) { ["smallMomentsOff"] = "true" }), style, 6, runs, "letdowns and joys as moods"));
+    }
+    foreach (var r in results)
+    {
+        var x = r.summary;
+        Console.WriteLine($"{r.Key,-42} net {x.net,6:0.0} good {x.good,5:0.0} bad {x.bad,6:0.0} steady {x.steadyGood,4:0.0}/{x.steadyBad,5:0.0} mood {x.mood:P0} p10 {x.moodP10:P0} minor {x.underMinor:P1} strain {x.strained:P1}/{x.worn:P1}/{x.breaking:P1} ep {x.episodesPerYear:0.00} gameOrd {x.gameOrdinary:0.0} P99 {x.goodP99:0.0}");
+        Console.WriteLine("   built: " + string.Join(", ", x.strainBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")));
+        Console.WriteLine("   eased: " + string.Join(", ", x.reliefBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")));
+        Console.WriteLine("   parts: " + string.Join(", ", x.parts.Where(kv => Math.Abs(kv.Value) >= 0.3).OrderBy(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0.0}")));
+    }
+    return;
+}
 foreach (int n in new[] { 6, 12 })
     foreach (var style in Rates.Styles)
         results.Add(Runner.Run(defs, new Settings(defaults), style, n, runs, null));
@@ -62,6 +81,11 @@ foreach (var preset in new[] { "lightTouch", "storyRich", "demanding" })
 var noRules = new Dictionary<string, string>(defaults) { ["goodGrowsOrdinary"] = "false" };
 foreach (var style in Rates.Styles)
     results.Add(Runner.Run(defs, new Settings(noRules), style, 6, runs, "without growing ordinary"));
+
+// Small letdowns and joys as moods of their own, nothing to the heart (as before phase 3): what the moments change.
+var asMoods = new Dictionary<string, string>(defaults) { ["smallMomentsOff"] = "true" };
+foreach (var style in Rates.Styles)
+    results.Add(Runner.Run(defs, new Settings(asMoods), style, 6, runs, "letdowns and joys as moods"));
 
 Dictionary<string, Summary> before = null;
 if (beforePath != null && File.Exists(beforePath))
@@ -77,4 +101,9 @@ Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath)));
 File.WriteAllText(outPath, Report.Write(defs, src, results, before, runs));
 Console.WriteLine("wrote " + outPath);
 foreach (var r in results)
-    Console.WriteLine($"{r.Key,-34} net {r.summary.net,6:0.0}  good {r.summary.good,5:0.0} (raw {r.summary.goodRaw,5:0.0})  bad {r.summary.bad,6:0.0}  steady {r.summary.steadyGood,4:0.0}/{r.summary.steadyBad,5:0.0}  mood {r.summary.mood:P0} ({r.summary.moodP10:P0}-{r.summary.moodP90:P0}, top {r.summary.pinned:P0})  decisions/day {r.summary.decisionsPerDay:0.00}  ill {r.summary.illShare:P0}");
+{
+    var x = r.summary;
+    double built = x.strainBy.Values.Sum(), game = x.strainBy.GetValueOrDefault("small moods: the game's");
+    Console.WriteLine($"{r.Key,-42} net {x.net,6:0.0}  good {x.good,5:0.0}  bad {x.bad,6:0.0}  steady {x.steadyGood,4:0.0}/{x.steadyBad,5:0.0}  mood {x.mood:P0} ({x.moodP10:P0}-{x.moodP90:P0}, top {x.pinned:P0}, under minor {x.underMinor:P1})"
+        + $"  strain {x.strained:P1}/{x.worn:P1}/{x.breaking:P1} episodes {x.episodesPerYear:0.000}  built {built:0} (game's small {game / Math.Max(1, built):P0})  decisions/day {x.decisionsPerDay:0.00}  ill {x.illShare:P0}");
+}

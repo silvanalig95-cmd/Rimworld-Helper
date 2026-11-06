@@ -185,7 +185,7 @@ namespace ColonyCouncil
                 // One act a day, up to NatureMath.MaxStrain.
                 case StrainSource.Nature: return 12f;
                 // Small letdowns, Rimfolk's and everyone's small bad moods together.
-                case StrainSource.Letdowns: return 5f;
+                case StrainSource.Letdowns: return 1.5f;
                 default: return 3f;
             }
         }

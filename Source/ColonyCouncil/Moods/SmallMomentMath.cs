@@ -44,7 +44,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Strain for each mood-day a letdown moves to the heart.</summary>
-        public const float StrainPerMoodDay = 0.8f;
+        public const float StrainPerMoodDay = 0.6f;
 
         /// <summary>Relief for each mood-day a joy moves to the heart.</summary>
         public const float ReliefPerMoodDay = 0.6f;
@@ -66,7 +66,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A lasting one comes back as a moment this often while it holds (and whenever it gets worse).</summary>
-        public const float AgainDays = 2f;
+        public const float AgainDays = 1f;
 
         /// <summary>
         /// Whether a lasting one is felt as a moment now: it has just begun (no stage before, -1), got worse (a higher
@@ -95,13 +95,13 @@ namespace ColonyCouncil
         }
 
         /// <summary>Small bad moods up to this many points in all are just life; past it, they wear on the heart.</summary>
-        public const float PileFrom = 6f;
+        public const float PileFrom = 8f;
 
         /// <summary>Small good moods past this many points in all ease the heart.</summary>
-        public const float JoyPileFrom = 10f;
+        public const float JoyPileFrom = 12f;
 
         /// <summary>Strain an hour for each point of small bad moods past <see cref="PileFrom"/>.</summary>
-        public const float PileStrainPerPoint = 0.03f;
+        public const float PileStrainPerPoint = 0.02f;
 
         /// <summary>Relief an hour for each point of small good moods past <see cref="JoyPileFrom"/>.</summary>
         public const float JoyReliefPerPoint = 0.02f;
@@ -121,7 +121,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The most small joys may ease in a day, all together (the heart's cap for them).</summary>
-        public const float JoyReliefCap = 6f;
+        public const float JoyReliefCap = 3f;
 
         /// <summary>Relief from small joys within the day's cap: what's left of it, never more.</summary>
         public static float WithinJoyCap(float amount, float todaySoFar)
