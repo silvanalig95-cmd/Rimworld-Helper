@@ -175,7 +175,128 @@ namespace Balance
             Bunching(all, "gathering", s => s.tier == "gathering");
             Bunching(all, "gathering or outing", s => s.tier != "small");
             Allowance(all, runs, gap, week);
+            Proposal(all, runs, gap, week);
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// The audit's proposal, as rules on the same year (each scene in time order, gatherings and outings): an answer the
+        /// player picked, a meeting, the election's count, a wedding, a decree, an evening of faith, an ambition and a
+        /// story's stage always happen; a calendar day kept with a gathering within two days of another gathering is kept
+        /// at supper instead (small), and two calendar days within three days are kept together; a seasonal custom is asked
+        /// once a season at most, never within two days of a gathering; the hustings join the count; a life goal's toast is
+        /// raised at the next gathering within two days, else at supper (small); the colony's own (a group calling its
+        /// people, a family supper, a camp's show, a child's birthday toast) waits for room as in the allowance.
+        /// </summary>
+        private static void Proposal(List<Scene>[] all, int runs, float gap, int week)
+        {
+            const int days = Colony.YearDays;
+            var kept = new Dictionary<string, (int all, int kept)>();
+            int total = 0, keptTotal = 0, twoDays = 0, small = 0;
+            var weekly = new List<int>();
+            var gaps = new List<int>();
+            foreach (var run in all)
+            {
+                var list = run.Where(s => s.tier != "small").OrderBy(s => s.hour).ToList();
+                var held = new List<int>();
+                var waiting = new List<(Scene s, int until)>();
+                int lastCalendar = -9999, lastCustom = -9999;
+                int Week(int h) => held.Count(x => x > h - 7 * 24 && x <= h);
+                int Since(int h) => held.Count == 0 ? 9999 : h - held[held.Count - 1];
+                bool Room(int h) => Week(h) < week && Since(h) >= gap;
+                void Note(Scene s, bool ok)
+                {
+                    var v = kept.GetValueOrDefault(s.source);
+                    kept[s.source] = (v.all + 1, v.kept + (ok ? 1 : 0));
+                    total++;
+                    if (ok) keptTotal++;
+                    else small++;
+                }
+                void Hold(Scene s, int h)
+                {
+                    held.Add(h);
+                    Note(s, true);
+                }
+                int idx = 0;
+                for (int h = 0; h < days * 24; h++)
+                {
+                    for (int w = 0; w < waiting.Count; w++)
+                    {
+                        var (s, until) = waiting[w];
+                        if (Room(h) && h % 24 >= 17 && h % 24 <= 20)
+                        {
+                            Hold(s, h);
+                            waiting.RemoveAt(w--);
+                        }
+                        else if (h >= until)
+                        {
+                            Note(s, false);
+                            waiting.RemoveAt(w--);
+                        }
+                    }
+                    while (idx < list.Count && list[idx].hour == h)
+                    {
+                        var s = list[idx++];
+                        if (s.source == "life goals' toasts")
+                        {
+                            // Raised at the next gathering within two days, else at supper: never a scene of its own.
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "elections" && list.Skip(idx).Any(o => o.source == "elections" && o.hour - h <= 30))
+                        {
+                            // The hustings: the candidates speak at the count instead.
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "calendar days")
+                        {
+                            if (h - lastCalendar <= 72 || Since(h) < 48) Note(s, false);
+                            else
+                            {
+                                lastCalendar = h;
+                                Hold(s, h);
+                            }
+                            continue;
+                        }
+                        if (s.custom)
+                        {
+                            if (h - lastCustom < 15 * 24 || Since(h) < 48) Note(s, false);
+                            else
+                            {
+                                lastCustom = h;
+                                Hold(s, h);
+                            }
+                            continue;
+                        }
+                        if (s.routine)
+                        {
+                            if (Room(h)) Hold(s, h);
+                            else waiting.Add((s, h + 72));
+                            continue;
+                        }
+                        Hold(s, h);
+                    }
+                }
+                var perDay = new int[days];
+                foreach (int h in held)
+                    if (h / 24 < days) perDay[h / 24]++;
+                twoDays += perDay.Count(x => x >= 2);
+                for (int d = 0; d + 7 <= days; d++) weekly.Add(perDay.Skip(d).Take(7).Sum());
+                for (int i = 1; i < held.Count; i++) gaps.Add(held[i] - held[i - 1]);
+            }
+            weekly.Sort();
+            gaps.Sort();
+            double under24 = gaps.Count == 0 ? 0 : gaps.Count(g => g < 24) / (double)gaps.Count;
+            Console.WriteLine();
+            Console.WriteLine($"The proposal (routine {week} a week, {gap / 24f:0.#} days apart; calendar days and customs thinned, toasts and hustings folded in): "
+                              + $"{keptTotal / (double)runs:0.0} of {total / (double)runs:0.0} a year staged as their own scene ({keptTotal / (days / 7.0) / runs:0.0} a week), "
+                              + $"{small / (double)runs:0.0} kept smaller or folded into another; any 7 days: median {weekly[weekly.Count / 2]}, 1 in 10 {weekly[(int)(weekly.Count * 0.9)]} or more, "
+                              + $"the busiest {weekly.LastOrDefault()}; days with two or more {twoDays / (double)runs:0.0} a year; under a day apart {under24:P0}.");
+            Console.WriteLine("| Source | A year | As its own scene |");
+            Console.WriteLine("|---|---|---|");
+            foreach (var kv in kept.OrderByDescending(k => k.Value.all))
+                Console.WriteLine($"| {kv.Key} | {kv.Value.all / (double)runs:0.0} | {(kv.Value.all == 0 ? 0 : kv.Value.kept / (double)kv.Value.all):P0} |");
         }
 
         /// <summary>How the scenes bunch: the busiest week, days with two, the gap between one and the next.</summary>
