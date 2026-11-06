@@ -452,6 +452,7 @@ namespace ColonyCouncil
 
         private static readonly List<Patient> patients = new List<Patient>();
         private static readonly List<Building_Bed> passBeds = new List<Building_Bed>();
+        private static readonly List<(Building_Bed bed, bool surgery, MedicalTriageMath.Rank rank)> ranked = new List<(Building_Bed, bool, MedicalTriageMath.Rank)>();
 
         /// <summary>
         /// The pass: on the hour every home map, otherwise the maps where a patient lately went to a lesser bed, and the
@@ -555,43 +556,28 @@ namespace ColonyCouncil
             if (w.InMentalState || transferActive(w.thingIDNumber) || Bringing(w)) return false;
             if (worse.bed != null && MedicalTriageMath.Recently(LastMoved(w), now)) return false;
             IntVec3 from = w.PositionHeld;
-            // What they have now, or the best free bed the game would carry them to.
-            MedicalTriageMath.Rank have = default;
-            bool hasSome = false;
-            if (worse.bed != null)
-            {
-                have = RankOf(worse.bed, from);
-                hasSome = true;
-            }
-            else
-            {
-                for (int i = 0; i < passBeds.Count; i++)
-                {
-                    var b = passBeds[i];
-                    if (!FreeFor(w, b, worse.operation)) continue;
-                    var r = RankOf(b, from);
-                    if (!hasSome || MedicalTriageMath.Better(r, have))
-                    {
-                        have = r;
-                        hasSome = true;
-                    }
-                }
-            }
-            // The best beds first.
-            passBeds.Sort((a, b) => MedicalTriageMath.Compare(RankOf(a, from), RankOf(b, from)));
+            bool op = worse.operation;
+            // The beds as this patient ranks them, best first (a surgery bed first for an operation).
+            ranked.Clear();
             for (int i = 0; i < passBeds.Count; i++)
+                ranked.Add((passBeds[i], SurgeryBed(passBeds[i]), RankOf(passBeds[i], from)));
+            ranked.Sort((a, b) => MedicalTriageMath.CompareFor(op, a.surgery, a.rank, b.surgery, b.rank));
+            // What they have now, or the best free bed the game would carry them to.
+            int have = -1;
+            for (int i = 0; i < ranked.Count && have < 0; i++)
+                if (worse.bed != null ? ranked[i].bed == worse.bed : FreeFor(w, ranked[i].bed, op))
+                    have = i;
+            for (int i = 0; i < ranked.Count; i++)
             {
-                var best = passBeds[i];
-                var rank = RankOf(best, from);
-                if (hasSome && !MedicalTriageMath.Better(rank, have)) break;
-                if (best == worse.bed || !MayHave(w, best, worse.operation)) continue;
-                bool surgery = SurgeryBed(best);
+                var (best, surgery, rank) = ranked[i];
+                if (have >= 0 && !MedicalTriageMath.BetterFor(op, surgery, rank, ranked[have].surgery, ranked[have].rank)) break;
+                if (best == worse.bed || !MayHave(w, best, op)) continue;
                 for (int j = 0; j < patients.Count; j++)
                 {
                     var lighter = patients[j];
                     if (lighter.bed != best || lighter.pawn == w) continue;
                     if (!MedicalTriageMath.Outranks(worse.severity, worse.operation, lighter.severity, lighter.operation, surgery)) continue;
-                    var other = OtherBed(lighter, best, from, out bool anyFree);
+                    var other = OtherBed(lighter, best, out bool anyFree);
                     var hold = HoldOf(lighter.pawn, anyFree, other != null, now);
                     if (hold != MedicalTriageMath.Hold.None) continue;
                     var carrier = Carrier(lighter.pawn, other, w);
@@ -603,7 +589,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The best other free medical bed for someone moved out, and whether any other medical bed is free at all.</summary>
-        private static Building_Bed OtherBed(Patient lighter, Building_Bed best, IntVec3 from, out bool anyFree)
+        private static Building_Bed OtherBed(Patient lighter, Building_Bed best, out bool anyFree)
         {
             anyFree = false;
             Building_Bed found = null;
@@ -777,10 +763,9 @@ namespace ColonyCouncil
             if (operating || tended) return;
             var carrier = Carrier(w, m.best, m.lighter);
             if (carrier == null) return;
-            bool wasInBed = w.InBed();
             if (!Transfer(carrier, w, m.best)) return;
             m.carrierIn = carrier;
-            if (wasInBed) lastMoved[w.thingIDNumber] = now;
+            lastMoved[w.thingIDNumber] = now;
         }
 
         private static bool Doing(Pawn carrier, Pawn patient)

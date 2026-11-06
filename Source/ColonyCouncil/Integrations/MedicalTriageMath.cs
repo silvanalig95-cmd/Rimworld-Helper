@@ -74,6 +74,23 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// The same for someone waiting for an operation: a surgery bed comes before any other, then the ranks as for
+        /// everyone. For anyone else, <see cref="Compare(Rank, Rank)"/>.
+        /// </summary>
+        public static int CompareFor(bool operation, bool aSurgery, Rank a, bool bSurgery, Rank b)
+        {
+            if (operation && aSurgery != bSurgery) return aSurgery ? -1 : 1;
+            return Compare(a, b);
+        }
+
+        /// <summary>A is a better bed than B for this patient, distance aside (<see cref="CompareFor"/>).</summary>
+        public static bool BetterFor(bool operation, bool aSurgery, Rank a, bool bSurgery, Rank b)
+        {
+            if (operation && aSurgery != bSurgery) return aSurgery;
+            return Better(a, b);
+        }
+
+        /// <summary>
         /// A surgery bed counts for a patient when they are waiting for an operation themselves, or while nobody waiting for
         /// one could use it.
         /// </summary>
