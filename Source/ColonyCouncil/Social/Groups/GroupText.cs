@@ -10,6 +10,34 @@ namespace ColonyCouncil
     /// <summary>How groups are put into words and colours: roles, ways, habits, dates, names.</summary>
     public static class GroupText
     {
+        /// <summary>
+        /// Why a colonist stands outside every group of their colony, in words ("at odds with Toni, Penguin and Macy",
+        /// "new here", "goes her own way"), or null when they're in one or their colony has none (GroupMath.WhyOutside).
+        /// </summary>
+        public static string OutsideWhy(Pawn p)
+        {
+            if (p == null || !GroupLife.Active || !p.IsColonist) return null;
+            var home = ColonyState.Of(p);
+            var groups = Groups.All.Where(g => g.Pawns.Any(x => ColonyState.Of(x) == home)).ToList();
+            var web = CouncilGameComponent.Instance?.social;
+            var inGroups = new HashSet<Pawn>(groups.SelectMany(g => g.Pawns));
+            var odds = web == null ? new List<Pawn>() : web.ties.Where(t => t.kind == TieKind.Rivals && t.announced && t.Involves(p))
+                .Select(t => t.a == p ? t.b : t.a).Where(o => o != null && inGroups.Contains(o)).Distinct().ToList();
+            int asColonist = p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0;
+            bool newcomer = asColonist < GroupMath.NewcomerDays * GenDate.TicksPerDay || GroupTracker.Instance?.NewcomerOf(p) != null;
+            switch (GroupMath.WhyOutside(Groups.Of(p).Count > 0, groups.Count > 0, odds.Count, newcomer))
+            {
+                case GroupMath.Outside.AtOdds:
+                    return "CC_Group_Outside_AtOdds".Translate(TextUtil.JoinAnd(odds.Select(o => o.LabelShort).ToList()).Named("NAMES")).Resolve();
+                case GroupMath.Outside.New:
+                    return "CC_Group_Outside_New".Translate().Resolve();
+                case GroupMath.Outside.Own:
+                    return "CC_Group_Outside_Own".Translate(p.Named("PAWN")).Resolve();
+                default:
+                    return null;
+            }
+        }
+
         public static string RoleKey(GroupRole r) => r.ToString().ToLowerInvariant();
 
         /// <summary>"the joker"; "one of them" for no role.</summary>

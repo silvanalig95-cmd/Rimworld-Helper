@@ -86,6 +86,9 @@ namespace ColonyCouncil
             }
             return Beliefs.ForbidsAny(p, forbiddenMask);
         }
+        /// <summary>A goal of a seat on the council names the seat: its words say it by its name in the colony's age.</summary>
+        public string InAge(string text) => workerClass == typeof(AspirationWorker_Office) ? OfficeNames.InAge(text) : text;
+
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
         /// <summary>Journal and the letter, when they achieve it ({GOAL}).</summary>
@@ -135,15 +138,17 @@ namespace ColonyCouncil
         public string sparkName;
         /// <summary>Taken up from someone who died before reaching it.</summary>
         public bool inherited;
+        /// <summary>Chosen by a change of heart: it holds now (one change of heart a goal, GoalMath.MayChangeHeart).</summary>
+        public bool turned;
 
         /// <summary>The skill the goal was about, marked once it's reached (GoalRewards): it never slips, and comes a little faster.</summary>
         public SkillDef mark;
 
-        public string Goal => def == null ? "" : def.goal.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
+        public string Goal => def == null ? "" : def.InAge(def.goal).Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
 
         /// <summary>What they did, once done ("cooked five hundred meals").</summary>
         public string Deed => def == null ? "" : (def.deed.NullOrEmpty() ? "CC_Asp_DeedPlain".Translate().Resolve()
-            : def.deed.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve());
+            : def.InAge(def.deed).Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve());
 
         public float Progress => def == null ? 0f : Mathf.Clamp01(def.Worker.Progress(this));
 
@@ -161,6 +166,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref sparkName, "sparkName");
             Scribe_Values.Look(ref pawnRef, "pawnRef", -1);
             Scribe_Values.Look(ref inherited, "inherited");
+            Scribe_Values.Look(ref turned, "turned");
             Scribe_Defs.Look(ref mark, "mark");
         }
 
@@ -513,26 +519,36 @@ namespace ColonyCouncil
         private bool Recent(Pawn p, string key, float days) =>
             events.TryGetValue(p.ThingID + "|" + key, out int t) && Find.TickManager.TicksGame - t < days * GenDate.TicksPerDay;
 
-        /// <summary>The first spark of this goal that has happened to them lately, or null.</summary>
+        /// <summary>
+        /// The spark of this goal that has happened to them lately, or null: a big one first (a brush with death, a loss),
+        /// then the one that pulls most (GoalMath), then the first in the goal's list.
+        /// </summary>
         private string Sparked(AspirationDef d, Pawn p)
         {
             if (d.sparks.NullOrEmpty()) return null;
+            string best = null;
+            float bestPull = 0f;
             foreach (var spark in d.sparks)
             {
+                bool now;
                 if (spark.StartsWith("thought:"))
                 {
                     string name = spark.Substring(8);
                     int window = (int)(d.sparkDays * GenDate.TicksPerDay);
                     var memories = p.needs?.mood?.thoughts?.memories?.Memories;
-                    if (memories != null && memories.Any(m => m.def != null && m.def.defName == name && m.age <= window)) return spark;
+                    now = memories != null && memories.Any(m => m.def != null && m.def.defName == name && m.age <= window);
                 }
-                else if (spark == "fulfilled")
+                else if (spark == "fulfilled") now = Recent(p, "fulfilled:" + d.defName, d.sparkDays);
+                else now = Recent(p, spark, d.sparkDays);
+                if (!now) continue;
+                float pull = GoalMath.Big(spark) ? 2f : GoalMath.SparkPull(spark);
+                if (best == null || pull > bestPull)
                 {
-                    if (Recent(p, "fulfilled:" + d.defName, d.sparkDays)) return spark;
+                    best = spark;
+                    bestPull = pull;
                 }
-                else if (Recent(p, spark, d.sparkDays)) return spark;
             }
-            return null;
+            return best;
         }
 
         public IEnumerable<Aspiration> Fulfilled(Pawn p) => all.Where(a => a.pawn == p && a.done);
@@ -602,16 +618,17 @@ namespace ColonyCouncil
             if (last != null && Find.TickManager.TicksGame - last.doneTick < GenDate.TicksPerDay * 20) return;
             var options = Options(p);
             if (options.Count == 0) return;
-            // Something just happened that points somewhere: they're likely to decide now. Otherwise, in their own time.
+            // Something just happened that points somewhere: they're likely to decide now, the likelier the stronger it
+            // pulls (a fight less than the rest of life, GoalMath.SparkPull). Otherwise, in their own time.
             var sparked = options.Where(o => o.spark != null).ToList();
-            if (sparked.Count > 0 && Rand.Chance(0.6f))
+            if (sparked.Count > 0 && Rand.Chance(GoalMath.SparkedChooseChance * sparked.Max(o => GoalMath.SparkPull(o.spark))))
             {
-                var pick = sparked.RandomElementByWeight(o => o.weight);
+                var pick = sparked.RandomElementByWeight(o => o.weight * GoalMath.SparkPull(o.spark));
                 Begin(comp, p, pick.def, pick.spark, null);
                 return;
             }
             if (!Rand.Chance(0.2f)) return;
-            var any = options.RandomElementByWeight(o => o.weight * (o.spark != null ? 6f : 1f));
+            var any = options.RandomElementByWeight(o => o.weight * (o.spark != null ? 6f * GoalMath.SparkPull(o.spark) : 1f));
             Begin(comp, p, any.def, any.spark, null);
         }
 
@@ -619,12 +636,20 @@ namespace ColonyCouncil
         {
             var done = new HashSet<AspirationDef>(Fulfilled(p).Select(x => x.def));
             var result = new List<(AspirationDef, string, float)>();
+            // The goals others of their colony hold now: one already held weighs less (GoalMath.Shared), so five people
+            // don't all set out to bring down ten mechanoids.
+            var home = ColonyState.Of(p);
+            var held = new Dictionary<AspirationDef, int>();
+            foreach (var a in all)
+                if (!a.done && a.def != null && a.pawn != p && a.pawn != null && !a.pawn.Dead && ColonyState.Of(a.pawn) == home)
+                    held[a.def] = (held.TryGetValue(a.def, out int n) ? n : 0) + 1;
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
                 if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || d.AgainstBeliefsOf(p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
                 result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
-                                              * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)));
+                                              * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)
+                                              * GoalMath.Shared(held.TryGetValue(d, out int others) ? others : 0)));
             }
             return result;
         }
@@ -680,14 +705,16 @@ namespace ColonyCouncil
             d != null && p != null && (d.grownAge > 0f ? Flavor.HumanAge(p) >= d.grownAge : !p.DevelopmentalStage.Juvenile());
 
         /// <summary>
-        /// Something big happened and points to a different goal than the one they've barely started: sometimes
-        /// they change their mind.
+        /// Something big happened (a brush with death, someone close lost) and points to a different goal than the one
+        /// they've had for a few weeks and barely started: sometimes they change their mind, once (GoalMath.MayChangeHeart).
+        /// A fight on its own never does.
         /// </summary>
         private bool TryChangeOfHeart(CouncilGameComponent comp, Pawn p, Aspiration a)
         {
-            if (a.inherited || Find.TickManager.TicksGame - a.startedTick < GenDate.TicksPerDay * 10 || a.Progress >= 0.35f) return false;
-            var sparked = Options(p).Where(o => o.spark != null && o.def != a.def).ToList();
-            if (sparked.Count == 0 || !Rand.Chance(0.25f)) return false;
+            float days = (Find.TickManager.TicksGame - a.startedTick) / (float)GenDate.TicksPerDay;
+            if (a.inherited || a.turned || days < GoalMath.HoldsDays || a.Progress >= GoalMath.SettledAt) return false;
+            var sparked = Options(p).Where(o => o.spark != null && o.def != a.def && GoalMath.MayChangeHeart(days, a.Progress, a.inherited, a.turned, o.spark)).ToList();
+            if (sparked.Count == 0 || !Rand.Chance(GoalMath.ChangeChance)) return false;
             var pick = sparked.RandomElementByWeight(o => o.weight);
             string old = a.Goal;
             all.Remove(a);
@@ -697,6 +724,7 @@ namespace ColonyCouncil
                 all.Add(a);
                 return false;
             }
+            b.turned = true;
             comp.journals.Write(p, "Council_Journal_GoalChanged", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
             return true;
         }
@@ -722,7 +750,7 @@ namespace ColonyCouncil
             var tags = Flavor.TagsFor(p);
             if (extraTags != null) foreach (var t in extraTags) tags.Add(t);
             string raw = lines.Pick(ToneUtility.ToneFor(p), tags, p);
-            return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
+            return raw.NullOrEmpty() ? null : a.def.InAge(raw).Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
         }
 
         private void Fulfil(CouncilGameComponent comp, Aspiration a)

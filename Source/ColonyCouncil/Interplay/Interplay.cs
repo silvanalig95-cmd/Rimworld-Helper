@@ -207,7 +207,8 @@ namespace ColonyCouncil
                 if (line.NullOrEmpty()) return null;
                 var all = new List<NamedArgument> { p.Named("PAWN") };
                 if (args != null) all.AddRange(args);
-                return line.Formatted(all.ToArray()).Resolve();
+                // The offices' lines name a seat by its old name: said with its name in the colony's age.
+                return OfficeNames.InAge(line).Formatted(all.ToArray()).Resolve();
             }
             catch (Exception e)
             {
@@ -219,8 +220,10 @@ namespace ColonyCouncil
         /// <summary>A journal line from a pool, with tags.</summary>
         internal static void Journal(Pawn p, string pool, string[] tags, params NamedArgument[] args)
         {
-            if (p == null || !S.journals) return;
-            Comp?.journals.WriteTagged(p, pool, tags, null, args);
+            if (p == null || !S.journals || Comp == null || p.Dead || !p.RaceProps.Humanlike) return;
+            // As the journal writes a pool's line (JournalTracker.WriteTagged), with a seat said by its name in the colony's age.
+            string line = Line(pool, p, tags, args);
+            if (!line.NullOrEmpty()) Comp.journals.WriteText(p, line);
         }
     }
 }

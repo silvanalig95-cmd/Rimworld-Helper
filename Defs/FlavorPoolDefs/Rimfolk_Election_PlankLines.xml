@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The canvass and the hustings for the promises the office words add (Rimfolk_OfficeWords.xml): one line each,
+    tagged [plank:KEY] as the offices' own are (Rimfolk_Election_Lines.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_PlankLines_Canvass</defName>
+    <pool>Rimfolk_Pool_ElectionCanvass</pool>
+    <lines>
+      <plain>
+        <li>[plank:voice] The newest of us should count as much as the oldest, and with me they will.</li>
+        <li>[plank:ready] When the next raid comes I want everyone knowing where to stand, you too.</li>
+        <li>[plank:home] Vote for me and I'll bring everyone home from every fight, or come home last.</li>
+        <li>[plank:fairshare] A fair share for everyone and favourites for nobody, that's how I'd keep the stores.</li>
+        <li>[plank:silver] Every trader who comes will leave a little poorer and us a little richer.</li>
+        <li>[plank:clean] The sick deserve clean beds, and I'll see they have them.</li>
+        <li>[plank:rounds] If you're ever laid up, I'll be by your bed every morning, I promise.</li>
+        <li>[plank:evenings] One good evening a week, that's all I'm asking for, and I'll make it happen.</li>
+        <li>[plank:kindness] Fewer grand plans and more small kindnesses, that's how I'd do it.</li>
+        <li>[plank:lean] I'll see enough grown that the lean season finds us ready.</li>
+        <li>[plank:newcrop] I want to try something new in the fields, and I'll own up if it fails.</li>
+        <li>[plank:table] If two of us are at odds, I'll sit them down before it comes to blows.</li>
+        <li>[plank:alone] Nobody new should eat alone here, and with me nobody will.</li>
+        <li>[plank:remember] Our dead deserve to be remembered on their days, and I'll remember them.</li>
+        <li>[plank:firstdays] Everyone who came later should hear how this place began, and I'll tell it.</li>
+        <li>[plank:pens] Clean pens, full troughs and no animal left in the cold, vote for that.</li>
+        <li>[plank:tame] There are animals out there that would do well with us, and I'll bring them in.</li>
+        <li>[plank:doubt] If your faith ever wears thin, whatever it is, come and talk to me.</li>
+        <li>[plank:grief] Nobody here should grieve alone, and I'll make sure nobody does.</li>
+        <li>[plank:road] I want travellers speaking well of us on the road, and I know how.</li>
+        <li>[plank:noguest] No guest of ours should leave hungry or sore, and with me none will.</li>
+        <li>[plank:stories] The young should hear the old stories before they're forgotten, and I'll tell them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_PlankLines_Hustings</defName>
+    <pool>Rimfolk_Pool_HustingsGood</pool>
+    <lines>
+      <plain>
+        <li>[plank:voice] Whoever came last week gets the same hearing as whoever came first, I promise you that.</li>
+        <li>[plank:ready] Before the next raid, every one of you will know your place, and I'll have checked it.</li>
+        <li>[plank:home] Everyone comes home from every fight, and I come home last, that's my promise.</li>
+        <li>[plank:fairshare] Everyone gets a fair share from the stores, and nobody gets favours, me least of all.</li>
+        <li>[plank:silver] I'll make our silver go further with every trader who comes to the gate.</li>
+        <li>[plank:clean] Clean beds and clean hands wherever our sick lie, that's what I'll keep.</li>
+        <li>[plank:rounds] Every morning I'll look in on whoever is ill or hurt, without fail.</li>
+        <li>[plank:evenings] Give me the seat and every week will have one evening worth looking forward to.</li>
+        <li>[plank:kindness] I won't promise grand plans, only small kindnesses, the kind you remember.</li>
+        <li>[plank:lean] Enough grown to carry us through the lean season, that's my promise to you.</li>
+        <li>[plank:newcrop] Let me try something new in the fields, and I'll tell you straight if it doesn't take.</li>
+        <li>[plank:table] Any two of us at odds will be sat down together before a fist is raised.</li>
+        <li>[plank:alone] Whoever comes to us next won't eat a single supper alone, I'll see to that.</li>
+        <li>[plank:remember] Every one of our dead will be remembered on their day, I promise you.</li>
+        <li>[plank:firstdays] The story of our first days belongs to everyone who came after, and I'll tell it.</li>
+        <li>[plank:pens] No animal of ours will be left out in the cold, and every trough will be full.</li>
+        <li>[plank:tame] I'll bring in a new animal or two from the wild, gently, the way it should be done.</li>
+        <li>[plank:doubt] Whatever you believe, if it wears thin, my door is open.</li>
+        <li>[plank:grief] When we lose someone, nobody grieves alone, I promise you.</li>
+        <li>[plank:road] Every traveller who passes will speak well of us further down the road.</li>
+        <li>[plank:noguest] Nobody who stops with us will leave hungry or with a grudge.</li>
+        <li>[plank:stories] Let me tell the young our old stories before nobody remembers them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -456,6 +456,8 @@ wishPh.Add("TRAIT");
 wishPh.UnionWith(new[] { "FAITH", "OTHERFAITH", "ALTAR", "WHY" });
 // The weather record (Weather/WeatherBook.cs): the season a journal line sets against last year's.
 wishPh.Add("SEASON");
+// Elections on a record (Offices/SeatRecords.cs): what a holder promised at the last election, and what the map showed of it since.
+wishPh.UnionWith(new[] { "PROMISE", "EVIDENCE" });
 // Family names (Social/FamilyNames.cs): a family known by its name in gossip ("Boyds"), and a couple's two last names.
 wishPh.UnionWith(new[] { "FAMILY", "LASTA", "LASTB" });
 // Moving on (Social/MovingOn.cs): the relative or partner someone would go to.

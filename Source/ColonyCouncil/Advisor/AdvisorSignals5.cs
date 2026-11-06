@@ -242,7 +242,7 @@ namespace ColonyCouncil
             var sick = colonists.Where(p => WishWorker_Sickbed.Ailing(p) || HealthAIUtility.ShouldBeTendedNowByPlayer(p)).ToList();
             if (sick.Count > 0)
             {
-                var s = Empty(colony.offices, colonists, voters, Interplay.Physician, "CC_Adv_Office_Physician".Translate(TextUtil.JoinAnd(sick.Select(p => p.LabelShort).ToList())).Resolve(),
+                var s = Empty(colony.offices, colonists, voters, Interplay.Physician, OfficeNames.Key("CC_Adv_Office_Physician", TextUtil.JoinAnd(sick.Select(p => p.LabelShort).ToList())),
                     0.3f + 0.05f * Mathf.Min(4, sick.Count));
                 if (s != null) yield return s;
             }
@@ -250,7 +250,7 @@ namespace ColonyCouncil
             // The reeve, with the harvest coming in.
             if (SeasonUtil.HasSeasons(map) && GenLocalDate.Season(map) == Season.Fall && map.zoneManager.AllZones.OfType<Zone_Growing>().Sum(z => z.CellCount) >= 40)
             {
-                var s = Empty(colony.offices, colonists, voters, Interplay.Reeve, "CC_Adv_Office_Reeve".Translate().Resolve(), 0.16f);
+                var s = Empty(colony.offices, colonists, voters, Interplay.Reeve, OfficeNames.InAge("CC_Adv_Office_Reeve".Translate().Resolve()), 0.16f);
                 if (s != null) yield return s;
             }
 
@@ -276,8 +276,8 @@ namespace ColonyCouncil
             if (office == null || !office.OpenFor(voters) || offices.HolderOf(office) != null) return null;
             var best = colonists.Where(p => !p.DevelopmentalStage.Juvenile() && !p.IsSlave && office.CanHold(p)).OrderByDescending(office.Competence).FirstOrDefault();
             if (best == null) return null;
-            var s = Signal(severity, "CC_Adv_Office_Title".Translate(office.label).Resolve(),
-                why + " " + "CC_Adv_Office_Best".Translate(office.label, best.LabelShort, office.Competence(best).ToString("0")).Resolve(), 0.5f);
+            var s = Signal(severity, "CC_Adv_Office_Title".Translate(office.Name).Resolve(),
+                why + " " + "CC_Adv_Office_Best".Translate(office.Name, best.LabelShort, office.Competence(best).ToString("0")).Resolve(), 0.5f);
             s.page = "Decrees";
             s.look = new LookTargets(best);
             s.key = "office:" + defName;

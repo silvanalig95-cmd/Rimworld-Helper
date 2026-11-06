@@ -394,8 +394,10 @@ namespace ColonyCouncil
             var office = s.offices ? OfficeTracker.HeldBy(p) : null;
             string titles = s.epithets ? comp.epithets.NameOf(p) : null;
             var under = new List<string>(2);
-            if (office != null) under.Add(office.LabelCap);
+            if (office != null) under.Add(office.NameCap);
             if (!titles.NullOrEmpty()) under.Add(titles);
+            // Someone outside every group is shown as outside (decision 13 of the review); why is on their character page.
+            if (Groups.All.Count > 0 && Groups.Of(p).Count == 0 && GroupText.OutsideWhy(p) != null) under.Add("CC_Group_Outside_Short".Translate());
             c[(int)Col.Name] = new Cell
             {
                 text = p.LabelShortCap,
@@ -723,7 +725,7 @@ namespace ColonyCouncil
             string quirks = comp.quirks.Describe(p);
             if (!quirks.NullOrEmpty()) sb.Append("\n").Append(quirks);
             var office = OfficeTracker.HeldBy(p);
-            if (office != null) sb.Append("\n").Append("CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve());
+            if (office != null) sb.Append("\n").Append("CC_Office_Holds".Translate(p.LabelShort, office.Name).Resolve());
             string titles = comp.epithets.NameOf(p);
             if (!titles.NullOrEmpty()) sb.Append("\n").Append("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve());
             return sb.ToString();

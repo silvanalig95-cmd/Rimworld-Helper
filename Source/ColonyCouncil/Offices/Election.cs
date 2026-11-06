@@ -25,12 +25,15 @@ namespace ColonyCouncil
         /// <summary>The plank's key (its lines' tag, plank:KEY), and the letter's sentence about it.</summary>
         public string plank;
         public string platform;
+        /// <summary>The record they run on, as the letter says it ("In the seat, Alo has tended to the sick and hurt 23 times."), or null.</summary>
+        public string record;
 
         public void ExposeData()
         {
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_Values.Look(ref plank, "plank");
             Scribe_Values.Look(ref platform, "platform");
+            Scribe_Values.Look(ref record, "record");
         }
     }
 
@@ -46,6 +49,17 @@ namespace ColonyCouncil
         public List<string> ballots = new List<string>();
         /// <summary>The poll as it stood each day of the campaign: whole votes per candidate, by thingIDNumber ("12:4,4:3").</summary>
         public List<string> pollDays = new List<string>();
+
+        // The seat's holder and the promise they won it on at the last election, judged when this one was called
+        // (Offices/SeatRecords.cs): what was promised, what the map showed of it since, and what that means at the vote.
+        public Pawn holder;
+        public int promiseId = -1;
+        public string promise;
+        public PromiseTest test;
+        public PromiseVerdict verdict;
+        public string evidence;
+        public string evidenceMine;
+        public float lean;
 
         public bool Contested => entries.Count >= 2;
 
@@ -63,6 +77,14 @@ namespace ColonyCouncil
             Scribe_References.Look(ref endorsed, "endorsed");
             Scribe_Collections.Look(ref ballots, "ballots", LookMode.Value);
             Scribe_Collections.Look(ref pollDays, "pollDays", LookMode.Value);
+            Scribe_References.Look(ref holder, "holder");
+            Scribe_Values.Look(ref promiseId, "promiseId", -1);
+            Scribe_Values.Look(ref promise, "promise");
+            Scribe_Values.Look(ref test, "test");
+            Scribe_Values.Look(ref verdict, "verdict");
+            Scribe_Values.Look(ref evidence, "evidence");
+            Scribe_Values.Look(ref evidenceMine, "evidenceMine");
+            Scribe_Values.Look(ref lean, "lean");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (entries == null) entries = new List<ElectionEntry>();

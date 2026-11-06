@@ -29,7 +29,7 @@ namespace ColonyCouncil
             int i = 0;
             foreach (var race in e.races.ToList())
             {
-                string seat = race.office.Seats > 1 ? "CC_Office_Seat".Translate(race.office.LabelCap, race.seat + 1).Resolve() : race.office.LabelCap.ToString();
+                string seat = race.office.Seats > 1 ? "CC_Office_Seat".Translate(race.office.NameCap, race.seat + 1).Resolve() : race.office.NameCap.ToString();
                 var head = new Rect(0f, y, width, UiKit.RowStandard);
                 UiKit.Zebra(head, i++);
                 UiKit.LabelFit(new Rect(6f, y, width * 0.4f, UiKit.RowStandard), seat, UiKit.Heading);
@@ -64,9 +64,14 @@ namespace ColonyCouncil
                     TooltipHandler.TipRegion(new Rect(190f, y, 120f, RowH), "CC_Elect_Panel_PollTip".Translate());
                     float tx = 320f;
                     if (race.endorsed == en.pawn) tx += UiKit.Pill(tx, y + 7f, "CC_Elect_Panel_Backed".Translate(), UiKit.Gold) + 6f;
-                    if (!en.platform.NullOrEmpty()) UiKit.LabelFit(new Rect(tx, y, Mathf.Max(0f, width - tx - 4f), RowH), en.platform, UiKit.Faint, GameFont.Tiny);
+                    var said = new Rect(tx, y, Mathf.Max(0f, width - tx - 4f), RowH);
+                    if (!en.platform.NullOrEmpty()) UiKit.LabelFit(said, en.platform, UiKit.Faint, GameFont.Tiny);
+                    // The record they run on (Offices/SeatRecords.cs), over what they promise.
+                    if (!en.record.NullOrEmpty()) TooltipHandler.TipRegion(said, (en.platform.NullOrEmpty() ? "" : en.platform + "\n\n") + en.record);
                     y += RowH;
                 }
+                string judged = OfficeTracker.VerdictLine(race);
+                if (judged != null) y += UiKit.Paragraph(12f, y, width - 12f, judged, race.verdict == PromiseVerdict.Kept ? UiKit.Faint : UiKit.Dim, GameFont.Tiny) + 2f;
                 string days = Days(race);
                 if (!days.NullOrEmpty()) y += UiKit.Paragraph(12f, y, width - 12f, days, UiKit.Dim, GameFont.Tiny) + 2f;
                 y += 4f;

@@ -114,8 +114,25 @@ namespace ColonyCouncil
             return hidden;
         }
 
+        /// <summary>
+        /// The form of its idea a decree takes now (DecreeMath.FormNow): the drills by the colony's age, rationing by
+        /// whether a famine lies over the region while the colony's own stores aren't low. Only that form is listed.
+        /// </summary>
+        public static string FormNow(DecreeDef d, Map home)
+        {
+            if (d == null || DecreeMath.OtherForm(d.defName) == null) return d?.defName;
+            var age = Ages.Of(home);
+            bool lowTech = age == WorldAge.Tribal || age == WorldAge.Medieval;
+            var bread = DefDatabase<DecreeDef>.GetNamedSilentFail(DecreeMath.FamineBread);
+            bool famine = bread != null && SituationRunning(bread) != null;
+            bool foodLow = home != null && MapFacts.Of(home).FoodDays < 8f;
+            return DecreeMath.FormNow(d.defName, lowTech, famine, foodLow);
+        }
+
         private static bool HiddenNow(DecreeDef d)
         {
+            // One idea, one decree: the form of it not taken now isn't listed (decision 13 of the review).
+            if (FormNow(d, Home) != d.defName) return true;
             if (!d.mods.NullOrEmpty() && !d.mods.Any(People.ModActive)) return true;
             if (!WishParams.EraFits(d.eras)) return true;
             if ((d.needsIdeology || !d.memes.NullOrEmpty()) && ColonyFaith == null) return true;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Elections on a record (Offices/SeatRecords.cs, Offices/RecordMath.cs), the player's decision of 6 November 2026: a
+    candidate runs on their own record, and the next election judges whether the holder kept their promise. {PROMISE}
+    is what was promised ("a proper watch at night"); {EVIDENCE} what the map showed of it since, a clause after "and".
+  -->
+
+  <!-- The record a candidate runs on, after what they promise in the election's letter. -->
+  <CC_Record_InSeat>In the seat, {PAWN_nameDef} has {MEASURED}.</CC_Record_InSeat>
+  <CC_Record_ForColony>{PAWN_nameDef} runs on {PAWN_possessive} work: {PAWN_pronoun} has {MEASURED} in all.</CC_Record_ForColony>
+  <CC_Record_Name>{PAWN_nameDef} runs as the one the colony calls {NAME}.</CC_Record_Name>
+  <CC_Record_Goal>{PAWN_nameDef} runs as the one who {DEED}.</CC_Record_Goal>
+
+  <!-- A holder's promise judged: in the election's letters, on the holder's card in the history. -->
+  <CC_Promise_KeptLine>At the last election {PAWN_nameDef} promised {PROMISE}, and {EVIDENCE}: a promise kept.</CC_Promise_KeptLine>
+  <CC_Promise_BrokenLine>At the last election {PAWN_nameDef} promised {PROMISE}, and {EVIDENCE}: a promise broken.</CC_Promise_BrokenLine>
+  <CC_Promise_Made>{PAWN_nameDef} took the seat of {OFFICE} on a promise of {PROMISE}.</CC_Promise_Made>
+  <CC_Promise_MadeThat>{PAWN_nameDef} took the seat of {OFFICE} on a promise {PROMISE}.</CC_Promise_MadeThat>
+
+  <!-- What the map showed of a promise since: each a clause after "and". -->
+  <CC_Promise_Kept_Trust>trust in the council held</CC_Promise_Kept_Trust>
+  <CC_Promise_Broken_Trust>trust in the council fell</CC_Promise_Broken_Trust>
+  <CC_Promise_Kept_Quarrels>there are no more quarrels than there were</CC_Promise_Kept_Quarrels>
+  <CC_Promise_Broken_Quarrels>there are more quarrels than there were</CC_Promise_Broken_Quarrels>
+  <CC_Promise_Kept_Lost>the colony has lost nobody since</CC_Promise_Kept_Lost>
+  <CC_Promise_Broken_Lost>the colony has lost {COUNT} of its own since</CC_Promise_Broken_Lost>
+  <CC_Promise_Broken_Lost_One>the colony has lost one of its own since</CC_Promise_Broken_Lost_One>
+  <CC_Promise_Kept_Food>the stores held</CC_Promise_Kept_Food>
+  <CC_Promise_Broken_Food>the stores ran low</CC_Promise_Broken_Food>
+  <CC_Promise_Kept_Medicine>there is medicine enough for everyone</CC_Promise_Kept_Medicine>
+  <CC_Promise_Broken_Medicine>the medicine ran short</CC_Promise_Broken_Medicine>
+  <CC_Promise_Kept_Sickbeds>there are beds kept for the sick</CC_Promise_Kept_Sickbeds>
+  <CC_Promise_Broken_Sickbeds>there is still no bed kept for the sick</CC_Promise_Broken_Sickbeds>
+  <CC_Promise_Kept_Mood>spirits held up</CC_Promise_Kept_Mood>
+  <CC_Promise_Broken_Mood>spirits sank</CC_Promise_Broken_Mood>
+  <CC_Promise_Kept_Herd>the herd held</CC_Promise_Kept_Herd>
+  <CC_Promise_Broken_Herd>the herd dwindled</CC_Promise_Broken_Herd>
+  <CC_Promise_Kept_Days>the colony's days were kept</CC_Promise_Kept_Days>
+  <CC_Promise_Broken_Days>no day was kept</CC_Promise_Broken_Days>
+  <CC_Promise_Kept_Faith>the faith held its own</CC_Promise_Kept_Faith>
+  <CC_Promise_Broken_Faith>the faith lost ground</CC_Promise_Broken_Faith>
+  <CC_Promise_Kept_Work>{PAWN_pronoun} has {MEASURED} since</CC_Promise_Kept_Work>
+  <CC_Promise_Kept_Work_Mine>I have {MEASURED} since</CC_Promise_Kept_Work_Mine>
+
+</LanguageData>

@@ -14,6 +14,10 @@ namespace ColonyCouncil
         public string key;
         public PlankWhen when = PlankWhen.Always;
         [MustTranslate] public string text;
+        /// <summary>What it promises, short, for the next election's words ("a proper watch at night"); from the office words for the offices' own planks.</summary>
+        [MustTranslate] public string promise;
+        /// <summary>How the next election tells whether it was kept (Offices/RecordMath.cs).</summary>
+        public PromiseTest test = PromiseTest.None;
     }
 
     /// <summary>The colony's state as candidates read it, and the planks they run on.</summary>

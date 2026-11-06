@@ -117,7 +117,7 @@
     <defName>Council_Decree_Militia</defName>
     <kind>order</kind>
     <label>militia drills</label>
-    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour of drill most evenings, with whatever weapons the colony keeps, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. Gentler than the drills decree, and less resented: only the kind and wimps mind it much.</description>
+    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour of drill most evenings, with whatever weapons the colony keeps, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. This is how a tribe or a village drills; an industrial or spacer colony drills all day instead. Only the kind and wimps mind it much.</description>
     <requestWhen><li>RecentThreat</li><li>Newcomer</li></requestWhen>
     <order>22</order>
     <strainPerDay>0.5</strainPerDay>

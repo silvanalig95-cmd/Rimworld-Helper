@@ -648,7 +648,7 @@ namespace ColonyCouncil
                 var row = new Rect(0f, y, width, rh);
                 UiKit.Zebra(row, i++);
                 UiKit.Icon(new Rect(6f, y + (rh - UiKit.IconRow) / 2f, UiKit.IconRow, UiKit.IconRow), Icons.Office, holder != null ? UiKit.Gold : UiKit.Dim);
-                string name = office.Seats > 1 ? "CC_Office_Seat".Translate(office.LabelCap, seat + 1).Resolve() : office.LabelCap.ToString();
+                string name = office.Seats > 1 ? "CC_Office_Seat".Translate(office.NameCap, seat + 1).Resolve() : office.NameCap.ToString();
                 UiKit.LabelFit(new Rect(30f, y, 150f, rh), name, UiKit.Ink);
                 if (holder != null)
                 {
@@ -657,7 +657,7 @@ namespace ColonyCouncil
                         "CC_Office_Competence".Translate(office.Competence(holder).ToString("0")), UiKit.Faint, GameFont.Tiny);
                 }
                 else UiKit.LabelFit(new Rect(186f, y, 180f, rh), "CC_Office_Empty".Translate(), UiKit.Dim);
-                TooltipHandler.TipRegion(new Rect(0f, y, 180f, rh), office.description + "\n\n" + string.Join("\n", office.duties.Select(d => "- " + d)));
+                TooltipHandler.TipRegion(new Rect(0f, y, 180f, rh), office.Description + "\n\n" + string.Join("\n", office.Duties.Select(d => "- " + d)));
                 if (UiKit.RowAct(new Rect(width - 230f, y + (rh - 22f) / 2f, 120f, 22f), "CC_Office_Appoint".Translate(), null))
                 {
                     var options = PawnsFinder.AllMaps_FreeColonistsSpawned

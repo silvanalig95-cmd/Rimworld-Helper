@@ -6,6 +6,74 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.112.0, phase 4 of the review, part 2: a fairer council (the player's decisions 8, 9, 10 and 13 of 6 November 2026: "life
+  goals that last", "elections on a record", "office names by the colony's age", "overlapping decree pairs merge;
+  groups form around real divides"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Elections
+  on a record. Ten of twelve seats had one promise that always fit, and three physicians promised word for word that
+  nobody hurt would wait for a doctor. Each seat now has three or more that always fit (23 more, with their canvass and
+  hustings lines, in `Rimfolk_OfficeWords.xml` and `Rimfolk_Election_PlankLines.xml`, merged into the offices at startup
+  by `OfficeNames.Apply`); every promise says what it promises and how it is judged (`OfficePlank.promise`, `test`).
+  Each candidate runs on their own record (`OfficeTracker.RecordOf`, `RecordMath.Record`): their work in the seat since
+  their promise (the seat's records, `OfficeWordsDef.measure`: tends, plants sown and brought in, kills, trades, quarrels
+  mended, days kept, animals tamed, rites led, camps greeted), else that work in all from ten, else the name the colony
+  knows them by (`KnownAs.Short`), else a goal reached; said after the promise in the announcement and on the election
+  panel's tooltip. The winner's promise goes into the history at the count (`office:promise`, a milestone with words
+  and values: what the map showed then, the work count), and the next yearly election judges it when it's called
+  (`JudgeRace`, `RecordMath.Judge`: trust, rivalries, the colony's dead by the game's count, food days, medicine each,
+  sickbeds, mood, the herd, days kept, the faithful's share, or the holder's work, which only ever keeps a promise),
+  said in the announcement, at the hustings (held at the count since phase 2, before the votes are read; the holder
+  runs on a kept one, `Rimfolk_Pool_HustingsKept`; a non-backer throws a broken one back, `_HustingsBroken`), on the
+  panel and in the results ("At the last election Toni promised a proper watch at night, and the colony has lost nobody
+  since: a promise kept."), and kept in the holder's history (`office:kept`, `office:broken`). At the vote +1.5 kept,
+  -1.75 broken, +0.75 for work in the seat (`RecordLean`, one term of `Leaning`). The office family never reaches the
+  chronicle (`ChronicleMath.Shows`). By-elections judge nothing; the instant vote has no promises. The 0.106.1 count
+  (every seat accounted for) is untouched. (2) Office names by age (`OfficeWordsDef` tribal/medieval/industrial/spacer;
+  medieval is the label): first voice, speaker, chair, coordinator; war leader, marshal, captain of the guard, security
+  chief; keeper of stores, quartermaster, quartermaster, logistics officer; healer, physician, doctor, medical officer;
+  feast-giver, steward, welfare officer, morale officer; seed-keeper, reeve, farm foreman, agronomist; peace-weaver,
+  peacemaker, arbiter, mediator; season-caller, keeper of days, master of ceremonies, ceremonies officer; herd-watcher,
+  herdmaster, head stockman, husbandry chief; spirit-speaker, chaplain (three ages); guest-friend, warden of guests,
+  gatekeeper, liaison officer; elder (three ages), senior councillor. Every code site that named a seat says
+  `OfficeDef.Name` (22 files); duties, description, the offices' own lines (`Interplay.Line`, `Interplay.Journal`), a
+  seat's life goals, the elected line and the keyed lines about the colony's own seats (`OfficeNames.Key`: renamed
+  before they're filled in) say a shipped seat word in the age's name (`OfficeNames.InAge`, pure
+  `OfficeNamesMath.Rename`: whole words, plurals, possessives, a/an); the seats' marks in the health tab too
+  (`Patch_OfficeHediffLabel`, a postfix on `Hediff.LabelBase`). (3) Life goals that last (`GoalMath`): a fight sparks
+  only the one who brought down the most (`Foremost`, in `SocialWeb` before the count resets); a fight's spark pulls 0.4
+  (a nemesis 0.6) in both the chance to choose at once and the pick; a goal others at home hold weighs half, a third;
+  the strongest spark counts first; a change of heart after twenty days only, under a third done, for a brush with death
+  or a loss, once per goal (`Aspiration.turned`, saved; goals held stay). Measured in `FairCouncilTests` on twelve
+  colonists over the save's 88 days: fighting goals 39 of 79 before, 0 of 15 now; most changes of heart within 25 days
+  3 before, 1 now. (4) Decrees and groups. One idea, one decree (`DecreeMath.Ideas`, `DecreeWork.FormNow`, hidden
+  otherwise): drills by age (militia drills tribal and medieval, drills industrial and spacer), rationing by the moment
+  (famine bread while a famine or drought runs and the stores aren't low). Can't run together (`DecreeMath.Apart`,
+  `CC_Decree_Overlaps` in `CannotEnact`): festival days and a feast day, quiet hours and days of rest, on guard and a
+  curfew. Rest when ill and quarantine kept apart and allowed together. Older saves (`DecreeTracker.CarryOn`, first hour
+  after a load): a form in force no longer listed carries on as the listed one for what was left, never longer than
+  it runs; both forms in force, the listed goes on; rationing's forms only lose a duplicate; petitions for an unlisted
+  form are let go quietly (and daily). Both drills keep `hurts` Drills and Muster. Groups: formed, joined and kept by what
+  binds some more than the rest (`GroupMath.Distinct`, `GroupFacts.distinct`; cohesion still reads the plain pull), at
+  most 45% of the colony (`MaxFor`: five of twelve; the loosest goes, one a day; merges stop there), and whoever is
+  outside every group shows as outside with why (`GroupText.OutsideWhy`, `GroupMath.WhyOutside`: at odds, new, their
+  own way) on the People table, the Bonds page and the character page. An older save regroups over ten days at the usual
+  pace, quietly, told once (`CC_Group_Regroup`, `GroupTracker.regroup`, saved); the 0.101.2 names stay. Keys in
+  `Rimfolk_Election_Record.xml`, `Rimfolk_Decrees_Distinct.xml`, `Rimfolk_Groups_Divides.xml`; one shipped line changed in
+  place (militia drills' description no longer compares it with drills). DefValidator knows {PROMISE} and {EVIDENCE}.
+  Tests: `FairCouncilTests` (new: names in every age, renaming, judging, records, the history kinds kept out of the
+  chronicle, the defs' promises and words, goal rules and the 88-day colony, groups on the save's shape with Barr
+  outside, decree forms, overlaps and carrying on), `ElectionTests` (the office words' planks and pool extensions
+  counted). Docs: DESIGN.md ("Elections on a record", "Seats named by the colony's age", "Life goals that last", groups'
+  "Real divides", "Decrees that mean distinct things", the history's kinds, the links table), the Almanac's offices,
+  decrees, life goals and groups pages, README. Left: shipped lines elsewhere that name a seat in passing (dilemmas' "the
+  quartermaster's friends", "sent the speaker to the gate", the steward's feast suggestion, a truce or an oath sworn by
+  the speaker) keep the medieval word (renaming them would rename other
+  peoples' elders too: new age-tagged variants would do it); the review's evening drill on the map each day a drills
+  decree runs and a newcomer's wait before standing are still the player's word. To check in game: the player's save at
+  the next new year (each candidate's record after the promise, distinct promises; the save holds no promises yet, so
+  that election records the winners' and the one after judges them in the letter, at the hustings and in the results;
+  the industrial names: chair, captain of the guard, doctor, farm foreman), a raid (one goal at most, for
+  the one who brought down most), the groups' one message and Barr shown outside, the Decrees page (one drills, militia
+  in force carried on as drills).
 - 0.111.0, phase 2 of the review: one teller, one pace (the player's decisions 1 and 2 of 6 November 2026). Not released: no
   round in Almanac_WhatsNew.xml, About.xml untouched. (1) The pace (`PlayOut/Stage.cs`, pure `StageMath.cs`): one count
   of gatherings per colony, saved with the play-outs (`PlayOutTracker.stage`, a `StageColony` a home: the start of each

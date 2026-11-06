@@ -68,7 +68,10 @@ namespace ColonyCouncil
             if (t != null)
                 foreach (var past in t.past.Where(x => x.members.Contains(p.thingIDNumber)).Reverse().Take(2))
                     s.Line("CC_Group_Page_Past".Translate(past.name.Named("GROUP"), GroupText.Date(past.ended).Named("DATE"), (past.how ?? "").Named("HOW")).Resolve());
-            if (s.Empty && p.IsColonist) s.Line("CC_Group_Page_None".Translate(p.Named("PAWN")).Resolve(), "CC_Group_NoneTip".Translate());
+            // Outside every group, and why (decision 13 of the review): at odds with some who are in one, new here, their own.
+            string outside = Groups.Of(p).Count == 0 ? GroupText.OutsideWhy(p) : null;
+            if (outside != null) s.Line("CC_Group_Page_Outside".Translate(p.Named("PAWN"), outside.Named("WHY")).Resolve(), "CC_Group_OutsideTip".Translate());
+            else if (s.Empty && p.IsColonist) s.Line("CC_Group_Page_None".Translate(p.Named("PAWN")).Resolve(), "CC_Group_NoneTip".Translate());
             return s;
         }
 

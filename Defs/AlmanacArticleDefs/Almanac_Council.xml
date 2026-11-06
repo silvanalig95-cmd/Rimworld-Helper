@@ -180,7 +180,7 @@ The "Good times" line in a colonist's Mood tab says what growing ordinary takes 
     <order>4</order>
     <summary>Policies that trade mood for output: long hours, rationing, drills and more.</summary>
     <tip>Call long hours while the colony is happy, not once it's already miserable.</tip>
-    <description>The Decrees page puts policies in force for a few days: up to two at once, each with a cooldown afterward. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The page shows who will love or hate each one before you decide, with a bar of how the colony stands on it. The decrees stand in their kinds (work, food and stores, order and health, rest and spirit, faith, the wider world), each kind foldable; filters show only those ready now, in force, asked for, needed now or waiting; the order can be by kind, most wanted first or soonest ready; and "At a glance" above the cards shows every decree as a chip with its support bar, a click going to its card.</description>
+    <description>The Decrees page puts policies in force for a few days: up to two at once, each with a cooldown afterward, and never two that overlap (festival days and a feast day, quiet hours and days of rest, on guard and a curfew: with one in force, the other's card says so). Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The page shows who will love or hate each one before you decide, with a bar of how the colony stands on it. The decrees stand in their kinds (work, food and stores, order and health, rest and spirit, faith, the wider world), each kind foldable; filters show only those ready now, in force, asked for, needed now or waiting; the order can be by kind, most wanted first or soonest ready; and "At a glance" above the cards shows every decree as a chip with its support bar, a click going to its card.</description>
     <sections>
       <li>
         <heading>The decrees</heading>
@@ -188,7 +188,7 @@ The "Good times" line in a colonist's Mood tab says what growing ordinary takes 
           <li>Decree | What it does</li>
           <li>Long hours | Work 15% faster.</li>
           <li>Rationing | Hunger 25% slower.</li>
-          <li>Drills | Everyone who can fight trains shooting and melee every waking hour, and pairs spar in the open each evening.</li>
+          <li>Drills | Everyone who can fight trains shooting and melee every waking hour, and pairs spar in the open each evening. The drills of an industrial or spacer colony; a tribal or medieval one musters its militia instead.</li>
           <li>Study hours | Learning 30% and research 20% faster.</li>
           <li>Harvest push, building season | Faster at one kind of work.</li>
           <li>Clean sweep | Cleaning 50% faster, and everyone who can clean does it before other work, after fires, the sick, children, prisoners and cooking.</li>
@@ -205,14 +205,14 @@ The "Good times" line in a colonist's Mood tab says what growing ordinary takes 
           <li>A feast day | One day: hunger 40% faster, work 15% slower, standards rise slightly.</li>
           <li>Tithes | Each morning a tenth of the silver (5 to 40) goes to a people of the colony's ideoligion, or the nearest village: 1 goodwill a day, and with Ideology the faithful grow surer. Not for a tribe.</li>
           <li>A curfew | Night hours (10 at night to 5) become sleep in everyone's schedule, put back after; night owls keep the watch. Far fewer social fights.</li>
-          <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. One pair spars at most evenings' muster, in every age.</li>
+          <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. One pair spars at most evenings' muster. The drills of a tribal or medieval colony.</li>
           <li>Alms for the poor | Each morning a little raw food (5 to 20) goes out at the gate: 1 goodwill a day with the nearest friendly people.</li>
           <li>Holy days | Ideology, a colony with an ideoligion: three days, the faithful 3% surer each day (half again with a chaplain) and a little steadier; work 8% slower.</li>
           <li>A market day | A trade caravan of a friendly people comes the day it's declared; trade prices 4% better and work 5% slower for two days.</li>
           <li>A fast | Two days: hunger 50% slower, learning 10% faster, work 6% slower.</li>
           <li>A work song | Work 3% faster, and recreation every hour for those at work who don't mind it; research 10% and learning 5% slower.</li>
           <li>Quarantine | Only while sickness goes round the region, or someone at home is ill: illness passes between roommates a fifth as often, visitor events come a third as often, immunity 6% faster; social impact down, work 4% slower.</li>
-          <li>Famine bread | Only while a famine, a drought or locusts lie over the region: hunger 15% slower at home, and a share of the raw food (6 to 24) goes each day to the hungry people of the famine, 2 goodwill a day.</li>
+          <li>Famine bread | Rationing's form while a famine, a drought or locusts lie over the region and the colony's own stores aren't low (then rationing itself is listed instead): hunger 15% slower at home, and a share of the raw food (6 to 24) goes each day to the hungry people of the famine, 2 goodwill a day.</li>
           <li>Open gates | Visitor events come half again as often; social impact and negotiation up 5%.</li>
           <li>One ideoligion for the colony | Ideology, more than one ideoligion at home: fifteen days naming the ideoligion you choose; everyone of another ideoligion leaning toward it a little more each day, a word from it at every council meeting, and those of other ideoligions trusting the council a little less each day. No mood of its own. "Ideoligions and the council" has the details.</li>
         </table>
@@ -230,7 +230,7 @@ Colonists petition for these when the moment fits: when someone is ill or many a
 
 Tithes and alms give a share of what's in store each morning (a quartermaster stretches it), and the news says where it went. A curfew turns everyone's night hours to sleep and puts them back exactly as they were when it ends (an hour you changed meanwhile is left as you set it); night owls keep the watch, and the sleepless are left alone. A market day only comes when a friendly people who send caravans is near enough; if none can come, the news says so. A work song's recreation only goes to those who don't mind the singing.
 
-Some decrees only exist in the right colony: tithes are for a village, not a tribe, holy days only with Ideology and an ideoligion of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
+Some decrees only exist in the right colony: tithes are for a village, not a tribe, holy days only with Ideology and an ideoligion of the colony's own. A decree that can never apply isn't listed at all. Where two decrees are one idea, only the form it takes now is listed: the drills by the colony's age (a tribe's or a village's militia drills, an industrial or spacer colony's drills), rationing by the moment (famine bread while the region goes hungry). Rest when ill and a quarantine may run together: one heals the sick, the other keeps the well from catching it. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
 
 Who minds what goes by their nature, as with every decree, and with Ideology by their ideoligion too: the devout love holy days and approve of tithes, alms and a fast; those of another ideoligion mind holy days.</text>
       </li>
@@ -424,7 +424,9 @@ The record keeps the news that matters and leaves the repeats: a fight's comrade
           <li>Warden of guests (5 voters) | Looks after visitors and the strangers camped on the colony's land; negotiates better and talks easily with strangers.</li>
           <li>Elder (10 voters, three seats) | The council of elders. While any elder sits, the whole colony keeps a slightly steadier head. Age counts for a candidate.</li>
         </table>
-        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder. The three elders' seats are elected one after another; the Decrees page lists each.</after>
+        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder. The three elders' seats are elected one after another; the Decrees page lists each.
+
+Each seat takes the name of the colony's age, wherever it is named: the names above are a medieval colony's. A tribe's council has a first voice, a war leader, a keeper of stores, a healer, a feast-giver, a seed-keeper, a peace-weaver, a season-caller, a herd-watcher, a spirit-speaker, a guest-friend and elders; an industrial colony's a chair, a captain of the guard, a quartermaster, a doctor, a welfare officer, a farm foreman, an arbiter, a master of ceremonies, a head stockman, a chaplain, a gatekeeper and elders; a spacer colony's a coordinator, a security chief, a logistics officer, a medical officer, a morale officer, an agronomist, a mediator, a ceremonies officer, a husbandry chief, a chaplain, a liaison officer and senior councillors.</after>
       </li>
       <li>
         <heading>Elections</heading>
@@ -438,7 +440,9 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
       </li>
       <li>
         <heading>Election days</heading>
-        <text>With "Elections play out on the map" on (the default), an election is an event. A letter names election day by its date and puts it on the colony calendar: three days off for the yearly election, two for an empty seat. It lists two or three candidates for each seat (three once the colony has 6 voters), chosen by the same rules as the vote, with what each stands for, drawn from how the colony is doing: a marshal after a hard raid talks of the wall, a quartermaster when meals are short of the stores. Nobody stands for more than two seats, and the likely winner of one seat doesn't stand for the seats after it.
+        <text>With "Elections play out on the map" on (the default), an election is an event. A letter names election day by its date and puts it on the colony calendar: three days off for the yearly election, two for an empty seat. It lists two or three candidates for each seat (three once the colony has 6 voters), chosen by the same rules as the vote, with what each stands for, drawn from how the colony is doing: a marshal after a hard raid talks of the wall, a quartermaster when meals are short of the stores. Nobody stands for more than two seats, and the likely winner of one seat doesn't stand for the seats after it. Every seat has three or more promises that always fit, so no two candidates for a seat make the same one.
+
+Each candidate also runs on their own record, said after their promise: what they did in the seat since they promised it, when they hold it (wounds tended, plants sown and brought in, enemies brought down, trades made, quarrels mended, days kept, animals tamed, rites led, camps greeted); else that work for the colony in all; else a name the colony gave them, or a life goal reached. And the yearly election judges what the holder promised last time by what the map shows now: the colony lost nobody since a promise of a proper watch, or two; the stores held, or ran low; trust in the council held, or fell. A promise kept helps the holder at the vote, and a broken one costs about as much; a promise is only called broken where the map clearly shows it. The letter says it, the holder brings up a kept one at the hustings, someone in the crowd throws a broken one back, and the results say it again. Each promise and how it went stays on the holder's card.
 
 In the days before, candidates walk over to people in their free time and make their case. Each visit moves the listener a little, more from a good talker and from someone they like; someone they dislike only puts them off. There are no hustings of their own: the candidates speak at the count, on election day's evening, before the votes are read, and the crowd cheers a good showing (Social, mood, a kind or steady nature) and heckles a poor one, though by then the votes are cast.
 
@@ -671,7 +675,9 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
         <heading>How a goal is chosen</heading>
         <text>Goals fit the person: passions, traits, beliefs and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom; nobody whose ideoligion forbids lovin wants a child, and nobody whose ideoligion forbids violence wants a warrior's record. Someone whose ideoligion keeps lovin for the married, and who has a partner, sets their heart on marriage far more often.
 
-Life sets them too. A battle can make a warrior, a brush with death a healer or someone who just wants more years, a wedding someone who wants to marry, a birth someone who wants a child, a lost election someone who wants a seat, and loneliness someone who wants friends. Seeing a friend achieve their goal can make them want the same. Something big can change their mind about a goal they've barely started.</text>
+Life sets them too. A brush with death can make a healer or someone who just wants more years, a wedding someone who wants to marry, a birth someone who wants a child, a lost election someone who wants a seat, and loneliness someone who wants friends. A battle can make a warrior, but only of the one who brought down the most in it, and a fight pulls less than the rest of life does. Seeing a friend achieve their goal can make them want the same. A goal someone else at home already holds is less likely, so the colony doesn't fill with the same goal.
+
+A goal holds. For its first twenty days nothing changes it, and after that only something big (a brush with death, or losing someone close) can change their mind, and only about a goal they've barely started. A goal chosen that way holds for good: one change of heart a goal, never one after every fight.</text>
       </li>
       <li>
         <heading>Getting there</heading>

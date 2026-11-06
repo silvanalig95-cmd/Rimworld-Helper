@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A fairer council
+
+*6 November 2026, version 0.112.0*
+
+- Elections run on a record: every seat has three or more promises, so candidates no longer make the same one, and each candidate's work is read out beside their promise, counted from what they really did.
+- The next yearly election judges the holder's promise by what the map shows: a kept promise is brought up at the hustings and helps at the vote, a broken one is thrown back by a heckler and costs.
+- Seats are named by the colony's age: the first voice, war leader and healer of a tribe, the chair, captain of the guard and doctor of an industrial town, the coordinator, security chief and medical officer of a spacer colony.
+- Life goals last: a fight sparks a goal only in the one who did the most in it and pulls less than the rest of life, a goal someone else already holds is less likely, and a change of heart comes only once, early, after a brush with death or a loss.
+- Decrees mean distinct things: drills and militia drills are one decree, as are rationing and famine bread, shown in the form that fits the moment, and pairs that can't run together say why.
+- Groups form around what really binds some colonists more than others, no group holds more than about half the colony, and anyone outside every group shows as outside, with why.
+
 ## One teller, one pace
 
 *6 November 2026, version 0.111.0*

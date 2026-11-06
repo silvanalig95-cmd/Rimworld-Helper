@@ -44,7 +44,7 @@ namespace ColonyCouncil
             if (comp == null) return (null, null, null, null, null);
             var office = OfficeTracker.HeldBy(pawn);
             if (office == null) return ("CC_Hud_Office".Translate(), "CC_Hud_None".Translate(), null, null, null);
-            return ("CC_Hud_Office".Translate(), office.LabelCap, () => office.description, null, null);
+            return ("CC_Hud_Office".Translate(), office.NameCap, () => office.Description, null, null);
         }
     }
 

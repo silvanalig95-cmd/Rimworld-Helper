@@ -564,6 +564,21 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(new Rect(0f, y, width, 22f), "CC_Group_OutsiderTip".Translate());
                 y += 24f;
             }
+            // Everyone else outside every group, and why (decision 13 of the review): Barr, at odds with half the colony,
+            // belonged nowhere visible.
+            if (shown.Count > 0)
+            {
+                var newOnes = new HashSet<Pawn>(alone.Select(n => n.pawn));
+                var outside = m.colonists.Where(p => !newOnes.Contains(p) && (focus == null || p == focus) && Groups.Of(p).Count == 0)
+                    .Select(p => (p, why: GroupText.OutsideWhy(p))).Where(x => x.why != null).ToList();
+                if (outside.Count > 0)
+                {
+                    string names = TextUtil.JoinAnd(outside.Select(x => "CC_Social_OutsideOne".Translate(x.p.Named("PAWN"), x.why.Named("WHY")).Resolve()).ToList());
+                    float h = UiKit.Paragraph(0f, y, width, "CC_Social_OutsideAll".Translate(names.Named("NAMES")).Resolve(), UiKit.Cool);
+                    TooltipHandler.TipRegion(new Rect(0f, y, width, h), "CC_Group_OutsideTip".Translate());
+                    y += h + 4f;
+                }
+            }
             var past = t.past.Where(pg => focus == null || pg.members.Contains(focus.thingIDNumber)).Reverse().Take(5).ToList();
             if (past.Count > 0)
             {

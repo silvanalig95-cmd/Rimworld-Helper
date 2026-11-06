@@ -619,11 +619,15 @@ namespace ColonyCouncil
             }
             // When the fight began, read before the count is reset (the quirks look for wounds since then).
             int began = b.countStart;
+            // A fight sparks a fighting life goal in one person at most: whoever brought down the most (GoalMath.Foremost).
+            // A raid every ten days was a spark for everyone who fought, every time.
+            int most = GoalMath.Foremost(list.Select(p => b.killsBy.TryGetValue(p, out int k) ? k : 0).ToList());
+            var foremost = most >= 0 ? list[most] : null;
             b.ResetCount();
             foreach (var p in list)
             {
                 comp.quirks.Notify_Fought(p, began);
-                comp.aspirations.Notify_Event(p, "battle");
+                if (p == foremost) comp.aspirations.Notify_Event(p, "battle");
             }
             TalkHooks.Battle(list, foe);
             try

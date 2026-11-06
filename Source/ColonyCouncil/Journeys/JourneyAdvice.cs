@@ -628,7 +628,7 @@ namespace ColonyCouncil
             if (r.cook && !all.Any(o => o.id != r.id && o.cook)) s.Add(Pill(T("CC_JA_Chip_OnlyCook"), UiKit.Soon));
             if (r.grower && !all.Any(o => o.id != r.id && o.grower)) s.Add(Pill(T("CC_JA_Chip_OnlyGrower"), UiKit.Faint));
             if (r.warden && !all.Any(o => o.id != r.id && o.warden) && plan.map.mapPawns.PrisonersOfColonySpawnedCount > 0) s.Add(Pill(T("CC_JA_Chip_OnlyWarden"), UiKit.Soon));
-            if (r.office != JourneyAdviceMath.NoOffice) s.Add(Pill(OfficeTracker.HeldBy(p)?.label ?? T("CC_JA_Chip_Office"), UiKit.Gold, T("CC_JA_Tip_Office")));
+            if (r.office != JourneyAdviceMath.NoOffice) s.Add(Pill(OfficeTracker.HeldBy(p)?.Name ?? T("CC_JA_Chip_Office"), UiKit.Gold, T("CC_JA_Tip_Office")));
             if (r.babyAlone) s.Add(Pill(T("CC_JA_Chip_Baby"), UiKit.Soon));
             if (r.loverStays) s.Add(Pill(T("CC_JA_Chip_Lover"), UiKit.Faint, T("CC_JA_Tip_Lover")));
             // The journey's skills, the colony's best marked.

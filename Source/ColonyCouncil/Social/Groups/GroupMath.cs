@@ -225,6 +225,68 @@ namespace ColonyCouncil
             return n;
         }
 
+        // ---------------- Real divides (decision 13 of the review, 6 November 2026) ----------------
+
+        // In the player's save one group held 7 of 12 ("Stace's friends") while Barr, whom everyone fights with, belonged to
+        // none: after every raid everyone was everyone's comrade, so what everyone shared bound one big group together.
+        // Groups now form, grow and keep their people by what binds some of the colony more than the rest, a group holds
+        // well under half the colony, and whoever stands outside every group is shown as outside.
+
+        /// <summary>What everyone shares binds nobody in particular: this share of the colony's mean pull is taken from each pair's.</summary>
+        public const float CommonShare = 0.75f;
+
+        /// <summary>
+        /// Each pair's pull less what the whole colony shares (<see cref="CommonShare"/> of the mean over every pair, when
+        /// it is above nothing): who drifts together, joins, and drifts off by it. How close a group already is still reads
+        /// the plain pull, so a group of friends stays close while its looser members find their own way.
+        /// </summary>
+        public static float[,] Distinct(float[,] aff, int n)
+        {
+            var d = new float[n, n];
+            float sum = 0f;
+            int pairs = 0;
+            for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+            {
+                sum += aff[i, j];
+                pairs++;
+            }
+            float common = pairs == 0 ? 0f : Math.Max(0f, sum / pairs) * CommonShare;
+            for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                d[i, j] = i == j ? 0f : aff[i, j] - common;
+            return d;
+        }
+
+        /// <summary>A group holds at most this share of the colony: one that holds most of it isn't a group, it's the colony.</summary>
+        public const float MostOfColony = 0.45f;
+
+        /// <summary>The most a group of this colony holds: <see cref="MostOfColony"/> of its people, between <see cref="MinSize"/> and <see cref="MaxSize"/>.</summary>
+        public static int MaxFor(int people) => Math.Max(MinSize, Math.Min(MaxSize, (int)Math.Floor(people * MostOfColony)));
+
+        /// <summary>An older save's groups regroup by these rules over this many days, quietly (told once), one leaving a group a day at most.</summary>
+        public const int RegroupDays = 10;
+
+        /// <summary>Why someone stands outside every group: at odds with some who are in one, new here, or simply their own.</summary>
+        public enum Outside
+        {
+            None,
+            AtOdds,
+            New,
+            Own
+        }
+
+        /// <summary>
+        /// Why someone is outside every group (<paramref name="inGroup"/>: are they in one), given how many known rivals
+        /// they have in groups and whether they joined lately; None when they're in one or no group exists.
+        /// </summary>
+        public static Outside WhyOutside(bool inGroup, bool anyGroup, int rivalsInGroups, bool newcomer)
+        {
+            if (inGroup || !anyGroup) return Outside.None;
+            if (rivalsInGroups > 0) return Outside.AtOdds;
+            return newcomer ? Outside.New : Outside.Own;
+        }
+
         /// <summary>How two people of different colonies hold to each other: against (below zero), so no group spans two homes.</summary>
         public const float AcrossColonies = -0.05f;
 
@@ -247,9 +309,10 @@ namespace ColonyCouncil
         /// free to join one (<paramref name="free"/>): each step adds whoever pulls hardest towards those already in it,
         /// as long as they pull towards it well enough (<see cref="JoinAt"/>) and against nobody in it. It counts when it
         /// has <see cref="MinSize"/> or more, holds together well enough (<see cref="FormAt"/>), and isn't mostly a group
-        /// that already exists (two thirds of it in one of <paramref name="existing"/>).
+        /// that already exists (two thirds of it in one of <paramref name="existing"/>), and never past <paramref name="max"/>
+        /// (<see cref="MaxFor"/> the colony).
         /// </summary>
-        public static List<int> Cluster(float[,] aff, int n, bool[] free, List<List<int>> existing)
+        public static List<int> Cluster(float[,] aff, int n, bool[] free, List<List<int>> existing, int max = MaxSize)
         {
             var pairs = new List<(int i, int j, float v)>();
             for (int i = 0; i < n; i++)
@@ -269,7 +332,7 @@ namespace ColonyCouncil
             {
                 if (++tried > 16) break;
                 var c = new List<int> { i, j };
-                while (c.Count < MaxSize)
+                while (c.Count < max)
                 {
                     int best = -1;
                     float bestMean = JoinAt;
@@ -304,16 +367,16 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The group (index into <paramref name="groups"/>) someone outside it would join, or -1: the one they hold to
-        /// best, if well enough and not full, and not one closed to them (<paramref name="closed"/>: one they left).
+        /// best, if well enough and not full (<paramref name="max"/>), and not one closed to them (<paramref name="closed"/>: one they left).
         /// </summary>
-        public static int JoinTarget(float[,] aff, int who, List<List<int>> groups, bool[] closed = null)
+        public static int JoinTarget(float[,] aff, int who, List<List<int>> groups, bool[] closed = null, int max = MaxSize)
         {
             int best = -1;
             float bestV = JoinAt;
             for (int g = 0; g < groups.Count; g++)
             {
                 var members = groups[g];
-                if (members.Contains(who) || members.Count >= MaxSize || (closed != null && g < closed.Length && closed[g])) continue;
+                if (members.Contains(who) || members.Count >= max || (closed != null && g < closed.Length && closed[g])) continue;
                 bool against = false;
                 foreach (int m in members)
                     if (aff[who, m] < 0f)

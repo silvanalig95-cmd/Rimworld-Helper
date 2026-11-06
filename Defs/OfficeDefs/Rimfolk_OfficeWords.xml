@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The seats' words beyond their own defs (Offices/OfficeWords.cs), the player's decisions of 6 November 2026:
+    - each seat's name in each age, by the colony's own tech level (its means): a spacer colony doesn't elect a reeve.
+      Every place a seat is named says the age's name; the offices' own lines that name a seat by its old name too.
+    - elections on a record: more promises to run on (three physicians once made the same one), what each of a seat's
+      promises is ("promised {PROMISE}") and how the next election tells whether it was kept (Offices/RecordMath.cs),
+      and the seat's work as the game counts it, for a candidate's record ("has {MEASURED}").
+  -->
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Speaker</defName>
+    <office>Council_Office_Speaker</office>
+    <tribal>first voice</tribal>
+    <medieval>speaker</medieval>
+    <industrial>chair</industrial>
+    <spacer>coordinator</spacer>
+    <promises>
+      <li><key>trust</key><promise>meetings where everyone gets a word in</promise><test>Trust</test></li>
+      <li><key>quarrels</key><promise>the colony's quarrels brought to the table</promise><test>Quarrels</test></li>
+      <li><key>heard</key><promise>to speak for the colony plainly</promise><test>Trust</test></li>
+      <li><key>short</key><promise>shorter meetings that decide something</promise><test>Trust</test></li>
+    </promises>
+    <planks>
+      <li><key>voice</key><text>{PAWN_nameDef} promises that the newest voice at the council's table will be heard as fairly as the oldest.</text><promise>the newest voice heard as fairly as the oldest</promise><test>Trust</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Marshal</defName>
+    <office>Council_Office_Marshal</office>
+    <tribal>war leader</tribal>
+    <medieval>marshal</medieval>
+    <industrial>captain of the guard</industrial>
+    <spacer>security chief</spacer>
+    <measure><li>KillsHumanlikes</li><li>KillsMechanoids</li><li>KillsEntities</li></measure>
+    <measured>brought down {COUNT} enemies</measured>
+    <measuredOne>brought down an enemy</measuredOne>
+    <promises>
+      <li><key>raid</key><promise>the weak side of the wall seen to</promise><test>Lost</test></li>
+      <li><key>drills</key><promise>drills while it was quiet</promise><test>Lost</test></li>
+      <li><key>watch</key><promise>a proper watch at night</promise><test>Lost</test></li>
+    </promises>
+    <planks>
+      <li><key>ready</key><text>{PAWN_nameDef} promises that everyone will know their place before the next raid comes.</text><promise>everyone in their place before the next raid</promise><test>Lost</test></li>
+      <li><key>home</key><text>{PAWN_nameDef} promises to bring everyone home from every fight, and to come home last.</text><promise>everyone brought home from every fight</promise><test>Lost</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Quartermaster</defName>
+    <office>Council_Office_Quartermaster</office>
+    <tribal>keeper of stores</tribal>
+    <medieval>quartermaster</medieval>
+    <industrial>quartermaster</industrial>
+    <spacer>logistics officer</spacer>
+    <measure><li>Council_TradesMade</li></measure>
+    <measured>made {COUNT} trades</measured>
+    <measuredOne>made a trade</measuredOne>
+    <promises>
+      <li><key>meals</key><promise>meals put by before anyone went hungry</promise><test>Food</test></li>
+      <li><key>trade</key><promise>a hard bargain with the traders</promise><test>Work</test></li>
+      <li><key>stores</key><promise>a count of the stores every week</promise><test>Food</test></li>
+    </promises>
+    <planks>
+      <li><key>fairshare</key><text>{PAWN_nameDef} promises a fair share from the stores for everyone, and favourites for nobody.</text><promise>a fair share from the stores for everyone</promise><test>Food</test></li>
+      <li><key>silver</key><text>{PAWN_nameDef} promises to make the colony's silver go further with every trader who comes.</text><promise>more from every trader who came</promise><test>Work</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Physician</defName>
+    <office>Council_Office_Physician</office>
+    <tribal>healer</tribal>
+    <medieval>physician</medieval>
+    <industrial>doctor</industrial>
+    <spacer>medical officer</spacer>
+    <measure><li>TimesTendedOther</li></measure>
+    <measured>tended to the sick and hurt {COUNT} times</measured>
+    <measuredOne>tended to someone sick or hurt</measuredOne>
+    <promises>
+      <li><key>sick</key><promise>a proper place for the ill and the hurt</promise><test>Sickbeds</test></li>
+      <li><key>medicine</key><promise>more medicine before it was needed</promise><test>Medicine</test></li>
+      <li><key>care</key><promise>that nobody hurt would wait for a doctor</promise><test>Work</test></li>
+    </promises>
+    <planks>
+      <li><key>clean</key><text>{PAWN_nameDef} promises clean beds and clean hands wherever the sick are kept.</text><promise>clean beds for the sick</promise><test>Sickbeds</test></li>
+      <li><key>rounds</key><text>{PAWN_nameDef} promises to look in on everyone who is ill or hurt, every morning without fail.</text><promise>a look in on every sickbed each morning</promise><test>Work</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Steward</defName>
+    <office>Council_Office_Steward</office>
+    <tribal>feast-giver</tribal>
+    <medieval>steward</medieval>
+    <industrial>welfare officer</industrial>
+    <spacer>morale officer</spacer>
+    <promises>
+      <li><key>spirits</key><promise>more evenings worth staying up for</promise><test>Mood</test></li>
+      <li><key>feasts</key><promise>feasts on the days that matter</promise><test>Days</test></li>
+    </promises>
+    <planks>
+      <li><key>evenings</key><text>{PAWN_nameDef} promises one evening in every week that is worth looking forward to.</text><promise>an evening worth looking forward to every week</promise><test>Mood</test></li>
+      <li><key>kindness</key><text>{PAWN_nameDef} promises fewer grand plans and more small kindnesses, the kind people remember.</text><promise>more small kindnesses</promise><test>Mood</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Reeve</defName>
+    <office>Council_Office_Reeve</office>
+    <tribal>seed-keeper</tribal>
+    <medieval>reeve</medieval>
+    <industrial>farm foreman</industrial>
+    <spacer>agronomist</spacer>
+    <measure><li>PlantsSown</li><li>PlantsHarvested</li></measure>
+    <measured>sown and brought in {COUNT} plants</measured>
+    <measuredOne>sown or brought in a plant</measuredOne>
+    <promises>
+      <li><key>fields</key><promise>more sown while the season lasted</promise><test>Work</test></li>
+      <li><key>harvest</key><promise>every crop in before the cold</promise><test>Food</test></li>
+      <li><key>seed</key><promise>to walk the fields every morning</promise><test>Work</test></li>
+    </promises>
+    <planks>
+      <li><key>lean</key><text>{PAWN_nameDef} promises enough grown to see the colony through the next lean season.</text><promise>enough grown for the lean season</promise><test>Food</test></li>
+      <li><key>newcrop</key><text>{PAWN_nameDef} promises to try something new in the fields, and to say so honestly if it fails.</text><promise>something new tried in the fields</promise><test>Work</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Peacemaker</defName>
+    <office>Council_Office_Peacemaker</office>
+    <tribal>peace-weaver</tribal>
+    <medieval>peacemaker</medieval>
+    <industrial>arbiter</industrial>
+    <spacer>mediator</spacer>
+    <measure><li>Council_QuarrelsMended</li></measure>
+    <measured>mended {COUNT} quarrels</measured>
+    <measuredOne>mended a quarrel</measuredOne>
+    <promises>
+      <li><key>quarrels</key><promise>an end to the colony's quarrels</promise><test>Quarrels</test></li>
+      <li><key>calm</key><promise>an ear for anyone sore at someone</promise><test>Quarrels</test></li>
+    </promises>
+    <planks>
+      <li><key>table</key><text>{PAWN_nameDef} promises to sit any two who are at odds down together before it comes to blows.</text><promise>any two at odds sat down together before it came to blows</promise><test>Quarrels</test></li>
+      <li><key>alone</key><text>{PAWN_nameDef} promises that nobody new will be left to eat alone.</text><promise>that nobody new would eat alone</promise><test>Mood</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Keeper</defName>
+    <office>Council_Office_Keeper</office>
+    <tribal>season-caller</tribal>
+    <medieval>keeper of days</medieval>
+    <industrial>master of ceremonies</industrial>
+    <spacer>ceremonies officer</spacer>
+    <measure><li>Council_DaysKept</li></measure>
+    <measured>kept {COUNT} days</measured>
+    <measuredOne>kept a day</measuredOne>
+    <promises>
+      <li><key>traditions</key><promise>the colony's traditions kept properly</promise><test>Days</test></li>
+      <li><key>days</key><promise>that no day the colony cares about would go unmarked</promise><test>Days</test></li>
+    </promises>
+    <planks>
+      <li><key>remember</key><text>{PAWN_nameDef} promises that the colony's dead will be remembered on their days, every one of them.</text><promise>the dead remembered on their days</promise><test>Days</test></li>
+      <li><key>firstdays</key><text>{PAWN_nameDef} promises the story of the colony's first days told to everyone who came after.</text><promise>the first days told to everyone who came after</promise><test>Days</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Herdmaster</defName>
+    <office>Council_Office_Herdmaster</office>
+    <tribal>herd-watcher</tribal>
+    <medieval>herdmaster</medieval>
+    <industrial>head stockman</industrial>
+    <spacer>husbandry chief</spacer>
+    <measure><li>AnimalsTamed</li></measure>
+    <measured>tamed {COUNT} animals</measured>
+    <measuredOne>tamed an animal</measuredOne>
+    <promises>
+      <li><key>herd</key><promise>someone who knew every animal by name</promise><test>Herd</test></li>
+      <li><key>animals</key><promise>animals worth keeping, kept well</promise><test>Herd</test></li>
+    </promises>
+    <planks>
+      <li><key>pens</key><text>{PAWN_nameDef} promises clean pens and full troughs, and no animal left out in the cold.</text><promise>clean pens and full troughs</promise><test>Herd</test></li>
+      <li><key>tame</key><text>{PAWN_nameDef} promises to bring in a new animal or two from the wild, gently.</text><promise>a new animal or two brought in from the wild</promise><test>Work</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Chaplain</defName>
+    <office>Council_Office_Chaplain</office>
+    <tribal>spirit-speaker</tribal>
+    <medieval>chaplain</medieval>
+    <industrial>chaplain</industrial>
+    <spacer>chaplain</spacer>
+    <measure><li>Council_RitualsLed</li></measure>
+    <measured>led {COUNT} rites</measured>
+    <measuredOne>led a rite</measuredOne>
+    <promises>
+      <li><key>comfort</key><promise>to be there for whoever needed the faith</promise><test>Faith</test></li>
+      <li><key>faith</key><promise>the colony's rites kept faithfully</promise><test>Work</test></li>
+    </promises>
+    <planks>
+      <li><key>doubt</key><text>{PAWN_nameDef} promises a word with anyone whose faith is wearing thin, whatever they believe.</text><promise>a word for anyone whose faith wore thin</promise><test>Faith</test></li>
+      <li><key>grief</key><text>{PAWN_nameDef} promises that nobody in the colony will grieve alone.</text><promise>that nobody would grieve alone</promise><test>Mood</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Warden</defName>
+    <office>Council_Office_Warden</office>
+    <tribal>guest-friend</tribal>
+    <medieval>warden of guests</medieval>
+    <industrial>gatekeeper</industrial>
+    <spacer>liaison officer</spacer>
+    <measure><li>Council_CampsGreeted</li></measure>
+    <measured>greeted {COUNT} camps</measured>
+    <measuredOne>greeted a camp</measuredOne>
+    <promises>
+      <li><key>gate</key><promise>friends at the gate told apart from raiders</promise><test>Lost</test></li>
+      <li><key>guests</key><promise>visitors a fire, a meal and a fair word</promise><test>Work</test></li>
+    </promises>
+    <planks>
+      <li><key>road</key><text>{PAWN_nameDef} promises that travellers will speak well of the colony on the road.</text><promise>travellers speaking well of the colony on the road</promise><test>Work</test></li>
+      <li><key>noguest</key><text>{PAWN_nameDef} promises that no guest will leave the colony hungry or with a grudge.</text><promise>that no guest would leave hungry or with a grudge</promise><test>Work</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Elder</defName>
+    <office>Council_Office_Elder</office>
+    <tribal>elder</tribal>
+    <medieval>elder</medieval>
+    <industrial>elder</industrial>
+    <spacer>senior councillor</spacer>
+    <promises>
+      <li><key>wisdom</key><promise>to spare the colony the same mistake a third time</promise><test>None</test></li>
+      <li><key>young</key><promise>to pass on what {PAWN_pronoun} knows to the young</promise><test>None</test></li>
+    </promises>
+    <planks>
+      <li><key>stories</key><text>{PAWN_nameDef} promises the colony's old stories told to the young before they are forgotten.</text><promise>the old stories told to the young</promise><test>None</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+</Defs>

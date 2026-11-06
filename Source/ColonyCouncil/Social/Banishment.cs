@@ -382,7 +382,7 @@ namespace ColonyCouncil
             var speaker = offices?.HolderOf("Council_Office_Speaker");
             if (Able(speaker))
             {
-                title = DefDatabase<OfficeDef>.GetNamedSilentFail("Council_Office_Speaker")?.label;
+                title = DefDatabase<OfficeDef>.GetNamedSilentFail("Council_Office_Speaker")?.Name;
                 return speaker;
             }
             var leader = FaithLeader(out string role);
@@ -396,7 +396,7 @@ namespace ColonyCouncil
                 foreach (var h in offices.HoldersOf(o))
                     if (Able(h))
                     {
-                        title = o.label;
+                        title = o.Name;
                         return h;
                     }
             var eldest = ColonyAt(map).Where(Able).OrderByDescending(x => x.ageTracker.AgeBiologicalYearsFloat).FirstOrDefault();
