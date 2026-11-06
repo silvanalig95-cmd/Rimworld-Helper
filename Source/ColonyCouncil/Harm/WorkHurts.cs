@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -84,8 +85,11 @@ namespace ColonyCouncil
                 }
             }
             slice.Clear();
-            if (which == 0 && days.Count > 64) days.Clear();
-            if (which == 0 && through.Count > 64) through.Clear();
+            if (which != 0) return;
+            // Yesterday's counts are done with; a strain gone (healed, or turned worse) is too.
+            foreach (var k in days.Where(kv => kv.Value.day < day || kv.Key.Dead || kv.Key.Destroyed).Select(kv => kv.Key).ToList()) days.Remove(k);
+            foreach (var k in through.Where(kv => kv.Value.day < day).Select(kv => kv.Key).ToList()) through.Remove(k);
+            if (throughRolled.Count > 200) throughRolled.Clear();
         }
 
         /// <summary>The colony's own grown-ups and older children at work on a map (the cap keeps children to the mildest).</summary>
