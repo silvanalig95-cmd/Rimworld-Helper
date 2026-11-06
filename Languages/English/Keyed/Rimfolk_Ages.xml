@@ -212,4 +212,14 @@
   <CC_Form_Call_Spacer>a colonization call by comms</CC_Form_Call_Spacer>
   <CC_Form_Call_Spacer_Rite>colonists down with their manifests</CC_Form_Call_Spacer_Rite>
 
+  <!-- A colony handed over (stage 3, Colonies/HandOvers.cs): the word what changes hands, the rite how it is done -->
+  <CC_Form_HandOver_Tribal>the fire passed on</CC_Form_HandOver_Tribal>
+  <CC_Form_HandOver_Tribal_Rite>the totem left at the old fire</CC_Form_HandOver_Tribal_Rite>
+  <CC_Form_HandOver_Medieval>the charter and the keys</CC_Form_HandOver_Medieval>
+  <CC_Form_HandOver_Medieval_Rite>a charter read before the hall</CC_Form_HandOver_Medieval_Rite>
+  <CC_Form_HandOver_Industrial>the town charter signed</CC_Form_HandOver_Industrial>
+  <CC_Form_HandOver_Industrial_Rite>the old flag lowered</CC_Form_HandOver_Industrial_Rite>
+  <CC_Form_HandOver_Spacer>the codes handed over</CC_Form_HandOver_Spacer>
+  <CC_Form_HandOver_Spacer_Rite>a charter registered</CC_Form_HandOver_Spacer_Rite>
+
 </LanguageData>

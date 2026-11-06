@@ -3042,6 +3042,107 @@ record of the start is `LandingRecord.cs`, the move `Landing.cs`, the window `La
 - **Nothing else.** It is not a founding, an abandoning or a journey: no history entry, no calendar day, no mood, no
   speech. What was under way on the old map (a play-out, a visit) ends with it, as when any map is closed.
 
+#### A town of our own (stage 3, release 2a)
+
+A colony handed over to a people of its own (docs/design/stage3-many-colonies.md, section 2 without "What it does
+afterwards", "Taking it back" and "Keeping the layout"; the player's decisions 2A, 6B, 8A and 9A of 6 November 2026).
+`Source/ColonyCouncil/Colonies/`: the rules are pure (`HandOverMath.cs`, tested in `Tools/Tests/HandOverTests.cs`);
+`HandOvers.cs` runs it in the region's hour (`Pass.Region`, `RegionBook.Hourly`, only while one is under way) and the
+region's day (the bond); the window is `HandOverWindow.cs`, the peoples and the bond `HandOverPeoples.cs`, the notables
+`HandOverNotables.cs`, the game's hooks `HandOverPatches.cs`; the plan rides the homes' component (`HomesHandOver.cs`),
+the towns the colony was the world ledger (`World/Ledger/LedgerFormers.cs`). Its questions are release 1's letter kind
+(`ChoiceLetter_Founding`, asks 3 and 4).
+- **The window** (`Dialog_HandOver`), from the colony's card ("Hand it over", beside "Found a new colony") or the
+  settlement's world buttons beside the game's Abandon (`Patch_HandOverGizmo`, a postfix on `Settlement.GetGizmos`):
+  who stays and who goes (release 1's rows, `Foundings.Rows`, each grown-up's wish with why; children follow their
+  parents; anyone away from home or a guest of another people's goes); the head and the head's second
+  (`HandOverMath.Head`, `Second`: the player's pick, else the speaker, else the office holder first by `OfficeDef.order`,
+  else the one the others think best of, `HandOvers.Standing`: the others' opinions and the colony's view; never by
+  blood); the people's name by the age's word (`CC_HandOver_PeopleName_<Age>`, renameable, `NameWhyNot`: not empty,
+  not long, not another people's); the terms (free, a defence or trade pact; a pact needs Pacts on and a home of the
+  colony's left, or a new colony of the same act); the prisoners and slaves set free or taken along; what stays with the
+  place; where those who go go (another ground home, the road, or a founding: "Found a new colony with them" opens the
+  place picker with the third choice set); the checks (`HandOverMath.WhyNot`: a settlement on the ground, no fight or
+  threat, no banishment under way, three grown-ups staying, someone of the player's elsewhere, no grav anchor); and the
+  plain word that a save holding the town then needs Rimfolk (6B). "Put it to the meeting" stores the plan (one at a
+  time).
+- **The meeting's vote (2A).** A play-out at the meeting spot (`PlayKind.Toast` with words, the dining table first, as
+  the council meets; 17 to 22h; its chair the speaker; `Rimfolk_Pool_HandOverMeeting`); when it is over (the play-outs'
+  own `PlayOut.afterward`, `PlayAfter.Run` now passing who took part) each member who came votes
+  (`HandOverMath.VoteOf`: their wish met +1, against it -1, torn 0, plus trust / 40, at most 1.5 either way; past 0.25
+  either way for or against, else torn and not counted), every member when nobody gathered or answers don't play out.
+  A letter tells the vote and who voted which way, and asks: go ahead (the hand-over set for the next day, by its date;
+  against the vote, `TrustAgainstVote` -6 among those who stay) or call it off; the colony's card has the same while the
+  letter waits.
+- **The ceremony.** On the day set, between 9 and 19h with no fight: everyone of the home who stays or goes is invited
+  to a play-out at the meeting spot, the head its organizer and speaker (`Rimfolk_Pool_HandOver`, lines by age). When it
+  is over: the one who hands it over (the speaker if they go, else an office holder who goes, else the eldest who goes)
+  and the head, face to face (`Together.When`, four hours), say the give and take lines and the social log records the
+  totem, the keys and charter, the town charter or the codes (`CC_HandOver_Token_<Age>`); each who goes says goodbye
+  to their two closest who stay (`Foundings.IsClose`, twelve in all, `Together.When` with one going to find the other
+  after an hour). Then those who go leave: to another home by the journey planner's plan (one way, the planner opened),
+  else a letter to form their caravan the game's way (`Dialog_FormCaravan`), or by pods, shuttle or gravship; a
+  founding of the same act sets out now (`Foundings.Begin`). With answers not played out, the vote is counted at once
+  and the farewells still wait for the two to be together.
+- **The town made**, at the next frame (a long event) once `HandOverMath.WaitsFor` is clear: nobody of those who go
+  (or a colonist of another home visiting) on the map, no guest of the colony's there, the same act's new colony standing
+  when nobody goes from here, three grown-ups on the map, no gravship engine left. In order: the colony's record
+  (`LedgerColony`, written now if it wasn't) ends `HandedOver` with the town; the people is made
+  (`HandOverPeoples.Make`: `FactionGenerator.NewGeneratedFaction` with the age's def, hidden at creation so no town of
+  its own is placed and, by `Patch_HandOverLeader`, no stranger made its leader; named; its primary faith the colony's
+  (`SetPrimary`, a faith the game made for it and nobody holds removed); shown; allied with the player at 80 and with
+  every other people half the player's goodwill, at war only while the colony is, a permanent or natural enemy kept so
+  (`OtherGoodwill`); `FactionManager.Add`); a gravship-landed home's flag cleared so it is no longer a home; the
+  prisoners set free (their own people's again), the slaves, those who stay, the animals, mechs and any other player
+  pawn on the map given the people; the head its leader; the settlement's faction set, its cached material cleared and
+  its trade stock let go. The game closes the map at the settlement's next tick (`Settlement.ShouldRemoveMapNow`: no
+  player pawn on it), passing those who stay to the world as its people's, with no "lost" letter, and
+  `GameEnder.CheckOrUpdateGameOver` finds the colony's people elsewhere. A gravship taking off without an anchor from a
+  home whose ceremony is over makes the town instead of the game's abandon (`Patch_HandOverGravship`, a prefix on
+  `GravshipUtility.AbandonMap` for that map only), anyone of those who go left on the ground staying with it.
+- **The records.** A `LedgerFormer` (the settlement id, which is the colony's key, the people, the colony's name and age,
+  its founding and the hand-over, the terms, the second, the former colonists, where those who went went, the bond's
+  state; six at most); the town's `LedgerTown` of a new kind `TownKind.Former`, its prosperity seeded from the colony's
+  wealth per head (everyone who stayed and went: `HandOverMath.Seed`, 30 at 2,000 a head to 70 at 40,000), its founding
+  the colony's founding day, its founder one of the colony's founders who stayed (else the head); its notables
+  (`NotableBook.FormerTown`: the head, the head's second as the heir, the envoy by social impact, the trader by trade
+  price improvement, all of them the colony's own); the rest kept in the world with `KeepFor.Former` while the town
+  stands; the pact (`Pacts.Make`, the seat's, or the colony's as a whole while it has no other home); the moods
+  (release 1's uprooted for those sent or kept against their wish, parted for the three closest on the other side);
+  the milestone `colony:handedOver` (the colony about, the people for, the head did; at the town); a letter pointing at
+  the town. The colony's council, calendar and books for that home are let go by the usual rule (thirty days).
+- **The heads.** `Patch_HandOverLeader`, a prefix on `Faction.TryGenerateNewLeader` for Rimfolk's own peoples only:
+  while one is being made, no leader; when its leader dies or is lost, the second leads (`HandOvers.NextLeader`), else
+  the best thought of among its former colonists, and the game's own letter names them; a new second is chosen, former
+  colonists first (`NextSecond`), taking the heir's place among the notables if they were one already; with nobody of
+  theirs left, the game makes its own. The notables keep a town the colony was wherever it lies (`Towns`, `Look`), fill
+  an empty place from its former people first (`HandOvers.NotableFor`), and title the second by the colony's age
+  (`CC_HandOver_Second_<Age>`: the headman's second, the reeve's deputy, deputy mayor, deputy administrator).
+- **The four peoples (6B)** (`Defs/Misc/Rimfolk_HandOver.xml`): `Rimfolk_People_Tribal` (hearth folk, headman) and
+  `_Medieval` (free folk, reeve) on the game's `TribeBase`, `_Industrial` (township, mayor) and `_Spacer` (free colony,
+  administrator) on `OutlanderFactionBase`: the game's own groups, caravans, traders and town defenders; peaceful,
+  human, not hidden, no fixed name, no royal titles, never made with the world or listed in its choices. With a mod of
+  a medieval (or spacer) people loaded, Medieval Overhaul's first, its pawn groups and traders are lent to Rimfolk's
+  people of that age at startup (`HandOverPeoples.Lend`), so their gear is the age's.
+- **The bond (8A)**: `Rimfolk_OnceOf`, `GoodwillSituationWorker_OnceOf`, shown as "once of [colony]": +30 natural
+  goodwill while one of the former colonists heads the town, +15 after, 0 once the bond is broken; the region's day
+  breaks it when the people are at war with the colony (`colony:bondEnded` in the history, a line in the news). The
+  game's drift and same-faith situation do the rest.
+- **The same act as a fresh start.** The founding window's third choice for the old colony, "Handed over" (`HandOver`):
+  its own checks join the founding's, the newcomers come free, and its Confirm opens the hand-over window with the
+  party as those who go; the founding is kept inside the hand-over (no other founding meanwhile) and sets out when the
+  ceremony is over (`FoundingPlan.handOver`: never abandoned; done once its hand-over is, with the old founding day kept
+  at the new colony and the game's limit set back by one as after an abandon).
+- **Cards.** The colony's card: "Hand it over", "Go ahead with the hand-over" while the vote waits, "Call off the
+  hand-over", and a line for where it stands (by names and dates, no countdown). A town the colony was: its card says
+  which colony it was, when it was handed over, how many of the colony's people live there and the bond.
+- **Setting.** "Handing over" in Many colonies. Off, nothing new is offered; a hand-over under way goes on, and the
+  bond and the heads keep to their records.
+- **Seams for release 2b** (marked `// release 2b`): the kept layout and the town's map made from it, the town's
+  letters, trade, days, homecomings and moving there, and taking it back peacefully or by force (which ends the bond).
+  With one colony and nothing handed over nothing runs: no plan, no record, nothing saved (each new list is written only
+  when it holds something).
+
 ### The world ledger
 
 One way to name anything out in the world, one record for every tie between two parties, and one place to ask about a

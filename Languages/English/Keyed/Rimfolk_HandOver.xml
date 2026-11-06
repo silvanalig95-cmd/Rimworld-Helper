@@ -12,15 +12,7 @@
   <CC_Settings_HandOvers_Tip>"Hand it over" on a colony's card and on its world buttons: choose who stays and who goes, the head and the head's second, the people's name and the terms. The colony's meeting votes on it, the day is set, and on that day everyone gathers for the hand-over. Once those who go have left, the place is a town of a people of its own, its people the colony's former colonists, allied with the colony. Off: nothing new is offered, and a hand-over under way goes on as planned.</CC_Settings_HandOvers_Tip>
   <CC_SetNote_HandOvers>Hand a colony over to a people of its own: those who stay.</CC_SetNote_HandOvers>
 
-  <!-- The ages: a colony handed over (the word what changes hands, the rite how it is done) -->
-  <CC_Form_HandOver_Tribal>the fire passed on</CC_Form_HandOver_Tribal>
-  <CC_Form_HandOver_Tribal_Rite>the totem left at the old fire</CC_Form_HandOver_Tribal_Rite>
-  <CC_Form_HandOver_Medieval>the charter and the keys</CC_Form_HandOver_Medieval>
-  <CC_Form_HandOver_Medieval_Rite>a charter read before the hall</CC_Form_HandOver_Medieval_Rite>
-  <CC_Form_HandOver_Industrial>the town charter signed</CC_Form_HandOver_Industrial>
-  <CC_Form_HandOver_Industrial_Rite>the old flag lowered</CC_Form_HandOver_Industrial_Rite>
-  <CC_Form_HandOver_Spacer>the codes handed over</CC_Form_HandOver_Spacer>
-  <CC_Form_HandOver_Spacer_Rite>a charter registered</CC_Form_HandOver_Spacer_Rite>
+  <!-- The ages: what changes hands at a hand-over, the people's name, the head's second (the forms are in Rimfolk_Ages.xml) -->
   <CC_HandOver_Token_Tribal>the totem</CC_HandOver_Token_Tribal>
   <CC_HandOver_Token_Medieval>the keys and the charter</CC_HandOver_Token_Medieval>
   <CC_HandOver_Token_Industrial>the town charter</CC_HandOver_Token_Industrial>
@@ -38,6 +30,8 @@
   <!-- On the colony's card and the world buttons -->
   <CC_HandOver_Act>Hand it over</CC_HandOver_Act>
   <CC_HandOver_ActTip>Make this place a town of its own people: those who stay become a people of their own, allied with the colony, and those who go leave for another home, a new colony or the road. The colony's meeting votes on it first.</CC_HandOver_ActTip>
+  <CC_HandOver_ActGoAhead>Go ahead with the hand-over</CC_HandOver_ActGoAhead>
+  <CC_HandOver_ActGoAheadTip>The meeting has voted: go ahead, and the hand-over is set for the next day. Against its vote it costs trust among those who stay.</CC_HandOver_ActGoAheadTip>
   <CC_HandOver_ActCallOff>Call off the hand-over</CC_HandOver_ActCallOff>
   <CC_HandOver_ActCallOffTip>The hand-over under way here is called off: nobody leaves for it and the place stays the colony's.</CC_HandOver_ActCallOffTip>
   <CC_HandOver_CallOffConfirm>Call off the hand-over of {HOME}? A new colony to be founded with it is called off too.</CC_HandOver_CallOffConfirm>
@@ -126,8 +120,8 @@
   <CC_HandOver_VoteYes>For: {NAMES}.</CC_HandOver_VoteYes>
   <CC_HandOver_VoteNo>Against: {NAMES}.</CC_HandOver_VoteNo>
   <CC_HandOver_VoteTorn>Torn, and not counted: {NAMES}.</CC_HandOver_VoteTorn>
-  <CC_HandOver_VoteAsk>Go ahead, and the hand-over is set for {DATE}, or call it off.</CC_HandOver_VoteAsk>
-  <CC_HandOver_VoteAskAgainst>Going ahead against the vote costs {TRUST} trust among those who stay; the hand-over would be set for {DATE}. Or call it off.</CC_HandOver_VoteAskAgainst>
+  <CC_HandOver_VoteAsk>Go ahead, and the hand-over is set for the next day, or call it off.</CC_HandOver_VoteAsk>
+  <CC_HandOver_VoteAskAgainst>Going ahead against the vote costs {TRUST} trust among those who stay, and the hand-over would be set for the next day. Or call it off.</CC_HandOver_VoteAskAgainst>
   <CC_HandOver_Choice_GoAhead>Go ahead</CC_HandOver_Choice_GoAhead>
   <CC_HandOver_Choice_CallOff>Call it off</CC_HandOver_Choice_CallOff>
   <CC_HandOver_TrustWhy>handed over against the meeting's vote at {HOME}</CC_HandOver_TrustWhy>

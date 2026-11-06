@@ -42,6 +42,8 @@ namespace ColonyCouncil
             CardActs.Register(CardKind.Place, _ => "CC_HandOver_Act".Translate().Resolve(), r => HandOvers.WhyNot(CardSections.HomeOf(r)), r => HandOvers.Open(CardSections.HomeOf(r)),
                 r => HandOvers.On && CardSections.HomeOf(r) != null && HandOvers.At(CardSections.HomeOf(r)) == null && HandOvers.Current == null, 12.2f, "CC_HandOver_ActTip".Translate(),
                 "colony-handover");
+            CardActs.Register(CardKind.Place, _ => "CC_HandOver_ActGoAhead".Translate().Resolve(), null, r => HandOvers.GoAhead(HandOvers.At(CardSections.HomeOf(r))),
+                r => HandOvers.At(CardSections.HomeOf(r))?.stage == HandOverStage.Voted, 14.1f, "CC_HandOver_ActGoAheadTip".Translate(), "colony-handover-go");
             CardActs.Register(CardKind.Place, _ => "CC_HandOver_ActCallOff".Translate().Resolve(), null, r => AskCallOffHandOver(HandOvers.At(CardSections.HomeOf(r))),
                 r => HandOvers.At(CardSections.HomeOf(r)) != null, 14.2f, "CC_HandOver_ActCallOffTip".Translate(), "colony-handover-off");
         }

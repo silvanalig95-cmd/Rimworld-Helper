@@ -511,6 +511,19 @@ MODEL = {
     "Colonies/HomesFounding.cs:keptAgainst": ("while", 4, P, "per founding: those kept against their wish (counted under foundings)"),
     "Colonies/HomesFounding.cs:asks": ("while", 6, 120, "those sent or kept against their wish who may ask once to move, for the season after a founding "
                                        f"(FoundingMath.AskMoveToDays, {const('Colonies/FoundingMath.cs', 'AskMoveToDays', 15):.0f} days)"),
+    # A colony handed over (Colonies/HomesHandOver.cs, on the homes' component): written only while one is under way (the
+    # meeting, the day set, the ceremony, those who go leaving), one at a time, so a save with none writes nothing.
+    "Colonies/HomesHandOver.cs:handOvers": ("while", 1, 640, "a hand-over under way, one at a time, let go once the town is made or it is called off "
+                                            "(with the same act's founding inside until it sets out)"),
+    "Colonies/HomesHandOver.cs:going": ("while", 8, P, "per hand-over: who goes (counted under handOvers)"),
+    "Colonies/HomesHandOver.cs:staying": ("while", 12, P, "per hand-over: who stays (counted under handOvers)"),
+    "Colonies/HomesHandOver.cs:sentAgainst": ("while", 4, P, "per hand-over: those sent against their wish (counted under handOvers)"),
+    "Colonies/HomesHandOver.cs:keptAgainst": ("while", 4, P, "per hand-over: those kept against their wish (counted under handOvers)"),
+    # The towns the colony was (World/Ledger/LedgerFormers.cs, on the world ledger): written once a colony is handed over.
+    "World/Ledger/LedgerFormers.cs:formerRecords": ("cap", (const("Colonies/HandOverMath.cs", "MaxTowns", 6), 0.005), 420,
+                                                    "one per colony handed over, HandOverMath.MaxTowns at most (the oldest whose town is gone goes); "
+                                                    "none in a save that never handed one over"),
+    "World/Ledger/LedgerFormers.cs:formers": ("while", 12, P, "per town the colony was: the colony's former people who stayed (counted under formerRecords)"),
     # Another landing site (Colonies/LandingRecord.cs, on the council's component): the record of the start, written only
     # while the offer is open (LandingMath.OfferDays after a landing), so a save past a new game's first days writes none.
     "Colonies/LandingRecord.cs:kit": ("while", 60, 160, "the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), "

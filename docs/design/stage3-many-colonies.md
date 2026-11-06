@@ -11,6 +11,9 @@
 
 > **Release 1, a fresh start, is built** (6 November 2026): see "The order to build it in", item 1, for what differs.
 
+> **Release 2a, handing a colony over, is built** (6 November 2026): section 2 but what the town does afterwards, taking
+> it back and keeping the layout (release 2b). See "The order to build it in", item 2, for what differs.
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
@@ -571,6 +574,44 @@ colonies at once after. Each release plays as before with its settings off and o
    homecomings and moving there, taking it back peacefully and by force; the gravship case; the old colony handed over
    in the same act as a fresh start, with free newcomers. Needs 1 (the who-goes list, the colony record, the cards)
    and stage 1's towns.
+
+   **Built (release 2a, 6 November 2026; `Source/ColonyCouncil/Colonies/HandOver*.cs`, `HandOvers.cs`,
+   `World/Ledger/LedgerFormers.cs`; DESIGN.md "A town of our own").** The window, the meeting's vote, the day, the
+   ceremony, the people made and the town, its records and notables, its heads, the bond, the gravship case and the
+   hand-over in the same act as a fresh start, with the decisions 2A, 6B, 8A and 9A. Release 2b is what the town does
+   afterwards (its letters, trade, days, homecomings and moving there), taking it back (10A) and keeping the layout
+   (7A), marked `// release 2b` in the code. What differs from section 2:
+   - *The people's kind* is Rimfolk's own four by the colony's age (decision 6B, not the vanilla def first): tribal and
+     medieval on the game's tribal parent, industrial and spacer on its outlander parent; with a mod of a medieval (or
+     spacer) people loaded, Medieval Overhaul's first, its pawn groups and traders are lent to Rimfolk's people of that
+     age. The window says a save holding one needs Rimfolk.
+   - *The meeting* is a gathering of its own, called in the evening after the window, not the colony's next ordinary
+     meeting (whose business is ambitions and their pitches); the vote counts those who came, every member if nobody
+     gathered. The player's go-ahead sets the day: the next day, said by its date. Going against the vote costs 6 trust
+     among those who stay, which they carry into the town.
+   - *The ceremony*: the banner, totem, keys or codes change hands in words, face to face, and in the social log, not as
+     an item (the game has none for it, and one made for it would be a thing the town couldn't keep); the town's letter
+     says it happened only when it did. Farewells are each who goes with their two closest who stay.
+   - *Who stays*: a guest of another people's goes with those who go, and the town waits for them to leave; a colonist
+     of another home visiting goes home first; anyone away from home is listed as going and stays the colony's
+     wherever they are (nobody is moved to the seat). Prisoners set free go back to their own people; slaves set free
+     live in the town as its own; "taken along" is the caravan the player forms, and any still there are set free.
+     Mechs left behind are the town's.
+   - *The town's founder* on its record is one of the colony's founders who stayed (else the head): no record of the
+     colony's first speaker is kept.
+   - *Relations*: half the colony's goodwill with each other people, at war only while the colony is (and the half is
+     below nothing); a permanent or a natural enemy (the defs' own -100 and -80) stays one.
+   - *The terms*: the pact is the seat's, or the colony's as a whole while it has no other home yet (a new colony on its
+     way). Fealty is never offered, as decided.
+   - *The notables*: a town the colony was stays among the colony's neighbours wherever it lies, beside the usual
+     towns, and a place left empty is filled from its former people first.
+   - *The gravship*: the prefix on `GravshipUtility.AbandonMap` makes the town only once the ceremony is over and three
+     grown-ups are on the ground; before that, the game abandons the home as always. Anyone of those who go left on the
+     ground stays with the town.
+   - *In the same act*: the founding window's third choice opens the hand-over window with the party as those who go;
+     the founding waits inside the hand-over and sets out when the ceremony is over. "Found a new colony with them" in
+     the hand-over window opens the place picker with the third choice set.
+   - *This week* doesn't list a hand-over (as release 1's founding); the colony's card says where it stands.
 3. **A scenario's start** (section 1's scenario parts): any scenario's people, limits, kit, arrival and animals, and
    Rimfolk's own parts, for the new colony alone. Needs 1.
 4. **Many colonies in play** (section 3's rest): merging councils, the pages following the colony in view, notables

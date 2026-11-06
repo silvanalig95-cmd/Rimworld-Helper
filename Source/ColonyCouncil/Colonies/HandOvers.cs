@@ -306,8 +306,7 @@ namespace ColonyCouncil
             if (yes.Count > 0) text += "\n\n" + "CC_HandOver_VoteYes".Translate(Foundings.Names(yes).Named("NAMES")).Resolve();
             if (no.Count > 0) text += "\n" + "CC_HandOver_VoteNo".Translate(Foundings.Names(no).Named("NAMES")).Resolve();
             if (torn.Count > 0) text += "\n" + "CC_HandOver_VoteTorn".Translate(Foundings.Names(torn).Named("NAMES")).Resolve();
-            text += "\n\n" + (carried ? "CC_HandOver_VoteAsk" : "CC_HandOver_VoteAskAgainst").Translate(DateOf(home, HandOverMath.DaySet(Now, GenLocalDate.HourOfDay(home))).Named("DATE"),
-                Mathf.RoundToInt(-HandOverMath.TrustAgainstVote).Named("TRUST")).Resolve();
+            text += "\n\n" + (carried ? "CC_HandOver_VoteAsk" : "CC_HandOver_VoteAskAgainst").Translate(Mathf.RoundToInt(-HandOverMath.TrustAgainstVote).Named("TRUST")).Resolve();
             FoundingLetters.AskHandOver(plan, home, "CC_HandOver_VoteLabel".Translate(plan.homeName.Named("HOME")).Resolve(), text);
             LensModel.Dirty();
             Cards.Dirty();
@@ -334,6 +333,7 @@ namespace ColonyCouncil
             }
             plan.stage = HandOverStage.Set;
             plan.dayAt = HandOverMath.DaySet(Now, GenLocalDate.HourOfDay(home));
+            FoundingLetters.RemoveHandOverLetters(plan);
             // direct: the answer to the player's own click in the vote's letter.
             Messages.Message("CC_HandOver_DaySetMsg".Translate(plan.homeName.Named("HOME"), DateOf(home, plan.dayAt).Named("DATE")).Resolve(), MessageTypeDefOf.NeutralEvent, false);
             LensModel.Dirty();
@@ -851,18 +851,19 @@ namespace ColonyCouncil
             }
             // The terms: a pact for a year, renewed by their letter as any (decision 9A).
             string termsLine = "";
-            var seat = Homes.Seat;
-            if (plan.terms != HandOverTerms.Free && seat != null && seat != home)
+            if (plan.terms != HandOverTerms.Free)
             {
+                // Bound to the seat, or the colony as a whole while it has no other home yet (a new colony on its way).
+                var bound = Homes.Seat != home ? Homes.Seat : Homes.All.FirstOrDefault(m => m != home);
                 var k = plan.terms == HandOverTerms.Defence ? PactKind.Defence : PactKind.Trade;
                 ThingDef cart = null;
                 int count = 0;
-                if (k == PactKind.Trade)
+                if (k == PactKind.Trade && bound != null)
                 {
-                    var goods = Pacts.CartGoods(seat);
+                    var goods = Pacts.CartGoods(bound);
                     if (goods.Count > 0) (cart, count) = goods[0];
                 }
-                if (Pacts.Make(people, seat, k, true, cart, count) != null) termsLine = ("CC_HandOver_Terms_Made_" + plan.terms).Translate(people.Name.Named("PEOPLE")).Resolve();
+                if (Pacts.Make(people, bound, k, true, cart, count) != null) termsLine = ("CC_HandOver_Terms_Made_" + plan.terms).Translate(people.Name.Named("PEOPLE")).Resolve();
             }
             else termsLine = "CC_HandOver_Terms_Made_Free".Translate(people.Name.Named("PEOPLE")).Resolve();
             Moods(plan, free);
