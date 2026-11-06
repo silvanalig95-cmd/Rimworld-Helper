@@ -477,6 +477,13 @@ namespace ColonyCouncil
             if (m.meals > 0) tags.Add("ate");
             // An invitation's rite, royal host and titled guest (InviteForms.cs).
             InviteForms.AddTags(m, tags);
+            // The asking people's ways by their age, and the Empire apart with its own titles and honour.
+            if (m.faction != null && !m.faction.IsPlayer)
+            {
+                tags.Add("their:" + Ages.Tag(Ages.Of(m.faction)));
+                tags.Add(m.faction.def.techLevel <= TechLevel.Medieval ? "their:lowtech" : "their:hightech");
+                if (Ages.IsEmpire(m.faction)) tags.Add("their:empire");
+            }
             return tags;
         }
 

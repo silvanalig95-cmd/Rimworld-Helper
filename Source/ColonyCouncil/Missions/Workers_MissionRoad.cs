@@ -34,6 +34,18 @@ namespace ColonyCouncil
 
         protected override bool Possible(Map map) => StorytellerEvents.Adults(map).Count() >= 2 && Asker(map) != null;
 
+        /// <summary>How old the one to be walked home is (an old pilgrim here; Workers_MissionNeighbours4.cs has others).</summary>
+        protected virtual FloatRange TravellerAges => new FloatRange(58f, 80f);
+
+        /// <summary>The variant of the texts: a pilgrim under a vow, or one going home.</summary>
+        protected virtual string TravellerVariant(Faction f) => Rand.Chance(0.5f) ? "vow" : "home";
+
+        /// <summary>The message when the colony's caravan sets off with them.</summary>
+        protected virtual string SetOffKey => "CC_Mission_Escort_Set";
+
+        /// <summary>The silver the town pays, before the colony's wealth.</summary>
+        protected virtual FloatRange RewardRange => new FloatRange(160f, 300f);
+
         protected override bool Setup(Mission m, HappeningContext ctx, HappeningExtension ext)
         {
             var map = ctx.map;
@@ -44,17 +56,17 @@ namespace ColonyCouncil
             m.a = VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;
             var kind = Arrivals.PersonKind(m.faction);
-            var pilgrim = kind == null ? null : Arrivals.Make(kind, m.faction, new FloatRange(58f, 80f));
+            var pilgrim = kind == null ? null : Arrivals.Make(kind, m.faction, TravellerAges);
             if (pilgrim == null) return false;
             Arrivals.Hold(pilgrim);
             m.x = pilgrim;
             m.name = pilgrim.LabelShort;
-            m.variant = Rand.Chance(0.5f) ? "vow" : "home";
+            m.variant = TravellerVariant(m.faction);
             float travel = MissionPeoples.TravelDays(map, town);
             m.tale = TextUtil.DaysString(Mathf.RoundToInt(Mathf.Max(0.3f, travel) * GenDate.TicksPerDay));
             m.wait = Rand.Range(0.5f, 1f);
             m.days = Mathf.Ceil(m.wait + travel * 1.5f + 3f);
-            m.reward = StoryChains.Silver(map, 160f, 300f);
+            m.reward = StoryChains.Silver(map, RewardRange.min, RewardRange.max);
             m.goodwill = 12;
             m.penalty = 5;
             Fill(m, ctx);
@@ -133,7 +145,7 @@ namespace ColonyCouncil
                     Arrivals.Hold(x);
                     m.a = MissionPeoples.Colonists(c).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).First();
                     m.stage = 2;
-                    Tell.Message(NewsKind.World, Importance.Important, map, "CC_Mission_Escort_Set".Translate(m.name.Named("NAME"), m.a.Named("A"), (m.place ?? "?").Named("PLACE")).Resolve(), new LookTargets(c),
+                    Tell.Message(NewsKind.World, Importance.Important, map, SetOffKey.Translate(m.name.Named("NAME"), m.a.Named("A"), (m.place ?? "?").Named("PLACE")).Resolve(), new LookTargets(c),
                         MessageTypeDefOf.PositiveEvent);
                     return;
                 }
@@ -337,6 +349,29 @@ namespace ColonyCouncil
 
         private static FloatRange Ages => ModsConfig.BiotechActive ? new FloatRange(6f, 11f) : new FloatRange(13f, 15f);
 
+        // What another kind of lost one changes (Workers_MissionNeighbours4.cs: an old one wandered off, a hunter overdue).
+        /// <summary>How old they are.</summary>
+        protected virtual FloatRange LostAges => Ages;
+
+        /// <summary>Made as a child (Biotech's children).</summary>
+        protected virtual bool LostIsChild => ModsConfig.BiotechActive;
+
+        /// <summary>The variant of the texts.</summary>
+        protected virtual string LostVariant => ModsConfig.BiotechActive ? "child" : "youth";
+
+        /// <summary>What their people remember of whoever found them, and what the finder feels.</summary>
+        protected virtual string FoundDeed => "foundChild";
+
+        protected virtual string FoundThought => "Council_Mission_ChildHome";
+
+        /// <summary>The colonist who deals with them: the one best at this.</summary>
+        protected virtual SkillDef FinderSkill => SkillDefOf.Animals;
+
+        /// <summary>How long the search may go on, in days.</summary>
+        protected virtual FloatRange SearchDays => new FloatRange(1.6f, 2.2f);
+
+        protected virtual FloatRange RewardRange => new FloatRange(120f, 240f);
+
         protected override bool CanHappen(Map map, HappeningExtension ext)
         {
             if (!base.CanHappen(map, ext)) return false;
@@ -354,13 +389,13 @@ namespace ColonyCouncil
             m.faction = Neighbor(map);
             if (m.faction == null) return false;
             m.place = LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
-            m.a = VarietyUtil.Best(map, SkillDefOf.Animals) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
+            m.a = VarietyUtil.Best(map, FinderSkill) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;
             var kind = Arrivals.PersonKind(m.faction);
             Pawn child = null;
             try
             {
-                child = kind == null ? null : Arrivals.Make(kind, m.faction, Ages, null, null, ModsConfig.BiotechActive);
+                child = kind == null ? null : Arrivals.Make(kind, m.faction, LostAges, null, null, LostIsChild);
             }
             catch (Exception e)
             {
@@ -370,9 +405,9 @@ namespace ColonyCouncil
             Arrivals.Hold(child);
             m.x = child;
             m.name = child.LabelShort;
-            m.variant = ModsConfig.BiotechActive ? "child" : "youth";
-            m.days = Rand.Range(1.6f, 2.2f);
-            m.reward = StoryChains.Silver(map, 120f, 240f);
+            m.variant = LostVariant;
+            m.days = SearchDays.RandomInRange;
+            m.reward = StoryChains.Silver(map, RewardRange.min, RewardRange.max);
             m.goodwill = 15;
             m.penalty = 4;
             Fill(m, ctx);
@@ -481,8 +516,8 @@ namespace ColonyCouncil
             Couriers.PaySilver(map, spotNear, m.reward, m.faction, kin.FirstOrDefault(p => p.Spawned), x.Spawned ? x.Position : (IntVec3?)null);
             Missions.Goodwill(m, m.goodwill);
             var finderNow = m.a;
-            KinMemory.Note(m.faction, "foundChild", finderNow, m.name);
-            var thought = StorytellerEvents.Thought("Council_Mission_ChildHome");
+            KinMemory.Note(m.faction, FoundDeed, finderNow, m.name);
+            var thought = StorytellerEvents.Thought(FoundThought);
             if (thought != null && finderNow != null && !finderNow.Dead) CouncilGameComponent.GiveThought(finderNow, thought);
             var title = DefDatabase<EpithetDef>.GetNamedSilentFail("Council_Epithet_Finder");
             if (title != null && finderNow != null && Rand.Chance(0.7f)) CouncilGameComponent.Instance?.epithets.Bestow(title, finderNow, CouncilGameComponent.Instance);

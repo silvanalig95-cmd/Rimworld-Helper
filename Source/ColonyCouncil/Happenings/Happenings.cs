@@ -561,6 +561,8 @@ namespace ColonyCouncil
         {
             var ext = def.GetModExtension<HappeningExtension>();
             float f = Mathf.Clamp(S.storytellerEventWeight, 0.05f, 4f) * ShareFactor(def.category);
+            // Every mission offer shares one draw: a new kind takes a share of it (Missions/Workers_MissionNeighbours4.cs).
+            f *= MissionPool.Factor(def);
             var t = CouncilGameComponent.Instance?.happenings;
             if (ext != null && t != null && ext.group == t.lastGroup) f *= 0.5f;
             if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
@@ -757,7 +759,7 @@ namespace ColonyCouncil
         private float Weight(IncidentDef d, Map map, bool remote = true)
         {
             var ext = d.GetModExtension<HappeningExtension>();
-            float w = d.baseChance;
+            float w = d.baseChance * MissionPool.Factor(d);
             // Variety: the same kind of event twice in a row is less likely.
             if (ext.group == lastGroup) w *= 0.35f;
             // Newcomers follow the storyteller's sense of how big the colony should be.
