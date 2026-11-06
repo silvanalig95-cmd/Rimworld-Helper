@@ -369,6 +369,7 @@ MODEL = {
     "Wishes/Kept.cs:cells": ("fixed", 4, 30, "per watch"),
     "Wishes/Kept.cs:watches": ("window", (15, 0.5), 400, "granted wishes still watched (grace days)"),
     "Wishes/Wish.cs:coSigners": ("fixed", 2, P, "per open wish (counted under wishes)"),
+    "Wishes/Wish.cs:petitionMet": ("fixed", 2, P, "per open want in a petition: those of it met before (counted under wishes)"),
     # Aspirations (life goals)
     "Aspirations/Aspirations.cs:all": ("known", 1, 350, "goals of the dead and departed end; finished ones of the dead kept 3 years"),
     "Aspirations/Aspirations.cs:counters": ("known", 3, D, "counters of known pawns"),
