@@ -11,6 +11,9 @@ All seventeen as recommended (the review page, https://claude.ai/artifact/MjBxUw
 4. Small letdowns wear on the heart's strain. The player's word with it: "the letdowns also make sense as mood impact,
    no? But I like strain too though!" So both: each letdown keeps a short, small mood at the moment it happens, the
    repeated grind builds strain, and the separate letdown moods read as one row on the mood tab.
+   And the good side the same way (the player, the same day: "The positive mood buffs should also be adjusted
+   accordingly and balanced, not that only the negative ones get adjusted"): small good moments keep a short mood,
+   a run of them eases strain, they read as one row, and both sides are balanced together.
 5. One rule for good things growing ordinary.
 6. One slow "known as" per colonist and one "known for" per colony; reputation's six sides stay as details.
 7. A custom becomes a tradition after three years running (one rule).
