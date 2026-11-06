@@ -6,6 +6,55 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- event variety: new questions, events, situations and camps (the player's request, 6 November 2026): "you can add more
+  'event variety' to existing systems that are more flexible to new additions". New content in the existing frameworks
+  only, at their existing rates; no version of its own (its points go with the next round). Each piece, what it plays
+  out, what lasts, how often:
+  - The cold snap's hours (`Rimfolk_DlmE_ColdSnap`, `DilemmaWorker_ColdSnap`): the game's cold snap, freezing outside,
+    two or more out working in it by day, A the one with the coldest bedroom. Short days (a new timetable plan,
+    `AnswerShiftMath.Cold`: abed 5 to 8, to bed 19 to 21, put back when the cold snap ends), a fire kept in A's room
+    (40 wood, `DilemmaEffect_KeepFire`), or carry on (the cold is the game's own). Lasts until the cold snap ends; weight
+    1.4, 20 days apart, only in a cold snap.
+  - Blight in the fields (`Rimfolk_DlmE_Blight`, `DilemmaWorker_Blight`, `DilemmaEffect_CutBlight`): the game's crop
+    blight in two or more plants of the colony's fields. The blighted plants marked to cut (the game's designation), or
+    that and the rest of those fields that can come in now marked to harvest, or let it spread as the game has it. The
+    crop saved or lost; weight 1.5, 15 days apart, only while there is blight.
+  - The good weapon (`Rimfolk_DlmE_GoodWeapon`, `DilemmaWorker_GoodWeapon`, `DilemmaEffect_TakeUp`, `StoredWeapons`): a
+    good-or-better weapon in storage two colonists would be better armed with (`VarietyTwoMath.Upgrade`, skilled at its
+    kind, able to equip it). The one chosen walks to the stores and takes it up (the game's equip job), or it stays.
+    Who carries it from then on; weight 1.2, 40 days apart.
+  - The animal left behind (`Rimfolk_DlmE_MasterGone`, `DilemmaWorker_MasterGone`, `DilemmaEffect_NewMaster`): an
+    obedience-trained animal whose bonded person died in the last 12 days, no living master. A new master (the one
+    closest to the dead, or the best handler), whom it keeps at the heels of a day (`TimedKind.Follow`), or the colony's.
+    The master stays; weight 1.3, 30 days apart. Six small memories in `Rimfolk_Thoughts_Variety2.xml`, the rest reused.
+  - The herd crossing (`Rimfolk_Evt_HerdCrossing`, `HappeningWorker_HerdCrossing`, `DilemmaEffect_HuntHerd`): a herd of
+    four or more of one kind crossing for an edge (the game's herd migration). A few of the grown ones (a third, two to
+    four) or the biggest marked to hunt, or let them cross; the game's own risk that a hunted beast turns is named in
+    every letter and under the answer. Meat or nothing; base chance 0.8 in Rimfolk's capped share of the storyteller's
+    pool, 20 days apart, only while a herd is on the map (rare).
+  - A blight in the region (`Rimfolk_WS_Blight`, data only): spring to fall, the game's crop blight 2.5 times as likely
+    at home, a neighbour's food bought at twice its worth or its plain worth, smoke over their town, a burned-out family
+    fed at the gate; ends by what the colony did. Weight 0.7, 150 days apart, 10 to 16 days, kind hunger.
+  - Medicine gone scarce (`Rimfolk_WS_MedicineScarce`, data only): medicine sold at a scarce year's price or given, a
+    herb-seller's healroot bought dear, hedge healers oftener and travelling doctors rarer. Weight 0.6, 200 days apart,
+    12 to 18 days, kind scarcity (never with iron gone scarce).
+  - Woodcutters (`Rimfolk_Camp_Woodcutters`): a new land need, `woods` (`CampKindsLand.WoodsTargets`, 30 grown wild trees
+    clear of the colony at least, `CampLandMath.WoodsEnough`); they pitch by the thickest stand and fell 1.5 trees a day.
+    Asks: their wood (60 logs to the gate), the axe (Plants lesson); their request a hot supper (4 meals to the camp);
+    their woodpile left for the colony in peace (goods, not a gift, so no calendar day). Weight 0.6 among the kinds that
+    fit, oftener in a hard winter, a fire or a rebuilding.
+  - Herb-gatherers (`Rimfolk_Camp_HerbGatherers`): wild herbs gathered at dawn and a share left (help "medicine"). Asks:
+    their herbs (4 herbal medicine to the gate), the herbs (Medicine lesson); their request to walk the colony's fields
+    (`CampComes` to the fields, `CC_CampErrand_Arrived_herbwalk`, then their gathering). Weight 0.6, oftener while
+    medicine is scarce or sickness is about. Every age by the people's own (root-diggers to a survey party).
+  - Rates, from `Tools/Balance` (120 runs a setup, 6 colonists, average play, before and after): questions a year 13.3
+    and 12.9, events 6.5 and 6.5, world events 1.1 and 1.1, questions a day 0.50 and 0.49 (within the runs' noise);
+    `--scenes` (10 colonists, well run): 52.5 and 52.4 staged a year, 5.1 gatherings and outings a week either way; no
+    new answer gathers people (the dilemmas that may: 24% of the rest before and after). Camps come on their own clock
+    (about one in 35 days), unchanged: a kind is picked among those that fit. Tests: `VarietyTwoTests`; the play-out
+    audit counts the four new effects (0 candidates); README and the Almanac's council, world events and camps pages.
+  - Needs a look in the game: the herd crossing (rare: the herd is on the map for hours), a fire laid in a cold room in a
+    spacer colony, the woodcutters' stand on a small map with a big home area.
 - 6 November 2026, the player's decisions on the review: all seventeen as recommended, with one nuance on the
   letdowns (both a short mood at the moment and strain for the grind): `docs/review-2026-11/decisions.md`. The
   reports are beside it (`staged-scenes.md`, `systems.md`, `whole.md`). Phases 1 (one record) and 3 (one heart) run
