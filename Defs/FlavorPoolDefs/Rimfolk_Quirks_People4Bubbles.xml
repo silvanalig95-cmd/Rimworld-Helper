@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the new quirks sound like over a head (Immersion/HabitBubbles.cs), one sentence each, when the quirk fits what
+    they're doing: walking out on open ground, at the rock face, by a fire, at a meal, late at night, at work under the
+    sky, outside after dark. In the colonist's own voice.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleFooting</defName>
+    <lines>
+      <plain>
+        <li>Careful, there's a loose stone just there.</li>
+        <li>Round the soft patch, not through it.</li>
+        <li>One step at a time, eyes on the ground.</li>
+        <li>[rain] Mud like this is how I got hurt last time.</li>
+        <li>[winter] Ice under the snow, so slowly does it.</li>
+      </plain>
+      <blunt><li>Watch the ground.</li></blunt>
+      <cheerful><li>Not falling today, ground, nice try.</li></cheerful>
+      <cold><li>Firm footing first, then speed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleTapsRoof</defName>
+    <lines>
+      <plain>
+        <li>Knock once on the roof, and it rings sound.</li>
+        <li>Roof first, then the face.</li>
+        <li>That one rang true, so I can dig.</li>
+        <li>Listen to the rock before you cut it.</li>
+      </plain>
+      <blunt><li>Knock, listen, dig.</li></blunt>
+      <gloomy><li>Sounds sound, for now.</li></gloomy>
+      <cold><li>A hollow note means trouble, and this one isn't hollow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleBoots</defName>
+    <lines>
+      <plain>
+        <li>Boots by the fire, socks beside them.</li>
+        <li>Dry feet tomorrow, that's the rule.</li>
+        <li>Just turning my boots so the toes dry.</li>
+        <li>Never again with the wet feet.</li>
+      </plain>
+      <warm><li>Put yours here too, there's room.</li></warm>
+      <cheerful><li>Toasty boots in the morning, my favorite thing.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleBoils</defName>
+    <lines>
+      <plain>
+        <li>Was this water boiled first?</li>
+        <li>Hands washed, water boiled, then we eat.</li>
+        <li>I'll wait for the kettle, thanks.</li>
+        <li>Not a drop that hasn't been on the fire.</li>
+      </plain>
+      <blunt><li>Boiled, or I'm not drinking it.</li></blunt>
+      <gloomy><li>One cup of bad water was all it took last time.</li></gloomy>
+      <cold><li>Boiled water is the cheapest medicine there is.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleFirstFire</defName>
+    <lines>
+      <plain>
+        <li>This fire came from the first night's, you know.</li>
+        <li>Same flame as the first night, passed along.</li>
+        <li>I remember how few of us sat round the first one.</li>
+        <li>Keep it fed, it's older than it looks.</li>
+      </plain>
+      <warm><li>Every one of us has warmed their hands at this fire.</li></warm>
+      <cheerful><li>Still burning, all the way from the first night.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleLooksBack</defName>
+    <lines>
+      <plain>
+        <li>I wonder what they're doing at the other colony tonight.</li>
+        <li>I hope they've got enough firewood over there.</li>
+        <li>Another thing to tell them, when I see them.</li>
+        <li>The road looks long from here at night.</li>
+      </plain>
+      <warm><li>Sleep well over there, all of you.</li></warm>
+      <gloomy><li>I should have said more, before we parted.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleRoadSong</defName>
+    <lines>
+      <plain>
+        <li>Oh, the road goes on and the road goes round.</li>
+        <li>How did the strangers' song go, the second verse?</li>
+        <li>Hum the road song, and the work goes quicker.</li>
+        <li>La la, something about a river, la la.</li>
+      </plain>
+      <cheerful><li>Everybody, the chorus, you know this one.</li></cheerful>
+      <gloomy><li>It's a song about leaving, and they left.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BubbleDusk</defName>
+    <lines>
+      <plain>
+        <li>Sun's gone, I should be inside.</li>
+        <li>This is when the flies come out.</li>
+        <li>Quickly now, before the biting starts.</li>
+        <li>I don't like being out after dark any more.</li>
+      </plain>
+      <blunt><li>Dark, so I'm going in.</li></blunt>
+      <cold><li>The flies feed at dusk, so I should be indoors.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

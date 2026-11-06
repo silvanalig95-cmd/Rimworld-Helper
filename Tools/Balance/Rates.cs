@@ -264,6 +264,9 @@ namespace Balance
                 case "WishWorker_Outside": return 0.3f;
                 case "WishWorker_Apprentice":
                 case "WishWorker_Fix": return 0.4f;
+                // People4: trees grown against the walls now and then; deep snow by the doors on cold land in winter.
+                case "WishWorker_TreesByWalls": return 0.2f;
+                case "WishWorker_SnowWays": return 0.1f;
                 case "WishWorker_Meeting":
                 case "WishWorker_Companion":
                 case "WishWorker_Travel":

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's own people, the fourth round (6 November 2026): what sparked a new life goal, its progress; the new
+       wishes' reasons, promises and progress; how a new quirk came. -->
+
+  <!-- ===================== Life goals ===================== -->
+  <CC_Asp_Spark_hurt>after getting hurt</CC_Asp_Spark_hurt>
+  <CC_Asp_Spark_war>with the neighbors at war</CC_Asp_Spark_war>
+  <CC_Asp_Spark_thought_Council_Ail_Survived>after pulling through an illness</CC_Asp_Spark_thought_Council_Ail_Survived>
+  <CC_Asp_Spark_thought_Council_Soc_EveningAtTheCamp>after an evening at a camp's fire</CC_Asp_Spark_thought_Council_Soc_EveningAtTheCamp>
+  <CC_Asp_Spark_thought_Council_Moment_CampStories>after the strangers' stories</CC_Asp_Spark_thought_Council_Moment_CampStories>
+  <CC_Asp_Spark_thought_Council_Evt_GoodTurn>after a good turn on the road</CC_Asp_Spark_thought_Council_Evt_GoodTurn>
+  <CC_Asp_Spark_thought_Rimfolk_FirstNight>after the new colony's first night</CC_Asp_Spark_thought_Rimfolk_FirstNight>
+  <CC_Asp_Spark_thought_Council_Evt_FoundingDay>after the founding day</CC_Asp_Spark_thought_Council_Evt_FoundingDay>
+  <CC_Asp_Spark_thought_HadAngeringFight>after a fight with someone</CC_Asp_Spark_thought_HadAngeringFight>
+  <CC_Asp_Spark_thought_Rimfolk_Parted>after parting from those close to them</CC_Asp_Spark_thought_Rimfolk_Parted>
+  <CC_Asp_Spark_thought_Rimfolk_Uprooted>after being sent away from home</CC_Asp_Spark_thought_Rimfolk_Uprooted>
+
+  <CC_Asp_SureFootedProgress>{0} of {1} days without a hurt</CC_Asp_SureFootedProgress>
+  <CC_Asp_VisitDone>made the journey</CC_Asp_VisitDone>
+  <CC_Asp_VisitNotYet>not yet been to the other colony</CC_Asp_VisitNotYet>
+
+  <!-- ===================== Wishes ===================== -->
+  <CC_Reason_TreesByWalls>{PAWN_nameDef} has noticed {COUNT} grown trees standing right against the colony's walls, near enough to come down on a roof in a storm.</CC_Reason_TreesByWalls>
+  <CC_Wish_TreesByWalls_Progress>{0} still standing</CC_Wish_TreesByWalls_Progress>
+  <CC_Promise_TreesByWalls>The council marks the {TARGET} trees against the walls to come down. The colony's cutters will fell them.</CC_Promise_TreesByWalls>
+  <CC_SelfHelp_TreesByWalls>Tired of waiting, {PAWN_nameDef} marked the trees against the walls for cutting. Cancel the marks if you'd rather keep them.</CC_SelfHelp_TreesByWalls>
+
+  <CC_Reason_SnowWays>Snow lies deep on {COUNT} cells of the ways by the colony's doors, and {PAWN_nameDef} wades through it every morning.</CC_Reason_SnowWays>
+  <CC_Wish_SnowWays_Progress>{0} of {1} still under deep snow</CC_Wish_SnowWays_Progress>
+  <CC_Promise_SnowWays>The council has the {TARGET} snowed-in cells by the doors marked for clearing. The colony's cleaners will shovel them.</CC_Promise_SnowWays>
+  <CC_SelfHelp_SnowWays>Tired of wading, {PAWN_nameDef} marked the ways by the doors for clearing. Take them out of the snow clearing area if you object.</CC_SelfHelp_SnowWays>
+
+  <!-- ===================== Quirks ===================== -->
+  <CC_QuirkFrom_hurt>after getting hurt</CC_QuirkFrom_hurt>
+  <CC_QuirkFrom_ill>from an illness</CC_QuirkFrom_ill>
+
+</LanguageData>
