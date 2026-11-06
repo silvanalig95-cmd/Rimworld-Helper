@@ -7,7 +7,7 @@
     <defName>Rimfolk_Mood_Uprooted</defName>
     <thoughts><li>Rimfolk_Uprooted</li></thoughts>
     <fix>They were sent to a new colony, or kept at the old one, against their wish. It fades after a season. With both colonies standing they may ask once to move to the one they wanted; letting them go ends the reason for it.</fix>
-    <act>Let it fade, or let them move</act>
+    <act>Let it fade, or move them</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_FreshStart</article>
   </ColonyCouncil.MoodHintDef>
