@@ -258,6 +258,9 @@ namespace ColonyCouncil
         public static readonly Dictionary<string, string> AlsoWhen = new Dictionary<string, string>
         {
             // (The round d text pass's three entries for the house renown talk went with its files, 5 November 2026.)
+            // The text pass on the world's voices (6 November 2026): "Who's camped out on your land, then?" was asked by one of
+            // that very camp too; only by a visitor who isn't (them:camp, World/Region/RegionNearFacts.cs).
+            ["Rimfolk_OT_Col_Camp"] = "!them:camp"
         };
 
         /// <summary>

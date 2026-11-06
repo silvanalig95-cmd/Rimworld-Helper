@@ -7,7 +7,8 @@ namespace ColonyCouncil
 {
     // The region's provider (Text/Facts/FactsRegion.cs) asks here for what stands near the colony now and what their own
     // town has been through: a raiders' camp the colony knows of (World/Region/RaidersCamp.cs), a ruin within reach (the
-    // ruins rise and fall keeps, RiseFallLedger.cs), what brought a traveller (Camps/CampSeekers.cs), their town raised on
+    // ruins rise and fall keeps, RiseFallLedger.cs), what brought a traveller (Camps/CampSeekers.cs) and the kind of camp
+    // they travel with, their town raised on
     // old walls (NewTowns.cs), a town of theirs given up lately, and a world event at their own town. Each reads the
     // records as they stand; one that fails leaves the others' facts.
     public static partial class Facts
@@ -31,6 +32,7 @@ namespace ColonyCouncil
             Each("a raiders' camp near", () => CampNear(s, f, home));
             Each("a ruin near", () => RuinNear(s, f, home));
             Each("what brought a traveller", () => Seeking(s, f));
+            Each("a traveller's camp", () => TheirCamp(s, f));
             Each("a town on old walls", () => Resettled(s, f, now));
             Each("a town given up", () => GivenUp(s, f));
             Each("a world event at their town", () => TownSituation(s, f));
@@ -96,6 +98,21 @@ namespace ColonyCouncil
             f.Tag("them:seeking", 1.5f);
             f.Tag("them:seeking:" + c.seeking, 1.5f);
             f.Value("SEEK", c.seekWhat);
+        }
+
+        /// <summary>
+        /// One of a camp of travellers at the colony (Camps/): them:camp, and them:camp:KIND by its kind
+        /// (FactsMath.CampTag: them:camp:Hunters, them:camp:SaltCaravan), so a piece can speak of their own trade and road,
+        /// and one about the camp on the colony's land ({CAMP}) can leave its own people out.
+        /// </summary>
+        private static void TheirCamp(FactScene s, FactSet f)
+        {
+            var x = s.listener;
+            if (x == null || !x.Spawned) return;
+            var c = CampTracker.CampOf(x);
+            if (c?.kind == null) return;
+            f.Tag("them:camp", 1.5f);
+            f.Tag(FactsMath.CampTag(c.kind.defName), 1.5f);
         }
 
         /// <summary>

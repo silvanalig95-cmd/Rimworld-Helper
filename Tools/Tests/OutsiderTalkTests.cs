@@ -372,6 +372,12 @@ public static class OutsiderTalkTests
             C(p.retired ? !Sayable(p) && OutsiderTalkMath.Retired.Contains(name) : Sayable(p), p.retired ? $"{name} is retired, never said" : $"{name} can be said when its conditions hold");
         }
 
+        // One of a camp of travellers (World/Region/RegionNearFacts.cs): a tag for each kind of camp, and none for a kind that isn't there.
+        var campKinds = Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.CampKindDef"))
+            .Select(k => FactsMath.CampTag(k.Element("defName")!.Value)).ToHashSet();
+        C(FactsMath.RegionTags.Where(t => t.StartsWith("them:camp:")).ToHashSet().SetEquals(campKinds) && FactsMath.RegionTags.Contains("them:camp"),
+            $"a tag for each of the {campKinds.Count} kinds of camp (them:camp:KIND), and none for a kind that isn't there");
+
         // The library as a whole.
         var marked = pieces.Where(p => p.mark != null).Select(p => p.mark).ToHashSet();
         foreach (var p in pieces.Where(p => p.callback))
