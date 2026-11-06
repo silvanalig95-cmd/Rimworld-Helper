@@ -37,9 +37,9 @@
       <li>the border war</li>
       <li>the war over the fords</li>
       <li>the war of the north road</li>
-      <li>[lowtech] the war of the two rivers</li>
-      <li>[lowtech] the quarrel of the high pastures</li>
-      <li>[!lowtech] the boundary war</li>
+      <li>[theirLowtech] the war of the two rivers</li>
+      <li>[theirLowtech] the quarrel of the high pastures</li>
+      <li>[theirHightech] the boundary war</li>
     </names>
     <titles>
       <li>War between neighbours</li>
@@ -524,16 +524,16 @@
       <friendly>true</friendly>
     </faction>
     <names>
-      <li>[tribal] the great longhouse</li>
-      <li>[tribal] the ring of standing stones</li>
-      <li>[medieval] the stone bridge</li>
-      <li>[medieval] the new hall</li>
-      <li>[medieval] the town wall</li>
-      <li>[industrial] the dam on the river</li>
-      <li>[industrial] the new mill</li>
-      <li>[industrial] the iron bridge</li>
-      <li>[spacer] the landing field</li>
-      <li>[spacer] the signal tower</li>
+      <li>[theirLowtech] the great longhouse</li>
+      <li>[theirLowtech] the ring of standing stones</li>
+      <li>[theirLowtech] the stone bridge</li>
+      <li>[theirLowtech] the new hall</li>
+      <li>[theirLowtech] the town wall</li>
+      <li>[theirHightech] the dam on the river</li>
+      <li>[theirHightech] the new mill</li>
+      <li>[theirHightech] the iron bridge</li>
+      <li>[theirHightech] the landing field</li>
+      <li>[theirHightech] the signal tower</li>
     </names>
     <titles>
       <li>A great work at {PLACE}</li>
@@ -543,7 +543,7 @@
       <li>{FACTION} have begun {NAME} at {PLACE}, the biggest thing anyone in the region has tried to build in a lifetime. Every hand in the town is on it, and their master builder has sent word round the region for timber and skill.\n\nIf it stands, {PLACE} will be the better for it for a hundred years. If the timber runs short, it will stand half built.</li>
       <li>[theirLowtech] The people of {FACTION} have sworn to raise {NAME} at {PLACE} before the season turns. The whole town is cutting and hauling, and their builders are asking every neighbour for timber.\n\nIt will be talked about for generations, one way or the other.</li>
       <li>[theirHightech] {FACTION} have broken ground on {NAME} at {PLACE}. Their engineers have the plans and the hands; what they lack is timber for the forms and scaffolding, and people who know how to raise a thing that size.\n\nIt will bring trade to {PLACE} for years, if it is finished.</li>
-      <li>[theirEmpire] By the {TITLE}'s order, {FACTION} are raising {NAME} at {PLACE}, and the honour of the house that finishes it on time is spoken of in every hall. Their master builder is asking the region for timber.\n\nThe Empire does not forget a neighbour who helped it keep its word.</li>
+      <li>[theirEmpire] By the {TITLE}'s order, {FACTION} are raising {NAME} at {PLACE}, and the honour of the town that finishes it on time is spoken of in every hall. Their master builder is asking the region for timber.\n\nThe Empire does not forget a neighbour who helped it keep its word.</li>
     </texts>
     <summaries>
       <li>More travellers pass on the road while it is built. {FACTION} will want the colony's timber, and their master builder may ask for a word from its best builder. With the colony's help it will be finished; without it, it may stand half built.</li>
