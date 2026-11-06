@@ -165,6 +165,7 @@ tested in `LettersPetitionsTests`):
   armor is checked on them), linked by `Wish.petition` (the first want's id, saved, -1 alone) and kept out of the
   letters: a message names everyone ("Harper wants proper armor too: Stace, Dukialgac and Harper now ask the council
   for it together"), the line is said over their head, the joiners' bond warms a little, and the chronicle has one line.
+  With the "Petitions" setting off, each asks on their own, as for the wishes many back.
 - **One deadline, one count, one voice.** Joining moves the whole petition's deadline two days on (`PetitionMath.Deadline`,
   never past a fresh wish's full time, never sooner than it stood) and shares its promise and stage. It counts once
   toward the open wishes' cap (`OpenWishCount`, `LeadsPetition`), shows once on the Wishes page (its header names them
