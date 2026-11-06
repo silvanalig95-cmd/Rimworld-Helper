@@ -387,7 +387,7 @@ namespace ColonyCouncil
             object raw = SettingsAccess.Get(s, e.id);
             float value = raw is int i ? i : raw is float f ? f : 0f;
             string valueText = SettingsAccess.ValueText(e, raw);
-            string label = t.valueInLabel ? e.label.Translate(valueText).Resolve() : t.label + ": " + valueText;
+            string label = t.valueInLabel ? Standalone(e, e.label.Translate(valueText).Resolve()) : t.label + ": " + valueText;
             bool beside = SettingsLayoutMath.SliderBeside(width);
             float labelW = beside ? Mathf.Round(width * 0.55f) : width;
             UiKit.LabelFit(new Rect(x, y, labelW - 8f, LineH), label, on ? Color.white : UiKit.Dim);
@@ -593,7 +593,7 @@ namespace ColonyCouncil
             t = new Texts();
             string raw = e.label.Translate().RawText ?? e.label;
             t.valueInLabel = raw.Contains("{0}");
-            t.label = t.valueInLabel ? raw.Replace("{0}", "").Trim().TrimEnd(':') : raw;
+            t.label = Standalone(e, t.valueInLabel ? raw.Replace("{0}", "").Trim().TrimEnd(':') : raw);
             t.tip = e.tip != null && e.tip.CanTranslate() ? e.tip.Translate().RawText : null;
             if (e.IsField)
             {
@@ -618,6 +618,22 @@ namespace ColonyCouncil
             t.haystack = string.Join("\n", hay.Where(h => !h.NullOrEmpty())).ToLowerInvariant();
             texts[e] = t;
             return t;
+        }
+
+        /// <summary>
+        /// A label that goes on from its parent's ("... including ones that can end in a fight") on a page without the
+        /// parent above it reads with the parent's name before it: "Rimfolk's events › including ones that can end in a fight".
+        /// </summary>
+        private static string Standalone(SettingEntry e, string label)
+        {
+            if (label == null || e.Indented || e.Parent == null || !(label.StartsWith("...") || label.StartsWith("…"))) return label;
+            var parent = SettingsCatalog.Find(e.Parent);
+            if (parent == null) return label;
+            string rest = label.TrimStart('.', '…', ' ');
+            // "... and notes in the game's letters" goes on from its parent; standing alone it is "notes in the game's letters".
+            string and = "CC_And".Translate().RawText + " ";
+            if (rest.StartsWith(and, StringComparison.OrdinalIgnoreCase)) rest = rest.Substring(and.Length);
+            return SettingsAccess.PlainLabel(parent) + " › " + rest;
         }
 
         /// <summary>The tooltip: the setting's own, with its default; the deeper game hooks also say how many took.</summary>
