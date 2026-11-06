@@ -47,4 +47,15 @@
   <CC_ChronFold_answer_Of>The council answered {COUNT} questions about {NAME}.</CC_ChronFold_answer_Of>
   <CC_ChronFold_Span>({FROM} to {TO})</CC_ChronFold_Span>
   <CC_ChronFold_SpanDay>({DAY})</CC_ChronFold_SpanDay>
+
+  <!-- The year, told once: one letter on the anniversary of the landing (World/YearLetter.cs). -->
+  <CC_YearOne_Opening>On the {ORD} anniversary of the landing, {PAWN_nameDef} has written down the colony's year: its people, the land, and the world beyond.</CC_YearOne_Opening>
+  <CC_YearOne_OpeningAnnalist>On the {ORD} anniversary of the landing, {PAWN_nameDef}, who has kept the colony's annals for years now, has written down its year in the same careful hand: its people, the land, and the world beyond.</CC_YearOne_OpeningAnnalist>
+  <CC_YearOne_OpeningPartial>On the {ORD} anniversary of the landing, {PAWN_nameDef} has written down what the council saw of the colony's year since {SINCE}: its people, the land, and the world beyond.</CC_YearOne_OpeningPartial>
+  <CC_YearOne_OpeningNobody>On the {ORD} anniversary of the landing, the council has written down the colony's year: its people, the land, and the world beyond.</CC_YearOne_OpeningNobody>
+  <CC_YearOne_PartPeople>The people</CC_YearOne_PartPeople>
+  <CC_YearOne_PartLand>The land and the world</CC_YearOne_PartLand>
+  <CC_YearOne_PartFounding>Since the founding</CC_YearOne_PartFounding>
+  <CC_YearOne_Chronicle>{PAWN_nameDef} wrote down the colony's {ORD} year.</CC_YearOne_Chronicle>
+  <CC_YearOne_Button>The {ORD} year</CC_YearOne_Button>
 </LanguageData>

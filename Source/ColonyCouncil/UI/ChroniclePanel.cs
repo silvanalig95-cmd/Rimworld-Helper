@@ -96,13 +96,13 @@ namespace ColonyCouncil
             }
             foreach (var a in comp.annals.written.AsEnumerable().Reverse().Take(6))
             {
-                string label = "CC_Annals_Button".Translate(a.year);
+                string label = a.Button;
                 float w = Text.CalcSize(label).x + 20f;
                 if (bx - w - 6f < minLeft) break;
                 bx -= w + 6f;
                 var entry = a;
                 if (UiKit.ActButton(new Rect(bx, rect.y + 6f, w, UiKit.RowStandard), label, null))
-                    Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: "CC_Annals_Title".Translate(entry.year)));
+                    Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: entry.Title));
             }
 
             var list = Entries(comp);

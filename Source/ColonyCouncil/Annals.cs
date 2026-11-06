@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,32 @@ namespace ColonyCouncil
     /// <summary>A finished year, as written down by the colony's chronicler.</summary>
     public class AnnalsEntry : IExposable
     {
+        /// <summary>The calendar year (the annals of an older save were written by it).</summary>
         public int year;
+        /// <summary>The colony's own year since the landing (the one year letter's: 1 for the first); 0 for an older save's annals.</summary>
+        public int landYear;
         public string author;
         public string text;
+
+        /// <summary>Its button on the Chronicle's header and its title: the colony's year, or an older save's calendar year.</summary>
+        public string Button => landYear > 0 ? "CC_YearOne_Button".Translate(HerdStory.Ordinal(landYear).Named("ORD")).Resolve() : "CC_Annals_Button".Translate(year).Resolve();
+
+        public string Title => landYear > 0 ? "CC_Year_Title".Translate(HerdStory.Ordinal(landYear).Named("ORD")).Resolve() : "CC_Annals_Title".Translate(year).Resolve();
 
         public void ExposeData()
         {
             Scribe_Values.Look(ref year, "year");
+            Scribe_Values.Look(ref landYear, "landYear");
             Scribe_Values.Look(ref author, "author");
             Scribe_Values.Look(ref text, "text");
         }
     }
 
     /// <summary>
-    /// The colony's year in review. At each new year a colonist (the best reader or talker) writes up the year
-    /// that ended: who came and who was lost, raids, what the council granted and declared, friendships and feuds.
+    /// The colony's year in review, the first part of the one year letter (World/YearLetter.cs, on the anniversary of the
+    /// landing): who came and who was lost, raids, wealth, what the council granted and declared, traditions, friendships
+    /// and feuds, the council's seats and the names earned. Counted here from one landing day to the next; written out
+    /// and begun again by the letter.
     /// </summary>
     public class AnnalsTracker : IExposable
     {
@@ -119,20 +131,13 @@ namespace ColonyCouncil
                     if (!present.Contains(p)) joined.Add(p.LabelShort);
                 present = current;
             }
-            int now = GenLocalDate.Year(map);
-            if (year < 0)
-            {
-                Begin(map, now, Find.TickManager.TicksGame > GenDate.TicksPerDay * 2);
-                return;
-            }
-            if (now <= year) return;
-            if (ColonyCouncilMod.Settings.annals) Write(comp, map);
-            Begin(map, now, false);
+            // The year is written and begun again by the one year letter, on the anniversary of the landing.
+            if (year < 0) Begin(map, Find.TickManager.TicksGame > GenDate.TicksPerDay * 2);
         }
 
-        private void Begin(Map map, int newYear, bool midway)
+        private void Begin(Map map, bool midway)
         {
-            year = newYear;
+            year = GenLocalDate.Year(map);
             yearStartTick = Find.TickManager.TicksGame;
             startWealth = Wealth();
             partial = midway;
@@ -154,27 +159,55 @@ namespace ColonyCouncil
             secretsOut.Clear();
         }
 
-        private void Write(CouncilGameComponent comp, Map map)
+        /// <summary>Who writes the year: the colony's annalist once it has one (a name earned by writing it: Epithets/), else whoever reads and talks best.</summary>
+        public Pawn Author(CouncilGameComponent comp, out bool keeps)
         {
             var now = Colonists();
-            // The colony's annalist, once it has one, keeps the pen (a name earned by writing the annals: Epithets/).
             var annalist = ColonyCouncilMod.Settings.epithets ? comp.epithets.HolderOf("Council_Epithet_Annalist") : null;
-            bool keeps = annalist != null && now.Contains(annalist) && !annalist.DevelopmentalStage.Juvenile();
-            var author = keeps ? annalist : now.Where(p => !p.DevelopmentalStage.Juvenile())
+            keeps = annalist != null && now.Contains(annalist) && !annalist.DevelopmentalStage.Juvenile();
+            return keeps ? annalist : now.Where(p => !p.DevelopmentalStage.Juvenile())
                 .OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0) + (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0))
                 .FirstOrDefault();
-            if (author == null) return;
-            CouncilRecords.Add(author, NameRecords.AnnalsWritten);
+        }
 
-            var sb = new StringBuilder();
-            void Para(string s)
-            {
-                if (s.NullOrEmpty()) return;
-                if (sb.Length > 0) sb.Append("\n\n");
-                sb.Append(s);
-            }
+        /// <summary>When this year's counting began (the last landing day, or later for an older save or a mod added midway).</summary>
+        public int Since => yearStartTick;
 
-            Para((partial ? "CC_Annals_OpeningPartial" : keeps ? "CC_Annals_OpeningAnnalist" : "CC_Annals_Opening").Translate(year, author.Named("PAWN")).Resolve());
+        /// <summary>The year is counted from part of the way through only (the mod added midway, or an older save's calendar year).</summary>
+        public bool Partial(int landingTick) => partial || yearStartTick > landingTick + GenDate.TicksPerDay * 3;
+
+        /// <summary>The year written: kept for the Chronicle's header (its letter, by the colony's year) and counted again from today.</summary>
+        public void Keep(Map map, int landYear, Pawn author, string text)
+        {
+            if (author != null) CouncilRecords.Add(author, NameRecords.AnnalsWritten);
+            written.Add(new AnnalsEntry { year = year, landYear = landYear, author = author?.LabelShort, text = text });
+            Caps.TrimOldest(written, Caps.AnnalsYears);
+            Begin(map, false);
+        }
+
+        /// <summary>The author's last word on the year, in quotes and signed, or null.</summary>
+        public string LastWord(Pawn author)
+        {
+            if (author == null) return null;
+            float wealth = Wealth();
+            var tags = new List<string>();
+            if (died.Count > 0 || gone.Count > 0) tags.Add("annals:losses");
+            if (raids >= 4) tags.Add("annals:violent");
+            if (died.Count == 0 && raids <= 1) tags.Add("annals:peaceful");
+            if (wealth > startWealth * 1.15f) tags.Add("annals:richer");
+            if (joined.Count >= 2) tags.Add("annals:growing");
+            string close = Flavor.FromPool("Council_Pool_AnnalsClose", author, null, ToneUtility.ToneFor(author), tags.ToArray());
+            return close.NullOrEmpty() ? null : "\"" + close.Formatted(author.Named("PAWN")).Resolve() + "\"\n- " + author.LabelShort;
+        }
+
+        /// <summary>
+        /// The year's people, its danger and fortune, the council's year, the traditions, bonds, secrets, lives fulfilled,
+        /// dreams come true, the weather, friends and rivals, trust, the council's seats and the names earned: the first part
+        /// of the year letter, one paragraph each.
+        /// </summary>
+        public void PeoplePart(CouncilGameComponent comp, Map map, Action<string> Para)
+        {
+            var now = Colonists();
 
             // People
             Para("CC_Annals_Count".Translate(startCount, now.Count).Resolve());
@@ -193,13 +226,14 @@ namespace ColonyCouncil
                 Para(key.Translate(startWealth.ToString("N0"), wealth.ToString("N0")).Resolve());
             }
 
-            // The council's year
-            var entries = comp.chronicle.Where(e => e.tick >= yearStartTick).ToList();
-            int granted = entries.Count(e => e.kind == ChronicleKind.WishGranted);
-            int lapsed = entries.Count(e => e.kind == ChronicleKind.WishExpired);
+            // The council's year, counted from the chronicle (the history's view; a season's summary counts all it stands for).
+            var entries = Chronicle.Since(yearStartTick).ToList();
+            int Of(params ChronicleKind[] kinds) => entries.Where(e => kinds.Contains(e.kind)).Sum(e => e.entry.count);
+            int granted = Of(ChronicleKind.WishGranted);
+            int lapsed = Of(ChronicleKind.WishExpired);
             if (granted + lapsed > 0) Para(Texts.CountKey("CC_Annals_Wishes", granted).Translate(granted, lapsed).Resolve());
-            int achieved = entries.Count(e => e.kind == ChronicleKind.AmbitionAchieved);
-            int failed = entries.Count(e => e.kind == ChronicleKind.AmbitionFailed || e.kind == ChronicleKind.AmbitionAbandoned);
+            int achieved = Of(ChronicleKind.AmbitionAchieved);
+            int failed = Of(ChronicleKind.AmbitionFailed, ChronicleKind.AmbitionAbandoned);
             if (achieved + failed > 0) Para("CC_Annals_Ambitions".Translate(achieved, failed).Resolve());
             if (decrees.Count > 0)
             {
@@ -213,8 +247,9 @@ namespace ColonyCouncil
             if (secretsOut.Count > 0) Para("CC_Annals_Secrets".Translate(TextUtil.JoinAnd(secretsOut.Take(6).ToList())).Resolve());
             if (goals.Count > 0) Para("CC_Annals_Goals".Translate(TextUtil.JoinAnd(goals.Take(8).ToList())).Resolve());
             if (omens.Count > 0) Para("CC_Annals_Omens".Translate(TextUtil.JoinAnd(omens.Take(6).ToList())).Resolve());
-            // The year's weather, from the colony's record of it (Weather/WeatherBook.cs).
-            Para(WeatherBook.Of(map)?.AnnalsLine(year));
+            // The year's weather, from the colony's record of it (Weather/WeatherBook.cs): the calendar year most of it fell in.
+            int mid = Find.TickManager.TicksGame - (Find.TickManager.TicksGame - yearStartTick) / 2;
+            Para(WeatherBook.Of(map)?.AnnalsLine(GenDate.Year(GenDate.TickGameToAbs(mid), Find.WorldGrid.LongLatOf(map.Tile).x)));
             if (traditionsBroken.Count > 0) Para("CC_Annals_TraditionsBroken".Translate(TextUtil.JoinAnd(traditionsBroken.Distinct().ToList())).Resolve());
 
             // People and their feelings
@@ -264,22 +299,6 @@ namespace ColonyCouncil
             if (titled.Count > 0) Para("CC_Annals_Epithets".Translate(TextUtil.JoinAnd(titled)).Resolve());
             var spoiled = now.Where(p => Standards.LevelOf(p) == StandardsLevel.Spoiled).ToList();
             if (spoiled.Count > 0) Para("CC_Annals_Spoiled".Translate(Names(spoiled)).Resolve());
-
-            // The author's last word
-            var tags = new List<string>();
-            if (died.Count > 0 || gone.Count > 0) tags.Add("annals:losses");
-            if (raids >= 4) tags.Add("annals:violent");
-            if (died.Count == 0 && raids <= 1) tags.Add("annals:peaceful");
-            if (wealth > startWealth * 1.15f) tags.Add("annals:richer");
-            if (joined.Count >= 2) tags.Add("annals:growing");
-            string close = Flavor.FromPool("Council_Pool_AnnalsClose", author, null, ToneUtility.ToneFor(author), tags.ToArray());
-            if (!close.NullOrEmpty()) Para("\"" + close.Formatted(author.Named("PAWN")).Resolve() + "\"\n- " + author.LabelShort);
-
-            string text = sb.ToString();
-            written.Add(new AnnalsEntry { year = year, author = author.LabelShort, text = text });
-            Caps.TrimOldest(written, Caps.AnnalsYears);
-            Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Annals_Title".Translate(year).Resolve(), text, LetterDefOf.NeutralEvent, new LookTargets(author));
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Annals".Translate(year, author.LabelShort).Resolve(), author));
         }
 
         private static string Names(List<Pawn> pawns) => TextUtil.JoinAnd(pawns.Select(p => p.LabelShort).ToList());

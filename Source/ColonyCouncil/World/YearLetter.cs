@@ -9,13 +9,15 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A year's letter at each anniversary of the landing (with the annals' setting): what the year brought on the land
-    /// and from beyond it since the last landing day. The herd (its head, its leader and line, the young born, a new
-    /// leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went
-    /// down the road, the camps that came, the regulars who came back, the world events that ended and how, the
-    /// allies, and a few lines of the year's chronicle about strangers and the world. Nothing the annals say (people,
-    /// raids, wealth, the council): those write the calendar year, and the founding day's own event marks the day.
-    /// Written by the colony's annalist, or whoever reads and talks best.
+    /// The year, told once: one letter at each anniversary of the landing (with the annals' setting), the colony's
+    /// founding day, written by the colony's annalist or whoever reads and talks best. Its people first (the annals'
+    /// figures, counted since the last landing day: <see cref="AnnalsTracker.PeoplePart"/>), then the land and the world (the
+    /// herd, the beast that stays, the neighbours settled for good and their road, the camps that came, the regulars who
+    /// came back, the world events that ended and how, the allies, a few lines of the year's chronicle about strangers
+    /// and the world), then the founding (who has been here since the first days, the dead, the colony's name on the
+    /// roads, its customs), and the author's last word. The founding day's event or the calendar's letter is the day's
+    /// question, how to keep it, and no longer tells the year; the chronicle has one line for it. Kept for the Chronicle's
+    /// header, by the colony's year.
     /// </summary>
     public static class YearLetter
     {
@@ -44,11 +46,8 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             int sinceTick = (year - 1) * GenDate.TicksPerYear;
-            var colonists = map.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile()).ToList();
-            // The colony's annalist keeps the pen, as for the annals; else whoever reads and talks best.
-            var annalist = ColonyCouncilMod.Settings.epithets ? comp.epithets.HolderOf("Council_Epithet_Annalist") : null;
-            var author = annalist != null && colonists.Contains(annalist) ? annalist
-                : colonists.OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0) + (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0)).FirstOrDefault();
+            var annals = comp.annals;
+            var author = annals.Author(comp, out bool keeps);
             var sb = new StringBuilder();
             void Para(string s)
             {
@@ -56,9 +55,19 @@ namespace ColonyCouncil
                 if (sb.Length > 0) sb.Append("\n\n");
                 sb.Append(s);
             }
+            void Part(string key) => Para(key.Translate().Resolve().Colorize(ColoredText.TipSectionTitleColor));
             string ord = HerdStory.Ordinal(year);
-            Para(author != null ? "CC_Year_Opening".Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve() : "CC_Year_OpeningNobody".Translate(ord.Named("ORD")).Resolve());
+            if (author == null) Para("CC_YearOne_OpeningNobody".Translate(ord.Named("ORD")).Resolve());
+            else if (annals.Partial(sinceTick))
+                Para("CC_YearOne_OpeningPartial".Translate(ord.Named("ORD"), author.Named("PAWN"), Since(annals.Since, map).Named("SINCE")).Resolve());
+            else Para((keeps ? "CC_YearOne_OpeningAnnalist" : "CC_YearOne_Opening").Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve());
 
+            // The people: the annals' figures for the year.
+            Part("CC_YearOne_PartPeople");
+            annals.PeoplePart(comp, map, Para);
+
+            // The land and the world.
+            Part("CC_YearOne_PartLand");
             // Each colony's own year (its herd, its beast, its neighbours settled for good): with one colony as it always
             // was, with more than one a part for each, under its name.
             if (!ColonyState.Several) Local(comp, map, sinceTick, now, Para);
@@ -95,19 +104,40 @@ namespace ColonyCouncil
             var ally = Allies.Of();
             if (ally != null) Para("CC_Year_Allies".Translate(ally.Name.Named("FACTION")).Resolve());
 
-            // A few lines of the year's chronicle about strangers and the world, spread over the year.
-            var lines = comp.chronicle.Where(e => e != null && e.tick >= sinceTick && (e.kind == ChronicleKind.Stranger || e.kind == ChronicleKind.World)).ToList();
+            // A few lines of the year's chronicle about strangers and the world, spread over the year (oldest first; not
+            // the council's answers, nor a season's summary).
+            var lines = Chronicle.Since(sinceTick).Where(e => !e.Answer && !e.Summary && (e.kind == ChronicleKind.Stranger || e.kind == ChronicleKind.World)).Reverse().ToList();
             if (lines.Count > 0)
             {
                 var picked = lines.Count <= 5 ? lines : Spread(lines, 5);
                 Para("CC_Year_ChronicleSome".Translate().Resolve() + "\n" + string.Join("\n", picked.Select(e => "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1).ToString() + ": " + e.text)));
             }
-            Para("CC_Year_Close".Translate().Resolve());
 
+            // The founding: who has been here since the first days, the dead, the colony's name, its customs.
+            string founding = HappeningWorker_Founding.YearFacts(map);
+            if (!founding.NullOrEmpty())
+            {
+                Part("CC_YearOne_PartFounding");
+                Para(founding);
+            }
+            Para(annals.LastWord(author));
+
+            string text = sb.ToString();
             var look = author != null ? new LookTargets(author) : holding != null ? holding.Look : LookTargets.Invalid;
             // With more than one colony the letter is about them all (each named in its part).
-            Tell.Letter(NewsKind.Colony, Importance.Notable, ColonyState.Several ? null : map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), sb.ToString(), LetterDefOf.NeutralEvent, look);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_YearLetter".Translate(ord.Named("ORD")).Resolve(), author));
+            Tell.Letter(NewsKind.Colony, Importance.Notable, ColonyState.Several ? null : map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), text, LetterDefOf.NeutralEvent, look);
+            annals.Keep(map, year, author, text);
+            // The chronicle has the year once.
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, author != null
+                ? "CC_YearOne_Chronicle".Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve()
+                : "CC_Chronicle_YearLetter".Translate(ord.Named("ORD")).Resolve(), author));
+        }
+
+        /// <summary>The day the year's counting began, as a date ("the 5th of Aprimay"), for a year counted from part of the way through.</summary>
+        private static string Since(int tick, Map map)
+        {
+            var at = map != null ? Find.WorldGrid.LongLatOf(map.Tile) : Vector2.zero;
+            return GenDate.DateFullStringAt(GenDate.TickGameToAbs(tick), at);
         }
 
         /// <summary>One colony's own year: its herd, the beast on its land, its neighbours settled for good and their road.</summary>
@@ -152,9 +182,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>So many of the lines, evenly over the year: the first, the last, and some between.</summary>
-        private static List<ChronicleEntry> Spread(List<ChronicleEntry> all, int n)
+        private static List<ChronicleLine> Spread(List<ChronicleLine> all, int n)
         {
-            var picked = new List<ChronicleEntry>();
+            var picked = new List<ChronicleLine>();
             for (int i = 0; i < n; i++) picked.Add(all[i * (all.Count - 1) / (n - 1)]);
             return picked;
         }
