@@ -352,10 +352,13 @@ namespace ColonyCouncil
         /// <summary>
         /// The hour's part (HeartLogic.Strain): each lasting letdown or joy wears or eases the heart while it holds and comes
         /// back as a moment when it begins, gets worse or holds another day; then every small mood on their mind, anyone's,
-        /// once they pile up. Strain goes through <paramref name="build"/>; the relief is returned.
+        /// once they pile up. Strain goes through <paramref name="build"/>; the lasting joys' relief is returned, and the
+        /// pile's (every small good mood, the game's comforts among them) in <paramref name="comforts"/>: the hour eases
+        /// strain with both and fills the heart's good side with what is beyond, the pile's only a little.
         /// </summary>
-        public static float Hour(Pawn p, PawnHeart h, List<Thought> moodGroups, float hours, int now, Func<StrainSource, float, string, float> build)
+        public static float Hour(Pawn p, PawnHeart h, List<Thought> moodGroups, float hours, int now, Func<StrainSource, float, string, float> build, out float comforts)
         {
+            comforts = 0f;
             if (!On || !Eligible(p)) return 0f;
             float relief = 0f;
             try
@@ -438,7 +441,7 @@ namespace ColonyCouncil
                 float strain = SmallMomentMath.PileStrainPerHour(bad) * hours;
                 if (strain > 0f) build(StrainSource.Letdowns, strain, worstLabel);
                 float eased = SmallMomentMath.JoyReliefPerHour(good) * hours;
-                if (eased > 0f) relief += HeartLogic.JoysWithinCap(h, eased, bestLabel);
+                if (eased > 0f) comforts += HeartLogic.JoysWithinCap(h, eased, bestLabel);
             }
             catch (Exception e)
             {

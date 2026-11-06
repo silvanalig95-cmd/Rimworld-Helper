@@ -115,7 +115,9 @@ public static class ImmersionTests
         "Council_Pool_PlayVigil", "Council_Pool_PlaySearchInvite", "Council_Pool_PlaySearch", "Council_Pool_PlayCarryInvite", "Council_Pool_PlayCarry",
         "Council_Pool_PlayHuntInvite", "Council_Pool_PlayHunt", "Council_Pool_PlayGiveInvite", "Council_Pool_PlayGive", "Council_Pool_PlayRoundsInvite",
         "Council_Pool_PlayRounds", "Council_Pool_PlayHaulInvite", "Council_Pool_PlayHaul", "Council_Pool_PlayToast", "Council_Pool_PlayFeast",
-        "Council_Pool_PlayFire", "Council_Pool_PlayParty", "Council_Pool_PlaySong", "Council_Pool_PlayWords", "Council_Pool_PlaySaidAloud"
+        "Council_Pool_PlayFire", "Council_Pool_PlayParty", "Council_Pool_PlaySong", "Council_Pool_PlayWords", "Council_Pool_PlaySaidAloud",
+        // The heart's good side overflowing (Heart/GoodRelease.cs): a kind word face to face, and a word as an inspiration begins.
+        "Rimfolk_Pool_GoodHeart_KindWord", "Rimfolk_Pool_GoodHeart_Inspired"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

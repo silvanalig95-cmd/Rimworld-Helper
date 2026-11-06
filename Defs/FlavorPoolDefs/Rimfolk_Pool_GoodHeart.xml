@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart's good side overflowing (Source/ColonyCouncil/Heart/GoodRelease.cs), the player's request of 6 November
+    2026. Said over a head, one sentence each, words for every age.
+
+    The kind word: someone in high spirits walks over to someone close and says it face to face (Together, Speech.Say).
+    The speaker's own tags (the hour, the weather, the season...) may be asked, and the one who hears it:
+    them:strained (under strain or worse), them:grieving, them:low (low in spirits), them:hurt, them:partner, them:kin,
+    them:friend (close by opinion), them:child, them:newcomer (here less than ten days), them:working.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GoodHeart_KindWord</defName>
+    <lines>
+      <plain>
+        <li>[them:working] Whatever you're working on, it's coming along well.</li>
+        <li>I'm glad you're here, you know that?</li>
+        <li>You do a lot around here, and it hasn't gone unnoticed.</li>
+        <li>I just wanted to say you're doing well.</li>
+        <li>Come and sit with us tonight, it'll do you good.</li>
+        <li>You make this place better just by being in it.</li>
+        <li>Don't let the hard days fool you, you're doing fine.</li>
+        <li>I keep meaning to tell you how much I like working beside you.</li>
+        <li>Whatever happens, you've got friends here.</li>
+        <li>You don't have to do it all yourself.</li>
+        <li>[them:strained] You look worn through, so take an easy evening and leave the rest to us.</li>
+        <li>[them:strained] I know it's been one thing after another for you.</li>
+        <li>[them:strained] Rest when you can, the rest of us will cover for you.</li>
+        <li>[them:strained] It's alright to say it's too much, you know.</li>
+        <li>[them:grieving] I'm sorry for your loss, and I'm here when you want to talk.</li>
+        <li>[them:grieving] Grief takes its own time, so take yours.</li>
+        <li>[them:grieving] You don't have to be fine yet.</li>
+        <li>[them:low] Bad days pass, and this one will too.</li>
+        <li>[them:low] Chin up, there are better days coming, I can feel it.</li>
+        <li>[them:hurt] Mind that wound, and let someone else lift the heavy things.</li>
+        <li>[them:hurt] You'll be on your feet again soon, I'm sure of it.</li>
+        <li>[them:partner] I don't say it enough, but I'm lucky to have you.</li>
+        <li>[them:partner] Every day's a little better with you in it.</li>
+        <li>[them:partner] Come and find me when you're done, I've missed you today.</li>
+        <li>[them:kin] Family's what gets us through, and you're mine.</li>
+        <li>[them:kin] Our people would be proud of you, you know.</li>
+        <li>[them:child] You're a good help around here, you know that?</li>
+        <li>[them:child] Look at you, growing up so quickly.</li>
+        <li>[them:child] I'm proud of you, little one.</li>
+        <li>[them:newcomer] You're settling in well, and everyone says so.</li>
+        <li>[them:newcomer] It takes a while to feel at home, but you belong here already.</li>
+        <li>[them:newcomer] If you need anything at all, just ask me.</li>
+        <li>[them:working] Let me see, oh, that's fine work.</li>
+        <li>[them:working] Take a breath, it'll still be here in a moment.</li>
+        <li>[them:friend] Good to see you, friend.</li>
+        <li>[them:friend] You're a good friend, and I mean that.</li>
+        <li>[them:friend] Whatever you need, you only have to ask.</li>
+        <li>[evening] Long day, wasn't it, and you did well in it.</li>
+        <li>[morning] Morning, you look ready for anything today.</li>
+        <li>[rain] Wet day, but it's good to see a friendly face in it.</li>
+        <li>[winter] Cold out there, so keep yourself warm, alright?</li>
+        <li>[summer,day] Find some shade this afternoon, you've earned it.</li>
+        <li>[afterraid] We came through it, and we'll be the stronger for it.</li>
+      </plain>
+      <warm>
+        <li>Come here, you, and let me look at you.</li>
+        <li>I'm so glad we found each other out here.</li>
+        <li>You've a good heart, did you know that?</li>
+        <li>[them:strained] Lean on me for a bit, that's what I'm here for.</li>
+      </warm>
+      <blunt>
+        <li>You're doing better than you think, so stop fretting.</li>
+        <li>Stop worrying so much, you're doing fine.</li>
+        <li>You pull your weight and then some, that's all.</li>
+        <li>[them:strained] You need a rest, so take one, that's an order from a friend.</li>
+      </blunt>
+      <cheerful>
+        <li>What a day, and you made it better.</li>
+        <li>Everything's going our way lately, isn't it?</li>
+        <li>I've a good feeling about all of us.</li>
+        <li>[them:low] Come on, smile, it's not as bad as all that.</li>
+      </cheerful>
+      <cold>
+        <li>You did well, I noticed.</li>
+        <li>Good work today.</li>
+        <li>You're worth having around.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A word as one of the game's inspirations begins on the good side (GoodRelease.Inspire): insp:DEFNAME is the
+    inspiration's defName (the game's own and other mods'); the untagged lines fit any.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GoodHeart_Inspired</defName>
+    <lines>
+      <plain>
+        <li>Something's lit up in me, and I'd best put it to use.</li>
+        <li>I feel like I could do anything today.</li>
+        <li>Everything's clear today, and I know just what to do.</li>
+        <li>It's a good day, and I want to make something of it.</li>
+        <li>I've a fire in me today, so let's see what comes of it.</li>
+        <li>Today's the day for it, I can feel it.</li>
+        <li>[insp:Inspired_Creativity] I've got something in my head, and my hands want to make it.</li>
+        <li>[insp:Inspired_Creativity] Leave me be a while, I'm about to make something good.</li>
+        <li>[insp:Frenzy_Work] I could do a week's work today, and I mean to.</li>
+        <li>[insp:Frenzy_Work] Point me at the work, I'm not stopping till it's done.</li>
+        <li>[insp:Frenzy_Shoot] My eye's never been steadier.</li>
+        <li>[insp:Frenzy_Go] My feet won't keep still today.</li>
+        <li>[insp:Inspired_Trade] Next trader through, I'll get us the best of the bargain.</li>
+        <li>[insp:Inspired_Recruitment] Today I could talk anyone round.</li>
+        <li>[insp:Inspired_Taming] There's a wild one out there that will come to me today.</li>
+        <li>[insp:Inspired_Surgery] My hands feel sure today, steadier than they've ever been.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
