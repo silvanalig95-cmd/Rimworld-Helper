@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Another landing site in a new game's first days (Source/ColonyCouncil/Colonies/Landing.cs, LandingWindow.cs,
+    LandingPatches.cs): the entry in the game's menu and on the colony's card, why it isn't offered, the window, the
+    loading screen and the message after.
+  -->
+
+  <!-- The entry -->
+  <CC_Landing_Menu>Choose another landing site</CC_Landing_Menu>
+  <CC_Landing_MenuStanding>Choose another starting site</CC_Landing_MenuStanding>
+  <CC_Landing_MenuTip>Start again on a new map with the same people, animals and what is left of the starting kit, in the same world, with the same ideology, storyteller and research. Offered for {DAYS} days after a landing.</CC_Landing_MenuTip>
+  <CC_Landing_CardTip>The same colony on a new map: a new map of this place, or another place on the world map. Only in a new game's first days.</CC_Landing_CardTip>
+
+  <!-- Why it isn't offered -->
+  <CC_Landing_No_Off>Rimfolk's deeper game hooks are off in its settings.</CC_Landing_No_Off>
+  <CC_Landing_No_NotSeen>Only in a new game whose start Rimfolk saw.</CC_Landing_No_NotSeen>
+  <CC_Landing_No_Over>Only in the first {DAYS} days after a landing.</CC_Landing_No_Over>
+  <CC_Landing_No_Tutorial>Not in the tutorial.</CC_Landing_No_Tutorial>
+  <CC_Landing_No_Gravship>The colony came by gravship, and the gravship itself can fly it to another place.</CC_Landing_No_Gravship>
+  <CC_Landing_No_Space>Not for a start above the planet.</CC_Landing_No_Space>
+  <CC_Landing_No_Homes>Only while the colony has one home, the map it landed on.</CC_Landing_No_Homes>
+  <CC_Landing_No_Monolith>The void monolith has woken, and what it holds is bound to this map.</CC_Landing_No_Monolith>
+  <CC_Landing_No_Away>Not while some of the colony are away from the map: {NAMES}.</CC_Landing_No_Away>
+  <CC_Landing_Borrowed>those lent out for a quest</CC_Landing_Borrowed>
+  <CC_Landing_No_Inside>Not while some of the colony are inside something on the map, a casket, a pod or a vat: {NAMES}.</CC_Landing_No_Inside>
+  <CC_Landing_No_Threat>Not while a threat is on the map.</CC_Landing_No_Threat>
+  <CC_Landing_Pick_Here>That is where the colony is now: choose a new map of the same place for it.</CC_Landing_Pick_Here>
+  <CC_Landing_Pick_Layer>Only a place on the same layer of the world as the colony.</CC_Landing_Pick_Layer>
+  <CC_Landing_Forced>The scenario chose this place, so only a new map of it can be made.</CC_Landing_Forced>
+  <CC_Landing_NoPlaceYet>No place picked yet.</CC_Landing_NoPlaceYet>
+
+  <!-- The window -->
+  <CC_Landing_People_tribal>the tribe</CC_Landing_People_tribal>
+  <CC_Landing_People_medieval>the settlers</CC_Landing_People_medieval>
+  <CC_Landing_People_industrial>the colony</CC_Landing_People_industrial>
+  <CC_Landing_People_spacer>the colony</CC_Landing_People_spacer>
+  <CC_Landing_Subtitle>A new map for {PEOPLE}, in the same world. Everything else stays as it is.</CC_Landing_Subtitle>
+  <CC_Landing_WhereHead>Where</CC_Landing_WhereHead>
+  <CC_Landing_SamePlace>A new map of the same place</CC_Landing_SamePlace>
+  <CC_Landing_SamePlaceTip>The same tile of the world, with its land, hills, river and road, laid out anew.</CC_Landing_SamePlaceTip>
+  <CC_Landing_OtherPlace>Another place</CC_Landing_OtherPlace>
+  <CC_Landing_OtherPlaceTip>A tile you pick on the world map. The colony's settlement moves there, with its name.</CC_Landing_OtherPlaceTip>
+  <CC_Landing_PickPlace>Pick on the world map</CC_Landing_PickPlace>
+  <CC_Landing_PickAgain>Pick another place</CC_Landing_PickAgain>
+  <CC_Landing_PlaceHere>{NAME}, where the colony is now.</CC_Landing_PlaceHere>
+  <CC_Landing_PlaceThere>{PLACE}.</CC_Landing_PlaceThere>
+  <CC_Landing_SizeHead>Map size</CC_Landing_SizeHead>
+  <CC_Landing_SizeNow>(the map now)</CC_Landing_SizeNow>
+  <CC_Landing_ComesHead>What comes along</CC_Landing_ComesHead>
+  <CC_Landing_Side_Colonist>Colonists ({COUNT}): {NAMES}.</CC_Landing_Side_Colonist>
+  <CC_Landing_Side_Prisoner>Prisoners ({COUNT}): {NAMES}.</CC_Landing_Side_Prisoner>
+  <CC_Landing_Side_Slave>Slaves ({COUNT}): {NAMES}.</CC_Landing_Side_Slave>
+  <CC_Landing_Side_Mech>Mechs ({COUNT}): {NAMES}.</CC_Landing_Side_Mech>
+  <CC_Landing_Side_Animal>Animals ({COUNT}): {NAMES}.</CC_Landing_Side_Animal>
+  <CC_Landing_ComesGear>Everything they wear, wield and carry comes with them.</CC_Landing_ComesGear>
+  <CC_Landing_ComesKit>From the starting kit, what lies on this map: {LIST}.</CC_Landing_ComesKit>
+  <CC_Landing_ComesKitNone>Nothing of the starting kit lies loose on this map now.</CC_Landing_ComesKitNone>
+  <CC_Landing_Arrive_Pods>They come down in drop pods near the new map's start spot, as at the game's start, with the kit that came with them.</CC_Landing_Arrive_Pods>
+  <CC_Landing_Arrive_Standing>They start at the new map's start spot, as at the game's start, with the kit that came with them beside them.</CC_Landing_Arrive_Standing>
+  <CC_Landing_ArriveScatter>What the scenario scattered near the start lies near the new one, and what it scattered anywhere lies anywhere.</CC_Landing_ArriveScatter>
+  <CC_Landing_LostHead>What is lost</CC_Landing_LostHead>
+  <CC_Landing_Lost>Everything built, sown or made on this map, and whatever else lies on it: walls, floors and zones, fields and stockpiles, the stores and what was hunted, cut or mined. Visitors, wild animals and anyone else not of the colony stay with this map.</CC_Landing_Lost>
+  <CC_Landing_Stays>The world, the ideology, the storyteller, the research, the colony's relations with every people and Rimfolk's records of the colony stay as they are. The date goes on from today.</CC_Landing_Stays>
+  <CC_Landing_OfferLine>Offered for {DAYS} days after a landing, and for {DAYS} days again after each landing chosen here.</CC_Landing_OfferLine>
+  <CC_Landing_Confirm>Land there</CC_Landing_Confirm>
+  <CC_Landing_ConfirmStanding>Start there</CC_Landing_ConfirmStanding>
+
+  <!-- The landing -->
+  <CC_Landing_Long>Making the new map. The same people, animals and starting kit come along.</CC_Landing_Long>
+  <CC_Landing_Done_tribal>The tribe begins again at {NAME}, in the {LAND}, on a new map: the same people, beasts and what is left of what they brought.</CC_Landing_Done_tribal>
+  <CC_Landing_Done_medieval>The settlers begin again at {NAME}, in the {LAND}, on a new map: the same people, animals and what is left of what they brought.</CC_Landing_Done_medieval>
+  <CC_Landing_Done_industrial>The colony starts again at {NAME}, in the {LAND}, on a new map: the same people, animals and what is left of the starting kit.</CC_Landing_Done_industrial>
+  <CC_Landing_Done_spacer>The colony starts again at {NAME}, in the {LAND}, on a new map: the same people, machines, animals and what is left of the starting kit.</CC_Landing_Done_spacer>
+  <CC_Landing_Failed>The new map could not be made, so the colony starts again at {NAME}, where it was, on a new map of that place.</CC_Landing_Failed>
+
+</LanguageData>
