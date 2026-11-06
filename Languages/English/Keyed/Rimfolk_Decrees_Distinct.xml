@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Decrees that mean distinct things (Decrees/DecreeMath.cs), the player's decision of 6 November 2026: one idea is one
+    decree in its form of the moment, and two that overlap don't run together.
+  -->
+  <CC_Decree_Overlaps>{DECREE} is in force, and the two don't run together.</CC_Decree_Overlaps>
+
+</LanguageData>

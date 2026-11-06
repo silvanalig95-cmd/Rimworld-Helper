@@ -396,6 +396,8 @@ namespace ColonyCouncil
             var under = new List<string>(2);
             if (office != null) under.Add(office.NameCap);
             if (!titles.NullOrEmpty()) under.Add(titles);
+            // Someone outside every group is shown as outside (decision 13 of the review); why is on their character page.
+            if (Groups.All.Count > 0 && Groups.Of(p).Count == 0 && GroupText.OutsideWhy(p) != null) under.Add("CC_Group_Outside_Short".Translate());
             c[(int)Col.Name] = new Cell
             {
                 text = p.LabelShortCap,

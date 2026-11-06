@@ -17,6 +17,13 @@ namespace ColonyCouncil
         public readonly List<Pawn> people;
         public readonly Dictionary<Pawn, int> index = new Dictionary<Pawn, int>();
         public readonly float[,] aff;
+        /// <summary>
+        /// Each pair's pull less what the whole colony shares (GroupMath.Distinct): who drifts together, joins and drifts off
+        /// reads this, so groups form around what binds some people more than the rest.
+        /// </summary>
+        public readonly float[,] distinct;
+        /// <summary>The most a group holds in this colony (GroupMath.MaxFor).</summary>
+        public readonly int maxSize;
         public readonly float[][] values;
         public readonly int[] arrived;
         public readonly bool[] young, old, night, devout;
@@ -93,6 +100,8 @@ namespace ColonyCouncil
                 for (int i = 0; i < n; i++) colony[i] = Homes.KeyOf(Homes.Of(pawns[i]));
                 GroupMath.Apart(aff, n, colony);
             }
+            distinct = GroupMath.Distinct(aff, n);
+            maxSize = GroupMath.MaxFor(n);
         }
 
         // ---------------- Pairs ----------------

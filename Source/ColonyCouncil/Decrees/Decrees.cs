@@ -566,6 +566,9 @@ namespace ColonyCouncil
             if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeart".Translate();
             if (!force && ReadyAt(def) > now) return (Sooner(def) ? "CC_Decree_CooldownSooner" : "CC_Decree_Cooldown").Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
+            // Decrees that overlap don't run together: one idea's other form, or the other of a pair (DecreeMath.Excludes).
+            var over = active.FirstOrDefault(a => a.def != null && DecreeMath.Excludes(a.def.defName, def.defName));
+            if (over != null) return "CC_Decree_Overlaps".Translate(over.def.label.Named("DECREE")).Resolve();
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(p => Ours(p) && Flavor.IsGrieving(p))) return "CC_Decree_NeedsGrief".Translate();
             return DecreeWork.Blocked(def, this);
         }
@@ -676,9 +679,54 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The first hour after a load: an older save's decrees of one idea carried on as the form listed now (<see cref="CarryOn"/>).</summary>
+        [Unsaved] private bool carried;
+
+        /// <summary>
+        /// An older save's decrees of one idea (decision 13 of the review): militia drills in force in an industrial colony
+        /// carry on as its drills, for what was left of them and never longer than drills run; with both forms in force,
+        /// the one listed now goes on (the later end of the two, as long as that form runs) and the other ends quietly. A
+        /// request for a form not listed is let go quietly.
+        /// </summary>
+        private void CarryOn(CouncilGameComponent comp)
+        {
+            int now = Find.TickManager.TicksGame;
+            var ground = Ground;
+            foreach (var a in active.ToList())
+            {
+                if (a.def == null || !active.Contains(a) || DecreeMath.OtherForm(a.def.defName) == null) continue;
+                var form = DefDatabase<DecreeDef>.GetNamedSilentFail(DecreeWork.FormNow(a.def, ground));
+                if (form == null || form == a.def) continue;
+                var both = Get(form);
+                // Rationing by the moment: a form in force stays itself (it may have been declared for a famine since gone).
+                bool byAge = a.def.defName == DecreeMath.Drills || a.def.defName == DecreeMath.Militia;
+                if (both == null && !byAge) continue;
+                var old = a.def;
+                if (both != null)
+                {
+                    both.endTick = Mathf.Max(both.endTick, DecreeMath.CarriedEnd(now, a.endTick, form.durationDays, GenDate.TicksPerDay));
+                    active.Remove(a);
+                }
+                else
+                {
+                    a.def = form;
+                    a.endTick = DecreeMath.CarriedEnd(now, a.endTick, form.durationDays, GenDate.TicksPerDay);
+                }
+                DecreeWork.Ended(this, old);
+                comp.kept?.Notify_DecreeEnded(old, false);
+            }
+            requests.RemoveAll(r => r?.def != null && DecreeMath.OtherForm(r.def.defName) != null && DecreeWork.FormNow(r.def, ground) != r.def.defName);
+            SyncHediffs();
+        }
+
         public void Hourly(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
+            if (!carried)
+            {
+                carried = true;
+                CarryOn(comp);
+            }
             NoteThreats();
             foreach (var a in active.Where(x => now >= x.endTick).ToList()) Repeal(a.def, comp, false);
             SyncHediffs();

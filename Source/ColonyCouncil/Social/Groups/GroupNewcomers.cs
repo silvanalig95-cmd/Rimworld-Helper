@@ -82,7 +82,7 @@ namespace ColonyCouncil
             var current = t.Get(n.groupId);
             foreach (var g in t.groups)
             {
-                if (g.members.Count >= GroupMath.MaxSize) continue;
+                if (g.members.Count >= f.maxSize) continue;
                 var present = GroupLife.Present(g, f);
                 if (present.Count == 0) continue;
                 float v = GroupMath.Attachment(f.aff, i, present) + (g == current ? 0.15f : 0f);

@@ -499,7 +499,7 @@ namespace ColonyCouncil
             text.Append("\n\n").Append(line);
             var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
             if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
-            if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
+            if (!office.elected.NullOrEmpty()) text.Append(" ").Append(OfficeNames.InAge(Flavor.PickText(office.elected)).Formatted(winner.Named("PAWN")).Resolve());
             // A speaker the colony has never once voted against (a name: Epithets/NameRecords.cs).
             if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten", colony?.Map ?? Homes.Seat) == winner)
                 text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());

@@ -23,7 +23,100 @@ public static class FairCouncilTests
         Names(defs, Check);
         Records(root, defs, keyed, Check);
         Goals(root, Check);
+        Groups(root, Check);
+        Decrees(root, defs, keyed, Check);
         return cases;
+    }
+
+    // ---------------- Decision 13: groups around real divides ----------------
+
+    private static void Groups(string root, Action<bool, string> Check)
+    {
+        Check(GroupMath.MaxFor(12) == 5 && GroupMath.MaxFor(6) == GroupMath.MinSize && GroupMath.MaxFor(20) == GroupMath.MaxSize, "a group holds well under half the colony");
+        var flat = new float[3, 3];
+        for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            flat[i, j] = i == j ? 0f : 0.6f;
+        var d = GroupMath.Distinct(flat, 3);
+        Check(Math.Abs(d[0, 1] - 0.6f * (1f - GroupMath.CommonShare)) < 0.001f && d[1, 1] == 0f, "what everyone shares binds nobody in particular");
+        var cold = new float[2, 2] { { 0f, -0.4f }, { -0.4f, 0f } };
+        Check(GroupMath.Distinct(cold, 2)[0, 1] == -0.4f, "a colony at odds isn't pulled further apart");
+        Check(GroupMath.WhyOutside(false, true, 3, false) == GroupMath.Outside.AtOdds && GroupMath.WhyOutside(false, true, 0, true) == GroupMath.Outside.New
+              && GroupMath.WhyOutside(false, true, 0, false) == GroupMath.Outside.Own, "outside every group: at odds, new, or their own");
+        Check(GroupMath.WhyOutside(true, true, 3, false) == GroupMath.Outside.None && GroupMath.WhyOutside(false, false, 3, false) == GroupMath.Outside.None,
+            "nobody is outside when they're in one, or when there are none");
+
+        // The player's save, day 128: twelve who all fought side by side and think well of each other; four close friends,
+        // three more; Barr at odds with three of them.
+        const int n = 12, barr = 11;
+        var aff = new float[n, n];
+        var a = new HashSet<int> { 0, 1, 2, 3 };
+        var b = new HashSet<int> { 4, 5, 6 };
+        var feud = new HashSet<int> { 0, 4, 5 };
+        for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+        {
+            var f = new PairFacts { comrades = 70f, minOpinion = 40, likeness = 0.7f };
+            if (a.Contains(i) && a.Contains(j)) f.friends = 80f;
+            if (b.Contains(i) && b.Contains(j)) f.friends = 70f;
+            if (j == barr && feud.Contains(i))
+            {
+                f.rivals = 40f;
+                f.minOpinion = -20;
+            }
+            aff[i, j] = aff[j, i] = GroupMath.Affinity(f);
+        }
+        var free = Enumerable.Repeat(true, n).ToArray();
+        var before = GroupMath.Cluster(aff, n, free, null);
+        Check(before != null && before.Count == GroupMath.MaxSize, $"the old rule: everyone's comradeship makes one group of seven ({before?.Count})");
+        var distinct = GroupMath.Distinct(aff, n);
+        var now = GroupMath.Cluster(distinct, n, free, null, GroupMath.MaxFor(n));
+        Check(now != null && now.Count <= GroupMath.MaxFor(n) && now.All(a.Contains), $"now: the close friends form a group of their own ({string.Join(",", now ?? new List<int>())})");
+        var groups = new List<List<int>> { now ?? new List<int>() };
+        var free2 = free.Select((_, i) => !(now ?? new List<int>()).Contains(i)).ToArray();
+        var second = GroupMath.Cluster(distinct, n, free2, groups, GroupMath.MaxFor(n));
+        Check(second != null && second.All(b.Contains), $"and the other friends theirs ({string.Join(",", second ?? new List<int>())})");
+        if (second != null) groups.Add(second);
+        Check(GroupMath.JoinTarget(distinct, barr, groups, null, GroupMath.MaxFor(n)) == -1, "Barr joins neither: at odds with some in each, outside both");
+        Check(Enumerable.Range(7, 4).All(i => GroupMath.JoinTarget(distinct, i, groups, null, GroupMath.MaxFor(n)) == -1),
+            "those who only fought beside them don't join a group of close friends");
+
+        string life = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Social", "Groups", "GroupLife.cs"));
+        Check(life.Contains("GroupMath.Cluster(f.distinct") && life.Contains("GroupMath.JoinTarget(f.distinct") && life.Contains("GroupMath.Attachment(f.distinct"),
+            "groups form, take people and keep them by what binds some more than the rest");
+        Check(life.Contains("\"CC_Group_Regroup\"") && life.Contains("t.Regrouping"), "an older save's groups regroup quietly, told once");
+        string table = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "PeopleTable.cs"));
+        string bonds = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "SocialPanel.cs"));
+        Check(table.Contains("CC_Group_Outside_Short") && bonds.Contains("CC_Social_OutsideAll"), "someone outside every group shows as outside on the People table and the Bonds page");
+    }
+
+    // ---------------- Decision 13: decrees that mean distinct things ----------------
+
+    private static void Decrees(string root, List<XElement> defs, Dictionary<string, string> keyed, Action<bool, string> Check)
+    {
+        Check(DecreeMath.FormNow(DecreeMath.Drills, true, false, false) == DecreeMath.Militia && DecreeMath.FormNow(DecreeMath.Militia, false, false, false) == DecreeMath.Drills,
+            "the drills take the age's form: the muster for a tribe or a village, drills for the rest");
+        Check(DecreeMath.FormNow(DecreeMath.Rationing, false, true, false) == DecreeMath.FamineBread && DecreeMath.FormNow(DecreeMath.FamineBread, false, true, true) == DecreeMath.Rationing
+              && DecreeMath.FormNow(DecreeMath.FamineBread, true, false, false) == DecreeMath.Rationing,
+            "rationing shares with the hungry while a famine lies over the region, unless the colony's own stores are low");
+        Check(DecreeMath.FormNow("Council_Decree_Tithes", true, true, true) == "Council_Decree_Tithes", "a decree of its own is itself");
+        Check(DecreeMath.Excludes(DecreeMath.Drills, DecreeMath.Militia) && DecreeMath.Excludes("Council_Decree_FeastDay", "Council_Decree_Festival")
+              && DecreeMath.Excludes("Council_Decree_Curfew", "Council_Decree_OnGuard") && DecreeMath.Excludes("Council_Decree_Rest", "Council_Decree_QuietHours"),
+            "an idea's two forms never run together, nor two that overlap");
+        Check(!DecreeMath.Excludes("Council_Decree_SickBay", "Council_Decree_Quarantine") && !DecreeMath.Excludes(DecreeMath.Drills, DecreeMath.Drills)
+              && !DecreeMath.Excludes("Council_Decree_Austerity", DecreeMath.Rationing), "rest when ill and quarantine may run together: one heals, the other keeps the well");
+        Check(DecreeMath.CarriedEnd(1000, 1000 + 10 * 60000, 5f, 60000) == 1000 + 5 * 60000 && DecreeMath.CarriedEnd(1000, 1000 + 2 * 60000, 5f, 60000) == 1000 + 2 * 60000,
+            "an older save's militia carries on as drills for what was left, never longer than drills run");
+        var decrees = defs.SelectMany(x => x.Elements("ColonyCouncil.DecreeDef")).Select(x => x.Element("defName")!.Value).ToHashSet();
+        foreach (var idea in DecreeMath.Ideas.Concat(DecreeMath.Apart))
+            Check(idea.All(decrees.Contains), $"the decrees named are there: {string.Join(", ", idea)}");
+        var drills = defs.SelectMany(x => x.Elements("ColonyCouncil.DecreeDef")).Where(x => x.Element("defName")!.Value == DecreeMath.Drills || x.Element("defName")!.Value == DecreeMath.Militia).ToList();
+        Check(drills.Count == 2 && drills.All(x => x.Element("hurts") != null), "both forms of the drills keep their risk (the drills' bouts, the militia's muster)");
+        Check(keyed.ContainsKey("CC_Decree_Overlaps"), "a decree refused for an overlap says which");
+        string work = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Decrees", "DecreeWork.cs"));
+        string trk = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Decrees", "Decrees.cs"));
+        Check(work.Contains("if (FormNow(d, Home) != d.defName) return true;") && trk.Contains("DecreeMath.Excludes(a.def.defName, def.defName)") && trk.Contains("CarryOn(comp);"),
+            "only the form of the moment is listed, overlaps are refused, an older save's carry on");
     }
 
     // ---------------- Decision 8: life goals that last ----------------

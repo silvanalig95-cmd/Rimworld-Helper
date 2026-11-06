@@ -22,6 +22,13 @@ namespace ColonyCouncil
         public int nextId = 1;
         /// <summary>The groups already there in a save have been found (quietly, once).</summary>
         public bool seeded;
+        /// <summary>
+        /// When the colony's groups began to regroup by what really binds people (decision 13 of the review, 6 November
+        /// 2026): an older save's groups settle quietly over GroupMath.RegroupDays, told once; -1 before.
+        /// </summary>
+        public int regroup = -1;
+
+        public bool Regrouping => regroup >= 0 && Find.TickManager.TicksGame - regroup < GroupMath.RegroupDays * GenDate.TicksPerDay;
 
         public const int MaxPast = 12;
 
@@ -198,6 +205,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref work, "work", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref seeded, "seeded");
+            Scribe_Values.Look(ref regroup, "regroup", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 groups ??= new List<SocialGroup>();

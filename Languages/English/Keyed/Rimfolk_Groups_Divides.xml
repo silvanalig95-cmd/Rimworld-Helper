@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Groups around real divides (Social/Groups/GroupMath.cs), the player's decision of 6 November 2026: groups form, grow
+    and keep their people by what binds some of the colony more than the rest, a group holds well under half the colony,
+    and whoever stands outside every group is shown as outside, with why.
+  -->
+
+  <!-- Told once, when an older save's groups begin to regroup. -->
+  <CC_Group_Regroup>Over the next days the colony's groups will settle around what really binds their people: some who only fought side by side may drift apart, and new groups may form.</CC_Group_Regroup>
+
+  <!-- Outside every group, and why. -->
+  <CC_Group_Outside_Short>outside every group</CC_Group_Outside_Short>
+  <CC_Group_Outside_AtOdds>at odds with {NAMES}</CC_Group_Outside_AtOdds>
+  <CC_Group_Outside_New>new here</CC_Group_Outside_New>
+  <CC_Group_Outside_Own>goes {PAWN_possessive} own way</CC_Group_Outside_Own>
+  <CC_Group_Page_Outside>{PAWN_nameDef} stands outside every group: {WHY}.</CC_Group_Page_Outside>
+  <CC_Social_OutsideAll>Outside every group: {NAMES}.</CC_Social_OutsideAll>
+  <CC_Social_OutsideOne>{PAWN_nameDef} ({WHY})</CC_Social_OutsideOne>
+  <CC_Group_OutsideTip>Groups form around what binds some of the colony more than the rest: friends, the same work, the night hours, an ideoligion held hard, where they came from, their age. Someone at odds with people in a group, new to the colony, or simply their own stands outside every group, and feels it now and then.</CC_Group_OutsideTip>
+
+</LanguageData>

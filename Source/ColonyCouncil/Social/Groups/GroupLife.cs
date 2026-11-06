@@ -76,7 +76,16 @@ namespace ColonyCouncil
         {
             var t = Tracker;
             if (t == null || comp == null) return;
-            bool quiet = !t.seeded;
+            // The first day on a save finds the groups already there quietly. An older save's groups regroup by what really
+            // binds people (decision 13 of the review) over a few days, quietly too, told once here.
+            if (t.regroup < 0)
+            {
+                bool had = t.seeded && t.groups.Count > 0;
+                t.regroup = had ? Now : Now - GroupMath.RegroupDays * Day;
+                if (had)
+                    News.Post(GroupText.Sentences("CC_Group_Regroup".Translate().Resolve()), LookTargets.Invalid, NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            }
+            bool quiet = !t.seeded || t.Regrouping;
             GroupFacts facts;
             try
             {
@@ -178,13 +187,23 @@ namespace ColonyCouncil
                 var present = Present(g, f);
                 // Fewer than two of them at home together: the group goes on, but it feels it after a few days.
                 g.apartDays = present.Count < 2 ? g.apartDays + 1 : 0;
+                // What binds them to the rest more than to the whole colony (GroupMath.Distinct). A group grown past what a
+                // colony this size holds (GroupMath.MaxFor) lets its loosest member go; one leaves a group a day at most.
+                GroupMember loosest = null;
+                foreach (var m in g.members)
+                {
+                    int i = f.IndexOf(m.pawn);
+                    if (i < 0) continue;
+                    m.attachment = GroupMath.Attachment(f.distinct, i, present);
+                    m.lowDays = m.attachment < GroupMath.LeaveBelow && present.Count >= 2 ? m.lowDays + 1 : 0;
+                    if (loosest == null || m.attachment < loosest.attachment) loosest = m;
+                }
+                bool over = g.members.Count > f.maxSize;
                 foreach (var m in g.members.ToList())
                 {
                     int i = f.IndexOf(m.pawn);
                     if (i < 0) continue;
-                    m.attachment = GroupMath.Attachment(f.aff, i, present);
-                    m.lowDays = m.attachment < GroupMath.LeaveBelow && present.Count >= 2 ? m.lowDays + 1 : 0;
-                    if (m.lowDays < GroupMath.LeaveDays || g.members.Count <= 2) continue;
+                    if (!(over && m == loosest) && (m.lowDays < GroupMath.LeaveDays || g.members.Count <= 2)) continue;
                     // Drifted off: they don't hold to the rest any more.
                     g.members.Remove(m);
                     g.todayLeft++;
@@ -197,6 +216,7 @@ namespace ColonyCouncil
                             MessageTypeDefOf.SilentInput, Importance.Flavor);
                         GroupText.Journal(m.pawn, "Rimfolk_Journal_Group_DriftedOff", g.Name.Named("GROUP"));
                     }
+                    break;
                 }
             }
             t.Changed();
@@ -620,7 +640,8 @@ namespace ColonyCouncil
                     var idsB = b.Select(p => p.thingIDNumber).ToList();
                     if (!GroupMath.ShouldMerge(ids, idsB, cross, g.cohesion, h.cohesion, rivals)) continue;
                     bool overlap = GroupMath.Overlap(ids, idsB) * 2 >= Mathf.Min(ids.Count, idsB.Count);
-                    if (!overlap && !quiet && !Rand.Chance(0.15f)) continue;
+                    if (ids.Union(idsB).Count() > f.maxSize) continue;
+                    if (!overlap && t.seeded && !Rand.Chance(0.15f)) continue;
                     Merge(comp, t, g, h, quiet);
                     merged = true;
                 }
@@ -717,8 +738,8 @@ namespace ColonyCouncil
                 if (!Free(t, p)) continue;
                 // Nobody goes back to a group they broke away from or drifted off from (only a merge brings them back).
                 var closed = t.groups.Select(g => g.formerNames.Contains(p.LabelShort)).ToArray();
-                int target = GroupMath.JoinTarget(f.aff, i, lists, closed);
-                if (target < 0 || (!quiet && !Rand.Chance(0.3f))) continue;
+                int target = GroupMath.JoinTarget(f.distinct, i, lists, closed, f.maxSize);
+                if (target < 0 || (t.seeded && !Rand.Chance(0.3f))) continue;
                 var g = t.groups[target];
                 if (g.Has(p)) continue;
                 Join(comp, t, g, p, quiet);
@@ -742,15 +763,16 @@ namespace ColonyCouncil
 
         private static void Formation(CouncilGameComponent comp, GroupTracker t, GroupFacts f, bool quiet)
         {
-            for (int k = 0; k < (quiet ? 6 : 1); k++)
+            for (int k = 0; k < (t.seeded ? 1 : 6); k++)
             {
                 // Newcomers may form a group of their own (those who came together, say): then they're outsiders no more.
                 var free = new bool[f.Count];
                 for (int i = 0; i < f.Count; i++) free[i] = t.Of(f.people[i]).Count < GroupMath.MaxGroupsEach;
                 var existing = t.groups.Select(g => Present(g, f)).ToList();
-                var cluster = GroupMath.Cluster(f.aff, f.Count, free, existing);
+                // By what binds some of them more than the rest of the colony, and never most of the colony (GroupMath.Distinct, MaxFor).
+                var cluster = GroupMath.Cluster(f.distinct, f.Count, free, existing, f.maxSize);
                 if (cluster == null) return;
-                if (!quiet && !Rand.Chance(0.4f)) return;
+                if (t.seeded && !Rand.Chance(0.4f)) return;
                 Form(comp, t, f, cluster, quiet, null);
             }
         }
