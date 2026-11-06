@@ -164,6 +164,60 @@ namespace Balance
         /// </summary>
         public const float OneFaithDays = 0.12f, OneFaithOutsiders = 0.6f, OneFaithTrustPerDay = -0.55f;
 
+        // ---------------- What stages something on the map (--scenes, Scenes.cs) ----------------
+
+        /// <summary>
+        /// A settled colony's calendar in its third year, from the player's own calendar at day 128 (13 days written down:
+        /// founding, harvest, two weddings and two battles won kept as feasts; two deaths, a pet and a battle with the fallen
+        /// remembered; the first trade's gifts; a faith's day; a wedding of one now dead kept alone), with one game day of
+        /// the first snow. Birthdays and arrivals are the person's own and stage nothing; the cap is 12 days of the
+        /// colony's own and 8 named by the player (CalendarMath).
+        /// </summary>
+        public static readonly string[] SceneCalendar =
+        {
+            "FeastDay", "FeastDay", "FeastDay", "FeastDay", "FeastDay", "FeastDay", "GamesDay", "Remembered", "Remembered", "Remembered", "Remembered",
+            "GiftDay", "FaithDay"
+        };
+
+        /// <summary>A remembered day's dead has a grave on the map (a battle's day has none): those who knew them stand at it.</summary>
+        public const float SceneRemembranceGrave = 0.6f;
+
+        /// <summary>
+        /// Groups (Social/Groups/): about one for every five colonists (the player's colony of eleven had one of seven), and
+        /// the share close enough for their anchor to call them (cohesion 50 or more; the player's stood at 92).
+        /// </summary>
+        public const float SceneGroupsPerColonist = 0.2f, SceneGroupClose = 0.75f;
+
+        /// <summary>Families of three or more living at home (parents and a grown or growing child, or kin), per colonist.</summary>
+        public const float SceneSupperFamilies = 0.04f;
+
+        /// <summary>Weddings a year per colonist (the player's colony of about ten: three in its first 128 days).</summary>
+        public const float SceneWeddingsPerColonist = 0.1f;
+
+        /// <summary>A child's growth birthday or eighteenth with a parent at home, a year per colonist (about one child in ten).</summary>
+        public const float SceneChildToastsPerColonist = 0.03f;
+
+        /// <summary>Decrees a year that gather people when declared (the marshal's address for drills, a feast day, holy days): the player's game had three in 60 days.</summary>
+        public const float SceneDecreeStagesPerYear = 2.5f;
+
+        /// <summary>The year's election held a short ceremony for a seat nobody stood for (the player's 5502 did).</summary>
+        public const float SceneElectionCeremony = 0.5f;
+
+        /// <summary>Share of ambitions that set something going when reached (9 of the 66 AmbitionDefs: a feast, a toast, a fire).</summary>
+        public const float SceneAmbitionStages = 0.136f;
+
+        /// <summary>
+        /// A personal story's stages that play out, per story (ArcDef stages' effects: 149 stages in 38 stories, of which
+        /// 4.7% gather people, 2% go out together and 9.4% are a visit, a lesson or an errand; about four stages each).
+        /// </summary>
+        public const float SceneStoryGathering = 0.19f, SceneStoryOuting = 0.08f, SceneStorySmall = 0.37f;
+
+        /// <summary>
+        /// A camp's stay in days (CampKindDef.days), the share of its days' help that is a show or a song the colony walks
+        /// over to (two of the help kinds of seven), and the share of its ask (a day and a half in) that sets something going.
+        /// </summary>
+        public const float SceneCampDaysMin = 4f, SceneCampDaysMax = 10f, SceneCampShowShare = 0.3f, SceneCampAskPlays = 0.5f;
+
         /// <summary>
         /// How often a wish can be voiced at all (its worker looks for a reason: a prisoner to recruit, lovers to marry, a
         /// lost limb, a camp on the map, a child). Wishes about the home and the work can come any time (1).

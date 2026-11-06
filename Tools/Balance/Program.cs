@@ -4,6 +4,8 @@
 //   dotnet run -c Release --project Tools/Balance -- --social [--runs N] [--seed S]
 // How much acts against their nature add to the heart's strain over a colony-year (NatureSim.cs, printed, nothing written):
 //   dotnet run -c Release --project Tools/Balance -- --nature [--runs N] [--seed S]
+// How often Rimfolk stages something on the map, by system, and what a weekly allowance would leave (Scenes.cs, printed):
+//   dotnet run -c Release --project Tools/Balance -- --scenes [repo root] [--runs N] [--colonists N] [--gap HOURS] [--week N]
 
 using System.Globalization;
 using System.Text.Json;
@@ -20,6 +22,11 @@ if (args.Contains("--social"))
 if (args.Contains("--nature"))
 {
     NatureSim.Run(args);
+    return;
+}
+if (args.Contains("--scenes"))
+{
+    ScenesSim.Run(args);
     return;
 }
 

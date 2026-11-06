@@ -111,6 +111,11 @@ namespace Balance
         public readonly List<LetterRec> letters = new List<LetterRec>();
         public readonly List<(int day, Colonist c, Sample s)> samples = new List<(int, Colonist, Sample)>();
         public readonly Dictionary<string, int> counts = new Dictionary<string, int>();
+        /// <summary>
+        /// --scenes (Scenes.cs): everything staged on the map in the measured year. Null in an ordinary run, where nothing
+        /// below that stages a scene draws a number or changes anything.
+        /// </summary>
+        public List<Scene> scenes;
         /// <summary>What each source adds to one colonist's mood, summed over every sample (divide by <see cref="partSamples"/>).</summary>
         public readonly Dictionary<string, double> partSum = new Dictionary<string, double>();
         public int partSamples;
@@ -252,6 +257,19 @@ namespace Balance
             if (!Measuring) return;
             counts.TryGetValue(what, out int v);
             counts[what] = v + n;
+        }
+
+        /// <summary>Something staged on the map now (only with <see cref="scenes"/>, in the measured year).</summary>
+        private void Stage(string source, string tier, int people, float hours, bool routine = false, bool custom = false, int at = -1)
+        {
+            if (scenes == null || !Measuring || tier == null) return;
+            // At = the hour of today it is held (an evening's toast), else now.
+            int when = at >= 0 ? Day * 24 + at : hour;
+            scenes.Add(new Scene
+            {
+                hour = when - WarmupDays * 24, source = source, tier = tier, people = Math.Max(1, Math.Min(people, this.people.Count)), hours = hours,
+                routine = routine, custom = custom
+            });
         }
 
         private int lastQuestion = -99999;
@@ -578,6 +596,7 @@ namespace Balance
         public void Run()
         {
             int total = (WarmupDays + YearDays) * 24;
+            if (scenes != null) SceneCalendar();
             for (hour = startHour; hour < total; hour++)
             {
                 if (HourOfDay == 0) Daily();
@@ -682,6 +701,8 @@ namespace Balance
                     Give(c, "Council_Asp_Fulfilled");
                     Trust(c, 10f);
                     Send("people", Channel.Letter);
+                    // That evening those close to them raise a glass to them (Aspirations/GoalRewards.cs: the toast).
+                    Stage("life goals' toasts", "gathering", c.friends.Count + 2, 1f, true, false, 18);
                 }
                 AilmentDay(c);
             }
@@ -692,6 +713,7 @@ namespace Balance
             Camps();
             OtherLetters();
             LifeAndHonours();
+            if (scenes != null) SceneSources();
         }
 
         private int nextTouch = -1;
@@ -957,6 +979,21 @@ namespace Balance
                 Send("play-outs", Channel.Message);
                 Send("play-outs", Channel.Message);
                 Count("play-outs");
+            }
+            if (scenes != null && set.B("answersPlayOut"))
+            {
+                // What the answer stages (every kind PlayOut/ has, in tiers), how many it takes and for how long.
+                string tier = ScenesSim.Biggest(effects);
+                // How often a gathering was offered at all, for the report: the answer picked is the player's.
+                if (d.options.Any(x => ScenesSim.Biggest(x.effects) == "gathering")) Count("offered a gathering: " + system);
+                if (tier != null)
+                {
+                    bool custom = system.StartsWith("dilemmas") && d.seasons != null && d.seasons.Count > 0;
+                    bool few = effects.Where(e => e.thought != null).All(e => e.target == "A" || e.target == "B" || e.target == "AAndB" || e.target == "FriendsOfA");
+                    int people = tier == "gathering" ? (few ? 4 : (int)(this.people.Count * 0.7f)) : tier == "outing" ? 4 : 2;
+                    float hrs = tier == "gathering" ? 2f : tier == "outing" ? 2.5f : 1f;
+                    Stage(custom ? "seasonal customs (dilemmas)" : system, tier, people, hrs, false, custom);
+                }
             }
             // Not everyone agreed with the answer (SetbackMath.ClashStage), and some said so when it went wrong.
             if (d.options.Count > 1)
@@ -1449,11 +1486,22 @@ namespace Balance
                 {
                     Send("calendar", Channel.Letter);
                     foreach (var c in people.Where(_ => Chance(0.6f))) Give(c, "Council_Cal_Remembered");
+                    // Those who knew them stand a while at the grave, when there is one here (CalendarKeeping.DoWay).
+                    if (scenes != null && Chance(Rates.SceneRemembranceGrave)) Stage("calendar days", "gathering", 4, 1f, false, false, 17);
                     continue;
                 }
                 Send("calendar", Channel.Decision);
                 if (Chance(style.calendarPass)) continue;
                 foreach (var c in people) Give(c, "Council_Cal_" + kind);
+                if (scenes != null)
+                {
+                    // How the day is kept (CalendarKeeping.DoWay): a feast, games or a fire for everyone, an evening of
+                    // faith, gifts handed over in pairs; a rest day and a birthday stage nothing.
+                    int all = (int)(people.Count * 0.8f);
+                    if (kind == "FeastDay" || kind == "GamesDay" || kind == "BonfireNight") Stage("calendar days", "gathering", all, 3f, false, false, 17);
+                    else if (kind == "FaithDay") Stage("calendar days", "gathering", all, 2f, false, false, 18);
+                    else if (kind == "GiftDay") Stage("calendar days", "small", 2, 0.5f, false, false, 15);
+                }
                 if (kind == "FeastDay" || kind == "GamesDay")
                 {
                     Send("play-outs", Channel.Message);
@@ -1468,6 +1516,14 @@ namespace Balance
             stories.RemoveAll(s =>
             {
                 if (s.until > hour) return false;
+                // What its stages set going on the map along the way (ArcDef stages' effects: a supper for three, a grave
+                // visit, a lesson), told here at its end.
+                if (scenes != null)
+                {
+                    if (Chance(Rates.SceneStoryGathering)) Stage("personal stories", "gathering", 3, 1.5f, false, false, 18);
+                    if (Chance(Rates.SceneStoryOuting)) Stage("personal stories", "outing", 3, 2f, false, false, 10);
+                    if (Chance(Rates.SceneStorySmall)) Stage("personal stories", "small", 2, 1f, false, false, 15);
+                }
                 if (s.well)
                 {
                     var pool = defs.thoughts.Values.Where(t => t.name.StartsWith("Council_Arc_") && !t.Situational && t.First > 0f).ToList();
@@ -1510,6 +1566,8 @@ namespace Balance
                     }
                     Send("meetings", Channel.Letter);
                     Count("ambitions reached");
+                    // Some ambitions set something going when reached: the great feast eaten, a toast with the first barrels.
+                    if (scenes != null && Chance(Rates.SceneAmbitionStages)) Stage("ambitions reached", "gathering", (int)(people.Count * 0.8f), 3f, false, false, 17);
                 }
                 else
                 {
@@ -1530,6 +1588,8 @@ namespace Balance
             // The meeting gathers everyone (a play-out), then the vote is a question for the council.
             Send("meetings", Channel.Decision);
             Send("play-outs", Channel.Message);
+            // Everyone is called to it from ordinary work (meetingsCallFromWork).
+            Stage("council meetings", "gathering", people.Count, 1.5f);
             var proposers = people.OrderBy(_ => rng.Next()).Take(Math.Min(Rates.MeetingProposals, people.Count)).ToList();
             proposer = proposers[0];
             foreach (var p in proposers.Skip(1)) Setback(p, "Council_Setback_IdeaPassedOver");
@@ -1571,6 +1631,7 @@ namespace Balance
                 lastEvening = Day;
                 Count("evenings of faith");
                 Send("play-outs", Channel.Message);
+                Stage("evenings of faith", "gathering", (int)(people.Count * Rates.EveningComes), 2f, false, false, 18);
                 float roll = (float)rng.NextDouble();
                 string thought = roll < Rates.EveningPoor ? null : roll < 1f - Rates.EveningFine ? "Council_Faith_GoodEvening" : "Council_Faith_FineEvening";
                 if (thought != null)
@@ -1602,6 +1663,93 @@ namespace Balance
             if (set.B("heart") && set.B("heartEpisodes")) yield return ("people", style.key == "well" ? 0.2f : style.key == "avg" ? 1f : 3f, Channel.Letter);
             if (set.B("nemeses")) yield return ("world", 0.5f, Channel.Letter);
             if (set.B("healerReputations")) yield return ("health", 3f, Channel.Digest);
+        }
+
+        // ---------------- --scenes only: what else stages something on the map ----------------
+
+        private readonly List<int> groupLast = new List<int>();
+        private readonly List<int> supperLast = new List<int>();
+        private int electionDay = -1, campHere = -1, campLeaves = -1, campNextFrom, campDay;
+
+        /// <summary>
+        /// A settled colony's calendar for --scenes, in its third year (Rates.SceneCalendar: the days the player's own
+        /// calendar holds then), on random days; the day of the year's election; the colony's groups and families.
+        /// </summary>
+        private void SceneCalendar()
+        {
+            calendar.Clear();
+            foreach (var kind in Rates.SceneCalendar) calendar.Add((rng.Next(YearDays), kind));
+            electionDay = 1 + rng.Next(YearDays - 1);
+            int groups = (int)Math.Round(people.Count * Rates.SceneGroupsPerColonist);
+            for (int i = 0; i < groups; i++)
+                if (Chance(Rates.SceneGroupClose)) groupLast.Add(-rng.Next(20) * 24);
+            int families = (int)(people.Count * Rates.SceneSupperFamilies) + (Chance(people.Count * Rates.SceneSupperFamilies % 1f) ? 1 : 0);
+            for (int i = 0; i < families; i++) supperLast.Add(-rng.Next(10) * 24);
+            campNextFrom = (int)(rng.NextDouble() * SceneConstants.CampGapDays * 24);
+        }
+
+        /// <summary>Once a day: groups call their people, the election, weddings, family suppers, birthdays, decrees, camps.</summary>
+        private void SceneSources()
+        {
+            int n = people.Count;
+            // A close group's anchor calls them to their habit (GroupHabits.Daily): one group a day at most, and not while
+            // another group's gathering is pending; it takes those of the group who are free.
+            if (set.B("socialLife") && set.B("answersPlayOut"))
+                foreach (int i in Enumerable.Range(0, groupLast.Count).OrderBy(_ => rng.Next()).ToList())
+                {
+                    if (hour - groupLast[i] < SceneConstants.GroupCallAfterDays * 24 || !Chance(SceneConstants.GroupCallChance)) continue;
+                    groupLast[i] = hour;
+                    int size = (int)SceneConstants.GroupMinSize + rng.Next((int)(SceneConstants.GroupMaxSize - SceneConstants.GroupMinSize) + 1);
+                    Stage("groups calling their people", "gathering", Math.Max(3, (int)(size * 0.8f)), 2f, true, false, 19);
+                    break;
+                }
+            // The council's election (Offices/): the hustings the evening before polling day, the count on its evening,
+            // and now and then a short ceremony for a seat nobody stood for.
+            if (set.B("offices") && set.B("electionEvent"))
+            {
+                if (Day % YearDays == electionDay - 1) Stage("elections", "gathering", (int)(n * 0.7f), 1.5f, false, false, 18);
+                if (Day % YearDays == electionDay) Stage("elections", "gathering", (int)(n * 0.8f), 1.5f, false, false, 18);
+                if (Day % YearDays == (electionDay + 4) % YearDays && Chance(Rates.SceneElectionCeremony))
+                    Stage("elections", "gathering", (int)(n * 0.6f), 1f, false, false, 18);
+            }
+            // A wedding: the game's own ceremony, and the feast or toast the council planned with the couple after it.
+            if (Chance(Rates.SceneWeddingsPerColonist * n / YearDays)) Stage("weddings", "gathering", (int)(n * 0.8f), 3f, false, false, 16);
+            // A family supper (Social/FamilyBonds.cs): a family of three or more at home, now and then of an evening.
+            if (set.B("socialLife") && set.B("answersPlayOut"))
+                for (int i = 0; i < supperLast.Count; i++)
+                {
+                    if (hour - supperLast[i] < SceneConstants.SupperGapDays * 24 || !Chance(SceneConstants.SupperChance)) continue;
+                    supperLast[i] = hour;
+                    Stage("family suppers", "gathering", (int)SceneConstants.SupperAtLeast, 1.75f, true, false, 18);
+                    break;
+                }
+            // A child's growth birthday, or the eighteenth: the family raise a glass (Social/FamilyLife.cs).
+            if (Chance(Rates.SceneChildToastsPerColonist * n / YearDays)) Stage("children's birthday toasts", "gathering", 4, 1f, true, false, 18);
+            // A decree that gathers people when it's declared: the marshal's address for drills, a feast day, holy days.
+            if (Chance(Rates.SceneDecreeStagesPerYear / YearDays)) Stage("decrees declared", "gathering", (int)(n * 0.8f), 1f, false, false, 12);
+            // Camps (Camps/CampTimer.cs): a rest after the last, then a chance each open morning; while one is here, a day's
+            // help is now and then a show or a song at their fire that the colony walks over to, and their ask a day and a
+            // half in may set something going.
+            if (set.B("camps"))
+            {
+                if (campHere >= 0)
+                {
+                    campDay++;
+                    if (campDay == 2 && Chance(Rates.SceneCampAskPlays)) Stage("camps", "small", 2, 1f, false, false, 14);
+                    if (Chance(SceneConstants.CampHelpChance * Rates.SceneCampShowShare)) Stage("camps", "gathering", (int)(n * 0.7f), 2f, true, false, 19);
+                    if (hour >= campLeaves)
+                    {
+                        campHere = -1;
+                        campNextFrom = hour + (int)(SceneConstants.CampGapDays * 24);
+                    }
+                }
+                else if (hour >= campNextFrom && Chance(SceneConstants.CampDailyChance))
+                {
+                    campHere = hour;
+                    campDay = 0;
+                    campLeaves = hour + (int)(Range(Rates.SceneCampDaysMin, Rates.SceneCampDaysMax) * 24);
+                }
+            }
         }
     }
 }
