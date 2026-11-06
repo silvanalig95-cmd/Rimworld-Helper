@@ -122,7 +122,9 @@ namespace Balance
         /// </summary>
         public static readonly Dictionary<string, float> CustomGates = new Dictionary<string, float>
         {
-            ["lands"] = 0.3f, ["raining"] = 0.3f, ["faith"] = 0.4f, ["memes"] = 0.15f
+            ["lands"] = 0.3f, ["raining"] = 0.3f, ["faith"] = 0.4f, ["memes"] = 0.15f,
+            // The woodpile day: the stores short of the winter's wood in the autumn (most colonies, not all).
+            ["woodShort"] = 0.6f
         };
 
         /// <summary>The same for who the stranger in an encounter or a stranger's question must be.</summary>

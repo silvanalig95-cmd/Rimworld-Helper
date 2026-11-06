@@ -1355,7 +1355,7 @@ year: **spring cleaning** when winter's dirt is about (a day with brooms and hau
 **the bounds walk** on a dry summer day (the colony walks the edge of its land and sets a stone at each turn, found
 again in later years), **the star night** on a clear warm night, **the fishing match** at the colony's fishing spots
 (Odyssey), **the autumn hunt** when the meat won't last the winter, and **telling the bees** the colony's news at Alpha
-Bees' beehouses. Four more fill the autumn and the winter: **the woodpile day** (the colony out for the winter's wood),
+Bees' beehouses. Four more fill the autumn and the winter: **the woodpile day** (the colony out for the winter's wood while the stores are short of it),
 **the night of lights** (a light by every grave of the colony's own at dusk, and the colony standing among them), **the
 mending day** (a day of repairs, and the best crafter teaching a young one at the bench) and **the winter tales** (the
 year told by the fire).

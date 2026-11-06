@@ -1820,15 +1820,18 @@ pure rules are in `Dilemmas/YearFourMath.cs`, tested in `YearFourTests`.
 - **Customs of the autumn and the winter** (`Rimfolk_Dilemmas_Customs_YearFour.xml`), the seasons that had fewest (seven
   and six before, against ten each in spring and summer). Each is a seasonal custom like the rest: one a season, on the
   calendar once kept, a tradition three years running; the full keeping, a smaller one (silence), a refusal.
-  - The woodpile day (fall): a work party of six for the woodpile (logs carried in, a tree or two felled where none lie
-    about), cutting and hauling; or two of them. Never asked by someone whose ideoligion holds trees sacred.
+  - The woodpile day (fall, the stores short of the winter's wood as wood for the winter reckons it, `woodShort`): a work
+    party of six for the woodpile (logs carried in, a tree or two felled where none lie about), cutting and hauling, the
+    lazy minding it; or three for a morning. Never asked by someone whose ideoligion holds trees sacred.
   - The night of lights (fall and winter, graves of the colony's own): a light by each such grave at dusk until first
     light (`DilemmaEffect_Lanterns` "graves", `OnMapTimed.GraveCells`) and a short vigil among them; or the lights alone.
     Never asked by someone whose ideoligion despises fire.
   - The mending day (winter): a work party repairing, cleaning and hauling, and a lesson at the bench from the colony's
-    best crafter to one of thirty or under; or the lesson alone.
-  - The winter tales (winter): the best talker tells the year by the fire (words, with lines of its own); or to one
-    other for an hour (a visit).
+    best crafter to one of thirty or under, the lazy minding it; or three mending for a morning.
+  - The winter tales (winter, someone with a love of talk): the best talker tells the year by the fire (words, with lines
+    of its own); or one tale at supper.
+  - Each smaller form pleases most of the colony (as lantern night's one lantern does) and each refusal disappoints some
+    and satisfies the industrious or the thrifty, so no answer is plainly best (`dilemma_balance.py`: trade-offs).
 - **Decrees that each mean one thing on the map** (`Rimfolk_Decrees_YearFour.xml`; the player's decision 13). Three of
   the land's year mark the game's own work each morning and the day they're declared (`DecreeDef.daily`, run by
   `DecreeWork.RunDaily` from the decrees' day): a hunting season (six days, two head of safe game, `DilemmaEffect_Hunt`),

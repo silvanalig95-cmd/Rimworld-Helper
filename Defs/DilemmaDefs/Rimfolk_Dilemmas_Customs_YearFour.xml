@@ -74,6 +74,7 @@
     </options>
     <modExtensions>
       <li Class="ColonyCouncil.CustomConditions">
+        <woodShort>true</woodShort>
         <forbiddenBy><li>NoTreeCutting</li></forbiddenBy>
       </li>
     </modExtensions>
@@ -219,6 +220,7 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
     <roleA>
+      <passion>Social</passion>
       <bestAt>Social</bestAt>
     </roleA>
     <texts>

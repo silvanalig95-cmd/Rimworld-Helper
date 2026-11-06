@@ -33,6 +33,8 @@ namespace ColonyCouncil
         public List<string> memes;
         /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): nobody whose faith despises fire asks for a bonfire.</summary>
         public List<Belief> forbiddenBy;
+        /// <summary>The stores hold less wood than the winter wants (the woodpile day; as wood for the winter reckons it, YearFourMath.WoodWanted).</summary>
+        public bool woodShort;
 
         [Unsaved] private ulong forbiddenMask;
         [Unsaved] private bool forbiddenMaskSet;
@@ -66,6 +68,7 @@ namespace ColonyCouncil
             if (c.raining && !Raining(map)) return false;
             if ((c.faith || !c.memes.NullOrEmpty()) && DecreeWork.ColonyFaith == null) return false;
             if (!c.memes.NullOrEmpty() && !DecreeWork.FaithHas(c.memes)) return false;
+            if (c.woodShort && !YearFour.WoodShort(map)) return false;
             return true;
         }
 

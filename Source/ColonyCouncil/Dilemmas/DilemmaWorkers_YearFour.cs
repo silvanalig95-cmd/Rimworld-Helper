@@ -165,6 +165,14 @@ namespace ColonyCouncil
                 .OrderBy(p => p.Position.DistanceToSquared(center)).Take(Mathf.Max(0, count)).ToList();
         }
 
+        /// <summary>The stores hold less wood than the winter wants: 150 a colonist for a tribe or a village, 80 for any other.</summary>
+        public static bool WoodShort(Map map)
+        {
+            if (map == null) return false;
+            var age = Ages.Of(map);
+            return map.resourceCounter.GetCount(ThingDefOf.WoodLog) < YearFourMath.WoodWanted(map.mapPawns.FreeColonistsSpawnedCount, age == WorldAge.Tribal || age == WorldAge.Medieval);
+        }
+
         /// <summary>Wood a grown tree of this kind gives the cutter (the game's yield at full growth).</summary>
         public static float WoodOf(ThingDef tree) => tree?.plant == null ? 25f : Mathf.Max(5f, tree.plant.harvestYield);
 
