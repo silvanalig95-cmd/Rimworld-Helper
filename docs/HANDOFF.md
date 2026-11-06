@@ -6,6 +6,98 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new world events and camps (the player's request, 6 November 2026): "drop some new additional dilemmas, events, world
+  events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay variety".
+  This part: world events across the region and camp kinds, in the existing frameworks and pools at their rates; no
+  version of its own (its points go with the next round). The player's examples that were there already (a bandit lord's
+  tolls, a great fair, a migration of beasts, a holy year, a cold winter) were left; the cold year is a summer that
+  never came. Each, what it is, how it reaches the colony, how it ends, how often:
+  - A war between neighbors (`Rimfolk_WS_NeighboursWar`, data): two neighbors already at war in the game, both at peace
+    with the colony (never with Factional War); caravans and visitors 0.8. Their quartermaster's cart at the gate for
+    food (half again or given), the other's armourer for steel (twice, `WorldEffect_Sell` to the visitor), a rider
+    asking leave for a column (an armed band by the road, `holdBeat` then a message), two of the other side's fighters
+    at the gate for medicine and a night by the wall. Ends by whom the colony supplied: that side wins 3 in 4 (goodwill,
+    its towns +6 at once and the loser's -6, `WorldEffect_Fortune`), both supplied leaves both cool, else it wears out.
+    Weight 0.6, 200 days apart, 14 to 22 days, kind war (so never with the warlord), prosperity -8 both sides.
+  - A year without a summer (`Rimfolk_WS_ColdYear`): spring and summer only, kind weather (never with a hard winter);
+    the game's cold snap x3, heat wave x0.2, growing and warm spells rarer. The ripe crops marked to bring in early
+    (`WorldEffect_Harvest`), a neighbor's flock come down from the snow grazing the far meadow a night (as neighbors or
+    for a fee), food sold or given against the winter. Helped, goodwill and the town +4. Weight 0.5, 300 days apart, 15
+    to 22 days, prosperity -8.
+  - A great work (`Rimfolk_WS_GreatWork`, kind build): a neighbor raises a longhouse, a hall, a dam, a signal tower
+    (named by their age); travelers x1.4 and labourers passing on the road. Timber at half again or given, the colony's
+    best builder teaching their master builder at the gate one evening (`DilemmaEffect_Lesson` A to X, a night by the
+    wall), medicine after a fall. Helped (2), it stands with the colony's name on a stone (+6); else it stands 6 in 10
+    (+3) or is left half built (-6). Weight 0.6, 240 days apart, 16 to 24 days, prosperity +4.
+  - A ban on drink (`Rimfolk_WS_DryLaw`, kind law): a neighbor's town goes dry (the elders, a council, the Empire's
+    edict); visitors x1.2. Two young people and a smuggler at the gate buy the colony's beer at three and two times its
+    worth (the wardens find out 1 in 4 and 1 in 3: -6, -10), the smuggler reported, a promise to keep their law or not.
+    It falls if the beer got in (+4) or holds if the colony kept it (goodwill, -2). Weight 0.6, 240 days apart, 16 to 24
+    days, prosperity -4.
+  - A great caravan (`Rimfolk_WS_GreatCaravan`, kind trade, so never with a trading season): bound for a neighbor's
+    town; caravans x1.3. Its lead train on the far meadow a night (a `caravan` visit, then a rider brings a small gift,
+    or for a fee), the hill road told to its rider at the gate (`DilemmaEffect_Visit`). Warned, it arrives safe (+6);
+    else robbed half the time (-6) or arrives (+4). Weight 0.6, 200 days apart, 10 to 16 days.
+  - Households on the move (`Rimfolk_WS_Trek`, kind trek): a neighbor's far villages walk to their kin's town; travelers
+    x1.6, two `trek` visits along the road. Water for their herds (a herders' night at the colony's water), two nights
+    by the wall and a meal for an old man, two young ones who would stay (`WorldEffect_Join`, the two at the gate; -3).
+    Helped (2) they come through (+5); else 7 in 10 they arrive (+2), else worn out (-4). Weight 0.6, 220 days apart, 12
+    to 18 days.
+  - Stonecutters (`Rimfolk_Camp_Stonecutters`, tribal to industrial): a new land need `stone` (12 rock chunks clear of
+    the colony at least, some together: `CampLand.StoneTargets`); they pitch by the scatter and dress chunks into the
+    game's own blocks (`butcherProducts`), 1 a day and 1 more for every two hands (`work cut`, `Rimfolk_CampCut`),
+    carried to their stash. Asks: a load of their stone at its worth (paid at the gate, `DilemmaEffect_CampStoneSale`,
+    the catch sale's way), their craft at the bench (Crafting); their request to work the rock nearest the colony
+    (`clearNear`, outside the home area). Their good turn a quarter of their pile. Weight 0.5 among the kinds that fit,
+    oftener in a great work, a rebuilding or a fire.
+  - Shearers (`Rimfolk_Camp_Shearers`): land need `fleece` (4 of the colony's grown beasts with their wool half grown);
+    once their camp stands they offer to shear the flock for one fleece in ten (the harvest hands' way: turned down,
+    they go on); taken on, they shear in the colony's pens by day with the game's own gathering
+    (`Rimfolk_CampShearFlock`), the wool left for its haulers, a tenth in their packs; with nothing left they finish
+    within 3 hours. Weight 0.6, oftener in a cold year or the drove season.
+  - Beast-catchers (`Rimfolk_Camp_Catchers`, tribal to industrial): land need `wildHerd` (3 wild beasts of one kind that
+    could be tamed and live on the land, clear of the colony, never a predator or one the colony marked); they pitch
+    near it and rope one or two in their stay, one a day at most (`Rimfolk_CampCatch`, the beast held as for milking):
+    theirs, kept by their picket, led away when they go (`Camp.caught`, saved). Asks: one of them at four fifths of its
+    worth (paid at once, handed over first by `HandOverBeast`), their way with beasts (Animals); their request feed.
+    Weight 0.5, oftener with the great herds or the drove season.
+  - A traveling teacher (`Rimfolk_Camp_Teacher`): land need `children` (Biotech); a story-keeper, a hedge-school master,
+    a schoolteacher or a tutor by their people's age. Asks: a lesson at the camp for up to three children (30 silver,
+    Intellectual, `DilemmaEffect_CampChildrenLesson`), a colonist sitting in; their request a supper. Weight 0.5.
+  - Wounded fighters (`Rimfolk_Camp_Wounded`, any land): two or three come hurt the first time they come
+    (`CampKindDef.wounded`: a cut bandaged on the road and a fresh bruise on another limb, the game's own injuries,
+    never the one who speaks for them or a child). Asks: the colony's doctor (`DilemmaEffect_CampTendWounded`), a hot
+    supper; their request medicine. Weight 0.15, x5 while a war runs (any kind war).
+  - Every camp kind has words in its people's ages, bubbles of one sentence, farewells told as they set off, talk pieces
+    with its tag (`them:camp:Stonecutters`, `Shearers`, `Catchers`, `Teacher`, `Wounded` in `FactsMath.RegionTags`; 11
+    pieces in `Rimfolk_OutsiderTalks_CampFolk3.xml`), the stay's shape as any camp (the ask at a day and a half, trouble
+    midway on stays of three days, the parting at dusk), and leaves no gift that marks the calendar. Also: world events'
+    lines can ask for `theirEmpire`/`enemyEmpire` (the Empire keeps its titles and honor in the war, the great work and
+    the ban); visitor messages `CC_Visit_Come_caravan`, `_trek`.
+  - Rates, from `Tools/Balance` (120 runs a setup, before and after, reports kept outside the repo): world events a year
+    1.0, 1.1, 1.0 (6 colonists well run, average, neglectful) and 1.1, 1.1, 1.0 after; 1.1, 1.0, 1.1 with 12 either way;
+    questions a day 0.50 and 0.50 (6, average); letters 0.41 and 0.39 a day. World events come on their own clock (one
+    every 30 to 60 days, the model's pool of 64 defs without other mods', now 70, picked by weight) and none of the six
+    brings another world event, a camp or a fight. Camps come by their own clock too (the daily try, about one in 35
+    days), unchanged: only the kind is picked among those that fit, and no new world event raises the camp event's
+    weight.
+  - Files: `Defs/WorldSituationDefs/Rimfolk_WS_Variety3.xml`, `Rimfolk_WS_Variety3_Roads.xml`,
+    `Defs/CampDefs/Rimfolk_CampKinds_Variety3.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_CampFolk3.xml`,
+    `Languages/English/Keyed/Rimfolk_CampsLand3.xml`, `Camps/CampKindsLand3.cs` (new), `CampKindsLand.cs` (the needs,
+    sites, work, asks; `CampLand` now partial; the clear-near ask for `cut` too), `CampLandMath.cs`, `CampKindDef.cs`
+    (`wounded`), `CampLook.cs` (a caught beast's place and sale), `CampAsks.cs` (a caught beast paid at once),
+    `CampCarry.cs`, `World/SituationEffects.cs` (`WorldEffect_Fortune`), `World/Region/RegionFortunes.cs` (`Move`),
+    `World/WorldSituationWorker.cs`, `Text/Facts/FactsMath.cs`. Tests: `VarietyThreeTests` (187 checks: the camps'
+    arithmetic, both ways and an end by what happened in each world event, no added world event or camp, the land needs
+    and work in code, the talk by tag). The play-out audit 684 to 697 answers, 0 candidates; the save estimate models
+    `caught`. Docs: the Almanac's world events and camps pages (no keyword changed), README (lists, and the counts:
+    answers on the map 682 of 190, camp asks 80 and requests 29, fortunes moved by 40 world events), DESIGN (fortunes).
+  - Found and left: README's "88 beats of 41 world events" with visitors and "77 errands" are older than the code (114
+    of 56 and 138 by a count at the start of this work), not touched.
+  - Needs a look in the game: the shearers at the colony's pens (fence gates), a roped beast at the catchers' picket and
+    its sale, the stonecutters' blocks hauled to their stash and sold at the gate, the wounded's dressings and the
+    doctor's visit, the teacher's lesson with children, the war's column on the road and the two fighters by the wall,
+    the caravan's lead train on the far meadow.
 - 6 November 2026, the player's stage 3 decisions: 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B
   (recorded at the top of `docs/design/stage3-many-colonies.md` with how the four not as recommended are built).
   Release 1 (a fresh start) building first; harm parts 2 and 3 and schemes wait.
