@@ -624,6 +624,11 @@ def dream_rates(defs):
             w *= 1.5 * 0.08
         if d.find("situations") is not None:
             w *= 1.5 * 0.2
+        # Nothing of the dreamer's own in it (DreamDef.Generic): half as likely.
+        if all(d.find(t) is None for t in ("afterThoughts", "hediffs", "feelings", "situations", "seasons", "dreamer", "omen")) \
+                and ftext(d, "afterThreat") != "true" and ftext(d, "unconscious") != "true" and ftext(d, "camp") != "true" \
+                and about == "None":
+            w *= 0.5
         ws.append((d, w))
     tot = sum(x for _, x in ws) or 1
     return {d: COLONISTS * YEAR_DAYS * 0.3 * x / tot for d, x in ws}
