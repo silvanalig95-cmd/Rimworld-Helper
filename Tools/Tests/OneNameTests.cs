@@ -237,6 +237,24 @@ public static class OneNameTests
         foreach (var k in ColonyNameMath.ClauseKeys().Where(k => !k.Contains("_For")))
             C(keyed[k].Contains("{WORDS}"), $"{k} says what it is called");
 
+        // What it is known for beyond its walls holds while it is still enough: two kinds close together don't take turns.
+        var kinds = new float[RenownMath.KindCount];
+        kinds[(int)KnownFor.Healers] = 10f;
+        kinds[(int)KnownFor.Fighters] = 11f;
+        C(RenownMath.KnownForOf(kinds) == KnownFor.Fighters, "renown alone reads the larger kind");
+        C(ColonyNameMath.HeldKind((int)KnownFor.Healers, kinds, RenownMath.KnownAt, RenownMath.KnownShare, (int)KnownFor.Fighters) == (int)KnownFor.Healers,
+            "known for good doctors, it stays so while that is still enough, though the fighters' part is a little larger now");
+        kinds[(int)KnownFor.Healers] = 5f;
+        C(ColonyNameMath.HeldKind((int)KnownFor.Healers, kinds, RenownMath.KnownAt, RenownMath.KnownShare, (int)KnownFor.Fighters) == (int)KnownFor.Fighters,
+            "below renown's own bar it gives way");
+        kinds[(int)KnownFor.Healers] = 7f;
+        kinds[(int)KnownFor.Fighters] = 30f;
+        C(ColonyNameMath.HeldKind((int)KnownFor.Healers, kinds, RenownMath.KnownAt, RenownMath.KnownShare, (int)KnownFor.Fighters) == (int)KnownFor.Fighters,
+            "and under three tenths of all it is known for");
+        C(ColonyNameMath.HeldKind(0, kinds, RenownMath.KnownAt, RenownMath.KnownShare, (int)KnownFor.Fighters) == (int)KnownFor.Fighters, "nothing held: renown's own");
+        C(ColonyNameMath.KnownForOf(ColonyNameMath.Key(before, "Healers")) == "Healers" && ColonyNameMath.KnownForOf(ColonyNameMath.Key(before, null)) == null
+          && ColonyNameMath.KnownForOf(null) == null, "the kind kept, from the key");
+
         C(ColonyNameMath.CardKey(true, true, true) == "CC_Name_Card_CalledFor" && ColonyNameMath.CardKey(true, false, true) == "CC_Name_Card_Called"
           && ColonyNameMath.CardKey(false, true, true) == "CC_Name_Card_For" && ColonyNameMath.CardKey(false, false, true) == "CC_Name_Card_Bare"
           && ColonyNameMath.CardKey(true, true, false) == "CC_Name_Card_CalledHome" && ColonyNameMath.CardKey(false, false, false) == "CC_Name_Card_BareHome",

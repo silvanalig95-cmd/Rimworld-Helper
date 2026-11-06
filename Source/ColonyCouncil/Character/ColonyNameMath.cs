@@ -161,6 +161,29 @@ namespace ColonyCouncil
         public const string NoKnownFor = "None";
 
         /// <summary>
+        /// What the colony is known for beyond its walls, held: the kind it was last known for while that kind is still
+        /// enough by renown's own rule (<paramref name="knownAt"/> points and <paramref name="share"/> of all), so two kinds
+        /// close together don't take turns in the chronicle; else what renown reads now (<paramref name="fresh"/>). Kinds by
+        /// their number (0 none).
+        /// </summary>
+        public static int HeldKind(int told, float[] byKind, float knownAt, float share, int fresh)
+        {
+            if (byKind == null || told <= 0 || told >= byKind.Length) return fresh;
+            float all = 0f;
+            for (int i = 1; i < byKind.Length; i++)
+                if (byKind[i] > 0f)
+                    all += byKind[i];
+            return byKind[told] >= knownAt && byKind[told] >= share * all ? told : fresh;
+        }
+
+        /// <summary>The kind a key keeps for beyond its walls (a KnownFor's name), or null for none read.</summary>
+        public static string KnownForOf(string key)
+        {
+            Parts(key, out _, out var f);
+            return f == Unread ? null : f;
+        }
+
+        /// <summary>
         /// The clauses of the one chronicle sentence, in order, each a key and what it is about: "Started" (the words
         /// started), "Wider", "Stopped", "For", "ForGone"; every clause after the first speaks of the colony as "it" (its key
         /// with "_It"). The sentence is the clauses joined ("CC_Name_Changed_Line").

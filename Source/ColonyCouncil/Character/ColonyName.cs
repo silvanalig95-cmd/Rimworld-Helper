@@ -91,7 +91,19 @@ namespace ColonyCouncil
         {
             var r = Renowned(out var told, out bool read);
             if (!read || r == null) return null;
-            return told >= RenownBand.Town ? r.known.ToString() : ColonyNameMath.NoKnownFor;
+            return told >= RenownBand.Town ? Held(r).ToString() : ColonyNameMath.NoKnownFor;
+        }
+
+        /// <summary>
+        /// What it is known for beyond its walls, held while it is still enough (ColonyNameMath.HeldKind), so the card and the
+        /// chronicle don't swap two kinds close together; renown's own reading where nothing is held.
+        /// </summary>
+        private static KnownFor Held(RenownMath.Reading r)
+        {
+            if (r == null) return KnownFor.None;
+            string kept = ColonyNameMath.KnownForOf(CouncilGameComponent.Instance?.character?.nameKey);
+            int told = kept != null && Enum.TryParse(kept, out KnownFor k) ? (int)k : 0;
+            return (KnownFor)ColonyNameMath.HeldKind(told, r.byKind, RenownMath.KnownAt, RenownMath.KnownShare, (int)r.known);
         }
 
         /// <summary>The colony's name as a key (ColonyNameMath.Key).</summary>
@@ -109,7 +121,7 @@ namespace ColonyCouncil
             {
                 string called = CalledWords();
                 var r = Renowned(out _, out _);
-                string knownFor = r != null && r.band >= RenownBand.Town ? RenownWords.For(r.known, Ages.Ours) : null;
+                string knownFor = r != null && r.band >= RenownBand.Town ? RenownWords.For(Held(r), Ages.Ours) : null;
                 string key = ColonyNameMath.CardKey(called != null, knownFor != null, r != null);
                 string renown = r != null ? RenownWords.Band(r.band, Ages.Ours) : "";
                 return key.Translate((called ?? "").Named("CALLED"), (knownFor ?? "").Named("KNOWNFOR"), renown.Named("RENOWN")).Resolve().CapitalizeFirst();

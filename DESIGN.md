@@ -2260,6 +2260,76 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
 The history asks nothing heavy of the game: no pawn searches, a few index lookups an entry, and its fold has a pass of
 its own (`Pass.DailyHistory`, timed by Rimfolk's clock).
 
+### One name
+
+Phase 4 of the review, part 1 (the player's decision 6 of 6 November 2026: one slow "known as" per colonist and one
+"known for" card per colony; reputation's six sides stay as details). The save at day 128 showed a colonist carrying up
+to four names that churned ("the Healer" went Harper, Alo, Harper, Alo in 70 days; Harper held six names in 80 days;
+Hector was "Hector, the Builder, Beastfriend, Tinker" on his card, with renown's "Known as the one who ..." as a second
+line), and the colony told by four systems in four places (our ways and the colony's traits on Council → Ways, renown
+under People, what each people remembers in the region window), with their labels and lines in the chronicle each.
+
+- **A name holds** (`Epithets/NameMath.cs`, pure, `OneNameTests`; `EpithetTracker.Names`). A name still goes to whoever
+  has the most of its record past its threshold, but once given it is held (`NameHold`: since when, who is clearly ahead
+  and since when with both counts then, who had it before): nobody can take it for `HoldDays` (30, two seasons); after
+  that the best other must be clearly ahead on the count (`ClearLead`, a quarter, or the name's own margin if larger) every
+  day of a whole season (`ChallengeDays`, 15; a day not ahead ends the challenge, a new best begins their own), and over
+  that season do half again as much of the work as the holder (`OutdoShare`), or, twice the holder's count
+  (`FarAhead`), more of it (`Outdid`). A holder still at the work keeps it and the season starts again. The one who lost it
+  can't take it back for a year (`ReturnDays`, 60), so it never goes back and forth: on a model of the save's two doctors
+  taking turns at the sickbeds a season each, the old 15% passed the name three times in 80 days and the new rule not
+  once; a holder who stops loses it, once. A name lost by its condition (the Unshaken's break) goes at once, as before.
+  The one who lost the name they were known by writes it once in their journal (`Rimfolk_Journal_EpithetLost`). Saved
+  packed per name (`EpithetTracker.holds`, through the field `holdsSaved`, `NameMath.Pack`), one per name held.
+- **One "known as" per colonist** (`Epithets/KnownAs.cs`, the one place). Its short form is the colony's name for them,
+  one of those they hold (`EpithetTracker.Chief`, `NameMath.Chief`: a proud name before a dubious one, then the one held
+  longest, so a name earned later never pushes an older one aside; Hector the Builder, Harper the Vault, Alo the Healer).
+  Its line (`KnownAs.Line`, `NameMath.LineKey`) says it with what the peoples know them for, read from the history's deeds
+  and the peoples' memory (`Renown.Own`, unchanged) and how far it carries: "Known as the Healer, the one who won the
+  wrestling at the feast with the Lenlia, talked about in the next town."; "Known in the colony as the Healer." while
+  nobody outside speaks of them; a bad name abroad beside a good one at home in two halves; renown's own line for one with
+  no name at home. Under it, the details (`KnownAs.Details`): the colony's other names for them ("Also called Beastfriend
+  and Tinker.") and reputation's six sides as they show (`Reputations.SidesLine`, the character page's first line).
+  Readers: the card's title and its Who lines (`KnownAs` registers them; renown's own colonist line went), the Story tab's
+  header, the People table and its tooltip, the wishes' tooltip, the annals and the vendetta's eulogy tags
+  (`EpithetTracker.NameOf`), the death letter (`Chief`), renown's "the one the colony calls ..." in talk and letters
+  abroad (`Renown.Held` names the chief), People → Renown (each of the colony's people by their one name, with the
+  details; "Known by name"). The chronicle writes "X became known as Y." only when it is the name they are known by now
+  (`Award`); a second name is the news and their journal. What other systems count stays every name held
+  (`EpithetTracker.Of`: a ballot, renown's points, the heart, the events that ask for one known for a skill).
+- **One "known for" per colony** (`Character/ColonyName.cs`, pure `ColonyNameMath.cs`). The four keep their data where
+  everything else reads it (the ways' tiers and tags, the traits' tags and leanings, renown's band and factors, the
+  peoples' deeds and tones); the player reads one card: what people call the colony, its ways and what its work made it
+  in one list (`ColonyNameMath.Order`: a way known far and wide first, then the ways, then the traits), and what it is known
+  for beyond its walls and how far its name carries, in one sentence (`ColonyName.Main`, `ColonyNameMath.CardKey`:
+  "People call the colony traditional, generous and walled; beyond its walls it is known for good doctors, its name talked
+  about in the next town."); then what it comes from (renown's deeds, `RenownPanels.From`; the council's latest three
+  choices behind the ways it is called, from the ways' recent shifts) and what is held against it; what each people
+  remembers, a line each (four at most, the strongest first: how they stand, what they remember best); the notables who
+  know its people and what its name does (`RenownPanels.Reach`). Where: the top of Council → Ways ("The colony's name",
+  the ways, the traits, who's proud and who chafes, what shaped it below), a home's card where the colony is shown to
+  others (`CardSections.HomeLines`, in place of renown's), the Overview's line, the Culture tab, the founding letter's and
+  the press article's "what travellers call the colony" (`ColonyName.CalledWords`). What it is known for beyond its walls
+  holds while it is still enough by renown's own rule (`ColonyNameMath.HeldKind`), so two kinds close together don't take
+  turns.
+- **One sentence when it changes** (`ColonyName.Look`, `ColonyNameMath.Key`, `Diff`, `Clauses`). The name is kept as a
+  key (`CharacterTracker.nameKey`: what it is called with each one's strength, what it is known for beyond its walls)
+  and looked at after the ways move and at the end of the council's day: whatever changed (a way or a trait gained or lost,
+  a way known far and wide, what it is known for beyond its walls) is one chronicle sentence ("People have started calling
+  the colony walled and they have stopped calling it restless."). A way that falls from far and wide to known is still what
+  it is called: nothing in the chronicle, and its news says the neighbours still call it that (`CC_Name_Ways_Narrower`;
+  "people have stopped calling the colony merciful" was untrue of it). The ways and the traits write no chronicle line of
+  their own; their letters and news stay. A move of renown's band stays renown's own sentence (its five wordings, with
+  what it is known for), and the name's key takes it without another word (`ColonyName.Settle`).
+- **An older save.** Names already held stay. A name with no hold is held from the day the history wrote it given to them
+  (the newest "X became known as Y." line of theirs, `NameMath.SameLine`), else from its first look, so the hold may be
+  over and the new rule applies from that look, but nothing moves at once (a challenge needs a season) and nothing is told.
+  The colony's name has no key: its first look keeps it as it stands without a word; a part not read (the ways off,
+  renown not yet looked at) is never a change. On the player's save: Hector the Builder (also Beastfriend and Tinker), Harper
+  the Vault (also the Old Hand and the Bottomless), Alo the Healer (also Goodhands), Penguin the Cook (also the Unshaken),
+  Stace the Mender (also the Scholar), Barr the Sower, Macy Greenhand; the colony "traditional, generous, learned, devout,
+  artful and walled".
+
 ### Facts
 
 One way to know what is true for a text, and one way to fill it in, so a line is written once and reacts to the same
@@ -3419,12 +3489,14 @@ has a name of their own for their deeds. `Diplomacy/`, its rules pure and tested
   both); the champion challenges a colonist known by name as a fighter six times in ten (`Renown.KnownFighter`,
   `HappeningWorker_Champion`); a feast's guests answer a colony known for hosting up to three tenths more readily
   (`Feasts.Answer`).
-- **Where it shows** (`RenownPanels.cs`, `UI/RenownPage.cs`): People → Renown, where People → Houses was (`PagesMath.Moved`
-  sends the old address there; its "?" opens the diplomacy page): the colony's renown (how far and for what, by
-  `RenownWords.Standing`; the deeds it came from and those held against it; who knows its people; what it does), then its
-  people known by name, each a link to their card with their own name, and those not yet known; the same lines on a home's
-  card; a colonist's own name on their card ("Known as the one who ..., talked about in the next town."). No acts and
-  nothing in This week (it is earned). Facts (`FactsRenown.cs`, in the ties' provider, when one of the colony speaks or
+- **Where it shows**, since one name (phase 4 of the review, part 1; "One name" under the technical overview): inside the
+  colony's one name and each colonist's. The colony's card (`Character/ColonyName.cs`, on Council → Ways and a home's
+  card) says how far its name carries and for what in its first line, with renown's lines below
+  (`RenownPanels.From`, `Against`, `Reach`: the deeds it came from and those held against it, who knows its people, what
+  it does). A colonist's own name is part of their one "known as" (`Epithets/KnownAs.cs`): "Known as the Healer, the one
+  who won the wrestling at the feast with the Lenlia, talked about in the next town." on their card, and People → Renown
+  (where People → Houses was, `PagesMath.Moved` sends the old address there; its "?" opens the diplomacy page) lists each
+  of the colony's people by it, the band in its header. No acts and nothing in This week (it is earned). Facts (`FactsRenown.cs`, in the ties' provider, when one of the colony speaks or
   writes): `colony:known`, `colony:renowned`, `colony:wide`, `colony:infamous`, `colony:knownfor:KIND`, `{KNOWNFOR}` (by
   the colony's age), `{RENOWN}` (by the listener's ways; the Empire's people by the court's, whatever their tech level, its
   own row of the bands' words: "spoken of with honor in the region's noble houses"); the speaker known by their own name to
@@ -4598,8 +4670,8 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | The region | one part per colony (when a new town last wrote to it and last welcomed it), a lost home's kept 30 days; the towns in detail and remoteness are worked out, not saved |
 | World history | 800 entries (every chronicle line, every answer with its six values, the peoples' deeds, the ledger's ties); everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
-| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
-| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
+| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day; the colony's one name as last looked at, one line |
+| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title, and how each name held holds (one line per name) (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
 | Heart | one per colonist, the gone dropped hourly |
 | Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
