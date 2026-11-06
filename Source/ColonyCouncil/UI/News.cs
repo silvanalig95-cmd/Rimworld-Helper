@@ -313,8 +313,9 @@ namespace ColonyCouncil
             waiting.Clear();
             // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
             var lines = NewsDays.Group(day);
-            // The teller's evening (UI/TellMath.cs): the lines that matter most; the lightest of a long day go to the History tab.
-            var keep = TellMath.EveningKeep(lines.Select(i => TellMath.EveningScore(i.weight, i.held, (int)i.kind)).ToList(), TellMath.EveningLines);
+            // The teller's evening (UI/TellMath.cs): less room the busier the day was, and the lines that matter most in it;
+            // the lightest go to the History tab.
+            var keep = TellMath.EveningKeep(lines.Select(i => TellMath.EveningScore(i.weight, i.held, (int)i.kind)).ToList(), Tell.EveningRoom);
             var letter = new List<NewsItem>();
             int quiet = 0;
             for (int i = 0; i < lines.Count; i++)

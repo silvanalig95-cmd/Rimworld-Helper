@@ -98,8 +98,11 @@ public static class TellTests
         for (int i = 0; i < 16; i++) scores.Add(TellMath.EveningScore(Notable, false, i % 2 == 0 ? People : Colony));
         scores[15] = TellMath.EveningScore(Important, false, Land);
         scores[14] = TellMath.EveningScore(Notable, true, People);
-        var keep = TellMath.EveningKeep(scores, TellMath.EveningLines);
-        C(keep.Count(k => k) == TellMath.EveningLines, "a long evening carries the most it may");
+        var keep = TellMath.EveningKeep(scores, 10);
+        C(keep.Count(k => k) == 10, "a long evening carries the most it may");
+        C(TellMath.EveningRoom(0) == TellMath.EveningLines && TellMath.EveningRoom(2) == TellMath.EveningLines - 2
+          && TellMath.EveningRoom(40) == TellMath.EveningLeast && TellMath.EveningRoom(-3) == TellMath.EveningLines,
+            "the evening has less room the busier the day was, never less than the least");
         C(keep[15] && keep[14], "the weightiest and what the day held back are carried");
         C(Enumerable.Range(0, 14).Where(i => i % 2 == 1).All(i => keep[i]), "the colony's news before one person's");
         C(!keep[12] && keep[0], "among equals the earlier first");
@@ -144,7 +147,7 @@ public static class TellTests
           && TellMath.DefaultLettersADay >= TellMath.MinLettersADay && TellMath.DefaultLettersADay <= TellMath.MaxLettersADay, "the defaults inside the sliders");
         C(TellMath.DefaultMessagesADay >= 8 && TellMath.DefaultLettersADay >= 3, "an ordinary day's telling fits the count (the save's busiest day: four letters that only tell)");
         C(TellMath.MergeHours >= 2 && TellMath.MergeHours <= 8, "the same thing is told once within a few hours");
-        C(TellMath.EveningLines >= 8, "the evening's letter carries an ordinary day (the save's: two to seven lines)");
+        C(TellMath.EveningLines >= 7 && TellMath.EveningLeast >= 3, "a quiet evening's letter carries an ordinary day (the save's: two to seven lines), a busy one the few that weigh most");
         string kindEnum = Regex.Match(news, @"enum NewsKind\s*\{([^}]*)\}").Groups[1].Value;
         var order = Regex.Matches(Regex.Replace(kindEnum, @"///[^\n]*", ""), @"\b([A-Z]\w*)\b").Select(m => m.Groups[1].Value).ToList();
         C(order.IndexOf("People") == TellMath.KindPeople && order.IndexOf("Health") == TellMath.KindHealth && order.IndexOf("Colony") == TellMath.KindColony
@@ -161,7 +164,7 @@ public static class TellTests
         C(tell.Contains("if (Book.Told(\"M|\" + colony + \"|\" + text, Now)) return;"), "the evening's news doesn't repeat a message just shown");
         C(tell.Contains("LastThreatBigTick") && tell.Contains("Book.Important(colony, threat, Now)"), "a raid on the home makes its day busy");
         string newsCode = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "News.cs"));
-        C(newsCode.Contains("TellMath.EveningKeep(") && newsCode.Contains("TellMath.EveningLines") && newsCode.Contains("News.Archive(lines[i])"),
+        C(newsCode.Contains("TellMath.EveningKeep(") && newsCode.Contains("Tell.EveningRoom") && tell.Contains("TellMath.EveningRoom(Book.ShownToday(Now))") && newsCode.Contains("News.Archive(lines[i])"),
             "the evening's letter carries the weightiest lines and puts the rest in the History tab");
         C(newsCode.Contains("Scribe_Values.Look(ref weight, \"weight\", TellWeight.Notable);"), "a line waiting for the evening keeps its weight through a save (an older save's are worth knowing)");
 

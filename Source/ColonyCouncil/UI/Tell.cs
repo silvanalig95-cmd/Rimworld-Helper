@@ -232,6 +232,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("tell: a question", e);
             }
+            // Never capped, but part of how busy the day was (the evening's room).
+            Book.Asked(Now);
             Find.LetterStack.ReceiveLetter(letter);
         }
 
@@ -246,6 +248,9 @@ namespace ColonyCouncil
             waiting.Add(item);
             return true;
         }
+
+        /// <summary>The evening's letter's room tonight: fewer lines the more letters and messages the day already showed (TellMath.EveningRoom).</summary>
+        public static int EveningRoom => TellMath.EveningRoom(Book.ShownToday(Now));
 
         /// <summary>The evening's lines that didn't fit its letter, gone to the History tab: counted in the day's tally.</summary>
         internal static void NoteHistory(int n)

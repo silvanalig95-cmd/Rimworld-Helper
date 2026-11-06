@@ -195,109 +195,137 @@ namespace Balance
         /// a scene of its own); the hustings join the count; a calendar day's feast, games or fire within
         /// <see cref="StageMath.TogetherDays"/> days after another kept that way is kept together with it, and a day that
         /// gathers people (those, an evening of faith, a quiet hour at a grave) within <see cref="StageMath.SupperDays"/> days of another
-        /// gathering is kept at supper; one seasonal custom a season; and the floor's evening once nine days pass without a
+        /// gathering is kept at supper; one seasonal custom a season; and the floor's evening once eight days pass without a
         /// gathering with nothing of the colony's own waiting.
         /// </summary>
-        private static void AsBuilt(List<Scene>[] all, int runs, int week)
+        /// <summary>One colony-year's scenes under the pace as built: when each kept scene was held, and what came of the rest.</summary>
+        public sealed class Kept
+        {
+            /// <summary>The hours the kept gatherings and outings were held (the floor's evenings among them).</summary>
+            public readonly List<int> held = new List<int>();
+            /// <summary>The hours a calendar day was kept at supper instead (a word said, a line in the evening's news).</summary>
+            public readonly List<int> supper = new List<int>();
+            public int total, kept, folded, floors;
+        }
+
+        /// <summary>The pace as built, on one colony-year's scenes (gatherings and outings), each source's tally into <paramref name="bySource"/>.</summary>
+        public static Kept KeepRun(List<Scene> run, int week, Dictionary<string, (int all, int kept)> bySource = null)
         {
             const int days = Colony.YearDays;
             const int T = StageMath.TicksPerHour;
+            var r = new Kept();
+            var list = run.Where(s => s.tier != "small").OrderBy(s => s.hour).ToList();
+            var ticks = new List<int>();
+            var waiting = new List<(Scene s, int until)>();
+            int lastFeastDay = -9999, customSeason = -1;
+            int Since(int h) => StageMath.Since(ticks, h * T);
+            void Note(Scene s, bool ok)
+            {
+                if (bySource != null)
+                {
+                    var v = bySource.GetValueOrDefault(s.source);
+                    bySource[s.source] = (v.all + 1, v.kept + (ok ? 1 : 0));
+                }
+                r.total++;
+                if (ok) r.kept++;
+                else r.folded++;
+            }
+            void Hold(Scene s, int h)
+            {
+                r.held.Add(h);
+                ticks.Add(h * T);
+                if (s != null) Note(s, true);
+            }
+            int idx = 0;
+            for (int h = 0; h < days * 24; h++)
+            {
+                int hourOfDay = h % 24;
+                for (int w = 0; w < waiting.Count; w++)
+                {
+                    var (s, until) = waiting[w];
+                    if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h)))
+                    {
+                        Hold(s, h);
+                        waiting.RemoveAt(w--);
+                    }
+                    else if (h >= until)
+                    {
+                        Note(s, false);
+                        waiting.RemoveAt(w--);
+                    }
+                }
+                // The floor: long without a gathering and nothing of the colony's own waiting, an evening together.
+                if (hourOfDay == 18 && waiting.Count == 0 && StageMath.FloorEvening(Since(h)))
+                {
+                    r.floors++;
+                    Hold(null, h);
+                }
+                while (idx < list.Count && list[idx].hour == h)
+                {
+                    var s = list[idx++];
+                    if (s.source == "life goals' toasts")
+                    {
+                        // Raised at the next gathering, or at supper: never a scene of its own.
+                        Note(s, false);
+                        continue;
+                    }
+                    if (s.source == "elections" && list.Skip(idx).Any(o => o.source == "elections" && o.hour - h <= 30))
+                    {
+                        // The hustings: the candidates speak at the count instead.
+                        Note(s, false);
+                        continue;
+                    }
+                    if (s.source == "calendar days" && s.way == "feast" && StageMath.KeptTogether(h / 24 - lastFeastDay))
+                    {
+                        // Kept together with the day just kept (its letter named them both).
+                        Note(s, false);
+                        continue;
+                    }
+                    if (s.source == "calendar days" && s.way != null && StageMath.AtSupper(Since(h)))
+                    {
+                        r.supper.Add(h + Math.Max(0, 19 - hourOfDay));
+                        Note(s, false);
+                        continue;
+                    }
+                    if (s.source == "calendar days" && s.way == "feast") lastFeastDay = h / 24;
+                    if (s.custom)
+                    {
+                        int season = StageMath.SeasonKey(h / 24 / days, h / 24 % days);
+                        if (!StageMath.CustomMayCome(customSeason, season))
+                        {
+                            Note(s, false);
+                            continue;
+                        }
+                        customSeason = season;
+                    }
+                    if (s.routine)
+                    {
+                        if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h))) Hold(s, h);
+                        else waiting.Add((s, h + StageMath.WaitDays * 24));
+                        continue;
+                    }
+                    Hold(s, h);
+                }
+            }
+            r.held.Sort();
+            return r;
+        }
+
+        private static void AsBuilt(List<Scene>[] all, int runs, int week)
+        {
+            const int days = Colony.YearDays;
             var kept = new Dictionary<string, (int all, int kept)>();
             int total = 0, keptTotal = 0, folded = 0, twoDays = 0, floors = 0;
             var weekly = new List<int>();
             var gaps = new List<int>();
             foreach (var run in all)
             {
-                var list = run.Where(s => s.tier != "small").OrderBy(s => s.hour).ToList();
-                var held = new List<int>();
-                var ticks = new List<int>();
-                var waiting = new List<(Scene s, int until)>();
-                int lastFeastDay = -9999, customSeason = -1;
-                int Since(int h) => StageMath.Since(ticks, h * T);
-                void Note(Scene s, bool ok)
-                {
-                    var v = kept.GetValueOrDefault(s.source);
-                    kept[s.source] = (v.all + 1, v.kept + (ok ? 1 : 0));
-                    total++;
-                    if (ok) keptTotal++;
-                    else folded++;
-                }
-                void Hold(Scene s, int h)
-                {
-                    held.Add(h);
-                    ticks.Add(h * T);
-                    if (s != null) Note(s, true);
-                }
-                int idx = 0;
-                for (int h = 0; h < days * 24; h++)
-                {
-                    int hourOfDay = h % 24;
-                    for (int w = 0; w < waiting.Count; w++)
-                    {
-                        var (s, until) = waiting[w];
-                        if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h)))
-                        {
-                            Hold(s, h);
-                            waiting.RemoveAt(w--);
-                        }
-                        else if (h >= until)
-                        {
-                            Note(s, false);
-                            waiting.RemoveAt(w--);
-                        }
-                    }
-                    // The floor: nine days without a gathering and nothing of the colony's own waiting, an evening together.
-                    if (hourOfDay == 18 && waiting.Count == 0 && StageMath.FloorEvening(Since(h)))
-                    {
-                        floors++;
-                        Hold(null, h);
-                    }
-                    while (idx < list.Count && list[idx].hour == h)
-                    {
-                        var s = list[idx++];
-                        if (s.source == "life goals' toasts")
-                        {
-                            // Raised at the next gathering, or at supper: never a scene of its own.
-                            Note(s, false);
-                            continue;
-                        }
-                        if (s.source == "elections" && list.Skip(idx).Any(o => o.source == "elections" && o.hour - h <= 30))
-                        {
-                            // The hustings: the candidates speak at the count instead.
-                            Note(s, false);
-                            continue;
-                        }
-                        if (s.source == "calendar days" && s.way == "feast" && StageMath.KeptTogether(h / 24 - lastFeastDay))
-                        {
-                            // Kept together with the day just kept (its letter named them both).
-                            Note(s, false);
-                            continue;
-                        }
-                        if (s.source == "calendar days" && s.way != null && StageMath.AtSupper(Since(h)))
-                        {
-                            Note(s, false);
-                            continue;
-                        }
-                        if (s.source == "calendar days" && s.way == "feast") lastFeastDay = h / 24;
-                        if (s.custom)
-                        {
-                            int season = StageMath.SeasonKey(h / 24 / days, h / 24 % days);
-                            if (!StageMath.CustomMayCome(customSeason, season))
-                            {
-                                Note(s, false);
-                                continue;
-                            }
-                            customSeason = season;
-                        }
-                        if (s.routine)
-                        {
-                            if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h))) Hold(s, h);
-                            else waiting.Add((s, h + StageMath.WaitDays * 24));
-                            continue;
-                        }
-                        Hold(s, h);
-                    }
-                }
+                var r = KeepRun(run, week, kept);
+                total += r.total;
+                keptTotal += r.kept;
+                folded += r.folded;
+                floors += r.floors;
+                var held = r.held;
                 var perDay = new int[days];
                 foreach (int h in held)
                     if (h / 24 < days) perDay[h / 24]++;

@@ -29,8 +29,9 @@ namespace ColonyCouncil
     /// is: something hard to miss is always shown at once; something worth knowing is shown until the colony's count for
     /// the day is reached, and on a busy day (half the day's messages shown, or something hard to miss told in the last few
     /// hours) one person's news, health and the land's wait for the evening while the colony's and the world's still come;
-    /// colour is told only when the "How many messages" setting asks for everything. The evening's colony news carries the
-    /// lines that matter most (<see cref="EveningLines"/>) and puts the rest in the History tab. One count a day per colony for messages and
+    /// colour is told only when the "How many messages" setting asks for everything. The evening's colony news has less
+    /// room the busier the day was (<see cref="EveningRoom"/>): it carries the lines that matter most and puts the rest in
+    /// the History tab. One count a day per colony for messages and
     /// one for letters, whatever the kind (the old caps of each kind folded in); the same thing within a few hours is told
     /// once, by whichever channel came first.
     /// </summary>
@@ -50,8 +51,17 @@ namespace ColonyCouncil
 
         public const int BusyTicks = BusyHours * Sched.HourTicks;
 
-        /// <summary>The most lines the evening's colony news carries; past it, the lightest go to the History tab.</summary>
-        public const int EveningLines = 12;
+        /// <summary>The most lines the evening's colony news carries, on a quiet day; past it, the lightest go to the History tab.</summary>
+        public const int EveningLines = 8;
+
+        /// <summary>The fewest it carries, however busy the day.</summary>
+        public const int EveningLeast = 3;
+
+        /// <summary>
+        /// The evening's room, by how busy the day was: one line fewer for each letter or message the player was shown that
+        /// day, from <see cref="EveningLines"/> on a day with none down to <see cref="EveningLeast"/>.
+        /// </summary>
+        public static int EveningRoom(int shownToday) => Math.Max(EveningLeast, Math.Min(EveningLines, EveningLines - Math.Max(0, shownToday)));
 
         /// <summary>The same text (or the same key) within this many in-game hours is told once.</summary>
         public const int MergeHours = 4;
@@ -194,6 +204,7 @@ namespace ColonyCouncil
             today.Clear();
             lastImportant.Clear();
             tally.Clear();
+            asked = 0;
             day = int.MinValue;
             prunedAt = int.MinValue;
         }
@@ -204,6 +215,24 @@ namespace ColonyCouncil
             Roll(now);
             return today.TryGetValue((colony, letter), out int n) ? n : 0;
         }
+
+        /// <summary>Every letter, message and question shown today, every colony together (the evening's letter is one for all of them).</summary>
+        public int ShownToday(int now)
+        {
+            Roll(now);
+            int n = asked;
+            foreach (var v in today.Values) n += v;
+            return n;
+        }
+
+        /// <summary>One of Rimfolk's questions came today (never capped, but part of how busy the day was).</summary>
+        public void Asked(int now)
+        {
+            Roll(now);
+            asked++;
+        }
+
+        private int asked;
 
         /// <summary>
         /// The colony's day is busy: something hard to miss told within <see cref="TellMath.BusyHours"/>, or
@@ -305,6 +334,7 @@ namespace ColonyCouncil
             day = d;
             today.Clear();
             tally.Clear();
+            asked = 0;
         }
 
         /// <summary>What's older than the merge window is forgotten, an hour at a time.</summary>

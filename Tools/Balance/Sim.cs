@@ -116,6 +116,8 @@ namespace Balance
         /// below that stages a scene draws a number or changes anything.
         /// </summary>
         public List<Scene> scenes;
+        /// <summary>--tell (Telling.cs): the hours of the measured year's big threats, for the teller's busy day. Filled only with <see cref="scenes"/>.</summary>
+        public readonly List<int> threats = new List<int>();
         /// <summary>What each source adds to one colonist's mood, summed over every sample (divide by <see cref="partSamples"/>).</summary>
         public readonly Dictionary<string, double> partSum = new Dictionary<string, double>();
         public int partSamples;
@@ -1029,6 +1031,7 @@ namespace Balance
             if (hour >= nextThreat)
             {
                 lastThreat = hour;
+                if (scenes != null && Measuring) threats.Add(hour - WarmupDays * 24);
                 nextThreat = hour + (int)(Exp(Rates.BigThreatDays) * 24) + 24;
             }
             if (dilemmaPending > hour) return;
