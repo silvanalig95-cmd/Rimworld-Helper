@@ -670,7 +670,7 @@ namespace ColonyCouncil
             Remember(p, true);
             Stage.PlayOver(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
-            PlayAfter.Run(p, true);
+            PlayAfter.Run(p, true, took);
             // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
             SharedTimes.PlayDone(p, took);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups

@@ -19,8 +19,11 @@ namespace ColonyCouncil
         /// <summary>Towns within this many tiles are named.</summary>
         public const float NearTowns = 12f;
 
-        /// <summary>"Found a new colony" from a colony's card: the world map, a place picked, then the founding window.</summary>
-        public static void Pick(Map from)
+        /// <summary>
+        /// "Found a new colony" from a colony's card: the world map, a place picked, then the founding window.
+        /// <paramref name="handOver"/>: from the hand-over window, the old colony handed over in the same act (HandOver).
+        /// </summary>
+        public static void Pick(Map from, bool handOver = false)
         {
             string why = Foundings.WhyNot(from);
             if (why != null)
@@ -39,7 +42,7 @@ namespace ColonyCouncil
                         Messages.Message(no ?? "CC_Found_No_Taken".Translate().ToString(), MessageTypeDefOf.RejectInput, false);
                         return false;
                     }
-                    Find.WindowStack.Add(new Dialog_Founding(from, t.Tile));
+                    Find.WindowStack.Add(new Dialog_Founding(from, t.Tile, handOver));
                     return true;
                 }, true, SettleUtility.SettleCommandTex, false, null, t => t.Tile.Valid ? string.Join("\n", Facts(t.Tile, from, true)) : "",
                 null, from.Tile, true);
@@ -130,6 +133,8 @@ namespace ColonyCouncil
     /// their wish they feel uprooted, close bonds split feel parted); newcomers or not, their price named before the
     /// choice (decision 4A); the old colony kept (and the seat moved, decision 1A) or abandoned; the means the colony has;
     /// and the game's colony limit raised by one when needed, said plainly (decision 5B). "Found the colony" sets it going.
+    /// The old colony's third choice is to hand it over in the same act (HandOver, Colonies/HandOvers.cs): the hand-over
+    /// window follows, the newcomers come free, and the party sets out once the hand-over's ceremony is over.
     /// </summary>
     public class Dialog_Founding : Window
     {
@@ -138,6 +143,8 @@ namespace ColonyCouncil
         private readonly HashSet<Pawn> going = new HashSet<Pawn>();
         private bool newcomers;
         private bool keepOld = true;
+        /// <summary>The old colony handed over in the same act (HandOver) instead of kept or abandoned.</summary>
+        private bool handOver;
         private bool makeSeat;
         private FoundingMeans means = FoundingMeans.Caravan;
         private List<FounderRow> rows = new List<FounderRow>();
@@ -149,10 +156,15 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1000f, UI.screenWidth - 40f), Mathf.Min(780f, UI.screenHeight - 40f));
 
-        public Dialog_Founding(Map from, PlanetTile tile)
+        public Dialog_Founding(Map from, PlanetTile tile, bool handOver = false)
         {
             this.from = from;
             this.tile = tile;
+            if (handOver && HandOvers.On)
+            {
+                this.handOver = true;
+                keepOld = false;
+            }
             forcePause = true;
             doCloseX = true;
             closeOnClickedOutside = false;
@@ -204,6 +216,12 @@ namespace ColonyCouncil
             var m = FoundingMath.MeansOf(grownGoing + childrenGoing, means);
             string key = FoundingMath.PartyCheck(grownGoing, childrenGoing, grownStaying, keepOld, newcomers, NewcomersMayCome, m);
             if (key != null) return ("CC_Found_No_" + key).Translate();
+            // Handed over in the same act: the hand-over's own checks (three grown-ups stay, no fight, no banishment).
+            if (handOver)
+            {
+                string no2 = HandOvers.WhyNot(from, rows, going, newcomers && NewcomersMayCome);
+                if (no2 != null) return no2;
+            }
             if (m == FoundingMeans.Caravan)
             {
                 if (!JourneyBook.On) return "CC_JourneysPg_Off".Translate();
@@ -315,7 +333,8 @@ namespace ColonyCouncil
                 if (was != newcomers) dirty = true;
                 y += 26f;
                 string price;
-                if (!keepOld) price = "CC_Found_NewcomersFree".Translate().Resolve();
+                if (handOver) price = "CC_HandOver_NewcomersFree".Translate().Resolve();
+                else if (!keepOld) price = "CC_Found_NewcomersFree".Translate().Resolve();
                 else if (!NewcomersMayCome)
                 {
                     int next = FoundingMath.NewcomersNext(Find.TickManager.TicksGame, Homes.Instance?.newcomersPaidAt ?? -1);
@@ -330,6 +349,7 @@ namespace ColonyCouncil
             if (Widgets.RadioButtonLabeled(new Rect(4f, y, w - 8f, 24f), "CC_Found_Keep".Translate(), keepOld))
             {
                 keepOld = true;
+                handOver = false;
                 dirty = true;
             }
             y += 26f;
@@ -341,27 +361,44 @@ namespace ColonyCouncil
                 y += 26f;
                 y += UiKit.Paragraph(24f, y, w - 28f, "CC_Found_KeepLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
             }
-            if (Widgets.RadioButtonLabeled(new Rect(4f, y, w - 8f, 24f), "CC_Found_Abandon".Translate(), !keepOld))
+            if (Widgets.RadioButtonLabeled(new Rect(4f, y, w - 8f, 24f), "CC_Found_Abandon".Translate(), !keepOld && !handOver))
             {
                 keepOld = false;
+                handOver = false;
                 makeSeat = false;
                 dirty = true;
             }
             y += 26f;
-            if (!keepOld)
+            if (!keepOld && !handOver)
             {
                 var left = rows.Where(r => !going.Contains(r.pawn)).Select(r => r.pawn).ToList();
                 string line = left.Count == 0 ? "CC_Found_AbandonLine".Translate().Resolve()
                     : "CC_Found_AbandonLeft".Translate(Foundings.Names(left).Named("NAMES")).Resolve();
                 y += UiKit.Paragraph(24f, y, w - 28f, line, left.Count == 0 ? UiKit.Faint : UiKit.Warn, GameFont.Tiny) + 4f;
             }
-            // Release 2: "Hand it over" comes here, beside keeping and abandoning (HandOver).
+            // Handed over in the same act (HandOver): a town of its own people once those who go have left (Colonies/HandOvers.cs).
+            if (HandOvers.On)
+            {
+                var box = new Rect(4f, y, w - 8f, 24f);
+                string no = HandOvers.WhyNot(from);
+                if (Widgets.RadioButtonLabeled(box, "CC_HandOver_FoundChoice".Translate(), handOver, no != null) && no == null)
+                {
+                    handOver = true;
+                    keepOld = false;
+                    makeSeat = false;
+                    dirty = true;
+                }
+                if (no != null) TooltipHandler.TipRegion(box, no);
+                y += 26f;
+                if (handOver) y += UiKit.Paragraph(24f, y, w - 28f, "CC_HandOver_FoundChoiceLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
+            }
             y += 8f;
             // The game's colony limit (decision 5B), said plainly when the new colony raises it.
             int pref = Prefs.MaxNumberOfPlayerSettlements;
             int to = FoundingMath.LimitFor(pref, Foundings.Counted());
             if (to > pref)
-                y += UiKit.Paragraph(4f, y, w - 8f, "CC_Found_LimitLine".Translate(pref.Named("COUNT"), to.Named("TO")).Resolve() + (keepOld ? "" : " " + "CC_Found_LimitBack".Translate().Resolve()),
+                y += UiKit.Paragraph(4f, y, w - 8f, "CC_Found_LimitLine".Translate(pref.Named("COUNT"), to.Named("TO")).Resolve()
+                                                    + (keepOld ? "" : " " + (handOver ? "CC_HandOver_LimitBack" : "CC_Found_LimitBack").Translate().Resolve()),
                     UiKit.Warn, GameFont.Tiny) + 4f;
             if (keepOld) y += UiKit.Paragraph(4f, y, w - 8f, "CC_Found_MapTime".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
             rightH = y + 10f;
@@ -377,7 +414,7 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(confirm, why);
                 UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width - 420f, rect.height), why, UiKit.Warn, GameFont.Tiny);
             }
-            if (Widgets.ButtonText(confirm, "CC_Found_Confirm".Translate(), true, true, why == null) && why == null)
+            if (Widgets.ButtonText(confirm, (handOver ? "CC_HandOver_FoundConfirm" : "CC_Found_Confirm").Translate(), true, true, why == null) && why == null)
             {
                 Found();
                 return;
@@ -396,6 +433,12 @@ namespace ColonyCouncil
                 keptAgainst = rows.Where(r => r.grown && !going.Contains(r.pawn) && FoundingMath.AgainstWish(r.wish, false)).Select(r => r.pawn).ToList()
             };
             Close();
+            // Handed over in the same act: the hand-over window follows, and the founding sets out after its ceremony.
+            if (handOver)
+            {
+                HandOvers.Open(from, plan);
+                return;
+            }
             Foundings.Begin(plan);
         }
     }

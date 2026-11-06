@@ -430,6 +430,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref looked, "looked");
             // A fresh start under way, the seat's last move and the newcomers' last passage (Colonies/HomesFounding.cs).
             ExposeFounding();
+            // A hand-over under way (Colonies/HomesHandOver.cs).
+            ExposeHandOver();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<HomeTie>();

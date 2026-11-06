@@ -236,6 +236,8 @@ namespace ColonyCouncil
         /// <summary>Many colonies (Colonies/Foundings.cs): a fresh start in the same world offered from a colony's card, and newcomers called to it.</summary>
         public bool freshStarts = true;
         public bool newcomers = true;
+        /// <summary>Many colonies (Colonies/HandOvers.cs): a colony handed over to a people of its own, from its card or its world button.</summary>
+        public bool handOvers = true;
         /// <summary>A journey shifts each traveller's night before, so they wake rested in time to set off.</summary>
         public bool journeyShiftSleep = true;
         /// <summary>Travellers change into clothes from the stores for the weather on the road.</summary>
@@ -652,6 +654,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref journeys, "journeys", true);
             Scribe_Values.Look(ref freshStarts, "freshStarts", true);
             Scribe_Values.Look(ref newcomers, "newcomers", true);
+            Scribe_Values.Look(ref handOvers, "handOvers", true);
             Scribe_Values.Look(ref journeyShiftSleep, "journeyShiftSleep", true);
             Scribe_Values.Look(ref journeyClothes, "journeyClothes", true);
             Scribe_Values.Look(ref journeyFreeHours, "journeyFreeHours", 4);

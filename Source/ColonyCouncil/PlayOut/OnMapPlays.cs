@@ -1035,14 +1035,23 @@ namespace ColonyCouncil
         /// <summary>A likeness broken up by the one who went to it, even if the visit never came about: the answer always had it gone (PlaySmash.cs).</summary>
         public const string Smash = "smash";
 
-        /// <summary>What follows it: <paramref name="happened"/> false when it never came about (an event's result then isn't made).</summary>
-        public static void Run(PlayOut p, bool happened)
+        /// <summary>
+        /// What follows it: <paramref name="happened"/> false when it never came about (an event's result then isn't
+        /// made); <paramref name="took"/>, those who took part, when it is known.
+        /// </summary>
+        public static void Run(PlayOut p, bool happened, List<Pawn> took = null)
         {
             if (p == null || p.afterward.NullOrEmpty()) return;
             string what = p.afterward;
             p.afterward = null;
             try
             {
+                // A hand-over's meeting or ceremony (Colonies/HandOvers.cs): the vote counted, or those who go set out.
+                if (what.StartsWith(HandOvers.AfterPrefix, StringComparison.Ordinal))
+                {
+                    HandOvers.PlayOver(p, what, happened, took);
+                    return;
+                }
                 if (what == DilemmaEffect_FindLost.Search)
                 {
                     DilemmaEffect_FindLost.Fallback(p);

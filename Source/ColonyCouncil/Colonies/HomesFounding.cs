@@ -24,6 +24,8 @@ namespace ColonyCouncil
         public FoundingStage stage;
         /// <summary>The old colony kept as a second home; else abandoned once the new one stands and those who go have left.</summary>
         public bool keepOld = true;
+        /// <summary>The old colony handed over in the same act (HandOver; Colonies/HandOvers.cs makes the town), not abandoned.</summary>
+        public bool handOver;
         /// <summary>Make the new colony the seat once it stands (by the seat's own rule, at most once a season).</summary>
         public bool makeSeat;
         /// <summary>Newcomers come (made with the game's own window for new people when the colony stands, or at once with nobody going).</summary>
@@ -62,6 +64,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref means, "means");
             Scribe_Values.Look(ref stage, "stage");
             Scribe_Values.Look(ref keepOld, "keepOld", true);
+            Scribe_Values.Look(ref handOver, "handOver");
             Scribe_Values.Look(ref makeSeat, "makeSeat");
             Scribe_Values.Look(ref newcomers, "newcomers");
             Scribe_Values.Look(ref newcomersChosen, "newcomersChosen");

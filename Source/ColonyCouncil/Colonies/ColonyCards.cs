@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// and children), its speaker, mood and strain, wealth, its next day and a threat now; a founding under way shows
     /// where it is going; the colonies of the past (from the ledger's record of every colony) say when they were founded
     /// and how they ended. A colony's card has the acts: go there, make it the seat (decision 1A), found a new colony
-    /// (a fresh start), and, with one under way, call it off or plan its party's journey. Release 2 adds "Hand it over".
+    /// (a fresh start), hand it over (Colonies/HandOvers.cs), and, with one under way, call it off or plan its party's journey.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class ColonyCards
@@ -38,7 +38,12 @@ namespace ColonyCouncil
             CardActs.Register(CardKind.Place, _ => "CC_Found_ActNewcomers".Translate().Resolve(), null, r => Find.WindowStack.Add(new Dialog_Newcomers(Under(CardSections.HomeOf(r)))),
                 r => Under(CardSections.HomeOf(r)) is FoundingPlan f && f.means == FoundingMeans.Newcomers && f.newcomers && !f.newcomersChosen, 13.5f, "CC_Found_ActNewcomersTip".Translate(),
                 "colony-found-newcomers");
-            // Release 2: "Hand it over" (HandOver) comes here, beside these.
+            // Handing it over (HandOver, Colonies/HandOvers.cs): the window, and with one under way, calling it off.
+            CardActs.Register(CardKind.Place, _ => "CC_HandOver_Act".Translate().Resolve(), r => HandOvers.WhyNot(CardSections.HomeOf(r)), r => HandOvers.Open(CardSections.HomeOf(r)),
+                r => HandOvers.On && CardSections.HomeOf(r) != null && HandOvers.At(CardSections.HomeOf(r)) == null && HandOvers.Current == null, 12.2f, "CC_HandOver_ActTip".Translate(),
+                "colony-handover");
+            CardActs.Register(CardKind.Place, _ => "CC_HandOver_ActCallOff".Translate().Resolve(), null, r => AskCallOffHandOver(HandOvers.At(CardSections.HomeOf(r))),
+                r => HandOvers.At(CardSections.HomeOf(r)) != null, 14.2f, "CC_HandOver_ActCallOffTip".Translate(), "colony-handover-off");
         }
 
         private static List<string> Safe(string what, Func<List<string>> f)
@@ -69,6 +74,12 @@ namespace ColonyCouncil
 
         private static string JourneyWhyNot(Map home) =>
             !JourneyBook.On ? "CC_JourneysPg_Off".Translate().ToString() : JourneyBook.PlanAt(home) != null ? "CC_Found_JourneyPlanned".Translate().ToString() : null;
+
+        private static void AskCallOffHandOver(HandOverPlan h)
+        {
+            if (h == null) return;
+            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_HandOver_CallOffConfirm".Translate((h.homeName ?? "?").Named("HOME")).Resolve(), () => HandOvers.CallOff(h)));
+        }
 
         private static void AskCallOff(FoundingPlan f)
         {

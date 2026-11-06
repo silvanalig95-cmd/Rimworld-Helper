@@ -419,10 +419,11 @@ namespace ColonyCouncil
             Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");
             Toggle("journeyClothes", "CC_Settings_JourneyClothes", "CC_SetNote_JourneyClothes", "journeys");
             Slider("journeyFreeHours", "CC_Settings_JourneyFreeHours", "CC_SetNote_JourneyFreeHours", 2f, 8f, 1f, "0", "journeys");
-            // Many colonies (Colonies/): a fresh start in the same world, from a colony's card; the hand-over comes in release 2.
+            // Many colonies (Colonies/): a fresh start in the same world, from a colony's card, and a colony handed over.
             Section("CC_SetSec_Colonies");
             Toggle("freshStarts", "CC_Settings_FreshStarts", "CC_SetNote_FreshStarts");
             Toggle("newcomers", "CC_Settings_Newcomers", "CC_SetNote_Newcomers", "freshStarts");
+            Toggle("handOvers", "CC_Settings_HandOvers", "CC_SetNote_HandOvers");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");

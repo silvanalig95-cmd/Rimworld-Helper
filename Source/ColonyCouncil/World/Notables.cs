@@ -494,7 +494,12 @@ namespace ColonyCouncil
                                              || remembering.Contains(s.Faction) && nearest.TryGetValue(s.Faction, out int k) && k == i).ToList();
             // A new town in its first year is kept beside them, with its founder as its head (World/Region/RegionFaces.cs).
             var fresh = all.Select(s => RegionFaces.NewTown(s.ID) != null).ToList();
-            return NotableMath.InReach(tiles, dealt, fresh.Contains(true) ? fresh : null).Select(i => all[i]).ToList();
+            var near = NotableMath.InReach(tiles, dealt, fresh.Contains(true) ? fresh : null).Select(i => all[i]).ToList();
+            // A town the colony was stays among its neighbours wherever it lies, its own people its notables (Colonies/HandOvers.cs).
+            if (WorldLedger.Formers.Count > 0)
+                foreach (var s in all)
+                    if (!near.Contains(s) && HandOvers.IsFormerTown(s.ID)) near.Add(s);
+            return near;
         }
 
         private void Refresh(int now)
@@ -539,7 +544,7 @@ namespace ColonyCouncil
         {
             var town = TownOf(n.town);
             // A vassal's head stays while the vassal stands, wherever it lies (Diplomacy/Vassals.cs).
-            bool inReach = n.role == NotableRole.Acquaintance || towns.Contains(n.town) || Vassals.KeepsHead(n);
+            bool inReach = n.role == NotableRole.Acquaintance || towns.Contains(n.town) || Vassals.KeepsHead(n) || HandOvers.IsFormerTown(n.town);
             // The seat's head is their people's own leader: whoever the game has made leader now.
             if (n.role == NotableRole.Head && !n.made && town != null && n.faction != null && n.faction.leader != n.pawn)
             {
@@ -665,8 +670,9 @@ namespace ColonyCouncil
                 if (role == NotableRole.Heir && head == null) continue;
                 // A new town's envoy is born to its second founding family.
                 string family = role == NotableRole.Envoy ? RegionFaces.SecondFamily(s.ID) : null;
-                // A ward fostered at the colony and grown now may stand as their town's heir (Diplomacy/Wards.cs).
-                var grown = role == NotableRole.Heir ? Wards.HeirFor(s) : null;
+                // A ward fostered at the colony and grown now may stand as their town's heir (Diplomacy/Wards.cs); a town the
+                // colony was has its own head's second, chosen by office or standing (Colonies/HandOvers.cs).
+                var grown = (role == NotableRole.Heir ? Wards.HeirFor(s) : null) ?? HandOvers.NotableFor(s, role, this);
                 var p = grown ?? Make(f, role, head?.pawn, family);
                 made++;
                 if (p == null) continue;
@@ -1075,7 +1081,11 @@ namespace ColonyCouncil
                     return ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).CanTranslate()
                         ? ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).Translate().Resolve()
                         : ("CC_Notable_Title_Head_" + era).Translate().Resolve();
-                case NotableRole.Heir: return "CC_Notable_Title_Heir".Translate().Resolve();
+                case NotableRole.Heir:
+                    // A town the colony was calls its head's second by the colony's age at the hand-over (Colonies/HandOvers.cs).
+                    var former = WorldLedger.FormerOf(n.town);
+                    if (former != null && former.people == n.faction) return HandOvers.SecondTitle(former.age);
+                    return "CC_Notable_Title_Heir".Translate().Resolve();
                 case NotableRole.Envoy: return ("CC_Notable_Title_Envoy_" + era).Translate().Resolve();
                 case NotableRole.Trader: return ("CC_Notable_Title_Trader_" + era).Translate().Resolve();
                 default: return ("CC_Notable_Title_Met_" + (n.met ?? "visitor")).CanTranslate() ? ("CC_Notable_Title_Met_" + n.met).Translate().Resolve() : "CC_Notable_Title_Met_visitor".Translate().Resolve();

@@ -170,7 +170,7 @@ public static class FoundingTests
         C(found.Contains("Prefs.MaxNumberOfPlayerSettlements") && found.Contains("FoundingMath.LimitFor(") && found.Contains("FoundingMath.LimitBack("),
             "the game's limit raised by the rule and set back by it");
         C(found.Contains(".Abandon(false)") && found.Contains("CheckOrUpdateGameOver"), "the old colony abandoned the game's way");
-        C(found.Contains("HandOver") && found.Contains("Release 2"), "the seam for the hand-over (release 2)");
+        C(found.Contains("HandOver") && found.Contains("HandOvers.OfFounding(") && found.Contains("!plan.handOver"), "the hand-over in the same act (release 2a): never abandoned, done with its hand-over");
         string window = Code("Colonies/NewcomersWindow.cs");
         C(window.Contains("Current.Game.InitData = null") && window.Contains("ClearAllStartingPawns") && window.Contains("PostClose"),
             "the newcomers' window clears the game's start data however it closes");
