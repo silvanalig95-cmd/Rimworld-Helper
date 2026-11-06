@@ -470,11 +470,11 @@ namespace ColonyCouncil
                         price.Named("PRICE"), form.rite.Named("RITE"));
             var speaker = Negotiator(map);
             string text = open + "\n\n" + RansomWords.P(o.call ? "CC_Ransom_Offer_HowCall" : "CC_Ransom_Offer_How", captive.Named("CAPTIVE"),
-                (speaker?.LabelShort ?? RansomWords.P("CC_Ransom_TheSpeaker")).Named("SPEAKER"), RansomWords.People(f).Named("PEOPLE"));
+                (speaker?.LabelShort ?? OfficeNames.InAge(RansomWords.P("CC_Ransom_TheSpeaker"))).Named("SPEAKER"), RansomWords.People(f).Named("PEOPLE"));
             if (o.refusals > 0) text += "\n\n" + RansomWords.P("CC_Ransom_Offer_Again", o.refusals.Named("COUNT"), RansomMath.MaxRefusals.Named("MAX"));
             if (Diplomacy.Hostile(f))
                 text += "\n\n" + RansomWords.P("CC_Ransom_Trap_Named", RansomWords.People(f).Named("PEOPLE"), RansomWords.Odds(TrapChance(f, map)).Named("ODDS"),
-                    (speaker?.LabelShort ?? RansomWords.P("CC_Ransom_TheSpeaker")).Named("SPEAKER"));
+                    (speaker?.LabelShort ?? OfficeNames.InAge(RansomWords.P("CC_Ransom_TheSpeaker"))).Named("SPEAKER"));
             var letter = LetterMaker.MakeLetter(RansomWords.P("CC_Ransom_Offer_Label", captive.Named("CAPTIVE")), text, def,
                 messenger != null ? new LookTargets(messenger) : o.captive != null && o.captive.Spawned ? new LookTargets(o.captive) : LookTargets.Invalid, f);
             if (letter is ChoiceLetter_RansomOffer l)

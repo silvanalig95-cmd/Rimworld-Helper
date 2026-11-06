@@ -305,7 +305,10 @@ Decrees and election pages, the story tab, the People table, causes, deeds, the 
 description, the offices' own lines (`Interplay.Line`, `Interplay.Journal`), the life goals of a seat (their goal,
 deed and lines) and the seats' marks in the health tab (`Patch_OfficeHediffLabel`) say a seat's old name with the age's
 (`OfficeNames.InAge`, the pure `OfficeNamesMath.Rename`: whole words, the plural and a possessive too, the article put
-right, never part of a word or a placeholder). Lines elsewhere that mention a seat in passing (a dilemma's "the
+right, never part of a word or a placeholder); so do the keyed lines about the colony's own seats (the peacemaker's and
+the keeper's causes, the defense pane's marshal, the herdmaster naming a newborn, the advisor's empty seats, the colony's
+speaker at a ransom), renamed before anything is filled in (`OfficeNames.Key`), so a dog called Marshal keeps its name.
+Lines elsewhere that mention a seat in passing (a dilemma's "the
 quartermaster's friends", a camp's elders, other peoples' speakers) are left as written: renaming them would rename
 other peoples' elders too.
 

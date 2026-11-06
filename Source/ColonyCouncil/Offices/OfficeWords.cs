@@ -105,6 +105,12 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A keyed line about one of the colony's seats, its seat words said in the colony's age before anything is filled
+        /// in, so a name that happens to be a seat's (a dog called Marshal) is left alone.
+        /// </summary>
+        public static string Key(string key, params NamedArgument[] args) => InAge(key.Translate().RawText).Formatted(args).Resolve();
+
         /// <summary>At startup: the office words' planks join their offices, and the offices' own planks learn what they promise.</summary>
         public static void Apply()
         {

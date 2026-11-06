@@ -40,7 +40,7 @@ namespace ColonyCouncil
                 // together: the herdmaster is at the newborn's side (Together.When), and speaks to it.
                 if (!line.NullOrEmpty()) Speech.Say(hm, line, null);
                 if (named)
-                    News.Post("CC_Herd_Named".Translate(hm.Named("PAWN"), baby.Named("PET"), AnimalFacts.KindLabel(mother).Named("KIND")).Resolve(), new LookTargets(baby),
+                    News.Post(OfficeNames.Key("CC_Herd_Named", hm.Named("PAWN"), baby.Named("PET"), AnimalFacts.KindLabel(mother).Named("KIND")), new LookTargets(baby),
                         NewsKind.Land, MessageTypeDefOf.SilentInput, Importance.Flavor);
                 Journal(hm, "Council_Journal_Herd_Newborn", tags, baby.Named("PET"), mother.Named("OTHER"), AnimalFacts.KindLabel(mother).Named("KIND"));
             }, 24f, 2f);
@@ -105,7 +105,7 @@ namespace ColonyCouncil
                 .OrderBy(p => p.skills.GetSkill(SkillDefOf.Animals).Level).FirstOrDefault();
             if (student == null || !Ready("herdlesson", 6f)) return;
             var ctx = new DilemmaContext { map = hm.Map, a = student, b = hm, skill = SkillDefOf.Animals };
-            new DilemmaEffect_Lesson { skill = SkillDefOf.Animals, label = "CC_Herd_LessonLabel".Translate().Resolve() }.Apply(ctx);
+            new DilemmaEffect_Lesson { skill = SkillDefOf.Animals, label = OfficeNames.InAge("CC_Herd_LessonLabel".Translate().Resolve()) }.Apply(ctx);
         }
     }
 }

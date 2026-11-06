@@ -210,7 +210,7 @@ namespace ColonyCouncil
             }
             // The marshal of the colony whose home this is.
             if (ColonyCouncilMod.Settings.offices) m.marshal = OfficeTracker.For(s.map)?.HolderOf(Interplay.Marshal);
-            if (m.marshal != null) m.marshalLine = PaneLinks.Mark("CC_Def_Marshal".Translate(m.marshal.Named("PAWN")).Resolve(), m.marshal);
+            if (m.marshal != null) m.marshalLine = PaneLinks.Mark(OfficeNames.Key("CC_Def_Marshal", m.marshal.Named("PAWN")), m.marshal);
             return m;
         }
 

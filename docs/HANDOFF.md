@@ -34,7 +34,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   herdmaster, head stockman, husbandry chief; spirit-speaker, chaplain (three ages); guest-friend, warden of guests,
   gatekeeper, liaison officer; elder (three ages), senior councillor. Every code site that named a seat says
   `OfficeDef.Name` (22 files); duties, description, the offices' own lines (`Interplay.Line`, `Interplay.Journal`), a
-  seat's life goals and the elected line say a shipped seat word in the age's name (`OfficeNames.InAge`, pure
+  seat's life goals, the elected line and the keyed lines about the colony's own seats (`OfficeNames.Key`: renamed
+  before they're filled in) say a shipped seat word in the age's name (`OfficeNames.InAge`, pure
   `OfficeNamesMath.Rename`: whole words, plurals, possessives, a/an); the seats' marks in the health tab too
   (`Patch_OfficeHediffLabel`, a postfix on `Hediff.LabelBase`). (3) Life goals that last (`GoalMath`): a fight sparks
   only the one who brought down the most (`Foremost`, in `SocialWeb` before the count resets); a fight's spark pulls 0.4
@@ -63,7 +64,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   counted). Docs: DESIGN.md ("Elections on a record", "Seats named by the colony's age", "Life goals that last", groups'
   "Real divides", "Decrees that mean distinct things", the history's kinds, the links table), the Almanac's offices,
   decrees, life goals and groups pages, README. Left: shipped lines elsewhere that name a seat in passing (dilemmas' "the
-  quartermaster's friends", "sent the speaker to the gate") keep the medieval word (renaming them would rename other
+  quartermaster's friends", "sent the speaker to the gate", the steward's feast suggestion, a truce or an oath sworn by
+  the speaker) keep the medieval word (renaming them would rename other
   peoples' elders too: new age-tagged variants would do it); the review's evening drill on the map each day a drills
   decree runs and a newcomer's wait before standing are still the player's word. To check in game: the player's save at
   the next new year (each candidate's record after the promise, distinct promises; the save holds no promises yet, so

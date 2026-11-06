@@ -342,7 +342,7 @@ namespace ColonyCouncil
         {
             // together: called once the peacemaker and both of the pair are together (Peacemaking, through Together.When).
             if (Peacemaker != peacemaker || !comp.social.ties.Contains(pair)) return;
-            using var _cause = Causes.Push("CC_Cause_Peacemaker".Translate(peacemaker.LabelShort).Resolve());
+            using var _cause = Causes.Push(OfficeNames.Key("CC_Cause_Peacemaker", peacemaker.LabelShort));
             comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
             CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);
             string line = Flavor.FromPool("Council_Pool_PeacemakerMediates", peacemaker);
@@ -362,7 +362,7 @@ namespace ColonyCouncil
             if (keeper == null || colonists == null) return;
             var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Office_WellKept");
             if (thought == null) return;
-            string cause = "CC_Cause_KeeperOfDays".Translate(keeper.LabelShort).Resolve();
+            string cause = OfficeNames.Key("CC_Cause_KeeperOfDays", keeper.LabelShort);
             foreach (var p in colonists)
                 if (p != null && p.IsColonist && !p.Dead) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
         }
