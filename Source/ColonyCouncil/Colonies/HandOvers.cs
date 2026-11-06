@@ -745,6 +745,9 @@ namespace ColonyCouncil
                 float wealth = home.wealthWatcher?.WealthTotal ?? 0f;
                 int heads = free.Count + plan.going.Count(p => p != null && !p.Dead);
                 var founder = FounderOf(home, free, head);
+                // The colony as it is left, kept before the place is its people's (the player's decision 7A): its map, when
+                // the game makes it again, is the colony's own (Colonies/TownLayout.cs).
+                var layout = TownLayouts.Capture(home, free);
                 // The people.
                 people = HandOverPeoples.Make(def, plan.peopleName.NullOrEmpty() ? DefaultName(plan.age, colonyName) : plan.peopleName, Faction.OfPlayer.ideos?.PrimaryIdeo);
                 if (people == null) return false;
@@ -794,7 +797,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("hand-over: the settlement's look", e);
                 }
                 WorldLedger.EndColony(key, ColonyEnd.HandedOver, s.ID);
-                Records(plan, home, s, people, free, head, second, founder, founded, wealth, heads, colonyName);
+                Records(plan, home, s, people, free, head, second, founder, founded, wealth, heads, colonyName, layout);
                 h.handOvers.Remove(plan);
                 FoundingLetters.RemoveHandOverLetters(plan);
                 var linked = plan.foundingId >= 0 ? Foundings.Of(plan.foundingId) : null;
@@ -833,14 +836,14 @@ namespace ColonyCouncil
 
         /// <summary>The town's records, its notables, the terms, the moods, the milestone and the letter.</summary>
         private static void Records(HandOverPlan plan, Map home, Settlement s, Faction people, List<Pawn> free, Pawn head, Pawn second, Pawn founder, int founded, float wealth,
-            int heads, string colonyName)
+            int heads, string colonyName, LedgerLayout layout)
         {
             int now = Now;
-            // The town the colony was.
+            // The town the colony was, with the colony's layout as it was left.
             var rec = new LedgerFormer
             {
                 key = s.ID, people = people, colonyName = colonyName, age = plan.age, founded = founded, handedAt = now, terms = plan.terms, second = second,
-                formers = free.ToList(), wentTo = plan.where == HandOverWhere.Home ? plan.toHome : HomesMath.None
+                formers = free.ToList(), wentTo = plan.where == HandOverWhere.Home ? plan.toHome : HomesMath.None, layout = layout, seed = HandOverMath.Seed(wealth, heads)
             };
             WorldLedger.AddFormer(rec);
             foreach (var p in free) WorldLedger.Keep(p, KeepFor.Former, false);

@@ -69,7 +69,7 @@ namespace ColonyCouncil
         public const int MaxBytes = 64 * 1024;
 
         /// <summary>A mid-game base takes about this much (for the design's word, and the save model).</summary>
-        public const int TypicalBytes = 20 * 1024;
+        public const int TypicalBytes = 20480;
 
         /// <summary>The flags of a cell: a roof the colony built, no natural rock there (mined out, or open ground).</summary>
         public const byte Roof = 1, Clear = 2;

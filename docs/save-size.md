@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 538; modelled: 538; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** after two, **3,029 KB** after five.
+Saved collections found: 541; modelled: 541; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,861 KB** after two, **3,062 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -26,6 +26,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
+| `Colonies/TownLayout.cs:table` | per town the colony was: its kept layout, the grids deflated and the def names (64 KB at most a town); none for a town handed over before release 2b | cap | 0 | 1 | 2 | 33.5 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
@@ -470,6 +471,8 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Colonies/HomesHandOver.cs:keptAgainst` | per hand-over: those kept against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:sentAgainst` | per hand-over: those sent against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:staying` | per hand-over: who stays (counted under handOvers) | while | 12 | 12 | 12 | (in its record) |
+| `Colonies/TownLayout.cs:beds` | per kept layout: the beds of those who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
+| `Colonies/TownLayout.cs:sleepers` | per kept layout: who sleeps in each (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |

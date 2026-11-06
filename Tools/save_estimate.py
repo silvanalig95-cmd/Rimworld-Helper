@@ -525,6 +525,15 @@ MODEL = {
                                                     "one per colony handed over, HandOverMath.MaxTowns at most (the oldest whose town is gone goes); "
                                                     "none in a save that never handed one over"),
     "World/Ledger/LedgerFormers.cs:formers": ("while", 12, P, "per town the colony was: the colony's former people who stayed (counted under formerRecords)"),
+    # The colony as it was left (Colonies/TownLayout.cs, release 2b), on each town the colony was's record: its grids saved as
+    # the game saves its own (bytes, deflated; LayoutMath.TypicalBytes about a mid-game base, LayoutMath.MaxBytes at most,
+    # roofs then floors let go past it) and its table of def names, modelled here as one entry a town; the beds kept with it.
+    "Colonies/TownLayout.cs:table": ("cap", (const("Colonies/HandOverMath.cs", "MaxTowns", 6), 0.005),
+                                     const("Colonies/TownAfterMath.cs", "TypicalBytes", 20 * 1024) + 60 * 40,
+                                     "per town the colony was: its kept layout, the grids deflated and the def names (64 KB at most a town); none for a town "
+                                     "handed over before release 2b"),
+    "Colonies/TownLayout.cs:beds": ("while", 12, 25, "per kept layout: the beds of those who stayed (counted under formerRecords)"),
+    "Colonies/TownLayout.cs:sleepers": ("while", 12, P, "per kept layout: who sleeps in each (counted under formerRecords)"),
     # Another landing site (Colonies/LandingRecord.cs, on the council's component): the record of the start, written only
     # while the offer is open (LandingMath.OfferDays after a landing), so a save past a new game's first days writes none.
     "Colonies/LandingRecord.cs:kit": ("while", 60, 160, "the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), "
