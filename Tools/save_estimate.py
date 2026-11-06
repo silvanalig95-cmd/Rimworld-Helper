@@ -449,7 +449,8 @@ MODEL = {
     # the world keeps (about 15 KB in the world's own part of the save), only while they matter: the towns within reach
     # (six at most, four roles each) and ten faces met, let go when out of reach or forgotten.
     "World/Notables.cs:notables": ("fixed", C["NotableTowns"] * 4 + C["NotableFaces"], 2600,
-                                   "the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards"),
+                                   "the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards "
+                                   "(a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most)"),
     "World/Notables.cs:notes": ("fixed", C["NotableMemory"], 160, "per notable: NotableMath.MaxMemory lines, the oldest go (counted under notables)"),
     "World/Notables.cs:regards": ("fixed", C["NotableRegards"], 100, "per notable: NotableMath.MaxRegards colonists, the faded dropped daily (counted under notables)"),
     "World/Notables.cs:lastKeys": ("fixed", 6, V, "per notable: one per purpose of a letter (counted under notables)"),

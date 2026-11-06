@@ -76,21 +76,19 @@ namespace ColonyCouncil
             going.RemoveWhere(p => rows.All(r => r.pawn != p));
             // Those away from home now, or a guest of another people's, can't stay: they go with those who go.
             foreach (var r in rows.Where(r => r.cant != null)) going.Add(r.pawn);
+            // The head and the second by the rule (the others' opinions are read once a refresh, not every frame).
+            var grown = GrownStaying;
+            head = HandOvers.HeadOf(home, grown, grown.Contains(pickedHead) ? pickedHead : null);
+            second = HandOvers.SecondOf(home, grown, head, grown.Contains(pickedSecond) && pickedSecond != head ? pickedSecond : null);
         }
+
+        private Pawn head, second;
 
         private List<Pawn> GrownStaying => rows.Where(r => r.grown && !going.Contains(r.pawn)).Select(r => r.pawn).ToList();
 
-        private Pawn Head => HandOvers.HeadOf(home, GrownStaying, GrownStaying.Contains(pickedHead) ? pickedHead : null);
+        private Pawn Head => head;
 
-        private Pawn Second
-        {
-            get
-            {
-                var grown = GrownStaying;
-                var head = Head;
-                return HandOvers.SecondOf(home, grown, head, grown.Contains(pickedSecond) && pickedSecond != head ? pickedSecond : null);
-            }
-        }
+        private Pawn Second => second;
 
         private void Toggle(FounderRow r)
         {
@@ -243,11 +241,16 @@ namespace ColonyCouncil
                 {
                     pickedHead = p;
                     if (pickedSecond == p) pickedSecond = null;
+                    dirty = true;
                 })).ToList()));
             y += 28f;
             UiKit.LabelFit(new Rect(4f, y, labelW, 26f), "CC_HandOver_TheSecond".Translate(HandOvers.SecondTitle(age).Named("TITLE")).Resolve(), Color.white);
             if (Widgets.ButtonText(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), second?.LabelShort ?? "CC_HandOver_Nobody".Translate().Resolve(), true, true, grown.Count > 1))
-                Find.WindowStack.Add(new FloatMenu(grown.Where(p => p != head).Select(p => new FloatMenuOption(p.LabelShort, () => pickedSecond = p)).ToList()));
+                Find.WindowStack.Add(new FloatMenu(grown.Where(p => p != head).Select(p => new FloatMenuOption(p.LabelShort, () =>
+                {
+                    pickedSecond = p;
+                    dirty = true;
+                })).ToList()));
             y += 28f;
             y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_HeadLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 6f;
             UiKit.LabelFit(new Rect(4f, y, labelW, 26f), "CC_HandOver_TheName".Translate().Resolve(), Color.white);
