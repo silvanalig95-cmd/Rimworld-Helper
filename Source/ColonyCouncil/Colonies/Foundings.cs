@@ -84,6 +84,8 @@ namespace ColonyCouncil
             // A fresh start in the same act as a hand-over, waiting for its ceremony (Colonies/HandOvers.cs).
             var pending = HandOvers.PendingFounding;
             if (pending != null) return "CC_Found_No_UnderWay".Translate(pending.place.Named("PLACE")).Resolve();
+            // This home being handed over on its own: its people are spoken for.
+            if (HandOvers.At(from) != null) return "CC_HandOver_FoundNoHandingOver".Translate(Homes.Name(from).Named("HOME")).Resolve();
             if (FoundingMath.LimitFor(Prefs.MaxNumberOfPlayerSettlements, Counted()) < 0)
                 return "CC_Found_No_Limit".Translate(Prefs.MaxNumberOfPlayerSettlements.Named("COUNT")).Resolve();
             return null;

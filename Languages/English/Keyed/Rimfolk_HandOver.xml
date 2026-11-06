@@ -184,6 +184,7 @@
   <CC_HandOver_LimitBack>Rimfolk sets it back by one once the old colony is handed over, unless you changed it meanwhile.</CC_HandOver_LimitBack>
   <CC_HandOver_FoundConfirm>On to the hand-over</CC_HandOver_FoundConfirm>
   <CC_HandOver_FoundHandingOver>{MOTHER} becomes a town of its own people once those who go have left it.</CC_HandOver_FoundHandingOver>
+  <CC_HandOver_FoundNoHandingOver>{HOME} is being handed over: its people are spoken for. Call it off first to found a new colony from here.</CC_HandOver_FoundNoHandingOver>
   <CC_HandOver_FoundOldGone>{MOTHER} was handed over, a town of its own people now.</CC_HandOver_FoundOldGone>
 
 </LanguageData>
