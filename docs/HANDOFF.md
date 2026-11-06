@@ -6,6 +6,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.104.3, every colonist's character lost at each load (found by the systems review, 6 November 2026, and confirmed in
+  the player's save: the seven elected on day 123.7 had no "elected" mark, the three elected after the last load did,
+  and only those three had any nature). `PersonaTracker.ExposeData` saved `people` through a local list: the load
+  read it in one pass, and the PostLoadInit pass made the local afresh from the still empty dictionary and built the
+  dictionary from that, so marks, the lasting and drifting nature and the stances were gone after every load since
+  27 October (dd498d6). Now through a field (`peopleSaved`), cleared after saving and after loading. A test scans the
+  whole source for a collection loaded into a local and read only in a later pass (`Tools/Tests/ScribeTests.cs`); this
+  was the only one. A save made with the bug has nothing to bring back: characters build again from here.
 - 0.104.2, vendettas by closeness, hostages by standing (the player's decision, 6 November 2026): two of the things found outside
   0.104.0's list and named for the player there, approved (CLAUDE.md: the colony is the family). No version of its own:
   its points go with the next round. (1) A vendetta left open at its avenger's death passes to whoever was closest to

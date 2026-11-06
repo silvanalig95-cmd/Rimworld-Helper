@@ -407,7 +407,7 @@ MODEL = {
     "Faith/FaithPeople.cs:notes": ("fixed", const("Faith/FaithPeopleMath.cs", "MaxNotes", 5), 170, "per colonist: the newest faith moments, 120 days at most (counted under people)"),
     "Faith/FaithPeople.cs:waiting": ("cap", (COLONISTS, 0.15), 140, "crises waiting to be felt: one per kind per colonist, let go after 6 days"),
     # A person's record (sides moved, marks, views) and what pairs went through together
-    "Persona/PersonaTracker.cs:list": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 24 * 70,
+    "Persona/PersonaTracker.cs:peopleSaved": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 24 * 70,
                                        "the colony's own people the game still knows; empty records dropped at saving"),
     "Persona/PawnPersona.cs:l": ("fixed", C["PersonaAxes"], V, "per person: one per side (counted under people)"),
     "Persona/PawnPersona.cs:d": ("fixed", C["PersonaAxes"], V, "per person: one per side, fading (counted under people)"),

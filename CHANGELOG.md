@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Characters kept on loading
+
+*6 November 2026, version 0.104.3*
+
+- Fixed: every colonist's character (their marks, their nature as it grew and drifted, and their views on things) was lost each time a game was loaded, so the Character page, how they speak and what goes against their nature started over after every load.
+- A save made before this fix has nothing to bring back: from now on characters build up and stay.
+
 ## Vendettas and hostages by the colony's ways
 
 *6 November 2026, version 0.104.2*

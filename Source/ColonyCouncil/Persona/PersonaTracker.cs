@@ -95,6 +95,9 @@ namespace ColonyCouncil
             byPair = null;
         }
 
+        /// <summary>The people's records as saved and loaded (the dictionary is built from it once loading is done).</summary>
+        private List<PawnPersona> peopleSaved;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -109,15 +112,19 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("persona clean-up before saving", e);
                 }
             }
-            var list = people.Values.ToList();
-            Scribe_Collections.Look(ref list, "people", LookMode.Deep);
+            // A field, not a local: loading reads the list in one pass and builds the dictionary in a later one (a local
+            // was made afresh, empty, in that later pass, so every colonist's character was lost at each load).
+            if (Scribe.mode == LoadSaveMode.Saving) peopleSaved = people.Values.ToList();
+            Scribe_Collections.Look(ref peopleSaved, "people", LookMode.Deep);
             Scribe_Collections.Look(ref memories, "memories", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving) peopleSaved = null;
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 people = new Dictionary<int, PawnPersona>();
-                if (list != null)
-                    foreach (var p in list)
+                if (peopleSaved != null)
+                    foreach (var p in peopleSaved)
                         if (p != null) people[p.id] = p;
+                peopleSaved = null;
                 memories ??= new List<SharedMemory>();
                 memories.RemoveAll(m => m?.def == null);
                 byPair = null;

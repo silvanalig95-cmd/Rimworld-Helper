@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.104.3</version>
+        <date>6 November 2026</date>
+        <title>Characters kept on loading</title>
+        <points>
+          <li>Fixed: every colonist's character (their marks, their nature as it grew and drifted, and their views on things) was lost each time a game was loaded, so the Character page, how they speak and what goes against their nature started over after every load.</li>
+          <li>A save made before this fix has nothing to bring back: from now on characters build up and stay.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.104.2</version>
         <date>6 November 2026</date>
         <title>Vendettas and hostages by the colony's ways</title>
