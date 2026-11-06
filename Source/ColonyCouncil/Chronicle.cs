@@ -133,6 +133,8 @@ namespace ColonyCouncil
         private static void Build(HistoryBook book)
         {
             var list = new List<ChronicleLine>();
+            // Each name looked up once a build (a summary's name may be someone long gone, found by a search).
+            names.Clear();
             try
             {
                 var ours = Ours();
@@ -238,13 +240,19 @@ namespace ColonyCouncil
                 : "CC_ChronFold_SpanDay".Translate("CC_DayN".Translate(to).Named("DAY")).Resolve());
         }
 
+        private static readonly Dictionary<Ref, string> names = new Dictionary<Ref, string>();
+
         /// <summary>Someone's name while the game or the ledger still knows them.</summary>
         public static string NameOf(Ref r)
         {
             if (r.IsNone) return null;
+            if (names.TryGetValue(r, out var known)) return known;
             try
             {
-                return Refs.Pawn(r)?.LabelShort ?? WorldLedger.NameOf(r);
+                string n = Refs.Pawn(r)?.LabelShort ?? WorldLedger.NameOf(r);
+                if (names.Count > 500) names.Clear();
+                names[r] = n;
+                return n;
             }
             catch (Exception e)
             {
