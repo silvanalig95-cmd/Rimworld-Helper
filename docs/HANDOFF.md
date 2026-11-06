@@ -6,6 +6,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 6 November 2026, the player's priority: once the work under way lands (harm part 1, vendettas and hostages, medical
+  triage with Move the Patient, the stage 3 design revision), nothing new is built until the existing systems are
+  reviewed, balanced, improved and integrated: variety, flavour, immersion, writing, impacts, and how often things are
+  staged on the map ("gatherings by the fire, a toast to someone": count them across every system, give them a budget,
+  make each worth its place). Two audits run first (staged scenes and attention; each system's value and writing);
+  their proposals go to the player. Harm parts 2 and 3 (2.4.1, 2.2.1, 2.1.1, 3.1.1; 1.4.1, 3.3.1, 3.5.1), schemes
+  (theirs only, the player's choice) and the stage 3 build wait until after.
 - 0.104.0, diplomacy reshaped from family to colony (the player's decision, 5 November 2026): "we just need to make the shift from
   family to colony. family dynamics are fun and interesting, but it's never going to be a dynastic game like ck3, rather
   the colony is the 'family' so to say, so mechanics should revolve around that" (CLAUDE.md: the colony is the family).
