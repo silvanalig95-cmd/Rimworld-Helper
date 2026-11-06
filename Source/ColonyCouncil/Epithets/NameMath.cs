@@ -168,6 +168,28 @@ namespace ColonyCouncil
             return string.CompareOrdinal(a.defName, b.defName) < 0;
         }
 
+        // ================= The one "known as" in words =================
+
+        /// <summary>
+        /// The words of a colonist's one "known as" (KnownAs.Line), by what there is of it: the colony's name for them
+        /// (<paramref name="hasName"/>), the part of their renown the peoples know them by (<paramref name="abroad"/>, or null
+        /// while nobody outside speaks of them; "epithet" when it is the colony's name for them that carries), and whether that
+        /// is a bad name. With both, one line ("Known as the Healer, the one who won the wrestling at the feast with the
+        /// Lenlia, talked about in the next town."); a bad name abroad beside a good one at home in two halves; the colony's
+        /// name alone, at home; renown's own line without one. Null with neither.
+        /// </summary>
+        public static string LineKey(bool hasName, string abroad, bool infamous)
+        {
+            if (hasName)
+            {
+                if (abroad == null) return "CC_Name_Own_Home";
+                if (abroad == "epithet") return "CC_Name_Own_Carries";
+                return infamous ? "CC_Name_Own_HomeAndBad" : "CC_Name_Own_Full";
+            }
+            if (abroad == null) return null;
+            return infamous ? "CC_Renown_Own_LineBad" : "CC_Renown_Own_Line";
+        }
+
         // ================= Saving =================
 
         private const char Sep = '|';

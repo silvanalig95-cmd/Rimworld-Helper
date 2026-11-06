@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Phase 4 of the review, part 1: one name (the player's decision 6 of 6 November 2026). A colonist's one "known as"
+       (Source/ColonyCouncil/Epithets/KnownAs.cs, NameMath.cs) and the colony's one "known for" (Character/ColonyName.cs,
+       ColonyNameMath.cs). {NAME} is the colony's name for them ("the Healer", "Deadeye"), {KNOWNAS} what the peoples know
+       them by ("the one who won the wrestling at the feast with the Lenlia"), {RENOWN} how far it carries ("talked about in
+       the next town"); none of them starts a sentence. -->
+
+  <!-- A colonist's one name, in a line on their card and People → Renown. -->
+  <CC_Name_Own_Home>Known in the colony as {NAME}.</CC_Name_Own_Home>
+  <CC_Name_Own_Carries>Known as {NAME}, {RENOWN}.</CC_Name_Own_Carries>
+  <CC_Name_Own_Full>Known as {NAME}, {KNOWNAS}, {RENOWN}.</CC_Name_Own_Full>
+  <CC_Name_Own_HomeAndBad>Known in the colony as {NAME}; outside it as {KNOWNAS}: {RENOWN}.</CC_Name_Own_HomeAndBad>
+  <CC_Name_Own_Also>Also called {NAMES}.</CC_Name_Own_Also>
+
+  <!-- The colony's one name: its card (Council → Ways, a home's card), first line. {CALLED}: "merciful, generous and walled";
+       {KNOWNFOR}: "good doctors". -->
+  <CC_Name_CardHead>The colony's name</CC_Name_CardHead>
+  <CC_Name_Card_CalledFor>People call the colony {CALLED}; beyond its walls it is known for {KNOWNFOR}, its name {RENOWN}.</CC_Name_Card_CalledFor>
+  <CC_Name_Card_Called>People call the colony {CALLED}, and its name is {RENOWN}.</CC_Name_Card_Called>
+  <CC_Name_Card_For>Beyond its walls the colony is known for {KNOWNFOR}, its name {RENOWN}.</CC_Name_Card_For>
+  <CC_Name_Card_Bare>Nobody calls the colony anything in particular yet, and its name is {RENOWN}.</CC_Name_Card_Bare>
+  <CC_Name_Card_CalledHome>People call the colony {CALLED}.</CC_Name_Card_CalledHome>
+  <CC_Name_Card_BareHome>Nobody calls the colony anything in particular yet.</CC_Name_Card_BareHome>
+  <!-- The council's latest choices behind the ways it is called, newest first ({WHATS}: "hungry pilgrims: "Feed them"; the decree "alms for the poor""). -->
+  <CC_Name_Card_Ways>At home it comes from the council's choices: {WHATS}.</CC_Name_Card_Ways>
+  <!-- What one people remembers of the colony: {PEOPLE} their name, {TONE} how they stand ("well disposed"), {DEED} the deed they remember best, a sentence. -->
+  <CC_Name_Card_People>{PEOPLE}: {TONE}. {DEED}</CC_Name_Card_People>
+
+  <!-- The one chronicle sentence when the colony's name changes: its clauses joined ({CLAUSES}). {WORDS}: what it is
+       called ("walled and learned"); {KNOWNFOR}: what it is known for beyond its walls ("good doctors"). A clause after the
+       first speaks of the colony as "it" (_It). -->
+  <CC_Name_Changed_Line>{CLAUSES}.</CC_Name_Changed_Line>
+  <CC_Name_Changed_Started>people have started calling the colony {WORDS}</CC_Name_Changed_Started>
+  <CC_Name_Changed_Started_It>people have started calling it {WORDS}</CC_Name_Changed_Started_It>
+  <CC_Name_Changed_Wider>travelers far and wide call the colony {WORDS} now</CC_Name_Changed_Wider>
+  <CC_Name_Changed_Wider_It>travelers far and wide call it {WORDS} now</CC_Name_Changed_Wider_It>
+  <CC_Name_Changed_Stopped>people have stopped calling the colony {WORDS}</CC_Name_Changed_Stopped>
+  <CC_Name_Changed_Stopped_It>they have stopped calling it {WORDS}</CC_Name_Changed_Stopped_It>
+  <CC_Name_Changed_For>beyond its walls the colony is known for {KNOWNFOR} now</CC_Name_Changed_For>
+  <CC_Name_Changed_For_It>beyond its walls it is known for {KNOWNFOR} now</CC_Name_Changed_For_It>
+  <CC_Name_Changed_ForGone>beyond its walls the colony is no longer known for {KNOWNFOR}</CC_Name_Changed_ForGone>
+  <CC_Name_Changed_ForGone_It>beyond its walls it is no longer known for {KNOWNFOR}</CC_Name_Changed_ForGone_It>
+
+  <!-- A way the colony was renowned for, now only known for: the news ({0}: "merciful"). -->
+  <CC_Name_Ways_Narrower>Travelers far and wide no longer call the colony {0}, though its neighbors still do.</CC_Name_Ways_Narrower>
+
+  <!-- Council → Ways, the colony's one name. -->
+  <CC_Name_PageTitle>The colony's name</CC_Name_PageTitle>
+  <CC_Name_PageSub>What the colony is known for and how far its name carries: its ways, what its work has made it, its renown and what each people remembers.</CC_Name_PageSub>
+  <CC_Name_PageWays>Its ways</CC_Name_PageWays>
+
+  <!-- People → Renown: each of the colony's people by their one name. -->
+  <CC_Name_PeopleTitle>Known by name</CC_Name_PeopleTitle>
+  <CC_Name_PeopleSub>The name each of the colony's people is known by, at home and beyond its walls, and what the others say of them.</CC_Name_PeopleSub>
+  <CC_Name_PeopleNone>Nobody of the colony is known by a name yet. The colony gives one for steady work it sees; a contest won, a ward fostered well, a camp broken or a people's wounded tended carries one beyond its walls.</CC_Name_PeopleNone>
+
+</LanguageData>

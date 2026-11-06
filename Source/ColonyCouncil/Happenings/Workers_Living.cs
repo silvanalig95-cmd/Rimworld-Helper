@@ -1008,7 +1008,8 @@ namespace ColonyCouncil
             if (founders.Count > 0) parts.Add(Part(lines, null, "founders", TextUtil.JoinAnd(founders.Select(p => p.LabelShort).ToList())));
             int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;
             if (lost > 0) parts.Add(Part(lines, null, "lost", lost.ToString()));
-            string known = CouncilGameComponent.Instance?.character.Describe();
+            // What the colony is called, its ways and what its work made it (its one name, Character/ColonyName.cs).
+            string known = ColonyName.CalledWords();
             if (!known.NullOrEmpty()) parts.Add(Part(lines, null, "known", known));
             var customs = ColonyState.For(map)?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(ColonyCalendar.TraditionLabels(map)).Where(l => !l.NullOrEmpty()).Distinct().ToList();
             if (!customs.NullOrEmpty()) parts.Add(Part(lines, null, "customs", TextUtil.JoinAnd(customs)));

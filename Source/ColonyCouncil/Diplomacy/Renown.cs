@@ -171,6 +171,8 @@ namespace ColonyCouncil
             Tell.Minor(NewsKind.Colony, Importance.Notable, home, line, speaker != null ? new LookTargets(speaker) : LookTargets.Invalid,
                 up ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Diplomacy.Dirty();
+            // This line is the colony's one name moving (Character/ColonyName.cs), with what it is known for: not told again.
+            ColonyName.Settle();
         }
 
         // ================= Reading it =================
