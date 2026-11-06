@@ -1251,7 +1251,7 @@ namespace Balance
         private bool FireDilemma(Func<OutcomeDef, bool> only, string system)
         {
             if (!GapOpen) return false;
-            var pool = defs.dilemmas.Where(d => only(d) && Fits(d)).ToList();
+            var pool = defs.dilemmas.Where(d => only(d) && Fits(d) && !CustomOnCalendar(d)).ToList();
             foreach (var d in pool.OrderByDescending(d => d.weight * rng.NextDouble() * (d.seasons == null && d.withinDaysOfThreat <= 0f ? 1 : 3)))
             {
                 if (!Chance(Rates.WorkerCasts * d.gate)) continue;
@@ -1893,21 +1893,32 @@ namespace Balance
         /// <summary>--scenes: the seasonal customs the colony keeps, each with the day of the year it falls on.</summary>
         private readonly List<(OutcomeDef def, int day)> keptCustoms = new List<(OutcomeDef, int)>();
 
+        /// <summary>
+        /// --scenes: a seasonal custom the council isn't asked at random: a kept one comes on its day, and none other comes in
+        /// a season that holds a kept custom's day (DilemmaTracker.TryFire).
+        /// </summary>
+        private bool CustomOnCalendar(OutcomeDef d)
+        {
+            if (scenes == null || d.seasons == null || d.seasons.Count == 0 || d.tradition < 0f) return false;
+            return keptCustoms.Any(k => k.def == d || k.day / 15 == Quadrum);
+        }
+
         /// <summary>When each kept custom last came round.</summary>
         private readonly Dictionary<string, int> keptLast = new Dictionary<string, int>();
 
         /// <summary>
-        /// --scenes: a custom the colony keeps comes round once a year whatever the council's schedule says. As the council's
-        /// traditions came (DilemmaTracker.Hourly before the festive year): the first hour of its season it can be asked, a
-        /// month or more after it last came, while no question waits.
+        /// --scenes: a custom the colony keeps is a day on its calendar (the festive year, Calendar/CalendarCustoms.cs): its
+        /// question comes on that day, or within its grace days (CalendarMath.CustomGraceDays) when its weather or someone to
+        /// ask for it isn't there (the cast's chance each hour), in the daytime, once a year, while no question waits.
         /// </summary>
         private bool KeptCustom()
         {
-            foreach (var (def, _) in keptCustoms)
+            if (HourOfDay < 9 || HourOfDay > 20) return false;
+            foreach (var (def, day) in keptCustoms)
             {
-                if (!def.seasons.Contains(Season)) continue;
+                if (CalendarMath.DaysSince(Day % YearDays, day) > CalendarMath.CustomGraceDays) continue;
                 if (keptLast.TryGetValue(def.name, out int last) && hour - last < 30 * 24) continue;
-                if (!Chance(Rates.WorkerCasts * def.gate)) continue;
+                if (!def.seasons.Contains(Season) || !Chance(Rates.WorkerCasts * def.gate)) continue;
                 keptLast[def.name] = hour;
                 defLast[def.name] = hour;
                 lastDilemma = hour;
