@@ -6,6 +6,24 @@ using Verse;
 
 namespace ColonyCouncil
 {
+    /// <summary>
+    /// An ailment called by the colony's age (pond itch for a tribe, swimmer's itch for an industrial town): the label the
+    /// health tab shows is its name now (<see cref="AilmentTracker.NameOf"/>), with the game's own prefixes and stage.
+    /// </summary>
+    public class Hediff_Ailment : HediffWithComps
+    {
+        public override string LabelBase
+        {
+            get
+            {
+                string b = base.LabelBase;
+                string name = AilmentTracker.NameOf(def);
+                if (name.NullOrEmpty() || def.label.NullOrEmpty() || name == def.label || !b.EndsWith(def.label, StringComparison.Ordinal)) return b;
+                return b.Substring(0, b.Length - def.label.Length) + name;
+            }
+        }
+    }
+
     /// <summary>On every Rimfolk ailment: hears when it ends (recovered, cured, fatal) and tells the tracker.</summary>
     public class HediffComp_Ailment : HediffComp
     {

@@ -8,8 +8,8 @@ namespace ColonyCouncil
     /// What a colonist's day has to hold for an ailment to come on. Most are counted in hours over the day (an hour
     /// counts when the hourly look finds them at it), from <see cref="HeavyWork"/> to <see cref="InSpace"/>; the rest are
     /// checked on their own (a wound, a bite, a cold in someone frail, the diet, sweets, a meal, a drink or a smoke). The
-    /// numbers aren't saved anywhere, so new counted ones go before <see cref="Wound"/>; the counted ones now fill all 32
-    /// bits of the hour's look (<see cref="AilmentChecks.Sample"/>), so one more needs a wider mask.
+    /// numbers aren't saved anywhere, so new counted ones go before <see cref="Wound"/>; the hour's look
+    /// (<see cref="AilmentChecks.Sample"/>) holds them as the bits of a long, so there is room for 63.
     /// </summary>
     public enum AilmentTrigger
     {
@@ -76,6 +76,24 @@ namespace ColonyCouncil
         Handling,
         /// <summary>Working at an Alpha Bees beehouse or bee chamber (found by name: without the mod it never comes).</summary>
         Beekeeping,
+        /// <summary>Swimming in still water: a lake, a pond or a marsh, never a river or the sea.</summary>
+        StillSwim,
+        /// <summary>Butchering a small wild animal (a hare, a squirrel, a rat): hunter's fever.</summary>
+        SmallGame,
+        /// <summary>Butchering an animal that had begun to rot, or was sick when it died: black bane.</summary>
+        BadCarcass,
+        /// <summary>Smithing or smelting in a closed room of 60 cells or fewer: the forge's fumes.</summary>
+        MetalFumes,
+        /// <summary>Outdoors with the feet in water, marsh or mud below 10 °C (for an ordinary body, as above).</summary>
+        ColdWetFeet,
+        /// <summary>Outdoors in an arid land from dusk to before dawn, at 20 °C or more: sandflies.</summary>
+        Sandflies,
+        /// <summary>Building, mining in the open, sowing or clearing in an arid land, with no rain falling: the dry soil's dust.</summary>
+        DesertDust,
+        /// <summary>Cleaning a closed room where birds are kept (chickens, ducks, geese, turkeys): the dust of their droppings.</summary>
+        BirdBarn,
+        /// <summary>On the move or at heavy or hand work with a limb of the old kinds: a peg leg, a wooden foot, a simple prosthetic.</summary>
+        OldLimb,
         /// <summary>A deep wound (bite, scratch, stab, cut) left untended for hours.</summary>
         Wound,
         /// <summary>A bite from a warm-blooded animal (one roll per bite; a bite cleaned within hours halves it).</summary>
@@ -115,7 +133,17 @@ namespace ColonyCouncil
         /// <summary>Raw meat or raw fish eaten, never anything cooked (rolled per meal).</summary>
         RawFood,
         /// <summary>A joint, a cigarette or a cigar (rolled per smoke, likelier for someone who smokes every day).</summary>
-        Smoke
+        Smoke,
+        /// <summary>
+        /// A cut, scratch, stab or bite left untended six hours in the wet heat (a swamp, jungle or rainforest at 25 °C or
+        /// more): one roll per wound, in the hour it turns six hours old.
+        /// </summary>
+        WetHeatWound,
+        /// <summary>
+        /// Mechanites put in: a part or implant of the spacer age or later installed while one of the colony, or one of the
+        /// hediffs in <see cref="AilmentCause.after"/> (luciferium). One roll per part, once they're up, within three days.
+        /// </summary>
+        Mechanites
     }
 
     /// <summary>One way an ailment can come on: what the day has to hold, how many hours of it, and the chance.</summary>
@@ -227,6 +255,20 @@ namespace ColonyCouncil
         public List<string> biomes;
         /// <summary>Never twice in one person (an appendix, measles).</summary>
         public bool once;
+        /// <summary>
+        /// Given through the harm service's shared cap (Harm/Harm.cs): one Rimfolk-made hurt in three days, none while
+        /// downed, in a sickbed, pregnant or fighting, none for babies, and for children only the <see cref="hurt"/>
+        /// class Mild. Counted for the cap when it comes. The ailments of the land, the work and the age are.
+        /// </summary>
+        public bool capped;
+        /// <summary>How bad a hurt it is for the cap: Mild (children may get it) or Injury (grown-ups only).</summary>
+        public HurtClass hurt = HurtClass.Injury;
+        /// <summary>
+        /// Its name in the colony's age, each tagged with the ages it's called so in ([tribal|medieval] pond itch,
+        /// [industrial|spacer] swimmer's itch): the health tab, its message, letter and journal lines use it
+        /// (<see cref="AilmentCauseMath.NameFor"/>). Without one, the def's label.
+        /// </summary>
+        [MustTranslate] public List<string> names;
         /// <summary>The severity it starts at when it comes on by circumstance (or by an incident, for those without immunity).</summary>
         public FloatRange startSeverity = new FloatRange(0.3f, 0.5f);
         /// <summary>Passes to people who sleep in the same room as someone who has it (and shows symptoms).</summary>
@@ -280,6 +322,8 @@ namespace ColonyCouncil
             if (notes.NullOrEmpty()) yield return "ailment has no doctor's notes";
             if (!serious && parentDef.lethalSeverity > 0f) yield return "an everyday ailment must never be lethal";
             if (serious && letterText.NullOrEmpty() && !(causes == null || causes.Count == 0)) yield return "a serious illness needs a letter";
+            if (capped && serious && hurt == HurtClass.Mild) yield return "a serious illness is never mild enough for children";
+            if (!names.NullOrEmpty() && !typeof(Hediff_Ailment).IsAssignableFrom(parentDef.hediffClass)) yield return "an ailment named by the age needs hediffClass ColonyCouncil.Hediff_Ailment";
             if (causes != null)
                 foreach (var c in causes)
                     if (c != null && (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed) && c.after.NullOrEmpty())

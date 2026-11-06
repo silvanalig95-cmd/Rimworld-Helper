@@ -36,7 +36,7 @@ namespace ColonyCouncil
         private HashSet<int> announced = new HashSet<int>();
         /// <summary>Wounds (load IDs) already rolled for tetanus.</summary>
         private HashSet<int> woundsRolled = new HashSet<int>();
-        /// <summary>Bites and stings (load IDs) already rolled for what an animal or an insect can pass on.</summary>
+        /// <summary>Bites and stings (load IDs) already rolled for what an animal or an insect can pass on, and parts and implants rolled for mechanite fever.</summary>
         private HashSet<int> bitesRolled = new HashSet<int>();
         /// <summary>Hediff load ID: the ThingID of the doctor who last tended it.</summary>
         private Dictionary<int, string> doctors = new Dictionary<int, string>();
@@ -57,7 +57,7 @@ namespace ColonyCouncil
         private class PawnDay
         {
             public int day = -1;
-            public readonly float[] hours = new float[32];
+            public readonly float[] hours = new float[64];
             public readonly HashSet<string> rolled = new HashSet<string>();
         }
 
@@ -127,6 +127,7 @@ namespace ColonyCouncil
             defs = null;
             incidents = null;
             afters = null;
+            mechanites = null;
         }
 
         // ---------------- The defs ----------------
@@ -265,9 +266,9 @@ namespace ColonyCouncil
             var d = DayOf(p, day, out bool newDay);
             bool awake = RestUtility.Awake(p);
             if (newDay) Daily(p, day, circumstance);
-            int mask = AilmentChecks.Sample(p, awake);
-            for (int t = 0; t < 32; t++)
-                if ((mask & (1 << t)) != 0) d.hours[t] += 1f;
+            long mask = AilmentChecks.Sample(p, awake);
+            for (int t = 0; t < 64; t++)
+                if ((mask & (1L << t)) != 0) d.hours[t] += 1f;
             Announce(p);
             if (!circumstance) return;
             // Counted causes: once the day holds enough hours of it, one roll a day.
@@ -280,7 +281,7 @@ namespace ColonyCouncil
                     if (c == null || !AilmentChecks.Counted(c.trigger) || d.hours[(int)c.trigger] < c.hours) continue;
                     string key = def.defName + "|" + (int)c.trigger;
                     if (!d.rolled.Add(key)) continue;
-                    if (!Rand.Chance(c.chance * Freq * PersonFactor(p, info) * Boost(p, c))) continue;
+                    if (!Rand.Chance(c.chance * Freq * PersonFactor(p, info) * Boost(p, c) * Lean(info))) continue;
                     if (!CanGet(p, def, info, false)) continue;
                     Give(p, def, info, false);
                 }
@@ -289,9 +290,22 @@ namespace ColonyCouncil
             if (!awake) Spread(p);
             Bites(p, d);
             Afters(p, d, awake, now);
+            WetHeat(p, d);
+            if (awake) Mechanites(p);
             if (!SeriousOn) return;
             if (!d.rolled.Contains("Wound")) Wounds(p, d);
             if (!d.rolled.Contains("AfterCold")) AfterCold(p, d);
+        }
+
+        /// <summary>
+        /// The serious illnesses given through the harm service's cap lean with the storyteller's disease setting, as the
+        /// catching clock does (AilmentCauseMath.DiseaseLean); every other one is as it was.
+        /// </summary>
+        private static float Lean(HediffCompProperties_Ailment info)
+        {
+            if (!info.capped || !info.serious) return 1f;
+            float interval = Find.Storyteller?.difficulty?.diseaseIntervalFactor ?? 1f;
+            return DebugSettings.enableRandomDiseases ? AilmentCauseMath.DiseaseLean(interval, Difficulty.DiseaseIntervalFactorCutoff) : 0f;
         }
 
         /// <summary>A cause that's likelier for someone who already has something (typhus for someone with lice).</summary>
@@ -361,6 +375,9 @@ namespace ColonyCouncil
         {
             if (!On || (info.serious && !SeriousOn)) return false;
             if (p.health.hediffSet.HasHediff(def)) return false;
+            // The ailments of the land, the work and the age are Rimfolk-made hurts: one in three days, none in a sickbed,
+            // none for babies, children only the mildest (Harm/Harm.cs).
+            if (info.capped && !Harm.May(p, info.hurt)) return false;
             if (p.DevelopmentalStage.Juvenile() && info.childFactor <= 0f) return false;
             if (info.childrenOnly && !p.DevelopmentalStage.Juvenile()) return false;
             if (info.minAge > 0f && Flavor.HumanAge(p) < info.minAge) return false;
@@ -434,10 +451,21 @@ namespace ColonyCouncil
 
         private void Give(Pawn p, HediffDef def, HediffCompProperties_Ailment info, bool spreading)
         {
-            var h = HediffMaker.MakeHediff(def, p);
-            if (h.TryGetComp<HediffComp_Immunizable>() == null) h.Severity = info.startSeverity.RandomInRange;
-            p.health.AddHediff(h);
-            if (!p.health.hediffSet.hediffs.Contains(h)) return;
+            Hediff h;
+            if (info.capped)
+            {
+                // Through the harm service, which checks the cap again and counts it.
+                bool race = def.CompProps<HediffCompProperties_Immunizable>() != null;
+                h = Harm.Ail(p, def, race ? def.initialSeverity : info.startSeverity.RandomInRange, "ailment: " + def.defName, info.hurt);
+                if (h == null) return;
+            }
+            else
+            {
+                h = HediffMaker.MakeHediff(def, p);
+                if (h.TryGetComp<HediffComp_Immunizable>() == null) h.Severity = info.startSeverity.RandomInRange;
+                p.health.AddHediff(h);
+                if (!p.health.hediffSet.hediffs.Contains(h)) return;
+            }
             int now = Find.TickManager.TicksGame;
             bool again = HadBefore(p, def);
             Remember(p, def, now);
@@ -497,15 +525,18 @@ namespace ColonyCouncil
                 try
                 {
                     string raw = AilmentTexts.Pick(info.gotText, info.gotTexts, p, again ? "again" : null);
-                    text = raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN")).Resolve();
+                    text = raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), NameOf(h.def).Named("ILLNESS")).Resolve();
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("ailment message " + h.def.defName, e);
                     text = null;
                 }
+                // A Rimfolk-made hurt is never held back (Harm/Harm.cs); the rest as small news.
                 if (!text.NullOrEmpty())
-                    News.Post(text, new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NegativeHealthEvent, info.quiet ? Importance.Flavor : Importance.Notable);
+                    News.Post(text, new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NegativeHealthEvent,
+                        info.capped ? Importance.Important : info.quiet ? Importance.Flavor : Importance.Notable);
+                if (info.capped) SayOnset(p, info);
             }
             if (Rand.Chance(0.4f)) Journal(p, "Council_Journal_Ail_Start", h.def, info, null, again);
         }
@@ -534,7 +565,7 @@ namespace ColonyCouncil
             string text;
             try
             {
-                text = info.letterText.NullOrEmpty() ? h.def.description : info.letterText.Formatted(p.Named("PAWN")).Resolve();
+                text = info.letterText.NullOrEmpty() ? h.def.description : info.letterText.Formatted(p.Named("PAWN"), NameOf(h.def).Named("ILLNESS")).Resolve();
             }
             catch (Exception e)
             {
@@ -546,8 +577,49 @@ namespace ColonyCouncil
             // Someone frail fights it slower, and steady care is what saves them (Ailments/LifeRisks.cs).
             string frail = LifeRisks.FrailNote(p);
             if (!frail.NullOrEmpty()) text += "\n\n" + frail;
-            string label = h.def.LabelCap + ": " + p.LabelShortCap;
+            string label = NameOf(h.def).CapitalizeFirst() + ": " + p.LabelShortCap;
             Tell.Letter(NewsKind.Health, Importance.Important, null, label, text, LetterDefOf.NegativeEvent, new LookTargets(p));
+            if (info.capped) SayOnset(p, info);
+        }
+
+        /// <summary>
+        /// A Rimfolk-made hurt is said on the map as it shows: one line of theirs about it over their head, when they're up
+        /// and about.
+        /// </summary>
+        private static void SayOnset(Pawn p, HediffCompProperties_Ailment info)
+        {
+            try
+            {
+                if (!p.Spawned || p.Map == null || p.Downed || !RestUtility.Awake(p) || info.key.NullOrEmpty()) return;
+                string line = Flavor.FromPool("Council_Pool_SayAilment", p, null, null, "ail:" + info.key, info.serious ? "serious" : "everyday");
+                if (line.NullOrEmpty()) return;
+                CouncilGameComponent.Speak(p, line.Formatted(p.Named("PAWN")).Resolve(), OnsetColor);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("ailment: a line as it shows", e);
+            }
+        }
+
+        private static readonly Color OnsetColor = new Color(1f, 0.75f, 0.65f);
+
+        private static readonly Dictionary<HediffDef, (WorldAge age, string name)> names = new Dictionary<HediffDef, (WorldAge, string)>();
+
+        /// <summary>
+        /// An ailment's name in the colony's age (pond itch for a tribe, swimmer's itch for an industrial town), or its
+        /// label: for its message, letter, journal lines and the health tab (Hediff_Ailment).
+        /// </summary>
+        public static string NameOf(HediffDef def)
+        {
+            if (def == null) return "";
+            var info = InfoOf(def);
+            if (info == null || info.names.NullOrEmpty()) return def.label ?? "";
+            var age = Ages.Ours;
+            if (names.TryGetValue(def, out var known) && known.age == age) return known.name;
+            string name = AilmentCauseMath.NameFor(info.names, Ages.Tag(age));
+            if (name.NullOrEmpty()) name = def.label ?? "";
+            names[def] = (age, name);
+            return name;
         }
 
         /// <summary>A doctor's note on an illness, fitting the colony's era, with its heading.</summary>
@@ -566,7 +638,7 @@ namespace ColonyCouncil
             var journals = CouncilGameComponent.Instance?.journals;
             if (journals == null || p == null || p.Faction != Faction.OfPlayer) return;
             var tags = info?.key.NullOrEmpty() == false ? new[] { "ail:" + info.key, info.serious ? "serious" : "everyday", again ? "again" : null } : null;
-            string illness = def?.label ?? "";
+            string illness = NameOf(def);
             if (other != null) journals.WriteTagged(p, pool, tags, null, illness.Named("ILLNESS"), other.Named("OTHER"));
             else journals.WriteTagged(p, pool, tags, null, illness.Named("ILLNESS"));
         }
@@ -661,6 +733,97 @@ namespace ColonyCouncil
                 var cause = info?.Cause(trigger);
                 if (cause == null || (info.serious && !SeriousOn)) continue;
                 if (Rand.Chance(cause.chance * factor * Freq * PersonFactor(p, info)) && CanGet(p, def, info, false))
+                {
+                    Give(p, def, info, false);
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Jungle rot: a cut, scratch, stab or bite left untended for six hours in the wet heat (a swamp, jungle or
+        /// rainforest at 25 °C or more outside). Each wound is looked at in the one hour it turns six hours old
+        /// (AilmentCauseMath.RotWindow), so nothing needs remembering; one roll a day however many there are.
+        /// </summary>
+        private void WetHeat(Pawn p, PawnDay d)
+        {
+            if (d.rolled.Contains("WetHeat")) return;
+            var map = p.MapHeld;
+            if (map == null || !AilmentCauseMath.RotLand(AilmentChecks.WetBiome(map), map.mapTemperature.OutdoorTemp)) return;
+            bool open = false;
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count && !open; i++)
+                if (hs[i] is Hediff_Injury inj && inj.Severity >= 2f && DirtyWounds.Contains(inj.def.defName) && !inj.IsPermanent()
+                    && AilmentCauseMath.RotWindow(inj.ageTicks, inj.IsTended(), GenDate.TicksPerHour))
+                    open = true;
+            if (!open) return;
+            d.rolled.Add("WetHeat");
+            RollFor(p, AilmentTrigger.WetHeatWound, 1f);
+        }
+
+        /// <summary>
+        /// Mechanite fever: a part or implant of the spacer age or later put in within the last three days while they were
+        /// one of the colony, or a mechanite drug (the cause's after list: luciferium). The roll waits until they're out
+        /// of the sickbed (the cap), then comes once for that part (each part's load ID, with the bites).
+        /// </summary>
+        private void Mechanites(Pawn p)
+        {
+            var list = MechaniteCauses();
+            if (list.Count == 0) return;
+            var hs = p.health.hediffSet.hediffs;
+            int colonist;
+            try
+            {
+                colonist = p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0;
+            }
+            catch
+            {
+                colonist = 0;
+            }
+            for (int i = 0; i < hs.Count; i++)
+            {
+                var h = hs[i];
+                if (h?.def == null || bitesRolled.Contains(h.loadID)) continue;
+                if (!AilmentCauseMath.FreshMechanites(h.ageTicks, colonist, GenDate.TicksPerDay)) continue;
+                foreach (var (def, info, cause) in list)
+                {
+                    bool fits = h is Hediff_Implant
+                        ? AilmentCauseMath.MechanitePart(AilmentChecks.TechOf(h.def), h.def.addedPartProps?.betterThanNatural ?? false)
+                        : cause.after != null && cause.after.Contains(h.def.defName);
+                    if (!fits || (info.serious && !SeriousOn)) continue;
+                    // Still laid up after the operation: the roll waits for them to be up.
+                    if (!Harm.May(p, info.hurt)) return;
+                    bitesRolled.Add(h.loadID);
+                    if (Rand.Chance(cause.chance * Freq * PersonFactor(p, info) * Lean(info)) && CanGet(p, def, info, false)) Give(p, def, info, false);
+                    return;
+                }
+            }
+        }
+
+        private static List<(HediffDef def, HediffCompProperties_Ailment info, AilmentCause cause)> mechanites;
+
+        private static List<(HediffDef def, HediffCompProperties_Ailment info, AilmentCause cause)> MechaniteCauses()
+        {
+            if (mechanites != null) return mechanites;
+            mechanites = new List<(HediffDef, HediffCompProperties_Ailment, AilmentCause)>();
+            foreach (var def in Defs)
+            {
+                var info = InfoOf(def);
+                var c = info?.Cause(AilmentTrigger.Mechanites);
+                if (c != null) mechanites.Add((def, info, c));
+            }
+            return mechanites;
+        }
+
+        /// <summary>One roll for each ailment with this cause, in turn, until one comes (a bite's, a wound's).</summary>
+        private void RollFor(Pawn p, AilmentTrigger trigger, float factor)
+        {
+            foreach (var def in Defs)
+            {
+                var info = InfoOf(def);
+                var cause = info?.Cause(trigger);
+                if (cause == null || (info.serious && !SeriousOn)) continue;
+                if (Rand.Chance(cause.chance * factor * Freq * PersonFactor(p, info) * Lean(info)) && CanGet(p, def, info, false))
                 {
                     Give(p, def, info, false);
                     return;
@@ -1224,7 +1387,7 @@ namespace ColonyCouncil
             if (p.Faction != Faction.OfPlayer || !People.HasInnerLife(p)) return;
             if (info.serious)
             {
-                News.Post("CC_Ail_Recovered".Translate(p.Named("PAWN"), e.def.label.Named("ILLNESS")).Resolve(), new LookTargets(p),
+                News.Post("CC_Ail_Recovered".Translate(p.Named("PAWN"), NameOf(e.def).Named("ILLNESS")).Resolve(), new LookTargets(p),
                     NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                 CouncilGameComponent.GiveThought(p, AilmentDefOf.Council_Ail_Survived);
                 Journal(p, "Council_Journal_Ail_Better", e.def, info);
@@ -1234,7 +1397,7 @@ namespace ColonyCouncil
                     CouncilGameComponent.GiveThought(doctor, AilmentDefOf.Council_Ail_PulledThrough, null, -1f, "CC_Cause_About".Translate(p.LabelShort).ToString());
                     Journal(doctor, "Council_Journal_Ail_DoctorSaved", e.def, info, p);
                     // Counts toward the doctor's name (Health/HealthTracker.cs).
-                    HealthTracker.Instance?.PulledThrough(doctor, p, e.def.label, 1f, true);
+                    HealthTracker.Instance?.PulledThrough(doctor, p, NameOf(e.def), 1f, true);
                 }
             }
             else if (!info.lingering && Rand.Chance(0.15f)) Journal(p, "Council_Journal_Ail_Better", e.def, info);
