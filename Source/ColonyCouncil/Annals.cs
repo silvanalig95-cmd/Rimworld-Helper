@@ -174,7 +174,7 @@ namespace ColonyCouncil
         public int Since => yearStartTick;
 
         /// <summary>The year is counted from part of the way through only (the mod added midway, or an older save's calendar year).</summary>
-        public bool Partial(int landingTick) => partial || yearStartTick > landingTick + GenDate.TicksPerDay * 3;
+        public bool Partial(int landingTick) => YearLetterMath.Partial(partial, yearStartTick, landingTick);
 
         /// <summary>The year written: kept for the Chronicle's header (its letter, by the colony's year) and counted again from today.</summary>
         public void Keep(Map map, int landYear, Pawn author, string text)

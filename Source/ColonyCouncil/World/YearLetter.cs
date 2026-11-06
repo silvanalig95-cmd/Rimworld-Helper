@@ -26,8 +26,8 @@ namespace ColonyCouncil
         {
             if (comp == null || ColonyCouncilMod.Settings == null || !ColonyCouncilMod.Settings.annals) return;
             int days = GenDate.DaysPassed;
-            if (days < GenDate.DaysPerYear || days % GenDate.DaysPerYear > 2) return;
-            int year = days / GenDate.DaysPerYear;
+            if (!YearLetterMath.IsYearDay(days)) return;
+            int year = YearLetterMath.YearOf(days);
             if (year <= comp.yearLetterLast) return;
             var map = MapFacts.BusiestHome;
             if (map == null) return;
@@ -45,7 +45,7 @@ namespace ColonyCouncil
         private static void Write(CouncilGameComponent comp, Map map, int year)
         {
             int now = Find.TickManager.TicksGame;
-            int sinceTick = (year - 1) * GenDate.TicksPerYear;
+            int sinceTick = YearLetterMath.LandingTick(year);
             var annals = comp.annals;
             var author = annals.Author(comp, out bool keeps);
             var sb = new StringBuilder();

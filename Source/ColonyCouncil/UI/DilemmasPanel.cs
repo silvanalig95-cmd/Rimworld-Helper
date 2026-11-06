@@ -8,9 +8,11 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Council → Dilemmas: the questions waiting for the council's answer, the traditions its answers have founded, and
-    /// every answer given since (<see cref="DilemmaLog"/>) as a table: the day, the question, the answer, who it was
-    /// about, and how it went (as answered, gone wrong, still to happen, taken place or fallen through), with the
-    /// follow-up text in its tooltip. The table's filter is remembered (<see cref="PageMemory"/>).
+    /// every answer given since as a table: the dilemmas (<see cref="DilemmaLog"/>, with what each answer was to do) and
+    /// every other question from the history's answers' log (<see cref="Answers"/>: events, world events, camps,
+    /// diplomacy's offers, calendar days, meetings, elections, the region's asks, journeys): the day, the question, the
+    /// answer, who it was about, and how it went (as answered, gone wrong, still to happen, taken place or fallen
+    /// through), with the follow-up text in its tooltip. The table's filter is remembered (<see cref="PageMemory"/>).
     /// </summary>
     public static class DilemmasPanel
     {
@@ -37,6 +39,7 @@ namespace ColonyCouncil
         private sealed class Line
         {
             public DilemmaRecord r;
+            public int tick;
             public string day, question, answer, answerSub, who, went, wentSub, tip;
             public Color wentColor;
         }
@@ -227,7 +230,6 @@ namespace ColonyCouncil
             foreach (var d in tracker.Traditions)
                 m.traditions.Add(((d.traditionLabel ?? d.label).CapitalizeFirst(), "CC_Dil_TraditionTip".Translate(d.LabelCap).Resolve()));
             var records = DilemmaLog.Records ?? new List<DilemmaRecord>();
-            m.count = records.Count;
             var colonists = PawnsFinder.AllMaps_FreeColonists;
             for (int i = records.Count - 1; i >= 0; i--)
             {
@@ -240,6 +242,25 @@ namespace ColonyCouncil
                 if (filter == Filter.Unanswered && !r.byDefault) continue;
                 m.lines.Add(LineFor(r, colonists));
             }
+            // Every other question's answer, from the history's answers' log (events, the world's, camps, diplomacy's
+            // offers, calendar days, meetings, elections, the region's asks, journeys): the dilemmas are above, in full.
+            var book = WorldLedger.Instance?.Book;
+            if (book != null)
+                foreach (var e in book.OfKind(AnswerMath.Family))
+                {
+                    if (e.folded || e.values == null || AnswerMath.SourceOf(e.kind) == "dilemma") continue;
+                    var went = AnswerMath.Went(e.values);
+                    bool wrong = went == AnswerWent.WentWrong || went == AnswerWent.FellThrough;
+                    bool unanswered = AnswerMath.ByDefault(e.values);
+                    m.filterCounts[0]++;
+                    if (wrong) m.filterCounts[1]++;
+                    if (unanswered) m.filterCounts[2]++;
+                    if (filter == Filter.WentWrong && !wrong) continue;
+                    if (filter == Filter.Unanswered && !unanswered) continue;
+                    m.lines.Add(LineFor(e, colonists));
+                }
+            m.lines.Sort((a, b) => b.tick.CompareTo(a.tick));
+            m.count = m.filterCounts[0];
             m.stat = "CC_Dil_Stat".Translate(m.waiting.Count).Resolve();
             m.countText = "CC_Dil_HistoryCount".Translate(m.count).Resolve();
             return m;
@@ -278,6 +299,7 @@ namespace ColonyCouncil
             return new Line
             {
                 r = r,
+                tick = r.tick,
                 day = "CC_DayN".Translate(r.tick / GenDate.TicksPerDay + 1),
                 question = PaneLinks.Mark(r.question, colonists),
                 answer = r.answer,
@@ -287,6 +309,33 @@ namespace ColonyCouncil
                 wentSub = wentSub,
                 wentColor = DilemmaLog.WentColor(went),
                 tip = string.Join("\n\n", tip)
+            };
+        }
+
+        /// <summary>Another question's answer, as the history's answers' log keeps it: the same columns, its whole record in the tooltip.</summary>
+        private static Line LineFor(HistoryEntry e, List<Pawn> colonists)
+        {
+            var went = AnswerMath.Went(e.values);
+            string note = AnswerMath.Get(e.values, AnswerMath.NoteAt);
+            string outcome = AnswerMath.Get(e.values, AnswerMath.Outcome);
+            string who = null;
+            foreach (var a in e.actors)
+            {
+                who = Chronicle.NameOf(a.who) ?? (a.who.kind == RefKind.People ? Refs.Faction(a.who)?.Name : null);
+                if (!who.NullOrEmpty()) break;
+            }
+            return new Line
+            {
+                tick = e.tick,
+                day = "CC_DayN".Translate(e.tick / GenDate.TicksPerDay + 1),
+                question = PaneLinks.Mark(AnswerMath.Get(e.values, AnswerMath.Question), colonists),
+                answer = AnswerMath.Get(e.values, AnswerMath.Answer),
+                answerSub = AnswerMath.ByDefault(e.values) ? "CC_Dil_NoAnswer".Translate().ToString() : null,
+                who = PaneLinks.Mark(who, colonists),
+                went = ("CC_Dil_Went_" + went).Translate(),
+                wentSub = !note.NullOrEmpty() ? note.CapitalizeFirst() : Short(outcome),
+                wentColor = DilemmaLog.WentColor((DilemmaWent)(int)went),
+                tip = Chronicle.AnswerTip(e)
             };
         }
 

@@ -690,7 +690,8 @@ namespace ColonyCouncil
             // Its words with each name it mentions a link to its card, and its day a link to its own (Rimfolk's windows only).
             string text = CardWords.HistoryLine(e, true);
             string fam = HistoryKinds.Family(e.kind);
-            int ck = Array.IndexOf(HistoryKinds.Chronicle, fam);
+            // A line told for the chronicle or an answer shows as the chronicle shows it (ChronicleMath).
+            int ck = ChronicleMath.KindOf(e.kind);
             return new Row
             {
                 entry = ThingRefs.Of(e),
