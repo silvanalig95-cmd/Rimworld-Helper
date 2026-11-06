@@ -123,20 +123,35 @@ namespace ColonyCouncil
         /// <summary>The wild grown trees that stand within reach of the colony's outer walls, nearest the walls first.</summary>
         public static List<Plant> TreesByWalls(Map map)
         {
-            var found = new List<(Plant p, float d)>();
-            var center = TemplatePlanner.ColonyCenter(map);
-            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Plant))
+            // From the walls out (a colony has far fewer wall cells facing the open than trees about it): each outer wall's
+            // cells within reach, and the nearest wall each tree there stands from.
+            var found = new Dictionary<Plant, float>();
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
             {
-                if (!(t is Plant p) || !WildTree(p, map) || p.Position.DistanceToSquared(center) > 70 * 70) continue;
-                float best = float.MaxValue;
-                foreach (var c in GenRadial.RadialCellsAround(p.Position, YearFourMath.TreeReach, false))
+                if (!b.Spawned || b.def.passability != Traversability.Impassable || b is Building_Door || b.def.size.x != 1 || b.def.size.z != 1) continue;
+                var at = b.Position;
+                if (!OuterWall(at, map)) continue;
+                foreach (var c in GenRadial.RadialCellsAround(at, YearFourMath.TreeReach, false))
                 {
-                    if (!c.InBounds(map) || !OuterWall(c, map)) continue;
-                    best = Mathf.Min(best, c.DistanceTo(p.Position));
+                    if (!c.InBounds(map) || !(c.GetPlant(map) is Plant p) || !WildTree(p, map)) continue;
+                    float d = c.DistanceTo(at);
+                    if (!found.TryGetValue(p, out float was) || d < was) found[p] = d;
                 }
-                if (best < float.MaxValue) found.Add((p, best));
             }
-            return found.OrderBy(x => x.d).Select(x => x.p).ToList();
+            return found.OrderBy(kv => kv.Value).Select(kv => kv.Key).ToList();
+        }
+
+        private static readonly Dictionary<int, (int tick, List<Plant> trees)> treesSeen = new Dictionary<int, (int, List<Plant>)>();
+
+        /// <summary>The same, worked out at most every six hours a map (the advisor's hourly look; trees grow slowly).</summary>
+        public static List<Plant> TreesByWallsLately(Map map)
+        {
+            int now = Find.TickManager.TicksGame;
+            if (treesSeen.TryGetValue(map.uniqueID, out var c) && now >= c.tick && now - c.tick < GenDate.TicksPerHour * 6)
+                return c.trees.Where(p => p != null && p.Spawned && p.Map == map).ToList();
+            var trees = TreesByWalls(map);
+            treesSeen[map.uniqueID] = (now, trees);
+            return trees;
         }
 
         /// <summary>The nearest wild grown trees outside the home area and the colony's zones, for wood.</summary>
@@ -209,15 +224,44 @@ namespace ColonyCouncil
             return length;
         }
 
-        /// <summary>Who of the herd to mark first: never bonded or carrying young, the oldest first and the males beyond one of a kind.</summary>
+        /// <summary>
+        /// Who of the herd to mark first: never someone's own, bonded, named or carrying young; the spare males first, then the
+        /// oldest, always leaving a male and a female of each kind.
+        /// </summary>
         public static List<Pawn> ToCull(List<Pawn> herd, int count)
         {
+            var chosen = new List<Pawn>();
+            if (count <= 0) return chosen;
+            // As the herd's cull spares them (Animals/AnimalDilemmas.cs): nobody's own animal, nothing bonded or named.
+            var may = herd.Where(a => !a.Downed && a.ageTracker.CurLifeStage?.reproductive != false && !Bonded(a) && !Pregnant(a) && !a.IsQuestLodger()
+                                      && PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical)
+                                      && a.Map.designationManager.DesignationOn(a, DesignationDefOf.Slaughter) == null)
+                .OrderByDescending(a => a.ageTracker.AgeBiologicalYearsFloat / Mathf.Max(1f, a.RaceProps.lifeExpectancy)).ToList();
+            // The spare males first, oldest first, always leaving one male of each kind (and one female) for the spring.
             var males = herd.Where(a => a.gender == Gender.Male).GroupBy(a => a.def).ToDictionary(g => g.Key, g => g.Count());
-            return herd.Where(a => !a.Downed && a.ageTracker.CurLifeStage?.reproductive != false && !Bonded(a) && !Pregnant(a)
-                                   && a.Map.designationManager.DesignationOn(a, DesignationDefOf.Slaughter) == null)
-                .OrderByDescending(a => a.gender == Gender.Male && males.TryGetValue(a.def, out int n) && n > 1)
-                .ThenByDescending(a => a.ageTracker.AgeBiologicalYearsFloat / Mathf.Max(1f, a.RaceProps.lifeExpectancy))
-                .Take(Mathf.Max(0, count)).ToList();
+            var females = herd.Where(a => a.gender == Gender.Female).GroupBy(a => a.def).ToDictionary(g => g.Key, g => g.Count());
+            foreach (var a in may.Where(a => a.gender == Gender.Male))
+            {
+                if (chosen.Count >= count) break;
+                if (males.TryGetValue(a.def, out int n) && n > 1)
+                {
+                    chosen.Add(a);
+                    males[a.def] = n - 1;
+                }
+            }
+            foreach (var a in may)
+            {
+                if (chosen.Count >= count) break;
+                if (chosen.Contains(a)) continue;
+                var left = a.gender == Gender.Male ? males : a.gender == Gender.Female ? females : null;
+                if (left != null)
+                {
+                    if (!left.TryGetValue(a.def, out int n) || n <= 1) continue;
+                    left[a.def] = n - 1;
+                }
+                chosen.Add(a);
+            }
+            return chosen;
         }
 
         private static bool Bonded(Pawn a) => a.relations?.DirectRelations?.Any(r => r.def == PawnRelationDefOf.Bond) ?? false;
@@ -490,7 +534,7 @@ namespace ColonyCouncil
             ctx = null;
             if (!CanHappenNow(map) || map.snowGrid == null) return false;
             var area = YearFour.SnowArea(map);
-            if (area == null) return false;
+            if (area == null || map.mapTemperature.OutdoorTemp > YearFourMath.SnowMelts) return false;
             YearFour.Snow(map, out int open, out int deep);
             if (!YearFourMath.Snowed(deep, open, area.TrueCount)) return false;
             var pawns = YearFour.Grown(map);

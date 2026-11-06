@@ -49,7 +49,7 @@
 
   <!-- ===================== The herd ===================== -->
   <CC_Y4_HerdNone>None of the herd can be spared now.</CC_Y4_HerdNone>
-  <CC_Impact_Slaughter>{0} marked for slaughter, the oldest and the spare males first, never one bonded or carrying young</CC_Impact_Slaughter>
+  <CC_Impact_Slaughter>{0} marked for slaughter, the spare males and the oldest first, never one of someone's own, bonded, named or carrying young</CC_Impact_Slaughter>
   <CC_Impact_SlaughterBrief>{0} of the herd to the butcher</CC_Impact_SlaughterBrief>
   <CC_Impact_SlaughterMeat>Meat for the stores, and the hay goes further for the rest</CC_Impact_SlaughterMeat>
   <CC_Impact_SlaughterMeatBrief>meat, and hay that lasts</CC_Impact_SlaughterMeatBrief>

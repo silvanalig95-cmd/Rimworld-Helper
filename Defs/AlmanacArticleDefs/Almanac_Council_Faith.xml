@@ -72,7 +72,9 @@ The colony can hold one every five days at most, and the same ideoligion one eve
       </li>
       <li>
         <heading>An ideoligion evening, asked for</heading>
-        <text>Now and then one of the devout who would speak for their ideoligion asks the council for an evening of it (at most once in 20 days, only when one could be held). Holding it, open to all, calls it at once and earns the asker 2 trust. An evening for the ideoligion's own believers only gathers them at its altar or a fire, makes them 4% surer, and earns 1 trust (it needs two of them at home). Not now (if unanswered) costs the asker 2 trust.</text>
+        <text>Now and then one of the devout who would speak for their ideoligion asks the council for an evening of it (at most once in 20 days, only when one could be held). Holding it, open to all, calls it at once and earns the asker 2 trust. An evening for the ideoligion's own believers only gathers them at its altar or a fire, makes them 4% surer, and earns 1 trust (it needs two of them at home). Not now (if unanswered) costs the asker 2 trust.
+
+Two more questions come in the council's usual rhythm. Someone of the colony's ideoligion under a third certain of it can be sat with for an hour by its moral guide, or its most devout speaker when it has none (8% surer through the shared core), go alone to its altar for an hour (5% surer; only while it has one here), or be left to it. And when nobody holds the moral guide's role in the colony's ideoligion and two of its believers could (grown, free, holding no other role, meeting what the role asks), the council can name either: the game's own role, with its apparel and its abilities, the other passed over; or name nobody. The advisor mentions a faith without a guide too, gently.</text>
       </li>
       <li>
         <heading>One ideoligion for the colony (a decree)</heading>
@@ -83,7 +85,9 @@ The colony can hold one every five days at most, and the same ideoligion one eve
           <li>Colonists of other ideoligions | Lose trust: 0.25 if open-minded, 0.5 most, 0.75 if devout, 1 if their ideoligion frowns on being preached to</li>
           <li>Its believers | Speak of it half again as often; every council meeting opens with a word from one of them</li>
         </table>
-        <after>Its devout believers love it and the rest of them like it; the devout of other ideoligions hate it and will petition to lift it, the curious don't mind, and the rest dislike it.</after>
+        <after>Its devout believers love it and the rest of them like it; the devout of other ideoligions hate it and will petition to lift it, the curious don't mind, and the rest dislike it.
+
+Every faith its evening, a decree too, is the other way, and never in force with it. Ten days, twenty to wait after. Declared, the largest ideoligion at home that isn't the colony's own holds an evening of faith, when one can be held now (its speaker free, someone to listen, the evenings' usual gaps). Each morning those of other ideoligions trust the council a little more (a quarter of a point, up to a half for the most open-minded), and the colony's own devout a quarter less. Those of other ideoligions love it, those whose ideoligion frowns on preaching and the kind like it, the colony's own devout mind it; it is asked for when someone new joins or the colony is low. Listed only as one ideoligion for the colony is.</after>
       </li>
     </sections>
     <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>evening of faith</li><li>moral guide</li><li>altar</li><li>preaching</li><li>wavering</li><li>devout</li><li>one faith</li><li>ideoligion evening</li><li>one ideoligion</li></keywords>

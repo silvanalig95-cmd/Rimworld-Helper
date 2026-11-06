@@ -122,7 +122,7 @@ namespace ColonyCouncil
             // A colony whose faith holds trees sacred is never told to cut them down.
             if (Colonists(map).Any(p => Beliefs.Forbids(p, Belief.NoTreeCutting))) yield break;
             var dm = map.designationManager;
-            var trees = YearFour.TreesByWalls(map).Where(p => dm.DesignationOn(p) == null).ToList();
+            var trees = YearFour.TreesByWallsLately(map).Where(p => dm.DesignationOn(p) == null).ToList();
             if (!YearFourMath.TreeLine(trees.Count)) yield break;
             var s = Signal(0.3f, "CC_Adv_TreeCover_Title".Translate(trees.Count).Resolve(), "CC_Adv_TreeCover_Detail".Translate(trees.Count).Resolve(), 0.5f, 0.7f);
             s.look = new LookTargets(trees.Cast<Thing>());
@@ -144,7 +144,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             var area = YearFour.SnowArea(map);
-            if (!Homes.IsHome(map) || map.snowGrid == null || area == null) yield break;
+            if (!Homes.IsHome(map) || map.snowGrid == null || area == null || map.mapTemperature.OutdoorTemp > YearFourMath.SnowMelts) yield break;
             YearFour.Snow(map, out int open, out int deep);
             if (!YearFourMath.Snowed(deep, open, area.TrueCount)) yield break;
             var s = Signal(0.22f, "CC_Adv_Snow_Title".Translate().Resolve(), "CC_Adv_Snow_Detail".Translate(Mathf.RoundToInt(deep * 100f / Mathf.Max(1, open))).Resolve(), 0.5f);

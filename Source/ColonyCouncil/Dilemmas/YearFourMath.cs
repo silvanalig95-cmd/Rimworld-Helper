@@ -56,6 +56,9 @@ namespace ColonyCouncil
 
         public static bool Snowed(int deep, int open, int clearArea) => open > 0 && deep >= open * SnowShare && clearArea <= SnowAreaSmall;
 
+        /// <summary>Above this outdoor temperature the snow is melting by itself: nobody asks for it cleared.</summary>
+        public const float SnowMelts = 5f;
+
         // ---------------- The unfinished work ----------------
 
         /// <summary>This many plans standing (blueprints and frames) at least.</summary>
