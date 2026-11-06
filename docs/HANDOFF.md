@@ -6,6 +6,60 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- vendettas by closeness, hostages by standing (the player's decision, 6 November 2026): two of the things found outside
+  0.104.0's list and named for the player there, approved (CLAUDE.md: the colony is the family). No version of its own:
+  its points go with the next round. (1) A vendetta left open at its avenger's death passes to whoever was closest to
+  them, a partner, a friend or a relative, by how close they really were, never to blood kin first (DESIGN.md, "A
+  vendetta passed on"). The rule is `Secrets/VendettaMath.cs` (pure, `VendettaTests`): closeness is the game's opinion of
+  the dead, the social web's warmth between the two (`SocialWeb.Warmth`) and a partner (40) or a relative by blood (20),
+  added; close enough at 60 (an opinion of 60 alone, the old friend's mark), the kind at twice that and the bloodthirsty at
+  two thirds (`Willing`: their nature only ranked them before); the closest of those who would (`Heir`; was blood kin
+  300, a partner 250, a strong tie 150, opinion 60 100, plus opinion). Who may, as before (`VendettaEnds.Candidates`: a
+  grown colonist with an inner life, never a lodger, never one already sworn on the same people; only while the war with
+  the killers goes on). Fixed with it: the day's look let the social web's bonds with the dead go (`SocialWeb.Daily`)
+  before the vendettas passed on (`vendettas.Daily`), so the old strong tie never counted; now the closest is noted in the
+  tracker's hour as the death is seen, after those who swear for the dead (`VendettaEnds.NoteHeir`, `Vendetta.heirId`,
+  saved: -1 not yet noted, 0 nobody close enough), and passed on at the day's look if they still can (`HeirNow`; else,
+  and for an older save, worked out from what is known then). Words: the told line's tag is what they were to the dead
+  (`VendettaMath.Tag`: partner, then kin, then friend; it was kin first); the two shipped lines that made it "the family's
+  oath" and "a family debt" are retired (`ShippedLines.Retired`), and a relative who was close has words of their own
+  (`Rimfolk_Lines_VendettaCloseness.xml`: three told, two in the journal, kin and close besides); the Almanac's vendettas
+  (Council, "secrets, vendettas and eulogies") and README say whoever was closest. (2) Their hostage is anyone of
+  standing among their people, never by kinship (DESIGN.md, "Wards and hostages"): `Hostages.MakeHostage(f, out
+  standing)` makes one of their traders (`TraderKinds`: the trader kinds of the game's trader groups, their caravans) or of
+  their seasoned fighters (`FighterKinds`: the stronger half by the game's combat power of the kinds their war bands
+  bring, `WardMath.Seasoned`), never a leader's own kind or one that asks a royal title, whichever their people have and
+  by a roll where they have both (`WardMath.Standing`); one of their people (`Arrivals.PersonKind`) where they have
+  neither or the kind can't be made. By the game's own generation (`Arrivals.Make`), 20 to 50 (`WardMath.StandingAge`,
+  never under the hostage's 18), a name of their own, nobody's child (it was their notable's child where the ages fit,
+  of the notable's name: `WardMath.CanBeParent` gone). The notable who sends them stays (`Wards.Sender`, the record's
+  `notable`, now "who sent them and answers for them"), and why none can be given says so (`CC_Hostage_Why_NoSender`;
+  it was the ward's `CC_Ward_Why_NoKin`, "who would send a ward"). The record keeps what they are (`WardStay.standing`,
+  `HostageStanding`): Unknown for a hostage given before, who stays as they were, parent and name too. Words: the terms'
+  answer (`CC_Hostage_Given_TheirsStanding`, "{HOSTAGE}, one of the traders of {PEOPLE}, will be brought to the gate...";
+  the shipped `CC_Hostage_Given_Theirs` loses "one of their kin" in place and is said for one of their people), the letter
+  at the gate (`CC_Hostage_Arrives_Standing`), their card (a line, "One of the seasoned fighters of ..."), the talk
+  (`them:hostage:trader`, `:fighter`, `WardMath.StandingTags`, set on their hostage spoken to; five pieces in
+  `Rimfolk_OutsiderTalks_HostageStanding.xml`: their trader at the colony and missing the road, their fighter watched and
+  after a raid, and the custom by their ways); all in `Rimfolk_Hostages_Standing.xml`. The tribes' rite "one of the
+  chief's kin given" is "one of the clan given to another fire" (`CC_Form_Hostage_Tribal_Rite`, in place: it also called
+  the colony's own hostage at a tribal town the chief's kin), and the custom's tribal line that said so is retired
+  (`OutsiderTalkMath.RetiredLines`). The Almanac's diplomacy page and README say one of standing. Left as they are and
+  named for the player: a forfeit hostage the colony keeps was their notable's kin, so always wanted back by their people
+  (`Ransoms.Notable`, `RansomMath.WantBack`) and a reason for them to hear a truce (`Truces.Held`); one given now is
+  wanted back by the roll like any captive (six in ten at peace, three in ten at war) and is no reason; the swearing
+  itself (blood kin and partners of the one killed always swear, friends by a tie or opinion: `VendettaTracker.Close`);
+  docs/design/stage2-diplomacy.md's forms table still has the old tribal rite (a design doc another agent was revising).
+  Unchanged, as asked: a dead colonist's life goal taken up by someone close (`Aspirations.cs`); the escort who walks a
+  hostage in (one of their own family, as a ward's). Tests: `VendettaTests` (new: the rule, who may, noted at the death,
+  the words), `WardTests` (the standing, the seasoned half, the kinds, the record, the words, the retired custom),
+  `OutsiderTalkTests` (the standing tags). Checks: textcheck against 8546bdc reports only the three new files (no
+  placeholder dropped in the two lines rewritten in place); almanaccheck against HEAD and 8546bdc clean. To look at in
+  game: the dev action "Hostages: a hostage for a live truce or pact" with a people who have caravans and war bands (the
+  answer says which; one of their traders or fighters walks in by their kind, the gate's letter, their card's line, a
+  talk with them), an older save with a hostage of theirs here (no line on their card, nothing else changed); a colonist
+  with an open vendetta killed in a fight with another people, whose sister thinks little of them and whose friend much
+  (the next day the friend takes it up, the line and the journal), and one whose closest is their brother (a [kin] line).
 - 0.104.0, diplomacy reshaped from family to colony (the player's decision, 5 November 2026): "we just need to make the shift from
   family to colony. family dynamics are fun and interesting, but it's never going to be a dynastic game like ck3, rather
   the colony is the 'family' so to say, so mechanics should revolve around that" (CLAUDE.md: the colony is the family).
