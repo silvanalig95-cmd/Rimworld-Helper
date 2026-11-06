@@ -30,8 +30,9 @@ namespace ColonyCouncil
     /// <para>
     /// Nothing per tick and no schedule slot of its own: what is under way rides the region's hour (<see cref="Pass.Region"/>),
     /// the bond's look its day. With one colony and nothing handed over nothing runs and nothing is saved.
-    /// release 2b: what the town does afterwards (letters, trade, its days, homecomings, moving there), taking it back
-    /// (peacefully and by force: decisions 10A and 7A) and keeping the layout come here.
+    /// Release 2b: the colony's layout is kept as the town is made (<see cref="Make"/>, Colonies/TownLayout.cs, decision
+    /// 7A); what the town does afterwards (its letters, trade, days, homecomings, moving there) is Colonies/TownsAfter.cs,
+    /// and taking it back, by its people's word or by force (decision 10A), Colonies/TownTakeBack.cs.
     /// </para>
     /// </summary>
     public static class HandOvers

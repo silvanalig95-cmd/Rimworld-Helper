@@ -218,7 +218,7 @@ public static class HandOverTests
         C(ho.Contains("Find.GameEnder.CheckOrUpdateGameOver()") && ho.Contains("HandOverMath.WaitsFor("), "the town made only once those who go have left, and the game's end checked after");
         C(ho.Contains("Pacts.Make(") && !ho.Contains("Fealty"), "the terms: a pact or nothing, never fealty (9A)");
         C(ho.Contains("Speech.Say(") && ho.Contains("Together.When(") && ho.Contains("PlayKind.Toast"), "the ceremony on the map: the head's words, the token and the farewells face to face");
-        C(ho.Contains("// release 2b") || ho.Contains("release 2b:"), "what is left for release 2b is marked");
+        C(ho.Contains("TownLayouts.Capture(home, free)") && ho.Contains("layout = layout"), "release 2b's seam filled: the colony's layout kept as the town is made (Colonies/TownLayout.cs)");
         C(patches.Contains("typeof(Faction), nameof(Faction.TryGenerateNewLeader)") && patches.Contains("HandOverPeoples.IsOurs(__instance)"),
             "the second leads through the game's own succession, for these peoples only");
         C(patches.Contains("typeof(Settlement), nameof(Settlement.GetGizmos)") && patches.Contains("nameof(GravshipUtility.AbandonMap)"), "the world button beside the game's Abandon, and the gravship's takeoff");

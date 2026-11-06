@@ -97,7 +97,7 @@
   <CC_HandOver_Captives_Go>Taken along by those who go, in the caravan you form (any still here are set free)</CC_HandOver_Captives_Go>
   <CC_HandOver_StaysHead>What stays with the place</CC_HandOver_StaysHead>
   <CC_HandOver_StaysLine>{BUILDINGS} buildings, {FIELDS} fields, goods worth {GOODS} silver, and {ANIMALS} animals unless they go along. The town keeps them as its own.</CC_HandOver_StaysLine>
-  <CC_HandOver_StaysMore>As with the game's own abandon, whatever the town can't keep goes with the map: held entities and what lies about. A relic stays theirs. Mechs go with their mechanitor, or stay. The game closes the map once those who go have left; if it is ever made again, it is the game's own town of that people.</CC_HandOver_StaysMore>
+  <CC_HandOver_StaysMore>As with the game's own abandon, whatever the town can't keep goes with the map: held entities and what lies about. A relic stays theirs. Mechs go with their mechanitor, or stay. The game closes the map once those who go have left; if it is ever made again, it is the colony as it was left, with the town's people at home in it.</CC_HandOver_StaysMore>
   <CC_HandOver_ChecksHead>Before it can go ahead</CC_HandOver_ChecksHead>
   <CC_HandOver_CheckOk>Yes: {TEXT}</CC_HandOver_CheckOk>
   <CC_HandOver_CheckNo>Not yet: {TEXT}</CC_HandOver_CheckNo>

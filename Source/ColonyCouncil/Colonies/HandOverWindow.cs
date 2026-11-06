@@ -344,7 +344,8 @@ namespace ColonyCouncil
             y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_StaysLine".Translate(buildings.Named("BUILDINGS"), fields.Named("FIELDS"), goods.ToString("#,0").Named("GOODS"),
                 animals.Named("ANIMALS")).Resolve(), Color.white) + 2f;
             y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_StaysMore".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 10f;
-            // release 2b: the colony's layout kept, so the town's map, when it is made again, is the colony as it was left.
+            // The colony's layout is kept (Colonies/TownLayout.cs): the town's map, when it is made again, is the colony as it was left.
+            y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_StaysLayout".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 10f;
             return y;
         }
 

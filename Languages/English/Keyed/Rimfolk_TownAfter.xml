@@ -13,6 +13,9 @@
   <CC_Settings_TownLife_Tip>A town the colony was, once handed over: its head writes to the colony now and then (a season apart at least), with news of the town and the colony's days remembered; when a trader caravan of theirs comes, the town's trader comes as the one who trades; it keeps the colony's founding day and the day of the hand-over and invites the colony to one of them a year at most; and one of its former people may ask to come home (never the head; once a season from each town at most), when their spouse, child or close friend is in the colony or their town is in hard times. A colonist with a spouse, child or close friend in the town may ask the council to go and live there. Off: none of this comes; the kept layout, asking for it back and taking it back by force go on as always.</CC_Settings_TownLife_Tip>
   <CC_SetNote_TownLife>A town the colony was writes, sends its trader, invites the colony to its days and lets its people come home.</CC_SetNote_TownLife>
 
+  <!-- The hand-over window (Colonies/HandOverWindow.cs), under what stays with the place -->
+  <CC_HandOver_StaysLayout>Rimfolk keeps the colony's layout: its buildings, floors and roofs, and where rock was mined, not its goods, plants or filth. When the town's map is made again (an attack, a fight there, taking it back), it is the colony as it was left.</CC_HandOver_StaysLayout>
+
   <!-- The letter purpose (World/NeighbourLetters.cs): to the head of a town the colony was only -->
   <CC_Letter_Purpose_TakeBack>asking for the town back</CC_Letter_Purpose_TakeBack>
   <CC_Letter_PurposeCap_TakeBack>Asking for the town back</CC_Letter_PurposeCap_TakeBack>
