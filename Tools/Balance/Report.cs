@@ -74,18 +74,24 @@ namespace Balance
                 var n6 = R("default", "neglect", 6).summary;
                 var n12 = R("default", "neglect", 12).summary;
                 var m6 = R("letdowns and joys as moods", "neglect", 6).summary;
-                sb.AppendLine($"| Time under the minor-break line, neglectful (letdowns as moods: {P(m6.underMinor)}) | no more than before | {P(n6.underMinor)} | {P(n12.underMinor)} |" + (before != null ? " - |" : ""));
-                sb.AppendLine($"| The heart's day off a colonist-year, neglectful (letdowns as moods: {m6.episodesPerYear:0.00}) | under one | {n6.episodesPerYear:0.00} | {n12.episodesPerYear:0.00} |" + (before != null ? " - |" : ""));
+                sb.AppendLine($"| Time under the minor-break line, neglectful (letdowns as moods: {P(m6.underMinor)}) | no more than before | {P(n6.underMinor)} | {P(n12.underMinor)} |" + Before("default|neglect|6", x => P(x.underMinor)));
+                sb.AppendLine($"| The heart's day off a colonist-year, neglectful (letdowns as moods: {m6.episodesPerYear:0.00}) | under one | {n6.episodesPerYear:0.00} | {n12.episodesPerYear:0.00} |" + Before("default|neglect|6", x => x.episodesPerYear.ToString("0.00")));
+                foreach (var st in Rates.Styles)
+                {
+                    var g6 = R("default", st.key, 6).summary;
+                    var g12 = R("default", st.key, 12).summary;
+                    sb.AppendLine($"| In good heart / in high spirits, {st.name} (for reference) | a well-run colony's reward | {P(g6.goodHeart)} / {P(g6.highSpirits)} | {P(g12.goodHeart)} / {P(g12.highSpirits)} |" + (before != null ? " - |" : ""));
+                }
             }
             sb.AppendLine();
 
             // ---------------- Before and after ----------------
             if (before != null)
             {
-                sb.AppendLine("## Before and after phase 3 (one heart)");
+                sb.AppendLine("## Before and after the heart's good side");
                 sb.AppendLine();
-                sb.AppendLine("The simulator on the code and defs as they were before phase 3 of the review (four rules softening good moods, small");
-                sb.AppendLine("letdowns as moods of their own, strain as a fixed share per play style), and as they are now (default settings).");
+                sb.AppendLine("The simulator on the code and defs as they were before the heart's good side (6 November 2026: strain alone, nothing");
+                sb.AppendLine("on the other side; `Tools/Balance/before.json`), and as they are now (default settings).");
                 sb.AppendLine();
                 sb.AppendLine("| | 6 before | 6 after | 12 before | 12 after |");
                 sb.AppendLine("|---|---|---|---|---|");
@@ -201,6 +207,43 @@ namespace Balance
                 var s = r.summary;
                 string name = $"{r.colonists} colonists, {r.style.name}" + (r.preset != null ? ", " + r.preset : "");
                 sb.AppendLine($"| {name} | {P(s.mood)} ({P(s.moodP10)} / {P(s.moodP90)}) | {P(s.underMinor)} | {N(-s.gameOrdinary)} | {N(s.parts.GetValueOrDefault("good things grown ordinary"))} |");
+            }
+            sb.AppendLine();
+
+            // ---------------- The heart's good side ----------------
+            sb.AppendLine("## The heart's good side");
+            sb.AppendLine();
+            sb.AppendLine("The other side of strain (`HeartMath`, \"The good side\"; `HeartSim.cs`): hardship spends it before strain builds; what a");
+            sb.AppendLine("gathering, a talk or a small joy eases beyond the strain there is fills it at its share, with friends close by and a");
+            sb.AppendLine("purpose (the heart's needs well met, drawn a day at a time per play style), deeds the colony speaks well of and a life");
+            sb.AppendLine("goal moving; it fades slowly. In good heart from " + ColonyCouncil.HeartMath.GoodHeartAt.ToString("0") + ", in high spirits from "
+                + ColonyCouncil.HeartMath.HighSpiritsAt.ToString("0") + "; in high spirits, now and then, an inspiration or a kind word for someone close.");
+            sb.AppendLine("Filled and spent are per colonist over the 60-day year; \"without\" is the same seeds with its setting off.");
+            sb.AppendLine();
+            sb.AppendLine("| Case | In good heart | In high spirits | Strain at nothing (without) | Inspirations / kind words a colonist-year | Filled by | Spent by |");
+            sb.AppendLine("|---|---|---|---|---|---|---|");
+            string Top(Dictionary<string, double> d) => d.Count == 0 ? "-" : string.Join(", ", d.OrderByDescending(kv => kv.Value).Take(4).Select(kv => $"{kv.Key} {kv.Value:0}"));
+            foreach (var r in results.Where(r => r.preset == null || r.preset == "lightTouch" || r.preset == "storyRich" || r.preset == "demanding"))
+            {
+                var s = r.summary;
+                var off = r.preset == null && r.colonists == 6 ? results.FirstOrDefault(x => x.preset == "" && x.style == r.style) : null;
+                string name = $"{r.colonists} colonists, {r.style.name}" + (r.preset != null ? ", " + r.preset : "");
+                string nothing = P(s.noStrain) + (off != null ? " (" + P(off.summary.noStrain) + ")" : "");
+                sb.AppendLine($"| {name} | {P(s.goodHeart)} | {P(s.highSpirits)} | {nothing} | {s.inspirationsPerYear:0.00} / {s.kindWordsPerYear:0.00} | {Top(s.goodBy)} | {Top(s.goodSpentBy)} |");
+            }
+            sb.AppendLine();
+            sb.AppendLine("What it changes (6 colonists, the same seeds with and without it):");
+            sb.AppendLine();
+            sb.AppendLine("| Play | Rimfolk's mood | Its own mood | Good moods at a high point (P99) | +12 or more | Strained / worn / near breaking | Under the minor-break line | Day off a year | Whole mood |");
+            sb.AppendLine("|---|---|---|---|---|---|---|---|---|");
+            foreach (var r in results.Where(r => r.preset == null && r.colonists == 6))
+            {
+                var off = results.FirstOrDefault(x => x.preset == "" && x.style == r.style);
+                if (off == null) continue;
+                var a = r.summary;
+                var b = off.summary;
+                sb.AppendLine($"| {r.style.name} | {N(b.net)} to {N(a.net)} | {N(a.parts.GetValueOrDefault("the good side"))} | {N(b.goodP99)} to {N(a.goodP99)} | {P(b.goodHigh)} to {P(a.goodHigh)} | "
+                    + $"{P(b.strained)}/{P(b.worn)}/{P(b.breaking)} to {P(a.strained)}/{P(a.worn)}/{P(a.breaking)} | {P(b.underMinor)} to {P(a.underMinor)} | {b.episodesPerYear:0.00} to {a.episodesPerYear:0.00} | {P(b.mood)} to {P(a.mood)} |");
             }
             sb.AppendLine();
 
@@ -346,8 +389,9 @@ namespace Balance
             sb.AppendLine("moved on) give no mood of their own and aren't modelled; the social events, encounters and dreams they brought");
             sb.AppendLine("are read from the defs like any other.");
             sb.AppendLine();
-            sb.AppendLine("The \"before\" column is the simulator on the code and defs as they were before phase 3 of the review (6 November");
-            sb.AppendLine("2026), with strain as a fixed share per play style; the presets' rows always use the presets as they are now.");
+            sb.AppendLine("The \"before\" column is the simulator on the code and defs as they were before the heart's good side (6 November");
+            sb.AppendLine("2026, right after phase 3 of the review); the presets' rows always use the presets as they are now. Phase 3's own");
+            sb.AppendLine("before and after are in DESIGN.md (\"Balance targets\", \"One heart\").");
             return sb.ToString();
         }
     }

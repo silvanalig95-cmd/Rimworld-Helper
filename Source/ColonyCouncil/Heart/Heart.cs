@@ -188,6 +188,10 @@ namespace ColonyCouncil
             var h = Of(p);
             if (h == null) return 1f;
             float f = kind == DreamKind.Nightmare ? HeartMath.NightmareFactor(h.Band) : 1f;
+            // Brighter dreams on the heart's good side: sweet ones likelier, nightmares rarer.
+            var good = GoodHeart.Band(h);
+            if (kind == DreamKind.Sweet) f *= HeartMath.SweetDreamFactor(good);
+            else if (kind == DreamKind.Nightmare) f *= HeartMath.GoodNightmareFactor(good);
             for (int i = 0; i < h.feelings.Count; i++)
             {
                 var d = h.feelings[i].def;

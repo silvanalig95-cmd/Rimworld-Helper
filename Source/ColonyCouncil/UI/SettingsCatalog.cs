@@ -309,6 +309,8 @@ namespace ColonyCouncil
             Section("CC_Settings_HeartHeader");
             Toggle("heart", "CC_Settings_Heart", "CC_SetNote_Heart");
             Toggle("heartEpisodes", "CC_Settings_HeartEpisodes", "CC_SetNote_HeartEpisodes", "heart");
+            // The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits.
+            Toggle("heartGoodSide", "CC_Settings_HeartGoodSide", "CC_SetNote_HeartGoodSide", "heart");
             Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
             Slider("strainSpeed", "CC_Settings_StrainSpeed", "CC_SetNote_StrainSpeed", 0.5f, 1.5f, 0.05f, "%", "heart");
             Section("CC_Settings_AilmentsHeader");

@@ -264,6 +264,8 @@ namespace ColonyCouncil
         public bool heartEpisodes = true;
         /// <summary>A line about strain and feelings under a colonist's name in the inspector (a deeper game hook).</summary>
         public bool heartInspector = true;
+        /// <summary>The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits. Off, nothing builds and the bands give nothing.</summary>
+        public bool heartGoodSide = true;
         /// <summary>How quickly strain builds: 0.5 to 1.5.</summary>
         public float strainSpeed = 1f;
         /// <summary>Everyday ailments (Ailments/): colds, strained backs, sunburn, and the like.</summary>
@@ -658,6 +660,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heart, "heart", true);
             Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
             Scribe_Values.Look(ref heartInspector, "heartInspector", true);
+            Scribe_Values.Look(ref heartGoodSide, "heartGoodSide", true);
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);

@@ -57,6 +57,36 @@ namespace ColonyCouncil
         Joys
     }
 
+    /// <summary>
+    /// The heart's good side (the player's request of 6 November 2026): steady, in good heart, in high spirits. Steady is
+    /// the middle of the one heart, where strain's own steady band is: nothing to speak of either way.
+    /// </summary>
+    public enum GoodBand
+    {
+        Steady,
+        GoodHeart,
+        HighSpirits
+    }
+
+    /// <summary>What fills the heart's good side. Saved by position in lists, so new kinds go at the end.</summary>
+    public enum GoodSource
+    {
+        /// <summary>Parties, weddings, feasts, festivals and the colony's customs (what a gathering eases beyond the strain they have).</summary>
+        Gathering,
+        /// <summary>Deep talks, kind words and good moments with friends (the same, for good talks).</summary>
+        Friends,
+        /// <summary>A run of Rimfolk's small joys (StrainRelief.Joys beyond the strain they have).</summary>
+        Joys,
+        /// <summary>Friends close by, a partner, family, a group: the heart's need of belonging well met.</summary>
+        Belonging,
+        /// <summary>Work they love, a life goal moving, a seat on the council: the heart's need of purpose well met.</summary>
+        Purpose,
+        /// <summary>A deed of theirs the colony speaks well of (Social/Gossip/Deeds.cs).</summary>
+        Deeds,
+        /// <summary>The game's comforts, a fine room and a fine meal among them (every small good mood that adds up): only a little.</summary>
+        Comforts
+    }
+
     /// <summary>The traits that change how strain builds and drains, as flags so the math needs no game types.</summary>
     [Flags]
     public enum StrainTraits
@@ -279,6 +309,184 @@ namespace ColonyCouncil
             float t = (Math.Min(strain, Max) - EpisodeAt) / (Max - EpisodeAt);
             return Lerp(1f / 36f, 1f / 24f, t);
         }
+
+        // ---------------- The good side ----------------
+        //
+        // One heart with two sides: strain on one, the good side on the other (0 to 100 each), never both at once. Hardship
+        // spends the good side before strain builds; good things ease strain before they fill the good side. It fills
+        // slowly, only while strain is at nothing, mostly from what can't be bought (friends and belonging, purpose, deeds
+        // the colony honours, gatherings, a run of small joys), the game's comforts only a little, and fades slowly.
+
+        public static readonly int GoodSourceCount = Enum.GetValues(typeof(GoodSource)).Length;
+
+        /// <summary>From here a colonist is in good heart, and from <see cref="HighSpiritsAt"/> in high spirits.</summary>
+        public const float GoodHeartAt = 45f, HighSpiritsAt = 65f;
+
+        public static GoodBand GoodBandFor(float good)
+        {
+            if (good >= HighSpiritsAt) return GoodBand.HighSpirits;
+            if (good >= GoodHeartAt) return GoodBand.GoodHeart;
+            return GoodBand.Steady;
+        }
+
+        /// <summary>The lowest value of a band of the good side (for meters and tooltips).</summary>
+        public static float GoodBandStart(GoodBand band) => band == GoodBand.HighSpirits ? HighSpiritsAt : band == GoodBand.GoodHeart ? GoodHeartAt : 0f;
+
+        /// <summary>
+        /// The situational mood thought's size at each band of the good side (Rimfolk_Thoughts_GoodHeart.xml has the same):
+        /// small, a mirror of strain's -3, -5 and -8, and kept small so a well-run colony stays on its balance targets.
+        /// </summary>
+        public static float GoodMood(GoodBand band)
+        {
+            switch (band)
+            {
+                case GoodBand.GoodHeart: return 2f;
+                case GoodBand.HighSpirits: return 3f;
+                default: return 0f;
+            }
+        }
+
+        /// <summary>The most the good side can fill in one day, from everything together.</summary>
+        public const float GoodDailyCap = 4f;
+
+        /// <summary>The most one source can fill in a day.</summary>
+        public static float GoodCap(GoodSource s)
+        {
+            switch (s)
+            {
+                case GoodSource.Gathering: return 2.5f;
+                case GoodSource.Friends: return 1.5f;
+                case GoodSource.Joys: return 1.2f;
+                case GoodSource.Belonging: return 1.2f;
+                case GoodSource.Purpose: return 1.2f;
+                case GoodSource.Deeds: return 2f;
+                // A fine room and a fine meal: only a little, so a rich colony doesn't simply buy it.
+                case GoodSource.Comforts: return 0.4f;
+                default: return 1f;
+            }
+        }
+
+        /// <summary>
+        /// How much of what a gathering, a talk or a joy eases beyond the strain they have fills the good side: what
+        /// clears strain in a day fills the good side over many.
+        /// </summary>
+        public static float GoodShare(GoodSource s)
+        {
+            switch (s)
+            {
+                case GoodSource.Gathering: return 0.45f;
+                case GoodSource.Friends: return 0.6f;
+                case GoodSource.Joys: return 0.6f;
+                case GoodSource.Comforts: return 0.15f;
+                default: return 1f;
+            }
+        }
+
+        /// <summary>
+        /// The good side an hour from belonging or purpose well met (<paramref name="need"/>, 0 to 100): nothing below 60
+        /// (HeartNeedMath.WellMet), 0.035 at 60 rising to 0.07 at 90 and more (within the source's daily cap).
+        /// </summary>
+        public static float NeedFillPerHour(float need)
+        {
+            if (float.IsNaN(need) || need < 60f) return 0f;
+            return Lerp(0.035f, 0.07f, (need - 60f) / 30f);
+        }
+
+        /// <summary>A deed the colony speaks well of: this much for a deed of size 1, up to twice for a big one.</summary>
+        public const float DeedFill = 1f;
+
+        public static float DeedFillFor(float size) => float.IsNaN(size) || size <= 0f ? 0f : DeedFill * Math.Min(2f, size);
+
+        /// <summary>A life goal that moved since yesterday: this much at the day's turn.</summary>
+        public const float GoalMovedFill = 0.6f;
+
+        /// <summary>
+        /// Fills the good side from one source within its daily cap and the day's cap for everything. Returns what was
+        /// actually added (never past <see cref="Max"/>).
+        /// </summary>
+        public static float Fill(float amount, ref float good, ref float sourceToday, float sourceCap, ref float totalToday, float totalCap)
+        {
+            if (float.IsNaN(amount) || amount <= 0f) return 0f;
+            float room = Math.Min(Math.Max(0f, sourceCap - sourceToday), Math.Max(0f, totalCap - totalToday));
+            float a = Math.Min(Math.Min(amount, room), Math.Max(0f, Max - good));
+            if (a <= 0f) return 0f;
+            sourceToday += a;
+            totalToday += a;
+            good += a;
+            return a;
+        }
+
+        /// <summary>
+        /// Someone in good heart takes a hard knock in their stride: each point of hardship spends this much of the good
+        /// side, and builds no strain while any is left.
+        /// </summary>
+        public const float SpendShare = 0.5f;
+
+        /// <summary>
+        /// Hardship spends the good side before strain builds: of <paramref name="hardship"/>, what the good side covers
+        /// (at <see cref="SpendShare"/> a point, as far as it goes) comes off <paramref name="good"/>; the rest is returned,
+        /// to build strain. <paramref name="spent"/> is what came off the good side.
+        /// </summary>
+        public static float Spend(float hardship, ref float good, out float spent)
+        {
+            spent = 0f;
+            if (float.IsNaN(hardship) || hardship <= 0f) return 0f;
+            if (good <= 0f) return hardship;
+            float cost = hardship * SpendShare;
+            if (cost <= good)
+            {
+                spent = cost;
+                good -= cost;
+                return 0f;
+            }
+            spent = good;
+            good = 0f;
+            return hardship - spent / SpendShare;
+        }
+
+        /// <summary>The good side fades slowly: about 3% a day (halving in about three weeks with nothing to fill it).</summary>
+        public const float GoodFadePerHour = 0.99873f;
+
+        /// <summary>The good side after <paramref name="hours"/> of fading.</summary>
+        public static float Faded(float good, float hours) => good <= 0f || float.IsNaN(good) ? 0f : good * (float)Math.Pow(GoodFadePerHour, Math.Max(0f, hours));
+
+        /// <summary>How high the good side has stood lately, halving in about three days (for bouncing back after a hard spell).</summary>
+        public const float LatelyPerHour = 0.9904f;
+
+        public static float Lately(float lately, float good, float hours)
+        {
+            float faded = lately <= 0f || float.IsNaN(lately) ? 0f : lately * (float)Math.Pow(LatelyPerHour, Math.Max(0f, hours));
+            return Math.Max(faded, Math.Max(0f, good));
+        }
+
+        /// <summary>
+        /// A quicker recovery from strain for someone in good heart lately (the good side spent by a hard spell, it stands
+        /// as it stood): strain drains this much faster.
+        /// </summary>
+        public static float RecoveryFactor(GoodBand band) => band == GoodBand.HighSpirits ? 1.3f : band == GoodBand.GoodHeart ? 1.15f : 1f;
+
+        /// <summary>Brighter dreams: how much likelier a sweet dream is at each band of the good side.</summary>
+        public static float SweetDreamFactor(GoodBand band) => band == GoodBand.HighSpirits ? 1.4f : band == GoodBand.GoodHeart ? 1.2f : 1f;
+
+        /// <summary>And how much rarer a nightmare.</summary>
+        public static float GoodNightmareFactor(GoodBand band) => band == GoodBand.HighSpirits ? 0.7f : band == GoodBand.GoodHeart ? 0.85f : 1f;
+
+        // ---------------- The good side's release ----------------
+
+        /// <summary>
+        /// In high spirits and safe, now and then something good comes of it (one of the game's inspirations by their
+        /// passions, or a kind word for someone close): the chance an hour, about once in four days held there.
+        /// </summary>
+        public const float ReleasePerHour = 1f / (24f * 4f);
+
+        /// <summary>Once in so many days for each colonist, and once a day in the colony.</summary>
+        public const int ReleasePawnDays = 10, ReleaseColonyDays = 1;
+
+        /// <summary>What the release spends of the good side: an inspiration more, a kind word less.</summary>
+        public const float InspirationSpends = 12f, KindWordSpends = 6f;
+
+        /// <summary>The chance of a release this hour: none below high spirits, the hourly chance from there.</summary>
+        public static float ReleaseChancePerHour(float good) => good >= HighSpiritsAt ? ReleasePerHour : 0f;
 
         /// <summary>A feeling's intensity as a share of full (0 to 1), for scaling its nudges.</summary>
         public static float Share(float intensity) => Math.Max(0f, Math.Min(1f, intensity / FullIntensity));

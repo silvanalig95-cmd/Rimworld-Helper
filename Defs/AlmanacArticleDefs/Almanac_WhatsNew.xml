@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.113.0</version>
+        <date>6 November 2026</date>
+        <title>In good heart</title>
+        <points>
+          <li>The heart has a good side now: while a colonist's strain is at nothing and good things keep coming, they grow in good heart, mostly from what can't be bought: friends close by, a purpose, a life goal moving, a deed the colony speaks well of, gatherings, good talks and a run of small joys. Fine rooms and meals add only a little.</li>
+          <li>Hardship spends the good side before strain builds, so a colonist in good heart takes a hard knock in stride.</li>
+          <li>In good heart gives a small good mood and sweeter dreams and drains strain faster; in high spirits more so. It grows ordinary like any good mood.</li>
+          <li>In high spirits and safe, now and then they find one of the game's own inspirations, or walk over to someone close who is struggling and say a kind word that lifts them.</li>
+          <li>It shows as a second meter beside strain on the Mood tab, on the colonist's card and in the inspector. A new setting, The heart's good side, beside the heart's own, switches it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.112.0</version>
         <date>6 November 2026</date>
         <title>A fairer council</title>

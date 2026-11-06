@@ -88,7 +88,7 @@ public static class SmallMomentTests
             "the heavy kinds stay with their own sources (not counted twice)");
         string logic = Code("Heart/HeartLogic.cs");
         C(logic.Contains("if (SmallMoments.Converted(mem)) continue;"), "a memory turned into a moment brings no strain or relief of its own");
-        C(logic.Contains("relief += SmallMoments.Hour(p, h, moodGroups, hours, now,"), "the hour reads the lasting ones and the pile");
+        C(logic.Contains("+= SmallMoments.Hour(p, h, moodGroups, hours, now,") && logic.Contains("out float comforts"), "the hour reads the lasting ones and the pile");
         string patch = Code("Patches/Patch_GoodTimes.cs");
         C(patch.Contains("SmallMoments.Take(__instance, newThought, otherPawn);"), "every memory passes the moments' door");
         // The game's moods: never scaled or regrouped here.

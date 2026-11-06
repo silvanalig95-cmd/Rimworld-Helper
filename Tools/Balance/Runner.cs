@@ -53,6 +53,18 @@ namespace Balance
         /// <summary>Strain built and eased a colonist-year, by what (life, Rimfolk's letdowns and joys, the small moods' pile by who made them).</summary>
         public Dictionary<string, double> strainBy { get; set; } = new Dictionary<string, double>();
         public Dictionary<string, double> reliefBy { get; set; } = new Dictionary<string, double>();
+        /// <summary>The heart's good side: time in good heart and in high spirits; inspirations and kind words a colonist-year.</summary>
+        public double goodHeart { get; set; }
+        public double highSpirits { get; set; }
+        /// <summary>Share of the time with strain at nothing.</summary>
+        public double noStrain { get; set; }
+        /// <summary>Share of the time with the good side in each tenth of its range.</summary>
+        public double[] goodTenths { get; set; }
+        public double inspirationsPerYear { get; set; }
+        public double kindWordsPerYear { get; set; }
+        /// <summary>What filled the good side and what spent it, a colonist-year, by what.</summary>
+        public Dictionary<string, double> goodBy { get; set; } = new Dictionary<string, double>();
+        public Dictionary<string, double> goodSpentBy { get; set; } = new Dictionary<string, double>();
         /// <summary>Share of the time a colonist's whole mood is under the game's usual minor-break line.</summary>
         public double underMinor { get; set; }
         /// <summary>What good things growing ordinary takes off the game's own good moods (the colony's mood, not Rimfolk's).</summary>
@@ -125,11 +137,20 @@ namespace Balance
                 s.strained = colonies.Sum(c => c.bandHours[1]) / heartHours;
                 s.worn = colonies.Sum(c => c.bandHours[2]) / heartHours;
                 s.breaking = colonies.Sum(c => c.bandHours[3]) / heartHours;
+                s.goodHeart = colonies.Sum(c => c.goodBandHours[1]) / heartHours;
+                s.highSpirits = colonies.Sum(c => c.goodBandHours[2]) / heartHours;
+                s.noStrain = colonies.Sum(c => c.noStrainHours) / heartHours;
+                s.goodTenths = Enumerable.Range(0, 10).Select(t => colonies.Sum(c => c.goodTenths[t]) / heartHours).ToArray();
             }
             double colonistYears = runs * (double)n;
             s.episodesPerYear = colonies.Sum(c => c.episodes) / colonistYears;
+            s.inspirationsPerYear = colonies.Sum(c => c.releases[0]) / colonistYears;
+            s.kindWordsPerYear = colonies.Sum(c => c.releases[1]) / colonistYears;
             foreach (var p in colonies.SelectMany(c => c.people))
             {
+                double share = Colony.YearDays / (double)(Colony.YearDays + Colony.WarmupDays);
+                foreach (var kv in p.heart.filled) s.goodBy[kv.Key] = s.goodBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * share;
+                foreach (var kv in p.heart.spent) s.goodSpentBy[kv.Key] = s.goodSpentBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * share;
                 foreach (var kv in p.heart.built) s.strainBy[kv.Key] = s.strainBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * Colony.YearDays / (Colony.YearDays + Colony.WarmupDays);
                 foreach (var kv in p.heart.eased) s.reliefBy[kv.Key] = s.reliefBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * Colony.YearDays / (Colony.YearDays + Colony.WarmupDays);
             }

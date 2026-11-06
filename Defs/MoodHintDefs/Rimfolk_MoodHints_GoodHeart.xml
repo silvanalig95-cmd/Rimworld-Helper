@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The heart's good side (Source/ColonyCouncil/Heart/GoodHeart.cs): its mood, and the kind word its release gives. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_GoodHeart</defName>
+    <thoughtClasses><li>Thought_HeartGood</li></thoughtClasses>
+    <keep>It holds while the heart's good side does: friends close by, a purpose, gatherings and good talks keep it filled, a hard knock spends some of it, and it fades slowly. The Heart section of their Mood tab says what filled it.</keep>
+    <article>Council_Alm_C_Heart</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_KindWord</defName>
+    <thoughts><li>Council_Heart_KindWord</li></thoughts>
+    <keep>It passes in a day or two. Someone in high spirits came over to say it.</keep>
+    <article>Council_Alm_C_Heart</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

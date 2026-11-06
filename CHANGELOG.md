@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## In good heart
+
+*6 November 2026, version 0.113.0*
+
+- The heart has a good side now: while a colonist's strain is at nothing and good things keep coming, they grow in good heart, mostly from what can't be bought: friends close by, a purpose, a life goal moving, a deed the colony speaks well of, gatherings, good talks and a run of small joys. Fine rooms and meals add only a little.
+- Hardship spends the good side before strain builds, so a colonist in good heart takes a hard knock in stride.
+- In good heart gives a small good mood and sweeter dreams and drains strain faster; in high spirits more so. It grows ordinary like any good mood.
+- In high spirits and safe, now and then they find one of the game's own inspirations, or walk over to someone close who is struggling and say a kind word that lifts them.
+- It shows as a second meter beside strain on the Mood tab, on the colonist's card and in the inspector. A new setting, The heart's good side, beside the heart's own, switches it off.
+
 ## A fairer council
 
 *6 November 2026, version 0.112.0*

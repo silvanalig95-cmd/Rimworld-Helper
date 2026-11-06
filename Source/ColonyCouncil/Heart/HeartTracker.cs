@@ -21,6 +21,8 @@ namespace ColonyCouncil
         private List<PawnHeart> tmpHearts;
         /// <summary>The last episode anywhere in the colony (one per two days at most).</summary>
         public int lastColonyEpisodeTick = -999999;
+        /// <summary>The last release of the heart's good side anywhere in the colony (one a day at most; Heart/GoodRelease.cs).</summary>
+        public int lastColonyReleaseTick = -999999;
 
         private static HeartTracker cached;
         private static Game cachedGame;
@@ -95,6 +97,7 @@ namespace ColonyCouncil
             // Someone the save no longer has (a pawn from a removed mod) loads as a null key: dropped quietly below.
             Scribe_Collections.Look(ref hearts, "hearts", LookMode.Reference, LookMode.Deep, ref tmpPawns, ref tmpHearts, false);
             Scribe_Values.Look(ref lastColonyEpisodeTick, "lastColonyEpisodeTick", -999999);
+            Scribe_Values.Look(ref lastColonyReleaseTick, "lastColonyReleaseTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (hearts == null) hearts = new Dictionary<Pawn, PawnHeart>();

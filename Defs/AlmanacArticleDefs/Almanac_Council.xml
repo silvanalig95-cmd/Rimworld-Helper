@@ -1250,6 +1250,8 @@ Some things take a chunk off at once: a party (6), a concert or a wedding (5), a
           <li>30 to 54 | Strained | -3 mood, darker dreams</li>
           <li>55 to 74 | Worn down | -5 mood, 5% slower work, more nightmares</li>
           <li>75 to 100 | Near breaking | -8 mood, 10% slower work, many nightmares; from 85, a day off may come</li>
+          <li>None, good side 45 to 64 | In good heart | +2 mood, brighter dreams, a quicker recovery from strain (the heart's good side, a page of its own)</li>
+          <li>None, good side 65 to 100 | In high spirits | +3 mood, brighter dreams still, a quicker recovery, and now and then an inspiration or a kind word for someone close</li>
         </table>
       </li>
       <li>
@@ -1320,7 +1322,9 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
         <heading>Where to see it</heading>
         <text>The Mood tab has a Heart section: the strain meter with its band, what built it lately, what would help, every feeling and the four needs (hover each for what it means). The council's Moods page lists who is worn down. A short line in the inspector reads like "Strain: worn down · restless, proud · lacks belonging" (the need shows while one is missed); hover it for the whole story. RimHUD can show strain, feelings and needs. Hover the strain mood in the Needs tab to see what built it up.
 
-Settings, on the Heart &amp; health page: feelings and strain on or off, the day off, the inspector line, and how quickly strain builds.</text>
+Settings, on the Heart &amp; health page: feelings and strain on or off, the day off, the inspector line, and how quickly strain builds.
+
+Strain has another side: when it is at nothing and good things keep coming, the heart fills on the other side, in good heart and in high spirits. It has a page of its own, "the heart's good side", and a second meter in the Heart section.</text>
       </li>
     </sections>
     <keywords><li>strain</li><li>stress</li><li>feelings</li><li>emotions</li><li>grief</li><li>fear</li><li>burnout</li><li>worn</li><li>breaking</li><li>rest</li><li>belonging</li><li>purpose</li><li>needs</li><li>heart</li></keywords>

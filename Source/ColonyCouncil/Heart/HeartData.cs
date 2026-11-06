@@ -135,6 +135,25 @@ namespace ColonyCouncil
         /// </summary>
         public string letdownsWhy, joysWhy;
 
+        // ---------------- The good side (Heart/GoodHeart.cs) ----------------
+
+        /// <summary>The heart's good side (0 to 100): in good heart from 45, in high spirits from 65. Never with strain at once.</summary>
+        public float good;
+        /// <summary>What filled it already today, by source (GoodSource) and in all, for its daily caps.</summary>
+        public List<float> goodToday = new List<float>();
+        public float goodTodayTotal;
+        /// <summary>What filled it lately, by source, and what spent it, by strain's sources (halving in about two days).</summary>
+        public List<float> goodRecent = new List<float>();
+        public List<float> goodSpent = new List<float>();
+        /// <summary>How high it has stood lately (halving in about three days): someone in good heart lately recovers sooner.</summary>
+        public float goodLately;
+        /// <summary>The last look at their deeds (-1: none yet, the first look only takes note), and at their life goal.</summary>
+        public int deedTick = -1, goalTick = -1;
+        public float goalProgress;
+        /// <summary>The good side's last release (GoodRelease), and what it was in words ("inspired", "a kind word for Ana").</summary>
+        public int lastReleaseTick = -999999;
+        public string releaseWhy;
+
         // ---------------- Worked out each hour, not saved ----------------
 
         [Unsaved] public List<FeelingNow> feelings = new List<FeelingNow>();
@@ -222,6 +241,12 @@ namespace ColonyCouncil
             Pad(recentBuild, HeartMath.SourceCount);
             Pad(recentRelief, HeartMath.ReliefCount);
             Pad(today, HeartMath.SourceCount);
+            goodToday ??= new List<float>();
+            goodRecent ??= new List<float>();
+            goodSpent ??= new List<float>();
+            Pad(goodToday, HeartMath.GoodSourceCount);
+            Pad(goodRecent, HeartMath.GoodSourceCount);
+            Pad(goodSpent, HeartMath.SourceCount);
             if (needLack == null) needLack = new List<float>();
             Pad(needLack, NeedCount);
             if (feelingSinceKeys == null || feelingSinceTicks == null || feelingSinceKeys.Count != feelingSinceTicks.Count)
@@ -310,8 +335,21 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref todayJoys, "todayJoys");
             Scribe_Values.Look(ref letdownsWhy, "letdownsWhy");
             Scribe_Values.Look(ref joysWhy, "joysWhy");
+            // The good side: an older save has none of it, and starts at nothing.
+            Scribe_Values.Look(ref good, "good");
+            Scribe_Collections.Look(ref goodToday, "goodToday", LookMode.Value);
+            Scribe_Values.Look(ref goodTodayTotal, "goodTodayTotal");
+            Scribe_Collections.Look(ref goodRecent, "goodRecent", LookMode.Value);
+            Scribe_Collections.Look(ref goodSpent, "goodSpent", LookMode.Value);
+            Scribe_Values.Look(ref goodLately, "goodLately");
+            Scribe_Values.Look(ref deedTick, "deedTick", -1);
+            Scribe_Values.Look(ref goalTick, "goalTick", -1);
+            Scribe_Values.Look(ref goalProgress, "goalProgress");
+            Scribe_Values.Look(ref lastReleaseTick, "lastReleaseTick", -999999);
+            Scribe_Values.Look(ref releaseWhy, "releaseWhy");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                good = HeartMath.Clamp(good);
                 // Saves from before the needs could wear on anyone have none: nobody has been lacking anything yet.
                 if (needLack == null) needLack = new List<float>();
                 if (recentBuild == null) recentBuild = new List<float>();
