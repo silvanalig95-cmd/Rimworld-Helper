@@ -634,7 +634,7 @@ namespace ColonyCouncil
             // a neglected colony, and how often it asks a question.
             //
             // Light touch: Rimfolk in the background. Only upsides, gentle pressures, fewer and quieter interruptions, no
-            // deadly illnesses and no fights from its events. Every system stays on, just slower. Targets: about +4 to +7
+            // deadly illnesses and no fights from its events, its everyday hurts at half. Every system stays on, just slower. Targets: about +4 to +7
             // well run, +2 to +5 average, around 0 neglected; under one question every two days.
             var light = NewPreset("lightTouch", "CC_SetPreset_LightTouch");
             light.values.AddRange(new[]
