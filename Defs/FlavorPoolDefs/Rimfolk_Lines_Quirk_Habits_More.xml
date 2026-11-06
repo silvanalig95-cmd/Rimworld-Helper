@@ -18,8 +18,10 @@
       <plain>
         <li>Smooth on one side and rough on the other, that's a keeper.</li>
         <li>I'll know the right one when I see it.</li>
-        <li>[winter] Cold as ice, but look at the colour in it.</li>
-        <li>[old] I've a box of these at home older than some of you.</li>
+        <li>Look at the colour in this one when the light catches it.</li>
+        <li>I've a box of these at home, and room for one more.</li>
+        <li>[child] This one's shiny, it's my lucky one now.</li>
+        <li>[child] I'm going to find a blue one, I know there's one here.</li>
       </plain>
       <warm><li>This one's for the windowsill, so somebody gets the morning on it.</li></warm>
       <blunt><li>Not that one, not that one, that one.</li></blunt>
@@ -36,8 +38,10 @@
       <plain>
         <li>Follow the grain and it does half the work for you.</li>
         <li>Nearly lost a thumb on that knot, there.</li>
-        <li>[evening] A bit of wood and a quiet hour, that's my evening.</li>
-        <li>[old] My hands shake for everything except this.</li>
+        <li>A bit of wood and a quiet hour, that's all I need.</li>
+        <li>My hands are never steadier than when they're doing this.</li>
+        <li>[child] I'm only allowed the little knife, and only away from me.</li>
+        <li>[child] It's going to be a boat, a very small boat.</li>
       </plain>
       <warm><li>I'll give this one to whoever smiles at it first.</li></warm>
       <cheerful><li>It was going to be a fox, it's turning out a dog, and that's fine.</li></cheerful>
@@ -53,8 +57,8 @@
       <plain>
         <li>Crumbs here, and seed for the shy ones over there.</li>
         <li>Don't fight over it, there's plenty.</li>
-        <li>[summer] Thirsty, are you, in this heat?</li>
-        <li>[rain] Wet feathers, all of you, poor things.</li>
+        <li>That one's bolder than the rest, look at it.</li>
+        <li>Puffed up and squabbling, the lot of you.</li>
       </plain>
       <blunt><li>Eat, then.</li></blunt>
       <cheerful><li>Here they come, the whole noisy lot of them!</li></cheerful>
@@ -69,8 +73,10 @@
       <plain>
         <li>The work can spare me for the length of a cloud.</li>
         <li>Face up, eyes shut, and nobody ask me anything.</li>
-        <li>[spring] First real warmth in the sun this year.</li>
-        <li>[old] Old bones like the sun best.</li>
+        <li>There's real warmth in it today.</li>
+        <li>Bones like the sun, mine especially.</li>
+        <li>[child] I'm a lizard on a warm rock, don't move me.</li>
+        <li>[child] My shadow's tiny right now, look.</li>
       </plain>
       <warm><li>There's warmth enough out here for everybody, come on.</li></warm>
       <cold><li>Ten minutes of this and I'll work better all afternoon.</li></cold>
@@ -84,7 +90,9 @@
       <plain>
         <li>Everything goes quiet when it snows, have you noticed?</li>
         <li>Flakes on my sleeve, look, every one a little star.</li>
-        <li>[old] I've seen a lot of snow and I'm still not tired of it.</li>
+        <li>I've seen a lot of snow and I'm still not tired of it.</li>
+        <li>[child] I'm going to catch one on my tongue, watch.</li>
+        <li>[child] If it keeps snowing we can make a snowman tomorrow.</li>
       </plain>
       <warm><li>Come and stand in it a minute, it does you good.</li></warm>
       <blunt><li>Snow, good, I'm staying out.</li></blunt>
@@ -112,8 +120,8 @@
     <lines>
       <plain>
         <li>Quiet now, and the whole day still to come.</li>
-        <li>[fall] Mist in the low ground and the light coming through it.</li>
-        <li>[spring] Lighter every morning now, you can feel the year turning.</li>
+        <li>Mist in the low ground and the light coming through it.</li>
+        <li>The sky going from grey to gold, every single time.</li>
       </plain>
       <warm><li>Good morning to you, sun, and to everyone still asleep.</li></warm>
       <blunt><li>Up, out, sun, then work.</li></blunt>
@@ -141,7 +149,7 @@
       <plain>
         <li>The wind's from the west, so that's where I'll look.</li>
         <li>Our own boot prints, mostly, going out and coming back.</li>
-        <li>[snow] Fresh snow tells you everything that walked past.</li>
+        <li>Tracks tell you everything, if you know how to read them.</li>
       </plain>
       <cheerful><li>Every path out here has a story, if you read it.</li></cheerful>
       <cold><li>No new tracks since yesterday, as expected.</li></cold>
@@ -155,7 +163,7 @@
       <plain>
         <li>A light in the dark is a kindness that costs almost nothing.</li>
         <li>A light by the door, so nobody walks past us in the dark.</li>
-        <li>[rain] Rain or not, the light stays where it can be seen.</li>
+        <li>Rain or wind, the light stays where it can be seen.</li>
       </plain>
       <warm><li>Whoever's out there, there's a light here for you.</li></warm>
       <gloomy><li>Maybe nobody will see it tonight, but it'll be lit.</li></gloomy>
@@ -168,8 +176,8 @@
     <lines>
       <plain>
         <li>A quick look along every row, then breakfast.</li>
-        <li>[spring] The new shoots look strong this morning.</li>
-        <li>[fall] Nearly ready, and nothing's getting it before we do.</li>
+        <li>These rows look strong this morning.</li>
+        <li>Nothing's getting this crop before we do.</li>
       </plain>
       <cheerful><li>Every leaf accounted for, good morning, plants.</li></cheerful>
       <gloomy><li>I lost a crop once, and I'm not losing another.</li></gloomy>
@@ -183,7 +191,7 @@
       <plain>
         <li>Breathe through the nose, slow, and let the cold go past.</li>
         <li>Mittens on, hood up, and no standing about.</li>
-        <li>[snow] Snow's soft today, so I'll keep to the packed path.</li>
+        <li>Keep to the packed path, and keep the feet dry.</li>
       </plain>
       <blunt><li>Cold, fine, I'm ready for it.</li></blunt>
       <cold><li>Do it the way you were taught and the cold is only weather.</li></cold>
