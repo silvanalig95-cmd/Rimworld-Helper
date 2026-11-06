@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What the colony's people feel after the fourth round of neighbours' requests
+       (Source/ColonyCouncil/Missions/Workers_MissionNeighbours4.cs): no mood of their own, a little recreation and
+       feeling instead, as for the harvest hands and the pilgrim seen home. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_BuiltForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>raised their roofs</label><description>A day and a half up on somebody else's rafters, and a supper in their new hall at the end of it. The beams we set are holding up their roof tonight.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_HealedForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>nursed their sick</label><description>Two days at the bedsides in their sickhouse. Some of them were very ill when I came, and none of them died after.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>4</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_TaughtThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>taught their young</label><description>A room full of other people's children, all asking why. A few of them got it by the end, and one of them got it better than I did.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_StoodWitness</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>stood witness for them</label><description>Two sides who'd sooner have fought, and me in the middle while they made their peace. They both looked at me when it was done, and nodded.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>3</felt><trust>1</trust></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_MendedForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>mended their tools</label><description>A day at their forge with their broken things, and every one of them working again by dark. Good work, in somebody else's town.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_RaisedBeast</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>raised their beast well</label><description>It came to us all legs and nerves and went home grown and glossy. Their drover looked it over twice and grinned.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>300</xp><joy>0.06</joy><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_FoundLost</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>found one of theirs</label><description>Out on our land, lost and cold, and I was the one who found them. Their people came running when they saw them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>4</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

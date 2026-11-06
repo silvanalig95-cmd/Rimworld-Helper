@@ -414,6 +414,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VarietyThreeTests.Run(root, Check)} things about world events and camps for variety (a war between neighbours, a cold year, a great work, a ban on drink, a great caravan, households on the move; stonecutters, shearers, beast-catchers, a teacher, wounded fighters).");
         Console.WriteLine($"Checked {VarietyDangersTests.Run(root, Check)} things about the third round of variety (eight questions, four events, six dangers on the map).");
         Console.WriteLine($"Checked {PeopleFourTests.Run(root, Check)} things about the colony's own people, the fourth round (twelve life goals, seven wishes, eight quirks, eight names, six deeds).");
+        Console.WriteLine($"Checked {NeighboursFourTests.Run(root, Check)} things about the fourth round of neighbours (fourteen requests, seven callers at the gate, five callers told more ways, one draw for every mission).");
         Console.WriteLine($"Checked {VendettaTests.Run(root, Check)} things about a vendetta passed on at its avenger's death (whoever was closest, by how close they really were, never blood kin first; noted at the death; the words).");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
         Console.WriteLine($"Checked {FaithTests.Run(root, Check)} things about faith in the colony (devout, wavering, swaying, a split colony).");

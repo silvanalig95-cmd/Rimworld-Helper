@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The fourth round of neighbours' requests, the goods (HappeningWorker_MissionDelivery,
+       Source/ColonyCouncil/Missions/Workers_MissionDelivery.cs): a wall against the bandits on their roads, fodder for
+       their herds in a hard season, stores for a long road, and seed grain after a blight. As for the other deliveries,
+       {A} is who dealt with the neighbour, {FACTION} and {PLACE} the neighbour and their town, {COUNT} the full price,
+       {TALE} the goods and {DEAD} the neighbour who asks; in terms, reminders and accepted lines {ITEM} is the goods,
+       and in endings {ITEM} is the silver paid. Their carts come for it: the Quests tab shows when. Lines are tagged with
+       the mission's kind, its variant, the asking people's age (their:lowtech, their:hightech, their:empire) and, for
+       endings, how it ended. -->
+
+  <!-- ===================== A wall against the bandits ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Defences</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a neighbour's wall</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A wall for {PLACE}</li>
+          <li>[tower] A watchtower for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes that the town means to raise its defences before the bandits come back, and encloses a list of what the work needs from the colony by a set day, at a good price.</li>
+          <li>[palisade] Bandits burned two farms outside {PLACE} last month, and {FACTION} mean to put a stockade round the town before they come back. {DEAD}, who leads their watch, has sent the colony a list of what the work needs, by a set day, at a good price.</li>
+          <li>[wall,their:lowtech] {FACTION} are walling {PLACE} after a summer of raids on the road, stone where they can and timber where they can't. {DEAD}, the master of the work, asks the colony for what they are short of, by a set day, and will pay well over its worth.</li>
+          <li>[wall,their:hightech] After the second raid this year, {FACTION} voted to put a proper wall round {PLACE}. {DEAD}, their quartermaster, has sent the colony an order for materials by a set day, with a fair price for all of it.</li>
+          <li>[tower] {FACTION} want a watchtower on the ridge above {PLACE}, high enough to see raiders coming a day off. {DEAD}, who is building it, has sent the colony a list of what it needs, and a good price.</li>
+          <li>[their:empire] The knight of {PLACE} writes under the Empire's seal: the town's defences must be raised against the bandits on the roads before the season turns, and the colony's help is asked. {DEAD}, the knight's steward, encloses the list and a price fitting the Empire's dignity.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The rider left at once, to tell {PLACE} the materials are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to find their timber and stone elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>defences</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>9~13</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>30~60</person>
+        <variants>
+          <li>
+            <tag>palisade</tag>
+            <goals>
+              <li><what>WoodLog</what><count>220~340</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>wall</tag>
+            <goals>
+              <li><what>blocks</what><count>90~150</count><instead>WoodLog</instead><insteadCount>150~240</insteadCount></li>
+              <li><what>WoodLog</what><count>80~140</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>tower</tag>
+            <weight>0.8</weight>
+            <goals>
+              <li><what>WoodLog</what><count>120~200</count></li>
+              <li><what>Steel</what><count>50~90</count><era>industrial|spacer</era><instead>blocks</instead><insteadCount>60~100</insteadCount></li>
+              <li><what>ComponentIndustrial</what><count>2~4</count><era>industrial|spacer</era></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION}'s list: {ITEM}, all of it in the colony's stockpiles by the day the Quests tab shows, when their carts come.\n\nFor everything, they'll pay {COUNT} silver, well over its worth. With at least half of each thing ready, they'll take what there is at its plain worth. Less than that, and they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony has promised {PLACE} the materials for its wall: {ITEM}, in the stockpiles for {FACTION}'s carts.</li>
+          <li>[tower] The colony will help {PLACE} raise its watchtower: {ITEM}, ready in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>Everything {PLACE} needs for its wall is stacked and ready, and {FACTION}'s carts are on their way.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the wall's materials, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] A wall for {PLACE}</li>
+          <li>[partial] Part of a wall for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The wall going up round {PLACE} will have the colony's timber and stone in it.</li>
+          <li>[delivered,tower] {FACTION}'s carts are coming for the materials with {ITEM} silver, and {DEAD} sends word that the tower will be up before the raiders come back. From the top of it, they say, you will see the colony.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver, and they'll look elsewhere for the rest.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}'s wall</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. {PLACE} will stand open a while longer, and {DEAD} has said so to anyone who will listen.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and the order for {PLACE}'s wall is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Fodder for their herds ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Fodder</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>fodder for a neighbour's herds</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Fodder for {PLACE}</li>
+          <li>[snow] {FACTION}'s herds and the winter</li>
+          <li>[parched] Dry grazing at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes that the town's herds won't see the season out on what is left in the lofts, and asks the colony for fodder by a set day, at a good price.</li>
+          <li>[snow,their:lowtech] {DEAD}, who keeps {FACTION}'s herds at {PLACE}, has counted the hay in the lofts and the beasts in the byres, and the sums don't meet. Without more fodder they'll have to kill half the herd before the snow. A rider has brought the colony the list, and a good price.</li>
+          <li>[snow,their:hightech] {FACTION}'s feed store at {PLACE} took water in the autumn storms, and {DEAD}, their stock manager, says the animals won't see the winter out on what's left. The order came by courier, with a fair price and a set day.</li>
+          <li>[parched] The grazing round {PLACE} has burned brown in the heat, and {FACTION}'s beasts are standing in the dust bawling for feed. {DEAD}, who keeps the herds, asks the colony for fodder by a set day, and will pay over its worth.</li>
+          <li>[their:empire] The stables of the Empire at {PLACE} will be short of feed this season, the steward writes, and the knight's horses must not go thin. {DEAD} encloses the list and a price fitting the Empire's honour.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The rider went home to tell {DEAD} the fodder is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to thin their herds, or find the feed elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>fodder</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>8~12</days>
+        <rewardFactor>1.6</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>30~70</person>
+        <variants>
+          <li>
+            <tag>snow</tag>
+            <seasons>
+              <li>Fall</li>
+              <li>Winter</li>
+            </seasons>
+            <goals>
+              <li><what>Hay</what><count>150~260</count><instead>rawfood</instead><insteadCount>100~170</insteadCount></li>
+              <li><what>Kibble</what><count>60~110</count><instead>rawfood</instead><insteadCount>50~90</insteadCount></li>
+            </goals>
+          </li>
+          <li>
+            <tag>parched</tag>
+            <seasons>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+            <goals>
+              <li><what>Hay</what><count>200~320</count><instead>rawfood</instead><insteadCount>130~200</insteadCount></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when their carts come, any food among it still fresh.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half of each thing, and they'll take what there is at its plain worth. Less, and they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have fodder ready for {PLACE}'s herds: {ITEM}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The fodder for {PLACE} is stacked and waiting, and {FACTION}'s carts are on their way.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the fodder, and the stockpiles are still short: {ITEM}.</li>
+          <li>[snow] {PLACE}'s herds won't wait for the snow, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Fodder for {PLACE}</li>
+          <li>[partial] Part of the fodder for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,snow] The fodder is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The herds will see the spring, every head of them.</li>
+          <li>[delivered,parched] {FACTION}'s carts are coming for the fodder, to take it straight out to the herds at {PLACE}, with {ITEM} silver and {DEAD}'s thanks.</li>
+          <li>[delivered] {FACTION}'s carts are coming for the colony's fodder, with {ITEM} silver for it.</li>
+          <li>[partial] Only part of the fodder is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No fodder for {PLACE}</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little fodder ready for {FACTION}'s carts to be worth the road. {PLACE} will have to thin its herds, and {DEAD} knows who to thank for it.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and the order for {PLACE}'s fodder is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Stores for a long road ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_RoadStores</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>stores for a long road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Stores for the road from {PLACE}</li>
+          <li>[pilgrimage] Pilgrims from {PLACE}</li>
+          <li>[expedition] An expedition from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} is sending people of {FACTION} on a long road this season, and asks the colony to provision them by a set day, at a good price.</li>
+          <li>[pilgrimage] {FACTION} are sending a band of pilgrims from {PLACE} on the long walk to a holy place far to the south, and the road has nothing on it for weeks. {DEAD}, who leads them, asks the colony for food that keeps and cloth for the cold nights, by a set day, at a good price.</li>
+          <li>[trek] Three households of {FACTION} are leaving {PLACE} to clear new land beyond the mountains. {DEAD}, who is taking them, has sent the colony a list of what they'll need to eat on the way and to roof themselves at the end, and a fair price.</li>
+          <li>[expedition] {FACTION} are mounting an expedition from {PLACE} to the old ruins in the far north. {DEAD}, its leader, sent the colony an order for provisions that will keep and medicine for the road, by a set day, with a good price.</li>
+          <li>[their:empire] A herald of the Empire at {PLACE} announces that the knight will ride to the High Stellarch's court this season with a fitting train, and asks the colony to provision it. {DEAD}, the knight's steward, encloses the list and a price worthy of the Empire.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The rider went home to tell {DEAD} the stores will be ready.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will look elsewhere for their stores.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>roadstores</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>9~12</days>
+        <rewardFactor>1.6</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>30~65</person>
+        <variants>
+          <li>
+            <tag>pilgrimage</tag>
+            <goals>
+              <li><what>Pemmican</what><count>40~70</count><research>Pemmican</research><instead>meals</instead><insteadCount>15~25</insteadCount></li>
+              <li><what>textiles</what><count>40~70</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>trek</tag>
+            <goals>
+              <li><what>meals</what><count>15~25</count></li>
+              <li><what>textiles</what><count>40~70</count></li>
+              <li><what>WoodLog</what><count>80~140</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>expedition</tag>
+            <weight>0.8</weight>
+            <goals>
+              <li><what>MealSurvivalPack</what><count>15~25</count><research>PackagedSurvivalMeal</research><instead>Pemmican</instead><insteadCount>40~70</insteadCount></li>
+              <li><what>medicine</what><count>4~7</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when their carts come, any food among it still fresh.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half of each thing, and they'll take what there is at its plain worth. Less, and they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will provision the road from {PLACE}: {ITEM}, ready in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The stores for the road from {PLACE} are packed and waiting, and {FACTION}'s carts are on their way.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the road's stores, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Stores for the road</li>
+          <li>[partial] Part of the stores for the road</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,pilgrimage] {FACTION}'s carts are coming for the pilgrims' stores, with {ITEM} silver and {DEAD}'s promise to say the colony's name at the holy place.</li>
+          <li>[delivered,trek] {FACTION}'s carts are coming for the stores, and the households of {PLACE} will go over the mountains on them. {DEAD} sends {ITEM} silver and hopes to send word from the new land.</li>
+          <li>[delivered,expedition] {FACTION}'s carts are coming for the expedition's provisions, and {DEAD} sends {ITEM} silver with them.</li>
+          <li>[delivered] {FACTION}'s carts are coming for everything for the road, with {ITEM} silver.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for the road</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The road from {PLACE} will start late and hungry, and {DEAD} knows why.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and the order for the road's stores is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Seed grain after a blight ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_SeedGrain</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>seed for a neighbour's fields</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Seed for {PLACE}</li>
+          <li>[blight] Blight at {PLACE}</li>
+          <li>[drowned] Drowned fields at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes that the town must sow its fields again after a hard spring, and asks the colony for seed by a set day, at a good price.</li>
+          <li>[blight,their:lowtech] The blight took {FACTION}'s fields at {PLACE} in the autumn and got into the seed store over the winter. {DEAD}, who keeps the granary, opened the sacks this week and found them black. Without new seed there is no harvest this year. A rider has brought the colony the list and a good price.</li>
+          <li>[blight,their:hightech] {FACTION}'s seed stock at {PLACE} is blighted through, {DEAD}, their agronomist, writes, and the supplier in the city has none to sell. They ask the colony for seed of its own crops, by a set day, at a fair price.</li>
+          <li>[drowned] The river came over the fields at {PLACE} just after the sowing and stood there a week. {FACTION} have to sow everything again, and the seed they had is in the mud. {DEAD} asks the colony for new seed, by a set day, and will pay well.</li>
+          <li>[their:empire] The steward of {PLACE} writes on the knight's behalf: the Empire's fields at {PLACE} must be sown again this season, and the colony's grain is asked for. {DEAD} encloses the list, under the Empire's seal, with a fair price.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The rider went home to say the seed is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to find seed somewhere else, if there is any.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>seedgrain</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>8~11</days>
+        <rewardFactor>1.6</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>30~70</person>
+        <variants>
+          <li>
+            <tag>blight</tag>
+            <seasons>
+              <li>Spring</li>
+              <li>Summer</li>
+            </seasons>
+            <goals>
+              <li><what>RawCorn</what><count>80~140</count><instead>RawRice</instead><insteadCount>80~140</insteadCount></li>
+              <li><what>RawPotatoes</what><count>60~100</count><instead>rawfood</instead><insteadCount>60~100</insteadCount></li>
+            </goals>
+          </li>
+          <li>
+            <tag>drowned</tag>
+            <weight>0.8</weight>
+            <seasons>
+              <li>Spring</li>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+            <goals>
+              <li><what>RawRice</what><count>100~160</count><instead>RawCorn</instead><insteadCount>100~160</insteadCount></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when their carts come, fresh enough to sow.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half of each thing, and they'll take what there is at its plain worth. Less, and they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send {PLACE} seed for its fields: {ITEM}, ready in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The seed for {PLACE} is sacked and waiting, and {FACTION}'s carts are on their way.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the seed, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Seed for {PLACE}</li>
+          <li>[partial] Part of the seed for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] The seed is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The fields at {PLACE} will be green again this year, grown from the colony's grain.</li>
+          <li>[partial] Only part of the seed is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No seed for {PLACE}</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little seed ready for {FACTION}'s carts to be worth the road. Half the fields at {PLACE} will lie bare this year, and {DEAD} has said so.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and the order for {PLACE}'s seed is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -466,7 +466,13 @@ namespace ColonyCouncil
             x?.relations != null && x.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead && r.otherPawn.Faction == Faction.OfPlayer);
 
         /// <summary>Their herder leads it home: it leaves the colony, and the reward is paid.</summary>
-        public static void HandBack(Mission m, Map map)
+        public static void HandBack(Mission m, Map map) => HandBack(m, map, "returned", m.goodwill);
+
+        /// <summary>
+        /// As <see cref="HandBack(Mission, Map)"/>, ending as <paramref name="outcome"/> with <paramref name="goodwill"/>
+        /// (a young beast raised for them, Workers_MissionNeighbours4.cs: kept well or poorly).
+        /// </summary>
+        public static void HandBack(Mission m, Map map, string outcome, int goodwill)
         {
             var x = m.x;
             // Their people turned on the colony in the meantime: there's nobody to hand it to.
@@ -508,8 +514,8 @@ namespace ColonyCouncil
                 }
             }
             if (!fetched) VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), m.reward);
-            Missions.Goodwill(m, m.goodwill);
-            Missions.Finish(m, MissionState.Done, "returned", m.reward.ToString(), x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid);
+            Missions.Goodwill(m, goodwill);
+            Missions.Finish(m, MissionState.Done, outcome, m.reward.ToString(), x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid);
         }
 
         public override void Release(Mission m)

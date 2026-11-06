@@ -169,6 +169,8 @@ namespace ColonyCouncil
             if (m == null || tags == null) return;
             if (!m.rite.NullOrEmpty()) tags.Add(m.riteOfFaith ? "rite" : "agerite");
             if (m.royalHost) tags.Add("royalhost");
+            // A request in the name of the town's head as the ledger knows them ({HOST}: Workers_MissionNeighbours4.cs).
+            if (!m.host.NullOrEmpty()) tags.Add("host");
             if (!m.guest.NullOrEmpty()) tags.Add("titledguest");
         }
     }

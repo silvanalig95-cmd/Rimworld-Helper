@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The fourth round of neighbours' requests (Source/ColonyCouncil/Missions/Workers_MissionNeighbours4.cs). -->
+
+  <!-- Where a request stands, on the World page and under the quest. -->
+  <CC_Mission_Hands_Go>At least {0} of the colony's people good at {1} ({2} or more), at {3} by caravan (about {4} away).</CC_Mission_Hands_Go>
+  <CC_Mission_Hands_There>The colony's people are at work at {0}: {1} of {2} hours.</CC_Mission_Hands_There>
+  <CC_Mission_Keep_Status>{FACTION}'s store in the colony's stockpiles: {ITEM}, counted when their carts come back.</CC_Mission_Keep_Status>
+  <CC_Mission_Beast_Coming>{DROVER}, their drover, is bringing {NAME} to the colony's gate.</CC_Mission_Beast_Coming>
+  <CC_Mission_Beast_Well>{NAME} is well kept: fed, not sick, no wound left untended.</CC_Mission_Beast_Well>
+  <CC_Mission_Beast_Poorly>{NAME} is not being kept well: {WHY}.</CC_Mission_Beast_Poorly>
+  <CC_Mission_Beast_Thin>thin from hunger</CC_Mission_Beast_Thin>
+  <CC_Mission_Beast_Sick>sick</CC_Mission_Beast_Sick>
+  <CC_Mission_Beast_Hurt>a wound left untended</CC_Mission_Beast_Hurt>
+  <CC_Mission_EscortWho_Set>{NAME} has shouldered the pack again and set off for {PLACE} with the colony's caravan, at {A_nameDef}'s side.</CC_Mission_EscortWho_Set>
+
+  <!-- What their people remember of the colony. -->
+  <CC_Memory_Deed_lentHands>sent its people to work at their side</CC_Memory_Deed_lentHands>
+  <CC_Memory_Deed_lentHands_Name>sent its people to work at {NAME} when they asked</CC_Memory_Deed_lentHands_Name>
+  <CC_Memory_Deed_foundLost>found one of theirs lost on the colony's land</CC_Memory_Deed_foundLost>
+  <CC_Memory_Deed_foundLost_Name>found {NAME} lost on the colony's land and brought them in</CC_Memory_Deed_foundLost_Name>
+  <CC_Dip_For_lentHands>hands lent to their town</CC_Dip_For_lentHands>
+  <CC_Dip_For_foundLost>one of theirs found and brought in</CC_Dip_For_foundLost>
+
+</LanguageData>

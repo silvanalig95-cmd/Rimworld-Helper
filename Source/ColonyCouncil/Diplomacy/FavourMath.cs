@@ -64,14 +64,15 @@ namespace ColonyCouncil
         /// a hard time eased, a dignitary well hosted, refugees taken in, a side taken, a quarrel mediated, peace made, a
         /// wrong forgiven, a pilgrim escorted, word carried, a child found, a harvest brought in, a town rebuilt, people
         /// sheltered or healed, a warning heeded, a camp that troubled their roads broken, a hamlet of theirs protected or
-        /// helped, their envoy well kept, a ward fostered, a hostage returned. Not a trade, a gift or a payment (those are
+        /// helped, their envoy well kept, a ward fostered, a hostage returned, hands lent to their town, one of theirs lost
+        /// on the colony's land found. Not a trade, a gift or a payment (those are
         /// paid for), nor the colony's word kept (that answers a debt of its own).
         /// </summary>
         public static readonly string[] OurGoodTurns =
         {
             "released", "tended", "quest", "mission", "campHelped", "hardship", "dignitary", "refugees", "sidedWith", "mediated", "madePeace", "forgave",
             "escorted", "carriedWord", "foundChild", "harvestHelp", "rebuilt", "sheltered", "campHealed", "warned", "brokeCamp", "hamlet", "hamletHelped",
-            "envoyHonored", "fostered", "hostageReturned"
+            "envoyHonored", "fostered", "hostageReturned", "lentHands", "foundLost"
         };
 
         /// <summary>

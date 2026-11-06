@@ -1924,6 +1924,60 @@ night, a lord's retinue staying by the gate).
   `Rimfolk_VisitorLines`, by moment and what they are); messages through `Notify` only for a group coming along the
   road and for one the weather drove off.
 
+### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
+
+"Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,
+in the frameworks that were there (missions, data events, letter variants), at the rates there were. The pure rules in
+`Missions/NeighboursFourMath.cs` (`NeighboursFourTests`), the workers in `Missions/Workers_MissionNeighbours4.cs`, the
+texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDefs/Rimfolk_Events_Neighbours4*.xml`.
+
+- **One draw for every mission.** Every mission offer's base chance is scaled so the missions together weigh what the
+  thirteen kinds offered weighed before this round (`MissionPoolWeight`, 6.8; `MissionPool.Factor` in the storyteller's
+  draw and Rimfolk's own, `Happenings.cs`; the balance model the same). A new kind takes a share; one mission at a time
+  as always.
+- **Hands lent to a neighbour's town** (`HappeningWorker_MissionHands`, data `MissionHands`): the harvest hands' way for
+  any skill. One or two of the colony's people good at it (a level, the work not disabled), the colony's caravan at the
+  people's nearest town within three days, staying there `hours`; the whole stay earns the silver into the packs, a gift
+  of things of the colony's era (`Loot`) and the skill's experience; half the stay half the silver, less goodwill lost.
+  Builders after a storm or a fire (Construction 5, two, 36 hours), a healer for their sickhouse (Medicine 6 and
+  doctoring, one, 48), a teacher for their young (Intellectual 7, one, 36), a witness at a truce or a boundary (Social 6,
+  one, 12), a smith before the harvest or the sowing, or a mechanic for a hightech town's pumps (Crafting 6, one, 24). Each
+  is remembered as `lentHands` (a debt of honour where those are kept). Every one's forms are by the asking people's age
+  (`their:tribal` to `their:spacer`, `their:lowtech`, `their:hightech`, added to every mission's tags) and the Empire's
+  own lines keep its knights, stewards and heralds.
+- **A store kept** (`HappeningWorker_MissionKeep`): their carts bring grain, timber, steel or cloth to the gate
+  (`Couriers.Deliver`), and when the season is up come back for as much (`Couriers.CollectGoals`), paying a quarter of
+  its worth (`KeepFee`). What the stores hold then counts, the colony's own the same as theirs, as the terms say. Short,
+  the colony pays the rest in silver at its plain worth (`Shortfall`, their carts take it); without the silver they take
+  what there is, and remember it.
+- **A young beast raised** (`HappeningWorker_MissionBeast`): a foal (lowtech peoples), a calf, a kid or a pup of a kind
+  that suits the weather and the land. Their drover walks it in with them to the gate (`Arrivals.Visit`), hands it over
+  there (`SetFaction`) and goes; at the end of the season their drover comes for it (the runaway's `HandBack`, its
+  `Couriers.Fetch`) and pays all of it kept well (no malnutrition of 0.2, nothing sick, no wound untended) or half kept
+  poorly. Dead or lost, goodwill and the memory; bonded to one of the colony's, it stays and they are glad.
+- **Someone of theirs lost on the land** (`HappeningWorker_MissionLost`, the lost child's worker with its ages, finder,
+  deed and memory as virtual hooks): an old one who wandered off (66 to 86) and a hunter overdue (20 to 55), found by
+  whoever comes within six steps in sight, then their kin come; remembered as `foundLost`.
+- **A traveller seen home** (`HappeningWorker_MissionEscortWho`, the pilgrim's escort with its ages and variant as hooks):
+  a trader with the season's silver past a bandit road, a healer bound for a sickhouse, a scholar with a chest of books.
+- **Goods** in the delivery framework, data only: the timber and stone of a wall (a palisade, a wall, a watchtower with
+  steel and components for an industrial colony), fodder for their herds (hay and kibble in the fall and winter, hay in a
+  dry summer), stores for a long road (pemmican or meals and cloth for pilgrims, meals, cloth and timber for a trek,
+  survival packs and medicine for an expedition), and seed after a blight or a flood (corn, rice, potatoes).
+- **In the town head's name.** The hands, the store, the beast and every delivery name the town's head by their title
+  when the region's ledger knows them (`InviteForms.Host`, `{HOST}` and the tag `host`), the Empire's title for the
+  Empire. No line counts the days down: the Quests tab shows the time; endings say what is happening as it happens
+  (their carts coming, their drover on the road).
+- **Callers at the gate** (data events, `HappeningWorker_Setting`, people of about the colony's age): a herb-gatherer (a
+  lesson at their side for the colony's grower, or herbal medicine bought), drovers on the road to a fair (a young beast
+  bought, handed over beside them, or a meal carried out), a seed-seller in spring and summer (a patch sown by the grower,
+  or a young tree planted at the field's edge), a neighbour's patrol after bandits (fed, a drill for the best shot, or
+  medicine sold), a traveller on the wrong road (a meal and the roads gone over at the table), a petitioner with a
+  grievance against their own head (heard out at the table), a brewer's cart (beer bought, or brewing secrets for the
+  cook). Silence sends them on; nothing gathers the colony, nobody is hurt.
+- **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
+  captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more

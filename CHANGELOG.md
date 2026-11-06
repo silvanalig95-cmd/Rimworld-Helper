@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New neighbours' requests and callers
+
+*6 November 2026, version 0.122.0*
+
+- A neighbour may ask to borrow some of your people for a while: builders after a storm or fire, a healer for their sickhouse, a teacher for their young, a witness at a truce, or a smith before harvest. Your caravan stays at their town for the work, and a full stay pays in silver.
+- They may also ask you to keep a store for them over a season, to raise a young beast for them, to search for an old one who wandered off or a hunter who is overdue, or to see a traveller safely home.
+- Four new requests for goods: a wall against bandits, fodder for their herds, stores for a long road, and seed after a blight or flood. Requests now name the town's head when you know them.
+- Seven new callers at the gate: a herb-gatherer, drovers on the way to a fair, a seed-seller, a neighbour's patrol, a traveller on the wrong road, a petitioner with a grievance and a brewer's cart.
+- The barber, the animal doctor, the undertakers, a captive's kin and the art collector come with new openings and endings.
+- Neighbours' requests come as often as before in all: each kind, old or new, is a little rarer.
+
 ## New wishes, goals and names
 
 *6 November 2026, version 0.121.0*

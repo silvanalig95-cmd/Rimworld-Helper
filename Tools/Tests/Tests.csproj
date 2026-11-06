@@ -207,5 +207,6 @@
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/VarietyTwoMath.cs" Link="VarietyTwoMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/VarietyThreeMath.cs" Link="VarietyThreeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lives/PeopleFourMath.cs" Link="PeopleFourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Missions/NeighboursFourMath.cs" Link="NeighboursFourMath.cs" />
   </ItemGroup>
 </Project>

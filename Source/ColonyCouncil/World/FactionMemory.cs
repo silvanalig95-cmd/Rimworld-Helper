@@ -209,6 +209,10 @@ namespace ColonyCouncil
             ["rebuilt"] = K(DeedSide.Favor, 12),
             ["sheltered"] = K(DeedSide.Favor, 8),
             ["campHealed"] = K(DeedSide.Favor, 6),
+            // Neighbours' requests of the fourth round (Missions/Workers_MissionNeighbours4.cs): hands lent to their town for
+            // a few days, someone of theirs lost on the colony's land found and brought in.
+            ["lentHands"] = K(DeedSide.Favor, 10),
+            ["foundLost"] = K(DeedSide.Favor, 12),
             // Letters to their notables (World/NeighbourLetters.cs): a warning of a real threat, heeded.
             ["warned"] = K(DeedSide.Favor, 6, 10f, 12),
             // One of theirs at the colony (Outsiders/): a gift into their hands, a duel of honour won fairly.

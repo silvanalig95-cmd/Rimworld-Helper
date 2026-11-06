@@ -129,6 +129,8 @@ namespace ColonyCouncil
             m.faction = hard?.Faction ?? Neighbor(map);
             if (m.faction == null) return false;
             m.place = hard?.Name ?? LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
+            // The town's head as the region's ledger knows them, for lines written in their name ({HOST}, [host]).
+            m.host = InviteForms.Host(hard ?? MissionPeoples.Town(m.faction, map), out m.royalHost);
             // The reeve deals with neighbours who need goods, when there is one (Interplay/).
             m.a = Interplay.MissionHead(map) ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;

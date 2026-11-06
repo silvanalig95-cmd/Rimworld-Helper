@@ -1296,6 +1296,19 @@ namespace Balance
             return false;
         }
 
+        private float missionTotal = -1f;
+
+        /// <summary>
+        /// Every mission offer shares one draw, as in the game (Missions/Workers_MissionNeighbours4.cs, MissionPool): each
+        /// mission's weight scaled so they weigh <see cref="Code.MissionPoolWeight"/> together; 1 for anything else.
+        /// </summary>
+        private float MissionShare(OutcomeDef e)
+        {
+            if (e.worker == null || !e.worker.StartsWith("HappeningWorker_Mission")) return 1f;
+            if (missionTotal < 0f) missionTotal = defs.events.Where(x => x.worker != null && x.worker.StartsWith("HappeningWorker_Mission") && x.weight > 0f).Sum(x => x.weight);
+            return missionTotal <= Code.MissionPoolWeight || missionTotal <= 0f ? 1f : Code.MissionPoolWeight / missionTotal;
+        }
+
         private float EventShare()
         {
             float w = Math.Clamp(set.F("storytellerEventWeight", 1f), 0.05f, 4f);
@@ -1319,7 +1332,7 @@ namespace Balance
             var pool = defs.events.Where(e => !e.battle && e.weight > 0f && Day >= e.earliestDay && Fits(e) && (!e.asks || GapOpen)).ToList();
             for (int tries = 0; tries < 10 && pool.Count > 0; tries++)
             {
-                var d = Weighted(pool, e => e.weight * (e.group == lastGroup ? Code.EventSameGroup : 1f));
+                var d = Weighted(pool, e => e.weight * MissionShare(e) * (e.group == lastGroup ? Code.EventSameGroup : 1f));
                 pool.Remove(d);
                 if (!Chance(Rates.Castable)) continue;
                 defLast[d.name] = hour;
