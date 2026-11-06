@@ -296,7 +296,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The calendar day a gathering keeps: one kept this year whose name the gathering bears (CalendarKeeping.PlayDay
-        /// names it after the day). Null for any other gathering.
+        /// names it after the day). Null for any other gathering, and for a custom's (its answer's gathering is its own,
+        /// lantern night's lanterns among them).
         /// </summary>
         public static CalendarDay DayOf(PlayOut p)
         {
@@ -305,7 +306,7 @@ namespace ColonyCouncil
             if (days == null) return null;
             int year = Year(p.map);
             foreach (var d in days)
-                if (d != null && d.label == p.label && d.lastKeptYear >= year - 1 && d.timesKept > 0)
+                if (d != null && !d.Custom && d.label == p.label && d.lastKeptYear >= year - 1 && d.timesKept > 0)
                     return d;
             return null;
         }

@@ -192,7 +192,7 @@ namespace ColonyCouncil
             float best = 0f;
             foreach (var d in cal.days)
             {
-                if (d == null || d.kind == CalendarKind.FirstSnow || d.label.NullOrEmpty()) continue;
+                if (d == null || !d.Dated || d.label.NullOrEmpty()) continue;
                 int until = CalendarMath.DaysUntil(today, d.day), since = CalendarMath.DaysSince(today, d.day);
                 int when;
                 if (until == 0)

@@ -3,7 +3,7 @@
 
   <!--
     Children's customs: seasonal dilemmas a child brings to the council, with an answer the colony can make its own
-    (traditionOption), like the planting blessing (Council_Dilemmas_Customs.xml). Choose it two years running and it
+    (traditionOption), like the planting blessing (Council_Dilemmas_Customs.xml). Choose it three years running and it
     becomes a tradition. A is a child (Biotech's children; without them these never come up). DilemmaWorker_Custom reads
     the CustomConditions: the first snow day needs a freezing day, the race a fine one.
   -->

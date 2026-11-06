@@ -137,7 +137,7 @@ namespace ColonyCouncil
             var cal = ColonyCalendar.For(map);
             if (cal == null || !ColonyCalendar.On || map == null) return false;
             int today = GenLocalDate.DayOfYear(map);
-            return cal.days.Count(d => d != null && !d.Personal && d.kind != CalendarKind.FirstSnow && CalendarMath.DaysUntil(today, d.day) >= 1 && CalendarMath.DaysUntil(today, d.day) <= 40) >= count;
+            return cal.days.Count(d => d != null && !d.Personal && d.Dated && CalendarMath.DaysUntil(today, d.day) >= 1 && CalendarMath.DaysUntil(today, d.day) <= 40) >= count;
         }
 
         public override float Baseline(Map map) => Kept(map);

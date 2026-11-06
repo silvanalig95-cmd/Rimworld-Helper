@@ -128,7 +128,7 @@
       <li>Council_Dlm_Trad_FrostSoup</li>
       <li>Council_Dlm_Trad_Lanterns</li>
     </thoughts>
-    <keep>A seasonal custom kept, or a day marked properly. Give the same answer two years running and it becomes a tradition that comes round every year; a keeper of days on the council makes each kept day more of an occasion.</keep>
+    <keep>A seasonal custom kept, or a day marked properly. Kept, a custom goes on the colony calendar, and kept three years running it becomes a tradition; a keeper of days on the council makes each kept day more of an occasion.</keep>
     <article>Council_Alm_C_Traditions</article>
     <councilTab>Decrees</councilTab>
   </ColonyCouncil.MoodHintDef>

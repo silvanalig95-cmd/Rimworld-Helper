@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One festive year
+
+*6 November 2026, version 0.115.0*
+
+- Every custom the colony keeps lives on the calendar now: a seasonal custom comes round on the day it was first kept, a custom tied to a moment (the planting day, the victory feast, telling the bees) comes with its occasion, and the calendar shows when each next comes and how many years it has been kept.
+- One rule makes a tradition: a day or a custom kept three years running. A custom let pass before then starts over and leaves the calendar; breaking a tradition costs as before, and breaking it twice in a row ends it.
+- A season that holds a custom's day asks no other custom, and a custom with its own date never comes as an ordinary council question.
+- Every feast is laid the same way, whatever its reason: an answer, a calendar day, guests, a wedding. A while in, the host raises a cup and the table raises theirs, with words for the day, the guests or the couple.
+- Old saves bring their counted customs onto the calendar; a custom already a tradition stays one, and one counted under the old two-year rule needs its third year.
+
 ## Letters that arrive, petitions that gather
 
 *6 November 2026, version 0.114.0*

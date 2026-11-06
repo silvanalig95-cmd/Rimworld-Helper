@@ -14,8 +14,9 @@ namespace ColonyCouncil
     /// history as it happens (the founding, the first good
     /// harvest, the first snow, a battle it remembers, the death of someone loved, a wedding, the arrival of one of its
     /// first members, a long-serving colonist's birthday, and in CalendarWatch.cs the first child born here, the walls
-    /// going up, a caravan home safe, a new crop's first harvest, the first trade and a great hunt) and the player can
-    /// name days of their own. Once an hour it
+    /// going up, a caravan home safe, a new crop's first harvest, the first trade and a great hunt), the council's customs
+    /// go on it when the colony keeps them (CalendarCustoms.cs: the festive year), and the player can name days of their
+    /// own. Once an hour it
     /// looks at the date; a day that is due comes round with a letter or a message, a feast, games, a rest day or a quiet
     /// hour, journal lines and talk, and a day kept three years running becomes a tradition (CalendarKeeping.cs). With
     /// the "colony calendar" setting off, days are still written down but nothing happens when they come round.
@@ -266,6 +267,10 @@ namespace ColonyCouncil
             if (hour < 9 || hour > 20) return;
             // A day's letter still waiting holds back this colony's days (one of another colony's doesn't).
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_CalendarDay c && !c.resolved && Homes.HoldsBack(Homes.MapOf(c.home), map))) return;
+            // A custom whose day has come is asked as the council's question (CalendarCustoms.cs), once nothing hostile is about.
+            bool asked = false;
+            if (!MapFacts.ThreatOn(map)) Safe("calendar custom", () => asked = AskCustoms(map, today, year));
+            if (asked) return;
             var due = NextDue(today, year, now, out int occurrence);
             if (due == null) return;
             // A fight on the home map: the day waits (until the grace day runs out).
@@ -282,6 +287,8 @@ namespace ColonyCouncil
             foreach (var d in days)
             {
                 int occ;
+                // A custom comes as its question (AskCustoms), not with the calendar's own letter.
+                if (d.Custom) continue;
                 if (d.kind == CalendarKind.FirstSnow)
                 {
                     // The first snow comes with the snow, not on a date.
@@ -325,6 +332,11 @@ namespace ColonyCouncil
             foreach (var d in days)
             {
                 if (d.kind == CalendarKind.FirstSnow) continue;
+                if (d.Custom)
+                {
+                    MarkCustomMissed(d, today, year);
+                    continue;
+                }
                 if (CalendarMath.DaysSince(today, d.day) != CalendarMath.GraceDays + 1) continue;
                 int occ = CalendarMath.LastOccurrence(today, year, d.day);
                 if (d.lastYear >= occ) continue;
@@ -439,6 +451,7 @@ namespace ColonyCouncil
         {
             if (d == null) return;
             days.Remove(d);
+            // A custom taken off comes back the next time the council keeps it.
             if (d.Auto) forgotten.Add(d.id);
         }
 
@@ -470,6 +483,9 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return "CC_Cal_Name_Situation".Translate(d.subject ?? "?");
                 case CalendarKind.FaithDay: return d.otherName.NullOrEmpty() ? "CC_Cal_Name_FaithDay".Translate(d.subject ?? "?").ToString() : d.otherName;
                 case CalendarKind.Rescue: return "CC_Cal_Name_Rescue".Translate(d.pawnName ?? "?");
+                case CalendarKind.Custom:
+                    var def = d.CustomDef;
+                    return def == null ? d.about ?? "?" : def.traditionLabel.NullOrEmpty() ? def.label : def.traditionLabel;
                 default: return "CC_Cal_Name_Holiday".Translate();
             }
         }
@@ -491,6 +507,7 @@ namespace ColonyCouncil
                 case CalendarKind.Companion: return DayWay.Remembrance;
                 case CalendarKind.CampGift: return DayWay.Walk;
                 case CalendarKind.FaithDay: return DayWay.Faith;
+                case CalendarKind.Custom: return DayWay.Custom;
                 default: return DayWay.Feast;
             }
         }
@@ -922,6 +939,9 @@ namespace ColonyCouncil
                     case CalendarKind.CampGift:
                         // What they left is gone from the map (cut down, sold, burned): the day goes with it, unless kept long enough to be a tradition.
                         if (!d.tradition && GiftGone(d)) days.Remove(d);
+                        break;
+                    case CalendarKind.Custom:
+                        PruneCustom(d);
                         break;
                 }
             }

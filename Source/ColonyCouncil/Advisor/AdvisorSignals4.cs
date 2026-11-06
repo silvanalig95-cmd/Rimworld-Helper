@@ -88,7 +88,7 @@ namespace ColonyCouncil
             int soonest = 99;
             foreach (var d in cal.days)
             {
-                if (d == null || d.kind == CalendarKind.FirstSnow || d.way == DayWay.Personal) continue;
+                if (d == null || !d.Dated || d.way == DayWay.Personal) continue;
                 int until = CalendarMath.DaysUntil(today, d.day);
                 if (until < 1 || until > 2 || until >= soonest) continue;
                 // Tomorrow with nothing laid by: the unprepared day's advice says so instead (AdvisorSignals5.cs).

@@ -33,9 +33,11 @@ namespace ColonyCouncil
         public float withinDaysOfThreat;
         /// <summary>Only while someone is grieving.</summary>
         public bool needsGrief;
-        /// <summary>Choosing this option often enough makes it a tradition (index; -1 = never).</summary>
+        /// <summary>
+        /// Choosing this option makes it a custom on the colony's calendar, and three years running a tradition, as for the
+        /// calendar's own days (index; -1 = never: CalendarMath.TraditionAfter, Calendar/CalendarCustoms.cs).
+        /// </summary>
         public int traditionOption = -1;
-        public int traditionAfter = 2;
         /// <summary>The tradition's name: "the midsummer bonfire".</summary>
         [MustTranslate] public string traditionLabel;
         /// <summary>What happens if the council doesn't answer in time.</summary>
@@ -1134,17 +1136,41 @@ namespace ColonyCouncil
 
         public int nextTick = -1;
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
-        /// <summary>Traditions: how often the tradition answer was chosen, which are established, and breaks in a row.</summary>
+        /// <summary>
+        /// An older save's customs (how often the tradition answer was chosen, which were established, breaks in a row), until
+        /// they are carried onto the colony's calendar (<see cref="MoveCustoms"/>), which keeps them from then on.
+        /// </summary>
         private Dictionary<string, int> traditionCount = new Dictionary<string, int>();
         private Dictionary<string, int> traditionBreaks = new Dictionary<string, int>();
         public List<string> traditions = new List<string>();
+        /// <summary>The older save's customs are on the calendar.</summary>
+        private bool customsMoved;
 
-        public bool IsTradition(DilemmaDef def) => def != null && traditions.Contains(def.defName);
+        /// <summary>This colony's calendar, where its customs live (Calendar/CalendarCustoms.cs).</summary>
+        private ColonyCalendar Calendar => ColonyCalendar.For(HomeMap);
 
-        /// <summary>How often the tradition's answer was chosen since it was last broken (for what an answer does).</summary>
-        public int TraditionCount(DilemmaDef def) => def != null && traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
+        /// <summary>A custom's day on the colony's calendar, once the colony has kept it; null before, or for a question that isn't a custom.</summary>
+        public CalendarDay CustomDay(DilemmaDef def) => def == null || def.traditionOption < 0 ? null : Calendar?.CustomOf(def);
 
-        public IEnumerable<DilemmaDef> Traditions => traditions.Select(n => DefDatabase<DilemmaDef>.GetNamedSilentFail(n)).Where(d => d != null);
+        public bool IsTradition(DilemmaDef def)
+        {
+            if (def == null) return false;
+            var d = CustomDay(def);
+            return d != null ? d.tradition : traditions.Contains(def.defName);
+        }
+
+        /// <summary>Years the tradition's answer was chosen running (for what an answer does).</summary>
+        public int TraditionCount(DilemmaDef def)
+        {
+            if (def == null) return 0;
+            var d = CustomDay(def);
+            return d != null ? d.keptYears : traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
+        }
+
+        /// <summary>The customs that are traditions: the calendar's, and an older save's not yet carried onto it.</summary>
+        public IEnumerable<DilemmaDef> Traditions =>
+            (Calendar?.CustomTraditions ?? Enumerable.Empty<DilemmaDef>())
+            .Concat(traditions.Select(n => DefDatabase<DilemmaDef>.GetNamedSilentFail(n)).Where(d => d != null)).Distinct();
 
         /// <summary>
         /// How a custom stands as it comes round again, for its letter's and its answers' lines (<see cref="CustomYearsMath"/>):
@@ -1153,10 +1179,40 @@ namespace ColonyCouncil
         public void AddCustomTags(DilemmaDef def, HashSet<string> tags)
         {
             if (def == null || tags == null || def.traditionOption < 0) return;
-            int kept = traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
-            int breaks = traditionBreaks.TryGetValue(def.defName, out int b) ? b : 0;
+            var d = CustomDay(def);
+            int kept = d != null ? d.keptYears : traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
+            int breaks = d != null ? d.breaks : traditionBreaks.TryGetValue(def.defName, out int b) ? b : 0;
             foreach (var t in CustomYearsMath.Tags(kept, breaks, IsTradition(def))) tags.Add(t);
         }
+
+        /// <summary>
+        /// An older save's customs go onto the colony's calendar, once: a tradition stays one, one counted under the old
+        /// two-year rule keeps its count (CalendarMath.CarryCustom), each dated the last time it was asked.
+        /// </summary>
+        private void MoveCustoms()
+        {
+            var map = HomeMap;
+            var cal = Calendar;
+            if (map == null || cal == null) return;
+            customsMoved = true;
+            foreach (var key in traditionCount.Keys.Concat(traditions).Distinct().ToList())
+            {
+                var def = DefDatabase<DilemmaDef>.GetNamedSilentFail(key);
+                if (def == null || def.traditionOption < 0) continue;
+                int count = traditionCount.TryGetValue(key, out int n) ? n : 0;
+                bool was = traditions.Contains(key);
+                if (count <= 0 && !was) continue;
+                int breaks = traditionBreaks.TryGetValue(key, out int b) ? b : 0;
+                int asked = lastTick.TryGetValue(key, out int t) ? t : Find.TickManager.TicksGame;
+                cal.CarryCustom(def, map, count, was, breaks, asked);
+            }
+            traditionCount.Clear();
+            traditionBreaks.Clear();
+            traditions.Clear();
+        }
+
+        /// <summary>A custom whose day has come on the calendar: its question is asked now, if it can be (its season, its weather, someone to ask for it).</summary>
+        public bool AskCustom(DilemmaDef def) => def != null && TryFire(true, d => d == def);
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -1166,6 +1222,7 @@ namespace ColonyCouncil
         {
             if (!S.enableDilemmas) return;
             int now = Find.TickManager.TicksGame;
+            if (!customsMoved) MoveCustoms();
             if (nextTick < 0) nextTick = now + Interval();
             if (now < GenDate.TicksPerDay * 5) return;
             // The aftermath of a raid on this colony's own home brings its own questions, outside the usual rhythm.
@@ -1175,9 +1232,12 @@ namespace ColonyCouncil
             {
                 if (TryFire(false, d => d.withinDaysOfThreat > 0f)) return;
             }
-            // An established tradition comes round when its time does, whatever the schedule says.
+            // An established tradition comes round when its time does, whatever the schedule says; one with a date on the
+            // calendar comes on its day (Calendar/CalendarCustoms.cs).
+            var cal = Calendar;
             foreach (var t in Traditions.ToList())
             {
+                if (cal != null && cal.BringsCustom(t)) continue;
                 if (lastTick.TryGetValue(t.defName, out int last) && now - last < GenDate.TicksPerDay * 30) continue;
                 var home = HomeMap;
                 if (home == null || !t.Worker.CanHappenNow(home)) continue;
@@ -1209,12 +1269,16 @@ namespace ColonyCouncil
             if (Waiting(map)) return false;
             if (!force && !Tell.CanAsk) return false;
             int now = Find.TickManager.TicksGame;
-            // One seasonal custom a season (the colony's pace, PlayOut/Stage.cs); a tradition still comes round when its time does.
-            bool customs = force || Stage.CustomMayCome(map);
+            // One seasonal custom a season (the colony's pace, PlayOut/Stage.cs): none in a season that holds a custom's day on
+            // the calendar, and a custom on the calendar with a date comes on its day, not as one of the council's questions;
+            // a tradition still comes round when its time does.
+            var cal = Calendar;
+            bool customs = force || Stage.CustomMayCome(map) && !(cal?.CustomSeasonHeld(GenLocalDate.DayOfYear(map)) ?? false);
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
                 .Where(d => only == null || only(d))
                 .Where(d => force || !lastTick.TryGetValue(d.defName, out int t) || now - t > d.cooldownDays * GenDate.TicksPerDay)
                 .Where(d => customs || !IsSeasonalCustom(d))
+                .Where(d => force || cal == null || !cal.BringsCustom(d))
                 .ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value * (d.seasons.NullOrEmpty() && d.withinDaysOfThreat <= 0f ? 1f : 3f)))
             {
@@ -1314,63 +1378,75 @@ namespace ColonyCouncil
             ctx.faction = null;
         }
 
-        /// <summary>Keeping, founding or breaking a tradition.</summary>
+        /// <summary>
+        /// Keeping, founding or breaking a tradition, by the calendar's one rule (CalendarMath): kept, the custom goes on the
+        /// colony's calendar if it isn't there yet, and three years running it becomes a tradition; let pass before that, it
+        /// leaves the calendar; a tradition let pass costs, and lapses the second time in a row.
+        /// </summary>
         private void Tradition(DilemmaContext ctx, bool kept, CouncilGameComponent comp)
         {
-            using var _cause = Causes.Push("CC_Cause_Tradition".Translate(ctx.def.traditionLabel ?? ctx.def.label).Resolve());
             var def = ctx.def;
-            string key = def.defName;
+            string label = def.traditionLabel ?? def.label;
+            using var _cause = Causes.Push("CC_Cause_Tradition".Translate(label).Resolve());
             var colonists = ctx.Colonists.ToList();
+            var map = ctx.map ?? HomeMap;
+            var cal = Calendar;
+            var day = CustomDay(def);
             if (kept)
             {
-                traditionBreaks[key] = 0;
-                traditionCount[key] = (traditionCount.TryGetValue(key, out int n) ? n : 0) + 1;
                 (colony?.offices ?? comp.offices).Notify_CustomKept(colonists);
-                if (IsTradition(def))
+                if (day == null && cal != null) day = cal.AddCustom(def, map);
+                if (day == null || map == null) return;
+                var result = CalendarMath.KeepInYear(ref day.keptYears, ref day.tradition, ref day.breaks, ref day.lastKeptYear, GenLocalDate.Year(map));
+                day.timesKept++;
+                if (result == CalendarMath.KeepResult.KeptTradition)
                 {
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
-                    comp.annals.Notify_Tradition(def.traditionLabel, true);
-                    VisualTouches.Tradition(colonists, def.traditionLabel);
-                    Interplay.Notify_CouncilTradition(def.traditionLabel, 1);
+                    comp.annals.Notify_Tradition(label, true);
+                    VisualTouches.Tradition(colonists, label);
+                    Interplay.Notify_CouncilTradition(label, 1);
                 }
-                else if (traditionCount[key] >= def.traditionAfter)
+                else if (result == CalendarMath.KeepResult.Born)
                 {
-                    traditions.Add(key);
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
-                    VisualTouches.Tradition(colonists, def.traditionLabel);
-                    Tell.Letter(NewsKind.Colony, Importance.Notable, ctx.map, "CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
-                        "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
-                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
-                    comp.annals.Notify_TraditionBorn(def.traditionLabel);
-                    Interplay.Notify_CouncilTradition(def.traditionLabel, 2);
+                    VisualTouches.Tradition(colonists, label);
+                    Tell.Letter(NewsKind.Colony, Importance.Notable, ctx.map, "CC_Tradition_BornTitle".Translate(label.CapitalizeFirst()).Resolve(),
+                        "CC_Tradition_BornText".Translate(label).Resolve(), LetterDefOf.PositiveEvent);
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(label).Resolve(), null));
+                    comp.annals.Notify_TraditionBorn(label);
+                    Interplay.Notify_CouncilTradition(label, 2);
                     foreach (var p in colonists.InRandomOrder().Take(2))
-                        comp.journals.Write(p, "Council_Journal_TraditionBorn", null, def.traditionLabel.Named("TRADITION"));
+                        comp.journals.Write(p, "Council_Journal_TraditionBorn", null, label.Named("TRADITION"));
                 }
                 return;
             }
-            if (!IsTradition(def)) return;
-            int breaks = (traditionBreaks.TryGetValue(key, out int b) ? b : 0) + 1;
-            traditionBreaks[key] = breaks;
+            if (day == null) return;
+            var passed = CalendarMath.Pass(ref day.keptYears, ref day.tradition, ref day.breaks);
+            if (passed == CalendarMath.PassResult.Passed)
+            {
+                // Not yet a tradition: it leaves the calendar quietly, and may be asked again in its season.
+                cal?.LetCustomGo(day, map, false);
+                return;
+            }
             foreach (var p in colonists)
             {
                 if (p.story?.traits?.HasTrait(TraitDefOf.Ascetic) ?? false) continue;
                 CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionBroken);
                 comp.standings.Change(p, -2f, null);
             }
-            comp.annals.Notify_Tradition(def.traditionLabel, false);
-            Interplay.Notify_CouncilTradition(def.traditionLabel, breaks >= 2 ? -2 : -1);
-            if (breaks >= 2)
+            comp.annals.Notify_Tradition(label, false);
+            bool lapsed = passed == CalendarMath.PassResult.Lapsed;
+            Interplay.Notify_CouncilTradition(label, lapsed ? -2 : -1);
+            if (lapsed)
             {
-                traditions.Remove(key);
-                traditionCount[key] = 0;
-                traditionBreaks[key] = 0;
-                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), null, MessageTypeDefOf.NegativeEvent);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
+                cal?.LetCustomGo(day, map, true);
+                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Lapsed".Translate(label).Resolve(), null, MessageTypeDefOf.NegativeEvent);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionLapsed".Translate(label).Resolve(), null));
             }
             else
             {
-                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), null, MessageTypeDefOf.NegativeEvent);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
+                Tell.Minor(NewsKind.Colony, null, ctx.map, "CC_Tradition_Broken".Translate(label).Resolve(), null, MessageTypeDefOf.NegativeEvent);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBroken".Translate(label).Resolve(), null));
             }
         }
 
@@ -1394,6 +1470,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref traditionBreaks, "traditionBreaks", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref traditions, "traditions", LookMode.Value);
             Scribe_Collections.Look(ref lastTick, "lastTick", LookMode.Value, LookMode.Value);
+            Scribe_Values.Look(ref customsMoved, "customsMoved");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (lastTick == null) lastTick = new Dictionary<string, int>();

@@ -6,6 +6,69 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.115.0, phase 5 of the review: one festive year (the player's decision 7 of 6 November 2026, "a custom becomes a tradition
+  after three years running (one rule)", and the phase in `docs/review-2026-11/whole.md`: customs on the calendar, one
+  tradition rule, one feast engine). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Customs on
+  the calendar (`Calendar/CalendarCustoms.cs`, a part of `ColonyCalendar`). Every custom (a dilemma with a
+  `traditionOption`) goes on the colony calendar the first time the colony keeps it (`AddCustom` from
+  `DilemmaTracker.Tradition`; `CalendarKind.Custom`, `DayWay.Custom`, its question in `about`, a news line
+  `CC_Fest_CustomOn`). A seasonal one keeps the date it was kept on: its question comes round on that day each year
+  (`AskCustoms` in the calendar's hour, through `DilemmaTracker.AskCustom`, the council's own letter and answers, forced
+  as traditions were), or within five days for its weather or someone to ask for it (`CalendarMath.CustomDue`,
+  `CustomGraceDays`), else its year is spent with "came and went this year" (`MarkCustomMissed`). One asked in its
+  moment (the planting day, the herd home, the victory feast, burying the enemy dead, the remembrance night, telling the
+  bees) is on it "with its occasion" (`CalendarDay.moment`, saved; `Dated` false: the first snow's way) and comes as it
+  always did. Customs never make way for the colony's own days (`Fixed`, not `Auto`). A season that holds a custom's
+  day is asked no other seasonal custom (`CustomSeasonHeld`), and a dated custom is never one of the council's ordinary
+  questions (`BringsCustom`); with the calendar off, customs come as before. The Calendar page shows customs among the
+  days (date or "with its occasion", when it next comes, a "custom" pill, years kept or tradition, where it came from
+  with the answer that keeps it: `CC_Fest_Origin_*`); its separate "Seasonal customs" list is gone (the old keys stay,
+  unused), the intro is `CC_Fest_Intro`; a custom's way and date can't be changed, taking it off loses its years.
+  Readers of dates skip customs with an occasion (`CalendarDay.Dated`: This week's coming days, the World page, the
+  advisor's days tomorrow, talk of tomorrow, an ambition's days ahead, the eve's talk also skips dated customs since
+  their question may wait); a custom's gathering keeps its own shared times (`SharedTimes.DayOf`). (2) One tradition
+  rule (`CalendarMath`): three years running for days and customs alike (`TraditionAfter`; `DilemmaDef.traditionAfter`
+  is gone); a custom steps once a year (`KeepInYear`); let pass before it is a tradition its years start again and it
+  leaves the calendar (`Pass`, `OffCalendar`, `LetCustomGo`, `CC_Fest_CustomOff`); a tradition broken costs as before
+  and lapses the second time in a row, leaving the calendar. `IsTradition`, `TraditionCount`, `Traditions` and
+  `AddCustomTags` read the calendar (`DilemmaTracker.CustomDay`); the council's forced traditions skip those the
+  calendar brings on their day; the answer's sheet says "chosen 1 of the 3 times it takes" and, for a custom on the
+  calendar not yet a tradition, that another answer takes it off (`CC_Fest_Impact_OffCalendar`). Customs now count
+  among the calendar's traditions (the founding letter, the keeper of days' promise, the long-memoried colony trait).
+  Older saves (`DilemmaTracker.MoveCustoms`, once, the first hour with dilemmas on; `customsMoved`, saved): each custom
+  the council counted goes on the calendar dated the last time it was asked (that year spent), by
+  `CalendarMath.CarryCustom`: a tradition stays one (a break kept), one counted under the old two-year rule keeps its
+  count and needs the third year; the tracker's lists are emptied. (3) One feast engine (`PlayOut/PlayFeast.cs`):
+  `PlayFeast.Stage(FeastOrder)` is the only place a play-out of the kind Feast is made, with the reason (`FeastWhy`:
+  Answer, Day, Guests, Wedding, Supper): an answer's, a decree's, an ambition's or an event's (`DilemmaEffect_Feast.Create`,
+  now virtual in `DilemmaEffect_PlayOut`, with the answer's own `Fill`), a calendar feast (`CalendarKeeping.FeastDay`,
+  replacing `PlayDay`'s feast: keeper as host, the grieving sitting out, "a feast day" held), a feast with guests and
+  the steward's suggestion (`Feasts.StartFeast`, `FeastWhy.Guests`; contests, champion and welcome unchanged), a planned
+  wedding's feast (`FeastWhy.Wedding`, the toast "To Alo and Penguin, and many years.") and a family's supper
+  (`FeastWhy.Supper`, no cup). The table first, the meal from the stores, the guests and the moods as before; new, the
+  host's cup a while in (`PlayOut.toast`, `toastLine`, saved; `GatheringTouches`: the table and the guests near raise
+  theirs; `CC_Fest_Toast_Day`, `CC_Fest_Toast_Guests`, else a [raise] line of `Council_Pool_PlayToast`). What each
+  reason does when no feast can be set going stays with its caller. (4) The pace as phase 2 left it: calendar days
+  within three days as one, a day within two days of another gathering at supper, one seasonal custom a season. The
+  player answered the open question the same day: a custom does not also stay two days clear of other gatherings, so
+  no constant or setting was added for it. Keys in `Rimfolk_FestiveYear.xml`; no shipped key changed; the defs' "two
+  years running" (two mood hints, five files' comments) read three. Tests: `FestiveYearTests` (new: a custom's day and
+  grace days, once a year, three running, off the calendar, an older save's counts, one rule and one feast engine in
+  the source, the cups' words one sentence), `CustomYearsTests` (the one rule). Save model: the calendar's cap holds
+  the customs. Measured (`Tools/Balance --scenes`, 800 colony-years each; the model now holds a third-year colony's
+  two kept customs, `Rates.SceneKeptCustoms`, coming before as the council's traditions did, now on their day,
+  `CalendarMath` linked): gatherings and outings as their own scene a year, floor evenings included, well run 24.3
+  before and 24.3 after, average 23.8 and 23.8, neglectful 23.7 and 23.6 (2.8 a week); every gathering before the pace
+  42.6, 38.7, 35.9 before and 42.2, 38.1, 35.7 after; customs asked 3.9, 3.2, 2.3 before (a tradition and the season's
+  question could share a season) and 3.0, 2.4, 1.7 after. The old model, without kept customs: 24.2, 23.6 and 22.9.
+  Docs: DESIGN.md ("One festive year", the pace's one custom a season, the play-outs and the guests' feast), the
+  Almanac's calendar and traditions pages (no keyword change), README (traditions, the calendar, play-outs, the pace,
+  feasts with guests). Dev menu: "Calendar: a day comes round now..." asks a custom's question. To check in game: a
+  seasonal custom kept (the news line, the custom on the Calendar page with its date and answer), its question on its
+  day next year (or a few days on, for a swim's warm day), let pass (off the calendar), kept a third year (the
+  tradition's letter); the player's save at load (its customs on the calendar, a tradition still one, the remembrance
+  walk or harvest dance with its count); a feast of each kind with the host's cup raised (the harvest day, an answer's
+  feast, a feast with guests, a wedding's), and a family supper with none.
 - 0.114.0, phase 6 of the review, part 1: letters and petitions (the player's decisions 12 and 11 of 6 November 2026: "letters to
   notables arrive in days and an answer brings something concrete", "shared wants come to the council as one
   petition"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Letters by the colony's means

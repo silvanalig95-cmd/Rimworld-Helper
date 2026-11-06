@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- One festive year (Source/ColonyCouncil/Calendar/CalendarCustoms.cs, PlayOut/PlayFeast.cs): the council's customs on the colony calendar under one tradition rule, and one feast engine. -->
+
+  <!-- The calendar page -->
+  <CC_Fest_Intro>The colony's festive year in one place: the days that matter to it, written down as its history happens (its founding, its first good harvest, the first snow, battles it remembers, people it lost, weddings, the arrivals of its first members and the birthdays of its long-serving colonists, the first child born here, the day the walls went up, a caravan home safe, the first harvest of a new crop, the first trade and a great hunt), the days you name, and the council's customs once the colony keeps one (a midsummer bonfire, the harvest dance, the planting day). When a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt or a quiet hour; a custom comes as its question, on its day or with its occasion. Kept {YEARS} years running, a day or a custom becomes a tradition, and the colony expects it from then on.</CC_Fest_Intro>
+  <CC_Cal_Way_Custom>custom</CC_Cal_Way_Custom>
+  <CC_Cal_Way_Custom_Desc>the council's custom: its question comes on its day, and the answer keeps it or lets it pass.</CC_Cal_Way_Custom_Desc>
+  <CC_Fest_WithOccasion>with its occasion</CC_Fest_WithOccasion>
+  <CC_Fest_Origin_Custom>A custom the council first kept in {YEAR}. Its question comes round on this day each year, or within a few days when its weather or someone to ask for it isn't there.</CC_Fest_Origin_Custom>
+  <CC_Fest_Origin_CustomMoment>A custom the council first kept in {YEAR}. Its question comes with its occasion, not on a date.</CC_Fest_Origin_CustomMoment>
+  <CC_Fest_Origin_Answer>Kept by answering "{ANSWER}".</CC_Fest_Origin_Answer>
+  <CC_Fest_Dialog_Custom>A custom is kept the way its question's answers say, and its date is the day the colony first kept it.</CC_Fest_Dialog_Custom>
+
+  <!-- A custom going on the calendar, and coming off it -->
+  <CC_Fest_CustomOn>On the colony calendar from now on: {CUSTOM}, on the {DATE}. Its question comes round on that day each year.</CC_Fest_CustomOn>
+  <CC_Fest_CustomOnMoment>On the colony calendar from now on: {CUSTOM}, whenever its occasion comes.</CC_Fest_CustomOnMoment>
+  <CC_Fest_CustomOff>{CUSTOM} is off the colony calendar: let pass before it became a tradition, it is a question again.</CC_Fest_CustomOff>
+  <CC_Fest_Impact_OffCalendar>{CUSTOM} comes off the colony calendar, and its years kept start again</CC_Fest_Impact_OffCalendar>
+
+  <!-- The host's cup at a feast -->
+  <CC_Fest_Toast_Day>To {DAY}, and to everyone here to keep it.</CC_Fest_Toast_Day>
+  <CC_Fest_Toast_Guests>To our guests, and the road that brought them here.</CC_Fest_Toast_Guests>
+
+</LanguageData>

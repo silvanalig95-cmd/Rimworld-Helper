@@ -480,8 +480,8 @@ The council can back one candidate for a seat (it counts on the ballots of those
     <category>Council</category>
     <order>8</order>
     <summary>What the colony keeps doing becomes expected.</summary>
-    <tip>Hold the midsummer feast two years running and they'll expect it every year after.</tip>
-    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a planting day in the fields. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
+    <tip>Hold the midsummer feast three years running and they'll expect it every year after.</tip>
+    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a planting day in the fields. Choose it and the custom goes on the colony calendar: its question comes round on that day each year (or within a few days, when its weather isn't there), or with its occasion for one asked in its moment (the planting day as the fields open, the victory feast). Choose it three years running and it becomes a tradition, by the same rule as the calendar's own days. From then on keeping it pleases everyone, and breaking it disappoints them.</description>
     <sections>
       <li>
         <heading>The customs</heading>
@@ -510,7 +510,7 @@ The council can back one candidate for a seat (it counts on the ballots of those
           <li>Fall | The autumn hunt: up to three hunters after several beasts, then a supper (recreation, no mood); or one hunter after one | meat in store short of the winter, safe game on the land, a hunter</li>
           <li>Any time | Telling the bees: the beekeeper and those close to them go round the hives to tell the bees the news (nothing happens to bees left untold) | beehives (Alpha Bees' beehouses), and a death, a birth or a wedding in the last few days</li>
         </table>
-        <after>The herd's year has customs of its own (the colony's animals has them): the lambing watch, shearing day, and bringing the herd home before the winter, in a cold snap or after a raid. One seasonal custom is asked a season, so the colony's year has four of them at most; a tradition still comes round when its time does, and counts as its season's.</after>
+        <after>The herd's year has customs of its own (the colony's animals has them): the lambing watch, shearing day, and bringing the herd home before the winter, in a cold snap or after a raid. One seasonal custom is asked a season, so the colony's year has four of them at most: a season that holds a custom's day on the calendar is asked no other, and a custom on the calendar is never asked as one of the council's ordinary questions; a tradition still comes round when its time does, and counts as its season's.</after>
       </li>
       <li>
         <heading>Customs of the land and the ideoligion</heading>
@@ -529,11 +529,13 @@ The council can back one candidate for a seat (it counts on the ballots of those
         <after>The ideoligion's customs strengthen the faithful's certainty, half again with a chaplain in office.</after>
       </li>
       <li>
-        <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
+        <text>The letter says when a choice is a tradition, and when choosing it again will make one. A custom steps toward a tradition once a year, however often its occasion comes. Let pass before it is a tradition, it leaves the calendar and its years start again; it may be asked again in its season. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count, and breaking it twice in a row lets it lapse. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
 
 Traditions cost something every year, so only start the ones you can afford in a bad year too.
 
-Days on the colony calendar grow into traditions the same way: keep one three years running (founding day, harvest day, a day you named) and the colony expects it. See "the colony calendar".</text>
+Days on the colony calendar grow into traditions the same way: keep one three years running (founding day, harvest day, a day you named) and the colony expects it. One rule for both, on one page: see "the colony calendar".
+
+Older saves: a custom already a tradition stays one; one kept once under the old rule (two years) keeps its count and needs the rest of the three. Each goes on the calendar on the day it was last asked.</text>
       </li>
     </sections>
     <keywords><li>tradition</li><li>festival</li><li>season</li><li>feast</li><li>custom</li><li>vigil</li><li>rain</li><li>biome</li><li>faith</li></keywords>

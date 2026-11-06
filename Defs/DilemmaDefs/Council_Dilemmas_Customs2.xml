@@ -3,7 +3,7 @@
 
   <!--
     Customs of the land and of the faith: seasonal dilemmas with an answer the colony can make its own, like the
-    planting blessing and lantern night (Council_Dilemmas_Customs.xml). Choose the custom two years running and it
+    planting blessing and lantern night (Council_Dilemmas_Customs.xml). Choose the custom three years running and it
     becomes a tradition that comes round every year in its season.
     ColonyCouncil.DilemmaWorker_Custom reads a CustomConditions extension: lands (any of them, as Strangers/Lands.cs
     names them: desert, tundra, boreal, coast, lake, river, swamp, jungle, mountains, hills...), raining, faith (a faith

@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    More seasonal customs, in the pattern of Council_Dilemmas_Customs.xml: chosen two years running, the custom's answer
+    More seasonal customs, in the pattern of Council_Dilemmas_Customs.xml: chosen three years running, the custom's answer
     becomes a tradition that comes round every year in its season. ColonyCouncil.DilemmaWorker_CustomMore reads
     CustomConditions and CustomMore (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Variety.cs): spring cleaning when
     winter's dirt is about, the bounds walked on a dry summer day (a stone set at each turn, found again in later years:

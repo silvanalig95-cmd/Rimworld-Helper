@@ -10,7 +10,8 @@ namespace ColonyCouncil
     /// What a gathering an answer called looks like on the map, beyond the game's own party (PlayOut/PlayOutLord.cs): the
     /// fire at a bonfire smokes and, after dark, sparks; at a remembrance by a grave, a low warm glow there once night
     /// falls; at a toast, once, a while in, cups go up together with a word from whoever leads it (Hospitality's guests
-    /// standing near raise theirs too); and at a feast, those eating are the ones most often heard. Called with the gathering's own look every 250 ticks, only for the map
+    /// standing near raise theirs too); and at a feast, those eating are the ones most often heard, and a while in its host
+    /// raises a cup with the feast's own words (PlayOut/PlayFeast.cs). Called with the gathering's own look every 250 ticks, only for the map
     /// being looked at; everything drawn goes through <see cref="VisualTouches"/> (its setting, its view and its caps).
     /// </summary>
     internal static class GatheringTouches
@@ -39,6 +40,19 @@ namespace ColonyCouncil
                 var lead = here.Contains(play?.organizer) ? play.organizer : here.RandomElement();
                 string line = Flavor.FromPool(job.pool.NullOrEmpty() ? "Council_Pool_PlayToast" : job.pool, lead, null, null, "raise");
                 if (!line.NullOrEmpty()) CouncilGameComponent.Speak(lead, line, SpeechColor);
+            }
+            // A feast's cup (PlayOut/PlayFeast.cs): once the table has eaten a while, the host raises theirs with the reason's
+            // words, and the table and the guests at it raise theirs.
+            if (job.kind == PlayKind.Feast && play != null && play.toast && !raised && here.Count >= 2 && job.lord.ticksInToil >= duration * 0.35f)
+            {
+                raised = true;
+                var guests = (job.guests ?? new List<Pawn>()).Where(g => g != null && g.Spawned && g.Map == map && g.Position.InHorDistOf(spot, 10f))
+                    .Concat(EventTouches.GuestsNear(map, spot, 8f)).Distinct().ToList();
+                VisualTouches.RaiseCups(here.Concat(guests).ToList());
+                var host = here.Contains(play.organizer) ? play.organizer : here.RandomElement();
+                string line = PlayFeast.ToastWords(play, host);
+                // together: said at the feast itself, by its host standing at the table with the others.
+                if (!line.NullOrEmpty()) CouncilGameComponent.Speak(host, line, SpeechColor);
             }
         }
 

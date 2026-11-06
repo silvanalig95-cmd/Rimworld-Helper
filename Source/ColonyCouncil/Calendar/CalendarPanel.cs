@@ -7,9 +7,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony → Calendar: the days that matter to this colony, soonest first, how each is kept and how close it is to
-    /// a tradition; the seasonal customs from the council's dilemmas; and a button to name a day. Self-contained: the
-    /// council window only calls <see cref="Draw"/>.
+    /// Colony → Calendar: the colony's festive year in one place, its days and the council's customs it keeps, soonest
+    /// first, how each is kept, when it next comes and how close it is to a tradition; and a button to name a day.
+    /// Self-contained: the council window only calls <see cref="Draw"/>.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class CalendarPanel
@@ -36,7 +36,8 @@ namespace ColonyCouncil
                 case DayWay.Hunt:
                 case DayWay.Planting:
                 case DayWay.Faith:
-                case DayWay.Walk: return UiKit.Gold;
+                case DayWay.Walk:
+                case DayWay.Custom: return UiKit.Gold;
                 default: return UiKit.Faint;
             }
         }
@@ -65,6 +66,7 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return Icons.WorldEvent;
                 case CalendarKind.FaithDay: return Icons.CatIdeology;
                 case CalendarKind.Rescue: return Icons.Heart;
+                case CalendarKind.Custom: return Icons.Ways;
                 default: return Icon ?? Icons.Chronicle;
             }
         }
@@ -96,7 +98,7 @@ namespace ColonyCouncil
             float y = 0f;
             float w = view.width;
             if (!ColonyCalendar.On) y += UiKit.Paragraph(0f, y, w, "CC_Cal_Off".Translate(), UiKit.Soon) + 8f;
-            y += UiKit.Paragraph(0f, y, w, "CC_Cal_Intro".Translate(CalendarMath.TraditionAfter), UiKit.Faint) + 10f;
+            y += UiKit.Paragraph(0f, y, w, "CC_Fest_Intro".Translate(CalendarMath.TraditionAfter.Named("YEARS")), UiKit.Faint) + 10f;
 
             // The days, soonest first; the first snow, which has no date, last.
             var rows = UiCache.Get(cal, 4101, () => Rows(cal, map, today));
@@ -108,22 +110,9 @@ namespace ColonyCouncil
             // A feast with guests, set or to plan (Diplomacy/FeastPanels.cs).
             y += FeastPanels.CalendarRow(0f, y, w, ref index, map);
             if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
+            // The council's customs are days among the rest (Calendar/CalendarCustoms.cs); an older save's not yet carried over
+            // are on it within the hour.
             foreach (var r in rows) y += DrawDay(r, 0f, y, w, index++);
-            y += UiKit.SectionGap;
-
-            // The council's seasonal customs (traditions grown from the dilemmas).
-            var customs = UiCache.Get(cal, 4102, Customs);
-            y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Customs".Translate(), customs.Count, Icons.Ways);
-            if (customs.Count == 0)
-            {
-                UiKit.EmptyLine(new Rect(0f, y, w, UiKit.RowDense + 4f), "CC_Cal_NoCustoms".Translate());
-                y += UiKit.RowDense + 8f;
-            }
-            foreach (var (label, tip) in customs)
-            {
-                UiKit.Row(new Rect(0f, y, w, UiKit.RowStandard), index++, label, UiKit.Ink, null, null, null, Icons.Ways, UiKit.Gold, null, null, tip);
-                y += UiKit.RowStandard;
-            }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
         }
@@ -143,15 +132,16 @@ namespace ColonyCouncil
         {
             var list = new List<Row>();
             var people = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists;
-            foreach (var d in cal.days.OrderBy(d => d.kind == CalendarKind.FirstSnow ? 999 : CalendarMath.DaysUntil(today, d.day)).ThenByDescending(d => d.Standing))
+            // The days with a date soonest first; the first snow, and customs that come with their occasion, last.
+            foreach (var d in cal.days.OrderBy(d => d.Dated ? CalendarMath.DaysUntil(today, d.day) : d.kind == CalendarKind.FirstSnow ? 998 : 999).ThenByDescending(d => d.Standing))
             {
                 int until = CalendarMath.DaysUntil(today, d.day);
-                bool snow = d.kind == CalendarKind.FirstSnow;
+                bool snow = !d.Dated;
                 var r = new Row
                 {
                     day = d,
                     soon = !snow && until <= 5,
-                    date = snow ? "CC_Cal_WithSnow".Translate().ToString() : ColonyCalendar.DateText(d.day, map),
+                    date = d.kind == CalendarKind.FirstSnow ? "CC_Cal_WithSnow".Translate().ToString() : !d.Dated ? "CC_Fest_WithOccasion".Translate().ToString() : ColonyCalendar.DateText(d.day, map),
                     when = snow ? null
                         : until == 0 ? "CC_Today".Translate().ToString().CapitalizeFirst()
                         : until == 1 ? "CC_Cal_Tomorrow".Translate().ToString()
@@ -199,20 +189,6 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(r, "CC_Elect_Cal_Tip".Translate());
             if (Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenTab("Decrees");
             return 48f;
-        }
-
-        private static List<(string label, string tip)> Customs()
-        {
-            var list = new List<(string, string)>();
-            var traditions = ColonyView.Current?.dilemmas?.Traditions;
-            if (traditions == null) return list;
-            foreach (var c in traditions)
-            {
-                if (c.traditionLabel.NullOrEmpty()) continue;
-                string when = c.seasons.NullOrEmpty() ? "" : " (" + TextUtil.JoinAnd(c.seasons.Select(s => s.Label()).Distinct().ToList()) + ")";
-                list.Add((c.traditionLabel.CapitalizeFirst() + when, "CC_Cal_Custom_Tip".Translate(c.label).Resolve()));
-            }
-            return list;
         }
 
         private static float DrawDay(Row row, float x, float y, float w, int index)
@@ -301,6 +277,12 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return "CC_Cal_Origin_Situation".Translate(d.subject ?? "?", d.sinceYear).Resolve().CapitalizeFirst();
                 case CalendarKind.FaithDay: return "CC_Cal_Origin_FaithDay".Translate(d.subject ?? "?", d.otherName ?? "?").Resolve();
                 case CalendarKind.Rescue: return "CC_Cal_Origin_Rescue".Translate(d.pawnName ?? "?", d.sinceYear, d.kills, d.enemy ?? "?").Resolve();
+                case CalendarKind.Custom:
+                {
+                    string origin = (d.moment ? "CC_Fest_Origin_CustomMoment" : "CC_Fest_Origin_Custom").Translate(d.sinceYear.Named("YEAR")).Resolve();
+                    string answer = ColonyCalendar.KeepingAnswer(d.CustomDef);
+                    return answer == null ? origin : origin + " " + "CC_Fest_Origin_Answer".Translate(answer.Named("ANSWER")).Resolve();
+                }
                 default: return "CC_Cal_Origin_Holiday".Translate(d.sinceYear).Resolve();
             }
         }
@@ -356,7 +338,8 @@ namespace ColonyCouncil
 
         private bool DateEditable => editing == null || editing.byPlayer;
 
-        private bool WayEditable => editing == null || !editing.Personal;
+        /// <summary>Not a birthday's or an arrival's, nor a custom's: its question's answers keep it.</summary>
+        private bool WayEditable => editing == null || !editing.Personal && !editing.Custom;
 
         public override Vector2 InitialSize => new Vector2(560f, 630f);
 
@@ -410,7 +393,7 @@ namespace ColonyCouncil
             }
             else
             {
-                UiKit.Paragraph(0f, y, inRect.width, "CC_Cal_Dialog_Personal".Translate(), UiKit.Faint);
+                UiKit.Paragraph(0f, y, inRect.width, (editing.Custom ? "CC_Fest_Dialog_Custom" : "CC_Cal_Dialog_Personal").Translate(), UiKit.Faint);
                 y += 40f;
             }
             y += 6f;
@@ -436,7 +419,8 @@ namespace ColonyCouncil
             }
             else
             {
-                string date = editing?.kind == CalendarKind.FirstSnow ? "CC_Cal_WithSnow".Translate().ToString() : ColonyCalendar.DateText(editing?.day ?? 0, map);
+                string date = editing?.kind == CalendarKind.FirstSnow ? "CC_Cal_WithSnow".Translate().ToString()
+                    : editing != null && !editing.Dated ? "CC_Fest_WithOccasion".Translate().ToString() : ColonyCalendar.DateText(editing?.day ?? 0, map);
                 UiKit.Paragraph(0f, y, inRect.width, "CC_Cal_Dialog_DateFixed".Translate(date).Resolve(), UiKit.Faint);
                 y += 30f;
             }
