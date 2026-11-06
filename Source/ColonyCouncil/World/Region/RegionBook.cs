@@ -185,6 +185,8 @@ namespace ColonyCouncil
             if (RiseFall.On) Safe("rise and fall, the hour", () => RiseFall.Hourly(this, now));
             // Settlers at the gate or on the road to found a hamlet (World/Region/Hamlet.cs).
             if (Hamlets.AnyOnTheRoad()) Safe("hamlets, the hour", () => Hamlets.Hourly(this, now));
+            // A colony being handed over: its meeting, its day, its ceremony, and the town made once those who go have left (Colonies/HandOvers.cs).
+            if (HandOvers.Any) Safe("hand-overs, the hour", () => HandOvers.Hourly(now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -199,6 +201,8 @@ namespace ColonyCouncil
             Safe("trading posts", () => TradingPosts.Daily(this, now));
             Safe("follow-ups", () => FollowUps.Daily(this, now));
             Safe("hamlets", () => Hamlets.Daily(this, now));
+            // The towns the colony was: a war ends the bond in goodwill (Colonies/HandOvers.cs).
+            if (WorldLedger.Formers.Count > 0) Safe("towns the colony was", () => HandOvers.Daily(now));
             ColonyBook.Daily(homes, null);
         }
 

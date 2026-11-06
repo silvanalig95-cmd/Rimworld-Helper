@@ -546,6 +546,7 @@ Console.WriteLine($"Checked {DrinkBeforeWorkTests.Run(Check)} things about a dri
 Console.WriteLine($"Checked {SmokeBeforeWorkTests.Run(Check)} things about a smoke before work for Alpha Skills' stoned passion (tolerance, a mild high, the rules both rows share).");
 Console.WriteLine($"Checked {MedicalTriageTests.Run(Check)} things about medical triage with Move the Patient (the best bed, the surgery bed, who outranks whom, who may be moved, the cooldown).");
 Console.WriteLine($"Checked {FieldWeatherTests.Run(Check)} things about fields by the weather (growth by the hour, the plants' own cold limits, the 60% rule, sowing again, the frost harvest).");
+Console.WriteLine($"Checked {HandOverTests.Run(Check)} things about handing a colony over (the checks, the head and the second, the vote, the people and its relations, the town's fortune, the bond, the peoples' defs, the words, the seams).");
 
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

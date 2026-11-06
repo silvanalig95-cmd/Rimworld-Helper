@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Handing a colony over (Source/ColonyCouncil/Colonies/HandOvers.cs, HandOverPeoples.cs; the player's decision 6B of
+    6 November 2026): the town a colony becomes is one of Rimfolk's own peoples, one for each age. Each is built on the
+    game's own abstract parent (the tribal one for tribal and medieval folk, the outlander one for industrial and spacer
+    folk), so its pawn groups, caravans, traders and town defenders are the game's own; peaceful, human, not hidden,
+    never a permanent or natural enemy, with no fixed name (the hand-over names it) and no royal titles. None is ever
+    made at world creation or listed in its faction choices. With a mod of a medieval (or spacer) people loaded, Medieval
+    Overhaul's first, its pawn groups and traders are lent to the people of that age at startup (HandOverPeoples.Lend).
+    A save that holds one of these needs Rimfolk from then on: the game drops a people whose def is missing.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_People_Tribal</defName>
+    <label>hearth folk</label>
+    <description>A people who were once a colony: those who stayed when it was handed over, and the children who grow up among them. They keep the old colony's fire and its ways, live off the land with simple tools, and remember the people who left.</description>
+    <pawnSingular>villager</pawnSingular>
+    <pawnsPlural>villagers</pawnsPlural>
+    <leaderTitle>headman</leaderTitle>
+    <leaderTitleFemale>headwoman</leaderTitleFemale>
+    <techLevel>Neolithic</techLevel>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <settlementGenerationWeight>0</settlementGenerationWeight>
+    <maxConfigurableAtWorldCreation>0</maxConfigurableAtWorldCreation>
+    <startingCountAtWorldCreation>0</startingCountAtWorldCreation>
+    <displayInFactionSelection>false</displayInFactionSelection>
+    <colorSpectrum>
+      <li>(0.80, 0.62, 0.30)</li>
+      <li>(0.95, 0.78, 0.45)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_People_Medieval</defName>
+    <label>free folk</label>
+    <description>A people who were once a colony: those who stayed when it was handed over, and the children who grow up among them. They keep the old colony's charter and its hall, work the fields and the forge, and remember the people who left.</description>
+    <pawnSingular>townsperson</pawnSingular>
+    <pawnsPlural>townsfolk</pawnsPlural>
+    <leaderTitle>reeve</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <settlementGenerationWeight>0</settlementGenerationWeight>
+    <maxConfigurableAtWorldCreation>0</maxConfigurableAtWorldCreation>
+    <startingCountAtWorldCreation>0</startingCountAtWorldCreation>
+    <displayInFactionSelection>false</displayInFactionSelection>
+    <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.62, 0.45, 0.25)</li>
+      <li>(0.85, 0.65, 0.35)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_People_Industrial</defName>
+    <label>township</label>
+    <description>A people who were once a colony: those who stayed when it was handed over, and the children who grow up among them. They keep the old colony's town charter and its machines running, trade with whoever comes, and remember the people who left.</description>
+    <pawnSingular>townsperson</pawnSingular>
+    <pawnsPlural>townsfolk</pawnsPlural>
+    <leaderTitle>mayor</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <settlementGenerationWeight>0</settlementGenerationWeight>
+    <maxConfigurableAtWorldCreation>0</maxConfigurableAtWorldCreation>
+    <startingCountAtWorldCreation>0</startingCountAtWorldCreation>
+    <displayInFactionSelection>false</displayInFactionSelection>
+    <colorSpectrum>
+      <li>(0.70, 0.55, 0.30)</li>
+      <li>(0.90, 0.75, 0.40)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_People_Spacer</defName>
+    <label>free colony</label>
+    <description>A people who were once a colony: those who stayed when it was handed over, and the children who grow up among them. They keep the old colony's registry and its systems, run it as their own administration, and remember the people who left.</description>
+    <pawnSingular>settler</pawnSingular>
+    <pawnsPlural>settlers</pawnsPlural>
+    <leaderTitle>administrator</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <settlementGenerationWeight>0</settlementGenerationWeight>
+    <maxConfigurableAtWorldCreation>0</maxConfigurableAtWorldCreation>
+    <startingCountAtWorldCreation>0</startingCountAtWorldCreation>
+    <displayInFactionSelection>false</displayInFactionSelection>
+    <colorSpectrum>
+      <li>(0.55, 0.60, 0.70)</li>
+      <li>(0.80, 0.85, 0.95)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+  <!--
+    The bond in goodwill (the player's decision 8A; ColonyCouncil.GoodwillSituationWorker_OnceOf): "once of [colony]",
+    +30 natural goodwill while one of the colony's former people heads the town, +15 after, gone after a war between
+    them. The game shows it among the people's goodwill situations with the colony's name.
+  -->
+  <GoodwillSituationDef>
+    <defName>Rimfolk_OnceOf</defName>
+    <label>once of the colony</label>
+    <workerClass>ColonyCouncil.GoodwillSituationWorker_OnceOf</workerClass>
+  </GoodwillSituationDef>
+
+</Defs>

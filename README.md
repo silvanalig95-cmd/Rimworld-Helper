@@ -1928,8 +1928,27 @@ the new colony would pass the game's colony limit (Options, Gameplay), Rimfolk r
 once a season) moves where the colony as a whole is run from, and the world's attention with it; the old seat's
 people trust the council a little less. The Ours lens lists every colony however far, with its people, speaker,
 mood and strain, and the colonies of the past; with more than one colony, every view's header names the colony in view
-in a chip that goes to another. Settings: Many colonies (Fresh starts, Newcomers). Handing a colony over to a people
-of its own comes next.
+in a chip that goes to another. Settings: Many colonies (Fresh starts, Newcomers).
+
+### A town of our own
+**Hand it over** on a colony's card, or on its world buttons beside the game's Abandon, makes the place a town of its
+own people. Choose who stays and who goes (each grown-up's wish shown, as for a fresh start: **uprooted** and
+**parted** for a season against it), the head and the head's second (by office or standing, never by blood: the
+speaker if they stay, then the seats' order, then the one the others think best of), the people's name by the age's
+word (the folk of Oakhold, the township of Oakhold...), the terms (a free town, or a defence or trade pact for a year,
+never fealty), the prisoners and slaves set free or taken along, and where those who go go: another home by the journey
+planner, the road in a caravan you form, or a new colony (**Handed over** is the founding window's third choice, and
+then the newcomers come free). At least three grown-ups stay, someone stays yours elsewhere, and never during a fight
+or a banishment. The colony's **meeting** gathers in the evening and votes, each by their wish and their trust in the
+council (going ahead against it costs trust among those who stay); the next day everyone gathers at the meeting spot,
+the head speaks, the totem, keys, town charter or codes change hands by the colony's age, and close friends say
+goodbye. Once the last of those who go has left, the place is the town of a new people of Rimfolk's own for the
+colony's age, its faith the colony's, the head its leader, allied with the colony and half as warm as the colony with
+everyone else; the game closes the map as for any town, with no letter of colonists lost. Its former colonists are its
+neighbours by name (head, second, envoy, trader), the second leads when the head dies (the game's own letter names
+them), and the bond "once of" the colony keeps their goodwill up (30, or 15 once a stranger leads them, none after a
+war). A save holding such a town needs Rimfolk from then on, which the window says. Setting: Many colonies (Handing
+over).
 
 ### Another landing site
 Don't like the map? For the first three days of a new game, **Choose another landing site** in the game's menu (Esc),
@@ -3725,7 +3744,7 @@ The pages:
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
   hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
   sparring, insults, duels, their chatter); then the tools: journeys, many colonies (fresh starts, and newcomers for
-  them), the weather (weather that changes like weather,
+  them, and handing a colony over), the weather (weather that changes like weather,
   its pull on the temperature, the forecast, rain washing the yard), personal touches, **material counts in build
   menus** and build priorities on blueprints, reserved slots on shelves and drinks and smokes kept out of the freezer,
   taking cover with a drag, what the room planner does by default (plan the furniture, cut plants, mine rock, replace

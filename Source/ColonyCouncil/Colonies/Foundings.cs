@@ -33,8 +33,9 @@ namespace ColonyCouncil
     /// game's own abandon once those who go have left. The game's colony limit is raised by one when needed (decision
     /// 5B) and set back once the old colony is gone. Nothing per tick: it rides the council's hour with the homes.
     /// <para>
-    /// Release 2 (HandOver): the old colony handed over instead of kept or abandoned, in the same act or later, uses the
-    /// same who-goes list and this plan; its window is the founding window's third choice. Release 3: a scenario's start
+    /// The hand-over (HandOver, Colonies/HandOvers.cs, release 2a): the old colony handed over instead of kept or
+    /// abandoned, in the same act or later, uses the same who-goes list and this plan; in the same act it is the founding
+    /// window's third choice, the plan waits with the hand-over until its ceremony, and the newcomers come free. Release 3: a scenario's start
     /// parts shape the newcomers (Colonies/NewcomersWindow.cs). Release 4: the notables and world events near every home.
     /// </para>
     /// </summary>
@@ -80,6 +81,11 @@ namespace ColonyCouncil
             if (from == null || !Homes.IsHome(from)) return "CC_Found_No_NotHome".Translate();
             if (MapFacts.InVacuum(from)) return "CC_Found_No_Orbit".Translate();
             if (Current != null) return "CC_Found_No_UnderWay".Translate(Current.place.Named("PLACE")).Resolve();
+            // A fresh start in the same act as a hand-over, waiting for its ceremony (Colonies/HandOvers.cs).
+            var pending = HandOvers.PendingFounding;
+            if (pending != null) return "CC_Found_No_UnderWay".Translate(pending.place.Named("PLACE")).Resolve();
+            // This home being handed over on its own: its people are spoken for.
+            if (HandOvers.At(from) != null) return "CC_HandOver_FoundNoHandingOver".Translate(Homes.Name(from).Named("HOME")).Resolve();
             if (FoundingMath.LimitFor(Prefs.MaxNumberOfPlayerSettlements, Counted()) < 0)
                 return "CC_Found_No_Limit".Translate(Prefs.MaxNumberOfPlayerSettlements.Named("COUNT")).Resolve();
             return null;
@@ -178,7 +184,9 @@ namespace ColonyCouncil
             return a.relations.DirectRelationExists(PawnRelationDefOf.Parent, b) || b.relations != null && b.relations.DirectRelationExists(PawnRelationDefOf.Parent, a);
         }
 
-        /// <summary>A close bond (decision 2A's "parted"): a partner, a parent or child, a sibling, or a close friend.</summary>
+        /// <summary>A close bond (decision 2A's "parted"): a partner, a parent or child, a sibling, or a close friend (the hand-over's farewells and moods too).</summary>
+        public static bool IsClose(Pawn a, Pawn b) => Close(a, b);
+
         private static bool Close(Pawn a, Pawn b)
         {
             if (a?.relations == null || b == null) return false;
@@ -509,6 +517,8 @@ namespace ColonyCouncil
                         new LookTargets(map.Parent));
                 Moods(plan, map, mother);
                 if (plan.keepOld && mother != null) PartingDay(plan, mother, name);
+                // The old colony handed over before the new one stood: its founding day kept here as a remembrance.
+                if (plan.handOver && plan.abandoned) ColonyCalendar.Notify_OldFounding(map, plan.fromName, WorldLedger.ColonyRecord(plan.from)?.founded ?? -1);
             }
             catch (Exception e)
             {
@@ -520,7 +530,8 @@ namespace ColonyCouncil
 
         /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>
         private static string OldColonyLine(FoundingPlan plan, Map map, bool seat) =>
-            Homes.MapOf(plan.from) == null ? "CC_Found_OldGone".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
+            Homes.MapOf(plan.from) == null ? (plan.handOver ? "CC_HandOver_FoundOldGone" : "CC_Found_OldGone").Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
+            : plan.handOver ? "CC_HandOver_FoundHandingOver".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
             : plan.keepOld
                 ? (seat ? "CC_Found_Kept_Seat" : "CC_Found_Kept").Translate((plan.fromName ?? "?").Named("MOTHER"), ColonySeat.Word(map).Named("SEAT")).Resolve()
                 : "CC_Found_Abandoning".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve();
@@ -593,7 +604,8 @@ namespace ColonyCouncil
                 FoundingLetters.AskNewcomers(plan, map);
             }
             if (!plan.firstNight) FirstNight(plan, map);
-            if (!plan.keepOld && !plan.abandoned) AbandonWhenLeft(plan);
+            // Handed over in the same act (HandOver): the hand-over makes the town once those who go have left (Colonies/HandOvers.cs).
+            if (!plan.keepOld && !plan.abandoned && !plan.handOver) AbandonWhenLeft(plan);
             bool newcomersDone = !plan.newcomers || plan.newcomersChosen || !NewcomersOn || Now - plan.founded > 10 * GenDate.TicksPerDay;
             if (plan.newcomers && !plan.newcomersChosen && newcomersDone)
             {
@@ -602,7 +614,7 @@ namespace ColonyCouncil
                 FoundingLetters.RemoveNewcomerLetters(plan);
                 Tell.Minor(NewsKind.Colony, Importance.Notable, map, "CC_Found_NewcomersLapsed".Translate(Homes.Name(map).Named("PLACE")).Resolve(), new LookTargets(map.Parent));
             }
-            if (plan.firstNight && (plan.keepOld || plan.abandoned) && newcomersDone) h?.foundings.Remove(plan);
+            if (plan.firstNight && (plan.keepOld || plan.abandoned || plan.handOver && HandOvers.OfFounding(plan.id) == null) && newcomersDone) h?.foundings.Remove(plan);
         }
 
         /// <summary>
@@ -706,6 +718,32 @@ namespace ColonyCouncil
             var map = Homes.MapOf(plan.home);
             History.Add(FoundingMath.KindAbandoned, new List<HistoryActor> { new HistoryActor(Ref.Colony(plan.from), HistoryRole.About) }, map != null ? Refs.Colony(map) : Ref.Colony(plan.home),
                 HistoryMath.Milestone, "CC_Found_AbandonedHistory".Translate((plan.fromName ?? "?").Named("MOTHER"), (map != null ? Homes.Name(map) : "?").Named("PLACE")).Resolve());
+            if (map != null)
+            {
+                try
+                {
+                    var record = WorldLedger.ColonyRecord(plan.from);
+                    ColonyCalendar.Notify_OldFounding(map, plan.fromName, record?.founded ?? -1);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("founding: the old founding day", e);
+                }
+            }
+            LowerLimit(plan, false);
+            LensModel.Dirty();
+            Cards.Dirty();
+        }
+
+        /// <summary>
+        /// The old colony handed over in the same act (HandOver): the founding is done with it, its founding day kept at the
+        /// new colony as a remembrance, and the game's limit set back as after an abandon.
+        /// </summary>
+        public static void HandedOver(FoundingPlan plan)
+        {
+            if (plan == null) return;
+            plan.abandoned = true;
+            var map = Homes.MapOf(plan.home);
             if (map != null)
             {
                 try

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Handing a colony over (Source/ColonyCouncil/Colonies/HandOvers.cs). Every line is said over one head on the map, one
+    sentence each. The meeting (its chair speaks while the members listen at the meeting spot), the ceremony (the head
+    speaks to those who stay and those who go), the banner, totem, keys or codes handed over by the age's form (one gives,
+    the head takes, face to face), and the farewells between those close (one going, one staying).
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HandOverMeeting</defName>
+    <lines>
+      <plain>
+        <li>The question is whether this place can stand on its own.</li>
+        <li>Some of us would stay, and some of us would go.</li>
+        <li>If we hand it over, it is theirs to run, not ours.</li>
+        <li>Think about who you would be living with afterwards.</li>
+        <li>Say what you think now, while it still counts.</li>
+        <li>[speaker] We will count every voice before anything is decided.</li>
+        <li>[speaker] Nobody leaves this table without being heard.</li>
+        <li>[tribal] The fire stays here whoever keeps it.</li>
+        <li>[medieval] A charter of its own would make this a free town.</li>
+        <li>[industrial] It would be a township with its own mayor.</li>
+        <li>[spacer] It would run as an administration of its own.</li>
+      </plain>
+      <warm>
+        <li>Whatever we choose, we will still be friends.</li>
+      </warm>
+      <blunt>
+        <li>Either we trust them to run it, or we don't.</li>
+      </blunt>
+      <gloomy>
+        <li>I never thought we would be talking about splitting up.</li>
+      </gloomy>
+      <cheerful>
+        <li>A town of our own people is not a bad thing to leave behind.</li>
+      </cheerful>
+      <cold>
+        <li>Count the votes and let us get on with it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HandOver</defName>
+    <lines>
+      <plain>
+        <li>From today this place stands on its own, and it will look after its own.</li>
+        <li>Those who go are welcome back here whenever they come.</li>
+        <li>We will keep the fields and the walls as you left them.</li>
+        <li>Nobody here forgets who built this place.</li>
+        <li>Send word when you have settled, and we will send ours.</li>
+        <li>[tribal] We keep the fire, and you carry its embers with you.</li>
+        <li>[tribal] The totem stays with this fire and those who keep it.</li>
+        <li>[medieval] By this charter the town is free and answers for itself.</li>
+        <li>[medieval] We hold the keys now, and the gate stays open to you.</li>
+        <li>[industrial] The town charter is signed, and the old flag comes down.</li>
+        <li>[industrial] We will run the township as carefully as you ran the colony.</li>
+        <li>[spacer] The charter is registered and the codes are ours from today.</li>
+        <li>[spacer] The systems stay up, and your channel stays open.</li>
+      </plain>
+      <warm>
+        <li>You are our people still, wherever you live.</li>
+      </warm>
+      <blunt>
+        <li>It is ours to run now, and we will run it.</li>
+      </blunt>
+      <gloomy>
+        <li>It will be quieter here without you.</li>
+      </gloomy>
+      <cheerful>
+        <li>A new name over the gate, and the same people under it.</li>
+      </cheerful>
+      <cold>
+        <li>We know what has to be done, and we will do it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who hands it over, to the head, face to face. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HandOverGive</defName>
+    <lines>
+      <plain>
+        <li>It is yours now, look after it.</li>
+        <li>Take it, and keep this place well.</li>
+        <li>[tribal] The totem is yours to keep by this fire.</li>
+        <li>[medieval] Here are the keys and the charter, and the town is yours.</li>
+        <li>[industrial] Here is the town charter, signed, and the flag is yours to raise.</li>
+        <li>[spacer] The codes are yours, and the charter is registered.</li>
+      </plain>
+      <warm>
+        <li>There is nobody I would rather hand it to.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The head, taking it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HandOverTake</defName>
+    <lines>
+      <plain>
+        <li>We will keep it well, I promise you that.</li>
+        <li>It is in good hands, go safely.</li>
+        <li>[tribal] The fire will not go out while I keep it.</li>
+        <li>[medieval] The keys stay here and the gate stays open to you.</li>
+        <li>[industrial] We will keep the town running, you have my word.</li>
+        <li>[spacer] Codes received, and your channel stays open.</li>
+      </plain>
+      <warm>
+        <li>Come back whenever you like, this is still your home.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Farewells between two close people, one going ([going]) and one staying ([staying]). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HandOverFarewell</defName>
+    <lines>
+      <plain>
+        <li>[going] I will write as soon as we are settled.</li>
+        <li>[going] Look after yourself while I'm gone.</li>
+        <li>[going] It won't be the same without you there.</li>
+        <li>[staying] Come and see us when you can.</li>
+        <li>[staying] There will always be a place at our table for you.</li>
+        <li>[staying] Go safely, and send word.</li>
+      </plain>
+      <warm>
+        <li>[going] You were the best part of this place.</li>
+        <li>[staying] I'll miss you more than I can say.</li>
+      </warm>
+      <blunt>
+        <li>[going] Don't let them run it into the ground.</li>
+        <li>[staying] Don't get yourself killed out there.</li>
+      </blunt>
+      <gloomy>
+        <li>[going] I keep thinking this is the last time I'll see you.</li>
+        <li>[staying] I hope we did the right thing.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

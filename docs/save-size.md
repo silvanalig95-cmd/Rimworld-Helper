@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 531; modelled: 531; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,847 KB** after two, **3,028 KB** after five.
+Saved collections found: 538; modelled: 538; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** after two, **3,029 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,847 KB** aft
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
-| `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards | fixed | 42 | 42 | 42 | 106.6 |
+| `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600) and in words (about 400, at most 1200) | cap | 30 | 60 | 60 | 76.2 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
@@ -262,8 +262,10 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,847 KB** aft
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
+| `Colonies/HomesHandOver.cs:handOvers` | a hand-over under way, one at a time, let go once the town is made or it is called off (with the same act's founding inside until it sets out) | while | 1 | 1 | 1 | 0.6 |
 | `Diplomacy/DiplomacyBook.cs:tales` | per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days | cap | 3 | 4 | 4 | 0.6 |
 | `UI/WeekMemory.cs:answers` | answers of every kind whose play-outs are still watched, each only for the days they take (Answers.MaxWatched 40 at most) | fixed | 4 | 4 | 4 | 0.6 |
+| `World/Ledger/LedgerFormers.cs:formerRecords` | one per colony handed over, HandOverMath.MaxTowns at most (the oldest whose town is gone goes); none in a save that never handed one over | cap | 0 | 1 | 2 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
@@ -464,6 +466,10 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,847 KB** aft
 | `Colonies/HomesFounding.cs:keptAgainst` | per founding: those kept against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesFounding.cs:party` | per founding: who goes from the colony (counted under foundings) | while | 8 | 8 | 8 | (in its record) |
 | `Colonies/HomesFounding.cs:sentAgainst` | per founding: those sent against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
+| `Colonies/HomesHandOver.cs:going` | per hand-over: who goes (counted under handOvers) | while | 8 | 8 | 8 | (in its record) |
+| `Colonies/HomesHandOver.cs:keptAgainst` | per hand-over: those kept against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
+| `Colonies/HomesHandOver.cs:sentAgainst` | per hand-over: those sent against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
+| `Colonies/HomesHandOver.cs:staying` | per hand-over: who stays (counted under handOvers) | while | 12 | 12 | 12 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |
@@ -532,6 +538,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,847 KB** aft
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:petitionMet` | per open want in a petition: those of it met before (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/History.cs:values` | per event: a deed's name, or an answer's six values, when it has them (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
+| `World/Ledger/LedgerFormers.cs:formers` | per town the colony was: the colony's former people who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |

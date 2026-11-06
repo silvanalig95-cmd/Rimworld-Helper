@@ -24,7 +24,9 @@ namespace ColonyCouncil
         Town,
         Ruin,
         Post,
-        Hamlet
+        Hamlet,
+        /// <summary>A town the colony was: handed over to a people of its own former colonists (Colonies/HandOvers.cs).</summary>
+        Former
     }
 
     /// <summary>What becomes of a founding record at the day's look (RegionMath.FoundingDay).</summary>

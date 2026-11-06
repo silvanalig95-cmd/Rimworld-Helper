@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Handing a colony over
+
+*6 November 2026, version 0.127.0*
+
+- Hand a colony over from its card or beside the game's Abandon on the world map: it becomes a town of its own people instead of being abandoned or kept.
+- Choose who stays and who goes (each grown-up shows their wish), the town's head and their second by office or standing, its name, and whether it is free or bound to you by a defence or trade pact.
+- The colony's meeting votes first, and going against its vote costs trust among those who stay. On the day everyone gathers, the head speaks, the totem, keys or charter change hands by your colony's age, and close friends say goodbye.
+- The town becomes one of Rimfolk's own peoples for your colony's age, allied with you and warmer while one of your former colonists leads it. When its head dies, their second takes over.
+- Your former colonists become the town's known faces: its head, second, envoy and trader. The window says plainly that a save with such a town then needs Rimfolk.
+- It also works as the third choice when founding a new colony, where the newcomers then come free, and for a colony that flies away by gravship.
+
 ## Small letdowns listed
 
 *6 November 2026, version 0.126.3*

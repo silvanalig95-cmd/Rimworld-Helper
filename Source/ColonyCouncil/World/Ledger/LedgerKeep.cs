@@ -38,6 +38,8 @@ namespace ColonyCouncil
         public const string Ward = "ward";
         /// <summary>A hostage of theirs agreed and not yet come to the colony (Diplomacy/Hostages.cs).</summary>
         public const string Hostage = "hostage";
+        /// <summary>One of the colony's former people, who stayed when their home was handed over, while the town stands (Colonies/HandOvers.cs).</summary>
+        public const string Former = "former";
 
         /// <summary>A world situation running (World/WorldSituation.cs: held), by its id.</summary>
         public static string Situation(int id) => "situation:" + id;
@@ -148,6 +150,8 @@ namespace ColonyCouncil
                 case KeepFor.Hostage: return Hostages.Holds(p);
                 // A match's own: made for it and not yet come, or married into their town (Diplomacy/Matches.cs).
                 case KeepFor.Spouse: return Matches.Holds(p);
+                // One of the colony's former people, while the town they stayed in stands (Colonies/HandOvers.cs).
+                case KeepFor.Former: return HandOvers.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on handing a colony over to a people of its own (Source/ColonyCouncil/Colonies/: HandOverMath.cs,
+       HandOvers.cs, HandOverWindow.cs, HandOverPeoples.cs, HandOverNotables.cs, HandOverPatches.cs;
+       docs/design/stage3-many-colonies.md, section 2, release 2a; DESIGN.md "A town of our own"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_HandOver</defName>
+    <label>a town of our own</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Hand a colony over: those who stay become a people of their own, allied with the colony, their head the one the colony chose, and the place a town on the world map. Those who go leave for another home, a new colony or the road. The colony's meeting votes first, and everyone gathers for the hand-over on the day set.</summary>
+    <tip>Keep a speaker or an office holder among those who stay: they head the town, and the bond in goodwill is strongest while one of the colony's own leads it.</tip>
+    <description>"Hand it over" is an act on a colony's card, and a button on its settlement's world buttons beside the game's own Abandon. Its window lists the home's people: tick those who stay. Each grown-up's wish shows as in the founding window, with why: anyone sent or kept against it feels uprooted for a season (-4, 15 days), and close bonds split feel parted for a season (-3 each, 15 days, the three closest at most). Children follow their parents unless you move them; anyone away from home, or a guest of another people's, goes with those who go.
+
+The town's head is chosen by office or standing, never by blood: the speaker if they stay, else the first office holder who stays by the seats' order, else the one the others think best of. The head's second is the next by the same rule, and leads when the head dies or is lost. You can pick others. The people's name comes from the colony's age (the hearth of Oakhold, the folk of Oakhold, the township of Oakhold, the Oakhold administration), and you can change it. The terms: a free town owing nothing, or a defence or trade pact for a year, renewed by their letter as any pact is. Fealty is never offered at a hand-over.
+
+It can go ahead when at least 3 grown-ups stay, someone of the colony's stays the colony's (among those who go, or at another home), and no fight, threat or banishment is under way there. With Odyssey, a grav anchor must be taken apart first, and the gravship's engine must leave or be taken apart before the town is made.</description>
+    <sections>
+      <li>
+        <heading>The meeting, the day and the hand-over</heading>
+        <points>
+          <li>"Put it to the meeting": the colony's grown-ups gather in the evening at the meeting spot (the dining table first) and vote. Each votes by their own wish (one reason for it when the plan gives them their wish, one against when it goes against it) and their trust in the council (a reason for every 40 trust, 1.5 at most). The torn don't count.</li>
+          <li>A letter tells the vote, with who voted which way. Go ahead and the hand-over is set for the next day, by its date; going ahead against the vote costs 6 trust among those who stay. Or call it off.</li>
+          <li>On the day, between 9 and 19, everyone gathers at the meeting spot: the head speaks to those who stay and those who go, and when it is over the one who hands it over gives the head the colony's totem, keys and charter, town charter or codes, by the colony's age, face to face. Those who go then say goodbye to the two closest of those who stay, wherever they meet in the next hours.</li>
+          <li>With answers not played out on the map, the vote is counted at once among the members, and the words and farewells come without a gathering.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Where those who go go</heading>
+        <points>
+          <li>To another home: the journey planner plans their journey, one way, once the hand-over is done.</li>
+          <li>On the road: a letter asks you to form their caravan the game's way, or send them by pods, the shuttle or the gravship.</li>
+          <li>To found a new colony: choose "Handed over" as the old colony's third choice in the founding window. The hand-over window follows; the party sets out after the ceremony, and the newcomers come free.</li>
+          <li>The colony's prisoners and slaves are set free in the town, or taken along in the caravan you form; any still there are set free.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The town</heading>
+        <text>Once the last of those who go has left the map, the place becomes a town of a new people, one of Rimfolk's own for the colony's age (hearth folk, free folk, a township, a free colony), with the game's own groups, caravans and traders for that age. Its faith is the colony's and its leader the head. It is allied with the colony (80 goodwill), and with every other people half as warm as the colony is with them, while the peoples that start as everyone's enemies (pirates, rough tribes) stay its enemies. Those who stay, the animals and the mechs left behind are its people. The game closes the map as it does for any town, with no letter of colonists lost: what was there stays with the place, and a map made there again is the game's own town of that people.</text>
+      </li>
+      <li>
+        <heading>What it keeps</heading>
+        <points>
+          <li>The colony's record ends "handed over", the milestone is in the history under the colony and the town, and a letter points at the town.</li>
+          <li>The town's fortune starts between 30 and 70 by the colony's wealth for each of its people, its founding is the colony's founding day, and its founder one of the colony's founders who stayed.</li>
+          <li>Its neighbours by name are the colony's former people: the head, the head's second (the headman's second, the reeve's deputy, the deputy mayor, the deputy administrator), the envoy (the most social) and the trader (the best trader). The town stays among the colony's neighbours wherever it lies, and a place left empty is filled from its former people first.</li>
+          <li>The bond in goodwill: "once of" the colony, 30 to the goodwill the town comes back to while one of the colony's former people heads it, 15 after, and none once a war has broken it.</li>
+          <li>The colony's council, calendar and books for that home are let go after 30 days, as for any home lost.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Rimfolk from then on</heading>
+        <text>The town's people are one of Rimfolk's own, so a save that holds the town needs Rimfolk: without it, the game drops the town and its people with an error when the save is loaded. The window says so before you confirm.</text>
+      </li>
+    </sections>
+    <keywords><li>hand over</li><li>hand-over</li><li>town of our own</li><li>former colonists</li><li>handed over</li><li>once of</li><li>new people</li><li>head's second</li></keywords>
+    <seeAlso><li>Council_Alm_C_FreshStart</li><li>Council_Alm_C_Region</li><li>Council_Alm_C_Offices</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
