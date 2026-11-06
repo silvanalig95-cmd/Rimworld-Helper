@@ -75,7 +75,10 @@ namespace ColonyCouncil
                 text = sb.ToString(),
                 kind = kind,
                 look = p.Spawned ? new LookTargets(p) : list[0].look,
-                type = list.FirstOrDefault(x => x.type != null && x.type != MessageTypeDefOf.SilentInput)?.type ?? list[0].type
+                type = list.FirstOrDefault(x => x.type != null && x.type != MessageTypeDefOf.SilentInput)?.type ?? list[0].type,
+                // Weighed by the weightiest of the day it gathers (UI/TellMath.cs, the evening's letter).
+                weight = list.Max(x => x.weight),
+                held = list.Any(x => x.held)
             };
         }
     }

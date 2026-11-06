@@ -480,7 +480,8 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");
         Console.WriteLine($"Checked {PassClockTests.Run(root, Check)} things about Rimfolk's clock (hours and days by game ticks, the worst run, the table, every pass timed).");
-        Console.WriteLine($"Checked {TellTests.Run(root, Check)} things about Rimfolk's one voice (the day's caps, the same thing once, kinds by folder, what stays direct).");
+        Console.WriteLine($"Checked {TellTests.Run(root, Check)} things about the teller (the colony's day, a busy day, the same thing once, the evening, kinds by folder, what stays direct).");
+        Console.WriteLine($"Checked {StageTests.Run(root, Check)} things about the colony's pace (the week's room, the wait, the floor, calendar days together, one custom a season, toasts at the next gathering).");
         Console.WriteLine($"Checked {HistoryTests.Run(root, Check)} things about the world's history (kinds, indexes, a run in a day, folding by season, bounds, the chronicle as its view, an older save's list taken in once, places of world events).");
         Console.WriteLine($"Checked {OneRecordTests.Run(root, Check)} things about one record (the chronicle as the history's view, every question's answer and what came of it, the year told once, less noise).");
         Console.WriteLine($"Checked {WorldMechanicsTests.Run(root, Check)} things about other mods' world mechanics and the ages (the same era tags, every feature's form in every age, what the history keeps, a battle decided, no mod named in the core).");

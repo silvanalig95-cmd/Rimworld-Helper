@@ -667,10 +667,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A line told for the chronicle: written into the world's one history, which keeps it by its own rules
-        /// (World/Ledger/History.cs); the chronicle shown is the history's view of the colony (<see cref="Chronicle"/>).
+        /// A line told for the chronicle, through the teller (<see cref="Tell.Chronicle"/>): written into the world's one
+        /// history, which keeps it by its own rules (World/Ledger/History.cs); the chronicle shown is the history's view of
+        /// the colony (<see cref="Chronicle"/>).
         /// </summary>
-        public void AddChronicle(ChronicleEntry entry) => History.FromChronicle(entry);
+        public void AddChronicle(ChronicleEntry entry) => Tell.Chronicle(entry);
 
         // ================= Eligibility =================
 

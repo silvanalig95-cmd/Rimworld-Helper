@@ -49,6 +49,8 @@ namespace ColonyCouncil
         /// "Colony news" setting, rather than coming at once or only to the History tab.
         /// </summary>
         public bool held;
+        /// <summary>How much it matters (<see cref="TellWeight"/>), for the evening's letter to carry the weightiest first; older saves' lines are worth knowing.</summary>
+        public int weight = TellWeight.Notable;
 
         public void ExposeData()
         {
@@ -60,6 +62,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref look, "look");
             Scribe_Defs.Look(ref type, "type");
             Scribe_Values.Look(ref held, "held");
+            Scribe_Values.Look(ref weight, "weight", TellWeight.Notable);
         }
     }
 
@@ -309,7 +312,30 @@ namespace ColonyCouncil
             var day = waiting.ToList();
             waiting.Clear();
             // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
-            News.Send(NewsDays.Group(day));
+            var lines = NewsDays.Group(day);
+            // The teller's evening (UI/TellMath.cs): the lines that matter most; the lightest of a long day go to the History tab.
+            var keep = TellMath.EveningKeep(lines.Select(i => TellMath.EveningScore(i.weight, i.held, (int)i.kind)).ToList(), TellMath.EveningLines);
+            var letter = new List<NewsItem>();
+            int quiet = 0;
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (keep[i])
+                {
+                    letter.Add(lines[i]);
+                    continue;
+                }
+                try
+                {
+                    if (Find.Archive != null) News.Archive(lines[i]);
+                    quiet++;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("colony news: a light line to the History tab", e);
+                }
+            }
+            Tell.NoteHistory(quiet);
+            News.Send(letter);
         }
 
         /// <summary>The setting changed: what was waiting goes out the new way, except what Tell held past a day's cap.</summary>

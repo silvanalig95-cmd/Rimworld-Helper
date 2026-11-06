@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's pace (Source/ColonyCouncil/PlayOut/Stage.cs, StageMath.cs): one count of gatherings a colony. -->
+
+  <!-- Settings, under How often. -->
+  <CC_Settings_GatheringsAWeek>Gatherings a week before the colony's own wait</CC_Settings_GatheringsAWeek>
+  <CC_Settings_GatheringsAWeek_Tip>How many gatherings any seven days may hold before the colony's own doings wait their turn: a group's evening at the fire, a family supper, a camp's show, a child's birthday toast. What you choose always happens and counts toward it: an answer that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own never come within a day and a half of another gathering; one waits up to three days for room, and is then let go without a word.\n\nWith it: calendar days that fall within three days of each other are kept together, and one that comes within two days of another gathering is kept at supper; one seasonal custom is asked a season; a life goal's toast is raised at the next gathering; the election's candidates speak at the count. Ten days never pass without a gathering: from the eighth the colony's own come at once, and failing them it keeps an evening together.</CC_Settings_GatheringsAWeek_Tip>
+  <CC_SetNote_GatheringsAWeek>Past this many in seven days, the colony's own evenings and suppers wait their turn.</CC_SetNote_GatheringsAWeek>
+
+</LanguageData>
