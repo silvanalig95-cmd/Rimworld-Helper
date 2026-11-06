@@ -332,7 +332,10 @@ namespace ColonyCouncil
         /// <summary>The lowest value of a band of the good side (for meters and tooltips).</summary>
         public static float GoodBandStart(GoodBand band) => band == GoodBand.HighSpirits ? HighSpiritsAt : band == GoodBand.GoodHeart ? GoodHeartAt : 0f;
 
-        /// <summary>The situational mood thought's size at each band of the good side: small, a mirror of strain's.</summary>
+        /// <summary>
+        /// The situational mood thought's size at each band of the good side (Rimfolk_Thoughts_GoodHeart.xml has the same):
+        /// small, a mirror of strain's -3, -5 and -8, and kept small so a well-run colony stays on its balance targets.
+        /// </summary>
         public static float GoodMood(GoodBand band)
         {
             switch (band)
@@ -381,7 +384,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The good side an hour from belonging or purpose well met (<paramref name="need"/>, 0 to 100): nothing below 60
-        /// (HeartNeedMath.WellMet), 0.03 at 60 rising to 0.06 at 90 and more.
+        /// (HeartNeedMath.WellMet), 0.035 at 60 rising to 0.07 at 90 and more (within the source's daily cap).
         /// </summary>
         public static float NeedFillPerHour(float need)
         {
@@ -441,7 +444,7 @@ namespace ColonyCouncil
             return hardship - spent / SpendShare;
         }
 
-        /// <summary>The good side fades slowly: about 2.5% a day (halving in about four weeks without anything to fill it).</summary>
+        /// <summary>The good side fades slowly: about 3% a day (halving in about three weeks with nothing to fill it).</summary>
         public const float GoodFadePerHour = 0.99873f;
 
         /// <summary>The good side after <paramref name="hours"/> of fading.</summary>

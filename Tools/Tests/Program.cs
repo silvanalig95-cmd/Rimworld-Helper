@@ -394,6 +394,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
         Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about good things growing ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
         Console.WriteLine($"Checked {SmallMomentTests.Run(root, Check)} things about small letdowns and joys (the moment, what moves to the heart, every small mood's pile).");
+        Console.WriteLine($"Checked {GoodHeartTests.Run(root, Check)} things about the heart's good side (the bands, filling and spending, the caps, the fade, the release, the setting, old saves, the words).");
         Console.WriteLine($"Checked {YardTests.Run(Check)} things about where the colony gathers out of doors (terraces and seats, not the machinery).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");

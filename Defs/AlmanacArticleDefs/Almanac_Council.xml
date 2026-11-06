@@ -1245,6 +1245,32 @@ Some things take a chunk off at once: a party (6), a concert or a wedding (5), a
 To head it off, use days of rest: a decree that slows everyone's work by 10% for three days and makes strain drain about twice as fast. Colonists may ask for it when the colony is worn down.</text>
       </li>
       <li>
+        <heading>The good side: in good heart</heading>
+        <text>The heart has two sides, and never both at once. When strain is at nothing and good things keep coming, it fills on the other side: slowly (4 a day at most in all, each kind of good within a cap of its own), mostly from what can't be bought. Hardship spends it before any strain builds, half a point for each point of strain it would have built, so someone in good heart takes a hard knock in their stride; good things ease strain first and fill the good side only with what is beyond. It fades slowly, about 3% a day. A save from before it starts at nothing.</text>
+        <table>
+          <li>What fills it | How much</li>
+          <li>Friends close by (belonging well met, 60 or more) | 0.035 to 0.07 an hour (1.2 a day at most)</li>
+          <li>A purpose (work they love, a life goal, a seat on the council: purpose well met) | the same (1.2 a day at most), and 0.6 when their life goal moved on since yesterday</li>
+          <li>A deed the colony speaks well of, that someone else knows of | 1, up to 2 for a big one (2 a day at most)</li>
+          <li>Gatherings and celebrations | 45% of what they ease beyond the strain there is (2.5 a day at most)</li>
+          <li>Good talks | 60% of the same (1.5 a day at most)</li>
+          <li>A run of small joys | 60% of the same (1.2 a day at most)</li>
+          <li>The comforts of home (every small good mood that adds up, a fine room and a fine meal among them) | 15% of the same (0.4 a day at most), so a rich colony doesn't simply buy it</li>
+        </table>
+      </li>
+      <li>
+        <heading>In good heart and in high spirits</heading>
+        <table>
+          <li>Good side | Band | What it does</li>
+          <li>0 to 39 | Steady | Nothing</li>
+          <li>40 to 59 | In good heart | +2 mood, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
+          <li>60 to 100 | In high spirits | +3 mood, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
+        </table>
+        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. Now and then (about once in six days held in high spirits, at most once in 12 days for each colonist and once a day in the colony), only when it's safe and they're at home, awake and not at a gathering, the good side overflows: one of the game's own inspirations, which the game picks by their passions and by its own rules, with its own letter (12 off the good side); or they go and find someone close (a partner, kin or a friend, the one under the most strain first), say a kind word face to face, and the other has a small joy of it (6 off the good side).
+
+The Mood tab's Heart section shows it as a second meter, Good heart, with what filled it and what spent it; the inspector line reads like "Heart: in good heart · proud" while it shows; the colonist's card says what filled it. Its setting is on the Heart &amp; health page, beside the heart's own; turned off, nothing fills it and the bands give nothing.</after>
+      </li>
+      <li>
         <heading>Feelings</heading>
         <text>Feelings come from the moods a colonist has right now (as big as the game counts them) and from what they can see: enemies on the map, a fight on its way, a new face, quiet days. The strongest one or two show in the inspector; the Mood tab lists every one they have, how strong, since when and why. They add no mood, because that would count the same thing twice. Instead they nudge: a wish that fits becomes up to half again as likely, moments between colonists go warmer or pricklier, dreams change color, strain builds or drains faster. Each nudge is at its fullest only when the feeling is strong.</text>
         <table>

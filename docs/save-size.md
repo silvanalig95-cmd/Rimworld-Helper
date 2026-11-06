@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 511; modelled: 511; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,377 KB** after a year, **2,819 KB** after two, **2,993 KB** after five.
+Saved collections found: 514; modelled: 514; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,378 KB** after a year, **2,819 KB** after two, **2,994 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -289,6 +289,7 @@ Rimfolk's part of the save, roughly: **2,377 KB** after a year, **2,819 KB** aft
 | `Calendar/CalendarWatch.cs:pendingCrops` | new crops until their first harvest (crop defs) | fixed | 5 | 5 | 5 | 0.4 |
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
+| `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 18 | 18 | 18 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
 | `CouncilGameComponent.cs:herds` | one per colony: its herd's leader and line (the line's ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
 | `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
@@ -352,6 +353,8 @@ Rimfolk's part of the save, roughly: **2,377 KB** after a year, **2,819 KB** aft
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |
+| `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
+| `Heart/HeartData.cs:goodToday` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
 | `Calendar/CalendarDay.cs:knew` | per day on the calendar | fixed | 4 | 4 | 4 | 0.2 |
 | `Camps/CampLook.cs:walkSeen` | colonists the farewell round looked in on (the walk's count), while the camp stays | while | 4 | 4 | 4 | 0.2 |

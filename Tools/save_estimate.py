@@ -270,6 +270,10 @@ MODEL = {
     "Heart/HeartData.cs:feelingSinceKeys": ("fixed", 4, 40, "per heart: feelings felt now"),
     "Heart/HeartData.cs:feelingSinceTicks": ("fixed", 4, V, "per heart"),
     "Heart/HeartData.cs:needLack": ("fixed", 4, V, "per heart: the four needs"),
+    # The heart's good side (Heart/GoodHeart.cs): one entry per source that fills it (7) or per strain source that spends it.
+    "Heart/HeartData.cs:goodToday": ("fixed", 7, V, "per heart: one per source of the good side"),
+    "Heart/HeartData.cs:goodRecent": ("fixed", 7, V, "per heart: one per source of the good side"),
+    "Heart/HeartData.cs:goodSpent": ("fixed", 18, V, "per heart: one per strain source"),
     "Heart/HeartTracker.cs:hearts": ("colonists", 1, 1400, "one per colonist, the gone dropped hourly"),
     # Camps (one camp while it stays)
     "Building/Automations.cs:billKeys": ("fixed", 40, 40, "bills the council set (bench id and recipe), while they stand on the bench"),
