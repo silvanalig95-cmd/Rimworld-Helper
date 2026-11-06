@@ -419,7 +419,7 @@ namespace ColonyCouncil
 
         // ---------------- The woods ----------------
 
-        /// <summary>The land's own grown trees that give wood, nobody's (never sown), clear of the colony.</summary>
+        /// <summary>The land's own grown trees that give wood, nobody's (never sown or marked); whether each is clear of the colony is the caller's to ask.</summary>
         public static List<Plant> WildTrees(Map map)
         {
             var list = new List<Plant>();
@@ -427,22 +427,22 @@ namespace ColonyCouncil
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Plant))
             {
                 if (!(t is Plant p) || p.sown || p.def.plant == null || !p.def.plant.IsTree || p.def.plant.harvestedThingDef != ThingDefOf.WoodLog) continue;
-                if (p.Growth < CampLandMath.TreeGrown || map.designationManager.DesignationOn(p) != null || !ClearOfColony(map, p.Position)) continue;
+                if (p.Growth < CampLandMath.TreeGrown || map.designationManager.DesignationOn(p) != null) continue;
                 list.Add(p);
             }
             return list;
         }
 
         /// <summary>
-        /// Where the woods stand thickest, for woodcutters: grown wild trees with enough more within a dozen cells, the
-        /// thickest first (<see cref="CampLandMath.MinWoods"/> such trees at least in all).
+        /// Where the woods stand thickest, for woodcutters: grown wild trees clear of the colony with enough more within a
+        /// dozen cells, the thickest first (<see cref="CampLandMath.MinWoods"/> such trees at least in all; a few hundred
+        /// of them looked at, chosen at random).
         /// </summary>
         public static List<IntVec3> WoodsTargets(Map map)
         {
-            var trees = WildTrees(map);
             var list = new List<IntVec3>();
-            if (!CampLandMath.WoodsEnough(trees.Count)) return list;
-            var sample = trees.InRandomOrder().Take(300).ToList();
+            var sample = WildTrees(map).InRandomOrder().Where(p => ClearOfColony(map, p.Position)).Take(300).ToList();
+            if (!CampLandMath.WoodsEnough(sample.Count)) return list;
             var scored = new List<(IntVec3 c, int n)>();
             foreach (var p in sample)
             {
