@@ -2976,6 +2976,70 @@ window `NewcomersWindow.cs`, the questions `FoundingLetters.cs`, the seat `Colon
   new list is written only when it holds something), and the Ours lens's home row reads the same people as before in
   more words.
 
+#### Another landing site (the player's request, 6 November 2026)
+
+"I don't like the map": in a new game's first days the colony can be set down on a new map without starting over.
+`Source/ColonyCouncil/Colonies/`: the rules are pure (`LandingMath.cs`, tested in `Tools/Tests/LandingTests.cs`), the
+record of the start is `LandingRecord.cs`, the move `Landing.cs`, the window `LandingWindow.cs`, the game's hooks
+`LandingPatches.cs`. Nothing per tick and no schedule slot: the record is let go in the council's hour.
+- **The entry.** "Choose another landing site" ("starting site" for a start on foot) in the game's own menu (Esc), put
+  in by a transpiler on `MainMenuDrawer.DoMainMenuControls` that sends its first `OptionListingUtility.DrawOptionListing`
+  (the main options, not the web links) through `LandingMenu.Draw`, before "Quit to main menu", with the menu window one
+  option taller (`MainTabWindow_Menu.RequestedTabSize`); if the call isn't found, nothing changes and the log says so
+  once. The same act on the colony's card beside "Found a new colony". Shown for `LandingMath.OfferDays` (3) days
+  after a landing, greyed with why (`LandingMath.WhyNot`, in order): the deeper hooks off, a start Rimfolk didn't see,
+  the tutorial, a gravship start (Odyssey: the gravship can fly them elsewhere; its own capture and placement isn't
+  used), a start above the planet, more than the one home, a journey or founding being planned, the void monolith
+  woken, someone of the colony away or inside something (a casket, a pod, a vat), a guest of the colony on the map, a
+  quest under way with a target on the map that wouldn't come along, a threat (the game's own
+  `GenHostility.AnyHostileActiveThreatToPlayer` when the move is made).
+- **The record of the start.** The game drops the scenario's things only on the first map
+  (`ScenPart_PlayerPawnsArriveMethod` and `ScenPart_ScatterThings` return early unless `Find.GameInitData` is set), so
+  a prefix and postfix on `Scenario.GenerateIntoMap`, only while it is set, take the things on the map before and after:
+  the difference is the kit (`LandingPiece`: the stack by reference, its def, how many of it are the kit's, and where it
+  came from), told apart by a prefix and postfix on each scatter part (near the start or anywhere); each starting
+  colonist's apparel, equipment and inventory is theirs; the start spot, the arrival method, the map's generator and
+  the map conditions the scenario set are kept too. On the council's component, saved only while the offer is open.
+- **The kit followed.** The colonists haul the kit a load at a time and the loads merge on the stockpile with each
+  other and with what was found on the map, so a reference alone loses it at the first haul. A postfix on
+  `Thing.SplitOff` and a prefix and postfix on `Thing.TryAbsorbStack` (a dictionary look-up while the offer is open,
+  nothing after) carry each stack's kit count over (`LandingKit`): the kit's part goes first when a stack is split,
+  used or merged (`LandingMath.SplitKit`, `MergeKit`), so it is never counted larger than it is, nothing found or made
+  counts, and what is used is gone. What comes is the kit's part of each stack lying on the map (`Takes`) and whatever
+  of it someone who comes holds.
+- **The window.** A new map of the same place, or another place with the game's world targeter, Rimfolk's facts of
+  the tile (`FoundingPlace.Facts`) and the game's own check (`TileFinder.IsValidTileForNewSettlement`, the colony's own
+  settlement not counted as a neighbour since it moves; nothing but a passing caravan may stand there); with a
+  scenario's forced map, only the same place. The map size: the game's sizes (`Dialog_AdvancedGameConfig.MapSizes`, its
+  test sizes with the option), the current one first. What comes along and what is lost, by name and count, worked out
+  by the same `Landing.Plan` the move uses.
+- **The move**, in one long event. Everyone of the colony standing on the map (and anyone of it they carry) is taken
+  off it as the game moves someone through a portal (their lord told, drafted no more, their beds' claims given up);
+  what they carry in their hands comes along, a stranger or a corpse is set down. The kit's part of each loose stack is
+  split off and taken. The scenario's map conditions are noted as they stand. The old map goes
+  (`Game.DeinitAndRemoveMap`, no letter), and the same settlement is kept: for another place it is moved (the game's
+  own `WorldObject.Tile` setter redraws it and its tile lookups) and `Find.GameInfo.startingTile` follows. So every
+  record keyed by the settlement (`Homes.KeyOf`: council, calendar, founding day, history, ledger) and every quest that
+  names it stays with the colony, and the old place is left empty, not a ruin. The design asked for the new home's map
+  to be made before the old one went for another place; with one settlement the game allows only one map at a time
+  (`MapGenerator.GenerateMap` refuses a parent that has one), so the old map goes first either way, as in the game's own
+  `MoveColonyUtility.MoveColonyAndReset`. The new map is made the game's way (`MapGenerator.GenerateMap`, the
+  start's generator, the chosen size, which becomes the world's size for new maps); for the same place the seed its
+  content is made from is turned for that one map (`Patch_LandingSeed` on `GenerateContentsIntoMap`), never the world's
+  own seed, whose noise the game builds once (a mineral-rich tile's ore), so the place keeps its rock and ore. The
+  scenario's after-map step runs inside it (`Scenario.PostMapGenerate`): with Anomaly the monolith comes on the starting
+  tile as at a game's start, and it is made the game's own (`Find.Anomaly.monolith`, which the game sets only while it
+  has none), waking when the scenario said (`AutoActivate`). The scenario's map conditions, set again by its genstep,
+  are put back to the time they had left, or ended. They arrive the scenario's way at the new start spot
+  (`DropPodUtility.DropThingGroupsNear`: each person a pod of their own, the mechs, animals and kit shared, as the game
+  drops them; or standing), what was scattered near the start within the game's 20 cells of the new one, what was
+  scattered anywhere anywhere. `GameEnder.CheckOrUpdateGameOver` ends with `gameEnding` false (a wild animal spawned on
+  the new map asks it while nobody stands on a map), so there is no game-over letter. The camera goes to the new start
+  and a short message says what happened, in the colony's age's words. If the new map can't be made, the colony gets the
+  game's map of where it was; if no map at all, it goes on as a caravan.
+- **Nothing else.** It is not a founding, an abandoning or a journey: no history entry, no calendar day, no mood, no
+  speech. What was under way on the old map (a play-out, a visit) ends with it, as when any map is closed.
+
 ### The world ledger
 
 One way to name anything out in the world, one record for every tie between two parties, and one place to ask about a

@@ -6,6 +6,57 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- choose another landing site (the player's request, 6 November 2026): "after I create a character ... and load into it
+  and have created everything, but I don't like the map ... reselect another map, without losing everything else". No
+  round of its own: About.xml, What's new and CHANGELOG untouched. Pure rules in `Colonies/LandingMath.cs`
+  (`LandingTests`, prefix "landing: "); DESIGN.md "Another landing site"; the Almanac's fresh start page has a section;
+  README a paragraph. What it does:
+  - The entry: "Choose another landing site" ("starting site" for a start on foot) in the game's own menu (Esc), by a
+    transpiler on `MainMenuDrawer.DoMainMenuControls` (its first `DrawOptionListing` through `LandingMenu.Draw`, before
+    "Quit to main menu", the menu window one option taller), and on the colony's card beside "Found a new colony". Only
+    for 3 days after a landing (the game's start or the last one chosen) in a game whose start Rimfolk recorded; greyed
+    with why while the colony has more than its one home, a journey or founding is planned, the monolith has woken,
+    someone is away or inside a casket or pod, a guest stays, a quest under way has a target on the map, or a threat is
+    there; not for the tutorial, a space start or a gravship start (the tooltip: the gravship can fly them elsewhere).
+  - The record of the start (`Colonies/LandingRecord.cs`): a prefix and postfix on `Scenario.GenerateIntoMap` while
+    `Find.GameInitData` is set (the things before and after are the kit; each scatter part's own told apart near or
+    anywhere; each starting colonist's gear; the start spot, the arrival method, the generator, the scenario's map
+    conditions), on the council's component, saved only while the offer is open and let go in the council's hour
+    (`HourlyPeople`), modelled in `Tools/save_estimate.py`.
+  - The kit followed: a reference alone is lost at the first haul (a load split off, merged on the stockpile), so a
+    postfix on `Thing.SplitOff` and a prefix and postfix on `Thing.TryAbsorbStack` carry each stack's kit count over
+    (`LandingKit`, a dictionary look-up while the offer is open, nothing after); the kit's part goes first when a stack is
+    split, used or merged, so mined or found steel never counts and what was used is gone (the test's first day: 450
+    hauled in six loads, 200 mined on top, 75 built with: 375 comes of the 575 lying there).
+  - The move (`Colonies/Landing.cs`), one long event: the colony's colonists, prisoners, slaves, mechs and animals off
+    the map with what they wear and carry (a carried stranger or corpse set down), the kit's part of each loose stack
+    split off; the old map removed (`DeinitAndRemoveMap`, no letter); the same settlement kept, moved for another place
+    (`WorldObject.Tile`), `Find.GameInfo.startingTile` following, so every record keyed by it and every quest naming it
+    stays; the new map made the game's way for it at the chosen size (also the world's size for new maps from then);
+    for the same place the content seed turned (`Patch_LandingSeed` on `GenerateContentsIntoMap`); the scenario's
+    map conditions put back to the time they had left; the monolith made the game's own (`Find.Anomaly.monolith`) with
+    the scenario's waking time; the arrival by pods (own pod each person, mechs, animals and kit shared) or standing at
+    the new start spot, the scattered kit near the start or anywhere; `GameEnder` left with `gameEnding` false; the
+    camera at the new start and a message in the age's words. Failing that, a map of where it was; failing all, a
+    caravan.
+  - Left from the design as asked: for another place the old map goes before the new one is made, since one settlement
+    can have one map and moving it keeps every record (the game's own archonexus move does the same); the seed is
+    turned in `GenerateContentsIntoMap`, not `World.info.seedString`, since the world's mineral-rich noise is built once
+    from the world's seed and a changed seed then would give the tile other ore for the rest of the session.
+  - Try in the game (none of it could be run here): a Crashlanded start, haul the kit into a stockpile, mine some steel,
+    build a bed, then Esc, Choose another landing site, a new map of the same place (the kit's steel less the bed's, not
+    the mined; meals less what was eaten; the pods each with one colonist; ship chunks and slag anywhere); again with
+    another place and a bigger size (the settlement's dot moves on the world map, nothing left at the old tile, the name
+    the same, the card's founding day the same); a Lost Tribe start (on foot, "starting site", no pods); a start with a
+    prisoner taken on the first day and a tamed animal; with Anomaly (one monolith on the new map, none doubled, the
+    monolith's study still works); a scenario with a cold snap at the start (its time left, not a fresh one); the log
+    for "Could not resolve reference" after saving and loading; and that no game-over letter or "colonists lost" mood
+    comes.
+  - Riskiest: the kit's split and merge patches on hot methods (cheap, but every haul passes them for three days); a
+    colony in limbo while the same place's map is made (pawns off any map for one long event); references other systems
+    keep to things on the removed map (Rimfolk's records of things under way there end as with any map closed); other
+    mods' map components or world objects tied to the old map; the Esc menu transpiler if another mod rewrites the menu.
+
 - 0.124.0, new decrees, customs and council questions (the player's request, 6 November 2026): "do another big content update to
   existing mechanics"; this part the council and the colony's year (decrees, the council's questions, customs, faith
   and the advisor), in the existing frameworks at their existing rates; no round of its own, About.xml, What's new and

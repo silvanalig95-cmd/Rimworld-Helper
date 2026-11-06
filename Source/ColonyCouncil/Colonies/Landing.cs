@@ -122,7 +122,7 @@ namespace ColonyCouncil
             var s = new LandingState
             {
                 on = RimfolkPatches.On, recorded = r != null, open = r != null && LandingMath.Open(Now, r.landedAt), tutorial = TutorSystem.TutorialMode,
-                gravship = r != null && r.method == PlayerPawnsArriveMethod.Gravship, space = map != null && (map.Tile.LayerDef?.isSpace ?? false),
+                gravship = r != null && r.method == PlayerPawnsArriveMethod.Gravship && ModsConfig.OdysseyActive, space = map != null && (map.Tile.LayerDef?.isSpace ?? false),
                 homes = Homes.All.Count, startHome = map != null, monolithWoken = ModsConfig.AnomalyActive && Find.Anomaly != null && Find.Anomaly.Level > 0
             };
             if (map == null) return LandingMath.WhyNot(s);
