@@ -14,7 +14,7 @@
     <order>18</order>
     <summary>When strain is at nothing and good things keep coming, the heart fills on the other side: in good heart, in high spirits.</summary>
     <tip>Friends close by and work that means something fill it; a fine room only a little.</tip>
-    <description>Strain has another side. When a colonist has no strain at all and good things keep coming over days, the heart fills on the other side: first steady, then in good heart, then in high spirits. It is one heart, never both at once: hardship spends the good side before any strain builds, and good things ease strain before they fill the good side.
+    <description>Strain has another side. When a colonist has no strain at all and good things keep coming over days, the heart fills on the other side: first steady, then in good heart, then in high spirits, each with a good mood of its own. It is one heart, never both at once: hardship spends the good side before any strain builds, and good things ease strain before they fill the good side.
 
 It fills slowly and mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys. The comforts of home count only a little, so a rich colony doesn't simply buy it. A save from before it starts at nothing.</description>
     <sections>
@@ -40,9 +40,9 @@ It fills slowly and mostly from what can't be bought: friends close by, a purpos
         <heading>The bands</heading>
         <table>
           <li>Good side | Band | What it does</li>
-          <li>0 to 44 | Steady | Nothing</li>
-          <li>45 to 64 | In good heart | +2 mood, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
-          <li>65 to 100 | In high spirits | +3 mood, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
+          <li>0 to 44 | Nothing yet below 20, steady from 20 | Steady: +2 mood, nothing else</li>
+          <li>45 to 64 | In good heart | +3 mood in place of steady's +2, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
+          <li>65 to 100 | In high spirits | +5 mood in place of +3, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
         </table>
         <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. The mood is one line on the Mood tab, like strain's, and it grows ordinary like any good mood.</after>
       </li>
@@ -52,7 +52,7 @@ It fills slowly and mostly from what can't be bought: friends close by, a purpos
       </li>
       <li>
         <heading>Where to see it</heading>
-        <text>The Mood tab's Heart section has a second meter, Good heart, with what filled it and what spent it lately and the last time it overflowed. The inspector line reads like "Heart: in good heart · proud" while it shows. The colonist's card says what filled it, and the council's Moods page counts who is in good heart and in high spirits.
+        <text>The Mood tab's Heart section has a second meter, Good heart, with what filled it and what spent it lately and the last time it overflowed. The inspector line reads like "Heart: in good heart · proud" from steady on. The colonist's card says what filled it, and the council's Moods page counts who is steady, in good heart and in high spirits.
 
 Its setting is on the Heart &amp; health page, beside the heart's own. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</text>
       </li>

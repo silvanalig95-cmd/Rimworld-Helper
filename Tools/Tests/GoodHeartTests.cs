@@ -6,9 +6,10 @@ using ColonyCouncil;
 /// The heart's good side (Heart/HeartMath.cs "The good side", Heart/GoodHeart.cs, GoodRelease.cs; the player's request
 /// of 6 November 2026): one heart with two sides, never both at once; hardship spends the good side before strain
 /// builds; it fills slowly within daily caps, mostly from what can't be bought, the comforts only a little; it fades
-/// slowly; its bands give a small good mood, brighter dreams and a quicker recovery, and in high spirits now and then a
-/// release through the game's own inspirations or a kind word face to face. No work speed; a setting, on by default;
-/// old saves start at nothing.
+/// slowly; its bands as the player approved them (steady from 20, in good heart, in high spirits) each give a small good
+/// mood (+2, +3, +5), the upper two brighter dreams and a quicker recovery, and in high spirits now and then a release
+/// through the game's own inspirations or a kind word face to face; below steady, nothing yet. No work speed; a setting,
+/// on by default; old saves start at nothing.
 /// </summary>
 public static class GoodHeartTests
 {
@@ -23,25 +24,35 @@ public static class GoodHeartTests
         string Code(string rel) => File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", rel));
         bool Near(float a, float b, float tol = 0.001f) => Math.Abs(a - b) <= tol;
 
-        // ---------- The bands ----------
-        C(HeartMath.GoodBandFor(0f) == GoodBand.Steady && HeartMath.GoodBandFor(HeartMath.GoodHeartAt - 0.1f) == GoodBand.Steady, "steady below good heart");
+        // ---------- The bands (as the player approved them, 6 November 2026: three bands, each with a mood) ----------
+        C(HeartMath.GoodBandFor(0f) == GoodBand.None && HeartMath.GoodBandFor(HeartMath.SteadyAt - 0.1f) == GoodBand.None, "nothing yet below steady");
+        C(HeartMath.GoodBandFor(HeartMath.SteadyAt) == GoodBand.Steady && HeartMath.GoodBandFor(HeartMath.GoodHeartAt - 0.1f) == GoodBand.Steady, "steady below good heart");
         C(HeartMath.GoodBandFor(HeartMath.GoodHeartAt) == GoodBand.GoodHeart && HeartMath.GoodBandFor(HeartMath.HighSpiritsAt - 0.1f) == GoodBand.GoodHeart, "in good heart");
         C(HeartMath.GoodBandFor(HeartMath.HighSpiritsAt) == GoodBand.HighSpirits && HeartMath.GoodBandFor(100f) == GoodBand.HighSpirits, "in high spirits");
-        C(HeartMath.GoodHeartAt > 0f && HeartMath.GoodHeartAt < HeartMath.HighSpiritsAt && HeartMath.HighSpiritsAt < HeartMath.Max, "the bands in order, within the range");
+        C(HeartMath.SteadyAt == 20f && HeartMath.GoodHeartAt == 45f && HeartMath.HighSpiritsAt == 65f, "steady from 20, in good heart from 45, in high spirits from 65");
+        C(HeartMath.SteadyAt > 0f && HeartMath.SteadyAt < HeartMath.GoodHeartAt && HeartMath.GoodHeartAt < HeartMath.HighSpiritsAt && HeartMath.HighSpiritsAt < HeartMath.Max,
+            "the bands in order, within the range");
+        C(HeartMath.GoodBandFor(float.NaN) == GoodBand.None && HeartMath.GoodBandFor(-5f) == GoodBand.None, "nothing yet from nothing");
         foreach (GoodBand b in Enum.GetValues(typeof(GoodBand)))
             C(HeartMath.GoodBandFor(HeartMath.GoodBandStart(b)) == b, "band start " + b);
-        C(HeartMath.GoodMood(GoodBand.Steady) == 0f && HeartMath.GoodMood(GoodBand.GoodHeart) > 0f && HeartMath.GoodMood(GoodBand.HighSpirits) > HeartMath.GoodMood(GoodBand.GoodHeart),
-            "steady gives nothing; the bands a small good mood, more in high spirits");
-        C(HeartMath.GoodMood(GoodBand.GoodHeart) < -HeartMath.MoodOffset(StrainBand.Strained) && HeartMath.GoodMood(GoodBand.HighSpirits) < -HeartMath.MoodOffset(StrainBand.Worn),
-            "smaller than strain's on the other side");
+        C(HeartMath.GoodMood(GoodBand.None) == 0f && HeartMath.GoodMood(GoodBand.Steady) == 2f && HeartMath.GoodMood(GoodBand.GoodHeart) == 3f && HeartMath.GoodMood(GoodBand.HighSpirits) == 5f,
+            "nothing yet gives nothing; steady +2, in good heart +3, in high spirits +5");
+        C(HeartMath.GoodMood(GoodBand.Steady) < -HeartMath.MoodOffset(StrainBand.Strained) && HeartMath.GoodMood(GoodBand.GoodHeart) < -HeartMath.MoodOffset(StrainBand.Worn)
+          && HeartMath.GoodMood(GoodBand.HighSpirits) < -HeartMath.MoodOffset(StrainBand.Breaking), "each smaller than strain's across from it");
+        C(!Code("Heart/HeartData.cs").Contains("GoodBand") && !Code("Heart/HeartTracker.cs").Contains("GoodBand"), "the band is never saved: read from the value, so an old save's colonist above 20 is steady at once");
         // The thought gives what the rule says (one situational thought reading the band, like strain's).
         var defs = XDocument.Load(Path.Combine(root, "Defs", "ThoughtDefs", "Rimfolk_Thoughts_GoodHeart.xml"));
         var band = defs.Root.Elements("ThoughtDef").FirstOrDefault(e => (string)e.Element("defName") == "Council_Heart_GoodSide");
         var stages = band?.Element("stages")?.Elements("li").Select(li => float.Parse((string)li.Element("baseMoodEffect"), System.Globalization.CultureInfo.InvariantCulture)).ToList();
+        var stageLabels = band?.Element("stages")?.Elements("li").Select(li => (string)li.Element("label")).ToList();
         C(band != null && (string)band.Element("workerClass") == "ColonyCouncil.ThoughtWorker_HeartGood" && (string)band.Element("thoughtClass") == "ColonyCouncil.Thought_HeartGood",
             "the band's mood is a situational thought of its own");
-        C(stages != null && stages.Count == 2 && stages[0] == HeartMath.GoodMood(GoodBand.GoodHeart) && stages[1] == HeartMath.GoodMood(GoodBand.HighSpirits),
-            "its stages are the rule's moods");
+        C(stages != null && stages.Count == 3 && stages[0] == HeartMath.GoodMood(GoodBand.Steady) && stages[1] == HeartMath.GoodMood(GoodBand.GoodHeart)
+          && stages[2] == HeartMath.GoodMood(GoodBand.HighSpirits), "its three stages are the rule's moods");
+        C(stageLabels != null && stageLabels.SequenceEqual(new[] { "steady", "in good heart", "in high spirits" }), "a stage a band, by the player's names");
+        string goodWorker = Code("Heart/GoodHeart.cs");
+        C(Regex.IsMatch(goodWorker, @"case GoodBand\.Steady: return ThoughtState\.ActiveAtStage\(0\);\s*case GoodBand\.GoodHeart: return ThoughtState\.ActiveAtStage\(1\);\s*"
+            + @"case GoodBand\.HighSpirits: return ThoughtState\.ActiveAtStage\(2\);\s*default: return ThoughtState\.Inactive;"), "the worker maps each band to its stage, nothing yet to none");
         C(band != null && ((string)band.Element("defName")).StartsWith("Council_Heart_"), "named with the heart's own, so the pile of small moods leaves it out (SmallMoments.Heavy)");
         C(Code("Moods/SmallMoments.cs").Contains("n.StartsWith(\"Council_Heart_\", StringComparison.Ordinal)"), "the pile leaves the heart's own moods out");
 
@@ -106,12 +117,15 @@ public static class GoodHeartTests
         C(HeartMath.Lately(10f, 50f, 1f) == 50f && HeartMath.Lately(60f, 10f, 1f) > 10f && HeartMath.Lately(60f, 10f, 1f) < 60f, "how high it stood lately: never below now, fading");
 
         // ---------- What the bands do ----------
-        C(HeartMath.RecoveryFactor(GoodBand.Steady) == 1f && HeartMath.RecoveryFactor(GoodBand.GoodHeart) > 1f && HeartMath.RecoveryFactor(GoodBand.HighSpirits) > HeartMath.RecoveryFactor(GoodBand.GoodHeart),
+        C(HeartMath.RecoveryFactor(GoodBand.GoodHeart) > 1f && HeartMath.RecoveryFactor(GoodBand.HighSpirits) > HeartMath.RecoveryFactor(GoodBand.GoodHeart),
             "a quicker recovery from strain, quicker in high spirits");
-        C(HeartMath.SweetDreamFactor(GoodBand.Steady) == 1f && HeartMath.SweetDreamFactor(GoodBand.HighSpirits) > HeartMath.SweetDreamFactor(GoodBand.GoodHeart)
-          && HeartMath.SweetDreamFactor(GoodBand.GoodHeart) > 1f, "brighter dreams: sweet ones likelier");
-        C(HeartMath.GoodNightmareFactor(GoodBand.Steady) == 1f && HeartMath.GoodNightmareFactor(GoodBand.HighSpirits) < HeartMath.GoodNightmareFactor(GoodBand.GoodHeart)
-          && HeartMath.GoodNightmareFactor(GoodBand.GoodHeart) < 1f, "and nightmares rarer");
+        C(HeartMath.SweetDreamFactor(GoodBand.HighSpirits) > HeartMath.SweetDreamFactor(GoodBand.GoodHeart) && HeartMath.SweetDreamFactor(GoodBand.GoodHeart) > 1f,
+            "brighter dreams: sweet ones likelier");
+        C(HeartMath.GoodNightmareFactor(GoodBand.HighSpirits) < HeartMath.GoodNightmareFactor(GoodBand.GoodHeart) && HeartMath.GoodNightmareFactor(GoodBand.GoodHeart) < 1f,
+            "and nightmares rarer");
+        foreach (var b in new[] { GoodBand.None, GoodBand.Steady })
+            C(HeartMath.RecoveryFactor(b) == 1f && HeartMath.SweetDreamFactor(b) == 1f && HeartMath.GoodNightmareFactor(b) == 1f,
+                b + ": no brighter dreams and no quicker recovery (steady gives only its mood)");
         C(Code("Heart/Heart.cs").Contains("HeartMath.SweetDreamFactor(good)") && Code("Heart/Heart.cs").Contains("HeartMath.GoodNightmareFactor(good)"), "the dreams ask for it");
         C(Code("Heart/HeartLogic.cs").Contains("factor *= HeartMath.RecoveryFactor(HeartMath.GoodBandFor(h.goodLately))"), "strain's relief asks how high it stood lately");
         string effects = Code("Heart/HeartEffects.cs");
@@ -166,20 +180,35 @@ public static class GoodHeartTests
         C(settings.Contains("public bool heartGoodSide = true;") && settings.Contains("Scribe_Values.Look(ref heartGoodSide, \"heartGoodSide\", true);"), "a setting, on by default");
         C(Regex.IsMatch(Code("UI/SettingsCatalog.cs"), @"Toggle\(""heartEpisodes""[^\n]*\n[^\n]*\n\s*Toggle\(""heartGoodSide"", ""CC_Settings_HeartGoodSide"", ""CC_SetNote_HeartGoodSide"", ""heart""\);"),
             "on the heart's page in settings, beside the heart's own, needing the heart");
-        var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_GoodHeart.xml")).Root.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
+        // The good side's keys, and the bands' own as the player approved them (their keys "CC_Good_Band_" and the old
+        // explanation and count are left unused in the first file).
+        var keyed = new[] { "Rimfolk_GoodHeart.xml", "Rimfolk_GoodHeart_Bands.xml" }
+            .SelectMany(f => XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", f)).Root.Elements()).ToDictionary(e => e.Name.LocalName, e => e.Value);
         foreach (GoodBand b in Enum.GetValues(typeof(GoodBand)))
-            C(keyed.ContainsKey("CC_Good_Band_" + b) && keyed.ContainsKey("CC_Good_Band_" + b + "_Desc"), "words for " + b);
-        C(keyed["CC_Good_Band_Steady"] == "steady" && keyed["CC_Good_Band_GoodHeart"] == "in good heart" && keyed["CC_Good_Band_HighSpirits"] == "in high spirits", "the player's names for the bands");
+            C(keyed.ContainsKey("CC_GoodSide_Band_" + b) && keyed.ContainsKey("CC_GoodSide_Band_" + b + "_Desc"), "words for " + b);
+        C(keyed["CC_GoodSide_Band_Steady"] == "steady" && keyed["CC_GoodSide_Band_GoodHeart"] == "in good heart" && keyed["CC_GoodSide_Band_HighSpirits"] == "in high spirits",
+            "the player's names for the bands");
+        C(goodCode.Contains("(\"CC_GoodSide_Band_\" + b).Translate()") && goodCode.Contains("(\"CC_GoodSide_Band_\" + b + \"_Desc\").Translate()") && goodCode.Contains("\"CC_GoodSide_Explain\".Translate()")
+          && !goodCode.Contains("\"CC_Good_Band_\"") && !goodCode.Contains("\"CC_Good_Explain\""), "the code reads the bands' new words, the old keys left unused");
         foreach (GoodSource s in Enum.GetValues(typeof(GoodSource)))
             C(keyed.ContainsKey("CC_Good_Source_" + s), "words for what fills it: " + s);
         foreach (var k in new[] { "CC_Settings_HeartGoodSide", "CC_Settings_HeartGoodSide_Tip", "CC_SetNote_HeartGoodSide" })
             C(keyed.ContainsKey(k), k + " is written");
-        string desc = keyed["CC_Good_Band_GoodHeart_Desc"] + keyed["CC_Good_Band_HighSpirits_Desc"];
-        C(desc.Contains("+" + HeartMath.GoodMood(GoodBand.GoodHeart).ToString("0")) && desc.Contains("+" + HeartMath.GoodMood(GoodBand.HighSpirits).ToString("0")),
-            "the bands' words say their moods");
-        string explain = keyed["CC_Good_Explain"];
-        C(explain.Contains(HeartMath.GoodHeartAt.ToString("0")) && explain.Contains(HeartMath.HighSpiritsAt.ToString("0")) && explain.Contains(HeartMath.GoodDailyCap.ToString("0") + " a day"),
-            "the page's words say where the bands start and the day's cap");
+        foreach (var b in new[] { GoodBand.Steady, GoodBand.GoodHeart, GoodBand.HighSpirits })
+            C(keyed["CC_GoodSide_Band_" + b + "_Desc"].Contains("+" + HeartMath.GoodMood(b).ToString("0") + " mood"), b + ": its words say its mood");
+        C(keyed["CC_GoodSide_Band_None_Desc"].Contains(HeartMath.SteadyAt.ToString("0")), "nothing yet says where steady starts");
+        string explain = keyed["CC_GoodSide_Explain"];
+        C(new[] { HeartMath.SteadyAt, HeartMath.GoodHeartAt, HeartMath.HighSpiritsAt }.All(v => explain.Contains("from " + v.ToString("0")))
+          && explain.Contains(HeartMath.GoodDailyCap.ToString("0") + " a day"), "the page's words say where the bands start and the day's cap");
+        C(new[] { GoodBand.Steady, GoodBand.GoodHeart, GoodBand.HighSpirits }.All(b => explain.Contains("(+" + HeartMath.GoodMood(b).ToString("0") + " mood)")), "and each band's mood");
+        C(keyed["CC_Settings_HeartGoodSide_Tip"].Contains("(+2, +3 and +5)"), "the setting's tooltip says the three moods");
+        // Steady shows like the other two: the inspector line and RimHUD, the meter's line, the card, the Moods page's count.
+        string view = Code("Heart/HeartView.cs");
+        C(view.Contains("bool goodSide = good != GoodBand.None;") && view.Contains("h.hudStrain = good != GoodBand.None") && view.Contains("m.goodLine = good != GoodBand.None ?"),
+            "the inspector line, RimHUD and the meter's line read the good side from steady");
+        C(goodCode.Contains("if (band == GoodBand.None) return null;") && goodCode.Contains("HeartMath.GoodBandFor(h.good) : GoodBand.None;"), "the card's line from steady; off, nothing yet");
+        C(view.Contains("int steady = list.Count(x => GoodHeart.Band(x.h) == GoodBand.Steady);") && keyed["CC_GoodSide_ColonySummary"].Contains("{STEADY} steady"),
+            "the Moods page counts who is steady too");
         return n;
     }
 }
