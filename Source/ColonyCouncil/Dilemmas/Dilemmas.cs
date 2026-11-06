@@ -1404,7 +1404,8 @@ namespace ColonyCouncil
                 if (ColonyCalendar.On)
                 {
                     var keeper = (colony?.offices ?? comp.offices).KeeperOfDays;
-                    if (keeper == null || !colonists.Contains(keeper)) keeper = colonists.Contains(ctx.a) ? ctx.a : colonists.FirstOrDefault();
+                    if (keeper == null || !colonists.Contains(keeper))
+                        keeper = colonists.Contains(ctx.a) ? ctx.a : colonists.FirstOrDefault(p => ColonyCalendar.Ours(p) && p.DevelopmentalStage.Adult());
                     if (keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
                 }
                 if (result == CalendarMath.KeepResult.KeptTradition)
